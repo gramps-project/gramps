@@ -147,7 +147,7 @@ class TagReport(Report):
         filter_class = GenericFilterFactory("Person")
         a_filter = filter_class()
         a_filter.add_rule(rules.person.HasTag([self.tag]))
-        ind_list = a_filter.apply(self.database, plist)
+        ind_list = a_filter.apply_to_all(self.database, plist)
 
         if not ind_list:
             return
@@ -235,7 +235,7 @@ class TagReport(Report):
         filter_class = GenericFilterFactory("Family")
         a_filter = filter_class()
         a_filter.add_rule(rules.family.HasTag([self.tag]))
-        fam_list = a_filter.apply(self.database, flist)
+        fam_list = a_filter.apply_to_all(self.database, flist)
 
         if not fam_list:
             return
@@ -324,7 +324,7 @@ class TagReport(Report):
         filter_class = GenericFilterFactory("Event")
         a_filter = filter_class()
         a_filter.add_rule(rules.event.HasTag([self.tag]))
-        event_list = a_filter.apply(self.database, elist)
+        event_list = a_filter.apply_to_all(self.database, elist)
 
         if not event_list:
             return
@@ -406,7 +406,7 @@ class TagReport(Report):
         filter_class = GenericFilterFactory("Place")
         a_filter = filter_class()
         a_filter.add_rule(rules.place.HasTag([self.tag]))
-        place_list = a_filter.apply(self.database, plist)
+        place_list = a_filter.apply_to_all(self.database, plist)
 
         if not place_list:
             return
@@ -487,7 +487,7 @@ class TagReport(Report):
         filter_class = GenericFilterFactory("Note")
         a_filter = filter_class()
         a_filter.add_rule(rules.note.HasTag([self.tag]))
-        note_list = a_filter.apply(self.database, nlist)
+        note_list = a_filter.apply_to_all(self.database, nlist)
 
         if not note_list:
             return
@@ -559,7 +559,7 @@ class TagReport(Report):
         filter_class = GenericFilterFactory("Media")
         a_filter = filter_class()
         a_filter.add_rule(rules.media.HasTag([self.tag]))
-        media_list = a_filter.apply(self.database, mlist)
+        media_list = a_filter.apply_to_all(self.database, mlist)
 
         if not media_list:
             return
@@ -643,7 +643,7 @@ class TagReport(Report):
         filter_class = GenericFilterFactory("Repository")
         a_filter = filter_class()
         a_filter.add_rule(rules.repository.HasTag([self.tag]))
-        repo_list = a_filter.apply(self.database, rlist)
+        repo_list = a_filter.apply_to_all(self.database, rlist)
 
         if not repo_list:
             return
@@ -728,7 +728,7 @@ class TagReport(Report):
         filter_class = GenericFilterFactory("Source")
         a_filter = filter_class()
         a_filter.add_rule(rules.source.HasTag([self.tag]))
-        source_list = a_filter.apply(self.database, slist)
+        source_list = a_filter.apply_to_all(self.database, slist)
 
         if not source_list:
             return
@@ -810,7 +810,7 @@ class TagReport(Report):
         filter_class = GenericFilterFactory("Citation")
         a_filter = filter_class()
         a_filter.add_rule(rules.citation.HasTag([self.tag]))
-        citation_list = a_filter.apply(self.database, clist)
+        citation_list = a_filter.apply_to_all(self.database, clist)
 
         if not citation_list:
             return

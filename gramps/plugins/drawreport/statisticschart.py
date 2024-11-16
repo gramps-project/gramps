@@ -907,7 +907,7 @@ class StatisticsChart(Report):
             self._get_date(Date(year_to)),
         )
 
-        people = self.filter.apply(
+        people = self.filter.apply_to_all(
             self.database, self.database.iter_person_handles(), user=self._user
         )
 

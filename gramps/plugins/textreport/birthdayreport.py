@@ -291,7 +291,7 @@ class BirthdayReport(Report):
         and text.
         """
         people = self.database.iter_person_handles()
-        people = self.filter.apply(self.database, people, user=self._user)
+        people = self.filter.apply_to_all(self.database, people, user=self._user)
 
         ngettext = self._locale.translation.ngettext  # to see "nearby" comments
         rel_calc = get_relationship_calculator(reinit=True, clocale=self._locale)

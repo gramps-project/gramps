@@ -643,7 +643,7 @@ class NavWebReport(Report):
             self.obj_dict[obj_class] = defaultdict(set)
 
         ind_list = self._db.iter_person_handles()
-        ind_list = self.filter.apply(self._db, ind_list, user=self.user)
+        ind_list = self.filter.apply_to_all(self._db, ind_list, user=self.user)
 
         message = _("Constructing list of other objects...")
         pgr_title = self.pgrs_title(None)

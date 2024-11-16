@@ -211,7 +211,7 @@ class RelGraphReport(Report):
             self.advrelinfo = False
 
     def write_report(self):
-        person_handles = self._filter.apply(
+        person_handles = self._filter.apply_to_all(
             self._db, self._db.iter_person_handles(), user=self._user
         )
         # Hash people in a dictionary for faster inclusion checking

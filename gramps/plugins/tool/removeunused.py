@@ -305,10 +305,10 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         FilterClass = GenericFilterFactory("Note")
         filter1 = FilterClass()
         filter1.add_rule(rules.note.HasType(["To Do"]))
-        todo_list = filter1.apply(self.dbstate.db, all_notes)
+        todo_list = filter1.apply_to_all(self.dbstate.db, all_notes)
         filter2 = FilterClass()
         filter2.add_rule(rules.note.HasType(["Link"]))
-        link_list = filter2.apply(self.dbstate.db, all_notes)
+        link_list = filter2.apply_to_all(self.dbstate.db, all_notes)
 
         for the_type, cursor_func, total_func in tables:
             if not self.options.handler.options_dict[the_type]:

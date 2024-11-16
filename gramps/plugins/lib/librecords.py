@@ -169,7 +169,7 @@ def find_records(
     person_handle_list = list(person_handle_list)
 
     if filter:
-        person_handle_list = filter.apply(db, person_handle_list, user=user)
+        person_handle_list = filter.apply_to_all(db, person_handle_list, user=user)
 
     for person_handle in person_handle_list:
         person = db.get_person_from_handle(person_handle)
@@ -386,7 +386,7 @@ def find_records(
         # Test if either father or mother are in filter
         if filter:
             # we don't want many progress reports popping up, so no user=user
-            if not filter.apply(db, [father_handle, mother_handle]):
+            if not filter.apply_to_all(db, [father_handle, mother_handle]):
                 continue
 
         father = db.get_person_from_handle(father_handle)

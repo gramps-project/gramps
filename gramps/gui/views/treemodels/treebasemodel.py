@@ -623,7 +623,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         assert not skip
         if dfilter:
             cdb = CacheProxyDb(self.db)
-            for handle in dfilter.apply(
+            for handle in dfilter.apply_to_all(
                 cdb,
                 tree=True,
                 user=User(parent=self.uistate.window, uistate=self.uistate),

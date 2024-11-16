@@ -184,7 +184,7 @@ class EventComparison(tool.Tool, ManagedWindow):
         progress_bar = ProgressMeter(_("Comparing events"), "", parent=self.window)
         progress_bar.set_pass(_("Selecting people"), 1)
 
-        plist = cfilter.apply(self.db, self.db.iter_person_handles())
+        plist = cfilter.apply_to_all(self.db, self.db.iter_person_handles())
 
         progress_bar.step()
         progress_bar.close()
