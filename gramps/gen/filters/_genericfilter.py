@@ -194,6 +194,15 @@ class GenericFilter:
             else:
                 return set()
 
+        def union(sets):
+            if sets:
+                result = sets[0]
+                for s in sets[1:]:
+                    result = result.union(s)
+                return result
+            else:
+                return set()
+
         # ------------------------------------------------------
         # Optimiziation
         # ------------------------------------------------------
@@ -204,15 +213,22 @@ class GenericFilter:
         # Get all positive non-inverted maps
         for inverted, logical_op, maps in all_maps:
             if logical_op == "and" and not inverted:
-                LOG.debug("optimizer match!")
+                LOG.debug("optimizer positive match!")
                 if handles is None:
                     handles = intersection(maps)
                 else:
                     handles = intersection([handles] + maps)
+        if handles is not None:
+            # Get all inverted maps and remove from handles
+            for inverted, logical_op, maps in all_maps:
+                if logical_op == "and" and inverted:
+                    LOG.debug("optimizer inverted match!")
+                    not_handles = union(maps)
+                    handles = handles - not_handles
         # ------------------------------------------------------
         LOG.debug("optimizer handles: %s", len(handles) if handles else 0)
         if id_list is None:
-            if handles:
+            if handles is not None:
                 # Use these rather than going through entire database
                 for handle in handles:
                     json_data = self.get_raw_data(db, handle)
@@ -241,7 +257,7 @@ class GenericFilter:
                 else:
                     handle = data[tupleind]
 
-                if handles and handle not in handles:
+                if handles is not None and handle not in handles:
                     continue
 
                 json_data = self.get_raw_data(db, handle)
