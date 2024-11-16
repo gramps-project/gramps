@@ -625,7 +625,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def upgrade_table_for_json_data(self, table_name):
         """
-        Overload this method to add JSON access
+        Overload this method to upgrade the table to store data in JSON format
         """
         raise NotImplementedError
 
