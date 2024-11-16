@@ -147,7 +147,9 @@ class GenericFilter:
         """
         LOG.debug(
             "walking, filter: %s, invert=%s, parent_invert=%s",
-            filter, filter.invert, parent_invert
+            filter,
+            filter.invert,
+            parent_invert,
         )
         rules = []
         for item in filter.flist:
@@ -155,14 +157,18 @@ class GenericFilter:
                 self.walk_filters(
                     item.find_filter(),
                     not parent_invert if filter.invert else parent_invert,
-                    result
+                    result,
                 )
             elif hasattr(item, "map"):
                 rules.append(item.map)
         if rules:
             LOG.debug(
                 "filter %s: parent_invert=%s, invert=%s, op=%s, number of maps=%s",
-                filter, parent_invert, filter.invert, filter.logical_op, len(rules)
+                filter,
+                parent_invert,
+                filter.invert,
+                filter.logical_op,
+                len(rules),
             )
             result.append((parent_invert, filter.logical_op, rules))
 
@@ -424,7 +430,6 @@ class GenericPlaceFilter(GenericFilter):
 
     def get_raw_data(self, db, handle):
         return db.get_raw_place_data(handle)
-
 
 
 class GenericMediaFilter(GenericFilter):
