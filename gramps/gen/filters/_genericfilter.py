@@ -196,7 +196,7 @@ class GenericFilter:
 
             else:
                 with (
-                        self.get_tree_cursor(db) if tree else self.get_cursor(db)
+                    self.get_tree_cursor(db) if tree else self.get_cursor(db)
                 ) as cursor:
                     for handle, data in cursor:
                         if user:
