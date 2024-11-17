@@ -66,7 +66,7 @@ class HasTagBase(Rule):
                 ["$.handle"],
                 ("$.tag_list", "LIKE", f'%"{self.tag_handle}"%'),
             )
-            self.map = set([row["handle"] for row in list(results)])
+            self.map = set([row["handle"] for row in results])
         else:
             self.map = set()
 
