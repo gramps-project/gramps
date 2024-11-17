@@ -14,13 +14,14 @@
 # Stephan Paternotte <s.paternotte@outlook.com>, 2022.
 # Stephan Paternotte <stephan@paternottes.net>, 2023, 2024.
 # Ailean Riepsaame-Duffy <aileanr@gmail.com>, 2024.
+# Enno Borgsteede <ennoborg@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-17 13:09+0000\n"
-"Last-Translator: Niko Strijbol <strijbol.niko@gmail.com>\n"
+"PO-Revision-Date: 2024-10-15 07:20+0000\n"
+"Last-Translator: Enno Borgsteede <ennoborg@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
 "Language: nl\n"
@@ -28,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -646,8 +647,8 @@ msgid ""
 "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
 "entries of the same person entered more than once in the database."
 msgstr ""
-"<b>Dubbele vermeldingen</b><br/>Met \"Hulpmiddelen &gt;Stamboom bewerken &gt;"
-" Mogelijk Dubbele Personen vinden…\" kunt u vermeldingen van dezelfde "
+"<b>Dubbele vermeldingen</b><br/>Met \"Hulpmiddelen &gt;Stamboom bewerken "
+"&gt; Mogelijk Dubbele Personen vinden…\" kunt u vermeldingen van dezelfde "
 "persoon die meer dan eens in de databank zijn ingevoerd, lokaliseren (en "
 "samenvoegen)."
 
@@ -1586,8 +1587,8 @@ msgstr ""
 "\n"
 "4. Om eventuele foutmeldingen van het bovenstaande voorbeeld op te slaan in "
 "de bestanden outfile en errfile, voert u uit:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
-"errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
+"2>errfile\n"
 "\n"
 "5. Om drie databanken te importeren en een interactieve Gramps-sessie te "
 "starten met het resultaat:\n"
@@ -1905,13 +1906,13 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"Gramps heeft een probleem gedetecteerd in de onderliggende Berkeley-"
-"database. Dit kan worden hersteld via de Stamboombeheerder. Selecteer de "
-"database en klik op de knop Repareren"
+"Gramps heeft een probleem gedetecteerd in de onderliggende database. Dit kan "
+"worden hersteld via de Stamboombeheerder. Selecteer de database en klik op "
+"de knop Repareren"
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
-msgstr "Alleen-lezen databank"
+msgstr "Alleen-lezen-databank"
 
 #: ../gramps/cli/grampscli.py:160 ../gramps/gui/dbloader.py:166
 #: ../gramps/gui/dbloader.py:510
@@ -1931,11 +1932,11 @@ msgstr "Kon dit bestand niet openen: %s"
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Could not load a recent Family Tree."
-msgstr "Kan een recente stamboom niet laden."
+msgstr "Kon een recente stamboom niet laden."
 
 #: ../gramps/cli/grampscli.py:261
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "De stamboom bestaat niet omdat deze is verwijderd."
+msgstr "De stamboom bestaat niet, omdat deze is verwijderd."
 
 #: ../gramps/cli/grampscli.py:267
 msgid "The database is locked."
@@ -1962,7 +1963,7 @@ msgstr "  Details: %s"
 #: ../gramps/cli/grampscli.py:355
 #, python-format
 msgid "Error encountered in argument parsing: %s"
-msgstr "Fout bij het parseren van argumenten: %s"
+msgstr "Fout bij het verwerken van parameters: %s"
 
 #: ../gramps/cli/plug/__init__.py:198
 msgid "ERROR: Please specify a person"
@@ -1986,7 +1987,7 @@ msgstr "=formaat"
 
 #: ../gramps/cli/plug/__init__.py:324
 msgid "Output file format."
-msgstr "Uitvoer bestandsformaat."
+msgstr "Uitvoerbestandsformaat."
 
 #: ../gramps/cli/plug/__init__.py:325 ../gramps/cli/plug/__init__.py:326
 msgid "=name"
@@ -2008,7 +2009,7 @@ msgstr "=nummer"
 
 #: ../gramps/cli/plug/__init__.py:327
 msgid "Paper orientation number."
-msgstr "Papieroriëntatie nummer."
+msgstr "Papieroriëntatienummer."
 
 #: ../gramps/cli/plug/__init__.py:328
 msgid "Left paper margin"
@@ -2033,7 +2034,7 @@ msgstr "Ondermarge"
 
 #: ../gramps/cli/plug/__init__.py:332
 msgid "=css filename"
-msgstr "=css bestandsnaam"
+msgstr "=css-bestandsnaam"
 
 #: ../gramps/cli/plug/__init__.py:332
 msgid "CSS filename to use, html format only"
@@ -2111,7 +2112,7 @@ msgstr "   Beschikbare opties:"
 
 #: ../gramps/cli/plug/__init__.py:687
 msgid "(no help available)"
-msgstr "(geen help beschikbaar)"
+msgstr "(geen hulp beschikbaar)"
 
 #: ../gramps/cli/plug/__init__.py:699
 msgid "   Available values are:"
@@ -2159,7 +2160,7 @@ msgstr ""
 
 #: ../gramps/gen/config.py:302
 msgid "Imported %Y/%m/%d %H:%M:%S"
-msgstr "Geïmporteerd op %Y/%m/%d %H:%M:%S"
+msgstr "Geïmporteerd op %d-%m-%Y/ %H:%M:%S"
 
 #: ../gramps/gen/config.py:314
 msgid "Missing Given Name"
@@ -2213,7 +2214,7 @@ msgstr ":"
 #: ../gramps/gen/datehandler/__init__.py:95
 #, python-format
 msgid "Date parser for '%s' not available, using default"
-msgstr "Datum parser voor '%s' niet beschikbaar, standaard gebruikt"
+msgstr "Datum-parser voor '%s' niet beschikbaar, standaard gebruikt"
 
 #: ../gramps/gen/datehandler/__init__.py:112
 #, python-format
@@ -3281,16 +3282,16 @@ msgstr ""
 "Daarom kunt u deze stamboom niet laden zonder te upgraden.\n"
 "\n"
 "Als u een upgrade uitvoert kunt u de vorige versie van Gramps niet "
-"gebruiken, zelfs niet als u vervolgens een %(wiki_manual_backup_html_start"
-")sback-up%(html_end)s maakt of een "
+"gebruiken, zelfs niet als u vervolgens een "
+"%(wiki_manual_backup_html_start)sback-up%(html_end)s maakt of een "
 "%(wiki_manual_export_html_start)sexport%(html_end)s uitvoert van uw "
 "bijgewerkte stamboom.\n"
 "\n"
 "U wordt sterk aangeraden om een back-up van uw stamboom te maken.\n"
 "\n"
 "Als u nog geen back-up van uw stamboom heeft gemaakt, moet u uw vorige "
-"versie van Gramps starten en %(wiki_backup_html_start)seen back-up%(html_end)"
-"s van uw stamboom maken."
+"versie van Gramps starten en %(wiki_backup_html_start)seen back-"
+"up%(html_end)s van uw stamboom maken."
 
 #: ../gramps/gen/db/generic.py:196 ../gramps/gen/db/generic.py:246
 #: ../gramps/gen/db/generic.py:2157
@@ -13334,8 +13335,8 @@ msgid ""
 msgstr ""
 "Als u op %(bold_start)sDoorgaan%(bold_end)s klikt, zal Gramps proberen uw "
 "stamboom te herstellen vanaf de laatste goede back-up. Er zijn verschillende "
-"manieren waarop dit ongewenste effecten kan veroorzaken, dus %(bold_start"
-")sback-up%(bold_end)s eerst de stamboom.\n"
+"manieren waarop dit ongewenste effecten kan veroorzaken, dus "
+"%(bold_start)sback-up%(bold_end)s eerst de stamboom.\n"
 "De geselecteerde stamboom wordt opgeslagen in %(dirname)s.\n"
 "\n"
 "Controleer voordat u een reparatie uitvoert of de stamboom echt niet meer "
@@ -24867,8 +24868,8 @@ msgid ""
 "\n"
 msgstr ""
 "Wanneer Gramps voor de eerste keer wordt gestart, zijn alle weergaven leeg. "
-"Er zijn maar weinig menu-opties. Voor elke activiteit is een stamboom nodig."
-"\n"
+"Er zijn maar weinig menu-opties. Voor elke activiteit is een stamboom "
+"nodig.\n"
 "\n"
 "Om een nieuwe stamboom ('databank') aan te maken, selecteert u in het menu "
 "'Stambomen', kies vervolgens 'Stambomen beheren', druk op 'Nieuw' en geef u "
@@ -39807,8 +39808,6 @@ msgstr "Geen stijlblad"
 #~ msgstr "Uw Gtk-versie is te oud."
 
 #, fuzzy
-#~| msgctxt "localized lexeme inflections"
-#~| msgid "January"
 #~ msgctxt "localized lexeme inflections"
 #~ msgid "|January"
 #~ msgstr "januari"
@@ -39999,12 +39998,10 @@ msgstr "Geen stijlblad"
 #~ msgstr "Algemeen"
 
 #, fuzzy
-#~| msgid "Common"
 #~ msgid "Name|Common"
 #~ msgstr "Algemeen"
 
 #, fuzzy
-#~| msgid "suffix"
 #~ msgid "locale_suffix|"
 #~ msgstr "achtervoegsel"
 
