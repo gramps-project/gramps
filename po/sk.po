@@ -9,13 +9,14 @@
 # Jose Riha <jose1711@gmail.com>, 2022.
 # Jano Svitok <jan.svitok@gmail.com>, 2022.
 # Milan Šalka <salka.milan@googlemail.com>, 2023, 2024.
+# Martin Štefany <m.stefany89@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-16 11:09+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2024-10-25 05:15+0000\n"
+"Last-Translator: Martin Štefany <m.stefany89@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8.2-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -29135,7 +29136,7 @@ msgstr "Táto osoba bola dieťaťom otca %(father)s a matky %(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:1016
 #, python-format
 msgid "Child of %(father)s and %(mother)s."
-msgstr "Dieťa otca%(father)s a matky %(mother)s."
+msgstr "Dieťa otca %(father)s a matky %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1020
 #, python-format
@@ -29180,7 +29181,7 @@ msgstr "Je dcéra otca %(father)s a matky %(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:1036
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
-msgstr "Bola dcérou otca%(father)s a matky %(mother)s."
+msgstr "Bola dcérou otca %(father)s a matky %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1038
 #, python-format
