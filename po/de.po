@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-16 11:09+0000\n"
+"PO-Revision-Date: 2024-11-14 11:16+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -22253,29 +22253,29 @@ msgstr "Text unten, Zeile 3"
 #: ../gramps/plugins/drawreport/descendtree.py:173
 #, python-format
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
-msgstr "Nachkommentafel für %(person)s und %(father1)s, %(mother1)s"
+msgstr "Nachkommendiagramm für %(person)s und %(father1)s, %(mother1)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:182
 #, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
-msgstr "Nachkommentafel für %(person)s, %(father1)s und %(mother1)s"
+msgstr "Nachkommendiagramm für %(person)s, %(father1)s und %(mother1)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:191
 #, python-format
 msgid ""
 "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
 msgstr ""
-"Nachkommentafel für %(father1)s, %(father2)s und %(mother1)s, %(mother2)s"
+"Nachkommendiagramm für %(father1)s, %(father2)s und %(mother1)s, %(mother2)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:201
 #, python-format
 msgid "Descendant Chart for %(person)s"
-msgstr "Nachkommentafel für %(person)s"
+msgstr "Nachkommendiagramm für %(person)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:203
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
-msgstr "Nachkommentafel für %(father)s und %(mother)s"
+msgstr "Nachkommendiagramm für %(father)s und %(mother)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:235
 msgid "Descendant Graph"
@@ -22360,7 +22360,7 @@ msgstr "Ob die Ehegatten im Baum eingerückt werden sollen."
 #: ../gramps/plugins/drawreport/descendtree.py:1630
 #: ../gramps/plugins/drawreport/descendtree.py:1802
 msgid "Descendant Chart for [selected person(s)]"
-msgstr "Nachfahrentafel für [ausgewählte Person(en)]"
+msgstr "Nachkommendiagramm für [ausgewählte Person(en)]"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1632
 #: ../gramps/plugins/drawreport/descendtree.py:1805
@@ -22450,11 +22450,11 @@ msgstr "Erzeugt einen grafischen Kalender"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:98
 msgid "Descendant Chart"
-msgstr "Nachfahrentafel"
+msgstr "Nachkommendiagramm"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:99
 msgid "Produces a graphical descendant chart"
-msgstr "Erzeugt ein grafisches Nachfahrendiagramm"
+msgstr "Erzeugt ein grafisches Nachkommendiagramm"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:114
 msgid "Descendant Tree"
