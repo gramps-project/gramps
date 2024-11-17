@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-09-29 18:15+0000\n"
+"PO-Revision-Date: 2024-11-17 12:00+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -705,9 +705,9 @@ msgid ""
 "Show All checkbutton."
 msgstr ""
 "<b>תיבת סימון הצגת־הכול<br/></b>בעת הוספת אדם קיים כזוגאי, רשימת האנשים "
-"שתוצג תסונן כך שרק אלו שעשויים להתאים ל'תפקיד' לְמַעֲשֶׂה יופיעו (בהתבסס על "
-"תאריכים במסד הנתונים). אם גרמפס פספס, ניתן לעקוף את המסנן על־ידי סימון "
-"תיבת־הסימון 'הצגת־הכול'."
+"שתוצג תסונן כך שרק אלו שעשויים להתאים ל'תפקיד' למעשה יופיעו (בהתבסס על "
+"תאריכים במסד הנתונים). אם גרמפס פספס, ניתן לעקוף את המסנן על־ידי סימון תיבת־"
+"הסימון 'הצגת־הכול'."
 
 #: ../data/tips.xml:60
 msgid ""
@@ -1674,7 +1674,7 @@ msgstr "לא ניתן למחוק אילן יוחסים"
 
 #: ../gramps/cli/clidbman.py:492
 msgid "Could not rename Family Tree"
-msgstr "לא ניתן לשנות אם שם עץ המשפחה"
+msgstr "לא ניתן לשנות שם אילן־יוחסין"
 
 #: ../gramps/cli/clidbman.py:528
 #, python-format
@@ -1831,11 +1831,11 @@ msgstr "לא ניתן לפתוח את הקובץ: %s"
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Could not load a recent Family Tree."
-msgstr "לא ניתן לטעון את עץ המשפחה האחרון."
+msgstr "לא ניתן לטעון אילן־יוחסין אחרון."
 
 #: ../gramps/cli/grampscli.py:261
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "לא קיים עץ המשפחה מאחר והוא נמחק."
+msgstr "אילן־יוחסין לא קיים מאחר והוא נמחק."
 
 #: ../gramps/cli/grampscli.py:267
 msgid "The database is locked."
@@ -2960,7 +2960,7 @@ msgstr "אחרי "
 #: ../gramps/gen/datehandler/_datestrings.py:249
 msgctxt "date modifier"
 msgid "about "
-msgstr "קרוב ל"
+msgstr "בסביבות"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
@@ -3762,12 +3762,12 @@ msgstr "מחרוזת משנה:"
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:44
 #: ../gramps/gui/editors/filtereditor.py:551
 msgid "Reference count must be:"
-msgstr "מונה הפניות חייב להיות:"
+msgstr "מונה אזכורים חייב להיות:"
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:44
 #: ../gramps/gui/editors/filtereditor.py:549
 msgid "Reference count:"
-msgstr "מונה הפניות:"
+msgstr "מונה אזכורים:"
 
 #: ../gramps/gen/filters/rules/_hassourceofbase.py:47
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:47
@@ -3820,11 +3820,11 @@ msgstr "אין תאור"
 
 #: ../gramps/gen/filters/rules/_rule.py:102
 msgid "The filter definition contains a loop."
-msgstr "קיימת הפניה מעגלית בהגדרת המסנן."
+msgstr "הגדרת המסנן מכילה לולאה."
 
 #: ../gramps/gen/filters/rules/_rule.py:104
 msgid "One rule references another which eventually references the first."
-msgstr "כלל אחד מפנה לכלל אחר שמפנה חזרה לכלל הראשון."
+msgstr "כלל אחד מאזכר כלל אחר שמאזכר חזרה לכלל הראשון."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 msgid "Every citation"
@@ -3960,11 +3960,11 @@ msgstr "איתור מובאות שההערות שלהן מכילות מלל שת
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
 msgid "Citations with a reference count of <count>"
-msgstr "מובאות עם <מונה> הפניות"
+msgstr "מובאות עם <מונה> אזכורים"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:46
 msgid "Matches citations with a certain reference count"
-msgstr "איתור מובאות עם מספר הפניות מסוים"
+msgstr "איתור מובאות עם מספר אזכורים מסוים"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:50
 #: ../gramps/gui/glade/mergedata.glade:825
@@ -4006,7 +4006,7 @@ msgstr "פרסום:"
 #: ../gramps/gui/glade/mergesource.glade:212
 #: ../gramps/gui/glade/mergesource.glade:228
 msgid "Title:"
-msgstr "פניה:"
+msgstr "תואר:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:51
 msgid "Sources matching parameters"
@@ -4088,13 +4088,13 @@ msgstr "שם מסנן מאגר:"
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
-msgstr "מובאות עם מקור והפניה למאגר,שעונים על <מסנן מאגר>"
+msgstr "מובאות עם מקור ואזכורי מאגר,שעונים על <מסנן מאגר>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:54
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
-msgstr "איתור מובאות עם מקורות עם הפנית מאגר שתואם למסנן מאגר מסוים"
+msgstr "איתור מובאות עם מקורות עם אזכורי מאגר שתואם למסנן מאגר מסוים"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:51
 msgid "Citations with source matching the <source filter>"
@@ -4267,11 +4267,11 @@ msgstr "איתור אירועים שההערות שלהם מכילות מלל ש
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
-msgstr "אירועים עם <מונה> הפניות"
+msgstr "אירועים עם <מונה> אזכורים"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:45
 msgid "Matches events with a certain reference count"
-msgstr "איתור מובאות עם מונה הפניות מסוים"
+msgstr "איתור מובאות עם מונה אזכורים מסוים"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:46
 msgid "Events with <count> sources"
@@ -4541,11 +4541,11 @@ msgstr "איתור משפחות להן הערות שמכילות מלל שתוא
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
-msgstr "משפחות עם <מונה> הפניות"
+msgstr "משפחות עם <מונה> אזכורים"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:45
 msgid "Matches family objects with a certain reference count"
-msgstr "איתור משפחות להן מונה הפניות מסוים"
+msgstr "איתור משפחות להן מונה אזכורים מסוים"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:47
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:49
@@ -4822,11 +4822,11 @@ msgstr "איתור עצמי מדיה שההערות שלהם מכילות מלל
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:44
 msgid "Media objects with a reference count of <count>"
-msgstr "פרטי מדיה עם <מונה> הפניות"
+msgstr "פרטי מדיה עם <מונה> אזכורים"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:45
 msgid "Matches media objects with a certain reference count"
-msgstr "איתור עצמי מדיה עם מונה הפניות מסוים"
+msgstr "איתור עצמי מדיה עם מונה אזכורים מסוים"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:47
 msgid "Media with <count> sources"
@@ -4929,11 +4929,11 @@ msgstr "איתור הערות בהן מופיעים משתנים מסוימים"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:44
 msgid "Notes with a reference count of <count>"
-msgstr "הערות עם <מונה> הפניות"
+msgstr "הערות עם <מונה> אזכורים"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:45
 msgid "Matches notes with a certain reference count"
-msgstr "איתור הערות עם מונה הפניות מסוים"
+msgstr "איתור הערות עם מונה אזכורים מסוים"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:52
 msgid "Notes with the <tag>"
@@ -6019,11 +6019,11 @@ msgstr "קהילה:"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:44
 msgid "Places with a reference count of <count>"
-msgstr "מקומות עם <מונה> הפניות"
+msgstr "מקומות עם <מונה> אזכורים"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:45
 msgid "Matches places with a certain reference count"
-msgstr "איתור מקומות עם מונה הפניות מסוים"
+msgstr "איתור מקומות עם מונה אזכורים מסוים"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:47
 msgid "Place with <count> sources"
@@ -6055,7 +6055,7 @@ msgstr "מקומות תואמים לכותרת"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:52
 msgid "Matches places with a particular title"
-msgstr "איתור מקומות בעלי כותרת מסוימת"
+msgstr "איתור מקומות עם כותרת מסוימת"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:51
 #: ../gramps/gui/glade/editplaceref.glade:261
@@ -6227,11 +6227,11 @@ msgstr "איתור מאגרים שההערות שלהם מכילות מלל שת
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Repositories with a reference count of <count>"
-msgstr "קשרי־קרבה עם <מונה> הפניות"
+msgstr "קשרי־קרבה עם <מונה> אזכורים"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:45
 msgid "Matches repositories with a certain reference count"
-msgstr "איתור מאגרים עם מונה הפניות מסוים"
+msgstr "איתור מאגרים עם מונה אזכורים מסוים"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:48
 #: ../gramps/gui/glade/mergerepository.glade:212
@@ -6371,31 +6371,31 @@ msgstr "איתור מקורות שההערות שלהם מכילות מלל שת
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
-msgstr "מקורות עם <מונה> הפניות"
+msgstr "מקורות עם <מונה> אזכורים"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:45
 msgid "Matches sources with a certain reference count"
-msgstr "איתור מקורות עם מונה הפניות מסוים"
+msgstr "איתור מקורות עם מונה אזכורים מסוים"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:49
 msgid "Sources with <count> Repository references"
-msgstr "מקורות עם <מונה> הפניות מאגר"
+msgstr "מקורות עם <מונה> אזכורי מאגר"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:50
 msgid "Matches sources with a certain number of repository references"
-msgstr "איתור מקורות להם מספר מסוים של פריטים בגלריה"
+msgstr "איתור מקורות להם מספר מסוים של אזכורי מאגר"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:46
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr "מקורות עם הפניית מאגר, שמכילות <מלל> ב'מספר הפניה'"
+msgstr "מקורות עם אזכורי מאגר, שמכילים <מלל> ב'מספר שם מקובל'"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:48
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"איתור מקורות עם הפניית מאגר\n"
-"שמכילות מחרוזת משנה ב'מספר פניה'"
+"איתור מקורות עם אזכור מאגר\n"
+"שמכילות מחרוזת משנה ב'מספר שם מקובל'"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -6415,19 +6415,19 @@ msgstr "איתור מקורות שתואמים לשם מסנן שצוין"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:46
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "מקורות עם הפניות למאגר, שתואמים ל <מסנן מאגר>"
+msgstr "מקורות עם אזכורי מאגר, שתואמים ל <מסנן מאגר>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:48
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"איתור מקורות להם הפנית מאגר שתואם\n"
+"איתור מקורות להם אזכורי מאגר שתואם\n"
 "למסנן מאגר מסוים"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:45
 msgid "Sources with title containing <text>"
-msgstr "מקורות עם כותרת המכילה <מלל>"
+msgstr "מקורות עם כותרת שמכילה <מלל>"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:46
 msgid "Matches sources whose title contains a certain substring"
@@ -6867,7 +6867,7 @@ msgstr "עיסוק"
 
 #: ../gramps/gen/lib/childref.py:109 ../gramps/gui/editors/editchildref.py:202
 msgid "Child Reference"
-msgstr "הפנית צאצא"
+msgstr "אזכורי צאצא"
 
 #: ../gramps/gen/lib/childref.py:123 ../gramps/gen/lib/citation.py:104
 #: ../gramps/gen/lib/event.py:150 ../gramps/gen/lib/family.py:158
@@ -7356,7 +7356,7 @@ msgstr "תכונות"
 
 #: ../gramps/gen/lib/eventref.py:101
 msgid "Event reference"
-msgstr "הפניות אירוע"
+msgstr "אזכורי אירוע"
 
 #: ../gramps/gen/lib/eventroletype.py:56
 msgctxt "Role"
@@ -8211,7 +8211,7 @@ msgstr "סיכום ‏ביקורת"
 
 #: ../gramps/gen/lib/mediaref.py:93 ../gramps/gui/clipboard.py:667
 msgid "Media ref"
-msgstr "הפנית מדיה"
+msgstr "אזכורי מדיה"
 
 #: ../gramps/gen/lib/mediaref.py:123 ../gramps/gen/lib/placetype.py:74
 #: ../gramps/plugins/view/geoplaces.py:620
@@ -8317,7 +8317,7 @@ msgstr "סיומת"
 #: ../gramps/plugins/view/sourceview.py:84
 #: ../gramps/plugins/webreport/basepage.py:3430
 msgid "Title"
-msgstr "פניה"
+msgstr "תואר"
 
 #: ../gramps/gen/lib/name.py:192 ../gramps/plugins/webreport/person.py:419
 msgid "Group as"
@@ -8556,7 +8556,7 @@ msgstr "הערת אירוע"
 
 #: ../gramps/gen/lib/notetype.py:98
 msgid "Event Reference Note"
-msgstr "הערת הפניה לאירוע"
+msgstr "הערת אזכורי אירוע"
 
 #: ../gramps/gen/lib/notetype.py:99
 msgid "Source Note"
@@ -8564,7 +8564,7 @@ msgstr "הערת מקור"
 
 #: ../gramps/gen/lib/notetype.py:100
 msgid "Source Reference Note"
-msgstr "הערת מקור הפניה"
+msgstr "הערת מקור אזכור"
 
 #: ../gramps/gen/lib/notetype.py:101
 msgid "Place Note"
@@ -8576,7 +8576,7 @@ msgstr "הערת מאגר"
 
 #: ../gramps/gen/lib/notetype.py:103
 msgid "Repository Reference Note"
-msgstr "הערת הפניות מאגר"
+msgstr "הערת אזכורי מאגר"
 
 #: ../gramps/gen/lib/notetype.py:104
 msgid "Media Note"
@@ -8584,11 +8584,11 @@ msgstr "הערת מדיה"
 
 #: ../gramps/gen/lib/notetype.py:105
 msgid "Media Reference Note"
-msgstr "הערת הפניה למדיה"
+msgstr "הערת אזכורי מדיה"
 
 #: ../gramps/gen/lib/notetype.py:106
 msgid "Child Reference Note"
-msgstr "הערת הפניה לצאצא"
+msgstr "הערת אזכורי צאצא"
 
 #: ../gramps/gen/lib/person.py:194 ../gramps/gui/editors/editfamily.py:140
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:160
@@ -8610,15 +8610,15 @@ msgstr "שמות חלופיים"
 
 #: ../gramps/gen/lib/person.py:204
 msgid "Death reference index"
-msgstr "מפתח הפניות פטירה"
+msgstr "מפתח אזכורי פטירה"
 
 #: ../gramps/gen/lib/person.py:208
 msgid "Birth reference index"
-msgstr "מפתח הפניות לידה"
+msgstr "מפתח אזכורי לידה"
 
 #: ../gramps/gen/lib/person.py:213
 msgid "Event references"
-msgstr "הפנית אירוע"
+msgstr "אזכורי אירוע"
 
 #: ../gramps/gen/lib/person.py:218 ../gramps/plugins/graph/gvfamilylines.py:355
 #: ../gramps/plugins/graph/gvhourglass.py:520
@@ -8658,7 +8658,7 @@ msgstr "מעני Url"
 
 #: ../gramps/gen/lib/person.py:270
 msgid "Person references"
-msgstr "מובאות אדם"
+msgstr "אזכורי אדם"
 
 #: ../gramps/gen/lib/person.py:585
 msgid "Merged Gramps ID"
@@ -8743,7 +8743,7 @@ msgstr "שפה"
 
 #: ../gramps/gen/lib/placeref.py:87 ../gramps/gui/clipboard.py:560
 msgid "Place ref"
-msgstr "הפנית מקום"
+msgstr "אזכורי מקום"
 
 #: ../gramps/gen/lib/placetype.py:73 ../gramps/plugins/view/geoplaces.py:618
 #: ../gramps/plugins/webreport/basepage.py:3223
@@ -8812,12 +8812,12 @@ msgstr "מאגר"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:524
 msgid "Repository ref"
-msgstr "הפניות מאגר"
+msgstr "אזכורי מאגר"
 
 #: ../gramps/gen/lib/reporef.py:108
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:69
 msgid "Call Number"
-msgstr "מספר פנייה"
+msgstr "מספר שם מקובל"
 
 #: ../gramps/gen/lib/repotype.py:55
 msgid "Library"
@@ -9893,8 +9893,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
-"בחירת חלק מהשם הפרטי שיסומן כמועדף. 'אוטומטי', מציב 'שם פניה' ככל שכזה קיים, "
-"אחרת יוצב 'השם הפרטי' במלואו."
+"בחירת חלק מהשם הפרטי שיסומן כמועדף. 'אוטומטי', מציב 'שם מקובל' ככל שכזה "
+"קיים, אחרת יוצב 'השם הפרטי' במלואו."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:226
 msgid "Position of marriage information."
@@ -9932,7 +9932,7 @@ msgstr "צבע צֹמֶת."
 #: ../gramps/plugins/drawreport/ancestortree.py:837
 #: ../gramps/plugins/drawreport/descendtree.py:1571
 msgid "Tree Options"
-msgstr "אפשרויות עץ"
+msgstr "אפשרויות אלן־יוחסין"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:263
 msgid "Timeflow"
@@ -10060,11 +10060,11 @@ msgstr "הסגנון הבסיסי המשמש להצגת הערות הקצה."
 
 #: ../gramps/gen/plug/report/endnotes.py:87
 msgid "The basic style used for the endnotes reference display."
-msgstr "הסגנון הבסיסי המשמש להצגת הפנית הערות השוליים."
+msgstr "הסגנון הבסיסי המשמש להצגת אזכור הערות השוליים."
 
 #: ../gramps/gen/plug/report/endnotes.py:96
 msgid "The basic style used for the endnotes reference notes display."
-msgstr "הסגנון הבסיסי שישמש להצגת הפניות בהערות שוליים."
+msgstr "הסגנון הבסיסי שישמש להצגת אזכורים בהערות שוליים."
 
 #: ../gramps/gen/plug/report/endnotes.py:163
 msgid "Endnotes"
@@ -10733,12 +10733,12 @@ msgstr "שם משפחה"
 #: ../gramps/gen/utils/keyword.py:59
 msgctxt "Name"
 msgid "CALL"
-msgstr "שם פניה"
+msgstr "שם מקובל"
 
 #: ../gramps/gen/utils/keyword.py:59
 msgctxt "Name"
 msgid "Call"
-msgstr "שם פניה"
+msgstr "שם מקובל"
 
 #: ../gramps/gen/utils/keyword.py:60
 msgctxt "Name"
@@ -11154,7 +11154,7 @@ msgstr "מגן דוד"
 
 #: ../gramps/gen/utils/symbols.py:125
 msgid "Dead"
-msgstr "נפטר"
+msgstr "פטירה"
 
 #: ../gramps/gen/utils/unknown.py:154
 msgid "Unknown, created to replace a missing note object."
@@ -11474,11 +11474,11 @@ msgstr "כרך/עמוד: %(pag)s -- %(sourcetext)s"
 
 #: ../gramps/gui/clipboard.py:542
 msgid "Event ref"
-msgstr "הפנית אירוע"
+msgstr "אזכורי אירוע"
 
 #: ../gramps/gui/clipboard.py:703
 msgid "Child ref"
-msgstr "הפנית צאצא"
+msgstr "אזכורי צאצא"
 
 #: ../gramps/gui/clipboard.py:712
 #, python-format
@@ -11614,10 +11614,10 @@ msgstr ""
 "‏  <b>פרטי</b>   - שם פרטי     <b>משפחה</b>  - שם משפחה (עם קידומת וקישור)\n"
 "‏  <b>תואר</b>   - תואר (דר', גב.)           <b>סיומת</b>   - סיומת (ג'וניור, "
 "השלישי)\n"
-"‏  <b>שם פניה</b>    - השם הפרטי (במידה וקים יותר מאחד) בו אדם קורא "
+"‏  <b>שם מקובל</b>    - השם הפרטי (במידה וקים יותר מאחד) בו אדם קורא "
 "לעצמו                   <b>כינוי</b> - כינוי\n"
 "‏  <b>ראשי תיבות</b>- אות ראשונה של שם פרטי      <b>Common</b>   - כינוי, שם "
-"פניה, או אות ראשונה של שם פרטי\n"
+"מקובל, או אות ראשונה של שם פרטי\n"
 "‏  <b>קידומת</b>  - כל הקידומות (וון, דה)\n"
 "‏שמות משפחה:\n"
 "‏  <b>השאר</b>      - לא שמות משפחה ראשוניים    <b>Notpatronymic</b>- כל שמות "
@@ -11637,7 +11637,7 @@ msgstr ""
 "‏     <i>אדווין חוזה</i>: פרטי, <i>וון דר</i>: קידומת, <i>סמיט</i> "
 "ו<i>וסטון</i>: ראשי, <i>'ו'</i>: [קישור], <i>ווילסון</i>: שם נגזר משם האב,\n"
 " ‏    <i>דר'</i>: תואר, <i>סניור</i>: סיומת, <i>אד</i>: כינוי, "
-"<i>אנדרהילס</i>: כינוי משפחה, <i>חוזה</i>: שם פניה.\n"
+"<i>אנדרהילס</i>: כינוי משפחה, <i>חוזה</i>: שם מקובל.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
@@ -11819,7 +11819,7 @@ msgstr "רקע לאדם 'חי'"
 
 #: ../gramps/gui/configure.py:914
 msgid "Background for Dead"
-msgstr "רקע לנפטר"
+msgstr "רקע לפטירה"
 
 #: ../gramps/gui/configure.py:915
 msgid "Border for Alive"
@@ -11827,7 +11827,7 @@ msgstr "מסגרת לאדם 'חי'"
 
 #: ../gramps/gui/configure.py:916
 msgid "Border for Dead"
-msgstr "מסגרת עבור 'נפטר(ת)'"
+msgstr "מסגרת עבור 'פטירה'"
 
 #: ../gramps/gui/configure.py:941
 msgid "Default background"
@@ -11905,7 +11905,7 @@ msgstr "התראות"
 #: ../gramps/gui/configure.py:1091 ../gramps/plugins/export/exportcsv.py:422
 #: ../gramps/plugins/importer/importcsv.py:215
 msgid "Call"
-msgstr "שם פניה"
+msgstr "שם מקובל"
 
 #: ../gramps/gui/configure.py:1096
 msgid "NotPatronymic"
@@ -12380,7 +12380,7 @@ msgstr "ביצוע גיבוי ביציאה"
 
 #: ../gramps/gui/configure.py:2297
 msgid "Backup Your family tree on exit to Backup path specified above."
-msgstr "גיבוי עץ המשפחה ביציאה לנתיב הגיבוי שצוין לעיל."
+msgstr "גיבוי אילן־יוחסין בעת יציאה לנתיב הגיבוי שצוין לעיל."
 
 #: ../gramps/gui/configure.py:2305
 msgid "Every 15 minutes"
@@ -12861,7 +12861,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:668
 msgid "Could not rename the Family Tree."
-msgstr "לא ניתן לשנות את שם עץ המשפחה."
+msgstr "לא ניתן לשנות את שם אילן־יוחסין."
 
 #: ../gramps/gui/dbman.py:669
 msgid "Family Tree already exists, choose a unique name."
@@ -13368,11 +13368,11 @@ msgstr "מזהה"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:70
 msgid "_References"
-msgstr "_הפניות"
+msgstr "_אזכורים"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:121
 msgid "Edit reference"
-msgstr "עריכת הפניה"
+msgstr "עריכת אזכור"
 
 #: ../gramps/gui/editors/displaytabs/backrefmodel.py:51
 #, python-format
@@ -13486,7 +13486,7 @@ msgstr "_מובאת מקור"
 #: ../gramps/plugins/view/citationtreeview.py:622
 #: ../gramps/plugins/view/citationtreeview.py:646
 msgid "Cannot share this reference"
-msgstr "לא ניתן לשתף הפניה זו"
+msgstr "לא ניתן לשתף אזכור זה"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:235
 #: ../gramps/plugins/view/citationtreeview.py:656
@@ -13545,10 +13545,10 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
-"אין אפשרות לערוך כעת הפנית אירוע זו. ייתכן שהאירוע המשויך נמצא בעריכה, או "
-"שהפנית אירוע אחרת המשויכת לאותו מקור נמצאת בעריכה.\n"
+"אין אפשרות לערוך כעת אזכור אירוע זה. ייתכן שהאירוע המשויך נמצא בעריכה, או "
+"שהאזכורי אירוע אחר המשויך לאותו מקור, נמצא כעט בעריכה.\n"
 "\n"
-"כדי לערוך הפנית אירוע זו, יש לסגור את האירוע."
+"כדי לערוך אזכורי אירוע זה, יש לסגור את האירוע."
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:342
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:418
@@ -13557,7 +13557,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:1161
 #: ../gramps/plugins/drawreport/descendtree.py:1855
 msgid "Cannot edit this reference"
-msgstr "לא ניתן לערוך הפניה זו"
+msgstr "לא ניתן לערוך אזכור זה"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:386
 msgid "Cannot change Person"
@@ -13606,10 +13606,10 @@ msgid ""
 "\n"
 "To edit this media reference, you need to close the media object."
 msgstr ""
-"אין אפשרות לערוך כעת הפנית מדיה זו. ייתכן שעצם המדיה המשויך נמצא בעריכה, או "
-"שהפנית מדיה אחרת המשויכת לאותו מקור נמצאת בעריכה.\n"
+"אין אפשרות לערוך כעת אזכורי מדיה זו. ייתכן שעצם המדיה המשויך נמצא בעריכה, או "
+"שהאזכורי מדיה אחרת שמשויכת לאותו מקור נמצאת כעת בעריכה.\n"
 "\n"
-"כדי לערוך הפנית מדיה זו, יש לסגור את עצם המדיה."
+"כדי לערוך אזכורי מדיה זו, יש לסגור את עצם המדיה."
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:615
 #: ../gramps/plugins/view/mediaview.py:216
@@ -13842,7 +13842,7 @@ msgstr "מוכל בתוך"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:215
 msgid "Place cycle detected"
-msgstr "זוהתה הפניה מעגלית ב'מקומות'"
+msgstr "זוהתה לולאת מקום"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:216
 msgid "The place you are adding is already enclosed by this place"
@@ -13885,10 +13885,10 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
-"אין אפשרות לערוך כעת הפנית מאגר זה. ייתכן שהמאגר המשויך נמצא בעריכה, או "
-"שהפנית מאגר אחרת המשויכת לאותו מקור נמצאת בעריכה.\n"
+"אין אפשרות לערוך כעת אזכורי מאגר זה. ייתכן שהמאגר המשויך נמצא בעריכה, או "
+"שאזכור מאגר אחד משויך לאותו מקור שנמצאת כעט בעריכה.\n"
 "\n"
-"כדי לערוך הפנית מאגר זה, יש לסגור את המאגר."
+"כדי לערוך אזכור מאגר זה, יש לסגור את המאגר."
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:69
 msgid "Create and add a new surname"
@@ -13993,12 +13993,12 @@ msgstr "סוג התכונה לא יכול להיות ריק"
 #: ../gramps/gui/editors/editchildref.py:67
 msgctxt "manual"
 msgid "Child_Reference_Editor"
-msgstr "עורך_הפנית_צאצאים"
+msgstr "עורך_אזכורי_צאצא"
 
 #: ../gramps/gui/editors/editchildref.py:100
 #: ../gramps/gui/editors/editchildref.py:202
 msgid "Child Reference Editor"
-msgstr "עורך הפנית צאצאים"
+msgstr "עורך אזכורי צאצא"
 
 #: ../gramps/gui/editors/editcitation.py:75
 msgctxt "manual"
@@ -14180,12 +14180,12 @@ msgstr "עריכת אירוע (%s)"
 #: ../gramps/gui/editors/editeventref.py:69
 msgctxt "manual"
 msgid "Event_Reference_Editor_dialog"
-msgstr "דו־שיח_עורך_הפניות"
+msgstr "דו־שיח_עורך_אזכורים"
 
 #: ../gramps/gui/editors/editeventref.py:88
 #: ../gramps/gui/editors/editeventref.py:318
 msgid "Event Reference Editor"
-msgstr "עורך הפניות אירוע"
+msgstr "עורך אזכורי אירוע"
 
 #: ../gramps/gui/editors/editeventref.py:109
 #: ../gramps/gui/editors/editmediaref.py:130
@@ -14218,7 +14218,7 @@ msgstr "הסרת צאצאים מהמשפחה"
 
 #: ../gramps/gui/editors/editfamily.py:129
 msgid "Edit the child reference"
-msgstr "עריכת הפנית צאצא"
+msgstr "עריכת האזכורי צאצא"
 
 #: ../gramps/gui/editors/editfamily.py:130
 msgid "Add an existing person as a child of the family"
@@ -14566,12 +14566,12 @@ msgstr "עריכת עצם מדיה (%s)"
 #: ../gramps/gui/editors/editmediaref.py:84
 msgctxt "manual"
 msgid "Media_Reference_Editor_dialog"
-msgstr "דו־שיח_עורך_הפניות_מדיה"
+msgstr "דו־שיח_עורך_אזכורי_מדיה"
 
 #: ../gramps/gui/editors/editmediaref.py:106
 #: ../gramps/gui/editors/editmediaref.py:436
 msgid "Media Reference Editor"
-msgstr "עורך הפנית מדיה"
+msgstr "עורך אזכורי מדיה"
 
 #: ../gramps/gui/editors/editmediaref.py:111
 #: ../gramps/gui/editors/editmediaref.py:112
@@ -14795,16 +14795,16 @@ msgstr "_לא ידוע"
 #: ../gramps/gui/editors/editpersonref.py:68
 msgctxt "manual"
 msgid "Person_Reference_Editor"
-msgstr "עורך_הפניות_אנשים"
+msgstr "עורך_אזכורי_אדם"
 
 #: ../gramps/gui/editors/editpersonref.py:94
 #: ../gramps/gui/editors/editpersonref.py:184
 msgid "Person Reference Editor"
-msgstr "עורך הפניות אדם"
+msgstr "עורך אזכורי אדם"
 
 #: ../gramps/gui/editors/editpersonref.py:184
 msgid "Person Reference"
-msgstr "הפניה לאדם"
+msgstr "אזכור אדם"
 
 #: ../gramps/gui/editors/editpersonref.py:201
 msgid "No person selected"
@@ -14914,7 +14914,7 @@ msgstr "שם מקום לא יכול להיות ריק"
 #: ../gramps/gui/editors/editplaceref.py:71
 #: ../gramps/gui/editors/editplaceref.py:114
 msgid "Place Reference Editor"
-msgstr "עורך הפניות מקום"
+msgstr "עורך אזכורי מקום"
 
 #: ../gramps/gui/editors/editplaceref.py:390
 msgid "Modify Place"
@@ -14943,7 +14943,7 @@ msgstr "לא ניתן לשמור פריט. המזהה כבר קיים."
 
 #: ../gramps/gui/editors/editreporef.py:61
 msgid "Repository Reference Editor"
-msgstr "עורך הפניות מאגר"
+msgstr "עורך אזכורי מאגר"
 
 #: ../gramps/gui/editors/editreporef.py:213
 #, python-format
@@ -14957,7 +14957,7 @@ msgstr "מגאר חדש"
 
 #: ../gramps/gui/editors/editreporef.py:216
 msgid "Repo Reference Editor"
-msgstr "עורך הפנית מאגר"
+msgstr "עורך אזכורי מאגר"
 
 #: ../gramps/gui/editors/editreporef.py:222
 msgid "Modify Repository"
@@ -15542,7 +15542,7 @@ msgstr "תמונה"
 #: ../gramps/gui/glade/editplace.glade:93
 #: ../gramps/gui/glade/editsource.glade:97
 msgid "_Title:"
-msgstr "_פניה:"
+msgstr "_תואר:"
 
 #: ../gramps/gui/glade/addmedia.glade:191
 msgid "Convert to a relative path"
@@ -15663,7 +15663,7 @@ msgstr ""
 "‏  <b>%t</b> - תואר            <b>%T</b> - תואר\n"
 "‏  <b>%p</b> - קידומת           <b>%P</b> - קידומת\n"
 " ‏ <b>%s</b> - סיומת           <b>%S</b> - סיומת\n"
-"‏  <b>%c</b> - שם מקובל        <b>%C</b> - שם פניה\n"
+"‏  <b>%c</b> - שם מקובל        <b>%C</b> - שם מקובל\n"
 "‏  <b>%y</b> - נגזר משם האב       <b>%Y</b> - נגזר משם האב</tt>"
 
 #: ../gramps/gui/glade/configure.glade:155
@@ -15729,15 +15729,15 @@ msgstr "_הסרת עצם"
 
 #: ../gramps/gui/glade/dialog.glade:259
 msgid "Remove object and all references to it from the database"
-msgstr "הסרת עצם לרבות ההפניות אליו ממסד הנתונים"
+msgstr "הסרת עצם לרבות אזכורים אליו ממסד הנתונים"
 
 #: ../gramps/gui/glade/dialog.glade:270
 msgid "_Keep Reference"
-msgstr "_שמירת הפניה"
+msgstr "_שמירת אזכור"
 
 #: ../gramps/gui/glade/dialog.glade:275
 msgid "Keep reference to the missing file"
-msgstr "שמירת ההפניה לקובץ החסר"
+msgstr "להשאיר אזכורי קובץ החסר"
 
 #: ../gramps/gui/glade/dialog.glade:286
 msgid "_Select File"
@@ -16424,7 +16424,7 @@ msgstr ""
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
 msgid "Descriptive title for this media object."
-msgstr "כותרת תיאורית לעצם המדיה."
+msgstr "כותרת תיאורית לעצם מדיה זה."
 
 #: ../gramps/gui/glade/editmedia.glade:270
 msgid "Open File Browser to select a media file on your computer."
@@ -16459,11 +16459,10 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner."
 msgstr ""
-"במידה והמדיה היא תמונה, נא לבחור אזור בתמונה שתופנה לעצם.\n"
+"במידה והמדיה היא תמונה, נא לבחור אזור בתמונה לאזכורי עצם.\n"
 "ניתן להשתמש בעכבר כדי לבחור אזור בתמונה, או להשתמש בלחצני החצים כדי להגדיר "
-"את הפינה השמאלית העליונה והקצה הימני התחתון של האזור שאליו בוצעה ההפניה. "
-"הנקודה (0, 0) היא הפינה השמאלית העליונה של התמונה, ו־(100,100) בפינה הימנית "
-"התחתונה."
+"את הפינה השמאלית העליונה והקצה הימני התחתון של האזור שיאוזכר. הנקודה (0, 0) "
+"היא הפינה השמאלית העליונה של התמונה, ו־(100,100) בפינה הימנית התחתונה."
 
 #: ../gramps/gui/glade/editmediaref.glade:178
 msgid ""
@@ -16489,11 +16488,10 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner.\n"
 msgstr ""
-"במידה והמדיה היא תמונה, נא לבחור אזור בתמונה שתופנה לעצם.\n"
+"במידה והמדיה היא תמונה, נא לבחור אזור בתמונה לאזכור העצם.\n"
 "ניתן להשתמש בעכבר כדי לבחור אזור בתמונה, או להשתמש בלחצני החצים כדי להגדיר "
-"את הפינה השמאלית העליונה והקצה הימני התחתון של האזור שאליו בוצעה ההפניה. "
-"הנקודה (0, 0) היא הפינה השמאלית העליונה של התמונה, ו־(100,100) בפינה הימנית "
-"התחתונה.\n"
+"את הפינה השמאלית העליונה והקצה הימני התחתון של האזור שיאוזכר. הנקודה (0, 0) "
+"היא הפינה השמאלית העליונה של התמונה, ו־(100,100) בפינה הימנית התחתונה.\n"
 
 #: ../gramps/gui/glade/editmediaref.glade:459
 msgid ""
@@ -16531,7 +16529,7 @@ msgstr "_שם פרטי:"
 #: ../gramps/gui/glade/editname.glade:207
 #: ../gramps/gui/glade/editperson.glade:197
 msgid "T_itle:"
-msgstr "_פניה:"
+msgstr "ת_ואר:"
 
 #: ../gramps/gui/glade/editname.glade:221
 msgid "Suffi_x:"
@@ -16564,7 +16562,7 @@ msgstr ""
 #: ../gramps/gui/glade/editname.glade:291
 #: ../gramps/gui/glade/editperson.glade:211
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
-msgstr "הפניה לאדם זה, כגון: 'ד״ר', 'רבי', 'כומר'"
+msgstr "תואר שמשמש לאזכור אדם זה, כגון: 'דר'', 'רבי', 'כומר'"
 
 #: ../gramps/gui/glade/editname.glade:304
 #: ../gramps/gui/glade/editperson.glade:225
@@ -16936,7 +16934,7 @@ msgstr "_סוג מדיה:"
 
 #: ../gramps/gui/glade/editreporef.glade:143
 msgid "Call n_umber:"
-msgstr "מספר פ_ניה:"
+msgstr "מספר ש_ם מקובל:"
 
 #: ../gramps/gui/glade/editreporef.glade:157
 msgid "On what type of media this source is available in the repository."
@@ -17003,7 +17001,7 @@ msgstr "פרטי פרסום, כגון עיר ושנת הפרסום, שם המפ�
 msgid ""
 "Provide a short title used for sorting, filing, and retrieving source "
 "records."
-msgstr "אספקת כותרת קצרה שתשמש למיון, תיוק ואחזור של רשומות מקור."
+msgstr "הזנת כותרת קצרה שתשמש למיון, תיוק ואחזור רשומות מקור."
 
 #: ../gramps/gui/glade/editsource.glade:194
 msgid "A_bbreviation:"
@@ -17145,7 +17143,7 @@ msgstr "נא לבחור את האדם שישמש במקור המידע הראש�
 
 #: ../gramps/gui/glade/mergedata.glade:564
 msgid "Title selection"
-msgstr "נא לבחור כותרת"
+msgstr "בחירת כותרת"
 
 #: ../gramps/gui/glade/mergedata.glade:576
 #: ../gramps/gui/glade/mergeplace.glade:179
@@ -17340,7 +17338,7 @@ msgstr ""
 msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
-msgstr "הערות, עצמי מדיה, פרטי מידע ומאגרים של שני ההפניות ישולבו."
+msgstr "הערות, עצמי מדיה, פרטי מידע ואזכורי מאגר של שני המקורות ישולבו."
 
 #: ../gramps/gui/glade/papermenu.glade:8
 msgid "Paper Settings"
@@ -17816,8 +17814,8 @@ msgstr ""
 "בנוסף, ניתן להרחיב את יכולות המערכת מעבר לכך, על־ידי תוספים נוספים. תוספים "
 "אלו כוללים, דוחות, רישומות, מצגים, גרמפלטים, ועוד. מכאן ניתן לבחור בין כלל "
 "התוספים הזמינים, אלו, יאוחזרו מהמרשתת מאתר נפרד לאתר גרמפס, ויותקנו באופן "
-"מקומי במחשב. ניתן לסגור תיבת דו־שיח זו כעת ולהתקין תוספים מתפריט 'העדפות "
-"&gt; מנהל תוספים' ."
+"מקומי במחשב. ניתן לסגור תיבת דו־שיח זו כעת ולהתקין תוספים מתפריט 'העדפות &gt;"
+" מנהל תוספים' ."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18802,7 +18800,7 @@ msgstr "רשימת תוספים מתרעננת"
 #: ../gramps/gui/plug/_windows.py:1249 ../gramps/gui/plug/_windows.py:1254
 #: ../gramps/gui/plug/_windows.py:1392
 msgid "Reading gramps-project.org..."
-msgstr "gramps-project.org נקרא…"
+msgstr "קריאת gramps-project.org…"
 
 #: ../gramps/gui/plug/_windows.py:1272
 msgid "Checking addon..."
@@ -18839,7 +18837,7 @@ msgstr "כשל"
 
 #: ../gramps/gui/plug/_windows.py:1528 ../gramps/gui/widgets/grampletbar.py:610
 msgid "OK"
-msgstr "&#9745;"
+msgstr "בסדר"
 
 #: ../gramps/gui/plug/_windows.py:1636
 msgid "Plugin name"
@@ -19064,7 +19062,7 @@ msgstr "בחירה..."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:176
 msgid "Unfiltered Family Tree:"
-msgstr "עץ משפחת לא מסונן:"
+msgstr "אילן־יוחסין לא מסונן:"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:182
 #: ../gramps/gui/plug/export/_exportoptions.py:293
@@ -19126,11 +19124,11 @@ msgstr "הקשה לתצוגה מקדימה של מסנן 'בחיים'"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:371
 msgid "Reference Filter"
-msgstr "מסנן הפניה"
+msgstr "מסנן אזכור"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:379
 msgid "Click to see preview after reference filter"
-msgstr "הקשה לתצוגה מקדימה של מסנן 'הפניות'"
+msgstr "הקשה לתצוגה מקדימה של מסנן 'אזכורים'"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:430
 msgid "Hide order"
@@ -19288,9 +19286,9 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"הספר נוצר עם הפניה למסד הנתונים %s.\n"
+"הספר נוצר עם אזכורי מסד הנתונים %s.\n"
 "\n"
-"הופך הפניות לאדם המרכזי שנשמר בספר לבלתי תקינה.\n"
+"יגרום לאזכורי האדם המרכזי שנשמר בספר ללא תקינים.\n"
 "\n"
 "לכן, האדם המרכזי לכול פריט יהיה האדם הפעיל במסד הנתונים הנוכחי."
 
@@ -20050,7 +20048,7 @@ msgstr "ארגון סימניות"
 
 #: ../gramps/gui/views/bookmarks.py:513
 msgid "Cannot bookmark this reference"
-msgstr "לא ניתן להוסיף הפניה זו לרשימת הסימניות"
+msgstr "לא ניתן להוסיף אזכור זה לרשימת סימניות"
 
 #: ../gramps/gui/views/listview.py:482
 msgid "Active object not visible"
@@ -20297,7 +20295,7 @@ msgstr "שם תג:"
 #: ../gramps/gui/views/tags.py:719
 #, python-format
 msgid "%(title)s - Gramps"
-msgstr "%(title)s"
+msgstr "%(title)s – גרמפס"
 
 #: ../gramps/gui/views/tags.py:719
 msgid "Pick a Color"
@@ -20890,15 +20888,15 @@ msgstr "אדם %s לא מופיע במסד הנתונים"
 #: ../gramps/plugins/drawreport/ancestortree.py:740
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:54
 msgid "Ancestor Tree"
-msgstr "עץ אָבוֹת קַדמוֹנִים"
+msgstr "אילן אָבוֹת קַדמוֹנִים"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:648
 msgid "Making the Tree..."
-msgstr "בנית העץ..."
+msgstr "בנית אילן־היוחסין..."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:740
 msgid "Printing the Tree..."
-msgstr "מדפיס את העץ..."
+msgstr "הדפסת אילן־יוחסין מתבצעת..."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:839
 #: ../gramps/plugins/drawreport/calendarreport.py:607
@@ -20917,7 +20915,7 @@ msgstr "אדם מרכזי"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:840
 msgid "The center person for the tree"
-msgstr "האדם המרכזי לעץ"
+msgstr "האדם המרכזי לאילן היוחסין"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:843
 msgid "Include siblings of the center person"
@@ -20941,7 +20939,7 @@ msgstr "דורות"
 #: ../gramps/plugins/drawreport/ancestortree.py:853
 #: ../gramps/plugins/drawreport/descendtree.py:1583
 msgid "The number of generations to include in the tree"
-msgstr "מספר הדורות שיכללו בעץ"
+msgstr "מספר הדורות שיכללו באילן־היוחסין"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:856
 msgid ""
@@ -20958,7 +20956,7 @@ msgstr "מספר הדורות של תיבות ריקות שיוצגו"
 #: ../gramps/plugins/drawreport/ancestortree.py:865
 #: ../gramps/plugins/drawreport/descendtree.py:1603
 msgid "Compress tree"
-msgstr "דחיסת עץ"
+msgstr "דחיסת אילן־יוחסין"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:868
 msgid ""
@@ -21000,7 +20998,7 @@ msgstr "לכלול כותרת דוח"
 #: ../gramps/plugins/drawreport/ancestortree.py:899
 #: ../gramps/plugins/drawreport/descendtree.py:1635
 msgid "Choose a title for the report"
-msgstr "נא לבחור כותרת עבור הדוח"
+msgstr "בחירת כותרת עבור הדוח"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:902
 #: ../gramps/plugins/drawreport/descendtree.py:1639
@@ -21024,27 +21022,27 @@ msgstr "האם להדפיס מספרי עמודים בכל עמוד."
 #: ../gramps/plugins/drawreport/ancestortree.py:910
 #: ../gramps/plugins/drawreport/descendtree.py:1647
 msgid "Scale tree to fit"
-msgstr "שינוי גודל העץ להתאמה לעמוד"
+msgstr "סילום אילן־יוחסין להתאמה לעמוד"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:911
 #: ../gramps/plugins/drawreport/descendtree.py:1648
 msgid "Do not scale tree"
-msgstr "לא לשנות את גודל העץ"
+msgstr "לא לסלם אילן יוחסין"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:912
 #: ../gramps/plugins/drawreport/descendtree.py:1649
 msgid "Scale tree to fit page width only"
-msgstr "שינוי גודל העץ להתאמה לרוחב בלבד"
+msgstr "סילום אילן־יוחסין להתאמה לרוחב בלבד"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:913
 #: ../gramps/plugins/drawreport/descendtree.py:1650
 msgid "Scale tree to fit the size of the page"
-msgstr "שינוי גודל העץ להתאמה לגודל העמוד"
+msgstr "סילום אילן־יוחסין להתאמה לגודל העמוד"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:914
 #: ../gramps/plugins/drawreport/descendtree.py:1651
 msgid "Whether to scale the tree to fit a specific paper size"
-msgstr "האם לשנות את גודל העץ כך שיתאים לגודל נייר מסוים"
+msgstr "האם לסלם אילן־יוחסין כך שיתאים לגודל נייר מסוים"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:921
 #: ../gramps/plugins/drawreport/descendtree.py:1658
@@ -21053,7 +21051,7 @@ msgid ""
 "\n"
 "Note: Overrides options in the 'Paper Option' tab"
 msgstr ""
-"שינוי גודל עמוד שיתאים לגודל העץ\n"
+"שינוי גודל עמוד שיתאים לגודל אילן־יוחסין\n"
 "\n"
 "הערה: עוקף הגדרות בלשונית 'אפשרות עמוד'"
 
@@ -21075,19 +21073,19 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
-"האם לשנות את גודל העמוד כך שיתאים\n"
+"האם לסלם את העמוד כך שיתאים\n"
 "לגודל אילן־היוחסין.   הערה:   גודל העמוד\n"
 "לא יהיה תקני.\n"
 "\n"
 "בבחירה באפשרות זו, יתרחשו הפעולות הבאות:\n"
 "\n"
-"עם אפשרות 'לא לשנות גודל אילן־היוחסין'\n"
+"עם אפשרות 'לא לסלם אילן־היוחסין'\n"
 " גודל העמוד ישתנה לפי 'גובה/רוחב' אילן־היוחסין\n"
 "\n"
-"עם אפשרות 'שינוי גודל עץ להתאמה רק לרוחב העמוד'\n"
+"עם אפשרות 'סילום אילן־יוחסין להתאמה רק לרוחב העמוד'\n"
 "  גודל העמוד ישתנה לפי 'גובה' אילן־היוחסין\n"
 "\n"
-"עם אפשרות 'שינוי גודל אילן־היוחסין להתאמה לגודל העמוד' \n"
+"עם אפשרות 'סילום אילן־היוחסין להתאמה לגודל העמוד' \n"
 " גודל העמוד ישתנה כך שכל פער ב'גובה' או ב'רוחב' העמוד יוסר"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:950
@@ -21247,16 +21245,16 @@ msgstr "היכן למקם את ההערה."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1046
 msgid "inter-box scale factor"
-msgstr "מקדם קנה מידה בין התיבות"
+msgstr "מקדם סילום בין התיבות"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1048
 msgid "Make the inter-box spacing bigger or smaller"
-msgstr "הגדלת או הקטנת מרווח התיבה הפנימית"
+msgstr "הגדלת או הקטנת מרווח התיבה הפנימי"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1052
 #: ../gramps/plugins/drawreport/descendtree.py:1771
 msgid "box shadow scale factor"
-msgstr "קנה מידה מקדם הצללת תיבה"
+msgstr "מקדם סילום הצללת תיבה"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1054
 #: ../gramps/plugins/drawreport/descendtree.py:1773
@@ -21326,7 +21324,7 @@ msgstr "הסגנון הבסיסי שמשמש להצגת ההערה."
 #: ../gramps/plugins/textreport/tableofcontents.py:111
 #: ../gramps/plugins/textreport/tagreport.py:955
 msgid "The style used for the title."
-msgstr "הסגנון שמשמש לכותרת."
+msgstr "הסגנון שישמש לכותרת."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:96
 msgid "My Calendar"
@@ -21558,7 +21556,7 @@ msgstr "לכלול ימי שנה לפטירה בלוח-השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:776
 msgid "Title text and background color"
-msgstr "צבע הכותרת והרקע שלה"
+msgstr "צבע כותרת והרקע שלה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:783
 msgid "Calendar day numbers"
@@ -21672,7 +21670,7 @@ msgstr "הורים, אחים ואחיות של האדם שנבחר יוצגו ג
 
 #: ../gramps/plugins/drawreport/descendtree.py:1606
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
-msgstr "האם להזיז אנשים מעלה, במידת האפשר, התוצאה תהיה עץ קטן יותר"
+msgstr "האם להזיז אנשים מעלה, במידת האפשר, התוצאה תהיה אילן־יוחסין קטן יותר"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1612
 msgid "Bold direct descendants"
@@ -21736,11 +21734,11 @@ msgstr "תסדיר מצג זוגאי."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1765
 msgid "inter-box Y scale factor"
-msgstr "מקדם קנה מידה Y בין התיבות"
+msgstr "מקדם סילום Y בין התיבות"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1767
 msgid "Make the inter-box Y bigger or smaller"
-msgstr "הגדלת או הקטנת התיבה הפנימית Y"
+msgstr "הגדלת או הקטנת התיבה הפנימי Y"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1838
 msgid "The bold style used for the text display."
@@ -21776,7 +21774,7 @@ msgstr "יצירת תרשים אָבוֹת קַדמוֹנִים חזותי"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:55
 msgid "Produces a graphical ancestral tree"
-msgstr "יצירת תרשים עץ אָבוֹת קַדמוֹנִים"
+msgstr "יצירת תרשים אילן־יוחסין אבות קשמונים"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:77
 msgid "Produces a graphical calendar"
@@ -21792,11 +21790,11 @@ msgstr "יצירת תרשים צאצאים חזותי"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:114
 msgid "Descendant Tree"
-msgstr "עץ צאצאים"
+msgstr "אילן־יוחסין צאצאים"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:115
 msgid "Produces a graphical descendant tree"
-msgstr "יצירת עץ צאצאים גרפי"
+msgstr "יצירת אילן־יוחסין צאצאים חזותי"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:136
 msgid "Family Descendant Chart"
@@ -21808,11 +21806,11 @@ msgstr "יצירת תרשים צאצאים חזותי מסביב למשפחה"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:153
 msgid "Family Descendant Tree"
-msgstr "עץ צאצאי משפחה"
+msgstr "אילן־יוחסין צאצאי משפחה"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:154
 msgid "Produces a graphical descendant tree around a family"
-msgstr "יצירת דוח גרפי של עץ צאצאים עבור משפחה"
+msgstr "יצירת דוח אילן־יוחסין צאצאים חזותי למשפחה"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:176
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:137
@@ -21950,7 +21948,7 @@ msgstr "החרגת כותרת התרשים"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr "להחריג את הכותרת כדי לפנות מקום לתרשים"
+msgstr "החרגת הכותרת כדי לפנות מקום לתרשים"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
@@ -22078,7 +22076,7 @@ msgstr "חסר מיקום"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:569
 msgid "Already dead"
-msgstr "כבר נפטר"
+msgstr "כבר לא בחיים"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:576
 msgid "Still alive"
@@ -23127,7 +23125,7 @@ msgstr "גרמפלט להצגת כל הפעילות לשיח זה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:299
 msgid "Gramplet showing summary data of the Family Tree"
-msgstr "גרמפלט להצגת תמצית נתונים לעץ המשפחה"
+msgstr "גרמפלט להצגת תמצית נתונים לאילן־יוחסין"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:314
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:321
@@ -23252,7 +23250,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:521
 msgid "Person Residence"
-msgstr "הפנית אדם"
+msgstr "אזכורי אדם"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:522
 msgid "Gramplet showing residence events for a person"
@@ -23503,11 +23501,11 @@ msgstr "גרמפלט להצגת צאצאים במשפחה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1017
 msgid "Person References"
-msgstr "הפניות אדם"
+msgstr "אזכורי אדם"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1018
 msgid "Gramplet showing the backlink references for a person"
-msgstr "גרמפלט להצגת הפניות קישורים נכנסים לאדם"
+msgstr "גרמפלט להצגת אזכורי קישורים נכנסים לאדם"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1025
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1041
@@ -23522,73 +23520,73 @@ msgstr "גרמפלט להצגת הפניות קישורים נכנסים לאד�
 #: ../gramps/plugins/webreport/person.py:1053
 #: ../gramps/plugins/webreport/thumbnail.py:172
 msgid "References"
-msgstr "הפניות"
+msgstr "אזכורים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1033
 msgid "Event References"
-msgstr "הפניות אירוע"
+msgstr "אזכורי אירוע"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1034
 msgid "Gramplet showing the backlink references for an event"
-msgstr "גרמפלט להצגת הפניות קישורים נכנסים לאירוע"
+msgstr "גרמפלט להצגת אזכורי קישורים נכנסים לאירוע"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1049
 msgid "Family References"
-msgstr "הפניות משפחה"
+msgstr "אזכורי משפחה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1050
 msgid "Gramplet showing the backlink references for a family"
-msgstr "גרמפלט להצגת הפניות קישורים נכנסים למשפחה"
+msgstr "גרמפלט להצגת אזכורי קישורים נכנסים למשפחה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1065
 msgid "Place References"
-msgstr "הפניות מקום"
+msgstr "אזכורי מקום"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1066
 msgid "Gramplet showing the backlink references for a place"
-msgstr "גרמפלט להצגת הפניות קישורים נכנסים למקום"
+msgstr "גרמפלט להצגת אזכורי קישורים נכנסים למקום"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1081
 #: ../gramps/plugins/webreport/basepage.py:2826
 msgid "Source References"
-msgstr "מקור הפניות"
+msgstr "אזכורי מקור"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1082
 msgid "Gramplet showing the backlink references for a source"
-msgstr "גרמפלט להצגת הפניות קישורים נכנסים למקור"
+msgstr "גרמפלט להצגת אזכורי קישורים נכנסים למקור"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1097
 msgid "Citation References"
-msgstr "הפנית מובאה"
+msgstr "אזכורי מובאה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1098
 msgid "Gramplet showing the backlink references for a citation"
-msgstr "גרמפלט להצגת הפניות קישורים נכנסים למובאה"
+msgstr "גרמפלט להצגת אזכורי קישורים נכנסים למובאה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1113
 #: ../gramps/plugins/quickview/quickview.gpr.py:264
 msgid "Repository References"
-msgstr "הפניות מאגר"
+msgstr "אזכורי מאגר"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1114
 msgid "Gramplet showing the backlink references for a repository"
-msgstr "גרמפלט להצגת הפניות קישורים נכנסים למאגר מידע"
+msgstr "גרמפלט להצגת אזכורי קישורים נכנסים למאגר מידע"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1129
 msgid "Media References"
-msgstr "הפניות מדיה"
+msgstr "אזכורי מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1130
 msgid "Gramplet showing the backlink references for a media object"
-msgstr "גרמפלט להצגת הפניות קישורים נכנסים לעצם מדיה"
+msgstr "גרמפלט להצגת אזכורי קישורים נכנסים לעצם מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1145
 msgid "Note References"
-msgstr "הפניות הערה"
+msgstr "אזכורי הערה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1146
 msgid "Gramplet showing the backlink references for a note"
-msgstr "גרמפלט להצגת הפניות קישורים חוזרים להערה"
+msgstr "גרמפלט להצגת אזכורי קישורים חוזרים להערה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1161
 msgid "Person Filter"
@@ -23786,7 +23784,7 @@ msgstr "גרמפלט להצגת אירועים לכל המשפחה"
 
 #: ../gramps/plugins/gramplet/leak.py:102
 msgid "Referrer"
-msgstr "הפניה"
+msgstr "אזכור"
 
 #: ../gramps/plugins/gramplet/leak.py:106
 msgid "Uncollected object"
@@ -23799,7 +23797,7 @@ msgstr "אפשר ללחוץ על \"ריענון\" כדי לצפ‎ות בתוצ�
 #: ../gramps/plugins/gramplet/leak.py:160
 #, python-format
 msgid "Referrers of %d"
-msgstr "הפניה של %d"
+msgstr "אזכור של %d"
 
 #: ../gramps/plugins/gramplet/leak.py:184
 #, python-format
@@ -23813,7 +23811,7 @@ msgstr "עצם שלא נאסף: %s"
 
 #: ../gramps/plugins/gramplet/leak.py:255
 msgid "Reference Error"
-msgstr "שגיאת הפניה"
+msgstr "שגיאת אזכור"
 
 #: ../gramps/plugins/gramplet/locations.py:84
 msgid "Double-click on a row to edit the selected place."
@@ -24119,7 +24117,7 @@ msgstr "אנשים עם עצמי מדיה"
 #: ../gramps/plugins/gramplet/statsgramplet.py:204
 #: ../gramps/plugins/webreport/statistics.py:160
 msgid "Total number of media object references"
-msgstr "סך־כל מספר הפניות לעצמי מדיה"
+msgstr "סך־כל מספר אזכורי עצמי מדיה"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:211
 #: ../gramps/plugins/webreport/statistics.py:167
@@ -24276,10 +24274,10 @@ msgstr ""
 "פעילות. כדי שמשהו יקרה, נדרש אילן־יוחסין.\n"
 "\n"
 "ליצירת אילן־יוחסין חדש (נקרא לעתים גם 'מסד־נתונים') נא לבחור מהתפריט "
-"ב'אילנות־יוחסין', 'ניהול אילות־יוחסין', לחיצה על 'חדש' והזנת שם "
-"לאילן־היוחסין. 'טעינת אילן־יוחסין' כדי להפוך אותו לפעיל וזמין לקליטת נתונים. "
-"קליטת הנתונים יכולה להתבצעה על ידי, הזנת המשפחה הראשונה, או ייבוא "
-"אילן־יוחסין.לפרטים נוספים, נא לעיין במידע בקישורים שלהלן.\n"
+"ב'אילנות־יוחסין', 'ניהול אילות־יוחסין', לחיצה על 'חדש' והזנת שם לאילן־"
+"היוחסין. 'טעינת אילן־יוחסין' כדי להפוך אותו לפעיל וזמין לקליטת נתונים. קליטת "
+"הנתונים יכולה להתבצעה על ידי, הזנת המשפחה הראשונה, או ייבוא אילן־"
+"יוחסין.לפרטים נוספים, נא לעיין במידע בקישורים שלהלן.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:171
@@ -25222,7 +25220,7 @@ msgstr "ייבוא נתונים מקובץ vCard"
 
 #: ../gramps/plugins/importer/importcsv.py:157
 msgid "Bad references"
-msgstr "הפניות שגויות"
+msgstr "אזכורים שגויים"
 
 #: ../gramps/plugins/importer/importcsv.py:159
 #: ../gramps/plugins/importer/importgedcom.py:143
@@ -25780,7 +25778,7 @@ msgid ""
 "Source reference\n"
 "(out of Settings)"
 msgstr ""
-"הפניית מקור\n"
+"אזכור מקור\n"
 "(מתוך ההגדרות)"
 
 #: ../gramps/plugins/importer/importprogen.glade:124
@@ -25788,7 +25786,7 @@ msgid ""
 "Source reference text\n"
 "(Text & import Filename)."
 msgstr ""
-"מלל הפניית מקור\n"
+"מלל אזכור מקור\n"
 "(מלל ושם קובץ ייבוא)."
 
 #: ../gramps/plugins/importer/importprogen.glade:171
@@ -25802,7 +25800,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:190
 #: ../gramps/plugins/importer/importprogen.glade:207
 msgid "Citation reference."
-msgstr "הפנית מובאה."
+msgstr "אזכור מובאה."
 
 #: ../gramps/plugins/importer/importprogen.glade:274
 msgid ""
@@ -26333,11 +26331,11 @@ msgstr "שם עד: %s"
 
 #: ../gramps/plugins/importer/importxml.py:1442
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "התכונה 'hlink' חייבת להימצא בכל הפניית אירוע."
+msgstr "התכונה 'hlink' חייבת להימצא בכל אזכור אירוע."
 
 #: ../gramps/plugins/importer/importxml.py:1735
 msgid "Any person reference must have a 'hlink' attribute."
-msgstr "התכונה 'hlink' חייבת להימצא בכל הפניית אדם."
+msgstr "התכונה 'hlink' חייבת להימצא בכל אזכור אדם."
 
 #: ../gramps/plugins/importer/importxml.py:1927
 #, python-format
@@ -26358,7 +26356,7 @@ msgstr "לא ידוע בזמן יובא"
 
 #: ../gramps/plugins/importer/importxml.py:2167
 msgid "Any note reference must have a 'hlink' attribute."
-msgstr "התכונה 'hlink' חייבת להימצא בכל הפניית הערה."
+msgstr "התכונה 'hlink' חייבת להימצא בכל אזכור הערה."
 
 #: ../gramps/plugins/importer/importxml.py:2738
 #, python-brace-format
@@ -26377,7 +26375,7 @@ msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"שגיאה: משפחה '%(family)s' אב '%(father)s' אינו מפנה חזרה למשפחה. הפניה נוספה."
+"שגיאה: משפחה '%(family)s' אב '%(father)s' אינו מאוזכר במשפחה. נוסף אזכור."
 
 #: ../gramps/plugins/importer/importxml.py:3497
 #, python-format
@@ -26386,7 +26384,7 @@ msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"שגיאה: משפחה '%(family)s' אם'%(mother)s' אינו מפנה חזרה למשפחה. הפניה נוסף."
+"שגיאה: משפחה '%(family)s' אם'%(mother)s' אינו מפנה חזרה למשפחה. אזכור נוסף."
 
 #: ../gramps/plugins/importer/importxml.py:3525
 #, python-format
@@ -26395,7 +26393,7 @@ msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"שגיאה: משפחה '%(family)s' צאצא '%(child)s' אינו מפנה חזרה למשפחה. הפניה נוסף."
+"שגיאה: משפחה '%(family)s' צאצא '%(child)s' אינו מפנה חזרה למשפחה. אזכור נוסף."
 
 #: ../gramps/plugins/lib/libcairodoc.py:1446
 #, python-format
@@ -26541,7 +26539,7 @@ msgid ""
 "reference removed from person"
 msgstr ""
 "שגיאה: משפחה '%(family)s' (מוזן כ @%(orig_family)s@) אדם %(person)s (מוזן כ "
-"%(orig_person)s) אינו משתייך למשפחה המופנית. הפנית משפחה הוסרה מהאדם"
+"%(orig_person)s) אינו משתייך למשפחה המאוזכרת. אזכור משפחה הוסרה מהאדם"
 
 #: ../gramps/plugins/lib/libgedcom.py:3788
 #, python-format
@@ -26652,7 +26650,7 @@ msgstr "המערכת התעלמה מ REFN"
 #: ../gramps/plugins/lib/libgedcom.py:6967
 #, python-format
 msgid "No title - ID %s"
-msgstr "אין כותרת - מזהה %s"
+msgstr "ללא כותרת - מזהה %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6972
 #, python-format
@@ -27784,7 +27782,7 @@ msgstr "קבורה ב־ %(burial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:567
 #, python-format
 msgid "Buried %(burial_date)s%(endnotes)s."
-msgstr "נקבר %(burial_date)s%(endnotes)s."
+msgstr "קבורה %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:573
 #, python-format
@@ -27827,7 +27825,7 @@ msgstr "קבורה ב%(month_year)s ב־%(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:589
 #, python-format
 msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "נקבר %(month_year)s ב־%(burial_place)s%(endnotes)s."
+msgstr "קבורה %(month_year)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:594
 #, python-format
@@ -27837,7 +27835,7 @@ msgstr "%(male_name)s קבורה ב־%(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
 msgid "He was buried in %(month_year)s%(endnotes)s."
-msgstr "נקבר ב־%(month_year)s%(endnotes)s."
+msgstr "קבורה ב־%(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:598
 #, python-format
@@ -27862,7 +27860,7 @@ msgstr "קבורה ב%(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:605
 #, python-format
 msgid "Buried %(month_year)s%(endnotes)s."
-msgstr "נקבר %(month_year)s%(endnotes)s."
+msgstr "‮קבורה %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:611
 #, python-format
@@ -27976,12 +27974,12 @@ msgstr "קבורה ב%(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:659
 #, python-format
 msgid "Buried in %(burial_place)s%(endnotes)s."
-msgstr "נקבר ב־%(burial_place)s%(endnotes)s."
+msgstr "קבורה ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:664
 #, python-format
 msgid "%(male_name)s was buried%(endnotes)s."
-msgstr "%(male_name)s נקבר%(endnotes)s."
+msgstr "%(male_name)s קבורה%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:665
 #, python-format
@@ -28011,7 +28009,7 @@ msgstr "קבורה %(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:675
 #, python-format
 msgid "Buried%(endnotes)s."
-msgstr "נקבר %(endnotes)s."
+msgstr "קבורה %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:685
 #, python-format
@@ -28024,7 +28022,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:687
 #, python-format
 msgid "He was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "הוטבל ב־%(baptism_date)s ב־%(baptism_place)s%(endnotes)s."
+msgstr "הטבלה ב־%(baptism_date)s ב־%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:691
 #, python-format
@@ -28118,7 +28116,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:733
 #, python-format
 msgid "She was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "הוטבלה ב־%(month_year)s ב־%(baptism_place)s%(endnotes)s."
+msgstr "הטבלה ב־%(month_year)s ב־%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:737
 #, python-format
@@ -28158,7 +28156,7 @@ msgstr "%(female_name)s הטבלה ב־%(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:753
 #, python-format
 msgid "She was baptized in %(month_year)s%(endnotes)s."
-msgstr "הוטבלה ב־%(month_year)s%(endnotes)s."
+msgstr "הטבלה ב־%(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:756
 #, python-format
@@ -28376,7 +28374,7 @@ msgstr "התנצרות ב־%(christening_date)s ב־%(christening_place)s%(endno
 #: ../gramps/plugins/lib/libnarrate.py:865
 #, python-format
 msgid "Christened %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "הוטבל %(christening_date)s ב־%(christening_place)s%(endnotes)s."
+msgstr "הטבלה %(christening_date)s ב־%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:871
 #, python-format
@@ -28412,7 +28410,7 @@ msgstr "הטבלה ב%(christening_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:884
 #, python-format
 msgid "Christened %(christening_date)s%(endnotes)s."
-msgstr "הוטבל %(christening_date)s%(endnotes)s."
+msgstr "הטבלה %(christening_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:890
 #, python-format
@@ -28461,7 +28459,7 @@ msgstr "הטבלה ב%(month_year)s ב־%(christening_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:908
 #, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "הוטבל %(month_year)s ב־%(christening_place)s%(endnotes)s."
+msgstr "הטבלה %(month_year)s ב־%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:913
 #, python-format
@@ -28496,7 +28494,7 @@ msgstr "הטבלה ב%(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:924
 #, python-format
 msgid "Christened %(month_year)s%(endnotes)s."
-msgstr "הוטבל %(month_year)s%(endnotes)s."
+msgstr "הטבלה %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:930
 #, python-format
@@ -28504,7 +28502,7 @@ msgid ""
 "%(male_name)s was christened %(modified_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)sהוטבל %(modified_date)s ב־%(christening_place)s%(endnotes)s."
+"%(male_name)s הטבלה %(modified_date)s ב־%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:932
 #, python-format
@@ -28616,7 +28614,7 @@ msgstr "הטבלה ב%(christening_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:982
 #, python-format
 msgid "Christened in %(christening_place)s%(endnotes)s."
-msgstr "הוטבל ב־%(christening_place)s%(endnotes)s."
+msgstr "הטבלה ב־%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:987
 #, python-format
@@ -30471,7 +30469,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr "מיזוג מקומות אלו ייצור הפניה מעגלית במדרג המקומות."
+msgstr "מיזוג מקומות אלו ייצור לולאת אזכור במדרג המקומות."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:37
 msgid "Provides a library for using Cairo to generate documents."
@@ -30503,7 +30501,7 @@ msgstr "קבועים משותפים לקובץ html."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:168
 msgid "Manages an HTML DOM tree."
-msgstr "ניהול עץ HTML DOM."
+msgstr "ניהול אילן־יוחסין HTML DOM."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:187
 msgid "Provides base functionality for map services."
@@ -30637,11 +30635,11 @@ msgstr "האדם החי המבוגר ביותר"
 
 #: ../gramps/plugins/lib/librecords.py:68
 msgid "Person died at youngest age"
-msgstr "האדם שנפטר בגיל הצעיר ביותר"
+msgstr "אדם שנפטר בגיל הצעיר ביותר"
 
 #: ../gramps/plugins/lib/librecords.py:69
 msgid "Person died at oldest age"
-msgstr "האדם שנפטר בגיל המבוגר ביותר"
+msgstr "אדם שנפטר בגיל המבוגר ביותר"
 
 #: ../gramps/plugins/lib/librecords.py:70
 msgid "Person married at youngest age"
@@ -30841,7 +30839,7 @@ msgstr "נמצאו יותר מ־5 מקומות בקובץ kml זה."
 
 #: ../gramps/plugins/lib/maps/geography.py:1224
 msgid "You have at least two places with the same title."
-msgstr "קיימים לפחות שני מקומות בעלי כותרת זהה."
+msgstr "קיימים לפחות שני מקומות עם כותרת זהה."
 
 #: ../gramps/plugins/lib/maps/geography.py:1226
 #, python-format
@@ -31083,7 +31081,7 @@ msgstr "בחיים: %s"
 #: ../gramps/plugins/quickview/ageondate.py:77
 #, python-format
 msgid "Deceased: %s"
-msgstr "נפטר: %s"
+msgstr "פטירה: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:83
 #, python-format
@@ -31349,7 +31347,7 @@ msgstr "אנשים עם מדיה"
 #: ../gramps/plugins/quickview/filterbyname.py:71
 msgctxt "Filtering_on"
 msgid "media references"
-msgstr "הפניות מדיה"
+msgstr "אזכורי מדיה"
 
 #: ../gramps/plugins/quickview/filterbyname.py:72
 msgctxt "Filtering_on"
@@ -31425,7 +31423,7 @@ msgstr "מונה מדיה"
 #: ../gramps/plugins/quickview/onthisday.py:84
 #: ../gramps/plugins/quickview/references.py:73
 msgid "Reference"
-msgstr "הפניה"
+msgstr "אזכור"
 
 #: ../gramps/plugins/quickview/filterbyname.py:494
 msgid "media"
@@ -31502,7 +31500,7 @@ msgstr "שרשרת צאצאים נקבות"
 #: ../gramps/plugins/quickview/lineage.py:134
 #: ../gramps/plugins/quickview/lineage.py:235
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
-msgstr "שגיאה: יותר מדי שלבים בעץ (אולי ישנה לולאה?)."
+msgstr "שגיאה: יותר מדי רמות באילן־יוחסין (אולי לולאה?)."
 
 #: ../gramps/plugins/quickview/lineage.py:165
 msgid "No birth relation with child"
@@ -31516,7 +31514,7 @@ msgstr "מגדר לא ידוע"
 
 #: ../gramps/plugins/quickview/linkreferences.py:45
 msgid "Link References for this note"
-msgstr "קישור הפניות להערה זו"
+msgstr "קישור אזכורי הערה זו"
 
 #: ../gramps/plugins/quickview/linkreferences.py:47
 msgid "Link check"
@@ -31538,7 +31536,7 @@ msgstr "מרשתת"
 
 #: ../gramps/plugins/quickview/linkreferences.py:69
 msgid "No link references for this note"
-msgstr "אין קישור הפניות להערה זו"
+msgstr "אין קישור אזכורי הערה זו"
 
 #: ../gramps/plugins/quickview/onthisday.py:80
 #, python-format
@@ -31643,25 +31641,25 @@ msgstr "מקור או מובאה"
 #: ../gramps/plugins/quickview/quickview.gpr.py:228
 #, python-format
 msgid "%s References"
-msgstr "הפניות ‏%s"
+msgstr "אזכורים ‏%s"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:229
 #, python-format
 msgid "Display references for a %s"
-msgstr "הצגת הפניות עבור %s"
+msgstr "הצגת אזכורים עבור %s"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:243
 msgid "Link References"
-msgstr "הפנית קישור"
+msgstr "אזכורי קישור"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:244
 msgid "Display link references for a note"
-msgstr "הצגת הפניות קישור להערה"
+msgstr "הצגת אזכורי קישור להערה"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:266
 msgid ""
 "Display the repository reference for sources related to the active repository"
-msgstr "הצגת הפניות המאגר עבור מקורות המקושרים למאגר הפעיל"
+msgstr "הצגת אזכור המאגר עבור מקורות המקושרים למאגר הפעיל"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:288
 msgid "Same Surnames"
@@ -31691,17 +31689,17 @@ msgstr "הצגת אַחָאִיי אדם."
 #: ../gramps/plugins/quickview/references.py:71
 #, python-format
 msgid "References for this %s"
-msgstr "הפניות עבור %s"
+msgstr "אזכורים עבור %s"
 
 #: ../gramps/plugins/quickview/references.py:83
 #, python-format
 msgid "No references for this %s"
-msgstr "אין הפניות עבור %s"
+msgstr "אין אזכורים עבור %s"
 
 #: ../gramps/plugins/quickview/reporef.py:64
 #: ../gramps/plugins/webreport/basepage.py:3432
 msgid "Call number"
-msgstr "מספר פניה"
+msgstr "מספר שם מקובל"
 
 #: ../gramps/plugins/quickview/reporef.py:64
 msgid "Type of media"
@@ -32441,12 +32439,12 @@ msgstr "האם לכלול אירועים אחרים בהם אנשים לקחו �
 #: ../gramps/plugins/textreport/detancestralreport.py:939
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
 msgid "Include descendant reference in child list"
-msgstr "לכלול הפנית צאצא ברשימת הצאצאים"
+msgstr "לכלול אזכורי צאצא ברשימת צאצאים"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:940
 #: ../gramps/plugins/textreport/detdescendantreport.py:1150
 msgid "Whether to add descendant references in child list."
-msgstr "האם להוסיף הפניה לצאצא ברשימת הצאצאים."
+msgstr "האם להוסיף אזכורי צאצא ברשימת הצאצאים."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:943
 #: ../gramps/plugins/textreport/detdescendantreport.py:1153
@@ -32485,7 +32483,7 @@ msgstr "לכלול מקורות"
 #: ../gramps/plugins/textreport/detancestralreport.py:954
 #: ../gramps/plugins/textreport/detdescendantreport.py:1164
 msgid "Whether to include source references."
-msgstr "נאם לכלול הפניות למקורות."
+msgstr "האם לכלול אזכורי מקורות."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:957
 #: ../gramps/plugins/textreport/detdescendantreport.py:1167
@@ -32600,7 +32598,7 @@ msgstr "דוח צאצאים עבור %(person_name)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:665
 #, python-format
 msgid "Ref: %(number)s. %(name)s"
-msgstr "הפניה: %(number)s. %(name)s"
+msgstr "אזכור: %(number)s. %(name)s"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:795
 #, python-format
@@ -32638,11 +32636,11 @@ msgstr "האם לכלול מידע מפורט על בני זוג."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1141
 msgid "Include spouse reference"
-msgstr "לכלול הפנית בני זוג"
+msgstr "לכלול אזכורי בני זוג"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1142
 msgid "Whether to include reference to spouse."
-msgstr "האם לכלול הפניות לבני זוג."
+msgstr "האם לכלול אזכורי בני זוג."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1189
 msgid "Include sign of succession ('+') in child-list"
@@ -33095,11 +33093,11 @@ msgstr "מספר דרגות לתצודה"
 
 #: ../gramps/plugins/textreport/recordsreport.py:249
 msgid "Use call name"
-msgstr "שימוש בשם פניה"
+msgstr "להשתמש בשם מקובל"
 
 #: ../gramps/plugins/textreport/recordsreport.py:252
 msgid "Don't use call name"
-msgstr "לא להשתמש בשם פניה"
+msgstr "לא להשתמש בשם מקובל"
 
 #: ../gramps/plugins/textreport/recordsreport.py:253
 msgid "Replace first names with call name"
@@ -33572,8 +33570,8 @@ msgid ""
 msgstr ""
 "אילן־היוחסין מכיל כפילויות בטבלאות צולבות.\n"
 " זה לא טוב, אך ניתן לתיקון על־ידי ביצוע גיבוי\n"
-"אילן־היוחסין וייבוא הגיבוי לעץ ריק.\n"
-"המערכת תדלג על שאר הבדיקה ו\n"
+"אילן־היוחסין וייבוא הגיבוי לאילן־יוחסין ריק.\n"
+"המערכת תדלג על שאר הבדיקה\n"
 "יש להפעיל את כלי 'בדיקה ותיקון' מחדש באילן־היוחסין החדש."
 
 #: ../gramps/plugins/tool/check.py:208
@@ -33584,7 +33582,7 @@ msgstr "בדיקת שלמות"
 #: ../gramps/plugins/tool/rebuildrefmap.py:79
 #: ../gramps/plugins/tool/rebuildrefmap.py:82
 msgid "Rebuilding reference maps..."
-msgstr "בנית מפות הפניות מחדש..."
+msgstr "בנית מפות אזכורים מחדש..."
 
 #: ../gramps/plugins/tool/check.py:317
 #, python-format
@@ -33597,7 +33595,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/check.py:344
 msgid "Looking for invalid name format references"
-msgstr "איתור הפניות תסדיר שם לא תקינות"
+msgstr "איתור אזכורי תסדיר שם לא תקינים"
 
 #: ../gramps/plugins/tool/check.py:397
 msgid "Looking for duplicate spouses"
@@ -33643,10 +33641,10 @@ msgid ""
 msgstr ""
 "לקובץ:\n"
 "‏%(file_name)s\n"
-"קיימת הפניה במסד הנתונים, אך אינו קיים עוד.\n"
+"קיים אזכור במסד הנתונים, אך הוא לא קיים עוד.\n"
 "ייתכן שהקובץ נמחק או הועבר למיקום אחר.\n"
-"ניתן לבחור להסיר את ההפניה ממסד הנתונים,\n"
-"לשמור את ההפניה לקובץ החסר, או לבחור קובץ חדש."
+"ניתן לבחור להסיר את האזכור ממסד הנתונים,\n"
+"להשאיר את האזכורי קובץ החסר, או לבחור קובץ חדש."
 
 #: ../gramps/plugins/tool/check.py:956
 msgid "Looking for empty people records"
@@ -33699,39 +33697,39 @@ msgstr "איתור בעיות באירועים"
 #: ../gramps/plugins/tool/check.py:1365 ../gramps/plugins/tool/check.py:1394
 #: ../gramps/plugins/tool/check.py:1422
 msgid "Looking for backlink reference problems"
-msgstr "איתור בעיות קישורים נכנסים בהפניות"
+msgstr "איתור בעיות קישורים נכנסים באזכורים"
 
 #: ../gramps/plugins/tool/check.py:1457
 msgid "Looking for person reference problems"
-msgstr "איתור בעיות הפניות לאדם"
+msgstr "איתור בעיות אזכורי אדם"
 
 #: ../gramps/plugins/tool/check.py:1493
 msgid "Looking for family reference problems"
-msgstr "איתור בעיות הפניות משפחה"
+msgstr "איתור בעיות אזכורי משפחה"
 
 #: ../gramps/plugins/tool/check.py:1524
 msgid "Looking for repository reference problems"
-msgstr "איתור בעיות הפניות למאגרים"
+msgstr "איתור בעיות אזכורי מאגרים"
 
 #: ../gramps/plugins/tool/check.py:1564
 msgid "Looking for place reference problems"
-msgstr "איתור בעיות הפניות למקומות"
+msgstr "איתור בעיות אזכורי מקומות"
 
 #: ../gramps/plugins/tool/check.py:1696
 msgid "Looking for citation reference problems"
-msgstr "איתור בעיות הפנית מובאות"
+msgstr "איתור בעיות אזכורי מובאות"
 
 #: ../gramps/plugins/tool/check.py:1816
 msgid "Looking for source reference problems"
-msgstr "איתור בעיות הפניות מקור"
+msgstr "איתור בעיות אזכורי מקור"
 
 #: ../gramps/plugins/tool/check.py:1863
 msgid "Looking for media object reference problems"
-msgstr "איתור בעיות בהפניות לעצמי מדיה"
+msgstr "איתור בעיות באזכורי עצמי מדיה"
 
 #: ../gramps/plugins/tool/check.py:1994
 msgid "Looking for note reference problems"
-msgstr "איתור בעיות הפניות להערות"
+msgstr "איתור בעיות אזכורי הערות"
 
 #: ../gramps/plugins/tool/check.py:2127
 msgid "Updating checksums on media"
@@ -33743,7 +33741,7 @@ msgstr "איתור בעיות לפי תג"
 
 #: ../gramps/plugins/tool/check.py:2299
 msgid "Looking for media source reference problems"
-msgstr "איתור בעיות הפניות מקור מדיה"
+msgstr "איתור בעיות אזכורים מקור מדיה"
 
 #: ../gramps/plugins/tool/check.py:2369
 msgid "Looking for Duplicated Gramps ID problems"
@@ -33837,8 +33835,8 @@ msgstr[1] "{quantity} אנשים הופנו אך לא נמצאו\n"
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
-msgstr[0] "הפנית משפחה {quantity} לא נמצאה\n"
-msgstr[1] "{quantity} הפניות משפחה לא נמצאו\n"
+msgstr[0] "משפחה {quantity} אוזכרה אך לא נמצאה\n"
+msgstr[1] "{quantity} משפחה אוזכרו אך לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:2849
 #, python-brace-format
@@ -33865,8 +33863,10 @@ msgstr[1] "{quantity} עצמי מדיה הופנו אך לא נמצאו\n"
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] "הפניה {quantity} לעצם מדיה חסר, נשמרה\n"
-msgstr[1] "{quantity} הפניות לעצמי מדיה חסרים, נשמרו\n"
+msgstr[0] ""
+"אזכור עצם מדיה חסר {quantity}, נשמר\n"
+"{quantity} אזכורי עצמי מדיה חסרים, נשמרו\n"
+msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2889
 #, python-brace-format
@@ -33886,8 +33886,8 @@ msgstr[1] "{quantity} עצמי מדיה חסרים הוסרו\n"
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
-msgstr[0] "הפנית אירוע {quantity} לא נמצאה\n"
-msgstr[1] "{quantity} הפניות אירוע לא נמצאו\n"
+msgstr[0] "אירוע {quantity} אוזכר אך לא נמצא\n"
+msgstr[1] "{quantity} אירועים אוזכרו אך לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:2919
 #, python-brace-format
@@ -33914,8 +33914,8 @@ msgstr[1] "{quantity} מקומות מקושרים אך לא נמצאו\n"
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
-msgstr[0] "קיימת הפניה ‏{quantity} למובאה, אך לא נמצאה\n"
-msgstr[1] "קיימות ‏{quantity} הפניות למובאות, אך לא נמצאו\n"
+msgstr[0] "מובאה {quantity} אוזכרה, אך לא נמצאה\n"
+msgstr[1] "{quantity} מובאות אוזכרו, אך לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:2959
 #, python-brace-format
@@ -33928,22 +33928,22 @@ msgstr[1] "{quantity} מקורות מקושרים אך לא נמצאו\n"
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
-msgstr[0] "בוצעה הפניה לעצם הערה {quantity}, אך הוא לא נמצא\n"
-msgstr[1] "בוצעה הפניה ל־{quantity} עצמי הערה, אך הם לא נמצאו\n"
+msgstr[0] "הערה {quantity} אוזכרה, אך הוא לא נמצאה\n"
+msgstr[1] "{quantity} הערות אוזכרו, אך הם לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:2989 ../gramps/plugins/tool/check.py:2999
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "בוצעה הפניה לעצם תג {quantity} אך לא נמצא\n"
-msgstr[1] "בוצעה הפניה ל־{quantity} עצמי תג אך לא נמצאו\n"
+msgstr[0] "תג {quantity} אוזכר, אך לא נמצא\n"
+msgstr[1] "{quantity} תגים אוזכרו, אך לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:3009
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
-msgstr[0] "הפניית תסדיר שם שגויה הוסרה\n"
-msgstr[1] "{quantity} הפניות תסדיר שם שגויות הוסרו\n"
+msgstr[0] "אזכור תסדיר שם שגוי {quantity} הוסר\n"
+msgstr[1] "{quantity} אזכורי תסדיר שם שגויים הוסרו\n"
 
 #: ../gramps/plugins/tool/check.py:3019
 #, python-brace-format
@@ -34294,12 +34294,12 @@ msgstr ""
 "הבחנה חשובה בין עצם מדיה של גרמפס לבין הקובץ שלו.\n"
 "\n"
 "עצם המדיה 'בגרמפס' הוא אוסף נתונים על קובץ עצם המדיה עצמו: שם הקובץ ו/או "
-"הנתיב שלו, התיאור שלו, המזהה שלו, ההערות, ההפניות למקור וכדומה. נתונים "
+"הנתיב שלו, התיאור שלו, המזהה שלו, ההערות, האזכורי מקור וכדומה. נתונים "
 "אלה%(bold_start)sלא כוללים את קובץ המדיה עצמו%(bold_end)s.\n"
 "\n"
 "קבצים שמכילים תמונה, קול, סרט וכדומה, מאוחסנים למעשה בנפרד בכונן הקשיח. "
-"קבצים אלה אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד־הנתונים של גרמפס. "
-"מסד־הנתונים מאחסן רק את שמות הקבצים והנתיב אליהם.\n"
+"קבצים אלה אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד־הנתונים של גרמפס. מסד־"
+"הנתונים מאחסן רק את שמות הקבצים והנתיב אליהם.\n"
 "\n"
 "הכלי מאפשר לשנות רשומות בתוך מסד־נתוני גרמפס בלבד. כך שאם נדרש להעביר או "
 "לשנות את שמות הקבצים עצמם, יש לעשות באופן עצמאי, מחוץ לגרמפס. לאחר מכן ניתן "
@@ -34691,7 +34691,7 @@ msgstr "סטטיסטיקת מגדר לניחוש שם מגדר נבנתה מחד
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:90
 msgid "Reference maps rebuilt"
-msgstr "מפות הפניה נבנו"
+msgstr "מפות אזכורים נבנו מחדש"
 
 #: ../gramps/plugins/tool/relcalc.glade:90
 msgid "Select a person to determine the relationship"
@@ -35175,11 +35175,11 @@ msgstr "בנית מפתחים משניים מחדש"
 
 #: ../gramps/plugins/tool/tools.gpr.py:311
 msgid "Rebuild Reference Maps"
-msgstr "בנית מפות הפניות מחדש"
+msgstr "בנית מפות אזכורים מחדש"
 
 #: ../gramps/plugins/tool/tools.gpr.py:312
 msgid "Rebuilds reference maps"
-msgstr "בנית מפות הפניות מחדש"
+msgstr "בנית מפות אזכורים מחדש"
 
 #: ../gramps/plugins/tool/tools.gpr.py:334
 msgid "Rebuild Gender Statistics"
@@ -35228,7 +35228,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:499
 msgid "Searches the entire database, looking for a possible loop."
-msgstr "חיפוש בכל רשומות מסד־הנתונים לאיתור הפניות מעגליות אפשריות."
+msgstr "חיפוש בכל רשומות מסד־הנתונים לאיתור לולאות אזכורים אפשריות."
 
 #: ../gramps/plugins/tool/tools.gpr.py:524
 msgid ""
@@ -35935,7 +35935,7 @@ msgstr "הצגת טבעת צאצאים"
 
 #: ../gramps/plugins/view/geoclose.py:111
 msgid "Select the person which is the reference for life ways"
-msgstr "נא לבחור האדם שיהווה הפניה לדרכי חיים"
+msgstr "נא לבחור האדם שיהווה אזכורי דרכי חיים"
 
 #: ../gramps/plugins/view/geoclose.py:111
 msgid "reference _Person"
@@ -35963,7 +35963,7 @@ msgstr "גאו־סגירה"
 #: ../gramps/plugins/view/geoclose.py:320
 #, python-format
 msgid "Reference : %(name)s ( %(birth)s - %(death)s )"
-msgstr "הפניה : %(name)s ( %(birth)s - %(death)s )"
+msgstr "אזכור : %(name)s ( %(birth)s - %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:329
 #, python-format
@@ -35976,7 +35976,7 @@ msgstr "האדם האחר לא ידוע"
 
 #: ../gramps/plugins/view/geoclose.py:343
 msgid "You must choose one reference person."
-msgstr "נא לבחור אדם הפניה אחד."
+msgstr "ניתן לבחור אדם מאוזכר אחד בלבד."
 
 #: ../gramps/plugins/view/geoclose.py:346
 msgid ""
@@ -35988,7 +35988,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:409
 msgid "Select the person which will be our reference."
-msgstr "נא לבחור האדם שיהווה הפניה."
+msgstr "נא לבחור באדם שיהווה אזכור."
 
 #: ../gramps/plugins/view/geoclose.py:517
 #: ../gramps/plugins/view/geofamclose.py:588
@@ -36034,7 +36034,7 @@ msgstr "גאו־אירוע"
 
 #: ../gramps/plugins/view/geoevents.py:322
 msgid "incomplete or unreferenced event ?"
-msgstr "אירוע חלקי או ללא הפניה ?"
+msgstr "אירוע חלקי או ללא אזכור ?"
 
 #: ../gramps/plugins/view/geoevents.py:366
 #: ../gramps/plugins/view/geoevents.py:379
@@ -36067,7 +36067,7 @@ msgstr "מרכוז על מקום"
 
 #: ../gramps/plugins/view/geofamclose.py:109
 msgid "Select the family which is the reference for life ways"
-msgstr "נא לבחור המשפחה שתהווה הפניה לדרכי חיים"
+msgstr "נא לבחור משפחה שתהווה אזכורי דרכי חיים"
 
 #: ../gramps/plugins/view/geofamclose.py:109
 #: ../gramps/plugins/view/geoperson.py:153
@@ -36092,7 +36092,7 @@ msgstr "%(gramps_id)s : %(father)s ו%(mother)s"
 #: ../gramps/plugins/view/geofamclose.py:355
 #, python-format
 msgid "Family reference : %s"
-msgstr "הפניות משפחה: %s"
+msgstr "אזכורים משפחה: %s"
 
 #: ../gramps/plugins/view/geofamclose.py:359
 #: ../gramps/plugins/view/geofamclose.py:363
@@ -36102,7 +36102,7 @@ msgstr "המשפחה האחרת : %s"
 
 #: ../gramps/plugins/view/geofamclose.py:369
 msgid "You must choose one reference family."
-msgstr "נא לבחור משפחת הפניה אחת."
+msgstr "ניתן לבחור משפחת אזכור אחת בלבד."
 
 #: ../gramps/plugins/view/geofamclose.py:372
 msgid ""
@@ -36263,7 +36263,7 @@ msgstr "כל המקומות הקשורים לאירוע"
 
 #: ../gramps/plugins/view/geography.gpr.py:217
 msgid "A view showing all the event places of the database."
-msgstr "הצגת כל האירועים בעץ המשפחה."
+msgstr "הצגת כל האירועים באילן־יוחסין."
 
 #: ../gramps/plugins/view/geomoves.py:210
 msgid "Descendants of the active person."
@@ -36558,11 +36558,11 @@ msgstr "הצגת תגים"
 
 #: ../gramps/plugins/view/pedigreeview.py:2257
 msgid "Tree style"
-msgstr "סגנון עץ"
+msgstr "סגנון אילן־יוחסין"
 
 #: ../gramps/plugins/view/pedigreeview.py:2260
 msgid "Compact"
-msgstr "פריסה צמומה"
+msgstr "צמום"
 
 #: ../gramps/plugins/view/pedigreeview.py:2260
 msgid "Expanded"
@@ -36574,11 +36574,11 @@ msgstr "תקני"
 
 #: ../gramps/plugins/view/pedigreeview.py:2265
 msgid "Tree direction"
-msgstr "כיוון העץ"
+msgstr "כיוון אילן"
 
 #: ../gramps/plugins/view/pedigreeview.py:2276
 msgid "Tree size"
-msgstr "גודל עץ"
+msgstr "גודל אילן־יוחסין"
 
 #: ../gramps/plugins/view/personlistview.py:61
 msgid "Person View"
@@ -36586,7 +36586,7 @@ msgstr "מצג 'אדם'"
 
 #: ../gramps/plugins/view/persontreeview.py:73
 msgid "People Tree View"
-msgstr "מצג־עץ אנשים"
+msgstr "מצג עץ אנשים"
 
 #: ../gramps/plugins/view/placelistview.py:54
 msgid "Place View"
@@ -36594,7 +36594,7 @@ msgstr "מצג מקום"
 
 #: ../gramps/plugins/view/placetreeview.py:62
 msgid "Place Tree View"
-msgstr "מצג עץ מקום"
+msgstr "מצג עץ מקומות"
 
 #: ../gramps/plugins/view/placetreeview.py:86
 msgid "Collapse this Entire Group"
@@ -37508,16 +37508,16 @@ msgstr "סגנון מתאר תקני"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2182
 msgid "Citation Referents Layout"
-msgstr "תסדיר הפניות מובאה"
+msgstr "תסדיר אזכורים מובאה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2188
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
-msgstr "קביעת פריסת ברירת המחדל למקטע 'הפניות מובאה' בעמוד המקור"
+msgstr "קביעת תסדיר ברירת המחדל למקטע 'אזכורי מובאה' בעמוד המקור"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2194
 msgid "Include ancestor's tree"
-msgstr "לכלול עץ אָבוֹת קַדמוֹנִים"
+msgstr "לכלול אילן־יוחסין אבות קדמונים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2196
 msgid "Whether to include an ancestor graph on each individual page"
@@ -37599,11 +37599,11 @@ msgstr "הצגת קווי אורך/רוחב ברשימת המקומות."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2277
 msgid "Sort places references either by date or by name"
-msgstr "מיון הפניות מקום לפי תאריך או שם"
+msgstr "מיון אזכורי מקום לפי תאריך או שם"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2281
 msgid "Sort the places references by date or by name. Not set means by date."
-msgstr "מיון הפניות מקום לפי תאריך או שם. לא מוגדר משמע לפי תאריך."
+msgstr "מיון אזכורי מקום לפי תאריך או שם. לא מוגדר משמע לפי תאריך."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2287
 msgid "Graph generations"
@@ -38299,10 +38299,10 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"עמוד המפה מייצג את ה'אדם' וכל צאצאיו, לרבות כל האירועים/המקומות. במיקום "
-"סמן־העכבר מעל הסמן על המפה, יוצג שם המקום. רשימת ההפניות והסמנים, ממוינים "
-"על־פי סדר התאריכים (ככל שקיימים כאלה). הקשה על שם מקום במקטע ההפניה תפתח את "
-"עמוד המקום."
+"עמוד המפה מייצג את ה'אדם' וכל צאצאיו, לרבות כל האירועים/המקומות. במיקום סמן־"
+"העכבר מעל הסמן על המפה, יוצג שם המקום. רשימת האזכורים והסמנים, ממוינים על־פי "
+"סדר התאריכים (ככל שקיימים כאלה). הקשה על שם מקום במקטע האזכור יפתח את עמוד "
+"המקום."
 
 #: ../gramps/plugins/webreport/person.py:1068
 msgid "Place Title"
@@ -38314,7 +38314,7 @@ msgstr "השמטת סמנים"
 
 #: ../gramps/plugins/webreport/person.py:1785
 msgid "Call Name"
-msgstr "שם פניה"
+msgstr "שם מקובל"
 
 #: ../gramps/plugins/webreport/person.py:1806
 msgid "Nick Name"
