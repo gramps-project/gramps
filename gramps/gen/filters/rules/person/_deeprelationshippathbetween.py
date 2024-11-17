@@ -157,7 +157,7 @@ class DeepRelationshipPathBetween(Rule):
                 db.get_number_of_people(),
             )
         target_people = []
-        for person_data in db.iter_raw_person_data():
+        for handle, person_data in db._iter_raw_person_data():
             if self.filt.apply_to_one(db, person_data):
                 target_people.append(data["handle"])
             if user:

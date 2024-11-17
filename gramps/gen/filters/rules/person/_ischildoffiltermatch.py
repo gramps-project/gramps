@@ -62,7 +62,7 @@ class IsChildOfFilterMatch(Rule):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        for person_data in db.iter_raw_person():
+        for handle, person_data in db._iter_raw_person_data():
             if user:
                 user.step_progress()
             if self.filt.apply_to_one(db, person_data):

@@ -65,7 +65,7 @@ class HasType(Rule):
         """
         Apply the rule. Return True if a match.
         """
-        if data["event_type"]:
+        if data["type"]:
             obj = self.get_object(data)
             # FIXME: probably don't need object to do this:
             return obj.get_type() == self.event_type

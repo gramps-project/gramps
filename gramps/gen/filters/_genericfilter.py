@@ -237,13 +237,16 @@ class GenericFilter:
             if handles_in is not None:
                 # Use these rather than going through entire database
                 for handle in handles_in:
+                    if handle is None:
+                        continue
+
                     json_data = self.get_raw_data(db, handle)
 
                     if user:
                         user.step_progress()
 
                     if apply_logical_op(db, json_data, self.flist) != self.invert:
-                        final_list.append(json_data)
+                        final_list.append(json_data["handle"])
 
             else:
                 with (

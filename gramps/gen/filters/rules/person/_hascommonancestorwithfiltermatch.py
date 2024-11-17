@@ -74,7 +74,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        for data in db.iter_raw_person_data():
+        for handle, data in db._iter_raw_person_data():
             # person = db.get_person_from_handle(handle)
             if user:
                 user.step_progress()

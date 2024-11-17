@@ -107,8 +107,7 @@ class HasCommonAncestorWith(Rule):
         return False
 
     def apply_to_one(self, db, data):
+        person = self.get_object(data)
         if data["handle"] not in self.ancestor_cache:
-            person = self.get_object(data)
             self.add_ancs(db, person)
-
         return self.has_common_ancestor(person)
