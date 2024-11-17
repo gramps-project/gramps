@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-08-10 20:09+0000\n"
+"PO-Revision-Date: 2024-10-19 13:15+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -273,8 +273,9 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"Gramps ist ein Programm für die Ahnenforschung, das zugleich intuitiv für "
-"Anfänger und umfangreich für Berufsgenealogen ist."
+"Gramps ist ein Programm für die Ahnenforshcung, das sowohl intuitiv für "
+"Hobby-Ahnenforscher als auch mit allen Funktionen für Profis ausgestattet "
+"ist."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -610,11 +611,11 @@ msgid ""
 "a website for your family tree then there's a report for that as well."
 msgstr ""
 "<b>Gramps-Berichte</b><br/> Gramps bietet eine große Vielfalt an Berichten. "
-"Die grafischen Berichte und Zeichnungen können komplexe "
-"Beziehungsverhältnisse einfach darstellen und die schriftlichen Berichte "
-"sind besonders nützlich, wenn du die Ergebnisse deines Stammbaum via E-Mail "
-"an Familienmitglieder senden willst. Wenn du eine Website für deinen "
-"Stammbaum erstellen willst, gibt es auch hierfür einen Bericht."
+"Die grafischen Berichte und Grafiken können komplexe Beziehungsverhältnisse "
+"einfach darstellen und die schriftlichen Berichte sind besonders nützlich, "
+"wenn du die Ergebnisse deines Stammbaum via E-Mail an Familienmitglieder "
+"senden willst. Wenn du eine Website für deinen Stammbaum erstellen willst, "
+"gibt es auch hierfür einen Bericht."
 
 #: ../data/tips.xml:36
 msgid ""
@@ -1239,7 +1240,7 @@ msgid ""
 "Tree instead."
 msgstr ""
 "Fehler: Eingabe-Stammbaum \"%s\" existiert nicht.\n"
-"Bei GEDCOM, Gramps-XML oder grdb verwende stattdessen die Option -i zum "
+"Wenn GEDCOM, Gramps-XML oder grdb, verwende stattdessen die Option -i zum "
 "Import in einen Stammbaum."
 
 #: ../gramps/cli/arghandler.py:264
@@ -9830,12 +9831,12 @@ msgstr "Die Schriftgröße in Punkt (pt)."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:175
 msgid "Graph Direction"
-msgstr "Ausrichtung der Zeichnung"
+msgstr "Ausrichtung der Grafik"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:179
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr ""
-"Legt fest, ob die Zeichnung von oben nach unten oder von links nach rechts "
+"Legt fest, ob die Grafik von oben nach unten oder von links nach rechts "
 "verläuft."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:183
@@ -9848,7 +9849,7 @@ msgid ""
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"Graphviz kann sehr große Zeichnungen erzeugen, indem die Zeichnung über ein "
+"Graphviz kann sehr große Grafiken erzeugen, indem die Grafik über ein "
 "rechteckiges Feld aus mehreren Seiten verteilt wird. Dies beeinflusst die "
 "Anzahl der Seiten in horizontaler Richtung. Nur gültig für Dot und PDF über "
 "Ghostscript."
@@ -9863,7 +9864,7 @@ msgid ""
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"Graphviz kann sehr große Zeichnungen erzeugen, indem die Zeichnung über ein "
+"Graphviz kann sehr große Grafiken erzeugen, indem die Grafik über ein "
 "rechteckiges Feld aus mehreren Seiten verteilt wird. Dies beeinflusst die "
 "Anzahl der Seiten in vertikaler Richtung. Nur gültig für Dot und PDF über "
 "Ghostscript."
@@ -9877,9 +9878,8 @@ msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
 msgstr ""
-"Reihenfolge, in der die Zeichnungsseiten ausgegeben werden. Diese Option "
-"wird nur gebraucht, wenn es horizontal oder vertikal mehr als eine Seite "
-"gibt."
+"Reihenfolge, in der die Grafikseiten ausgegeben werden. Diese Option wird "
+"nur angewendet, wenn es horizontal oder vertikal mehr als eine Seite gibt."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:219
 msgid "Connecting lines"
@@ -9921,19 +9921,19 @@ msgid ""
 "the node spacing.\n"
 "  Expand will shrink the graph uniformly to fit the print area."
 msgstr ""
-"Beeinflusst die Knotenabstände und die Skalierung der Zeichnung.\n"
-"Wenn die Zeichnung kleiner als der Druckbereich ist:\n"
+"Beeinflusst die Knotenabstände und die Skalierung der Grafik.\n"
+"Wenn die Grafik kleiner als der Druckbereich ist:\n"
 "  Durch Komprimieren wird der Knotenabstand nicht verändert. \n"
-"  Füllen vergrößert den Knotenabstand, so dass er sowohl in der Breite als "
+"  Füllen vergrößert den Knotenabstand, damit er sowohl in der Breite als "
 "auch in der Höhe in den Druckbereich passt.\n"
 "  Erweitern vergrößert die Knotenabstände gleichmäßig, um das "
 "Seitenverhältnis beizubehalten.\n"
-"Wenn die Zeichnung größer als der Druckbereich ist:\n"
-"  Komprimieren staucht die Zeichnung, um ein kompaktes Format auf Kosten der "
-"Symmetrie zu erreichen.\n"
-"  Füllen schrumpft die Zeichnung so, dass sie in den Druckbereich passt, "
+"Wenn die Grafik größer als der Druckbereich ist:\n"
+"  Komprimieren verkleinert die Grafik, um ein kompaktes Format auf Kosten "
+"der Symmetrie zu erreichen.\n"
+"  Füllen verkleinert die Grafik so, dass sie in den Druckbereich passt, "
 "nachdem zuvor der Knotenabstand vergrößert wurde.\n"
-"  Erweitern schrumpft die Zeichnung gleichmäßig, um sie an den Druckbereich "
+"  Erweitern verkleinert die Grafik gleichmäßig, um sie an den Druckbereich "
 "anzupassen."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:266
@@ -9961,8 +9961,8 @@ msgid ""
 "horizontal graphs, this corresponds to spacing between rows."
 msgstr ""
 "Der Mindestabstand in Zoll zwischen den einzelnen Knotenpunkten.  Bei "
-"vertikalen Zeichnungen entspricht dies dem Abstand zwischen den Spalten.  "
-"Bei horizontalen Zeichnungen entspricht dies dem Abstand zwischen den Zeilen."
+"vertikalen Grafiken entspricht dies dem Abstand zwischen den Spalten.  Bei "
+"horizontalen Grafiken entspricht dies dem Abstand zwischen den Zeilen."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:290
 msgid "Rank spacing"
@@ -9974,17 +9974,17 @@ msgid ""
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"Der Mindestabstand zwischen den Rängen in Zoll.  Bei vertikalen Zeichnungen "
-"entspricht dies dem Abstand zwischen den Zeilen.  Bei horizontalen "
-"Zeichnungen entspricht dies dem Abstand zwischen den Spalten."
+"Der Mindestabstand zwischen den Rängen in Zoll.  Bei vertikalen Grafiken "
+"entspricht dies dem Abstand zwischen den Zeilen.  Bei horizontalen Grafiken "
+"entspricht dies dem Abstand zwischen den Spalten."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:306
 msgid "Note to add to the graph"
-msgstr "Notiz zur Zeichnung hinzufügen"
+msgstr "Notiz zur Grafik hinzufügen"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:307
 msgid "This text will be added to the graph."
-msgstr "Dieser Text wird der Zeichnung hinzugefügt."
+msgstr "Dieser Text wird zur Grafik hinzugefügt."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:310
 #: ../gramps/gen/plug/docgen/treedoc.py:300
@@ -10268,7 +10268,7 @@ msgstr "Zeitablauf"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:266
 msgid "Direction that the graph will grow over time."
-msgstr "Richtung, in die die Zeichnung mit der Zeit wächst."
+msgstr "Richtung, in der die Grafik mit der Zeit wächst."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:270
 msgid "Edge style"
@@ -10288,9 +10288,9 @@ msgid ""
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"Der Mindestfreiraum in mm zwischen den Ebenen.  Bei vertikalen Zeichnungen "
-"entspricht dies dem Abstand zwischen den Zeilen.  Bei horizontalen "
-"Zeichnungen entspricht dies dem Abstand zwischen den Spalten."
+"Der Mindestfreiraum in mm zwischen den Ebenen.  Bei vertikalen Grafiken "
+"entspricht dies dem Abstand zwischen den Zeilen.  Bei horizontalen Grafiken "
+"entspricht dies dem Abstand zwischen den Spalten."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:294
 msgid "Note to add to the tree"
@@ -10317,7 +10317,7 @@ msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:852
 msgid "Graph File for genealogytree"
-msgstr "Bilddatei für Stammbaum"
+msgstr "Grafikdatei für Stammbaum"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:861
 msgid "LaTeX File"
@@ -10361,7 +10361,7 @@ msgstr "Bücher"
 
 #: ../gramps/gen/plug/report/_constants.py:58
 msgid "Graphs"
-msgstr "Zeichnungen"
+msgstr "Grafiken"
 
 #: ../gramps/gen/plug/report/_constants.py:59
 msgid "Trees"
@@ -10369,7 +10369,7 @@ msgstr "Bäume"
 
 #: ../gramps/gen/plug/report/_constants.py:63
 msgid "Graphics"
-msgstr "Grafik"
+msgstr "Grafiken"
 
 #: ../gramps/gen/plug/report/endnotes.py:65
 #: ../gramps/plugins/textreport/ancestorreport.py:388
@@ -12560,8 +12560,8 @@ msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
-"Beim Start keinen Dialog zur Auswahl des Stammbaumes öffnen, sondern den "
-"zuletzt verwendeten öffnen."
+"Beim Start keinen Dialog zur Auswahl des Stammbaumes öffnen, sondern nur den "
+"zuletzt verwendeten laden."
 
 #: ../gramps/gui/configure.py:1997
 msgid "Remember last view displayed"
@@ -13024,7 +13024,7 @@ msgid ""
 "please upgrade my Family Tree"
 msgstr ""
 "Ich habe ein Backup erstellt,\n"
-" bitte aktualisiere meinen Stammbaum"
+"bitte aktualisiere meinen Stammbaum"
 
 #: ../gramps/gui/dbloader.py:226 ../gramps/gui/glade/dialog.glade:701
 #: ../gramps/gui/plug/report/_bookdialog.py:258
@@ -13633,9 +13633,9 @@ msgid ""
 "Directory specified in preferences: Base path for relative media paths: %s "
 "does not exist. Change preferences or do not use relative path when importing"
 msgstr ""
-"In den Einstellungen angegebenes Verzeichnis: Basispfad für relative "
-"Medienpfade: %s existiert nicht. Ändere die Einstellungen oder verwende beim "
-"Importieren keinen relativen Pfad"
+"In den Einstellungen angegebenes Verzeichnis: Relativer Basismedienpfad: %s "
+"existiert nicht. Ändere die Einstellungen oder verwende beim Importieren "
+"keinen relativen Pfad"
 
 #: ../gramps/gui/editors/addmedia.py:237
 #, python-format
@@ -16530,7 +16530,7 @@ msgstr ""
 "-Sehr niedrig = Unzuverlässige Beweismittel oder geschätzte Daten.\n"
 "-Niedrig = Fragwürdige Zuverlässigkeit, also Belege, wo die Möglichkeit für "
 "Beeinflussungen gegeben ist, z.B. Interviews, Volkszählungen, mündliche "
-"Genealogien, eine Autobiographie.\n"
+"Genealogien, eine Autobiografie.\n"
 "-Hoch = Sekundäre Belege, z.B. Daten, die nach dem Ereignis offiziell "
 "aufgezeichnet wurden.\n"
 "-Sehr hoch = Direkte, primäre Belege oder logische Ableitungen."
@@ -16885,10 +16885,10 @@ msgid ""
 msgstr ""
 "Pfad des Medienobjekts auf deinem Computer.\n"
 "Gramps speichert die Medien nicht intern, es wird nur der Pfad gespeichert! "
-"Stelle den 'Relativen Pfad' in den Voreinstellungen ein, um die erneute "
-"Eingabe des gemeinsamen Basisverzeichnisses, in dem alle deine Medien "
-"gespeichert sind, zu vermeiden. Das Werkzeug 'Medienverwaltung' kann bei der "
-"Verwaltung der Pfade einer Sammlung von Medienobjekten helfen."
+"Lege den 'Relativen Pfad' in den Einstellungen fest, um die erneute Eingabe "
+"des gemeinsamen Basisverzeichnisses, in dem alle deine Medien gespeichert "
+"sind, zu vermeiden. Das Werkzeug 'Medienverwaltung' kann bei der Verwaltung "
+"der Pfade einer Sammlung von Medienobjekten helfen."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -18606,8 +18606,7 @@ msgid ""
 "by changing the last-view parameter.\n"
 msgstr ""
 "\n"
-"Gramps konnte nicht gestartet werden. Bitte melde einen Fehler in diesem "
-"Fall.\n"
+"Gramps konnte nicht gestartet werden. Bitte melde einen Fehler darüber.\n"
 "Dies könnte auf einen Fehler in einer (fremden) Ansicht beim Start "
 "zurückzuführen sein.\n"
 "Um eine andere Ansicht zu verwenden, lade keinen Stammbaum, wechsle die "
@@ -21318,7 +21317,7 @@ msgstr "SVG-Dokument"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:204
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr "Erstellt Dokumente im Scalable Vector Graphics-Format (.svg)."
+msgstr "Erstellt Dokumente im Format Scalable Vector Graphics (.svg)."
 
 #: ../gramps/plugins/docgen/gtkprint.glade:6
 msgid "Print Preview"
@@ -21460,12 +21459,12 @@ msgstr "Die Farbe des SVG-Hintergrunds, wenn vorhanden"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:141
 msgid "Ancestor Graph"
-msgstr "Vorfahrendiagramm"
+msgstr "Vorfahrengrafik"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:160
 #, python-format
 msgid "Ancestor Graph for %s"
-msgstr "Vorfahrendiagramm für %s"
+msgstr "Vorfahrengrafik für %s"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:403
 #: ../gramps/plugins/drawreport/calendarreport.py:139
@@ -22225,7 +22224,7 @@ msgstr "Nachkommendiagramm von %(father)s und %(mother)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:235
 msgid "Descendant Graph"
-msgstr "Nachkommendiagramm"
+msgstr "Nachkommengrafik"
 
 #: ../gramps/plugins/drawreport/descendtree.py:364
 #, python-format
@@ -22382,15 +22381,15 @@ msgstr "Vorfahrendiagramm"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:39
 msgid "Produces a graphical ancestral chart"
-msgstr "Zeichnet ein Vorfahrendiagramm"
+msgstr "Erzeugt ein grafisches Vorfahrendiagramm"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:55
 msgid "Produces a graphical ancestral tree"
-msgstr "Zeichnet eine Ahnentafel in Baumstruktur"
+msgstr "Erzeugt einen grafischen Stammbaum"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:77
 msgid "Produces a graphical calendar"
-msgstr "Zeichnet einen Kalender"
+msgstr "Erzeugt einen grafischen Kalender"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:98
 msgid "Descendant Chart"
@@ -22398,7 +22397,7 @@ msgstr "Nachkommendiagramm"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:99
 msgid "Produces a graphical descendant chart"
-msgstr "Zeichnet ein Nachkommendiagramm"
+msgstr "Erzeugt ein grafisches Nachkommendiagramm"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:114
 msgid "Descendant Tree"
@@ -22406,7 +22405,7 @@ msgstr "Nachkommenbaum"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:115
 msgid "Produces a graphical descendant tree"
-msgstr "Zeichnet einen Nachkommenbaum"
+msgstr "Erzeugt einen grafischen Nachkommenbaum"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:136
 msgid "Family Descendant Chart"
@@ -22414,7 +22413,7 @@ msgstr "Nachkommendiagramm der Familie"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:137
 msgid "Produces a graphical descendant chart around a family"
-msgstr "Zeichnet ein Nachkommendiagramm der Familie"
+msgstr "Erzeugt ein grafisches Nachkommendiagramm für eine Familie"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:153
 msgid "Family Descendant Tree"
@@ -22422,7 +22421,7 @@ msgstr "Familiennachkommenbaum"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:154
 msgid "Produces a graphical descendant tree around a family"
-msgstr "Zeichnet einen Nachkommenbaum um eine Familie"
+msgstr "Erzeugt einen grafischen Nachkommenbaum für eine Familie"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:176
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:137
@@ -22483,7 +22482,7 @@ msgstr "Anzahl der Generationen, die im Bericht eingefügt werden"
 
 #: ../gramps/plugins/drawreport/fanchart.py:805
 msgid "Type of graph"
-msgstr "Zeichungsart"
+msgstr "Art der Grafik"
 
 #: ../gramps/plugins/drawreport/fanchart.py:806
 msgid "full circle"
@@ -22506,7 +22505,7 @@ msgid ""
 "The form of the graph: full circle, half circle, half circle with overhang "
 "or quarter circle."
 msgstr ""
-"Die Form der Zeichnung: Vollkreis, Halbkreis, Halbkreis mit Überhang oder "
+"Die Form der Grafik: Vollkreis, Halbkreis, Halbkreis mit Überhang oder "
 "Viertelkreis."
 
 #: ../gramps/plugins/drawreport/fanchart.py:820
@@ -23666,7 +23665,7 @@ msgstr "Altersstatistiken"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:67
 msgid "Gramplet showing graphs of various ages"
-msgstr "Gramplet zum Zeichnen von Diagrammen verschiedener Altersstufen"
+msgstr "Gramplet, das Grafiken verschiedener Altersstufen zeigt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:85
 msgid "Gramplet showing calendar and events on specific dates in history"
@@ -24855,7 +24854,7 @@ msgid ""
 "powerful features.\n"
 "\n"
 msgstr ""
-"Gramps ist ein Softwarepaket, das zur Ahnenforschung entwickelt wurde. "
+"Gramps ist ein Softwarepaket, das für die Ahnenforschung entwickelt wurde. "
 "Obwohl es anderen Ahnenforschungsprogrammen ähnelt, bietet Gramps einige "
 "einzigartige und leistungsstarke Funktionen.\n"
 "\n"
@@ -24877,11 +24876,11 @@ msgid ""
 "powerful, yet easy to use.\n"
 "\n"
 msgstr ""
-"Gramps wird von Genealogen für Genealogen erstellt, die sich im Gramps-"
-"Projekt organisieren. Gramps ist ein Open-Source-Softwarepaket. Das "
-"bedeutet, es ist dir freigestellt, Kopien zu erstellen und an jeden zu "
-"verteilen. Es wird von einem weltweiten Team aus Ehrenamtlichen entwickelt "
-"und gewartet, deren Ziel es ist, Gramps einfach bedienbar zu machen.\n"
+"Gramps wird von Ahnenforschern für Ahnenforscher erstellt und ist im Gramps-"
+"Projekt organisiert. Gramps ist ein Open-Source-Softwarepaket, was bedeutet, "
+"dass du frei kopieren und weitergeben darfst. Es wird von einem weltweiten "
+"Team aus Freiwilligen entwickelt und gewartet, deren Ziel es ist, Gramps "
+"leistungsfähig und einfach benutzbar zu machen.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:140
@@ -24923,8 +24922,8 @@ msgid ""
 "\n"
 msgstr ""
 "Wenn Gramps zum ersten Mal gestartet wird, sind alle Ansichten leer. Es gibt "
-"nur sehr wenige Menüoptionen. Ein Familienstammbaum wird benötigt, damit "
-"irgendeine Aktivität stattfinden kann.\n"
+"nur sehr wenige Menüoptionen. Ein Stammbaum wird benötigt, damit eine "
+"Aktivität stattfinden kann.\n"
 "\n"
 "Um einen neuen Stammbaum (manchmal auch \"Datenbank\" genannt) zu erstellen, "
 "wähle \"Stammbäume\" aus dem Menü, wähle \"Stammbäume verwalten\", drücke "
@@ -25014,10 +25013,10 @@ msgid ""
 "\n"
 msgstr ""
 "Um einen Stammbaum aus einem anderen Programm zu importieren, erstelle "
-"zunächst eine GEDCOM-Datei (oder andere Daten) aus dem vorherigen Programm.\n"
+"zuerst eine GEDCOM-Datei (oder andere Daten) aus dem vorherigen Programm.\n"
 "\n"
 "Sobald du eine neue Gramps-Datenbankdatei erstellt hast, benutze die Option "
-"\"Importieren\" im Menü \"Stammbäume\" um die GEDCOM-Daten zu importieren.\n"
+"\"Importieren\" im Menü \"Stammbäume\", um die GEDCOM-Daten zu importieren.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:220
@@ -25092,13 +25091,13 @@ msgstr ""
 "Du möchtest Gramps im Einsatz sehen. Erstelle und importiere die "
 "Beispieldatenbank.\n"
 "\n"
-"Erstelle einen neuen Stammbaum wie oben beschrieben. Schlage vor, den "
-"Stammbaum \"BEISPIEL\" zu nennen.\n"
+"Erstelle einen neuen Stammbaum wie oben beschrieben. Nenne den Stammbaum "
+"vorschlagsweise \"BEISPIEL\".\n"
 "\n"
 "Importiere die Gramps-Datei example.gramps.\n"
 "\n"
-"Befolge die Anweisungen für den Speicherort der Datei, die mit Gramps "
-"gespeichert wurde.\n"
+"Folge den Anweisungen zum Speicherort der Datei, die mit Gramps gespeichert "
+"wurde.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:268
@@ -25228,28 +25227,28 @@ msgstr ": %s\n"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:37
 msgid "Family Lines Graph"
-msgstr "Familienlinienzeichnung"
+msgstr "Familienliniengrafik"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:38
 msgid "Produces family line graphs using Graphviz."
-msgstr "Erzeugt Familienlinienzeichnungen mit Graphviz."
+msgstr "Erzeugt Familienliniengrafiken mit Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:60
 msgid "Hourglass Graph"
-msgstr "Sanduhrzeichnung"
+msgstr "Sanduhrgrafik"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:61
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Erstellt eine Sanduhrzeichnung mit Graphviz."
+msgstr "Erzeugt eine Sanduhrgrafik mit Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:82
 #: ../gramps/plugins/graph/gvrelgraph.py:225
 msgid "Relationship Graph"
-msgstr "Beziehungszeichnung"
+msgstr "Beziehungsgrafik"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:83
 msgid "Produces relationship graphs using Graphviz."
-msgstr "Erstellt Beziehungszeichnungen mit GraphViz."
+msgstr "Erstellt Beziehungsgrafiken mit Graphviz."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:81
 #: ../gramps/plugins/graph/gvhourglass.py:67
@@ -25342,7 +25341,7 @@ msgstr "Richtung der Pfeile auswählen."
 #: ../gramps/plugins/graph/gvhourglass.py:464
 #: ../gramps/plugins/graph/gvrelgraph.py:897
 msgid "Graph coloring"
-msgstr "Zeichnungsfärbung"
+msgstr "Grafikfärbung"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:181
 msgid ""
@@ -25365,15 +25364,15 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:214
 msgid "Use subgraphs"
-msgstr "Verwende Unterdiagramme"
+msgstr "Verwende Untergrafiken"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:217
 msgid ""
 "Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Untergraphen können Graphviz helfen, Ehepartner zusammen zu positionieren, "
-"aber bei nicht-trivialen Graphen führen sie zu längeren Linien und größeren "
+"Untergrafiken können Graphviz helfen, Ehepartner zusammen zu positionieren, "
+"aber bei nicht-trivialen Grafiken führen sie zu längeren Linien und größeren "
 "Zeichnungen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:226
@@ -25605,7 +25604,7 @@ msgstr "Hauptperson - Andere"
 
 #: ../gramps/plugins/graph/gvhourglass.py:443
 msgid "The Center person for the graph"
-msgstr "Die Hauptperson für die Zeichnung"
+msgstr "Die Hauptperson für die Grafik"
 
 #: ../gramps/plugins/graph/gvhourglass.py:446
 #: ../gramps/plugins/textreport/kinshipreport.py:371
@@ -25615,8 +25614,7 @@ msgstr "Max. Nachkommengenerationen"
 #: ../gramps/plugins/graph/gvhourglass.py:448
 msgid "The number of generations of descendants to include in the graph"
 msgstr ""
-"Die Anzahl der Nachkommen-Generationen, die in die Zeichnung aufgenommen "
-"werden"
+"Die Anzahl der Nachkommen-Generationen, die in die Grafik aufgenommen werden"
 
 #: ../gramps/plugins/graph/gvhourglass.py:452
 #: ../gramps/plugins/textreport/kinshipreport.py:375
@@ -25626,8 +25624,7 @@ msgstr "Max. Vorfahrengenerationen"
 #: ../gramps/plugins/graph/gvhourglass.py:454
 msgid "The number of generations of ancestors to include in the graph"
 msgstr ""
-"Die Anzahl der Vorfahren-Generationen, die in die Zeichnung aufgenommen "
-"werden"
+"Die Anzahl der Vorfahren-Generationen, die in die Grafik aufgenommen werden"
 
 #: ../gramps/plugins/graph/gvhourglass.py:469
 #: ../gramps/plugins/graph/gvrelgraph.py:902
@@ -25652,7 +25649,7 @@ msgstr ""
 #: ../gramps/plugins/graph/gvhourglass.py:499
 #: ../gramps/plugins/graph/gvrelgraph.py:1042
 msgid "Graph Style"
-msgstr "Zeichnungsstil"
+msgstr "Grafikstil"
 
 #: ../gramps/plugins/graph/gvhourglass.py:524
 msgid "Force Ahnentafel order"
@@ -25694,7 +25691,7 @@ msgstr "Bericht erstellen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:882
 msgid "Determines what people are included in the graph"
-msgstr "Legt fest, welche Personen in die Zeichnung aufgenommen werden"
+msgstr "Legt fest, welche Personen in die Grafik aufgenommen werden"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:917
 msgid "Use hexagons"
@@ -25769,9 +25766,9 @@ msgid ""
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
-"Füge in jeden Zeichnungsknoten eine URL ein, so dass PDF- und Imagemap-"
-"Dateien erzeugt werden können, die aktive Links zu den vom Bericht "
-"„Erzählende Website“ erzeugten Dateien enthalten."
+"Füge in jeden Grafikknoten eine URL ein, sodass PDF- und Imagemap-Dateien "
+"erzeugt werden können, die aktive Links zu den vom Bericht „Erzählende "
+"Website“ erzeugten Dateien enthalten."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:995
 #: ../gramps/plugins/textreport/birthdayreport.py:657
@@ -25829,7 +25826,7 @@ msgstr "Nicht-leibliche Beziehungen durch gepunktete Linie anzeigen"
 #: ../gramps/plugins/graph/gvrelgraph.py:1071
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
-"Nicht-leibliche Beziehungen werden in der Zeichnung als gepunktete Linien "
+"Nicht-leibliche Beziehungen werden in der Grafik als gepunktete Linien "
 "angezeigt."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1075
@@ -25866,8 +25863,8 @@ msgstr ""
 "In der Einstellung \"Normal\" werden die Eltern so platziert, dass die "
 "meisten Zeilen kurz bleiben.\n"
 "Die Einstellung \"Eltern zusammen\" kann helfen, Ehepartner nebeneinander zu "
-"positionieren, führt aber bei nicht-trivialen Zeichnungen zu längeren Linien "
-"und größeren Zeichnungen.\n"
+"positionieren, führt aber bei nicht-trivialen Grafiken zu längeren Linien "
+"und größeren Grafiken.\n"
 "Mit der Einstellung \"Eltern versetzt\" wird ebenfalls versucht, die "
 "Ehepartner nahe beieinander zu platzieren, allerdings sind sie dann versetzt "
 "zueinander.  Dies führt dazu, dass Zeichnungen mit vielen Personen in einer "
@@ -26423,7 +26420,7 @@ msgstr "Fehler beim Entpacken nach %s"
 
 #: ../gramps/plugins/importer/importgpkg.py:115
 msgid "Base path for relative media set"
-msgstr "Basisverzeichnis für relative Mediensatz"
+msgstr "Basispfad für relativen Mediensatz"
 
 #: ../gramps/plugins/importer/importgpkg.py:117
 #, python-format
@@ -26433,15 +26430,15 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"Der Medienbasispfad dieses Stammbaum wurde auf %s gesetzt. Überlege, einen "
-"einfacheren Pfad zu wählen. Ändere dies in den Einstellungen, durch "
-"verschieben deiner Medienobjekte an die neue Position. Benutze dazu das "
-"Medienverwaltungswerkzeug mit 'Ersetze Zeichenfolge', um die korrekten Pfade "
-"zu setzen."
+"Der Medienbasispfad dieses Stammbaums wurde auf %s gesetzt. Überlege, einen "
+"einfacheren Pfad zu nehmen. Ändere ihn in den Einstellungen, während du "
+"Medienobjekte an die neue Position verschiebst und benutze das "
+"Medienverwaltungswerkzeug mit der Option 'Teilzeichenfolge im Pfad "
+"ersetzen', um die korrekten Pfade in deinen Medienobjekten zu setzen."
 
 #: ../gramps/plugins/importer/importgpkg.py:128
 msgid "Cannot set base media path"
-msgstr "Kann Basismedienpfad nicht setzen"
+msgstr "Kann Medienbasispfad nicht setzen"
 
 #: ../gramps/plugins/importer/importgpkg.py:130
 #, python-format
@@ -26454,12 +26451,13 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"Der importierte Familienbaum hat bereits einen Medienbasispfad: "
-"%(orig_path)s. Die importierten Medienobjekte sind aber relativ zu dem Pfad "
-"%(path)s. Du kannst den Medienpfad in den Einstellungen ändern, oder die "
-"importierten Mediendateien in den bestehenden Medienbasispfad umschreiben. "
-"Nutze dazu das Werkzeug 'Medienverwaltung' mit der Funktion 'Ersetze "
-"Zeichenfolge im Pfad'."
+"Der importierte Familienbaum hat bereits einen Medienbasispfad: %(orig_path)"
+"s. Die importierten Medienobjekte sind aber relativ zum Pfad %(path)s. Du "
+"kannst den Medienpfad in den Einstellungen ändern oder die importierten "
+"Dateien in den bestehenden Medienbasispfad umzuwandeln. Um das zu tun, "
+"verschiebe deine Mediendateien zur neuen Position und verwende im Werkzeug "
+"Medienverwaltung die Option \"Teilzeichenfolge im Pfad ersetzen\", um die "
+"korrekten Pfade in deinen Medienobjekten festzulegen."
 
 #: ../gramps/plugins/importer/importgrdb.py:65
 #: ../gramps/plugins/importer/importprogen.py:211
@@ -35298,7 +35296,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:509
 msgid "Replace _substrings in the path"
-msgstr "Ersetze die _Zeichenfolge in dem Pfad"
+msgstr "_Teilzeichenfolge im Pfad ersetzen"
 
 #: ../gramps/plugins/tool/mediamanager.py:511
 msgid ""
@@ -35312,7 +35310,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:518
 msgid "Replace substring settings"
-msgstr "Ersetze Zeichenfolgeneinstellungen"
+msgstr "Einstellungen für Teilzeichenfolge ersetzen"
 
 #: ../gramps/plugins/tool/mediamanager.py:531
 msgid "_Replace:"
@@ -35339,7 +35337,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:599
 msgid "Convert paths from relative to _absolute"
-msgstr "Ändere Pfade von relativ zu _absolut"
+msgstr "Pfade von relativ zu _absolut umwandeln"
 
 #: ../gramps/plugins/tool/mediamanager.py:601
 msgid ""
@@ -35348,13 +35346,13 @@ msgid ""
 "that is not set, it prepends user's directory."
 msgstr ""
 "Dieses Werkzeug erlaubt es, relative Medienpfade in absolute zu "
-"konvertieren. Es macht dies durch Voranstellen des Grundpfades aus den "
-"Einstellungen, oder, wenn dieser nicht gesetzt wurde, durch Heranziehen "
-"deines Heimatverzeichnisses."
+"konvertieren. Dabei wird der in den Einstellungen angegebene Basispfad "
+"vorangestellt oder, wenn dieser nicht festgelegt ist, das "
+"Benutzerverzeichnis vorangestellt."
 
 #: ../gramps/plugins/tool/mediamanager.py:636
 msgid "Convert paths from absolute to r_elative"
-msgstr "Ändere Pfade von absolut zu r_elativ"
+msgstr "Pfade von absolut zu r_elativ umwandeln"
 
 #: ../gramps/plugins/tool/mediamanager.py:638
 msgid ""
@@ -35364,10 +35362,11 @@ msgid ""
 "to tie the file location to a base path that can change to your needs."
 msgstr ""
 "Dieses Werkzeug erlaubt es, absolute Medienpfade in relative zu "
-"konvertieren. Der relative Pfad ist relativ zum Grundpfad aus den "
-"Einstellungen, oder, wenn dieser nicht gesetzt ist, zu deinem "
-"Heimatverzeichnis. Ein relativer Pfad erlaubt dir, einen Dateiort an einen "
-"Grundpfad zu binden, der deinen Bedürfnissen angepasst werden kann."
+"konvertieren. Der relative Pfad ist relativ zum Basispfad, wie er in den "
+"Voreinstellungen angegeben ist oder, wenn dieser nicht festgelegt ist, zum "
+"Benutzerverzeichnis. Ein relativer Pfad ermöglicht es, den Speicherort der "
+"Datei an einen Basispfad zu binden, der sich nach deinen Bedürfnissen ändern "
+"kann."
 
 #: ../gramps/plugins/tool/mediamanager.py:676
 msgid "Add images not included in database"
@@ -38532,7 +38531,7 @@ msgstr "Ahnentafel einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2196
 msgid "Whether to include an ancestor graph on each individual page"
-msgstr "Ob jeder einzelnen Seite eine Ahnentafel eingefügt wird"
+msgstr "Ob jeder einzelnen Seite eine Vorfahrengrafik eingefügt wird"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2201
 msgid "Add previous/next"
@@ -38620,11 +38619,12 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2287
 msgid "Graph generations"
-msgstr "Generationenzeichnung"
+msgstr "Generationengrafik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2289
 msgid "The number of generations to include in the ancestor graph"
-msgstr "Anzahl der in der Ahnentafel aufgenommenen Generationen"
+msgstr ""
+"Anzahl der Generationen, die in die Vorfahrengrafik aufgenommenen werden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2295
 msgid "Include narrative notes just after name, gender"
