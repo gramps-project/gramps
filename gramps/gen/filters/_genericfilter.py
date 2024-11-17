@@ -145,6 +145,7 @@ class GenericFilter:
         Walk all of the filters/rules and get
         rules with maps
         """
+        current_invert = parent_invert if not filter.invert else not parent_invert
         LOG.debug(
             "walking, filter: %s, invert=%s, parent_invert=%s",
             filter,
@@ -156,7 +157,7 @@ class GenericFilter:
             if hasattr(item, "find_filter"):
                 self.walk_filters(
                     item.find_filter(),
-                    not parent_invert if filter.invert else parent_invert,
+                    current_invert,
                     result,
                 )
             elif hasattr(item, "map"):
@@ -172,7 +173,7 @@ class GenericFilter:
             )
             result.append(
                 (
-                    parent_invert if not filter.invert else not parent_invert,
+                    current_invert,
                     filter.logical_op,
                     rules,
                 )
@@ -209,28 +210,32 @@ class GenericFilter:
         all_maps = []
         self.walk_filters(self, self.invert, all_maps)
         LOG.debug("number of maps to consider: %s", len(all_maps))
-        handles = None
+        handles_in = None
+        handles_out = set()
         # Get all positive non-inverted maps
         for inverted, logical_op, maps in all_maps:
             if logical_op == "and" and not inverted:
                 LOG.debug("optimizer positive match!")
-                if handles is None:
-                    handles = intersection(maps)
+                if handles_in is None:
+                    handles_in = intersection(maps)
                 else:
-                    handles = intersection([handles] + maps)
-        if handles is not None:
-            # Get all inverted maps and remove from handles
-            for inverted, logical_op, maps in all_maps:
-                if logical_op == "and" and inverted:
-                    LOG.debug("optimizer inverted match!")
-                    not_handles = union(maps)
-                    handles = handles - not_handles
+                    handles_in = intersection([handles_in] + maps)
+
+        # Get all inverted maps:
+        for inverted, logical_op, maps in all_maps:
+            if logical_op == "and" and inverted:
+                LOG.debug("optimizer inverted match!")
+                handles_out = union([handles_out] + maps)
+
+        if handles_in is not None:
+            handles_in = handles_in - handles_out
+
         # ------------------------------------------------------
-        LOG.debug("optimizer handles: %s", len(handles) if handles else 0)
+        LOG.debug("optimizer handles_in: %s", len(handles_in) if handles_in else 0)
         if id_list is None:
-            if handles is not None:
+            if handles_in is not None:
                 # Use these rather than going through entire database
-                for handle in handles:
+                for handle in handles_in:
                     json_data = self.get_raw_data(db, handle)
 
                     if user:
@@ -244,6 +249,9 @@ class GenericFilter:
                     self.get_tree_cursor(db) if tree else self.get_cursor(db)
                 ) as cursor:
                     for handle, data in cursor:
+                        if handle in handles_out:
+                            continue
+
                         if user:
                             user.step_progress()
 
@@ -257,7 +265,10 @@ class GenericFilter:
                 else:
                     handle = data[tupleind]
 
-                if handles is not None and handle not in handles:
+                if handles_in is not None:
+                    if handle not in handles_in:
+                        continue
+                elif handle in handles_out:
                     continue
 
                 json_data = self.get_raw_data(db, handle)
