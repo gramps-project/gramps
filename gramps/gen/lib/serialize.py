@@ -199,10 +199,12 @@ class JSONSerializer:
             return set(doc["value"])
         elif type_name == "tuple":
             return tuple(doc["value"])
-        elif type_name == "dict" and "_class" in doc:
+        elif type_name == "dict":
+            return doc["value"]
+        elif type_name == "Researcher":
             return from_dict(doc["value"])
         else:
-            return from_json(json.dumps(doc["value"]))
+            return doc["value"]
 
     @staticmethod
     def object_to_metadata(value):
