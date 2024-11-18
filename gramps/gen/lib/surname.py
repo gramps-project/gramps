@@ -69,6 +69,25 @@ class Surname(SecondaryObject):
         if data:
             self.unserialize(data)
 
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+        """
+        attr_dict = dict(
+            (key, value)
+            for key, value in self.__dict__.items()
+            if not key.startswith("_")
+        )
+        attr_dict["_class"] = self.__class__.__name__
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+        """
+        self.__dict__.update(attr_dict)
+
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.

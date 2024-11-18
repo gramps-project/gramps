@@ -55,6 +55,8 @@ from .dbconst import (
     TAG_KEY,
 )
 from ..const import GRAMPS_LOCALE as glocale
+from .conversion_tools import convert_21
+from gramps.gen.lib.serialize import to_dict
 
 _ = glocale.translation.gettext
 
@@ -73,36 +75,42 @@ def gramps_upgrade_21(self):
     self.set_total(length)
 
     # First, do metadata:
+    self.set_serializer("blob")
     self.upgrade_table_for_json_data("metadata")
     keys = self._get_metadata_keys()
     for key in keys:
         self.set_serializer("blob")
         value = self._get_metadata(key, "not-found")
         if value != "not-found":
+            # Save to json_data in current format
             self.set_serializer("json")
-            self._set_metadata(key, value)
+            self._set_metadata(key, convert_21("metadata", value))
 
     self._txn_begin()
     for table_name in self._get_table_func():
         # For each table, alter the database in an appropriate way:
         self.upgrade_table_for_json_data(table_name.lower())
 
-        get_obj_from_handle = self._get_table_func(table_name, "handle_func")
+        get_array_from_handle = self._get_table_func(table_name, "raw_func")
+        get_object_from_handle = self._get_table_func(table_name, "handle_func")
         get_handles = self._get_table_func(table_name, "handles_func")
         commit_func = self._get_table_func(table_name, "commit_func")
         key = CLASS_TO_KEY_MAP[table_name]
         for handle in get_handles():
-            # Initially, serializer must be set to blob:
+            # Load from blob:
             self.set_serializer("blob")
-            obj = get_obj_from_handle(handle)
-            # Force the save in json_data:
-            raw = to_dict(obj)
+            array = get_array_from_handle(handle)
+            # Save to json_data in version 21 format
+            json_data = convert_21(table_name, array)
             self.set_serializer("json")
-            self._commit_raw(raw, key)
+            # We can use commit_raw as long as json_data
+            # has "handle", "_class", and uses json.dumps()
+            self._commit_raw(json_data, key)
             self.update()
 
     self._txn_commit()
     # Bump up database version. Separate transaction to save metadata.
+    self.set_serializer("json")
     self._set_metadata("version", 21)
 
 
