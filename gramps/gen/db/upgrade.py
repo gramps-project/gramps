@@ -84,7 +84,7 @@ def gramps_upgrade_21(self):
         if value != "not-found":
             # Save to json_data in current format
             self.set_serializer("json")
-            self._set_metadata(key, convert_21("metadata", value))
+            self._set_metadata(key, value)
 
     self._txn_begin()
     for table_name in self._get_table_func():

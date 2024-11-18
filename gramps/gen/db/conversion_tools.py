@@ -40,24 +40,6 @@ def convert_21(classname, array):
         return convert_note(array)
     elif classname == "Tag":
         return convert_tag(array)
-    elif classname == "metadata":
-        value = array
-        type_name = type(value).__name__
-        if type_name in ("set", "tuple"):
-            value = list(value)
-        elif type_name == "Researcher":
-            value = convert_researcher(value)
-        elif type_name in ("int", "str", "list"):
-            pass
-        else:
-            raise Exception("metadata unknown type: %s" % type_name)
-
-        data = {
-            "type": type_name,
-            "value": value,
-        }
-        return data
-
     else:
         raise Exception("unknown class: %s" % classname)
 
@@ -151,28 +133,21 @@ def convert_address(array):
         "citation_list": array[1],  # handles
         "note_list": array[2],  # handles
         "date": convert_date(array[3]),
-        "location": convert_location(array[4]),
-    }
-
-
-def convert_location(array):
-    return {
-        "_class": "Location",
-        "street": array[0],
-        "locality": array[1],
-        "city": array[2],
-        "county": array[3],
-        "state": array[4],
-        "country": array[5],
-        "postal": array[6],
-        "phone": array[7],
+        "street": array[4][0],
+        "locality": array[4][1],
+        "city": array[4][2],
+        "county": array[4][3],
+        "state": array[4][4],
+        "country": array[4][5],
+        "postal": array[4][6],
+        "phone": array[4][7],
     }
 
 
 def convert_media_ref(array):
     return {
         "_class": "MediaRef",
-        "privacy": array[0],
+        "private": array[0],
         "citation_list": array[1],  # handles
         "note_list": array[2],  # handles
         "attribute_list": [convert_attribute("Attribute", attr) for attr in array[3]],
@@ -184,7 +159,7 @@ def convert_media_ref(array):
 def convert_event_ref(array):
     return {
         "_class": "EventRef",
-        "privacy": array[0],
+        "private": array[0],
         "citation_list": array[1],  # handles
         "note_list": array[2],  # handles
         "attribute_list": [convert_attribute("Attribute", attr) for attr in array[3]],
@@ -217,13 +192,13 @@ def convert_name(array):
         "_class": "Name",
         "private": array[0],
         "citation_list": array[1],
-        "note": array[2],
+        "note_list": array[2],  # handles
         "date": convert_date(array[3]),
         "first_name": array[4],
         "surname_list": [convert_surname(name) for name in array[5]],
         "suffix": array[6],
         "title": array[7],
-        "type": convert_type("Note", array[8]),
+        "type": convert_type("NameType", array[8]),
         "group_as": array[9],
         "sort_as": array[10],
         "display_as": array[11],
@@ -239,7 +214,7 @@ def convert_surname(array):
         "surname": array[0],
         "prefix": array[1],
         "primary": array[2],
-        "origin_type": convert_type("NameOriginType", array[3]),
+        "origintype": convert_type("NameOriginType", array[3]),
         "connector": array[4],
     }
 
@@ -255,6 +230,7 @@ def convert_date(array):
             "text": "",
             "sortval": 0,
             "newyear": 0,
+            "format": None,
         }
     else:
         return {
@@ -266,6 +242,7 @@ def convert_date(array):
             "text": array[4],
             "sortval": array[5],
             "newyear": array[6],
+            "format": None,
         }
 
 
@@ -298,7 +275,7 @@ def convert_family(array):
         "event_ref_list": [convert_event_ref(ref) for ref in array[6]],
         "media_list": [convert_media_ref(ref) for ref in array[7]],
         "attribute_list": [convert_attribute("Attribute", attr) for attr in array[8]],
-        "lds_seal_list": [convert_ord(ord) for ord in array[9]],
+        "lds_ord_list": [convert_ord(ord) for ord in array[9]],
         "citation_list": array[10],  # handles
         "note_list": array[11],  # handles
         "change": array[12],
