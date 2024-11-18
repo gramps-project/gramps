@@ -96,11 +96,9 @@ class DBAPI(DbGeneric):
         A DBAPI level method for upgrading the given table
         adding a json_data column.
         """
-        try:
+        if not self.dbapi.column_exists(table_name, "json_data"):
             self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name)
             self.dbapi.commit()
-        except Exception:
-            pass
 
     def _schema_exists(self):
         """
