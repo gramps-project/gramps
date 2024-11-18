@@ -942,10 +942,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         raise NotImplementedError
 
-    def _set_metadata(self, key, value):
+    def _set_metadata(self, key, value, use_txn=True):
         """
         key: string
         value: item, will be serialized here
+
+        Note: if use_txn, then begin/commit txn
         """
         raise NotImplementedError
 

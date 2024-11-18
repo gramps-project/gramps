@@ -99,7 +99,6 @@ class DBAPI(DbGeneric):
         """
         if not self.dbapi.column_exists(table_name, "json_data"):
             self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name)
-            self.dbapi.commit()
 
     def _schema_exists(self):
         """
@@ -390,12 +389,15 @@ class DBAPI(DbGeneric):
             return []
         return default
 
-    def _set_metadata(self, key, value):
+    def _set_metadata(self, key, value, use_txn=True):
         """
         key: string
         value: item, will be serialized here
+
+        Note: if use_txn, then begin/commit txn
         """
-        self._txn_begin()
+        if use_txn:
+            self._txn_begin()
         self.dbapi.execute("SELECT 1 FROM metadata WHERE setting = ?", [key])
         row = self.dbapi.fetchone()
         if row:
@@ -408,7 +410,8 @@ class DBAPI(DbGeneric):
                 f"INSERT INTO metadata (setting, {self.serializer.metadata_field}) VALUES (?, ?)",
                 [key, self.serializer.object_to_metadata(value)],
             )
-        self._txn_commit()
+        if use_txn:
+            self._txn_commit()
 
     def get_name_group_keys(self):
         """
