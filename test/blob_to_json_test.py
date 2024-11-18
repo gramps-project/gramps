@@ -2,7 +2,7 @@ from gramps.gen.db.utils import open_database
 from gramps.gen.lib.serialize import to_dict, from_dict
 from gramps.gen.db.conversion_tools import convert_21
 
-# 1. Prepare: create a table named "Example" in version 20
+# 1. Prepare: create a database named "Example" in version 20
 #    containing the blob data
 
 # 2. Open the database in latest Gramps to convert the database
