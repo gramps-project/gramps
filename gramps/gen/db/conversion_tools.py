@@ -281,6 +281,7 @@ def convert_family(array):
         "change": array[12],
         "tag_list": array[13],
         "private": array[14],
+        "complete": 0,
     }
 
 
@@ -455,6 +456,7 @@ def convert_media(array):
         "date": convert_date(array[10]),
         "tag_list": array[11],
         "private": array[12],
+        "thumb": None,
     }
 
 
