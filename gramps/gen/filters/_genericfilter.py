@@ -184,8 +184,6 @@ class GenericFilter:
         self, db, id_list, apply_logical_op, user=None, tupleind=None, tree=False
     ):
         final_list = []
-        if user:
-            user.begin_progress(_("Filter"), _("Applying ..."), self.get_number(db))
 
         def intersection(sets):
             if sets:
@@ -209,7 +207,7 @@ class GenericFilter:
         # Optimiziation
         # ------------------------------------------------------
         all_maps = []
-        self.walk_filters(self, self.invert, all_maps)
+        self.walk_filters(self, False, all_maps)
         LOG.debug("number of maps to consider: %s", len(all_maps))
         handles_in = None
         handles_out = set()
@@ -235,15 +233,18 @@ class GenericFilter:
         LOG.debug("optimizer handles_in: %s", len(handles_in) if handles_in else 0)
         if id_list is None:
             if handles_in is not None:
+                if user:
+                    user.begin_progress(_("Filter"), _("Applying ..."), len(handles))
+
                 # Use these rather than going through entire database
                 for handle in handles_in:
+                    if user:
+                        user.step_progress()
+
                     if handle is None:
                         continue
 
                     json_data = self.get_raw_data(db, handle)
-
-                    if user:
-                        user.step_progress()
 
                     if apply_logical_op(db, json_data, self.flist) != self.invert:
                         final_list.append(json_data["handle"])
@@ -252,18 +253,28 @@ class GenericFilter:
                 with (
                     self.get_tree_cursor(db) if tree else self.get_cursor(db)
                 ) as cursor:
-                    for handle, data in cursor:
-                        if handle in handles_out:
-                            continue
+                    if user:
+                        user.begin_progress(
+                            _("Filter"), _("Applying ..."), self.get_number(db)
+                        )
 
+                    for handle, data in cursor:
                         if user:
                             user.step_progress()
+
+                        if handle in handles_out:
+                            continue
 
                         if apply_logical_op(db, data, self.flist) != self.invert:
                             final_list.append(handle)
 
         else:
+            if user:
+                user.begin_progress(_("Filter"), _("Applying ..."), len(id_list))
             for data in id_list:
+                if user:
+                    user.step_progress()
+
                 if tupleind is None:
                     handle = data
                 else:
@@ -276,9 +287,6 @@ class GenericFilter:
                     continue
 
                 json_data = self.get_raw_data(db, handle)
-
-                if user:
-                    user.step_progress()
 
                 if apply_logical_op(db, json_data, self.flist) != self.invert:
                     final_list.append(data)
@@ -337,9 +345,16 @@ class GenericFilter:
                 if id_list not given, all items in the database that
                 match the filter are returned as a list of handles
         """
+        if user:
+            user.begin_progress(_("Filter"), _("Preparing ..."), len(self.flist))
 
         for rule in self.flist:
             rule.requestprepare(db, user)
+            if user:
+                user.step_progress()
+
+        if user:
+            user.end_progress()
 
         if self.logical_op == "and":
             apply_logical_op = self.and_test
