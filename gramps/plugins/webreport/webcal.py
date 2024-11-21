@@ -1412,7 +1412,7 @@ return false;
         db = self.database
 
         people = db.iter_person_handles()
-        people = self.filter.apply_to_all(db, people, user=self._user)
+        people = self.filter.apply(db, people, user=self._user)
 
         with self._user.progress(
             _("Web Calendar Report"), _("Reading database..."), len(people)

@@ -142,7 +142,7 @@ class TimeLine(Report):
 
     def write_report(self):
         # Apply the filter
-        self.plist = self.filter.apply_to_all(
+        self.plist = self.filter.apply(
             self.database, self.database.iter_person_handles(), user=self._user
         )
 
@@ -385,7 +385,7 @@ class TimeLine(Report):
 
     def name_size(self):
         """get the length of the name"""
-        self.plist = self.filter.apply_to_all(
+        self.plist = self.filter.apply(
             self.database, self.database.iter_person_handles(), user=self._user
         )
 

@@ -422,7 +422,7 @@ class GeoPlaces(GeoGraphyView):
             progress.close()
         elif self.generic_filter:
             user = self.uistate.viewmanager.user
-            place_list = self.generic_filter.apply_to_all(dbstate.db, user=user)
+            place_list = self.generic_filter.apply(dbstate.db, user=user)
             progress = ProgressMeter(
                 self.window_name, can_cancel=False, parent=self.uistate.window
             )

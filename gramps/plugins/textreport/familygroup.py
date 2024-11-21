@@ -677,7 +677,7 @@ class FamilyGroup(Report):
         if not self.filter:
             fam_list = flist
         else:
-            fam_list = self.filter.apply_to_all(self.db, flist, user=self._user)
+            fam_list = self.filter.apply(self.db, flist, user=self._user)
         if fam_list:
             with self._user.progress(
                 _("Family Group Report"), _("Writing families"), len(fam_list)

@@ -1312,7 +1312,7 @@ class FilterEditor(ManagedWindow):
         if node:
             filt = self.clist.get_object(node)
             try:
-                handle_list = filt.apply_to_all(self.db, self.get_all_handles())
+                handle_list = filt.apply(self.db, self.get_all_handles())
             except FilterError as msg:
                 (msg1, msg2) = msg.messages()
                 ErrorDialog(msg1, msg2, parent=self.window)

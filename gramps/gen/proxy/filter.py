@@ -67,7 +67,7 @@ class FilterProxyDb(ProxyDbBase):
         self.person_filter = person_filter
         if person_filter:
             self.plist = set(
-                person_filter.apply_to_all(
+                person_filter.apply(
                     self.db, self.db.iter_person_handles(), user=user
                 )
             )
@@ -76,7 +76,7 @@ class FilterProxyDb(ProxyDbBase):
 
         if event_filter:
             self.elist = set(
-                event_filter.apply_to_all(
+                event_filter.apply(
                     self.db, self.db.iter_event_handles(), user=user
                 )
             )
@@ -85,7 +85,7 @@ class FilterProxyDb(ProxyDbBase):
 
         if note_filter:
             self.nlist = set(
-                note_filter.apply_to_all(
+                note_filter.apply(
                     self.db, self.db.iter_note_handles(), user=user
                 )
             )

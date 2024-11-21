@@ -64,7 +64,7 @@ class BaseTest(unittest.TestCase):
         """
         filter_ = GenericRepositoryFilter()
         filter_.add_rule(rule)
-        results = filter_.apply_to_all(self.db)
+        results = filter_.apply(self.db)
         return set(results)
 
     def test_allrepos(self):

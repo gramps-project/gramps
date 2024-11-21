@@ -104,7 +104,7 @@ class ToDoGramplet(Gramplet):
         FilterClass = GenericFilterFactory("Note")
         filter = FilterClass()
         filter.add_rule(rules.note.HasType(["To Do"]))
-        note_list = filter.apply_to_all(self.dbstate.db, all_notes)
+        note_list = filter.apply(self.dbstate.db, all_notes)
         return note_list
 
     def get_notes(self):

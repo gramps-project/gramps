@@ -850,7 +850,7 @@ class IndivCompleteReport(Report):
         """write the report"""
         plist = self._db.get_person_handles(sort_handles=True, locale=self._locale)
         if self.filter:
-            ind_list = self.filter.apply_to_all(self._db, plist, user=self._user)
+            ind_list = self.filter.apply(self._db, plist, user=self._user)
         else:
             ind_list = plist
         if not ind_list:
