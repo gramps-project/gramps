@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2014       Paul Franklin
 # Copyright (C) 2010-2015  Craig J. Anderson
+# Copyright (C) 2014       Dave Khuon - option to color the box by gender
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -74,6 +75,11 @@ _MARR = (_("m.", "marriage abbreviation"),)
 
 LVL_GEN, LVL_INDX, LVL_Y = range(3)
 
+_BOXCOLOR_DEFAULT = (255,255,255) # default dark
+_BOXCOLOR_FEMALE  = (256,224,224) # red
+_BOXCOLOR_MALE    = (224,224,255) # blue
+_BOXCOLOR_NEITHER = (207,157,255) # light purple
+_BOXCOLOR_FAMILY  = (256,256,224) # Yellow
 
 # ------------------------------------------------------------------------
 #
@@ -85,12 +91,14 @@ class PersonBox(BoxBase):
     Calculates information about the box that will print on a page
     """
 
-    def __init__(self, level):
+    def __init__(self, level, gender = None):
         BoxBase.__init__(self)
         self.boxstr = "AC2-box"
         # self.level = (level[0]-1, level[1])
         self.level = level
         self.idx = 0
+        if gender is not None:
+            self.boxstr = ("AC2F-box" if gender == 0 else "AC2M-box" if gender == 1 else "AC2N-box")
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
@@ -245,6 +253,7 @@ class MakeAncestorTree(AscendPerson):
         self.inlc_marr = _gui.inc_marr()
         self.inc_sib = _gui.inc_sib()
         self.compress_tree = _gui.compress_tree()
+        self.gencolor = _gui.gencolor()
         self.center_family = None
         self.lines = [None] * (_gui.maxgen() + 1)
         if _gui.get_val("show_idx"):
@@ -260,7 +269,14 @@ class MakeAncestorTree(AscendPerson):
         """Makes a person box and add that person into the Canvas."""
 
         # print str(index) + " add_person " + str(indi_handle)
-        myself = PersonBox((index[0] - 1,) + index[1:])
+        gender = None
+        if self.gencolor:
+            if indi_handle:
+                person = self.database.get_person_from_handle(indi_handle)
+                gender = person.get_gender()
+            else:
+                gender = -1
+        myself = PersonBox((index[0] - 1,) + index[1:], gender)
 
         if index[LVL_GEN] == 1:  # Center Person
             self.center_family = fams_handle
@@ -469,6 +485,7 @@ class MakeReport:
         _gui = GUIConnect()
         self.inlc_marr = _gui.inc_marr()
         self.compress_tree = _gui.compress_tree()
+        self.gencolor = _gui.gencolor()
 
         self.mother_ht = self.father_ht = 0
 
@@ -573,7 +590,9 @@ class GUIConnect:
 
     def compress_tree(self):
         return self.get_val("compress_tree")
-
+        
+    def gencolor(self):
+        return self.get_val("gencolor")
 
 # ------------------------------------------------------------------------
 #
@@ -871,6 +890,14 @@ class AncestorTreeOptions(MenuReportOptions):
         )
         menu.add_option(category_name, "compress_tree", compress)
 
+        gencolor = BooleanOption(_("Use gendor color"), True)
+        gencolor.set_help(
+            _(
+                "Whether to show the gender color for the person box"
+            )
+        )        
+        menu.add_option(category_name, "gencolor", gencolor)
+
         self.show_idx = BooleanOption(_("Show Index"), False)
         self.show_idx.set_help(_("Display index of each person"))
         menu.add_option(category_name, "show_idx", self.show_idx)
@@ -1140,6 +1167,12 @@ class AncestorTreeOptions(MenuReportOptions):
         graph_style.set_shadow(1, box_shadow)  # shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-box", graph_style)
+        graph_style.set_fill_color(_BOXCOLOR_FEMALE)
+        default_style.add_draw_style("AC2F-box", graph_style)
+        graph_style.set_fill_color(_BOXCOLOR_MALE)
+        default_style.add_draw_style("AC2M-box", graph_style)
+        graph_style.set_fill_color(_BOXCOLOR_NEITHER)
+        default_style.add_draw_style("AC2N-box", graph_style)       
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("AC2-Normal")
