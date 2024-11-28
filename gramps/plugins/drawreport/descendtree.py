@@ -6,6 +6,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2009-2010  Craig J. Anderson
 # Copyright (C) 2014       Paul Franklin
+# Copyright (C) 2014       Dave Khuon - option to color the box by gender
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,7 +72,11 @@ _DIED = (_("d.", "death abbreviation"),)
 _MARR = (_("m.", "marriage abbreviation"),)
 
 _RPT_NAME = "descend_chart"
-
+_BOXCOLOR_DEFAULT = (255,255,255) # default dark
+_BOXCOLOR_FEMALE  = (256,224,224) # red
+_BOXCOLOR_MALE    = (224,224,255) # blue
+_BOXCOLOR_NEITHER = (207,157,255) # light purple
+_BOXCOLOR_FAMILY  = (256,256,224) # Yellow
 
 # ------------------------------------------------------------------------
 #
@@ -111,6 +116,13 @@ class PersonBox(DescendantBoxBase):
         """update me to a bolded box"""
         self.boxstr = "CG2b-box"
 
+    def set_normal_gendered(self, gender):
+        """  update me to a gendered normal box """
+        self.boxstr = ("CG2nF-box" if gender == 0 else "CG2nM-box" if gender == 1 else "CG2nN-box")
+
+    def set_bold_gendered(self, gender):
+        """  update me to a gendered bolded box """
+        self.boxstr = ("CG2bF-box" if gender == 0 else "CG2bM-box" if gender == 1 else "CG2bN-box")
 
 class FamilyBox(DescendantBoxBase):
     """
@@ -425,6 +437,7 @@ class RecurseDown:
         if not self.max_spouses:
             self.inlc_marr = False
         self.spouse_indent = gui.get_val("ind_spouse")
+        self.gencolor = gui.get_val("gencolor")
 
         # is the option even available?
         self.bold_direct = gui.get_val("bolddirect")
@@ -492,11 +505,22 @@ class RecurseDown:
         """Makes a person box and add that person into the Canvas."""
         myself = PersonBox(level)
         myself.father = father
+        if indi_handle:
+            person = self.database.get_person_from_handle(indi_handle)
+            gender = person.get_gender()
+        else:
+            gender = -1
 
         if myself.level[1] == 0 and self.bold_direct and self.bold_now:
             if self.bold_now == 1:
                 self.bold_now = 0
-            myself.set_bold()
+            if self.gencolor:
+                myself.set_bold_gendered(gender)
+            else:
+                myself.set_bold()
+        else:
+            if self.gencolor:
+                myself.set_normal_gendered(gender)
 
         if level[1] == 0 and father and myself.level[0] != father.level[0]:
             # I am a child
@@ -1622,6 +1646,10 @@ class DescendTreeOptions(MenuReportOptions):
         indspouce.set_help(_("Whether to indent the spouses in the tree."))
         menu.add_option(category_name, "ind_spouse", indspouce)
 
+        gencolor = BooleanOption(_("Use Gender Color"), True)
+        gencolor.set_help(_("Whether to gender color the box."))
+        menu.add_option(category_name, "gencolor", gencolor)
+
         ##################
         category_name = _("Report Options")
 
@@ -1868,13 +1896,26 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style.set_fill_color((255, 255, 255))
         graph_style.set_description(_("The style for the spouse box."))
         default_style.add_draw_style("CG2-box", graph_style)
+        #DK: 01/30/2023  blue for male, pink for female
+        graph_style.set_fill_color(_BOXCOLOR_FEMALE)
+        default_style.add_draw_style("CG2nF-box", graph_style)
+        graph_style.set_fill_color(_BOXCOLOR_MALE)
+        default_style.add_draw_style("CG2nM-box", graph_style)
+        graph_style.set_fill_color(_BOXCOLOR_NEITHER)
+        default_style.add_draw_style("CG2nN-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Bold")
         graph_style.set_shadow(1, box_shadow)
-        graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_fill_color(_BOXCOLOR_DEFAULT)
         graph_style.set_description(_("The style for the direct descendant box."))
         default_style.add_draw_style("CG2b-box", graph_style)
+        graph_style.set_fill_color(_BOXCOLOR_FEMALE)
+        default_style.add_draw_style("CG2bF-box", graph_style)
+        graph_style.set_fill_color(_BOXCOLOR_MALE)
+        default_style.add_draw_style("CG2bM-box", graph_style)
+        graph_style.set_fill_color(_BOXCOLOR_NEITHER)
+        default_style.add_draw_style("CG2bN-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Note")
