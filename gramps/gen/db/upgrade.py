@@ -67,6 +67,8 @@ def gramps_upgrade_21(self):
     """
     Add json_data field to tables.
     """
+    self.set_serializer("blob")
+
     length = 0
     for key in self._get_table_func():
         count_func = self._get_table_func(key, "count_func")
@@ -77,7 +79,6 @@ def gramps_upgrade_21(self):
     # First, do metadata:
 
     self._txn_begin()
-    self.set_serializer("blob")
     self.upgrade_table_for_json_data("metadata")
     keys = self._get_metadata_keys()
     for key in keys:
@@ -117,8 +118,10 @@ def gramps_upgrade_21(self):
 
 def gramps_upgrade_20(self):
     """
-    Placeholder update.
+    Upgrade to database version 20
     """
+    self.set_serializer("blob")
+
     length = 0
     self.set_total(length)
     self._txn_begin()
@@ -248,6 +251,7 @@ def gramps_upgrade_19(self):
     """
     Upgrade database from version 18 to 19.
     """
+    self.set_serializer("blob")
     # This is done in the conversion from bsddb, so just say we did it.
     self._set_metadata("version", 19)
 
@@ -256,6 +260,8 @@ def gramps_upgrade_18(self):
     """
     Upgrade database from version 17 to 18.
     """
+    self.set_serializer("blob")
+
     length = self.get_number_of_places()
     self.set_total(length)
     self._txn_begin()
@@ -292,6 +298,8 @@ def gramps_upgrade_17(self):
     4. Add checksum field to media objects.
     5. Rebuild list of custom events.
     """
+    self.set_serializer("blob")
+
     length = (
         self.get_number_of_events()
         + self.get_number_of_places()
@@ -310,7 +318,9 @@ def gramps_upgrade_17(self):
     self.event_names = set()
     for handle in self.get_event_handles():
         event = self.get_raw_event_data(handle)
+        # Pre version 17 event type:
         new_event = list(event)
+        # Version 17 event type:
         event_type = EventType()
         event_type.unserialize(new_event[2])
         if event_type.is_custom():
@@ -605,6 +615,8 @@ def gramps_upgrade_16(self):
     # Only People, Families, Events, Media Objects, Places, Sources and
     # Repositories need to be updated, because these are the only primary
     # objects that can have source citations.
+    self.set_serializer("blob")
+
     length = (
         self.get_number_of_people()
         + self.get_number_of_events()
@@ -1427,6 +1439,8 @@ def gramps_upgrade_15(self):
         * surname list
         * remove marker
     """
+    self.set_serializer("blob")
+
     length = (
         self.get_number_of_notes()
         + self.get_number_of_people()
@@ -1705,6 +1719,8 @@ def convert_name_15(name):
 def gramps_upgrade_14(self):
     """Upgrade database from version 13 to 14."""
     # This upgrade modifies notes and dates
+    self.set_serializer("blob")
+
     length = (
         self.get_number_of_notes()
         + self.get_number_of_people()

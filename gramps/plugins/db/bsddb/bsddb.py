@@ -109,7 +109,7 @@ class DbBsddb(SQLite):
             username=username,
             password=password,
         )
-        # Default new DBAPI uses "json"
+        # Default new DBAPI uses "json" serializer
         # So, we force read/write in blobs:
         self.set_serializer("blob")
 
@@ -155,6 +155,7 @@ class DbBsddb(SQLite):
         for old_t, new_t, dbmap in table_list:
             for key in dbmap.keys():
                 self.update()
+                # Try to unpickle data saved before db version 19:
                 data = pickle.loads(dbmap[key], encoding="utf-8")
 
                 if new_t == "metadata":
@@ -169,7 +170,10 @@ class DbBsddb(SQLite):
                             new_data = (addr, data[1], data[2], data[3])
                         else:
                             new_data = data
+
+                        # Version 19 Researcher format is an Object!
                         data = Researcher().unserialize(new_data)
+
                     elif key == b"name_formats":
                         # upgrade formats if they were saved in the old way
                         for format_ix in range(len(data)):
@@ -215,7 +219,7 @@ class DbBsddb(SQLite):
 
                     self._set_metadata(key.decode("utf-8"), data)
                 else:
-                    # Not metadata, but object
+                    # Not metadata, but gramps object
                     self._txn_begin()
                     self.dbapi(
                         f"INSERT INTO {new_t} (handle, blob_data) VALUES " "(?, ?)",

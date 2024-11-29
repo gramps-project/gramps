@@ -855,16 +855,16 @@ class ProgenParser(UpdateCallback):
         """
         # If the ID is already used (= is in the database), return the item in
         # DB. Otherwise, create a new person, assign the handle and Gramps ID.
-        person = Person()
         intid = self.gid2id.get(progen_id)
         if self.dbase.has_person_handle(intid):
-            person.unserialize(self.dbase.get_raw_person_data(intid))
+            person = self.dbase.get_person_from_gramps_id(intid)
         else:
             # create a new Person
             gramps_id = self.dbase.id2user_format("I%06d" % progen_id)
             if self.dbase.has_person_gramps_id(gramps_id):
                 gramps_id = self.dbase.find_next_person_gramps_id()
             intid = self.__find_from_handle(progen_id, self.gid2id)
+            person = Person()
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
 
@@ -877,16 +877,16 @@ class ProgenParser(UpdateCallback):
         """
         Finds or creates a Family based on the Pro-Gen ID.
         """
-        family = Family()
         intid = self.fid2id.get(progen_id)
         if self.dbase.has_family_handle(intid):
-            family.unserialize(self.dbase.get_raw_family_data(intid))
+            family = self.dbase.get_family_from_gramps_id(intid)
         else:
             # create a new Family
             gramps_id = self.dbase.fid2user_format("F%04d" % progen_id)
             if self.dbase.has_family_gramps_id(gramps_id):
                 gramps_id = self.dbase.find_next_family_gramps_id()
             intid = self.__find_from_handle(progen_id, self.fid2id)
+            family = Family()
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
 
