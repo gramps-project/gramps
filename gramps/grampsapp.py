@@ -29,8 +29,8 @@
 # -------------------------------------------------------------------------
 import sys
 import os
+import platform
 import signal
-
 import logging
 
 LOG = logging.getLogger(".")
@@ -534,7 +534,7 @@ def show_settings():
     print("Gramps Settings:")
     print("----------------")
     print(" gramps    : %s" % gramps_str)
-    print(" o.s.      : %s" % sys.platform)
+    print(" o.s.      : %s" % platform.system())
     if kernel:
         print(" kernel    : %s" % kernel)
     print("")
