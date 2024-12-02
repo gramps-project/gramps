@@ -16,6 +16,7 @@
 # Copyright (C) 2013-2014 Paul Franklin
 # Copyright (C) 2015      Craig J. Anderson
 # Copyright (C) 2017      Robert Carnell <bertcarnell_at_gmail.com>
+# Copyright (C) 2024      Dave Khuon - option to include gender
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,6 +48,7 @@ from functools import partial
 #
 # ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.utils.symbols import Symbols
 
 _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
@@ -76,6 +78,9 @@ from gramps.plugins.lib.libnarrate import Narrator
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.proxy import CacheProxyDb
+
+_MSYM    = Symbols()
+_MSYM_GSET = (0,1,2,3,7,8)
 
 # ------------------------------------------------------------------------
 #
@@ -112,6 +117,7 @@ class DetDescendantReport(Report):
         pagebgg       - Whether to include page breaks between generations.
         pageben       - Whether to include page break before End Notes.
         fulldates     - Whether to use full dates instead of just year.
+        showgender     - Whether to include prepend person name with gender.
         listc         - Whether to list children.
         list_children_spouses - Whether to list the spouses of the children
         incnotes      - Whether to include notes.
@@ -166,6 +172,7 @@ class DetDescendantReport(Report):
         self.pgbrkenotes = get_value("pageben")
         self.fulldate = get_value("fulldates")
         use_fulldate = self.fulldate
+        self.showgender = get_value("showgender")
         self.listchildren = get_value("listc")
         self.list_children_spouses = get_value("listc_spouses")
         self.inc_notes = get_value("incnotes")
@@ -441,6 +448,11 @@ class DetDescendantReport(Report):
                 self.doc.write_text(name + "-" + str(index) + self._("; "))
             index -= 1
 
+    def __get_genderSymbol(self, person):
+        gndr = person.get_gender()
+        if gndr not in _MSYM_GSET: gndr = 2 # = unknown
+        return _MSYM.get_symbol_for_string(gndr)+ ' '        
+
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information"""
 
@@ -462,6 +474,8 @@ class DetDescendantReport(Report):
         mark = utils.get_person_mark(self._db, person)
 
         self.doc.start_bold()
+        if self.showgender:
+            self.doc.write_text(self.__get_genderSymbol(person))     
         self.doc.write_text(name, mark)
         if name[-1:] == ".":
             self.doc.write_text_citation("%s " % self.endnotes(person))
@@ -642,6 +656,8 @@ class DetDescendantReport(Report):
             name = self._name_display.display(mate)
             if not name:
                 name = self._("Unknown")
+            if self.showgender:
+                name = self.__get_genderSymbol(mate) + name
             mark = utils.get_person_mark(self._db, mate)
             if family.get_relationship() == FamilyRelType.MARRIED:
                 self.doc.write_text(self._("Spouse: %s") % name, mark)
@@ -717,6 +733,8 @@ class DetDescendantReport(Report):
             child_name = self._name_display.display(child)
             if not child_name:
                 child_name = self._("Unknown")
+            if self.showgender:
+                child_name = self.__get_genderSymbol(child) + child_name
             child_mark = utils.get_person_mark(self._db, child)
 
             if self.childref and self.prev_gen_handles.get(child_handle):
@@ -1125,6 +1143,10 @@ class DetDescendantOptions(MenuReportOptions):
         # What to include
 
         add_option = partial(menu.add_option, _("Include"))
+
+        showgender = BooleanOption(_("Include gender symbol"), True)
+        showgender.set_help(_("Whether to include gender symbol in front of name."))
+        add_option("showgender", showgender)
 
         listc = BooleanOption(_("Include children"), True)
         listc.set_help(_("Whether to list children."))
