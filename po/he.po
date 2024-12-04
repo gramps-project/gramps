@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-11-17 20:41+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2024-11-30 07:00+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -1381,36 +1381,36 @@ msgstr ""
 " פתיחת אילן־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tO, --open=FAMILY_TREE-\n"
 " שם משתמש מסד־נתונים\t\t\t\t\t\t\t\t\t\t\t\t U, --username=USERNAME-\n"
 " ססמת מסד־נתונים\t\t\t\t\t\t\t\t\t\t\t\t\t\tP, --password=PASSWORD-\n"
-" יצירת אילן־יוחסין בפתיחה, במידה וחדש\t\t\t\t\t\t\t\t C, --"
-"create=FAMILY_TREE-\n"
+" יצירת אילן־יוחסין בפתיחה, במידה וחדש\t\t\t\t\t\t\t\t C, "
+"--create=FAMILY_TREE-\n"
 " ייבוא קובץ\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ti, --import=FILENAME-\n"
 " ייצוא קובץ \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\te, --export=FILENAME-\n"
-" הסרת אילנות־יוחסין תואמים (שימוש בביטויים סדירים)\t\t\tr, --"
-"remove=FAMILY_TREE_PATTERN-\n"
+" הסרת אילנות־יוחסין תואמים (שימוש בביטויים סדירים)\t\t\tr, "
+"--remove=FAMILY_TREE_PATTERN-\n"
 " הגדרת תסדיר אילן־יוחסין \t\t\t\t\t\t\t\t\t\t\t\t\t\tf, --format=FORMAT-\n"
 " הגדרת פעולה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ta, --action=ACTION-\n"
 " הגדרת אפשרויות\t\t\t\t\t\t\t\t\t\t\t\t\tp,--options=OPTIONS_STRING-\n"
 " אפשור יומני ניפוי־תקלים \t\t\t\t\t\t\t\t\t\t\t\td, --debug=LOGGER_NAME-\n"
 " רשימת אילנות־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\tl [FAMILY_TREE_PATTERN ...]-\n"
-" רשימת אילנות־יוחסין מפורטת \t\t\t\t\t\t\t\t\t\t\tL "
-"[FAMILY_TREE_PATTERN ...]-\n"
+" רשימת אילנות־יוחסין מפורטת \t\t\t\t\t\t\t\t\t\t\tL [FAMILY_TREE_PATTERN "
+"...]-\n"
 " רשימת אילנות־יוחסין, מופרדים בתו 'טבלר' \t\t\t\t\t\t\t\tt "
 "[FAMILY_TREE_PATTERN...]-\n"
-" אילוץ ביטול נעילת אילן־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\t\tu, --force-"
-"unlock-\n"
+" אילוץ ביטול נעילת אילן־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\t\tu, --force-unlock-"
+"\n"
 " הצגת הגדרות תצורה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-s, --show-\n"
-" קביעת הגדרות תצורה ואיתחול גרמפס\t\t\t\t\t\t      c, --config=[config."
-"setting [: value]]-\n"
+" קביעת הגדרות תצורה ואיתחול גרמפס\t\t\t\t\t\t      c, --config=["
+"config.setting [: value]]-\n"
 " ויתור על בקשת אפשור פעולות מסוכנות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\ty, "
 "--yes-\n"
-" דיכוי פלט חיווי התקדמות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\t\t\tq, --"
-"quiet-\n"
+" דיכוי פלט חיווי התקדמות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\t\t\tq, --quiet-"
+"\n"
 " פלט גרסת חבילה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    v, --version-\n"
 " איתחול ב'מצב בטוח' \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t          S, --safe-\n"
 "    (שימוש זמני בהגדרות ברירת מחדל)\n"
 " החזרת כל ההגדרות לברירת המחדל;\t\t\t\t\t\t\t\t\t\t\tD, --default=[APXFE]-\n"
 " \tללא תוספים\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tA-\n"
-" \tהחזרת 'העדפות' לברירת מחדל\t\t\t\t\t\t\t\t\t\t\t\tP-\n"
+" \tשיצוב 'העדפות' לברירת מחדל\t\t\t\t\t\t\t\t\t\t\t\tP-\n"
 " \tללא ספרים, דוחות והגדרות כלים יוחזרו לברירת מחדל \t\t\t\t\t\t\tX-\n"
 " \tללא מסננים\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tF-\n"
 " \tחזרה לכול הגדרות ברירת המחדל, או ללא הגדרות כלל\t\t\t\t\t\tE-\n"
@@ -1846,8 +1846,8 @@ msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
 msgstr ""
-"השתמש באפשרות --force-unlock- (ביטול הנעילה בכוח) אם ידוע בוודאות שמסד "
-"הנתונים אינו בשימוש על־ידי מישהו אחר."
+"השתמש באפשרות --force-unlock- (שחרור נעילה בכוח) אם ידוע בוודאות שמסד "
+"הנתונים אינו בשימוש על־ידי אדם אחר."
 
 #: ../gramps/cli/grampscli.py:348
 #, python-format
@@ -2110,12 +2110,12 @@ msgstr ":"
 #: ../gramps/gen/datehandler/__init__.py:95
 #, python-format
 msgid "Date parser for '%s' not available, using default"
-msgstr "מנתח התאריך ל '%s' אינו זמין, שימוש ברירת המחדל"
+msgstr "מנתח תאריך עבור '%s' לא זמין, יעשה שימוש ברירת מחדל"
 
 #: ../gramps/gen/datehandler/__init__.py:112
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
-msgstr "מצג תאריך ל '%s' לא זמין, שימוש ברירת המחדל"
+msgstr "מצג תאריך עבור '%s' לא זמין, יעשה שימוש ברירת מחדל"
 
 #. Translators: Numeric year, month, day
 #: ../gramps/gen/datehandler/_datedisplay.py:74
@@ -3319,7 +3319,7 @@ msgstr ","
 
 #: ../gramps/gen/display/name.py:409
 msgid "Default format (defined by Gramps preferences)"
-msgstr "תסדיר ברירת המחדל (הוגדר על־ידי העדפות התוכנה)"
+msgstr "תסדיר ברירת מחדל (הוגדר בהעדפות גרמפס)"
 
 #: ../gramps/gen/display/name.py:410
 msgid "Surname, Given Suffix"
@@ -9390,7 +9390,7 @@ msgstr "לא היתן ליצור %s"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:531
 msgid "Default"
-msgstr "ברירת המחדל"
+msgstr "ברירת מחדל"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 msgid "PostScript / Helvetica"
@@ -11831,7 +11831,7 @@ msgstr "מסגרת עבור 'פטירה'"
 
 #: ../gramps/gui/configure.py:941
 msgid "Default background"
-msgstr "רקע ברירת המחדל"
+msgstr "רקע ברירת מחדל"
 
 #: ../gramps/gui/configure.py:942
 msgid "Background for Married"
@@ -11855,7 +11855,7 @@ msgstr "רקע לגרושים"
 
 #: ../gramps/gui/configure.py:947
 msgid "Default border"
-msgstr "גבול ברירת המחדל"
+msgstr "גבול ברירת מחדל"
 
 #: ../gramps/gui/configure.py:948
 msgid "Border for Divorced"
@@ -12826,7 +12826,7 @@ msgstr "סוג מסד־נתונים"
 #: ../gramps/gui/dbman.py:540
 #, python-format
 msgid "Break the lock on the '%s' database?"
-msgstr "לשחרר את הנעילה על מסד־הנתונים '%s'?"
+msgstr "לשחרר נעילת מסד־הנתונים '%s'?"
 
 #: ../gramps/gui/dbman.py:542
 msgid ""
@@ -12835,14 +12835,14 @@ msgid ""
 "database you may safely break the lock. However, if someone else is editing "
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
-"גרמפס חושב שמישהו אחר עורך כעת, באופן פעיל, את מסד־הנתונים. לא ניתן לערוך את "
-"מסד־הנתונים כשהוא נעול. אם אף אחד אחר לא עורך את מסד־הנתונים כעת, ניתן לבטל "
-"בבטחה את הנעילה. עם זאת, אם מישהו אחר אכן עורך את מסד־הנתונים והנעילה תבוטל, "
-"מסד־הנתונים עלול להיפגע."
+"גרמפס חושב שאדם אחר עורך כעת באופן פעיל את מסד־הנתונים. לא ניתן לערוך את מסד־"
+"הנתונים כשהוא נעול. אם אף אחד אחר לא עורך את מסד־הנתונים כעת, ניתן לשחרר "
+"בבטחה את הנעילה. עם זאת, אם מישהו אחר אכן עורך את מסד־הנתונים והנעילה "
+"תשוחרר, מסד־הנתונים עלול להפגם."
 
 #: ../gramps/gui/dbman.py:549
 msgid "Break lock"
-msgstr "ביטול נעילה"
+msgstr "שחרור נעילה"
 
 #: ../gramps/gui/dbman.py:644
 msgid "Rename failed"
@@ -15522,12 +15522,12 @@ msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
-"אפוס משתני הסינון ל'מצב ריק'. לעדכון המצג לברירת המחדל, נא להשתמש בלחצן ה "
-"'חיפוש'."
+"שיצוב משתני הסינון למצב 'ריק'. לעדכון המצג לברירת מחדל, נא להשתמש בלחצן "
+"ה'חיפוש'."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:91
 msgid "Reset"
-msgstr "איפוס"
+msgstr "שיצוב"
 
 #: ../gramps/gui/glade/addmedia.glade:127
 #: ../gramps/gui/glade/editperson.glade:292
@@ -16615,7 +16615,7 @@ msgid ""
 "Here you can make sure this person is displayed according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"אנשים מוצגים בהתאם לתסדיר השם שהוגדר בהעדפות (ברירת המחדל).\n"
+"אנשים מוצגים בהתאם לתסדיר השם שהוגדר בהעדפות (ברירת מחדל).\n"
 "מכאן ניתן לוודא שהאדם יוצג בהתאם לתסדיר שם מותאם אישית (ניתן להגדיר תסדירים "
 "נוספים בהעדפות)."
 
@@ -16630,7 +16630,7 @@ msgid ""
 "Here you can make sure this person is sorted according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"אנשים ממוינים בהתאם לתסדיר השם שהוגדר בהעדפות (ברירת המחדל).\n"
+"אנשים ממוינים בהתאם לתסדיר השם שהוגדר בהעדפות (ברירת מחדל).\n"
 "מכאן ניתן לוודא שאדם זה יתמיין בהתאם לתסדיר שם מותאם אישית (ניתן להגדיר "
 "תסדירים נוספים בהעדפות)."
 
@@ -19372,7 +19372,7 @@ msgstr "תסדיר פלט"
 #: ../gramps/gui/plug/report/_docreportdialog.py:192
 #: ../gramps/gui/plug/report/_graphreportdialog.py:163
 msgid "Open with default viewer"
-msgstr "פתיחה באמצעות תכנית ברירת המחדל"
+msgstr "פתיחה באמצעות משקף ברירת מחדל"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:235
 msgid "CSS file"
@@ -19519,7 +19519,7 @@ msgstr "לא ניתן ליצור את הדוח"
 #: ../gramps/gui/plug/report/_styleeditor.py:210
 #: ../gramps/plugins/importer/importgedcom.glade:12
 msgid "default"
-msgstr "ברירת המחדל"
+msgstr "ברירת מחדל"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:108
 #: ../gramps/gui/plug/report/_styleeditor.py:143
@@ -20472,7 +20472,7 @@ msgstr "מתוארך ביותר משנה בעתיד"
 msgid ""
 "Double-click on the picture to view it in the default image viewer "
 "application."
-msgstr "נא להקיש כפולה על תמונה להצגה במציג ברירת המחדל."
+msgstr "נא להקיש הקשת עכבר כפולה על תמונה כדי להציגה במשקף ברירת המחדל."
 
 #: ../gramps/gui/widgets/photo.py:92
 msgid "Make Active Media"
@@ -35201,7 +35201,7 @@ msgstr "הסרת עצמים שאינם בשימוש ממסד הנתונים"
 
 #: ../gramps/plugins/tool/tools.gpr.py:404
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
-msgstr "סידור מזהי גרמפס מחדש לפי כללי ברירת המחדל בגרמפס."
+msgstr "סידור מזהי גרמפס מחדש לפי כללי ברירת מחדל בגרמפס."
 
 #: ../gramps/plugins/tool/tools.gpr.py:426
 #: ../gramps/plugins/tool/tools.gpr.py:427
@@ -36422,7 +36422,7 @@ msgstr "עורך מסנני מדיה"
 
 #: ../gramps/plugins/view/mediaview.py:410
 msgid "View in the default viewer"
-msgstr "הצגה באמצעות תכנית ברירת המחדל"
+msgstr "הצגה במשקף ברירת המחדל"
 
 #: ../gramps/plugins/view/mediaview.py:510
 msgid "Cannot merge media objects."
@@ -37473,7 +37473,7 @@ msgstr "גליון סגנון"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2155
 msgid "The default stylesheet to be used for the pages"
-msgstr "גיליון סגנון ברירת המחדל שישמשו בעמודים"
+msgstr "גיליון סגנון ברירת המחדל שישמשו בדפים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2160
 msgid "Horizontal -- Default"
@@ -37576,7 +37576,7 @@ msgid ""
 "the next field."
 msgstr ""
 "האם להציג אתר מרשתת מילולי במספר שפות.\n"
-"ראו את כרטיסיית התרגום כדי להוסיף שפות חדשות לשפת ברירת המחדל המוגדרת בשדה "
+"נא לעיין בלשונית התרגום כדי להוסיף שפות חדשות לשפת ברירת המחדל המוגדרת בשדה "
 "הבא."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
