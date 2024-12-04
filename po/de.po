@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-11-14 11:16+0000\n"
+"PO-Revision-Date: 2024-12-04 20:00+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -3770,7 +3770,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergecitation.glade:278
 #: ../gramps/gui/glade/mergecitation.glade:294
 msgid "Confidence:"
-msgstr "Vertrauen:"
+msgstr "Glaubwürdigkeit:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:51
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:50
@@ -7308,7 +7308,7 @@ msgstr "Seite"
 #: ../gramps/plugins/view/citationtreeview.py:98
 #: ../gramps/plugins/webreport/basepage.py:2867
 msgid "Confidence"
-msgstr "Vertrauen"
+msgstr "Vertrauenswürdigkeit"
 
 #: ../gramps/gen/lib/citation.py:120 ../gramps/gen/lib/src.py:103
 #: ../gramps/gui/clipboard.py:764 ../gramps/gui/configure.py:800
@@ -11319,7 +11319,7 @@ msgstr "unbekannt"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:112
 msgctxt "gender"
 msgid "other"
-msgstr "andere"
+msgstr "divers"
 
 #: ../gramps/gen/utils/string.py:58
 msgid "Invalid"
@@ -22326,7 +22326,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1596
 msgid "Start with the parent(s) of the selected first"
-msgstr "Beginne mit dem/den Elternteil(en) des ausgewählten ersten"
+msgstr "Beginne mit dem/den Elternteil(en) des ersten Ausgewählten"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1599
 msgid "Will show the parents, brother and sisters of the selected person."
