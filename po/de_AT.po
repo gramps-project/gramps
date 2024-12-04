@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-10-19 13:15+0000\n"
+"PO-Revision-Date: 2024-11-19 22:00+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -475,7 +475,7 @@ msgstr ""
 "um alle adoptierten Personen im Stammbaum zu finden. Personen ohne "
 "angegebenes Geburtsdatum können ebenso gefiltert werden. Um das Ergebnis zu "
 "erhalten, speichere den Filter. Dann wähle diesen Filter in der Filter-"
-"Seitenleiste aus und klicke auf die Schaltfläche Suchen. Wenn die "
+"Seitenleiste aus und klicke auf die Suchen-Schaltfläche. Wenn die "
 "Seitenleiste nicht sichtbar ist, wähle \"Ansicht &gt; Seitenleiste."
 
 #: ../data/tips.xml:16
@@ -636,9 +636,8 @@ msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
 msgstr ""
-"<b>Wofür ist dies?</b><br/>Bist du unsicher, welche Funktion ein "
-"Schaltfläche hat? Halte einfach die Maus über die Schaltfläche und ein "
-"Werkzeugtipp erscheint."
+"<b>Wozu ist das?</b><br/>Bist du unsicher, welche Funktion eine Schaltfläche "
+"hat? Halte einfach die Maus über eine Schaltfläche und es erscheint ein Tipp."
 
 #: ../data/tips.xml:40
 msgid ""
@@ -652,7 +651,7 @@ msgstr ""
 "vorkommenden Datum unsicher bist, erlaubt dir Gramps mit einem weiten "
 "Zeitraum zu arbeiten, der auf einer Vermutung oder Abschätzung beruht. "
 "Beispielsweise ist \"um 1908\" ein erlaubter Eintrag für ein Geburtsdatum in "
-"Gramps. Klicke die Schaltfläche \"Datums-Editor aufrufen\" neben dem "
+"Gramps. Klicke die Schaltfläche \"Datumseditor aufrufen\" neben dem "
 "Datumseingabefeld an. Schaue in das Gramps-Handbuch, um mehr zu erfahren."
 
 #: ../data/tips.xml:42
@@ -690,10 +689,10 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
-"<b>Die Ansichten organisieren</b><br/>Viele der Ansichten können deine Daten "
-"in einer hierarchischen Baumstruktur oder als einfache Liste darstellen. "
-"Jede Ansicht kann an deine Wünsche angepasst werden. Schau auf die rechte "
-"Seite der oberen Werkzeugleiste oder auf das Menü \"Ansicht\"."
+"<b>Ansichten organisieren</b><br/>Viele der Ansichten können deine Daten in "
+"einer hierarchischen Baumstruktur oder als einfache Liste darstellen. Jede "
+"Ansicht kann an deine Wünsche angepasst werden. Schau auf die rechte Seite "
+"der oberen Symbolleiste oder unter dem Menü \"Ansicht\"."
 
 #: ../data/tips.xml:48
 msgid ""
@@ -702,10 +701,10 @@ msgid ""
 "through the list using \"Go &gt; Forward\" and \"Go &gt; Back\" or the arrow "
 "buttons."
 msgstr ""
-"<b>Vor und zurück navigieren</b><br/>Gramps verwaltet eine Liste von vorher "
-"aktiven Objekten wie Personen und Ereignisse. Durch Verwendung von \"Gehe zu "
-"&gt; Vor\"und \"Gehe zu &gt; Zurück\" oder der Pfeilschaltflächen kannst du "
-"in dieser Liste vor- und zurückspringen."
+"<b>Vorwärts und rückwärts navigieren</b><br/>Gramps verwaltet eine Liste von "
+"vorher aktiven Objekten wie Personen und Ereignisse. Du kannst in der Liste "
+"vor- und rückwärts gelangen durch Verwenden von \"Gehe &gt; weiter\"und "
+"\"Gehe &gt; zurück\" oder der Pfeiltasten."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -768,7 +767,7 @@ msgstr ""
 "hinzufügen will, wird eine Liste von gefilterten Personen angezeigt, die "
 "realistischerweise in Frage kommen (durch die Daten in Datenbank). Falls "
 "Gramps sich bei dieser Auswahl irrt, kannst du den Filter außer Kraft "
-"setzen, indem du das Kontrollkästchen Alle anzeigen aktivierst."
+"setzen, indem du das Kontrollkästchen \"alle anzeigen\" aktivierst."
 
 #: ../data/tips.xml:60
 msgid ""
@@ -1932,7 +1931,7 @@ msgid ""
 msgstr ""
 "Gramps hat ein Problem in der zugrunde liegenden Datenbank festgestellt. "
 "Dies kann manchmal über die Stammbaumverwaltung repariert werden. Wähle die "
-"Datenbank aus und klicke auf die Schaltfläche Reparieren"
+"Datenbank aus und klicke auf die Reparieren-Schaltfläche"
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
@@ -12603,43 +12602,43 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2051
 msgid "Show Clipboard icon on toolbar"
-msgstr "Zwischenablagesymbol in Werkzeugleiste einblenden"
+msgstr "Zwischenablagesymbol in der Symbolleiste einblenden"
 
 #: ../gramps/gui/configure.py:2056
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr "Zwischenablagesymbol in Werkzeugleiste ein-/ausblenden."
+msgstr "Zwischenablagesymbol in Symbolleiste ein-/ausblenden."
 
 #: ../gramps/gui/configure.py:2064
 msgid "Show Reports icon on toolbar"
-msgstr "Berichtesymbol in Werkzeugleiste einblenden"
+msgstr "Berichtesymbol in Symbolleiste einblenden"
 
 #: ../gramps/gui/configure.py:2069
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr "Berichtesymbol in Werkzeugleiste ein-/ausblenden."
+msgstr "Berichtesymbol in Symbolleiste ein-/ausblenden."
 
 #: ../gramps/gui/configure.py:2077
 msgid "Show Tools icon on toolbar"
-msgstr "Werkzeugsymbol in Werkzeugleiste einblenden"
+msgstr "Werkzeugsymbol in Symbolleiste einblenden"
 
 #: ../gramps/gui/configure.py:2082
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr "Werkzeugsymbol in Werkzeugleiste ein-/ausblenden."
+msgstr "Werkzeugsymbol in Symbolleiste ein-/ausblenden."
 
 #: ../gramps/gui/configure.py:2090
 msgid "Show Addons icon on toolbar"
-msgstr "Erweiterungensymbol in der Werkzeugleiste einblenden"
+msgstr "Erweiterungensymbol in der Symbolleiste einblenden"
 
 #: ../gramps/gui/configure.py:2095
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Erweiterungensymbol in der Werkzeugleiste ein-/ausblenden."
+msgstr "Erweiterungensymbol in der Symbolleiste ein-/ausblenden."
 
 #: ../gramps/gui/configure.py:2103
 msgid "Show Preferences icon on toolbar"
-msgstr "Einstellungensymbol in Werkzeugleiste einblenden"
+msgstr "Einstellungensymbol in Symbolleiste einblenden"
 
 #: ../gramps/gui/configure.py:2108
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr "Einstellungensymbol in Werkzeugleiste ein-/ausblenden."
+msgstr "Einstellungensymbol in Symbolleiste ein-/ausblenden."
 
 #: ../gramps/gui/configure.py:2116
 msgid "Show close button in gramplet bar tabs"
@@ -12745,7 +12744,7 @@ msgstr "Backup beim Beenden"
 
 #: ../gramps/gui/configure.py:2297
 msgid "Backup Your family tree on exit to Backup path specified above."
-msgstr "Backup deines Stammbaum im oben angegeben Pfad beim Beenden erstellen."
+msgstr "Backup deines Stammbaums beim Beenden im oben angegeben Pfad erstellen."
 
 #: ../gramps/gui/configure.py:2305
 msgid "Every 15 minutes"
@@ -14734,9 +14733,9 @@ msgid ""
 msgstr ""
 "Es ist möglich, dass unglücklicherweise mehrere Familien mit denselben "
 "Eltern erzeugt werden. Um dieses Problem zu vermeiden, sind ausschließlich "
-"die Schaltflächen zur Auswahl der Eltern vorhanden, um eine neue Familie "
-"anzulegen. Die weiteren Felder stehen erst nach dem Wählen der Eltern zur "
-"Verfügung."
+"die Schaltflächen zur Auswahl der Eltern verfügbar, wenn du eine neue "
+"Familie anlegst. Die weiteren Felder stehen erst nach dem Auswählen der "
+"Eltern zur Verfügung."
 
 #: ../gramps/gui/editors/editfamily.py:580
 msgid "Family has changed"
@@ -15733,8 +15732,7 @@ msgstr "Person entfernen"
 
 #: ../gramps/gui/editors/objectentries.py:375
 msgid "To select a place, use drag-and-drop or use the buttons"
-msgstr ""
-"Um einen Ort auszuwählen, verwende ziehen und ablegen oder die Schaltflächen"
+msgstr "Um einen Ort auszuwählen, verwende Drag and Drop oder die Schaltflächen"
 
 #: ../gramps/gui/editors/objectentries.py:377
 msgid "No place given, click button to select one"
@@ -15760,12 +15758,11 @@ msgstr "Ort löschen"
 
 #: ../gramps/gui/editors/objectentries.py:447
 msgid "To select a source, use drag-and-drop or use the buttons"
-msgstr ""
-"Um eine Quelle zu wählen, verwende ziehen und ablegen oder die Schaltflächen"
+msgstr "Um eine Quelle zu wählen, verwende Drag and Drop oder die Schaltflächen"
 
 #: ../gramps/gui/editors/objectentries.py:449
 msgid "First add a source using the button"
-msgstr "Füge erst mit der Schaltfläche eine Quelle hinzu"
+msgstr "Füge zuerst eine Quelle über die Schaltfläche hinzu"
 
 #: ../gramps/gui/editors/objectentries.py:450
 msgid "Edit source"
@@ -15789,7 +15786,7 @@ msgstr "Quelle entfernen"
 #: ../gramps/gui/editors/objectentries.py:516
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
-"Um ein Medienobjekt auszuwählen, verwende Ziehen und Ablegen oder die "
+"Um ein Medienobjekt auszuwählen, verwende Drag and Drop oder die "
 "Schaltflächen"
 
 #: ../gramps/gui/editors/objectentries.py:518
@@ -15817,14 +15814,12 @@ msgstr "Medienobjekt entfernen"
 
 #: ../gramps/gui/editors/objectentries.py:586
 msgid "To select a note, use drag-and-drop or use the buttons"
-msgstr ""
-"Um eine Notiz zu wählen, verwende ziehen und ablegen oder die Schaltflächen"
+msgstr "Um eine Notiz zu wählen, verwende Drag and Drop oder die Schaltflächen"
 
 #: ../gramps/gui/editors/objectentries.py:588
 #: ../gramps/gui/plug/_guioptions.py:1021
 msgid "No note given, click button to select one"
-msgstr ""
-"Die Notiz wurde nicht angegeben. Zum Auswählen klicke auf die Schaltfläche"
+msgstr "Keine Notiz angegeben, klicke auf die Schaltfläche, um eine auszuwählen"
 
 #: ../gramps/gui/editors/objectentries.py:590
 #: ../gramps/gui/plug/_guioptions.py:996
@@ -16205,9 +16200,10 @@ msgid ""
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing media files."
 msgstr ""
-"Wenn du diese Schaltfläche aktivierst, werden alle abgehenden Mediendateien "
-"automatisch entsprechend der aktuell ausgewählten Option behandelt. Es "
-"werden keine weiteren Dialoge für abgehende Mediendateien angezeigt."
+"Wenn du dieses Kontrollkästchen aktivierst, werden alle abgehenden "
+"Mediendateien automatisch entsprechend der aktuell ausgewählten Option "
+"behandelt. Es werden keine weiteren Dialoge für abgehende Mediendateien "
+"angezeigt."
 
 #: ../gramps/gui/glade/dialog.glade:422
 msgid "Cancel the rest of the operations"
@@ -16402,7 +16398,7 @@ msgstr "Privatsphäre"
 #: ../gramps/gui/glade/editplacename.glade:123
 #: ../gramps/plugins/importer/importprogen.glade:486
 msgid "Invoke date editor"
-msgstr "Datums-Editor aufrufen"
+msgstr "Datumseditor aufrufen"
 
 #: ../gramps/gui/glade/editaddress.glade:346
 msgid "Date at which the address is valid."
@@ -16636,7 +16632,7 @@ msgstr "_Ereignisart:"
 
 #: ../gramps/gui/glade/editevent.glade:134
 msgid "Show Date Editor"
-msgstr "Zeige Datums-Editor"
+msgstr "Zeige Datumseditor"
 
 #: ../gramps/gui/glade/editevent.glade:163
 #: ../gramps/gui/glade/editeventref.glade:255
@@ -16945,9 +16941,9 @@ msgid ""
 "of the region, and then releasing the mouse button."
 msgstr ""
 "Referenzierter Bereich des Bildobjekt.\n"
-"Wähle einen Bereich durch Klicken und Halten der Maus in der oberen linken "
-"Ecke des Bereichs, den du wünschst, ziehe die Maus in die untere rechte Ecke "
-"und dann lass die Mausschaltfläche los."
+"Wähle einen Bereich durch Klicken und Halten der Maustaste in der Ecke links "
+"oben des gewünschten Bereichs, ziehe die Maus in die Ecke rechts unten und "
+"dann lass die Maustaste los."
 
 #: ../gramps/gui/glade/editmediaref.glade:208
 msgid "_Corner 1:  X"
@@ -16966,8 +16962,8 @@ msgstr ""
 "beziehen willst.\n"
 "Du kannst die Maus verwenden, um einen Ausschnitt zu wählen oder die "
 "Drehschaltfläche verwenden, um die linke obere und rechte untere Ecke des "
-"gewünschten Bereiches zu setzen.Punkt (0,0) ist die linke obere und "
-"(100,100) die rechte untere Ecke.\n"
+"gewünschten Bereiches zu setzen.Punkt (0,0) ist links oben und (100,100) die "
+"Ecke rechts unten.\n"
 
 #: ../gramps/gui/glade/editmediaref.glade:459
 msgid ""
@@ -18322,7 +18318,7 @@ msgstr "_Beim Starten anzeigen"
 #: ../gramps/plugins/view/sourceview.py:173
 #: ../gramps/plugins/view/sourceview.py:217
 msgid "_Forward"
-msgstr "_Vor"
+msgstr "_Weiter"
 
 #: ../gramps/gui/glade/updateaddons.glade:41
 msgid "Install Selected _Addons"
@@ -18343,13 +18339,14 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Addon Manager."
 msgstr ""
-"Gramps wird mit einem Grundbestand von Zusatzmodulen ausgeliefert. Darüber "
+"Gramps wird mit einem Basissatz von Zusatzmodulen ausgeliefert. Darüber "
 "hinaus kannst du mit zusätzlichen Erweiterungen deren Funktionalität "
-"ergänzen. Die Erweiterungen liefern Berichte, Listen, Ansichten, Gramplets… "
-"Hier kannst du verfügbare Erweiterungen auswählen. Sie werden aus dem "
-"Internet von der Gramps-Webseite geladen und lokal auf deinem Rechner "
-"installiert. Wenn du den Dialog jetzt schließt, kannst du Erweiterungen auch "
-"später über das Menü Bearbeiten -> Erweiterungsverwaltung installieren."
+"ergänzen. Diese Erweiterungen liefern Berichte, Listen, Ansichten, Gramplets "
+"und mehr. Hier kannst du unter den verfügbaren Erweiterungen auswählen. Sie "
+"werden aus dem Internet von der Gramps-Webseite geladen und lokal auf deinem "
+"Rechner installiert. Wenn du diesen Dialog jetzt schließt, kannst du "
+"Erweiterungen später über das Menü Bearbeiten -> Erweiterungsverwaltung "
+"installieren."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18482,7 +18479,7 @@ msgstr "Be_richte"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Toolbar"
-msgstr "_Werkzeugleiste"
+msgstr "Symbolleis_te"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Tools"
@@ -18773,7 +18770,7 @@ msgid ""
 "This is the final step. Use the buttons on this page to start a web browser "
 "and file a bug report on the Gramps bug tracking system."
 msgstr ""
-"Dies ist der letzte Schritt. Benutze die Schaltflächen auf der Seite, um "
+"Dies ist der letzte Schritt. Benutze die Schaltflächen auf dieser Seite, um "
 "einen Browser zu starten und einen Fehlerbericht im Gramps-Bugtracking-"
 "System einzureichen."
 
@@ -19610,9 +19607,9 @@ msgstr ""
 "Format zu konvertieren, das es dir erlaubt, sie in ein anderes Programm zu "
 "transferieren.\n"
 "\n"
-"Falls du während des Vorgangs deine Meinung änderst, kannst du jederzeit "
-"gefahrlos auf die Abbrechen Schaltfläche klicken und deine aktuelle "
-"Datenbank wird weiterhin intakt bleiben."
+"Falls du während des Vorgangs deine Meinung änderst, kannst du jederzeit auf "
+"die Abbrechen-Schaltfläche klicken und deine aktuelle Datenbank bleibt "
+"erhalten."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:629
 msgid "Error exporting your Family Tree"
@@ -21012,8 +21009,8 @@ msgstr ""
 #: ../gramps/gui/widgets/grampletpane.py:837
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
-"Ziehe die Eigenschaftenschaltfläche, um zu verschieben. Zum Einrichten "
-"klicke darauf"
+"Ziehe die Eigenschaften-Schaltfläche, um zu verschieben und klicke zum "
+"Einrichten"
 
 #: ../gramps/gui/widgets/grampletpane.py:1037
 msgid "Right click to add gramplets"
@@ -24967,8 +24964,7 @@ msgid ""
 "in Gramps. The flexibility allows you to choose which fits your work style.\n"
 "\n"
 msgstr ""
-"Du möchtest nun mit der Eingabe deiner ersten Familie beginnen und das "
-"beginnt mit der ersten Person.\n"
+"Die Eingabe deiner ersten Familie beginnt mit der ersten Person.\n"
 "\n"
 "Wechsle zur Ansicht \"Personen\" und klicke im Menü auf \"Hinzufügen\" und "
 "dann auf \"Person\" (oder verwende das [+]-Symbol), um das Fenster zur "
@@ -24980,8 +24976,8 @@ msgstr ""
 "verfügbar. Fahre mit der Maus über die Symbole. Wenn dein Mauszeiger über "
 "ein Symbol fährt, erscheint eine Meldung, die dir die Funktion des Symbols "
 "erklärt. Das Gleiche gilt für alle Bearbeitungsfenster. Wenn du den "
-"Mauszeiger über ein Element bewegst, wird dir gesagt, welche Funktion es "
-"hat.\n"
+"Mauszeiger über ein Element bewegst, wird dir gesagt, welche Funktion es hat."
+"\n"
 "\n"
 "Du kannst nun Familien erstellen, indem du Eltern, einen Ehepartner und "
 "Kinder hinzufügst. Sobald du damit begonnen hast, kannst du Ereignisse zu "
@@ -25025,7 +25021,7 @@ msgstr "Importieren aus einem anderen Ahnenforschungsprogramm"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:226
 msgid "Dashboard View"
-msgstr "Gramplet Werkzeugbank"
+msgstr "Kontrollzentrum-Ansicht"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:229
 msgid ""
@@ -25038,16 +25034,16 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet on this page, "
 "and detach the gramplet to float above Gramps."
 msgstr ""
-"Du liest gerade auf der Ansicht \"Gramplet Werkzeugbank\". Hier kannst du "
-"Gramplets hinzufügen und entfernen – auch eigene Gramplets. Du kannst "
-"Gramplets zu jeder anderen Ansicht als Seiten- Fußleiste hinzufügen. Klicke "
-"dazu auf den kleinen Pfeil am rechten Leistenrand.\n"
+"Du liest gerade in der Ansicht \"Kontrollzentrum\". Hier kannst du deine "
+"eigenen Gramplets hinzufügen kannst. Du kannst Gramplets zu jeder anderen "
+"Ansicht hinzufügen, indem du eine Seiten- oder Fußleiste hinzufügst und mit "
+"der rechten Maustaste auf die Registerkarte klickst.\n"
 "\n"
-"Du kannst auf das Konfigurationssymbol in der Werkzeugleiste klicken, um "
-"weitere Spalten hinzufügen, wobei Rechtsklicken auf den Hintergrund das "
-"Hinzufügen von Gramplets erlaubt. Du kannst auch den Einstellungenknopf "
-"ziehen, um das Gramplet auf der Seite neu zu positionieren. Abgelöste "
-"Gramplets sind 'schwebend' über anderen Ansichten zu sehen."
+"Du kannst auf das Konfigurationssymbol in der Symbolleiste klicken, um "
+"weitere Spalten hinzuzufügen, während du durch einen Rechtsklick auf den "
+"Hintergrund Gramplets hinzufügen kannst. Du kannst auch die Einstellungen-"
+"Schaltfläche ziehen, um das Gramplet auf der Seite neu zu positionieren und "
+"das Gramplet abtrennen, damit es über Gramps schwebt."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:242
 msgid "Gramps View Categories"
@@ -36665,7 +36661,7 @@ msgstr ""
 #: ../gramps/plugins/view/dashboardview.py:86
 #: ../gramps/plugins/view/view.gpr.py:71 ../gramps/plugins/view/view.gpr.py:79
 msgid "Dashboard"
-msgstr "Gramplet Werkzeugbank"
+msgstr "Kontrollzentrum"
 
 #: ../gramps/plugins/view/eventview.py:113
 msgid "Add a new event"
@@ -37760,7 +37756,7 @@ msgstr "Verwende Schattierung"
 
 #: ../gramps/plugins/view/relview.py:1951
 msgid "Display edit buttons"
-msgstr "Bearbeiten Schaltflächen anzeigen"
+msgstr "Bearbeiten-Schaltflächen anzeigen"
 
 #: ../gramps/plugins/view/relview.py:1953
 msgid "View links as website links"
