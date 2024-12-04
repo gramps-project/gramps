@@ -8,7 +8,7 @@
 # Copyright (C) 2011       Matt Keenan (matt.keenan@gmail.com)
 # Copyright (C) 2013-2014  Paul Franklin
 # Copyright (C) 2010,2015  Craig J. Anderson
-# Copyright (C) 2024       Dave Khuon - option to include gender
+# Copyright (C) 2024       Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -293,9 +293,12 @@ class Printinfo:
         return ""
 
     def get_genderSymbol(self, person):
+        """ generate gender symbol to place before the person name"""
         gndr = person.get_gender()
-        if gndr not in _MSYM_GSET: gndr = 2 # = unknown
-        return _MSYM.get_symbol_for_string(gndr)        
+        if gndr is not None and gndr in _MSYM_GSET: 
+            return _MSYM.get_symbol_for_string(gndr) + ' '
+        else:
+            return ''
 
     def dump_string(self, person, family=None):
         """generate a descriptive string for a person"""
@@ -349,7 +352,7 @@ class Printinfo:
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = self._name_display.display(spouse)
             if self.showgender:
-                name = self.get_genderSymbol(spouse) + ' ' + name
+                name = self.get_genderSymbol(spouse) + name
             self.doc.write_text(self._("sp. %(spouse)s") % {"spouse": name}, mark)
             if self.want_ids:
                 self.doc.write_text(" (%s)" % spouse.get_gramps_id())
@@ -371,7 +374,7 @@ class Printinfo:
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = self._name_display.display(person)
             if self.showgender:
-                name = self.get_genderSymbol(person) + ' ' + name
+                name = self.get_genderSymbol(person) + name
             self.doc.write_text(
                 self._("sp. see %(reference)s: %(spouse)s")
                 % {"reference": display_num, "spouse": name},
