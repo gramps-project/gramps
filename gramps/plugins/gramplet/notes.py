@@ -3,6 +3,7 @@
 # Copyright (C) 2011 Nick Hall
 # Copyright (C) 2011 Tim G L Lyons
 # Copyright (C) 2020 Matthias Kemmer
+# Copyright (C) 2024-2025 Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -161,6 +162,10 @@ class PersonNotes(Notes):
 
     def db_changed(self):
         self.connect(self.dbstate.db, "person-update", self.update)
+        # super class will call active_changed when the active Person changes
+        self.connect(self.dbstate.db, "note-add", self.update)
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -194,6 +199,9 @@ class EventNotes(Notes):
     def db_changed(self):
         self.connect(self.dbstate.db, "event-update", self.update)
         self.connect_signal("Event", self.update)
+        self.connect(self.dbstate.db, "note-add", self.update)
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
 
     def update_has_data(self):
         active_handle = self.get_active("Event")
@@ -224,6 +232,9 @@ class FamilyNotes(Notes):
     def db_changed(self):
         self.connect(self.dbstate.db, "family-update", self.update)
         self.connect_signal("Family", self.update)
+        self.connect(self.dbstate.db, "note-add", self.update)
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
 
     def update_has_data(self):
         active_handle = self.get_active("Family")
@@ -254,6 +265,9 @@ class PlaceNotes(Notes):
     def db_changed(self):
         self.connect(self.dbstate.db, "place-update", self.update)
         self.connect_signal("Place", self.update)
+        self.connect(self.dbstate.db, "note-add", self.update)
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
 
     def update_has_data(self):
         active_handle = self.get_active("Place")
@@ -284,6 +298,9 @@ class SourceNotes(Notes):
     def db_changed(self):
         self.connect(self.dbstate.db, "source-update", self.update)
         self.connect_signal("Source", self.update)
+        self.connect(self.dbstate.db, "note-add", self.update)
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
 
     def update_has_data(self):
         active_handle = self.get_active("Source")
@@ -314,6 +331,9 @@ class CitationNotes(Notes):
     def db_changed(self):
         self.connect(self.dbstate.db, "citation-update", self.update)
         self.connect_signal("Citation", self.update)
+        self.connect(self.dbstate.db, "note-add", self.update)
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
 
     def update_has_data(self):
         active_handle = self.get_active("Citation")
@@ -344,6 +364,9 @@ class RepositoryNotes(Notes):
     def db_changed(self):
         self.connect(self.dbstate.db, "repository-update", self.update)
         self.connect_signal("Repository", self.update)
+        self.connect(self.dbstate.db, "note-add", self.update)
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
 
     def update_has_data(self):
         active_handle = self.get_active("Repository")
@@ -374,6 +397,9 @@ class MediaNotes(Notes):
     def db_changed(self):
         self.connect(self.dbstate.db, "media-update", self.update)
         self.connect_signal("Media", self.update)
+        self.connect(self.dbstate.db, "note-add", self.update)
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
 
     def update_has_data(self):
         active_handle = self.get_active("Media")
@@ -403,6 +429,7 @@ class NoteNotes(Notes):
 
     def db_changed(self):
         self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
         self.connect_signal("Note", self.update)
 
     def main(self):
