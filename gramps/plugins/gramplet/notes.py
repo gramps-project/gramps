@@ -33,8 +33,10 @@ from gi.repository import Gtk
 #
 # ------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
+from gramps.gui.editors import EditNote
 from gramps.gui.widgets.styledtexteditor import StyledTextEditor
 from gramps.gui.widgets import SimpleButton
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import StyledText
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -65,6 +67,9 @@ class Notes(Gramplet):
         self.right = SimpleButton("go-next", self.right_clicked)
         self.right.set_sensitive(False)
         hbox.pack_start(self.right, False, False, 0)
+        self.edit = SimpleButton("gtk-edit", self.edit_clicked)
+        self.edit.set_sensitive(False)
+        hbox.pack_start(self.edit, False, False, 0)
         self.page = Gtk.Label()
         self.page.set_halign(Gtk.Align.START)
         hbox.pack_start(self.page, True, True, 10)
@@ -86,6 +91,7 @@ class Notes(Gramplet):
     def clear_text(self):
         self.left.set_sensitive(False)
         self.right.set_sensitive(False)
+        self.edit.set_sensitive(False)
         self.texteditor.set_text(StyledText())
         self.page.set_text("")
         self.current = 0
@@ -124,6 +130,9 @@ class Notes(Gramplet):
             if self.current == len(self.note_list) - 1:
                 self.right.set_sensitive(False)
             self.display_note()
+
+    def edit_clicked(self, button):
+        pass
 
     def get_has_data(self, obj):
         """
@@ -166,9 +175,7 @@ class NotesOf(Notes):
         self.note_list = obj.get_note_list()
         self.page.set_text("")
         self.ntype.set_text("")
-        self.remove.set_sensitive(len(self.note_list) > 0)
         self.edit.set_sensitive(len(self.note_list) > 0)
-        self.add.set_sensitive(True)
         if len(self.note_list) > 0:
             self.set_has_data(True)
             if len(self.note_list) > 1:
@@ -187,6 +194,22 @@ class NotesOf(Notes):
             self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)
+
+    def edit_clicked(self, button):
+        """
+        Get the selected Note instance and call the EditNote editor with the
+        note.
+
+        Called when the Edit button is clicked.
+        If the window already exists (WindowActiveError), we ignore it.
+        This prevents the dialog from coming up twice on the same object.
+        """
+        note_handle = self.note_list[self.current]
+        note = self.dbstate.db.get_note_from_handle(note_handle)
+        try:
+            EditNote(self.gui.dbstate, self.gui.uistate, [], note)
+        except WindowActiveError:
+            pass
 
     def main(self):
         self.clear_text()
@@ -295,10 +318,27 @@ class NoteNotes(Notes):
         self.connect(self.dbstate.db, "note-delete", self.update)
         self.connect_signal("Note", self.update)
 
+    def edit_clicked(self, button):
+        """
+        Get the selected Note instance and call the EditNote editor with the
+        note.
+
+        Called when the Edit button is clicked.
+        If the window already exists (WindowActiveError), we ignore it.
+        This prevents the dialog from coming up twice on the same object.
+        """
+        active_handle = self.get_active("Note")
+        note = self.dbstate.db.get_note_from_handle(active_handle)
+        try:
+            EditNote(self.gui.dbstate, self.gui.uistate, [], note)
+        except WindowActiveError:
+            pass
+
     def main(self):
         self.clear_text()
         active_handle = self.get_active("Note")
         if active_handle:
             active = self.dbstate.db.get_note_from_handle(active_handle)
             if active:
+                self.edit.set_sensitive(True)
                 self.texteditor.set_text(active.get_styledtext())
