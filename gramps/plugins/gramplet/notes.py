@@ -83,25 +83,6 @@ class Notes(Gramplet):
         top.show_all()
         return top
 
-    def get_notes(self, obj):
-        """
-        Get the note list for the current object.
-        """
-        self.left.set_sensitive(False)
-        self.right.set_sensitive(False)
-        self.texteditor.set_text(StyledText())
-        self.note_list = obj.get_note_list()
-        self.page.set_text("")
-        self.ntype.set_text("")
-        if len(self.note_list) > 0:
-            self.set_has_data(True)
-            if len(self.note_list) > 1:
-                self.right.set_sensitive(True)
-            self.current = 0
-            self.display_note()
-        else:
-            self.set_has_data(False)
-
     def clear_text(self):
         self.left.set_sensitive(False)
         self.right.set_sensitive(False)
@@ -155,14 +136,84 @@ class Notes(Gramplet):
         return False
 
 
-class PersonNotes(Notes):
+class NotesOf(Notes):
+    def init(self, object_class):
+        super().init()
+        self.object_class = object_class
+
+    def db_changed(self):
+        self.connect(
+            self.dbstate.db, "%s-update" % self.object_class.lower(), self.update
+        )
+        self.connect(
+            self.dbstate.db, "%s-delete" % self.object_class.lower(), self.update
+        )
+        self.connect(self.dbstate.db, "note-add", self.update)
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
+
+    def active_changed(self, handle):
+        self.update()
+        self.connect_signal(self.object_class, self.update)
+
+    def get_notes(self, obj):
+        """
+        Get the note list for the current object.
+        """
+        self.left.set_sensitive(False)
+        self.right.set_sensitive(False)
+        self.texteditor.set_text(StyledText())
+        self.note_list = obj.get_note_list()
+        self.page.set_text("")
+        self.ntype.set_text("")
+        self.remove.set_sensitive(len(self.note_list) > 0)
+        self.edit.set_sensitive(len(self.note_list) > 0)
+        self.add.set_sensitive(True)
+        if len(self.note_list) > 0:
+            self.set_has_data(True)
+            if len(self.note_list) > 1:
+                self.right.set_sensitive(True)
+            self.current = 0
+            self.display_note()
+        else:
+            self.set_has_data(False)
+
+    def update_has_data(self):
+        active_handle = self.get_active(self.object_class)
+        if active_handle:
+            active = self.dbstate.db.method("get_%s_from_handle", self.object_class)(
+                active_handle
+            )
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active(self.object_class)
+        if active_handle:
+            active = self.dbstate.db.method("get_%s_from_handle", self.object_class)(
+                active_handle
+            )
+            if active:
+                self.get_notes(active)
+            else:
+                self.set_has_data(False)
+        else:
+            self.set_has_data(False)
+
+
+class PersonNotes(NotesOf):
     """
     Displays the notes for a person.
     """
 
+    def init(self):
+        super().init("Person")
+
     def db_changed(self):
         self.connect(self.dbstate.db, "person-update", self.update)
-        # super class will call active_changed when the active Person changes
+        # superclass will call active_changed if the active Person changes
         self.connect(self.dbstate.db, "note-add", self.update)
         self.connect(self.dbstate.db, "note-update", self.update)
         self.connect(self.dbstate.db, "note-delete", self.update)
@@ -170,256 +221,68 @@ class PersonNotes(Notes):
     def active_changed(self, handle):
         self.update()
 
-    def update_has_data(self):
-        active_handle = self.get_active("Person")
-        if active_handle:
-            active = self.dbstate.db.get_person_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
 
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active("Person")
-        if active_handle:
-            active = self.dbstate.db.get_person_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
-
-
-class EventNotes(Notes):
+class EventNotes(NotesOf):
     """
     Displays the notes for an event.
     """
 
-    def db_changed(self):
-        self.connect(self.dbstate.db, "event-update", self.update)
-        self.connect_signal("Event", self.update)
-        self.connect(self.dbstate.db, "note-add", self.update)
-        self.connect(self.dbstate.db, "note-update", self.update)
-        self.connect(self.dbstate.db, "note-delete", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Event")
-        if active_handle:
-            active = self.dbstate.db.get_event_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
-
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active("Event")
-        if active_handle:
-            active = self.dbstate.db.get_event_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Event")
 
 
-class FamilyNotes(Notes):
+class FamilyNotes(NotesOf):
     """
     Displays the notes for a family.
     """
 
-    def db_changed(self):
-        self.connect(self.dbstate.db, "family-update", self.update)
-        self.connect_signal("Family", self.update)
-        self.connect(self.dbstate.db, "note-add", self.update)
-        self.connect(self.dbstate.db, "note-update", self.update)
-        self.connect(self.dbstate.db, "note-delete", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Family")
-        if active_handle:
-            active = self.dbstate.db.get_family_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
-
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active("Family")
-        if active_handle:
-            active = self.dbstate.db.get_family_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Family")
 
 
-class PlaceNotes(Notes):
+class PlaceNotes(NotesOf):
     """
     Displays the notes for a place.
     """
 
-    def db_changed(self):
-        self.connect(self.dbstate.db, "place-update", self.update)
-        self.connect_signal("Place", self.update)
-        self.connect(self.dbstate.db, "note-add", self.update)
-        self.connect(self.dbstate.db, "note-update", self.update)
-        self.connect(self.dbstate.db, "note-delete", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Place")
-        if active_handle:
-            active = self.dbstate.db.get_place_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
-
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active("Place")
-        if active_handle:
-            active = self.dbstate.db.get_place_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Place")
 
 
-class SourceNotes(Notes):
+class SourceNotes(NotesOf):
     """
     Displays the notes for a source.
     """
 
-    def db_changed(self):
-        self.connect(self.dbstate.db, "source-update", self.update)
-        self.connect_signal("Source", self.update)
-        self.connect(self.dbstate.db, "note-add", self.update)
-        self.connect(self.dbstate.db, "note-update", self.update)
-        self.connect(self.dbstate.db, "note-delete", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Source")
-        if active_handle:
-            active = self.dbstate.db.get_source_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
-
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active("Source")
-        if active_handle:
-            active = self.dbstate.db.get_source_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Source")
 
 
-class CitationNotes(Notes):
+class CitationNotes(NotesOf):
     """
     Displays the notes for a Citation.
     """
 
-    def db_changed(self):
-        self.connect(self.dbstate.db, "citation-update", self.update)
-        self.connect_signal("Citation", self.update)
-        self.connect(self.dbstate.db, "note-add", self.update)
-        self.connect(self.dbstate.db, "note-update", self.update)
-        self.connect(self.dbstate.db, "note-delete", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Citation")
-        if active_handle:
-            active = self.dbstate.db.get_citation_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
-
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active("Citation")
-        if active_handle:
-            active = self.dbstate.db.get_citation_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Citation")
 
 
-class RepositoryNotes(Notes):
+class RepositoryNotes(NotesOf):
     """
     Displays the notes for a repository.
     """
 
-    def db_changed(self):
-        self.connect(self.dbstate.db, "repository-update", self.update)
-        self.connect_signal("Repository", self.update)
-        self.connect(self.dbstate.db, "note-add", self.update)
-        self.connect(self.dbstate.db, "note-update", self.update)
-        self.connect(self.dbstate.db, "note-delete", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Repository")
-        if active_handle:
-            active = self.dbstate.db.get_repository_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
-
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active("Repository")
-        if active_handle:
-            active = self.dbstate.db.get_repository_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Repository")
 
 
-class MediaNotes(Notes):
+class MediaNotes(NotesOf):
     """
     Displays the notes for a media object.
     """
 
-    def db_changed(self):
-        self.connect(self.dbstate.db, "media-update", self.update)
-        self.connect_signal("Media", self.update)
-        self.connect(self.dbstate.db, "note-add", self.update)
-        self.connect(self.dbstate.db, "note-update", self.update)
-        self.connect(self.dbstate.db, "note-delete", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Media")
-        if active_handle:
-            active = self.dbstate.db.get_media_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
-
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active("Media")
-        if active_handle:
-            active = self.dbstate.db.get_media_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Media")
 
 
 class NoteNotes(Notes):
