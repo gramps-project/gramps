@@ -6,6 +6,7 @@
 # Copyright (C) 2008       James Friedmann <jfriedmannj@gmail.com>
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2015-2016  Paul Franklin
+# Copyright (C) 2025       Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,12 +45,16 @@ _ = glocale.translation.gettext
 from ...datehandler import get_date
 from ...display.place import displayer as _pd
 from ...utils.file import media_path_full
+from ...utils.symbols import Symbols
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value, context=""):  # enable deferred translations
     return "%s\x04%s" % (context, value) if context else value
+
+
+SYMBOLS = Symbols()
 
 
 # -------------------------------------------------------------------------
@@ -423,3 +428,13 @@ def get_family_filters(database, family, include_single=True, name_format=None):
         the_filters = [all_families, d_fams, ans]
     the_filters.extend(CustomFilters.get_filters("Family"))
     return the_filters
+
+
+# -------------------------------------------------------------------------
+#
+# Get Gender Symbol of the person
+#
+# -------------------------------------------------------------------------
+def get_gender_symbol(person):
+    """generate gender symbol"""
+    return SYMBOLS.get_symbol_for_string(person.gender)
