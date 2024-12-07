@@ -97,7 +97,6 @@ EXCLUDES = [
     "PyQt5.QtGui",
     "pyside" "PyQt5.QtWidgets",
     "sip",
-    "lib2to3",
     "PIL.ImageQt",
     "pip",
     "distlib",
@@ -108,7 +107,7 @@ REPLACE_PATHS = [
 ]
 MISSING_DLL = [
     "libgtk-3-0.dll",
-    "libgspell-1-2.dll",
+    "libgspell-1-3.dll",
     "libgexiv2-2.dll",
     "libgoocanvas-3.0-9.dll",
     "libosmgpsmap-1.0-1.dll",
@@ -132,10 +131,6 @@ MISSING_DLL = [
 BIN_EXCLUDES = ["Qt5Core.dll", "gdiplus.dll", "gdiplus"]
 
 from os.path import dirname, basename
-import lib2to3
-
-lib23_path = dirname(lib2to3.__file__)
-INCLUDE_FILES.append((lib23_path, "lib/lib2to3"))
 import pip
 
 libpip_path = dirname(pip.__file__)

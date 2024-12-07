@@ -5,10 +5,12 @@
 # install prerequisites
 ## prerequisites in msys packages
 pacman -S --needed --noconfirm mingw-w64-x86_64-python mingw-w64-x86_64-python-pip mingw-w64-x86_64-gexiv2 mingw-w64-x86_64-ghostscript mingw-w64-x86_64-python-cairo mingw-w64-x86_64-python-gobject mingw-w64-x86_64-python-icu mingw-w64-x86_64-iso-codes mingw-w64-x86_64-hunspell mingw-w64-x86_64-enchant perl-XML-Parser intltool mingw-w64-x86_64-python-lxml mingw-w64-x86_64-python-jsonschema mingw-w64-x86_64-gspell mingw-w64-x86_64-geocode-glib mingw-w64-x86_64-python-pillow git mingw-w64-x86_64-graphviz mingw-w64-x86_64-goocanvas mingw-w64-x86_64-osm-gps-map base-devel subversion mingw-w64-x86_64-python-graphviz mingw-w64-x86_64-osm-gps-map mingw-w64-x86_64-nsis mingw-w64-x86_64-python-requests mingw-w64-x86_64-adwaita-icon-theme mingw-w64-x86_64-python-networkx mingw-w64-x86_64-python-psycopg2 upx mingw-w64-x86_64-python-packaging unzip mingw-w64-x86_64-python-nose mingw-w64-x86_64-python-wheel
+pacman -S --needed --noconfirm mingw-w64-x86_64-python-build
+pacman -S --needed --noconfirm mingw-w64-x86_64-python-cx-freeze
+pacman -S --needed --noconfirm mingw-w64-x86_64-python-distlib
+pacman -S --needed --noconfirm mingw-w64-x86_64-python-lief
+pacman -S --needed --noconfirm mingw-w64-x86_64-python-setuptools
 pacman -S --needed --noconfirm mingw-w64-x86_64-toolchain
-
-wget --no-verbose -N https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-python-cx-freeze-6.15.9-1-any.pkg.tar.zst
-pacman -U --needed --noconfirm mingw-w64-x86_64-python-cx-freeze-6.15.9-1-any.pkg.tar.zst
 
 wget --no-verbose -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 pacman -U --needed --noconfirm mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
@@ -71,7 +73,7 @@ popd
 mkdir -p /mingw64/share/enchant/voikko
 pushd /mingw64/share/enchant/voikko
 wget --no-verbose -N https://www.puimula.org/htp/testing/voikko-snapshot-v5/dict.zip
-unzip -o dict.zip
+unzip -q -o dict.zip
 rm dict.zip
 popd
 
@@ -79,12 +81,12 @@ popd
 #cd D:/a/gramps/gramps/aio
 
 ## create a directory structure for icons
-mkdir /mingw64/share/icons/gnome
-mkdir /mingw64/share/icons/gnome/48x48
-mkdir /mingw64/share/icons/gnome/48x48/mimetypes
-mkdir /mingw64/share/icons/gnome/scalable
-mkdir /mingw64/share/icons/gnome/scalable/mimetypes
-mkdir /mingw64/share/icons/gnome/scalable/places
+mkdir -p /mingw64/share/icons/gnome
+mkdir -p /mingw64/share/icons/gnome/48x48
+mkdir -p /mingw64/share/icons/gnome/48x48/mimetypes
+mkdir -p /mingw64/share/icons/gnome/scalable
+mkdir -p /mingw64/share/icons/gnome/scalable/mimetypes
+mkdir -p /mingw64/share/icons/gnome/scalable/places
 
 # Change to the gramps root directory
 cd ..
@@ -107,7 +109,7 @@ rm -rf dist aio/dist
 python setup.py bdist_wheel
 appbuild="r$(git rev-list --count HEAD)-$(git rev-parse --short HEAD)"
 appversion=$(grep "^VERSION_TUPLE" gramps/version.py|sed 's/.*(//;s/, */\./g;s/).*//')
-unzip -d aio/dist dist/*.whl
+unzip -q -d aio/dist dist/*.whl
 cd aio
 
 # create nsis script
