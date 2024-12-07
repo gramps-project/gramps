@@ -13,6 +13,7 @@
 # Copyright (C) 2013-2014 Paul Franklin
 # Copyright (C) 2014      Gerald Kunzmann <g.kunzmann@arcor.de>
 # Copyright (C) 2017      Robert Carnell <bertcarnell_at_gmail.com>
+# Copyright (C) 2024      Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,6 +45,7 @@ import math
 #
 # ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.utils.symbols import Symbols
 
 _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
@@ -69,6 +71,9 @@ from gramps.plugins.lib.libnarrate import Narrator
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.display.name import displayer as _nd
+
+_MSYM = Symbols()
+_MSYM_GSET = (0, 1, 2, 3, 7, 8)
 
 # ------------------------------------------------------------------------
 #
@@ -105,6 +110,7 @@ class DetAncestorReport(Report):
         pageben       - Whether to include page break before End Notes.
         firstName     - Whether to use first names instead of pronouns.
         fulldate      - Whether to use full dates instead of just year.
+        showgender    - Whether to include prepend person name with gender.
         listchildren  - Whether to list children.
         list_children_spouses - Whether to list the spouses of the children
         includenotes  - Whether to include notes.
@@ -147,6 +153,7 @@ class DetAncestorReport(Report):
         self.pgbrkenotes = get_value("pageben")
         self.fulldate = get_value("fulldates")
         use_fulldate = self.fulldate
+        self.showgender = get_value("showgender")
         self.listchildren = get_value("listc")
         self.list_children_spouses = get_value("listc_spouses")
         self.includenotes = get_value("incnotes")
@@ -288,6 +295,14 @@ class DetAncestorReport(Report):
         new_gen_start = self.initial_sosa * gen_start  # 3
         return new_gen_start + (key - gen_start)  # 3+0
 
+    def get_genderSymbol(self, person):
+        """generate gender symbol to place before the person name"""
+        gndr = person.get_gender()
+        if gndr is not None and gndr in _MSYM_GSET:
+            return _MSYM.get_symbol_for_string(gndr) + " "
+        else:
+            return ""
+
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information"""
 
@@ -318,6 +333,8 @@ class DetAncestorReport(Report):
         mark = utils.get_person_mark(self._db, person)
 
         self.doc.start_bold()
+        if self.showgender:
+            self.doc.write_text(self.get_genderSymbol(person))
         self.doc.write_text(name, mark)
         if name[-1:] == ".":
             self.doc.write_text_citation("%s " % self.endnotes(person))
@@ -642,6 +659,8 @@ class DetAncestorReport(Report):
             child_name = self._nd.display(child)
             if not child_name:
                 child_name = self._("Unknown")
+            if self.showgender:
+                child_name = self.get_genderSymbol(child) + child_name
             child_mark = utils.get_person_mark(self._db, child)
 
             if self.childref and self.prev_gen_handles.get(child_handle):
@@ -770,6 +789,8 @@ class DetAncestorReport(Report):
                     name = self._("Unknown")
                 mark = utils.get_person_mark(self._db, ind)
 
+                if self.showgender:
+                    name = self.get_genderSymbol(ind) + name
                 if family.get_relationship() == FamilyRelType.MARRIED:
                     self.doc.write_text(self._("Spouse: %s") % name, mark)
                 else:
@@ -917,6 +938,10 @@ class DetAncestorOptions(MenuReportOptions):
         # What to include
 
         addopt = partial(menu.add_option, _("Include"))
+
+        showgender = BooleanOption(_("Include gender symbol"), True)
+        showgender.set_help(_("Whether to include gender symbol in front of name."))
+        addopt("showgender", showgender)
 
         listc = BooleanOption(_("Include children"), True)
         listc.set_help(_("Whether to list children."))
