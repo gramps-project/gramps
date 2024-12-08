@@ -262,6 +262,7 @@ package_core = [
     "gramps.gen",
     "gramps.gen.datehandler",
     "gramps.gen.db",
+    "gramps.gen.db.conversion_tools",
     "gramps.gen.display",
     "gramps.gen.filters",
     "gramps.gen.filters.rules",
