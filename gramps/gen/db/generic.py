@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2015-2016 Gramps Development Team
 # Copyright (C) 2016      Nick Hall
+# Copyright (C) 2024      Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -57,6 +58,7 @@ from ..lib import (
     Source,
     Tag,
 )
+from ..lib.serialize import from_dict, BlobSerializer, JSONSerializer
 from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher
 from ..updatecallback import UpdateCallback
@@ -228,7 +230,7 @@ class DbGenericUndo(DbUndo):
         try:
             self.db._txn_begin()
             for record_id in subitems:
-                (key, trans_type, handle, old_data, _) = pickle.loads(
+                (key, trans_type, handle, old_data, x) = pickle.loads(
                     self.undodb[record_id]
                 )
 
@@ -389,7 +391,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     __callback_map = {}
 
-    VERSION = (20, 0, 0)
+    VERSION = (21, 0, 0)
 
     def __init__(self, directory=None):
         DbReadBase.__init__(self)
@@ -621,6 +623,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         raise NotImplementedError
 
+    def upgrade_table_for_json_data(self, table_name):
+        """
+        Overload this method to upgrade the table to store data in JSON format
+        """
+        raise NotImplementedError
+
+    def use_json_data(self):
+        """
+        Overload this method to check if the database stores objects in JSON format
+        """
+        raise NotImplementedError
+
     def __check_readonly(self, name):
         """
         Return True if we don't have read/write access to the database,
@@ -669,8 +683,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # run backend-specific code:
         self._initialize(directory, username, password)
 
+        need_to_set_version = False
         if not self._schema_exists():
             self._create_schema()
+            need_to_set_version = True
+
+        if self.use_json_data():
+            self.set_serializer("json")
+        else:
+            self.set_serializer("blob")
+
+        if need_to_set_version:
             self._set_metadata("version", str(self.VERSION[0]))
 
         # Load metadata
@@ -900,6 +923,13 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.transaction = transaction
         return transaction
 
+    def _get_metadata_keys(self):
+        """
+        Get all of the metadata setting names from the
+        database.
+        """
+        raise NotImplementedError
+
     def _get_metadata(self, key, default=[]):
         """
         Get an item from the database.
@@ -912,10 +942,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         raise NotImplementedError
 
-    def _set_metadata(self, key, value):
+    def _set_metadata(self, key, value, use_txn=True):
         """
         key: string
         value: item, will be serialized here
+
+        Note: if use_txn, then begin/commit txn
         """
         raise NotImplementedError
 
@@ -1355,7 +1387,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError("Handle is empty")
         data = self._get_raw_data(obj_key, handle)
         if data:
-            return obj_class.create(data)
+            return self.serializer.data_to_object(obj_class, data)
+
         raise HandleError(f"Handle {handle} not found")
 
     def get_event_from_handle(self, handle):
@@ -1396,39 +1429,39 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_person_from_gramps_id(self, gramps_id):
         data = self._get_raw_person_from_id_data(gramps_id)
-        return Person.create(data)
+        return self.serializer.data_to_object(Person, data)
 
     def get_family_from_gramps_id(self, gramps_id):
         data = self._get_raw_family_from_id_data(gramps_id)
-        return Family.create(data)
+        return self.serializer.data_to_object(Family, data)
 
     def get_citation_from_gramps_id(self, gramps_id):
         data = self._get_raw_citation_from_id_data(gramps_id)
-        return Citation.create(data)
+        return self.serializer.data_to_object(Citation, data)
 
     def get_source_from_gramps_id(self, gramps_id):
         data = self._get_raw_source_from_id_data(gramps_id)
-        return Source.create(data)
+        return self.serializer.data_to_object(Source, data)
 
     def get_event_from_gramps_id(self, gramps_id):
         data = self._get_raw_event_from_id_data(gramps_id)
-        return Event.create(data)
+        return self.serializer.data_to_object(Event, data)
 
     def get_media_from_gramps_id(self, gramps_id):
         data = self._get_raw_media_from_id_data(gramps_id)
-        return Media.create(data)
+        return self.serializer.data_to_object(Media, data)
 
     def get_place_from_gramps_id(self, gramps_id):
         data = self._get_raw_place_from_id_data(gramps_id)
-        return Place.create(data)
+        return self.serializer.data_to_object(Place, data)
 
     def get_repository_from_gramps_id(self, gramps_id):
         data = self._get_raw_repository_from_id_data(gramps_id)
-        return Repository.create(data)
+        return self.serializer.data_to_object(Repository, data)
 
     def get_note_from_gramps_id(self, gramps_id):
         data = self._get_raw_note_from_id_data(gramps_id)
-        return Note.create(data)
+        return self.serializer.data_to_object(Note, data)
 
     ################################################################
     #
@@ -1629,7 +1662,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         cursor = self._get_table_func(class_.__name__, "cursor_func")
         for data in cursor():
-            yield class_.create(data[1])
+            yield self.serializer.data_to_object(class_, data[1])
 
     def iter_people(self):
         return self._iter_objects(Person)
@@ -1744,7 +1777,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def _get_raw_data(self, obj_key, handle):
         """
-        Return raw (serialized and pickled) object from handle.
+        Return raw (serialized) object from handle.
         """
         raise NotImplementedError
 
@@ -1935,7 +1968,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         old_data = self._commit_base(person, PERSON_KEY, transaction, change_time)
 
         if old_data:
-            old_person = Person(old_data)
+            old_person = from_dict(old_data)
             # Update gender statistics if necessary
             if old_person.gender != person.gender or (
                 old_person.primary_name.first_name != person.primary_name.first_name
@@ -2663,6 +2696,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_18,
             gramps_upgrade_19,
             gramps_upgrade_20,
+            gramps_upgrade_21,
         )
 
         if version < 14:
@@ -2679,6 +2713,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_19(self)
         if version < 20:
             gramps_upgrade_20(self)
+        if version < 21:
+            gramps_upgrade_21(self)
 
         self.rebuild_secondary(callback)
         self.reindex_reference_map(callback)
@@ -2694,3 +2730,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def set_schema_version(self, value):
         """set the current schema version"""
         self._set_metadata("version", str(value))
+
+    def set_serializer(self, serializer_name):
+        """
+        Set the serializer to 'blob' or 'json'
+        """
+        if serializer_name == "blob":
+            self.serializer = BlobSerializer
+        elif serializer_name == "json":
+            self.serializer = JSONSerializer

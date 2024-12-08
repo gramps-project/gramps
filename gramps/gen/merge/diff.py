@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2012,2024  Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,17 +25,10 @@ This package implements an object difference engine.
 import json
 
 from ..db.utils import import_as_dict
-from ..lib.serialize import to_json
+from ..lib.serialize import to_dict, from_dict
 from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
-
-
-def to_struct(obj):
-    """
-    Convert an object into a struct.
-    """
-    return json.loads(to_json(obj))
 
 
 def diff_dates(json1, json2):
@@ -136,7 +129,7 @@ def diff_dbs(db1, db2, user):
                 if handles1[p1] == handles2[p2]:  # in both
                     item1 = handle_func1(handles1[p1])
                     item2 = handle_func2(handles2[p2])
-                    diff = diff_items(item, to_struct(item1), to_struct(item2))
+                    diff = diff_items(item, to_dict(item1), to_dict(item2))
                     if diff:
                         diffs += [(item, item1, item2)]
                     # else same!

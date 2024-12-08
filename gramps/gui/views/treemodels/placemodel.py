@@ -5,6 +5,7 @@
 # Copyright (C) 2009-2010  Nick Hall
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2010       Gary Burton
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,6 +47,7 @@ from gi.repository import Gtk
 #
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Place, PlaceType
+from gramps.gen.lib.serialize import from_dict
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.display.place import displayer as place_displayer
@@ -115,86 +117,95 @@ class PlaceBaseModel:
         """
         Return the color column.
         """
+        # This is a model.get_value() arg
         return 10
 
     def on_get_n_columns(self):
         return len(self.fmap) + 1
 
     def column_title(self, data):
-        handle = data[0]
+        handle = data["handle"]
         cached, value = self.get_cached_value(handle, "PLACE")
         if not cached:
-            place = Place()
-            place.unserialize(data)
+            place = from_dict(data)
             value = place_displayer.display(self.db, place)
             self.set_cached_value(handle, "PLACE", value)
         return value
 
     def column_name(self, data):
         """Return the primary name"""
-        return data[6][0]
+        return data["name"]["value"]
 
     def search_name(self, data):
         """The search name includes all alt names to enable finding by alt name"""
-        return ",".join([data[6][0]] + [name[0] for name in data[7]])
+        return ",".join(
+            [data["name"]["value"]] + [name["value"] for name in data["alt_name"]]
+        )
 
     def column_longitude(self, data):
-        if not data[3]:
+        if not data["long"]:
             return ""
         value = conv_lat_lon(
-            "0", data[3], format=coord_formats[config.get("preferences.coord-format")]
+            "0",
+            data["long"],
+            format=coord_formats[config.get("preferences.coord-format")],
         )[1]
         if not value:
             return _("Error in format")
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def column_latitude(self, data):
-        if not data[4]:
+        if not data["lat"]:
             return ""
         value = conv_lat_lon(
-            data[4], "0", format=coord_formats[config.get("preferences.coord-format")]
+            data["lat"],
+            "0",
+            format=coord_formats[config.get("preferences.coord-format")],
         )[0]
         if not value:
             return _("Error in format")
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def sort_longitude(self, data):
-        if not data[3]:
+        if not data["long"]:
             return ""
-        value = conv_lat_lon("0", data[3], format="ISO-DMS") if data[3] else ""
+        value = (
+            conv_lat_lon("0", data["long"], format="ISO-DMS") if data["long"] else ""
+        )
         if not value:
             return _("Error in format")
         return value
 
     def sort_latitude(self, data):
-        if not data[4]:
+        if not data["lat"]:
             return ""
-        value = conv_lat_lon(data[4], "0", format="ISO-DMS") if data[4] else ""
+        value = conv_lat_lon(data["lat"], "0", format="ISO-DMS") if data["lat"] else ""
         if not value:
             return _("Error in format")
         return value
 
     def column_id(self, data):
-        return data[1]
+        return data["gramps_id"]
 
     def column_type(self, data):
-        return str(PlaceType(data[8]))
+        pt = from_dict(data["place_type"])
+        return str(pt)
 
     def column_code(self, data):
-        return data[9]
+        return data["code"]
 
     def column_private(self, data):
-        if data[17]:
+        if data["private"]:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
             return ""
 
     def sort_change(self, data):
-        return "%012x" % data[15]
+        return "%012x" % data["change"]
 
     def column_change(self, data):
-        return format_time(data[15])
+        return format_time(data["change"])
 
     def get_tag_name(self, tag_handle):
         """
@@ -210,12 +221,12 @@ class PlaceBaseModel:
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data["handle"]
         cached, value = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[16]:
+            for handle in data["tag_list"]:
                 tag = self.db.get_tag_from_handle(handle)
                 if tag:
                     this_priority = tag.get_priority()
@@ -230,7 +241,7 @@ class PlaceBaseModel:
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[16]))
+        tag_list = list(map(self.get_tag_name, data["tag_list"]))
         # TODO for Arabic, should the next line's comma be translated?
         return ", ".join(sorted(tag_list, key=glocale.sort_key))
 
@@ -351,8 +362,8 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         data        The object data.
         """
         sort_key = self.sort_func(data)
-        if len(data[5]) > 0:
-            parent = data[5][0][0]
+        if len(data["placeref_list"]) > 0:
+            parent = data["placeref_list"][0]["ref"]
         else:
             parent = None
 

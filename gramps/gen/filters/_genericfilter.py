@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
-# Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2012,2024  Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@ from ..lib.repo import Repository
 from ..lib.media import Media
 from ..lib.note import Note
 from ..lib.tag import Tag
+from ..lib.serialize import from_dict
 from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -145,8 +146,7 @@ class GenericFilter:
         if id_list is None:
             with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
                 for handle, data in cursor:
-                    person = self.make_obj()
-                    person.unserialize(data)
+                    person = from_dict(data)
                     if user:
                         user.step_progress()
                     if task(db, person) != self.invert:
@@ -174,8 +174,7 @@ class GenericFilter:
         if id_list is None:
             with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
                 for handle, data in cursor:
-                    person = self.make_obj()
-                    person.unserialize(data)
+                    person = from_dict(data)
                     if user:
                         user.step_progress()
                     val = all(rule.apply(db, person) for rule in flist)

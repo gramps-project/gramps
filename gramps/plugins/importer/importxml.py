@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 200?-2013  Benny Malengier
-# Copyright (C) 2009       Douglas S. Blank
+# Copyright (C) 2009,2024  Douglas S. Blank
 # Copyright (C) 2010-2011  Nick Hall
 # Copyright (C) 2011       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
@@ -91,6 +91,7 @@ from gramps.gen.lib import (
     Tag,
     Url,
 )
+from gramps.gen.lib.serialize import from_dict
 from gramps.gen.db import DbTxn
 
 # from gramps.gen.db.write import CLASS_TO_KEY_MAP
@@ -839,7 +840,8 @@ class GrampsParser(UpdateCallback):
                     "tag": self.db.get_raw_tag_data,
                 }[target]
                 raw = get_raw_obj_data(handle)
-                prim_obj.unserialize(raw)
+                temp_obj = from_dict(raw)
+                prim_obj.set_object_state(temp_obj.get_object_state())
                 self.import_handles[orig_handle][target][INSTANTIATED] = True
             return handle
         elif handle in self.import_handles:
@@ -1000,7 +1002,8 @@ class GrampsParser(UpdateCallback):
         handle = id2handle_map.get(gramps_id)
         if handle:
             raw = get_raw_obj_data(handle)
-            prim_obj.unserialize(raw)
+            temp_obj = from_dict(raw)
+            prim_obj.set_object_state(temp_obj.get_object_state())
         else:
             handle = create_id()
             while has_handle_func(handle):

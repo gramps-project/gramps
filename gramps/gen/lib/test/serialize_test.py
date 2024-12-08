@@ -129,7 +129,7 @@ def generate_case(obj):
     setattr(DatabaseCheck, name, test)
     ####
     # def test2(self):
-    #    self.assertEqual(obj.serialize(), from_struct(struct).serialize())
+    #    self.assertEqual(obj.serialize(), from_dict(struct).serialize())
     # name = "test_create_%s_%s" % (obj.__class__.__name__, obj.handle)
     # setattr(DatabaseCheck, name, test2)
 

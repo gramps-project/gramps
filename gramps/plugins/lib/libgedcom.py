@@ -6,6 +6,7 @@
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2016       Paul R. Culley
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -157,6 +158,7 @@ from gramps.gen.lib import (
     PlaceRef,
     PlaceName,
 )
+from gramps.gen.lib.serialize import from_dict, to_dict
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path
@@ -2163,7 +2165,7 @@ class GedcomParser(UpdateCallback):
     __TRUNC_MSG = _(
         "Your GEDCOM file is corrupted. " "It appears to have been truncated."
     )
-    _EMPTY_LOC = Location().serialize()
+    _EMPTY_LOC = to_dict(Location())
 
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
@@ -3185,11 +3187,11 @@ class GedcomParser(UpdateCallback):
         already used (is in the db), we return the item in the db. Otherwise,
         we create a new person, assign the handle and Gramps ID.
         """
-        person = Person()
         intid = self.gid2id.get(gramps_id)
         if self.dbase.has_person_handle(intid):
-            person.unserialize(self.dbase.get_raw_person_data(intid))
+            person = from_dict(self.dbase.get_raw_person_data(intid))
         else:
+            person = Person()
             intid = self.__find_from_handle(gramps_id, self.gid2id)
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
@@ -3201,16 +3203,16 @@ class GedcomParser(UpdateCallback):
         already used (is in the db), we return the item in the db. Otherwise,
         we create a new family, assign the handle and Gramps ID.
         """
-        family = Family()
-        # Add a counter for reordering the children later:
-        family.child_ref_count = 0
         intid = self.fid2id.get(gramps_id)
         if self.dbase.has_family_handle(intid):
-            family.unserialize(self.dbase.get_raw_family_data(intid))
+            family = from_dict(self.dbase.get_raw_family_data(intid))
         else:
+            family = Family()
             intid = self.__find_from_handle(gramps_id, self.fid2id)
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
+        # Add a counter for reordering the children later:
+        family._child_ref_count = 0
         return family
 
     def __find_or_create_media(self, gramps_id):
@@ -3219,11 +3221,11 @@ class GedcomParser(UpdateCallback):
         already used (is in the db), we return the item in the db. Otherwise,
         we create a new media object, assign the handle and Gramps ID.
         """
-        obj = Media()
         intid = self.oid2id.get(gramps_id)
         if self.dbase.has_media_handle(intid):
-            obj.unserialize(self.dbase.get_raw_media_data(intid))
+            obj = from_dict(self.dbase.get_raw_media_data(intid))
         else:
+            obj = Media()
             intid = self.__find_from_handle(gramps_id, self.oid2id)
             obj.set_handle(intid)
             obj.set_gramps_id(gramps_id)
@@ -3237,11 +3239,11 @@ class GedcomParser(UpdateCallback):
         db. Otherwise, we create a new source, assign the handle and Gramps ID.
 
         """
-        obj = Source()
         intid = self.sid2id.get(gramps_id)
         if self.dbase.has_source_handle(intid):
-            obj.unserialize(self.dbase.get_raw_source_data(intid))
+            obj = from_dict(self.dbase.get_raw_source_data(intid))
         else:
+            obj = Source()
             intid = self.__find_from_handle(gramps_id, self.sid2id)
             obj.set_handle(intid)
             obj.set_gramps_id(gramps_id)
@@ -3256,11 +3258,11 @@ class GedcomParser(UpdateCallback):
         Some GEDCOM "flavors" destroy the specification, and declare the
         repository inline instead of in a object.
         """
-        repository = Repository()
         intid = self.rid2id.get(gramps_id)
         if self.dbase.has_repository_handle(intid):
-            repository.unserialize(self.dbase.get_raw_repository_data(intid))
+            repository = from_dict(self.dbase.get_raw_repository_data(intid))
         else:
+            repository = Repository()
             intid = self.__find_from_handle(gramps_id, self.rid2id)
             repository.set_handle(intid)
             repository.set_gramps_id(gramps_id)
@@ -3274,7 +3276,6 @@ class GedcomParser(UpdateCallback):
         If no Gramps ID is passed in, we not only make a Note with GID, we
         commit it.
         """
-        note = Note()
         if not gramps_id:
             need_commit = True
             gramps_id = self.dbase.find_next_note_gramps_id()
@@ -3283,8 +3284,9 @@ class GedcomParser(UpdateCallback):
 
         intid = self.nid2id.get(gramps_id)
         if self.dbase.has_note_handle(intid):
-            note.unserialize(self.dbase.get_raw_note_data(intid))
+            note = from_dict(self.dbase.get_raw_note_data(intid))
         else:
+            note = Note()
             intid = self.__find_from_handle(gramps_id, self.nid2id)
             note.set_handle(intid)
             note.set_gramps_id(gramps_id)
@@ -3302,7 +3304,7 @@ class GedcomParser(UpdateCallback):
         """
         if location is None:
             return True
-        elif location.serialize() == self._EMPTY_LOC:
+        elif to_dict(location) == self._EMPTY_LOC:
             return True
         elif location.is_empty():
             return True
@@ -5646,8 +5648,8 @@ class GedcomParser(UpdateCallback):
         order given in the FAM section.
         """
         family.child_ref_list.remove(child_ref)
-        family.child_ref_list.insert(family.child_ref_count, child_ref)
-        family.child_ref_count += 1
+        family.child_ref_list.insert(family._child_ref_count, child_ref)
+        family._child_ref_count += 1
 
     def __family_slgs(self, line, state):
         """

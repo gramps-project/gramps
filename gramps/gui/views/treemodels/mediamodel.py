@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,6 +46,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, Media
+from gramps.gen.lib.serialize import from_dict
 from .flatbasemodel import FlatBaseModel
 
 
@@ -109,37 +111,36 @@ class MediaModel(FlatBaseModel):
         """
         Return the color column.
         """
+        # For model.get_value() arg
         return 8
 
     def on_get_n_columns(self):
         return len(self.fmap) + 1
 
     def column_description(self, data):
-        return data[4]
+        return data["desc"]
 
     def column_path(self, data):
-        return data[2]
+        return data["path"]
 
     def column_mime(self, data):
-        mime = data[3]
+        mime = data["mime"]
         if mime:
             return mime
         else:
             return _("Note")
 
     def column_id(self, data):
-        return data[1]
+        return data["gramps_id"]
 
     def column_date(self, data):
-        if data[10]:
-            date = Date()
-            date.unserialize(data[10])
+        if data["date"]:
+            date = from_dict(data["date"])
             return displayer.display(date)
         return ""
 
     def sort_date(self, data):
-        obj = Media()
-        obj.unserialize(data)
+        obj = from_dict(data)
         d = obj.get_date_object()
         if d:
             return "%09d" % d.get_sort_value()
@@ -147,20 +148,20 @@ class MediaModel(FlatBaseModel):
             return ""
 
     def column_handle(self, data):
-        return str(data[0])
+        return str(data["handle"])
 
     def column_private(self, data):
-        if data[12]:
+        if data["private"]:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
             return ""
 
     def sort_change(self, data):
-        return "%012x" % data[9]
+        return "%012x" % data["change"]
 
     def column_change(self, data):
-        return format_time(data[9])
+        return format_time(data["change"])
 
     def column_tooltip(self, data):
         return "Media tooltip"
@@ -179,12 +180,12 @@ class MediaModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data["handle"]
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[11]:
+            for handle in data["tag_list"]:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -197,6 +198,6 @@ class MediaModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[11]))
+        tag_list = list(map(self.get_tag_name, data["tag_list"]))
         # TODO for Arabic, should the next line's comma be translated?
         return ", ".join(sorted(tag_list, key=glocale.sort_key))

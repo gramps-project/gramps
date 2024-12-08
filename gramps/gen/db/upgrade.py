@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2020-2016 Gramps Development Team
 # Copyright (C) 2020      Paul Culley
+# Copyright (C) 2024      Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,6 +36,8 @@ import logging
 #
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
+from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
+from gramps.gen.lib.serialize import to_dict
 from gramps.gen.lib import EventType, NameOriginType, Tag, MarkerType
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
@@ -52,16 +55,73 @@ from .dbconst import (
     TAG_KEY,
 )
 from ..const import GRAMPS_LOCALE as glocale
+from .conversion_tools import convert_21
+from gramps.gen.lib.serialize import to_dict
 
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(".upgrade")
 
 
+def gramps_upgrade_21(self):
+    """
+    Add json_data field to tables.
+    """
+    self.set_serializer("blob")
+
+    length = 0
+    for key in self._get_table_func():
+        count_func = self._get_table_func(key, "count_func")
+        length += count_func()
+
+    self.set_total(length)
+
+    # First, do metadata:
+
+    self._txn_begin()
+    self.upgrade_table_for_json_data("metadata")
+    keys = self._get_metadata_keys()
+    for key in keys:
+        self.set_serializer("blob")
+        value = self._get_metadata(key, "not-found")
+        if value != "not-found":
+            # Save to json_data in current format
+            self.set_serializer("json")
+            self._set_metadata(key, value, use_txn=False)
+
+    for table_name in self._get_table_func():
+        # For each table, alter the database in an appropriate way:
+        self.upgrade_table_for_json_data(table_name.lower())
+
+        get_array_from_handle = self._get_table_func(table_name, "raw_func")
+        get_object_from_handle = self._get_table_func(table_name, "handle_func")
+        get_handles = self._get_table_func(table_name, "handles_func")
+        commit_func = self._get_table_func(table_name, "commit_func")
+        key = CLASS_TO_KEY_MAP[table_name]
+        for handle in get_handles():
+            # Load from blob:
+            self.set_serializer("blob")
+            array = get_array_from_handle(handle)
+            # Save to json_data in version 21 format
+            json_data = convert_21(table_name, array)
+            self.set_serializer("json")
+            # We can use commit_raw as long as json_data
+            # has "handle", "_class", and uses json.dumps()
+            self._commit_raw(json_data, key)
+            self.update()
+
+    self.set_serializer("json")
+    self._set_metadata("version", 21, use_txn=False)
+    self._txn_commit()
+    # Bump up database version. Separate transaction to save metadata.
+
+
 def gramps_upgrade_20(self):
     """
-    Placeholder update.
+    Upgrade to database version 20
     """
+    self.set_serializer("blob")
+
     length = 0
     self.set_total(length)
     self._txn_begin()
@@ -191,6 +251,7 @@ def gramps_upgrade_19(self):
     """
     Upgrade database from version 18 to 19.
     """
+    self.set_serializer("blob")
     # This is done in the conversion from bsddb, so just say we did it.
     self._set_metadata("version", 19)
 
@@ -199,6 +260,8 @@ def gramps_upgrade_18(self):
     """
     Upgrade database from version 17 to 18.
     """
+    self.set_serializer("blob")
+
     length = self.get_number_of_places()
     self.set_total(length)
     self._txn_begin()
@@ -235,6 +298,8 @@ def gramps_upgrade_17(self):
     4. Add checksum field to media objects.
     5. Rebuild list of custom events.
     """
+    self.set_serializer("blob")
+
     length = (
         self.get_number_of_events()
         + self.get_number_of_places()
@@ -253,7 +318,9 @@ def gramps_upgrade_17(self):
     self.event_names = set()
     for handle in self.get_event_handles():
         event = self.get_raw_event_data(handle)
+        # Pre version 17 event type:
         new_event = list(event)
+        # Version 17 event type:
         event_type = EventType()
         event_type.unserialize(new_event[2])
         if event_type.is_custom():
@@ -548,6 +615,8 @@ def gramps_upgrade_16(self):
     # Only People, Families, Events, Media Objects, Places, Sources and
     # Repositories need to be updated, because these are the only primary
     # objects that can have source citations.
+    self.set_serializer("blob")
+
     length = (
         self.get_number_of_people()
         + self.get_number_of_events()
@@ -1370,6 +1439,8 @@ def gramps_upgrade_15(self):
         * surname list
         * remove marker
     """
+    self.set_serializer("blob")
+
     length = (
         self.get_number_of_notes()
         + self.get_number_of_people()
@@ -1648,6 +1719,8 @@ def convert_name_15(name):
 def gramps_upgrade_14(self):
     """Upgrade database from version 13 to 14."""
     # This upgrade modifies notes and dates
+    self.set_serializer("blob")
+
     length = (
         self.get_number_of_notes()
         + self.get_number_of_people()

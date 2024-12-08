@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
-# Copyright (C) 2016-2017 Nick Hall
+# Copyright (C) 2015-2016,2024 Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2016-2017      Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ Database API interface
 #
 # -------------------------------------------------------------------------
 import logging
-import pickle
+import json
 import time
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -61,6 +61,7 @@ from gramps.gen.lib import (
     Source,
     Tag,
 )
+from gramps.gen.lib.serialize import from_dict, to_dict
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
@@ -80,6 +81,23 @@ class DBAPI(DbGeneric):
 
     def _initialize(self, directory, username, password):
         raise NotImplementedError
+
+    def use_json_data(self):
+        """
+        A DBAPI level method for testing if the
+        database supports JSON access.
+        """
+        # Check if json_data exists on metadata as a proxy to see
+        # if the database has been converted to use JSON data
+        return self.dbapi.column_exists("metadata", "json_data")
+
+    def upgrade_table_for_json_data(self, table_name):
+        """
+        A DBAPI level method for upgrading the given table
+        adding a json_data column.
+        """
+        if not self.dbapi.column_exists(table_name, "json_data"):
+            self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name)
 
     def _schema_exists(self):
         """
@@ -103,42 +121,42 @@ class DBAPI(DbGeneric):
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "given_name TEXT, "
             "surname TEXT, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE family "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE source "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE citation "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE event "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE media "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
@@ -146,28 +164,28 @@ class DBAPI(DbGeneric):
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "enclosed_by VARCHAR(50), "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE repository "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE note "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE tag "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         # Secondary:
@@ -191,7 +209,7 @@ class DBAPI(DbGeneric):
             "CREATE TABLE metadata "
             "("
             "setting VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "value BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
@@ -344,39 +362,55 @@ class DBAPI(DbGeneric):
         transaction.last = None
         self._after_commit(transaction)
 
+    def _get_metadata_keys(self):
+        """
+        Get all of the metadata setting names from the
+        database.
+        """
+        self.dbapi.execute("SELECT setting FROM metadata;")
+        return [row[0] for row in self.dbapi.fetchall()]
+
     def _get_metadata(self, key, default="_"):
         """
         Get an item from the database.
 
         Note we reserve and use _ to denote default value of []
         """
-        self.dbapi.execute("SELECT value FROM metadata WHERE setting = ?", [key])
+        self.dbapi.execute(
+            f"SELECT {self.serializer.metadata_field} FROM metadata WHERE setting = ?",
+            [key],
+        )
         row = self.dbapi.fetchone()
         if row:
-            return pickle.loads(row[0])
+            return self.serializer.metadata_to_object(row[0])
+
         if default == "_":
             return []
         return default
 
-    def _set_metadata(self, key, value):
+    def _set_metadata(self, key, value, use_txn=True):
         """
         key: string
         value: item, will be serialized here
+
+        Note: if use_txn, then begin/commit txn
         """
-        self._txn_begin()
+        if use_txn:
+            self._txn_begin()
         self.dbapi.execute("SELECT 1 FROM metadata WHERE setting = ?", [key])
         row = self.dbapi.fetchone()
         if row:
             self.dbapi.execute(
-                "UPDATE metadata SET value = ? WHERE setting = ?",
-                [pickle.dumps(value), key],
+                f"UPDATE metadata SET {self.serializer.metadata_field} = ? WHERE setting = ?",
+                [self.serializer.object_to_metadata(value), key],
             )
         else:
             self.dbapi.execute(
-                "INSERT INTO metadata (setting, value) VALUES (?, ?)",
-                [key, pickle.dumps(value)],
+                f"INSERT INTO metadata (setting, {self.serializer.metadata_field}) VALUES (?, ?)",
+                [key, self.serializer.object_to_metadata(value)],
             )
-        self._txn_commit()
+        if use_txn:
+            self._txn_commit()
 
     def get_name_group_keys(self):
         """
@@ -579,10 +613,12 @@ class DBAPI(DbGeneric):
 
         If no such Tag exists, None is returned.
         """
-        self.dbapi.execute("SELECT blob_data FROM tag WHERE name = ?", [name])
+        self.dbapi.execute(
+            f"SELECT {self.serializer.data_field} FROM tag WHERE name = ?", [name]
+        )
         row = self.dbapi.fetchone()
         if row:
-            return Tag.create(pickle.loads(row[0]))
+            return self.serializer.string_to_object(Tag, row[0])
         return None
 
     def _get_number_of(self, obj_key):
@@ -635,22 +671,22 @@ class DBAPI(DbGeneric):
             old_data = self._get_raw_data(obj_key, obj.handle)
             # update the object:
             self.dbapi.execute(
-                f"UPDATE {table} SET blob_data = ? WHERE handle = ?",
-                [pickle.dumps(obj.serialize()), obj.handle],
+                f"UPDATE {table} SET {self.serializer.data_field} = ? WHERE handle = ?",
+                [self.serializer.object_to_string(obj), obj.handle],
             )
         else:
             # Insert the object:
             self.dbapi.execute(
-                f"INSERT INTO {table} (handle, blob_data) VALUES (?, ?)",
-                [obj.handle, pickle.dumps(obj.serialize())],
+                f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
+                [obj.handle, self.serializer.object_to_string(obj)],
             )
         self._update_secondary_values(obj)
         self._update_backlinks(obj, trans)
         if not trans.batch:
             if old_data:
-                trans.add(obj_key, TXNUPD, obj.handle, old_data, obj.serialize())
+                trans.add(obj_key, TXNUPD, obj.handle, old_data, to_dict(obj))
             else:
-                trans.add(obj_key, TXNADD, obj.handle, None, obj.serialize())
+                trans.add(obj_key, TXNADD, obj.handle, None, to_dict(obj))
 
         return old_data
 
@@ -660,19 +696,19 @@ class DBAPI(DbGeneric):
         changes as part of the transaction.
         """
         table = KEY_TO_NAME_MAP[obj_key]
-        handle = data[0]
+        handle = data["handle"]
 
         if self._has_handle(obj_key, handle):
             # update the object:
             self.dbapi.execute(
-                f"UPDATE {table} SET blob_data = ? WHERE handle = ?",
-                [pickle.dumps(data), handle],
+                f"UPDATE {table} SET {self.serializer.data_field} = ? WHERE handle = ?",
+                [self.serializer.data_to_string(data), handle],
             )
         else:
             # Insert the object:
             self.dbapi.execute(
-                f"INSERT INTO {table} (handle, blob_data) VALUES (?, ?)",
-                [handle, pickle.dumps(data)],
+                f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
+                [handle, self.serializer.data_to_string(data)],
             )
 
     def _update_backlinks(self, obj, transaction):
@@ -829,11 +865,11 @@ class DBAPI(DbGeneric):
         """
         table = KEY_TO_NAME_MAP[obj_key]
         with self.dbapi.cursor() as cursor:
-            cursor.execute(f"SELECT handle, blob_data FROM {table}")
+            cursor.execute(f"SELECT handle, {self.serializer.data_field} FROM {table}")
             rows = cursor.fetchmany()
             while rows:
                 for row in rows:
-                    yield (row[0], pickle.loads(row[1]))
+                    yield (row[0], self.serializer.string_to_data(row[1]))
                 rows = cursor.fetchmany()
 
     def _iter_raw_place_tree_data(self):
@@ -844,12 +880,13 @@ class DBAPI(DbGeneric):
         while to_do:
             handle = to_do.pop()
             self.dbapi.execute(
-                "SELECT handle, blob_data FROM place WHERE enclosed_by = ?", [handle]
+                f"SELECT handle, {self.serializer.data_field} FROM place WHERE enclosed_by = ?",
+                [handle],
             )
             rows = self.dbapi.fetchall()
             for row in rows:
                 to_do.append(row[0])
-                yield (row[0], pickle.loads(row[1]))
+                yield (row[0], self.serializer.string_to_data(row[1]))
 
     def reindex_reference_map(self, callback):
         """
@@ -891,7 +928,7 @@ class DBAPI(DbGeneric):
             logging.info("Rebuilding %s reference map", class_func.__name__)
             with cursor_func() as cursor:
                 for _, val in cursor:
-                    obj = class_func.create(val)
+                    obj = self.serializer.data_to_object(class_func, val)
                     references = set(obj.get_referenced_handles_recursively())
                     # handle addition of new references
                     for ref_class_name, ref_handle in references:
@@ -974,20 +1011,24 @@ class DBAPI(DbGeneric):
 
     def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
-        self.dbapi.execute(f"SELECT blob_data FROM {table} WHERE handle = ?", [handle])
+        self.dbapi.execute(
+            f"SELECT {self.serializer.data_field} FROM {table} WHERE handle = ?",
+            [handle],
+        )
         row = self.dbapi.fetchone()
         if row:
-            return pickle.loads(row[0])
+            return self.serializer.string_to_data(row[0])
         return None
 
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(
-            f"SELECT blob_data FROM {table} WHERE gramps_id = ?", [gramps_id]
+            f"SELECT {self.serializer.data_field} FROM {table} WHERE gramps_id = ?",
+            [gramps_id],
         )
         row = self.dbapi.fetchone()
         if row:
-            return pickle.loads(row[0])
+            return self.serializer.string_to_data(row[0])
         return None
 
     def get_gender_stats(self):
@@ -1042,15 +1083,15 @@ class DBAPI(DbGeneric):
         else:
             if self._has_handle(obj_key, handle):
                 self.dbapi.execute(
-                    f"UPDATE {table} SET blob_data = ? WHERE handle = ?",
-                    [pickle.dumps(data), handle],
+                    f"UPDATE {table} SET {self.serializer.data_field} = ? WHERE handle = ?",
+                    [self.serializer.data_to_string(data), handle],
                 )
             else:
                 self.dbapi.execute(
-                    f"INSERT INTO {table} (handle, blob_data) VALUES (?, ?)",
-                    [handle, pickle.dumps(data)],
+                    f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
+                    [handle, self.serializer.data_to_string(data)],
                 )
-            obj = self._get_table_func(cls)["class_func"].create(data)
+            obj = from_dict(data)
             self._update_secondary_values(obj)
 
     def get_surname_list(self):
