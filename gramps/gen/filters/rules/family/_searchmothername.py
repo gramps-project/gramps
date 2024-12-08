@@ -48,4 +48,4 @@ class SearchMotherName(SearchName):
     description = _("Matches families whose mother has a specified " "(partial) name")
     category = _("Mother filters")
     base_class = SearchName
-    apply = mother_base
+    apply_to_one = mother_base

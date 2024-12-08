@@ -46,7 +46,8 @@ class HaveAltFamilies(Rule):
     description = _("Matches people who were adopted")
     category = _("Family filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, data):
+        person = self.get_object(data)
         for fhandle in person.get_parent_family_handle_list():
             family = db.get_family_from_handle(fhandle)
             if family:

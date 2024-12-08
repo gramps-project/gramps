@@ -64,8 +64,8 @@ class IsLessThanNthGenerationDescendantOf(Rule):
     def reset(self):
         self.map.clear()
 
-    def apply(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db, data):
+        return data["handle"] in self.map
 
     def init_list(self, person, gen):
         if not person or person.handle in self.map:

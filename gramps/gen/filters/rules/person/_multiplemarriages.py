@@ -45,5 +45,5 @@ class MultipleMarriages(Rule):
     description = _("Matches people who have more than one spouse")
     category = _("Family filters")
 
-    def apply(self, db, person):
-        return len(person.get_family_handle_list()) > 1
+    def apply_to_one(self, db, data):
+        return len(data["family_list"]) > 1

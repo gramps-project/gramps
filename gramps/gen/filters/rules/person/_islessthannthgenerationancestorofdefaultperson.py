@@ -58,10 +58,9 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
         p = db.get_default_person()
         if p:
             self.def_handle = p.get_handle()
-            self.apply = self.apply_real
             self.init_ancestor_list(self.def_handle, 1)
         else:
-            self.apply = lambda db, p: False
+            self.def_handle = None
 
     def init_ancestor_list(self, handle, gen):
         #        if p.get_handle() in self.map:
@@ -88,8 +87,8 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
             if m_id:
                 self.init_ancestor_list(m_id, gen + 1)
 
-    def apply_real(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db, data):
+        return data["handle"] in self.map
 
     def reset(self):
         self.map.clear()

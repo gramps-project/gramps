@@ -58,7 +58,7 @@ class IsDescendantFamilyOf(Rule):
 
     def prepare(self, db, user):
         self.db = db
-        self.matches = set()
+        self.map = set()
         self.root_person = db.get_person_from_gramps_id(self.list[0])
         self.add_matches(self.root_person)
         try:
@@ -72,10 +72,10 @@ class IsDescendantFamilyOf(Rule):
             self.exclude()
 
     def reset(self):
-        self.matches = set()
+        self.map = set()
 
-    def apply(self, db, person):
-        return person.handle in self.matches
+    def apply_to_one(self, db, data):
+        return data["handle"] in self.map
 
     def add_matches(self, person):
         if not person:
@@ -86,10 +86,10 @@ class IsDescendantFamilyOf(Rule):
 
         while expand:
             person = expand.pop(0)
-            if person is None or person.handle in self.matches:
+            if person is None or person.handle in self.map:
                 # if we have been here before, skip
                 continue
-            self.matches.add(person.handle)
+            self.map.add(person.handle)
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
@@ -102,13 +102,13 @@ class IsDescendantFamilyOf(Rule):
                         spouse_handle = family.get_mother_handle()
                     else:
                         spouse_handle = family.get_father_handle()
-                    self.matches.add(spouse_handle)
+                    self.map.add(spouse_handle)
 
     def exclude(self):
         # This removes root person and his/her spouses from the matches set
         if not self.root_person:
             return
-        self.matches.remove(self.root_person.handle)
+        self.map.remove(self.root_person.handle)
         for family_handle in self.root_person.get_family_handle_list():
             family = self.db.get_family_from_handle(family_handle)
             if family:
@@ -116,4 +116,4 @@ class IsDescendantFamilyOf(Rule):
                     spouse_handle = family.get_mother_handle()
                 else:
                     spouse_handle = family.get_father_handle()
-                self.matches.remove(spouse_handle)
+                self.map.remove(spouse_handle)

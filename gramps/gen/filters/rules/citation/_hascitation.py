@@ -61,7 +61,8 @@ class HasCitation(Rule):
         except:
             pass
 
-    def apply(self, dbase, citation):
+    def apply_to_one(self, dbase, data):
+        citation = self.get_object(data)
         if not self.match_substring(0, citation.get_page()):
             return False
 

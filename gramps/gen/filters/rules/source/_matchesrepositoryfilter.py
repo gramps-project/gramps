@@ -57,13 +57,14 @@ class MatchesRepositoryFilter(MatchesFilterBase):
         MatchesFilterBase.prepare(self, db, user)
         self.MRF_filt = self.find_filter()
 
-    def apply(self, db, object):
+    def apply_to_one(self, db, data):
         if self.MRF_filt is None:
             return False
 
-        repolist = [x.ref for x in object.get_reporef_list()]
+        repolist = [x.ref for x in data["reporef_list"]]
         for repohandle in repolist:
             # check if repo in repository filter
-            if self.MRF_filt.check(db, repohandle):
+            repo_data = self.get_raw_repository_data(repohandle)
+            if self.MRF_filt.apply_to_one(db, repo_data):
                 return True
         return False

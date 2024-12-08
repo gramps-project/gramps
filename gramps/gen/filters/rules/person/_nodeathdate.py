@@ -45,7 +45,8 @@ class NoDeathdate(Rule):
     description = _("Matches people without a known deathdate")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, data):
+        person = self.get_object(data)
         death_ref = person.get_death_ref()
         if not death_ref:
             return True

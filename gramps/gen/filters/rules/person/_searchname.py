@@ -49,11 +49,12 @@ class SearchName(Rule):
     description = _("Matches people with a specified (partial) name")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, data):
         src = self.list[0].upper()
         if not src:
             return False
 
+        person = self.get_object(data)
         for name in [person.get_primary_name()] + person.get_alternate_names():
             for field in [
                 name.first_name,

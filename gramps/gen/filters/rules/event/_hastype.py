@@ -61,10 +61,12 @@ class HasType(Rule):
             self.event_type = EventType()
             self.event_type.set_from_xml_str(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db, data):
         """
         Apply the rule. Return True if a match.
         """
-        if self.event_type:
+        if data["type"]:
+            obj = self.get_object(data)
+            # FIXME: probably don't need object to do this:
             return obj.get_type() == self.event_type
         return False

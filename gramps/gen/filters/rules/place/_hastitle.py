@@ -53,7 +53,8 @@ class HasTitle(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, place):
+    def apply_to_one(self, db, data):
+        place = self.get_object(data)
         if not self.match_substring(0, displayer.display(db, place)):
             return False
         return True

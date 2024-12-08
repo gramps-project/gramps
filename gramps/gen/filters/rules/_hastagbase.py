@@ -62,10 +62,10 @@ class HasTagBase(Rule):
         if tag is not None:
             self.tag_handle = tag.get_handle()
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db, data):
         """
         Apply the rule.  Return True for a match.
         """
         if self.tag_handle is None:
             return False
-        return self.tag_handle in obj.get_tag_list()
+        return self.tag_handle in data["tag_list"]
