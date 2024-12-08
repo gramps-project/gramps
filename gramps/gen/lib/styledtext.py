@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2008       Zsolt Foldvari
-# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2013,2024  Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2017,2024  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
@@ -68,15 +68,6 @@ class StyledText(BaseObject):
     :ivar tags: (list of :py:class:`.StyledTextTag`) Text tags holding
                 formatting information for the string.
 
-    :cvar POS_TEXT: Position of *string* attribute in the serialized format of
-                    an instance.
-    :cvar POS_TAGS: (int) Position of *tags* attribute in the serialized format
-                    of an instance.
-
-    .. warning:: The POS_<x> class variables reflect the serialized object,
-      they have to be updated in case the data structure or the
-      :py:meth:`serialize` method changes!
-
     .. note::
      1. There is no sanity check of tags in :py:meth:`__init__`, because when a
         :py:class:`StyledText` is displayed it is passed to a
@@ -90,8 +81,6 @@ class StyledText(BaseObject):
      3. Warning: Some of these operations modify the source tag ranges in place
         so if you intend to use a source tag more than once, copy it for use.
     """
-
-    (POS_TEXT, POS_TAGS) = list(range(2))
 
     def __init__(self, text="", tags=None):
         """Setup initial instance variable values."""

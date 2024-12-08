@@ -6,6 +6,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Nick Hall
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,6 +51,7 @@ from gi.repository import GdkPixbuf
 from gramps.gen.const import URL_MANUAL_PAGE, ICON, SPLASH
 from gramps.gui.display import display_help
 from gramps.gen.lib import Media
+from gramps.gen.lib.serialize import from_dict
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gui.plug import tool
@@ -568,8 +570,7 @@ class PathChange(BatchOp):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = Media()
-                obj.unserialize(data)
+                obj = from_dict(data)
                 if obj.get_path().find(from_text) != -1:
                     self.handle_list.append(handle)
                     self.path_list.append(obj.path)
@@ -608,8 +609,7 @@ class Convert2Abs(BatchOp):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = Media()
-                obj.unserialize(data)
+                obj = from_dict(data)
                 if not os.path.isabs(obj.path):
                     self.handle_list.append(handle)
                     self.path_list.append(obj.path)
@@ -647,8 +647,7 @@ class Convert2Rel(BatchOp):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = Media()
-                obj.unserialize(data)
+                obj = from_dict(data)
                 if os.path.isabs(obj.path):
                     self.handle_list.append(handle)
                     self.path_list.append(obj.path)
@@ -689,8 +688,7 @@ class ImagesNotIncluded(BatchOp):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = Media()
-                obj.unserialize(data)
+                obj = from_dict(data)
                 self.handle_list.append(handle)
                 full_path = media_path_full(self.db, obj.path)
                 self.path_list.append(full_path)

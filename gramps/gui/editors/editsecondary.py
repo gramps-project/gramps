@@ -2,7 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-#               2009       Gary Burton
+# Copyright (C) 2009       Gary Burton
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,6 +28,7 @@
 from ..managedwindow import ManagedWindow
 from ..display import display_help
 from gramps.gen.config import config
+from gramps.gen.lib.serialize import to_dict, from_dict
 from ..dbguielement import DbGUIElement
 
 
@@ -35,7 +37,7 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         """Create an edit window.  Associates a person with the window."""
 
         self.obj = obj
-        self.old_obj = obj.serialize()
+        self.old_obj = to_dict(obj)
         self.dbstate = state
         self.uistate = uistate
         self.db = state.db
@@ -136,7 +138,7 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         """
         Undo the edits that happened on this secondary object
         """
-        self.obj.unserialize(self.old_obj)
+        self.obj = from_dict(self.old_obj)
         self.close(obj)
 
     def close(self, *obj):

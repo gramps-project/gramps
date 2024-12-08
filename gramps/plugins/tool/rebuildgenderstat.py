@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2012       Benny Malengier
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,16 +56,13 @@ from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.lib import Name
+from gramps.gen.lib.serialize import from_dict
 
 # -------------------------------------------------------------------------
 #
 # runTool
 #
 # -------------------------------------------------------------------------
-
-COLUMN_GENDER = 2
-COLUMN_NAME = 3
-COLUMN_ALTNAMES = 4
 
 
 class RebuildGenderStat(tool.Tool, UpdateCallback):
@@ -114,13 +112,13 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
             # loop over database and store the sort field, and the handle, and
             # allow for a third iter
             for key, data in cursor:
-                rawprimname = data[COLUMN_NAME]
-                rawaltnames = data[COLUMN_ALTNAMES]
-                primary_name = Name().unserialize(rawprimname).get_first_name()
+                rawprimname = data["primary_name"]
+                rawaltnames = data["alternate_names"]
+                primary_name = from_dict(rawprimname).get_first_name()
                 alternate_names = [
-                    Name().unserialize(name).get_first_name() for name in rawaltnames
+                    from_dict(name).get_first_name() for name in rawaltnames
                 ]
-                self.db.genderStats.count_name(primary_name, data[COLUMN_GENDER])
+                self.db.genderStats.count_name(primary_name, data["gender"])
 
 
 # ------------------------------------------------------------------------

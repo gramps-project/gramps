@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2010,2017  Nick Hall
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,26 +63,9 @@ class Note(BasicPrimaryObject):
 
     :cvar FLOWED: indicates flowed format
     :cvar FORMATTED: indicates formatted format (respecting whitespace needed)
-    :cvar POS_<x>: (int) Position of <x> attribute in the serialized format of
-        an instance.
-
-    .. warning:: The POS_<x> class variables reflect the serialized object,
-                 they have to be updated in case the data structure or the
-                 :meth:`serialize` method changes!
     """
 
     (FLOWED, FORMATTED) = list(range(2))
-
-    (
-        POS_HANDLE,
-        POS_ID,
-        POS_TEXT,
-        POS_FORMAT,
-        POS_TYPE,
-        POS_CHANGE,
-        POS_TAGS,
-        POS_PRIVATE,
-    ) = list(range(8))
 
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""

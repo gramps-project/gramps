@@ -147,3 +147,44 @@ class Researcher(LocationBase):
             if getattr(self, attr) != "":
                 return False
         return True
+
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        By default this returns the public attributes of the instance.  This
+        method can be overridden if the class requires other attributes or
+        properties to be saved.
+
+        This method is called to provide the information required to serialize
+        the object.
+
+        :returns: Returns a dictionary of attributes that represent the state
+                  of the object.
+        :rtype: dict
+        """
+        attr_dict = dict(
+            (key, value)
+            for key, value in self.__dict__.items()
+            if not key.startswith("_")
+        )
+        attr_dict["_class"] = self.__class__.__name__
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        By default this sets the state of the object assuming that all items in
+        the dictionary map to public attributes.  This method can be overridden
+        to set the state using custom functionality.  For performance reasons
+        it is useful to set a property without calling its setter function.  As
+        JSON provides no distinction between tuples and lists, this method can
+        also be use to convert lists into tuples where required.
+
+        :param attr_dict: A dictionary of attributes that represent the state of
+                          the object.
+        :type attr_dict: dict
+        """
+        self.__dict__.update(attr_dict)

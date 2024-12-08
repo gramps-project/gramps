@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons, Nick Hall
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -211,17 +212,23 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         # add the citation as a child of the source. Otherwise we add the source
         # first (because citations don't have any meaning without the associated
         # source)
-        if self._get_node(data[5]):
+        if self._get_node(data["source_handle"]):
             #             parent   child   sortkey   handle
-            self.add_node(data[5], handle, sort_key, handle, secondary=True)
+            self.add_node(
+                data["source_handle"], handle, sort_key, handle, secondary=True
+            )
         else:
             # add the source node first
-            source_sort_key = self.sort_func(self.map(data[5]))
+            source_sort_key = self.sort_func(self.map(data["source_handle"]))
             #            parent child    sortkey          handle
-            self.add_node(None, data[5], source_sort_key, data[5])
+            self.add_node(
+                None, data["source_handle"], source_sort_key, data["source_handle"]
+            )
 
             #            parent    child   sortkey   handle
-            self.add_node(data[5], handle, sort_key, handle, secondary=True)
+            self.add_node(
+                data["source_handle"], handle, sort_key, handle, secondary=True
+            )
 
     def on_get_n_columns(self):
         return len(self.fmap) + 1

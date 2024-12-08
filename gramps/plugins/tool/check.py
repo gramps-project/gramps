@@ -6,6 +6,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2012       Michiel D. Nauta
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -75,6 +76,7 @@ from gramps.gen.lib import (
     StyledTextTagType,
     Tag,
 )
+from gramps.gen.lib.serialize import to_dict
 from gramps.gen.db import DbTxn, CLASS_TO_KEY_MAP
 from gramps.gen.config import config
 from gramps.gen.utils.id import create_id
@@ -423,16 +425,16 @@ class CheckIntegrity:
         error_count = 0
         for handle in self.db.get_media_handles():
             data = self.db.get_raw_media_data(handle)
-            if not isinstance(data[2], str) or not isinstance(data[4], str):
+            if not isinstance(data["path"], str) or not isinstance(data["desc"], str):
                 obj = self.db.get_media_from_handle(handle)
-                if not isinstance(data[2], str):
+                if not isinstance(data["path"], str):
                     obj.path = obj.path.decode("utf-8")
                     logging.warning(
                         "    FAIL: encoding error on media object "
                         '"%(gid)s" path "%(path)s"',
                         {"gid": obj.gramps_id, "path": obj.path},
                     )
-                if not isinstance(data[4], str):
+                if not isinstance(data["desc"], str):
                     obj.desc = obj.desc.decode("utf-8")
                     logging.warning(
                         "    FAIL: encoding error on media object "
@@ -442,11 +444,11 @@ class CheckIntegrity:
                 self.db.commit_media(obj, self.trans)
                 error_count += 1
             # Once we are here, fix the mime string if not str
-            if not isinstance(data[3], str):
+            if not isinstance(data["mime"], str):
                 obj = self.db.get_media_from_handle(handle)
                 try:
-                    if data[3] == str(data[3]):
-                        obj.mime = str(data[3])
+                    if data["mime"] == str(data["mime"]):
+                        obj.mime = str(data["mime"])
                     else:
                         obj.mime = ""
                 except:
@@ -907,34 +909,23 @@ class CheckIntegrity:
             logging.info("    OK: no missing photos found")
 
     def cleanup_empty_objects(self):
-        # the position of the change column in the primary objects
-        CHANGE_PERSON = 17
-        CHANGE_FAMILY = 12
-        CHANGE_EVENT = 10
-        CHANGE_SOURCE = 8
-        CHANGE_CITATION = 9
-        CHANGE_PLACE = 11
-        CHANGE_MEDIA = 8
-        CHANGE_REPOS = 7
-        CHANGE_NOTE = 5
-
-        empty_person_data = Person().serialize()
-        empty_family_data = Family().serialize()
-        empty_event_data = Event().serialize()
-        empty_source_data = Source().serialize()
-        empty_citation_data = Citation().serialize()
-        empty_place_data = Place().serialize()
-        empty_media_data = Media().serialize()
-        empty_repos_data = Repository().serialize()
-        empty_note_data = Note().serialize()
+        empty_person_data = to_dict(Person())
+        empty_family_data = to_dict(Family())
+        empty_event_data = to_dict(Event())
+        empty_source_data = to_dict(Source())
+        empty_citation_data = to_dict(Citation())
+        empty_place_data = to_dict(Place())
+        empty_media_data = to_dict(Media())
+        empty_repos_data = to_dict(Repository())
+        empty_note_data = to_dict(Note())
 
         _db = self.db
 
-        def _empty(empty, flag):
+        def _empty(empty):
             """Closure for dispatch table, below"""
 
             def _fx(value):
-                return self._check_empty(value, empty, flag)
+                return self._check_empty(value, empty)
 
             return _fx
 
@@ -954,7 +945,7 @@ class CheckIntegrity:
                 _db.get_person_cursor,
                 _db.get_number_of_people,
                 _("Looking for empty people records"),
-                _empty(empty_person_data, CHANGE_PERSON),
+                _empty(empty_person_data),
                 _db.remove_person,
             ),
             (
@@ -963,7 +954,7 @@ class CheckIntegrity:
                 _db.get_family_cursor,
                 _db.get_number_of_families,
                 _("Looking for empty family records"),
-                _empty(empty_family_data, CHANGE_FAMILY),
+                _empty(empty_family_data),
                 _db.remove_family,
             ),
             (
@@ -972,7 +963,7 @@ class CheckIntegrity:
                 _db.get_event_cursor,
                 _db.get_number_of_events,
                 _("Looking for empty event records"),
-                _empty(empty_event_data, CHANGE_EVENT),
+                _empty(empty_event_data),
                 _db.remove_event,
             ),
             (
@@ -981,7 +972,7 @@ class CheckIntegrity:
                 _db.get_source_cursor,
                 _db.get_number_of_sources,
                 _("Looking for empty source records"),
-                _empty(empty_source_data, CHANGE_SOURCE),
+                _empty(empty_source_data),
                 _db.remove_source,
             ),
             (
@@ -990,7 +981,7 @@ class CheckIntegrity:
                 _db.get_citation_cursor,
                 _db.get_number_of_citations,
                 _("Looking for empty citation records"),
-                _empty(empty_citation_data, CHANGE_CITATION),
+                _empty(empty_citation_data),
                 _db.remove_citation,
             ),
             (
@@ -999,7 +990,7 @@ class CheckIntegrity:
                 _db.get_place_cursor,
                 _db.get_number_of_places,
                 _("Looking for empty place records"),
-                _empty(empty_place_data, CHANGE_PLACE),
+                _empty(empty_place_data),
                 _db.remove_place,
             ),
             (
@@ -1008,7 +999,7 @@ class CheckIntegrity:
                 _db.get_media_cursor,
                 _db.get_number_of_media,
                 _("Looking for empty media records"),
-                _empty(empty_media_data, CHANGE_MEDIA),
+                _empty(empty_media_data),
                 _db.remove_media,
             ),
             (
@@ -1017,7 +1008,7 @@ class CheckIntegrity:
                 _db.get_repository_cursor,
                 _db.get_number_of_repositories,
                 _("Looking for empty repository records"),
-                _empty(empty_repos_data, CHANGE_REPOS),
+                _empty(empty_repos_data),
                 _db.remove_repository,
             ),
             (
@@ -1026,7 +1017,7 @@ class CheckIntegrity:
                 _db.get_note_cursor,
                 _db.get_number_of_notes,
                 _("Looking for empty note records"),
-                _empty(empty_note_data, CHANGE_NOTE),
+                _empty(empty_note_data),
                 _db.remove_note,
             ),
         )
@@ -1065,16 +1056,15 @@ class CheckIntegrity:
             if len(self.empty_objects[the_type]) == 0:
                 logging.info("    OK: no empty %s found", the_type)
 
-    def _check_empty(self, data, empty_data, changepos):
+    def _check_empty(self, data, empty_data):
         """compare the data with the data of an empty object
         change, handle and gramps_id are not compared"""
-        if changepos is not None:
-            return (
-                data[2:changepos] == empty_data[2:changepos]
-                and data[changepos + 1 :] == empty_data[changepos + 1 :]
-            )
-        else:
-            return data[2:] == empty_data[2:]
+        for key in empty_data:
+            if key in ["change", "gramps_id", "handle"]:
+                continue
+            if data[key] != empty_data[key]:
+                return False
+        return True
 
     def cleanup_empty_families(self, dummy):
         fhandle_list = self.db.get_family_handles()
