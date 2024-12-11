@@ -71,6 +71,7 @@ class DataList(list):
     """
     A wrapper around a data list.
     """
+
     def __getitem__(self, position):
         value = super().__getitem__(position)
         if isinstance(value, dict):
