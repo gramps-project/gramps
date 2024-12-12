@@ -151,6 +151,16 @@ class GrampsType(metaclass=GrampsTypeMeta):
         else:
             self.__string = ""
 
+    def __set_dict(self, value):
+        "Set the value/string properties from a dict."
+        val, strg = self._DEFAULT, ""
+        if value:
+            val = value["value"]
+            if len(value) > 1 and val == self._CUSTOM:
+                strg = value["string"]
+        self.__value = val
+        self.__string = strg
+
     def __set_tuple(self, value):
         "Set the value/string properties from a tuple."
         val, strg = self._DEFAULT, ""
@@ -184,7 +194,9 @@ class GrampsType(metaclass=GrampsTypeMeta):
 
     def set(self, value):
         "Set the value/string properties from the passed in value."
-        if isinstance(value, tuple):
+        if isinstance(value, dict):
+            self.__set_dict(value)
+        elif isinstance(value, tuple):
             self.__set_tuple(value)
         elif isinstance(value, int):
             self.__set_int(value)
