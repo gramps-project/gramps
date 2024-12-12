@@ -17,10 +17,15 @@ pacman -U --needed --noconfirm mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 
 pacman -S --needed --noconfirm  mingw-w64-x86_64-python-bsddb3
 
+## create a python virtual envionment so that we have a clean starting point
+pythonvenv=$TMP/grampspythonenv
+rm -rf $pythonvenv
+python -m venv $pythonvenv --system-site-packages
+source $pythonvenv/bin/activate
+
 ## prerequisites in pip packages
 python -m pip install --upgrade pip
-pip install --upgrade pydot pydotplus requests asyncio
-SETUPTOOLS_USE_DISTUTILS=stdlib pip install pygraphviz
+pip install --upgrade pygraphviz pydot pydotplus requests asyncio
 
 ## download dictionaries
 mkdir -p /mingw64/share/enchant/hunspell
@@ -120,5 +125,9 @@ python setup.py build_exe --no-compress
 cd mingw64/src
 makensis grampsaio64.nsi
 # result is in mingw64/src
+
+# deactivate and delete the python virtual environment
+deactivate
+rm -rf $pythonvenv
 
 exit 0

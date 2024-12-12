@@ -49,7 +49,7 @@ NORMALIZED_VERSION = normalize(FULL_VERSION)
 
 VERSION = ".".join(map(str, VERSION_TUPLE)) + "." + str(VQ.get(VERSION_QUALIFIER, 99))
 COPYRIGHT = "Copyright 2023, Gramps developers.  GNU General Public License"
-BASE_DIR = os.path.split(sys.prefix)[1]
+BASE_DIR = os.path.split(sys.base_prefix)[1]
 SETUP_DIR = os.path.dirname(os.path.realpath(__file__))
 SETUP_FILES = [
     "setup.py",
@@ -175,12 +175,12 @@ ADWAITA = [
 for adw in ADWAITA:
     INCLUDE_FILES.append(
         (
-            os.path.join(sys.prefix, "share/icons/Adwaita", adw),
+            os.path.join(sys.base_prefix, "share/icons/Adwaita", adw),
             os.path.join("share/icons/Adwaita", adw),
         )
     )
 for lib in MISSING_LIBS:
-    INCLUDE_FILES.append((os.path.join(sys.prefix, lib), lib))
+    INCLUDE_FILES.append((os.path.join(sys.base_prefix, lib), lib))
 
 INCLUDE_FILES.append("dist/gramps")
 INCLUDE_FILES.append(
