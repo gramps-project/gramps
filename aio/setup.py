@@ -65,7 +65,7 @@ if "32" in BASE_DIR:
 else:
     SETUP_FILES.append("".join(("grampsaio", "64", ".nsi")))
 
-INCLUDE_DLL_PATH = os.path.join(sys.exec_prefix, "bin")
+INCLUDE_DLL_PATH = os.path.join(sys.base_exec_prefix, "bin")
 INCLUDE_FILES = []
 INCLUDES = ["gi", "cgi", "colorsys", "site"]
 PACKAGES = [
