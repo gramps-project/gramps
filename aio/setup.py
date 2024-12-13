@@ -48,7 +48,7 @@ FULL_VERSION = ".".join(map(str, VERSION_TUPLE)) + VERSION_QUALIFIER
 NORMALIZED_VERSION = normalize(FULL_VERSION)
 
 VERSION = ".".join(map(str, VERSION_TUPLE)) + "." + str(VQ.get(VERSION_QUALIFIER, 99))
-COPYRIGHT = "Copyright 2023, Gramps developers.  GNU General Public License"
+COPYRIGHT = "Copyright 2024, Gramps developers.  GNU General Public License"
 BASE_DIR = os.path.split(sys.base_prefix)[1]
 SETUP_DIR = os.path.dirname(os.path.realpath(__file__))
 SETUP_FILES = [
