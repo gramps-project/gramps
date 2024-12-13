@@ -50,7 +50,7 @@ pacman -S --needed --noconfirm \
 wget --no-verbose -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 pacman -U --needed --noconfirm mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 
-## create a python virtual envionment so that we have a clean starting point
+## create a python virtual environment so that we have a clean starting point
 pythonvenv=$TMP/grampspythonenv
 rm -rf $pythonvenv
 python -m venv $pythonvenv --system-site-packages
