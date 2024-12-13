@@ -5,8 +5,8 @@ To build AIO for the master branch :
 1. Install MSYS2
     * Download MSYS2 from <https://www.msys2.org/> .
     * Install with default options. 
-    * Run "MSYS2 MINGW64"
-    * Upgrade system : ` pacman -Syuu --noconfirm `  (twice if first run close msys2).
+    * From the Start menu, run "MSYS2 MINGW64"
+    * Upgrade system : ` pacman -Syuu --noconfirm `  (twice if the first run closes msys2).
 
 2. Install Git, if not already installed
 ```
