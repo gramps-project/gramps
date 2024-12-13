@@ -45,8 +45,7 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-toolchain \
     perl-XML-Parser \
     subversion \
-    unzip \
-    upx
+    unzip
 
 wget --no-verbose -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 pacman -U --needed --noconfirm mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz

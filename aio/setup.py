@@ -21,7 +21,6 @@ try:
     from gramps.version import VERSION_QUALIFIER
 except:
     VERSION_QUALIFIER = ""
-UPX_ALT_PATH = r"UPX"
 
 # import logging
 # logging.basicConfig(level=logging.DEBUG)
@@ -256,27 +255,3 @@ ZIN.close()
 shutil.move(
     os.path.join(BASE_DIR, "lib/pythonx.zip"), os.path.join(BASE_DIR, "lib/library.zip")
 )
-
-if os.path.isfile(UPX_ALT_PATH):
-    UPX = UPX_ALT_PATH
-else:
-    WHICH = "where" if os.name == "nt" else "which"
-    try:
-        subprocess.check_call([WHICH, "UPX"])
-    except subprocess.CalledProcessError:
-        UPX = None
-    else:
-        UPX = "upx"
-if UPX is not None:
-    ARGS = [UPX, "-7", "--no-progress"]
-    ARGS.extend(
-        os.path.join(BASE_DIR, filename)
-        for filename in os.listdir(BASE_DIR)
-        if filename == "name"
-        or os.path.splitext(filename)[1].lower() in (".exe", ".dll", ".pyd", ".so")
-        and os.path.splitext(filename)[0].lower()
-        not in ("libgcc_s_dw2-1", "gramps", "grampsw", "grampsd", "libwinpthread-1")
-    )
-    subprocess.call(ARGS)
-else:
-    print("\nUPX not found")
