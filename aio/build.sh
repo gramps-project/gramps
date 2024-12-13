@@ -4,18 +4,52 @@
 #
 # install prerequisites
 ## prerequisites in msys packages
-pacman -S --needed --noconfirm mingw-w64-x86_64-python mingw-w64-x86_64-python-pip mingw-w64-x86_64-gexiv2 mingw-w64-x86_64-ghostscript mingw-w64-x86_64-python-cairo mingw-w64-x86_64-python-gobject mingw-w64-x86_64-python-icu mingw-w64-x86_64-iso-codes mingw-w64-x86_64-hunspell mingw-w64-x86_64-enchant perl-XML-Parser intltool mingw-w64-x86_64-python-lxml mingw-w64-x86_64-python-jsonschema mingw-w64-x86_64-gspell mingw-w64-x86_64-geocode-glib mingw-w64-x86_64-python-pillow git mingw-w64-x86_64-graphviz mingw-w64-x86_64-goocanvas mingw-w64-x86_64-osm-gps-map base-devel subversion mingw-w64-x86_64-python-graphviz mingw-w64-x86_64-osm-gps-map mingw-w64-x86_64-nsis mingw-w64-x86_64-python-requests mingw-w64-x86_64-adwaita-icon-theme mingw-w64-x86_64-python-networkx mingw-w64-x86_64-python-psycopg2 upx mingw-w64-x86_64-python-packaging unzip mingw-w64-x86_64-python-nose mingw-w64-x86_64-python-wheel
-pacman -S --needed --noconfirm mingw-w64-x86_64-python-build
-pacman -S --needed --noconfirm mingw-w64-x86_64-python-cx-freeze
-pacman -S --needed --noconfirm mingw-w64-x86_64-python-distlib
-pacman -S --needed --noconfirm mingw-w64-x86_64-python-lief
-pacman -S --needed --noconfirm mingw-w64-x86_64-python-setuptools
-pacman -S --needed --noconfirm mingw-w64-x86_64-toolchain
+pacman -S --needed --noconfirm \
+    base-devel \
+    git \
+    intltool \
+    mingw-w64-x86_64-adwaita-icon-theme \
+    mingw-w64-x86_64-enchant \
+    mingw-w64-x86_64-geocode-glib \
+    mingw-w64-x86_64-gexiv2 \
+    mingw-w64-x86_64-ghostscript \
+    mingw-w64-x86_64-goocanvas \
+    mingw-w64-x86_64-graphviz \
+    mingw-w64-x86_64-gspell \
+    mingw-w64-x86_64-hunspell \
+    mingw-w64-x86_64-iso-codes \
+    mingw-w64-x86_64-nsis \
+    mingw-w64-x86_64-osm-gps-map \
+    mingw-w64-x86_64-osm-gps-map \
+    mingw-w64-x86_64-python \
+    mingw-w64-x86_64-python-bsddb3 \
+    mingw-w64-x86_64-python-build \
+    mingw-w64-x86_64-python-cairo \
+    mingw-w64-x86_64-python-cx-freeze \
+    mingw-w64-x86_64-python-distlib \
+    mingw-w64-x86_64-python-gobject \
+    mingw-w64-x86_64-python-graphviz \
+    mingw-w64-x86_64-python-icu \
+    mingw-w64-x86_64-python-jsonschema \
+    mingw-w64-x86_64-python-lief \
+    mingw-w64-x86_64-python-lxml \
+    mingw-w64-x86_64-python-networkx \
+    mingw-w64-x86_64-python-nose \
+    mingw-w64-x86_64-python-packaging \
+    mingw-w64-x86_64-python-pillow \
+    mingw-w64-x86_64-python-pip \
+    mingw-w64-x86_64-python-psycopg2 \
+    mingw-w64-x86_64-python-requests \
+    mingw-w64-x86_64-python-setuptools \
+    mingw-w64-x86_64-python-wheel \
+    mingw-w64-x86_64-toolchain \
+    perl-XML-Parser \
+    subversion \
+    unzip \
+    upx
 
 wget --no-verbose -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 pacman -U --needed --noconfirm mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
-
-pacman -S --needed --noconfirm  mingw-w64-x86_64-python-bsddb3
 
 ## create a python virtual envionment so that we have a clean starting point
 pythonvenv=$TMP/grampspythonenv
@@ -97,13 +131,11 @@ mkdir -p /mingw64/share/icons/gnome/scalable/places
 cd ..
 cp images/gramps.png /mingw64/share/icons
 cd images/hicolor/48x48/mimetypes
-for f in *.png
-do
+for f in *.png; do
     cp $f /mingw64/share/icons/gnome/48x48/mimetypes/gnome-mime-$f
 done
 cd ../../scalable/mimetypes
-for f in *.svg
-do
+for f in *.svg; do
     cp $f /mingw64/share/icons/gnome/scalable/mimetypes/gnome-mime-$f
 done
 cd ../../../..
@@ -113,12 +145,12 @@ cp /mingw64/share/icons/hicolor/scalable/places/*.svg /mingw64/share/icons/gnome
 rm -rf dist aio/dist
 python setup.py bdist_wheel
 appbuild="r$(git rev-list --count HEAD)-$(git rev-parse --short HEAD)"
-appversion=$(grep "^VERSION_TUPLE" gramps/version.py|sed 's/.*(//;s/, */\./g;s/).*//')
+appversion=$(grep "^VERSION_TUPLE" gramps/version.py | sed 's/.*(//;s/, */\./g;s/).*//')
 unzip -q -d aio/dist dist/*.whl
 cd aio
 
 # create nsis script
-cat grampsaio64.nsi.template|sed "s/yourVersion/$appversion/;s/yourBuild/$appbuild/">grampsaio64.nsi
+cat grampsaio64.nsi.template | sed "s/yourVersion/$appversion/;s/yourBuild/$appbuild/" >grampsaio64.nsi
 # build cx_freeze executables
 python setup.py build_exe
 # build installer
