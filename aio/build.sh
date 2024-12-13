@@ -117,7 +117,6 @@ rm dict.zip
 popd
 
 # Assumption: script is executed from the 'aio' directory!
-#cd D:/a/gramps/gramps/aio
 
 ## create a directory structure for icons
 mkdir -p /mingw64/share/icons/gnome
