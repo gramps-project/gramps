@@ -120,7 +120,7 @@ cd aio
 # create nsis script
 cat grampsaio64.nsi.template|sed "s/yourVersion/$appversion/;s/yourBuild/$appbuild/">grampsaio64.nsi
 # build cx_freeze executables
-python setup.py build_exe --no-compress
+python setup.py build_exe
 # build installer
 cd mingw64/src
 makensis grampsaio64.nsi
