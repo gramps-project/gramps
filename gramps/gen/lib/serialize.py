@@ -47,6 +47,10 @@ class DataDict(dict):
     A wrapper around a data dict that also provides an
     object interface.
     """
+    def __str__(self):
+        if "_object" not in self:
+            self["_object"] = from_dict(self)
+        return str(self["_object"])
 
     def __getattr__(self, key):
         if key.startswith("_"):
