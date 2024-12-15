@@ -1512,7 +1512,7 @@ class PluginStatus(ManagedWindow):
                 )
 
         success_list = sorted(
-            self.__pmgr.get_success_list(), key=lambda x: (x[0], x[2]._get_name())
+            self.__pmgr.get_success_list(), key=lambda x: (x[0], x[2].name)
         )
         for i in success_list:
             # i = (filename, module, pdata)
