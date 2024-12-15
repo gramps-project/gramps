@@ -21,7 +21,6 @@ try:
     from gramps.version import VERSION_QUALIFIER
 except:
     VERSION_QUALIFIER = ""
-UPX_ALT_PATH = r"UPX"
 
 # import logging
 # logging.basicConfig(level=logging.DEBUG)
@@ -48,8 +47,8 @@ FULL_VERSION = ".".join(map(str, VERSION_TUPLE)) + VERSION_QUALIFIER
 NORMALIZED_VERSION = normalize(FULL_VERSION)
 
 VERSION = ".".join(map(str, VERSION_TUPLE)) + "." + str(VQ.get(VERSION_QUALIFIER, 99))
-COPYRIGHT = "Copyright 2023, Gramps developers.  GNU General Public License"
-BASE_DIR = os.path.split(sys.prefix)[1]
+COPYRIGHT = "Copyright 2024, Gramps developers.  GNU General Public License"
+BASE_DIR = os.path.split(sys.base_prefix)[1]
 SETUP_DIR = os.path.dirname(os.path.realpath(__file__))
 SETUP_FILES = [
     "setup.py",
@@ -65,7 +64,7 @@ if "32" in BASE_DIR:
 else:
     SETUP_FILES.append("".join(("grampsaio", "64", ".nsi")))
 
-INCLUDE_DLL_PATH = os.path.join(sys.exec_prefix, "bin")
+INCLUDE_DLL_PATH = os.path.join(sys.base_exec_prefix, "bin")
 INCLUDE_FILES = []
 INCLUDES = ["gi", "cgi", "colorsys", "site"]
 PACKAGES = [
@@ -97,7 +96,6 @@ EXCLUDES = [
     "PyQt5.QtGui",
     "pyside" "PyQt5.QtWidgets",
     "sip",
-    "lib2to3",
     "PIL.ImageQt",
     "pip",
     "distlib",
@@ -108,7 +106,7 @@ REPLACE_PATHS = [
 ]
 MISSING_DLL = [
     "libgtk-3-0.dll",
-    "libgspell-1-2.dll",
+    "libgspell-1-3.dll",
     "libgexiv2-2.dll",
     "libgoocanvas-3.0-9.dll",
     "libosmgpsmap-1.0-1.dll",
@@ -132,10 +130,6 @@ MISSING_DLL = [
 BIN_EXCLUDES = ["Qt5Core.dll", "gdiplus.dll", "gdiplus"]
 
 from os.path import dirname, basename
-import lib2to3
-
-lib23_path = dirname(lib2to3.__file__)
-INCLUDE_FILES.append((lib23_path, "lib/lib2to3"))
 import pip
 
 libpip_path = dirname(pip.__file__)
@@ -180,12 +174,12 @@ ADWAITA = [
 for adw in ADWAITA:
     INCLUDE_FILES.append(
         (
-            os.path.join(sys.prefix, "share/icons/Adwaita", adw),
+            os.path.join(sys.base_prefix, "share/icons/Adwaita", adw),
             os.path.join("share/icons/Adwaita", adw),
         )
     )
 for lib in MISSING_LIBS:
-    INCLUDE_FILES.append((os.path.join(sys.prefix, lib), lib))
+    INCLUDE_FILES.append((os.path.join(sys.base_prefix, lib), lib))
 
 INCLUDE_FILES.append("dist/gramps")
 INCLUDE_FILES.append(
@@ -261,27 +255,3 @@ ZIN.close()
 shutil.move(
     os.path.join(BASE_DIR, "lib/pythonx.zip"), os.path.join(BASE_DIR, "lib/library.zip")
 )
-
-if os.path.isfile(UPX_ALT_PATH):
-    UPX = UPX_ALT_PATH
-else:
-    WHICH = "where" if os.name == "nt" else "which"
-    try:
-        subprocess.check_call([WHICH, "UPX"])
-    except subprocess.CalledProcessError:
-        UPX = None
-    else:
-        UPX = "upx"
-if UPX is not None:
-    ARGS = [UPX, "-7", "--no-progress"]
-    ARGS.extend(
-        os.path.join(BASE_DIR, filename)
-        for filename in os.listdir(BASE_DIR)
-        if filename == "name"
-        or os.path.splitext(filename)[1].lower() in (".exe", ".dll", ".pyd", ".so")
-        and os.path.splitext(filename)[0].lower()
-        not in ("libgcc_s_dw2-1", "gramps", "grampsw", "grampsd", "libwinpthread-1")
-    )
-    subprocess.call(ARGS)
-else:
-    print("\nUPX not found")
