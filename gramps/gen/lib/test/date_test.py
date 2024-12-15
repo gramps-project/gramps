@@ -1577,11 +1577,11 @@ class AgeTest(BaseDateTest):
             "2000",
             "40 years",
         ),
-        ("", "1760", "greater than 110 years"),
-        ("", "1960", "greater than 110 years"),
-        ("", "2020", "greater than 110 years"),
-        ("", "3020", "greater than 110 years"),
-        ("2000", "", "(1999 years)"),
+        ("", "1760", "unknown"),
+        ("", "1960", "unknown"),
+        ("", "2020", "unknown"),
+        ("", "3020", "unknown"),
+        ("2000", "", "unknown"),
     ]
 
     def convert_to_date(self, d):
