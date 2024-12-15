@@ -48,11 +48,9 @@ except:
 try:
     import sqlite3
 
-    sqlite3_py_version_str = sqlite3.version
     sqlite3_version_str = sqlite3.sqlite_version
 except:
     sqlite3_version_str = "not found"
-    sqlite3_py_version_str = "not found"
 
 # -------------------------------------------------------------------------
 #
@@ -195,10 +193,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
         if hasattr(os, "uname"):
             distribution = "Distribution: %s\n" % os.uname()[2]
 
-        sqlite = "sqlite version: %s (%s) \n" % (
-            sqlite3_version_str,
-            sqlite3_py_version_str,
-        )
+        sqlite = f"sqlite version: {sqlite3_version_str} \n"
 
         return (
             "Gramps version: %s \n"
