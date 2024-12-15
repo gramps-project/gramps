@@ -314,7 +314,7 @@ class GeoMoves(GeoGraphyView):
         self.message_layer.clear_messages()
         self.message_layer.set_font_attributes(None, None, None)
 
-    def draw(self, menu, marks, color):
+    def draw(self, menu, marks, rgba):
         """
         Create all displacements for one person's events.
         """
@@ -334,10 +334,10 @@ class GeoMoves(GeoGraphyView):
                     date = mark[6]
                 if date != "    ":
                     self.date_layer.add_date(date[0:4])
-        self.lifeway_layer.add_way(points, color)
+        self.lifeway_layer.add_way(points, rgba)
         return False
 
-    def _createmap_for_one_person(self, person, color):
+    def _createmap_for_one_person(self, person, rgba):
         """
         Create all markers for each people's event in the database which has
         a lat/lon.
@@ -472,7 +472,7 @@ class GeoMoves(GeoGraphyView):
                                             )
 
             sort1 = sorted(self.place_list, key=operator.itemgetter(1, 6))
-            self.draw(None, sort1, color)
+            self.draw(None, sort1, rgba)
             # merge with the last results
             merge_list = self.sort
             for the_event in sort1:
@@ -601,16 +601,17 @@ class GeoMoves(GeoGraphyView):
         self.message_layer.add_message(
             _("All descendants for %s") % _nd.display(person)
         )
-        color = Gdk.color_parse(self._config.get("geography.color_base"))
+        rgba = Gdk.RGBA()
+        rgba.parse(self._config.get("geography.color_base"))
         GLib.timeout_add(
             int(self._config.get("geography.generation_interval")),
             self.animate_moves,
             0,
             person,
-            color,
+            rgba,
         )
 
-    def animate_moves(self, index, person, color):
+    def animate_moves(self, index, person, rgba):
         """
         Animate all moves for one generation.
         """
@@ -659,8 +660,6 @@ class GeoMoves(GeoGraphyView):
                     death = high_date
             new_list.append([level, plxp, birth, death])
         pidx = 0
-        if isinstance(color, str):
-            color = Gdk.color_parse(color)
         for level, plxp, birth, death in sorted(
             new_list, key=operator.itemgetter(0, 2)
         ):
@@ -668,19 +667,19 @@ class GeoMoves(GeoGraphyView):
                 break
             if level == index:
                 pidx += 1
-                self._createmap_for_one_person(plxp, color)
-                color.red = float(color.red - (index) * 3000) % 65535
+                self._createmap_for_one_person(plxp, rgba)
+                rgba.red = (rgba.red - index * 3000 / 65535) % 1
                 if index % 2:
-                    color.green = float((color.green + (index) * 3000) % 65535)
+                    rgba.green = (rgba.green + index * 3000 / 65535) % 1
                 else:
-                    color.blue = float((color.blue + (index) * 3000) % 65535)
-                self._createmap_for_one_person(person, color)
+                    rgba.blue = (rgba.blue + index * 3000 / 65535) % 1
+                self._createmap_for_one_person(person, rgba)
         if index < int(self._config.get("geography.maximum_generations")):
             time_to_wait = int(self._config.get("geography.generation_interval"))
             self._create_markers()
             # process next generation in a few milliseconds
             GLib.timeout_add(
-                int(time_to_wait), self.animate_moves, index + 1, person, color
+                int(time_to_wait), self.animate_moves, index + 1, person, rgba
             )
         else:
             self.started = False

@@ -123,13 +123,9 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         # font = Pango.FontDescription(font_size)
         descr = Pango.font_description_from_string(self.font)
         descr.set_size(self.size * Pango.SCALE)
-        color = Gdk.color_parse(self.color)
-        ctx.set_source_rgba(
-            float(color.red / 65535.0),
-            float(color.green / 65535.0),
-            float(color.blue / 65535.0),
-            0.9,
-        )  # transparency
+        rgba = Gdk.RGBA()
+        rgba.parse(self.color)
+        ctx.set_source_rgba(rgba.red, rgba.green, rgba.blue, 0.9)
         d_width = gpsmap.get_allocation().width
         d_width -= 100
         ctx.restore()
