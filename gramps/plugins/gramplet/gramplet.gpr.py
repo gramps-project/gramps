@@ -1452,12 +1452,13 @@ register(
     description="Gramplet allowing the evaluation of python code",
     version="1.0.0",
     gramps_target_version=MODULE_VERSION,
-    status=UNSTABLE,
+    audience=EXPERT,
+    status=STABLE,
     fname="eval.py",
     height=200,
     gramplet="PythonEvaluation",
     gramplet_title="Python Evaluation",
-    help_url=DEBUG_HELP,
+    help_url="https://gramps-project.org/wiki/index.php/Gramps_5.2_Wiki_Manual_-_Gramplets#Python_Evaluation",
 )
 
 register(
