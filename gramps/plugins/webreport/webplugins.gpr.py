@@ -23,6 +23,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 MODULE_VERSION = "5.2"
+REPORTS_HELP = _("Gramps_5.2_Wiki_Manual_-_Reports#Web_Pages")
 
 # ------------------------------------------------------------------------
 #
@@ -47,7 +48,7 @@ plg.category = CATEGORY_WEB
 plg.reportclass = "NavWebReport"
 plg.optionclass = "NavWebOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
-
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -70,3 +71,4 @@ plg.category = CATEGORY_WEB
 plg.reportclass = "WebCalReport"
 plg.optionclass = "WebCalOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP

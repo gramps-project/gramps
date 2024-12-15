@@ -23,6 +23,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 MODULE_VERSION = "5.2"
+REPORTS_HELP = _("Gramps_5.2_Wiki_Manual_-_Reports#Graphs")
 
 # this is the default in gen/plug/_pluginreg.py: plg.require_active = True
 
@@ -48,6 +49,7 @@ plg.reportclass = "FamilyLinesReport"
 plg.optionclass = "FamilyLinesOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
 plg.require_active = False
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -70,6 +72,7 @@ plg.category = CATEGORY_GRAPHVIZ
 plg.reportclass = "HourGlassReport"
 plg.optionclass = "HourGlassOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -92,3 +95,4 @@ plg.category = CATEGORY_GRAPHVIZ
 plg.reportclass = "RelGraphReport"
 plg.optionclass = "RelGraphOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
