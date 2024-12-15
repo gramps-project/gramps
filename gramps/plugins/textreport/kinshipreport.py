@@ -6,6 +6,7 @@
 # Contribution  2009 by   Reinhard Mueller <reinhard.mueller@bytewise.at>
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2013-2014 Paul Franklin
+# Copyright (C) 2024      Brian McCullough
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,6 +82,7 @@ class KinshipReport(Report):
 
         maxdescend    - Maximum generations of descendants to include.
         maxascend     - Maximum generations of ancestors to include.
+        incids        - Whether to show Gramps IDs.
         incspouses    - Whether to include spouses.
         inccousins    - Whether to include cousins.
         incaunts      - Whether to include aunts/uncles/nephews/nieces.
@@ -104,6 +106,8 @@ class KinshipReport(Report):
 
         self.max_descend = menu.get_option_by_name("maxdescend").get_value()
         self.max_ascend = menu.get_option_by_name("maxascend").get_value()
+        self.inc_ids = True
+        self.inc_ids = menu.get_option_by_name("incids").get_value()
         self.inc_spouses = menu.get_option_by_name("incspouses").get_value()
         self.inc_cousins = menu.get_option_by_name("inccousins").get_value()
         self.inc_aunts = menu.get_option_by_name("incaunts").get_value()
@@ -314,6 +318,8 @@ class KinshipReport(Report):
         person = self.database.get_person_from_handle(person_handle)
 
         name = self._name_display.display(person)
+        if self.inc_ids:
+            name = person.get_gramps_id() + ": " + name
         mark = utils.get_person_mark(self.database, person)
         birth_date = ""
         birth = get_birth_or_fallback(self.database, person)
@@ -375,6 +381,10 @@ class KinshipOptions(MenuReportOptions):
         maxascend = NumberOption(_("Max Ancestor Generations"), 2, 1, 50)
         maxascend.set_help(_("The maximum number of ancestor generations"))
         menu.add_option(category_name, "maxascend", maxascend)
+
+        incids = BooleanOption(_("Show Gramps ID"), False)
+        incids.set_help(_("Whether to show Gramps ID"))
+        menu.add_option(category_name, "incids", incids)
 
         incspouses = BooleanOption(_("Include spouses"), True)
         incspouses.set_help(_("Whether to include spouses"))
