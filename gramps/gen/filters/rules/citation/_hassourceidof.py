@@ -34,6 +34,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .._hasgrampsid import HasGrampsId
+from gramps.gen.lib.serialize import to_dict
 
 
 # -------------------------------------------------------------------------
@@ -49,8 +50,9 @@ class HasSourceIdOf(HasGrampsId):
     description = _("Matches a citation with a source with a specified Gramps " "ID")
     category = _("Source filters")
 
-    def apply(self, dbase, citation):
+    def apply_to_one(self, dbase, data):
+        citation = self.get_object(data)
         source = dbase.get_source_from_handle(citation.get_reference_handle())
-        if HasGrampsId.apply(self, dbase, source):
+        if HasGrampsId.apply_to_one(self, dbase, to_dict(source)):
             return True
         return False

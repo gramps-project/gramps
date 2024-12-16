@@ -131,7 +131,7 @@ class InLatLonNeighborhood(Rule):
                     self.E2 = 180.0
                     self.W = -180
 
-    def apply(self, db, place):
+    def apply_to_one(self, db, data):
         if self.halfheight == -1 and self.halfwidth == -1:
             return False
 
@@ -145,6 +145,8 @@ class InLatLonNeighborhood(Rule):
 
         # now we know at least one is given in the filter and is valid
 
+        place = self.get_object(data)
+        # FIXME: rest can probably be done in data:
         # the place we look at must have lat AND lon entered
         if not (place.get_latitude().strip and place.get_longitude().strip()):
             return False

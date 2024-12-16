@@ -65,10 +65,11 @@ class HasSoundexName(Rule):
         if self.list[0]:
             self.soundex = soundex(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db, data):
         """
         Apply the rule. Return True on a match.
         """
+        obj = self.get_object(data)
         for name in [obj.get_primary_name()] + obj.get_alternate_names():
             if self._match_name(name):
                 return True

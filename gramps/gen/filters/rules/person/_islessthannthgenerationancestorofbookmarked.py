@@ -62,11 +62,8 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
         self.db = db
         bookmarks = db.get_bookmarks().get()
         self.map = set()
-        if len(bookmarks) == 0:
-            self.apply = lambda db, p: False
-        else:
+        if len(bookmarks) != 0:
             self.bookmarks = set(bookmarks)
-            self.apply = self.apply_real
             for self.bookmarkhandle in self.bookmarks:
                 self.init_ancestor_list(self.bookmarkhandle, 1)
 
@@ -95,8 +92,8 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
             if m_id:
                 self.init_ancestor_list(m_id, gen + 1)
 
-    def apply_real(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db, data):
+        return data["handle"] in self.map
 
     def reset(self):
         self.map.clear()

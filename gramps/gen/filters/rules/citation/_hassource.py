@@ -52,8 +52,9 @@ class HasSource(HasSourceBase):
     description = _("Matches citations with a source of a particular " "value")
     category = _("Source filters")
 
-    def apply(self, dbase, citation):
-        source = dbase.get_source_from_handle(citation.get_reference_handle())
-        if HasSourceBase.apply(self, dbase, source):
+    def apply_to_one(self, dbase, data):
+        citation = self.get_object(data)
+        source_data = dbase.get_raw_source_data(citation.get_reference_handle())
+        if HasSourceBase.apply_to_one(self, dbase, source_data):
             return True
         return False

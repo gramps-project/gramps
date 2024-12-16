@@ -50,7 +50,7 @@ class HasNoLatOrLon(Rule):
     description = _("Matches places with empty latitude or longitude")
     category = _("Position filters")
 
-    def apply(self, db, place):
-        if place.get_latitude().strip and place.get_longitude().strip():
+    def apply_to_one(self, db, data):
+        if data["lat"].strip and data["long"].strip():
             return False
         return True

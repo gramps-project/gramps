@@ -62,7 +62,8 @@ class HasCitationBase(Rule):
         except:
             pass
 
-    def apply(self, dbase, object):
+    def apply_to_one(self, dbase, data):
+        object = self.get_object(data)
         for citation_handle in object.get_citation_list():
             citation = dbase.get_citation_from_handle(citation_handle)
             if self._apply(dbase, citation):

@@ -58,11 +58,11 @@ class IsEnclosedBy(Rule):
         if place:
             self.handle = place.handle
 
-    def apply(self, db, place):
+    def apply_to_one(self, db, data):
         if self.handle is None:
             return False
-        if self.list[1] == "1" and place.handle == self.handle:
+        if self.list[1] == "1" and data["handle"] == self.handle:
             return True
-        if located_in(db, place.handle, self.handle):
+        if located_in(db, data["handle"], self.handle):
             return True
         return False

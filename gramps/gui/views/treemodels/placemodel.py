@@ -139,7 +139,7 @@ class PlaceBaseModel:
     def search_name(self, data):
         """The search name includes all alt names to enable finding by alt name"""
         return ",".join(
-            [data["name"]["value"]] + [name["value"] for name in data["alt_name"]]
+            [data["name"]["value"]] + [name["value"] for name in data["alt_names"]]
         )
 
     def column_longitude(self, data):

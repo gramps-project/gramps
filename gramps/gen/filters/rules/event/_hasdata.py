@@ -71,10 +71,11 @@ class HasData(Rule):
         if self.date:
             self.date = parser.parse(self.date)
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db, data):
         """
         Apply the rule. Return True on a match.
         """
+        obj = self.get_object(data)
         if self.event_type and obj.get_type() != self.event_type:
             # No match
             return False

@@ -47,7 +47,8 @@ class FamilyWithIncompleteEvent(Rule):
     )
     category = _("Event filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, data):
+        person = self.get_object(data)
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             if family:
