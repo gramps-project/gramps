@@ -8,6 +8,7 @@
 # Copyright (C) 2011       Matt Keenan (matt.keenan@gmail.com)
 # Copyright (C) 2013-2014  Paul Franklin
 # Copyright (C) 2010,2015  Craig J. Anderson
+# Copyright (C) 2024       Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,6 +41,7 @@ Reports/Text Reports/Descendant Report.
 #
 # ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.utils.symbols import Symbols
 
 _ = glocale.translation.gettext
 from gramps.gen.plug.docgen import (
@@ -70,6 +72,9 @@ from gramps.gen.utils.db import (
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.display.name import displayer as _nd
+
+_MSYM = Symbols()
+_MSYM_GSET = (0, 1, 2, 3, 7, 8)
 
 
 # ------------------------------------------------------------------------
@@ -245,6 +250,7 @@ class Printinfo:
         doc,
         database,
         numbering,
+        showgender,
         showmarriage,
         showdivorce,
         showlifespan,
@@ -259,6 +265,7 @@ class Printinfo:
         self.database = database
         self.numbering = numbering
         # variables
+        self.showgender = showgender
         self.showmarriage = showmarriage
         self.showdivorce = showdivorce
         self.showlifespan = showlifespan
@@ -285,6 +292,14 @@ class Printinfo:
                     "date": date,
                 }
         return ""
+
+    def get_genderSymbol(self, person):
+        """generate gender symbol to place before the person name"""
+        gndr = person.get_gender()
+        if gndr is not None and gndr in _MSYM_GSET:
+            return _MSYM.get_symbol_for_string(gndr) + " "
+        else:
+            return ""
 
     def dump_string(self, person, family=None):
         """generate a descriptive string for a person"""
@@ -320,6 +335,8 @@ class Printinfo:
         display_num = self.numbering.number(level)
         self.doc.start_paragraph("DR-Level%d" % min(level, 32), display_num)
         mark = utils.get_person_mark(self.database, person)
+        if self.showgender:
+            self.doc.write_text("%s " % self.get_genderSymbol(person))
         self.doc.write_text(self._name_display.display(person), mark)
         if self.want_ids:
             self.doc.write_text(" (%s)" % person.get_gramps_id())
@@ -335,6 +352,8 @@ class Printinfo:
             mark = utils.get_person_mark(self.database, spouse)
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = self._name_display.display(spouse)
+            if self.showgender:
+                name = self.get_genderSymbol(spouse) + name
             self.doc.write_text(self._("sp. %(spouse)s") % {"spouse": name}, mark)
             if self.want_ids:
                 self.doc.write_text(" (%s)" % spouse.get_gramps_id())
@@ -355,6 +374,8 @@ class Printinfo:
             mark = utils.get_person_mark(self.database, person)
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = self._name_display.display(person)
+            if self.showgender:
+                name = self.get_genderSymbol(person) + name
             self.doc.write_text(
                 self._("sp. see %(reference)s: %(spouse)s")
                 % {"reference": display_num, "spouse": name},
@@ -497,6 +518,7 @@ class DescendantReport(Report):
         else:
             raise AttributeError("no such numbering: '%s'" % numbering)
 
+        showgender = menu.get_option_by_name("showgender").get_value()
         marrs = menu.get_option_by_name("marrs").get_value()
         divs = menu.get_option_by_name("divs").get_value()
         lifespan = menu.get_option_by_name("lifespan").get_value()
@@ -509,6 +531,7 @@ class DescendantReport(Report):
             self.doc,
             self.database,
             obj,
+            showgender,
             marrs,
             divs,
             lifespan,
@@ -584,6 +607,12 @@ class DescendantOptions(MenuReportOptions):
         menu.add_option(category_name, "gen", gen)
 
         stdoptions.add_gramps_id_option(menu, category_name)
+
+        showgender = BooleanOption(_("Show gender symbol"), False)
+        showgender.set_help(
+            _("Whether to show gender symbol in front of name in the report.")
+        )
+        menu.add_option(category_name, "showgender", showgender)
 
         marrs = BooleanOption(_("Show marriage info"), False)
         marrs.set_help(_("Whether to show marriage information in the report."))
