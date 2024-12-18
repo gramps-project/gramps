@@ -51,7 +51,7 @@ from ..constfunc import win
 from . import PluginRegister, ImportPlugin, ExportPlugin, DocGenPlugin
 
 LOG = logging.getLogger("._manager")
-LOG.progagate = True
+LOG.propagate = True
 
 _ = glocale.translation.gettext
 
@@ -74,6 +74,7 @@ class BasePluginManager:
 
     __instance = None
 
+    @staticmethod
     def get_instance():
         """
         Use this function to get the instance of the :class:`.PluginManager`
@@ -82,8 +83,6 @@ class BasePluginManager:
             BasePluginManager.__instance = 1  # Set to 1 for __init__()
             BasePluginManager.__instance = BasePluginManager()
         return BasePluginManager.__instance
-
-    get_instance = staticmethod(get_instance)
 
     def __init__(self):
         """This function should only be run once by get_instance()"""

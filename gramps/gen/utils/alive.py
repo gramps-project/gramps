@@ -34,6 +34,7 @@ import logging
 
 LOG = logging.getLogger(".gen.utils.alive")
 
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
@@ -461,7 +462,7 @@ class ProbablyAlive:
                 return (None, None, "", None)
             self.pset.add(person.handle)
             LOG.debug(
-                "ancestors_too_old('%s', %s)".format(
+                "ancestors_too_old('{}', {})".format(
                     name_displayer.display(person), year
                 )
             )
@@ -672,7 +673,7 @@ def probably_alive(
     if current_date is None:
         current_date = Today()
     LOG.debug(
-        "%s: b.%s, d.%s - %s".format(
+        "{}: b.{}, d.{} - {}".format(
             " ".join(person.get_primary_name().get_text_data_list()),
             birth,
             death,
