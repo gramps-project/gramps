@@ -414,7 +414,7 @@ ENGLISH_DATE_HANDLER = _dd.__class__ == DateDisplayEn
 
 @unittest.skipUnless(
     ENGLISH_DATE_HANDLER,
-    "This test of Date() matching logic can only run in English locale.",
+    "This test of Date() matching logic can only run in US-English locale.",
 )
 class MatchDateTest(BaseDateTest):
     """
@@ -635,7 +635,7 @@ class SpanTest(BaseDateTest):
 # -------------------------------------------------------------------------
 @unittest.skipUnless(
     ENGLISH_DATE_HANDLER,
-    "This test of Date() matching logic can only run in English locale.",
+    "This test of Date() matching logic can only run in US-English locale.",
 )
 class DateComparisonTest(BaseDateTest):
     """
@@ -1010,7 +1010,7 @@ class DateComparisonTest(BaseDateTest):
 # -------------------------------------------------------------------------
 @unittest.skipUnless(
     ENGLISH_DATE_HANDLER,
-    "This test of Date() matching logic can only run in English locale.",
+    "This test of Date() matching logic can only run in US-English locale.",
 )
 class AgeTest(BaseDateTest):
     """
@@ -1055,11 +1055,11 @@ class AgeTest(BaseDateTest):
             "2000",
             "40 years",
         ),
-        ("", "1760", "greater than 110 years"),
-        ("", "1960", "greater than 110 years"),
-        ("", "2020", "greater than 110 years"),
-        ("", "3020", "greater than 110 years"),
-        ("2000", "", "(1999 years)"),
+        ("", "1760", "unknown"),
+        ("", "1960", "unknown"),
+        ("", "2020", "unknown"),
+        ("", "3020", "unknown"),
+        ("2000", "", "unknown"),
     ]
 
     def convert_to_date(self, d):
