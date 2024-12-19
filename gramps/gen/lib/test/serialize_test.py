@@ -115,23 +115,39 @@ class DatabaseCheck(unittest.TestCase):
     maxDiff = None
 
 
-def generate_case(obj):
+def generate_cases(obj, data):
     """
     Dynamically generate tests and attach to DatabaseCheck.
     """
-    data = to_json(obj)
-    obj2 = from_json(data)
+    json_data = to_json(obj)
+    obj2 = from_json(json_data)
 
     def test(self):
         self.assertEqual(obj.serialize(), obj2.serialize())
 
     name = "test_serialize_%s_%s" % (obj.__class__.__name__, obj.handle)
     setattr(DatabaseCheck, name, test)
-    ####
-    # def test2(self):
-    #    self.assertEqual(obj.serialize(), from_dict(struct).serialize())
-    # name = "test_create_%s_%s" % (obj.__class__.__name__, obj.handle)
-    # setattr(DatabaseCheck, name, test2)
+
+    def test_data(self):
+        class_name = obj.__class__.__name__
+        assert isinstance(data, dict), "Ensure that the data is a dict"
+        assert data.handle == data["handle"], "Test attribute access"
+
+        if class_name == "Person":
+            if (len(data.parent_family_list)) > 0:
+                # Get a handle:
+                assert isinstance(data.parent_family_list[0], str), "Test list access"
+
+        assert "_object" not in data.keys(), "Object not created"
+        assert data.get_handle() == data["handle"], "Test method call"
+        assert "_object" in data.keys(), "Object created"
+        assert data["_object"].handle == data["handle"], "Object is correct"
+        assert (
+            data["_object"].__class__.__name__ == class_name
+        ), "Object is correct type"
+
+    name = "test_data_%s_%s" % (obj.__class__.__name__, obj.handle)
+    setattr(DatabaseCheck, name, test_data)
 
 
 db = import_as_dict(EXAMPLE, User())
@@ -148,7 +164,8 @@ for obj_class in (
 ):
     for handle in db.method("get_%s_handles", obj_class)():
         obj = db.method("get_%s_from_handle", obj_class)(handle)
-        generate_case(obj)
+        data = db.method("get_raw_%s_data", obj_class)(handle)
+        generate_cases(obj, data)
 
 if __name__ == "__main__":
     unittest.main()
