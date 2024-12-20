@@ -21,6 +21,7 @@ from gramps.gen.plug._pluginreg import *
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
+TOOLS_HELP = _("Gramps_5.2_Wiki_Manual_-_Navigation#Tools")
 
 """
 GRAMPS registration file
@@ -52,6 +53,7 @@ register(
     toolclass="ChangeNames",
     optionclass="ChangeNamesOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -77,6 +79,7 @@ register(
     toolclass="ChangeTypes",
     optionclass="ChangeTypesOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -102,6 +105,7 @@ register(
     toolclass="Check",
     optionclass="CheckOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -129,6 +133,7 @@ register(
     toolclass="EventComparison",
     optionclass="EventComparisonOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -152,6 +157,7 @@ register(
     toolclass="EventNames",
     optionclass="EventNamesOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -178,6 +184,7 @@ register(
     toolclass="DuplicatePeopleTool",
     optionclass="DuplicatePeopleToolOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -201,6 +208,7 @@ register(
     toolclass="MediaMan",
     optionclass="MediaManOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -226,6 +234,7 @@ register(
     toolclass="NotRelated",
     optionclass="NotRelatedOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -249,6 +258,7 @@ register(
     toolclass="OwnerEditor",
     optionclass="OwnerEditorOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -274,6 +284,7 @@ register(
     toolclass="PatchNames",
     optionclass="PatchNamesOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -297,6 +308,7 @@ register(
     toolclass="Rebuild",
     optionclass="RebuildOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -320,6 +332,7 @@ register(
     toolclass="RebuildRefMap",
     optionclass="RebuildRefMapOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -343,6 +356,7 @@ register(
     toolclass="RebuildGenderStat",
     optionclass="RebuildGenderStatOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -366,6 +380,7 @@ register(
     toolclass="RelCalc",
     optionclass="RelCalcOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -389,6 +404,7 @@ register(
     toolclass="RemoveUnused",
     optionclass="CheckOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -412,6 +428,7 @@ register(
     toolclass="ReorderIds",
     optionclass="ReorderIdsOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -435,6 +452,7 @@ register(
     toolclass="SortEvents",
     optionclass="SortEventOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -458,6 +476,7 @@ register(
     toolclass="Verify",
     optionclass="VerifyOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -484,6 +503,7 @@ register(
     toolclass="MergeCitations",
     optionclass="MergeCitationsOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -507,6 +527,7 @@ register(
     toolclass="FindLoop",
     optionclass="FindLoopOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -535,4 +556,5 @@ register(
     toolclass="RemoveSpaces",
     optionclass="RemoveSpacesOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
 )
