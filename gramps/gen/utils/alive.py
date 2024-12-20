@@ -615,6 +615,7 @@ class ProbablyAlive:
 
             return (None, None, "", None)
 
+        self.pset = set()
         try:
             # If there are ancestors that would be too old in the current year
             # then assume our person must be dead too.
