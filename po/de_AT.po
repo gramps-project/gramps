@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-11-19 22:00+0000\n"
+"PO-Revision-Date: 2024-12-10 23:12+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -724,11 +724,10 @@ msgid ""
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Lies das Handbuch</b><br/>Vergiss nicht, das Gramps-Handbuch zu lesen, "
-"das du unter \"Hilfe &gt; Benutzerhandbuch\" findest. Die Entwickler haben "
-"hart daran gearbeitet, die Bedienung intuitiv zu gestalten. Das Handbuch ist "
-"voll mit Informationen, die dir helfen, deine Zeit beim Ahnenforschen noch "
-"produktiver zu machen."
+"<b>Lies das Handbuch</b><br/>Vergiss nicht, das Gramps-Handbuch unter \"Hilfe"
+" &gt; Benutzerhandbuch\" zu lesen. Zwar haben sich die Entwickler sehr darum "
+"bemüht die Bedienung intuitiv zu gestalten, aber das Handbuch ist voller "
+"Informationen, die deine Zeit beim Ahnenforschen noch produktiver machen."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -1032,8 +1031,8 @@ msgstr ""
 "<b>Datenschutz in Gramps</b><br/>Gramps hilft dir, persönliche Informationen "
 "geheim zu halten, indem du Informationen als vertraulich kennzeichnest. Als "
 "vertraulich gekennzeichnete Daten können von den Berichten und Datenexporten "
-"ausgeschlossen werden. Achte auf das Vorhängeschloss, das Einträge als "
-"vertraulich oder öffentlich festlegt."
+"ausgeschlossen werden. Achte auf das Vorhängeschloss, das Einträge zwischen "
+"vertraulich und öffentlich umschaltet."
 
 #: ../data/tips.xml:100
 msgid ""
@@ -1044,13 +1043,13 @@ msgid ""
 "confirm the accurate transcription of what appears to be an error in a "
 "source."
 msgstr ""
-"<b>Praxis für gute Einträge</b><br/>Sei genau beim Aufschreiben von "
-"genealogischen Informationen. Stelle nicht bereits eine Hypothese auf, "
-"während du erste Informationen hast; schreibe genau auf, wie du es siehst. "
-"Verwende eingeklammerte Kommentare, um Anfügungen, Löschungen und "
-"Kommentareanzugeben. Bei einer sehr genauen Niederschrift empfiehlt es sich, "
-"erkannte Quellenfehler mit dem lateinischen \"[sic!]\" als bewusst zitierte "
-"Fehler zu markieren."
+"<b>Praxis für gute Einträge</b><br/>Sei genau beim Eintragen von "
+"genealogischen Informationen. Stelle keine Vermutungen an, wenn du "
+"Primärinformationen sammelst; schreibe sie genau so auf, wie du sie "
+"vorfindest. Verwende Kommentare in Klammern, um deine Ergänzungen, "
+"Streichungen oder Kommentare anzugeben. Die Verwendung des lateinischen \""
+"[sic]\" wird empfohlen, um die genaue Übersetzung eines anscheinend "
+"fehlerhaften Quelltextes zu bestätigen."
 
 #: ../data/tips.xml:102
 msgid ""
@@ -1082,8 +1081,8 @@ msgid ""
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
-"<b>Gramps-Ankündigungen</b><br/>Bist du daran interessiert, informiert zu "
-"werden, wenn eine neue Version von Gramps erscheint? Tritt der Gramps-"
+"<b>Gramps-Ankündigungen</b><br/>Bist du daran interessiert, benachrichtigt "
+"zu werden, wenn eine neue Version von Gramps erscheint? Tritt der Gramps-"
 "Mailingliste unter \"Hilfe &gt; Gramps-Mailinglisten\" bei."
 
 #: ../data/tips.xml:108
@@ -1094,10 +1093,9 @@ msgid ""
 "copy of original documents."
 msgstr ""
 "<b>Zeichne deine Quellen auf</b><br/>Gesammelte Informationen über deine "
-"Familie sind nur so gut, wie die Quelle, von der sie stammen. Nimm dir Zeit "
-"und Geduld, alle Details aufzuschreiben, von woher die Informationen "
-"stammen. Wenn es möglich ist, mache dir eine Kopie von den "
-"Originaldokumenten."
+"Familie sind nur so gut wie die Quelle, von der sie stammen. Nimm dir die "
+"Zeit und Geduld, alle Details aufzuschreiben, woher die Informationen "
+"stammen. Wenn möglich, besorge dir eine Kopie von den Originaldokumenten."
 
 #: ../data/tips.xml:110
 msgid ""
@@ -3454,9 +3452,9 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Du kannst Folgendes starten:\n"
-"Werkzeuge -> Stammbaumverarbeitung -> Zusammenführen,\n"
-"um Fundstellen zusammenzuführen, die gleiche\n"
+"Du kannst Folgendes ausführen:\n"
+"Werkzeuge -> Stammbaumverarbeitung -> Zusammenführen\n"
+"um Fundstellen zusammenzuführen, die gleichartige\n"
 "Informationen enthalten"
 
 #: ../gramps/gen/db/upgrade.py:1189
@@ -7885,7 +7883,7 @@ msgstr "Bildungsabschluss"
 
 #: ../gramps/gen/lib/eventtype.py:213
 msgid "Medical Information"
-msgstr "Medizinische Informationen"
+msgstr "Medizinische Daten"
 
 #: ../gramps/gen/lib/eventtype.py:214
 msgid "Military Service"
@@ -8111,7 +8109,7 @@ msgstr "Grad."
 #: ../gramps/gen/lib/eventtype.py:264
 msgctxt "Medical Information abbreviation"
 msgid "medinf."
-msgstr "Med."
+msgstr "med. Daten"
 
 #: ../gramps/gen/lib/eventtype.py:265
 msgctxt "Military Service abbreviation"
@@ -9174,7 +9172,7 @@ msgstr "Autor"
 
 #: ../gramps/gen/lib/src.py:110
 msgid "Publication info"
-msgstr "Veröffentlichungsinformation"
+msgstr "Veröffentlichungsdaten"
 
 #: ../gramps/gen/lib/src.py:121
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
@@ -12095,8 +12093,8 @@ msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
 msgstr ""
-"Gib Informationen über dich ein, damit dich Personen kontaktieren können, "
-"wenn du deinen Stammbaum weitergibst."
+"Gib Daten über dich ein, damit dich Personen kontaktieren können, wenn du "
+"deinen Stammbaum weitergibst."
 
 #: ../gramps/gui/configure.py:766 ../gramps/gui/configure.py:867
 msgid "ID Formats"
@@ -13383,11 +13381,11 @@ msgstr ""
 "%(bold_start)sDetails:%(bold_end)s Das Reparieren eines Stammbaums verwendet "
 "tatsächlich das letzte Backup des Stammbaums, das Gramps bei der letzten "
 "Verwendung gespeichert hat. Wenn du mehrere Stunden/Tage gearbeitet hast, "
-"ohne Gramps zu schließen, gehen all diese Informationen verloren! Wenn die "
-"Reparatur fehlschlägt, geht der ursprüngliche Stammbaum für immer verloren, "
-"daher ist ein Backup erforderlich. Wenn die Reparatur fehlschlägt oder zu "
-"viele Informationen verloren gehen, kannst du den ursprünglichen Stammbaum "
-"manuell reparieren. Einzelheiten findest du auf der Webseite\n"
+"ohne Gramps zu schließen, gehen all diese Daten verloren! Wenn die Reparatur "
+"fehlschlägt, geht der ursprüngliche Stammbaum für immer verloren, daher ist "
+"ein Backup erforderlich. Wenn die Reparatur fehlschlägt oder zu viele Daten "
+"verloren gehen, kannst du den ursprünglichen Stammbaum manuell reparieren. "
+"Einzelheiten findest du auf der Webseite\n"
 "%(gramps_wiki_recover_url)s\n"
 "Versuche vor einer Reparatur, den Stammbaum auf die übliche Weise zu öffnen. "
 "Mehrere Fehler, die die Reparatur-Schaltfläche auslösen, können automatisch "
@@ -14750,13 +14748,13 @@ msgid ""
 "To make sure the information shown is still correct, the data shown has been "
 "updated. Some edits you have made may have been lost."
 msgstr ""
-"Das %(object)s das du bearbeitest wurde außerhalb dieses Editors geändert. "
-"Dies kann wegen einer Änderung in einer der Hauptansichten geschehen sein z."
-"B. eine Quelle, die hier verwendet wird, wurde in der Quellenansicht "
+"Das %(object)s das du bearbeitest, wurde außerhalb dieses Editors geändert. "
+"Dies kann wegen einer Änderung in einer der Hauptansichten geschehen sein, "
+"z.B. wurde eine Quelle, die hier verwendet wird, in der Quellenansicht "
 "gelöscht.\n"
-"Um sicher zu stellen, das die angezeigten Informationen noch stimmen, wurden "
-"die angezeigten Daten aktualisiert. Einige ihrer Änderungen können verloren "
-"gegangen sein."
+"Um sicherzustellen, dass die angezeigten Informationen noch korrekt sind, "
+"wurden die angezeigten Daten aktualisiert. Einige deiner Änderungen könnten "
+"verloren gegangen sein."
 
 #: ../gramps/gui/editors/editfamily.py:589
 #: ../gramps/plugins/importer/importcsv.py:348
@@ -15064,7 +15062,7 @@ msgstr "Nur diesen Namen gruppieren"
 #: ../gramps/gui/editors/editnote.py:74
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "Informationen_Über_Notizen_Bearbeiten"
+msgstr "Informationen_.C3.BCber_Notizen_bearbeiten"
 
 #: ../gramps/gui/editors/editnote.py:175
 #, python-format
@@ -15133,7 +15131,7 @@ msgstr "Neue Person"
 #: ../gramps/gui/editors/editperson.py:262
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "Informationen_über_Personen_bearbeiten"
+msgstr "Informationen_.C3.BCber_Personen_bearbeiten"
 
 #: ../gramps/gui/editors/editperson.py:690
 #: ../gramps/plugins/view/geofamily.py:499
@@ -15161,8 +15159,9 @@ msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
-"Die Änderung des Geschlechts verursachte Probleme bei den Eheinformationen.\n"
-"Bitte überprüfe die Ehen der Person."
+"Die Änderung des Geschlechts verursachte Probleme bei den "
+"Eheschließungsdaten.\n"
+"Bitte überprüfe die Ehenschließungen der Person."
 
 #: ../gramps/gui/editors/editperson.py:924
 msgid "Cannot save person"
@@ -16438,14 +16437,14 @@ msgid ""
 "Note: several predefined attributes refer to values present in the GEDCOM "
 "standard."
 msgstr ""
-"Der Name eines Attributs, das du verwenden möchtest. Zum Beispiel: Größe "
-"(für eine Person), Tageswetter (für ein Ereignis), …\n"
-"Verwende dies, wenn du Details von gesammelten Informationen speichern, und "
-"Quellen korrekt zugeordnet haben willst. Attribute können für Personen, "
-"Familien, Ereignisse und Medien verwendet werden.\n"
+"Der Name eines Attributs, das du verwenden möchtest. Zum Beispiel: Größe ("
+"einer Person), Tageswetter (bei einem Ereignis), …\n"
+"Verwende dies, um Informationsschnipsel zu speichern, die du sammelst und "
+"deren Quellen du korrekt zugeordnet haben möchtest. Attribute können für "
+"Personen, Familien, Ereignisse und Medien verwendet werden.\n"
 " \n"
-"Beachte: Einige vordefinierte Attribute beziehen sich auf Werte, die im "
-"GEDCOM Standard vorhanden sind."
+"Hinweis: Einige vordefinierte Attribute beziehen sich auf Werte, die im "
+"GEDCOM-Standard vorhanden sind."
 
 #: ../gramps/gui/glade/editchildref.glade:97
 msgid "Relationship to _Mother:"
@@ -16685,7 +16684,7 @@ msgstr "Eine eindeutige ID zur Identifizierung des Ereignisses"
 #: ../gramps/gui/glade/editplaceref.glade:86
 #: ../gramps/gui/glade/editreporef.glade:97
 msgid "Reference information"
-msgstr "Informationen zur Referenz"
+msgstr "Referenzdaten"
 
 #: ../gramps/gui/glade/editeventref.glade:118
 msgid "_Role:"
@@ -16696,14 +16695,14 @@ msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
 msgstr ""
-"<b>Anmerkung:</b> Jede Änderung in geteilten Ereignisinformationen werden "
-"das Ereignis selbst und damit auch die davon abhängigen Personen ändern."
+"<b>Hinweis:</b> Alle Änderungen in den gemeinsamen Ereignisdaten werden im "
+"Ereignis selbst für alle Teilnehmer des Ereignisses übernommen."
 
 #: ../gramps/gui/glade/editeventref.glade:626
 #: ../gramps/gui/glade/editplaceref.glade:696
 #: ../gramps/gui/glade/editreporef.glade:461
 msgid "Shared information"
-msgstr "Geteilte Informationen"
+msgstr "Gemeinsame Daten"
 
 #: ../gramps/gui/glade/editfamily.glade:29
 #: ../gramps/gui/glade/editname.glade:29
@@ -16738,7 +16737,7 @@ msgstr "Zeigt an, ob der Eintrag vertraulich ist"
 
 #: ../gramps/gui/glade/editfamily.glade:653
 msgid "Relationship Information"
-msgstr "Informationen zur Beziehung"
+msgstr "Beziehungsdaten"
 
 #: ../gramps/gui/glade/editfamily.glade:683
 msgid "A unique ID for the family"
@@ -16760,7 +16759,7 @@ msgid ""
 "details."
 msgstr ""
 "Die Beziehungsart, z.B. \"Verheiratet\" oder \"Unverheiratet\". Verwende "
-"Ereignisse für genauere Informationen."
+"Ereignisse für mehr Details."
 
 #: ../gramps/gui/glade/editfamily.glade:733
 #: ../gramps/gui/glade/editmedia.glade:360
@@ -16970,8 +16969,8 @@ msgid ""
 "<b>Note:</b> Any changes in the shared media object information will be "
 "reflected in the media object itself."
 msgstr ""
-"<b>Anmerkung:</b> Alle Änderungen an geteilten Medienobjektinformationen "
-"beeinflussen auch das Medienobjekt selbst."
+"<b>Hinweis:</b> Alle Änderungen in den gemeinsamen Medienobjektdaten werden "
+"für das Medienobjekt selbst übernommen."
 
 #: ../gramps/gui/glade/editmediaref.glade:488
 msgid "Double click image to view in an external viewer"
@@ -16987,7 +16986,7 @@ msgstr "Eine Datei wählen"
 
 #: ../gramps/gui/glade/editmediaref.glade:771
 msgid "Shared Information"
-msgstr "Geteilte Informationen"
+msgstr "Gemeinsame Daten"
 
 #: ../gramps/gui/glade/editname.glade:118
 #: ../gramps/gui/glade/editperson.glade:316
@@ -17227,8 +17226,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editperson.glade:511
 msgid "Go to Name Editor to add more information about this name"
-msgstr ""
-"Gehe zum Namen-Editor, um mehr Informationen zu diesem Namen hinzuzufügen"
+msgstr "Gehe zum Namenseditor, um mehr Daten über diesen Namen hinzuzufügen"
 
 #: ../gramps/gui/glade/editperson.glade:536
 msgid "O_rigin:"
@@ -17354,8 +17352,7 @@ msgstr ""
 #: ../gramps/gui/glade/editplaceref.glade:378
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Feld wird verwendet, um Informationen von einer Webseite hineinzukopieren "
-"wie Google, OpenStreetMap, …"
+"Feld um Infos von einer Webseite wie Google, OpenStreetMap, … einzufügen"
 
 #: ../gramps/gui/glade/editplace.glade:267
 #: ../gramps/gui/glade/editplaceref.glade:498
@@ -17431,9 +17428,8 @@ msgid ""
 "<b>Note:</b> Any changes in the enclosing place information will be "
 "reflected in the place itself, for places that it encloses."
 msgstr ""
-"<b>Anmerkung:</b> Alle Änderungen an gemeinsam genutzten Orteinformationen "
-"werden sich auf die Orte auswirken, und für alles, das mit dem Ort "
-"zusammenhängt."
+"<b>Hinweis:</b> Alle Änderungen in den Daten zum umschließenden Ort werden "
+"im Ort selbst für Orte, die er umschließt, übernommen."
 
 #: ../gramps/gui/glade/editreporef.glade:128
 msgid "_Media Type:"
@@ -17469,9 +17465,9 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>Anmerkung:</b> Alle Änderungen in den geteilten "
-"Aufbewahrungsortinformationen werden den Aufbewahrungsort selbst und "
-"Referenzen des Aufbewahrungsortes verändern."
+"<b>Hinweis:</b> Alle Änderungen in den gemeinsamen Daten für "
+"Aufbewahrungsorte werden im Aufbewahrungsort selbst für alle Elemente, die "
+"auf den Aufbewahrungsort verweisen, übernommen."
 
 #: ../gramps/gui/glade/editreporef.glade:371
 #: ../gramps/gui/glade/editrepository.glade:179
@@ -17498,15 +17494,13 @@ msgstr "Autoren der Quelle."
 
 #: ../gramps/gui/glade/editsource.glade:154
 msgid "_Pub. info.:"
-msgstr "_Pub. info.:"
+msgstr "_Pub.daten:"
 
 #: ../gramps/gui/glade/editsource.glade:168
 msgid ""
 "Publication Information, such as city and year of publication, name of "
 "publisher, ..."
-msgstr ""
-"Veröffentlichungsinformationen wie Stadt und Jahr der Veröffentlichung, Name "
-"des Herausgebers,…"
+msgstr "Publikationsdaten wie Stadt und Jahr der Publikation, Herausgebername,…"
 
 #: ../gramps/gui/glade/editsource.glade:181
 msgid ""
@@ -17812,7 +17806,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/mergeperson.glade:500
 msgid "Context Information"
-msgstr "Kontextinformation"
+msgstr "Kontextdaten"
 
 #: ../gramps/gui/glade/mergeplace.glade:94
 msgid ""
@@ -18407,7 +18401,7 @@ msgstr "Änderungen _verwerfen und beenden"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_About"
-msgstr "_Info"
+msgstr "_Über"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Addon Manager..."
@@ -18647,8 +18641,7 @@ msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
 msgstr ""
-"Wenn du irgendwelche persönliche Informationen in dem Fehler findest, "
-"entferne diese."
+"Wenn du irgendwelche persönliche Daten im Fehler findest, entferne diese."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:367
 #: ../gramps/gui/logger/_errorreportassistant.py:399
@@ -18662,8 +18655,8 @@ msgid ""
 "error in the following pages of the assistant."
 msgstr ""
 "Detaillierte Gramps-Fehlerinformationen. Du brauchst dir keine Sorgen "
-"machen, wenn du sie nicht verstehst. Du wirst die Möglichkeit haben, weitere "
-"Details über den Fehler auf den folgenden Seiten des Assistenten "
+"machen, wenn du sie nicht verstehst. Du hast die Möglichkeit, auf den "
+"folgenden Seiten des Assistenten weitere Details über den Fehler "
 "hinzuzufügen."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:408
@@ -18685,7 +18678,7 @@ msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
 msgstr ""
-"Das sind die Informationen über dein System, die den Entwicklern helfen, den "
+"Das sind die Informationen zu deinem System, die den Entwicklern helfen, den "
 "Fehler zu beheben."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:494
@@ -18694,7 +18687,7 @@ msgid ""
 "the error occurred."
 msgstr ""
 "Bitte gib so viele Informationen wie möglich darüber an, was du getan hast, "
-"als der Fehler auftrat."
+"als der Fehler aufgetreten ist."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:536
 #: ../gramps/gui/logger/_errorreportassistant.py:565
@@ -18714,10 +18707,9 @@ msgid ""
 "understand the detail of the error information. Just make sure that it does "
 "not contain anything that you do not want to be sent to the developers."
 msgstr ""
-"Bitte überprüfe, dass die Informationen richtig sind. Du musst dir keine "
-"Sorgen machen, wenn du die Details des Fehlers nicht verstehst. Vergewissere "
-"dich, dass nichts enthalten ist, was du nicht an die Entwickler senden "
-"willst."
+"Bitte überprüfe, dass die Daten richtig sind. Du musst dir keine Sorgen "
+"machen, wenn du die Details des Fehlers nicht verstehst. Vergewissere dich, "
+"dass nichts enthalten ist, was du nicht an die Entwickler senden willst."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:609
 #: ../gramps/gui/logger/_errorreportassistant.py:640
@@ -19413,7 +19405,7 @@ msgstr "Dateiname"
 
 #: ../gramps/gui/plug/_windows.py:1644
 msgid "Detailed Info"
-msgstr "Detaillierte Information"
+msgstr "Ausführliche Daten"
 
 #: ../gramps/gui/plug/_windows.py:1699
 msgid "Plugin Error"
@@ -20119,7 +20111,7 @@ msgstr "Fehler beim Speichern der Stilvorlage"
 #: ../gramps/plugins/textreport/detancestralreport.py:979
 #: ../gramps/plugins/textreport/detdescendantreport.py:1210
 msgid "Missing information"
-msgstr "Abgehende Information"
+msgstr "Fehlende Daten"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:191
 #: ../gramps/gui/plug/report/_styleeditor.py:206
@@ -20901,7 +20893,7 @@ msgstr "Eintrag ist vertraulich"
 
 #: ../gramps/gui/widgets/buttons.py:168
 msgid "Record is public"
-msgstr "Information ist öffentlich"
+msgstr "Eintrag ist öffentlich"
 
 #: ../gramps/gui/widgets/expandcollapsearrow.py:93
 msgid "Expand this section"
@@ -22535,7 +22527,7 @@ msgstr "Zeichne leere Kästen"
 
 #: ../gramps/plugins/drawreport/fanchart.py:833
 msgid "Draw the background although there is no information"
-msgstr "Hintergrund auch ohne Informationen zeichnen"
+msgstr "Hintergrund zeichnen, obwohl es keine Daten gibt"
 
 #: ../gramps/plugins/drawreport/fanchart.py:837
 msgid "Use one font style for all generations"
@@ -22716,7 +22708,7 @@ msgstr "Abgehende Geburt"
 #: ../gramps/plugins/drawreport/statisticschart.py:736
 #: ../gramps/plugins/drawreport/statisticschart.py:1045
 msgid "Personal information missing"
-msgstr "Abgehende persönliche Informationen"
+msgstr "Fehlende persönliche Daten"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:887
 #: ../gramps/plugins/drawreport/timeline.py:129
@@ -22838,15 +22830,15 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1176
 msgid "Include counts of missing information"
-msgstr "Anzahl abgehender Informationen einfügen"
+msgstr "Anzahl fehlender Daten einfügen"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1180
 msgid ""
 "Whether to include counts of the number of people who lack the given "
 "information."
 msgstr ""
-"Ob die Anzahl von Personen eingefügt wird, bei denen die angegebenen "
-"Informationen fehlt."
+"Ob die Anzahl von Personen eingefügt wird, bei denen die angegebenen Daten "
+"fehlen."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1215
 msgid "Charts 3"
@@ -22901,7 +22893,7 @@ msgstr "Sortiert nach %s"
 #: ../gramps/plugins/drawreport/timeline.py:324
 #: ../gramps/plugins/lib/libgedcom.py:8377
 msgid "No Date Information"
-msgstr "Keine Datumsinformation"
+msgstr "Keine Datumsangaben"
 
 #: ../gramps/plugins/drawreport/timeline.py:351
 msgid "Finding date range..."
@@ -23514,8 +23506,8 @@ msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
 msgstr ""
-"  6. %(gramps_manual_html_start)s%(section)sWie sollten Informationen über "
-"Hochzeiten eingegeben werden?%(html_end)s\n"
+"  6. %(gramps_manual_html_start)s%(section)sWie sollten Eheschließungdaten "
+"eingegeben werden?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:148
 #, python-format
@@ -24741,7 +24733,7 @@ msgstr "Einzeln stehende Personen"
 #: ../gramps/plugins/webreport/statistics.py:144
 #: ../gramps/plugins/webreport/statistics.py:254
 msgid "Family Information"
-msgstr "Familieninformation"
+msgstr "Familiendaten"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:191
 #: ../gramps/plugins/webreport/statistics.py:152
@@ -24968,9 +24960,9 @@ msgstr ""
 "\n"
 "Wechsle zur Ansicht \"Personen\" und klicke im Menü auf \"Hinzufügen\" und "
 "dann auf \"Person\" (oder verwende das [+]-Symbol), um das Fenster zur "
-"Eingabe einer Person aufzurufen. Wenn du die grundlegenden Informationen "
-"eingibst und den Eintrag speicherst, hast du einen Ausgangspunkt. Wähle den "
-"Eintrag dieser Person aus und wechsle nun in die Ansicht \"Beziehungen\".\n"
+"Eingabe einer Person aufzurufen. Wenn du die grundlegenden Daten eingibst "
+"und den Eintrag speicherst, hast du einen Ausgangspunkt. Wähle den Eintrag "
+"dieser Person aus und wechsle nun in die Ansicht \"Beziehungen\".\n"
 "\n"
 "Bei dieser ersten Person sind nun alle Menüoptionen und Symbolfunktionen "
 "verfügbar. Fahre mit der Maus über die Symbole. Wenn dein Mauszeiger über "
@@ -24984,11 +24976,11 @@ msgstr ""
 "Personen und Familien hinzufügen. Du kannst Quellen und Zitate angeben, um "
 "deine Einträge zu dokumentieren.\n"
 "\n"
-"Wenn du beginnst, Gramps zu benutzen, wirst du feststellen, dass "
-"Informationen aus allen verschiedenen Ansichten eingegeben werden können. Es "
-"gibt mehrere Möglichkeiten, die meisten Aktivitäten in Gramps durchzuführen. "
-"Diese Flexibilität erlaubt es dir, diejenige zu wählen, die zu deinem "
-"Arbeitsstil passt.\n"
+"Wenn du beginnst, Gramps zu benutzen, wirst du feststellen, dass Daten aus "
+"allen verschiedenen Ansichten eingegeben werden können. Es gibt mehrere "
+"Möglichkeiten, die meisten Aktivitäten in Gramps durchzuführen. Diese "
+"Flexibilität erlaubt es dir, diejenige zu wählen, die zu deinem Arbeitsstil "
+"passt.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:203
@@ -26699,8 +26691,8 @@ msgid ""
 "Use death information\n"
 "as cause of death event."
 msgstr ""
-"Verwende Todesinformation\n"
-"als Todesursachen-Ereignis."
+"Verwende Todesdaten\n"
+"als Todesursachenereignis."
 
 #: ../gramps/plugins/importer/importprogen.glade:1598
 msgid "(-cause)"
@@ -26968,7 +26960,7 @@ msgid ""
 "The file will not be imported."
 msgstr ""
 "Die .gramps Datei, die du importieren willst, enthält keine Informationen "
-"über die Version von Gramps mit der sie erstellt wurde.\n"
+"über die Version von Gramps, mit der sie erstellt wurde.\n"
 "\n"
 "Die Datei wird nicht importiert."
 
@@ -27004,10 +26996,10 @@ msgstr ""
 "Gramps. Du benutzt jedoch eine neuere Version %(newgramps)s. \n"
 "\n"
 "Die Datei wird nicht importiert. Bitte verwende eine ältere Version von "
-"Gramps, die diese Version %(xmlversion)s von XML unterstützt.\n"
+"Gramps, die die xml-Version %(xmlversion)s unterstützt.\n"
 "Siehe\n"
 "  %(gramps_wiki_xml_url)s\n"
-"für mehr Informationen."
+"für weitere Infos."
 
 #: ../gramps/plugins/importer/importxml.py:1179
 msgid "The file will not be imported"
@@ -27033,10 +27025,10 @@ msgstr ""
 "Stelle nach dem Import sicher, dass alles korrekt importiert wurde. Sollten "
 "Probleme auftreten, melde bitte einen Fehler und verwende in der "
 "Zwischenzeit eine ältere Version von Gramps, um diese Datei zu importieren, "
-"die der Version %(xmlversion)s der xml entspricht.\n"
+"die der xml-Version %(xmlversion)s entspricht.\n"
 "Siehe\n"
 "  %(gramps_wiki_xml_url)s\n"
-"für weitere Informationen."
+"für weitere Infos."
 
 #: ../gramps/plugins/importer/importxml.py:1196
 msgid "Old xml file"
@@ -27623,7 +27615,7 @@ msgstr "Bild-Markierungen"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
 msgid "Camera Information"
-msgstr "Kamera-Informationen"
+msgstr "Kameradaten"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
 msgid "Location Tags"
@@ -31381,7 +31373,7 @@ msgstr "Liefert gemeinsame Funktionalität für Gramps-XML Import/Export."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:111
 msgid "Provides holiday information for different countries."
-msgstr "Liefert Feiertagsinformationen für verschiedene Länder."
+msgstr "Liefert Feiertagsdaten für verschiedene Länder."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:130
 msgid "Manages a HTML file implementing DocBackend."
@@ -33115,19 +33107,19 @@ msgstr "Das Nummerierungssystem, das verwendet wird"
 
 #: ../gramps/plugins/textreport/descendreport.py:588
 msgid "Show marriage info"
-msgstr "Eheschließungsinformation anzeigen"
+msgstr "Eheschließungsdaten anzeigen"
 
 #: ../gramps/plugins/textreport/descendreport.py:589
 msgid "Whether to show marriage information in the report."
-msgstr "Ob im Bericht Informationen zur Eheschließung angezeigt werden."
+msgstr "Ob im Bericht Eheschließungsdaten angezeigt werden."
 
 #: ../gramps/plugins/textreport/descendreport.py:592
 msgid "Show divorce info"
-msgstr "Scheidungsinformationen anzeigen"
+msgstr "Scheidungsdaten anzeigen"
 
 #: ../gramps/plugins/textreport/descendreport.py:593
 msgid "Whether to show divorce information in the report."
-msgstr "Ob im Bericht Informationen zur Scheidung angezeigt werden."
+msgstr "Ob im Bericht Scheidungsdaten angezeigt werden."
 
 #: ../gramps/plugins/textreport/descendreport.py:596
 msgid "Show birth and death info"
@@ -33135,7 +33127,7 @@ msgstr "Geburts- und Sterbedaten anzeigen"
 
 #: ../gramps/plugins/textreport/descendreport.py:598
 msgid "Whether to show birth and death information in the report."
-msgstr "Ob im Bericht Geburts- und Sterbeinformationen angezeigt werden."
+msgstr "Ob im Bericht Geburts- und Sterbedaten angezeigt werden."
 
 #: ../gramps/plugins/textreport/descendreport.py:602
 msgid "Show duplicate trees"
@@ -33543,7 +33535,7 @@ msgstr "Ehepartner einfügen"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1138
 msgid "Whether to include detailed spouse information."
-msgstr "Ob detaillierte Informationen über den Ehepartner eingefügt werden."
+msgstr "Ob detaillierte Daten über den Ehepartner eingefügt werden."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1141
 msgid "Include spouse reference"
@@ -33722,11 +33714,11 @@ msgstr "Ob die Generation in jedem Bericht eingefügt wird (nur rekursiv)."
 
 #: ../gramps/plugins/textreport/familygroup.py:816
 msgid "Print fields for missing information"
-msgstr "Drucke Felder für abgehende Informationen"
+msgstr "Drucke Felder für fehlende Daten"
 
 #: ../gramps/plugins/textreport/familygroup.py:817
 msgid "Whether to include fields for missing information."
-msgstr "Ob Felder für abgehende Informationen eingefügt werden."
+msgstr "Ob Felder für fehlende Daten eingefügt werden."
 
 #: ../gramps/plugins/textreport/familygroup.py:915
 msgid "The style used for the parent's name"
@@ -33795,7 +33787,7 @@ msgstr "Ob Personen- und Familiennotizen eingefügt werden."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1155
 msgid "Include Source Information"
-msgstr "Quellen-Informationen einfügen"
+msgstr "Quellenangaben einfügen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1156
 msgid "Whether to cite sources."
@@ -34142,7 +34134,7 @@ msgstr "Familienanzahl: %d"
 
 #: ../gramps/plugins/textreport/summary.py:247
 msgid "Event Information"
-msgstr "Ereignisinformation"
+msgstr "Ereignisdaten"
 
 #: ../gramps/plugins/textreport/summary.py:252
 #, python-format
@@ -34151,7 +34143,7 @@ msgstr "Anzahl der Ereignisse: %d"
 
 #: ../gramps/plugins/textreport/summary.py:261
 msgid "Place Information"
-msgstr "Ortsinformation"
+msgstr "Ortsdaten"
 
 #: ../gramps/plugins/textreport/summary.py:266
 #, python-format
@@ -34160,7 +34152,7 @@ msgstr "Anzahl der Orte: %d"
 
 #: ../gramps/plugins/textreport/summary.py:275
 msgid "Source Information"
-msgstr "Quelleninformation"
+msgstr "Quellenangaben"
 
 #: ../gramps/plugins/textreport/summary.py:280
 #, python-format
@@ -34169,7 +34161,7 @@ msgstr "Anzahl der Quellen: %d"
 
 #: ../gramps/plugins/textreport/summary.py:289
 msgid "Citation Information"
-msgstr "Fundstelleninformation"
+msgstr "Fundstellendaten"
 
 #: ../gramps/plugins/textreport/summary.py:294
 #, python-format
@@ -34178,7 +34170,7 @@ msgstr "Anzahl der Zitate: %d"
 
 #: ../gramps/plugins/textreport/summary.py:303
 msgid "Repository Information"
-msgstr "Aufbewahrungsort-Information"
+msgstr "Aufbewahrungsortdaten"
 
 #: ../gramps/plugins/textreport/summary.py:308
 #, python-format
@@ -34197,7 +34189,7 @@ msgstr "Gesamtgröße der Medienobjekte: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:364
 msgid "Note Information"
-msgstr "Notizinformation"
+msgstr "Notizdaten"
 
 #: ../gramps/plugins/textreport/summary.py:369
 #, python-format
@@ -34243,7 +34235,7 @@ msgstr "E-Mail-Adresse"
 #: ../gramps/plugins/textreport/tagreport.py:766
 #: ../gramps/plugins/view/sourceview.py:88
 msgid "Publication Information"
-msgstr "Publikationsinformation"
+msgstr "Publikationsdaten"
 
 #: ../gramps/plugins/textreport/tagreport.py:927
 msgid "The tag to use for the report"
@@ -34302,8 +34294,8 @@ msgid ""
 "Produces a family group report showing information on a set of parents and "
 "their children."
 msgstr ""
-"Erstellt einen Familien-Gruppenbericht mit Informationen über eine Menge von "
-"Eltern und deren Kinder."
+"Erstellt einen Familien-Gruppenbericht mit Daten über eine Gruppe von Eltern "
+"mit deren Kindern."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:218
 msgid "Produces a complete report on the selected people"
@@ -35224,9 +35216,9 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"Dieses Werkzeug ermöglicht Batch-Operationen auf in Gramps gespeicherten "
-"Medienobjekten. Es muss ein wichtiger Unterschied zwischen einem Gramps-"
-"Medienobjekt und seiner Datei gemacht werden.\n"
+"Dieses Werkzeug ermöglicht Batch-Operationen mit in Gramps gespeicherten "
+"Medienobjekten. Es gibt einen wichtigen Unterschied zwischen einem Gramps-"
+"Medienobjekt und seiner Datei.\n"
 "\n"
 "Das Gramps-Medienobjekt ist eine Sammlung von Daten über die Datei des "
 "Medienobjekts: sein Dateiname und/oder Pfad, seine Beschreibung, seine ID, "
@@ -35236,11 +35228,11 @@ msgstr ""
 "Die Dateien, die Bild, Ton, Video usw. enthalten, existieren separat auf "
 "deiner Festplatte. Diese Dateien werden nicht von Gramps verwaltet und sind "
 "nicht in der Gramps-Datenbank enthalten. Die Gramps-Datenbank speichert nur "
-"den Pfad und die Dateinamen.\n"
+"Pfad und Dateinamen.\n"
 "\n"
 "Mit diesem Werkzeug kann man nur die Einträge in der Gramps-Datenbank "
 "ändern. Wenn du die Dateien verschieben oder umbenennen willst, musst du das "
-"selbst tun, außerhalb von Gramps. Dann kannst du die Pfade mit diesem "
+"selbst tun, außerhalb von Gramps. Danach kannst du die Pfade mit diesem "
 "Werkzeug anpassen, damit die Medienobjekte die richtigen Dateispeicherorte "
 "speichern."
 
@@ -35529,11 +35521,11 @@ msgstr "Datenbankeigner_Informationen_bearbeiten"
 
 #: ../gramps/plugins/tool/ownereditor.py:104
 msgid "Database Owner Editor"
-msgstr "Datenbankeigentümer-Editor"
+msgstr "Datenbankbesitzer-Editor"
 
 #: ../gramps/plugins/tool/ownereditor.py:171
 msgid "Edit database owner information"
-msgstr "Informationen über Datenbankeigner bearbeiten"
+msgstr "Daten zum Datenbankbesitzer bearbeiten"
 
 #: ../gramps/plugins/tool/patchnames.glade:84
 msgid "_Accept and close"
@@ -35565,13 +35557,13 @@ msgstr ""
 "Lencastre\" angezeigt als:\n"
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
 "\n"
-"Starte dieses Werkzeug einige Male um Namen zu korrigieren, die mehrfache "
-"Informationen haben, die extrahiert werden können."
+"Starte dieses Werkzeug einige Male um Namen zu korrigieren, die mehrere "
+"Informationen enthalten, die extrahiert werden können."
 
 #: ../gramps/plugins/tool/patchnames.py:64
 msgctxt "manual"
 msgid "Extract_Information_from_Names"
-msgstr "Information_aus_Namen_extrahieren"
+msgstr "Informationen_aus_Namen_extrahieren"
 
 #: ../gramps/plugins/tool/patchnames.py:137
 msgid "Name and title extraction tool"
@@ -35595,7 +35587,7 @@ msgstr "Verbinder, die Nachnamen nicht aufteilen:"
 
 #: ../gramps/plugins/tool/patchnames.py:208
 msgid "Extracting Information from Names"
-msgstr "Information aus Namen extrahieren"
+msgstr "Extrahieren von Daten aus Namen"
 
 #: ../gramps/plugins/tool/patchnames.py:210
 msgid "Analyzing names"
@@ -35619,7 +35611,7 @@ msgstr "Zusammengesetzter Nachname"
 
 #: ../gramps/plugins/tool/patchnames.py:544
 msgid "Extract information from names"
-msgstr "Information aus Namen extrahieren"
+msgstr "Daten aus Namen extrahieren"
 
 #: ../gramps/plugins/tool/rebuild.py:78
 msgid "Rebuilding secondary indexes..."
@@ -36114,15 +36106,15 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:240
 msgid "Edit Database Owner Information"
-msgstr "Datenbankeigner Informationen bearbeiten"
+msgstr "Daten zum Datenbankbesitzer bearbeiten"
 
 #: ../gramps/plugins/tool/tools.gpr.py:241
 msgid "Allow editing database owner information."
-msgstr "Erlaubt das Bearbeiten der Datenbankeignerinformation."
+msgstr "Erlaubt das Bearbeiten der Daten zum Datenbankbesitzer."
 
 #: ../gramps/plugins/tool/tools.gpr.py:263
 msgid "Extract Information from Names"
-msgstr "Information aus Namen extrahieren"
+msgstr "Daten aus Namen extrahieren"
 
 #: ../gramps/plugins/tool/tools.gpr.py:265
 msgid ""
@@ -36513,7 +36505,7 @@ msgstr "Quelle: Abkürzung"
 #: ../gramps/plugins/view/citationlistview.py:111
 #: ../gramps/plugins/view/citationtreeview.py:104
 msgid "Source: Publication Information"
-msgstr "Quelle: Publikationsinformation"
+msgstr "Quelle: Publikationsdaten"
 
 #: ../gramps/plugins/view/citationlistview.py:112
 msgid "Source: Private"
@@ -37363,7 +37355,7 @@ msgstr "Maximale Anzahl der Orte (%d) ist erreicht."
 
 #: ../gramps/plugins/view/geoplaces.py:485
 msgid "Some information are missing."
-msgstr "Einige Informationen gehen ab."
+msgstr "Einige Daten fehlen."
 
 #: ../gramps/plugins/view/geoplaces.py:487
 msgid "Please, use filtering to reduce this number."
@@ -39442,7 +39434,7 @@ msgstr "Name"
 
 #: ../gramps/plugins/webreport/source.py:295
 msgid "Publication information"
-msgstr "Informationen zur Veröffentlichung"
+msgstr "Publikationsdaten"
 
 #: ../gramps/plugins/webreport/statistics.py:117
 msgid "Database overview"
