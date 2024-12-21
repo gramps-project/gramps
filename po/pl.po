@@ -15,13 +15,14 @@
 # Milan <mobrcian@hotmail.com>, 2023.
 # Michał Moczulski <michalmoczulski1a@gmail.com>, 2024.
 # Marcin Woroch <bishkopt@gmail.com>, 2024.
+# Gracjan Wiśniewski <gracjan122@op.pl>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-08-07 23:09+0000\n"
-"Last-Translator: Marcin Woroch <bishkopt@gmail.com>\n"
+"PO-Revision-Date: 2024-12-13 21:00+0000\n"
+"Last-Translator: Gracjan Wiśniewski <gracjan122@op.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -30,7 +31,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.9-rc\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -542,7 +543,6 @@ msgstr ""
 "„Narzędzia”."
 
 #: ../data/tips.xml:28
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools &gt; "
@@ -551,9 +551,9 @@ msgid ""
 msgstr ""
 "<b>Kalkulator relacji</b><br/>Aby sprawdzić czy dane dwie osoby w bazie są "
 "ze sobą spokrewnione (więzami krwi, nie przez ślub), możesz skorzystać z "
-"narzędzia dostępnego w &quot;Narzędzia &gt; Narzędzia &gt; Kalkulator "
-"relacji...&quot;. Dokładna relacja jak również wspólni przodkowie będą "
-"pokazani przez to narzędzie."
+"narzędzia dostępnego w\"Narzędzia &gt; Narzędzia &gt; Kalkulator relacji...\""
+". Dokładna relacja jak również wspólni przodkowie będą pokazani przez to "
+"narzędzie."
 
 #: ../data/tips.xml:30
 msgid ""
@@ -818,7 +818,6 @@ msgstr ""
 "możliwości, niektórzy z nich posiadają w bazie setki tysięcy osób."
 
 #: ../data/tips.xml:68
-#, fuzzy
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -826,12 +825,12 @@ msgid ""
 "Person then go to \"Bookmarks &gt; Add Bookmark\" or press Ctrl+D. You can "
 "also bookmark most of the other objects."
 msgstr ""
-"<b>Tworzenie zakładek z osobami</b><br/>Menu Zakładki na górze głównego okna "
+"<b>Tworzenie zakładek z osobami</b><br/>Menu Zakładek na górze głównego okna "
 "jest wygodnym miejscem do przechowywania nazwisk często używanych osób. "
-"Kliknięcie na osobę z zakładką uczyni tę osobę aktywną. Aby utworzyć "
-"zakładkę dla osoby, uczyń osobę aktywną, skorzystaj z opcji &gt; Zakładki "
-"&gt; Dodaj zakładkę &quot; albo wciśnij Ctrl+D. Możesz także dodać zakładki "
-"do większości obiektów dostępnych w bazie."
+"Kliknięcie na zakładkę z osobą uczyni tę osobę aktywną. Aby utworzyć "
+"zakładkę dla osoby, uczyń osobę aktywną, skorzystaj z opcji \"Zakładki &gt; "
+"Dodaj zakładkę\" albo wciśnij Ctrl+D. Możesz także dodać zakładki do "
+"większości obiektów dostępnych w bazie."
 
 #: ../data/tips.xml:70
 msgid ""
@@ -1146,10 +1145,10 @@ msgid ""
 "person is the person who is selected when the database is opened or when the "
 "home button is pressed."
 msgstr ""
-"<b>Osoba domowa</b><br/>Dowolna osoba może być wybrana jako osoba początkowa "
-"w programie. W tym celu wystarczy wybrać &quot;Edycja &gt; Oznacz jako osobę "
-"początkową&quot; w widoku osób. Osoba początkowa jest osobą wybieraną przy "
-"otwieraniu bazy danych lub naciśnięciu przycisku Początek."
+"<b>Osoba początkowa</b><br/>Dowolna osoba może być wybrana jako osoba "
+"początkowa w programie. W tym celu wystarczy wybrać \"Edycja &gt; Oznacz "
+"jako osobę początkową\" w widoku osób. Osoba początkowa jest osobą wybieraną "
+"przy otwieraniu bazy danych lub naciśnięciu przycisku Początek."
 
 #: ../data/tips.xml:122
 msgid ""
