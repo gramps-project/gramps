@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-20 03:09+0000\n"
+"PO-Revision-Date: 2024-08-10 20:09+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -5723,7 +5723,7 @@ msgstr "Personen mit unvollständigen Namen"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:47
 msgid "Matches people with firstname or lastname missing"
-msgstr "Liefert Personen, bei denen ein Vor- oder Nachname abgeht"
+msgstr "Liefert Personen, bei denen ein Vor- oder Nachname fehlt"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:47
 msgid "Ancestors of <person>"
@@ -6082,7 +6082,7 @@ msgstr "Personen mit unvollständigen Ereignissen"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:45
 msgid "Matches people with missing date or place in an event"
-msgstr "Liefert Personen mit Ereignis, in dem Datum oder Ort abgeht"
+msgstr "Liefert Personen mit Ereignis, in dem Datum oder Ort fehlt"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:46
 msgid "On date:"
@@ -8021,7 +8021,7 @@ msgstr "adopt."
 #: ../gramps/gen/lib/eventtype.py:246
 msgctxt "Adult Christening abbreviation"
 msgid "a.chr."
-msgstr "Erw. Taufe"
+msgstr "erw. get."
 
 #: ../gramps/gen/lib/eventtype.py:247
 msgctxt "Baptism abbreviation"
@@ -10517,7 +10517,7 @@ msgstr "Format und Sprache für Daten, mit Beispielen"
 #: ../gramps/gen/plug/report/stdoptions.py:370
 #: ../gramps/gen/plug/report/stdoptions.py:395
 msgid "Do not include"
-msgstr "Nicht eingefügen"
+msgstr "Nicht einfügen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:371
 #: ../gramps/gen/plug/report/stdoptions.py:401
@@ -17428,7 +17428,7 @@ msgid ""
 "codes. For example:  en, fr, de, nl ..."
 msgstr ""
 "Sprache, in der der Name des Ortes geschrieben ist. Gültige Werte sind "
-"zweistellige ISO-Schlüssel. Zum Beispiel: en, fr, de, nl, ..."
+"zweistellige ISO-Schlüssel. Zum Beispiel: en, fr, de, nl ..."
 
 #: ../gramps/gui/glade/editplaceref.glade:297
 msgid ""
@@ -17706,7 +17706,7 @@ msgid ""
 "Select the family that will provide the\n"
 "primary data for the merged family."
 msgstr ""
-"Wähle die Familie, die die Hauptdaten\n"
+"Wähle die Familie aus, die die Hauptdaten\n"
 "für die zusammengefasste Familie enthält."
 
 #: ../gramps/gui/glade/mergefamily.glade:187
@@ -26943,7 +26943,7 @@ msgstr "Die Gramps-XML, die du versuchst zu importieren, ist missgebildet."
 
 #: ../gramps/plugins/importer/importxml.py:906
 msgid "Attributes that link the data together are missing."
-msgstr "Es gehen Attribute ab, die die Daten miteinander verbinden."
+msgstr "Es fehlen Attribute, die die Daten miteinander verbinden."
 
 #: ../gramps/plugins/importer/importxml.py:1050
 msgid "Gramps XML import"
@@ -33591,7 +33591,7 @@ msgstr "Sackgassen-Liste für %s"
 #: ../gramps/plugins/textreport/endoflinereport.py:174
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
-msgstr "Alle Vorfahren von %s, bei denen ein Elternteil abgeht"
+msgstr "Alle Vorfahren von %s, bei denen ein Elternteil fehlt"
 
 #: ../gramps/plugins/textreport/endoflinereport.py:317
 #: ../gramps/plugins/textreport/placereport.py:552
@@ -37882,7 +37882,7 @@ msgstr "Diagramme"
 
 #: ../gramps/plugins/view/view.gpr.py:154
 msgid "A view showing parents through a fanchart"
-msgstr "Eine Ansicht, die die Eltern durch ein Fächerdiagramm zeigt an"
+msgstr "Eine Ansicht, die die Eltern durch ein Fächerdiagramm anzeigt"
 
 #: ../gramps/plugins/view/view.gpr.py:170
 msgid "Showing descendants through a fanchart"

@@ -2,75 +2,78 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Nick Hall <nick-h@gramps-project.org>, 2023.
+# Abolfazl Mazloomi <firetooth10@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-08-25 18:20+0000\n"
+"Last-Translator: Abolfazl Mazloomi <firetooth10@gmail.com>\n"
+"Language-Team: Persian <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.7.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
-msgstr ""
+msgstr "بلغارستان"
 
 #: ../data/holidays.xml:52
 msgid "Canada"
-msgstr ""
+msgstr "کانادا"
 
 #: ../data/holidays.xml:84
 msgid "Catalonia"
-msgstr ""
+msgstr "کاتالونیا"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
-msgstr ""
+msgstr "شیلی"
 
 #: ../data/holidays.xml:124
 msgid "China"
-msgstr ""
+msgstr "چین"
 
 #: ../data/holidays.xml:127
 msgid "Croatia"
-msgstr ""
+msgstr "کرواسی"
 
 #: ../data/holidays.xml:143
 msgid "Czech Republic"
-msgstr ""
+msgstr "جمهوری چک"
 
 #: ../data/holidays.xml:158
 msgid "England"
-msgstr ""
+msgstr "انگلستان"
 
 #: ../data/holidays.xml:188
 msgid "Finland"
-msgstr ""
+msgstr "فنلاند"
 
 #: ../data/holidays.xml:282
 msgid "France"
-msgstr ""
+msgstr "فرانسه"
 
 #: ../data/holidays.xml:318
 msgid "Germany"
-msgstr ""
+msgstr "آلمان"
 
 #: ../data/holidays.xml:335
 msgid "Japan"
-msgstr ""
+msgstr "ژاپن"
 
 #: ../data/holidays.xml:358
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "تعطیلات یهودیان"
 
 #: ../data/holidays.xml:359
 msgid "Purim"
-msgstr ""
+msgstr "پوریم"
 
 #: ../data/holidays.xml:360
 msgid "Passover"
@@ -182,43 +185,43 @@ msgstr ""
 
 #: ../data/holidays.xml:388
 msgid "Italy"
-msgstr ""
+msgstr "ایتالیا"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
-msgstr ""
+msgstr "نیوزیلند"
 
 #: ../data/holidays.xml:418
 msgid "Russia"
-msgstr ""
+msgstr "روسیه"
 
 #: ../data/holidays.xml:434
 msgid "Serbia"
-msgstr ""
+msgstr "صربستان"
 
 #: ../data/holidays.xml:449
 msgid "Serbia (Latin)"
-msgstr ""
+msgstr "صربستان(لاتین)"
 
 #: ../data/holidays.xml:464
 msgid "Slovakia"
-msgstr ""
+msgstr "اسلواکی"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:49
 msgid "Sweden"
-msgstr ""
+msgstr "سوئد"
 
 #: ../data/holidays.xml:508
 msgid "Turkey"
-msgstr ""
+msgstr "ترکیه"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
-msgstr ""
+msgstr "اوکراین"
 
 #: ../data/holidays.xml:563
 msgid "United States of America"
-msgstr ""
+msgstr "ایالات متحده امریکا"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:3
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
@@ -7524,7 +7527,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:1941
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
-msgstr ""
+msgstr "رویدادها"
 
 #: ../gramps/gen/lib/family.py:194 ../gramps/gen/lib/person.py:248
 msgid "LDS ordinances"
@@ -8341,7 +8344,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:347
 #: ../gramps/plugins/tool/reorderids.glade:835
 msgid "Repository"
-msgstr ""
+msgstr "مخزن"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:524
 msgid "Repository ref"
@@ -8915,7 +8918,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:531
 msgid "Default"
-msgstr ""
+msgstr "پیش‌فرض"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 msgid "PostScript / Helvetica"
@@ -24255,7 +24258,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:372
 msgid "place"
-msgstr ""
+msgstr "مکان"
 
 #: ../gramps/plugins/importer/importcsv.py:373
 msgid "place id"
