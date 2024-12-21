@@ -54,5 +54,6 @@ class ProbablyAlive(Rule):
         except:
             self.current_date = None
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, data):
+        person = self.get_object(data)
         return probably_alive(person, db, self.current_date)

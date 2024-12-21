@@ -47,7 +47,8 @@ class IncompleteNames(Rule):
     description = _("Matches people with firstname or lastname missing")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, data):
+        person = self.get_object(data)
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.get_first_name().strip() == "":
                 return True

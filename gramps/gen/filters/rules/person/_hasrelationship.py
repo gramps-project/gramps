@@ -65,10 +65,11 @@ class HasRelationship(Rule):
             self.relationship_type = FamilyRelType()
             self.relationship_type.set_from_xml_str(self.list[1])
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db, data):
         """
         Apply the rule. Return True on a match.
         """
+        obj = self.get_object(data)
         relationship_type = 0
         total_children = 0
         number_relations = len(obj.get_family_handle_list())

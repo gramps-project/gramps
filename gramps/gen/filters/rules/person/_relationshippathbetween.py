@@ -95,8 +95,8 @@ class RelationshipPathBetween(Rule):
             self.apply_filter(rank + 1, family.get_father_handle(), plist, pmap)
             self.apply_filter(rank + 1, family.get_mother_handle(), plist, pmap)
 
-    def apply(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db, data):
+        return data["handle"] in self.map
 
     def init_list(self, p1_handle, p2_handle):
         firstMap = {}

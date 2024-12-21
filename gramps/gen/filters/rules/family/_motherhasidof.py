@@ -49,4 +49,4 @@ class MotherHasIdOf(RegExpIdBase):
     description = _("Matches families whose mother has a specified " "Gramps ID")
     category = _("Mother filters")
     base_class = RegExpIdBase
-    apply = mother_base
+    apply_to_one = mother_base

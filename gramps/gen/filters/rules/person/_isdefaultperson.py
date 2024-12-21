@@ -51,9 +51,8 @@ class IsDefaultPerson(Rule):
         p = db.get_default_person()
         if p:
             self.def_handle = p.get_handle()
-            self.apply = self.apply_real
         else:
-            self.apply = lambda db, p: False
+            self.def_handle = None
 
-    def apply_real(self, db, person):
-        return person.handle == self.def_handle
+    def apply_to_one(self, db, data):
+        return data["handle"] == self.def_handle

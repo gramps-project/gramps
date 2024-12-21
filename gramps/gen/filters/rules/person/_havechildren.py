@@ -48,7 +48,8 @@ class HaveChildren(Rule):
     description = _("Matches people who have children")
     category = _("Family filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, data):
+        person = self.get_object(data)
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             if family is not None and family.get_child_ref_list():

@@ -85,12 +85,12 @@ class MatchesFilterBase(Rule):
                 for rule in filt.flist:
                     rule.requestreset()
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db, data):
         if gramps.gen.filters.CustomFilters:
             filters = gramps.gen.filters.CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:
                 filt = filters[self.list[0]]
-                return filt.check(db, obj.handle)
+                return filt.apply_to_one(db, data)
         return False
 
     def find_filter(self):

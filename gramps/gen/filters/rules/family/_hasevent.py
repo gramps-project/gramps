@@ -56,11 +56,12 @@ class HasEvent(HasEventBase):
     name = _("Families with the <event>")
     description = _("Matches families with an event of a particular value")
 
-    def apply(self, dbase, family):
-        for event_ref in family.get_event_ref_list():
+    def apply_to_one(self, dbase, data):
+        family = self.get_object(data)
+        for event_ref in data["event_ref_list"]:
             if not event_ref:
                 continue
-            event = dbase.get_event_from_handle(event_ref.ref)
-            if HasEventBase.apply(self, dbase, event):
+            event_data = dbase.get_raw_event_data(event_ref["ref"])
+            if HasEventBase.apply_to_one(self, dbase, event_data):
                 return True
         return False
