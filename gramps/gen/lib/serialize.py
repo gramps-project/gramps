@@ -42,6 +42,51 @@ import gramps.gen.lib as lib
 LOG = logging.getLogger(".serialize")
 
 
+class DataDict(dict):
+    """
+    A wrapper around a data dict that also provides an
+    object interface.
+    """
+
+    def __str__(self):
+        if "_object" not in self:
+            self["_object"] = from_dict(self)
+        return str(self["_object"])
+
+    def __getattr__(self, key):
+        if key.startswith("_"):
+            raise AttributeError("can't use this API to access hidden attributes")
+
+        if key in self:
+            value = self[key]
+        else:
+            if "_object" not in self:
+                self["_object"] = from_dict(self)
+            return getattr(self["_object"], key)
+
+        if isinstance(value, dict):
+            return DataDict(value)
+        elif isinstance(value, list):
+            return DataList(value)
+        else:
+            return value
+
+
+class DataList(list):
+    """
+    A wrapper around a data list.
+    """
+
+    def __getitem__(self, position):
+        value = super().__getitem__(position)
+        if isinstance(value, dict):
+            return DataDict(value)
+        elif isinstance(value, list):
+            return DataList(value)
+        else:
+            return value
+
+
 def __object_hook(obj_dict):
     _class = obj_dict.pop("_class")
     cls = lib.__dict__[_class]
@@ -174,7 +219,7 @@ class JSONSerializer:
     @staticmethod
     def string_to_data(string):
         LOG.debug("json, string_to_data: %r...", string[:65])
-        return json.loads(string)
+        return DataDict(json.loads(string))
 
     @staticmethod
     def object_to_string(obj):

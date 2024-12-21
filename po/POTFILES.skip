@@ -84,6 +84,11 @@ gramps/gen/db/txn.py
 gramps/gen/db/undoredo.py
 gramps/gen/db/utils.py
 #
+# gen.db.conversion_tools package
+#
+gramps/gen/db/conversion_tools/__init__.py
+gramps/gen/db/conversion_tools/conversion_21.py
+#
 # gen.display package
 #
 gramps/gen/display/__init__.py
