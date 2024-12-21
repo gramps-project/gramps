@@ -19,3 +19,7 @@ paned>separator {
   margin: 0px;
   padding: 1px;
 }
+
+label.error {
+  color: @error_color;
+}

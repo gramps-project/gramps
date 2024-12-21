@@ -85,7 +85,9 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_name = widgets.BasicEntry()
         self.filter_id = widgets.BasicEntry()
         self.filter_birth = widgets.DateEntry(uistate, [])
+        self.filter_birth_place = widgets.BasicEntry()
         self.filter_death = widgets.DateEntry(uistate, [])
+        self.filter_death_place = widgets.BasicEntry()
         self.filter_event = Event()
         self.filter_event.set_type((EventType.CUSTOM, ""))
         self.etype = Gtk.ComboBox(has_entry=True)
@@ -163,11 +165,13 @@ class PersonSidebarFilter(SidebarFilter):
             self.filter_birth,
             _('example: "%(msg1)s" or "%(msg2)s"') % {"msg1": msg1, "msg2": msg2},
         )
+        self.add_text_entry(_("Birth place"), self.filter_birth_place)
         self.add_text_entry(
             _("Death date"),
             self.filter_death,
             _('example: "%(msg1)s" or "%(msg2)s"') % {"msg1": msg1, "msg2": msg2},
         )
+        self.add_text_entry(_("Death place"), self.filter_death_place)
         self.add_entry(_("Event"), self.etype)
         self.add_text_entry(_("Note"), self.filter_note)
         self.add_entry(_("Tag"), self.tag)
@@ -179,7 +183,9 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_name.set_text("")
         self.filter_id.set_text("")
         self.filter_birth.set_text("")
+        self.filter_birth_place.set_text("")
         self.filter_death.set_text("")
+        self.filter_death_place.set_text("")
         self.filter_note.set_text("")
         self.filter_gender.set_active(0)
         self.etype.get_child().set_text("")
@@ -196,7 +202,9 @@ class PersonSidebarFilter(SidebarFilter):
         name = extract_text(self.filter_name)
         gid = extract_text(self.filter_id)
         birth = extract_text(self.filter_birth)
+        birth_place = extract_text(self.filter_birth_place)
         death = extract_text(self.filter_death)
+        death_place = extract_text(self.filter_death_place)
         note = extract_text(self.filter_note)
 
         # extract remaining data from the menus
@@ -214,7 +222,9 @@ class PersonSidebarFilter(SidebarFilter):
             name
             or gid
             or birth
+            or birth_place
             or death
+            or death_place
             or etype
             or note
             or gender
@@ -271,13 +281,17 @@ class PersonSidebarFilter(SidebarFilter):
             # Arguments for the HasBirth filter are Date, Place, and Description
             # Since the value we extracted to the "birth" variable is the
             # request date, we pass it as the first argument
-            if birth:
-                rule = HasBirth([birth, "", ""])
+            if birth or birth_place:
+                rule = HasBirth(
+                    [birth, birth_place, ""], use_regex=regex, use_case=usecase
+                )
                 generic_filter.add_rule(rule)
 
             # Build death event filter if needed
-            if death:
-                rule = HasDeath([death, "", ""])
+            if death or death_place:
+                rule = HasDeath(
+                    [death, death_place, ""], use_regex=regex, use_case=usecase
+                )
                 generic_filter.add_rule(rule)
 
             # Build note filter if needed
