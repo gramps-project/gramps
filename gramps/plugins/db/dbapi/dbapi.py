@@ -65,6 +65,8 @@ from gramps.gen.lib.serialize import from_dict, to_dict
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
+from .select import Evaluator
+
 LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
 
@@ -1183,3 +1185,17 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
+
+    def select(self, table_name, where, order_by=[], env=None):
+        """
+        Select json_data from table_name where (string).
+        """
+        evaluator = Evaluator(
+            table_name,
+            'json_data->>"$.{attr}"',
+            env if env is not None else globals()
+        )
+        where_expr = str(evaluator.convert(where))
+        order_by_expr = evaluator.get_order_by(order_by)
+        self.dbapi.execute(f"SELECT json_data from {table_name} WHERE {where_expr}{order_by_expr};")
+        return [self.serializer.string_to_data(row[0]) for row in self.dbapi.fetchall()]
