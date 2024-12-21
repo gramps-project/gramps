@@ -61,14 +61,14 @@ class MatchesEventFilterBase(MatchesFilterBase):
         MatchesFilterBase.prepare(self, db, user)
         self.MEF_filt = self.find_filter()
 
-    def apply_to_one(self, db, data):
-        object = self.get_object(data)
+    def apply_to_one(self, db, object: dict) -> bool:
         if self.MEF_filt is None:
             return False
 
-        eventlist = [x.ref for x in object.get_event_ref_list()]
+        eventlist = [x.ref for x in object.event_ref_list]
         for eventhandle in eventlist:
             # check if event in event filter
+            event = db.get_raw_event_data(eventhandle)
             if self.MEF_filt.apply_to_one(db, eventhandle):
                 return True
         return False

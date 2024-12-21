@@ -67,12 +67,11 @@ class HasFamilyEvent(Rule):
         except:
             pass
 
-    def apply_to_one(self, db, data):
-        person = self.get_object(data)
-        for handle in person.get_family_handle_list():
-            family = db.get_family_from_handle(handle)
-            for event_ref in family.get_event_ref_list():
-                event = db.get_event_from_handle(event_ref.ref)
+    def apply_to_one(self, db, person: dict) -> bool:
+        for handle in person.family_list:
+            family = db.get_raw_family_data(handle)
+            for event_ref in family.event_ref_list:
+                event = db.get_raw_event_data(event_ref.ref)
                 val = 1
                 if self.event_type and event.type != self.event_type:
                     val = 0
@@ -80,12 +79,12 @@ class HasFamilyEvent(Rule):
                     if not self.match_substring(3, event.get_description()):
                         val = 0
                 if self.date:
-                    if not event.get_date_object().match(self.date):
+                    if not event.date.match(self.date):
                         val = 0
                 if self.list[2]:
                     place_id = event.get_place_handle()
                     if place_id:
-                        place = db.get_place_from_handle(place_id)
+                        place = db.get_raw_place_data(place_id)
                         place_title = place_displayer.display(db, place)
                         if not self.match_substring(2, place_title):
                             val = 0

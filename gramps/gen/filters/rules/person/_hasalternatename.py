@@ -48,8 +48,8 @@ class HasAlternateName(Rule):
     description = _("Matches people with an alternate name")
     category = _("General filters")
 
-    def apply_to_one(self, db, data):
-        if data["alternate_names"]:
+    def apply_to_one(self, db, person: dict) -> bool:
+        if person.alternate_names:
             return True
         else:
             return False

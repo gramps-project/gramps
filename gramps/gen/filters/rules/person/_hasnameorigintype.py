@@ -61,14 +61,13 @@ class HasNameOriginType(Rule):
             self.name_origin_type = NameOriginType()
             self.name_origin_type.set_from_xml_str(self.list[0])
 
-    def apply_to_one(self, _db, data):
+    def apply_to_one(self, _db, obj: dict) -> bool:
         """
         Apply the rule. Return True on a match.
         """
         if self.name_origin_type:
-            obj = self.get_object(data)
-            for name in [obj.get_primary_name()] + obj.get_alternate_names():
-                for surname in name.get_surname_list():
-                    if surname.get_origintype() == self.name_origin_type:
+            for name in [obj.primary_name] + obj.alternate_names:
+                for surname in name.surname_list:
+                    if surname.origintype == self.name_origin_type:
                         return True
         return False

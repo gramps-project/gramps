@@ -42,10 +42,11 @@ class HasDayOfWeek(Rule):
     description = _("Matches events occurring on a particular day of the week")
     category = _("General filters")
 
-    def apply_to_one(self, db, data):
-        event = self.get_object(data)
+    def apply_to_one(self, db, event: dict) -> bool:
         if not self.list[0]:
             return False
         else:
-            dow = event.get_date_object().get_dow()
-            return dow == int(self.list[0])
+            if event.date:
+                dow = event.date.get_dow()
+                return dow == int(self.list[0])
+            return False

@@ -63,15 +63,14 @@ class HasAttributeBase(Rule):
             self.attribute_type = AttributeType()
             self.attribute_type.set_from_xml_str(self.list[0])
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, obj: dict) -> bool:
         """
         Apply the rule. Return True if a match.
         """
-        obj = self.get_object(data)
         if self.attribute_type:
-            for attribute in obj.get_attribute_list():
-                name_match = attribute.get_type() == self.attribute_type
+            for attribute in obj.attribute_list:
+                name_match = attribute.type == self.attribute_type
                 if name_match:
-                    if self.match_substring(1, attribute.get_value()):
+                    if self.match_substring(1, attribute.value):
                         return True
         return False

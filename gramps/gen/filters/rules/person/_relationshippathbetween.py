@@ -57,8 +57,8 @@ class RelationshipPathBetween(Rule):
         self.db = db
         self.map = set()
         try:
-            root1_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-            root2_handle = db.get_person_from_gramps_id(self.list[1]).get_handle()
+            root1_handle = db._get_raw_person_from_id_data(self.list[0]).handle
+            root2_handle = db._get_raw_person_from_id_data(self.list[1]).handle
             self.init_list(root1_handle, root2_handle)
         except:
             pass
@@ -70,33 +70,33 @@ class RelationshipPathBetween(Rule):
         if not first:
             map.add(handle)
 
-        p = self.db.get_person_from_handle(handle)
-        for fam_id in p.get_family_handle_list():
-            fam = self.db.get_family_from_handle(fam_id)
+        p = self.db.get_raw_person_data(handle)
+        for fam_id in p.family_list:
+            fam = self.db.get_raw_family_data(fam_id)
             if fam:
-                for child_ref in fam.get_child_ref_list():
+                for child_ref in fam.child_ref_list:
                     if child_ref.ref:
                         self.desc_list(child_ref.ref, map, 0)
 
     def apply_filter(self, rank, handle, plist, pmap):
         if not handle:
             return
-        person = self.db.get_person_from_handle(handle)
+        person = self.db.get_raw_person_data(handle)
         if person is None:
             return
         plist.add(handle)
-        pmap[person.get_handle()] = rank
+        pmap[person.handle] = rank
 
-        fam_id = person.get_main_parents_family_handle()
+        fam_id = person.parents_family_list[0] if len(person.parents_family_list) > 0 else None
         if not fam_id:
             return
-        family = self.db.get_family_from_handle(fam_id)
+        family = self.db.get_raw_family_data(fam_id)
         if family is not None:
-            self.apply_filter(rank + 1, family.get_father_handle(), plist, pmap)
-            self.apply_filter(rank + 1, family.get_mother_handle(), plist, pmap)
+            self.apply_filter(rank + 1, family.father_handle, plist, pmap)
+            self.apply_filter(rank + 1, family.mother_handle, plist, pmap)
 
-    def apply_to_one(self, db, data):
-        return data["handle"] in self.map
+    def apply_to_one(self, db, person: dict) -> bool:
+        return person.handle in self.map
 
     def init_list(self, p1_handle, p2_handle):
         firstMap = {}

@@ -49,18 +49,17 @@ class HasFamilyAttribute(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, person: dict) -> bool:
         if not self.list[0]:
             return False
-        person = self.get_object(data)
-        for f_id in person.get_family_handle_list():
-            f = db.get_family_from_handle(f_id)
+        for f_id in person.family_list:
+            f = db.get_raw_family_data(f_id)
             if not f:
                 continue
-            for attr in f.get_attribute_list():
+            for attr in f.attribute_list:
                 if attr:
-                    name_match = self.list[0] == attr.get_type()
-                    value_match = self.match_substring(1, attr.get_value())
+                    name_match = self.list[0] == attr.type
+                    value_match = self.match_substring(1, attr.value)
                     if name_match and value_match:
                         return True
         return False

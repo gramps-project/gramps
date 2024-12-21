@@ -48,11 +48,11 @@ class IsDefaultPerson(Rule):
     description = _("Matches the Home Person")
 
     def prepare(self, db, user):
+        self.map = set()
         p = db.get_default_person()
         if p:
-            self.def_handle = p.get_handle()
-        else:
-            self.def_handle = None
+            self.map.add(p.handle)
 
-    def apply_to_one(self, db, data):
-        return data["handle"] == self.def_handle
+
+    def apply_to_one(self, db, person: dict) -> bool:
+        return person.handle in self.map

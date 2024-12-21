@@ -67,18 +67,17 @@ class HasData(Rule):
             self.place_type = PlaceType()
             self.place_type.set_from_xml_str(self.list[1])
 
-    def apply_to_one(self, _db, data):
-        obj = self.get_object(data)
+    def apply_to_one(self, _db, obj: dict) -> bool:
         """
         Apply the rule. Return True on a match.
         """
         if not self.match_name(obj):
             return False
 
-        if self.place_type and obj.get_type() != self.place_type:
+        if self.place_type and obj.place_type != self.place_type:
             return False
 
-        if not self.match_substring(2, obj.get_code()):
+        if not self.match_substring(2, obj.code):
             return False
 
         return True
@@ -88,6 +87,6 @@ class HasData(Rule):
         Match any name in a list of names.
         """
         for name in place.get_all_names():
-            if self.match_substring(0, name.get_value()):
+            if self.match_substring(0, name.value):
                 return True
         return False

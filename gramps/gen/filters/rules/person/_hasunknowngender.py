@@ -48,5 +48,5 @@ class HasUnknownGender(Rule):
     category = _("General filters")
     description = _("Matches all people with unknown gender")
 
-    def apply_to_one(self, db, data):
-        return data["gender"] == Person.UNKNOWN
+    def apply_to_one(self, db, person: dict) -> bool:
+        return person.gender == Person.UNKNOWN

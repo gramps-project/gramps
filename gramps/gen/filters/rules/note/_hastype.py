@@ -61,11 +61,10 @@ class HasType(Rule):
             self.note_type = NoteType()
             self.note_type.set_from_xml_str(self.list[0])
 
-    def apply_to_one(self, _db, data):
+    def apply_to_one(self, _db, obj: dict) -> bool:
         """
         Apply the rule. Return True on a match.
         """
-        obj = self.get_object(data)
         if self.note_type:
-            return obj.get_type() == self.note_type
+            return obj.type == self.note_type
         return False

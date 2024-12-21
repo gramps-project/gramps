@@ -61,8 +61,8 @@ class HasRepository(Rule):
 
         self.userSelectedCount = int(self.list[0])
 
-    def apply_to_one(self, db, data):
-        count = len(data["reporef_list"])
+    def apply_to_one(self, db, obj: dict) -> bool:
+        count = len(obj.reporef_list)
         if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount
         elif self.count_type == 2:  # "greater than"

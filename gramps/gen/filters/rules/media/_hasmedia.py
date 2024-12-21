@@ -63,8 +63,7 @@ class HasMedia(Rule):
         except:
             pass
 
-    def apply_to_one(self, db, data):
-        obj = self.get_object(data)
+    def apply_to_one(self, db, obj: dict) -> bool:
         if not self.match_substring(0, obj.get_description()):
             return False
 
@@ -75,7 +74,7 @@ class HasMedia(Rule):
             return False
 
         if self.date:
-            if not obj.get_date_object().match(self.date):
+            if not obj.date.match(self.date):
                 return False
 
         return True

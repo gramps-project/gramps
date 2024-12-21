@@ -46,19 +46,18 @@ class HaveAltFamilies(Rule):
     description = _("Matches people who were adopted")
     category = _("Family filters")
 
-    def apply_to_one(self, db, data):
-        person = self.get_object(data)
-        for fhandle in person.get_parent_family_handle_list():
-            family = db.get_family_from_handle(fhandle)
+    def apply_to_one(self, db, person: dict) -> bool:
+        for fhandle in person.parent_family_list:
+            family = db.get_raw_family_data(fhandle)
             if family:
                 ref = [
                     ref
-                    for ref in family.get_child_ref_list()
+                    for ref in family.child_ref_list
                     if ref.ref == person.handle
                 ]
                 if (
-                    ref[0].get_father_relation() == ChildRefType.ADOPTED
-                    or ref[0].get_mother_relation() == ChildRefType.ADOPTED
+                    ref[0].frel == ChildRefType.ADOPTED
+                    or ref[0].mrel == ChildRefType.ADOPTED
                 ):
                     return True
         return False

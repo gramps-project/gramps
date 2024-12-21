@@ -57,9 +57,11 @@ class HasReferenceCountBase(Rule):
 
         self.userSelectedCount = int(self.list[1])
 
-    def apply_to_one(self, db, data):
-        handle = data["handle"]
-        count = len(list(db.find_backlink_handles(handle)))
+    def apply_to_one(self, db, obj: dict) -> bool:
+        handle = obj.handle
+        count = 0
+        for item in db.find_backlink_handles(handle):
+            count += 1
 
         if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount

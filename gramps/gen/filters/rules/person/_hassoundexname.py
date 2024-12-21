@@ -65,12 +65,11 @@ class HasSoundexName(Rule):
         if self.list[0]:
             self.soundex = soundex(self.list[0])
 
-    def apply_to_one(self, _db, data):
+    def apply_to_one(self, _db, obj: dict) -> bool:
         """
         Apply the rule. Return True on a match.
         """
-        obj = self.get_object(data)
-        for name in [obj.get_primary_name()] + obj.get_alternate_names():
+        for name in [obj.primary_name] + obj.alternate_names:
             if self._match_name(name):
                 return True
         return False
@@ -80,17 +79,17 @@ class HasSoundexName(Rule):
         Match a name against the soundex.
         """
         if self.soundex:
-            if soundex(str(name.get_first_name())) == self.soundex:
+            if soundex(str(name.first_name)) == self.soundex:
                 return True
             if soundex(str(name.get_surname())) == self.soundex:
                 return True
-            if soundex(str(name.get_call_name())) == self.soundex:
+            if soundex(str(name.call_name)) == self.soundex:
                 return True
-            if soundex(str(name.get_nick_name())) == self.soundex:
+            if soundex(str(name.nick_name)) == self.soundex:
                 return True
-            if soundex(str(name.get_family_nick_name())) == self.soundex:
+            if soundex(str(name.family_nick_name)) == self.soundex:
                 return True
-            for surname in name.get_surname_list():
+            for surname in name.surname_list:
                 if self._match_surname(surname):
                     return True
         return False

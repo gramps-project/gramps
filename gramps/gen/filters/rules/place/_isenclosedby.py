@@ -54,15 +54,15 @@ class IsEnclosedBy(Rule):
 
     def prepare(self, db, user):
         self.handle = None
-        place = db.get_place_from_gramps_id(self.list[0])
+        place = db._get_raw_place_from_id_data(self.list[0])
         if place:
             self.handle = place.handle
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, place: dict) -> bool:
         if self.handle is None:
             return False
-        if self.list[1] == "1" and data["handle"] == self.handle:
+        if self.list[1] == "1" and place.handle == self.handle:
             return True
-        if located_in(db, data["handle"], self.handle):
+        if located_in(db, place.handle, self.handle):
             return True
         return False

@@ -58,13 +58,13 @@ class MatchesEventFilter(MatchesFilterBase):
     # we want to have this filter show event filters
     namespace = "Event"
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, event: dict) -> bool:
         filt = self.find_filter()
         if filt:
             for classname, handle in db.find_backlink_handles(
-                data["handle"], ["Event"]
+                event.handle, ["Event"]
             ):
-                event_data = db.get_raw_event_data(handle)
-                if filt.apply_to_one(db, event_data):
+                data = db.method("get_raw_%s_data", classname)(handle)
+                if filt.apply_to_one(db, data):
                     return True
         return False

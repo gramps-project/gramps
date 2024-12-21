@@ -78,13 +78,13 @@ class RelationshipPathBetweenBookmarks(Rule):
     # Returns a name, given a handle.
     def hnm(self, handle):
         try:
-            person = self.db.get_person_from_handle(handle)
+            person = self.db.get_raw_person_data(handle)
         except:
             return None
         if person is None:
             return None
         try:
-            name = person.get_primary_name().get_name()
+            name = person.primary_name.name
         except:
             return None
         return name
@@ -99,15 +99,15 @@ class RelationshipPathBetweenBookmarks(Rule):
         prev_generation = {}
         for handle in generation:
             try:
-                person = self.db.get_person_from_handle(handle)
+                person = self.db.get_raw_person_data(handle)
                 if person is None:
                     continue
-                fam_id = person.get_main_parents_family_handle()
-                family = self.db.get_family_from_handle(fam_id)
+                fam_id = person.parents_family_list[0] if len(person.parents_family_list) > 0 else None
+                family = self.db.get_family_from_handle(fam_id) if fam_id else None
                 if family is None:
                     continue
-                fhandle = family.get_father_handle()
-                mhandle = family.get_mother_handle()
+                fhandle = family.father_handle
+                mhandle = family.mother_handle
                 if fhandle:
                     prev_generation[fhandle] = generation[handle] + [fhandle]
                 if mhandle:
@@ -166,5 +166,5 @@ class RelationshipPathBetweenBookmarks(Rule):
                 except:
                     pass
 
-    def apply_to_one(self, db, data):
-        return data["handle"] in self.map
+    def apply_to_one(self, db, person: dict) -> bool:
+        return person.handle in self.map

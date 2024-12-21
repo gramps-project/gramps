@@ -53,17 +53,16 @@ class RegExpName(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, data):
-        person = self.get_object(data)
-        for name in [person.get_primary_name()] + person.get_alternate_names():
+    def apply_to_one(self, db, person: dict) -> bool:
+        for name in [person.primary_name] + person.alternate_names:
             for field in [
-                name.first_name,
-                name.get_surname(),
-                name.suffix,
-                name.title,
-                name.nick,
-                name.famnick,
-                name.call,
+                    name.first_name,
+                    name.suffix,
+                    name.title,
+                    name.nick,
+                    name.famnick,
+                    name.call,
+                    name.get_surname(),
             ]:
                 if self.match_substring(0, field):
                     return True

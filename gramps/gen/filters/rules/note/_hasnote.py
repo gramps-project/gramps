@@ -65,12 +65,11 @@ class HasNote(Rule):
             self.note_type = NoteType()
             self.note_type.set_from_xml_str(self.list[1])
 
-    def apply_to_one(self, _db, data):
+    def apply_to_one(self, _db, obj: dict) -> bool:
         """
         Apply the rule. Return True on a match.
         """
-        obj = self.get_object(data)
-        if not self.match_substring(0, obj.get()):
+        if not self.match_substring(0, str(obj.text)):
             return False
 
         if self.note_type:

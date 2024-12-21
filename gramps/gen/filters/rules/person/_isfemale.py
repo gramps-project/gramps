@@ -48,5 +48,5 @@ class IsFemale(Rule):
     category = _("General filters")
     description = _("Matches all females")
 
-    def apply_to_one(self, db, data):
-        return data["gender"] == Person.FEMALE
+    def apply_to_one(self, db, person: dict) -> bool:
+        return person.gender == Person.FEMALE

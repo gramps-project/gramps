@@ -56,13 +56,13 @@ class IsRelatedWith(Rule):
         self.db = db
 
         self.map = set()
-        self.add_relative(db.get_person_from_gramps_id(self.list[0]))
+        self.add_relative(db._get_raw_person_from_id_data(self.list[0]))
 
     def reset(self):
-        self.map.clear()
+        self.map = set()
 
-    def apply_to_one(self, db, data):
-        return data["handle"] in self.map
+    def apply_to_one(self, db, person: dict) -> bool:
+        return person.handle in self.map
 
     def add_relative(self, start):
         """Non-recursive function that scans relatives and add them to self.map"""
@@ -79,33 +79,33 @@ class IsRelatedWith(Rule):
                 continue
             relatives[person.handle] = True
 
-            for family_handle in person.get_parent_family_handle_list():
-                family = self.db.get_family_from_handle(family_handle)
+            for family_handle in person.parent_family_list:
+                family = self.db.get_raw_family_data(family_handle)
                 if family:
                     # Check Parents
                     for parent_handle in (
-                        family.get_father_handle(),
-                        family.get_mother_handle(),
+                        family.father_handle,
+                        family.mother_handle,
                     ):
                         if parent_handle:
-                            expand.append(self.db.get_person_from_handle(parent_handle))
+                            expand.append(self.db.get_raw_person_data(parent_handle))
                     # Check Sibilings
                     for child_ref in family.get_child_ref_list():
-                        expand.append(self.db.get_person_from_handle(child_ref.ref))
+                        expand.append(self.db.get_raw_person_data(child_ref.ref))
 
-            for family_handle in person.get_family_handle_list():
-                family = self.db.get_family_from_handle(family_handle)
+            for family_handle in person.family_list:
+                family = self.db.get_raw_family_data(family_handle)
                 if family:
                     # Check Spouse
                     for parent_handle in (
-                        family.get_father_handle(),
-                        family.get_mother_handle(),
+                        family.father_handle,
+                        family.mother_handle,
                     ):
                         if parent_handle:
-                            expand.append(self.db.get_person_from_handle(parent_handle))
+                            expand.append(self.db.get_raw_person_data(parent_handle))
                     # Check Children
-                    for child_ref in family.get_child_ref_list():
-                        expand.append(self.db.get_person_from_handle(child_ref.ref))
+                    for child_ref in family.child_ref_list:
+                        expand.append(self.db.get_raw_person_data(child_ref.ref))
 
         self.map = set(list(relatives.keys()))
         return

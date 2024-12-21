@@ -63,16 +63,16 @@ class MatchesRepositoryFilter(MatchesFilterBase):
         MatchesFilterBase.prepare(self, db, user)
         self.MRF_filt = self.find_filter()
 
-    def apply_to_one(self, db, data):
-        object = self.get_object(data)
+    def apply_to_one(self, db, object: dict) -> bool:
         if self.MRF_filt is None:
             return False
 
         source_handle = object.source_handle
-        source = db.get_source_from_handle(source_handle)
-        repolist = [x.ref for x in source.get_reporef_list()]
+        source = db.get_raw_source_data(source_handle)
+        repolist = [x.ref for x in source.reporef_list]
         for repohandle in repolist:
             # check if repo in repository filter
-            if self.MRF_filt.check(db, repohandle):
+            repo = db.get_raw_repository_data(repohandle)
+            if self.MRF_filt.apply_to_one(db, repo):
                 return True
         return False

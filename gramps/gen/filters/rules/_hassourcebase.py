@@ -50,18 +50,17 @@ class HasSourceBase(Rule):
     category = _("Citation/source filters")
     allow_regex = True
 
-    def apply_to_one(self, db, data):
-        source = self.get_object(data)
-        if not self.match_substring(0, source.get_title()):
+    def apply_to_one(self, db, source: dict) -> bool:
+        if not self.match_substring(0, source.title):
             return False
 
-        if not self.match_substring(1, source.get_author()):
+        if not self.match_substring(1, source.author):
             return False
 
-        if not self.match_substring(2, source.get_abbreviation()):
+        if not self.match_substring(2, source.abbrev):
             return False
 
-        if not self.match_substring(3, source.get_publication_info()):
+        if not self.match_substring(3, source.pubinfo):
             return False
 
         return True

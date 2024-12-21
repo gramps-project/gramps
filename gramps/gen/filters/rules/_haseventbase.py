@@ -71,11 +71,10 @@ class HasEventBase(Rule):
         except:
             pass
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, event: dict) -> bool:
         """
         Apply the rule. Return True if a match.
         """
-        event = self.get_object(data)
         if self.event_type:
             if self.event_type.is_custom() and self.use_regex:
                 if self.regex[0].search(str(event.type)) is None:
@@ -87,13 +86,13 @@ class HasEventBase(Rule):
             return False
 
         if self.date:
-            if not event.get_date_object().match(self.date):
+            if not event.date.match(self.date):
                 return False
 
         if self.list[2]:
-            place_id = event.get_place_handle()
+            place_id = event.place
             if place_id:
-                place = db.get_place_from_handle(place_id)
+                place = db.get_raw_place_data(place_id)
                 place_title = place_displayer.display(db, place)
                 if not self.match_substring(2, place_title):
                     return False
@@ -101,7 +100,7 @@ class HasEventBase(Rule):
                 return False
 
         if not self.match_substring(
-            4, get_participant_from_event(db, event.get_handle(), all_=True)
+            4, get_participant_from_event(db, event.handle, all_=True)
         ):
             return False
 

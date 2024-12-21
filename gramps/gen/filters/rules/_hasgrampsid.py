@@ -49,9 +49,9 @@ class HasGrampsId(Rule):
     description = "Matches objects with a specified Gramps ID"
     category = _("General filters")
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, obj: dict) -> bool:
         """
         apply the rule on the obj.
         return true if the rule passes, false otherwise.
         """
-        return data["gramps_id"] == self.list[0]
+        return obj.gramps_id == self.list[0]

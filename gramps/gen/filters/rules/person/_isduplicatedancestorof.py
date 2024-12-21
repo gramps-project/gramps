@@ -56,7 +56,7 @@ class IsDuplicatedAncestorOf(Rule):
         self.db = db
         self.cache = set()
         self.map = set()
-        root_person = db.get_person_from_gramps_id(self.list[0])
+        root_person = db._get_raw_person_from_id_data(self.list[0])
         if root_person:
             self.init_ancestor_list(db, root_person)
 
@@ -64,26 +64,26 @@ class IsDuplicatedAncestorOf(Rule):
         self.cache.clear()
         self.map.clear()
 
-    def apply_to_one(self, db, data):
-        return data["handle"] in self.map
+    def apply_to_one(self, db, person: dict) -> bool:
+        return person.handle in self.map
 
     def init_ancestor_list(self, db, person):
-        fam_id = person.get_main_parents_family_handle()
+        fam_id = person.parents_family_list[0] if len(person.parents_family_list) > 0 else None
         if fam_id:
-            fam = db.get_family_from_handle(fam_id)
+            fam = db.get_raw_family_data(fam_id)
             if fam:
-                f_id = fam.get_father_handle()
-                m_id = fam.get_mother_handle()
+                f_id = fam.father_handle
+                m_id = fam.mother_handle
                 if m_id:
-                    self.go_deeper(db, db.get_person_from_handle(m_id))
+                    self.go_deeper(db, db.get_raw_person_data(m_id))
                 if f_id:
-                    self.go_deeper(db, db.get_person_from_handle(f_id))
+                    self.go_deeper(db, db.get_raw_person_data(f_id))
 
-    def go_deeper(self, db, person):
+    def go_deeper(self, db, person: dict):
         if person and person.handle in self.cache:
             self.map.add((person.handle))
             # the following keeps from scanning same parts of tree multiple
             # times and avoids crash on tree loops.
             return
-        self.cache.add((person.handle))
+        self.cache.add(person.handle)
         self.init_ancestor_list(db, person)

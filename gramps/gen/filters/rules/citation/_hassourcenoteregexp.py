@@ -38,7 +38,6 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .._hasnoteregexbase import HasNoteRegexBase
-from gramps.gen.lib.serialize import to_dict
 
 
 # -------------------------------------------------------------------------
@@ -59,9 +58,8 @@ class HasSourceNoteRegexp(HasNoteRegexBase):
     )
     category = _("Source filters")
 
-    def apply_to_one(self, db, data):
-        citation = self.get_object(data)
-        source = db.get_source_from_handle(citation.get_reference_handle())
-        if HasNoteRegexBase.apply_to_one(self, db, to_dict(source)):
+    def apply_to_one(self, db, citation: dict) -> bool:
+        source = db.get_raw_source_data(citation.ref)
+        if HasNoteRegexBase.apply_to_one(self, db, source):
             return True
         return False

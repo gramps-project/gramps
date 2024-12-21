@@ -71,23 +71,22 @@ class HasData(Rule):
         if self.date:
             self.date = parser.parse(self.date)
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, obj: dict) -> bool:
         """
         Apply the rule. Return True on a match.
         """
-        obj = self.get_object(data)
-        if self.event_type and obj.get_type() != self.event_type:
+        if self.event_type and obj.type != self.event_type:
             # No match
             return False
 
-        if self.date and not obj.get_date_object().match(self.date):
+        if self.date and not obj.date.match(self.date):
             # No match
             return False
 
         if self.list[2]:
-            place_id = obj.get_place_handle()
+            place_id = obj.place
             if place_id:
-                place = db.get_place_from_handle(place_id)
+                place = db.get_raw_place_data(place_id)
                 place_title = place_displayer.display(db, place)
                 if not self.match_substring(2, place_title):
                     # No match

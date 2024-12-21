@@ -59,7 +59,7 @@ class IsDescendantFamilyOf(Rule):
     def prepare(self, db, user):
         self.db = db
         self.map = set()
-        self.root_person = db.get_person_from_gramps_id(self.list[0])
+        self.root_person = db._get_raw_person_from_id_data(self.list[0])
         self.add_matches(self.root_person)
         try:
             if int(self.list[1]):
@@ -74,8 +74,8 @@ class IsDescendantFamilyOf(Rule):
     def reset(self):
         self.map = set()
 
-    def apply_to_one(self, db, data):
-        return data["handle"] in self.map
+    def apply_to_one(self, db, person: dict) -> bool:
+        return person.handle in self.map
 
     def add_matches(self, person):
         if not person:
@@ -90,18 +90,18 @@ class IsDescendantFamilyOf(Rule):
                 # if we have been here before, skip
                 continue
             self.map.add(person.handle)
-            for family_handle in person.get_family_handle_list():
-                family = self.db.get_family_from_handle(family_handle)
+            for family_handle in person.family_list:
+                family = self.db.get_raw_family_data(family_handle)
                 if family:
                     # Add every child recursively
-                    for child_ref in family.get_child_ref_list():
+                    for child_ref in family.child_ref_list:
                         if child_ref:
-                            expand.append(self.db.get_person_from_handle(child_ref.ref))
+                            expand.append(self.db.get_raw_person_data(child_ref.ref))
                     # Add spouse
-                    if person.handle == family.get_father_handle():
-                        spouse_handle = family.get_mother_handle()
+                    if person.handle == family.father_handle:
+                        spouse_handle = family.mother_handle
                     else:
-                        spouse_handle = family.get_father_handle()
+                        spouse_handle = family.father_handle
                     self.map.add(spouse_handle)
 
     def exclude(self):
@@ -109,11 +109,11 @@ class IsDescendantFamilyOf(Rule):
         if not self.root_person:
             return
         self.map.remove(self.root_person.handle)
-        for family_handle in self.root_person.get_family_handle_list():
-            family = self.db.get_family_from_handle(family_handle)
+        for family_handle in self.root_person.family_list:
+            family = self.db.get_raw_family_data(family_handle)
             if family:
-                if self.root_person.handle == family.get_father_handle():
-                    spouse_handle = family.get_mother_handle()
+                if self.root_person.handle == family.father_handle:
+                    spouse_handle = family.mother_handle
                 else:
-                    spouse_handle = family.get_father_handle()
+                    spouse_handle = family.father_handle
                 self.map.remove(spouse_handle)

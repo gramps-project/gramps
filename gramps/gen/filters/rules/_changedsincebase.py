@@ -101,8 +101,8 @@ class ChangedSinceBase(Rule):
         if self.list[1]:
             self.before = self.time_str_to_sec(self.list[1])
 
-    def apply_to_one(self, db, data):
-        obj_time = data["change"]
+    def apply_to_one(self, db, obj: dict) -> bool:
+        obj_time = obj.change
         if self.since:
             if obj_time < self.since:
                 return False

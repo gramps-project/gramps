@@ -24,7 +24,6 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib.serialize import from_dict
 
 _ = glocale.translation.gettext
 
@@ -72,11 +71,10 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        for handle, data in db._iter_raw_person_data():
+        for handle, person in db.iter_raw_people():
             if user:
                 user.step_progress()
-            if self.filt.apply_to_one(db, data):
-                person = from_dict(data)
+            if self.filt.apply_to_one(db, person):
                 self.init_ancestor_list(db, person, first)
         if user:
             user.end_progress()
@@ -85,5 +83,5 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         self.filt.requestreset()
         self.map.clear()
 
-    def apply_to_one(self, db, data):
-        return data["handle"] in self.map
+    def apply_to_one(self, db, person: dict) -> bool:
+        return person.handle in self.map

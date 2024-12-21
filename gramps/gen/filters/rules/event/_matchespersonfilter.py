@@ -70,32 +70,26 @@ class MatchesPersonFilter(MatchesFilterBase):
         except IndexError:
             self.MPF_famevents = False
 
-    def apply_to_one(self, db, event_data):
+    def apply_to_one(self, db, event: dict) -> bool:
         filt = self.find_filter()
         if filt:
             for classname, handle in db.find_backlink_handles(
-                event_data["handle"], ["Person"]
+                event.get_handle(), ["Person"]
             ):
-                data = db.get_raw_person_data(handle)
-                if filt.apply_to_one(db, data):
+                person = db.method("get_raw_%_data", classname)(handle)
+                if filt.apply_to_one(db, person):
                     return True
             if self.MPF_famevents:
                 # also include if family event of the person
                 for classname, handle in db.find_backlink_handles(
-                    event_data["handle"], ["Family"]
+                    event.get_handle(), ["Family"]
                 ):
-                    family_data = db.get_raw_family_data(handle)
-                    if family_data["father_handle"]:
-                        father_data = db.get_raw_person_data(
-                            family_data["father_handle"]
-                        )
-                        if filt.apply_to_one(db, father_data):
-                            return True
-                    if family_data["mother_handle"]:
-                        mother_data = db.get_raw_person_data(
-                            family_data["mother_handle"]
-                        )
-                        if filt.apply_to_one(db, mother_data):
-                            return True
+                    family = db.get_family_from_handle(handle)
+                    father = db.get_raw_person_data(family.father_handle) if family else None
+                    if father and filt.apply_to_one(db, father):
+                        return True
+                    mother = db.get_raw_person_data(family.mother_handle)
+                    if family.mother_handle and filt.apply_to_one(db, mother):
+                        return True
 
         return False

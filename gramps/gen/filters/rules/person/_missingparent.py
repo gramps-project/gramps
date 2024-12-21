@@ -50,16 +50,13 @@ class MissingParent(Rule):
     )
     category = _("Family filters")
 
-    def apply_to_one(self, db, data):
-        person = self.get_object(data)
-        families = person.get_parent_family_handle_list()
-        if families == []:
-            return True
-        for family_handle in person.get_parent_family_handle_list():
-            family = db.get_family_from_handle(family_handle)
+    def apply_to_one(self, db, person: dict) -> bool:
+        families = person.parent_family__list
+        for family_handle in families:
+            family = db.get_raw_family_data(family_handle)
             if family:
-                father_handle = family.get_father_handle()
-                mother_handle = family.get_mother_handle()
+                father_handle = family.father_handle
+                mother_handle = family.mother_handle
                 if not father_handle:
                     return True
                 if not mother_handle:

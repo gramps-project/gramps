@@ -48,7 +48,7 @@ class IsBookmarked(Rule):
     description = _("Matches the families on the bookmark list")
 
     def prepare(self, db, user):
-        self.bookmarks = db.get_family_bookmarks().get()
+        self.map = db.get_family_bookmarks().get()
 
-    def apply_to_one(self, db, data):
-        return data["handle"] in self.bookmarks
+    def apply_to_one(self, db, family: dict) -> bool:
+        return family.handle in self.map

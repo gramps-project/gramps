@@ -62,17 +62,16 @@ class IsWitness(Rule):
             self.event_type = EventType()
             self.event_type.set_from_xml_str(self.list[0])
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, obj: dict) -> bool:
         """
         Apply the rule. Return True on a match.
         """
-        obj = self.get_object(data)
         for event_ref in obj.event_ref_list:
             if event_ref.role == EventRoleType.WITNESS:
                 # This is the witness.
                 # If event type was given, then check it.
                 if self.event_type:
-                    event = db.get_event_from_handle(event_ref.ref)
+                    event = db.get_raw_event_data(event_ref.ref)
                     if event.type == self.event_type:
                         return True
                 else:

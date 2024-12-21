@@ -61,11 +61,12 @@ class MatchesSourceFilter(MatchesFilterBase):
         MatchesFilterBase.prepare(self, db, user)
         self.MRF_filt = self.find_filter()
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, object: dict) -> bool:
         if self.MRF_filt is None:
             return False
 
-        source_handle = data["source_handle"]
-        if self.MRF_filt.apply_to_one(db, source_handle):
+        source_handle = object.source_handle
+        source = db.get_raw_source_data(source_handle)
+        if self.MRF_filt.apply_to_one(db, source):
             return True
         return False

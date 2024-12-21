@@ -47,6 +47,6 @@ class MatchesTitleSubstringOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, source: dict) -> bool:
         """Apply the filter"""
-        return self.match_substring(0, data["title"])
+        return self.match_substring(0, source.title)

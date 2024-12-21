@@ -49,6 +49,6 @@ class MatchesPageSubstringOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, object: dict) -> bool:
         """Apply the filter"""
-        return self.match_substring(0, data["page"])
+        return self.match_substring(0, object.page)

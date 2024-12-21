@@ -48,5 +48,5 @@ class HasOtherGender(Rule):
     category = _("General filters")
     description = _("Matches all people with other gender")
 
-    def apply_to_one(self, db, data):
-        return data["gender"] == Person.OTHER
+    def apply_to_one(self, db, person: dict) -> bool:
+        return person.gender == Person.OTHER

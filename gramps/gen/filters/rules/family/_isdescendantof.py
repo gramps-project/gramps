@@ -52,14 +52,14 @@ class IsDescendantOf(Rule):
     def prepare(self, db, user):
         self.map = set()
         first = False if int(self.list[1]) else True
-        root_family = db.get_family_from_gramps_id(self.list[0])
+        root_family = db._get_raw_family_from_id_data(self.list[0])
         self.init_list(db, root_family, first)
 
     def reset(self):
         self.map.clear()
 
-    def apply_to_one(self, db, data):
-        return data["handle"] in self.map
+    def apply_to_one(self, db, family: dict) -> bool:
+        return family.handle in self.map
 
     def init_list(self, db, family, first):
         """
@@ -71,8 +71,8 @@ class IsDescendantOf(Rule):
             self.map.add(family.handle)
 
         for child_ref in family.get_child_ref_list():
-            child = db.get_person_from_handle(child_ref.ref)
+            child = db.get_raw_person_data(child_ref.ref)
             if child:
-                for family_handle in child.get_family_handle_list():
-                    child_family = db.get_family_from_handle(family_handle)
+                for family_handle in child.family_list:
+                    child_family = db.get_raw_family_data(family_handle)
                     self.init_list(db, child_family, 0)

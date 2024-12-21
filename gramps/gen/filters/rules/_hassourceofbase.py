@@ -57,12 +57,11 @@ class HasSourceOfBase(Rule):
 
         self.nosource = False
         try:
-            self.source_handle = db.get_source_from_gramps_id(self.list[0]).get_handle()
+            self.source_handle = db._get_raw_source_from_id_data(self.list[0]).handle
         except:
             self.source_handle = None
 
-    def apply_to_one(self, db, data):
-        object = self.get_object(data)
+    def apply_to_one(self, db, object: dict) -> bool:
         if not self.source_handle:
             if self.nosource:
                 # check whether the citation list is empty as a proxy for
@@ -72,7 +71,7 @@ class HasSourceOfBase(Rule):
                 return False
         else:
             for citation_handle in object.get_all_citation_lists():
-                citation = db.get_citation_from_handle(citation_handle)
-                if citation.get_reference_handle() == self.source_handle:
+                citation = db.get_raw_citation_data(citation_handle)
+                if citation.ref == self.source_handle:
                     return True
             return False

@@ -32,30 +32,29 @@ in the class body, outside any method:
 """
 
 
-def father_base(self, db, data):
-    father_handle = data["father_handle"]
+def father_base(self, db, family: dict) -> bool:
+    father_handle = family.father_handle
     if father_handle:
-        father_data = db.get_raw_person_data(father_handle)
-        if father_data:
-            return self.base_class.apply_to_one(self, db, father_data)
+        father = db.get_raw_person_data(father_handle)
+        if father:
+            return self.base_class.apply_to_one(self, db, father)
         else:
             return False
 
 
-def mother_base(self, db, data):
-    mother_handle = data["mother_handle"]
+def mother_base(self, db, family: dict) -> bool:
+    mother_handle = family.mother_handle
     if mother_handle:
-        mother_data = db.get_raw_person_data(mother_handle)
-        if mother_data:
-            return self.base_class.apply_to_one(self, db, mother_data)
+        mother = db.get_raw_person_data(mother_handle)
+        if mother:
+            return self.base_class.apply_to_one(self, db, mother)
         else:
             return False
 
 
-def child_base(self, db, data):
-    for child_ref in data["child_ref_list"]:
-        child_data = db.get_raw_person_data(child_ref["ref"])
-        if child_data:
-            if self.base_class.apply_to_one(self, db, child_data):
-                return True
+def child_base(self, db, family: dict) -> bool:
+    for child_ref in family.child_ref_list:
+        child = db.get_raw_person_data(child_ref.ref)
+        if self.base_class.apply_to_one(self, db, child):
+            return True
     return False

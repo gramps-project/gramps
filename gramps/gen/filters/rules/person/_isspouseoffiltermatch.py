@@ -54,21 +54,19 @@ class IsSpouseOfFilterMatch(Rule):
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
 
-    def apply_to_one(self, db, data):
-        person = self.get_object(data)
-        for family_handle in person.get_family_handle_list():
-            family = db.get_family_from_handle(family_handle)
+    def apply_to_one(self, db, person: dict) -> bool:
+        for family_handle in person.family_list:
+            family = db.get_raw_family_data(family_handle)
             if family:
                 for spouse_id in [
-                    family.get_father_handle(),
-                    family.get_mother_handle(),
+                    family.father_handle,
+                    family.mother_handle,
                 ]:
                     if not spouse_id:
                         continue
                     if spouse_id == person.handle:
                         continue
-                    person_data = db.get_raw_person_data(spouse_id)
-                    if self.filt.apply_to_one(db, person_data):
+                    if self.filt.apply_to_one(db, db.get_raw_person_data(spouse_id)):
                         return True
         return False
 

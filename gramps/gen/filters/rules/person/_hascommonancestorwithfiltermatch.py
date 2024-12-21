@@ -35,7 +35,6 @@ _ = glocale.translation.gettext
 from ....utils.db import for_each_ancestor
 from ._hascommonancestorwith import HasCommonAncestorWith
 from ._matchesfilter import MatchesFilter
-from gramps.gen.lib.serialize import from_dict
 
 
 # -------------------------------------------------------------------------
@@ -74,16 +73,14 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        for handle, data in db._iter_raw_person_data():
-            # person = db.get_person_from_handle(handle)
+        for handle, person in db.iter_raw_people():
             if user:
                 user.step_progress()
-            if self.filt.apply_to_one(db, data):
+            if person and self.filt.apply_to_one(db, person):
                 # store all people in the filter so as to compare later
-                self.with_people.append(data["handle"])
+                self.with_people.append(person.handle)
                 # fill list of ancestor of person if not present yet
-                if data["handle"] not in self.ancestor_cache:
-                    person = from_dict(data)
+                if handle not in self.ancestor_cache:
                     self.add_ancs(db, person)
         if user:
             user.end_progress()

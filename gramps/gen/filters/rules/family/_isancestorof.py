@@ -52,14 +52,14 @@ class IsAncestorOf(Rule):
     def prepare(self, db, user):
         self.map = set()
         first = False if int(self.list[1]) else True
-        root_family = db.get_family_from_gramps_id(self.list[0])
+        root_family = db._get_raw_family_from_id_data(self.list[0])
         self.init_list(db, root_family, first)
 
     def reset(self):
         self.map.clear()
 
-    def apply_to_one(self, db, data):
-        return data["handle"] in self.map
+    def apply_to_one(self, db, family: dict) -> bool:
+        return family.handle in self.map
 
     def init_list(self, db, family, first):
         """
@@ -74,8 +74,8 @@ class IsAncestorOf(Rule):
 
         for parent_handle in [family.get_father_handle(), family.get_mother_handle()]:
             if parent_handle:
-                parent = db.get_person_from_handle(parent_handle)
-                family_handle = parent.get_main_parents_family_handle()
+                parent = db.get_raw_person_data(parent_handle)
+                family_handle = person.parent_family_list[0] if len(person.parent_family_list) > 0 else None 
                 if family_handle:
-                    parent_family = db.get_family_from_handle(family_handle)
+                    parent_family = db.get_raw_family_data(family_handle)
                     self.init_list(db, parent_family, 0)

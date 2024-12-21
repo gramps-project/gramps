@@ -66,18 +66,18 @@ class WithinArea(Rule):
     longitude = None
 
     def prepare(self, db, user):
-        ref_place = db.get_place_from_gramps_id(self.list[0])
+        ref_place = db._get_raw_place_from_id_data(self.list[0])
         self.handle = None
         self.radius = None
         self.latitude = None
         self.longitude = None
         if ref_place:
             self.handle = ref_place.handle
-            latitude = ref_place.get_latitude()
+            latitude = ref_place.lat
             if latitude == "":
                 latitude = None
                 return
-            longitude = ref_place.get_longitude()
+            longitude = ref_place.long
             self.latitude, self.longitude = conv_lat_lon(latitude, longitude, "D.D8")
             if self.latitude is None or self.longitude is None:
                 raise FilterError(
@@ -106,16 +106,16 @@ class WithinArea(Rule):
                 self.radius = float(value)
             self.radius = self.radius / 2
 
-    def apply_to_one(self, dummy_db, data):
+    def apply_to_one(self, dummy_db, place: dict) -> bool:
         if self.handle is None:
             return False
         if self.latitude is None:
             return False
         if self.longitude is None:
             return False
-        if data:
-            lat = data["lat"]
-            lon = data["long"]
+        if place:
+            lat = place.lat
+            lon = place.long
         if lat and lon:
             latit, longit = conv_lat_lon(lat, lon, "D.D8")
             if latit is None or longit is None:

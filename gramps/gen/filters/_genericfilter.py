@@ -300,10 +300,10 @@ class GenericFilter:
 
         return final_list
 
-    def and_test(self, db, data, flist):
+    def and_test(self, db, data: dict, flist):
         return all(rule.apply_to_one(db, data) for rule in flist)
 
-    def one_test(self, db, data, flist):
+    def one_test(self, db, data: dict, flist):
         found_one = False
         for rule in flist:
             if rule.apply_to_one(db, data):
@@ -312,13 +312,13 @@ class GenericFilter:
                 found_one = True
         return found_one
 
-    def or_test(self, db, data, flist):
+    def or_test(self, db, data: dict, flist):
         return any(rule.apply_to_one(db, data) for rule in flist)
 
     def get_logical_op(self):
         return self.logical_op
 
-    def apply_to_one(self, db, data):
+    def apply_to_one(self, db, data: dict) -> bool:
         """
         Filter-level apply rules to single data item.
         """

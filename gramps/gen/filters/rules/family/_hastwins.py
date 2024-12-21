@@ -48,16 +48,15 @@ class HasTwins(Rule):
     description = _("Matches families with twins")
     category = _("Child filters")
 
-    def apply_to_one(self, db, data):
-        family = self.get_object(data)
+    def apply_to_one(self, db, family: dict) -> bool:
         date_list = []
         for childref in family.get_child_ref_list():
             if int(childref.get_mother_relation()) == ChildRefType.BIRTH:
-                child = db.get_person_from_handle(childref.ref)
+                child = db.get_raw_person_data(childref.ref)
                 birthref = child.get_birth_ref()
                 if birthref:
-                    birth = db.get_event_from_handle(birthref.ref)
-                    sortval = birth.get_date_object().get_sort_value()
+                    birth = db.get_raw_event_data(birthref.ref)
+                    sortval = birth.date.get_sort_value()
                     if sortval != 0:
                         if sortval in date_list:
                             return True

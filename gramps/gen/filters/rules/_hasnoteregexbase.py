@@ -51,9 +51,9 @@ class HasNoteRegexBase(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, data):
-        for handle in data["note_list"]:
-            note = db.get_note_from_handle(handle)
-            if self.match_substring(0, note.get()):
+    def apply_to_one(self, db, person: dict) -> bool:
+        for handle in person.note_list:
+            note = db.get_raw_note_data(handle)
+            if self.match_substring(0, str(note.text)):
                 return True
         return False

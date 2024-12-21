@@ -47,18 +47,18 @@ _ = glocale.translation.gettext
 def get_family_handle_people(db, exclude_handle, family_handle):
     people = set()
 
-    family = db.get_family_from_handle(family_handle)
+    family = db.get_raw_family_data(family_handle)
 
     def possibly_add_handle(h):
         if h is not None and h != exclude_handle:
             people.add(h)
 
-    possibly_add_handle(family.get_father_handle())
-    possibly_add_handle(family.get_mother_handle())
+    possibly_add_handle(family.father_handle)
+    possibly_add_handle(family.mother_handle)
 
     for child_ref in family.get_child_ref_list():
         if child_ref:
-            possibly_add_handle(child_ref.get_reference_handle())
+            possibly_add_handle(child_ref.ref)
 
     return people
 
@@ -70,8 +70,8 @@ def get_person_family_people(db, person, person_handle):
         for family_handle in fam_list:
             people.update(get_family_handle_people(db, person_handle, family_handle))
 
-    add_family_handle_list(person.get_family_handle_list())
-    add_family_handle_list(person.get_parent_family_handle_list())
+    add_family_handle_list(person.family_list)
+    add_family_handle_list(person.parent_family_list)
 
     return people
 
@@ -111,7 +111,7 @@ def find_deep_relations(db, user, person, target_people):
             if not target_people:  # Quit searching if all targets found
                 break
 
-        person = db.get_person_from_handle(handle)
+        person = db.get_raw_person_data(handle)
         if person is None:
             continue
 
@@ -144,7 +144,7 @@ class DeepRelationshipPathBetween(Rule):
 
     def prepare(self, db, user):
         root_person_id = self.list[0]
-        root_person = db.get_person_from_gramps_id(root_person_id)
+        root_person = db._get_raw_person_from_id_data(root_person_id)
 
         filter_name = self.list[1]
         self.filt = MatchesFilter([filter_name])
@@ -157,9 +157,9 @@ class DeepRelationshipPathBetween(Rule):
                 db.get_number_of_people(),
             )
         target_people = []
-        for handle, person_data in db._iter_raw_person_data():
-            if self.filt.apply_to_one(db, person_data):
-                target_people.append(data["handle"])
+        for handle, person in db.iter_raw_people():
+            if self.filt.apply_to_one(db, person):
+                target_people.append(handle)
             if user:
                 user.step_progress()
         if user:
@@ -175,7 +175,7 @@ class DeepRelationshipPathBetween(Rule):
 
     def reset(self):
         self.filt.requestreset()
-        self.map.clear()
+        self.map = set()
 
-    def apply_to_one(self, db, data):
-        return data["handle"] in self.__matches
+    def apply_to_one(self, db, person: dict) -> bool:
+        return person.handle in self.map

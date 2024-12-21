@@ -61,17 +61,16 @@ class HasCitation(Rule):
         except:
             pass
 
-    def apply_to_one(self, dbase, data):
-        citation = self.get_object(data)
-        if not self.match_substring(0, citation.get_page()):
+    def apply_to_one(self, dbase, citation: dict) -> bool:
+        if not self.match_substring(0, citation.page):
             return False
 
         if self.date:
-            if not citation.get_date_object().match(self.date):
+            if not citation.date.match(self.date):
                 return False
 
         if self.list[2]:
-            if citation.get_confidence_level() < int(self.list[2]):
+            if citation.confidence < int(self.list[2]):
                 return False
 
         return True

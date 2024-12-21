@@ -51,8 +51,8 @@ class HasRepositoryCallNumberRef(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, data):
-        for repo_ref in data["reporef_list"]:
-            if self.match_substring(0, repo_ref["call_number"]):
+    def apply_to_one(self, db, obj: dict) -> bool:
+        for repo_ref in obj.reporef_list:
+            if self.match_substring(0, repo_ref.call_number):
                 return True
         return False
