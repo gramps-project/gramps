@@ -85,7 +85,9 @@ class MatchesPersonFilter(MatchesFilterBase):
                     event.get_handle(), ["Family"]
                 ):
                     family = db.get_family_from_handle(handle)
-                    father = db.get_raw_person_data(family.father_handle) if family else None
+                    father = (
+                        db.get_raw_person_data(family.father_handle) if family else None
+                    )
                     if father and filt.apply_to_one(db, father):
                         return True
                     mother = db.get_raw_person_data(family.mother_handle)

@@ -61,9 +61,7 @@ class MatchesEventFilter(MatchesFilterBase):
     def apply_to_one(self, db, event: dict) -> bool:
         filt = self.find_filter()
         if filt:
-            for classname, handle in db.find_backlink_handles(
-                event.handle, ["Event"]
-            ):
+            for classname, handle in db.find_backlink_handles(event.handle, ["Event"]):
                 data = db.method("get_raw_%s_data", classname)(handle)
                 if filt.apply_to_one(db, data):
                     return True

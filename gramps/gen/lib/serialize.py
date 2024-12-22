@@ -138,10 +138,10 @@ class DataList(list):
 
     def __add__(self, value):
         return DataList([x for x in self] + [x for x in value])
-   
+
     def __radd__(self, value):
         return DataList([x for x in self] + [x for x in value])
-   
+
     def __getitem__(self, position):
         value = super().__getitem__(position)
         if isinstance(value, dict):

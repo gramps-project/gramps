@@ -87,24 +87,17 @@ class HasTextMatchingSubstringOf(Rule):
             return True
 
         # Look for matching events
-        if any(
-            self.search_event(event_ref.ref)
-            for event_ref in person.event_ref_list
-        ):
+        if any(self.search_event(event_ref.ref) for event_ref in person.event_ref_list):
             return True
 
         # Look for matching families
         if any(
-            self.search_family(family_handle)
-            for family_handle in person.family_list
+            self.search_family(family_handle) for family_handle in person.family_list
         ):
             return True
 
         # Look for matching media objects
-        if any(
-            self.search_media(media_ref.ref)
-            for media_ref in person.media_list
-        ):
+        if any(self.search_media(media_ref.ref) for media_ref in person.media_list):
             return True
         return False
 
@@ -124,8 +117,7 @@ class HasTextMatchingSubstringOf(Rule):
                 ):
                     match = 1
                 if any(
-                    self.search_media(media_ref.ref)
-                    for media_ref in family.media_list
+                    self.search_media(media_ref.ref) for media_ref in family.media_list
                 ):
                     return True
             if match:
@@ -146,8 +138,7 @@ class HasTextMatchingSubstringOf(Rule):
                 if place_handle and self.search_place(place_handle):
                     match = 1
                 if any(
-                    self.search_media(media_ref.ref)
-                    for media_ref in event.media_list
+                    self.search_media(media_ref.ref) for media_ref in event.media_list
                 ):
                     return True
             if match:
@@ -191,10 +182,7 @@ class HasTextMatchingSubstringOf(Rule):
                 % (match, self.list[0], source.gramps_id)
             )
             if not match:
-                if any(
-                    reporef.ref in self.repo_map
-                    for reporef in source.reporef_list
-                ):
+                if any(reporef.ref in self.repo_map for reporef in source.reporef_list):
                     match = True
                     LOG.debug(
                         "cache_sources repomatch %s string %s source %s"

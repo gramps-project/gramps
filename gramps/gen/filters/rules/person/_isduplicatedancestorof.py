@@ -68,7 +68,11 @@ class IsDuplicatedAncestorOf(Rule):
         return person.handle in self.map
 
     def init_ancestor_list(self, db, person):
-        fam_id = person.parents_family_list[0] if len(person.parents_family_list) > 0 else None
+        fam_id = (
+            person.parents_family_list[0]
+            if len(person.parents_family_list) > 0
+            else None
+        )
         if fam_id:
             fam = db.get_raw_family_data(fam_id)
             if fam:

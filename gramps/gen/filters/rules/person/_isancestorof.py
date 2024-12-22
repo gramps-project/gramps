@@ -75,7 +75,9 @@ class IsAncestorOf(Rule):
             return
         if not first:
             self.map.add(person.handle)
-        fam_id = person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
+        fam_id = (
+            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
+        )
         if fam_id:
             fam = db.get_raw_family_data(fam_id)
             if fam:

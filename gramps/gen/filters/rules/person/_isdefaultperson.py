@@ -53,6 +53,5 @@ class IsDefaultPerson(Rule):
         if p:
             self.map.add(p.handle)
 
-
     def apply_to_one(self, db, person: dict) -> bool:
         return person.handle in self.map

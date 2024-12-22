@@ -78,7 +78,9 @@ class IsSiblingOfFilterMatch(Rule):
     def init_list(self, person):
         if not person:
             return
-        fam_id = person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
+        fam_id = (
+            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
+        )
         if fam_id:
             fam = self.db.get_raw_family_data(fam_id)
             if fam:

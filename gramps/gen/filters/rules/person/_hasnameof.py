@@ -82,9 +82,7 @@ class HasNameOf(Rule):
             return False
         elif self.list[5] and not self.match_substring(5, name.nick):
             return False
-        elif self.list[10] and not self.match_substring(
-            10, name.famnick
-        ):
+        elif self.list[10] and not self.match_substring(10, name.famnick):
             return False
         else:
             for surn in name.surname_list:

@@ -51,6 +51,4 @@ class Disconnected(Rule):
     )
 
     def apply_to_one(self, db, person: dict) -> bool:
-        return not (
-            person.parent_family_list or person.family_list
-        )
+        return not (person.parent_family_list or person.family_list)

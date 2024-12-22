@@ -50,11 +50,7 @@ class HaveAltFamilies(Rule):
         for fhandle in person.parent_family_list:
             family = db.get_raw_family_data(fhandle)
             if family:
-                ref = [
-                    ref
-                    for ref in family.child_ref_list
-                    if ref.ref == person.handle
-                ]
+                ref = [ref for ref in family.child_ref_list if ref.ref == person.handle]
                 if (
                     ref[0].frel == ChildRefType.ADOPTED
                     or ref[0].mrel == ChildRefType.ADOPTED

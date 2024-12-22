@@ -80,6 +80,4 @@ class IsLessThanNthGenerationDescendantOf(Rule):
             fam = self.db.get_raw_family_data(fam_id)
             if fam:
                 for child_ref in fam.child_ref_list:
-                    self.init_list(
-                        self.db.get_raw_person_data(child_ref.ref), gen + 1
-                    )
+                    self.init_list(self.db.get_raw_person_data(child_ref.ref), gen + 1)

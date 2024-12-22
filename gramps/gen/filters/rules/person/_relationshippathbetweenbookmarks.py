@@ -102,7 +102,11 @@ class RelationshipPathBetweenBookmarks(Rule):
                 person = self.db.get_raw_person_data(handle)
                 if person is None:
                     continue
-                fam_id = person.parents_family_list[0] if len(person.parents_family_list) > 0 else None
+                fam_id = (
+                    person.parents_family_list[0]
+                    if len(person.parents_family_list) > 0
+                    else None
+                )
                 family = self.db.get_family_from_handle(fam_id) if fam_id else None
                 if family is None:
                     continue

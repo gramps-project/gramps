@@ -56,13 +56,13 @@ class RegExpName(Rule):
     def apply_to_one(self, db, person: dict) -> bool:
         for name in [person.primary_name] + person.alternate_names:
             for field in [
-                    name.first_name,
-                    name.suffix,
-                    name.title,
-                    name.nick,
-                    name.famnick,
-                    name.call,
-                    name.get_surname(),
+                name.first_name,
+                name.suffix,
+                name.title,
+                name.nick,
+                name.famnick,
+                name.call,
+                name.get_surname(),
             ]:
                 if self.match_substring(0, field):
                     return True

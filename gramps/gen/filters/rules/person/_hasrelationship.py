@@ -78,10 +78,7 @@ class HasRelationship(Rule):
             family = db.get_raw_family_data(handle)
             if family:
                 total_children += len(family.child_ref_list)
-                if (
-                    self.relationship_type
-                    and self.relationship_type == family.type
-                ):
+                if self.relationship_type and self.relationship_type == family.type:
                     relationship_type = 1
 
         # if number of relations specified

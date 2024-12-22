@@ -87,7 +87,11 @@ class RelationshipPathBetween(Rule):
         plist.add(handle)
         pmap[person.handle] = rank
 
-        fam_id = person.parents_family_list[0] if len(person.parents_family_list) > 0 else None
+        fam_id = (
+            person.parents_family_list[0]
+            if len(person.parents_family_list) > 0
+            else None
+        )
         if not fam_id:
             return
         family = self.db.get_raw_family_data(fam_id)

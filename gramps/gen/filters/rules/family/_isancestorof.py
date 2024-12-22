@@ -75,7 +75,11 @@ class IsAncestorOf(Rule):
         for parent_handle in [family.get_father_handle(), family.get_mother_handle()]:
             if parent_handle:
                 parent = db.get_raw_person_data(parent_handle)
-                family_handle = person.parent_family_list[0] if len(person.parent_family_list) > 0 else None 
+                family_handle = (
+                    person.parent_family_list[0]
+                    if len(person.parent_family_list) > 0
+                    else None
+                )
                 if family_handle:
                     parent_family = db.get_raw_family_data(family_handle)
                     self.init_list(db, parent_family, 0)
