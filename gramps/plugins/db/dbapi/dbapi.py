@@ -1191,11 +1191,11 @@ class DBAPI(DbGeneric):
         Select json_data from table_name where (string).
         """
         evaluator = Evaluator(
-            table_name,
-            'json_data->>"$.{attr}"',
-            env if env is not None else globals()
+            table_name, 'json_data->>"$.{attr}"', env if env is not None else globals()
         )
         where_expr = str(evaluator.convert(where))
         order_by_expr = evaluator.get_order_by(order_by)
-        self.dbapi.execute(f"SELECT json_data from {table_name} WHERE {where_expr}{order_by_expr};")
+        self.dbapi.execute(
+            f"SELECT json_data from {table_name} WHERE {where_expr}{order_by_expr};"
+        )
         return [self.serializer.string_to_data(row[0]) for row in self.dbapi.fetchall()]

@@ -20,6 +20,7 @@
 
 import ast
 
+
 class AttributeNode:
     def __init__(self, json_extract, obj, attr):
         self.json_extract = json_extract
@@ -37,10 +38,12 @@ class AttributeNode:
             attr=self.attr,
         )
 
-class Evaluator():
+
+class Evaluator:
     """
     Python expression to SQL expression converter.
     """
+
     def __init__(self, table_name, json_extract, env):
         self.json_extract = json_extract
         self.table_name = table_name
@@ -56,7 +59,7 @@ class Evaluator():
             ast.FloorDiv: "(CAST (({leftOperand} / {rightOperand}) AS INT))",
             ast.USub: "-{operand}",
         }
-    
+
     def convert_to_sql(self, node):
         if isinstance(node, ast.Num):
             return str(node.n)
@@ -181,12 +184,14 @@ class Evaluator():
         node = ast.parse(python_expr, mode="eval").body
         sql_expr = self.convert_to_sql(node)
         return sql_expr
-    
+
     def get_order_by(self, order_by):
         order_by_exprs = []
         for expr_desc in order_by:
             if isinstance(expr_desc, (tuple, list)):
-                order_by_exprs.append("%s %s" % (self.convert(expr_desc[0]), expr_desc[1]))
+                order_by_exprs.append(
+                    "%s %s" % (self.convert(expr_desc[0]), expr_desc[1])
+                )
             else:
                 order_by_exprs.append(str(self.convert(expr_desc)))
 
@@ -196,4 +201,3 @@ class Evaluator():
             order_expr = ""
 
         return order_expr
-        
