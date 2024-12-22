@@ -45,9 +45,10 @@ from ..lib.tag import Tag
 from ..lib.serialize import from_dict
 from ..const import GRAMPS_LOCALE as glocale
 from .rules import Rule
+from .optimizer import Optimizer
 
 _ = glocale.translation.gettext
-LOG = logging.getLogger(".filter.optimize")
+LOG = logging.getLogger(".filter")
 
 
 # -------------------------------------------------------------------------
@@ -142,102 +143,23 @@ class GenericFilter:
     def get_number(self, db):
         return db.get_number_of_people()
 
-    def walk_filters(self, filter, parent_invert, result):
-        """
-        Walk all of the filters/rules and get
-        rules with maps
-        """
-        current_invert = parent_invert if not filter.invert else not parent_invert
-        LOG.debug(
-            "walking, filter: %s, invert=%s, parent_invert=%s",
-            filter,
-            filter.invert,
-            parent_invert,
-        )
-        rules = []
-        for item in filter.flist:
-            if hasattr(item, "find_filter"):
-                rule_filter = item.find_filter()
-                if rule_filter is not None:
-                    self.walk_filters(
-                        rule_filter,
-                        current_invert,
-                        result,
-                    )
-            elif hasattr(item, "map"):
-                rules.append(set(item.map))
-        if rules:
-            LOG.debug(
-                "filter %s: parent_invert=%s, invert=%s, op=%s, number of maps=%s",
-                filter,
-                parent_invert,
-                filter.invert,
-                filter.logical_op,
-                len(rules),
-            )
-            result.append(
-                (
-                    current_invert,
-                    filter.logical_op,
-                    rules,
-                )
-            )
-
     def apply_logical_op_to_all(
         self, db, id_list, apply_logical_op, user=None, tupleind=None, tree=False
     ):
         final_list = []
 
-        def intersection(sets):
-            if sets:
-                result = sets[0]
-                for s in sets[1:]:
-                    result = result.intersection(s)
-                return result
-            else:
-                return set()
+        optimizer = Optimizer(self)
+        handles_in, handles_out = optimizer.get_handles()
 
-        def union(sets):
-            if sets:
-                result = sets[0]
-                for s in sets[1:]:
-                    result = result.union(s)
-                return result
-            else:
-                return set()
-
-        # ------------------------------------------------------
-        # Optimiziation
-        # ------------------------------------------------------
-        all_maps = []
-        self.walk_filters(self, False, all_maps)
-        LOG.debug("number of maps to consider: %s", len(all_maps))
-        handles_in = None
-        handles_out = set()
-        # Get all positive non-inverted maps
-        for inverted, logical_op, maps in all_maps:
-            if logical_op == "and" and not inverted:
-                LOG.debug("optimizer positive match!")
-                if handles_in is None:
-                    handles_in = intersection(maps)
-                else:
-                    handles_in = intersection([handles_in] + maps)
-
-        # Get all inverted maps:
-        for inverted, logical_op, maps in all_maps:
-            if logical_op == "and" and inverted:
-                LOG.debug("optimizer inverted match!")
-                handles_out = union([handles_out] + maps)
-
-        if handles_in is not None:
-            handles_in = handles_in - handles_out
-
-        # ------------------------------------------------------
-        LOG.debug("optimizer handles_in: %s", len(handles_in) if handles_in else 0)
+        LOG.debug(
+            "Optimizer handles_in: %s",
+            len(handles_in) if handles_in is not None else None,
+        )
+        LOG.debug("Optimizer handles_out: %s", len(handles_out))
         if id_list is None:
             if handles_in is not None:
                 if user:
-                    user.begin_progress(_("Filter"), _("Applying ..."), len(handles))
+                    user.begin_progress(_("Filter"), _("Applying ..."), len(handles_in))
 
                 # Use these rather than going through entire database
                 for handle in handles_in:
