@@ -244,7 +244,7 @@ class GrampsType(metaclass=GrampsTypeMeta):
         if string == cls._CUSTOM:
             return string
         else:
-            return cls._I2SMAP.get(value, cls.UNKNOWN)
+            return cls._I2SMAP.get(value, _UNKNOWN)
 
     @classmethod
     def get_str(cls, dict):
