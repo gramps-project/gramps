@@ -240,6 +240,17 @@ class GrampsType(metaclass=GrampsTypeMeta):
         return (self.__value, self.__string)
 
     @classmethod
+    def __get_str(cls, value, string):
+        if string == cls._CUSTOM:
+            return string
+        else:
+            return cls._I2SMAP.get(value, cls.UNKNOWN)
+
+    @classmethod
+    def get_str(cls, dict):
+        return cls.__get_str(dict["value"], dict["string"])
+
+    @classmethod
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -265,9 +276,7 @@ class GrampsType(metaclass=GrampsTypeMeta):
         return self
 
     def __str__(self):
-        if self.__value == self._CUSTOM:
-            return self.__string
-        return self._I2SMAP.get(self.__value, _UNKNOWN)
+        return type(self).__get_str(self.__value, self.__string)
 
     def __int__(self):
         return self.__value
