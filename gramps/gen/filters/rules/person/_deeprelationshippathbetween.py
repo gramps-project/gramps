@@ -56,7 +56,7 @@ def get_family_handle_people(db, exclude_handle, family_handle):
     possibly_add_handle(family.father_handle)
     possibly_add_handle(family.mother_handle)
 
-    for child_ref in family.get_child_ref_list():
+    for child_ref in family.child_ref_list:
         if child_ref:
             possibly_add_handle(child_ref.ref)
 

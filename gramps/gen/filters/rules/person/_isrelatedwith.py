@@ -90,7 +90,7 @@ class IsRelatedWith(Rule):
                         if parent_handle:
                             expand.append(self.db.get_raw_person_data(parent_handle))
                     # Check Sibilings
-                    for child_ref in family.get_child_ref_list():
+                    for child_ref in family.child_ref_list:
                         expand.append(self.db.get_raw_person_data(child_ref.ref))
 
             for family_handle in person.family_list:
