@@ -46,14 +46,17 @@ class NoDeathdate(Rule):
     category = _("General filters")
 
     def apply_to_one(self, db, person: dict) -> bool:
-        death_ref = person.event_ref_list[person.death_ref_index]
-        if not death_ref:
+        if 0 <= person.death_ref_index < len(person.event_ref_list):
+            death_ref = person.event_ref_list[person.death_ref_index]
+            if not death_ref:
+                return True
+            death = db.get_raw_event_data(death_ref.ref)
+            if death:
+                death_obj = death.date
+                if not death_obj:
+                    return True
+                if death_obj.sortval == 0:
+                    return True
+            return False
+        else:
             return True
-        death = db.get_raw_event_data(death_ref.ref)
-        if death:
-            death_obj = death.date
-            if not death_obj:
-                return True
-            if death_obj.sortval == 0:
-                return True
-        return False

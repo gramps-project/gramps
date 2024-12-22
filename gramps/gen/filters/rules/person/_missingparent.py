@@ -51,7 +51,9 @@ class MissingParent(Rule):
     category = _("Family filters")
 
     def apply_to_one(self, db, person: dict) -> bool:
-        families = person.parent_family__list
+        families = person.parent_family_list
+        if families == []:
+            return True
         for family_handle in families:
             family = db.get_raw_family_data(family_handle)
             if family:

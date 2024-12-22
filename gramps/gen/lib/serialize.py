@@ -131,10 +131,20 @@ class DataList(list):
     """
     A wrapper around a data list.
     """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.index = 0
 
     def __iter__(self):
-        for i in range(len(self)):
-            yield self[i]
+        return self
+
+    def __next__(self):
+        if self.index >= len(self):
+            raise StopIteration
+
+        result = self[self.index]
+        self.index += 1
+        return result
 
     def __add__(self, value):
         return DataList([x for x in self] + [x for x in value])

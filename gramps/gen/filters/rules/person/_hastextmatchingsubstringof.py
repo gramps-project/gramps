@@ -160,7 +160,7 @@ class HasTextMatchingSubstringOf(Rule):
             return False
         # search inside the media object and cache the result
         if media_handle not in self.media_map:
-            media = self.db.raw_media_data(media_handle)
+            media = self.db.get_raw_media_data(media_handle)
             if self.match_object(media):
                 self.media_map.add(media_handle)
         return media_handle in self.media_map
@@ -169,13 +169,13 @@ class HasTextMatchingSubstringOf(Rule):
         # search all matching repositories
         self.repo_map.update(
             repo.handle
-            for repo in self.db.iter_raw_repositories()
+            for handle, repo in self.db._iter_raw_repository_data()
             if repo and self.match_object(repo)
         )
 
     def cache_sources(self):
         # search all sources and match all referents of a matching source
-        for source in self.db.iter_raw_sources():
+        for handle, source in self.db._iter_raw_source_data():
             match = self.match_object(source)
             LOG.debug(
                 "cache_sources match %s string %s source %s"

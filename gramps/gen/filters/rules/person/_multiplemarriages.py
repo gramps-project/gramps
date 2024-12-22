@@ -46,4 +46,4 @@ class MultipleMarriages(Rule):
     category = _("Family filters")
 
     def apply_to_one(self, db, person: dict) -> bool:
-        return len(person.family_handle_list) > 1
+        return len(person.family_list) > 1

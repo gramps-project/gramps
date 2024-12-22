@@ -46,4 +46,4 @@ class NeverMarried(Rule):
     category = _("Family filters")
 
     def apply_to_one(self, db, person: dict) -> bool:
-        return len(person.family_handle_list) == 0
+        return len(person.family_list) == 0

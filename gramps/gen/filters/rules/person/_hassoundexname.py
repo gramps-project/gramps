@@ -83,11 +83,11 @@ class HasSoundexName(Rule):
                 return True
             if soundex(str(name.get_surname())) == self.soundex:
                 return True
-            if soundex(str(name.call_name)) == self.soundex:
+            if soundex(str(name.call)) == self.soundex:
                 return True
-            if soundex(str(name.nick_name)) == self.soundex:
+            if soundex(str(name.nick)) == self.soundex:
                 return True
-            if soundex(str(name.family_nick_name)) == self.soundex:
+            if soundex(str(name.famnick)) == self.soundex:
                 return True
             for surname in name.surname_list:
                 if self._match_surname(surname):

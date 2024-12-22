@@ -165,7 +165,7 @@ class GenericFilter:
                         result,
                     )
             elif hasattr(item, "map"):
-                rules.append(item.map)
+                rules.append(set(item.map))
         if rules:
             LOG.debug(
                 "filter %s: parent_invert=%s, invert=%s, op=%s, number of maps=%s",

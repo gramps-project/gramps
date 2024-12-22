@@ -69,8 +69,8 @@ class IsDuplicatedAncestorOf(Rule):
 
     def init_ancestor_list(self, db, person):
         fam_id = (
-            person.parents_family_list[0]
-            if len(person.parents_family_list) > 0
+            person.parent_family_list[0]
+            if len(person.parent_family_list) > 0
             else None
         )
         if fam_id:

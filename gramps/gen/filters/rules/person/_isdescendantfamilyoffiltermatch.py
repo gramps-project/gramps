@@ -65,7 +65,7 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        for handle, person in db.iter_raw_people():
+        for handle, person in db._iter_raw_person_data():
             if user:
                 user.step_progress()
             if self.matchfilt.apply_to_one(db, person):

@@ -72,6 +72,6 @@ class HasSourceOfBase(Rule):
         else:
             for citation_handle in object.get_all_citation_lists():
                 citation = db.get_raw_citation_data(citation_handle)
-                if citation.ref == self.source_handle:
+                if citation.source_handle == self.source_handle:
                     return True
             return False

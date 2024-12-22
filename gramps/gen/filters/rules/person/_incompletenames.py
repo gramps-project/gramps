@@ -51,9 +51,10 @@ class IncompleteNames(Rule):
         for name in [person.primary_name] + person.alternate_names:
             if name.first_name.strip() == "":
                 return True
-            for surn in name.surname_list:
-                if surn.surname.strip() == "":
-                    return True
+            if name.surname_list:
+                for surn in name.surname_list:
+                    if surn.surname.strip() == "":
+                        return True
             else:
                 return True
         return False
