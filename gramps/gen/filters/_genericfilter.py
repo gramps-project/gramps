@@ -78,14 +78,12 @@ class GenericFilter:
             self.logical_op = "and"
             self.invert = False
 
-    def match(self, data, db):
+    def match(self, handle, db):
         """
         Return True or False depending on whether the handle matches the filter.
         """
-        if self.apply_to_one(db, data):
-            return True
-        else:
-            return False
+        obj = self.get_raw_data(handle)
+        return self.apply_to_one(db, obj)
 
     def is_empty(self):
         return (len(self.flist) == 0) or (
@@ -307,7 +305,7 @@ class GenericFilter:
 
 
 class GenericFamilyFilter(GenericFilter):
-    tables = "family"
+    table = "family"
 
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
