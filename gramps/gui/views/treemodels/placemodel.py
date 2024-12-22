@@ -137,9 +137,7 @@ class PlaceBaseModel:
 
     def search_name(self, data):
         """The search name includes all alt names to enable finding by alt name"""
-        return ",".join(
-            [[data.name.value] + [name.value for name in data.alt_names]]
-        )
+        return ",".join([[data.name.value] + [name.value for name in data.alt_names]])
 
     def column_longitude(self, data):
         if not data.long:
@@ -168,9 +166,7 @@ class PlaceBaseModel:
     def sort_longitude(self, data):
         if not data.long:
             return ""
-        value = (
-            conv_lat_lon("0", data.long, format="ISO-DMS") if data.long else ""
-        )
+        value = conv_lat_lon("0", data.long, format="ISO-DMS") if data.long else ""
         if not value:
             return _("Error in format")
         return value
