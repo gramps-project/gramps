@@ -150,7 +150,7 @@ class Rule:
         """Verify the number of rule values versus the number of rule labels."""
         return len(self.list) == len(self.labels)
 
-    def apply(self, dummy_db, dummy_person):
+    def apply(self, dummy_db, dummy_person: dict) -> bool:
         """Apply the rule to some database entry; must be overwritten."""
         return True
 
