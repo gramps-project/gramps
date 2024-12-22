@@ -69,9 +69,7 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
                 self.map.add(handle)
             gen += 1
             p = self.db.get_raw_person_data(handle)
-            fam_id = (
-                p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
-            )
+            fam_id = p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
             if fam_id:
                 fam = self.db.get_raw_family_data(fam_id)
                 if fam:
