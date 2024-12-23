@@ -247,8 +247,8 @@ class GrampsType(metaclass=GrampsTypeMeta):
             return cls._I2SMAP.get(value, _UNKNOWN)
 
     @classmethod
-    def get_str(cls, dict):
-        return cls.__get_str(dict["value"], dict["string"])
+    def get_str(cls, data):
+        return cls.__get_str(data.value, data.string)
 
     @classmethod
     def get_schema(cls):

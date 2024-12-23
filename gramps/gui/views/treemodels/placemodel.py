@@ -188,7 +188,7 @@ class PlaceBaseModel:
         return data["gramps_id"]
 
     def column_type(self, data):
-        return PlaceType.get_str(data["place_type"])
+        return PlaceType.get_str(data.place_type)
 
     def column_code(self, data):
         return data["code"]
