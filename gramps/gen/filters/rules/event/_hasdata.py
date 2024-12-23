@@ -95,7 +95,7 @@ class HasData(Rule):
                 # No place attached to event
                 return False
 
-        if not self.match_substring(3, obj.get_description()):
+        if not self.match_substring(3, obj.description):
             # No match
             return False
 

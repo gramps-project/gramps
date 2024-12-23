@@ -74,7 +74,7 @@ class MatchesPersonFilter(MatchesFilterBase):
         filt = self.find_filter()
         if filt:
             for classname, handle in db.find_backlink_handles(
-                event.get_handle(), ["Person"]
+                event.handle, ["Person"]
             ):
                 person = db.method("get_raw_%_data", classname)(handle)
                 if filt.apply_to_one(db, person):
@@ -82,7 +82,7 @@ class MatchesPersonFilter(MatchesFilterBase):
             if self.MPF_famevents:
                 # also include if family event of the person
                 for classname, handle in db.find_backlink_handles(
-                    event.get_handle(), ["Family"]
+                    event.handle, ["Family"]
                 ):
                     family = db.get_family_from_handle(handle)
                     father = (

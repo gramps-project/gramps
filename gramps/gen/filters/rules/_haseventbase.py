@@ -82,7 +82,7 @@ class HasEventBase(Rule):
             elif event.type != self.event_type:
                 return False
 
-        if not self.match_substring(3, event.get_description()):
+        if not self.match_substring(3, event.description):
             return False
 
         if self.date:

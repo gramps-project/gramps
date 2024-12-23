@@ -67,8 +67,8 @@ class HasRelType(Rule):
         """
         if self.relation_type:
             if self.relation_type.is_custom() and self.use_regex:
-                if self.regex[0].search(str(obj.get_relationship())) is None:
+                if self.regex[0].search(str(obj.type)) is None:
                     return False
-            elif self.relation_type != obj.get_relationship():
+            elif self.relation_type != obj.type:
                 return False
         return True

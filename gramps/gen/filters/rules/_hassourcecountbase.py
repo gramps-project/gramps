@@ -64,7 +64,7 @@ class HasSourceCountBase(Rule):
         self.userSelectedCount = int(self.list[0])
 
     def apply_to_one(self, db, obj: dict) -> bool:
-        count = len(obj.get_citation_list())
+        count = len(obj.citation_list)
         if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount
         elif self.count_type == 2:  # "greater than"

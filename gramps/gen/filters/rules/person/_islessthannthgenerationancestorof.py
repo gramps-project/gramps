@@ -57,7 +57,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         self.map = set()
         person = db._get_raw_person_from_id_data(self.list[0])
         if person:
-            root_handle = person.get_handle()
+            root_handle = person.handle
             if root_handle:
                 self.init_ancestor_list(root_handle)
 

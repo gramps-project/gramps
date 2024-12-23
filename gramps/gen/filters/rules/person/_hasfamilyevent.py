@@ -76,13 +76,13 @@ class HasFamilyEvent(Rule):
                 if self.event_type and event.type != self.event_type:
                     val = 0
                 if self.list[3]:
-                    if not self.match_substring(3, event.get_description()):
+                    if not self.match_substring(3, event.description):
                         val = 0
                 if self.date:
                     if not event.date.match(self.date):
                         val = 0
                 if self.list[2]:
-                    place_id = event.get_place_handle()
+                    place_id = event.place
                     if place_id:
                         place = db.get_raw_place_data(place_id)
                         place_title = place_displayer.display(db, place)

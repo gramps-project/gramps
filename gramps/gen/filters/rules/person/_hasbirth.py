@@ -70,7 +70,7 @@ class HasBirth(Rule):
             if event.type != EventType.BIRTH:
                 # No match: wrong type
                 continue
-            if not self.match_substring(2, event.get_description()):
+            if not self.match_substring(2, event.description):
                 # No match: wrong description
                 continue
             if self.date:
