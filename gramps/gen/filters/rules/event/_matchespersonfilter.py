@@ -73,9 +73,7 @@ class MatchesPersonFilter(MatchesFilterBase):
     def apply_to_one(self, db, event: dict) -> bool:
         filt = self.find_filter()
         if filt:
-            for classname, handle in db.find_backlink_handles(
-                event.handle, ["Person"]
-            ):
+            for classname, handle in db.find_backlink_handles(event.handle, ["Person"]):
                 person = db.method("get_raw_%_data", classname)(handle)
                 if filt.apply_to_one(db, person):
                     return True
