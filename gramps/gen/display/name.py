@@ -749,7 +749,7 @@ class NameDisplay:
 
         The new function is of the form::
 
-        def fn(first, raw_surname_list, suffix, title, call,):
+        def fn(first, raw_surname_list, suffix, title, call, nick, famnick):
             return "%s %s" % (first,suffix)
 
         Specific symbols for parts of a name are defined (keywords given):
@@ -1172,8 +1172,7 @@ class NameDisplay:
 
     def _make_fn(self, format_str, d, args):
         """
-        Create the name display function and handles dependent
-        punctuation.
+        Create the name display function and handles dependent punctuation.
         """
         # d is a dict: dict[code] = (expr, word, translated word)
 
@@ -1281,18 +1280,17 @@ def fn(%s):
             ",".join(param),
         )
         try:
-            exec(s) in globals(), locals()
-            return locals()["fn"]
-        except:
+            result = {}
+            exec(s, globals(), result)
+            return result["fn"]
+        except SyntaxError:
             LOG.error(
-                "\n"
-                + "Wrong name format string %s" % new_fmt
-                + "\n"
-                + ("ERROR, Edit Name format in Preferences->Display to correct")
-                + "\n"
-                + _("Wrong name format string %s") % new_fmt
-                + "\n"
-                + ("ERROR, Edit Name format in Preferences->Display to correct")
+                "Wrong name format string %s\n"
+                "ERROR, Edit Name format in Preferences->Display to correct\n"
+                + _("Wrong name format string %s")
+                + "\nERROR, Edit Name format in Preferences->Display to correct",
+                new_fmt,
+                new_fmt,
             )
 
             def errfn(*arg):
