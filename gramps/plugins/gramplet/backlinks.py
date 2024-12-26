@@ -21,16 +21,25 @@
 
 # -------------------------------------------------------------------------
 #
+# python
+#
+# -------------------------------------------------------------------------
+import pickle
+
+# -------------------------------------------------------------------------
+#
 # Gtk modules
 #
 # -------------------------------------------------------------------------
-from gi.repository import Gtk
+from gi.repository import Gdk, Gtk
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gui.clipboard import obj2icon
+from gramps.gui.ddtargets import DdTargets
 from gramps.gui.listmodel import ListModel
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.plug import Gramplet
@@ -59,6 +68,14 @@ class Backlinks(Gramplet):
         Build the GUI interface.
         """
         self.top = Gtk.TreeView()
+        self.top.enable_model_drag_source(
+            Gdk.ModifierType.BUTTON1_MASK,
+            [DdTargets.HANDLE_LIST.target()],
+            Gdk.DragAction.COPY,
+        )
+        self.top.connect("drag_data_get", self.drag_data_get)
+        self.top.connect_after("drag-begin", self.after_drag_begin)
+
         titles = [
             (_("Type"), 1, 100),
             (_("Name"), 2, 100),
@@ -74,11 +91,31 @@ class Backlinks(Gramplet):
             middle_click=self.cb_middle_click,
             right_click=self.cb_right_click,
         )
+
         self.date_column = self.top.get_column(2)
         self.sdate = self.top.get_column(3)
         self.top.get_column(1).set_expand(True)  # The name use the max
         # possible size
         return self.top
+
+    def drag_data_get(self, widget, context, sel_data, info, time):
+        # get the selected object, returning if notthing is selected
+        (model, iter_) = self.top.get_selection().get_selected()
+        if not iter_:
+            return
+
+        data = [(model.get_value(iter_, 5), model.get_value(iter_, 4))]
+        sel_data.set(DdTargets.HANDLE_LIST.atom_drag_type, 8, pickle.dumps(data))
+
+    def after_drag_begin(self, widget, drag_context):
+        """
+        We want to show the icon during drag instead of the long row entry
+        """
+        (model, iter_) = self.top.get_selection().get_selected()
+        if not iter_:
+            return
+        (objclass, _) = (model.get_value(iter_, 5), model.get_value(iter_, 4))
+        Gtk.drag_set_icon_name(drag_context, obj2icon(objclass.lower()), 0, 0)
 
     def display_backlinks(self, active_handle):
         """
