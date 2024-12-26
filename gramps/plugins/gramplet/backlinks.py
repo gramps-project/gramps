@@ -134,7 +134,7 @@ class Backlinks(Gramplet):
 
     def cb_middle_click(self, treeview, event):
         """
-        Handle right click on view.
+        Handle middle click on view.
         """
         (model, iter_) = treeview.get_selection().get_selected()
         if not iter_:
