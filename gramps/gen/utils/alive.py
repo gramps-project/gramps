@@ -192,8 +192,9 @@ class ProbablyAlive:
             #        whether or not a date was found.
             # If we have no death_date then look for fallback event such as Burial.
             # These fallbacks are fairly good indications that someone's not alive.
-            # If that date itself is not valid, it means we know they are dead
-            #  but not when they died. So keep checking in case we get a date.
+            # If the fallback death event does not have a valid date then it means
+            # we know they are dead but not when they died.
+            # So keep checking in case we get a date.
             if not death_date:
                 for ev_ref in thisperson.get_primary_event_ref_list():
                     if ev_ref:
