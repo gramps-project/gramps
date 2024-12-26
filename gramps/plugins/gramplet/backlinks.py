@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2011 Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2024 Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -66,7 +67,12 @@ class Backlinks(Gramplet):
             ("", 5, 1),  # hidden column for the handle
             ("", 6, 1),  # hidden column for non-localized object type
         ]
-        self.model = ListModel(self.top, titles, event_func=self.cb_double_click)
+        self.model = ListModel(
+            self.top,
+            titles,
+            event_func=self.cb_double_click,
+            middle_click=self.cb_middle_click,
+        )
         self.date_column = self.top.get_column(2)
         self.sdate = self.top.get_column(3)
         self.top.get_column(1).set_expand(True)  # The name use the max
@@ -125,6 +131,17 @@ class Backlinks(Gramplet):
         (objclass, handle) = (model.get_value(iter_, 5), model.get_value(iter_, 4))
 
         edit_object(self.dbstate, self.uistate, objclass, handle)
+
+    def cb_middle_click(self, treeview, event):
+        """
+        Handle right click on view.
+        """
+        (model, iter_) = treeview.get_selection().get_selected()
+        if not iter_:
+            return
+
+        (objclass, handle) = (model.get_value(iter_, 5), model.get_value(iter_, 4))
+        self.uistate.set_active(handle, objclass)
 
     def db_changed(self):
         for item in [
