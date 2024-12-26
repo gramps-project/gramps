@@ -72,6 +72,7 @@ class Backlinks(Gramplet):
             titles,
             event_func=self.cb_double_click,
             middle_click=self.cb_middle_click,
+            right_click=self.cb_right_click,
         )
         self.date_column = self.top.get_column(2)
         self.sdate = self.top.get_column(3)
@@ -142,6 +143,35 @@ class Backlinks(Gramplet):
 
         (objclass, handle) = (model.get_value(iter_, 5), model.get_value(iter_, 4))
         self.uistate.set_active(handle, objclass)
+
+    def cb_right_click(self, treeview, event):
+        """
+        Handle right click on view.
+        """
+        (model, iter_) = self.top.get_selection().get_selected()
+        if not iter_:
+            return  # nothing selected, so do not display the context menu
+
+        (objclass, handle) = (model.get_value(iter_, 5), model.get_value(iter_, 4))
+
+        self.__store_menu = Gtk.Menu()  # need to keep reference or menu disappears
+        menu = self.__store_menu
+
+        item = Gtk.MenuItem.new_with_mnemonic(_("_Edit"))
+        item.connect(
+            "activate",
+            lambda obj: edit_object(self.dbstate, self.uistate, objclass, handle),
+        )
+        item.show()
+        menu.append(item)
+
+        item = Gtk.MenuItem.new_with_mnemonic(_("_Make Active %s") % objclass)
+        item.connect("activate", lambda obj: self.uistate.set_active(handle, objclass))
+        item.show()
+        menu.append(item)
+
+        menu.popup_at_pointer(event)
+        return True
 
     def db_changed(self):
         for item in [
