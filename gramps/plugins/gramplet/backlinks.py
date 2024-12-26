@@ -38,7 +38,7 @@ from gi.repository import Gdk, Gtk
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from gramps.gui.clipboard import obj2icon
+from gramps.gui.clipboard import obj2icon, obj2target
 from gramps.gui.ddtargets import DdTargets
 from gramps.gui.listmodel import ListModel
 from gramps.gen.utils.db import navigation_label
@@ -55,6 +55,16 @@ class Backlinks(Gramplet):
     Displays the back references for an object.
     """
 
+    __obj2target = {
+        "Person": DdTargets.PERSON_LINK,
+        "Family": DdTargets.FAMILY_LINK,
+        "Event": DdTargets.EVENT,
+        "Citation": DdTargets.CITATION_LINK,
+        "Source": DdTargets.SOURCE_LINK,
+        "Place": DdTargets.PLACE_LINK,
+        "Repository": DdTargets.REPO_LINK,
+    }
+
     def init(self):
         self.date_column = None
         self.evts = False
@@ -68,13 +78,9 @@ class Backlinks(Gramplet):
         Build the GUI interface.
         """
         self.top = Gtk.TreeView()
-        self.top.enable_model_drag_source(
-            Gdk.ModifierType.BUTTON1_MASK,
-            [DdTargets.HANDLE_LIST.target()],
-            Gdk.DragAction.COPY,
-        )
+        self.top.get_selection().connect("changed", self.selection_changed)
+        self.top.connect_after("drag-begin", self.drag_begin)
         self.top.connect("drag_data_get", self.drag_data_get)
-        self.top.connect_after("drag-begin", self.after_drag_begin)
 
         titles = [
             (_("Type"), 1, 100),
@@ -98,24 +104,46 @@ class Backlinks(Gramplet):
         # possible size
         return self.top
 
-    def drag_data_get(self, widget, context, sel_data, info, time):
-        # get the selected object, returning if notthing is selected
-        (model, iter_) = self.top.get_selection().get_selected()
-        if not iter_:
-            return
+    def selection_changed(self, selection):
+        """
+        Called when the selection is changed in the TreeView.
+        """
+        target = None
+        (model, iter_) = selection.get_selected()
+        if iter_:
+            objclass = model.get_value(iter_, 5)
+            target = self.__obj2target.get(objclass)
 
-        data = [(model.get_value(iter_, 5), model.get_value(iter_, 4))]
-        sel_data.set(DdTargets.HANDLE_LIST.atom_drag_type, 8, pickle.dumps(data))
+        if target:
+            self.top.drag_source_set(
+                Gdk.ModifierType.BUTTON1_MASK, [target.target()], Gdk.DragAction.COPY
+            )
+        else:
+            self.top.drag_source_unset()
 
-    def after_drag_begin(self, widget, drag_context):
+    def drag_begin(self, widget, drag_context):
         """
         We want to show the icon during drag instead of the long row entry
         """
         (model, iter_) = self.top.get_selection().get_selected()
         if not iter_:
             return
-        (objclass, _) = (model.get_value(iter_, 5), model.get_value(iter_, 4))
+
+        objclass = model.get_value(iter_, 5)
         Gtk.drag_set_icon_name(drag_context, obj2icon(objclass.lower()), 0, 0)
+
+    def drag_data_get(self, widget, context, sel_data, info, time):
+        # get the selected object, returning if nothing is selected
+        (model, iter_) = self.top.get_selection().get_selected()
+        if not iter_:
+            return
+
+        (objclass, handle) = (model.get_value(iter_, 5), model.get_value(iter_, 4))
+
+        target = obj2target(objclass)
+        data = (target.name(), id(self), handle, 0)
+
+        sel_data.set(target, 8, pickle.dumps(data))
 
     def display_backlinks(self, active_handle):
         """
