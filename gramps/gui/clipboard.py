@@ -81,25 +81,32 @@ clipdb = None  # current db to avoid different transient dbs during db change
 
 theme = Gtk.IconTheme.get_default()
 LINK_PIC = theme.load_icon("stock_link", 16, 0)
+OBJ2ICON = {
+    "media": "gramps-media",
+    "note": "gramps-notes",
+    "person": "gramps-person",
+    "place": "gramps-place",
+    "address": "gramps-address",
+    "attribute": "gramps-attribute",
+    "event": "gramps-event",
+    "family": "gramps-family",
+    "location": "geo-place-link",
+    "media": "gramps-media",
+    "name": "geo-show-person",
+    "repository": "gramps-repository",
+    "source": "gramps-source",
+    "citation": "gramps-citation",
+    "text": "gramps-font",
+    "url": "gramps-geo",
+}
+
+
+def obj2icon(target):
+    return OBJ2ICON[target] if target in OBJ2ICON else None
+
+
 ICONS = {}
-for name, icon in (
-    ("media", "gramps-media"),
-    ("note", "gramps-notes"),
-    ("person", "gramps-person"),
-    ("place", "gramps-place"),
-    ("address", "gramps-address"),
-    ("attribute", "gramps-attribute"),
-    ("event", "gramps-event"),
-    ("family", "gramps-family"),
-    ("location", "geo-place-link"),
-    ("media", "gramps-media"),
-    ("name", "geo-show-person"),
-    ("repository", "gramps-repository"),
-    ("source", "gramps-source"),
-    ("citation", "gramps-citation"),
-    ("text", "gramps-font"),
-    ("url", "gramps-geo"),
-):
+for name, icon in OBJ2ICON.items():
     ICONS[name] = theme.load_icon(icon, 16, 0)
 
 
