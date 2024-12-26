@@ -1186,16 +1186,42 @@ class DBAPI(DbGeneric):
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
 
-    def select(self, table_name, where, order_by=[], env=None):
-        """
-        Select json_data from table_name where (string).
-        """
+    def select_from_table(
+        self, table_name, what=None, where=None, order_by=None, env=None
+    ):
+        # DB-API implementation
+        # NOTE: evaluator takes a pattern in case your DB-API
+        #       varies in syntax for JSON extraction
         evaluator = Evaluator(
             table_name, 'json_data->>"$.{attr}"', env if env is not None else globals()
         )
-        where_expr = str(evaluator.convert(where))
-        order_by_expr = evaluator.get_order_by(order_by)
+
+        if what is None:
+            what_expr = "json_data"
+        elif isinstance(what, str):
+            what_expr = str(evaluator.convert(what))
+        else:
+            what_expr = ", ".join([str(evaluator.convert(w)) for w in what])
+
+        if where is None:
+            where_expr = ""
+        else:
+            where_expr = " WHERE %s" % evaluator.convert(where)
+
+        if order_by is None:
+            order_by_expr = ""
+        else:
+            order_by_expr = evaluator.get_order_by(order_by)
+
         self.dbapi.execute(
-            f"SELECT json_data from {table_name} WHERE {where_expr}{order_by_expr};"
+            f"SELECT {what_expr} from {table_name}{where_expr}{order_by_expr};"
         )
-        return [self.serializer.string_to_data(row[0]) for row in self.dbapi.fetchall()]
+        row = self.dbapi.fetchone()
+        while row:
+            if what_expr == "json_data":
+                yield self.serializer.string_to_data(row[0])
+            elif isinstance(what, str):
+                yield row[0]
+            else:
+                yield row
+            row = self.dbapi.fetchone()
