@@ -1264,7 +1264,7 @@ class ClipboardListView:
                 _ob._dbname = dbname
 
             # If this was a ClipPersonLink with a list for a handle, we don't
-            # want it.  Can happen in People Treeview with attemp to drag last
+            # want it.  Can happen in People Treeview with attempt to drag last
             # name group.
             if isinstance(_ob, ClipHandleWrapper) and isinstance(_ob._handle, list):
                 return None
