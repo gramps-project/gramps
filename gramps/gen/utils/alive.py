@@ -190,7 +190,7 @@ class ProbablyAlive:
             # at this stage death_date is None or a valid date.
             # death_found is true if thisperson is known to be dead,
             #        whether or not a date was found.
-            # If we have no death_date then look for fallback even such as Burial.
+            # If we have no death_date then look for fallback event such as Burial.
             # These fallbacks are fairly good indications that someone's not alive.
             # If that date itself is not valid, it means we know they are dead
             #  but not when they died. So keep checking in case we get a date.
