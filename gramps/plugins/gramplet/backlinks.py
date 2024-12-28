@@ -86,7 +86,7 @@ class Backlinks(Gramplet):
             (_("Type"), 1, 100),
             (_("Name"), 2, 100),
             (_("Date"), 4, 200),
-            ("sd", 4, 120),  # sorted date column
+            ("date_sort_value", 4, 120),  # sorted date column
             ("", 5, 1),  # hidden column for the handle
             ("", 6, 1),  # hidden column for non-localized object type
         ]
@@ -100,6 +100,7 @@ class Backlinks(Gramplet):
 
         self.date_column = self.top.get_column(2)
         self.sdate = self.top.get_column(3)
+        self.sdate.set_visible(False)  # always hide the date_sort_value column
         self.top.get_column(1).set_expand(True)  # The name use the max
         # possible size
         return self.top
