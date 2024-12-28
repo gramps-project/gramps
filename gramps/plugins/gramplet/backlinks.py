@@ -66,6 +66,10 @@ class Backlinks(Gramplet):
         "Repository": DdTargets.REPO_LINK,
     }
 
+    def __init__(self, classname, gui, nav_group=0):
+        self.__classname = classname  # must be set before calling super().__init__
+        super().__init__(gui, nav_group)
+
     def init(self):
         self.date_column = None
         self.gui.WIDGET = self.build_gui()
@@ -250,6 +254,25 @@ class Backlinks(Gramplet):
             self.connect(self.dbstate.db, "%s-delete" % item, self.update)
             self.connect(self.dbstate.db, "%s-add" % item, self.update)
             self.connect(self.dbstate.db, "%s-update" % item, self.update)
+        if self.__classname != "Person":
+            # the Gramplet super class already connects to changes in
+            # active person and calls active_changed
+            self.connect_signal(self.__classname, self.update)
+
+    def active_changed(self, handle):
+        self.update()
+
+    def update_has_data(self):
+        active_handle = self.get_active(self.__classname)
+        self.set_has_data(self.get_has_data(active_handle))
+
+    def main(self):
+        active_handle = self.get_active(self.__classname)
+        self.model.clear()
+        if active_handle:
+            self.display_backlinks(active_handle)
+        else:
+            self.set_has_data(False)
 
 
 class PersonBacklinks(Backlinks):
@@ -257,20 +280,8 @@ class PersonBacklinks(Backlinks):
     Displays the back references for a person.
     """
 
-    def active_changed(self, handle):
-        self.update()
-
-    def update_has_data(self):
-        active_handle = self.get_active("Person")
-        self.set_has_data(self.get_has_data(active_handle))
-
-    def main(self):
-        active_handle = self.get_active("Person")
-        self.model.clear()
-        if active_handle:
-            self.display_backlinks(active_handle)
-        else:
-            self.set_has_data(False)
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Person", gui, nav_group)
 
 
 class EventBacklinks(Backlinks):
@@ -278,21 +289,8 @@ class EventBacklinks(Backlinks):
     Displays the back references for an event.
     """
 
-    def db_changed(self):
-        super().db_changed()
-        self.connect_signal("Event", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Event")
-        self.set_has_data(self.get_has_data(active_handle))
-
-    def main(self):
-        active_handle = self.get_active("Event")
-        self.model.clear()
-        if active_handle:
-            self.display_backlinks(active_handle)
-        else:
-            self.set_has_data(False)
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Event", gui, nav_group)
 
 
 class FamilyBacklinks(Backlinks):
@@ -300,21 +298,8 @@ class FamilyBacklinks(Backlinks):
     Displays the back references for a family.
     """
 
-    def db_changed(self):
-        super().db_changed()
-        self.connect_signal("Family", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Family")
-        self.set_has_data(self.get_has_data(active_handle))
-
-    def main(self):
-        active_handle = self.get_active("Family")
-        self.model.clear()
-        if active_handle:
-            self.display_backlinks(active_handle)
-        else:
-            self.set_has_data(False)
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Family", gui, nav_group)
 
 
 class PlaceBacklinks(Backlinks):
@@ -322,21 +307,8 @@ class PlaceBacklinks(Backlinks):
     Displays the back references for a place.
     """
 
-    def db_changed(self):
-        super().db_changed()
-        self.connect_signal("Place", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Place")
-        self.set_has_data(self.get_has_data(active_handle))
-
-    def main(self):
-        active_handle = self.get_active("Place")
-        self.model.clear()
-        if active_handle:
-            self.display_backlinks(active_handle)
-        else:
-            self.set_has_data(False)
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Place", gui, nav_group)
 
 
 class SourceBacklinks(Backlinks):
@@ -344,21 +316,8 @@ class SourceBacklinks(Backlinks):
     Displays the back references for a source,.
     """
 
-    def db_changed(self):
-        super().db_changed()
-        self.connect_signal("Source", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Source")
-        self.set_has_data(self.get_has_data(active_handle))
-
-    def main(self):
-        active_handle = self.get_active("Source")
-        self.model.clear()
-        if active_handle:
-            self.display_backlinks(active_handle)
-        else:
-            self.set_has_data(False)
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Source", gui, nav_group)
 
 
 class CitationBacklinks(Backlinks):
@@ -366,21 +325,8 @@ class CitationBacklinks(Backlinks):
     Displays the back references for a Citation,.
     """
 
-    def db_changed(self):
-        super().db_changed()
-        self.connect_signal("Citation", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Citation")
-        self.set_has_data(self.get_has_data(active_handle))
-
-    def main(self):
-        active_handle = self.get_active("Citation")
-        self.model.clear()
-        if active_handle:
-            self.display_backlinks(active_handle)
-        else:
-            self.set_has_data(False)
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Citation", gui, nav_group)
 
 
 class RepositoryBacklinks(Backlinks):
@@ -388,21 +334,8 @@ class RepositoryBacklinks(Backlinks):
     Displays the back references for a repository.
     """
 
-    def db_changed(self):
-        super().db_changed()
-        self.connect_signal("Repository", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Repository")
-        self.set_has_data(self.get_has_data(active_handle))
-
-    def main(self):
-        active_handle = self.get_active("Repository")
-        self.model.clear()
-        if active_handle:
-            self.display_backlinks(active_handle)
-        else:
-            self.set_has_data(False)
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Repository", gui, nav_group)
 
 
 class MediaBacklinks(Backlinks):
@@ -410,21 +343,8 @@ class MediaBacklinks(Backlinks):
     Displays the back references for a media object.
     """
 
-    def db_changed(self):
-        super().db_changed()
-        self.connect_signal("Media", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Media")
-        self.set_has_data(self.get_has_data(active_handle))
-
-    def main(self):
-        active_handle = self.get_active("Media")
-        self.model.clear()
-        if active_handle:
-            self.display_backlinks(active_handle)
-        else:
-            self.set_has_data(False)
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Media", gui, nav_group)
 
 
 class NoteBacklinks(Backlinks):
@@ -432,18 +352,5 @@ class NoteBacklinks(Backlinks):
     Displays the back references for a note.
     """
 
-    def db_changed(self):
-        super().db_changed()
-        self.connect_signal("Note", self.update)
-
-    def update_has_data(self):
-        active_handle = self.get_active("Note")
-        self.set_has_data(self.get_has_data(active_handle))
-
-    def main(self):
-        active_handle = self.get_active("Note")
-        self.model.clear()
-        if active_handle:
-            self.display_backlinks(active_handle)
-        else:
-            self.set_has_data(False)
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Note", gui, nav_group)
