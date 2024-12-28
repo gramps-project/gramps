@@ -86,7 +86,7 @@ class Backlinks(Gramplet):
             (_("Type"), 1, 100),
             (_("Name"), 2, 100),
             (_("Date"), 4, 200),
-            ("date_sort_value", 4, 120),  # sorted date column
+            ("date_sort_value", 4, 1),  # sorted date column
             ("", 5, 1),  # hidden column for the handle
             ("", 6, 1),  # hidden column for non-localized object type
         ]
