@@ -40,6 +40,7 @@ from gi.repository import Gdk, Gtk
 # -------------------------------------------------------------------------
 from gramps.gui.clipboard import obj2icon, obj2target
 from gramps.gui.ddtargets import DdTargets
+from gramps.gen.lib.datebase import DateBase
 from gramps.gui.listmodel import ListModel
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.plug import Gramplet
@@ -67,7 +68,6 @@ class Backlinks(Gramplet):
 
     def init(self):
         self.date_column = None
-        self.evts = False
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.gui.WIDGET)
@@ -99,9 +99,12 @@ class Backlinks(Gramplet):
         )
 
         self.date_column = self.top.get_column(2)
-        self.sdate = self.top.get_column(3)
-        self.sdate.set_visible(False)  # always hide the date_sort_value column
+        self.date_column.set_visible(False)
+        self.date_column.set_sort_column_id(3)
         self.top.get_column(1).set_expand(True)  # The name use the max
+        self.top.get_column(3).set_visible(
+            False
+        )  # always hide the date_sort_value column
         # possible size
         return self.top
 
@@ -150,31 +153,24 @@ class Backlinks(Gramplet):
         """
         Display the back references for an object.
         """
-        self.evts = False
-        sdcolumn = None
+        have_dates = False  # True if any of the objects we are displaying have are instances of DateBase
         for classname, handle in self.dbstate.db.find_backlink_handles(active_handle):
             name = navigation_label(self.dbstate.db, classname, handle)[0]
-            sdcolumn = self.top.get_column(3)
-            dcolumn = self.top.get_column(2)
-            if classname == "Event":
-                obj = self.dbstate.db.get_event_from_handle(handle)
+            obj = self.dbstate.db.method("get_%s_from_handle", classname)(handle)
+            if isinstance(obj, DateBase):
                 o_date = obj.get_date_object()
                 date = displayer.display(o_date)
-                sdate = "%09d" % o_date.get_sort_value()
-                sdcolumn.set_sort_column_id(3)
-                dcolumn.set_sort_column_id(3)
-                self.evts = True
+                date_sort_value = "%09d" % o_date.get_sort_value()
+                have_dates = True
             else:
-                sdcolumn.set_sort_column_id(1)
-                date = sdate = ""
-            self.model.add((_(classname), name, date, sdate, handle, classname))
-        if self.evts:
-            self.date_column.set_visible(True)
-            sdcolumn.set_visible(False)
-        else:
-            self.date_column.set_visible(False)
-            if sdcolumn:
-                sdcolumn.set_visible(False)
+                date = date_sort_value = ""
+            self.model.add(
+                (_(classname), name, date, date_sort_value, handle, classname)
+            )
+
+        self.date_column.set_visible(
+            have_dates
+        )  # only show the Date column if there are some values
         self.set_has_data(self.model.count > 0)
 
     def get_has_data(self, active_handle):
