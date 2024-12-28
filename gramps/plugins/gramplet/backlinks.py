@@ -90,7 +90,7 @@ class Backlinks(Gramplet):
             (_("Type"), 1, 100),
             (_("Name"), 2, 100),
             (_("Date"), 4, 200),
-            ("date_sort_value", 4, 1),  # sorted date column
+            ("date_sort_value", 4, 1),  # hidden column
             ("", 5, 1),  # hidden column for the handle
             ("", 6, 1),  # hidden column for non-localized object type
         ]
@@ -105,7 +105,9 @@ class Backlinks(Gramplet):
         self.date_column = self.top.get_column(2)
         self.date_column.set_visible(False)
         self.date_column.set_sort_column_id(3)
-        self.top.get_column(1).set_expand(True)  # The name use the max
+        self.top.get_column(1).set_expand(
+            True
+        )  # Expand the Name column as far as possible
         self.top.get_column(3).set_visible(
             False
         )  # always hide the date_sort_value column
@@ -157,7 +159,7 @@ class Backlinks(Gramplet):
         """
         Display the back references for an object.
         """
-        have_dates = False  # True if any of the objects we are displaying have are instances of DateBase
+        have_dates = False  # True if any of the objects we are displaying are instances of DateBase
         for classname, handle in self.dbstate.db.find_backlink_handles(active_handle):
             name = navigation_label(self.dbstate.db, classname, handle)[0]
             obj = self.dbstate.db.method("get_%s_from_handle", classname)(handle)
@@ -313,7 +315,7 @@ class PlaceBacklinks(Backlinks):
 
 class SourceBacklinks(Backlinks):
     """
-    Displays the back references for a source,.
+    Displays the back references for a source.
     """
 
     def __init__(self, gui, nav_group=0):
@@ -322,7 +324,7 @@ class SourceBacklinks(Backlinks):
 
 class CitationBacklinks(Backlinks):
     """
-    Displays the back references for a Citation,.
+    Displays the back references for a Citation.
     """
 
     def __init__(self, gui, nav_group=0):
