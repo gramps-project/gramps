@@ -2739,4 +2739,3 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.serializer = BlobSerializer
         elif serializer_name == "json":
             self.serializer = JSONSerializer
-
