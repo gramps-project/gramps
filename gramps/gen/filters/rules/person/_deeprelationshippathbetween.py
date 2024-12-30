@@ -41,7 +41,7 @@ from ....const import GRAMPS_LOCALE as glocale
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Union
+from typing import Union, List
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -78,7 +78,7 @@ def get_person_family_people(
 ) -> set[str]:
     people: set[str] = set()
 
-    def add_family_handle_list(fam_list: list[str]):
+    def add_family_handle_list(fam_list: List[str]):
         for family_handle in fam_list:
             people.update(get_family_handle_people(db, person_handle, family_handle))
 
@@ -89,7 +89,7 @@ def get_person_family_people(
 
 
 def find_deep_relations(
-    db: Database, user, person: Person, target_people: list[str]
+    db: Database, user, person: Person, target_people: List[str]
 ) -> set[str]:
     """This explores all possible paths between a person and one or more
     targets.  The algorithm processes paths in a breadth first wave, one

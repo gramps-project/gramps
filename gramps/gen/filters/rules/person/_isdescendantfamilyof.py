@@ -44,6 +44,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import List
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -91,7 +92,7 @@ class IsDescendantFamilyOf(Rule):
             return
 
         # Add self
-        queue: list[Person] = [person]
+        queue: List[Person] = [person]
 
         while queue:
             person = queue.pop(0)

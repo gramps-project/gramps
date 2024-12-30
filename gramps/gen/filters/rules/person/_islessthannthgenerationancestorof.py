@@ -40,6 +40,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import List
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -71,7 +72,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
                 self.init_ancestor_list(root_handle)
 
     def init_ancestor_list(self, root_handle: str):
-        queue: list[tuple[str, int]] = [(root_handle, 1)]  # generation 1 is root
+        queue: List[tuple[str, int]] = [(root_handle, 1)]  # generation 1 is root
         while queue:
             handle, gen = queue.pop(0)  # pop off front of queue
             if handle in self.map:

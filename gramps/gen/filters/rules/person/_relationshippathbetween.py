@@ -40,6 +40,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import List
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -118,7 +119,7 @@ class RelationshipPathBetween(Rule):
         firstList: set[str] = set()
         secondMap: dict[str, int] = {}
         secondList: set[str] = set()
-        common: list[str] = []
+        common: List[str] = []
         rank = 9999999
 
         self.apply_filter(0, p1_handle, firstList, firstMap)

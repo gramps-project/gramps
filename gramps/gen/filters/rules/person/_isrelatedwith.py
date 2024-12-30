@@ -40,6 +40,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import List
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -78,7 +79,7 @@ class IsRelatedWith(Rule):
         if not (start):
             return
 
-        queue: list[Person] = [start]
+        queue: List[Person] = [start]
 
         while queue:
             person = queue.pop()

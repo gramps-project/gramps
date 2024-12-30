@@ -43,6 +43,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import List
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -163,7 +164,7 @@ class RelationshipPathBetweenBookmarks(Rule):
         self.map.update(self.bookmarks)
         if len(self.bookmarks) < 2:
             return
-        bmarks: list[str] = list(self.bookmarks)
+        bmarks: List[str] = list(self.bookmarks)
 
         # Go through all bookmarked individuals, and mark all
         # of the people in each of the paths betweent them.

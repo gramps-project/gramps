@@ -50,7 +50,7 @@ LOG = logging.getLogger(".")
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Any
+from typing import Any, List
 from gramps.gen.db import Database
 
 
@@ -62,7 +62,7 @@ from gramps.gen.db import Database
 class Rule:
     """Base rule class."""
 
-    labels: list[Any] = []
+    labels: List[Any] = []
     name = ""
     category = _("Miscellaneous filters")
     description = _("No description")
