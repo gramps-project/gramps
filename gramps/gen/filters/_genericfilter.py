@@ -47,7 +47,7 @@ from .rules import Rule
 from .optimizer import Optimizer
 
 _ = glocale.translation.gettext
-LOG = logging.getLogger(".filter")
+LOG = logging.getLogger(".filter.results")
 
 
 # -------------------------------------------------------------------------
@@ -273,10 +273,12 @@ class GenericFilter:
             # FIXME: this dialog doesn't show often. Adding a time.sleep(0.1) here
             # can help on my machine
 
+        start_time = time.time()
         for rule in self.flist:
             if user:
                 user.step_progress()
             rule.requestprepare(db, user)
+        LOG.debug("Prepare time: %s seconds", time.time() - start_time)
 
         if user:
             user.end_progress()
@@ -290,9 +292,11 @@ class GenericFilter:
         else:
             raise Exception("invalid operator: %r" % self.logical_op)
 
+        start_time = time.time()
         res = self.apply_logical_op_to_all(
             db, id_list, apply_logical_op, user, tupleind, tree
         )
+        LOG.debug("Apply time: %s seconds", time.time() - start_time)
 
         for rule in self.flist:
             rule.requestreset()
