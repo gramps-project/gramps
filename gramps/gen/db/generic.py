@@ -91,6 +91,7 @@ from . import (
 from .bookmarks import DbBookmarks
 from .exceptions import DbUpgradeRequiredError, DbVersionError
 from .utils import clear_lock_file, write_lock_file
+from .select import select_from_table
 
 _ = glocale.translation.gettext
 
@@ -2741,7 +2742,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.serializer = JSONSerializer
 
     def select_from_table(
-        self, table_name, what=None, where=None, order_by=None, env=None
+        self,
+        table_name,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
     ):
         """
         Select items from table_name where python-string is True,
@@ -2749,16 +2755,16 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         Examples:
 
-        db.select_from_person(where="person.handle = 'A6E74B3D65D23F'")
-        db.select_from_person("person.handle", where="person.handle = 'A6E74B3D65D23F'")
+        db.select_from_person(where="person.handle == 'A6E74B3D65D23F'")
+        db.select_from_person("person.handle", where="person.handle == 'A6E74B3D65D23F'")
         db.select_from_person(
             what=["person.handle", "person.gramps_id"],
-            where="person.handle = 'A6E74B3D65D23F'"
+            where="person.handle == 'A6E74B3D65D23F'"
             order_by=[("person.gramps_id", "DESC")]
             env={"Person": Person}
         )
         """
-        raise NotImplementedError
+        yield from select_from_table(self, table_name, what, where, order_by, env)
 
     def select_from_citation(self, what=None, where=None, order_by=None, env=None):
         yield from self.select_from_table(

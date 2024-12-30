@@ -1187,11 +1187,34 @@ class DBAPI(DbGeneric):
         return [v if not isinstance(v, bool) else int(v) for v in values]
 
     def select_from_table(
-        self, table_name, what=None, where=None, order_by=None, env=None
+        self,
+        table_name,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        allow_use_on_proxy=False,
     ):
         # DB-API implementation
         # NOTE: evaluator takes a pattern in case your DB-API
         #       varies in syntax for JSON extraction
+
+        if self.is_proxy():
+            if allow_use_on_proxy:
+                yield from super().select_from_table(
+                    table_name,
+                    what=what,
+                    where=where,
+                    order_by=order_by,
+                    env=env,
+                )
+                return
+            else:
+                raise Exception(
+                    "to use db.select methods on a proxy, "
+                    + "pass `allow_to_use_proxy=True`, or use on db.basedb"
+                )
+
         evaluator = Evaluator(
             table_name, 'json_data->>"$.{attr}"', env if env is not None else globals()
         )
