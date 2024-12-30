@@ -37,6 +37,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.notebase import NoteBase
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # Objects having notes that contain a substring or match a regular expression
 # -------------------------------------------------------------------------
 class HasNoteRegexBase(Rule):
@@ -51,9 +60,9 @@ class HasNoteRegexBase(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, person: dict) -> bool:
-        for handle in person.note_list:
-            note = db.get_raw_note_data(handle)
+    def apply_to_one(self, db: Database, obj: NoteBase) -> bool:
+        for handle in obj.note_list:
+            note = db.get_note_from_handle(handle)
             if self.match_substring(0, str(note.text)):
                 return True
         return False

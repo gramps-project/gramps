@@ -37,6 +37,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsDefaultPerson
 #
 # -------------------------------------------------------------------------
@@ -47,11 +56,11 @@ class IsDefaultPerson(Rule):
     category = _("General filters")
     description = _("Matches the Home Person")
 
-    def prepare(self, db, user):
-        self.map = set()
-        p = db.get_default_person()
+    def prepare(self, db: Database, user):
+        self.map: set[str] = set()
+        p: Person = db.get_default_person()
         if p:
             self.map.add(p.handle)
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map

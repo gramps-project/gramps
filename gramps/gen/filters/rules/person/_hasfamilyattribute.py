@@ -37,6 +37,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasFamilyAttribute
 #
 # -------------------------------------------------------------------------
@@ -49,11 +58,11 @@ class HasFamilyAttribute(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if not self.list[0]:
             return False
         for f_id in person.family_list:
-            f = db.get_raw_family_data(f_id)
+            f = db.get_family_from_handle(f_id)
             if not f:
                 continue
             for attr in f.attribute_list:

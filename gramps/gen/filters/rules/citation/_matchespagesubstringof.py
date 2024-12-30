@@ -36,6 +36,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Citation
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "Sources having a title that contain a substring"
 # -------------------------------------------------------------------------
 class MatchesPageSubstringOf(Rule):
@@ -49,6 +58,6 @@ class MatchesPageSubstringOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, object: dict) -> bool:
+    def apply_to_one(self, db: Database, object: Citation) -> bool:
         """Apply the filter"""
         return self.match_substring(0, object.page)

@@ -37,6 +37,15 @@ from .. import MatchesFilterBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Event
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # MatchesFilter
 #
 # -------------------------------------------------------------------------
@@ -59,7 +68,7 @@ class MatchesPersonFilter(MatchesFilterBase):
     # we want to have this filter show person filters
     namespace = "Person"
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         MatchesFilterBase.prepare(self, db, user)
 
         try:
@@ -70,11 +79,11 @@ class MatchesPersonFilter(MatchesFilterBase):
         except IndexError:
             self.MPF_famevents = False
 
-    def apply_to_one(self, db, event: dict) -> bool:
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
             for classname, handle in db.find_backlink_handles(event.handle, ["Person"]):
-                person = db.method("get_raw_%_data", classname)(handle)
+                person = db.method("get_%_from_handle", classname)(handle)
                 if filt.apply_to_one(db, person):
                     return True
             if self.MPF_famevents:
@@ -84,11 +93,11 @@ class MatchesPersonFilter(MatchesFilterBase):
                 ):
                     family = db.get_family_from_handle(handle)
                     father = (
-                        db.get_raw_person_data(family.father_handle) if family else None
+                        db.get_person_from_handle(family.father_handle) if family else None
                     )
                     if father and filt.apply_to_one(db, father):
                         return True
-                    mother = db.get_raw_person_data(family.mother_handle)
+                    mother = db.get_person_from_handle(family.mother_handle)
                     if family.mother_handle and filt.apply_to_one(db, mother):
                         return True
 

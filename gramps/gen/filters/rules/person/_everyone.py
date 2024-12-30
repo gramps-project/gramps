@@ -37,6 +37,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # Everyone
 #
 # -------------------------------------------------------------------------
@@ -50,5 +59,5 @@ class Everyone(Rule):
     def is_empty(self):
         return True
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return True

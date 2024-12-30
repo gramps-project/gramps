@@ -37,6 +37,15 @@ from .._matchesfilterbase import MatchesFilterBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Event
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # MatchesFilter
 #
 # -------------------------------------------------------------------------
@@ -58,11 +67,11 @@ class MatchesEventFilter(MatchesFilterBase):
     # we want to have this filter show event filters
     namespace = "Event"
 
-    def apply_to_one(self, db, event: dict) -> bool:
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
             for classname, handle in db.find_backlink_handles(event.handle, ["Event"]):
-                data = db.method("get_raw_%s_data", classname)(handle)
+                data = db.method("get_%s_from_handle", classname)(handle)
                 if filt.apply_to_one(db, data):
                     return True
         return False

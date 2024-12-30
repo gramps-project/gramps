@@ -42,6 +42,15 @@ from .._hasnoteregexbase import HasNoteRegexBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.refbase import RefBase
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasSourceNoteRegexp
 #
 # -------------------------------------------------------------------------
@@ -58,8 +67,8 @@ class HasSourceNoteRegexp(HasNoteRegexBase):
     )
     category = _("Source filters")
 
-    def apply_to_one(self, db, citation: dict) -> bool:
-        source = db.get_raw_source_data(citation.ref)
+    def apply_to_one(self, db: Database, citation: RefBase) -> bool:
+        source = db.get_source_from_handle(citation.ref)
         if HasNoteRegexBase.apply_to_one(self, db, source):
             return True
         return False

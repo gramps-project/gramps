@@ -37,6 +37,15 @@ from . import MatchesFilterBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.eventbase import EventBase
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # MatchesEventFilter
 #
 # -------------------------------------------------------------------------
@@ -57,18 +66,18 @@ class MatchesEventFilterBase(MatchesFilterBase):
     # we want to have this filter show event filters
     namespace = "Event"
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MEF_filt = self.find_filter()
 
-    def apply_to_one(self, db, object: dict) -> bool:
+    def apply_to_one(self, db: Database, object: EventBase) -> bool:
         if self.MEF_filt is None:
             return False
 
         eventlist = [x.ref for x in object.event_ref_list]
         for eventhandle in eventlist:
             # check if event in event filter
-            event = db.get_raw_event_data(eventhandle)
+            event = db.get_event_from_handle(eventhandle)
             if self.MEF_filt.apply_to_one(db, event):
                 return True
         return False

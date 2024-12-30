@@ -36,6 +36,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "Families with incomplete events"
 # -------------------------------------------------------------------------
 class FamilyWithIncompleteEvent(Rule):
@@ -47,13 +56,13 @@ class FamilyWithIncompleteEvent(Rule):
     )
     category = _("Event filters")
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         for family_handle in person.family_list:
-            family = db.get_raw_family_data(family_handle)
+            family = db.get_family_from_handle(family_handle)
             if family:
                 for event_ref in family.event_ref_list:
                     if event_ref:
-                        event = db.get_raw_event_data(event_ref.ref)
+                        event = db.get_event_from_handle(event_ref.ref)
                         if not event.place:
                             return True
                         if not event.date:

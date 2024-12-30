@@ -39,6 +39,15 @@ from ....lib.nameorigintype import NameOriginType
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasNameOf
 #
 # -------------------------------------------------------------------------
@@ -63,7 +72,7 @@ class HasNameOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         for name in [person.primary_name] + person.alternate_names:
             if self.match_name(name):
                 return True

@@ -31,30 +31,53 @@ in the class body, outside any method:
 >    apply = child_base
 """
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
 
-def father_base(self, db, family: dict) -> bool:
-    father_handle = family.father_handle
-    if father_handle:
-        father = db.get_raw_person_data(father_handle)
-        if father:
-            return self.base_class.apply_to_one(self, db, father)
-        else:
+from gramps.gen.lib import Family
+from gramps.gen.db import Database
+
+from typing import Type, TypeVar
+
+T = TypeVar("T")
+
+def get_father_base(base_class) -> Type[T]:
+    class FatherBase(base_class):
+        def apply_to_one(self, db: Database, family: Family) -> bool: # type: ignore[override]
+            father_handle = family.father_handle
+            if father_handle:
+                father = db.get_person_from_handle(father_handle)
+                if father:
+                    return super().apply_to_one(db, father)
+                else:
+                    return False
             return False
+    return FatherBase
 
 
-def mother_base(self, db, family: dict) -> bool:
-    mother_handle = family.mother_handle
-    if mother_handle:
-        mother = db.get_raw_person_data(mother_handle)
-        if mother:
-            return self.base_class.apply_to_one(self, db, mother)
-        else:
+def get_child_base(base_class) -> Type[T]:
+    class ChildBase(base_class):
+        def apply_to_one(self, db: Database, family: Family) -> bool: # type: ignore[override]
+            for child_ref in family.child_ref_list:
+                child = db.get_person_from_handle(child_ref.ref)
+                if super().apply_to_one(db, child):
+                    return True
             return False
+    return ChildBase
 
 
-def child_base(self, db, family: dict) -> bool:
-    for child_ref in family.child_ref_list:
-        child = db.get_raw_person_data(child_ref.ref)
-        if self.base_class.apply_to_one(self, db, child):
-            return True
-    return False
+def get_mother_base(base_class) -> Type[T]:
+    class MotherBase(base_class):
+        def apply_to_one(self, db: Database, family: Family) -> bool: # type: ignore[override]
+            mother_handle = family.mother_handle
+            if mother_handle:
+                mother = db.get_person_from_handle(mother_handle)
+                if mother:
+                    return super().apply_to_one(db, mother)
+                else:
+                    return False
+            return False
+    return MotherBase

@@ -37,6 +37,15 @@ from .._matchesfilterbase import MatchesFilterBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Event
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # MatchesFilter
 #
 # -------------------------------------------------------------------------
@@ -58,9 +67,9 @@ class MatchesPlaceFilter(MatchesFilterBase):
     # we want to have this filter show place filters
     namespace = "Place"
 
-    def apply_to_one(self, db, event: dict) -> bool:
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
-            if handle and filt.apply_to_one(db, event):
+            if event and filt.apply_to_one(db, event):
                 return True
         return False

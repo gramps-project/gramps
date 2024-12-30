@@ -32,6 +32,15 @@ from ....lib.eventroletype import EventRoleType
 from ....lib.eventtype import EventType
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
 _ = glocale.translation.gettext
 
 
@@ -54,7 +63,7 @@ class IsWitness(Rule):
         super().__init__(arg, use_regex, use_case)
         self.event_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things only want to do once.
         """
@@ -62,7 +71,7 @@ class IsWitness(Rule):
             self.event_type = EventType()
             self.event_type.set_from_xml_str(self.list[0])
 
-    def apply_to_one(self, db, obj: dict) -> bool:
+    def apply_to_one(self, db: Database, obj: Person) -> bool:
         """
         Apply the rule. Return True on a match.
         """
@@ -71,7 +80,7 @@ class IsWitness(Rule):
                 # This is the witness.
                 # If event type was given, then check it.
                 if self.event_type:
-                    event = db.get_raw_event_data(event_ref.ref)
+                    event = db.get_event_from_handle(event_ref.ref)
                     if event.type == self.event_type:
                         return True
                 else:

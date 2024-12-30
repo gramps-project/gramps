@@ -38,6 +38,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Media
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasMedia
 #
 # -------------------------------------------------------------------------
@@ -55,7 +64,7 @@ class HasMedia(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.date = None
         try:
             if self.list[3]:
@@ -63,7 +72,7 @@ class HasMedia(Rule):
         except:
             pass
 
-    def apply_to_one(self, db, obj: dict) -> bool:
+    def apply_to_one(self, db: Database, obj: Media) -> bool:
         if not self.match_substring(0, obj.desc):
             return False
 

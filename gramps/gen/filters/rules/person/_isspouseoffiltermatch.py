@@ -38,6 +38,15 @@ from ._matchesfilter import MatchesFilter
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsSpouseOfFilterMatch
 #
 # -------------------------------------------------------------------------
@@ -50,13 +59,13 @@ class IsSpouseOfFilterMatch(Rule):
     description = _("Matches people married to anybody matching a filter")
     category = _("Family filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         for family_handle in person.family_list:
-            family = db.get_raw_family_data(family_handle)
+            family = db.get_family_from_handle(family_handle)
             if family:
                 for spouse_id in [
                     family.father_handle,
@@ -66,7 +75,7 @@ class IsSpouseOfFilterMatch(Rule):
                         continue
                     if spouse_id == person.handle:
                         continue
-                    if self.filt.apply_to_one(db, db.get_raw_person_data(spouse_id)):
+                    if self.filt.apply_to_one(db, db.get_person_from_handle(spouse_id)):
                         return True
         return False
 

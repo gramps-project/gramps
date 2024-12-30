@@ -36,6 +36,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "People having notes that contain a substring"
 # -------------------------------------------------------------------------
 class HasNoteSubstrBase(Rule):
@@ -46,10 +55,10 @@ class HasNoteSubstrBase(Rule):
     description = "Matches objects whose notes contain text matching a " "substring"
     category = _("General filters")
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db, person: Person) -> bool:
         notelist = person.note_list
         for notehandle in notelist:
-            note = db.get_raw_note_data(notehandle)
+            note = db.get_note_from_handle(notehandle)
             n = str(note.text)
             if n.upper().find(self.list[0].upper()) != -1:
                 return True

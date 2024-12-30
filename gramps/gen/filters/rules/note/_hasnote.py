@@ -36,6 +36,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Note
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasNote
 #
 # -------------------------------------------------------------------------
@@ -57,7 +66,7 @@ class HasNote(Rule):
         super().__init__(arg, use_regex, use_case)
         self.note_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
@@ -65,7 +74,7 @@ class HasNote(Rule):
             self.note_type = NoteType()
             self.note_type.set_from_xml_str(self.list[1])
 
-    def apply_to_one(self, _db, obj: dict) -> bool:
+    def apply_to_one(self, _db: Database, obj: Note) -> bool:
         """
         Apply the rule. Return True on a match.
         """

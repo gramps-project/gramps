@@ -41,6 +41,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasBirth
 #
 # -------------------------------------------------------------------------
@@ -59,14 +68,14 @@ class HasBirth(Rule):
         else:
             self.date = None
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         for event_ref in person.event_ref_list:
             if not event_ref:
                 continue
             elif event_ref.role != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue
-            event = db.get_raw_event_data(event_ref.ref)
+            event = db.get_event_from_handle(event_ref.ref)
             if event.type != EventType.BIRTH:
                 # No match: wrong type
                 continue
@@ -80,7 +89,7 @@ class HasBirth(Rule):
             if self.list[1]:
                 place_id = event.place
                 if place_id:
-                    place = db.get_raw_place_data(place_id)
+                    place = db.get_place_from_handle(place_id)
                     place_title = place_displayer.display(db, place)
                     if not self.match_substring(1, place_title):
                         # No match: wrong place

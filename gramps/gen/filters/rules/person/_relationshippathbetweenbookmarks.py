@@ -40,6 +40,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # RelationshipPathBetween
 #
 # -------------------------------------------------------------------------
@@ -58,14 +67,11 @@ class RelationshipPathBetweenBookmarks(Rule):
         "path(s) between bookmarked persons."
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: set[str] = set()
         bookmarks = db.get_bookmarks().get()
-        if len(bookmarks) == 0:
-            self.apply = lambda db, p: False
-        else:
-            self.bookmarks = set(bookmarks)
+        self.bookmarks: set[str] = set(bookmarks)
         try:
             self.init_list()
         except:
@@ -76,9 +82,9 @@ class RelationshipPathBetweenBookmarks(Rule):
 
     #
     # Returns a name, given a handle.
-    def hnm(self, handle):
+    def hnm(self, handle: str):
         try:
-            person = self.db.get_raw_person_data(handle)
+            person = self.db.get_person_from_handle(handle)
         except:
             return None
         if person is None:
@@ -93,13 +99,13 @@ class RelationshipPathBetweenBookmarks(Rule):
     # Given a group of individuals, returns all of their parents.
     # The value keyed by the individual handles is the path from
     # the original person up, like generation[gfather]= [son,father,gfather]
-    def parents(self, generation):
+    def parents(self, generation: set[list[str]]):
         if len(generation) < 1:
             return None
         prev_generation = {}
         for handle in generation:
             try:
-                person = self.db.get_raw_person_data(handle)
+                person = self.db.get_person_from_handle(handle)
                 if person is None:
                     continue
                 fam_id = (
@@ -123,7 +129,7 @@ class RelationshipPathBetweenBookmarks(Rule):
     #
     # Given two handles for individuals, a list of all individuals
     # in the relationship path between the two.
-    def rel_path_for_two(self, handle1, handle2):
+    def rel_path_for_two(self, handle1: str, handle2: str):
         # print "rel_path_for_two (", handle1, self.hnm(handle1), ",", handle2, self.hnm(handle2), ")"
         rel_path = {}  # Result map
         gmap1 = {handle1: [handle1]}  # Key is ancestor, value is the path
@@ -157,7 +163,7 @@ class RelationshipPathBetweenBookmarks(Rule):
         self.map.update(self.bookmarks)
         if len(self.bookmarks) < 2:
             return
-        bmarks = list(self.bookmarks)
+        bmarks: list[str] = list(self.bookmarks)
 
         # Go through all bookmarked individuals, and mark all
         # of the people in each of the paths betweent them.
@@ -170,5 +176,5 @@ class RelationshipPathBetweenBookmarks(Rule):
                 except:
                     pass
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map

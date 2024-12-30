@@ -38,6 +38,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Any
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasNameOf
 #
 # -------------------------------------------------------------------------
@@ -49,7 +58,7 @@ class SearchName(Rule):
     description = _("Matches people with a specified (partial) name")
     category = _("General filters")
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Any) -> bool:
         src = self.list[0].upper()
         if not src:
             return False

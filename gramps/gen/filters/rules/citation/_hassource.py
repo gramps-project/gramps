@@ -41,6 +41,15 @@ from .._hassourcebase import HasSourceBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Any
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasEvent
 #
 # -------------------------------------------------------------------------
@@ -52,8 +61,8 @@ class HasSource(HasSourceBase):
     description = _("Matches citations with a source of a particular " "value")
     category = _("Source filters")
 
-    def apply_to_one(self, dbase, citation: dict) -> bool:
-        source = dbase.get_raw_source_data(citation.ref)
+    def apply_to_one(self, dbase: Database, citation: Any) -> bool:
+        source = dbase.get_source_from_handle(citation.ref)
         if HasSourceBase.apply_to_one(self, dbase, source):
             return True
         return False

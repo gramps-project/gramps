@@ -37,6 +37,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsMoreThanNthGenerationAncestorOf
 #
 # -------------------------------------------------------------------------
@@ -52,26 +61,26 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         "of a specified person at least N generations away"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
-        person = db._get_raw_person_from_id_data(self.list[0])
+        self.map: set[str] = set()
+        person = db.get_person_from_gramps_id(self.list[0])
         if person:
             root_handle = person.handle
             if root_handle:
                 self.init_ancestor_list(root_handle)
 
-    def init_ancestor_list(self, root_handle):
+    def init_ancestor_list(self, root_handle: str):
         queue = [(root_handle, 1)]  # generation 1 is root
         while queue:
             handle, gen = queue.pop(0)  # pop off front of queue
             if gen > int(self.list[1]):
                 self.map.add(handle)
             gen += 1
-            p = self.db.get_raw_person_data(handle)
+            p = self.db.get_person_from_handle(handle)
             fam_id = p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
             if fam_id:
-                fam = self.db.get_raw_family_data(fam_id)
+                fam = self.db.get_family_from_handle(fam_id)
                 if fam:
                     f_id = fam.father_handle
                     m_id = fam.mother_handle
@@ -84,5 +93,5 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
     def reset(self):
         self.map.clear()
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db, person: Person) -> bool:
         return person.handle in self.map

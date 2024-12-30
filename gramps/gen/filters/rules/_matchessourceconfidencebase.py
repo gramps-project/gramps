@@ -40,6 +40,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.citationbase import CitationBase
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "Confidence level"
 # Sources of an attribute of an event are ignored
 # -------------------------------------------------------------------------
@@ -53,10 +62,10 @@ class MatchesSourceConfidenceBase(Rule):
     )
     category = _("Citation/source filters")
 
-    def apply_to_one(self, db, obj: dict) -> bool:
+    def apply_to_one(self, db: Database, obj: CitationBase) -> bool:
         required_conf = int(self.list[0])
         for citation_handle in obj.citation_list:
-            citation = db.get_raw_citation_data(citation_handle)
+            citation = db.get_citation_from_handle(citation_handle)
             if required_conf <= citation.confidence:
                 return True
         return False

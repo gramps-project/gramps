@@ -32,6 +32,15 @@ from ....const import GRAMPS_LOCALE as glocale
 from ....lib import PlaceType
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Place
+from gramps.gen.db import Database
+
+
 _ = glocale.translation.sgettext
 
 
@@ -59,7 +68,7 @@ class HasData(Rule):
         super().__init__(arg, use_regex, use_case)
         self.place_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
@@ -67,7 +76,7 @@ class HasData(Rule):
             self.place_type = PlaceType()
             self.place_type.set_from_xml_str(self.list[1])
 
-    def apply_to_one(self, _db, obj: dict) -> bool:
+    def apply_to_one(self, _db: Database, obj: Place) -> bool:
         """
         Apply the rule. Return True on a match.
         """

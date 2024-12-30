@@ -39,6 +39,15 @@ from .. import MatchesFilterBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Citation
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # MatchesFilter
 #
 # -------------------------------------------------------------------------
@@ -57,16 +66,16 @@ class MatchesSourceFilter(MatchesFilterBase):
     # we want to have this filter show source filters
     namespace = "Source"
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MRF_filt = self.find_filter()
 
-    def apply_to_one(self, db, object: dict) -> bool:
+    def apply_to_one(self, db: Database, object: Citation) -> bool:
         if self.MRF_filt is None:
             return False
 
         source_handle = object.source_handle
-        source = db.get_raw_source_data(source_handle)
+        source = db.get_source_from_handle(source_handle)
         if self.MRF_filt.apply_to_one(db, source):
             return True
         return False

@@ -38,6 +38,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasNickname
 #
 # -------------------------------------------------------------------------
@@ -48,7 +57,7 @@ class HasNickname(Rule):
     description = _("Matches people with a nickname")
     category = _("General filters")
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if person.get_nick_name():
             return True
         return False

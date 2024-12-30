@@ -38,6 +38,15 @@ from ._matchesfilter import MatchesFilter
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsSiblingOfFilterMatch
 #
 # -------------------------------------------------------------------------
@@ -49,9 +58,9 @@ class IsSiblingOfFilterMatch(Rule):
     category = _("Family filters")
     description = _("Matches siblings of anybody matched by a filter")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: set[str] = set()
         self.matchfilt = MatchesFilter(self.list)
         self.matchfilt.requestprepare(db, user)
         if user:
@@ -60,7 +69,7 @@ class IsSiblingOfFilterMatch(Rule):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        for handle, person in db._iter_raw_person_data():
+        for person in db.iter_people():
             if user:
                 user.step_progress()
             if self.matchfilt.apply_to_one(db, person):
@@ -72,17 +81,17 @@ class IsSiblingOfFilterMatch(Rule):
         self.matchfilt.requestreset()
         self.map.clear()
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map
 
-    def init_list(self, person):
+    def init_list(self, person: Person):
         if not person:
             return
         fam_id = (
             person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
         )
         if fam_id:
-            fam = self.db.get_raw_family_data(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 self.map.update(
                     child_ref.ref

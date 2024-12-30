@@ -36,6 +36,14 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Source
+from gramps.gen.db import Database
+
+# -------------------------------------------------------------------------
 # "Sources having a title that contain a substring"
 # -------------------------------------------------------------------------
 class MatchesTitleSubstringOf(Rule):
@@ -47,6 +55,6 @@ class MatchesTitleSubstringOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, source: dict) -> bool:
+    def apply_to_one(self, db: Database, source: Source) -> bool:
         """Apply the filter"""
         return self.match_substring(0, source.title)

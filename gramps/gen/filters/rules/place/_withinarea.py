@@ -43,6 +43,17 @@ from ....const import GRAMPS_LOCALE as glocale
 from .. import Rule
 from ....utils.place import conv_lat_lon
 
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Union
+from gramps.gen.lib import Place
+from gramps.gen.db import Database
+
+
 _ = glocale.translation.sgettext
 
 
@@ -62,11 +73,11 @@ class WithinArea(Rule):
     category = _("Position filters")
     handle = None
     radius = None
-    latitude = None
-    longitude = None
+    latitude:  Union[float, None] = None
+    longitude:  Union[float, None] = None
 
-    def prepare(self, db, user):
-        ref_place = db._get_raw_place_from_id_data(self.list[0])
+    def prepare(self, db: Database, user):
+        ref_place = db.get_place_from_gramps_id(self.list[0])
         self.handle = None
         self.radius = None
         self.latitude = None
@@ -106,7 +117,9 @@ class WithinArea(Rule):
                 self.radius = float(value)
             self.radius = self.radius / 2
 
-    def apply_to_one(self, dummy_db, place: dict) -> bool:
+    def apply_to_one(self, db: Database, place: Place) -> bool:
+        latit: Union[float, None] = None
+        longit: Union[float, None] = None
         if self.handle is None:
             return False
         if self.latitude is None:
@@ -121,10 +134,10 @@ class WithinArea(Rule):
             if latit is None or longit is None:
                 return False
             if (
-                hypot(
-                    float(self.latitude) - float(latit),
-                    float(self.longitude) - float(longit),
-                )
+                hypot( 
+                    float(self.latitude) - float(latit), 
+                    float(self.longitude) - float(longit), 
+                ) 
                 <= self.radius
             ):
                 return True

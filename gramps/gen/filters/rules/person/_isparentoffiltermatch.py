@@ -38,6 +38,15 @@ from ._matchesfilter import MatchesFilter
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsParentOfFilterMatch
 #
 # -------------------------------------------------------------------------
@@ -50,9 +59,9 @@ class IsParentOfFilterMatch(Rule):
     category = _("Family filters")
     description = _("Matches parents of anybody matched by a filter")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: set[str] = set()
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
         if user:
@@ -61,7 +70,7 @@ class IsParentOfFilterMatch(Rule):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        for handle, person in db._iter_raw_person_data():
+        for person in db.iter_people():
             if user:
                 user.step_progress()
             if self.filt.apply_to_one(db, person):
@@ -73,12 +82,12 @@ class IsParentOfFilterMatch(Rule):
         self.filt.requestreset()
         self.map.clear()
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db, person: Person) -> bool:
         return person.handle in self.map
 
-    def init_list(self, person):
+    def init_list(self, person: Person):
         for fam_id in person.parent_family_list:
-            fam = self.db.get_raw_family_data(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 self.map.update(
                     parent_id

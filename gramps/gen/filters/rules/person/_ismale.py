@@ -38,6 +38,14 @@ from ....lib.person import Person
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsMale
 #
 # -------------------------------------------------------------------------
@@ -48,5 +56,5 @@ class IsMale(Rule):
     category = _("General filters")
     description = _("Matches all males")
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.gender == Person.MALE

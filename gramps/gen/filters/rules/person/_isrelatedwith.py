@@ -37,6 +37,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # RelatedWith
 #
 # -------------------------------------------------------------------------
@@ -48,39 +57,38 @@ class IsRelatedWith(Rule):
     category = _("Relationship filters")
     description = _("Matches people related to a specified person")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """prepare so the rule can be executed efficiently
         we build the list of people related to <person> here,
         so that apply is only a check into this list
         """
         self.db = db
 
-        self.map = set()
-        self.add_relative(db._get_raw_person_from_id_data(self.list[0]))
+        self.map: set[str] = set()
+        self.add_relative(db.get_person_from_gramps_id(self.list[0]))
 
     def reset(self):
-        self.map = set()
+        self.map.clear()
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map
 
-    def add_relative(self, start):
+    def add_relative(self, start: Person):
         """Non-recursive function that scans relatives and add them to self.map"""
         if not (start):
             return
 
-        expand = [start]
-        relatives = {}
+        queue: list[Person] = [start]
 
-        while expand:
-            person = expand.pop()
+        while queue:
+            person = queue.pop()
             # Add the relative to the list
-            if person is None or (person.handle in relatives):
+            if person is None or (person.handle in self.map):
                 continue
-            relatives[person.handle] = True
+            self.map.add(person.handle)
 
             for family_handle in person.parent_family_list:
-                family = self.db.get_raw_family_data(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 if family:
                     # Check Parents
                     for parent_handle in (
@@ -88,13 +96,13 @@ class IsRelatedWith(Rule):
                         family.mother_handle,
                     ):
                         if parent_handle:
-                            expand.append(self.db.get_raw_person_data(parent_handle))
+                            queue.append(self.db.get_person_from_handle(parent_handle))
                     # Check Sibilings
                     for child_ref in family.child_ref_list:
-                        expand.append(self.db.get_raw_person_data(child_ref.ref))
+                        queue.append(self.db.get_person_from_handle(child_ref.ref))
 
             for family_handle in person.family_list:
-                family = self.db.get_raw_family_data(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 if family:
                     # Check Spouse
                     for parent_handle in (
@@ -102,10 +110,9 @@ class IsRelatedWith(Rule):
                         family.mother_handle,
                     ):
                         if parent_handle:
-                            expand.append(self.db.get_raw_person_data(parent_handle))
+                            queue.append(self.db.get_person_from_handle(parent_handle))
                     # Check Children
                     for child_ref in family.child_ref_list:
-                        expand.append(self.db.get_raw_person_data(child_ref.ref))
+                        queue.append(self.db.get_person_from_handle(child_ref.ref))
 
-        self.map = set(list(relatives.keys()))
         return

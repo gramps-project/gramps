@@ -38,6 +38,15 @@ from .._regexpidbase import RegExpIdBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.refbase import RefBase
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasIdOf
 #
 # -------------------------------------------------------------------------
@@ -54,8 +63,8 @@ class RegExpSourceIdOf(RegExpIdBase):
     )
     category = _("Source filters")
 
-    def apply_to_one(self, dbase, citation: dict) -> bool:
-        source = dbase.get_raw_source_data(citation.ref)
+    def apply_to_one(self, dbase: Database, citation: RefBase) -> bool:
+        source = dbase.get_source_from_handle(citation.ref)
         if RegExpIdBase.apply_to_one(self, dbase, source):
             return True
         return False

@@ -33,7 +33,15 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import RegExpIdBase
-from ._memberbase import father_base
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Family
+from gramps.gen.db import Database
 
 
 # -------------------------------------------------------------------------
@@ -48,5 +56,13 @@ class FatherHasIdOf(RegExpIdBase):
     name = _("Families having father with Id containing <text>")
     description = _("Matches families whose father has a specified " "Gramps ID")
     category = _("Father filters")
-    base_class = RegExpIdBase
-    apply_to_one = father_base
+
+    def apply_to_one(self, db: Database, family: Family) -> bool: # type: ignore[override]
+        father_handle = family.father_handle
+        if father_handle:
+            father = db.get_person_from_handle(father_handle)
+            if father:
+                return super().apply_to_one(db, father)
+            else:
+                return False
+        return False

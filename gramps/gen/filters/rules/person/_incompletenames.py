@@ -37,6 +37,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IncompleteNames
 #
 # -------------------------------------------------------------------------
@@ -47,7 +56,7 @@ class IncompleteNames(Rule):
     description = _("Matches people with firstname or lastname missing")
     category = _("General filters")
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         for name in [person.primary_name] + person.alternate_names:
             if name.first_name.strip() == "":
                 return True

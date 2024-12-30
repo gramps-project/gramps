@@ -37,6 +37,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Note
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "Events having notes that contain a substring"
 # -------------------------------------------------------------------------
 class MatchesSubstringOf(Rule):
@@ -47,7 +56,7 @@ class MatchesSubstringOf(Rule):
     description = _("Matches notes that contain text " "which matches a substring")
     category = _("General filters")
 
-    def apply_to_one(self, db, note: dict) -> bool:
+    def apply_to_one(self, db: Database, note: Note) -> bool:
         """Apply the filter"""
         text = str(note.text)
         if text.upper().find(self.list[0].upper()) != -1:

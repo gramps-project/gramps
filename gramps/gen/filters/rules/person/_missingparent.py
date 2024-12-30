@@ -37,6 +37,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "People with less than 2 parents"
 # -------------------------------------------------------------------------
 class MissingParent(Rule):
@@ -50,12 +59,12 @@ class MissingParent(Rule):
     )
     category = _("Family filters")
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         families = person.parent_family_list
         if families == []:
             return True
         for family_handle in families:
-            family = db.get_raw_family_data(family_handle)
+            family = db.get_family_from_handle(family_handle)
             if family:
                 father_handle = family.father_handle
                 mother_handle = family.mother_handle

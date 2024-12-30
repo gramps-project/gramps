@@ -37,6 +37,15 @@ _ = glocale.translation.sgettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasSoundexName
 #
 # -------------------------------------------------------------------------
@@ -58,14 +67,14 @@ class HasSoundexName(Rule):
         super().__init__(arg, use_regex, use_case)
         self.soundex = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
         if self.list[0]:
             self.soundex = soundex(self.list[0])
 
-    def apply_to_one(self, _db, obj: dict) -> bool:
+    def apply_to_one(self, _db: Database, obj: Person) -> bool:
         """
         Apply the rule. Return True on a match.
         """

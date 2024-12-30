@@ -39,6 +39,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Event
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasEventBase
 #
 # -------------------------------------------------------------------------
@@ -58,7 +67,7 @@ class HasEventBase(Rule):
         self.date = None
         self.event_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things that should only be done once.
         """
@@ -71,7 +80,7 @@ class HasEventBase(Rule):
         except:
             pass
 
-    def apply_to_one(self, db, event: dict) -> bool:
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         """
         Apply the rule. Return True if a match.
         """
@@ -92,7 +101,7 @@ class HasEventBase(Rule):
         if self.list[2]:
             place_id = event.place
             if place_id:
-                place = db.get_raw_place_data(place_id)
+                place = db.get_place_from_handle(place_id)
                 place_title = place_displayer.display(db, place)
                 if not self.match_substring(2, place_title):
                     return False

@@ -31,6 +31,15 @@ from ....const import GRAMPS_LOCALE as glocale
 from ....lib.repotype import RepositoryType
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Repository
+from gramps.gen.db import Database
+
+
 _ = glocale.translation.sgettext
 
 
@@ -59,7 +68,7 @@ class HasRepo(Rule):
         super().__init__(arg, use_regex, use_case)
         self.rtype = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
@@ -67,7 +76,7 @@ class HasRepo(Rule):
             self.rtype = RepositoryType()
             self.rtype.set_from_xml_str(self.list[1])
 
-    def apply_to_one(self, _db, obj: dict) -> bool:
+    def apply_to_one(self, _db: Database, obj: Repository) -> bool:
         """
         Apply the rule. Return True on a match.
         """

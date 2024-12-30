@@ -41,6 +41,15 @@ from ....datehandler import parser
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Citation
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasCitation
 #
 # -------------------------------------------------------------------------
@@ -53,7 +62,7 @@ class HasCitation(Rule):
     description = _("Matches citations with particular parameters")
     allow_regex = True
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.date = None
         try:
             if self.list[1]:
@@ -61,7 +70,7 @@ class HasCitation(Rule):
         except:
             pass
 
-    def apply_to_one(self, dbase, citation: dict) -> bool:
+    def apply_to_one(self, dbase: Database, citation: Citation) -> bool:
         if not self.match_substring(0, citation.page):
             return False
 

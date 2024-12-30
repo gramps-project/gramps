@@ -36,6 +36,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "People with no marriage records"
 # -------------------------------------------------------------------------
 class NeverMarried(Rule):
@@ -45,5 +54,5 @@ class NeverMarried(Rule):
     description = _("Matches people who have no spouse")
     category = _("Family filters")
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return len(person.family_list) == 0

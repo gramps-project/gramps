@@ -41,6 +41,15 @@ from ....utils.location import get_locations
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Place
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasPlace
 #
 # -------------------------------------------------------------------------
@@ -73,7 +82,7 @@ class HasPlace(Rule):
         PlaceType.PARISH: 8,
     }
 
-    def apply_to_one(self, db, place: dict) -> bool:
+    def apply_to_one(self, db: Database, place: Place) -> bool:
         if not self.match_substring(0, place.title):
             return False
 

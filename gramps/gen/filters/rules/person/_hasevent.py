@@ -36,6 +36,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasEvent
 #
 # -------------------------------------------------------------------------
@@ -55,7 +64,7 @@ class HasEvent(HasEventBase):
     name = _("People with the personal <event>")
     description = _("Matches people with a personal event of a particular value")
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         """
         Apply the rule. Return True if a match.
         """
@@ -63,7 +72,7 @@ class HasEvent(HasEventBase):
             if int(self.list[5]) and event_ref.role != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue
-            event = db.get_raw_event_data(event_ref.ref)
+            event = db.get_event_from_handle(event_ref.ref)
             if HasEventBase.apply_to_one(self, db, event):
                 return True
         return False

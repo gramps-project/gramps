@@ -38,6 +38,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Family
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasTwins
 #
 # -------------------------------------------------------------------------
@@ -48,15 +57,15 @@ class HasTwins(Rule):
     description = _("Matches families with twins")
     category = _("Child filters")
 
-    def apply_to_one(self, db, family: dict) -> bool:
+    def apply_to_one(self, db: Database, family: Family) -> bool:
         date_list = []
         for childref in family.child_ref_list:
             if int(childref.mrel) == ChildRefType.BIRTH:
-                child = db.get_raw_person_data(childref.ref)
+                child = db.get_person_from_handle(childref.ref)
                 if 0 <= child.birth_ref_index < len(child.event_ref_list):
                     birthref = child.event_ref_list[child.birth_ref_index]
                     if birthref:
-                        birth = db.get_raw_event_data(birthref.ref)
+                        birth = db.get_event_from_handle(birthref.ref)
                         sortval = birth.date.sortval
                         if sortval != 0:
                             if sortval in date_list:

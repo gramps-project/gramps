@@ -38,6 +38,15 @@ from ....datehandler import parser
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "People probably alive"
 # -------------------------------------------------------------------------
 class ProbablyAlive(Rule):
@@ -48,11 +57,11 @@ class ProbablyAlive(Rule):
     description = _("Matches people without indications of death that are not too old")
     category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         try:
             self.current_date = parser.parse(str(self.list[0]))
         except:
             self.current_date = None
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db, person: Person) -> bool:
         return probably_alive(person, db, self.current_date)

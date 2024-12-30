@@ -40,6 +40,15 @@ from . import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.primaryobj import PrimaryObject
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasTag
 #
 # -------------------------------------------------------------------------
@@ -53,7 +62,7 @@ class HasTagBase(Rule):
     description = "Matches objects with the given tag"
     category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we want to do just once.
         """
@@ -62,7 +71,7 @@ class HasTagBase(Rule):
         if tag is not None:
             self.tag_handle = tag.handle
 
-    def apply_to_one(self, db, obj: dict) -> bool:
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         """
         Apply the rule.  Return True for a match.
         """

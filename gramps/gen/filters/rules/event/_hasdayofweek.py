@@ -31,6 +31,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Event
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasDayOfWeek
 #
 # -------------------------------------------------------------------------
@@ -42,7 +51,7 @@ class HasDayOfWeek(Rule):
     description = _("Matches events occurring on a particular day of the week")
     category = _("General filters")
 
-    def apply_to_one(self, db, event: dict) -> bool:
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         if not self.list[0]:
             return False
         else:

@@ -42,7 +42,6 @@ from ..lib.repo import Repository
 from ..lib.media import Media
 from ..lib.note import Note
 from ..lib.tag import Tag
-from ..lib.serialize import from_dict
 from ..const import GRAMPS_LOCALE as glocale
 from .rules import Rule
 from .optimizer import Optimizer
@@ -82,7 +81,7 @@ class GenericFilter:
         """
         Return True or False depending on whether the handle matches the filter.
         """
-        obj = self.get_raw_data(handle)
+        obj = self.get_object(handle)
         return self.apply_to_one(db, obj)
 
     def is_empty(self):
@@ -167,10 +166,10 @@ class GenericFilter:
                     if handle is None:
                         continue
 
-                    json_data = self.get_raw_data(db, handle)
+                    obj = self.get_object(db, handle)
 
-                    if apply_logical_op(db, json_data, self.flist) != self.invert:
-                        final_list.append(json_data["handle"])
+                    if apply_logical_op(db, obj, self.flist) != self.invert:
+                        final_list.append(obj.handle)
 
             else:
                 with (
@@ -181,28 +180,28 @@ class GenericFilter:
                             _("Filter"), _("Applying ..."), self.get_number(db)
                         )
 
-                    for handle, data in cursor:
+                    for handle, obj in cursor:
                         if user:
                             user.step_progress()
 
                         if handle in handles_out:
                             continue
 
-                        if apply_logical_op(db, data, self.flist) != self.invert:
+                        if apply_logical_op(db, obj, self.flist) != self.invert:
                             final_list.append(handle)
 
         else:
             if user:
                 id_list = list(id_list)
                 user.begin_progress(_("Filter"), _("Applying ..."), len(id_list))
-            for data in id_list:
+            for handle_data in id_list:
                 if user:
                     user.step_progress()
 
                 if tupleind is None:
-                    handle = data
+                    handle = handle_data
                 else:
-                    handle = data[tupleind]
+                    handle = handle_data[tupleind]
 
                 if handles_in is not None:
                     if handle not in handles_in:
@@ -210,10 +209,10 @@ class GenericFilter:
                 elif handle in handles_out:
                     continue
 
-                json_data = self.get_raw_data(db, handle)
+                obj = self.get_object(db, handle)
 
-                if apply_logical_op(db, json_data, self.flist) != self.invert:
-                    final_list.append(data)
+                if apply_logical_op(db, obj, self.flist) != self.invert:
+                    final_list.append(handle_data)
 
         if user:
             user.end_progress()
@@ -300,8 +299,8 @@ class GenericFilter:
 
         return res
 
-    def get_raw_data(self, db, handle):
-        return db.get_raw_person_data(handle)
+    def get_object(self, db, handle):
+        return db.get_person_from_handle(handle)
 
 
 class GenericFamilyFilter(GenericFilter):
@@ -322,8 +321,8 @@ class GenericFamilyFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_families()
 
-    def get_raw_data(self, db, handle):
-        return db.get_raw_family_data(handle)
+    def get_object(self, db, handle):
+        return db.get_family_from_handle(handle)
 
 
 class GenericEventFilter(GenericFilter):
@@ -344,8 +343,8 @@ class GenericEventFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_events()
 
-    def get_raw_data(self, db, handle):
-        return db.get_raw_event_data(handle)
+    def get_object(self, db, handle):
+        return db.get_event_from_handle(handle)
 
 
 class GenericSourceFilter(GenericFilter):
@@ -366,8 +365,8 @@ class GenericSourceFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_sources()
 
-    def get_raw_data(self, db, handle):
-        return db.get_raw_source_data(handle)
+    def get_object(self, db, handle):
+        return db.get_source_from_handle(handle)
 
 
 class GenericCitationFilter(GenericFilter):
@@ -391,8 +390,8 @@ class GenericCitationFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_citations()
 
-    def get_raw_data(self, db, handle):
-        return db.get_raw_citation_data(handle)
+    def get_object(self, db, handle):
+        return db.get_citation_from_handle(handle)
 
 
 class GenericPlaceFilter(GenericFilter):
@@ -416,8 +415,8 @@ class GenericPlaceFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_places()
 
-    def get_raw_data(self, db, handle):
-        return db.get_raw_place_data(handle)
+    def get_object(self, db, handle):
+        return db.get_place_from_handle(handle)
 
 
 class GenericMediaFilter(GenericFilter):
@@ -438,8 +437,8 @@ class GenericMediaFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_media()
 
-    def get_raw_data(self, db, handle):
-        return db.get_raw_media_data(handle)
+    def get_object(self, db, handle):
+        return db.get_media_from_handle(handle)
 
 
 class GenericRepoFilter(GenericFilter):
@@ -460,8 +459,8 @@ class GenericRepoFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_repositories()
 
-    def get_raw_data(self, db, handle):
-        return db.get_raw_repository_data(handle)
+    def get_object(self, db, handle):
+        return db.get_repository_from_handle(handle)
 
 
 class GenericNoteFilter(GenericFilter):
@@ -482,8 +481,8 @@ class GenericNoteFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_notes()
 
-    def get_raw_data(self, db, handle):
-        return db.get_raw_note_data(handle)
+    def get_object(self, db, handle):
+        return db.get_note_from_handle(handle)
 
 
 def GenericFilterFactory(namespace):

@@ -47,13 +47,22 @@ LOG = logging.getLogger(".")
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Any
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # Rule
 #
 # -------------------------------------------------------------------------
 class Rule:
     """Base rule class."""
 
-    labels = []
+    labels: list[Any] = []
     name = ""
     category = _("Miscellaneous filters")
     description = _("No description")
@@ -71,7 +80,7 @@ class Rule:
     def is_empty(self):
         return False
 
-    def requestprepare(self, db, user):
+    def requestprepare(self, db: Database, user):
         """
         Request that the prepare method of the rule is executed if needed
 
@@ -106,7 +115,7 @@ class Rule:
                 ),
             )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """prepare so the rule can be executed efficiently"""
         pass
 
@@ -150,7 +159,7 @@ class Rule:
         """Verify the number of rule values versus the number of rule labels."""
         return len(self.list) == len(self.labels)
 
-    def apply(self, dummy_db, dummy_person: dict) -> bool:
+    def apply(self, dummy_db: Database, dummy_person: Any) -> bool:
         """Apply the rule to some database entry; must be overwritten."""
         return True
 

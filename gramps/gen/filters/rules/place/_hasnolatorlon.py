@@ -39,6 +39,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Place
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasNoLatOrLon
 #
 # -------------------------------------------------------------------------
@@ -50,7 +59,7 @@ class HasNoLatOrLon(Rule):
     description = _("Matches places with empty latitude or longitude")
     category = _("Position filters")
 
-    def apply_to_one(self, db, place: dict) -> bool:
+    def apply_to_one(self, db: Database, place: Place) -> bool:
         if place.lat.strip() and place.long.strip():
             return False
         return True

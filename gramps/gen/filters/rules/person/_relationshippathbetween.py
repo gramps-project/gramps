@@ -37,6 +37,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # RelationshipPathBetween
 #
 # -------------------------------------------------------------------------
@@ -53,35 +62,35 @@ class RelationshipPathBetween(Rule):
         "path between two persons."
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: set[str] = set()
         try:
-            root1_handle = db._get_raw_person_from_id_data(self.list[0]).handle
-            root2_handle = db._get_raw_person_from_id_data(self.list[1]).handle
+            root1_handle = db.get_person_from_gramps_id(self.list[0]).handle
+            root2_handle = db.get_person_from_gramps_id(self.list[1]).handle
             self.init_list(root1_handle, root2_handle)
         except:
             pass
 
     def reset(self):
-        self.map = ()
+        self.map.clear()
 
-    def desc_list(self, handle, map, first):
+    def desc_list(self, handle: str, map, first: bool):
         if not first:
             map.add(handle)
 
-        p = self.db.get_raw_person_data(handle)
+        p = self.db.get_person_from_handle(handle)
         for fam_id in p.family_list:
-            fam = self.db.get_raw_family_data(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 for child_ref in fam.child_ref_list:
                     if child_ref.ref:
-                        self.desc_list(child_ref.ref, map, 0)
+                        self.desc_list(child_ref.ref, map, False)
 
-    def apply_filter(self, rank, handle, plist, pmap):
+    def apply_filter(self, rank: int, handle: str, plist: set[str], pmap: dict[str, int]):
         if not handle:
             return
-        person = self.db.get_raw_person_data(handle)
+        person = self.db.get_person_from_handle(handle)
         if person is None:
             return
         plist.add(handle)
@@ -94,26 +103,26 @@ class RelationshipPathBetween(Rule):
         )
         if not fam_id:
             return
-        family = self.db.get_raw_family_data(fam_id)
+        family = self.db.get_family_from_handle(fam_id)
         if family is not None:
             self.apply_filter(rank + 1, family.father_handle, plist, pmap)
             self.apply_filter(rank + 1, family.mother_handle, plist, pmap)
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map
 
-    def init_list(self, p1_handle, p2_handle):
-        firstMap = {}
-        firstList = set()
-        secondMap = {}
-        secondList = set()
-        common = []
+    def init_list(self, p1_handle: str, p2_handle: str):
+        firstMap: dict[str, int] = {}
+        firstList: set[str] = set()
+        secondMap: dict[str, int] = {}
+        secondList: set[str] = set()
+        common: list[str] = []
         rank = 9999999
 
         self.apply_filter(0, p1_handle, firstList, firstMap)
         self.apply_filter(0, p2_handle, secondList, secondMap)
 
-        for person_handle in firstList & secondList:
+        for person_handle in firstList and secondList:
             new_rank = firstMap[person_handle]
             if new_rank < rank:
                 rank = new_rank
@@ -125,8 +134,8 @@ class RelationshipPathBetween(Rule):
         path2 = set([p2_handle])
 
         for person_handle in common:
-            new_map = set()
-            self.desc_list(person_handle, new_map, 1)
+            new_map: set[str] = set()
+            self.desc_list(person_handle, new_map, True)
             path1.update(new_map.intersection(firstMap))
             path2.update(new_map.intersection(secondMap))
         self.map.update(path1, path2, common)

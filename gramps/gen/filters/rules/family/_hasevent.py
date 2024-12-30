@@ -40,6 +40,15 @@ from .._haseventbase import HasEventBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Family
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasEvent
 #
 # -------------------------------------------------------------------------
@@ -56,11 +65,11 @@ class HasEvent(HasEventBase):
     name = _("Families with the <event>")
     description = _("Matches families with an event of a particular value")
 
-    def apply_to_one(self, dbase, family: dict) -> bool:
+    def apply_to_one(self, dbase: Database, family: Family) -> bool:
         for event_ref in family.event_ref_list:
             if not event_ref:
                 continue
-            event = dbase.get_raw_event_data(event_ref.ref)
+            event = dbase.get_event_from_handle(event_ref.ref)
             if HasEventBase.apply_to_one(self, dbase, event):
                 return True
         return False

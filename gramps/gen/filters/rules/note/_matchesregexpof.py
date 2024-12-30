@@ -38,6 +38,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Note
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # Notes that contain a substring or match a regular expression
 # -------------------------------------------------------------------------
 class MatchesRegexpOf(Rule):
@@ -49,7 +58,7 @@ class MatchesRegexpOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply_to_one(self, db, note: dict) -> bool:
+    def apply_to_one(self, db: Database, note: Note) -> bool:
         """Apply the filter"""
         if self.match_substring(0, str(note.text)):
             return True

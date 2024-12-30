@@ -41,6 +41,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "HasTextMatchingSubstringOf"
 # -------------------------------------------------------------------------
 class HasTextMatchingSubstringOf(Rule):
@@ -52,15 +61,15 @@ class HasTextMatchingSubstringOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.person_map = set()
-        self.event_map = set()
-        self.source_map = set()
-        self.repo_map = set()
-        self.family_map = set()
-        self.place_map = set()
-        self.media_map = set()
+        self.person_map: set[str] = set()
+        self.event_map: set[str] = set()
+        self.source_map: set[str] = set()
+        self.repo_map: set[str] = set()
+        self.family_map: set[str] = set()
+        self.place_map: set[str] = set()
+        self.media_map: set[str] = set()
         try:
             if int(self.list[1]):
                 self.case_sensitive = True
@@ -80,7 +89,7 @@ class HasTextMatchingSubstringOf(Rule):
         self.place_map.clear()
         self.media_map.clear()
 
-    def apply_to_one(self, db, person: dict) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if person.handle in self.person_map:  # Cached by matching Source?
             return True
         if self.match_object(person):  # first match the person itself
@@ -101,13 +110,13 @@ class HasTextMatchingSubstringOf(Rule):
             return True
         return False
 
-    def search_family(self, family_handle):
+    def search_family(self, family_handle: str):
         if not family_handle:
             return False
         # search inside the family and cache the result to not search a family twice
         if family_handle not in self.family_map:
             match = 0
-            family = self.db.get_raw_family_data(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             if self.match_object(family):
                 match = 1
             else:
@@ -124,13 +133,13 @@ class HasTextMatchingSubstringOf(Rule):
                 self.family_map.add(family_handle)
         return family_handle in self.family_map
 
-    def search_event(self, event_handle):
+    def search_event(self, event_handle: str):
         if not event_handle:
             return False
         # search inside the event and cache the result (event sharing)
         if not event_handle in self.event_map:
             match = 0
-            event = self.db.get_raw_event_data(event_handle)
+            event = self.db.get_event_from_handle(event_handle)
             if self.match_object(event):
                 match = 1
             elif event:
@@ -145,22 +154,22 @@ class HasTextMatchingSubstringOf(Rule):
                 self.event_map.add(event_handle)
         return event_handle in self.event_map
 
-    def search_place(self, place_handle):
+    def search_place(self, place_handle: str) -> bool:
         if not place_handle:
             return False
         # search inside the place and cache the result
         if place_handle not in self.place_map:
-            place = self.db.get_raw_place_data(place_handle)
+            place = self.db.get_place_from_handle(place_handle)
             if self.match_object(place):
                 self.place_map.add(place_handle)
         return place_handle in self.place_map
 
-    def search_media(self, media_handle):
+    def search_media(self, media_handle: str) -> bool:
         if not media_handle:
             return False
         # search inside the media object and cache the result
         if media_handle not in self.media_map:
-            media = self.db.get_raw_media_data(media_handle)
+            media = self.db.get_media_from_handle(media_handle)
             if self.match_object(media):
                 self.media_map.add(media_handle)
         return media_handle in self.media_map
@@ -169,13 +178,13 @@ class HasTextMatchingSubstringOf(Rule):
         # search all matching repositories
         self.repo_map.update(
             repo.handle
-            for handle, repo in self.db._iter_raw_repository_data()
+            for repo in self.db.iter_repositories()
             if repo and self.match_object(repo)
         )
 
     def cache_sources(self):
         # search all sources and match all referents of a matching source
-        for handle, source in self.db._iter_raw_source_data():
+        for source in self.db.iter_sources():
             match = self.match_object(source)
             LOG.debug(
                 "cache_sources match %s string %s source %s"
@@ -194,7 +203,7 @@ class HasTextMatchingSubstringOf(Rule):
             ) = get_source_and_citation_referents(source.handle, self.db)
             LOG.debug("the_lists %s %s" % (citation_list, citation_referents_list))
             for citation_handle, refs in citation_referents_list:
-                citation = self.db.get_raw_citation_data(citation_handle)
+                citation = self.db.get_citation__from_handle(citation_handle)
                 LOG.debug(
                     "cache_sources match %s matchcitation %s string %s"
                     " source %s citation %s"

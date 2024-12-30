@@ -39,6 +39,16 @@ from . import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.citationbase import CitationBase
+from gramps.gen.lib import Citation
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasCitation
 #
 # -------------------------------------------------------------------------
@@ -62,14 +72,14 @@ class HasCitationBase(Rule):
         except:
             pass
 
-    def apply_to_one(self, dbase, object: dict) -> bool:
+    def apply_to_one(self, dbase: Database, object: CitationBase) -> bool:
         for citation_handle in object.citation_list:
-            citation = dbase.get_raw_citation_data(citation_handle)
+            citation = dbase.get_citation_from_handle(citation_handle)
             if self._apply(dbase, citation):
                 return True
         return False
 
-    def _apply(self, db, citation):
+    def _apply(self, db: Database, citation: Citation):
         if not self.match_substring(0, citation.page):
             return False
 

@@ -37,6 +37,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.attrbase import AttributeBase
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasAttributeBase
 #
 # -------------------------------------------------------------------------
@@ -55,7 +64,7 @@ class HasAttributeBase(Rule):
         super().__init__(arg, use_regex, use_case)
         self.attribute_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things that should only be done once.
         """
@@ -63,7 +72,7 @@ class HasAttributeBase(Rule):
             self.attribute_type = AttributeType()
             self.attribute_type.set_from_xml_str(self.list[0])
 
-    def apply_to_one(self, db, obj: dict) -> bool:
+    def apply_to_one(self, db: Database, obj: AttributeBase) -> bool:
         """
         Apply the rule. Return True if a match.
         """
