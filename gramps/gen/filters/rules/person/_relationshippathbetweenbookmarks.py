@@ -100,7 +100,7 @@ class RelationshipPathBetweenBookmarks(Rule):
     # Given a group of individuals, returns all of their parents.
     # The value keyed by the individual handles is the path from
     # the original person up, like generation[gfather]= [son,father,gfather]
-    def parents(self, generation: Set[list[str]]):
+    def parents(self, generation: Set[str]):
         if len(generation) < 1:
             return None
         prev_generation = {}
