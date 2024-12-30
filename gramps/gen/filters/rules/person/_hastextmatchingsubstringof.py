@@ -204,7 +204,7 @@ class HasTextMatchingSubstringOf(Rule):
             ) = get_source_and_citation_referents(source.handle, self.db)
             LOG.debug("the_lists %s %s" % (citation_list, citation_referents_list))
             for citation_handle, refs in citation_referents_list:
-                citation = self.db.get_citation__from_handle(citation_handle)
+                citation = self.db.get_citation_from_handle(citation_handle)
                 LOG.debug(
                     "cache_sources match %s matchcitation %s string %s"
                     " source %s citation %s"
