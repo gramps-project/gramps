@@ -64,7 +64,7 @@ class HasEvent(HasEventBase):
     name = _("People with the personal <event>")
     description = _("Matches people with a personal event of a particular value")
 
-    def apply_to_one(self, db: Database, person: Person) -> bool:
+    def apply_to_one(self, db: Database, person: Person) -> bool: # type: ignore[override]
         """
         Apply the rule. Return True if a match.
         """

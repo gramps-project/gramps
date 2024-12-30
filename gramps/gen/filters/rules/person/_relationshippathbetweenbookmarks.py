@@ -43,7 +43,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set
+from typing import List, Set, Dict
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -100,10 +100,10 @@ class RelationshipPathBetweenBookmarks(Rule):
     # Given a group of individuals, returns all of their parents.
     # The value keyed by the individual handles is the path from
     # the original person up, like generation[gfather]= [son,father,gfather]
-    def parents(self, generation: Set[str]):
+    def parents(self, generation: Dict[str, List[str]]):
         if len(generation) < 1:
             return None
-        prev_generation = {}
+        prev_generation: Dict[str, List[str]] = {}
         for handle in generation:
             try:
                 person = self.db.get_person_from_handle(handle)
@@ -160,7 +160,7 @@ class RelationshipPathBetweenBookmarks(Rule):
         # print "  In rel_path_for_two, returning rel_path = ", rel_path
         return rel_path
 
-    def init_list(self):
+    def init_list(self) -> None:
         self.map.update(self.bookmarks)
         if len(self.bookmarks) < 2:
             return

@@ -65,7 +65,7 @@ class HasEvent(HasEventBase):
     name = _("Families with the <event>")
     description = _("Matches families with an event of a particular value")
 
-    def apply_to_one(self, dbase: Database, family: Family) -> bool:
+    def apply_to_one(self, dbase: Database, family: Family) -> bool: # type: ignore[override]
         for event_ref in family.event_ref_list:
             if not event_ref:
                 continue
