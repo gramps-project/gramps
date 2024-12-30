@@ -40,6 +40,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -63,7 +64,7 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: set[str] = set()
+        self.map: Set[str] = set()
         p: Person = db.get_default_person()
         if p:
             self.init_ancestor_list(p.handle, 1)

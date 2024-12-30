@@ -40,6 +40,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -60,7 +61,7 @@ class IsDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: set[str] = set()
+        self.map: Set[str] = set()
         try:
             first = False if int(self.list[1]) else True
         except IndexError:

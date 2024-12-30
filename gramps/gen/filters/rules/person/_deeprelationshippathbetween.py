@@ -41,7 +41,7 @@ from ....const import GRAMPS_LOCALE as glocale
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Union, List
+from typing import Union, List, Set, Dict
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -55,7 +55,7 @@ _ = glocale.translation.gettext
 
 
 def get_family_handle_people(db: Database, exclude_handle: str, family_handle: str):
-    people: set[str] = set()
+    people: Set[str] = set()
 
     family = db.get_family_from_handle(family_handle)
 
@@ -76,7 +76,7 @@ def get_family_handle_people(db: Database, exclude_handle: str, family_handle: s
 def get_person_family_people(
     db: Database, person: Person, person_handle: str
 ) -> set[str]:
-    people: set[str] = set()
+    people: Set[str] = set()
 
     def add_family_handle_list(fam_list: List[str]):
         for family_handle in fam_list:
@@ -99,12 +99,12 @@ def find_deep_relations(
     The function stores to do data and intermediate results in an ordered dict,
     rather than using a recursive algorithm becasue some trees have been found
     that exceed the standard python recursive depth."""
-    return_paths: set[str] = set()  # all people in paths between targets and person
+    return_paths: Set[str] = set()  # all people in paths between targets and person
     if person is None:
         return return_paths
     todo = deque([person.handle])  # list of work to do, handles, add to right,
     #                                pop from left
-    done: dict[str, Union[str, None]] = {}  # The key records handles already examined,
+    done: Dict[str, Union[str, None]] = {}  # The key records handles already examined,
     # the value is a handle of the previous person in the path, or None at
     # head of path.  This forms a linked list of handles along the path.
     done[person.handle] = None

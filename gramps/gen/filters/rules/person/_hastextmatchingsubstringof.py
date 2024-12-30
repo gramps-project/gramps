@@ -45,6 +45,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -63,13 +64,13 @@ class HasTextMatchingSubstringOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.person_map: set[str] = set()
-        self.event_map: set[str] = set()
-        self.source_map: set[str] = set()
-        self.repo_map: set[str] = set()
-        self.family_map: set[str] = set()
-        self.place_map: set[str] = set()
-        self.media_map: set[str] = set()
+        self.person_map: Set[str] = set()
+        self.event_map: Set[str] = set()
+        self.source_map: Set[str] = set()
+        self.repo_map: Set[str] = set()
+        self.family_map: Set[str] = set()
+        self.place_map: Set[str] = set()
+        self.media_map: Set[str] = set()
         try:
             if int(self.list[1]):
                 self.case_sensitive = True

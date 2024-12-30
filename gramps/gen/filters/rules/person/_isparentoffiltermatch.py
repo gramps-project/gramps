@@ -41,6 +41,7 @@ from ._matchesfilter import MatchesFilter
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -61,7 +62,7 @@ class IsParentOfFilterMatch(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: set[str] = set()
+        self.map: Set[str] = set()
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
         if user:

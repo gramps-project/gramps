@@ -45,7 +45,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List
+from typing import List, Set
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -71,9 +71,9 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
     def prepare(self, db: Database, user):
         self.db = db
         bookmarks: List[str] = db.get_bookmarks().get()
-        self.map: set[str] = set()
+        self.map: Set[str] = set()
         if len(bookmarks) != 0:
-            self.bookmarks: set[str] = set(bookmarks)
+            self.bookmarks: Set[str] = set(bookmarks)
             for self.bookmarkhandle in self.bookmarks:
                 self.init_ancestor_list(self.bookmarkhandle, 1)
 

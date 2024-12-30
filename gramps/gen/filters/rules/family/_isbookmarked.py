@@ -40,6 +40,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
 from gramps.gen.lib import Family
 from gramps.gen.db import Database
 
@@ -57,7 +58,7 @@ class IsBookmarked(Rule):
     description = _("Matches the families on the bookmark list")
 
     def prepare(self, db: Database, user):
-        self.map: set[str] = set(list(db.get_family_bookmarks().get()))
+        self.map: Set[str] = set(list(db.get_family_bookmarks().get()))
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.map

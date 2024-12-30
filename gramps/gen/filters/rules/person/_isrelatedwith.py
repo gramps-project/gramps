@@ -40,7 +40,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List
+from typing import List, Set
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -65,7 +65,7 @@ class IsRelatedWith(Rule):
         """
         self.db = db
 
-        self.map: set[str] = set()
+        self.map: Set[str] = set()
         self.add_relative(db.get_person_from_gramps_id(self.list[0]))
 
     def reset(self):

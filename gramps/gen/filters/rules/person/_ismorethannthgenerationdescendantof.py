@@ -40,6 +40,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -63,7 +64,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: set[str] = set()
+        self.map: Set[str] = set()
         try:
             root_person = db._get_raw_person_from_id_data(self.list[0])
             self.init_list(root_person, 0)

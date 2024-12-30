@@ -41,6 +41,7 @@ from ._matchesfilter import MatchesFilter
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -63,7 +64,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: set[str] = set()
+        self.map: Set[str] = set()
         try:
             if int(self.list[1]):
                 first = False

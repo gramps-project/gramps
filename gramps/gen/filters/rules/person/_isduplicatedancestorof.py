@@ -41,6 +41,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -63,8 +64,8 @@ class IsDuplicatedAncestorOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.cache: set[str] = set()
-        self.map: set[str] = set()
+        self.cache: Set[str] = set()
+        self.map: Set[str] = set()
         root_person = db.get_person_from_gramps_id(self.list[0])
         if root_person:
             self.init_ancestor_list(db, root_person)

@@ -40,7 +40,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List
+from typing import List, Set, Dict
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -65,7 +65,7 @@ class RelationshipPathBetween(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: set[str] = set()
+        self.map: Set[str] = set()
         try:
             root1_handle = db.get_person_from_gramps_id(self.list[0]).handle
             root2_handle = db.get_person_from_gramps_id(self.list[1]).handle
@@ -89,7 +89,7 @@ class RelationshipPathBetween(Rule):
                         self.desc_list(child_ref.ref, map, False)
 
     def apply_filter(
-        self, rank: int, handle: str, plist: set[str], pmap: dict[str, int]
+        self, rank: int, handle: str, plist: Set[str], pmap: Dict[str, int]
     ):
         if not handle:
             return
@@ -115,10 +115,10 @@ class RelationshipPathBetween(Rule):
         return person.handle in self.map
 
     def init_list(self, p1_handle: str, p2_handle: str):
-        firstMap: dict[str, int] = {}
-        firstList: set[str] = set()
-        secondMap: dict[str, int] = {}
-        secondList: set[str] = set()
+        firstMap: Dict[str, int] = {}
+        firstList: Set[str] = set()
+        secondMap: Dict[str, int] = {}
+        secondList: Set[str] = set()
         common: List[str] = []
         rank = 9999999
 
@@ -137,7 +137,7 @@ class RelationshipPathBetween(Rule):
         path2 = set([p2_handle])
 
         for person_handle in common:
-            new_map: set[str] = set()
+            new_map: Set[str] = set()
             self.desc_list(person_handle, new_map, True)
             path1.update(new_map.intersection(firstMap))
             path2.update(new_map.intersection(secondMap))

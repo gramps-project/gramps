@@ -40,6 +40,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
 from gramps.gen.lib import Person
 from gramps.gen.db import Database
 
@@ -57,7 +58,7 @@ class IsDefaultPerson(Rule):
     description = _("Matches the Home Person")
 
     def prepare(self, db: Database, user):
-        self.map: set[str] = set()
+        self.map: Set[str] = set()
         p: Person = db.get_default_person()
         if p:
             self.map.add(p.handle)
