@@ -31,10 +31,12 @@ from gramps.gen.lib import (
     Tag,
 )
 
+
 def sort_data(rows, specs):
     for key, reverse in reversed(specs):
         rows.sort(key=lambda item: item[key], reverse=reverse)
     return rows
+
 
 def select_from_table(db, table_name, what, where, order_by, env):
     if order_by is None:
@@ -63,20 +65,26 @@ def select_from_table(db, table_name, what, where, order_by, env):
             yield list(row.values())
         return
 
+
 def _select_from_table(db, table_name, what, where, env):
-    env = env if env else {
-        "Citation": Citation,
-        "Event": Event,
-        "Family": Family,
-        "Media": Media,
-        "Note": Note,
-        "Person": Person,
-        "Place": Place,
-        "Repository": Repository,
-        "Source": Source,
-        "Tag": Tag,
-    }
-    for handle, obj in db.method("_iter_raw_%s_data", table_name)():
+    env = (
+        env
+        if env
+        else {
+            "Citation": Citation,
+            "Event": Event,
+            "Family": Family,
+            "Media": Media,
+            "Note": Note,
+            "Person": Person,
+            "Place": Place,
+            "Repository": Repository,
+            "Source": Source,
+            "Tag": Tag,
+        }
+    )
+    method = db._get_table_func(table_name.title(), "iter_func")
+    for obj in method():
         env[table_name] = obj
         if where:
             where_value = eval(where, env)
@@ -92,5 +100,3 @@ def _select_from_table(db, table_name, what, where, env):
                 what_value = [eval(w, env) for w in what]
 
             yield what_value
-
-
