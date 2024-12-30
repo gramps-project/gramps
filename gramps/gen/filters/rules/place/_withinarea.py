@@ -73,8 +73,8 @@ class WithinArea(Rule):
     category = _("Position filters")
     handle = None
     radius = None
-    latitude:  Union[float, None] = None
-    longitude:  Union[float, None] = None
+    latitude: Union[float, None] = None
+    longitude: Union[float, None] = None
 
     def prepare(self, db: Database, user):
         ref_place = db.get_place_from_gramps_id(self.list[0])
@@ -134,10 +134,10 @@ class WithinArea(Rule):
             if latit is None or longit is None:
                 return False
             if (
-                hypot( 
-                    float(self.latitude) - float(latit), 
-                    float(self.longitude) - float(longit), 
-                ) 
+                hypot(
+                    float(self.latitude) - float(latit),
+                    float(self.longitude) - float(longit),
+                )
                 <= self.radius
             ):
                 return True

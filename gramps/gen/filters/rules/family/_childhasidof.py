@@ -57,7 +57,7 @@ class ChildHasIdOf(RegExpIdBase):
     description = _("Matches families where child has a specified " "Gramps ID")
     category = _("Child filters")
 
-    def apply_to_one(self, db: Database, family: Family) -> bool: # type: ignore[override]
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
         for child_ref in family.child_ref_list:
             child = db.get_person_from_handle(child_ref.ref)
             if super().apply_to_one(db, child):

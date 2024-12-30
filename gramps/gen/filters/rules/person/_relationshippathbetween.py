@@ -87,7 +87,9 @@ class RelationshipPathBetween(Rule):
                     if child_ref.ref:
                         self.desc_list(child_ref.ref, map, False)
 
-    def apply_filter(self, rank: int, handle: str, plist: set[str], pmap: dict[str, int]):
+    def apply_filter(
+        self, rank: int, handle: str, plist: set[str], pmap: dict[str, int]
+    ):
         if not handle:
             return
         person = self.db.get_person_from_handle(handle)

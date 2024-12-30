@@ -57,7 +57,7 @@ class FatherHasIdOf(RegExpIdBase):
     description = _("Matches families whose father has a specified " "Gramps ID")
     category = _("Father filters")
 
-    def apply_to_one(self, db: Database, family: Family) -> bool: # type: ignore[override]
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
         father_handle = family.father_handle
         if father_handle:
             father = db.get_person_from_handle(father_handle)

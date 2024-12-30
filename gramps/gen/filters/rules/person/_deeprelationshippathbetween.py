@@ -73,7 +73,9 @@ def get_family_handle_people(db: Database, exclude_handle: str, family_handle: s
     return people
 
 
-def get_person_family_people(db: Database, person: Person, person_handle: str) -> set[str]:
+def get_person_family_people(
+    db: Database, person: Person, person_handle: str
+) -> set[str]:
     people: set[str] = set()
 
     def add_family_handle_list(fam_list: list[str]):
@@ -86,7 +88,9 @@ def get_person_family_people(db: Database, person: Person, person_handle: str) -
     return people
 
 
-def find_deep_relations(db: Database, user, person: Person, target_people: list[str]) -> set[str]:
+def find_deep_relations(
+    db: Database, user, person: Person, target_people: list[str]
+) -> set[str]:
     """This explores all possible paths between a person and one or more
     targets.  The algorithm processes paths in a breadth first wave, one
     remove at a time.  The first path that reaches a target causes the target

@@ -93,7 +93,9 @@ class MatchesPersonFilter(MatchesFilterBase):
                 ):
                     family = db.get_family_from_handle(handle)
                     father = (
-                        db.get_person_from_handle(family.father_handle) if family else None
+                        db.get_person_from_handle(family.father_handle)
+                        if family
+                        else None
                     )
                     if father and filt.apply_to_one(db, father):
                         return True

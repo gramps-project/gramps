@@ -60,6 +60,6 @@ class HasSourceIdOf(HasGrampsId):
 
     def apply_to_one(self, dbase: Database, citation: RefBase) -> bool:
         source = dbase.get_source_from_handle(citation.ref)
-        if HasGrampsId.apply_to_one(self, dbase, source): # type: ignore[override]
+        if HasGrampsId.apply_to_one(self, dbase, source):  # type: ignore[override]
             return True
         return False

@@ -56,7 +56,7 @@ class MotherHasNameOf(HasNameOf):
     description = _("Matches families whose mother has a specified " "(partial) name")
     category = _("Mother filters")
 
-    def apply_to_one(self, db: Database, family: Family) -> bool: # type: ignore[override]
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
         mother_handle = family.mother_handle
         if mother_handle:
             mother = db.get_person_from_handle(mother_handle)

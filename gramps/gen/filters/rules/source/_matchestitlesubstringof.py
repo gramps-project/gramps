@@ -43,6 +43,7 @@ from .. import Rule
 from gramps.gen.lib import Source
 from gramps.gen.db import Database
 
+
 # -------------------------------------------------------------------------
 # "Sources having a title that contain a substring"
 # -------------------------------------------------------------------------

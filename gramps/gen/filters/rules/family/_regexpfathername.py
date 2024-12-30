@@ -59,7 +59,7 @@ class RegExpFatherName(RegExpName):
     )
     category = _("Father filters")
 
-    def apply_to_one(self, db: Database, family: Family) -> bool: # type: ignore[override]
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
         father_handle = family.father_handle
         if father_handle:
             father = db.get_person_from_handle(father_handle)
