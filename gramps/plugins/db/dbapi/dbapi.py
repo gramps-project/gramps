@@ -1186,7 +1186,7 @@ class DBAPI(DbGeneric):
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
 
-    def select_from_table(
+    def _select_from_table(
         self,
         table_name,
         what=None,
