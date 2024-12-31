@@ -2234,7 +2234,10 @@ class BasePage:
                         imag.attr += ' src = "%s" alt = "%s"' % (newpath, descr)
                         fname = (
                             self.report.build_url_fname(
-                                obj.get_handle(), "img", uplink=2, image=True,
+                                obj.get_handle(),
+                                "img",
+                                uplink=2,
+                                image=True,
                             )
                             + self.ext
                         )
