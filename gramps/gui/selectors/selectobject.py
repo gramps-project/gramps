@@ -79,6 +79,7 @@ class SelectObject(BaseSelector):
             (_("ID"), 75, BaseSelector.TEXT, 1),
             (_("Type"), 75, BaseSelector.TEXT, 2),
             (_("Last Change"), 150, BaseSelector.TEXT, 7),
+            (_("Path"), 150, BaseSelector.TEXT, 3),
         ]
 
     def _local_init(self):
