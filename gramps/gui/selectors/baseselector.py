@@ -248,9 +248,11 @@ class BaseSelector(ManagedWindow):
         Defines the columns to show in the selector. Must be defined in the
         subclasses.
         :returns: a list of tuples with four entries. The four entries should
-                be 0: column header string, 1: column width,
-                2: TEXT, MARKUP or IMAGE, 3: column in the model that must be
-                used.
+                be:
+                0: column header string,
+                1: column width,
+                2: TEXT, MARKUP or IMAGE,
+                3: column in the model that must be used.
         """
         raise NotImplementedError
 
