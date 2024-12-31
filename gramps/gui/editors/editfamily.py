@@ -418,7 +418,7 @@ class FastMaleFilter:
 
     def match(self, handle, db):
         value = self.db.get_raw_person_data(handle)
-        return value[2] == Person.MALE
+        return value.gender == Person.MALE
 
 
 class FastFemaleFilter:
@@ -427,7 +427,7 @@ class FastFemaleFilter:
 
     def match(self, handle, db):
         value = self.db.get_raw_person_data(handle)
-        return value[2] == Person.FEMALE
+        return value.gender == Person.FEMALE
 
 
 # -------------------------------------------------------------------------
