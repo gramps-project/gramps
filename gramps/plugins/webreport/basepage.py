@@ -1924,7 +1924,7 @@ class BasePage:
         ) as navigation:
             with Html("div", class_="container") as container:
                 index = 0
-                unordered = Html("ul", class_="nav dropmenu", id="dropmenu")
+                unordered = Html("ul", class_="nav", id="dropmenu")
                 while index < number_items:
                     url_fname, nav_text = menu_items[index]
                     hyper = self.get_nav_menu_hyperlink(url_fname, nav_text, cal=cal)
@@ -2005,12 +2005,17 @@ class BasePage:
                     langs = Html("li", self._("Language"), class_="lang")
                     en_locale = self.report.set_locale("en")
                     languages = en_locale.get_language_dict()
-                    choice = Html("ul", class_="lang")
+                    choice = Html("ul", class_="lang", style="width:300px;")
                     langs += choice
                     for language in languages:
                         for extra_lang, dummy_title in self.report.languages:
                             if languages[language] == extra_lang:
-                                lang_txt = html_escape(self._(language))
+                                def_locale = self.report.set_locale(extra_lang)
+                                local_lang = def_locale.translation.sgettext(language)
+                                if local_lang == self._(language):
+                                    lang_txt = html_escape(self._(language))
+                                else:
+                                    lang_txt = html_escape(self._(language)) + "&#8239;(" + local_lang + ")"
                                 n_lang = languages[language]
                                 nfname = self.report.cur_fname
                                 if "cal" in nfname:
@@ -2026,7 +2031,7 @@ class BasePage:
                                     url = self.report.build_url_lang(
                                         nfname, n_lang, upl
                                     )
-                                lnk = Html("a", lang_txt, href=url, title=lang_txt)
+                                lnk = Html("a", lang_txt, href=url, title=lang_txt, style="white-space:nowrap;")
                                 choice += Html("li", lnk, inline=True)
                     unordered.extend(langs)
 

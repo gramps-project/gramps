@@ -226,7 +226,8 @@ div#nav ul.lang {
     opacity: 0;
     z-index: 999;
     background-color: #EAEEF4;
-    top: -1em;
+    width: 300px;
+    top:-1em;
     font-size: larger;
     font-family: sans-serif;
 }
@@ -235,7 +236,8 @@ div#nav ul.lang:hover {
 }
 div#nav ul.lang li {
     float: none;
-    padding: 1px 2px;
+    padding: 5px;
+    width: 300px;
 }
 .ltr, .ltr li {
     float: left;

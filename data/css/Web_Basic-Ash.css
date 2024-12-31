@@ -185,7 +185,7 @@ div#nav ul li a, #subnavigation ul li a {
     display: block;
     font-size: smaller;
     font-weight: bold;
-    border-bottom: solid 1px #EEE;
+    border-bottom: solid 1px #CCC;
 }
 div#nav ul li a:hover, #subnavigation ul li a:hover {
     text-decoration: none;
@@ -216,7 +216,8 @@ div#nav ul.lang {
     visibility: hidden;
     opacity: 0;
     z-index: 999;
-    background-color: #EEE;
+    width: 300px;
+    background-color: #CCC;
     font-family: sans-serif;
 }
 div#nav ul.lang:hover {
@@ -224,7 +225,8 @@ div#nav ul.lang:hover {
 }
 div#nav ul.lang li {
     float: none;
-    padding: 2px;
+    padding: 5px;
+    width: 300px;
 }
 .ltr, .ltr li {
     float: left;
@@ -344,7 +346,7 @@ div#nav::after {
     }
     button.navIcon {
         display: block;
-        font-size:2.9em;
+        font-size:4.9em;
         border: 0px;
         color: #555;
         background-color: #EEE;
@@ -359,8 +361,8 @@ div#nav::after {
     .nav.responsive {position: absolute; display: block; z-index: 100;}
     .nav.responsive a.icon {
         position: absolute;
-        right: 0;
-        top: 0;
+        right: 5px;
+        top: 5px;
         margin-right: 10px;
     }
     .nav.rtl.responsive li.lang {
@@ -371,7 +373,6 @@ div#nav::after {
     }
     .nav.responsive li {
         display: block;
-        background-color: #CCC;
         /* required by IE */
         clear: both;
         width: 150px;

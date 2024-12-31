@@ -49,6 +49,12 @@ function lang() {
   var found = langs[0];
   for (i=0; i < lang.length; i++) {
     for (j=0; j < langs.length; j++) {
+      my_lang = lang[i];
+      slang = my_lang.split("-")[0];  /* ie when we have en-GB */
+      if (slang == langs[j]) {
+        found = slang;
+        break;
+      };
       if (lang[i] == langs[j]) {
         found = lang[i];
         break;
