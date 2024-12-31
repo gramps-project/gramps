@@ -2015,7 +2015,12 @@ class BasePage:
                                 if local_lang == self._(language):
                                     lang_txt = html_escape(self._(language))
                                 else:
-                                    lang_txt = html_escape(self._(language)) + "&#8239;(" + local_lang + ")"
+                                    lang_txt = (
+                                        html_escape(self._(language))
+                                        + "&#8239;("
+                                        + local_lang
+                                        + ")"
+                                    )
                                 n_lang = languages[language]
                                 nfname = self.report.cur_fname
                                 if "cal" in nfname:
@@ -2031,7 +2036,13 @@ class BasePage:
                                     url = self.report.build_url_lang(
                                         nfname, n_lang, upl
                                     )
-                                lnk = Html("a", lang_txt, href=url, title=lang_txt, style="white-space:nowrap;")
+                                lnk = Html(
+                                    "a",
+                                    lang_txt,
+                                    href=url,
+                                    title=lang_txt,
+                                    style="white-space:nowrap;",
+                                )
                                 choice += Html("li", lnk, inline=True)
                     unordered.extend(langs)
 
@@ -2223,10 +2234,7 @@ class BasePage:
                         imag.attr += ' src = "%s" alt = "%s"' % (newpath, descr)
                         fname = (
                             self.report.build_url_fname(
-                                obj.get_handle(),
-                                "img",
-                                uplink=2,
-                                image=True,
+                                obj.get_handle(), "img", uplink=2, image=True,
                             )
                             + self.ext
                         )
