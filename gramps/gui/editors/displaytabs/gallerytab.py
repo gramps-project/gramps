@@ -345,24 +345,38 @@ class GalleryTab(ButtonTab, DbGUIElement):
         """
         SelectObject = SelectorFactory("Media")
 
-        sel = SelectObject(self.dbstate, self.uistate, self.track)
-        src = sel.run()
-        if src:
-            sref = MediaRef()
-            try:
-                from .. import EditMediaRef
+        sel = SelectObject(
+            self.dbstate, self.uistate, self.track, allow_multiple_selection=True
+        )
+        handles = sel.run()
+        if handles:
+            if len(handles) > 1:
+                for src in handles:
+                    media_ref = MediaRef()
+                    media_ref.set_reference_handle(src)
+                    self.add_callback(media_ref, src)
+            else:
+                for src in handles:
+                    sref = MediaRef()
+                    try:
+                        from .. import EditMediaRef
 
-                EditMediaRef(
-                    self.dbstate, self.uistate, self.track, src, sref, self.add_callback
-                )
-            except WindowActiveError:
-                from ...dialog import WarningDialog
+                        EditMediaRef(
+                            self.dbstate,
+                            self.uistate,
+                            self.track,
+                            src,
+                            sref,
+                            self.add_callback,
+                        )
+                    except WindowActiveError:
+                        from ...dialog import WarningDialog
 
-                WarningDialog(
-                    _("Cannot share this reference"),
-                    self.__blocked_text(),
-                    parent=self.uistate.window,
-                )
+                        WarningDialog(
+                            _("Cannot share this reference"),
+                            self.__blocked_text(),
+                            parent=self.uistate.window,
+                        )
 
     def del_button_clicked(self, obj):
         ref = self.get_selected()
