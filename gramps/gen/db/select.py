@@ -85,7 +85,7 @@ def _select_from_table(db, table_name, what, where, env):
     )
     method = db._get_table_func(table_name.title(), "iter_func")
     for obj in method():
-        env[table_name] = obj
+        env["_"] = env[table_name] = obj
         if where:
             where_value = eval(where, env)
         else:

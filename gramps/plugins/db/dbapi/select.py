@@ -22,13 +22,19 @@ import ast
 
 
 class AttributeNode:
-    def __init__(self, json_extract, obj, attr):
+    def __init__(self, json_extract, json_array_length, obj, attr):
         self.json_extract = json_extract
+        self.json_array_length = json_array_length
         self.obj = obj
         self.attr = attr
 
     def __str__(self):
         return self.json_extract.format(
+            attr=self.attr,
+        )
+
+    def get_length(self):
+        return self.json_array_length.format(
             attr=self.attr,
         )
 
@@ -44,8 +50,9 @@ class Evaluator:
     Python expression to SQL expression converter.
     """
 
-    def __init__(self, table_name, json_extract, env):
+    def __init__(self, table_name, json_extract, json_array_length, env):
         self.json_extract = json_extract
+        self.json_array_length = json_array_length
         self.table_name = table_name
         self.env = env
         self.operators = {
@@ -156,8 +163,10 @@ class Evaluator:
         elif isinstance(node, ast.Attribute):
             obj = self.convert_to_sql(node.value)
             attr = node.attr
-            if obj == self.table_name:
-                return AttributeNode(self.json_extract, obj, attr)
+            if obj in [self.table_name, "_"]:
+                return AttributeNode(
+                    self.json_extract, self.json_array_length, obj, attr
+                )
             elif isinstance(obj, AttributeNode):
                 obj.attr += ".%s" % attr
                 return obj
@@ -174,6 +183,14 @@ class Evaluator:
             if len(args) == 0:
                 return "null"
             return "(" + (", ".join([str(arg) for arg in args])) + ")"
+        elif isinstance(node, ast.Call):
+            function_name = self.convert_to_sql(node.func)
+            args = [self.convert_to_sql(arg) for arg in node.args]
+            if function_name == "len":
+                # Assumes taking len of a json_data field
+                return args[0].get_length()
+            else:
+                raise ValueError("unknown function %r" % function_name)
 
         raise TypeError(node)
 

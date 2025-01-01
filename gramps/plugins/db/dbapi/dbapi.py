@@ -1186,6 +1186,19 @@ class DBAPI(DbGeneric):
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
 
+    def _sql_value_or_object(self, value):
+        """
+        Return a value (int, string, etc) or a Gramps object.
+        """
+        if isinstance(value, str):
+            if value.startswith("{") or value.startswith("["):
+                try:
+                    return self.serializer.string_to_object(None, value)
+                except Exception:
+                    # Must be an value
+                    pass
+        return value
+
     def _select_from_table(
         self,
         table_name,
@@ -1196,8 +1209,8 @@ class DBAPI(DbGeneric):
         allow_use_on_proxy=False,
     ):
         # DB-API implementation
-        # NOTE: evaluator takes a pattern in case your DB-API
-        #       varies in syntax for JSON extraction
+        # NOTE: evaluator takes patterns in case your DB-API
+        #       varies in syntax for JSON access
 
         if self.is_proxy():
             if allow_use_on_proxy:
@@ -1216,7 +1229,10 @@ class DBAPI(DbGeneric):
                 )
 
         evaluator = Evaluator(
-            table_name, 'json_data->>"$.{attr}"', env if env is not None else globals()
+            table_name,
+            'json_data->>"$.{attr}"',
+            'json_array_length(json_data, "$.{attr}")',
+            env if env is not None else globals(),
         )
 
         if what is None:
@@ -1242,9 +1258,9 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         while row:
             if what_expr == "json_data":
-                yield self.serializer.string_to_object(None, row[0])
+                yield self._sql_value_or_object(row[0])
             elif isinstance(what, str):
-                yield row[0]
+                yield self._sql_value_or_object(row[0])
             else:
-                yield row
+                yield [self._sql_value_or_object(value) for value in row]
             row = self.dbapi.fetchone()
