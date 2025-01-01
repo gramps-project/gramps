@@ -95,14 +95,11 @@ class Evaluator:
             ops = [self.convert_to_sql(arg) for arg in node.ops]
             left = self.convert_to_sql(node.left)
 
-            if ops[0] in [" IN ", " NOT IN "]:
-                if not (
-                    isinstance(comparators[0], str) and comparators[0].startswith("(")
-                ):
-                    if ops[0] == " IN ":
-                        return "IN_OBJ(%s, %s)" % (left, comparators[0])
-                    elif ops[0] == " NOT IN ":
-                        return "NOT IN_OBJ(%s, %s)" % (left, comparators[0])
+            # Assumes "<string> IN X":
+            if ops[0] == " IN ":
+                return "%s LIKE '%%%s%%'" % (comparators[0], left[1:-1])
+            elif ops[0] == " NOT IN ":
+                return "%s NOT LIKE '%%%s%%'" % (comparators[0], left[1:-1])
 
             retval = ""
             for op, right in zip(ops, comparators):

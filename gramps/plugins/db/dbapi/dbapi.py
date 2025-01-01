@@ -1242,7 +1242,7 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         while row:
             if what_expr == "json_data":
-                yield self.serializer.string_to_object(row[0])
+                yield self.serializer.string_to_object(None, row[0])
             elif isinstance(what, str):
                 yield row[0]
             else:
