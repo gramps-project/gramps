@@ -39,6 +39,7 @@ from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
+from gramps.gui.widgets.multitreeview import MultiTreeView
 
 
 # -------------------------------------------------------------------------
@@ -65,6 +66,7 @@ class BaseSelector(ManagedWindow):
         skip=set(),
         show_search_bar=True,
         default=None,
+        allow_multiple_selection=False,
     ):
         """Set up the dialog with the dbstate and uistate, track of parent
         windows for ManagedWindow, initial filter for the model, skip with
@@ -94,8 +96,15 @@ class BaseSelector(ManagedWindow):
         title_label = self.glade.get_object("title")
         vbox = self.glade.get_object("select_person_vbox")
         objectlist = self.glade.get_object("plist")
-        _name = self.get_config_name()
-        self.tree = PersistentTreeView(self.uistate, _name)
+        _config_name = self.get_config_name()
+        self.allow_multiple_selection = allow_multiple_selection
+        self.tree = (
+            MultiTreeView(self.uistate, _config_name)
+            if self.allow_multiple_selection
+            else PersistentTreeView(self.uistate, _config_name)
+        )
+        if self.allow_multiple_selection:
+            self.tree.get_selection().set_mode(Gtk.SelectionMode.MULTIPLE)
         scrolledwindow = self.glade.get_object("scrolledwindow33")
         scrolledwindow.remove(objectlist)
         scrolledwindow.add(self.tree)
@@ -222,9 +231,19 @@ class BaseSelector(ManagedWindow):
         val = self.window.run()
         result = None
         if val == Gtk.ResponseType.OK:
-            id_list = self.get_selected_ids()
-            if id_list and id_list[0]:
-                result = self.get_from_handle_func()(id_list[0])
+            handle_list = self.get_selected_ids()
+            if handle_list:
+                if self.allow_multiple_selection:
+                    # always return a list, but may be length 0
+                    result = [
+                        self.get_from_handle_func()(handle)
+                        for handle in handle_list
+                        if handle
+                    ]
+                else:
+                    # return None or a valid handle
+                    if handle_list[0]:
+                        result = self.get_from_handle_func()(id_list[0])
             self.close()
         elif val != Gtk.ResponseType.DELETE_EVENT:
             self.close()
