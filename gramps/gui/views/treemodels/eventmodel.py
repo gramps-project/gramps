@@ -145,7 +145,7 @@ class EventModel(FlatBaseModel):
             return ""
 
     def column_type(self, data):
-        return str(EventType(data["type"]))
+        return EventType.get_str(data.type)
 
     def column_id(self, data):
         return data["gramps_id"]

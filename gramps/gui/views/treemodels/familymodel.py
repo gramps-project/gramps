@@ -165,7 +165,7 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def column_type(self, data):
-        return data["type"]["string"]
+        return FamilyRelType.get_str(data.type)
 
     def column_marriage(self, data):
         handle = data["handle"]
