@@ -132,7 +132,7 @@ def to_dict(obj):
     :returns: A dictionary.
     :rtype: dict
     """
-    return json.loads(to_json(obj))
+    return DataDict(json.loads(to_json(obj)))
 
 
 def from_dict(dict):
