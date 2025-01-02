@@ -107,13 +107,12 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="helpbutton1">
-                <property name="label">gtk-help</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">Help</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
               <packing>
@@ -124,13 +123,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button5">
-                <property name="label">gtk-close</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Close</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="verify" swapped="yes"/>
               </object>
               <packing>
@@ -142,7 +140,6 @@
             <child>
               <object class="GtkButton" id="button4">
                 <property name="label" translatable="yes">_Run</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -360,7 +357,6 @@
                     <child>
                       <object class="GtkCheckButton" id="estimate_age">
                         <property name="label" translatable="yes">_Estimate missing or inexact dates</property>
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
@@ -377,7 +373,6 @@
                     <child>
                       <object class="GtkCheckButton" id="invdate">
                         <property name="label" translatable="yes">_Identify invalid dates</property>
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
@@ -450,8 +445,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">2</property>
-                        <property name="margin-right">2</property>
+                        <property name="margin-start">2</property>
+                        <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
                         <property name="hexpand">True</property>
@@ -469,8 +464,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">2</property>
-                        <property name="margin-right">2</property>
+                        <property name="margin-start">2</property>
+                        <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
                         <property name="hexpand">True</property>
@@ -488,8 +483,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">2</property>
-                        <property name="margin-right">2</property>
+                        <property name="margin-start">2</property>
+                        <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
                         <property name="hexpand">True</property>
@@ -580,8 +575,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">2</property>
-                        <property name="margin-right">2</property>
+                        <property name="margin-start">2</property>
+                        <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
                         <property name="hexpand">True</property>
@@ -599,8 +594,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">2</property>
-                        <property name="margin-right">2</property>
+                        <property name="margin-start">2</property>
+                        <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
                         <property name="hexpand">True</property>
@@ -618,8 +613,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">2</property>
-                        <property name="margin-right">2</property>
+                        <property name="margin-start">2</property>
+                        <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
                         <property name="hexpand">True</property>
@@ -852,13 +847,12 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="closebutton1">
-                <property name="label">gtk-close</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Close</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -982,7 +976,6 @@
                     <child>
                       <object class="GtkButton" id="mark_all">
                         <property name="label" translatable="yes">_Mark all</property>
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="can-default">True</property>
@@ -998,7 +991,6 @@
                     <child>
                       <object class="GtkButton" id="unmark_all">
                         <property name="label" translatable="yes">_Unmark all</property>
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="can-default">True</property>
@@ -1014,7 +1006,6 @@
                     <child>
                       <object class="GtkButton" id="invert_all">
                         <property name="label" translatable="yes">In_vert marks</property>
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="can-default">True</property>
@@ -1037,7 +1028,6 @@
                 <child>
                   <object class="GtkToggleButton" id="hide_button">
                     <property name="label" translatable="yes">_Hide marked</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>

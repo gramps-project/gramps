@@ -124,7 +124,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
 
     def get_icon_name(self):
         """
-        Return the stock-id icon name associated with the display tab
+        Return the icon name associated with the display tab
         """
         return "gramps-source"
 

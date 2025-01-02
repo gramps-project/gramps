@@ -19,7 +19,6 @@
             <child>
               <object class="GtkButton" id="object_cancel">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -35,7 +34,6 @@
             <child>
               <object class="GtkButton" id="object_ok">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -51,7 +49,6 @@
             <child>
               <object class="GtkButton" id="object_help">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -110,7 +107,6 @@ primary data for the merged object.</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkRadioButton" id="handle_btn1">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -133,7 +129,6 @@ primary data for the merged object.</property>
                 </child>
                 <child>
                   <object class="GtkRadioButton" id="handle_btn2">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -211,7 +206,6 @@ primary data for the merged object.</property>
                         <child>
                           <object class="GtkRadioButton" id="desc_btn1">
                             <property name="label" translatable="yes">Title:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -227,7 +221,6 @@ primary data for the merged object.</property>
                         <child>
                           <object class="GtkRadioButton" id="desc_btn2">
                             <property name="label" translatable="yes">Title:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -244,7 +237,6 @@ primary data for the merged object.</property>
                         <child>
                           <object class="GtkRadioButton" id="path_btn1">
                             <property name="label" translatable="yes">Path:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -260,7 +252,6 @@ primary data for the merged object.</property>
                         <child>
                           <object class="GtkRadioButton" id="path_btn2">
                             <property name="label" translatable="yes">Path:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -277,7 +268,6 @@ primary data for the merged object.</property>
                         <child>
                           <object class="GtkRadioButton" id="date_btn1">
                             <property name="label" translatable="yes">Date:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -293,7 +283,6 @@ primary data for the merged object.</property>
                         <child>
                           <object class="GtkRadioButton" id="date_btn2">
                             <property name="label" translatable="yes">Date:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -310,7 +299,6 @@ primary data for the merged object.</property>
                         <child>
                           <object class="GtkRadioButton" id="gramps_btn1">
                             <property name="label" translatable="yes">Gramps ID:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -326,7 +314,6 @@ primary data for the merged object.</property>
                         <child>
                           <object class="GtkRadioButton" id="gramps_btn2">
                             <property name="label" translatable="yes">Gramps ID:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
