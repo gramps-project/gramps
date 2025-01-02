@@ -180,7 +180,7 @@
       <dep package="librsvg"/>
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
-      <dep package="gtkspell3"/>
+      <dep package="gspell"/>
       <dep package="geocode-glib"/>
       <dep package="osmgpsmap"/>
       <dep package="graphviz"/>
