@@ -34,7 +34,9 @@ import gc
 # GTK+
 #
 # -------------------------------------------------------------------------
-from gi.repository import Gtk
+from gi.repository import GdkPixbuf, Gtk
+from gi.repository import GObject
+from gi.repository import Pango
 
 # -------------------------------------------------------------------------
 #
@@ -79,6 +81,7 @@ class SelectObject(BaseSelector):
             (_("ID"), 75, BaseSelector.TEXT, 1),
             (_("Type"), 75, BaseSelector.TEXT, 2),
             (_("Last Change"), 150, BaseSelector.TEXT, 7),
+            (_("Path"), 150, BaseSelector.TEXT, 3),
         ]
 
     def _local_init(self):
@@ -86,22 +89,51 @@ class SelectObject(BaseSelector):
         Perform local initialisation for this class
         """
         self.setup_configs("interface.media-sel", 600, 450)
-        self.preview = Gtk.Image()
-        self.preview.set_size_request(int(THUMBSCALE), int(THUMBSCALE))
+
+        # insert a ScrolledWindow containing an IconView to display thumbnails
+        # of the selected media
+
+        # pixels to pad the image
+        padding = 6
+
+        self.iconmodel = Gtk.ListStore(GdkPixbuf.Pixbuf, GObject.TYPE_STRING, object)
+        self.iconlist = Gtk.IconView()
+        self.track_ref_for_deletion("iconlist")
+        self.iconlist.set_pixbuf_column(0)
+        self.iconlist.set_item_width(int(THUMBSCALE) + padding * 2)
+
+        text_renderer = Gtk.CellRendererText()
+        text_renderer.set_property("wrap-mode", Pango.WrapMode.WORD_CHAR)
+        text_renderer.set_property("wrap-width", THUMBSCALE)
+        text_renderer.set_property("alignment", Pango.Alignment.CENTER)
+        self.iconlist.pack_end(text_renderer, True)
+        self.iconlist.add_attribute(text_renderer, "text", 1)
+
+        self.iconlist.set_margin(padding)
+        self.iconlist.set_column_spacing(padding)
+        self.iconlist.set_model(self.iconmodel)
+
+        # create the scrolled window
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        scroll.set_min_content_height(int(THUMBSCALE) + padding * 2)
+        scroll.add(self.iconlist)
+
         vbox = self.glade.get_object("select_person_vbox")
-        vbox.pack_start(self.preview, False, True, 0)
-        vbox.reorder_child(self.preview, 1)
-        self.preview.show()
+        vbox.pack_start(scroll, False, True, 0)
+        vbox.reorder_child(scroll, 1)
+        scroll.show()
         self.selection.connect("changed", self._row_change)
 
     def _row_change(self, obj):
+        self.iconmodel.clear()
+
         id_list = self.get_selected_ids()
-        if not (id_list and id_list[0]):
-            return
-        handle = id_list[0]
-        obj = self.get_from_handle_func()(handle)
-        pix = get_thumbnail_image(media_path_full(self.db, obj.get_path()))
-        self.preview.set_from_pixbuf(pix)
+        for handle in self.get_selected_ids():
+            if handle:
+                obj = self.get_from_handle_func()(handle)
+                pix = get_thumbnail_image(media_path_full(self.db, obj.get_path()))
+                self.iconmodel.append(row=(pix, obj.get_description(), obj))
         gc.collect()
 
     def get_config_name(self):
