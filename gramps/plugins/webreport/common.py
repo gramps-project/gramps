@@ -78,7 +78,7 @@ LOG = logging.getLogger(".NarrativeWeb")
 # define clear blank line for proper styling
 FULLCLEAR = Html("div", class_="fullclear", inline=True)
 # define all possible web page filename extensions
-_WEB_EXT = [".html", ".htm", ".shtml", ".php", ".cgi"]
+_WEB_EXT = (".html", ".htm", ".shtml", ".php", ".cgi")
 # used to select secured web site or not
 HTTP = "http://"
 HTTPS = "https://"
@@ -708,7 +708,7 @@ def _has_webpage_extension(url):
 
     @param: url -- filename to be checked
     """
-    return any(url.endswith(ext) for ext in _WEB_EXT)
+    return url.endswith(_WEB_EXT)
 
 
 def add_birthdate(dbase, ppl_handle_list, rlocale):

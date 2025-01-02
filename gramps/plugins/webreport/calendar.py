@@ -57,7 +57,7 @@ from gramps.gen.display.name import displayer as _nd
 
 import gramps.plugins.lib.libholiday as libholiday
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import do_we_have_holidays, _WEB_EXT
+from gramps.plugins.webreport.common import do_we_have_holidays, _has_webpage_extension
 from gramps.plugins.lib.libhtml import Html  # , xml_lang
 from gramps.gui.pluginmanager import GuiPluginManager
 
@@ -280,8 +280,8 @@ class CalendarPage(BasePage):
                         url_fname = url_fname.lower()
                     url = url_fname
                     add_subdirs = False
-                    if not (url.startswith("http:") or url.startswith("/")):
-                        add_subdirs = not any(url.endswith(ext) for ext in _WEB_EXT)
+                    if not url.startswith(("http:", "/")):
+                        add_subdirs = not _has_webpage_extension(url)
 
                     # whether to add subdirs or not???
                     if add_subdirs:
@@ -1346,15 +1346,6 @@ def get_first_day_of_month(year, month):
 
     current_ord = current_date.toordinal() - monthinfo[0].count(0)
     return current_date, current_ord, monthinfo
-
-
-def _has_webpage_extension(url):
-    """
-    determine if a filename has an extension or not...
-
-    url = filename to be checked
-    """
-    return any(url.endswith(ext) for ext in _WEB_EXT)
 
 
 def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
