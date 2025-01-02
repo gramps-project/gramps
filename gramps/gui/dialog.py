@@ -230,6 +230,50 @@ class QuestionDialog3:
         )
 
 
+class InputDialog:
+    def __init__(self, msg, default_input=None, parent=None):
+        self.xml = Glade(toplevel='inputdialog')
+
+        self.top = self.xml.toplevel
+        self.top.set_icon(ICON)
+        self.top.set_title("%s - Gramps" % msg)
+        self.top.set_default_response(Gtk.ResponseType.OK)
+
+        label = self.xml.get_object('qd_label')
+        label.set_text('<span weight="bold" size="larger">%s</span>' %
+                        html.escape(msg))
+        label.set_use_markup(True)
+
+        self.xml.get_object('ok').set_use_underline(True)
+        self.xml.get_object('cancel').set_use_underline(True)
+
+        self.entry_box = self.xml.get_object('entry_box')
+        if default_input is not None:
+            self.entry_box.set_text(default_input)
+            self.entry_box.set_placeholder_text(default_input)
+
+        # dirty fix for default action not working by default - not sure why
+        self.entry_box.connect('activate',
+                               lambda _: self.top.response(Gtk.ResponseType.OK))
+
+        self.parent = parent
+        if parent:
+            self.top.set_transient_for(parent)
+            self.parent_modal = parent.get_modal()
+            if self.parent_modal:
+                parent.set_modal(False)
+        self.top.show()
+
+    def run(self):
+        response = self.top.run()
+        input_text = self.entry_box.get_text()
+        self.top.destroy()
+        if self.parent and self.parent_modal:
+            self.parent.set_modal(True)
+        if response == Gtk.ResponseType.OK:
+            return input_text
+        return None
+
 class OptionDialog:
     def __init__(self, msg1, msg2, btnmsg1, task1, btnmsg2, task2, parent=None):
         self.xml = Glade(toplevel="optiondialog")

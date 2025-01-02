@@ -69,6 +69,9 @@ class SelectRepository(BaseSelector):
             (_("Last Change"), 150, BaseSelector.TEXT, 14),
         ]
 
+    def get_from_gramps_id_func(self):
+        return self.db.get_repository_from_gramps_id
+
     def get_from_handle_func(self):
         return self.db.get_repository_from_handle
 
