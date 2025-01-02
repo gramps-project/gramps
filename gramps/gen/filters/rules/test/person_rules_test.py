@@ -1204,9 +1204,9 @@ class BaseTest(unittest.TestCase):
         """
         Test PeoplePrivate rule.
         """
-        # TODO: example.gramps has no people marked private
+        # TODO: example.gramps has one person marked private
         rule = PeoplePrivate([])
-        self.assertEqual(self.filter_with_rule(rule), set([]))
+        self.assertEqual(self.filter_with_rule(rule), set(["004KQCGYT27EEPQHK"]))
 
     def test_peoplepublic(self):
         """
@@ -1214,7 +1214,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = PeoplePublic([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 2128)
+        self.assertEqual(len(self.filter_with_rule(rule)), 2127)
 
     def test_personwithincompleteevent(self):
         """
