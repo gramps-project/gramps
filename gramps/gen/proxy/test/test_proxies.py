@@ -55,6 +55,7 @@ class PrivateProxyTest(unittest.TestCase):
         data = self.db._get_raw_person_from_id_data("I0552")
         assert isinstance(data, dict)
 
+
 class LivingProxyTest(unittest.TestCase):
     """
     Person rule tests.
@@ -79,6 +80,7 @@ class LivingProxyTest(unittest.TestCase):
     def test_person_raw(self):
         data = self.db._get_raw_person_from_id_data("I0552")
         assert isinstance(data, dict)
+
 
 class LivingPrivateProxyTest(unittest.TestCase):
     """
