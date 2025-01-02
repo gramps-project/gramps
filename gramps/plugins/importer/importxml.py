@@ -33,7 +33,6 @@ import sys
 import time
 from xml.parsers.expat import ExpatError, ParserCreate
 from xml.sax.saxutils import escape
-from attrs.converters import to_bool
 
 from gramps.gen.const import URL_WIKISTRING
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -156,6 +155,17 @@ EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 
 HANDLE = 0
 INSTANTIATED = 1
+
+
+def to_bool(value):
+    """
+    Utility function to convert attr value to boolean.
+    """
+    if isinstance(value, str):
+        value = value.lower()
+    if value in (False, "false", "f", "no", "n", "off", "0", 0):
+        return False
+    return True
 
 
 # -------------------------------------------------------------------------
