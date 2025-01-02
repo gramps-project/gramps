@@ -151,7 +151,17 @@ class GrampsType(metaclass=GrampsTypeMeta):
         else:
             self.__string = ""
 
-    def __set_tuple(self, value):
+    def set_dict(self, value):
+        "Set the value/string properties from a dict."
+        val, strg = self._DEFAULT, ""
+        if value:
+            val = value["value"]
+            if len(value) > 1 and val == self._CUSTOM:
+                strg = value["string"]
+        self.__value = val
+        self.__string = strg
+
+    def set_tuple(self, value):
         "Set the value/string properties from a tuple."
         val, strg = self._DEFAULT, ""
         if value:
@@ -161,12 +171,12 @@ class GrampsType(metaclass=GrampsTypeMeta):
         self.__value = val
         self.__string = strg
 
-    def __set_int(self, value):
+    def set_int(self, value):
         "Set the value/string properties from an integer."
         self.__value = value
         self.__string = ""
 
-    def __set_instance(self, value):
+    def set_instance(self, value):
         "Set the value/string properties from another grampstype."
         self.__value = value.value
         if self.__value == self._CUSTOM:
@@ -174,7 +184,7 @@ class GrampsType(metaclass=GrampsTypeMeta):
         else:
             self.__string = ""
 
-    def __set_str(self, value):
+    def set_str(self, value):
         "Set the value/string properties from a string."
         self.__value = self._S2IMAP.get(value, self._CUSTOM)
         if self.__value == self._CUSTOM:
@@ -184,14 +194,16 @@ class GrampsType(metaclass=GrampsTypeMeta):
 
     def set(self, value):
         "Set the value/string properties from the passed in value."
-        if isinstance(value, tuple):
-            self.__set_tuple(value)
+        if isinstance(value, dict):
+            self.set_dict(value)
+        elif isinstance(value, tuple):
+            self.set_tuple(value)
         elif isinstance(value, int):
-            self.__set_int(value)
+            self.set_int(value)
         elif isinstance(value, self.__class__):
-            self.__set_instance(value)
+            self.set_instance(value)
         elif isinstance(value, str):
-            self.__set_str(value)
+            self.set_str(value)
         else:
             self.__value = self._DEFAULT
             self.__string = ""
@@ -228,6 +240,17 @@ class GrampsType(metaclass=GrampsTypeMeta):
         return (self.__value, self.__string)
 
     @classmethod
+    def __get_str(cls, value, string):
+        if value == cls._CUSTOM:
+            return string
+        else:
+            return cls._I2SMAP.get(value, _UNKNOWN)
+
+    @classmethod
+    def get_str(cls, data):
+        return cls.__get_str(data.value, data.string)
+
+    @classmethod
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -253,9 +276,7 @@ class GrampsType(metaclass=GrampsTypeMeta):
         return self
 
     def __str__(self):
-        if self.__value == self._CUSTOM:
-            return self.__string
-        return self._I2SMAP.get(self.__value, _UNKNOWN)
+        return type(self).__get_str(self.__value, self.__string)
 
     def __int__(self):
         return self.__value
@@ -322,5 +343,5 @@ class GrampsType(metaclass=GrampsTypeMeta):
     def __ne__(self, value):
         return not self.__eq__(value)
 
-    value = property(__int__, __set_int, None, "Returns or sets integer value")
-    string = property(__str__, __set_str, None, "Returns or sets string value")
+    value = property(__int__, set_int, None, "Returns or sets integer value")
+    string = property(__str__, set_str, None, "Returns or sets string value")
