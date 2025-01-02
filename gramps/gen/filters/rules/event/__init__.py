@@ -35,6 +35,7 @@ from ._hascitation import HasCitation
 from ._hasnote import HasNote
 from ._hasnoteregexp import HasNoteRegexp
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from ._hasnotetype import HasNoteType
 from ._hasreferencecountof import HasReferenceCountOf
 from ._hassourcecount import HasSourceCount
 from ._eventprivate import EventPrivate
@@ -58,6 +59,7 @@ editor_rule_list = [
     HasCitation,
     HasNote,
     HasNoteRegexp,
+    HasNoteType,
     HasReferenceCountOf,
     HasSourceCount,
     EventPrivate,
