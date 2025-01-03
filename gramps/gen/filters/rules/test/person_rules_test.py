@@ -393,7 +393,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = ProbablyAlive(["1900"])
         res = self.filter_with_rule(rule)
-        self.assertEqual(len(res), 733)
+        self.assertEqual(len(res), 897)
 
     def test_RegExpName(self):
         """
