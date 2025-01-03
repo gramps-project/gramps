@@ -158,7 +158,7 @@ def from_dict(dict):
     :returns: A Gramps object.
     :rtype: object
     """
-    if "_object" in dict:
+    if dict is not None and "_object" in dict:
         return dict["_object"]
     else:
         return from_json(json.dumps(dict))
