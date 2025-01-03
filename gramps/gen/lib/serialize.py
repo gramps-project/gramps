@@ -48,6 +48,19 @@ class DataDict(dict):
     object interface.
     """
 
+    def __init__(self, data=None):
+        """
+        Wrap a data dict (raw data) or object
+        with an attribute API. If data is an
+        object, we use it to get the attributes.
+        """
+        if isinstance(data, dict):
+            super().__init__(data)
+        else:
+            super().__init__()
+            if data:
+                self["_object"] = data
+
     def __str__(self):
         if "_object" not in self:
             self["_object"] = from_dict(self)
@@ -55,21 +68,23 @@ class DataDict(dict):
 
     def __getattr__(self, key):
         if key.startswith("_"):
-            raise AttributeError("can't use this API to access hidden attributes")
+            raise AttributeError(
+                "this method cannot be used to access hidden attributes"
+            )
 
-        if key in self:
-            value = self[key]
-        else:
-            if "_object" not in self:
-                self["_object"] = from_dict(self)
+        if "_object" in self:
             return getattr(self["_object"], key)
-
-        if isinstance(value, dict):
-            return DataDict(value)
-        elif isinstance(value, list):
-            return DataList(value)
+        elif key in self:
+            value = self[key]
+            if isinstance(value, dict):
+                return DataDict(value)
+            elif isinstance(value, list):
+                return DataList(value)
+            else:
+                return value
         else:
-            return value
+            self["_object"] = from_dict(self)
+            return getattr(self["_object"], key)
 
 
 class DataList(list):
@@ -144,7 +159,10 @@ def from_dict(dict):
     :returns: A Gramps object.
     :rtype: object
     """
-    return from_json(json.dumps(dict))
+    if dict is not None and "_object" in dict:
+        return dict["_object"]
+    else:
+        return from_json(json.dumps(dict))
 
 
 class BlobSerializer:
@@ -170,7 +188,7 @@ class BlobSerializer:
 
     @staticmethod
     def string_to_data(bytes):
-        LOG.debug("blob, string_to_object: %r...", bytes[:35])
+        LOG.debug("blob, string_to_data: %r...", bytes[:35])
         return pickle.loads(bytes)
 
     @staticmethod
