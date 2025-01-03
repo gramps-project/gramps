@@ -47,6 +47,19 @@ class DataDict(dict):
     A wrapper around a data dict that also provides an
     object interface.
     """
+    def __init__(self, data=None):
+        """
+        Wrap a data dict (raw data) or object
+        with an attribute API. If data is an
+        object, we use it to get the attributes.
+        """
+        if data is None:
+            super().__init__()
+        elif isinstance(data, dict):
+            super().__init__(data)
+        else:
+            super().__init__()
+            self["_object"] = data
 
     def __str__(self):
         if "_object" not in self:
@@ -57,19 +70,19 @@ class DataDict(dict):
         if key.startswith("_"):
             raise AttributeError("can't use this API to access hidden attributes")
 
-        if key in self:
-            value = self[key]
-        else:
-            if "_object" not in self:
-                self["_object"] = from_dict(self)
+        if "_object" in self:
             return getattr(self["_object"], key)
-
-        if isinstance(value, dict):
-            return DataDict(value)
-        elif isinstance(value, list):
-            return DataList(value)
+        elif key in self:
+            value = self[key]
+            if isinstance(value, dict):
+                return DataDict(value)
+            elif isinstance(value, list):
+                return DataList(value)
+            else:
+                return value
         else:
-            return value
+            self["_object"] = from_dict(self)
+            return getattr(self["_object"], key)
 
 
 class DataList(list):
@@ -144,7 +157,10 @@ def from_dict(dict):
     :returns: A Gramps object.
     :rtype: object
     """
-    return from_json(json.dumps(dict))
+    if "_object" in dict:
+        return dict["_object"]
+    else:
+        return from_json(json.dumps(dict))
 
 
 class BlobSerializer:
