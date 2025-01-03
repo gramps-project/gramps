@@ -28,7 +28,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-21.04
 
     steps:
     - uses: actions/checkout@v4
@@ -65,6 +65,7 @@ jobs:
         tar -C ~/.gramps/gramps52/plugins -xzf ExportRaw.addon.tgz
     - name: Build
       run: |
+        python3 --version
         python3 setup.py build
     - name: Run unit test suite
       run: |
