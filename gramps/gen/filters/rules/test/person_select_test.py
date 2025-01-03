@@ -132,7 +132,9 @@ class BaseTest(unittest.TestCase):
 
     def test_HavePhotos_generic(self):
         res = list(
-            DbGeneric.select_from_person(self.db, where="len(person.media_list) > 0")
+            DbGeneric._select_from_table(
+                self.db, "person", where="len(person.media_list) > 0"
+            )
         )
         self.assertEqual(len(res), 5)
 
@@ -147,8 +149,9 @@ class BaseTest(unittest.TestCase):
 
     def test_HasLDS_generic(self):
         res = list(
-            DbGeneric.select_from_person(
+            DbGeneric._select_from_table(
                 self.db,
+                "person",
                 "_.handle",
                 "len(_.lds_ord_list) > 0",
             )
@@ -209,8 +212,9 @@ class BaseTest(unittest.TestCase):
     def test_disconnected_generic(self):
         res = set(
             list(
-                DbGeneric.select_from_person(
+                DbGeneric._select_from_table(
                     self.db,
+                    "person",
                     "person.handle",
                     where="len(person.family_list) == 0 and len(person.parent_family_list) == 0",
                 )
@@ -232,7 +236,7 @@ class BaseTest(unittest.TestCase):
         """
         Test Everyone rule.
         """
-        res = list(DbGeneric.select_from_person(self.db))
+        res = list(DbGeneric._select_from_table(self.db, "person"))
         self.assertEqual(len(res), self.db.get_number_of_people())
 
     def test_hasalternatename(self):
@@ -262,8 +266,11 @@ class BaseTest(unittest.TestCase):
         """
         res = set(
             list(
-                DbGeneric.select_from_person(
-                    self.db, "_.handle", where="len(person.alternate_names) > 0"
+                DbGeneric._select_from_table(
+                    self.db,
+                    "person",
+                    "_.handle",
+                    where="len(person.alternate_names) > 0",
                 )
             )
         )
