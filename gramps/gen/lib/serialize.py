@@ -47,6 +47,7 @@ class DataDict(dict):
     A wrapper around a data dict that also provides an
     object interface.
     """
+
     def __init__(self, data=None):
         """
         Wrap a data dict (raw data) or object
