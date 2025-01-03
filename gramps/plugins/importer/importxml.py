@@ -159,11 +159,13 @@ INSTANTIATED = 1
 
 def to_bool(value):
     """
-    Utility function to convert attr value to boolean.
+    Utility function to convert attr value to boolean. Uses
+    similar logic as Python for True/False. Not designed for
+    general use but for xml string values and defaults.
     """
     if isinstance(value, str):
         value = value.lower()
-    if value in (False, "false", "f", "no", "n", "off", "0", 0):
+    if value in ("", False, "false", "f", "no", "n", "off", "0", 0):
         return False
     return True
 
