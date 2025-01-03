@@ -2005,7 +2005,7 @@ class BasePage:
                     langs = Html("li", self._("Language"), class_="lang")
                     en_locale = self.report.set_locale("en")
                     languages = en_locale.get_language_dict()
-                    choice = Html("ul", class_="lang", style="width:300px;")
+                    choice = Html("ul", class_="lang")
                     langs += choice
                     for language in languages:
                         for extra_lang, dummy_title in self.report.languages:
