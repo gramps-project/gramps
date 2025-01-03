@@ -21,6 +21,7 @@ from gramps.gen.plug._pluginreg import *
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
+DEBUG_HELP = _("Gramps_5.2_Wiki_Manual_-_Tools#Debug")
 
 """
 GRAMPS registration file
@@ -55,6 +56,7 @@ register(
     toolclass="DateParserDisplayTest",
     optionclass="DateParserDisplayTestOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=DEBUG_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -80,6 +82,7 @@ register(
     toolclass="DumpGenderStats",
     optionclass="DumpGenderStatsOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=DEBUG_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -107,6 +110,7 @@ register(
     toolclass="TestcaseGenerator",
     optionclass="TestcaseGeneratorOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=DEBUG_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -134,4 +138,5 @@ register(
     toolclass="PopulateSources",
     optionclass="PopulateSourcesOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=DEBUG_HELP,
 )
