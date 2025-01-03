@@ -53,8 +53,8 @@ jobs:
         sudo apt-get install python3-jsonschema
         sudo apt-get install libxml2-utils
         sudo apt-get install python3-lxml
-        sudo apt-get install python3-libxml2-dev
-        sudo apt-get install python3-libxslt-dev
+        sudo apt-get install libxml2-dev
+        sudo apt-get install libxslt-dev
         sudo apt-get install zlib1g-dev
         sudo apt-get install python3-setuptools
     - name: Install addons
