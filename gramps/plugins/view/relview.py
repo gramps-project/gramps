@@ -1675,11 +1675,15 @@ class RelationshipView(NavigationView):
         else:
             # show "V Family: ..." and the rest
             self.write_label(_("%s:") % _("Family"), family, False, person)
-            if handle or family.get_relationship() != FamilyRelType.UNKNOWN:
+            if family.get_relationship() == FamilyRelType.MARRIED:
                 box = self.write_person(_("Spouse"), handle)
+            elif family.get_relationship() == FamilyRelType.CIVIL_UNION:
+                box = self.write_person(_("Spouse"), handle)
+            else:
+                box = self.write_person(_("Partner"), handle)
 
-                if not self.write_relationship_events(box, family):
-                    self.write_relationship(box, family)
+            if not self.write_relationship_events(box, family):
+                self.write_relationship(box, family)
 
             hbox = Gtk.Box()
             if self.check_collapsed(family.handle, "CHILDREN"):
