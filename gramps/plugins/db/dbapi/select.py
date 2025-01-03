@@ -165,7 +165,7 @@ class Evaluator:
             attr = node.attr
             if obj in [self.table_name, "_"]:
                 return AttributeNode(
-                    self.json_extract, self.json_array_length, obj, attr
+                    self.json_extract, self.json_array_length, self.table_name, attr
                 )
             elif isinstance(obj, AttributeNode):
                 obj.attr += ".%s" % attr
