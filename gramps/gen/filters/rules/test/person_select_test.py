@@ -136,15 +136,34 @@ class BaseTest(unittest.TestCase):
         )
         self.assertEqual(len(res), 5)
 
-    # def test_HasLDS(self):
-    #     rule = HasLDS([0, "greater than"])
-    #     res = self.filter_with_rule(rule)
-    #     self.assertEqual(len(res), 1)
+    def test_HasLDS(self):
+        res = list(
+            self.db.select_from_person(
+                "_.handle",
+                "len(_.lds_ord_list) > 0",
+            )
+        )
+        self.assertEqual(len(res), 1)
+
+    def test_HasLDS_generic(self):
+        res = list(
+            DbGeneric.select_from_person(
+                self.db,
+                "_.handle",
+                "len(_.lds_ord_list) > 0",
+            )
+        )
+        self.assertEqual(len(res), 1)
 
     # def test_HasNameOriginType(self):
-    #     rule = HasNameOriginType(["Patrilineal"])
-    #     res = self.filter_with_rule(rule)
-    #     self.assertEqual(len(res), 9)
+    #    [for surname in person.primary_name.surname_list if surname ...]
+    #    # select json_data->>"$.handle", json_each.value->>"$.surname"
+    #    # from person, json_each(json_data->>"$.primary_name.surname_list")
+    #    # where json_each.value->>"$.origintype.value" = 4;
+
+    #    rule = HasNameOriginType(["Patrilineal"])
+    #    res = self.filter_with_rule(rule)
+    #    self.assertEqual(len(res), 9)
 
     # def test_HasNameType(self):
     #     rule = HasNameType(["Married Name"])
