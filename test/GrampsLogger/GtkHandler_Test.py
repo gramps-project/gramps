@@ -20,18 +20,19 @@
 
 # test/GrampsLogger/GtkHandler_Test.py
 
+import os
 import unittest
 import logging
 import sys
+
 from gi.repository import Gtk
-import os
 
 log = logging.getLogger("Gramps.Tests.GrampsLogger")
 import gramps.gen.const as const
 
-const.rootDir = os.path.join(os.path.dirname(__file__), "../../gramps")
-sys.path.append(os.path.join(const.rootDir, "test"))
-sys.path.append(const.rootDir)
+rootDir = os.path.join(os.path.dirname(__file__), "../../gramps")
+sys.path.append(os.path.join(rootDir, "test"))
+sys.path.append(rootDir)
 
 from gramps.gui.logger import RotateHandler, GtkHandler
 

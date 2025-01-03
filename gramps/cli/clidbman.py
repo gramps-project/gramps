@@ -25,20 +25,22 @@ Provide the management of databases from CLI. This includes opening, renaming,
 creating, and deleting of databases.
 """
 
+
 # -------------------------------------------------------------------------
 #
 # Standard python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import re
 import os
 import sys
-import ast
 import time
 from urllib.parse import urlparse
 from urllib.request import urlopen, url2pathname
 import tempfile
 import logging
+
 
 # -------------------------------------------------------------------------
 #
@@ -113,7 +115,7 @@ class CLIDbManager:
     ICON_LOCK = 2
     ICON_OPEN = 3
 
-    ICON_MAP = {
+    ICON_MAP: dict[int, str | None] = {
         ICON_NONE: None,
         ICON_RECOVERY: None,
         ICON_LOCK: None,

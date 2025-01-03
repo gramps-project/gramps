@@ -25,6 +25,13 @@ Module providing a gramplet interface to the sidebar filters.
 
 # -------------------------------------------------------------------------
 #
+# Python modules
+#
+# -------------------------------------------------------------------------
+from typing import Any
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
@@ -52,7 +59,7 @@ class Filter(Gramplet):
     The base class for all filter gramplets.
     """
 
-    FILTER_CLASS = None
+    FILTER_CLASS: Any = None
 
     def init(self):
         self.filter = self.FILTER_CLASS(
