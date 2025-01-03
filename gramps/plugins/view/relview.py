@@ -1107,9 +1107,33 @@ class RelationshipView(NavigationView):
             )
             self.row += 1  # now advance it
         else:
-            self.write_label(_("%s:") % _("Parents"), family, True, person)
-            self.write_person(_("Father"), family.get_father_handle())
-            self.write_person(_("Mother"), family.get_mother_handle())
+            if family:
+                father = mother = None
+                hd21 = family.get_father_handle()
+                if hd21:
+                    father = self.dbstate.db.get_person_from_handle(hd21).gender
+                hd22 = family.get_mother_handle()
+                if hd22:
+                    mother = self.dbstate.db.get_person_from_handle(hd22).gender
+
+                parent1 = parent2 = ""
+                if father == Person.MALE:
+                    parent1 = ("Father")
+                elif father == Person.FEMALE:
+                    parent1 = _("Mother")
+                else:
+                    parent1 = _("Parent")
+
+                if mother == Person.FEMALE:
+                    parent2 = _("Mother")
+                elif mother == Person.MALE:
+                    parent2 = _("Father")
+                else:
+                    parent2 = _("Parent")
+
+                self.write_label(_("%s:") % _("Parents"), family, True, person)
+                self.write_person(parent1, family.get_father_handle())
+                self.write_person(parent2, family.get_mother_handle())
 
             if self.show_siblings:
                 active = self.get_active()
