@@ -4,20 +4,21 @@
 # Fedir Zinchuk <fedikw@gmail.com>, 2011-2020, 2021, 2022.
 # Oleh Petriv, 2013.
 # qqqlb <qllb.ch@gmail.com>, 2021, 2023.
-# Tymofii Lytvynenko <till.svit@gmail.com>, 2021, 2022.
+# Tymofii Lytvynenko <till.svit@gmail.com>, 2021, 2022, 2024.
 # Artem <artem@molotov.work>, 2022.
 # Artur Plysyuk <ifuelen@gmail.com>, 2022.
 # Milan <mobrcian@hotmail.com>, 2022.
 # Dan <denqwerta@gmail.com>, 2022.
 # Andrey Serbovets <serbovets.translation@gmail.com>, 2023, 2024.
 # Andrii Serbovets <serbovets.translation@gmail.com>, 2024.
+# Illia Maier <Illia-M@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-02-29 20:02+0000\n"
-"Last-Translator: Andrii Serbovets <serbovets.translation@gmail.com>\n"
+"PO-Revision-Date: 2024-10-08 07:15+0000\n"
+"Last-Translator: Illia Maier <Illia-M@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
 "Language: uk\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -7042,7 +7043,7 @@ msgstr "Народження"
 #: ../gramps/gen/lib/childreftype.py:71
 msgctxt "relationship"
 msgid "Adopted"
-msgstr "Прийомн."
+msgstr "Всиновлений"
 
 #: ../gramps/gen/lib/childreftype.py:72
 msgid "Stepchild"
@@ -14286,7 +14287,7 @@ msgstr "Від"
 
 #: ../gramps/gui/editors/editdate.py:83
 msgid "To"
-msgstr "Кому"
+msgstr "По"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -18879,14 +18880,12 @@ msgid "Loading..."
 msgstr "Завантаження..."
 
 #: ../gramps/gui/plug/_windows.py:562
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "Провал операції"
+msgstr "Реєстрація додатку не вдалася"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "Додаток буде недоступний у поточній конфігурації."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
@@ -22754,7 +22753,7 @@ msgstr "vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:176
 msgid "vC_alendar"
-msgstr "vC_alendar"
+msgstr "_vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:177
 msgid "vCalendar is used in many calendaring and PIM applications."
@@ -31998,10 +31997,6 @@ msgid "Father lineage for %s"
 msgstr "Батьківська лінія для %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
-#, fuzzy
-#| msgid ""
-#| "This report shows the father lineage, also called patronymic lineage or Y-"
-#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
@@ -32029,11 +32024,6 @@ msgid "Mother lineage for %s"
 msgstr "Материнська лінія для %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
-#, fuzzy
-#| msgid ""
-#| "This report shows the mother lineage, also called matronymic lineage "
-#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
-#| "DNA (mtDNA)."
 msgid ""
 "This report shows the mother lineage, also called the matrilineal lineage "
 "mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
@@ -37983,7 +37973,7 @@ msgstr "Архівом має бути файл, а не каталог"
 #: ../gramps/plugins/webreport/narrativeweb.py:595
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
-msgstr "ID=%(grampsid)s, path=%(dir)s"
+msgstr "ID=%(grampsid)s, шлях=%(dir)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:601
 msgid "Missing media objects:"

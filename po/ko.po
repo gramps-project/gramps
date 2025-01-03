@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-23 21:55+0000\n"
+"PO-Revision-Date: 2024-10-14 04:15+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -226,7 +226,7 @@ msgstr "미국"
 #: ../data/org.gramps_project.Gramps.desktop.in:3
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
-msgstr "그램프스"
+msgstr "그람프스"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:4
 msgid "Genealogy System"
@@ -283,7 +283,7 @@ msgstr "유래"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
 msgid "Descendant Fan"
-msgstr ""
+msgstr "후손 확산도"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:349
@@ -295,13 +295,13 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:227
 #: ../gramps/plugins/webreport/updates.py:106
 msgid "People"
-msgstr ""
+msgstr "민족"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:42
 #: ../gramps/plugins/view/relview.py:148 ../gramps/plugins/view/view.gpr.py:119
 #: ../gramps/plugins/view/view.gpr.py:127
 msgid "Relationships"
-msgstr ""
+msgstr "관계"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
 #: ../gramps/gen/lib/person.py:185 ../gramps/gui/clipboard.py:723
@@ -343,23 +343,23 @@ msgstr ""
 #: ../gramps/plugins/webreport/family.py:315
 #: ../gramps/plugins/webreport/person.py:1574
 msgid "Person"
-msgstr ""
+msgstr "사람"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
-msgstr ""
+msgstr "그램프스 데이타베이스"
 
 #: ../data/org.gramps_project.Gramps.xml.in:10
 msgid "Gramps package"
-msgstr ""
+msgstr "그램프스 팩키지"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
 msgid "Gramps XML database"
-msgstr ""
+msgstr "그램프스 XML 데이타베이스"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
-msgstr ""
+msgstr "젠웹 소스 파일"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -368,6 +368,10 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
+"<b>날짜 작업</b><br/>\"2000년 1월 4일에서 2003년 3월 20일 사이\" 형식을 "
+"사용하여 날짜 범위를 제공할 수 있습니다. 날짜에 대한 신뢰 수준을 표시할 수도 "
+"있고 7가지 달력 중에서 선택할 수도 있습니다. 사건 편집기의 날짜 필드 옆에 "
+"있는 버튼을 사용해 보세요."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -376,6 +380,10 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
+"<b>객체 편집하기</b><br/>대부분의 경우 이름, 원본, 장소나 미디어 부분을 "
+"클릭하면 객체를 편집할 수 있다. 결과는 내용에 바뀔 수도 있다는 점을 "
+"명심하라. 예를 들어, 가문 보기에서 부모나 아이를 클릭하면 관계도 편집기가 "
+"나온다."
 
 #: ../data/tips.xml:8
 msgid ""
@@ -384,6 +392,9 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
+"<b>영상 추가</b><br/>파일 관리자나 웹 브라우저에서 영상을 가져와 갤러리나 "
+"미디어 보기에 추가할 수 있다. 스캔물이나 다른 디지털 장치에서도 이런 식으로 "
+"파일들을 추가할 수 있다."
 
 #: ../data/tips.xml:10
 msgid ""
@@ -391,6 +402,8 @@ msgid ""
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
+"<b>가문에서 후손 서열 정리하기</b><br/>가문에서 후손의 생일 순서는 긁어서 "
+"던져 넣기로 정할 수 있다. 이 순서는 생년월일 기록이 없어도 적용 가능하다."
 
 #: ../data/tips.xml:12
 msgid ""
@@ -401,6 +414,11 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
+"<b>너무 늦기 전에 친척들에게 말하기</b><br/>나이 많은 친척이 제일 중요한 "
+"정보를 가지고 있다. 친척들은 말로 할 수 없을 정도로 가문에 대해 많이 알고 "
+"있다. 친척들은 새로운 영역으로 연구하도록 인도할 만한 금덩이같은 정보를 말할 "
+"수도 있다. 적어도 대단한 이야기 몇 가지는 건질 수 있을 것이다. 대화를 "
+"채록해야 할 정도다!"
 
 #: ../data/tips.xml:14
 msgid ""
@@ -413,6 +431,13 @@ msgid ""
 "filter in the Filter field on Sidebar, then click Find button. If the "
 "Sidebar is not visible, select View &gt; Sidebar."
 msgstr ""
+"<b>인물 거르기</b><br/>인물 보기에서, 몇 가지 기준으로 개인을 '거르기' 할 수 "
+"있다. 새로이 거르기 하려면 \"편집하기&gt; 인물 거르기 편집기\"로 가라. "
+"여기에서 거르기에 이름을 붙여 규칙을 추가하고 수정할 수가 있다. 예를 들어, "
+"가계도에서 입양된 사람을 찾는 거르기를 정의할 수 있다. 생년월일없이 언급된 "
+"사람들도 거르기를 할 수 있다. 결과를 보려면 거르기를 저장하라. 사이드 바에서 "
+"필터 영역에서 선택하여 찾기를 누르면 된다. 사이드 바가 안 보이면, 보기 &gt; "
+"사이드 바 를 선택하라."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -421,6 +446,9 @@ msgid ""
 "instance, by inverting the 'People with children' filter you can select all "
 "people without children."
 msgstr ""
+"<b>반대로 거르기</b><br/>\"거르기 규칙과 맞지 않는 값 위주로\" 해서 "
+"'반대로'를 선택하면 거르기를 쉽게 반대로 할 수 있다. 예를 들어, '아이있는 "
+"사람'을 반대로 하면 아이없는 모든 사람을 선택할 수 있다."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -431,12 +459,17 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
+"<b>인물 지정하기</b><br/>집합 인물 보기에서 각 성은 한번만 나열한다. 이름 "
+"왼쪽 화살표를 누르면 전체 이름을 다 볼 수 있도록 목록이 확장된다. 긴 "
+"명단에서 가문 이름을 지정하려면 가문 이름을 선택하고 입력을 하라. 그러면 "
+"입력한 문자에 맞는 첫번째 가문 이름으로 이동한다."
 
 #: ../data/tips.xml:20
 msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
-msgstr ""
+msgstr "<b>가족 보기</b><br/>가문 보기는 두 부모와 아이들을 전형적인 가족 단위로 "
+"취급하여 보여준다."
 
 #: ../data/tips.xml:22
 msgid ""
@@ -445,6 +478,9 @@ msgid ""
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
+"<b>활동 인물 바꾸기</b><br/>보기에서 활동 인물 바꾸기는 쉽다. 관계 보기에서 "
+"누구든 클릭하면 된다. 유래 보기에서 인물을 두번 누르거나 오른쪽을 눌러 "
+"배우자, 사촌, 자녀나 부모 중 아무를 누르면 된다."
 
 #: ../data/tips.xml:24
 msgid ""
@@ -454,6 +490,10 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
+"<b>누가 언제 태어남?</b><br/>\"도구 &gt; 분석 및 탐색 &gt; 개인 사건 비교 ..."
+"\" 아래에서 데이타베이스의 개인별 자료를 비교할 수 있다. 이 기능은 개인 "
+"자료에서 구성원들의 생년월일 순으로 정렬할 때 유용하다. 결과를 좀 더 "
+"세밀하게 보려면 필터를 사용할 수 있다."
 
 #: ../data/tips.xml:26
 msgid ""
@@ -463,6 +503,10 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
+"<b>그람프스 도구</b><br/>그람프스는 다양한 도구들을 가지고 있다. 이 도구를 "
+"사용하면 데이타베이스 오류나 일관성 점검 등을 할 수 있다. 그리고 사건 비교나 "
+"중복된 인물 찾기 등 조사 및 분석 도구들도 있다. 이 모든 도구는 \"도구\" "
+"메뉴에서 이용 가능하다."
 
 #: ../data/tips.xml:28
 msgid ""
@@ -471,6 +515,9 @@ msgid ""
 "Utilities &gt; Relationship Calculator...\". The exact relationship as well "
 "as all common ancestors are reported."
 msgstr ""
+"<b>관계 계산하기</b><br/>결혼이 아닌 혈연으로 두 사람이 관계가 있는지 "
+"확인하려면 \"도구 &gt;유틸리티 &gt; 관계 계산기...\"의 도구를 이용하라. 공통 "
+"조상 같이 정확하게 관계를 알려준다."
 
 #: ../data/tips.xml:30
 msgid ""
@@ -7531,7 +7578,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:1941
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
-msgstr ""
+msgstr "사건"
 
 #: ../gramps/gen/lib/family.py:194 ../gramps/gen/lib/person.py:248
 msgid "LDS ordinances"
@@ -8348,7 +8395,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:347
 #: ../gramps/plugins/tool/reorderids.glade:835
 msgid "Repository"
-msgstr ""
+msgstr "저장소"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:524
 msgid "Repository ref"
@@ -8794,7 +8841,7 @@ msgstr ""
 #: ../gramps/gui/widgets/grampletpane.py:246
 #: ../gramps/gui/widgets/grampletpane.py:1005
 msgid "Gramplet"
-msgstr ""
+msgstr "그람플렛"
 
 #: ../gramps/gen/plug/_pluginreg.py:126
 msgid "Sidebar"
@@ -8922,7 +8969,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:531
 msgid "Default"
-msgstr ""
+msgstr "기본값"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 msgid "PostScript / Helvetica"
@@ -24262,7 +24309,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:372
 msgid "place"
-msgstr ""
+msgstr "장소"
 
 #: ../gramps/plugins/importer/importcsv.py:373
 msgid "place id"
@@ -24710,7 +24757,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1526
 msgid "REFN"
-msgstr ""
+msgstr "REFN"
 
 #: ../gramps/plugins/importer/importprogen.glade:1530
 msgid ""

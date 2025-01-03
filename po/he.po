@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-23 21:55+0000\n"
+"PO-Revision-Date: 2024-09-29 18:15+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -240,7 +240,7 @@ msgstr "מערכת חקר יוחסין"
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr "ניהול מידע גנאלוגי, ביצוע מחקר וניתוח"
+msgstr "ניהול מידע חקר־ יוחסין, ביצוע מחקר וניתוח"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
@@ -512,8 +512,8 @@ msgid ""
 msgstr ""
 "<b>כלי גרמפס<br/></b>גרמפס מגיע עם ערכת כלים עשירה שמאפשרים לבצע פעולות "
 "כגון, בדיקת מסד־הנתונים לאיתור שגיאות ועקביות. קיימים כלי מחקר וניתוח כגון, "
-"השוואת אירועים, מציאת אנשים כפולים, דפדפן צאצא הידודי וכלים רבים אחרים. ניתן "
-"לגשת לכלים מתפריט 'כלים'."
+"השוואת אירועים, מציאת אנשים כפולים, דפדפן צאצאים הידודי וכלים רבים אחרים. "
+"ניתן לגשת לכלים מתפריט 'כלים'."
 
 #: ../data/tips.xml:28
 msgid ""
@@ -539,11 +539,11 @@ msgid ""
 msgstr ""
 "<b>סאונד־אקס יכולה לסייע בחקר־יוחסיןי<br/></b>אופן ההתמודדות עם השונויות "
 "באיות שמות היא בעיה שהעסיקה את חוקרי־היוחסין שנים רבות, סאונד־אקס פותרת "
-"סוגיה ארוכת שנים זו. גרמפלט סאונד־אקס, מחולל דפוס מפושט וזהה לשמות "
-"במסד־הנתונים שנשמעים דומה לשם המשפחה שנבחר. הכרות עם קוד סאונד־אקס לשמות "
-"משפחה, מועילה מאוד בחקר קבצי מפקד אוכלוסין (בצורת מיקרופיש) בספריות או מכוני "
-"מחקר אחרים. לצפיה בקוד סאונד־אקס שמות המשפחה במסד הנתונים, נא להתקין את "
-"גרמפלט סאונד־אקס."
+"סוגיה ארוכת שנים זו. גרמפלט סאונד־אקס, מחולל דפוס מפושט וזהה לשמות במסד־"
+"הנתונים שנשמעים דומה לשם המשפחה שנבחר. הכרות עם קוד סאונד־אקס לשמות משפחה, "
+"מועילה מאוד בחקר קובצי מפקד אוכלוסין (לרוב זמינים בצורת מיקרופיש) בספריות או "
+"מכוני מחקר אחרים. לצפיה בקוד סאונד־אקס שמות המשפחה במסד הנתונים, נא להתקין "
+"את גרמפלט סאונד־אקס."
 
 #: ../data/tips.xml:32
 msgid ""
@@ -553,9 +553,9 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>הגדרת העדפות<br/></b> מתפריט 'עריכה > העדפות...' מאפשר שינוי מספר הגדרות "
-"כמו, הנתיב לקובצי המדיה, וכן, התאמת היבטים רבים נוספים של גרמפס. ניתן גם "
-"להגדיר כל מצג בנפרד מתפריט 'מצג > תצור מצג...'."
+"<b>הגדרת העדפות<br/></b> מתפריט 'עריכה &larr; העדפות...' מאפשר שינוי מספר "
+"הגדרות כמו, הנתיב לקובצי המדיה, וכן, התאמת היבטים רבים נוספים של גרמפס. ניתן "
+"גם להגדיר כל מצג בנפרד מתפריט 'מצג &larr; תצור מצג...'."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -579,7 +579,7 @@ msgid ""
 "between people."
 msgstr ""
 "<b>הקמת אילן־יוחסין חדש<br/></b> דרך טובה להקמת אילן־יוחסין חדש היא על־ידי "
-"הזנת כל בני המשפחה למאגר הנתונים ‏(מתפריט 'עריכה > הוספה...' או הקשה על "
+"הזנת כל בני המשפחה למאגר הנתונים ‏(מתפריט 'עריכה &larr; הוספה...' או הקשה על "
 "'הוספת אדם חדש' ממצג אנשים). לאחר מכן, מעבר למצג קשרי־הקרבה ליצירת קשרים בין "
 "אנשים."
 
@@ -629,7 +629,7 @@ msgstr ""
 "ברשומה השניה תוך החזקת מקש 'קונטרול' לחוץ והקשה על הרשומה בעזרת לחצן העכבר "
 "הימני. פונ‏קצית המיזוג עשויה להיות מאוד שימושית לשילוב שני מסדי נתונים "
 "הכוללים אנשים חופפים, או שילוב שמות שונים עבור אותו אדם שהוזן בטעות. פעולת "
-"'מיזוג' זמינה מכל 'מצג רשימה' עבור כל העצמים העיקריים."
+"'מיזוג' זמינה מכל 'מצג רשימה' עבור כל העצמים הראשוניים."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -763,7 +763,7 @@ msgid ""
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
 "<b>אז מה מהות השם?<br/></b>השם 'גרמפס' הוצע על־ידי אביו של מפתח המערכת "
-"המקורי , דון אלנגהם ומצציג באנגלית את ראשי התיבות <i>תכנית מערכת לניהול "
+"המקורי , דון אלנגהם ומבטא באנגלית את ראשי התיבות <i>תכנית מערכת לניהול "
 "וניתוח יוחסין</i> (Genealogical Research and Analysis Management Program "
 "System).למערכת תכונות חקר יוחסין מלאות, המאפשרת אחסון, עריכה וחקר נתוני "
 "יוחסין. מסד־הנתונים של גרמפס הוא כל כך חזק שחלק מהמשתמשים מנהלים אילנות "
@@ -794,8 +794,8 @@ msgstr ""
 "<b>תאריכים שגויים</b><br/> לפעמים תאריכים מוזנים בתסדיר לא תקין. שדה תסדיר "
 "תאריך שגוי, מסומן בגרמפס, בצורת רקע אדמדם או נקודה אדומה בקצה הימני של השדה. "
 "ניתן לתקן את התאריך באמצעות תיבת דו־השיח 'בחירת תאריך', אליו ניתן להגיע "
-"בהקשה על לחצן התאריך. תסדיר התאריך ניתן להגדרה מתפריט: 'עריכה &lt; העדפות "
-"&lt; מצג'."
+"בהקשה על לחצן התאריך. תסדיר התאריך ניתן להגדרה מתפריט: 'עריכה &larr; העדפות "
+"&larr; מצג'."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -870,7 +870,7 @@ msgid ""
 msgstr ""
 "<b>מסננים<br/></b>מסננים מאפשרים להגביל את מספר האנשים במצג האנשים. בנוסף "
 "למסננים רבים שהוגדרו מראש , ניתן ליצור מסננים מותאמים אישית כיד הדמיון בלבד. "
-"ניתן ליצור מסננים מותאמים אישית מתפריט 'עריכה > עורך מסנני אנשים'."
+"ניתן ליצור מסננים מותאמים אישית מתפריט 'עריכה &larr; עורך מסנני אנשים'."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -3344,7 +3344,7 @@ msgstr "שם פרטי שם משפחה סיומת"
 
 #: ../gramps/gen/display/name.py:417
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr "שם משפחה עיקרי, סיומת/קידומת שם פטרונימי שניתן"
+msgstr "שם משפחה ראשי, סיומת/קידומת שם שנגזר משם האב"
 
 #: ../gramps/gen/display/name.py:422
 msgid "Patronymic, Given"
@@ -3375,7 +3375,7 @@ msgstr "סיומת"
 #: ../gramps/gen/display/name.py:661 ../gramps/gen/display/name.py:788
 msgctxt "Name"
 msgid "call"
-msgstr "שם פניה"
+msgstr "שם מקובל"
 
 #: ../gramps/gen/display/name.py:665 ../gramps/gen/display/name.py:792
 msgctxt "Name"
@@ -3389,39 +3389,39 @@ msgstr "ראשי תיבות"
 #: ../gramps/gen/display/name.py:676 ../gramps/gen/display/name.py:802
 msgctxt "Name"
 msgid "primary"
-msgstr "עיקרי"
+msgstr "ראשוני"
 
 #: ../gramps/gen/display/name.py:681 ../gramps/gen/display/name.py:807
 msgid "primary[pre]"
-msgstr "עיקרי[עיק]"
+msgstr "ראשוני[pre]"
 
 #: ../gramps/gen/display/name.py:686 ../gramps/gen/display/name.py:812
 msgid "primary[sur]"
-msgstr "עיקרי[משפ]"
+msgstr "ראשוני[sur]"
 
 #: ../gramps/gen/display/name.py:691 ../gramps/gen/display/name.py:817
 msgid "primary[con]"
-msgstr "עקרי[קיש]"
+msgstr "ראשוני[con]"
 
 #: ../gramps/gen/display/name.py:696 ../gramps/gen/display/name.py:822
 msgid "patronymic"
-msgstr "פטרונימי"
+msgstr "שם נגזר משם האב"
 
 #: ../gramps/gen/display/name.py:701 ../gramps/gen/display/name.py:827
 msgid "patronymic[pre]"
-msgstr "פטרונימי[קיד]"
+msgstr "שם שנגזר משם האב[pre]"
 
 #: ../gramps/gen/display/name.py:706 ../gramps/gen/display/name.py:832
 msgid "patronymic[sur]"
-msgstr "פטרונימי[משפ]"
+msgstr "שם שנגזר משם האב[sur]"
 
 #: ../gramps/gen/display/name.py:711 ../gramps/gen/display/name.py:837
 msgid "patronymic[con]"
-msgstr "פטרונימי[קיש]"
+msgstr "שם שנגזר משם האב[con]"
 
 #: ../gramps/gen/display/name.py:716 ../gramps/gen/display/name.py:842
 msgid "notpatronymic"
-msgstr "לא פטרונימי"
+msgstr "לא שם נגזר משם האב"
 
 #: ../gramps/gen/display/name.py:721 ../gramps/gen/display/name.py:847
 msgctxt "Remaining names"
@@ -5257,11 +5257,11 @@ msgstr "סיומת:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:53
 msgid "Call Name:"
-msgstr "שם פניה:"
+msgstr "שם מקובל:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:54
 msgid "Nick Name:"
-msgstr "שם חיבה:"
+msgstr "כינוי:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:55
 msgid "Prefix:"
@@ -5279,7 +5279,7 @@ msgstr "מַחבֵּר"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:58
 msgid "Patronymic:"
-msgstr "פטרונימי:"
+msgstr "שם נגזר משם האב:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:59
 msgid "Family Nick Name:"
@@ -5324,7 +5324,7 @@ msgstr "איתור אנשים עם סוג שם"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:47
 msgid "People with a nickname"
-msgstr "אנשים בעלי כינוי"
+msgstr "אנשים עם כינוי"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:48
 msgid "Matches people with a nickname"
@@ -5414,8 +5414,8 @@ msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"התאמת סאונד־אקס לאנשים בשם מסוים. חיפוש בסוגי שמות ראשיים וחלופיים, ובשמות "
-"פרטיים, משפחה, ופניה."
+"התאמת סאונד־אקס לאנשים בשם מסוים. החיפוש בשמות ראשיים וחלופיים יבדוק: שם "
+"פרטי, שם משפחה, שם מקובל, וכינוי."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:47
 msgid "People with <count> sources"
@@ -8333,11 +8333,11 @@ msgstr "הצגה כ"
 
 #: ../gramps/gen/lib/name.py:195 ../gramps/plugins/importer/importcsv.py:211
 msgid "Call name"
-msgstr "שם פנייה"
+msgstr "שם מקובל"
 
 #: ../gramps/gen/lib/name.py:196
 msgid "Nick name"
-msgstr "שם חיבה"
+msgstr "כינוי"
 
 #: ../gramps/gen/lib/name.py:197
 msgid "Family nick name"
@@ -8393,7 +8393,7 @@ msgstr "משפחת האב"
 
 #: ../gramps/gen/lib/nameorigintype.py:82
 msgid "Matronymic"
-msgstr "מטרונימי"
+msgstr "שם שנגזר משם האם"
 
 #: ../gramps/gen/lib/nameorigintype.py:83
 msgctxt "Surname"
@@ -8414,7 +8414,7 @@ msgstr "מצד האם"
 
 #: ../gramps/gen/lib/nametype.py:49
 msgid "Also Known As"
-msgstr "ידוע גם כ"
+msgstr "ידוע גם בשם"
 
 #: ../gramps/gen/lib/nametype.py:50
 msgid "Birth Name"
@@ -9760,7 +9760,7 @@ msgstr "אוטומטי"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
 msgid "Call Name Only"
-msgstr "שם פנייה בלבד"
+msgstr "שם מקובל בלבד"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Whole Given Name"
@@ -10777,27 +10777,27 @@ msgstr "ראשי"
 
 #: ../gramps/gen/utils/keyword.py:64
 msgid "PRIMARY[PRE]"
-msgstr "עיקרי[עיק]"
+msgstr "ראשוני[PRE]"
 
 #: ../gramps/gen/utils/keyword.py:64
 msgid "Primary[pre]"
-msgstr "עיקרי[עיק]"
+msgstr "‬ראשוני[pre]"
 
 #: ../gramps/gen/utils/keyword.py:65
 msgid "PRIMARY[SUR]"
-msgstr "עיקרי[משפ]"
+msgstr "ראשוני[SUR]"
 
 #: ../gramps/gen/utils/keyword.py:65
 msgid "Primary[sur]"
-msgstr "עיקרי[משפ]"
+msgstr "ראשוני[sur]"
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "PRIMARY[CON]"
-msgstr "עקרי[קיש]"
+msgstr "עקרי[CON]"
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "Primary[con]"
-msgstr "עקרי[קיש]"
+msgstr "עקרי[con]"
 
 #: ../gramps/gen/utils/keyword.py:67
 msgid "PATRONYMIC"
@@ -10805,27 +10805,27 @@ msgstr "משפחת האב"
 
 #: ../gramps/gen/utils/keyword.py:68
 msgid "PATRONYMIC[PRE]"
-msgstr "פטרונימי[קיד]"
+msgstr "שם שנגזר משם האב[PRE]"
 
 #: ../gramps/gen/utils/keyword.py:68
 msgid "Patronymic[pre]"
-msgstr "פטרונימי[קיד]"
+msgstr "שם שנגזר משם האב[pre]"
 
 #: ../gramps/gen/utils/keyword.py:69
 msgid "PATRONYMIC[SUR]"
-msgstr "פטרונימי[משפ]"
+msgstr "שם שנגזר משם האב[SUR]"
 
 #: ../gramps/gen/utils/keyword.py:69
 msgid "Patronymic[sur]"
-msgstr "פטרונימי[משפ]"
+msgstr "שם שנגזר משם האב[sur]"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "PATRONYMIC[CON]"
-msgstr "פטרונימי[קיש]"
+msgstr "שם שנגזר משם האב[CON]"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "Patronymic[con]"
-msgstr "פטרונימי[קיש]"
+msgstr "שם שנגזר משם האב[con]"
 
 #: ../gramps/gen/utils/keyword.py:71
 msgid "RAWSURNAMES"
@@ -10837,11 +10837,11 @@ msgstr "שמות משפחה גולמיים"
 
 #: ../gramps/gen/utils/keyword.py:72
 msgid "NOTPATRONYMIC"
-msgstr "לא פטרונומי"
+msgstr "לא שם שנגזר משם האב"
 
 #: ../gramps/gen/utils/keyword.py:72
 msgid "Notpatronymic"
-msgstr "לא פטרונומי"
+msgstr "לא שם שנגזר משם האב"
 
 #: ../gramps/gen/utils/keyword.py:73
 msgid "PREFIX"
@@ -11620,24 +11620,24 @@ msgstr ""
 "פניה, או אות ראשונה של שם פרטי\n"
 "‏  <b>קידומת</b>  - כל הקידומות (וון, דה)\n"
 "‏שמות משפחה:\n"
-"‏  <b>השאר</b>      - לא שמות משפחה עיקריים    <b>Notpatronymic</b>- כל שמות "
-"המשפחה, למעט פטרו/מטרונימי &amp; ראשי\n"
-"‏  <b>כינוי משפחה</b>- כינוי משפחה        <b>שם משפחה גלמי</b>  - שמות משפחה "
-"(ללא קידומות וקישורים)\n"
-"‏  <b>עיקרי, עיקרי[עיק] או [משפ] או [קיש]</b>- שם משפחה עיקרי מלא, קידומת, שם "
-"משפחה בלבד, קישור\n"
-"‏  <b>פטרונימי, או [עיק] או [משפ] או [קיש]</b> - שם משפחה פטרו/מטרונימי מלא, "
-"קידומת, שם משפחה בלבד, קישור\n"
+"‏  <b>השאר</b>      - לא שמות משפחה ראשוניים    <b>Notpatronymic</b>- כל שמות "
+"המשפחה, למעט שם שנגזר משם האב/שם שנגזר משם האם &amp; ראשי\n"
+"‏  <b>כינוי משפחה</b>- כינוי משפחה        <b>שם משפחה גלמי</b>  - שמות משפחה ("
+"ללא קידומות וקישורים)\n"
+"‏  <b>ראשוני, ראשוני[pre] או [sur] או [con]</b>- שם משפחה ראשוני מלא, קידומת, "
+"שם משפחה בלבד, קישור\n"
+"‏  <b>שם נגזר משם האב, או [pre] או [sur] או [con]</b> - שם משפחה שם שנגזר משם "
+"האב/שם שנגזר משם האם מלא, קידומת, שם משפחה בלבד, קישור\n"
 "‏</tt>\n"
 "‏מילת מפתח רישית כופה אותיות רישיות. סוגריים ופסיקים מיותרים מוסרים. מלל אחר "
 "מופיע פשוטו כמשמעו.\n"
 "‏\n"
 "‏<b>דוגמה</b>: דר' אדווין חוזה וון דר סמיט וווסטון ווילסון סניור   ('א.ד') - "
 "אנדרהילס\n"
-"‏     <i>אדווין חוזה</i>: פרטי, <i>וון דר</i>: קידומת, <i>סמיט</i> ו<i>וסטון</"
-"i>: ראשי, <i>'ו'</i>: [קישור], <i>ווילסון</i>: פטרונימי,\n"
-" ‏    <i>דר'</i>: תואר, <i>סניור</i>: סיומת, <i>אד</i>: כינוי, <i>אנדרהילס</"
-"i>: כינוי משפחה, <i>חוזה</i>: שם פניה.\n"
+"‏     <i>אדווין חוזה</i>: פרטי, <i>וון דר</i>: קידומת, <i>סמיט</i> "
+"ו<i>וסטון</i>: ראשי, <i>'ו'</i>: [קישור], <i>ווילסון</i>: שם נגזר משם האב,\n"
+" ‏    <i>דר'</i>: תואר, <i>סניור</i>: סיומת, <i>אד</i>: כינוי, "
+"<i>אנדרהילס</i>: כינוי משפחה, <i>חוזה</i>: שם פניה.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
@@ -11909,7 +11909,7 @@ msgstr "שם פניה"
 
 #: ../gramps/gui/configure.py:1096
 msgid "NotPatronymic"
-msgstr "לא פטרונומי"
+msgstr "לא שם שנגזר משם האב"
 
 #: ../gramps/gui/configure.py:1169
 msgid "Enter to save, Esc to cancel editing"
@@ -11998,7 +11998,7 @@ msgstr "אפשרויות מצג שמות מותאמות אישית, הן ייח�
 
 #: ../gramps/gui/configure.py:1523
 msgid "Consider single pa/matronymic as surname"
-msgstr "להחשיב משפחה פטרו/מטרונימית חד הורית כשם משפחה"
+msgstr "להחשיב משפחה שם שנגזר משם האב/שם שנגזר משם האם חד הורית כשם משפחה"
 
 #: ../gramps/gui/configure.py:1541
 msgid "Date format *"
@@ -12087,7 +12087,7 @@ msgstr "ניחוש שם משפחה"
 
 #: ../gramps/gui/configure.py:1692
 msgid "Default family relationship"
-msgstr "קשר־קרבה ברירת מחדל"
+msgstr "קשר־משפחתי ברירת מחדל"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Hide LDS tab in person and family editors"
@@ -12193,7 +12193,7 @@ msgstr "הצגת מידע שימושי באתחול גרמפס."
 
 #: ../gramps/gui/configure.py:1983
 msgid "Remember last Family Tree"
-msgstr "זכירת אילן־יוחסין אחרון שהיה בשימוש"
+msgstr "לזכור אילן־יוחסין אחרון שהיה בשימוש"
 
 #: ../gramps/gui/configure.py:1989
 msgid ""
@@ -12204,11 +12204,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1997
 msgid "Remember last view displayed"
-msgstr "זכירת מצג אחרון שהיה בשימוש"
+msgstr "לזכור מצג אחרון שהיה בשימוש"
 
 #: ../gramps/gui/configure.py:2002
 msgid "Remember last view displayed and open it next time."
-msgstr "זכירת מצג אחרון ופתיחתו בפעם הבאה."
+msgstr "לזכור מצג אחרון ופתיחתו בפעם הבאה."
 
 #: ../gramps/gui/configure.py:2007
 msgid "Enable spell checker"
@@ -14341,7 +14341,7 @@ msgid ""
 "updated. Some edits you have made may have been lost."
 msgstr ""
 "ה־ %(object)s שבעריכה השתנה מחוץ לעורך זה. עשוי היה לנבוע משינוי באחת "
-"התצוגות העיקריות, לדוגמה מקור המשמש כאן נמחק בתצוגת המקור.\n"
+"התצוגות הראשוניות, לדוגמה מקור המשמש כאן נמחק בתצוגת המקור.\n"
 "כדי לוודא שהמידע המוצג עדיין נכון, הנתונים המוצגים עודכנו. יתכן שכמה עריכות "
 "שבוצעו וטרם נשמרו יאבדו."
 
@@ -14593,7 +14593,7 @@ msgstr "עורך_שמות"
 #: ../gramps/gui/editors/editname.py:184
 #: ../gramps/gui/editors/editperson.py:342
 msgid "Call name must be the given name that is normally used."
-msgstr "'שם פנייה' חייב להיות שמו הפרטי של אדם, בו הוא משתמש באופן סדיר."
+msgstr "'שם מקובל' חייב להיות שמו הפרטי של אדם, בו הוא משתמש באופן סדיר."
 
 #: ../gramps/gui/editors/editname.py:343
 msgid "New Name"
@@ -15151,7 +15151,7 @@ msgstr "לרבות אירועי משפחה בו 'אדם' הוא זוגאי"
 
 #: ../gramps/gui/editors/filtereditor.py:616
 msgid "Only include primary participants"
-msgstr "לכלול משתתפים עיקריים בלבד"
+msgstr "לכלול משתתפים ראשוניים בלבד"
 
 #: ../gramps/gui/editors/filtereditor.py:635
 #: ../gramps/gui/widgets/placewithin.py:76
@@ -15663,7 +15663,7 @@ msgstr ""
 "‏  <b>%t</b> - תואר            <b>%T</b> - תואר\n"
 "‏  <b>%p</b> - קידומת           <b>%P</b> - קידומת\n"
 " ‏ <b>%s</b> - סיומת           <b>%S</b> - סיומת\n"
-"‏  <b>%c</b> - שם פנייה        <b>%C</b> - שם פניה\n"
+"‏  <b>%c</b> - שם מקובל        <b>%C</b> - שם פניה\n"
 "‏  <b>%y</b> - נגזר משם האב       <b>%Y</b> - נגזר משם האב</tt>"
 
 #: ../gramps/gui/glade/configure.glade:155
@@ -16548,7 +16548,7 @@ msgstr "שמות פרטיים של האדם"
 
 #: ../gramps/gui/glade/editname.glade:265
 msgid "_Nick Name:"
-msgstr "_שם חיבה:"
+msgstr "_כינוי:"
 
 #: ../gramps/gui/glade/editname.glade:278
 #: ../gramps/gui/glade/editperson.glade:179
@@ -16558,7 +16558,7 @@ msgid ""
 "some reports."
 msgstr ""
 "כאשר לאדם יותר משם פרטי אחד (דוד־חיים, רבקה־חיה), אותו חלק מהשם הפרטי בו "
-"נוהגים לפנות אליו בדרך כלל. אם רקע שדה השם צבוע אדום, משמע ש'שם פנייה' לא "
+"נוהגים לפנות אליו בדרך כלל. אם רקע שדה השם צבוע אדום, משמע ש'שם מקובל' לא "
 "נכלל ב'שם הפרטי' ולכן גם לא יודפס מודגש בקו תחתון במקצת הדוחות."
 
 #: ../gramps/gui/glade/editname.glade:291
@@ -16746,7 +16746,7 @@ msgstr "מקו_ר:"
 msgid ""
 "The origin of this family name for this family, eg 'Inherited' or "
 "'Patronymic'."
-msgstr "מקור השם של משפחה זו, כלומר 'מורש' או 'פטרונימי'."
+msgstr "מקור השם של משפחה זו, כלומר 'מורש' או 'שם נגזר משם האב'."
 
 #: ../gramps/gui/glade/editperson.glade:585
 msgid "G_ender:"
@@ -17070,7 +17070,7 @@ msgid ""
 "primary data for the merged citation."
 msgstr ""
 "נא לבחור מובאה שתשמש כמקור\n"
-"המידע העיקרי למובאה הממוזגת."
+"המידע הראשוני למובאה הממוזגת."
 
 #: ../gramps/gui/glade/mergecitation.glade:186
 #: ../gramps/gui/glade/mergedata.glade:732
@@ -17141,7 +17141,7 @@ msgstr "בחירה"
 #: ../gramps/gui/glade/mergedata.glade:322
 msgid ""
 "Select the person that will provide the primary data for the merged person."
-msgstr "נא לבחור את האדם שישמש במקור המידע העיקרי לאדם הממוזג."
+msgstr "נא לבחור את האדם שישמש במקור המידע הראשוני לאדם הממוזג."
 
 #: ../gramps/gui/glade/mergedata.glade:564
 msgid "Title selection"
@@ -17163,7 +17163,7 @@ msgid ""
 "primary data for the merged event."
 msgstr ""
 "נא לבחור האירוע שישמש\n"
-"כמקור המידע העיקרי לאירוע שמוזג."
+"כמקור המידע הראשוני לאירוע שמוזג."
 
 #: ../gramps/gui/glade/mergeevent.glade:186
 msgid "Event 1"
@@ -17184,7 +17184,7 @@ msgid ""
 "primary data for the merged family."
 msgstr ""
 "נא לבחור המשפחה שתשמש\n"
-"כמקור המידע העיקרי למשפחה שתמוזג."
+"כמקור המידע הראשוני למשפחה שתמוזג."
 
 #: ../gramps/gui/glade/mergefamily.glade:187
 #: ../gramps/gui/glade/mergefamily.glade:203
@@ -17223,7 +17223,7 @@ msgid ""
 "primary data for the merged object."
 msgstr ""
 "נא לבחור העצם שישמש\n"
-"כמקור המידע העיקרי לעצם שימוזג."
+"כמקור המידע הראשוני לעצם שימוזג."
 
 #: ../gramps/gui/glade/mergemedia.glade:186
 msgid "Object 1"
@@ -17243,7 +17243,7 @@ msgid ""
 "primary data for the merged note."
 msgstr ""
 "בחירת ההערה שתהווה\n"
-"כמקור מידע עיקרי להערה שתמוזג."
+"כמקור מידע ראשוני להערה שתמוזג."
 
 #: ../gramps/gui/glade/mergenote.glade:186
 msgid "Note 1"
@@ -17264,7 +17264,7 @@ msgid ""
 "primary data for the merged person."
 msgstr ""
 "נא לבחור האדם שישמש\n"
-"כמקור המידע העיקרי לאדם שימוזג."
+"כמקור המידע הראשוני לאדם שימוזג."
 
 #: ../gramps/gui/glade/mergeperson.glade:196
 #: ../gramps/plugins/textreport/recordsreport.py:293
@@ -17299,7 +17299,7 @@ msgid ""
 "primary data for the merged place."
 msgstr ""
 "נא לבחור המקום שישמש\n"
-"כמקור המידע העיקרי למקום שימוזג."
+"כמקור המידע הראשוני למקום שימוזג."
 
 #: ../gramps/gui/glade/mergeplace.glade:619
 msgid ""
@@ -17314,7 +17314,7 @@ msgid ""
 "primary data for the merged repository."
 msgstr ""
 "נא לבחור המאגר שישמש\n"
-"כמקור המידע העיקרי למאגר שימוזג."
+"כמקור המידע הראשוני למאגר שימוזג."
 
 #: ../gramps/gui/glade/mergerepository.glade:186
 msgid "Repository 1"
@@ -17334,7 +17334,7 @@ msgid ""
 "primary data for the merged source."
 msgstr ""
 "נא לבחור המקור שישמש\n"
-"כמקור המידע העיקרי למקור שימוזג."
+"כמקור המידע הראשוני למקור שימוזג."
 
 #: ../gramps/gui/glade/mergesource.glade:512
 msgid ""
@@ -20152,7 +20152,7 @@ msgid ""
 "-> Set Home Person."
 msgstr ""
 "נא להגדיר 'אדם ברירת מחדל' לעבור אליו. נא לבחור 'מצג אנשים', לבחור באדם "
-"הרצוי כ'אדם הבית', ולאחר מכן לאשר את הבחירה באמצעות התפריט 'עריכה &lt; "
+"הרצוי כ'אדם הבית', ולאחר מכן לאשר את הבחירה באמצעות התפריט 'עריכה &larr; "
 "קביעה'."
 
 #: ../gramps/gui/views/navigationview.py:339
@@ -22989,7 +22989,7 @@ msgstr "נא להקיש כפולה על שם פרטי לפרטים"
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:62
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
-msgstr "אין אילן־יוחסין טעון."
+msgstr "לא נטען אילן־יוחסין."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:156
 msgid "Total unique given names"
@@ -25257,7 +25257,7 @@ msgstr "שם פרטי"
 
 #: ../gramps/plugins/importer/importcsv.py:216
 msgid "call"
-msgstr "מכונה בשם"
+msgstr "שם מקובל"
 
 #: ../gramps/plugins/importer/importcsv.py:218
 msgid "tag"
@@ -30475,7 +30475,7 @@ msgstr "מיזוג מקומות אלו ייצור הפניה מעגלית במד
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:37
 msgid "Provides a library for using Cairo to generate documents."
-msgstr "ספרייה שתשמש את קיירו לחילול מסמכים."
+msgstr "ספרייה שתשמש את Cairo לחילול מסמכים."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:56
 msgid "Provides GEDCOM processing functionality"
@@ -31456,16 +31456,12 @@ msgid "Father lineage for %s"
 msgstr "שושלת אב עבור %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
-#, fuzzy
-#| msgid ""
-#| "This report shows the father lineage, also called patronymic lineage or Y-"
-#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
-"הדוח מציג את שושלת האב, המכונה גם שושלת הפטרונימית או Y-קו. אנשים בשושלת זו "
-"חולקים את אותו כרומוזום Y."
+"הדוח מציג את שושלת האב, המכונה גם שושלת שם נגזר משם האבת או קו־Y. אנשים "
+"בשושלת זו חולקים את אותו כרומוזום Y."
 
 #: ../gramps/plugins/quickview/lineage.py:65
 msgid "Name Father"
@@ -31487,18 +31483,13 @@ msgid "Mother lineage for %s"
 msgstr "שושלת האם עבור %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
-#, fuzzy
-#| msgid ""
-#| "This report shows the mother lineage, also called matronymic lineage "
-#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
-#| "DNA (mtDNA)."
 msgid ""
 "This report shows the mother lineage, also called the matrilineal lineage "
 "mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
 "(mtDNA)."
 msgstr ""
-"הדוח מציג את שושלת האם, מכונה גם שושלת מטרונימית קו־מטכונדרי. אנשי שושלת כזו "
-"חולקים כולם את אותו DNA מיטוכונדרי (mtDNA)."
+"הדוח מציג את שושלת האם, מכונה גם שושלת שם שנגזר משם האםת קו־מטכונדרי. אנשים "
+"בשושלת כזו חולקים כולם את אותו DNA מיטוכונדרי (mtDNA)."
 
 #: ../gramps/plugins/quickview/lineage.py:100
 msgid "Name Mother"
@@ -32407,12 +32398,12 @@ msgstr "האם להשמיט אָבוֹת קַדמוֹנִים כפולים."
 #: ../gramps/plugins/textreport/detancestralreport.py:913
 #: ../gramps/plugins/textreport/detdescendantreport.py:1121
 msgid "Use callname for common name"
-msgstr "שימוש בשם פנייה לשמות נפוצים"
+msgstr "שימוש בשם מקובל לשמות נפוצים"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:914
 #: ../gramps/plugins/textreport/detdescendantreport.py:1122
 msgid "Whether to use the call name as the first name."
-msgstr "האם להשתמש בשם פנייה כשם פרטי."
+msgstr "האם להשתמש בשם מקובל כשם פרטי."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:922
 #: ../gramps/plugins/textreport/detdescendantreport.py:1130
@@ -33112,11 +33103,11 @@ msgstr "לא להשתמש בשם פניה"
 
 #: ../gramps/plugins/textreport/recordsreport.py:253
 msgid "Replace first names with call name"
-msgstr "החלפת שם פרטי בשם פנייה"
+msgstr "החלפת שם פרטי בשם מקובל"
 
 #: ../gramps/plugins/textreport/recordsreport.py:257
 msgid "Underline call name in first names / add call name to first name"
-msgstr "סימון שם פנייה שהוא חלק משם פרטי בקו תחתון / הוספת שם פנייה לשם פרטי"
+msgstr "סימון שם מקובל שהוא חלק משם פרטי בקו תחתון / הוספת שם מקובל לשם פרטי"
 
 #: ../gramps/plugins/textreport/recordsreport.py:265
 msgid "Footer text"
@@ -34718,11 +34709,11 @@ msgstr "מחשבון קשרי־קרבה: %(person_name)s"
 #: ../gramps/plugins/tool/relcalc.py:118
 #, python-format
 msgid "Relationship to %(person_name)s"
-msgstr "קשר־קרבה ל־%(person_name)s"
+msgstr "קשר־קרבה אל %(person_name)s"
 
 #: ../gramps/plugins/tool/relcalc.py:182
 msgid "Relationship Calculator tool"
-msgstr "כלי חישוב קשר־קרבה"
+msgstr "כלי חישוב קשרי־משפחה"
 
 #: ../gramps/plugins/tool/relcalc.py:215
 #, python-format
@@ -36925,7 +36916,7 @@ msgstr "עץ מקומות"
 
 #: ../gramps/plugins/view/view.gpr.py:252
 msgid "A view displaying places in a tree format."
-msgstr "מצג להצגת מקומות בתסדיר עץ."
+msgstr "מצג להצגת מקומות בתסדיר אילן."
 
 #: ../gramps/plugins/view/view.gpr.py:269
 msgid "The view showing all the repositories"
@@ -36945,7 +36936,7 @@ msgstr "עץ מובאות"
 
 #: ../gramps/plugins/view/view.gpr.py:318
 msgid "A view displaying citations and sources in a tree format."
-msgstr "מצג להצגת מובאות ומקורות בתסדיר עץ."
+msgstr "מצג להצגת מובאות ומקורות בתסדיר אילן."
 
 #: ../gramps/plugins/webreport/addressbook.py:92
 #: ../gramps/plugins/webreport/addressbooklist.py:84
@@ -37069,7 +37060,7 @@ msgstr "מדיה אחרת: קטעי חוזי, קבצי pdf..."
 
 #: ../gramps/plugins/webreport/basepage.py:2761
 msgid " [Click to Go]"
-msgstr " [נא להקיש למעבר]"
+msgstr " [הקשה למעבר]"
 
 #: ../gramps/plugins/webreport/basepage.py:2787
 msgid "Latter-Day Saints/ LDS Ordinance"
@@ -37271,8 +37262,8 @@ msgid ""
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
-"עמוד זה מכיל מפתח של כל המשפחות/קשרי־הקרבה במסד הנתונים, ממוינים לפי שם "
-"משפחה. הקשה על שם של אדם תוביל לעמוד המשפחה/קשר־משפחתי."
+"עמוד זה מכיל מפתח של כל המשפחות/קשרי־הקרבה במסד הנתונים, במיון לפי שם משפחה. "
+"הקשה על שם של אדם תוביל לעמוד המשפחה/קשר־קרבה."
 
 #: ../gramps/plugins/webreport/family.py:558
 #, python-format
@@ -37708,7 +37699,7 @@ msgstr "הערה שתשמש ככותרת העמוד או כקוד PHP להכנס
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2357
 msgid "HTML user footer"
-msgstr "סיומת משתמש לעמוד HTML"
+msgstr "סיומת עמוד משתמש HTML"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2358
 msgid "A note to be used as the page footer"
@@ -38327,7 +38318,7 @@ msgstr "שם פניה"
 
 #: ../gramps/plugins/webreport/person.py:1806
 msgid "Nick Name"
-msgstr "שם חיבה"
+msgstr "כינוי"
 
 #: ../gramps/plugins/webreport/person.py:1863
 msgid "Age at Death"

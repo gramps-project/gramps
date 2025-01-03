@@ -13,13 +13,14 @@
 # Jurek <jurrer1234@gmail.com>, 2023, 2024.
 # Milan <mobrcian@hotmail.com>, 2023.
 # Michał Moczulski <michalmoczulski1a@gmail.com>, 2024.
+# Marcin Woroch <bishkopt@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-03-29 18:02+0000\n"
-"Last-Translator: WaldiS <sto@tutanota.de>\n"
+"PO-Revision-Date: 2024-08-07 23:09+0000\n"
+"Last-Translator: Marcin Woroch <bishkopt@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -28,7 +29,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -6196,7 +6197,7 @@ msgstr "Ulica:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:53
 msgid "Locality:"
-msgstr "Położenie:"
+msgstr "Okolica:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:54
 msgid "City:"
@@ -6894,7 +6895,7 @@ msgstr "Ulica"
 #: ../gramps/plugins/webreport/basepage.py:3217
 #: ../gramps/plugins/webreport/basepage.py:3295
 msgid "Locality"
-msgstr "Miejscowość"
+msgstr "Okolica"
 
 #: ../gramps/gen/lib/address.py:123 ../gramps/gen/lib/location.py:94
 #: ../gramps/gen/lib/placetype.py:69 ../gramps/gui/configure.py:714
@@ -16306,11 +16307,11 @@ msgstr "Data, w czasie której adres jest poprawny."
 #: ../gramps/gui/glade/editlocation.glade:314
 #: ../gramps/plugins/tool/ownereditor.glade:358
 msgid "_Locality:"
-msgstr "_Położenie:"
+msgstr "_Okolica:"
 
 #: ../gramps/gui/glade/editaddress.glade:374
 msgid "The locality of the address"
-msgstr "Położenie adresu"
+msgstr "Okolica adresu"
 
 #: ../gramps/gui/glade/editattribute.glade:93
 msgid "_Attribute:"

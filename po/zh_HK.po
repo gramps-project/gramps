@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-23 21:55+0000\n"
+"PO-Revision-Date: 2024-08-03 08:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hant_HK/>\n"
@@ -3839,13 +3839,11 @@ msgid "Citations changed after <date time>"
 msgstr "成員在<date time>後更改的"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:50
-#, fuzzy
 msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
-msgstr ""
-"匹配成員記錄修改於特定日期時間  (yyyy-mm-dd hh:mm:ss)之後 或者 在某個時間段內"
-"（如果給出第二個日期時間）。"
+msgstr "匹配成員記錄修改於特定日期時間（yyyy-mm-dd hh:mm:ss）之後 或者 "
+"在某個時間段內（如果給出第二個日期時間）。"
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:45
 #, fuzzy
@@ -3918,9 +3916,8 @@ msgid "Matches a citation with a specified Gramps ID"
 msgstr "匹配符合特定Gramps ID編號的家庭"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:48
-#, fuzzy
 msgid "Citations having <count> notes"
-msgstr "家庭 擁有 <count>  條筆記的家庭"
+msgstr "家庭擁有 <count> 條筆記的家庭"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:49
 #, fuzzy
@@ -3949,9 +3946,8 @@ msgid ""
 msgstr "匹配物件筆記含有匹配表示式的文字"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
-#, fuzzy
 msgid "Citations with a reference count of <count>"
-msgstr "參考數量為  <count> 的筆記"
+msgstr "參考數量為 <count> 的筆記"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:46
 #, fuzzy
@@ -4151,9 +4147,8 @@ msgstr "事件修改於<date time>後"
 msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
-msgstr ""
-"時間記錄修改於特定的日期/時間 (yyyy-mm-dd hh:mm:ss)  之後，或者某個範圍內（如"
-"果給出了第二個日期/時間）。"
+msgstr "時間記錄修改於特定的日期／時間（yyyy-mm-dd "
+"hh:mm:ss）之後，或者某個範圍內（如果給出了第二個日期／時間）。"
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:44
 msgid "Events marked private"
@@ -4267,16 +4262,15 @@ msgstr "匹配有特定數量筆記的事件"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:44
 msgid "Events having notes containing <substring>"
-msgstr "筆記中含有字串   <substring> 的事件"
+msgstr "筆記中含有字串 <substring> 的事件"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:45
 msgid "Matches events whose notes contain text matching a substring"
 msgstr "匹配中筆記含有特定字元串的事件"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:42
-#, fuzzy
 msgid "Events having notes containing <text>"
-msgstr "筆記中含有字串   <substring> 的事件"
+msgstr "筆記中含有字串 <substring> 的事件"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
@@ -4774,9 +4768,8 @@ msgstr "修改於 <date time> 之後的媒體物件"
 msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
-msgstr ""
-"符合 修改於特定日期:時間 (yyyy-mm-dd hh:mm:ss)  之後 或者 某個範圍內的（如果"
-"給出了第二個日期：時間）媒體物件"
+msgstr "符合修改於特定日期：時間（yyyy-mm-dd "
+"hh:mm:ss）之後或者某個範圍內的（如果給出了第二個日期：時間）媒體物件"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:117
@@ -4945,9 +4938,8 @@ msgstr "筆記，在<date time> 之後修改的"
 msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr ""
-"符合 修改於特定日期-時間(yyyy-mm-dd hh:mm:ss)  之後 或者 在某個範圍內（如果給"
-"出了第二個日期-時間）的筆記記錄"
+msgstr "符合修改於特定日期-時間（yyyy-mm-dd hh:mm:ss）之後 或者 "
+"在某個範圍內（如果給出了第二個日期-時間）的筆記記錄"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
@@ -4974,7 +4966,7 @@ msgstr "匹配符合特定參數的筆記"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:44
 msgid "Notes with a reference count of <count>"
-msgstr "參考數量為  <count> 的筆記"
+msgstr "參考數量為 <count> 的筆記"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:45
 msgid "Matches notes with a certain reference count"
@@ -5050,9 +5042,8 @@ msgstr "成員在<date time>後更改的"
 msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr ""
-"匹配成員記錄修改於特定日期時間  (yyyy-mm-dd hh:mm:ss)之後 或者 在某個時間段內"
-"（如果給出第二個日期時間）。"
+msgstr "匹配成員記錄修改於特定日期時間（yyyy-mm-dd hh:mm:ss）之後 或者 "
+"在某個時間段內（如果給出第二個日期時間）。"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
@@ -5133,9 +5124,8 @@ msgid "Matches people with a certain number of personal addresses"
 msgstr "匹配在來源中擁有特定數量地址的人"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:44
-#, fuzzy
 msgid "People with an address containing <text>"
-msgstr "記錄中含有字串  <substring>  的成員"
+msgstr "記錄中含有字串 <substring> 的成員"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:46
 #, fuzzy
@@ -5212,7 +5202,7 @@ msgstr "匹配擁有特定人為共同祖先的成員"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:50
 msgid "People with a common ancestor with <filter> match"
-msgstr "擁有共同符合  <filter> 祖先的成員"
+msgstr "擁有共同符合 <filter> 祖先的成員"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:52
 msgid ""
@@ -5401,9 +5391,8 @@ msgid "Matches people whose notes contain text matching a substring"
 msgstr "匹配筆記中的文字含有匹配的字串的成員"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:42
-#, fuzzy
 msgid "People having notes containing <text>"
-msgstr "筆記中含有 字串  <substring> 的成員"
+msgstr "筆記中含有字串 <substring> 的成員"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:44
 msgid "Matches people whose notes contain text matching a regular expression"
@@ -5665,7 +5654,7 @@ msgstr "後代相隔代數："
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:48
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr "<person>  的祖先 不超過  <N> 代"
+msgstr "<person> 的祖先不超過 <N> 代"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:51
 msgid ""
@@ -5693,7 +5682,7 @@ msgstr "匹配預設的成員，其祖先 不超過 N 代"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:48
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr "<person>  的後代 不超過 <N> 代記錄"
+msgstr "<person> 的後代不超過 <N> 代記錄"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:51
 msgid ""
@@ -5744,9 +5733,8 @@ msgid "Matches parents of anybody matched by a filter"
 msgstr "符合篩查器的某人的父母"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:47
-#, fuzzy
 msgid "People related to <Person>"
-msgstr "與 \"%s\"  無關聯"
+msgstr "與 <Person> 有關聯的人"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:49
 #, fuzzy
@@ -5889,9 +5877,8 @@ msgid "Matches people without indications of death that are not too old"
 msgstr "匹配記錄顯示死亡時年齡不是太大的成員"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:48
-#, fuzzy
 msgid "People with Id containing <text>"
-msgstr "記錄中含有字串  <substring>  的成員"
+msgstr "記錄中含有字串 <substring> 的成員"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:49
 msgid "Matches people whose Gramps ID matches the regular expression"
@@ -5949,9 +5936,8 @@ msgstr "地點變更時間為<date time >之後"
 msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr ""
-"符合 修改於特定日期-時間  (yyyy-mm-dd hh:mm:ss) 之後，或者 某個範圍內的（如果"
-"給出了第二個日期-時間）地點記錄。"
+msgstr "符合修改於特定日期-時間（yyyy-mm-dd hh:mm:ss）之後，或者 "
+"某個範圍內的（如果給出了第二個日期-時間）地點記錄。"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 #, fuzzy
@@ -6166,9 +6152,8 @@ msgid ""
 "Matches places with latitude or longitude positioned in a rectangle of given "
 "height and width (in degrees), and with middlepoint the given latitude and "
 "longitude."
-msgstr ""
-"符合  在給定高度和寬度的長方形內 包含經度和緯度位置的地點，並且 給出經緯度的"
-"中點。"
+msgstr "符合在給定高度和寬度的長方形內包含經度和緯度位置的地點，並且給出經緯度的中點"
+"。"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:51
 msgid "Places enclosed by another place"
@@ -6216,9 +6201,8 @@ msgid "Matches places that are indicated as private"
 msgstr "匹配標記為私有的地點"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:49
-#, fuzzy
 msgid "Places with Id containing <text>"
-msgstr "記錄中含有字串  <substring>  的成員"
+msgstr "記錄中含有字串 <substring> 的成員"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:50
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -6265,9 +6249,8 @@ msgstr "文庫，在 <date time> 之後修訂過的"
 msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
-msgstr ""
-"符合 修改於特定日期/時間(yyyy-mm-dd hh:mm:ss)  或者 在某個範圍內（如果給出了"
-"第二個日期/時間）的文庫記錄。"
+msgstr "符合修改於特定日期／時間（yyyy-mm-dd hh:mm:ss）或者 "
+"在某個範圍內（如果給出了第二個日期／時間）的文庫記錄。"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repository attribute:"
@@ -6402,9 +6385,8 @@ msgstr "修改於<date time> 之後的來源"
 msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr ""
-"匹配 修改於特定日期-時間 (yyyy-mm-dd hh:mm:ss)  之後或者在某個範圍之內的（如"
-"果給出了第二個日期-時間）的來源"
+msgstr "匹配修改於特定日期-時間（yyyy-mm-dd "
+"hh:mm:ss）之後或者在某個範圍之內的（如果給出了第二個日期-時間）的來源。"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Source attribute:"
@@ -11737,9 +11719,9 @@ msgid "Child ref"
 msgstr "子女參照"
 
 #: ../gramps/gui/clipboard.py:712
-#, fuzzy, python-format
+#, python-format
 msgid "%(frel)s %(mrel)s"
-msgstr "%(date)s  ，%(place)s"
+msgstr "%(frel)s%(mrel)s"
 
 #: ../gramps/gui/clipboard.py:1377 ../gramps/gui/clipboard.py:1385
 #: ../gramps/gui/clipboard.py:1428 ../gramps/gui/clipboard.py:1475
@@ -13331,14 +13313,13 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
-"如果您點選了按鈕  <b>處理</b>, Gramps 將會嘗試從最後一次正確的備份恢復您的家"
-"族樹。但是仍然有某些可能性會導致不希望的效果，因此    請提前<b>備份</b>家族"
-"樹 .\n"
+"如果您點選了按鈕 <b>處理</b>, Gramps 將會嘗試從最後一次正確的備份恢復您的家族"
+"樹。但是仍然有某些可能性會導致不希望的效果，因此請提前<b>備份</b>家族樹 .\n"
 "您現在的家族樹已經被儲存在 %s中.\n"
 "\n"
 "Before doing a repair, verify that the Family Tree can really no longer be  "
-"opened, as the database back-end can recover from some errors "
-"automatically.\n"
+"opened, as the database back-end can recover from some errors automatically."
+"\n"
 "\n"
 "<b>Details:</b> Repairing a Family Tree actually uses the last backup of the "
 "Family Tree, which Gramps stored on last use. If you have worked for several "
@@ -13347,8 +13328,8 @@ msgstr ""
 "hence a backup is needed. If the repair fails, or too much information is "
 "lost, you can fix the original family tree manually. For details, see the "
 "webpage\n"
-"http://gramps-project.org/wiki/index.php?"
-"title=Recover_corrupted_family_tree\n"
+"http://gramps-project.org/wiki/index.php?title="
+"Recover_corrupted_family_tree\n"
 "Before doing a repair, try to open the family tree in the normal manner. "
 "Several errors that trigger the repair button can be fixed automatically. If "
 "this is the case, you can disable the repair button by removing the file "
@@ -14426,8 +14407,8 @@ msgid ""
 "value is already used by '%(prim_object)s'. Please enter a different ID or "
 "leave blank to get the next available ID value."
 msgstr ""
-"您正嘗試使用現有存在的 Gramps ID 編號  %(id)s . 這個號碼已經被 "
-"'%(prim_object)s' 佔用. 請輸入不同的ID號或者留作空白獲取下一個可用的ID號. "
+"您正嘗試使用現有存在的 Gramps ID 編號 %(id)s。這個號碼已經被「%(prim_object)s"
+"」佔用。請輸入不同的ID號或者留作空白獲取下一個可用的ID號。"
 
 #: ../gramps/gui/editors/editcitation.py:388
 #, fuzzy, python-format
@@ -14982,7 +14963,7 @@ msgstr "名稱編輯器"
 #: ../gramps/gui/editors/editname.py:184
 #: ../gramps/gui/editors/editperson.py:342
 msgid "Call name must be the given name that is normally used."
-msgstr "通常使用的名字是日常稱呼姓名的一部分.  "
+msgstr "通常使用的名字是日常稱呼姓名的一部分。"
 
 #: ../gramps/gui/editors/editname.py:343
 msgid "New Name"
@@ -17437,7 +17418,7 @@ msgstr "網絡地址的類型，比如電子郵件、網頁、..."
 msgid ""
 "The internet address as needed to navigate to it, eg. http://gramps-project."
 "org"
-msgstr "網絡地址用於導航用途，比如  http://gramps-project.org"
+msgstr "網絡地址用於導航用途，比如http://gramps-project.org"
 
 #: ../gramps/gui/glade/editurl.glade:205
 msgid "Open the web address in the default browser."
@@ -25691,9 +25672,8 @@ msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
-msgstr ""
-"每個曲線節點包含一個URL，因此PDF 和 點陣圖檔案可以被生成包含動態連結到由  "
-"'Narrated Web Site'報告生成的檔案 ."
+msgstr "每個曲線節點包含一個URL，因此PDF 和點陣圖檔案可以被生成包含動態連結到由「"
+"Narrated Web Site」報告生成的檔案。"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:995
 #: ../gramps/plugins/textreport/birthdayreport.py:657
@@ -27511,9 +27491,9 @@ msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr ""
 
 #: ../gramps/plugins/lib/libmetadata.py:87
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s %(time)s"
-msgstr "%(date)s  ，%(place)s"
+msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
 msgid "Descriptive Tags"
@@ -37349,9 +37329,8 @@ msgid "A view showing all places of the database."
 msgstr "檢視允許檢視嵌入到Gramps的html頁面"
 
 #: ../gramps/plugins/view/geography.gpr.py:216
-#, fuzzy
 msgid "All places related to Events"
-msgstr "與 \"%s\"  無關聯"
+msgstr "與事件相關的所有地點"
 
 #: ../gramps/plugins/view/geography.gpr.py:217
 #, fuzzy

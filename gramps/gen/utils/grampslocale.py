@@ -85,7 +85,7 @@ if HAVE_ICU:
 _RTL_LOCALES = ("ar", "he")
 
 # locales with less than 70% currently translated
-INCOMPLETE_TRANSLATIONS = ("ar", "bg", "sq", "ta", "tr", "zh_HK", "zh_TW")
+INCOMPLETE_TRANSLATIONS = ("ar", "bg", "ko", "sq", "ta", "tr", "zh_HK", "zh_TW")
 
 
 def _check_gformat():

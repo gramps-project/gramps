@@ -13,19 +13,21 @@
 # S <sendoasojo@gmail.com>, 2021.
 # badlop <badlop@process-one.net>, 2021.
 # Mario Ruiz <marionetarh@gmail.com>, 2022.
-# Nick Hall <nick-h@gramps-project.org>, 2022.
-# Hilario Coronado <hilariofm60@gmail.com>, 2022.
+# Nick Hall <nick-h@gramps-project.org>, 2022, 2024.
+# Hilario Coronado <hilariofm60@gmail.com>, 2022, 2024.
 # Óscar Fernández Díaz <oscfdezdz@users.noreply.hosted.weblate.org>, 2023.
 # gallegonovato <fran-carro@hotmail.es>, 2023, 2024.
 # Jaime Marquínez Ferrándiz <jaime.marquinez.ferrandiz@fastmail.net>, 2024.
 # Diego Pedraza <zegeridp@gmail.com>, 2024.
+# Jesús Martínez <weblate@jandemor.com>, 2024.
+# Harald Herreros <h.herreros@proton.me>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-14 18:09+0000\n"
-"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"PO-Revision-Date: 2024-08-13 20:09+0000\n"
+"Last-Translator: Harald Herreros <h.herreros@proton.me>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -8847,7 +8849,7 @@ msgstr "Texto de la fuente"
 #: ../gramps/gen/lib/notetype.py:83 ../gramps/gen/plug/_pluginreg.py:115
 #: ../gramps/gui/logger/_errorview.py:189
 msgid "Report"
-msgstr "Reporte"
+msgstr "Informe"
 
 #: ../gramps/gen/lib/notetype.py:84
 msgid "Html code"
@@ -10342,7 +10344,7 @@ msgstr "Tamaño del texto de la nota."
 #: ../gramps/plugins/textreport/familygroup.py:690
 #: ../gramps/plugins/textreport/indivcomplete.py:857
 msgid "Empty report"
-msgstr "Reporte vacío"
+msgstr "Informe vacío"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:842
 msgid "PDF"
@@ -10374,11 +10376,11 @@ msgstr "Sin soporte"
 
 #: ../gramps/gen/plug/report/_constants.py:53
 msgid "Text Reports"
-msgstr "Reportes en texto"
+msgstr "Informes textuales"
 
 #: ../gramps/gen/plug/report/_constants.py:54
 msgid "Graphical Reports"
-msgstr "Reportes gráficos"
+msgstr "Informes gráficos"
 
 #: ../gramps/gen/plug/report/_constants.py:55
 msgid "Code Generators"
@@ -10484,11 +10486,11 @@ msgstr "Traducción"
 
 #: ../gramps/gen/plug/report/stdoptions.py:68
 msgid "The translation to be used for the report."
-msgstr "La traducción a utilizar para el reporte."
+msgstr "La traducción a utilizar para el informe."
 
 #: ../gramps/gen/plug/report/stdoptions.py:84
 msgid "The additional translation to be used for the report."
-msgstr "La traducción adicional a utilizar para el reporte."
+msgstr "La traducción adicional a utilizar para el informe."
 
 #: ../gramps/gen/plug/report/stdoptions.py:94 ../gramps/gui/configure.py:1497
 #: ../gramps/plugins/webreport/webcal.py:1905
@@ -11085,7 +11087,7 @@ msgid ""
 "impaired."
 msgstr ""
 "ADVERTENCIA: no se pudo cargar el módulo PIL.  El recorte de imágenes en los "
-"archivos de reporte no quedará bien hecho."
+"archivos de informe no quedará bien hecho."
 
 #: ../gramps/gen/utils/keyword.py:56
 msgctxt "Person"
@@ -11486,7 +11488,7 @@ msgstr "Anj"
 
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Orthodox cross"
-msgstr "Cruz Ortodoja"
+msgstr "Cruz Ortodoxa"
 
 #: ../gramps/gen/utils/symbols.py:114
 msgid "Chi rho"
@@ -12428,7 +12430,7 @@ msgstr "Mostrar edades para eventos después de la muerte *"
 
 #: ../gramps/gui/configure.py:1598
 msgid "Calendar on reports"
-msgstr "Calendario en los reportes"
+msgstr "Calendario en los informes"
 
 #: ../gramps/gui/configure.py:1611
 msgid "Calendar on input"
@@ -12477,7 +12479,7 @@ msgid ""
 "Input Options"
 msgstr ""
 "\n"
-"Opciones de entrada"
+"Opciones del informe"
 
 #: ../gramps/gui/configure.py:1676
 msgid "Surname guessing"
@@ -13539,11 +13541,11 @@ msgstr "Porta_papeles"
 
 #: ../gramps/gui/displaystate.py:416
 msgid "Open the reports dialog"
-msgstr "Abrir el diálogo de reportes"
+msgstr "Abrir el diálogo de informes"
 
 #: ../gramps/gui/displaystate.py:417
 msgid "Reports"
-msgstr "Reportes"
+msgstr "Informes"
 
 #: ../gramps/gui/displaystate.py:419
 msgid "Open the tools dialog"
@@ -17196,7 +17198,7 @@ msgid ""
 "Use monospace font to keep preformatting."
 msgstr ""
 "Si está activada esta opción, el espaciado de su nota se respetará en los "
-"reportes. Utilice esta opción para controlar mediante espacios la "
+"informes. Utilice esta opción para controlar mediante espacios la "
 "presentación del texto, por ejemplo, para incluir tablas.\n"
 "Si no se marca esta opción, el programa eliminará el espaciado innecesario "
 "lo que normalmente mejora el resultado.\n"
@@ -17965,7 +17967,7 @@ msgstr "Ejecutar"
 
 #: ../gramps/gui/glade/plugins.glade:139 ../gramps/gui/plug/_dialogs.py:312
 msgid "Select a report from those available on the left."
-msgstr "Seleccione un reporte de los disponibles a la izquierda."
+msgstr "Seleccione un informe de aquellos disponibles a la izquierda."
 
 #: ../gramps/gui/glade/plugins.glade:160
 msgid "Status:"
@@ -18361,7 +18363,7 @@ msgstr ""
 "Gramps viene con un juego esencial de complementos que proporcionan todas "
 "las funcionalidades necesarias. Sin embargo, puede extender esta "
 "funcionalidad con extensiones adicionales. Estas extensiones proporcionan "
-"reportes, listados, vistas, grampletes y otras funciones. Puede seleccionar "
+"informes, listados, vistas, grampletes y otras funciones. Puede seleccionar "
 "aquí entre las extensiones disponibles, se bajarán del sitio web de Gramps "
 "en Internet y se instalarán localmente en su equipo. Si cierra este diálogo "
 "ahora, podrá instalar las extensiones posteriormente desde el menú Editar -> "
@@ -18494,7 +18496,7 @@ msgstr "_Reportar un error"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Reports"
-msgstr "_Reportes"
+msgstr "_Informes"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Toolbar"
@@ -18995,7 +18997,7 @@ msgstr "Fusionar fuentes"
 
 #: ../gramps/gui/plug/_dialogs.py:311
 msgid "Report Selection"
-msgstr "Seleccionar Reporte"
+msgstr "Seleccionar informe"
 
 #: ../gramps/gui/plug/_dialogs.py:313
 msgid "_Generate"
@@ -19003,7 +19005,7 @@ msgstr "_Generar"
 
 #: ../gramps/gui/plug/_dialogs.py:314
 msgid "Generate selected report"
-msgstr "Generar el reporte seleccionado"
+msgstr "Generar el informe seleccionado"
 
 #: ../gramps/gui/plug/_dialogs.py:345
 msgid "Tool Selection"
@@ -19044,7 +19046,7 @@ msgstr "Seleccionar una persona diferente"
 
 #: ../gramps/gui/plug/_guioptions.py:720
 msgid "Select a person for the report"
-msgstr "Seleccionar una persona para el reporte"
+msgstr "Seleccionar una persona para el informe"
 
 #: ../gramps/gui/plug/_guioptions.py:803
 msgid "Select a different family"
@@ -20016,7 +20018,7 @@ msgstr "Estilo"
 #: ../gramps/plugins/webreport/narrativeweb.py:2068
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Report Options"
-msgstr "Opciones del reporte"
+msgstr "Opciones del informe"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:466
 msgid "Document Options"
@@ -20093,13 +20095,13 @@ msgstr "No se ha establecido una persona activa"
 #: ../gramps/gui/plug/report/_reportdialog.py:715
 msgid "You must select an active person for this report to work properly."
 msgstr ""
-"Para que este reporte funcione correctamente es necesario que seleccione una "
+"Para que este informe funcione correctamente es necesario que seleccione una "
 "persona activa."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:778
 #: ../gramps/gui/plug/report/_reportdialog.py:785
 msgid "Report could not be created"
-msgstr "No se pudo crear el reporte"
+msgstr "No se pudo crear el informe"
 
 #: ../gramps/gui/plug/report/_stylecombobox.py:68
 #: ../gramps/gui/plug/report/_stylecombobox.py:87
@@ -21597,7 +21599,7 @@ msgstr "El índice inicial"
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/descendtree.py:1628
 msgid "Report Title"
-msgstr "Título del reporte"
+msgstr "Título del informe"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:897
 #: ../gramps/plugins/drawreport/descendtree.py:1629
@@ -21607,12 +21609,12 @@ msgstr "No incluir título"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:898
 msgid "Include Report Title"
-msgstr "Incluir título del reporte"
+msgstr "Incluir título del informe"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:899
 #: ../gramps/plugins/drawreport/descendtree.py:1635
 msgid "Choose a title for the report"
-msgstr "Escoger un título para el reporte"
+msgstr "Escoger un título para el informe"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:902
 #: ../gramps/plugins/drawreport/descendtree.py:1639
@@ -21622,7 +21624,7 @@ msgstr "Incluir un borde"
 #: ../gramps/plugins/drawreport/ancestortree.py:903
 #: ../gramps/plugins/drawreport/descendtree.py:1640
 msgid "Whether to make a border around the report."
-msgstr "Si se debe poner un borde alrededor del reporte."
+msgstr "Si se debe poner un borde alrededor del informe."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:906
 #: ../gramps/plugins/drawreport/descendtree.py:1643
@@ -21735,7 +21737,7 @@ msgstr "Si se deben incluir las páginas que estén en blanco."
 #: ../gramps/plugins/textreport/recordsreport.py:268
 #: ../gramps/plugins/webreport/webcal.py:1894
 msgid "Report Options (2)"
-msgstr "Opciones del reporte (2)"
+msgstr "Opciones del informe (2)"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:973
 msgid ""
@@ -21790,7 +21792,7 @@ msgstr "Incluir caja de matrimonio"
 #: ../gramps/plugins/drawreport/descendtree.py:1728
 msgid "Whether to include a separate marital box in the report"
 msgstr ""
-"Si se debe incluir en el reporte una caja separada con información de "
+"Si se debe incluir en el informe una caja separada con información de "
 "matrimonio"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1006
@@ -21838,7 +21840,7 @@ msgstr "Incluir una nota"
 #: ../gramps/plugins/drawreport/ancestortree.py:1029
 #: ../gramps/plugins/drawreport/descendtree.py:1748
 msgid "Whether to include a note on the report."
-msgstr "Si se debe incluir una nota en el reporte."
+msgstr "Si se debe incluir una nota en el informe."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1034
 #: ../gramps/plugins/drawreport/descendtree.py:1753
@@ -21957,7 +21959,7 @@ msgstr "Producido con Gramps"
 #: ../gramps/plugins/drawreport/calendarreport.py:258
 #: ../gramps/plugins/drawreport/calendarreport.py:357
 msgid "Calendar Report"
-msgstr "Reporte de calendario"
+msgstr "Informe de calendario"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:233
 #: ../gramps/plugins/textreport/birthdayreport.py:255
@@ -22024,7 +22026,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/kinshipreport.py:368
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:219
 msgid "The center person for the report"
-msgstr "Persona central para el reporte"
+msgstr "Persona central para el informe"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:612
 #: ../gramps/plugins/textreport/birthdayreport.py:575
@@ -22265,15 +22267,15 @@ msgstr "La familia %s no está en la base de datos"
 #: ../gramps/plugins/drawreport/descendtree.py:1574
 #: ../gramps/plugins/drawreport/descendtree.py:1578
 msgid "Report for"
-msgstr "Reporte para"
+msgstr "Informe para"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1575
 msgid "The main person for the report"
-msgstr "La persona principal del reporte"
+msgstr "La persona principal del informe"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1579
 msgid "The main family for the report"
-msgstr "La familia principal del reporte"
+msgstr "La familia principal del informe"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1586
 msgid "Level of Spouses"
@@ -22390,7 +22392,7 @@ msgstr "Estilo para la caja de notas."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1887
 msgid "The style for the connection lines and report border."
-msgstr "Estilo paralas líneas de conexión y borde del reporte."
+msgstr "Estilo para las líneas de conexión y borde del informe."
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:38
 msgid "Ancestor Chart"
@@ -22495,7 +22497,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:865
 #: ../gramps/plugins/textreport/detdescendantreport.py:1077
 msgid "The number of generations to include in the report"
-msgstr "Número de generaciones a incluir en el reporte"
+msgstr "Número de generaciones a incluir en el informe"
 
 #: ../gramps/plugins/drawreport/fanchart.py:805
 msgid "Type of graph"
@@ -22778,7 +22780,7 @@ msgstr "%s (personas):"
 #: ../gramps/plugins/drawreport/statisticschart.py:1127
 #: ../gramps/plugins/textreport/recordsreport.py:237
 msgid "Determines what people are included in the report."
-msgstr "Determina qué personas se incluyen en el reporte."
+msgstr "Determina qué personas se incluyen en el informe."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1132
 #: ../gramps/plugins/drawreport/timeline.py:433
@@ -22929,7 +22931,7 @@ msgstr "Encontrando el rango de fechas..."
 
 #: ../gramps/plugins/drawreport/timeline.py:429
 msgid "Determines what people are included in the report"
-msgstr "Determina qué personas se incluyen en el reporte"
+msgstr "Determina qué personas se incluyen en el informe"
 
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/textreport/recordsreport.py:242
@@ -23372,7 +23374,7 @@ msgid ""
 "Double-click on a row to view a quick report showing all people with the "
 "selected attribute."
 msgstr ""
-"Haga doble clic en una fila para ver un reporte rápido con todas las "
+"Haga doble clic en una fila para ver un informe rápido con todas las "
 "personas que tienen el atributo seleccionado."
 
 #: ../gramps/plugins/gramplet/attributes.py:61
@@ -25704,7 +25706,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/notelinkreport.py:112
 #: ../gramps/plugins/textreport/placereport.py:169
 msgid "Generating report"
-msgstr "Generación del reporte"
+msgstr "Generación del informe"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:882
 msgid "Determines what people are included in the graph"
@@ -25784,7 +25786,7 @@ msgid ""
 msgstr ""
 "Incluir una URL en cada nodo del gráfico para que se puedan generar archivos "
 "PDF e imagemap que contengan enlaces activos a los archivos generados por el "
-"reporte 'Generar Sitio Web'."
+"informe 'Generar Sitio Web'."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:995
 #: ../gramps/plugins/textreport/birthdayreport.py:657
@@ -31377,7 +31379,7 @@ msgstr "Proporciona la capacidad de procesar archivos GEDCOM"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:74
 msgid "Provides recursive routines for reports"
-msgstr "Provee rutinas recursivas para los reportes"
+msgstr "Provee rutinas recursivas para los informes"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:92
 msgid "Provides common functionality for Gramps XML import/export."
@@ -31434,7 +31436,7 @@ msgstr "Proporciona sustitución de variables en las líneas mostradas."
 msgid ""
 "Provides the base needed for the ancestor and descendant graphical reports."
 msgstr ""
-"Proporciona la base necesaria para los reportes gráficos de ascendientes y "
+"Proporciona la base necesaria para los informes gráficos de ascendientes y "
 "descendientes."
 
 #: ../gramps/plugins/lib/libprogen.py:442
@@ -32865,7 +32867,7 @@ msgstr "Libro Completo"
 #: ../gramps/plugins/textreport/ancestorreport.py:213
 #, python-format
 msgid "Ahnentafel Report for %s"
-msgstr "Reporte Ahnentafel para %s"
+msgstr "Informe Ahnentafel para %s"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:314
 #: ../gramps/plugins/textreport/detancestralreport.py:870
@@ -32892,11 +32894,11 @@ msgstr "Indica si el nombre debe estar seguido por un salto de línea."
 #: ../gramps/plugins/textreport/birthdayreport.py:300
 #: ../gramps/plugins/textreport/textplugins.gpr.py:60
 msgid "Birthday and Anniversary Report"
-msgstr "Reporte de cumpleaños y aniversarios"
+msgstr "Informe de cumpleaños y aniversarios"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:83
 msgid "My Birthday Report"
-msgstr "Reporte de cumpleaños y aniversarios"
+msgstr "Informe de cumpleaños y aniversarios"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:85
 msgid "✝"
@@ -32959,7 +32961,7 @@ msgstr[1] "✝ {year}{person}, {age}{relation}"
 #: ../gramps/plugins/textreport/familygroup.py:723
 #: ../gramps/plugins/textreport/indivcomplete.py:1102
 msgid "Select the filter to be applied to the report."
-msgstr "Seleccione el filtro a aplicar al reporte."
+msgstr "Seleccione el filtro a aplicar al informe."
 
 #: ../gramps/plugins/textreport/birthdayreport.py:571
 msgid "Title text"
@@ -32967,23 +32969,23 @@ msgstr "Texto del título"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:572
 msgid "Title of report"
-msgstr "Título del reporte"
+msgstr "Título del informe"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:576
 msgid "First line of text at bottom of report"
-msgstr "Primera línea de texto al pie del reporte"
+msgstr "Primera línea de texto al pie del informe"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:580
 msgid "Second line of text at bottom of report"
-msgstr "Segunda línea de texto al pie del reporte"
+msgstr "Segunda línea de texto al pie del informe"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:587
 msgid "Third line of text at bottom of report"
-msgstr "Tercera línea de texto al pie del reporte"
+msgstr "Tercera línea de texto al pie del informe"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:598
 msgid "Include only living people in the report"
-msgstr "Incluir únicamente personas vivas en el reporte"
+msgstr "Incluir únicamente personas vivas en el informe"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:603
 msgid "Dead Symbol"
@@ -33000,12 +33002,12 @@ msgstr "Mostrar año del evento"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:612
 msgid "Prints the year the event took place in the report"
-msgstr "Imprime en el reporte el año en el que ocurrió el evento"
+msgstr "Imprime en el informe el año en el que ocurrió el evento"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:617
 #: ../gramps/plugins/textreport/birthdayreport.py:618
 msgid "Year of report"
-msgstr "Año del reporte"
+msgstr "Año del informe"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:653
 msgid "Include death anniversaries"
@@ -33131,7 +33133,7 @@ msgstr "Mostrar información de matrimonio"
 
 #: ../gramps/plugins/textreport/descendreport.py:589
 msgid "Whether to show marriage information in the report."
-msgstr "Si se debe incluir la información de matrimonio en el reporte."
+msgstr "Si se debe incluir la información de matrimonio en el informe."
 
 #: ../gramps/plugins/textreport/descendreport.py:592
 msgid "Show divorce info"
@@ -33139,7 +33141,7 @@ msgstr "Mostrar información de divorcio"
 
 #: ../gramps/plugins/textreport/descendreport.py:593
 msgid "Whether to show divorce information in the report."
-msgstr "Si se debe incluir la información de divorcio en el reporte."
+msgstr "Si se debe incluir la información de divorcio en el informe."
 
 #: ../gramps/plugins/textreport/descendreport.py:596
 msgid "Show birth and death info"
@@ -33156,7 +33158,7 @@ msgstr "Mostrar árboles duplicados"
 
 #: ../gramps/plugins/textreport/descendreport.py:603
 msgid "Whether to show duplicate Family Trees in the report."
-msgstr "Si se deben mostrar árboles genealógicos duplicados en el reporte."
+msgstr "Si se deben mostrar árboles genealógicos duplicados en el informe."
 
 #: ../gramps/plugins/textreport/descendreport.py:645
 #, python-format
@@ -33535,7 +33537,7 @@ msgstr "Numeración NGSQ (\"Record\" o \"Modified Register\")"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1066
 msgid "Report structure"
-msgstr "Estructura del reporte"
+msgstr "Estructura del informe"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1069
 msgid "show people by generations"
@@ -33547,7 +33549,7 @@ msgstr "mostrar personas por linaje"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1073
 msgid "How people are organized in the report"
-msgstr "Cómo se organizan las personas en el reporte"
+msgstr "Cómo se organizan las personas en el informe"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1137
 #: ../gramps/plugins/textreport/kinshipreport.py:379
@@ -33594,7 +33596,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/endoflinereport.py:167
 #, python-format
 msgid "End of Line Report for %s"
-msgstr "Reporte de cabezas de linajes para %s"
+msgstr "Informe de cabezas de linajes para %s"
 
 #: ../gramps/plugins/textreport/endoflinereport.py:174
 #, python-format
@@ -33638,13 +33640,13 @@ msgstr "%dDesc."
 #: ../gramps/plugins/textreport/familygroup.py:629
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Reporte del grupo familiar - Generación %d"
+msgstr "Informe del grupo familiar - Generación %d"
 
 #: ../gramps/plugins/textreport/familygroup.py:631
 #: ../gramps/plugins/textreport/familygroup.py:683
 #: ../gramps/plugins/textreport/textplugins.gpr.py:192
 msgid "Family Group Report"
-msgstr "Reporte de grupo familiar"
+msgstr "Informe de grupo familiar"
 
 #: ../gramps/plugins/textreport/familygroup.py:727
 msgid "Center Family"
@@ -33660,7 +33662,7 @@ msgstr "Recursivo (abajo)"
 
 #: ../gramps/plugins/textreport/familygroup.py:734
 msgid "Create reports for all descendants of this family."
-msgstr "Crear reportes para todos los descendientes de esta familia."
+msgstr "Crear informes para todos los descendientes de esta familia."
 
 #: ../gramps/plugins/textreport/familygroup.py:763
 msgid "Parent Marriage"
@@ -33732,7 +33734,7 @@ msgstr "Numerar las generaciones (sólo si recursivo)"
 
 #: ../gramps/plugins/textreport/familygroup.py:812
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr "Si se debe incluir la generación en cada reporte (sólo si recursivo)."
+msgstr "Si se debe incluir la generación en cada informe (sólo si recursivo)."
 
 #: ../gramps/plugins/textreport/familygroup.py:816
 msgid "Print fields for missing information"
@@ -33774,7 +33776,7 @@ msgstr "Imágenes"
 #: ../gramps/plugins/textreport/indivcomplete.py:884
 #: ../gramps/plugins/textreport/textplugins.gpr.py:217
 msgid "Complete Individual Report"
-msgstr "Reporte completo de una persona"
+msgstr "Informe completo de una persona"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:984
 msgid "(image)"
@@ -33797,7 +33799,7 @@ msgid ""
 "Whether the title should be the name of the person, or 'Complete Individual "
 "Report'"
 msgstr ""
-"Si el título debería ser el nombre de la persona, o 'Reporte Completo del "
+"Si el título debería ser el nombre de la persona, o 'Informe Completo del "
 "Individuo'"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1151
@@ -33870,7 +33872,7 @@ msgstr "Estilo utilizado para descripciones de imagen."
 #: ../gramps/plugins/textreport/kinshipreport.py:131
 #, python-format
 msgid "Kinship Report for %s"
-msgstr "Reporte de parentesco para %s"
+msgstr "Informe de parentesco para %s"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:372
 msgid "The maximum number of descendant generations"
@@ -33903,7 +33905,7 @@ msgstr "Si se deben incluir tías/tíos/sobrinos/sobrinas"
 #: ../gramps/plugins/textreport/notelinkreport.py:75
 #: ../gramps/plugins/textreport/notelinkreport.py:111
 msgid "Note Link Check Report"
-msgstr "Reporte Comprobación de Enlaces a Notas"
+msgstr "Informe Comprobación de Enlaces a Notas"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:85
 msgid "Note ID"
@@ -33947,7 +33949,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/placereport.py:169
 #: ../gramps/plugins/textreport/textplugins.gpr.py:306
 msgid "Place Report"
-msgstr "Reporte de lugares"
+msgstr "Informe de lugares"
 
 #: ../gramps/plugins/textreport/placereport.py:137
 msgid "Please select at least one place before running this."
@@ -34009,7 +34011,7 @@ msgstr "Centrar en"
 
 #: ../gramps/plugins/textreport/placereport.py:492
 msgid "If report is event or person centered"
-msgstr "Si el reporte es centrado en un evento o en una persona"
+msgstr "Si el informe está centrado en un evento o en una persona"
 
 #: ../gramps/plugins/textreport/recordsreport.py:195
 #, python-format
@@ -34100,7 +34102,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/summary.py:98
 #: ../gramps/plugins/textreport/textplugins.gpr.py:351
 msgid "Database Summary Report"
-msgstr "Reporte resumen de la base de datos"
+msgstr "Informe resumen de la base de datos"
 
 #: ../gramps/plugins/textreport/summary.py:187
 #, python-format
@@ -34243,16 +34245,16 @@ msgstr "Estilo utilizado para los encabezamientos de tercer nivel."
 #: ../gramps/plugins/textreport/tagreport.py:114
 #: ../gramps/plugins/textreport/textplugins.gpr.py:261
 msgid "Tag Report"
-msgstr "Reporte de etiqueta"
+msgstr "Informe de etiqueta"
 
 #: ../gramps/plugins/textreport/tagreport.py:115
 msgid "You must first create a tag before running this report."
-msgstr "Debe crear una etiqueta antes de producir este reporte."
+msgstr "Debe crear una etiqueta antes de producir este informe."
 
 #: ../gramps/plugins/textreport/tagreport.py:125
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Reporte de etiqueta para %s elementos"
+msgstr "Informe de etiqueta para %s elementos"
 
 #: ../gramps/plugins/textreport/tagreport.py:681
 msgid "Email Address"
@@ -34265,27 +34267,27 @@ msgstr "Información de la publicación"
 
 #: ../gramps/plugins/textreport/tagreport.py:927
 msgid "The tag to use for the report"
-msgstr "La etiqueta a utilizar para el reporte"
+msgstr "La etiqueta a utilizar para el informe"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:38
 msgid "Ahnentafel Report"
-msgstr "Reporte Ahnentafel (Sosa-Stradonitz)"
+msgstr "Informe Ahnentafel (Sosa-Stradonitz)"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:39
 msgid "Produces a textual ancestral report"
-msgstr "Produce un texto con el reporte de los ascendientes"
+msgstr "Produce un texto con el informe de los ascendientes"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:61
 msgid "Produces a report of birthdays and anniversaries"
-msgstr "Produce un reporte de cumpleaños y aniversarios"
+msgstr "Produce un informe de cumpleaños y aniversarios"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:83
 msgid "Add custom text to the book report"
-msgstr "Agregar texto personalizado al reporte de libro"
+msgstr "Agregar texto personalizado al informe de libro"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:104
 msgid "Descendant Report"
-msgstr "Reporte de descendientes"
+msgstr "Informe de descendientes"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:105
 msgid "Produces a list of descendants of the active person"
@@ -34293,47 +34295,47 @@ msgstr "Genera una lista de descendientes de la persona activa"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:126
 msgid "Detailed Ancestral Report"
-msgstr "Reporte detallado de ascendientes"
+msgstr "Informe detallado de ascendientes"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:127
 msgid "Produces a detailed ancestral report"
-msgstr "Produce un reporte detallado de ascendientes"
+msgstr "Produce un informe detallado de ascendientes"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:148
 msgid "Detailed Descendant Report"
-msgstr "Reporte detallado de descendientes"
+msgstr "Informe detallado de descendientes"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:149
 msgid "Produces a detailed descendant report"
-msgstr "Produce un reporte detallado de descendientes"
+msgstr "Produce un informe detallado de descendientes"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:170
 msgid "End of Line Report"
-msgstr "Reporte de cabezas de linajes"
+msgstr "Informe de cabezas de linajes"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:171
 msgid "Produces a textual end of line report"
-msgstr "Produce un reporte en texto con las cabezas de los linajes"
+msgstr "Produce un informe en texto con las cabezas de los linajes"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:194
 msgid ""
 "Produces a family group report showing information on a set of parents and "
 "their children."
 msgstr ""
-"Produce un reporte del grupo familiar con la información sobre un grupo de "
+"Produce un informe del grupo familiar con la información sobre un grupo de "
 "padres y sus hijos."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:218
 msgid "Produces a complete report on the selected people"
-msgstr "Produce un reporte completo de las personas seleccionadas"
+msgstr "Produce un informe completo de las personas seleccionadas"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:239
 msgid "Kinship Report"
-msgstr "Reporte de parientes"
+msgstr "Informe de parientes"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:240
 msgid "Produces a textual report of kinship for a given person"
-msgstr "Produce un reporte de texto de los parientes de una persona dada"
+msgstr "Produce un informe de texto de los parientes de una persona dada"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:262
 msgid "Produces a list of people with a specified tag"
@@ -34341,7 +34343,7 @@ msgstr "Produce una lista de personas con una etiqueta especificada"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:284
 msgid "Number of Ancestors Report"
-msgstr "Reporte de número de ascendientes"
+msgstr "Informe de número de ascendientes"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:285
 msgid "Counts number of ancestors of selected person"
@@ -34349,7 +34351,7 @@ msgstr "Cuenta el número de ascendientes de la persona seleccionada"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:307
 msgid "Produces a textual place report"
-msgstr "Produce un texto con el reporte de lugares"
+msgstr "Produce un texto con el informe de lugares"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:329
 msgid "Title Page"
@@ -34357,7 +34359,7 @@ msgstr "Portada"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:330
 msgid "Produces a title page for book reports."
-msgstr "Produce una página de portada para los reportes de tipo libro."
+msgstr "Produce una página de portada para los informes de tipo libro."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:352
 msgid "Provides a summary of the current database"
@@ -34365,20 +34367,20 @@ msgstr "Produce un resumen de la base de datos actual"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:375
 msgid "Produces a table of contents for book reports."
-msgstr "Produce un índice de materias para los reportes de tipo libro."
+msgstr "Produce un índice de materias para los informes de tipo libro."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:397
 msgid "Produces an alphabetical index for book reports."
-msgstr "Produce un índice alfabético para los reportes de tipo libro."
+msgstr "Produce un índice alfabético para los informes de tipo libro."
 
 # Aquí records debería traducirse por récords
 #: ../gramps/plugins/textreport/textplugins.gpr.py:418
 msgid "Records Report"
-msgstr "Reporte de récords"
+msgstr "Informe de récords"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:440
 msgid "Note Link Report"
-msgstr "Reporte de Enlaces a Notas"
+msgstr "Informe de Enlaces a Notas"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:441
 msgid "Shows status of links in notes"
@@ -36813,7 +36815,7 @@ msgstr "Blanco"
 #: ../gramps/plugins/view/fanchartdescview.py:310
 #: ../gramps/plugins/view/fanchartview.py:403
 msgid "Color scheme classic report"
-msgstr "Esquema de color clásico de reporte"
+msgstr "Esquema de color clásico para informes"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:319
 #: ../gramps/plugins/view/fanchartdescview.py:311
@@ -38106,7 +38108,7 @@ msgstr "cerca de"
 #: ../gramps/plugins/webreport/webcal.py:1192
 #: ../gramps/plugins/webreport/webcal.py:1418
 msgid "Web Calendar Report"
-msgstr "Reporte de calendario web"
+msgstr "Informe de calendario web"
 
 #: ../gramps/plugins/webreport/calendar.py:232
 #: ../gramps/plugins/webreport/webcal.py:363
@@ -38317,7 +38319,7 @@ msgstr "Creando lista de páginas de objetos audiovisuales"
 
 #: ../gramps/plugins/webreport/media.py:268
 msgid "Narrated Web Site Report"
-msgstr "Reporte de sitio web detallado"
+msgstr "Informe de sitio web detallado"
 
 #: ../gramps/plugins/webreport/media.py:310
 msgid "Below unused media objects"
@@ -38416,11 +38418,11 @@ msgstr "Creando las páginas de libreta de direcciones ..."
 #: ../gramps/plugins/webreport/narrativeweb.py:1950
 #, python-format
 msgid "Narrative Website Report for the %s language"
-msgstr "Reporte de sitio web narrativo para el %s idioma"
+msgstr "Informe de sitio web narrativo para el %s idioma"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1952
 msgid "Narrative Website Report"
-msgstr "Reporte de sitio web narrativo"
+msgstr "Informe de sitio web narrativo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2071
 msgid "Store website in .tar.gz archive"
@@ -39476,7 +39478,7 @@ msgstr "Vista general de la base de datos"
 
 #: ../gramps/plugins/webreport/statistics.py:226
 msgid "Narrative web content report for"
-msgstr "Reporte de sitio web narrado para"
+msgstr "Informe de sitio web narrado para"
 
 #: ../gramps/plugins/webreport/surname.py:128
 #, python-format
@@ -39701,11 +39703,11 @@ msgstr "Nota del mes de diciembre"
 
 #: ../gramps/plugins/webreport/webcal.py:2077
 msgid "Link to Narrated Web Report"
-msgstr "Enlace al reporte de sitio web detallado"
+msgstr "Enlace al informe de sitio web detallado"
 
 #: ../gramps/plugins/webreport/webcal.py:2078
 msgid "Whether to link data to web report or not"
-msgstr "Si se deben enlazar los datos al reporte web o no"
+msgstr "Si se deben enlazar los datos al informe web o no"
 
 #: ../gramps/plugins/webreport/webcal.py:2102
 msgid "Link prefix"
@@ -39713,7 +39715,7 @@ msgstr "Prefijo del enlace"
 
 #: ../gramps/plugins/webreport/webcal.py:2104
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr "Prefijo en los enlaces al reporte de sitio web detallado"
+msgstr "Prefijo en los enlaces al informe de sitio web detallado"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:35
 msgid "Narrated Web Site"
