@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Nick Hall <nick-h@gramps-project.org>, 2024.
-# Alexander Son <soneus72@snu.ac.kr>, 2024.
+# Alexander Son <soneus72@snu.ac.kr>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-12-24 06:00+0000\n"
+"PO-Revision-Date: 2025-01-04 05:24+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -871,6 +871,10 @@ msgid ""
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
+"<b>GEDCOM 파일 포맷</b><br/>그람프스는 GEDCOM 포맷을 불러 오거나 내보낼 수 "
+"있다. 표준 GEDCOM 5.5 버전을 확장 지원하기 때문에 그람프스 정보를 다른 "
+"계보도 프로그램 사용자에게 보내거나 받을 수 있다. GEDCOM 파일을 받거나 "
+"내보낼 수 있는 필터가 다수 있다."
 
 #: ../data/tips.xml:88
 msgid ""
@@ -881,6 +885,11 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
+"<b>그람프스 XML 팩키지</b><br/>사용자는 가계도를 그람프스 XML 팩키지로 "
+"내보낼 수 있다. 데이타베이스와 연결된 매체 파일들(이를테면 사진들)과 가계도 "
+"자료를 포함한 압축 파일이다. 이 파일은 옮기기 쉬워서 백업을 하거나 다른 "
+"그람프스 사용자와 공유할때 유용하다. 이 포맷은 내보거나 받아들일때 정보 "
+"손실이 없어서 GEDCOM에 비해 매우 이점이 있다."
 
 #: ../data/tips.xml:90
 msgid ""
