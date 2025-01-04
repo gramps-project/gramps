@@ -1118,7 +1118,7 @@ class RelationshipView(NavigationView):
 
                 parent1 = parent2 = ""
                 if father == Person.MALE:
-                    parent1 = ("Father")
+                    parent1 = _("Father")
                 elif father == Person.FEMALE:
                     parent1 = _("Mother")
                 else:
