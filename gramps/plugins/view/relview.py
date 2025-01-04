@@ -1642,10 +1642,20 @@ class RelationshipView(NavigationView):
 
         father_handle = family.get_father_handle()
         mother_handle = family.get_mother_handle()
+        spouse = spouse1 = spouse2 = None
+        hd21 = family.get_father_handle()
+        if hd21:
+            spouse1 = self.dbstate.db.get_person_from_handle(hd21).gender
+        hd22 = family.get_mother_handle()
+        if hd22:
+            spouse2 = self.dbstate.db.get_person_from_handle(hd22).gender
+
         if self.get_active() == father_handle:
             handle = mother_handle
+            spouse = spouse2
         else:
             handle = father_handle
+            spouse = spouse1
 
         # collapse button
         if self.check_collapsed(person.handle, family_handle):
@@ -1676,9 +1686,19 @@ class RelationshipView(NavigationView):
             # show "V Family: ..." and the rest
             self.write_label(_("%s:") % _("Family"), family, False, person)
             if family.get_relationship() == FamilyRelType.MARRIED:
-                box = self.write_person(_("Spouse"), handle)
+                if spouse == Person.MALE:
+                    box = self.write_person(_("Husband"), handle)
+                elif spouse == Person.FEMALE:
+                    box = self.write_person(_("Wife"), handle)
+                else:
+                    box = self.write_person(_("Spouse"), handle)
             elif family.get_relationship() == FamilyRelType.CIVIL_UNION:
-                box = self.write_person(_("Spouse"), handle)
+                if spouse == Person.MALE:
+                    box = self.write_person(_("Husband"), handle)
+                elif spouse == Person.FEMALE:
+                    box = self.write_person(_("Wife"), handle)
+                else:
+                    box = self.write_person(_("Spouse"), handle)
             else:
                 box = self.write_person(_("Partner"), handle)
 
