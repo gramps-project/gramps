@@ -184,26 +184,22 @@ def import_from_filename(db, filename, user):
     return False
 
 
-def find_surname_name(key, data):
+def find_surname_name(surname_list):
     """
-    Creating a surname from raw name, to use for sort and index
-    returns a byte string
-    """
-    return __index_surname(data[5])
+    Create a surname-string to use for sort and index.
 
-
-def __index_surname(surn_list):
-    """
     All non pa/matronymic surnames are used in indexing.
     pa/matronymic not as they change for every generation!
-    returns a byte string
+
+    Returns a string.
     """
-    if surn_list:
+    if surname_list:
         surn = " ".join(
             [
-                x[0]
-                for x in surn_list
-                if x[3][0] not in [NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]
+                surname.surname
+                for surname in surname_list
+                if surname.origintype.value
+                not in [NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]
             ]
         )
     else:

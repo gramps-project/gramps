@@ -278,7 +278,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
                 # person = Person(data)
                 change = False
                 for name in [person.get_primary_name()] + person.get_alternate_names():
-                    sname = find_surname_name(handle, name.serialize())
+                    sname = find_surname_name(name.surname_list)
                     if sname in changelist:
                         change = True
                         for surn in name.get_surname_list():
