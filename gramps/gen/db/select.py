@@ -56,10 +56,10 @@ def select_from_table(db, table_name, what, where, order_by, env):
 
         specs = []
         for item in order_by:
-            if isinstance(item, str):
-                specs.append((item, False))
+            if item.startswith("-"):
+                specs.append((item[1:], True))
             else:
-                specs.append((item[0], (False if item[1].lower() == "asc" else True)))
+                specs.append((item, False))
 
         for row in sort_data(data, specs):
             yield list(row.values())

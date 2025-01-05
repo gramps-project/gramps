@@ -124,6 +124,86 @@ class BaseTest(unittest.TestCase):
         """
         cls.db = import_as_dict(EXAMPLE, User())
 
+    def test_order_by_1(self):
+        res = list(
+            self.db.select_from_person(
+                ["person.primary_name.surname_list[0].surname", "person.gender"],
+                where="len(person.media_list) > 0",
+                order_by=[
+                    "-person.primary_name.surname_list[0].surname",
+                    "person.gender",
+                ],
+            )
+        )
+        assert res == [
+            ["Martel", 0],
+            ["Garner", 1],
+            ["Garner", 1],
+            ["Garner", 1],
+            ["Garner", 1],
+        ]
+
+    def test_order_by_2(self):
+        res = list(
+            self.db.select_from_person(
+                ["person.primary_name.surname_list[0].surname", "person.gender"],
+                where="len(person.media_list) > 0",
+                order_by=[
+                    "person.primary_name.surname_list[0].surname",
+                    "-person.gender",
+                ],
+            )
+        )
+        assert res == [
+            ["Garner", 1],
+            ["Garner", 1],
+            ["Garner", 1],
+            ["Garner", 1],
+            ["Martel", 0],
+        ]
+
+    def test_order_by_1_generic(self):
+        res = list(
+            DbGeneric._select_from_table(
+                self.db,
+                "person",
+                ["person.primary_name.surname_list[0].surname", "person.gender"],
+                where="len(person.media_list) > 0",
+                order_by=[
+                    "-person.primary_name.surname_list[0].surname",
+                    "person.gender",
+                ],
+            )
+        )
+        assert res == [
+            ["Martel", 0],
+            ["Garner", 1],
+            ["Garner", 1],
+            ["Garner", 1],
+            ["Garner", 1],
+        ]
+
+    def test_order_by_2_generic(self):
+        res = list(
+            DbGeneric._select_from_table(
+                self.db,
+                "person",
+                ["person.primary_name.surname_list[0].surname", "person.gender"],
+                where="len(person.media_list) > 0",
+                order_by=[
+                    "person.primary_name.surname_list[0].surname",
+                    "-person.gender",
+                ],
+            )
+        )
+        assert res == [
+            ["Garner", 1],
+            ["Garner", 1],
+            ["Garner", 1],
+            ["Garner", 1],
+            ["Martel", 0],
+        ]
+
     def test_HavePhotos(self):
         res = list(
             self.db.select_from_person("_.handle", where="len(person.media_list) > 0")

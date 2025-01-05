@@ -201,13 +201,11 @@ class Evaluator:
 
     def get_order_by(self, order_by):
         order_by_exprs = []
-        for expr_desc in order_by:
-            if isinstance(expr_desc, (tuple, list)):
-                order_by_exprs.append(
-                    "%s %s" % (self.convert(expr_desc[0]), expr_desc[1])
-                )
+        for expr in order_by:
+            if expr.startswith("-"):
+                order_by_exprs.append("%s %s" % (self.convert(expr[1:]), "DESC"))
             else:
-                order_by_exprs.append(str(self.convert(expr_desc)))
+                order_by_exprs.append(str(self.convert(expr)))
 
         if order_by_exprs:
             order_expr = " ORDER BY %s" % (", ".join(order_by_exprs))

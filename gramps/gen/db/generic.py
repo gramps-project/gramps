@@ -2760,10 +2760,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         db.select_from_person(where="person.handle == 'A6E74B3D65D23F'")
         db.select_from_person("person.handle", where="person.handle == 'A6E74B3D65D23F'")
+        db.select_from_person("_.handle", where="_.handle == 'A6E74B3D65D23F'")
         db.select_from_person(
             what=["person.handle", "person.gramps_id"],
             where="person.handle == 'A6E74B3D65D23F'"
-            order_by=[("person.gramps_id", "DESC")]
+            order_by=["-person.gramps_id", "person.gender"]
             env={"Person": Person}
         )
         """
