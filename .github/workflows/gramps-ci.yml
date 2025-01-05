@@ -67,6 +67,8 @@ jobs:
     - name: Build
       run: |
         python3 --version
+        python3 -c "import sqlite3; print(sqlite3.version)"
+        sqlite3 --version
         python3 setup.py build
     - name: Run unit test suite
       run: |
