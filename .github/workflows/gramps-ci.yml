@@ -57,6 +57,7 @@ jobs:
         sudo apt-get install libxslt-dev
         sudo apt-get install zlib1g-dev
         sudo apt-get install python3-setuptools
+        sudo apt-get install python3-pytest
     - name: Install addons
       run: |
         mkdir -p ~/.gramps/gramps52/plugins/
