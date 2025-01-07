@@ -1231,7 +1231,7 @@ class DBAPI(DbGeneric):
         evaluator = Evaluator(
             table_name,
             "json_data->>'$.{attr}'",
-            "json_array_length(json_data, '$.{attr}')",
+            "json_array_length(json_data->>'$.{attr}')",
             env if env is not None else globals(),
         )
 
