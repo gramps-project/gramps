@@ -24,35 +24,12 @@ Unittest that tests person-specific filter rules
 import unittest
 import os
 import sqlite3
-import pytest
 
 from ....db.utils import import_as_dict
 from ....const import DATA_DIR
 from ....user import User
 from gramps.gen.db import DbGeneric
 
-
-# Does this version of sqlite support json functions?
-
-conn = sqlite3.connect(":memory:")
-
-cursor = conn.cursor()
-try:
-    cursor.execute("SELECT json_object('key1', 'value1')")
-    JSON_SUPPORT = True
-except sqlite3.OperationalError:
-    JSON_SUPPORT = False
-
-cursor = conn.cursor()
-try:
-    cursor = conn.cursor()
-    cursor.execute('SELECT json_array_length(\'["a", "b", "c"]\')')
-    result = cursor.fetchone()[0]
-    JSON_ARRAY_LENGTH_SUPPORT = True
-except sqlite3.OperationalError:
-    JSON_ARRAY_LENGTH_SUPPORT = False
-
-conn.close()
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
@@ -148,7 +125,6 @@ class BaseTest(unittest.TestCase):
         """
         cls.db = import_as_dict(EXAMPLE, User())
 
-    @pytest.mark.skipif(not JSON_ARRAY_LENGTH_SUPPORT)
     def test_order_by_1(self):
         res = list(
             self.db.select_from_person(
@@ -168,7 +144,6 @@ class BaseTest(unittest.TestCase):
             ["Garner", 1],
         ]
 
-    @pytest.mark.skipif(not JSON_ARRAY_LENGTH_SUPPORT)
     def test_order_by_2(self):
         res = list(
             self.db.select_from_person(
@@ -230,7 +205,6 @@ class BaseTest(unittest.TestCase):
             ["Martel", 0],
         ]
 
-    @pytest.mark.skipif(not JSON_ARRAY_LENGTH_SUPPORT)
     def test_HavePhotos(self):
         res = list(
             self.db.select_from_person("_.handle", where="len(person.media_list) > 0")
@@ -245,7 +219,6 @@ class BaseTest(unittest.TestCase):
         )
         self.assertEqual(len(res), 5)
 
-    @pytest.mark.skipif(not JSON_ARRAY_LENGTH_SUPPORT)
     def test_HasLDS(self):
         res = list(
             self.db.select_from_person(
@@ -303,7 +276,6 @@ class BaseTest(unittest.TestCase):
     #     res = self.filter_with_rule(rule)
     #     self.assertEqual(len(res), 3)
 
-    @pytest.mark.skipif(not JSON_ARRAY_LENGTH_SUPPORT)
     def test_disconnected(self):
         res = set(
             list(
@@ -348,7 +320,6 @@ class BaseTest(unittest.TestCase):
         res = list(DbGeneric._select_from_table(self.db, "person"))
         self.assertEqual(len(res), self.db.get_number_of_people())
 
-    @pytest.mark.skipif(not JSON_ARRAY_LENGTH_SUPPORT)
     def test_hasalternatename(self):
         """
         Test HasAlternateName rule.

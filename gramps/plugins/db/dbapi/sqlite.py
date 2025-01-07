@@ -137,10 +137,7 @@ class Connection:
         :type kwargs: list
         """
         self.log.debug(args)
-        try:
-            self.__cursor.execute(*args, **kwargs)
-        except Exception:
-            raise Exception("args: %r, kwargs: %r" % (args, kwargs)) from None
+        self.__cursor.execute(*args, **kwargs)
 
     def fetchone(self):
         """
