@@ -24,8 +24,6 @@
 Package providing filter rules for Gramps.
 """
 
-from .._hassourcebase import HasSourceBase as HasSource
-
 from ._allsources import AllSources
 from ._hasattribute import HasAttribute
 from ._hasgallery import HasGallery
@@ -36,6 +34,7 @@ from ._hasnoteregexp import HasNoteRegexp
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
 from ._hasnotetype import HasNoteType
 from ._hasreferencecountof import HasReferenceCountOf
+from ._hassource import HasSource
 from ._sourceprivate import SourcePrivate
 from ._matchesfilter import MatchesFilter
 from ._changedsince import ChangedSince
