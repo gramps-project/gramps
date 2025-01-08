@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2016 Tom Samstag
+# Copyright (C) 2025 Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -240,16 +241,25 @@ class BaseTest(unittest.TestCase):
         self.assertEqual(len(res), 1)
 
     # def test_HasNameOriginType(self):
+    #
+    #    # SELECT json_data->>"$.handle", json_each.value->>"$.surname"
+    #    # FROM person, json_each(json_data->>"$.primary_name.surname_list")
+    #    # WHERE json_each.value->>"$.origintype.value" = 4;
+    #
     #    [for surname in person.primary_name.surname_list if surname ...]
-    #    # select json_data->>"$.handle", json_each.value->>"$.surname"
-    #    # from person, json_each(json_data->>"$.primary_name.surname_list")
-    #    # where json_each.value->>"$.origintype.value" = 4;
 
     #    rule = HasNameOriginType(["Patrilineal"])
     #    res = self.filter_with_rule(rule)
     #    self.assertEqual(len(res), 9)
 
     # def test_HasNameType(self):
+    #
+    # SELECT DISTINCT json_data->>"$.handle"
+    # FROM person, json_each(json_data->>"$.alternate_names") as alternate_names
+    # WHERE json_data->>"$.primary_name.type.value" = 3 or alternate_names.value->>"$.type.value" = 3;
+    #
+    # [name for name in person.alternate_names if name.type.value == 3] or person.primary_name.type.value == 3
+
     #     rule = HasNameType(["Married Name"])
     #     res = self.filter_with_rule(rule)
     #     self.assertEqual(len(res), 1)
@@ -265,16 +275,6 @@ class BaseTest(unittest.TestCase):
     #     )
     #     res = self.filter_with_rule(rule)
     #     self.assertEqual(len(res), 28)
-
-    # def test_IsWitness(self):
-    #     rule = IsWitness(["Marriage"])
-    #     res = self.filter_with_rule(rule)
-    #     self.assertEqual(len(res), 1)
-
-    # def test_RegExpName(self):
-    #     rule = RegExpName([".*(Garc|Amy).*"], use_regex=True)
-    #     res = self.filter_with_rule(rule)
-    #     self.assertEqual(len(res), 3)
 
     def test_disconnected(self):
         res = set(
@@ -365,347 +365,303 @@ class BaseTest(unittest.TestCase):
             ),
         )
 
-    # def test_hasnickname(self):
-    #     """
-    #     Test HasNickname rule.
-    #     """
-    #     rule = HasNickname([])
-    #     self.assertEqual(
-    #         self.filter_with_rule(rule),
-    #         set(
-    #             [
-    #                 "cc8205d883763f02abd",
-    #                 "GNUJQCL9MD64AM56OH",
-    #                 "Q8HKQC3VMRM1M6M7ES",
-    #             ]
-    #         ),
-    #     )
+    def test_hasunknowngender(self):
+        """
+        Test HasUnknownGender rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="person.gender == Person.UNKNOWN",
+                )
+            )
+        )
 
-    # def test_hasunknowngender(self):
-    #     """
-    #     Test HasUnknownGender rule.
-    #     """
-    #     rule = HasUnknownGender([])
-    #     self.assertEqual(
-    #         self.filter_with_rule(rule),
-    #         set(
-    #             [
-    #                 "OJOKQC83Y1EDBIMLJ6",
-    #                 "8BHKQCFK9UZFRJYC2Y",
-    #                 "PGFKQC1TUQMXFAMLMB",
-    #                 "IHOKQCECRZYQDKW6KF",
-    #                 "8HKKQCTEJAOBVH410L",
-    #                 "AGFKQCO358R18LNJYV",
-    #                 "1ENKQCBPFZTAQJSP4O",
-    #                 "NUWKQCO7TVAOH0CHLV",
-    #                 "P5IKQC88STY3FNTFZ3",
-    #                 "7GXKQCMVFU8WR1LKZL",
-    #                 "LGXKQCJ5OP6MKF9QLN",
-    #                 "XNFKQC6DN59LACS9IU",
-    #                 "7IOKQC1NVGUI1E55CQ",
-    #                 "57PKQCFAWY7AM3JS4M",
-    #                 "BNXKQCEBXC1RCOGJNF",
-    #                 "TFFKQC1RMG8RRADKDH",
-    #                 "FHKKQC963NGSY18ZDZ",
-    #                 "WMXKQCDUJ4JKQQYCR7",
-    #                 "PBHKQCHOAGTECRKT9L",
-    #                 "OFXKQC8W0N3N6JP6YQ",
-    #             ]
-    #         ),
-    #     )
+        self.assertEqual(
+            res,
+            set(
+                [
+                    "OJOKQC83Y1EDBIMLJ6",
+                    "8BHKQCFK9UZFRJYC2Y",
+                    "PGFKQC1TUQMXFAMLMB",
+                    "IHOKQCECRZYQDKW6KF",
+                    "8HKKQCTEJAOBVH410L",
+                    "AGFKQCO358R18LNJYV",
+                    "1ENKQCBPFZTAQJSP4O",
+                    "NUWKQCO7TVAOH0CHLV",
+                    "P5IKQC88STY3FNTFZ3",
+                    "7GXKQCMVFU8WR1LKZL",
+                    "LGXKQCJ5OP6MKF9QLN",
+                    "XNFKQC6DN59LACS9IU",
+                    "7IOKQC1NVGUI1E55CQ",
+                    "57PKQCFAWY7AM3JS4M",
+                    "BNXKQCEBXC1RCOGJNF",
+                    "TFFKQC1RMG8RRADKDH",
+                    "FHKKQC963NGSY18ZDZ",
+                    "WMXKQCDUJ4JKQQYCR7",
+                    "PBHKQCHOAGTECRKT9L",
+                    "OFXKQC8W0N3N6JP6YQ",
+                ]
+            ),
+        )
 
-    # def test_havealtfamilies(self):
-    #     """
-    #     Test HaveAltFamilies rule.
-    #     """
-    #     rule = HaveAltFamilies([])
-    #     self.assertEqual(
-    #         self.filter_with_rule(rule),
-    #         set(
-    #             [
-    #                 "CH5KQCIEXSN1J5UEHB",
-    #                 "MG5KQC6ZKSVO4A63G2",
-    #             ]
-    #         ),
-    #     )
+    def test_hasunknowngender_generic(self):
+        """
+        Test HasUnknownGender rule.
+        """
+        res = set(
+            list(
+                DbGeneric._select_from_table(
+                    self.db,
+                    "person",
+                    "person.handle",
+                    where="person.gender == Person.UNKNOWN",
+                )
+            )
+        )
 
-    # def test_incompletenames(self):
-    #     """
-    #     Test IncompleteNames rule.
-    #     """
-    #     rule = IncompleteNames([])
-    #     self.assertEqual(
-    #         self.filter_with_rule(rule),
-    #         set(
-    #             [
-    #                 "IHOKQCECRZYQDKW6KF",
-    #                 "cc82060504445ab6deb",
-    #                 "LCXKQCQZH5EH56NTCD",
-    #                 "cc8205d87831c772e87",
-    #                 "3RFKQCNKMX9HVLNSLW",
-    #                 "cc8205d87fd529000ff",
-    #                 "B1UKQCBR49WB3134PN",
-    #                 "0TTKQCXXY59OCDPLV3",
-    #                 "F3UKQC7ZV3EYVWTZ8O",
-    #                 "1MXKQCJ2BR43910ZYX",
-    #                 "cc8206050e541f79f92",
-    #                 "FHKKQC963NGSY18ZDZ",
-    #                 "R5HKQCIEPOY1DMQOWX",
-    #                 "ZHMKQC50PFVAPI8PZ6",
-    #                 "T4UKQCYGECXGVNBWMY",
-    #                 "cc82060516c6c141500",
-    #                 "UPWKQCYVFH7RZOSZ29",
-    #                 "2AMKQCE67YOH3TBVYI",
-    #                 "2CUKQCFDVN3EZE2E4C",
-    #                 "7IOKQC1NVGUI1E55CQ",
-    #                 "KSTKQC018GNA7HDCAS",
-    #                 "WIVKQC4Q4FCQJT5M63",
-    #                 "A4YKQCRYSI5FT5T38",
-    #                 "BUNKQCO4HZHZP70F3K",
-    #                 "YRTKQCNDP343OD5OQJ",
-    #                 "7VEKQCV05EDK0625KI",
-    #                 "cc8205d872f532ab14e",
-    #                 "TPXKQCEGL04KHGMO2X",
-    #                 "L9LKQCQ8KJRKHM4D2E",
-    #                 "8QXKQCHJ2EUC7OV8EQ",
-    #                 "W0XKQCKSFWWJWQ2OSN",
-    #                 "I6QKQCFRDTV2LDC8M2",
-    #                 "XTUKQC7WCIVA5F0NC4",
-    #                 "F4UKQCPK572VWU2YZQ",
-    #                 "JKDKQCF4ND92A088J2",
-    #                 "COFKQCUXC2H4G3QBYT",
-    #                 "BNXKQCEBXC1RCOGJNF",
-    #                 "Q42KQCKJZGS4IZWHF5",
-    #                 "P5IKQC88STY3FNTFZ3",
-    #                 "7CXKQC59NSZFXIG1UE",
-    #                 "cc8205d87c20350420b",
-    #                 "FQUKQCWEHOAWUP4QWS",
-    #                 "3YTKQCK2W63W0MQBJE",
-    #                 "8HKKQCTEJAOBVH410L",
-    #                 "HLQKQC0BJIZL0V4EK4",
-    #                 "B0UKQC9A54F1GUB7NR",
-    #                 "EPXKQCQRZP2PNPN7BE",
-    #                 "cc82060512042f67e2c",
-    #                 "XZLKQCRQA9EHPBNZPT",
-    #                 "OQXKQC2Y5FVH9PK0JL",
-    #                 "AXLKQC0YTFAWQ234YD",
-    #                 "OFXKQC8W0N3N6JP6YQ",
-    #                 "MWUKQCD2ZSCECQOCLG",
-    #                 "1ENKQCBPFZTAQJSP4O",
-    #                 "N7XKQCYD3VSCSZREGJ",
-    #                 "2LQKQC62GJUQCJIOK8",
-    #                 "QXXKQC9PT5FWNT140K",
-    #                 "VAXKQC19HIFPX61J28",
-    #                 "0PXKQCJ9S1M3NNASET",
-    #                 "K8XKQCDSVLSK422A3K",
-    #                 "52UKQCFYXMFTKIGNBS",
-    #                 "7GXKQCMVFU8WR1LKZL",
-    #                 "4UMKQCF07KL2K92CI5",
-    #                 "LGXKQCJ5OP6MKF9QLN",
-    #                 "FZTKQCSTPIQ3C9JC46",
-    #                 "WMXKQCDUJ4JKQQYCR7",
-    #                 "R6UKQC939L9FV62UGE",
-    #                 "OIUKQCBHUWDGL7DNTI",
-    #                 "FRTKQC3G6JBJAR2ZPX",
-    #                 "PIEKQCKUL6OAMS8Q9R",
-    #                 "cc8205d887376aacba2",
-    #                 "LGMKQCQP5M5L18FVTN",
-    #                 "8HUKQCRV8B3J2LLQ3B",
-    #                 "LOUKQC45HUN532HOOM",
-    #                 "cc8205d883763f02abd",
-    #                 "TBXKQC7OHIN28PVCS3",
-    #             ]
-    #         ),
-    #     )
+        self.assertEqual(
+            res,
+            set(
+                [
+                    "OJOKQC83Y1EDBIMLJ6",
+                    "8BHKQCFK9UZFRJYC2Y",
+                    "PGFKQC1TUQMXFAMLMB",
+                    "IHOKQCECRZYQDKW6KF",
+                    "8HKKQCTEJAOBVH410L",
+                    "AGFKQCO358R18LNJYV",
+                    "1ENKQCBPFZTAQJSP4O",
+                    "NUWKQCO7TVAOH0CHLV",
+                    "P5IKQC88STY3FNTFZ3",
+                    "7GXKQCMVFU8WR1LKZL",
+                    "LGXKQCJ5OP6MKF9QLN",
+                    "XNFKQC6DN59LACS9IU",
+                    "7IOKQC1NVGUI1E55CQ",
+                    "57PKQCFAWY7AM3JS4M",
+                    "BNXKQCEBXC1RCOGJNF",
+                    "TFFKQC1RMG8RRADKDH",
+                    "FHKKQC963NGSY18ZDZ",
+                    "WMXKQCDUJ4JKQQYCR7",
+                    "PBHKQCHOAGTECRKT9L",
+                    "OFXKQC8W0N3N6JP6YQ",
+                ]
+            ),
+        )
 
-    # def test_hasidof_empty(self):
-    #     """
-    #     Test empty HasIdOf rule.
-    #     """
-    #     rule = HasIdOf([""])
-    #     self.assertEqual(self.filter_with_rule(rule), set([]))
+    def test_hasidof_empty(self):
+        """
+        Test empty HasIdOf rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="person.gramps_id == ''",
+                )
+            )
+        )
+        self.assertEqual(res, set([]))
 
-    # def test_hasidof_nonmatching(self):
-    #     """
-    #     Test non-matching HasIdOf rule.
-    #     """
-    #     rule = HasIdOf(["I0000"])
-    #     self.assertEqual(self.filter_with_rule(rule), set(["d5839c1237765987724"]))
+    def test_hasidof_nonmatching(self):
+        """
+        Test non-matching HasIdOf rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="person.gramps_id != 'I0000'",
+                )
+            )
+        )
+        self.assertEqual(len(res), 2127)
 
-    # def test_hasidof_irregular(self):
-    #     """
-    #     Test irregular HasIdOf rule.
-    #     """
-    #     rule = HasIdOf(["ABCDEFG"])
-    #     self.assertEqual(self.filter_with_rule(rule), set([]))
+    def test_hasidof_irregular(self):
+        """
+        Test irregular HasIdOf rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="person.gramps_id == 'ABCDEFG'",
+                )
+            )
+        )
+        self.assertEqual(res, set([]))
 
-    # def test_hasidof_matching(self):
-    #     """
-    #     Test matching HasIdOf rule.
-    #     """
-    #     rule = HasIdOf(["I0044"])
-    #     self.assertEqual(
-    #         self.filter_with_rule(rule),
-    #         set(
-    #             [
-    #                 "GNUJQCL9MD64AM56OH",
-    #             ]
-    #         ),
-    #     )
+    def test_hasidof_matching(self):
+        """
+        Test matching HasIdOf rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="person.gramps_id == 'I0044'",
+                )
+            )
+        )
+        self.assertEqual(res, set(["GNUJQCL9MD64AM56OH"]))
 
-    # def test_isdefaultperson(self):
-    #     """
-    #     Test IsDefaultPerson rule.
-    #     """
-    #     rule = IsDefaultPerson([])
-    #     self.assertEqual(
-    #         self.filter_with_rule(rule),
-    #         set(
-    #             [
-    #                 "GNUJQCL9MD64AM56OH",
-    #             ]
-    #         ),
-    #     )
+    def test_hasidof_startswith(self):
+        """
+        Test matching HasIdOf rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="person.gramps_id.startswith('I00')",
+                )
+            )
+        )
+        self.assertEqual(len(res), 100)
 
-    # def test_isfemale(self):
-    #     """
-    #     Test IsFemale rule.
-    #     """
-    #     rule = IsFemale([])
-    #     # too many to list out to test explicitly
-    #     self.assertEqual(len(self.filter_with_rule(rule)), 940)
+    def test_isfemale(self):
+        """
+        Test IsFemale rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="person.gender == Person.FEMALE",
+                )
+            )
+        )
+        # too many to list out to test explicitly
+        self.assertEqual(len(res), 940)
 
-    # def test_ismale(self):
-    #     """
-    #     Test IsMale rule.
-    #     """
-    #     rule = IsMale([])
-    #     # too many to list out to test explicitly
-    #     self.assertEqual(len(self.filter_with_rule(rule)), 1168)
+    def test_ismale(self):
+        """
+        Test IsMale rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="person.gender == Person.MALE",
+                )
+            )
+        )
+        # too many to list out to test explicitly
+        self.assertEqual(len(res), 1168)
 
-    # def test_multiplemarriages(self):
-    #     """
-    #     Test MultipleMarriages rule.
-    #     """
-    #     rule = MultipleMarriages([])
-    #     self.assertEqual(
-    #         self.filter_with_rule(rule),
-    #         set(
-    #             [
-    #                 "R1VKQCJWNP24VN7BO",
-    #                 "ZTVJQCTSMI85EGMXFM",
-    #                 "ENTJQCZXQV1IRKJXUL",
-    #                 "44WJQCLCQIPZUB0UH",
-    #                 "SMWJQCXQ6I2GEXSPK9",
-    #                 "DN3KQC1URTED410L3R",
-    #                 "5FYJQC86G8EZ0L4E4B",
-    #                 "5F4KQCJRU8ZKL6SILT",
-    #                 "0YNKQC5U4EQGVNUZD8",
-    #                 "YRYJQCE3RF4U8A59UB",
-    #                 "APWKQCI6YXAXBLC33I",
-    #                 "XSKKQC6GGKLAYANWAF",
-    #                 "0FQKQCOQD0VRVJPTSD",
-    #                 "B3UJQCZHDXII99AWW4",
-    #                 "cc8205d872f532ab14e",
-    #                 "SS1KQCWWF9488Q330U",
-    #                 "OCYJQCS8YT7JO8KIMO",
-    #                 "I6HKQCQF72V2N56JQ5",
-    #                 "6YWJQC86FBVN0J6JS",
-    #                 "KYNKQCVA6FE65ONFIQ",
-    #                 "SHAKQCNY5IXO30GUAB",
-    #                 "O5XKQC3V6BPJI13J24",
-    #                 "ZN7KQC3RLB82EXF1QF",
-    #                 "CIYJQCF3UK12DL0S2Y",
-    #                 "H3XJQCFJ4FP4U2WGZC",
-    #                 "cc82060504445ab6deb",
-    #                 "4E4KQC1K4XUEX29IJO",
-    #                 "0XVJQCJUNJY40WDSMA",
-    #                 "1WUJQCHNH76G6YD3A",
-    #                 "IH3KQCM1VZPRKLBLK7",
-    #                 "242KQCBALBOD8ZK5VI",
-    #                 "8G4KQCS6C1AOM6ZGR3",
-    #                 "I1EKQCGGDSUD8ILUW4",
-    #                 "X8BKQCSFF4AET5MY23",
-    #                 "RJWJQCN1XKXRN5KMCP",
-    #                 "ZWNKQC9DAZ3C6UHUAV",
-    #                 "9QUJQCCSWRZNSAPCR",
-    #                 "HI0KQCG9TGT5AAIPU",
-    #                 "DI4KQC3S1AO27VWOLN",
-    #                 "QBDKQCH2IU6N8IXMFE",
-    #                 "DK2KQCJYW14VXUJ85",
-    #                 "117KQCBB32RMTTV4G6",
-    #                 "0QLKQCFTQMNVGCV4GM",
-    #                 "D2OKQCGDNPT3BH4WH",
-    #                 "CAYJQCKOL49OF7XWB3",
-    #                 "ZQGKQCGHS67Q4IMHEG",
-    #                 "OEXJQCQJHF2BLSAAIS",
-    #                 "UKYJQC70LIZQ11BP89",
-    #                 "FF2KQCRBSPCG1QY97",
-    #                 "L6EKQCO8QYL2UO2MQO",
-    #             ]
-    #         ),
-    #     )
+    def test_multiplemarriages(self):
+        """
+        Test MultipleMarriages rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="len(person.family_list) > 1",
+                )
+            )
+        )
+        self.assertEqual(
+            res,
+            set(
+                [
+                    "R1VKQCJWNP24VN7BO",
+                    "ZTVJQCTSMI85EGMXFM",
+                    "ENTJQCZXQV1IRKJXUL",
+                    "44WJQCLCQIPZUB0UH",
+                    "SMWJQCXQ6I2GEXSPK9",
+                    "DN3KQC1URTED410L3R",
+                    "5FYJQC86G8EZ0L4E4B",
+                    "5F4KQCJRU8ZKL6SILT",
+                    "0YNKQC5U4EQGVNUZD8",
+                    "YRYJQCE3RF4U8A59UB",
+                    "APWKQCI6YXAXBLC33I",
+                    "XSKKQC6GGKLAYANWAF",
+                    "0FQKQCOQD0VRVJPTSD",
+                    "B3UJQCZHDXII99AWW4",
+                    "cc8205d872f532ab14e",
+                    "SS1KQCWWF9488Q330U",
+                    "OCYJQCS8YT7JO8KIMO",
+                    "I6HKQCQF72V2N56JQ5",
+                    "6YWJQC86FBVN0J6JS",
+                    "KYNKQCVA6FE65ONFIQ",
+                    "SHAKQCNY5IXO30GUAB",
+                    "O5XKQC3V6BPJI13J24",
+                    "ZN7KQC3RLB82EXF1QF",
+                    "CIYJQCF3UK12DL0S2Y",
+                    "H3XJQCFJ4FP4U2WGZC",
+                    "cc82060504445ab6deb",
+                    "4E4KQC1K4XUEX29IJO",
+                    "0XVJQCJUNJY40WDSMA",
+                    "1WUJQCHNH76G6YD3A",
+                    "IH3KQCM1VZPRKLBLK7",
+                    "242KQCBALBOD8ZK5VI",
+                    "8G4KQCS6C1AOM6ZGR3",
+                    "I1EKQCGGDSUD8ILUW4",
+                    "X8BKQCSFF4AET5MY23",
+                    "RJWJQCN1XKXRN5KMCP",
+                    "ZWNKQC9DAZ3C6UHUAV",
+                    "9QUJQCCSWRZNSAPCR",
+                    "HI0KQCG9TGT5AAIPU",
+                    "DI4KQC3S1AO27VWOLN",
+                    "QBDKQCH2IU6N8IXMFE",
+                    "DK2KQCJYW14VXUJ85",
+                    "117KQCBB32RMTTV4G6",
+                    "0QLKQCFTQMNVGCV4GM",
+                    "D2OKQCGDNPT3BH4WH",
+                    "CAYJQCKOL49OF7XWB3",
+                    "ZQGKQCGHS67Q4IMHEG",
+                    "OEXJQCQJHF2BLSAAIS",
+                    "UKYJQC70LIZQ11BP89",
+                    "FF2KQCRBSPCG1QY97",
+                    "L6EKQCO8QYL2UO2MQO",
+                ]
+            ),
+        )
 
-    # def test_nevermarried(self):
-    #     """
-    #     Test NeverMarried rule.
-    #     """
-    #     rule = NeverMarried([])
-    #     # too many to list out to test explicitly
-    #     self.assertEqual(len(self.filter_with_rule(rule)), 751)
+    def test_nevermarried(self):
+        """
+        Test NeverMarried rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="len(person.family_list) == 0",
+                )
+            )
+        )
+        # too many to list out to test explicitly
+        self.assertEqual(len(res), 751)
 
-    # def test_nobirthdate(self):
-    #     """
-    #     Test NoBirthdate rule.
-    #     """
-    #     rule = NoBirthdate([])
-    #     # too many to list out to test explicitly
-    #     self.assertEqual(len(self.filter_with_rule(rule)), 981)
+    def test_peopleprivate(self):
+        """
+        Test PeoplePrivate rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="person.private",
+                )
+            )
+        )
+        self.assertEqual(len(res), 1)
 
-    # def test_nodeathdate(self):
-    #     """
-    #     Test NoDeathdate rule.
-    #     """
-    #     rule = NoDeathdate([])
-    #     # too many to list out to test explicitly
-    #     self.assertEqual(len(self.filter_with_rule(rule)), 1603)
-
-    # def test_peopleprivate(self):
-    #     """
-    #     Test PeoplePrivate rule.
-    #     """
-    #     # TODO: example.gramps has no people marked private
-    #     rule = PeoplePrivate([])
-    #     self.assertEqual(self.filter_with_rule(rule), set([]))
-
-    # def test_peoplepublic(self):
-    #     """
-    #     Test PeoplePublic rule.
-    #     """
-    #     rule = PeoplePublic([])
-    #     # too many to list out to test explicitly
-    #     self.assertEqual(len(self.filter_with_rule(rule)), 2128)
-
-    # def test_hasnameof(self):
-    #     """
-    #     Test HasNameOf rule.
-    #     """
-    #     rule = HasNameOf(
-    #         [
-    #             "Lewis",
-    #             "Garner",
-    #             "Dr.",
-    #             "Sr",
-    #             "Anderson",
-    #             "Big Louie",
-    #             "von",
-    #             "Zieliński",
-    #             None,
-    #             None,
-    #             None,
-    #         ]
-    #     )
-    #     self.assertEqual(self.filter_with_rule(rule), set(["GNUJQCL9MD64AM56OH"]))
+    def test_peoplepublic(self):
+        """
+        Test PeoplePublic rule.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    "person.handle",
+                    where="not person.private",
+                )
+            )
+        )
+        # too many to list out to test explicitly
+        self.assertEqual(len(res), 2127)
 
 
 if __name__ == "__main__":

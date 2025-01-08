@@ -33,6 +33,9 @@ class AttributeNode:
             attr=self.attr,
         )
 
+    def remove_attribute(self):
+        self.attr = self.attr.rsplit(".", 1)[0]
+
     def get_length(self):
         return self.json_array_length.format(
             attr=self.attr,
@@ -189,6 +192,44 @@ class Evaluator:
             if function_name == "len":
                 # Assumes taking len of a json_data field
                 return args[0].get_length()
+            elif isinstance(function_name, AttributeNode):
+                if any(
+                    [
+                        function_name.attr.endswith(x)
+                        for x in [
+                            ".contains",
+                            ".endswith",
+                            ".startswith",
+                        ]
+                    ]
+                ):
+                    # check to make sure string
+                    if (
+                        len(args) != 1
+                        or len(args[0]) < 2
+                        or len(set([args[0][0], args[0][-1]])) != 1
+                        or args[0][0] not in ["'", '"']
+                    ):
+                        raise Exception(
+                            "%r function requires a string" % function_name.attr
+                        )
+
+                    if function_name.attr.endswith(".contains"):
+                        function_name.remove_attribute()
+                        return "like('%s', %s)" % (
+                            "%" + args[0][1:-1] + "%",
+                            function_name,
+                        )
+                    elif function_name.attr.endswith(".endswith"):
+                        function_name.remove_attribute()
+                        return "like('%s', %s)" % ("%" + args[0][1:-1], function_name)
+                        pass
+                    elif function_name.attr.endswith(".startswith"):
+                        function_name.remove_attribute()
+                        return "like('%s', %s)" % (args[0][1:-1] + "%", function_name)
+                    else:
+                        raise Exception("unhandled function")
+
             else:
                 raise ValueError("unknown function %r" % function_name)
 
