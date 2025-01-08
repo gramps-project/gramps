@@ -1204,7 +1204,6 @@ class BaseTest(unittest.TestCase):
         """
         Test PeoplePrivate rule.
         """
-        # TODO: example.gramps has no people marked private
         rule = PeoplePrivate([])
         self.assertEqual(self.filter_with_rule(rule), set(["0GDKQC54XKSWZKEBWW"]))
 
