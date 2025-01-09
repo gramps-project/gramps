@@ -441,4 +441,14 @@ register_datehandler(
     DateParserDE,
     DateDisplayDE,
 )
-register_datehandler(("de_AT", ("%d.%m.%Y",)), DateParserDE, DateDisplayDE)
+
+
+class DateParserDE_AT(DateParserDE):
+    pass
+
+
+class DateDisplayDE_AT(DateDisplayDE):
+    pass
+
+
+register_datehandler(("de_AT", ("%d.%m.%Y",)), DateParserDE_AT, DateDisplayDE_AT)
