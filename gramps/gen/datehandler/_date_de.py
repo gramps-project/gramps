@@ -215,6 +215,7 @@ class DateParserDE(DateParser):
         "etwa": Date.MOD_ABOUT,
         "circa": Date.MOD_ABOUT,
         "ca.": Date.MOD_ABOUT,
+        "ab": Date.MOD_FROM,
         "von": Date.MOD_FROM,
         "bis": Date.MOD_TO,
     }
