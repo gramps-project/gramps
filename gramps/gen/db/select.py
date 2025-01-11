@@ -93,7 +93,7 @@ def _select_from_table(db, table_name, what, where, env):
 
         if where_value:
             if what is None:
-                what_value = table_name
+                what_value = obj
             elif isinstance(what, str):
                 what_value = eval(what, env)
             else:
