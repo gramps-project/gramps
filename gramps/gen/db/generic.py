@@ -2739,3 +2739,45 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.serializer = BlobSerializer
         elif serializer_name == "json":
             self.serializer = JSONSerializer
+
+    # New names for methods:
+
+    get_person = get_person_from_handle
+    get_family = get_family_from_handle
+    get_source = get_source_from_handle
+    get_citation = get_citation_from_handle
+    get_event = get_event_from_handle
+    get_media = get_media_from_handle
+    get_place = get_place_from_handle
+    get_repository = get_repository_from_handle
+    get_note = get_note_from_handle
+
+    get_person_data = get_raw_person_data
+    get_family_data = get_raw_family_data
+    get_source_data = get_raw_source_data
+    get_citation_data = get_raw_citation_data
+    get_event_data = get_raw_event_data
+    get_media_data = get_raw_media_data
+    get_place_data = get_raw_place_data
+    get_repository_data = get_raw_repository_data
+    get_note_data = get_raw_note_data
+
+    get_person_from_id = get_person_from_gramps_id
+    get_family_from_id = get_family_from_gramps_id
+    get_source_from_id = get_source_from_gramps_id
+    get_citation_from_id = get_citation_from_gramps_id
+    get_event_from_id = get_event_from_gramps_id
+    get_media_from_id = get_media_from_gramps_id
+    get_place_from_id = get_place_from_gramps_id
+    get_repository_from_id = get_repository_from_gramps_id
+    get_note_from_id = get_note_from_gramps_id
+
+    get_person_data_from_id = _get_raw_person_from_id_data
+    get_family_data_from_id = _get_raw_family_from_id_data
+    get_source_data_from_id = _get_raw_source_from_id_data
+    get_citation_data_from_id = _get_raw_citation_from_id_data
+    get_event_data_from_id = _get_raw_event_from_id_data
+    get_media_data_from_id = _get_raw_media_from_id_data
+    get_place_data_from_id = _get_raw_place_from_id_data
+    get_repository_data_from_id = _get_raw_repository_from_id_data
+    get_note_data_from_id = _get_raw_note_from_id_data
