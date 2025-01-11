@@ -26,7 +26,6 @@
             <child>
               <object class="GtkButton" id="import_cancel">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="is-focus">True</property>
@@ -43,7 +42,6 @@
             <child>
               <object class="GtkButton" id="import_ok">
                 <property name="label" translatable="yes">_Ok</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="is-focus">True</property>
@@ -61,7 +59,6 @@
             <child>
               <object class="GtkButton" id="import_help">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -136,7 +133,6 @@
 (out of Settings)</property>
                     <property name="halign">start</property>
                     <property name="resize-mode">queue</property>
-                    <property name="xalign">0</property>
                     <property name="draw-indicator">True</property>
                     <signal name="toggled" handler="on_source_button_toggled" swapped="no"/>
                   </object>
@@ -156,8 +152,8 @@
                       <object class="GtkImage" id="imp_source_priv_img">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">5</property>
-                        <property name="margin-right">5</property>
+                        <property name="margin-start">5</property>
+                        <property name="margin-end">5</property>
                         <property name="icon-name">dialog-password</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="imp_source_priv_img-atkobject">
@@ -244,7 +240,6 @@
                     <property name="receives-default">False</property>
                     <property name="tooltip-text" translatable="yes">Citation reference.</property>
                     <property name="halign">start</property>
-                    <property name="xalign">0</property>
                     <property name="draw-indicator">True</property>
                     <signal name="toggled" handler="on_citation_button_toggled" swapped="no"/>
                   </object>
@@ -280,8 +275,8 @@
                       <object class="GtkImage" id="imp_citation_priv_img">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">5</property>
-                        <property name="margin-right">5</property>
+                        <property name="margin-start">5</property>
+                        <property name="margin-end">5</property>
                         <property name="icon-name">dialog-password</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="imp_citation_priv_img-atkobject">
@@ -306,7 +301,7 @@
                   <object class="GtkLabel" id="imp_citation_conf_lbl">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-right">2</property>
+                    <property name="margin-end">2</property>
                     <property name="label" translatable="yes">Confidence</property>
                   </object>
                   <packing>
@@ -438,8 +433,8 @@
                         <property name="can-focus">False</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
-                        <property name="margin-left">8</property>
-                        <property name="margin-right">2</property>
+                        <property name="margin-start">8</property>
+                        <property name="margin-end">2</property>
                         <property name="label" translatable="yes">Text</property>
                       </object>
                       <packing>
@@ -454,7 +449,7 @@
                         <property name="can-focus">True</property>
                         <property name="tooltip-text" translatable="yes">Default Tagtext
 (out of Settings).</property>
-                        <property name="margin-right">4</property>
+                        <property name="margin-end">4</property>
                         <property name="hexpand">True</property>
                       </object>
                       <packing>
@@ -467,7 +462,7 @@
                       <object class="GtkLabel" id="tag_default_fname_lbl">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-right">2</property>
+                        <property name="margin-end">2</property>
                         <property name="label" translatable="yes">File</property>
                       </object>
                       <packing>
@@ -481,7 +476,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="tooltip-text" translatable="yes">Import Filename.</property>
-                        <property name="margin-right">4</property>
+                        <property name="margin-end">4</property>
                         <property name="width-chars">13</property>
                       </object>
                       <packing>
@@ -494,7 +489,7 @@
                       <object class="GtkLabel" id="tag_default_date_lbl">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-right">2</property>
+                        <property name="margin-end">2</property>
                         <property name="label" translatable="yes">Date</property>
                       </object>
                       <packing>
@@ -518,7 +513,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="tag_default_date_btn">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -587,7 +581,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -602,7 +595,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -617,7 +609,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -632,7 +623,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -647,7 +637,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -662,7 +651,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -677,7 +665,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -752,7 +739,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-right">2</property>
+                        <property name="margin-end">2</property>
                         <property name="label" translatable="yes">Citation</property>
                       </object>
                       <packing>
@@ -869,7 +856,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -884,7 +870,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -899,7 +884,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -914,7 +898,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -929,7 +912,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -944,7 +926,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -959,7 +940,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -974,7 +954,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -989,7 +968,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1004,7 +982,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1019,7 +996,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1034,7 +1010,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1049,7 +1024,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1064,7 +1038,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1194,7 +1167,7 @@ all object tags.</property>
                   <object class="GtkGrid" id="primobj_grid">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-left">4</property>
+                    <property name="margin-start">4</property>
                     <property name="resize-mode">queue</property>
                     <property name="column-spacing">4</property>
                     <child>
@@ -1205,7 +1178,7 @@ all object tags.</property>
                         <property name="receives-default">False</property>
                         <property name="tooltip-text" translatable="yes">Enable/Disable
 Person import.</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_primobj_button_toggled" swapped="no"/>
                       </object>
@@ -1222,7 +1195,7 @@ Person import.</property>
                         <property name="receives-default">False</property>
                         <property name="tooltip-text" translatable="yes">Enable/Disable
 Family import.</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_primobj_button_toggled" swapped="no"/>
                       </object>
@@ -1239,7 +1212,7 @@ Family import.</property>
                         <property name="receives-default">False</property>
                         <property name="tooltip-text" translatable="yes">Enable/Disable
 Child import.</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_primobj_button_toggled" swapped="no"/>
                       </object>
@@ -1296,7 +1269,7 @@ Child import.</property>
                   <object class="GtkGrid" id="option_grid">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-left">4</property>
+                    <property name="margin-start">4</property>
                     <property name="resize-mode">queue</property>
                     <property name="column-spacing">4</property>
                     <child>
@@ -1308,7 +1281,6 @@ Child import.</property>
                         <property name="tooltip-text" translatable="yes">Use original Person
 Identifier as Gramps ID.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1325,7 +1297,6 @@ Identifier as Gramps ID.</property>
                         <property name="tooltip-text" translatable="yes">Use original Family
 Identifier as Gramps ID.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1351,8 +1322,8 @@ Identifier as Gramps ID.</property>
                       <object class="GtkSeparator" id="opt_sep11">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">8</property>
-                        <property name="margin-right">8</property>
+                        <property name="margin-start">8</property>
+                        <property name="margin-end">8</property>
                         <property name="orientation">vertical</property>
                       </object>
                       <packing>
@@ -1379,8 +1350,8 @@ Identifier as Gramps ID.</property>
                       <object class="GtkSeparator" id="opt_sep21">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">8</property>
-                        <property name="margin-right">8</property>
+                        <property name="margin-start">8</property>
+                        <property name="margin-end">8</property>
                         <property name="orientation">vertical</property>
                       </object>
                       <packing>
@@ -1392,8 +1363,8 @@ Identifier as Gramps ID.</property>
                       <object class="GtkSeparator" id="opt_sep22">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">8</property>
-                        <property name="margin-right">8</property>
+                        <property name="margin-start">8</property>
+                        <property name="margin-end">8</property>
                         <property name="orientation">vertical</property>
                       </object>
                       <packing>
@@ -1405,8 +1376,8 @@ Identifier as Gramps ID.</property>
                       <object class="GtkSeparator" id="opt_sep23">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">8</property>
-                        <property name="margin-right">8</property>
+                        <property name="margin-start">8</property>
+                        <property name="margin-end">8</property>
                         <property name="orientation">vertical</property>
                       </object>
                       <packing>
@@ -1438,7 +1409,6 @@ Identifier as Gramps ID.</property>
                         <property name="tooltip-text" translatable="yes">Store birth date in
 event description.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1456,7 +1426,6 @@ event description.</property>
                         <property name="tooltip-text" translatable="yes">Store death date in
 event description.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1487,7 +1456,6 @@ event description.</property>
                         <property name="tooltip-text" translatable="yes">Store REFN number
 in event description.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1503,7 +1471,6 @@ in event description.</property>
                         <property name="tooltip-text" translatable="yes">Use death information
 as cause of death event.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1515,8 +1482,8 @@ as cause of death event.</property>
                       <object class="GtkSeparator" id="opt_sep32">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">8</property>
-                        <property name="margin-right">8</property>
+                        <property name="margin-start">8</property>
+                        <property name="margin-end">8</property>
                         <property name="orientation">vertical</property>
                       </object>
                       <packing>
@@ -1528,8 +1495,8 @@ as cause of death event.</property>
                       <object class="GtkSeparator" id="opt_sep31">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">8</property>
-                        <property name="margin-right">8</property>
+                        <property name="margin-start">8</property>
+                        <property name="margin-end">8</property>
                         <property name="orientation">vertical</property>
                       </object>
                       <packing>
@@ -1561,7 +1528,7 @@ as cause of death event.</property>
                         <property name="receives-default">False</property>
                         <property name="tooltip-text" translatable="yes">Change name of male
 to e.g. wifes name.</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_surname_button_toggled" swapped="no"/>
                       </object>
@@ -1578,7 +1545,7 @@ to e.g. wifes name.</property>
                         <property name="receives-default">False</property>
                         <property name="tooltip-text" translatable="yes">Change name of female
 to e.g. husbands name.</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_surname_button_toggled" swapped="no"/>
                       </object>
@@ -1591,8 +1558,8 @@ to e.g. husbands name.</property>
                       <object class="GtkSeparator" id="opt_sep13">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">8</property>
-                        <property name="margin-right">8</property>
+                        <property name="margin-start">8</property>
+                        <property name="margin-end">8</property>
                         <property name="orientation">vertical</property>
                       </object>
                       <packing>
@@ -1604,8 +1571,8 @@ to e.g. husbands name.</property>
                       <object class="GtkSeparator" id="opt_sep12">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">8</property>
-                        <property name="margin-right">8</property>
+                        <property name="margin-start">8</property>
+                        <property name="margin-end">8</property>
                         <property name="orientation">vertical</property>
                       </object>
                       <packing>

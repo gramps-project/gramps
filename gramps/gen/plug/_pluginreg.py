@@ -535,73 +535,98 @@ class PluginData:
         # THUMBNAILER attr
         self._thumbnailer = None
 
-    def _set_id(self, plugin_id):
-        self._id = plugin_id
-
-    def _get_id(self):
+    @property
+    def id(self):
         return self._id
 
-    def _set_name(self, name):
-        self._name = name
+    @id.setter
+    def id(self, plugin_id):
+        self._id = plugin_id
 
-    def _get_name(self):
+    @property
+    def name(self):
         return self._name
 
-    def _set_name_accell(self, name):
-        self._name_accell = name
+    @name.setter
+    def name(self, name):
+        self._name = name
 
-    def _get_name_accell(self):
+    @property
+    def name_accell(self):
         if self._name_accell is None:
             return self._name
         return self._name_accell
 
-    def _set_description(self, description):
-        self._description = description
+    @name_accell.setter
+    def name_accell(self, name):
+        self._name_accell = name
 
-    def _get_description(self):
+    @property
+    def description(self):
         return self._description
 
-    def _set_version(self, plugin_version):
-        self._version = plugin_version
+    @description.setter
+    def description(self, description):
+        self._description = description
 
-    def _get_version(self):
+    @property
+    def version(self):
         return self._version
 
-    def _set_gramps_target_version(self, target_version):
-        self._gramps_target_version = target_version
+    @version.setter
+    def version(self, plugin_version):
+        self._version = plugin_version
 
-    def _get_gramps_target_version(self):
+    @property
+    def gramps_target_version(self):
         return self._gramps_target_version
 
-    def _set_status(self, status):
+    @gramps_target_version.setter
+    def gramps_target_version(self, target_version):
+        self._gramps_target_version = target_version
+
+    @property
+    def status(self):
+        return self._status
+
+    @status.setter
+    def status(self, status):
         if status not in STATUS:
             raise ValueError(f"plugin status cannot be {status}")
         self._status = status
 
-    def _get_status(self):
-        return self._status
+    @property
+    def audience(self):
+        return self._audience
 
-    def _set_audience(self, audience):
+    @audience.setter
+    def audience(self, audience):
         if audience not in AUDIENCE:
             raise ValueError(f"plugin audience cannot be {audience}")
         self._audience = audience
 
-    def _get_audience(self):
-        return self._audience
-
-    def _set_fname(self, fname):
-        self._fname = fname
-
-    def _get_fname(self):
+    @property
+    def fname(self):
         return self._fname
 
-    def _set_fpath(self, fpath):
-        self._fpath = fpath
+    @fname.setter
+    def fname(self, fname):
+        self._fname = fname
 
-    def _get_fpath(self):
+    @property
+    def fpath(self):
         return self._fpath
 
-    def _set_ptype(self, ptype):
+    @fpath.setter
+    def fpath(self, fpath):
+        self._fpath = fpath
+
+    @property
+    def ptype(self):
+        return self._ptype
+
+    @ptype.setter
+    def ptype(self, ptype):
         if ptype not in PTYPE:
             raise ValueError(f"Plugin type cannot be {ptype}")
         if self._ptype is not None:
@@ -618,144 +643,141 @@ class PluginData:
         # if self._ptype == DOCGEN:
         #    self._load_on_reg = True
 
-    def _get_ptype(self):
-        return self._ptype
+    @property
+    def authors(self):
+        return self._authors
 
-    def _set_authors(self, authors):
+    @authors.setter
+    def authors(self, authors):
         if not authors or not isinstance(authors, list):
             return
         self._authors = authors
 
-    def _get_authors(self):
-        return self._authors
+    @property
+    def authors_email(self):
+        return self._authors_email
 
-    def _set_authors_email(self, authors_email):
+    @authors_email.setter
+    def authors_email(self, authors_email):
         if not authors_email or not isinstance(authors_email, list):
             return
         self._authors_email = authors_email
 
-    def _get_authors_email(self):
-        return self._authors_email
+    @property
+    def maintainers(self):
+        return self._maintainers
 
-    def _set_maintainers(self, maintainers):
+    @maintainers.setter
+    def maintainers(self, maintainers):
         if not maintainers or not isinstance(maintainers, list):
             return
         self._maintainers = maintainers
 
-    def _get_maintainers(self):
-        return self._maintainers
+    @property
+    def maintainers_email(self):
+        return self._maintainers_email
 
-    def _set_maintainers_email(self, maintainers_email):
+    @maintainers_email.setter
+    def maintainers_email(self, maintainers_email):
         if not maintainers_email or not isinstance(maintainers_email, list):
             return
         self._maintainers_email = maintainers_email
 
-    def _get_maintainers_email(self):
-        return self._maintainers_email
+    @property
+    def supported(self):
+        return self._supported
 
-    def _set_supported(self, supported):
+    @supported.setter
+    def supported(self, supported):
         if not isinstance(supported, bool):
             raise ValueError("Plugin must have supported=True or False")
         self._supported = supported
 
-    def _get_supported(self):
-        return self._supported
+    @property
+    def load_on_reg(self):
+        return self._load_on_reg
 
-    def _set_load_on_reg(self, load_on_reg):
+    @load_on_reg.setter
+    def load_on_reg(self, load_on_reg):
         if not isinstance(load_on_reg, bool):
             raise ValueError("Plugin must have load_on_reg=True or False")
         self._load_on_reg = load_on_reg
 
-    def _get_load_on_reg(self):
-        return self._load_on_reg
-
-    def _get_icons(self):
+    @property
+    def icons(self):
         return self._icons
 
-    def _set_icons(self, icons):
+    @icons.setter
+    def icons(self, icons):
         if not isinstance(icons, list):
             raise ValueError("Plugin must have icons as a list")
         self._icons = icons
 
-    def _get_icondir(self):
+    @property
+    def icondir(self):
         return self._icondir
 
-    def _set_icondir(self, icondir):
+    @icondir.setter
+    def icondir(self, icondir):
         self._icondir = icondir
 
-    def _get_depends_on(self):
+    @property
+    def depends_on(self):
         return self._depends_on
 
-    def _set_depends_on(self, depends):
+    @depends_on.setter
+    def depends_on(self, depends):
         if not isinstance(depends, list):
             raise ValueError("Plugin must have depends_on as a list")
         self._depends_on = depends
 
-    def _get_requires_mod(self):
+    @property
+    def requires_mod(self):
         return self._requires_mod
 
-    def _set_requires_mod(self, requires):
+    @requires_mod.setter
+    def requires_mod(self, requires):
         if not isinstance(requires, list):
             raise ValueError("Plugin must have requires_mod as a list")
         self._requires_mod = requires
 
-    def _get_requires_gi(self):
+    @property
+    def requires_gi(self):
         return self._requires_gi
 
-    def _set_requires_gi(self, requires):
+    @requires_gi.setter
+    def requires_gi(self, requires):
         if not isinstance(requires, list):
             raise ValueError("Plugin must have requires_gi as a list")
         self._requires_gi = requires
 
-    def _get_requires_exe(self):
+    @property
+    def requires_exe(self):
         return self._requires_exe
 
-    def _set_requires_exe(self, requires):
+    @requires_exe.setter
+    def requires_exe(self, requires):
         if not isinstance(requires, list):
             raise ValueError("Plugin must have requires_exe as a list")
         self._requires_exe = requires
 
-    def _get_include_in_listing(self):
+    @property
+    def include_in_listing(self):
         return self._include_in_listing
 
-    def _set_include_in_listing(self, include):
+    @include_in_listing.setter
+    def include_in_listing(self, include):
         if not isinstance(include, bool):
             raise ValueError("Plugin must have include_in_listing as a bool")
         self._include_in_listing = include
 
-    def _set_help_url(self, help_url):
-        self._help_url = help_url
-
-    def _get_help_url(self):
+    @property
+    def help_url(self):
         return self._help_url
 
-    id = property(_get_id, _set_id)
-    name = property(_get_name, _set_name)
-    name_accell = property(_get_name_accell, _set_name_accell)
-    description = property(_get_description, _set_description)
-    version = property(_get_version, _set_version)
-    gramps_target_version = property(
-        _get_gramps_target_version, _set_gramps_target_version
-    )
-    status = property(_get_status, _set_status)
-    audience = property(_get_audience, _set_audience)
-    fname = property(_get_fname, _set_fname)
-    fpath = property(_get_fpath, _set_fpath)
-    ptype = property(_get_ptype, _set_ptype)
-    authors = property(_get_authors, _set_authors)
-    authors_email = property(_get_authors_email, _set_authors_email)
-    maintainers = property(_get_maintainers, _set_maintainers)
-    maintainers_email = property(_get_maintainers_email, _set_maintainers_email)
-    supported = property(_get_supported, _set_supported)
-    load_on_reg = property(_get_load_on_reg, _set_load_on_reg)
-    icons = property(_get_icons, _set_icons)
-    icondir = property(_get_icondir, _set_icondir)
-    depends_on = property(_get_depends_on, _set_depends_on)
-    requires_mod = property(_get_requires_mod, _set_requires_mod)
-    requires_gi = property(_get_requires_gi, _set_requires_gi)
-    requires_exe = property(_get_requires_exe, _set_requires_exe)
-    include_in_listing = property(_get_include_in_listing, _set_include_in_listing)
-    help_url = property(_get_help_url, _set_help_url)
+    @help_url.setter
+    def help_url(self, help_url):
+        self._help_url = help_url
 
     def statustext(self):
         """
@@ -766,45 +788,55 @@ class PluginData:
     # type specific plugin attributes
 
     # RELCALC attributes
-    def _set_relcalcclass(self, relcalcclass):
+    @property
+    def relcalcclass(self):
+        return self._relcalcclass
+
+    @relcalcclass.setter
+    def relcalcclass(self, relcalcclass):
         if self._ptype != RELCALC:
             raise ValueError("relcalcclass may only be set for RELCALC plugins")
         self._relcalcclass = relcalcclass
 
-    def _get_relcalcclass(self):
-        return self._relcalcclass
+    @property
+    def lang_list(self):
+        return self._lang_list
 
-    def _set_lang_list(self, lang_list):
+    @lang_list.setter
+    def lang_list(self, lang_list):
         if self._ptype != RELCALC:
             raise ValueError("relcalcclass may only be set for RELCALC plugins")
         self._lang_list = lang_list
 
-    def _get_lang_list(self):
-        return self._lang_list
-
-    relcalcclass = property(_get_relcalcclass, _set_relcalcclass)
-    lang_list = property(_get_lang_list, _set_lang_list)
-
     # REPORT attributes
-    def _set_require_active(self, require_active):
+    @property
+    def require_active(self):
+        return self._require_active
+
+    @require_active.setter
+    def require_active(self, require_active):
         if self._ptype != REPORT:
             raise ValueError("require_active may only be set for REPORT plugins")
         if not isinstance(require_active, bool):
             raise ValueError("Report must have require_active=True or False")
         self._require_active = require_active
 
-    def _get_require_active(self):
-        return self._require_active
+    @property
+    def reportclass(self):
+        return self._reportclass
 
-    def _set_reportclass(self, reportclass):
+    @reportclass.setter
+    def reportclass(self, reportclass):
         if self._ptype != REPORT:
             raise ValueError("reportclass may only be set for REPORT plugins")
         self._reportclass = reportclass
 
-    def _get_reportclass(self):
-        return self._reportclass
+    @property
+    def report_modes(self):
+        return self._report_modes
 
-    def _set_report_modes(self, report_modes):
+    @report_modes.setter
+    def report_modes(self, report_modes):
         if self._ptype != REPORT:
             raise ValueError("report_modes may only be set for REPORT plugins")
         if not isinstance(report_modes, list):
@@ -813,11 +845,13 @@ class PluginData:
         if not self._report_modes:
             raise ValueError("report_modes not a valid list of modes")
 
-    def _get_report_modes(self):
-        return self._report_modes
-
     # REPORT or TOOL or QUICKREPORT or GENERAL attributes
-    def _set_category(self, category):
+    @property
+    def category(self):
+        return self._category
+
+    @category.setter
+    def category(self, category):
         if self._ptype not in [REPORT, TOOL, QUICKREPORT, VIEW, GENERAL]:
             raise ValueError(
                 "category may only be set for "
@@ -825,30 +859,36 @@ class PluginData:
             )
         self._category = category
 
-    def _get_category(self):
-        return self._category
-
     # REPORT OR TOOL attributes
-    def _set_optionclass(self, optionclass):
+    @property
+    def optionclass(self):
+        return self._optionclass
+
+    @optionclass.setter
+    def optionclass(self, optionclass):
         if self._ptype not in [REPORT, TOOL, DOCGEN]:
             raise ValueError(
                 "optionclass may only be set for REPORT/TOOL/DOCGEN plugins"
             )
         self._optionclass = optionclass
 
-    def _get_optionclass(self):
-        return self._optionclass
-
     # TOOL attributes
-    def _set_toolclass(self, toolclass):
+    @property
+    def toolclass(self):
+        return self._toolclass
+
+    @toolclass.setter
+    def toolclass(self, toolclass):
         if self._ptype != TOOL:
             raise ValueError("toolclass may only be set for TOOL plugins")
         self._toolclass = toolclass
 
-    def _get_toolclass(self):
-        return self._toolclass
+    @property
+    def tool_modes(self):
+        return self._tool_modes
 
-    def _set_tool_modes(self, tool_modes):
+    @tool_modes.setter
+    def tool_modes(self, tool_modes):
         if self._ptype != TOOL:
             raise ValueError("tool_modes may only be set for TOOL plugins")
         if not isinstance(tool_modes, list):
@@ -857,166 +897,172 @@ class PluginData:
         if not self._tool_modes:
             raise ValueError("tool_modes not a valid list of modes")
 
-    def _get_tool_modes(self):
-        return self._tool_modes
-
-    require_active = property(_get_require_active, _set_require_active)
-    reportclass = property(_get_reportclass, _set_reportclass)
-    report_modes = property(_get_report_modes, _set_report_modes)
-    category = property(_get_category, _set_category)
-    optionclass = property(_get_optionclass, _set_optionclass)
-    toolclass = property(_get_toolclass, _set_toolclass)
-    tool_modes = property(_get_tool_modes, _set_tool_modes)
-
     # DOCGEN attributes
-    def _set_paper(self, paper):
+    @property
+    def paper(self):
+        return self._paper
+
+    @paper.setter
+    def paper(self, paper):
         if self._ptype != DOCGEN:
             raise ValueError("paper may only be set for DOCGEN plugins")
         if not isinstance(paper, bool):
             raise ValueError("Plugin must have paper=True or False")
         self._paper = paper
 
-    def _get_paper(self):
-        return self._paper
+    @property
+    def style(self):
+        return self._style
 
-    def _set_style(self, style):
+    @style.setter
+    def style(self, style):
         if self._ptype != DOCGEN:
             raise ValueError("style may only be set for DOCGEN plugins")
         if not isinstance(style, bool):
             raise ValueError("Plugin must have style=True or False")
         self._style = style
 
-    def _get_style(self):
-        return self._style
+    @property
+    def extension(self):
+        return self._extension
 
-    def _set_extension(self, extension):
+    @extension.setter
+    def extension(self, extension):
         if self._ptype not in [DOCGEN, EXPORT, IMPORT]:
             raise ValueError(
                 "extension may only be set for DOCGEN/EXPORT/IMPORT plugins"
             )
         self._extension = extension
 
-    def _get_extension(self):
-        return self._extension
-
-    paper = property(_get_paper, _set_paper)
-    style = property(_get_style, _set_style)
-    extension = property(_get_extension, _set_extension)
-
     # QUICKREPORT attributes
-    def _set_runfunc(self, runfunc):
+    @property
+    def runfunc(self):
+        return self._runfunc
+
+    @runfunc.setter
+    def runfunc(self, runfunc):
         if self._ptype != QUICKREPORT:
             raise ValueError("runfunc may only be set for QUICKREPORT plugins")
         self._runfunc = runfunc
 
-    def _get_runfunc(self):
-        return self._runfunc
-
-    runfunc = property(_get_runfunc, _set_runfunc)
-
     # MAPSERVICE attributes
-    def _set_mapservice(self, mapservice):
+    @property
+    def mapservice(self):
+        return self._mapservice
+
+    @mapservice.setter
+    def mapservice(self, mapservice):
         if self._ptype != MAPSERVICE:
             raise ValueError("mapservice may only be set for MAPSERVICE plugins")
         self._mapservice = mapservice
 
-    def _get_mapservice(self):
-        return self._mapservice
-
-    mapservice = property(_get_mapservice, _set_mapservice)
-
     # EXPORT attributes
-    def _set_export_function(self, export_function):
+    @property
+    def export_function(self):
+        return self._export_function
+
+    @export_function.setter
+    def export_function(self, export_function):
         if self._ptype != EXPORT:
             raise ValueError("export_function may only be set for EXPORT plugins")
         self._export_function = export_function
 
-    def _get_export_function(self):
-        return self._export_function
+    @property
+    def export_options(self):
+        return self._export_options
 
-    def _set_export_options(self, export_options):
+    @export_options.setter
+    def export_options(self, export_options):
         if self._ptype != EXPORT:
             raise ValueError("export_options may only be set for EXPORT plugins")
         self._export_options = export_options
 
-    def _get_export_options(self):
-        return self._export_options
+    @property
+    def export_options_title(self):
+        return self._export_options_title
 
-    def _set_export_options_title(self, export_options_title):
+    @export_options_title.setter
+    def export_options_title(self, export_options_title):
         if self._ptype != EXPORT:
             raise ValueError("export_options_title may only be set for EXPORT plugins")
         self._export_options_title = export_options_title
 
-    def _get_export_options_title(self):
-        return self._export_options_title
-
-    export_function = property(_get_export_function, _set_export_function)
-    export_options = property(_get_export_options, _set_export_options)
-    export_options_title = property(
-        _get_export_options_title, _set_export_options_title
-    )
-
     # IMPORT attributes
-    def _set_import_function(self, import_function):
+    @property
+    def import_function(self):
+        return self._import_function
+
+    @import_function.setter
+    def import_function(self, import_function):
         if self._ptype != IMPORT:
             raise ValueError("import_function may only be set for IMPORT plugins")
         self._import_function = import_function
 
-    def _get_import_function(self):
-        return self._import_function
-
-    import_function = property(_get_import_function, _set_import_function)
-
     # GRAMPLET attributes
-    def _set_gramplet(self, gramplet):
+    @property
+    def gramplet(self):
+        return self._gramplet
+
+    @gramplet.setter
+    def gramplet(self, gramplet):
         if self._ptype != GRAMPLET:
             raise ValueError("gramplet may only be set for GRAMPLET plugins")
         self._gramplet = gramplet
 
-    def _get_gramplet(self):
-        return self._gramplet
+    @property
+    def height(self):
+        return self._height
 
-    def _set_height(self, height):
+    @height.setter
+    def height(self, height):
         if self._ptype != GRAMPLET:
             raise ValueError("height may only be set for GRAMPLET plugins")
         if not isinstance(height, int):
             raise ValueError("Plugin must have height an integer")
         self._height = height
 
-    def _get_height(self):
-        return self._height
+    @property
+    def detached_height(self):
+        return self._detached_height
 
-    def _set_detached_height(self, detached_height):
+    @detached_height.setter
+    def detached_height(self, detached_height):
         if self._ptype != GRAMPLET:
             raise ValueError("detached_height may only be set for GRAMPLET plugins")
         if not isinstance(detached_height, int):
             raise ValueError("Plugin must have detached_height an integer")
         self._detached_height = detached_height
 
-    def _get_detached_height(self):
-        return self._detached_height
+    @property
+    def detached_width(self):
+        return self._detached_width
 
-    def _set_detached_width(self, detached_width):
+    @detached_width.setter
+    def detached_width(self, detached_width):
         if self._ptype != GRAMPLET:
             raise ValueError("detached_width may only be set for GRAMPLET plugins")
         if not isinstance(detached_width, int):
             raise ValueError("Plugin must have detached_width an integer")
         self._detached_width = detached_width
 
-    def _get_detached_width(self):
-        return self._detached_width
+    @property
+    def expand(self):
+        return self._expand
 
-    def _set_expand(self, expand):
+    @expand.setter
+    def expand(self, expand):
         if self._ptype != GRAMPLET:
             raise ValueError("expand may only be set for GRAMPLET plugins")
         if not isinstance(expand, bool):
             raise ValueError("Plugin must have expand as a bool")
         self._expand = expand
 
-    def _get_expand(self):
-        return self._expand
+    @property
+    def gramplet_title(self):
+        return self._gramplet_title
 
-    def _set_gramplet_title(self, gramplet_title):
+    @gramplet_title.setter
+    def gramplet_title(self, gramplet_title):
         if self._ptype != GRAMPLET:
             raise ValueError("gramplet_title may only be set for GRAMPLET plugins")
         if not isinstance(gramplet_title, str):
@@ -1026,165 +1072,163 @@ class PluginData:
             )
         self._gramplet_title = gramplet_title
 
-    def _get_gramplet_title(self):
-        return self._gramplet_title
+    @property
+    def navtypes(self):
+        return self._navtypes
 
-    def _set_navtypes(self, navtypes):
+    @navtypes.setter
+    def navtypes(self, navtypes):
         if self._ptype != GRAMPLET:
             raise ValueError("navtypes may only be set for GRAMPLET plugins")
         self._navtypes = navtypes
 
-    def _get_navtypes(self):
-        return self._navtypes
+    @property
+    def orientation(self):
+        return self._orientation
 
-    def _set_orientation(self, orientation):
+    @orientation.setter
+    def orientation(self, orientation):
         if self._ptype != GRAMPLET:
             raise ValueError("orientation may only be set for GRAMPLET plugins")
         self._orientation = orientation
 
-    def _get_orientation(self):
-        return self._orientation
+    @property
+    def viewclass(self):
+        return self._viewclass
 
-    gramplet = property(_get_gramplet, _set_gramplet)
-    height = property(_get_height, _set_height)
-    detached_height = property(_get_detached_height, _set_detached_height)
-    detached_width = property(_get_detached_width, _set_detached_width)
-    expand = property(_get_expand, _set_expand)
-    gramplet_title = property(_get_gramplet_title, _set_gramplet_title)
-    navtypes = property(_get_navtypes, _set_navtypes)
-    orientation = property(_get_orientation, _set_orientation)
-
-    def _set_viewclass(self, viewclass):
+    @viewclass.setter
+    def viewclass(self, viewclass):
         if self._ptype != VIEW:
             raise ValueError("viewclass may only be set for VIEW plugins")
         self._viewclass = viewclass
 
-    def _get_viewclass(self):
-        return self._viewclass
+    @property
+    def stock_category_icon(self):
+        return self._stock_category_icon
 
-    def _set_stock_category_icon(self, stock_category_icon):
+    @stock_category_icon.setter
+    def stock_category_icon(self, stock_category_icon):
         if self._ptype != VIEW:
             raise ValueError("stock_category_icon may only be set for VIEW plugins")
         self._stock_category_icon = stock_category_icon
 
-    def _get_stock_category_icon(self):
-        return self._stock_category_icon
+    @property
+    def stock_icon(self):
+        return self._stock_icon
 
-    def _set_stock_icon(self, stock_icon):
+    @stock_icon.setter
+    def stock_icon(self, stock_icon):
         if self._ptype != VIEW:
             raise ValueError("stock_icon may only be set for VIEW plugins")
         self._stock_icon = stock_icon
 
-    def _get_stock_icon(self):
-        return self._stock_icon
-
-    viewclass = property(_get_viewclass, _set_viewclass)
-    stock_category_icon = property(_get_stock_category_icon, _set_stock_category_icon)
-    stock_icon = property(_get_stock_icon, _set_stock_icon)
-
     # SIDEBAR attributes
-    def _set_sidebarclass(self, sidebarclass):
+    @property
+    def sidebarclass(self):
+        return self._sidebarclass
+
+    @sidebarclass.setter
+    def sidebarclass(self, sidebarclass):
         if self._ptype != SIDEBAR:
             raise ValueError("sidebarclass may only be set for SIDEBAR plugins")
         self._sidebarclass = sidebarclass
 
-    def _get_sidebarclass(self):
-        return self._sidebarclass
+    @property
+    def menu_label(self):
+        return self._menu_label
 
-    def _set_menu_label(self, menu_label):
+    @menu_label.setter
+    def menu_label(self, menu_label):
         if self._ptype != SIDEBAR:
             raise ValueError("menu_label may only be set for SIDEBAR plugins")
         self._menu_label = menu_label
 
-    def _get_menu_label(self):
-        return self._menu_label
-
-    sidebarclass = property(_get_sidebarclass, _set_sidebarclass)
-    menu_label = property(_get_menu_label, _set_menu_label)
-
     # VIEW, SIDEBAR and THUMBNAILER attributes
-    def _set_order(self, order):
+    @property
+    def order(self):
+        return self._order
+
+    @order.setter
+    def order(self, order):
         if self._ptype not in [VIEW, SIDEBAR, THUMBNAILER]:
             raise ValueError(
                 "order may only be set for VIEW/SIDEBAR/THUMBNAILER plugins"
             )
         self._order = order
 
-    def _get_order(self):
-        return self._order
-
-    order = property(_get_order, _set_order)
-
     # DATABASE attributes
-    def _set_databaseclass(self, databaseclass):
+    @property
+    def databaseclass(self):
+        return self._databaseclass
+
+    @databaseclass.setter
+    def databaseclass(self, databaseclass):
         if self._ptype != DATABASE:
             raise ValueError("databaseclass may only be set for DATABASE plugins")
         self._databaseclass = databaseclass
 
-    def _get_databaseclass(self):
-        return self._databaseclass
+    @property
+    def reset_system(self):
+        return self._reset_system
 
-    def _set_reset_system(self, reset_system):
+    @reset_system.setter
+    def reset_system(self, reset_system):
         if self._ptype != DATABASE:
             raise ValueError("reset_system may only be set for DATABASE plugins")
         self._reset_system = reset_system
 
-    def _get_reset_system(self):
-        return self._reset_system
-
-    databaseclass = property(_get_databaseclass, _set_databaseclass)
-    reset_system = property(_get_reset_system, _set_reset_system)
-
     # GENERAL attr
-    def _set_data(self, data):
+    @property
+    def data(self):
+        return self._data
+
+    @data.setter
+    def data(self, data):
         if self._ptype != GENERAL:
             raise ValueError("data may only be set for GENERAL plugins")
         self._data = data
 
-    def _get_data(self):
-        return self._data
+    @property
+    def process(self):
+        return self._process
 
-    def _set_process(self, process):
+    @process.setter
+    def process(self, process):
         if self._ptype != GENERAL:
             raise ValueError("process may only be set for GENERAL plugins")
         self._process = process
 
-    def _get_process(self):
-        return self._process
-
-    data = property(_get_data, _set_data)
-    process = property(_get_process, _set_process)
-
     # RULE attr
-    def _set_ruleclass(self, data):
+    @property
+    def ruleclass(self):
+        return self._ruleclass
+
+    @ruleclass.setter
+    def ruleclass(self, data):
         if self._ptype != RULE:
             raise ValueError("ruleclass may only be set for RULE plugins")
         self._ruleclass = data
 
-    def _get_ruleclass(self):
-        return self._ruleclass
+    @property
+    def namespace(self):
+        return self._namespace
 
-    def _set_namespace(self, data):
+    @namespace.setter
+    def namespace(self, data):
         if self._ptype != RULE:
             raise ValueError("namespace may only be set for RULE plugins")
         self._namespace = data
 
-    def _get_namespace(self):
-        return self._namespace
-
-    ruleclass = property(_get_ruleclass, _set_ruleclass)
-    namespace = property(_get_namespace, _set_namespace)
-
     # THUMBNAILER attr
-    def _set_thumbnailer(self, data):
+    @property
+    def thumbnailer(self):
+        return self._thumbnailer
+
+    @thumbnailer.setter
+    def thumbnailer(self, data):
         if self._ptype != THUMBNAILER:
             raise ValueError("thumbnailer may only be set for THUMBNAILER plugins")
         self._thumbnailer = data
-
-    def _get_thumbnailer(self):
-        return self._thumbnailer
-
-    thumbnailer = property(_get_thumbnailer, _set_thumbnailer)
 
 
 def newplugin():

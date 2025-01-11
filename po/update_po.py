@@ -312,7 +312,7 @@ def create_filesfile():
 
         for filename in os.listdir(dirpath):
             name = os.path.split(filename)[1]
-            if name.endswith(".py") or name.endswith(".glade"):
+            if name.endswith((".py", ".glade")):
                 full_filename = os.path.join(dirpath, filename)
                 # Skip the file if in POTFILES.skip
                 if full_filename[lentopdir:] in notinfiles:
@@ -430,13 +430,13 @@ def xml_fragments():
             tokens = tokenize(fp.readline)
             in_string = False
             for _token, _text, _start, _end, _line in tokens:
-                if _text.startswith('"""') or _text.startswith("'''"):
+                if _text.startswith(('"""', "'''")):
                     _text = _text[3:]
-                elif _text.startswith('"') or _text.startswith("'"):
+                elif _text.startswith(('"', "'")):
                     _text = _text[1:]
-                if _text.endswith('"""') or _text.endswith("'''"):
+                if _text.endswith(('"""', "'''")):
                     _text = _text[:-3]
-                elif _text.endswith('"') or _text.endswith("'"):
+                elif _text.endswith(('"', "'")):
                     _text = _text[:-1]
                 if _token == STRING and not in_string:
                     in_string = True

@@ -20,7 +20,6 @@
             <child>
               <object class="GtkButton" id="button108">
                 <property name="label" translatable="yes">_Close</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -36,7 +35,6 @@
             </child>
             <child>
               <object class="GtkButton" id="apply">
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -105,8 +103,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">10</property>
-                        <property name="margin-right">10</property>
+                        <property name="margin-start">10</property>
+                        <property name="margin-end">10</property>
                         <property name="margin-top">10</property>
                         <property name="margin-bottom">10</property>
                         <property name="use-markup">True</property>
@@ -132,8 +130,8 @@
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
-                    <property name="margin-left">10</property>
-                    <property name="margin-right">10</property>
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
                     <property name="margin-top">20</property>
                     <property name="margin-bottom">20</property>
                     <property name="label" translatable="yes">Select a report from those available on the left.</property>
@@ -154,8 +152,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">end</property>
-                        <property name="margin-left">6</property>
-                        <property name="margin-right">6</property>
+                        <property name="margin-start">6</property>
+                        <property name="margin-end">6</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">Status:</property>
@@ -171,8 +169,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">5</property>
-                        <property name="margin-right">5</property>
+                        <property name="margin-start">5</property>
+                        <property name="margin-end">5</property>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
@@ -184,8 +182,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">end</property>
-                        <property name="margin-left">6</property>
-                        <property name="margin-right">6</property>
+                        <property name="margin-start">6</property>
+                        <property name="margin-end">6</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">Author:</property>
@@ -200,8 +198,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">end</property>
-                        <property name="margin-left">6</property>
-                        <property name="margin-right">6</property>
+                        <property name="margin-start">6</property>
+                        <property name="margin-end">6</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">Author's email:</property>
@@ -216,8 +214,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">5</property>
-                        <property name="margin-right">5</property>
+                        <property name="margin-start">5</property>
+                        <property name="margin-end">5</property>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
@@ -229,8 +227,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">5</property>
-                        <property name="margin-right">5</property>
+                        <property name="margin-start">5</property>
+                        <property name="margin-end">5</property>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>

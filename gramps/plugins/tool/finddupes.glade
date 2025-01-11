@@ -25,13 +25,12 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button12">
-                <property name="label">gtk-cancel</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Cancel</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="finddupes" swapped="yes"/>
               </object>
               <packing>
@@ -42,13 +41,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button10">
-                <property name="label">gtk-ok</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_OK</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_merge_ok_clicked" object="finddupes" swapped="yes"/>
               </object>
               <packing>
@@ -59,13 +57,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button14">
-                <property name="label">gtk-help</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Help</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
               <packing>
@@ -143,15 +140,13 @@
                 <child>
                   <object class="GtkCheckButton" id="soundex">
                     <property name="label" translatable="yes">Use soundex codes</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
                     <property name="halign">center</property>
-                    <property name="margin-left">12</property>
+                    <property name="margin-start">12</property>
                     <property name="hexpand">True</property>
                     <property name="use-underline">True</property>
-                    <property name="xalign">0.5</property>
                     <property name="active">True</property>
                     <property name="draw-indicator">True</property>
                   </object>
@@ -164,7 +159,7 @@
                   <object class="GtkComboBox" id="menu">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-left">12</property>
+                    <property name="margin-start">12</property>
                     <property name="hexpand">True</property>
                     <property name="model">liststore1</property>
                     <child>
@@ -244,13 +239,12 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button9">
-                <property name="label">gtk-close</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Close</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="mergelist" swapped="yes"/>
               </object>
               <packing>
@@ -262,7 +256,6 @@
             <child>
               <object class="GtkButton" id="button7">
                 <property name="label" translatable="yes">Co_mpare</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -278,13 +271,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button13">
-                <property name="label">gtk-help</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Help</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_help_show_clicked" swapped="no"/>
               </object>
               <packing>

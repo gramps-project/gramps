@@ -333,12 +333,7 @@ def load_addon_file(path, callback=None):
     """
     import tarfile
 
-    if (
-        path.startswith("http://")
-        or path.startswith("https://")
-        or path.startswith("ftp://")
-        or path.startswith("file://")
-    ):
+    if path.startswith(("http://", "https://", "ftp://", "file://")):
         try:
             fptr = urlopen_maybe_no_check_cert(path)
         except:
@@ -361,9 +356,9 @@ def load_addon_file(path, callback=None):
         return False
     fptr.close()
     # file_obj is either Zipfile or TarFile
-    if path.endswith(".zip") or path.endswith(".ZIP"):
+    if path.endswith((".zip", ".ZIP")):
         file_obj = Zipfile(buffer)
-    elif path.endswith(".tar.gz") or path.endswith(".tgz"):
+    elif path.endswith((".tar.gz", ".tgz")):
         try:
             file_obj = tarfile.open(None, fileobj=buffer)
         except:

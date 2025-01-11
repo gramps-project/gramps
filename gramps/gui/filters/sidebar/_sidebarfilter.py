@@ -19,7 +19,21 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+# -------------------------------------------------------------------------
+#
+# Python modules
+#
+# -------------------------------------------------------------------------
+import time
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.filters import reload_custom_filters
 
 _ = glocale.translation.gettext
 from bisect import insort_left
@@ -31,6 +45,11 @@ from ... import widgets
 from ...dbguielement import DbGUIElement
 from gramps.gen.config import config
 from ...utils import no_match_primary_mask
+
+from ...editors import EditFilter
+import gramps.gen.filters
+
+# import gramps.gen.filters.rules.place
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
@@ -68,6 +87,17 @@ class SidebarFilter(DbGUIElement):
                 "defaults."
             )
         )
+        self.define_filter_btn = Gtk.Button(_("Define filter"))
+        self.define_filter_btn.set_tooltip_text(
+            _(
+                "This opens a dialog to add a new custom filter "
+                "based on the values given."
+            )
+        )
+
+        self.msg_label = Gtk.Label()
+        self.msg_label.set_halign(Gtk.Align.START)
+        self.msg_label.set_margin_left(12)
 
         self._init_interface()
         uistate.connect("filters-changed", self.on_filters_changed)
@@ -96,6 +126,7 @@ class SidebarFilter(DbGUIElement):
 
         self.clear_btn.add(hbox)
         self.clear_btn.connect("clicked", self.clear)
+        self.clear_btn.set_halign(Gtk.Align.END)
 
         hbox = Gtk.ButtonBox()
         hbox.set_layout(Gtk.ButtonBoxStyle.START)
@@ -105,6 +136,17 @@ class SidebarFilter(DbGUIElement):
         hbox.add(self.clear_btn)
         hbox.show()
         self.vbox.pack_start(hbox, False, False, 0)
+
+        self.define_filter_btn.connect("clicked", self.define_filter)
+        hbox = Gtk.ButtonBox()
+        hbox.set_layout(Gtk.ButtonBoxStyle.START)
+        hbox.set_spacing(6)
+        hbox.set_border_width(12)
+        hbox.add(self.define_filter_btn)
+
+        self.vbox.pack_start(hbox, False, False, 0)
+        self.vbox.pack_start(self.msg_label, False, False, 0)
+
         self.vbox.show()
 
     def get_widget(self):
@@ -117,8 +159,15 @@ class SidebarFilter(DbGUIElement):
         pass
 
     def clicked(self, obj):
+        if not self.filter_is_ok():
+            return
         self.uistate.set_busy_cursor(True)
+        t1 = time.perf_counter()
         self.clicked_func()
+        t2 = time.perf_counter()
+        msg = _("Elapsed time: %.2fs") % (t2 - t1)
+        self.msg_label.set_text(msg)
+        self.msg_label.get_style_context().remove_class("error")
         self.uistate.set_busy_cursor(False)
 
     def clicked_func(self):
@@ -316,3 +365,57 @@ class SidebarFilter(DbGUIElement):
                 self.generic.set_active_iter(iter)
                 break
             iter = liststore.iter_next(iter)
+
+    def filter_is_ok(self):
+        the_filter = self.get_filter()
+        if the_filter is None:
+            return True
+        for rule in the_filter.get_rules():
+            if isinstance(rule, gramps.gen.filters.rules.place.WithinArea):
+                if rule.list[0] is None:  # No active place
+                    msg = _("You should select a place when using the 'Within' rule")
+                    self.msg_label.set_text(msg)
+                    self.msg_label.get_style_context().add_class("error")
+                    return False
+        return True
+
+    def define_filter(self, _obj):
+        self.filterdb = gramps.gen.filters.CustomFilters
+        the_filter = self.get_filter()
+        if the_filter is None:
+            self.msg_label.set_text(_("Supply at least one value"))
+            self.msg_label.get_style_context().add_class("error")
+            return
+
+        if not self.filter_is_ok():
+            return
+        # fix some rules:
+        new_rules = []
+        for rule in the_filter.get_rules():
+            # The Place rule WithinArea might have numeric values while custom_filters.xml only accepts strings.
+            if isinstance(rule, gramps.gen.filters.rules.place.WithinArea):
+                rule.list[1] = str(rule.list[1])
+                rule.list[2] = str(rule.list[2])
+            new_rules.append(rule)
+        the_filter.flist = new_rules
+        comment = _("Created by Filter gramplet on {today}").format(
+            today=time.strftime("%Y-%m-%d", time.localtime())
+        )
+        the_filter.set_comment(comment)
+
+        self.msg_label.set_text("")
+        track = []
+        EditFilter(
+            self.namespace,
+            self.dbstate,
+            self.uistate,
+            track,
+            the_filter,
+            self.filterdb,
+            update=self.update,
+        )
+
+    def update(self):
+        self.filterdb.save()
+        reload_custom_filters()
+        self.uistate.emit("filters-changed", (self.namespace,))

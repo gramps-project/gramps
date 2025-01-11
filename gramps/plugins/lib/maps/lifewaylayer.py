@@ -95,16 +95,22 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
         radius is the size of the track.
         """
         if isinstance(color, str):
-            color = Gdk.color_parse(color)
-        self.lifeways_ref.append((points, color, radius))
+            rgba = Gdk.RGBA()
+            rgba.parse(color)
+        else:
+            rgba = color
+        self.lifeways_ref.append((points, rgba, radius))
 
     def add_way(self, points, color):
         """
         Add a track or life way.
         """
         if isinstance(color, str):
-            color = Gdk.color_parse(color)
-        self.lifeways.append((points, color))
+            rgba = Gdk.RGBA()
+            rgba.parse(color)
+        else:
+            rgba = color
+        self.lifeways.append((points, rgba))
 
     def do_draw(self, gpsmap, ctx):
         """
@@ -114,13 +120,8 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
             ctx.set_line_cap(cairo.LINE_CAP_ROUND)
             ctx.set_line_join(cairo.LINE_JOIN_ROUND)
             ctx.set_line_width(3)
-            color = lifeway[1]
-            ctx.set_source_rgba(
-                float(color.red / 65535.0),
-                float(color.green / 65535.0),
-                float(color.blue / 65535.0),
-                0.1,
-            )  # transparency
+            rgba = lifeway[1]
+            ctx.set_source_rgba(rgba.red, rgba.green, rgba.blue, 0.1)
             rds = float(lifeway[2])
             for point in lifeway[0]:
                 conv_pt1 = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
@@ -154,12 +155,8 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
                 conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
                 coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
                 map_points.append((coord_x, coord_y))
-            color = lifeway[1]
-            ctx.set_source_rgb(
-                float(color.red / 65535.0),
-                float(color.green / 65535.0),
-                float(color.blue / 65535.0),
-            )
+            rgba = lifeway[1]
+            ctx.set_source_rgb(rgba.red, rgba.green, rgba.blue)
             first = True
             for idx_pt in range(0, len(map_points)):
                 if first:

@@ -290,7 +290,7 @@ class UIManager:
                 el_id = update.attrib["id"]
                 # find the parent of the id'd element in original xml
                 parent = self.et_xml.find(".//*[@id='%s'].." % el_id)
-                if parent:
+                if parent is not None:
                     # we found it, now delete original, inset updated
                     for indx in range(len(parent)):
                         if parent[indx].get("id") == el_id:
@@ -330,7 +330,7 @@ class UIManager:
             el_id = update.attrib["id"]
             # find parent of id'd element
             element = self.et_xml.find(".//*[@id='%s']" % el_id)
-            if element:  # element may have already been deleted
+            if element is not None:  # element may have already been deleted
                 for dummy in range(len(element)):
                     del element[0]
         # results = ET.tostring(self.et_xml, encoding="unicode")

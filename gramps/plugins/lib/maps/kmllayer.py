@@ -114,8 +114,10 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Draw all the surfaces and paths
         """
-        color1 = Gdk.color_parse("red")
-        color2 = Gdk.color_parse("blue")
+        color1 = Gdk.RGBA()
+        color1.parse("red")
+        color2 = Gdk.RGBA()
+        color2.parse("blue")
         for polygons in self.polygons:
             for polygon in polygons:
                 (dummy_name, ptype, dummy_color, dummy_transparency, points) = polygon
@@ -126,12 +128,7 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
                     map_points.append((coord_x, coord_y))
                 first = True
                 ctx.save()
-                ctx.set_source_rgba(
-                    float(color2.red / 65535.0),
-                    float(color2.green / 65535.0),
-                    float(color2.blue / 65535.0),
-                    0.3,
-                )  # transparency
+                ctx.set_source_rgba(color2.red, color2.green, color2.blue, 0.3)
                 ctx.set_line_cap(cairo.LINE_CAP_ROUND)
                 ctx.set_line_join(cairo.LINE_JOIN_ROUND)
                 ctx.set_line_width(3)
@@ -162,12 +159,7 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
                     map_points.append((coord_x, coord_y))
                 first = True
                 ctx.save()
-                ctx.set_source_rgba(
-                    float(color1.red / 65535.0),
-                    float(color1.green / 65535.0),
-                    float(color1.blue / 65535.0),
-                    0.5,
-                )  # transparency
+                ctx.set_source_rgba(color1.red, color1.green, color1.blue, 0.5)
                 ctx.set_line_width(5)
                 ctx.set_operator(cairo.OPERATOR_ATOP)
                 for idx_pt in range(0, len(map_points)):

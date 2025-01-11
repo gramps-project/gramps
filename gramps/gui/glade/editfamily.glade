@@ -19,7 +19,6 @@
             <child>
               <object class="GtkButton" id="cancel">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -38,7 +37,6 @@
             <child>
               <object class="GtkButton" id="ok">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -58,7 +56,6 @@
             <child>
               <object class="GtkButton" id="button119">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -115,7 +112,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Name:</property>
                               </object>
                               <packing>
@@ -128,7 +125,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Birth:</property>
                               </object>
                               <packing>
@@ -141,7 +138,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Death:</property>
                               </object>
                               <packing>
@@ -171,7 +168,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="fbutton_index">
-                                    <property name="use-action-appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -203,7 +199,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="fbutton_add">
-                                    <property name="use-action-appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -234,7 +229,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="fbutton_del">
-                                    <property name="use-action-appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -265,7 +259,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="fbutton_edit">
-                                    <property name="use-action-appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -382,7 +375,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Name:</property>
                               </object>
                               <packing>
@@ -395,7 +388,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Birth:</property>
                               </object>
                               <packing>
@@ -408,7 +401,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Death:</property>
                               </object>
                               <packing>
@@ -462,7 +455,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="mbutton_index">
-                                    <property name="use-action-appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -493,7 +485,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="mbutton_add">
-                                    <property name="use-action-appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -524,7 +515,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkToggleButton" id="private">
-                                    <property name="use-action-appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -555,7 +545,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="mbutton_del">
-                                    <property name="use-action-appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -586,7 +575,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="mbutton_edit">
-                                    <property name="use-action-appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -693,7 +681,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">6</property>
+                        <property name="margin-start">6</property>
                         <property name="label" translatable="yes">_ID:</property>
                         <property name="use-underline">True</property>
                         <property name="mnemonic-widget">gid</property>
@@ -756,7 +744,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">6</property>
+                        <property name="margin-start">6</property>
                         <property name="label" translatable="yes">_Tags:</property>
                         <property name="use-underline">True</property>
                         <property name="mnemonic-widget">tag_button</property>
@@ -784,7 +772,6 @@
                         </child>
                         <child>
                           <object class="GtkButton" id="tag_button">
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>

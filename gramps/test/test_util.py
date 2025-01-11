@@ -174,7 +174,7 @@ def delete_tree(dir):
     sdir = os.path.abspath(dir)
     here = _caller_dir() + os.path.sep
     tmp = tempfile.gettempdir() + os.path.sep
-    if not (sdir.startswith(here) or sdir.startswith(tmp)):
+    if not sdir.startswith((here, tmp)):
         raise TestError("%r is not a subdir of here (%r) or %r" % (dir, here, tmp))
     shutil.rmtree(sdir)
 

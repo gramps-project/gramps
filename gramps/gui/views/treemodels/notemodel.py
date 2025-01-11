@@ -118,9 +118,7 @@ class NoteModel(FlatBaseModel):
 
     def column_type(self, data):
         """Return the type of the Note in readable format."""
-        temp = NoteType()
-        temp.set(data["type"])
-        return str(temp)
+        return NoteType.get_str(data.type)
 
     def column_preview(self, data):
         """Return a shortend version of the Note's text."""
