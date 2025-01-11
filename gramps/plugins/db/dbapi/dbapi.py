@@ -1238,9 +1238,16 @@ class DBAPI(DbGeneric):
         if what is None:
             what_expr = "json_data"
         elif isinstance(what, str):
+            if what in ["_", "person"]:
+                what = "json_data"
             what_expr = str(evaluator.convert(what))
         else:
-            what_expr = ", ".join([str(evaluator.convert(w)) for w in what])
+            what_list = []
+            for w in what:
+                if w in ["_", "person"]:
+                    w = "json_data"
+                what_list.append(str(evaluator.convert(w)))
+            what_expr = ", ".join(what_list)
 
         if where is None:
             where_expr = ""
