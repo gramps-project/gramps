@@ -9,13 +9,15 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Taz Petrov <ev_ko@abv.bg>, 2023.
 # trifa <tanu78@yahoo.com>, 2024.
+# 109247019824 <109247019824@users.noreply.hosted.weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-10-08 07:15+0000\n"
-"Last-Translator: trifa <tanu78@yahoo.com>\n"
+"PO-Revision-Date: 2025-01-08 23:00+0000\n"
+"Last-Translator: 109247019824 <109247019824@users.noreply.hosted.weblate.org>"
+"\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/bg/>\n"
 "Language: bg\n"
@@ -23,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "X-Poedit-Language: Bulgarian\n"
 "X-Poedit-Country: BULGARIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -46,7 +48,7 @@ msgstr "Чили"
 
 #: ../data/holidays.xml:124
 msgid "China"
-msgstr "Ниянджа"
+msgstr "Китай"
 
 #: ../data/holidays.xml:127
 msgid "Croatia"
@@ -54,7 +56,7 @@ msgstr "Хърватска"
 
 #: ../data/holidays.xml:143
 msgid "Czech Republic"
-msgstr "Чешка Република"
+msgstr "Чешка република"
 
 #: ../data/holidays.xml:158
 msgid "England"
@@ -78,55 +80,55 @@ msgstr "Япония"
 
 #: ../data/holidays.xml:358
 msgid "Jewish Holidays"
-msgstr "Еврейски празник"
+msgstr "Еврейски празници"
 
 #: ../data/holidays.xml:359
 msgid "Purim"
-msgstr ""
+msgstr "Пурим"
 
 #: ../data/holidays.xml:360
 msgid "Passover"
-msgstr "Парола"
+msgstr "Пасха"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr "2-ра Парола"
+msgstr "2-ри ден на Пасха"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr "3-та Парола"
+msgstr "3-ти ден на Пасха"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr "4-та Парола"
+msgstr "4-ти ден на Пасха"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr "5-та Парола"
+msgstr "5-ти ден на Пасха"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr "6-та Парола"
+msgstr "6-ти ден на Пасха"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr "7-ма Парола"
+msgstr "7-ми ден на Пасха"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
-msgstr "Еврейски празник Шавуот"
+msgstr "Шавуот"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr "Еврейски празник Рош ха Шана"
+msgstr "Рош Хашана"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "Рош Хашана 2"
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
-msgstr ""
+msgstr "Йом Кипур"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
@@ -162,35 +164,35 @@ msgstr ""
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
-msgstr ""
+msgstr "Ханука"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "2-ри ден Ханука"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "3-ти ден Ханука"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "4-ти ден Ханука"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "5-ти ден Ханука"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "6-ти ден Ханука"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "7-ми ден Ханука"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "8-ми ден Ханука"
 
 #: ../data/holidays.xml:388
 msgid "Italy"
@@ -268,15 +270,16 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
-"Той ви дава възможност да записвате многото детайли от живота на индивида, "
-"както и сложните взаимоотношения между различни хора, места и събития."
+"Приложението дава възможност да водите записки за подробностите от живота на "
+"отделни индивиди, както и да описвате сложните взаимоотношения между "
+"различни хора, места и събития."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
-"Всички ваши изследвания се поддържат организирани, с възможност за търсене и "
+"Всички изследвания се поддържат организирани, с възможност за търсене и "
 "толкова точни, колкото е необходимо."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
