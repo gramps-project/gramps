@@ -3,13 +3,13 @@
 # Copyright (C) Gramps project
 # josip <josip@pisoj.com>, 2008-2011.
 # Milo Ivir <mivir@milotype.de>, 2018., 2019.
-# Milo Ivir <mail@milotype.de>, 2021, 2022, 2023, 2024.
+# Milo Ivir <mail@milotype.de>, 2021, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-10-08 07:15+0000\n"
+"PO-Revision-Date: 2025-01-09 17:45+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -11211,11 +11211,11 @@ msgstr "Aseksualnost, bezspolnost, bezrodnost"
 
 #: ../gramps/gen/utils/symbols.py:87
 msgid "Transgender, hermaphrodite (in entomology)"
-msgstr "Transrodnost, hermafrodit (entomološki)"
+msgstr "Transrodnost, hermafrodit (u entomologiji)"
 
 #: ../gramps/gen/utils/symbols.py:88
 msgid "Lesbianism"
-msgstr "Lezbijke"
+msgstr "Lezbijanizam"
 
 #: ../gramps/gen/utils/symbols.py:89
 msgid "Male homosexuality"
@@ -11231,7 +11231,7 @@ msgstr "Transrodnost"
 
 #: ../gramps/gen/utils/symbols.py:92
 msgid "Neuter"
-msgstr "Androginost"
+msgstr "Androgin"
 
 #: ../gramps/gen/utils/symbols.py:93
 msgid "Illegitimate"
@@ -12883,7 +12883,7 @@ msgstr "Lozinka: "
 
 #: ../gramps/gui/dbloader.py:387
 msgid "Import Family Tree"
-msgstr "Uvoz rodoslova"
+msgstr "Uvezi rodoslov"
 
 #: ../gramps/gui/dbloader.py:408
 msgid "All supported files"
@@ -15683,7 +15683,7 @@ msgstr "Svezak/Stranica"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:125
 msgctxt "Citation: Minimum Confidence"
 msgid "Min. Conf."
-msgstr "min. pouz."
+msgstr "Min. pouzdanost"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:129
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:120
@@ -20165,7 +20165,7 @@ msgstr "Neuspješno učitavanje pogleda. Provjeri ispis grešaka."
 #: ../gramps/gui/viewmanager.py:1050
 #: ../gramps/plugins/importer/importprogen.py:217
 msgid "Import Statistics"
-msgstr "Uvoz statistike"
+msgstr "Statistika uvoza"
 
 #: ../gramps/gui/viewmanager.py:1126
 msgid "Read Only"
@@ -22511,7 +22511,7 @@ msgstr "Uključeni spolovi"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1163
 msgid "Select which genders are included into statistics."
-msgstr "Odaberi spolove koji će biti uključeni u statistike."
+msgstr "Odaberi spolove koji će biti uključeni u statistiku."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1166
 msgid "Max. items for a pie"
@@ -23001,7 +23001,7 @@ msgstr "Prosječno"
 
 #: ../gramps/plugins/gramplet/agestats.py:265
 msgid "Median"
-msgstr "Srednje"
+msgstr "Medijan"
 
 #: ../gramps/plugins/gramplet/agestats.py:266
 msgid "Maximum"
@@ -23335,11 +23335,11 @@ msgstr "Gramplet prikazuje starost živih osoba na zadani datum"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:66
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:73
 msgid "Age Stats"
-msgstr "Starosne statistike"
+msgstr "Statistika starosti"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:67
 msgid "Gramplet showing graphs of various ages"
-msgstr "Gramplet prikazuje razne starosne statistike"
+msgstr "Gramplet prikazuje dijagram starosti"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:85
 msgid "Gramplet showing calendar and events on specific dates in history"
@@ -24765,7 +24765,7 @@ msgstr "Primjer.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
-msgstr "Najmanji broj prikazanih stavki"
+msgstr "Najmanji broj stavki za prikaz"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:63
 msgid "Descendant generations per ancestor generation"
@@ -34576,7 +34576,7 @@ msgstr "Uspješno"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:58
 msgid "Gender Statistics tool"
-msgstr "Alat za statistike o spolovima"
+msgstr "Alat za statistiku spolova"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:75
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
@@ -35802,11 +35802,11 @@ msgstr ""
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:69
 msgid "Dump Gender Statistics"
-msgstr "Poništi statistike o spolovima"
+msgstr "Ispiši statistiku spolova"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:71
 msgid "Will dump the statistics for guessing the gender from the first name."
-msgstr "Poništava statistiku za pogađanje spola po imenu."
+msgstr "Ispisat će statistiku za pogađanje spola po imenu."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
@@ -36856,7 +36856,7 @@ msgstr "Vrijeme u milisekundama između pisanja dviju generacija.\n"
 
 #: ../gramps/plugins/view/geomoves.py:793
 msgid "The parameters for moves"
-msgstr "Parametri selidbe"
+msgstr "Parametri kretanja"
 
 #: ../gramps/plugins/view/geoperson.py:213
 msgid "Person places map"
@@ -36864,12 +36864,12 @@ msgstr "Karta mjesta osobe"
 
 #: ../gramps/plugins/view/geoperson.py:240
 msgid "GeoPerson"
-msgstr "Karta osoba"
+msgstr "Karta osobe"
 
 #: ../gramps/plugins/view/geoperson.py:396
 #, python-format
 msgid "Person places for %s"
-msgstr "Mjesta osobe: %s"
+msgstr "Mjesta osobe za %s"
 
 #: ../gramps/plugins/view/geoperson.py:625
 msgid "Animate"
@@ -36882,15 +36882,15 @@ msgstr "Brzina animacije u milisekundama (veća vrijednost usporuje animaciju)"
 #: ../gramps/plugins/view/geoperson.py:654
 msgid "How many steps between two markers when we are on large move ?"
 msgstr ""
-"Koliki je broj koraka između dviju oznaka, pri velikim prostornim kretanjima?"
+"Koliki je broj koraka između dviju oznaka pri velikim prostornim kretanjima?"
 
 #: ../gramps/plugins/view/geoperson.py:662
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
 msgstr ""
-"Najmanje zemljopisne širine/dužine za odabir velikih pomaka.\n"
-"Vrijednost je u desetinkama stupnjeva."
+"Najmanja zemljopisna širina/dužina za biranje velikih kretanja.\n"
+"Vrijednost je u desetinkama stupnja."
 
 #: ../gramps/plugins/view/geoperson.py:669
 msgid "The animation parameters"
@@ -36907,7 +36907,7 @@ msgstr "Karta mjesta"
 #: ../gramps/plugins/view/geoplaces.py:417
 #: ../gramps/plugins/view/geoplaces.py:430
 msgid "Selecting all places"
-msgstr "Odabiranje svih mjesta"
+msgstr "Biranje svih mjesta"
 
 #: ../gramps/plugins/view/geoplaces.py:443
 msgid ""
@@ -37886,7 +37886,7 @@ msgstr "Narativna web stranica"
 
 #: ../gramps/plugins/webreport/media.py:310
 msgid "Below unused media objects"
-msgstr "Neupotrebljeni medijski objekti ispod"
+msgstr "Ispod nekorištnih medijskih objekata"
 
 #: ../gramps/plugins/webreport/media.py:442
 #, python-format
