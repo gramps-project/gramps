@@ -445,7 +445,7 @@ class CSVWriter:
                     "Surname",
                     "Given",
                     "Call",
-                    "Nick",
+                    "Nickname",
                     "Suffix",
                     "Prefix",
                     "Title",
