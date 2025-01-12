@@ -186,12 +186,7 @@ register(
             "Gramps",
             "https://raw.githubusercontent.com/gramps-project/addons/master/gramps52",
             True,
-        ],
-        [
-            "Isotammi",
-            "https://raw.githubusercontent.com/Taapeli/isotammi-addons/master/addons/gramps52",
-            False,
-        ],
+        ]
     ],
 )
 register("behavior.addons-allow-install", False)
