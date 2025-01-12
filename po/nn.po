@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-13 17:49+0100\n"
+"POT-Creation-Date: 2025-01-12 21:14+0000\n"
 "PO-Revision-Date: 2022-11-26 08:05+0000\n"
 "Last-Translator: Tor Eirik Tranda <teitrand@hotmail.com>\n"
 "Language-Team: Norwegian Nynorsk <https://hosted.weblate.org/projects/gramps-"
@@ -228,22 +228,22 @@ msgstr "Ukraina"
 msgid "United States of America"
 msgstr "USA"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:3
+#: ../data/org.gramps_project.Gramps.desktop.in:2
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
 msgstr "Gramps"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:4
+#: ../data/org.gramps_project.Gramps.desktop.in:3
 msgid "Genealogy System"
 msgstr "Slektsgranskarsystem"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:6
+#: ../data/org.gramps_project.Gramps.desktop.in:5
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Handsama slektsgranskarinformasjon, utføra slektsgransking og analyse"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:12
+#: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr "Slektsgransking;Familie-historie;Forsking;Slektstre;GEDCOM;"
 
@@ -444,13 +444,13 @@ msgstr ""
 #| "Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
-"based on many criteria. To define a new filter go to \"Edit &gt; Person "
-"Filter Editor\". There you can name your filter and add and combine rules "
-"using the many preset rules. For example, you can define a filter to find "
-"all adopted people in the family tree. People without a birth date mentioned "
-"can also be filtered. To get the results save your filter. Then select this "
-"filter in the Filter field on Sidebar, then click Find button. If the "
-"Sidebar is not visible, select View &gt; Sidebar."
+"based on many criteria. To define a new filter go to \"Edit > Person Filter "
+"Editor\". There you can name your filter and add and combine rules using the "
+"many preset rules. For example, you can define a filter to find all adopted "
+"people in the family tree. People without a birth date mentioned can also be "
+"filtered. To get the results save your filter. Then select this filter in "
+"the Filter field on Sidebar, then click Find button. If the Sidebar is not "
+"visible, select View > Sidebar."
 msgstr ""
 "<b>Filtrering av personar</b><br/>I personvisninga kan du 'filtrera' "
 "personar etter ymse kriteria. For å definera eit nytt filter kan du gå til "
@@ -529,12 +529,18 @@ msgstr ""
 "velja ein av personen sine partnarar, søsken, barn eller foreldre."
 
 #: ../data/tips.xml:24
+#, fuzzy
+#| msgid ""
+#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
+#| "&gt; Compare Individual Events...\" you can compare the data of "
+#| "individuals in your database. This is useful, say, if you wish to list "
+#| "the birth dates of everyone in your database. You can use a custom filter "
+#| "to narrow the results."
 msgid ""
-"<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-"&gt; Compare Individual Events...\" you can compare the data of individuals "
-"in your database. This is useful, say, if you wish to list the birth dates "
-"of everyone in your database. You can use a custom filter to narrow the "
-"results."
+"<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
+"Compare Individual Events...\" you can compare the data of individuals in "
+"your database. This is useful, say, if you wish to list the birth dates of "
+"everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
 "<b>Kven vart fødd når?</b><br/>Under &quot;Verktøy &gt; Analyse og "
 "utforskning &gt; Samanlikna individuelle hendingar...&quot; kan du "
@@ -558,11 +564,17 @@ msgstr ""
 "Verktøys&quot;."
 
 #: ../data/tips.xml:28
+#, fuzzy
+#| msgid ""
+#| "<b>Calculating Relationships</b><br/>To check if two people in the "
+#| "database are related (by blood, not marriage) try the tool under \"Tools "
+#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
+#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
-"are related (by blood, not marriage) try the tool under \"Tools &gt; "
-"Utilities &gt; Relationship Calculator...\". The exact relationship as well "
-"as all common ancestors are reported."
+"are related (by blood, not marriage) try the tool under \"Tools > Utilities "
+"> Relationship Calculator...\". The exact relationship as well as all common "
+"ancestors are reported."
 msgstr ""
 "<b>Berekning av relasjonar</b><br/>For å finna ut om to personar i databasen "
 "er i slekt (blodslekt, ikkje inngift) kan du bruka verktøyet under &quot;"
@@ -596,11 +608,10 @@ msgstr ""
 #| "needs. Each separate view can also be configured under \"View &gt; "
 #| "Configure View...\""
 msgid ""
-"<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
+"<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
-"Each separate view can also be configured under \"View &gt; Configure View..."
-"\"."
+"Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
 "<b>Set innstillingane dine</b><br/>&quot;Rediger &gt;Innstillingar...&quot; "
 "lar deg endra mange innstillingar, slik som sti til medifilene dine, og lar "
@@ -623,11 +634,18 @@ msgstr ""
 "internettside for slektstreet ditt, finst det ein rapport for det og."
 
 #: ../data/tips.xml:36
+#, fuzzy
+#| msgid ""
+#| "<b>Starting a New Family Tree</b><br/>A good way to start a new family "
+#| "tree is to enter all the members of the family into the database using "
+#| "the Person View (use \"Edit &gt; Add...\" or click on the Add a new "
+#| "person button from the People View). Then go to the Relationship View and "
+#| "create relationships between people."
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
-"View (use \"Edit &gt; Add...\" or click on the Add a new person button from "
-"the People View). Then go to the Relationship View and create relationships "
+"View (use \"Edit > Add...\" or click on the Add a new person button from the "
+"People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
 "<b>Å oppretta eit nytt slektstre</b><br/>Ein god måte å starta eit nytt "
@@ -668,9 +686,9 @@ msgstr ""
 #: ../data/tips.xml:42
 #, fuzzy
 msgid ""
-"<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
-"&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
-"entries of the same person entered more than once in the database."
+"<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
+"Find Possible Duplicate People...\" allows you to locate (and merge) entries "
+"of the same person entered more than once in the database."
 msgstr ""
 "<b>Doble oppføringar</b><br/>&quot;Verktøy &gt; Databasehandsaming &gt; Finn "
 "mogelege duplikate personar...&quot; let deg finna (og fletta saman) "
@@ -686,7 +704,7 @@ msgstr ""
 #| "erroneously entered differing names for one individual. This also works "
 #| "for the Places, Sources and Repositories views."
 msgid ""
-"<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
+"<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
 "holding the Control key as you click. This is very useful for combining two "
 "databases with overlapping people, or combining erroneously entered "
@@ -713,10 +731,16 @@ msgstr ""
 "verktøylinja under menyen &quot;Vis&quot;."
 
 #: ../data/tips.xml:48
+#, fuzzy
+#| msgid ""
+#| "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of "
+#| "previous active objects such as People and Events. You can move forward "
+#| "and backward through the list using \"Go &gt; Forward\" and \"Go &gt; "
+#| "Back\" or the arrow buttons."
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
-"through the list using \"Go &gt; Forward\" and \"Go &gt; Back\" or the arrow "
+"through the list using \"Go > Forward\" and \"Go > Back\" or the arrow "
 "buttons."
 msgstr ""
 "<b>Navigering fram og tilbake</b><br/>Gramps inneheld ei liste over "
@@ -736,9 +760,15 @@ msgstr ""
 "menyen."
 
 #: ../data/tips.xml:52
+#, fuzzy
+#| msgid ""
+#| "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
+#| "&gt; User Manual\". The developers have worked hard to make most "
+#| "operations intuitive but the manual is full of information that will make "
+#| "your time spent on genealogy more productive."
 msgid ""
-"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
-"&gt; User Manual\". The developers have worked hard to make most operations "
+"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
+"User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
@@ -800,12 +830,20 @@ msgstr ""
 "føretrekt, men det kan vera greitt å diskutera ideane dine på e-postlistene."
 
 #: ../data/tips.xml:62
+#, fuzzy
+#| msgid ""
+#| "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about "
+#| "Gramps? Check out the gramps-users email list. Many helpful people are on "
+#| "the list, so you're likely to get an answer quickly. If you have "
+#| "questions related to the development of Gramps, try the gramps-devel "
+#| "list. You can see the lists by selecting \"Help &gt; Gramps Mailing "
+#| "Lists\"."
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
 "so you're likely to get an answer quickly. If you have questions related to "
 "the development of Gramps, try the gramps-devel list. You can see the lists "
-"by selecting \"Help &gt; Gramps Mailing Lists\"."
+"by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
 "<b>Gramps e-postlister</b><br/>Ønskjer du svar på spørsmåla dine om Gramps? "
 "Sjekk ut e-postlista 'gramps-user'. Det er mange hjelpsame personar på "
@@ -829,8 +867,8 @@ msgid ""
 "wide variety of skills. Contributions can be anything from writing "
 "documentation to testing development versions and helping with the web site. "
 "Start by subscribing to the Gramps developers mailing list, gramps-devel, "
-"and introducing yourself. Subscription information can be found at \"Help "
-"&gt; Gramps Mailing Lists\"."
+"and introducing yourself. Subscription information can be found at \"Help > "
+"Gramps Mailing Lists\"."
 msgstr ""
 "<b>Bidra til Gramps</b><br/>Ønskjer du å bidra til Gramps utan å kunna "
 "programmera? Det er ikkje noko problem. Eit stort prosjekt som Gramps treng "
@@ -857,12 +895,19 @@ msgstr ""
 "handsamar slektsdata som inneheld fleire hundretusen personar."
 
 #: ../data/tips.xml:68
+#, fuzzy
+#| msgid ""
+#| "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient "
+#| "place to store the names of frequently used individuals. Selecting a "
+#| "bookmark will make that person the Active Person. To bookmark someone "
+#| "make them the Active Person then go to \"Bookmarks &gt; Add Bookmark\" or "
+#| "press Ctrl+D. You can also bookmark most of the other objects."
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
 "make that person the Active Person. To bookmark someone make them the Active "
-"Person then go to \"Bookmarks &gt; Add Bookmark\" or press Ctrl+D. You can "
-"also bookmark most of the other objects."
+"Person then go to \"Bookmarks > Add Bookmark\" or press Ctrl+D. You can also "
+"bookmark most of the other objects."
 msgstr ""
 "<b>Bokmerking av personar</b><br/>Bokmerkemenyen på toppen av vindauga er "
 "ein fin stad å lagra personar du ofte brukar. Klikkar du på eit bokmerke, "
@@ -872,13 +917,21 @@ msgstr ""
 "andre objekt."
 
 #: ../data/tips.xml:70
+#, fuzzy
+#| msgid ""
+#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
+#| "invalid format. Incorrect date formats will show up in Gramps with a "
+#| "either a reddish background or a red dot on the right edge of the field. "
+#| "You can fix the date using the Date Selection dialog which can be opened "
+#| "by clicking on the date button. The format of the date is set under "
+#| "\"Edit &gt; Preferences &gt; Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
 "a reddish background or a red dot on the right edge of the field. You can "
 "fix the date using the Date Selection dialog which can be opened by clicking "
-"on the date button. The format of the date is set under \"Edit &gt; "
-"Preferences &gt; Display\"."
+"on the date button. The format of the date is set under \"Edit > Preferences "
+"> Display\"."
 msgstr ""
 "<b>Feil datoar</b><br/>Alle tastar no og då datoar med feil format. Feil "
 "datoformat vil i Gramps visa seg med ein raudleg bakgrunn eller ved ein raud "
@@ -887,11 +940,17 @@ msgstr ""
 "under &quot;Rediger&gt; Innstillingar &gt; Vis&quot;."
 
 #: ../data/tips.xml:72
+#, fuzzy
+#| msgid ""
+#| "<b>Listing Events</b><br/>Events are added using the editor opened with "
+#| "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
+#| "event types. You can add your own event types by typing in the text "
+#| "field, they will be added to the available events, but not translated."
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
-"\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
-"event types. You can add your own event types by typing in the text field, "
-"they will be added to the available events, but not translated."
+"\"Person > Edit Person > Events\". There is a long list of preset event "
+"types. You can add your own event types by typing in the text field, they "
+"will be added to the available events, but not translated."
 msgstr ""
 "<b>Listing av hendingar</b><br/>Hendingar blir lagt til ved å bruka "
 "redigeringsvindauga som blir opna med &quot;Person &gt; Rediger person &gt; "
@@ -964,11 +1023,17 @@ msgstr ""
 "dokument med meir."
 
 #: ../data/tips.xml:84
+#, fuzzy
+#| msgid ""
+#| "<b>Filters</b><br/>Filters allow you to limit the people seen in the "
+#| "People View. In addition to the many preset filters, Custom Filters can "
+#| "be created limited only by your imagination. Custom filters are created "
+#| "from \"Edit &gt; Person Filter Editor\"."
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
-"limited only by your imagination. Custom filters are created from \"Edit "
-"&gt; Person Filter Editor\"."
+"limited only by your imagination. Custom filters are created from \"Edit > "
+"Person Filter Editor\"."
 msgstr ""
 "<b>Filter</b><br/>Filter lar deg avgrensa talet på personar som vert vist i "
 "personvisninga. I tillegg til dei mange førehandslaga filtera, kan det "
@@ -1091,7 +1156,7 @@ msgstr ""
 #| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
-"Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
+"Gramps with the \"Addon\" system. See them under \"Help > Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
@@ -1108,9 +1173,9 @@ msgstr ""
 #| "single document. This single report is easier to distribute than multiple "
 #| "reports, especially when printed."
 msgid ""
-"<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
-"allows you to collect a variety of reports into a single document. This "
-"single report is easier to distribute than multiple reports, especially when "
+"<b>Book Reports</b><br/>The Book report under \"Reports > Books...\" allows "
+"you to collect a variety of reports into a single document. This single "
+"report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
 "<b>Bokrapportar</b><br/>Bokrapporten under &quot;Rapportar&gt; Bøker &gt; "
@@ -1127,7 +1192,7 @@ msgstr ""
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
-"\"Help &gt; Gramps Mailing Lists\"."
+"\"Help > Gramps Mailing Lists\"."
 msgstr ""
 "<b>Annonse frå Gramps</b><br/>Er du interessert i å bli informert når ein ny "
 "versjon av Gramps blir utgjeven? Meld deg på e-postlista for Gramps-"
@@ -1207,11 +1272,17 @@ msgstr ""
 "full støtte for Unicode. Teikn for alle språk skal visast rett."
 
 #: ../data/tips.xml:120
+#, fuzzy
+#| msgid ""
+#| "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
+#| "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
+#| "person is the person who is selected when the database is opened or when "
+#| "the home button is pressed."
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
-"Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
-"person is the person who is selected when the database is opened or when the "
-"home button is pressed."
+"Gramps. Use \"Edit > Set Home Person\" in the Person View. The home person "
+"is the person who is selected when the database is opened or when the home "
+"button is pressed."
 msgstr ""
 "<b>Startpersonen</b><br/>Kven som helst kan veljast som startperson i "
 "Gramps. Bruk &quot;Rediger&gt; vel startperson&quot; i personvisning. "
@@ -1335,7 +1406,7 @@ msgstr "Den eksisterande fila vil verta overskriven: %s"
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr "FEIL: Ukjent format for den eksporterte fila %s"
 
-#: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:371
+#: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:379
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Feil: Kan ikkje opna '%s'"
@@ -1810,7 +1881,7 @@ msgstr ""
 msgid "Path"
 msgstr "Sti"
 
-#: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:127
+#: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:130
 msgid "Database"
 msgstr "Database"
 
@@ -2851,37 +2922,37 @@ msgctxt "alternative month names for December"
 msgid ""
 msgstr "Desember"
 
-#: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:645
+#: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:651
 msgctxt "calendar"
 msgid "Gregorian"
 msgstr "Gregoriansk"
 
-#: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:646
+#: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:652
 msgctxt "calendar"
 msgid "Julian"
 msgstr "Juliansk"
 
-#: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:647
+#: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:653
 msgctxt "calendar"
 msgid "Hebrew"
 msgstr "Hebraisk"
 
-#: ../gramps/gen/datehandler/_datestrings.py:150 ../gramps/gen/lib/date.py:648
+#: ../gramps/gen/datehandler/_datestrings.py:150 ../gramps/gen/lib/date.py:654
 msgctxt "calendar"
 msgid "French Republican"
 msgstr "Fransk-republikansk"
 
-#: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:649
+#: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:655
 msgctxt "calendar"
 msgid "Persian"
 msgstr "Persisk"
 
-#: ../gramps/gen/datehandler/_datestrings.py:152 ../gramps/gen/lib/date.py:650
+#: ../gramps/gen/datehandler/_datestrings.py:152 ../gramps/gen/lib/date.py:656
 msgctxt "calendar"
 msgid "Islamic"
 msgstr "Islamsk"
 
-#: ../gramps/gen/datehandler/_datestrings.py:153 ../gramps/gen/lib/date.py:651
+#: ../gramps/gen/datehandler/_datestrings.py:153 ../gramps/gen/lib/date.py:657
 msgctxt "calendar"
 msgid "Swedish"
 msgstr "Svensk"
@@ -3466,7 +3537,7 @@ msgstr "Tal på merke"
 msgid "Schema version"
 msgstr "Fjern versjon"
 
-#: ../gramps/gen/db/upgrade.py:584
+#: ../gramps/gen/db/upgrade.py:588
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3474,14 +3545,14 @@ msgstr ""
 "%(n1)6d  personar        oppgradert with %(n2)6d referansar på %(n3)6d "
 "sekund\n"
 
-#: ../gramps/gen/db/upgrade.py:588
+#: ../gramps/gen/db/upgrade.py:592
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  familiar      oppgradert med %(n2)6d referansar på %(n3)6d sekund\n"
 
-#: ../gramps/gen/db/upgrade.py:592
+#: ../gramps/gen/db/upgrade.py:596
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3489,7 +3560,7 @@ msgstr ""
 "%(n1)6d  hendingar        oppgradert med %(n2)6d referansar på %(n3)6d "
 "sekund\n"
 
-#: ../gramps/gen/db/upgrade.py:596
+#: ../gramps/gen/db/upgrade.py:600
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3497,7 +3568,7 @@ msgstr ""
 "%(n1)6d  Mediaobjekt oppgradert med %(n2)6d kjeldereferansar på %(n3)6d "
 "sekundar\n"
 
-#: ../gramps/gen/db/upgrade.py:600
+#: ../gramps/gen/db/upgrade.py:604
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3505,7 +3576,7 @@ msgstr ""
 "%(n1)6d  Stader        oppgradert med %(n2)6d kjeldereferansar på %(n3)6d "
 "sekundar\n"
 
-#: ../gramps/gen/db/upgrade.py:604
+#: ../gramps/gen/db/upgrade.py:608
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3513,7 +3584,7 @@ msgstr ""
 "%(n1)6d  Bibliotek oppgradert med %(n2)6d kjeldereferansar på %(n3)6d "
 "sekundar\n"
 
-#: ../gramps/gen/db/upgrade.py:608
+#: ../gramps/gen/db/upgrade.py:612
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3521,11 +3592,11 @@ msgstr ""
 "%(n1)6d  Kjelder        oppgradert med %(n2)6d kjeldereferansar på %(n3)6d "
 "sekundar\n"
 
-#: ../gramps/gen/db/upgrade.py:1173
+#: ../gramps/gen/db/upgrade.py:1177
 msgid "Number of new objects upgraded:\n"
 msgstr "Tal på nye objekt som er oppgraderte:\n"
 
-#: ../gramps/gen/db/upgrade.py:1184
+#: ../gramps/gen/db/upgrade.py:1188
 msgid ""
 "\n"
 "\n"
@@ -3541,7 +3612,7 @@ msgstr ""
 "for å fletta saman kjeldereferansar som inneheld\n"
 "liknande informasjon"
 
-#: ../gramps/gen/db/upgrade.py:1189
+#: ../gramps/gen/db/upgrade.py:1193
 msgid "Upgrade Statistics"
 msgstr "Oppdater statistikkar"
 
@@ -3679,16 +3750,16 @@ msgstr "Kallenamn"
 msgid "familynick"
 msgstr "familiekallenamn"
 
-#: ../gramps/gen/display/name.py:1293
+#: ../gramps/gen/display/name.py:1290
 #, python-format
 msgid "Wrong name format string %s"
 msgstr "Feil format i namnestrengen %s"
 
-#: ../gramps/gen/display/name.py:1299
+#: ../gramps/gen/display/name.py:1297
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "FEIL, rediger namneformatet i innstillingane"
 
-#: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:394
+#: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:403
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Feil i fila '%s': kan ikkje lastast."
@@ -5346,7 +5417,7 @@ msgstr ""
 "personar i databasen"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:46
-#: ../gramps/gen/plug/_pluginreg.py:76
+#: ../gramps/gen/plug/_pluginreg.py:79
 msgid "Everyone"
 msgstr "Alle"
 
@@ -6935,7 +7006,7 @@ msgid "Notes"
 msgstr "Notat"
 
 #: ../gramps/gen/lib/address.py:119 ../gramps/gen/lib/citation.py:108
-#: ../gramps/gen/lib/date.py:763 ../gramps/gen/lib/event.py:155
+#: ../gramps/gen/lib/date.py:769 ../gramps/gen/lib/event.py:155
 #: ../gramps/gen/lib/ldsord.py:200 ../gramps/gen/lib/media.py:169
 #: ../gramps/gen/lib/name.py:181 ../gramps/gen/lib/placename.py:100
 #: ../gramps/gen/lib/placeref.py:93
@@ -7003,8 +7074,8 @@ msgstr "Notat"
 #: ../gramps/plugins/webreport/basepage.py:1341
 #: ../gramps/plugins/webreport/basepage.py:2865
 #: ../gramps/plugins/webreport/event.py:314
-#: ../gramps/plugins/webreport/media.py:252
-#: ../gramps/plugins/webreport/media.py:645
+#: ../gramps/plugins/webreport/media.py:249
+#: ../gramps/plugins/webreport/media.py:641
 #: ../gramps/plugins/webreport/person.py:1067
 msgid "Date"
 msgstr "Dato"
@@ -7331,7 +7402,7 @@ msgstr "Kjeldereferanse"
 #: ../gramps/plugins/webreport/basepage.py:3166
 #: ../gramps/plugins/webreport/event.py:315
 #: ../gramps/plugins/webreport/event.py:469
-#: ../gramps/plugins/webreport/media.py:618
+#: ../gramps/plugins/webreport/media.py:614
 #: ../gramps/plugins/webreport/person.py:1820
 #: ../gramps/plugins/webreport/repository.py:264
 #: ../gramps/plugins/webreport/source.py:292
@@ -7409,8 +7480,8 @@ msgstr "Kjelde"
 #: ../gramps/plugins/webreport/basepage.py:2081
 #: ../gramps/plugins/webreport/basepage.py:2126
 #: ../gramps/plugins/webreport/basepage.py:2442
-#: ../gramps/plugins/webreport/media.py:215
-#: ../gramps/plugins/webreport/media.py:418
+#: ../gramps/plugins/webreport/media.py:212
+#: ../gramps/plugins/webreport/media.py:414
 #: ../gramps/plugins/webreport/updates.py:152
 msgid "Media"
 msgstr "Media"
@@ -7455,7 +7526,7 @@ msgstr "Sist endra"
 #: ../gramps/plugins/webreport/basepage.py:3315
 #: ../gramps/plugins/webreport/event.py:496
 #: ../gramps/plugins/webreport/family.py:461
-#: ../gramps/plugins/webreport/media.py:664
+#: ../gramps/plugins/webreport/media.py:660
 #: ../gramps/plugins/webreport/person.py:1915
 #: ../gramps/plugins/webreport/repository.py:287
 #: ../gramps/plugins/webreport/source.py:308
@@ -7546,7 +7617,7 @@ msgstr[1] "{number_of} dagar"
 msgid "0 days"
 msgstr "0 dagar"
 
-#: ../gramps/gen/lib/date.py:766
+#: ../gramps/gen/lib/date.py:772
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:76
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:84
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:90
@@ -7555,22 +7626,22 @@ msgstr "0 dagar"
 msgid "Calendar"
 msgstr "Kalendar"
 
-#: ../gramps/gen/lib/date.py:767
+#: ../gramps/gen/lib/date.py:773
 #, fuzzy
 msgid "Modifier"
 msgstr "Endra: "
 
-#: ../gramps/gen/lib/date.py:768
+#: ../gramps/gen/lib/date.py:774
 #, fuzzy
 msgid "Quality"
 msgstr "_Kvalitet"
 
-#: ../gramps/gen/lib/date.py:771 ../gramps/gui/editors/filtereditor.py:913
+#: ../gramps/gen/lib/date.py:777 ../gramps/gui/editors/filtereditor.py:913
 #: ../gramps/gui/glade/rule.glade:967
 msgid "Values"
 msgstr "Verdiar"
 
-#: ../gramps/gen/lib/date.py:774 ../gramps/gen/lib/placename.py:97
+#: ../gramps/gen/lib/date.py:780 ../gramps/gen/lib/placename.py:97
 #: ../gramps/gen/lib/styledtext.py:327
 #: ../gramps/gen/plug/report/_constants.py:62 ../gramps/gui/clipboard.py:626
 #: ../gramps/gui/clipboard.py:634 ../gramps/gui/configure.py:1786
@@ -7582,68 +7653,68 @@ msgstr "Verdiar"
 msgid "Text"
 msgstr "Tekst"
 
-#: ../gramps/gen/lib/date.py:775
+#: ../gramps/gen/lib/date.py:781
 #, fuzzy
 msgid "Sort value"
 msgstr "_Sorter som:"
 
-#: ../gramps/gen/lib/date.py:776
+#: ../gramps/gen/lib/date.py:782
 msgid "New year begins"
 msgstr "Ny_tt år byrjar"
 
-#: ../gramps/gen/lib/date.py:1976
+#: ../gramps/gen/lib/date.py:1981
 msgid "calculated"
 msgstr "Berekna"
 
-#: ../gramps/gen/lib/date.py:1976
+#: ../gramps/gen/lib/date.py:1981
 msgid "estimated"
 msgstr "Anslått"
 
-#: ../gramps/gen/lib/date.py:1976
+#: ../gramps/gen/lib/date.py:1981
 msgctxt "date-quality"
 msgid "none"
 msgstr "ingen"
 
-#: ../gramps/gen/lib/date.py:2000
+#: ../gramps/gen/lib/date.py:2005
 msgctxt "date-modifier"
 msgid "none"
 msgstr "ingen"
 
-#: ../gramps/gen/lib/date.py:2001 ../gramps/plugins/lib/libsubstkeyword.py:317
+#: ../gramps/gen/lib/date.py:2006 ../gramps/plugins/lib/libsubstkeyword.py:317
 #: ../gramps/plugins/webreport/basepage.py:3584
 msgid "before"
 msgstr "før"
 
-#: ../gramps/gen/lib/date.py:2002 ../gramps/plugins/lib/libprogen.py:2029
+#: ../gramps/gen/lib/date.py:2007 ../gramps/plugins/lib/libprogen.py:2029
 #: ../gramps/plugins/lib/libsubstkeyword.py:318
 #: ../gramps/plugins/webreport/basepage.py:3582
 msgid "after"
 msgstr "etter"
 
-#: ../gramps/gen/lib/date.py:2003 ../gramps/plugins/lib/libsubstkeyword.py:319
+#: ../gramps/gen/lib/date.py:2008 ../gramps/plugins/lib/libsubstkeyword.py:319
 #: ../gramps/plugins/webreport/basepage.py:3586
 msgid "about"
 msgstr "omkring"
 
-#: ../gramps/gen/lib/date.py:2004
+#: ../gramps/gen/lib/date.py:2009
 msgid "range"
 msgstr "Område"
 
-#: ../gramps/gen/lib/date.py:2005
+#: ../gramps/gen/lib/date.py:2010
 msgid "from"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:2006
+#: ../gramps/gen/lib/date.py:2011
 #, fuzzy
 #| msgid "Stop"
 msgid "to"
 msgstr "Stopp"
 
-#: ../gramps/gen/lib/date.py:2007
+#: ../gramps/gen/lib/date.py:2012
 msgid "span"
 msgstr "periode"
 
-#: ../gramps/gen/lib/date.py:2008
+#: ../gramps/gen/lib/date.py:2013
 msgid "textonly"
 msgstr "Berre tekst"
 
@@ -8346,7 +8417,7 @@ msgstr "Mor"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1009
 #: ../gramps/plugins/textreport/familygroup.py:657
 #: ../gramps/plugins/textreport/indivcomplete.py:708
-#: ../gramps/plugins/view/pedigreeview.py:1970
+#: ../gramps/plugins/view/pedigreeview.py:1968
 #: ../gramps/plugins/view/relview.py:1670
 #: ../gramps/plugins/webreport/basepage.py:505
 msgid "Children"
@@ -8639,7 +8710,7 @@ msgstr "Region"
 #: ../gramps/plugins/tool/dumpgenderstats.py:101
 #: ../gramps/plugins/tool/notrelated.py:130
 #: ../gramps/plugins/tool/removeunused.py:224
-#: ../gramps/plugins/tool/verify.py:821 ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/tool/verify.py:823 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:520
 #: ../gramps/plugins/webreport/person.py:421
 #: ../gramps/plugins/webreport/person.py:2284
@@ -8882,7 +8953,7 @@ msgstr "Avskrift"
 msgid "Source text"
 msgstr "Kjeldetekst"
 
-#: ../gramps/gen/lib/notetype.py:83 ../gramps/gen/plug/_pluginreg.py:115
+#: ../gramps/gen/lib/notetype.py:83 ../gramps/gen/plug/_pluginreg.py:118
 #: ../gramps/gui/logger/_errorview.py:189
 msgid "Report"
 msgstr "Rapporter"
@@ -9575,77 +9646,77 @@ msgstr ""
 "Opsjonen '%(opt_name)s' finsti %(file)s\n"
 " men er ikkje kjend for modulen.  Ser bort frå denne..."
 
-#: ../gramps/gen/plug/_pluginreg.py:65
+#: ../gramps/gen/plug/_pluginreg.py:68
 msgid "Unstable"
 msgstr "Ustabil"
 
-#: ../gramps/gen/plug/_pluginreg.py:66
+#: ../gramps/gen/plug/_pluginreg.py:69
 msgid "Experimental"
 msgstr ""
 
-#: ../gramps/gen/plug/_pluginreg.py:67
+#: ../gramps/gen/plug/_pluginreg.py:70
 msgid "Beta"
 msgstr ""
 
-#: ../gramps/gen/plug/_pluginreg.py:68
+#: ../gramps/gen/plug/_pluginreg.py:71
 msgid "Stable"
 msgstr "Stabil"
 
-#: ../gramps/gen/plug/_pluginreg.py:76
+#: ../gramps/gen/plug/_pluginreg.py:79
 msgid "Developer"
 msgstr ""
 
-#: ../gramps/gen/plug/_pluginreg.py:76
+#: ../gramps/gen/plug/_pluginreg.py:79
 msgid "Expert"
 msgstr ""
 
-#: ../gramps/gen/plug/_pluginreg.py:116
+#: ../gramps/gen/plug/_pluginreg.py:119
 #, fuzzy
 #| msgid "Quick View"
 msgid "Quick view"
 msgstr "Snarrapport"
 
-#: ../gramps/gen/plug/_pluginreg.py:117
+#: ../gramps/gen/plug/_pluginreg.py:120
 msgid "Tool"
 msgstr "Verktøy"
 
-#: ../gramps/gen/plug/_pluginreg.py:118
+#: ../gramps/gen/plug/_pluginreg.py:121
 msgid "Importer"
 msgstr "Importør"
 
-#: ../gramps/gen/plug/_pluginreg.py:119
+#: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Exporter"
 msgstr "Eksportør"
 
-#: ../gramps/gen/plug/_pluginreg.py:120
+#: ../gramps/gen/plug/_pluginreg.py:123
 #, fuzzy
 #| msgid "Doc creator"
 msgid "Document creator"
 msgstr "Doc creator"
 
-#: ../gramps/gen/plug/_pluginreg.py:121
+#: ../gramps/gen/plug/_pluginreg.py:124
 #, fuzzy
 #| msgid "Plugin lib"
 msgid "Plugin library"
 msgstr "Bibliotek for programtillegg"
 
-#: ../gramps/gen/plug/_pluginreg.py:122
+#: ../gramps/gen/plug/_pluginreg.py:125
 msgid "Map service"
 msgstr "Kart-teneste"
 
-#: ../gramps/gen/plug/_pluginreg.py:123 ../gramps/gui/editors/editperson.py:737
+#: ../gramps/gen/plug/_pluginreg.py:126 ../gramps/gui/editors/editperson.py:737
 #: ../gramps/plugins/view/mediaview.py:410
 #: ../gramps/plugins/view/mediaview.py:426
 msgid "View"
 msgstr "Vis"
 
-#: ../gramps/gen/plug/_pluginreg.py:124
+#: ../gramps/gen/plug/_pluginreg.py:127
 #, fuzzy
 #| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Relasjonsberekning"
 
-#: ../gramps/gen/plug/_pluginreg.py:125 ../gramps/gen/plug/_pluginreg.py:513
+#: ../gramps/gen/plug/_pluginreg.py:128 ../gramps/gen/plug/_pluginreg.py:516
 #: ../gramps/gui/glade/grampletpane.glade:156
 #: ../gramps/gui/widgets/grampletbar.py:710
 #: ../gramps/gui/widgets/grampletpane.py:246
@@ -9653,28 +9724,28 @@ msgstr "Relasjonsberekning"
 msgid "Gramplet"
 msgstr "Gramplet"
 
-#: ../gramps/gen/plug/_pluginreg.py:126
+#: ../gramps/gen/plug/_pluginreg.py:129
 msgid "Sidebar"
 msgstr "Sidestolpe"
 
-#: ../gramps/gen/plug/_pluginreg.py:128
+#: ../gramps/gen/plug/_pluginreg.py:131
 #, fuzzy
 msgid "Rule"
 msgstr "Ny regel"
 
-#: ../gramps/gen/plug/_pluginreg.py:129
+#: ../gramps/gen/plug/_pluginreg.py:132
 #, fuzzy
 #| msgid "Thumbnail"
 msgid "Thumbnailer"
 msgstr "Miniatyrbilete"
 
-#: ../gramps/gen/plug/_pluginreg.py:130 ../gramps/gui/configure.py:1655
+#: ../gramps/gen/plug/_pluginreg.py:133 ../gramps/gui/configure.py:1655
 #, fuzzy
 #| msgid "Publication Information"
 msgid "Citation formatter"
 msgstr "Informasjon om publikasjon"
 
-#: ../gramps/gen/plug/_pluginreg.py:617
+#: ../gramps/gen/plug/_pluginreg.py:620
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
 #: ../gramps/plugins/importer/importprogen.glade:1306
 #: ../gramps/plugins/webreport/basepage.py:2129
@@ -9683,13 +9754,13 @@ msgstr "Informasjon om publikasjon"
 msgid "Miscellaneous"
 msgstr "Ymse"
 
-#: ../gramps/gen/plug/_pluginreg.py:1359 ../gramps/gen/plug/_pluginreg.py:1394
-#: ../gramps/gen/plug/_pluginreg.py:1401
+#: ../gramps/gen/plug/_pluginreg.py:1362 ../gramps/gen/plug/_pluginreg.py:1397
+#: ../gramps/gen/plug/_pluginreg.py:1404
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "FEIL: Greidde ikkje å lesa registrering av programtillegg %(filename)s"
 
-#: ../gramps/gen/plug/_pluginreg.py:1370
+#: ../gramps/gen/plug/_pluginreg.py:1373
 #, python-format
 msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
@@ -9698,7 +9769,7 @@ msgstr ""
 "ÅTVARING: Tillegget %(plugin_name)s har ikkje omsetjing for nokon av dine "
 "konfigurerte språk, brukar US-Engelsk i staden"
 
-#: ../gramps/gen/plug/_pluginreg.py:1419
+#: ../gramps/gen/plug/_pluginreg.py:1422
 #, fuzzy, python-format
 msgctxt "gramps_version"
 msgid ""
@@ -9710,32 +9781,32 @@ msgstr ""
 "\"%(gramps_target_version)s\" som er ugyldig for versjon "
 "\"%(gramps_version)s\" av gramps."
 
-#: ../gramps/gen/plug/_pluginreg.py:1451
+#: ../gramps/gen/plug/_pluginreg.py:1450
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr "FEIL: Feil pythonfil %(filename)s i registerfil %(regfile)s"
 
-#: ../gramps/gen/plug/_pluginreg.py:1464
+#: ../gramps/gen/plug/_pluginreg.py:1463
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr "FEIL: Pythonfil %(filename)s i registerfil %(regfile)s fins ikkje"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:136
+#: ../gramps/gen/plug/docbackend/docbackend.py:140
 msgid "Close file first"
 msgstr "Lukk fila først"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:146
+#: ../gramps/gen/plug/docbackend/docbackend.py:150
 msgid "No filename given"
 msgstr "Manglar filnamn"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:149
+#: ../gramps/gen/plug/docbackend/docbackend.py:153
 #, python-format
 msgid "File %s already open, close it first."
 msgstr "Fila %s er allereie open, lukk ho først."
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:155
-#: ../gramps/gen/plug/docbackend/docbackend.py:158
+#: ../gramps/gen/plug/docbackend/docbackend.py:159
+#: ../gramps/gen/plug/docbackend/docbackend.py:162
 #: ../gramps/gen/plug/docgen/treedoc.py:826
 #: ../gramps/gen/utils/docgen/odstab.py:344
 #: ../gramps/gen/utils/docgen/odstab.py:346
@@ -9752,8 +9823,8 @@ msgstr "Fila %s er allereie open, lukk ho først."
 #: ../gramps/plugins/docgen/asciidoc.py:185
 #: ../gramps/plugins/docgen/cairodoc.py:210
 #: ../gramps/plugins/docgen/cairodoc.py:213
-#: ../gramps/plugins/docgen/odfdoc.py:1182
-#: ../gramps/plugins/docgen/odfdoc.py:1185
+#: ../gramps/plugins/docgen/odfdoc.py:1194
+#: ../gramps/plugins/docgen/odfdoc.py:1197
 #: ../gramps/plugins/docgen/rtfdoc.py:102
 #: ../gramps/plugins/docgen/rtfdoc.py:105
 #: ../gramps/plugins/docgen/svgdrawdoc.py:91
@@ -9768,10 +9839,10 @@ msgstr "Fila %s er allereie open, lukk ho først."
 #: ../gramps/plugins/export/exportvcalendar.py:127
 #: ../gramps/plugins/export/exportvcard.py:74
 #: ../gramps/plugins/export/exportvcard.py:78
-#: ../gramps/plugins/lib/libhtmlbackend.py:254
-#: ../gramps/plugins/lib/libhtmlbackend.py:257
-#: ../gramps/plugins/lib/libhtmlbackend.py:262
-#: ../gramps/plugins/lib/libhtmlbackend.py:265
+#: ../gramps/plugins/lib/libhtmlbackend.py:258
+#: ../gramps/plugins/lib/libhtmlbackend.py:261
+#: ../gramps/plugins/lib/libhtmlbackend.py:266
+#: ../gramps/plugins/lib/libhtmlbackend.py:269
 #: ../gramps/plugins/webreport/narrativeweb.py:401
 #, python-format
 msgid "Could not create %s"
@@ -9800,22 +9871,22 @@ msgid "TrueType / FreeSans"
 msgstr "TrueType / FreeSans"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:76
-#: ../gramps/plugins/view/pedigreeview.py:2269
+#: ../gramps/plugins/view/pedigreeview.py:2267
 msgid "Vertical (↓)"
 msgstr "Vertikal (ned)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:77
-#: ../gramps/plugins/view/pedigreeview.py:2270
+#: ../gramps/plugins/view/pedigreeview.py:2268
 msgid "Vertical (↑)"
 msgstr "Vertikal (opp)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:78
-#: ../gramps/plugins/view/pedigreeview.py:2271
+#: ../gramps/plugins/view/pedigreeview.py:2269
 msgid "Horizontal (→)"
 msgstr "Horisontal(mot høgre)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:79
-#: ../gramps/plugins/view/pedigreeview.py:2272
+#: ../gramps/plugins/view/pedigreeview.py:2270
 msgid "Horizontal (←)"
 msgstr "Horisontal (mot venstre)"
 
@@ -10763,61 +10834,61 @@ msgstr "FAMILIE"
 msgid "Ancestor Families of %s"
 msgstr "Foreldrefamiliar til %s"
 
-#: ../gramps/gen/plug/utils.py:298
+#: ../gramps/gen/plug/utils.py:306
 msgid "Updated"
 msgstr "Oppdatert"
 
-#: ../gramps/gen/plug/utils.py:316
+#: ../gramps/gen/plug/utils.py:324
 msgctxt "updates"
 msgid "New"
 msgstr "Ny"
 
-#: ../gramps/gen/plug/utils.py:346 ../gramps/gen/plug/utils.py:353
+#: ../gramps/gen/plug/utils.py:354 ../gramps/gen/plug/utils.py:361
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Kunne ikkje opna '%s'"
 
-#: ../gramps/gen/plug/utils.py:360
+#: ../gramps/gen/plug/utils.py:368
 #, python-format
 msgid "Error in reading '%s'"
 msgstr "Feil ved lesing av '%s'"
 
-#: ../gramps/gen/plug/utils.py:375
+#: ../gramps/gen/plug/utils.py:383
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Feil: ukjent fil-type: '%s'"
 
-#: ../gramps/gen/plug/utils.py:381
+#: ../gramps/gen/plug/utils.py:389
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Undersøkjer '%s'..."
 
-#: ../gramps/gen/plug/utils.py:410
+#: ../gramps/gen/plug/utils.py:419
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' er for denne versjonen av Gramps."
 
-#: ../gramps/gen/plug/utils.py:418
+#: ../gramps/gen/plug/utils.py:427
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr " '%s' er IKKJE for denne versjonen av Gramps."
 
-#: ../gramps/gen/plug/utils.py:424
+#: ../gramps/gen/plug/utils.py:433
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
 msgstr "Den er for versjon %(v1)d.%(v2)d"
 
-#: ../gramps/gen/plug/utils.py:438
+#: ../gramps/gen/plug/utils.py:447
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
 msgstr "Feil: manglar gramps_target_version i '%s'..."
 
-#: ../gramps/gen/plug/utils.py:454
+#: ../gramps/gen/plug/utils.py:463
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installerer '%s'..."
 
-#: ../gramps/gen/plug/utils.py:460
+#: ../gramps/gen/plug/utils.py:469
 #, python-format
 msgid "Registered '%s'"
 msgstr "Registrert '%s'"
@@ -10846,7 +10917,7 @@ msgstr ""
 "sletta ho og starta Gramps på nytt."
 
 #: ../gramps/gen/relationship.py:1416
-#: ../gramps/plugins/view/pedigreeview.py:1730
+#: ../gramps/plugins/view/pedigreeview.py:1728
 msgid "Relationship loop detected"
 msgstr "Fann ei relasjonsløkke"
 
@@ -11057,28 +11128,28 @@ msgstr "dødsrelatert dato for etterkomar"
 msgid "Database error: loop in %s's descendants"
 msgstr "Feil i databasen: sløyfe i etterkomarane til %s"
 
-#: ../gramps/gen/utils/alive.py:487 ../gramps/gen/utils/alive.py:558
+#: ../gramps/gen/utils/alive.py:485 ../gramps/gen/utils/alive.py:556
 msgid "ancestor birth date"
 msgstr "fødselsdato for stamfar"
 
-#: ../gramps/gen/utils/alive.py:504 ../gramps/gen/utils/alive.py:575
+#: ../gramps/gen/utils/alive.py:502 ../gramps/gen/utils/alive.py:573
 msgid "ancestor death date"
 msgstr "dødsdato for stamfar"
 
-#: ../gramps/gen/utils/alive.py:519 ../gramps/gen/utils/alive.py:590
+#: ../gramps/gen/utils/alive.py:517 ../gramps/gen/utils/alive.py:588
 msgid "ancestor birth-related date"
 msgstr "fødselsrelatert dato for forfar"
 
-#: ../gramps/gen/utils/alive.py:535 ../gramps/gen/utils/alive.py:606
+#: ../gramps/gen/utils/alive.py:533 ../gramps/gen/utils/alive.py:604
 msgid "ancestor death-related date"
 msgstr "dødsrelatert dato for forfar"
 
-#: ../gramps/gen/utils/alive.py:626
+#: ../gramps/gen/utils/alive.py:624
 #, python-format
 msgid "Database error: loop in %s's ancestors"
 msgstr "Databasefeil: sløyfe i forfedrane til %s"
 
-#: ../gramps/gen/utils/alive.py:684
+#: ../gramps/gen/utils/alive.py:681
 msgid "no evidence"
 msgstr "ikkje noko prov"
 
@@ -11746,90 +11817,94 @@ msgid "Japanese"
 msgstr "Japansk"
 
 #: ../gramps/gen/utils/win32locale.py:72
+msgid "Korean"
+msgstr ""
+
+#: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
 msgstr "Litauisk"
 
-#: ../gramps/gen/utils/win32locale.py:74
+#: ../gramps/gen/utils/win32locale.py:75
 msgid "Macedonian"
 msgstr "Makedonsk"
 
-#: ../gramps/gen/utils/win32locale.py:75
+#: ../gramps/gen/utils/win32locale.py:76
 msgid "Norwegian Bokmal"
 msgstr "Norsk bokmål"
 
-#: ../gramps/gen/utils/win32locale.py:76
+#: ../gramps/gen/utils/win32locale.py:77
 msgid "Dutch"
 msgstr "Nederlandsk"
 
-#: ../gramps/gen/utils/win32locale.py:77
+#: ../gramps/gen/utils/win32locale.py:78
 msgid "Norwegian Nynorsk"
 msgstr "Norsk nynorsk"
 
-#: ../gramps/gen/utils/win32locale.py:78
+#: ../gramps/gen/utils/win32locale.py:79
 msgid "Polish"
 msgstr "Polsk"
 
-#: ../gramps/gen/utils/win32locale.py:79
+#: ../gramps/gen/utils/win32locale.py:80
 msgid "Portuguese (Brazil)"
 msgstr "Portugisisk (Brasil)"
 
-#: ../gramps/gen/utils/win32locale.py:80
+#: ../gramps/gen/utils/win32locale.py:81
 msgid "Portuguese (Portugal)"
 msgstr "Portugisisk (Portugal)"
 
-#: ../gramps/gen/utils/win32locale.py:81
+#: ../gramps/gen/utils/win32locale.py:82
 msgid "Romanian"
 msgstr "Romansk"
 
-#: ../gramps/gen/utils/win32locale.py:82
+#: ../gramps/gen/utils/win32locale.py:83
 msgid "Russian"
 msgstr "Russisk"
 
-#: ../gramps/gen/utils/win32locale.py:83
+#: ../gramps/gen/utils/win32locale.py:84
 msgid "Slovak"
 msgstr "Slovakisk"
 
-#: ../gramps/gen/utils/win32locale.py:84
+#: ../gramps/gen/utils/win32locale.py:85
 msgid "Slovenian"
 msgstr "Slovensk"
 
-#: ../gramps/gen/utils/win32locale.py:85
+#: ../gramps/gen/utils/win32locale.py:86
 msgid "Albanian"
 msgstr "Albansk"
 
-#: ../gramps/gen/utils/win32locale.py:86
+#: ../gramps/gen/utils/win32locale.py:87
 msgid "Serbian"
 msgstr "Serbisk"
 
-#: ../gramps/gen/utils/win32locale.py:87
+#: ../gramps/gen/utils/win32locale.py:88
 msgid "Swedish"
 msgstr "Svensk"
 
-#: ../gramps/gen/utils/win32locale.py:89
+#: ../gramps/gen/utils/win32locale.py:90
 msgid "Tamil"
 msgstr "Tamilsk"
 
-#: ../gramps/gen/utils/win32locale.py:90
+#: ../gramps/gen/utils/win32locale.py:91
 msgid "Turkish"
 msgstr "Tyrkisk"
 
-#: ../gramps/gen/utils/win32locale.py:91
+#: ../gramps/gen/utils/win32locale.py:92
 msgid "Ukrainian"
 msgstr "Ukrainsk"
 
-#: ../gramps/gen/utils/win32locale.py:92
+#: ../gramps/gen/utils/win32locale.py:93
 msgid "Vietnamese"
 msgstr "Vietnamesisk"
 
-#: ../gramps/gen/utils/win32locale.py:93
+#: ../gramps/gen/utils/win32locale.py:94
 msgid "Chinese (Simplified)"
 msgstr "Kinesisk (forenkla)"
 
-#: ../gramps/gen/utils/win32locale.py:94
+#: ../gramps/gen/utils/win32locale.py:95
 msgid "Chinese (Hong Kong)"
 msgstr "Kinesisk (Hong Kong)"
 
-#: ../gramps/gen/utils/win32locale.py:95
+#: ../gramps/gen/utils/win32locale.py:96
 msgid "Chinese (Traditional)"
 msgstr "Kinesisk (Tradisjonelt)"
 
@@ -12461,7 +12536,7 @@ msgstr "Døme"
 #: ../gramps/gui/plug/report/_bookdialog.py:677 ../gramps/gui/views/tags.py:495
 #: ../gramps/gui/widgets/fanchart.py:2284
 #: ../gramps/gui/widgets/fanchart.py:2326
-#: ../gramps/plugins/view/pedigreeview.py:1843
+#: ../gramps/plugins/view/pedigreeview.py:1841
 msgid "_Add"
 msgstr "_Legg til"
 
@@ -12476,8 +12551,8 @@ msgstr "_Legg til"
 #: ../gramps/gui/glade/editlink.glade:222 ../gramps/gui/grampsgui.py:58
 #: ../gramps/gui/plug/report/_bookdialog.py:651 ../gramps/gui/views/tags.py:496
 #: ../gramps/gui/widgets/fanchart.py:2072
-#: ../gramps/plugins/view/pedigreeview.py:1877
-#: ../gramps/plugins/view/pedigreeview.py:2109
+#: ../gramps/plugins/view/pedigreeview.py:1875
+#: ../gramps/plugins/view/pedigreeview.py:2107
 msgid "_Edit"
 msgstr "_Rediger"
 
@@ -13950,7 +14025,7 @@ msgstr "Ei_genskapar"
 #: ../gramps/plugins/tool/notrelated.py:131
 #: ../gramps/plugins/tool/patchnames.py:457
 #: ../gramps/plugins/tool/removeunused.py:217
-#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:811
+#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:813
 #: ../gramps/plugins/view/citationlistview.py:101
 #: ../gramps/plugins/view/citationtreeview.py:96
 #: ../gramps/plugins/view/eventview.py:82
@@ -14719,11 +14794,11 @@ msgctxt "manual"
 msgid "Editing_dates"
 msgstr "Redigere_datoar"
 
-#: ../gramps/gui/editors/editdate.py:131 ../gramps/gui/editors/editdate.py:297
+#: ../gramps/gui/editors/editdate.py:131 ../gramps/gui/editors/editdate.py:299
 msgid "Date selection"
 msgstr "Datoval"
 
-#: ../gramps/gui/editors/editdate.py:288
+#: ../gramps/gui/editors/editdate.py:290
 #, python-brace-format
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr "Korriger datoen eller byt frå `{cur_mode}' til `{text_mode}'"
@@ -15460,20 +15535,18 @@ msgstr "Ny stad"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:239
-#: ../gramps/plugins/webreport/basepage.py:3181
 #, fuzzy
 msgid ""
 "Invalid latitude\n"
-"(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+"(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "Ugyldig breddegrad (syntax:18\\u00b09'"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:247
-#: ../gramps/plugins/webreport/basepage.py:3202
 #, fuzzy
 msgid ""
 "Invalid longitude\n"
-"(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+"(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "Ugyldig lengdegrad (syntax: 18\\u00b09'"
 
 #: ../gramps/gui/editors/editplace.py:289
@@ -19113,7 +19186,7 @@ msgstr "Flett saman personar"
 #: ../gramps/gui/widgets/fanchart.py:2250
 #: ../gramps/plugins/quickview/all_relations.py:364
 #: ../gramps/plugins/tool/notrelated.py:132
-#: ../gramps/plugins/view/pedigreeview.py:2007
+#: ../gramps/plugins/view/pedigreeview.py:2005
 #: ../gramps/plugins/view/relview.py:689 ../gramps/plugins/view/relview.py:1072
 #: ../gramps/plugins/view/relview.py:1110
 #: ../gramps/plugins/webreport/person.py:440
@@ -19135,7 +19208,7 @@ msgstr "Fann ingen foreldre"
 #: ../gramps/gui/merge/mergeperson.py:257
 #: ../gramps/gui/widgets/fanchart.py:2113
 #: ../gramps/plugins/textreport/kinshipreport.py:139
-#: ../gramps/plugins/view/pedigreeview.py:1893
+#: ../gramps/plugins/view/pedigreeview.py:1891
 msgid "Spouses"
 msgstr "Ektefeller"
 
@@ -19153,7 +19226,7 @@ msgstr "Partnar"
 msgid "No spouses or children found"
 msgstr "Ingen ektefeller eller barn er funne"
 
-#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:801
+#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:803
 msgid "Warning"
 msgstr "Åtvaring"
 
@@ -20948,7 +21021,7 @@ msgstr "Slettar du dette elementet, vil det bli fjerna frå databasen."
 #: ../gramps/plugins/gramplet/recordsgramplet.py:51
 #: ../gramps/plugins/gramplet/statsgramplet.py:73
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:96
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:72
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:81
 msgid "Processing..."
 msgstr "Utfører..."
 
@@ -21205,20 +21278,20 @@ msgid "Reorder families"
 msgstr "Endra rekkefølgje på familiar"
 
 #: ../gramps/gui/widgets/fanchart.py:2102
-#: ../gramps/plugins/view/pedigreeview.py:1882
-#: ../gramps/plugins/view/pedigreeview.py:2114
+#: ../gramps/plugins/view/pedigreeview.py:1880
+#: ../gramps/plugins/view/pedigreeview.py:2112
 msgid "_Copy"
 msgstr "_Kopier"
 
 #: ../gramps/gui/widgets/fanchart.py:2147
 #: ../gramps/plugins/quickview/quickview.gpr.py:338
-#: ../gramps/plugins/view/pedigreeview.py:1927
+#: ../gramps/plugins/view/pedigreeview.py:1925
 #: ../gramps/plugins/view/relview.py:1126
 msgid "Siblings"
 msgstr "søsken"
 
 #: ../gramps/gui/widgets/fanchart.py:2293
-#: ../gramps/plugins/view/pedigreeview.py:2057
+#: ../gramps/plugins/view/pedigreeview.py:2055
 msgid "Related"
 msgstr "Relatert"
 
@@ -21677,11 +21750,11 @@ msgstr ""
 msgid "Could not create jpeg version of image %(name)s"
 msgstr "Kunne ikkje oppretta jpeg-versjon av biletet %(name)s"
 
-#: ../gramps/plugins/docgen/latexdoc.py:1405
+#: ../gramps/plugins/docgen/latexdoc.py:1410
 msgid "PIL (Python Imaging Library) not loaded."
 msgstr "PIL (Python Imaging Library) er ikkje lasta."
 
-#: ../gramps/plugins/docgen/latexdoc.py:1407
+#: ../gramps/plugins/docgen/latexdoc.py:1412
 msgid ""
 "Production of jpg images from non-jpg images in LaTeX documents will not be "
 "available. Use your package manager to install python-imaging or python-"
@@ -21691,7 +21764,7 @@ msgstr ""
 "vera tilgjengeleg. Bruk pakkehandsamaren for å installera python-imaging "
 "eller python- pillow eller python3-pillow"
 
-#: ../gramps/plugins/docgen/odfdoc.py:1208
+#: ../gramps/plugins/docgen/odfdoc.py:1220
 #, python-format
 msgid "Could not open %s"
 msgstr "Kunne ikkje opne %s"
@@ -23563,10 +23636,17 @@ msgid "Enter a date, click Run"
 msgstr "Skriv inn ein dato og klikk på Køyr"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
+#, fuzzy
+#| msgid ""
+#| "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. "
+#| "This will compute the ages for everyone in your Family Tree on that date. "
+#| "You can then sort by the age column, and double-click the row to view or "
+#| "edit."
 msgid ""
-"Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This "
-"will compute the ages for everyone in your Family Tree on that date. You can "
-"then sort by the age column, and double-click the row to view or edit."
+"Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
+"This will compute the ages for everyone in your Family Tree on that date. "
+"You can then sort by the age column, and double-click the row to view or "
+"edit."
 msgstr ""
 "Skriv inn ein gyldig dato (t.d. YYYY-MM-DD) i feltet under og klikk på Køyr. "
 "Dette vil rekna ut alderen på alle i Slektstreet ditt på denne datoen. Du "
@@ -23691,7 +23771,7 @@ msgstr "Kjeldetekst"
 msgid "Confidence Level"
 msgstr "Truverdenivå:"
 
-#: ../gramps/plugins/gramplet/citations.py:186
+#: ../gramps/plugins/gramplet/citations.py:187
 #, fuzzy
 msgid "<No Volume/Page>"
 msgstr "Bind/Side"
@@ -23932,8 +24012,8 @@ msgstr "Dobbelklikk på fornamnet for å sjå detaljar"
 #: ../gramps/plugins/gramplet/relativegramplet.py:43
 #: ../gramps/plugins/gramplet/statsgramplet.py:60
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:73
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:54
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:62
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:57
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:65
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
 msgstr "Ingen slektstre er lasta."
@@ -23948,7 +24028,7 @@ msgstr "Total for fornamn viser"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:159
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:187
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:116
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:125
 msgid "Total people"
 msgstr "Samla tal på personar"
 
@@ -25099,7 +25179,7 @@ msgid "Missing Media Objects"
 msgstr "Manglande mediaobjekt"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:69
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:52
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:55
 msgid "Double-click surname for details"
 msgstr "Dobbelklikk på etternamnet for å sjå detaljar"
 
@@ -25122,7 +25202,7 @@ msgid "Max font size"
 msgstr "Maksimal skriftstorleik"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:184
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:114
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:123
 msgid "Total unique surnames"
 msgstr "Totalt tal på ulike etternamn"
 
@@ -25157,6 +25237,12 @@ msgstr ""
 #: ../gramps/plugins/gramplet/todogramplet.py:151
 msgid "Unattached"
 msgstr "Ikkje vedlagt"
+
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
+#, fuzzy
+#| msgid "Number of ranks to display"
+msgid "Number of Surnames to display"
+msgstr "Tal på element som skal visast"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
@@ -31356,7 +31442,7 @@ msgstr "_Tilbake"
 #: ../gramps/plugins/view/geoperson.py:110
 #: ../gramps/plugins/view/pedigreeview.py:691
 #: ../gramps/plugins/view/pedigreeview.py:733
-#: ../gramps/plugins/view/pedigreeview.py:1775
+#: ../gramps/plugins/view/pedigreeview.py:1773
 #: ../gramps/plugins/view/relview.py:390 ../gramps/plugins/view/relview.py:455
 msgid "_Home"
 msgstr "_Startperson"
@@ -31459,7 +31545,7 @@ msgstr "Lag personfilter"
 
 #: ../gramps/plugins/lib/libpersonview.py:275
 #: ../gramps/plugins/lib/libpersonview.py:385
-#: ../gramps/plugins/view/pedigreeview.py:1785
+#: ../gramps/plugins/view/pedigreeview.py:1783
 msgid "Set _Home Person"
 msgstr "Vel startperson"
 
@@ -32697,7 +32783,7 @@ msgstr "Ingen fødselsrelasjon med barn"
 
 #: ../gramps/plugins/quickview/lineage.py:169
 #: ../gramps/plugins/quickview/lineage.py:191
-#: ../gramps/plugins/tool/verify.py:1509
+#: ../gramps/plugins/tool/verify.py:1511
 msgid "Unknown gender"
 msgstr "Ukjent kjønn"
 
@@ -35427,7 +35513,7 @@ msgstr "Finn doble oppføringar"
 
 #: ../gramps/plugins/tool/finddupes.py:147
 #: ../gramps/plugins/tool/mergecitations.py:170
-#: ../gramps/plugins/tool/verify.py:481
+#: ../gramps/plugins/tool/verify.py:480
 msgid "Tool settings"
 msgstr "Verktøyval"
 
@@ -36131,7 +36217,7 @@ msgid "Unused Objects"
 msgstr "Ubrukte objekt"
 
 #: ../gramps/plugins/tool/removeunused.py:205
-#: ../gramps/plugins/tool/verify.py:789
+#: ../gramps/plugins/tool/verify.py:791
 msgid "Mark"
 msgstr "Marker"
 
@@ -36617,226 +36703,226 @@ msgstr "Høgste tal på år _mellom barn"
 msgid "Maximum _span of years for all children"
 msgstr "Høgste tal på år mellom første og siste barn"
 
-#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:943
+#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:945
 msgid "_Hide marked"
 msgstr "Gøym markerte"
 
-#: ../gramps/plugins/tool/verify.py:94
+#: ../gramps/plugins/tool/verify.py:93
 msgctxt "manual"
 msgid "Verify_the_Data"
 msgstr "Kontroller_dataene"
 
-#: ../gramps/plugins/tool/verify.py:420
+#: ../gramps/plugins/tool/verify.py:419
 msgid "Data Verify tool"
 msgstr "Verktøy for kontroll av data"
 
-#: ../gramps/plugins/tool/verify.py:444
+#: ../gramps/plugins/tool/verify.py:443
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 msgstr "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 
-#: ../gramps/plugins/tool/verify.py:727
+#: ../gramps/plugins/tool/verify.py:729
 msgid "Data Verification Results"
 msgstr "Resultat for datakontroll"
 
-#: ../gramps/plugins/tool/verify.py:940
+#: ../gramps/plugins/tool/verify.py:942
 msgid "_Show all"
 msgstr "Vis alt"
 
-#: ../gramps/plugins/tool/verify.py:1373
+#: ../gramps/plugins/tool/verify.py:1375
 msgid "Baptism before birth"
 msgstr "Dåp før fødsel"
 
-#: ../gramps/plugins/tool/verify.py:1392
+#: ../gramps/plugins/tool/verify.py:1394
 msgid "Death before baptism"
 msgstr "Død før dåp"
 
-#: ../gramps/plugins/tool/verify.py:1411
+#: ../gramps/plugins/tool/verify.py:1413
 msgid "Burial before birth"
 msgstr "Gravferd før fødsel"
 
-#: ../gramps/plugins/tool/verify.py:1430
+#: ../gramps/plugins/tool/verify.py:1432
 msgid "Burial before death"
 msgstr "Gravferd før død"
 
-#: ../gramps/plugins/tool/verify.py:1449
+#: ../gramps/plugins/tool/verify.py:1451
 msgid "Death before birth"
 msgstr "Død før fødsel"
 
-#: ../gramps/plugins/tool/verify.py:1468
+#: ../gramps/plugins/tool/verify.py:1470
 msgid "Burial before baptism"
 msgstr "Gravferd før dåp"
 
-#: ../gramps/plugins/tool/verify.py:1494
+#: ../gramps/plugins/tool/verify.py:1496
 msgid "Old age at death"
 msgstr "Gamal ved død"
 
-#: ../gramps/plugins/tool/verify.py:1525
+#: ../gramps/plugins/tool/verify.py:1527
 msgid "Multiple parents"
 msgstr "Meir enn to foreldre"
 
-#: ../gramps/plugins/tool/verify.py:1550
+#: ../gramps/plugins/tool/verify.py:1552
 msgid "Married often"
 msgstr "Ofte gift"
 
-#: ../gramps/plugins/tool/verify.py:1577
+#: ../gramps/plugins/tool/verify.py:1579
 msgid "Old and unmarried"
 msgstr "Gamal og ugift"
 
-#: ../gramps/plugins/tool/verify.py:1610
+#: ../gramps/plugins/tool/verify.py:1612
 msgid "Too many children"
 msgstr "Svært mange barn"
 
-#: ../gramps/plugins/tool/verify.py:1629
+#: ../gramps/plugins/tool/verify.py:1631
 msgid "Same sex marriage"
 msgstr "Gift med ein av same kjønn"
 
-#: ../gramps/plugins/tool/verify.py:1645
+#: ../gramps/plugins/tool/verify.py:1647
 msgid "Female husband"
 msgstr "Kvinneleg ektemann"
 
-#: ../gramps/plugins/tool/verify.py:1661
+#: ../gramps/plugins/tool/verify.py:1663
 msgid "Male wife"
 msgstr "Mann som hustru"
 
-#: ../gramps/plugins/tool/verify.py:1695
+#: ../gramps/plugins/tool/verify.py:1697
 msgid "Husband and wife with the same surname"
 msgstr "Ektemann og hustru med same etternamn"
 
-#: ../gramps/plugins/tool/verify.py:1727
+#: ../gramps/plugins/tool/verify.py:1729
 msgid "Large age difference between spouses"
 msgstr "Stor aldersskilnad mellom ektemakar"
 
-#: ../gramps/plugins/tool/verify.py:1768
+#: ../gramps/plugins/tool/verify.py:1770
 msgid "Marriage before birth"
 msgstr "Ekteskap før fødsel"
 
-#: ../gramps/plugins/tool/verify.py:1809
+#: ../gramps/plugins/tool/verify.py:1811
 msgid "Marriage after death"
 msgstr "Ekteskap etter død"
 
-#: ../gramps/plugins/tool/verify.py:1860
+#: ../gramps/plugins/tool/verify.py:1862
 msgid "Early marriage"
 msgstr "Tidleg ekteskap"
 
-#: ../gramps/plugins/tool/verify.py:1906
+#: ../gramps/plugins/tool/verify.py:1908
 msgid "Late marriage"
 msgstr "Seint ekteskap"
 
-#: ../gramps/plugins/tool/verify.py:1958
+#: ../gramps/plugins/tool/verify.py:1960
 msgid "Old father"
 msgstr "Gamal far"
 
-#: ../gramps/plugins/tool/verify.py:1962
+#: ../gramps/plugins/tool/verify.py:1964
 msgid "Old mother"
 msgstr "Gamal mor"
 
-#: ../gramps/plugins/tool/verify.py:2014
+#: ../gramps/plugins/tool/verify.py:2016
 msgid "Young father"
 msgstr "Ung far"
 
-#: ../gramps/plugins/tool/verify.py:2018
+#: ../gramps/plugins/tool/verify.py:2020
 msgid "Young mother"
 msgstr "Ung mor"
 
-#: ../gramps/plugins/tool/verify.py:2068
+#: ../gramps/plugins/tool/verify.py:2070
 msgid "Unborn father"
 msgstr "Ufødd far"
 
-#: ../gramps/plugins/tool/verify.py:2072
+#: ../gramps/plugins/tool/verify.py:2074
 msgid "Unborn mother"
 msgstr "Ufødd mor"
 
-#: ../gramps/plugins/tool/verify.py:2130
+#: ../gramps/plugins/tool/verify.py:2132
 msgid "Dead father"
 msgstr "Død far"
 
-#: ../gramps/plugins/tool/verify.py:2134
+#: ../gramps/plugins/tool/verify.py:2136
 msgid "Dead mother"
 msgstr "Død mor"
 
-#: ../gramps/plugins/tool/verify.py:2164
+#: ../gramps/plugins/tool/verify.py:2166
 msgid "Large year span for all children"
 msgstr "Mange år mellom barna"
 
-#: ../gramps/plugins/tool/verify.py:2195
+#: ../gramps/plugins/tool/verify.py:2197
 msgid "Large age differences between children"
 msgstr "Stor aldersskilnad mellom barn"
 
-#: ../gramps/plugins/tool/verify.py:2214
+#: ../gramps/plugins/tool/verify.py:2216
 msgid "Disconnected individual"
 msgstr "Person uten slekt"
 
-#: ../gramps/plugins/tool/verify.py:2237
+#: ../gramps/plugins/tool/verify.py:2239
 msgid "Invalid birth date"
 msgstr "Feil i fødselsdato"
 
-#: ../gramps/plugins/tool/verify.py:2260
+#: ../gramps/plugins/tool/verify.py:2262
 msgid "Invalid death date"
 msgstr "Feil i dødsdato"
 
-#: ../gramps/plugins/tool/verify.py:2280
+#: ../gramps/plugins/tool/verify.py:2282
 msgid "Marriage date but not married"
 msgstr "Ekteskapsdato, men ikkje gift"
 
-#: ../gramps/plugins/tool/verify.py:2311
+#: ../gramps/plugins/tool/verify.py:2313
 msgid "Old age but no death"
 msgstr "Høg alder men ikkje død"
 
-#: ../gramps/plugins/tool/verify.py:2330
+#: ../gramps/plugins/tool/verify.py:2332
 #, fuzzy
 msgid "Birth date equals death date"
 msgstr "Fødselsdato"
 
-#: ../gramps/plugins/tool/verify.py:2351
+#: ../gramps/plugins/tool/verify.py:2353
 #, fuzzy
 msgid "Birth date equals marriage date"
 msgstr "Kortaste ekteskap"
 
-#: ../gramps/plugins/tool/verify.py:2372
+#: ../gramps/plugins/tool/verify.py:2374
 #, fuzzy
 msgid "Death date equals marriage date"
 msgstr "Seint ekteskap"
 
-#: ../gramps/plugins/tool/verify.py:2433
+#: ../gramps/plugins/tool/verify.py:2435
 msgid "Baptism too late according to family tradition"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:2458
+#: ../gramps/plugins/tool/verify.py:2460
 #, fuzzy
 #| msgid "Burial date"
 msgid "Burial too late"
 msgstr "Gravferds-dato"
 
-#: ../gramps/plugins/tool/verify.py:2495
+#: ../gramps/plugins/tool/verify.py:2497
 #, fuzzy
 #| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
 msgstr "Om hendingar skal sorterast kronologisk."
 
-#: ../gramps/plugins/tool/verify.py:2559
+#: ../gramps/plugins/tool/verify.py:2561
 #, fuzzy
 #| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
 msgstr "Om hendingar skal sorterast kronologisk."
 
-#: ../gramps/plugins/tool/verify.py:2572
+#: ../gramps/plugins/tool/verify.py:2574
 msgid "Family has events with role Unknown"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:2585
+#: ../gramps/plugins/tool/verify.py:2587
 #, fuzzy
 #| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
 msgstr "Personhendingar for barna"
 
-#: ../gramps/plugins/tool/verify.py:2598
+#: ../gramps/plugins/tool/verify.py:2600
 #, fuzzy
 #| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
 msgstr "Om hendingar skal sorterast kronologisk."
 
-#: ../gramps/plugins/tool/verify.py:2611
+#: ../gramps/plugins/tool/verify.py:2613
 #, fuzzy
 #| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
@@ -37218,7 +37304,7 @@ msgstr "Viser den siste sida"
 #: ../gramps/plugins/view/fanchart2wayview.py:390
 #: ../gramps/plugins/view/fanchartdescview.py:386
 #: ../gramps/plugins/view/fanchartview.py:466
-#: ../gramps/plugins/view/pedigreeview.py:2279
+#: ../gramps/plugins/view/pedigreeview.py:2277
 #: ../gramps/plugins/view/relview.py:1959
 msgid "Layout"
 msgstr "Utsjånad"
@@ -37834,77 +37920,77 @@ msgstr "Gå til far"
 msgid "Jump to mother"
 msgstr "Gå til mor"
 
-#: ../gramps/plugins/view/pedigreeview.py:1731
+#: ../gramps/plugins/view/pedigreeview.py:1729
 msgid "A person was found to be his/her own ancestor."
 msgstr "Det vart funne ein person som er sin eigen ane."
 
-#: ../gramps/plugins/view/pedigreeview.py:1773
+#: ../gramps/plugins/view/pedigreeview.py:1771
 msgid "Pre_vious"
 msgstr "_Forrige"
 
-#: ../gramps/plugins/view/pedigreeview.py:1774
+#: ../gramps/plugins/view/pedigreeview.py:1772
 msgid "_Next"
 msgstr "_Neste"
 
-#: ../gramps/plugins/view/pedigreeview.py:1803
+#: ../gramps/plugins/view/pedigreeview.py:1801
 msgid "Mouse scroll direction"
 msgstr "Retning på muserulling"
 
-#: ../gramps/plugins/view/pedigreeview.py:1807
+#: ../gramps/plugins/view/pedigreeview.py:1805
 msgid "Top <-> Bottom"
 msgstr "Topp <-> Botn"
 
-#: ../gramps/plugins/view/pedigreeview.py:1814
+#: ../gramps/plugins/view/pedigreeview.py:1812
 msgid "Left <-> Right"
 msgstr "Venstre <-> Høgre"
 
-#: ../gramps/plugins/view/pedigreeview.py:1831
+#: ../gramps/plugins/view/pedigreeview.py:1829
 #, fuzzy
 msgid "About Pedigree View"
 msgstr "Stamtavle-visning"
 
-#: ../gramps/plugins/view/pedigreeview.py:2045
+#: ../gramps/plugins/view/pedigreeview.py:2043
 #: ../gramps/plugins/view/relview.py:411
 msgid "Add New Parents..."
 msgstr "Legg til nye foreldre..."
 
-#: ../gramps/plugins/view/pedigreeview.py:2244
+#: ../gramps/plugins/view/pedigreeview.py:2242
 msgid "Show images"
 msgstr "Vis bilete"
 
-#: ../gramps/plugins/view/pedigreeview.py:2247
+#: ../gramps/plugins/view/pedigreeview.py:2245
 msgid "Show marriage data"
 msgstr "Vis ekteskapsdata"
 
-#: ../gramps/plugins/view/pedigreeview.py:2250
+#: ../gramps/plugins/view/pedigreeview.py:2248
 msgid "Show unknown people"
 msgstr "Vis ukjende personar"
 
-#: ../gramps/plugins/view/pedigreeview.py:2253
+#: ../gramps/plugins/view/pedigreeview.py:2251
 msgid "Show tags"
 msgstr "Vis merke"
 
-#: ../gramps/plugins/view/pedigreeview.py:2257
+#: ../gramps/plugins/view/pedigreeview.py:2255
 msgid "Tree style"
 msgstr "Trestruktur"
 
-#: ../gramps/plugins/view/pedigreeview.py:2260
+#: ../gramps/plugins/view/pedigreeview.py:2258
 msgid "Compact"
 msgstr "Kompakt"
 
-#: ../gramps/plugins/view/pedigreeview.py:2260
+#: ../gramps/plugins/view/pedigreeview.py:2258
 msgid "Expanded"
 msgstr "Utvida"
 
-#: ../gramps/plugins/view/pedigreeview.py:2260
+#: ../gramps/plugins/view/pedigreeview.py:2258
 msgid "Standard"
 msgstr "Standard"
 
-#: ../gramps/plugins/view/pedigreeview.py:2265
+#: ../gramps/plugins/view/pedigreeview.py:2263
 msgid "Tree direction"
 msgstr "Retning for treet"
 
-#: ../gramps/plugins/view/pedigreeview.py:2276
+#: ../gramps/plugins/view/pedigreeview.py:2274
 msgid "Tree size"
 msgstr "Tre-storleik"
 
@@ -38379,12 +38465,12 @@ msgid "Web Calendar"
 msgstr "Nettkalendar"
 
 #: ../gramps/plugins/webreport/basepage.py:2035
-#: ../gramps/plugins/webreport/media.py:440
+#: ../gramps/plugins/webreport/media.py:436
 msgid "Previous"
 msgstr "Forrige"
 
 #: ../gramps/plugins/webreport/basepage.py:2037
-#: ../gramps/plugins/webreport/media.py:453
+#: ../gramps/plugins/webreport/media.py:449
 msgid "Next"
 msgstr "Neste"
 
@@ -38407,6 +38493,20 @@ msgstr "Siste dagars hellige/ LDS-ordinanse"
 #: ../gramps/plugins/webreport/person.py:1218
 msgid "Family Map"
 msgstr "Familiekart"
+
+#: ../gramps/plugins/webreport/basepage.py:3181
+#, fuzzy
+msgid ""
+"Invalid latitude\n"
+"(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+msgstr "Ugyldig breddegrad (syntax:18\\u00b09'"
+
+#: ../gramps/plugins/webreport/basepage.py:3202
+#, fuzzy
+msgid ""
+"Invalid longitude\n"
+"(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+msgstr "Ugyldig lengdegrad (syntax: 18\\u00b09'"
 
 #: ../gramps/plugins/webreport/basepage.py:3219
 #: ../gramps/plugins/webreport/basepage.py:3297
@@ -38617,11 +38717,11 @@ msgstr "Stadar for familie %s"
 msgid "Home"
 msgstr "Heim"
 
-#: ../gramps/plugins/webreport/media.py:121
+#: ../gramps/plugins/webreport/media.py:120
 msgid "Creating media pages"
 msgstr "Lagar sider for mediaobjekt"
 
-#: ../gramps/plugins/webreport/media.py:224
+#: ../gramps/plugins/webreport/media.py:221
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -38633,29 +38733,29 @@ msgstr ""
 "dette medieobjektet&#8217.  Dersom du ser biletdimensjonane over eit bilete, "
 "kan du dobbelklikka på biletet for å sjå det i full storleik. "
 
-#: ../gramps/plugins/webreport/media.py:251
+#: ../gramps/plugins/webreport/media.py:248
 msgctxt "Media "
 msgid " Name"
 msgstr "Medianamn"
 
-#: ../gramps/plugins/webreport/media.py:253
+#: ../gramps/plugins/webreport/media.py:250
 msgid "Mime Type"
 msgstr "Mime-type"
 
-#: ../gramps/plugins/webreport/media.py:266
+#: ../gramps/plugins/webreport/media.py:263
 #, fuzzy
 msgid "Creating list of media pages"
 msgstr "Lagar sider for mediaobjekt"
 
-#: ../gramps/plugins/webreport/media.py:268
+#: ../gramps/plugins/webreport/media.py:265
 msgid "Narrated Web Site Report"
 msgstr "Forteljande nettsider"
 
-#: ../gramps/plugins/webreport/media.py:310
+#: ../gramps/plugins/webreport/media.py:307
 msgid "Below unused media objects"
 msgstr "Nedanståande ubrukte mediaobjekt"
 
-#: ../gramps/plugins/webreport/media.py:442
+#: ../gramps/plugins/webreport/media.py:438
 #, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of "
@@ -38664,15 +38764,15 @@ msgstr ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s av "
 "%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
-#: ../gramps/plugins/webreport/media.py:456
+#: ../gramps/plugins/webreport/media.py:452
 msgid "The file has been moved or deleted."
 msgstr "Fila er flytta eller sletta."
 
-#: ../gramps/plugins/webreport/media.py:631
+#: ../gramps/plugins/webreport/media.py:627
 msgid "File Type"
 msgstr "Filtype"
 
-#: ../gramps/plugins/webreport/media.py:769
+#: ../gramps/plugins/webreport/media.py:765
 msgid "Missing media object:"
 msgstr "Manglande mediaobjekt:"
 
