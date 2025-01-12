@@ -98,6 +98,7 @@ class SurnameTab(EmbeddedList):
         self.curr_col = -1
         self.curr_cellr = None
         self.curr_celle = None
+        self.curr_path = None
 
         EmbeddedList.__init__(
             self,
