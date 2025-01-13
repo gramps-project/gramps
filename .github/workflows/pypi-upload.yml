@@ -11,6 +11,10 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install gettext
       - name: Build package distributions
         run: |
           python3 setup.py sdist bdist_wheel

@@ -461,9 +461,7 @@ class ProbablyAlive:
                 return (None, None, "", None)
             self.pset.add(person.handle)
             LOG.debug(
-                "ancestors_too_old('%s', %s)".format(
-                    name_displayer.display(person), year
-                )
+                "ancestors_too_old('%s', %s)", name_displayer.display(person), year
             )
             family_handle = person.get_main_parents_family_handle()
             if family_handle:
@@ -669,15 +667,14 @@ def probably_alive(
     birth, death, explain, relative = probably_alive_range(
         person, db, max_sib_age_diff, max_age_prob_alive, avg_generation_gap
     )
-    if current_date is None:
+    if current_date is None or not current_date.is_valid():
         current_date = Today()
     LOG.debug(
-        "%s: b.%s, d.%s - %s".format(
-            " ".join(person.get_primary_name().get_text_data_list()),
-            birth,
-            death,
-            explain,
-        )
+        "%s: b.%s, d.%s - %s",
+        name_displayer.display(person),
+        birth,
+        death,
+        explain,
     )
     if not birth or not death:
         # no evidence, must consider alive

@@ -50,6 +50,9 @@ _ = glocale.translation.gettext
 
 LOG = logging.getLogger("._manager")
 
+# Fix DEBUG for AIO built with cx_Freeze
+DEBUG = __debug__ and not hasattr(sys, "frozen")
+
 # -------------------------------------------------------------------------
 #
 # PluginData
@@ -1365,7 +1368,7 @@ class PluginRegister:
         if PluginRegister.__instance != 1:
             raise Exception("This class is a singleton. Use the get_instance() method")
         self.stable_only = True
-        if __debug__:
+        if DEBUG:
             self.stable_only = False
         self.__plugindata = []
         self.__id_to_pdata = {}
@@ -1452,7 +1455,7 @@ class PluginRegister:
             # check if:
             #  1. plugin exists, if not remove, otherwise set module name
             #  2. plugin not stable, if stable_only=True, remove
-            #  3. TOOL_DEBUG only if __debug__ True
+            #  3. TOOL_DEBUG only if DEBUG True
             rmlist = []
             ind = lenpd - 1
             for plugin in self.__plugindata[lenpd:]:
@@ -1480,11 +1483,7 @@ class PluginRegister:
                 if plugin.status == UNSTABLE and self.stable_only:
                     rmlist.append(ind)
                     continue
-                if (
-                    plugin.ptype == TOOL
-                    and plugin.category == TOOL_DEBUG
-                    and not __debug__
-                ):
+                if plugin.ptype == TOOL and plugin.category == TOOL_DEBUG and not DEBUG:
                     rmlist.append(ind)
                     continue
                 if plugin.fname is None:

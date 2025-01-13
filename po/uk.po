@@ -4,20 +4,21 @@
 # Fedir Zinchuk <fedikw@gmail.com>, 2011-2020, 2021, 2022.
 # Oleh Petriv, 2013.
 # qqqlb <qllb.ch@gmail.com>, 2021, 2023.
-# Tymofii Lytvynenko <till.svit@gmail.com>, 2021, 2022.
+# Tymofii Lytvynenko <till.svit@gmail.com>, 2021, 2022, 2024.
 # Artem <artem@molotov.work>, 2022.
 # Artur Plysyuk <ifuelen@gmail.com>, 2022.
 # Milan <mobrcian@hotmail.com>, 2022.
 # Dan <denqwerta@gmail.com>, 2022.
 # Andrey Serbovets <serbovets.translation@gmail.com>, 2023, 2024.
 # Andrii Serbovets <serbovets.translation@gmail.com>, 2024.
+# Illia Maier <Illia-M@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-02-29 20:02+0000\n"
-"Last-Translator: Andrii Serbovets <serbovets.translation@gmail.com>\n"
+"POT-Creation-Date: 2025-01-12 21:14+0000\n"
+"PO-Revision-Date: 2024-10-08 07:15+0000\n"
+"Last-Translator: Illia Maier <Illia-M@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
 "Language: uk\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -234,16 +235,16 @@ msgstr "Україна"
 msgid "United States of America"
 msgstr "Сполучені Штати Америки"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:3
+#: ../data/org.gramps_project.Gramps.desktop.in:2
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
 msgstr "Gramps"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:4
+#: ../data/org.gramps_project.Gramps.desktop.in:3
 msgid "Genealogy System"
 msgstr "Генеалогічна система"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:6
+#: ../data/org.gramps_project.Gramps.desktop.in:5
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
@@ -251,7 +252,7 @@ msgstr ""
 "Збирайте генеалогічні дані, аналізуйте їх та виконуйте генеалогічні "
 "дослідження"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:12
+#: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr "Генеалогія;Історія сім’ї;Дослідження;Сімейне дерево;GEDCOM;"
 
@@ -439,15 +440,26 @@ msgstr ""
 "історії. Не забувайте записувати розмови!"
 
 #: ../data/tips.xml:14
+#, fuzzy
+#| msgid ""
+#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
+#| "individuals based on many criteria. To define a new filter go to \"Edit "
+#| "&gt; Person Filter Editor\". There you can name your filter and add and "
+#| "combine rules using the many preset rules. For example, you can define a "
+#| "filter to find all adopted people in the family tree. People without a "
+#| "birth date mentioned can also be filtered. To get the results save your "
+#| "filter. Then select this filter in the Filter field on Sidebar, then "
+#| "click Find button. If the Sidebar is not visible, select View &gt; "
+#| "Sidebar."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
-"based on many criteria. To define a new filter go to \"Edit &gt; Person "
-"Filter Editor\". There you can name your filter and add and combine rules "
-"using the many preset rules. For example, you can define a filter to find "
-"all adopted people in the family tree. People without a birth date mentioned "
-"can also be filtered. To get the results save your filter. Then select this "
-"filter in the Filter field on Sidebar, then click Find button. If the "
-"Sidebar is not visible, select View &gt; Sidebar."
+"based on many criteria. To define a new filter go to \"Edit > Person Filter "
+"Editor\". There you can name your filter and add and combine rules using the "
+"many preset rules. For example, you can define a filter to find all adopted "
+"people in the family tree. People without a birth date mentioned can also be "
+"filtered. To get the results save your filter. Then select this filter in "
+"the Filter field on Sidebar, then click Find button. If the Sidebar is not "
+"visible, select View > Sidebar."
 msgstr ""
 "<b>Фільтрування Осіб</b><br/>У Вигляді Осіб Ви можете 'фільтрувати' осіб на "
 "основі багатьох критеріїв. Щоб налаштувати новий фільтр, перейдіть до "
@@ -507,12 +519,18 @@ msgstr ""
 "контекстному меню виберіть її чоловіка/жінку, дитину або когось із батьків."
 
 #: ../data/tips.xml:24
+#, fuzzy
+#| msgid ""
+#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
+#| "&gt; Compare Individual Events...\" you can compare the data of "
+#| "individuals in your database. This is useful, say, if you wish to list "
+#| "the birth dates of everyone in your database. You can use a custom filter "
+#| "to narrow the results."
 msgid ""
-"<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-"&gt; Compare Individual Events...\" you can compare the data of individuals "
-"in your database. This is useful, say, if you wish to list the birth dates "
-"of everyone in your database. You can use a custom filter to narrow the "
-"results."
+"<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
+"Compare Individual Events...\" you can compare the data of individuals in "
+"your database. This is useful, say, if you wish to list the birth dates of "
+"everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
 "<b>Хто, коли народився?</b><br/>У розділі \"Інструменти &gt; Аналіз та "
 "дослідження &gt; Порівняння особистих подій...\", Ви можете порівняти дати "
@@ -535,11 +553,17 @@ msgstr ""
 "інструменти можна знайти в меню \"Інструменти\"."
 
 #: ../data/tips.xml:28
+#, fuzzy
+#| msgid ""
+#| "<b>Calculating Relationships</b><br/>To check if two people in the "
+#| "database are related (by blood, not marriage) try the tool under \"Tools "
+#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
+#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
-"are related (by blood, not marriage) try the tool under \"Tools &gt; "
-"Utilities &gt; Relationship Calculator...\". The exact relationship as well "
-"as all common ancestors are reported."
+"are related (by blood, not marriage) try the tool under \"Tools > Utilities "
+"> Relationship Calculator...\". The exact relationship as well as all common "
+"ancestors are reported."
 msgstr ""
 "<b>Розрахунок відносин</b><br/>Щоб перевірити відносини між двома особами "
 "(по крові, не шлюбні) спробуйте інструмент \"Інструменти &gt; Утиліти &gt; "
@@ -565,12 +589,18 @@ msgstr ""
 "базі даних, додайте SoundEx Gramplet."
 
 #: ../data/tips.xml:32
+#, fuzzy
+#| msgid ""
+#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
+#| "modify a number of settings, such as the path to your media files, and "
+#| "allows you to adjust many aspects of the Gramps presentation to your "
+#| "needs. Each separate view can also be configured under \"View &gt; "
+#| "Configure View...\"."
 msgid ""
-"<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
+"<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
-"Each separate view can also be configured under \"View &gt; Configure View..."
-"\"."
+"Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
 "<b>Відредагуйте налаштування</b><br/>\"Редагування &gt; Налаштування...\" "
 "дозволяє Вам змінити ряд параметрів програми, такі як, шлях до медіа файлів, "
@@ -593,11 +623,18 @@ msgstr ""
 "Вашого Родоводу, тоді для цього також існує інструмент."
 
 #: ../data/tips.xml:36
+#, fuzzy
+#| msgid ""
+#| "<b>Starting a New Family Tree</b><br/>A good way to start a new family "
+#| "tree is to enter all the members of the family into the database using "
+#| "the Person View (use \"Edit &gt; Add...\" or click on the Add a new "
+#| "person button from the People View). Then go to the Relationship View and "
+#| "create relationships between people."
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
-"View (use \"Edit &gt; Add...\" or click on the Add a new person button from "
-"the People View). Then go to the Relationship View and create relationships "
+"View (use \"Edit > Add...\" or click on the Add a new person button from the "
+"People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
 "<b>Починаючи нове Сімейне Дерево</b><br/>Хороший спосіб почати нове сімейне "
@@ -630,18 +667,31 @@ msgstr ""
 "дати» поруч із полем дати. Перегляньте посібник Gramps, щоб дізнатися більше."
 
 #: ../data/tips.xml:42
+#, fuzzy
+#| msgid ""
+#| "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
+#| "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
+#| "entries of the same person entered more than once in the database."
 msgid ""
-"<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
-"&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
-"entries of the same person entered more than once in the database."
+"<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
+"Find Possible Duplicate People...\" allows you to locate (and merge) entries "
+"of the same person entered more than once in the database."
 msgstr ""
 "<b>Дублікати</b><br/>Інструмент \"Інструменти &gt; Обробка сімейного дерева "
 "&gt; Пошук можливих дублікатів осіб...\" дозволяє Вам знайти (й об'єднати) "
 "осіб, що були введені в базу даних двічі, або більше разів."
 
 #: ../data/tips.xml:44
+#, fuzzy
+#| msgid ""
+#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you "
+#| "to combine separately listed people into one. Select the second entry by "
+#| "holding the Control key as you click. This is very useful for combining "
+#| "two databases with overlapping people, or combining erroneously entered "
+#| "differing names for one individual. Merging is available in all list "
+#| "views for all primary object types."
 msgid ""
-"<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
+"<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
 "holding the Control key as you click. This is very useful for combining two "
 "databases with overlapping people, or combining erroneously entered "
@@ -668,10 +718,16 @@ msgstr ""
 "верхньої панелі або меню \"Перегляд\"."
 
 #: ../data/tips.xml:48
+#, fuzzy
+#| msgid ""
+#| "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of "
+#| "previous active objects such as People and Events. You can move forward "
+#| "and backward through the list using \"Go &gt; Forward\" and \"Go &gt; "
+#| "Back\" or the arrow buttons."
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
-"through the list using \"Go &gt; Forward\" and \"Go &gt; Back\" or the arrow "
+"through the list using \"Go > Forward\" and \"Go > Back\" or the arrow "
 "buttons."
 msgstr ""
 "<b>Навігація взад і вперед</b><br/>Gramps зберігає списки попередніх "
@@ -690,9 +746,15 @@ msgstr ""
 "для певної функції, вона відображена з правого боку меню."
 
 #: ../data/tips.xml:52
+#, fuzzy
+#| msgid ""
+#| "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
+#| "&gt; User Manual\". The developers have worked hard to make most "
+#| "operations intuitive but the manual is full of information that will make "
+#| "your time spent on genealogy more productive."
 msgid ""
-"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
-"&gt; User Manual\". The developers have worked hard to make most operations "
+"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
+"User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
@@ -754,12 +816,20 @@ msgstr ""
 "але краще попередньо обговорити Ваші ідеї у списках розсилки."
 
 #: ../data/tips.xml:62
+#, fuzzy
+#| msgid ""
+#| "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about "
+#| "Gramps? Check out the gramps-users email list. Many helpful people are on "
+#| "the list, so you're likely to get an answer quickly. If you have "
+#| "questions related to the development of Gramps, try the gramps-devel "
+#| "list. You can see the lists by selecting \"Help &gt; Gramps Mailing "
+#| "Lists\"."
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
 "so you're likely to get an answer quickly. If you have questions related to "
 "the development of Gramps, try the gramps-devel list. You can see the lists "
-"by selecting \"Help &gt; Gramps Mailing Lists\"."
+"by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
 "<b>Списки розсилки Gramps</b><br/>Ви хочете мати відповіді на запитання про "
 "Gramps? Спробуйте списки розсилки користувачів Gramps. У підписці є багато "
@@ -768,14 +838,23 @@ msgstr ""
 "переглянути списки шляхом вибору \"Допомога &gt; Списки Розсилки Gramps\"."
 
 #: ../data/tips.xml:64
+#, fuzzy
+#| msgid ""
+#| "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't "
+#| "write programs? Not a problem! A project as large as Gramps requires "
+#| "people with a wide variety of skills. Contributions can be anything from "
+#| "writing documentation to testing development versions and helping with "
+#| "the web site. Start by subscribing to the Gramps developers mailing list, "
+#| "gramps-devel, and introducing yourself. Subscription information can be "
+#| "found at \"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
 "wide variety of skills. Contributions can be anything from writing "
 "documentation to testing development versions and helping with the web site. "
 "Start by subscribing to the Gramps developers mailing list, gramps-devel, "
-"and introducing yourself. Subscription information can be found at \"Help "
-"&gt; Gramps Mailing Lists\"."
+"and introducing yourself. Subscription information can be found at \"Help > "
+"Gramps Mailing Lists\"."
 msgstr ""
 "<b>Зробіть внесок в розвиток Gramps</b><br/>Бажаєте допомогти Gramps, але не "
 "вмієте писати програми? Без проблем! Такий великий проєкт як Gramps потребує "
@@ -802,12 +881,19 @@ msgstr ""
 "деякі користувачі зберігають у ній генеалогії з сотнями тисяч осіб."
 
 #: ../data/tips.xml:68
+#, fuzzy
+#| msgid ""
+#| "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient "
+#| "place to store the names of frequently used individuals. Selecting a "
+#| "bookmark will make that person the Active Person. To bookmark someone "
+#| "make them the Active Person then go to \"Bookmarks &gt; Add Bookmark\" or "
+#| "press Ctrl+D. You can also bookmark most of the other objects."
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
 "make that person the Active Person. To bookmark someone make them the Active "
-"Person then go to \"Bookmarks &gt; Add Bookmark\" or press Ctrl+D. You can "
-"also bookmark most of the other objects."
+"Person then go to \"Bookmarks > Add Bookmark\" or press Ctrl+D. You can also "
+"bookmark most of the other objects."
 msgstr ""
 "<b>Закладки осіб</b><br/>Меню закладок є зручним місцем для збереження часто "
 "використовуваних імен. Вибір особи із закладки робить її активною. Для "
@@ -816,13 +902,21 @@ msgstr ""
 "більшість інших об'єктів."
 
 #: ../data/tips.xml:70
+#, fuzzy
+#| msgid ""
+#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
+#| "invalid format. Incorrect date formats will show up in Gramps with a "
+#| "either a reddish background or a red dot on the right edge of the field. "
+#| "You can fix the date using the Date Selection dialog which can be opened "
+#| "by clicking on the date button. The format of the date is set under "
+#| "\"Edit &gt; Preferences &gt; Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
 "a reddish background or a red dot on the right edge of the field. You can "
 "fix the date using the Date Selection dialog which can be opened by clicking "
-"on the date button. The format of the date is set under \"Edit &gt; "
-"Preferences &gt; Display\"."
+"on the date button. The format of the date is set under \"Edit > Preferences "
+"> Display\"."
 msgstr ""
 "<b>Помилкові Дати</b><br/>Кожен може помилитися у форматі при вводі дат. "
 "Невірний формат дат буде підсвічений Gramps червоним тлом або червоною "
@@ -831,11 +925,17 @@ msgstr ""
 "визначається у \"Редагування &gt; Налаштування &gt; Показати\"."
 
 #: ../data/tips.xml:72
+#, fuzzy
+#| msgid ""
+#| "<b>Listing Events</b><br/>Events are added using the editor opened with "
+#| "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
+#| "event types. You can add your own event types by typing in the text "
+#| "field, they will be added to the available events, but not translated."
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
-"\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
-"event types. You can add your own event types by typing in the text field, "
-"they will be added to the available events, but not translated."
+"\"Person > Edit Person > Events\". There is a long list of preset event "
+"types. You can add your own event types by typing in the text field, they "
+"will be added to the available events, but not translated."
 msgstr ""
 "<b>Списки Подій</b><br/>Події додаються з допомогою редактора, що "
 "відкривається у \"Особа &gt; Редагувати Особу &gt; Події\". Існує довгий "
@@ -901,11 +1001,17 @@ msgstr ""
 "документи, та ін."
 
 #: ../data/tips.xml:84
+#, fuzzy
+#| msgid ""
+#| "<b>Filters</b><br/>Filters allow you to limit the people seen in the "
+#| "People View. In addition to the many preset filters, Custom Filters can "
+#| "be created limited only by your imagination. Custom filters are created "
+#| "from \"Edit &gt; Person Filter Editor\"."
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
-"limited only by your imagination. Custom filters are created from \"Edit "
-"&gt; Person Filter Editor\"."
+"limited only by your imagination. Custom filters are created from \"Edit > "
+"Person Filter Editor\"."
 msgstr ""
 "<b>Фільтри</b><br/>Фільтри дозволяють Вам обмежити осіб, що будуть "
 "відображені у Вигляді Осіб. В додатку до багатьох стандартних фільтрів, Ви "
@@ -1012,9 +1118,15 @@ msgstr ""
 "помилкою в джерелі."
 
 #: ../data/tips.xml:102
+#, fuzzy
+#| msgid ""
+#| "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added "
+#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
+#| "Reports/Tools\". This is the best way for advanced users to experiment "
+#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
-"Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
+"Gramps with the \"Addon\" system. See them under \"Help > Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
@@ -1024,10 +1136,16 @@ msgstr ""
 "поекспериментувати і створити нову функціональність."
 
 #: ../data/tips.xml:104
+#, fuzzy
+#| msgid ""
+#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
+#| "allows you to collect a variety of reports into a single document. This "
+#| "single report is easier to distribute than multiple reports, especially "
+#| "when printed."
 msgid ""
-"<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
-"allows you to collect a variety of reports into a single document. This "
-"single report is easier to distribute than multiple reports, especially when "
+"<b>Book Reports</b><br/>The Book report under \"Reports > Books...\" allows "
+"you to collect a variety of reports into a single document. This single "
+"report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
 "<b>Звіти-Книги</b><br/>Звіти-Книги, що знаходяться тут: \"Звіти &gt; Книги..."
@@ -1035,10 +1153,15 @@ msgstr ""
 "єдиний звіт легше поширювати, ніж кілька окремих звітів, особливо при друці."
 
 #: ../data/tips.xml:106
+#, fuzzy
+#| msgid ""
+#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
+#| "version of Gramps is released? Join the Gramps-announce mailing list at "
+#| "\"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
-"\"Help &gt; Gramps Mailing Lists\"."
+"\"Help > Gramps Mailing Lists\"."
 msgstr ""
 "<b>Оголошення Gramps</b><br/>Ви зацікавлені отримувати інформацію про нові "
 "випуски Gramps? Приєднайтеся до списків розсилки Gramps тут: \"Допомога &gt; "
@@ -1113,11 +1236,17 @@ msgstr ""
 "буде вірно показано завдяки повній підтримці Unicode."
 
 #: ../data/tips.xml:120
+#, fuzzy
+#| msgid ""
+#| "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
+#| "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
+#| "person is the person who is selected when the database is opened or when "
+#| "the home button is pressed."
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
-"Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
-"person is the person who is selected when the database is opened or when the "
-"home button is pressed."
+"Gramps. Use \"Edit > Set Home Person\" in the Person View. The home person "
+"is the person who is selected when the database is opened or when the home "
+"button is pressed."
 msgstr ""
 "<b>Базова особа</b><br/>Будь хто може бути визначеним як Базова Особа в "
 "Gramps. Оберіть в меню \"Редагування &gt; Встановити базову особу\" в "
@@ -1241,7 +1370,7 @@ msgstr "Буде перезаписано існуючий файл: %s"
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr "ПОМИЛКА: Нерозпізнаний формат для файлу експорту %s"
 
-#: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:371
+#: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:379
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Помилка: не вдається відкрити «%s»"
@@ -1671,7 +1800,7 @@ msgstr ""
 msgid "Path"
 msgstr "Шлях"
 
-#: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:127
+#: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:130
 msgid "Database"
 msgstr "База даних"
 
@@ -2712,37 +2841,37 @@ msgctxt "alternative month names for December"
 msgid ""
 msgstr "груд|груд.|грудень|грудню|грудні|xii"
 
-#: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:645
+#: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:651
 msgctxt "calendar"
 msgid "Gregorian"
 msgstr "Григоріанський"
 
-#: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:646
+#: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:652
 msgctxt "calendar"
 msgid "Julian"
 msgstr "Юліанський"
 
-#: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:647
+#: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:653
 msgctxt "calendar"
 msgid "Hebrew"
 msgstr "Єврейський"
 
-#: ../gramps/gen/datehandler/_datestrings.py:150 ../gramps/gen/lib/date.py:648
+#: ../gramps/gen/datehandler/_datestrings.py:150 ../gramps/gen/lib/date.py:654
 msgctxt "calendar"
 msgid "French Republican"
 msgstr "Французький республіканський"
 
-#: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:649
+#: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:655
 msgctxt "calendar"
 msgid "Persian"
 msgstr "Перський"
 
-#: ../gramps/gen/datehandler/_datestrings.py:152 ../gramps/gen/lib/date.py:650
+#: ../gramps/gen/datehandler/_datestrings.py:152 ../gramps/gen/lib/date.py:656
 msgctxt "calendar"
 msgid "Islamic"
 msgstr "Ісламський"
 
-#: ../gramps/gen/datehandler/_datestrings.py:153 ../gramps/gen/lib/date.py:651
+#: ../gramps/gen/datehandler/_datestrings.py:153 ../gramps/gen/lib/date.py:657
 msgctxt "calendar"
 msgid "Swedish"
 msgstr "Шведський"
@@ -3329,53 +3458,53 @@ msgstr "Кількість теґів"
 msgid "Schema version"
 msgstr "Версія схеми"
 
-#: ../gramps/gen/db/upgrade.py:584
+#: ../gramps/gen/db/upgrade.py:588
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Особи        оновлено з %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/gen/db/upgrade.py:588
+#: ../gramps/gen/db/upgrade.py:592
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Родини      оновлено з %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/gen/db/upgrade.py:592
+#: ../gramps/gen/db/upgrade.py:596
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Події        оновлено з %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/gen/db/upgrade.py:596
+#: ../gramps/gen/db/upgrade.py:600
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d Медіа Об’єкти оновлено з %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/gen/db/upgrade.py:600
+#: ../gramps/gen/db/upgrade.py:604
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Місця        оновлено з %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/gen/db/upgrade.py:604
+#: ../gramps/gen/db/upgrade.py:608
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Сховища    оновлено з %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/gen/db/upgrade.py:608
+#: ../gramps/gen/db/upgrade.py:612
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Джерел        оновлено з %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/gen/db/upgrade.py:1173
+#: ../gramps/gen/db/upgrade.py:1177
 msgid "Number of new objects upgraded:\n"
 msgstr "Кількість оновлених об'єктів\n"
 
-#: ../gramps/gen/db/upgrade.py:1184
+#: ../gramps/gen/db/upgrade.py:1188
 msgid ""
 "\n"
 "\n"
@@ -3391,7 +3520,7 @@ msgstr ""
 "для того, щоб об'єднувати цитати, які мають однакову\n"
 "інформацію"
 
-#: ../gramps/gen/db/upgrade.py:1189
+#: ../gramps/gen/db/upgrade.py:1193
 msgid "Upgrade Statistics"
 msgstr "Статистика оновлення"
 
@@ -3529,16 +3658,16 @@ msgstr "прізвисько"
 msgid "familynick"
 msgstr "прізвисько сім'ї"
 
-#: ../gramps/gen/display/name.py:1293
+#: ../gramps/gen/display/name.py:1290
 #, python-format
 msgid "Wrong name format string %s"
 msgstr "Хибний формат імені %s"
 
-#: ../gramps/gen/display/name.py:1299
+#: ../gramps/gen/display/name.py:1297
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "ПОМИЛКА, Відредагуйте формат імені в налаштуваннях"
 
-#: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:394
+#: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:403
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Помилка у файлі '%s' : не можу завантажити."
@@ -5166,7 +5295,7 @@ msgid ""
 msgstr "Вибрати осіб, що не мають родинних відносин з жодною особою в базі"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:46
-#: ../gramps/gen/plug/_pluginreg.py:76
+#: ../gramps/gen/plug/_pluginreg.py:79
 msgid "Everyone"
 msgstr "Всі"
 
@@ -6710,7 +6839,7 @@ msgid "Notes"
 msgstr "Примітки"
 
 #: ../gramps/gen/lib/address.py:119 ../gramps/gen/lib/citation.py:108
-#: ../gramps/gen/lib/date.py:763 ../gramps/gen/lib/event.py:155
+#: ../gramps/gen/lib/date.py:769 ../gramps/gen/lib/event.py:155
 #: ../gramps/gen/lib/ldsord.py:200 ../gramps/gen/lib/media.py:169
 #: ../gramps/gen/lib/name.py:181 ../gramps/gen/lib/placename.py:100
 #: ../gramps/gen/lib/placeref.py:93
@@ -6778,8 +6907,8 @@ msgstr "Примітки"
 #: ../gramps/plugins/webreport/basepage.py:1341
 #: ../gramps/plugins/webreport/basepage.py:2865
 #: ../gramps/plugins/webreport/event.py:314
-#: ../gramps/plugins/webreport/media.py:252
-#: ../gramps/plugins/webreport/media.py:645
+#: ../gramps/plugins/webreport/media.py:249
+#: ../gramps/plugins/webreport/media.py:641
 #: ../gramps/plugins/webreport/person.py:1067
 msgid "Date"
 msgstr "Дата"
@@ -7042,7 +7171,7 @@ msgstr "Народження"
 #: ../gramps/gen/lib/childreftype.py:71
 msgctxt "relationship"
 msgid "Adopted"
-msgstr "Прийомн."
+msgstr "Всиновлений"
 
 #: ../gramps/gen/lib/childreftype.py:72
 msgid "Stepchild"
@@ -7102,7 +7231,7 @@ msgstr "Цитата"
 #: ../gramps/plugins/webreport/basepage.py:3166
 #: ../gramps/plugins/webreport/event.py:315
 #: ../gramps/plugins/webreport/event.py:469
-#: ../gramps/plugins/webreport/media.py:618
+#: ../gramps/plugins/webreport/media.py:614
 #: ../gramps/plugins/webreport/person.py:1820
 #: ../gramps/plugins/webreport/repository.py:264
 #: ../gramps/plugins/webreport/source.py:292
@@ -7180,8 +7309,8 @@ msgstr "Джерело"
 #: ../gramps/plugins/webreport/basepage.py:2081
 #: ../gramps/plugins/webreport/basepage.py:2126
 #: ../gramps/plugins/webreport/basepage.py:2442
-#: ../gramps/plugins/webreport/media.py:215
-#: ../gramps/plugins/webreport/media.py:418
+#: ../gramps/plugins/webreport/media.py:212
+#: ../gramps/plugins/webreport/media.py:414
 #: ../gramps/plugins/webreport/updates.py:152
 msgid "Media"
 msgstr "Медіа"
@@ -7226,7 +7355,7 @@ msgstr "Востаннє змінено"
 #: ../gramps/plugins/webreport/basepage.py:3315
 #: ../gramps/plugins/webreport/event.py:496
 #: ../gramps/plugins/webreport/family.py:461
-#: ../gramps/plugins/webreport/media.py:664
+#: ../gramps/plugins/webreport/media.py:660
 #: ../gramps/plugins/webreport/person.py:1915
 #: ../gramps/plugins/webreport/repository.py:287
 #: ../gramps/plugins/webreport/source.py:308
@@ -7320,7 +7449,7 @@ msgstr[2] "{number_of} днів"
 msgid "0 days"
 msgstr "0 днів"
 
-#: ../gramps/gen/lib/date.py:766
+#: ../gramps/gen/lib/date.py:772
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:76
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:84
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:90
@@ -7329,20 +7458,20 @@ msgstr "0 днів"
 msgid "Calendar"
 msgstr "Календар"
 
-#: ../gramps/gen/lib/date.py:767
+#: ../gramps/gen/lib/date.py:773
 msgid "Modifier"
 msgstr "Модифікатор"
 
-#: ../gramps/gen/lib/date.py:768
+#: ../gramps/gen/lib/date.py:774
 msgid "Quality"
 msgstr "Якість"
 
-#: ../gramps/gen/lib/date.py:771 ../gramps/gui/editors/filtereditor.py:913
+#: ../gramps/gen/lib/date.py:777 ../gramps/gui/editors/filtereditor.py:913
 #: ../gramps/gui/glade/rule.glade:967
 msgid "Values"
 msgstr "Значення"
 
-#: ../gramps/gen/lib/date.py:774 ../gramps/gen/lib/placename.py:97
+#: ../gramps/gen/lib/date.py:780 ../gramps/gen/lib/placename.py:97
 #: ../gramps/gen/lib/styledtext.py:327
 #: ../gramps/gen/plug/report/_constants.py:62 ../gramps/gui/clipboard.py:626
 #: ../gramps/gui/clipboard.py:634 ../gramps/gui/configure.py:1786
@@ -7354,65 +7483,65 @@ msgstr "Значення"
 msgid "Text"
 msgstr "Текст"
 
-#: ../gramps/gen/lib/date.py:775
+#: ../gramps/gen/lib/date.py:781
 msgid "Sort value"
 msgstr "Упорядкувати за"
 
-#: ../gramps/gen/lib/date.py:776
+#: ../gramps/gen/lib/date.py:782
 msgid "New year begins"
 msgstr "Початок нового року"
 
-#: ../gramps/gen/lib/date.py:1976
+#: ../gramps/gen/lib/date.py:1981
 msgid "calculated"
 msgstr "обраховано"
 
-#: ../gramps/gen/lib/date.py:1976
+#: ../gramps/gen/lib/date.py:1981
 msgid "estimated"
 msgstr "оцінка"
 
-#: ../gramps/gen/lib/date.py:1976
+#: ../gramps/gen/lib/date.py:1981
 msgctxt "date-quality"
 msgid "none"
 msgstr "нічого"
 
-#: ../gramps/gen/lib/date.py:2000
+#: ../gramps/gen/lib/date.py:2005
 msgctxt "date-modifier"
 msgid "none"
 msgstr "нічого"
 
-#: ../gramps/gen/lib/date.py:2001 ../gramps/plugins/lib/libsubstkeyword.py:317
+#: ../gramps/gen/lib/date.py:2006 ../gramps/plugins/lib/libsubstkeyword.py:317
 #: ../gramps/plugins/webreport/basepage.py:3584
 msgid "before"
 msgstr "перед"
 
-#: ../gramps/gen/lib/date.py:2002 ../gramps/plugins/lib/libprogen.py:2029
+#: ../gramps/gen/lib/date.py:2007 ../gramps/plugins/lib/libprogen.py:2029
 #: ../gramps/plugins/lib/libsubstkeyword.py:318
 #: ../gramps/plugins/webreport/basepage.py:3582
 msgid "after"
 msgstr "після"
 
-#: ../gramps/gen/lib/date.py:2003 ../gramps/plugins/lib/libsubstkeyword.py:319
+#: ../gramps/gen/lib/date.py:2008 ../gramps/plugins/lib/libsubstkeyword.py:319
 #: ../gramps/plugins/webreport/basepage.py:3586
 msgid "about"
 msgstr "близько"
 
-#: ../gramps/gen/lib/date.py:2004
+#: ../gramps/gen/lib/date.py:2009
 msgid "range"
 msgstr "діапазон"
 
-#: ../gramps/gen/lib/date.py:2005
+#: ../gramps/gen/lib/date.py:2010
 msgid "from"
 msgstr "з"
 
-#: ../gramps/gen/lib/date.py:2006
+#: ../gramps/gen/lib/date.py:2011
 msgid "to"
 msgstr "до"
 
-#: ../gramps/gen/lib/date.py:2007
+#: ../gramps/gen/lib/date.py:2012
 msgid "span"
 msgstr "інтервал"
 
-#: ../gramps/gen/lib/date.py:2008
+#: ../gramps/gen/lib/date.py:2013
 msgid "textonly"
 msgstr "лише текст"
 
@@ -8108,7 +8237,7 @@ msgstr "Мама"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1009
 #: ../gramps/plugins/textreport/familygroup.py:657
 #: ../gramps/plugins/textreport/indivcomplete.py:708
-#: ../gramps/plugins/view/pedigreeview.py:1970
+#: ../gramps/plugins/view/pedigreeview.py:1968
 #: ../gramps/plugins/view/relview.py:1670
 #: ../gramps/plugins/webreport/basepage.py:505
 msgid "Children"
@@ -8401,7 +8530,7 @@ msgstr "Область"
 #: ../gramps/plugins/tool/dumpgenderstats.py:101
 #: ../gramps/plugins/tool/notrelated.py:130
 #: ../gramps/plugins/tool/removeunused.py:224
-#: ../gramps/plugins/tool/verify.py:821 ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/tool/verify.py:823 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:520
 #: ../gramps/plugins/webreport/person.py:421
 #: ../gramps/plugins/webreport/person.py:2284
@@ -8642,7 +8771,7 @@ msgstr "Розшифровка"
 msgid "Source text"
 msgstr "Оригінальний текст"
 
-#: ../gramps/gen/lib/notetype.py:83 ../gramps/gen/plug/_pluginreg.py:115
+#: ../gramps/gen/lib/notetype.py:83 ../gramps/gen/plug/_pluginreg.py:118
 #: ../gramps/gui/logger/_errorview.py:189
 msgid "Report"
 msgstr "Звіт"
@@ -9332,69 +9461,69 @@ msgstr ""
 "Опція '%(opt_name)s' знаходиться в %(file)s\n"
 "  але є невідомою для модуля. Ігнорую..."
 
-#: ../gramps/gen/plug/_pluginreg.py:65
+#: ../gramps/gen/plug/_pluginreg.py:68
 msgid "Unstable"
 msgstr "Нестабільно"
 
-#: ../gramps/gen/plug/_pluginreg.py:66
+#: ../gramps/gen/plug/_pluginreg.py:69
 msgid "Experimental"
 msgstr "Експериментально"
 
-#: ../gramps/gen/plug/_pluginreg.py:67
+#: ../gramps/gen/plug/_pluginreg.py:70
 msgid "Beta"
 msgstr "Бета"
 
-#: ../gramps/gen/plug/_pluginreg.py:68
+#: ../gramps/gen/plug/_pluginreg.py:71
 msgid "Stable"
 msgstr "Стабільно"
 
-#: ../gramps/gen/plug/_pluginreg.py:76
+#: ../gramps/gen/plug/_pluginreg.py:79
 msgid "Developer"
 msgstr "Розробник"
 
-#: ../gramps/gen/plug/_pluginreg.py:76
+#: ../gramps/gen/plug/_pluginreg.py:79
 msgid "Expert"
 msgstr "Експерт"
 
-#: ../gramps/gen/plug/_pluginreg.py:116
+#: ../gramps/gen/plug/_pluginreg.py:119
 msgid "Quick view"
 msgstr "Швидкий перегляд"
 
-#: ../gramps/gen/plug/_pluginreg.py:117
+#: ../gramps/gen/plug/_pluginreg.py:120
 msgid "Tool"
 msgstr "Інструмент"
 
-#: ../gramps/gen/plug/_pluginreg.py:118
+#: ../gramps/gen/plug/_pluginreg.py:121
 msgid "Importer"
 msgstr "Імпортер"
 
-#: ../gramps/gen/plug/_pluginreg.py:119
+#: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Exporter"
 msgstr "Експортер"
 
-#: ../gramps/gen/plug/_pluginreg.py:120
+#: ../gramps/gen/plug/_pluginreg.py:123
 msgid "Document creator"
 msgstr "Генератор документів"
 
-#: ../gramps/gen/plug/_pluginreg.py:121
+#: ../gramps/gen/plug/_pluginreg.py:124
 msgid "Plugin library"
 msgstr "Бібліотека модулів"
 
-#: ../gramps/gen/plug/_pluginreg.py:122
+#: ../gramps/gen/plug/_pluginreg.py:125
 msgid "Map service"
 msgstr "Послуги картування"
 
-#: ../gramps/gen/plug/_pluginreg.py:123 ../gramps/gui/editors/editperson.py:737
+#: ../gramps/gen/plug/_pluginreg.py:126 ../gramps/gui/editors/editperson.py:737
 #: ../gramps/plugins/view/mediaview.py:410
 #: ../gramps/plugins/view/mediaview.py:426
 msgid "View"
 msgstr "Перегляд"
 
-#: ../gramps/gen/plug/_pluginreg.py:124
+#: ../gramps/gen/plug/_pluginreg.py:127
 msgid "Relationship calculator"
 msgstr "Калькулятор відносин"
 
-#: ../gramps/gen/plug/_pluginreg.py:125 ../gramps/gen/plug/_pluginreg.py:513
+#: ../gramps/gen/plug/_pluginreg.py:128 ../gramps/gen/plug/_pluginreg.py:516
 #: ../gramps/gui/glade/grampletpane.glade:156
 #: ../gramps/gui/widgets/grampletbar.py:710
 #: ../gramps/gui/widgets/grampletpane.py:246
@@ -9402,23 +9531,23 @@ msgstr "Калькулятор відносин"
 msgid "Gramplet"
 msgstr "Ґрамплет"
 
-#: ../gramps/gen/plug/_pluginreg.py:126
+#: ../gramps/gen/plug/_pluginreg.py:129
 msgid "Sidebar"
 msgstr "Бічна панель"
 
-#: ../gramps/gen/plug/_pluginreg.py:128
+#: ../gramps/gen/plug/_pluginreg.py:131
 msgid "Rule"
 msgstr "Правило"
 
-#: ../gramps/gen/plug/_pluginreg.py:129
+#: ../gramps/gen/plug/_pluginreg.py:132
 msgid "Thumbnailer"
 msgstr "Генератор мініатюр"
 
-#: ../gramps/gen/plug/_pluginreg.py:130 ../gramps/gui/configure.py:1655
+#: ../gramps/gen/plug/_pluginreg.py:133 ../gramps/gui/configure.py:1655
 msgid "Citation formatter"
 msgstr "Форматувальник цитат"
 
-#: ../gramps/gen/plug/_pluginreg.py:617
+#: ../gramps/gen/plug/_pluginreg.py:620
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
 #: ../gramps/plugins/importer/importprogen.glade:1306
 #: ../gramps/plugins/webreport/basepage.py:2129
@@ -9427,13 +9556,13 @@ msgstr "Форматувальник цитат"
 msgid "Miscellaneous"
 msgstr "Різне"
 
-#: ../gramps/gen/plug/_pluginreg.py:1359 ../gramps/gen/plug/_pluginreg.py:1394
-#: ../gramps/gen/plug/_pluginreg.py:1401
+#: ../gramps/gen/plug/_pluginreg.py:1362 ../gramps/gen/plug/_pluginreg.py:1397
+#: ../gramps/gen/plug/_pluginreg.py:1404
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "ПОМИЛКА: Провал при читанні реєстрації додатків %(filename)s"
 
-#: ../gramps/gen/plug/_pluginreg.py:1370
+#: ../gramps/gen/plug/_pluginreg.py:1373
 #, python-format
 msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
@@ -9442,7 +9571,7 @@ msgstr ""
 "УВАГА: Модуль %(plugin_name)s не має перекладу на жодну з мов, вибраних "
 "Вами. Використовую американську англійську"
 
-#: ../gramps/gen/plug/_pluginreg.py:1419
+#: ../gramps/gen/plug/_pluginreg.py:1422
 #, python-format
 msgctxt "gramps_version"
 msgid ""
@@ -9453,35 +9582,35 @@ msgstr ""
 "ПОМИЛКА: Файл додатку %(filename)s версії \"%(gramps_target_version)s\" яка "
 "не працює у Gramps \"%(gramps_version)s\"."
 
-#: ../gramps/gen/plug/_pluginreg.py:1451
+#: ../gramps/gen/plug/_pluginreg.py:1450
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
 "ПОМИЛКА: Невірний файл python-скрипту %(filename)s у файлі реєстрації "
 "%(regfile)s"
 
-#: ../gramps/gen/plug/_pluginreg.py:1464
+#: ../gramps/gen/plug/_pluginreg.py:1463
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr ""
 "ПОМИЛКА: Файл Python %(filename)s у файлі реєстрації %(regfile)s відсутній"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:136
+#: ../gramps/gen/plug/docbackend/docbackend.py:140
 msgid "Close file first"
 msgstr "Спершу закрийте файл"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:146
+#: ../gramps/gen/plug/docbackend/docbackend.py:150
 msgid "No filename given"
 msgstr "Не вказано назву файлу"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:149
+#: ../gramps/gen/plug/docbackend/docbackend.py:153
 #, python-format
 msgid "File %s already open, close it first."
 msgstr "Файл %s вже відкрито. Спершу закрийте його."
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:155
-#: ../gramps/gen/plug/docbackend/docbackend.py:158
+#: ../gramps/gen/plug/docbackend/docbackend.py:159
+#: ../gramps/gen/plug/docbackend/docbackend.py:162
 #: ../gramps/gen/plug/docgen/treedoc.py:826
 #: ../gramps/gen/utils/docgen/odstab.py:344
 #: ../gramps/gen/utils/docgen/odstab.py:346
@@ -9498,8 +9627,8 @@ msgstr "Файл %s вже відкрито. Спершу закрийте йо�
 #: ../gramps/plugins/docgen/asciidoc.py:185
 #: ../gramps/plugins/docgen/cairodoc.py:210
 #: ../gramps/plugins/docgen/cairodoc.py:213
-#: ../gramps/plugins/docgen/odfdoc.py:1182
-#: ../gramps/plugins/docgen/odfdoc.py:1185
+#: ../gramps/plugins/docgen/odfdoc.py:1194
+#: ../gramps/plugins/docgen/odfdoc.py:1197
 #: ../gramps/plugins/docgen/rtfdoc.py:102
 #: ../gramps/plugins/docgen/rtfdoc.py:105
 #: ../gramps/plugins/docgen/svgdrawdoc.py:91
@@ -9514,10 +9643,10 @@ msgstr "Файл %s вже відкрито. Спершу закрийте йо�
 #: ../gramps/plugins/export/exportvcalendar.py:127
 #: ../gramps/plugins/export/exportvcard.py:74
 #: ../gramps/plugins/export/exportvcard.py:78
-#: ../gramps/plugins/lib/libhtmlbackend.py:254
-#: ../gramps/plugins/lib/libhtmlbackend.py:257
-#: ../gramps/plugins/lib/libhtmlbackend.py:262
-#: ../gramps/plugins/lib/libhtmlbackend.py:265
+#: ../gramps/plugins/lib/libhtmlbackend.py:258
+#: ../gramps/plugins/lib/libhtmlbackend.py:261
+#: ../gramps/plugins/lib/libhtmlbackend.py:266
+#: ../gramps/plugins/lib/libhtmlbackend.py:269
 #: ../gramps/plugins/webreport/narrativeweb.py:401
 #, python-format
 msgid "Could not create %s"
@@ -9546,22 +9675,22 @@ msgid "TrueType / FreeSans"
 msgstr "TrueType / FreeSans"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:76
-#: ../gramps/plugins/view/pedigreeview.py:2269
+#: ../gramps/plugins/view/pedigreeview.py:2267
 msgid "Vertical (↓)"
 msgstr "По вертикалі (↓)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:77
-#: ../gramps/plugins/view/pedigreeview.py:2270
+#: ../gramps/plugins/view/pedigreeview.py:2268
 msgid "Vertical (↑)"
 msgstr "По вертикалі (↑)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:78
-#: ../gramps/plugins/view/pedigreeview.py:2271
+#: ../gramps/plugins/view/pedigreeview.py:2269
 msgid "Horizontal (→)"
 msgstr "По горизонталі (→)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:79
-#: ../gramps/plugins/view/pedigreeview.py:2272
+#: ../gramps/plugins/view/pedigreeview.py:2270
 msgid "Horizontal (←)"
 msgstr "По горизонталі (←)"
 
@@ -10468,61 +10597,61 @@ msgstr "СІМ'Я"
 msgid "Ancestor Families of %s"
 msgstr "Родини предків від %s"
 
-#: ../gramps/gen/plug/utils.py:298
+#: ../gramps/gen/plug/utils.py:306
 msgid "Updated"
 msgstr "Оновлено"
 
-#: ../gramps/gen/plug/utils.py:316
+#: ../gramps/gen/plug/utils.py:324
 msgctxt "updates"
 msgid "New"
 msgstr "Нове"
 
-#: ../gramps/gen/plug/utils.py:346 ../gramps/gen/plug/utils.py:353
+#: ../gramps/gen/plug/utils.py:354 ../gramps/gen/plug/utils.py:361
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Неможливо відкрити '%s'"
 
-#: ../gramps/gen/plug/utils.py:360
+#: ../gramps/gen/plug/utils.py:368
 #, python-format
 msgid "Error in reading '%s'"
 msgstr "Помилка читання '%s'"
 
-#: ../gramps/gen/plug/utils.py:375
+#: ../gramps/gen/plug/utils.py:383
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Помилка: Невідомий тип файлу: '%s'"
 
-#: ../gramps/gen/plug/utils.py:381
+#: ../gramps/gen/plug/utils.py:389
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Перевіряю '%s'..."
 
-#: ../gramps/gen/plug/utils.py:410
+#: ../gramps/gen/plug/utils.py:419
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' є для цієї версії Gramps."
 
-#: ../gramps/gen/plug/utils.py:418
+#: ../gramps/gen/plug/utils.py:427
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' Є НЕ для цієї версії Gramps."
 
-#: ../gramps/gen/plug/utils.py:424
+#: ../gramps/gen/plug/utils.py:433
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
 msgstr "Це для версії %(v1)d.%(v2)d"
 
-#: ../gramps/gen/plug/utils.py:438
+#: ../gramps/gen/plug/utils.py:447
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
 msgstr "Помилка: відсутній параметр gramps_target_version в '%s'..."
 
-#: ../gramps/gen/plug/utils.py:454
+#: ../gramps/gen/plug/utils.py:463
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Встановлюю '%s'..."
 
-#: ../gramps/gen/plug/utils.py:460
+#: ../gramps/gen/plug/utils.py:469
 #, python-format
 msgid "Registered '%s'"
 msgstr "Зареєстровано '%s'"
@@ -10552,7 +10681,7 @@ msgstr ""
 "перезапустіть Gramps."
 
 #: ../gramps/gen/relationship.py:1416
-#: ../gramps/plugins/view/pedigreeview.py:1730
+#: ../gramps/plugins/view/pedigreeview.py:1728
 msgid "Relationship loop detected"
 msgstr "Виявлено замкнене коло відносин"
 
@@ -10762,28 +10891,28 @@ msgstr "дата, пов'язана із смертю нащадка"
 msgid "Database error: loop in %s's descendants"
 msgstr "Помилка бази даних: замикання в %s нащадках"
 
-#: ../gramps/gen/utils/alive.py:487 ../gramps/gen/utils/alive.py:558
+#: ../gramps/gen/utils/alive.py:485 ../gramps/gen/utils/alive.py:556
 msgid "ancestor birth date"
 msgstr "дата народження предка"
 
-#: ../gramps/gen/utils/alive.py:504 ../gramps/gen/utils/alive.py:575
+#: ../gramps/gen/utils/alive.py:502 ../gramps/gen/utils/alive.py:573
 msgid "ancestor death date"
 msgstr "дата смерті предка"
 
-#: ../gramps/gen/utils/alive.py:519 ../gramps/gen/utils/alive.py:590
+#: ../gramps/gen/utils/alive.py:517 ../gramps/gen/utils/alive.py:588
 msgid "ancestor birth-related date"
 msgstr "дата, пов'язана з народженням предка"
 
-#: ../gramps/gen/utils/alive.py:535 ../gramps/gen/utils/alive.py:606
+#: ../gramps/gen/utils/alive.py:533 ../gramps/gen/utils/alive.py:604
 msgid "ancestor death-related date"
 msgstr "дата, пов'язана із смертю предка"
 
-#: ../gramps/gen/utils/alive.py:626
+#: ../gramps/gen/utils/alive.py:624
 #, python-format
 msgid "Database error: loop in %s's ancestors"
 msgstr "Помилка бази даних: замикання в %s предках"
 
-#: ../gramps/gen/utils/alive.py:684
+#: ../gramps/gen/utils/alive.py:681
 msgid "no evidence"
 msgstr "нема підтверджень"
 
@@ -11434,90 +11563,94 @@ msgid "Japanese"
 msgstr "Японська"
 
 #: ../gramps/gen/utils/win32locale.py:72
+msgid "Korean"
+msgstr ""
+
+#: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
 msgstr "Литовська"
 
-#: ../gramps/gen/utils/win32locale.py:74
+#: ../gramps/gen/utils/win32locale.py:75
 msgid "Macedonian"
 msgstr "Македонська"
 
-#: ../gramps/gen/utils/win32locale.py:75
+#: ../gramps/gen/utils/win32locale.py:76
 msgid "Norwegian Bokmal"
 msgstr "Норвезька букмол"
 
-#: ../gramps/gen/utils/win32locale.py:76
+#: ../gramps/gen/utils/win32locale.py:77
 msgid "Dutch"
 msgstr "Нідерландська"
 
-#: ../gramps/gen/utils/win32locale.py:77
+#: ../gramps/gen/utils/win32locale.py:78
 msgid "Norwegian Nynorsk"
 msgstr "Норвезька нюношк"
 
-#: ../gramps/gen/utils/win32locale.py:78
+#: ../gramps/gen/utils/win32locale.py:79
 msgid "Polish"
 msgstr "Польська"
 
-#: ../gramps/gen/utils/win32locale.py:79
+#: ../gramps/gen/utils/win32locale.py:80
 msgid "Portuguese (Brazil)"
 msgstr "Португальська (Бразилія)"
 
-#: ../gramps/gen/utils/win32locale.py:80
+#: ../gramps/gen/utils/win32locale.py:81
 msgid "Portuguese (Portugal)"
 msgstr "Португальська (Португалія)"
 
-#: ../gramps/gen/utils/win32locale.py:81
+#: ../gramps/gen/utils/win32locale.py:82
 msgid "Romanian"
 msgstr "Румунська"
 
-#: ../gramps/gen/utils/win32locale.py:82
+#: ../gramps/gen/utils/win32locale.py:83
 msgid "Russian"
 msgstr "Російська"
 
-#: ../gramps/gen/utils/win32locale.py:83
+#: ../gramps/gen/utils/win32locale.py:84
 msgid "Slovak"
 msgstr "Словацька"
 
-#: ../gramps/gen/utils/win32locale.py:84
+#: ../gramps/gen/utils/win32locale.py:85
 msgid "Slovenian"
 msgstr "Словенська"
 
-#: ../gramps/gen/utils/win32locale.py:85
+#: ../gramps/gen/utils/win32locale.py:86
 msgid "Albanian"
 msgstr "Албанська"
 
-#: ../gramps/gen/utils/win32locale.py:86
+#: ../gramps/gen/utils/win32locale.py:87
 msgid "Serbian"
 msgstr "Сербська"
 
-#: ../gramps/gen/utils/win32locale.py:87
+#: ../gramps/gen/utils/win32locale.py:88
 msgid "Swedish"
 msgstr "Шведська"
 
-#: ../gramps/gen/utils/win32locale.py:89
+#: ../gramps/gen/utils/win32locale.py:90
 msgid "Tamil"
 msgstr "Тамільська"
 
-#: ../gramps/gen/utils/win32locale.py:90
+#: ../gramps/gen/utils/win32locale.py:91
 msgid "Turkish"
 msgstr "Турецька"
 
-#: ../gramps/gen/utils/win32locale.py:91
+#: ../gramps/gen/utils/win32locale.py:92
 msgid "Ukrainian"
 msgstr "Українська"
 
-#: ../gramps/gen/utils/win32locale.py:92
+#: ../gramps/gen/utils/win32locale.py:93
 msgid "Vietnamese"
 msgstr "В'єтнамська"
 
-#: ../gramps/gen/utils/win32locale.py:93
+#: ../gramps/gen/utils/win32locale.py:94
 msgid "Chinese (Simplified)"
 msgstr "Китайська (Спрощена)"
 
-#: ../gramps/gen/utils/win32locale.py:94
+#: ../gramps/gen/utils/win32locale.py:95
 msgid "Chinese (Hong Kong)"
 msgstr "Китайська (Гонког)"
 
-#: ../gramps/gen/utils/win32locale.py:95
+#: ../gramps/gen/utils/win32locale.py:96
 msgid "Chinese (Traditional)"
 msgstr "Китайська (Традиційна)"
 
@@ -12106,7 +12239,7 @@ msgstr "Зразок"
 #: ../gramps/gui/plug/report/_bookdialog.py:677 ../gramps/gui/views/tags.py:495
 #: ../gramps/gui/widgets/fanchart.py:2284
 #: ../gramps/gui/widgets/fanchart.py:2326
-#: ../gramps/plugins/view/pedigreeview.py:1843
+#: ../gramps/plugins/view/pedigreeview.py:1841
 msgid "_Add"
 msgstr "_Додати"
 
@@ -12121,8 +12254,8 @@ msgstr "_Додати"
 #: ../gramps/gui/glade/editlink.glade:222 ../gramps/gui/grampsgui.py:58
 #: ../gramps/gui/plug/report/_bookdialog.py:651 ../gramps/gui/views/tags.py:496
 #: ../gramps/gui/widgets/fanchart.py:2072
-#: ../gramps/plugins/view/pedigreeview.py:1877
-#: ../gramps/plugins/view/pedigreeview.py:2109
+#: ../gramps/plugins/view/pedigreeview.py:1875
+#: ../gramps/plugins/view/pedigreeview.py:2107
 msgid "_Edit"
 msgstr "_Редагування"
 
@@ -13551,7 +13684,7 @@ msgstr "_Атрибути"
 #: ../gramps/plugins/tool/notrelated.py:131
 #: ../gramps/plugins/tool/patchnames.py:457
 #: ../gramps/plugins/tool/removeunused.py:217
-#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:811
+#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:813
 #: ../gramps/plugins/view/citationlistview.py:101
 #: ../gramps/plugins/view/citationtreeview.py:96
 #: ../gramps/plugins/view/eventview.py:82
@@ -14286,7 +14419,7 @@ msgstr "Від"
 
 #: ../gramps/gui/editors/editdate.py:83
 msgid "To"
-msgstr "Кому"
+msgstr "По"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -14309,11 +14442,11 @@ msgctxt "manual"
 msgid "Editing_dates"
 msgstr "Редагування_дат"
 
-#: ../gramps/gui/editors/editdate.py:131 ../gramps/gui/editors/editdate.py:297
+#: ../gramps/gui/editors/editdate.py:131 ../gramps/gui/editors/editdate.py:299
 msgid "Date selection"
 msgstr "Вибір дати"
 
-#: ../gramps/gui/editors/editdate.py:288
+#: ../gramps/gui/editors/editdate.py:290
 #, python-brace-format
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr "Поправте дату або перемкніть з `{cur_mode}' на `{text_mode}'"
@@ -15044,20 +15177,26 @@ msgstr "Нове Місце"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:239
-#: ../gramps/plugins/webreport/basepage.py:3181
+#, fuzzy
+#| msgid ""
+#| "Invalid latitude\n"
+#| "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid latitude\n"
-"(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+"(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Помилкова широта\n"
 "(синтаксис: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:247
-#: ../gramps/plugins/webreport/basepage.py:3202
+#, fuzzy
+#| msgid ""
+#| "Invalid longitude\n"
+#| "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid longitude\n"
-"(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+"(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Помилкова довгота\n"
 "(синтаксис: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
@@ -18613,7 +18752,7 @@ msgstr "Об'єднання Осіб"
 #: ../gramps/gui/widgets/fanchart.py:2250
 #: ../gramps/plugins/quickview/all_relations.py:364
 #: ../gramps/plugins/tool/notrelated.py:132
-#: ../gramps/plugins/view/pedigreeview.py:2007
+#: ../gramps/plugins/view/pedigreeview.py:2005
 #: ../gramps/plugins/view/relview.py:689 ../gramps/plugins/view/relview.py:1072
 #: ../gramps/plugins/view/relview.py:1110
 #: ../gramps/plugins/webreport/person.py:440
@@ -18635,7 +18774,7 @@ msgstr "Батьків не знайдено"
 #: ../gramps/gui/merge/mergeperson.py:257
 #: ../gramps/gui/widgets/fanchart.py:2113
 #: ../gramps/plugins/textreport/kinshipreport.py:139
-#: ../gramps/plugins/view/pedigreeview.py:1893
+#: ../gramps/plugins/view/pedigreeview.py:1891
 msgid "Spouses"
 msgstr "Подружжя"
 
@@ -18653,7 +18792,7 @@ msgstr "Чоловік/Дружина"
 msgid "No spouses or children found"
 msgstr "Подружжя, або дітей не знайдено"
 
-#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:801
+#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:803
 msgid "Warning"
 msgstr "Увага"
 
@@ -18879,14 +19018,12 @@ msgid "Loading..."
 msgstr "Завантаження..."
 
 #: ../gramps/gui/plug/_windows.py:562
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "Провал операції"
+msgstr "Реєстрація додатку не вдалася"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "Додаток буде недоступний у поточній конфігурації."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
@@ -20366,7 +20503,7 @@ msgstr "Видалення елемента витре його з бази да
 #: ../gramps/plugins/gramplet/recordsgramplet.py:51
 #: ../gramps/plugins/gramplet/statsgramplet.py:73
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:96
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:72
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:81
 msgid "Processing..."
 msgstr "Опрацьовую..."
 
@@ -20623,20 +20760,20 @@ msgid "Reorder families"
 msgstr "Перевпорядкувати сім'ї"
 
 #: ../gramps/gui/widgets/fanchart.py:2102
-#: ../gramps/plugins/view/pedigreeview.py:1882
-#: ../gramps/plugins/view/pedigreeview.py:2114
+#: ../gramps/plugins/view/pedigreeview.py:1880
+#: ../gramps/plugins/view/pedigreeview.py:2112
 msgid "_Copy"
 msgstr "Копіювати"
 
 #: ../gramps/gui/widgets/fanchart.py:2147
 #: ../gramps/plugins/quickview/quickview.gpr.py:338
-#: ../gramps/plugins/view/pedigreeview.py:1927
+#: ../gramps/plugins/view/pedigreeview.py:1925
 #: ../gramps/plugins/view/relview.py:1126
 msgid "Siblings"
 msgstr "Брати та сестри"
 
 #: ../gramps/gui/widgets/fanchart.py:2293
-#: ../gramps/plugins/view/pedigreeview.py:2057
+#: ../gramps/plugins/view/pedigreeview.py:2055
 msgid "Related"
 msgstr "Пов'язані"
 
@@ -21090,11 +21227,11 @@ msgstr ""
 msgid "Could not create jpeg version of image %(name)s"
 msgstr "Не можу створити jpeg версію зображення %(name)s"
 
-#: ../gramps/plugins/docgen/latexdoc.py:1405
+#: ../gramps/plugins/docgen/latexdoc.py:1410
 msgid "PIL (Python Imaging Library) not loaded."
 msgstr "PIL (Python Imaging Library) не завантажується."
 
-#: ../gramps/plugins/docgen/latexdoc.py:1407
+#: ../gramps/plugins/docgen/latexdoc.py:1412
 msgid ""
 "Production of jpg images from non-jpg images in LaTeX documents will not be "
 "available. Use your package manager to install python-imaging or python-"
@@ -21104,7 +21241,7 @@ msgstr ""
 "недоступним. Використовуйте менеджер пакунків, щоб встановити python-imaging "
 "або python-pillow або python3-pillow"
 
-#: ../gramps/plugins/docgen/odfdoc.py:1208
+#: ../gramps/plugins/docgen/odfdoc.py:1220
 #, python-format
 msgid "Could not open %s"
 msgstr "Не можу відкрити %s"
@@ -22754,7 +22891,7 @@ msgstr "vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:176
 msgid "vC_alendar"
-msgstr "vC_alendar"
+msgstr "_vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:177
 msgid "vCalendar is used in many calendaring and PIM applications."
@@ -22943,10 +23080,17 @@ msgid "Enter a date, click Run"
 msgstr "Введіть дату, та натисніть Виконати"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
+#, fuzzy
+#| msgid ""
+#| "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. "
+#| "This will compute the ages for everyone in your Family Tree on that date. "
+#| "You can then sort by the age column, and double-click the row to view or "
+#| "edit."
 msgid ""
-"Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This "
-"will compute the ages for everyone in your Family Tree on that date. You can "
-"then sort by the age column, and double-click the row to view or edit."
+"Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
+"This will compute the ages for everyone in your Family Tree on that date. "
+"You can then sort by the age column, and double-click the row to view or "
+"edit."
 msgstr ""
 "Вкажіть вірну дату (наприклад РРРР-ММ-ДД) у формі, що нижче, та натисніть "
 "Виконати. Це обрахує вік всіх осіб у Вашому сімейному дереві. Ви можете "
@@ -23069,7 +23213,7 @@ msgstr "Джерело/Дата"
 msgid "Confidence Level"
 msgstr "Рівень достовірності"
 
-#: ../gramps/plugins/gramplet/citations.py:186
+#: ../gramps/plugins/gramplet/citations.py:187
 msgid "<No Volume/Page>"
 msgstr "<Немає Тому/Сторінки>"
 
@@ -23305,8 +23449,8 @@ msgstr "Подвійний клік по імені, для показу дет�
 #: ../gramps/plugins/gramplet/relativegramplet.py:43
 #: ../gramps/plugins/gramplet/statsgramplet.py:60
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:73
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:54
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:62
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:57
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:65
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
 msgstr "Сімейне дерево не завантажено."
@@ -23321,7 +23465,7 @@ msgstr "Кількість показаних імен"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:159
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:187
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:116
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:125
 msgid "Total people"
 msgstr "Кількість осіб"
 
@@ -24467,7 +24611,7 @@ msgid "Missing Media Objects"
 msgstr "Відсутні медіа об'єкти"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:69
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:52
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:55
 msgid "Double-click surname for details"
 msgstr "Подвійний клік по прізвищу для деталей"
 
@@ -24490,7 +24634,7 @@ msgid "Max font size"
 msgstr "Максимальний розмір шрифту"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:184
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:114
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:123
 msgid "Total unique surnames"
 msgstr "Кількість унікальних прізвищ"
 
@@ -24525,6 +24669,12 @@ msgstr "Оберіть об'єкт, для якого хочете додати 
 #: ../gramps/plugins/gramplet/todogramplet.py:151
 msgid "Unattached"
 msgstr "Неприкріплено"
+
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
+#, fuzzy
+#| msgid "Number of ranks to display"
+msgid "Number of Surnames to display"
+msgstr "Кількість рядків для показу"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
@@ -30720,7 +30870,7 @@ msgstr "_Назад"
 #: ../gramps/plugins/view/geoperson.py:110
 #: ../gramps/plugins/view/pedigreeview.py:691
 #: ../gramps/plugins/view/pedigreeview.py:733
-#: ../gramps/plugins/view/pedigreeview.py:1775
+#: ../gramps/plugins/view/pedigreeview.py:1773
 #: ../gramps/plugins/view/relview.py:390 ../gramps/plugins/view/relview.py:455
 msgid "_Home"
 msgstr "_Додому"
@@ -30823,7 +30973,7 @@ msgstr "Редактор фільтру осіб"
 
 #: ../gramps/plugins/lib/libpersonview.py:275
 #: ../gramps/plugins/lib/libpersonview.py:385
-#: ../gramps/plugins/view/pedigreeview.py:1785
+#: ../gramps/plugins/view/pedigreeview.py:1783
 msgid "Set _Home Person"
 msgstr "Встановити _базову особу"
 
@@ -31998,10 +32148,6 @@ msgid "Father lineage for %s"
 msgstr "Батьківська лінія для %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
-#, fuzzy
-#| msgid ""
-#| "This report shows the father lineage, also called patronymic lineage or Y-"
-#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
@@ -32029,11 +32175,6 @@ msgid "Mother lineage for %s"
 msgstr "Материнська лінія для %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
-#, fuzzy
-#| msgid ""
-#| "This report shows the mother lineage, also called matronymic lineage "
-#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
-#| "DNA (mtDNA)."
 msgid ""
 "This report shows the mother lineage, also called the matrilineal lineage "
 "mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
@@ -32061,7 +32202,7 @@ msgstr "Нема батьківських відносин з дитиною"
 
 #: ../gramps/plugins/quickview/lineage.py:169
 #: ../gramps/plugins/quickview/lineage.py:191
-#: ../gramps/plugins/tool/verify.py:1509
+#: ../gramps/plugins/tool/verify.py:1511
 msgid "Unknown gender"
 msgstr "Стать невідома"
 
@@ -34767,7 +34908,7 @@ msgstr "Інструмент пошуку дублікатів"
 
 #: ../gramps/plugins/tool/finddupes.py:147
 #: ../gramps/plugins/tool/mergecitations.py:170
-#: ../gramps/plugins/tool/verify.py:481
+#: ../gramps/plugins/tool/verify.py:480
 msgid "Tool settings"
 msgstr "Налаштування інструменту"
 
@@ -35469,7 +35610,7 @@ msgid "Unused Objects"
 msgstr "Об'єкти, що не використовуються"
 
 #: ../gramps/plugins/tool/removeunused.py:205
-#: ../gramps/plugins/tool/verify.py:789
+#: ../gramps/plugins/tool/verify.py:791
 msgid "Mark"
 msgstr "Відмітка"
 
@@ -35931,213 +36072,213 @@ msgstr "Максимальна різниця у віці _між дітьми"
 msgid "Maximum _span of years for all children"
 msgstr "Максимальна різниця у віці для всіх дітей"
 
-#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:943
+#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:945
 msgid "_Hide marked"
 msgstr "_Приховати відмічене"
 
-#: ../gramps/plugins/tool/verify.py:94
+#: ../gramps/plugins/tool/verify.py:93
 msgctxt "manual"
 msgid "Verify_the_Data"
 msgstr "Перевірка_даних"
 
-#: ../gramps/plugins/tool/verify.py:420
+#: ../gramps/plugins/tool/verify.py:419
 msgid "Data Verify tool"
 msgstr "Інструмент перевірки даних"
 
-#: ../gramps/plugins/tool/verify.py:444
+#: ../gramps/plugins/tool/verify.py:443
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 msgstr "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 
-#: ../gramps/plugins/tool/verify.py:727
+#: ../gramps/plugins/tool/verify.py:729
 msgid "Data Verification Results"
 msgstr "Результати перевірки даних"
 
-#: ../gramps/plugins/tool/verify.py:940
+#: ../gramps/plugins/tool/verify.py:942
 msgid "_Show all"
 msgstr "_Показати все"
 
-#: ../gramps/plugins/tool/verify.py:1373
+#: ../gramps/plugins/tool/verify.py:1375
 msgid "Baptism before birth"
 msgstr "Хрещення перед народженням"
 
-#: ../gramps/plugins/tool/verify.py:1392
+#: ../gramps/plugins/tool/verify.py:1394
 msgid "Death before baptism"
 msgstr "Смерть перед хрещенням"
 
-#: ../gramps/plugins/tool/verify.py:1411
+#: ../gramps/plugins/tool/verify.py:1413
 msgid "Burial before birth"
 msgstr "Поховання перед народженням"
 
-#: ../gramps/plugins/tool/verify.py:1430
+#: ../gramps/plugins/tool/verify.py:1432
 msgid "Burial before death"
 msgstr "Поховання перед смертю"
 
-#: ../gramps/plugins/tool/verify.py:1449
+#: ../gramps/plugins/tool/verify.py:1451
 msgid "Death before birth"
 msgstr "Смерть перед народженням"
 
-#: ../gramps/plugins/tool/verify.py:1468
+#: ../gramps/plugins/tool/verify.py:1470
 msgid "Burial before baptism"
 msgstr "Поховання перед хрещенням"
 
-#: ../gramps/plugins/tool/verify.py:1494
+#: ../gramps/plugins/tool/verify.py:1496
 msgid "Old age at death"
 msgstr "Старшого віку на момент смерті"
 
-#: ../gramps/plugins/tool/verify.py:1525
+#: ../gramps/plugins/tool/verify.py:1527
 msgid "Multiple parents"
 msgstr "Декілька батьків"
 
-#: ../gramps/plugins/tool/verify.py:1550
+#: ../gramps/plugins/tool/verify.py:1552
 msgid "Married often"
 msgstr "Багато шлюбів"
 
-#: ../gramps/plugins/tool/verify.py:1577
+#: ../gramps/plugins/tool/verify.py:1579
 msgid "Old and unmarried"
 msgstr "Старий(а) та неодружений(на)"
 
-#: ../gramps/plugins/tool/verify.py:1610
+#: ../gramps/plugins/tool/verify.py:1612
 msgid "Too many children"
 msgstr "Забагато дітей"
 
-#: ../gramps/plugins/tool/verify.py:1629
+#: ../gramps/plugins/tool/verify.py:1631
 msgid "Same sex marriage"
 msgstr "Одностатевий шлюб"
 
-#: ../gramps/plugins/tool/verify.py:1645
+#: ../gramps/plugins/tool/verify.py:1647
 msgid "Female husband"
 msgstr "Жінка в якості чоловіка"
 
-#: ../gramps/plugins/tool/verify.py:1661
+#: ../gramps/plugins/tool/verify.py:1663
 msgid "Male wife"
 msgstr "Чоловік в якості дружини"
 
-#: ../gramps/plugins/tool/verify.py:1695
+#: ../gramps/plugins/tool/verify.py:1697
 msgid "Husband and wife with the same surname"
 msgstr "Чоловік та дружина з однаковим прізвищем"
 
-#: ../gramps/plugins/tool/verify.py:1727
+#: ../gramps/plugins/tool/verify.py:1729
 msgid "Large age difference between spouses"
 msgstr "Велика різниця у віці між подружжям"
 
-#: ../gramps/plugins/tool/verify.py:1768
+#: ../gramps/plugins/tool/verify.py:1770
 msgid "Marriage before birth"
 msgstr "Шлюб перед народженням"
 
-#: ../gramps/plugins/tool/verify.py:1809
+#: ../gramps/plugins/tool/verify.py:1811
 msgid "Marriage after death"
 msgstr "Шлюб після смерті"
 
-#: ../gramps/plugins/tool/verify.py:1860
+#: ../gramps/plugins/tool/verify.py:1862
 msgid "Early marriage"
 msgstr "Ранній шлюб"
 
-#: ../gramps/plugins/tool/verify.py:1906
+#: ../gramps/plugins/tool/verify.py:1908
 msgid "Late marriage"
 msgstr "Пізній шлюб"
 
-#: ../gramps/plugins/tool/verify.py:1958
+#: ../gramps/plugins/tool/verify.py:1960
 msgid "Old father"
 msgstr "Старий батько"
 
-#: ../gramps/plugins/tool/verify.py:1962
+#: ../gramps/plugins/tool/verify.py:1964
 msgid "Old mother"
 msgstr "Стара мама"
 
-#: ../gramps/plugins/tool/verify.py:2014
+#: ../gramps/plugins/tool/verify.py:2016
 msgid "Young father"
 msgstr "Молодий батько"
 
-#: ../gramps/plugins/tool/verify.py:2018
+#: ../gramps/plugins/tool/verify.py:2020
 msgid "Young mother"
 msgstr "Молода мама"
 
-#: ../gramps/plugins/tool/verify.py:2068
+#: ../gramps/plugins/tool/verify.py:2070
 msgid "Unborn father"
 msgstr "Ненароджений батько"
 
-#: ../gramps/plugins/tool/verify.py:2072
+#: ../gramps/plugins/tool/verify.py:2074
 msgid "Unborn mother"
 msgstr "Ненароджена мама"
 
-#: ../gramps/plugins/tool/verify.py:2130
+#: ../gramps/plugins/tool/verify.py:2132
 msgid "Dead father"
 msgstr "Мертвий батько"
 
-#: ../gramps/plugins/tool/verify.py:2134
+#: ../gramps/plugins/tool/verify.py:2136
 msgid "Dead mother"
 msgstr "Мертва мама"
 
-#: ../gramps/plugins/tool/verify.py:2164
+#: ../gramps/plugins/tool/verify.py:2166
 msgid "Large year span for all children"
 msgstr "Великий інтервал для всіх дітей"
 
-#: ../gramps/plugins/tool/verify.py:2195
+#: ../gramps/plugins/tool/verify.py:2197
 msgid "Large age differences between children"
 msgstr "Велика різниця у віці дітей"
 
-#: ../gramps/plugins/tool/verify.py:2214
+#: ../gramps/plugins/tool/verify.py:2216
 msgid "Disconnected individual"
 msgstr "Непов'язана особа"
 
-#: ../gramps/plugins/tool/verify.py:2237
+#: ../gramps/plugins/tool/verify.py:2239
 msgid "Invalid birth date"
 msgstr "Помилкова дата народження"
 
-#: ../gramps/plugins/tool/verify.py:2260
+#: ../gramps/plugins/tool/verify.py:2262
 msgid "Invalid death date"
 msgstr "Помилкова дата смерті"
 
-#: ../gramps/plugins/tool/verify.py:2280
+#: ../gramps/plugins/tool/verify.py:2282
 msgid "Marriage date but not married"
 msgstr "Дата шлюбу присутня, проте не одружені"
 
-#: ../gramps/plugins/tool/verify.py:2311
+#: ../gramps/plugins/tool/verify.py:2313
 msgid "Old age but no death"
 msgstr "Старшого віку, проте відсутня дата смерті"
 
-#: ../gramps/plugins/tool/verify.py:2330
+#: ../gramps/plugins/tool/verify.py:2332
 msgid "Birth date equals death date"
 msgstr "Дата народження збігається з датою смерті"
 
-#: ../gramps/plugins/tool/verify.py:2351
+#: ../gramps/plugins/tool/verify.py:2353
 msgid "Birth date equals marriage date"
 msgstr "Дата народження збігається з датою шлюбу"
 
-#: ../gramps/plugins/tool/verify.py:2372
+#: ../gramps/plugins/tool/verify.py:2374
 msgid "Death date equals marriage date"
 msgstr "Дата смерті збігається з датою шлюбу"
 
-#: ../gramps/plugins/tool/verify.py:2433
+#: ../gramps/plugins/tool/verify.py:2435
 msgid "Baptism too late according to family tradition"
 msgstr "Хрещення відбулося значно пізніше, ніж заведено у сім'ї"
 
-#: ../gramps/plugins/tool/verify.py:2458
+#: ../gramps/plugins/tool/verify.py:2460
 msgid "Burial too late"
 msgstr "Запізнє поховання"
 
-#: ../gramps/plugins/tool/verify.py:2495
+#: ../gramps/plugins/tool/verify.py:2497
 msgid "Children are not in chronological order"
 msgstr "Діти розташовані не в хронологічному порядку"
 
-#: ../gramps/plugins/tool/verify.py:2559
+#: ../gramps/plugins/tool/verify.py:2561
 msgid "Families are not in chronological order"
 msgstr "Сім'ї розташовані не в хронологічному порядку"
 
-#: ../gramps/plugins/tool/verify.py:2572
+#: ../gramps/plugins/tool/verify.py:2574
 msgid "Family has events with role Unknown"
 msgstr "Сім'я має події з роллю «Невідомо»"
 
-#: ../gramps/plugins/tool/verify.py:2585
+#: ../gramps/plugins/tool/verify.py:2587
 msgid "Person has events with role Unknown"
 msgstr "Особа має події з роллю «Невідомо»"
 
-#: ../gramps/plugins/tool/verify.py:2598
+#: ../gramps/plugins/tool/verify.py:2600
 msgid "Family events are not in chronological order"
 msgstr "Події родини розташовані не в хронологічному порядку"
 
-#: ../gramps/plugins/tool/verify.py:2611
+#: ../gramps/plugins/tool/verify.py:2613
 msgid "Person events are not in chronological order"
 msgstr "Події особи розташовані не в хронологічному порядку"
 
@@ -36509,7 +36650,7 @@ msgstr "Показати Gramps ID"
 #: ../gramps/plugins/view/fanchart2wayview.py:390
 #: ../gramps/plugins/view/fanchartdescview.py:386
 #: ../gramps/plugins/view/fanchartview.py:466
-#: ../gramps/plugins/view/pedigreeview.py:2279
+#: ../gramps/plugins/view/pedigreeview.py:2277
 #: ../gramps/plugins/view/relview.py:1959
 msgid "Layout"
 msgstr "Розміщення"
@@ -37128,76 +37269,76 @@ msgstr "Перестрибнути до батька"
 msgid "Jump to mother"
 msgstr "Перестрибнути до мами"
 
-#: ../gramps/plugins/view/pedigreeview.py:1731
+#: ../gramps/plugins/view/pedigreeview.py:1729
 msgid "A person was found to be his/her own ancestor."
 msgstr "Дана соба виявилася власним предком."
 
-#: ../gramps/plugins/view/pedigreeview.py:1773
+#: ../gramps/plugins/view/pedigreeview.py:1771
 msgid "Pre_vious"
 msgstr "Попереднє"
 
-#: ../gramps/plugins/view/pedigreeview.py:1774
+#: ../gramps/plugins/view/pedigreeview.py:1772
 msgid "_Next"
 msgstr "_Наступне"
 
-#: ../gramps/plugins/view/pedigreeview.py:1803
+#: ../gramps/plugins/view/pedigreeview.py:1801
 msgid "Mouse scroll direction"
 msgstr "Напрям прокрутки мишкою"
 
-#: ../gramps/plugins/view/pedigreeview.py:1807
+#: ../gramps/plugins/view/pedigreeview.py:1805
 msgid "Top <-> Bottom"
 msgstr "Верх <-> Низ"
 
-#: ../gramps/plugins/view/pedigreeview.py:1814
+#: ../gramps/plugins/view/pedigreeview.py:1812
 msgid "Left <-> Right"
 msgstr "Вліво <-> Вправо"
 
-#: ../gramps/plugins/view/pedigreeview.py:1831
+#: ../gramps/plugins/view/pedigreeview.py:1829
 msgid "About Pedigree View"
 msgstr "Про показ Родовіду"
 
-#: ../gramps/plugins/view/pedigreeview.py:2045
+#: ../gramps/plugins/view/pedigreeview.py:2043
 #: ../gramps/plugins/view/relview.py:411
 msgid "Add New Parents..."
 msgstr "Додати нових батьків..."
 
-#: ../gramps/plugins/view/pedigreeview.py:2244
+#: ../gramps/plugins/view/pedigreeview.py:2242
 msgid "Show images"
 msgstr "Показати зображення"
 
-#: ../gramps/plugins/view/pedigreeview.py:2247
+#: ../gramps/plugins/view/pedigreeview.py:2245
 msgid "Show marriage data"
 msgstr "Показати дані про шлюб"
 
-#: ../gramps/plugins/view/pedigreeview.py:2250
+#: ../gramps/plugins/view/pedigreeview.py:2248
 msgid "Show unknown people"
 msgstr "Показати невідомих осіб"
 
-#: ../gramps/plugins/view/pedigreeview.py:2253
+#: ../gramps/plugins/view/pedigreeview.py:2251
 msgid "Show tags"
 msgstr "Показати теґи"
 
-#: ../gramps/plugins/view/pedigreeview.py:2257
+#: ../gramps/plugins/view/pedigreeview.py:2255
 msgid "Tree style"
 msgstr "Стиль дерева"
 
-#: ../gramps/plugins/view/pedigreeview.py:2260
+#: ../gramps/plugins/view/pedigreeview.py:2258
 msgid "Compact"
 msgstr "Компактний"
 
-#: ../gramps/plugins/view/pedigreeview.py:2260
+#: ../gramps/plugins/view/pedigreeview.py:2258
 msgid "Expanded"
 msgstr "Розгорнутий"
 
-#: ../gramps/plugins/view/pedigreeview.py:2260
+#: ../gramps/plugins/view/pedigreeview.py:2258
 msgid "Standard"
 msgstr "Стандартний"
 
-#: ../gramps/plugins/view/pedigreeview.py:2265
+#: ../gramps/plugins/view/pedigreeview.py:2263
 msgid "Tree direction"
 msgstr "Напрям дерева"
 
-#: ../gramps/plugins/view/pedigreeview.py:2276
+#: ../gramps/plugins/view/pedigreeview.py:2274
 msgid "Tree size"
 msgstr "Розмір дерева"
 
@@ -37669,12 +37810,12 @@ msgid "Web Calendar"
 msgstr "Веб Календар"
 
 #: ../gramps/plugins/webreport/basepage.py:2035
-#: ../gramps/plugins/webreport/media.py:440
+#: ../gramps/plugins/webreport/media.py:436
 msgid "Previous"
 msgstr "Попереднє"
 
 #: ../gramps/plugins/webreport/basepage.py:2037
-#: ../gramps/plugins/webreport/media.py:453
+#: ../gramps/plugins/webreport/media.py:449
 msgid "Next"
 msgstr "Наступне"
 
@@ -37697,6 +37838,22 @@ msgstr "Святі Останнього Дня/ Ритуали LDS"
 #: ../gramps/plugins/webreport/person.py:1218
 msgid "Family Map"
 msgstr "Мапа сім'ї"
+
+#: ../gramps/plugins/webreport/basepage.py:3181
+msgid ""
+"Invalid latitude\n"
+"(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+msgstr ""
+"Помилкова широта\n"
+"(синтаксис: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+
+#: ../gramps/plugins/webreport/basepage.py:3202
+msgid ""
+"Invalid longitude\n"
+"(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+msgstr ""
+"Помилкова довгота\n"
+"(синтаксис: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/plugins/webreport/basepage.py:3219
 #: ../gramps/plugins/webreport/basepage.py:3297
@@ -37902,11 +38059,11 @@ msgstr "Сімейна мапа для %s"
 msgid "Home"
 msgstr "Домівка"
 
-#: ../gramps/plugins/webreport/media.py:121
+#: ../gramps/plugins/webreport/media.py:120
 msgid "Creating media pages"
 msgstr "Створення сторінки медіа"
 
-#: ../gramps/plugins/webreport/media.py:224
+#: ../gramps/plugins/webreport/media.py:221
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -37917,28 +38074,28 @@ msgstr ""
 "за назвою. Клік по назві переведе Вас на сторінку цього об'єкту. Можете "
 "натиснути на зображення щоб переглянути його в повний розмір.  "
 
-#: ../gramps/plugins/webreport/media.py:251
+#: ../gramps/plugins/webreport/media.py:248
 msgctxt "Media "
 msgid " Name"
 msgstr " Назва"
 
-#: ../gramps/plugins/webreport/media.py:253
+#: ../gramps/plugins/webreport/media.py:250
 msgid "Mime Type"
 msgstr "МІМЕ тип"
 
-#: ../gramps/plugins/webreport/media.py:266
+#: ../gramps/plugins/webreport/media.py:263
 msgid "Creating list of media pages"
 msgstr "Створення списку сторінок для медіа"
 
-#: ../gramps/plugins/webreport/media.py:268
+#: ../gramps/plugins/webreport/media.py:265
 msgid "Narrated Web Site Report"
 msgstr "Звіт-Розповідь для вебсайту"
 
-#: ../gramps/plugins/webreport/media.py:310
+#: ../gramps/plugins/webreport/media.py:307
 msgid "Below unused media objects"
 msgstr "Нижче невикористовувані медіа об'єкти"
 
-#: ../gramps/plugins/webreport/media.py:442
+#: ../gramps/plugins/webreport/media.py:438
 #, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of "
@@ -37947,15 +38104,15 @@ msgstr ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s з "
 "%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
-#: ../gramps/plugins/webreport/media.py:456
+#: ../gramps/plugins/webreport/media.py:452
 msgid "The file has been moved or deleted."
 msgstr "Файл переміщено, або знищено."
 
-#: ../gramps/plugins/webreport/media.py:631
+#: ../gramps/plugins/webreport/media.py:627
 msgid "File Type"
 msgstr "Тип файлу"
 
-#: ../gramps/plugins/webreport/media.py:769
+#: ../gramps/plugins/webreport/media.py:765
 msgid "Missing media object:"
 msgstr "Відсутній медіа об'єкт:"
 
@@ -37983,7 +38140,7 @@ msgstr "Архівом має бути файл, а не каталог"
 #: ../gramps/plugins/webreport/narrativeweb.py:595
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
-msgstr "ID=%(grampsid)s, path=%(dir)s"
+msgstr "ID=%(grampsid)s, шлях=%(dir)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:601
 msgid "Missing media objects:"

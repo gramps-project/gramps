@@ -68,8 +68,8 @@ class DateParserSL(DateParser):
         "približno": Date.MOD_ABOUT,
         "pribl.": Date.MOD_ABOUT,
         "~": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "od": Date.MOD_FROM,
+        "do": Date.MOD_TO,
     }
 
     quality_to_int = {
