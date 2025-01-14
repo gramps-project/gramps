@@ -74,7 +74,6 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gen.display.name import displayer as _nd
 
 _MSYM = Symbols()
-_MSYM_GSET = (0, 1, 2, 3, 7, 8)
 
 
 # ------------------------------------------------------------------------
@@ -296,7 +295,7 @@ class Printinfo:
     def get_genderSymbol(self, person):
         """generate gender symbol to place before the person name"""
         gndr = person.get_gender()
-        if gndr is not None and gndr in _MSYM_GSET:
+        if gndr is not None:
             return _MSYM.get_symbol_for_string(gndr) + " "
         else:
             return ""
