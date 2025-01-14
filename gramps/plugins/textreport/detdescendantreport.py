@@ -80,7 +80,6 @@ from gramps.gen.display.name import displayer as _nd
 from gramps.gen.proxy import CacheProxyDb
 
 _MSYM = Symbols()
-_MSYM_GSET = (0, 1, 2, 3, 7, 8)
 
 # ------------------------------------------------------------------------
 #
@@ -117,7 +116,7 @@ class DetDescendantReport(Report):
         pagebgg       - Whether to include page breaks between generations.
         pageben       - Whether to include page break before End Notes.
         fulldates     - Whether to use full dates instead of just year.
-        showgender     - Whether to include prepend person name with gender.
+        showgender    - Whether to include prepend person name with gender.
         listc         - Whether to list children.
         list_children_spouses - Whether to list the spouses of the children
         incnotes      - Whether to include notes.
@@ -451,7 +450,7 @@ class DetDescendantReport(Report):
     def get_genderSymbol(self, person):
         """generate gender symbol to place before the person name"""
         gndr = person.get_gender()
-        if gndr is not None and gndr in _MSYM_GSET:
+        if gndr is not None:
             return _MSYM.get_symbol_for_string(gndr) + " "
         else:
             return ""
