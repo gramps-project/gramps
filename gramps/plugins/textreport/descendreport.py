@@ -607,7 +607,7 @@ class DescendantOptions(MenuReportOptions):
 
         stdoptions.add_gramps_id_option(menu, category_name)
 
-        showgender = BooleanOption(_("Show gender symbol"), False)
+        showgender = BooleanOption(_("Show gender symbol in front of name"), True)
         showgender.set_help(
             _("Whether to show gender symbol in front of name in the report.")
         )
