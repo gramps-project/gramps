@@ -1146,8 +1146,8 @@ class DetDescendantOptions(MenuReportOptions):
 
         add_option = partial(menu.add_option, _("Include"))
 
-        showgender = BooleanOption(_("Include gender symbol"), True)
-        showgender.set_help(_("Whether to include gender symbol in front of name."))
+        showgender = BooleanOption(_("Show gender symbol in front of name"), True)
+        showgender.set_help(_("Whether to show gender symbol in front of name."))
         add_option("showgender", showgender)
 
         listc = BooleanOption(_("Include children"), True)
