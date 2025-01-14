@@ -708,7 +708,7 @@ class ListView(NavigationView):
 
     def _in_use_prompt(self, obj, bl_list, parent=None):
         """
-        Prompt user if he wants to continue becasue in use
+        Prompt user if he wants to continue because in use
         """
         if bl_list:
             msg = _(

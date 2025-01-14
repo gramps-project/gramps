@@ -12,13 +12,14 @@
 # Kristijan Fremen Velkovski <me@krisfremen.com>, 2022, 2023.
 # AND <andrejdam@protonmail.com>, 2023.
 # "Kristijan \"Fremen\" Velkovski" <me@krisfremen.com>, 2023, 2024.
+# AND <andam.i380f@aleeas.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-05-10 06:59+0000\n"
-"Last-Translator: \"Kristijan \\\"Fremen\\\" Velkovski\" <me@krisfremen.com>\n"
+"POT-Creation-Date: 2025-01-12 21:14+0000\n"
+"PO-Revision-Date: 2024-09-29 18:15+0000\n"
+"Last-Translator: AND <andam.i380f@aleeas.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/mk/>\n"
 "Language: mk\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.5.4-rc\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -233,16 +234,16 @@ msgstr "Украина"
 msgid "United States of America"
 msgstr "Соединети Американски Држави"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:3
+#: ../data/org.gramps_project.Gramps.desktop.in:2
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
-msgstr "Грампс (семејно дрво)"
+msgstr "Дедовник (семејно дрво)"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:4
+#: ../data/org.gramps_project.Gramps.desktop.in:3
 msgid "Genealogy System"
 msgstr "Родословен систем"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:6
+#: ../data/org.gramps_project.Gramps.desktop.in:5
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
@@ -250,7 +251,7 @@ msgstr ""
 "Управувај со родословни информации, изведувај родословни истражувања и "
 "анализа"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:12
+#: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr "Родословие;Семејна историја;Истражување;Семејно дрво;GEDCOM;"
 
@@ -296,9 +297,8 @@ msgstr "Потекло"
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
-#, fuzzy
 msgid "Descendant Fan"
-msgstr "Потомци на %s"
+msgstr "Ладало графикон на потомци"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:349
@@ -442,15 +442,26 @@ msgstr ""
 
 # избори=presets
 #: ../data/tips.xml:14
+#, fuzzy
+#| msgid ""
+#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
+#| "individuals based on many criteria. To define a new filter go to \"Edit "
+#| "&gt; Person Filter Editor\". There you can name your filter and add and "
+#| "combine rules using the many preset rules. For example, you can define a "
+#| "filter to find all adopted people in the family tree. People without a "
+#| "birth date mentioned can also be filtered. To get the results save your "
+#| "filter. Then select this filter in the Filter field on Sidebar, then "
+#| "click Find button. If the Sidebar is not visible, select View &gt; "
+#| "Sidebar."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
-"based on many criteria. To define a new filter go to \"Edit &gt; Person "
-"Filter Editor\". There you can name your filter and add and combine rules "
-"using the many preset rules. For example, you can define a filter to find "
-"all adopted people in the family tree. People without a birth date mentioned "
-"can also be filtered. To get the results save your filter. Then select this "
-"filter in the Filter field on Sidebar, then click Find button. If the "
-"Sidebar is not visible, select View &gt; Sidebar."
+"based on many criteria. To define a new filter go to \"Edit > Person Filter "
+"Editor\". There you can name your filter and add and combine rules using the "
+"many preset rules. For example, you can define a filter to find all adopted "
+"people in the family tree. People without a birth date mentioned can also be "
+"filtered. To get the results save your filter. Then select this filter in "
+"the Filter field on Sidebar, then click Find button. If the Sidebar is not "
+"visible, select View > Sidebar."
 msgstr ""
 "<b>Филтрирање луѓе</b><br/>Во Приказот Луѓе, можете да „филтрирате“ поединци "
 "врз основа на многу критериуми. За да дефинирате нов филтер, одете во „Уреди "
@@ -477,7 +488,6 @@ msgstr ""
 "можете да ги изберете сите луѓе без деца."
 
 #: ../data/tips.xml:18
-#, fuzzy
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -486,9 +496,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Сместување лица</b>: По основа, секое презиме во погледот Лица е запишано "
-"само еднаш. Со кликање на стрелката лево од името, списокот ќе се прошири за "
-"да ги прикаже сите поединци со тоа презиме."
+"<b>Сместување лица</b><br/>: По основа, секое презиме во погледот Лица е "
+"запишано само еднаш. Со кликање на стрелката лево од името, списокот ќе се "
+"прошири за да ги прикаже сите поединци со тоа презиме. За да го пронајдете "
+"било кое презиме од долг список, избери едно од презимињата (не личност) и "
+"почни да типкаш. Приказот ќе скокне до првото презиме кое се поклопува со "
+"внесените букви."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -505,23 +518,32 @@ msgid ""
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
+"<b>Менување на активната личност</b><br/>Промена на активната личност во "
+"прегледите е лесно. Во прегледот на сродство просто кликнете на некого. Во "
+"прегледот на родослов двапати кликнете на личност или со десното копче "
+"одберете некого од нивните сопружници, роднини, деца, или родители."
 
 #: ../data/tips.xml:24
 #, fuzzy
+#| msgid ""
+#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
+#| "&gt; Compare Individual Events...\" you can compare the data of "
+#| "individuals in your database. This is useful, say, if you wish to list "
+#| "the birth dates of everyone in your database. You can use a custom filter "
+#| "to narrow the results."
 msgid ""
-"<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-"&gt; Compare Individual Events...\" you can compare the data of individuals "
-"in your database. This is useful, say, if you wish to list the birth dates "
-"of everyone in your database. You can use a custom filter to narrow the "
-"results."
+"<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
+"Compare Individual Events...\" you can compare the data of individuals in "
+"your database. This is useful, say, if you wish to list the birth dates of "
+"everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>Кој кога беше роден</b>: Алатката „Спореди настани на поединци“ ви "
-"дозволува да споредите податоци на сите (или на некои) поединци во вашата "
-"база на податоци. Ова е корисно ако, да речеме, посакате да направите список "
-"на датумите на раѓање на сите во вашата база."
+"<b>Кој кога беше роден</b><br/>: Преку „Алати &gt; Анализа и истражување "
+"&gt; Спореди поединечни настани...“ можете да споредите податоци на сите "
+"(или на некои) поединци во вашата база на податоци. Ова е корисно ако, да "
+"речеме, посакате да направите список на датумите на раѓање на сите во вашата "
+"база. За ограничување на резултатите можете да користите прилагоден филтер."
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -529,27 +551,31 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"GRAMPS доаѓа со богат пакет на алатки. Со овие алатки можете да правите "
-"операции како што се проверка на базата за грешки и доследност, како и "
-"истражувачки и расчленувачки алатки како што се споредба на настани, "
-"пронаоѓање на удвоени лица, интерактивен разгледувач за потомци и друго. До "
-"сите алатки може да се пристапи преку менито <b>Алатки</b>."
+"<b>Дедовник алати</b><br/>Дедовникот доаѓа со богат пакет на алати. Со овие "
+"алати можете да правите операции како што се проверка на базата за грешки и "
+"доследност, како и истражувачки и расчленувачки алатки како што се споредба "
+"на настани, пронаоѓање на удвоени лица, интерактивен разгледувач за потомци "
+"и друго. До сите алати може да се пристапи преку менито „Алати“."
 
 #: ../data/tips.xml:28
 #, fuzzy
+#| msgid ""
+#| "<b>Calculating Relationships</b><br/>To check if two people in the "
+#| "database are related (by blood, not marriage) try the tool under \"Tools "
+#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
+#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
-"are related (by blood, not marriage) try the tool under \"Tools &gt; "
-"Utilities &gt; Relationship Calculator...\". The exact relationship as well "
-"as all common ancestors are reported."
+"are related (by blood, not marriage) try the tool under \"Tools > Utilities "
+"> Relationship Calculator...\". The exact relationship as well as all common "
+"ancestors are reported."
 msgstr ""
-"<b>Пресметување врски</b>: Оваа алатка, под <b>Алатки &gt; Услуги &gt; "
-"Пресметувач на врски</b> ви овозможува да проверите ако некој друг во "
+"<b>Пресметување врски</b><br/>: Оваа алатка, под „Алатки &gt; Услуги &gt; "
+"Пресметувач на врски...“ ви овозможува да проверите ако некој друг во "
 "семејството е поврзан (преку крвно сродство, не брак) со вас. Конкретни "
 "врски, како и заеднички предци се соопштени."
 
 #: ../data/tips.xml:30
-#, fuzzy
 msgid ""
 "<b>SoundEx can help with family research</b><br/>SoundEx solves a long "
 "standing problem in genealogy, how to handle spelling variations. The "
@@ -565,20 +591,31 @@ msgstr ""
 "е еднаква на имиња слични по звук. Познавањето на SoundEx кодот за презиме е "
 "многу корисно за пребарување на датотеките со Пописни податоци (микрофилм) "
 "во библиотека или друго истражувачко место. За да ги земете SoundEx кодовите "
-"за презимиња во вашата база, одете на <b>Алатки &gt; Услуги &gt; Генерирај "
+"за презимиња во вашата база, одете на <b>Алатки &gt; Услуги &gt; Создади "
 "SoundEx кодови</b>."
 
 #: ../data/tips.xml:32
+#, fuzzy
+#| msgid ""
+#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
+#| "modify a number of settings, such as the path to your media files, and "
+#| "allows you to adjust many aspects of the Gramps presentation to your "
+#| "needs. Each separate view can also be configured under \"View &gt; "
+#| "Configure View...\"."
 msgid ""
-"<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
+"<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
-"Each separate view can also be configured under \"View &gt; Configure View..."
-"\"."
+"Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
+"<b>Нагодување на вашите поставки</b><br/>„Уреди &gt; Нагодувања...\" ви "
+"допушта да промените бројни нагодувања, како што се патеките до вашите "
+"медиски датотеки, и ви овозможува да прилагодите многу аспекти на "
+"Дедовниковото представување, според вашите потреби. Секој одвоен преглед "
+"може исто така да се нагоди преку изборникот „Преглед &gt; Нагоди преглед..."
+"\"."
 
 #: ../data/tips.xml:34
-#, fuzzy
 msgid ""
 "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The "
 "Graphical Reports and Graphs can present complex relationships easily and "
@@ -586,23 +623,31 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
-"<b>GRAMPS Извештаи</b>: GRAMPS нуди многу разновидни извештаи. Текстуалните "
-"извештаи се особено корисни ако сакате да ги испратите резултатите од вашето "
-"семејно стебло до членовите од семејството преку е-пошта."
+"<b>Дедовник Извештаи</b>: Дедовникот нуди многу разновидни извештаи. "
+"Текстуалните извештаи се особено корисни ако сакате да ги испратите "
+"резултатите од вашето семејно стебло до членовите од семејството преку е-"
+"пошта."
 
 #: ../data/tips.xml:36
 #, fuzzy
+#| msgid ""
+#| "<b>Starting a New Family Tree</b><br/>A good way to start a new family "
+#| "tree is to enter all the members of the family into the database using "
+#| "the Person View (use \"Edit &gt; Add...\" or click on the Add a new "
+#| "person button from the People View). Then go to the Relationship View and "
+#| "create relationships between people."
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
-"View (use \"Edit &gt; Add...\" or click on the Add a new person button from "
-"the People View). Then go to the Relationship View and create relationships "
+"View (use \"Edit > Add...\" or click on the Add a new person button from the "
+"People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>Почнување Ново семејно стебло</b>: Добар начин за да почнете ново семејно "
-"стебло е да ги внесете сите членови на семејството во базата на податоци "
-"(употребете <b>Уреди &gt; Додади</b> или кликнете на копчето Додади во "
-"менито Лица). Потоа, одете во погледот Врска и направете врска помеѓу лицата."
+"<b>Почнување Ново семејно стебло</b><br/>: Добар начин за да почнете ново "
+"семејно стебло е да ги внесете сите членови на семејството во базата на "
+"податоци користејќи го Прегледот на лица (употребете „Уреди &gt; Додади“ или "
+"кликнете на копчето Додај ново лице во Прегледот на лица). Потоа, одете во "
+"погледот Врска и направете однос помеѓу лицата."
 
 #: ../data/tips.xml:38
 #, fuzzy
@@ -632,9 +677,9 @@ msgstr ""
 #: ../data/tips.xml:42
 #, fuzzy
 msgid ""
-"<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
-"&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
-"entries of the same person entered more than once in the database."
+"<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
+"Find Possible Duplicate People...\" allows you to locate (and merge) entries "
+"of the same person entered more than once in the database."
 msgstr ""
 "<b>Удвои влезови</b>: <b>Алатки &gt; Обработка на база на податоци &gt; "
 "Пронајди можни удвојувања</b> лица ви допушта да пронајдете (и споите) "
@@ -643,7 +688,7 @@ msgstr ""
 #: ../data/tips.xml:44
 #, fuzzy
 msgid ""
-"<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
+"<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
 "holding the Control key as you click. This is very useful for combining two "
 "databases with overlapping people, or combining erroneously entered "
@@ -662,13 +707,18 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
+"<b>Организирање на прегледите</b><br/>Многу од прегледите можат да ви ги "
+"представат вашите податоци како или хиерархиско стебло или како едноставен "
+"список. Секој преглед може, исто така, да се нагоди како вам ви се допаѓа. "
+"Погледајте од десната страна на горната лента со алати или под изборникот "
+"„Преглед“."
 
 #: ../data/tips.xml:48
 #, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
-"through the list using \"Go &gt; Forward\" and \"Go &gt; Back\" or the arrow "
+"through the list using \"Go > Forward\" and \"Go > Back\" or the arrow "
 "buttons."
 msgstr ""
 "GRAMPS одржува список на претходни Активни лица. Можете да се движите "
@@ -689,8 +739,8 @@ msgstr ""
 #: ../data/tips.xml:52
 #, fuzzy
 msgid ""
-"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
-"&gt; User Manual\". The developers have worked hard to make most operations "
+"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
+"User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
@@ -706,6 +756,11 @@ msgid ""
 "Then choose to create a new person or add an existing person. You can also "
 "add children (or siblings) from inside the Family Editor."
 msgstr ""
+"<b>Додавање на деца</b><br/>Да би додале деца во Дедовникот постојат две "
+"можности. Можете да го пронајдете еден од нивните родители во Семејниот "
+"Преглед и да го отворите тоа семејство. Потоа, одберете да создадете нова "
+"личност или да додадете веќе постоечка. Исто така можете да додадете деца "
+"(или роднини) преку Семејниот Уредник."
 
 #: ../data/tips.xml:56
 msgid ""
@@ -714,6 +769,10 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
+"<b>Уредување на односот родител-дете</b><br/> Можете да го уредите односот "
+"на детето со своите родители преку двоен клик на детето во Семејниот "
+"Уредник. Односот може да биде било кој од: раѓање, посвојување, "
+"присвојување, полу-дете, и непознато."
 
 #: ../data/tips.xml:58
 #, fuzzy
@@ -752,7 +811,7 @@ msgid ""
 "Check out the gramps-users email list. Many helpful people are on the list, "
 "so you're likely to get an answer quickly. If you have questions related to "
 "the development of Gramps, try the gramps-devel list. You can see the lists "
-"by selecting \"Help &gt; Gramps Mailing Lists\"."
+"by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
 "<b>GRAMPS Дописни листи</b>: Сакате одговори на вашите прашања во врска со "
 "GRAMPS? Проверете го gramps-корисничкиот список. Многу луѓе се на списокот, "
@@ -768,8 +827,8 @@ msgid ""
 "wide variety of skills. Contributions can be anything from writing "
 "documentation to testing development versions and helping with the web site. "
 "Start by subscribing to the Gramps developers mailing list, gramps-devel, "
-"and introducing yourself. Subscription information can be found at \"Help "
-"&gt; Gramps Mailing Lists\"."
+"and introducing yourself. Subscription information can be found at \"Help > "
+"Gramps Mailing Lists\"."
 msgstr ""
 "<b>Придонес кон GRAMPS</b>: Сакате да помогнете со GRAMPS, но не знаете да "
 "програмирате? Тоа не е проблем. Проект голем каков што е GRAMPS бара луѓе со "
@@ -801,8 +860,8 @@ msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
 "make that person the Active Person. To bookmark someone make them the Active "
-"Person then go to \"Bookmarks &gt; Add Bookmark\" or press Ctrl+D. You can "
-"also bookmark most of the other objects."
+"Person then go to \"Bookmarks > Add Bookmark\" or press Ctrl+D. You can also "
+"bookmark most of the other objects."
 msgstr ""
 "<b>Означување поединци</b>: Менито за Означување на врвот од прозорецот е "
 "соодветно место за зачувување на имињата на често употребуваните лица. Со "
@@ -817,8 +876,8 @@ msgid ""
 "invalid format. Incorrect date formats will show up in Gramps with a either "
 "a reddish background or a red dot on the right edge of the field. You can "
 "fix the date using the Date Selection dialog which can be opened by clicking "
-"on the date button. The format of the date is set under \"Edit &gt; "
-"Preferences &gt; Display\"."
+"on the date button. The format of the date is set under \"Edit > Preferences "
+"> Display\"."
 msgstr ""
 "<b>Неточни датуми</b>: Секој повремено внесува датуми со неважечка форма. "
 "Неточените датумски форми ќе се појават со црвено копче веднаш до датумот. "
@@ -826,12 +885,23 @@ msgstr ""
 "на датум може да биде повикан со кликање на обоеното копче."
 
 #: ../data/tips.xml:72
+#, fuzzy
+#| msgid ""
+#| "<b>Listing Events</b><br/>Events are added using the editor opened with "
+#| "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
+#| "event types. You can add your own event types by typing in the text "
+#| "field, they will be added to the available events, but not translated."
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
-"\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
-"event types. You can add your own event types by typing in the text field, "
-"they will be added to the available events, but not translated."
+"\"Person > Edit Person > Events\". There is a long list of preset event "
+"types. You can add your own event types by typing in the text field, they "
+"will be added to the available events, but not translated."
 msgstr ""
+"<b>Испишување на настани</b><br/>Настаните се додаваат користејќи го "
+"уредникот кој се отвора со „Личност &gt; Уреди личност &gt; Настани\". "
+"Постои долг список на зададени видови на настани. Можете да додадете и свои "
+"видови на настани преку внесување во текстуалното поле, тие ќе се додадат на "
+"достапните настани, но нема да се преведени."
 
 #: ../data/tips.xml:74
 msgid ""
@@ -840,6 +910,11 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
+"<b>Управување со имиња</b><br/>Во Дедовникот е лесно да се управува со "
+"личности кои имаат повеќе имиња. Во Уредникот за личности одберете го "
+"јазичето Имиња. Можете да додавате имиња од различни видови и да го нагодите "
+"предпочитуваното име така што ќе го повлечете во одделот наречен "
+"Предпочитано име."
 
 #: ../data/tips.xml:76
 #, fuzzy
@@ -892,8 +967,8 @@ msgstr ""
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
-"limited only by your imagination. Custom filters are created from \"Edit "
-"&gt; Person Filter Editor\"."
+"limited only by your imagination. Custom filters are created from \"Edit > "
+"Person Filter Editor\"."
 msgstr ""
 "Филтрите ви дозволуваат да ограничите кои луѓе да бидат видени во погледот "
 "Лица. Покрај многуте зададени филтри, можете да создадете Приспособување на "
@@ -1003,51 +1078,69 @@ msgstr ""
 "грешка во изворот."
 
 #: ../data/tips.xml:102
+#, fuzzy
+#| msgid ""
+#| "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added "
+#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
+#| "Reports/Tools\". This is the best way for advanced users to experiment "
+#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
-"Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
+"Gramps with the \"Addon\" system. See them under \"Help > Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
+"<b>Додатни извештаи и алати</b><br/>Во Дедовникот можат да се додадат "
+"додатни извештаи и алати преку системот за „Додатоци“. Видете ги под „Помош "
+"&gt; Додатни извештаи / алати“. Ова е најдобриот начин за напредните "
+"корисници да испробуваат и создаваат нови функционалности."
 
 #: ../data/tips.xml:104
 #, fuzzy
+#| msgid ""
+#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
+#| "allows you to collect a variety of reports into a single document. This "
+#| "single report is easier to distribute than multiple reports, especially "
+#| "when printed."
 msgid ""
-"<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
-"allows you to collect a variety of reports into a single document. This "
-"single report is easier to distribute than multiple reports, especially when "
+"<b>Book Reports</b><br/>The Book report under \"Reports > Books...\" allows "
+"you to collect a variety of reports into a single document. This single "
+"report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"Извештајот Книга, <b>Извештаи &gt; Книги &gt; Извештај Книга</b>, им "
+"<b>Книгов извешта</b><br/>Книгов извештај, под „Извештаи &gt; Книги...“ им "
 "дозволува на корисниците да собираат различни извештаи во единствен "
 "документ. Овој единствен документ е полесен за дистрибуирање отколку "
 "повеќекратните извештаи, а особено за печатење."
 
 #: ../data/tips.xml:106
+#, fuzzy
+#| msgid ""
+#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
+#| "version of Gramps is released? Join the Gramps-announce mailing list at "
+#| "\"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
-"\"Help &gt; Gramps Mailing Lists\"."
+"\"Help > Gramps Mailing Lists\"."
 msgstr ""
-"<b>Gramps објавувања</b><br/>Заинтересирани сте да бидете известени за "
-"објавувањето на нова верзија на Gramps? Приклучете се на мејл листа на "
-"Gramps-announce на \"Помош &gt; Gramps Мејл листа\"."
+"<b>Дедовник објавувања</b><br/>Заинтересирани сте да бидете известени за "
+"објавувањето на нова верзија на Дедонвикот? Приклучете се на мејл листа на "
+"Gramps-announce на \"Помош &gt; Дедонвик дописна листа\"."
 
 #: ../data/tips.xml:108
-#, fuzzy
 msgid ""
 "<b>Record Your Sources</b><br/>Information collected about your family is "
 "only as good as the source it came from. Take the time and trouble to record "
 "all the details of where the information came from. Whenever possible get a "
 "copy of original documents."
 msgstr ""
-"<b>Добар генеалошки совет</b>: Информациите собрани за вашето семејство се "
-"толку добри, колку и изворот од каде што дошле. Најдете време и обидете се "
-"да ги забележите сите подробности за тоа од каде дошла некоја информација. "
-"Каде што е возможно, направете копија од оригиналниот документ."
+"<b>Запишете ги вашите извори</b><br/> Информациите собрани за вашето "
+"семејство се толку добри, колку и изворот од каде што дошле. Најдете време и "
+"обидете се да ги забележите сите подробности за тоа од каде дошла некоја "
+"информација. Каде што е возможно, направете копија од оригиналниот документ."
 
 #: ../data/tips.xml:110
-#, fuzzy
 msgid ""
 "<b>Directing Your Research</b><br/>Go from what you know to what you do not. "
 "Always record everything that is known before making conjectures. Often the "
@@ -1055,36 +1148,35 @@ msgid ""
 "time looking through thousands of records hoping for a trail when you have "
 "other unexplored leads."
 msgstr ""
-"Одете од тоа што го знаете кон она што не го знаете. Секогаш запишувајте сѐ "
-"што е познато пред да направите претпоставка. Секогаш фактите што ви се на "
-"дофат предложуваат многу правци за повеќе истражувања. Не губете време со "
-"пребарување на илјадници записи, надевајќи се на трага кога имате други "
-"неистражени патокази."
+"<b>Водење на вашето истражување</b><br/>Одете од тоа што го знаете кон она "
+"што не го знаете. Секогаш запишувајте сѐ што е познато пред да направите "
+"претпоставка. Секогаш фактите што ви се на дофат предложуваат многу правци "
+"за повеќе истражувања. Не губете време со пребарување на илјадници записи, "
+"надевајќи се на трага кога имате други неистражени патокази."
 
 #: ../data/tips.xml:112
-#, fuzzy
 msgid ""
 "<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only about "
 "dates and names. It is about people. Be descriptive. Include why things "
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"Генеалогијата не е само за датуми и имиња. Таа е за луѓе. Бидете описни. "
-"Вклучете <b>зошто</b> во како се случиле нештата и како потомците можеби се "
-"оформиле од настаните низ коишто поминале. Приказните поминуваат долг пат во "
-"оживувањето на вашата историја."
+"<b>Како и зашто во вашиот Родословот</b><br/>Родословот не е само за датуми "
+"и имиња. Таа е за луѓе. Бидете описни. Вклучете зошто се случиле нештата и "
+"како потомците можеби се изградиле и оформиле од настаните низ коишто "
+"поминале. Приказните поминуваат долг пат во оживувањето на вашата историја."
 
 #: ../data/tips.xml:114
-#, fuzzy
 msgid ""
 "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
 "than 40 languages. If Gramps supports your language and it is not being "
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
-"GRAMPS е преведен на 15 јазици. Ако GRAMPS го поддржува вашиот јазик, а не е "
+"<b>Не зборувате англиски?</b><br/>Доброволци го преведоа Дедовникот на "
+"повеќе од 40 јазици. Ако Дедовникот го поддржува вашиот јазик, а не е "
 "прикажан, поставете го основниот јазик на вашата машина и повторно пуштете "
-"го GRAMPS."
+"го Дедовникот."
 
 #: ../data/tips.xml:116
 msgid ""
@@ -1092,42 +1184,48 @@ msgid ""
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
-"<b>Gramps преведувачи</b><br/>Gramps е дизајниран така што нови преводи "
-"можат лесно да бидат додадени со мал напор. Ако сакате да учествувате, ве "
-"молиме испратете е-мејл на gramps-devel@lists.sf.net."
+"<b>Дедовник преведувачи</b><br/>Дедовникот е дизајниран така што нови "
+"преводи можат лесно да бидат додадени со мал напор. Ако сакате да "
+"учествувате, ве молиме испратете е-пошта на gramps-devel@lists.sf.net."
 
 #: ../data/tips.xml:118
-#, fuzzy
 msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
-"GRAMPS нуди целосна уникод поддршка. Знаците за сите јазици се соодветно "
-"прикажани."
+"<b>Hello, привет or 喂</b><br/>Дедовникот нуди целосна уникод поддршка. "
+"Знаците за сите јазици се соодветно прикажани."
 
 #: ../data/tips.xml:120
 #, fuzzy
+#| msgid ""
+#| "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
+#| "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
+#| "person is the person who is selected when the database is opened or when "
+#| "the home button is pressed."
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
-"Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
-"person is the person who is selected when the database is opened or when the "
-"home button is pressed."
+"Gramps. Use \"Edit > Set Home Person\" in the Person View. The home person "
+"is the person who is selected when the database is opened or when the home "
+"button is pressed."
 msgstr ""
-"Секој може да биде избран како „почетно лице“ во GRAMPS. Употребете <b>Уреди "
-"&gt; Постави Почетно лице</b>. Почетното лице е лице кое е избрано кога е "
-"отворена базата на податоци или кога е притиснато почетното копче."
+"<b>Почетно лице</b><br/>Секој може да биде избран како „почетно лице“ во "
+"Дедовникот. Употребете „Уреди &gt; Постави Почетно лице“ во Личниот преглед. "
+"Почетното лице е лице кое е избрано кога е отворена базата на податоци или "
+"кога е притиснато почетното копче."
 
 #: ../data/tips.xml:122
-#, fuzzy
 msgid ""
 "<b>The Gramps Code</b><br/>Gramps is written in a computer language called "
 "Python using the GTK and GNOME libraries for the graphical interface. Gramps "
 "is supported on any computer system where these programs have been ported. "
 "Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
 msgstr ""
-"GRAMPS е напишан на сметачки јазик наречен Python, користејќи ги "
-"библиотеките на ГТК (GTK) и ГНОМЕ (GNOME) за графичкиот интерфејс. GRAMPS е "
-"поддржан од секој сметач каде што овие програми се пренесени."
+"<b>Кодот на Дедовникот</b><br/>Дедовникот е напишан на машински јазик "
+"наречен Пајтон (Python), користејќи ги библиотеките на ГТК (GTK) и ГНОМ "
+"(GNOME) за графичкото окружување. Дедовникот е поддржан на секој сметач каде "
+"што овие програми се пренесени. Дедовникот познато е дека работи на Линукс, "
+"БСД, Соларис, Виндоус и МекОС."
 
 #: ../data/tips.xml:124
 msgid ""
@@ -1138,6 +1236,13 @@ msgid ""
 "tool. For more about Open Source software lookup the Free Software "
 "Foundation and the Open Source Initiative."
 msgstr ""
+"<b>Програм со отворен код</b><br/>Развојниот модел на бесплатни/слободни "
+"програми (Free/Libre and Open Source Software, FLOSS) значи дека Дедовникот "
+"може да се надгради од секој програмер бидејќи целиот изворен код е "
+"бесплатно достапен под оваа дозвола. Така, не се работи само за бесплатно "
+"пиво, туку и за слободата да се проучува и промени алатот. За повеќе околу "
+"програмите со отворен код прегледајте ја Фондацијата за слободни програми и "
+"Иницијативата за отворен код."
 
 #: ../data/tips.xml:126
 msgid ""
@@ -1146,6 +1251,11 @@ msgid ""
 "License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the "
 "rights and restrictions of this license."
 msgstr ""
+"<b>Дедовниковата програмска дозвола</b><br/>Слободни сте да го користите и "
+"споделувате Дедовникот со другите. Дедовнико е програм кој слободно може да "
+"с споделува под Гномовата Општа јавна дозвола, видете „http://www.gnu.org/"
+"licenses/licenses.html#GPL“ за да прочитате околу правата и ограничувањата "
+"на оваа дозвола."
 
 #: ../data/tips.xml:128
 msgid ""
@@ -1153,6 +1263,9 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
+"<b>Дедовник за Гном или КДЕ?</b><br/>На Линукс Дедовникот работи со било кое "
+"работно окружување кое го предпочитувате. Под услов потребните ГТК "
+"библиотеки да се инсталирани."
 
 #: ../gramps/cli/arghandler.py:233
 #, python-format
@@ -1160,6 +1273,8 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
+"Грешка: Родословот „%s“ веќе постои.\n"
+"Не може да се користи опцијата -С."
 
 #: ../gramps/cli/arghandler.py:248
 #, python-format
@@ -1168,16 +1283,20 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
+"Грешка: Родословот \"%s\" не постои.\n"
+"Ако се работи околу GEDCOM, Gramps-xml или grdb датотека, користи ја „-i“ "
+"опцијата за увоз во Семејното стебло."
 
 #: ../gramps/cli/arghandler.py:264
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr ""
+msgstr "Грешка: Датотеката за увоз %s не е пронајдена."
 
 #: ../gramps/cli/arghandler.py:284
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr ""
+"Грешка: Непрепознаен вид: \"%(format)s\" за увозната датотека: %(filename)s"
 
 #: ../gramps/cli/arghandler.py:307
 #, python-format
@@ -1186,6 +1305,9 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
+"ВНИМАНИЕ: Извозната датотека веќе постои!\n"
+"ВНИМАНИЕ: Ќе биде препишана:\n"
+"   %s"
 
 #: ../gramps/cli/arghandler.py:313
 msgid "OK to overwrite?"
@@ -1211,12 +1333,12 @@ msgstr "Ќе препише преку постоечкиот фајл: %s"
 #: ../gramps/cli/arghandler.py:339
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr ""
+msgstr "ГРЕШКА: Непрепозната форма за извозната датотека „%s“"
 
-#: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:371
+#: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:379
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr ""
+msgstr "Грешка: не можам да отворам „%s“"
 
 #: ../gramps/cli/arghandler.py:422
 msgid "List of known Family Trees in your database path\n"
@@ -1225,7 +1347,7 @@ msgstr "Список на познати Семејни Стебла во ваш
 #: ../gramps/cli/arghandler.py:434
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr ""
+msgstr "%(full_DB_path)s со назив \"%(f_t_name)s\""
 
 #: ../gramps/cli/arghandler.py:452 ../gramps/cli/clidbman.py:197
 msgid "Gramps Family Trees:"
@@ -1245,7 +1367,7 @@ msgstr "Моето семејно стебло"
 #: ../gramps/plugins/cite/legacy.py:91
 #, python-format
 msgid "\"%s\""
-msgstr ""
+msgstr "\"%s\""
 
 #: ../gramps/cli/arghandler.py:478
 #, python-format
@@ -1255,20 +1377,20 @@ msgstr "Извршување на акција: %s."
 #: ../gramps/cli/arghandler.py:480 ../gramps/gen/plug/report/stdoptions.py:338
 #, python-format
 msgid "Using options string: %s"
-msgstr ""
+msgstr "Ја користам нишката со опции: %s"
 
 #: ../gramps/cli/arghandler.py:485
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Извезувам: датотека %(filename)s, во форма %(format)s."
 
 #: ../gramps/cli/arghandler.py:496
 msgid "Cleaning up."
-msgstr ""
+msgstr "Чистење."
 
 #: ../gramps/cli/arghandler.py:533
 msgid "Created empty Family Tree successfully"
-msgstr ""
+msgstr "Успешно е создавањето на празно Семејно стебло"
 
 #: ../gramps/cli/arghandler.py:536 ../gramps/cli/arghandler.py:563
 msgid "Error opening the file."
@@ -1282,7 +1404,7 @@ msgstr "Изберете..."
 #: ../gramps/cli/arghandler.py:541
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Увезувам: датотека %(filename)s, во форма %(format)s."
 
 #: ../gramps/cli/arghandler.py:561
 msgid "Opened successfully!"
@@ -1291,7 +1413,7 @@ msgstr "Успешно отварање!"
 #: ../gramps/cli/arghandler.py:576
 #, python-format
 msgid "  Info: %s"
-msgstr ""
+msgstr "  Информации: %s"
 
 #: ../gramps/cli/arghandler.py:576
 msgid "Database is locked, cannot open it!"
@@ -1299,7 +1421,7 @@ msgstr "Базата на податоци е затворена, не може 
 
 #: ../gramps/cli/arghandler.py:581
 msgid "Database needs recovery, cannot open it!"
-msgstr ""
+msgstr "На базата со податоци ѝ е потребна поправка, не можам да ја отворам!"
 
 #: ../gramps/cli/arghandler.py:584
 msgid "Database backend unavailable, cannot open it!"
@@ -1308,7 +1430,7 @@ msgstr "Позадинска за базата на податоци не е д�
 #: ../gramps/cli/arghandler.py:635 ../gramps/cli/arghandler.py:692
 #: ../gramps/cli/arghandler.py:740
 msgid "Ignoring invalid options string."
-msgstr ""
+msgstr "Занемарувам неисправна нишка со опции."
 
 #: ../gramps/cli/arghandler.py:664
 msgid "Unknown report name."
@@ -1318,6 +1440,8 @@ msgstr "Непознато име на извештај."
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
+"Името на извештајот не е даден. Користете еден од "
+"%(donottranslate)s=име_на_извештај"
 
 #: ../gramps/cli/arghandler.py:671 ../gramps/cli/arghandler.py:723
 #: ../gramps/cli/arghandler.py:760
@@ -1337,6 +1461,7 @@ msgstr "Непознато име на алатка."
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
+"Името на алатот не е даден. Користете еден од %(donottranslate)s=toolname."
 
 #: ../gramps/cli/arghandler.py:753
 msgid "Unknown book name."
@@ -1346,6 +1471,7 @@ msgstr "Непознато име на книга."
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
+"Името на книгата не е даден. Користете еден од %(donottranslate)s=bookname."
 
 #: ../gramps/cli/arghandler.py:765
 #, python-format
@@ -1398,6 +1524,59 @@ msgid ""
 "                 F - filters are cleared\n"
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
+"\n"
+"Употреба: gramps.py [ОПЦИЈА...]\n"
+"  --load-modules=МОДУЛ1,МОДУЛ2,...       Динамички модули за вчитување\n"
+"\n"
+"Опције помоћи\n"
+"  -?, --help                             Ја прикажува оваа порака за помош\n"
+"  --usage                                Прикажува кратка порака за "
+"користење\n"
+"\n"
+"Опције програма\n"
+"  -O, --open=СЕМЕЈНО_СТЕБЛО            Отвора семејно стебло\n"
+"  -U, --username=КОРИСНИК                Корисничко име на базата на "
+"податоци\n"
+"  -P, --password=ЛОЗИНКА                 Лозинка на корисникот на базата на "
+"податоци\n"
+"  -C, --create=СЕМЕЈНО_СТЕБЛО          Создава при отворање ако се работи за "
+"ново семејно стебло\n"
+"  -i, --import=НАЗИВ_НА_ДАТОТЕКА            Увезува датотека\n"
+"  -e, --export=НАЗИВ_НА_ДАТОТЕКА            Извезува датотека\n"
+"  -r, --remove=ШАБЛОН_НА_СЕМЕЈНО_СТЕБЛО  Го брише семејното стебло/а (со "
+"употреба на регуларни изрази)\n"
+"  -f, --format=ЗАПИС                     Наведува запис на семејното стебло\n"
+"  -a, --action=РАБОТА                     Ја наведува работата\n"
+"  -p, --options=ИСКАЗ_НА_ОПЦИИ             Наведува ОПЦИИ\n"
+"  -d, --debug=НАЗИВ_НА_ЗАПИСНИЧАРОТ          Го вклучува дневникот при "
+"одстранување на грешки\n"
+"  -l [ШАБЛОН_НА_СЕМЕЈНОТО_СТЕБЛО...]       Список на семејни стебла\n"
+"  -L [ШАБЛОН_НА_СЕМЕЈНОТО_СТЕБЛО...]       Детален список на семејни стебла\n"
+"  -t [ШАБЛОН_НА_СЕМЕЈНОТО_СТЕБЛО...]       Список на семејни стебла, одвоени "
+"со табулатор\n"
+"  -u, --force-unlock                     Присилува одклучување на семејното "
+"стебло\n"
+"  -s, --show                             Прикажува нагодувања\n"
+"  -c, --config=[подешавање[:вредност]]   Поставува нагодувања и го покренува "
+"Дедовникот\n"
+"  -y, --yes                              Не бара потврдување за опасни "
+"работи (само во конзолен режим)\n"
+"  -q, --quiet                            Го заќутува исказот на информации "
+"(само во конзолен режим)\n"
+"  -v, --version                          Прикажува издание\n"
+"  -S, --safe                             Покрени го Дедовникот во „Безбеден "
+"режим“\n"
+"                                          (со привремена употреба на "
+"подразбрани нагодувања)\n"
+"  -D, --default=[APXFE]                  Врати ги нагодувањата на "
+"подразбраните вредности;\n"
+"                 A - додатоците се исчистени\n"
+"                 P - нагодувања на подразбрани вредности\n"
+"                 X - книгите се исчистени, нагодувањата за извештаи и алати "
+"се вратени на подразбраните вредности\n"
+"                 F - филтрите се исчистени\n"
+"                 E - сѐ е вратено на подразбраните вредности или е "
+"исчистено\n"
 
 #: ../gramps/cli/argparser.py:108
 msgid ""
@@ -1461,7 +1640,7 @@ msgstr ""
 #: ../gramps/cli/argparser.py:281
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr ""
+msgstr "Се обидувам да отворам: %s ..."
 
 #: ../gramps/cli/argparser.py:326
 #, python-format
@@ -1469,6 +1648,8 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
+"ВНИМАНИЕ: %(strerr)s (errno=%(errno)s:\n"
+"ВНИМАНИЕ: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:336
 #, python-format
@@ -1477,31 +1658,31 @@ msgstr "Непозната акција: %s. Се игнорира."
 
 #: ../gramps/cli/argparser.py:346
 msgid "setup debugging"
-msgstr ""
+msgstr "исправување на грешките при припрема"
 
 #: ../gramps/cli/argparser.py:359
 #, python-format
 msgid "Gramps config settings from %s:"
-msgstr ""
+msgstr "Местенки за нагодување на Дедовникот од %s:"
 
 #: ../gramps/cli/argparser.py:377
 #, python-format
 msgid "Current Gramps config setting: %(name)s:%(value)s"
-msgstr ""
+msgstr "Моменталното нагодување на Дедовникот: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:383
 msgid "DEFAULT"
-msgstr ""
+msgstr "ЗАДАДЕНА ВРЕДНОСТ"
 
 #: ../gramps/cli/argparser.py:392
 #, python-format
 msgid "    New Gramps config setting: %(name)s:%(value)s"
-msgstr ""
+msgstr "    Ново нагодување на Дедовникот: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:405
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
-msgstr ""
+msgstr "Дедовник: нема такво нагодување: „%s“"
 
 #: ../gramps/cli/argparser.py:498
 msgid "Error parsing the arguments"
@@ -1519,6 +1700,8 @@ msgid ""
 "ERROR: %(title)s \n"
 "       %(message)s"
 msgstr ""
+"ГРЕШКА: %(title)s \n"
+"       %(message)s"
 
 #: ../gramps/cli/clidbman.py:178 ../gramps/gen/lib/media.py:147
 #: ../gramps/gen/lib/url.py:94
@@ -1530,7 +1713,7 @@ msgstr ""
 msgid "Path"
 msgstr "Патека"
 
-#: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:127
+#: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:130
 #, fuzzy
 msgid "Database"
 msgstr "Целата База на податоци"
@@ -1542,7 +1725,7 @@ msgstr "Последна промена"
 
 #: ../gramps/cli/clidbman.py:181
 msgid "Locked?"
-msgstr ""
+msgstr "Заклучено?"
 
 #: ../gramps/cli/clidbman.py:216
 #, python-format
@@ -1580,7 +1763,7 @@ msgstr "Не може да се увезе %s"
 
 #: ../gramps/cli/clidbman.py:321
 msgid "Import finished..."
-msgstr ""
+msgstr "Увозот заврши..."
 
 #: ../gramps/cli/clidbman.py:406 ../gramps/plugins/importer/importcsv.py:525
 #, fuzzy
@@ -1622,16 +1805,25 @@ msgid ""
 "    %s\n"
 "\n"
 msgstr ""
+"\n"
+"ГРЕШКА: погрешна патека на базата на податоци во изборникот „Уредување —> "
+"Нагодувања.\n"
+"Отворете ги нагодувањата и наместете ја исправната патека за базата на "
+"податоци.\n"
+"\n"
+"Детали: не можам да ја создадат базата на податоци.\n"
+"    %s\n"
+"\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2304
 #: ../gramps/gui/plug/_windows.py:764
 msgid "Never"
-msgstr ""
+msgstr "Никогаш"
 
 #: ../gramps/cli/clidbman.py:602
 #, python-format
 msgid "Locked by %s"
-msgstr ""
+msgstr "Заклучено од %s"
 
 #: ../gramps/cli/clidbman.py:604 ../gramps/gen/lib/attrtype.py:65
 #: ../gramps/gen/lib/childreftype.py:75 ../gramps/gen/lib/eventroletype.py:54
@@ -1715,12 +1907,12 @@ msgstr "Непознато"
 #: ../gramps/cli/grampscli.py:86
 #, python-format
 msgid "WARNING: %s"
-msgstr ""
+msgstr "ПРЕДУПРЕДУВАЊЕ: %s"
 
 #: ../gramps/cli/grampscli.py:93 ../gramps/cli/grampscli.py:247
 #, python-format
 msgid "ERROR: %s"
-msgstr ""
+msgstr "ГРЕШКА: %s"
 
 #: ../gramps/cli/grampscli.py:107 ../gramps/cli/user.py:219
 #: ../gramps/gui/dialog.py:317
@@ -1734,6 +1926,9 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
+"Дедовникот одкри проблем во базата на податоци. Ова некогаш може да се "
+"поправи преку управувачот на семејно стебло. Изберете ја базата и притиснете "
+"на копчето за Поправка."
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
@@ -1757,11 +1952,11 @@ msgstr "Не може да се отвори датотека: %s"
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Could not load a recent Family Tree."
-msgstr ""
+msgstr "Не можам да го вчитам последното семејно стебло."
 
 #: ../gramps/cli/grampscli.py:261
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr ""
+msgstr "Семејното стебло не постои, како да е избришано."
 
 #: ../gramps/cli/grampscli.py:267
 msgid "The database is locked."
@@ -1772,6 +1967,8 @@ msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
 msgstr ""
+"Користи ја --force-unlock опцијата ако сте сигурни дека базата на податоци "
+"не е во употреба."
 
 #: ../gramps/cli/grampscli.py:348
 #, fuzzy, python-format
@@ -1786,15 +1983,15 @@ msgstr "  Детали: %s"
 #: ../gramps/cli/grampscli.py:355
 #, python-format
 msgid "Error encountered in argument parsing: %s"
-msgstr ""
+msgstr "Одкриена грешка при обработка на аргумент: %s"
 
 #: ../gramps/cli/plug/__init__.py:198
 msgid "ERROR: Please specify a person"
-msgstr ""
+msgstr "ГРЕШКА: Наведете личност"
 
 #: ../gramps/cli/plug/__init__.py:222
 msgid "ERROR: Please specify a family"
-msgstr ""
+msgstr "ГРЕШКА: Наведете семејство"
 
 #: ../gramps/cli/plug/__init__.py:323
 #, fuzzy
@@ -1803,7 +2000,7 @@ msgstr "Име на датотека"
 
 #: ../gramps/cli/plug/__init__.py:323
 msgid "Output file name. MANDATORY"
-msgstr ""
+msgstr "Име на излезна датотека. ОБВРЗНО"
 
 #: ../gramps/cli/plug/__init__.py:324
 #, fuzzy
@@ -1840,24 +2037,24 @@ msgstr "Број за ориентација на хартијата."
 
 #: ../gramps/cli/plug/__init__.py:328
 msgid "Left paper margin"
-msgstr ""
+msgstr "Лева маргина на хартијата"
 
 #: ../gramps/cli/plug/__init__.py:328 ../gramps/cli/plug/__init__.py:329
 #: ../gramps/cli/plug/__init__.py:330 ../gramps/cli/plug/__init__.py:331
 msgid "Size in cm"
-msgstr ""
+msgstr "Величина во цм"
 
 #: ../gramps/cli/plug/__init__.py:329
 msgid "Right paper margin"
-msgstr ""
+msgstr "Десна маргина на хартијата"
 
 #: ../gramps/cli/plug/__init__.py:330
 msgid "Top paper margin"
-msgstr ""
+msgstr "Горна маргина на хартијата"
 
 #: ../gramps/cli/plug/__init__.py:331
 msgid "Bottom paper margin"
-msgstr ""
+msgstr "Долна маргина на хартијата"
 
 #: ../gramps/cli/plug/__init__.py:332
 #, fuzzy
@@ -1866,7 +2063,7 @@ msgstr "Избери име на датотека"
 
 #: ../gramps/cli/plug/__init__.py:332
 msgid "CSS filename to use, html format only"
-msgstr ""
+msgstr "Име на ЦСС датотеката кое ќе се користи, само хтмл форма"
 
 #. Translators: needed for French, Hebrew and Arabic
 #: ../gramps/cli/plug/__init__.py:447
@@ -1881,7 +2078,7 @@ msgstr "Непозната опција: %s"
 
 #: ../gramps/cli/plug/__init__.py:497 ../gramps/cli/plug/__init__.py:602
 msgid "   Valid options are:"
-msgstr ""
+msgstr "   Исправните опции се:"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/cli/plug/__init__.py:498 ../gramps/cli/plug/__init__.py:603
@@ -1904,13 +2101,14 @@ msgstr ""
 #: ../gramps/plugins/textreport/descendreport.py:311
 #: ../gramps/plugins/textreport/placereport.py:203
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: ../gramps/cli/plug/__init__.py:503 ../gramps/cli/plug/__init__.py:608
 #: ../gramps/cli/plug/__init__.py:691
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
+"   Користете '%(donottranslate)s' за да видите опис и прифатливи вредности"
 
 #: ../gramps/cli/plug/__init__.py:569
 #, python-format
@@ -1918,17 +2116,19 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using "
 "'%(notranslate1)s=%(notranslate3)s'."
 msgstr ""
+"Занемарувам „%(notranslate1)s=%(notranslate2)s“ и користам "
+"„%(notranslate1)s=%(notranslate3)s“."
 
 #: ../gramps/cli/plug/__init__.py:580
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr ""
+msgstr "Користете „%(notranslate)s“ за да видите исправни вредности."
 
 #: ../gramps/cli/plug/__init__.py:600
 #: ../gramps/gen/plug/report/stdoptions.py:334
 #, python-format
 msgid "Ignoring unknown option: %s"
-msgstr ""
+msgstr "Занемарувам непозната опција: %s"
 
 #: ../gramps/cli/plug/__init__.py:679
 msgid "   Available options:"
@@ -1949,15 +2149,17 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
+"опцијата „%(optionname)s“ не е исправна. Користете „%(donottranslate)s“ за "
+"да ги видите сите исправни опции."
 
 #: ../gramps/cli/plug/__init__.py:730
 msgid "Failed to write report. "
-msgstr ""
+msgstr "Не успеав да запишам извештај. "
 
 #: ../gramps/cli/plug/__init__.py:905
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr ""
+msgstr "Не успеав да го создадам %s извештај."
 
 #: ../gramps/cli/user.py:241 ../gramps/gui/dialog.py:298
 msgid "Error detected in database"
@@ -1982,7 +2184,7 @@ msgstr ""
 
 #: ../gramps/gen/config.py:302
 msgid "Imported %Y/%m/%d %H:%M:%S"
-msgstr ""
+msgstr "Увезен %Y/%m/%d %H:%M:%S"
 
 #: ../gramps/gen/config.py:314
 #, fuzzy
@@ -2015,7 +2217,7 @@ msgstr "Лично"
 #: ../gramps/gen/config.py:392 ../gramps/gen/datehandler/_datestrings.py:90
 msgctxt "localized lexeme inflections"
 msgid "January"
-msgstr ""
+msgstr "јануари (коложег)"
 
 #: ../gramps/gen/const.py:288
 #, fuzzy
@@ -2037,22 +2239,22 @@ msgstr "Дадено име"
 #: ../gramps/plugins/webreport/person.py:813
 #: ../gramps/plugins/webreport/person.py:815
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: ../gramps/gen/datehandler/__init__.py:95
 #, python-format
 msgid "Date parser for '%s' not available, using default"
-msgstr ""
+msgstr "Обработувачот на датуми за „%s“ е недостапен, го користам основниот"
 
 #: ../gramps/gen/datehandler/__init__.py:112
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
-msgstr ""
+msgstr "Прикажувачот на датуми за „%s“ е недостапен, го користам основниот"
 
 #. Translators: Numeric year, month, day
 #: ../gramps/gen/datehandler/_datedisplay.py:74
 msgid "YYYY-MM-DD (ISO)"
-msgstr ""
+msgstr "ГГГГ-ММ-ДД (ИСО)"
 
 #. Translators: You may translate this as "Numerical",
 #. "System preferred", or similar.
@@ -2065,27 +2267,27 @@ msgstr "Формат на датум"
 #. Translators: Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:83
 msgid "Month Day, Year"
-msgstr ""
+msgstr "месец ден, година"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:85
 msgid "MON DAY, YEAR"
-msgstr ""
+msgstr "МЕС ДЕН, ГОДИ"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:87
 msgid "Day Month Year"
-msgstr ""
+msgstr "Ден Месец Година"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:89
 msgid "DAY MON YEAR"
-msgstr ""
+msgstr "ДЕН МЕС ГОДИ"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:182
 #, python-brace-format
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2095,7 +2297,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2105,7 +2307,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2279,7 +2481,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:499
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr "од"
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2294,7 +2496,7 @@ msgstr "Датум"
 #: ../gramps/gen/datehandler/_datedisplay.py:423
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality} од {date_start} до {date_stop}{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
@@ -2302,7 +2504,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:444
 msgctxt "between-date"
 msgid ""
-msgstr ""
+msgstr "меѓу"
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2318,6 +2520,7 @@ msgstr "Датум"
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
+"{date_quality}измеѓу {date_start} и {date_stop}{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
@@ -2395,62 +2598,62 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_dateparser.py:507
 msgid "today"
-msgstr ""
+msgstr "денес"
 
 #: ../gramps/gen/datehandler/_datestrings.py:91
 msgctxt "localized lexeme inflections"
 msgid "February"
-msgstr ""
+msgstr "февруари (сечко)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:92
 msgctxt "localized lexeme inflections"
 msgid "March"
-msgstr ""
+msgstr "март (цутар)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:93
 msgctxt "localized lexeme inflections"
 msgid "April"
-msgstr ""
+msgstr "април (тревен)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:94
 msgctxt "localized lexeme inflections"
 msgid "May"
-msgstr ""
+msgstr "мај (косар)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:95
 msgctxt "localized lexeme inflections"
 msgid "June"
-msgstr ""
+msgstr "јуни (жетвар)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:96
 msgctxt "localized lexeme inflections"
 msgid "July"
-msgstr ""
+msgstr "јули (златец)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgctxt "localized lexeme inflections"
 msgid "August"
-msgstr ""
+msgstr "август (житар)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgctxt "localized lexeme inflections"
 msgid "September"
-msgstr ""
+msgstr "септември (гроздобер)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgctxt "localized lexeme inflections"
 msgid "October"
-msgstr ""
+msgstr "октомври (листопад)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgctxt "localized lexeme inflections"
 msgid "November"
-msgstr ""
+msgstr "ноември (студен)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgctxt "localized lexeme inflections"
 msgid "December"
-msgstr ""
+msgstr "декември (снежник)"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2459,62 +2662,62 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:110
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jan"
-msgstr ""
+msgstr "јан (кол)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:111
 msgctxt "localized lexeme inflections - short month form"
 msgid "Feb"
-msgstr ""
+msgstr "фев (сеч)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
 msgctxt "localized lexeme inflections - short month form"
 msgid "Mar"
-msgstr ""
+msgstr "мар (цут)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:113
 msgctxt "localized lexeme inflections - short month form"
 msgid "Apr"
-msgstr ""
+msgstr "апр (тре)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:114
 msgctxt "localized lexeme inflections - short month form"
 msgid "May"
-msgstr ""
+msgstr "мај (кос)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:115
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jun"
-msgstr ""
+msgstr "јун (жет)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jul"
-msgstr ""
+msgstr "јул (зла)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "localized lexeme inflections - short month form"
 msgid "Aug"
-msgstr ""
+msgstr "авг (жит)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "localized lexeme inflections - short month form"
 msgid "Sep"
-msgstr ""
+msgstr "сеп (гро)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "localized lexeme inflections - short month form"
 msgid "Oct"
-msgstr ""
+msgstr "окт (лис)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "localized lexeme inflections - short month form"
 msgid "Nov"
-msgstr ""
+msgstr "ное (сту)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgctxt "localized lexeme inflections - short month form"
 msgid "Dec"
-msgstr ""
+msgstr "дек (сне)"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2523,12 +2726,12 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:131
 msgctxt "alternative month names for January"
 msgid ""
-msgstr ""
+msgstr "јануари|I|i"
 
 #: ../gramps/gen/datehandler/_datestrings.py:132
 msgctxt "alternative month names for February"
 msgid ""
-msgstr ""
+msgstr "февруари|II|ii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133
 #, fuzzy
@@ -2581,53 +2784,53 @@ msgstr "Стилот употребен за подножјето."
 #: ../gramps/gen/datehandler/_datestrings.py:141
 msgctxt "alternative month names for November"
 msgid ""
-msgstr ""
+msgstr "ноември|XI|xi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:142
 msgctxt "alternative month names for December"
 msgid ""
-msgstr ""
+msgstr "декември|XII|xii"
 
-#: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:645
+#: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:651
 #, fuzzy
 msgctxt "calendar"
 msgid "Gregorian"
 msgstr "Грегоријански"
 
-#: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:646
+#: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:652
 #, fuzzy
 msgctxt "calendar"
 msgid "Julian"
 msgstr "Календар"
 
-#: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:647
+#: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:653
 #, fuzzy
 msgctxt "calendar"
 msgid "Hebrew"
 msgstr "Календар"
 
-#: ../gramps/gen/datehandler/_datestrings.py:150 ../gramps/gen/lib/date.py:648
+#: ../gramps/gen/datehandler/_datestrings.py:150 ../gramps/gen/lib/date.py:654
 #, fuzzy
 msgctxt "calendar"
 msgid "French Republican"
 msgstr "Француски републиканец"
 
-#: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:649
+#: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:655
 #, fuzzy
 msgctxt "calendar"
 msgid "Persian"
 msgstr "Персиски"
 
-#: ../gramps/gen/datehandler/_datestrings.py:152 ../gramps/gen/lib/date.py:650
+#: ../gramps/gen/datehandler/_datestrings.py:152 ../gramps/gen/lib/date.py:656
 #, fuzzy
 msgctxt "calendar"
 msgid "Islamic"
 msgstr "Исламски"
 
-#: ../gramps/gen/datehandler/_datestrings.py:153 ../gramps/gen/lib/date.py:651
+#: ../gramps/gen/datehandler/_datestrings.py:153 ../gramps/gen/lib/date.py:657
 msgctxt "calendar"
 msgid "Swedish"
-msgstr ""
+msgstr "Шведски"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2636,67 +2839,67 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr ""
+msgstr "Тишри"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgctxt "Hebrew month lexeme"
 msgid "Heshvan"
-msgstr ""
+msgstr "Хешван"
 
 #: ../gramps/gen/datehandler/_datestrings.py:165
 msgctxt "Hebrew month lexeme"
 msgid "Kislev"
-msgstr ""
+msgstr "Кислев"
 
 #: ../gramps/gen/datehandler/_datestrings.py:166
 msgctxt "Hebrew month lexeme"
 msgid "Tevet"
-msgstr ""
+msgstr "Тевет"
 
 #: ../gramps/gen/datehandler/_datestrings.py:167
 msgctxt "Hebrew month lexeme"
 msgid "Shevat"
-msgstr ""
+msgstr "Шеват"
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
 msgctxt "Hebrew month lexeme"
 msgid "AdarI"
-msgstr ""
+msgstr "Адар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:169
 msgctxt "Hebrew month lexeme"
 msgid "AdarII"
-msgstr ""
+msgstr "Адар Шени"
 
 #: ../gramps/gen/datehandler/_datestrings.py:170
 msgctxt "Hebrew month lexeme"
 msgid "Nisan"
-msgstr ""
+msgstr "Нисан"
 
 #: ../gramps/gen/datehandler/_datestrings.py:171
 msgctxt "Hebrew month lexeme"
 msgid "Iyyar"
-msgstr ""
+msgstr "Ијар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
 msgctxt "Hebrew month lexeme"
 msgid "Sivan"
-msgstr ""
+msgstr "Сиван"
 
 #: ../gramps/gen/datehandler/_datestrings.py:173
 msgctxt "Hebrew month lexeme"
 msgid "Tammuz"
-msgstr ""
+msgstr "Тамуз"
 
 #: ../gramps/gen/datehandler/_datestrings.py:174
 msgctxt "Hebrew month lexeme"
 msgid "Av"
-msgstr ""
+msgstr "Ав"
 
 #: ../gramps/gen/datehandler/_datestrings.py:175
 msgctxt "Hebrew month lexeme"
 msgid "Elul"
-msgstr ""
+msgstr "Елул"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2705,67 +2908,67 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:184
 msgctxt "French month lexeme"
 msgid "Vendémiaire"
-msgstr ""
+msgstr "Вандемер"
 
 #: ../gramps/gen/datehandler/_datestrings.py:185
 msgctxt "French month lexeme"
 msgid "Brumaire"
-msgstr ""
+msgstr "Брумер"
 
 #: ../gramps/gen/datehandler/_datestrings.py:186
 msgctxt "French month lexeme"
 msgid "Frimaire"
-msgstr ""
+msgstr "Фример"
 
 #: ../gramps/gen/datehandler/_datestrings.py:187
 msgctxt "French month lexeme"
 msgid "Nivôse"
-msgstr ""
+msgstr "Нивоз"
 
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "French month lexeme"
 msgid "Pluviôse"
-msgstr ""
+msgstr "Пљувиоз"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "French month lexeme"
 msgid "Ventôse"
-msgstr ""
+msgstr "Вентоз"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "French month lexeme"
 msgid "Germinal"
-msgstr ""
+msgstr "Жерминал"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "French month lexeme"
 msgid "Floréal"
-msgstr ""
+msgstr "Флореал"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "French month lexeme"
 msgid "Prairial"
-msgstr ""
+msgstr "Прериал"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "French month lexeme"
 msgid "Messidor"
-msgstr ""
+msgstr "Месидор"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "French month lexeme"
 msgid "Thermidor"
-msgstr ""
+msgstr "Термидор"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "French month lexeme"
 msgid "Fructidor"
-msgstr ""
+msgstr "Фруктидор"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgctxt "French month lexeme"
 msgid "Extra"
-msgstr ""
+msgstr "Дополнителен"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2774,62 +2977,62 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:205
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr ""
+msgstr "мухарем"
 
 #: ../gramps/gen/datehandler/_datestrings.py:206
 msgctxt "Islamic month lexeme"
 msgid "Safar"
-msgstr ""
+msgstr "сафер"
 
 #: ../gramps/gen/datehandler/_datestrings.py:207
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr ""
+msgstr "Раби`ал-авал"
 
 #: ../gramps/gen/datehandler/_datestrings.py:208
 msgctxt "Islamic month lexeme"
 msgid "Rabi`ath-Thani"
-msgstr ""
+msgstr "Раби`ал-тани"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr ""
+msgstr "Џумада ал-ула"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Islamic month lexeme"
 msgid "Jumada t-Tania"
-msgstr ""
+msgstr "Џумада т-таниа"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr ""
+msgstr "Раџаб"
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Islamic month lexeme"
 msgid "Sha`ban"
-msgstr ""
+msgstr "Ша`бан"
 
 #: ../gramps/gen/datehandler/_datestrings.py:213
 msgctxt "Islamic month lexeme"
 msgid "Ramadan"
-msgstr ""
+msgstr "Рамадан"
 
 #: ../gramps/gen/datehandler/_datestrings.py:214
 msgctxt "Islamic month lexeme"
 msgid "Shawwal"
-msgstr ""
+msgstr "Шевал"
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Qa`da"
-msgstr ""
+msgstr "Ду л-ка`да"
 
 #: ../gramps/gen/datehandler/_datestrings.py:216
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Hijja"
-msgstr ""
+msgstr "Зул л-хиџа"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2838,111 +3041,111 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "Persian month lexeme"
 msgid "Farvardin"
-msgstr ""
+msgstr "Фарвардин"
 
 #: ../gramps/gen/datehandler/_datestrings.py:226
 msgctxt "Persian month lexeme"
 msgid "Ordibehesht"
-msgstr ""
+msgstr "Урдибехешт"
 
 #: ../gramps/gen/datehandler/_datestrings.py:227
 msgctxt "Persian month lexeme"
 msgid "Khordad"
-msgstr ""
+msgstr "Хурдад"
 
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgctxt "Persian month lexeme"
 msgid "Tir"
-msgstr ""
+msgstr "Тир"
 
 #: ../gramps/gen/datehandler/_datestrings.py:229
 msgctxt "Persian month lexeme"
 msgid "Mordad"
-msgstr ""
+msgstr "Мурдад"
 
 #: ../gramps/gen/datehandler/_datestrings.py:230
 msgctxt "Persian month lexeme"
 msgid "Shahrivar"
-msgstr ""
+msgstr "Шахривар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:231
 msgctxt "Persian month lexeme"
 msgid "Mehr"
-msgstr ""
+msgstr "Мехр"
 
 #: ../gramps/gen/datehandler/_datestrings.py:232
 msgctxt "Persian month lexeme"
 msgid "Aban"
-msgstr ""
+msgstr "Абан"
 
 #: ../gramps/gen/datehandler/_datestrings.py:233
 msgctxt "Persian month lexeme"
 msgid "Azar"
-msgstr ""
+msgstr "Азар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:234
 msgctxt "Persian month lexeme"
 msgid "Dey"
-msgstr ""
+msgstr "Деј"
 
 #: ../gramps/gen/datehandler/_datestrings.py:235
 msgctxt "Persian month lexeme"
 msgid "Bahman"
-msgstr ""
+msgstr "Бахман"
 
 #: ../gramps/gen/datehandler/_datestrings.py:236
 msgctxt "Persian month lexeme"
 msgid "Esfand"
-msgstr ""
+msgstr "Есфанд"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:243
 msgctxt "date modifier"
 msgid "before "
-msgstr ""
+msgstr "пред "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:246
 msgctxt "date modifier"
 msgid "after "
-msgstr ""
+msgstr "после "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:249
 msgctxt "date modifier"
 msgid "about "
-msgstr ""
+msgstr "околу "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "од "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "до "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
 msgid "estimated "
-msgstr ""
+msgstr "приближно "
 
 #: ../gramps/gen/datehandler/_datestrings.py:264
 msgctxt "date quality"
 msgid "calculated "
-msgstr ""
+msgstr "пресметано "
 
 #: ../gramps/gen/datehandler/_datestrings.py:271
 msgid "Sunday"
-msgstr ""
+msgstr "Недела"
 
 #: ../gramps/gen/datehandler/_datestrings.py:272
 #, fuzzy
@@ -2951,23 +3154,23 @@ msgstr "Второ лице"
 
 #: ../gramps/gen/datehandler/_datestrings.py:273
 msgid "Tuesday"
-msgstr ""
+msgstr "Вторник"
 
 #: ../gramps/gen/datehandler/_datestrings.py:274
 msgid "Wednesday"
-msgstr ""
+msgstr "Среда"
 
 #: ../gramps/gen/datehandler/_datestrings.py:275
 msgid "Thursday"
-msgstr ""
+msgstr "Четврток"
 
 #: ../gramps/gen/datehandler/_datestrings.py:276
 msgid "Friday"
-msgstr ""
+msgstr "Петок"
 
 #: ../gramps/gen/datehandler/_datestrings.py:277
 msgid "Saturday"
-msgstr ""
+msgstr "Сабота"
 
 #: ../gramps/gen/datehandler/_datestrings.py:282
 #, fuzzy
@@ -2981,7 +3184,7 @@ msgstr "Мажи"
 
 #: ../gramps/gen/datehandler/_datestrings.py:284
 msgid "Tue"
-msgstr ""
+msgstr "Вто"
 
 #: ../gramps/gen/datehandler/_datestrings.py:285
 #, fuzzy
@@ -2990,7 +3193,7 @@ msgstr "Женет/Мажена"
 
 #: ../gramps/gen/datehandler/_datestrings.py:286
 msgid "Thu"
-msgstr ""
+msgstr "Чет"
 
 #: ../gramps/gen/datehandler/_datestrings.py:287
 #, fuzzy
@@ -3055,7 +3258,7 @@ msgstr ""
 "на податоци помеѓу различните верзии на базата."
 
 #: ../gramps/gen/db/exceptions.py:154
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The Family Tree you are trying to load is in the schema version "
 "%(oldschema)s format. This version of Gramps uses schema version "
@@ -3074,6 +3277,24 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
+"Семејното стебло што се обидувате да го вчитате е во формата на шематската "
+"верзија %(oldschema)s. Ова издание на Дедовник користи шема на "
+"%(newschema)s. Затоа, не можете да го вчитате ова семејно стебло без да го "
+"надградите ослободувањето на шемата за семејно стебло.\n"
+"\n"
+"Ако надградите, тогаш нема да можете да го користите претходното издание на "
+"Дедовникот, дури и ако потоа "
+"%(wiki_manual_backup_html_start)sbackup%(html_end)s или "
+"%(wiki_manual_export_html_start)s извезете %(html_end) на вашето надградено "
+"семејно стебло.\n"
+"\n"
+"Надоградбата е тешка задача која може неповратно да го уништи вашето семејно "
+"стебло, ако е прекината или неуспешна.\n"
+"\n"
+"Ако веќе не сте направиле резервна копија на вашето семејно стебло, тогаш "
+"треба да го започнете вашето %(bold_start)old%(bold_end)s верзија на "
+"Дедовникот и %(wiki_backup_html_start)да направите резервна "
+"копија%(html_end)s од вашето семејно стебло."
 
 #: ../gramps/gen/db/exceptions.py:195
 #, python-format
@@ -3084,6 +3305,11 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
+"Поврзување со базата на податоци е неуспешно.\n"
+"\n"
+"%(message)s\n"
+"Провери ја датотеката со поставки за поврзување:\n"
+"%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:213
 #, python-format
@@ -3103,6 +3329,22 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
+"Семејното дрво кое се обидуваш да го вчиташ е во %(dbtype)s вид на база, кој "
+"повеќе не е поддржан.\n"
+"Затоа не можеш да го вчиташ Семејното дрво без да го надградиш.\n"
+"\n"
+"Ако го надградиш тогаш нема да можеш да ја користиш предходното издание на "
+"Дедовникот, па дури и ако потоа направиш "
+"%(wiki_manual_backup_html_start)sрезерва%(html_end)s или го "
+"%(wiki_manual_export_html_start)sизвезеш%(html_end)s твоето надградено "
+"Семејно дрво.\n"
+"\n"
+"Силно се препорачува да направиш резервна копија на Семејното дрво.\n"
+"\n"
+"Ако сеуште не си направил резервна копија на Семејното дрво, тогаш треба да "
+"ја покренеш твоето предходно издание на Дедовникот и да "
+"%(wiki_backup_html_start)sнаправиш резервна копија%(html_end)s од твоето "
+"Семејно дрво."
 
 #: ../gramps/gen/db/generic.py:196 ../gramps/gen/db/generic.py:246
 #: ../gramps/gen/db/generic.py:2157
@@ -3181,53 +3423,62 @@ msgstr "Број на бракови"
 msgid "Schema version"
 msgstr "Отстрани родители"
 
-#: ../gramps/gen/db/upgrade.py:584
+#: ../gramps/gen/db/upgrade.py:588
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-
-#: ../gramps/gen/db/upgrade.py:588
-#, python-format
-msgid ""
-"%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+"Личноста:            %(n1)6d надоградена со %(n2)6d цитати за %(n3)6d "
+"секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:592
 #, python-format
 msgid ""
-"%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
+"%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Семејство:         %(n1)6d надоградено со  %(n2)6d цитати за %(n3)6d "
+"секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:596
 #, python-format
 msgid ""
-"%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
+"%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Настани:         %(n1)6d надоградено со  %(n2)6d цитати за  %(n3)6d секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:600
 #, python-format
 msgid ""
-"%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
+"%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Медијски објекти: %(n1)6d надоградено со  %(n2)6d цитати за %(n3)6d секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:604
 #, python-format
 msgid ""
-"%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
+"%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Места:           %(n1)6d надоградено со  %(n2)6d цитати за %(n3)6d секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:608
 #, python-format
 msgid ""
+"%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
+msgstr ""
+"Складови:        %(n1)6d надоградеи со %(n2)6d цитати за %(n3)6d секунди\n"
+
+#: ../gramps/gen/db/upgrade.py:612
+#, python-format
+msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Извори:           %(n1)6d надоградено со %(n2)6d цитати за %(n3)6d секунди\n"
 
-#: ../gramps/gen/db/upgrade.py:1173
+#: ../gramps/gen/db/upgrade.py:1177
 msgid "Number of new objects upgraded:\n"
 msgstr "Број на нови надградени објекти:\n"
 
-#: ../gramps/gen/db/upgrade.py:1184
+#: ../gramps/gen/db/upgrade.py:1188
 msgid ""
 "\n"
 "\n"
@@ -3236,8 +3487,14 @@ msgid ""
 "in order to merge citations that contain similar\n"
 "information"
 msgstr ""
+"\n"
+"\n"
+"Можете да го покренете изборникот\n"
+"Алати —> Обработка на семејно стебло —> Спој\n"
+"за да ги споите цитатите кои содржат слични\n"
+"информации"
 
-#: ../gramps/gen/db/upgrade.py:1189
+#: ../gramps/gen/db/upgrade.py:1193
 #, fuzzy
 msgid "Upgrade Statistics"
 msgstr "Увези база на податоци"
@@ -3278,6 +3535,7 @@ msgstr "Дадено име"
 #: ../gramps/gen/display/name.py:417
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr ""
+"Главни презимиња, Име Татково име Послеставка (суфикс) Представка (префикс)"
 
 #: ../gramps/gen/display/name.py:422
 #, fuzzy
@@ -3401,20 +3659,20 @@ msgstr "Прекар"
 msgid "familynick"
 msgstr "Семејство"
 
-#: ../gramps/gen/display/name.py:1293
+#: ../gramps/gen/display/name.py:1290
 #, python-format
 msgid "Wrong name format string %s"
-msgstr ""
+msgstr "Погрешна нишка на запис на име „%s“"
 
-#: ../gramps/gen/display/name.py:1299
+#: ../gramps/gen/display/name.py:1297
 #, fuzzy
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "Пребарување на неважечки упатувања на формат на име"
 
-#: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:394
+#: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:403
 #, python-format
 msgid "Error in '%s' file: cannot load."
-msgstr ""
+msgstr "Грешка во датотеката „%s“: не може да се вчита."
 
 #: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:66
 #, fuzzy
@@ -3427,6 +3685,8 @@ msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
+"ПРЕДУПРЕДУВАЊЕ: Премногу аргументи во филтерот „%s“!\n"
+"Се обидувам да вчитам со подзбир на аргументи."
 
 #: ../gramps/gen/filters/_filterparser.py:142
 #, python-format
@@ -3434,11 +3694,13 @@ msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
+"ПРЕДУПРЕДУВАЊЕ: Премалку аргументи во филтерот „%s“!\n"
+"         Сепак се обидувам да вчитам со надеж дека ова ќе биде надоградено."
 
 #: ../gramps/gen/filters/_filterparser.py:154
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
-msgstr ""
+msgstr "ГРЕШКА: филтерот „%s“ не може исправно да се вчита. Уреди го филтерот!"
 
 #: ../gramps/gen/filters/_genericfilter.py:144
 #: ../gramps/gen/filters/_genericfilter.py:173
@@ -3556,7 +3818,7 @@ msgstr "Општи филтри"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:86
 msgid "Wrong format of date-time"
-msgstr ""
+msgstr "Погрешна форма на датум-време"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:88
 #, python-format
@@ -3564,6 +3826,8 @@ msgid ""
 "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
+"Прифатен е само датум-време во ИСО формата од ГГГГ-ММ-ДД чч:мм:сс, каде "
+"делот за „време“ е изборен. %s не задоволува."
 
 # !?!?!?
 #: ../gramps/gen/filters/rules/_hascitationbase.py:51
@@ -3657,7 +3921,7 @@ msgstr "Филтри на настани"
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
 #: ../gramps/gui/editors/filtereditor.py:553
 msgid "Number must be:"
-msgstr ""
+msgstr "Бројот мора да биде:"
 
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:47
 #: ../gramps/gen/filters/rules/_hasldsbase.py:50
@@ -3758,7 +4022,7 @@ msgstr "Име на филтер:"
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:77
 #, python-format
 msgid "Can't find filter %s in the defined custom filters"
-msgstr ""
+msgstr "Не можам да го најдам филтерот %s во одредените посебни филтри"
 
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:49
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:50
@@ -3783,11 +4047,11 @@ msgstr "Нема опис"
 
 #: ../gramps/gen/filters/rules/_rule.py:102
 msgid "The filter definition contains a loop."
-msgstr ""
+msgstr "Дефиницијата на филтерот содржи круг."
 
 #: ../gramps/gen/filters/rules/_rule.py:104
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "Едно правило укажува на друго, кое пак укажува на првото."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 #, fuzzy
@@ -5188,7 +5452,7 @@ msgstr ""
 "базата на податоци"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:46
-#: ../gramps/gen/plug/_pluginreg.py:76
+#: ../gramps/gen/plug/_pluginreg.py:79
 msgid "Everyone"
 msgstr "Сите"
 
@@ -6839,7 +7103,7 @@ msgid "Notes"
 msgstr "Забелешки"
 
 #: ../gramps/gen/lib/address.py:119 ../gramps/gen/lib/citation.py:108
-#: ../gramps/gen/lib/date.py:763 ../gramps/gen/lib/event.py:155
+#: ../gramps/gen/lib/date.py:769 ../gramps/gen/lib/event.py:155
 #: ../gramps/gen/lib/ldsord.py:200 ../gramps/gen/lib/media.py:169
 #: ../gramps/gen/lib/name.py:181 ../gramps/gen/lib/placename.py:100
 #: ../gramps/gen/lib/placeref.py:93
@@ -6907,8 +7171,8 @@ msgstr "Забелешки"
 #: ../gramps/plugins/webreport/basepage.py:1341
 #: ../gramps/plugins/webreport/basepage.py:2865
 #: ../gramps/plugins/webreport/event.py:314
-#: ../gramps/plugins/webreport/media.py:252
-#: ../gramps/plugins/webreport/media.py:645
+#: ../gramps/plugins/webreport/media.py:249
+#: ../gramps/plugins/webreport/media.py:641
 #: ../gramps/plugins/webreport/person.py:1067
 msgid "Date"
 msgstr "Датум"
@@ -7240,7 +7504,7 @@ msgstr "Ориентација"
 #: ../gramps/plugins/webreport/basepage.py:3166
 #: ../gramps/plugins/webreport/event.py:315
 #: ../gramps/plugins/webreport/event.py:469
-#: ../gramps/plugins/webreport/media.py:618
+#: ../gramps/plugins/webreport/media.py:614
 #: ../gramps/plugins/webreport/person.py:1820
 #: ../gramps/plugins/webreport/repository.py:264
 #: ../gramps/plugins/webreport/source.py:292
@@ -7319,8 +7583,8 @@ msgstr "Извор"
 #: ../gramps/plugins/webreport/basepage.py:2081
 #: ../gramps/plugins/webreport/basepage.py:2126
 #: ../gramps/plugins/webreport/basepage.py:2442
-#: ../gramps/plugins/webreport/media.py:215
-#: ../gramps/plugins/webreport/media.py:418
+#: ../gramps/plugins/webreport/media.py:212
+#: ../gramps/plugins/webreport/media.py:414
 #: ../gramps/plugins/webreport/updates.py:152
 msgid "Media"
 msgstr "Медиуми"
@@ -7367,7 +7631,7 @@ msgstr "Последна промена"
 #: ../gramps/plugins/webreport/basepage.py:3315
 #: ../gramps/plugins/webreport/event.py:496
 #: ../gramps/plugins/webreport/family.py:461
-#: ../gramps/plugins/webreport/media.py:664
+#: ../gramps/plugins/webreport/media.py:660
 #: ../gramps/plugins/webreport/person.py:1915
 #: ../gramps/plugins/webreport/repository.py:287
 #: ../gramps/plugins/webreport/source.py:308
@@ -7461,7 +7725,7 @@ msgstr[1] ""
 msgid "0 days"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:766
+#: ../gramps/gen/lib/date.py:772
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:76
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:84
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:90
@@ -7470,22 +7734,22 @@ msgstr ""
 msgid "Calendar"
 msgstr "Календар"
 
-#: ../gramps/gen/lib/date.py:767
+#: ../gramps/gen/lib/date.py:773
 #, fuzzy
 msgid "Modifier"
 msgstr "Смени настан"
 
-#: ../gramps/gen/lib/date.py:768
+#: ../gramps/gen/lib/date.py:774
 #, fuzzy
 msgid "Quality"
 msgstr "<b>К_валитет</b>"
 
-#: ../gramps/gen/lib/date.py:771 ../gramps/gui/editors/filtereditor.py:913
+#: ../gramps/gen/lib/date.py:777 ../gramps/gui/editors/filtereditor.py:913
 #: ../gramps/gui/glade/rule.glade:967
 msgid "Values"
 msgstr "Вредности"
 
-#: ../gramps/gen/lib/date.py:774 ../gramps/gen/lib/placename.py:97
+#: ../gramps/gen/lib/date.py:780 ../gramps/gen/lib/placename.py:97
 #: ../gramps/gen/lib/styledtext.py:327
 #: ../gramps/gen/plug/report/_constants.py:62 ../gramps/gui/clipboard.py:626
 #: ../gramps/gui/clipboard.py:634 ../gramps/gui/configure.py:1786
@@ -7497,74 +7761,74 @@ msgstr "Вредности"
 msgid "Text"
 msgstr "Текст"
 
-#: ../gramps/gen/lib/date.py:775
+#: ../gramps/gen/lib/date.py:781
 #, fuzzy
 msgid "Sort value"
 msgstr "_Подреди како:"
 
-#: ../gramps/gen/lib/date.py:776
+#: ../gramps/gen/lib/date.py:782
 msgid "New year begins"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1976
+#: ../gramps/gen/lib/date.py:1981
 #, fuzzy
 msgid "calculated"
 msgstr "Пресметано"
 
-#: ../gramps/gen/lib/date.py:1976
+#: ../gramps/gen/lib/date.py:1981
 #, fuzzy
 msgid "estimated"
 msgstr "Проценето"
 
-#: ../gramps/gen/lib/date.py:1976
+#: ../gramps/gen/lib/date.py:1981
 msgctxt "date-quality"
 msgid "none"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:2000
+#: ../gramps/gen/lib/date.py:2005
 msgctxt "date-modifier"
 msgid "none"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:2001 ../gramps/plugins/lib/libsubstkeyword.py:317
+#: ../gramps/gen/lib/date.py:2006 ../gramps/plugins/lib/libsubstkeyword.py:317
 #: ../gramps/plugins/webreport/basepage.py:3584
 #, fuzzy
 msgid "before"
 msgstr "Пред"
 
-#: ../gramps/gen/lib/date.py:2002 ../gramps/plugins/lib/libprogen.py:2029
+#: ../gramps/gen/lib/date.py:2007 ../gramps/plugins/lib/libprogen.py:2029
 #: ../gramps/plugins/lib/libsubstkeyword.py:318
 #: ../gramps/plugins/webreport/basepage.py:3582
 #, fuzzy
 msgid "after"
 msgstr "По"
 
-#: ../gramps/gen/lib/date.py:2003 ../gramps/plugins/lib/libsubstkeyword.py:319
+#: ../gramps/gen/lib/date.py:2008 ../gramps/plugins/lib/libsubstkeyword.py:319
 #: ../gramps/plugins/webreport/basepage.py:3586
 #, fuzzy
 msgid "about"
 msgstr "За"
 
-#: ../gramps/gen/lib/date.py:2004
+#: ../gramps/gen/lib/date.py:2009
 #, fuzzy
 msgid "range"
 msgstr "Опсег"
 
-#: ../gramps/gen/lib/date.py:2005
+#: ../gramps/gen/lib/date.py:2010
 msgid "from"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:2006
+#: ../gramps/gen/lib/date.py:2011
 #, fuzzy
 msgid "to"
 msgstr "_Запри"
 
-#: ../gramps/gen/lib/date.py:2007
+#: ../gramps/gen/lib/date.py:2012
 #, fuzzy
 msgid "span"
 msgstr "Протегање"
 
-#: ../gramps/gen/lib/date.py:2008
+#: ../gramps/gen/lib/date.py:2013
 #, fuzzy
 msgid "textonly"
 msgstr "Само текст"
@@ -8323,7 +8587,7 @@ msgstr "Мајка"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1009
 #: ../gramps/plugins/textreport/familygroup.py:657
 #: ../gramps/plugins/textreport/indivcomplete.py:708
-#: ../gramps/plugins/view/pedigreeview.py:1970
+#: ../gramps/plugins/view/pedigreeview.py:1968
 #: ../gramps/plugins/view/relview.py:1670
 #: ../gramps/plugins/webreport/basepage.py:505
 msgid "Children"
@@ -8346,7 +8610,7 @@ msgstr "Деца"
 #: ../gramps/plugins/webreport/person.py:1941
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
-msgstr "Настани"
+msgstr "настани"
 
 #: ../gramps/gen/lib/family.py:194 ../gramps/gen/lib/person.py:248
 #, fuzzy
@@ -8622,7 +8886,7 @@ msgstr "Вероисповед"
 #: ../gramps/plugins/tool/dumpgenderstats.py:101
 #: ../gramps/plugins/tool/notrelated.py:130
 #: ../gramps/plugins/tool/removeunused.py:224
-#: ../gramps/plugins/tool/verify.py:821 ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/tool/verify.py:823 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:520
 #: ../gramps/plugins/webreport/person.py:421
 #: ../gramps/plugins/webreport/person.py:2284
@@ -8883,7 +9147,7 @@ msgstr "Ракопис"
 msgid "Source text"
 msgstr "Извор"
 
-#: ../gramps/gen/lib/notetype.py:83 ../gramps/gen/plug/_pluginreg.py:115
+#: ../gramps/gen/lib/notetype.py:83 ../gramps/gen/plug/_pluginreg.py:118
 #: ../gramps/gui/logger/_errorview.py:189
 msgid "Report"
 msgstr "Извештај"
@@ -9221,7 +9485,7 @@ msgstr "Повикувачки број"
 #: ../gramps/plugins/quickview/filterbyname.py:347
 #: ../gramps/plugins/tool/reorderids.glade:835
 msgid "Repository"
-msgstr "Репозиториум"
+msgstr "Склад"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:524
 #, fuzzy
@@ -9392,7 +9656,7 @@ msgstr "Уредувач на стил"
 #: ../gramps/plugins/textreport/tagreport.py:920
 #: ../gramps/plugins/textreport/tagreport.py:924
 msgid "Tag"
-msgstr ""
+msgstr "Ознака"
 
 #: ../gramps/gen/lib/styledtexttag.py:117
 #, fuzzy
@@ -9455,7 +9719,7 @@ msgstr "Локација"
 #: ../gramps/gen/lib/styledtexttagtype.py:75
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Strikethrough"
-msgstr ""
+msgstr "Прецртано"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:76
 #: ../gramps/gui/widgets/styledtexteditor.py:84
@@ -9498,7 +9762,7 @@ msgstr "Главен"
 #: ../gramps/gen/lib/surnamebase.py:204 ../gramps/gen/lib/surnamebase.py:217
 #, python-format
 msgid "%(first)s %(second)s"
-msgstr ""
+msgstr "%(first)s %(second)s"
 
 #: ../gramps/gen/lib/tag.py:114 ../gramps/gen/plug/docgen/treedoc.py:252
 #: ../gramps/gui/glade/styleeditor.glade:400
@@ -9510,7 +9774,7 @@ msgstr "Полнење со боја"
 
 #: ../gramps/gen/lib/tag.py:115
 msgid "Priority"
-msgstr ""
+msgstr "Приоритет"
 
 #: ../gramps/gen/lib/url.py:90 ../gramps/gui/clipboard.py:428
 msgid "Url"
@@ -9556,7 +9820,7 @@ msgstr "Медиумски објекти"
 
 #: ../gramps/gen/merge/mergefamilyquery.py:94
 msgid "A parent should be a father or mother."
-msgstr ""
+msgstr "Родител треба да биде татко или мајка."
 
 #: ../gramps/gen/merge/mergefamilyquery.py:112
 #: ../gramps/gen/merge/mergefamilyquery.py:128
@@ -9620,7 +9884,7 @@ msgstr "Обедини извори"
 #: ../gramps/gen/plug/_gramplet.py:347
 #, python-format
 msgid "Gramplet %s caused an error"
-msgstr ""
+msgstr "Дедозорчето „%s“ причини грешка"
 
 #: ../gramps/gen/plug/_manager.py:64
 msgid "No description was provided"
@@ -9633,78 +9897,80 @@ msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
 "  but is not known to the module.  Ignoring..."
 msgstr ""
+"Опцијата „%(opt_name)s“ е присутна во „%(file)s“\n"
+"  но не му е позната на модулот.  Занемарувам..."
 
-#: ../gramps/gen/plug/_pluginreg.py:65
+#: ../gramps/gen/plug/_pluginreg.py:68
 #, fuzzy
 msgid "Unstable"
 msgstr "Стабилно"
 
-#: ../gramps/gen/plug/_pluginreg.py:66
+#: ../gramps/gen/plug/_pluginreg.py:69
 msgid "Experimental"
-msgstr ""
+msgstr "Експериментално"
 
-#: ../gramps/gen/plug/_pluginreg.py:67
+#: ../gramps/gen/plug/_pluginreg.py:70
 msgid "Beta"
-msgstr ""
+msgstr "Бета"
 
-#: ../gramps/gen/plug/_pluginreg.py:68
+#: ../gramps/gen/plug/_pluginreg.py:71
 msgid "Stable"
 msgstr "Стабилно"
 
-#: ../gramps/gen/plug/_pluginreg.py:76
+#: ../gramps/gen/plug/_pluginreg.py:79
 msgid "Developer"
-msgstr ""
+msgstr "Програмер"
 
-#: ../gramps/gen/plug/_pluginreg.py:76
+#: ../gramps/gen/plug/_pluginreg.py:79
 msgid "Expert"
-msgstr ""
+msgstr "Стручњак"
 
-#: ../gramps/gen/plug/_pluginreg.py:116
+#: ../gramps/gen/plug/_pluginreg.py:119
 msgid "Quick view"
-msgstr ""
+msgstr "Брз преглед"
 
-#: ../gramps/gen/plug/_pluginreg.py:117
+#: ../gramps/gen/plug/_pluginreg.py:120
 #, fuzzy
 msgid "Tool"
 msgstr "Алатки"
 
-#: ../gramps/gen/plug/_pluginreg.py:118
+#: ../gramps/gen/plug/_pluginreg.py:121
 msgid "Importer"
 msgstr "Увоз"
 
-#: ../gramps/gen/plug/_pluginreg.py:119
+#: ../gramps/gen/plug/_pluginreg.py:122
 #, fuzzy
 msgid "Exporter"
 msgstr "Извоз"
 
-#: ../gramps/gen/plug/_pluginreg.py:120
+#: ../gramps/gen/plug/_pluginreg.py:123
 #, fuzzy
 #| msgid "Document Options"
 msgid "Document creator"
 msgstr "Опции на документи"
 
-#: ../gramps/gen/plug/_pluginreg.py:121
+#: ../gramps/gen/plug/_pluginreg.py:124
 #, fuzzy
 msgid "Plugin library"
 msgstr "Состојба на додатоци"
 
-#: ../gramps/gen/plug/_pluginreg.py:122
+#: ../gramps/gen/plug/_pluginreg.py:125
 #, fuzzy
 msgid "Map service"
 msgstr "Воена служба"
 
-#: ../gramps/gen/plug/_pluginreg.py:123 ../gramps/gui/editors/editperson.py:737
+#: ../gramps/gen/plug/_pluginreg.py:126 ../gramps/gui/editors/editperson.py:737
 #: ../gramps/plugins/view/mediaview.py:410
 #: ../gramps/plugins/view/mediaview.py:426
 msgid "View"
 msgstr "Поглед"
 
-#: ../gramps/gen/plug/_pluginreg.py:124
+#: ../gramps/gen/plug/_pluginreg.py:127
 #, fuzzy
 msgid "Relationship calculator"
 msgstr "Пресметувач на врски"
 
-#: ../gramps/gen/plug/_pluginreg.py:125 ../gramps/gen/plug/_pluginreg.py:513
+#: ../gramps/gen/plug/_pluginreg.py:128 ../gramps/gen/plug/_pluginreg.py:516
 #: ../gramps/gui/glade/grampletpane.glade:156
 #: ../gramps/gui/widgets/grampletbar.py:710
 #: ../gramps/gui/widgets/grampletpane.py:246
@@ -9713,28 +9979,28 @@ msgstr "Пресметувач на врски"
 msgid "Gramplet"
 msgstr "Пример"
 
-#: ../gramps/gen/plug/_pluginreg.py:126
+#: ../gramps/gen/plug/_pluginreg.py:129
 #, fuzzy
 msgid "Sidebar"
 msgstr "_Странична линија"
 
-#: ../gramps/gen/plug/_pluginreg.py:128
+#: ../gramps/gen/plug/_pluginreg.py:131
 #, fuzzy
 msgid "Rule"
 msgstr "Додај правило"
 
-#: ../gramps/gen/plug/_pluginreg.py:129
+#: ../gramps/gen/plug/_pluginreg.py:132
 #, fuzzy
 msgid "Thumbnailer"
 msgstr "Издание"
 
-#: ../gramps/gen/plug/_pluginreg.py:130 ../gramps/gui/configure.py:1655
+#: ../gramps/gen/plug/_pluginreg.py:133 ../gramps/gui/configure.py:1655
 #, fuzzy
 #| msgid "Publication Information"
 msgid "Citation formatter"
 msgstr "Информации за објавување"
 
-#: ../gramps/gen/plug/_pluginreg.py:617
+#: ../gramps/gen/plug/_pluginreg.py:620
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
 #: ../gramps/plugins/importer/importprogen.glade:1306
 #: ../gramps/plugins/webreport/basepage.py:2129
@@ -9744,20 +10010,23 @@ msgstr "Информации за објавување"
 msgid "Miscellaneous"
 msgstr "Разновидни филтри"
 
-#: ../gramps/gen/plug/_pluginreg.py:1359 ../gramps/gen/plug/_pluginreg.py:1394
-#: ../gramps/gen/plug/_pluginreg.py:1401
+#: ../gramps/gen/plug/_pluginreg.py:1362 ../gramps/gen/plug/_pluginreg.py:1397
+#: ../gramps/gen/plug/_pluginreg.py:1404
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr ""
+"ГРЕШКА: Не успеав да ја прочитам регистрацијата на приклучокот „%(filename)s“"
 
-#: ../gramps/gen/plug/_pluginreg.py:1370
+#: ../gramps/gen/plug/_pluginreg.py:1373
 #, python-format
 msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
+"ВНИМАНИЕ: Приклучокот „%(plugin_name)s“ нема превод за ниту еден од вашите "
+"одбрани јазици, ќе користам американски англиски"
 
-#: ../gramps/gen/plug/_pluginreg.py:1419
+#: ../gramps/gen/plug/_pluginreg.py:1422
 #, python-format
 msgctxt "gramps_version"
 msgid ""
@@ -9765,34 +10034,41 @@ msgid ""
 "\"%(gramps_target_version)s\" which is invalid for Gramps "
 "\"%(gramps_version)s\"."
 msgstr ""
+"ГРЕШКА: Датотеката на додатокот %(filename)s ја содржи верзијата "
+"„%(gramps_target_version)s” која е невалидна за Дедовник верзија "
+"„%(gramps_version)s”."
 
-#: ../gramps/gen/plug/_pluginreg.py:1451
+#: ../gramps/gen/plug/_pluginreg.py:1450
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
+"ГРЕШКА: погрешна пајтон датотека „%(filename)s“ во регистрационата датотека "
+"„%(regfile)s“"
 
-#: ../gramps/gen/plug/_pluginreg.py:1464
+#: ../gramps/gen/plug/_pluginreg.py:1463
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr ""
+"ГРЕШКА: пајтон датотеката „%(filename)s“ во регистрационата датотека "
+"„%(regfile)s“ не постои"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:136
+#: ../gramps/gen/plug/docbackend/docbackend.py:140
 #, fuzzy
 msgid "Close file first"
 msgstr "Филтри за дете"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:146
+#: ../gramps/gen/plug/docbackend/docbackend.py:150
 msgid "No filename given"
-msgstr ""
+msgstr "Не е зададено име на датотеката"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:149
+#: ../gramps/gen/plug/docbackend/docbackend.py:153
 #, fuzzy, python-format
 msgid "File %s already open, close it first."
 msgstr "Датотеката веќе постои"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:155
-#: ../gramps/gen/plug/docbackend/docbackend.py:158
+#: ../gramps/gen/plug/docbackend/docbackend.py:159
+#: ../gramps/gen/plug/docbackend/docbackend.py:162
 #: ../gramps/gen/plug/docgen/treedoc.py:826
 #: ../gramps/gen/utils/docgen/odstab.py:344
 #: ../gramps/gen/utils/docgen/odstab.py:346
@@ -9809,8 +10085,8 @@ msgstr "Датотеката веќе постои"
 #: ../gramps/plugins/docgen/asciidoc.py:185
 #: ../gramps/plugins/docgen/cairodoc.py:210
 #: ../gramps/plugins/docgen/cairodoc.py:213
-#: ../gramps/plugins/docgen/odfdoc.py:1182
-#: ../gramps/plugins/docgen/odfdoc.py:1185
+#: ../gramps/plugins/docgen/odfdoc.py:1194
+#: ../gramps/plugins/docgen/odfdoc.py:1197
 #: ../gramps/plugins/docgen/rtfdoc.py:102
 #: ../gramps/plugins/docgen/rtfdoc.py:105
 #: ../gramps/plugins/docgen/svgdrawdoc.py:91
@@ -9825,10 +10101,10 @@ msgstr "Датотеката веќе постои"
 #: ../gramps/plugins/export/exportvcalendar.py:127
 #: ../gramps/plugins/export/exportvcard.py:74
 #: ../gramps/plugins/export/exportvcard.py:78
-#: ../gramps/plugins/lib/libhtmlbackend.py:254
-#: ../gramps/plugins/lib/libhtmlbackend.py:257
-#: ../gramps/plugins/lib/libhtmlbackend.py:262
-#: ../gramps/plugins/lib/libhtmlbackend.py:265
+#: ../gramps/plugins/lib/libhtmlbackend.py:258
+#: ../gramps/plugins/lib/libhtmlbackend.py:261
+#: ../gramps/plugins/lib/libhtmlbackend.py:266
+#: ../gramps/plugins/lib/libhtmlbackend.py:269
 #: ../gramps/plugins/webreport/narrativeweb.py:401
 #, python-format
 msgid "Could not create %s"
@@ -9846,7 +10122,7 @@ msgstr "Не може да се создаде %s"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:531
 msgid "Default"
-msgstr "Основно"
+msgstr "зададено"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 #, fuzzy
@@ -9859,26 +10135,26 @@ msgid "TrueType / FreeSans"
 msgstr "Трутајп / Фрисанс"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:76
-#: ../gramps/plugins/view/pedigreeview.py:2269
+#: ../gramps/plugins/view/pedigreeview.py:2267
 #, fuzzy
 msgid "Vertical (↓)"
 msgstr "По татко"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:77
-#: ../gramps/plugins/view/pedigreeview.py:2270
+#: ../gramps/plugins/view/pedigreeview.py:2268
 #, fuzzy
 msgid "Vertical (↑)"
 msgstr "По татко"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:78
-#: ../gramps/plugins/view/pedigreeview.py:2271
+#: ../gramps/plugins/view/pedigreeview.py:2269
 msgid "Horizontal (→)"
-msgstr ""
+msgstr "Водорамно (→)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:79
-#: ../gramps/plugins/view/pedigreeview.py:2272
+#: ../gramps/plugins/view/pedigreeview.py:2270
 msgid "Horizontal (←)"
-msgstr ""
+msgstr "Водорамно (←)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:85
 msgid "Bottom, left"
@@ -9923,7 +10199,7 @@ msgstr "Пополни ја дадената област"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:98
 msgid "Expand uniformly"
-msgstr ""
+msgstr "Рашири еднолико"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:101
 #: ../gramps/gen/plug/docgen/treedoc.py:117
@@ -9944,11 +10220,11 @@ msgstr "исправено"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:106
 msgid "Curved"
-msgstr ""
+msgstr "Кривулесто"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:109
 msgid "Orthogonal"
-msgstr ""
+msgstr "Правоаголно"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:156
 #, fuzzy
@@ -10029,6 +10305,8 @@ msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
 msgstr ""
+"Редот по кој се редат страниците на графиконот. Оваа опција се применува "
+"само ако бројот на водорамни или исправени страници е поголем од 1."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:219
 #, fuzzy
@@ -10037,7 +10315,7 @@ msgstr "Прередување ИД на семејства"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:222
 msgid "How the lines between objects will be drawn."
-msgstr ""
+msgstr "Како ќе се прикажат цртите меѓу објектите."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:225
 #, fuzzy
@@ -10830,63 +11108,63 @@ msgstr ""
 msgid "Ancestor Families of %s"
 msgstr "Предци на %s"
 
-#: ../gramps/gen/plug/utils.py:298
+#: ../gramps/gen/plug/utils.py:306
 #, fuzzy
 msgid "Updated"
 msgstr "Датум"
 
-#: ../gramps/gen/plug/utils.py:316
+#: ../gramps/gen/plug/utils.py:324
 #, fuzzy
 msgctxt "updates"
 msgid "New"
 msgstr "Датум"
 
-#: ../gramps/gen/plug/utils.py:346 ../gramps/gen/plug/utils.py:353
+#: ../gramps/gen/plug/utils.py:354 ../gramps/gen/plug/utils.py:361
 #, python-format
 msgid "Unable to open '%s'"
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:360
+#: ../gramps/gen/plug/utils.py:368
 #, fuzzy, python-format
 msgid "Error in reading '%s'"
 msgstr "Грешка при читање на %s"
 
-#: ../gramps/gen/plug/utils.py:375
+#: ../gramps/gen/plug/utils.py:383
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:381
+#: ../gramps/gen/plug/utils.py:389
 #, python-format
 msgid "Examining '%s'..."
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:410
+#: ../gramps/gen/plug/utils.py:419
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:418
+#: ../gramps/gen/plug/utils.py:427
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:424
+#: ../gramps/gen/plug/utils.py:433
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:438
+#: ../gramps/gen/plug/utils.py:447
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:454
+#: ../gramps/gen/plug/utils.py:463
 #, python-format
 msgid "Installing '%s'..."
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:460
+#: ../gramps/gen/plug/utils.py:469
 #, python-format
 msgid "Registered '%s'"
 msgstr ""
@@ -10911,7 +11189,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/relationship.py:1416
-#: ../gramps/plugins/view/pedigreeview.py:1730
+#: ../gramps/plugins/view/pedigreeview.py:1728
 msgid "Relationship loop detected"
 msgstr "Откриена јамка во врските"
 
@@ -11140,30 +11418,30 @@ msgstr "Тој почина %(death_date)s."
 msgid "Database error: loop in %s's descendants"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:487 ../gramps/gen/utils/alive.py:558
+#: ../gramps/gen/utils/alive.py:485 ../gramps/gen/utils/alive.py:556
 #, fuzzy
 msgid "ancestor birth date"
 msgstr "Датум на раѓање"
 
-#: ../gramps/gen/utils/alive.py:504 ../gramps/gen/utils/alive.py:575
+#: ../gramps/gen/utils/alive.py:502 ../gramps/gen/utils/alive.py:573
 #, fuzzy
 msgid "ancestor death date"
 msgstr "Датум на смрт"
 
-#: ../gramps/gen/utils/alive.py:519 ../gramps/gen/utils/alive.py:590
+#: ../gramps/gen/utils/alive.py:517 ../gramps/gen/utils/alive.py:588
 msgid "ancestor birth-related date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:535 ../gramps/gen/utils/alive.py:606
+#: ../gramps/gen/utils/alive.py:533 ../gramps/gen/utils/alive.py:604
 msgid "ancestor death-related date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:626
+#: ../gramps/gen/utils/alive.py:624
 #, fuzzy, python-format
 msgid "Database error: loop in %s's ancestors"
 msgstr "Грешка во базата: %s е дефиниран/а како сопствен предок"
 
-#: ../gramps/gen/utils/alive.py:684
+#: ../gramps/gen/utils/alive.py:681
 #, fuzzy
 msgid "no evidence"
 msgstr "Живеалиште"
@@ -11872,109 +12150,113 @@ msgid "Japanese"
 msgstr "Јапонија"
 
 #: ../gramps/gen/utils/win32locale.py:72
+msgid "Korean"
+msgstr ""
+
+#: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
 msgstr ""
 
-#: ../gramps/gen/utils/win32locale.py:74
+#: ../gramps/gen/utils/win32locale.py:75
 #, fuzzy
 msgid "Macedonian"
 msgstr "Медиуми"
 
-#: ../gramps/gen/utils/win32locale.py:75
+#: ../gramps/gen/utils/win32locale.py:76
 msgid "Norwegian Bokmal"
 msgstr ""
 
-#: ../gramps/gen/utils/win32locale.py:76
+#: ../gramps/gen/utils/win32locale.py:77
 #, fuzzy
 msgid "Dutch"
 msgstr "Смрт"
 
-#: ../gramps/gen/utils/win32locale.py:77
+#: ../gramps/gen/utils/win32locale.py:78
 msgid "Norwegian Nynorsk"
 msgstr ""
 
-#: ../gramps/gen/utils/win32locale.py:78
+#: ../gramps/gen/utils/win32locale.py:79
 #, fuzzy
 msgid "Polish"
 msgstr "Издание"
 
-#: ../gramps/gen/utils/win32locale.py:79
+#: ../gramps/gen/utils/win32locale.py:80
 msgid "Portuguese (Brazil)"
 msgstr ""
 
-#: ../gramps/gen/utils/win32locale.py:80
+#: ../gramps/gen/utils/win32locale.py:81
 msgid "Portuguese (Portugal)"
 msgstr ""
 
-#: ../gramps/gen/utils/win32locale.py:81
+#: ../gramps/gen/utils/win32locale.py:82
 #, fuzzy
 msgid "Romanian"
 msgstr "медиуми"
 
-#: ../gramps/gen/utils/win32locale.py:82
+#: ../gramps/gen/utils/win32locale.py:83
 #, fuzzy
 msgid "Russian"
 msgstr "Јулијански"
 
-#: ../gramps/gen/utils/win32locale.py:83
+#: ../gramps/gen/utils/win32locale.py:84
 #, fuzzy
 #| msgid "Slovakia"
 msgid "Slovak"
 msgstr "Словачка"
 
-#: ../gramps/gen/utils/win32locale.py:84
+#: ../gramps/gen/utils/win32locale.py:85
 #, fuzzy
 #| msgid "Slovakia"
 msgid "Slovenian"
 msgstr "Словачка"
 
-#: ../gramps/gen/utils/win32locale.py:85
+#: ../gramps/gen/utils/win32locale.py:86
 #, fuzzy
 msgid "Albanian"
 msgstr "медиуми"
 
-#: ../gramps/gen/utils/win32locale.py:86
+#: ../gramps/gen/utils/win32locale.py:87
 #, fuzzy
 msgid "Serbian"
 msgstr "Персиски"
 
-#: ../gramps/gen/utils/win32locale.py:87
+#: ../gramps/gen/utils/win32locale.py:88
 #, fuzzy
 #| msgid "Sweden"
 msgid "Swedish"
 msgstr "Шведска"
 
-#: ../gramps/gen/utils/win32locale.py:89
+#: ../gramps/gen/utils/win32locale.py:90
 #, fuzzy
 msgid "Tamil"
 msgstr "Семејство"
 
-#: ../gramps/gen/utils/win32locale.py:90
+#: ../gramps/gen/utils/win32locale.py:91
 #, fuzzy
 #| msgid "Turkey"
 msgid "Turkish"
 msgstr "Турција"
 
-#: ../gramps/gen/utils/win32locale.py:91
+#: ../gramps/gen/utils/win32locale.py:92
 #, fuzzy
 #| msgid "Ukraine"
 msgid "Ukrainian"
 msgstr "Украина"
 
-#: ../gramps/gen/utils/win32locale.py:92
+#: ../gramps/gen/utils/win32locale.py:93
 #, fuzzy
 msgid "Vietnamese"
 msgstr "Име на датотека"
 
-#: ../gramps/gen/utils/win32locale.py:93
+#: ../gramps/gen/utils/win32locale.py:94
 msgid "Chinese (Simplified)"
 msgstr ""
 
-#: ../gramps/gen/utils/win32locale.py:94
+#: ../gramps/gen/utils/win32locale.py:95
 msgid "Chinese (Hong Kong)"
 msgstr ""
 
-#: ../gramps/gen/utils/win32locale.py:95
+#: ../gramps/gen/utils/win32locale.py:96
 msgid "Chinese (Traditional)"
 msgstr ""
 
@@ -12562,7 +12844,7 @@ msgstr "Пример"
 #: ../gramps/gui/plug/report/_bookdialog.py:677 ../gramps/gui/views/tags.py:495
 #: ../gramps/gui/widgets/fanchart.py:2284
 #: ../gramps/gui/widgets/fanchart.py:2326
-#: ../gramps/plugins/view/pedigreeview.py:1843
+#: ../gramps/plugins/view/pedigreeview.py:1841
 #, fuzzy
 msgid "_Add"
 msgstr "_Додади"
@@ -12578,8 +12860,8 @@ msgstr "_Додади"
 #: ../gramps/gui/glade/editlink.glade:222 ../gramps/gui/grampsgui.py:58
 #: ../gramps/gui/plug/report/_bookdialog.py:651 ../gramps/gui/views/tags.py:496
 #: ../gramps/gui/widgets/fanchart.py:2072
-#: ../gramps/plugins/view/pedigreeview.py:1877
-#: ../gramps/plugins/view/pedigreeview.py:2109
+#: ../gramps/plugins/view/pedigreeview.py:1875
+#: ../gramps/plugins/view/pedigreeview.py:2107
 msgid "_Edit"
 msgstr "_Уреди"
 
@@ -14044,7 +14326,7 @@ msgstr "Својства"
 #: ../gramps/plugins/tool/notrelated.py:131
 #: ../gramps/plugins/tool/patchnames.py:457
 #: ../gramps/plugins/tool/removeunused.py:217
-#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:811
+#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:813
 #: ../gramps/plugins/view/citationlistview.py:101
 #: ../gramps/plugins/view/citationtreeview.py:96
 #: ../gramps/plugins/view/eventview.py:82
@@ -14897,11 +15179,11 @@ msgctxt "manual"
 msgid "Editing_dates"
 msgstr "Обедини извори"
 
-#: ../gramps/gui/editors/editdate.py:131 ../gramps/gui/editors/editdate.py:297
+#: ../gramps/gui/editors/editdate.py:131 ../gramps/gui/editors/editdate.py:299
 msgid "Date selection"
 msgstr "Избор на датум"
 
-#: ../gramps/gui/editors/editdate.py:288
+#: ../gramps/gui/editors/editdate.py:290
 #, python-brace-format
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr ""
@@ -15665,18 +15947,16 @@ msgstr "Ново место"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:239
-#: ../gramps/plugins/webreport/basepage.py:3181
 msgid ""
 "Invalid latitude\n"
-"(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+"(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:247
-#: ../gramps/plugins/webreport/basepage.py:3202
 msgid ""
 "Invalid longitude\n"
-"(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+"(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:289
@@ -19326,7 +19606,7 @@ msgstr "Обедини лица"
 #: ../gramps/gui/widgets/fanchart.py:2250
 #: ../gramps/plugins/quickview/all_relations.py:364
 #: ../gramps/plugins/tool/notrelated.py:132
-#: ../gramps/plugins/view/pedigreeview.py:2007
+#: ../gramps/plugins/view/pedigreeview.py:2005
 #: ../gramps/plugins/view/relview.py:689 ../gramps/plugins/view/relview.py:1072
 #: ../gramps/plugins/view/relview.py:1110
 #: ../gramps/plugins/webreport/person.py:440
@@ -19348,7 +19628,7 @@ msgstr "Не се најдени родители"
 #: ../gramps/gui/merge/mergeperson.py:257
 #: ../gramps/gui/widgets/fanchart.py:2113
 #: ../gramps/plugins/textreport/kinshipreport.py:139
-#: ../gramps/plugins/view/pedigreeview.py:1893
+#: ../gramps/plugins/view/pedigreeview.py:1891
 msgid "Spouses"
 msgstr "Сопружници"
 
@@ -19366,7 +19646,7 @@ msgstr "Сопружник"
 msgid "No spouses or children found"
 msgstr "Не се најдени сопружници или деца"
 
-#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:801
+#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:803
 msgid "Warning"
 msgstr "Предупредување"
 
@@ -21200,7 +21480,7 @@ msgstr "Бришењето на настанот ќе го отстрани од
 #: ../gramps/plugins/gramplet/recordsgramplet.py:51
 #: ../gramps/plugins/gramplet/statsgramplet.py:73
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:96
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:72
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:81
 #, fuzzy
 msgid "Processing..."
 msgstr "Печати..."
@@ -21476,20 +21756,20 @@ msgid "Reorder families"
 msgstr "Преподреди семејства"
 
 #: ../gramps/gui/widgets/fanchart.py:2102
-#: ../gramps/plugins/view/pedigreeview.py:1882
-#: ../gramps/plugins/view/pedigreeview.py:2114
+#: ../gramps/plugins/view/pedigreeview.py:1880
+#: ../gramps/plugins/view/pedigreeview.py:2112
 msgid "_Copy"
 msgstr ""
 
 #: ../gramps/gui/widgets/fanchart.py:2147
 #: ../gramps/plugins/quickview/quickview.gpr.py:338
-#: ../gramps/plugins/view/pedigreeview.py:1927
+#: ../gramps/plugins/view/pedigreeview.py:1925
 #: ../gramps/plugins/view/relview.py:1126
 msgid "Siblings"
 msgstr "Браќа и сестри"
 
 #: ../gramps/gui/widgets/fanchart.py:2293
-#: ../gramps/plugins/view/pedigreeview.py:2057
+#: ../gramps/plugins/view/pedigreeview.py:2055
 msgid "Related"
 msgstr "Роднини"
 
@@ -21971,18 +22251,18 @@ msgstr ""
 msgid "Could not create jpeg version of image %(name)s"
 msgstr "Не може да се создаде директориумот: %s"
 
-#: ../gramps/plugins/docgen/latexdoc.py:1405
+#: ../gramps/plugins/docgen/latexdoc.py:1410
 msgid "PIL (Python Imaging Library) not loaded."
 msgstr ""
 
-#: ../gramps/plugins/docgen/latexdoc.py:1407
+#: ../gramps/plugins/docgen/latexdoc.py:1412
 msgid ""
 "Production of jpg images from non-jpg images in LaTeX documents will not be "
 "available. Use your package manager to install python-imaging or python-"
 "pillow or python3-pillow"
 msgstr ""
 
-#: ../gramps/plugins/docgen/odfdoc.py:1208
+#: ../gramps/plugins/docgen/odfdoc.py:1220
 #, fuzzy, python-format
 msgid "Could not open %s"
 msgstr "Не може да се отвори датотека: %s"
@@ -23946,9 +24226,10 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
 msgid ""
-"Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This "
-"will compute the ages for everyone in your Family Tree on that date. You can "
-"then sort by the age column, and double-click the row to view or edit."
+"Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
+"This will compute the ages for everyone in your Family Tree on that date. "
+"You can then sort by the age column, and double-click the row to view or "
+"edit."
 msgstr ""
 
 #: ../gramps/plugins/gramplet/agestats.py:84
@@ -24079,7 +24360,7 @@ msgstr "Извор"
 msgid "Confidence Level"
 msgstr "_Доверба:"
 
-#: ../gramps/plugins/gramplet/citations.py:186
+#: ../gramps/plugins/gramplet/citations.py:187
 #, fuzzy
 msgid "<No Volume/Page>"
 msgstr "_Том/Страница:"
@@ -24290,8 +24571,8 @@ msgstr ""
 #: ../gramps/plugins/gramplet/relativegramplet.py:43
 #: ../gramps/plugins/gramplet/statsgramplet.py:60
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:73
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:54
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:62
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:57
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:65
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 #, fuzzy
 msgid "No Family Tree loaded."
@@ -24307,7 +24588,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:159
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:187
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:116
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:125
 #, fuzzy
 msgid "Total people"
 msgstr "Посвоени лица"
@@ -25598,7 +25879,7 @@ msgid "Missing Media Objects"
 msgstr "Недостасуваат медиумски објекти"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:69
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:52
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:55
 msgid "Double-click surname for details"
 msgstr ""
 
@@ -25624,7 +25905,7 @@ msgid "Max font size"
 msgstr "Фонт на семејство"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:184
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:114
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:123
 #, fuzzy
 msgid "Total unique surnames"
 msgstr "Ретки презимиња"
@@ -25662,6 +25943,11 @@ msgstr ""
 #: ../gramps/plugins/gramplet/todogramplet.py:151
 msgid "Unattached"
 msgstr ""
+
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
+#, fuzzy
+msgid "Number of Surnames to display"
+msgstr "Максимален број на години _помеѓу деца"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
@@ -27038,9 +27324,8 @@ msgid "date"
 msgstr "Датум"
 
 #: ../gramps/plugins/importer/importcsv.py:372
-#, fuzzy
 msgid "place"
-msgstr "Место"
+msgstr "место"
 
 #: ../gramps/plugins/importer/importcsv.py:373
 #, fuzzy
@@ -27534,7 +27819,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1526
 msgid "REFN"
-msgstr ""
+msgstr "референтен број"
 
 #: ../gramps/plugins/importer/importprogen.glade:1530
 msgid ""
@@ -31880,7 +32165,7 @@ msgstr "_Назад"
 #: ../gramps/plugins/view/geoperson.py:110
 #: ../gramps/plugins/view/pedigreeview.py:691
 #: ../gramps/plugins/view/pedigreeview.py:733
-#: ../gramps/plugins/view/pedigreeview.py:1775
+#: ../gramps/plugins/view/pedigreeview.py:1773
 #: ../gramps/plugins/view/relview.py:390 ../gramps/plugins/view/relview.py:455
 msgid "_Home"
 msgstr "_На почеток"
@@ -31986,7 +32271,7 @@ msgstr "Уредувач на филтерот за лица"
 
 #: ../gramps/plugins/lib/libpersonview.py:275
 #: ../gramps/plugins/lib/libpersonview.py:385
-#: ../gramps/plugins/view/pedigreeview.py:1785
+#: ../gramps/plugins/view/pedigreeview.py:1783
 msgid "Set _Home Person"
 msgstr "Постави По_четно лице"
 
@@ -33273,7 +33558,7 @@ msgstr ""
 
 #: ../gramps/plugins/quickview/lineage.py:169
 #: ../gramps/plugins/quickview/lineage.py:191
-#: ../gramps/plugins/tool/verify.py:1509
+#: ../gramps/plugins/tool/verify.py:1511
 msgid "Unknown gender"
 msgstr "Непознат пол"
 
@@ -36169,7 +36454,7 @@ msgstr "Пронајди ја алатката за дупликати"
 
 #: ../gramps/plugins/tool/finddupes.py:147
 #: ../gramps/plugins/tool/mergecitations.py:170
-#: ../gramps/plugins/tool/verify.py:481
+#: ../gramps/plugins/tool/verify.py:480
 msgid "Tool settings"
 msgstr "Поставувања на алатникот"
 
@@ -36909,7 +37194,7 @@ msgid "Unused Objects"
 msgstr "Медиумски објекти"
 
 #: ../gramps/plugins/tool/removeunused.py:205
-#: ../gramps/plugins/tool/verify.py:789
+#: ../gramps/plugins/tool/verify.py:791
 msgid "Mark"
 msgstr "Обележи"
 
@@ -37418,224 +37703,224 @@ msgstr "Максимален број на години _помеѓу деца"
 msgid "Maximum _span of years for all children"
 msgstr "Максимална разлика на години за сите деца"
 
-#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:943
+#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:945
 msgid "_Hide marked"
 msgstr "_Скриј ги означените"
 
-#: ../gramps/plugins/tool/verify.py:94
+#: ../gramps/plugins/tool/verify.py:93
 #, fuzzy
 msgctxt "manual"
 msgid "Verify_the_Data"
 msgstr "Завери ја базата на податоци"
 
-#: ../gramps/plugins/tool/verify.py:420
+#: ../gramps/plugins/tool/verify.py:419
 #, fuzzy
 msgid "Data Verify tool"
 msgstr "Алатка за проверување на базата на податоци"
 
-#: ../gramps/plugins/tool/verify.py:444
+#: ../gramps/plugins/tool/verify.py:443
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:727
+#: ../gramps/plugins/tool/verify.py:729
 #, fuzzy
 msgid "Data Verification Results"
 msgstr "Резултати од пребарувањето на базата"
 
-#: ../gramps/plugins/tool/verify.py:940
+#: ../gramps/plugins/tool/verify.py:942
 msgid "_Show all"
 msgstr "_Прикажи сѐ"
 
-#: ../gramps/plugins/tool/verify.py:1373
+#: ../gramps/plugins/tool/verify.py:1375
 msgid "Baptism before birth"
 msgstr "Крштевање пред раѓање"
 
-#: ../gramps/plugins/tool/verify.py:1392
+#: ../gramps/plugins/tool/verify.py:1394
 msgid "Death before baptism"
 msgstr "Смрт пред крштевање"
 
-#: ../gramps/plugins/tool/verify.py:1411
+#: ../gramps/plugins/tool/verify.py:1413
 msgid "Burial before birth"
 msgstr "Закоп пред раѓање"
 
-#: ../gramps/plugins/tool/verify.py:1430
+#: ../gramps/plugins/tool/verify.py:1432
 msgid "Burial before death"
 msgstr "Закоп пред смрт"
 
-#: ../gramps/plugins/tool/verify.py:1449
+#: ../gramps/plugins/tool/verify.py:1451
 msgid "Death before birth"
 msgstr "Смрт пред раѓање"
 
-#: ../gramps/plugins/tool/verify.py:1468
+#: ../gramps/plugins/tool/verify.py:1470
 msgid "Burial before baptism"
 msgstr "Закоп пред крштевање"
 
-#: ../gramps/plugins/tool/verify.py:1494
+#: ../gramps/plugins/tool/verify.py:1496
 msgid "Old age at death"
 msgstr "Смрт на стари години"
 
-#: ../gramps/plugins/tool/verify.py:1525
+#: ../gramps/plugins/tool/verify.py:1527
 msgid "Multiple parents"
 msgstr "Повеќекратни родители"
 
-#: ../gramps/plugins/tool/verify.py:1550
+#: ../gramps/plugins/tool/verify.py:1552
 msgid "Married often"
 msgstr "Често склопување бракови"
 
-#: ../gramps/plugins/tool/verify.py:1577
+#: ../gramps/plugins/tool/verify.py:1579
 msgid "Old and unmarried"
 msgstr "Стари и неженети/немажени"
 
-#: ../gramps/plugins/tool/verify.py:1610
+#: ../gramps/plugins/tool/verify.py:1612
 msgid "Too many children"
 msgstr "Многу деца"
 
-#: ../gramps/plugins/tool/verify.py:1629
+#: ../gramps/plugins/tool/verify.py:1631
 msgid "Same sex marriage"
 msgstr "Хомосексуален брак"
 
-#: ../gramps/plugins/tool/verify.py:1645
+#: ../gramps/plugins/tool/verify.py:1647
 msgid "Female husband"
 msgstr "Женски сопруг"
 
-#: ../gramps/plugins/tool/verify.py:1661
+#: ../gramps/plugins/tool/verify.py:1663
 msgid "Male wife"
 msgstr "Машка сопруга"
 
-#: ../gramps/plugins/tool/verify.py:1695
+#: ../gramps/plugins/tool/verify.py:1697
 msgid "Husband and wife with the same surname"
 msgstr "Сопруг и сопруга со исто презиме"
 
-#: ../gramps/plugins/tool/verify.py:1727
+#: ../gramps/plugins/tool/verify.py:1729
 msgid "Large age difference between spouses"
 msgstr "Голема возрасна разлика меѓу сопружниците"
 
-#: ../gramps/plugins/tool/verify.py:1768
+#: ../gramps/plugins/tool/verify.py:1770
 msgid "Marriage before birth"
 msgstr "Брак пред раѓање"
 
-#: ../gramps/plugins/tool/verify.py:1809
+#: ../gramps/plugins/tool/verify.py:1811
 msgid "Marriage after death"
 msgstr "Брак по смрт"
 
-#: ../gramps/plugins/tool/verify.py:1860
+#: ../gramps/plugins/tool/verify.py:1862
 msgid "Early marriage"
 msgstr "Ран брак"
 
-#: ../gramps/plugins/tool/verify.py:1906
+#: ../gramps/plugins/tool/verify.py:1908
 msgid "Late marriage"
 msgstr "Доцен брак"
 
-#: ../gramps/plugins/tool/verify.py:1958
+#: ../gramps/plugins/tool/verify.py:1960
 msgid "Old father"
 msgstr "Стар татко"
 
-#: ../gramps/plugins/tool/verify.py:1962
+#: ../gramps/plugins/tool/verify.py:1964
 msgid "Old mother"
 msgstr "Стара мајка"
 
-#: ../gramps/plugins/tool/verify.py:2014
+#: ../gramps/plugins/tool/verify.py:2016
 msgid "Young father"
 msgstr "Млад татко"
 
-#: ../gramps/plugins/tool/verify.py:2018
+#: ../gramps/plugins/tool/verify.py:2020
 msgid "Young mother"
 msgstr "Млада мајка"
 
-#: ../gramps/plugins/tool/verify.py:2068
+#: ../gramps/plugins/tool/verify.py:2070
 msgid "Unborn father"
 msgstr "Нероден татко"
 
-#: ../gramps/plugins/tool/verify.py:2072
+#: ../gramps/plugins/tool/verify.py:2074
 msgid "Unborn mother"
 msgstr "Неродена мајка"
 
-#: ../gramps/plugins/tool/verify.py:2130
+#: ../gramps/plugins/tool/verify.py:2132
 msgid "Dead father"
 msgstr "Починат татко"
 
-#: ../gramps/plugins/tool/verify.py:2134
+#: ../gramps/plugins/tool/verify.py:2136
 msgid "Dead mother"
 msgstr "Почината мајка"
 
-#: ../gramps/plugins/tool/verify.py:2164
+#: ../gramps/plugins/tool/verify.py:2166
 msgid "Large year span for all children"
 msgstr "Големо годишно растојание за сите деца"
 
-#: ../gramps/plugins/tool/verify.py:2195
+#: ../gramps/plugins/tool/verify.py:2197
 msgid "Large age differences between children"
 msgstr "Големи возрасни разлики помеѓу деца"
 
-#: ../gramps/plugins/tool/verify.py:2214
+#: ../gramps/plugins/tool/verify.py:2216
 msgid "Disconnected individual"
 msgstr "Разделен поединец"
 
-#: ../gramps/plugins/tool/verify.py:2237
+#: ../gramps/plugins/tool/verify.py:2239
 #, fuzzy
 msgid "Invalid birth date"
 msgstr "Лица без датуми на раѓање"
 
-#: ../gramps/plugins/tool/verify.py:2260
+#: ../gramps/plugins/tool/verify.py:2262
 #, fuzzy
 msgid "Invalid death date"
 msgstr "Неважечко име на датотека"
 
-#: ../gramps/plugins/tool/verify.py:2280
+#: ../gramps/plugins/tool/verify.py:2282
 msgid "Marriage date but not married"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:2311
+#: ../gramps/plugins/tool/verify.py:2313
 #, fuzzy
 msgid "Old age but no death"
 msgstr "Смрт на стари години"
 
-#: ../gramps/plugins/tool/verify.py:2330
+#: ../gramps/plugins/tool/verify.py:2332
 #, fuzzy
 msgid "Birth date equals death date"
 msgstr "Датум на раѓање"
 
-#: ../gramps/plugins/tool/verify.py:2351
+#: ../gramps/plugins/tool/verify.py:2353
 #, fuzzy
 msgid "Birth date equals marriage date"
 msgstr "Возраст при склопување на бракот"
 
-#: ../gramps/plugins/tool/verify.py:2372
+#: ../gramps/plugins/tool/verify.py:2374
 #, fuzzy
 msgid "Death date equals marriage date"
 msgstr "Доцен брак"
 
-#: ../gramps/plugins/tool/verify.py:2433
+#: ../gramps/plugins/tool/verify.py:2435
 msgid "Baptism too late according to family tradition"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:2458
+#: ../gramps/plugins/tool/verify.py:2460
 #, fuzzy
 msgid "Burial too late"
 msgstr "Датум на смрт"
 
-#: ../gramps/plugins/tool/verify.py:2495
+#: ../gramps/plugins/tool/verify.py:2497
 msgid "Children are not in chronological order"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:2559
+#: ../gramps/plugins/tool/verify.py:2561
 msgid "Families are not in chronological order"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:2572
+#: ../gramps/plugins/tool/verify.py:2574
 msgid "Family has events with role Unknown"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:2585
+#: ../gramps/plugins/tool/verify.py:2587
 #, fuzzy
 msgid "Person has events with role Unknown"
 msgstr "Лица со деца"
 
-#: ../gramps/plugins/tool/verify.py:2598
+#: ../gramps/plugins/tool/verify.py:2600
 msgid "Family events are not in chronological order"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:2611
+#: ../gramps/plugins/tool/verify.py:2613
 #, fuzzy
 msgid "Person events are not in chronological order"
 msgstr "Лица со деца"
@@ -38053,7 +38338,7 @@ msgstr ""
 #: ../gramps/plugins/view/fanchart2wayview.py:390
 #: ../gramps/plugins/view/fanchartdescview.py:386
 #: ../gramps/plugins/view/fanchartview.py:466
-#: ../gramps/plugins/view/pedigreeview.py:2279
+#: ../gramps/plugins/view/pedigreeview.py:2277
 #: ../gramps/plugins/view/relview.py:1959
 #, fuzzy
 msgid "Layout"
@@ -38685,87 +38970,87 @@ msgstr "Оди на татко"
 msgid "Jump to mother"
 msgstr "Оди на мајка"
 
-#: ../gramps/plugins/view/pedigreeview.py:1731
+#: ../gramps/plugins/view/pedigreeview.py:1729
 #, fuzzy
 msgid "A person was found to be his/her own ancestor."
 msgstr "Грешка во базата: %s е дефиниран/а како сопствен предок"
 
-#: ../gramps/plugins/view/pedigreeview.py:1773
+#: ../gramps/plugins/view/pedigreeview.py:1771
 #, fuzzy
 msgid "Pre_vious"
 msgstr "Претходно"
 
-#: ../gramps/plugins/view/pedigreeview.py:1774
+#: ../gramps/plugins/view/pedigreeview.py:1772
 #, fuzzy
 msgid "_Next"
 msgstr "Следно"
 
-#: ../gramps/plugins/view/pedigreeview.py:1803
+#: ../gramps/plugins/view/pedigreeview.py:1801
 msgid "Mouse scroll direction"
 msgstr ""
 
-#: ../gramps/plugins/view/pedigreeview.py:1807
+#: ../gramps/plugins/view/pedigreeview.py:1805
 #, fuzzy
 msgid "Top <-> Bottom"
 msgstr "Долу"
 
-#: ../gramps/plugins/view/pedigreeview.py:1814
+#: ../gramps/plugins/view/pedigreeview.py:1812
 msgid "Left <-> Right"
 msgstr ""
 
-#: ../gramps/plugins/view/pedigreeview.py:1831
+#: ../gramps/plugins/view/pedigreeview.py:1829
 #, fuzzy
 msgid "About Pedigree View"
 msgstr "Потекло"
 
-#: ../gramps/plugins/view/pedigreeview.py:2045
+#: ../gramps/plugins/view/pedigreeview.py:2043
 #: ../gramps/plugins/view/relview.py:411
 #, fuzzy
 msgid "Add New Parents..."
 msgstr "Додади родители"
 
-#: ../gramps/plugins/view/pedigreeview.py:2244
+#: ../gramps/plugins/view/pedigreeview.py:2242
 msgid "Show images"
 msgstr "Покажувај слики"
 
-#: ../gramps/plugins/view/pedigreeview.py:2247
+#: ../gramps/plugins/view/pedigreeview.py:2245
 msgid "Show marriage data"
 msgstr "Покажувај податоци за бракови"
 
-#: ../gramps/plugins/view/pedigreeview.py:2250
+#: ../gramps/plugins/view/pedigreeview.py:2248
 #, fuzzy
 msgid "Show unknown people"
 msgstr "Непознат тип:%s"
 
-#: ../gramps/plugins/view/pedigreeview.py:2253
+#: ../gramps/plugins/view/pedigreeview.py:2251
 #, fuzzy
 msgid "Show tags"
 msgstr "Покажувај слики"
 
-#: ../gramps/plugins/view/pedigreeview.py:2257
+#: ../gramps/plugins/view/pedigreeview.py:2255
 msgid "Tree style"
 msgstr "Стебловиден изглед"
 
-#: ../gramps/plugins/view/pedigreeview.py:2260
+#: ../gramps/plugins/view/pedigreeview.py:2258
 #, fuzzy
 msgid "Compact"
 msgstr "Контакт"
 
-#: ../gramps/plugins/view/pedigreeview.py:2260
+#: ../gramps/plugins/view/pedigreeview.py:2258
 msgid "Expanded"
 msgstr ""
 
-#: ../gramps/plugins/view/pedigreeview.py:2260
+#: ../gramps/plugins/view/pedigreeview.py:2258
 #, fuzzy
 msgid "Standard"
 msgstr "Календар"
 
-#: ../gramps/plugins/view/pedigreeview.py:2265
+#: ../gramps/plugins/view/pedigreeview.py:2263
 #, fuzzy
 msgid "Tree direction"
 msgstr "Правец на стрелка"
 
-#: ../gramps/plugins/view/pedigreeview.py:2276
+#: ../gramps/plugins/view/pedigreeview.py:2274
 msgid "Tree size"
 msgstr "Големина на стеблото"
 
@@ -39296,12 +39581,12 @@ msgid "Web Calendar"
 msgstr "Календар"
 
 #: ../gramps/plugins/webreport/basepage.py:2035
-#: ../gramps/plugins/webreport/media.py:440
+#: ../gramps/plugins/webreport/media.py:436
 msgid "Previous"
 msgstr "Претходно"
 
 #: ../gramps/plugins/webreport/basepage.py:2037
-#: ../gramps/plugins/webreport/media.py:453
+#: ../gramps/plugins/webreport/media.py:449
 msgid "Next"
 msgstr "Следно"
 
@@ -39326,6 +39611,18 @@ msgstr "Создади и додади нов извор"
 #, fuzzy
 msgid "Family Map"
 msgstr "Мени за семејство"
+
+#: ../gramps/plugins/webreport/basepage.py:3181
+msgid ""
+"Invalid latitude\n"
+"(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:3202
+msgid ""
+"Invalid longitude\n"
+"(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+msgstr ""
 
 #: ../gramps/plugins/webreport/basepage.py:3219
 #: ../gramps/plugins/webreport/basepage.py:3297
@@ -39538,11 +39835,11 @@ msgstr "Семејства"
 msgid "Home"
 msgstr "На почеток"
 
-#: ../gramps/plugins/webreport/media.py:121
+#: ../gramps/plugins/webreport/media.py:120
 msgid "Creating media pages"
 msgstr "Создавање на медиумски страници"
 
-#: ../gramps/plugins/webreport/media.py:224
+#: ../gramps/plugins/webreport/media.py:221
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -39554,49 +39851,49 @@ msgstr ""
 "на тој медија објект.  Ако видете димензии на медија над сликада, кликнете "
 "на сликата за да видите полнa големина.  "
 
-#: ../gramps/plugins/webreport/media.py:251
+#: ../gramps/plugins/webreport/media.py:248
 msgctxt "Media "
 msgid " Name"
 msgstr " Име"
 
-#: ../gramps/plugins/webreport/media.py:253
+#: ../gramps/plugins/webreport/media.py:250
 #, fuzzy
 msgid "Mime Type"
 msgstr "Вид на медиум"
 
-#: ../gramps/plugins/webreport/media.py:266
+#: ../gramps/plugins/webreport/media.py:263
 #, fuzzy
 msgid "Creating list of media pages"
 msgstr "Создавање на медиумски страници"
 
-#: ../gramps/plugins/webreport/media.py:268
+#: ../gramps/plugins/webreport/media.py:265
 #, fuzzy
 msgid "Narrated Web Site Report"
 msgstr "Расказна мрежна страна"
 
-#: ../gramps/plugins/webreport/media.py:310
+#: ../gramps/plugins/webreport/media.py:307
 #, fuzzy
 msgid "Below unused media objects"
 msgstr "Број на ретки медиумски објекти"
 
-#: ../gramps/plugins/webreport/media.py:442
+#: ../gramps/plugins/webreport/media.py:438
 #, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of "
 "%(strong2_strt)s%(total_pages)d%(strong_end)s"
 msgstr ""
 
-#: ../gramps/plugins/webreport/media.py:456
+#: ../gramps/plugins/webreport/media.py:452
 #, fuzzy
 msgid "The file has been moved or deleted."
 msgstr "Датотеката е преместена или избришана"
 
-#: ../gramps/plugins/webreport/media.py:631
+#: ../gramps/plugins/webreport/media.py:627
 #, fuzzy
 msgid "File Type"
 msgstr "Филтер"
 
-#: ../gramps/plugins/webreport/media.py:769
+#: ../gramps/plugins/webreport/media.py:765
 #, fuzzy
 msgid "Missing media object:"
 msgstr "Медиумски објект што недостасува"

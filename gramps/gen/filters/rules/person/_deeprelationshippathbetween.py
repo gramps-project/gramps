@@ -83,7 +83,7 @@ def find_deep_relations(db, user, person, target_people):
     to be marked complete and the path to be stored in the return_paths set.
     By processing in wave, the return path should be a shortest path.
     The function stores to do data and intermediate results in an ordered dict,
-    rather than using a recursive algorithm becasue some trees have been found
+    rather than using a recursive algorithm because some trees have been found
     that exceed the standard python recursive depth."""
     return_paths = set()  # all people in paths between targets and person
     if person is None:

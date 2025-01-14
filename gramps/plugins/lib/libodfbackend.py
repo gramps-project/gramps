@@ -89,6 +89,8 @@ class OdfBackend(DocBackend):
         DocBackend.HIGHLIGHT,
         DocBackend.SUPERSCRIPT,
         DocBackend.LINK,
+        DocBackend.SUBSCRIPT,
+        DocBackend.STRIKETHROUGH,
     ]
 
     STYLETAG_MARKUP = {
@@ -100,6 +102,14 @@ class OdfBackend(DocBackend):
         ),
         DocBackend.SUPERSCRIPT: (
             '<text:span text:style-name="GSuper">',
+            "</text:span>",
+        ),
+        DocBackend.SUBSCRIPT: (
+            '<text:span text:style-name="GSub">',
+            "</text:span>",
+        ),
+        DocBackend.STRIKETHROUGH: (
+            '<text:span text:style-name="GStrikethrough">',
             "</text:span>",
         ),
     }

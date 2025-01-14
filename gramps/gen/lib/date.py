@@ -569,6 +569,12 @@ class Date(BaseObject):
     The core date handling class for Gramps.
 
     Supports partial dates, compound dates and alternate calendars.
+    Create a new Date instance using one of the following:
+    Date()              - an empty (invalid) date
+    Date( other_date )  - duplicate another Date
+    Date( year )        - create an exact date - 1st Jan of the specified year
+    Date( year, month ) - create an exact date - 1st of the given month, year
+    Date( year, month, day ) - create an exact date
     """
 
     MOD_NONE = 0  # CODE
@@ -1023,12 +1029,12 @@ class Date(BaseObject):
         Comparison  Returns
         ==========  =======================================================
         =,==        True if any part of other_date matches any part of self
-        <           True if any part of other_date < any part of self
-        <=          True if any part of other_date <= any part of self
-        <<          True if all parts of other_date < all parts of self
-        >           True if any part of other_date > any part of self
-        >=          True if any part of other_date >= any part of self
-        >>          True if all parts of other_date > all parts of self
+        <           True if any part of self < any part of other_date
+        <=          True if any part of self <= any part of other_date
+        <<          True if all parts of self < all parts of other_date
+        >           True if any part of self > any part of other_date
+        >=          True if any part of self >= any part of other_date
+        >>          True if all parts of self > all parts of other_date
         ==========  =======================================================
         """
         if Date.MOD_TEXTONLY in [other_date.modifier, self.modifier]:
@@ -1409,6 +1415,11 @@ class Date(BaseObject):
     def _assert_compound(self):
         if not self.is_compound():
             raise DateError("Operation allowed for compound dates only!")
+        # ensure the dateval structure is suitable
+        if len(self.dateval) == 4:
+            dlist = list(self.dateval)
+            dlist.extend(self.EMPTY)
+            self.dateval = tuple(dlist)
 
     def set2_yr_mon_day(self, year, month, day):
         """
@@ -1451,6 +1462,7 @@ class Date(BaseObject):
     def set_yr_mon_day_offset(self, year=0, month=0, day=0):
         """
         Offset the date by the given year, month, and day values.
+        If the source is a compound date then both are offset.
         """
         if self.__set_yr_mon_day_offset(
             year, month, day, Date._POS_YR, Date._POS_MON, Date._POS_DAY
@@ -1474,6 +1486,7 @@ class Date(BaseObject):
     def copy_offset_ymd(self, year=0, month=0, day=0):
         """
         Return a Date copy based on year, month, and day offset.
+        If the source is a compound date then both are offset.
         """
         orig_cal = self.calendar
         if self.calendar != 0:
@@ -1736,15 +1749,7 @@ class Date(BaseObject):
         self.calendar = calendar
         self.dateval = value
         self.set_new_year(newyear)
-        year, month, day = self._zero_adjust_ymd(
-            value[Date._POS_YR], value[Date._POS_MON], value[Date._POS_DAY]
-        )
-
-        if year == month == day == 0:
-            self.sortval = 0
-        else:
-            func = Date._calendar_convert[calendar]
-            self.sortval = func(year, month, day)
+        self._calc_sort_value()
 
         if self.get_slash() and self.get_calendar() != Date.CAL_JULIAN:
             self.set_calendar(Date.CAL_JULIAN)
@@ -1815,14 +1820,19 @@ class Date(BaseObject):
         """
         Calculate the numerical sort value associated with the date.
         """
-        year, month, day = self._zero_adjust_ymd(
-            self.dateval[Date._POS_YR],
-            self.dateval[Date._POS_MON],
-            self.dateval[Date._POS_DAY],
-        )
-        if year == month == 0 and day == 0:
+        if (
+            self.dateval[Date._POS_YR]
+            == self.dateval[Date._POS_MON]
+            == self.dateval[Date._POS_DAY]
+            == 0
+        ):
             self.sortval = 0
         else:
+            year, month, day = self._zero_adjust_ymd(
+                self.dateval[Date._POS_YR],
+                self.dateval[Date._POS_MON],
+                self.dateval[Date._POS_DAY],
+            )
             func = Date._calendar_convert[self.calendar]
             self.sortval = func(year, month, day)
 

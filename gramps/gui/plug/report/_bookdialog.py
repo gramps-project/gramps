@@ -1029,7 +1029,7 @@ class BookDialog(DocReportDialog):
         selected_style = StyleSheet()
 
         pstyle = self.paper_frame.get_paper_style()
-        self.doc = self.format(None, pstyle)
+        self.doc = self.format(None, pstyle, uistate=self.uistate)
 
         for item in self.book.get_item_list():
             item.option_class.set_document(self.doc)

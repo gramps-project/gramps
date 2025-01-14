@@ -70,9 +70,3 @@ jobs:
       run: |
         export GDK_BACKEND=-
         python3 setup.py test
-    - name: Trailing whitespace check
-      run: |
-        if git --no-pager grep --color -n --full-name '[    ]$' -- \*.py; then
-          echo "ERROR - Trailing whitespace found in source file(s)";
-          exit 1;
-        fi

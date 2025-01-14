@@ -112,6 +112,7 @@ _LATEX_TEMPLATE = """%
 \\usepackage{ifthen}% For table width calculations
 \\usepackage{ragged2e}% For left aligning with hyphenation
 \\usepackage{wrapfig}% wrap pictures in text
+\\usepackage[normalem]{ulem}% For strikeout
 %
 % Depending on your LaTeX installation, the margins may be too
 % narrow.  This can be corrected by uncommenting the following
@@ -601,6 +602,8 @@ class LaTeXBackend(DocBackend):
         DocBackend.FONTSIZE,
         DocBackend.FONTFACE,
         DocBackend.SUPERSCRIPT,
+        DocBackend.SUBSCRIPT,
+        DocBackend.STRIKETHROUGH,
     ]
 
     STYLETAG_MARKUP = {
@@ -608,6 +611,8 @@ class LaTeXBackend(DocBackend):
         DocBackend.ITALIC: ("\\textit{", "}"),
         DocBackend.UNDERLINE: ("\\underline{", "}"),
         DocBackend.SUPERSCRIPT: ("\\textsuperscript{", "}"),
+        DocBackend.SUBSCRIPT: ("\\textsubscript{", "}"),
+        DocBackend.STRIKETHROUGH: ("\\sout{", "}"),
     }
 
     ESCAPE_FUNC = lambda x: latexescape

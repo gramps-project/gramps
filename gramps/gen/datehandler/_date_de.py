@@ -215,6 +215,7 @@ class DateParserDE(DateParser):
         "etwa": Date.MOD_ABOUT,
         "circa": Date.MOD_ABOUT,
         "ca.": Date.MOD_ABOUT,
+        "ab": Date.MOD_FROM,
         "von": Date.MOD_FROM,
         "bis": Date.MOD_TO,
     }
@@ -441,4 +442,14 @@ register_datehandler(
     DateParserDE,
     DateDisplayDE,
 )
-register_datehandler(("de_AT", ("%d.%m.%Y",)), DateParserDE, DateDisplayDE)
+
+
+class DateParserDE_AT(DateParserDE):
+    pass
+
+
+class DateDisplayDE_AT(DateDisplayDE):
+    pass
+
+
+register_datehandler(("de_AT", ("%d.%m.%Y",)), DateParserDE_AT, DateDisplayDE_AT)
