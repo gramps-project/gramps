@@ -38,6 +38,16 @@ from ._matchesfilter import MatchesFilter
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsSiblingOfFilterMatch
 #
 # -------------------------------------------------------------------------
@@ -49,9 +59,9 @@ class IsSiblingOfFilterMatch(Rule):
     category = _("Family filters")
     description = _("Matches siblings of anybody matched by a filter")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         self.matchfilt = MatchesFilter(self.list)
         self.matchfilt.requestprepare(db, user)
         if user:
@@ -63,7 +73,7 @@ class IsSiblingOfFilterMatch(Rule):
         for person in db.iter_people():
             if user:
                 user.step_progress()
-            if self.matchfilt.apply(db, person):
+            if self.matchfilt.apply_to_one(db, person):
                 self.init_list(person)
         if user:
             user.end_progress()
@@ -72,18 +82,20 @@ class IsSiblingOfFilterMatch(Rule):
         self.matchfilt.requestreset()
         self.map.clear()
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map
 
-    def init_list(self, person):
+    def init_list(self, person: Person):
         if not person:
             return
-        fam_id = person.get_main_parents_family_handle()
+        fam_id = (
+            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
+        )
         if fam_id:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 self.map.update(
                     child_ref.ref
-                    for child_ref in fam.get_child_ref_list()
+                    for child_ref in fam.child_ref_list
                     if child_ref and child_ref.ref != person.handle
                 )
