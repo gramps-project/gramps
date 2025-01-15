@@ -1296,5 +1296,5 @@ if __name__ == "__main__":
     import sys
 
     # fall back to root logger for testing
-    _LOG = logging
+    _LOG = logging.getLogger()
     sys.exit(main(sys.argv))

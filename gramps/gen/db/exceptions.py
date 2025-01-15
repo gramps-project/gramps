@@ -243,5 +243,3 @@ if __name__ == "__main__":
     print("\nDbVersionError:\n", DbVersionError("1.6.0", "1.5.0", "1.5.1"))
     print("\nDbUpgradeRequiredError:\n", DbUpgradeRequiredError("1.5.1", "1.6.0"))
     sys.exit(0)
-
-    print("\nxxx:\n", xxx("4.8.30", "4.8.29"))

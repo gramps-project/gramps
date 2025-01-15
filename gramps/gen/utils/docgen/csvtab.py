@@ -33,6 +33,7 @@ import csv
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.config import config
 from .tabbeddoc import *
+
 from ...constfunc import win
 
 _ = glocale.translation.gettext
@@ -83,7 +84,7 @@ class CSVTab(TabbedDoc):
 
 
 if __name__ == "__main__":
-    file = CSVTab(2, 3)
+    file = CSVTab(3)
     file.open("test.csv")
     file.start_page()
     for i in [("one", "two", "three"), ('fo"ur', "fi,ve", "six")]:

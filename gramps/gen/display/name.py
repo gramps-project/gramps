@@ -53,13 +53,16 @@ Specific symbols for parts of a name are defined:
     ======  ===============================================================
 """
 
+
 # -------------------------------------------------------------------------
 #
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import re
 import logging
+from typing import Callable
 
 LOG = logging.getLogger(".gramps.gen")
 
@@ -371,8 +374,8 @@ class NameDisplay:
         if only one surname, see if pa/ma should be considered as 'the' surname.
     """
 
-    format_funcs = {}
-    raw_format_funcs = {}
+    format_funcs: dict[str, Callable] = {}
+    raw_format_funcs: dict[str, Callable] = {}
 
     def __init__(self, xlocale=glocale):
         """
