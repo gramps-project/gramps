@@ -38,7 +38,6 @@ from typing import Any
 # Python modules
 #
 # -------------------------------------------------------------------------
-from __future__ import annotations
 from functools import singledispatchmethod
 
 # -------------------------------------------------------------------------
