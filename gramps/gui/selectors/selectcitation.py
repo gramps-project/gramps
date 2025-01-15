@@ -75,10 +75,20 @@ class SelectCitation(BaseSelector):
             (_("Last Change"), 150, BaseSelector.TEXT, 6),
         ]
 
-    def get_from_handle_func(self):
-        return self.get_source_or_citation
+    def get_from_gramps_id_func(self):
+        return self._get_source_or_citation_by_gramps_id
 
-    def get_source_or_citation(self, handle):
+    def get_from_handle_func(self):
+        return self._get_source_or_citation_by_handle
+
+    def _get_source_or_citation_by_gramps_id(self, gramps_id):
+        source = self.db.get_source_from_gramps_id(gramps_id)
+        if source is not None:
+            return source
+        else:
+            return self.db.get_citation_from_gramps_id(gramps_id)
+
+    def _get_source_or_citation_by_handle(self, handle):
         if self.db.has_source_handle(handle):
             return self.db.get_source_from_handle(handle)
         else:
