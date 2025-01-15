@@ -33,6 +33,7 @@ import sys
 import time
 from xml.parsers.expat import ExpatError, ParserCreate
 from xml.sax.saxutils import escape
+
 from gramps.gen.const import URL_WIKISTRING
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -154,6 +155,19 @@ EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 
 HANDLE = 0
 INSTANTIATED = 1
+
+
+def to_bool(value):
+    """
+    Utility function to convert attr value to boolean. Uses
+    similar logic as Python for True/False. Not designed for
+    general use but for xml string values and defaults.
+    """
+    if isinstance(value, str):
+        value = value.lower()
+    if value in ("", False, "false", "f", "no", "n", "off", "0", 0):
+        return False
+    return True
 
 
 # -------------------------------------------------------------------------
@@ -1201,7 +1215,7 @@ class GrampsParser(UpdateCallback):
     def start_lds_ord(self, attrs):
         self.ord = LdsOrd()
         self.ord.set_type_from_xml(attrs["type"])
-        self.ord.private = bool(attrs.get("priv"))
+        self.ord.private = to_bool(attrs.get("priv", 0))
         if self.person:
             self.person.lds_ord_list.append(self.ord)
         elif self.family:
@@ -1278,7 +1292,7 @@ class GrampsParser(UpdateCallback):
                 self.info.add("merge-candidate", PLACE_KEY, orig_place, self.placeobj)
         else:
             self.inaugurate_id(attrs.get("id"), PLACE_KEY, self.placeobj)
-        self.placeobj.private = bool(attrs.get("priv"))
+        self.placeobj.private = to_bool(attrs.get("priv", 0))
         self.placeobj.change = int(attrs.get("change", self.change))
         if self.__xml_version == (1, 6, 0):
             place_name = PlaceName()
@@ -1425,7 +1439,7 @@ class GrampsParser(UpdateCallback):
                     self.info.add("merge-candidate", EVENT_KEY, orig_event, self.event)
             else:  # old style XML
                 self.inaugurate_id(attrs.get("id"), EVENT_KEY, self.event)
-            self.event.private = bool(attrs.get("priv"))
+            self.event.private = to_bool(attrs.get("priv", 0))
             self.event.change = int(attrs.get("change", self.change))
             self.info.add("new-object", EVENT_KEY, self.event)
         if self.default_tag:
@@ -1445,7 +1459,7 @@ class GrampsParser(UpdateCallback):
                 _("Any event reference must have a " "'hlink' attribute."),
             )
         self.eventref.ref = handle
-        self.eventref.private = bool(attrs.get("priv"))
+        self.eventref.private = to_bool(attrs.get("priv", 0))
         if "role" in attrs:
             self.eventref.role.set_from_xml_str(attrs["role"])
 
@@ -1484,7 +1498,7 @@ class GrampsParser(UpdateCallback):
 
     def start_attribute(self, attrs):
         self.attribute = Attribute()
-        self.attribute.private = bool(attrs.get("priv"))
+        self.attribute.private = to_bool(attrs.get("priv", 0))
         self.attribute.type = AttributeType()
         if "type" in attrs:
             self.attribute.type.set_from_xml_str(attrs["type"])
@@ -1506,7 +1520,7 @@ class GrampsParser(UpdateCallback):
 
     def start_srcattribute(self, attrs):
         self.srcattribute = SrcAttribute()
-        self.srcattribute.private = bool(attrs.get("priv"))
+        self.srcattribute.private = to_bool(attrs.get("priv", 0))
         self.srcattribute.type = SrcAttributeType()
         if "type" in attrs:
             self.srcattribute.type.set_from_xml_str(attrs["type"])
@@ -1518,7 +1532,7 @@ class GrampsParser(UpdateCallback):
 
     def start_address(self, attrs):
         self.address = Address()
-        self.address.private = bool(attrs.get("priv"))
+        self.address.private = to_bool(attrs.get("priv", 0))
 
     def start_bmark(self, attrs):
         """
@@ -1600,7 +1614,7 @@ class GrampsParser(UpdateCallback):
         number = int(attrs["number"])
         name = attrs["name"]
         fmt_str = attrs["fmt_str"]
-        active = bool(attrs.get("active", True))
+        active = to_bool(attrs.get("active", True))
 
         if number in self.taken_name_format_numbers:
             number = self.remap_name_format(number)
@@ -1648,7 +1662,7 @@ class GrampsParser(UpdateCallback):
                 self.info.add("merge-candidate", PERSON_KEY, orig_person, self.person)
         else:  # old style XML
             self.inaugurate_id(attrs.get("id"), PERSON_KEY, self.person)
-        self.person.private = bool(attrs.get("priv"))
+        self.person.private = to_bool(attrs.get("priv", 0))
         self.person.change = int(attrs.get("change", self.change))
         self.info.add("new-object", PERSON_KEY, self.person)
         self.convert_marker(attrs, self.person)
@@ -1710,7 +1724,7 @@ class GrampsParser(UpdateCallback):
         self.childref = ChildRef()
         handle = self.inaugurate(attrs["hlink"], "person", Person)
         self.childref.ref = handle
-        self.childref.private = bool(attrs.get("priv"))
+        self.childref.private = to_bool(attrs.get("priv", 0))
 
         mrel = ChildRefType()
         if attrs.get("mrel"):
@@ -1738,7 +1752,7 @@ class GrampsParser(UpdateCallback):
                 _("Any person reference must have a " "'hlink' attribute."),
             )
         self.personref.ref = handle
-        self.personref.private = bool(attrs.get("priv"))
+        self.personref.private = to_bool(attrs.get("priv", 0))
         self.personref.rel = attrs["rel"]
         self.person.add_person_ref(self.personref)
 
@@ -1748,7 +1762,7 @@ class GrampsParser(UpdateCallback):
         url = Url()
         url.path = attrs["href"]
         url.set_description(attrs.get("description", ""))
-        url.private = bool(attrs.get("priv"))
+        url.private = to_bool(attrs.get("priv", 0))
         url.type.set_from_xml_str(attrs.get("type", ""))
         if self.person:
             self.person.add_url(url)
@@ -1784,7 +1798,7 @@ class GrampsParser(UpdateCallback):
                 self.info.add("merge-candidate", FAMILY_KEY, orig_family, self.family)
         else:  # old style XML
             self.inaugurate_id(attrs.get("id"), FAMILY_KEY, self.family)
-        self.family.private = bool(attrs.get("priv"))
+        self.family.private = to_bool(attrs.get("priv", 0))
         self.family.change = int(attrs.get("change", self.change))
         self.info.add("new-object", FAMILY_KEY, self.family)
         # Gramps LEGACY: the type now belongs to <rel> tag
@@ -1887,8 +1901,8 @@ class GrampsParser(UpdateCallback):
                 self.name.set_type(NameType.UNKNOWN)
             else:
                 self.name.type.set_from_xml_str(name_type)
-            self.name.private = bool(attrs.get("priv", 0))
-            self.alt_name = bool(attrs.get("alt", 0))
+            self.name.private = to_bool(attrs.get("priv", 0))
+            self.alt_name = to_bool(attrs.get("alt", 0))
             try:
                 sort_as = int(attrs["sort"])
                 # check if these pointers need to be remapped
@@ -2072,7 +2086,7 @@ class GrampsParser(UpdateCallback):
                     self.info.add("merge-candicate", NOTE_KEY, orig_note, self.note)
             else:
                 self.inaugurate_id(attrs.get("id"), NOTE_KEY, self.note)
-            self.note.private = bool(attrs.get("priv"))
+            self.note.private = to_bool(attrs.get("priv", 0))
             self.note.change = int(attrs.get("change", self.change))
             self.info.add("new-object", NOTE_KEY, self.note)
             self.note.format = int(attrs.get("format", Note.FLOWED))
@@ -2274,7 +2288,7 @@ class GrampsParser(UpdateCallback):
         if is_merge_candidate:
             orig_citation = self.db.get_citation_from_handle(orig_handle)
             self.info.add("merge-candidate", CITATION_KEY, orig_citation, self.citation)
-        self.citation.private = bool(attrs.get("priv"))
+        self.citation.private = to_bool(attrs.get("priv", 0))
         self.citation.change = int(attrs.get("change", self.change))
         self.citation.confidence = (
             self.conf if self.__xml_version >= (1, 5, 1) else 0
@@ -2304,7 +2318,7 @@ class GrampsParser(UpdateCallback):
             self.citation = Citation()
             self.citation.set_reference_handle(handle)
             self.citation.confidence = int(attrs.get("conf", self.conf))
-            self.citation.private = bool(attrs.get("priv"))
+            self.citation.private = to_bool(attrs.get("priv", 0))
 
             citation_handle = self.db.add_citation(self.citation, self.trans)
             self.__add_citation(citation_handle)
@@ -2336,7 +2350,7 @@ class GrampsParser(UpdateCallback):
                 self.info.add("merge-candidate", SOURCE_KEY, orig_source, self.source)
         else:  # old style XML
             self.inaugurate_id(attrs.get("id"), SOURCE_KEY, self.source)
-        self.source.private = bool(attrs.get("priv"))
+        self.source.private = to_bool(attrs.get("priv", 0))
         self.source.change = int(attrs.get("change", self.change))
         self.info.add("new-object", SOURCE_KEY, self.source)
         if self.default_tag:
@@ -2356,7 +2370,7 @@ class GrampsParser(UpdateCallback):
         self.reporef.call_number = attrs.get("callno", "")
         if "medium" in attrs:
             self.reporef.media_type.set_from_xml_str(attrs["medium"])
-        self.reporef.private = bool(attrs.get("priv"))
+        self.reporef.private = to_bool(attrs.get("priv", 0))
         # we count here on self.source being available
         # reporefs can only be found within source
         self.source.add_repo_reference(self.reporef)
@@ -2371,7 +2385,7 @@ class GrampsParser(UpdateCallback):
         else:  # old style XML
             handle = self.inaugurate_id(attrs.get("ref"), MEDIA_KEY, Media)
         self.objref.ref = handle
-        self.objref.private = bool(attrs.get("priv"))
+        self.objref.private = to_bool(attrs.get("priv", 0))
         if self.event:
             self.event.add_media_reference(self.objref)
         elif self.family:
@@ -2420,7 +2434,7 @@ class GrampsParser(UpdateCallback):
                 self.info.add("merge-candidate", MEDIA_KEY, orig_media, self.object)
         else:
             self.inaugurate_id(attrs.get("id"), MEDIA_KEY, self.object)
-        self.object.private = bool(attrs.get("priv"))
+        self.object.private = to_bool(attrs.get("priv", 0))
         self.object.change = int(attrs.get("change", self.change))
         self.info.add("new-object", MEDIA_KEY, self.object)
 
@@ -2463,7 +2477,7 @@ class GrampsParser(UpdateCallback):
                 self.info.add("merge-candidate", REPOSITORY_KEY, orig_repo, self.repo)
         else:  # old style XML
             self.inaugurate_id(attrs.get("id"), REPOSITORY_KEY, self.repo)
-        self.repo.private = bool(attrs.get("priv"))
+        self.repo.private = to_bool(attrs.get("priv", 0))
         self.repo.change = int(attrs.get("change", self.change))
         self.info.add("new-object", REPOSITORY_KEY, self.repo)
         if self.default_tag:
