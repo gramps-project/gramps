@@ -117,10 +117,10 @@ class GrampsType(metaclass=GrampsTypeMeta):
 
     _DATAMAP: list[tuple[int, str, str]] = []
     _BLACKLIST: list[int] | None = None
-    _I2SMAP: dict[int, int] = {}
-    _S2IMAP: dict[int, int] = {}
-    _I2EMAP: dict[int, int] = {}
-    _E2IMAP: dict[int, int] = {}
+    _I2SMAP: dict[int, str] = {}
+    _S2IMAP: dict[str, int] = {}
+    _I2EMAP: dict[int, str] = {}
+    _E2IMAP: dict[str, int] = {}
     _MENU: list[list[Any]] = []
     __slots__ = ("__value", "__string")
 
@@ -360,4 +360,4 @@ class GrampsType(metaclass=GrampsTypeMeta):
     string = property(__str__, __set_str, None, "Returns or sets string value")
 
 
-GrampsType.set.register(GrampsType, GrampsType._GrampsType__set_instance)
+GrampsType.set.register(GrampsType, GrampsType._GrampsType__set_instance)  # type: ignore[attr-defined]
