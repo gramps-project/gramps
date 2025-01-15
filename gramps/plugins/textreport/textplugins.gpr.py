@@ -24,6 +24,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 MODULE_VERSION = "5.2"
+REPORTS_HELP = _("Gramps_5.2_Wiki_Manual_-_Reports#Text_Reports")
 
 # this is the default in gen/plug/_pluginreg.py: plg.require_active = True
 
@@ -48,6 +49,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "AncestorReport"
 plg.optionclass = "AncestorOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -70,6 +72,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "BirthdayReport"
 plg.optionclass = "BirthdayOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -92,6 +95,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "CustomText"
 plg.optionclass = "CustomTextOptions"
 plg.report_modes = [REPORT_MODE_BKI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -114,6 +118,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "DescendantReport"
 plg.optionclass = "DescendantOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -136,6 +141,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "DetAncestorReport"
 plg.optionclass = "DetAncestorOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -158,6 +164,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "DetDescendantReport"
 plg.optionclass = "DetDescendantOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -180,6 +187,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "EndOfLineReport"
 plg.optionclass = "EndOfLineOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -205,6 +213,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "FamilyGroup"
 plg.optionclass = "FamilyGroupOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -227,6 +236,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "IndivCompleteReport"
 plg.optionclass = "IndivCompleteOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -249,6 +259,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "KinshipReport"
 plg.optionclass = "KinshipOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -272,6 +283,7 @@ plg.reportclass = "TagReport"
 plg.optionclass = "TagOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 plg.require_active = False
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -294,6 +306,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "NumberOfAncestorsReport"
 plg.optionclass = "NumberOfAncestorsOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -317,6 +330,7 @@ plg.reportclass = "PlaceReport"
 plg.optionclass = "PlaceOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 plg.require_active = False
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -339,6 +353,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "SimpleBookTitle"
 plg.optionclass = "SimpleBookTitleOptions"
 plg.report_modes = [REPORT_MODE_BKI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -362,6 +377,7 @@ plg.reportclass = "SummaryReport"
 plg.optionclass = "SummaryOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 plg.require_active = False
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -384,6 +400,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "TableOfContents"
 plg.optionclass = "TableOfContentsOptions"
 plg.report_modes = [REPORT_MODE_BKI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -406,6 +423,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "AlphabeticalIndex"
 plg.optionclass = "AlphabeticalIndexOptions"
 plg.report_modes = [REPORT_MODE_BKI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -428,6 +446,7 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "RecordsReport"
 plg.optionclass = "RecordsReportOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI, REPORT_MODE_BKI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -450,3 +469,4 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = "NoteLinkReport"
 plg.optionclass = "NoteLinkOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI, REPORT_MODE_BKI]
+plg.help_url = REPORTS_HELP
