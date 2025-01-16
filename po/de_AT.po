@@ -10,7 +10,7 @@
 # Alex Roitman <shura@gramps-project.org>, 2006.
 # Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
-# Christoph Eder <christoph.eder@phsalzburg.at>, 2020, 2021, 2024.
+# Christoph Eder <christoph.eder@phsalzburg.at>, 2020, 2021, 2024, 2025.
 # cedecode <christoph.eder@phsalzburg.at>, 2021, 2022.
 # Florian Demmer <fdemmer@gmail.com>, 2022.
 # David Straub <straub@protonmail.com>, 2022.
@@ -31,16 +31,16 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-12 21:14+0000\n"
-"PO-Revision-Date: 2024-12-10 23:12+0000\n"
+"PO-Revision-Date: 2025-01-14 22:57+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -457,17 +457,6 @@ msgstr ""
 "sein. Vergiss nicht, die Gespräche aufzuzeichnen!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter. Then select this filter in the Filter field on Sidebar, then "
-#| "click Find button. If the Sidebar is not visible, select View &gt; "
-#| "Sidebar."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -480,14 +469,14 @@ msgid ""
 msgstr ""
 "<b>Personen filtern</b><br/>In der Personenansicht kannst du Personen nach "
 "vielen Kriterien \"filtern\". Um einen neuen Filter zu definieren, gehe zu "
-"\"Bearbeiten &gt; Filter-Editor für Personen\". Dort kannst du deinem Filter "
+"\"Bearbeiten > Filter-Editor für Personen\". Dort kannst du deinem Filter "
 "einen Namen geben und Regeln unter Verwendung von vorgegebenen Regeln "
 "hinzufügen und kombinieren. Zum Beispiel kannst du einen Filter erstellen, "
 "um alle adoptierten Personen im Stammbaum zu finden. Personen ohne "
 "angegebenes Geburtsdatum können ebenso gefiltert werden. Um das Ergebnis zu "
 "erhalten, speichere den Filter. Dann wähle diesen Filter in der Filter-"
 "Seitenleiste aus und klicke auf die Suchen-Schaltfläche. Wenn die "
-"Seitenleiste nicht sichtbar ist, wähle \"Ansicht &gt; Seitenleiste."
+"Seitenleiste nicht sichtbar ist, wähle \"Ansicht > Seitenleiste."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -539,24 +528,17 @@ msgstr ""
 "klicke rechts, um Partner, Geschwister, Kind oder Eltern auszuwählen."
 
 #: ../data/tips.xml:24
-#, fuzzy
-#| msgid ""
-#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-#| "&gt; Compare Individual Events...\" you can compare the data of "
-#| "individuals in your database. This is useful, say, if you wish to list "
-#| "the birth dates of everyone in your database. You can use a custom filter "
-#| "to narrow the results."
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>Wer wurde wann geboren?</b><br/>Unter \"Werkzeuge &gt; Analyse und "
-"Untersuchung &gt; Einzelne Ereignisse vergleichen…\" kannst du die Daten von "
-"Personen in deiner Datenbank vergleichen. Das ist nützlich, wenn du z.B. "
-"vorhast, die Geburtsdaten von allen Personen in deiner Datenbank "
-"aufzulisten. Zum Eingrenzen der Ergebnisse kannst du einen "
+"<b>Wer wurde wann geboren?</b><br/>Unter "
+"\"Werkzeuge > Analyse und Untersuchung > Einzelne Ereignisse vergleichen…\" "
+"kannst du die Daten von Personen in deiner Datenbank vergleichen. Das ist "
+"nützlich, wenn du z.B. vorhast, die Geburtsdaten von allen Personen in "
+"deiner Datenbank aufzulisten. Zum Eingrenzen der Ergebnisse kannst du einen "
 "benutzerdefinierten Filter verwenden."
 
 #: ../data/tips.xml:26
@@ -575,12 +557,6 @@ msgstr ""
 "Werkzeuge sind im Menü \"Werkzeuge\" zugänglich."
 
 #: ../data/tips.xml:28
-#, fuzzy
-#| msgid ""
-#| "<b>Calculating Relationships</b><br/>To check if two people in the "
-#| "database are related (by blood, not marriage) try the tool under \"Tools "
-#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
-#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
@@ -589,8 +565,8 @@ msgid ""
 msgstr ""
 "<b>Beziehungen berechnen</b><br/>Um zu prüfen, ob zwei Personen in der "
 "Datenbank verwandt sind (Blutsverwandtschaft, nicht durch Heirat), verwende "
-"das Werkzeug \"Werkzeuge &gt; Werkzeuge &gt; Beziehungsrechner...\". Die "
-"genaue Verwandtschaft sowie alle gemeinsamen Vorfahren werden gezeigt."
+"das Werkzeug \"Werkzeuge > Werkzeuge > Beziehungsrechner...\". Die genaue "
+"Verwandtschaft sowie alle gemeinsamen Vorfahren werden gezeigt."
 
 #: ../data/tips.xml:30
 msgid ""
@@ -612,24 +588,17 @@ msgstr ""
 "in deiner Datenbank zu bekommen, füge das SoundEx-Gramplet hinzu."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\"."
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"<b>Einstellen deiner Präferenzen</b><br/>\"Bearbeiten&gt; Einstellungen…\" "
+"<b>Einstellen deiner Präferenzen</b><br/>\"Bearbeiten > Einstellungen…\" "
 "ermöglicht dir das Ändern einer Anzahl von Einstellungen, wie z.B. den Pfad "
 "zu deinen Mediendateien und das Abstimmen vieler Aspekte der Gramps-"
 "Darstellung an deine Bedürfnisse. Jede einzelne Ansicht kann ferner "
-"konfiguriert werden unter \"Ansicht &gt; Ansicht konfigurieren…\"."
+"konfiguriert werden unter \"Ansicht > Ansicht konfigurieren…\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -647,13 +616,6 @@ msgstr ""
 "gibt es auch hierfür einen Bericht."
 
 #: ../data/tips.xml:36
-#, fuzzy
-#| msgid ""
-#| "<b>Starting a New Family Tree</b><br/>A good way to start a new family "
-#| "tree is to enter all the members of the family into the database using "
-#| "the Person View (use \"Edit &gt; Add...\" or click on the Add a new "
-#| "person button from the People View). Then go to the Relationship View and "
-#| "create relationships between people."
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -663,9 +625,9 @@ msgid ""
 msgstr ""
 "<b>Einen neuen Stammbaum anlegen</b><br/>Ein guter Anfang für einen "
 "Stammbaum ist, alle Familienmitglieder in die Datenbank unter Verwendung der "
-"Personenansicht einzugeben (verwende \"Bearbeiten &gt; Hinzufügen\" oder "
-"klicke auf die Hinzufügen-Schaltfläche in der Personenansicht). Gehe danach "
-"in die Beziehungen-Ansicht und lege Beziehungen zwischen Personen an."
+"Personenansicht einzugeben (verwende \"Bearbeiten > Hinzufügen\" oder klicke "
+"auf die Hinzufügen-Schaltfläche in der Personenansicht). Gehe danach in die "
+"Beziehungen-Ansicht und lege Beziehungen zwischen Personen an."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -691,30 +653,17 @@ msgstr ""
 "Datumseingabefeld an. Schaue in das Gramps-Handbuch, um mehr zu erfahren."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
-#| "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
-#| "entries of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Doppelte Einträge</b><br/>Mit \"Werkzeuge &gt; Stammbaumverarbeitung &gt; "
+"<b>Doppelte Einträge</b><br/>Mit \"Werkzeuge &gt; Stammbaumverarbeitung > "
 "Finde doppelt vorkommende Personen…\" kannst du Einträge von Personen "
 "lokalisieren (und zusammenführen), die mehr als einmal in der Datenbank "
 "vorkommen."
 
 #: ../data/tips.xml:44
-#, fuzzy
-#| msgid ""
-#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you "
-#| "to combine separately listed people into one. Select the second entry by "
-#| "holding the Control key as you click. This is very useful for combining "
-#| "two databases with overlapping people, or combining erroneously entered "
-#| "differing names for one individual. Merging is available in all list "
-#| "views for all primary object types."
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -723,9 +672,9 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Einträge zusammenführen</b><br/>Die Funktion \"Bearbeiten &gt; "
-"Zusammenführen…\" kann separat aufgelistete Personen zu einer zu "
-"zusammenführen. Wähle den zweiten Eintrag durch Gedrückthalten der Strg-"
+"<b>Einträge zusammenführen</b><br/>Die Funktion "
+"\"Bearbeiten > Zusammenführen…\" kann separat aufgelistete Personen zu einer "
+"zu zusammenführen. Wähle den zweiten Eintrag durch Gedrückthalten der Strg-"
 "Taste, während du klickst. Dies ist sehr nützlich, wenn man zwei Stammbäume "
 "mit sich überlappenden Personen oder irrtümlicherweise sich unterscheidende "
 "Namen angelegt hat, und zu einer Person vereinigen will. Zusammenführen ist "
@@ -744,12 +693,6 @@ msgstr ""
 "der oberen Symbolleiste oder unter dem Menü \"Ansicht\"."
 
 #: ../data/tips.xml:48
-#, fuzzy
-#| msgid ""
-#| "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of "
-#| "previous active objects such as People and Events. You can move forward "
-#| "and backward through the list using \"Go &gt; Forward\" and \"Go &gt; "
-#| "Back\" or the arrow buttons."
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -758,8 +701,8 @@ msgid ""
 msgstr ""
 "<b>Vorwärts und rückwärts navigieren</b><br/>Gramps verwaltet eine Liste von "
 "vorher aktiven Objekten wie Personen und Ereignisse. Du kannst in der Liste "
-"vor- und rückwärts gelangen durch Verwenden von \"Gehe &gt; weiter\"und "
-"\"Gehe &gt; zurück\" oder der Pfeiltasten."
+"vor- und rückwärts gelangen durch \"Gehe > weiter\"und \"Gehe > zurück\" "
+"oder mit den Pfeiltasten."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -773,12 +716,6 @@ msgstr ""
 "angezeigt."
 
 #: ../data/tips.xml:52
-#, fuzzy
-#| msgid ""
-#| "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
-#| "&gt; User Manual\". The developers have worked hard to make most "
-#| "operations intuitive but the manual is full of information that will make "
-#| "your time spent on genealogy more productive."
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
 "User Manual\". The developers have worked hard to make most operations "
@@ -786,8 +723,8 @@ msgid ""
 "spent on genealogy more productive."
 msgstr ""
 "<b>Lies das Handbuch</b><br/>Vergiss nicht, das Gramps-Handbuch unter "
-"\"Hilfe &gt; Benutzerhandbuch\" zu lesen. Zwar haben sich die Entwickler "
-"sehr darum bemüht die Bedienung intuitiv zu gestalten, aber das Handbuch ist "
+"\"Hilfe > Benutzerhandbuch\" zu lesen. Zwar haben sich die Entwickler sehr "
+"darum bemüht die Bedienung intuitiv zu gestalten, aber das Handbuch ist "
 "voller Informationen, die deine Zeit beim Ahnenforschen noch produktiver "
 "machen."
 
@@ -846,14 +783,6 @@ msgstr ""
 "sein, deine Ideen auf den Email-Listen zu diskutieren."
 
 #: ../data/tips.xml:62
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about "
-#| "Gramps? Check out the gramps-users email list. Many helpful people are on "
-#| "the list, so you're likely to get an answer quickly. If you have "
-#| "questions related to the development of Gramps, try the gramps-devel "
-#| "list. You can see the lists by selecting \"Help &gt; Gramps Mailing "
-#| "Lists\"."
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -865,19 +794,10 @@ msgstr ""
 "Gramps? Probiere die Mailingliste gramps-users aus. Viele Menschen stehen "
 "auf der Liste. Du bekommst normalerweise schnell eine Antwort. Hast du "
 "Fragen zur Entwicklung von Gramps, probiere die Mailingliste gramps-devel. "
-"Du kannst die Listen durch die Auswahl von \"Hilfe &gt; Gramps-"
-"Mailinglisten\" sehen."
+"Du kannst die Listen durch die Auswahl von \"Hilfe > Gramps-Mailinglisten\" "
+"sehen."
 
 #: ../data/tips.xml:64
-#, fuzzy
-#| msgid ""
-#| "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't "
-#| "write programs? Not a problem! A project as large as Gramps requires "
-#| "people with a wide variety of skills. Contributions can be anything from "
-#| "writing documentation to testing development versions and helping with "
-#| "the web site. Start by subscribing to the Gramps developers mailing list, "
-#| "gramps-devel, and introducing yourself. Subscription information can be "
-#| "found at \"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -893,8 +813,7 @@ msgstr ""
 "das Schreiben von Dokumentation, das Testen von Entwicklungsversionen als "
 "auch das Helfen bei der Webseite beinhalten. Beginne mit dem Eintragen in "
 "die Gramps-Entwickler-Mailingliste gramps-devel und arbeite dich ein. "
-"Informationen zum Anmelden findest du unter \"Hilfe &gt; Gramps-"
-"Mailinglisten\"."
+"Informationen zum Anmelden findest du unter \"Hilfe > Gramps-Mailinglisten\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -915,13 +834,6 @@ msgstr ""
 "mit Hunderttausenden Personen damit verwalten."
 
 #: ../data/tips.xml:68
-#, fuzzy
-#| msgid ""
-#| "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient "
-#| "place to store the names of frequently used individuals. Selecting a "
-#| "bookmark will make that person the Active Person. To bookmark someone "
-#| "make them the Active Person then go to \"Bookmarks &gt; Add Bookmark\" or "
-#| "press Ctrl+D. You can also bookmark most of the other objects."
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -933,18 +845,10 @@ msgstr ""
 "Möglichkeit, die Namen häufig benutzter Personen zu speichern. Wenn du auf "
 "ein Lesezeichen klickst, wird diese Person zur aktiven Person. Um ein "
 "Lesezeichen für eine Person zu erzeugen, mache diese zur aktuellen Person, "
-"dann gehe zu \"Lesezeichen &gt; Lesezeichen hinzufügen\" oder drücke Strg+D. "
-"Du kannst auch für die meisten anderen Objekte Lesezeichen anlegen."
+"dann gehe zu \"Lesezeichen > Lesezeichen hinzufügen\" oder drücke Strg+D. Du "
+"kannst auch für die meisten anderen Objekte Lesezeichen anlegen."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit &gt; Preferences &gt; Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -958,15 +862,9 @@ msgstr ""
 "Hintergrund gezeigt. Du kannst das Datum durch Verwendung des "
 "Datumsauswahldialoges korrigieren, welcher durch das Klicken auf die "
 "Datumsauswahlschaltfläche geöffnet werden kann. Das Datumsformat wird "
-"eingestellt unter \"Bearbeiten &gt; Einstellungen &gt; Anzeige\"."
+"eingestellt unter \"Bearbeiten > Einstellungen > Anzeige\"."
 
 #: ../data/tips.xml:72
-#, fuzzy
-#| msgid ""
-#| "<b>Listing Events</b><br/>Events are added using the editor opened with "
-#| "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
-#| "event types. You can add your own event types by typing in the text "
-#| "field, they will be added to the available events, but not translated."
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person > Edit Person > Events\". There is a long list of preset event "
@@ -974,11 +872,11 @@ msgid ""
 "will be added to the available events, but not translated."
 msgstr ""
 "<b>Ereignisse auflisten</b><br/>Ereignisse werden mit dem Editor "
-"hinzugefügt, der mit \"Person &gt; Person bearbeiten &gt; Ereignisse\" "
-"geöffnet wird. Es gibt eine lange Liste von voreingestellten Ereignisarten. "
-"Du kannst deine eigenen Ereignisarten hinzufügen, indem du sie in das "
-"Textfeld eingibst. Sie werden zu den verfügbaren Ereignissen hinzugefügt, "
-"aber nicht übersetzt."
+"hinzugefügt, der mit \"Person > Person bearbeiten > Ereignisse\" geöffnet "
+"wird. Es gibt eine lange Liste von voreingestellten Ereignisarten. Du kannst "
+"deine eigenen Ereignisarten hinzufügen, indem du sie in das Textfeld "
+"eingibst. Sie werden zu den verfügbaren Ereignissen hinzugefügt, aber nicht "
+"übersetzt."
 
 #: ../data/tips.xml:74
 msgid ""
@@ -1039,12 +937,6 @@ msgstr ""
 "Tonaufnahmen, Tabellen, Dokumente und vieles mehr sein."
 
 #: ../data/tips.xml:84
-#, fuzzy
-#| msgid ""
-#| "<b>Filters</b><br/>Filters allow you to limit the people seen in the "
-#| "People View. In addition to the many preset filters, Custom Filters can "
-#| "be created limited only by your imagination. Custom filters are created "
-#| "from \"Edit &gt; Person Filter Editor\"."
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -1054,8 +946,8 @@ msgstr ""
 "<b>Filter</b><br/>Mit Filtern lassen sich die in der Personenansicht "
 "angezeigten Personen einschränken. Zusätzlich zu den vielen voreingestellten "
 "Filtern lassen sich benutzerdefinierte Filter erstellen, die nur durch deine "
-"Fantasie begrenzt sind. Benutzerdefinierte Filter werden über \"Bearbeiten "
-"&gt; Personenfilter-Editor\" erstellt."
+"Fantasie begrenzt sind. Benutzerdefinierte Filter werden über "
+"\"Bearbeiten > Personenfilter-Editor\" erstellt."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -1158,12 +1050,6 @@ msgstr ""
 "fehlerhaften Quelltextes zu bestätigen."
 
 #: ../data/tips.xml:102
-#, fuzzy
-#| msgid ""
-#| "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added "
-#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
-#| "Reports/Tools\". This is the best way for advanced users to experiment "
-#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help > Extra Reports/"
@@ -1171,34 +1057,24 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Weitere Berichte und Werkzeuge</b><br/>Weitere Berichte und Werkzeuge "
-"können in Gramps als Erweiterungen hinzugefügt werden. Siehe unter \"Hilfe "
-"&gt; Weitere Berichte/Werkzeuge\". Dies ist für fortgeschrittene Anwender "
-"der beste Weg zum Experimentieren und um neue Funktionen zu erstellen."
+"können in Gramps als Erweiterungen hinzugefügt werden. Siehe unter "
+"\"Hilfe > Weitere Berichte/Werkzeuge\". Dies ist für fortgeschrittene "
+"Anwender der beste Weg zum Experimentieren und um neue Funktionen zu "
+"erstellen."
 
 #: ../data/tips.xml:104
-#, fuzzy
-#| msgid ""
-#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
-#| "allows you to collect a variety of reports into a single document. This "
-#| "single report is easier to distribute than multiple reports, especially "
-#| "when printed."
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports > Books...\" allows "
 "you to collect a variety of reports into a single document. This single "
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Buchbericht</b><br/>Der Buchbericht unter \"Berichte &gt; Bücher…\" kann "
+"<b>Buchbericht</b><br/>Der Buchbericht unter \"Berichte > Bücher…\" kann "
 "verschiedene Berichte in einem einzigen Dokument sammeln. Ein Buch ist "
 "einfacher zu verteilen als mehrere einzelne Berichte – insbesondere, wenn "
 "sie gedruckt werden sollen."
 
 #: ../data/tips.xml:106
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
-#| "version of Gramps is released? Join the Gramps-announce mailing list at "
-#| "\"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
@@ -1206,7 +1082,7 @@ msgid ""
 msgstr ""
 "<b>Gramps-Ankündigungen</b><br/>Bist du daran interessiert, benachrichtigt "
 "zu werden, wenn eine neue Version von Gramps erscheint? Tritt der Gramps-"
-"Mailingliste unter \"Hilfe &gt; Gramps-Mailinglisten\" bei."
+"Mailingliste unter \"Hilfe > Gramps-Mailinglisten\" bei."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1280,12 +1156,6 @@ msgstr ""
 "korrekt angezeigt."
 
 #: ../data/tips.xml:120
-#, fuzzy
-#| msgid ""
-#| "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
-#| "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
-#| "person is the person who is selected when the database is opened or when "
-#| "the home button is pressed."
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit > Set Home Person\" in the Person View. The home person "
@@ -1293,9 +1163,9 @@ msgid ""
 "button is pressed."
 msgstr ""
 "<b> Die Hauptperson</b><br/>Jeder kann in Gramps als Hauptperson ausgewählt "
-"werden. Verwende \"Bearbeiten &gt; Hauptperson setzen\" in der "
-"Personenansicht. Die Hauptperson ist jene Person, die beim Öffnen der "
-"Datenbank oder beim Drücken der Haus-Schaltfläche angezeigt wird."
+"werden. Verwende \"Bearbeiten > Hauptperson setzen\" in der Personenansicht. "
+"Die Hauptperson ist jene Person, die beim Öffnen der Datenbank oder beim "
+"Drücken der Haus-Schaltfläche angezeigt wird."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -3622,7 +3492,7 @@ msgstr "Vorname Nachname Zusatz"
 
 #: ../gramps/gen/display/name.py:417
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr "Haupt-Nachnamen, Vorname Patronymikon Zusatz Präfix"
+msgstr "Hauptnachnamen, Vorname Patronymikon Zusatz Präfix"
 
 #: ../gramps/gen/display/name.py:422
 msgid "Patronymic, Given"
@@ -5611,7 +5481,7 @@ msgstr "Titel:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:52
 msgid "Suffix:"
-msgstr "nachgestellter Namenszusatz:"
+msgstr "Namenszusatz (nachgestellt):"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:53
 msgid "Call Name:"
@@ -5623,7 +5493,7 @@ msgstr "Spitzname:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:55
 msgid "Prefix:"
-msgstr "vorangestellter Namenszusatz:"
+msgstr "Namenszusatz (vorangestellt):"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:56
 msgid "Single Surname:"
@@ -8203,7 +8073,7 @@ msgstr "Krem."
 #: ../gramps/gen/lib/eventtype.py:257
 msgctxt "Degree abbreviation"
 msgid "deg."
-msgstr "Grad"
+msgstr "grad."
 
 #: ../gramps/gen/lib/eventtype.py:258
 msgctxt "Education abbreviation"
@@ -8253,7 +8123,7 @@ msgstr "Einbg."
 #: ../gramps/gen/lib/eventtype.py:267
 msgctxt "Nobility Title abbreviation"
 msgid "nob."
-msgstr "Adelst."
+msgstr "Adel."
 
 #: ../gramps/gen/lib/eventtype.py:268
 msgctxt "Number of Marriages abbreviation"
@@ -8333,12 +8203,12 @@ msgstr "verl."
 #: ../gramps/gen/lib/eventtype.py:283
 msgctxt "Divorce abbreviation"
 msgid "div."
-msgstr "o|o"
+msgstr "gesch."
 
 #: ../gramps/gen/lib/eventtype.py:284
 msgctxt "Divorce Filing abbreviation"
 msgid "div.f."
-msgstr "o|o einger."
+msgstr "Schdg. eing."
 
 #: ../gramps/gen/lib/eventtype.py:285
 msgctxt "Annulment abbreviation"
@@ -8723,7 +8593,7 @@ msgstr "Nachnamen"
 #: ../gramps/plugins/export/exportcsv.py:423
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "Suffix"
-msgstr "Zusatz"
+msgstr "Namenszusatz (nachgestellt)"
 
 #: ../gramps/gen/lib/name.py:190 ../gramps/gen/lib/place.py:151
 #: ../gramps/gen/lib/src.py:108 ../gramps/gui/clipboard.py:914
@@ -9489,7 +9359,7 @@ msgstr "Nachname"
 #: ../gramps/plugins/export/exportcsv.py:424
 #: ../gramps/plugins/importer/importcsv.py:220
 msgid "Prefix"
-msgstr "Präfix"
+msgstr "Namenszusatz (vorangestellt)"
 
 #: ../gramps/gen/lib/surname.py:99
 msgid "Primary"
@@ -11743,7 +11613,7 @@ msgstr "Japanisch"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "Koreanisch"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -12091,8 +11961,8 @@ msgstr ""
 "ersetzt:<tt>\n"
 "  <b>Vorname</b>      - Vorname  <b>Nachname</b>      - Nachnamen (mit "
 "Präfix und Verbindungen)\n"
-"  <b>Titel</b>      - Titel (Dr., Mrs.)       <b>Suffix</b>       - Suffix "
-"(Jr., Sr.)\n"
+"  <b>Titel</b>      - Titel (Dr., Mrs.)       <b>Zusatz</b>       - Zusatz ("
+"Jr., Sr.)\n"
 "  <b>Rufname</b>       - Rufname              <b>Spitzname</b>     - "
 "Spitzname\n"
 "  <b>Initialen</b>   - erste Buchstabe der Vornamen  <b>Üblich</b>       - "
@@ -12106,20 +11976,21 @@ msgstr ""
 "Nachname, Präfix, nur Nachname, Verbindung   \n"
 "  <b>Patronymikon oder [Prä] oder [Nach] oder [Verb]</b> - voller Pa/"
 "Matronymikon Nachname, Präfix, nur Nachname, Verbindung \n"
-"  <b>unbearbeitete Nachnamen</b>- Nachnamen (keine Präfixe und "
-"Verbindungen)\n"
+"  <b>unbearbeitete Nachnamen</b>- Nachnamen (keine Präfixe und Verbindungen)"
+"\n"
 "</tt>\n"
 "GROSSGESCHRIEBENE Schlüsselwörter erzwingen Großschreibung. Zusätzliche "
-"Klammern und Beistriche werden entfernt. Anderer Text erscheint "
-"buchstäblich.\n"
+"Klammern und Beistriche werden entfernt. Anderer Text erscheint buchstäblich."
 "\n"
-"<b>Beispiele</b>: 'Dr. Edwin Jose von der Smith und Weston Wilson Sr "
-"(\"Ed\") - Underhills'\n"
-"      <i>Edwin Jose</i> ist der Vorname, <i>von der</i> ist das Präfix, "
-"<i>Smith</i> und <i>Weston</i> Nachnamen, <i>und</i> eine Verbindung, "
-"<i>Wilson</i> Patronymikon Nachname,\n"
-"      <i>Dr.</i> Titel, <i>Sr</i> Suffix, <i>Ed</i> Spitzname, "
-"<i>Underhills</i> Familienspitzname, <i>Jose</i> Rufname.\n"
+"\n"
+"<b>Beispiele</b>: 'Dr. Edwin Jose von der Smith und Weston Wilson Sr (\"Ed\")"
+" - Underhills'\n"
+"      <i>Edwin Jose</i> ist der Vorname, <i>von der</i> ist der vorgestellte "
+"Namenszusatz (Präfix), <i>Smith</i> und <i>Weston</i> Nachnamen, <i>und</i> "
+"eine Verbindung, <i>Wilson</i> Patronymikon,\n"
+"      <i>Dr.</i> Titel, <i>Sr</i> nachgestellter Namenszusatz (Suffix), "
+"<i>Ed</i> Spitzname, <i>Underhills</i> Familienspitzname, <i>Jose</i> "
+"Rufname.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
@@ -15393,29 +15264,21 @@ msgstr "Neuer Ort"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:239
-#, fuzzy
-#| msgid ""
-#| "Invalid latitude\n"
-#| "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Ungültiger Breitengrad\n"
-"(Syntax: 18\\u00b09'48.21\"S, -18.2412 oder -18:9:48.21)"
+"(Syntax: 18°9'48.21\"S, -18.2412 oder -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:247
-#, fuzzy
-#| msgid ""
-#| "Invalid longitude\n"
-#| "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Ungültiger Längengrad\n"
-"(Syntax: 18\\u00b09'48.21\"E, -18.2412 oder -18:9:48.21)"
+"(Syntax: 18°9'48.21\"E, -18.2412 oder -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:289
 #: ../gramps/plugins/lib/maps/geography.py:991
@@ -18229,7 +18092,7 @@ msgstr "Größe"
 #: ../gramps/gui/plug/report/_styleeditor.py:302
 msgctxt "point size"
 msgid "pt"
-msgstr "Pkt."
+msgstr "pt"
 
 #: ../gramps/gui/glade/styleeditor.glade:432
 msgid "_Bold"
@@ -23386,22 +23249,16 @@ msgid "Enter a date, click Run"
 msgstr "Ein Datum eingeben. Ausführen klicken"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
-#, fuzzy
-#| msgid ""
-#| "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. "
-#| "This will compute the ages for everyone in your Family Tree on that date. "
-#| "You can then sort by the age column, and double-click the row to view or "
-#| "edit."
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
 "This will compute the ages for everyone in your Family Tree on that date. "
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"Gib ein gültiges Datum (wie JJJJ-MM-TT) im Eingabefeld unten ein und klicke "
-"Start. Dies berechnet das Alter für jeden in deinem Stammbaum an diesem "
-"Datum. Du kannst dann die Altersspalte sortieren und die Zeile doppelt "
-"klicken, um sie anzuzeigen oder zu bearbeiten."
+"Gib ein gültiges Datum (wie TT.MM.JJJJ) im Eingabefeld ein und klicke Start. "
+"Dies berechnet das Alter für alle in deinem Stammbaum zu diesem Datum. "
+"Danach kannst du die Altersspalte sortieren und die Zeile doppelklicken, um "
+"sie anzuzeigen oder zu bearbeiten."
 
 #: ../gramps/plugins/gramplet/agestats.py:84
 #: ../gramps/plugins/gramplet/agestats.py:97
@@ -24981,13 +24838,11 @@ msgstr "Wähle erst das Objekt, zudem du eine Notiz hinzufügen möchtest"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:151
 msgid "Unattached"
-msgstr "frei"
+msgstr "Ungebunden"
 
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
-#, fuzzy
-#| msgid "Number of ranks to display"
 msgid "Number of Surnames to display"
-msgstr "Anzahl der angezeigten Ränge"
+msgstr "Anzahl der angezeigten Nachnamen"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
@@ -35127,7 +34982,7 @@ msgstr "Geschlechtsstatistik Werkzeug"
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:102
 msgid "Guess"
-msgstr "schätzen"
+msgstr "Schätzung"
 
 #: ../gramps/plugins/tool/eventcmp.glade:225
 msgid "_Filter:"
@@ -37225,7 +37080,7 @@ msgstr "Familienreferenz: %s"
 #: ../gramps/plugins/view/geofamclose.py:363
 #, python-format
 msgid "The other family : %s"
-msgstr "die andere Familie: %s"
+msgstr "Die andere Familie: %s"
 
 #: ../gramps/plugins/view/geofamclose.py:369
 msgid "You must choose one reference family."
@@ -37606,7 +37461,7 @@ msgstr ""
 #: ../gramps/plugins/view/pedigreeview.py:87
 msgctxt "short for born"
 msgid "b."
-msgstr "geb"
+msgstr "geb."
 
 #: ../gramps/plugins/view/pedigreeview.py:88
 msgctxt "short for died"
