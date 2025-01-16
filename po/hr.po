@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-12 21:14+0000\n"
-"PO-Revision-Date: 2025-01-09 17:45+0000\n"
+"PO-Revision-Date: 2025-01-14 22:57+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -432,17 +432,6 @@ msgstr ""
 "zanimljive obiteljske priče. Zabilježi sve razgovore!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter. Then select this filter in the Filter field on Sidebar, then "
-#| "click Find button. If the Sidebar is not visible, select View &gt; "
-#| "Sidebar."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -460,7 +449,7 @@ msgstr ""
 "pronalaženje sve usvojene osobe u rodoslovu. Osobe bez navedenog datuma "
 "rođenja također se mogu filtrirati. Za dobivanje rezultata, spremi filtar. "
 "Zatim odaberi ovaj filtar u polju „Filtar” u bočnoj traci i pritisni gumb "
-"„Pronađi”. Ako bočna traka nije vidljiva, odaberi „Prikaz &gt; Bočna traka”."
+"„Pronađi”. Ako bočna traka nije vidljiva, odaberi „Prikaz > Bočna traka”."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -510,20 +499,13 @@ msgstr ""
 "supružnika, brata, sestre, djece ili roditelja."
 
 #: ../data/tips.xml:24
-#, fuzzy
-#| msgid ""
-#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-#| "&gt; Compare Individual Events...\" you can compare the data of "
-#| "individuals in your database. This is useful, say, if you wish to list "
-#| "the birth dates of everyone in your database. You can use a custom filter "
-#| "to narrow the results."
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>Tko je kad rođen?</b><br/>Uz pomoć „Alati > Analiza i istraživanje > "
+"<b>Tko je kada rođen?</b><br/>Uz pomoć „Alati > Analiza i istraživanje > "
 "Usporedi pojedinačne događaje …” moguće je usporediti podatke osoba u bazi "
 "podataka. Ovo je korisno, npr. pri stvaranju popisa rođendana svih osoba u "
 "tvojoj bazi podataka. Za ograničavanje rezultata, možeš koristiti "
@@ -544,12 +526,6 @@ msgstr ""
 "preko izbornika „Alati”."
 
 #: ../data/tips.xml:28
-#, fuzzy
-#| msgid ""
-#| "<b>Calculating Relationships</b><br/>To check if two people in the "
-#| "database are related (by blood, not marriage) try the tool under \"Tools "
-#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
-#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
@@ -579,13 +555,6 @@ msgstr ""
 "programi > Izrada SoundEx kodova”."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\"."
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -613,13 +582,6 @@ msgstr ""
 "izvještaj."
 
 #: ../data/tips.xml:36
-#, fuzzy
-#| msgid ""
-#| "<b>Starting a New Family Tree</b><br/>A good way to start a new family "
-#| "tree is to enter all the members of the family into the database using "
-#| "the Person View (use \"Edit &gt; Add...\" or click on the Add a new "
-#| "person button from the People View). Then go to the Relationship View and "
-#| "create relationships between people."
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -628,8 +590,8 @@ msgid ""
 "between people."
 msgstr ""
 "<b>Stvaranje novog rodoslova</b><br/>Dobar način za stvaranje novog "
-"rodoslova je zapisivanje svih članova obitelji u bazu podataka (u izborniku "
-"„Uredi > Dodaj …” ili pritisni gumb „Dodaj” u pogledu „Osobe”). Nakon toga "
+"rodoslova je zapisivanje svih članova obitelji u bazu podataka (u izborniku „"
+"Uredi > Dodaj …” ili pritisni gumb „Dodaj” u pogledu „Osobe”). Nakon toga "
 "otiđi u pogled „Srodstva” i uredi uzajamne odnose osoba."
 
 #: ../data/tips.xml:38
@@ -655,11 +617,6 @@ msgstr ""
 "priručnik."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
-#| "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
-#| "entries of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
@@ -670,14 +627,6 @@ msgstr ""
 "zabunom više puta upisani u bazu podataka."
 
 #: ../data/tips.xml:44
-#, fuzzy
-#| msgid ""
-#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you "
-#| "to combine separately listed people into one. Select the second entry by "
-#| "holding the Control key as you click. This is very useful for combining "
-#| "two databases with overlapping people, or combining erroneously entered "
-#| "differing names for one individual. Merging is available in all list "
-#| "views for all primary object types."
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -686,7 +635,7 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Spajanje zapisa</b><br/>Funkcija „Uredi i spoji …” omogućuje spajanje "
+"<b>Spajanje zapisa</b><br/>Funkcija „Uredi > Spoji …” omogućuje spajanje "
 "podataka više osoba u jednu osobu. Prilikom odabira drugog unosa drži "
 "pritisnutu tipku CTRL. Ovo je korisno za spajanje dviju baza podataka s "
 "poklapajućim osobama ili za spajanje greškom upisanih imenima iste osobe. "
@@ -705,12 +654,6 @@ msgstr ""
 "izborniku „Pogled”."
 
 #: ../data/tips.xml:48
-#, fuzzy
-#| msgid ""
-#| "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of "
-#| "previous active objects such as People and Events. You can move forward "
-#| "and backward through the list using \"Go &gt; Forward\" and \"Go &gt; "
-#| "Back\" or the arrow buttons."
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -734,20 +677,14 @@ msgstr ""
 "u izbornicima."
 
 #: ../data/tips.xml:52
-#, fuzzy
-#| msgid ""
-#| "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
-#| "&gt; User Manual\". The developers have worked hard to make most "
-#| "operations intuitive but the manual is full of information that will make "
-#| "your time spent on genealogy more productive."
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
 "User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Čitaj priručnik</b><br/>Nemoj zaboraviti čitati Grampsov priručnik, "
-"„Pomoć > Korisnički priručnik”. Programeri su se trudili da se program može "
+"<b>Čitaj priručnik</b><br/>Nemoj zaboraviti pročitati Grampsov priručnik, „"
+"Pomoć > Korisnički priručnik”. Programeri su se trudili da se program može "
 "koristiti intuitivno, ali je priručnik pun informacija koje će ti pomoći još "
 "produktivniji rad."
 
@@ -802,14 +739,6 @@ msgstr ""
 "poboljšanjem na https://bugs.gramps-project.org (što je najbolji način)."
 
 #: ../data/tips.xml:62
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about "
-#| "Gramps? Check out the gramps-users email list. Many helpful people are on "
-#| "the list, so you're likely to get an answer quickly. If you have "
-#| "questions related to the development of Gramps, try the gramps-devel "
-#| "list. You can see the lists by selecting \"Help &gt; Gramps Mailing "
-#| "Lists\"."
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -825,15 +754,6 @@ msgstr ""
 "pretplatničke liste”."
 
 #: ../data/tips.xml:64
-#, fuzzy
-#| msgid ""
-#| "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't "
-#| "write programs? Not a problem! A project as large as Gramps requires "
-#| "people with a wide variety of skills. Contributions can be anything from "
-#| "writing documentation to testing development versions and helping with "
-#| "the web site. Start by subscribing to the Gramps developers mailing list, "
-#| "gramps-devel, and introducing yourself. Subscription information can be "
-#| "found at \"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -849,7 +769,7 @@ msgstr ""
 "provjeravanja razvojnih verzija ili pri pomoći oko web mjesta. Započni s "
 "prijavom na pretplatničku listu za programere programa Gramps (gramps-devel) "
 "i predstavi se. Sve potrebne informacije za prijavu mogu se naći pod „Pomoć "
-"> Gramps pretplatnička lista”."
+"> Gramps pretplatničke liste”."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -868,13 +788,6 @@ msgstr ""
 "sadrže stotine tisuća osoba."
 
 #: ../data/tips.xml:68
-#, fuzzy
-#| msgid ""
-#| "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient "
-#| "place to store the names of frequently used individuals. Selecting a "
-#| "bookmark will make that person the Active Person. To bookmark someone "
-#| "make them the Active Person then go to \"Bookmarks &gt; Add Bookmark\" or "
-#| "press Ctrl+D. You can also bookmark most of the other objects."
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -890,14 +803,6 @@ msgstr ""
 "koristiti i za većinu drugih objekata."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit &gt; Preferences &gt; Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -913,12 +818,6 @@ msgstr ""
 "postaviti korištenjem izbornika „Uredi > Postavke > Prikaz”."
 
 #: ../data/tips.xml:72
-#, fuzzy
-#| msgid ""
-#| "<b>Listing Events</b><br/>Events are added using the editor opened with "
-#| "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
-#| "event types. You can add your own event types by typing in the text "
-#| "field, they will be added to the available events, but not translated."
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person > Edit Person > Events\". There is a long list of preset event "
@@ -987,12 +886,6 @@ msgstr ""
 "tablični proračuni, dokumenti i slično."
 
 #: ../data/tips.xml:84
-#, fuzzy
-#| msgid ""
-#| "<b>Filters</b><br/>Filters allow you to limit the people seen in the "
-#| "People View. In addition to the many preset filters, Custom Filters can "
-#| "be created limited only by your imagination. Custom filters are created "
-#| "from \"Edit &gt; Person Filter Editor\"."
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -1100,12 +993,6 @@ msgstr ""
 "prijepisa onoga, što izgleda kao greška u dokumentu."
 
 #: ../data/tips.xml:102
-#, fuzzy
-#| msgid ""
-#| "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added "
-#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
-#| "Reports/Tools\". This is the best way for advanced users to experiment "
-#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help > Extra Reports/"
@@ -1118,29 +1005,18 @@ msgstr ""
 "eksprimentiranje i stvaranje novih funkcija."
 
 #: ../data/tips.xml:104
-#, fuzzy
-#| msgid ""
-#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
-#| "allows you to collect a variety of reports into a single document. This "
-#| "single report is easier to distribute than multiple reports, especially "
-#| "when printed."
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports > Books...\" allows "
 "you to collect a variety of reports into a single document. This single "
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Knjiški izvještaji</b><br/>Knjiški izvještaj, pod „Izvještaji > Knjige "
-"…”, omogućuje spajanje raznih izvještaja u jedan dokument. Mnogo je lakše "
+"<b>Knjiški izvještaji</b><br/>Knjiški izvještaj, pod „Izvještaji > Knjige …”"
+", omogućuje spajanje raznih izvještaja u jedan dokument. Mnogo je lakše "
 "slati jedan izvještaj nego više izvještaja, posebice kad se šalju u tiskanom "
 "obliku."
 
 #: ../data/tips.xml:106
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
-#| "version of Gramps is released? Join the Gramps-announce mailing list at "
-#| "\"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
@@ -1218,12 +1094,6 @@ msgstr ""
 "pruža potpunu Unicode podršku. Znakovi svih jezika se ispravno prikazuju."
 
 #: ../data/tips.xml:120
-#, fuzzy
-#| msgid ""
-#| "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
-#| "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
-#| "person is the person who is selected when the database is opened or when "
-#| "the home button is pressed."
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit > Set Home Person\" in the Person View. The home person "
@@ -11574,7 +11444,7 @@ msgstr "Japanski"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "Korejski"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -15190,29 +15060,21 @@ msgstr "Novo mjesto"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:239
-#, fuzzy
-#| msgid ""
-#| "Invalid latitude\n"
-#| "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Neispravna zemljopisna širina\n"
-"(sintaksa: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+"(sintaksa: 18°9'48.21\"S, -18.2412 ili -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:247
-#, fuzzy
-#| msgid ""
-#| "Invalid longitude\n"
-#| "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Neispravna zemljopisna dužina\n"
-"(sintaksa: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+"(sintaksa: 18°9'48.21\"E, -18.2412 ili -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:289
 #: ../gramps/plugins/lib/maps/geography.py:991
@@ -23071,22 +22933,16 @@ msgid "Enter a date, click Run"
 msgstr "Upiši datum i pritisni gumb „Pokreni”"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
-#, fuzzy
-#| msgid ""
-#| "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. "
-#| "This will compute the ages for everyone in your Family Tree on that date. "
-#| "You can then sort by the age column, and double-click the row to view or "
-#| "edit."
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
 "This will compute the ages for everyone in your Family Tree on that date. "
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"Upiši ispravan datum (u obliku GGGG-MM-DD) i pritisni gumb „Pokreni”. To će "
-"izračunati starost svih osoba u rodoslovu na taj datum. Nakon toga možeš "
-"svrstati podatke po starosti. Za mijenjenje ili uređivanje pritisni dvaput "
-"na redak."
+"Upiši ispravan datum (u obliku GGGG-MM-DD) u polje i pritisni gumb „Pokreni”"
+". To će izračunati starost svih osoba u rodoslovu na taj datum. Nakon toga "
+"možeš svrstati podatke po starosti. Za mijenjenje ili uređivanje pritisni "
+"dvaput na redak."
 
 #: ../gramps/plugins/gramplet/agestats.py:84
 #: ../gramps/plugins/gramplet/agestats.py:97
@@ -24659,10 +24515,8 @@ msgid "Unattached"
 msgstr "Nepriloženo"
 
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
-#, fuzzy
-#| msgid "Number of ranks to display"
 msgid "Number of Surnames to display"
-msgstr "Broj redova za prikaz"
+msgstr "Broj prezimena za prikaz"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
