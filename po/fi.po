@@ -10,13 +10,14 @@
 # Jyri-Petteri Paloposki <jyri-petteri.paloposki@iki.fi>, 2022.
 # Oskari Lavinto <olavinto@protonmail.com>, 2023.
 # A <ogloppi@mailbox.org>, 2023.
+# Ricky Tigg <ricky.tigg@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-12 21:14+0000\n"
-"PO-Revision-Date: 2024-07-29 19:09+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2025-01-14 22:57+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../Gramps/gramps\n"
@@ -2364,7 +2365,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[E]} {year}"
+msgstr "{long_month} {year}"
 
 # älä muuta
 # IL(atiivi)=tammikuuhun
@@ -2376,7 +2377,7 @@ msgstr "{long_month.forms[E]} {year}"
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[IL]} {year}"
+msgstr "{long_month} {year}"
 
 # älä muuta
 # G(enetiivi)=tammikuun
@@ -2388,7 +2389,7 @@ msgstr "{long_month.forms[IL]} {year}"
 #, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[G]} {year}"
+msgstr "{long_month} {year}"
 
 # älä muuta
 # G(enetiivi)=tammikuun
@@ -2400,7 +2401,7 @@ msgstr "{long_month.forms[G]} {year}"
 #, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[G]} {year}"
+msgstr "{long_month} {year}"
 
 # älä muuta
 # P(artitiivi)=tammikuuta
@@ -2412,7 +2413,7 @@ msgstr "{long_month.forms[G]} {year}"
 #, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[P]} {year}"
+msgstr "{long_month} {year}"
 
 # älä muuta
 # G(enetiivi)=tammikuun
@@ -2424,7 +2425,7 @@ msgstr "{long_month.forms[P]} {year}"
 #, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[G]} {year}"
+msgstr "{long_month} {year}"
 
 # älä muuta
 # IN(essiivi)=tammikuussa
@@ -2436,7 +2437,7 @@ msgstr "{long_month.forms[G]} {year}"
 #, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[IN]} {year}"
+msgstr "{long_month} {year}"
 
 # älä muuta
 # IN(essiivi)=tammikuussa
@@ -2448,7 +2449,7 @@ msgstr "{long_month.forms[IN]} {year}"
 #, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[IN]} {year}"
+msgstr "{long_month} {year}"
 
 # älä muuta
 # IN(essiivi)=tammikuussa
@@ -2460,7 +2461,7 @@ msgstr "{long_month.forms[IN]} {year}"
 #, python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[IN]} {year}"
+msgstr "{long_month} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:244
 #, python-brace-format
