@@ -170,7 +170,7 @@ class EventRefModel(Gtk.TreeStore):
             self.column_age(event),
             self.column_sort_age(event),
             eventref.get_privacy(),
-            event.has_citations(),
+            event.has_citations() or eventref.has_citations(),
         ]
 
     def colweight(self, index):
