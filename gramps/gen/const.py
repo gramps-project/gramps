@@ -99,10 +99,13 @@ if "GRAMPSHOME" in os.environ:
     HOME_DIR = os.path.join(USER_HOME, "gramps")
 elif "USERPROFILE" in os.environ:
     USER_HOME = get_env_var("USERPROFILE")
-    if "APPDATA" in os.environ:
-        HOME_DIR = os.path.join(get_env_var("APPDATA"), "gramps")
-    else:
-        HOME_DIR = os.path.join(USER_HOME, "gramps")
+    HOME_DIR = os.path.join(GLib.get_user_config_dir(), "gramps")
+    if not os.path.exists(HOME_DIR):
+        homedir = get_env_var("APPDATA") if "APPDATA" in os.environ else USER_HOME
+        homedir = os.path.join(homedir, "gramps")
+        dbpath = os.path.join(homedir, "grampsdb")
+        if os.path.isdir(dbpath) and os.listdir(dbpath):
+            HOME_DIR = homedir
 else:
     USER_HOME = get_env_var("HOME")
     HOME_DIR = os.path.join(USER_HOME, ".gramps")
