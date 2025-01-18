@@ -118,4 +118,4 @@ class DataListTest(unittest.TestCase):
         # FIXME: dealt with in a later PR
         dl = DataList([])
         with self.assertRaises(AssertionError):
-             assert isinstance(dl + [], DataList)
+            assert isinstance(dl + [], DataList)
