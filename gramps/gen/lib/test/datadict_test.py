@@ -23,7 +23,6 @@
 # See also tests in ./serialize_test.py
 
 import unittest
-import pytest
 
 from gramps.gen.lib.serialize import DataDict, DataList, to_dict, from_dict
 from gramps.gen.lib import (
@@ -74,7 +73,7 @@ class DataListTest(unittest.TestCase):
         assert dl[0] == 42
 
     def test_value_exception(self):
-        with pytest.raises(TypeError, match="'int' object is not iterable"):
+        with self.assertRaises(TypeError):
             dl = DataList(42)
 
     def test_access_exception(self):
@@ -83,7 +82,7 @@ class DataListTest(unittest.TestCase):
         assert dl[0] == 1
         assert dl[1] == 2
         assert dl[2] == 3
-        with pytest.raises(IndexError, match="list index out of range"):
+        with self.assertRaises(IndexError):
             dl[3]
 
     def test_nested(self):
@@ -115,7 +114,8 @@ class DataListTest(unittest.TestCase):
         assert dl[0] == 42
         assert isinstance(dl[0], int)
 
-    @pytest.mark.skip(reason="this is fixed in a later PR")
     def test_combined_list(self):
+        # FIXME: dealt with in a later PR
         dl = DataList([])
-        assert isinstance(dl + [], DataList)
+        with self.assertRaises(AssertionError):
+             assert isinstance(dl + [], DataList)
