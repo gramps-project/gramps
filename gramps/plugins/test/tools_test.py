@@ -26,7 +26,7 @@ import unittest
 import random
 
 from gramps.test.test_util import Gramps
-from gramps.gen.const import DATA_DIR
+from gramps.gen.const import DATA_DIR, TEST_RANDOM
 from gramps.gen.user import User
 from gramps.gen.utils.id import set_det_id
 from gramps.gen import const
@@ -34,7 +34,6 @@ from gramps.gen.utils.config import config
 
 TREE_NAME = "Test_tooltest"
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
-const.myrand = random.Random()
 
 
 def call(*args):
@@ -113,11 +112,8 @@ class ToolControl(unittest.TestCase):
             pass
         tst_file = os.path.join(TEST_DIR, "data.gramps")
         set_det_id(True)
-        # the following line assumes that TCG has run through init code, where
-        # it puts 'myrand', a 'Random' class object, into the 'const' module so
-        # we can access it here.
-        const.myrand.seed(1234, version=1)
-        # print(const.myrand.random())
+        TEST_RANDOM.seed(1234, version=1)
+        # print(TEST_RANDOM.random())
         #         out, err = call("-s")
         #         expect = ["bsddb"]
         #         check_res(out, err, expect, do_out=True)

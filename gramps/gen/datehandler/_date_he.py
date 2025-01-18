@@ -77,6 +77,7 @@ class DateParserHE(DateParser):
         "אחרי": Date.MOD_AFTER,
         "אחרי ה־": Date.MOD_AFTER,
         "אח.": Date.MOD_AFTER,
+        "בסביבות־": Date.MOD_ABOUT,
         "בסביבות": Date.MOD_ABOUT,
         "בערך ב־": Date.MOD_ABOUT,
         "בערך ב": Date.MOD_ABOUT,

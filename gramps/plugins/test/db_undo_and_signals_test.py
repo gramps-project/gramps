@@ -449,17 +449,9 @@ class DbTestClassBase(object):
         self.assertEqual(cm_padd_key, None, msg="Callback Manager disconnect cb check")
 
 
-params = [("SQLite", "sqlite")]
+class TestSQLite(DbTestClassBase, unittest.TestCase):
+    param = "sqlite"
 
-for name, param in params:
-    cls_name = "TestMyTestClass_%s" % (name,)
-    globals()[cls_name] = type(
-        cls_name,
-        (DbTestClassBase, unittest.TestCase),
-        {
-            "param": param,
-        },
-    )
 
 if __name__ == "__main__":
     unittest.main()

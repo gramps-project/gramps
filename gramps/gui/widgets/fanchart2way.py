@@ -680,7 +680,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
                 break
         # find what person is in this position:
         if not (generation is None) and generation > 0:
-            selected = FanChartDescWidget.personpos_at_angle(
+            selected = FanChartDescWidget.personpos_at_angle_btype(
                 self, generation, rads, btype
             )
 

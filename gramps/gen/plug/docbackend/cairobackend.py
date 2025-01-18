@@ -34,6 +34,7 @@ from xml.sax.saxutils import escape
 #
 # -------------------------------------------------------------------------
 
+
 # ------------------------------------------------------------------------
 #
 # Gramps modules
@@ -79,6 +80,8 @@ class CairoBackend(DocBackend):
         DocBackend.FONTCOLOR,
         DocBackend.HIGHLIGHT,
         DocBackend.SUPERSCRIPT,
+        DocBackend.STRIKETHROUGH,
+        DocBackend.SUBSCRIPT,
     ]
 
     STYLETAG_MARKUP = {
@@ -86,9 +89,12 @@ class CairoBackend(DocBackend):
         DocBackend.ITALIC: ("<i>", "</i>"),
         DocBackend.UNDERLINE: ("<u>", "</u>"),
         DocBackend.SUPERSCRIPT: ("<sup>", "</sup>"),
+        DocBackend.STRIKETHROUGH: ("<s>", "</s>"),
+        DocBackend.SUBSCRIPT: ("<sub>", "</sub>"),
     }
 
-    ESCAPE_FUNC = lambda x: escape
+    def ESCAPE_FUNC(x):
+        return escape
 
     def _create_xmltag(self, tagtype, value):
         """

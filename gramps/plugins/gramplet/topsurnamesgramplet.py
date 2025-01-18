@@ -31,6 +31,7 @@ from collections import defaultdict
 from gramps.gen.plug import Gramplet
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.plug.menu import NumberOption
 
 _ = glocale.translation.sgettext
 
@@ -40,6 +41,8 @@ _ = glocale.translation.sgettext
 #
 # ------------------------------------------------------------------------
 _YIELD_INTERVAL = 350
+
+NUM_SURNAMES = _("Number of Surnames to display")
 
 
 # ------------------------------------------------------------------------
@@ -61,8 +64,14 @@ class TopSurnamesGramplet(Gramplet):
         self.connect(self.dbstate.db, "family-rebuild", self.update)
         self.set_text(_("No Family Tree loaded."))
 
+    def build_options(self):
+        self.add_option(NumberOption(NUM_SURNAMES, self.top_size, 10, 1000))
+
+    def save_options(self):
+        self.top_size = int(self.get_option(NUM_SURNAMES).get_value())
+
     def on_load(self):
-        if len(self.gui.data) > 0:
+        if len(self.gui.data) == 1:
             self.top_size = int(self.gui.data[0])
 
     def on_save(self):

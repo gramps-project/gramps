@@ -28,6 +28,7 @@ Base class for filter rules.
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import re
 
 from ...errors import FilterError
@@ -62,7 +63,7 @@ from gramps.gen.db import Database
 class Rule:
     """Base rule class."""
 
-    labels: List[Any] = []
+    labels: list[str] = []
     name = ""
     category = _("Miscellaneous filters")
     description = _("No description")

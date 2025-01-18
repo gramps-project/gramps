@@ -513,6 +513,8 @@ class TreeDocBase(BaseDoc, TreeDoc):
         self.write(level, "}\n")
 
     def write_node(self, db, level, node_type, person, marriage_flag, option_list=None):
+        from ...utils.thumbnails import get_thumbnail_path
+
         options = ["id=%s" % person.gramps_id]
         if option_list:
             options.extend(option_list)
@@ -590,12 +592,16 @@ class TreeDocBase(BaseDoc, TreeDoc):
                 self.write(level + 1, "comment = {%s},\n" % escape(attr.get_value()))
         for mediaref in person.get_media_list():
             media = db.get_media_from_handle(mediaref.ref)
-            path = media_path_full(db, media.get_path())
-            if os.path.isfile(path):
-                if win():
-                    path = path.replace("\\", "/")
-                self.write(level + 1, "image = {%s},\n" % path)
-                break  # first image only
+            if media.get_mime_type().startswith("image"):
+                path = get_thumbnail_path(
+                    media_path_full(db, media.get_path()),
+                    rectangle=mediaref.get_rectangle(),
+                )
+                if os.path.isfile(path):
+                    if win():
+                        path = path.replace("\\", "/")
+                    self.write(level + 1, "image = {%s},\n" % path)
+                    break  # first image only
         self.write(level, "}\n")
 
     def write_event(self, db, level, event):

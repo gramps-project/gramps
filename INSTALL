@@ -39,7 +39,7 @@ To build and install, whether from a tarball or git repo:
    python3 setup.py build
    sudo python3 setup.py install
 
-You can avoid using sudo for the install step by specifying a prefix to which you have write priviledge. The default is /usr/local, which is usually owned by root. You can learn of more options with
+You can avoid using sudo for the install step by specifying a prefix to which you have write privilege. The default is /usr/local, which is usually owned by root. You can learn of more options with
    python3 setup.py --help
 
 One can use Gramps from the command line without installing it by

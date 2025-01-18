@@ -51,11 +51,13 @@ methods should be changed to generate exceptions. Possibly by globally changing
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import inspect
 import logging
 from abc import ABCMeta
 from functools import wraps
 from types import FunctionType
+from typing import Any
 
 # -------------------------------------------------------------------------
 #
@@ -115,8 +117,8 @@ def wrapper(method):
 
 class MetaClass(type):
     """
-    transform class by wrapping it with a diagnostic wrapper (if __debig__ is
-    not set
+    transform class by wrapping it with a diagnostic wrapper (if __debug__ is
+    not set)
     """
 
     def __new__(mcs, class_name, bases, classdict):
@@ -149,23 +151,13 @@ class M_A_M_B(ABCMeta, MetaClass):
 # class DummyDb
 #
 # -------------------------------------------------------------------------
-class DummyDb(
-    M_A_M_B(
-        "NewBaseClass",
-        (
-            DbReadBase,
-            Callback,
-            object,
-        ),
-        {},
-    )
-):
+class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
     """
     Gramps database object. This object is a dummy database class that is always
     empty and is read-only.
     """
 
-    __signals__ = {}
+    __signals__: dict[str, Any] = {}
 
     def __init__(self):
         """

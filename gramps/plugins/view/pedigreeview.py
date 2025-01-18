@@ -1609,10 +1609,8 @@ class PedigreeView(NavigationView):
         if variable self.scroll_direction setup.
         """
         if self.scroll_direction and event.type == Gdk.EventType.SCROLL:
-            if event.direction == Gdk.ScrollDirection.UP:
-                event.direction = Gdk.ScrollDirection.LEFT
-            elif event.direction == Gdk.ScrollDirection.DOWN:
-                event.direction = Gdk.ScrollDirection.RIGHT
+            event.delta_x = event.delta_y
+            event.delta_y = 0
         return False
 
     def cb_person_button_press(self, obj, event, person_handle, family_handle):

@@ -66,13 +66,11 @@ jobs:
     - name: Build
       run: |
         python3 setup.py build
+    - name: Run mypy static type checker
+      run: |
+        python3 -m pip install mypy
+        mypy gramps test --ignore-missing-imports --exclude '.*gpr\.py$'
     - name: Run unit test suite
       run: |
         export GDK_BACKEND=-
         python3 setup.py test
-    - name: Trailing whitespace check
-      run: |
-        if git --no-pager grep --color -n --full-name '[    ]$' -- \*.py; then
-          echo "ERROR - Trailing whitespace found in source file(s)";
-          exit 1;
-        fi

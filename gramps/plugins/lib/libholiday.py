@@ -26,6 +26,7 @@
 # python modules
 #
 # ------------------------------------------------------------------------
+from __future__ import annotations
 from xml.parsers import expat
 import datetime
 import math
@@ -187,8 +188,8 @@ class HolidayTable:
     countries and years.
     """
 
-    __holiday_files = []
-    __countries = []
+    __holiday_files: list[str] = []
+    __countries: list[str] = []
 
     def __init__(self):
         """
