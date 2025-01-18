@@ -658,7 +658,9 @@ class NavWebReport(Report):
             for person_handle in list(self.obj_dict[Person].keys()):
                 result = self.obj_dict[Person][person_handle]
                 if not isinstance(result, tuple) or len(result) != 3:
-                    LOG.debug(f"Removing living person_handle: {person_handle} because we don't want it.")
+                    LOG.debug(
+                        f"Removing living person_handle: {person_handle} because we don't want it."
+                    )
                     del self.obj_dict[Person][person_handle]
 
         LOG.debug(
