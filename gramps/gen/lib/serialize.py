@@ -69,7 +69,7 @@ class DataDict(dict):
 
     def __getattr__(self, key):
         if key.startswith("_"):
-            raise AttributeError("can't use this API to access hidden attributes")
+            raise AttributeError("this method cannot be used to access hidden attributes")
 
         if "_object" in self:
             return getattr(self["_object"], key)
