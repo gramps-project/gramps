@@ -450,7 +450,6 @@ setup(
     cmdclass={"build": build, "test": test},
     packages=packages,
     package_data={"gramps": package_data},
-    install_requires=["attrs"],
     extras_require={
         "bsddb": ["bsddb3"],
         "image": ["Pillow"],
