@@ -25,6 +25,7 @@ An override to allow easy multiselections.
 from gi.repository import Gdk
 from gi.repository import Gtk
 from ..utils import no_match_primary_mask
+from . import PersistentTreeView
 
 # -------------------------------------------------------------------------
 #
@@ -33,14 +34,13 @@ from ..utils import no_match_primary_mask
 # -------------------------------------------------------------------------
 
 
-# TODO GTK3: Is this not duplicate of the class in clipboard py ?? We should reuse pieces
-class MultiTreeView(Gtk.TreeView):
+class MultiTreeView(PersistentTreeView):
     """
     TreeView that captures mouse events to make drag and drop work properly
     """
 
-    def __init__(self):
-        Gtk.TreeView.__init__(self)
+    def __init__(self, uistate=None, config_name=None):
+        super().__init__(uistate, config_name)
         self.connect("button_press_event", self.on_button_press)
         self.connect("button_release_event", self.on_button_release)
         self.connect("drag-end", self.on_drag_end)
