@@ -23,8 +23,9 @@
 # See also tests in ./serialize_test.py
 
 import unittest
+import pytest
 
-from gramps.gen.lib.serialize import DataDict, to_dict, from_dict
+from gramps.gen.lib.serialize import DataDict, DataList, to_dict, from_dict
 from gramps.gen.lib import (
     Person,
     Family,
@@ -53,3 +54,68 @@ class DataDictTest(unittest.TestCase):
         p = Family()
         d = to_dict(p)
         assert not hasattr(d, "_object")
+
+
+class DataListTest(unittest.TestCase):
+    def test_empty_1(self):
+        dl = DataList()
+        assert isinstance(dl, DataList)
+        assert len(dl) == 0
+
+    def test_empty_2(self):
+        dl = DataList([])
+        assert isinstance(dl, DataList)
+        assert len(dl) == 0
+
+    def test_value_1(self):
+        dl = DataList([42])
+        assert isinstance(dl, DataList)
+        assert isinstance(dl[0], int)
+        assert dl[0] == 42
+
+    def test_value_exception(self):
+        with pytest.raises(TypeError, match="'int' object is not iterable"):
+            dl = DataList(42)
+
+    def test_access_exception(self):
+        dl = DataList([1, 2, 3])
+        assert isinstance(dl, DataList)
+        assert dl[0] == 1
+        assert dl[1] == 2
+        assert dl[2] == 3
+        with pytest.raises(IndexError, match="list index out of range"):
+            dl[3]
+
+    def test_nested(self):
+        dl = DataList([[42]])
+        assert isinstance(dl, DataList)
+        assert isinstance(dl[0], DataList)
+        assert dl[0][0] == 42
+
+    def test_dict(self):
+        p = Person()
+        p_dict = to_dict(p)
+        dl = DataList([p_dict])
+        assert isinstance(dl, DataList)
+        assert isinstance(dl[0], DataDict)
+        assert dl[0] == p_dict
+        assert dl[0].gender == 2
+
+    def test_append_list(self):
+        dl = DataList([])
+        dl.append([])
+        assert isinstance(dl, DataList)
+        assert dl[0] == []
+        assert isinstance(dl[0], DataList)
+
+    def test_append_value(self):
+        dl = DataList([])
+        dl.append(42)
+        assert isinstance(dl, DataList)
+        assert dl[0] == 42
+        assert isinstance(dl[0], int)
+
+    @pytest.mark.skip(reason="this is fixed in a later PR")
+    def test_combined_list(self):
+        dl = DataList([])
+        assert isinstance(dl + [], DataList)
