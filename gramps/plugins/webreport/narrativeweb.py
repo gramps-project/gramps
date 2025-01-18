@@ -653,6 +653,15 @@ class NavWebReport(Report):
                 self._add_person(handle, "", "")
                 step()
                 index += 1
+            # The following lines are used to avoid crashes when we create associations or
+            # relationships for living people. The option "Living people:" is set to "Not included"
+            for person_handle in list(self.obj_dict[Person].keys()):
+                result = self.obj_dict[Person][person_handle]
+                if not isinstance(result, tuple) or len(result) != 3:
+                    LOG.debug(
+                        f"Removing living person_handle: {person_handle} because we don't want it."
+                    )
+                    del self.obj_dict[Person][person_handle]
 
         LOG.debug(
             "final object dictionary \n"
