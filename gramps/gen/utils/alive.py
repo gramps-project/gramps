@@ -41,6 +41,7 @@ import logging
 from ..display.name import displayer as name_displayer
 from ..lib.date import Date, Today
 from ..lib.person import Person
+from ..lib.serialize import DataDict
 from ..errors import DatabaseError
 from ..const import GRAMPS_LOCALE as glocale
 from ..proxy.proxybase import ProxyDbBase
@@ -159,7 +160,7 @@ class ProbablyAlive:
                     explain_death,
                 )
 
-            if isinstance(class_or_handle, Person):
+            if isinstance(class_or_handle, (Person, DataDict)):
                 thisperson = class_or_handle
             elif isinstance(class_or_handle, str):
                 thisperson = self.db.get_person_from_handle(class_or_handle)
