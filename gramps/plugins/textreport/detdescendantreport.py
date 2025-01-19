@@ -16,6 +16,7 @@
 # Copyright (C) 2013-2014 Paul Franklin
 # Copyright (C) 2015      Craig J. Anderson
 # Copyright (C) 2017      Robert Carnell <bertcarnell_at_gmail.com>
+# Copyright (C) 2024-2025 Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -77,6 +78,7 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.proxy import CacheProxyDb
 
+
 # ------------------------------------------------------------------------
 #
 # Constants
@@ -112,6 +114,7 @@ class DetDescendantReport(Report):
         pagebgg       - Whether to include page breaks between generations.
         pageben       - Whether to include page break before End Notes.
         fulldates     - Whether to use full dates instead of just year.
+        showgender    - Whether to include prepend person name with gender.
         listc         - Whether to list children.
         list_children_spouses - Whether to list the spouses of the children
         incnotes      - Whether to include notes.
@@ -166,6 +169,7 @@ class DetDescendantReport(Report):
         self.pgbrkenotes = get_value("pageben")
         self.fulldate = get_value("fulldates")
         use_fulldate = self.fulldate
+        self.showgender = get_value("showgender")
         self.listchildren = get_value("listc")
         self.list_children_spouses = get_value("listc_spouses")
         self.inc_notes = get_value("incnotes")
@@ -462,6 +466,8 @@ class DetDescendantReport(Report):
         mark = utils.get_person_mark(self._db, person)
 
         self.doc.start_bold()
+        if self.showgender:
+            self.doc.write_text(utils.get_gender_symbol(person) + " ")
         self.doc.write_text(name, mark)
         if name[-1:] == ".":
             self.doc.write_text_citation("%s " % self.endnotes(person))
@@ -642,6 +648,8 @@ class DetDescendantReport(Report):
             name = self._name_display.display(mate)
             if not name:
                 name = self._("Unknown")
+            if self.showgender:
+                name = utils.get_gender_symbol(mate) + " " + name
             mark = utils.get_person_mark(self._db, mate)
             if family.get_relationship() == FamilyRelType.MARRIED:
                 self.doc.write_text(self._("Spouse: %s") % name, mark)
@@ -717,6 +725,8 @@ class DetDescendantReport(Report):
             child_name = self._name_display.display(child)
             if not child_name:
                 child_name = self._("Unknown")
+            if self.showgender:
+                child_name = utils.get_gender_symbol(child) + " " + child_name
             child_mark = utils.get_person_mark(self._db, child)
 
             if self.childref and self.prev_gen_handles.get(child_handle):
@@ -1125,6 +1135,10 @@ class DetDescendantOptions(MenuReportOptions):
         # What to include
 
         add_option = partial(menu.add_option, _("Include"))
+
+        showgender = BooleanOption(_("Show gender symbol in front of name"), True)
+        showgender.set_help(_("Whether to show gender symbol in front of name."))
+        add_option("showgender", showgender)
 
         listc = BooleanOption(_("Include children"), True)
         listc.set_help(_("Whether to list children."))
