@@ -13,7 +13,7 @@
 # Copyright (C) 2013-2014 Paul Franklin
 # Copyright (C) 2014      Gerald Kunzmann <g.kunzmann@arcor.de>
 # Copyright (C) 2017      Robert Carnell <bertcarnell_at_gmail.com>
-# Copyright (C) 2024      Dave Khuon
+# Copyright (C) 2024-2025 Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +45,6 @@ import math
 #
 # ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.utils.symbols import Symbols
 
 _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
@@ -72,7 +71,6 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.display.name import displayer as _nd
 
-_MSYM = Symbols()
 
 # ------------------------------------------------------------------------
 #
@@ -294,14 +292,6 @@ class DetAncestorReport(Report):
         new_gen_start = self.initial_sosa * gen_start  # 3
         return new_gen_start + (key - gen_start)  # 3+0
 
-    def get_genderSymbol(self, person):
-        """generate gender symbol to place before the person name"""
-        gndr = person.get_gender()
-        if gndr is not None:
-            return _MSYM.get_symbol_for_string(gndr) + " "
-        else:
-            return ""
-
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information"""
 
@@ -333,7 +323,7 @@ class DetAncestorReport(Report):
 
         self.doc.start_bold()
         if self.showgender:
-            self.doc.write_text(self.get_genderSymbol(person))
+            self.doc.write_text(utils.get_gender_symbol(person) + " ")
         self.doc.write_text(name, mark)
         if name[-1:] == ".":
             self.doc.write_text_citation("%s " % self.endnotes(person))
@@ -659,7 +649,7 @@ class DetAncestorReport(Report):
             if not child_name:
                 child_name = self._("Unknown")
             if self.showgender:
-                child_name = self.get_genderSymbol(child) + child_name
+                child_name = utils.get_gender_symbol(child) + " " + child_name
             child_mark = utils.get_person_mark(self._db, child)
 
             if self.childref and self.prev_gen_handles.get(child_handle):
@@ -789,7 +779,7 @@ class DetAncestorReport(Report):
                 mark = utils.get_person_mark(self._db, ind)
 
                 if self.showgender:
-                    name = self.get_genderSymbol(ind) + name
+                    name = utils.get_gender_symbol(ind) + " " + name
                 if family.get_relationship() == FamilyRelType.MARRIED:
                     self.doc.write_text(self._("Spouse: %s") % name, mark)
                 else:
