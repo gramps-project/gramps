@@ -30,6 +30,7 @@ gramps/gen/errors.py
 gramps/gen/git_revision.py
 gramps/gen/sort.py
 gramps/gen/soundex.py
+gramps/gen/types.py
 gramps/gen/updatecallback.py
 gramps/gen/user.py
 #
