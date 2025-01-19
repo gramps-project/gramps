@@ -37,6 +37,16 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsMoreThanNthGenerationDescendantOf
 #
 # -------------------------------------------------------------------------
@@ -52,11 +62,11 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         "person at least N generations away"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         try:
-            root_person = db.get_person_from_gramps_id(self.list[0])
+            root_person = db._get_raw_person_from_id_data(self.list[0])
             self.init_list(root_person, 0)
         except:
             pass
@@ -64,19 +74,19 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
     def reset(self):
         self.map.clear()
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map
 
-    def init_list(self, person, gen):
+    def init_list(self, person: Person, gen: int) -> None:
         if not person:
             return
         if gen >= int(self.list[1]):
             self.map.add(person.handle)
 
-        for fam_id in person.get_family_handle_list():
+        for fam_id in person.family_list:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
-                for child_ref in fam.get_child_ref_list():
+                for child_ref in fam.child_ref_list:
                     self.init_list(
                         self.db.get_person_from_handle(child_ref.ref), gen + 1
                     )

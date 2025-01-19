@@ -46,3 +46,4 @@ class HasNote(HasNoteBase):
 
     name = _("Families having <count> notes")
     description = _("Matches families having a certain number notes")
+    table = "family"

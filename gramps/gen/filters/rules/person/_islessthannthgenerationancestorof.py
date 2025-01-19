@@ -37,6 +37,16 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import List, Set, Tuple
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsLessThanNthGenerationAncestorOf
 #
 # -------------------------------------------------------------------------
@@ -52,17 +62,17 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         "of a specified person not more than N generations away"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         person = db.get_person_from_gramps_id(self.list[0])
         if person:
-            root_handle = person.get_handle()
+            root_handle = person.handle
             if root_handle:
                 self.init_ancestor_list(root_handle)
 
-    def init_ancestor_list(self, root_handle):
-        queue = [(root_handle, 1)]  # generation 1 is root
+    def init_ancestor_list(self, root_handle: str):
+        queue: List[Tuple[str, int]] = [(root_handle, 1)]  # generation 1 is root
         while queue:
             handle, gen = queue.pop(0)  # pop off front of queue
             if handle in self.map:
@@ -72,12 +82,14 @@ class IsLessThanNthGenerationAncestorOf(Rule):
             gen += 1
             if gen <= int(self.list[1]):
                 p = self.db.get_person_from_handle(handle)
-                fam_id = p.get_main_parents_family_handle()
+                fam_id = (
+                    p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
+                )
                 if fam_id:
                     fam = self.db.get_family_from_handle(fam_id)
                     if fam:
-                        f_id = fam.get_father_handle()
-                        m_id = fam.get_mother_handle()
+                        f_id = fam.father_handle
+                        m_id = fam.mother_handle
                         # append to back of queue:
                         if f_id:
                             queue.append((f_id, gen))
@@ -87,5 +99,5 @@ class IsLessThanNthGenerationAncestorOf(Rule):
     def reset(self):
         self.map.clear()
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map

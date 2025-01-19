@@ -38,6 +38,16 @@ from ._matchesfilter import MatchesFilter
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsDescendantOfFilterMatch
 #
 # -------------------------------------------------------------------------
@@ -52,16 +62,16 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         "Matches people that are descendants " "of anybody matched by a filter"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         try:
             if int(self.list[1]):
-                first = 0
+                first = False
             else:
-                first = 1
+                first = True
         except IndexError:
-            first = 1
+            first = True
 
         self.filt = MatchesFilter(self.list[0:1])
         self.filt.requestprepare(db, user)
@@ -74,7 +84,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         for person in db.iter_people():
             if user:
                 user.step_progress()
-            if self.filt.apply(db, person):
+            if self.filt.apply_to_one(db, person):
                 self.init_list(person, first)
         if user:
             user.end_progress()
@@ -83,5 +93,5 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         self.filt.requestreset()
         self.map.clear()
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map

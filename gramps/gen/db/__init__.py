@@ -71,3 +71,5 @@ from .exceptions import *
 from .undoredo import *
 from .utils import *
 from .generic import *
+
+Database = DbGeneric

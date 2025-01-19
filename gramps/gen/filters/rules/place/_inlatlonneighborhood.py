@@ -40,6 +40,16 @@ from ....utils.place import conv_lat_lon
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Union
+from gramps.gen.lib import Place
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # InLatLonNeighborhood
 #
 # -------------------------------------------------------------------------
@@ -61,7 +71,9 @@ class InLatLonNeighborhood(Rule):
     )
     category = _("Position filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
+        self.halfheight: Union[float, None] = None
+        self.halfwidth: Union[float, None] = None
         if self.list[0]:
             try:
                 self.halfheight = float(self.list[2]) / 2.0
@@ -131,7 +143,7 @@ class InLatLonNeighborhood(Rule):
                     self.E2 = 180.0
                     self.W = -180
 
-    def apply(self, db, place):
+    def apply_to_one(self, db: Database, place: Place) -> bool:
         if self.halfheight == -1 and self.halfwidth == -1:
             return False
 
@@ -146,10 +158,10 @@ class InLatLonNeighborhood(Rule):
         # now we know at least one is given in the filter and is valid
 
         # the place we look at must have lat AND lon entered
-        if not (place.get_latitude().strip and place.get_longitude().strip()):
+        if not (place.lat.strip() and place.long.strip()):
             return False
 
-        latpl, lonpl = conv_lat_lon(place.get_latitude(), place.get_longitude(), "D.D8")
+        latpl, lonpl = conv_lat_lon(place.lat, place.long, "D.D8")
         if latpl and lonpl:
             latpl = float(latpl)
             lonpl = float(lonpl)
