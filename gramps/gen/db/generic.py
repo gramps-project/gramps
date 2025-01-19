@@ -38,7 +38,7 @@ import random
 import re
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Type
 
 # ------------------------------------------------------------------------
 #
@@ -63,6 +63,20 @@ from ..lib import (
 from ..lib.serialize import from_dict, BlobSerializer, JSONSerializer
 from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher
+from ..types import (
+    AnyHandle,
+    PersonHandle,
+    EventHandle,
+    FamilyHandle,
+    PlaceHandle,
+    SourceHandle,
+    RepositoryHandle,
+    CitationHandle,
+    MediaHandle,
+    NoteHandle,
+    TagHandle,
+    TableObjectType,
+)
 from ..updatecallback import UpdateCallback
 from ..utils.callback import Callback
 from ..utils.id import create_id
@@ -355,6 +369,8 @@ class Cursor:
 # DbGeneric class
 #
 # ------------------------------------------------------------------------
+
+
 class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
@@ -1382,7 +1398,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def _get_from_handle(self, obj_key, obj_class, handle):
+    def _get_from_handle(
+        self, obj_key, obj_class: Type[TableObjectType], handle: AnyHandle
+    ) -> TableObjectType:
         if handle is None:
             raise HandleError("Handle is None")
         if not handle:
@@ -1393,34 +1411,34 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         raise HandleError(f"Handle {handle} not found")
 
-    def get_event_from_handle(self, handle):
+    def get_event_from_handle(self, handle: EventHandle) -> Event:
         return self._get_from_handle(EVENT_KEY, Event, handle)
 
-    def get_family_from_handle(self, handle):
+    def get_family_from_handle(self, handle: FamilyHandle) -> Family:
         return self._get_from_handle(FAMILY_KEY, Family, handle)
 
-    def get_repository_from_handle(self, handle):
+    def get_repository_from_handle(self, handle: RepositoryHandle) -> Repository:
         return self._get_from_handle(REPOSITORY_KEY, Repository, handle)
 
-    def get_person_from_handle(self, handle):
+    def get_person_from_handle(self, handle: PersonHandle) -> Person:
         return self._get_from_handle(PERSON_KEY, Person, handle)
 
-    def get_place_from_handle(self, handle):
+    def get_place_from_handle(self, handle: PlaceHandle) -> Place:
         return self._get_from_handle(PLACE_KEY, Place, handle)
 
-    def get_citation_from_handle(self, handle):
+    def get_citation_from_handle(self, handle: CitationHandle) -> Citation:
         return self._get_from_handle(CITATION_KEY, Citation, handle)
 
-    def get_source_from_handle(self, handle):
+    def get_source_from_handle(self, handle: SourceHandle) -> Source:
         return self._get_from_handle(SOURCE_KEY, Source, handle)
 
-    def get_note_from_handle(self, handle):
+    def get_note_from_handle(self, handle: NoteHandle) -> Note:
         return self._get_from_handle(NOTE_KEY, Note, handle)
 
-    def get_media_from_handle(self, handle):
+    def get_media_from_handle(self, handle: MediaHandle) -> Media:
         return self._get_from_handle(MEDIA_KEY, Media, handle)
 
-    def get_tag_from_handle(self, handle):
+    def get_tag_from_handle(self, handle: TagHandle) -> Tag:
         return self._get_from_handle(TAG_KEY, Tag, handle)
 
     ################################################################
