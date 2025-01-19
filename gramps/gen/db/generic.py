@@ -64,6 +64,7 @@ from ..lib.researcher import Researcher
 from ..updatecallback import UpdateCallback
 from ..utils.callback import Callback
 from ..utils.id import create_id
+from ..utils.logging import log_once_per_level
 from . import (
     CITATION_KEY,
     DBLOGNAME,
@@ -2742,42 +2743,389 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     # New names for methods:
 
-    get_person = get_person_from_handle
-    get_family = get_family_from_handle
-    get_source = get_source_from_handle
-    get_citation = get_citation_from_handle
-    get_event = get_event_from_handle
-    get_media = get_media_from_handle
-    get_place = get_place_from_handle
-    get_repository = get_repository_from_handle
-    get_note = get_note_from_handle
+    def get_person_from_handle(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_person_from_handle has been deprecated; please use db.get_person",
+        )
+        return self.get_person(*args, **kwargs)
 
-    get_person_data = get_raw_person_data
-    get_family_data = get_raw_family_data
-    get_source_data = get_raw_source_data
-    get_citation_data = get_raw_citation_data
-    get_event_data = get_raw_event_data
-    get_media_data = get_raw_media_data
-    get_place_data = get_raw_place_data
-    get_repository_data = get_raw_repository_data
-    get_note_data = get_raw_note_data
+    def get_family_from_handle(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_family_from_handle has been deprecated; please use db.get_family",
+        )
+        return self.get_family(*args, **kwargs)
 
-    get_person_from_id = get_person_from_gramps_id
-    get_family_from_id = get_family_from_gramps_id
-    get_source_from_id = get_source_from_gramps_id
-    get_citation_from_id = get_citation_from_gramps_id
-    get_event_from_id = get_event_from_gramps_id
-    get_media_from_id = get_media_from_gramps_id
-    get_place_from_id = get_place_from_gramps_id
-    get_repository_from_id = get_repository_from_gramps_id
-    get_note_from_id = get_note_from_gramps_id
+    def get_source_from_handle(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_source_from_handle has been deprecated; please use db.get_source",
+        )
+        return self.get_source(*args, **kwargs)
 
-    get_person_data_from_id = _get_raw_person_from_id_data
-    get_family_data_from_id = _get_raw_family_from_id_data
-    get_source_data_from_id = _get_raw_source_from_id_data
-    get_citation_data_from_id = _get_raw_citation_from_id_data
-    get_event_data_from_id = _get_raw_event_from_id_data
-    get_media_data_from_id = _get_raw_media_from_id_data
-    get_place_data_from_id = _get_raw_place_from_id_data
-    get_repository_data_from_id = _get_raw_repository_from_id_data
-    get_note_data_from_id = _get_raw_note_from_id_data
+    def get_citation_from_handle(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_citation_from_handle has been deprecated; please use db.get_citation",
+        )
+        return self.get_citation(*args, **kwargs)
+
+    def get_event_from_handle(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_event_from_handle has been deprecated; please use db.get_event",
+        )
+        return self.get_event(*args, **kwargs)
+
+    def get_media_from_handle(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_media_from_handle has been deprecated; please use db.get_media",
+        )
+        return self.get_media(self, *args, **kwargs)
+
+    def get_place_from_handle(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_place_from_handle has been deprecated; please use db.get_place",
+        )
+        return self.get_place(self, *args, **kwargs)
+
+    def get_repository_from_handle(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_repository_from_handle has been deprecated; please use db.get_repository",
+        )
+        return self.get_repository(self, *args, **kwargs)
+
+    def get_note_from_handle(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_note_from_handle has been deprecated; please use db.get_note",
+        )
+        return self.get_note(self, *args, **kwargs)
+
+    def get_raw_person_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_raw_person_data has been deprecated; please use db.get_person_data",
+        )
+        return self.get_person_data(self, *args, **kwargs)
+
+    def get_raw_family_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_raw_family_data has been deprecated; please use db.get_family_data",
+        )
+        return self.get_family_data(self, *args, **kwargs)
+
+    def get_raw_source_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_raw_source_data has been deprecated; please use db.get_source_data",
+        )
+        return self.get_source_data(self, *args, **kwargs)
+
+    def get_raw_citation_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_raw_citation_data has been deprecated; please use db.get_citation_data",
+        )
+        return self.get_citation_data(self, *args, **kwargs)
+
+    def get_raw_event_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_raw_event_data has been deprecated; please use db.get_event_data",
+        )
+        return self.get_event_data(self, *args, **kwargs)
+
+    def get_raw_media_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_raw_media_data has been deprecated; please use db.get_media_data",
+        )
+        return self.get_media_data(self, *args, **kwargs)
+
+    def get_raw_place_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_raw_place_data has been deprecated; please use db.get_place_data",
+        )
+        return self.get_place_data(self, *args, **kwargs)
+
+    def get_raw_repository_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_raw_repository_data has been deprecated; please use db.get_repository_data",
+        )
+        return self.get_repository_data(self, *args, **kwargs)
+
+    def get_raw_note_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_raw_note_data has been deprecated; please use db.get_note_data",
+        )
+        return self.get_note_data(self, *args, **kwargs)
+
+    def get_person_from_gramps_id(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_person_from_gramps_id has been deprecated; please use db.get_person_from_id",
+        )
+        return self.get_person_from_id(self, *args, **kwargs)
+
+    def get_family_from_gramps_id(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_family_from_gramps_id has been deprecated; please use db.get_family_from_id",
+        )
+        return self.get_family_from_id(self, *args, **kwargs)
+
+    def get_source_from_gramps_id(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_source_from_gramps_id has been deprecated; please use db.get_source_from_id",
+        )
+        return self.get_source_from_id(self, *args, **kwargs)
+
+    def get_citation_from_gramps_id(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_citation_from_gramps_id has been deprecated; please use db.get_citation_from_id",
+        )
+        return self.get_citation_from_id(self, *args, **kwargs)
+
+    def get_event_from_gramps_id(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_event_from_gramps_id has been deprecated; please use db.get_event_from_id",
+        )
+        return self.get_event_from_id(self, *args, **kwargs)
+
+    def get_media_from_gramps_id(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_media_from_gramps_id has been deprecated; please use db.get_media_from_id",
+        )
+        return self.get_media_from_id(self, *args, **kwargs)
+
+    def get_place_from_gramps_id(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_place_from_gramps_id has been deprecated; please use db.get_place_from_id",
+        )
+        return self.get_place_from_id(self, *args, **kwargs)
+
+    def get_repository_from_gramps_id(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_repository_from_gramps_id has been deprecated; please use db.get_repository_from_id",
+        )
+        return self.get_repository_from_id(self, *args, **kwargs)
+
+    def get_note_from_gramps_id(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.get_note_from_gramps_id has been deprecated; please use db.get_note_from_id",
+        )
+        return self.get_note_from_id(self, *args, **kwargs)
+
+    def _get_raw_person_from_id_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._get_raw_person_from_id_data has been deprecated; please use db.get_person_data_from_id",
+        )
+        return self.get_person_data_from_id(self, *args, **kwargs)
+
+    def _get_raw_family_from_id_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._get_raw_family_from_id_data has been deprecated; please use db.get_family_data_from_id",
+        )
+        return self.get_family_data_from_id(self, *args, **kwargs)
+
+    def _get_raw_source_from_id_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._get_raw_source_from_id_data has been deprecated; please use db.get_source_data_from_id",
+        )
+        return self.get_source_data_from_id(self, *args, **kwargs)
+
+    def _get_raw_citation_from_id_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._get_raw_citation_from_id_data has been deprecated; please use db.get_citation_data_from_id",
+        )
+        return self.get_citation_data_from_id(self, *args, **kwargs)
+
+    def _get_raw_event_from_id_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._get_raw_event_from_id_data has been deprecated; please use db.get_event_data_from_id",
+        )
+        return self.get_event_data_from_id(self, *args, **kwargs)
+
+    def _get_raw_media_from_id_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._get_raw_media_from_id_data has been deprecated; please use db.get_media_data_from_id",
+        )
+        return self.get_media_data_from_id(self, *args, **kwargs)
+
+    def _get_raw_place_from_id_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._get_raw_place_from_id_data has been deprecated; please use db.get_place_data_from_id",
+        )
+        return self.get_place_data_from_id(self, *args, **kwargs)
+
+    def _get_raw_repository_from_id_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._get_raw_repository_from_id_data has been deprecated; please use db.get_repository_data_from_id",
+        )
+        return self.get_repository_data_from_id(self, *args, **kwargs)
+
+    def _get_raw_note_from_id_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._get_raw_note_from_id_data has been deprecated; please use db.get_note_data_from_id",
+        )
+        return self.get_note_data_from_id(self, *args, **kwargs)
+
+    def _iter_raw_person_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._iter_raw_person_data has been deprecated; please use db.iter_person_data",
+        )
+        return self.iter_person_data(self, *args, **kwargs)
+
+    def _iter_raw_family_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._iter_raw_family_data has been deprecated; please use db.iter_family_data",
+        )
+        return self.iter_family_data(self, *args, **kwargs)
+
+    def _iter_raw_event_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._iter_raw_event_data has been deprecated; please use db.iter_event_data",
+        )
+        return self.iter_event_data(self, *args, **kwargs)
+
+    def _iter_raw_place_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._iter_raw_place_data has been deprecated; please use db.iter_place_data",
+        )
+        return self.iter_place_data(self, *args, **kwargs)
+
+    def _iter_raw_repository_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._iter_raw_repository_data has been deprecated; please use db.iter_repository_data",
+        )
+        return self.iter_repository_data(self, *args, **kwargs)
+
+    def _iter_raw_source_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._iter_raw_source_data has been deprecated; please use db.iter_source_data",
+        )
+        return self.iter_source_data(self, *args, **kwargs)
+
+    def _iter_raw_citation_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._iter_raw_citation_data has been deprecated; please use db.iter_citation_data",
+        )
+        return self.iter_citation_data(self, *args, **kwargs)
+
+    def _iter_raw_media_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._iter_raw_media_data has been deprecated; please use db.iter_media_data",
+        )
+        return self.iter_media_data(self, *args, **kwargs)
+
+    def _iter_raw_note_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._iter_raw_note_data has been deprecated; please use db.iter_note_data",
+        )
+        return self.iter_note_data(self, *args, **kwargs)
+
+    def _iter_raw_tag_data(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db._iter_raw_tag_data has been deprecated; please use db.iter_tag_data",
+        )
+        return self.iter_tag_data(self, *args, **kwargs)
+
+    def iter_citations(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.iter_citations has been deprecated; please use db.iter_citation",
+        )
+        return self.iter_citation(self, *args, **kwargs)
+
+    def iter_events(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO, "db.iter_events has been deprecated; please use db.iter_event"
+        )
+        return self.iter_event(self, *args, **kwargs)
+
+    def iter_families(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.iter_families has been deprecated; please use db.iter_family",
+        )
+        return self.iter_family(self, *args, **kwargs)
+
+    def iter_media(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO, "db.iter_media has been deprecated; please use db.iter_media"
+        )
+        return self.iter_media(self, *args, **kwargs)
+
+    def iter_notes(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO, "db.iter_notes has been deprecated; please use db.iter_note"
+        )
+        return self.iter_note(self, *args, **kwargs)
+
+    def iter_people(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.iter_people has been deprecated; please use db.iter_person",
+        )
+        return self.iter_person(self, *args, **kwargs)
+
+    def iter_places(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO, "db.iter_places has been deprecated; please use db.iter_place"
+        )
+        return self.iter_place(self, *args, **kwargs)
+
+    def iter_repositories(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.iter_repositories has been deprecated; please use db.iter_repository",
+        )
+        return self.iter_repository(self, *args, **kwargs)
+
+    def iter_sources(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO,
+            "db.iter_sources has been deprecated; please use db.iter_source",
+        )
+        return self.iter_source(self, *args, **kwargs)
+
+    def iter_tags(self, *args, **kwargs):
+        log_once_at_level(
+            logging.INFO, "db.iter_tags has been deprecated; please use db.iter_tag"
+        )
+        return self.iter_tag(self, *args, **kwargs)
