@@ -30,6 +30,7 @@ This module is used to share variables, enums and functions between all modules
 from collections import defaultdict
 from hashlib import md5
 import re
+import os
 import logging
 from xml.sax.saxutils import escape
 
@@ -649,21 +650,27 @@ else:
     AlphabeticIndex = localAlphabeticIndex
 
 
-def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False):
+def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False, only=True, new_page=False, ext=None):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
     SurnameListPage, PlaceListPage, and EventList
 
     @param: index_list -- a dictionary of either letters or words
     @param: rlocale    -- The locale to use
+    @param: rtl        -- Do we use rtl language ?
+    @param: only       -- Used only for alphabet letters
+    @param: new_page   -- Used to have multiple index pages
+    @param: ext        -- The default extension when new_page is used
     """
     # if no letters, return None to its callers
     if not sorted_alpha_index:
         return None
 
     num_ltrs = len(sorted_alpha_index)
-    num_of_cols = 26
-    num_of_rows = (num_ltrs // num_of_cols) + 1
+    # num_of_cols = 26
+    num_of_cols = num_ltrs
+    # num_of_rows = (num_ltrs // num_of_cols) + 1
+    num_of_rows = 1
 
     # begin alphabet navigation division
     with Html("div", id=rtl) as alphabetnavigation:
@@ -690,7 +697,32 @@ def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False):
                     dup_index += 1
                 output.append(menu_item)
 
-                hyper = Html("a", menu_item, title=title_str, href="#%s" % link)
+                check_cs = False
+                if new_page:
+                    new_index, extension = os.path.splitext(new_page)
+                    if extension == "":
+                        extension = ext
+                    pathl = os.path.dirname(new_index)
+                    filel = os.path.basename(new_index)
+                    if len(filel) > 6:  # 6 is the length of "events"
+                        url = "/".join((pathl, "events" + str(index + 1) + extension))
+                    else:
+                        url = "/".join((pathl, "events" + extension))
+                    hyper = Html("a", filel, title=title_str, href=url)
+                    if new_page == url:
+                        check_cs = True
+                    temp_cs = 'class = "CurrentSection"'
+                    check_cs = temp_cs if check_cs else False
+                    if cols != 0:
+                        hyper = Html("a", menu_item, title=title_str, href="%s" % new_index + str(cols) + extension)
+                    else:
+                        hyper = Html("a", menu_item, title=title_str, href="%s" % new_index + extension)
+                else:
+                    hyper = Html("a", menu_item, title=title_str, href="#%s" % link)
+                if check_cs:
+                    Html("li", hyper, attr=check_cs, inline=True)
+                else:
+                    Html("li", hyper, inline=True)
                 unordered.extend(Html("li", hyper, inline=True))
 
                 index += 1
@@ -700,6 +732,65 @@ def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False):
             alphabetnavigation += unordered
 
     return alphabetnavigation
+
+
+def partial_navigation(partial_index, rlocale=glocale, rtl=False, only=True, new_page=False, ext=None):
+    """
+    Will create the partial navigation bar for big indexes
+
+    @param: partial_index -- a dictionary of (name, handle)
+    @param: rlocale       -- The locale to use
+    @param: rtl           -- Do we use rtl language ?
+    @param: only          -- Used only for alphabet letters
+    @param: new_page      -- Used to have multiple index pages
+    @param: ext           -- The default extension when new_page is used
+    """
+    # if no letters, return None to its callers
+    if not partial_index:
+        return None
+
+    num_pages = len(partial_index)
+    num_of_rows = 1
+
+    # begin alphabet navigation division
+    with Html("div", id=rtl, class_="pnav") as partialnavigation:
+        index = 0
+        for dummy_row in range(num_of_rows):
+            unordered = Html("ul", class_=rtl)
+
+            while index < num_pages:
+                name, handle = partial_index[index]
+                title_txt = "Go to:"
+                title_str = rlocale.translation.sgettext(title_txt) + name
+                check_cs = False
+                if new_page:
+                    if index == 0:
+                        new_index = new_page
+                    else:
+                        new_index = new_page[:-1]  # + str(index)
+                    new_index, extension = os.path.splitext(new_page)
+                    if extension == "":
+                        extension = ext
+                    if new_page == new_index:
+                        check_cs = True
+                    temp_cs = 'class = "CurrentSection"'
+                    check_cs = temp_cs if check_cs else False
+                    if index == 0:
+                        hyper = Html("a", name + " => ", title=title_str, href="%s" % new_index + extension)
+                    else:
+                        hyper = Html("a", name + " => ", title=title_str, href="%s" % new_index + "_%d" % index + extension)
+                else:
+                    hyper = Html("a", name, title=title_str, href="#%s" % "link")
+                if check_cs:
+                    Html("li", hyper, attr=check_cs, inline=True)
+                else:
+                    Html("li", hyper, inline=True)
+                unordered.extend(Html("li", hyper, inline=True))
+
+                index += 1
+            num_of_rows -= 1
+            partialnavigation += unordered
+    return partialnavigation
 
 
 def _has_webpage_extension(url):

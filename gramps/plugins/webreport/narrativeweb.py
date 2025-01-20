@@ -2210,6 +2210,12 @@ class NavWebOptions(MenuReportOptions):
         self.__toggle.set_help(_("Check it if you want to open/close" " a section"))
         addopt("toggle", self.__toggle)
 
+        self.__splitindex = NumberOption(_("Max. rows in an index"), 500, 10, 2000)
+        self.__splitindex.set_help(
+            _("The maximum number of rows to include in an index page")
+        )
+        addopt("splitindex", self.__splitindex)
+
     def __add_more_pages(self, menu):
         """
         Add more extra pages to the report

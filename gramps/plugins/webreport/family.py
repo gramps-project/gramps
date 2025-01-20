@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -43,6 +42,7 @@ Classe:
 # ------------------------------------------------
 from collections import defaultdict, OrderedDict
 from decimal import getcontext
+import unicodedata
 import logging
 
 # ------------------------------------------------
@@ -60,6 +60,7 @@ from gramps.plugins.webreport.basepage import BasePage
 from gramps.gen.display.name import displayer as _nd
 from gramps.plugins.webreport.common import (
     alphabet_navigation,
+    partial_navigation,
     html_escape,
     FULLCLEAR,
     AlphabeticIndex,
@@ -228,19 +229,27 @@ class FamilyPages(BasePage):
         first_family = False
         return (ldatec, first_person, first_family)
 
-    def familylistpage(self, report, the_lang, the_title, fam_list):
+    def part_familylistpage(
+        self,
+        report,
+        index_list,
+        name,
+        letter,
+        family_handle_list,
+        part=None,
+        subp=None,
+        partial_list=None,
+    ):
         """
-        Create a family index
-
-        @param: report    -- The instance of the main report class for
-                             this report
-        @param: the_lang  -- The lang to process
-        @param: the_title -- The title page related to the language
-        @param: fam_list  -- The handle for the place to add
+        Create a partial family index
         """
-        BasePage.__init__(self, report, the_lang, the_title)
-
-        output_file, sio = self.report.create_file("families")
+        nav_name = part_name = name
+        if part != 0 and subp != 0:
+            part_name += str(part)
+            nav_name = part_name
+        if subp and subp != 0:
+            part_name += subp
+        output_file, sio = self.report.create_file(part_name)
         result = self.write_header(self._("Families"))
         familieslistpage, dummy_head, dummy_body, outerwrapper = result
         ldatec = 0
@@ -260,42 +269,32 @@ class FamilyPages(BasePage):
             )
             relationlist += Html("p", msg, id="description")
 
-            # go through all the families, and construct a dictionary of all the
-            # people and the families they are involved in. Note that the people
-            # in the list may be involved in OTHER families, that are not listed
-            # because they are not in the original family list.
-            pers_fam_dict = defaultdict(list)
-            for family_handle in fam_list:
-                family = self.r_db.get_family_from_handle(family_handle)
-                if family:
-                    if family.get_change_time() > ldatec:
-                        ldatec = family.get_change_time()
-                    husband_handle = family.get_father_handle()
-                    spouse_handle = family.get_mother_handle()
-                    if husband_handle:
-                        pers_fam_dict[husband_handle].append(family)
-                    if spouse_handle:
-                        pers_fam_dict[spouse_handle].append(family)
-
-            # Assemble all the people, we no longer care about their families
-            index = AlphabeticIndex(self.rlocale)
-            for person_handle, dummy_family in pers_fam_dict.items():
-                person = self.r_db.get_person_from_handle(person_handle)
-                surname = get_surname_from_person(self.r_db, person)
-                index.addRecord(surname, person_handle)
-
-            # Extract the buckets from the index
-            index_list = []
-            index.resetBucketIterator()
-            while index.nextBucket():
-                if index.bucketRecordCount != 0:
-                    index_list.append(index.bucketLabel)
-
             # Output the navigation
             # add alphabet navigation
-            alpha_nav = alphabet_navigation(index_list, self.rlocale, rtl=self.dir)
+            alpha_nav = alphabet_navigation(
+                index_list,
+                self.rlocale,
+                rtl=self.dir,
+                new_page="families",
+                ext=self.ext,
+            )
             if alpha_nav:
                 relationlist += alpha_nav
+
+            if part is not None:
+                # We need to create a new navigation tab for partial page index.
+                partial_nav = partial_navigation(
+                    partial_list,
+                    self.rlocale,
+                    rtl=self.dir,
+                    ext=self.ext,
+                    new_page=nav_name,
+                )
+                if partial_nav is not None:
+                    relationlist += Html(
+                        "div", style="clear: both;"
+                    )  # This to align the next div to the left.
+                    relationlist += partial_nav
 
             # begin families table and table head
             with Html("table", class_="infolist relationships " + self.dir) as table:
@@ -322,60 +321,31 @@ class FamilyPages(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                # for each bucket, output the people and their families in that
-                # bucket
-                index.resetBucketIterator()
-                output = []
-                dup_index = 0
-                while index.nextBucket():
-                    if index.bucketRecordCount != 0:
-                        bucket_letter = index.bucketLabel
-                        bucket_link = bucket_letter
-                        if bucket_letter in output:
-                            bucket_link = "%s (%i)" % (bucket_letter, dup_index)
-                            dup_index += 1
-                        output.append(bucket_letter)
-                        # Assemble a dict of all the people in this bucket.
-                        surname_ppl_handle_dict = OrderedDict()
-                        while index.nextRecord():
-                            # The records are returned sorted by recordName,
-                            # which is surname. we need to retain that order but
-                            # in addition sort by the rest of the name
-                            person_surname = index.recordName
-                            person_handle = index.recordData
-                            if person_surname in surname_ppl_handle_dict.keys():
-                                surname_ppl_handle_dict[person_surname].append(
-                                    person_handle
+                first_person = True
+                for surname, handle_list in family_handle_list:
+                    # get person from sorted database list
+                    for person_handle in sorted(
+                        handle_list, key=self.sort_on_name_and_grampsid
+                    ):
+                        person = self.r_db.get_person_from_handle(person_handle)
+                        if person:
+                            family_list = person.get_family_handle_list()
+                            first_family = True
+                            for family_handle in family_list:
+                                (
+                                    ldatec,
+                                    first_person,
+                                    first_family,
+                                ) = self.__output_family(
+                                    ldatec,
+                                    family_handle,
+                                    person_handle,
+                                    tbody,
+                                    letter,
+                                    letter,
+                                    first_person,
+                                    first_family,
                                 )
-                            else:
-                                surname_ppl_handle_dict[person_surname] = [
-                                    person_handle
-                                ]
-                        first_person = True
-                        for surname, handle_list in surname_ppl_handle_dict.items():
-                            # get person from sorted database list
-                            for person_handle in sorted(
-                                handle_list, key=self.sort_on_name_and_grampsid
-                            ):
-                                person = self.r_db.get_person_from_handle(person_handle)
-                                if person:
-                                    family_list = person.get_family_handle_list()
-                                    first_family = True
-                                    for family_handle in family_list:
-                                        (
-                                            ldatec,
-                                            first_person,
-                                            first_family,
-                                        ) = self.__output_family(
-                                            ldatec,
-                                            family_handle,
-                                            person_handle,
-                                            tbody,
-                                            bucket_letter,
-                                            bucket_link,
-                                            first_person,
-                                            first_family,
-                                        )
 
         # add clearline for proper styling
         # add footer section
@@ -385,6 +355,148 @@ class FamilyPages(BasePage):
         # send page out for processing
         # and close the file
         self.xhtml_writer(familieslistpage, output_file, sio, ldatec)
+
+    def familylistpage(self, report, the_lang, the_title, fam_list):
+        """
+        Create a family index
+
+        @param: report    -- The instance of the main report class for
+                             this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
+        @param: fam_list  -- The handle for the place to add
+        """
+        BasePage.__init__(self, report, the_lang, the_title)
+        ldatec = 0
+
+        pers_fam_dict = defaultdict(list)
+        for family_handle in fam_list:
+            family = self.r_db.get_family_from_handle(family_handle)
+            if family:
+                if family.get_change_time() > ldatec:
+                    ldatec = family.get_change_time()
+                husband_handle = family.get_father_handle()
+                spouse_handle = family.get_mother_handle()
+                if husband_handle:
+                    pers_fam_dict[husband_handle].append(family)
+                if spouse_handle:
+                    pers_fam_dict[spouse_handle].append(family)
+
+        # Assemble all the people, we no longer care about their families
+        index = AlphabeticIndex(self.rlocale)
+        for person_handle, dummy_family in pers_fam_dict.items():
+            person = self.r_db.get_person_from_handle(person_handle)
+            surname = get_surname_from_person(self.r_db, person)
+            index.addRecord(surname, person_handle)
+
+        # Extract the buckets from the index
+        index_list = []
+        index.resetBucketIterator()
+        # for each bucket, output the people and their families in that
+        # bucket
+        surname_ppl_handle_dict = OrderedDict()
+        while index.nextBucket():
+            if index.bucketRecordCount != 0:
+                letter = index.bucketLabel
+                # Assemble a dict of all the people in this bucket.
+                bletter = (
+                    unicodedata.normalize("NFKD", letter)[0]
+                    if len(letter) > 0
+                    else letter
+                )
+                while index.nextRecord():
+                    # The records are returned sorted by recordName,
+                    # which is surname. we need to retain that order but
+                    # in addition sort by the rest of the name
+                    person_surname = index.recordName
+                    person_handle = index.recordData
+                    if person_surname in surname_ppl_handle_dict.keys():
+                        surname_ppl_handle_dict[person_surname].append(person_handle)
+                    else:
+                        surname_ppl_handle_dict[person_surname] = [person_handle]
+        # sort by surname
+        surname_handle_list = surname_ppl_handle_dict
+        extended_handle_list = defaultdict(list)
+        row_count = report.options["splitindex"]
+        max_letter_rows = defaultdict(int)
+        index_list = []
+        for (bletter, hdlel) in surname_handle_list.items():
+            bletter = (
+                unicodedata.normalize("NFKD", bletter)[0]
+                if len(bletter) > 0
+                else bletter
+            )
+            bletter = bletter[0] if len(bletter) > 0 else bletter
+            bletter = bletter.upper() if bletter.isalpha() else "…"
+            if bletter not in index_list:
+                index_list.append(bletter)
+            max_letter_rows[bletter] = len(hdlel)
+            for hdle in hdlel:
+                extended_handle_list[bletter].append(hdle)
+        extended_handle_list = list(extended_handle_list.items())
+        max_rows = max_letter_rows[bletter]
+        max_rows += row_count  # For the last incomplete page
+        max_rows = (
+            int(max_rows / report.options["splitindex"]) * report.options["splitindex"]
+        )
+        page = 0
+        for (bletter, hdle_list) in extended_handle_list:
+            current = [(bletter, hdle_list)]
+            if len(hdle_list) <= row_count:
+                name = "families"
+                self.part_familylistpage(
+                    report, index_list, name, bletter, current, part=page
+                )
+            else:
+                nname = ""
+                partial_list = []
+                hdle1_list = []
+                name_format = self.report.options["name_format"]
+                for handle in hdle_list:
+                    person = self.r_db.get_person_from_handle(handle)
+                    primary_name = person.get_primary_name()
+                    nname = Name(primary_name)
+                    nname.set_display_as(name_format)
+                    fname = _nd.display_name(nname)
+                    hdle1_list.append((fname, handle))
+                hdle1_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
+                for idx in range(0, int(len(hdle1_list) / row_count) + 1, 1):
+                    if (idx * row_count) < len(hdle1_list):
+                        handle = hdle1_list[idx * row_count]
+                        partial_list.append(hdle1_list[idx * row_count])
+                sub_page = 0
+                part = 0
+                start = 0
+                while start < len(hdle1_list):
+                    phdle_list = []
+                    for nbh in range(len(hdle1_list)):
+                        if nbh < start:
+                            continue
+                        if nbh >= start + row_count:
+                            break
+                        if nbh > len(hdle1_list):
+                            break
+                        phdle_list.append(hdle1_list[nbh][1])
+                    plist = [(bletter, phdle_list)]
+                    name = "families"
+                    if sub_page != 0:
+                        subp = "_%d" % sub_page
+                    else:
+                        subp = None
+                    self.part_familylistpage(
+                        report,
+                        index_list,
+                        name,
+                        bletter,
+                        plist,
+                        part=page,
+                        subp=subp,
+                        partial_list=partial_list,
+                    )
+                    part += 1
+                    start += row_count
+                    sub_page += 1
+            page += 1
 
     def familypage(self, report, the_lang, the_title, family_handle):
         """
