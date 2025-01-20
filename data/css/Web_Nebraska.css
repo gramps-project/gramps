@@ -285,6 +285,12 @@ div#alphanav ul li a:hover, div#nav ul li a:hover, div#subnavigation ul li a:hov
     background-color: #000;
     color: #FFF;
 }
+div#ltr.pnav ul.ltr li.CurrentSection, div#rtl.pnav ul.rtl li.CurrentSection,
+div#ltr ul.ltr li.CurrentSection, div#rtl ul.rtl li.CurrentSection {
+    font-weight: bold;
+    font-style: italic;
+    background-color: #F2F6EE;
+}
 div#nav ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
     padding: 4px 2px 3px 2px;
     border-right: solid 1px #542;
@@ -302,6 +308,9 @@ div#nav li.lang {
     position: relative;
     font-size: smaller;
     font-weight: bold;
+    padding-top: 3px;
+    padding-left: 8px;
+    font-size: smaller;
 }
 div#nav li.lang:hover > ul {
     visibility: visible;

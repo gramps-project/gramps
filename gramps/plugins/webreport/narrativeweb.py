@@ -551,7 +551,8 @@ class NavWebReport(Report):
                 self.tab["Event"].display_pages(the_lang, the_title)
 
             # build classes PlaceListPage and PlacePage
-            self.tab["Place"].display_pages(the_lang, the_title)
+            if self.inc_places:
+                self.tab["Place"].display_pages(the_lang, the_title)
 
             # build classes RepositoryListPage and RepositoryPage
             if self.inc_repository:
@@ -570,7 +571,8 @@ class NavWebReport(Report):
                 self.addressbook_pages(self.obj_dict[Person])
 
             # build classes SourceListPage and SourcePage
-            self.tab["Source"].display_pages(the_lang, the_title)
+            if self.inc_sources:
+                self.tab["Source"].display_pages(the_lang, the_title)
 
             # build calendar for the current year
             if self.usecal:
@@ -2221,6 +2223,12 @@ class NavWebOptions(MenuReportOptions):
         self.__toggle = BooleanOption(_("Toggle sections"), False)
         self.__toggle.set_help(_("Check it if you want to open/close" " a section"))
         addopt("toggle", self.__toggle)
+
+        self.__splitindex = NumberOption(_("Max. rows in an index"), 500, 10, 2000)
+        self.__splitindex.set_help(
+            _("The maximum number of rows to include in an index page")
+        )
+        addopt("splitindex", self.__splitindex)
 
     def __add_more_pages(self, menu):
         """

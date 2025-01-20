@@ -195,6 +195,12 @@ div#nav ul li a:hover, #subnavigation ul li a:hover {
     background-color: #FFC35E;
     border-bottom: solid 1px #36220B;
 }
+div#ltr.pnav ul.ltr li.CurrentSection, div#rtl.pnav ul.rtl li.CurrentSection,
+div#ltr ul.ltr li.CurrentSection, div#rtl ul.rtl li.CurrentSection {
+    font-weight: bold;
+    font-style: italic;
+    background-color: #FFC35E;
+}
 div#nav ul li.CurrentSection a {
     position: relative;
     top: 1px;
