@@ -61,8 +61,5 @@ class FatherHasIdOf(RegExpIdBase):
         father_handle = family.father_handle
         if father_handle:
             father = db.get_person_from_handle(father_handle)
-            if father:
-                return super().apply_to_one(db, father)
-            else:
-                return False
+            return super().apply_to_one(db, father) if father else False
         return False
