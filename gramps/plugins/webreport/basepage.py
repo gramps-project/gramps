@@ -260,7 +260,7 @@ class BasePage:
     def sort_on_name_and_grampsid(self, handle):
         """Used to sort on name and gramps ID."""
         person = self.r_db.get_person_from_handle(handle)
-        name = normalize('NFD', _nd.display(person))
+        name = normalize("NFD", _nd.display(person))
         return (name, person.get_gramps_id())
 
     def sort_on_given_and_birth(self, handle):
@@ -3335,13 +3335,13 @@ class BasePage:
             parent_place = self.r_db.get_place_from_handle(obj.ref)
             if parent_place:
                 place_name = parent_place.get_name().get_value()
-            return normalize('NFD', place_name)
+            return normalize("NFD", place_name)
 
         def sort_by_encl(obj):
             """
             Sort by encloses
             """
-            return normalize('NFD', obj[0])
+            return normalize("NFD", obj[0])
 
         for placeref in sorted(place.get_placeref_list(), key=sort_by_enclosed_by):
             parent_place = self.r_db.get_place_from_handle(placeref.ref)

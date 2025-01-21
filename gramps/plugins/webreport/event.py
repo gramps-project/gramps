@@ -428,7 +428,7 @@ class EventPages(BasePage):
         events_handle_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
         extended_handle_list = defaultdict(list)
         row_count = report.options["splitindex"]
-        for (bletter, hdlel) in events_handle_list:
+        for bletter, hdlel in events_handle_list:
             bletter = (
                 unicodedata.normalize("NFKD", bletter)[0]
                 if len(bletter) > 0
@@ -441,7 +441,7 @@ class EventPages(BasePage):
         extended_handle_list = list(extended_handle_list.items())
         max_rows = 0
         page = 0
-        for (bletter, hdle_list) in extended_handle_list:
+        for bletter, hdle_list in extended_handle_list:
             max_rows = max_letter_rows[bletter]
             max_rows += row_count  # For the last incomplete page
             max_rows = (

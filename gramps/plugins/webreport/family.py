@@ -420,7 +420,7 @@ class FamilyPages(BasePage):
         row_count = report.options["splitindex"]
         max_letter_rows = defaultdict(int)
         index_list = []
-        for (bletter, hdlel) in surname_handle_list.items():
+        for bletter, hdlel in surname_handle_list.items():
             bletter = (
                 unicodedata.normalize("NFKD", bletter)[0]
                 if len(bletter) > 0
@@ -440,7 +440,7 @@ class FamilyPages(BasePage):
             int(max_rows / report.options["splitindex"]) * report.options["splitindex"]
         )
         page = 0
-        for (bletter, hdle_list) in extended_handle_list:
+        for bletter, hdle_list in extended_handle_list:
             current = [(bletter, hdle_list)]
             if len(hdle_list) <= row_count:
                 name = "families"

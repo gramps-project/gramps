@@ -466,7 +466,11 @@ class PersonPages(BasePage):
                 for person_handle in sorted(
                     handle_list, key=self.sort_on_name_and_grampsid
                 ):
-                    (date, first_surname, first_individual,) = self.__output_person(
+                    (
+                        date,
+                        first_surname,
+                        first_individual,
+                    ) = self.__output_person(
                         date,
                         tbody,
                         letter,
@@ -526,11 +530,7 @@ class PersonPages(BasePage):
                 letter = index.bucketLabel
                 if letter not in index_list:
                     index_list.append(letter)
-                bletter = (
-                    normalize("NFKD", letter)[0]
-                    if len(letter) > 0
-                    else letter
-                )
+                bletter = normalize("NFKD", letter)[0] if len(letter) > 0 else letter
                 while index.nextRecord():
                     handle_list = index.recordData
                     if handle_list:
@@ -546,12 +546,8 @@ class PersonPages(BasePage):
         surname_handle_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
         extended_handle_list = defaultdict(list)
         row_count = report.options["splitindex"]
-        for (bletter, hdlel) in surname_handle_list:
-            bletter = (
-                normalize("NFKD", bletter)[0]
-                if len(bletter) > 0
-                else bletter
-            )
+        for bletter, hdlel in surname_handle_list:
+            bletter = normalize("NFKD", bletter)[0] if len(bletter) > 0 else bletter
             bletter = bletter[0] if len(bletter) > 0 else bletter
             bletter = bletter.upper() if bletter.isalpha() else "…"
             for hdle in hdlel:
@@ -563,7 +559,7 @@ class PersonPages(BasePage):
             int(max_rows / report.options["splitindex"]) * report.options["splitindex"]
         )
         page = 0
-        for (bletter, hdle_list) in extended_handle_list:
+        for bletter, hdle_list in extended_handle_list:
             current = [(bletter, hdle_list)]
             if len(hdle_list) <= row_count:
                 name = "individuals"

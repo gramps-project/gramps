@@ -269,7 +269,6 @@ class PlacePages(BasePage):
         subp=None,
         partial_list=None,
     ):
-
         """
         Create a part of a place index
         """

@@ -646,11 +646,14 @@ if HAVE_ALPHABETICINDEX:
                     used_scripts.append(script)
                     super().addLabels(loc)
 
+
 else:
     AlphabeticIndex = localAlphabeticIndex
 
 
-def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False, only=True, new_page=False, ext=None):
+def alphabet_navigation(
+    sorted_alpha_index, rlocale=glocale, rtl=False, only=True, new_page=False, ext=None
+):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
     SurnameListPage, PlaceListPage, and EventList
@@ -714,9 +717,19 @@ def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False, only=Tru
                     temp_cs = 'class = "CurrentSection"'
                     check_cs = temp_cs if check_cs else False
                     if cols != 0:
-                        hyper = Html("a", menu_item, title=title_str, href="%s" % new_index + str(cols) + extension)
+                        hyper = Html(
+                            "a",
+                            menu_item,
+                            title=title_str,
+                            href="%s" % new_index + str(cols) + extension,
+                        )
                     else:
-                        hyper = Html("a", menu_item, title=title_str, href="%s" % new_index + extension)
+                        hyper = Html(
+                            "a",
+                            menu_item,
+                            title=title_str,
+                            href="%s" % new_index + extension,
+                        )
                 else:
                     hyper = Html("a", menu_item, title=title_str, href="#%s" % link)
                 if check_cs:
@@ -734,7 +747,9 @@ def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False, only=Tru
     return alphabetnavigation
 
 
-def partial_navigation(partial_index, rlocale=glocale, rtl=False, only=True, new_page=False, ext=None):
+def partial_navigation(
+    partial_index, rlocale=glocale, rtl=False, only=True, new_page=False, ext=None
+):
     """
     Will create the partial navigation bar for big indexes
 
@@ -776,9 +791,19 @@ def partial_navigation(partial_index, rlocale=glocale, rtl=False, only=True, new
                     temp_cs = 'class = "CurrentSection"'
                     check_cs = temp_cs if check_cs else False
                     if index == 0:
-                        hyper = Html("a", name + " \u27a1 ", title=title_str, href="%s" % new_index + extension)
+                        hyper = Html(
+                            "a",
+                            name + " \u27a1 ",
+                            title=title_str,
+                            href="%s" % new_index + extension,
+                        )
                     else:
-                        hyper = Html("a", name + " \u27a1 ", title=title_str, href="%s" % new_index + "_%d" % index + extension)
+                        hyper = Html(
+                            "a",
+                            name + " \u27a1 ",
+                            title=title_str,
+                            href="%s" % new_index + "_%d" % index + extension,
+                        )
                 else:
                     hyper = Html("a", name, title=title_str, href="#%s" % "link")
                 if check_cs:
