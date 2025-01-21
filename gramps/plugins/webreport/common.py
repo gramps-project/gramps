@@ -760,7 +760,7 @@ def partial_navigation(partial_index, rlocale=glocale, rtl=False, only=True, new
 
             while index < num_pages:
                 name, handle = partial_index[index]
-                title_txt = "Go to:"
+                title_txt = "Go to: "
                 title_str = rlocale.translation.sgettext(title_txt) + name
                 check_cs = False
                 if new_page:
@@ -776,9 +776,9 @@ def partial_navigation(partial_index, rlocale=glocale, rtl=False, only=True, new
                     temp_cs = 'class = "CurrentSection"'
                     check_cs = temp_cs if check_cs else False
                     if index == 0:
-                        hyper = Html("a", name + " => ", title=title_str, href="%s" % new_index + extension)
+                        hyper = Html("a", name + " \u27a1 ", title=title_str, href="%s" % new_index + extension)
                     else:
-                        hyper = Html("a", name + " => ", title=title_str, href="%s" % new_index + "_%d" % index + extension)
+                        hyper = Html("a", name + " \u27a1 ", title=title_str, href="%s" % new_index + "_%d" % index + extension)
                 else:
                     hyper = Html("a", name, title=title_str, href="#%s" % "link")
                 if check_cs:
