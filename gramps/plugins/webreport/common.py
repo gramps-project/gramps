@@ -646,7 +646,6 @@ if HAVE_ALPHABETICINDEX:
                     used_scripts.append(script)
                     super().addLabels(loc)
 
-
 else:
     AlphabeticIndex = localAlphabeticIndex
 
