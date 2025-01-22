@@ -157,16 +157,21 @@ def from_json(data):
     return json.loads(data, object_hook=__object_hook)
 
 
-def to_dict(obj):
+def to_dict(obj, force=False):
     """
     Convert a Gramps object into a struct.
 
     :param obj: The object to be serialized.
     :type obj: object
+    :param force: If True, create a full DataDict
+    :type force: bool
     :returns: A dictionary.
     :rtype: dict
     """
-    return DataDict(obj)
+    if force:
+        return DataDict(json.loads(to_json(obj)))
+    else:
+        return DataDict(obj)
 
 
 def from_dict(dict):
@@ -269,6 +274,8 @@ class JSONSerializer:
             "json, data_to_string: {'_class': %r, ...}",
             data["_class"] if (data and "_class" in data) else data,
         )
+        if "_object" in data:
+            return to_json(data["_object"])
         return json.dumps(data)
 
     @staticmethod
@@ -294,7 +301,7 @@ class JSONSerializer:
         if type_name in ("set", "tuple"):
             value = list(value)
         elif type_name == "Researcher":
-            value = to_dict(value)
+            value = to_dict(value, force=True)
         elif type_name not in ("int", "str", "list"):
             value = json.loads(to_json(value))
         data = {
