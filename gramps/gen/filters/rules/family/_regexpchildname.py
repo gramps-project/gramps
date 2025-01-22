@@ -44,13 +44,6 @@ from gramps.gen.lib import Family
 from gramps.gen.db import Database
 
 
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
-from gramps.gen.lib import Family
-from gramps.gen.db import Database
 
 
 # -------------------------------------------------------------------------
