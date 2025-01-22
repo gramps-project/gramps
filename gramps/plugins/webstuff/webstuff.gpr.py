@@ -24,7 +24,7 @@ _ = glocale.translation.gettext
 
 # plugins/webstuff/webstuff.gpr.py
 
-MODULE_VERSION = "5.3"
+MODULE_VERSION = "6.0"
 
 # ------------------------------------------------------------------------
 #

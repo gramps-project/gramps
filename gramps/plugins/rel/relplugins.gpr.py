@@ -23,7 +23,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
-MODULE_VERSION = "5.3"
+MODULE_VERSION = "6.0"
 
 #
 # Relationship calculators
