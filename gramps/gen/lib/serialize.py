@@ -43,21 +43,6 @@ LOG = logging.getLogger(".serialize")
 
 
 class DataDict(dict):
-    def __init__(self, data=None):
-        """
-        Wrap a data dict (raw data) or object
-        with an attribute API. If data is an
-        object, we use it to get the attributes.
-        """
-        if not isinstance(data, dict):
-            data, obj = {}, data
-        else:
-            obj = None
-
-        super().__init__(data)
-        if obj:
-            self["_object"] = obj
-
     def __str__(self):
         if "_object" not in self:
             self["_object"] = from_dict(self)
