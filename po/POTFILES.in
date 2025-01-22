@@ -32,6 +32,7 @@ gramps/gen/filters/rules/_hasldsbase.py
 gramps/gen/filters/rules/_hasnotebase.py
 gramps/gen/filters/rules/_hasnoteregexbase.py
 gramps/gen/filters/rules/_hasnotesubstrbase.py
+gramps/gen/filters/rules/_hasnotetypebase.py
 gramps/gen/filters/rules/_hasreferencecountbase.py
 gramps/gen/filters/rules/_hassourcebase.py
 gramps/gen/filters/rules/_hassourcecountbase.py
@@ -56,6 +57,7 @@ gramps/gen/filters/rules/citation/_hasidof.py
 gramps/gen/filters/rules/citation/_hasnote.py
 gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/citation/_hasnoteregexp.py
+gramps/gen/filters/rules/citation/_hasnotetype.py
 gramps/gen/filters/rules/citation/_hasreferencecountof.py
 gramps/gen/filters/rules/citation/_hassource.py
 gramps/gen/filters/rules/citation/_hassourceidof.py
@@ -74,11 +76,13 @@ gramps/gen/filters/rules/event/_hasattribute.py
 gramps/gen/filters/rules/event/_hascitation.py
 gramps/gen/filters/rules/event/_hasdata.py
 gramps/gen/filters/rules/event/_hasdayofweek.py
+gramps/gen/filters/rules/event/_hasevent.py
 gramps/gen/filters/rules/event/_hasgallery.py
 gramps/gen/filters/rules/event/_hasidof.py
 gramps/gen/filters/rules/event/_hasnote.py
 gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/event/_hasnoteregexp.py
+gramps/gen/filters/rules/event/_hasnotetype.py
 gramps/gen/filters/rules/event/_hasreferencecountof.py
 gramps/gen/filters/rules/event/_hassourcecount.py
 gramps/gen/filters/rules/event/_hastag.py
@@ -105,6 +109,7 @@ gramps/gen/filters/rules/family/_haslds.py
 gramps/gen/filters/rules/family/_hasnote.py
 gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/family/_hasnoteregexp.py
+gramps/gen/filters/rules/family/_hasnotetype.py
 gramps/gen/filters/rules/family/_hasreferencecountof.py
 gramps/gen/filters/rules/family/_hasreltype.py
 gramps/gen/filters/rules/family/_hassourcecount.py
@@ -181,6 +186,7 @@ gramps/gen/filters/rules/person/_hasnickname.py
 gramps/gen/filters/rules/person/_hasnote.py
 gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/person/_hasnoteregexp.py
+gramps/gen/filters/rules/person/_hasnotetype.py
 gramps/gen/filters/rules/person/_hasothergender.py
 gramps/gen/filters/rules/person/_hasrelationship.py
 gramps/gen/filters/rules/person/_hassoundexname.py
@@ -243,6 +249,7 @@ gramps/gen/filters/rules/place/_hasnolatorlon.py
 gramps/gen/filters/rules/place/_hasnote.py
 gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/place/_hasnoteregexp.py
+gramps/gen/filters/rules/place/_hasnotetype.py
 gramps/gen/filters/rules/place/_hasplace.py
 gramps/gen/filters/rules/place/_hasreferencecountof.py
 gramps/gen/filters/rules/place/_hassourcecount.py
@@ -278,9 +285,11 @@ gramps/gen/filters/rules/source/_hasidof.py
 gramps/gen/filters/rules/source/_hasnote.py
 gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/source/_hasnoteregexp.py
+gramps/gen/filters/rules/source/_hasnotetype.py
 gramps/gen/filters/rules/source/_hasreferencecountof.py
 gramps/gen/filters/rules/source/_hasrepository.py
 gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py
+gramps/gen/filters/rules/source/_hassource.py
 gramps/gen/filters/rules/source/_hastag.py
 gramps/gen/filters/rules/source/_matchesfilter.py
 gramps/gen/filters/rules/source/_matchesrepositoryfilter.py

@@ -85,7 +85,7 @@ if HAVE_ICU:
 _RTL_LOCALES = ("ar", "he")
 
 # locales with less than 70% currently translated
-INCOMPLETE_TRANSLATIONS = ("ar", "bg", "sq", "ta", "tr", "zh_HK", "zh_TW")
+INCOMPLETE_TRANSLATIONS = ("ar", "bg", "ko", "sq", "zh_HK", "zh_TW")
 
 
 def _check_gformat():
@@ -526,7 +526,7 @@ class GrampsLocale:
                 translator.lang = lang
                 return translator
 
-            if lang.startswith("en") or lang.startswith("C"):
+            if lang.startswith(("en", "C")):
                 translator = GrampsNullTranslations()
                 translator.lang = "en"
                 return translator

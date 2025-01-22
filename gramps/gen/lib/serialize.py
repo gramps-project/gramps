@@ -106,7 +106,6 @@ class DataDict(dict):
             return super().__getitem__(item)
 
 
-
 class DataList(list):
     """
     A wrapper around a data list.

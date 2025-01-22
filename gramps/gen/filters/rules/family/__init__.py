@@ -40,6 +40,7 @@ from ._regexpidof import RegExpIdOf
 from ._hasnote import HasNote
 from ._hasnoteregexp import HasNoteRegexp
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from ._hasnotetype import HasNoteType
 from ._hassourcecount import HasSourceCount
 from ._hassourceof import HasSourceOf
 from ._hasreferencecountof import HasReferenceCountOf
@@ -69,6 +70,7 @@ editor_rule_list = [
     HasIdOf,
     HasLDS,
     HasNote,
+    HasNoteType,
     RegExpIdOf,
     HasNoteRegexp,
     HasReferenceCountOf,

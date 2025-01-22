@@ -134,7 +134,7 @@ class RepositoryModel(FlatBaseModel):
         return data["gramps_id"]
 
     def column_type(self, data):
-        return str(RepositoryType(data["type"]))
+        return RepositoryType.get_str(data.type)
 
     def column_name(self, data):
         return data["name"]

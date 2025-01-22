@@ -29,6 +29,7 @@ Gramps generic database handler
 # Python modules
 #
 # ------------------------------------------------------------------------
+from __future__ import annotations
 import bisect
 import logging
 import os
@@ -37,6 +38,7 @@ import random
 import re
 import time
 from pathlib import Path
+from typing import Any
 
 # ------------------------------------------------------------------------
 #
@@ -181,7 +183,7 @@ class DbGenericUndo(DbUndo):
         try:
             self.db._txn_begin()
             for record_id in subitems:
-                (key, trans_type, handle, _, new_data) = pickle.loads(
+                (key, trans_type, handle, __, new_data) = pickle.loads(
                     self.undodb[record_id]
                 )
 
@@ -358,7 +360,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     A Gramps Database Backend. This replicates the grampsdb functions.
     """
 
-    __signals__ = dict(
+    __signals__: dict[str, Any] = dict(
         (obj + "-" + op, signal)
         for obj in [
             "person",

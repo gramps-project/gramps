@@ -39,6 +39,13 @@ _ = glocale.translation.sgettext
 # EventType
 #
 # -------------------------------------------------------------------------
+
+
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+def _T_(value, context=""):  # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
+
+
 class EventType(GrampsType):
     """
     Event types.
@@ -139,10 +146,6 @@ class EventType(GrampsType):
     RETIREMENT = 43
     WILL = 44
     STILLBIRTH = 45
-
-    # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-    def _T_(value, context=""):  # enable deferred translations
-        return "%s\x04%s" % (context, value) if context else value
 
     _MENU = [
         [
@@ -339,6 +342,7 @@ class EventType(GrampsType):
             self.BURIAL,
             self.CREMATION,
             self.CAUSE_DEATH,
+            self.PROBATE,
         ]
 
     def is_marriage(self):

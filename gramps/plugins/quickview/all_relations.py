@@ -380,7 +380,7 @@ class AllRelReport:
                     for val in fam[1:]:
                         # TODO for Arabic, should the next comma be translated?
                         famstr += ", " + str(val + 1)
-                else:
+                elif fam is not None:
                     famstr = str(fam + 1)
                 sdoc.paragraph(_FMT_DET2 % (" ", par_str, birth_str, famstr))
                 counter = ""

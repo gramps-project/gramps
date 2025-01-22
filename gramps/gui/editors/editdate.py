@@ -205,8 +205,10 @@ class EditDate(ManagedWindow):
             self.calendar_box.set_active(Date.CAL_JULIAN)
         self.dual_dated.connect("toggled", self.switch_dual_dated)
 
-        cal = config.get("preferences.calendar-format-input")
-        self.calendar_box.set_active(cal)
+        # Use the calendar from user preferences for new dates only.
+        if self.date.is_empty():
+            cal = config.get("preferences.calendar-format-input")
+            self.calendar_box.set_active(cal)
 
         # The dialog is modal -- since dates don't have names, we don't
         # want to have several open dialogs, since then the user will

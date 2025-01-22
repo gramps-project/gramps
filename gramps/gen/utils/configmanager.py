@@ -30,6 +30,7 @@ This package implements access to Gramps configuration.
 # Python modules
 #
 # ---------------------------------------------------------------
+from __future__ import annotations
 import configparser
 import copy
 import errno
@@ -74,7 +75,7 @@ class ConfigManager:
     settings are stored.
     """
 
-    PLUGINS = {}
+    PLUGINS: dict[str, ConfigManager] = {}
 
     def __init__(self, filename=None, plugins=None):
         """

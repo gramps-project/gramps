@@ -173,44 +173,36 @@ class Glade(Gtk.Builder):
                     else:
                         self.__toplevel = None
 
-    def __get_filename(self):
+    @property
+    def filename(self):
         """
-        __get_filename: return filename of glade file
+        filename: return filename of glade file
         :rtype:   string
         :returns:  filename of glade file
         """
         return self.__filename
 
-    filename = property(__get_filename)
-
-    def __get_dirname(self):
+    @property
+    def dirname(self):
         """
-        __get_dirname: return directory where glade file found
+        dirname: return directory where glade file found
         :rtype:   string
         :returns:  directory where glade file found
         """
         return self.__dirname
 
-    dirname = property(__get_dirname)
-
-    def __get_toplevel(self):
+    @property
+    def toplevel(self):
         """
-        __get_toplevel: return toplevel object
+        toplevel: return toplevel object
         :rtype:   object
         :returns:  toplevel object
         """
         return self.__toplevel
 
-    def __set_toplevel(self, toplevel):
-        """
-        __set_toplevel: set toplevel object
-
-        :type  toplevel: string
-        :param toplevel: The name of the toplevel object to use
-        """
+    @toplevel.setter
+    def toplevel(self, toplevel):
         self.__toplevel = self.get_object(toplevel)
-
-    toplevel = property(__get_toplevel, __set_toplevel)
 
     def get_child_object(self, value, toplevel=None):
         """

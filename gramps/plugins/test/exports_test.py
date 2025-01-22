@@ -114,7 +114,7 @@ def gedfilt(line):
 
     # pylint: disable=unsubscriptable-object
     if line.startswith("@@"):
-        gedfilt.prev = [None] * 8
+        gedfilt.prev = [None] * 16
         gedfilt.indx = 0
         return False
     retval = True
@@ -125,20 +125,26 @@ def gedfilt(line):
     if diftyp == " ":
         # save the line for later if needed to figure out the data element
         gedfilt.prev[gedfilt.indx] = token, level, line
-        gedfilt.indx = (gedfilt.indx + 1) % 8
+        gedfilt.indx = (gedfilt.indx + 1) % 16
         retval = False
     elif diftyp == "-":
         # save the line for later if needed to figure out the data element
         gedfilt.prev[gedfilt.indx] = token, level, line
-        gedfilt.indx = (gedfilt.indx + 1) % 8
+        gedfilt.indx = (gedfilt.indx + 1) % 16
         if token == "VERS" and get_prev_token(2) == "SOUR":
             # we must have a header with Gramps version
             retval = False
         elif token == "DATE" and get_prev_token(2) == "NAME":
             # we must have a header with file date
             retval = False
+        elif token == "DATE" and get_prev_token(2) == "CHAN\n":
+            # probably have a timestamp of last change
+            retval = False
         elif token == "TIME" and get_prev_token(2) == "DATE":
             # probably have a header with file time
+            retval = False
+        elif token == "TIME" and get_prev_token(2) == "CHAN\n":
+            # probably have a timestamp of last change
             retval = False
         elif token == "FILE" and line.endswith(".ged\n"):
             # probably have a header with file name
@@ -157,6 +163,11 @@ def gedfilt(line):
             get_prev_token(2) == "NAME" or get_prev_token(3) == "NAME"
         ):
             # we must have a header with file date
+            retval = False
+        elif token == "DATE" and (
+            get_prev_token(3) == "CHAN\n" or get_prev_token(4) == "CHAN\n"
+        ):
+            # probably have a timestamp of last change
             retval = False
         elif token == "TIME" and (
             get_prev_token(2) == "DATE" or get_prev_token(3) == "DATE"

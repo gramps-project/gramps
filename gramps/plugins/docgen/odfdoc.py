@@ -285,6 +285,18 @@ _AUTOMATIC_STYLES = """\
         style:text-position="super 58%"/>
 </style:style>
 
+<style:style style:name="GSub"
+    style:family="text">
+    <style:text-properties
+        style:text-position="sub 58%"/>
+</style:style>
+
+<style:style style:name="GStrikethrough"
+    style:family="text">
+    <style:text-properties
+        style:text-line-through-style="solid"/>
+</style:style>
+
 <style:style style:name="GRAMPS-preformat"
     style:family="text">
     <style:text-properties

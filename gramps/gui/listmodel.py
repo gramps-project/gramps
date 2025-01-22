@@ -77,6 +77,7 @@ class ListModel:
     mode:           Selection mode for TreeView.  See Gtk documentation.
     list_mode:      "list" or "tree"
     right_click:    Function called when the user right-clicks on a row.
+    middle_click:   Function called when the user middle-clicks on a row.
     """
 
     def __init__(
@@ -88,6 +89,7 @@ class ListModel:
         mode=Gtk.SelectionMode.SINGLE,
         list_mode="list",
         right_click=None,
+        middle_click=None,
     ):
         self.tree = tree
         self.tree.set_fixed_height_mode(True)
@@ -97,6 +99,7 @@ class ListModel:
         self.list_mode = list_mode  # "list", or "tree"
         self.double_click = None
         self.right_click = None
+        self.middle_click = None
 
         for info in dlist:
             col_type = TEXT
@@ -134,11 +137,13 @@ class ListModel:
 
         if select_func:
             self.selection.connect("changed", select_func)
-        if event_func or right_click:
+        if event_func or middle_click or right_click:
             if event_func:
                 self.double_click = event_func
             if right_click:
                 self.right_click = right_click
+            if middle_click:
+                self.middle_click = middle_click
             self.tree.connect("button-press-event", self.__button_press)
 
     def __build_image_column(self, cnum, name, renderer, column):
@@ -508,6 +513,10 @@ class ListModel:
         elif is_right_click(event):
             if self.right_click:
                 self.right_click(obj, event)
+                return True
+        elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 2:
+            if self.middle_click:
+                self.middle_click(obj, event)
                 return True
         return False
 

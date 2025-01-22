@@ -63,14 +63,13 @@ class GuiPluginManager(Callback):
     __instance = None
     __signals__ = {"plugins-reloaded": None}
 
+    @staticmethod
     def get_instance():
         """Use this function to get the instance of the PluginManager"""
         if GuiPluginManager.__instance is None:
             GuiPluginManager.__instance = 1  # Set to 1 for __init__()
             GuiPluginManager.__instance = GuiPluginManager()
         return GuiPluginManager.__instance
-
-    get_instance = staticmethod(get_instance)
 
     def __init__(self):
         """This function should only be run once by get_instance()"""

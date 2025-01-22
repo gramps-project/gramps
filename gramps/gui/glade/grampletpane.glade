@@ -54,7 +54,6 @@
                 <property name="can-focus">False</property>
                 <child>
                   <object class="GtkButton" id="gvproperties">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -87,7 +86,6 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="gvstate">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -120,7 +118,6 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="gvclose">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -154,7 +151,6 @@
                 <child>
                   <object class="GtkButton" id="gvtitle">
                     <property name="label" translatable="yes">Gramplet</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>

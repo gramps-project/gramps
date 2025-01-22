@@ -19,7 +19,6 @@
             <child>
               <object class="GtkButton" id="cancel">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -35,7 +34,6 @@
             <child>
               <object class="GtkButton" id="ok">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -51,7 +49,6 @@
             <child>
               <object class="GtkButton" id="help">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -101,7 +98,6 @@
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkButton" id="pup">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -131,7 +127,6 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="pdown">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -172,7 +167,7 @@
               <object class="GtkScrolledWindow" id="scrolledwindow86">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="margin-left">6</property>
+                <property name="margin-start">6</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <property name="shadow-type">in</property>
@@ -210,7 +205,7 @@
               <object class="GtkScrolledWindow" id="scrolledwindow87">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="margin-left">6</property>
+                <property name="margin-start">6</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <property name="shadow-type">in</property>
@@ -236,7 +231,6 @@
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkButton" id="fup">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -266,7 +260,6 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="fdown">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>

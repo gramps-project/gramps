@@ -27,6 +27,7 @@ This module is used to share variables, enums and functions between all modules
 
 """
 
+from __future__ import annotations
 from collections import defaultdict
 from hashlib import md5
 import re
@@ -78,7 +79,7 @@ LOG = logging.getLogger(".NarrativeWeb")
 # define clear blank line for proper styling
 FULLCLEAR = Html("div", class_="fullclear", inline=True)
 # define all possible web page filename extensions
-_WEB_EXT = [".html", ".htm", ".shtml", ".php", ".cgi"]
+_WEB_EXT = (".html", ".htm", ".shtml", ".php", ".cgi")
 # used to select secured web site or not
 HTTP = "http://"
 HTTPS = "https://"
@@ -396,7 +397,7 @@ CSS = PLUGMAN.process_plugin_data("WEBSTUFF")
 
 # _NAME_COL = 3
 
-_WRONGMEDIAPATH = []
+_WRONGMEDIAPATH: list[list[str]] = []
 
 _HTML_DBL_QUOTES = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _HTML_SNG_QUOTES = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
@@ -646,7 +647,7 @@ if HAVE_ALPHABETICINDEX:
                     super().addLabels(loc)
 
 else:
-    AlphabeticIndex = localAlphabeticIndex
+    AlphabeticIndex = localAlphabeticIndex  # type: ignore[misc, assignment]
 
 
 def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False):
@@ -708,7 +709,7 @@ def _has_webpage_extension(url):
 
     @param: url -- filename to be checked
     """
-    return any(url.endswith(ext) for ext in _WEB_EXT)
+    return url.endswith(_WEB_EXT)
 
 
 def add_birthdate(dbase, ppl_handle_list, rlocale):

@@ -138,6 +138,7 @@ class Citations(Gramplet, DbGUIElement):
 
     def add_eventref_citations(self, obj):
         for event_ref in obj.get_event_ref_list():
+            self.add_citations(event_ref)
             self.add_attribute_citations(event_ref)
             event = self.dbstate.db.get_event_from_handle(event_ref.ref)
             self.add_event_citations(event)

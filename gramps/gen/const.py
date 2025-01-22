@@ -31,6 +31,7 @@ Provides constants for other modules
 #
 # -------------------------------------------------------------------------
 import os
+import random
 import sys
 import uuid
 
@@ -250,7 +251,7 @@ GTK_GETTEXT_DOMAIN = "gtk30"
 # About box information
 #
 # -------------------------------------------------------------------------
-COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2024 The Gramps Developers"
+COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2025 The Gramps Developers"
 COMMENTS = _(
     "Gramps is a genealogy program that is both intuitive for hobbyists "
     "and feature-complete for professional genealogists."
@@ -409,3 +410,6 @@ EXPANDED = 2
 
 TYPE_BOX_NORMAL = 0
 TYPE_BOX_FAMILY = 1
+
+# instance of random.Random that can be used for predictable unit tests
+TEST_RANDOM = random.Random()

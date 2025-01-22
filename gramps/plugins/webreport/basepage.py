@@ -92,7 +92,12 @@ from gramps.gen.utils.thumbnails import get_thumbnail_path
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.plugins.lib.libhtmlconst import _CC
-from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.utils.db import (
+    get_birth_or_fallback,
+    get_death_or_fallback,
+    get_event_person_referents,
+    get_event_family_referents,
+)
 from gramps.gen.datehandler import parser as _dp
 from gramps.plugins.lib.libhtml import Html, xml_lang
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
@@ -210,6 +215,7 @@ class BasePage:
         self.create_thumbs_index = report.options["create_thumbs_index"]
         self.inc_families = report.options["inc_families"]
         self.inc_events = report.options["inc_events"]
+        self.inc_other_roles = report.options["inc_other_roles"]
         self.usecms = report.options["usecms"]
         self.prevnext = report.options["prevnext"]
         self.target_uri = report.options["cmsuri"]
@@ -841,6 +847,143 @@ class BasePage:
         trow += Html("/tr", close=None)
         return trow
 
+    def display_event_other_person_role(
+        self, skip_event_ref, uplink, htmllist, refering_person
+    ):
+        """
+        Display the role of the refering person to this event.
+        Skip the role for the specified skip_event_ref because it is already
+        displayed with the primary role.
+
+        @param self            This report page.
+        @param skip_event_ref  This event_ref can be skipped. It is already displayed.
+        @param uplink          If True, then "../../../" is inserted in front of the result.
+        @param htmllist        The HTML list to which text has to be appended.
+        @param refering_person The person that has a role in the event.
+        """
+        event_refs = refering_person.get_event_ref_list()
+        for event_ref in event_refs:
+            if (
+                event_ref.get_reference_handle()
+                != skip_event_ref.get_reference_handle()
+            ):
+                # Refering to an other event.
+                continue
+            elif event_ref.is_equal(skip_event_ref):
+                # This event_ref is already displayed.
+                continue
+            role = event_ref.get_role()
+            # Get the person name with a link to it.
+            person_name = self.new_person_link(
+                refering_person.get_handle(), uplink, refering_person
+            )
+            # Add the person name and role to the page.
+            htmllist.extend(
+                Html(
+                    "p",
+                    _("(%(str1)s) %(str2)s")
+                    % {
+                        "str1": Html("b", role),
+                        "str2": person_name,
+                    },
+                )
+            )
+
+    def display_event_other_person_roles(self, event, skip_event_ref, uplink, htmllist):
+        """
+        Display all the other persons with their role to this event.
+        Skip the person with the specified skip_event_ref, because he is already
+        displayed with the primary role.
+
+        @param self           This report page.
+        @param event          The event that is concerned.
+        @param skip_event_ref This event_ref can be skipped. It is already displayed.
+        @param uplink         If True, then "../../../" is inserted in front of the result.
+        @param htmllist       The HTML list to which text has to be appended.
+
+        @return void
+        """
+        refering_person_handles = get_event_person_referents(
+            event.get_handle(), self.r_db
+        )
+        for refering_person_handle in refering_person_handles:
+            refering_person = self.r_db.get_person_from_handle(refering_person_handle)
+            if not refering_person:
+                continue
+            self.display_event_other_person_role(
+                skip_event_ref, uplink, htmllist, refering_person
+            )
+
+    def display_event_other_family_role(
+        self, skip_event_ref, uplink, htmllist, refering_family
+    ):
+        """
+        Display the role of the refering family to this event.
+        Skip the role for the specified skip_event_ref because it is already
+        displayed with the primary role.
+
+        @param self            This report page.
+        @param skip_event_ref  This event_ref can be skipped. It is already displayed.
+        @param uplink          If True, then "../../../" is inserted in front of the result.
+        @param htmllist        The HTML list to which text has to be appended.
+        @param refering_family The family that has a role in the event.
+        """
+        event_refs = refering_family.get_event_ref_list()
+        for event_ref in event_refs:
+            if (
+                event_ref.get_reference_handle()
+                != skip_event_ref.get_reference_handle()
+            ):
+                # Refering to an other event.
+                continue
+            elif event_ref.is_equal(skip_event_ref):
+                # This event_ref is already displayed.
+                continue
+            role = event_ref.get_role()
+            plain_family_name = self.report.get_family_name(refering_family)
+            family_name = self.family_link(
+                refering_family.get_handle(),
+                plain_family_name,
+                gid=refering_family.get_gramps_id(),
+                uplink=uplink,
+            )
+            # Add the family name and role to the page.
+            htmllist.extend(
+                Html(
+                    "p",
+                    _("(%(str1)s) %(str2)s")
+                    % {
+                        "str1": Html("b", role),
+                        "str2": family_name,
+                    },
+                )
+            )
+
+    def display_event_other_family_roles(self, event, skip_event_ref, uplink, htmllist):
+        """
+        Display all the other families with their role to this event.
+        Skip the family with the specified skip_event_ref, because it is already
+        displayed with the primary role.
+
+        @param self           This report page.
+        @param event          The event that is concerned.
+        @param skip_event_ref This event_ref can be skipped. It is already displayed.
+        @param uplink         If True, then "../../../" is inserted in front of the result.
+        @param htmllist       The HTML list to which text has to be appended.
+
+        @return void
+        """
+        refering_family_handles = get_event_family_referents(
+            event.get_handle(), self.r_db
+        )
+        for refering_family_handle in refering_family_handles:
+            refering_family = self.r_db.get_family_from_handle(refering_family_handle)
+            if not refering_family:
+                continue
+            self.display_event_other_family_role(
+                skip_event_ref, uplink, htmllist, refering_family
+            )
+
     def display_event_row(
         self, event, event_ref, place_lat_long, uplink, hyperlink, omit
     ):
@@ -933,6 +1076,10 @@ class BasePage:
             notelist = attr.get_note_list()
             if notelist:
                 htmllist.extend(self.dump_notes(notelist, Event))
+
+        if self.inc_other_roles:
+            self.display_event_other_person_roles(event, event_ref, uplink, htmllist)
+            self.display_event_other_family_roles(event, event_ref, uplink, htmllist)
 
         trow2 += Html("td", htmllist, class_="ColumnNotes", colspan=3)
 
@@ -1924,7 +2071,7 @@ class BasePage:
         ) as navigation:
             with Html("div", class_="container") as container:
                 index = 0
-                unordered = Html("ul", class_="nav dropmenu", id="dropmenu")
+                unordered = Html("ul", class_="nav", id="dropmenu")
                 while index < number_items:
                     url_fname, nav_text = menu_items[index]
                     hyper = self.get_nav_menu_hyperlink(url_fname, nav_text, cal=cal)
@@ -2010,7 +2157,17 @@ class BasePage:
                     for language in languages:
                         for extra_lang, dummy_title in self.report.languages:
                             if languages[language] == extra_lang:
-                                lang_txt = html_escape(self._(language))
+                                def_locale = self.report.set_locale(extra_lang)
+                                local_lang = def_locale.translation.sgettext(language)
+                                if local_lang == self._(language):
+                                    lang_txt = html_escape(self._(language))
+                                else:
+                                    lang_txt = (
+                                        html_escape(self._(language))
+                                        + "&#8239;("
+                                        + local_lang
+                                        + ")"
+                                    )
                                 n_lang = languages[language]
                                 nfname = self.report.cur_fname
                                 if "cal" in nfname:
@@ -2026,7 +2183,13 @@ class BasePage:
                                     url = self.report.build_url_lang(
                                         nfname, n_lang, upl
                                     )
-                                lnk = Html("a", lang_txt, href=url, title=lang_txt)
+                                lnk = Html(
+                                    "a",
+                                    lang_txt,
+                                    href=url,
+                                    title=lang_txt,
+                                    style="white-space:nowrap;",
+                                )
                                 choice += Html("li", lnk, inline=True)
                     unordered.extend(langs)
 
@@ -2746,15 +2909,13 @@ class BasePage:
 
                     # Web Site address
                     elif _type == UrlType.WEB_HOME:
-                        if not (
-                            uri.startswith("http://") or uri.startswith("https://")
-                        ):
+                        if not uri.startswith(("http://", "https://")):
                             url = self.secure_mode
                             uri = url + "%(website)s" % {"website": uri}
 
                     # FTP server address
                     elif _type == UrlType.WEB_FTP:
-                        if not (uri.startswith("ftp://") or uri.startswith("ftps://")):
+                        if not uri.startswith(("ftp://", "ftps://")):
                             uri = "ftp://%(ftpsite)s" % {"ftpsite": uri}
 
                     descr = Html("p", html_escape(descr)) + (

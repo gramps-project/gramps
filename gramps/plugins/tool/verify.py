@@ -34,7 +34,6 @@ options are defined (and read in) is not done the way it would be now.
 
 # pylint: disable=not-callable
 # pylint: disable=no-self-use
-# pylint: disable=undefined-variable
 
 # ------------------------------------------------------------------------
 #
@@ -411,7 +410,7 @@ def get_n_children(db, person):
 class Verify(tool.Tool, ManagedWindow, UpdateCallback):
     """
     A plugin to verify the data against user-adjusted tests.
-    This is the research tool, not the low-level data ingerity check.
+    This is the research tool, not the low-level data integrity check.
     """
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
@@ -547,7 +546,9 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         yngmar,
         oldmar,
         oldmom,
+        olddad,
         yngmom,
+        yngdad,
         cbspan,
         cspace,
         estimate_age,
@@ -638,10 +639,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         if n_families <= _family_cache_size:
             preload_family_cache(self.db)
 
-        for option, value in self.options.handler.options_dict.items():
-            exec("%s = %s" % (option, value), globals())
-            # TODO my pylint doesn't seem to understand these variables really
-            # are defined here, so I have disabled the undefined-variable error
+        options_dict = self.options.handler.options_dict
 
         if self.v_r:
             self.v_r.real_model.clear()
@@ -659,27 +657,29 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
                     self.process_family(
                         cli,
                         verify_family,
-                        hwdif,
-                        yngmar,
-                        oldmar,
-                        oldmom,
-                        yngmom,
-                        cbspan,
-                        cspace,
-                        estimate_age,
+                        options_dict["hwdif"],
+                        options_dict["yngmar"],
+                        options_dict["oldmar"],
+                        options_dict["oldmom"],
+                        options_dict["olddad"],
+                        options_dict["yngmom"],
+                        options_dict["yngdad"],
+                        options_dict["cbspan"],
+                        options_dict["cspace"],
+                        options_dict["estimate_age"],
                     )
                     family_handles.remove(family_handle)
 
             self.process_person(
                 cli,
                 verify_person,
-                oldage,
-                wedder,
-                oldunm,
-                mxchilddad,
-                mxchildmom,
-                invdate,
-                estimate_age,
+                options_dict["oldage"],
+                options_dict["wedder"],
+                options_dict["oldunm"],
+                options_dict["mxchilddad"],
+                options_dict["mxchildmom"],
+                options_dict["invdate"],
+                options_dict["estimate_age"],
             )
 
         # Family-based rules - for any left over families (families without any spouses)
@@ -689,14 +689,16 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
             self.process_family(
                 cli,
                 verify_family,
-                hwdif,
-                yngmar,
-                oldmar,
-                oldmom,
-                yngmom,
-                cbspan,
-                cspace,
-                estimate_age,
+                options_dict["hwdif"],
+                options_dict["yngmar"],
+                options_dict["oldmar"],
+                options_dict["oldmom"],
+                options_dict["olddad"],
+                options_dict["yngmom"],
+                options_dict["yngdad"],
+                options_dict["cbspan"],
+                options_dict["cspace"],
+                options_dict["estimate_age"],
             )
 
         clear_cache()

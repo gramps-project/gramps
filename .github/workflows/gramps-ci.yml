@@ -28,7 +28,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v4
@@ -53,7 +53,7 @@ jobs:
         sudo apt-get install python3-jsonschema
         sudo apt-get install libxml2-utils
         sudo apt-get install python3-lxml
-        sudo apt-get install python-libxml2
+        sudo apt-get install python3-libxml2
         sudo apt-get install zlib1g-dev
         sudo apt-get install python3-setuptools
     - name: Install addons
@@ -66,13 +66,11 @@ jobs:
     - name: Build
       run: |
         python3 setup.py build
+    - name: Run mypy static type checker
+      run: |
+        python3 -m pip install mypy
+        mypy gramps test --ignore-missing-imports --exclude '.*gpr\.py$'
     - name: Run unit test suite
       run: |
         export GDK_BACKEND=-
         python3 setup.py test
-    - name: Trailing whitespace check
-      run: |
-        if git --no-pager grep --color -n --full-name '[    ]$' -- \*.py; then
-          echo "ERROR - Trailing whitespace found in source file(s)";
-          exit 1;
-        fi

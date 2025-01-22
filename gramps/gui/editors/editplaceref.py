@@ -91,6 +91,9 @@ class EditPlaceRef(EditReference):
             self.dbstate, self.uistate, self.track, _("_General"), tblref
         )
 
+    def _post_init(self):
+        self.name.grab_focus()
+
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object("cancel"))
         self.ok_button = self.top.get_object("ok")

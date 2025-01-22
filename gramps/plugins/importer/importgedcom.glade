@@ -43,13 +43,12 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="okbutton1">
-                <property name="label">gtk-ok</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_OK</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -90,8 +89,8 @@
               <object class="GtkLabel" id="label18">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="margin-left">6</property>
-                <property name="margin-right">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
                 <property name="margin-top">6</property>
                 <property name="margin-bottom">6</property>
                 <property name="label" translatable="yes">This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below.</property>

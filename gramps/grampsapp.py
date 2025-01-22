@@ -29,8 +29,8 @@
 # -------------------------------------------------------------------------
 import sys
 import os
+import platform
 import signal
-
 import logging
 
 LOG = logging.getLogger(".")
@@ -471,12 +471,10 @@ def show_settings():
     try:
         import sqlite3
 
-        sqlite3_py_version_str = sqlite3.version
         sqlite3_version_str = sqlite3.sqlite_version
         sqlite3_location_str = sqlite3.__file__
     except:
         sqlite3_version_str = "not found"
-        sqlite3_py_version_str = "not found"
         sqlite3_location_str = "not found"
 
     try:
@@ -534,7 +532,7 @@ def show_settings():
     print("Gramps Settings:")
     print("----------------")
     print(" gramps    : %s" % gramps_str)
-    print(" o.s.      : %s" % sys.platform)
+    print(" o.s.      : %s" % platform.system())
     if kernel:
         print(" kernel    : %s" % kernel)
     print("")
@@ -591,7 +589,6 @@ def show_settings():
     print("     location    : %s" % bsddb_location_str)
     print(" sqlite3   :")
     print("     version     : %s" % sqlite3_version_str)
-    print("     py version  : %s" % sqlite3_py_version_str)
     print("     location    : %s" % sqlite3_location_str)
     print("")
 
