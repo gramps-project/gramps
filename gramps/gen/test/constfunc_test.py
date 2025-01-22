@@ -34,10 +34,12 @@ class Test_has_display(unittest.TestCase):
 
     @unittest.skipUnless(constfunc.lin(), "Written for Linux only...")
     def test_consistent_with_DISPLAY_env(self):
-        assert (
-            self.has == self.display_nonempty
-        ), "has_display(): {}, $DISPLAY: {}".format(
-            self.has, env["DISPLAY"] if ("DISPLAY" in env) else "(unset)"
+        self.assertEqual(
+            self.has,
+            self.display_nonempty,
+            "has_display(): {}, $DISPLAY: {}".format(
+                self.has, env["DISPLAY"] if ("DISPLAY" in env) else "(unset)"
+            ),
         )
 
 

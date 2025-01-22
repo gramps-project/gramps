@@ -130,21 +130,23 @@ def generate_cases(obj, data):
 
     def test_data(self):
         class_name = obj.__class__.__name__
-        assert isinstance(data, dict), "Ensure that the data is a dict"
-        assert data.handle == data["handle"], "Test attribute access"
+        self.assertIsInstance(data, dict, "Ensure that the data is a dict")
+        self.assertEqual(data.handle, data["handle"], "Test attribute access")
 
         if class_name == "Person":
             if (len(data.parent_family_list)) > 0:
                 # Get a handle:
-                assert isinstance(data.parent_family_list[0], str), "Test list access"
+                self.assertIsInstance(
+                    data.parent_family_list[0], str, "Test list access"
+                )
 
-        assert "_object" not in data.keys(), "Object not created"
-        assert data.get_handle() == data["handle"], "Test method call"
-        assert "_object" in data.keys(), "Object created"
-        assert data["_object"].handle == data["handle"], "Object is correct"
-        assert (
-            data["_object"].__class__.__name__ == class_name
-        ), "Object is correct type"
+        self.assertNotIn("_object", data.keys(), "Object not created")
+        self.assertEqual(data.get_handle(), data["handle"], "Test method call")
+        self.assertIn("_object", data.keys(), "Object created")
+        self.assertEqual(data["_object"].handle, data["handle"], "Object is correct")
+        self.assertEqual(
+            data["_object"].__class__.__name__, class_name, "Object is correct type"
+        )
 
     name = "test_data_%s_%s" % (obj.__class__.__name__, obj.handle)
     setattr(DatabaseCheck, name, test_data)

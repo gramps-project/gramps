@@ -42,23 +42,29 @@ class TestUser_prompt(unittest.TestCase):
         self.user._input = Mock(spec=input)
 
     def test_default_fileout_has_write(self):
-        assert hasattr(self.real_user._fileout, "write")
+        self.assertTrue(hasattr(self.real_user._fileout, "write"))
 
     def test_default_input(self):
-        assert self.real_user._input.__name__.endswith("input")
+        self.assertTrue(self.real_user._input.__name__.endswith("input"))
 
     def test_prompt_returns_True_if_ACCEPT_entered(self):
         self.user._input.configure_mock(return_value=TestUser.ACCEPT)
-        assert self.user.prompt(
-            TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT
-        ), "True expected!"
+        self.assertTrue(
+            self.user.prompt(
+                TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT
+            ),
+            "True expected!",
+        )
         self.user._input.assert_called_once_with()
 
     def test_prompt_returns_False_if_REJECT_entered(self):
         self.user._input.configure_mock(return_value=TestUser.REJECT)
-        assert not self.user.prompt(
-            TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT
-        ), "False expected!"
+        self.assertFalse(
+            self.user.prompt(
+                TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT
+            ),
+            "False expected!",
+        )
         self.user._input.assert_called_once_with()
 
     def assert_prompt_contains_text(
@@ -104,18 +110,22 @@ class TestUser_prompt(unittest.TestCase):
     def test_auto_accept_accepts_without_prompting(self):
         u = user.User(auto_accept=True)
         u._fileout = Mock(spec=sys.stderr)
-        assert u.prompt(
-            TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT
-        ), "True expected!"
-        assert len(u._fileout.method_calls) == 0, list(u._fileout.method_calls)
+        self.assertTrue(
+            u.prompt(TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT),
+            "True expected!",
+        )
+        self.assertEqual(len(u._fileout.method_calls), 0, list(u._fileout.method_calls))
 
     def test_EOFError_in_prompt_caught_as_False(self):
         self.user._input.configure_mock(
             side_effect=EOFError, return_value=TestUser.REJECT
         )
-        assert not self.user.prompt(
-            TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT
-        ), "False expected!"
+        self.assertFalse(
+            self.user.prompt(
+                TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT
+            ),
+            "False expected!",
+        )
         self.user._input.assert_called_once_with()
 
 
@@ -131,8 +141,10 @@ class TestUser_quiet(unittest.TestCase):
         self.user.end_progress()
 
     def tearDown(self):
-        assert len(self.user._fileout.method_calls) == 0, list(
-            self.user._fileout.method_calls
+        self.assertEqual(
+            len(self.user._fileout.method_calls),
+            0,
+            list(self.user._fileout.method_calls),
         )
 
 
@@ -146,8 +158,9 @@ class TestUser_progress(unittest.TestCase):
         self._progress_begin_step_end()
         self.expected_output = list(self.user._fileout.method_calls)
         self.user._fileout.reset_mock()
-        self.assertTrue(
-            len(self.user._fileout.method_calls) == 0,
+        self.assertEqual(
+            len(self.user._fileout.method_calls),
+            0,
             list(self.user._fileout.method_calls),
         )
 
