@@ -49,12 +49,14 @@ class DataDict(dict):
         with an attribute API. If data is an
         object, we use it to get the attributes.
         """
-        if isinstance(data, dict):
-            super().__init__(data)
+        if not isinstance(data, dict):
+            data, obj = {}, data
         else:
-            super().__init__()
-            if data:
-                self["_object"] = data
+            obj = None
+
+        super().__init__(data)
+        if obj:
+            self["_object"] = obj
 
     def __str__(self):
         if "_object" not in self:
