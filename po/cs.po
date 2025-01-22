@@ -4,7 +4,7 @@
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
 # Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2020, 2021, 2022.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Milan <mobrcian@hotmail.com>, 2021, 2022, 2023, 2024.
+# Milan <mobrcian@hotmail.com>, 2021, 2022, 2023, 2024, 2025.
 # ikanakova <ikanakova@users.noreply.hosted.weblate.org>, 2025.
 #
 # Common terms and translations:
@@ -41,8 +41,8 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-12 21:14+0000\n"
-"PO-Revision-Date: 2025-01-07 10:01+0000\n"
-"Last-Translator: ikanakova <ikanakova@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2025-01-13 22:21+0000\n"
+"Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
 "Language: cs\n"
@@ -460,17 +460,6 @@ msgstr ""
 "nějaké skvělé historky. Nezapomeňte si rozhovor nahrát!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter. Then select this filter in the Filter field on Sidebar, then "
-#| "click Find button. If the Sidebar is not visible, select View &gt; "
-#| "Sidebar."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -482,14 +471,14 @@ msgid ""
 "visible, select View > Sidebar."
 msgstr ""
 "<b>Filtrování osob</b><br/>v Pohledu osoby můžete 'filtrovat' jednotlivce na "
-"základě mnoha kritérií. Nový filtr se definuje v \"Úpravy &gt; Editor filtrů "
-"osob\". Tam můžete svůj filtr pojmenovat, přidávat a kombinovat vlastní "
-"pravidla s využitím mnoha předdefinovaných pravidel. Můžete například "
-"definovat filtr pro nalezení všech adoptovaných osob v rodokmenu. Filtrovány "
-"mohou být také osoby bez uvedeného data narození. Výsledky získáte tak, že "
-"uložíte filtr. Poté tento filtr vyberte v poli Filtr na postranním panelu a "
-"klikněte na tlačítko Najít. Pokud není postranní panel viditelný, vyberte "
-"možnost Zobrazit &gt; Postranní panel."
+"základě mnoha kritérií. Nový filtr se definuje v "
+"\"Úpravy > Editor filtrů osob\". Tam můžete svůj filtr pojmenovat, přidávat "
+"a kombinovat vlastní pravidla s využitím mnoha předdefinovaných pravidel. "
+"Můžete například definovat filtr pro nalezení všech adoptovaných osob v "
+"rodokmenu. Filtrovány mohou být také osoby bez uvedeného data narození. "
+"Výsledky získáte tak, že uložíte filtr. Poté tento filtr vyberte v poli "
+"Filtr na postranním panelu a klikněte na tlačítko Najít. Pokud není "
+"postranní panel viditelný, vyberte možnost Zobrazit > Postranní panel."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -540,24 +529,17 @@ msgstr ""
 "sourozenců, potomků nebo rodičů."
 
 #: ../data/tips.xml:24
-#, fuzzy
-#| msgid ""
-#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-#| "&gt; Compare Individual Events...\" you can compare the data of "
-#| "individuals in your database. This is useful, say, if you wish to list "
-#| "the birth dates of everyone in your database. You can use a custom filter "
-#| "to narrow the results."
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>Kdo se kdy narodil?</b><br/>Pod \"Nástroje &gt; Analýzy a bádání &gt; "
-"Porovnat jednotlivé události...\" umožňuje porovnat data osob ve vaší "
-"databázi. To je užitečné, pokud chcete, řekněme, porovnat data narození "
-"všech osob ve vaší databázi. Pro přizpůsobení výsledku můžete použít vlastní "
-"filtr."
+"<b>Kdo se kdy narodil?</b><br/>Pod "
+"\"Nástroje > Analýzy a bádání > Porovnat jednotlivé události...\" umožňuje "
+"porovnat data osob ve vaší databázi. To je užitečné, pokud chcete, řekněme, "
+"porovnat data narození všech osob ve vaší databázi. Pro přizpůsobení "
+"výsledku můžete použít vlastní filtr."
 
 #: ../data/tips.xml:26
 msgid ""
@@ -574,12 +556,6 @@ msgstr ""
 "jsou přístupné v nabídce \"Nástroje\"."
 
 #: ../data/tips.xml:28
-#, fuzzy
-#| msgid ""
-#| "<b>Calculating Relationships</b><br/>To check if two people in the "
-#| "database are related (by blood, not marriage) try the tool under \"Tools "
-#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
-#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
@@ -587,8 +563,8 @@ msgid ""
 "ancestors are reported."
 msgstr ""
 "<b>Kalkulátor vztahů</b><br/>Zjištění, zda dva lidé v databázi jsou ve "
-"vzájemném vztahu (pokrevním, ne manželském), vám usnadní nástroj \"Nástroje "
-"&gt; Pomůcky &gt; Kalkulátor vztahů...\". Nástroj zobrazí vztah osob a "
+"vzájemném vztahu (pokrevním, ne manželském), vám usnadní nástroj "
+"\"Nástroje > Pomůcky > Kalkulátor vztahů...\". Nástroj zobrazí vztah osob a "
 "společné předky."
 
 #: ../data/tips.xml:30
@@ -610,24 +586,17 @@ msgstr ""
 "přidejte SoundEx Gramplet."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\"."
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"<b>Nastavení Vašich předvoleb</b><br/>\"Úpravy &gt; Předvolby...\" vám "
-"umožní změnit celou řadu nastavení (jako cesta k souborům objektů médií) a "
-"umožní vám přizpůsobit mnoho aspektů chování Gramps vašim potřebám. Každý "
-"samostatný pohled může být také přizpůsoben prostřednictvím \"Zobrazit &gt; "
-"Nastavit pohled...\"."
+"<b>Nastavení Vašich předvoleb</b><br/>\"Úpravy > Předvolby...\" vám umožní "
+"změnit celou řadu nastavení (jako cesta k souborům objektů médií) a umožní "
+"vám přizpůsobit mnoho aspektů chování Gramps vašim potřebám. Každý "
+"samostatný pohled může být také přizpůsoben prostřednictvím "
+"\"Zobrazit > Nastavit pohled...\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -644,13 +613,6 @@ msgstr ""
 "Váš rodokmen web, Gramps nabízí nástroj i pro tento případ."
 
 #: ../data/tips.xml:36
-#, fuzzy
-#| msgid ""
-#| "<b>Starting a New Family Tree</b><br/>A good way to start a new family "
-#| "tree is to enter all the members of the family into the database using "
-#| "the Person View (use \"Edit &gt; Add...\" or click on the Add a new "
-#| "person button from the People View). Then go to the Relationship View and "
-#| "create relationships between people."
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -659,10 +621,9 @@ msgid ""
 "between people."
 msgstr ""
 "<b>Nový rodokmen</b>?<br/>Dobrým způsobem, jak začít tvořit nový rodokmen, "
-"je vložit do databáze všechny členy rodiny (použijte \"Úpravy &gt; Přidat "
-"&gt;Přidat...\" nebo klikněte na tlačítko Přidat novou osobu v Náhledu "
-"osob). Poté přejděte do Pohledu vztahů a vytvořte vztahy mezi jednotlivými "
-"osobami."
+"je vložit do databáze všechny členy rodiny (použijte \"Úpravy > Přidat...\" "
+"nebo klikněte na tlačítko Přidat novou osobu v Náhledu osob). Poté přejděte "
+"do Pohledu vztahů a vytvořte vztahy mezi jednotlivými osobami."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -687,30 +648,17 @@ msgstr ""
 "informací najdete v Příručce Gramps."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
-#| "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
-#| "entries of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
 "<b>Duplicitní záznamy</b><br/>\n"
-"Nástroj \"Nástroje &gt; Zpracování rodokmenu &gt; Najít možné duplicitní "
-"osoby...\" vám dovolí nalézt (a sloučit) záznamy stejné osoby zadané do "
-"databáze více než jednou."
+"Nástroj \"Nástroje > Zpracování rodokmenu > Najít možné duplicitní osoby...\""
+" vám dovolí nalézt (a sloučit) záznamy stejné osoby zadané do databáze více "
+"než jednou."
 
 #: ../data/tips.xml:44
-#, fuzzy
-#| msgid ""
-#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you "
-#| "to combine separately listed people into one. Select the second entry by "
-#| "holding the Control key as you click. This is very useful for combining "
-#| "two databases with overlapping people, or combining erroneously entered "
-#| "differing names for one individual. Merging is available in all list "
-#| "views for all primary object types."
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -719,7 +667,7 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Slučování záznamů</b><br/>Funkce \"Úpravy &gt; Sloučit...\" vám umožní "
+"<b>Slučování záznamů</b><br/>Funkce \"Úpravy > Sloučit...\" vám umožní "
 "sloučit odděleně uvedené osoby do jedné. Vyberte druhý záznam kliknutím myši "
 "za současného držení klávesy Ctrl. To je velmi užitečné při slučování dvou "
 "databází obsahující stejné osoby, nebo slučování chybně zadaných osob s "
@@ -739,12 +687,6 @@ msgstr ""
 "nabídky \"Zobrazit\"."
 
 #: ../data/tips.xml:48
-#, fuzzy
-#| msgid ""
-#| "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of "
-#| "previous active objects such as People and Events. You can move forward "
-#| "and backward through the list using \"Go &gt; Forward\" and \"Go &gt; "
-#| "Back\" or the arrow buttons."
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -753,7 +695,7 @@ msgid ""
 msgstr ""
 "<b>Pohyb vpřed a vzad</b><br/>Gramps udržuje seznam předchozích aktivních "
 "objektů jako osoby nebo události. Tímto seznamem můžete procházet použitím "
-"\"Přejít &gt; Vpřed\" a \"Přejít &gt; Vzad\" nebo použitím kurzorových šipek."
+"\"Přejít > Vpřed\" a \"Přejít > Vzad\" nebo použitím kurzorových šipek."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -766,22 +708,16 @@ msgstr ""
 "Klávesová zkratka funkce bývá zobrazena vždy na pravé straně nabídky."
 
 #: ../data/tips.xml:52
-#, fuzzy
-#| msgid ""
-#| "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
-#| "&gt; User Manual\". The developers have worked hard to make most "
-#| "operations intuitive but the manual is full of information that will make "
-#| "your time spent on genealogy more productive."
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
 "User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Čtěte příručku</b><br/>Nezapomeňte si přečíst příručku Gramps, \"Nápověda "
-"&gt; Uživatelská příručka\". Vývojáři ze sebe vydali to nejlepší, aby "
-"většina operací byla co možná nejvíce intuitivní. I přes tento fakt příručka "
-"je plná informací, které váš výzkum učiní ještě produktivnější."
+"<b>Čtěte příručku</b><br/>Nezapomeňte si přečíst příručku Gramps, "
+"\"Nápověda > Uživatelská příručka\". Vývojáři ze sebe vydali to nejlepší, "
+"aby většina operací byla co možná nejvíce intuitivní. I přes tento fakt "
+"příručka je plná informací, které váš výzkum učiní ještě produktivnější."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -836,14 +772,6 @@ msgstr ""
 "být přesto užitečné."
 
 #: ../data/tips.xml:62
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about "
-#| "Gramps? Check out the gramps-users email list. Many helpful people are on "
-#| "the list, so you're likely to get an answer quickly. If you have "
-#| "questions related to the development of Gramps, try the gramps-devel "
-#| "list. You can see the lists by selecting \"Help &gt; Gramps Mailing "
-#| "Lists\"."
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -855,19 +783,10 @@ msgstr ""
 "Gramps? Podívejte se do uživatelské konference gramps-users . Konferenci "
 "sleduje mnoho lidí, takže odpověď získáte pravděpodobně velmi rychle. Máte-"
 "li otázky vztahující se k vývoji Gramps, zkuste konferenci gramps-devel. "
-"Informace o obou konferencích leze nalézt zvolením \"Nápověda &gt; Diskuzní "
-"skupiny Gramps\"."
+"Informace o obou konferencích leze nalézt zvolením "
+"\"Nápověda > Diskuzní skupiny Gramps\"."
 
 #: ../data/tips.xml:64
-#, fuzzy
-#| msgid ""
-#| "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't "
-#| "write programs? Not a problem! A project as large as Gramps requires "
-#| "people with a wide variety of skills. Contributions can be anything from "
-#| "writing documentation to testing development versions and helping with "
-#| "the web site. Start by subscribing to the Gramps developers mailing list, "
-#| "gramps-devel, and introducing yourself. Subscription information can be "
-#| "found at \"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -882,7 +801,7 @@ msgstr ""
 "širokou paletou schopností. Přispěvatelé mohou psát dokumentaci, testovat "
 "vývojové verze nebo pomáhat s webovou stránkou. Začněte přihlášením se do "
 "vývojářské konference Gramps, gramps-devel a představte se. Pokyny k "
-"přihlášení najdete v \"Nápověda &gt; Diskuzní skupiny Gramps\"."
+"přihlášení najdete v \"Nápověda > Diskuzní skupiny Gramps\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -901,13 +820,6 @@ msgstr ""
 "uživatelé spravují genealogická data obsahující stovky tisíc osob."
 
 #: ../data/tips.xml:68
-#, fuzzy
-#| msgid ""
-#| "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient "
-#| "place to store the names of frequently used individuals. Selecting a "
-#| "bookmark will make that person the Active Person. To bookmark someone "
-#| "make them the Active Person then go to \"Bookmarks &gt; Add Bookmark\" or "
-#| "press Ctrl+D. You can also bookmark most of the other objects."
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -918,18 +830,10 @@ msgstr ""
 "<b>Záložky</b><br/>Nabídka záložek je místo vhodné k ukládání jmen často "
 "používaných osob. Kliknutím na záložku osoby učiní jednotlivce aktivní "
 "osobou. Chcete-li vytvořit záložku pro osobu, nastavte ji jako aktivní "
-"osobu, přejděte na \"Záložky &gt; Přidat záložku\" nebo stiskněte kombinaci "
+"osobu, přejděte na \"Záložky > Přidat záložku\" nebo stiskněte kombinaci "
 "Ctrl+D. Záložky můžete vytvořit také pro většinu ostatních objektů."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit &gt; Preferences &gt; Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -939,18 +843,12 @@ msgid ""
 "> Display\"."
 msgstr ""
 "<b>Nesprávné datum</b><br/> Každý občas zadá datum v neplatném formátu. Data "
-"v neplatném formátu jsou zvýrazněna červeným pozadím, nebo červenou tečkou v "
-"pravé části pole. Datum můžete opravit prostřednictvím dialogu výběru data. "
-"Ten se objeví po stisknutí tlačítka datum. Formát data lze nastavit v "
-"\"Úpravy &gt; Předvolby &gt; Zobrazení\"."
+"v neplatném formátu jsou zvýrazněna v Gramps červeným pozadím, nebo červenou "
+"tečkou v pravé části pole. Datum můžete opravit prostřednictvím dialogu "
+"výběru data. Ten se objeví po stisknutí tlačítka datum. Formát data lze "
+"nastavit v \"Úpravy > Předvolby > Zobrazení\"."
 
 #: ../data/tips.xml:72
-#, fuzzy
-#| msgid ""
-#| "<b>Listing Events</b><br/>Events are added using the editor opened with "
-#| "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
-#| "event types. You can add your own event types by typing in the text "
-#| "field, they will be added to the available events, but not translated."
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person > Edit Person > Events\". There is a long list of preset event "
@@ -958,10 +856,10 @@ msgid ""
 "will be added to the available events, but not translated."
 msgstr ""
 "<b>Výčet událostí</b><br/>Události jsou přidávány prostřednictvím editoru. "
-"Ten otevřete v \"Osoba &gt; Upravit osobu &gt; Události\". Zde najdete "
-"dlouhý seznam předdefinovaných typů událostí. Zapsáním do textového pole "
-"můžete přidat vlastní typy. Budou přidány do dostupných událostí, ale "
-"nebudou překládány."
+"Ten otevřete v \"Osoba > Upravit osobu > Události\". Zde najdete dlouhý "
+"seznam předdefinovaných typů událostí. Zapsáním do textového pole můžete "
+"přidat vlastní typy. Budou přidány do dostupných událostí, ale nebudou "
+"překládány."
 
 #: ../data/tips.xml:74
 msgid ""
@@ -1020,12 +918,6 @@ msgstr ""
 "tabulky, dokumenty a další."
 
 #: ../data/tips.xml:84
-#, fuzzy
-#| msgid ""
-#| "<b>Filters</b><br/>Filters allow you to limit the people seen in the "
-#| "People View. In addition to the many preset filters, Custom Filters can "
-#| "be created limited only by your imagination. Custom filters are created "
-#| "from \"Edit &gt; Person Filter Editor\"."
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -1035,7 +927,7 @@ msgstr ""
 "<b>Filtry</b><br/>Filtry vám umožňují omezit seznam lidí, kteří jsou "
 "zobrazeni v Pohledu osob. Kromě mnoha předvolených filtrů si můžete vytvořit "
 "i filtry vlastní. Při jejich tvorbě jste limitováni jen vaší fantazií. "
-"Vlastní filtry mohou být vytvořeny v \"Úpravy &gt; Editor filtrů osob\"."
+"Vlastní filtry mohou být vytvořeny v \"Úpravy > Editor filtrů osob\"."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -1132,12 +1024,6 @@ msgstr ""
 "použít latinského 'sic' (takto) k potvrzení přesnosti přepisu."
 
 #: ../data/tips.xml:102
-#, fuzzy
-#| msgid ""
-#| "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added "
-#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
-#| "Reports/Tools\". This is the best way for advanced users to experiment "
-#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help > Extra Reports/"
@@ -1146,40 +1032,29 @@ msgid ""
 msgstr ""
 "<b>Další sestavy a nástroje</b><br/>Další sestavy a nástroje mohou být do "
 "Gramps přidány prostřednictvím systému \"Rozšíření\". Naleznete jej pod "
-"\"Nápověda &gt; Další sestavy/Nástroje\". Toto je nejlepší způsob jak "
-"umožnit pokročilým uživatelům experimentovat a přidávat nové funkčnosti."
+"\"Nápověda > Další sestavy/Nástroje\". Toto je nejlepší způsob jak umožnit "
+"pokročilým uživatelům experimentovat a přidávat nové funkčnosti."
 
 #: ../data/tips.xml:104
-#, fuzzy
-#| msgid ""
-#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
-#| "allows you to collect a variety of reports into a single document. This "
-#| "single report is easier to distribute than multiple reports, especially "
-#| "when printed."
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports > Books...\" allows "
 "you to collect a variety of reports into a single document. This single "
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Knižní sestavy</b><br/>Knižní sestavy pod \"Sestavy &gt; Knihy...\" vám "
+"<b>Knižní sestavy</b><br/>Knižní sestavy pod \"Sestavy > Knihy...\" vám "
 "umožní sloučit rozmanité sestavy do jednoho dokumentu. Jedna sestava se šíří "
 "snadněji než několik dílčích, zvláště pokud je vytištěna."
 
 #: ../data/tips.xml:106
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
-#| "version of Gramps is released? Join the Gramps-announce mailing list at "
-#| "\"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help > Gramps Mailing Lists\"."
 msgstr ""
 "<b>Oznámení Gramps</b><br/>Rádi byste byli informováni při vydání nové verze "
-"Gramps? Přihlaste se do oznamovací elektronické konference na \"Nápověda "
-"&gt; Diskuzní skupiny Gramps\"."
+"Gramps? Přihlaste se do oznamovací elektronické konference na "
+"\"Nápověda > Diskuzní skupiny Gramps\"."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1250,12 +1125,6 @@ msgstr ""
 "správně."
 
 #: ../data/tips.xml:120
-#, fuzzy
-#| msgid ""
-#| "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
-#| "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
-#| "person is the person who is selected when the database is opened or when "
-#| "the home button is pressed."
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit > Set Home Person\" in the Person View. The home person "
@@ -1263,7 +1132,7 @@ msgid ""
 "button is pressed."
 msgstr ""
 "<b>Výchozí osoba</b><br/>Jako 'výchozí osoba' může být v Gramps vybrán "
-"kdokoli. Použijte \"Úpravy &gt; Nastavit výchozí osobu\" v Náhledu osob. "
+"kdokoli. Použijte \"Úpravy > Nastavit výchozí osobu\" v Náhledu osob. "
 "Výchozí osoba je osoba vybraná při otevření databáze, nebo když je stisknuto "
 "tlačítko Domů."
 
@@ -11553,7 +11422,7 @@ msgstr "Japonština"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "Korejština"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -15156,29 +15025,21 @@ msgstr "Nové místo"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:239
-#, fuzzy
-#| msgid ""
-#| "Invalid latitude\n"
-#| "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Neplatná zeměpisná šířka\n"
-"(syntax: 18\\u00b09'48.21\"S, -18.2412 nebo -18:9:48.21)"
+"(syntax: 18°9'48.21\"S, -18.2412 nebo -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:247
-#, fuzzy
-#| msgid ""
-#| "Invalid longitude\n"
-#| "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Neplatná zeměpisná délka\n"
-"(syntax: 18\\u00b09'48.21\"E, -18.2412 nebo -18:9:48.21)"
+"(syntax: 18°9'48.21\"E, -18.2412 nebo -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:289
 #: ../gramps/plugins/lib/maps/geography.py:991
@@ -23028,22 +22889,16 @@ msgid "Enter a date, click Run"
 msgstr "Vložte datum, klikněte na Spustit"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
-#, fuzzy
-#| msgid ""
-#| "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. "
-#| "This will compute the ages for everyone in your Family Tree on that date. "
-#| "You can then sort by the age column, and double-click the row to view or "
-#| "edit."
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
 "This will compute the ages for everyone in your Family Tree on that date. "
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"Vložte platné datum (RRRR-MM-DD) do pole níže a klikněte na Spustit. Bude "
-"vypočítán věk pro každou osobou ve vašem rodokmenu k tomuto datu. Výsledky "
-"můžete setřídit podle sloupce věku, nebo dvojklikem na řádek prohlížet, či "
-"upravovat."
+"Vložte platné datum (RRRR-MM-DD) do vstupního textového pole a klikněte na "
+"Spustit. Bude vypočítán věk pro každou osobou ve vašem rodokmenu k tomuto "
+"datu. Výsledky můžete setřídit podle sloupce věku, nebo dvojklikem na řádek "
+"prohlížet, či upravovat."
 
 #: ../gramps/plugins/gramplet/agestats.py:84
 #: ../gramps/plugins/gramplet/agestats.py:97
@@ -24620,10 +24475,8 @@ msgid "Unattached"
 msgstr "Nepřipojen"
 
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
-#, fuzzy
-#| msgid "Number of ranks to display"
 msgid "Number of Surnames to display"
-msgstr "Počet hodnocení k zobrazení"
+msgstr "Počet příjmení k zobrazení"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"

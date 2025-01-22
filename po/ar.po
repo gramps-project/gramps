@@ -6,13 +6,14 @@
 # Munzir Taha (منذر طه) <munzirtaha@gmail.com>, 2014.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Sulaiman A <67igltrpe@mozmail.com>, 2023.
+# Osama Taghlebi <osametto@outlook.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps-5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-12 21:14+0000\n"
-"PO-Revision-Date: 2023-10-28 04:14+0000\n"
-"Last-Translator: Sulaiman A <67igltrpe@mozmail.com>\n"
+"PO-Revision-Date: 2025-01-13 22:21+0000\n"
+"Last-Translator: Osama Taghlebi <osametto@outlook.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ar/>\n"
 "Language: ar\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "X-Poedit-Language: Arabic\n"
 "X-Language: ar\n"
 "X-Source-Language: C\n"
@@ -35,10 +36,8 @@ msgid "Canada"
 msgstr "كندا"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "الكاتالانية"
+msgstr "كاتالونية"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -200,10 +199,8 @@ msgid "8 of Hanuka"
 msgstr "ثامن الهانوكا"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "مائل"
+msgstr "ايطاليا"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -214,19 +211,16 @@ msgid "Russia"
 msgstr "روسيا"
 
 #: ../data/holidays.xml:434
-#, fuzzy
 msgid "Serbia"
-msgstr "فارسي"
+msgstr "صربيا"
 
 #: ../data/holidays.xml:449
-#, fuzzy
 msgid "Serbia (Latin)"
-msgstr "فارسي"
+msgstr "صربيا (لاتيني)"
 
 #: ../data/holidays.xml:464
-#, fuzzy
 msgid "Slovakia"
-msgstr "السلوفاكية"
+msgstr "سلوفاكيا"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:49
 msgid "Sweden"

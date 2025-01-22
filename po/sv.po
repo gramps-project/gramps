@@ -23,14 +23,14 @@
 # Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
 # Pär Ekholm <pehlm@pekholm.org>, 2018, 2019, 2020.
 # Pär Ekholm <par.ekholm@pekholm.org>, 2021.
-# Pär Ekholm <github1@m.pekholm.org>, 2022, 2023, 2024.
+# Pär Ekholm <github1@m.pekholm.org>, 2022, 2023, 2024, 2025.
 # Luna Jernberg <droidbittin@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-12 21:14+0000\n"
-"PO-Revision-Date: 2024-07-14 22:39+0000\n"
+"PO-Revision-Date: 2025-01-13 22:21+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -39,7 +39,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -449,17 +449,6 @@ msgstr ""
 "ned eller spela in!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter. Then select this filter in the Filter field on Sidebar, then "
-#| "click Find button. If the Sidebar is not visible, select View &gt; "
-#| "Sidebar."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -471,14 +460,14 @@ msgid ""
 "visible, select View > Sidebar."
 msgstr ""
 "<b>Personfiltrering</b><br/>I personvyn kan du 'filtrera' individer efter "
-"flera olika kriterier. För att skapa ett nytt filter går du till \"Redigera "
-"&gt; Personfilter redigeraren\". Där kan du namnge ditt filter och lägga "
-"till och kombinera regler genom att använda många fördefinierade regler. "
-"Till exempel kan alla adopterade personer i släktträdet hittas. Personer "
-"utan noterat födelsedatum kan också filtreras. För att få resultaten, spara "
-"ditt filter. Välj sedan filtret i filterfältet på sidopanelen klicka sedan "
-"på Hitta-knappen. Om sidopanelen inte syns, så aktivera genom att välja Visa "
-"&gt; Sidopanel."
+"flera olika kriterier. För att skapa ett nytt filter går du till "
+"\"Redigera > Personfilter redigeraren\". Där kan du namnge ditt filter och "
+"lägga till och kombinera regler genom att använda många fördefinierade "
+"regler. Till exempel kan alla adopterade personer i släktträdet hittas. "
+"Personer utan noterat födelsedatum kan också filtreras. För att få "
+"resultaten, spara ditt filter. Välj sedan filtret i filterfältet på "
+"sidopanelen klicka sedan på Hitta-knappen. Om sidopanelen inte syns, så "
+"aktivera genom att välja Visa > Sidopanel."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -528,24 +517,17 @@ msgstr ""
 "personen eller högerklicka för att välja make, syskon, barn eller föräldrar."
 
 #: ../data/tips.xml:24
-#, fuzzy
-#| msgid ""
-#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-#| "&gt; Compare Individual Events...\" you can compare the data of "
-#| "individuals in your database. This is useful, say, if you wish to list "
-#| "the birth dates of everyone in your database. You can use a custom filter "
-#| "to narrow the results."
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>Vem föddes när?</b><br/>Under \"Verktyg &gt; Analys och utforskning &gt; "
-"Jämför personliga händelser...\" låter dig jämföra data för alla (eller "
-"några) personer i din databas. Detta är användbart om du exempelvis vill "
-"lista födelsedata för alla i din databas. Du kan använda filter för att "
-"begränsa resultatet."
+"<b>Vem föddes när?</b><br/>Under "
+"\"Verktyg > Analys och utforskning > Jämför personliga händelser...\" låter "
+"dig jämföra data för alla (eller några) personer i din databas. Detta är "
+"användbart om du exempelvis vill lista födelsedata för alla i din databas. "
+"Du kan använda filter för att begränsa resultatet."
 
 #: ../data/tips.xml:26
 msgid ""
@@ -562,12 +544,6 @@ msgstr ""
 "mer????. Alla verktyg finns åtkomliga från menyn \"Verktygs\"-menyn."
 
 #: ../data/tips.xml:28
-#, fuzzy
-#| msgid ""
-#| "<b>Calculating Relationships</b><br/>To check if two people in the "
-#| "database are related (by blood, not marriage) try the tool under \"Tools "
-#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
-#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
@@ -576,8 +552,8 @@ msgid ""
 msgstr ""
 "<b>Undersöka släktskap</b><br/>För att kontrollera om t.ex. någon annan i "
 "släktträdet är besläktad med dig (genom blodsband (genetiskt), ej giftermål) "
-"använd verktyget under \"Verktyg &gt; Hjälpmedel &gt;.Släktskapsberäknare..."
-"\" Så väl exakt släktskap som gemensamma anor rapporteras."
+"använd verktyget under \"Verktyg > Hjälpmedel > Släktskapsberäknare...\" Så "
+"väl exakt släktskap som gemensamma anor rapporteras."
 
 #: ../data/tips.xml:30
 msgid ""
@@ -597,24 +573,17 @@ msgstr ""
 "fram SoundExkoder för efternamn i din databas, add the SoundEx Gramplet."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\"."
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"<b>Ange inställningar</b><br/>\"Redigera &gt; Inställningar...\" låter dig "
+"<b>Ange inställningar</b><br/>\"Redigera > Inställningar...\" låter dig "
 "ändra ett antal inställningar, som t.ex. sökväg till dina mediafiler, och "
 "låter dig även justera andra aspekter av Gramps presentationer enligt dina "
-"önskemål. varje separat vy kan även ställas in under \"Vy &gt; "
-"Inställningsvy...\"."
+"önskemål. varje separat vy kan även ställas in under "
+"\"Vy > Inställningsvy...\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -632,13 +601,6 @@ msgstr ""
 "det en rapport för detta också."
 
 #: ../data/tips.xml:36
-#, fuzzy
-#| msgid ""
-#| "<b>Starting a New Family Tree</b><br/>A good way to start a new family "
-#| "tree is to enter all the members of the family into the database using "
-#| "the Person View (use \"Edit &gt; Add...\" or click on the Add a new "
-#| "person button from the People View). Then go to the Relationship View and "
-#| "create relationships between people."
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -648,8 +610,8 @@ msgid ""
 msgstr ""
 "<b>Börja ett nytt släktträd</b><br/>Ett bra sätt att bygga upp ett nytt "
 "släktträd är att lägga till alla familjemedlemmar i databasen genom att "
-"använda personvyn (använd \"Redigera &gt; Lägg till\" eller klicka på Lägg "
-"till-knappen under personmenyn). Gå sedan till släktskapsvyn och definiera "
+"använda personvyn (använd \"Redigera > Lägg till\" eller klicka på Lägg till-"
+"knappen under personmenyn). Gå sedan till släktskapsvyn och definiera "
 "relationerna mellan personerna."
 
 #: ../data/tips.xml:38
@@ -677,29 +639,17 @@ msgstr ""
 "av datum."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
-#| "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
-#| "entries of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Dubblerade poster</b><br/>Verktyget \"Verktyg&gt; Bearbetning av "
-"släktträd &gt; Hitta möjliga dubblerade personer...\" kan du finna (och slå "
-"samman) poster, som lagts in i databasen mer än en gång."
+"<b>Dubblerade poster</b><br/>Verktyget "
+"\"Verktyg > Bearbetning av släktträd > Hitta möjliga dubblerade personer...\""
+" kan du finna (och slå samman) poster, som lagts in i databasen mer än en "
+"gång."
 
 #: ../data/tips.xml:44
-#, fuzzy
-#| msgid ""
-#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you "
-#| "to combine separately listed people into one. Select the second entry by "
-#| "holding the Control key as you click. This is very useful for combining "
-#| "two databases with overlapping people, or combining erroneously entered "
-#| "differing names for one individual. Merging is available in all list "
-#| "views for all primary object types."
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -708,12 +658,12 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Slå samman data</b><br/>Funktionen \"Redigera &gt; Slå samman...\" låter "
-"dig kombinera separat listade personer till en enda. Välj den andra posten "
-"genom att hålla ner CTRL tangenten medan du väljer. Detta är mycket "
-"användbart för att kombinera två databaser med överlappande personer eller "
-"för att kombinera felaktigt inskrivna olika namn för en enda person. "
-"Sammanslagning är tillgängligt i alla listvyer för alla primära objektstyper."
+"<b>Slå samman data</b><br/>Funktionen \"Redigera > Slå samman...\" låter dig "
+"kombinera separat listade personer till en enda. Välj den andra posten genom "
+"att hålla ner CTRL tangenten medan du väljer. Detta är mycket användbart för "
+"att kombinera två databaser med överlappande personer eller för att "
+"kombinera felaktigt inskrivna olika namn för en enda person. Sammanslagning "
+"är tillgängligt i alla listvyer för alla primära objektstyper."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -728,12 +678,6 @@ msgstr ""
 "\"Visa\"menyn."
 
 #: ../data/tips.xml:48
-#, fuzzy
-#| msgid ""
-#| "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of "
-#| "previous active objects such as People and Events. You can move forward "
-#| "and backward through the list using \"Go &gt; Forward\" and \"Go &gt; "
-#| "Back\" or the arrow buttons."
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -742,7 +686,7 @@ msgid ""
 msgstr ""
 "<b>Navigering bakåt och framåt</b><br/>Gramps har en lista med tidigare "
 "aktiva objekt såsom personer och händelser. Du kan gå framåt och bakåt genom "
-"listan genom att använda \"Gå &gt; Framåt\" och \"Gå &gt; Bakåt\" eller "
+"listan genom att använda \"Gå > Framåt\" och \"Gå > Bakåt\" eller "
 "pilknapparna."
 
 #: ../data/tips.xml:50
@@ -757,21 +701,15 @@ msgstr ""
 "höger sida i menyn."
 
 #: ../data/tips.xml:52
-#, fuzzy
-#| msgid ""
-#| "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
-#| "&gt; User Manual\". The developers have worked hard to make most "
-#| "operations intuitive but the manual is full of information that will make "
-#| "your time spent on genealogy more productive."
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
 "User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Studera handboken</b><br/>Glöm inte att läsa i Grampshandboken, \"Hjälp "
-"&gt; Användarhandbok\". Utvecklarna har lagt ner mycket energi på att göra "
-"de flesta operationerna intuitiva. Manualen är full av information, som "
+"<b>Studera handboken</b><br/>Glöm inte att läsa i Grampshandboken, "
+"\"Hjälp > Användarhandbok\". Utvecklarna har lagt ner mycket energi på att "
+"göra de flesta operationerna intuitiva. Manualen är full av information, som "
 "kommer att göra din släktforskning mer produktiv."
 
 #: ../data/tips.xml:54
@@ -829,14 +767,6 @@ msgstr ""
 "på e-postlistorna."
 
 #: ../data/tips.xml:62
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about "
-#| "Gramps? Check out the gramps-users email list. Many helpful people are on "
-#| "the list, so you're likely to get an answer quickly. If you have "
-#| "questions related to the development of Gramps, try the gramps-devel "
-#| "list. You can see the lists by selecting \"Help &gt; Gramps Mailing "
-#| "Lists\"."
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -848,18 +778,9 @@ msgstr ""
 "en titt på listan gramps-users. Många användare finns på listan, så du har "
 "stor chans att få ett snabbt svar. Om du behöver ställa frågor angående "
 "utvecklingen av Gramps, så försök med gramps-devel. Du kan få information om "
-"båda e-postlistorna genom att välja \"Hjälp &gt; Gramps sändlistor\"."
+"båda e-postlistorna genom att välja \"Hjälp > Gramps sändlistor\"."
 
 #: ../data/tips.xml:64
-#, fuzzy
-#| msgid ""
-#| "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't "
-#| "write programs? Not a problem! A project as large as Gramps requires "
-#| "people with a wide variety of skills. Contributions can be anything from "
-#| "writing documentation to testing development versions and helping with "
-#| "the web site. Start by subscribing to the Gramps developers mailing list, "
-#| "gramps-devel, and introducing yourself. Subscription information can be "
-#| "found at \"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -875,7 +796,7 @@ msgstr ""
 "skriva dokumentation till att testa utvecklingsversioner till att hjälpa "
 "till med webbplatsen. Börja med att anmäla dig till grampsutvecklarnas e-"
 "postlista gramps-devel och presentera dig. Anmälningsinformation finns på "
-"\"Hjälp &gt; Gramps sändlistor\"."
+"\"Hjälp > Gramps sändlistor\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -894,13 +815,6 @@ msgstr ""
 "del användare hanterar genealogier innehållande hundratusentals personer."
 
 #: ../data/tips.xml:68
-#, fuzzy
-#| msgid ""
-#| "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient "
-#| "place to store the names of frequently used individuals. Selecting a "
-#| "bookmark will make that person the Active Person. To bookmark someone "
-#| "make them the Active Person then go to \"Bookmarks &gt; Add Bookmark\" or "
-#| "press Ctrl+D. You can also bookmark most of the other objects."
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -911,18 +825,10 @@ msgstr ""
 "<b>Att bokmärka personer</b><br/>Bokmärkesmenyn är ett bekvämt ställe för "
 "att spara personer som man använder ofta. Klicka på en bokmärkt person så "
 "aktiveras denna. För att skapa ett bokmärke för en person, så aktivera denne "
-"först, gå sedan till \"Bokmärke &gt; Lägg till bokmärke\" eller tryck "
-"Ctrl+D. Du kan även utnyttja bokmärken för de flesta övriga objekt."
+"först, gå sedan till \"Bokmärke > Lägg till bokmärke\" eller tryck Ctrl+D. "
+"Du kan även utnyttja bokmärken för de flesta övriga objekt."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit &gt; Preferences &gt; Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -935,15 +841,9 @@ msgstr ""
 "format. Felaktiga datumformat kommer att visas i Gramps med en rödaktig "
 "bakgrund eller en röd punkt vid fältets högra kant. Rätta till med hjälp av "
 "dialogrutan för datumval genom att klicka på datumknappen. Datumformatet "
-"ställs in under \"Redigera &gt; Inställningar &gt; Visa\"."
+"ställs in under \"Redigera > Inställningar > Visa\"."
 
 #: ../data/tips.xml:72
-#, fuzzy
-#| msgid ""
-#| "<b>Listing Events</b><br/>Events are added using the editor opened with "
-#| "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
-#| "event types. You can add your own event types by typing in the text "
-#| "field, they will be added to the available events, but not translated."
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person > Edit Person > Events\". There is a long list of preset event "
@@ -951,11 +851,11 @@ msgid ""
 "will be added to the available events, but not translated."
 msgstr ""
 "<b>Listning av händelser</b><br/>Händelser läggs till genom att använda "
-"redigeraren öppnad med \"Person &gt; Redigera person &gt; Händelser\". Det "
-"finns en lång lista med förbestämda typer. Du kan lägga till egna "
-"händelsetyper genom att skriva in texten i fältet. De kommer att läggas till "
-"tillgängliga händelser, men blir ej översatta. (Men observera de kan f.n. "
-"inte tas bort på ett enkelt sätt/ö.s. anm.)."
+"redigeraren öppnad med \"Person > Redigera person > Händelser\". Det finns "
+"en lång lista med förbestämda typer. Du kan lägga till egna händelsetyper "
+"genom att skriva in texten i fältet. De kommer att läggas till tillgängliga "
+"händelser, men blir ej översatta. (Men observera de kan f.n. inte tas bort "
+"på ett enkelt sätt/ö.s. anm.)."
 
 #: ../data/tips.xml:74
 msgid ""
@@ -1013,12 +913,6 @@ msgstr ""
 "kalkylblad, dokument med mera."
 
 #: ../data/tips.xml:84
-#, fuzzy
-#| msgid ""
-#| "<b>Filters</b><br/>Filters allow you to limit the people seen in the "
-#| "People View. In addition to the many preset filters, Custom Filters can "
-#| "be created limited only by your imagination. Custom filters are created "
-#| "from \"Edit &gt; Person Filter Editor\"."
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -1027,8 +921,8 @@ msgid ""
 msgstr ""
 "<b>Filter</b><br/>Med ett filter kan du begränsa antalet av de personer du "
 "vill se i Personvyn. Förutom de många förinställda filtren kan du definiera "
-"egna, anpassade filter. Anpassade filter skapas från \"Redigera &gt; "
-"Redigera personfilter\"."
+"egna, anpassade filter. Anpassade filter skapas från "
+"\"Redigera > Redigera personfilter\"."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -1126,12 +1020,6 @@ msgstr ""
 "är riktig."
 
 #: ../data/tips.xml:102
-#, fuzzy
-#| msgid ""
-#| "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added "
-#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
-#| "Reports/Tools\". This is the best way for advanced users to experiment "
-#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help > Extra Reports/"
@@ -1139,34 +1027,23 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Ytterligare rapporter och verktyg</b><br/>Nya typer av rapporter och "
-"verktyg kan läggas till Gramps med \"Tilläggs\"-system. Se under \"Hjälp "
-"&gt; Extra rapporttyper och verktyg\". Detta är bästa sättet för avancerade "
-"användare att experimentera och skapa ny funktioner."
+"verktyg kan läggas till Gramps med \"Tilläggs\"-system. Se under "
+"\"Hjälp > Extra rapporttyper och verktyg\". Detta är bästa sättet för "
+"avancerade användare att experimentera och skapa ny funktioner."
 
 #: ../data/tips.xml:104
-#, fuzzy
-#| msgid ""
-#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
-#| "allows you to collect a variety of reports into a single document. This "
-#| "single report is easier to distribute than multiple reports, especially "
-#| "when printed."
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports > Books...\" allows "
 "you to collect a variety of reports into a single document. This single "
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Bokrapporter</b><br/> Bokrapporten under \"Rapporter &gt; Böcker ...\" "
-"låter användare samla ett antal olika rapporter till ett enda dokument. En "
-"enda rapport är enklare att distribuera än flera rapporter, speciellt om de "
-"är utskrivna."
+"<b>Bokrapporter</b><br/> Bokrapporten under \"Rapporter > Böcker ...\" låter "
+"användare samla ett antal olika rapporter till ett enda dokument. En enda "
+"rapport är enklare att distribuera än flera rapporter, speciellt om de är "
+"utskrivna."
 
 #: ../data/tips.xml:106
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
-#| "version of Gramps is released? Join the Gramps-announce mailing list at "
-#| "\"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
@@ -1174,7 +1051,7 @@ msgid ""
 msgstr ""
 "<b>Gramps tillkännagivanden </b><br/>Intresserad av att få ett meddelande "
 "när en ny Gramps-version släpps? Anmäl dig till e-postlistan Gramps-announce "
-"på \"Hjälp &gt; Gramps sändlistor\"."
+"på \"Hjälp > Gramps sändlistor\"."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1244,12 +1121,6 @@ msgstr ""
 "Unicode. Tecken för alla språk visas korrekt."
 
 #: ../data/tips.xml:120
-#, fuzzy
-#| msgid ""
-#| "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
-#| "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
-#| "person is the person who is selected when the database is opened or when "
-#| "the home button is pressed."
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit > Set Home Person\" in the Person View. The home person "
@@ -1257,8 +1128,8 @@ msgid ""
 "button is pressed."
 msgstr ""
 "<b>Hempersonen</b><br/>Vem som helst kan väljas som 'hemperson' i Gramps. "
-"Använd \"Redigera &gt; Välj hemperson\". Hempersonen är den person som "
-"väljes när databasen öppnas eller när man klickar på hemknappen."
+"Använd \"Redigera > Välj hemperson\". Hempersonen är den person som väljes "
+"när databasen öppnas eller när man klickar på hemknappen."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -11575,7 +11446,7 @@ msgstr "Japanska"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "Koreanska"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -15178,29 +15049,21 @@ msgstr "Ny plats"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:239
-#, fuzzy
-#| msgid ""
-#| "Invalid latitude\n"
-#| "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Ogiltig latitud\n"
-"(syntax: 18\\u00b09'48.21\"S, -18.2412 eller -18:9:48.21)"
+"(syntax: 18°9'48.21\"S, -18.2412 eller -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:247
-#, fuzzy
-#| msgid ""
-#| "Invalid longitude\n"
-#| "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Ogiltig longitud\n"
-"(syntax: 18\\u00b09'48.21\"S, -18.2412 eller -18:9:48.21)"
+"(syntax: 18°9'48.21\"E, -18.2412 eller -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:289
 #: ../gramps/plugins/lib/maps/geography.py:991
@@ -23094,22 +22957,16 @@ msgid "Enter a date, click Run"
 msgstr "Mata in ett datum, klicka på Kör"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
-#, fuzzy
-#| msgid ""
-#| "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. "
-#| "This will compute the ages for everyone in your Family Tree on that date. "
-#| "You can then sort by the age column, and double-click the row to view or "
-#| "edit."
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
 "This will compute the ages for everyone in your Family Tree on that date. "
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"Skriv in ett giltigt datum (som ÅÅÅÅ-MM-DD) i fältet nedan och klicka sedan "
-"på Kör. Detta kommer att beräkna ålder för alla i ditt släktträd på detta "
-"datum. Du kan sedan sortera med ålderskolumnen och dubbelklicka på raden för "
-"att visa eller redigera."
+"Skriv in ett giltigt datum (som ÅÅÅÅ-MM-DD) i inmatningstextrutan och klicka "
+"sedan på Kör. Detta kommer att beräkna ålder för alla i ditt släktträd på "
+"detta datum. Du kan sedan sortera med ålderskolumnen och dubbelklicka på "
+"raden för att visa eller redigera."
 
 #: ../gramps/plugins/gramplet/agestats.py:84
 #: ../gramps/plugins/gramplet/agestats.py:97
@@ -24684,10 +24541,8 @@ msgid "Unattached"
 msgstr "Okopplad"
 
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
-#, fuzzy
-#| msgid "Number of ranks to display"
 msgid "Number of Surnames to display"
-msgstr "Antal ordningar att visa"
+msgstr "Antal efternamn att visa"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
