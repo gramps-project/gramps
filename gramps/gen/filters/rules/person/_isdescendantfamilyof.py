@@ -82,7 +82,7 @@ class IsDescendantFamilyOf(Rule):
             self.exclude()
 
     def reset(self):
-        self.map = set()
+        self.map.clear()
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map
