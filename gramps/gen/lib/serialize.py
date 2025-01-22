@@ -72,6 +72,9 @@ class DataDict(dict):
         return int(self["_object"])
 
     def __eq__(self, value):
+        if isinstance(value, dict):
+            return dict(self) == value
+
         if "_object" not in self:
             self["_object"] = from_dict(self)
 
