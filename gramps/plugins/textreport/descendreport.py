@@ -8,6 +8,7 @@
 # Copyright (C) 2011       Matt Keenan (matt.keenan@gmail.com)
 # Copyright (C) 2013-2014  Paul Franklin
 # Copyright (C) 2010,2015  Craig J. Anderson
+# Copyright (C) 2024-2025  Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -245,6 +246,7 @@ class Printinfo:
         doc,
         database,
         numbering,
+        showgender,
         showmarriage,
         showdivorce,
         showlifespan,
@@ -259,6 +261,7 @@ class Printinfo:
         self.database = database
         self.numbering = numbering
         # variables
+        self.showgender = showgender
         self.showmarriage = showmarriage
         self.showdivorce = showdivorce
         self.showlifespan = showlifespan
@@ -320,6 +323,8 @@ class Printinfo:
         display_num = self.numbering.number(level)
         self.doc.start_paragraph("DR-Level%d" % min(level, 32), display_num)
         mark = utils.get_person_mark(self.database, person)
+        if self.showgender:
+            self.doc.write_text("%s " % utils.get_gender_symbol(person))
         self.doc.write_text(self._name_display.display(person), mark)
         if self.want_ids:
             self.doc.write_text(" (%s)" % person.get_gramps_id())
@@ -335,6 +340,8 @@ class Printinfo:
             mark = utils.get_person_mark(self.database, spouse)
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = self._name_display.display(spouse)
+            if self.showgender:
+                name = utils.get_gender_symbol(spouse) + " " + name
             self.doc.write_text(self._("sp. %(spouse)s") % {"spouse": name}, mark)
             if self.want_ids:
                 self.doc.write_text(" (%s)" % spouse.get_gramps_id())
@@ -355,6 +362,8 @@ class Printinfo:
             mark = utils.get_person_mark(self.database, person)
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = self._name_display.display(person)
+            if self.showgender:
+                name = utils.get_gender_symbol(person) + " " + name
             self.doc.write_text(
                 self._("sp. see %(reference)s: %(spouse)s")
                 % {"reference": display_num, "spouse": name},
@@ -497,6 +506,7 @@ class DescendantReport(Report):
         else:
             raise AttributeError("no such numbering: '%s'" % numbering)
 
+        showgender = menu.get_option_by_name("showgender").get_value()
         marrs = menu.get_option_by_name("marrs").get_value()
         divs = menu.get_option_by_name("divs").get_value()
         lifespan = menu.get_option_by_name("lifespan").get_value()
@@ -509,6 +519,7 @@ class DescendantReport(Report):
             self.doc,
             self.database,
             obj,
+            showgender,
             marrs,
             divs,
             lifespan,
@@ -584,6 +595,12 @@ class DescendantOptions(MenuReportOptions):
         menu.add_option(category_name, "gen", gen)
 
         stdoptions.add_gramps_id_option(menu, category_name)
+
+        showgender = BooleanOption(_("Show gender symbol in front of name"), True)
+        showgender.set_help(
+            _("Whether to show gender symbol in front of name in the report.")
+        )
+        menu.add_option(category_name, "showgender", showgender)
 
         marrs = BooleanOption(_("Show marriage info"), False)
         marrs.set_help(_("Whether to show marriage information in the report."))

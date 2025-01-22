@@ -47,13 +47,23 @@ function lang() {
   var langs = %s;
   var lang = navigator.languages || navigator.userLanguages || window.navigator.userLanguage;
   var found = langs[0];
+  var next = 1;
   for (i=0; i < lang.length; i++) {
     for (j=0; j < langs.length; j++) {
+      my_lang = lang[i];
+      slang = my_lang.split("-")[0];  /* ie when we have en-GB */
+      if (slang == langs[j]) {
+        found = slang;
+        next = 0;
+        break;
+      };
       if (lang[i] == langs[j]) {
         found = lang[i];
+        next = 0;
         break;
       };
     };
+    if (next == 0) { break;}
   };
   location.replace("./"+found+"/index%s");
 }

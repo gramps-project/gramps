@@ -43,6 +43,24 @@ LOG = logging.getLogger(".serialize")
 
 
 class DataDict(dict):
+    """
+    A wrapper around a data dict that also provides an
+    object interface.
+    """
+
+    def __init__(self, data=None):
+        """
+        Wrap a data dict (raw data) or object
+        with an attribute API. If data is an
+        object, we use it to get the attributes.
+        """
+        if isinstance(data, dict):
+            super().__init__(data)
+        else:
+            super().__init__()
+            if data:
+                self["_object"] = data
+
     def __str__(self):
         if "_object" not in self:
             self["_object"] = from_dict(self)
@@ -105,7 +123,9 @@ class DataDict(dict):
             return self["_object"]
 
         if key.startswith("_"):
-            raise AttributeError("can't use this API to access hidden attributes")
+            raise AttributeError(
+                "this method cannot be used to access hidden attributes"
+            )
 
         if "_object" in self:
             return getattr(self["_object"], key)
