@@ -66,6 +66,18 @@ class DataDict(dict):
             self["_object"] = from_dict(self)
         return str(self["_object"])
 
+    def __eq__(self, value):
+        if isinstance(value, dict):
+            return dict(self) == value
+
+        if "_object" not in self:
+            self["_object"] = from_dict(self)
+
+        if isinstance(value, DataDict):
+            value = value._object
+
+        return self["_object"].__eq__(value)
+
     def __getattr__(self, key):
         if key.startswith("_"):
             raise AttributeError(
@@ -85,6 +97,14 @@ class DataDict(dict):
         else:
             self["_object"] = from_dict(self)
             return getattr(self["_object"], key)
+
+    def __getitem__(self, item):
+        # Have object act like a dict
+        if "_object" in self:
+            return getattr(super().__getitem__("_object"), item)
+        else:
+            return super().__getitem__(item)
+
 
 
 class DataList(list):
