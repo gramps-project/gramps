@@ -105,4 +105,4 @@ class LivingPrivateProxyTest(unittest.TestCase):
 
     def test_person_raw(self):
         data = self.db._get_raw_person_from_id_data("I0552")
-        assert isinstance(data, dict)
+        self.assertIsInstance(data, dict)
