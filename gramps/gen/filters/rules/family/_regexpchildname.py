@@ -44,8 +44,6 @@ from gramps.gen.lib import Family
 from gramps.gen.db import Database
 
 
-
-
 # -------------------------------------------------------------------------
 #
 # RegExpChildName
