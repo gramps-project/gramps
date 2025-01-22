@@ -100,8 +100,8 @@ class DataDict(dict):
 
     def __getitem__(self, item):
         # Have object act like a dict
-        if "_object" in self:
-            return getattr(super().__getitem__("_object"), item)
+        if "_object" in self and item != "_object":
+            return getattr(super().__getattr__("_object"), item)
         else:
             return super().__getitem__(item)
 
