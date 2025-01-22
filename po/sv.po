@@ -9069,7 +9069,7 @@ msgstr "Byggnad"
 #: ../gramps/plugins/webreport/basepage.py:3429
 #: ../gramps/plugins/webreport/source.py:175
 msgid "Number"
-msgstr "Antal"
+msgstr "Nummer"
 
 #: ../gramps/gen/lib/repo.py:94 ../gramps/gui/clipboard.py:783
 #: ../gramps/gui/configure.py:836 ../gramps/gui/editors/editlink.py:102
