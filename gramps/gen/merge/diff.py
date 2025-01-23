@@ -67,7 +67,7 @@ def diff_items(path, json1, json2):
             return False
     elif isinstance(json1, dict) and isinstance(json2, dict):
         for key in json1.keys():
-            if key == "change":
+            if key == "change" or key.startswith("_"):
                 continue  # don't care about time differences, only data changes
             elif key == "date":
                 result = diff_dates(json1["date"], json2["date"])
@@ -129,7 +129,9 @@ def diff_dbs(db1, db2, user):
                 if handles1[p1] == handles2[p2]:  # in both
                     item1 = handle_func1(handles1[p1])
                     item2 = handle_func2(handles2[p2])
-                    diff = diff_items(item, to_dict(item1), to_dict(item2))
+                    diff = diff_items(
+                        item, to_dict(item1, force=True), to_dict(item2, force=True)
+                    )
                     if diff:
                         diffs += [(item, item1, item2)]
                     # else same!

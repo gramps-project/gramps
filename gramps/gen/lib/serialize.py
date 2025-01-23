@@ -54,29 +54,40 @@ class DataDict(dict):
         with an attribute API. If data is an
         object, we use it to get the attributes.
         """
-        if isinstance(data, dict):
-            super().__init__(data)
-        else:
-            super().__init__()
-            if data:
-                self["_object"] = data
+        if not isinstance(data, dict):
+            data = {
+                "_object": data,
+                "_class": data.__class__.__name__,
+            }
+        super().__init__(data)
 
     def __str__(self):
         if "_object" not in self:
             self["_object"] = from_dict(self)
         return str(self["_object"])
 
-    def __eq__(self, value):
-        if isinstance(value, dict):
-            return dict(self) == value
+    def expand(self):
+        # Expand object if necessary:
+        if "_object" in self and "handle" not in self:
+            self.update(to_dict(self, force=True))
 
-        if "_object" not in self:
-            self["_object"] = from_dict(self)
+    def __eq__(self, other):
+        v1, v2 = self, other
 
-        if isinstance(value, DataDict):
-            value = value._object
-
-        return self["_object"].__eq__(value)
+        if isinstance(v1, dict) and isinstance(v2, dict):
+            v1.expand()
+            v2.expand()
+            keys = set(v1.keys()) | set(v2.keys())
+            for key in keys:
+                if key.startswith("_"):
+                    continue
+                if key not in v1 or key not in v2:
+                    return False
+                if v1[key] != v2[key]:
+                    return False
+            return True
+        else:
+            return False
 
     def __getattr__(self, key):
         if key.startswith("_"):
@@ -100,7 +111,7 @@ class DataDict(dict):
 
     def __getitem__(self, item):
         # Make object act like a dict
-        if "_object" in self and item != "_object":
+        if "_object" in self and not item.startswith("_"):
             return getattr(super().__getitem__("_object"), item)
         else:
             return super().__getitem__(item)
