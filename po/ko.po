@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-12 21:14+0000\n"
-"PO-Revision-Date: 2025-01-16 06:00+0000\n"
+"PO-Revision-Date: 2025-01-22 21:51+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -1123,6 +1123,10 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
+"<b>계보학의 방법과 이유</b><br/>계보학은 단지 날짜와 이름만 있지 않다. 이는 "
+"인물에 대한 것이다. 좀 더 자세히 설명하라. 왜 사건이 일어났고 인물들이 "
+"들어간 사건이 어떤 형태로 내려가는지 포함하라. 사용자의 가문 역사가 살아 "
+"있게 만들려면 설명을 길게 만들어야 한다."
 
 #: ../data/tips.xml:114
 msgid ""
@@ -1131,6 +1135,9 @@ msgid ""
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
+"<b>영어를 못한다면?</b><br/>그람프는 자원봉사자들이 40개 언어 이상으로 "
+"번역했다. 그람프스가 사용자의 언어를 지원하는데 화면에 표시하지 못한다면 "
+"운영체제에서 기본 언어를 변경하고 그람프스를 다시 실행하라."
 
 #: ../data/tips.xml:116
 msgid ""
@@ -1138,12 +1145,18 @@ msgid ""
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
+"<b>그람프스 번역기</b><br/>그람프스는 새 번역을 쉽게 추가할 수 있도록 개발 "
+"설계해 왔다. 번역에 참여하고 싶으면 gramps-devel@lists.sf.net 으로 이메일을 "
+"보내 달라."
 
 #: ../data/tips.xml:118
 msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
+"<b>안녕, привет 혹은 喂</b><br/>사용자가 그람프스를 어떤 형태로 쓰건 "
+"그람프스는 유니코드를 완전하게 지원한다. 전 언어에 사용하는 문자들은 "
+"정상적으로 화면에 나온다."
 
 #: ../data/tips.xml:120
 msgid ""
@@ -1152,6 +1165,9 @@ msgid ""
 "is the person who is selected when the database is opened or when the home "
 "button is pressed."
 msgstr ""
+"<b>주 인물</b><br/>그람프스에서는 누구든 주 인물로 지정할 수 있다. 인물 "
+"보기에서 \"편집 > 주 인물로 지정\"을 사용하라. 주 인물은 데이타베이스를 "
+"열거나 홈 버튼을 눌렀을때 선택하는 인물이다."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1160,6 +1176,10 @@ msgid ""
 "is supported on any computer system where these programs have been ported. "
 "Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
 msgstr ""
+"<b>그람프스 코드</b><br/>그람프는 화면 구성을 위해 GTK와 GNOME 라이브러리를 "
+"썼고 파이썬으로 만들었다. 그람프스는 저 프로그램들을 이식할 수 있는 컴퓨터 "
+"시스템은 모두 지원한다. 그람프스는 Linux, BSD, Solaris, Windows 그리고 Mac "
+"OS X 등에서 실행 가능하다."
 
 #: ../data/tips.xml:124
 msgid ""
@@ -1170,6 +1190,12 @@ msgid ""
 "tool. For more about Open Source software lookup the Free Software "
 "Foundation and the Open Source Initiative."
 msgstr ""
+"<b>오픈 소스 소프트웨어</b><br/>자유 및 오픈소스 소프트웨어(FLOSS) 개발 "
+"모델은 그람프스가 어느 개발자를 통해서도 확장할 수 있다는 것을 의미한다. "
+"왜냐하면 모든 소스 코드는 라이센스 하에서 자유롭게 이용 가능하기 때문이다. "
+"단지 무료 맥주 한 한잔에 대한 것뿐만 아니라 도구를 공부하고 바꿀 수 있는 "
+"자유에 대한 것이다. 오픈 소스 소프트웨어에 대해서 더 알고 싶다면 자유 "
+"소프트웨어 재단이나 오픈 소스 관련 내용물들을 보기 바란다."
 
 #: ../data/tips.xml:126
 msgid ""
@@ -1178,6 +1204,10 @@ msgid ""
 "License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the "
 "rights and restrictions of this license."
 msgstr ""
+"<b>그람프스 소프트웨어 라이센스</b><br/>사용자는 그람프스를 자유로이 쓰거나 "
+"다른 사람과 공유할 수 있다. 그람프스는 GNU GPL에 의해 자유롭게 배포할 수 "
+"있는데, 자세한 것은 http://www.gnu.org/licenses/licenses.html#GPL 여기를 "
+"읽어보라."
 
 #: ../data/tips.xml:128
 msgid ""
@@ -1185,6 +1215,9 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
+"<b>Gnome 이나 KDE용 그람프스는?</b><br/>그람프스는 리눅스 사용자들이 어느 "
+"데스크탑 환경에서 쓰더라도 동작한다. 필요한 GTK 라이브러리만 설치되어 있으면 "
+"잘 동작할 것이다."
 
 #: ../gramps/cli/arghandler.py:233
 #, python-format
@@ -1192,6 +1225,8 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
+"오류: '%s' 가계도가 이미 존재함.\n"
+"'-C' 옵션을 사용할 수 없음."
 
 #: ../gramps/cli/arghandler.py:248
 #, python-format
@@ -1200,16 +1235,18 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
+"오류: 입력한 \"%s\" 가계도는 존재하지 않음.\n"
+"GEDCOM, 그람프스-xml 혹은 grdb를 쓴다면 가계도를 불러올때 -i 옵션을 써보라."
 
 #: ../gramps/cli/arghandler.py:264
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr ""
+msgstr "오류: 가져올 파일 %s 찾을 수 없음."
 
 #: ../gramps/cli/arghandler.py:284
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
-msgstr ""
+msgstr "오류: 인식하지 못하는 형태: %(filename)s 파일의 \"%(format)s\""
 
 #: ../gramps/cli/arghandler.py:307
 #, python-format
@@ -1218,30 +1255,33 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
+"경고: 출력 파일이 이미 존재함!\n"
+"경고: 덮어쓸 예정임.\n"
+"   %s"
 
 #: ../gramps/cli/arghandler.py:313
 msgid "OK to overwrite?"
-msgstr ""
+msgstr "덮어 쓸까요?"
 
 #: ../gramps/cli/arghandler.py:315 ../gramps/cli/arghandler.py:317
 #: ../gramps/cli/clidbman.py:469
 msgid "yes"
-msgstr ""
+msgstr "예"
 
 #: ../gramps/cli/arghandler.py:316 ../gramps/cli/clidbman.py:470
 #: ../gramps/cli/clidbman.py:471
 msgid "no"
-msgstr ""
+msgstr "아니오"
 
 #: ../gramps/cli/arghandler.py:320
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr ""
+msgstr "기존 파일 %s 에 덮어씁니다:"
 
 #: ../gramps/cli/arghandler.py:339
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr ""
+msgstr "오류: 내보내기 파일 %s 이 인식할 수 없는 형식입니다."
 
 #: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:379
 #, python-format
