@@ -69,7 +69,7 @@ class DataDict(dict):
     def expand(self):
         # Expand object if necessary:
         if "_object" in self and "handle" not in self:
-            self.update(to_dict(self, force=True))
+            self.update(to_dict(self["_object"], force=True))
 
     def __eq__(self, other):
         v1, v2 = self, other
