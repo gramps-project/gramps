@@ -298,9 +298,11 @@ class SurnameListPage(BasePage):
                     char = uniname(bucket_letter)
                 except (ValueError, TypeError) as dummy_err:
                     char = " "
-                ttle = self._("Surnames beginning with " "letter '%s' %s") % (
-                    bucket_letter,
-                    char,
+                ttle = self._(
+                    "Surnames beginning with letter '{letter}' {char}"
+                ).format(
+                    letter=bucket_letter,
+                    char=char,
                 )
                 hyper = Html(
                     "a",

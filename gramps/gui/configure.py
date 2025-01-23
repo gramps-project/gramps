@@ -852,7 +852,7 @@ class GrampsPreferences(ConfigureDialog):
         row += 1
         label = self.add_text(
             grid,
-            _(
+            _(  # xgettext: no-python-format
                 "Default Gramps ID formats containing a letter prefix"
                 ' followed by a numerical string. "I%04d" creates IDs'
                 " from I0000 to I9999. Large databases may need larger"
