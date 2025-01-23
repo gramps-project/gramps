@@ -60,7 +60,7 @@ class SelectPerson(BaseSelector):
         title=None,
         filter=None,
         skip=set(),
-        show_search_bar=False,
+        show_search_bar=True,
         default=None,
     ):
         # SelectPerson may have a title passed to it which should be used
