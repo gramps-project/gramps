@@ -66,9 +66,12 @@ class DataDict(dict):
             self["_object"] = from_dict(self)
         return str(self["_object"])
 
-    def __int__(self):
+    def __get_object(self):
         if "_object" not in self:
             self["_object"] = from_dict(self)
+
+    def __int__(self):
+        self.__get_object()
         return int(self["_object"])
 
     def __eq__(self, value):
