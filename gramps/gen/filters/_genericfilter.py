@@ -59,7 +59,6 @@ class GenericFilter:
     """Filter class that consists of several rules."""
 
     logical_functions = ["and", "or", "one"]
-    table = "person"
 
     def __init__(self, source=None):
         if source:
@@ -308,8 +307,6 @@ class GenericFilter:
 
 
 class GenericFamilyFilter(GenericFilter):
-    table = "family"
-
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -330,8 +327,6 @@ class GenericFamilyFilter(GenericFilter):
 
 
 class GenericEventFilter(GenericFilter):
-    table = "event"
-
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -352,8 +347,6 @@ class GenericEventFilter(GenericFilter):
 
 
 class GenericSourceFilter(GenericFilter):
-    table = "source"
-
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -374,8 +367,6 @@ class GenericSourceFilter(GenericFilter):
 
 
 class GenericCitationFilter(GenericFilter):
-    table = "citation"
-
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -399,8 +390,6 @@ class GenericCitationFilter(GenericFilter):
 
 
 class GenericPlaceFilter(GenericFilter):
-    table = "place"
-
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -424,8 +413,6 @@ class GenericPlaceFilter(GenericFilter):
 
 
 class GenericMediaFilter(GenericFilter):
-    table = "media"
-
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -446,8 +433,6 @@ class GenericMediaFilter(GenericFilter):
 
 
 class GenericRepoFilter(GenericFilter):
-    table = "repository"
-
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -468,8 +453,6 @@ class GenericRepoFilter(GenericFilter):
 
 
 class GenericNoteFilter(GenericFilter):
-    table = "note"
-
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
