@@ -5,7 +5,7 @@
 # Mehmet Ugur Kecik <mukecik@yahoo.com>, 2006.
 # Ugur Cetin <ugur@ugurcetin.com.tr>, 2014.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
-# Osman Öz <osmanoz05@hotmail.com>, 2021, 2022, 2023, 2024.
+# Osman Öz <osmanoz05@hotmail.com>, 2021, 2022, 2023, 2024, 2025.
 # Brtc <boratici@gmail.com>, 2021.
 # Bora <boratici@gmail.com>, 2021, 2022.
 # Bora Atıcı <boratici@gmail.com>, 2022.
@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2024-07-17 13:09+0000\n"
-"Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
+"PO-Revision-Date: 2025-01-25 12:37+0000\n"
+"Last-Translator: Osman Öz <osmanoz05@hotmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -7858,17 +7858,15 @@ msgstr "Çoklu ebeveyn"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Arkadaş"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "Mahalle"
+msgstr "Komşu"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "Görevli"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -7905,11 +7903,11 @@ msgstr "Aile"
 
 #: ../gramps/gen/lib/eventtype.py:171
 msgid "Religious"
-msgstr "Dini"
+msgstr "Din"
 
 #: ../gramps/gen/lib/eventtype.py:184
 msgid "Vocational"
-msgstr "Mesleki"
+msgstr "Meslekî"
 
 #: ../gramps/gen/lib/eventtype.py:187
 msgid "Academic"
@@ -11000,7 +10998,7 @@ msgstr "tarih"
 
 #: ../gramps/gen/utils/alive.py:207 ../gramps/gen/utils/alive.py:238
 msgid "date fallback"
-msgstr ""
+msgstr "tarih geri dönüşü"
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
 #, fuzzy
@@ -11010,7 +11008,7 @@ msgstr "ölüm"
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
-msgstr ""
+msgstr "DOĞRUDAN doğum: "
 
 #: ../gramps/gen/utils/alive.py:336
 #, fuzzy
@@ -11062,7 +11060,7 @@ msgstr "Kardeş değil"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "doğum tarihi ve öldüğü biliniyor"
 
 #: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:239
 msgid "birth date"
@@ -11796,7 +11794,7 @@ msgstr "Japonca"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "Korece"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -16140,6 +16138,8 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"Bu, verilen değerlere göre yeni bir özel filtre eklemek için bir iletişim "
+"kutusu açar."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16148,20 +16148,20 @@ msgstr "Sıfırla"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "Geçen süre: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "'İçinde' kuralını kullanırken bir yer seçmelisiniz"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
-msgstr ""
+msgstr "En az bir değer sağlayın"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "Filter gramplet tarafından {today} tarihinde oluşturuldu"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19325,7 +19325,7 @@ msgstr "Eşleşen eklenti bulunamadı."
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
-msgstr ""
+msgstr "Bir proje ekleyin"
 
 #: ../gramps/gui/plug/_windows.py:705
 #, fuzzy
@@ -33229,7 +33229,7 @@ msgstr "Kullanılacak numaralandırma sistemi"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "İsmin önünde cinsiyet sembolünü göster"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
 #, fuzzy
