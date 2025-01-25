@@ -10,15 +10,15 @@
 # Milan <mobrcian@hotmail.com>, 2022.
 # Dan <denqwerta@gmail.com>, 2022.
 # Andrey Serbovets <serbovets.translation@gmail.com>, 2023, 2024.
-# Andrii Serbovets <serbovets.translation@gmail.com>, 2024.
+# Andrii Serbovets <serbovets.translation@gmail.com>, 2024, 2025.
 # Illia Maier <Illia-M@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2024-10-08 07:15+0000\n"
-"Last-Translator: Illia Maier <Illia-M@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2025-01-24 17:44+0000\n"
+"Last-Translator: Andrii Serbovets <serbovets.translation@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
 "Language: uk\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -7850,20 +7850,16 @@ msgid "Child"
 msgstr "Дитина"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "Декілька батьків"
+msgstr "Кілька дат народження"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Друг/Подруга"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "Околиця"
+msgstr "Сусід/Сусідка"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
@@ -11003,62 +10999,44 @@ msgid "date fallback"
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
-#, fuzzy
-#| msgid "death"
 msgid ", death: "
-msgstr "смерть"
+msgstr ", смерть: "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:336
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
-msgstr "Вік мами"
+msgstr "вік матері"
 
 #: ../gramps/gen/utils/alive.py:341
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
-msgstr "Вік батька"
+msgstr "вік батька"
 
 #: ../gramps/gen/utils/alive.py:345
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "дата смерті"
+msgstr "від дати смерті"
 
 #: ../gramps/gen/utils/alive.py:349
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "Вік мами"
+msgstr "смерть матері"
 
 #: ../gramps/gen/utils/alive.py:354
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "Вік батька"
+msgstr "смерть батька"
 
 #: ../gramps/gen/utils/alive.py:358
-#, fuzzy
-#| msgid "%(person)s, birth"
 msgid "person's death"
-msgstr "%(person)s, народження"
+msgstr "народження особи"
 
 #: ../gramps/gen/utils/alive.py:365
-#, fuzzy
-#| msgid "Not siblings"
 msgid "oldest sibling's age"
-msgstr "Не брат/сестра"
+msgstr "вік найстаршого брата/сестри"
 
 #: ../gramps/gen/utils/alive.py:370
-#, fuzzy
-#| msgid "Not siblings"
 msgid "youngest sibling's age"
-msgstr "Не брат/сестра"
+msgstr "вік наймолодшого брата/сестри"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
@@ -11069,10 +11047,8 @@ msgid "birth date"
 msgstr "дата народження"
 
 #: ../gramps/gen/utils/alive.py:424 ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "birth"
 msgid "birth: "
-msgstr "народження"
+msgstr "народження: "
 
 #: ../gramps/gen/utils/alive.py:427
 msgid " and "
@@ -11091,16 +11067,12 @@ msgid "event with spouse"
 msgstr "подія з чоловіком/дружиною"
 
 #: ../gramps/gen/utils/alive.py:730
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant birth: {} generations "
-msgstr "Максимум поколінь нащадків"
+msgstr "народження нащадка: {} поколінь "
 
 #: ../gramps/gen/utils/alive.py:749
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant death: {} generations "
-msgstr "Максимум поколінь нащадків"
+msgstr "смерть нащадка: {} generations "
 
 #: ../gramps/gen/utils/alive.py:761
 #, python-format
@@ -11108,34 +11080,24 @@ msgid "Database error: loop in %s's descendants"
 msgstr "Помилка бази даних: замикання в %s нащадках"
 
 #: ../gramps/gen/utils/alive.py:813
-#, fuzzy
-#| msgid "Death before birth"
 msgid "mother birth "
-msgstr "Смерть перед народженням"
+msgstr "народження матері "
 
 #: ../gramps/gen/utils/alive.py:817 ../gramps/gen/utils/alive.py:823
-#, fuzzy
-#| msgid "Death before birth"
 msgid "father birth "
-msgstr "Смерть перед народженням"
+msgstr "народження батька "
 
 #: ../gramps/gen/utils/alive.py:831 ../gramps/gen/utils/alive.py:862
-#, fuzzy
-#| msgid "Ancestor"
 msgid "ancestor "
-msgstr "Предок"
+msgstr "предок "
 
 #: ../gramps/gen/utils/alive.py:837
-#, fuzzy
-#| msgid "Compute death age"
 msgid "mother death "
-msgstr "Розрахувати вік смерті"
+msgstr "смерть матері "
 
 #: ../gramps/gen/utils/alive.py:841 ../gramps/gen/utils/alive.py:847
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "Вік в момент смерті"
+msgstr "смерть батька "
 
 #: ../gramps/gen/utils/alive.py:920
 #, python-format
@@ -11794,7 +11756,7 @@ msgstr "Японська"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "Корейська"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -16127,13 +16089,15 @@ msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
-"Це скидає параметри фільтра в порожній стан. Кнопка 'Знайти' повинна "
-"використовуватися для фактичного оновлення показу до типових значень."
+"Скидає параметри фільтра до порожнього стану. Натисканням кнопки «Знайти» "
+"можна фактично оновити подання до типового стану."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:93
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"Відкриває діалогове вікно додавання нового користувацького фільтра на основі "
+"заданих значень."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16142,20 +16106,20 @@ msgstr "Скинути"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "Пройшло часу: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "Коли користуєтеся правилом «Біля», треба вказувати місце"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
-msgstr ""
+msgstr "Надайте хоча б одне значення"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "Створено ґрамплетом «Фільтр» {today}"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19306,41 +19270,31 @@ msgstr "Не виявлено збігів серед доповнень."
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
-msgstr ""
+msgstr "Вставити проєкт"
 
 #: ../gramps/gui/plug/_windows.py:705
-#, fuzzy
-#| msgid "Remove the selected person"
 msgid "Remove the selected project"
-msgstr "Вилучити обрану особу"
+msgstr "Вилучити вибраний проєкт"
 
 #: ../gramps/gui/plug/_windows.py:707
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "Перемістити дитину до верху в списку дітей"
+msgstr "Перемістити проєкт вверх у переліку"
 
 #: ../gramps/gui/plug/_windows.py:709
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "Перемістити дитину до низу в списку дітей"
+msgstr "Перемістити проєкт вниз у переліку"
 
 #: ../gramps/gui/plug/_windows.py:711
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
-msgstr "Відновити типові значення для проєктів"
+msgstr "Повернутися до типових параметрів проєкту"
 
 #: ../gramps/gui/plug/_windows.py:748
 msgid "Allow Gramps to install required Python modules"
 msgstr "Дозволити Gramps установити потрібні модулі Python"
 
 #: ../gramps/gui/plug/_windows.py:750
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "Дозволити Gramps установити потрібні модулі Python"
+msgstr "Установлювати потрібні модулі Python, якщо можливо"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Scheduled update checks"
@@ -33209,7 +33163,7 @@ msgstr "Яку систему нумерації поколінь викорис
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "Показувати символ гендерний символ перед ім'ям"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
 #, fuzzy
