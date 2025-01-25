@@ -157,7 +157,10 @@ makensis grampsaio64.nsi
 # result is in mingw64/src
 
 # deactivate and delete the python virtual environment
-deactivate
-rm -rf $pythonvenv
+if [ "$1" = "true" ]; then
+    echo "post build cleanup"
+    deactivate
+    rm -rf $pythonvenv
+fi
 
 exit 0
