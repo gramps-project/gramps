@@ -55,6 +55,11 @@ def _T_(value, context=""):  # enable deferred translations
 
 
 SYMBOLS = Symbols()
+_BOXCOLOR_FEMALE = (255, 224, 224)  # light red
+_BOXCOLOR_MALE = (224, 224, 255)  # light blue
+_BOXCOLOR_OTHER = (148, 239, 158)  # light green
+_BOXCOLOR_UNKNOWN = (224, 224, 224)  # light gray
+_BOXCOLOR_FAMILY = (255, 255, 224)  # light yellow
 
 
 # -------------------------------------------------------------------------

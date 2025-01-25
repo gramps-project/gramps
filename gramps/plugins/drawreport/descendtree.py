@@ -6,6 +6,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2009-2010  Craig J. Anderson
 # Copyright (C) 2014       Paul Franklin
+# Copyright (C) 2025       Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,9 +27,6 @@
 Reports/Graphical Reports/Familial Tree
 Reports/Graphical Reports/Personal Tree
 """
-
-from __future__ import annotations
-from typing import Any
 
 # ------------------------------------------------------------------------
 #
@@ -75,6 +73,8 @@ _MARR = (_("m.", "marriage abbreviation"),)
 
 _RPT_NAME = "descend_chart"
 
+_fill_box_color = False  # value will be set by user option selection
+
 
 # ------------------------------------------------------------------------
 #
@@ -114,6 +114,16 @@ class PersonBox(DescendantBoxBase):
         """update me to a bolded box"""
         self.boxstr = "CG2b-box"
 
+    def set_person_color(self, person, bolded=False):
+        if person.gender == person.FEMALE:
+            self.boxstr = "CG2bF-box" if bolded else "CG2nF-box"
+        elif person.gender == person.MALE:
+            self.boxstr = "CG2bM-box" if bolded else "CG2nM-box"
+        elif person.gender == person.OTHER:
+            self.boxstr = "CG2bO-box" if bolded else "CG2nO-box"
+        else:  # Unknown
+            self.boxstr = "CG2bU-box" if bolded else "CG2nU-box"
+
 
 class FamilyBox(DescendantBoxBase):
     """
@@ -123,6 +133,9 @@ class FamilyBox(DescendantBoxBase):
     def __init__(self, level):
         DescendantBoxBase.__init__(self, "CG2-fam-box")
         self.level = level
+
+    def set_family_color(self):
+        self.boxstr = "CG2c-fam-box"
 
 
 class PlaceHolderBox(BoxBase):
@@ -429,6 +442,9 @@ class RecurseDown:
             self.inlc_marr = False
         self.spouse_indent = gui.get_val("ind_spouse")
 
+        global _fill_box_color
+        _fill_box_color = gui.get_val("fill_box_color")
+
         # is the option even available?
         self.bold_direct = gui.get_val("bolddirect")
         # can we bold direct descendants?
@@ -442,10 +458,10 @@ class RecurseDown:
     def add_to_col(self, box):
         """
         Add the box to a column on the canvas.  we will do these things:
-          set the .linked_box attrib for the boxs in this col
-          get the height and width of this box and set it no the column
-          also we set the .x_cm to any s_level (indentation) here
-            we will calculate the real .x_cm later (with indentation)
+        set the .linked_box attrib for the boxs in this col
+        get the height and width of this box and set it no the column
+        also we set the .x_cm to any s_level (indentation) here
+        we will calculate the real .x_cm later (with indentation)
         """
 
         level = box.level[0]
@@ -496,10 +512,22 @@ class RecurseDown:
         myself = PersonBox(level)
         myself.father = father
 
+        use_gender_color = False
+        if _fill_box_color and indi_handle:
+            person = self.database.get_person_from_handle(indi_handle)
+            if person:
+                use_gender_color = True
+
         if myself.level[1] == 0 and self.bold_direct and self.bold_now:
             if self.bold_now == 1:
                 self.bold_now = 0
-            myself.set_bold()
+            if use_gender_color:
+                myself.set_person_color(person, True)
+            else:
+                myself.set_bold()
+        else:
+            if use_gender_color:
+                myself.set_person_color(person, False)
 
         if level[1] == 0 and father and myself.level[0] != father.level[0]:
             # I am a child
@@ -529,6 +557,9 @@ class RecurseDown:
     def add_marriage_box(self, level, indi_handle, fams_handle, father):
         """Makes a marriage box and add that person into the Canvas."""
         myself = FamilyBox(level)
+
+        if _fill_box_color:
+            myself.set_family_color()
 
         # if father is not None:
         #    myself.father = father
@@ -1018,6 +1049,7 @@ class MakeReport:
         self.do_parents = gui.get_val("show_parents")
         self.inlc_marr = gui.get_val("inc_marr")
         self.max_spouses = gui.get_val("maxspouse")
+
         gui = None
 
         self.ind_spouse = ind_spouse
@@ -1251,10 +1283,10 @@ class MakeReport:
 class GuiConnect:
     """This is a BORG object.  There is ONLY one.
     This give some common routines that EVERYONE can use like
-      get the value from a GUI variable
+    get the value from a GUI variable
     """
 
-    __shared_state: dict[str, Any] = {}
+    __shared_state = {}
 
     def __init__(self):  # We are BORG!
         self.__dict__ = self.__shared_state
@@ -1625,6 +1657,17 @@ class DescendTreeOptions(MenuReportOptions):
         indspouce.set_help(_("Whether to indent the spouses in the tree."))
         menu.add_option(category_name, "ind_spouse", indspouce)
 
+        fill_box_color = BooleanOption(
+            _("Fill color in the person and marriage boxes"), True
+        )
+        fill_box_color.set_help(
+            _(
+                "Whether to Fill color in the person and marriage boxes."
+                "  You may change the color scheme by creating a new style."
+            )
+        )
+        menu.add_option(category_name, "fill_box_color", fill_box_color)
+
         ##################
         category_name = _("Report Options")
 
@@ -1864,6 +1907,8 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style.set_fill_color((255, 255, 255))
         graph_style.set_description(_("The style for the marriage box."))
         default_style.add_draw_style("CG2-fam-box", graph_style)
+        graph_style.set_fill_color(utils._BOXCOLOR_FAMILY)
+        default_style.add_draw_style("CG2c-fam-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Normal")
@@ -1871,6 +1916,15 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style.set_fill_color((255, 255, 255))
         graph_style.set_description(_("The style for the spouse box."))
         default_style.add_draw_style("CG2-box", graph_style)
+        graph_style.set_shadow(0, box_shadow)
+        graph_style.set_fill_color(utils._BOXCOLOR_FEMALE)
+        default_style.add_draw_style("CG2nF-box", graph_style)
+        graph_style.set_fill_color(utils._BOXCOLOR_MALE)
+        default_style.add_draw_style("CG2nM-box", graph_style)
+        graph_style.set_fill_color(utils._BOXCOLOR_OTHER)
+        default_style.add_draw_style("CG2nO-box", graph_style)
+        graph_style.set_fill_color(utils._BOXCOLOR_UNKNOWN)
+        default_style.add_draw_style("CG2nU-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Bold")
@@ -1878,6 +1932,15 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style.set_fill_color((255, 255, 255))
         graph_style.set_description(_("The style for the direct descendant box."))
         default_style.add_draw_style("CG2b-box", graph_style)
+        graph_style.set_shadow(0, box_shadow)
+        graph_style.set_fill_color(utils._BOXCOLOR_FEMALE)
+        default_style.add_draw_style("CG2bF-box", graph_style)
+        graph_style.set_fill_color(utils._BOXCOLOR_MALE)
+        default_style.add_draw_style("CG2bM-box", graph_style)
+        graph_style.set_fill_color(utils._BOXCOLOR_OTHER)
+        default_style.add_draw_style("CG2bO-box", graph_style)
+        graph_style.set_fill_color(utils._BOXCOLOR_UNKNOWN)
+        default_style.add_draw_style("CG2bU-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Note")
