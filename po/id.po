@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Andika Triwidada <andika@gmail.com>, 2021, 2022, 2024.
+# Andika Triwidada <andika@gmail.com>, 2021, 2022, 2024, 2025.
 # Muhammad Reza Putra <muhammadreza.112209@gmail.com>, 2023.
 # Reza Almanda <rezaalmanda27@gmail.com>, 2023.
 # maarif s <tuttuldesign@gmail.com>, 2023.
@@ -12,16 +12,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2024-10-25 05:15+0000\n"
-"Last-Translator: mohamadsyalvassr <mohamadsyalva@outlook.com>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/id/>\n"
+"PO-Revision-Date: 2025-01-24 17:44+0000\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.8.2-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -81,31 +81,31 @@ msgstr "Purim"
 
 #: ../data/holidays.xml:360
 msgid "Passover"
-msgstr "Paskah"
+msgstr "Paskah Yahudi"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr "2 meninggal"
+msgstr "Paskah Yahudi ke-2"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr ""
+msgstr "Paskah Yahudi ke-3"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr ""
+msgstr "Paskah Yahudi ke-4"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr ""
+msgstr "Paskah Yahudi ke-5"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr ""
+msgstr "Paskah Yahudi ke-6"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr ""
+msgstr "Paskah Yahudi ke-7"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
@@ -129,27 +129,27 @@ msgstr "Sukot"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
-msgstr ""
+msgstr "Sukot ke-2"
 
 #: ../data/holidays.xml:373
 msgid "3 of Sukot"
-msgstr ""
+msgstr "Sukot ke-3"
 
 #: ../data/holidays.xml:374
 msgid "4 of Sukot"
-msgstr ""
+msgstr "Sukot ke-4"
 
 #: ../data/holidays.xml:375
 msgid "5 of Sukot"
-msgstr ""
+msgstr "Sukot ke-5"
 
 #: ../data/holidays.xml:376
 msgid "6 of Sukot"
-msgstr ""
+msgstr "Sukot ke-6"
 
 #: ../data/holidays.xml:377
 msgid "7 of Sukot"
-msgstr ""
+msgstr "Sukot ke-7"
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
@@ -161,31 +161,31 @@ msgstr "Hannukah"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "Hannukah ke-2"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "Hannukah ke-3"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "Hannukah ke-4"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "Hannukah ke-5"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "Hannukah ke-6"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "Hannukah ke-7"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "Hannukah ke-8"
 
 #: ../data/holidays.xml:388
 msgid "Italy"
@@ -285,13 +285,14 @@ msgstr "Tim Pengembangan Gramps"
 #: ../gramps/plugins/view/view.gpr.py:135
 #: ../gramps/plugins/webreport/person.py:1681
 msgid "Pedigree"
-msgstr "Silsilah"
+msgstr "Keturunan"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
+#, fuzzy
 msgid "Descendant Fan"
-msgstr ""
+msgstr "Fan Keturunan"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:350
@@ -302,14 +303,15 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:219
 #: ../gramps/plugins/view/view.gpr.py:227
 #: ../gramps/plugins/webreport/updates.py:106
+#, fuzzy
 msgid "People"
-msgstr ""
+msgstr "Orang"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:42
 #: ../gramps/plugins/view/relview.py:148 ../gramps/plugins/view/view.gpr.py:119
 #: ../gramps/plugins/view/view.gpr.py:127
 msgid "Relationships"
-msgstr ""
+msgstr "Hubungan"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
 #: ../gramps/gen/lib/person.py:187 ../gramps/gui/clipboard.py:730
@@ -351,7 +353,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/family.py:315
 #: ../gramps/plugins/webreport/person.py:1574
 msgid "Person"
-msgstr ""
+msgstr "Orang"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -434,16 +436,6 @@ msgstr ""
 "Jangan lupa untuk merekam percakapan!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter and select it at the bottom of the Filter Sidebar, then click "
-#| "Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -456,14 +448,13 @@ msgid ""
 msgstr ""
 "<b>Memfilter Orang</b><br/>Di Tampilan Orang, Anda dapat 'menyaring' "
 "individu berdasarkan banyak kriteria. Untuk menentukan filter baru, buka "
-"\"Edit &gt; Editor Filter Orang\". Di sana Anda dapat memberi nama filter "
-"Anda dan menambahkan serta menggabungkan aturan menggunakan banyak aturan "
-"yang telah ditetapkan sebelumnya. Misalnya, Anda dapat menentukan filter "
-"untuk menemukan semua orang yang diadopsi di pohon keluarga. Orang yang "
-"tidak disebutkan tanggal lahirnya juga dapat disaring. Agar memperoleh "
-"hasil, simpan filter Anda dan pilih di bagian bawah Bilah Sisi Filter, lalu "
-"klik Terapkan. Jika Bilah Sisi Filter tidak terlihat, pilih Tampilan &gt; "
-"Filter."
+"\"Edit > Editor Filter\". Di sana Anda dapat memberi nama filter Anda dan "
+"menambahkan serta menggabungkan aturan menggunakan banyak aturan yang telah "
+"ditetapkan sebelumnya. Misalnya, Anda dapat menentukan filter untuk "
+"menemukan semua orang yang diadopsi di pohon keluarga. Orang yang tidak "
+"disebutkan tanggal lahirnya juga dapat disaring. Agar memperoleh hasil, "
+"simpan filter Anda. Pilih filter ini dalam ruas Filter di Bilah Sisi, lalu "
+"klik tombol Cari. Bila Bilah Sisi tidak tampak, pilih Tampilan > Bilah Sisi."
 
 #: ../data/tips.xml:16
 msgid ""
