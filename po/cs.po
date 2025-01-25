@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Gramps package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2020, 2021, 2022.
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2020, 2021, 2022, 2025.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Milan <mobrcian@hotmail.com>, 2021, 2022, 2023, 2024, 2025.
 # ikanakova <ikanakova@users.noreply.hosted.weblate.org>, 2025.
@@ -41,8 +41,8 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2025-01-13 22:21+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2025-01-24 17:44+0000\n"
+"Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
 "Language: cs\n"
@@ -7723,7 +7723,7 @@ msgstr "Vícenásobné rodičovství"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Přítel"
 
 #: ../gramps/gen/lib/eventroletype.py:89
 #, fuzzy
@@ -7733,7 +7733,7 @@ msgstr "Sousedství"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "Úředník"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -10863,10 +10863,8 @@ msgid "date fallback"
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
-#, fuzzy
-#| msgid "death"
 msgid ", death: "
-msgstr "úmrtí"
+msgstr ",úmrtí: "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
@@ -10903,42 +10901,32 @@ msgid "father's death"
 msgstr "Věk otce"
 
 #: ../gramps/gen/utils/alive.py:358
-#, fuzzy
-#| msgid "%(person)s, birth"
 msgid "person's death"
-msgstr "%(person)s, narození"
+msgstr "úmrtí osoby"
 
 #: ../gramps/gen/utils/alive.py:365
-#, fuzzy
-#| msgid "Not siblings"
 msgid "oldest sibling's age"
-msgstr "Nejsou sourozenci"
+msgstr "věk nejstaršího sourozence"
 
 #: ../gramps/gen/utils/alive.py:370
-#, fuzzy
-#| msgid "Not siblings"
 msgid "youngest sibling's age"
-msgstr "Nejsou sourozenci"
+msgstr "věk nejmladšího sourozence"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "datum narození a známé úmrtí"
 
 #: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:239
 msgid "birth date"
 msgstr "datum narození"
 
 #: ../gramps/gen/utils/alive.py:424 ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "birth"
 msgid "birth: "
-msgstr "narození"
+msgstr "narození: "
 
 #: ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "' and '"
 msgid " and "
-msgstr "' a '"
+msgstr " a "
 
 #: ../gramps/gen/utils/alive.py:510
 msgid "a spouse's birth-related date, "
@@ -10953,16 +10941,12 @@ msgid "event with spouse"
 msgstr "událost s partnerem"
 
 #: ../gramps/gen/utils/alive.py:730
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant birth: {} generations "
-msgstr "Max generací potomků"
+msgstr "narození potomka: {} generací "
 
 #: ../gramps/gen/utils/alive.py:749
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant death: {} generations "
-msgstr "Max generací potomků"
+msgstr "úmrtí potomka: {} generací "
 
 #: ../gramps/gen/utils/alive.py:761
 #, python-format
@@ -10970,34 +10954,24 @@ msgid "Database error: loop in %s's descendants"
 msgstr "Chyba databáze: smyčka v %s potomcích"
 
 #: ../gramps/gen/utils/alive.py:813
-#, fuzzy
-#| msgid "Death before birth"
 msgid "mother birth "
-msgstr "Smrt před narozením"
+msgstr "narození matky "
 
 #: ../gramps/gen/utils/alive.py:817 ../gramps/gen/utils/alive.py:823
-#, fuzzy
-#| msgid "Death before birth"
 msgid "father birth "
-msgstr "Smrt před narozením"
+msgstr "narození otce "
 
 #: ../gramps/gen/utils/alive.py:831 ../gramps/gen/utils/alive.py:862
-#, fuzzy
-#| msgid "Ancestor"
 msgid "ancestor "
-msgstr "Předek"
+msgstr "předek "
 
 #: ../gramps/gen/utils/alive.py:837
-#, fuzzy
-#| msgid "Compute death age"
 msgid "mother death "
-msgstr "Vypočítat věk při úmrtí"
+msgstr "úmrtí matky "
 
 #: ../gramps/gen/utils/alive.py:841 ../gramps/gen/utils/alive.py:847
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "Věk při úmrtí"
+msgstr "úmrtí otce "
 
 #: ../gramps/gen/utils/alive.py:920
 #, python-format
@@ -15975,6 +15949,8 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"Otevře dialogové okno pro přidání nového uživatelského filtry založeného na "
+"zadaných hodnotách."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -15983,20 +15959,20 @@ msgstr "Reset"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "Uplynulý čas: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "Pro použití pravidla \"Mezi\" byste měli vybrat místo"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
-msgstr ""
+msgstr "Zadejte alespoň jednu hodnotu"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "Vytvořeno grampletem Fitr {today}"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -32896,7 +32872,7 @@ msgstr "Systém číslování, který bude použit"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "Před jménem zobrazit symbol pohlaví"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
 #, fuzzy
