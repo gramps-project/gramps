@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2025-01-22 21:51+0000\n"
+"PO-Revision-Date: 2025-01-24 17:44+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -1276,30 +1276,30 @@ msgstr "아니오"
 #: ../gramps/cli/arghandler.py:320
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr "기존 파일 %s 에 덮어씁니다:"
+msgstr "기존 파일: %s에덮어씁니다"
 
 #: ../gramps/cli/arghandler.py:339
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr "오류: 내보내기 파일 %s 이 인식할 수 없는 형식입니다."
+msgstr "오류: 내보내기 파일 %s 이 인식할 수 없는 형식입니다"
 
 #: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:374
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr ""
+msgstr "오류: '%s' 열 수 없음"
 
 #: ../gramps/cli/arghandler.py:422
 msgid "List of known Family Trees in your database path\n"
-msgstr ""
+msgstr "사용자 데이타베이스 경로의 알려진 가계도 목록\n"
 
 #: ../gramps/cli/arghandler.py:434
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr ""
+msgstr "\"%(f_t_name)s\" 이름을 가진 %(full_DB_path)s"
 
 #: ../gramps/cli/arghandler.py:452 ../gramps/cli/clidbman.py:197
 msgid "Gramps Family Trees:"
-msgstr ""
+msgstr "그람프스 가계도:"
 
 #: ../gramps/cli/arghandler.py:458 ../gramps/cli/arghandler.py:460
 #: ../gramps/cli/arghandler.py:464 ../gramps/cli/arghandler.py:466
@@ -1307,45 +1307,45 @@ msgstr ""
 #: ../gramps/cli/clidbman.py:177 ../gramps/cli/clidbman.py:216
 #: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:2360
 msgid "Family Tree"
-msgstr ""
+msgstr "가계도"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:466 ../gramps/cli/arghandler.py:470
 #: ../gramps/plugins/cite/legacy.py:91
 #, python-format
 msgid "\"%s\""
-msgstr ""
+msgstr "\"%s\""
 
 #: ../gramps/cli/arghandler.py:478
 #, python-format
 msgid "Performing action: %s."
-msgstr ""
+msgstr "수행 중인 동작: %s."
 
 #: ../gramps/cli/arghandler.py:480 ../gramps/gen/plug/report/stdoptions.py:338
 #, python-format
 msgid "Using options string: %s"
-msgstr ""
+msgstr "사용 중인 옵션 문자: %s"
 
 #: ../gramps/cli/arghandler.py:485
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "내보내기: %(filename)s 파일, %(format)s 형식."
 
 #: ../gramps/cli/arghandler.py:496
 msgid "Cleaning up."
-msgstr ""
+msgstr "정리 끝."
 
 #: ../gramps/cli/arghandler.py:533
 msgid "Created empty Family Tree successfully"
-msgstr ""
+msgstr "빈 가계도 생성 성공"
 
 #: ../gramps/cli/arghandler.py:536 ../gramps/cli/arghandler.py:563
 msgid "Error opening the file."
-msgstr ""
+msgstr "파일 열기 오류."
 
 #: ../gramps/cli/arghandler.py:537 ../gramps/cli/arghandler.py:564
 msgid "Exiting..."
-msgstr ""
+msgstr "나가는 중..."
 
 #: ../gramps/cli/arghandler.py:541
 #, python-format
