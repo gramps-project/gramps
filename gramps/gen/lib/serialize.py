@@ -78,8 +78,7 @@ class DataDict(dict):
         if isinstance(value, dict):
             return dict(self) == value
 
-        if "_object" not in self:
-            self["_object"] = from_dict(self)
+        self.__get_object()
 
         if isinstance(value, DataDict):
             value = value._object
