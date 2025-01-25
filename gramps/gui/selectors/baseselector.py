@@ -64,6 +64,9 @@ class BaseSelector(ManagedWindow):
     MARKUP = 1
     IMAGE = 2
 
+    WIKI_HELP_PAGE: str
+    WIKI_HELP_SEC: str
+
     def __init__(
         self,
         dbstate,
@@ -139,7 +142,7 @@ class BaseSelector(ManagedWindow):
         # set up sorting
         self.sort_col = 0
         self.setupcols = True
-        self.columns = []
+        self.columns: list[Gtk.TreeViewColumn] = []
         self.sortorder = Gtk.SortType.ASCENDING
 
         self.skip_list = skip
@@ -242,7 +245,7 @@ class BaseSelector(ManagedWindow):
                 else:
                     # return None or a valid handle
                     if handle_list[0]:
-                        result = self.get_from_handle_func()(id_list[0])
+                        result = self.get_from_handle_func()(handle_list[0])
             self.close()
         elif val != Gtk.ResponseType.DELETE_EVENT:
             self.close()
@@ -314,10 +317,17 @@ class BaseSelector(ManagedWindow):
         """
         Builds the selection people see in the Selector
         """
-        if (not self.filter[1]) or (self.search_bar.get_value()[1]):
-            filter_info = (False, self.search_bar.get_value(), False)
-        else:
-            filter_info = self.filter
+        search_bar_filter = self.search_bar.get_value()
+        filter_info = (
+            (
+                0,
+                search_bar_filter,
+                search_bar_filter[0] in self.exact_search(),
+            )
+            if search_bar_filter[1]
+            else None
+        )
+
         if self.model:
             sel = self.first_selected()
         else:
