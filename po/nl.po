@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2025-01-13 22:21+0000\n"
+"PO-Revision-Date: 2025-01-25 12:37+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -2235,10 +2235,8 @@ msgstr "Maand Dag, Jaar"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
-msgstr "Maand Dag, Jaar"
+msgstr "Mnd Dag, Jaar"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:88
@@ -2247,10 +2245,8 @@ msgstr "Dag Maand Jaar"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
-msgstr "Dag Maand Jaar"
+msgstr "Dag Mnd Jaar"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
@@ -3898,10 +3894,8 @@ msgid "Note type:"
 msgstr "Type notitie:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:48
-#, fuzzy
-#| msgid "Matches notes with the particular type "
 msgid "Objects with notes with the particular type"
-msgstr "Vindt notities van een specifiek type "
+msgstr "Objecten met notities van een specifiek type"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:49
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
@@ -4114,16 +4108,12 @@ msgstr ""
 "reguliere expressie"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Citations with the <tag>"
 msgid "Citations with a note of type <type>"
-msgstr "Citaten met het <label>"
+msgstr "Citaten met notities van type <type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches a citation with a source with a specified Gramps ID"
 msgid "Matches citations with a note of the specified type"
-msgstr "Vindt een citaat met een bron met een opgegeven Gramps-ID"
+msgstr "Vindt citaten met een notitie van het opgegeven type"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4131,8 +4121,6 @@ msgstr "Vindt een citaat met een bron met een opgegeven Gramps-ID"
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:50
-#, fuzzy
-#| msgid "Note Filters"
 msgid "Note filters"
 msgstr "Notitiefilters"
 
@@ -4429,16 +4417,12 @@ msgid "Main Participants:"
 msgstr "Belangrijkste deelnemers:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
-#, fuzzy
-#| msgid "Notes matching parameters"
 msgid "Events matching parameters"
-msgstr "Notities met overeenkomende parameters"
+msgstr "Gebeurtenissen met overeenkomende parameters"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches events with particular parameters"
-msgstr "Vindt notities met bepaalde parameters"
+msgstr "Vindt gebeurtenissen met bepaalde parameters"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4485,16 +4469,12 @@ msgstr ""
 "een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "Gebeurtenissen met het <label>"
+msgstr "Gebeurtenissen met een notitie van het type <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Vindt gebeurtenissen die overeenkomen met de opgegeven filternaam"
+msgstr "Vindt gebeurtenissen met een notitie van het opgegeven type"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4787,16 +4767,12 @@ msgstr ""
 "reguliere expressie"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "Gezinnen met een vader met de <naam>"
+msgstr "Gezinnen met een notitie van type <type>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Vindt gezinnen die overeenkomen met de opgegeven filternaam"
+msgstr "Vindt gezinnen met een notitie van het opgegeven type"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -5638,16 +5614,12 @@ msgstr ""
 "reguliere expressie"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "Personen met het <naamtype>"
+msgstr "Personen met een notitie van het type <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Vindt personen die voorouders zijn van een bepaalde persoon"
+msgstr "Vindt personen met een notitie van het opgegeven type"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 msgid "People who are neither male nor female"
@@ -6327,16 +6299,12 @@ msgstr ""
 "reguliere expressie"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "Locaties met het <label>"
+msgstr "Locaties met een notitie van type <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Vindt locaties die overeenkomen met de opgegeven filternaam"
+msgstr "Vindt locaties met een notitie van het opgegeven type"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "Street:"
@@ -6741,16 +6709,12 @@ msgstr ""
 "reguliere expressie"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "Bronnen met het <label>"
+msgstr "Bronnen met een notitie van type <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "Vindt bronnen die overeenkomen met de opgegeven filternaam"
+msgstr "Vindt bronnen met een notitie van het opgegeven type"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -6783,10 +6747,8 @@ msgstr ""
 "die een deeltekenreeks bevat in \"Inventarisnummer\""
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches sources with particular parameters"
-msgstr "Vindt notities met bepaalde parameters"
+msgstr "Vindt bronnen met bepaalde parameters"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -7849,24 +7811,20 @@ msgid "Child"
 msgstr "Kind"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "Meerdere ouders"
+msgstr "Meerdere geboorte"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Vriend"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "Buurt"
+msgstr "Buur"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "Ambtenaar"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -8504,16 +8462,12 @@ msgid "Type"
 msgstr "Type"
 
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "Aangepast filter"
+msgstr "Aangepast type"
 
 #: ../gramps/gen/lib/grampstype.py:272
-#, fuzzy
-#| msgid "Type face"
 msgid "Type code"
-msgstr "Lettertype"
+msgstr "Typecode"
 
 #: ../gramps/gen/lib/ldsord.py:95
 msgid "Endowment"
@@ -11009,85 +10963,63 @@ msgstr "datum"
 
 #: ../gramps/gen/utils/alive.py:207 ../gramps/gen/utils/alive.py:238
 msgid "date fallback"
-msgstr ""
+msgstr "terugvaldatum"
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
-#, fuzzy
-#| msgid "death"
 msgid ", death: "
-msgstr "overlijden"
+msgstr ", overleden: "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
-msgstr ""
+msgstr "DIRECT geboren: "
 
 #: ../gramps/gen/utils/alive.py:336
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
-msgstr "Leeftijd moeder"
+msgstr "leeftijd moeder"
 
 #: ../gramps/gen/utils/alive.py:341
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
-msgstr "Leeftijd vader"
+msgstr "leeftijd vader"
 
 #: ../gramps/gen/utils/alive.py:345
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "overlijdensdatum"
+msgstr "van overlijdensdatum"
 
 #: ../gramps/gen/utils/alive.py:349
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "Leeftijd moeder"
+msgstr "overlijden moeder"
 
 #: ../gramps/gen/utils/alive.py:354
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "Leeftijd vader"
+msgstr "overlijden vader"
 
 #: ../gramps/gen/utils/alive.py:358
-#, fuzzy
-#| msgid "%(person)s, birth"
 msgid "person's death"
-msgstr "%(person)s, geboorte"
+msgstr "overlijden persoon"
 
 #: ../gramps/gen/utils/alive.py:365
-#, fuzzy
-#| msgid "Not siblings"
 msgid "oldest sibling's age"
-msgstr "Geen broers/zussen"
+msgstr "leeftijd oudste broer/zus"
 
 #: ../gramps/gen/utils/alive.py:370
-#, fuzzy
-#| msgid "Not siblings"
 msgid "youngest sibling's age"
-msgstr "Geen broers/zussen"
+msgstr "leeftijd jongste broer/zus"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "geboortedatum en bekend als overleden"
 
 #: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:239
 msgid "birth date"
 msgstr "geboortedatum"
 
 #: ../gramps/gen/utils/alive.py:424 ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "Birth:"
 msgid "birth: "
-msgstr "Geboorte:"
+msgstr "geboorte: "
 
 #: ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "' and '"
 msgid " and "
-msgstr "' en '"
+msgstr " en "
 
 #: ../gramps/gen/utils/alive.py:510
 msgid "a spouse's birth-related date, "
@@ -11102,16 +11034,12 @@ msgid "event with spouse"
 msgstr "gebeurtenis met echtgenoot"
 
 #: ../gramps/gen/utils/alive.py:730
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant birth: {} generations "
-msgstr "Max afstammelingsgeneraties"
+msgstr "afstammelingen geboren: {} generaties "
 
 #: ../gramps/gen/utils/alive.py:749
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant death: {} generations "
-msgstr "Max afstammelingsgeneraties"
+msgstr "afstammelingen overleden: {} generaties "
 
 #: ../gramps/gen/utils/alive.py:761
 #, python-format
@@ -11119,34 +11047,24 @@ msgid "Database error: loop in %s's descendants"
 msgstr "Databasefout: lus in de afstammelingen van %s"
 
 #: ../gramps/gen/utils/alive.py:813
-#, fuzzy
-#| msgid "Death before birth"
 msgid "mother birth "
-msgstr "Overleden vóór de geboorte"
+msgstr "geboorte moeder "
 
 #: ../gramps/gen/utils/alive.py:817 ../gramps/gen/utils/alive.py:823
-#, fuzzy
-#| msgid "Death before birth"
 msgid "father birth "
-msgstr "Overleden vóór de geboorte"
+msgstr "geboorte vader "
 
 #: ../gramps/gen/utils/alive.py:831 ../gramps/gen/utils/alive.py:862
-#, fuzzy
-#| msgid "Ancestors"
 msgid "ancestor "
-msgstr "Voorouders"
+msgstr "voorouder "
 
 #: ../gramps/gen/utils/alive.py:837
-#, fuzzy
-#| msgid "Compute death age"
 msgid "mother death "
-msgstr "Bereken de leeftijd bij overlijden"
+msgstr "overlijden moeder "
 
 #: ../gramps/gen/utils/alive.py:841 ../gramps/gen/utils/alive.py:847
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "Leeftijd bij overlijden"
+msgstr "overlijden vader "
 
 #: ../gramps/gen/utils/alive.py:920
 #, python-format
@@ -14265,10 +14183,8 @@ msgid "_Names"
 msgstr "_Namen"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Set as Preferred name"
-msgstr "Voorkeursnaam"
+msgstr "Instellen als voorkeursnaam"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
@@ -16177,6 +16093,8 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"Dit opent een dialoogvenster om een nieuw aangepast filter toe te voegen op "
+"basis van de opgegeven waarden."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16185,20 +16103,20 @@ msgstr "Herstellen"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "Verlopen tijd: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "U moet een plaats selecteren wanneer u de regel 'Binnen' gebruikt"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
-msgstr ""
+msgstr "Geef ten minste één waarde op"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "Gemaakt door Filter gramplet op {today}"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19365,10 +19283,8 @@ msgid "All statuses"
 msgstr "Alle toestanden"
 
 #: ../gramps/gui/plug/_windows.py:463
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
-msgstr "Standaardwaarden herstellen"
+msgstr "Filters naar standaardwaarden herstellen"
 
 #: ../gramps/gui/plug/_windows.py:477
 msgid "Settings"
@@ -19400,29 +19316,21 @@ msgstr "Geen overeenkomstige uitbreidingen gevonden."
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
-msgstr ""
+msgstr "Project invoegen"
 
 #: ../gramps/gui/plug/_windows.py:705
-#, fuzzy
-#| msgid "Remove the selected personal event"
 msgid "Remove the selected project"
-msgstr "Verwijder de geselecteerde persoonlijke gebeurtenis"
+msgstr "Het geselecteerde project verwijderen"
 
 #: ../gramps/gui/plug/_windows.py:707
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "Kind in de lijst met kinderen naar boven verplaatsen"
+msgstr "Project omhoog verplaatsen in de lijst"
 
 #: ../gramps/gui/plug/_windows.py:709
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "Kind in de lijst met kinderen naar beneden verplaatsen"
+msgstr "Project omlaag verplaatsen in de lijst"
 
 #: ../gramps/gui/plug/_windows.py:711
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
 msgstr "Project herstellen naar standaardwaarden"
 
@@ -19431,10 +19339,9 @@ msgid "Allow Gramps to install required Python modules"
 msgstr "Laat Gramps de vereiste Python-modules installeren"
 
 #: ../gramps/gui/plug/_windows.py:750
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "Laat Gramps de vereiste Python-modules installeren"
+msgstr ""
+"Probeer waar mogelijk ontbrekende vereiste Python-modules te installeren"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Scheduled update checks"
@@ -23597,10 +23504,9 @@ msgid "Key"
 msgstr "Sleutel"
 
 #: ../gramps/plugins/gramplet/backlinks.py:238
-#, fuzzy, python-format
-#| msgid "_Make Active Media"
+#, python-format
 msgid "_Make Active %s"
-msgstr "_Maak actieve media"
+msgstr "_Maak %s actief"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
@@ -23882,16 +23788,12 @@ msgid "Total people"
 msgstr "Totaal aantal personen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
+msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
+msgstr "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -33368,13 +33270,12 @@ msgstr "Het te gebruiken nummeringssysteem"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "Toon geslachtssymbool voor de naam"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "Of echtscheidingsinformatie in het verslag moet worden weergegeven."
+msgstr ""
+"Of het geslachtssymbool voor de naam in het rapport moet worden weergegeven."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -33579,10 +33480,8 @@ msgstr "Of de roepnaam als voornaam moet worden gebruikt."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to use the call name as the first name."
 msgid "Whether to show gender symbol in front of name."
-msgstr "Of de roepnaam als voornaam moet worden gebruikt."
+msgstr "Of het geslachtssymbool voor de naam moet worden weergegeven."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
@@ -34142,16 +34041,12 @@ msgid "The maximum number of ancestor generations"
 msgstr "Het maximale aantal vooroudergeneraties"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
-#| msgid "Show gramps id"
 msgid "Show Gramps ID"
-msgstr "Toon gramps-id"
+msgstr "Toon Gramps-ID"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
-msgstr "Of Gramps-ID's moeten worden opgenomen"
+msgstr "Of het Gramps-ID moet worden weergegeven"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:390
 msgid "Whether to include spouses"
@@ -38248,10 +38143,9 @@ msgstr "Verhaal"
 
 #: ../gramps/plugins/webreport/basepage.py:884
 #: ../gramps/plugins/webreport/basepage.py:954
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr "(%(str1)s) %(str2)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1492
 #: ../gramps/plugins/webreport/basepage.py:3382
@@ -39224,16 +39118,12 @@ msgstr ""
 "Voeg al dan niet een volledige gebeurtenissenlijst en relevante pagina's toe"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "Inclusief overige gebeurtenissen"
+msgstr "Inclusief overige rollen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "Gramplet dat de notities van een gebeurtenis toont"
+msgstr "Personen met andere rollen opnemen bij een gebeurtenis"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include place pages"
@@ -39811,10 +39701,9 @@ msgid "Number of People"
 msgstr "Aantal personen"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
-#, fuzzy, python-brace-format
-#| msgid "Surnames beginning with letter '%s' %s"
+#, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "Achternamen beginnend met letter '%s' %s"
+msgstr "Achternamen beginnend met letter '{letter}' {char}"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 msgid ""
