@@ -52,6 +52,17 @@ try:
 except:
     sqlite3_version_str = "not found"
 
+try:
+    import orjson
+
+    try:
+        orjson_str = orjson.__version__
+    except:  # any failure to 'get' the version
+        orjson_str = "unknown version"
+
+except ImportError:
+    orjson_str = "not found"
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
@@ -200,6 +211,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
             "Python version: %s \n"
             "BSDDB version: %s \n"
             "%s"
+            "orjson version: %s\n"
             "LANG: %s\n"
             "OS: %s\n"
             "%s\n"
@@ -211,6 +223,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
                 platform.python_version(),
                 BSDDB_STR,
                 sqlite,
+                orjson_str,
                 get_env_var("LANG", ""),
                 platform.system(),
                 distribution,

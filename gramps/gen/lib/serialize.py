@@ -32,14 +32,26 @@ import json
 import pickle
 import logging
 
+LOG = logging.getLogger(".serialize")
+
+try:
+    import orjson
+
+    json_dumps = orjson.dumps
+    json_loads = orjson.loads
+except ImportError:
+    LOG.warning(
+        "The Python package 'orjson' is not installed; performance may be degraded."
+    )
+    json_dumps = json.dumps
+    json_loads = json.loads
+
 # ------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # ------------------------------------------------------------------------
 import gramps.gen.lib as lib
-
-LOG = logging.getLogger(".serialize")
 
 
 class DataDict(dict):
@@ -237,7 +249,7 @@ class JSONSerializer:
     @staticmethod
     def string_to_data(string):
         LOG.debug("json, string_to_data: %r...", string[:65])
-        return DataDict(json.loads(string))
+        return DataDict(json_loads(string))
 
     @staticmethod
     def object_to_string(obj):
@@ -250,7 +262,7 @@ class JSONSerializer:
             "json, data_to_string: {'_class': %r, ...}",
             data["_class"] if (data and "_class" in data) else data,
         )
-        return json.dumps(data)
+        return json_dumps(data)
 
     @staticmethod
     def metadata_to_object(string):

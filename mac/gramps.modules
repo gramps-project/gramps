@@ -12,13 +12,13 @@
   <repository type="tarball" name="oracle"
 	      href="http://download.oracle.com/"/>
   <repository type="tarball" name="pymodules"
-	      href="https://pypi.python.org/packages/"/>
+	      href="https://files.pythonhosted.org/packages/"/>
   <repository type="git" name="github" href="https://github.com/"/>
   <repository type="tarball" name="github-tarball" href="https://github.com/"/>
   <repository type="tarball" name="exiv2.org"
 	      href="http://www.exiv2.org/releases/"/>
   <repository type="tarball" name="pythonware"
-	      href="http://effbot.org/downloads/"/>
+              href="http://effbot.org/downloads/"/>
 
   <include href="https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/modulesets-stable/gtk-osx.modules"/>
   <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
@@ -56,6 +56,13 @@
       <dep package="gobject-introspection"/>
     </dependencies>
   </meson>
+
+  <pip id="orjson">
+    <branch module="ae/f9/5dea21763eeff8c1590076918a446ea3d6140743e0e36f58f369928ed0f4/orjson-3.10.15.tar.gz"
+            version="3.10.15"
+            repo="pymodules"
+            />
+  </pip>
 
   <meson id="geocode-glib" mesonargs="-Denable-gtk-doc=false">
     <branch module="geocode-glib/3.26/geocode-glib-3.26.2.tar.xz"
@@ -186,6 +193,7 @@
       <dep package="graphviz"/>
       <dep package="gexiv2"/>
       <dep package="gtk-mac-integration-python"/>
+      <dep package="orjson"/>
       <dep package="pycairo"/>
       <dep package="pygobject3"/>
       <dep package='pyicu'/>
