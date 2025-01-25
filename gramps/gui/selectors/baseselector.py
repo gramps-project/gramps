@@ -315,8 +315,9 @@ class BaseSelector(ManagedWindow):
         """
         Builds the selection people see in the Selector
         """
+        # any search_bar filter takes precedence over self.filter
         search_bar_filter = self.search_bar.get_value()
-        if (not self.filter[1]) or (search_bar_filter[1]):
+        if search_bar_filter[1]:
             filter_info = (
                 0,
                 search_bar_filter,
