@@ -41,6 +41,11 @@ to your language:
 
 The following packages are **STRONGLY RECOMMENDED** to be installed:
 --------------------------------------------------------------------
+*  [**orjson**](https://pypi.org/project/orjson/)
+
+  A fast JSON library for Python. Used to increase the performance of Gramps.
+  The package name is usually orjson, python-orjson or python3-orjson.
+
 *  [**osmgpsmap**](https://nzjrs.github.io/osm-gps-map/)
 
  Used to show maps in the [Geography Category](https://gramps-project.org/wiki/index.php?title=Gramps_5.1_Wiki_Manual_-_Categories#Geography_Category).
