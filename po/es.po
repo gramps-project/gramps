@@ -21,14 +21,14 @@
 # Diego Pedraza <zegeridp@gmail.com>, 2024.
 # Jesús Martínez <weblate@jandemor.com>, 2024.
 # Harald Herreros <h.herreros@proton.me>, 2024.
+# Jorge Martinez <6marvil@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
 "PO-Revision-Date: 2025-01-24 17:44+0000\n"
-"Last-Translator: Jaime Marquínez Ferrándiz "
-"<jaime.marquinez.ferrandiz@fastmail.net>\n"
+"Last-Translator: Jorge Martinez <6marvil@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -11050,7 +11050,7 @@ msgstr "fecha"
 
 #: ../gramps/gen/utils/alive.py:207 ../gramps/gen/utils/alive.py:238
 msgid "date fallback"
-msgstr ""
+msgstr "fecha predeterminada"
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
 msgid ", death: "
@@ -11058,7 +11058,7 @@ msgstr ", defunción: "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
-msgstr ""
+msgstr "nacimiento DIRECTO: "
 
 #: ../gramps/gen/utils/alive.py:336
 msgid "mother's age"
@@ -11094,7 +11094,7 @@ msgstr "edad del hermano más pequeño"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "fecha de nacimiento y conocido como fallecido"
 
 #: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:239
 msgid "birth date"
@@ -11121,16 +11121,12 @@ msgid "event with spouse"
 msgstr "evento con el cónyuge"
 
 #: ../gramps/gen/utils/alive.py:730
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant birth: {} generations "
-msgstr "Número máximo de generaciones de descendientes"
+msgstr "Máximo nacimiento de descendiente: {} generaciones "
 
 #: ../gramps/gen/utils/alive.py:749
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant death: {} generations "
-msgstr "Número máximo de generaciones de descendientes"
+msgstr "Máximo fallecimiento de descendiente: {} generaciones "
 
 #: ../gramps/gen/utils/alive.py:761
 #, python-format
