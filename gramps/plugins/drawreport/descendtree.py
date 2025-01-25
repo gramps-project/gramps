@@ -1286,7 +1286,8 @@ class GuiConnect:
     get the value from a GUI variable
     """
 
-    __shared_state = {}
+    __shared_state: dict[str, Any] = {}
+    #  __shared_state = {}
 
     def __init__(self):  # We are BORG!
         self.__dict__ = self.__shared_state
