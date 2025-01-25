@@ -34,13 +34,13 @@
 #
 # Copyright (C)
 # Nick Hall <nick-h@gramps-project.org>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
-# Andi Chandler <andi@gowling.com>, 2023, 2024.
+# Andi Chandler <andi@gowling.com>, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2024-07-23 21:55+0000\n"
+"PO-Revision-Date: 2025-01-24 17:44+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -460,17 +460,6 @@ msgstr ""
 "conversations!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter. Then select this filter in the Filter field on Sidebar, then "
-#| "click Find button. If the Sidebar is not visible, select View &gt; "
-#| "Sidebar."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -482,13 +471,13 @@ msgid ""
 "visible, select View > Sidebar."
 msgstr ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
-"based on many criteria. To define a new filter go to \"Edit &gt; Person "
-"Filter Editor\". There you can name your filter and add and combine rules "
-"using the many preset rules. For example, you can define a filter to find "
-"all adopted people in the family tree. People without a birth date mentioned "
-"can also be filtered. To get the results save your filter. Then select this "
-"filter in the Filter field on Sidebar, then click the Find button. If the "
-"Sidebar is not visible, select View &gt; Sidebar."
+"based on many criteria. To define a new filter go to "
+"\"Edit > Person Filter Editor\". There you can name your filter and add and "
+"combine rules using the many preset rules. For example, you can define a "
+"filter to find all adopted people in the family tree. People without a birth "
+"date mentioned can also be filtered. To get the results save your filter. "
+"Then select this filter in the Filter field on Sidebar, then click Find "
+"button. If the Sidebar is not visible, select View > Sidebar."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -539,24 +528,17 @@ msgstr ""
 "siblings, children or parents."
 
 #: ../data/tips.xml:24
-#, fuzzy
-#| msgid ""
-#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-#| "&gt; Compare Individual Events...\" you can compare the data of "
-#| "individuals in your database. This is useful, say, if you wish to list "
-#| "the birth dates of everyone in your database. You can use a custom filter "
-#| "to narrow the results."
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-"&gt; Compare Individual Events...\" you can compare the data of individuals "
-"in your database. This is useful, say, if you wish to list the birth dates "
-"of everyone in your database. You can use a custom filter to narrow the "
-"results."
+"<b>Who Was Born When?</b><br/>Under "
+"\"Tools > Analysis and exploration > Compare Individual Events...\" you can "
+"compare the data of individuals in your database. This is useful, say, if "
+"you wish to list the birth dates of everyone in your database. You can use a "
+"custom filter to narrow the results."
 
 #: ../data/tips.xml:26
 msgid ""
@@ -573,12 +555,6 @@ msgstr ""
 "All tools can be accessed through the \"Tools\" menu."
 
 #: ../data/tips.xml:28
-#, fuzzy
-#| msgid ""
-#| "<b>Calculating Relationships</b><br/>To check if two people in the "
-#| "database are related (by blood, not marriage) try the tool under \"Tools "
-#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
-#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
@@ -586,9 +562,9 @@ msgid ""
 "ancestors are reported."
 msgstr ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
-"are related (by blood, not marriage) try the tool under \"Tools &gt; "
-"Utilities &gt; Relationship Calculator...\". The exact relationship as well "
-"as all common ancestors are reported."
+"are related (by blood, not marriage) try the tool under "
+"\"Tools > Utilities > Relationship Calculator...\". The exact relationship "
+"as well as all common ancestors are reported."
 
 #: ../data/tips.xml:30
 msgid ""
@@ -609,24 +585,16 @@ msgstr ""
 "in your database, add the SoundEx Gramplet."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\"."
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
+"<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
-"Each separate view can also be configured under \"View &gt; Configure View..."
-"\"."
+"Each separate view can also be configured under \"View > Configure View...\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -643,13 +611,6 @@ msgstr ""
 "a website for your family tree then there's a report for that as well."
 
 #: ../data/tips.xml:36
-#, fuzzy
-#| msgid ""
-#| "<b>Starting a New Family Tree</b><br/>A good way to start a new family "
-#| "tree is to enter all the members of the family into the database using "
-#| "the Person View (use \"Edit &gt; Add...\" or click on the Add a new "
-#| "person button from the People View). Then go to the Relationship View and "
-#| "create relationships between people."
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -659,8 +620,8 @@ msgid ""
 msgstr ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
-"View (use \"Edit &gt; Add...\" or click on the Add a new person button from "
-"the People View). Then go to the Relationship View and create relationships "
+"View (use \"Edit > Add...\" or click on the Add a new person button from the "
+"People View). Then go to the Relationship View and create relationships "
 "between people."
 
 #: ../data/tips.xml:38
@@ -686,29 +647,17 @@ msgstr ""
 "date field. See the Gramps Manual to learn more."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
-#| "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
-#| "entries of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
-"&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
-"entries of the same person entered more than once in the database."
+"<b>Duplicate Entries</b><br/>The tool "
+"\"Tools > Family Tree Processing > Find Possible Duplicate People...\" "
+"allows you to locate (and merge) entries of the same person entered more "
+"than once in the database."
 
 #: ../data/tips.xml:44
-#, fuzzy
-#| msgid ""
-#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you "
-#| "to combine separately listed people into one. Select the second entry by "
-#| "holding the Control key as you click. This is very useful for combining "
-#| "two databases with overlapping people, or combining erroneously entered "
-#| "differing names for one individual. Merging is available in all list "
-#| "views for all primary object types."
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -717,7 +666,7 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
+"<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
 "holding the Control key as you click. This is very useful for combining two "
 "databases with overlapping people, or combining erroneously entered "
@@ -737,12 +686,6 @@ msgstr ""
 "toolbar or under the \"View\" menu."
 
 #: ../data/tips.xml:48
-#, fuzzy
-#| msgid ""
-#| "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of "
-#| "previous active objects such as People and Events. You can move forward "
-#| "and backward through the list using \"Go &gt; Forward\" and \"Go &gt; "
-#| "Back\" or the arrow buttons."
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -750,8 +693,8 @@ msgid ""
 "buttons."
 msgstr ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
-"active objects such as People and Events. You can move forward and backward "
-"through the list using \"Go &gt; Forward\" and \"Go &gt; Back\" or the arrow "
+"active objects such as People and Events. You can move forward and backwards "
+"through the list using \"Go > Forward\" and \"Go > Back\" or the arrow "
 "buttons."
 
 #: ../data/tips.xml:50
@@ -765,22 +708,16 @@ msgstr ""
 "If one exists for a function it is displayed on the right side of the menu."
 
 #: ../data/tips.xml:52
-#, fuzzy
-#| msgid ""
-#| "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
-#| "&gt; User Manual\". The developers have worked hard to make most "
-#| "operations intuitive but the manual is full of information that will make "
-#| "your time spent on genealogy more productive."
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
 "User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
-"&gt; User Manual\". The developers have worked hard to make most operations "
-"intuitive but the manual is full of information that will make your time "
-"spent on genealogy more productive."
+"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, "
+"\"Help > User Manual\". The developers have worked hard to make most "
+"operations intuitive but the manual is full of information that will make "
+"your time spent on genealogy more productive."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -835,14 +772,6 @@ msgstr ""
 "preferred but it can be good to discuss your ideas on the email lists."
 
 #: ../data/tips.xml:62
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about "
-#| "Gramps? Check out the gramps-users email list. Many helpful people are on "
-#| "the list, so you're likely to get an answer quickly. If you have "
-#| "questions related to the development of Gramps, try the gramps-devel "
-#| "list. You can see the lists by selecting \"Help &gt; Gramps Mailing "
-#| "Lists\"."
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -854,7 +783,7 @@ msgstr ""
 "Check out the gramps-users email list. Many helpful people are on the list, "
 "so you're likely to get an answer quickly. If you have questions related to "
 "the development of Gramps, try the gramps-devel list. You can see the lists "
-"by selecting \"Help &gt; Gramps Mailing Lists\"."
+"by selecting \"Help > Gramps Mailing Lists\"."
 
 #: ../data/tips.xml:64
 #, fuzzy
@@ -7855,7 +7784,7 @@ msgstr "Multiple parents"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Friend"
 
 #: ../gramps/gen/lib/eventroletype.py:89
 #, fuzzy
@@ -7865,7 +7794,7 @@ msgstr "Neighbourhood"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "Officiator"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -10995,7 +10924,7 @@ msgstr "date"
 
 #: ../gramps/gen/utils/alive.py:207 ../gramps/gen/utils/alive.py:238
 msgid "date fallback"
-msgstr ""
+msgstr "date fallback"
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
 #, fuzzy
@@ -11005,7 +10934,7 @@ msgstr "death"
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
-msgstr ""
+msgstr "DIRECT birth: "
 
 #: ../gramps/gen/utils/alive.py:336
 #, fuzzy
@@ -11057,7 +10986,7 @@ msgstr "Not siblings"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "birth date and known to be dead"
 
 #: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:239
 msgid "birth date"
@@ -11789,7 +11718,7 @@ msgstr "Japanese"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "Korean"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -16110,6 +16039,7 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"This opens a dialogue to add a new custom filter based on the values given."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16118,20 +16048,20 @@ msgstr "Reset"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "Elapsed time: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "You should select a place when using the 'Within' rule"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
-msgstr ""
+msgstr "Supply at least one value"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "Created by Filter gramplet on {today}"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19298,7 +19228,7 @@ msgstr "No matching addons found."
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
-msgstr ""
+msgstr "Insert a project"
 
 #: ../gramps/gui/plug/_windows.py:705
 #, fuzzy
@@ -33142,7 +33072,7 @@ msgstr "The numbering system to be used"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "Show gender symbol in front of name"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
 #, fuzzy
