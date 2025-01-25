@@ -11,7 +11,7 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2021, 2022, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Mihle <MihleGaming@gmail.com>, 2021, 2022, 2023, 2024.
-# Para <ahh-produktivitet@tutanota.com>, 2022, 2023, 2024.
+# Para <ahh-produktivitet@tutanota.com>, 2022, 2023, 2024, 2025.
 # Mikal Thunold-Olsen <mikal@thunold-olsen.no>, 2023, 2024.
 # Harald <haraldh@users.noreply.hosted.weblate.org>, 2024.
 # Harald Herreros <haraldh@users.noreply.hosted.weblate.org>, 2024.
@@ -21,16 +21,16 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2024-08-13 20:09+0000\n"
-"Last-Translator: Harald Herreros <h.herreros@proton.me>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/nb_NO/>\n"
+"PO-Revision-Date: 2025-01-25 12:37+0000\n"
+"Last-Translator: Para <ahh-produktivitet@tutanota.com>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -666,20 +666,14 @@ msgstr ""
 "ved siden av datofeltet. Se Gramps-manualen for å lære mer."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
-#| "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
-#| "entries of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Dupliserte oppføringer</b><br/>Verktøyet «Verktøy &gt; "
-"Slektstrebehandling &gt; Finn mulig dupliserte personer...» lar deg "
-"lokalisere (og flette sammen) oppføringer av samme person som er registrert "
-"flere ganger i databasen."
+"<b>Dupliserte oppføringer</b><br/>Verktøyet «Verktøy > Slektstrebehandling > "
+"Finn mulig dupliserte personer...» lar deg lokalisere (og flette sammen) "
+"oppføringer av samme person som er registrert flere ganger i databasen."
 
 #: ../data/tips.xml:44
 #, fuzzy
@@ -3992,10 +3986,8 @@ msgid "Note type:"
 msgstr "Notattype:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:48
-#, fuzzy
-#| msgid "Matches notes with the particular type "
 msgid "Objects with notes with the particular type"
-msgstr "Matcher notater med den spesielle typen "
+msgstr "Objekter med en bestemt notattype"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:49
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
@@ -7854,20 +7846,16 @@ msgid "Child"
 msgstr "Barn"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "Flere foreldrepar"
+msgstr "Flergangsfødende"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Venn"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "Nabolag"
+msgstr "Nabo"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
@@ -8509,10 +8497,8 @@ msgid "Type"
 msgstr "Type"
 
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "Tilpasset filter"
+msgstr "Tilpasset type"
 
 #: ../gramps/gen/lib/grampstype.py:272
 #, fuzzy
@@ -11004,10 +10990,8 @@ msgid "date fallback"
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
-#, fuzzy
-#| msgid "death"
 msgid ", death: "
-msgstr "død"
+msgstr ", død: "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
@@ -11063,23 +11047,19 @@ msgstr "Ikke søsken"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "fødselsdato og som er kjent for å være død"
 
 #: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:239
 msgid "birth date"
 msgstr "fødselsdato"
 
 #: ../gramps/gen/utils/alive.py:424 ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "birth"
 msgid "birth: "
-msgstr "fødsel"
+msgstr "fødsel: "
 
 #: ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "' and '"
 msgid " and "
-msgstr "' og '"
+msgstr " og "
 
 #: ../gramps/gen/utils/alive.py:510
 msgid "a spouse's birth-related date, "
@@ -11094,10 +11074,8 @@ msgid "event with spouse"
 msgstr "hendelse med partner"
 
 #: ../gramps/gen/utils/alive.py:730
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant birth: {} generations "
-msgstr "Maks etterkommergenerasjoner"
+msgstr "etterkommerfødsel: {} generasjoner "
 
 #: ../gramps/gen/utils/alive.py:749
 #, fuzzy
@@ -11796,7 +11774,7 @@ msgstr "Japansk"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "koreansk"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -16145,6 +16123,8 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"Dette åpner en dialogboks for å legge til et nytt tilpasset filter basert på "
+"verdiene som er gitt."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16153,15 +16133,15 @@ msgstr "Nullstille"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "Medgått tid: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "Du bør velge et sted når du bruker 'Innenfor'-regelen"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
-msgstr ""
+msgstr "Oppgi minst én verdi"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
@@ -19340,7 +19320,7 @@ msgstr "Ingen matchende utvidelser funnet."
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
-msgstr ""
+msgstr "Legg inn et prosjekt"
 
 #: ../gramps/gui/plug/_windows.py:705
 #, fuzzy
@@ -33176,7 +33156,7 @@ msgstr "Nummersystemet som skal brukes"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "Vis kjønnssymbol foran navnet"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
 #, fuzzy
