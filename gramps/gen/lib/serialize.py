@@ -124,8 +124,7 @@ class DataDict(dict):
 
     def __getattr__(self, key):
         if key == "_object":
-            if "_object" not in self:
-                self["_object"] = from_dict(self)
+            self.__get_object()
             return self["_object"]
 
         if key.startswith("_"):
