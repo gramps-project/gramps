@@ -21,6 +21,13 @@
 
 # -------------------------------------------------------------------------
 #
+# Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
@@ -62,19 +69,17 @@ class BaseSelector(ManagedWindow):
         dbstate,
         uistate,
         track=[],
-        filter=None,
+        filter: tuple[int, str] | None = None,  # tuple[filter_id, search_string]
         skip=set(),
-        show_search_bar=True,
+        show_search_bar: bool = True,
         default=None,
-        allow_multiple_selection=False,
+        allow_multiple_selection: bool = False,
     ):
         """Set up the dialog with the dbstate and uistate, track of parent
         windows for ManagedWindow, initial filter for the model, skip with
         set of handles to skip in the view, and search_bar to show the
         SearchBar at the top or not.
         """
-        self.filter = (2, filter, False)
-
         # Set window title, some selectors may set self.title in their __init__
         if not hasattr(self, "title"):
             self.title = self.get_window_title()
@@ -92,7 +97,6 @@ class BaseSelector(ManagedWindow):
         self.glade = Glade()
 
         window = self.glade.toplevel
-        self.showall = self.glade.get_object("showall")
         title_label = self.glade.get_object("title")
         vbox = self.glade.get_object("select_person_vbox")
         objectlist = self.glade.get_object("plist")
@@ -121,11 +125,12 @@ class BaseSelector(ManagedWindow):
         self.tree.connect("key-press-event", self.searchbox.treeview_keypress)
 
         # add the search bar
-        self.search_bar = SearchBar(
-            dbstate, uistate, self.build_tree, apply_clear=self.apply_clear
-        )
+        self.search_bar = SearchBar(dbstate, uistate, self.build_tree)
         filter_box = self.search_bar.build()
         self.setup_filter()
+        if filter:
+            self.search_bar.filter_list.set_active(filter[0])
+            self.search_bar.filter_text.set_text(filter[1])
         vbox.pack_start(filter_box, False, False, 0)
         vbox.reorder_child(filter_box, 1)
 
@@ -147,12 +152,6 @@ class BaseSelector(ManagedWindow):
         self.show()
         # show or hide search bar?
         self.set_show_search_bar(show_search_bar)
-        # Hide showall if no filter is specified
-        if self.filter[1] is not None:
-            self.showall.connect("toggled", self.show_toggle)
-            self.showall.show()
-        else:
-            self.showall.hide()
         while Gtk.events_pending():
             Gtk.main_iteration()
         self.build_tree()
@@ -377,31 +376,12 @@ class BaseSelector(ManagedWindow):
 
         return True
 
-    def show_toggle(self, obj):
-        filter_info = None if obj.get_active() else self.filter
-        self.clear_model()
-        self.model = self.get_model_class()(
-            self.db,
-            self.uistate,
-            self.sort_col,
-            self.sortorder,
-            sort_map=self.column_order(),
-            skip=self.skip_list,
-            search=filter_info,
-        )
-        self.tree.set_model(self.model)
-        self.tree.restore_column_size()
-        self.tree.grab_focus()
-
     def clear_model(self):
         if self.model:
             self.tree.set_model(None)
             if hasattr(self.model, "destroy"):
                 self.model.destroy()
             self.model = None
-
-    def apply_clear(self):
-        self.showall.set_active(False)
 
     def _cleanup_on_exit(self):
         """Unset all things that can block garbage collection.
