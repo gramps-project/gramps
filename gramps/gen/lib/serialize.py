@@ -105,8 +105,7 @@ class DataDict(dict):
         return self["_object"].__lt__(value)
 
     def __gt__(self, value):
-        if "_object" not in self:
-            self["_object"] = from_dict(self)
+        self.__get_object()
 
         if isinstance(value, DataDict):
             value = value._object
