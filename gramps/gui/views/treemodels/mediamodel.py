@@ -46,7 +46,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, Media
-from gramps.gen.lib.serialize import from_dict
+from gramps.gen.lib.json_utils import data_to_object
 from .flatbasemodel import FlatBaseModel
 
 
@@ -135,12 +135,12 @@ class MediaModel(FlatBaseModel):
 
     def column_date(self, data):
         if data.date:
-            date = from_dict(data.date)
+            date = data_to_object(data.date)
             return displayer.display(date)
         return ""
 
     def sort_date(self, data):
-        obj = from_dict(data)
+        obj = data_to_object(data)
         d = obj.get_date_object()
         if d:
             return "%09d" % d.get_sort_value()

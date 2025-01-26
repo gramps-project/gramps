@@ -60,7 +60,7 @@ from ..lib import (
     Source,
     Tag,
 )
-from ..lib.serialize import from_dict, BlobSerializer, JSONSerializer
+from ..lib.serialize import BlobSerializer, JSONSerializer
 from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher
 from ..types import (
@@ -1409,7 +1409,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError("Handle is empty")
         data = self._get_raw_data(obj_key, handle)
         if data:
-            return self.serializer.data_to_object(obj_class, data)
+            return self.serializer.data_to_object(data, obj_class)
 
         raise HandleError(f"Handle {handle} not found")
 
@@ -1451,39 +1451,39 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_person_from_gramps_id(self, gramps_id) -> Person:
         data = self._get_raw_person_from_id_data(gramps_id)
-        return self.serializer.data_to_object(Person, data)
+        return self.serializer.data_to_object(data, Person)
 
     def get_family_from_gramps_id(self, gramps_id) -> Family:
         data = self._get_raw_family_from_id_data(gramps_id)
-        return self.serializer.data_to_object(Family, data)
+        return self.serializer.data_to_object(data, Family)
 
     def get_citation_from_gramps_id(self, gramps_id) -> Citation:
         data = self._get_raw_citation_from_id_data(gramps_id)
-        return self.serializer.data_to_object(Citation, data)
+        return self.serializer.data_to_object(data, Citation)
 
     def get_source_from_gramps_id(self, gramps_id) -> Source:
         data = self._get_raw_source_from_id_data(gramps_id)
-        return self.serializer.data_to_object(Source, data)
+        return self.serializer.data_to_object(data, Source)
 
     def get_event_from_gramps_id(self, gramps_id) -> Event:
         data = self._get_raw_event_from_id_data(gramps_id)
-        return self.serializer.data_to_object(Event, data)
+        return self.serializer.data_to_object(data, Event)
 
     def get_media_from_gramps_id(self, gramps_id) -> Media:
         data = self._get_raw_media_from_id_data(gramps_id)
-        return self.serializer.data_to_object(Media, data)
+        return self.serializer.data_to_object(data, Media)
 
     def get_place_from_gramps_id(self, gramps_id) -> Place:
         data = self._get_raw_place_from_id_data(gramps_id)
-        return self.serializer.data_to_object(Place, data)
+        return self.serializer.data_to_object(data, Place)
 
     def get_repository_from_gramps_id(self, gramps_id) -> Repository:
         data = self._get_raw_repository_from_id_data(gramps_id)
-        return self.serializer.data_to_object(Repository, data)
+        return self.serializer.data_to_object(data, Repository)
 
     def get_note_from_gramps_id(self, gramps_id) -> Note:
         data = self._get_raw_note_from_id_data(gramps_id)
-        return self.serializer.data_to_object(Note, data)
+        return self.serializer.data_to_object(data, Note)
 
     ################################################################
     #
@@ -1683,8 +1683,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Iterate over items in a class.
         """
         cursor = self._get_table_func(class_.__name__, "cursor_func")
-        for data in cursor():
-            yield self.serializer.data_to_object(class_, data[1])
+        for handle, data in cursor():
+            yield self.serializer.data_to_object(data, class_)
 
     def iter_people(self) -> Generator[Person]:
         """Iterate over Person objects."""
@@ -2000,7 +2000,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         old_data = self._commit_base(person, PERSON_KEY, transaction, change_time)
 
         if old_data:
-            old_person = from_dict(old_data)
+            old_person = self.serializer.data_to_object(old_data)
             # Update gender statistics if necessary
             if old_person.gender != person.gender or (
                 old_person.primary_name.first_name != person.primary_name.first_name

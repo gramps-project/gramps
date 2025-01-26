@@ -89,7 +89,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": self.get_event_text,
                 "editor": "EditEvent",
                 "icon": "gramps-event",
-                "name_ix": 4,
+                "name_ix": "description",
             },
             "sources": {
                 "get_func": self.db.get_source_from_handle,
@@ -97,7 +97,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": None,
                 "editor": "EditSource",
                 "icon": "gramps-source",
-                "name_ix": 2,
+                "name_ix": "title",
             },
             "citations": {
                 "get_func": self.db.get_citation_from_handle,
@@ -105,7 +105,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": None,
                 "editor": "EditCitation",
                 "icon": "gramps-citation",
-                "name_ix": 3,
+                "name_ix": "page",
             },
             "places": {
                 "get_func": self.db.get_place_from_handle,
@@ -113,7 +113,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": self.get_place_text,
                 "editor": "EditPlace",
                 "icon": "gramps-place",
-                "name_ix": 2,
+                "name_ix": "title",
             },
             "media": {
                 "get_func": self.db.get_media_from_handle,
@@ -121,7 +121,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": None,
                 "editor": "EditMedia",
                 "icon": "gramps-media",
-                "name_ix": 4,
+                "name_ix": "desc",
             },
             "repos": {
                 "get_func": self.db.get_repository_from_handle,
@@ -129,7 +129,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": None,
                 "editor": "EditRepository",
                 "icon": "gramps-repository",
-                "name_ix": 3,
+                "name_ix": "name",
             },
             "notes": {
                 "get_func": self.db.get_note_from_handle,
@@ -137,7 +137,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": self.get_note_text,
                 "editor": "EditNote",
                 "icon": "gramps-notes",
-                "name_ix": 2,
+                "name_ix": "text",
             },
         }
 
@@ -399,7 +399,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
     def add_results(self, results):
         (the_type, handle, data) = results
-        gramps_id = data[1]
+        gramps_id = data.gramps_id
 
         # if we have a function that will return to us some type
         # of text summary, then we should use it; otherwise we'll

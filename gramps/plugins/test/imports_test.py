@@ -36,7 +36,8 @@ from gramps.gen.utils.config import config
 
 config.set("preferences.date-format", 0)
 from gramps.gen.db.utils import import_as_dict
-from gramps.gen.merge.diff import diff_dbs, to_dict
+from gramps.gen.merge.diff import diff_dbs
+from gramps.gen.lib.json_utils import object_to_dict
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.gen.user import User
@@ -99,7 +100,9 @@ class TestImports(unittest.TestCase):
         if diffs:
             for diff in diffs:
                 obj_type, item1, item2 = diff
-                msg = self._report_diff(obj_type, to_dict(item1), to_dict(item2))
+                msg = self._report_diff(
+                    obj_type, object_to_dict(item1), object_to_dict(item2)
+                )
                 if msg != "":
                     if hasattr(item1, "gramps_id"):
                         self.msg += "%s: %s  handle=%s\n" % (

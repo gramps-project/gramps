@@ -41,7 +41,7 @@ from gi.repository import Gtk
 #
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Address, RepositoryType, Url, UrlType
-from gramps.gen.lib.serialize import from_dict
+from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.datehandler import format_time
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -142,7 +142,7 @@ class RepositoryModel(FlatBaseModel):
     def column_city(self, data):
         try:
             if data.address_list:
-                addr = from_dict(data.address_list[0])
+                addr = data_to_object(data.address_list[0])
                 return addr.get_city()
         except:
             pass
@@ -151,7 +151,7 @@ class RepositoryModel(FlatBaseModel):
     def column_street(self, data):
         try:
             if data.address_list:
-                addr = from_dict(data.address_list[0])
+                addr = data_to_object(data.address_list[0])
                 return addr.get_street()
         except:
             pass
@@ -160,7 +160,7 @@ class RepositoryModel(FlatBaseModel):
     def column_locality(self, data):
         try:
             if data.address_list:
-                addr = from_dict(data.address_list[0])
+                addr = data_to_object(data.address_list[0])
                 return addr.get_locality()
         except:
             pass
@@ -169,7 +169,7 @@ class RepositoryModel(FlatBaseModel):
     def column_state(self, data):
         try:
             if data.address_list:
-                addr = from_dict(data.address_list[0])
+                addr = data_to_object(data.address_list[0])
                 return addr.get_state()
         except:
             pass
@@ -178,7 +178,7 @@ class RepositoryModel(FlatBaseModel):
     def column_country(self, data):
         try:
             if data.address_list:
-                addr = from_dict(data.address_list[0])
+                addr = data_to_object(data.address_list[0])
                 return addr.get_country()
         except:
             pass
@@ -187,7 +187,7 @@ class RepositoryModel(FlatBaseModel):
     def column_postal_code(self, data):
         try:
             if data.address_list:
-                addr = from_dict(data.address_list[0])
+                addr = data_to_object(data.address_list[0])
                 return addr.get_postal_code()
         except:
             pass
@@ -196,7 +196,7 @@ class RepositoryModel(FlatBaseModel):
     def column_phone(self, data):
         try:
             if data.address_list:
-                addr = from_dict(data.address_list[0])
+                addr = data_to_object(data.address_list[0])
                 return addr.get_phone()
         except:
             pass
@@ -205,7 +205,7 @@ class RepositoryModel(FlatBaseModel):
     def column_email(self, data):
         if data.urls:
             for url_data in data.urls:
-                url = from_dict(url_data)
+                url = data_to_object(url_data)
                 if url.get_type() == UrlType.EMAIL:
                     return url.path
         return ""
@@ -213,7 +213,7 @@ class RepositoryModel(FlatBaseModel):
     def column_search_url(self, data):
         if data.urls:
             for url_data in data.urls:
-                url = from_dict(url_data)
+                url = data_to_object(url_data)
                 if url.get_type() == UrlType.WEB_SEARCH:
                     return url.path
         return ""
@@ -221,7 +221,7 @@ class RepositoryModel(FlatBaseModel):
     def column_home_url(self, data):
         if data.urls:
             for url_data in data.urls:
-                url = from_dict(url_data)
+                url = data_to_object(url_data)
                 if url.get_type() == UrlType.WEB_HOME:
                     return url.path
         return ""

@@ -166,6 +166,7 @@ gramps/gen/lib/datebase.py
 gramps/gen/lib/eventbase.py
 gramps/gen/lib/gcalendar.py
 gramps/gen/lib/genderstats.py
+gramps/gen/lib/json_utils.py
 gramps/gen/lib/ldsordbase.py
 gramps/gen/lib/locationbase.py
 gramps/gen/lib/mediabase.py
@@ -262,6 +263,11 @@ gramps/gen/proxy/filter.py
 gramps/gen/proxy/living.py
 gramps/gen/proxy/proxybase.py
 gramps/gen/proxy/referencedbyselection.py
+#
+# gen.proxy.test
+#
+gramps/gen/proxy/test/__init__.py
+gramps/gen/proxy/test/proxies_test.py
 #
 # gen.simple
 #

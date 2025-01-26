@@ -18,7 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" Unittest for to_json, from_json """
+""" Unittest for object_to_data, data_to_object """
 
 import os
 import unittest
@@ -38,16 +38,19 @@ from .. import (
     Source,
     Tag,
 )
-from ..serialize import from_json, to_json
+from ..json_utils import object_to_data, data_to_object
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 
 class BaseCheck:
-    def test_from_json(self):
-        data = to_json(self.object)
-        obj = from_json(data)
+    def test_data_to_object(self):
+        data = object_to_data(self.object)
+        self.assertIs(data.handle, None)
+        self.assertIs(data["handle"], None)
+        obj = data_to_object(data)
+        self.assertEqual(id(self.object), id(obj))
         self.assertEqual(self.object.serialize(), obj.serialize())
 
 
@@ -119,10 +122,10 @@ def generate_cases(obj, data):
     """
     Dynamically generate tests and attach to DatabaseCheck.
     """
-    json_data = to_json(obj)
-    obj2 = from_json(json_data)
 
     def test(self):
+        json_data = object_to_data(obj)
+        obj2 = data_to_object(json_data)
         self.assertEqual(obj.serialize(), obj2.serialize())
 
     name = "test_serialize_%s_%s" % (obj.__class__.__name__, obj.handle)

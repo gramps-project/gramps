@@ -37,7 +37,6 @@ import logging
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
 from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
-from gramps.gen.lib.serialize import to_dict
 from gramps.gen.lib import EventType, NameOriginType, Tag, MarkerType
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
@@ -56,7 +55,6 @@ from .dbconst import (
 )
 from ..const import GRAMPS_LOCALE as glocale
 from .conversion_tools import convert_21
-from gramps.gen.lib.serialize import to_dict
 
 _ = glocale.translation.gettext
 

@@ -28,153 +28,27 @@ Serialization utilities for Gramps.
 # Python modules
 #
 # ------------------------------------------------------------------------
-import json
 import pickle
 import logging
 
 LOG = logging.getLogger(".serialize")
-
-try:
-    import orjson
-
-    json_dumps = orjson.dumps
-    json_loads = orjson.loads
-except ImportError:
-    LOG.warning(
-        "The Python package 'orjson' is not installed; performance may be degraded."
-    )
-    json_dumps = json.dumps
-    json_loads = json.loads
 
 # ------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # ------------------------------------------------------------------------
-import gramps.gen.lib as lib
-
-
-class DataDict(dict):
-    """
-    A wrapper around a data dict that also provides an
-    object interface.
-    """
-
-    def __init__(self, data=None):
-        """
-        Wrap a data dict (raw data) or object
-        with an attribute API. If data is an
-        object, we use it to get the attributes.
-        """
-        if isinstance(data, dict):
-            super().__init__(data)
-        else:
-            super().__init__()
-            if data:
-                self["_object"] = data
-
-    def __str__(self):
-        if "_object" not in self:
-            self["_object"] = from_dict(self)
-        return str(self["_object"])
-
-    def __getattr__(self, key):
-        if key.startswith("_"):
-            raise AttributeError(
-                "this method cannot be used to access hidden attributes"
-            )
-
-        if "_object" in self:
-            return getattr(self["_object"], key)
-        elif key in self:
-            value = self[key]
-            if isinstance(value, dict):
-                return DataDict(value)
-            elif isinstance(value, list):
-                return DataList(value)
-            else:
-                return value
-        else:
-            self["_object"] = from_dict(self)
-            return getattr(self["_object"], key)
-
-
-class DataList(list):
-    """
-    A wrapper around a data list.
-    """
-
-    def __getitem__(self, position):
-        value = super().__getitem__(position)
-        if isinstance(value, dict):
-            return DataDict(value)
-        elif isinstance(value, list):
-            return DataList(value)
-        else:
-            return value
-
-
-def __object_hook(obj_dict):
-    _class = obj_dict.pop("_class")
-    cls = lib.__dict__[_class]
-    obj = cls.__new__(cls)
-    obj.set_object_state(obj_dict)
-    return obj
-
-
-def __default(obj):
-    return obj.get_object_state()
-
-
-def to_json(obj):
-    """
-    Encode a Gramps object in JSON format.
-
-    :param obj: The object to be serialized.
-    :type obj: object
-    :returns: A JSON string.
-    :rtype: str
-    """
-    return json.dumps(obj, default=__default, ensure_ascii=False)
-
-
-def from_json(data):
-    """
-    Decode JSON data into a Gramps object hierarchy.
-
-    :param data: The JSON string to be unserialized.
-    :type data: str
-    :returns: A Gramps object.
-    :rtype: object
-    """
-    return json.loads(data, object_hook=__object_hook)
-
-
-def to_dict(obj):
-    """
-    Convert a Gramps object into a struct.
-
-    :param obj: The object to be serialized.
-    :type obj: object
-    :returns: A dictionary.
-    :rtype: dict
-    """
-    return json.loads(to_json(obj))
-
-
-def from_dict(dict):
-    """
-    Convert a dictionary into a Gramps object.
-
-    :param dict: The dictionary to be unserialized.
-    :type dict: dict
-    :returns: A Gramps object.
-    :rtype: object
-    """
-    if dict is not None and "_object" in dict:
-        return dict["_object"]
-    else:
-        return from_json(json.dumps(dict))
+from .json_utils import (
+    dict_to_string,
+    data_to_object,
+    string_to_object,
+    string_to_data,
+    string_to_dict,
+    object_to_data,
+    object_to_dict,
+    object_to_string,
+    data_to_string,
+)
 
 
 class BlobSerializer:
@@ -189,8 +63,8 @@ class BlobSerializer:
     metadata_field = "value"
 
     @staticmethod
-    def data_to_object(obj_class, data):
-        LOG.debug("blob, data_to_object: %s(%r)", obj_class, data[0] if data else data)
+    def data_to_object(data, obj_class):
+        LOG.debug("blob, data_to_object: %s(%r)", obj_class, data)
         return obj_class.create(data)
 
     @staticmethod
@@ -205,12 +79,12 @@ class BlobSerializer:
 
     @staticmethod
     def object_to_string(obj):
-        LOG.debug("blob, object_to_string: %s...", obj)
+        LOG.debug("blob, object_to_string: %r", obj)
         return pickle.dumps(obj.serialize())
 
     @staticmethod
     def data_to_string(data):
-        LOG.debug("blob, data_to_string: %s...", data[0] if data else data)
+        LOG.debug("blob, data_to_string: %r", data)
         return pickle.dumps(data)
 
     @staticmethod
@@ -234,50 +108,45 @@ class JSONSerializer:
     metadata_field = "json_data"
 
     @staticmethod
-    def data_to_object(obj_class, data):
-        LOG.debug(
-            "json, data_to_object: {'_class': %r, ...}",
-            data["_class"] if (data and "_class" in data) else data,
-        )
-        return from_dict(data)
+    def data_to_object(data, obj_class=None):
+        LOG.debug("json, data_to_object: %r", data)
+        return data_to_object(data)
 
     @staticmethod
     def string_to_object(obj_class, string):
         LOG.debug("json, string_to_object: %r...", string[:65])
-        return from_json(string)
+        return string_to_object(string)
 
     @staticmethod
     def string_to_data(string):
         LOG.debug("json, string_to_data: %r...", string[:65])
-        return DataDict(json_loads(string))
+        return string_to_data(string)
 
     @staticmethod
     def object_to_string(obj):
-        LOG.debug("json, object_to_string: %s...", obj)
-        return to_json(obj)
+        LOG.debug("json, object_to_string: %r", obj)
+        return object_to_string(obj)
+
+    @staticmethod
+    def object_to_data(obj):
+        LOG.debug("json, object_to_string: %r", obj)
+        return object_to_data(obj)
 
     @staticmethod
     def data_to_string(data):
-        LOG.debug(
-            "json, data_to_string: {'_class': %r, ...}",
-            data["_class"] if (data and "_class" in data) else data,
-        )
-        return json_dumps(data)
+        LOG.debug("json, data_to_string: %r", data)
+        return data_to_string(data)
 
     @staticmethod
     def metadata_to_object(string):
-        doc = json.loads(string)
+        doc = string_to_dict(string)
         type_name = doc["type"]
-        if type_name in ("int", "str", "list"):
-            return doc["value"]
-        elif type_name == "set":
+        if type_name == "set":
             return set(doc["value"])
         elif type_name == "tuple":
             return tuple(doc["value"])
-        elif type_name == "dict":
-            return doc["value"]
         elif type_name == "Researcher":
-            return from_dict(doc["value"])
+            return data_to_object(doc["value"])
         else:
             return doc["value"]
 
@@ -287,11 +156,10 @@ class JSONSerializer:
         if type_name in ("set", "tuple"):
             value = list(value)
         elif type_name == "Researcher":
-            value = to_dict(value)
-        elif type_name not in ("int", "str", "list"):
-            value = json.loads(to_json(value))
+            value = object_to_dict(value)
+
         data = {
             "type": type_name,
             "value": value,
         }
-        return json.dumps(data)
+        return dict_to_string(data)
