@@ -22,6 +22,7 @@
 
 import os
 import unittest
+import functools
 
 from ...const import DATA_DIR
 from ...db.utils import import_as_dict
@@ -38,14 +39,42 @@ from .. import (
     Source,
     Tag,
 )
-from ..serialize import from_json, to_json
+from ..serialize_utils import JSONConverter, OrJSONConverter
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 
+def parameterized(param_list):
+    """
+    Decorates a test case to run it as a set of subtests.
+    """
+    def decorator(f):
+        @functools.wraps(f)
+        def wrapped(self):
+            for param in param_list:
+                with self.subTest(**param):
+                    f(self, **param)
+
+        return wrapped
+
+    return decorator
+
+def json_converters():
+    return parameterized([
+        {
+            "to_json": JSONConverter.object_to_string,
+            "from_json": JSONConverter.string_to_object
+        },
+        {
+            "to_json": OrJSONConverter.object_to_string,
+            "from_json": OrJSONConverter.string_to_object
+        },
+    ])
+
 class BaseCheck:
-    def test_from_json(self):
+    @json_converters()
+    def test_from_json(self, to_json, from_json):
         data = to_json(self.object)
         obj = from_json(data)
         self.assertEqual(self.object.serialize(), obj.serialize())
@@ -119,10 +148,10 @@ def generate_cases(obj, data):
     """
     Dynamically generate tests and attach to DatabaseCheck.
     """
-    json_data = to_json(obj)
-    obj2 = from_json(json_data)
-
-    def test(self):
+    @json_converters()
+    def test(self, to_json, from_json):
+        json_data = to_json(obj)
+        obj2 = from_json(json_data)
         self.assertEqual(obj.serialize(), obj2.serialize())
 
     name = "test_serialize_%s_%s" % (obj.__class__.__name__, obj.handle)
@@ -165,6 +194,7 @@ for obj_class in (
     "Note",
 ):
     for handle in db.method("get_%s_handles", obj_class)():
+        # These uses the default OrJSONConverter:
         obj = db.method("get_%s_from_handle", obj_class)(handle)
         data = db.method("get_raw_%s_data", obj_class)(handle)
         generate_cases(obj, data)
