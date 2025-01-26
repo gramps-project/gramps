@@ -34,24 +34,19 @@ import logging
 
 LOG = logging.getLogger(".serialize")
 
-try:
-    import orjson
-
-    json_dumps = orjson.dumps
-    json_loads = orjson.loads
-except ImportError:
-    LOG.warning(
-        "The Python package 'orjson' is not installed; performance may be degraded."
-    )
-    json_dumps = json.dumps
-    json_loads = json.loads
-
 # ------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # ------------------------------------------------------------------------
-import gramps.gen.lib as lib
+from .serialize_utils import (
+    from_dict,
+    to_dict,
+    to_json,
+    from_json,
+    json_loads,
+    json_dumps,
+)
 
 
 class DataDict(dict):
@@ -112,69 +107,6 @@ class DataList(list):
             return DataList(value)
         else:
             return value
-
-
-def __object_hook(obj_dict):
-    _class = obj_dict.pop("_class")
-    cls = lib.__dict__[_class]
-    obj = cls.__new__(cls)
-    obj.set_object_state(obj_dict)
-    return obj
-
-
-def __default(obj):
-    return obj.get_object_state()
-
-
-def to_json(obj):
-    """
-    Encode a Gramps object in JSON format.
-
-    :param obj: The object to be serialized.
-    :type obj: object
-    :returns: A JSON string.
-    :rtype: str
-    """
-    return json.dumps(obj, default=__default, ensure_ascii=False)
-
-
-def from_json(data):
-    """
-    Decode JSON data into a Gramps object hierarchy.
-
-    :param data: The JSON string to be unserialized.
-    :type data: str
-    :returns: A Gramps object.
-    :rtype: object
-    """
-    return json.loads(data, object_hook=__object_hook)
-
-
-def to_dict(obj):
-    """
-    Convert a Gramps object into a struct.
-
-    :param obj: The object to be serialized.
-    :type obj: object
-    :returns: A dictionary.
-    :rtype: dict
-    """
-    return json.loads(to_json(obj))
-
-
-def from_dict(dict):
-    """
-    Convert a dictionary into a Gramps object.
-
-    :param dict: The dictionary to be unserialized.
-    :type dict: dict
-    :returns: A Gramps object.
-    :rtype: object
-    """
-    if dict is not None and "_object" in dict:
-        return dict["_object"]
-    else:
-        return from_json(json.dumps(dict))
 
 
 class BlobSerializer:
