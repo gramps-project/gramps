@@ -57,7 +57,7 @@
 #
 # Marco Molteni <molter@gufi.org>, 2001-2002;.
 # Lorenzo Cappelletti <lorenzo.cappelletti@email.it>, 2003.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025.
 # Gianluca Boiano <morf3089@gmail.com>, 2021.
 # Alessandro Combatti <combatti.alessandro@gmail.com>, 2022.
 # Mauro Piccotti <mauro.piccotti@gmail.com>, 2024.
@@ -67,8 +67,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2025-01-16 15:26+0000\n"
-"Last-Translator: Fabio Restante <frestante@gmail.com>\n"
+"PO-Revision-Date: 2025-01-26 20:01+0000\n"
+"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -2296,8 +2296,6 @@ msgstr "Mese giorno, anno"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
 msgstr "Mese giorno, anno"
 
@@ -2308,8 +2306,6 @@ msgstr "Giorno mese anno"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
 msgstr "Giorno mese anno"
 
@@ -3961,10 +3957,8 @@ msgid "Note type:"
 msgstr "Tipo nota:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:48
-#, fuzzy
-#| msgid "Matches notes with the particular type "
 msgid "Objects with notes with the particular type"
-msgstr "Estrae le note di un particolare tipo "
+msgstr "Oggetti con note di un tipo particolare"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:49
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
@@ -4178,16 +4172,12 @@ msgstr ""
 "un'espressione regolare"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Citations with the <tag>"
 msgid "Citations with a note of type <type>"
-msgstr "Citazioni con <etichetta>"
+msgstr "Citazioni con una nota di tipo <tipo>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches a citation with a source with a specified Gramps ID"
 msgid "Matches citations with a note of the specified type"
-msgstr "Estrae le citazioni con fonte avente un ID Gramps specifico"
+msgstr "Estrae le citazioni con una nota del tipo specificato"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4195,8 +4185,6 @@ msgstr "Estrae le citazioni con fonte avente un ID Gramps specifico"
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:50
-#, fuzzy
-#| msgid "Note Filters"
 msgid "Note filters"
 msgstr "Filtri note"
 
@@ -4499,10 +4487,8 @@ msgid "Events matching parameters"
 msgstr "Eventi che corrispondono a parametri"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches events with particular parameters"
-msgstr "Estrae le note con particolari parametri"
+msgstr "Estrae gli eventi con particolari parametri"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4549,16 +4535,12 @@ msgstr ""
 "un'espressione regolare"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "Evento con <etichetta>"
+msgstr "Evento con una nota di tipo <tipo>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Estrae gli eventi che corrispondono al filtro indicato"
+msgstr "Estrae gli eventi con una nota del tipo specificato"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4851,16 +4833,12 @@ msgstr ""
 "un'espressione regolare"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "Famiglie con padre avente <nome>"
+msgstr "Famiglie con una nota di tipo <tipo>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Estrae le famiglie che corrispondono al filtro indicato"
+msgstr "Estrae le famiglie con una nota del tipo specificato"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -5713,16 +5691,12 @@ msgstr ""
 "un'espressione regolare"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "Persone con <tipo di nome>"
+msgstr "Persone con una nota di tipo <tipo>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Estrae gli ascendenti di una persona specificata"
+msgstr "Estrae le persone con una nota del tipo specificato"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 msgid "People who are neither male nor female"
@@ -6385,16 +6359,12 @@ msgstr ""
 "un'espressione regolare"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "Luoghi con <etichetta>"
+msgstr "Luoghi con una nota di tipo <tipo>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Estrae i luoghi che corrispondono al filtro indicato"
+msgstr "Estrae i luoghi che una nota del tipo specificato"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "Street:"
@@ -6798,16 +6768,12 @@ msgstr ""
 "un'espressione regolare"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "Fonti con <etichetta>"
+msgstr "Fonti con una nota di tipo <tipo>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "Estrae le fonti che corrispondono al filtro indicato"
+msgstr "Estrae le fonti con una nota del tipo specificato"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -7901,24 +7867,20 @@ msgid "Child"
 msgstr "Figlio/a"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "Troppi genitori"
+msgstr "Nascite multiple"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Amico"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "Vicinato"
+msgstr "Vicino/a"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "Officiante"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -8556,16 +8518,12 @@ msgid "Type"
 msgstr "Tipo"
 
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "Filtro personalizzato"
+msgstr "Tipo personalizzato"
 
 #: ../gramps/gen/lib/grampstype.py:272
-#, fuzzy
-#| msgid "Type face"
 msgid "Type code"
-msgstr "Carattere"
+msgstr "Codice del tipo"
 
 #: ../gramps/gen/lib/ldsord.py:95
 msgid "Endowment"
@@ -11069,79 +11027,59 @@ msgstr "data"
 
 #: ../gramps/gen/utils/alive.py:207 ../gramps/gen/utils/alive.py:238
 msgid "date fallback"
-msgstr ""
+msgstr "data basata su altro evento"
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
-#, fuzzy
-#| msgid "death"
 msgid ", death: "
-msgstr "decesso"
+msgstr ", decesso: "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
-msgstr ""
+msgstr "DIRECT nascita: "
 
 #: ../gramps/gen/utils/alive.py:336
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
-msgstr "Età della madre"
+msgstr "età della madre"
 
 #: ../gramps/gen/utils/alive.py:341
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
-msgstr "Età del padre"
+msgstr "età del padre"
 
 #: ../gramps/gen/utils/alive.py:345
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "data del decesso"
+msgstr "dalla data del decesso"
 
 #: ../gramps/gen/utils/alive.py:349
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "Età della madre"
+msgstr "decesso della madre"
 
 #: ../gramps/gen/utils/alive.py:354
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "Età del padre"
+msgstr "decesso del padre"
 
 #: ../gramps/gen/utils/alive.py:358
-#, fuzzy
-#| msgid "%(person)s, birth"
 msgid "person's death"
-msgstr "%(person)s, nascita"
+msgstr "decesso della persona"
 
 #: ../gramps/gen/utils/alive.py:365
-#, fuzzy
-#| msgid "Not siblings"
 msgid "oldest sibling's age"
-msgstr "Non fratelli/sorelle"
+msgstr "età del fratello/della sorella più grande"
 
 #: ../gramps/gen/utils/alive.py:370
-#, fuzzy
-#| msgid "Not siblings"
 msgid "youngest sibling's age"
-msgstr "Non fratelli/sorelle"
+msgstr "età del fratello/della sorella più giovane"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "data di nascita presente e decesso noto"
 
 #: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:239
 msgid "birth date"
 msgstr "data di nascita"
 
 #: ../gramps/gen/utils/alive.py:424 ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "birth"
 msgid "birth: "
-msgstr "nascita"
+msgstr "nascita: "
 
 #: ../gramps/gen/utils/alive.py:427
 msgid " and "
@@ -11160,16 +11098,12 @@ msgid "event with spouse"
 msgstr "evento con coniuge"
 
 #: ../gramps/gen/utils/alive.py:730
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant birth: {} generations "
-msgstr "Max generazioni di discendenti"
+msgstr "nascita di discendente: {} generazioni "
 
 #: ../gramps/gen/utils/alive.py:749
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant death: {} generations "
-msgstr "Max generazioni di discendenti"
+msgstr "decesso di discendente: {} generazioni "
 
 #: ../gramps/gen/utils/alive.py:761
 #, python-format
@@ -11177,34 +11111,24 @@ msgid "Database error: loop in %s's descendants"
 msgstr "Errore nel database: ciclo nei discendenti di %s"
 
 #: ../gramps/gen/utils/alive.py:813
-#, fuzzy
-#| msgid "Death before birth"
 msgid "mother birth "
-msgstr "Decesso prima della nascita"
+msgstr "nascita della madre "
 
 #: ../gramps/gen/utils/alive.py:817 ../gramps/gen/utils/alive.py:823
-#, fuzzy
-#| msgid "Death before birth"
 msgid "father birth "
-msgstr "Decesso prima della nascita"
+msgstr "nascita del padre "
 
 #: ../gramps/gen/utils/alive.py:831 ../gramps/gen/utils/alive.py:862
-#, fuzzy
-#| msgid "Ancestor"
 msgid "ancestor "
-msgstr "Ascendente"
+msgstr "ascendente "
 
 #: ../gramps/gen/utils/alive.py:837
-#, fuzzy
-#| msgid "Compute death age"
 msgid "mother death "
-msgstr "Calcola l'età al decesso"
+msgstr "decesso della madre "
 
 #: ../gramps/gen/utils/alive.py:841 ../gramps/gen/utils/alive.py:847
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "Età al decesso"
+msgstr "decesso del padre "
 
 #: ../gramps/gen/utils/alive.py:920
 #, python-format
@@ -14342,10 +14266,8 @@ msgid "_Names"
 msgstr "_Nomi"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Set as Preferred name"
-msgstr "Nome preferito"
+msgstr "Imposta come nome preferito"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
@@ -16248,6 +16170,8 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"Apre una finestra di dialogo per aggiungere un nuovo filtro personalizzato "
+"basato sui valori forniti."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16256,20 +16180,20 @@ msgstr "Ripristina"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "Tempo trascorso: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "Va selezionato un luogo quando si usa la regola «All'interno di»"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
-msgstr ""
+msgstr "Fornire almeno un valore"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "Creato dalla gramplet Filtro in data {today}"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19463,10 +19387,8 @@ msgid "All statuses"
 msgstr "Tutti gli stati"
 
 #: ../gramps/gui/plug/_windows.py:463
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
-msgstr "Ripristinare ai valori predefiniti"
+msgstr "Ripristinare i filtri dei componenti aggiuntivi ai valori predefiniti"
 
 #: ../gramps/gui/plug/_windows.py:477
 msgid "Settings"
@@ -19498,41 +19420,31 @@ msgstr "Nessun componente aggiuntivo corrispondente trovato."
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
-msgstr ""
+msgstr "Inserisci un progetto"
 
 #: ../gramps/gui/plug/_windows.py:705
-#, fuzzy
-#| msgid "Remove the selected person"
 msgid "Remove the selected project"
-msgstr "Rimuove la persona selezionata"
+msgstr "Rimuove il progetto selezionato"
 
 #: ../gramps/gui/plug/_windows.py:707
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "Sposta il figlio più in alto nella lista"
+msgstr "Sposta il progetto più in alto nella lista"
 
 #: ../gramps/gui/plug/_windows.py:709
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "Sposta il figlio più in basso nella lista"
+msgstr "Sposta il progetto più in basso nella lista"
 
 #: ../gramps/gui/plug/_windows.py:711
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
-msgstr "Ripristinare i valori predefiniti del progetto"
+msgstr "Ripristinare ai valori predefiniti del progetto"
 
 #: ../gramps/gui/plug/_windows.py:748
 msgid "Allow Gramps to install required Python modules"
 msgstr "Permettere a Gramps di installare i moduli Python richiesti"
 
 #: ../gramps/gui/plug/_windows.py:750
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "Permettere a Gramps di installare i moduli Python richiesti"
+msgstr "Se possibile, prova a installare i moduli Python necessari"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Scheduled update checks"
@@ -23713,10 +23625,9 @@ msgid "Key"
 msgstr "Chiave"
 
 #: ../gramps/plugins/gramplet/backlinks.py:238
-#, fuzzy, python-format
-#| msgid "_Make Active Media"
+#, python-format
 msgid "_Make Active %s"
-msgstr "Imposta come _media attivo"
+msgstr "I_mposta %s come attivo"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
@@ -23999,14 +23910,12 @@ msgid "Total people"
 msgstr "Persone totali"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
+msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
-#, fuzzy
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
+msgstr "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -32805,10 +32714,6 @@ msgid "Father lineage for %s"
 msgstr "Discendenza paterna per %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
-#, fuzzy
-#| msgid ""
-#| "This report shows the father lineage, also called patronymic lineage or Y-"
-#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
@@ -32837,11 +32742,6 @@ msgid "Mother lineage for %s"
 msgstr "Discendenza materna per %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
-#, fuzzy
-#| msgid ""
-#| "This report shows the mother lineage, also called matronymic lineage "
-#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
-#| "DNA (mtDNA)."
 msgid ""
 "This report shows the mother lineage, also called the matrilineal lineage "
 "mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
@@ -33576,13 +33476,11 @@ msgstr "Il sistema di numerazione da usare"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "Mostra il simbolo del genere davanti al nome"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "Indica se includere le informazioni sui divorzi nel resoconto."
+msgstr "Indica se mostrare il simbolo del genere davanti al nome nel resoconto."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -33785,10 +33683,8 @@ msgstr "Indica se usare lo pseudonimo come primo nome."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to show spouses in the tree."
 msgid "Whether to show gender symbol in front of name."
-msgstr "Indica se mostrare i coniugi nell'albero."
+msgstr "Indica se mostrare il simbolo del genere davanti al nome."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
@@ -34347,16 +34243,12 @@ msgid "The maximum number of ancestor generations"
 msgstr "Numero massimo di generazioni di ascendenti"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
-#| msgid "Show gramps id"
 msgid "Show Gramps ID"
 msgstr "Mostra ID Gramps"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
-msgstr "Indica se includere gli ID Gramps"
+msgstr "Indica se includere ID Gramps"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:390
 msgid "Whether to include spouses"
@@ -38470,10 +38362,9 @@ msgstr "Narrazione"
 
 #: ../gramps/plugins/webreport/basepage.py:884
 #: ../gramps/plugins/webreport/basepage.py:954
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr "(%(str1)s): %(str2)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1492
 #: ../gramps/plugins/webreport/basepage.py:3382
@@ -39444,16 +39335,12 @@ msgstr ""
 "Aggiungere o meno l'elenco completo degli eventi e le pagine pertinenti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "Includere gli altri eventi"
+msgstr "Includere altri ruoli"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "Gramplet che mostra le note di un evento"
+msgstr "Includere le persone con altri ruoli in un evento"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include place pages"
@@ -40037,10 +39924,9 @@ msgid "Number of People"
 msgstr "Totale delle persone"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
-#, fuzzy, python-brace-format
-#| msgid "Surnames beginning with letter '%s' %s"
+#, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "Cognomi che iniziano con la lettera \"%s\" %s"
+msgstr "Cognomi che iniziano con la lettera '{letter}' {char}"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 msgid ""
