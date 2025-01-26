@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2025-01-23 19:43+0000\n"
+"PO-Revision-Date: 2025-01-26 20:01+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -2259,10 +2259,8 @@ msgstr "Monat Tag, Jahr"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
-msgstr "Monat Tag, Jahr"
+msgstr "Mon Tag, Jahr"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:88
@@ -2271,10 +2269,8 @@ msgstr "Tag Monat Jahr"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
-msgstr "Tag Monat Jahr"
+msgstr "Tag Mon Jahr"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
@@ -3923,10 +3919,8 @@ msgid "Note type:"
 msgstr "Notizart:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:48
-#, fuzzy
-#| msgid "Matches notes with the particular type "
 msgid "Objects with notes with the particular type"
-msgstr "Passt auf Notizen der bestimmten Art "
+msgstr "Objekte mit Notizen der jeweiligen Art"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:49
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
@@ -4143,16 +4137,12 @@ msgstr ""
 "Ausdruck enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Citations with the <tag>"
 msgid "Citations with a note of type <type>"
-msgstr "Fundstellen mit dem <Etikett>"
+msgstr "Fundstellen mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches a citation with a source with a specified Gramps ID"
 msgid "Matches citations with a note of the specified type"
-msgstr "Passt auf Fundstelle mit einer Quelle mit einer bestimmten Gramps-ID"
+msgstr "Passt auf Fundstelle mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4160,8 +4150,6 @@ msgstr "Passt auf Fundstelle mit einer Quelle mit einer bestimmten Gramps-ID"
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:50
-#, fuzzy
-#| msgid "Note Filters"
 msgid "Note filters"
 msgstr "Notizenfilter"
 
@@ -4465,10 +4453,8 @@ msgid "Events matching parameters"
 msgstr "Ereignisse einschließende Parameter"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches events with particular parameters"
-msgstr "Passt auf Notizen mit bestimmten Parametern"
+msgstr "Passt auf Ereignisse mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4516,16 +4502,12 @@ msgstr ""
 "Ausdruck enthalten"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "Ereignisse mit dem <Etikett>"
+msgstr "Ereignisse mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Passt auf Ereignisse, die dem gegebenen Filternamen entsprechen"
+msgstr "Passt auf Ereignisse mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4819,16 +4801,12 @@ msgstr ""
 "Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "Familien mit Vater mit dem <Name>"
+msgstr "Familien mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Passt auf Familien, die mit dem angegebenen Filternamen übereinstimmen"
+msgstr "Passt auf Familien mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -5678,16 +5656,12 @@ msgstr ""
 "Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "Personen mit der <Namensart>"
+msgstr "Personen mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Passt auf Personen, die Vorfahren einer angegebenen Person sind"
+msgstr "Passt zu Personen mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 msgid "People who are neither male nor female"
@@ -6366,16 +6340,12 @@ msgstr ""
 "entspricht"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "Orte mit dem <Etikett>"
+msgstr "Orte mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Passt auf Orte, die mit dem angegebenen Filternamen übereinstimmen"
+msgstr "Passt auf Orte mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "Street:"
@@ -6786,16 +6756,12 @@ msgstr ""
 "Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "Quellen mit dem <Etikett>"
+msgstr "Quellen mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "Passt auf Quellen, die mit dem angegebenen Filternamen übereinstimmen"
+msgstr "Passt auf Quellen mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -7894,24 +7860,20 @@ msgid "Child"
 msgstr "Kind"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "Mehrere Eltern"
+msgstr "Mehrlingsgeburt"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Freund/in"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "Viertel"
+msgstr "Nachbar/in"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "Amtsträger"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -8549,16 +8511,12 @@ msgid "Type"
 msgstr "Art"
 
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "Benutzerdefinierter Filter"
+msgstr "Benutzerdefinierte Art"
 
 #: ../gramps/gen/lib/grampstype.py:272
-#, fuzzy
-#| msgid "Type face"
 msgid "Type code"
-msgstr "Schriftbild"
+msgstr "Art-Code"
 
 #: ../gramps/gen/lib/ldsord.py:95
 msgid "Endowment"
@@ -11062,53 +11020,39 @@ msgstr "Datum"
 
 #: ../gramps/gen/utils/alive.py:207 ../gramps/gen/utils/alive.py:238
 msgid "date fallback"
-msgstr ""
+msgstr "Rückfalldatum"
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
-#, fuzzy
-#| msgid "death"
 msgid ", death: "
-msgstr "Tod"
+msgstr ", Tod: "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
-msgstr ""
+msgstr "DIREKT Geburt: "
 
 #: ../gramps/gen/utils/alive.py:336
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
 msgstr "Alter der Mutter"
 
 #: ../gramps/gen/utils/alive.py:341
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
 msgstr "Alter des Vaters"
 
 #: ../gramps/gen/utils/alive.py:345
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "Sterbedatum"
+msgstr "ab Sterbedatum"
 
 #: ../gramps/gen/utils/alive.py:349
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "Alter der Mutter"
+msgstr "Tod der Mutter"
 
 #: ../gramps/gen/utils/alive.py:354
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "Alter des Vaters"
+msgstr "Tod des Vaters"
 
 #: ../gramps/gen/utils/alive.py:358
-#, fuzzy
-#| msgid "%(person)s, birth"
 msgid "person's death"
-msgstr "%(person)s, Geburt"
+msgstr "Tod einer Person"
 
 #: ../gramps/gen/utils/alive.py:365
 #, fuzzy
@@ -11124,17 +11068,15 @@ msgstr "Keine Geschwister"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "Geburtsdatum und bekanntermaßen tot"
 
 #: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:239
 msgid "birth date"
 msgstr "Geburtsdatum"
 
 #: ../gramps/gen/utils/alive.py:424 ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "birth"
 msgid "birth: "
-msgstr "Geburt"
+msgstr "Geburt: "
 
 #: ../gramps/gen/utils/alive.py:427
 msgid " and "
@@ -11153,16 +11095,12 @@ msgid "event with spouse"
 msgstr "Ereignisse mit Partner(in)"
 
 #: ../gramps/gen/utils/alive.py:730
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant birth: {} generations "
-msgstr "Max. Nachkommengenerationen"
+msgstr "Nachkomme Geburt: {} Generationen "
 
 #: ../gramps/gen/utils/alive.py:749
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant death: {} generations "
-msgstr "Max. Nachkommengenerationen"
+msgstr "Nachkomme Tod: {} Generationen "
 
 #: ../gramps/gen/utils/alive.py:761
 #, python-format
@@ -16253,6 +16191,8 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"Dies öffnet ein Dialogfeld, in dem du einen neuen benutzerdefinierten Filter "
+"basierend auf den angegebenen Werten hinzufügen kannst."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16261,20 +16201,21 @@ msgstr "Zurücksetzen"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "Verstrichene Zeit: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
 msgstr ""
+"Du solltest einen Ort auswählen, wenn du die Regel „Innerhalb“ verwendest"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
-msgstr ""
+msgstr "Mindestens einen Wert angeben"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "Erstellt durch Filter-Gramplet am {today}"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -33484,7 +33425,7 @@ msgstr "Das zu verwendende Nummerierungssystem"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "Geschlechtssymbol vor dem Namen anzeigen"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
 #, fuzzy
