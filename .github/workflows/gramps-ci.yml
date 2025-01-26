@@ -74,3 +74,5 @@ jobs:
       run: |
         export GDK_BACKEND=-
         python3 setup.py test
+        python3 -m pip install orjson
+        python3 setup.py test
