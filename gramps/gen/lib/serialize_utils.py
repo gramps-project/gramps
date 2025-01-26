@@ -134,6 +134,9 @@ class OrJSONConverter:
     @classmethod
     def data_to_object(cls, data):
         if isinstance(data, dict):
+            if "_object" in data:
+                return data["_object"]
+
             data = {k: cls.data_to_object(v) for k, v in data.items()}
             return convert_state_to_object(data)
 
