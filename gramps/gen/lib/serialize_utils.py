@@ -30,7 +30,7 @@ import json
 try:
     import orjson
 except ImportError:
-    orjson = None # type: ignore
+    orjson = None  # type: ignore
 
 # ------------------------------------------------------------------------
 #
