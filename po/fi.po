@@ -6,7 +6,7 @@
 # Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019, 2021, 2022, 2023, 2024, 2025.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # PeterJPower <pekka.valta@kolumbus.fi>, 2021.
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2022.
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2022, 2025.
 # Jyri-Petteri Paloposki <jyri-petteri.paloposki@iki.fi>, 2022.
 # Oskari Lavinto <olavinto@protonmail.com>, 2023.
 # A <ogloppi@mailbox.org>, 2023.
@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2025-01-16 06:00+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2025-01-26 20:01+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -11100,26 +11100,20 @@ msgid "date fallback"
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
-#, fuzzy
-#| msgid "death"
 msgid ", death: "
-msgstr "kuolema"
+msgstr ", kuolema: "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:336
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
-msgstr "Äidin ikä"
+msgstr "äidin ikä"
 
 #: ../gramps/gen/utils/alive.py:341
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
-msgstr "Isän ikä"
+msgstr "isän ikä"
 
 #: ../gramps/gen/utils/alive.py:345
 #, fuzzy
@@ -11128,16 +11122,12 @@ msgid "from death date"
 msgstr "kuolinaika"
 
 #: ../gramps/gen/utils/alive.py:349
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "Äidin ikä"
+msgstr "äidin kuolema"
 
 #: ../gramps/gen/utils/alive.py:354
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "Isän ikä"
+msgstr "isän kuolema"
 
 #: ../gramps/gen/utils/alive.py:358
 #, fuzzy
@@ -11166,16 +11156,12 @@ msgid "birth date"
 msgstr "syntymäaika"
 
 #: ../gramps/gen/utils/alive.py:424 ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "Birth:"
 msgid "birth: "
-msgstr "Syntymä:"
+msgstr "syntymä: "
 
 #: ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "' and '"
 msgid " and "
-msgstr "' ja '"
+msgstr " ja "
 
 #: ../gramps/gen/utils/alive.py:510
 msgid "a spouse's birth-related date, "
@@ -14336,10 +14322,8 @@ msgid "_Names"
 msgstr "_Nimet"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Set as Preferred name"
-msgstr "Ensisijainen nimi"
+msgstr "Aseta ensisijaiseksi nimeksi"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
@@ -19435,13 +19419,11 @@ msgstr "Vastaavia laajennuksia ei löytynyt."
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
-msgstr ""
+msgstr "Lisää projekti"
 
 #: ../gramps/gui/plug/_windows.py:705
-#, fuzzy
-#| msgid "Remove the selected personal event"
 msgid "Remove the selected project"
-msgstr "Poista valittu henkilötapahtuma"
+msgstr "Poista valittu projekti"
 
 #: ../gramps/gui/plug/_windows.py:707
 #, fuzzy
@@ -25107,10 +25089,8 @@ msgid "Unattached"
 msgstr "Ei liitetty"
 
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
-#, fuzzy
-#| msgid "Number of ranks to display"
 msgid "Number of Surnames to display"
-msgstr "Näytettävien asteiden määrä"
+msgstr "Näytettävien sukunimien määrä"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
@@ -33295,13 +33275,11 @@ msgstr "Käytettävä numerointijärjestelmä"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "Näytä sukupuolen symboli nimen edessä"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "Näytetäänkö avioerotiedot raportissa."
+msgstr "Näytetäänkö sukupuolen symboli nimen edessä raportissa."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -33504,10 +33482,8 @@ msgstr "Käytetäänkö kutsumanimeä ensimmäisenä nimenä."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to use the call name as the first name."
 msgid "Whether to show gender symbol in front of name."
-msgstr "Käytetäänkö kutsumanimeä ensimmäisenä nimenä."
+msgstr "Näytetäänkö sukupuolen symboli nimen edessä."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
