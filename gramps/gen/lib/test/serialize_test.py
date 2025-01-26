@@ -49,6 +49,7 @@ def parameterized(param_list):
     """
     Decorates a test case to run it as a set of subtests.
     """
+
     def decorator(f):
         @functools.wraps(f)
         def wrapped(self):
@@ -60,17 +61,21 @@ def parameterized(param_list):
 
     return decorator
 
+
 def json_converters():
-    return parameterized([
-        {
-            "to_json": JSONConverter.object_to_string,
-            "from_json": JSONConverter.string_to_object
-        },
-        {
-            "to_json": OrJSONConverter.object_to_string,
-            "from_json": OrJSONConverter.string_to_object
-        },
-    ])
+    return parameterized(
+        [
+            {
+                "to_json": JSONConverter.object_to_string,
+                "from_json": JSONConverter.string_to_object,
+            },
+            {
+                "to_json": OrJSONConverter.object_to_string,
+                "from_json": OrJSONConverter.string_to_object,
+            },
+        ]
+    )
+
 
 class BaseCheck:
     @json_converters()
@@ -148,6 +153,7 @@ def generate_cases(obj, data):
     """
     Dynamically generate tests and attach to DatabaseCheck.
     """
+
     @json_converters()
     def test(self, to_json, from_json):
         json_data = to_json(obj)
