@@ -7,7 +7,7 @@
 # Tymofii Lytvynenko <till.svit@gmail.com>, 2021, 2022, 2024.
 # Artem <artem@molotov.work>, 2022.
 # Artur Plysyuk <ifuelen@gmail.com>, 2022.
-# Milan <mobrcian@hotmail.com>, 2022.
+# Milan <mobrcian@hotmail.com>, 2022, 2025.
 # Dan <denqwerta@gmail.com>, 2022.
 # Andrey Serbovets <serbovets.translation@gmail.com>, 2023, 2024.
 # Andrii Serbovets <serbovets.translation@gmail.com>, 2024, 2025.
@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2025-01-24 17:44+0000\n"
-"Last-Translator: Andrii Serbovets <serbovets.translation@gmail.com>\n"
+"PO-Revision-Date: 2025-01-26 20:02+0000\n"
+"Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
 "Language: uk\n"
@@ -11028,7 +11028,7 @@ msgstr "смерть батька"
 
 #: ../gramps/gen/utils/alive.py:358
 msgid "person's death"
-msgstr "народження особи"
+msgstr "смерть особи"
 
 #: ../gramps/gen/utils/alive.py:365
 msgid "oldest sibling's age"
