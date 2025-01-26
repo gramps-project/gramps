@@ -440,13 +440,15 @@ class EventPages(BasePage):
                 extended_handle_list[bletter].append((hdle[0], hdle[2]))
         extended_handle_list = list(extended_handle_list.items())
         max_rows = max_letter_rows[bletter]
-        create_indexes_pages(report,
-                             "events",
-                             index_list,
-                             self.part_eventlistpage,
-                             extended_handle_list,
-                             max_rows,
-                             locale=self.rlocale)
+        create_indexes_pages(
+            report,
+            "events",
+            index_list,
+            self.part_eventlistpage,
+            extended_handle_list,
+            max_rows,
+            locale=self.rlocale,
+        )
 
     def _geteventdate(self, event):
         """

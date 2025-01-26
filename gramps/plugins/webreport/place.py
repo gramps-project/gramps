@@ -441,13 +441,15 @@ class PlacePages(BasePage):
 
         places_list = list(places_dict.items())
         max_rows = max_letter_rows[bletter]
-        create_indexes_pages(report,
-                             "places",
-                             index_list,
-                             self.part_placelistpage,
-                             places_list,
-                             max_rows,
-                             locale=self.rlocale)
+        create_indexes_pages(
+            report,
+            "places",
+            index_list,
+            self.part_placelistpage,
+            places_list,
+            max_rows,
+            locale=self.rlocale,
+        )
 
     def placepage(self, report, the_lang, the_title, place_handle, place_name):
         """

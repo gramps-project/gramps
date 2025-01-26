@@ -171,9 +171,7 @@ class FamilyPages(BasePage):
             # Update the ColumnRowLabel cell
             trow.attr = 'class="BeginLetter BeginFamily"'
             ttle = self._("Families beginning with " "letter ")
-            tcell += Html(
-                "a", letter, name=letter, title=ttle + letter
-            )
+            tcell += Html("a", letter, name=letter, title=ttle + letter)
             #  and create the populated ColumnPartner for the person
             tcell = Html("td", class_="ColumnPartner")
             tcell += self.new_person_link(person_handle, uplink=self.uplink)
@@ -436,13 +434,15 @@ class FamilyPages(BasePage):
                 extended_handle_list[bletter].append((hdle, fname))
         extended_handle_list = list(extended_handle_list.items())
         max_rows = max_letter_rows[bletter]
-        create_indexes_pages(report,
-                             "families",
-                             index_list,
-                             self.part_familylistpage,
-                             extended_handle_list,
-                             max_rows,
-                             locale=self.rlocale)
+        create_indexes_pages(
+            report,
+            "families",
+            index_list,
+            self.part_familylistpage,
+            extended_handle_list,
+            max_rows,
+            locale=self.rlocale,
+        )
 
     def familypage(self, report, the_lang, the_title, family_handle):
         """

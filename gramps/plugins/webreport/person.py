@@ -223,7 +223,10 @@ class PersonPages(BasePage):
                 "with letter %(letter)s" % {"surname": surname, "letter": bucket_letter}
             )
             tcell += Html(
-                "a", html_escape(bucket_letter), name=bucket_letter, title=ttle,
+                "a",
+                html_escape(bucket_letter),
+                name=bucket_letter,
+                title=ttle,
             )
         elif first_individual:
             first_individual = False
@@ -458,7 +461,11 @@ class PersonPages(BasePage):
                     surnamed = surname.upper()
                 else:
                     surnamed = surname
-                (date, first_surname, first_individual,) = self.__output_person(
+                (
+                    date,
+                    first_surname,
+                    first_individual,
+                ) = self.__output_person(
                     date,
                     tbody,
                     letter,
