@@ -65,7 +65,7 @@ class RelationshipPathBetween(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.select_handles: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         try:
             root1_handle = db.get_person_from_gramps_id(self.list[0]).handle
             root2_handle = db.get_person_from_gramps_id(self.list[1]).handle
@@ -74,7 +74,7 @@ class RelationshipPathBetween(Rule):
             pass
 
     def reset(self):
-        self.select_handles.clear()
+        self.selected_handles.clear()
 
     def desc_list(self, handle: str, map, first: bool):
         if not first:
@@ -112,7 +112,7 @@ class RelationshipPathBetween(Rule):
             self.apply_filter(rank + 1, family.mother_handle, plist, pmap)
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.select_handles
+        return person.handle in self.selected_handles
 
     def init_list(self, p1_handle: str, p2_handle: str):
         firstMap: Dict[str, int] = {}
