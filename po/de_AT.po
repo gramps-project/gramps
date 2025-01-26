@@ -32,7 +32,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
 "PO-Revision-Date: 2025-01-26 20:02+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
@@ -3810,12 +3810,12 @@ msgstr "Band/Seite:"
 #: ../gramps/gen/filters/rules/_hascitationbase.py:52
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:51
 msgid "Citations matching parameters"
-msgstr "Liefert Fundstellen entsprechend den Parametern"
+msgstr "Fundstellen, die den Parametern entsprechen"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:53
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:53
 msgid "Matches citations with particular parameters"
-msgstr "Liefert Fundstellen mit bestimmten Parametern"
+msgstr "Entspricht Fundstellen mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:54
 #: ../gramps/gen/filters/rules/_hassourcebase.py:50
@@ -3926,7 +3926,7 @@ msgstr "Objekte mit Notizen einer bestimmten Art"
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:49
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
 msgid "Matches notes with the particular type "
-msgstr "Liefert Notizen einer bestimmten Art "
+msgstr "Entspricht Notizen mit der bestimmten Art "
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:44
 #: ../gramps/gui/editors/filtereditor.py:551
@@ -4004,7 +4004,7 @@ msgstr "Jede Fundstelle"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:48
 msgid "Matches every citation in the database"
-msgstr "Liefert jede Fundstelle in der Datenbank"
+msgstr "Entspricht jeder Fundstelle in der Datenbank"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:47
 #: ../gramps/gen/filters/rules/event/_changedsince.py:48
@@ -4039,9 +4039,9 @@ msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Liefert Fundstellen-Einträge, die nach einem bestimmten Datum/Zeitpunkt "
-"(JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, wenn ein "
-"zweites Datum/Zeitpunkt angegeben ist."
+"Entspricht Fundstelleneinträge, die nach einem bestimmten Datum/Zeitpunkt "
+"(JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein "
+"zweites Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:45
 msgid "Citations marked private"
@@ -4049,7 +4049,7 @@ msgstr "Als vertraulich gekennzeichnete Fundstellen"
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:46
 msgid "Matches citations that are indicated as private"
-msgstr "Liefert Fundstellen, die als vertraulich markiert sind"
+msgstr "Entspricht Fundstellen, die als vertraulich markiert sind"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 msgid "Citation attribute:"
@@ -4073,7 +4073,7 @@ msgstr "Fundstellen mit dem Attribut <Attribut>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:49
 msgid "Matches citations with the attribute of a particular value"
-msgstr "Liefert Fundstellen mit dem Attribut eines bestimmten Wertes"
+msgstr "Entspricht Fundstellen mit dem Attribut eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:50
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -4097,7 +4097,8 @@ msgstr "Fundstellen mit <Anzahl> Medien"
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:48
 msgid "Matches citations with a certain number of items in the gallery"
 msgstr ""
-"Liefert Fundstellen mit einer bestimmten Anzahl von Elementen in der Galerie"
+"Entspricht Fundstellen mit einer bestimmten Anzahl von Elementen in der "
+"Galerie"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:47
 msgid "Citation with <Id>"
@@ -4105,7 +4106,7 @@ msgstr "Fundstelle mit <ID>"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:48
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Liefert eine Fundstelle mit einer bestimmten Gramps-ID"
+msgstr "Entspricht eine Fundstelle mit einer bestimmten Gramps-ID"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:48
 msgid "Citations having <count> notes"
@@ -4113,7 +4114,7 @@ msgstr "Fundstellen mit <Anzahl> Notizen"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:49
 msgid "Matches citations having a certain number of notes"
-msgstr "Liefert Fundstellen mit einer bestimmten Anzahl von Notizen"
+msgstr "Entspricht Fundstellen mit einer bestimmten Anzahl von Notizen"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:45
 msgid "Citations having notes containing <substring>"
@@ -4122,8 +4123,8 @@ msgstr "Fundstellen, deren Notizen <Teilzeichenfolge> enthalten"
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:47
 msgid "Matches citations whose notes contain text matching a substring"
 msgstr ""
-"Liefert Fundstellen, deren Notizen einen Text mit gegebener Teilzeichenfolge "
-"enthalten"
+"Entspricht Fundstellen, deren Notizen einen Text mit gegebener "
+"Teilzeichenfolge enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:43
 msgid "Citations having notes containing <text>"
@@ -4133,8 +4134,8 @@ msgstr "Fundstellen, deren Notizen <Text> enthalten"
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Fundstellen, deren Notizen einen Text entsprechend einem regulären "
-"Ausdruck enthalten"
+"Entspricht Fundstellen, deren Notizen einen Text entsprechend einem "
+"regulären Ausdruck enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
 msgid "Citations with a note of type <type>"
@@ -4142,7 +4143,7 @@ msgstr "Fundstellen mit einer Notizart <Art>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
 msgid "Matches citations with a note of the specified type"
-msgstr "Liefert Fundstellen mit einer Notiz der angegebenen Art"
+msgstr "Entspricht Fundstellen mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4159,7 +4160,7 @@ msgstr "Fundstellen mit einer Referenzenanzahl von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:46
 msgid "Matches citations with a certain reference count"
-msgstr "Liefert Fundstellen mit einer bestimmten Anzahl von Referenzen"
+msgstr "Entspricht Fundstellen mit einer bestimmten Anzahl von Referenzen"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:50
 #: ../gramps/gen/filters/rules/source/_hassource.py:49
@@ -4214,7 +4215,7 @@ msgstr "Quellen, die den Parametern entsprechen"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:52
 msgid "Matches citations with a source of a particular value"
-msgstr "Liefert Fundstellen mit einer Quelle eines bestimmten Wertes"
+msgstr "Entspricht Fundstellen mit einer Quelle eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:53
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:50
@@ -4230,7 +4231,8 @@ msgstr "Fundstelle mit Quelle <ID>"
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:49
 msgid "Matches a citation with a source with a specified Gramps ID"
 msgstr ""
-"Liefert eine Fundstelle mit einer Quelle, die eine bestimmte Gramps-ID hat"
+"Entspricht einer Fundstelle mit einer Quelle, die eine bestimmte Gramps-ID "
+"hat"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:54
 msgid "Citations having source notes containing <text>"
@@ -4241,7 +4243,7 @@ msgid ""
 "Matches citations whose source notes contain a substring or match a regular "
 "expression"
 msgstr ""
-"Liefert Fundstellen, deren Quellennotizen einen Text entsprechend einem "
+"Entspricht Fundstellen, deren Quellennotizen einen Text entsprechend einem "
 "regulären Ausdruck enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
@@ -4263,7 +4265,7 @@ msgstr "Fundstellen mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:53
 msgid "Matches citations with the particular tag"
-msgstr "Liefert Fundstellen mit der angegebenen Markierung"
+msgstr "Entspricht Fundstellen mit der angegebenen Markierung"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
 msgid "Citations matching the <filter>"
@@ -4271,7 +4273,7 @@ msgstr "Fundstellen, die dem <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:48
 msgid "Matches citations matched by the specified filter name"
-msgstr "Liefert Fundstellen, die dem angegebenen Filter entsprechen"
+msgstr "Entspricht Fundstellen, die dem angegebenen Filter entsprechen"
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:45
 msgid "Citations with Volume/Page containing <text>"
@@ -4280,7 +4282,7 @@ msgstr "Fundstelle Band/Seite enthält <Text>"
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:47
 msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr ""
-"Liefert Fundstellen, deren Band/Seite eine bestimmte Teilzeichenfolge "
+"Entspricht Fundstellen, deren Band/Seite eine bestimmte Teilzeichenfolge "
 "enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:48
@@ -4294,7 +4296,7 @@ msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Fundstellen mit Quelle mit Aufbewahrungsortreferenz, die dem "
+"Fundstellen mit einer Quelle mit einer Aufbewahrungsortreferenz, die dem "
 "<Aufbewahrungsortfilter> entspricht"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:54
@@ -4302,7 +4304,7 @@ msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Liefert Fundstellen mit Quellen mit einer Aufbewahrungsortreferenz, die "
+"Entspricht Fundstellen mit Quellen mit einer Aufbewahrungsortreferenz, die "
 "einem bestimmten Aufbewahrungsortfilter entspricht"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:51
@@ -4313,7 +4315,7 @@ msgstr "Fundstellen mit Quellen, die dem <Quellenfilter> entsprechen"
 msgid ""
 "Matches citations with sources that match the specified source filter name"
 msgstr ""
-"Liefert Fundstellen mit Quellen, die einem bestimmten Quellenfilternamen "
+"Entspricht Fundstellen mit Quellen, die einem bestimmten Quellenfilternamen "
 "entsprechen"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:50
@@ -4322,7 +4324,8 @@ msgstr "Fundstellen, deren ID <Text> enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:52
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "Liefert Fundstellen, deren Gramps-ID dem regulären Ausdruck entspricht"
+msgstr ""
+"Entspricht Fundstellen, deren Gramps-ID dem regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:50
 msgid "Citations with Source Id containing <text>"
@@ -4333,7 +4336,7 @@ msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
 msgstr ""
-"Liefert Fundstellen, deren Quelle eine Gramps-ID hat, die dem regulären "
+"Entspricht Fundstellen, deren Quelle eine Gramps-ID hat, die dem regulären "
 "Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:46
@@ -4342,7 +4345,7 @@ msgstr "Jedes Ereignis"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:47
 msgid "Matches every event in the database"
-msgstr "Liefert jedes Ereignis in der Datenbank"
+msgstr "Entspricht jedem Ereignis in der Datenbank"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:49
 msgid "Events changed after <date time>"
@@ -4353,9 +4356,9 @@ msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
 msgstr ""
-"Liefert Ereigniseinträge, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-"
-"TT HH:MM:ss) geändert wurden oder in einem Zeitraum, wenn ein zweites Datum/"
-"Zeitpunkt angegeben ist."
+"Entspricht Ereigniseinträgen, die nach einem bestimmten Datum/Zeitpunkt "
+"(JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein "
+"zweites Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:44
 msgid "Events marked private"
@@ -4363,7 +4366,7 @@ msgstr "Als vertraulich gekennzeichnete Ereignisse"
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:45
 msgid "Matches events that are indicated as private"
-msgstr "Liefert Ereignisse, die als vertraulich markiert sind"
+msgstr "Entspricht Ereignissen, die als vertraulich markiert sind"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:116
@@ -4377,7 +4380,7 @@ msgstr "Ereignisse mit dem Attribut <Attribut>"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:48
 msgid "Matches events with the event attribute of a particular value"
-msgstr "Liefert Ereignisse mit dem Ereignisattribut mit einem bestimmten Wert"
+msgstr "Entspricht Ereignissen mit dem Ereignisattribut eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 msgid "Events with the <citation>"
@@ -4385,7 +4388,7 @@ msgstr "Ereignisse mit der <Fundstelle>"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:52
 msgid "Matches events with a citation of a particular value"
-msgstr "Liefert Ereignisse mit einer Fundstelle mit einem bestimmten Wert"
+msgstr "Entspricht Ereignissen mit einer Fundstelle eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:49
 #: ../gramps/gen/filters/rules/event/_hasevent.py:53
@@ -4427,7 +4430,7 @@ msgstr "Ereignisse mit <Daten>"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:51
 msgid "Matches events with data of a particular value"
-msgstr "Liefert Ereignisse mit Daten eines bestimmten Wertes"
+msgstr "Entspricht Ereignisse mit Daten eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:40
 #: ../gramps/gui/editors/filtereditor.py:630
@@ -4440,7 +4443,7 @@ msgstr "An einem bestimmten Wochentag stattfindende Ereignisse"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:42
 msgid "Matches events occurring on a particular day of the week"
-msgstr "Liefert an einem bestimmten Wochentag stattfindende Ereignisse"
+msgstr "Entspricht Ereignissen, die an einem bestimmten Wochentag stattfanden"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:54
 #: ../gramps/gen/filters/rules/person/_hasevent.py:52
