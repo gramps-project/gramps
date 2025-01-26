@@ -30,7 +30,7 @@ import json
 try:
     import orjson
 except ImportError:
-    orjson = None
+    orjson = None # type: ignore
 
 # ------------------------------------------------------------------------
 #
@@ -88,7 +88,7 @@ class JSONConverter:
 
     # def to_json(obj):
     @classmethod
-    def object_to_string(cls, obj: object) -> str:
+    def object_to_string(cls, obj: object) -> str | bytes:
         """
         Encode a Gramps object in JSON format.
 
@@ -101,7 +101,7 @@ class JSONConverter:
 
     # def from_json(data):
     @classmethod
-    def string_to_object(cls, string):
+    def string_to_object(cls, string: str | bytes):
         """
         Decode JSON data into a Gramps object hierarchy.
 
@@ -144,12 +144,12 @@ class OrJSONConverter:
 
     # def to_json(obj):
     @classmethod
-    def object_to_string(cls, obj: object) -> str:
+    def object_to_string(cls, obj: object) -> str | bytes:
         return orjson.dumps(cls.object_to_data(obj))
 
     # def from_json(data):
     @classmethod
-    def string_to_object(cls, string):
+    def string_to_object(cls, string: str | bytes):
         return cls.data_to_object(orjson.loads(string))
 
 
