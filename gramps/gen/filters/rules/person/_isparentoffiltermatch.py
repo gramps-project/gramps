@@ -62,7 +62,7 @@ class IsParentOfFilterMatch(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
         if user:
@@ -81,16 +81,16 @@ class IsParentOfFilterMatch(Rule):
 
     def reset(self):
         self.filt.requestreset()
-        self.map.clear()
+        self.selected_handles.clear()
 
     def apply_to_one(self, db, person: Person) -> bool:
-        return person.handle in self.map
+        return person.handle in self.selected_handles
 
     def init_list(self, person: Person):
         for fam_id in person.parent_family_list:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
-                self.map.update(
+                self.selected_handles.update(
                     parent_id
                     for parent_id in [fam.father_handle, fam.mother_handle]
                     if parent_id

@@ -71,20 +71,20 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
     def prepare(self, db: Database, user):
         self.db = db
         bookmarks: List[str] = db.get_bookmarks().get()
-        self.map: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         if len(bookmarks) != 0:
             self.bookmarks: Set[str] = set(bookmarks)
             for self.bookmarkhandle in self.bookmarks:
                 self.init_ancestor_list(self.bookmarkhandle, 1)
 
     def init_ancestor_list(self, handle: str, gen: int):
-        #        if p.get_handle() in self.map:
+        #        if p.get_handle() in self.selected_handles:
         #            loop_error(self.orig,p)
-        if not handle or handle in self.map:
+        if not handle or handle in self.selected_handles:
             # if been here already, skip
             return
         if gen:
-            self.map.add(handle)
+            self.selected_handles.add(handle)
             if gen >= int(self.list[0]):
                 return
 
@@ -103,7 +103,7 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
                 self.init_ancestor_list(m_id, gen + 1)
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.map
+        return person.handle in self.selected_handles
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()

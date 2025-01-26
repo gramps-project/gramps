@@ -70,7 +70,7 @@ class RelationshipPathBetweenBookmarks(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         bookmarks = db.get_bookmarks().get()
         self.bookmarks: Set[str] = set(bookmarks)
         try:
@@ -79,7 +79,7 @@ class RelationshipPathBetweenBookmarks(Rule):
             pass
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()
 
     #
     # Returns a name, given a handle.
@@ -161,7 +161,7 @@ class RelationshipPathBetweenBookmarks(Rule):
         return rel_path
 
     def init_list(self) -> None:
-        self.map.update(self.bookmarks)
+        self.selected_handles.update(self.bookmarks)
         if len(self.bookmarks) < 2:
             return
         bmarks: List[str] = list(self.bookmarks)
@@ -173,9 +173,9 @@ class RelationshipPathBetweenBookmarks(Rule):
             for j in range(i + 1, lb):
                 try:
                     pathmap = self.rel_path_for_two(bmarks[i], bmarks[j])
-                    self.map.update(pathmap)
+                    self.selected_handles.update(pathmap)
                 except:
                     pass
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.map
+        return person.handle in self.selected_handles

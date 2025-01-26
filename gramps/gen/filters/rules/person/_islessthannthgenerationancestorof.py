@@ -64,7 +64,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         person = db.get_person_from_gramps_id(self.list[0])
         if person:
             root_handle = person.handle
@@ -75,10 +75,10 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         queue: List[Tuple[str, int]] = [(root_handle, 1)]  # generation 1 is root
         while queue:
             handle, gen = queue.pop(0)  # pop off front of queue
-            if handle in self.map:
+            if handle in self.selected_handles:
                 # if we have been here before, skip
                 continue
-            self.map.add(handle)
+            self.selected_handles.add(handle)
             gen += 1
             if gen <= int(self.list[1]):
                 p = self.db.get_person_from_handle(handle)
@@ -97,7 +97,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
                             queue.append((m_id, gen))
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.map
+        return person.handle in self.selected_handles

@@ -64,7 +64,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         try:
             if int(self.list[1]):
                 first = False
@@ -91,7 +91,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
 
     def reset(self):
         self.filt.requestreset()
-        self.map.clear()
+        self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.map
+        return person.handle in self.selected_handles

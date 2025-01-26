@@ -58,10 +58,10 @@ class IsDefaultPerson(Rule):
     description = _("Matches the Home Person")
 
     def prepare(self, db: Database, user):
-        self.map: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         p: Person = db.get_default_person()
         if p:
-            self.map.add(p.handle)
+            self.selected_handles.add(p.handle)
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.map
+        return person.handle in self.selected_handles

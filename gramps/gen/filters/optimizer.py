@@ -45,21 +45,21 @@ def union(sets):
 
 class Optimizer:
     """
-    Optimizer to use the filter's map items pre-select
-    handles to include or exclude.
+    Optimizer to use the filter's pre-selected selected_handles
+    to include or exclude.
     """
 
     def __init__(self, filter):
         """
-        Initialize the collection of maps in the filter list.
+        Initialize the collection of selected_handles in the filter list.
         """
-        self.all_maps = []
-        self.walk_filters(filter, False, self.all_maps)
+        self.all_selected_handles = []
+        self.walk_filters(filter, False, self.all_selected_handles)
 
     def walk_filters(self, filter, parent_invert, result):
         """
         Recursively walk all of the filters/rules and get
-        rules with maps
+        rules with selected_handles
         """
         current_invert = parent_invert if not filter.invert else not parent_invert
         LOG.debug(
@@ -78,11 +78,11 @@ class Optimizer:
                         current_invert,
                         result,
                     )
-            elif hasattr(item, "map"):
-                rules.append(set(item.map))
+            elif hasattr(item, "selected_handles"):
+                rules.append(set(item.selected_handles))
         if rules:
             LOG.debug(
-                "filter %s: parent_invert=%s, invert=%s, op=%s, number of maps=%s",
+                "filter %s: parent_invert=%s, invert=%s, op=%s, number of selected_handles=%s",
                 filter,
                 parent_invert,
                 filter.invert,
@@ -115,20 +115,20 @@ class Optimizer:
         """
         handles_in = None
         handles_out = set()
-        # Get all positive non-inverted maps
-        for inverted, logical_op, maps in self.all_maps:
+        # Get all positive non-inverted selected_handles
+        for inverted, logical_op, selected_handles in self.all_selected_handles:
             if logical_op == "and" and not inverted:
                 LOG.debug("optimizer positive match!")
                 if handles_in is None:
-                    handles_in = intersection(maps)
+                    handles_in = intersection(selected_handles)
                 else:
-                    handles_in = intersection([handles_in] + maps)
+                    handles_in = intersection([handles_in] + selected_handles)
 
-        # Get all inverted maps:
-        for inverted, logical_op, maps in self.all_maps:
+        # Get all inverted selected_handles:
+        for inverted, logical_op, selected_handles in self.all_selected_handles:
             if logical_op == "and" and inverted:
                 LOG.debug("optimizer inverted match!")
-                handles_out = union([handles_out] + maps)
+                handles_out = union([handles_out] + selected_handles)
 
         if handles_in is not None:
             handles_in = handles_in - handles_out

@@ -61,7 +61,7 @@ class IsAncestorOf(Rule):
     def prepare(self, db: Database, user):
         """Assume that if 'Inclusive' not defined, assume inclusive"""
         self.db = db
-        self.map: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         try:
             first = False if int(self.list[1]) else True
         except IndexError:
@@ -73,18 +73,18 @@ class IsAncestorOf(Rule):
             pass
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.map
+        return person.handle in self.selected_handles
 
     def init_ancestor_list(self, db: Database, person: Person, first: bool) -> None:
         if not person:
             return
-        if person.handle in self.map:
+        if person.handle in self.selected_handles:
             return
         if not first:
-            self.map.add(person.handle)
+            self.selected_handles.add(person.handle)
         fam_id = (
             person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
         )

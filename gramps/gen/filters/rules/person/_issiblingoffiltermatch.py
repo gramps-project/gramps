@@ -61,7 +61,7 @@ class IsSiblingOfFilterMatch(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         self.matchfilt = MatchesFilter(self.list)
         self.matchfilt.requestprepare(db, user)
         if user:
@@ -80,10 +80,10 @@ class IsSiblingOfFilterMatch(Rule):
 
     def reset(self):
         self.matchfilt.requestreset()
-        self.map.clear()
+        self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.map
+        return person.handle in self.selected_handles
 
     def init_list(self, person: Person):
         if not person:
@@ -94,7 +94,7 @@ class IsSiblingOfFilterMatch(Rule):
         if fam_id:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
-                self.map.update(
+                self.selected_handles.update(
                     child_ref.ref
                     for child_ref in fam.child_ref_list
                     if child_ref and child_ref.ref != person.handle

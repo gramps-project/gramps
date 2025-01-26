@@ -64,7 +64,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         try:
             root_person = db._get_raw_person_from_id_data(self.list[0])
             self.init_list(root_person, 0)
@@ -72,16 +72,16 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
             pass
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.map
+        return person.handle in self.selected_handles
 
     def init_list(self, person: Person, gen: int) -> None:
         if not person:
             return
         if gen >= int(self.list[1]):
-            self.map.add(person.handle)
+            self.selected_handles.add(person.handle)
 
         for fam_id in person.family_list:
             fam = self.db.get_family_from_handle(fam_id)

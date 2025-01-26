@@ -64,7 +64,7 @@ class IsLessThanNthGenerationDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.map: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             self.init_list(root_person, 0)
@@ -72,17 +72,17 @@ class IsLessThanNthGenerationDescendantOf(Rule):
             pass
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.map
+        return person.handle in self.selected_handles
 
     def init_list(self, person: Person, gen: int):
-        if not person or person.handle in self.map:
+        if not person or person.handle in self.selected_handles:
             # if we have been here before, skip
             return
         if gen:
-            self.map.add(person.handle)
+            self.selected_handles.add(person.handle)
             if gen >= int(self.list[1]):
                 return
 

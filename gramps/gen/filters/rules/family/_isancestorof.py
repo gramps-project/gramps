@@ -60,16 +60,16 @@ class IsAncestorOf(Rule):
     description = _("Matches ancestor families of the specified family")
 
     def prepare(self, db: Database, user):
-        self.map: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         first = False if int(self.list[1]) else True
         root_family = db.get_family_from_gramps_id(self.list[0])
         self.init_list(db, root_family, first)
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
-        return family.handle in self.map
+        return family.handle in self.selected_handles
 
     def init_list(self, db: Database, family: Family, first: bool):
         """
@@ -77,10 +77,10 @@ class IsAncestorOf(Rule):
         """
         if not family:
             return
-        if family.handle in self.map:
+        if family.handle in self.selected_handles:
             return
         if not first:
-            self.map.add(family.handle)
+            self.selected_handles.add(family.handle)
 
         for parent_handle in [family.father_handle, family.mother_handle]:
             if parent_handle:
