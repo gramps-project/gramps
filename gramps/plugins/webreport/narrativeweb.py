@@ -548,7 +548,8 @@ class NavWebReport(Report):
                 self.tab["Event"].display_pages(the_lang, the_title)
 
             # build classes PlaceListPage and PlacePage
-            self.tab["Place"].display_pages(the_lang, the_title)
+            if self.inc_places:
+                self.tab["Place"].display_pages(the_lang, the_title)
 
             # build classes RepositoryListPage and RepositoryPage
             if self.inc_repository:
@@ -567,7 +568,8 @@ class NavWebReport(Report):
                 self.addressbook_pages(self.obj_dict[Person])
 
             # build classes SourceListPage and SourcePage
-            self.tab["Source"].display_pages(the_lang, the_title)
+            if self.inc_sources:
+                self.tab["Source"].display_pages(the_lang, the_title)
 
             # build calendar for the current year
             if self.usecal:

@@ -773,7 +773,8 @@ def partial_navigation(
             unordered = Html("ul", class_=rtl)
 
             while index < num_pages:
-                name, handle = partial_index[index]
+                # print("p_index :", partial_index[index])
+                handle, name = partial_index[index]
                 title_txt = "Go to: "
                 title_str = rlocale.translation.sgettext(title_txt) + name
                 check_cs = False
@@ -1042,3 +1043,73 @@ def html_escape(text):
     text = text.replace("'", "&#39;")
 
     return text
+
+
+def create_indexes_pages(report, name, index_list, function, handle_list, max_rows,
+                         locale=None):
+    """
+    This is used to create indexes depending on a row limit.
+
+    @param: report      -- The instance of the main report class
+    @param: name        -- The base name of the file to create
+    @param: index_list  -- The base name of the file to create
+    @param: function    -- The function used to create the page
+    @param: handle_list -- The list of handles to manage
+    @param: max_rows    -- The number of rows included in this page
+    @param: locale      -- The locale used for sor t, ...
+    """
+    row_count = report.options["splitindex"]
+    max_rows += row_count  # For the last incomplete page
+    max_rows = (
+        int(max_rows / row_count) * row_count
+    )
+    page = 0
+    for letter, hdle_list in handle_list:
+        hdle_list.sort(key=lambda x: locale.sort_key(x[1]))
+        # current = [(letter, hdle_list)]
+        if len(hdle_list) <= row_count:
+            function(
+                report,
+                index_list,
+                name,
+                letter,
+                hdle_list,
+                part=page,
+            )
+        else:
+            partial_list = []
+            for idx in range(0, int(len(hdle_list) / row_count) + 1, 1):
+                if (idx * row_count) < len(hdle_list):
+                    partial_list.append(hdle_list[idx * row_count])
+            sub_page = 0
+            part = 0
+            start = 0
+            while start < len(hdle_list):
+                phdle_list = []
+                for nbh in range(len(hdle_list)):
+                    if nbh < start:
+                        continue
+                    if nbh >= start + row_count:
+                        break
+                    if nbh > len(hdle_list):
+                        break
+                    phdle_list.append(hdle_list[nbh])
+                # plist = [(letter, phdle_list)]
+                if sub_page != 0:
+                    subp = "_%d" % sub_page
+                else:
+                    subp = None
+                function(
+                    report,
+                    index_list,
+                    name,
+                    letter,
+                    phdle_list,
+                    part=page,
+                    subp=subp,
+                    partial_list=partial_list,
+                )
+                part += 1
+                start += row_count
+                sub_page += 1
+        page += 1

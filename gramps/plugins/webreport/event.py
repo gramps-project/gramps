@@ -62,6 +62,7 @@ from gramps.plugins.webreport.common import (
     _EVENTMAP,
     alphabet_navigation,
     partial_navigation,
+    create_indexes_pages,
     FULLCLEAR,
     sort_event_types,
     AlphabeticIndex,
@@ -140,7 +141,6 @@ class EventPages(BasePage):
         event_type,
         tbody,
         bucket_letter,
-        bucket_link,
         first_letter,
         _event_displayed,
         first_type,
@@ -154,7 +154,6 @@ class EventPages(BasePage):
         @param: tbody           -- The current HTML body into which the data is
                                    assembled
         @param: bucket_letter   -- The AlphabeticIndex bucket for this event
-        @param: bucket_link     -- ????
         @param: first_letter    -- Whether this is the first event for this
                                    letter
         @param: event_displayed -- List of events already displayed
@@ -200,7 +199,7 @@ class EventPages(BasePage):
                     trow.attr = t_a
                     letter = bucket_letter
                     ttle = self._("Event types beginning " "with letter %s") % letter
-                    tcell += Html("a", letter, name=letter, id_=bucket_link, title=ttle)
+                    tcell += Html("a", letter, name=letter, title=ttle)
                     tcell = Html(
                         "td", class_="ColumnType", title=self._(event_type), inline=True
                     )
@@ -334,31 +333,27 @@ class EventPages(BasePage):
                 _event_displayed = []
                 # for each bucket, output the events in that bucket
                 # letter, handle_list = index
-                handle_list = index
-                handle_list = sorted(handle_list, key=itemgetter(0, 1))
-                # for dummy_sort_value, event_handle in index:
-                for bletter, event_handle in handle_list:
-                    evttype = ""
-                    for evt_hdle in event_handle:
-                        if evt_hdle[0] != evttype:
-                            evttype = evt_hdle[0]
-                            first_type = True
-                        (
-                            ldatec,
-                            first_letter,
-                            first_type,
-                            _event_displayed,
-                        ) = self.__output_event(
-                            ldatec,
-                            evt_hdle[0],  # event_type,
-                            tbody,
-                            bletter,
-                            bletter,
-                            first_letter,
-                            _event_displayed,
-                            first_type,
-                            evt_hdle[1][1],
-                        )
+                evttype = ""
+                for evt_hdle, event_type in index:
+                    evt_type = event_type.split(" (")[0]
+                    if evt_type != evttype:
+                        evttype = evt_type
+                        first_type = True
+                    (
+                        ldatec,
+                        first_letter,
+                        first_type,
+                        _event_displayed,
+                    ) = self.__output_event(
+                        ldatec,
+                        evt_type,
+                        tbody,
+                        letter,
+                        first_letter,
+                        _event_displayed,
+                        first_type,
+                        evt_hdle,
+                    )
 
         # add clearline for proper styling
         # add footer section
@@ -394,16 +389,9 @@ class EventPages(BasePage):
         # Extract the buckets from the index
         index_list = []
         index.resetBucketIterator()
-        while index.nextBucket():
-            if index.bucketRecordCount != 0:
-                index_list.append(index.bucketLabel)
-
-        index.resetBucketIterator()
-        page = 0
         events_handle_dict = defaultdict(list)
         events_handle_list = []
         max_letter_rows = defaultdict(int)
-        row_count = report.options["splitindex"]
         while index.nextBucket():
             if index.bucketRecordCount != 0:
                 letter = index.bucketLabel
@@ -418,16 +406,23 @@ class EventPages(BasePage):
                     handle_list = index.recordData
                     if handle_list:
                         for handle in handle_list:
-                            events_handle_dict[bletter].append(handle)
+                            event = self.r_db.get_event_from_handle(handle[1])
+                            if event:
+                                date = event.get_date_object()
+                                sdate = str(self._geteventdate(event))
+                                evt_date = ""
+                                if date and date is not Date.EMPTY:
+                                    evt_date = self.rlocale.get_date(date)
+                                if evt_date == "":
+                                    evt_date = event.get_gramps_id()
+                                goto = index.recordName + " (%s)" % evt_date
+                            events_handle_dict[bletter].append((handle[1], sdate, goto))
                         if bletter in max_letter_rows:
                             max_letter_rows[bletter] += len(handle_list)
                         else:
                             max_letter_rows[bletter] = len(handle_list)
         events_handle_list = list(events_handle_dict.items())
-        # sort by surname
-        events_handle_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
         extended_handle_list = defaultdict(list)
-        row_count = report.options["splitindex"]
         for bletter, hdlel in events_handle_list:
             bletter = (
                 unicodedata.normalize("NFKD", bletter)[0]
@@ -436,88 +431,30 @@ class EventPages(BasePage):
             )
             bletter = bletter[0] if len(bletter) > 0 else bletter
             bletter = bletter.upper() if bletter.isalpha() else "…"
-            for hdle in hdlel:
-                extended_handle_list[bletter].append(hdle)
-        extended_handle_list = list(extended_handle_list.items())
-        max_rows = 0
-        page = 0
-        for bletter, hdle_list in extended_handle_list:
-            max_rows = max_letter_rows[bletter]
-            max_rows += row_count  # For the last incomplete page
-            max_rows = (
-                int(max_rows / report.options["splitindex"])
-                * report.options["splitindex"]
-            )
-            hdle1_list = []
-            for handle in hdle_list:
-                event = self.r_db.get_event_from_handle(handle[1])
-                evt_type = self._(event.get_type().xml_str())
-                hdle1_list.append((evt_type, handle))
-            hdle1_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
-            current = [(bletter, hdle1_list)]
-            if len(hdle_list) <= row_count:
-                name = "events"
-                self.part_eventlistpage(
-                    report, index_list, name, bletter, current, part=page
-                )
-            else:
-                partial_list = []
-                for idx in range(0, int(len(hdle1_list) / row_count) + 1, 1):
-                    handle = hdle1_list[idx * row_count]
-                    event = self.r_db.get_event_from_handle(handle[1][1])
-                    if event:
-                        evt_type = self._(event.get_type().xml_str())
-                        date = event.get_date_object()
-                        evt_date = ""
-                        if date and date is not Date.EMPTY:
-                            evt_date = self.rlocale.get_date(date)
-                        if evt_date == "":
-                            evt_date = event.get_gramps_id()
-                    partial_list.append(
-                        (evt_type + "(%s)" % evt_date, hdle1_list[idx * row_count])
-                    )
-                sub_page = 0
-                part = 0
-                start = 0
-                while start < len(hdle1_list):
-                    phdle_list = []
-                    for nbh in range(len(hdle1_list)):
-                        if nbh < start:
-                            continue
-                        if nbh >= start + row_count:
-                            break
-                        if nbh > len(hdle1_list):
-                            break
-                        phdle_list.append(hdle1_list[nbh])
-                    plist = [(bletter, phdle_list)]
-                    name = "events"
-                    if sub_page != 0:
-                        subp = "_%d" % sub_page
-                    else:
-                        subp = None
-                    self.part_eventlistpage(
-                        report,
-                        index_list,
-                        name,
-                        bletter,
-                        plist,
-                        part=page,
-                        subp=subp,
-                        partial_list=partial_list,
-                    )
-                    part += 1
-                    start += row_count
-                    sub_page += 1
-            page += 1
 
-    def _geteventdate(self, event_handle):
+            def sort_on_event_and_date(evt):
+                return evt[2].split(" (")[0], evt[1]
+
+            hdlel = sorted(hdlel, key=sort_on_event_and_date)
+            for hdle in hdlel:
+                extended_handle_list[bletter].append((hdle[0], hdle[2]))
+        extended_handle_list = list(extended_handle_list.items())
+        max_rows = max_letter_rows[bletter]
+        create_indexes_pages(report,
+                             "events",
+                             index_list,
+                             self.part_eventlistpage,
+                             extended_handle_list,
+                             max_rows,
+                             locale=self.rlocale)
+
+    def _geteventdate(self, event):
         """
         Get the event date
 
         @param: event_handle -- The handle for the event to use
         """
         event_date = Date.EMPTY
-        event = self.r_db.get_event_from_handle(event_handle)
         if event:
             date = event.get_date_object()
             if date:

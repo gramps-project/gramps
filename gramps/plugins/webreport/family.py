@@ -61,6 +61,7 @@ from gramps.gen.display.name import displayer as _nd
 from gramps.plugins.webreport.common import (
     alphabet_navigation,
     partial_navigation,
+    create_indexes_pages,
     html_escape,
     FULLCLEAR,
     AlphabeticIndex,
@@ -135,7 +136,6 @@ class FamilyPages(BasePage):
         person_handle,
         tbody,
         letter,
-        bucket_link,
         first_person,
         first_family,
     ):
@@ -172,7 +172,7 @@ class FamilyPages(BasePage):
             trow.attr = 'class="BeginLetter BeginFamily"'
             ttle = self._("Families beginning with " "letter ")
             tcell += Html(
-                "a", letter, name=letter, title=ttle + letter, id_=bucket_link
+                "a", letter, name=letter, title=ttle + letter
             )
             #  and create the populated ColumnPartner for the person
             tcell = Html("td", class_="ColumnPartner")
@@ -322,30 +322,26 @@ class FamilyPages(BasePage):
                 table += tbody
 
                 first_person = True
-                for surname, handle_list in family_handle_list:
-                    # get person from sorted database list
-                    for person_handle in sorted(
-                        handle_list, key=self.sort_on_name_and_grampsid
-                    ):
-                        person = self.r_db.get_person_from_handle(person_handle)
-                        if person:
-                            family_list = person.get_family_handle_list()
-                            first_family = True
-                            for family_handle in family_list:
-                                (
-                                    ldatec,
-                                    first_person,
-                                    first_family,
-                                ) = self.__output_family(
-                                    ldatec,
-                                    family_handle,
-                                    person_handle,
-                                    tbody,
-                                    letter,
-                                    letter,
-                                    first_person,
-                                    first_family,
-                                )
+                # family_handle_list = family_handle_list[0][1]
+                for person_handle, surname in family_handle_list:
+                    person = self.r_db.get_person_from_handle(person_handle)
+                    if person:
+                        family_list = person.get_family_handle_list()
+                        first_family = True
+                        for family_handle in family_list:
+                            (
+                                ldatec,
+                                first_person,
+                                first_family,
+                            ) = self.__output_family(
+                                ldatec,
+                                family_handle,
+                                person_handle,
+                                tbody,
+                                letter,
+                                first_person,
+                                first_family,
+                            )
 
         # add clearline for proper styling
         # add footer section
@@ -417,7 +413,7 @@ class FamilyPages(BasePage):
         # sort by surname
         surname_handle_list = surname_ppl_handle_dict
         extended_handle_list = defaultdict(list)
-        row_count = report.options["splitindex"]
+        name_format = self.report.options["name_format"]
         max_letter_rows = defaultdict(int)
         index_list = []
         for bletter, hdlel in surname_handle_list.items():
@@ -432,71 +428,21 @@ class FamilyPages(BasePage):
                 index_list.append(bletter)
             max_letter_rows[bletter] = len(hdlel)
             for hdle in hdlel:
-                extended_handle_list[bletter].append(hdle)
+                person = self.r_db.get_person_from_handle(hdle)
+                primary_name = person.get_primary_name()
+                nname = Name(primary_name)
+                nname.set_display_as(name_format)
+                fname = _nd.display_name(nname)
+                extended_handle_list[bletter].append((hdle, fname))
         extended_handle_list = list(extended_handle_list.items())
         max_rows = max_letter_rows[bletter]
-        max_rows += row_count  # For the last incomplete page
-        max_rows = (
-            int(max_rows / report.options["splitindex"]) * report.options["splitindex"]
-        )
-        page = 0
-        for bletter, hdle_list in extended_handle_list:
-            current = [(bletter, hdle_list)]
-            if len(hdle_list) <= row_count:
-                name = "families"
-                self.part_familylistpage(
-                    report, index_list, name, bletter, current, part=page
-                )
-            else:
-                nname = ""
-                partial_list = []
-                hdle1_list = []
-                name_format = self.report.options["name_format"]
-                for handle in hdle_list:
-                    person = self.r_db.get_person_from_handle(handle)
-                    primary_name = person.get_primary_name()
-                    nname = Name(primary_name)
-                    nname.set_display_as(name_format)
-                    fname = _nd.display_name(nname)
-                    hdle1_list.append((fname, handle))
-                hdle1_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
-                for idx in range(0, int(len(hdle1_list) / row_count) + 1, 1):
-                    if (idx * row_count) < len(hdle1_list):
-                        handle = hdle1_list[idx * row_count]
-                        partial_list.append(hdle1_list[idx * row_count])
-                sub_page = 0
-                part = 0
-                start = 0
-                while start < len(hdle1_list):
-                    phdle_list = []
-                    for nbh in range(len(hdle1_list)):
-                        if nbh < start:
-                            continue
-                        if nbh >= start + row_count:
-                            break
-                        if nbh > len(hdle1_list):
-                            break
-                        phdle_list.append(hdle1_list[nbh][1])
-                    plist = [(bletter, phdle_list)]
-                    name = "families"
-                    if sub_page != 0:
-                        subp = "_%d" % sub_page
-                    else:
-                        subp = None
-                    self.part_familylistpage(
-                        report,
-                        index_list,
-                        name,
-                        bletter,
-                        plist,
-                        part=page,
-                        subp=subp,
-                        partial_list=partial_list,
-                    )
-                    part += 1
-                    start += row_count
-                    sub_page += 1
-            page += 1
+        create_indexes_pages(report,
+                             "families",
+                             index_list,
+                             self.part_familylistpage,
+                             extended_handle_list,
+                             max_rows,
+                             locale=self.rlocale)
 
     def familypage(self, report, the_lang, the_title, family_handle):
         """

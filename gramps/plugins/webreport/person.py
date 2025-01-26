@@ -81,6 +81,7 @@ from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (
     alphabet_navigation,
     partial_navigation,
+    create_indexes_pages,
     add_birthdate,
     FULLCLEAR,
     _find_birth_date,
@@ -192,7 +193,6 @@ class PersonPages(BasePage):
         date,
         tbody,
         bucket_letter,
-        bucket_link,
         showbirth,
         showdeath,
         showpartner,
@@ -223,11 +223,7 @@ class PersonPages(BasePage):
                 "with letter %(letter)s" % {"surname": surname, "letter": bucket_letter}
             )
             tcell += Html(
-                "a",
-                html_escape(surnamed),
-                name=bucket_letter,
-                id_=bucket_link,
-                title=ttle,
+                "a", html_escape(bucket_letter), name=bucket_letter, title=ttle,
             )
         elif first_individual:
             first_individual = False
@@ -348,7 +344,6 @@ class PersonPages(BasePage):
         surname_handle_list,
         part=None,
         subp=None,
-        deb=None,
         partial_list=None,
     ):
         """
@@ -447,7 +442,9 @@ class PersonPages(BasePage):
 
             name_format = self.report.options["name_format"]
             nme_format = _nd.name_formats[name_format][1]
-            for surname, handle_list in surname_handle_list:
+            first_surname = True
+            first_individual = True
+            for handle, surname in surname_handle_list:
                 if not surname or surname.isspace():
                     surname = self._("<absent>")
 
@@ -461,30 +458,20 @@ class PersonPages(BasePage):
                     surnamed = surname.upper()
                 else:
                     surnamed = surname
-                first_surname = True
-                first_individual = True
-                for person_handle in sorted(
-                    handle_list, key=self.sort_on_name_and_grampsid
-                ):
-                    (
-                        date,
-                        first_surname,
-                        first_individual,
-                    ) = self.__output_person(
-                        date,
-                        tbody,
-                        letter,
-                        letter,  # bucket_link,
-                        report.options["showbirth"],
-                        report.options["showdeath"],
-                        report.options["showpartner"],
-                        report.options["showparents"],
-                        surname,
-                        surnamed,
-                        first_surname,
-                        first_individual,
-                        person_handle,
-                    )
+                (date, first_surname, first_individual,) = self.__output_person(
+                    date,
+                    tbody,
+                    letter,
+                    report.options["showbirth"],
+                    report.options["showdeath"],
+                    report.options["showpartner"],
+                    report.options["showparents"],
+                    surname,
+                    surnamed,
+                    first_surname,
+                    first_individual,
+                    handle[0],
+                )
 
         # create clear line for proper styling
         # create footer section
@@ -521,10 +508,8 @@ class PersonPages(BasePage):
         index_list = []
         surname_handle_dict = defaultdict(list)
         max_letter_rows = defaultdict(int)
-        row_count = report.options["splitindex"]
         # Extract the buckets from the index
         index.resetBucketIterator()
-        page = 0
         while index.nextBucket():
             if index.bucketRecordCount != 0:
                 letter = index.bucketLabel
@@ -535,7 +520,9 @@ class PersonPages(BasePage):
                     handle_list = index.recordData
                     if handle_list:
                         for handle in handle_list:
-                            surname_handle_dict[bletter].append(handle)
+                            surname_handle_dict[bletter].append(
+                                (handle, index.recordName)
+                            )
                         if bletter in max_letter_rows:
                             max_letter_rows[bletter] += len(handle_list)
                         else:
@@ -545,83 +532,29 @@ class PersonPages(BasePage):
         # sort by surname
         surname_handle_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
         extended_handle_list = defaultdict(list)
-        row_count = report.options["splitindex"]
+        name_format = self.report.options["name_format"]
         for bletter, hdlel in surname_handle_list:
             bletter = normalize("NFKD", bletter)[0] if len(bletter) > 0 else bletter
             bletter = bletter[0] if len(bletter) > 0 else bletter
             bletter = bletter.upper() if bletter.isalpha() else "…"
             for hdle in hdlel:
-                extended_handle_list[bletter].append(hdle)
+                person = self.r_db.get_person_from_handle(hdle[0])
+                primary_name = person.get_primary_name()
+                nname = Name(primary_name)
+                nname.set_display_as(name_format)
+                fname = _nd.display_name(nname)
+                extended_handle_list[bletter].append((hdle, fname))
         extended_handle_list = list(extended_handle_list.items())
         max_rows = max_letter_rows[bletter]
-        max_rows += row_count  # For the last incomplete page
-        max_rows = (
-            int(max_rows / report.options["splitindex"]) * report.options["splitindex"]
+        create_indexes_pages(
+            report,
+            "individuals",
+            index_list,
+            self.part_individuallistpage,
+            extended_handle_list,
+            max_rows,
+            locale=self.rlocale,
         )
-        page = 0
-        for bletter, hdle_list in extended_handle_list:
-            current = [(bletter, hdle_list)]
-            if len(hdle_list) <= row_count:
-                name = "individuals"
-                self.part_individuallistpage(
-                    report,
-                    index_list,
-                    name,
-                    bletter,
-                    current,
-                    part=page,
-                    deb=max_letter_rows[letter],
-                )
-            else:
-                nname = ""
-                partial_list = []
-                hdle1_list = []
-                name_format = self.report.options["name_format"]
-                for handle in hdle_list:
-                    person = self.r_db.get_person_from_handle(handle)
-                    primary_name = person.get_primary_name()
-                    nname = Name(primary_name)
-                    nname.set_display_as(name_format)
-                    fname = _nd.display_name(nname)
-                    hdle1_list.append((fname, handle))
-                hdle1_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
-                for idx in range(0, int(len(hdle1_list) / row_count) + 1, 1):
-                    handle = hdle1_list[idx * row_count]
-                    partial_list.append(hdle1_list[idx * row_count])
-                sub_page = 0
-                part = 0
-                start = 0
-                while start < len(hdle1_list):
-                    phdle_list = []
-                    for nbh in range(len(hdle1_list)):
-                        if nbh < start:
-                            continue
-                        if nbh >= start + row_count:
-                            break
-                        if nbh > len(hdle1_list):
-                            break
-                        phdle_list.append(hdle1_list[nbh][1])
-                    plist = [(bletter, phdle_list)]
-                    name = "individuals"
-                    if sub_page != 0:
-                        subp = "_%d" % sub_page
-                    else:
-                        subp = None
-                    self.part_individuallistpage(
-                        report,
-                        index_list,
-                        name,
-                        bletter,
-                        plist,
-                        part=page,
-                        subp=subp,
-                        deb=max_letter_rows[bletter],
-                        partial_list=partial_list,
-                    )
-                    part += 1
-                    start += row_count
-                    sub_page += 1
-            page += 1
 
     #################################################
     #

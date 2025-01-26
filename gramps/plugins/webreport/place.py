@@ -64,6 +64,7 @@ from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (
     alphabet_navigation,
     partial_navigation,
+    create_indexes_pages,
     GOOGLE_MAPS,
     FULLCLEAR,
     MARKER_PATH,
@@ -191,7 +192,6 @@ class PlacePages(BasePage):
         cname,
         place_handle,
         letter,
-        bucket_link,
     ):
         place = None
         if place_handle:
@@ -221,7 +221,7 @@ class PlacePages(BasePage):
                 # prev_letter = letter
                 trow.attr = 'class = "BeginLetter"'
                 ttle = self._("Places beginning " "with letter %s") % letter
-                tcell += Html("a", letter, name=letter, title=ttle, id_=bucket_link)
+                tcell += Html("a", letter, name=letter, title=ttle)
             else:
                 tcell += "&nbsp;"
             trow += Html(
@@ -356,8 +356,7 @@ class PlacePages(BasePage):
                     )
 
                 # begin table body
-                letter, phandle_list = places_handle_list[0]
-                for pname, place_handle in phandle_list:
+                for place_handle, pname in places_handle_list:
                     val = self.report.obj_dict[PlaceName][pname]
                     nbelem = len(val)
                     if val and nbelem > 3:
@@ -383,7 +382,6 @@ class PlacePages(BasePage):
                         sname,
                         cname,
                         val[0],
-                        letter,
                         letter,
                     )
 
@@ -412,11 +410,13 @@ class PlacePages(BasePage):
         # self.report.obj_dict[PlaceName] is a dict with key place_name and
         # values (place_fname, place_name, place.gramps_id, event)
         for place_name, value in self.report.obj_dict[PlaceName].items():
-            index.addRecord(place_name, value)
+            index.addRecord(place_name, [(value[0], value[1])])
 
         # Extract the buckets from the index
         index_list = []
-        places_list = defaultdict(list)
+        places_dict = defaultdict(list)
+        places_list = []
+        max_letter_rows = defaultdict(int)
         index.resetBucketIterator()
         while index.nextBucket():
             if index.bucketRecordCount != 0:
@@ -429,64 +429,25 @@ class PlacePages(BasePage):
                     else letter
                 )
                 # Assemble all the places in this bucket into a dict for sorting
-                place_dict = dict()
                 while index.nextRecord():
-                    place_name = index.recordName
-                    value = index.recordData
-                    place_dict[place_name] = value
-                handle_list = sort_places(self.r_db, place_dict, self.rlocale)
-                places_list[bletter] = handle_list
+                    handle_list = index.recordData
+                    if handle_list:
+                        for handle in handle_list:
+                            places_dict[bletter].append((handle))
+                        if bletter in max_letter_rows:
+                            max_letter_rows[bletter] += len(handle_list)
+                        else:
+                            max_letter_rows[bletter] = len(handle_list)
 
-        row_count = report.options["splitindex"]
-        handle_list = list(places_list)
-        page = 0
-        for letter in places_list:
-            handle_list = places_list[letter]
-            current = [(letter, handle_list)]
-            if len(handle_list) <= row_count:
-                name = "places"
-                self.part_placelistpage(
-                    report, index_list, name, letter, current, part=page
-                )
-            else:
-                # For each bucket, output the places in that bucket
-                partial_list = []
-                # hdle1_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
-                for idx in range(0, int(len(handle_list) / row_count) + 1, 1):
-                    partial_list.append(handle_list[idx * row_count])
-                sub_page = 0
-                part = 0
-                start = 0
-                while start < len(handle_list):
-                    phdle_list = []
-                    for nbh in range(len(handle_list)):
-                        if nbh < start:
-                            continue
-                        if nbh >= start + row_count:
-                            break
-                        if nbh > len(handle_list):
-                            break
-                        phdle_list.append(handle_list[nbh])
-                    plist = [(letter, phdle_list)]
-                    name = "places"
-                    if sub_page != 0:
-                        subp = "_%d" % sub_page
-                    else:
-                        subp = None
-                    self.part_placelistpage(
-                        report,
-                        index_list,
-                        name,
-                        letter,
-                        plist,
-                        part=page,
-                        subp=subp,
-                        partial_list=partial_list,
-                    )
-                    part += 1
-                    start += row_count
-                    sub_page += 1
-            page += 1
+        places_list = list(places_dict.items())
+        max_rows = max_letter_rows[bletter]
+        create_indexes_pages(report,
+                             "places",
+                             index_list,
+                             self.part_placelistpage,
+                             places_list,
+                             max_rows,
+                             locale=self.rlocale)
 
     def placepage(self, report, the_lang, the_title, place_handle, place_name):
         """

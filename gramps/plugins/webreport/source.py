@@ -43,6 +43,7 @@ Classe:
 # ------------------------------------------------
 from collections import defaultdict
 from decimal import getcontext
+from unicodedata import normalize
 import logging
 
 # ------------------------------------------------
@@ -56,7 +57,14 @@ from gramps.plugins.lib.libhtml import Html
 # specific narrative web import
 # ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import FULLCLEAR, html_escape
+from gramps.plugins.webreport.common import (
+    FULLCLEAR,
+    html_escape,
+    alphabet_navigation,
+    partial_navigation,
+    create_indexes_pages,
+    AlphabeticIndex,
+)
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb.source")
@@ -119,38 +127,34 @@ class SourcePages(BasePage):
                 index += 1
                 self.sourcepage(self.report, the_lang, the_title, source_handle)
 
-    def sourcelistpage(self, report, the_lang, the_title, source_handles):
+    def part_sourcelistpage(
+        self,
+        report,
+        index_list,
+        name,
+        letter,
+        source_handle_list,
+        part=None,
+        subp=None,
+        partial_list=None,
+    ):
         """
-        Generate and output the Sources index page.
-
-        @param: report         -- The instance of the main report class for
-                                  this report
-        @param: the_lang       -- The lang to process
-        @param: the_title      -- The title page related to the language
-        @param: source_handles -- A list of the handles of the sources to be
-                                  displayed
+        Generate a partial Sources index page.
         """
-        BasePage.__init__(self, report, the_lang, the_title)
-
-        source_dict = {}
-
-        output_file, sio = self.report.create_file("sources")
+        nav_name = part_name = name
+        if part != 0 and subp != 0:
+            part_name += str(part)
+            nav_name = part_name
+        if subp and subp != 0:
+            part_name += subp
+        output_file, sio = self.report.create_file(part_name)
         result = self.write_header(self._("Sources"))
         sourcelistpage, dummy_head, dummy_body, outerwrapper = result
+        date = 0
 
         # begin source list division
         with Html("div", class_="content", id="Sources") as sourceslist:
             outerwrapper += sourceslist
-
-            # Sort the sources
-            for handle in source_handles:
-                source = self.r_db.get_source_from_handle(handle)
-                if source is not None:
-                    key = source.get_title() + source.get_author()
-                    key += str(source.get_gramps_id())
-                    source_dict[key] = (source, handle)
-
-            keys = sorted(source_dict, key=self.rlocale.sort_key)
 
             msg = self._(
                 "This page contains an index of all the sources "
@@ -159,6 +163,31 @@ class SourcePages(BasePage):
                 "title will take you to that source&#8217;s page."
             )
             sourceslist += Html("p", msg, id="description")
+
+            alpha_nav = alphabet_navigation(
+                index_list,
+                self.rlocale,
+                rtl=self.dir,
+                new_page="sources",
+                ext=self.ext,
+            )
+            if alpha_nav is not None:
+                sourceslist += alpha_nav
+
+            if part is not None:
+                # We need to create a new navigation tab for partial page index.
+                partial_nav = partial_navigation(
+                    partial_list,
+                    self.rlocale,
+                    rtl=self.dir,
+                    ext=self.ext,
+                    new_page=nav_name,
+                )
+                if partial_nav is not None:
+                    sourceslist += Html(
+                        "div", style="clear: both;"
+                    )  # This to align the next div to the left.
+                    sourceslist += partial_nav
 
             # begin sourcelist table and table head
             with Html(
@@ -186,12 +215,20 @@ class SourcePages(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                for index, key in enumerate(keys):
-                    source, source_handle = source_dict[key]
+                first_row = True
+                for source_idx in source_handle_list:
+                    source_handle, title = source_idx
+                    source = self.r_db.get_source_from_handle(source_handle)
 
-                    trow = Html("tr") + (
-                        Html("td", index + 1, class_="ColumnRowLabel", inline=True)
-                    )
+                    if first_row:
+                        first_row = False
+                        trow = Html("tr") + (
+                            Html("td", letter, class_="ColumnRowLabel", inline=True)
+                        )
+                    else:
+                        trow = Html("tr") + (
+                            Html("td", "&nbsp;", class_="ColumnRowLabel", inline=True)
+                        )
                     tbody += trow
                     trow.extend(
                         Html(
@@ -215,12 +252,79 @@ class SourcePages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer(None)
+        footer = self.write_footer(date)
         outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file
         self.xhtml_writer(sourcelistpage, output_file, sio, 0)
+
+    def sourcelistpage(self, report, the_lang, the_title, source_handles):
+        """
+        Generate and output the Sources index page.
+
+        @param: report         -- The instance of the main report class for
+                                  this report
+        @param: the_lang       -- The lang to process
+        @param: the_title      -- The title page related to the language
+        @param: source_handles -- A list of the handles of the sources to be
+                                  displayed
+        """
+        BasePage.__init__(self, report, the_lang, the_title)
+
+        source_dict = {}
+        # Sort the sources
+        for handle in source_handles:
+            source = self.r_db.get_source_from_handle(handle)
+            if source is not None:
+                key = source.get_title()  # + source.get_author()
+                source_dict[key] = (key, handle)
+
+        # Assemble the alphabeticIndex
+        index = AlphabeticIndex(self.rlocale)
+        for key, handle_list in source_dict.items():
+            index.addRecord(key, handle_list)
+        index_list = []
+        source_handle_dict = defaultdict(list)
+        max_letter_rows = defaultdict(int)
+        # Extract the buckets from the index
+        index.resetBucketIterator()
+        while index.nextBucket():
+            if index.bucketRecordCount != 0:
+                letter = index.bucketLabel
+                if letter not in index_list:
+                    index_list.append(letter)
+                bletter = normalize("NFKD", letter)[0] if len(letter) > 0 else letter
+                while index.nextRecord():
+                    handle_list = index.recordData
+                    if handle_list:
+                        source_handle_dict[bletter].append(
+                            (handle_list[1], handle_list[0])
+                        )
+                        if bletter in max_letter_rows:
+                            max_letter_rows[bletter] += len(handle_list[1])
+                        else:
+                            max_letter_rows[bletter] = len(handle_list[1])
+
+        source_handle_list = list(source_handle_dict.items())
+        # sort by source
+        source_handle_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
+        extended_handle_list = defaultdict(list)
+        for bletter, hdlel in source_handle_list:
+            bletter = normalize("NFKD", bletter)[0] if len(bletter) > 0 else bletter
+            bletter = bletter[0] if len(bletter) > 0 else bletter
+            bletter = bletter.upper() if bletter.isalpha() else "…"
+            for hdle in hdlel:
+                extended_handle_list[bletter].append((hdle))
+        extended_handle_list = list(extended_handle_list.items())
+        max_rows = max_letter_rows[bletter]
+        create_indexes_pages(report,
+                             "sources",
+                             index_list,
+                             self.part_sourcelistpage,
+                             extended_handle_list,
+                             max_rows,
+                             locale=self.rlocale)
 
     def sourcepage(self, report, the_lang, the_title, source_handle):
         """
