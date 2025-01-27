@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-27 18:06+0000\n"
-"PO-Revision-Date: 2025-01-27 18:10+0000\n"
+"PO-Revision-Date: 2025-01-27 20:45+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/is/>\n"
@@ -787,8 +787,8 @@ msgstr ""
 "verið allt frá því að skrifa leiðbeiningar og hjálparskjöl yfir í það að "
 "prófa nýjar útgáfur eða hjálpa til með vefsvæðið. Byrjaðu á að gerast "
 "áskrifandi að póstlista Gramps hönnuðanna, gramps-devel, og kynntu þig. "
-"Upplýsingar um hvernig maður gerist áskrifandi má finna í \"Hjálp > "
-"Póstlistar Gramps\""
+"Upplýsingar um hvernig maður gerist áskrifandi má finna í "
+"\"Hjálp > Póstlistar Gramps\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -1054,7 +1054,7 @@ msgid ""
 msgstr ""
 "<b>Tilkynningar frá Gramps</b><br/>Hefurðu áhuga á að fá tilkynningu frá "
 "Gramps þegar ný útgáfa er tilbúin? Gerstu þá áskrifandi að Gramps-announce "
-"póstlistanum með þvíað fara í \"Hjálp > Gramps póstlistar\""
+"póstlistanum með þvíað fara í \"Hjálp > Póstlistar Gramps\"."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -3945,17 +3945,12 @@ msgstr ""
 "reglulegri segð"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Citations with the <tag>"
 msgid "Citations with a note of type <type>"
-msgstr "Tilvitnanir með <tag>"
+msgstr "Tilvitnanir með minnispunkt af tegundinni <type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches a citation with a source with a specified Gramps ID"
 msgid "Matches citations with a note of the specified type"
-msgstr ""
-"Samsvarar tilvitnun með heimild sem hefur tiltekið Gramps auðkenni (ID)"
+msgstr "Samsvarar tilvitnunum með minnispunkt af tiltekinni tegund"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4260,16 +4255,12 @@ msgid "Main Participants:"
 msgstr "Helstu þátttakendur:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
-#, fuzzy
-#| msgid "Notes matching parameters"
 msgid "Events matching parameters"
-msgstr "Minnispunktar samsvarandi viðföngum"
+msgstr "Atburðir samsvarandi viðföngum"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches events with particular parameters"
-msgstr "Samsvarar minnispunktum með ákveðin viðföng"
+msgstr "Samsvarar atburðum með ákveðin viðföng"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4316,16 +4307,12 @@ msgstr ""
 "reglulegri segð"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "Atburðir með <tag>"
+msgstr "Atburðir með minnispunkt af tegundinni <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Samsvarar atburðum sem samsvara tilteknu síuheiti"
+msgstr "Samsvarar atburðum með minnispunkt af tiltekinni tegund"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4615,16 +4602,12 @@ msgstr ""
 "reglulegri segð"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "Fjölskyldur með föður með <nafn>"
+msgstr "Fjölskyldur með minnispunkt af tegundinni <type>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Samsvarar fjölskyldum sem samsvara tilteknu síuheiti"
+msgstr "Samsvarar fjölskyldum með minnispunkt af tiltekinni tegund"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -5463,28 +5446,20 @@ msgstr ""
 "reglulegri segð"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "Fólk með <tegund nafns>"
+msgstr "Fólk með minnispunkt af tegundinni <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Samsvarar fólki sem er forfeður tiltekins einstaklings"
+msgstr "Samsvarar fólki með minnispunkt af tiltekinni tegund"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
-#, fuzzy
-#| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "Fólk með annað nafn"
+msgstr "Fólk sem er hvorki karlkyns né kvenkyns"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:49
-#, fuzzy
-#| msgid "Matches all people with unknown gender"
 msgid "Matches all people with other gender"
-msgstr "Samsvarar öllum einstaklingum með óþekkt kyn"
+msgstr "Samsvarar öllum einstaklingum með annað kyn"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:48
 msgid "Number of relationships:"
@@ -6136,16 +6111,12 @@ msgstr ""
 "reglulegri segð"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "Staðir með <tag>"
+msgstr "Staðir með minnispunkt af tegundinni <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Samsvarar stöðum sem samsvara tilteknu síuheiti"
+msgstr "Samsvarar stöðum með minnispunkt af tiltekinni tegund"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "Street:"
@@ -6549,16 +6520,12 @@ msgstr ""
 "reglulegri segð"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "Heimildir með <tag>"
+msgstr "Heimildir með minnispunkt af tegundinni <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "Samsvarar heimildum sem samsvara tilteknu síuheiti"
+msgstr "Samsvarar heimildum með minnispunkt af tiltekinni tegund"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -6590,10 +6557,8 @@ msgstr ""
 "sem innheldur undirfærslu í uppflettinúmeri"
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches sources with particular parameters"
-msgstr "Samsvarar minnispunktum með ákveðin viðföng"
+msgstr "Samsvarar heimildum með ákveðin viðföng"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -8310,10 +8275,8 @@ msgid "Type"
 msgstr "Gerð"
 
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "Sérsniðin sía"
+msgstr "Sérsniðin tegund"
 
 #: ../gramps/gen/lib/grampstype.py:272
 #, fuzzy
@@ -12183,7 +12146,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1040
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "Ekki birta aðvörun í vísbendingum um gögn sem eru vistuð strax"
 
 #: ../gramps/gui/configure.py:1048
 msgid "Show plugin status dialog on plugin load error"
@@ -12444,10 +12407,8 @@ msgid ""
 msgstr "Breyting á dagsetningasniði mun taka gildi næst þegar þú ræsir Gramps."
 
 #: ../gramps/gui/configure.py:1879
-#, fuzzy
-#| msgid "Calculating timeline..."
 msgid "Calculation limits"
-msgstr "Reikna tímalínu..."
+msgstr "Takmörk útreiknings"
 
 #: ../gramps/gui/configure.py:1886
 #, fuzzy
@@ -12526,10 +12487,8 @@ msgid "Enable spell checker"
 msgstr "Virkja stafsetningaryfirferð"
 
 #: ../gramps/gui/configure.py:2013
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable the spelling checker for notes."
-msgstr "Virkja stafsetningaryfirferð"
+msgstr "Virkja stafsetningaryfirferð í minnispunktum."
 
 #: ../gramps/gui/configure.py:2024
 #, python-format
@@ -12597,9 +12556,8 @@ msgid "Show close button in gramplet bar tabs"
 msgstr "Birta lokunarhnappa á gramplinga-flipum"
 
 #: ../gramps/gui/configure.py:2123
-#, fuzzy
 msgid "Show close button to simplify removing gramplets from bars."
-msgstr "Birta lokunarhnappa á gramplinga-flipum"
+msgstr "Birta lokunarhnapp til að einfalda fjarlægingu gramplinga af stikum."
 
 #: ../gramps/gui/configure.py:2130
 msgid "Markup for invalid date format"
@@ -12908,10 +12866,8 @@ msgid "Tab"
 msgstr "Flipi"
 
 #: ../gramps/gui/csvdialect.py:82
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "Athugaðu uppsetninguna þína."
+msgstr "Veldu tilbrigðið þitt"
 
 #: ../gramps/gui/csvdialect.py:85
 msgid ""
@@ -13043,7 +12999,7 @@ msgid ""
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
 "Þessi skrá gefur upp ranga stafatöflu, þannig að ekki er hægt að flytja hana "
-"inn svo vel sé. Lagaðu stafatöfluna og reyndu að flytja hana inn aftur."
+"inn svo vel sé. Lagaðu stafatöfluna og reyndu að flytja hana inn aftur"
 
 #: ../gramps/gui/dbman.py:99
 #, python-format
@@ -16838,7 +16794,7 @@ msgstr ""
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr ""
 "Titil sem notaður er til að vísa í stöðu einstaklings, svo sem 'Dr.' eða "
-"'Séra'."
+"'Séra'"
 
 #: ../gramps/gui/glade/editname.glade:301
 #: ../gramps/gui/glade/editperson.glade:223
@@ -17139,7 +17095,7 @@ msgstr "Nafnið á þessum stað."
 #: ../gramps/gui/glade/editplace.glade:457
 #: ../gramps/gui/glade/editplaceref.glade:637
 msgid "Invoke place name editor."
-msgstr "Ræsa staðarheitaritil"
+msgstr "Ræsa staðarheitaritil."
 
 #: ../gramps/gui/glade/editplaceformat.glade:125
 msgid "Levels:"
@@ -18883,10 +18839,8 @@ msgid "The addon will be unavailable in your current configuration."
 msgstr ""
 
 #: ../gramps/gui/plug/_windows.py:589
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "Engar samsvaranir fundust"
+msgstr "Engar samsvarandi viðbætur fundust."
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
@@ -20010,14 +19964,8 @@ msgid "Select_Source_selector"
 msgstr "Velja_minnispunkt"
 
 #: ../gramps/gui/spell.py:66
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"Þú ert ekki með nein orðasöfn uppsett. Settu upp orðasafn eða gerðu "
-"stafsetningaryfirferð óvirka"
+msgstr "Þú ert ekki með nein orðasöfn uppsett."
 
 #: ../gramps/gui/spell.py:87
 msgid "Off"
@@ -20175,10 +20123,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Viltu keyra \"Athuga og gera við gagnagrunn\" verkfærið?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
-#| msgid "Please, correct this before linking"
 msgid "Please wait for backup to complete."
-msgstr "Leiðréttu þetta áður en þú tengir"
+msgstr "Bíddu eftir að öryggisafrituninni ljúki."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -21380,7 +21326,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:978
 msgid "Display format for the fathers box."
-msgstr "Birtingarsnið fyrir feðrareiti"
+msgstr "Birtingarsnið fyrir feðrareitinn."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:990
 msgid ""
@@ -21392,7 +21338,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:993
 msgid "Display format for the mothers box."
-msgstr "Birtingarsnið fyrir mæðrareiti"
+msgstr "Birtingarsnið fyrir mæðrareitinn."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:996
 msgid ""
@@ -21436,7 +21382,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:1010
 #: ../gramps/plugins/drawreport/descendtree.py:1737
 msgid "Display format for the marital box."
-msgstr "Birtingarsnið fyrir hjúskaparreiti"
+msgstr "Birtingarsnið fyrir hjúskaparreitinn."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1015
 #: ../gramps/plugins/drawreport/descendtree.py:1742
@@ -22464,8 +22410,7 @@ msgstr "Hámarksfj. atriða í sneið"
 #: ../gramps/plugins/drawreport/statisticschart.py:1169
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
-msgstr ""
-"Með færri atriðum verður notuð blævængsmynd með skýringum í stað stöplarits"
+msgstr "Með færri atriðum verður notað kökurit með skýringum í stað stöplarits."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1176
 msgid "Include counts of missing information"
@@ -24346,10 +24291,8 @@ msgstr "Fjöldi einstaklinga"
 #: ../gramps/plugins/gramplet/statsgramplet.py:157
 #: ../gramps/plugins/webreport/statistics.py:134
 #: ../gramps/plugins/webreport/statistics.py:244
-#, fuzzy
-#| msgid "Individuals with unknown gender"
 msgid "Individuals with other gender"
-msgstr "Einstaklingar með óþekkt kyn"
+msgstr "Einstaklingar með annað kyn"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:164
 #: ../gramps/plugins/webreport/statistics.py:139
@@ -24467,17 +24410,15 @@ msgstr "Bæta við nýjum verkefnalista"
 
 #: ../gramps/plugins/gramplet/todo.py:207
 msgid "First select the object to which you want to attach a note"
-msgstr ""
+msgstr "Fyrst velurðu hlutinn sem þú vilt festa minnispunkt við"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:151
 msgid "Unattached"
 msgstr "Óviðhengt"
 
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
-#, fuzzy
-#| msgid "Number of ranks to display"
 msgid "Number of Surnames to display"
-msgstr "Fjöldi stiga sem á að birta"
+msgstr "Fjöldi kenninafna sem á að birta"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
@@ -24525,6 +24466,9 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
+"Virkt samfélag notenda er tiltækt á póstlistanum og Discourse-spjallsvæðinu "
+"til að deila með hugmyndum og aðferðum.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:143
 msgid "Gramps online manual"
@@ -24536,21 +24480,13 @@ msgstr "Spyrjast fyrir á póstlistum notenda"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:152
 msgid "Gramps Discourse Forum"
-msgstr ""
+msgstr "Discourse-spjallsvæði Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:156
 msgid "Getting Started"
 msgstr "Að komast í gang"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:159
-#, fuzzy
-#| msgid ""
-#| "The first thing you must do is to create a new Family Tree. To create a "
-#| "new Family Tree (sometimes called 'database') select \"Family Trees\" "
-#| "from the menu, pick \"Manage Family Trees\", press \"New\" and name your "
-#| "Family Tree. For more details, please read the information at the links "
-#| "above\n"
-#| "\n"
 msgid ""
 "The first time Gramps is started all of the Views are blank. There are very "
 "few menu options. A Family Tree is needed for any activity to happen.\n"
@@ -24562,14 +24498,18 @@ msgid ""
 "more details, please read the information at the links below.\n"
 "\n"
 msgstr ""
-"Það fyrsta sem þú þarft að gera er að stofna nýja ættartölu (stundum kallað "
-"\"gagnagrunnur\"). Það er gert með því að velja \"Ættartölur\" á "
-"valmyndastikunni, veldu síðan \"Sýsla með ættartölur...\", síðan að velja "
-"\"Nýtt\" og velja þá heiti á nýju ættartöluna. Til að fræðast enn betur um "
-"þetta, er best að nálgast upplýsingar með tenglunum hér fyrir ofan, nú eða í "
-"innbyggðu hjálpinni. Athugið að enn er ekki tekið tillit til íslenskra "
-"fallbeyginga manna- og staðarnafna. Reynt er í íslensku þýðingunni að taka á "
-"þessu eftir sem auðið er, en lausn mun á endanum krefjast forritunartækni.\n"
+"Þegar Gramps er ræst í fyrsta skipti eru allar sýnirnar auðar. Mjög fá "
+"atriði birtast í valmyndum. Til þess að eitthvað geti gerst þarf að vera með "
+"ættartölu (Family Tree).\n"
+"\n"
+"Til að útbúa nýja ættartölu (stundum kallað \"gagnagrunnur\") ættirðu að "
+"velja \"Ættartölur\" á valmyndastikunni, veldu síðan "
+"\"Sýsla með ættartölur...\", síðan að velja \"Nýtt\" og velja þá heiti á "
+"nýju ættartöluna. Til að fræðast enn betur um þetta, er best að nálgast "
+"upplýsingar með tenglunum hér fyrir ofan, nú eða í innbyggðu hjálpinni. "
+"Athugið að enn er ekki tekið tillit til íslenskra fallbeyginga manna- og "
+"staðarnafna. Reynt er í íslensku þýðingunni að taka á þessu eftir sem auðið "
+"er, en lausn mun á endanum krefjast forritunartækni.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:171
@@ -24577,10 +24517,8 @@ msgid "Start with Genealogy and Gramps"
 msgstr "Að byrja í ættfræði og Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:175
-#, fuzzy
-#| msgid "Every family"
 msgid "Enter your first Family"
-msgstr "Allar fjölskyldur"
+msgstr "Settu inn fyrstu fjölskylduna þína"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:178
 msgid ""
@@ -24610,16 +24548,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:203
-#, fuzzy
-#| msgid "Open an existing database"
 msgid "Entering and editing data (brief)"
-msgstr "Opna tilbúna gagnagrunnsskrá"
+msgstr "Að setja inn gögn og breyta (mjög stutt yfirlit)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:209
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Importing a Family Tree"
-msgstr "Flytja inn ættartölu"
+msgstr "Innflutningur ættartölu"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:212
 msgid ""
@@ -24632,10 +24566,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:220
-#, fuzzy
-#| msgid "Error from external program"
 msgid "Import from another genealogy program"
-msgstr "Villa frá utanaðkomandi forriti"
+msgstr "Flytja inn frá öðru ættfræðiforriti"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:226
 msgid "Dashboard View"
@@ -24665,17 +24597,13 @@ msgstr ""
 "aðalglugga Gramps svo að þeir fljóti lausir."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:242
-#, fuzzy
-#| msgid "Gramps View"
 msgid "Gramps View Categories"
-msgstr "Gramps sýn"
+msgstr "Gramps-sýnin Flokkar"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:246
 #: ../gramps/plugins/gramplet/welcomegramplet.py:255
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Addons and \"Gramplets\""
-msgstr "Bæta við gramplingi"
+msgstr "Viðbætur og gramplinga"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:249
 msgid ""
@@ -24686,10 +24614,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:257
-#, fuzzy
-#| msgid "Entire Database"
 msgid "Example Database"
-msgstr "Allur gagnagrunnurinn"
+msgstr "Dæmi um gagnagrunn"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
@@ -24706,10 +24632,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:268
-#, fuzzy
-#| msgid "Example"
 msgid "Example.gramps"
-msgstr "Dæmi"
+msgstr "Example.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -25112,10 +25036,10 @@ msgstr "Litur sem notaður er til að sýna konur."
 #: ../gramps/plugins/graph/gvfamilylines.py:349
 #: ../gramps/plugins/graph/gvhourglass.py:512
 #: ../gramps/plugins/graph/gvrelgraph.py:1055
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "Litur sem notaður er til að sýna konur."
+msgstr ""
+"Litur sem notaður er til að sýna fólk sem skilgreinir sig hvorki sem karla "
+"eða konur."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:354
 #: ../gramps/plugins/graph/gvhourglass.py:517
@@ -25263,16 +25187,12 @@ msgid "Ahnentafel number visible"
 msgstr "Sýnilegt Ahnentafel-númer"
 
 #: ../gramps/plugins/graph/gvhourglass.py:536
-#, fuzzy
-#| msgid "Sosa-Stradonitz number"
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr "Sosa-Stradonitz númer"
+msgstr "Sýna Sosa / Sosa-Stradonitz / Ahnentafel-númer."
 
 #: ../gramps/plugins/graph/gvhourglass.py:540
-#, fuzzy
-#| msgid "Show all events"
 msgid "Show symbols for events"
-msgstr "Birta alla atburði"
+msgstr "Birta tákn fyrir atburði"
 
 #: ../gramps/plugins/graph/gvhourglass.py:542
 msgid "Show genealogical symbols for birth, marriage and death events."
@@ -25425,22 +25345,16 @@ msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Fjölskyldur munu birtast sem sporbaugar, tengdir við foreldra og börn."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1081
-#, fuzzy
-#| msgid "Event groups"
 msgid "Parent grouping"
-msgstr "Hópar atburða"
+msgstr "Hópun foreldra"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1083
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents together"
-msgstr "Minnispunkta foreldra"
+msgstr "Foreldrar saman"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1084
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents offset"
-msgstr "Minnispunkta foreldra"
+msgstr "Hliðrun foreldra"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1087
 msgid ""
@@ -25465,16 +25379,12 @@ msgid "Gramps package (portable XML)"
 msgstr "Gramps pakki (færanlegt XML)"
 
 #: ../gramps/plugins/importer/import.gpr.py:96
-#, fuzzy
-#| msgid ""
-#| "Import data from a Gramps package (an archived XML Family Tree together "
-#| "with the media object files.)"
 msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files)."
 msgstr ""
 "Flytja inn gögn úr Gramps pakka (XML-ættartala ásamt gagnaskrám í þjappaðri "
-"safnskrá.)"
+"safnskrá)."
 
 #: ../gramps/plugins/importer/import.gpr.py:115
 msgid "Gramps XML Family Tree"
@@ -25554,10 +25464,8 @@ msgid "nick"
 msgstr "gælunafn"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "Gælu_nafn:"
+msgstr "Gælunafn"
 
 #: ../gramps/plugins/importer/importcsv.py:228
 #, fuzzy
@@ -26100,13 +26008,12 @@ msgstr ""
 "(úr Stillingum)"
 
 #: ../gramps/plugins/importer/importprogen.glade:181
-#, fuzzy
 msgid ""
 "Source reference text\n"
 "(Text & import Filename)."
 msgstr ""
 "Tilvísun heimildar\n"
-"(úr Stillingum)"
+"(texti og skráarheiti innflutnings)."
 
 #: ../gramps/plugins/importer/importprogen.glade:224
 msgid ""
@@ -26142,17 +26049,16 @@ msgid "Import Text"
 msgstr "Flytja inn texta"
 
 #: ../gramps/plugins/importer/importprogen.glade:450
-#, fuzzy
 msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
-"Tilvísun heimildar\n"
-"(úr Stillingum)"
+"Sjálfgefinn texti merkis\n"
+"(úr Stillingum)."
 
 #: ../gramps/plugins/importer/importprogen.glade:478
 msgid "Import Filename."
-msgstr "Skráarheiti Innflutnings"
+msgstr "Skráarheiti innflutnings."
 
 #: ../gramps/plugins/importer/importprogen.glade:526
 msgid "Default (System-)Date."
@@ -26252,7 +26158,7 @@ msgid ""
 "event description."
 msgstr ""
 "Geyma fæðingardag í\n"
-"atburðalýsingu"
+"atburðarlýsingu."
 
 #: ../gramps/plugins/importer/importprogen.glade:1426
 msgid ""
@@ -26260,7 +26166,7 @@ msgid ""
 "event description."
 msgstr ""
 "Geyma dánardag í\n"
-"atburðalýsingu"
+"atburðarlýsingu."
 
 #: ../gramps/plugins/importer/importprogen.glade:1443
 msgid "Diverse"
@@ -26271,13 +26177,12 @@ msgid "REFN"
 msgstr "REFN"
 
 #: ../gramps/plugins/importer/importprogen.glade:1456
-#, fuzzy
 msgid ""
 "Store REFN number\n"
 "in event description."
 msgstr ""
-"Geyma fæðingardag í\n"
-"atburðalýsingu"
+"Geyma REFN-númer\n"
+"í atburðarlýsingu."
 
 #: ../gramps/plugins/importer/importprogen.glade:1471
 #: ../gramps/plugins/importer/importprogen.glade:1511
@@ -26345,16 +26250,13 @@ msgid "vCard import"
 msgstr "vCard innflutningur"
 
 #: ../gramps/plugins/importer/importvcard.py:274
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "VCARD innflutningsskýrsla: Engar villur fundust"
+msgstr "vCard innflutningsskýrsla: Engar villur fundust"
 
 #: ../gramps/plugins/importer/importvcard.py:277
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "VCARD innflutningsskýrsla: %s villur fundust\n"
+msgstr "vCard innflutningsskýrsla: %s villur fundust\n"
 
 #: ../gramps/plugins/importer/importvcard.py:342
 #, python-format
@@ -26368,10 +26270,9 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importvcard.py:373
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Innflutningur VCard útgáfu %s er ekki stutt af Gramps."
+msgstr "Innflutningur vCard útgáfu %s er ekki stutt af Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:396
 msgid ""
@@ -30715,7 +30616,7 @@ msgstr "Stýrir HTML DOM greinum."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:187
 msgid "Provides base functionality for map services."
-msgstr "Gefur grunnvirkni fyrir landakortaþjónustur"
+msgstr "Gefur grunnvirkni fyrir landakortaþjónustur."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:205
 msgid "Provides Textual Narration."
@@ -31165,7 +31066,7 @@ msgid ""
 "On the map you should see a circle or an oval depending on the latitude."
 msgstr ""
 "Veldu radíus valsins.\n"
-"Á kortinu ættirðu að sjá hring eða sporöskju, það fer eftir breiddargráðu"
+"Á kortinu ættirðu að sjá hring eða sporöskju, það fer eftir breiddargráðu."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:130
 msgid ""
@@ -33487,10 +33388,9 @@ msgid "Event Information"
 msgstr "Samhengisupplýsingar"
 
 #: ../gramps/plugins/textreport/summary.py:252
-#, fuzzy, python-format
-#| msgid "Number of events"
+#, python-format
 msgid "Number of events: %d"
-msgstr "Fjöldi atburða"
+msgstr "Fjöldi atburða: %d"
 
 #: ../gramps/plugins/textreport/summary.py:261
 msgid "Place Information"
@@ -33508,10 +33408,9 @@ msgid "Source Information"
 msgstr "Deildar upplýsingar"
 
 #: ../gramps/plugins/textreport/summary.py:280
-#, fuzzy, python-format
-#| msgid "Number of sources"
+#, python-format
 msgid "Number of sources: %d"
-msgstr "Fjöldi heimilda"
+msgstr "Fjöldi heimilda: %d"
 
 #: ../gramps/plugins/textreport/summary.py:289
 #, fuzzy
@@ -33520,10 +33419,9 @@ msgid "Citation Information"
 msgstr "Upplýsingar um útgáfu"
 
 #: ../gramps/plugins/textreport/summary.py:294
-#, fuzzy, python-format
-#| msgid "Number of citations"
+#, python-format
 msgid "Number of citations: %d"
-msgstr "Fjöldi tilvitnana"
+msgstr "Fjöldi tilvitnana: %d"
 
 #: ../gramps/plugins/textreport/summary.py:303
 #, fuzzy
@@ -33532,10 +33430,9 @@ msgid "Repository Information"
 msgstr "Upplýsingar um vensl"
 
 #: ../gramps/plugins/textreport/summary.py:308
-#, fuzzy, python-format
-#| msgid "Number of repositories"
+#, python-format
 msgid "Number of repositories: %d"
-msgstr "Fjöldi gagnasafna"
+msgstr "Fjöldi gagnasafna: %d"
 
 #: ../gramps/plugins/textreport/summary.py:342
 #, python-format
@@ -33554,10 +33451,9 @@ msgid "Note Information"
 msgstr "Engar dagsetningupplýsingar"
 
 #: ../gramps/plugins/textreport/summary.py:369
-#, fuzzy, python-format
-#| msgid "Number of notes"
+#, python-format
 msgid "Number of notes: %d"
-msgstr "Fjöldi minnispunkta"
+msgstr "Fjöldi minnispunkta: %d"
 
 #: ../gramps/plugins/textreport/summary.py:399
 msgid "Whether to count private data"
@@ -35088,7 +34984,7 @@ msgstr "Fjarlægja ónotaða hluti"
 
 #: ../gramps/plugins/tool/reorderids.glade:1388
 msgid "Enable ID reordering."
-msgstr "Leyfa endurröðun auðkenna"
+msgstr "Leyfa endurröðun auðkenna."
 
 #: ../gramps/plugins/tool/reorderids.glade:1402
 msgid "List next ID available (may not be continuous)."
