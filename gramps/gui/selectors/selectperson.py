@@ -22,6 +22,13 @@
 
 # -------------------------------------------------------------------------
 #
+# Standard python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
 # internationalization
 #
 # -------------------------------------------------------------------------
@@ -101,7 +108,7 @@ class SelectPerson(BaseSelector):
         self.setup_configs("interface.person-sel", 600, 450)
         self.tree.connect("key-press-event", self._key_press)
 
-    def get_window_title(self):
+    def get_window_title(self) -> str:
         return _("Select Person")
 
     def get_model_class(self):
