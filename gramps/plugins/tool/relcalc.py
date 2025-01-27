@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Gary Burton
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +29,7 @@
 # Standard python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
@@ -45,6 +47,7 @@ from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
+from gramps.gen.dbstate import DbState
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.views.treemodels import PeopleBaseModel, PersonTreeModel
@@ -56,6 +59,7 @@ from gramps.gui.display import display_help
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
+from gramps.gui.selectors.selectperson import SelectPerson
 
 # -------------------------------------------------------------------------
 #
@@ -63,7 +67,6 @@ from gramps.gui.glade import Glade
 #
 # -------------------------------------------------------------------------
 
-column_names = [column[0] for column in BasePersonView.COLUMNS]
 WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Tools"
 WIKI_HELP_SEC = _("Relationship Calculator")
 
@@ -73,139 +76,130 @@ WIKI_HELP_SEC = _("Relationship Calculator")
 #
 #
 # -------------------------------------------------------------------------
-class RelCalc(tool.Tool, ManagedWindow):
-    def __init__(self, dbstate, user, options_class, name, callback=None):
-        uistate = user.uistate
+class RelCalc(tool.Tool, SelectPerson):
+    def __init__(self, dbstate: DbState, user, options_class, name, callback=None):
         """
         Relationship calculator class.
         """
+        uistate = user.uistate
+        self.history = uistate.get_history("Person")
+        self.history_connection: int = self.history.connect(
+            "active-changed", self.active_changed
+        )
+
+        self.relationship = get_relationship_calculator(glocale)
+
+        self.WIKI_HELP_PAGE = WIKI_HELP_PAGE
+        self.WIKI_HELP_SEC = WIKI_HELP_SEC
 
         tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.__init__(self, uistate, [], self.__class__)
-
-        # set the columns to see
-        for data in BasePersonView.CONFIGSETTINGS:
-            if data[0] == "columns.rank":
-                colord = data[1]
-            elif data[0] == "columns.visible":
-                colvis = data[1]
-            elif data[0] == "columns.size":
-                colsize = data[1]
-        self.colord = []
-        for col, size in zip(colord, colsize):
-            if col in colvis:
-                self.colord.append((1, col, size))
-            else:
-                self.colord.append((0, col, size))
-
-        self.dbstate = dbstate
-        self.relationship = get_relationship_calculator(glocale)
-        self.relationship.connect_db_signals(dbstate)
-
-        self.glade = Glade()
-        self.person = self.db.get_person_from_handle(uistate.get_active("Person"))
-        name = ""
-        if self.person:
-            name = name_displayer.display(self.person)
-        self.title = _("Relationship calculator: %(person_name)s") % {
-            "person_name": name
-        }
-        window = self.glade.toplevel
-        self.titlelabel = self.glade.get_object("title")
-        self.set_window(
-            window,
-            self.titlelabel,
-            _("Relationship to %(person_name)s") % {"person_name": name},
-            self.title,
+        SelectPerson.__init__(
+            self,
+            dbstate,
+            uistate,
+            show_search_bar=True,
         )
-        self.setup_configs("interface.relcalc", 600, 400)
 
-        self.tree = self.glade.get_object("peopleList")
-        self.text = self.glade.get_object("text1")
-        self.textbuffer = Gtk.TextBuffer()
-        self.text.set_buffer(self.textbuffer)
+        # add a scrolling text view to the end of "select_person_vbox"
+        vbox = self.glade.get_object("select_person_vbox")
+        self.relationship_window = Gtk.ScrolledWindow()
+        self.relationship_window.set_can_focus(False)
+        self.relationship_window.set_min_content_height(75)
+        self.relationship_window.set_shadow_type(Gtk.ShadowType.IN)
 
-        self.model = PersonTreeModel(self.db, uistate)
-        self.tree.set_model(self.model)
+        self.relationship_view = Gtk.TextView()
+        self.relationship_buffer = Gtk.TextBuffer()
+        self.relationship_view.set_buffer(self.relationship_buffer)
+        self.relationship_view.set_wrap_mode(Gtk.WrapMode.WORD)
 
-        self.tree.connect("key-press-event", self._key_press)
-        self.selection = self.tree.get_selection()
-        self.selection.set_mode(Gtk.SelectionMode.SINGLE)
+        self.relationship_window.add(self.relationship_view)
+        vbox.pack_end(self.relationship_window, False, False, 0)
 
-        # keep reference of column so garbage collection works
-        self.columns = []
-        for pair in self.colord:
-            if not pair[0]:
-                continue
-            name = column_names[pair[1]]
-            column = Gtk.TreeViewColumn(name, Gtk.CellRendererText(), markup=pair[1])
-            column.set_resizable(True)
-            column.set_min_width(60)
-            column.set_sizing(Gtk.TreeViewColumnSizing.GROW_ONLY)
-            self.tree.append_column(column)
-            # keep reference of column so garbage collection works
-            self.columns.append(column)
+        self.relationship_view.show()
+        self.relationship_window.show()
 
-        self.sel = self.tree.get_selection()
-        self.changedkey = self.sel.connect("changed", self.on_apply_clicked)
+        # relabel the OK button as Close and hide the Cancel button
+        okbutton = self.glade.get_object("okbutton1")
+        okbutton.set_label(_("Close"))
         self.closebtn = self.glade.get_object("button5")
-        self.closebtn.connect("clicked", self.close)
-        help_btn = self.glade.get_object("help_btn")
-        help_btn.connect(
-            "clicked", lambda x: display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
+        okbutton.connect("clicked", self.close)
+        self.glade.get_object("cancelbutton1").hide()
+
+        # set the window to modeless
+        self.glade.get_object("baseselector").set_modal(False)
+
+        # connect to changes in selection in the tree
+        self.selection.connect("changed", self._sel_changed)
+
+        self.person = None  # the active person
+        self.other_person = None  # the person selected in the tree
+
+        # refresh the UI based on the currently active person
+        self.active_changed(uistate.get_active("Person"))
+
+    def _connect_db_signals(self):
+        # any change to a family might alter the relationship to the active person
+        self.db_connections.append(self.db.connect("family-add", self.family_callback))
+        self.db_connections.append(
+            self.db.connect("family-delete", self.family_callback)
+        )
+        self.db_connections.append(
+            self.db.connect("family-update", self.family_callback)
         )
 
-        if not self.person:
-            self.window.hide()
-            ErrorDialog(
-                _("Active person has not been set"),
-                _(
-                    "You must select an active person for this "
-                    "tool to work properly."
-                ),
-                parent=uistate.window,
-            )
-            self.close()
-            return
-
-        self.show()
-
-    def close(self, *obj):
-        """Close relcalc tool. Remove non-gtk connections so garbage
-        collection can do its magic.
+    def _sel_changed(self, obj):
         """
-        self.relationship.disconnect_db_signals(self.dbstate)
-        self.sel.disconnect(self.changedkey)
-        ManagedWindow.close(self, *obj)
+        the person selected in the tree has changed
+        update other_person and update the relationship
+        """
+        self.other_person = None
+        model, iter_ = obj.get_selected()
+        if iter_:
+            handle = model.get_handle_from_iter(iter_)
+            if handle:
+                self.other_person = self.db.get_person_from_handle(handle)
 
-    def build_menu_names(self, obj):
-        return (_("Relationship Calculator tool"), None)
+        self.update_relationship()
 
-    def on_apply_clicked(self, obj):
-        model, iter_ = self.tree.get_selection().get_selected()
-        if not iter_:
-            return
+    def family_callback(self, handle_list):
+        """
+        There has been a change to a family.
+        recalculate the relationship
+        """
+        self.update_relationship()
 
-        other_person = None
-        handle = model.get_handle_from_iter(iter_)
+    def update_relationship(self):
+        relationship = ""
+        if self.person and self.other_person:
+            relationship = self._calc_relationship(self.person, self.other_person)
+
+        self.relationship_buffer.set_text(relationship)
+
+    def active_changed(self, handle) -> None:
+        """
+        Method called when active person changes.
+        """
+        title: str = _("Active person has not been set")
+        self.person = None
+        handle = self.uistate.get_active("Person")
         if handle:
-            other_person = self.db.get_person_from_handle(handle)
-        if other_person is None:
-            self.textbuffer.set_text("")
-            return
+            self.person = self.dbstate.db.get_person_from_handle(handle)
+            name: str = name_displayer.display(self.person) if self.person else ""
 
-        # now determine the relation, and print it out
+            title = _("Relationship to %(person_name)s") % {"person_name": name}
+        self.update_title(title)
+        self.update_relationship()
+
+    def _calc_relationship(self, person, other_person):
         rel_strings, common_an = self.relationship.get_all_relationships(
-            self.db, self.person, other_person
+            self.db, person, other_person
         )
 
-        p1 = name_displayer.display(self.person)
+        p1 = name_displayer.display(person)
         p2 = name_displayer.display(other_person)
 
         text = []
-        if other_person is None:
-            pass
-        elif self.person.handle == other_person.handle:
+        if person.handle == other_person.handle:
             rstr = _("%(person)s and %(active_person)s are the same person.") % {
                 "person": p1,
                 "active_person": p2,
@@ -227,7 +221,7 @@ class RelCalc(tool.Tool, ManagedWindow):
             length = len(common)
             if length == 1:
                 person = self.db.get_person_from_handle(common[0])
-                if common[0] in [other_person.handle, self.person.handle]:
+                if common[0] in [other_person.handle, person.handle]:
                     commontext = ""
                 else:
                     name = name_displayer.display(person)
@@ -255,21 +249,24 @@ class RelCalc(tool.Tool, ManagedWindow):
                 commontext = ""
             text.append((rstr, commontext))
 
-        textval = ""
+        relationship = ""
         for val in text:
-            textval += "%s %s\n" % (val[0], val[1])
-        self.textbuffer.set_text(textval)
+            relationship += "%s %s\n" % (val[0], val[1])
+        return relationship
 
-    def _key_press(self, obj, event):
-        if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
-            store, paths = self.selection.get_selected_rows()
-            if paths and len(paths[0]) == 1:
-                if self.tree.row_expanded(paths[0]):
-                    self.tree.collapse_row(paths[0])
-                else:
-                    self.tree.expand_row(paths[0], 0)
-                return True
-        return False
+    def _on_row_activated(self, treeview, path, view_col):
+        pass
+
+    def close(self, *obj):
+        """Close relcalc tool. Remove non-gtk connections so garbage
+        collection can do its magic.
+        """
+        self.history.disconnect(self.history_connection)
+
+        SelectPerson.close(self, *obj)
+
+    def build_menu_names(self, obj):
+        return (_("Relationship Calculator tool"), None)
 
 
 # ------------------------------------------------------------------------
