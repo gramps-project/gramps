@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-27 18:06+0000\n"
-"PO-Revision-Date: 2025-01-26 20:01+0000\n"
+"PO-Revision-Date: 2025-01-27 20:45+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -1009,10 +1009,6 @@ msgstr ""
 "bugs/ zu verwenden."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
@@ -1200,12 +1196,6 @@ msgstr ""
 "Initiative."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -4461,7 +4451,7 @@ msgstr "Hauptbeteiligte:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
 msgid "Events matching parameters"
-msgstr "Ereignisse einschließende Parameter"
+msgstr "Ereignisse, die den Parametern entsprechen"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
 msgid "Matches events with particular parameters"
@@ -6807,7 +6797,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
 msgid "Matches sources with particular parameters"
-msgstr "Liefert Quellen mit gegebenen Parametern"
+msgstr "Passt zu Quellen mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -9400,7 +9390,7 @@ msgstr "Gestalteter Text"
 
 #: ../gramps/gen/lib/styledtext.py:347
 msgid "Styled Text Tags"
-msgstr "Marker für formatierten Text"
+msgstr "Formatierte Textmarkierungen"
 
 #: ../gramps/gen/lib/styledtexttag.py:115 ../gramps/gen/lib/tag.py:147
 #: ../gramps/gui/editors/edittaglist.py:111
@@ -11068,16 +11058,12 @@ msgid "person's death"
 msgstr "Tod einer Person"
 
 #: ../gramps/gen/utils/alive.py:365
-#, fuzzy
-#| msgid "Not siblings"
 msgid "oldest sibling's age"
-msgstr "Keine Geschwister"
+msgstr "Alter des ältesten Geschwisters"
 
 #: ../gramps/gen/utils/alive.py:370
-#, fuzzy
-#| msgid "Not siblings"
 msgid "youngest sibling's age"
-msgstr "Keine Geschwister"
+msgstr "Alter des jüngsten Geschwisters"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
@@ -11121,34 +11107,24 @@ msgid "Database error: loop in %s's descendants"
 msgstr "Datenbankfehler: Schleife in den Nachkommen von %s"
 
 #: ../gramps/gen/utils/alive.py:813
-#, fuzzy
-#| msgid "Death before birth"
 msgid "mother birth "
-msgstr "Tod vor der Geburt"
+msgstr "Geburt der Mutter "
 
 #: ../gramps/gen/utils/alive.py:817 ../gramps/gen/utils/alive.py:823
-#, fuzzy
-#| msgid "Death before birth"
 msgid "father birth "
-msgstr "Tod vor der Geburt"
+msgstr "Geburt des Vaters "
 
 #: ../gramps/gen/utils/alive.py:831 ../gramps/gen/utils/alive.py:862
-#, fuzzy
-#| msgid "Ancestor"
 msgid "ancestor "
-msgstr "Vorfahre"
+msgstr "Vorfahre "
 
 #: ../gramps/gen/utils/alive.py:837
-#, fuzzy
-#| msgid "Compute death age"
 msgid "mother death "
-msgstr "Sterbealter berechnen"
+msgstr "Tod der Mutter "
 
 #: ../gramps/gen/utils/alive.py:841 ../gramps/gen/utils/alive.py:847
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "Alter beim Tod"
+msgstr "Tod des Vaters "
 
 #: ../gramps/gen/utils/alive.py:920
 #, python-format
@@ -14282,10 +14258,8 @@ msgid "_Names"
 msgstr "_Namen"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Set as Preferred name"
-msgstr "Bevorzugter Name"
+msgstr "Als bevorzugter Name festlegen"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
@@ -19409,10 +19383,8 @@ msgid "All statuses"
 msgstr "Alle Zustände"
 
 #: ../gramps/gui/plug/_windows.py:463
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
-msgstr "Standardwerte wiederherstellen"
+msgstr "Erweiterungsfilter auf Ausgangswerte zurücksetzen"
 
 #: ../gramps/gui/plug/_windows.py:477
 msgid "Settings"
@@ -19444,44 +19416,34 @@ msgid "No matching addons found."
 msgstr "Keine passenden Erweiterungen gefunden."
 
 #: ../gramps/gui/plug/_windows.py:703
-#, fuzzy
-#| msgid "Research project"
 msgid "Insert a project"
-msgstr "Forschungsprojekt"
+msgstr "Ein Projekt einfügen"
 
 #: ../gramps/gui/plug/_windows.py:705
-#, fuzzy
-#| msgid "Remove the selected person"
 msgid "Remove the selected project"
-msgstr "Gewählte Person entfernen"
+msgstr "Das ausgewählte Projekt entfernen"
 
 #: ../gramps/gui/plug/_windows.py:707
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "Das Kind in der Kinderliste nach oben verschieben"
+msgstr "Projekt in der Liste nach oben verschieben"
 
 #: ../gramps/gui/plug/_windows.py:709
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "Das Kind in der Kinderliste nach unten verschieben"
+msgstr "Projekt in der Liste nach unten verschieben"
 
 #: ../gramps/gui/plug/_windows.py:711
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
-msgstr "Projekt-Standardwerte wiederherstellen"
+msgstr "Auf die Projektstandardwerte zurücksetzen"
 
 #: ../gramps/gui/plug/_windows.py:748
 msgid "Allow Gramps to install required Python modules"
 msgstr "Gramps die Installation benötigter Python-Module gestatten"
 
 #: ../gramps/gui/plug/_windows.py:750
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "Gramps die Installation benötigter Python-Module gestatten"
+msgstr ""
+"Wenn möglich, versuche, alle fehlenden vorausgesetzten Python-Module zu "
+"installieren"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Scheduled update checks"
@@ -23664,10 +23626,9 @@ msgid "Key"
 msgstr "Schlüssel"
 
 #: ../gramps/plugins/gramplet/backlinks.py:238
-#, fuzzy, python-format
-#| msgid "_Make Active Media"
+#, python-format
 msgid "_Make Active %s"
-msgstr "_Medium aktivieren"
+msgstr "_Aktiviere %s"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
@@ -23952,16 +23913,12 @@ msgid "Total people"
 msgstr "Personen insgesamt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "De:Gramps_5.2_Wiki_Handbuch_-_Gramplets#Gramplet-Liste"
+msgstr "De:Gramps_6.0_Wiki_Handbuch_-_Gramplets#Gramplet-Liste"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr "De:Gramps_5.2_Wiki_Handbuch_-_Werkzeuge#Fehlersuche"
+msgstr "De:Gramps_6.0_Wiki_Handbuch_-_Werkzeuge#Fehlersuche"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -26287,22 +26244,16 @@ msgid "call"
 msgstr "Rufname"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "Spitzname"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "_Spitzname:"
+msgstr "Spitzname"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "Spitzname"
+msgstr "Spitz_name"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -33459,10 +33410,9 @@ msgid "Show gender symbol in front of name"
 msgstr "Geschlechtssymbol vor dem Namen anzeigen"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "Ob Informationen zur Scheidung im Bericht angezeigt werden sollen."
+msgstr ""
+"Ob das Geschlechtssymbol vor dem Namen im Bericht angezeigt werden soll."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -33668,10 +33618,8 @@ msgstr "Ob der Rufname als Vorname verwendet werden soll."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to include Gramps ID next to names."
 msgid "Whether to show gender symbol in front of name."
-msgstr "Legt fest, ob die Gramps ID neben den Namen aufgenommen werden."
+msgstr "Ob das Geschlechtssymbol vor dem Namen angezeigt werden soll."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
@@ -34234,16 +34182,12 @@ msgid "The maximum number of ancestor generations"
 msgstr "Die maximale Anzahl von Vorfahrengenerationen"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
-#| msgid "Show gramps id"
 msgid "Show Gramps ID"
 msgstr "Gramps-ID anzeigen"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
-msgstr "Ob Gramps-IDs einbezogen werden sollen"
+msgstr "Ob Gramps-ID angezeigt werden sollen"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:390
 msgid "Whether to include spouses"
@@ -35465,7 +35409,7 @@ msgstr "Es wurde keine Ereignisbeschreibung hinzugefügt."
 #: ../gramps/plugins/tool/finddupes.glade:115
 #: ../gramps/plugins/tool/mergecitations.glade:115
 msgid "Match Threshold"
-msgstr "Vergleichsschwellwert"
+msgstr "Übereinstimmungsschwellwert"
 
 #: ../gramps/plugins/tool/finddupes.glade:142
 msgid "Use soundex codes"
@@ -38363,10 +38307,9 @@ msgstr "Erzählend"
 
 #: ../gramps/plugins/webreport/basepage.py:884
 #: ../gramps/plugins/webreport/basepage.py:954
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr "(%(str1)s) %(str2)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1492
 #: ../gramps/plugins/webreport/basepage.py:3382
@@ -39343,16 +39286,12 @@ msgstr ""
 "Hinzufügen einer vollständigen Ereignisliste und relevanter Seiten oder nicht"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "Andere Ereignisse einbeziehen"
+msgstr "Andere Rollen einbeziehen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "Gramplet zeigt die Notizen für ein Ereignis"
+msgstr "Personen mit anderen Rollen zu einem Ereignis hinzufügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include place pages"
@@ -39933,10 +39872,9 @@ msgid "Number of People"
 msgstr "Anzahl der Personen"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
-#, fuzzy, python-brace-format
-#| msgid "Surnames beginning with letter '%s' %s"
+#, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "Nachnamen mit Anfangsbuchstaben \"%s\" %s"
+msgstr "Nachnamen mit Anfangsbuchstaben \"{letter}\" {char}"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 msgid ""
