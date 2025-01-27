@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
 #               2009-2011  Gary Burton
+#               2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,6 +19,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
+
+# -------------------------------------------------------------------------
+#
+# Standard python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
@@ -85,7 +93,8 @@ class BaseSelector(ManagedWindow):
         self.track_ref_for_deletion("renderer")
         self.renderer.set_property("ellipsize", Pango.EllipsizeMode.END)
 
-        self.db = dbstate.db
+        self.dbstate = dbstate
+        self.db_connections = []
         self.tree = None
         self.model = None
 
@@ -155,7 +164,11 @@ class BaseSelector(ManagedWindow):
             self.showall.hide()
         while Gtk.events_pending():
             Gtk.main_iteration()
-        self.build_tree()
+
+        self.dbstate.connect("database-changed", self._db_changed)
+        self.dbstate.connect("no-database", self._no_db)
+        self._db_changed(self.dbstate.db)
+
         loading = self.glade.get_object("loading")
         loading.hide()
 
@@ -311,6 +324,15 @@ class BaseSelector(ManagedWindow):
         ]
         self.search_bar.setup_filter(cols)
 
+    def _object_add_callback(self, handle_list):
+        self.build_tree()
+
+    def _object_delete_callback(self, handle_list):
+        self.build_tree()
+
+    def _object_update_callback(self, handle_list):
+        self.build_tree()
+
     def build_tree(self):
         """
         Builds the selection people see in the Selector
@@ -331,7 +353,7 @@ class BaseSelector(ManagedWindow):
         # reset the model with correct sorting
         self.clear_model()
         self.model = self.get_model_class()(
-            self.db,
+            self.dbstate.db,
             self.uistate,
             self.sort_col,
             self.sortorder,
@@ -381,7 +403,7 @@ class BaseSelector(ManagedWindow):
         filter_info = None if obj.get_active() else self.filter
         self.clear_model()
         self.model = self.get_model_class()(
-            self.db,
+            self.dbstate.db,
             self.uistate,
             self.sort_col,
             self.sortorder,
@@ -403,10 +425,31 @@ class BaseSelector(ManagedWindow):
     def apply_clear(self):
         self.showall.set_active(False)
 
+    def _db_changed(self, db):
+        if self.dbstate.is_open():
+            self.clear_model()
+            self._disconnect_db_signals()
+        self.dbstate.db = db
+        if self.dbstate.is_open():
+            self._connect_db_signals()
+            self.build_tree()
+
+    def _no_db(self):
+        self.clear_model()
+        self._disconnect_db_signals()
+
+    def _connect_db_signals(self):
+        pass
+
+    def _disconnect_db_signals(self):
+        map(self.dbstate.db.disconnect, self.db_connections)
+        self.db_connections.clear()
+
     def _cleanup_on_exit(self):
         """Unset all things that can block garbage collection.
         Finalize rest
         """
+        self._disconnect_db_signals()
         self.clear_model()
         self.db = None
         self.tree = None
