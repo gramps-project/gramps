@@ -4050,11 +4050,7 @@ msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-<<<<<<< HEAD
-"Entspricht Fundstelleneinträge, die nach einem bestimmten Datum/Zeitpunkt "
-=======
 "Entspricht Fundstelleneinträgen, die nach einem bestimmten Datum/Zeitpunkt "
->>>>>>> 2fa2b0a6bd (Translated using Weblate (German (Austria)))
 "(JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein "
 "zweites Datum/Zeitpunkt angegeben wird."
 
@@ -4175,11 +4171,7 @@ msgstr "Fundstellen mit einer Anzahl an Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:46
 msgid "Matches citations with a certain reference count"
-<<<<<<< HEAD
-msgstr "Entspricht Fundstellen mit einer bestimmten Anzahl von Referenzen"
-=======
 msgstr "Entspricht Fundstellen mit einer bestimmten Anzahl an Referenzen"
->>>>>>> 2fa2b0a6bd (Translated using Weblate (German (Austria)))
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:50
 #: ../gramps/gen/filters/rules/source/_hassource.py:49
