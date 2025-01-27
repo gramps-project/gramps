@@ -110,7 +110,7 @@ class SelectPerson(BaseSelector):
     def get_from_handle_func(self):
         return self.db.get_person_from_handle
 
-    def exact_search(self):
+    def exact_search(self) -> tuple[int]:
         """
         Returns a tuple indicating columns requiring an exact search
         """
