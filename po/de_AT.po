@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2025-01-26 20:02+0000\n"
+"PO-Revision-Date: 2025-01-27 18:10+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -283,8 +283,8 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
-"Es gibt dir die Möglichkeit, die vielen Details des Lebens aufzuzeichnen "
-"sowie die komplexen Beziehungen zwischen verschiedenen Personen, Orten und "
+"Es gibt dir die Möglichkeit, die vielen Details des Lebens einzutragen sowie "
+"die komplexen Beziehungen zwischen verschiedenen Personen, Orten und "
 "Ereignissen."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
@@ -292,8 +292,8 @@ msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
-"All deine Aufzeichnungen werden organisiert, durchsuchbar und so präzise wie "
-"nötig aufbewahrt."
+"All deine Forschungsergebnisse werden organisiert, durchsuchbar und so "
+"präzise wie nötig aufbewahrt."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
 msgid "Gramps Development Team"
@@ -1043,7 +1043,7 @@ msgid ""
 msgstr ""
 "<b>Praxis für gute Einträge</b><br/>Sei genau beim Eintragen von "
 "genealogischen Informationen. Stelle keine Vermutungen an, wenn du "
-"Primärinformationen sammelst; schreibe sie genau so auf, wie du sie "
+"Primärinformationen einträgst; schreibe sie genau so auf, wie du sie "
 "vorfindest. Verwende Kommentare in Klammern, um deine Ergänzungen, "
 "Streichungen oder Kommentare anzugeben. Die Verwendung des lateinischen "
 "\"[sic]\" wird empfohlen, um die genaue Übersetzung eines anscheinend "
@@ -1090,10 +1090,10 @@ msgid ""
 "all the details of where the information came from. Whenever possible get a "
 "copy of original documents."
 msgstr ""
-"<b>Zeichne deine Quellen auf</b><br/>Gesammelte Informationen über deine "
+"<b>Trage deine Quellen ein</b><br/>Gesammelte Informationen über deine "
 "Familie sind nur so gut wie die Quelle, von der sie stammen. Nimm dir die "
-"Zeit und Geduld, alle Details aufzuschreiben, woher die Informationen "
-"stammen. Wenn möglich, besorge dir eine Kopie von den Originaldokumenten."
+"Zeit und Geduld, alle Details einzutragen, woher die Informationen stammen. "
+"Wenn möglich, besorge dir eine Kopie von den Originaldokumenten."
 
 #: ../data/tips.xml:110
 msgid ""
@@ -1106,9 +1106,9 @@ msgstr ""
 "<b>Strukturiere deine Forschungsarbeit</b><br/>Arbeite dich von dem, was Du "
 "weißt, zu dem vor, was du nicht weißt. Schreibe zuerst immer alles Bekannte "
 "auf, bevor du Vermutungen anstellst. Auch können die schon vorhandenen "
-"Fakten eine Fülle an Hinweisen auf weitere Quellen enthalten. Verbringe "
-"daher nicht die Zeit damit, Tausende von weiteren Aufzeichnungen zu "
-"durchsuchen, wenn du selbst noch unentdeckte Anhaltspunkte vorliegen hast."
+"Fakten eine Fülle an Hinweisen auf weitere Quellen enthalten. Verschwende "
+"keine Zeit damit, Tausende Einträge in der Hoffnung auf Spuren zu "
+"durchsuchen, solange du noch unerforschte Anhaltspunkte vorliegen hast."
 
 #: ../data/tips.xml:112
 msgid ""
@@ -3931,12 +3931,12 @@ msgstr "Entspricht Notizen mit der bestimmten Art "
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:44
 #: ../gramps/gui/editors/filtereditor.py:551
 msgid "Reference count must be:"
-msgstr "Referenzenanzahl muss sein:"
+msgstr "Anzahl an Referenzen muss sein:"
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:44
 #: ../gramps/gui/editors/filtereditor.py:549
 msgid "Reference count:"
-msgstr "Anzahl Referenzen:"
+msgstr "Anzahl an Referenzen:"
 
 #: ../gramps/gen/filters/rules/_hassourceofbase.py:47
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:47
@@ -4039,7 +4039,11 @@ msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
+<<<<<<< HEAD
 "Entspricht Fundstelleneinträge, die nach einem bestimmten Datum/Zeitpunkt "
+=======
+"Entspricht Fundstelleneinträgen, die nach einem bestimmten Datum/Zeitpunkt "
+>>>>>>> 2fa2b0a6bd (Translated using Weblate (German (Austria)))
 "(JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein "
 "zweites Datum/Zeitpunkt angegeben wird."
 
@@ -4156,11 +4160,15 @@ msgstr "Notizenfilter"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
 msgid "Citations with a reference count of <count>"
-msgstr "Fundstellen mit einer Referenzenanzahl von <Anzahl>"
+msgstr "Fundstellen mit einer Anzahl an Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:46
 msgid "Matches citations with a certain reference count"
+<<<<<<< HEAD
 msgstr "Entspricht Fundstellen mit einer bestimmten Anzahl von Referenzen"
+=======
+msgstr "Entspricht Fundstellen mit einer bestimmten Anzahl an Referenzen"
+>>>>>>> 2fa2b0a6bd (Translated using Weblate (German (Austria)))
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:50
 #: ../gramps/gen/filters/rules/source/_hassource.py:49
@@ -4269,7 +4277,7 @@ msgstr "Entspricht Fundstellen mit der angegebenen Markierung"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
 msgid "Citations matching the <filter>"
-msgstr "Fundstellen, die dem <Filter> entsprechen"
+msgstr "Fundstellen, die <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:48
 msgid "Matches citations matched by the specified filter name"
@@ -4452,11 +4460,11 @@ msgstr "Hauptbeteiligte:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
 msgid "Events matching parameters"
-msgstr "Ereignisse einschließende Parameter"
+msgstr "Ereignisse, die den Parametern entsprechen"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
 msgid "Matches events with particular parameters"
-msgstr "Liefert Ereignisse mit bestimmten Parametern"
+msgstr "Entspricht Ereignissen mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4465,7 +4473,8 @@ msgstr "Ereignisse mit <Anzahl> Medien"
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:48
 msgid "Matches events with a certain number of items in the gallery"
 msgstr ""
-"Liefert Ereignisse mit einer bestimmten Anzahl von Elementen in der Galerie"
+"Entspricht Ereignissen mit einer bestimmten Anzahl von Elementen in der "
+"Galerie"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:46
 msgid "Event with <Id>"
@@ -4473,7 +4482,7 @@ msgstr "Ereignis mit <ID>"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:47
 msgid "Matches an event with a specified Gramps ID"
-msgstr "Liefert ein Ereignis mit einer bestimmten Gramps-ID"
+msgstr "Entspricht einem Ereignis mit einer bestimmten Gramps-ID"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:47
 msgid "Events having <count> notes"
@@ -4481,7 +4490,7 @@ msgstr "Ereignisse mit <Anzahl> Notizen"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:48
 msgid "Matches events having a certain number of notes"
-msgstr "Liefert Ereignisse mit einer bestimmten Anzahl von Notizen"
+msgstr "Entspricht Ereignissen mit einer bestimmten Anzahl an Notizen"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:44
 msgid "Events having notes containing <substring>"
@@ -4490,7 +4499,7 @@ msgstr "Liefert Ereignisse, deren Notizen die <Teilzeichenfolge> enthalten"
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:45
 msgid "Matches events whose notes contain text matching a substring"
 msgstr ""
-"Liefert Ereignisse, deren Notizen einen Text mit einer Teilzeichenfolge "
+"Entspricht Ereignissen, deren Notizen einen Text mit einer Teilzeichenfolge "
 "enthalten"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:42
@@ -4500,8 +4509,8 @@ msgstr "Ereignisse, deren Notizen <Text> enthalten"
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Ereignisse, deren Notizen einen Text entsprechend einem regulären "
-"Ausdruck enthalten"
+"Entspricht Ereignissen, deren Notizen einen Text entsprechend einem "
+"regulären Ausdruck enthalten"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
 msgid "Events with a note of type <type>"
@@ -4509,15 +4518,15 @@ msgstr "Ereignisse mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
 msgid "Matches events with a note of the specified type"
-msgstr "Liefert Ereignisse mit einer Notiz der angegebenen Art"
+msgstr "Entspricht Ereignissen mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
-msgstr "Ereignisse mit einer Referenzenanzahl von <Anzahl>"
+msgstr "Ereignisse mit einer Anzahl an Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:45
 msgid "Matches events with a certain reference count"
-msgstr "Liefert Ereignisse mit einer bestimmten Anzahl Referenzen"
+msgstr "Entspricht Ereignissen mit einer bestimmten Anzahl an Referenzen"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:46
 msgid "Events with <count> sources"
@@ -4525,7 +4534,7 @@ msgstr "Ereignisse mit <Anzahl> Quellen"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:47
 msgid "Matches events with a certain number of sources connected to it"
-msgstr "Liefert Ereignisse mit einer bestimmten Anzahl verknüpfter Quellen"
+msgstr "Entspricht Ereignissen mit einer bestimmten Anzahl verknüpfter Quellen"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Events with the <tag>"
@@ -4533,7 +4542,7 @@ msgstr "Ereignisse mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:53
 msgid "Matches events with the particular tag"
-msgstr "Liefert Ereignisse mit bestimmter Markierung"
+msgstr "Entspricht Ereignissen mit einer bestimmten Markierung"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:48
 msgid "Events with the particular type"
@@ -4541,15 +4550,15 @@ msgstr "Ereignis einer bestimmten Art"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:49
 msgid "Matches events with the particular type "
-msgstr "Liefert Ereignisse einer bestimmten Art "
+msgstr "Entspricht Ereignissen einer bestimmten Art "
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:46
 msgid "Events matching the <filter>"
-msgstr "Ereignisse, die dem <Filter> entsprechen"
+msgstr "Ereignisse, die <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:47
 msgid "Matches events matched by the specified filter name"
-msgstr "Liefert Ereignisse, die einem bestimmten Filter entsprechen"
+msgstr "Entspricht Ereignissen, die dem angegebenen Filter entsprechen"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
 #: ../gramps/gui/editors/filtereditor.py:613
@@ -4568,7 +4577,7 @@ msgstr "Ereignisse von Personen, die dem <Personenfilter> entsprechen"
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:55
 msgid "Matches events of persons matched by the specified person filter name"
 msgstr ""
-"Liefert Ereignisse von Personen, die einem bestimmten Personenfilter "
+"Entspricht Ereignissen von Personen, die dem angegebenen Personenfilter "
 "entsprechen"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:51
@@ -4585,7 +4594,7 @@ msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
 msgstr ""
-"Liefert Ereignisse die an Orten stattfanden, die einem bestimmten "
+"Entspricht Ereignissen die an Orten stattfanden, die einem bestimmten "
 "Ortsfilternamen entsprechen"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:47
@@ -4596,7 +4605,8 @@ msgstr ""
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:49
 msgid "Matches events with at least one direct source with confidence level(s)"
 msgstr ""
-"Liefert Ereignisse mit mindestens einer Quelle mit Zuverlässigkeitsgrad(en)"
+"Entspricht Ereignissen mit mindestens einer Quelle mit "
+"Zuverlässigkeitsgrad(en)"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:51
 msgid "Events with source matching the <source filter>"
@@ -4605,7 +4615,7 @@ msgstr "Ereignisse mit Quellen, die dem <Quellenfilter> entsprechen"
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:53
 msgid "Matches events with sources that match the specified source filter name"
 msgstr ""
-"Liefert Ereignisse mit Quellen, die einem bestimmten Quellenfilternamen "
+"Entspricht Ereignissen mit Quellen, die dem angegebenen Quellenfilternamen "
 "entsprechen"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:49
@@ -4615,7 +4625,7 @@ msgstr "Ereignisse, deren ID <Text> enthält"
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:50
 msgid "Matches events whose Gramps ID matches the regular expression"
 msgstr ""
-"Liefert alle Ereignisse, deren Gramps-ID dem regulären Ausdruck entspricht"
+"Entspricht Ereignissen, deren Gramps-ID dem regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:46
 #: ../gramps/gen/plug/report/utils.py:414
@@ -4624,7 +4634,7 @@ msgstr "Jede Familie"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:47
 msgid "Matches every family in the database"
-msgstr "Liefert jede Familie in der Datenbank"
+msgstr "Entspricht jeder Familie in der Datenbank"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:49
 msgid "Families changed after <date time>"
@@ -4635,9 +4645,9 @@ msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Liefert Familieneinträge, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-"
-"TT HH:MM:ss) geändert wurden oder in einem Zeitraum, wenn ein zweites Datum/"
-"Zeitpunkt angegeben ist."
+"Entspricht Familieneinträgen, die nach einem bestimmten Datum/Zeitpunkt "
+"(JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein "
+"zweites Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:47
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:47
@@ -4651,7 +4661,7 @@ msgstr "Liefert Familien mit einem Kind, dessen ID <Text> enthält"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:49
 msgid "Matches families where child has a specified Gramps ID"
-msgstr "Liefert Familien, bei deren Kind eine bestimmte Gramps-ID hat"
+msgstr "Entspricht Familien, deren Kind eine bestimmte Gramps-ID hat"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:50
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:49
@@ -4667,7 +4677,7 @@ msgstr "Familien mit Kind mit <Name>"
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:48
 msgid "Matches families where child has a specified (partial) name"
-msgstr "Liefert Familien, deren Kind einen bestimmten Namen(steil) hat"
+msgstr "Entspricht Familien, deren Kind einen bestimmten Namen (Namensteil) hat"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:44
 msgid "Families marked private"
@@ -4675,7 +4685,7 @@ msgstr "Als vertraulich gekennzeichnete Familien"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:45
 msgid "Matches families that are indicated as private"
-msgstr "Liefert Familien, die als vertraulich gekennzeichnet sind"
+msgstr "Entspricht Familien, die als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:48
 msgid "Families having father with Id containing <text>"
@@ -4683,7 +4693,7 @@ msgstr "Familien mit einem Vater, dessen ID <Text> enthält"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:49
 msgid "Matches families whose father has a specified Gramps ID"
-msgstr "Liefert Familien, deren Vater eine bestimmte Gramps-ID hat"
+msgstr "Entspricht Familien, deren Vater eine bestimmte Gramps-ID hat"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:50
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:49
@@ -4699,7 +4709,8 @@ msgstr "Familien mit Vater mit <Name>"
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:48
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:48
 msgid "Matches families whose father has a specified (partial) name"
-msgstr "Liefert Familien, deren Vater einen bestimmten Namen(steil) hat"
+msgstr ""
+"Entspricht Familien, deren Vater einen bestimmten Namen (Namensteil) hat"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:46
@@ -4714,7 +4725,7 @@ msgstr "Familien mit dem Familien-<Attribut>"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:49
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Liefert Familien mit einem Familienattribut mit einem bestimmten Wert"
+msgstr "Entspricht Familien mit dem Familienattribut eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:51
 msgid "Families with the <citation>"
@@ -4722,7 +4733,7 @@ msgstr "Familien mit der <Fundstelle>"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:52
 msgid "Matches families with a citation of a particular value"
-msgstr "Liefert Familien mit einer Fundstelle mit einem bestimmten Wert"
+msgstr "Entspricht Familien mit einer Fundstelle mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:50
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:49
@@ -4745,7 +4756,7 @@ msgstr "Familien mit <Ereignis>"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:57
 msgid "Matches families with an event of a particular value"
-msgstr "Liefert Familien mit einem bestimmten Familienereignis"
+msgstr "Entspricht Familien mit einem bestimmten Familienereignis"
 
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:47
 msgid "Families with <count> media"
@@ -4754,7 +4765,7 @@ msgstr "Familien mit <Anzahl> Medien"
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:48
 msgid "Matches families with a certain number of items in the gallery"
 msgstr ""
-"Liefert Familien mit einer bestimmten Anzahl von Elementen in der Galerie"
+"Entspricht Familien mit einer bestimmten Anzahl an Elementen in der Galerie"
 
 #: ../gramps/gen/filters/rules/family/_hasidof.py:46
 msgid "Family with <Id>"
@@ -4762,7 +4773,7 @@ msgstr "Familie mit <ID>"
 
 #: ../gramps/gen/filters/rules/family/_hasidof.py:47
 msgid "Matches a family with a specified Gramps ID"
-msgstr "Liefert eine Familie mit einer bestimmten Gramps-ID"
+msgstr "Entspricht einer Familie mit einer bestimmten Gramps-ID"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:50
 msgid "Families with <count> LDS events"
@@ -4770,7 +4781,7 @@ msgstr "Familien mit <Anzahl> HLT-Ereignissen"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:51
 msgid "Matches families with a certain number of LDS events"
-msgstr "Liefert Familien mit einer bestimmten Anzahl von HLT-Ereignissen"
+msgstr "Entspricht Familien mit einer bestimmten Anzahl an HLT-Ereignissen"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:47
 msgid "Families having <count> notes"
@@ -4778,7 +4789,7 @@ msgstr "Familien mit <Anzahl> Notizen"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:48
 msgid "Matches families having a certain number notes"
-msgstr "Liefert Familien mit einer bestimmten Anzahl von Notizen"
+msgstr "Entspricht Familien mit einer bestimmten Anzahl an Notizen"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:44
 msgid "Families having notes containing <substring>"
@@ -4787,8 +4798,8 @@ msgstr "Liefert Familien, deren Notizen <Teilzeichenfolge> enthalten"
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:45
 msgid "Matches families whose notes contain text matching a substring"
 msgstr ""
-"Liefert Familien, deren Notizen einen Text mit einer Teilzeichenfolge "
-"enthalten"
+"Entspricht Familien, deren Notizen Text enthalten, der einer "
+"Teilzeichenfolge entspricht"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:42
 msgid "Families having notes containing <text>"
@@ -4797,8 +4808,8 @@ msgstr "Familien, deren Notizen <Text> enthalten"
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:44
 msgid "Matches families whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Familien, deren Notizen einen Text entsprechend einem regulären "
-"Ausdruck enthalten"
+"Entspricht Familien, deren Notizen Text enthalten, der einem regulären "
+"Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
 msgid "Families with a note of type <type>"
@@ -4806,15 +4817,15 @@ msgstr "Familien mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
 msgid "Matches families with a note of the specified type"
-msgstr "Liefert Familien mit einer Notiz der angegebenen Art"
+msgstr "Entspricht Familien mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
-msgstr "Familien mit einer Referenzenanzahl von <Anzahl>"
+msgstr "Familien mit einer Anzahl an Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:45
 msgid "Matches family objects with a certain reference count"
-msgstr "Liefert Familienobjekte mit einer bestimmten Referenzenanzahl"
+msgstr "Entspricht Familienobjekten mit einer bestimmten Anzahl an Referenzen"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:47
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:49
@@ -4829,7 +4840,7 @@ msgstr "Familien mit der Beziehungsart"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:49
 msgid "Matches families with the relationship type of a particular value"
-msgstr "Liefert Familien mit einer Beziehungsart eines bestimmten Wertes"
+msgstr "Entspricht Familien mit einer Beziehungsart eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:47
 msgid "Families with <count> sources"
@@ -4838,7 +4849,7 @@ msgstr "Familien mit <Anzahl> Quellen"
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:48
 msgid "Matches families with a certain number of sources connected to it"
 msgstr ""
-"Liefert Familien mit einer bestimmten Anzahl von Quellen, die mit ihr "
+"Entspricht Familien mit einer bestimmten Anzahl von Quellen, die mit ihr "
 "verbunden sind"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:48
@@ -4847,7 +4858,7 @@ msgstr "Familien mit der <Quelle>"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:50
 msgid "Matches families who have a particular source"
-msgstr "Liefert Familien, die eine bestimmte Quelle haben"
+msgstr "Entspricht Familien, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:52
 msgid "Families with the <tag>"
@@ -4863,7 +4874,7 @@ msgstr "Familien mit Zwillingen"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:48
 msgid "Matches families with twins"
-msgstr "Liefert Familien mit Zwillingen"
+msgstr "Entspricht Familien mit Zwillingen"
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:47
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:47
@@ -4881,7 +4892,7 @@ msgstr "Vorfahrenfamilien von <Familie>"
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:50
 msgid "Matches ancestor families of the specified family"
-msgstr "Liefert Familien, die Vorfahren der angegebenen Familie sind"
+msgstr "Entspricht Vorfahrenfamilien der angegebenen Familie"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:46
 msgid "Bookmarked families"
@@ -4889,7 +4900,7 @@ msgstr "Familien in den Lesezeichen"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:48
 msgid "Matches the families on the bookmark list"
-msgstr "Liefert Familien in der Lesezeichenliste"
+msgstr "Entspricht Familien in der Lesezeichenliste"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:48
 msgid "Descendant families of <family>"
@@ -4897,15 +4908,15 @@ msgstr "Nachkommenfamilien von <Familie>"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:50
 msgid "Matches descendant families of the specified family"
-msgstr "Liefert Familien, die Nachkommen der angegebenen Familie sind"
+msgstr "Entspricht Nachkommenfamilien der angegebenen Familie"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:46
 msgid "Families matching the <filter>"
-msgstr "Familien die dem <Filter> entsprechen"
+msgstr "Familien, die <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:47
 msgid "Matches families matched by the specified filter name"
-msgstr "Liefert Familien, die dem gegebenen Filter entsprechen"
+msgstr "Entspricht Familien, die dem angegebenen Filternamen entsprechen"
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:46
 msgid "Families with at least one direct source >= <confidence level>"
@@ -4916,7 +4927,8 @@ msgstr ""
 msgid ""
 "Matches families with at least one direct source with confidence level(s)"
 msgstr ""
-"Liefert Familien mit mindestens einer Quelle mit Zuverlässigkeitsgrad(en)"
+"Entspricht Familien mit mindestens einer direkten Quelle mit "
+"Zuverlässigkeitsgrad(en)"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:48
 msgid "Families having mother with Id containing <text>"
@@ -4924,7 +4936,7 @@ msgstr "Familien mit einer Mutter, deren ID <Text> enthält"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:49
 msgid "Matches families whose mother has a specified Gramps ID"
-msgstr "Liefert Familien, deren Mutter eine bestimmte Gramps-ID hat"
+msgstr "Entspricht Familien, deren Mutter eine bestimmte Gramps-ID hat"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:50
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:49
@@ -4940,7 +4952,8 @@ msgstr "Familien mit Mutter mit <Name>"
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:48
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:48
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr "Liefert Familien, deren Mutter einen bestimmten Namen(steil) hat"
+msgstr ""
+"Entspricht Familien, deren Mutter einen bestimmten Namen (Namensteil) hat"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:47
 msgid "Families with child matching the <regex_name>"
@@ -4951,8 +4964,8 @@ msgid ""
 "Matches families where some child has a name that matches a specified "
 "regular expression"
 msgstr ""
-"Liefert Familien, die ein Kind mit einem Namen entsprechend einem bestimmten "
-"regulären Ausdruck haben"
+"Entspricht Familien, die ein Kind mit einem Namen entsprechend einem "
+"bestimmten regulären Ausdruck haben"
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:47
 msgid "Families with father matching the <regex_name>"
@@ -4963,7 +4976,7 @@ msgid ""
 "Matches families whose father has a name matching a specified regular "
 "expression"
 msgstr ""
-"Liefert Familien, deren Vater einen Namen entsprechend dem regulären "
+"Entspricht Familien, deren Vater einen Namen entsprechend dem regulären "
 "Ausdruck hat"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
@@ -4972,7 +4985,7 @@ msgstr "Familien mit ID, die <Text> enthält"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:51
 msgid "Matches families whose Gramps ID matches the regular expression"
-msgstr "Liefert Familien, deren Gramps-ID dem regulären Ausdruck entspricht"
+msgstr "Entspricht Familien, deren Gramps-ID dem regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:47
 msgid "Families with mother matching the <regex_name>"
@@ -4983,16 +4996,18 @@ msgid ""
 "Matches families whose mother has a name matching a specified regular "
 "expression"
 msgstr ""
-"Liefert Familien, deren Mutter einen Namen entsprechend dem regulären "
+"Entspricht Familien, deren Mutter einen Namen entsprechend dem regulären "
 "Ausdruck hat"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:47
 msgid "Families with any child matching the <name>"
-msgstr "Familien mit einem Kind mit dem <Namen>"
+msgstr "Familien mit einem Kind, das <Name> entspricht"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:49
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "Liefert Familien, in denen ein Kind einen bestimmten Namen(steil) hat"
+msgstr ""
+"Entspricht Familien, in denen ein Kind einen bestimmten Namen (Namensteil) "
+"hat"
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:47
 msgid "Families with father matching the <name>"
@@ -5008,7 +5023,7 @@ msgstr "Jedes Medienobjekt"
 
 #: ../gramps/gen/filters/rules/media/_allmedia.py:47
 msgid "Matches every media object in the database"
-msgstr "Liefert jedes Medienobjekt in der Datenbank"
+msgstr "Entspricht jedem Medienobjekt in der Datenbank"
 
 #: ../gramps/gen/filters/rules/media/_changedsince.py:47
 msgid "Media objects changed after <date time>"
@@ -5019,9 +5034,9 @@ msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
 msgstr ""
-"Liefert Medienobjekte, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT "
-"HH:MM:ss) geändert wurden oder in einem Zeitraum, wenn ein zweites Datum/"
-"Zeitpunkt angegeben ist."
+"Entspricht Medienobjekten, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-"
+"MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein zweites "
+"Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:117
@@ -5035,7 +5050,7 @@ msgstr "Medienobjekte mit dem Attribut <Attribut>"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:48
 msgid "Matches media objects with the attribute of a particular value"
-msgstr "Liefert Medienobjekte mit dem Attribut eines bestimmten Wertes"
+msgstr "Entspricht Medienobjekten mit dem Attribut eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:50
 msgid "Media with the <citation>"
@@ -5043,7 +5058,7 @@ msgstr "Medien mit der <Fundstelle>"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:51
 msgid "Matches media with a citation of a particular value"
-msgstr "Liefert Medien mit einer Fundstelle eines bestimmten Wertes"
+msgstr "Entspricht Medien mit einer Fundstelle eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:46
 msgid "Media object with <Id>"
@@ -5051,7 +5066,7 @@ msgstr "Medienobjekt mit <ID>"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:47
 msgid "Matches a media object with a specified Gramps ID"
-msgstr "Liefert ein Medienobjekt mit einer bestimmten Gramps-ID"
+msgstr "Entspricht einem Medienobjekt mit einer bestimmten Gramps-ID"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:49
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:49
@@ -5081,7 +5096,7 @@ msgstr "Medienobjekte, die den Parametern entsprechen"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:54
 msgid "Matches media objects with particular parameters"
-msgstr "Liefert Medienobjekte mit bestimmten Parametern"
+msgstr "Entspricht Medienobjekten mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:44
 msgid "Media objects having notes containing <substring>"
@@ -5090,8 +5105,8 @@ msgstr "Medienobjekte, deren Notizen <Teilzeichenfolge> enthalten"
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:46
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
-"Liefert Medienobjekte, deren Notizen einen Text mit einer Teilzeichenfolge "
-"enthalten"
+"Entspricht Medienobjekten, deren Notizen Text enthalten, der einer "
+"Teilzeichenkette entspricht"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:42
 msgid "Media objects having notes containing <text>"
@@ -5101,16 +5116,16 @@ msgstr "Medienobjekte, deren Notizen <Text> enthalten"
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Medienobjekte, deren Notizen einen Text entsprechend einem regulären "
-"Ausdruck enthalten"
+"Entspricht Medienobjekten, deren Notizen einen Text entsprechend einem "
+"regulären Ausdruck enthalten"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:44
 msgid "Media objects with a reference count of <count>"
-msgstr "Medienobjekte mit Referenzenanzahl von <Anzahl>"
+msgstr "Medienobjekte mit Anzahl an Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:45
 msgid "Matches media objects with a certain reference count"
-msgstr "Liefert Medienobjekte mit einer bestimmten Anzahl Referenzen"
+msgstr "Entspricht Medienobjekten mit einer bestimmten Anzahl an Referenzen"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:47
 msgid "Media with <count> sources"
@@ -5119,7 +5134,8 @@ msgstr "Medien mit <Anzahl> Quellen"
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:48
 msgid "Matches media with a certain number of sources connected to it"
 msgstr ""
-"Liefert Medien mit einer bestimmten Anzahl von mit ihnen verknüpften Quellen"
+"Entspricht Medien mit einer bestimmten Anzahl von mit ihnen verknüpften "
+"Quellen"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:48
 msgid "Media with the <source>"
@@ -5127,7 +5143,7 @@ msgstr "Medien mit der <Quelle>"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:50
 msgid "Matches media who have a particular source"
-msgstr "Liefert Medien, die eine bestimmte Quelle haben"
+msgstr "Entspricht Medien, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:52
 msgid "Media objects with the <tag>"
@@ -5135,15 +5151,15 @@ msgstr "Medienobjekte mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:53
 msgid "Matches media objects with the particular tag"
-msgstr "Liefert Medienobjekte mit einer bestimmten Markierung"
+msgstr "Entspricht Medienobjekten mit einer bestimmten Markierung"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
-msgstr "Medienobjekte, die dem <Filter> entsprechen"
+msgstr "Medienobjekte, die <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:47
 msgid "Matches media objects matched by the specified filter name"
-msgstr "Liefert Medienobjekte, die dem angegebenen Filter entsprechen"
+msgstr "Entspricht Medienobjekten, die dem angegebenen Filter entsprechen"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:46
 msgid "Media with a direct source >= <confidence level>"
@@ -5152,7 +5168,8 @@ msgstr "Medien mit einer direkten Quelle >= <Zuverlässigkeitsgrad >"
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:48
 msgid "Matches media with at least one direct source with confidence level(s)"
 msgstr ""
-"Liefert Medien mit mindestens einer Quelle mit Zuverlässigkeitsgrad(en)"
+"Entspricht Medien mit mindestens einer direkten Quelle mit "
+"Zuverlässigkeitsgrad(en)"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:44
 msgid "Media objects marked private"
@@ -5160,7 +5177,7 @@ msgstr "Als vertraulich gekennzeichnete Medienobjekte"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:45
 msgid "Matches Media objects that are indicated as private"
-msgstr "Liefert Medienobjekte, die als vertraulich gekennzeichnet sind"
+msgstr "Entspricht Medienobjekten, die als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:49
 msgid "Media objects with Id containing <text>"
@@ -5169,8 +5186,7 @@ msgstr "Medienobjekte, deren ID <Text> enthält"
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:51
 msgid "Matches media objects whose Gramps ID matches the regular expression"
 msgstr ""
-"Liefert Medienobjekte, deren Gramps-ID mit dem regulären Ausdruck "
-"übereinstimmt"
+"Entspricht Medienobjekten, deren Gramps-ID dem regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:46
 msgid "Every note"
@@ -5178,7 +5194,7 @@ msgstr "Jede Notiz"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:47
 msgid "Matches every note in the database"
-msgstr "Liefert jede Notiz in der Datenbank"
+msgstr "Entspricht jeder Notiz in der Datenbank"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:49
 msgid "Notes changed after <date time>"
@@ -5189,9 +5205,9 @@ msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Liefert Notizeinträge, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT "
-"HH:MM:ss) geändert wurden oder in einem Zeitraum, wenn ein zweites Datum/"
-"Zeitpunkt angegeben ist."
+"Entspricht Notizeinträgen, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-"
+"MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein zweites "
+"Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
@@ -5199,7 +5215,7 @@ msgstr "Notiz mit <ID>"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:47
 msgid "Matches a note with a specified Gramps ID"
-msgstr "Liefert eine Notiz mit einer bestimmten Gramps-ID"
+msgstr "Entspricht einer Notiz mit einer bestimmten Gramps-ID"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:51
 msgid "Notes matching parameters"
@@ -5207,15 +5223,15 @@ msgstr "Notizen, die den Parametern entsprechen"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:52
 msgid "Matches Notes with particular parameters"
-msgstr "Liefert Notizen mit bestimmten Parametern"
+msgstr "Entspricht Notizen mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:44
 msgid "Notes with a reference count of <count>"
-msgstr "Notizen mit einer Referenzenanzahl von <Anzahl>"
+msgstr "Notizen mit einer Anzahl an Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:45
 msgid "Matches notes with a certain reference count"
-msgstr "Liefert Notizen mit einer bestimmten Anzahl von Referenzen"
+msgstr "Entspricht Notizen mit einer bestimmten Anzahl an Referenzen"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:52
 msgid "Notes with the <tag>"
@@ -5223,7 +5239,7 @@ msgstr "Notizen mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
-msgstr "Liefert Notizen mit bestimmter Markierung"
+msgstr "Entspricht Notizen mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:48
 msgid "Notes with the particular type"
@@ -5231,11 +5247,11 @@ msgstr "Notizen einer bestimmten Art"
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:46
 msgid "Notes matching the <filter>"
-msgstr "Notizen, die dem <Filter> entsprechen"
+msgstr "Notizen, die <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:47
 msgid "Matches notes matched by the specified filter name"
-msgstr "Liefert Notizen, die dem angegebenen Filter entsprechen"
+msgstr "Entspricht Notizen, die dem angegebenen Filter entsprechen"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:45
 msgid "Notes containing <text>"
@@ -5244,8 +5260,8 @@ msgstr "Notizen, die <Text> enthalten"
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:47
 msgid "Matches notes that contain a substring or match a regular expression"
 msgstr ""
-"Liefert Notizen, die eine Teilzeichenkette enthalten oder mit einem "
-"regulären Ausdruck übereinstimmen"
+"Entspricht Notizen, die eine Teilzeichenkette enthalten oder dem regulären "
+"Ausdruck entsprechen"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:46
 msgid "Notes containing <substring>"
@@ -5254,8 +5270,7 @@ msgstr "Notizen, die <Teilzeichenfolge> enthalten"
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:47
 msgid "Matches notes that contain text which matches a substring"
 msgstr ""
-"Liefert Notizen, die Text enthalten, der mit einer Teilzeichenkette "
-"übereinstimmt"
+"Entspricht Notizen, die Text enthalten, der einer Teilzeichenkette entspricht"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:44
 msgid "Notes marked private"
@@ -5263,7 +5278,7 @@ msgstr "Als vertraulich gekennzeichnete Notizen"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:45
 msgid "Matches notes that are indicated as private"
-msgstr "Liefert Notizen, die als vertraulich gekennzeichnet sind"
+msgstr "Entspricht Notizen, die als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:49
 msgid "Notes with Id containing <text>"
@@ -5271,8 +5286,7 @@ msgstr "Notizen, deren ID <Text> enthält"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:50
 msgid "Matches notes whose Gramps ID matches the regular expression"
-msgstr ""
-"Liefert Notizen, deren Gramps-ID mit dem regulären Ausdruck übereinstimmt"
+msgstr "Entspricht Notizen, deren Gramps-ID dem regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:49
 msgid "Persons changed after <date time>"
@@ -5283,13 +5297,13 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Liefert Personeneinträge, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-"
-"TT HH:MM:ss) geändert wurden oder in einem Zeitraum, wenn ein zweites Datum/"
-"Zeitpunkt angegeben ist."
+"Entspricht Personeneinträgen, die nach einem bestimmten Datum/Zeitpunkt "
+"(JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein "
+"zweites Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Beziehungspfad zwischen <Person> und Personen entsprechend <Filter>"
+msgstr "Beziehungspfad zwischen <Person> und Personen, die <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:134
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:48
@@ -5326,7 +5340,7 @@ msgstr "Beziehungspfade finden"
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:61
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:60
 msgid "Retrieving all sub-filter matches"
-msgstr "Abrufen aller Unterfiltertreffer"
+msgstr "Abrufen aller Unterfilter-Übereinstimmungen"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:170
 msgid "Evaluating people"
@@ -5341,8 +5355,8 @@ msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
 msgstr ""
-"Liefert Personen, die keine familiären Beziehungen zu irgendjemandem in der "
-"Datenbank haben"
+"Entspricht Personen, die keine familiären Beziehungen zu einer anderen "
+"Person in der Datenbank haben"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:46
 #: ../gramps/gen/plug/_pluginreg.py:80
@@ -5351,7 +5365,7 @@ msgstr "Jeden"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:48
 msgid "Matches everyone in the database"
-msgstr "Liefert alle in der Datenbank"
+msgstr "Entspricht jedem in der Datenbank"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:44
 msgid "Families with incomplete events"
@@ -5359,7 +5373,8 @@ msgstr "Familien mit unvollständigen Ereignissen"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:46
 msgid "Matches people with missing date or place in an event of the family"
-msgstr "Liefert Personen mit fehlendem Datum oder Ort in einem Familienereignis"
+msgstr ""
+"Entspricht Personen mit fehlendem Datum oder Ort in einem Familienereignis"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:51
 msgid "People with <count> addresses"
@@ -5367,7 +5382,7 @@ msgstr "Personen mit <Anzahl> Adressen"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:52
 msgid "Matches people with a certain number of personal addresses"
-msgstr "Liefert Personen mit einer bestimmtem Anzahl persönlicher Adressen"
+msgstr "Entspricht Personen mit einer bestimmtem Anzahl persönlicher Adressen"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:44
 msgid "People with an address containing <text>"
@@ -5375,7 +5390,8 @@ msgstr "Personen, deren Adresse <Text> enthält"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:46
 msgid "Matches people with a personal address containing the given text"
-msgstr "Liefert Personen mit einer Adresse, die einen bestimmten Text enthält"
+msgstr ""
+"Entspricht Personen mit einer Adresse, die einen bestimmten Text enthält"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:47
 msgid "People with an alternate name"
@@ -5383,7 +5399,7 @@ msgstr "Personen mit Namensänderung"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:48
 msgid "Matches people with an alternate name"
-msgstr "Liefert Personen mit Namensänderungen"
+msgstr "Entspricht Personen mit Namensänderungen"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:51
 msgid "People with <count> associations"
@@ -5391,7 +5407,7 @@ msgstr "Personen mit <Anzahl> Verbindungen"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:52
 msgid "Matches people with a certain number of associations"
-msgstr "Liefert Personen, mit einer bestimmten Anzahl von Verbindungen"
+msgstr "Entspricht Personen mit einer bestimmten Anzahl von Verbindungen"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:114
@@ -5401,11 +5417,11 @@ msgstr "Personenattribut:"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:47
 msgid "People with the personal <attribute>"
-msgstr "Personen mit dem <Attribut>"
+msgstr "Personen mit <Attribut>"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:49
 msgid "Matches people with the personal attribute of a particular value"
-msgstr "Liefert Personen mit einem Personenattribut mit einem bestimmten Wert"
+msgstr "Entspricht Personen mit dem Personenattribut eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:51
 msgid "People with the <birth data>"
@@ -5413,7 +5429,7 @@ msgstr "Personen mit <Geburtsdaten>"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:52
 msgid "Matches people with birth data of a particular value"
-msgstr "Liefert Person mit bestimmten Geburtsdaten"
+msgstr "Entspricht Personen mit einem bestimmten Geburtsdatum"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:50
 msgid "People with the <citation>"
@@ -5421,7 +5437,7 @@ msgstr "Personen mit der <Fundstelle>"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:51
 msgid "Matches people with a citation of a particular value"
-msgstr "Liefert Personen mit einer Fundstelle eines bestimmten Werts"
+msgstr "Entspricht Personen mit einer Fundstelle eines bestimmten Werts"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:48
 msgid "People with a common ancestor with <person>"
@@ -5442,19 +5458,20 @@ msgstr "Vorfahrenfilter"
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:51
 msgid "Matches people that have a common ancestor with a specified person"
 msgstr ""
-"Liefert Personen, die gemeinsame Vorfahren mit einer festgelegten Person "
+"Entspricht Personen, die gemeinsame Vorfahren mit einer bestimmten Person "
 "haben"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:50
 msgid "People with a common ancestor with <filter> match"
-msgstr "Personen mit einem gemeinsamen Vorfahren mit <Filter>"
+msgstr ""
+"Personen mit einem gemeinsamen Vorfahren mit Übereinstimmung bei <Filter>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:52
 msgid ""
 "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
-"Liefert Personen, die einen gemeinsamen Vorfahren mit jemandem haben, der im "
-"Filter enthalten ist"
+"Entspricht Personen, die einen gemeinsamen Vorfahren mit jemandem haben, der "
+"einem Filter entspricht"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:51
 msgid "People with the <death data>"
@@ -5462,7 +5479,7 @@ msgstr "Personen mit <Sterbedaten>"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:52
 msgid "Matches people with death data of a particular value"
-msgstr "Liefert Personen mit bestimmten Todesdaten"
+msgstr "Entspricht Personen mit bestimmten Sterbedaten"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:48
 #: ../gramps/gui/editors/filtereditor.py:111
@@ -5481,7 +5498,7 @@ msgstr "Personen mit dem persönlichen <Ereignis>"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:56
 msgid "Matches people with a personal event of a particular value"
-msgstr "Liefert Person mit einem bestimmten persönlichen Ereignis"
+msgstr "Entspricht Personen mit einem Personenereignis eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:47
 msgid "People with the family <attribute>"
@@ -5489,7 +5506,7 @@ msgstr "Personen mit dem familiären <Attribut>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:48
 msgid "Matches people with the family attribute of a particular value"
-msgstr "Liefert Personen mit dem Familienattribut eines bestimmten Wertes"
+msgstr "Entspricht Personen mit dem Familienattribut eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:50
 msgid "People with the family <event>"
@@ -5497,7 +5514,7 @@ msgstr "Personen mit dem familiären <Ereignis>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:51
 msgid "Matches people with a family event of a particular value"
-msgstr "Liefert Person mit einem bestimmten familiären Ereignis"
+msgstr "Entspricht Personen mit einem Familienereignis eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:44
 msgid "People with <count> media"
@@ -5506,7 +5523,7 @@ msgstr "Personen mit <Anzahl> Medien"
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:45
 msgid "Matches people with a certain number of items in the gallery"
 msgstr ""
-"Liefert Personen mit einer bestimmten Anzahl von Objekten in der Galerie"
+"Entspricht Personen mit einer bestimmten Anzahl an Objekten in der Galerie"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:46
 #: ../gramps/gen/filters/rules/person/_matchidof.py:47
@@ -5516,7 +5533,7 @@ msgstr "Person mit <ID>"
 #: ../gramps/gen/filters/rules/person/_hasidof.py:47
 #: ../gramps/gen/filters/rules/person/_matchidof.py:48
 msgid "Matches person with a specified Gramps ID"
-msgstr "Liefert Person mit einer bestimmten Gramps-ID"
+msgstr "Entspricht Person mit einer bestimmten Gramps-ID"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:50
 msgid "People with <count> LDS events"
@@ -5524,7 +5541,7 @@ msgstr "Personen mit <Anzahl> HLT-Ereignissen"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:51
 msgid "Matches people with a certain number of LDS events"
-msgstr "Liefert Personen mit einer bestimmten Anzahl HLT-Ereignissen"
+msgstr "Entspricht Personen mit einer bestimmten Anzahl an HLT-Ereignissen"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:49
 msgid "Given name:"
@@ -5580,7 +5597,7 @@ msgstr "Personen mit dem <Namen>"
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:62
 #: ../gramps/gen/filters/rules/person/_searchname.py:49
 msgid "Matches people with a specified (partial) name"
-msgstr "Liefert Personen mit einem bestimmten Namen(steil)"
+msgstr "Entspricht Personen mit einem bestimmten Namen (Namensteil)"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:47
 #: ../gramps/gui/editors/filtereditor.py:121
@@ -5594,7 +5611,7 @@ msgstr "Personen mit der <Herkunftsart des Nachnamens>"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:49
 msgid "Matches people with a surname origin"
-msgstr "Liefert Personen mit einer Nachnamenherkunft"
+msgstr "Entspricht Personen mit einer Herkunft des Nachnamens"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:47
 #: ../gramps/gui/editors/filtereditor.py:120
@@ -5608,7 +5625,7 @@ msgstr "Personen mit der <Namensart>"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:49
 msgid "Matches people with a type of name"
-msgstr "Liefert Personen mit einer Namensart"
+msgstr "Entspricht Personen mit einer Art des Namens"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:47
 msgid "People with a nickname"
@@ -5616,7 +5633,7 @@ msgstr "Personen mit einem Spitznamen"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:48
 msgid "Matches people with a nickname"
-msgstr "Liefert Personen mit einem Spitznamen"
+msgstr "Entspricht Personen mit einem Spitznamen"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:47
 msgid "People having <count> notes"
@@ -5624,7 +5641,7 @@ msgstr "Personen mit <Anzahl> Notizen"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:48
 msgid "Matches people having a certain number of notes"
-msgstr "Liefert Personen, die eine bestimmte Anzahl von Notizen haben"
+msgstr "Entspricht Personen, die eine bestimmte Anzahl an Notizen haben"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:44
 msgid "People having notes containing <substring>"
@@ -5633,8 +5650,8 @@ msgstr "Personen mit Notizen, die <Teilzeichenfolge> enthalten"
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:45
 msgid "Matches people whose notes contain text matching a substring"
 msgstr ""
-"Liefert Personen, deren Notizen Text enthalten, der mit einer "
-"Teilzeichenkette übereinstimmt"
+"Entspricht Personen, deren Notizen Text enthalten, der einer "
+"Teilzeichenkette entspricht"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:42
 msgid "People having notes containing <text>"
@@ -5643,8 +5660,8 @@ msgstr "Personen, deren Notizen <Text> enthalten"
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:44
 msgid "Matches people whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Personen, deren Notizen Text enthalten, der einem regulären Ausdruck "
-"entspricht"
+"Entspricht Personen, deren Notizen Text enthalten, der einem regulären "
+"Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
 msgid "People with a note of type <type>"
@@ -5652,7 +5669,7 @@ msgstr "Personen mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
 msgid "Matches people with a note of the specified type"
-msgstr "Liefert Personen mit einer Notiz der angegebenen Art"
+msgstr "Entspricht Personen mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 msgid "People who are neither male nor female"
@@ -5660,7 +5677,7 @@ msgstr "Personen, die weder männlich noch weiblich sind"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:49
 msgid "Matches all people with other gender"
-msgstr "Liefert alle Personen mit anderem Geschlecht"
+msgstr "Entspricht allen Personen mit anderem Geschlecht"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:48
 msgid "Number of relationships:"
@@ -5676,7 +5693,7 @@ msgstr "Personen mit den <Beziehungen>"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:53
 msgid "Matches people with a particular relationship"
-msgstr "Liefert Personen mit einer bestimmten Beziehung"
+msgstr "Entspricht Personen mit einer bestimmten Beziehung"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:54
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:47
@@ -5707,15 +5724,16 @@ msgstr "Name:"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:49
 msgid "Soundex match of People with the <name>"
-msgstr "Soundex-Übereinstimmung von Personen mit dem <Namen>"
+msgstr "Soundex-Übereinstimmung von Personen mit <Namen>"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:51
 msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"Soundex liefert Personen mit einem bestimmten Namen. Vorname, Nachname, "
-"Rufname und Spitzname werden in primären und alternativen Namen gesucht."
+"Soundex entspricht Personen mit einem bestimmten Namen. Vorname, Nachname, "
+"Rufname und Spitzname werden im primären und in alternativen Namen "
+"durchsucht."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:47
 msgid "People with <count> sources"
@@ -5724,7 +5742,7 @@ msgstr "Personen mit <Anzahl> Quellen"
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:48
 msgid "Matches people with a certain number of sources connected to it"
 msgstr ""
-"Liefert Personen mit einer bestimmten Anzahl von mit ihnen verbundenen "
+"Entspricht Personen mit einer bestimmten Anzahl an mit ihnen verbundenen "
 "Quellen"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:48
@@ -5733,7 +5751,7 @@ msgstr "Personen mit der <Quelle>"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:50
 msgid "Matches people who have a particular source"
-msgstr "Liefert Personen, die eine bestimmte Quelle haben"
+msgstr "Entspricht Personen, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "People with the <tag>"
@@ -5741,7 +5759,7 @@ msgstr "Personen mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:53
 msgid "Matches people with the particular tag"
-msgstr "Liefert Personen mit einer bestimmten Markierung"
+msgstr "Entspricht Personen mit einer bestimmten Markierung"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 #: ../gramps/gui/editors/filtereditor.py:609
@@ -5755,7 +5773,7 @@ msgstr "Personen mit Einträgen, die <Teilzeichenfolge> enthalten"
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:51
 msgid "Matches people whose records contain text matching a substring"
 msgstr ""
-"Liefert Personen, deren Aufzeichnungen Text enthält, der einer "
+"Entspricht Personen, deren Einträge Text enthalten, der einer "
 "Teilzeichenfolge entspricht"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:47
@@ -5764,7 +5782,7 @@ msgstr "Personen mit unbekanntem Geschlecht"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:49
 msgid "Matches all people with unknown gender"
-msgstr "Liefert alle Personen, deren Geschlecht unbekannt ist"
+msgstr "Entspricht allen Personen, deren Geschlecht unbekannt ist"
 
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:45
 msgid "Adopted people"
@@ -5772,7 +5790,7 @@ msgstr "Adoptierte Personen"
 
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:46
 msgid "Matches people who were adopted"
-msgstr "Liefert Personen, die adoptiert wurden"
+msgstr "Entspricht Personen, die adoptiert wurden"
 
 #: ../gramps/gen/filters/rules/person/_havechildren.py:47
 msgid "People with children"
@@ -5780,7 +5798,7 @@ msgstr "Personen mit Kindern"
 
 #: ../gramps/gen/filters/rules/person/_havechildren.py:48
 msgid "Matches people who have children"
-msgstr "Liefert Personen, die Kinder haben"
+msgstr "Entspricht Personen, die Kinder haben"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:46
 msgid "People with incomplete names"
@@ -5788,7 +5806,7 @@ msgstr "Personen mit unvollständigen Namen"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:47
 msgid "Matches people with firstname or lastname missing"
-msgstr "Liefert Personen, bei denen ein Vor- oder Nachname fehlt"
+msgstr "Entspricht Personen, bei denen ein Vor- oder Nachname fehlt"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:47
 msgid "Ancestors of <person>"
@@ -5796,17 +5814,17 @@ msgstr "Vorfahren von <Person>"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:49
 msgid "Matches people that are ancestors of a specified person"
-msgstr "Liefert Personen, die Vorfahren einer festgelegten Person sind"
+msgstr "Entspricht Personen, die Vorfahren einer festgelegten Person sind"
 
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:49
 msgid "Ancestors of <filter> match"
-msgstr "Vorfahren von <Filter>-Treffer"
+msgstr "Vorfahren von <Filter>-Übereinstimmung"
 
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:52
 msgid "Matches people that are ancestors of anybody matched by a filter"
 msgstr ""
-"Liefert Personen, die Vorfahren von jemandem sind, die im Filter enthalten "
-"sind"
+"Entspricht Personen, die Vorfahren von jemandem sind, der einem Filter "
+"enstpricht"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:47
 msgid "Bookmarked people"
@@ -5814,15 +5832,15 @@ msgstr "Personen aus Lesezeichenliste"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:49
 msgid "Matches the people on the bookmark list"
-msgstr "Liefert Personen aus der Lesezeichenliste"
+msgstr "Entspricht Personen aus der Lesezeichenliste"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:49
 msgid "Children of <filter> match"
-msgstr "Kinder von <Filter>-Treffer"
+msgstr "Kinder von <Filter>-Übereinstimmung"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:51
 msgid "Matches children of anybody matched by a filter"
-msgstr "Liefert Kinder von Personen, die im Filter enthalten sind"
+msgstr "Entspricht Kindern von jemandem, der einem Filter entspricht"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
 msgid "Home Person"
@@ -5830,7 +5848,7 @@ msgstr "Hauptperson"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:48
 msgid "Matches the Home Person"
-msgstr "Liefert die Hauptperson"
+msgstr "Entspricht der Hauptperson"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:52
 msgid "Descendant family members of <person>"
@@ -5850,20 +5868,20 @@ msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
 msgstr ""
-"Liefert Personen, die Nachkommen oder (Ehe-)Partner von Nachkommen einer "
+"Entspricht Personen, die Nachkommen oder (Ehe-)Partner von Nachkommen einer "
 "festgelegten Person sind"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:49
 msgid "Descendant family members of <filter> match"
-msgstr "Nachkommen-Familienmitglieder von <Filter>-Treffer"
+msgstr "Nachkommen-Familienmitglieder von <Filter>-Übereinstimmung"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:52
 msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
 msgstr ""
-"Liefert Personen, die Nachkommen oder (Ehe-)Partner von jemandem sind, der "
-"dem Filter entspricht"
+"Entspricht Personen, die Nachkommen oder (Ehe-)Partner von jemandem sind, "
+"der dem Filter entspricht"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:48
 msgid "Descendants of <person>"
@@ -5871,16 +5889,17 @@ msgstr "Nachkommen von <Person>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:50
 msgid "Matches all descendants for the specified person"
-msgstr "Liefert alle Nachkommen der angegebenen Person"
+msgstr "Entspricht allen Nachkommen der angegebenen Person"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:49
 msgid "Descendants of <filter> match"
-msgstr "Nachkommen von <Filter>-Treffer"
+msgstr "Nachkommen von <Filter>-Übereinstimmung"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:52
 msgid "Matches people that are descendants of anybody matched by a filter"
 msgstr ""
-"Liefert Personen, die Nachkommen von jemandem sind, der dem Filter entspricht"
+"Entspricht Personen, die Nachkommen von jemandem sind, der dem Filter "
+"entspricht"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:49
 msgid "Duplicated ancestors of <person>"
@@ -5889,7 +5908,7 @@ msgstr "Doppelte Vorfahren von <Person>"
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:52
 msgid "Matches people that are ancestors twice or more of a specified person"
 msgstr ""
-"Liefert Personen, die doppelt oder mehrfach Vorfahren einer bestimmten "
+"Entspricht Personen, die doppelt oder mehrfach Vorfahren einer bestimmten "
 "Person sind"
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:47
@@ -5904,7 +5923,7 @@ msgstr "Frauen"
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:49
 msgid "Matches all females"
-msgstr "Liefert alle Frauen"
+msgstr "Entspricht allen Frauen"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:47
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:53
@@ -5925,7 +5944,7 @@ msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
 msgstr ""
-"Liefert Personen, die Vorfahren einer festgelegten Person sind, aber "
+"Entspricht Personen, die Vorfahren einer festgelegten Person sind, aber "
 "höchstens N Generationen entfernt"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:54
@@ -5939,7 +5958,7 @@ msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr ""
-"Liefert Vorfahren einer Person aus den Lesezeichen, die nicht mehr als <N> "
+"Entspricht Vorfahren der Personen in der Lesezeichenliste, die höchstens <N> "
 "Generationen entfernt sind"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:49
@@ -5949,8 +5968,8 @@ msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:52
 msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
-"Liefert Personen, die Vorfahren der Hauptperson sind, die höchstens <N> "
-"Generationen entfernt sind"
+"Entspricht Personen, die Vorfahren der Hauptperson sind, aber höchstens <N> "
+"Generationen entfernt"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:48
 msgid "Descendants of <person> not more than <N> generations away"
@@ -5961,8 +5980,8 @@ msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
 msgstr ""
-"Liefert Personen, die Nachkommen einer bestimmten Person sind, aber "
-"höchstens <N> Generationen entfernt sind"
+"Entspricht Personen, die Nachkommen einer bestimmten Person sind, aber "
+"höchstens <N> Generationen entfernt"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:47
 #: ../gramps/plugins/gramplet/statsgramplet.py:150
@@ -5976,7 +5995,7 @@ msgstr "Männer"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:49
 msgid "Matches all males"
-msgstr "Liefert alle Männer"
+msgstr "Entspricht allen Männern"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:48
 msgid "Ancestors of <person> at least <N> generations away"
@@ -5987,8 +6006,8 @@ msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr ""
-"Liefert Personen, die Vorfahren einer festgelegten Person sind, aber "
-"wenigstens <N> Generationen entfernt sind"
+"Entspricht Personen, die Vorfahren einer festgelegten Person sind, aber "
+"wenigstens <N> Generationen entfernt"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:48
 msgid "Descendants of <person> at least <N> generations away"
@@ -5999,16 +6018,16 @@ msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr ""
-"Liefert Personen, die Nachkommen einer festgelegten Person sind, aber "
-"wenigstens <N> Generationen entfernt sind"
+"Entspricht Personen, die Nachkommen einer festgelegten Person sind, aber "
+"wenigstens <N> Generationen entfernt"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:49
 msgid "Parents of <filter> match"
-msgstr "Eltern von <Filter>-Treffer"
+msgstr "Eltern von <Filter>-Übereinstimmung"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:51
 msgid "Matches parents of anybody matched by a filter"
-msgstr "Liefert die Eltern von den im Filter enthalten Personen"
+msgstr "Entspricht den Eltern von allen, die einem Filter entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:47
 msgid "People related to <Person>"
@@ -6016,27 +6035,25 @@ msgstr "Personen mit Beziehung zu <Person>"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:49
 msgid "Matches people related to a specified person"
-msgstr "Liefert Personen mit Beziehung zu einer bestimmten Person"
+msgstr "Entspricht Personen, die mit einer bestimmten Person verwandt sind"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:48
 msgid "Siblings of <filter> match"
-msgstr "Geschwister von <Filter>-Treffer"
+msgstr "Geschwister von <Filter>-Übereinstimmung"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:50
 msgid "Matches siblings of anybody matched by a filter"
-msgstr ""
-"Liefert Personen, die Geschwister von jemanden sind, der im Filter enthalten "
-"ist"
+msgstr "Entspricht Geschwistern von allen, die einem Filter entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:49
 msgid "Spouses of <filter> match"
-msgstr "(Ehe-)Partner eines <Filter>-Treffers"
+msgstr "(Ehe-)Partner einer <Filter>-Übereinstimmung"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:50
 msgid "Matches people married to anybody matching a filter"
 msgstr ""
-"Liefert Personen, die mit jenen verheiratet sind, die im Filter enthalten "
-"sind"
+"Entspricht Personen, die mit jemandem verheiratet sind, der einem Filter "
+"entspricht"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:49
 msgid "Witnesses"
@@ -6044,7 +6061,7 @@ msgstr "Zeugen"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:50
 msgid "Matches people who are witnesses in any event"
-msgstr "Liefert Personen, die bei einem Ereignis Zeuge sind"
+msgstr "Entspricht Personen, die bei irgendeinem Ereignis Zeuge sind"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:51
@@ -6054,21 +6071,21 @@ msgstr "Ereignisfiltername:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:54
 msgid "Persons with events matching the <event filter>"
-msgstr "Personen mit Ereignissen, die dem <Ereignisfilter> entsprechen"
+msgstr "Personen mit Ereignissen, die <Ereignisfilter> entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:56
 msgid "Matches persons who have events that match a certain event filter"
 msgstr ""
-"Liefert Personen mit Ereignissen, die einem bestimmten Ereignisfilter "
+"Entspricht Personen mit Ereignissen, die einem bestimmten Ereignisfilter "
 "entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:46
 msgid "People matching the <filter>"
-msgstr "Personen, die dem <Filter> entsprechen"
+msgstr "Personen, die <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:47
 msgid "Matches people matched by the specified filter name"
-msgstr "Liefert Personen, die dem angegebenen Filter entsprechen"
+msgstr "Entspricht Personen, die dem angegebenen Filter entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:46
 msgid "Persons with at least one direct source >= <confidence level>"
@@ -6079,7 +6096,8 @@ msgstr ""
 msgid ""
 "Matches persons with at least one direct source with confidence level(s)"
 msgstr ""
-"Liefert Personen mit mindestens einer Quelle mit Zuverlässigkeitsgrad(en)"
+"Entspricht Personen mit mindestens einer direkten Quelle mit "
+"Zuverlässigkeitsgrad(en)"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:45
 msgid "People missing parents"
@@ -6090,24 +6108,24 @@ msgid ""
 "Matches people that are children in a family with less than two parents or "
 "are not children in any family."
 msgstr ""
-"Liefert Personen, die Kinder in einer Familie mit weniger als zwei "
+"Entspricht Personen, die Kinder in einer Familie mit weniger als zwei "
 "Elternteilen oder keine Kinder in einer Familie sind."
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:44
 msgid "People with multiple marriage records"
-msgstr "Personen mit mehreren Eheschließungen"
+msgstr "Personen mit mehreren Eheschließungseinträgen"
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:45
 msgid "Matches people who have more than one spouse"
-msgstr "Liefert Personen, die mehr als einen (Ehe-)Partner haben"
+msgstr "Entspricht Personen, die mehr als einen (Ehe-)Partner haben"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:44
 msgid "People with no marriage records"
-msgstr "Personen ohne Eheschließungen"
+msgstr "Personen ohne Eheschließungseinträgen"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:45
 msgid "Matches people who have no spouse"
-msgstr "Liefert Personen, die keine(n) (Ehe-)Partner haben"
+msgstr "Entspricht Personen, die keine(n) (Ehe-)Partner haben"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:44
 msgid "People without a known birth date"
@@ -6115,7 +6133,7 @@ msgstr "Personen ohne bekanntes Geburtsdatum"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:45
 msgid "Matches people without a known birthdate"
-msgstr "Liefert Personen ohne bekanntes Geburtsdatum"
+msgstr "Entspricht Personen ohne bekanntem Geburtsdatum"
 
 #: ../gramps/gen/filters/rules/person/_nodeathdate.py:44
 msgid "People without a known death date"
@@ -6123,7 +6141,7 @@ msgstr "Personen ohne bekanntes Todesdatum"
 
 #: ../gramps/gen/filters/rules/person/_nodeathdate.py:45
 msgid "Matches people without a known deathdate"
-msgstr "Liefert Personen ohne bekanntes Todesdatum"
+msgstr "Entspricht Personen ohne bekanntem Sterbedatum"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:44
 msgid "People marked private"
@@ -6131,7 +6149,7 @@ msgstr "Als vertraulich gekennzeichnete Personen"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:45
 msgid "Matches people that are indicated as private"
-msgstr "Liefert Personen, die als vertraulich gekennzeichnet sind"
+msgstr "Entspricht Personen, die als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:45
 msgid "People not marked private"
@@ -6139,7 +6157,7 @@ msgstr "Nicht als vertraulich gekennzeichnete Personen"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:46
 msgid "Matches people that are not indicated as private"
-msgstr "Liefert Personen, die nicht als vertraulich gekennzeichnet sind"
+msgstr "Entspricht Personen, die nicht als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:44
 msgid "People with incomplete events"
@@ -6147,7 +6165,7 @@ msgstr "Personen mit unvollständigen Ereignissen"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:45
 msgid "Matches people with missing date or place in an event"
-msgstr "Liefert Personen mit Ereignis, in dem Datum oder Ort fehlt"
+msgstr "Entspricht Personen mit Ereignis, in dem Datum oder Ort fehlt"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:46
 msgid "On date:"
@@ -6159,7 +6177,7 @@ msgstr "Personen, die wahrscheinlich leben"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:48
 msgid "Matches people without indications of death that are not too old"
-msgstr "Liefert Personen ohne Todeseintrag, die nicht zu alt sind"
+msgstr "Entspricht Personen ohne Anzeichen ihres Todes, die nicht zu alt sind"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:48
 msgid "People with Id containing <text>"
@@ -6167,20 +6185,19 @@ msgstr "Personen, deren ID <Text> enthält"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:49
 msgid "Matches people whose Gramps ID matches the regular expression"
-msgstr ""
-"Liefert Personen, deren Gramps-ID mit dem regulären Ausdruck übereinstimmt"
+msgstr "Entspricht Personen, deren Gramps-ID dem regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:48
 msgid "People with a name matching <text>"
-msgstr "Personen deren Namen mit <Text> übereinstimmt"
+msgstr "Personen mit einem Namen, der <Text> entspricht"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:50
 msgid ""
 "Matches people's names containing a substring or matching a regular "
 "expression"
 msgstr ""
-"Liefert Namen von Personen, die eine Teilzeichenfolge enthalten oder einem "
-"regulären Ausdruck entsprechen"
+"Entspricht Namen von Personen, die eine Teilzeichenfolge enthalten oder "
+"einem regulären Ausdruck entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:48
 msgid "Relationship path between <persons>"
@@ -6191,8 +6208,8 @@ msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
 msgstr ""
-"Liefert die Vorfahren zweier Personen zurückgehend bis zu einem gemeinsamen "
-"Vorfahren, wodurch ein Beziehungspfad zwischen zwei Personen entsteht."
+"Ordnet die Vorfahren zweier Personen einem gemeinsamen Vorfahren zu, wodurch "
+"der Beziehungspfad zwischen zwei Personen erstellt wird."
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:53
 msgid "Relationship path between bookmarked persons"
@@ -6203,13 +6220,13 @@ msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"Liefert die Vorfahren der Personen mit Lesezeichen zurückgehend bis zu "
-"gemeinsamen Vorfahren, wodurch ein Beziehungspfad zwischen den Personen "
-"entsteht."
+"Ordnet die Vorfahren von mit Lesezeichen versehenen Personen gemeinsamen "
+"Vorfahren zu, wodurch Beziehungspfade zwischen den mit Lesezeichen "
+"versehenen Personen entstehen."
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:48
 msgid "People matching the <name>"
-msgstr "Personen mit <Namen>"
+msgstr "Personen, die <Name> entsprechen"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:46
 msgid "Every place"
@@ -6217,7 +6234,7 @@ msgstr "Jeder Ort"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:47
 msgid "Matches every place in the database"
-msgstr "Liefert jeden Ort in der Datenbank"
+msgstr "Entspricht jedem Ort in der Datenbank"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:49
 msgid "Places changed after <date time>"
@@ -6228,9 +6245,9 @@ msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Liefert Ortseinträge, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT "
-"HH:MM:ss) geändert wurden oder in einem Zeitraum, wenn ein zweites Datum/"
-"Zeitpunkt angegeben ist."
+"Entspricht Ortseinträgen, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-"
+"TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein zweites Datum/"
+"Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
@@ -6238,7 +6255,7 @@ msgstr "Ort mit der <Fundstelle>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 msgid "Matches places with a citation of a particular value"
-msgstr "Liefert Orte mit einer Fundstelle mit einem bestimmten Wert"
+msgstr "Entspricht Orten mit einer Fundstelle mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:49
 #: ../gramps/gui/editors/editplace.py:106
@@ -6270,7 +6287,7 @@ msgstr "Orte, die den Parametern entsprechen"
 #: ../gramps/gen/filters/rules/place/_hasdata.py:54
 #: ../gramps/gen/filters/rules/place/_hasplace.py:62
 msgid "Matches places with particular parameters"
-msgstr "Liefert Orte mit bestimmten Parametern"
+msgstr "Entspricht Orten mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:47
 msgid "Places with <count> media"
@@ -6278,7 +6295,7 @@ msgstr "Orte mit <Anzahl> Medien"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:48
 msgid "Matches places with a certain number of items in the gallery"
-msgstr "Liefert Orte mit einer bestimmten Anzahl von Objekten in der Galerie"
+msgstr "Entspricht Orten mit einer bestimmten Anzahl an Objekten in der Galerie"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:46
 msgid "Place with <Id>"
@@ -6286,7 +6303,7 @@ msgstr "Ort mit <ID>"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:47
 msgid "Matches a place with a specified Gramps ID"
-msgstr "Liefert Orte mit einer bestimmten Gramps-ID"
+msgstr "Entspricht einem Ort mit einer bestimmten Gramps-ID"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:49
 msgid "Places with no latitude or longitude given"
@@ -6294,7 +6311,7 @@ msgstr "Orte ohne angegebenem Längen- oder Breitengrad"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:50
 msgid "Matches places with empty latitude or longitude"
-msgstr "Liefert Orte mit leerem Längen- oder Breitengrad"
+msgstr "Entspricht Orten mit leerem Längen- oder Breitengrad"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:51
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:62
@@ -6308,7 +6325,7 @@ msgstr "Orte mit <Anzahl> Notizen"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:48
 msgid "Matches places having a certain number of notes"
-msgstr "Liefert Orte mit einer bestimmten Anzahl von Notizen"
+msgstr "Entspricht Orten mit einer bestimmten Anzahl an Notizen"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:44
 msgid "Places having notes containing <substring>"
@@ -6317,7 +6334,8 @@ msgstr "Orte mit Notizen, die <Teilzeichenfolge> enthalten"
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:45
 msgid "Matches places whose notes contain text matching a substring"
 msgstr ""
-"Liefert Orte, deren Notizen einen Text mit einer Teilzeichenfolge enthalten"
+"Entspricht Orten, deren Notizen einen Text mit einer Teilzeichenfolge "
+"enthalten"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:42
 msgid "Places having notes containing <text>"
@@ -6326,8 +6344,8 @@ msgstr "Orte mit Notizen, die <Text> enthalten"
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:44
 msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Orte, deren Notizen einen Text entsprechend einem regulären Ausdruck "
-"enthalten"
+"Entspricht Orten, deren Notizen Text enthalten, der einem regulären Ausdruck "
+"entspricht"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
 msgid "Places with a note of type <type>"
@@ -6335,7 +6353,7 @@ msgstr "Orte mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
 msgid "Matches places with a note of the specified type"
-msgstr "Liefert Orte mit einer Notiz der angegebenen Art"
+msgstr "Entspricht Orten mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "Street:"
@@ -6371,11 +6389,11 @@ msgstr "Pfarre:"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:44
 msgid "Places with a reference count of <count>"
-msgstr "Orte mit einer Referenzanzahl von <Anzahl>"
+msgstr "Orte mit einer Anzahl an Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:45
 msgid "Matches places with a certain reference count"
-msgstr "Liefert Orte mit einer bestimmten Anzahl von Referenzen"
+msgstr "Entspricht Orten mit einer bestimmten Anzahl an Referenzen"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:47
 msgid "Place with <count> sources"
@@ -6384,7 +6402,7 @@ msgstr "Orte mit <Anzahl> Quellen"
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:48
 msgid "Matches places with a certain number of sources connected to it"
 msgstr ""
-"Liefert Orte mit einer bestimmten Anzahl von Quellen, die mit ihnen "
+"Entspricht Orten mit einer bestimmten Anzahl an Quellen, die mit ihnen "
 "verbunden sind"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
@@ -6393,7 +6411,7 @@ msgstr "Orte mit der <Quelle>"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:50
 msgid "Matches places who have a particular source"
-msgstr "Liefert Orte, die eine bestimmte Quelle haben"
+msgstr "Entspricht Orten, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:52
 msgid "Places with the <tag>"
@@ -6401,7 +6419,7 @@ msgstr "Orte mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:53
 msgid "Matches places with the particular tag"
-msgstr "Liefert Orte mit einer bestimmten Markierung"
+msgstr "Entspricht Orten mit der bestimmten Markierung"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:51
 msgid "Places matching a title"
@@ -6409,7 +6427,7 @@ msgstr "Orte, die einem Titel entsprechen"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:52
 msgid "Matches places with a particular title"
-msgstr "Liefert Orte mit einem bestimmten Titel"
+msgstr "Entspricht Orten mit einem bestimmten Titel"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:51
 #: ../gramps/gui/glade/editplaceref.glade:278
@@ -6445,9 +6463,9 @@ msgid ""
 "height and width (in degrees), and with middlepoint the given latitude and "
 "longitude."
 msgstr ""
-"Liefert Orte, deren Breiten- oder Längengrad in einem Rechteck mit "
-"angegebener Höhe und Länge (in Grad) liegt und deren Mittelpunkt den "
-"gegebenen Breiten- und Längengrad hat."
+"Entspricht Orten, deren Breiten- oder Längengrad in einem Rechteck mit "
+"angegebener Höhe und Länge (in Grad) liegt und deren Mittelpunkt der "
+"angegebene Breiten- und Längengrad ist."
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:51
 msgid "Places enclosed by another place"
@@ -6455,27 +6473,27 @@ msgstr "Orte, die Teil eines anderen Ortes sind"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:52
 msgid "Matches a place enclosed by a particular place"
-msgstr "Liefert einen Ort, der in einem bestimmten Ort enthalten ist"
+msgstr "Entspricht einem Ort, der Teil von einem bestimmten Ort ist"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:52
 msgid "Places of events matching the <event filter>"
-msgstr "Orte von Ereignissen, die dem <Ereignisfilter> entsprechen"
+msgstr "Orte von Ereignissen, die <Ereignisfilter> entsprechen"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:54
 msgid ""
 "Matches places where events happened that match the specified event filter "
 "name"
 msgstr ""
-"Liefert Orte, an denen Ereignisse stattgefunden haben, die dem angegeben "
+"Entspricht Orten, an denen Ereignisse stattgefunden haben, die dem angegeben "
 "Ereignisfilter entsprechen"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:46
 msgid "Places matching the <filter>"
-msgstr "Orte, die dem <Filter> entsprechen"
+msgstr "Orte, die <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:47
 msgid "Matches places matched by the specified filter name"
-msgstr "Liefert Orte, die dem angegebenen Filternamen entsprechen"
+msgstr "Entspricht Orten, die dem angegebenen Filternamen entsprechen"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:46
 msgid "Place with a direct source >= <confidence level>"
@@ -6483,7 +6501,9 @@ msgstr "Ort mit einer direkten Quelle >= <Zuverlässigkeitsgrad >"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:48
 msgid "Matches places with at least one direct source with confidence level(s)"
-msgstr "Liefert Orte mit mindestens einer Quelle mit Zuverlässigkeitsgrad(en)"
+msgstr ""
+"Entspricht Orten mit mindestens einer direkten Quelle mit "
+"Zuverlässigkeitsgrad(en)"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:44
 msgid "Places marked private"
@@ -6491,7 +6511,7 @@ msgstr "Als vertraulich gekennzeichnete Orte"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:45
 msgid "Matches places that are indicated as private"
-msgstr "Liefert Orte, die als vertraulich gekennzeichnet sind"
+msgstr "Entspricht Orten, die als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:49
 msgid "Places with Id containing <text>"
@@ -6499,7 +6519,7 @@ msgstr "Orte mit einer ID, die <Text> enthält"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:50
 msgid "Matches places whose Gramps ID matches the regular expression"
-msgstr "Liefert Orte, deren Gramps-ID dem regulären Ausdruck entspricht"
+msgstr "Entspricht Orten, deren Gramps-ID dem regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:59
 #: ../gramps/gui/editors/filtereditor.py:634
@@ -6513,7 +6533,7 @@ msgstr "Orte innerhalb eines Gebiets"
 #: ../gramps/gen/filters/rules/place/_withinarea.py:61
 msgid "Matches places within a given distance of another place"
 msgstr ""
-"Liefert Orte innerhalb einer bestimmten Entfernung zu einem anderen Ort"
+"Entspricht Orten innerhalb einer bestimmten Entfernung zu einem anderen Ort"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid "Cannot use the filter 'within area'"
@@ -6533,7 +6553,7 @@ msgstr "Jeder Aufbewahrungsort"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:47
 msgid "Matches every repository in the database"
-msgstr "Liefert jeden Aufbewahrungsort in der Datenbank"
+msgstr "Entspricht jedem Aufbewahrungsort in der Datenbank"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:49
 msgid "Repositories changed after <date time>"
@@ -6544,9 +6564,9 @@ msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
-"Liefert Einträge von Aufbewahrungsorten, die nach einem bestimmten Datum/"
-"Zeitpunkt (JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, wenn "
-"ein zweites Datum/Zeitpunkt angegeben ist."
+"Entspricht Einträgen von Aufbewahrungsorten, die nach einem bestimmten Datum/"
+"Zeitpunkt (JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, "
+"falls ein zweites Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repository attribute:"
@@ -6558,7 +6578,7 @@ msgstr "Aufbewahrungsorte mit dem Attribut <Attribut>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:49
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Liefert Aufbewahrungsorte mit dem Attribut eines bestimmten Wertes"
+msgstr "Entspricht Aufbewahrungsorten mit dem Attribut eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:46
 msgid "Repository with <Id>"
@@ -6566,7 +6586,7 @@ msgstr "Aufbewahrungsort mit <ID>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Liefert Aufbewahrungsorte mit einer angegebenen Gramps-ID"
+msgstr "Entspricht einem Aufbewahrungsort mit angegebener Gramps-ID"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:44
 msgid "Repositories having notes containing <substring>"
@@ -6575,7 +6595,7 @@ msgstr "Aufbewahrungsorte, deren Notizen <Teilzeichenfolge> enthalten"
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:46
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Liefert Aufbewahrungsorte, deren Notizen Text enthalten, der einer "
+"Entspricht Aufbewahrungsorten, deren Notizen Text enthalten, der einer "
 "Teilzeichenkette entspricht"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
@@ -6586,16 +6606,16 @@ msgstr "Aufbewahrungsorte mit Notizen, die <Text> enthalten"
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Aufbewahrungsorte, deren Notizen Text enthalten, der einem regulären "
-"Ausdruck entspricht"
+"Entspricht Aufbewahrungsorten, deren Notizen Text enthalten, der einem "
+"regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Repositories with a reference count of <count>"
-msgstr "Aufbewahrungsorte mit einer Referenzanzahl von <Anzahl>"
+msgstr "Aufbewahrungsorte mit einer Anzahl an Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:45
 msgid "Matches repositories with a certain reference count"
-msgstr "Liefert Aufbewahrungsorte mit einer bestimmten Anzahl von Referenzen"
+msgstr "Entspricht Aufbewahrungsorte mit einer bestimmten Anzahl an Referenzen"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:48
 #: ../gramps/gui/glade/mergerepository.glade:208
@@ -6619,7 +6639,7 @@ msgstr "Aufbewahrungsorte, die den Parametern entsprechen"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:54
 msgid "Matches Repositories with particular parameters"
-msgstr "Liefert Aufbewahrungsorte mit bestimmten Parametern"
+msgstr "Entspricht Aufbewahrungsorten mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Repositories with the <tag>"
@@ -6627,15 +6647,15 @@ msgstr "Aufbewahrungsorte mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:53
 msgid "Matches repositories with the particular tag"
-msgstr "Liefert Aufbewahrungsorte mit einer bestimmten Markierung"
+msgstr "Entspricht Aufbewahrungsorten mit einer bestimmten Markierung"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
-msgstr "Aufbewahrungsorte, die mit <Filter> übereinstimmen"
+msgstr "Aufbewahrungsorte, die <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:47
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Liefert Aufbewahrungsorte, die dem angegebenen Filter entsprechen"
+msgstr "Entspricht Aufbewahrungsorten, die dem angegebenen Filter entsprechen"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:45
 msgid "Repositories with name containing <text>"
@@ -6644,7 +6664,8 @@ msgstr "Aufbewahrungsorte, deren Name <Text> enthält"
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:46
 msgid "Matches repositories whose name contains a certain substring"
 msgstr ""
-"Liefert Aufbewahrungsorte, deren Name eine bestimmte Teilzeichenfolge enthält"
+"Entspricht Aufbewahrungsorten, deren Name einer bestimmte Teilzeichenfolge "
+"entspricht"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
 msgid "Repositories with Id containing <text>"
@@ -6653,8 +6674,8 @@ msgstr "Aufbewahrungsorte, deren ID <Text> enthält"
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:51
 msgid "Matches repositories whose Gramps ID matches the regular expression"
 msgstr ""
-"Liefert Aufbewahrungsorte, deren Gramps-ID mit dem regulären Ausdruck "
-"übereinstimmt"
+"Entspricht Aufbewahrungsorte, deren Gramps-ID dem regulären Ausdruck "
+"entspricht"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:44
 msgid "Repositories marked private"
@@ -6662,7 +6683,7 @@ msgstr "Als vertraulich gekennzeichnete Aufbewahrungsorte"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:45
 msgid "Matches repositories that are indicated as private"
-msgstr "Liefert Aufbewahrungsorte, die als vertraulich markiert sind"
+msgstr "Entspricht Aufbewahrungsorten, die als vertraulich markiert sind"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:46
 msgid "Every source"
@@ -6670,7 +6691,7 @@ msgstr "Jede Quelle"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:47
 msgid "Matches every source in the database"
-msgstr "Liefert jede Quelle in der Datenbank"
+msgstr "Entspricht jeder Quelle in der Datenbank"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:49
 msgid "Sources changed after <date time>"
@@ -6681,9 +6702,9 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Liefert Quelleneinträge, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-"
-"TT HH:MM:ss) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/"
-"Zeitpunkt angegeben ist."
+"Entspricht Quelleneinträgen, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-"
+"MM-TT HH:MM:ss) oder in einem Zeitraum geändert wurden, falls ein zweites "
+"Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Source attribute:"
@@ -6695,7 +6716,7 @@ msgstr "Quellen mit dem Attribut <Attribut>"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:49
 msgid "Matches sources with the attribute of a particular value"
-msgstr "Liefert Quellen mit dem Attribut eines bestimmten Wertes"
+msgstr "Entspricht Quellen mit dem Attribut eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:47
 msgid "Sources with <count> media"
@@ -6704,7 +6725,7 @@ msgstr "Quellen mit <Anzahl> Medien"
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:48
 msgid "Matches sources with a certain number of items in the gallery"
 msgstr ""
-"Liefert Quellen mit einer bestimmten Anzahl von Objekten in der Galerie"
+"Entspricht Quellen mit einer bestimmten Anzahl an Objekten in der Galerie"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:46
 msgid "Source with <Id>"
@@ -6712,7 +6733,7 @@ msgstr "Quelle mit <ID>"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:47
 msgid "Matches a source with a specified Gramps ID"
-msgstr "Liefert Quellen mit einer angegebenen Gramps-ID"
+msgstr "Entspricht einer Quelle mit einer angegebenen Gramps-ID"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:47
 msgid "Sources having <count> notes"
@@ -6720,7 +6741,7 @@ msgstr "Quellen mit <Anzahl> Notizen"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:48
 msgid "Matches sources having a certain number of notes"
-msgstr "Liefert Quellen mit einer bestimmten Anzahl von Notizen"
+msgstr "Entspricht Quellen mit einer bestimmten Anzahl an Notizen"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:44
 msgid "Sources having notes containing <substring>"
@@ -6729,8 +6750,8 @@ msgstr "Quellen, deren Notizen die <Teilzeichenfolge> enthalten"
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:45
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr ""
-"Liefert Quellen, deren Notizen Text enthalten, der mit einer "
-"Teilzeichenkette übereinstimmt"
+"Entspricht Quellen, deren Notizen Text enthalten, der einer Teilzeichenkette "
+"entspricht"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:42
 msgid "Sources having notes containing <text>"
@@ -6739,8 +6760,8 @@ msgstr "Quellen mit Notizen, die <Text> enthalten"
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:44
 msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Quellen, deren Notizen Text enthalten, der einem regulären Ausdruck "
-"entspricht"
+"Entspricht Quellen, deren Notizen Text enthalten, der einem regulären "
+"Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
 msgid "Sources with a note of type <type>"
@@ -6748,15 +6769,15 @@ msgstr "Quellen mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
 msgid "Matches sources with a note of the specified type"
-msgstr "Liefert Quellen mit einer Notiz der angegebenen Art"
+msgstr "Entspricht Quellen mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
-msgstr "Quellen mit einer Referenzanzahl von <Anzahl>"
+msgstr "Quellen mit einer Anzahl an Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:45
 msgid "Matches sources with a certain reference count"
-msgstr "Liefert Quellen mit einer bestimmten Anzahl von Referenzen"
+msgstr "Entspricht Quellen mit einer bestimmten Anzahl an Referenzen"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:49
 msgid "Sources with <count> Repository references"
@@ -6765,7 +6786,7 @@ msgstr "Quellen mit <Zahl> Aufbewahrungsortreferenzen"
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:50
 msgid "Matches sources with a certain number of repository references"
 msgstr ""
-"Liefert Quellen mit einer bestimmten Anzahl von Aufbewahrungsortreferenzen"
+"Entspricht Quellen mit einer bestimmten Anzahl an Aufbewahrungsortreferenzen"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:46
 msgid "Sources with repository reference containing <text> in \"Call Number\""
@@ -6776,12 +6797,12 @@ msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"Liefert Quellen, deren Aufbewahrungsortreferenz\n"
+"Entspricht Quellen, deren Aufbewahrungsortreferenz\n"
 "eine Teilzeichenfolge in \"Signatur\" enthält"
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
 msgid "Matches sources with particular parameters"
-msgstr "Liefert Quellen mit gegebenen Parametern"
+msgstr "Entspricht Quellen mit gegebenen Parametern"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -6789,20 +6810,20 @@ msgstr "Quellen mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:53
 msgid "Matches sources with the particular tag"
-msgstr "Liefert Quellen mit bestimmter Markierung"
+msgstr "Entspricht Quellen mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
-msgstr "Quellen entsprechend <Filter>"
+msgstr "Quellen, die <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:47
 msgid "Matches sources matched by the specified filter name"
-msgstr "Liefert Quellen, die dem angegebenen Filternamen entsprechen"
+msgstr "Entspricht Quellen, die dem angegebenen Filternamen entsprechen"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:46
 msgid "Sources with repository reference matching the <repository filter>"
 msgstr ""
-"Quellen mit Aufbewahrungsortreferenz, die dem <Aufbewahrungsortfilter> "
+"Quellen mit Aufbewahrungsortreferenz, die <Aufbewahrungsortfilter> "
 "entsprechen"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:48
@@ -6810,7 +6831,7 @@ msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"Liefert Quellen mit einer Aufbewahrungsortreferenz, die einem bestimmten\n"
+"Entspricht Quellen mit einer Aufbewahrungsortreferenz, die einem bestimmten\n"
 "Aufbewahrungsortfilter entspricht"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:45
@@ -6819,7 +6840,7 @@ msgstr "Quellen mit Titel, der <Text> enthält"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:46
 msgid "Matches sources whose title contains a certain substring"
-msgstr "Liefert Quellen, deren Titel eine bestimmte Teilzeichenfolge enthält"
+msgstr "Entspricht Quellen, deren Titel eine bestimmte Teilzeichenfolge enthält"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:49
 msgid "Sources with Id containing <text>"
@@ -6827,8 +6848,7 @@ msgstr "Quellen mit einer ID, die <Text> enthält"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:50
 msgid "Matches sources whose Gramps ID matches the regular expression"
-msgstr ""
-"Liefert Quellen, deren Gramps-ID mit dem regulären Ausdruck übereinstimmt"
+msgstr "Entspricht Quellen, deren Gramps-ID dem regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:44
 msgid "Sources marked private"
@@ -6836,7 +6856,7 @@ msgstr "Als vertraulich gekennzeichnete Quellen"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:45
 msgid "Matches sources that are indicated as private"
-msgstr "Liefert Quellen, die als vertraulich markiert sind"
+msgstr "Entspricht Quellen, die als vertraulich markiert sind"
 
 #: ../gramps/gen/lib/address.py:106 ../gramps/gui/clipboard.py:317
 #: ../gramps/gui/configure.py:708 ../gramps/gui/editors/editaddress.py:200
@@ -12949,7 +12969,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2369
 msgid "Tag Records"
-msgstr "Einträge-Markierung"
+msgstr "Eintragsmarkierungen"
 
 #: ../gramps/gui/configure.py:2391
 msgid "Add tag on import"
@@ -14586,7 +14606,7 @@ msgid ""
 msgstr ""
 "Eine Quelle ist alles (persönliche Aussage, Videoaufnahme, Foto, "
 "Zeitungsartikel, Grabstein...), aus dem Informationen abgeleitet werden "
-"können. Um eine Fundstelle zu erstellen, wähle zunächst die gewünschte "
+"können. Um eine Fundstelle zu einzutragen, wähle zunächst die gewünschte "
 "Quelle aus und gib dann im Feld 'Band/Seite' den Ort der Information an, auf "
 "die in der Quelle verwiesen wird."
 
@@ -15114,7 +15134,7 @@ msgstr "Das Medienobjekt kann nicht gespeichert werden. ID existiert bereits."
 
 #: ../gramps/gui/editors/editmedia.py:351
 msgid "There is no media matching the current path value!"
-msgstr "Es gibt kein Medium, welches den aktuellem Pfadwerten entspricht!"
+msgstr "Es gibt keine Medien, die dem aktuellen Pfadwert entsprechen!"
 
 #: ../gramps/gui/editors/editmedia.py:353
 #, python-format
@@ -15728,7 +15748,7 @@ msgstr "Beachte Groß-/Kleinschreibung"
 
 #: ../gramps/gui/editors/filtereditor.py:611
 msgid "Regular-Expression matching:"
-msgstr "Entspricht regulärem Ausdruck:"
+msgstr "Übereinstimmung mit regulärem Ausdruck:"
 
 #: ../gramps/gui/editors/filtereditor.py:612
 msgid "Use regular expression"
@@ -15784,15 +15804,15 @@ msgid ""
 "$\tA dollar sign will match the end of a line."
 msgstr ""
 "Interpretiert den Inhalt von Stringfeldern als reguläre Ausdrücke:\n"
-".\tEin Punkt passt auf jedes Zeichen.\n"
+".\tEin Punkt entspricht jedem Zeichen.\n"
 "?\tEin Fragezeichen entspricht null oder einem Vorkommen des vorherigen "
 "Zeichens oder der vorherigen Gruppe.\n"
-"*\tEin Sternchen passt auf null oder mehr Vorkommen.\n"
-"+\tEin Plus-Zeichen stimmt mit einem oder mehreren Vorkommen überein.\n"
+"*\tEin Sternchen entspricht null oder mehr Vorkommen.\n"
+"+\tEin Plus-Zeichen entspricht einem oder mehreren Vorkommen.\n"
 "()\tVerwende Klammern, um Ausdrücke zu gruppieren.\n"
 "|\tGib Alternativen mit einem vertikalen Balken an.\n"
-"^\tEin Dacherl passt auf den Anfang einer Zeile.\n"
-"$\tEin Dollarzeichen steht am Ende einer Zeile."
+"^\tEin Dacherl entspricht dem Zeilenanfang.\n"
+"$\tEin Dollarzeichen entspricht dem Zeilenende."
 
 #: ../gramps/gui/editors/filtereditor.py:668
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:86
@@ -17706,7 +17726,7 @@ msgid ""
 "records."
 msgstr ""
 "Liefert einen kurzen Titel, der für das Sortieren, Ablegen und Abfragen von "
-"Quellen-Einträgen verwendet wird."
+"Quelleneinträgen verwendet wird."
 
 #: ../gramps/gui/glade/editsource.glade:195
 msgid "A_bbreviation:"
@@ -18249,7 +18269,7 @@ msgstr "Ko_mmentar:"
 
 #: ../gramps/gui/glade/rule.glade:591
 msgid "Return values that do no_t match the filter rules"
-msgstr "Werte liefern, die nicht den Filterregeln entsprechen"
+msgstr "Werte liefern, die nich_t den Filterregeln entsprechen"
 
 #: ../gramps/gui/glade/rule.glade:879
 msgid "Selected Rule"
@@ -19201,7 +19221,7 @@ msgstr "Nachnamen wählen"
 #: ../gramps/gui/plug/_guioptions.py:93
 #: ../gramps/plugins/quickview/filterbyname.py:470
 msgid "Count"
-msgstr "Zählung"
+msgstr "Anzahl"
 
 #: ../gramps/gui/plug/_guioptions.py:120
 msgid "Finding Surnames"
@@ -19371,7 +19391,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/_windows.py:589
 msgid "No matching addons found."
-msgstr "Keine passenden Erweiterungen gefunden."
+msgstr "Keine entsprechenden Erweiterungen gefunden."
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
@@ -22788,7 +22808,7 @@ msgstr "Der Stil, der für die Textanzeige der Generation \"%d\" verwendet wird"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:330
 msgid "Item count"
-msgstr "Artikelanzahl"
+msgstr "Stückzahl"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 msgid "All"
@@ -23050,7 +23070,7 @@ msgid ""
 "Whether to include counts of the number of people who lack the given "
 "information."
 msgstr ""
-"Ob die Anzahl von Personen eingefügt wird, bei denen die angegebenen Daten "
+"Ob die Anzahl an Personen eingefügt wird, bei denen die angegebenen Daten "
 "fehlen."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1215
@@ -23325,7 +23345,8 @@ msgstr "Teil_von"
 #: ../gramps/plugins/export/exportcsv.py:393
 #, python-brace-format
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
-msgstr "CSV-Export unterstützt nur Hauptnachnamen, {count} ausgelassen"
+msgstr ""
+"CSV-Export unterstützt keine nicht-primären Nachnamen, {count} weggelassen"
 
 #: ../gramps/plugins/export/exportcsv.py:429
 msgid "Birth source"
@@ -23421,7 +23442,7 @@ msgstr "GEDCOM-Export fehlgeschlagen"
 
 #: ../gramps/plugins/export/exportgeneweb.py:99
 msgid "No families matched by selected filter"
-msgstr "Keine Familien entsprechen dem ausgewählten Filter"
+msgstr "Keine Familien, die dem ausgewählten Filter entsprechen"
 
 #: ../gramps/plugins/export/exportpkg.py:213
 #: ../gramps/plugins/export/exportxml.py:151
@@ -23772,8 +23793,8 @@ msgstr ""
 #, python-format
 msgid " 11. %(web_html_start)sHow do I record one's occupation?%(html_end)s\n"
 msgstr ""
-" 11. %(web_html_start)sWie kann ich den Beruf einer Person eingeben?"
-"%(html_end)s\n"
+" 11. %(web_html_start)sWie kann ich den Beruf einer Person "
+"eintragen?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:206
 #, python-format
@@ -23970,7 +23991,7 @@ msgstr "Gramplet zum Anzeigen von Verwandten der aktiven Person"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:282
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:289
 msgid "Session Log"
-msgstr "Sitzungsaufzeichnungen"
+msgstr "Sitzungsprotokoll"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:283
 msgid "Gramplet showing all activity for this session"
@@ -24522,7 +24543,7 @@ msgstr "Rekorde"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1306
 #: ../gramps/plugins/textreport/textplugins.gpr.py:419
 msgid "Shows some interesting records about people and families"
-msgstr "Zeigt einige interessante Rekorde von Personen und Familien an"
+msgstr "Zeigt einige interessante Rekorde von Personen und Familien"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1323
 msgid "Person To Do"
@@ -24869,7 +24890,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:51
 msgid "Log for this Session"
-msgstr "Aufzeichnungen für diese Sitzung"
+msgstr "Protokoll für diese Sitzung"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:60
 msgid "Opened data base -----------\n"
@@ -24897,7 +24918,7 @@ msgstr "SoundEx-Code:"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:61
 msgid "Double-click item to see matches"
-msgstr "Doppelklick auf Eintrag um die Treffer zu sehen"
+msgstr "Doppelklick auf Eintrag um die Übereinstimmungen zu sehen"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:97
 #: ../gramps/plugins/textreport/summary.py:335
@@ -27338,9 +27359,9 @@ msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
 " Writing to %(filename)s in format %(impliedext)s."
 msgstr ""
-"Unterschied zwischen gewählter Erweiterung %(ext)s und dem aktuellen "
+"Nichtübereinstimmung zwischen gewählter Erweiterung %(ext)s und aktuellem "
 "Format.\n"
-" Schreibe nach %(filename)s im Format %(impliedext)s."
+" Schreibe in %(filename)s im Format %(impliedext)s."
 
 #: ../gramps/plugins/lib/libgedcom.py:739
 msgid "Common Law Marriage"
@@ -32203,7 +32224,8 @@ msgid ""
 "Living matches: %(alive)d, Deceased matches: %(dead)d\n"
 msgstr ""
 "\n"
-"Treffer lebt: %(alive)d, Treffer verstorben: %(dead)d\n"
+"Lebende Übereinstimmungen: %(alive)d, Verstorbene Übereinstimmungen: %(dead)"
+"d\n"
 
 #: ../gramps/plugins/quickview/all_events.py:59
 #, python-format
@@ -32321,7 +32343,7 @@ msgstr "Personen, die das '%s' Attribut besitzen"
 #: ../gramps/plugins/quickview/attributematch.py:48
 #, python-format
 msgid "There are %d people with a matching attribute name.\n"
-msgstr "Es gibt %d Personen mit einem passenden Attributnamen.\n"
+msgstr "Es gibt %d Personen mit entsprechendem Attributnamen.\n"
 
 #: ../gramps/plugins/quickview/filterbyname.py:43
 msgctxt "Filtering_on"
@@ -32480,7 +32502,7 @@ msgstr "Liste von Personen"
 
 #: ../gramps/plugins/quickview/filterbyname.py:89
 msgid "Summary counts of current selection"
-msgstr "Zusammengefasste Zählung der aktuellen Auswahl"
+msgstr "Zusammenfassende Mengen der aktuellen Auswahl"
 
 #: ../gramps/plugins/quickview/filterbyname.py:91
 msgid "Right-click row (or press ENTER) to see selected items."
@@ -32490,7 +32512,7 @@ msgstr ""
 
 #: ../gramps/plugins/quickview/filterbyname.py:93
 msgid "Count/Total"
-msgstr "Gesamt"
+msgstr "Anzahl/Gesamt"
 
 #: ../gramps/plugins/quickview/filterbyname.py:93
 #: ../gramps/plugins/tool/reorderids.glade:1383
@@ -32556,8 +32578,8 @@ msgstr "Größe in Bytes"
 #, python-brace-format
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
-msgstr[0] "Filter passt auf {number_of} Eintrag."
-msgstr[1] "Filter passt auf {number_of} Einträge."
+msgstr[0] "Filter entspricht {number_of} Eintrag."
+msgstr[1] "Filter entspricht {number_of} Einträgen."
 
 #: ../gramps/plugins/quickview/lineage.py:53
 #, python-format
@@ -32687,7 +32709,7 @@ msgstr "Zeigt Personen und deren Alter an einem bestimmten Datum"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:58
 msgid "Attribute Match"
-msgstr "Attribut Übereinstimmung"
+msgstr "Attributübereinstimmung"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:59
 msgid "Display people with same attribute."
@@ -32825,23 +32847,23 @@ msgstr "Personen mit unvollständigen Nachnamen"
 
 #: ../gramps/plugins/quickview/samesurnames.py:43
 msgid "Matches people with lastname missing"
-msgstr "Liefert Personen mit fehlendem Nachnamen"
+msgstr "Entspricht Personen mit fehlendem Nachnamen"
 
 #: ../gramps/plugins/quickview/samesurnames.py:57
 msgid "People matching the <surname>"
-msgstr "Personen mit dem <Nachname>"
+msgstr "Personen, die <Nachnamen> entsprechen"
 
 #: ../gramps/plugins/quickview/samesurnames.py:58
 msgid "Matches people with same lastname"
-msgstr "Liefert Personen mit demselben Nachnamen"
+msgstr "Entspricht Personen mit demselben Nachnamen"
 
 #: ../gramps/plugins/quickview/samesurnames.py:73
 msgid "People matching the <given>"
-msgstr "Personen, die den <Vorgaben> entsprechen"
+msgstr "Personen, die <Vorname> entsprechen"
 
 #: ../gramps/plugins/quickview/samesurnames.py:74
 msgid "Matches people with same given name"
-msgstr "Liefert Personen mit demselben Vornamen"
+msgstr "Entspricht Personen mit demselben Vornamen"
 
 #: ../gramps/plugins/quickview/samesurnames.py:100
 msgid "People with incomplete given names"
@@ -32849,7 +32871,7 @@ msgstr "Personen mit unvollständigem Vornamen"
 
 #: ../gramps/plugins/quickview/samesurnames.py:101
 msgid "Matches people with firstname missing"
-msgstr "Liefert Personen mit fehlendem Vornamen"
+msgstr "Entspricht Personen mit fehlendem Vornamen"
 
 #: ../gramps/plugins/quickview/samesurnames.py:127
 #, python-format
@@ -32863,9 +32885,9 @@ msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
 msgstr[0] ""
-"Es gibt {number_of} Person mit einem passenden oder geänderten Namen.\n"
+"Es gibt {number_of} Person mit entsprechendem oder alternativem Namen.\n"
 msgstr[1] ""
-"Es gibt {number_of} Personen mit einem passenden oder geänderten Namen.\n"
+"Es gibt {number_of} Personen mit entsprechendem oder alternativem Namen.\n"
 
 #: ../gramps/plugins/quickview/samesurnames.py:177
 #, python-format
@@ -34158,7 +34180,7 @@ msgid ""
 "Total ancestors in generations %(second_generation)d to %(last_generation)d "
 "is %(count)d. %(percent)s"
 msgstr ""
-"Die Gesamtzahl der Vorfahren der %(second_generation)d. bis "
+"Die Gesamtmenge der Vorfahren der %(second_generation)d. bis "
 "%(last_generation)d. Generation ist %(count)d. %(percent)s"
 
 #: ../gramps/plugins/textreport/placereport.py:136
@@ -34699,7 +34721,7 @@ msgstr "Ereignisse analysieren"
 
 #: ../gramps/plugins/tool/changetypes.py:137
 msgid "No event record was modified."
-msgstr "Kein Ereigniseintrag wurde geändert."
+msgstr "Es wurde kein Ereigniseintrag geändert."
 
 #: ../gramps/plugins/tool/changetypes.py:141
 #, python-brace-format
@@ -34823,7 +34845,7 @@ msgstr "Suche nach leeren Quelleneinträgen"
 
 #: ../gramps/plugins/tool/check.py:983
 msgid "Looking for empty citation records"
-msgstr "Suche nach leeren Fundstellen-Einträgen"
+msgstr "Suche nach leeren Fundstelleneinträgen"
 
 #: ../gramps/plugins/tool/check.py:992
 msgid "Looking for empty place records"
@@ -34835,7 +34857,7 @@ msgstr "Suche nach leeren Medieneinträgen"
 
 #: ../gramps/plugins/tool/check.py:1010
 msgid "Looking for empty repository records"
-msgstr "Suche nach leeren Aufbewahrungsorte-Einträgen"
+msgstr "Suche nach leeren Aufbewahrungsorteinträgen"
 
 #: ../gramps/plugins/tool/check.py:1019
 msgid "Looking for empty note records"
@@ -35257,7 +35279,7 @@ msgstr "Wählen von Personen"
 
 #: ../gramps/plugins/tool/eventcmp.py:196
 msgid "No matches were found"
-msgstr "Keine Treffer gefunden"
+msgstr "Es wurden keine Übereinstimmungen gefunden"
 
 #: ../gramps/plugins/tool/eventcmp.py:250
 #: ../gramps/plugins/tool/eventcmp.py:285
@@ -35313,7 +35335,7 @@ msgstr "Es wurde keine Ereignisbeschreibung hinzugefügt."
 #: ../gramps/plugins/tool/finddupes.glade:115
 #: ../gramps/plugins/tool/mergecitations.glade:115
 msgid "Match Threshold"
-msgstr "Vergleichsschwellwert"
+msgstr "Übereinstimmungsschwellwert"
 
 #: ../gramps/plugins/tool/finddupes.glade:142
 msgid "Use soundex codes"
@@ -35345,7 +35367,7 @@ msgstr "Werkzeugeinstellungen"
 
 #: ../gramps/plugins/tool/finddupes.py:181
 msgid "No matches found"
-msgstr "Keine Treffer gefunden"
+msgstr "Keine Übereinstimmungen gefunden"
 
 #: ../gramps/plugins/tool/finddupes.py:182
 msgid "No potential duplicate people were found"
@@ -35365,7 +35387,7 @@ msgstr "Durchgang 1: Erstelle Vorbereitungslisten"
 
 #: ../gramps/plugins/tool/finddupes.py:227
 msgid "Pass 2: Calculating potential matches"
-msgstr "Durchgang 2: Berechnet mögliche Treffer"
+msgstr "Durchgang 2: Berechnung der möglichen Übereinstimmungen"
 
 #: ../gramps/plugins/tool/finddupes.py:558
 msgid "Potential Merges"
@@ -35620,7 +35642,7 @@ msgstr "Nicht zusammenführen, falls die Fundstelle Notizen enthält"
 
 #: ../gramps/plugins/tool/mergecitations.py:77
 msgid "Match on Page/Volume, Date and Confidence"
-msgstr "Liefert Seite/Band, Datum und Zuverlässigkeit"
+msgstr "Entspricht Seite/Band, Datum und Zuverlässigkeit"
 
 #: ../gramps/plugins/tool/mergecitations.py:78
 msgid "Ignore Date"
@@ -35643,8 +35665,8 @@ msgstr "Fundstellen_zusammenf.C3.BChren"
 msgid ""
 "Notes, media objects and data-items of matching citations will be combined."
 msgstr ""
-"Notizen, Medienobjekte und Datenelemente von passenden Fundstellen werden "
-"kombiniert."
+"Notizen, Medienobjekte und Datenelemente von entsprechenden Fundstellen "
+"werden kombiniert."
 
 #: ../gramps/plugins/tool/mergecitations.py:170
 msgid "Merge citations tool"
@@ -39726,7 +39748,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/surnamelist.py:114
 msgid "Surnames by person count"
-msgstr "Nachnamen nach Anzahl der Personen"
+msgstr "Nachnamen nach Anzahl an Personen"
 
 #: ../gramps/plugins/webreport/surnamelist.py:123
 msgid ""
