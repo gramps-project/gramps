@@ -25,12 +25,7 @@
 #
 # ------------------------------------------------------------------------
 
-import json
-
-try:
-    import orjson
-except ImportError:
-    orjson = None  # type: ignore
+import orjson
 
 # ------------------------------------------------------------------------
 #
@@ -56,117 +51,55 @@ def convert_object_to_state(obj):
     return obj.get_object_state()
 
 
-class JSONConverter:
-    # def to_dict(obj):
-    @classmethod
-    def object_to_data(cls, obj):
-        """
-        Convert a Gramps object into a struct.
+def object_to_data(obj):
+    """
+    Convert any Gramps lib object into its dict representation.
+    """
+    if isinstance(obj, (float, int, str, NoneType)):
+        return obj
 
-        :param obj: The object to be serialized.
-        :type obj: object
-        :returns: A dictionary.
-        :rtype: dict
-        """
-        return json.loads(cls.object_to_string(obj))
+    elif isinstance(obj, (list, tuple)):
+        return [object_to_data(item) for item in obj]
 
-    # def from_dict(dict):
-    @classmethod
-    def data_to_object(cls, data):
-        """
-        Convert a dictionary into a Gramps object.
+    state = convert_object_to_state(obj)
+    return {k: object_to_data(v) for k, v in state.items()}
 
-        :param dict: The dictionary to be unserialized.
-        :type dict: dict
-        :returns: A Gramps object.
-        :rtype: object
-        """
-        if data is not None and "_object" in data:
+
+def data_to_object(data):
+    """
+    Convert any object dict representation to a Gramps lib object.
+
+    """
+    if isinstance(data, dict):
+        if "_object" in data:
             return data["_object"]
-        else:
-            return cls.string_to_object(json.dumps(data))
 
-    # def to_json(obj):
-    @classmethod
-    def object_to_string(cls, obj: object) -> str | bytes:
-        """
-        Encode a Gramps object in JSON format.
+        data = {k: data_to_object(v) for k, v in data.items()}
+        return convert_state_to_object(data)
 
-        :param obj: The object to be serialized.
-        :type obj: object
-        :returns: A JSON string.
-        :rtype: str
-        """
-        return json.dumps(obj, default=convert_object_to_state, ensure_ascii=False)
+    elif isinstance(data, (list, tuple)):
+        return [data_to_object(item) for item in data]
 
-    # def from_json(data):
-    @classmethod
-    def string_to_object(cls, string: str | bytes):
-        """
-        Decode JSON data into a Gramps object hierarchy.
-
-        :param data: The JSON string to be unserialized.
-        :type data: str
-        :returns: A Gramps object.
-        :rtype: object
-        """
-        return json.loads(string, object_hook=convert_state_to_object)
+    return data
 
 
-class OrJSONConverter:
-
-    # def to_dict(obj):
-    @classmethod
-    def object_to_data(cls, obj):
-        """
-        Convert any Gramps object into its dict representation.
-        """
-        if isinstance(obj, (float, int, str, NoneType)):
-            return obj
-
-        elif isinstance(obj, (list, tuple)):
-            return [cls.object_to_data(item) for item in obj]
-
-        state = convert_object_to_state(obj)
-        return {k: cls.object_to_data(v) for k, v in state.items()}
-
-    # def from_dict(dict):
-    @classmethod
-    def data_to_object(cls, data):
-        if isinstance(data, dict):
-            if "_object" in data:
-                return data["_object"]
-
-            data = {k: cls.data_to_object(v) for k, v in data.items()}
-            return convert_state_to_object(data)
-
-        elif isinstance(data, (list, tuple)):
-            return [cls.data_to_object(item) for item in data]
-
-        return data
-
-    # def to_json(obj):
-    @classmethod
-    def object_to_string(cls, obj: object) -> str | bytes:
-        return orjson.dumps(cls.object_to_data(obj))
-
-    # def from_json(data):
-    @classmethod
-    def string_to_object(cls, string: str | bytes):
-        return cls.data_to_object(orjson.loads(string))
+def object_to_string(obj: object) -> str | bytes:
+    """
+    Convert any Gramps object into a JSON string/bytes.
+    """
+    return orjson.dumps(object_to_data(obj))
 
 
-if orjson is None:
-    from_json = JSONConverter.string_to_object
-    to_json = JSONConverter.object_to_string
-    from_dict = JSONConverter.data_to_object
-    to_dict = JSONConverter.object_to_data
-    json_loads = json.loads
-    json_dumps = json.dumps
-else:
-    from_json = OrJSONConverter.string_to_object
-    to_json = OrJSONConverter.object_to_string
-    from_dict = OrJSONConverter.data_to_object
-    to_dict = OrJSONConverter.object_to_data
-    json_loads = orjson.loads
-    json_dumps = orjson.dumps
+def string_to_object(string: str | bytes):
+    """
+    Convert a JSON string/bytes into a Gramps lib object.
+    """
+    return data_to_object(orjson.loads(string))
+
+
+from_json = string_to_object
+to_json = object_to_string
+from_dict = data_to_object
+to_dict = object_to_data
+json_loads = orjson.loads
+json_dumps = orjson.dumps
