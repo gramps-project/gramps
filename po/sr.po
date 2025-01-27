@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-23 19:25+0000\n"
+"POT-Creation-Date: 2025-01-27 18:06+0000\n"
 "PO-Revision-Date: 2024-02-29 20:02+0000\n"
 "Last-Translator: Medic Momcilo <momcilo@medic.rs>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/gramps-project/"
@@ -317,7 +317,7 @@ msgstr "Сродства"
 #: ../gramps/gui/glade/editpersonref.glade:241 ../gramps/gui/grampsgui.py:58
 #: ../gramps/plugins/export/exportcsv.py:419
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:120
-#: ../gramps/plugins/importer/importcsv.py:293
+#: ../gramps/plugins/importer/importcsv.py:305
 #: ../gramps/plugins/importer/importprogen.glade:681
 #: ../gramps/plugins/importer/importprogen.glade:1175
 #: ../gramps/plugins/importer/importprogen.glade:1277
@@ -1083,8 +1083,12 @@ msgstr ""
 "gramps-project.org/bugs/“-у."
 
 #: ../data/tips.xml:96
+#, fuzzy
+#| msgid ""
+#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
+#| "project.org/."
 msgid ""
-"<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
+"<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
 "<b>Матична страница Дедовника</b><br/>Матична страница Дедовника се налази "
@@ -1283,11 +1287,17 @@ msgstr ""
 "слободног софтвера и Иницијативу отвореног кода."
 
 #: ../data/tips.xml:126
+#, fuzzy
+#| msgid ""
+#| "<b>The Gramps Software License</b><br/>You are free to use and share "
+#| "Gramps with others. Gramps is freely distributable under the GNU General "
+#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
+#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
-"License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the "
-"rights and restrictions of this license."
+"License, see https://www.gnu.org/licenses/licenses.html#GPL to read about "
+"the rights and restrictions of this license."
 msgstr ""
 "<b>Дедовникова дозвола</b><br/>Слободни сте да користите и да делите "
 "Дедовника са другима. Дедовник је слободно расподељив под Гнуовом Општом "
@@ -1902,7 +1912,7 @@ msgstr "Почињем увоз, %s"
 msgid "Import finished..."
 msgstr "Увоз је завршен..."
 
-#: ../gramps/cli/clidbman.py:406 ../gramps/plugins/importer/importcsv.py:525
+#: ../gramps/cli/clidbman.py:406 ../gramps/plugins/importer/importcsv.py:537
 msgid "Importing data..."
 msgstr "Увозим податке..."
 
@@ -1981,8 +1991,8 @@ msgstr "Закључао је %s"
 #: ../gramps/plugins/graph/gvfamilylines.py:353
 #: ../gramps/plugins/graph/gvhourglass.py:516
 #: ../gramps/plugins/graph/gvrelgraph.py:1059
-#: ../gramps/plugins/importer/importcsv.py:555
-#: ../gramps/plugins/importer/importcsv.py:1081
+#: ../gramps/plugins/importer/importcsv.py:567
+#: ../gramps/plugins/importer/importcsv.py:1096
 #: ../gramps/plugins/lib/libprogen.py:1140
 #: ../gramps/plugins/lib/maps/geography.py:915
 #: ../gramps/plugins/lib/maps/geography.py:925
@@ -3633,7 +3643,7 @@ msgstr "презиме"
 
 #: ../gramps/gen/display/name.py:647 ../gramps/gen/display/name.py:774
 #: ../gramps/gui/editors/editperson.py:408
-#: ../gramps/plugins/importer/importcsv.py:221
+#: ../gramps/plugins/importer/importcsv.py:233
 msgid "suffix"
 msgstr "суфикс"
 
@@ -3695,7 +3705,7 @@ msgstr "остала"
 
 #: ../gramps/gen/display/name.py:713 ../gramps/gen/display/name.py:836
 #: ../gramps/gui/editors/editperson.py:432
-#: ../gramps/plugins/importer/importcsv.py:220
+#: ../gramps/plugins/importer/importcsv.py:232
 msgid "prefix"
 msgstr "префикс"
 
@@ -3704,6 +3714,7 @@ msgid "rawsurnames"
 msgstr ""
 
 #: ../gramps/gen/display/name.py:720 ../gramps/gen/display/name.py:842
+#: ../gramps/plugins/importer/importcsv.py:220
 msgid "nickname"
 msgstr "надимак"
 
@@ -7151,7 +7162,7 @@ msgstr "Вредност"
 #: ../gramps/gui/autocomp.py:191 ../gramps/gui/csvdialect.py:100
 #: ../gramps/gui/csvdialect.py:131 ../gramps/gui/csvdialect.py:156
 #: ../gramps/plugins/export/exportcsv.py:276
-#: ../gramps/plugins/importer/importcsv.py:412
+#: ../gramps/plugins/importer/importcsv.py:424
 #: ../gramps/plugins/textreport/indivcomplete.py:88
 #: ../gramps/plugins/view/geoplaces.py:598
 msgid "Custom"
@@ -7203,6 +7214,8 @@ msgstr "Број здравствене књижице"
 #: ../gramps/gen/lib/attrtype.py:82 ../gramps/gen/utils/keyword.py:74
 #: ../gramps/gui/configure.py:1088 ../gramps/gui/configure.py:1090
 #: ../gramps/gui/configure.py:1094 ../gramps/gui/configure.py:1101
+#: ../gramps/plugins/export/exportcsv.py:423
+#: ../gramps/plugins/importer/importcsv.py:222
 #: ../gramps/plugins/tool/patchnames.py:488
 msgid "Nickname"
 msgstr "Надимак"
@@ -7327,7 +7340,7 @@ msgstr "Навођење"
 #: ../gramps/gen/lib/note.py:113 ../gramps/gen/lib/person.py:191
 #: ../gramps/gen/lib/place.py:155 ../gramps/gen/lib/repo.py:103
 #: ../gramps/gen/lib/src.py:113 ../gramps/gen/plug/report/stdoptions.py:394
-#: ../gramps/plugins/importer/importcsv.py:292
+#: ../gramps/plugins/importer/importcsv.py:304
 #: ../gramps/plugins/quickview/filterbyname.py:238
 #: ../gramps/plugins/quickview/filterbyname.py:248
 #: ../gramps/plugins/quickview/filterbyname.py:258
@@ -7385,9 +7398,9 @@ msgstr "Поверљивост"
 #: ../gramps/gui/editors/editlink.py:103 ../gramps/gui/editors/editsource.py:99
 #: ../gramps/gui/editors/filtereditor.py:313 ../gramps/gui/grampsgui.py:58
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:191
-#: ../gramps/plugins/export/exportcsv.py:582
+#: ../gramps/plugins/export/exportcsv.py:586
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:127
-#: ../gramps/plugins/importer/importcsv.py:223
+#: ../gramps/plugins/importer/importcsv.py:235
 #: ../gramps/plugins/importer/importprogen.glade:116
 #: ../gramps/plugins/importer/importprogen.glade:730
 #: ../gramps/plugins/importer/importxml.py:324
@@ -7604,14 +7617,14 @@ msgstr "0 дана"
 #: ../gramps/gui/glade/editplacename.glade:143
 #: ../gramps/gui/selectors/selectevent.py:69
 #: ../gramps/plugins/export/exportcsv.py:315
-#: ../gramps/plugins/export/exportcsv.py:580
+#: ../gramps/plugins/export/exportcsv.py:584
 #: ../gramps/plugins/gramplet/ageondategramplet.py:74
 #: ../gramps/plugins/gramplet/backlinks.py:94
 #: ../gramps/plugins/gramplet/coordinates.py:101
 #: ../gramps/plugins/gramplet/events.py:104
 #: ../gramps/plugins/gramplet/locations.py:91
 #: ../gramps/plugins/gramplet/personresidence.py:68
-#: ../gramps/plugins/importer/importcsv.py:371
+#: ../gramps/plugins/importer/importcsv.py:383
 #: ../gramps/plugins/importer/importprogen.glade:493
 #: ../gramps/plugins/importer/importprogen.glade:530
 #: ../gramps/plugins/importer/importprogen.glade:537
@@ -7776,12 +7789,12 @@ msgstr "Догађај"
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/gui/views/treemodels/placemodel.py:354
 #: ../gramps/plugins/export/exportcsv.py:307
-#: ../gramps/plugins/export/exportcsv.py:581
+#: ../gramps/plugins/export/exportcsv.py:585
 #: ../gramps/plugins/gramplet/coordinates.py:103
 #: ../gramps/plugins/gramplet/events.py:108
 #: ../gramps/plugins/gramplet/personresidence.py:69
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:125
-#: ../gramps/plugins/importer/importcsv.py:372
+#: ../gramps/plugins/importer/importcsv.py:384
 #: ../gramps/plugins/importer/importprogen.glade:718
 #: ../gramps/plugins/importer/importxml.py:327
 #: ../gramps/plugins/quickview/filterbyname.py:268
@@ -7874,7 +7887,7 @@ msgstr "родитељ2"
 #: ../gramps/gui/selectors/selectfamily.py:68
 #: ../gramps/gui/widgets/reorderfam.py:99
 #: ../gramps/plugins/gramplet/persondetails.py:232
-#: ../gramps/plugins/importer/importcsv.py:363
+#: ../gramps/plugins/importer/importcsv.py:375
 #: ../gramps/plugins/quickview/all_relations.py:357
 #: ../gramps/plugins/textreport/familygroup.py:242
 #: ../gramps/plugins/textreport/familygroup.py:253
@@ -7896,7 +7909,7 @@ msgstr "Отац"
 #: ../gramps/gui/selectors/selectfamily.py:69
 #: ../gramps/gui/widgets/reorderfam.py:99
 #: ../gramps/plugins/gramplet/persondetails.py:233
-#: ../gramps/plugins/importer/importcsv.py:353
+#: ../gramps/plugins/importer/importcsv.py:365
 #: ../gramps/plugins/quickview/all_relations.py:355
 #: ../gramps/plugins/textreport/familygroup.py:259
 #: ../gramps/plugins/textreport/familygroup.py:270
@@ -7920,10 +7933,10 @@ msgstr "Родитељ"
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:136
 #: ../gramps/gui/glade/editchildref.glade:246
 #: ../gramps/gui/merge/mergeperson.py:285
-#: ../gramps/plugins/export/exportcsv.py:626
+#: ../gramps/plugins/export/exportcsv.py:630
 #: ../gramps/plugins/gramplet/children.py:108
 #: ../gramps/plugins/gramplet/children.py:219
-#: ../gramps/plugins/importer/importcsv.py:347
+#: ../gramps/plugins/importer/importcsv.py:359
 #: ../gramps/plugins/importer/importprogen.glade:1209
 #: ../gramps/plugins/tool/findloop.py:119
 msgid "Child"
@@ -7961,9 +7974,9 @@ msgstr "Догађаји"
 #: ../gramps/gui/editors/editfamily.py:622 ../gramps/gui/editors/editlink.py:97
 #: ../gramps/gui/editors/filtereditor.py:310
 #: ../gramps/gui/glade/editldsord.glade:263 ../gramps/gui/grampsgui.py:58
-#: ../gramps/plugins/export/exportcsv.py:626
+#: ../gramps/plugins/export/exportcsv.py:630
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:122
-#: ../gramps/plugins/importer/importcsv.py:348
+#: ../gramps/plugins/importer/importcsv.py:360
 #: ../gramps/plugins/importer/importprogen.glade:694
 #: ../gramps/plugins/importer/importprogen.glade:1192
 #: ../gramps/plugins/importer/importprogen.glade:1293
@@ -8181,9 +8194,9 @@ msgstr "Тестамент"
 #: ../gramps/gen/lib/eventtype.py:234 ../gramps/gen/plug/docgen/treedoc.py:223
 #: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2778
 #: ../gramps/gui/merge/mergeperson.py:278
-#: ../gramps/plugins/export/exportcsv.py:577
+#: ../gramps/plugins/export/exportcsv.py:581
 #: ../gramps/plugins/export/exportvcalendar.py:137
-#: ../gramps/plugins/importer/importcsv.py:370
+#: ../gramps/plugins/importer/importcsv.py:382
 #: ../gramps/plugins/textreport/familygroup.py:423
 #: ../gramps/plugins/textreport/familygroup.py:617
 #: ../gramps/plugins/webreport/family.py:317
@@ -8558,7 +8571,7 @@ msgstr "Цивилна заједница"
 #: ../gramps/plugins/gramplet/events.py:102
 #: ../gramps/plugins/gramplet/locations.py:90
 #: ../gramps/plugins/gramplet/placedetails.py:132
-#: ../gramps/plugins/importer/importcsv.py:375
+#: ../gramps/plugins/importer/importcsv.py:387
 #: ../gramps/plugins/lib/libplaceview.py:89
 #: ../gramps/plugins/quickview/filterbyname.py:438
 #: ../gramps/plugins/quickview/linkreferences.py:47
@@ -8709,7 +8722,7 @@ msgid "Parish"
 msgstr "Парохија"
 
 #: ../gramps/gen/lib/markertype.py:60
-#: ../gramps/gui/logger/_errorreportassistant.py:779
+#: ../gramps/gui/logger/_errorreportassistant.py:792
 msgid "Complete"
 msgstr "Завршено"
 
@@ -8763,7 +8776,7 @@ msgstr "Област"
 #: ../gramps/plugins/gramplet/descendant.py:66
 #: ../gramps/plugins/gramplet/locations.py:89
 #: ../gramps/plugins/gramplet/placedetails.py:131
-#: ../gramps/plugins/importer/importcsv.py:374
+#: ../gramps/plugins/importer/importcsv.py:386
 #: ../gramps/plugins/lib/libpersonview.py:100
 #: ../gramps/plugins/lib/libplaceview.py:86
 #: ../gramps/plugins/quickview/filterbyname.py:409
@@ -8805,8 +8818,8 @@ msgstr "Презимена"
 #: ../gramps/gui/configure.py:1092 ../gramps/gui/configure.py:1096
 #: ../gramps/gui/configure.py:1099 ../gramps/gui/configure.py:1103
 #: ../gramps/gui/configure.py:1105 ../gramps/gui/glade/editperson.glade:227
-#: ../gramps/plugins/export/exportcsv.py:423
-#: ../gramps/plugins/importer/importcsv.py:221
+#: ../gramps/plugins/export/exportcsv.py:424
+#: ../gramps/plugins/importer/importcsv.py:233
 msgid "Suffix"
 msgstr "Суфикс"
 
@@ -8960,10 +8973,10 @@ msgstr "Венчано име"
 #: ../gramps/gui/views/treemodels/mediamodel.py:131
 #: ../gramps/plugins/drawreport/ancestortree.py:1036
 #: ../gramps/plugins/drawreport/descendtree.py:1755
-#: ../gramps/plugins/export/exportcsv.py:439
-#: ../gramps/plugins/export/exportcsv.py:583
+#: ../gramps/plugins/export/exportcsv.py:440
+#: ../gramps/plugins/export/exportcsv.py:587
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:124
-#: ../gramps/plugins/importer/importcsv.py:224
+#: ../gramps/plugins/importer/importcsv.py:236
 #: ../gramps/plugins/importer/importprogen.glade:755
 #: ../gramps/plugins/importer/importxml.py:329
 #: ../gramps/plugins/quickview/filterbyname.py:308
@@ -9115,8 +9128,8 @@ msgstr "Напомена упута детета"
 #: ../gramps/gui/merge/mergeperson.py:199
 #: ../gramps/gui/selectors/selectperson.py:101
 #: ../gramps/plugins/drawreport/statisticschart.py:378
-#: ../gramps/plugins/export/exportcsv.py:426
-#: ../gramps/plugins/importer/importcsv.py:222
+#: ../gramps/plugins/export/exportcsv.py:427
+#: ../gramps/plugins/importer/importcsv.py:234
 #: ../gramps/plugins/lib/libpersonview.py:102
 #: ../gramps/plugins/quickview/siblings.py:50
 #: ../gramps/plugins/textreport/indivcomplete.py:957
@@ -9242,7 +9255,7 @@ msgstr "Заменска имена"
 #: ../gramps/gen/lib/place.py:171
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:119
 #: ../gramps/plugins/export/exportcsv.py:313
-#: ../gramps/plugins/importer/importcsv.py:378
+#: ../gramps/plugins/importer/importcsv.py:390
 #: ../gramps/plugins/lib/libplaceview.py:90
 msgid "Code"
 msgstr "Код"
@@ -9499,7 +9512,7 @@ msgstr "Уређивач пригодног текста"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:100
 #: ../gramps/gui/views/tags.py:63 ../gramps/gui/views/tags.py:73
-#: ../gramps/plugins/importer/importcsv.py:218
+#: ../gramps/plugins/importer/importcsv.py:230
 #: ../gramps/plugins/textreport/tagreport.py:920
 #: ../gramps/plugins/textreport/tagreport.py:924
 msgid "Tag"
@@ -9586,8 +9599,8 @@ msgstr "Презиме"
 #: ../gramps/gen/lib/surname.py:98 ../gramps/gen/utils/keyword.py:73
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
 #: ../gramps/gui/glade/editperson.glade:466
-#: ../gramps/plugins/export/exportcsv.py:424
-#: ../gramps/plugins/importer/importcsv.py:220
+#: ../gramps/plugins/export/exportcsv.py:425
+#: ../gramps/plugins/importer/importcsv.py:232
 msgid "Prefix"
 msgstr "Префикс"
 
@@ -11022,12 +11035,12 @@ msgid "undefined"
 msgstr "неодређено"
 
 #: ../gramps/gen/relationship.py:2461
-#: ../gramps/plugins/importer/importcsv.py:365
+#: ../gramps/plugins/importer/importcsv.py:377
 msgid "husband"
 msgstr "супруг"
 
 #: ../gramps/gen/relationship.py:2463
-#: ../gramps/plugins/importer/importcsv.py:355
+#: ../gramps/plugins/importer/importcsv.py:367
 msgid "wife"
 msgstr "супруга"
 
@@ -11149,7 +11162,7 @@ msgstr ""
 "енглески."
 
 #: ../gramps/gen/utils/alive.py:188 ../gramps/gen/utils/alive.py:224
-#: ../gramps/plugins/importer/importcsv.py:371
+#: ../gramps/plugins/importer/importcsv.py:383
 msgid "date"
 msgstr "датум"
 
@@ -11218,7 +11231,7 @@ msgstr "Нису браћа и сестре"
 msgid "birth date and known to be dead"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:239
+#: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:251
 msgid "birth date"
 msgstr "датум рођења"
 
@@ -11384,7 +11397,7 @@ msgctxt "Person"
 msgid "TITLE"
 msgstr "ЗВАЊЕ"
 
-#: ../gramps/gen/utils/keyword.py:56 ../gramps/plugins/export/exportcsv.py:425
+#: ../gramps/gen/utils/keyword.py:56 ../gramps/plugins/export/exportcsv.py:426
 #: ../gramps/plugins/tool/patchnames.py:498
 msgctxt "Person"
 msgid "Title"
@@ -12068,40 +12081,40 @@ msgstr ""
 "\n"
 "Дедовник ће сада завршити."
 
-#: ../gramps/grampsapp.py:312 ../gramps/grampsapp.py:362
-#: ../gramps/grampsapp.py:386 ../gramps/grampsapp.py:403
-#: ../gramps/grampsapp.py:414 ../gramps/grampsapp.py:436
-#: ../gramps/grampsapp.py:444
+#: ../gramps/grampsapp.py:312 ../gramps/grampsapp.py:373
+#: ../gramps/grampsapp.py:397 ../gramps/grampsapp.py:414
+#: ../gramps/grampsapp.py:425 ../gramps/grampsapp.py:447
+#: ../gramps/grampsapp.py:455
 #, fuzzy
 msgid "not found"
 msgstr "Нисам пронашао родитеље"
 
-#: ../gramps/grampsapp.py:365
+#: ../gramps/grampsapp.py:376
 msgid "not found because exiv2 is not installed"
 msgstr ""
 
-#: ../gramps/grampsapp.py:401
+#: ../gramps/grampsapp.py:412
 msgid "Installed but does not supply version"
 msgstr ""
 
-#: ../gramps/grampsapp.py:422
+#: ../gramps/grampsapp.py:433
 #, fuzzy
 #| msgid "Unstable"
 msgid "installed"
 msgstr "Непостојано"
 
-#: ../gramps/grampsapp.py:602 ../gramps/grampsapp.py:611
-#: ../gramps/grampsapp.py:666
+#: ../gramps/grampsapp.py:614 ../gramps/grampsapp.py:623
+#: ../gramps/grampsapp.py:678
 msgid "Configuration error:"
 msgstr "Грешка подешавања:"
 
-#: ../gramps/grampsapp.py:606
+#: ../gramps/grampsapp.py:618
 #, fuzzy
 #| msgid "Error reading configuration"
 msgid "Could not read configuration"
 msgstr "Грешка читања подешавања"
 
-#: ../gramps/grampsapp.py:613
+#: ../gramps/grampsapp.py:625
 #, fuzzy, python-format
 #| msgid ""
 #| "A definition for the MIME-type %s could not be found \n"
@@ -12119,7 +12132,7 @@ msgstr ""
 " Вероватно да инсталација Дедовника није била потпуна. Уверите се да су МИМЕ "
 "врсте Дедовника исправно инсталиране."
 
-#: ../gramps/gui/aboutdialog.py:118
+#: ../gramps/gui/aboutdialog.py:129
 msgid ""
 "Much of Gramps' artwork is either from\n"
 "the Tango Project or derived from the Tango\n"
@@ -12133,26 +12146,26 @@ msgstr ""
 "Приписивања заједничког\n"
 "стваралаштва—Истоветног дељења 2.5."
 
-#: ../gramps/gui/aboutdialog.py:133
+#: ../gramps/gui/aboutdialog.py:144
 msgid "Gramps Homepage"
 msgstr "Веб страница Дедовника"
 
-#: ../gramps/gui/aboutdialog.py:139
+#: ../gramps/gui/aboutdialog.py:150
 #, fuzzy
 msgid "Contributions by"
 msgstr "Подешавање"
 
 #. Translators: Translate this to your name in your native language
-#: ../gramps/gui/aboutdialog.py:142
+#: ../gramps/gui/aboutdialog.py:153
 msgid "translator-credits"
 msgstr ""
 
-#: ../gramps/gui/aboutdialog.py:153
+#: ../gramps/gui/aboutdialog.py:164
 #, python-format
 msgid "Distribution: %s"
 msgstr "Распоред: %s"
 
-#: ../gramps/gui/aboutdialog.py:172
+#: ../gramps/gui/aboutdialog.py:186
 #, python-format
 msgid "OS: %s"
 msgstr "Оперативни систем: %s"
@@ -15150,7 +15163,7 @@ msgstr ""
 "подаци су освежени. Нека уређивања која сте учинили могу бити изгубљена."
 
 #: ../gramps/gui/editors/editfamily.py:589
-#: ../gramps/plugins/importer/importcsv.py:348
+#: ../gramps/plugins/importer/importcsv.py:360
 #: ../gramps/plugins/view/familyview.py:410
 msgid "family"
 msgstr "породица"
@@ -16347,7 +16360,7 @@ msgid "any"
 msgstr "било шта"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:164
-#: ../gramps/plugins/export/exportcsv.py:427
+#: ../gramps/plugins/export/exportcsv.py:428
 #: ../gramps/plugins/webreport/person.py:1891
 #: ../gramps/plugins/webreport/person.py:2285
 msgid "Birth date"
@@ -16361,13 +16374,13 @@ msgstr "пример: „%(msg1)s“ или „%(msg2)s“"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:168
 #: ../gramps/plugins/drawreport/statisticschart.py:405
-#: ../gramps/plugins/export/exportcsv.py:428
-#: ../gramps/plugins/importer/importcsv.py:230
+#: ../gramps/plugins/export/exportcsv.py:429
+#: ../gramps/plugins/importer/importcsv.py:242
 msgid "Birth place"
 msgstr "Место рођења"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:170
-#: ../gramps/plugins/export/exportcsv.py:433
+#: ../gramps/plugins/export/exportcsv.py:434
 #: ../gramps/plugins/webreport/person.py:1902
 #: ../gramps/plugins/webreport/person.py:2286
 msgid "Death date"
@@ -16375,7 +16388,7 @@ msgstr "Датум смрти"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:174
 #: ../gramps/plugins/drawreport/statisticschart.py:411
-#: ../gramps/plugins/export/exportcsv.py:434
+#: ../gramps/plugins/export/exportcsv.py:435
 msgid "Death place"
 msgstr "Место смрти"
 
@@ -19034,15 +19047,15 @@ msgstr ""
 "ini“ \n"
 "променивши параметар последњег прегледа.\n"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:104
+#: ../gramps/gui/logger/_errorreportassistant.py:115
 msgid "Error Report Assistant"
 msgstr "Помоћник за пријављивање грешака"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:287
+#: ../gramps/gui/logger/_errorreportassistant.py:300
 msgid "Report a bug"
 msgstr "Пријавите грешку"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:295
+#: ../gramps/gui/logger/_errorreportassistant.py:308
 #, fuzzy
 msgid ""
 "This is the Bug Reporting Assistant. It will help you to make a bug report "
@@ -19065,18 +19078,18 @@ msgstr ""
 "можете да га убаците у образац на веб сајту пратиоца грешака и да прегледате "
 "које податке желите да укључите."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:315
+#: ../gramps/gui/logger/_errorreportassistant.py:328
 msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
 msgstr "Ако видите неке личне податке у извештају слободно их уклоните."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:362
-#: ../gramps/gui/logger/_errorreportassistant.py:394
+#: ../gramps/gui/logger/_errorreportassistant.py:375
+#: ../gramps/gui/logger/_errorreportassistant.py:407
 msgid "Error Details"
 msgstr "Детаљи грешке"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:369
+#: ../gramps/gui/logger/_errorreportassistant.py:382
 msgid ""
 "This is the detailed Gramps error information, don't worry if you do not "
 "understand it. You will have the opportunity to add further detail about the "
@@ -19086,7 +19099,7 @@ msgstr ""
 "Имаћете прилику да додате још појединости о грешци на следећим страницама "
 "помоћника."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:403
+#: ../gramps/gui/logger/_errorreportassistant.py:416
 msgid ""
 "Please check the information below and correct anything that you know to be "
 "wrong or remove anything that you would rather not have included in the bug "
@@ -19095,19 +19108,19 @@ msgstr ""
 "Проверите податке испод и исправите све што знате да је погрешно или "
 "уклоните све што радије не бисте уврстили у извештај о грешци."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:450
-#: ../gramps/gui/logger/_errorreportassistant.py:480
+#: ../gramps/gui/logger/_errorreportassistant.py:463
+#: ../gramps/gui/logger/_errorreportassistant.py:493
 msgid "System Information"
 msgstr "Подаци о систему"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:457
+#: ../gramps/gui/logger/_errorreportassistant.py:470
 msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
 msgstr ""
 "Ово су подаци о вашем систему који ће помоћи програмерима да исправе грешку."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:489
+#: ../gramps/gui/logger/_errorreportassistant.py:502
 #, fuzzy
 msgid ""
 "Please provide as much information as you can about what you were doing when "
@@ -19116,19 +19129,19 @@ msgstr ""
 "Доставите што више можете података о томе шта сте радили када је дошло до "
 "грешке."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:531
-#: ../gramps/gui/logger/_errorreportassistant.py:560
+#: ../gramps/gui/logger/_errorreportassistant.py:544
+#: ../gramps/gui/logger/_errorreportassistant.py:573
 msgid "Further Information"
 msgstr "Додатни подаци"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:538
+#: ../gramps/gui/logger/_errorreportassistant.py:551
 #, fuzzy
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occurred."
 msgstr "Ово је ваша прилика да опишете шта сте радили када је дошло до грешке."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:569
+#: ../gramps/gui/logger/_errorreportassistant.py:582
 msgid ""
 "Please check that the information is correct, do not worry if you don't "
 "understand the detail of the error information. Just make sure that it does "
@@ -19138,12 +19151,12 @@ msgstr ""
 "о грешци. Само се уверите да не садржи нешто што не желите да буде послато "
 "програмерима."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:604
-#: ../gramps/gui/logger/_errorreportassistant.py:635
+#: ../gramps/gui/logger/_errorreportassistant.py:617
+#: ../gramps/gui/logger/_errorreportassistant.py:648
 msgid "Bug Report Summary"
 msgstr "Сажетак извештаја о грешци"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:611
+#: ../gramps/gui/logger/_errorreportassistant.py:624
 msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
@@ -19151,7 +19164,7 @@ msgstr ""
 "Ово је завршени извештај о грешци. Следећа страница помоћника ће вам помоћи "
 "да попуните извештај на веб сајту Дедовниковог система за праћење грешака."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:646
+#: ../gramps/gui/logger/_errorreportassistant.py:659
 msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
@@ -19159,7 +19172,7 @@ msgstr ""
 "Користите два доња дугмета да прво умножите извештај у оставу а затим "
 "отворите веб прегледника да попуните извештај о грешци на "
 
-#: ../gramps/gui/logger/_errorreportassistant.py:660
+#: ../gramps/gui/logger/_errorreportassistant.py:673
 msgid ""
 "Use this button to start a web browser and file a bug report on the Gramps "
 "bug tracking system."
@@ -19167,7 +19180,7 @@ msgstr ""
 "Користите ово дугме да покренете веб прегледника и да попуните извештај о "
 "грешци на Дедовниковом систему за праћење грешака."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:687
+#: ../gramps/gui/logger/_errorreportassistant.py:700
 msgid ""
 "Use this button to copy the bug report onto the clipboard. Then go to the "
 "bug tracking website by using the button below, paste the report and click "
@@ -19177,12 +19190,12 @@ msgstr ""
 "за праћење грешака користећи дугме испод, убаците извештај и притисните да "
 "пошаљете извештај"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:722
-#: ../gramps/gui/logger/_errorreportassistant.py:753
+#: ../gramps/gui/logger/_errorreportassistant.py:735
+#: ../gramps/gui/logger/_errorreportassistant.py:766
 msgid "Send Bug Report"
 msgstr "Пошаљите извештај о грешци"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:729
+#: ../gramps/gui/logger/_errorreportassistant.py:742
 msgid ""
 "This is the final step. Use the buttons on this page to start a web browser "
 "and file a bug report on the Gramps bug tracking system."
@@ -19190,7 +19203,7 @@ msgstr ""
 "Ово је последњи корак. Користите дугмад да покренете веб прегледника и да "
 "попуните извештај о грешци на Дедовниковом систему за праћење грешака."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:761
+#: ../gramps/gui/logger/_errorreportassistant.py:774
 msgid ""
 "Gramps is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
@@ -23627,46 +23640,46 @@ msgstr ""
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
 msgstr "ЦСВ извоз не подржава презимен акоја нису главна, одбачених {count}"
 
-#: ../gramps/plugins/export/exportcsv.py:429
+#: ../gramps/plugins/export/exportcsv.py:430
 msgid "Birth source"
 msgstr "Извор рођења"
 
-#: ../gramps/plugins/export/exportcsv.py:430
+#: ../gramps/plugins/export/exportcsv.py:431
 msgid "Baptism date"
 msgstr "Датум покрштавања"
 
-#: ../gramps/plugins/export/exportcsv.py:431
+#: ../gramps/plugins/export/exportcsv.py:432
 msgid "Baptism place"
 msgstr "Место покрштавања"
 
-#: ../gramps/plugins/export/exportcsv.py:432
+#: ../gramps/plugins/export/exportcsv.py:433
 msgid "Baptism source"
 msgstr "Извор покрштавања"
 
-#: ../gramps/plugins/export/exportcsv.py:435
+#: ../gramps/plugins/export/exportcsv.py:436
 msgid "Death source"
 msgstr "Извор смрти"
 
-#: ../gramps/plugins/export/exportcsv.py:436
+#: ../gramps/plugins/export/exportcsv.py:437
 msgid "Burial date"
 msgstr "Датум сахране"
 
-#: ../gramps/plugins/export/exportcsv.py:437
+#: ../gramps/plugins/export/exportcsv.py:438
 msgid "Burial place"
 msgstr "Место сахране"
 
-#: ../gramps/plugins/export/exportcsv.py:438
+#: ../gramps/plugins/export/exportcsv.py:439
 msgid "Burial source"
 msgstr "Извор сахране"
 
-#: ../gramps/plugins/export/exportcsv.py:578
-#: ../gramps/plugins/importer/importcsv.py:366
+#: ../gramps/plugins/export/exportcsv.py:582
+#: ../gramps/plugins/importer/importcsv.py:378
 #: ../gramps/plugins/webreport/basepage.py:3141
 msgid "Husband"
 msgstr "Супруг"
 
-#: ../gramps/plugins/export/exportcsv.py:579
-#: ../gramps/plugins/importer/importcsv.py:356
+#: ../gramps/plugins/export/exportcsv.py:583
+#: ../gramps/plugins/importer/importcsv.py:368
 #: ../gramps/plugins/webreport/basepage.py:3139
 msgid "Wife"
 msgstr "Супруга"
@@ -26482,314 +26495,332 @@ msgstr "име"
 msgid "call"
 msgstr "зван"
 
-#: ../gramps/plugins/importer/importcsv.py:218
+#: ../gramps/plugins/importer/importcsv.py:224
+#, fuzzy
+#| msgid "nickname"
+msgid "nick"
+msgstr "надимак"
+
+#: ../gramps/plugins/importer/importcsv.py:226
+#, fuzzy
+#| msgid "_Nick:"
+msgid "Nick"
+msgstr "_Надимак:"
+
+#: ../gramps/plugins/importer/importcsv.py:228
+#, fuzzy
+#| msgid "nickname"
+msgid "nick_name"
+msgstr "надимак"
+
+#: ../gramps/plugins/importer/importcsv.py:230
 #, fuzzy
 #| msgid "Tag"
 msgid "tag"
 msgstr "Ознака"
 
-#: ../gramps/plugins/importer/importcsv.py:219
+#: ../gramps/plugins/importer/importcsv.py:231
 #, fuzzy
 msgid "title"
 msgstr "Назив"
 
-#: ../gramps/plugins/importer/importcsv.py:219
+#: ../gramps/plugins/importer/importcsv.py:231
 #, fuzzy
 msgctxt "Person or Place"
 msgid "title"
 msgstr "Звање"
 
-#: ../gramps/plugins/importer/importcsv.py:222
+#: ../gramps/plugins/importer/importcsv.py:234
 msgid "gender"
 msgstr "пол"
 
-#: ../gramps/plugins/importer/importcsv.py:223
+#: ../gramps/plugins/importer/importcsv.py:235
 msgid "source"
 msgstr "извор"
 
-#: ../gramps/plugins/importer/importcsv.py:224
+#: ../gramps/plugins/importer/importcsv.py:236
 msgid "note"
 msgstr "напомена"
 
-#: ../gramps/plugins/importer/importcsv.py:229
+#: ../gramps/plugins/importer/importcsv.py:241
 msgid "birth place"
 msgstr "место рођења"
 
-#: ../gramps/plugins/importer/importcsv.py:236
+#: ../gramps/plugins/importer/importcsv.py:248
 #, fuzzy
 msgid "birth place id"
 msgstr "место рођења"
 
-#: ../gramps/plugins/importer/importcsv.py:244
+#: ../gramps/plugins/importer/importcsv.py:256
 msgid "birth source"
 msgstr "извор рођења"
 
-#: ../gramps/plugins/importer/importcsv.py:246
+#: ../gramps/plugins/importer/importcsv.py:258
 msgid "baptism place"
 msgstr "место покрштавања"
 
-#: ../gramps/plugins/importer/importcsv.py:250
+#: ../gramps/plugins/importer/importcsv.py:262
 #, fuzzy
 msgid "baptism place id"
 msgstr "место покрштавања"
 
-#: ../gramps/plugins/importer/importcsv.py:254
+#: ../gramps/plugins/importer/importcsv.py:266
 msgid "baptism date"
 msgstr "датум покрштавања"
 
-#: ../gramps/plugins/importer/importcsv.py:255
+#: ../gramps/plugins/importer/importcsv.py:267
 msgid "baptism source"
 msgstr "извор покрштавања"
 
-#: ../gramps/plugins/importer/importcsv.py:256
+#: ../gramps/plugins/importer/importcsv.py:268
 msgid "burial place"
 msgstr "место сахране"
 
-#: ../gramps/plugins/importer/importcsv.py:260
+#: ../gramps/plugins/importer/importcsv.py:272
 #, fuzzy
 msgid "burial place id"
 msgstr "место сахране"
 
-#: ../gramps/plugins/importer/importcsv.py:264
+#: ../gramps/plugins/importer/importcsv.py:276
 msgid "burial date"
 msgstr "датум сахране"
 
-#: ../gramps/plugins/importer/importcsv.py:265
+#: ../gramps/plugins/importer/importcsv.py:277
 msgid "burial source"
 msgstr "извор сахране"
 
-#: ../gramps/plugins/importer/importcsv.py:270
+#: ../gramps/plugins/importer/importcsv.py:282
 msgid "death place"
 msgstr "место смрти"
 
-#: ../gramps/plugins/importer/importcsv.py:275
+#: ../gramps/plugins/importer/importcsv.py:287
 #, fuzzy
 msgid "death place id"
 msgstr "место смрти"
 
-#: ../gramps/plugins/importer/importcsv.py:279
+#: ../gramps/plugins/importer/importcsv.py:291
 msgid "death date"
 msgstr "датум смрти"
 
-#: ../gramps/plugins/importer/importcsv.py:284
+#: ../gramps/plugins/importer/importcsv.py:296
 msgid "death source"
 msgstr "извор смрти"
 
-#: ../gramps/plugins/importer/importcsv.py:290
+#: ../gramps/plugins/importer/importcsv.py:302
 msgid "death cause"
 msgstr "узрок смрти"
 
-#: ../gramps/plugins/importer/importcsv.py:293
+#: ../gramps/plugins/importer/importcsv.py:305
 msgid "person"
 msgstr "особа"
 
-#: ../gramps/plugins/importer/importcsv.py:296
+#: ../gramps/plugins/importer/importcsv.py:308
 #, fuzzy
 msgid "occupationdescr"
 msgstr "Занимање"
 
-#: ../gramps/plugins/importer/importcsv.py:297
+#: ../gramps/plugins/importer/importcsv.py:309
 #, fuzzy
 msgid "Occupation description"
 msgstr "Опис издања"
 
-#: ../gramps/plugins/importer/importcsv.py:301
+#: ../gramps/plugins/importer/importcsv.py:313
 #, fuzzy
 msgid "occupationdate"
 msgstr "Занимање"
 
-#: ../gramps/plugins/importer/importcsv.py:302
+#: ../gramps/plugins/importer/importcsv.py:314
 #, fuzzy
 msgid "Occupation date"
 msgstr "Занимање"
 
-#: ../gramps/plugins/importer/importcsv.py:306
+#: ../gramps/plugins/importer/importcsv.py:318
 #, fuzzy
 msgid "occupationplace"
 msgstr "Занимање"
 
-#: ../gramps/plugins/importer/importcsv.py:307
+#: ../gramps/plugins/importer/importcsv.py:319
 #, fuzzy
 msgid "Occupation place"
 msgstr "Занимање"
 
-#: ../gramps/plugins/importer/importcsv.py:311
+#: ../gramps/plugins/importer/importcsv.py:323
 #, fuzzy
 msgid "occupationplace_id"
 msgstr "Занимање"
 
-#: ../gramps/plugins/importer/importcsv.py:312
+#: ../gramps/plugins/importer/importcsv.py:324
 #, fuzzy
 msgid "Occupation place id"
 msgstr "Занимање"
 
-#: ../gramps/plugins/importer/importcsv.py:316
+#: ../gramps/plugins/importer/importcsv.py:328
 #, fuzzy
 msgid "occupationsource"
 msgstr "Занимање"
 
-#: ../gramps/plugins/importer/importcsv.py:317
+#: ../gramps/plugins/importer/importcsv.py:329
 #, fuzzy
 msgid "Occupation source"
 msgstr "Занимање"
 
-#: ../gramps/plugins/importer/importcsv.py:319
+#: ../gramps/plugins/importer/importcsv.py:331
 #, fuzzy
 msgid "residence date"
 msgstr "Боравиште"
 
-#: ../gramps/plugins/importer/importcsv.py:319
+#: ../gramps/plugins/importer/importcsv.py:331
 #, fuzzy
 msgid "residencedate"
 msgstr "Боравиште"
 
-#: ../gramps/plugins/importer/importcsv.py:322
+#: ../gramps/plugins/importer/importcsv.py:334
 #, fuzzy
 msgid "residenceplace"
 msgstr "Боравиште"
 
-#: ../gramps/plugins/importer/importcsv.py:323
+#: ../gramps/plugins/importer/importcsv.py:335
 #, fuzzy
 msgid "residence place"
 msgstr "Боравиште"
 
-#: ../gramps/plugins/importer/importcsv.py:327
+#: ../gramps/plugins/importer/importcsv.py:339
 #, fuzzy
 msgid "residenceplace_id"
 msgstr "Боравиште"
 
-#: ../gramps/plugins/importer/importcsv.py:328
+#: ../gramps/plugins/importer/importcsv.py:340
 #, fuzzy
 msgid "residence place id"
 msgstr "место смрти"
 
-#: ../gramps/plugins/importer/importcsv.py:332
+#: ../gramps/plugins/importer/importcsv.py:344
 #, fuzzy
 msgid "residencesource"
 msgstr "Боравиште"
 
-#: ../gramps/plugins/importer/importcsv.py:333
+#: ../gramps/plugins/importer/importcsv.py:345
 #, fuzzy
 msgid "residence source"
 msgstr "Искључи изворе"
 
-#: ../gramps/plugins/importer/importcsv.py:335
+#: ../gramps/plugins/importer/importcsv.py:347
 #, fuzzy
 msgid "attribute type"
 msgstr "Напомена особине"
 
-#: ../gramps/plugins/importer/importcsv.py:335
+#: ../gramps/plugins/importer/importcsv.py:347
 #, fuzzy
 msgid "attributetype"
 msgstr "Напомена особине"
 
-#: ../gramps/plugins/importer/importcsv.py:338
+#: ../gramps/plugins/importer/importcsv.py:350
 #, fuzzy
 msgid "attributevalue"
 msgstr "Особине"
 
-#: ../gramps/plugins/importer/importcsv.py:339
+#: ../gramps/plugins/importer/importcsv.py:351
 #, fuzzy
 msgid "attribute value"
 msgstr "Напомена особине"
 
-#: ../gramps/plugins/importer/importcsv.py:343
+#: ../gramps/plugins/importer/importcsv.py:355
 #, fuzzy
 msgid "attributesource"
 msgstr "Особине"
 
-#: ../gramps/plugins/importer/importcsv.py:344
+#: ../gramps/plugins/importer/importcsv.py:356
 #, fuzzy
 msgid "attribute source"
 msgstr "Напомена особине"
 
-#: ../gramps/plugins/importer/importcsv.py:347
+#: ../gramps/plugins/importer/importcsv.py:359
 msgid "child"
 msgstr "дете"
 
-#: ../gramps/plugins/importer/importcsv.py:352
+#: ../gramps/plugins/importer/importcsv.py:364
 msgid "mother"
 msgstr "мајка"
 
-#: ../gramps/plugins/importer/importcsv.py:358
+#: ../gramps/plugins/importer/importcsv.py:370
 msgid "parent2"
 msgstr "родитељ2"
 
-#: ../gramps/plugins/importer/importcsv.py:362
+#: ../gramps/plugins/importer/importcsv.py:374
 msgid "father"
 msgstr "отац"
 
-#: ../gramps/plugins/importer/importcsv.py:368
+#: ../gramps/plugins/importer/importcsv.py:380
 msgid "parent1"
 msgstr "родитељ1"
 
-#: ../gramps/plugins/importer/importcsv.py:370
+#: ../gramps/plugins/importer/importcsv.py:382
 msgid "marriage"
 msgstr "венчање"
 
-#: ../gramps/plugins/importer/importcsv.py:372
+#: ../gramps/plugins/importer/importcsv.py:384
 msgid "place"
 msgstr "место"
 
-#: ../gramps/plugins/importer/importcsv.py:373
+#: ../gramps/plugins/importer/importcsv.py:385
 #, fuzzy
 msgid "place id"
 msgstr "место"
 
-#: ../gramps/plugins/importer/importcsv.py:374
+#: ../gramps/plugins/importer/importcsv.py:386
 #: ../gramps/plugins/tool/removespaces.py:194
 #, fuzzy
 msgid "name"
 msgstr "=назив"
 
-#: ../gramps/plugins/importer/importcsv.py:375
+#: ../gramps/plugins/importer/importcsv.py:387
 #, fuzzy
 msgid "type"
 msgstr "Врста линије"
 
-#: ../gramps/plugins/importer/importcsv.py:376
+#: ../gramps/plugins/importer/importcsv.py:388
 #: ../gramps/plugins/tool/removespaces.py:198
 #, fuzzy
 msgid "latitude"
 msgstr "Географска ширина"
 
-#: ../gramps/plugins/importer/importcsv.py:377
+#: ../gramps/plugins/importer/importcsv.py:389
 #: ../gramps/plugins/tool/removespaces.py:202
 #, fuzzy
 msgid "longitude"
 msgstr "Географска дужина"
 
-#: ../gramps/plugins/importer/importcsv.py:378
+#: ../gramps/plugins/importer/importcsv.py:390
 #, fuzzy
 msgid "code"
 msgstr "Хтмл код"
 
-#: ../gramps/plugins/importer/importcsv.py:381
+#: ../gramps/plugins/importer/importcsv.py:393
 msgid "enclosed by"
 msgstr ""
 
-#: ../gramps/plugins/importer/importcsv.py:383
+#: ../gramps/plugins/importer/importcsv.py:395
 msgid "enclosed_by"
 msgstr ""
 
-#: ../gramps/plugins/importer/importcsv.py:424
+#: ../gramps/plugins/importer/importcsv.py:436
 #, python-format
 msgid "format error: line %(line)d: %(zero)s"
 msgstr "грешка записа: %(line)d. ред: %(zero)s"
 
-#: ../gramps/plugins/importer/importcsv.py:520
+#: ../gramps/plugins/importer/importcsv.py:532
 msgid "CSV Import"
 msgstr "Увоз ЦСВ-а"
 
-#: ../gramps/plugins/importer/importcsv.py:521
+#: ../gramps/plugins/importer/importcsv.py:533
 msgid "Reading data..."
 msgstr "Читам податке..."
 
-#: ../gramps/plugins/importer/importcsv.py:529
+#: ../gramps/plugins/importer/importcsv.py:541
 msgid "CSV import"
 msgstr "Увоз ЦСВ-а"
 
-#: ../gramps/plugins/importer/importcsv.py:539
+#: ../gramps/plugins/importer/importcsv.py:551
 #: ../gramps/plugins/importer/importgeneweb.py:302
 #: ../gramps/plugins/importer/importvcard.py:268
 #, python-brace-format
@@ -26799,7 +26830,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: ../gramps/plugins/importer/importcsv.py:561
+#: ../gramps/plugins/importer/importcsv.py:573
 msgid "The following IDs were referenced but not found:\n"
 msgstr "Следећи Иб-ови су поменути али нису нађени:\n"
 
