@@ -9,7 +9,7 @@
 # Brtc <boratici@gmail.com>, 2021.
 # Bora <boratici@gmail.com>, 2021, 2022.
 # Bora Atıcı <boratici@gmail.com>, 2022.
-# Bora Atıcı <boratici.acc@gmail.com>, 2022, 2023, 2024.
+# Bora Atıcı <boratici.acc@gmail.com>, 2022, 2023, 2024, 2025.
 # Nick Hall <nick-h@gramps-project.org>, 2022.
 # Oğuz Ersen <oguz@ersen.moe>, 2024.
 msgid ""
@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 19:25+0000\n"
-"PO-Revision-Date: 2025-01-25 12:37+0000\n"
-"Last-Translator: Osman Öz <osmanoz05@hotmail.com>\n"
+"PO-Revision-Date: 2025-01-27 18:10+0000\n"
+"Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -3991,10 +3991,8 @@ msgid "Note type:"
 msgstr "Not türü:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:48
-#, fuzzy
-#| msgid "Matches notes with the particular type "
 msgid "Objects with notes with the particular type"
-msgstr "Notları belirli bir türle eşleştirir "
+msgstr "Belirli türde notlara sahip nesneler"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:49
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
@@ -11001,10 +10999,8 @@ msgid "date fallback"
 msgstr "tarih geri dönüşü"
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
-#, fuzzy
-#| msgid "death"
 msgid ", death: "
-msgstr "ölüm"
+msgstr ", ölüm: "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
@@ -11067,16 +11063,12 @@ msgid "birth date"
 msgstr "doğum tarihi"
 
 #: ../gramps/gen/utils/alive.py:424 ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "Birth:"
 msgid "birth: "
-msgstr "Doğum:"
+msgstr "doğum: "
 
 #: ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "' and '"
 msgid " and "
-msgstr "' ve '"
+msgstr " ve "
 
 #: ../gramps/gen/utils/alive.py:510
 msgid "a spouse's birth-related date, "
@@ -22702,7 +22694,7 @@ msgstr "Fanın alt yarısında bulunan adları çevirin"
 #: ../gramps/plugins/drawreport/fanchart.py:850
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr ""
-"2., 3. ve 4. nesiller için isimleri çevirin, yani daireler içinde bulunanlar"
+"2., 3. ve 4. kuşaklar için adları çevirin, yani daireler içinde bulunanlar"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
 msgid "Exclude the title of the chart"
@@ -23497,10 +23489,9 @@ msgid "Key"
 msgstr "Anahtar"
 
 #: ../gramps/plugins/gramplet/backlinks.py:238
-#, fuzzy, python-format
-#| msgid "_Make Active Media"
+#, python-format
 msgid "_Make Active %s"
-msgstr "_Aktif Ortam Yap"
+msgstr "%s'yi E_tkinleştir"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
@@ -33229,13 +33220,11 @@ msgstr "Kullanılacak numaralandırma sistemi"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr "İsmin önünde cinsiyet sembolünü göster"
+msgstr "Adın önünde cinsiyet sembolünü göster"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "Raporda boşanma bilgilerinin gösterilip gösterilmeyeceği."
+msgstr "Raporda adın önünde cinsiyet simgesinin gösterilip gösterilmeyeceği."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -33436,10 +33425,8 @@ msgstr "Seslenme adının ilk ad olarak kullanılıp kullanılmayacağı."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to use the call name as the first name."
 msgid "Whether to show gender symbol in front of name."
-msgstr "Seslenme adının ilk ad olarak kullanılıp kullanılmayacağı."
+msgstr "Cinsiyet sembolünün adın önünde gösterilip gösterilmeyeceği."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
