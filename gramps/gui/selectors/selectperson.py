@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
 #               2009       Gary Burton
+#               2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -79,6 +80,17 @@ class SelectPerson(BaseSelector):
 
         BaseSelector.__init__(
             self, dbstate, uistate, track, filter, skip, show_search_bar, default
+        )
+
+    def _connect_db_signals(self):
+        self.db_connections.append(
+            self.db.connect("person-add", self._object_add_callback)
+        )
+        self.db_connections.append(
+            self.db.connect("person-delete", self._object_delete_callback)
+        )
+        self.db_connections.append(
+            self.db.connect("person-update", self._object_update_callback)
         )
 
     def _local_init(self):
