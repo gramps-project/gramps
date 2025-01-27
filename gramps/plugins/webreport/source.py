@@ -167,6 +167,7 @@ class SourcePages(BasePage):
             alpha_nav = alphabet_navigation(
                 index_list,
                 self.rlocale,
+                current=part_name,
                 rtl=self.dir,
                 new_page="sources",
                 ext=self.ext,
@@ -179,6 +180,7 @@ class SourcePages(BasePage):
                 partial_nav = partial_navigation(
                     partial_list,
                     self.rlocale,
+                    current=part_name,
                     rtl=self.dir,
                     ext=self.ext,
                     new_page=nav_name,

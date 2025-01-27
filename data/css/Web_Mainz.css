@@ -193,6 +193,12 @@ div#nav ul li a:hover, #subnavigation ul li a:hover {
     text-decoration: none;
     background-color: #FFFFE7;
 }
+div#ltr.nav ul.ltr li.CurrentSection, div#rtl.nav ul.rtl li.CurrentSection,
+div#ltr ul.ltr li.CurrentSection, div#rtl ul.rtl li.CurrentSection {
+    font-weight: bold;
+    font-style: italic;
+    border-color: #7D5925;
+}
 div#nav ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
     font-weight: bold;
     font-style: italic;

@@ -282,7 +282,8 @@ class EventPages(BasePage):
 
             # Output the navigation
             alpha_nav = alphabet_navigation(
-                index_list, self.rlocale, rtl=self.dir, new_page="events", ext=self.ext
+                index_list, self.rlocale, rtl=self.dir, new_page="events", ext=self.ext,
+                current=part_name,
             )
             if alpha_nav:
                 eventlist += alpha_nav
@@ -292,6 +293,7 @@ class EventPages(BasePage):
                 partial_nav = partial_navigation(
                     partial_list,
                     self.rlocale,
+                    current=part_name,
                     rtl=self.dir,
                     ext=self.ext,
                     new_page=nav_name,

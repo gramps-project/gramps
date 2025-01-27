@@ -299,7 +299,8 @@ class PlacePages(BasePage):
 
             # Output the navigation
             alpha_nav = alphabet_navigation(
-                index_list, self.rlocale, rtl=self.dir, new_page="places", ext=self.ext
+                index_list, self.rlocale, rtl=self.dir, new_page="places", ext=self.ext,
+                current=part_name,
             )
             if alpha_nav:
                 placelist += alpha_nav
@@ -309,6 +310,7 @@ class PlacePages(BasePage):
                 partial_nav = partial_navigation(
                     partial_list,
                     self.rlocale,
+                    current=part_name,
                     rtl=self.dir,
                     ext=self.ext,
                     new_page=nav_name,

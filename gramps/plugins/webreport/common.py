@@ -651,7 +651,7 @@ else:
 
 
 def alphabet_navigation(
-    sorted_alpha_index, rlocale=glocale, rtl=False, only=True, new_page=False, ext=None
+    sorted_alpha_index, rlocale=glocale, current=None, rtl=False, only=True, new_page=False, ext=None
 ):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
@@ -659,6 +659,7 @@ def alphabet_navigation(
 
     @param: index_list -- a dictionary of either letters or words
     @param: rlocale    -- The locale to use
+    @param: current    -- The current page
     @param: rtl        -- Do we use rtl language ?
     @param: only       -- Used only for alphabet letters
     @param: new_page   -- Used to have multiple index pages
@@ -711,31 +712,35 @@ def alphabet_navigation(
                     else:
                         url = "/".join((pathl, "events" + extension))
                     hyper = Html("a", filel, title=title_str, href=url)
-                    if new_page == url:
-                        check_cs = True
-                    temp_cs = 'class = "CurrentSection"'
-                    check_cs = temp_cs if check_cs else False
                     if cols != 0:
+                        next_name = new_index + str(cols)
                         hyper = Html(
                             "a",
                             menu_item,
                             title=title_str,
-                            href="%s" % new_index + str(cols) + extension,
+                            href="%s" % next_name + extension,
                         )
                     else:
+                        next_name = new_index
                         hyper = Html(
                             "a",
                             menu_item,
                             title=title_str,
                             href="%s" % new_index + extension,
                         )
+                    # if "_" in current:
+                    current = current.split("_")[0]
+                    if current == next_name:
+                        check_cs = True
+                    temp_cs = 'class = "CurrentSection"'
+                    check_cs = temp_cs if check_cs else False
                 else:
                     hyper = Html("a", menu_item, title=title_str, href="#%s" % link)
                 if check_cs:
-                    Html("li", hyper, attr=check_cs, inline=True)
+                    next_elem = Html("li", hyper, attr=check_cs, inline=True)
                 else:
-                    Html("li", hyper, inline=True)
-                unordered.extend(Html("li", hyper, inline=True))
+                    next_elem = Html("li", hyper, inline=True)
+                unordered.extend(next_elem)
 
                 index += 1
                 cols += 1
@@ -747,15 +752,15 @@ def alphabet_navigation(
 
 
 def partial_navigation(
-    partial_index, rlocale=glocale, rtl=False, only=True, new_page=False, ext=None
+    partial_index, rlocale=glocale, current=None, rtl=False, new_page=False, ext=None
 ):
     """
     Will create the partial navigation bar for big indexes
 
     @param: partial_index -- a dictionary of (name, handle)
     @param: rlocale       -- The locale to use
+    @param: current       -- The current page
     @param: rtl           -- Do we use rtl language ?
-    @param: only          -- Used only for alphabet letters
     @param: new_page      -- Used to have multiple index pages
     @param: ext           -- The default extension when new_page is used
     """
@@ -767,13 +772,12 @@ def partial_navigation(
     num_of_rows = 1
 
     # begin alphabet navigation division
-    with Html("div", id=rtl, class_="pnav") as partialnavigation:
+    with Html("div", id=rtl, class_="nav") as partialnavigation:
         index = 0
         for dummy_row in range(num_of_rows):
             unordered = Html("ul", class_=rtl)
 
             while index < num_pages:
-                # print("p_index :", partial_index[index])
                 handle, name = partial_index[index]
                 title_txt = "Go to: "
                 title_str = rlocale.translation.sgettext(title_txt) + name
@@ -782,15 +786,12 @@ def partial_navigation(
                     if index == 0:
                         new_index = new_page
                     else:
-                        new_index = new_page[:-1]  # + str(index)
+                        new_index = new_page[:-1]
                     new_index, extension = os.path.splitext(new_page)
                     if extension == "":
                         extension = ext
-                    if new_page == new_index:
-                        check_cs = True
-                    temp_cs = 'class = "CurrentSection"'
-                    check_cs = temp_cs if check_cs else False
                     if index == 0:
+                        next_name = new_index
                         hyper = Html(
                             "a",
                             name + " \u27a1 ",
@@ -798,19 +799,24 @@ def partial_navigation(
                             href="%s" % new_index + extension,
                         )
                     else:
+                        next_name = new_index + "_%d" % index
                         hyper = Html(
                             "a",
                             name + " \u27a1 ",
                             title=title_str,
                             href="%s" % new_index + "_%d" % index + extension,
                         )
+                    if current == next_name:
+                        check_cs = True
+                    temp_cs = 'class = "CurrentSection"'
+                    check_cs = temp_cs if check_cs else False
                 else:
                     hyper = Html("a", name, title=title_str, href="#%s" % "link")
                 if check_cs:
-                    Html("li", hyper, attr=check_cs, inline=True)
+                    next_elem = Html("li", hyper, attr=check_cs, inline=True)
                 else:
-                    Html("li", hyper, inline=True)
-                unordered.extend(Html("li", hyper, inline=True))
+                    next_elem = Html("li", hyper, inline=True)
+                unordered.extend(next_elem)
 
                 index += 1
             num_of_rows -= 1
