@@ -158,7 +158,7 @@ from gramps.gen.lib import (
     PlaceRef,
     PlaceName,
 )
-from gramps.gen.lib.json_utils import data_to_object, object_to_data
+from gramps.gen.lib.json_utils import data_to_object, object_to_dict
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path
