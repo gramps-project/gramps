@@ -48,6 +48,7 @@ from ..proxy.proxybase import ProxyDbBase
 LOG = logging.getLogger(".gen.utils.alive")
 
 _ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext
 
 DEBUGLEVEL = 4  # 4 = everything; 3 much detail; 2= minor detail; 1 = summary
 # -------------------------------------------------------------------------
@@ -727,7 +728,11 @@ class ProbablyAlive:
                 date1.set_yr_mon_day(birth_year, 1, 1)
                 date1.set_modifier(Date.MOD_ABOUT)
                 date2 = date1.copy_offset_ymd(self.MAX_AGE_PROB_ALIVE)
-                explain = _("descendant birth: {} generations ".format(ngens))
+                explain = ngettext(
+                    "descendant birth: {number_of} generation ",
+                    "descendant birth: {number_of} generations ",
+                    ngens,
+                ).format(number_of=ngens)
             elif dmin is not None:
                 # no births, just death dates ... unreliable estimates only
                 # An upper limit would be based on min_generation_gap below the first death.
@@ -746,7 +751,11 @@ class ProbablyAlive:
                 date1.set_modifier(Date.MOD_RANGE)
                 date1.set2_yr_mon_day(upper_birth_year, 1, 1)
                 date2 = date1.copy_offset_ymd(self.MAX_AGE_PROB_ALIVE)
-                explain = _("descendant death: {} generations ".format(ngens))
+                explain = ngettext(
+                    "descendant death: {number_of} generation ",
+                    "descendant death: {number_of} generations ",
+                    ngens,
+                ).format(number_of=ngens)
             if date1 and date2:
                 return (date1, date2, explain, other)
             return (None, None, "", None)
