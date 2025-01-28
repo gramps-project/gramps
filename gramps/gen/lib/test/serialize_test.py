@@ -38,7 +38,7 @@ from .. import (
     Source,
     Tag,
 )
-from ..serialize_utils import to_json, from_json
+from ..json_utils import to_json, from_json
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
