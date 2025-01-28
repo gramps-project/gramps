@@ -56,7 +56,7 @@ from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.lib import Name
-from gramps.gen.lib.serialize import from_dict
+from gramps.gen.lib.json_utils import data_to_object
 
 # -------------------------------------------------------------------------
 #
@@ -114,9 +114,9 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
             for key, data in cursor:
                 rawprimname = data["primary_name"]
                 rawaltnames = data["alternate_names"]
-                primary_name = from_dict(rawprimname).get_first_name()
+                primary_name = data_to_object(rawprimname).get_first_name()
                 alternate_names = [
-                    from_dict(name).get_first_name() for name in rawaltnames
+                    data_to_object(name).get_first_name() for name in rawaltnames
                 ]
                 self.db.genderStats.count_name(primary_name, data["gender"])
 

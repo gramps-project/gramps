@@ -67,7 +67,7 @@ from gramps.gen.lib import (
     ChildRefType,
     NoteType,
 )
-from gramps.gen.lib.serialize import from_dict
+from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
@@ -239,7 +239,7 @@ class PeopleBaseModel(BaseModel):
         if index != -1:
             try:
                 local = data["event_ref_list"][index]
-                b = from_dict(local)
+                b = data_to_object(local)
                 birth = self.db.get_event_from_handle(b.ref)
                 if sort_mode:
                     retval = "%09d" % birth.get_date_object().get_sort_value()
@@ -255,7 +255,7 @@ class PeopleBaseModel(BaseModel):
                 return ""
 
         for event_ref in data["event_ref_list"]:
-            er = from_dict(event_ref)
+            er = data_to_object(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
             date_str = get_date(event)
@@ -296,7 +296,7 @@ class PeopleBaseModel(BaseModel):
         if index != -1:
             try:
                 local = data["event_ref_list"][index]
-                ref = from_dict(local)
+                ref = data_to_object(local)
                 event = self.db.get_event_from_handle(ref.ref)
                 if sort_mode:
                     retval = "%09d" % event.get_date_object().get_sort_value()
@@ -312,7 +312,7 @@ class PeopleBaseModel(BaseModel):
                 return ""
 
         for event_ref in data["event_ref_list"]:
-            er = from_dict(event_ref)
+            er = data_to_object(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
             date_str = get_date(event)
@@ -341,7 +341,7 @@ class PeopleBaseModel(BaseModel):
             if index != -1:
                 try:
                     local = data["event_ref_list"][index]
-                    br = from_dict(local)
+                    br = data_to_object(local)
                     event = self.db.get_event_from_handle(br.ref)
                     if event:
                         place_title = place_displayer.display_event(self.db, event)
@@ -355,7 +355,7 @@ class PeopleBaseModel(BaseModel):
                     return value
 
             for event_ref in data["event_ref_list"]:
-                er = from_dict(event_ref)
+                er = data_to_object(event_ref)
                 event = self.db.get_event_from_handle(er.ref)
                 etype = event.get_type()
                 if etype.is_birth_fallback() and er.get_role() == EventRoleType.PRIMARY:
@@ -378,7 +378,7 @@ class PeopleBaseModel(BaseModel):
             if index != -1:
                 try:
                     local = data["event_ref_list"][index]
-                    dr = from_dict(local)
+                    dr = data_to_object(local)
                     event = self.db.get_event_from_handle(dr.ref)
                     if event:
                         place_title = place_displayer.display_event(self.db, event)
@@ -392,7 +392,7 @@ class PeopleBaseModel(BaseModel):
                     return value
 
             for event_ref in data["event_ref_list"]:
-                er = from_dict(event_ref)
+                er = data_to_object(event_ref)
                 event = self.db.get_event_from_handle(er.ref)
                 etype = event.get_type()
                 if etype.is_death_fallback() and er.get_role() == EventRoleType.PRIMARY:

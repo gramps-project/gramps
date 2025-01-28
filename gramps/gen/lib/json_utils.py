@@ -60,7 +60,7 @@ class DataDict(dict):
 
     def __str__(self):
         if "_object" not in self:
-            self["_object"] = from_dict(self)
+            self["_object"] = data_to_object(self)
         return str(self["_object"])
 
     def __getattr__(self, key):
@@ -80,7 +80,7 @@ class DataDict(dict):
             else:
                 return value
         else:
-            self["_object"] = from_dict(self)
+            self["_object"] = data_to_object(self)
             return getattr(self["_object"], key)
 
 
