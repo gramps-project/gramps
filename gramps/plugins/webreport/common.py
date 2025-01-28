@@ -657,7 +657,7 @@ def alphabet_navigation(
     rtl=False,
     only=True,
     new_page=False,
-    ext=None
+    ext=None,
 ):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
