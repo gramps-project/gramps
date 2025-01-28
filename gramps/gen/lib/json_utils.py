@@ -133,7 +133,7 @@ def dict_to_string(dict: dict) -> str | bytes:
     return orjson.dumps(dict)
 
 
-def object_to_dict(obj) -> DataDict:
+def object_to_dict(obj):
     """
     Convert any Gramps lib object into its DataDict representation.
     """
