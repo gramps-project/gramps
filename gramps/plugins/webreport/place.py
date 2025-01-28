@@ -299,8 +299,12 @@ class PlacePages(BasePage):
 
             # Output the navigation
             alpha_nav = alphabet_navigation(
-                index_list, self.rlocale, rtl=self.dir, new_page="places", ext=self.ext,
+                index_list,
+                self.rlocale,
                 current=part_name,
+                rtl=self.dir,
+                new_page="places",
+                ext=self.ext,
             )
             if alpha_nav:
                 placelist += alpha_nav

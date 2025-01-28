@@ -651,7 +651,13 @@ else:
 
 
 def alphabet_navigation(
-    sorted_alpha_index, rlocale=glocale, current=None, rtl=False, only=True, new_page=False, ext=None
+    sorted_alpha_index,
+    rlocale=glocale,
+    current=None,
+    rtl=False,
+    only=True,
+    new_page=False,
+    ext=None
 ):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
@@ -728,7 +734,6 @@ def alphabet_navigation(
                             title=title_str,
                             href="%s" % new_index + extension,
                         )
-                    # if "_" in current:
                     current = current.split("_")[0]
                     if current == next_name:
                         check_cs = True
@@ -1070,7 +1075,8 @@ def create_indexes_pages(
     max_rows = int(max_rows / row_count) * row_count
     page = 0
     for letter, hdle_list in handle_list:
-        hdle_list.sort(key=lambda x: locale.sort_key(x[1]))
+        if not "events" in name:
+            hdle_list.sort(key=lambda x: locale.sort_key(x[1]))
         if len(hdle_list) <= row_count:
             function(
                 report,
