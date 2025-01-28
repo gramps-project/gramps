@@ -54,11 +54,14 @@ def convert_object_to_state(obj):
 def string_to_data(string):
     return DataDict(orjson.loads(string))
 
+
 def string_to_dict(string):
     return orjson.loads(string)
 
+
 def dict_to_string(dict):
     return orjson.dumps(dict)
+
 
 def object_to_data(obj):
     """
@@ -97,6 +100,7 @@ def object_to_string(obj: object) -> str | bytes:
     Convert any Gramps object into a JSON string/bytes.
     """
     return orjson.dumps(object_to_data(obj))
+
 
 def data_to_string(data):
     return orjson.dumps(data)
