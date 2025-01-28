@@ -49,6 +49,7 @@ from .json_utils import (
     string_to_object,
     string_to_data,
     string_to_dict,
+    object_to_data,
     object_to_string,
     data_to_string,
 )
