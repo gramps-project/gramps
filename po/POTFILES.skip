@@ -165,6 +165,7 @@ gramps/gen/lib/datebase.py
 gramps/gen/lib/eventbase.py
 gramps/gen/lib/gcalendar.py
 gramps/gen/lib/genderstats.py
+gramps/gen/lib/json_utils.py
 gramps/gen/lib/ldsordbase.py
 gramps/gen/lib/locationbase.py
 gramps/gen/lib/mediabase.py
