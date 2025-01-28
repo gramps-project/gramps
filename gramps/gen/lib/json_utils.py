@@ -199,9 +199,3 @@ def string_to_object(string: str | bytes):
     Convert a JSON string/bytes into a Gramps lib object.
     """
     return data_to_object(orjson.loads(string))
-
-
-from_json = string_to_object
-to_json = object_to_string
-from_dict = data_to_object
-to_dict = object_to_data

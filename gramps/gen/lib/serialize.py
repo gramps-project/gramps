@@ -39,17 +39,12 @@ LOG = logging.getLogger(".serialize")
 #
 # ------------------------------------------------------------------------
 from .json_utils import (
-    from_dict,
-    to_dict,
-    to_json,
-    from_json,
     dict_to_string,
     data_to_object,
     string_to_object,
     string_to_data,
     string_to_dict,
     object_to_dict,
-    object_to_data,
     object_to_string,
     data_to_string,
 )
@@ -67,7 +62,7 @@ class BlobSerializer:
     metadata_field = "value"
 
     @staticmethod
-    def data_to_object(obj_class, data):
+    def data_to_object(data, obj_class):
         LOG.debug("blob, data_to_object: %s(%r)", obj_class, data[0] if data else data)
         return obj_class.create(data)
 
@@ -112,7 +107,7 @@ class JSONSerializer:
     metadata_field = "json_data"
 
     @staticmethod
-    def data_to_object(obj_class, data):
+    def data_to_object(data, obj_class=None):
         LOG.debug(
             "json, data_to_object: {'_class': %r, ...}",
             data["_class"] if (data and "_class" in data) else data,
