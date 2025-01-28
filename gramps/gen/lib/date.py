@@ -292,6 +292,7 @@ class Span:
         """
         # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
         trans_text = dlocale.translation.sgettext
+        ngettext = dlocale.translation.ngettext
         _repr = trans_text("unknown")
         # FIXME all this concatenation will fail for RTL languages -- really??
         if self.valid:
@@ -300,7 +301,11 @@ class Span:
                 self._diff(self.date1, self.date2), dlocale
             ).format(precision=1)
             if as_age and self._diff(self.date1, self.date2)[0] > Span.ALIVE:
-                _repr = trans_text("greater than %s years") % Span.ALIVE
+                _repr = ngettext(
+                    "greater than {number_of} year",
+                    "greater than {number_of} years",
+                    Span.ALIVE,
+                ).format(number_of=Span.ALIVE)
             elif self.date1.get_modifier() == Date.MOD_NONE:
                 if self.date2.get_modifier() == Date.MOD_NONE:
                     _repr = fdate12
