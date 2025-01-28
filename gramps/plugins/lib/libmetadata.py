@@ -227,7 +227,7 @@ class MetadataView(Gtk.TreeView):
         titles = [
             (_("Namespace"), 0, 150),
             (_("Label"), 1, 150),
-            (_(" "), NOSORT, 60, COL_IMAGE),
+            (" ", NOSORT, 60, COL_IMAGE),
             (_("Value"), NOSORT, 325),
         ]
 
