@@ -24,7 +24,7 @@
 
 import unittest
 
-from gramps.gen.lib.serialize import DataDict, DataList, to_dict, from_dict
+from gramps.gen.lib.json_utils import DataDict, DataList, to_dict, from_dict
 from gramps.gen.lib import (
     Person,
     Family,
