@@ -89,8 +89,8 @@ class NameOriginType(GrampsType):
         (PSEUDONYM, _("Pseudonym"), "Pseudonym"),
         (PATRILINEAL, _("Patrilineal"), "Patrilineal"),
         (MATRILINEAL, _("Matrilineal"), "Matrilineal"),
-        (OCCUPATION, _("Occupation"), "Occupation"),
-        (LOCATION, _("Location"), "Location"),
+        (OCCUPATION, _("Occupation", "Surname"), "Occupation"),
+        (LOCATION, _("Location", "Surname"), "Location"),
     ]
 
     def __init__(self, value=None):
