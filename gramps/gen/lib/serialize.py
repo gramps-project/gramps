@@ -45,6 +45,7 @@ from .json_utils import (
     string_to_data,
     string_to_dict,
     object_to_dict,
+    object_to_data,
     object_to_string,
     data_to_string,
 )
@@ -128,6 +129,11 @@ class JSONSerializer:
     def object_to_string(obj):
         LOG.debug("json, object_to_string: %s...", obj)
         return object_to_string(obj)
+
+    @staticmethod
+    def object_to_data(obj):
+        LOG.debug("json, object_to_string: %s...", obj)
+        return object_to_data(obj)
 
     @staticmethod
     def data_to_string(data):
