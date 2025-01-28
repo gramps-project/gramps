@@ -2191,14 +2191,14 @@ class NavWebOptions(MenuReportOptions):
             (_("Drop-Down  -- WebKit Browsers Only"), "DropDown"),
         ]
         self.__citationreferents = EnumeratedListOption(
-            _("Citation Referents Layout"), _cit_opts[0][1]
+            _("Citation References Layout"), _cit_opts[0][1]
         )
         for layout in _cit_opts:
             self.__citationreferents.add_item(layout[1], layout[0])
         self.__citationreferents.set_help(
             _(
-                "Determine the default layout for the "
-                "Source Page's Citation Referents section"
+                "Specify the default layout for the "
+                "Citation References section on the source page"
             )
         )
         addopt("citationreferents", self.__citationreferents)
