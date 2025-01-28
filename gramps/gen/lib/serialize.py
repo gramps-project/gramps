@@ -28,7 +28,6 @@ Serialization utilities for Gramps.
 # Python modules
 #
 # ------------------------------------------------------------------------
-import json
 import pickle
 import logging
 
@@ -49,6 +48,7 @@ from .json_utils import (
     string_to_object,
     string_to_data,
     string_to_dict,
+    object_to_dict,
     object_to_data,
     object_to_string,
     data_to_string,
@@ -161,7 +161,7 @@ class JSONSerializer:
         if type_name in ("set", "tuple"):
             value = list(value)
         elif type_name == "Researcher":
-            value = object_to_data(value)
+            value = object_to_dict(value)
 
         data = {
             "type": type_name,

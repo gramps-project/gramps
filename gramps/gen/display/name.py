@@ -75,7 +75,7 @@ from ..const import ARABIC_COMMA, ARABIC_SEMICOLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..lib.name import Name
 from ..lib.nameorigintype import NameOriginType
-from ..lib.serialize import to_dict
+from ..lib.json_utils import object_to_data
 
 try:
     from ..config import config
@@ -912,7 +912,7 @@ class NameDisplay:
         try:
             s = func(
                 first,
-                [to_dict(surn) for surn in surname_list],
+                [object_to_data(surn) for surn in surname_list],
                 suffix,
                 title,
                 call,
