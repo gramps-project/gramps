@@ -1395,6 +1395,13 @@ class GrampsPreferences(ConfigureDialog):
         """
         self.uistate.emit("toolbar-changed")
 
+    def cb_toolbar_style_changed(self, obj):
+        """
+        Called when the toolbar style is changed.
+        """
+        config.set("interface.toolbar-style", obj.get_active())
+        self.uistate.uimanager.update_menu()
+
     def add_data_panel(self, configdialog):
         """
         Config tab with user Appearance and format settings.
@@ -2109,6 +2116,24 @@ class GrampsPreferences(ConfigureDialog):
             tooltip=_("Show or hide the Preferences icon on the toolbar."),
             extra_callback=self.cb_toolbar_changed,
         )
+
+        row += 1
+        # Toolbar styles:
+        obox = Gtk.ComboBoxText()
+        formats = [
+            _("Use default preference"),
+            _("Text only"),
+            _("Icons only"),
+            _("Both text and icons"),
+        ]
+        list(map(obox.append_text, formats))
+        active = config.get("interface.toolbar-style")
+        obox.set_active(active)
+        obox.set_tooltip_text(_("Display text, icons or both on the toolbar buttons."))
+        obox.connect("changed", self.cb_toolbar_style_changed)
+        lwidget = BasicLabel(_("%s: ") % _("Toolbar Style"))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(obox, 2, row, 1, 1)
 
         row += 1
         # Gramplet bar close buttons:
