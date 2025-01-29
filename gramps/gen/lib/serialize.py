@@ -64,7 +64,7 @@ class BlobSerializer:
 
     @staticmethod
     def data_to_object(data, obj_class):
-        LOG.debug("blob, data_to_object: %s(%r)", obj_class, data[0] if data else data)
+        LOG.debug("blob, data_to_object: %s(%r)", obj_class, data)
         return obj_class.create(data)
 
     @staticmethod
@@ -79,12 +79,12 @@ class BlobSerializer:
 
     @staticmethod
     def object_to_string(obj):
-        LOG.debug("blob, object_to_string: %s...", obj)
+        LOG.debug("blob, object_to_string: %r", obj)
         return pickle.dumps(obj.serialize())
 
     @staticmethod
     def data_to_string(data):
-        LOG.debug("blob, data_to_string: %s...", data[0] if data else data)
+        LOG.debug("blob, data_to_string: %r", data)
         return pickle.dumps(data)
 
     @staticmethod
@@ -110,8 +110,8 @@ class JSONSerializer:
     @staticmethod
     def data_to_object(data, obj_class=None):
         LOG.debug(
-            "json, data_to_object: {'_class': %r, ...}",
-            data["_class"] if (data and "_class" in data) else data,
+            "json, data_to_object: %r",
+            data
         )
         return data_to_object(data)
 
@@ -127,19 +127,19 @@ class JSONSerializer:
 
     @staticmethod
     def object_to_string(obj):
-        LOG.debug("json, object_to_string: %s...", obj)
+        LOG.debug("json, object_to_string: %r", obj)
         return object_to_string(obj)
 
     @staticmethod
     def object_to_data(obj):
-        LOG.debug("json, object_to_string: %s...", obj)
+        LOG.debug("json, object_to_string: %r", obj)
         return object_to_data(obj)
 
     @staticmethod
     def data_to_string(data):
         LOG.debug(
-            "json, data_to_string: {'_class': %r, ...}",
-            data["_class"] if (data and "_class" in data) else data,
+            "json, data_to_string: %r",
+            data
         )
         return data_to_string(data)
 
