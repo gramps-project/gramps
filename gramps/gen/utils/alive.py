@@ -426,14 +426,14 @@ class ProbablyAlive:
         #  or else both are zero (if None then it's a bug).
         if explain_birth_max == "":
             explanation = _(
-                "inferred from another relatives - birth: {birth_min_src:s}, death: {death_src:s}"
+                "inferred from other relatives - birth: {birth_min_src:s}, death: {death_src:s}"
             ).format(
                 birth_min_src=explain_birth_min,
                 death_src=explain_death,
             )
         else:
             explanation = _(
-                "inferred from another relatives - birth:  {birth_min_src:s} (earliest) to {birth_max_src:s} (latest), death: {death_src:s}"
+                "inferred from other relatives - birth:  {birth_min_src:s} (earliest) to {birth_max_src:s} (latest), death: {death_src:s}"
             ).format(
                 birth_min_src=explain_birth_min,
                 birth_max_src=explain_birth_max,
