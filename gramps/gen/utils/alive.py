@@ -434,7 +434,7 @@ class ProbablyAlive:
         # have finished immediate family, so try spouse, as the
         # remaining person (probably) of this generation ..
 
-        def spouse_test(passnum=1):
+        def spouse_test(only_immediate_family):
             # test against spouse details - this is done in two passes, at different
             # stages of generating dates for the reference person.:
             # 1. test spouse details only - this should be a reasonable proxy for
@@ -446,7 +446,8 @@ class ProbablyAlive:
             # which, assuming defaults, results in 150 year "probably alive" range.
             # In reality, if we have reached this far then any value is unreliable.
 
-            LOG.debug("    ----- trying spouse check pass %s", passnum)
+            LOG.debug("    ----- trying spouse check: %s", 
+                "immediate family only" if only_immediate_family else "full tree")
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
@@ -469,7 +470,7 @@ class ProbablyAlive:
                         date1, date2, explain, other = self.probably_alive_range(
                             spouse,
                             is_spouse=True,
-                            immediate_fam_only=True if passnum == 1 else False,
+                            immediate_fam_only=only_immediate_family,
                         )
                         if DEBUGLEVEL > 2:
                             LOG.debug(
@@ -556,7 +557,7 @@ class ProbablyAlive:
             return (None, None, "", None)
 
         if not is_spouse:
-            birth_date, death_date, explain, who = spouse_test(1)
+            birth_date, death_date, explain, who = spouse_test(True)
             if birth_date is not None and death_date is not None:
                 return (birth_date, death_date, explain, who)
         elif immediate_fam_only:
@@ -925,7 +926,7 @@ class ProbablyAlive:
                 return (date1, date2, explain, other)
 
         if not is_spouse:  # if you are not in recursion, let's recurse again:
-            birth_date, death_date, explain, who = spouse_test(2)
+            birth_date, death_date, explain, who = spouse_test(False)
             if birth_date is not None and death_date is not None:
                 return (birth_date, death_date, explain, who)
 
