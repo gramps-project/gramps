@@ -50,7 +50,9 @@ LOG = logging.getLogger(".gen.utils.alive")
 _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext
 
-DEBUGLEVEL = 4  # 4 = everything; 3 much detail; 2= minor detail; 1 = summary
+# DEBUGLEVEL should be 1 for production, as higher levels are rather cryptic unless 
+# viewed in the context of the source code.
+DEBUGLEVEL = 1  # 4 = everything; 3 much detail; 2= minor detail; 1 = summary
 # -------------------------------------------------------------------------
 #
 # Constants from config .ini keys
@@ -1002,7 +1004,7 @@ def probably_alive(
     if current_date is None or not current_date.is_valid():
         current_date = Today()
 
-    if DEBUGLEVEL > 3:
+    if DEBUGLEVEL > 0:
         if relative is None:
             rel_id = "nobody"
         else:
@@ -1039,7 +1041,7 @@ def probably_alive(
     # ---true if  current_date >= birth(min)   and  true if current_date < death
     # these include true if current_date is within the estimated range
     result = current_date.match(birth, ">=") and current_date.match(death, "<")
-    if DEBUGLEVEL > 1:
+    if DEBUGLEVEL > 3:
         (bthmin, bthmax) = birth.get_start_stop_range()
         (dthmin, dthmax) = death.get_start_stop_range()
         (dmin, dmax) = current_date.get_start_stop_range()
