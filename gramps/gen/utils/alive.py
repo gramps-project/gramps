@@ -50,7 +50,7 @@ LOG = logging.getLogger(".gen.utils.alive")
 _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext
 
-# DEBUGLEVEL should be 1 for production, as higher levels are rather cryptic unless 
+# DEBUGLEVEL should be 1 for production, as higher levels are rather cryptic unless
 # viewed in the context of the source code.
 DEBUGLEVEL = 1  # 4 = everything; 3 much detail; 2= minor detail; 1 = summary
 # -------------------------------------------------------------------------
