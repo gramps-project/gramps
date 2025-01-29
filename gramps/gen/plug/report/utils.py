@@ -60,6 +60,14 @@ _BOXCOLOR_MALE = (224, 224, 255)  # light blue
 _BOXCOLOR_OTHER = (148, 239, 158)  # light green
 _BOXCOLOR_UNKNOWN = (224, 224, 224)  # light gray
 _BOXCOLOR_FAMILY = (255, 255, 224)  # light yellow
+_GENDER_BOXCOLOR_FULLSET = [
+    [_BOXCOLOR_FEMALE, "_FEMALE"],
+    [_BOXCOLOR_MALE, "_MALE"],
+    [_BOXCOLOR_OTHER, "_OTHER"],
+    [_BOXCOLOR_UNKNOWN, "_UNKNOWN"],
+]
+_GENDER_BOXCOLOR_SUFFIX = ["_FEMALE", "_MALE", "_OTHER", "_UNKNOWN"]
+_FAMILY_BOXCOLOR_SUFFIX = "_FAMILY"
 
 
 # -------------------------------------------------------------------------
@@ -443,3 +451,48 @@ def get_family_filters(database, family, include_single=True, name_format=None):
 def get_gender_symbol(person):
     """generate gender symbol"""
     return SYMBOLS.get_symbol_for_string(person.gender)
+
+
+# -------------------------------------------------------------------------
+#
+# Generate all possible genders for the given style
+# and its graph and return their name set
+#
+# -------------------------------------------------------------------------
+def generate_gender_color_styles(style, graph_style):
+    gender_color_box_names = []
+    gender = 0
+    while gender < len(_GENDER_BOXCOLOR_FULLSET):
+        base_boxstr = graph_style.get_paragraph_style()
+        color = _GENDER_BOXCOLOR_FULLSET[gender][0]
+        boxstr = base_boxstr + _GENDER_BOXCOLOR_FULLSET[gender][1]
+        graph_style.set_fill_color(color)
+        style.add_draw_style(boxstr, graph_style)
+        gender_color_box_names.append(boxstr)
+        gender += 1
+    return gender_color_box_names
+
+
+# -------------------------------------------------------------------------
+#
+# Get color box name based on the person's gender
+#
+# -------------------------------------------------------------------------
+def get_gender_color_box_name(gender_color_box_names, person):
+    """generate gender box name"""
+    return gender_color_box_names[person.gender]
+
+
+# -------------------------------------------------------------------------
+#
+# Generate the color family for the given style
+# and its graph and return its name
+#
+# -------------------------------------------------------------------------
+def generate_family_color_style(style, graph_style):
+    base_boxstr = graph_style.get_paragraph_style()
+    boxstr = base_boxstr + _FAMILY_BOXCOLOR_SUFFIX
+    color = _BOXCOLOR_FAMILY
+    graph_style.set_fill_color(color)
+    style.add_draw_style(boxstr, graph_style)
+    return boxstr

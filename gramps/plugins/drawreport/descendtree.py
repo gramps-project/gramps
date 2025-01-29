@@ -77,6 +77,9 @@ _MARR = (_("m.", "marriage abbreviation"),)
 _RPT_NAME = "descend_chart"
 
 _fill_box_color = False  # value will be set by user option selection
+_normal_gender_color_box_names = []
+_bolded_gender_color_box_names = []
+_family_color_box_name = ""
 
 
 # ------------------------------------------------------------------------
@@ -118,14 +121,10 @@ class PersonBox(DescendantBoxBase):
         self.boxstr = "CG2b-box"
 
     def set_person_color(self, person, bolded=False):
-        if person.gender == person.FEMALE:
-            self.boxstr = "CG2bF-box" if bolded else "CG2nF-box"
-        elif person.gender == person.MALE:
-            self.boxstr = "CG2bM-box" if bolded else "CG2nM-box"
-        elif person.gender == person.OTHER:
-            self.boxstr = "CG2bO-box" if bolded else "CG2nO-box"
-        else:  # Unknown
-            self.boxstr = "CG2bU-box" if bolded else "CG2nU-box"
+        gender_color_box_names = (
+            _bolded_gender_color_box_names if bolded else _normal_gender_color_box_names
+        )
+        self.boxstr = utils.get_gender_color_box_name(gender_color_box_names, person)
 
 
 class FamilyBox(DescendantBoxBase):
@@ -138,7 +137,7 @@ class FamilyBox(DescendantBoxBase):
         self.level = level
 
     def set_family_color(self):
-        self.boxstr = "CG2c-fam-box"
+        self.boxstr = _family_color_box_name
 
 
 class PlaceHolderBox(BoxBase):
@@ -1502,6 +1501,7 @@ class DescendTree(Report):
             if prnnum:
                 page_num_box.display(page)
 
+            # box.change_box_color(page, boxstr, color)
             page.display()
 
             self.doc.end_page()
@@ -1912,21 +1912,22 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style.set_fill_color(utils._BOXCOLOR_FAMILY)
         default_style.add_draw_style("CG2c-fam-box", graph_style)
 
+        global _family_color_box_name
+        _family_color_box_name = utils.generate_family_color_style(
+            default_style, graph_style
+        )
+
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Normal")
         graph_style.set_shadow(1, box_shadow)
         graph_style.set_fill_color((255, 255, 255))
         graph_style.set_description(_("The style for the spouse box."))
         default_style.add_draw_style("CG2-box", graph_style)
-        graph_style.set_shadow(0, box_shadow)
-        graph_style.set_fill_color(utils._BOXCOLOR_FEMALE)
-        default_style.add_draw_style("CG2nF-box", graph_style)
-        graph_style.set_fill_color(utils._BOXCOLOR_MALE)
-        default_style.add_draw_style("CG2nM-box", graph_style)
-        graph_style.set_fill_color(utils._BOXCOLOR_OTHER)
-        default_style.add_draw_style("CG2nO-box", graph_style)
-        graph_style.set_fill_color(utils._BOXCOLOR_UNKNOWN)
-        default_style.add_draw_style("CG2nU-box", graph_style)
+
+        global _normal_gender_color_box_names
+        _normal_gender_color_box_names = utils.generate_gender_color_styles(
+            default_style, graph_style
+        )
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Bold")
@@ -1934,15 +1935,11 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style.set_fill_color((255, 255, 255))
         graph_style.set_description(_("The style for the direct descendant box."))
         default_style.add_draw_style("CG2b-box", graph_style)
-        graph_style.set_shadow(0, box_shadow)
-        graph_style.set_fill_color(utils._BOXCOLOR_FEMALE)
-        default_style.add_draw_style("CG2bF-box", graph_style)
-        graph_style.set_fill_color(utils._BOXCOLOR_MALE)
-        default_style.add_draw_style("CG2bM-box", graph_style)
-        graph_style.set_fill_color(utils._BOXCOLOR_OTHER)
-        default_style.add_draw_style("CG2bO-box", graph_style)
-        graph_style.set_fill_color(utils._BOXCOLOR_UNKNOWN)
-        default_style.add_draw_style("CG2bU-box", graph_style)
+
+        global _bolded_gender_color_box_names
+        _bolded_gender_color_box_names = utils.generate_gender_color_styles(
+            default_style, graph_style
+        )
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Note")
