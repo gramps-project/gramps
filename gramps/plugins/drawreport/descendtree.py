@@ -77,8 +77,8 @@ _MARR = (_("m.", "marriage abbreviation"),)
 _RPT_NAME = "descend_chart"
 
 _fill_box_color = False  # value will be set by user option selection
-_normal_gender_color_box_names = []
-_bolded_gender_color_box_names = []
+_normal_gender_color_box_names: list[str] = []
+_bolded_gender_color_box_names: list[str] = []
 _family_color_box_name = ""
 
 
