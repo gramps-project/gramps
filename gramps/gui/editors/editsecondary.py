@@ -36,7 +36,7 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         """Create an edit window.  Associates a person with the window."""
 
         self.obj = obj
-        self.old_obj = self.db.serializer.object_to_data(obj)
+        self.old_obj = state.db.serializer.object_to_data(obj)
         self.dbstate = state
         self.uistate = uistate
         self.db = state.db
