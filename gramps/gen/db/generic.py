@@ -1663,8 +1663,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Iterate over items in a class.
         """
         cursor = self._get_table_func(class_.__name__, "cursor_func")
-        for data in cursor():
-            yield self.serializer.data_to_object(data[1], class_)
+        for handle, data in cursor():
+            yield self.serializer.data_to_object(data, class_)
 
     def iter_people(self):
         return self._iter_objects(Person)
