@@ -939,7 +939,7 @@ class DBAPI(DbGeneric):
             logging.info("Rebuilding %s reference map", class_func.__name__)
             with cursor_func() as cursor:
                 for _, val in cursor:
-                    obj = self.serializer.data_to_object(class_func, val)
+                    obj = self.serializer.data_to_object(val, class_func)
                     references = set(obj.get_referenced_handles_recursively())
                     # handle addition of new references
                     for ref_class_name, ref_handle in references:
