@@ -1909,12 +1909,9 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style.set_fill_color((255, 255, 255))
         graph_style.set_description(_("The style for the marriage box."))
         default_style.add_draw_style("CG2-fam-box", graph_style)
-        graph_style.set_fill_color(utils._BOXCOLOR_FAMILY)
-        default_style.add_draw_style("CG2c-fam-box", graph_style)
-
         global _family_color_box_name
         _family_color_box_name = utils.generate_family_color_style(
-            default_style, graph_style
+            default_style, "CG2-fam-box", graph_style
         )
 
         graph_style = GraphicsStyle()
@@ -1923,10 +1920,9 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style.set_fill_color((255, 255, 255))
         graph_style.set_description(_("The style for the spouse box."))
         default_style.add_draw_style("CG2-box", graph_style)
-
         global _normal_gender_color_box_names
         _normal_gender_color_box_names = utils.generate_gender_color_styles(
-            default_style, graph_style
+            default_style, "CG2-box", graph_style
         )
 
         graph_style = GraphicsStyle()
@@ -1935,10 +1931,9 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style.set_fill_color((255, 255, 255))
         graph_style.set_description(_("The style for the direct descendant box."))
         default_style.add_draw_style("CG2b-box", graph_style)
-
         global _bolded_gender_color_box_names
         _bolded_gender_color_box_names = utils.generate_gender_color_styles(
-            default_style, graph_style
+            default_style, "CG2b-box", graph_style
         )
 
         graph_style = GraphicsStyle()

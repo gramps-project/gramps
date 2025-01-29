@@ -46,6 +46,7 @@ from ...datehandler import get_date
 from ...display.place import displayer as _pd
 from ...utils.file import media_path_full
 from ...utils.symbols import Symbols
+from ...config import config
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 
 
@@ -54,12 +55,19 @@ def _T_(value, context=""):  # enable deferred translations
     return "%s\x04%s" % (context, value) if context else value
 
 
+def get_rgb_color(color_name):
+    hex_color = config.get(color_name)[0].lstrip("#")
+    return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
+
+
 SYMBOLS = Symbols()
-_BOXCOLOR_FEMALE = (255, 224, 224)  # light red
-_BOXCOLOR_MALE = (224, 224, 255)  # light blue
-_BOXCOLOR_OTHER = (148, 239, 158)  # light green
-_BOXCOLOR_UNKNOWN = (224, 224, 224)  # light gray
-_BOXCOLOR_FAMILY = (255, 255, 224)  # light yellow
+
+_BOXCOLOR_FEMALE = get_rgb_color("colors.female-alive")
+_BOXCOLOR_MALE = get_rgb_color("colors.male-alive")
+_BOXCOLOR_OTHER = get_rgb_color("colors.other-alive")
+_BOXCOLOR_UNKNOWN = get_rgb_color("colors.unknown-alive")
+_BOXCOLOR_FAMILY = get_rgb_color("colors.family")
+
 _GENDER_BOXCOLOR_FULLSET = [
     [_BOXCOLOR_FEMALE, "_FEMALE"],
     [_BOXCOLOR_MALE, "_MALE"],
@@ -459,13 +467,12 @@ def get_gender_symbol(person):
 # and its graph and return their name set
 #
 # -------------------------------------------------------------------------
-def generate_gender_color_styles(style, graph_style):
+def generate_gender_color_styles(style, base_draw_name, graph_style):
     gender_color_box_names = []
     gender = 0
     while gender < len(_GENDER_BOXCOLOR_FULLSET):
-        base_boxstr = graph_style.get_paragraph_style()
         color = _GENDER_BOXCOLOR_FULLSET[gender][0]
-        boxstr = base_boxstr + _GENDER_BOXCOLOR_FULLSET[gender][1]
+        boxstr = base_draw_name + _GENDER_BOXCOLOR_FULLSET[gender][1]
         graph_style.set_fill_color(color)
         style.add_draw_style(boxstr, graph_style)
         gender_color_box_names.append(boxstr)
@@ -489,9 +496,8 @@ def get_gender_color_box_name(gender_color_box_names, person):
 # and its graph and return its name
 #
 # -------------------------------------------------------------------------
-def generate_family_color_style(style, graph_style):
-    base_boxstr = graph_style.get_paragraph_style()
-    boxstr = base_boxstr + _FAMILY_BOXCOLOR_SUFFIX
+def generate_family_color_style(style, base_draw_name, graph_style):
+    boxstr = base_draw_name + _FAMILY_BOXCOLOR_SUFFIX
     color = _BOXCOLOR_FAMILY
     graph_style.set_fill_color(color)
     style.add_draw_style(boxstr, graph_style)
