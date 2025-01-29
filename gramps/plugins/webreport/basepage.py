@@ -45,6 +45,7 @@ Classe:
 # ------------------------------------------------
 from functools import partial
 import os
+import calendar
 import copy
 import datetime
 from decimal import getcontext
@@ -250,7 +251,25 @@ class BasePage:
         """Used to sort events by date."""
         event = self.r_db.get_event_from_handle(handle.ref)
         date = event.get_date_object()
+        # we need to remove abt, bef, aft, ...
         if date.get_year() > 0:
+            if len(str(date).split(" ")) > 1:
+                modif = str(date).split(" ")[0]
+                year = date.get_year()
+                month = date.get_month()
+                if year == 0:
+                    year = datetime.date.today().year
+                if month == 0:
+                    month = 1
+                day = date.get_day()
+                if day == 0:
+                    day = 1
+                ddd = datetime.date(year, month, day)
+                if modif == "bef":
+                    ddd = ddd - datetime.timedelta(days=1)
+                elif modif == "aft":
+                    ddd = ddd + datetime.timedelta(days=1)
+                date = Date(ddd.year, ddd.month, ddd.day)
             return date
         else:
             # if we have no date, we'll put the event at the
@@ -906,8 +925,7 @@ class BasePage:
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
 
         # get event notes
-        notelist = event_ref.get_note_list()
-        notelist.extend(event.get_note_list()[:])  # we don't want to modify
+        notelist = event.get_note_list()
         # cached original
         htmllist = self.dump_notes(notelist, Event)
 
