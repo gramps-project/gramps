@@ -187,7 +187,7 @@ class RepositoryModel(FlatBaseModel):
     def column_postal_code(self, data):
         try:
             if data["address_list"]:
-                addr = data_to_object(data["address_list"][0])
+                addr = data_to_object(data.address_list[0])
                 return addr.get_postal_code()
         except:
             pass
