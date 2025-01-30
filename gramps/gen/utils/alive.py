@@ -49,7 +49,9 @@ LOG = logging.getLogger(".gen.utils.alive")
 
 _ = glocale.translation.sgettext
 
-DEBUGLEVEL = 4  # 4 = everything; 3 much detail; 2= minor detail; 1 = summary
+# DEBUGLEVEL should be 1 for production, as higher levels are rather cryptic unless
+# viewed in the context of the source code.
+DEBUGLEVEL = 1  # 4 = everything; 3 much detail; 2= minor detail; 1 = summary
 # -------------------------------------------------------------------------
 #
 # Constants from config .ini keys
@@ -250,8 +252,11 @@ class ProbablyAlive:
             get_person_bd(person)
         )
 
-        explanation = (
-            _("DIRECT birth: ") + explain_birth_min + _(", death: ") + explain_death
+        explanation = _(
+            "Direct evidence for this person - birth: {birth_min_src:s}, death:  {death_src:s}"
+        ).format(
+            birth_min_src=explain_birth_min,
+            death_src=explain_death,
         )
         if death_date is not None and birth_date is not None:
             return (birth_date, death_date, explanation, person)  # direct self evidence
@@ -413,7 +418,7 @@ class ProbablyAlive:
                     explain_death = _("birth date and known to be dead")
                 else:
                     death_date.set_yr_mon_day_offset(year=self.MAX_AGE_PROB_ALIVE)
-                    explain_death = _("birth date")
+                    explain_death = _("offset from birth date")
                 death_date.recalc_sort_value()
             else:
                 death_date = Date()
@@ -421,20 +426,28 @@ class ProbablyAlive:
         # at this stage we should have valid dates for both birth and death,
         #  or else both are zero (if None then it's a bug).
         if explain_birth_max == "":
-            explanation = _("birth: ") + explain_birth_min
-        else:
-            explanation = (
-                _("birth: ") + explain_birth_min + _(" and ") + explain_birth_max
+            explanation = _(
+                "inferred from other relatives - birth: {birth_min_src:s}, death: {death_src:s}"
+            ).format(
+                birth_min_src=explain_birth_min,
+                death_src=explain_death,
             )
-        explanation += _(", death: ") + explain_death
-        explanation = "2ND + " + explanation
+        else:
+            explanation = _(
+                "inferred from other relatives - birth:  {birth_min_src:s} (earliest) to {birth_max_src:s} (latest), death: {death_src:s}"
+            ).format(
+                birth_min_src=explain_birth_min,
+                birth_max_src=explain_birth_max,
+                death_src=explain_death,
+            )
+
         if birth_date.is_valid() and death_date.is_valid():
             return (birth_date, death_date, explanation, person)
 
         # have finished immediate family, so try spouse, as the
         # remaining person (probably) of this generation ..
 
-        def spouse_test(passnum=1):
+        def spouse_test(only_immediate_family):
             # test against spouse details - this is done in two passes, at different
             # stages of generating dates for the reference person.:
             # 1. test spouse details only - this should be a reasonable proxy for
@@ -446,7 +459,10 @@ class ProbablyAlive:
             # which, assuming defaults, results in 150 year "probably alive" range.
             # In reality, if we have reached this far then any value is unreliable.
 
-            LOG.debug("    ----- trying spouse check pass %s", passnum)
+            LOG.debug(
+                "    ----- trying spouse check: %s",
+                "immediate family only" if only_immediate_family else "full tree",
+            )
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
@@ -469,7 +485,7 @@ class ProbablyAlive:
                         date1, date2, explain, other = self.probably_alive_range(
                             spouse,
                             is_spouse=True,
-                            immediate_fam_only=True if passnum == 1 else False,
+                            immediate_fam_only=only_immediate_family,
                         )
                         if DEBUGLEVEL > 2:
                             LOG.debug(
@@ -556,7 +572,7 @@ class ProbablyAlive:
             return (None, None, "", None)
 
         if not is_spouse:
-            birth_date, death_date, explain, who = spouse_test(1)
+            birth_date, death_date, explain, who = spouse_test(True)
             if birth_date is not None and death_date is not None:
                 return (birth_date, death_date, explain, who)
         elif immediate_fam_only:
@@ -758,7 +774,7 @@ class ProbablyAlive:
 
         except RuntimeError:
             raise DatabaseError(
-                _("Database error: loop in %s's descendants")
+                _("Database error: loop in descendants of %s.")
                 % name_displayer.display(person)
             )
 
@@ -917,7 +933,7 @@ class ProbablyAlive:
                 )
             except RuntimeError:
                 raise DatabaseError(
-                    _("Database error: loop in %s's ancestors")
+                    _("Database error: loop in ancestors of %s.")
                     % name_displayer.display(person)
                 )
 
@@ -925,7 +941,7 @@ class ProbablyAlive:
                 return (date1, date2, explain, other)
 
         if not is_spouse:  # if you are not in recursion, let's recurse again:
-            birth_date, death_date, explain, who = spouse_test(2)
+            birth_date, death_date, explain, who = spouse_test(False)
             if birth_date is not None and death_date is not None:
                 return (birth_date, death_date, explain, who)
 
@@ -981,7 +997,7 @@ def probably_alive(
     elif not current_date.is_valid():
         current_date = Today()
 
-    if not explain.startswith("DIRECT"):
+    if DEBUGLEVEL > 0:
         if relative is None:
             rel_id = "nobody"
         else:
@@ -1018,23 +1034,22 @@ def probably_alive(
     # ---true if  current_date >= birth(min)   and  true if current_date < death
     # these include true if current_date is within the estimated range
     result = current_date.match(birth, ">=") and current_date.match(death, "<")
-    if DEBUGLEVEL > 1:
-        if not explain.startswith("DIRECT"):
-            (bthmin, bthmax) = birth.get_start_stop_range()
-            (dthmin, dthmax) = death.get_start_stop_range()
-            (dmin, dmax) = current_date.get_start_stop_range()
-            LOG.debug(
-                "        alive=%s, btest: %s, dtest: %s (born %s-%s, dd %s-%s) vs (%s-%s)",
-                result,
-                current_date.match(birth, ">="),
-                current_date.match(death, "<"),
-                bthmin,
-                bthmax,
-                dthmin,
-                dthmax,
-                dmin,
-                dmax,
-            )
+    if DEBUGLEVEL > 3:
+        (bthmin, bthmax) = birth.get_start_stop_range()
+        (dthmin, dthmax) = death.get_start_stop_range()
+        (dmin, dmax) = current_date.get_start_stop_range()
+        LOG.debug(
+            "        alive=%s, btest: %s, dtest: %s (born %s-%s, dd %s-%s) vs (%s-%s)",
+            result,
+            current_date.match(birth, ">="),
+            current_date.match(death, "<"),
+            bthmin,
+            bthmax,
+            dthmin,
+            dthmax,
+            dmin,
+            dmax,
+        )
     if return_range:
         return (result, birth, death, explain, relative)
 
