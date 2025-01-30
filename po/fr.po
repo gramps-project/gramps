@@ -41,15 +41,15 @@
 # Patrice Legoux <patrice.legoux.perso@gmail.com>, 2023.
 # Jacob Wagner <doubleujacob@gmail.com>, 2024.
 # Boris Dauriac <dauriacboris+gramps@gmail.com>, 2024.
-# Emmanuel Vallois <emmanuel@vallois.name>, 2024.
+# Emmanuel Vallois <emmanuel@vallois.name>, 2024, 2025.
 # n4n5 <email.n4n5@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-27 18:06+0000\n"
-"PO-Revision-Date: 2025-01-28 21:59+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"PO-Revision-Date: 2025-01-29 04:58+0000\n"
+"Last-Translator: Emmanuel Vallois <emmanuel@vallois.name>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -495,13 +495,15 @@ msgid ""
 "visible, select View > Sidebar."
 msgstr ""
 "<b>Filtrage des individus</b><br/>Dans la vue Individus, vous pouvez filtrer "
-"les individus selon plusieurs critères. Sélectionnez « Édition > Éditeur de "
-"filtres sur l'individu » et choisissez un des nombreux filtres présents. Par "
-"exemple, les enfants adoptés peuvent être localisés. Les individus sans date "
-"de naissance peuvent également être filtrés. Pour obtenir le résultat, "
+"les individus selon de nombreux critères. Pour définir un nouveau filtre, "
+"sélectionnez « Édition > Éditeur de filtres sur l'individu ». Là vous pouvez "
+"nommer votre filtre et ajouter et combiner des règles en utilisant les "
+"nombreuses règles prédéfinies. Par exemple, vous pouvez définir un filtre "
+"pour trouver tous les enfants adoptés de l’arbre. Les individus sans date de "
+"naissance peuvent également être filtrés. Pour obtenir le résultat, "
 "sauvegardez le filtre. Puis, sélectionnez le filtre dans la zone Filtre de "
 "la barre latérale, et cliquez sur Rechercher. Si la barre latérale n'est pas "
-"visible, activez-la en sélectionnant Affichage &gt; Barre latérale."
+"visible, activez-la en sélectionnant « Affichage > Barre latérale »."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -622,9 +624,9 @@ msgid ""
 msgstr ""
 "<b>Définir vos préférences</b><br/> « Édition > Préférences… » vous permet "
 "de modifier des options de configuration, tel que le chemin vers vos "
-"fichiers media et d'ajuster selon vos besoins certains aspects liés à la "
-"représentation dans Gramps. Chaque vue séparée peut également être "
-"configurée sous « Affichage > Configuration… »."
+"fichiers média et d'ajuster selon vos besoins de nombreux aspects de la "
+"présentation de Gramps. Chaque vue séparée peut également être configurée "
+"sous « Affichage > Configuration… »."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -652,9 +654,9 @@ msgstr ""
 "<b>Commencer un nouvel arbre généalogique</b><br/>Un bon moyen de créer un "
 "nouvel arbre généalogique est de saisir tous les membres de la famille dans "
 "la base de données à l'aide de la vue Individus (utilisez « Édition > "
-"Ajouter&quot; ou cliquez sur le bouton &quot;Ajouter » dans la vue Individus)"
-". Puis allez dans la vue Relations et créez les relations entre les "
-"individus."
+"Ajouter… » ou cliquez sur le bouton « Ajouter un nouvel individu » dans la "
+"vue Individus). Puis allez dans la vue Relations et créez les relations "
+"entre les individus."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -686,8 +688,8 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Entrées doubles</b><br/> L'outil « Modification de l'arbre familial > "
-"Recherche des doublons » vous permet de trouver et éventuellement de "
+"<b>Entrées en double</b><br/> L'outil « Modification de l'arbre familial > "
+"Recherche des doublons… » vous permet de trouver et éventuellement de "
 "fusionner les entrées d'un même individu."
 
 #: ../data/tips.xml:44
@@ -699,13 +701,13 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Fusionner des entrées</b><br/>La fonction « Édition > Fusionner » vous "
+"<b>Fusionner des entrées</b><br/>La fonction « Édition > Fusionner… » vous "
 "permet de fusionner des individus séparés en un seul. Appuyez sur la touche "
 "Contrôle en même temps que vous cliquez sur le second individu à "
 "sélectionner. C'est très utile pour fusionner deux bases de données dont les "
 "individus se chevauchent ou pour combiner deux fiches d'une même personne "
-"saisies avec des noms différents. La fusion fonctionne également pour les "
-"objets primaires."
+"saisies avec des noms différents. La fusion est disponible dans toutes les "
+"listes pour tous les types d’objets primaires."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -727,9 +729,9 @@ msgid ""
 "buttons."
 msgstr ""
 "<b>Naviguer en avant et en arrière</b><br/>Gramps conserve une liste des "
-"objets actifs tels que les individus et évènements. Vous pouvez avancer et "
-"reculer dans la liste à l'aide de « Aller à > Suivant » et «Aller à > "
-"Précédent »."
+"objets actifs précédents tels que les individus et évènements. Vous pouvez "
+"avancer et reculer dans la liste à l'aide de « Aller à > Suivant » et « "
+"Aller à > Précédent » ou les boutons flèches."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -750,9 +752,9 @@ msgid ""
 msgstr ""
 "<b>La lecture du manuel</b><br/>N'oubliez pas de lire le manuel "
 "d'utilisation de Gramps, « Aide > Manuel utilisateur ». Les développeurs ont "
-"travaillé dur pour permettre que la plupart des options soient intuitives "
-"mais le manuel comprend des informations qui vous feront gagner du temps et "
-"de l'efficacité."
+"travaillé dur pour rendre la plupart des manipulations intuitives mais le "
+"manuel regorge d'informations qui rendront votre temps consacré à la "
+"généalogie plus productif."
 
 # Substantif (GNOME fr)
 #: ../data/tips.xml:54
@@ -818,13 +820,12 @@ msgid ""
 "by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
 "<b>Listes de diffusion Gramps</b><br/>Vous voulez des réponses à vos "
-"questions sur Gramps ? Allez voir la liste des utilisateurs de Gramps "
-"(gramps-users list). Beaucoup de personnes sont inscrites, vous pourrez "
-"ainsi avoir une réponse rapide. Si vous avez des questions sur le "
-"développement de Gramps, essayez gramps-devel. Toutes les informations sur "
-"les listes de diffusion peuvent être trouvées sur lists.sf.net. Vous pouvez "
-"également y accéder en sélectionnant « Aide > Listes de diffusion de Gramps "
-"»."
+"questions sur Gramps ? Allez voir la liste e-mail gramps-users des "
+"utilisateurs de Gramps. Beaucoup de personnes prêtes à aider sont inscrites, "
+"vous obtiendrez donc probablement une réponse rapidement. Si vous avez des "
+"questions liées au développement de Gramps, essayez la liste gramps-devel. "
+"Vous pouvez voir les listes en sélectionnant « Aide > Listes de diffusion de "
+"Gramps »."
 
 # Substantif (GNOME fr) (aider sonne bien)
 #: ../data/tips.xml:64
@@ -839,11 +840,12 @@ msgid ""
 msgstr ""
 "<b>Contribuer à Gramps</b><br/>Vous voulez aider Gramps mais vous ne savez "
 "pas programmer ? Ce n'est pas un problème. Un projet aussi étendu que Gramps "
-"nécessite des aptitudes variées. Les contributions peuvent aller de la "
-"rédaction de documentation aux tests des versions en développement ou à "
-"aider au maintien du site web. Commencez par vous inscrire à la liste des "
-"développeurs de Gramps gramps-devel. Les modalités d'inscription sont "
-"disponibles dans « Aide > Listes de diffusion de Gramps »."
+"nécessite des personnes aux aptitudes variées. Les contributions peuvent "
+"aller de la rédaction de documentation aux tests des versions en "
+"développement ou à aider au maintien du site web. Commencez par vous "
+"inscrire à la liste des développeurs de Gramps, gramps-devel, et présentez-"
+"vous. Les modalités d'inscription sont disponibles dans « Aide > Listes de "
+"diffusion de Gramps »."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -869,10 +871,11 @@ msgid ""
 "Person then go to \"Bookmarks > Add Bookmark\" or press Ctrl+D. You can also "
 "bookmark most of the other objects."
 msgstr ""
-"<b>Signets</b><br/>Le menu Signets conserve les noms des objets utilisés "
-"fréquemment sous forme de signet. Cliquez sur un de ces signets rendra "
-"l'objet actif. Pour créer le signet, rendez l'objet désiré actif et "
-"sélectionnez « Signets > Ajouter un signet » ou appuyez sur Ctrl+D."
+"<b>Signets</b><br/>Le menu Signets est un endroit commode pour conserver les "
+"noms des individus utilisés fréquemment. Cliquez sur un de ces signets "
+"rendra l'individu actif. Pour créer le signet sur un individu, rendez-le "
+"actif et sélectionnez « Signets > Ajouter un signet » ou appuyez sur Ctrl+D. "
+"Vous pouvez aussi mettre un signet sur la plupart des autres objets."
 
 #: ../data/tips.xml:70
 msgid ""
@@ -884,10 +887,11 @@ msgid ""
 "> Display\"."
 msgstr ""
 "<b>Dates incorrectes</b><br/>Tout le monde saisit occasionnellement des "
-"dates non valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie "
-"devient rouge et un bouton rouge marqué d'une croix s'affiche à droite. Le "
-"sélecteur de dates peut être appelé en cliquant sur le bouton Date. Le "
-"format de la date est défini dans « Édition > Préférences > Affichage »."
+"dates avec un format invalide. Dans ce cas, la couleur d'arrière-plan du "
+"champ de saisie devient rouge ou un point rouge s'affiche sur le bord droit. "
+"Vous pouvez rectifier la date en utilisant le sélecteur de dates qui s’ouvre "
+"en cliquant sur le bouton Date. Le format de la date est défini dans « "
+"Édition > Préférences > Données »."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -897,8 +901,8 @@ msgid ""
 "will be added to the available events, but not translated."
 msgstr ""
 "<b>Liste des évènements</b><br/>Les évènements sont ajoutés en utilisant "
-"l'éditeur disponible dans l'« Individus > Édition de l'individu > Évènements "
-"». Il existe une longue liste de types d'évènement. Vous pouvez ajouter vos "
+"l'éditeur disponible dans « Individus > Édition de l'individu > Évènements »"
+". Il existe une longue liste de types d'évènement. Vous pouvez ajouter vos "
 "propres types d'évènements en les saisissant dans le champ textuel, ils "
 "seront ajoutés à la liste des évènements disponibles, mais non traduits."
 
@@ -936,8 +940,9 @@ msgid ""
 "your sources."
 msgstr ""
 "<b>Gérer les sources</b><br/>La vue Sources affiche une liste de toutes les "
-"sources. Double-cliquez sur une source pour l'éditer, lui ajouter des notes "
-"ou consulter la liste des individus qui la référencent."
+"sources dans une seule fenêtre. De là, vous pouvez éditer vos sources, "
+"fusionner les doublons et consulter la liste des individus qui référencent "
+"chaque source. Vous pouvez utiliser des filtres pour grouper vos sources."
 
 # comté, province (Canada, Belgique)
 #: ../data/tips.xml:80
@@ -967,9 +972,9 @@ msgid ""
 "limited only by your imagination. Custom filters are created from \"Edit > "
 "Person Filter Editor\"."
 msgstr ""
-"<b>Les filtres</b><br/>Les filtres permettent de limiter l'affichage dans la "
-"vue Individus. En plus des filtres prédéfinis, d'autres filtres "
-"(personnalisés) peuvent être créés ce qui ne limite ces filtres qu'à votre "
+"<b>Les filtres</b><br/>Les filtres permettent de limiter l’affichage dans la "
+"vue Individus. En plus des nombreux filtres prédéfinis, des filtres "
+"personnalisés peuvent être créés qui ne sont limités que par votre "
 "imagination. Ces filtres sont éditables via « Édition > Éditeur de filtres "
 "sur l'individu »."
 
@@ -1041,7 +1046,7 @@ msgid ""
 "project.org/."
 msgstr ""
 "<b>La page d'accueil de Gramps</b><br/>La page d'accueil de Gramps se trouve "
-"à l'adresse https://gramps-project.org/"
+"à l'adresse https://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1081,9 +1086,10 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Rapports et outils supplémentaires</b><br/>Des rapports et des outils "
-"peuvent être ajoutés à Gramps via un système de greffons. Voir sous « Aide > "
-"Rapports et outils supplémentaires ». C'est le meilleur moyen pour les "
-"utilisateurs avancés d'expérimenter et de créer de nouvelles fonctionnalités."
+"supplémentaires peuvent être ajoutés à Gramps via un système de greffons. "
+"Voir sous « Aide > Rapports et outils supplémentaires ». C'est le meilleur "
+"moyen pour les utilisateurs avancés d'expérimenter et de créer de nouvelles "
+"fonctionnalités."
 
 #: ../data/tips.xml:104
 msgid ""
@@ -2570,7 +2576,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:424
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr "{date_quality} de {date_start} à {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}de {date_start} à {date_stop}{nonstd_calendar_and_ny}"
 
 # trunk
 #. Translators: If there is no special inflection for
@@ -2595,8 +2601,7 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
-"{date_quality} entre {date_start} et {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}entre {date_start} et {date_stop}{nonstd_calendar_and_ny}"
 
 # trunk
 #. Translators: If there is no special inflection for
@@ -4539,7 +4544,7 @@ msgstr "Citations dont le Volume/Page contient le <texte>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:47
 msgid "Matches citations whose Volume/Page contains a certain substring"
-msgstr "Correspond aux citations dont le nom contient une sous-chaîne"
+msgstr "Correspond aux citations dont le Volume/Page contient une sous-chaîne"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:48
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
@@ -8357,7 +8362,7 @@ msgstr "Voisin(e)"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr "Officier"
+msgstr "Officiant"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -11670,7 +11675,7 @@ msgstr "âge du plus jeune frère ou de la plus jeune sœur"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "date de naissance et connu pour être décédé"
 
 #: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:251
 msgid "birth date"
@@ -11698,17 +11703,13 @@ msgstr "évènement avec le conjoint"
 
 # master
 #: ../gramps/gen/utils/alive.py:730
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant birth: {} generations "
-msgstr "Maximum de générations descendantes"
+msgstr "naissance de descendant : {} générations "
 
 # master
 #: ../gramps/gen/utils/alive.py:749
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant death: {} generations "
-msgstr "Maximum de générations descendantes"
+msgstr "naissance d’ascendant : {} générations "
 
 #: ../gramps/gen/utils/alive.py:761
 #, python-format
@@ -13203,7 +13204,7 @@ msgstr "_Supprimer"
 # master
 #: ../gramps/gui/configure.py:1408
 msgid "Display Options"
-msgstr "Afficher les options"
+msgstr "Options d’affichage"
 
 #: ../gramps/gui/configure.py:1424 ../gramps/gui/configure.py:1502
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
@@ -13355,7 +13356,7 @@ msgstr "Données"
 
 #: ../gramps/gui/configure.py:1735
 msgid "Conditional Text Replacements"
-msgstr "Remplacement de texte conditionnels"
+msgstr "Remplacements de texte conditionnels"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1746
@@ -17069,7 +17070,7 @@ msgstr "Lieux du décès"
 # master
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:121
 msgid "Within"
-msgstr "Dans"
+msgstr "Dans un rayon"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
 #: ../gramps/gui/plug/_windows.py:847
@@ -17107,7 +17108,9 @@ msgstr "Temps écoulé : %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr "Vous devez sélectionner un lieu lorsque vous utilisez la règle « Dans »"
+msgstr ""
+"Vous devez sélectionner un lieu lorsque vous utilisez la règle « Dans un "
+"rayon »"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
@@ -33190,7 +33193,7 @@ msgstr "_Ajouter..."
 #: ../gramps/plugins/view/sourceview.py:247
 #: ../gramps/plugins/view/sourceview.py:300
 msgid "_Merge..."
-msgstr "_Fusion..."
+msgstr "_Fusionner..."
 
 #: ../gramps/plugins/lib/libpersonview.py:274
 #: ../gramps/plugins/lib/libpersonview.py:434
@@ -41975,7 +41978,7 @@ msgstr "Titre du lieu"
 
 #: ../gramps/plugins/webreport/person.py:1186
 msgid "Drop Markers"
-msgstr "Marqueurs"
+msgstr "Parachuter les marqueurs"
 
 # call name = prénom dans le context !
 #: ../gramps/plugins/webreport/person.py:1785
