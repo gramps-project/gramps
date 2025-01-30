@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-27 18:06+0000\n"
-"PO-Revision-Date: 2025-01-26 20:01+0000\n"
+"PO-Revision-Date: 2025-01-28 21:59+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -988,16 +988,12 @@ msgstr ""
 "org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b>Domovská stránka Gramps</b><br/>Domovskou stránku Gramps najdete na "
-"http://gramps-project.org/."
+"<b>Domovská stránka Gramps</b><br/>Domovskou stránku Gramps najdete na https"
+"://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1168,12 +1164,6 @@ msgstr ""
 "dozvíte od Free Software Foundation a Open Source Initiative."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1182,7 +1172,7 @@ msgid ""
 msgstr ""
 "<b>The Gramps Software Licence</b><br/>Gramps můžete volně používat a sdílet "
 "s ostatními. Gramps je volně šiřitelný pod licencí GNU General Public "
-"License, podrobnosti o právech a omezeních této licence naleznete na http://"
+"License, podrobnosti o právech a omezeních této licence naleznete na https://"
 "www.gnu.org/licenses/licenses.html#GPL."
 
 #: ../data/tips.xml:128
@@ -2221,10 +2211,8 @@ msgstr "Měsíc Den, Rok"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
-msgstr "Měsíc Den, Rok"
+msgstr "Měs Den, Rok"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:88
@@ -2233,10 +2221,8 @@ msgstr "Den Měsíc Rok"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
-msgstr "Den Měsíc Rok"
+msgstr "Den Měs Rok"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
@@ -3873,10 +3859,8 @@ msgid "Note type:"
 msgstr "Typ poznámky:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:48
-#, fuzzy
-#| msgid "Matches notes with the particular type "
 msgid "Objects with notes with the particular type"
-msgstr "Vyhovují poznámky konkrétního typu "
+msgstr "Objekty s poznámkami konkrétního typu"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:49
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
@@ -4084,16 +4068,12 @@ msgstr ""
 "Vyhovují citace jejichž poznámky obsahují text odpovídající reg. výrazu"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Citations with the <tag>"
 msgid "Citations with a note of type <type>"
-msgstr "Citace s <tag>"
+msgstr "Citace s poznámkou typu<type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches a citation with a source with a specified Gramps ID"
 msgid "Matches citations with a note of the specified type"
-msgstr "Vyhovují citace s pramenem se zadaným Gramps ID"
+msgstr "Porovnáva citace s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4101,10 +4081,8 @@ msgstr "Vyhovují citace s pramenem se zadaným Gramps ID"
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:50
-#, fuzzy
-#| msgid "Note Filters"
 msgid "Note filters"
-msgstr "Filtry poznámek"
+msgstr "Poznámkové filtry"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
 msgid "Citations with a reference count of <count>"
@@ -4393,16 +4371,12 @@ msgid "Main Participants:"
 msgstr "Hlavní aktéři:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
-#, fuzzy
-#| msgid "Notes matching parameters"
 msgid "Events matching parameters"
-msgstr "Poznámky vyhovující parametrům"
+msgstr "Události vyhovující parametrům"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches events with particular parameters"
-msgstr "Vyhovují poznámky konkrétních parametrů"
+msgstr "Porovnává události konkrétních parametrů"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4447,16 +4421,12 @@ msgstr ""
 "Vyhovují události jejichž poznámky obsahují text který odpovídá reg. výrazu"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "Události s <tag>"
+msgstr "Události s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Vyhovují události odpovídající uvedenému filtru"
+msgstr "Porovnává události s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4741,16 +4711,12 @@ msgstr ""
 "Vyhovují rodiny jejichž poznámky obsahují text odpovídající reg. výrazu"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "Rodiny kde otec se jmenuje <name>"
+msgstr "Rodiny s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Vyhovují rodiny odpovídající uvedenému filtru"
+msgstr "Porovnává rodiny s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -5564,16 +5530,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Vyhovují osoby jejichž poznámky obsahují text vyhovující reg. výrazu"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "Osoby s <typem jména>"
+msgstr "Osoby s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Vyhovuje osobám, které jsou předkové specifikované osoby"
+msgstr "Porovnává osoby s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 msgid "People who are neither male nor female"
@@ -6219,16 +6181,12 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Vyhovují místa jejichž poznámky obsahují text odpovídající reg. výrazu"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "Místa se <štítkem>"
+msgstr "Místa s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Vyhovují místa odpovídající uvedenému filtru"
+msgstr "Porovnává místa s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "Street:"
@@ -6620,16 +6578,12 @@ msgstr ""
 "Vyhovují prameny jejichž poznámky obsahují text odpovídající reg. výrazu"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "Prameny se <štítkem>"
+msgstr "Prameny s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "Vyhovují prameny odpovídající uvedenému filtru"
+msgstr "Porovnává prameny s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -6660,10 +6614,8 @@ msgstr ""
 " obsahující podřetězec v \"Signatuře\""
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches sources with particular parameters"
-msgstr "Vyhovují poznámky konkrétních parametrů"
+msgstr "Porovnává prameny konkrétních parametrů"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -7729,24 +7681,20 @@ msgid "Child"
 msgstr "Potomek"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "Vícenásobné rodičovství"
+msgstr "Vícenásobný porod"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
 msgstr "Přítel"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "Sousedství"
+msgstr "Soused/ka"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr "Úředník"
+msgstr "Ceremoniář"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -8384,16 +8332,12 @@ msgid "Type"
 msgstr "Typ"
 
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "Vlastní filtr"
+msgstr "Vlastní typ"
 
 #: ../gramps/gen/lib/grampstype.py:272
-#, fuzzy
-#| msgid "Type face"
 msgid "Type code"
-msgstr "Druh písma"
+msgstr "Typový kód"
 
 #: ../gramps/gen/lib/ldsord.py:95
 msgid "Endowment"
@@ -10873,7 +10817,7 @@ msgstr "datum"
 
 #: ../gramps/gen/utils/alive.py:207 ../gramps/gen/utils/alive.py:238
 msgid "date fallback"
-msgstr ""
+msgstr "nahrazení data"
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
 msgid ", death: "
@@ -10881,37 +10825,27 @@ msgstr ",úmrtí: "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
-msgstr ""
+msgstr "DIRECT narození: "
 
 #: ../gramps/gen/utils/alive.py:336
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
-msgstr "Věk matky"
+msgstr "věk matky"
 
 #: ../gramps/gen/utils/alive.py:341
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
-msgstr "Věk otce"
+msgstr "věk otce"
 
 #: ../gramps/gen/utils/alive.py:345
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "datum úmrtí"
+msgstr "od data úmrtí"
 
 #: ../gramps/gen/utils/alive.py:349
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "Věk matky"
+msgstr "úmrtí matky"
 
 #: ../gramps/gen/utils/alive.py:354
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "Věk otce"
+msgstr "úmrtí otce"
 
 #: ../gramps/gen/utils/alive.py:358
 msgid "person's death"
@@ -14071,10 +14005,8 @@ msgid "_Names"
 msgstr "Jmé_na"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Set as Preferred name"
-msgstr "Preferované jméno"
+msgstr "Nastavit jako preferované jméno"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
@@ -19093,10 +19025,8 @@ msgid "All statuses"
 msgstr "Všechny statusy"
 
 #: ../gramps/gui/plug/_windows.py:463
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
-msgstr "Obnovit výchozí nastavení"
+msgstr "Obnovit doplňkové filtry na výchozí nastavení"
 
 #: ../gramps/gui/plug/_windows.py:477
 msgid "Settings"
@@ -19127,44 +19057,33 @@ msgid "No matching addons found."
 msgstr "Nebyly nalezeny vhodná rozšíření."
 
 #: ../gramps/gui/plug/_windows.py:703
-#, fuzzy
-#| msgid "Research project"
 msgid "Insert a project"
-msgstr "Badatelský projekt"
+msgstr "Vložit projekt"
 
 #: ../gramps/gui/plug/_windows.py:705
-#, fuzzy
-#| msgid "Remove the selected person"
 msgid "Remove the selected project"
-msgstr "Odstranit zvolenou osobu"
+msgstr "Odstranit zvolený projekt"
 
 #: ../gramps/gui/plug/_windows.py:707
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "Posunout dítě výše v seznamu potomků"
+msgstr "Posunout projekt výše v seznamu"
 
 #: ../gramps/gui/plug/_windows.py:709
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "Posunout dítě níže v seznamu potomků"
+msgstr "Posunout projekt níže v seznamu"
 
 #: ../gramps/gui/plug/_windows.py:711
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
-msgstr "Obnovit výchozí nastavení projektu"
+msgstr "Návrat k výchozímu nastavení projektu"
 
 #: ../gramps/gui/plug/_windows.py:748
 msgid "Allow Gramps to install required Python modules"
 msgstr "Povolit Gramps nainstalovat požadované moduly Pythonu"
 
 #: ../gramps/gui/plug/_windows.py:750
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "Povolit Gramps nainstalovat požadované moduly Pythonu"
+msgstr ""
+"Pokud je to možné, pokusit se nainstalovat všechny chybějící moduly Pythonu"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Scheduled update checks"
@@ -19489,7 +19408,7 @@ msgid ""
 "Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 msgstr ""
 "Stisknutím Zrušit přerušíte akci, stisknutím Zpět se vrátíte k možnostem "
-"kontroly vašich nastavení nebo stisknutím Použít pokračujete."
+"kontroly vašich nastavení nebo stisknutím Použít pokračujete"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:481
 #, python-format
@@ -23282,10 +23201,9 @@ msgid "Key"
 msgstr "Klíč"
 
 #: ../gramps/plugins/gramplet/backlinks.py:238
-#, fuzzy, python-format
-#| msgid "_Make Active Media"
+#, python-format
 msgid "_Make Active %s"
-msgstr "Nastavit aktivní _médium"
+msgstr "_Nastavit aktivní %s"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
@@ -25853,22 +25771,16 @@ msgid "call"
 msgstr "volání"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "přezdívka"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "Přez_dívka:"
+msgstr "Přezdívka"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "přezdívka"
+msgstr "přezdívka_jméno"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -32906,10 +32818,8 @@ msgid "Show gender symbol in front of name"
 msgstr "Před jménem zobrazit symbol pohlaví"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "Zda zahrnout informace o rozvodu do sestavy."
+msgstr "Zda zobrazit symbol pohlaví před jménem v sestavě."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -33110,10 +33020,8 @@ msgstr "Zda použít běžné jméno jako křestní jméno."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to include Gramps ID next to names."
 msgid "Whether to show gender symbol in front of name."
-msgstr "Zda připojit Gramps ID ke jménu."
+msgstr "Zda zobrazit symbol pohlaví před jménem."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
@@ -33665,16 +33573,12 @@ msgid "The maximum number of ancestor generations"
 msgstr "Maximální počet generací předků"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
-#| msgid "Show gramps id"
 msgid "Show Gramps ID"
-msgstr "Zobrazit gramps id"
+msgstr "Zobrazit Gramps ID"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
-msgstr "Zda připojit Gramps ID"
+msgstr "Zda zobrazit Gramps ID"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:390
 msgid "Whether to include spouses"
@@ -37764,10 +37668,9 @@ msgstr "Vyprávění"
 
 #: ../gramps/plugins/webreport/basepage.py:884
 #: ../gramps/plugins/webreport/basepage.py:954
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s, %(str2)s"
+msgstr "(%(str1)s) %(str2)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1492
 #: ../gramps/plugins/webreport/basepage.py:3382
@@ -38723,16 +38626,12 @@ msgid "Add a complete events list and relevant pages or not"
 msgstr "Přidat či nepřidat seznam událostí a relevantní stránky"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "Zahrnout další události"
+msgstr "Zahrnout další role"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "Gramplet zobrazující poznámky události"
+msgstr "Zahrnout osoby s jinými rolemi do události"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include place pages"
@@ -39301,10 +39200,9 @@ msgid "Number of People"
 msgstr "Počet osob"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
-#, fuzzy, python-brace-format
-#| msgid "Surnames beginning with letter '%s' %s"
+#, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "Příjmení začínající písmenem '%s' %s"
+msgstr "Příjmení začínající písmenem '{letter}' {char}"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 msgid ""
