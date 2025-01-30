@@ -111,32 +111,32 @@ class SourceModel(FlatBaseModel):
         return len(self.fmap) + 1
 
     def column_title(self, data):
-        return data["title"].replace("\n", " ")
+        return data.title.replace("\n", " ")
 
     def column_author(self, data):
-        return data["author"]
+        return data.author
 
     def column_abbrev(self, data):
-        return data["abbrev"]
+        return data.abbrev
 
     def column_id(self, data):
-        return data["gramps_id"]
+        return data.gramps_id
 
     def column_pubinfo(self, data):
-        return data["pubinfo"]
+        return data.pubinfo
 
     def column_private(self, data):
-        if data["private"]:
+        if data.private:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
             return ""
 
     def column_change(self, data):
-        return format_time(data["change"])
+        return format_time(data.change)
 
     def sort_change(self, data):
-        return "%012x" % data["change"]
+        return "%012x" % data.change
 
     def get_tag_name(self, tag_handle):
         """
@@ -152,12 +152,12 @@ class SourceModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data["handle"]
+        tag_handle = data.handle
         cached, value = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data["tag_list"]:
+            for handle in data.tag_list:
                 tag = self.db.get_tag_from_handle(handle)
                 if tag:
                     this_priority = tag.get_priority()
@@ -172,6 +172,6 @@ class SourceModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data["tag_list"]))
+        tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
         return ", ".join(sorted(tag_list, key=glocale.sort_key))
