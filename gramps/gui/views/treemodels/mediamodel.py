@@ -135,7 +135,7 @@ class MediaModel(FlatBaseModel):
 
     def column_date(self, data):
         if data["date"]:
-            date = data_to_object(data["date"])
+            date = data_to_object(data.date)
             return displayer.display(date)
         return ""
 
