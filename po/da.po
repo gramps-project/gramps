@@ -48,7 +48,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-27 18:06+0000\n"
-"PO-Revision-Date: 2025-01-13 22:21+0000\n"
+"PO-Revision-Date: 2025-01-28 21:59+0000\n"
 "Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
@@ -822,7 +822,7 @@ msgstr ""
 "dokumentation til at teste de nyeste udviklingsversioner og til at hjælpe "
 "med websitet. Begynd med at abonnere på postlisten for Gramps' udviklere, "
 "gramps-devel, og giv en præsentation af dig selv. Oplysninger om at abonnere "
-"kan findes på \"Hjælp > Gramps  e-postlister\"."
+"kan findes på \"Hjælp > Gramps e-postlister\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -1016,15 +1016,11 @@ msgstr ""
 "på https://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b>Gramps' hjemmeside</b><br/>Gramps' hjemmeside findes på http://gramps-"
+"<b>Gramps' hjemmeside</b><br/>Gramps' hjemmeside findes på https://gramps-"
 "project.org/."
 
 #: ../data/tips.xml:98
@@ -1200,12 +1196,6 @@ msgstr ""
 "The Open Source Initiative for at lære mere om Open Source Software."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1214,7 +1204,7 @@ msgid ""
 msgstr ""
 "<b>Softwarelicensen til Gramps</b><br/>Du kan frit bruge og dele Gramps med "
 "andre. Gramps kan frit distribueres under GNU General Public License, se "
-"http://www.gnu.org/licenses/licenses.html#GPL for at læse om denne licens' "
+"https://www.gnu.org/licenses/licenses.html#GPL for at læse om denne licens' "
 "rettigheder og begrænsninger."
 
 #: ../data/tips.xml:128
@@ -2253,10 +2243,8 @@ msgstr "Måned Dag, År"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
-msgstr "Måned Dag, År"
+msgstr "Mån Dag, År"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:88
@@ -2265,10 +2253,8 @@ msgstr "Dag Måned År"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
-msgstr "Dag Måned År"
+msgstr "Dag Mån År"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
@@ -3918,10 +3904,8 @@ msgid "Note type:"
 msgstr "Notetype:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:48
-#, fuzzy
-#| msgid "Matches notes with the particular type "
 msgid "Objects with notes with the particular type"
-msgstr "Matcher noter af den bestemte type "
+msgstr "Objekter med noter af den bestemte type"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:49
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
@@ -4134,16 +4118,12 @@ msgstr ""
 "regulært udtryk"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Citations with the <tag>"
 msgid "Citations with a note of type <type>"
-msgstr "Kildehenvisninger med <mærkatet>"
+msgstr "Kildehenvisninger med note af typen <type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches a citation with a source with a specified Gramps ID"
 msgid "Matches citations with a note of the specified type"
-msgstr "Matcher en kildehenvisning med en kilde med et angivet Gramps-ID"
+msgstr "Matcher kildehenvisninger med en note af angivne type"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4151,10 +4131,8 @@ msgstr "Matcher en kildehenvisning med en kilde med et angivet Gramps-ID"
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:50
-#, fuzzy
-#| msgid "Note Filters"
 msgid "Note filters"
-msgstr "Note-filtre"
+msgstr "Notefiltre"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
 msgid "Citations with a reference count of <count>"
@@ -4451,16 +4429,12 @@ msgid "Main Participants:"
 msgstr "Primære deltagere:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
-#, fuzzy
-#| msgid "Notes matching parameters"
 msgid "Events matching parameters"
-msgstr "Noter der passer med parametre"
+msgstr "Parametre til at matche begivenheder"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches events with particular parameters"
-msgstr "Matcher noter med bestemte parametre"
+msgstr "Matcher begivenheder med bestemte parametre"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4503,16 +4477,12 @@ msgid "Matches events whose notes contain text matching a regular expression"
 msgstr "Matcher hændelser med noter der indeholder regulært udtryk"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "Hændelser med <mærkatet>"
+msgstr "Hændelser med en note af typen <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Matcher hændelser som passer med det angivne filternavn"
+msgstr "Matcher hændelser med en note af den angivne type"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4794,16 +4764,12 @@ msgid "Matches families whose notes contain text matching a regular expression"
 msgstr "Matcher familier med noter der indeholder regulært udtryk"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "Familier med en fader der har <navnet>"
+msgstr "Familier med en note af typen <type>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Matcher familier som passer med det angivne filternavn"
+msgstr "Matcher familier med en note af den angivne type"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -5622,16 +5588,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Matcher personer med noter der indeholder regulært udtryk"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "Personer med <navnetype>"
+msgstr "Personer med en note af typen <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Matcher aner til den angivne person"
+msgstr "Matcher personer med en note af den angivne type"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 msgid "People who are neither male nor female"
@@ -6275,16 +6237,12 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Matcher steder med noter der indeholder regulært udtryk"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "Steder med <mærkat>"
+msgstr "Steder med en note af typen <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Matcher steder som passer med det angivne filternavn"
+msgstr "Matcher steder med en note af den angivne type"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "Street:"
@@ -6678,16 +6636,12 @@ msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr "Matcher kilder med noter der indeholder regulært udtryk"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "Kilder med <mærkatet>"
+msgstr "Kilder med en note af typen <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "Matcher kilder som passer med det angivne filternavn"
+msgstr "Matcher kilder med en note af den angivne type"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -6718,10 +6672,8 @@ msgstr ""
 "delstreng i henvisningsnummer"
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches sources with particular parameters"
-msgstr "Matcher noter med bestemte parametre"
+msgstr "Matcher kilder med bestemte parametre"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -7786,24 +7738,20 @@ msgid "Child"
 msgstr "Barn"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "Flere forældrepar"
+msgstr "Flere fødsler"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Ven"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "Nabolag"
+msgstr "Nabo"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "Tjenestemand"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -8455,16 +8403,12 @@ msgid "Type"
 msgstr "Type"
 
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "Tilpasset filter"
+msgstr "Tilpasset type"
 
 #: ../gramps/gen/lib/grampstype.py:272
-#, fuzzy
-#| msgid "Type face"
 msgid "Type code"
-msgstr "Typesnit"
+msgstr "Typekode"
 
 #: ../gramps/gen/lib/ldsord.py:95
 msgid "Endowment"
@@ -10951,85 +10895,63 @@ msgstr "dato"
 
 #: ../gramps/gen/utils/alive.py:207 ../gramps/gen/utils/alive.py:238
 msgid "date fallback"
-msgstr ""
+msgstr "dato reserve"
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
-#, fuzzy
-#| msgid "death"
 msgid ", death: "
-msgstr "død"
+msgstr ",død: "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
-msgstr ""
+msgstr "DIREKTE fødsel: "
 
 #: ../gramps/gen/utils/alive.py:336
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
-msgstr "Moders alder"
+msgstr "moders alder"
 
 #: ../gramps/gen/utils/alive.py:341
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
-msgstr "Faders alder"
+msgstr "faders alder"
 
 #: ../gramps/gen/utils/alive.py:345
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "dødsdato"
+msgstr "fra dødsdato"
 
 #: ../gramps/gen/utils/alive.py:349
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "Moders alder"
+msgstr "moders død"
 
 #: ../gramps/gen/utils/alive.py:354
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "Faders alder"
+msgstr "faders død"
 
 #: ../gramps/gen/utils/alive.py:358
-#, fuzzy
-#| msgid "%(person)s, birth"
 msgid "person's death"
-msgstr "%(person)s, fødsel"
+msgstr "persons, død"
 
 #: ../gramps/gen/utils/alive.py:365
-#, fuzzy
-#| msgid "Not siblings"
 msgid "oldest sibling's age"
-msgstr "Ikke søskende"
+msgstr "Ældste søskendes alder"
 
 #: ../gramps/gen/utils/alive.py:370
-#, fuzzy
-#| msgid "Not siblings"
 msgid "youngest sibling's age"
-msgstr "Ikke søskende"
+msgstr "Yngste søskendes alder"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "fødselsdato og vides død"
 
 #: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:251
 msgid "birth date"
 msgstr "fødselsdato"
 
 #: ../gramps/gen/utils/alive.py:424 ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "Birth:"
 msgid "birth: "
-msgstr "Fødsel:"
+msgstr "fødsel: "
 
 #: ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "' and '"
 msgid " and "
-msgstr "' og '"
+msgstr " og "
 
 #: ../gramps/gen/utils/alive.py:510
 msgid "a spouse's birth-related date, "
@@ -11044,16 +10966,12 @@ msgid "event with spouse"
 msgstr "hændelse med ægtefælle"
 
 #: ../gramps/gen/utils/alive.py:730
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant birth: {} generations "
-msgstr "Største antal generationer af efterkommere"
+msgstr "efterkommeres fødsel: {} generationer "
 
 #: ../gramps/gen/utils/alive.py:749
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "descendant death: {} generations "
-msgstr "Største antal generationer af efterkommere"
+msgstr "efterkommeres død: {} generationer "
 
 #: ../gramps/gen/utils/alive.py:761
 #, python-format
@@ -11061,34 +10979,24 @@ msgid "Database error: loop in %s's descendants"
 msgstr "Database fejl: løkke i %s's efterkommere"
 
 #: ../gramps/gen/utils/alive.py:813
-#, fuzzy
-#| msgid "Death before birth"
 msgid "mother birth "
-msgstr "Død før fødsel"
+msgstr "Moders fødsel "
 
 #: ../gramps/gen/utils/alive.py:817 ../gramps/gen/utils/alive.py:823
-#, fuzzy
-#| msgid "Death before birth"
 msgid "father birth "
-msgstr "Død før fødsel"
+msgstr "faders fødsel "
 
 #: ../gramps/gen/utils/alive.py:831 ../gramps/gen/utils/alive.py:862
-#, fuzzy
-#| msgid "Ancestor"
 msgid "ancestor "
-msgstr "Ane"
+msgstr "ane "
 
 #: ../gramps/gen/utils/alive.py:837
-#, fuzzy
-#| msgid "Compute death age"
 msgid "mother death "
-msgstr "Beregn alder ved død"
+msgstr "moders død "
 
 #: ../gramps/gen/utils/alive.py:841 ../gramps/gen/utils/alive.py:847
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "Alder ved død"
+msgstr "faders død "
 
 #: ../gramps/gen/utils/alive.py:920
 #, python-format
@@ -14196,10 +14104,8 @@ msgid "_Names"
 msgstr "_Navne"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Set as Preferred name"
-msgstr "Foretrukket navn"
+msgstr "Angiv som foretrukket navn"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
@@ -16083,6 +15989,8 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"Dette åbner en dialogboks, hvor du kan angive et nyt tilpasset filter "
+"baseret på de angivne værdier."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16091,20 +15999,20 @@ msgstr "Nulstil"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "Forløbet tid: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "Du bør vælge et sted når du benytter regelen 'Indeholdt'"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
-msgstr ""
+msgstr "Angiv mindst en værdi"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "Dannet af Filter gramplet den {today}"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19252,10 +19160,8 @@ msgid "All statuses"
 msgstr "Alle statuser"
 
 #: ../gramps/gui/plug/_windows.py:463
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
-msgstr "Genopret standard"
+msgstr "Genopret tillægsfilter til standard"
 
 #: ../gramps/gui/plug/_windows.py:477
 msgid "Settings"
@@ -19287,29 +19193,21 @@ msgstr "Ingen passende tilføjelse blev fundet."
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
-msgstr ""
+msgstr "Indsæt et projekt"
 
 #: ../gramps/gui/plug/_windows.py:705
-#, fuzzy
-#| msgid "Remove the selected person"
 msgid "Remove the selected project"
-msgstr "Fjern den valgte person"
+msgstr "Fjern det valgte projekt"
 
 #: ../gramps/gui/plug/_windows.py:707
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "Ryk barn op i listen over børn"
+msgstr "Flyt projektet opad i listen"
 
 #: ../gramps/gui/plug/_windows.py:709
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "Ryk barn ned i listen over børn"
+msgstr "Flyt projektet nedad i listen"
 
 #: ../gramps/gui/plug/_windows.py:711
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
 msgstr "Genopret projektets standardindstillinger"
 
@@ -19318,10 +19216,8 @@ msgid "Allow Gramps to install required Python modules"
 msgstr "Tillad at Gramps installerer krævede Python moduler"
 
 #: ../gramps/gui/plug/_windows.py:750
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "Tillad at Gramps installerer krævede Python moduler"
+msgstr "Hvis muligt, forsøg at installere manglende Python-moduler"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Scheduled update checks"
@@ -23460,10 +23356,9 @@ msgid "Key"
 msgstr "Nøgle"
 
 #: ../gramps/plugins/gramplet/backlinks.py:238
-#, fuzzy, python-format
-#| msgid "_Make Active Media"
+#, python-format
 msgid "_Make Active %s"
-msgstr "Opret aktivt medie"
+msgstr "_Aktiver %s"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
@@ -23748,16 +23643,12 @@ msgid "Total people"
 msgstr "Sum af personer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_Liste"
+msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_Liste"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
+msgstr "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -26044,22 +25935,16 @@ msgid "call"
 msgstr "kaldenavn"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
-msgstr "tilnavn"
+msgstr "kælenavn"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "_Tilnavn:"
+msgstr "Kælenavn"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "tilnavn"
+msgstr "kæle_navn"
 
 # verbum?
 #: ../gramps/plugins/importer/importcsv.py:230
@@ -33174,13 +33059,11 @@ msgstr "Det nummereringssystem der skal bruges"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "Vis kønssymboler foran navnet"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "Vælg om skilsmisseoplysninger skal vises i rapporten.."
+msgstr "Hvorvidt kønssymboler skal vises foran navnet i rapporten.."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -33382,10 +33265,8 @@ msgstr "Vælg om kaldenavn skal bruges som fornavn."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to include Gramps ID next to names."
 msgid "Whether to show gender symbol in front of name."
-msgstr "Hvorvidt Gramps-id'er skal vises ved siden af navne."
+msgstr "Hvorvidt kønssymboler skal vises foran navnet."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
@@ -33939,16 +33820,12 @@ msgid "The maximum number of ancestor generations"
 msgstr "Største antal generationer for aner"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
-#| msgid "Show gramps id"
 msgid "Show Gramps ID"
-msgstr "Vis Gramps-ID"
+msgstr "Vis Gramps ID"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
-msgstr "Hvorvidt Gramps-id'er skal medtages"
+msgstr "Hvorvidt Gramps ID skal vises"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:390
 msgid "Whether to include spouses"
@@ -38017,10 +37894,9 @@ msgstr "Fortællende"
 
 #: ../gramps/plugins/webreport/basepage.py:884
 #: ../gramps/plugins/webreport/basepage.py:954
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr "(%(str1)s) %(str2)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1492
 #: ../gramps/plugins/webreport/basepage.py:3382
@@ -38987,16 +38863,12 @@ msgstr ""
 "Vælg om en liste over hændelser med deres relevante sider skal medtages"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "Medtag andres hændelser"
+msgstr "Medtag andres roller"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "Gramplet der viser en hændelses noter"
+msgstr "Medtag personer med andre roller til en begivenhed"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include place pages"
@@ -39575,10 +39447,9 @@ msgid "Number of People"
 msgstr "Antal personer"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
-#, fuzzy, python-brace-format
-#| msgid "Surnames beginning with letter '%s' %s"
+#, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "Efternavne der begynder med bogstavet '%s' %s"
+msgstr "Efternavne der begynder med bogstavet '{letter}' {char}"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 msgid ""
