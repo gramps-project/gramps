@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-27 18:06+0000\n"
-"PO-Revision-Date: 2025-01-24 17:44+0000\n"
+"PO-Revision-Date: 2025-01-28 21:59+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -835,7 +835,7 @@ msgstr ""
 "formato inválido. Formatos de data incorrectos aparecerão no Gramps com um "
 "fundo vermelho ou um ponto vermelho à direita do campo. Pode corrigir a data "
 "usando o diálogo Selecção de datas, que pode ser aberto clicando no botão de "
-"data. O formado da data é definido em \"Editar > Preferências > Ver\"."
+"data. O formado da data é definido em \"Editar > Preferências > Dados\"."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -981,16 +981,11 @@ msgstr ""
 "bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b>A página web do Gramps</b><br/>A página Web do Gramps encontra-se em "
-"http://gramps-project.org/."
+"<b><a href=\"https://gramps-project.org/\">Página web do Gramps</a></b>"
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1164,21 +1159,15 @@ msgstr ""
 "Initiactive."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
 "License, see https://www.gnu.org/licenses/licenses.html#GPL to read about "
 "the rights and restrictions of this license."
 msgstr ""
-"<b>A licença do Gramps</b><br/>É livre de usar e partilhar o Gramps com "
+"<b>Licença do Gramps</b><br/>É livre de usar e partilhar o Gramps com "
 "outros. O Gramps é livremente distribuído sob a licença GNU General Public "
-"License. Veja em http://www.gnu.org/licenses/licenses.html#GPL para ler "
+"License. Veja em https://www.gnu.org/licenses/licenses.html#GPL para ler "
 "sobre os direitos e restrições desta licença."
 
 #: ../data/tips.xml:128
@@ -7764,7 +7753,7 @@ msgstr "Filho"
 
 #: ../gramps/gen/lib/eventroletype.py:87
 msgid "Multiple birth"
-msgstr "Múltiplos nascimentos"
+msgstr "Nascimento múltiplo"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
@@ -25969,22 +25958,16 @@ msgid "call"
 msgstr "usual"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "alcunha"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "Dimi_nutivo:"
+msgstr "Alcunha"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "alcunha"
+msgstr "alcu_nha"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -39951,8 +39934,6 @@ msgstr "Sem folha de estilos"
 #~ msgstr "A sua versão GTK é muito antiga."
 
 #, fuzzy
-#~| msgctxt "localized lexeme inflections"
-#~| msgid "January"
 #~ msgctxt "localized lexeme inflections"
 #~ msgid "|January"
 #~ msgstr "Janeiro"
