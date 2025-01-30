@@ -777,7 +777,7 @@ def partial_navigation(
     num_of_rows = 1
 
     # begin alphabet navigation division
-    with Html("div", id=rtl, class_="nav") as partialnavigation:
+    with Html("div", id=rtl, class_="pnav") as partialnavigation:
         index = 0
         for dummy_row in range(num_of_rows):
             unordered = Html("ul", class_=rtl)

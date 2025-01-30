@@ -192,7 +192,7 @@ div#nav ul li a:hover, #subnavigation ul li a:hover {
     background-color: #CCC;
     border-bottom: solid 1px black;
 }
-div#ltr.nav ul.ltr li.CurrentSection, div#rtl.nav ul.rtl li.CurrentSection,
+div#ltr.pnav ul.ltr li.CurrentSection, div#rtl.pnav ul.rtl li.CurrentSection,
 div#ltr ul.ltr li.CurrentSection, div#rtl ul.rtl li.CurrentSection {
     font-weight: bold;
     font-style: italic;
@@ -210,6 +210,8 @@ div#nav ul li.CurrentSection a {
 }
 div#nav li.lang {
     font-family: sans-serif;
+    font-size: smaller;
+    font-weight: bold;
 }
 div#nav li.lang:hover > ul {
     visibility: visible;

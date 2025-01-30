@@ -283,7 +283,7 @@ div#nav ul li a:hover, #subnavigation ul li a:hover {
     background-color: #CCC;
     border-bottom: solid 1px black;
 }
-div#ltr.nav ul.ltr li.CurrentSection, div#rtl.nav ul.rtl li.CurrentSection,
+div#ltr.pnav ul.ltr li.CurrentSection, div#rtl.pnav ul.rtl li.CurrentSection,
 div#ltr ul.ltr li.CurrentSection, div#rtl ul.rtl li.CurrentSection {
     font-weight: bold;
     font-style: italic;
@@ -300,7 +300,7 @@ div#nav ul li.CurrentSection a {
     background-color: #903;
 }
 div#nav li.lang {
-    font-size: 12px;
+    font-size: smaller;
     font-weight: bold;
     padding-top: .5em;
 }
