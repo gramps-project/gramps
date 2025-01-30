@@ -985,7 +985,8 @@ msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b><a href=\"https://gramps-project.org/\">Página web do Gramps</a></b>"
+"<b>Página inicial do Gramps</b><br/>A página inicial do Gramps está "
+"localizada em https://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
