@@ -117,11 +117,11 @@ class FamilyModel(FlatBaseModel):
         return len(self.fmap) + 1
 
     def column_father(self, data):
-        handle = data["handle"]
+        handle = data.handle
         cached, value = self.get_cached_value(handle, "FATHER")
         if not cached:
-            if data["father_handle"]:
-                person = self.db.get_person_from_handle(data["father_handle"])
+            if data.father_handle:
+                person = self.db.get_person_from_handle(data.father_handle)
                 value = name_displayer.display_name(person.primary_name)
             else:
                 value = ""
@@ -129,11 +129,11 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def sort_father(self, data):
-        handle = data["handle"]
+        handle = data.handle
         cached, value = self.get_cached_value(handle, "SORT_FATHER")
         if not cached:
-            if data["father_handle"]:
-                person = self.db.get_person_from_handle(data["father_handle"])
+            if data.father_handle:
+                person = self.db.get_person_from_handle(data.father_handle)
                 value = name_displayer.sorted_name(person.primary_name)
             else:
                 value = ""
@@ -141,11 +141,11 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def column_mother(self, data):
-        handle = data["handle"]
+        handle = data.handle
         cached, value = self.get_cached_value(handle, "MOTHER")
         if not cached:
-            if data["mother_handle"]:
-                person = self.db.get_person_from_handle(data["mother_handle"])
+            if data.mother_handle:
+                person = self.db.get_person_from_handle(data.mother_handle)
                 value = name_displayer.display_name(person.primary_name)
             else:
                 value = ""
@@ -153,11 +153,11 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def sort_mother(self, data):
-        handle = data["handle"]
+        handle = data.handle
         cached, value = self.get_cached_value(handle, "SORT_MOTHER")
         if not cached:
-            if data["mother_handle"]:
-                person = self.db.get_person_from_handle(data["mother_handle"])
+            if data.mother_handle:
+                person = self.db.get_person_from_handle(data.mother_handle)
                 value = name_displayer.sorted_name(person.primary_name)
             else:
                 value = ""
@@ -168,10 +168,10 @@ class FamilyModel(FlatBaseModel):
         return FamilyRelType.get_str(data.type)
 
     def column_marriage(self, data):
-        handle = data["handle"]
+        handle = data.handle
         cached, value = self.get_cached_value(handle, "MARRIAGE")
         if not cached:
-            family = self.db.get_family_from_handle(data["handle"])
+            family = self.db.get_family_from_handle(data.handle)
             event = get_marriage_or_fallback(self.db, family, "<i>%s</i>")
             if event and event.date:
                 if event.date.format:
@@ -186,10 +186,10 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def sort_marriage(self, data):
-        handle = data["handle"]
+        handle = data.handle
         cached, value = self.get_cached_value(handle, "SORT_MARRIAGE")
         if not cached:
-            family = self.db.get_family_from_handle(data["handle"])
+            family = self.db.get_family_from_handle(data.handle)
             event = get_marriage_or_fallback(self.db, family)
             if event:
                 value = "%09d" % event.date.get_sort_value()
@@ -199,20 +199,20 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def column_id(self, data):
-        return data["gramps_id"]
+        return data.gramps_id
 
     def column_private(self, data):
-        if data["private"]:
+        if data.private:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
             return ""
 
     def sort_change(self, data):
-        return "%012x" % data["change"]
+        return "%012x" % data.change
 
     def column_change(self, data):
-        return format_time(data["change"])
+        return format_time(data.change)
 
     def get_tag_name(self, tag_handle):
         """
@@ -228,12 +228,12 @@ class FamilyModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data["handle"]
+        tag_handle = data.handle
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data["tag_list"]:
+            for handle in data.tag_list:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -246,6 +246,6 @@ class FamilyModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data["tag_list"]))
+        tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
         return ", ".join(sorted(tag_list, key=glocale.sort_key))

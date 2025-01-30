@@ -61,7 +61,7 @@ class CitationBaseModel:
     # Fields access when 'data' is a Citation
 
     def citation_date(self, data):
-        if data["date"]:
+        if data.date:
             citation = from_dict(data)
             date_str = get_date(citation)
             if date_str != "":
@@ -76,7 +76,7 @@ class CitationBaseModel:
         return ""
 
     def citation_sort_date(self, data):
-        if data["date"]:
+        if data.date:
             citation = from_dict(data)
             retval = "%09d" % citation.get_date_object().get_sort_value()
             if not get_date_valid(citation):
@@ -86,21 +86,21 @@ class CitationBaseModel:
         return ""
 
     def citation_id(self, data):
-        return data["gramps_id"]
+        return data.gramps_id
 
     def citation_page(self, data):
-        return data["page"]
+        return data.page
 
     def citation_sort_confidence(self, data):
-        if data["confidence"]:
-            return str(data["confidence"])
+        if data.confidence:
+            return str(data.confidence)
         return ""
 
     def citation_confidence(self, data):
-        return _(conf_strings[data["confidence"]])
+        return _(conf_strings[data.confidence])
 
     def citation_private(self, data):
-        if data["private"]:
+        if data.private:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
@@ -110,7 +110,7 @@ class CitationBaseModel:
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data["tag_list"]))
+        tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
         return ", ".join(sorted(tag_list, key=glocale.sort_key))
 
@@ -118,12 +118,12 @@ class CitationBaseModel:
         """
         Return the tag color.
         """
-        tag_handle = data["handle"]
+        tag_handle = data.handle
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data["tag_list"]:
+            for handle in data.tag_list:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -133,16 +133,16 @@ class CitationBaseModel:
         return tag_color
 
     def citation_change(self, data):
-        return format_time(data["change"])
+        return format_time(data.change)
 
     def citation_sort_change(self, data):
-        return "%012x" % data["change"]
+        return "%012x" % data.change
 
     def citation_source(self, data):
-        return data["source_handle"]
+        return data.source_handle
 
     def citation_src_title(self, data):
-        source_handle = data["source_handle"]
+        source_handle = data.source_handle
         cached, value = self.get_cached_value(source_handle, "SRC_TITLE")
         if not cached:
             try:
@@ -154,7 +154,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_id(self, data):
-        source_handle = data["source_handle"]
+        source_handle = data.source_handle
         cached, value = self.get_cached_value(source_handle, "SRC_ID")
         if not cached:
             try:
@@ -166,7 +166,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_auth(self, data):
-        source_handle = data["source_handle"]
+        source_handle = data.source_handle
         cached, value = self.get_cached_value(source_handle, "SRC_AUTH")
         if not cached:
             try:
@@ -178,7 +178,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_abbr(self, data):
-        source_handle = data["source_handle"]
+        source_handle = data.source_handle
         cached, value = self.get_cached_value(source_handle, "SRC_ABBR")
         if not cached:
             try:
@@ -190,7 +190,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_pinfo(self, data):
-        source_handle = data["source_handle"]
+        source_handle = data.source_handle
         cached, value = self.get_cached_value(source_handle, "SRC_PINFO")
         if not cached:
             try:
@@ -202,7 +202,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_private(self, data):
-        source_handle = data["source_handle"]
+        source_handle = data.source_handle
         cached, value = self.get_cached_value(source_handle, "SRC_PRIVATE")
         if not cached:
             try:
@@ -218,7 +218,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_tags(self, data):
-        source_handle = data["source_handle"]
+        source_handle = data.source_handle
         cached, value = self.get_cached_value(source_handle, "SRC_TAGS")
         if not cached:
             try:
@@ -232,7 +232,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_chan(self, data):
-        source_handle = data["source_handle"]
+        source_handle = data.source_handle
         cached, value = self.get_cached_value(source_handle, "SRC_CHAN")
         if not cached:
             try:
@@ -244,7 +244,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_sort_change(self, data):
-        source_handle = data["source_handle"]
+        source_handle = data.source_handle
         cached, value = self.get_cached_value(source_handle, "SRC_CHAN")
         if not cached:
             try:
@@ -258,22 +258,22 @@ class CitationBaseModel:
     # Fields access when 'data' is a Source
 
     def source_src_title(self, data):
-        return data["title"]
+        return data.title
 
     def source_src_id(self, data):
-        return data["gramps_id"]
+        return data.gramps_id
 
     def source_src_auth(self, data):
-        return data["author"]
+        return data.author
 
     def source_src_abbr(self, data):
-        return data["abbrev"]
+        return data.abbrev
 
     def source_src_pinfo(self, data):
-        return data["pubinfo"]
+        return data.pubinfo
 
     def source_src_private(self, data):
-        if data["private"]:
+        if data.private:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
@@ -283,7 +283,7 @@ class CitationBaseModel:
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data["tag_list"]))
+        tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
         return ", ".join(sorted(tag_list, key=glocale.sort_key))
 
@@ -291,12 +291,12 @@ class CitationBaseModel:
         """
         Return the tag color.
         """
-        tag_handle = data["handle"]
+        tag_handle = data.handle
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data["tag_list"]:
+            for handle in data.tag_list:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -306,10 +306,10 @@ class CitationBaseModel:
         return tag_color
 
     def source_src_chan(self, data):
-        return format_time(data["change"])
+        return format_time(data.change)
 
     def source_sort2_change(self, data):
-        return "%012x" % data["change"]
+        return "%012x" % data.change
 
     def dummy_sort_key(self, data):
         # dummy sort key for columns that don't have data
