@@ -32,7 +32,7 @@
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
 # Christophe <khrys63@gmail.com>, 2018, 2022.
 # Gil da Costa <gdacosta@sommier-colas.fr>, 2019.
-# Jean-Marc <m.balthazar@posteo.net>, 2021, 2023, 2024.
+# Jean-Marc <m.balthazar@posteo.net>, 2021, 2023, 2024, 2025.
 # msansm1 <ronanbarbot@dizalch.fr>, 2021.
 # Translator <kvb@tuta.io>, 2022.
 # Olivier Berten <olivier.berten@gmail.com>, 2023.
@@ -48,8 +48,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-27 18:06+0000\n"
-"PO-Revision-Date: 2024-07-20 03:09+0000\n"
-"Last-Translator: Emmanuel Vallois <emmanuel@vallois.name>\n"
+"PO-Revision-Date: 2025-01-28 21:59+0000\n"
+"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -57,7 +57,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -484,17 +484,6 @@ msgstr ""
 
 # Substantif (GNOME fr)
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter. Then select this filter in the Filter field on Sidebar, then "
-#| "click Find button. If the Sidebar is not visible, select View &gt; "
-#| "Sidebar."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -506,10 +495,10 @@ msgid ""
 "visible, select View > Sidebar."
 msgstr ""
 "<b>Filtrage des individus</b><br/>Dans la vue Individus, vous pouvez filtrer "
-"les individus selon plusieurs critères. Sélectionnez « Édition &gt; Éditeur "
-"de filtres sur l'individu » et choisissez un des nombreux filtres présents. "
-"Par exemple, les enfants adoptés peuvent être localisés. Les individus sans "
-"date de naissance peuvent également être filtrés. Pour obtenir le résultat, "
+"les individus selon plusieurs critères. Sélectionnez « Édition > Éditeur de "
+"filtres sur l'individu » et choisissez un des nombreux filtres présents. Par "
+"exemple, les enfants adoptés peuvent être localisés. Les individus sans date "
+"de naissance peuvent également être filtrés. Pour obtenir le résultat, "
 "sauvegardez le filtre. Puis, sélectionnez le filtre dans la zone Filtre de "
 "la barre latérale, et cliquez sur Rechercher. Si la barre latérale n'est pas "
 "visible, activez-la en sélectionnant Affichage &gt; Barre latérale."
@@ -553,12 +542,6 @@ msgstr ""
 "famille classique, parents, conjoints et enfants d'un individu."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -572,20 +555,13 @@ msgstr ""
 "sélectionner les conjoints, frères et sœurs, enfants ou parents."
 
 #: ../data/tips.xml:24
-#, fuzzy
-#| msgid ""
-#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-#| "&gt; Compare Individual Events...\" you can compare the data of "
-#| "individuals in your database. This is useful, say, if you wish to list "
-#| "the birth dates of everyone in your database. You can use a custom filter "
-#| "to narrow the results."
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>Qui est né quand ?</b><br/>Via « Outils &gt; Analyses et exploration &gt; "
+"<b>Qui est né quand ?</b><br/>Via « Outils > Analyses et exploration > "
 "Comparaison d'évènements individuels… » vous pouvez comparer toutes les "
 "données des individus de la base. Ceci est utile si vous voulez une liste "
 "des dates de naissance de tous les individus de votre base. Vous pouvez "
@@ -608,20 +584,14 @@ msgstr ""
 
 # Substantif (GNOME fr)
 #: ../data/tips.xml:28
-#, fuzzy
-#| msgid ""
-#| "<b>Calculating Relationships</b><br/>To check if two people in the "
-#| "database are related (by blood, not marriage) try the tool under \"Tools "
-#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
-#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
 "> Relationship Calculator...\". The exact relationship as well as all common "
 "ancestors are reported."
 msgstr ""
-"<b>Calcul des relations</b><br/> L'outil sous « Outils &gt; Utilitaires &gt; "
-"Calcul Relationnel » vous permet de vérifier si deux personnes de la base "
+"<b>Calcul des relations</b><br/> L'outil sous « Outils > Utilitaires > "
+"Calcul relationnel » vous permet de vérifier si deux personnes de la base "
 "sont liées (par le sang, pas par le mariage). Les relations précises tout "
 "comme les ascendants communs sont signalés."
 
@@ -644,24 +614,17 @@ msgstr ""
 "le Gramplet SoundEx."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\"."
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"<b>Définir vos préférences</b><br/> « Édition &gt; Préférences… » vous "
-"permet de modifier des options de configuration, tel que le chemin vers vos "
+"<b>Définir vos préférences</b><br/> « Édition > Préférences… » vous permet "
+"de modifier des options de configuration, tel que le chemin vers vos "
 "fichiers media et d'ajuster selon vos besoins certains aspects liés à la "
 "représentation dans Gramps. Chaque vue séparée peut également être "
-"configurée sous « Affichage &gt; Configuration… »."
+"configurée sous « Affichage > Configuration… »."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -679,13 +642,6 @@ msgstr ""
 "arbre généalogique, il existe un rapport pour cela aussi."
 
 #: ../data/tips.xml:36
-#, fuzzy
-#| msgid ""
-#| "<b>Starting a New Family Tree</b><br/>A good way to start a new family "
-#| "tree is to enter all the members of the family into the database using "
-#| "the Person View (use \"Edit &gt; Add...\" or click on the Add a new "
-#| "person button from the People View). Then go to the Relationship View and "
-#| "create relationships between people."
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -695,10 +651,10 @@ msgid ""
 msgstr ""
 "<b>Commencer un nouvel arbre généalogique</b><br/>Un bon moyen de créer un "
 "nouvel arbre généalogique est de saisir tous les membres de la famille dans "
-"la base de données à l'aide de la vue Individus (utilisez « Édition &gt; "
-"Ajouter&quot; ou cliquez sur le bouton &quot;Ajouter » dans la vue "
-"Individus). Puis allez dans la vue Relations et créez les relations entre "
-"les individus."
+"la base de données à l'aide de la vue Individus (utilisez « Édition > "
+"Ajouter&quot; ou cliquez sur le bouton &quot;Ajouter » dans la vue Individus)"
+". Puis allez dans la vue Relations et créez les relations entre les "
+"individus."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -725,29 +681,16 @@ msgstr ""
 "complète des options de date."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
-#| "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
-#| "entries of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Entrées doubles</b><br/> L'outil « Modification de l'arbre familial &gt; "
+"<b>Entrées doubles</b><br/> L'outil « Modification de l'arbre familial > "
 "Recherche des doublons » vous permet de trouver et éventuellement de "
 "fusionner les entrées d'un même individu."
 
 #: ../data/tips.xml:44
-#, fuzzy
-#| msgid ""
-#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you "
-#| "to combine separately listed people into one. Select the second entry by "
-#| "holding the Control key as you click. This is very useful for combining "
-#| "two databases with overlapping people, or combining erroneously entered "
-#| "differing names for one individual. Merging is available in all list "
-#| "views for all primary object types."
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -756,7 +699,7 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Fusionner des entrées</b><br/>La fonction « Edition &gt;Fusionner » vous "
+"<b>Fusionner des entrées</b><br/>La fonction « Édition > Fusionner » vous "
 "permet de fusionner des individus séparés en un seul. Appuyez sur la touche "
 "Contrôle en même temps que vous cliquez sur le second individu à "
 "sélectionner. C'est très utile pour fusionner deux bases de données dont les "
@@ -777,12 +720,6 @@ msgstr ""
 "Regardez à la droite de la barre d'outils ou dans le menu « Affichage »."
 
 #: ../data/tips.xml:48
-#, fuzzy
-#| msgid ""
-#| "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of "
-#| "previous active objects such as People and Events. You can move forward "
-#| "and backward through the list using \"Go &gt; Forward\" and \"Go &gt; "
-#| "Back\" or the arrow buttons."
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -791,7 +728,7 @@ msgid ""
 msgstr ""
 "<b>Naviguer en avant et en arrière</b><br/>Gramps conserve une liste des "
 "objets actifs tels que les individus et évènements. Vous pouvez avancer et "
-"reculer dans la liste à l'aide de « Aller à &gt; Suivant » et «Aller à &gt; "
+"reculer dans la liste à l'aide de « Aller à > Suivant » et «Aller à > "
 "Précédent »."
 
 #: ../data/tips.xml:50
@@ -805,12 +742,6 @@ msgstr ""
 "Ils sont renseignés sur la droite des menus."
 
 #: ../data/tips.xml:52
-#, fuzzy
-#| msgid ""
-#| "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
-#| "&gt; User Manual\". The developers have worked hard to make most "
-#| "operations intuitive but the manual is full of information that will make "
-#| "your time spent on genealogy more productive."
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
 "User Manual\". The developers have worked hard to make most operations "
@@ -818,10 +749,10 @@ msgid ""
 "spent on genealogy more productive."
 msgstr ""
 "<b>La lecture du manuel</b><br/>N'oubliez pas de lire le manuel "
-"d'utilisation de Gramps, « Aide &gt; Manuel utilisateur ». Les développeurs "
-"ont travaillé dur pour permettre que la plupart des options soient "
-"intuitives mais le manuel comprend des informations qui vous feront gagner "
-"du temps et de l'efficacité."
+"d'utilisation de Gramps, « Aide > Manuel utilisateur ». Les développeurs ont "
+"travaillé dur pour permettre que la plupart des options soient intuitives "
+"mais le manuel comprend des informations qui vous feront gagner du temps et "
+"de l'efficacité."
 
 # Substantif (GNOME fr)
 #: ../data/tips.xml:54
@@ -879,14 +810,6 @@ msgstr ""
 "Gramps."
 
 #: ../data/tips.xml:62
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about "
-#| "Gramps? Check out the gramps-users email list. Many helpful people are on "
-#| "the list, so you're likely to get an answer quickly. If you have "
-#| "questions related to the development of Gramps, try the gramps-devel "
-#| "list. You can see the lists by selecting \"Help &gt; Gramps Mailing "
-#| "Lists\"."
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -895,25 +818,16 @@ msgid ""
 "by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
 "<b>Listes de diffusion Gramps</b><br/>Vous voulez des réponses à vos "
-"questions sur Gramps ? Allez voir la liste des utilisateurs de Gramps "
+"questions sur Gramps ? Allez voir la liste des utilisateurs de Gramps "
 "(gramps-users list). Beaucoup de personnes sont inscrites, vous pourrez "
 "ainsi avoir une réponse rapide. Si vous avez des questions sur le "
 "développement de Gramps, essayez gramps-devel. Toutes les informations sur "
 "les listes de diffusion peuvent être trouvées sur lists.sf.net. Vous pouvez "
-"également y accéder en sélectionnant « Aide &gt; Listes de diffusion de "
-"Gramps »."
+"également y accéder en sélectionnant « Aide > Listes de diffusion de Gramps "
+"»."
 
 # Substantif (GNOME fr) (aider sonne bien)
 #: ../data/tips.xml:64
-#, fuzzy
-#| msgid ""
-#| "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't "
-#| "write programs? Not a problem! A project as large as Gramps requires "
-#| "people with a wide variety of skills. Contributions can be anything from "
-#| "writing documentation to testing development versions and helping with "
-#| "the web site. Start by subscribing to the Gramps developers mailing list, "
-#| "gramps-devel, and introducing yourself. Subscription information can be "
-#| "found at \"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -924,12 +838,12 @@ msgid ""
 "Gramps Mailing Lists\"."
 msgstr ""
 "<b>Contribuer à Gramps</b><br/>Vous voulez aider Gramps mais vous ne savez "
-"pas programmer ? Ce n'est pas un problème. Un projet aussi étendu que Gramps "
+"pas programmer ? Ce n'est pas un problème. Un projet aussi étendu que Gramps "
 "nécessite des aptitudes variées. Les contributions peuvent aller de la "
 "rédaction de documentation aux tests des versions en développement ou à "
 "aider au maintien du site web. Commencez par vous inscrire à la liste des "
 "développeurs de Gramps gramps-devel. Les modalités d'inscription sont "
-"disponibles dans « Aide &gt; Listes de diffusion de Gramps »."
+"disponibles dans « Aide > Listes de diffusion de Gramps »."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -948,13 +862,6 @@ msgstr ""
 "certains utilisateurs gèrent des centaines de milliers d'individus."
 
 #: ../data/tips.xml:68
-#, fuzzy
-#| msgid ""
-#| "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient "
-#| "place to store the names of frequently used individuals. Selecting a "
-#| "bookmark will make that person the Active Person. To bookmark someone "
-#| "make them the Active Person then go to \"Bookmarks &gt; Add Bookmark\" or "
-#| "press Ctrl+D. You can also bookmark most of the other objects."
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -965,17 +872,9 @@ msgstr ""
 "<b>Signets</b><br/>Le menu Signets conserve les noms des objets utilisés "
 "fréquemment sous forme de signet. Cliquez sur un de ces signets rendra "
 "l'objet actif. Pour créer le signet, rendez l'objet désiré actif et "
-"sélectionnez « Signets &gt; Ajouter un signet » ou appuyez sur Ctrl+D."
+"sélectionnez « Signets > Ajouter un signet » ou appuyez sur Ctrl+D."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit &gt; Preferences &gt; Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -988,16 +887,9 @@ msgstr ""
 "dates non valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie "
 "devient rouge et un bouton rouge marqué d'une croix s'affiche à droite. Le "
 "sélecteur de dates peut être appelé en cliquant sur le bouton Date. Le "
-"format de la date est défini dans « Édition &gt; Préférences &gt; "
-"Affichage »."
+"format de la date est défini dans « Édition > Préférences > Affichage »."
 
 #: ../data/tips.xml:72
-#, fuzzy
-#| msgid ""
-#| "<b>Listing Events</b><br/>Events are added using the editor opened with "
-#| "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
-#| "event types. You can add your own event types by typing in the text "
-#| "field, they will be added to the available events, but not translated."
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person > Edit Person > Events\". There is a long list of preset event "
@@ -1005,11 +897,10 @@ msgid ""
 "will be added to the available events, but not translated."
 msgstr ""
 "<b>Liste des évènements</b><br/>Les évènements sont ajoutés en utilisant "
-"l'éditeur disponible dans l'« Individus &gt; Édition de l'individu &gt; "
-"Évènements ». Il existe une longue liste de types d'évènement. Vous pouvez "
-"ajouter vos propres types d'évènements en les saisissant dans le champ "
-"textuel, ils seront ajoutés à la liste des évènements disponibles, mais non "
-"traduits."
+"l'éditeur disponible dans l'« Individus > Édition de l'individu > Évènements "
+"». Il existe une longue liste de types d'évènement. Vous pouvez ajouter vos "
+"propres types d'évènements en les saisissant dans le champ textuel, ils "
+"seront ajoutés à la liste des évènements disponibles, mais non traduits."
 
 #: ../data/tips.xml:74
 msgid ""
@@ -1024,12 +915,6 @@ msgstr ""
 "le glissant dans la section Nom d'usage."
 
 #: ../data/tips.xml:76
-#, fuzzy
-#| msgid ""
-#| "<b>Ancestor View</b><br/>The Ancestry View displays a traditional "
-#| "pedigree chart. Hold the mouse over an individual to see more information "
-#| "about them or right click on an individual to access other family members "
-#| "and settings. Play with the settings to see the different options."
 msgid ""
 "<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
@@ -1076,12 +961,6 @@ msgstr ""
 "documents bureautique, etc."
 
 #: ../data/tips.xml:84
-#, fuzzy
-#| msgid ""
-#| "<b>Filters</b><br/>Filters allow you to limit the people seen in the "
-#| "People View. In addition to the many preset filters, Custom Filters can "
-#| "be created limited only by your imagination. Custom filters are created "
-#| "from \"Edit &gt; Person Filter Editor\"."
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -1091,8 +970,8 @@ msgstr ""
 "<b>Les filtres</b><br/>Les filtres permettent de limiter l'affichage dans la "
 "vue Individus. En plus des filtres prédéfinis, d'autres filtres "
 "(personnalisés) peuvent être créés ce qui ne limite ces filtres qu'à votre "
-"imagination. Ces filtres sont éditables via « Édition &gt; Éditeur de "
-"filtres sur l'individu »."
+"imagination. Ces filtres sont éditables via « Édition > Éditeur de filtres "
+"sur l'individu »."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -1157,10 +1036,6 @@ msgstr ""
 "gramps-project.org/bugs/"
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
@@ -1199,12 +1074,6 @@ msgstr ""
 "erreur des sources."
 
 #: ../data/tips.xml:102
-#, fuzzy
-#| msgid ""
-#| "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added "
-#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
-#| "Reports/Tools\". This is the best way for advanced users to experiment "
-#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help > Extra Reports/"
@@ -1212,34 +1081,23 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Rapports et outils supplémentaires</b><br/>Des rapports et des outils "
-"peuvent être ajoutés à Gramps via un système de greffons. Voir sous « Aide "
-"&gt; Rapports et outils supplémentaires ». C'est le meilleur moyen pour les "
+"peuvent être ajoutés à Gramps via un système de greffons. Voir sous « Aide > "
+"Rapports et outils supplémentaires ». C'est le meilleur moyen pour les "
 "utilisateurs avancés d'expérimenter et de créer de nouvelles fonctionnalités."
 
 #: ../data/tips.xml:104
-#, fuzzy
-#| msgid ""
-#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
-#| "allows you to collect a variety of reports into a single document. This "
-#| "single report is easier to distribute than multiple reports, especially "
-#| "when printed."
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports > Books...\" allows "
 "you to collect a variety of reports into a single document. This single "
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Les rapports Livre</b><br/>Le rapport Livre sous « Rapport &gt; "
-"Livres... » permet aux utilisateurs de rassembler une multitude de rapports "
-"dans un seul document. Ce rapport unique est plus facile à partager que de "
-"nombreux rapports, surtout pour l'impression."
+"<b>Les rapports Livre</b><br/>Le rapport Livre sous « Rapport > Livres... » "
+"permet aux utilisateurs de rassembler une multitude de rapports dans un seul "
+"document. Ce rapport unique est plus facile à partager que de nombreux "
+"rapports, surtout pour l'impression."
 
 #: ../data/tips.xml:106
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
-#| "version of Gramps is released? Join the Gramps-announce mailing list at "
-#| "\"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
@@ -1247,7 +1105,7 @@ msgid ""
 msgstr ""
 "<b>Les annonces Gramps</b><br/>Vous voulez être alerté(e) à la sortie des "
 "dernières versions de Gramps ? Rejoignez-nous sur la liste gramps-annonce "
-"via « Aide &gt; Listes de diffusion de Gramps »."
+"via « Aide > Listes de diffusion de Gramps »."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1323,12 +1181,6 @@ msgstr ""
 "toutes les langues s'affichent correctement."
 
 #: ../data/tips.xml:120
-#, fuzzy
-#| msgid ""
-#| "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
-#| "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
-#| "person is the person who is selected when the database is opened or when "
-#| "the home button is pressed."
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit > Set Home Person\" in the Person View. The home person "
@@ -1336,9 +1188,9 @@ msgid ""
 "button is pressed."
 msgstr ""
 "<b>La souche de l'arbre familial</b><br/>Dans Gramps, n'importe quel "
-"individu peut être défini comme souche. Utilisez « Édition &gt; Définir "
-"comme souche ». Cette personne est sélectionnée quand la base est ouverte ou "
-"quand vous cliquez sur le bouton Souche."
+"individu peut être défini comme souche. Utilisez « Édition > Définir comme "
+"souche ». Cette personne est sélectionnée quand la base est ouverte ou quand "
+"vous cliquez sur le bouton Souche."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1371,12 +1223,6 @@ msgstr ""
 "Software Foundation et de l'Open Source Initiative."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1384,7 +1230,7 @@ msgid ""
 "the rights and restrictions of this license."
 msgstr ""
 "<b>Le droit d'utilisation du programme Gramps</b><br/>Gramps est librement "
-"distribué sous licence publique générale GNU, voir http://www.gnu.org/"
+"distribué sous licence publique générale GNU, voir https://www.gnu.org/"
 "licenses/licenses.html#GPL pour en savoir plus sur les droits et les "
 "restrictions de cette licence."
 
@@ -2475,8 +2321,6 @@ msgstr "Mois Jour, Année"
 # trunk
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
 msgstr "Mois Jour, Année"
 
@@ -2489,8 +2333,6 @@ msgstr "Jour Mois Année"
 # trunk
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
 msgstr "Jour Mois Année"
 
@@ -2728,7 +2570,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:424
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr "{date_quality}de {date_start} à {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality} de {date_start} à {date_stop}{nonstd_calendar_and_ny}"
 
 # trunk
 #. Translators: If there is no special inflection for
@@ -2754,7 +2596,7 @@ msgstr ""
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
-"{date_quality}entre {date_start} et {date_stop}{nonstd_calendar_and_ny}"
+"{date_quality} entre {date_start} et {date_stop}{nonstd_calendar_and_ny}"
 
 # trunk
 #. Translators: If there is no special inflection for
@@ -3859,7 +3701,7 @@ msgstr "Statistiques de migration"
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:393 ../gramps/plugins/lib/libtreebase.py:725
 msgid ","
-msgstr ", "
+msgstr ","
 
 #: ../gramps/gen/display/name.py:396
 msgid "Default format (defined by Gramps preferences)"
@@ -4328,10 +4170,8 @@ msgstr "Type de note :"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:48
-#, fuzzy
-#| msgid "Matches notes with the particular type "
 msgid "Objects with notes with the particular type"
-msgstr "Correspond aux notes avec un type précis "
+msgstr "Objets avec des notes avec un type précis"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:49
@@ -4549,17 +4389,12 @@ msgstr ""
 "avec l'expression rationnelle"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Citations with the <tag>"
 msgid "Citations with a note of type <type>"
-msgstr "Citations avec l'<étiquette>"
+msgstr "Citations avec une note de type <type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches a citation with a source with a specified Gramps ID"
 msgid "Matches citations with a note of the specified type"
-msgstr ""
-"Correspond aux citations avec l'identifiant Gramps de la source spécifié"
+msgstr "Correspond aux citations avec une note du type spécifié"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4567,8 +4402,6 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:50
-#, fuzzy
-#| msgid "Note Filters"
 msgid "Note filters"
 msgstr "Filtres de notes"
 
@@ -4687,7 +4520,7 @@ msgstr "Citations avec l'<étiquette>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/citation/_hastag.py:53
 msgid "Matches citations with the particular tag"
-msgstr "Correspond aux citations avec une étiquette particulière."
+msgstr "Correspond aux citations avec une étiquette particulière"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
@@ -4701,12 +4534,12 @@ msgstr "Correspond aux citations trouvées par un filtre spécifié"
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:45
 msgid "Citations with Volume/Page containing <text>"
-msgstr "Citations dont le Volume/Page contient le <texte>."
+msgstr "Citations dont le Volume/Page contient le <texte>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:47
 msgid "Matches citations whose Volume/Page contains a certain substring"
-msgstr "Correspond aux citations dont le nom contient une sous-chaîne."
+msgstr "Correspond aux citations dont le nom contient une sous-chaîne"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:48
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
@@ -4725,7 +4558,7 @@ msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Correspond aux citations avec sources ayant une référence aux dépôts filtrés."
+"Correspond aux citations avec sources ayant une référence aux dépôts filtrés"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:51
@@ -4742,7 +4575,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:50
 msgid "Citations with Id containing <text>"
-msgstr "Citations dont l'identifiant contient le <texte>."
+msgstr "Citations dont l'identifiant contient le <texte>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:52
 msgid "Matches citations whose Gramps ID matches the regular expression"
@@ -4879,17 +4712,13 @@ msgstr "Acteurs principaux :"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
-#, fuzzy
-#| msgid "Notes matching parameters"
 msgid "Events matching parameters"
-msgstr "Notes correspondantes aux paramètres"
+msgstr "Évènements correspondant aux paramètres"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches events with particular parameters"
-msgstr "Correspond aux notes ayant des paramètres particuliers"
+msgstr "Correspond à des évènements avec des paramètres particuliers"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4939,17 +4768,13 @@ msgstr ""
 "l'expression rationnelle"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "Évènements avec l'<étiquette>"
+msgstr "Événements avec une note de type <type>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Correspond aux évènements trouvés par le filtre spécifié"
+msgstr "Correspond aux événements avec une note du type spécifié"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -5264,17 +5089,13 @@ msgstr ""
 "l'expression rationnelle"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "Familles dont le père a pour <nom>"
+msgstr "Familles avec une note de type <type>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Correspond aux familles trouvées par le filtre spécifié"
+msgstr "Correspond aux familles avec une note du type spécifié"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -6195,17 +6016,13 @@ msgstr ""
 "l'expression rationnelle"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "Individus avec le <type de nom>"
+msgstr "Individus avec une note de type <type>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Correspond aux ascendants d'un individu"
+msgstr "Correspond aux individus avec une note du type spécifié"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 msgid "People who are neither male nor female"
@@ -6214,7 +6031,7 @@ msgstr "Individus qui ne sont ni masculin ni féminin"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:49
 msgid "Matches all people with other gender"
-msgstr "Correspond aux individus avec le genre autre"
+msgstr "Correspond aux individus ayant le genre « autre »"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:48
 msgid "Number of relationships:"
@@ -6927,17 +6744,13 @@ msgstr ""
 "rationnelle"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "Lieux avec l'<étiquette>"
+msgstr "Lieux avec une note de type <type>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Correspond aux lieux trouvés par le filtre spécifié"
+msgstr "Correspond aux lieux avec une note du type spécifié"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "Street:"
@@ -7379,17 +7192,13 @@ msgstr ""
 "rationnelle"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "Sources avec l'<étiquette>"
+msgstr "Sources avec une note de type <type>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "Correspond aux sources trouvées par un filtre spécifié"
+msgstr "Correspond aux sources avec une note du type spécifié"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -7425,10 +7234,8 @@ msgstr ""
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches sources with particular parameters"
-msgstr "Correspond aux notes ayant des paramètres particuliers"
+msgstr "Correspond aux sources ayant des paramètres particuliers"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -7881,10 +7688,9 @@ msgid "Birth"
 msgstr "Naissance"
 
 #: ../gramps/gen/lib/childreftype.py:76
-#, fuzzy
 msgctxt "relationship"
 msgid "Adopted"
-msgstr "Adoption"
+msgstr "Adopté(e)"
 
 #: ../gramps/gen/lib/childreftype.py:77
 msgid "Stepchild"
@@ -8332,7 +8138,6 @@ msgid "range"
 msgstr "entre ... et ..."
 
 #: ../gramps/gen/lib/date.py:2001
-#, fuzzy
 msgid "from"
 msgstr "depuis"
 
@@ -8538,25 +8343,21 @@ msgid "Child"
 msgstr "Enfant"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "Parents multiples"
+msgstr "Naissance multiple"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Ami(e)"
 
 # trunk
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "Quartier"
+msgstr "Voisin(e)"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "Officier"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -9083,7 +8884,6 @@ msgid "annul."
 msgstr "annul."
 
 #: ../gramps/gen/lib/eventtype.py:294
-#, fuzzy
 msgctxt "Stillbirth abbreviation"
 msgid "still."
 msgstr "mort-né"
@@ -9203,10 +9003,8 @@ msgstr "Type"
 
 # Traduction courte pour _placesidebarfilter.py et _citationsidebarfilter
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "Filtre"
+msgstr "Type personnalisé"
 
 # trunk
 #: ../gramps/gen/lib/grampstype.py:272
@@ -10445,7 +10243,7 @@ msgstr "Afficher"
 
 #: ../gramps/gen/plug/_pluginreg.py:128
 msgid "Relationship calculator"
-msgstr "Calcul relationnel"
+msgstr "Calculateur de relations"
 
 #: ../gramps/gen/plug/_pluginreg.py:129 ../gramps/gen/plug/_pluginreg.py:517
 #: ../gramps/gui/glade/grampletpane.glade:153
@@ -11830,63 +11628,45 @@ msgid "date fallback"
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
-#, fuzzy
-#| msgid "death"
 msgid ", death: "
-msgstr "décès"
+msgstr ", décès : "
 
 #: ../gramps/gen/utils/alive.py:254
 msgid "DIRECT birth: "
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:336
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
-msgstr "Âge de la femme/compagne"
+msgstr "âge de la mère"
 
 #: ../gramps/gen/utils/alive.py:341
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
-msgstr "Âge du mari/compagnon"
+msgstr "âge du père"
 
 #: ../gramps/gen/utils/alive.py:345
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "date de décès"
+msgstr "à partir de la date de décès"
 
 #: ../gramps/gen/utils/alive.py:349
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "Âge de la femme/compagne"
+msgstr "décès de la mère"
 
 #: ../gramps/gen/utils/alive.py:354
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "Âge du mari/compagnon"
+msgstr "décès du père"
 
 # trunk
 #: ../gramps/gen/utils/alive.py:358
-#, fuzzy
-#| msgid "%(person)s, birth"
 msgid "person's death"
-msgstr "%(person)s, naissance"
+msgstr "décès d'une personne"
 
 #: ../gramps/gen/utils/alive.py:365
-#, fuzzy
-#| msgid "Not siblings"
 msgid "oldest sibling's age"
-msgstr "Non frère ou sœur"
+msgstr "âge du frère ou de la sœur aîné(e)"
 
 #: ../gramps/gen/utils/alive.py:370
-#, fuzzy
-#| msgid "Not siblings"
 msgid "youngest sibling's age"
-msgstr "Non frère ou sœur"
+msgstr "âge du plus jeune frère ou de la plus jeune sœur"
 
 #: ../gramps/gen/utils/alive.py:413
 msgid "birth date and known to be dead"
@@ -11897,16 +11677,12 @@ msgid "birth date"
 msgstr "date de naissance"
 
 #: ../gramps/gen/utils/alive.py:424 ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "Birth:"
 msgid "birth: "
-msgstr "Naissance :"
+msgstr "naissance : "
 
 #: ../gramps/gen/utils/alive.py:427
-#, fuzzy
-#| msgid "' and '"
 msgid " and "
-msgstr "» et «"
+msgstr " et "
 
 #: ../gramps/gen/utils/alive.py:510
 msgid "a spouse's birth-related date, "
@@ -11940,34 +11716,24 @@ msgid "Database error: loop in %s's descendants"
 msgstr "Erreur dans la base de données : boucle dans les descendants de %s"
 
 #: ../gramps/gen/utils/alive.py:813
-#, fuzzy
-#| msgid "Death before birth"
 msgid "mother birth "
-msgstr "Décès avant la naissance"
+msgstr "naissance de la mère "
 
 #: ../gramps/gen/utils/alive.py:817 ../gramps/gen/utils/alive.py:823
-#, fuzzy
-#| msgid "Death before birth"
 msgid "father birth "
-msgstr "Décès avant la naissance"
+msgstr "naissance du père "
 
 #: ../gramps/gen/utils/alive.py:831 ../gramps/gen/utils/alive.py:862
-#, fuzzy
-#| msgid "Ancestors"
 msgid "ancestor "
-msgstr "Ascendants"
+msgstr "ascendant "
 
 #: ../gramps/gen/utils/alive.py:837
-#, fuzzy
-#| msgid "Compute death age"
 msgid "mother death "
-msgstr "Calculer l'âge au décès"
+msgstr "décès de la mère "
 
 #: ../gramps/gen/utils/alive.py:841 ../gramps/gen/utils/alive.py:847
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "Âge au décès"
+msgstr "décès du père "
 
 #: ../gramps/gen/utils/alive.py:920
 #, python-format
@@ -12645,7 +12411,7 @@ msgstr "Japonais"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "Coréen"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -13499,14 +13265,12 @@ msgid "Age display precision *"
 msgstr "Précision pour l'affichage de l'âge *"
 
 #: ../gramps/gui/configure.py:1572
-#, fuzzy
-#| msgid "Rounded corners"
 msgid "Round the year"
-msgstr "Coins arrondis"
+msgstr "Arrondir l'année"
 
 #: ../gramps/gui/configure.py:1583
 msgid "Display ages for events after death *"
-msgstr "Affiche l'âge pour les événements postérieurs au décès *"
+msgstr "Affiche l'âge pour les évènements postérieurs au décès *"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1599
@@ -13515,7 +13279,6 @@ msgstr "Calendrier des rapports"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1612
-#, fuzzy
 msgid "Calendar on input"
 msgstr "Calendrier lors de la saisie"
 
@@ -13591,9 +13354,8 @@ msgid "Data"
 msgstr "Données"
 
 #: ../gramps/gui/configure.py:1735
-#, fuzzy
 msgid "Conditional Text Replacements"
-msgstr "Remplacement des textes conditionnels"
+msgstr "Remplacement de texte conditionnels"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1746
@@ -15111,10 +14873,8 @@ msgstr "Date triée"
 
 # trunk
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:91
-#, fuzzy
-#| msgid "Ignore Confidence"
 msgid "Sorted confidence"
-msgstr "Ignorer le niveau de confiance"
+msgstr "Niveau de confiance trié"
 
 # trunk
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:102
@@ -15333,10 +15093,8 @@ msgid "_Names"
 msgstr "_Noms"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Set as Preferred name"
-msgstr "Nom préféré"
+msgstr "Définir comme nom préféré"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
@@ -16560,29 +16318,21 @@ msgstr "Nouveau lieu"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:242
-#, fuzzy
-#| msgid ""
-#| "Invalid latitude\n"
-#| "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Latitude non valide\n"
-"(syntaxe : 18\\u00b09'48.21\"S, -18.2412 ou -18:9:48.21)"
+"(syntaxe : 18°9'48.21\"S, -18.2412 ou -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:250
-#, fuzzy
-#| msgid ""
-#| "Invalid longitude\n"
-#| "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Longitude non valide\n"
-"(syntaxe : 18\\u00b09'48.21\"E, -18.2412 ou -18:9:48.21)"
+"(syntaxe : 18°9'48.21\"E, -18.2412 ou -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:289
 #: ../gramps/plugins/lib/maps/geography.py:994
@@ -17343,6 +17093,8 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"Cela ouvre une boîte de dialogue pour ajouter un nouveau filtre personnalisé "
+"basé sur les valeurs données."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -17351,15 +17103,15 @@ msgstr "Effacer"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "Temps écoulé : %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "Vous devez sélectionner un lieu lorsque vous utilisez la règle « Dans »"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
-msgstr ""
+msgstr "Fournir au moins une valeur"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
@@ -20766,10 +20518,8 @@ msgstr "Tout statut"
 
 # trunk
 #: ../gramps/gui/plug/_windows.py:463
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
-msgstr "Restaurer les valeurs par défauts"
+msgstr "Réinitialiser les filtres des greffons aux valeurs par défaut"
 
 # master
 #: ../gramps/gui/plug/_windows.py:477
@@ -20790,10 +20540,8 @@ msgid "Loading..."
 msgstr "Chargement…"
 
 #: ../gramps/gui/plug/_windows.py:563
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "L'action a échoué"
+msgstr "L'enregistrement du greffon a échoué"
 
 #: ../gramps/gui/plug/_windows.py:564
 msgid "The addon will be unavailable in your current configuration."
@@ -20805,43 +20553,35 @@ msgstr "Aucun greffon correspondant trouvé"
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
-msgstr ""
+msgstr "Insérer un projet"
 
 # enlever la référence à l'événement
 #: ../gramps/gui/plug/_windows.py:705
-#, fuzzy
-#| msgid "Remove the selected personal event"
 msgid "Remove the selected project"
-msgstr "Enlever l'évènement individuel sélectionné"
+msgstr "Supprimer le projet sélectionné"
 
 #: ../gramps/gui/plug/_windows.py:707
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "Déplacer l'enfant vers le haut dans la liste"
+msgstr "Déplacer le projet vers le haut dans la liste"
 
 #: ../gramps/gui/plug/_windows.py:709
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "Déplacer l'enfant vers le bas dans la liste"
+msgstr "Déplacer le projet vers le bas dans la liste"
 
 # trunk
 #: ../gramps/gui/plug/_windows.py:711
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
-msgstr "Restaurer les valeurs par défaut du projet"
+msgstr "Revenir aux valeurs par défaut du projet"
 
 #: ../gramps/gui/plug/_windows.py:748
 msgid "Allow Gramps to install required Python modules"
 msgstr "Permettre à Gramps d'installer les modules python nécessaires"
 
 #: ../gramps/gui/plug/_windows.py:750
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "Permettre à Gramps d'installer les modules python nécessaires"
+msgstr ""
+"Dans la mesure du possible, essayez d’installer tous les modules Python "
+"nécessaires manquants"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Scheduled update checks"
@@ -22928,14 +22668,10 @@ msgid "'%s' is not a valid date value"
 msgstr "« %s » n'est pas une date valide"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
-#| msgid "Legal"
 msgid "Legacy"
-msgstr "Défaut"
+msgstr "Ancien"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Default citation formatter"
 msgid "Legacy citation formatter"
 msgstr "Ancien formateur de citation"
 
@@ -25083,19 +24819,13 @@ msgstr "Saisissez une date, puis cliquez sur Exécuter"
 
 # trunk
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
-#, fuzzy
-#| msgid ""
-#| "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. "
-#| "This will compute the ages for everyone in your Family Tree on that date. "
-#| "You can then sort by the age column, and double-click the row to view or "
-#| "edit."
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
 "This will compute the ages for everyone in your Family Tree on that date. "
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"Saisissez une date valide (telle que AAAA-MM-JJ) dans le champ suivant et "
+"Saisissez une date valide (telle que AAAA-MM-JJ) dans la zone de texte et "
 "cliquez sur Exécuter. Ceci calculera les âges de tous les individus de votre "
 "arbre familial pour cette date. Vous pourrez trier la colonne âge et double "
 "cliquer sur la ligne pour voir ou éditer."
@@ -25201,10 +24931,9 @@ msgstr "Clé"
 
 # master
 #: ../gramps/plugins/gramplet/backlinks.py:238
-#, fuzzy, python-format
-#| msgid "_Make Active Media"
+#, python-format
 msgid "_Make Active %s"
-msgstr "Rendre l'objet medium _actif"
+msgstr "Rendre %s _actif"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
@@ -26764,10 +26493,8 @@ msgstr "Détaché"
 
 # trunk
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
-#, fuzzy
-#| msgid "Number of ranks to display"
 msgid "Number of Surnames to display"
-msgstr "Nombre d'article à afficher"
+msgstr "Nombre de noms de famille à afficher"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
@@ -27953,22 +27680,16 @@ msgid "call"
 msgstr "usuel"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "surnom"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "_Surnom :"
+msgstr "Surnom"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "surnom"
+msgstr "_surnom"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -29798,12 +29519,10 @@ msgid "Namespace"
 msgstr "Espace de nommage"
 
 #: ../gramps/plugins/lib/libmetadata.py:229
-#, fuzzy
 msgid "Label"
 msgstr "Étiquette"
 
 #: ../gramps/plugins/lib/libmetadata.py:230
-#, fuzzy
 msgid " "
 msgstr " "
 
@@ -33996,14 +33715,14 @@ msgid "Tile path"
 msgstr "Chemin des tuiles"
 
 #: ../gramps/plugins/lib/maps/geography.py:167
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The tile directory doesn't exist anymore:\n"
 "%s\n"
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
-"Le répertoire des tuiles n'existe plus :\n"
+"Le répertoire des tuiles n'existe plus :\n"
 "%s\n"
 "La tentative d'en créer un nouveau a échoué.\n"
 "Configurez la vue indiquant le chemin des tuiles et redémarrez Gramps."
@@ -35546,13 +35265,11 @@ msgstr "Le système de numérotation à utiliser"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "Afficher le symbole de genre devant le nom"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "Inclure ou non les informations sur le divorce dans le rapport."
+msgstr "Afficher ou non le symbole de genre devant le nom dans le rapport."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -35764,10 +35481,8 @@ msgstr "Utiliser ou non le prénom usuel comme prénom."
 # call name = prénom dans le context !
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to use the call name as the first name."
 msgid "Whether to show gender symbol in front of name."
-msgstr "Utiliser ou non le prénom usuel comme prénom."
+msgstr "Afficher ou non le symbole de genre devant le nom."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
@@ -36069,7 +35784,7 @@ msgstr "Le style utilisé pour les sous-titres."
 #: ../gramps/plugins/textreport/familygroup.py:415
 #, python-format
 msgid "Relationship: %s"
-msgstr "Relation : %s"
+msgstr "Relation : %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:516
 msgctxt "acronym for male"
@@ -36355,17 +36070,13 @@ msgstr "Le nombre maximal de générations d'ascendants"
 
 # master
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
-#| msgid "Show gramps id"
 msgid "Show Gramps ID"
 msgstr "Afficher l'identifiant Gramps"
 
 # master
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
-msgstr "Inclure ou non les identifiants Gramps"
+msgstr "Afficher ou non les identifiants Gramps"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:390
 msgid "Whether to include spouses"
@@ -40768,10 +40479,9 @@ msgstr "Anecdote"
 
 #: ../gramps/plugins/webreport/basepage.py:884
 #: ../gramps/plugins/webreport/basepage.py:954
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s : %(str2)s"
+msgstr "(%(str1)s) %(str2)s"
 
 # province (Canada, Belgique)
 #: ../gramps/plugins/webreport/basepage.py:1492
@@ -41793,16 +41503,12 @@ msgstr "Ajouter ou non une liste complète des évènements et pages liées"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "Inclure les autres évènements"
+msgstr "Inclure les autres rôles"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "Gramplet affichant toutes les notes pour l'évènement"
+msgstr "Inclure les personnes ayant d'autres rôles à un évènement"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include place pages"
@@ -41835,9 +41541,8 @@ msgid "Include repository pages"
 msgstr "Inclure les pages dépôt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2587
-#, fuzzy
 msgid "Whether or not to include the repository pages."
-msgstr "Inclure ou non des pages dépôt."
+msgstr "Inclure ou non les pages dépôt."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2590
 msgid "Include GENDEX file (/gendex.txt)"
@@ -41875,9 +41580,8 @@ msgstr "Options Carte du lieu"
 
 # StamenMap est une marque commerciale
 #: ../gramps/plugins/webreport/narrativeweb.py:2620
-#, fuzzy
 msgid "Stamen Map"
-msgstr "StamenMap"
+msgstr "Stamen Map"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2621
 msgid "Google"
@@ -41937,13 +41641,12 @@ msgid "Google/ FamilyMap Option"
 msgstr "Google/Option Carte familiale"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2670
-#, fuzzy
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
 msgstr ""
-"Sélectionnez l'option que vous souhaitez utiliser pour la carte familiale "
-"Google Maps..."
+"Sélectionnez l'option que vous souhaitez avoir pour les pages de cartes "
+"familiales Google Maps..."
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2676
@@ -42003,9 +41706,8 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2716
-#, fuzzy
 msgid "Stamen maps API key"
-msgstr "Clé API de Stamen Maps"
+msgstr "Clé API des cartes Stamen"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2719
@@ -42017,7 +41719,6 @@ msgstr ""
 "Cette clé est obligatoire et doit être valide"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2734
-#, fuzzy
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
@@ -42094,7 +41795,6 @@ msgid "Max days for updates"
 msgstr "Durée en jours de l'historique"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2804
-#, fuzzy
 msgid "You want to see the last updates on how many days?"
 msgstr ""
 "Sur combien de jours souhaitez-vous voir l'historique des mises à jour ?"
@@ -42127,9 +41827,8 @@ msgstr "Nom du site pour une langue secondaire"
 #: ../gramps/plugins/webreport/narrativeweb.py:2849
 #: ../gramps/plugins/webreport/narrativeweb.py:2858
 #: ../gramps/plugins/webreport/narrativeweb.py:2867
-#, fuzzy
 msgid "This site title"
-msgstr "Titre du site"
+msgstr "Titre de ce site"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
 #: ../gramps/plugins/webreport/narrativeweb.py:2842
@@ -42141,8 +41840,6 @@ msgstr "Donnez un titre dans la langue respective"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2835
-#, fuzzy
-#| msgid "third language"
 msgid "Third language"
 msgstr "Troisième langue"
 
@@ -42152,8 +41849,6 @@ msgstr "Nom du site pour une troisième langue"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2844
-#, fuzzy
-#| msgid "fourth language"
 msgid "Fourth language"
 msgstr "Quatrième langue"
 
@@ -42279,9 +41974,8 @@ msgid "Place Title"
 msgstr "Titre du lieu"
 
 #: ../gramps/plugins/webreport/person.py:1186
-#, fuzzy
 msgid "Drop Markers"
-msgstr "Parachuter les marqueurs"
+msgstr "Marqueurs"
 
 # call name = prénom dans le context !
 #: ../gramps/plugins/webreport/person.py:1785
@@ -42318,7 +42012,6 @@ msgid "Relation to main person"
 msgstr "Relation avec la souche"
 
 #: ../gramps/plugins/webreport/person.py:2288
-#, fuzzy
 msgid "Relation within this family (if not by birth)"
 msgstr "Relation dans la famille (si différent de la naissance)"
 
@@ -42345,7 +42038,6 @@ msgstr ""
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 #: ../gramps/plugins/webreport/place.py:327
 #: ../gramps/plugins/webreport/place.py:339
-#, fuzzy
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Nom"
@@ -42444,10 +42136,9 @@ msgid "Number of People"
 msgstr "Nombre d'individus"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
-#, fuzzy, python-brace-format
-#| msgid "Surnames beginning with letter '%s' %s"
+#, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "Noms de famille commençant par la lettre ' %s' %s"
+msgstr "Noms de famille commençant par la lettre '{letter}' {char}"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 msgid ""
