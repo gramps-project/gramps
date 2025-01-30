@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-27 18:06+0000\n"
-"PO-Revision-Date: 2025-01-26 20:02+0000\n"
+"PO-Revision-Date: 2025-01-28 21:59+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -963,15 +963,11 @@ msgstr ""
 "oznamovať cez Bug Tracker Gramps na https://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b>Domovská stránka Gramps</b><br/>Domovská stránka Gramps je http://gramps-"
+"<b>Domovská stránka Gramps</b><br/>Domovská stránka Gramps je https://gramps-"
 "project.org/."
 
 #: ../data/tips.xml:98
@@ -1143,12 +1139,6 @@ msgstr ""
 "Foundation a Open Source Initiative."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1157,7 +1147,7 @@ msgid ""
 msgstr ""
 "<b>Licencia softvéru Gramps</b><br/>Gramps môžete voľne používať a zdieľať s "
 "ostatnými. Gramps je voľne šíriteľný podľa General Public License, viď "
-"http://www.gnu.org/licenses/licenses.html#GPL pre viac informácií ohľadom "
+"https://www.gnu.org/licenses/licenses.html#GPL pre viac informácií ohľadom "
 "práv a obmedzení v rámci tejto licencie."
 
 #: ../data/tips.xml:128
@@ -6646,7 +6636,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
 msgid "Matches sources with particular parameters"
-msgstr "Vyhovuje zdrojom s konkrétnymi parametrami"
+msgstr "Porovnáva zdroje s konkrétnymi parametrami"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -7726,7 +7716,7 @@ msgstr "Sused/ka"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "Ceremoniár"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -25870,22 +25860,16 @@ msgid "call"
 msgstr "používané"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "prezývka"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "_Prezývka:"
+msgstr "Prezývka"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "prezývka"
+msgstr "prezývka_meno"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
