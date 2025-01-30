@@ -994,6 +994,8 @@ def probably_alive(
     )
     if current_date is None or not current_date.is_valid():
         current_date = Today()
+    elif not current_date.is_valid():
+        current_date = Today()
 
     if DEBUGLEVEL > 0:
         if relative is None:
