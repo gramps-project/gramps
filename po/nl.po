@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-27 18:06+0000\n"
-"PO-Revision-Date: 2025-01-25 12:37+0000\n"
+"PO-Revision-Date: 2025-01-28 21:59+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -996,16 +996,12 @@ msgstr ""
 "project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b>De Gramps-homepage</b><br/>De Gramps-homepage bevindt zich op https://"
-"gramps-project.org/."
+"<b>De Gramps-homepage</b><br/>De Gramps-homepage bevindt zich op https"
+"://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1185,12 +1181,6 @@ msgstr ""
 "Initiative vinden."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1199,7 +1189,7 @@ msgid ""
 msgstr ""
 "<b>De Gramps-softwarelicentie</b><br/>U bent vrij om Gramps te gebruiken en "
 "te delen met anderen. Gramps is gratis distribueerbaar onder de GNU General "
-"Public License, zie http://www.gnu.org/licenses/licenses.html#GPL om te "
+"Public License, zie https://www.gnu.org/licenses/licenses.html#GPL om te "
 "lezen over de rechten en beperkingen van deze licentie."
 
 #: ../data/tips.xml:128
@@ -26131,22 +26121,16 @@ msgid "call"
 msgstr "roep"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "bijnaam"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "_Bijnaam:"
+msgstr "Bijnaam"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "bijnaam"
+msgstr "bij_naam"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
