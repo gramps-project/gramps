@@ -48,10 +48,10 @@ import math
 
 # translation of N/S/E/W, make sure translator understands
 degrees: str = "1"
-North: str = _("%(north_latitude)s N") % {"north_latitude": degrees}
-South: str = _("%(south_latitude)s S") % {"south_latitude": degrees}
-East: str = _("%(east_longitude)s E") % {"east_longitude": degrees}
-West: str = _("%(west_longitude)s W") % {"west_longitude": degrees}
+North = _("%(north_latitude)s N") % {"north_latitude": degrees}
+South = _("%(south_latitude)s S") % {"south_latitude": degrees}
+East = _("%(east_longitude)s E") % {"east_longitude": degrees}
+West = _("%(west_longitude)s W") % {"west_longitude": degrees}
 
 # extract letters we really need
 North = North.replace("1", " ").strip()
