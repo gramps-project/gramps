@@ -781,12 +781,12 @@ if __name__ == "__main__":
         res1, res2 = conv_lat_lon(lat1, lon1, format8)
         print(lat1, lon1, "in format", format8, "is", res1, res2, "\n")
 
-    def test_formats_fail(lat1, lon1, text=""):
+    def test_formats_fail(lat1: str, lon1: str, text: str = "") -> None:
         print("This test should make conv_lat_lon function fail, %s:") % text
         res1, res2 = conv_lat_lon(lat1, lon1)
         print(lat1, lon1, " fails to convert, result=", res1, res2, "\n")
 
-    def test_RT90_conversion():
+    def test_RT90_conversion() -> None:
         """
         a given lat/lon is converted to RT90 and back as a test:
         """
