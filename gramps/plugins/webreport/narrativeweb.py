@@ -2050,8 +2050,7 @@ class NavWebOptions(MenuReportOptions):
         self.__after_year = None
         self.__ext = None
         self.__phpnote = None
-        db_options = name + " " + dbase.get_dbname()
-        MenuReportOptions.__init__(self, db_options, dbase)
+        MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
         """
