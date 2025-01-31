@@ -41,7 +41,7 @@ from .. import (
     Source,
     Tag,
 )
-from ..serialize import to_json
+from ..json_utils import object_to_dict
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
@@ -49,7 +49,7 @@ EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 class BaseTest(unittest.TestCase):
     def _schema_test(self, obj):
-        instance = json.loads(to_json(obj))
+        instance = object_to_dict(obj)
         try:
             jsonschema.validate(instance, self.schema)
         except jsonschema.exceptions.ValidationError:

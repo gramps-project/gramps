@@ -1,5 +1,4 @@
 from gramps.gen.db.utils import open_database
-from gramps.gen.lib.serialize import to_dict, from_dict
 from gramps.gen.db.conversion_tools import convert_21
 
 # 1. Prepare: create a database named "Example" in version 20
@@ -23,7 +22,7 @@ for table_name in db._get_table_func():
 
     for obj in iter_objects():
         # We convert the object into the JSON dicts:
-        json_data = to_dict(obj)
+        json_data = db.serializer.object_to_data(obj)
 
         # We get the blob array:
         array = get_array_from_handle(obj.handle)

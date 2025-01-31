@@ -39,7 +39,6 @@ from ..lib.repo import Repository
 from ..lib.media import Media
 from ..lib.note import Note
 from ..lib.tag import Tag
-from ..lib.serialize import from_dict
 from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -146,7 +145,7 @@ class GenericFilter:
         if id_list is None:
             with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
                 for handle, data in cursor:
-                    person = from_dict(data)
+                    person = db.serializer.data_to_object(data)
                     if user:
                         user.step_progress()
                     if task(db, person) != self.invert:
@@ -174,7 +173,7 @@ class GenericFilter:
         if id_list is None:
             with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
                 for handle, data in cursor:
-                    person = from_dict(data)
+                    person = db.serializer.data_to_object(data)
                     if user:
                         user.step_progress()
                     val = all(rule.apply(db, person) for rule in flist)

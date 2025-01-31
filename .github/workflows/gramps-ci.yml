@@ -56,6 +56,7 @@ jobs:
         sudo apt-get install python3-libxml2
         sudo apt-get install zlib1g-dev
         sudo apt-get install python3-setuptools
+        python3 -m pip install orjson
     - name: Install addons
       run: |
         mkdir -p ~/.gramps/gramps60/plugins/
