@@ -22,6 +22,7 @@
 Unittest that tests person-specific filter rules
 """
 import unittest
+from unittest.mock import patch
 import os
 from time import perf_counter
 import inspect
@@ -1088,6 +1089,37 @@ class BaseTest(unittest.TestCase):
                 ]
             ),
         )
+
+    @patch("gramps.gen.filters.rules.person.IsDefaultPerson.apply_to_one")
+    def test_isdefaultperson_optimized(self, mock):
+        """
+        Test IsDefaultPerson rule.
+        """
+        mock.return_value = True
+        rule = IsDefaultPerson([])
+        self.assertEqual(
+            self.filter_with_rule(rule),
+            set(
+                [
+                    "GNUJQCL9MD64AM56OH",
+                ]
+            ),
+        )
+        # This used the optimizer, so it didn't loop through DB
+        self.assertEqual(mock.call_count, 1)
+
+    @patch("gramps.gen.filters.rules.person.IsFemale.apply_to_one")
+    def test_isfemale_not_optimized(self, mock):
+        """
+        Test IsFemale rule.
+        """
+        # Make everyone a female for this test:
+        mock.return_value = True
+        rule = IsFemale([])
+        # too many to list out to test explicitly
+        self.assertEqual(len(self.filter_with_rule(rule)), 2128)
+        # This did not use the optimizer, so it did loop through DB
+        self.assertEqual(mock.call_count, 2128)
 
     def test_isfemale(self):
         """
