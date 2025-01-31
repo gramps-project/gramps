@@ -118,14 +118,15 @@ class WithinArea(Rule):
             lon = place.get_longitude()
         if lat and lon:
             latit, longit = conv_lat_lon(lat, lon, "D.D8")
-            if latit is None or longit is None:
-                return False
-            if (
-                hypot(
-                    float(self.latitude) - float(latit),
-                    float(self.longitude) - float(longit),
+            return (
+                latit
+                and longit
+                and (
+                    hypot(
+                        float(self.latitude) - float(latit),
+                        float(self.longitude) - float(longit),
+                    )
+                    <= self.radius
                 )
-                <= self.radius
-            ):
-                return True
+            )
         return False
