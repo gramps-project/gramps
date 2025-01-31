@@ -78,8 +78,6 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
                 self.init_ancestor_list(self.bookmarkhandle, 1)
 
     def init_ancestor_list(self, handle: str, gen: int):
-        #        if p.get_handle() in self.selected_handles:
-        #            loop_error(self.orig,p)
         if not handle or handle in self.selected_handles:
             # if been here already, skip
             return
