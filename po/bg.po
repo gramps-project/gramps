@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-27 18:06+0000\n"
+"POT-Creation-Date: 2025-01-31 14:42+0000\n"
 "PO-Revision-Date: 2025-01-08 23:00+0000\n"
 "Last-Translator: 109247019824 <109247019824@users.noreply.hosted.weblate."
 "org>\n"
@@ -256,7 +256,7 @@ msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr "Генеалогия; Семейна история; Изследване; Родословно дърво; GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
-#: ../gramps/gen/const.py:256
+#: ../gramps/gen/const.py:259
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
@@ -1367,7 +1367,7 @@ msgstr "Gramps XML родословно дърво"
 #: ../gramps/cli/arghandler.py:464 ../gramps/cli/arghandler.py:466
 #: ../gramps/cli/arghandler.py:468 ../gramps/cli/clidbman.py:70
 #: ../gramps/cli/clidbman.py:177 ../gramps/cli/clidbman.py:216
-#: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:2360
+#: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:2385
 msgid "Family Tree"
 msgstr "Родословно дърво"
 
@@ -1779,7 +1779,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2305
+#: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2330
 #: ../gramps/gui/plug/_windows.py:773
 msgid "Never"
 msgstr "Никога"
@@ -2051,7 +2051,7 @@ msgstr "   Валидните опции са:"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/cli/plug/__init__.py:498 ../gramps/cli/plug/__init__.py:603
-#: ../gramps/gen/lib/date.py:475 ../gramps/gen/lib/date.py:486
+#: ../gramps/gen/lib/date.py:480 ../gramps/gen/lib/date.py:491
 #: ../gramps/gen/plug/report/endnotes.py:123
 #: ../gramps/plugins/cite/legacy.py:89 ../gramps/plugins/cite/legacy.py:96
 #: ../gramps/plugins/cite/legacy.py:102
@@ -2181,19 +2181,19 @@ msgctxt "localized lexeme inflections"
 msgid "January"
 msgstr "януари"
 
-#: ../gramps/gen/const.py:289
+#: ../gramps/gen/const.py:292
 #, fuzzy
 msgctxt "surname"
 msgid "none"
 msgstr "фамилното име е неизвестно"
 
-#: ../gramps/gen/const.py:290
+#: ../gramps/gen/const.py:293
 #, fuzzy
 msgctxt "given-name"
 msgid "none"
 msgstr "собствено име"
 
-#: ../gramps/gen/const.py:294 ../gramps/plugins/gramplet/todo.py:208
+#: ../gramps/gen/const.py:297 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:233
 #: ../gramps/plugins/webreport/basepage.py:3337
 #: ../gramps/plugins/webreport/basepage.py:3358
@@ -2759,37 +2759,37 @@ msgctxt "alternative month names for December"
 msgid ""
 msgstr "Бележката за месец декември"
 
-#: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:652
+#: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:657
 msgctxt "calendar"
 msgid "Gregorian"
 msgstr "Григориански"
 
-#: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:653
+#: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:658
 msgctxt "calendar"
 msgid "Julian"
 msgstr "Юлиански"
 
-#: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:654
+#: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:659
 msgctxt "calendar"
 msgid "Hebrew"
 msgstr "Еврейски"
 
-#: ../gramps/gen/datehandler/_datestrings.py:150 ../gramps/gen/lib/date.py:655
+#: ../gramps/gen/datehandler/_datestrings.py:150 ../gramps/gen/lib/date.py:660
 msgctxt "calendar"
 msgid "French Republican"
 msgstr "Френски републикански"
 
-#: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:656
+#: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:661
 msgctxt "calendar"
 msgid "Persian"
 msgstr "Персийски"
 
-#: ../gramps/gen/datehandler/_datestrings.py:152 ../gramps/gen/lib/date.py:657
+#: ../gramps/gen/datehandler/_datestrings.py:152 ../gramps/gen/lib/date.py:662
 msgctxt "calendar"
 msgid "Islamic"
 msgstr "Ислямски"
 
-#: ../gramps/gen/datehandler/_datestrings.py:153 ../gramps/gen/lib/date.py:658
+#: ../gramps/gen/datehandler/_datestrings.py:153 ../gramps/gen/lib/date.py:663
 msgctxt "calendar"
 msgid "Swedish"
 msgstr "Шведски"
@@ -7246,7 +7246,6 @@ msgid "Time"
 msgstr "Хронологична графика"
 
 #: ../gramps/gen/lib/attrtype.py:90 ../gramps/gen/lib/eventtype.py:226
-#: ../gramps/gen/lib/nameorigintype.py:92
 #: ../gramps/gen/plug/docgen/treedoc.py:589
 #: ../gramps/plugins/gramplet/persondetails.py:171
 msgid "Occupation"
@@ -7489,7 +7488,7 @@ msgstr "Последно променен"
 msgid "Tags"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:454
+#: ../gramps/gen/lib/date.py:296 ../gramps/gen/lib/date.py:459
 #: ../gramps/gen/mime/_pythonmime.py:52 ../gramps/gen/mime/_pythonmime.py:61
 #: ../gramps/gen/mime/_winmime.py:59 ../gramps/gen/utils/db.py:530
 #: ../gramps/gui/merge/mergeperson.py:65
@@ -7503,77 +7502,79 @@ msgstr ""
 msgid "unknown"
 msgstr "неизвестен"
 
-#: ../gramps/gen/lib/date.py:303
-#, fuzzy, python-format
-msgid "greater than %s years"
-msgstr "по-малко от"
+#: ../gramps/gen/lib/date.py:305
+#, fuzzy, python-brace-format
+msgid "greater than {number_of} year"
+msgid_plural "greater than {number_of} years"
+msgstr[0] "по-малко от"
+msgstr[1] "по-малко от"
 
-#: ../gramps/gen/lib/date.py:308 ../gramps/gen/lib/date.py:339
-#: ../gramps/gen/lib/date.py:341 ../gramps/gen/lib/date.py:347
-#: ../gramps/gen/lib/date.py:374
+#: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
+#: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
+#: ../gramps/gen/lib/date.py:379
 msgid "more than"
 msgstr "повече от"
 
-#: ../gramps/gen/lib/date.py:310 ../gramps/gen/lib/date.py:328
-#: ../gramps/gen/lib/date.py:332 ../gramps/gen/lib/date.py:336
-#: ../gramps/gen/lib/date.py:376 ../gramps/gui/editors/filtereditor.py:266
+#: ../gramps/gen/lib/date.py:315 ../gramps/gen/lib/date.py:333
+#: ../gramps/gen/lib/date.py:337 ../gramps/gen/lib/date.py:341
+#: ../gramps/gen/lib/date.py:381 ../gramps/gui/editors/filtereditor.py:266
 msgid "less than"
 msgstr "по-малко от"
 
-#: ../gramps/gen/lib/date.py:312 ../gramps/gen/lib/date.py:350
-#: ../gramps/gen/lib/date.py:356 ../gramps/gen/lib/date.py:358
-#: ../gramps/gen/lib/date.py:378
+#: ../gramps/gen/lib/date.py:317 ../gramps/gen/lib/date.py:355
+#: ../gramps/gen/lib/date.py:361 ../gramps/gen/lib/date.py:363
+#: ../gramps/gen/lib/date.py:383
 msgctxt "age"
 msgid "about"
 msgstr "възраст около"
 
-#: ../gramps/gen/lib/date.py:318 ../gramps/gen/lib/date.py:365
-#: ../gramps/gen/lib/date.py:387 ../gramps/plugins/webreport/basepage.py:3738
+#: ../gramps/gen/lib/date.py:323 ../gramps/gen/lib/date.py:370
+#: ../gramps/gen/lib/date.py:392 ../gramps/plugins/webreport/basepage.py:3738
 msgid "between"
 msgstr "между"
 
-#: ../gramps/gen/lib/date.py:322 ../gramps/gen/lib/date.py:369
-#: ../gramps/gen/lib/date.py:391 ../gramps/gui/merge/mergefamily.py:157
+#: ../gramps/gen/lib/date.py:327 ../gramps/gen/lib/date.py:374
+#: ../gramps/gen/lib/date.py:396 ../gramps/gui/merge/mergefamily.py:157
 #: ../gramps/plugins/quickview/all_relations.py:339
 #: ../gramps/plugins/view/relview.py:1213
 #: ../gramps/plugins/webreport/basepage.py:3739
 msgid "and"
 msgstr "и"
 
-#: ../gramps/gen/lib/date.py:334 ../gramps/gen/lib/date.py:354
+#: ../gramps/gen/lib/date.py:339 ../gramps/gen/lib/date.py:359
 msgid "less than about"
 msgstr "по-малко от около"
 
-#: ../gramps/gen/lib/date.py:345 ../gramps/gen/lib/date.py:352
+#: ../gramps/gen/lib/date.py:350 ../gramps/gen/lib/date.py:357
 msgid "more than about"
 msgstr "по-вече от около"
 
-#: ../gramps/gen/lib/date.py:460 ../gramps/gen/lib/date.py:469
+#: ../gramps/gen/lib/date.py:465 ../gramps/gen/lib/date.py:474
 #, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/gen/lib/date.py:478
+#: ../gramps/gen/lib/date.py:483
 #, python-brace-format
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/gen/lib/date.py:489
+#: ../gramps/gen/lib/date.py:494
 #, python-brace-format
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/gen/lib/date.py:495
+#: ../gramps/gen/lib/date.py:500
 msgid "0 days"
 msgstr "0 дни"
 
-#: ../gramps/gen/lib/date.py:781
+#: ../gramps/gen/lib/date.py:786
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:93
@@ -7644,7 +7645,7 @@ msgstr "0 дни"
 msgid "Date"
 msgstr "Дата"
 
-#: ../gramps/gen/lib/date.py:784
+#: ../gramps/gen/lib/date.py:789
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:76
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:84
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:90
@@ -7653,25 +7654,25 @@ msgstr "Дата"
 msgid "Calendar"
 msgstr "Календар"
 
-#: ../gramps/gen/lib/date.py:785
+#: ../gramps/gen/lib/date.py:790
 #, fuzzy
 msgid "Modifier"
 msgstr "Последна промяна"
 
-#: ../gramps/gen/lib/date.py:786
+#: ../gramps/gen/lib/date.py:791
 #, fuzzy
 msgid "Quality"
 msgstr "<b>Качество</b>"
 
-#: ../gramps/gen/lib/date.py:789 ../gramps/gui/editors/filtereditor.py:913
+#: ../gramps/gen/lib/date.py:794 ../gramps/gui/editors/filtereditor.py:913
 #: ../gramps/gui/glade/rule.glade:949
 msgid "Values"
 msgstr "Стойности"
 
-#: ../gramps/gen/lib/date.py:792 ../gramps/gen/lib/placename.py:98
+#: ../gramps/gen/lib/date.py:797 ../gramps/gen/lib/placename.py:98
 #: ../gramps/gen/lib/styledtext.py:343
 #: ../gramps/gen/plug/report/_constants.py:62 ../gramps/gui/clipboard.py:633
-#: ../gramps/gui/clipboard.py:641 ../gramps/gui/configure.py:1787
+#: ../gramps/gui/clipboard.py:641 ../gramps/gui/configure.py:1794
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:104
 #: ../gramps/plugins/importer/importprogen.glade:438
 #: ../gramps/plugins/importer/importprogen.glade:1051
@@ -7680,69 +7681,69 @@ msgstr "Стойности"
 msgid "Text"
 msgstr "Текст"
 
-#: ../gramps/gen/lib/date.py:793
+#: ../gramps/gen/lib/date.py:798
 #, fuzzy
 msgid "Sort value"
 msgstr "Сортиране като:"
 
-#: ../gramps/gen/lib/date.py:794
+#: ../gramps/gen/lib/date.py:799
 msgid "New year begins"
 msgstr "Нова Година започва"
 
-#: ../gramps/gen/lib/date.py:1970
+#: ../gramps/gen/lib/date.py:1975
 #, fuzzy
 msgctxt "date-quality"
 msgid "none"
 msgstr "приблизително "
 
-#: ../gramps/gen/lib/date.py:1971
+#: ../gramps/gen/lib/date.py:1976
 msgid "estimated"
 msgstr "приблизително"
 
-#: ../gramps/gen/lib/date.py:1972
+#: ../gramps/gen/lib/date.py:1977
 msgid "calculated"
 msgstr "изчислено"
 
-#: ../gramps/gen/lib/date.py:1996
+#: ../gramps/gen/lib/date.py:2001
 #, fuzzy
 msgctxt "date-modifier"
 msgid "none"
 msgstr "преди "
 
-#: ../gramps/gen/lib/date.py:1997 ../gramps/plugins/lib/libsubstkeyword.py:319
+#: ../gramps/gen/lib/date.py:2002 ../gramps/plugins/lib/libsubstkeyword.py:319
 #: ../gramps/plugins/webreport/basepage.py:3745
 msgid "before"
 msgstr "преди"
 
-#: ../gramps/gen/lib/date.py:1998 ../gramps/plugins/lib/libprogen.py:2029
+#: ../gramps/gen/lib/date.py:2003 ../gramps/plugins/lib/libprogen.py:2029
 #: ../gramps/plugins/lib/libsubstkeyword.py:320
 #: ../gramps/plugins/webreport/basepage.py:3743
 msgid "after"
 msgstr "след"
 
-#: ../gramps/gen/lib/date.py:1999 ../gramps/plugins/lib/libsubstkeyword.py:321
+#: ../gramps/gen/lib/date.py:2004 ../gramps/plugins/lib/libsubstkeyword.py:321
 #: ../gramps/plugins/webreport/basepage.py:3747
 msgid "about"
 msgstr "относно"
 
-#: ../gramps/gen/lib/date.py:2000
+#: ../gramps/gen/lib/date.py:2005
 msgid "range"
 msgstr "обхват"
 
-#: ../gramps/gen/lib/date.py:2001
+#: ../gramps/gen/lib/date.py:2006
 msgid "from"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:2002
+#: ../gramps/gen/lib/date.py:2007
 #, fuzzy
 msgid "to"
 msgstr "_Спиране"
 
-#: ../gramps/gen/lib/date.py:2003
+#: ../gramps/gen/lib/date.py:2008
 msgid "span"
 msgstr "времетраене"
 
-#: ../gramps/gen/lib/date.py:2004
+#: ../gramps/gen/lib/date.py:2009
 msgid "textonly"
 msgstr "само текст"
 
@@ -7963,7 +7964,7 @@ msgstr "Събития"
 #: ../gramps/gui/configure.py:783
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:53
-#: ../gramps/gui/editors/editfamily.py:622 ../gramps/gui/editors/editlink.py:97
+#: ../gramps/gui/editors/editfamily.py:604 ../gramps/gui/editors/editlink.py:97
 #: ../gramps/gui/editors/filtereditor.py:310
 #: ../gramps/gui/glade/editldsord.glade:263 ../gramps/gui/grampsgui.py:58
 #: ../gramps/plugins/export/exportcsv.py:630
@@ -8037,7 +8038,7 @@ msgid "Adopted"
 msgstr "Осиновен/а"
 
 #: ../gramps/gen/lib/eventtype.py:201 ../gramps/gen/utils/symbols.py:94
-#: ../gramps/gui/configure.py:2775 ../gramps/gui/merge/mergeperson.py:206
+#: ../gramps/gui/configure.py:2800 ../gramps/gui/merge/mergeperson.py:206
 #: ../gramps/plugins/export/exportvcalendar.py:149
 #: ../gramps/plugins/gramplet/ancestor.py:69
 #: ../gramps/plugins/gramplet/descendant.py:67
@@ -8053,7 +8054,7 @@ msgstr "Осиновен/а"
 msgid "Birth"
 msgstr "Раждане"
 
-#: ../gramps/gen/lib/eventtype.py:202 ../gramps/gui/configure.py:2781
+#: ../gramps/gen/lib/eventtype.py:202 ../gramps/gui/configure.py:2806
 #: ../gramps/gui/merge/mergeperson.py:213
 #: ../gramps/plugins/export/exportvcalendar.py:158
 #: ../gramps/plugins/importer/importprogen.glade:1422
@@ -8071,7 +8072,7 @@ msgid "Adult Christening"
 msgstr "Кръщене на възрастен"
 
 #: ../gramps/gen/lib/eventtype.py:204 ../gramps/gen/lib/ldsord.py:94
-#: ../gramps/gui/configure.py:2776
+#: ../gramps/gui/configure.py:2801
 msgid "Baptism"
 msgstr "Кръщене"
 
@@ -8186,7 +8187,7 @@ msgid "Will"
 msgstr "Завещание"
 
 #: ../gramps/gen/lib/eventtype.py:234 ../gramps/gen/plug/docgen/treedoc.py:223
-#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2778
+#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2803
 #: ../gramps/gui/merge/mergeperson.py:278
 #: ../gramps/plugins/export/exportcsv.py:581
 #: ../gramps/plugins/export/exportvcalendar.py:137
@@ -8218,7 +8219,7 @@ msgid "Engagement"
 msgstr "Годеж"
 
 #: ../gramps/gen/lib/eventtype.py:240 ../gramps/gen/utils/symbols.py:98
-#: ../gramps/gui/configure.py:2780 ../gramps/plugins/webreport/family.py:318
+#: ../gramps/gui/configure.py:2805 ../gramps/plugins/webreport/family.py:318
 msgid "Divorce"
 msgstr "Развод"
 
@@ -8747,8 +8748,8 @@ msgstr "Храм"
 msgid "Status"
 msgstr "Статус"
 
-#: ../gramps/gen/lib/location.py:89 ../gramps/gen/lib/nameorigintype.py:93
-#: ../gramps/gui/clipboard.py:338 ../gramps/gui/plug/_windows.py:1646
+#: ../gramps/gen/lib/location.py:89 ../gramps/gui/clipboard.py:338
+#: ../gramps/gui/plug/_windows.py:1646
 msgid "Location"
 msgstr "Местоположение"
 
@@ -8990,6 +8991,20 @@ msgstr "Бащино потекло"
 msgid "Matrilineal"
 msgstr "Бащино потекло"
 
+#: ../gramps/gen/lib/nameorigintype.py:92
+#, fuzzy
+#| msgid "Occupation"
+msgctxt "Surname"
+msgid "Occupation"
+msgstr "Професия"
+
+#: ../gramps/gen/lib/nameorigintype.py:93
+#, fuzzy
+#| msgid "Location"
+msgctxt "Surname"
+msgid "Location"
+msgstr "Местоположение"
+
 #: ../gramps/gen/lib/nametype.py:58
 msgid "Also Known As"
 msgstr "Известен като"
@@ -9045,7 +9060,7 @@ msgstr "Бележка"
 msgid "Format"
 msgstr "Формат"
 
-#: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/configure.py:2181
+#: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/configure.py:2206
 #: ../gramps/gui/editors/editeventref.py:102
 #: ../gramps/gui/editors/editmediaref.py:121
 #: ../gramps/gui/editors/editplaceref.py:84
@@ -9903,7 +9918,7 @@ msgstr "Добавяне на правило"
 msgid "Thumbnailer"
 msgstr "Местоположение на миниатюрата"
 
-#: ../gramps/gen/plug/_pluginreg.py:134 ../gramps/gui/configure.py:1656
+#: ../gramps/gen/plug/_pluginreg.py:134 ../gramps/gui/configure.py:1663
 #, fuzzy
 #| msgid "Publication Information"
 msgid "Citation formatter"
@@ -10436,7 +10451,7 @@ msgid "Not shown"
 msgstr "Не са открити родители"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:94 ../gramps/gui/configure.py:105
-#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2615
+#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2640
 #: ../gramps/gui/displaystate.py:430 ../gramps/gui/views/pageview.py:652
 msgid "Preferences"
 msgstr "Предпочитания"
@@ -10756,8 +10771,8 @@ msgstr "Пояснителни бележки"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gen/plug/report/endnotes.py:181
-#: ../gramps/gui/editors/editfamily.py:1132
-#: ../gramps/gui/editors/editfamily.py:1139
+#: ../gramps/gui/editors/editfamily.py:1112
+#: ../gramps/gui/editors/editfamily.py:1119
 #: ../gramps/gui/plug/report/_docreportdialog.py:185
 #: ../gramps/gui/plug/report/_docreportdialog.py:235
 #: ../gramps/gui/plug/report/_graphreportdialog.py:158
@@ -10808,7 +10823,7 @@ msgstr "Превода който да се използва за доклада
 msgid "The additional translation to be used for the report."
 msgstr "Превода който да се използва за доклада."
 
-#: ../gramps/gen/plug/report/stdoptions.py:94 ../gramps/gui/configure.py:1498
+#: ../gramps/gen/plug/report/stdoptions.py:94 ../gramps/gui/configure.py:1505
 #: ../gramps/plugins/webreport/webcal.py:1905
 msgid "Name format"
 msgstr "Формат на името"
@@ -10926,7 +10941,7 @@ msgstr "Формат на хартията"
 msgid "Select the format to display places"
 msgstr "Изберете формат за показване на имената"
 
-#: ../gramps/gen/plug/report/stdoptions.py:425 ../gramps/gui/configure.py:1455
+#: ../gramps/gen/plug/report/stdoptions.py:425 ../gramps/gui/configure.py:1462
 #, fuzzy
 #| msgid "Date format"
 msgid "Coordinates format"
@@ -11245,152 +11260,156 @@ msgid ""
 "'english' instead."
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:188 ../gramps/gen/utils/alive.py:224
+#: ../gramps/gen/utils/alive.py:189 ../gramps/gen/utils/alive.py:225
 #: ../gramps/plugins/importer/importcsv.py:383
 msgid "date"
 msgstr "дата"
 
-#: ../gramps/gen/utils/alive.py:207 ../gramps/gen/utils/alive.py:238
+#: ../gramps/gen/utils/alive.py:208 ../gramps/gen/utils/alive.py:239
 msgid "date fallback"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:254 ../gramps/gen/utils/alive.py:429
+#: ../gramps/gen/utils/alive.py:255 ../gramps/gen/utils/alive.py:430
 #, fuzzy
 msgid ", death: "
 msgstr "Смърт"
 
-#: ../gramps/gen/utils/alive.py:254
+#: ../gramps/gen/utils/alive.py:255
 msgid "DIRECT birth: "
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:336
+#: ../gramps/gen/utils/alive.py:337
 #, fuzzy
 #| msgid "Mother's Age"
 msgid "mother's age"
 msgstr "Възраст на майката"
 
-#: ../gramps/gen/utils/alive.py:341
+#: ../gramps/gen/utils/alive.py:342
 #, fuzzy
 #| msgid "Father's Age"
 msgid "father's age"
 msgstr "Възраст на бащата"
 
-#: ../gramps/gen/utils/alive.py:345
+#: ../gramps/gen/utils/alive.py:346
 #, fuzzy
 #| msgid "death date"
 msgid "from death date"
 msgstr "дата на смъртта"
 
-#: ../gramps/gen/utils/alive.py:349
+#: ../gramps/gen/utils/alive.py:350
 #, fuzzy
 #| msgid "Mother's Age"
 msgid "mother's death"
 msgstr "Възраст на майката"
 
-#: ../gramps/gen/utils/alive.py:354
+#: ../gramps/gen/utils/alive.py:355
 #, fuzzy
 #| msgid "Father's Age"
 msgid "father's death"
 msgstr "Възраст на бащата"
 
-#: ../gramps/gen/utils/alive.py:358
+#: ../gramps/gen/utils/alive.py:359
 #, fuzzy
 msgid "person's death"
 msgstr "%(person)s, родено%(relation)s"
 
-#: ../gramps/gen/utils/alive.py:365
+#: ../gramps/gen/utils/alive.py:366
 #, fuzzy
 msgid "oldest sibling's age"
 msgstr "Показване на братята и сестрите"
 
-#: ../gramps/gen/utils/alive.py:370
+#: ../gramps/gen/utils/alive.py:371
 #, fuzzy
 msgid "youngest sibling's age"
 msgstr "Показване на братята и сестрите"
 
-#: ../gramps/gen/utils/alive.py:413
+#: ../gramps/gen/utils/alive.py:414
 msgid "birth date and known to be dead"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:416 ../gramps/plugins/importer/importcsv.py:251
+#: ../gramps/gen/utils/alive.py:417 ../gramps/plugins/importer/importcsv.py:251
 msgid "birth date"
 msgstr "дата на раждане"
 
-#: ../gramps/gen/utils/alive.py:424 ../gramps/gen/utils/alive.py:427
+#: ../gramps/gen/utils/alive.py:425 ../gramps/gen/utils/alive.py:428
 #, fuzzy
 #| msgid "birth"
 msgid "birth: "
 msgstr "раждане"
 
-#: ../gramps/gen/utils/alive.py:427
+#: ../gramps/gen/utils/alive.py:428
 #, fuzzy
 msgid " and "
 msgstr "%s и %s"
 
-#: ../gramps/gen/utils/alive.py:510
+#: ../gramps/gen/utils/alive.py:511
 #, fuzzy
 msgid "a spouse's birth-related date, "
 msgstr "дата свързана с раждане на прародител"
 
-#: ../gramps/gen/utils/alive.py:523
+#: ../gramps/gen/utils/alive.py:524
 #, fuzzy
 msgid "a spouse's death-related date, "
 msgstr "дата свързана със смъртта на прародител"
 
-#: ../gramps/gen/utils/alive.py:553
+#: ../gramps/gen/utils/alive.py:554
 msgid "event with spouse"
 msgstr "събитие със съпруг/а"
 
-#: ../gramps/gen/utils/alive.py:730
-#, fuzzy
-msgid "descendant birth: {} generations "
-msgstr "Максимален брой поколения на наследниците"
+#: ../gramps/gen/utils/alive.py:732
+#, fuzzy, python-brace-format
+msgid "descendant birth: {number_of} generation "
+msgid_plural "descendant birth: {number_of} generations "
+msgstr[0] "Максимален брой поколения на наследниците"
+msgstr[1] "Максимален брой поколения на наследниците"
 
-#: ../gramps/gen/utils/alive.py:749
-#, fuzzy
-msgid "descendant death: {} generations "
-msgstr "Максимален брой поколения на наследниците"
+#: ../gramps/gen/utils/alive.py:755
+#, fuzzy, python-brace-format
+msgid "descendant death: {number_of} generation "
+msgid_plural "descendant death: {number_of} generations "
+msgstr[0] "Максимален брой поколения на наследниците"
+msgstr[1] "Максимален брой поколения на наследниците"
 
-#: ../gramps/gen/utils/alive.py:761
+#: ../gramps/gen/utils/alive.py:770
 #, python-format
 msgid "Database error: loop in %s's descendants"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:813
+#: ../gramps/gen/utils/alive.py:822
 #, fuzzy
 #| msgid "Death before birth"
 msgid "mother birth "
 msgstr "Смърт преди раждане"
 
-#: ../gramps/gen/utils/alive.py:817 ../gramps/gen/utils/alive.py:823
+#: ../gramps/gen/utils/alive.py:826 ../gramps/gen/utils/alive.py:832
 #, fuzzy
 #| msgid "Death before birth"
 msgid "father birth "
 msgstr "Смърт преди раждане"
 
-#: ../gramps/gen/utils/alive.py:831 ../gramps/gen/utils/alive.py:862
+#: ../gramps/gen/utils/alive.py:840 ../gramps/gen/utils/alive.py:871
 #, fuzzy
 msgid "ancestor "
 msgstr "Прародители"
 
-#: ../gramps/gen/utils/alive.py:837
+#: ../gramps/gen/utils/alive.py:846
 #, fuzzy
 #| msgid "Compute death age"
 msgid "mother death "
 msgstr "Изчисляване възрастта на смъртта"
 
-#: ../gramps/gen/utils/alive.py:841 ../gramps/gen/utils/alive.py:847
+#: ../gramps/gen/utils/alive.py:850 ../gramps/gen/utils/alive.py:856
 #, fuzzy
 #| msgid "Age at death"
 msgid "father death "
 msgstr "Възраст на смъртта"
 
-#: ../gramps/gen/utils/alive.py:920
+#: ../gramps/gen/utils/alive.py:929
 #, fuzzy, python-format
 msgid "Database error: loop in %s's ancestors"
 msgstr "Грешка в база от данни: %s е дефиниран като свой прародител"
 
-#: ../gramps/gen/utils/alive.py:1004 ../gramps/gen/utils/alive.py:1013
+#: ../gramps/gen/utils/alive.py:1011 ../gramps/gen/utils/alive.py:1020
 msgid "no evidence"
 msgstr "няма свидетелства"
 
@@ -11810,7 +11829,7 @@ msgstr ""
 "Информацията може да се възстанови само от „Отмяна“ или след напускане и "
 "отказване на промените."
 
-#: ../gramps/gen/utils/symbols.py:84
+#: ../gramps/gen/utils/symbols.py:84 ../gramps/gui/editors/editfamily.py:987
 #: ../gramps/plugins/graph/gvfamilylines.py:97
 #: ../gramps/plugins/textreport/indivcomplete.py:967
 #: ../gramps/plugins/tool/dumpgenderstats.py:73
@@ -11819,7 +11838,7 @@ msgstr ""
 msgid "Female"
 msgstr "Женски"
 
-#: ../gramps/gen/utils/symbols.py:85
+#: ../gramps/gen/utils/symbols.py:85 ../gramps/gui/editors/editfamily.py:1036
 #: ../gramps/plugins/graph/gvfamilylines.py:98
 #: ../gramps/plugins/textreport/indivcomplete.py:965
 #: ../gramps/plugins/tool/dumpgenderstats.py:72
@@ -11867,7 +11886,7 @@ msgstr "приблизително"
 msgid "Baptism/Christening"
 msgstr "Кръщене"
 
-#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2777
+#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2802
 #, fuzzy
 msgid "Engaged"
 msgstr "Годеж"
@@ -11877,12 +11896,12 @@ msgstr "Годеж"
 msgid "Unmarried partnership"
 msgstr "без брак съпруг"
 
-#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2783
+#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2808
 #, fuzzy
 msgid "Buried"
 msgstr "Погребение"
 
-#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2784
+#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2809
 msgid "Cremated/Funeral urn"
 msgstr ""
 
@@ -12356,8 +12375,8 @@ msgstr "Дървовиден изглед: първата колона „%s“ 
 msgid "Drag and drop the columns to change the order"
 msgstr "Влачете и пускайте колоните за да им промените реда"
 
-#: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2501
-#: ../gramps/gui/configure.py:2529 ../gramps/gui/configure.py:2558
+#: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2526
+#: ../gramps/gui/configure.py:2554 ../gramps/gui/configure.py:2583
 #: ../gramps/gui/plug/_dialogs.py:144 ../gramps/gui/viewmanager.py:1947
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
@@ -12459,16 +12478,16 @@ msgstr "Невалидна или незавършена дефиниция на
 #: ../gramps/gui/configure.py:505 ../gramps/gui/configure.py:521
 #: ../gramps/gui/configure.py:562 ../gramps/gui/configure.py:600
 #: ../gramps/gui/configure.py:628 ../gramps/gui/configure.py:894
-#: ../gramps/gui/configure.py:1428 ../gramps/gui/configure.py:1455
-#: ../gramps/gui/configure.py:1498 ../gramps/gui/configure.py:1542
-#: ../gramps/gui/configure.py:1564 ../gramps/gui/configure.py:1599
-#: ../gramps/gui/configure.py:1612 ../gramps/gui/configure.py:1633
-#: ../gramps/gui/configure.py:1651 ../gramps/gui/configure.py:1656
-#: ../gramps/gui/configure.py:1677 ../gramps/gui/configure.py:1693
-#: ../gramps/gui/configure.py:2227 ../gramps/gui/configure.py:2316
-#: ../gramps/gui/plug/_windows.py:783 ../gramps/gui/plug/_windows.py:803
-#: ../gramps/gui/plug/_windows.py:839 ../gramps/gui/plug/_windows.py:847
-#: ../gramps/gui/views/navigationview.py:351
+#: ../gramps/gui/configure.py:1435 ../gramps/gui/configure.py:1462
+#: ../gramps/gui/configure.py:1505 ../gramps/gui/configure.py:1549
+#: ../gramps/gui/configure.py:1571 ../gramps/gui/configure.py:1606
+#: ../gramps/gui/configure.py:1619 ../gramps/gui/configure.py:1640
+#: ../gramps/gui/configure.py:1658 ../gramps/gui/configure.py:1663
+#: ../gramps/gui/configure.py:1684 ../gramps/gui/configure.py:1700
+#: ../gramps/gui/configure.py:2134 ../gramps/gui/configure.py:2252
+#: ../gramps/gui/configure.py:2341 ../gramps/gui/plug/_windows.py:783
+#: ../gramps/gui/plug/_windows.py:803 ../gramps/gui/plug/_windows.py:839
+#: ../gramps/gui/plug/_windows.py:847 ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:111
 #, python-format
 msgid "%s: "
@@ -12588,7 +12607,7 @@ msgstr "Семейни цветове"
 msgid "Color scheme"
 msgstr "Цвят"
 
-#: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2793
+#: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2818
 #, fuzzy
 msgid "Restore to defaults"
 msgstr "Грамплет Рекорди"
@@ -12690,7 +12709,7 @@ msgstr "Преподреди семействата"
 msgid "Background for Home Person"
 msgstr "Връзка с основното лице"
 
-#: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2790
+#: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2815
 #, fuzzy, python-format
 msgid "<b>%s</b>"
 msgstr "<b>Мъж</b>"
@@ -12803,12 +12822,12 @@ msgstr "_Редактиране"
 msgid "_Remove"
 msgstr "_Премахване"
 
-#: ../gramps/gui/configure.py:1408
+#: ../gramps/gui/configure.py:1415
 #, fuzzy
 msgid "Display Options"
 msgstr "Показване като:"
 
-#: ../gramps/gui/configure.py:1424 ../gramps/gui/configure.py:1502
+#: ../gramps/gui/configure.py:1431 ../gramps/gui/configure.py:1509
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
 #: ../gramps/gui/glade/editfamily.glade:280
 #: ../gramps/gui/glade/editfamily.glade:596
@@ -12821,109 +12840,109 @@ msgstr "Показване като:"
 msgid "Edit"
 msgstr "Редактиране"
 
-#: ../gramps/gui/configure.py:1428
+#: ../gramps/gui/configure.py:1435
 #, fuzzy
 msgid "Automate Place format"
 msgstr "Формат на хартията"
 
-#: ../gramps/gui/configure.py:1435
+#: ../gramps/gui/configure.py:1442
 msgid "Enables automatic place title generation using specified format."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1512
+#: ../gramps/gui/configure.py:1519
 msgid "Custom name display options are unique to each family tree."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1524
+#: ../gramps/gui/configure.py:1531
 msgid "Consider single pa/matronymic as surname"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1542
+#: ../gramps/gui/configure.py:1549
 #, fuzzy
 #| msgid "Date format"
 msgid "Date format *"
 msgstr "Формат на датата"
 
-#: ../gramps/gui/configure.py:1550
+#: ../gramps/gui/configure.py:1557
 #, fuzzy
 msgid "Years"
 msgstr "Г_одина"
 
-#: ../gramps/gui/configure.py:1550
+#: ../gramps/gui/configure.py:1557
 msgid "Years, Months"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1550
+#: ../gramps/gui/configure.py:1557
 msgid "Years, Months, Days"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1564
+#: ../gramps/gui/configure.py:1571
 #, fuzzy
 msgid "Age display precision *"
 msgstr "Показва текста в бутоните на страничната лента (след рестартиране)"
 
-#: ../gramps/gui/configure.py:1572
+#: ../gramps/gui/configure.py:1579
 #, fuzzy
 msgid "Round the year"
 msgstr "Използване на заоблени ъгли"
 
-#: ../gramps/gui/configure.py:1583
+#: ../gramps/gui/configure.py:1590
 #, fuzzy
 #| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
 msgstr "Показване на отпратките за %s"
 
-#: ../gramps/gui/configure.py:1599
+#: ../gramps/gui/configure.py:1606
 msgid "Calendar on reports"
 msgstr "Доклад Календар"
 
-#: ../gramps/gui/configure.py:1612
+#: ../gramps/gui/configure.py:1619
 #, fuzzy
 #| msgid "Calendar on reports"
 msgid "Calendar on input"
 msgstr "Доклад Календар"
 
-#: ../gramps/gui/configure.py:1620
+#: ../gramps/gui/configure.py:1627
 #, fuzzy
 #| msgid "Shows previous page"
 msgid "On the previous day"
 msgstr "Показва предходната страница"
 
-#: ../gramps/gui/configure.py:1621
+#: ../gramps/gui/configure.py:1628
 #, fuzzy
 #| msgid "Shows the next page"
 msgid "On the next day"
 msgstr "Показва следващата страница"
 
-#: ../gramps/gui/configure.py:1622
+#: ../gramps/gui/configure.py:1629
 msgid "Only on leap years"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1629
+#: ../gramps/gui/configure.py:1636
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1633
+#: ../gramps/gui/configure.py:1640
 #, fuzzy
 msgid "Show leap day anniversaries"
 msgstr "Включва годишнините"
 
-#: ../gramps/gui/configure.py:1640
+#: ../gramps/gui/configure.py:1647
 msgid "Active person's name and ID"
 msgstr "Име и индекс на активното лице"
 
-#: ../gramps/gui/configure.py:1640
+#: ../gramps/gui/configure.py:1647
 #: ../gramps/plugins/textreport/indivcomplete.py:395
 msgid "Relationship to home person"
 msgstr "Роднинска връзка с основното лице"
 
-#: ../gramps/gui/configure.py:1651
+#: ../gramps/gui/configure.py:1658
 msgid "Status bar"
 msgstr "Лента на състоянието"
 
-#: ../gramps/gui/configure.py:1663
+#: ../gramps/gui/configure.py:1670
 msgid ""
 "\n"
 "Input Options"
@@ -12931,61 +12950,61 @@ msgstr ""
 "\n"
 "Настройки за доклада"
 
-#: ../gramps/gui/configure.py:1677
+#: ../gramps/gui/configure.py:1684
 msgid "Surname guessing"
 msgstr "Отгатване на фамилията"
 
-#: ../gramps/gui/configure.py:1693
+#: ../gramps/gui/configure.py:1700
 msgid "Default family relationship"
 msgstr "Семейна връзка по подразбиране"
 
-#: ../gramps/gui/configure.py:1700
+#: ../gramps/gui/configure.py:1707
 msgid "Hide LDS tab in person and family editors"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1708 ../gramps/gui/configure.py:2172
+#: ../gramps/gui/configure.py:1715 ../gramps/gui/configure.py:2197
 msgid "* Requires Restart"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1717
+#: ../gramps/gui/configure.py:1724
 #, fuzzy
 #| msgid "_Data"
 msgid "Data"
 msgstr "_Данни"
 
-#: ../gramps/gui/configure.py:1735
+#: ../gramps/gui/configure.py:1742
 msgid "Conditional Text Replacements"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1746
+#: ../gramps/gui/configure.py:1753
 msgid "Missing surname"
 msgstr "Липсваща фамилия"
 
-#: ../gramps/gui/configure.py:1751
+#: ../gramps/gui/configure.py:1758
 msgid "Missing given name"
 msgstr "Липсващо собствено име"
 
-#: ../gramps/gui/configure.py:1758
+#: ../gramps/gui/configure.py:1765
 msgid "Missing record"
 msgstr "Липсващ запис"
 
-#: ../gramps/gui/configure.py:1763
+#: ../gramps/gui/configure.py:1770
 msgid "Private surname"
 msgstr "Поверителна фамилия"
 
-#: ../gramps/gui/configure.py:1772
+#: ../gramps/gui/configure.py:1779
 msgid "Private given name"
 msgstr "Поверително собствено име"
 
-#: ../gramps/gui/configure.py:1781
+#: ../gramps/gui/configure.py:1788
 msgid "Private record"
 msgstr "Поверителен запис"
 
-#: ../gramps/gui/configure.py:1838
+#: ../gramps/gui/configure.py:1845
 msgid "Change is not immediate"
 msgstr "Промяната не е незабавна"
 
-#: ../gramps/gui/configure.py:1840
+#: ../gramps/gui/configure.py:1847
 #, fuzzy
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
@@ -12993,171 +13012,200 @@ msgid ""
 msgstr ""
 "Промяна на формата на датата ще стане при следващото стартиране на Gramps."
 
-#: ../gramps/gui/configure.py:1879
+#: ../gramps/gui/configure.py:1886
 #, fuzzy
 #| msgid "Calculating timeline..."
 msgid "Calculation limits"
 msgstr "Изчисляване на хронологията..."
 
-#: ../gramps/gui/configure.py:1886
+#: ../gramps/gui/configure.py:1893
 #, fuzzy
 #| msgid "Date about range"
 msgid "Date 'about' year range: (date ± #)"
 msgstr "Период относно"
 
-#: ../gramps/gui/configure.py:1894
+#: ../gramps/gui/configure.py:1901
 #, fuzzy
 #| msgid "Date after range"
 msgid "Date 'after' year range:  (date + #)"
 msgstr "Период след"
 
-#: ../gramps/gui/configure.py:1902
+#: ../gramps/gui/configure.py:1909
 #, fuzzy
 #| msgid "Date before range"
 msgid "Date 'before' year range: (date - #)"
 msgstr "Период преди"
 
-#: ../gramps/gui/configure.py:1910
+#: ../gramps/gui/configure.py:1917
 msgid "Maximum age probably alive"
 msgstr "Максимална възраст за хора, които вероятно са живи"
 
-#: ../gramps/gui/configure.py:1918
+#: ../gramps/gui/configure.py:1925
 msgid "Maximum sibling age difference"
 msgstr "Максимална разлика във възрастта на братята/сестрите"
 
-#: ../gramps/gui/configure.py:1926
+#: ../gramps/gui/configure.py:1933
 msgid "Minimum years between generations"
 msgstr "Минимум години между поколенията"
 
-#: ../gramps/gui/configure.py:1934
+#: ../gramps/gui/configure.py:1941
 msgid "Average years between generations"
 msgstr "Средно години между поколенията"
 
-#: ../gramps/gui/configure.py:1942
+#: ../gramps/gui/configure.py:1949
 msgid "Max generations for relationships"
 msgstr "Брой поколения за определяне на роднинските връзки"
 
-#: ../gramps/gui/configure.py:1949
+#: ../gramps/gui/configure.py:1956
 msgid "Limits"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1962
+#: ../gramps/gui/configure.py:1969
 #, fuzzy
 msgid "Environment Settings"
 msgstr "Цитат"
 
-#: ../gramps/gui/configure.py:1974
+#: ../gramps/gui/configure.py:1981
 msgid "Display Tip of the Day"
 msgstr "Показване на полезния съвет за деня"
 
-#: ../gramps/gui/configure.py:1979
+#: ../gramps/gui/configure.py:1986
 msgid "Show useful information about using Gramps on startup."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1984
+#: ../gramps/gui/configure.py:1991
 #, fuzzy
 msgid "Remember last Family Tree"
 msgstr "Премахване на родословно дърво"
 
-#: ../gramps/gui/configure.py:1990
+#: ../gramps/gui/configure.py:1997
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1998
+#: ../gramps/gui/configure.py:2005
 msgid "Remember last view displayed"
 msgstr "Запомняне на последно показваният изглед"
 
-#: ../gramps/gui/configure.py:2003
+#: ../gramps/gui/configure.py:2010
 #, fuzzy
 msgid "Remember last view displayed and open it next time."
 msgstr "Запомняне на последно показваният изглед"
 
-#: ../gramps/gui/configure.py:2008
+#: ../gramps/gui/configure.py:2015
 #, fuzzy
 #| msgid "Enable spelling checker"
 msgid "Enable spell checker"
 msgstr "Включване проверка на правописа"
 
-#: ../gramps/gui/configure.py:2013
+#: ../gramps/gui/configure.py:2020
 #, fuzzy
 #| msgid "Enable spelling checker"
 msgid "Enable the spelling checker for notes."
 msgstr "Включване проверка на правописа"
 
-#: ../gramps/gui/configure.py:2024
+#: ../gramps/gui/configure.py:2031
 #, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2036
+#: ../gramps/gui/configure.py:2043
 #, fuzzy
 msgid "Show text label beside Navigator buttons *"
 msgstr "Показва текста в бутоните на страничната лента (след рестартиране)"
 
-#: ../gramps/gui/configure.py:2042
+#: ../gramps/gui/configure.py:2049
 #, fuzzy
 msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
 msgstr "Показва текста в бутоните на страничната лента (след рестартиране)"
 
-#: ../gramps/gui/configure.py:2052
+#: ../gramps/gui/configure.py:2059
 msgid "Show Clipboard icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2057
+#: ../gramps/gui/configure.py:2064
 msgid "Show or hide the Clipboard icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2065
+#: ../gramps/gui/configure.py:2072
 msgid "Show Reports icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2070
+#: ../gramps/gui/configure.py:2077
 msgid "Show or hide the Reports icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2078
+#: ../gramps/gui/configure.py:2085
 msgid "Show Tools icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2083
+#: ../gramps/gui/configure.py:2090
 msgid "Show or hide the Tools icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2091
+#: ../gramps/gui/configure.py:2098
 msgid "Show Addons icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2096
+#: ../gramps/gui/configure.py:2103
 msgid "Show or hide the Addons icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2104
+#: ../gramps/gui/configure.py:2111
 msgid "Show Preferences icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2109
+#: ../gramps/gui/configure.py:2116
 msgid "Show or hide the Preferences icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2117
+#: ../gramps/gui/configure.py:2124
+#, fuzzy
+#| msgctxt "Filtering_on"
+#| msgid "media references"
+msgid "Use default preference"
+msgstr "медийни отпратки"
+
+#: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
+msgid "Text only"
+msgstr "Само текст"
+
+#: ../gramps/gui/configure.py:2126
+msgid "Icons only"
+msgstr ""
+
+#: ../gramps/gui/configure.py:2127
+msgid "Both text and icons"
+msgstr ""
+
+#: ../gramps/gui/configure.py:2132
+msgid "Display text, icons or both on the toolbar buttons."
+msgstr ""
+
+#: ../gramps/gui/configure.py:2134
+#, fuzzy
+#| msgid "_Toolbar"
+msgid "Toolbar Style"
+msgstr "_Лента с инструменти"
+
+#: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2123
+#: ../gramps/gui/configure.py:2148
 msgid "Show close button to simplify removing gramplets from bars."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2130
+#: ../gramps/gui/configure.py:2155
 msgid "Markup for invalid date format"
 msgstr "Маркировка за невалиден формат на датата"
 
-#: ../gramps/gui/configure.py:2136
+#: ../gramps/gui/configure.py:2161
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -13175,28 +13223,28 @@ msgid ""
 "will display <u><b>Underlined bold date</b></u>.\n"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2157
+#: ../gramps/gui/configure.py:2182
 #, fuzzy
 msgid "Multiple surname box height"
 msgstr "Множество родители"
 
-#: ../gramps/gui/configure.py:2163
+#: ../gramps/gui/configure.py:2188
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2222
+#: ../gramps/gui/configure.py:2247
 #, fuzzy
 msgid "Database Setting"
 msgstr "Версия:"
 
-#: ../gramps/gui/configure.py:2227
+#: ../gramps/gui/configure.py:2252
 #, fuzzy
 msgid "Database backend"
 msgstr "Базата от данни е отворена"
 
-#: ../gramps/gui/configure.py:2235
+#: ../gramps/gui/configure.py:2260
 msgid ""
 "\n"
 "Database Location"
@@ -13204,69 +13252,69 @@ msgstr ""
 "\n"
 "Системна информация"
 
-#: ../gramps/gui/configure.py:2246
+#: ../gramps/gui/configure.py:2271
 msgid "Host"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2250
+#: ../gramps/gui/configure.py:2275
 #, fuzzy
 msgid "Port"
 msgstr "Портрет"
 
-#: ../gramps/gui/configure.py:2259
+#: ../gramps/gui/configure.py:2284
 #, fuzzy
 msgid "Database path"
 msgstr "Базата от данни е отворена"
 
-#: ../gramps/gui/configure.py:2270
+#: ../gramps/gui/configure.py:2295
 msgid ""
 "\n"
 "Backup Management"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2283
+#: ../gramps/gui/configure.py:2308
 msgid "Backup path"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2293
+#: ../gramps/gui/configure.py:2318
 msgid "Backup on exit"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2298
+#: ../gramps/gui/configure.py:2323
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2306
+#: ../gramps/gui/configure.py:2331
 #, fuzzy
 msgid "Every 15 minutes"
 msgstr "Всяка бележка"
 
-#: ../gramps/gui/configure.py:2307
+#: ../gramps/gui/configure.py:2332
 #, fuzzy
 msgid "Every 30 minutes"
 msgstr "Всяка бележка"
 
-#: ../gramps/gui/configure.py:2308
+#: ../gramps/gui/configure.py:2333
 #, fuzzy
 msgid "Every hour"
 msgstr "Всеки източник"
 
-#: ../gramps/gui/configure.py:2309
+#: ../gramps/gui/configure.py:2334
 #, fuzzy
 msgid "Every 12 hours"
 msgstr "Всеки източник"
 
-#: ../gramps/gui/configure.py:2310
+#: ../gramps/gui/configure.py:2335
 #, fuzzy
 msgid "Every day"
 msgstr "Всяко семейство"
 
-#: ../gramps/gui/configure.py:2316
+#: ../gramps/gui/configure.py:2341
 #, fuzzy
 msgid "Autobackup"
 msgstr "Автоматично резервно копие..."
 
-#: ../gramps/gui/configure.py:2323
+#: ../gramps/gui/configure.py:2348
 msgid ""
 "\n"
 "Family Tree's Media path"
@@ -13274,37 +13322,37 @@ msgstr ""
 "\n"
 "Път към базата данни"
 
-#: ../gramps/gui/configure.py:2336
+#: ../gramps/gui/configure.py:2361
 #, fuzzy
 #| msgid "Cannot set base media path"
 msgid "Base media path"
 msgstr "Не може да се зададе основен път за медиите"
 
-#: ../gramps/gui/configure.py:2348
+#: ../gramps/gui/configure.py:2373
 msgid ""
 "The base relative media path is specific to the active family tree. It is "
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2369
+#: ../gramps/gui/configure.py:2394
 #, fuzzy
 #| msgid "Records"
 msgid "Tag Records"
 msgstr "Рекорди"
 
-#: ../gramps/gui/configure.py:2391
+#: ../gramps/gui/configure.py:2416
 #, fuzzy
 msgid "Add tag on import"
 msgstr "Добавя подразбиращ се източник при внасяне"
 
-#: ../gramps/gui/configure.py:2398
+#: ../gramps/gui/configure.py:2423
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2407
+#: ../gramps/gui/configure.py:2432
 msgid ""
 "\n"
 "Source GEDCOM import"
@@ -13312,21 +13360,21 @@ msgstr ""
 "\n"
 "Внасяне от файл във формат GEDCOM"
 
-#: ../gramps/gui/configure.py:2419
+#: ../gramps/gui/configure.py:2444
 #, fuzzy
 msgid "Add default source on GEDCOM import"
 msgstr "Добавя подразбиращ се източник при внасяне"
 
-#: ../gramps/gui/configure.py:2426 ../gramps/gui/dbloader.py:400
+#: ../gramps/gui/configure.py:2451 ../gramps/gui/dbloader.py:400
 msgid "Import"
 msgstr "Внасяне"
 
-#: ../gramps/gui/configure.py:2495
+#: ../gramps/gui/configure.py:2520
 msgid "Select media directory"
 msgstr "Изберете папка на медията"
 
-#: ../gramps/gui/configure.py:2499 ../gramps/gui/configure.py:2529
-#: ../gramps/gui/configure.py:2556 ../gramps/gui/dbloader.py:363
+#: ../gramps/gui/configure.py:2524 ../gramps/gui/configure.py:2554
+#: ../gramps/gui/configure.py:2581 ../gramps/gui/dbloader.py:363
 #: ../gramps/gui/dbloader.py:400 ../gramps/gui/editors/edittaglist.py:122
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:25
@@ -13387,17 +13435,17 @@ msgstr "Изберете папка на медията"
 msgid "_Cancel"
 msgstr "Отказ"
 
-#: ../gramps/gui/configure.py:2524
+#: ../gramps/gui/configure.py:2549
 #, fuzzy
 msgid "Select database directory"
 msgstr "Изберете папка на медията"
 
-#: ../gramps/gui/configure.py:2552 ../gramps/gui/viewmanager.py:1942
+#: ../gramps/gui/configure.py:2577 ../gramps/gui/viewmanager.py:1942
 #, fuzzy
 msgid "Select backup directory"
 msgstr "Изберете папка на медията"
 
-#: ../gramps/gui/configure.py:2627
+#: ../gramps/gui/configure.py:2652
 msgid ""
 "If checked, use the standard genealogic symbols (death symbol is user "
 "selectable).\n"
@@ -13405,32 +13453,32 @@ msgid ""
 "yourself."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2634
+#: ../gramps/gui/configure.py:2659
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2640
+#: ../gramps/gui/configure.py:2665
 msgid "Use symbols"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2654
+#: ../gramps/gui/configure.py:2679
 #, fuzzy
 msgid "Select default death symbol"
 msgstr "Задаване като име по подразбиране"
 
-#: ../gramps/gui/configure.py:2664
+#: ../gramps/gui/configure.py:2689
 #, fuzzy
 msgid "Genealogical Symbols"
 msgstr "Генеалогична система Gramps"
 
-#: ../gramps/gui/configure.py:2695 ../gramps/gui/glade/editfamily.glade:142
+#: ../gramps/gui/configure.py:2720 ../gramps/gui/glade/editfamily.glade:142
 #: ../gramps/gui/glade/editfamily.glade:405
 msgid "Death:"
 msgstr "Смърт:"
 
-#: ../gramps/gui/configure.py:2779
+#: ../gramps/gui/configure.py:2804
 #: ../gramps/plugins/quickview/all_relations.py:345
 #: ../gramps/plugins/view/relview.py:498
 #: ../gramps/plugins/webreport/basepage.py:3143
@@ -13440,15 +13488,15 @@ msgstr "Смърт:"
 msgid "Partner"
 msgstr "Партньор"
 
-#: ../gramps/gui/configure.py:2782
+#: ../gramps/gui/configure.py:2807
 msgid "Killed"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2786
+#: ../gramps/gui/configure.py:2811
 msgid "Default genealogy symbols replacement"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2799
+#: ../gramps/gui/configure.py:2824
 msgid ""
 "You can set any text you want for this field.\n"
 "You can drag and drop a symbol from the symbol list above.\n"
@@ -15013,10 +15061,6 @@ msgstr "Горе"
 msgid "Span"
 msgstr "Времетраене"
 
-#: ../gramps/gui/editors/editdate.py:85
-msgid "Text only"
-msgstr "Само текст"
-
 #: ../gramps/gui/editors/editdate.py:90
 msgid "Estimated"
 msgstr "Приблизително"
@@ -15237,11 +15281,11 @@ msgstr "Редактиране на семейната връзка"
 msgid "Select Child"
 msgstr "Избор на дете"
 
-#: ../gramps/gui/editors/editfamily.py:468
+#: ../gramps/gui/editors/editfamily.py:450
 msgid "Adding parents to a person"
 msgstr "Добавяне на родители за дадено лице"
 
-#: ../gramps/gui/editors/editfamily.py:470
+#: ../gramps/gui/editors/editfamily.py:452
 msgid ""
 "It is possible to accidentally create multiple families with the same "
 "parents. To help avoid this problem, only the buttons to select parents are "
@@ -15253,11 +15297,11 @@ msgstr ""
 "на родители при създаване на ново семейство. Останалите бутони ще бъдат "
 "достъпни след като опитате да изберете един родител."
 
-#: ../gramps/gui/editors/editfamily.py:580
+#: ../gramps/gui/editors/editfamily.py:562
 msgid "Family has changed"
 msgstr "Семейството е променено"
 
-#: ../gramps/gui/editors/editfamily.py:582
+#: ../gramps/gui/editors/editfamily.py:564
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be "
@@ -15272,62 +15316,62 @@ msgstr ""
 "За да сте сигурни, че показаната информация е все още вярна тя ще бъде "
 "обновена. Някои от редакциите които сте направили ще бъдат изтрити."
 
-#: ../gramps/gui/editors/editfamily.py:589
+#: ../gramps/gui/editors/editfamily.py:571
 #: ../gramps/plugins/importer/importcsv.py:360
 #: ../gramps/plugins/view/familyview.py:410
 msgid "family"
 msgstr "семейство"
 
-#: ../gramps/gui/editors/editfamily.py:621
-#: ../gramps/gui/editors/editfamily.py:624
+#: ../gramps/gui/editors/editfamily.py:603
+#: ../gramps/gui/editors/editfamily.py:606
 msgid "New Family"
 msgstr "Ново семейство"
 
-#: ../gramps/gui/editors/editfamily.py:628
-#: ../gramps/gui/editors/editfamily.py:1320
+#: ../gramps/gui/editors/editfamily.py:610
+#: ../gramps/gui/editors/editfamily.py:1300
 #: ../gramps/plugins/view/geofamily.py:495
 msgid "Edit Family"
 msgstr "Редактиране на семейство"
 
-#: ../gramps/gui/editors/editfamily.py:659
+#: ../gramps/gui/editors/editfamily.py:641
 msgid "Select a person as the mother"
 msgstr "Избиране на лице за майка"
 
-#: ../gramps/gui/editors/editfamily.py:660
+#: ../gramps/gui/editors/editfamily.py:642
 msgid "Add a new person as the mother"
 msgstr "Добавяне на ново лице като майка"
 
-#: ../gramps/gui/editors/editfamily.py:661
+#: ../gramps/gui/editors/editfamily.py:643
 msgid "Remove the person as the mother"
 msgstr "Премахване на лице като майка"
 
-#: ../gramps/gui/editors/editfamily.py:674
+#: ../gramps/gui/editors/editfamily.py:656
 msgid "Select a person as the father"
 msgstr "Избиране на лице за баща"
 
-#: ../gramps/gui/editors/editfamily.py:675
+#: ../gramps/gui/editors/editfamily.py:657
 msgid "Add a new person as the father"
 msgstr "Добавяне на ново лице като баща"
 
-#: ../gramps/gui/editors/editfamily.py:676
+#: ../gramps/gui/editors/editfamily.py:658
 msgid "Remove the person as the father"
 msgstr "Премахване на лице като баща"
 
-#: ../gramps/gui/editors/editfamily.py:1005
+#: ../gramps/gui/editors/editfamily.py:986
 #: ../gramps/gui/selectors/selectperson.py:73
 msgid "Select Mother"
 msgstr "Избор на майка"
 
-#: ../gramps/gui/editors/editfamily.py:1055
+#: ../gramps/gui/editors/editfamily.py:1035
 #: ../gramps/gui/selectors/selectperson.py:71
 msgid "Select Father"
 msgstr "Избор на баща"
 
-#: ../gramps/gui/editors/editfamily.py:1078
+#: ../gramps/gui/editors/editfamily.py:1058
 msgid "Duplicate Family"
 msgstr "Повтарящо се семейство"
 
-#: ../gramps/gui/editors/editfamily.py:1080
+#: ../gramps/gui/editors/editfamily.py:1060
 msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
@@ -15337,44 +15381,44 @@ msgstr ""
 "ще създадете повтарящо се семейство. Препоръчително е да прекратите "
 "промените в този прозорец и да изберете съществуващо семейство"
 
-#: ../gramps/gui/editors/editfamily.py:1141
+#: ../gramps/gui/editors/editfamily.py:1121
 #, python-format
 msgid "Edit %s"
 msgstr "Редактира %s"
 
-#: ../gramps/gui/editors/editfamily.py:1248
+#: ../gramps/gui/editors/editfamily.py:1228
 msgid "A father cannot be his own child"
 msgstr "Баща не може да бъде дете на себе си"
 
-#: ../gramps/gui/editors/editfamily.py:1249
+#: ../gramps/gui/editors/editfamily.py:1229
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s е описан едновременно като баща и дете в семейството."
 
-#: ../gramps/gui/editors/editfamily.py:1258
+#: ../gramps/gui/editors/editfamily.py:1238
 msgid "A mother cannot be her own child"
 msgstr "Майка не може да бъде дете на себе си"
 
-#: ../gramps/gui/editors/editfamily.py:1259
+#: ../gramps/gui/editors/editfamily.py:1239
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s е описана едновременно като майка и дете в семейството."
 
-#: ../gramps/gui/editors/editfamily.py:1267
+#: ../gramps/gui/editors/editfamily.py:1247
 msgid "Cannot save family"
 msgstr "Не може да се запази семейството"
 
-#: ../gramps/gui/editors/editfamily.py:1269
+#: ../gramps/gui/editors/editfamily.py:1249
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
 "Не съществува информация за това семейство. Моля въведете информация или "
 "прекратете редакцията."
 
-#: ../gramps/gui/editors/editfamily.py:1279
+#: ../gramps/gui/editors/editfamily.py:1259
 msgid "Cannot save family. ID already exists."
 msgstr "Семейството не може да бъде запазено. Индексът вече съществува."
 
-#: ../gramps/gui/editors/editfamily.py:1281
+#: ../gramps/gui/editors/editfamily.py:1261
 #: ../gramps/gui/editors/editnote.py:363
 #: ../gramps/gui/editors/editreference.py:309
 #, python-format
@@ -15387,7 +15431,7 @@ msgstr ""
 "Tази стойност вече се използва. Моля въведете различен индекс или оставете "
 "празно за да получите следващата налична стойност."
 
-#: ../gramps/gui/editors/editfamily.py:1296
+#: ../gramps/gui/editors/editfamily.py:1276
 msgid "Add Family"
 msgstr "Добавяне на семейство"
 
@@ -25880,12 +25924,6 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:268
-#, fuzzy
-#| msgid "Example"
-msgid "Example.gramps"
-msgstr "Пример"
-
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 #, fuzzy
 msgid "Minimum number of items to display"
@@ -28517,10 +28555,6 @@ msgstr "_Имена"
 #: ../gramps/plugins/lib/libmetadata.py:229
 msgid "Label"
 msgstr ""
-
-#: ../gramps/plugins/lib/libmetadata.py:230
-msgid " "
-msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:111
 #, python-format
@@ -39614,12 +39648,13 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2194
 #, fuzzy
-msgid "Citation Referents Layout"
+msgid "Citation References Layout"
 msgstr "Отпратки"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
 msgid ""
-"Determine the default layout for the Source Page's Citation Referents section"
+"Specify the default layout for the Citation References section on the source "
+"page"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
@@ -40882,6 +40917,14 @@ msgstr "Небраска"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Без стил"
+
+#, fuzzy
+#~| msgid "Example"
+#~ msgid "Example.gramps"
+#~ msgstr "Пример"
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid "sibling birth date"
 #~ msgstr "дата на раждане на брат/сестра"
