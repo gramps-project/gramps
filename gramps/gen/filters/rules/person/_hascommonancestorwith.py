@@ -117,7 +117,7 @@ class HasCommonAncestorWith(Rule):
                 and other.handle in self.ancestor_cache
                 and self.ancestor_cache[other.handle]
             )  # type: ignore
-            if left_and & right_and:  # type: ignore
+            if left_and.intersection(right_and):  # type: ignore
                 return True
         return False
 
