@@ -374,7 +374,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return [self.name] + self.alt_names
 
-    def set_longitude(self, longitude):
+    def set_longitude(self, longitude: str):
         """
         Set the longitude of the Place object.
 
@@ -383,7 +383,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         self.long = longitude
 
-    def get_longitude(self):
+    def get_longitude(self) -> str:
         """
         Return the longitude of the Place object.
 
@@ -392,7 +392,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return self.long
 
-    def set_latitude(self, latitude):
+    def set_latitude(self, latitude: str):
         """
         Set the latitude of the Place object.
 
@@ -401,7 +401,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         self.lat = latitude
 
-    def get_latitude(self):
+    def get_latitude(self) -> str:
         """
         Return the latitude of the Place object.
 
