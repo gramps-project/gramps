@@ -70,8 +70,6 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
             self.init_ancestor_list(p.handle, 1)
 
     def init_ancestor_list(self, handle: str, gen: int):
-        #        if p.get_handle() in self.selected_handles:
-        #            loop_error(self.orig,p)
         if not handle or handle in self.selected_handles:
             # if we have been here before, skip
             return
