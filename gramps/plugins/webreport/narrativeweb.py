@@ -1031,7 +1031,7 @@ class NavWebReport(Report):
                 name = ""
         if config.get("preferences.place-auto"):
             place_name = _pd.display_event(self._db, event, fmt=0)
-            if event:
+            if event and place_name:
                 cplace_name = place_name.split()[-1]
                 if len(place_name.split()) > 1:
                     splace_name = place_name.split()[-2]
