@@ -68,7 +68,7 @@ class Optimizer:
             filter.invert,
             parent_invert,
         )
-        rules = []
+        rules_with_selected_handles = []
         for item in filter.flist:
             if hasattr(item, "find_filter"):
                 rule_filter = item.find_filter()
@@ -79,21 +79,21 @@ class Optimizer:
                         result,
                     )
             elif hasattr(item, "selected_handles"):
-                rules.append(set(item.selected_handles))
-        if rules:
+                rules_with_selected_handles.append(set(item.selected_handles))
+        if rules_with_selected_handles:
             LOG.debug(
-                "filter %s: parent_invert=%s, invert=%s, op=%s, number of selected_handles=%s",
+                "filter %s: parent_invert=%s, invert=%s, op=%s, number of rules with selected_handles=%s",
                 filter,
                 parent_invert,
                 filter.invert,
                 filter.logical_op,
-                len(rules),
+                len(rules_with_selected_handles),
             )
             result.append(
                 (
                     current_invert,
                     filter.logical_op,
-                    rules,
+                    rules_with_selected_handles,
                 )
             )
 
