@@ -183,7 +183,7 @@ class DeepRelationshipPathBetween(Rule):
                 _("Evaluating people"),
                 db.get_number_of_people(),
             )
-        self.selected_handles = find_deep_relations(
+        self.selected_handles: Set[str] = find_deep_relations(
             db, user, root_person, target_people
         )
         if user:
