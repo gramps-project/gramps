@@ -110,8 +110,8 @@ class WithinArea(Rule):
         if not (place and self.handle and self.latitude and self.longitude):
             return False
         if place:
-            lat: str = place.get_latitude()
-            lon: str = place.get_longitude()
+            lat = place.get_latitude()
+            lon = place.get_longitude()
         if lat and lon:
             latit, longit = conv_lat_lon(lat, lon, "D.D8")
             return (
