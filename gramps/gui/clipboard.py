@@ -60,7 +60,7 @@ from .makefilter import make_filter
 from .utils import is_right_click, no_match_primary_mask
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.config import config
-from gramps.gui.widgets.persistenttreeview import PersistentTreeView
+from gramps.gui.widgets.multitreeview import MultiTreeView
 
 _ = glocale.translation.sgettext
 
@@ -1389,7 +1389,7 @@ class ClipboardWindow(ManagedWindow):
         self.clear_all_btn = self.top.get_object("btn_clear_all")
         self.clear_btn = self.top.get_object("btn_clear")
         objectlist = self.top.get_object("objectlist")
-        mtv = MultiTreeView(self.dbstate, self.uistate, _("Clipboard"))
+        mtv = ClipboardMultiTreeView(self.dbstate, self.uistate, _("Clipboard"))
         scrolledwindow = self.top.get_object("scrolledwindow86")
         scrolledwindow.remove(objectlist)
         scrolledwindow.add(mtv)
@@ -1468,39 +1468,18 @@ class ClipboardWindow(ManagedWindow):
 
 # -------------------------------------------------------------------------
 #
-# MultiTreeView class
+# ClipboardMultiTreeView class
 #
 # -------------------------------------------------------------------------
-class MultiTreeView(PersistentTreeView):
+class ClipboardMultiTreeView(MultiTreeView):
     """
     TreeView that captures mouse events to make drag and drop work properly
     """
 
     def __init__(self, dbstate, uistate, title=None):
+        super().__init__(uistate, "clipboard")
         self.dbstate = dbstate
-        self.uistate = uistate
         self.title = title if title else _("Clipboard")
-        PersistentTreeView.__init__(self, self.uistate, "clipboard")
-        self.connect("button_press_event", self.on_button_press)
-        self.connect("button_release_event", self.on_button_release)
-        self.connect("drag-end", self.on_drag_end)
-        self.connect("key_press_event", self.key_press_event)
-        self.defer_select = False
-
-    def key_press_event(self, widget, event):
-        if event.type == Gdk.EventType.KEY_PRESS:
-            if event.keyval == Gdk.KEY_Delete:
-                model, paths = self.get_selection().get_selected_rows()
-                # reverse, to delete from the end
-                paths.sort(key=lambda x: -x[0])
-                for path in paths:
-                    try:
-                        node = model.get_iter(path)
-                    except:
-                        node = None
-                    if node:
-                        model.remove(node)
-                return True
 
     def on_button_press(self, widget, event):
         # Here we intercept mouse clicks on selected items so that we can
@@ -1587,35 +1566,7 @@ class MultiTreeView(PersistentTreeView):
                     self.edit_obj(objclass, handle)
             return True
         # otherwise:
-        if (
-            target
-            and event.type == Gdk.EventType.BUTTON_PRESS
-            and self.get_selection().path_is_selected(target[0])
-            and no_match_primary_mask(event.get_state(), Gdk.ModifierType.SHIFT_MASK)
-        ):
-            # disable selection
-            self.get_selection().set_select_function(lambda *ignore: False, None)
-            self.defer_select = target[0]
-
-    def on_button_release(self, widget, event):
-        # re-enable selection
-        self.get_selection().set_select_function(lambda *ignore: True, None)
-
-        target = self.get_path_at_pos(int(event.x), int(event.y))
-        if (
-            self.defer_select
-            and target
-            and self.defer_select == target[0]
-            and not (event.x == 0 and event.y == 0)
-        ):  # certain drag and drop
-            self.set_cursor(target[0], target[1], False)
-
-        self.defer_select = False
-
-    def on_drag_end(self, widget, event):
-        # re-enable selection
-        self.get_selection().set_select_function(lambda *ignore: True, None)
-        self.defer_select = False
+        super().on_button_press(widget, event)
 
     def edit_obj(self, objclass, handle):
         from .editors import (

@@ -312,6 +312,17 @@ def show_settings():
         pangocairo_str = _("not found")
 
     try:
+        import orjson
+
+        try:
+            orjson_str = orjson.__version__
+        except:  # any failure to 'get' the version
+            orjson_str = "unknown version"
+
+    except ImportError:
+        orjson_str = "not found"
+
+    try:
         from gi import Repository
 
         repository = Repository.get_default()
@@ -548,6 +559,7 @@ def show_settings():
     print("")
     print("Recommended:")
     print("------------")
+    print(" orjson    : %s" % orjson_str)
     print(" osmgpsmap : %s" % osmgpsmap_str)
     print(" Graphviz  : %s" % dotversion_str)
     print(" Ghostscr. : %s" % gsversion_str)

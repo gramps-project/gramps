@@ -265,7 +265,7 @@ class WelcomeGramplet(Gramplet):
                 " the Gramps program.\n\n"
             )
         )
-        welcome += linkst(_("Example.gramps"), wiki("Example.gramps")) + "\n\n"
+        welcome += linkst("Example.gramps", wiki("Example.gramps")) + "\n\n"
 
         self.texteditor.set_text(welcome)
 

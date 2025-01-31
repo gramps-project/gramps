@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2017-08-08" version="5.1.0"/>
+    <created date="2025-01-27" version="5.1.6"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
@@ -65682,6 +65682,21 @@
     </placeobj>
     <placeobj handle="_dd445e5bfcc17bd1838" change="1520535973" id="P0441" type="Country">
       <pname value="Greece" lang="en"/>
+    </placeobj>
+    <placeobj handle="_fce6170029665adee463dccc036" change="1737907241" id="P0442" type="Country">
+      <pname value="Russia"/>
+    </placeobj>
+    <placeobj handle="_fce62795df51c5d8ae432e3942c" change="1737966037" id="P0443" type="City">
+      <pname value="Saint Petersburg" lang="en">
+        <dateval val="1991-09-19" type="after"/>
+      </pname>
+      <pname value="Leningrad" lang="en">
+        <daterange start="1924-01-26" stop="1991-09-06"/>
+      </pname>
+      <pname value="Petrograd" lang="en">
+        <daterange start="1914" stop="1924"/>
+      </pname>
+      <placeref hlink="_fce6170029665adee463dccc036"/>
     </placeobj>
   </places>
   <objects>

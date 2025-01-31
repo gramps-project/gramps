@@ -420,6 +420,7 @@ class CSVWriter:
                     _("Surname"),
                     _("Given"),
                     _("Call"),
+                    _("Nickname"),
                     _("Suffix"),
                     _("Prefix"),
                     _("Title", "Person"),
@@ -444,6 +445,7 @@ class CSVWriter:
                     "Surname",
                     "Given",
                     "Call",
+                    "Nickname",
                     "Suffix",
                     "Prefix",
                     "Title",
@@ -478,6 +480,7 @@ class CSVWriter:
                         grampsid_ref = "[" + grampsid + "]"
                     note = ""  # don't export notes
                     callname = primary_name.get_call_name()
+                    nickname = primary_name.get_nick_name()
                     gender = person.get_gender()
                     if gender == Person.MALE:
                         gender = gender_map[Person.MALE]
@@ -541,6 +544,7 @@ class CSVWriter:
                         surname,
                         first_name,
                         callname,
+                        nickname,
                         suffix,
                         prefix,
                         title,

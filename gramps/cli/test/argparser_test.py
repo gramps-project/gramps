@@ -39,7 +39,7 @@ class TestArgParser(unittest.TestCase):
 
     def test_wrong_argument_triggers_option_error(self):
         bad, ap = self.triggers_option_error("--I-am-a-wrong-argument")
-        assert bad, ap.__dict__
+        self.assertTrue(bad, ap.__dict__)
 
     def test_y_shortopt_sets_auto_accept(self):
         bad, ap = self.triggers_option_error("-y")
@@ -59,26 +59,26 @@ class TestArgParser(unittest.TestCase):
 
     def test_yes_longopt_sets_auto_accept(self):
         bad, ap = self.triggers_option_error("--yes")
-        assert not bad, ap.errors
-        assert ap.auto_accept
+        self.assertFalse(bad, ap.errors)
+        self.assertTrue(ap.auto_accept)
 
     def test_q_shortopt_sets_quiet(self):
         bad, ap = self.triggers_option_error("-q")
-        assert not bad, ap.errors
-        assert ap.quiet
+        self.assertFalse(bad, ap.errors)
+        self.assertTrue(ap.quiet)
 
     def test_quiet_longopt_sets_quiet(self):
         bad, ap = self.triggers_option_error("--quiet")
-        assert not bad, ap.errors
-        assert ap.quiet
+        self.assertFalse(bad, ap.errors)
+        self.assertTrue(ap.quiet)
 
     def test_quiet_exists_by_default(self):
         ap = self.create_parser()
-        assert hasattr(ap, "quiet")
+        self.assertTrue(hasattr(ap, "quiet"))
 
     def test_auto_accept_unset_by_default(self):
         ap = self.create_parser()
-        assert not ap.auto_accept
+        self.assertFalse(ap.auto_accept)
 
     def test_exception(self):
         argument_parser = self.create_parser("-O")

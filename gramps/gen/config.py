@@ -177,14 +177,14 @@ register("behavior.welcome", 100)
 register("behavior.web-search-url", "http://google.com/#&q=%(text)s")
 register(
     "behavior.addons-url",
-    "https://raw.githubusercontent.com/gramps-project/addons/master/gramps53",
+    "https://raw.githubusercontent.com/gramps-project/addons/master/gramps60",
 )
 register(
     "behavior.addons-projects",
     [
         [
             "Gramps",
-            "https://raw.githubusercontent.com/gramps-project/addons/master/gramps53",
+            "https://raw.githubusercontent.com/gramps-project/addons/master/gramps60",
             True,
         ]
     ],
@@ -265,7 +265,7 @@ register("interface.sidebar-text", True)
 register("interface.size-checked", False)
 register("interface.statusbar", 1)
 register("interface.toolbar-on", True)
-register("interface.toolbar-text", False)
+register("interface.toolbar-style", 0)
 register("interface.hide-lds", False)
 register("interface.toolbar-clipboard", True)
 register("interface.toolbar-addons", True)

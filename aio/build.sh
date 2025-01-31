@@ -41,6 +41,7 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-python-requests \
     mingw-w64-x86_64-python-setuptools \
     mingw-w64-x86_64-python-wheel \
+    mingw-w64-x86_64-rust \
     mingw-w64-x86_64-toolchain \
     perl-XML-Parser \
     subversion \
@@ -57,7 +58,7 @@ source $pythonvenv/bin/activate
 
 ## prerequisites in pip packages
 python -m pip install --upgrade pip
-pip install --upgrade pygraphviz pydot pydotplus requests asyncio
+pip install --upgrade asyncio orjson pydot pydotplus pygraphviz requests
 
 ## download dictionaries
 mkdir -p /mingw64/share/enchant/hunspell
@@ -156,7 +157,10 @@ makensis grampsaio64.nsi
 # result is in mingw64/src
 
 # deactivate and delete the python virtual environment
-deactivate
-rm -rf $pythonvenv
+if [ "$1" = "true" ]; then
+    echo "post build cleanup"
+    deactivate
+    rm -rf $pythonvenv
+fi
 
 exit 0

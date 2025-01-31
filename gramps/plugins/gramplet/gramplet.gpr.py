@@ -26,9 +26,9 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
-MODULE_VERSION = "5.3"
-GRAMPLET_HELP = _("Gramps_5.3_Wiki_Manual_-_Gramplets#Gramplet_List")
-DEBUG_HELP = _("Gramps_5.3_Wiki_Manual_-_Tools#Debug")
+MODULE_VERSION = "6.0"
+GRAMPLET_HELP = _("Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List")
+DEBUG_HELP = _("Gramps_6.0_Wiki_Manual_-_Tools#Debug")
 
 # ------------------------------------------------------------------------
 #

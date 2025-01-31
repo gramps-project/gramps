@@ -63,8 +63,8 @@ class DateParserIs(DateParser):
         "í kringum": Date.MOD_ABOUT,
         "uþb": Date.MOD_ABOUT,
         "um": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "frá": Date.MOD_FROM,
+        "til": Date.MOD_TO,
     }
 
     bce = ["f Kr"]

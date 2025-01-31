@@ -412,24 +412,6 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
             return name
 
 
-class FastMaleFilter:
-    def __init__(self, db):
-        self.db = db
-
-    def match(self, handle, db):
-        data = self.db.get_raw_person_data(handle)
-        return data.gender == Person.MALE
-
-
-class FastFemaleFilter:
-    def __init__(self, db):
-        self.db = db
-
-    def match(self, handle, db):
-        data = self.db.get_raw_person_data(handle)
-        return data.gender == Person.FEMALE
-
-
 # -------------------------------------------------------------------------
 #
 # EditFamily
@@ -997,13 +979,12 @@ class EditFamily(EditPrimary):
         for i in self.hidden:
             i.set_sensitive(True)
 
-        data_filter = FastFemaleFilter(self.dbstate.db)
         sel = SelectPerson(
             self.dbstate,
             self.uistate,
             self.track,
             _("Select Mother"),
-            filter=data_filter,
+            filter=(4, _("Female")),
             skip=[x.ref for x in self.obj.get_child_ref_list()],
         )
         person = sel.run()
@@ -1047,13 +1028,12 @@ class EditFamily(EditPrimary):
         for i in self.hidden:
             i.set_sensitive(True)
 
-        data_filter = FastMaleFilter(self.dbstate.db)
         sel = SelectPerson(
             self.dbstate,
             self.uistate,
             self.track,
             _("Select Father"),
-            filter=data_filter,
+            filter=(4, _("Male")),
             skip=[x.ref for x in self.obj.get_child_ref_list()],
         )
         person = sel.run()

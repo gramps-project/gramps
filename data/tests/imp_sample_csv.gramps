@@ -787,6 +787,7 @@
       <name type="Birth Name">
         <first>Mason Michael</first>
         <surname>Smith</surname>
+        <nick>M-Dawg</nick>
       </name>
       <eventref hlink="_0000008800000088" role="Primary"/>
       <childof hlink="_000000aa000000aa"/>
