@@ -271,7 +271,7 @@ class GrampsTranslations(gettext.GNUTranslations):
             else variants[0]
         )
 
-    def pgettext(self, context: str, message: str) -> str:
+    def pgettext(self, context, message):
         """
         Copied from python 3.8
         """
@@ -293,7 +293,7 @@ class GrampsNullTranslations(gettext.NullTranslations):
     neither will be the returned string.
     """
 
-    def gettext(self, msgid, context=""):
+    def gettext(self, msgid, context="") -> str:
         """
         Apply the context if there is one, otherwise just pass it on.
         """
