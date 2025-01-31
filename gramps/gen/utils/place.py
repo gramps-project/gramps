@@ -125,7 +125,7 @@ def __convert_structure_to_float(
     return -v if sign == "-" else v
 
 
-def __convert_using_float_repr(stringValue: str) -> Optional[float]:
+def __convert_using_float_repr(stringValue: str) -> float | None:
     """helper function that tries to convert the string using the float
     representation
     """
@@ -136,7 +136,7 @@ def __convert_using_float_repr(stringValue: str) -> Optional[float]:
         return None
 
 
-def __convert_using_colon_repr(stringValue: str) -> Optional[float]:
+def __convert_using_colon_repr(stringValue: str) -> float | None:
     """helper function that tries to convert the string using the colon
     representation
     """
@@ -182,7 +182,7 @@ def __convert_using_colon_repr(stringValue: str) -> Optional[float]:
     return __convert_structure_to_float(sign, degs, mins, secs)
 
 
-def __convert_using_classic_repr(stringValue: str, typedeg: str) -> Optional[float]:
+def __convert_using_classic_repr(stringValue: str, typedeg: str) -> float | None:
     """helper function that tries to convert the string using the colon
     representation
     """
@@ -283,7 +283,7 @@ def __convert_using_classic_repr(stringValue: str, typedeg: str) -> Optional[flo
     return __convert_structure_to_float(sign, degs, mins, secs)
 
 
-def __convert_using_modgedcom_repr(val: str, typedeg: str) -> Optional[float]:
+def __convert_using_modgedcom_repr(val: str, typedeg: str) -> float | None:
     """helper function that tries to convert the string using the
     modified GEDCOM representation where direction [NSEW] is appended
     instead of prepended. This particular representation is the result
@@ -316,7 +316,7 @@ def __convert_using_modgedcom_repr(val: str, typedeg: str) -> Optional[float]:
         return None
 
 
-def __convert_float_val(val: str, typedeg: str = "lat") -> Optional[float]:
+def __convert_float_val(val: str, typedeg: str = "lat") -> float | None:
     # function converting input to float, recognizing decimal input, or
     # degree notation input. Only english input
     # There is no check on maximum/minimum of degree
@@ -357,7 +357,7 @@ def __convert_float_val(val: str, typedeg: str = "lat") -> Optional[float]:
 
 def conv_lat_lon(
     latitude: str, longitude: str, format: str = "D.D4"
-) -> Optional[str] | tuple[Optional[str], Optional[str]]:
+) -> str | None | tuple[str, str] | tuple[None, None]:
     """
     Convert given string latitude and longitude to a required format.
 
