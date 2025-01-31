@@ -599,6 +599,7 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
                 str_lon = sign_lon + ("%03d%02d%06.3f" % (deg_lon, min_lon + 1, 0.0))
         return str_lat + str_lon
 
+    raise ValueError("conv_lat_lon: unknown format: %s" % format)
 
 def atanh(x):
     """arctangent hyperbolicus"""
