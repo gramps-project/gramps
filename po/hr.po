@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-27 18:06+0000\n"
-"PO-Revision-Date: 2025-01-30 05:01+0000\n"
+"PO-Revision-Date: 2025-01-30 23:48+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -3352,7 +3352,7 @@ msgstr ""
 "\n"
 "Možeš pokrenuti\n"
 "„Alati > Obrada rodoslova > Spoji citate”\n"
-"za spajanje citate, koji sadrže slične\n"
+"za spajanje citata koji sadrže slične\n"
 "informacije"
 
 #: ../gramps/gen/db/upgrade.py:1262
@@ -5180,9 +5180,9 @@ msgid ""
 "necessarily the shortest path."
 msgstr ""
 "Pretražuje bazu podataka počevši od odabrane osobe, te pronalazi sve osobe "
-"između nje i osoba specificiranih u filtru, čime se stvaraju nizovi linija "
-"srodstva među njima (uključujući i srodstva po bračnoj vezi). Svaki od tih "
-"nizova nije nužno i najkraći."
+"između nje i osoba specificiranih u filtru, čime se stvaraju linije srodstva "
+"među njima (uključujući i srodstva po bračnoj vezi). Svaka od tih linija "
+"nije nužno i najkraća."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:155
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:169
@@ -8139,7 +8139,7 @@ msgstr "plem."
 #: ../gramps/gen/lib/eventtype.py:276
 msgctxt "Number of Marriages abbreviation"
 msgid "n.o.mar."
-msgstr "br. v."
+msgstr "br. b."
 
 #: ../gramps/gen/lib/eventtype.py:277
 msgctxt "Occupation abbreviation"
@@ -8184,7 +8184,7 @@ msgstr "opr."
 #: ../gramps/gen/lib/eventtype.py:285
 msgctxt "Marriage Settlement abbreviation"
 msgid "m.set."
-msgstr "b. por."
+msgstr "b. dog."
 
 #: ../gramps/gen/lib/eventtype.py:286
 msgctxt "Marriage License abbreviation"
@@ -8204,7 +8204,7 @@ msgstr "b. zav."
 #: ../gramps/gen/lib/eventtype.py:289
 msgctxt "Alternate Marriage abbreviation"
 msgid "alt.mar."
-msgstr "dr. ž."
+msgstr "alt. b."
 
 #: ../gramps/gen/lib/eventtype.py:290
 msgctxt "Engagement abbreviation"
@@ -9394,8 +9394,8 @@ msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
 msgstr ""
-"Roditelj i dijete ne mogu biti spojeni. Za spajanje ovih osoba, moraš "
-"najprije raskinuti odnose među njima."
+"Roditelj i dijete se ne mogu spojiti. Za spajanje ovih osoba moraš najprije "
+"raskinuti njihovo srodstvo."
 
 #: ../gramps/gen/merge/mergefamilyquery.py:150
 msgid "Merge Family"
@@ -9415,8 +9415,8 @@ msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
 msgstr ""
-"Supružnici ne mogu niti spojeni. Za spajnje tih osoba prvo moraš prekinuti "
-"odnose među njima."
+"Supružnici se ne mogu spojiti. Za spajanje ovih osoba moraš najprije "
+"raskinuti njihovo srodstvo."
 
 #: ../gramps/gen/merge/mergepersonquery.py:136
 msgid "Merge Person"
@@ -9443,7 +9443,7 @@ msgstr "Gramplet %s je izazvao grešku"
 
 #: ../gramps/gen/plug/_manager.py:64
 msgid "No description was provided"
-msgstr "Opis nije unešen"
+msgstr "Opis nije naveden"
 
 #: ../gramps/gen/plug/_options.py:407
 #: ../gramps/plugins/textreport/recordsreport.py:184
@@ -12489,15 +12489,15 @@ msgstr "Ograničenja računjanja"
 
 #: ../gramps/gui/configure.py:1886
 msgid "Date 'about' year range: (date ± #)"
-msgstr "Razdoblje „oko” : (datum ± broj)"
+msgstr "Datum razdoblja „oko”: (datum ± broj)"
 
 #: ../gramps/gui/configure.py:1894
 msgid "Date 'after' year range:  (date + #)"
-msgstr "Razdoblje „nakon”: (datum ± broj)"
+msgstr "Datum razdoblja „nakon”: (datum + broj)"
 
 #: ../gramps/gui/configure.py:1902
 msgid "Date 'before' year range: (date - #)"
-msgstr "Razdoblje „prije”: (datum ± broj)"
+msgstr "Datum razdoblja „prije”: (datum − broj)"
 
 #: ../gramps/gui/configure.py:1910
 msgid "Maximum age probably alive"
@@ -16644,7 +16644,7 @@ msgid ""
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
 "Datum događaja. Datum može biti točan datum, razdoblje (od … do, između, …) "
-"ili približno (oko …)."
+"ili neprecizan datum (oko …)."
 
 #: ../gramps/gui/glade/editevent.glade:376
 #: ../gramps/gui/glade/editeventref.glade:465
@@ -17359,7 +17359,7 @@ msgid ""
 "Language in which the name is written. Valid values are two character ISO "
 "codes. For example:  en, fr, de, nl ..."
 msgstr ""
-"Jezik, kojim je ime pisano. Ispravne vrijednosti su dvoslovni ISO kodovi. "
+"Jezik na kojem je ime upisano. Ispravne vrijednosti su dvoslovni ISO kodovi. "
 "Npr. hr, en, fr, de, ..."
 
 #: ../gramps/gui/glade/editplaceref.glade:314
@@ -17367,8 +17367,8 @@ msgid ""
 "<b>Note:</b> Any changes in the enclosing place information will be "
 "reflected in the place itself, for places that it encloses."
 msgstr ""
-"<b>Napomena:</b> Sve promjene informacija za mjesto, bit će vidljive u samom "
-"mjestu, za sva mjesta koja obuhvaća."
+"<b>Napomena:</b> Sve promjene informacija za obuhvaćeno mjesto bit će "
+"vidljive u samom mjestu, za mjesta koja obuhvaća."
 
 #: ../gramps/gui/glade/editreporef.glade:126
 msgid "_Media Type:"
@@ -17512,8 +17512,8 @@ msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Odaberi citat, čiji će podaci biti\n"
-"primarni pri spajanju citata."
+"Odaberi citat čiji će se podaci koristiti\n"
+"kao primarni podaci za spojeni citat."
 
 #: ../gramps/gui/glade/mergecitation.glade:182
 #: ../gramps/gui/glade/mergedata.glade:758
@@ -17584,7 +17584,9 @@ msgstr "Odaberi"
 #: ../gramps/gui/glade/mergedata.glade:329
 msgid ""
 "Select the person that will provide the primary data for the merged person."
-msgstr "Odaberi osobu, čiji će podaci biti primarni pri spajanju osoba."
+msgstr ""
+"Odaberi osobu čiji će se podaci koristiti kao primarni podaci za spojenu "
+"osobu."
 
 #: ../gramps/gui/glade/mergedata.glade:583
 msgid "Title selection"
@@ -17605,8 +17607,8 @@ msgid ""
 "Select the event that will provide the\n"
 "primary data for the merged event."
 msgstr ""
-"Odaberi događaj, čiji će podaci biti\n"
-"primarni pri spajanju događaja."
+"Odaberi događaj čiji će se podaci koristiti\n"
+"kao primarni podaci za spojeni događaj."
 
 #: ../gramps/gui/glade/mergeevent.glade:182
 msgid "Event 1"
@@ -17628,8 +17630,8 @@ msgid ""
 "Select the family that will provide the\n"
 "primary data for the merged family."
 msgstr ""
-"Odaberi obitelj, čiji će podaci biti\n"
-"primarni pri spajanju obitelji."
+"Odaberi obitelj čiji će se podaci koristiti\n"
+"kao primarni podaci za spojenu obitelj."
 
 #: ../gramps/gui/glade/mergefamily.glade:183
 #: ../gramps/gui/glade/mergefamily.glade:198
@@ -17667,8 +17669,8 @@ msgid ""
 "Select the object that will provide the\n"
 "primary data for the merged object."
 msgstr ""
-"Odaberi objekt, čiji će podaci biti\n"
-"primarni za spojeni objekt."
+"Odaberi objekt čiji će se podaci koristiti\n"
+"kao primarni podaci za spojeni objekt."
 
 #: ../gramps/gui/glade/mergemedia.glade:182
 msgid "Object 1"
@@ -17687,8 +17689,8 @@ msgid ""
 "Select the note that will provide the\n"
 "primary data for the merged note."
 msgstr ""
-"Odaberi zabilješku, čiji će podaci biti\n"
-"primarni za spojenu zabilješku."
+"Odaberi zabilješku čiji će se podaci koristiti\n"
+"kao primarni podaci za spojenu zabilješku."
 
 #: ../gramps/gui/glade/mergenote.glade:182
 msgid "Note 1"
@@ -17708,8 +17710,8 @@ msgid ""
 "Select the person that will provide the\n"
 "primary data for the merged person."
 msgstr ""
-"Odaberi osobu, čiji će podaci biti\n"
-"primarni pri spajanju osoba."
+"Odaberi osobu čiji će se podaci koristiti\n"
+"kao primarni podaci za spojenu osobu."
 
 #: ../gramps/gui/glade/mergeperson.glade:192
 #: ../gramps/plugins/textreport/recordsreport.py:293
@@ -17743,8 +17745,8 @@ msgid ""
 "Select the place that will provide the\n"
 "primary data for the merged place."
 msgstr ""
-"Odaberi mjesto, čiji će podaci biti\n"
-"primarni pri spajanju osoba."
+"Odaberi mjesto čiji će se podaci koristiti\n"
+"kao primarni podaci za spojeno mjesto."
 
 #: ../gramps/gui/glade/mergeplace.glade:620
 msgid ""
@@ -17759,8 +17761,8 @@ msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
 msgstr ""
-"Odaberi spremište koje će pružati\n"
-"primarne podatke za spojeno spremište."
+"Odaberi spremište čiji će se podaci koristiti\n"
+"kao primarni podaci za spojeno spremište."
 
 #: ../gramps/gui/glade/mergerepository.glade:182
 msgid "Repository 1"
@@ -17779,8 +17781,8 @@ msgid ""
 "Select the source that will provide the\n"
 "primary data for the merged source."
 msgstr ""
-"Odaberi izvor, čiji će podaci biti\n"
-"primarni pri spajanju izvora."
+"Odaberi izvor čiji će se podaci koristiti\n"
+"kao primarni podaci za spojeni izvor."
 
 #: ../gramps/gui/glade/mergesource.glade:498
 msgid ""
@@ -18860,8 +18862,8 @@ msgid ""
 msgstr ""
 "Osobe su spojene.\n"
 "Međutim, obitelji nastale ovim spajanjem su pre složene, da bi se automaski "
-"obradile. Preporučujemo da otvoriš prikaz „Srodstva” i da provjeriš, jesu li "
-"potrebna dodatna ručna spajanja obitelji."
+"obradile. Preporučujemo da otvoriš prikaz „Srodstva” i da provjeriš, je li "
+"potrebno dodatno ručno spajanje obitelji."
 
 #: ../gramps/gui/merge/mergeplace.py:54
 msgctxt "manual"
@@ -22595,7 +22597,7 @@ msgstr "Još uvijek živi"
 #: ../gramps/plugins/drawreport/statisticschart.py:584
 #: ../gramps/plugins/drawreport/statisticschart.py:596
 msgid "Events missing"
-msgstr "Događaj nedostaje"
+msgstr "Događaji nedostaju"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:604
 #: ../gramps/plugins/drawreport/statisticschart.py:612
@@ -22717,7 +22719,7 @@ msgstr "Uključeni spolovi"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1163
 msgid "Select which genders are included into statistics."
-msgstr "Odaberi spolove koji će biti uključeni u statistiku."
+msgstr "Odaberi spolove koji će se uključiti u statistiku."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1166
 msgid "Max. items for a pie"
@@ -22742,19 +22744,19 @@ msgstr "Da li uključiti broj osoba kojima nedostaje zadana informacija."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1215
 msgid "Charts 3"
-msgstr "Grafikoni 3"
+msgstr "Dijagrami 3"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1217
 msgid "Charts 2"
-msgstr "Grafikoni 2"
+msgstr "Dijagrami 2"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1219
 msgid "Charts 1"
-msgstr "Grafikoni 1"
+msgstr "Dijagrami 1"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1221
 msgid "Include charts with indicated data."
-msgstr "Uključi grafikone s označenim podacima."
+msgstr "Uključi dijagrame s označenim podacima."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1263
 #: ../gramps/plugins/textreport/placereport.py:635
@@ -23409,8 +23411,8 @@ msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
 msgstr ""
-"  6. %(gramps_manual_html_start)s%(section)sKako unijeti podatke o sklapanju "
-"braka?%(html_end)s\n"
+"  6. %(gramps_manual_html_start)s%(section)sKako unijeti podatke o "
+"brakovima?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:148
 #, python-format
@@ -25301,8 +25303,8 @@ msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
 msgstr ""
-"Ispisuje samo godine datuma, ne prikazuje mjesec, dan, približne datume ili "
-"vremenske raspone."
+"Ispisuje samo godinu datuma, ne prikazuje mjesec ili dan, niti približne "
+"datume ili intervale."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:288
 msgid "Whether to include placenames for people and families."
@@ -32120,7 +32122,7 @@ msgstr "Vrsta imena"
 
 #: ../gramps/plugins/quickview/filterbyname.py:444
 msgid "birth event but no date"
-msgstr "događaj rođenja bez datuma"
+msgstr "događaj rođenja ali bez datuma"
 
 #: ../gramps/plugins/quickview/filterbyname.py:447
 msgid "missing birth event"
@@ -32141,7 +32143,7 @@ msgstr "Referenca"
 
 #: ../gramps/plugins/quickview/filterbyname.py:494
 msgid "media"
-msgstr "medij"
+msgstr "mediji"
 
 #: ../gramps/plugins/quickview/filterbyname.py:498
 msgid "Unique Media"
@@ -32149,7 +32151,7 @@ msgstr "Jedinstveni mediji"
 
 #: ../gramps/plugins/quickview/filterbyname.py:505
 msgid "Missing Media"
-msgstr "Nedostaje medij"
+msgstr "Nedostajući mediji"
 
 #: ../gramps/plugins/quickview/filterbyname.py:515
 msgid "Size in bytes"
@@ -36526,7 +36528,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/familyview.py:86
 msgid "Marriage Date"
-msgstr "Datum sklapanja braka"
+msgstr "Datum braka"
 
 #: ../gramps/plugins/view/familyview.py:110
 msgid "Add a new family"
@@ -37688,7 +37690,7 @@ msgstr "Prikaz porijekla predaka odabrane osobe"
 #: ../gramps/plugins/view/view.gpr.py:169
 #: ../gramps/plugins/view/view.gpr.py:185
 msgid "Charts"
-msgstr "Grafikoni"
+msgstr "Dijagrami"
 
 #: ../gramps/plugins/view/view.gpr.py:154
 msgid "A view showing parents through a fanchart"
