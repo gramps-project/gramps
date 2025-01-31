@@ -75,4 +75,4 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
     def reset(self):
         self.matchfilt.requestreset()
-        self.selected_handles = set()
+        self.selected_handles.clear()
