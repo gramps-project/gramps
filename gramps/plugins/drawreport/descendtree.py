@@ -514,22 +514,10 @@ class RecurseDown:
         myself = PersonBox(level)
         myself.father = father
 
-        use_gender_color = False
-        if _fill_box_color and indi_handle:
-            person = self.database.get_person_from_handle(indi_handle)
-            if person:
-                use_gender_color = True
-
         if myself.level[1] == 0 and self.bold_direct and self.bold_now:
             if self.bold_now == 1:
                 self.bold_now = 0
-            if use_gender_color:
-                myself.set_person_color(person, True)
-            else:
-                myself.set_bold()
-        else:
-            if use_gender_color:
-                myself.set_person_color(person, False)
+            myself.set_bold()
 
         if level[1] == 0 and father and myself.level[0] != father.level[0]:
             # I am a child
@@ -545,23 +533,23 @@ class RecurseDown:
         # calculate the text.
         myself.calc_text(self.database, indi_handle, fams_handle)
 
+        person = None
         if indi_handle:
-            myself.add_mark(
-                self.database, self.database.get_person_from_handle(indi_handle)
-            )
+            person = self.database.get_person_from_handle(indi_handle)
+            myself.add_mark(self.database, person)
 
         self.add_to_col(myself)
 
         self.canvas.add_box(myself)
+
+        if _fill_box_color and person:
+            myself.set_person_color(person, (self.bold_now == 1))
 
         return myself
 
     def add_marriage_box(self, level, indi_handle, fams_handle, father):
         """Makes a marriage box and add that person into the Canvas."""
         myself = FamilyBox(level)
-
-        if _fill_box_color:
-            myself.set_family_color()
 
         # if father is not None:
         #    myself.father = father
@@ -571,6 +559,9 @@ class RecurseDown:
         self.add_to_col(myself)
 
         self.canvas.add_box(myself)
+
+        if _fill_box_color:
+            myself.set_family_color()
 
         return myself
 

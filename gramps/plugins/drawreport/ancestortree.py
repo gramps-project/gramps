@@ -281,11 +281,6 @@ class MakeAncestorTree(AscendPerson):
         # print str(index) + " add_person " + str(indi_handle)
         myself = PersonBox((index[0] - 1,) + index[1:])
 
-        if _fill_box_color and indi_handle:
-            person = self.database.get_person_from_handle(indi_handle)
-            if person:
-                myself.set_person_color(person)
-
         if index[LVL_GEN] == 1:  # Center Person
             self.center_family = fams_handle
 
@@ -299,10 +294,11 @@ class MakeAncestorTree(AscendPerson):
             genIdx = self.start_idx * (2 ** (index[LVL_GEN] - 1))
             genOff = index[LVL_INDX] - (2 ** (index[LVL_GEN] - 1))
             myself.idx = genIdx + genOff
+
+        person = None
         if indi_handle is not None:  # None is legal for an empty box
-            myself.add_mark(
-                self.database, self.database.get_person_from_handle(indi_handle)
-            )
+            person = self.database.get_person_from_handle(indi_handle)
+            myself.add_mark(self.database, person)
 
         self.canvas.add_box(myself)
 
@@ -318,6 +314,9 @@ class MakeAncestorTree(AscendPerson):
                 line = self.lines[indx - 1].line_to
             line.add_to(myself)
 
+        if _fill_box_color and person:
+            myself.set_person_color(person)
+
         return myself
 
     def add_person_again(self, index, indi_handle, fams_handle):
@@ -330,13 +329,14 @@ class MakeAncestorTree(AscendPerson):
             return
 
         myself = FamilyBox((index[0] - 1,) + index[1:])
-        if _fill_box_color:
-            myself.set_family_color()
 
         # calculate the text.
         myself.text = self.calc_items.calc_marriage(indi_handle, fams_handle)
 
         self.canvas.add_box(myself)
+
+        if _fill_box_color:
+            myself.set_family_color()
 
     def y_index(self, x_level, index):
         """Calculate the column or generation that this person is in.
