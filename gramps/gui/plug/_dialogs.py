@@ -49,6 +49,7 @@ from gramps.gen.plug import REPORT
 from .report import report
 from ..pluginmanager import GuiPluginManager
 from ..managedwindow import ManagedWindow
+from ..display import display_help
 
 # -------------------------------------------------------------------------
 #
@@ -105,6 +106,7 @@ class PluginDialog(ManagedWindow):
         self.dialog.connect_signals(
             {
                 "on_report_apply_clicked": self.on_apply_clicked,
+                "on_report_help_clicked": self.on_help_clicked,
                 "destroy_passed_object": self.close,
                 "on_delete_event": self.close,
             }
@@ -169,6 +171,13 @@ class PluginDialog(ManagedWindow):
         if not self.item:
             return
         self.run_plugin(self.item)
+
+    def on_help_clicked(self, obj):
+        """Display help page for the selected report"""
+        if not self.item:
+            return
+        if self.item.help_url:
+            display_help(self.item.help_url)
 
     def on_node_selected(self, obj):
         """Updates the informational display on the right hand side of
