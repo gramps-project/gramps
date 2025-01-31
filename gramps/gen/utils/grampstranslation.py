@@ -181,7 +181,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         """
         return self.lang
 
-    def gettext(self, msgid, context=""):
+    def gettext(self, msgid: str, context: str = "") -> str:
         """
         Obtain translation of gettext, return a unicode object
 
@@ -271,7 +271,7 @@ class GrampsTranslations(gettext.GNUTranslations):
             else variants[0]
         )
 
-    def pgettext(self, context, message):
+    def pgettext(self, context: str, message: str) -> str:
         """
         Copied from python 3.8
         """
