@@ -27,6 +27,7 @@
 # Standard python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -46,7 +47,7 @@ import math
 # -------------------------------------------------------------------------
 
 # translation of N/S/E/W, make sure translator understands
-degrees = "1"
+degrees: str = "1"
 North = _("%(north_latitude)s N") % {"north_latitude": degrees}
 South = _("%(south_latitude)s S") % {"south_latitude": degrees}
 East = _("%(east_longitude)s E") % {"east_longitude": degrees}
@@ -59,7 +60,7 @@ East = East.replace("1", " ").strip()
 West = West.replace("1", " ").strip()
 
 # build dictionary with translation en to local language
-translate_en_loc = {}
+translate_en_loc: dict[str, str] = {}
 translate_en_loc["N"] = North
 translate_en_loc["S"] = South
 translate_en_loc["E"] = East
@@ -74,11 +75,11 @@ if "N" == South or "S" == North or "E" == West or "W" == East:
 # end localisation part
 
 
-def _T_(value, context=""):  # enable deferred translations
+def _T_(value: str, context: str = ""):  # enable deferred translations
     return "%s\x04%s" % (context, value) if context else value
 
 
-coord_formats = (
+coord_formats: tuple[str, str, str, str, str] = (
     # format #0 'DEG'       degree, minutes, seconds notation
     _T_("DEG"),
     # format #1 'DEG-:'     degree, minutes, seconds notation with :
@@ -95,7 +96,7 @@ coord_formats = (
     # 'ISO-DMS'   ISO 6709 degree, minutes, seconds notation
 )
 
-coord_formats_desc = (
+coord_formats_desc: tuple[str, str, str, str, str] = (
     _("Degree, minutes, seconds notation"),
     _("Degree, minutes, seconds notation with :"),
     _("Degree notation, 4 decimals"),
@@ -110,7 +111,9 @@ coord_formats_desc = (
 # ------------------
 
 
-def __convert_structure_to_float(sign, degs, mins=0, secs=0.0):
+def __convert_structure_to_float(
+    sign: str, degs: int, mins: int = 0, secs: float = 0.0
+) -> float:
     """helper function which converts a structure to a nice
     representation
     """
@@ -122,7 +125,7 @@ def __convert_structure_to_float(sign, degs, mins=0, secs=0.0):
     return -v if sign == "-" else v
 
 
-def __convert_using_float_repr(stringValue):
+def __convert_using_float_repr(stringValue: str) -> float | None:
     """helper function that tries to convert the string using the float
     representation
     """
@@ -133,7 +136,7 @@ def __convert_using_float_repr(stringValue):
         return None
 
 
-def __convert_using_colon_repr(stringValue):
+def __convert_using_colon_repr(stringValue: str) -> float | None:
     """helper function that tries to convert the string using the colon
     representation
     """
@@ -148,7 +151,7 @@ def __convert_using_colon_repr(stringValue):
     if len(l[0]) == 0:
         return None
     if l[0][0] in ["+", "-"]:
-        sign = l[0][0]
+        sign: str = l[0][0]
         l[0] = l[0][1:].strip()
         # regard a second sign as an error
         if l[0][0] in ["+", "-"]:
@@ -156,18 +159,18 @@ def __convert_using_colon_repr(stringValue):
     else:
         sign = "+"
     try:
-        degs = int(l[0])
+        degs: int = int(l[0])
         if degs < 0:
             return None
     except:
         return None
     try:
-        mins = int(l[1])
+        mins: int = int(l[1])
         if mins < 0 or mins >= 60:
             return None
     except:
         return None
-    secs = 0.0
+    secs: float = 0.0
     if len(l) == 3:
         try:
             secs = float(l[2])
@@ -179,7 +182,7 @@ def __convert_using_colon_repr(stringValue):
     return __convert_structure_to_float(sign, degs, mins, secs)
 
 
-def __convert_using_classic_repr(stringValue, typedeg):
+def __convert_using_classic_repr(stringValue: str, typedeg: str) -> float | None:
     """helper function that tries to convert the string using the colon
     representation
     """
@@ -209,7 +212,7 @@ def __convert_using_classic_repr(stringValue, typedeg):
         return None
 
     try:
-        degs = int(l[0])  # degrees must be integer value
+        degs: int = int(l[0])  # degrees must be integer value
         if degs < 0:
             return None
     except:
@@ -217,7 +220,7 @@ def __convert_using_classic_repr(stringValue, typedeg):
     # next: minutes might be present once
     l2 = l[1].split(r"'")
     l3 = l2
-    mins = 0
+    mins: int = 0
     # See if minutes might be decimal?
     # Then no seconds is supposed to be given
     if l2[0].find(r".") > 0:
@@ -227,7 +230,7 @@ def __convert_using_classic_repr(stringValue, typedeg):
         l2[0] = l4[0]
         # Convert the decimal part of minutes to seconds
         try:
-            lsecs = float("0." + l4[1]) * 60.0
+            lsecs: float = float("0." + l4[1]) * 60.0
             # Set the seconds followed by direction letter N/S/W/E
             l2[1] = str(lsecs) + '"' + l2[1]
         except:
@@ -280,7 +283,7 @@ def __convert_using_classic_repr(stringValue, typedeg):
     return __convert_structure_to_float(sign, degs, mins, secs)
 
 
-def __convert_using_modgedcom_repr(val, typedeg):
+def __convert_using_modgedcom_repr(val: str, typedeg: str) -> float | None:
     """helper function that tries to convert the string using the
     modified GEDCOM representation where direction [NSEW] is appended
     instead of prepended. This particular representation is the result
@@ -313,7 +316,7 @@ def __convert_using_modgedcom_repr(val, typedeg):
         return None
 
 
-def __convert_float_val(val, typedeg="lat"):
+def __convert_float_val(val: str, typedeg: str = "lat") -> float | None:
     # function converting input to float, recognizing decimal input, or
     # degree notation input. Only english input
     # There is no check on maximum/minimum of degree
@@ -352,7 +355,9 @@ def __convert_float_val(val, typedeg="lat"):
 # -------------------------------------------------------------------------
 
 
-def conv_lat_lon(latitude, longitude, format="D.D4"):
+def conv_lat_lon(
+    latitude: str, longitude: str, format: str = "D.D4"
+) -> str | None | tuple[str, str] | tuple[None, None]:
     """
     Convert given string latitude and longitude to a required format.
 
@@ -599,13 +604,15 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
                 str_lon = sign_lon + ("%03d%02d%06.3f" % (deg_lon, min_lon + 1, 0.0))
         return str_lat + str_lon
 
+    raise ValueError("conv_lat_lon: unknown format: %s" % format)
 
-def atanh(x):
+
+def atanh(x: float) -> float:
     """arctangent hyperbolicus"""
     return 1.0 / 2.0 * math.log((1.0 + x) / (1.0 - x))
 
 
-def __conv_WGS84_SWED_RT90(lat, lon):
+def __conv_WGS84_SWED_RT90(lat: float, lon: float) -> tuple[float, float]:
     """
     Input is lat and lon as two float numbers
     Output is X and Y coordinates in RT90
@@ -675,7 +682,7 @@ def __conv_WGS84_SWED_RT90(lat, lon):
     return (X, Y)
 
 
-def __conv_SWED_RT90_WGS84(X, Y):
+def __conv_SWED_RT90_WGS84(X: float, Y: float) -> tuple[float, float]:
     """
     Input is X and Y coordinates in RT90 as float
     Output is lat and long in degrees, float as tuple
@@ -775,16 +782,16 @@ if __name__ == "__main__":
         print(lat1, lon1, "in format", format8, "is", res1, res2, "\n")
 
     def test_formats_fail(lat1, lon1, text=""):
-        print("This test should make conv_lat_lon function fail, %s:") % text
+        print("This test should make conv_lat_lon function fail, %s:" % text)
         res1, res2 = conv_lat_lon(lat1, lon1)
         print(lat1, lon1, " fails to convert, result=", res1, res2, "\n")
 
-    def test_RT90_conversion():
+    def test_RT90_conversion() -> None:
         """
         a given lat/lon is converted to RT90 and back as a test:
         """
-        la = 59.0 + 40.0 / 60.0 + 9.09 / 3600.0
-        lo = 12.0 + 58.0 / 60.0 + 57.74 / 3600.0
+        la: float = 59.0 + 40.0 / 60.0 + 9.09 / 3600.0
+        lo: float = 12.0 + 58.0 / 60.0 + 57.74 / 3600.0
         x, y = __conv_WGS84_SWED_RT90(la, lo)
         lanew, lonew = __conv_SWED_RT90_WGS84(x, y)
         assert math.fabs(lanew - la) < 1e-6, math.fabs(lanew - la)

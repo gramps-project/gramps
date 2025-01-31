@@ -29,6 +29,7 @@ for reports so that they can be created in a different language from the UI's.
 # python modules
 #
 # ------------------------------------------------------------------------
+from __future__ import annotations
 import gettext
 import collections
 import inspect
@@ -180,7 +181,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         """
         return self.lang
 
-    def gettext(self, msgid, context=""):
+    def gettext(self, msgid: str, context: str = "") -> str:
         """
         Obtain translation of gettext, return a unicode object
 
@@ -292,7 +293,7 @@ class GrampsNullTranslations(gettext.NullTranslations):
     neither will be the returned string.
     """
 
-    def gettext(self, msgid, context=""):
+    def gettext(self, msgid: str, context: str = "") -> str:
         """
         Apply the context if there is one, otherwise just pass it on.
         """
