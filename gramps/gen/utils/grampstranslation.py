@@ -29,6 +29,7 @@ for reports so that they can be created in a different language from the UI's.
 # python modules
 #
 # ------------------------------------------------------------------------
+from __future__ import annotations
 import gettext
 import collections
 import inspect
