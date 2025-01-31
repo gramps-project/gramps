@@ -107,9 +107,8 @@ def convert_state_to_object(obj_dict):
     return obj
 
 
-# Just call the method directly:
-# def convert_object_to_state(obj):
-#     return obj.get_object_state()
+def convert_object_to_state(obj):
+    return obj.get_object_state()
 
 
 def string_to_data(string: str | bytes) -> DataDict:
@@ -184,7 +183,7 @@ def object_to_string(obj: object) -> str | bytes:
     """
     Convert any Gramps object into a JSON string/bytes.
     """
-    return orjson.dumps(object_to_dict(obj))
+    return orjson.dumps(obj, default=convert_object_to_state)
 
 
 def data_to_string(data: DataDict):
