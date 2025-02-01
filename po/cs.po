@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-31 14:42+0000\n"
-"PO-Revision-Date: 2025-01-28 21:59+0000\n"
+"PO-Revision-Date: 2025-02-01 16:04+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -7257,13 +7257,12 @@ msgid "unknown"
 msgstr "neznámé"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "více než %s let"
-msgstr[1] "více než %s let"
-msgstr[2] "více než %s let"
+msgstr[0] "více než {number_of} rok"
+msgstr[1] "více než {number_of} roky"
+msgstr[2] "více než {number_of} let"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -10905,22 +10904,20 @@ msgid "event with spouse"
 msgstr "událost s partnerem"
 
 #: ../gramps/gen/utils/alive.py:732
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "narození potomka: {} generací "
-msgstr[1] "narození potomka: {} generací "
-msgstr[2] "narození potomka: {} generací "
+msgstr[0] "narození potomka: {number_of} generace "
+msgstr[1] "narození potomka: {number_of} generace "
+msgstr[2] "narození potomka: {number_of} generací "
 
 #: ../gramps/gen/utils/alive.py:755
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "úmrtí potomka: {} generací "
-msgstr[1] "úmrtí potomka: {} generací "
-msgstr[2] "úmrtí potomka: {} generací "
+msgstr[0] "úmrtí potomka: {number_of} generace "
+msgstr[1] "úmrtí potomka: {number_of} generace "
+msgstr[2] "úmrtí potomka:  {number_of} generací "
 
 #: ../gramps/gen/utils/alive.py:770
 #, python-format
@@ -12622,35 +12619,28 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Zobrazit nebo skrýt ikonu předvoleb v nástrojové liště."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "odkazy na média"
+msgstr "Použít výchozí předvolbu"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Jen text"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Pouze nová rozšíření"
+msgstr "Pouze ikony"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "Text i ikony"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "Zobrazí text, ikony nebo obojí na tlačítkách panelu nástrojů."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "_Lišta nástrojů"
+msgstr "Styl lišty nástrojů"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -38278,20 +38268,14 @@ msgid "Normal Outline Style"
 msgstr "Styl normální osnovy"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2194
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
-msgstr "Rozložení náhražek citací"
+msgstr "Rozložení odkazů na citace"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
-msgstr "Určete výchozí rozložení části Odkazovatelé citací stránky pramenů"
+msgstr "Určete výchozí rozložení části Odkazy na citace na zdrojové stránce"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Include ancestor's tree"
