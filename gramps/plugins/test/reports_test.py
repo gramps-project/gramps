@@ -406,9 +406,13 @@ report_list = [
     ),
     ("summary", "txt", []),  # Database Summary Report
     (
-        "timeline %s" % TREE_NAME,
+        "timeline",
         "svg",
-        ["timeline %s.svg" % TREE_NAME, "timeline %s-2.svg" % TREE_NAME],
+        [
+            "timeline %s.svg" % TREE_NAME,
+            "timeline %s-2.svg" % TREE_NAME,
+            "timeline %s-3.svg" % TREE_NAME,
+        ],
     ),  # Timeline Chart
 ]
 
