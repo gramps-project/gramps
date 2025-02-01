@@ -38,7 +38,7 @@ import random
 import re
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Generator, Type
 
 # ------------------------------------------------------------------------
 #
@@ -63,6 +63,21 @@ from ..lib import (
 from ..lib.serialize import from_dict, BlobSerializer, JSONSerializer
 from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher
+from ..types import (
+    AnyHandle,
+    PersonHandle,
+    EventHandle,
+    FamilyHandle,
+    PlaceHandle,
+    PrimaryObject,
+    SourceHandle,
+    RepositoryHandle,
+    CitationHandle,
+    MediaHandle,
+    NoteHandle,
+    TagHandle,
+    TableObjectType,
+)
 from ..updatecallback import UpdateCallback
 from ..utils.callback import Callback
 from ..utils.id import create_id
@@ -93,6 +108,7 @@ from . import (
 from .bookmarks import DbBookmarks
 from .exceptions import DbUpgradeRequiredError, DbVersionError
 from .utils import clear_lock_file, write_lock_file
+from typing import Union
 
 _ = glocale.translation.gettext
 
@@ -355,6 +371,8 @@ class Cursor:
 # DbGeneric class
 #
 # ------------------------------------------------------------------------
+
+
 class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
@@ -1382,7 +1400,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def _get_from_handle(self, obj_key, obj_class, handle):
+    def _get_from_handle(
+        self, obj_key, obj_class: Type[TableObjectType], handle: AnyHandle
+    ) -> TableObjectType:
         if handle is None:
             raise HandleError("Handle is None")
         if not handle:
@@ -1393,34 +1413,34 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         raise HandleError(f"Handle {handle} not found")
 
-    def get_event_from_handle(self, handle):
+    def get_event_from_handle(self, handle: EventHandle) -> Event:
         return self._get_from_handle(EVENT_KEY, Event, handle)
 
-    def get_family_from_handle(self, handle):
+    def get_family_from_handle(self, handle: FamilyHandle) -> Family:
         return self._get_from_handle(FAMILY_KEY, Family, handle)
 
-    def get_repository_from_handle(self, handle):
+    def get_repository_from_handle(self, handle: RepositoryHandle) -> Repository:
         return self._get_from_handle(REPOSITORY_KEY, Repository, handle)
 
-    def get_person_from_handle(self, handle):
+    def get_person_from_handle(self, handle: PersonHandle) -> Person:
         return self._get_from_handle(PERSON_KEY, Person, handle)
 
-    def get_place_from_handle(self, handle):
+    def get_place_from_handle(self, handle: PlaceHandle) -> Place:
         return self._get_from_handle(PLACE_KEY, Place, handle)
 
-    def get_citation_from_handle(self, handle):
+    def get_citation_from_handle(self, handle: CitationHandle) -> Citation:
         return self._get_from_handle(CITATION_KEY, Citation, handle)
 
-    def get_source_from_handle(self, handle):
+    def get_source_from_handle(self, handle: SourceHandle) -> Source:
         return self._get_from_handle(SOURCE_KEY, Source, handle)
 
-    def get_note_from_handle(self, handle):
+    def get_note_from_handle(self, handle: NoteHandle) -> Note:
         return self._get_from_handle(NOTE_KEY, Note, handle)
 
-    def get_media_from_handle(self, handle):
+    def get_media_from_handle(self, handle: MediaHandle) -> Media:
         return self._get_from_handle(MEDIA_KEY, Media, handle)
 
-    def get_tag_from_handle(self, handle):
+    def get_tag_from_handle(self, handle: TagHandle) -> Tag:
         return self._get_from_handle(TAG_KEY, Tag, handle)
 
     ################################################################
@@ -1429,39 +1449,39 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def get_person_from_gramps_id(self, gramps_id):
+    def get_person_from_gramps_id(self, gramps_id) -> Person:
         data = self._get_raw_person_from_id_data(gramps_id)
         return self.serializer.data_to_object(Person, data)
 
-    def get_family_from_gramps_id(self, gramps_id):
+    def get_family_from_gramps_id(self, gramps_id) -> Family:
         data = self._get_raw_family_from_id_data(gramps_id)
         return self.serializer.data_to_object(Family, data)
 
-    def get_citation_from_gramps_id(self, gramps_id):
+    def get_citation_from_gramps_id(self, gramps_id) -> Citation:
         data = self._get_raw_citation_from_id_data(gramps_id)
         return self.serializer.data_to_object(Citation, data)
 
-    def get_source_from_gramps_id(self, gramps_id):
+    def get_source_from_gramps_id(self, gramps_id) -> Source:
         data = self._get_raw_source_from_id_data(gramps_id)
         return self.serializer.data_to_object(Source, data)
 
-    def get_event_from_gramps_id(self, gramps_id):
+    def get_event_from_gramps_id(self, gramps_id) -> Event:
         data = self._get_raw_event_from_id_data(gramps_id)
         return self.serializer.data_to_object(Event, data)
 
-    def get_media_from_gramps_id(self, gramps_id):
+    def get_media_from_gramps_id(self, gramps_id) -> Media:
         data = self._get_raw_media_from_id_data(gramps_id)
         return self.serializer.data_to_object(Media, data)
 
-    def get_place_from_gramps_id(self, gramps_id):
+    def get_place_from_gramps_id(self, gramps_id) -> Place:
         data = self._get_raw_place_from_id_data(gramps_id)
         return self.serializer.data_to_object(Place, data)
 
-    def get_repository_from_gramps_id(self, gramps_id):
+    def get_repository_from_gramps_id(self, gramps_id) -> Repository:
         data = self._get_raw_repository_from_id_data(gramps_id)
         return self.serializer.data_to_object(Repository, data)
 
-    def get_note_from_gramps_id(self, gramps_id):
+    def get_note_from_gramps_id(self, gramps_id) -> Note:
         data = self._get_raw_note_from_id_data(gramps_id)
         return self.serializer.data_to_object(Note, data)
 
@@ -1471,40 +1491,40 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def _has_handle(self, obj_key, handle):
+    def _has_handle(self, obj_key, handle) -> bool:
         """
         Return True if the handle exists in the database.
         """
         raise NotImplementedError
 
-    def has_person_handle(self, handle):
+    def has_person_handle(self, handle: PersonHandle) -> bool:
         return self._has_handle(PERSON_KEY, handle)
 
-    def has_family_handle(self, handle):
+    def has_family_handle(self, handle: FamilyHandle) -> bool:
         return self._has_handle(FAMILY_KEY, handle)
 
-    def has_source_handle(self, handle):
+    def has_source_handle(self, handle: SourceHandle) -> bool:
         return self._has_handle(SOURCE_KEY, handle)
 
-    def has_citation_handle(self, handle):
+    def has_citation_handle(self, handle: CitationHandle) -> bool:
         return self._has_handle(CITATION_KEY, handle)
 
-    def has_event_handle(self, handle):
+    def has_event_handle(self, handle: EventHandle) -> bool:
         return self._has_handle(EVENT_KEY, handle)
 
-    def has_media_handle(self, handle):
+    def has_media_handle(self, handle: MediaHandle) -> bool:
         return self._has_handle(MEDIA_KEY, handle)
 
-    def has_place_handle(self, handle):
+    def has_place_handle(self, handle: PlaceHandle) -> bool:
         return self._has_handle(PLACE_KEY, handle)
 
-    def has_repository_handle(self, handle):
+    def has_repository_handle(self, handle: RepositoryHandle) -> bool:
         return self._has_handle(REPOSITORY_KEY, handle)
 
-    def has_note_handle(self, handle):
+    def has_note_handle(self, handle: NoteHandle) -> bool:
         return self._has_handle(NOTE_KEY, handle)
 
-    def has_tag_handle(self, handle):
+    def has_tag_handle(self, handle: TagHandle) -> bool:
         return self._has_handle(TAG_KEY, handle)
 
     ################################################################
@@ -1513,34 +1533,34 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def _has_gramps_id(self, obj_key, gramps_id):
+    def _has_gramps_id(self, obj_key, gramps_id) -> bool:
         raise NotImplementedError
 
-    def has_person_gramps_id(self, gramps_id):
+    def has_person_gramps_id(self, gramps_id) -> bool:
         return self._has_gramps_id(PERSON_KEY, gramps_id)
 
-    def has_family_gramps_id(self, gramps_id):
+    def has_family_gramps_id(self, gramps_id) -> bool:
         return self._has_gramps_id(FAMILY_KEY, gramps_id)
 
-    def has_source_gramps_id(self, gramps_id):
+    def has_source_gramps_id(self, gramps_id) -> bool:
         return self._has_gramps_id(SOURCE_KEY, gramps_id)
 
-    def has_citation_gramps_id(self, gramps_id):
+    def has_citation_gramps_id(self, gramps_id) -> bool:
         return self._has_gramps_id(CITATION_KEY, gramps_id)
 
-    def has_event_gramps_id(self, gramps_id):
+    def has_event_gramps_id(self, gramps_id) -> bool:
         return self._has_gramps_id(EVENT_KEY, gramps_id)
 
-    def has_media_gramps_id(self, gramps_id):
+    def has_media_gramps_id(self, gramps_id) -> bool:
         return self._has_gramps_id(MEDIA_KEY, gramps_id)
 
-    def has_place_gramps_id(self, gramps_id):
+    def has_place_gramps_id(self, gramps_id) -> bool:
         return self._has_gramps_id(PLACE_KEY, gramps_id)
 
-    def has_repository_gramps_id(self, gramps_id):
+    def has_repository_gramps_id(self, gramps_id) -> bool:
         return self._has_gramps_id(REPOSITORY_KEY, gramps_id)
 
-    def has_note_gramps_id(self, gramps_id):
+    def has_note_gramps_id(self, gramps_id) -> bool:
         return self._has_gramps_id(NOTE_KEY, gramps_id)
 
     ################################################################
@@ -1549,37 +1569,37 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def get_place_cursor(self):
+    def get_place_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_place_data)
 
-    def get_place_tree_cursor(self):
+    def get_place_tree_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_place_tree_data)
 
-    def get_person_cursor(self):
+    def get_person_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_person_data)
 
-    def get_family_cursor(self):
+    def get_family_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_family_data)
 
-    def get_event_cursor(self):
+    def get_event_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_event_data)
 
-    def get_note_cursor(self):
+    def get_note_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_note_data)
 
-    def get_tag_cursor(self):
+    def get_tag_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_tag_data)
 
-    def get_repository_cursor(self):
+    def get_repository_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_repository_data)
 
-    def get_media_cursor(self):
+    def get_media_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_media_data)
 
-    def get_citation_cursor(self):
+    def get_citation_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_citation_data)
 
-    def get_source_cursor(self):
+    def get_source_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_source_data)
 
     ################################################################
@@ -1591,62 +1611,62 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def _iter_handles(self, obj_key):
         raise NotImplementedError
 
-    def iter_person_handles(self):
+    def iter_person_handles(self) -> Generator[PersonHandle]:
         """
         Return an iterator over handles for Persons in the database
         """
         return self._iter_handles(PERSON_KEY)
 
-    def iter_family_handles(self):
+    def iter_family_handles(self) -> Generator[FamilyHandle]:
         """
         Return an iterator over handles for Families in the database
         """
         return self._iter_handles(FAMILY_KEY)
 
-    def iter_citation_handles(self):
+    def iter_citation_handles(self) -> Generator[CitationHandle]:
         """
         Return an iterator over database handles, one handle for each Citation
         in the database.
         """
         return self._iter_handles(CITATION_KEY)
 
-    def iter_event_handles(self):
+    def iter_event_handles(self) -> Generator[EventHandle]:
         """
         Return an iterator over handles for Events in the database
         """
         return self._iter_handles(EVENT_KEY)
 
-    def iter_media_handles(self):
+    def iter_media_handles(self) -> Generator[MediaHandle]:
         """
         Return an iterator over handles for Media in the database
         """
         return self._iter_handles(MEDIA_KEY)
 
-    def iter_note_handles(self):
+    def iter_note_handles(self) -> Generator[NoteHandle]:
         """
         Return an iterator over handles for Notes in the database
         """
         return self._iter_handles(NOTE_KEY)
 
-    def iter_place_handles(self):
+    def iter_place_handles(self) -> Generator[PlaceHandle]:
         """
         Return an iterator over handles for Places in the database
         """
         return self._iter_handles(PLACE_KEY)
 
-    def iter_repository_handles(self):
+    def iter_repository_handles(self) -> Generator[RepositoryHandle]:
         """
         Return an iterator over handles for Repositories in the database
         """
         return self._iter_handles(REPOSITORY_KEY)
 
-    def iter_source_handles(self):
+    def iter_source_handles(self) -> Generator[SourceHandle]:
         """
         Return an iterator over handles for Sources in the database
         """
         return self._iter_handles(SOURCE_KEY)
 
-    def iter_tag_handles(self):
+    def iter_tag_handles(self) -> Generator[TagHandle]:
         """
         Return an iterator over handles for Tags in the database
         """
@@ -1666,34 +1686,44 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         for data in cursor():
             yield self.serializer.data_to_object(class_, data[1])
 
-    def iter_people(self):
+    def iter_people(self) -> Generator[Person]:
+        """Iterate over Person objects."""
         return self._iter_objects(Person)
 
-    def iter_families(self):
+    def iter_families(self) -> Generator[Family]:
+        """Iterate over Family objects."""
         return self._iter_objects(Family)
 
-    def iter_citations(self):
+    def iter_citations(self) -> Generator[Citation]:
+        """Iterate over Citation objects."""
         return self._iter_objects(Citation)
 
-    def iter_events(self):
+    def iter_events(self) -> Generator[Event]:
+        """Iterate over Event objects."""
         return self._iter_objects(Event)
 
-    def iter_media(self):
+    def iter_media(self) -> Generator[Media]:
+        """Iterate over Media objects."""
         return self._iter_objects(Media)
 
-    def iter_notes(self):
+    def iter_notes(self) -> Generator[Note]:
+        """Iterate over Note objects."""
         return self._iter_objects(Note)
 
-    def iter_places(self):
+    def iter_places(self) -> Generator[Place]:
+        """Iterate over Place objects."""
         return self._iter_objects(Place)
 
-    def iter_repositories(self):
+    def iter_repositories(self) -> Generator[Repository]:
+        """Iterate over Repository objects."""
         return self._iter_objects(Repository)
 
-    def iter_sources(self):
+    def iter_sources(self) -> Generator[Source]:
+        """Iterate over Source objects."""
         return self._iter_objects(Source)
 
-    def iter_tags(self):
+    def iter_tags(self) -> Generator[Tag]:
+        """Iterate over Tag objects."""
         return self._iter_objects(Tag)
 
     ################################################################
@@ -1855,7 +1885,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def _add_base(self, obj, trans, set_gid, find_func, commit_func):
+    def _add_base(self, obj, trans, set_gid: bool, find_func, commit_func):
         if not obj.handle:
             obj.handle = create_id()
         if (not obj.gramps_id) and set_gid:
@@ -1866,7 +1896,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         commit_func(obj, trans)
         return obj.handle
 
-    def add_person(self, person, transaction, set_gid=True):
+    def add_person(self, person: Person, transaction, set_gid=True):
         return self._add_base(
             person,
             transaction,
@@ -1875,7 +1905,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.commit_person,
         )
 
-    def add_family(self, family, transaction, set_gid=True):
+    def add_family(self, family: Family, transaction, set_gid=True):
         return self._add_base(
             family,
             transaction,
@@ -1884,7 +1914,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.commit_family,
         )
 
-    def add_event(self, event, transaction, set_gid=True):
+    def add_event(self, event: Event, transaction, set_gid=True):
         return self._add_base(
             event,
             transaction,
@@ -1893,7 +1923,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.commit_event,
         )
 
-    def add_place(self, place, transaction, set_gid=True):
+    def add_place(self, place: Place, transaction, set_gid=True):
         return self._add_base(
             place,
             transaction,
@@ -1902,7 +1932,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.commit_place,
         )
 
-    def add_repository(self, repository, transaction, set_gid=True):
+    def add_repository(self, repository: Repository, transaction, set_gid=True):
         return self._add_base(
             repository,
             transaction,
@@ -1911,7 +1941,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.commit_repository,
         )
 
-    def add_source(self, source, transaction, set_gid=True):
+    def add_source(self, source: Source, transaction, set_gid=True):
         return self._add_base(
             source,
             transaction,
@@ -1920,7 +1950,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.commit_source,
         )
 
-    def add_citation(self, citation, transaction, set_gid=True):
+    def add_citation(self, citation: Citation, transaction, set_gid=True):
         return self._add_base(
             citation,
             transaction,
@@ -1929,7 +1959,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.commit_citation,
         )
 
-    def add_media(self, media, transaction, set_gid=True):
+    def add_media(self, media: Media, transaction, set_gid=True):
         return self._add_base(
             media,
             transaction,
@@ -1938,12 +1968,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.commit_media,
         )
 
-    def add_note(self, note, transaction, set_gid=True):
+    def add_note(self, note: Note, transaction, set_gid=True):
         return self._add_base(
             note, transaction, set_gid, self.find_next_note_gramps_id, self.commit_note
         )
 
-    def add_tag(self, tag, transaction):
+    def add_tag(self, tag: Tag, transaction):
         if not tag.handle:
             tag.handle = create_id()
         self.commit_tag(tag, transaction)
