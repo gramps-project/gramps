@@ -948,7 +948,7 @@ class MenuReportOptions(MenuOptions, ReportOptions):
     """
 
     def __init__(self, name, dbase):
-        ReportOptions.__init__(self, name, dbase)
+        ReportOptions.__init__(self, name + " " + dbase.db_name, dbase)
         MenuOptions.__init__(self)
 
     def load_previous_values(self):
