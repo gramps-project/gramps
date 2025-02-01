@@ -37,6 +37,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # Disconnected
 #
 # -------------------------------------------------------------------------
@@ -50,7 +59,5 @@ class Disconnected(Rule):
         "to any other person in the database"
     )
 
-    def apply(self, db, person):
-        return not (
-            person.get_parent_family_handle_list() or person.get_family_handle_list()
-        )
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return not (person.parent_family_list or person.family_list)
