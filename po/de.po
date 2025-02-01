@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-31 14:42+0000\n"
-"PO-Revision-Date: 2025-01-27 20:45+0000\n"
+"PO-Revision-Date: 2025-02-01 01:44+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -7442,12 +7442,11 @@ msgid "unknown"
 msgstr "unbekannt"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "mehr als %s Jahre"
-msgstr[1] "mehr als %s Jahre"
+msgstr[0] "mehr als {number_of} Jahr"
+msgstr[1] "mehr als {number_of} Jahre"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -8848,18 +8847,14 @@ msgid "Matrilineal"
 msgstr "Matrilineal"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Beruf"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
-msgstr "Lokation"
+msgstr "Ort"
 
 #: ../gramps/gen/lib/nametype.py:58
 msgid "Also Known As"
@@ -11110,20 +11105,18 @@ msgid "event with spouse"
 msgstr "Ereignisse mit Partner(in)"
 
 #: ../gramps/gen/utils/alive.py:732
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "Nachkomme Geburt: {} Generationen "
-msgstr[1] "Nachkomme Geburt: {} Generationen "
+msgstr[0] "Nachkomme Geburt: {number_of} Generation "
+msgstr[1] "Nachkomme Geburt: {number_of} Generationen "
 
 #: ../gramps/gen/utils/alive.py:755
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "Nachkomme Tod: {} Generationen "
-msgstr[1] "Nachkomme Tod: {} Generationen "
+msgstr[0] "Nachkomme Tod: {number_of} Generation "
+msgstr[1] "Nachkomme Tod: {number_of} Generationen "
 
 #: ../gramps/gen/utils/alive.py:770
 #, python-format
@@ -12842,35 +12835,29 @@ msgstr ""
 "Das Symbol für Einstellungen in der Werkzeugleiste ein- oder ausblenden."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "Medienreferenzen"
+msgstr "Standardeinstellung verwenden"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Nur Text"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Nur neue Erweiterungen"
+msgstr "Nur Symbole"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "Beides, Text und Symbole"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
 msgstr ""
+"Zeige Text, Symbole oder beides auf den Schaltflächen der Werkzeugleiste an."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "Werkzeugleis_te"
+msgstr "Stil der Symbolleiste"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -21513,7 +21500,7 @@ msgstr "Alt"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
 msgid "Legacy citation formatter"
-msgstr "Veraltete-Fundstelleformatierung"
+msgstr "Veraltetes Formatierungsprogramm für Fundstellen"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -38919,22 +38906,16 @@ msgid "Normal Outline Style"
 msgstr "Üblich Gliederungsstil"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2194
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "Fundstellenreferenzenlayout"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Bestimmt das Standardlayout für den Abschnitt Fundstellenreferenzabschnitt "
-"auf der Quellenseite"
+"Legt das Standardlayout für den Abschnitt „Fundstelle“ auf der Quellenseite "
+"fest"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Include ancestor's tree"
