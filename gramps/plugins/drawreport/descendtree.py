@@ -479,6 +479,7 @@ class RecurseDown:
             # calculate the .y_cm for this box.
             box.y_cm = last_box.y_cm
             box.y_cm += last_box.height
+
             if last_box.boxstr in ["CG2-box", "CG2b-box"]:
                 box.y_cm += self.canvas.report_opts.box_shadow
 

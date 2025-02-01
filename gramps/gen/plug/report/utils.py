@@ -57,7 +57,12 @@ def _T_(value, context=""):  # enable deferred translations
 
 def get_rgb_color(color_name):
     hex_color = config.get(color_name)[0].lstrip("#")
-    return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
+    rgb_tuple = (0, 0, 0)  # default
+    try:
+        rgb_tuple = tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
+    except:
+        rgb_tuple = (0, 0, 0)  # default
+    return rgb_tuple
 
 
 SYMBOLS = Symbols()
