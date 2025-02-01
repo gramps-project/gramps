@@ -69,7 +69,13 @@ def display_help(webpage="", section=""):
     if not webpage:
         link = URL_WIKISTRING + URL_MANUAL_PAGE + EXTENSION
     else:
-        link = URL_WIKISTRING + quote(webpage) + EXTENSION
+        section_index = webpage.find("#")
+        if section_index != -1:
+            section = webpage[section_index + 1 :]
+            webpage = webpage[:section_index]
+        link = quote(webpage, safe="/:") + EXTENSION
+        if not webpage.startswith(("http://", "https://")):
+            link = URL_WIKISTRING + link
         if section:
             link += "#" + quote(section.replace(" ", "_")).replace("%", ".")
     display_url(link)
