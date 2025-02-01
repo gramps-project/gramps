@@ -47,7 +47,10 @@ EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 class BaseCheck:
     def test_data_to_object(self):
         data = object_to_data(self.object)
+        self.assertIs(data.handle, None)
+        self.assertIs(data["handle"], None)
         obj = data_to_object(data)
+        self.assertEqual(id(self.object), id(obj))
         self.assertEqual(self.object.serialize(), obj.serialize())
 
 
