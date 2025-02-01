@@ -30,7 +30,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-31 14:42+0000\n"
-"PO-Revision-Date: 2025-01-27 22:04+0000\n"
+"PO-Revision-Date: 2025-02-01 01:44+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -7270,12 +7270,11 @@ msgid "unknown"
 msgstr "okänd"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "större än %s år"
-msgstr[1] "större än %s år"
+msgstr[0] "större än {antal} år"
+msgstr[1] "större än {antal} år"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -8676,15 +8675,11 @@ msgid "Matrilineal"
 msgstr "Matrilinjär"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Yrke"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
 msgstr "Plats"
@@ -10925,20 +10920,18 @@ msgid "event with spouse"
 msgstr "händelse med make/maka"
 
 #: ../gramps/gen/utils/alive.py:732
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "ättlingars födelse: {} generationer "
-msgstr[1] "ättlingars födelse: {} generationer "
+msgstr[0] "ättlingars födelse: {antal} generation "
+msgstr[1] "ättlingars födelse: {antal} generationer "
 
 #: ../gramps/gen/utils/alive.py:755
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "ättlingars död: {} generationer "
-msgstr[1] "ättlingars död: {} generationer "
+msgstr[0] "ättlingars död: {antal} generation "
+msgstr[1] "ättlingars död: {antal} generationer "
 
 #: ../gramps/gen/utils/alive.py:770
 #, python-format
@@ -12642,35 +12635,28 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Visa eller dölj ikonen Inställningar i verktygsfältet."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "mediareferenser"
+msgstr "Använd standardinställning"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Endast text"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Endast nya tillägg"
+msgstr "Endast ikoner"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "Både text och ikoner"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "Visa text, ikoner eller båda på knapparna i verktygsfältet."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "_Verktygsrad"
+msgstr "Verktygsfältstil"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -38333,20 +38319,14 @@ msgid "Normal Outline Style"
 msgstr "Normal skissmall"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2194
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "Citeringsreferensmall"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
-msgstr "Bestäm standardmallen för referens delen av källsidans citeringar"
+msgstr "Ange standardmallen för avsnittet Citationsreferenser på källsidan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Include ancestor's tree"
