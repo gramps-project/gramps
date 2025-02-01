@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-31 14:42+0000\n"
-"PO-Revision-Date: 2025-01-28 21:59+0000\n"
+"PO-Revision-Date: 2025-02-01 16:04+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -7332,12 +7332,11 @@ msgid "unknown"
 msgstr "desconhecido"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "mais de %s anos"
-msgstr[1] "mais de %s anos"
+msgstr[0] "mais de {number_of} ano"
+msgstr[1] "mais de {number_of} anos"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -8739,15 +8738,11 @@ msgid "Matrilineal"
 msgstr "Matrilinear"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Profissão"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
 msgstr "Localização"
@@ -10982,20 +10977,18 @@ msgid "event with spouse"
 msgstr "evento com cônjuge"
 
 #: ../gramps/gen/utils/alive.py:732
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "nascimento de descendentes: {} gerações "
-msgstr[1] "nascimento de descendentes: {} gerações "
+msgstr[0] "nascimento de descendentes: {number_of} geração "
+msgstr[1] "nascimento de descendentes: {number_of} gerações "
 
 #: ../gramps/gen/utils/alive.py:755
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "óbito de descendentes: {} gerações "
-msgstr[1] "óbito de descendentes: {} gerações "
+msgstr[0] "óbito de descendentes: {number_of} geração "
+msgstr[1] "óbito de descendentes: {number_of} gerações "
 
 #: ../gramps/gen/utils/alive.py:770
 #, python-format
@@ -12707,35 +12700,28 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Mostrar ou ocultar o ícone de preferências na barra de ferramentas."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "referências a multimédia"
+msgstr "Utilizar a pré-definição"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Só texto"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Só novas extensões"
+msgstr "Só ícones"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "Texto e ícones"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "Mostrar texto, ícones ou ambos nos botões das barras."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "Barra de ferramen_tas"
+msgstr "Estilo da barra de ferramentas"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -38590,22 +38576,16 @@ msgid "Normal Outline Style"
 msgstr "Estilo normal de contorno"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2194
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "Disposição de referências a citações"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Determine a disposição pré-definida para a secção \"Referências a citações\" "
-"da página de fontes"
+"Especifique a disposição pré-definida para a secção "
+"\"Referências a citações\" na página de fontes"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Include ancestor's tree"
