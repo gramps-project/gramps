@@ -67,7 +67,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-31 14:42+0000\n"
-"PO-Revision-Date: 2025-01-27 18:10+0000\n"
+"PO-Revision-Date: 2025-02-01 01:44+0000\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
@@ -1049,15 +1049,11 @@ msgstr ""
 "https://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b>La pagina web di Gramps</b><br/>La pagina web di Gramps è http://gramps-"
+"<b>La pagina web di Gramps</b><br/>La pagina web di Gramps è https://gramps-"
 "project.org/."
 
 #: ../data/tips.xml:98
@@ -1241,12 +1237,6 @@ msgstr ""
 "Software Foundation e presso Open Source Initiative."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1255,7 +1245,7 @@ msgid ""
 msgstr ""
 "<b>La licenza di Gramps</b><br/>Gramps può essere liberamente utilizzato e "
 "condiviso con altre persone. Gramps è distribuibile liberamente sotto "
-"licenza GNU General Public License, consultare http://www.gnu.org/licenses/"
+"licenza GNU General Public License, consultare https://www.gnu.org/licenses/"
 "licenses.html#GPL per leggere i diritti e le restrizioni di questa licenza."
 
 #: ../data/tips.xml:128
@@ -7460,12 +7450,11 @@ msgid "unknown"
 msgstr "sconosciuto"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "maggiore di %s anni"
-msgstr[1] "maggiore di %s anni"
+msgstr[0] "maggiore di {number_of} anno"
+msgstr[1] "maggiore di {number_of} anni"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -8866,15 +8855,11 @@ msgid "Matrilineal"
 msgstr "Matrilineare"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Lavoro"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
 msgstr "Posizione"
@@ -11128,20 +11113,18 @@ msgid "event with spouse"
 msgstr "evento con coniuge"
 
 #: ../gramps/gen/utils/alive.py:732
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "nascita di discendente: {} generazioni "
-msgstr[1] "nascita di discendente: {} generazioni "
+msgstr[0] "nascita di discendente: {number_of} generazione "
+msgstr[1] "nascita di discendente: {number_of} generazioni "
 
 #: ../gramps/gen/utils/alive.py:755
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "decesso di discendente: {} generazioni "
-msgstr[1] "decesso di discendente: {} generazioni "
+msgstr[0] "decesso di discendente: {number_of} generazione "
+msgstr[1] "decesso di discendente: {number_of} generazioni "
 
 #: ../gramps/gen/utils/alive.py:770
 #, python-format
@@ -12859,35 +12842,29 @@ msgstr ""
 "Mostra o nasconde l'icona delle preferenze nella barra degli strumenti."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "riferimenti ad oggetti multimediali"
+msgstr "Usa la preferenza predefinita"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Solo testo"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Solo nuovi componenti aggiuntivi"
+msgstr "Solo icone"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "Sia testo che icone"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
 msgstr ""
+"Mostra testo, icone o entrambi nei pulsanti della barra degli strumenti."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "Barra degli s_trumenti"
+msgstr "Stile della barra degli strumenti"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -26292,22 +26269,16 @@ msgid "call"
 msgstr "pseudonimo"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "soprannome"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "Sopra_nnome:"
+msgstr "Soprannome"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "soprannome"
+msgstr "sopran_nome"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -39006,22 +38977,16 @@ msgid "Normal Outline Style"
 msgstr "Stile contorno normale"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2194
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
-msgstr "Aspetto referenti a citazioni"
+msgstr "Aspetto riferimenti a citazioni"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Determina l'aspetto predefinito della sezione dei referenti a citazioni "
-"della pagina delle fonti"
+"Specifica l'aspetto predefinito della sezione dei riferimenti a citazioni "
+"nella pagina della fonte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Include ancestor's tree"
