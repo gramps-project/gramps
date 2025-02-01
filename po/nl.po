@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-31 14:42+0000\n"
-"PO-Revision-Date: 2025-01-28 21:59+0000\n"
+"PO-Revision-Date: 2025-02-01 16:04+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -7393,12 +7393,11 @@ msgid "unknown"
 msgstr "onbekend"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "meer dan %s jaar"
-msgstr[1] "meer dan %s jaar"
+msgstr[0] "meer dan (number_of) jaar"
+msgstr[1] "meer dan (number_of) jaar"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -8799,18 +8798,14 @@ msgid "Matrilineal"
 msgstr "Matrilineair"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Beroep"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
-msgstr "Locatie"
+msgstr "Plaats"
 
 #: ../gramps/gen/lib/nametype.py:58
 msgid "Also Known As"
@@ -9123,7 +9118,7 @@ msgstr "Code"
 
 #: ../gramps/gen/lib/place.py:175 ../gramps/plugins/webreport/basepage.py:3446
 msgid "Alternate Locations"
-msgstr "Alternatieve locaties"
+msgstr "Alternatieve plaatsen"
 
 #: ../gramps/gen/lib/place.py:180 ../gramps/gen/lib/repo.py:119
 msgid "URLs"
@@ -11053,20 +11048,18 @@ msgid "event with spouse"
 msgstr "gebeurtenis met echtgenoot"
 
 #: ../gramps/gen/utils/alive.py:732
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "afstammelingen geboren: {} generaties "
-msgstr[1] "afstammelingen geboren: {} generaties "
+msgstr[0] "afstammelingen geboren: {number_of} generatie "
+msgstr[1] "afstammelingen geboren: {number_of} generaties "
 
 #: ../gramps/gen/utils/alive.py:755
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "afstammelingen overleden: {} generaties "
-msgstr[1] "afstammelingen overleden: {} generaties "
+msgstr[0] "afstammeling overleden: {number_of} generatie "
+msgstr[1] "afstammeling overleden: {number_of} generaties "
 
 #: ../gramps/gen/utils/alive.py:770
 #, python-format
@@ -12778,35 +12771,28 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Het pictogram Voorkeuren op de werkbalk weergeven/verbergen."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "mediareferenties"
+msgstr "Standaardvoorkeur gebruiken"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Alleen tekst"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Alleen nieuwe uitbreidingen"
+msgstr "Alleen pictogrammen"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "Tekst en pictogrammen"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "Tekst, pictogrammen of beide weergeven op de knoppen op de werkbalk."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "_Werkbalk"
+msgstr "Werkbalkstijl"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -14205,7 +14191,7 @@ msgstr "_LDS"
 
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:70
 msgid "Alternate _Locations"
-msgstr "_Alternatieve locaties"
+msgstr "_Alternatieve plaatsen"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:64
 msgid "Create and add a new name"
@@ -15077,7 +15063,7 @@ msgstr "Internet Adres"
 
 #: ../gramps/gui/editors/editlocation.py:47
 msgid "Location Editor"
-msgstr "Locatie-bewerker"
+msgstr "Plaatsen bewerken"
 
 #: ../gramps/gui/editors/editmedia.py:73
 msgctxt "manual"
@@ -16676,7 +16662,7 @@ msgid ""
 "etc. A census record might have a line number or dwelling and family numbers "
 "in addition to the page number. "
 msgstr ""
-"Specifieke locatie binnen de informatie waarnaar wordt verwezen. Voor een "
+"Specifieke plaats binnen de informatie waarnaar wordt verwezen. Voor een "
 "gepubliceerd werk kan dit het volume van een werk met meerdere boekdelen en "
 "het/de paginanummer(s) omvatten. Voor een tijdschrift kan het volume, nummer "
 "en paginanummers bevatten. Voor een krant kan het een kolomnummer en "
@@ -27577,7 +27563,7 @@ msgstr "Detail"
 
 #: ../gramps/plugins/lib/libgedcom.py:6265
 msgid "Location already populated; ADDR ignored"
-msgstr "Locatie al ingevuld; ADDR genegeerd"
+msgstr "Plaats al ingevuld; ADDR genegeerd"
 
 #: ../gramps/plugins/lib/libgedcom.py:6667
 #: ../gramps/plugins/lib/libgedcom.py:7564
@@ -27844,7 +27830,7 @@ msgstr "Camera-informatie"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
 msgid "Location Tags"
-msgstr "Locatie-labels"
+msgstr "Plaats-labels"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
 msgid "Advanced Tags"
@@ -31538,8 +31524,8 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Tracht geselecteerde locaties te tonen met een Kaartservice (OpenstreetMap, "
-"Google Maps, ...)"
+"Probeer geselecteerde plaatsen weer te geven met een kaartendienst ("
+"OpenstreetMap, Google Maps, ...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:500
 msgid "Select a Map Service"
@@ -38333,7 +38319,7 @@ msgstr "Kerkparochie"
 
 #: ../gramps/plugins/webreport/basepage.py:3402
 msgid "Locations"
-msgstr "Locaties"
+msgstr "Plaatsen"
 
 #: ../gramps/plugins/webreport/basepage.py:3749
 msgid "circa"
@@ -38769,22 +38755,15 @@ msgid "Normal Outline Style"
 msgstr "Normale contourstijl"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2194
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "Citaatreferenties-indeling"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Bepaal de standaardlay-out voor het citaatreferentie-gedeelte van de "
-"bronpagina"
+"Bepaal de standaardopmaak voor de sectie citaatreferenties op de bronpagina"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Include ancestor's tree"
