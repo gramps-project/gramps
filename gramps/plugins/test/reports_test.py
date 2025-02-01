@@ -411,7 +411,6 @@ report_list = [
         [
             "timeline %s.svg" % TREE_NAME,
             "timeline %s-2.svg" % TREE_NAME,
-            "timeline %s-3.svg" % TREE_NAME,
         ],
     ),  # Timeline Chart
 ]
