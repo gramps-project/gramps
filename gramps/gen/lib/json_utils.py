@@ -56,7 +56,8 @@ class DataDict(dict):
         else:
             super().__init__()
             if data:
-                self["_object"] = data
+                # Data is actually a Gramps object
+                self.update(object_to_data(data))
 
     def __str__(self):
         if "_object" not in self:
@@ -155,10 +156,13 @@ def object_to_data(obj):
         return obj
 
     elif isinstance(obj, (list, tuple)):
-        return [object_to_data(item) for item in obj]
+        return DataList([object_to_data(item) for item in obj])
 
     state = obj.get_object_state()
-    return {k: object_to_data(v) for k, v in state.items()}
+    data = {k: object_to_data(v) for k, v in state.items()}
+    # Stash the object in case we need it later:
+    data["_object"] = obj
+    return DataDict(data)
 
 
 def data_to_object(data):

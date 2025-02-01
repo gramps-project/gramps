@@ -48,6 +48,7 @@ from ..lib import (
     Source,
     Tag,
 )
+from ..lib.json_utils import object_to_data
 from ..const import GRAMPS_LOCALE as glocale
 
 
@@ -803,34 +804,34 @@ class ProxyDbBase(DbReadBase):
         return self.db.get_url_types()
 
     def get_raw_person_data(self, handle):
-        return self.get_person_from_handle(handle).serialize()
+        return object_to_data(self.get_person_from_handle(handle))
 
     def get_raw_family_data(self, handle):
-        return self.get_family_from_handle(handle).serialize()
+        return object_to_data(self.get_family_from_handle(handle))
 
     def get_raw_media_data(self, handle):
-        return self.get_media_from_handle(handle).serialize()
+        return object_to_data(self.get_media_from_handle(handle))
 
     def get_raw_place_data(self, handle):
-        return self.get_place_from_handle(handle).serialize()
+        return object_to_data(self.get_place_from_handle(handle))
 
     def get_raw_event_data(self, handle):
-        return self.get_event_from_handle(handle).serialize()
+        return object_to_data(self.get_event_from_handle(handle))
 
     def get_raw_source_data(self, handle):
-        return self.get_source_from_handle(handle).serialize()
+        return object_to_data(self.get_source_from_handle(handle))
 
     def get_raw_citation_data(self, handle):
-        return self.get_citation_from_handle(handle).serialize()
+        return sobject_to_data(elf.get_citation_from_handle(handle))
 
     def get_raw_repository_data(self, handle):
-        return self.get_repository_from_handle(handle).serialize()
+        return object_to_data(self.get_repository_from_handle(handle))
 
     def get_raw_note_data(self, handle):
-        return self.get_note_from_handle(handle).serialize()
+        return object_to_data(self.get_note_from_handle(handle))
 
     def get_raw_tag_data(self, handle):
-        return self.get_tag_from_handle(handle).serialize()
+        return object_to_data(self.get_tag_from_handle(handle))
 
     def has_person_handle(self, handle):
         """
