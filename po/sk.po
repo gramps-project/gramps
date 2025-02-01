@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-31 14:42+0000\n"
-"PO-Revision-Date: 2025-01-28 21:59+0000\n"
+"PO-Revision-Date: 2025-02-01 16:04+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -7278,13 +7278,12 @@ msgid "unknown"
 msgstr "neznáme"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "viac ako %s roky/rokov"
-msgstr[1] "viac ako %s roky/rokov"
-msgstr[2] "viac ako %s roky/rokov"
+msgstr[0] "viac ako {number_of} rok"
+msgstr[1] "viac ako {number_of} roky"
+msgstr[2] "viac ako {number_of} rokov"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -10933,22 +10932,20 @@ msgid "event with spouse"
 msgstr "udalosť s manželom/-kou"
 
 #: ../gramps/gen/utils/alive.py:732
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "narodenie potomka: {} generácií "
-msgstr[1] "narodenie potomka: {} generácií "
-msgstr[2] "narodenie potomka: {} generácií "
+msgstr[0] "narodenie potomka: {number_of} generácia "
+msgstr[1] "narodenie potomka: {number_of} generácie "
+msgstr[2] "narodenie potomka: {number_of} generácií "
 
 #: ../gramps/gen/utils/alive.py:755
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "úmrtie potomka: {} generácií "
-msgstr[1] "úmrtie potomka: {} generácií "
-msgstr[2] "úmrtie potomka: {} generácií "
+msgstr[0] "úmrtie potomka: {number_of} generácia "
+msgstr[1] "úmrtie potomka: {number_of} generácie "
+msgstr[2] "úmrtie potomka: {number_of} generácií "
 
 #: ../gramps/gen/utils/alive.py:770
 #, python-format
@@ -12652,35 +12649,28 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Zobraziť alebo skryť ikonu Predvoľby na paneli nástrojov."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "odkazy média"
+msgstr "Použiť predvolenú preferenciu"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Iba text"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Len nové doplnky"
+msgstr "Len ikony"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "Text aj ikony"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "Zobrazí text, ikony alebo oboje na tlačidlách panela nástrojov."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "_Panel nástrojov"
+msgstr "Štýl panela nástrojov"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -38403,21 +38393,16 @@ msgid "Normal Outline Style"
 msgstr "Normálny štýl obrysu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2194
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
-msgstr "Usporiadanie náhradok citácie"
+msgstr "Usporiadanie odkazov na citácie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Určite predvolené usporiadanie časti náhradok citácie pre stránku zdroja"
+"Špecifikuje predvolené usporiadanie časti Odkazy na citácie na zdrojovej "
+"stránke"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Include ancestor's tree"
