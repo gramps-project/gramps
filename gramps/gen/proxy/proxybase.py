@@ -822,7 +822,7 @@ class ProxyDbBase(DbReadBase):
         return object_to_data(self.get_source_from_handle(handle))
 
     def get_raw_citation_data(self, handle):
-        return sobject_to_data(elf.get_citation_from_handle(handle))
+        return object_to_data(self.get_citation_from_handle(handle))
 
     def get_raw_repository_data(self, handle):
         return object_to_data(self.get_repository_from_handle(handle))
