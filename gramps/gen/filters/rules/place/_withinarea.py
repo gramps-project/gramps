@@ -107,25 +107,22 @@ class WithinArea(Rule):
             self.radius = self.radius / 2
 
     def apply(self, dummy_db, place):
-        if self.handle is None:
-            return False
-        if self.latitude is None:
-            return False
-        if self.longitude is None:
+        if not (place and self.handle and self.latitude and self.longitude):
             return False
         if place:
             lat = place.get_latitude()
             lon = place.get_longitude()
         if lat and lon:
             latit, longit = conv_lat_lon(lat, lon, "D.D8")
-            if latit is None or longit is None:
-                return False
-            if (
-                hypot(
-                    float(self.latitude) - float(latit),
-                    float(self.longitude) - float(longit),
+            return (
+                latit
+                and longit
+                and (
+                    hypot(
+                        float(self.latitude) - float(latit),
+                        float(self.longitude) - float(longit),
+                    )
+                    <= self.radius
                 )
-                <= self.radius
-            ):
-                return True
+            )
         return False
