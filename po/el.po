@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.3.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-31 14:42+0000\n"
+"POT-Creation-Date: 2025-02-01 17:31+0000\n"
 "PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/gramps-project/"
@@ -281,7 +281,7 @@ msgstr "Σύστημα γενεαλογίας Gramps"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:233
 #: ../gramps/plugins/view/pedigreeview.py:565
 #: ../gramps/plugins/view/view.gpr.py:135
-#: ../gramps/plugins/webreport/person.py:1681
+#: ../gramps/plugins/webreport/person.py:1731
 msgid "Pedigree"
 msgstr "Γενεαλογικό δέντρο"
 
@@ -345,9 +345,9 @@ msgstr "Σχέσεις"
 #: ../gramps/plugins/tool/eventcmp.py:260
 #: ../gramps/plugins/tool/removespaces.py:138
 #: ../gramps/plugins/tool/reorderids.glade:762
-#: ../gramps/plugins/webreport/event.py:316
-#: ../gramps/plugins/webreport/family.py:315
-#: ../gramps/plugins/webreport/person.py:1574
+#: ../gramps/plugins/webreport/event.py:330
+#: ../gramps/plugins/webreport/family.py:314
+#: ../gramps/plugins/webreport/person.py:1624
 msgid "Person"
 msgstr "Άτομο"
 
@@ -889,7 +889,7 @@ msgid ""
 "a reddish background or a red dot on the right edge of the field. You can "
 "fix the date using the Date Selection dialog which can be opened by clicking "
 "on the date button. The format of the date is set under \"Edit > Preferences "
-"> Display\"."
+"> Data\"."
 msgstr ""
 "<b>Λανθασμένες ημερομηνίες</b><br/>Όλοι μας πότε-πότε εισάγουμε λανθασμένες "
 "ημερομηνίες. Στην περίπτωση αυτή το φόντο του σχετικού πεδίου στο Gramps "
@@ -1831,9 +1831,9 @@ msgstr "Οικογενειακό Δέντρο «%s»:"
 #: ../gramps/plugins/textreport/indivcomplete.py:989
 #: ../gramps/plugins/textreport/indivcomplete.py:1064
 #: ../gramps/plugins/textreport/placereport.py:193
-#: ../gramps/plugins/webreport/basepage.py:1063
-#: ../gramps/plugins/webreport/basepage.py:3033
-#: ../gramps/plugins/webreport/basepage.py:3087
+#: ../gramps/plugins/webreport/basepage.py:1082
+#: ../gramps/plugins/webreport/basepage.py:3054
+#: ../gramps/plugins/webreport/basepage.py:3108
 #, fuzzy, python-format
 msgid "%(str1)s: %(str2)s"
 msgstr "%(type)s: %(list)s"
@@ -1971,14 +1971,14 @@ msgstr "Κλειδωμένο από %s"
 #: ../gramps/plugins/view/geomoves.py:715
 #: ../gramps/plugins/view/geoperson.py:584
 #: ../gramps/plugins/view/geoplaces.py:597
-#: ../gramps/plugins/view/relview.py:617 ../gramps/plugins/view/relview.py:1229
-#: ../gramps/plugins/view/relview.py:1286
-#: ../gramps/plugins/webreport/basepage.py:2443
-#: ../gramps/plugins/webreport/basepage.py:2474
-#: ../gramps/plugins/webreport/basepage.py:2479
-#: ../gramps/plugins/webreport/basepage.py:2485
-#: ../gramps/plugins/webreport/basepage.py:3020
-#: ../gramps/plugins/webreport/basepage.py:3211
+#: ../gramps/plugins/view/relview.py:617 ../gramps/plugins/view/relview.py:1225
+#: ../gramps/plugins/view/relview.py:1282
+#: ../gramps/plugins/webreport/basepage.py:2464
+#: ../gramps/plugins/webreport/basepage.py:2495
+#: ../gramps/plugins/webreport/basepage.py:2500
+#: ../gramps/plugins/webreport/basepage.py:2506
+#: ../gramps/plugins/webreport/basepage.py:3041
+#: ../gramps/plugins/webreport/basepage.py:3232
 msgid "Unknown"
 msgstr "Άγνωστη"
 
@@ -2306,12 +2306,12 @@ msgid "none"
 msgstr "όνομα (βαπτιστικό)"
 
 #: ../gramps/gen/const.py:297 ../gramps/plugins/gramplet/todo.py:208
-#: ../gramps/plugins/webreport/basepage.py:233
-#: ../gramps/plugins/webreport/basepage.py:3337
+#: ../gramps/plugins/webreport/basepage.py:235
 #: ../gramps/plugins/webreport/basepage.py:3358
-#: ../gramps/plugins/webreport/family.py:461
-#: ../gramps/plugins/webreport/person.py:813
-#: ../gramps/plugins/webreport/person.py:815
+#: ../gramps/plugins/webreport/basepage.py:3379
+#: ../gramps/plugins/webreport/family.py:521
+#: ../gramps/plugins/webreport/person.py:863
+#: ../gramps/plugins/webreport/person.py:865
 msgid ":"
 msgstr ""
 
@@ -3801,7 +3801,7 @@ msgstr "Εφαρμογή φίλτρου..."
 #: ../gramps/plugins/textreport/indivcomplete.py:1101
 #: ../gramps/plugins/textreport/recordsreport.py:236
 #: ../gramps/plugins/tool/sortevents.py:177
-#: ../gramps/plugins/webreport/narrativeweb.py:2103
+#: ../gramps/plugins/webreport/narrativeweb.py:2105
 #: ../gramps/plugins/webreport/webcal.py:1851
 msgid "Filter"
 msgstr "Φίλτρο"
@@ -7238,9 +7238,9 @@ msgstr "Παραπομπές"
 #: ../gramps/plugins/view/noteview.py:113
 #: ../gramps/plugins/view/view.gpr.py:103
 #: ../gramps/plugins/view/view.gpr.py:111
-#: ../gramps/plugins/webreport/basepage.py:1640
-#: ../gramps/plugins/webreport/basepage.py:2803
-#: ../gramps/plugins/webreport/person.py:1576
+#: ../gramps/plugins/webreport/basepage.py:1659
+#: ../gramps/plugins/webreport/basepage.py:2824
+#: ../gramps/plugins/webreport/person.py:1626
 #: ../gramps/plugins/webreport/updates.py:158
 msgid "Notes"
 msgstr "Σημειώσεις"
@@ -7251,9 +7251,9 @@ msgstr "Σημειώσεις"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
 #: ../gramps/plugins/view/geoplaces.py:602
 #: ../gramps/plugins/view/repoview.py:90
-#: ../gramps/plugins/webreport/basepage.py:1489
-#: ../gramps/plugins/webreport/basepage.py:3377
-#: ../gramps/plugins/webreport/basepage.py:3455
+#: ../gramps/plugins/webreport/basepage.py:1508
+#: ../gramps/plugins/webreport/basepage.py:3398
+#: ../gramps/plugins/webreport/basepage.py:3476
 msgid "Street"
 msgstr "Οδός"
 
@@ -7263,9 +7263,9 @@ msgstr "Οδός"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
 #: ../gramps/plugins/view/geoplaces.py:600
 #: ../gramps/plugins/view/repoview.py:91
-#: ../gramps/plugins/webreport/basepage.py:1490
-#: ../gramps/plugins/webreport/basepage.py:3378
-#: ../gramps/plugins/webreport/basepage.py:3456
+#: ../gramps/plugins/webreport/basepage.py:1509
+#: ../gramps/plugins/webreport/basepage.py:3399
+#: ../gramps/plugins/webreport/basepage.py:3477
 msgid "Locality"
 msgstr "Περιοχή"
 
@@ -7275,9 +7275,9 @@ msgstr "Περιοχή"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
 #: ../gramps/plugins/view/geoplaces.py:628
 #: ../gramps/plugins/view/repoview.py:92
-#: ../gramps/plugins/webreport/basepage.py:1491
-#: ../gramps/plugins/webreport/basepage.py:3379
-#: ../gramps/plugins/webreport/basepage.py:3457
+#: ../gramps/plugins/webreport/basepage.py:1510
+#: ../gramps/plugins/webreport/basepage.py:3400
+#: ../gramps/plugins/webreport/basepage.py:3478
 msgid "City"
 msgstr "Πόλη"
 
@@ -7287,9 +7287,9 @@ msgstr "Πόλη"
 #: ../gramps/gui/views/treemodels/placemodel.py:354
 #: ../gramps/plugins/lib/maps/placeselection.py:162
 #: ../gramps/plugins/view/geoplaces.py:616
-#: ../gramps/plugins/webreport/basepage.py:1493
-#: ../gramps/plugins/webreport/basepage.py:3381
-#: ../gramps/plugins/webreport/basepage.py:3459
+#: ../gramps/plugins/webreport/basepage.py:1512
+#: ../gramps/plugins/webreport/basepage.py:3402
+#: ../gramps/plugins/webreport/basepage.py:3480
 msgid "County"
 msgstr "Νομός"
 
@@ -7310,18 +7310,18 @@ msgstr "Περιφέρεια"
 #: ../gramps/plugins/lib/maps/placeselection.py:160
 #: ../gramps/plugins/view/geoplaces.py:614
 #: ../gramps/plugins/view/repoview.py:94
-#: ../gramps/plugins/webreport/basepage.py:1495
-#: ../gramps/plugins/webreport/basepage.py:3385
-#: ../gramps/plugins/webreport/basepage.py:3462
-#: ../gramps/plugins/webreport/place.py:329
-#: ../gramps/plugins/webreport/place.py:341
+#: ../gramps/plugins/webreport/basepage.py:1514
+#: ../gramps/plugins/webreport/basepage.py:3406
+#: ../gramps/plugins/webreport/basepage.py:3483
+#: ../gramps/plugins/webreport/place.py:348
+#: ../gramps/plugins/webreport/place.py:360
 msgid "Country"
 msgstr "Χώρα"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:98
-#: ../gramps/plugins/webreport/basepage.py:1494
-#: ../gramps/plugins/webreport/basepage.py:3383
-#: ../gramps/plugins/webreport/basepage.py:3461
+#: ../gramps/plugins/webreport/basepage.py:1513
+#: ../gramps/plugins/webreport/basepage.py:3404
+#: ../gramps/plugins/webreport/basepage.py:3482
 msgid "Postal Code"
 msgstr "Ταχυδρομικός κώδικας"
 
@@ -7333,7 +7333,7 @@ msgstr "Ταχυδρομικός κώδικας"
 #: ../gramps/plugins/gramplet/repositorydetails.py:131
 #: ../gramps/plugins/lib/libgedcom.py:4585
 #: ../gramps/plugins/lib/libgedcom.py:6375
-#: ../gramps/plugins/webreport/basepage.py:1496
+#: ../gramps/plugins/webreport/basepage.py:1515
 msgid "Phone"
 msgstr "Τηλέφωνο"
 
@@ -7352,8 +7352,8 @@ msgstr "Χαρακτηριστικό"
 #: ../gramps/plugins/gramplet/attributes.py:61
 #: ../gramps/plugins/lib/libmetadata.py:231
 #: ../gramps/plugins/tool/patchnames.py:463
-#: ../gramps/plugins/webreport/basepage.py:1379
-#: ../gramps/plugins/webreport/basepage.py:1639
+#: ../gramps/plugins/webreport/basepage.py:1398
+#: ../gramps/plugins/webreport/basepage.py:1658
 msgid "Value"
 msgstr "Τιμή"
 
@@ -7392,10 +7392,10 @@ msgstr "Κάστα"
 #: ../gramps/plugins/textreport/placereport.py:329
 #: ../gramps/plugins/tool/sortevents.py:63
 #: ../gramps/plugins/view/eventview.py:81
-#: ../gramps/plugins/webreport/basepage.py:843
-#: ../gramps/plugins/webreport/basepage.py:1260
-#: ../gramps/plugins/webreport/basepage.py:2890
-#: ../gramps/plugins/webreport/basepage.py:3662
+#: ../gramps/plugins/webreport/basepage.py:863
+#: ../gramps/plugins/webreport/basepage.py:1279
+#: ../gramps/plugins/webreport/basepage.py:2911
+#: ../gramps/plugins/webreport/basepage.py:3683
 #: ../gramps/plugins/webreport/download.py:129
 msgid "Description"
 msgstr "Περιγραφή"
@@ -7565,20 +7565,20 @@ msgstr "Παραπομπή"
 #: ../gramps/plugins/quickview/filterbyname.py:359
 #: ../gramps/plugins/tool/findloop.py:116
 #: ../gramps/plugins/tool/findloop.py:118
-#: ../gramps/plugins/webreport/basepage.py:3327
-#: ../gramps/plugins/webreport/event.py:315
-#: ../gramps/plugins/webreport/event.py:469
+#: ../gramps/plugins/webreport/basepage.py:3348
+#: ../gramps/plugins/webreport/event.py:329
+#: ../gramps/plugins/webreport/event.py:556
 #: ../gramps/plugins/webreport/media.py:614
-#: ../gramps/plugins/webreport/person.py:1820
+#: ../gramps/plugins/webreport/person.py:1870
 #: ../gramps/plugins/webreport/repository.py:264
-#: ../gramps/plugins/webreport/source.py:292
+#: ../gramps/plugins/webreport/source.py:400
 msgid "Gramps ID"
 msgstr "ΑΑ Gramps"
 
 #: ../gramps/gen/lib/citation.py:117
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:87
 #: ../gramps/plugins/importer/importprogen.glade:336
-#: ../gramps/plugins/webreport/basepage.py:3027
+#: ../gramps/plugins/webreport/basepage.py:3048
 msgid "Page"
 msgstr "Σελίδα"
 
@@ -7587,7 +7587,7 @@ msgstr "Σελίδα"
 #: ../gramps/plugins/importer/importprogen.glade:305
 #: ../gramps/plugins/view/citationlistview.py:103
 #: ../gramps/plugins/view/citationtreeview.py:98
-#: ../gramps/plugins/webreport/basepage.py:3028
+#: ../gramps/plugins/webreport/basepage.py:3049
 msgid "Confidence"
 msgstr "Επίπεδο αξιοπιστίας"
 
@@ -7641,11 +7641,11 @@ msgstr "Πηγή"
 #: ../gramps/plugins/tool/reorderids.glade:849
 #: ../gramps/plugins/view/mediaview.py:145
 #: ../gramps/plugins/view/view.gpr.py:87 ../gramps/plugins/view/view.gpr.py:95
-#: ../gramps/plugins/webreport/basepage.py:2045
-#: ../gramps/plugins/webreport/basepage.py:2117
-#: ../gramps/plugins/webreport/basepage.py:2244
-#: ../gramps/plugins/webreport/basepage.py:2289
-#: ../gramps/plugins/webreport/basepage.py:2605
+#: ../gramps/plugins/webreport/basepage.py:2064
+#: ../gramps/plugins/webreport/basepage.py:2136
+#: ../gramps/plugins/webreport/basepage.py:2265
+#: ../gramps/plugins/webreport/basepage.py:2310
+#: ../gramps/plugins/webreport/basepage.py:2626
 #: ../gramps/plugins/webreport/media.py:212
 #: ../gramps/plugins/webreport/media.py:414
 #: ../gramps/plugins/webreport/updates.py:152
@@ -7691,13 +7691,13 @@ msgstr "Τροποποιήθηκε"
 #: ../gramps/plugins/view/mediaview.py:106
 #: ../gramps/plugins/view/noteview.py:86 ../gramps/plugins/view/repoview.py:99
 #: ../gramps/plugins/view/sourceview.py:90
-#: ../gramps/plugins/webreport/basepage.py:3476
-#: ../gramps/plugins/webreport/event.py:496
-#: ../gramps/plugins/webreport/family.py:461
+#: ../gramps/plugins/webreport/basepage.py:3497
+#: ../gramps/plugins/webreport/event.py:583
+#: ../gramps/plugins/webreport/family.py:521
 #: ../gramps/plugins/webreport/media.py:660
-#: ../gramps/plugins/webreport/person.py:1915
+#: ../gramps/plugins/webreport/person.py:1965
 #: ../gramps/plugins/webreport/repository.py:287
-#: ../gramps/plugins/webreport/source.py:308
+#: ../gramps/plugins/webreport/source.py:416
 msgid "Tags"
 msgstr "Ετικέτες"
 
@@ -7711,8 +7711,8 @@ msgstr "Ετικέτες"
 #: ../gramps/plugins/lib/libgedcom.py:7225
 #: ../gramps/plugins/textreport/indivcomplete.py:694
 #: ../gramps/plugins/tool/dumpgenderstats.py:47
-#: ../gramps/plugins/view/relview.py:819
-#: ../gramps/plugins/webreport/person.py:540
+#: ../gramps/plugins/view/relview.py:815
+#: ../gramps/plugins/webreport/person.py:590
 msgid "unknown"
 msgstr "άγνωστο"
 
@@ -7743,15 +7743,15 @@ msgid "about"
 msgstr "περίπου"
 
 #: ../gramps/gen/lib/date.py:323 ../gramps/gen/lib/date.py:370
-#: ../gramps/gen/lib/date.py:392 ../gramps/plugins/webreport/basepage.py:3738
+#: ../gramps/gen/lib/date.py:392 ../gramps/plugins/webreport/basepage.py:3759
 msgid "between"
 msgstr "μεταξύ"
 
 #: ../gramps/gen/lib/date.py:327 ../gramps/gen/lib/date.py:374
 #: ../gramps/gen/lib/date.py:396 ../gramps/gui/merge/mergefamily.py:157
 #: ../gramps/plugins/quickview/all_relations.py:339
-#: ../gramps/plugins/view/relview.py:1213
-#: ../gramps/plugins/webreport/basepage.py:3739
+#: ../gramps/plugins/view/relview.py:1209
+#: ../gramps/plugins/webreport/basepage.py:3760
 msgid "and"
 msgstr "και"
 
@@ -7847,15 +7847,15 @@ msgstr "0 ημέρες"
 #: ../gramps/plugins/view/citationtreeview.py:97
 #: ../gramps/plugins/view/eventview.py:84
 #: ../gramps/plugins/view/mediaview.py:104
-#: ../gramps/plugins/webreport/basepage.py:841
-#: ../gramps/plugins/webreport/basepage.py:1255
-#: ../gramps/plugins/webreport/basepage.py:1299
-#: ../gramps/plugins/webreport/basepage.py:1488
-#: ../gramps/plugins/webreport/basepage.py:3026
-#: ../gramps/plugins/webreport/event.py:314
+#: ../gramps/plugins/webreport/basepage.py:861
+#: ../gramps/plugins/webreport/basepage.py:1274
+#: ../gramps/plugins/webreport/basepage.py:1318
+#: ../gramps/plugins/webreport/basepage.py:1507
+#: ../gramps/plugins/webreport/basepage.py:3047
+#: ../gramps/plugins/webreport/event.py:328
 #: ../gramps/plugins/webreport/media.py:249
 #: ../gramps/plugins/webreport/media.py:641
-#: ../gramps/plugins/webreport/person.py:1067
+#: ../gramps/plugins/webreport/person.py:1117
 msgid "Date"
 msgstr "Ημερομηνία"
 
@@ -7924,18 +7924,18 @@ msgid "none"
 msgstr ""
 
 #: ../gramps/gen/lib/date.py:2002 ../gramps/plugins/lib/libsubstkeyword.py:319
-#: ../gramps/plugins/webreport/basepage.py:3745
+#: ../gramps/plugins/webreport/basepage.py:3766
 msgid "before"
 msgstr "πριν"
 
 #: ../gramps/gen/lib/date.py:2003 ../gramps/plugins/lib/libprogen.py:2029
 #: ../gramps/plugins/lib/libsubstkeyword.py:320
-#: ../gramps/plugins/webreport/basepage.py:3743
+#: ../gramps/plugins/webreport/basepage.py:3764
 msgid "after"
 msgstr "μετά"
 
 #: ../gramps/gen/lib/date.py:2004 ../gramps/plugins/lib/libsubstkeyword.py:321
-#: ../gramps/plugins/webreport/basepage.py:3747
+#: ../gramps/plugins/webreport/basepage.py:3768
 msgid "about"
 msgstr "γύρω στο/στις"
 
@@ -7976,7 +7976,7 @@ msgstr "κείμενομόνον"
 #: ../gramps/plugins/quickview/references.py:91
 #: ../gramps/plugins/textreport/placereport.py:491
 #: ../gramps/plugins/tool/reorderids.glade:788
-#: ../gramps/plugins/webreport/basepage.py:840
+#: ../gramps/plugins/webreport/basepage.py:860
 msgid "Event"
 msgstr "Συμβάν"
 
@@ -8015,9 +8015,9 @@ msgstr "Συμβάν"
 #: ../gramps/plugins/tool/reorderids.glade:800
 #: ../gramps/plugins/tool/sortevents.py:64
 #: ../gramps/plugins/view/eventview.py:85
-#: ../gramps/plugins/webreport/basepage.py:842
-#: ../gramps/plugins/webreport/basepage.py:1259
-#: ../gramps/plugins/webreport/basepage.py:1301
+#: ../gramps/plugins/webreport/basepage.py:862
+#: ../gramps/plugins/webreport/basepage.py:1278
+#: ../gramps/plugins/webreport/basepage.py:1320
 msgid "Place"
 msgstr "Τόπος"
 
@@ -8032,10 +8032,10 @@ msgstr "Τόπος"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:753
 #: ../gramps/plugins/textreport/indivcomplete.py:496
 #: ../gramps/plugins/textreport/indivcomplete.py:722
-#: ../gramps/plugins/webreport/basepage.py:583
-#: ../gramps/plugins/webreport/basepage.py:1363
-#: ../gramps/plugins/webreport/basepage.py:1613
-#: ../gramps/plugins/webreport/basepage.py:1622
+#: ../gramps/plugins/webreport/basepage.py:603
+#: ../gramps/plugins/webreport/basepage.py:1382
+#: ../gramps/plugins/webreport/basepage.py:1632
+#: ../gramps/plugins/webreport/basepage.py:1641
 msgid "Attributes"
 msgstr "Χαρακτηριστικά"
 
@@ -8101,8 +8101,8 @@ msgstr "γονέας2"
 #: ../gramps/plugins/textreport/indivcomplete.py:958
 #: ../gramps/plugins/textreport/tagreport.py:261
 #: ../gramps/plugins/view/familyview.py:83
-#: ../gramps/plugins/view/relview.py:1111
-#: ../gramps/plugins/webreport/person.py:2054
+#: ../gramps/plugins/view/relview.py:1107
+#: ../gramps/plugins/webreport/person.py:2104
 msgid "Father"
 msgstr "Πατέρας"
 
@@ -8123,8 +8123,8 @@ msgstr "Πατέρας"
 #: ../gramps/plugins/textreport/indivcomplete.py:959
 #: ../gramps/plugins/textreport/tagreport.py:267
 #: ../gramps/plugins/view/familyview.py:84
-#: ../gramps/plugins/view/relview.py:1112
-#: ../gramps/plugins/webreport/person.py:2067
+#: ../gramps/plugins/view/relview.py:1108
+#: ../gramps/plugins/webreport/person.py:2117
 msgid "Mother"
 msgstr "Μητέρα"
 
@@ -8192,9 +8192,9 @@ msgstr "Συμβάντα"
 #: ../gramps/plugins/quickview/references.py:90
 #: ../gramps/plugins/textreport/recordsreport.py:296
 #: ../gramps/plugins/tool/reorderids.glade:775
-#: ../gramps/plugins/view/relview.py:1629
-#: ../gramps/plugins/view/relview.py:1653
-#: ../gramps/plugins/webreport/family.py:316
+#: ../gramps/plugins/view/relview.py:1625
+#: ../gramps/plugins/view/relview.py:1649
+#: ../gramps/plugins/webreport/family.py:315
 #: ../gramps/plugins/webreport/updates.py:228
 msgid "Family"
 msgstr "Οικογένεια"
@@ -8226,7 +8226,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libprogen.py:2017
 #: ../gramps/plugins/lib/libprogen.py:2019
 #: ../gramps/plugins/webreport/addressbooklist.py:119
-#: ../gramps/plugins/webreport/basepage.py:3637
+#: ../gramps/plugins/webreport/basepage.py:3658
 msgid "Residence"
 msgstr "Κατοικία"
 
@@ -8260,7 +8260,7 @@ msgstr "Υιοθεσία"
 #: ../gramps/plugins/textreport/familygroup.py:539
 #: ../gramps/plugins/textreport/familygroup.py:541
 #: ../gramps/plugins/textreport/tagreport.py:179
-#: ../gramps/plugins/webreport/person.py:425
+#: ../gramps/plugins/webreport/person.py:427
 #: ../gramps/plugins/webreport/surname.py:152
 msgid "Birth"
 msgstr "Γέννηση"
@@ -8273,7 +8273,7 @@ msgstr "Γέννηση"
 #: ../gramps/plugins/textreport/familygroup.py:545
 #: ../gramps/plugins/textreport/familygroup.py:547
 #: ../gramps/plugins/textreport/tagreport.py:185
-#: ../gramps/plugins/webreport/person.py:430
+#: ../gramps/plugins/webreport/person.py:432
 #: ../gramps/plugins/webreport/surname.py:157
 msgid "Death"
 msgstr "Θάνατος"
@@ -8406,7 +8406,7 @@ msgstr "Διαθήκη"
 #: ../gramps/plugins/importer/importcsv.py:382
 #: ../gramps/plugins/textreport/familygroup.py:423
 #: ../gramps/plugins/textreport/familygroup.py:617
-#: ../gramps/plugins/webreport/family.py:317
+#: ../gramps/plugins/webreport/family.py:316
 msgid "Marriage"
 msgstr "Γάμος"
 
@@ -8434,7 +8434,7 @@ msgid "Engagement"
 msgstr "Αρραβώνας"
 
 #: ../gramps/gen/lib/eventtype.py:240 ../gramps/gen/utils/symbols.py:98
-#: ../gramps/gui/configure.py:2805 ../gramps/plugins/webreport/family.py:318
+#: ../gramps/gui/configure.py:2805 ../gramps/plugins/webreport/family.py:317
 msgid "Divorce"
 msgstr "Διαζύγιο"
 
@@ -8709,8 +8709,8 @@ msgstr "διαθ."
 #: ../gramps/plugins/textreport/familygroup.py:657
 #: ../gramps/plugins/textreport/indivcomplete.py:708
 #: ../gramps/plugins/view/pedigreeview.py:1968
-#: ../gramps/plugins/view/relview.py:1670
-#: ../gramps/plugins/webreport/basepage.py:511
+#: ../gramps/plugins/view/relview.py:1666
+#: ../gramps/plugins/webreport/basepage.py:531
 msgid "Children"
 msgstr "Τέκνα"
 
@@ -8723,12 +8723,12 @@ msgstr "Τέκνα"
 #: ../gramps/plugins/textreport/tagreport.py:333
 #: ../gramps/plugins/view/eventview.py:140
 #: ../gramps/plugins/view/view.gpr.py:39 ../gramps/plugins/view/view.gpr.py:47
-#: ../gramps/plugins/webreport/basepage.py:2039
-#: ../gramps/plugins/webreport/basepage.py:2114
-#: ../gramps/plugins/webreport/basepage.py:2235
-#: ../gramps/plugins/webreport/event.py:263
-#: ../gramps/plugins/webreport/event.py:430
-#: ../gramps/plugins/webreport/person.py:1941
+#: ../gramps/plugins/webreport/basepage.py:2058
+#: ../gramps/plugins/webreport/basepage.py:2133
+#: ../gramps/plugins/webreport/basepage.py:2256
+#: ../gramps/plugins/webreport/event.py:267
+#: ../gramps/plugins/webreport/event.py:517
+#: ../gramps/plugins/webreport/person.py:1991
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
 msgstr "Συμβάντα"
@@ -8806,11 +8806,11 @@ msgstr "Πολιτική ένωση ζεύγους"
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/mediaview.py:102
 #: ../gramps/plugins/view/noteview.py:84 ../gramps/plugins/view/repoview.py:88
-#: ../gramps/plugins/webreport/basepage.py:1298
-#: ../gramps/plugins/webreport/basepage.py:1638
-#: ../gramps/plugins/webreport/basepage.py:2889
-#: ../gramps/plugins/webreport/basepage.py:3592
-#: ../gramps/plugins/webreport/event.py:313
+#: ../gramps/plugins/webreport/basepage.py:1317
+#: ../gramps/plugins/webreport/basepage.py:1657
+#: ../gramps/plugins/webreport/basepage.py:2910
+#: ../gramps/plugins/webreport/basepage.py:3613
+#: ../gramps/plugins/webreport/event.py:327
 #: ../gramps/plugins/webreport/repository.py:174
 #: ../gramps/plugins/webreport/repository.py:273
 msgid "Type"
@@ -8911,7 +8911,7 @@ msgstr "Uncleared"
 #: ../gramps/gui/editors/editldsord.py:485
 #: ../gramps/plugins/textreport/indivcomplete.py:523
 #: ../gramps/plugins/textreport/indivcomplete.py:734
-#: ../gramps/plugins/webreport/basepage.py:568
+#: ../gramps/plugins/webreport/basepage.py:588
 msgid "LDS Ordinance"
 msgstr "Τελετή LDS"
 
@@ -8920,7 +8920,7 @@ msgstr "Τελετή LDS"
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
 #: ../gramps/plugins/textreport/indivcomplete.py:533
 #: ../gramps/plugins/textreport/indivcomplete.py:738
-#: ../gramps/plugins/webreport/basepage.py:1300
+#: ../gramps/plugins/webreport/basepage.py:1319
 msgid "Temple"
 msgstr "Ναός"
 
@@ -8933,7 +8933,7 @@ msgstr "Ναός"
 #: ../gramps/plugins/textreport/indivcomplete.py:532
 #: ../gramps/plugins/textreport/indivcomplete.py:737
 #: ../gramps/plugins/textreport/notelinkreport.py:103
-#: ../gramps/plugins/webreport/basepage.py:1302
+#: ../gramps/plugins/webreport/basepage.py:1321
 msgid "Status"
 msgstr "Κατάσταση"
 
@@ -9018,9 +9018,9 @@ msgstr "Θρήσκευμα"
 #: ../gramps/plugins/tool/notrelated.py:130
 #: ../gramps/plugins/tool/removeunused.py:224
 #: ../gramps/plugins/tool/verify.py:823 ../gramps/plugins/view/repoview.py:86
-#: ../gramps/plugins/webreport/basepage.py:526
-#: ../gramps/plugins/webreport/person.py:421
-#: ../gramps/plugins/webreport/person.py:2284
+#: ../gramps/plugins/webreport/basepage.py:546
+#: ../gramps/plugins/webreport/person.py:423
+#: ../gramps/plugins/webreport/person.py:2334
 #: ../gramps/plugins/webreport/surname.py:148
 msgid "Name"
 msgstr "Όνομα"
@@ -9029,11 +9029,11 @@ msgstr "Όνομα"
 msgid "Given name"
 msgstr "Όνομα (βαπτιστικό)"
 
-#: ../gramps/gen/lib/name.py:185 ../gramps/plugins/webreport/basepage.py:2037
-#: ../gramps/plugins/webreport/basepage.py:2094
-#: ../gramps/plugins/webreport/basepage.py:2097
-#: ../gramps/plugins/webreport/basepage.py:2226
-#: ../gramps/plugins/webreport/person.py:235
+#: ../gramps/gen/lib/name.py:185 ../gramps/plugins/webreport/basepage.py:2056
+#: ../gramps/plugins/webreport/basepage.py:2113
+#: ../gramps/plugins/webreport/basepage.py:2116
+#: ../gramps/plugins/webreport/basepage.py:2247
+#: ../gramps/plugins/webreport/person.py:234
 #: ../gramps/plugins/webreport/surnamelist.py:111
 #: ../gramps/plugins/webreport/surnamelist.py:184
 msgid "Surnames"
@@ -9071,11 +9071,11 @@ msgstr "Κατάληξη"
 #: ../gramps/plugins/textreport/tagreport.py:754
 #: ../gramps/plugins/view/mediaview.py:100
 #: ../gramps/plugins/view/sourceview.py:84
-#: ../gramps/plugins/webreport/basepage.py:3591
+#: ../gramps/plugins/webreport/basepage.py:3612
 msgid "Title"
 msgstr "Τίτλος"
 
-#: ../gramps/gen/lib/name.py:190 ../gramps/plugins/webreport/person.py:419
+#: ../gramps/gen/lib/name.py:190 ../gramps/plugins/webreport/person.py:421
 #, fuzzy
 msgid "Group as"
 msgstr "Ομα_δοποίηση ως:"
@@ -9231,8 +9231,8 @@ msgstr "Επώνυμο συζύγου"
 #: ../gramps/plugins/textreport/familygroup.py:378
 #: ../gramps/plugins/textreport/familygroup.py:440
 #: ../gramps/plugins/tool/reorderids.glade:861
-#: ../gramps/plugins/webreport/basepage.py:818
-#: ../gramps/plugins/webreport/basepage.py:2837
+#: ../gramps/plugins/webreport/basepage.py:838
+#: ../gramps/plugins/webreport/basepage.py:2858
 msgid "Note"
 msgstr "Σημείωση"
 
@@ -9378,7 +9378,7 @@ msgstr "Σημείωση αναφοράς τέκνου"
 #: ../gramps/plugins/lib/libpersonview.py:102
 #: ../gramps/plugins/quickview/siblings.py:50
 #: ../gramps/plugins/textreport/indivcomplete.py:957
-#: ../gramps/plugins/webreport/person.py:1831
+#: ../gramps/plugins/webreport/person.py:1881
 msgid "Gender"
 msgstr "Φύλο"
 
@@ -9414,12 +9414,12 @@ msgstr "Σημείωση αναφοράς συμβάντος"
 #: ../gramps/plugins/tool/verify.glade:803
 #: ../gramps/plugins/view/familyview.py:129
 #: ../gramps/plugins/view/view.gpr.py:55 ../gramps/plugins/view/view.gpr.py:63
-#: ../gramps/plugins/webreport/basepage.py:382
-#: ../gramps/plugins/webreport/basepage.py:442
-#: ../gramps/plugins/webreport/basepage.py:2038
-#: ../gramps/plugins/webreport/basepage.py:2102
-#: ../gramps/plugins/webreport/basepage.py:2227
-#: ../gramps/plugins/webreport/family.py:244
+#: ../gramps/plugins/webreport/basepage.py:402
+#: ../gramps/plugins/webreport/basepage.py:462
+#: ../gramps/plugins/webreport/basepage.py:2057
+#: ../gramps/plugins/webreport/basepage.py:2121
+#: ../gramps/plugins/webreport/basepage.py:2248
+#: ../gramps/plugins/webreport/family.py:251
 #: ../gramps/plugins/webreport/updates.py:113
 msgid "Families"
 msgstr "Οικογένειες"
@@ -9432,7 +9432,7 @@ msgstr "Αναδιάταξη οικογενειών"
 #: ../gramps/gen/lib/person.py:235 ../gramps/gen/lib/repo.py:114
 #: ../gramps/gui/merge/mergeperson.py:292
 #: ../gramps/plugins/textreport/indivcomplete.py:444
-#: ../gramps/plugins/webreport/basepage.py:1442
+#: ../gramps/plugins/webreport/basepage.py:1461
 msgid "Addresses"
 msgstr "Διευθύνσεις"
 
@@ -9462,8 +9462,8 @@ msgstr "Συσχετισμός"
 #: ../gramps/plugins/gramplet/coordinates.py:106
 #: ../gramps/plugins/gramplet/placedetails.py:144
 #: ../gramps/plugins/lib/libplaceview.py:92
-#: ../gramps/plugins/webreport/basepage.py:3370
-#: ../gramps/plugins/webreport/place.py:331
+#: ../gramps/plugins/webreport/basepage.py:3391
+#: ../gramps/plugins/webreport/place.py:350
 msgid "Longitude"
 msgstr "Γεωγραφικό μήκος"
 
@@ -9471,8 +9471,8 @@ msgstr "Γεωγραφικό μήκος"
 #: ../gramps/plugins/gramplet/coordinates.py:105
 #: ../gramps/plugins/gramplet/placedetails.py:142
 #: ../gramps/plugins/lib/libplaceview.py:91
-#: ../gramps/plugins/webreport/basepage.py:3349
-#: ../gramps/plugins/webreport/place.py:330
+#: ../gramps/plugins/webreport/basepage.py:3370
+#: ../gramps/plugins/webreport/place.py:349
 msgid "Latitude"
 msgstr "Γεωγραφικό πλάτος"
 
@@ -9483,18 +9483,18 @@ msgstr "Γεωγραφικό πλάτος"
 #: ../gramps/plugins/view/view.gpr.py:235
 #: ../gramps/plugins/view/view.gpr.py:243
 #: ../gramps/plugins/view/view.gpr.py:259
-#: ../gramps/plugins/webreport/basepage.py:2040
-#: ../gramps/plugins/webreport/basepage.py:2111
-#: ../gramps/plugins/webreport/basepage.py:2236
-#: ../gramps/plugins/webreport/place.py:273
-#: ../gramps/plugins/webreport/place.py:439
+#: ../gramps/plugins/webreport/basepage.py:2059
+#: ../gramps/plugins/webreport/basepage.py:2130
+#: ../gramps/plugins/webreport/basepage.py:2257
+#: ../gramps/plugins/webreport/place.py:282
+#: ../gramps/plugins/webreport/place.py:481
 #: ../gramps/plugins/webreport/updates.py:127
 msgid "Places"
 msgstr "Τοποθεσίες"
 
 #: ../gramps/gen/lib/place.py:168 ../gramps/gui/merge/mergeperson.py:218
 #: ../gramps/plugins/textreport/indivcomplete.py:416
-#: ../gramps/plugins/webreport/basepage.py:3416
+#: ../gramps/plugins/webreport/basepage.py:3437
 msgid "Alternate Names"
 msgstr "Εναλλακτικά ονόματα"
 
@@ -9506,7 +9506,7 @@ msgstr "Εναλλακτικά ονόματα"
 msgid "Code"
 msgstr ""
 
-#: ../gramps/gen/lib/place.py:175 ../gramps/plugins/webreport/basepage.py:3446
+#: ../gramps/gen/lib/place.py:175 ../gramps/plugins/webreport/basepage.py:3467
 msgid "Alternate Locations"
 msgstr "Εναλλακτικές τοποθεσίες"
 
@@ -9521,8 +9521,8 @@ msgstr "Τοπωνύμιο"
 
 #: ../gramps/gen/lib/placename.py:100
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:66
-#: ../gramps/plugins/webreport/basepage.py:2152
-#: ../gramps/plugins/webreport/basepage.py:3423
+#: ../gramps/plugins/webreport/basepage.py:2171
+#: ../gramps/plugins/webreport/basepage.py:3444
 msgid "Language"
 msgstr ""
 
@@ -9532,7 +9532,7 @@ msgid "Place ref"
 msgstr "Ομαδοποίηση τοποθεσιών"
 
 #: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:618
-#: ../gramps/plugins/webreport/basepage.py:3384
+#: ../gramps/plugins/webreport/basepage.py:3405
 #, fuzzy
 msgid "Province"
 msgstr "Περιφέρεια/Επαρχία"
@@ -9582,8 +9582,8 @@ msgstr "Δημιουργία προβολής"
 
 #: ../gramps/gen/lib/placetype.py:94 ../gramps/plugins/gramplet/leak.py:98
 #: ../gramps/plugins/view/geoplaces.py:613
-#: ../gramps/plugins/webreport/basepage.py:3590
-#: ../gramps/plugins/webreport/source.py:175
+#: ../gramps/plugins/webreport/basepage.py:3611
+#: ../gramps/plugins/webreport/source.py:206
 msgid "Number"
 msgstr "Αριθμός"
 
@@ -9653,8 +9653,8 @@ msgstr "Χρηματοκιβώτιο"
 #: ../gramps/plugins/gramplet/citations.py:106
 #: ../gramps/plugins/textreport/tagreport.py:760
 #: ../gramps/plugins/view/sourceview.py:86
-#: ../gramps/plugins/webreport/source.py:176
-#: ../gramps/plugins/webreport/source.py:293
+#: ../gramps/plugins/webreport/source.py:207
+#: ../gramps/plugins/webreport/source.py:401
 msgid "Author"
 msgstr "Συγγραφέας"
 
@@ -9669,7 +9669,7 @@ msgstr "Πληροφορίες έκδοσης"
 #: ../gramps/gui/selectors/selectcitation.py:73
 #: ../gramps/gui/selectors/selectsource.py:68
 #: ../gramps/plugins/view/sourceview.py:87
-#: ../gramps/plugins/webreport/source.py:294
+#: ../gramps/plugins/webreport/source.py:402
 msgid "Abbreviation"
 msgstr "Συντομογραφία"
 
@@ -9680,10 +9680,10 @@ msgstr "Συντομογραφία"
 #: ../gramps/plugins/view/repoview.py:156
 #: ../gramps/plugins/view/view.gpr.py:268
 #: ../gramps/plugins/view/view.gpr.py:276
-#: ../gramps/plugins/webreport/basepage.py:2042
-#: ../gramps/plugins/webreport/basepage.py:2108
-#: ../gramps/plugins/webreport/basepage.py:2238
-#: ../gramps/plugins/webreport/basepage.py:3581
+#: ../gramps/plugins/webreport/basepage.py:2061
+#: ../gramps/plugins/webreport/basepage.py:2127
+#: ../gramps/plugins/webreport/basepage.py:2259
+#: ../gramps/plugins/webreport/basepage.py:3602
 #: ../gramps/plugins/webreport/repository.py:146
 #: ../gramps/plugins/webreport/repository.py:243
 #: ../gramps/plugins/webreport/updates.py:141
@@ -10097,7 +10097,7 @@ msgstr "Πληροφορίες έκδοσης"
 #: ../gramps/gen/plug/_pluginreg.py:645
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
 #: ../gramps/plugins/importer/importprogen.glade:1256
-#: ../gramps/plugins/webreport/basepage.py:2292
+#: ../gramps/plugins/webreport/basepage.py:2313
 #: ../gramps/plugins/webreport/statistics.py:184
 #: ../gramps/plugins/webreport/statistics.py:264
 msgid "Miscellaneous"
@@ -10992,10 +10992,10 @@ msgstr "Βιβλιογραφικές αναφορές"
 #: ../gramps/plugins/textreport/indivcomplete.py:958
 #: ../gramps/plugins/textreport/indivcomplete.py:959
 #: ../gramps/plugins/view/relview.py:689 ../gramps/plugins/view/relview.py:749
-#: ../gramps/plugins/view/relview.py:804 ../gramps/plugins/view/relview.py:1072
-#: ../gramps/plugins/view/relview.py:1110
-#: ../gramps/plugins/view/relview.py:1629
-#: ../gramps/plugins/view/relview.py:1653
+#: ../gramps/plugins/view/relview.py:802 ../gramps/plugins/view/relview.py:1068
+#: ../gramps/plugins/view/relview.py:1106
+#: ../gramps/plugins/view/relview.py:1625
+#: ../gramps/plugins/view/relview.py:1649
 #, python-format
 msgid "%s:"
 msgstr ""
@@ -11092,7 +11092,7 @@ msgstr "Να μην συμπεριληφθεί ο τίτλος"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1137
 #: ../gramps/plugins/textreport/familygroup.py:760
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
-#: ../gramps/plugins/webreport/narrativeweb.py:2559
+#: ../gramps/plugins/webreport/narrativeweb.py:2567
 msgid "Include"
 msgstr "Να συμπεριληφθούν"
 
@@ -11150,11 +11150,11 @@ msgstr "Το αρχείο δεν υπάρχει"
 #: ../gramps/gen/plug/report/utils.py:186
 #: ../gramps/plugins/textreport/indivcomplete.py:944
 #: ../gramps/plugins/textreport/simplebooktitle.py:114
-#: ../gramps/plugins/webreport/basepage.py:2405
-#: ../gramps/plugins/webreport/basepage.py:2642
-#: ../gramps/plugins/webreport/basepage.py:2652
-#: ../gramps/plugins/webreport/basepage.py:2683
-#: ../gramps/plugins/webreport/basepage.py:2742
+#: ../gramps/plugins/webreport/basepage.py:2426
+#: ../gramps/plugins/webreport/basepage.py:2663
+#: ../gramps/plugins/webreport/basepage.py:2673
+#: ../gramps/plugins/webreport/basepage.py:2704
+#: ../gramps/plugins/webreport/basepage.py:2763
 msgid "Could not add photo to page"
 msgstr "Αδύνατη η προσθήκη φωτογραφίας στη σελίδα"
 
@@ -11460,157 +11460,162 @@ msgstr ""
 "Ο υπολογιστής συγγένειας δεν είναι διαθέσιμος στη γλώσσα '%s'. "
 "Χρησιμοποιήστε εναλλακτικά 'english'."
 
-#: ../gramps/gen/utils/alive.py:189 ../gramps/gen/utils/alive.py:225
+#: ../gramps/gen/utils/alive.py:193 ../gramps/gen/utils/alive.py:229
 #: ../gramps/plugins/importer/importcsv.py:383
 msgid "date"
 msgstr "ημερομηνία"
 
-#: ../gramps/gen/utils/alive.py:208 ../gramps/gen/utils/alive.py:239
+#: ../gramps/gen/utils/alive.py:212 ../gramps/gen/utils/alive.py:243
 msgid "date fallback"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:255 ../gramps/gen/utils/alive.py:430
-#, fuzzy
-msgid ", death: "
-msgstr "Θάνατος"
-
-#: ../gramps/gen/utils/alive.py:255
-msgid "DIRECT birth: "
+#: ../gramps/gen/utils/alive.py:262
+msgid ""
+"Direct evidence for this person - birth: {birth_min_src:s}, death:  "
+"{death_src:s}"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:337
+#: ../gramps/gen/utils/alive.py:351
 #, fuzzy
 #| msgid "Mother's Age"
 msgid "mother's age"
 msgstr "Ηλικία της συζύγου / συντρόφου"
 
-#: ../gramps/gen/utils/alive.py:342
+#: ../gramps/gen/utils/alive.py:356
 #, fuzzy
 #| msgid "Father's Age"
 msgid "father's age"
 msgstr "Ηλικία του συζύγου / συντρόφου"
 
-#: ../gramps/gen/utils/alive.py:346
+#: ../gramps/gen/utils/alive.py:360
 #, fuzzy
 #| msgid "death date"
 msgid "from death date"
 msgstr "ημερομηνία θανάτου"
 
-#: ../gramps/gen/utils/alive.py:350
+#: ../gramps/gen/utils/alive.py:364
 #, fuzzy
 #| msgid "Mother's Age"
 msgid "mother's death"
 msgstr "Ηλικία της συζύγου / συντρόφου"
 
-#: ../gramps/gen/utils/alive.py:355
+#: ../gramps/gen/utils/alive.py:369
 #, fuzzy
 #| msgid "Father's Age"
 msgid "father's death"
 msgstr "Ηλικία του συζύγου / συντρόφου"
 
-#: ../gramps/gen/utils/alive.py:359
+#: ../gramps/gen/utils/alive.py:373
 #, fuzzy
 msgid "person's death"
 msgstr "%(person)s, γέννηση%(relation)s"
 
-#: ../gramps/gen/utils/alive.py:366
+#: ../gramps/gen/utils/alive.py:380
 #, fuzzy
 #| msgid "Not siblings"
 msgid "oldest sibling's age"
 msgstr "Όχι αδέρφια"
 
-#: ../gramps/gen/utils/alive.py:371
+#: ../gramps/gen/utils/alive.py:385
 #, fuzzy
 #| msgid "Not siblings"
 msgid "youngest sibling's age"
 msgstr "Όχι αδέρφια"
 
-#: ../gramps/gen/utils/alive.py:414
+#: ../gramps/gen/utils/alive.py:428
 msgid "birth date and known to be dead"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:417 ../gramps/plugins/importer/importcsv.py:251
-msgid "birth date"
-msgstr "ημερομηνία γέννησης"
-
-#: ../gramps/gen/utils/alive.py:425 ../gramps/gen/utils/alive.py:428
+#: ../gramps/gen/utils/alive.py:431
 #, fuzzy
-#| msgid "birth"
-msgid "birth: "
-msgstr "γέννηση"
+#| msgid "ancestor birth date"
+msgid "offset from birth date"
+msgstr "ημερομηνία γέννησης προγόνου"
 
-#: ../gramps/gen/utils/alive.py:428
-#, fuzzy
-#| msgid "' and '"
-msgid " and "
-msgstr "' και '"
+#: ../gramps/gen/utils/alive.py:440
+msgid ""
+"Direct evidence for this person - birth: {birth_min_src:s}, death: "
+"{death_src:s}"
+msgstr ""
 
-#: ../gramps/gen/utils/alive.py:511
+#: ../gramps/gen/utils/alive.py:447
+msgid ""
+"inferred from parents and siblings - birth: {birth_min_src:s}, death: "
+"{death_src:s}"
+msgstr ""
+
+#: ../gramps/gen/utils/alive.py:454
+msgid ""
+"inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
+"{birth_max_src:s} (latest), death: {death_src:s}"
+msgstr ""
+
+#: ../gramps/gen/utils/alive.py:543
 msgid "a spouse's birth-related date, "
 msgstr "ημερομηνία σχετική με τη γέννηση συζύγου,"
 
-#: ../gramps/gen/utils/alive.py:524
+#: ../gramps/gen/utils/alive.py:556
 msgid "a spouse's death-related date, "
 msgstr "ημερομηνία σχετική με το θάνατο συζύγου,"
 
-#: ../gramps/gen/utils/alive.py:554
+#: ../gramps/gen/utils/alive.py:586
 msgid "event with spouse"
 msgstr "συμβάν με σύζυγο"
 
-#: ../gramps/gen/utils/alive.py:732
+#: ../gramps/gen/utils/alive.py:764
 #, fuzzy, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
 msgstr[0] "Μέγιστος αριθμός γενεών απογόνων"
 msgstr[1] "Μέγιστος αριθμός γενεών απογόνων"
 
-#: ../gramps/gen/utils/alive.py:755
+#: ../gramps/gen/utils/alive.py:787
 #, fuzzy, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
 msgstr[0] "Μέγιστος αριθμός γενεών απογόνων"
 msgstr[1] "Μέγιστος αριθμός γενεών απογόνων"
 
-#: ../gramps/gen/utils/alive.py:770
-#, python-format
-msgid "Database error: loop in %s's descendants"
-msgstr ""
+#: ../gramps/gen/utils/alive.py:802
+#, fuzzy, python-format
+msgid "Database error: loop in descendants of %s."
+msgstr "Σφάλμα βάσης δεδομένων: %s ορίζεται ως πρόγονος του εαυτού του(ης)"
 
-#: ../gramps/gen/utils/alive.py:822
+#: ../gramps/gen/utils/alive.py:854
 #, fuzzy
 #| msgid "Death before birth"
 msgid "mother birth "
 msgstr "Θάνατος προ γέννησης "
 
-#: ../gramps/gen/utils/alive.py:826 ../gramps/gen/utils/alive.py:832
+#: ../gramps/gen/utils/alive.py:858 ../gramps/gen/utils/alive.py:864
 #, fuzzy
 #| msgid "Death before birth"
 msgid "father birth "
 msgstr "Θάνατος προ γέννησης "
 
-#: ../gramps/gen/utils/alive.py:840 ../gramps/gen/utils/alive.py:871
+#: ../gramps/gen/utils/alive.py:872 ../gramps/gen/utils/alive.py:903
 #, fuzzy
 msgid "ancestor "
 msgstr "Πρόγονοι"
 
-#: ../gramps/gen/utils/alive.py:846
+#: ../gramps/gen/utils/alive.py:878
 #, fuzzy
 #| msgid "Compute death age"
 msgid "mother death "
 msgstr "Υπολογισμός ηλικίας θανάτου"
 
-#: ../gramps/gen/utils/alive.py:850 ../gramps/gen/utils/alive.py:856
+#: ../gramps/gen/utils/alive.py:882 ../gramps/gen/utils/alive.py:888
 #, fuzzy
 #| msgid "Age at death"
 msgid "father death "
 msgstr "Ηλικία κατά το θάνατο"
 
-#: ../gramps/gen/utils/alive.py:929
+#: ../gramps/gen/utils/alive.py:961
 #, fuzzy, python-format
-msgid "Database error: loop in %s's ancestors"
+msgid "Database error: loop in ancestors of %s."
 msgstr "Σφάλμα βάσης δεδομένων: %s ορίζεται ως πρόγονος του εαυτού του(ης)"
 
-#: ../gramps/gen/utils/alive.py:1011 ../gramps/gen/utils/alive.py:1020
+#: ../gramps/gen/utils/alive.py:1043 ../gramps/gen/utils/alive.py:1052
 msgid "no evidence"
 msgstr "κανένα τεκμήριο"
 
@@ -11924,7 +11929,7 @@ msgstr ""
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:94
 #: ../gramps/plugins/tool/dumpgenderstats.py:47
-#: ../gramps/plugins/webreport/person.py:537
+#: ../gramps/plugins/webreport/person.py:587
 msgid "male"
 msgstr "άρρεν"
 
@@ -11933,7 +11938,7 @@ msgstr "άρρεν"
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:94
 #: ../gramps/plugins/tool/dumpgenderstats.py:47
-#: ../gramps/plugins/webreport/person.py:538
+#: ../gramps/plugins/webreport/person.py:588
 msgid "female"
 msgstr "θήλυ"
 
@@ -12568,7 +12573,7 @@ msgstr "_Εφαρμογή"
 #: ../gramps/gui/columnorder.py:142
 #: ../gramps/plugins/drawreport/ancestortree.py:973
 #: ../gramps/plugins/drawreport/descendtree.py:1708
-#: ../gramps/plugins/webreport/narrativeweb.py:2252
+#: ../gramps/plugins/webreport/narrativeweb.py:2260
 msgid "Display"
 msgstr "Προβολή"
 
@@ -13741,9 +13746,9 @@ msgstr "Θάνατος:"
 #: ../gramps/gui/configure.py:2804
 #: ../gramps/plugins/quickview/all_relations.py:345
 #: ../gramps/plugins/view/relview.py:498
-#: ../gramps/plugins/webreport/basepage.py:3143
-#: ../gramps/plugins/webreport/basepage.py:3145
-#: ../gramps/plugins/webreport/person.py:435
+#: ../gramps/plugins/webreport/basepage.py:3164
+#: ../gramps/plugins/webreport/basepage.py:3166
+#: ../gramps/plugins/webreport/person.py:437
 #: ../gramps/plugins/webreport/surname.py:162
 msgid "Partner"
 msgstr "Σύζυγος"
@@ -14978,7 +14983,7 @@ msgid "_Notes"
 msgstr "_Σημειώσεις"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:51
-#: ../gramps/plugins/webreport/basepage.py:2276
+#: ../gramps/plugins/webreport/basepage.py:2297
 msgid "Personal"
 msgstr "Προσωπικό"
 
@@ -15079,7 +15084,7 @@ msgstr "Εναλλακτικά ονόματα"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:76
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:120
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1504
-#: ../gramps/plugins/webreport/basepage.py:3484
+#: ../gramps/plugins/webreport/basepage.py:3505
 msgid "Enclosed By"
 msgstr ""
 
@@ -15517,7 +15522,7 @@ msgstr "Μητρική"
 #: ../gramps/plugins/quickview/samesurnames.py:129
 #: ../gramps/plugins/quickview/samesurnames.py:179
 #: ../gramps/plugins/quickview/siblings.py:50
-#: ../gramps/plugins/webreport/basepage.py:527
+#: ../gramps/plugins/webreport/basepage.py:547
 msgid "Birth Date"
 msgstr "Ημερομηνία γέννησης"
 
@@ -15528,7 +15533,7 @@ msgstr "Ημερομηνία γέννησης"
 #: ../gramps/plugins/lib/libpersonview.py:105
 #: ../gramps/plugins/quickview/lineage.py:65
 #: ../gramps/plugins/quickview/lineage.py:100
-#: ../gramps/plugins/webreport/basepage.py:528
+#: ../gramps/plugins/webreport/basepage.py:548
 msgid "Death Date"
 msgstr "Ημερομηνία θανάτου"
 
@@ -15563,7 +15568,7 @@ msgstr "Επεξεργασία σχέσης"
 #: ../gramps/gui/editors/editfamily.py:301
 #: ../gramps/gui/editors/editfamily.py:318
 #: ../gramps/gui/selectors/selectperson.py:75
-#: ../gramps/plugins/view/relview.py:1833
+#: ../gramps/plugins/view/relview.py:1829
 msgid "Select Child"
 msgstr "Επιλογή τέκνου"
 
@@ -15930,10 +15935,10 @@ msgid "Note: %(id)s - %(context)s"
 msgstr "Σημείωση: %(id)s - %(context)s"
 
 #: ../gramps/gui/editors/editnote.py:180
-#: ../gramps/plugins/webreport/basepage.py:809
-#: ../gramps/plugins/webreport/basepage.py:812
-#: ../gramps/plugins/webreport/basepage.py:2828
-#: ../gramps/plugins/webreport/basepage.py:2831
+#: ../gramps/plugins/webreport/basepage.py:829
+#: ../gramps/plugins/webreport/basepage.py:832
+#: ../gramps/plugins/webreport/basepage.py:2849
+#: ../gramps/plugins/webreport/basepage.py:2852
 #, python-format
 msgid "Note: %s"
 msgstr "Σημείωση: %s"
@@ -16044,10 +16049,10 @@ msgid "Add Person (%s)"
 msgstr "Προσθήκη ατόμου (%s)"
 
 #: ../gramps/gui/editors/editperson.py:979
-#: ../gramps/plugins/view/relview.py:729 ../gramps/plugins/view/relview.py:1224
-#: ../gramps/plugins/view/relview.py:1280
-#: ../gramps/plugins/view/relview.py:1401
-#: ../gramps/plugins/view/relview.py:1522
+#: ../gramps/plugins/view/relview.py:729 ../gramps/plugins/view/relview.py:1220
+#: ../gramps/plugins/view/relview.py:1276
+#: ../gramps/plugins/view/relview.py:1397
+#: ../gramps/plugins/view/relview.py:1518
 #, python-format
 msgid "Edit Person (%s)"
 msgstr "Επεξεργασία ατόμου (%s)"
@@ -16835,7 +16840,7 @@ msgstr "Συμμετέχοντες"
 #: ../gramps/gui/widgets/reorderfam.py:105
 #: ../gramps/plugins/textreport/tagreport.py:273
 #: ../gramps/plugins/view/familyview.py:85
-#: ../gramps/plugins/webreport/person.py:1575
+#: ../gramps/plugins/webreport/person.py:1625
 msgid "Relationship"
 msgstr "Σχέση"
 
@@ -16845,8 +16850,8 @@ msgstr "οποιοδήποτε"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:164
 #: ../gramps/plugins/export/exportcsv.py:428
-#: ../gramps/plugins/webreport/person.py:1891
-#: ../gramps/plugins/webreport/person.py:2285
+#: ../gramps/plugins/webreport/person.py:1941
+#: ../gramps/plugins/webreport/person.py:2335
 msgid "Birth date"
 msgstr "Ημερομηνία γέννησης"
 
@@ -16865,8 +16870,8 @@ msgstr "Τόπος γέννησης"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:170
 #: ../gramps/plugins/export/exportcsv.py:434
-#: ../gramps/plugins/webreport/person.py:1902
-#: ../gramps/plugins/webreport/person.py:2286
+#: ../gramps/plugins/webreport/person.py:1952
+#: ../gramps/plugins/webreport/person.py:2336
 msgid "Death date"
 msgstr "Ημερομηνία θανάτου"
 
@@ -18414,7 +18419,7 @@ msgid "Street Number"
 msgstr "Οδός"
 
 #: ../gramps/gui/glade/editplacename.glade:157
-#: ../gramps/plugins/webreport/basepage.py:3412
+#: ../gramps/plugins/webreport/basepage.py:3433
 #, fuzzy
 msgid "Date range in which the name is valid."
 msgstr "Ημερομηνία κατά την οποία η διεύθυνση είναι έγκυρη."
@@ -19957,7 +19962,7 @@ msgstr "%(type)s: %(value)s"
 
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:94
-#: ../gramps/plugins/webreport/person.py:539
+#: ../gramps/plugins/webreport/person.py:589
 #, fuzzy
 #| msgid "Mother"
 msgid "other"
@@ -19972,10 +19977,10 @@ msgstr "Συγχώνευση ατόμων"
 #: ../gramps/plugins/quickview/all_relations.py:364
 #: ../gramps/plugins/tool/notrelated.py:132
 #: ../gramps/plugins/view/pedigreeview.py:2005
-#: ../gramps/plugins/view/relview.py:689 ../gramps/plugins/view/relview.py:1072
-#: ../gramps/plugins/view/relview.py:1110
-#: ../gramps/plugins/webreport/person.py:440
-#: ../gramps/plugins/webreport/person.py:2262
+#: ../gramps/plugins/view/relview.py:689 ../gramps/plugins/view/relview.py:1068
+#: ../gramps/plugins/view/relview.py:1106
+#: ../gramps/plugins/webreport/person.py:442
+#: ../gramps/plugins/webreport/person.py:2312
 #: ../gramps/plugins/webreport/surname.py:167
 msgid "Parents"
 msgstr "Γονείς"
@@ -20003,7 +20008,7 @@ msgstr "Σύζυγοι"
 #: ../gramps/plugins/gramplet/children.py:113
 #: ../gramps/plugins/lib/libpersonview.py:107
 #: ../gramps/plugins/textreport/familygroup.py:581
-#: ../gramps/plugins/view/relview.py:1655
+#: ../gramps/plugins/view/relview.py:1651
 msgid "Spouse"
 msgstr "Σύζυγος"
 
@@ -20224,8 +20229,8 @@ msgid "Installed"
 msgstr "Ασταθής"
 
 #: ../gramps/gui/plug/_windows.py:428 ../gramps/gui/plug/_windows.py:638
-#: ../gramps/plugins/webreport/basepage.py:2058
-#: ../gramps/plugins/webreport/basepage.py:2123
+#: ../gramps/plugins/webreport/basepage.py:2077
+#: ../gramps/plugins/webreport/basepage.py:2142
 #, fuzzy
 msgid "Updates"
 msgstr "Ενημερώθηκε"
@@ -21113,7 +21118,7 @@ msgid "Paper Options"
 msgstr "Επιλογές χαρτιού"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:148
-#: ../gramps/plugins/webreport/narrativeweb.py:2145
+#: ../gramps/plugins/webreport/narrativeweb.py:2147
 msgid "HTML Options"
 msgstr "Επιλογές HTML"
 
@@ -21181,7 +21186,7 @@ msgstr "Πρότυπο"
 #: ../gramps/plugins/textreport/summary.py:395
 #: ../gramps/plugins/textreport/tableofcontents.py:101
 #: ../gramps/plugins/textreport/tagreport.py:912
-#: ../gramps/plugins/webreport/narrativeweb.py:2080
+#: ../gramps/plugins/webreport/narrativeweb.py:2082
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Report Options"
 msgstr "Επιλογές αναφοράς"
@@ -22122,12 +22127,12 @@ msgid "Collapse this section"
 msgstr "Συρρίκνωση αυτής της ενότητας"
 
 #: ../gramps/gui/widgets/fanchart.py:2058
-#: ../gramps/plugins/view/relview.py:1024
+#: ../gramps/plugins/view/relview.py:1020
 msgid "Edit family"
 msgstr "Επεξεργασία οικογένειας"
 
 #: ../gramps/gui/widgets/fanchart.py:2074
-#: ../gramps/plugins/view/relview.py:1025
+#: ../gramps/plugins/view/relview.py:1021
 msgid "Reorder families"
 msgstr "Αναδιάταξη οικογενειών"
 
@@ -22140,7 +22145,7 @@ msgstr ""
 #: ../gramps/gui/widgets/fanchart.py:2125
 #: ../gramps/plugins/quickview/quickview.gpr.py:338
 #: ../gramps/plugins/view/pedigreeview.py:1925
-#: ../gramps/plugins/view/relview.py:1126
+#: ../gramps/plugins/view/relview.py:1122
 msgid "Siblings"
 msgstr "Αδέρφια"
 
@@ -22160,7 +22165,7 @@ msgid "Add a person"
 msgstr "Προσθήκη νέου ατόμου"
 
 #: ../gramps/gui/widgets/fanchart.py:2414
-#: ../gramps/plugins/view/relview.py:1816
+#: ../gramps/plugins/view/relview.py:1812
 msgid "Add Child to Family"
 msgstr "Προσθήκη τέκνου στην οικογένεια"
 
@@ -22582,13 +22587,13 @@ msgid "of %d"
 msgstr "από %d"
 
 #: ../gramps/plugins/docgen/htmldoc.py:306
-#: ../gramps/plugins/webreport/narrativeweb.py:1932
+#: ../gramps/plugins/webreport/narrativeweb.py:1934
 #: ../gramps/plugins/webreport/webcal.py:296
 msgid "Possible destination error"
 msgstr "Πιθανό σφάλμα προορισμού"
 
 #: ../gramps/plugins/docgen/htmldoc.py:308
-#: ../gramps/plugins/webreport/narrativeweb.py:1935
+#: ../gramps/plugins/webreport/narrativeweb.py:1937
 #: ../gramps/plugins/webreport/webcal.py:299
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -23275,13 +23280,13 @@ msgstr "Τρίτη γραμμή κειμένου στο κάτω μέρος το
 
 #: ../gramps/plugins/drawreport/calendarreport.py:636
 #: ../gramps/plugins/textreport/birthdayreport.py:597
-#: ../gramps/plugins/webreport/narrativeweb.py:3152
+#: ../gramps/plugins/webreport/narrativeweb.py:3160
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Include only living people"
 msgstr "Να συμπεριληφθούν μόνον τα εν ζωή άτομα"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:637
-#: ../gramps/plugins/webreport/narrativeweb.py:3153
+#: ../gramps/plugins/webreport/narrativeweb.py:3161
 #: ../gramps/plugins/webreport/webcal.py:1914
 msgid "Include only living people in the calendar"
 msgstr "Να συμπεριληφθούν μόνον τα εν ζωή άτομα στο ημερολόγιο"
@@ -23290,7 +23295,7 @@ msgstr "Να συμπεριληφθούν μόνον τα εν ζωή άτομα
 #: ../gramps/plugins/textreport/birthdayreport.py:615
 #: ../gramps/plugins/textreport/detancestralreport.py:905
 #: ../gramps/plugins/textreport/detdescendantreport.py:1117
-#: ../gramps/plugins/view/relview.py:1976
+#: ../gramps/plugins/view/relview.py:1972
 msgid "Content"
 msgstr "Περιεχόμενο"
 
@@ -23311,27 +23316,27 @@ msgid "Select the country to see associated holidays"
 msgstr "Επιλογή χώρας για τον καθορισμό των ημερών διακοπών"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:664
-#: ../gramps/plugins/webreport/narrativeweb.py:3113
+#: ../gramps/plugins/webreport/narrativeweb.py:3121
 #: ../gramps/plugins/webreport/webcal.py:1970
 msgid "First day of week"
 msgstr "Πρώτη ημέρα της εβδομάδας"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:670
-#: ../gramps/plugins/webreport/narrativeweb.py:3117
+#: ../gramps/plugins/webreport/narrativeweb.py:3125
 #: ../gramps/plugins/webreport/webcal.py:1973
 msgid "Select the first day of the week for the calendar"
 msgstr "Επιλογή της πρώτης ημέρας της εβδομάδας"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:673
 #: ../gramps/plugins/textreport/birthdayreport.py:634
-#: ../gramps/plugins/webreport/narrativeweb.py:3121
+#: ../gramps/plugins/webreport/narrativeweb.py:3129
 #: ../gramps/plugins/webreport/webcal.py:1976
 msgid "Birthday surname"
 msgstr "Επώνυμο κατά τη γέννηση"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:675
 #: ../gramps/plugins/textreport/birthdayreport.py:636
-#: ../gramps/plugins/webreport/narrativeweb.py:3124
+#: ../gramps/plugins/webreport/narrativeweb.py:3132
 #: ../gramps/plugins/webreport/webcal.py:1979
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
@@ -23340,7 +23345,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:678
 #: ../gramps/plugins/textreport/birthdayreport.py:639
-#: ../gramps/plugins/webreport/narrativeweb.py:3127
+#: ../gramps/plugins/webreport/narrativeweb.py:3135
 #: ../gramps/plugins/webreport/webcal.py:1982
 msgid "Wives use husband's surname (from last family listed)"
 msgstr ""
@@ -23349,21 +23354,21 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:680
 #: ../gramps/plugins/textreport/birthdayreport.py:641
-#: ../gramps/plugins/webreport/narrativeweb.py:3129
+#: ../gramps/plugins/webreport/narrativeweb.py:3137
 #: ../gramps/plugins/webreport/webcal.py:1984
 msgid "Wives use their own surname"
 msgstr "Η σύζυγος κρατάει το πατρικό της επώνυμο"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:681
 #: ../gramps/plugins/textreport/birthdayreport.py:642
-#: ../gramps/plugins/webreport/narrativeweb.py:3130
+#: ../gramps/plugins/webreport/narrativeweb.py:3138
 #: ../gramps/plugins/webreport/webcal.py:1985
 msgid "Select married women's displayed surname"
 msgstr "Επιλογή εμφανιζόμενου επωνύμου για παντρεμένες γυναίκες"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:684
 #: ../gramps/plugins/textreport/birthdayreport.py:645
-#: ../gramps/plugins/webreport/narrativeweb.py:3140
+#: ../gramps/plugins/webreport/narrativeweb.py:3148
 #: ../gramps/plugins/webreport/webcal.py:2065
 msgid "Include birthdays"
 msgstr "Να συμπεριληφθούν οι ημερομηνίες γέννησης"
@@ -23376,7 +23381,7 @@ msgstr "Εάν θα συμπεριληφθούν φωτογραφίες/εικό
 
 #: ../gramps/plugins/drawreport/calendarreport.py:688
 #: ../gramps/plugins/textreport/birthdayreport.py:649
-#: ../gramps/plugins/webreport/narrativeweb.py:3144
+#: ../gramps/plugins/webreport/narrativeweb.py:3152
 #: ../gramps/plugins/webreport/webcal.py:2069
 msgid "Include anniversaries"
 msgstr "Να συμπεριληφθούν οι επέτειοι"
@@ -23388,14 +23393,14 @@ msgid "Whether to include anniversaries"
 msgstr "Εάν θα συμπεριληφθούν φωτογραφίες/εικόνες."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:692
-#: ../gramps/plugins/webreport/narrativeweb.py:3148
+#: ../gramps/plugins/webreport/narrativeweb.py:3156
 #: ../gramps/plugins/webreport/webcal.py:2073
 #, fuzzy
 msgid "Include death dates"
 msgstr "Να συμπεριληφθούν οι ημερομηνίες"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:693
-#: ../gramps/plugins/webreport/narrativeweb.py:3149
+#: ../gramps/plugins/webreport/narrativeweb.py:3157
 #: ../gramps/plugins/webreport/webcal.py:2074
 #, fuzzy
 msgid "Include death anniversaries in the calendar"
@@ -24015,7 +24020,7 @@ msgstr "Καθορισμός ποιών ατόμων θα συμπεριληφθ
 #: ../gramps/plugins/textreport/indivcomplete.py:1106
 #: ../gramps/plugins/textreport/recordsreport.py:241
 #: ../gramps/plugins/tool/sortevents.py:182
-#: ../gramps/plugins/webreport/narrativeweb.py:2110
+#: ../gramps/plugins/webreport/narrativeweb.py:2112
 #: ../gramps/plugins/webreport/webcal.py:1858
 msgid "Filter Person"
 msgstr "Φίλτρο επί ατόμου"
@@ -24165,7 +24170,7 @@ msgstr "Καθορισμός των ατόμων θα περιληφθούν σ�
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/textreport/recordsreport.py:242
 #: ../gramps/plugins/tool/sortevents.py:183
-#: ../gramps/plugins/webreport/narrativeweb.py:2111
+#: ../gramps/plugins/webreport/narrativeweb.py:2113
 #: ../gramps/plugins/webreport/webcal.py:1859
 msgid "The center person for the filter"
 msgstr "Το κεντρικό πρόσωπο για αυτό το φίλτρο"
@@ -24409,13 +24414,13 @@ msgstr "Πηγή ταφής"
 
 #: ../gramps/plugins/export/exportcsv.py:582
 #: ../gramps/plugins/importer/importcsv.py:378
-#: ../gramps/plugins/webreport/basepage.py:3141
+#: ../gramps/plugins/webreport/basepage.py:3162
 msgid "Husband"
 msgstr "Ο σύζυγος"
 
 #: ../gramps/plugins/export/exportcsv.py:583
 #: ../gramps/plugins/importer/importcsv.py:368
-#: ../gramps/plugins/webreport/basepage.py:3139
+#: ../gramps/plugins/webreport/basepage.py:3160
 msgid "Wife"
 msgstr "Η σύζυγος"
 
@@ -24561,8 +24566,8 @@ msgstr "Μητέρα στην ηλικία..."
 #: ../gramps/plugins/gramplet/agestats.py:255
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:298
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:305
-#: ../gramps/plugins/webreport/basepage.py:2059
-#: ../gramps/plugins/webreport/basepage.py:2126
+#: ../gramps/plugins/webreport/basepage.py:2078
+#: ../gramps/plugins/webreport/basepage.py:2145
 #: ../gramps/plugins/webreport/statistics.py:88
 msgid "Statistics"
 msgstr "Στατιστικά"
@@ -24614,7 +24619,7 @@ msgstr ""
 "τα άτομα με το συγκεκριμένο χαρακτηριστικό."
 
 #: ../gramps/plugins/gramplet/attributes.py:61
-#: ../gramps/plugins/webreport/basepage.py:1378
+#: ../gramps/plugins/webreport/basepage.py:1397
 msgid "Key"
 msgstr "Κλειδί"
 
@@ -24934,7 +24939,7 @@ msgstr "Gramplet που παρουσιάζει τους απογόνους το�
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:118
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:125
-#: ../gramps/plugins/webreport/person.py:1496
+#: ../gramps/plugins/webreport/person.py:1546
 msgid "Ancestors"
 msgstr "Πρόγονοι"
 
@@ -25426,8 +25431,8 @@ msgstr "Gramplet που δείχνει τις αναφορές σε ένα άτ�
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1137
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1153
-#: ../gramps/plugins/webreport/basepage.py:3836
-#: ../gramps/plugins/webreport/person.py:1053
+#: ../gramps/plugins/webreport/basepage.py:3857
+#: ../gramps/plugins/webreport/person.py:1103
 #: ../gramps/plugins/webreport/thumbnail.py:172
 msgid "References"
 msgstr "Αναφορές"
@@ -25465,7 +25470,7 @@ msgid "Gramplet showing the backlink references for a place"
 msgstr "Gramplet που δείχνει τις αναφορές σε μια τοποθεσία"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1081
-#: ../gramps/plugins/webreport/basepage.py:2987
+#: ../gramps/plugins/webreport/basepage.py:3008
 msgid "Source References"
 msgstr "Αναφορές πηγών"
 
@@ -25690,7 +25695,7 @@ msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Gramplet που δείχνει τις σημειώσεις μιας τοποθεσίας"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1512
-#: ../gramps/plugins/webreport/basepage.py:3522
+#: ../gramps/plugins/webreport/basepage.py:3543
 #, fuzzy
 msgid "Place Encloses"
 msgstr "Σημειώσεις τοποθεσίας"
@@ -26001,9 +26006,9 @@ msgstr "λιγότερο από 1"
 #: ../gramps/plugins/gramplet/statsgramplet.py:145
 #: ../gramps/plugins/graph/gvfamilylines.py:336
 #: ../gramps/plugins/textreport/summary.py:128
-#: ../gramps/plugins/webreport/basepage.py:2036
-#: ../gramps/plugins/webreport/basepage.py:2099
-#: ../gramps/plugins/webreport/basepage.py:2225
+#: ../gramps/plugins/webreport/basepage.py:2055
+#: ../gramps/plugins/webreport/basepage.py:2118
+#: ../gramps/plugins/webreport/basepage.py:2246
 #: ../gramps/plugins/webreport/person.py:362
 #: ../gramps/plugins/webreport/statistics.py:120
 #: ../gramps/plugins/webreport/statistics.py:230
@@ -27324,6 +27329,10 @@ msgstr "τόπος γέννησης"
 msgid "birth place id"
 msgstr "τόπος γέννησης"
 
+#: ../gramps/plugins/importer/importcsv.py:251
+msgid "birth date"
+msgstr "ημερομηνία γέννησης"
+
 #: ../gramps/plugins/importer/importcsv.py:256
 msgid "birth source"
 msgstr "πηγή της γέννησης"
@@ -28231,16 +28240,16 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:284
 #: ../gramps/plugins/view/view.gpr.py:292
 #: ../gramps/plugins/view/view.gpr.py:325
-#: ../gramps/plugins/webreport/basepage.py:844
-#: ../gramps/plugins/webreport/basepage.py:1303
-#: ../gramps/plugins/webreport/basepage.py:1501
-#: ../gramps/plugins/webreport/basepage.py:1641
-#: ../gramps/plugins/webreport/basepage.py:2041
-#: ../gramps/plugins/webreport/basepage.py:2105
-#: ../gramps/plugins/webreport/basepage.py:2237
-#: ../gramps/plugins/webreport/person.py:1577
-#: ../gramps/plugins/webreport/source.py:138
-#: ../gramps/plugins/webreport/source.py:248
+#: ../gramps/plugins/webreport/basepage.py:864
+#: ../gramps/plugins/webreport/basepage.py:1322
+#: ../gramps/plugins/webreport/basepage.py:1520
+#: ../gramps/plugins/webreport/basepage.py:1660
+#: ../gramps/plugins/webreport/basepage.py:2060
+#: ../gramps/plugins/webreport/basepage.py:2124
+#: ../gramps/plugins/webreport/basepage.py:2258
+#: ../gramps/plugins/webreport/person.py:1627
+#: ../gramps/plugins/webreport/source.py:151
+#: ../gramps/plugins/webreport/source.py:356
 #: ../gramps/plugins/webreport/updates.py:134
 msgid "Sources"
 msgstr "Πηγές"
@@ -28517,7 +28526,7 @@ msgstr "Γάμος σε μεγάλη ηλικία"
 
 #: ../gramps/plugins/lib/libgedcom.py:740
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:327
-#: ../gramps/plugins/webreport/narrativeweb.py:2091
+#: ../gramps/plugins/webreport/narrativeweb.py:2093
 #: ../gramps/plugins/webreport/webcal.py:1840
 msgid "Destination"
 msgstr "Αποθήκευση σε"
@@ -33531,7 +33540,7 @@ msgid "Open on maps.google.com"
 msgstr "Ανοίγει με maps.google.com"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:75
-#: ../gramps/plugins/webreport/narrativeweb.py:2619
+#: ../gramps/plugins/webreport/narrativeweb.py:2627
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -33588,7 +33597,7 @@ msgstr "Τόπος συμβάντος"
 #: ../gramps/plugins/quickview/all_events.py:62
 #: ../gramps/plugins/quickview/all_events.py:114
 #: ../gramps/plugins/quickview/all_events.py:131
-#: ../gramps/plugins/webreport/person.py:1069
+#: ../gramps/plugins/webreport/person.py:1119
 msgid "Event Type"
 msgstr "Τύπος συμβάντος"
 
@@ -34196,7 +34205,7 @@ msgid "No references for this %s"
 msgstr "Καμμία αναφορά για %s"
 
 #: ../gramps/plugins/quickview/reporef.py:64
-#: ../gramps/plugins/webreport/basepage.py:3593
+#: ../gramps/plugins/webreport/basepage.py:3614
 msgid "Call number"
 msgstr "Αναγνωριστικό"
 
@@ -35412,7 +35421,7 @@ msgid "Alternate Parents"
 msgstr "Άλλοι πιθανοί γονείς"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:469
-#: ../gramps/plugins/webreport/person.py:1556
+#: ../gramps/plugins/webreport/person.py:1606
 msgid "Associations"
 msgstr "Συσχετισμοί"
 
@@ -36918,8 +36927,8 @@ msgid "Help"
 msgstr "_Βοήθεια"
 
 #: ../gramps/plugins/tool/mediamanager.py:104
-#: ../gramps/plugins/webreport/basepage.py:2034
-#: ../gramps/plugins/webreport/basepage.py:2224
+#: ../gramps/plugins/webreport/basepage.py:2053
+#: ../gramps/plugins/webreport/basepage.py:2245
 #: ../gramps/plugins/webreport/introduction.py:81
 msgid "Introduction"
 msgstr "Εισαγωγή"
@@ -38635,7 +38644,7 @@ msgstr "Εμφάνιση της τελευταίας σελίδας"
 #: ../gramps/plugins/view/fanchartdescview.py:386
 #: ../gramps/plugins/view/fanchartview.py:466
 #: ../gramps/plugins/view/pedigreeview.py:2277
-#: ../gramps/plugins/view/relview.py:1959
+#: ../gramps/plugins/view/relview.py:1955
 msgid "Layout"
 msgstr "Διάταξη"
 
@@ -39381,15 +39390,15 @@ msgstr "Προσθήκη συζύγου..."
 msgid "_Reorder"
 msgstr "Ανα_διάταξη"
 
-#: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1022
+#: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1018
 msgid "Add a new family with person as parent"
 msgstr "Προσθήκη νέας οικογενείας με το άτομο ως γονέα"
 
-#: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1016
+#: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1012
 msgid "Add a new set of parents"
 msgstr "Προσθήκη ενός νέου ζεύγους γονέων"
 
-#: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1017
+#: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1013
 msgid "Add person as child to an existing family"
 msgstr "Προσθήκη ατόμου ως τέκνου σε υφιστάμενη οικογένεια"
 
@@ -39401,145 +39410,139 @@ msgstr "Αλλαγή σειράς γονέων και οικογενειών"
 msgid "Edit the active person"
 msgstr "Επεξεργασία ενεργού ατόμου"
 
-#: ../gramps/plugins/view/relview.py:764 ../gramps/plugins/view/relview.py:791
-#: ../gramps/plugins/view/relview.py:815 ../gramps/plugins/view/relview.py:829
-#, fuzzy, python-format
-msgid "%s"
-msgstr "%s, ..."
-
-#: ../gramps/plugins/view/relview.py:804
+#: ../gramps/plugins/view/relview.py:802
 msgid "Alive"
 msgstr "Εν ζωή"
 
-#: ../gramps/plugins/view/relview.py:882 ../gramps/plugins/view/relview.py:909
+#: ../gramps/plugins/view/relview.py:878 ../gramps/plugins/view/relview.py:905
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s στο(ν)/στη(ν) %(place)s"
 
-#: ../gramps/plugins/view/relview.py:1018
+#: ../gramps/plugins/view/relview.py:1014
 msgid "Edit parents"
 msgstr "Επεξεργασία γονέων"
 
-#: ../gramps/plugins/view/relview.py:1019
+#: ../gramps/plugins/view/relview.py:1015
 msgid "Reorder parents"
 msgstr "Αναδιάταξη γονέων"
 
-#: ../gramps/plugins/view/relview.py:1020
+#: ../gramps/plugins/view/relview.py:1016
 msgid "Remove person as child of these parents"
 msgstr "Αφαίρεση ατόμου ως τέκνου αυτών των γονέων"
 
-#: ../gramps/plugins/view/relview.py:1026
+#: ../gramps/plugins/view/relview.py:1022
 msgid "Remove person as parent in this family"
 msgstr "Αφαίρεση ατόμου ως πατέρα αυτής της οικογένειας"
 
-#: ../gramps/plugins/view/relview.py:1085
-#: ../gramps/plugins/view/relview.py:1146
+#: ../gramps/plugins/view/relview.py:1081
+#: ../gramps/plugins/view/relview.py:1142
 #, fuzzy, python-brace-format
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
 msgstr[0] "(1 αδερφός[ή])"
 msgstr[1] "(1 αδερφός[ή])"
 
-#: ../gramps/plugins/view/relview.py:1090
-#: ../gramps/plugins/view/relview.py:1153
+#: ../gramps/plugins/view/relview.py:1086
+#: ../gramps/plugins/view/relview.py:1149
 msgid " (1 brother)"
 msgstr " (1 αδερφός)"
 
-#: ../gramps/plugins/view/relview.py:1092
-#: ../gramps/plugins/view/relview.py:1155
+#: ../gramps/plugins/view/relview.py:1088
+#: ../gramps/plugins/view/relview.py:1151
 msgid " (1 sister)"
 msgstr " (1 αδερφή)"
 
-#: ../gramps/plugins/view/relview.py:1094
-#: ../gramps/plugins/view/relview.py:1157
+#: ../gramps/plugins/view/relview.py:1090
+#: ../gramps/plugins/view/relview.py:1153
 msgid " (1 sibling)"
 msgstr "(1 αδερφός[ή])"
 
-#: ../gramps/plugins/view/relview.py:1096
-#: ../gramps/plugins/view/relview.py:1159
+#: ../gramps/plugins/view/relview.py:1092
+#: ../gramps/plugins/view/relview.py:1155
 msgid " (only child)"
 msgstr "(μοναχοπαίδι)"
 
-#: ../gramps/plugins/view/relview.py:1173
-#: ../gramps/plugins/view/relview.py:1703
+#: ../gramps/plugins/view/relview.py:1169
+#: ../gramps/plugins/view/relview.py:1699
 msgid "Add new child to family"
 msgstr "Προσθήκη νέου τέκνου στην οικογένεια"
 
-#: ../gramps/plugins/view/relview.py:1177
-#: ../gramps/plugins/view/relview.py:1707
+#: ../gramps/plugins/view/relview.py:1173
+#: ../gramps/plugins/view/relview.py:1703
 msgid "Add existing child to family"
 msgstr "Προσθήκη υφιστάμενου τέκνου στην οικογένεια"
 
-#: ../gramps/plugins/view/relview.py:1471
+#: ../gramps/plugins/view/relview.py:1467
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
-#: ../gramps/plugins/view/relview.py:1479
-#: ../gramps/plugins/view/relview.py:1481
+#: ../gramps/plugins/view/relview.py:1475
+#: ../gramps/plugins/view/relview.py:1477
 #, python-format
 msgid "%(event)s %(date)s"
 msgstr "%(event)s %(date)s"
 
-#: ../gramps/plugins/view/relview.py:1540
+#: ../gramps/plugins/view/relview.py:1536
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Τύπος σχέσης: %s"
 
-#: ../gramps/plugins/view/relview.py:1591
+#: ../gramps/plugins/view/relview.py:1587
 #, fuzzy, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s στο(ν)/στη(ν) %(place)s"
 
-#: ../gramps/plugins/view/relview.py:1598
+#: ../gramps/plugins/view/relview.py:1594
 #, fuzzy, python-format
 msgid "%(event_type)s %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../gramps/plugins/view/relview.py:1602
+#: ../gramps/plugins/view/relview.py:1598
 #, fuzzy, python-format
 msgid "%(event_type)s %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../gramps/plugins/view/relview.py:1613
+#: ../gramps/plugins/view/relview.py:1609
 msgid "Broken family detected"
 msgstr "Εντοπίστηκε διαζευγμένη οικογένεια"
 
-#: ../gramps/plugins/view/relview.py:1614
+#: ../gramps/plugins/view/relview.py:1610
 msgid "Please run the Check and Repair Database tool"
 msgstr ""
 "Παρακαλούμε εκτελέστε το εργαλείο 'Έλεγχος και επιδιόρθωση βάσης δεδομένων'"
 
-#: ../gramps/plugins/view/relview.py:1639
-#: ../gramps/plugins/view/relview.py:1686
+#: ../gramps/plugins/view/relview.py:1635
+#: ../gramps/plugins/view/relview.py:1682
 #, fuzzy, python-brace-format
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
 msgstr[0] "Αριθμός τέκνων"
 msgstr[1] "Αριθμός τέκνων"
 
-#: ../gramps/plugins/view/relview.py:1642
-#: ../gramps/plugins/view/relview.py:1689
+#: ../gramps/plugins/view/relview.py:1638
+#: ../gramps/plugins/view/relview.py:1685
 msgid " (no children)"
 msgstr " (άνευ τέκνων)"
 
-#: ../gramps/plugins/view/relview.py:1948
+#: ../gramps/plugins/view/relview.py:1944
 msgid "Use shading"
 msgstr "Χρήση σκίασης"
 
-#: ../gramps/plugins/view/relview.py:1951
+#: ../gramps/plugins/view/relview.py:1947
 msgid "Display edit buttons"
 msgstr "Εμφάνιση κουμπιών επεξεργασίας"
 
-#: ../gramps/plugins/view/relview.py:1953
+#: ../gramps/plugins/view/relview.py:1949
 msgid "View links as website links"
 msgstr "Εμφάνιση συνδέσμων ως συνδέσμων διαδικτύου"
 
-#: ../gramps/plugins/view/relview.py:1970
+#: ../gramps/plugins/view/relview.py:1966
 msgid "Show Details"
 msgstr "Εμφάνιση λεπτομερειών"
 
-#: ../gramps/plugins/view/relview.py:1973
+#: ../gramps/plugins/view/relview.py:1969
 msgid "Show Siblings"
 msgstr "Εμφάνιση αδερφών"
 
@@ -39710,9 +39713,9 @@ msgstr "Προβολή που απεικονίζει τις παραπομπές
 
 #: ../gramps/plugins/webreport/addressbook.py:92
 #: ../gramps/plugins/webreport/addressbooklist.py:84
-#: ../gramps/plugins/webreport/basepage.py:2056
-#: ../gramps/plugins/webreport/basepage.py:2120
-#: ../gramps/plugins/webreport/basepage.py:2252
+#: ../gramps/plugins/webreport/basepage.py:2075
+#: ../gramps/plugins/webreport/basepage.py:2139
+#: ../gramps/plugins/webreport/basepage.py:2273
 msgid "Address Book"
 msgstr "Διευθύνσεις"
 
@@ -39732,156 +39735,156 @@ msgid "Full Name"
 msgstr "Πλήρες όνομα"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:120
-#: ../gramps/plugins/webreport/basepage.py:2869
+#: ../gramps/plugins/webreport/basepage.py:2890
 msgid "Web Links"
 msgstr "Σύνδεσμοι διαδικτύου"
 
-#: ../gramps/plugins/webreport/basepage.py:498
+#: ../gramps/plugins/webreport/basepage.py:518
 msgid "Narrative"
 msgstr "Αφήγηση"
 
-#: ../gramps/plugins/webreport/basepage.py:884
-#: ../gramps/plugins/webreport/basepage.py:954
+#: ../gramps/plugins/webreport/basepage.py:904
+#: ../gramps/plugins/webreport/basepage.py:974
 #, fuzzy, python-format
 msgid "(%(str1)s) %(str2)s"
 msgstr "%(type)s: %(list)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1492
-#: ../gramps/plugins/webreport/basepage.py:3382
-#: ../gramps/plugins/webreport/basepage.py:3460
+#: ../gramps/plugins/webreport/basepage.py:1511
+#: ../gramps/plugins/webreport/basepage.py:3403
+#: ../gramps/plugins/webreport/basepage.py:3481
 msgid "State/ Province"
 msgstr "Περιφέρεια/Επαρχία"
 
-#: ../gramps/plugins/webreport/basepage.py:1679
+#: ../gramps/plugins/webreport/basepage.py:1698
 #, fuzzy, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 msgstr ""
 "Δημιουργήθηκε από <a href = \"%(homepage)s\">Gramps</a> %(version)s on "
 "%(date)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1691
+#: ../gramps/plugins/webreport/basepage.py:1710
 #, fuzzy, python-format
 msgid "Last change was the %(date)s"
 msgstr "Τοποθεσίες που τροποποιήθηκαν μετά την <ημερομηνία>"
 
-#: ../gramps/plugins/webreport/basepage.py:1693
+#: ../gramps/plugins/webreport/basepage.py:1712
 #, fuzzy, python-format
 msgid " on %(date)s"
 msgstr "%(date)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1720
-#: ../gramps/plugins/webreport/basepage.py:1725
+#: ../gramps/plugins/webreport/basepage.py:1739
+#: ../gramps/plugins/webreport/basepage.py:1744
 #, fuzzy, python-format
 msgid "%(http_break)sCreated for %(subject_url)s"
 msgstr "Δημιουργήθηκε για %(author)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1982
+#: ../gramps/plugins/webreport/basepage.py:2001
 #: ../gramps/plugins/webstuff/webstuff.py:68
 msgid "Basic-Blue"
 msgstr "Βασικό - Αποχρώσεις μπλε-ηλεκτρίκ"
 
-#: ../gramps/plugins/webreport/basepage.py:1983
+#: ../gramps/plugins/webreport/basepage.py:2002
 #: ../gramps/plugins/webstuff/webstuff.py:135
 msgid "Visually Impaired"
 msgstr "Mε προβλήματα όρασης"
 
-#: ../gramps/plugins/webreport/basepage.py:1998
+#: ../gramps/plugins/webreport/basepage.py:2017
 #, fuzzy
 msgid "Go to top"
 msgstr "Πήγαινε στο άτομο βάσης"
 
-#: ../gramps/plugins/webreport/basepage.py:2033
-#: ../gramps/plugins/webreport/basepage.py:2091
-#: ../gramps/plugins/webreport/basepage.py:2270
+#: ../gramps/plugins/webreport/basepage.py:2052
+#: ../gramps/plugins/webreport/basepage.py:2110
+#: ../gramps/plugins/webreport/basepage.py:2291
 msgctxt "Html"
 msgid "Home"
 msgstr "Αρχική σελίδα"
 
-#: ../gramps/plugins/webreport/basepage.py:2052
-#: ../gramps/plugins/webreport/basepage.py:2245
+#: ../gramps/plugins/webreport/basepage.py:2071
+#: ../gramps/plugins/webreport/basepage.py:2266
 #: ../gramps/plugins/webreport/thumbnail.py:118
 msgid "Thumbnails"
 msgstr "Μικρογραφίες"
 
-#: ../gramps/plugins/webreport/basepage.py:2055
-#: ../gramps/plugins/webreport/basepage.py:2251
+#: ../gramps/plugins/webreport/basepage.py:2074
+#: ../gramps/plugins/webreport/basepage.py:2272
 #: ../gramps/plugins/webreport/download.py:94
-#: ../gramps/plugins/webreport/narrativeweb.py:2456
+#: ../gramps/plugins/webreport/narrativeweb.py:2464
 msgid "Download"
 msgstr "Λήψη"
 
-#: ../gramps/plugins/webreport/basepage.py:2057
-#: ../gramps/plugins/webreport/basepage.py:2257
-#: ../gramps/plugins/webreport/basepage.py:2295
+#: ../gramps/plugins/webreport/basepage.py:2076
+#: ../gramps/plugins/webreport/basepage.py:2278
+#: ../gramps/plugins/webreport/basepage.py:2316
 #: ../gramps/plugins/webreport/contact.py:81
 msgid "Contact"
 msgstr "Επαφή"
 
-#: ../gramps/plugins/webreport/basepage.py:2060
-#: ../gramps/plugins/webreport/basepage.py:2129
+#: ../gramps/plugins/webreport/basepage.py:2079
+#: ../gramps/plugins/webreport/basepage.py:2148
 #: ../gramps/plugins/webreport/webplugins.gpr.py:60
 msgid "Web Calendar"
 msgstr "Διαδικτυακό ημερολόγιο"
 
-#: ../gramps/plugins/webreport/basepage.py:2198
+#: ../gramps/plugins/webreport/basepage.py:2219
 #: ../gramps/plugins/webreport/media.py:436
 msgid "Previous"
 msgstr "Προηγούμενο"
 
-#: ../gramps/plugins/webreport/basepage.py:2200
+#: ../gramps/plugins/webreport/basepage.py:2221
 #: ../gramps/plugins/webreport/media.py:449
 msgid "Next"
 msgstr "Επόμενο"
 
-#: ../gramps/plugins/webreport/basepage.py:2750
+#: ../gramps/plugins/webreport/basepage.py:2771
 msgid "Other media: videos, pdfs..."
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:2922
+#: ../gramps/plugins/webreport/basepage.py:2943
 msgid " [Click to Go]"
 msgstr "[Κλικ για μετάβαση]"
 
-#: ../gramps/plugins/webreport/basepage.py:2948
+#: ../gramps/plugins/webreport/basepage.py:2969
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Μορμόνοι (LDS)/Τελετή LDS "
 
-#: ../gramps/plugins/webreport/basepage.py:3115
-#: ../gramps/plugins/webreport/basepage.py:3117
-#: ../gramps/plugins/webreport/family.py:504
-#: ../gramps/plugins/webreport/person.py:830
-#: ../gramps/plugins/webreport/person.py:1218
+#: ../gramps/plugins/webreport/basepage.py:3136
+#: ../gramps/plugins/webreport/basepage.py:3138
+#: ../gramps/plugins/webreport/family.py:564
+#: ../gramps/plugins/webreport/person.py:880
+#: ../gramps/plugins/webreport/person.py:1268
 msgid "Family Map"
 msgstr "Οικογενειακός χάρτης"
 
-#: ../gramps/plugins/webreport/basepage.py:3342
+#: ../gramps/plugins/webreport/basepage.py:3363
 #, fuzzy
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "Άκυρο γεωγραφικό πλάτος (σύνταξη: 18\\u00b09'"
 
-#: ../gramps/plugins/webreport/basepage.py:3363
+#: ../gramps/plugins/webreport/basepage.py:3384
 #, fuzzy
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "Άκυρο γεωγραφικό μήκος (syntax: 18\\u00b09'"
 
-#: ../gramps/plugins/webreport/basepage.py:3380
-#: ../gramps/plugins/webreport/basepage.py:3458
+#: ../gramps/plugins/webreport/basepage.py:3401
+#: ../gramps/plugins/webreport/basepage.py:3479
 msgid "Church Parish"
 msgstr "Ενορία"
 
-#: ../gramps/plugins/webreport/basepage.py:3402
+#: ../gramps/plugins/webreport/basepage.py:3423
 #, fuzzy
 msgid "Locations"
 msgstr "Τοποθεσία"
 
-#: ../gramps/plugins/webreport/basepage.py:3749
+#: ../gramps/plugins/webreport/basepage.py:3770
 msgid "circa"
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:3751
+#: ../gramps/plugins/webreport/basepage.py:3772
 #, fuzzy
 msgid "around"
 msgstr "Χρώμα φόντου"
@@ -40024,7 +40027,7 @@ msgstr "MD5"
 msgid "No file to download"
 msgstr "Περιγραφή"
 
-#: ../gramps/plugins/webreport/event.py:121
+#: ../gramps/plugins/webreport/event.py:123
 msgid "Creating event pages"
 msgstr "Δημιουργία σελίδων συμβάντων"
 
@@ -40033,7 +40036,7 @@ msgstr "Δημιουργία σελίδων συμβάντων"
 msgid "Event types beginning with letter %s"
 msgstr "Τύποι συμβάντων που ξεκινούν με το γράμμα %s"
 
-#: ../gramps/plugins/webreport/event.py:271
+#: ../gramps/plugins/webreport/event.py:276
 msgid ""
 "This page contains an index of all the events in the database, sorted by "
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
@@ -40043,23 +40046,23 @@ msgstr ""
 "ταξινομημένα κατά όνομα, ΑΑ και ημερομηνία (εάν υπάρχει). Κάνετε κλικ σε ένα "
 "συμβάν για να μεταβείτε στη σελίδα του."
 
-#: ../gramps/plugins/webreport/event.py:312
-#: ../gramps/plugins/webreport/family.py:314
-#: ../gramps/plugins/webreport/place.py:326
-#: ../gramps/plugins/webreport/place.py:338
+#: ../gramps/plugins/webreport/event.py:326
+#: ../gramps/plugins/webreport/family.py:313
+#: ../gramps/plugins/webreport/place.py:345
+#: ../gramps/plugins/webreport/place.py:357
 #: ../gramps/plugins/webreport/surnamelist.py:177
 msgid "Letter"
 msgstr "Γράμμα"
 
-#: ../gramps/plugins/webreport/family.py:115
+#: ../gramps/plugins/webreport/family.py:117
 msgid "Creating family pages..."
 msgstr "Δημιουργία σελίδων οικογενειακών"
 
-#: ../gramps/plugins/webreport/family.py:172
+#: ../gramps/plugins/webreport/family.py:173
 msgid "Families beginning with letter "
 msgstr "Οικογένειες που ξεκινούν με το γράμμα"
 
-#: ../gramps/plugins/webreport/family.py:254
+#: ../gramps/plugins/webreport/family.py:261
 msgid ""
 "This page contains an index of all the families/ relationships in the "
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
@@ -40069,7 +40072,7 @@ msgstr ""
 "βάσης δεδομένων, ταξινομημένες κατά το επώνυμό τους. Κάνετε κλικ στο όνομα "
 "για να μεταβείτε στη σελίδα της οικογενείας."
 
-#: ../gramps/plugins/webreport/family.py:558
+#: ../gramps/plugins/webreport/family.py:618
 #, fuzzy, python-format
 msgid "Family Map for %s"
 msgstr "Οικογενειακές τοποθεσίες για %s"
@@ -40160,100 +40163,100 @@ msgstr "Μη έγκυρο όνομα αρχείου"
 msgid "The archive file must be a file, not a directory"
 msgstr "Το συμπιεσμένο αρχείο πρέπει να είναι αρχείο, όχι κατάλογος"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:598
+#: ../gramps/plugins/webreport/narrativeweb.py:600
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ΑΑ=%(grampsid)s, διαδρομή=%(dir)s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:604
+#: ../gramps/plugins/webreport/narrativeweb.py:606
 msgid "Missing media objects:"
 msgstr " Αντικείμενα μέσων που λείπουν:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:651
+#: ../gramps/plugins/webreport/narrativeweb.py:653
 msgid "Constructing list of other objects..."
 msgstr "Δημιουργία καταλόγου άλλων αντικειμένων..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:934
+#: ../gramps/plugins/webreport/narrativeweb.py:936
 #, fuzzy, python-format
 msgid "Family of %(husband)s and %(spouse)s"
 msgstr "Οικογένεια του %s και της %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:941
-#: ../gramps/plugins/webreport/narrativeweb.py:945
+#: ../gramps/plugins/webreport/narrativeweb.py:943
+#: ../gramps/plugins/webreport/narrativeweb.py:947
 #, python-format
 msgid "Family of %s"
 msgstr "Οικογένεια του(ης)%s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1328
+#: ../gramps/plugins/webreport/narrativeweb.py:1330
 msgid "Creating GENDEX file"
 msgstr "Δημιουργία αρχείου GENDEX"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1388
+#: ../gramps/plugins/webreport/narrativeweb.py:1390
 msgid "Creating surname pages"
 msgstr "Δημιουργία σελίδων επωνύμου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1425
+#: ../gramps/plugins/webreport/narrativeweb.py:1427
 msgid "Creating thumbnail preview page..."
 msgstr "Δημιουργία σελίδας προεπισκόπισης μικρογραφίας..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1434
+#: ../gramps/plugins/webreport/narrativeweb.py:1436
 #, fuzzy
 msgid "Creating statistics page..."
 msgstr "Δημιουργία σελίδων οικογενειακών"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1442
+#: ../gramps/plugins/webreport/narrativeweb.py:1444
 #, fuzzy
 msgid "Creating updates page..."
 msgstr "Δημιουργία σελίδων οικογενειακών"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1482
+#: ../gramps/plugins/webreport/narrativeweb.py:1484
 msgid "Creating address book pages ..."
 msgstr "Δημιουργία σελίδων βιβλίου διευθύνσεων..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1962
+#: ../gramps/plugins/webreport/narrativeweb.py:1964
 #, fuzzy, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "Αναφορά αφηγηματικής ιστοσελίδας "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1964
+#: ../gramps/plugins/webreport/narrativeweb.py:1966
 #, fuzzy
 msgid "Narrative Website Report"
 msgstr "Αναφορά αφηγηματικής ιστοσελίδας "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2083
+#: ../gramps/plugins/webreport/narrativeweb.py:2085
 #, fuzzy
 #| msgid "Store web pages in .tar.gz archive"
 msgid "Store website in .tar.gz archive"
 msgstr "Αποθήκευση αρχείων σε συμπιεσμένη μορφή .tar.gz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2084
+#: ../gramps/plugins/webreport/narrativeweb.py:2086
 #, fuzzy
 #| msgid "Whether to store the web pages in an archive file"
 msgid "Whether to store the website in an archive file"
 msgstr "Εάν θα αποθηκευτούν ή όχι οι ιστοσελίδες σε συμπιεσμένο αρχείο"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2094
+#: ../gramps/plugins/webreport/narrativeweb.py:2096
 #: ../gramps/plugins/webreport/webcal.py:1843
 msgid "The destination directory for the web files"
 msgstr "Κατάλογος αποθήκευσης για τα αρχεία διαδικτύου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2099
+#: ../gramps/plugins/webreport/narrativeweb.py:2101
 msgid "My Family Tree"
 msgstr "Το γενεαλογικό μου δέντρο"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2099
+#: ../gramps/plugins/webreport/narrativeweb.py:2101
 #, fuzzy
 #| msgid "Web site title"
 msgid "Website title"
 msgstr "Ονομασία ιστοτόπου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2100
+#: ../gramps/plugins/webreport/narrativeweb.py:2102
 #, fuzzy
 #| msgid "The title of the web site"
 msgid "The title of the website"
 msgstr "Η ονομασία του ιστοτόπου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2105
+#: ../gramps/plugins/webreport/narrativeweb.py:2107
 #, fuzzy
 #| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
@@ -40261,84 +40264,84 @@ msgstr ""
 "Επιλέξτε φίλτρο για να περιορίσετε τα άτομα που θα εμφανίζονται στην "
 "ιστοσελίδα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2117
+#: ../gramps/plugins/webreport/narrativeweb.py:2119
 #, fuzzy
 msgid "Show the relationship between the current person and the active person"
 msgstr "Εμφάνιση όλων των σχέσεων μεταξύ του ατόμου και του ατόμου βάσης."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2124
+#: ../gramps/plugins/webreport/narrativeweb.py:2126
 #, fuzzy
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
 msgstr "Εμφάνιση όλων των σχέσεων μεταξύ του ατόμου και του ατόμου βάσης."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2148
+#: ../gramps/plugins/webreport/narrativeweb.py:2150
 #: ../gramps/plugins/webreport/webcal.py:1865
 msgid "File extension"
 msgstr "Επέκταση αρχείου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2151
+#: ../gramps/plugins/webreport/narrativeweb.py:2153
 #: ../gramps/plugins/webreport/webcal.py:1868
 msgid "The extension to be used for the web files"
 msgstr "Η επέκταση αρχείου που θα χρησιμοποιείται από τα αρχεία διαδικτύου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2155
+#: ../gramps/plugins/webreport/narrativeweb.py:2157
 #: ../gramps/plugins/webreport/webcal.py:1871
 msgid "Copyright"
 msgstr "Πνευματικά δικαιώματα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2158
+#: ../gramps/plugins/webreport/narrativeweb.py:2160
 #: ../gramps/plugins/webreport/webcal.py:1874
 msgid "The copyright to be used for the web files"
 msgstr "Τα πνευματικά δικαιώματα στα οποία υπόκεινται τα αρχεία διαδικτύου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2161
+#: ../gramps/plugins/webreport/narrativeweb.py:2163
 #: ../gramps/plugins/webreport/webcal.py:1884
 msgid "StyleSheet"
 msgstr "Χρωματικό θέμα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2167
+#: ../gramps/plugins/webreport/narrativeweb.py:2169
 #, fuzzy
 msgid "The default stylesheet to be used for the pages"
 msgstr "Το χρωματικό θέμα που θα χρησιμοποιηθεί στις ιστοσελίδες"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2172
+#: ../gramps/plugins/webreport/narrativeweb.py:2174
 msgid "Horizontal -- Default"
 msgstr "Οριζόντια        -- προεπιλεγμένο"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2173
+#: ../gramps/plugins/webreport/narrativeweb.py:2175
 msgid "Vertical   -- Left Side"
 msgstr "Κάθετα           -- αριστερή πλευρά"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2174
+#: ../gramps/plugins/webreport/narrativeweb.py:2176
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Σβήσιμο          -- για τους περιηγητές WebKit μόνον"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2175
-#: ../gramps/plugins/webreport/narrativeweb.py:2191
+#: ../gramps/plugins/webreport/narrativeweb.py:2177
+#: ../gramps/plugins/webreport/narrativeweb.py:2193
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Πτυσσόμενο-μενού -- για τους περιηγητές WebKit μόνον"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2178
+#: ../gramps/plugins/webreport/narrativeweb.py:2180
 msgid "Navigation Menu Layout"
 msgstr "Διάταξη μενού πλοήγησης"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2183
+#: ../gramps/plugins/webreport/narrativeweb.py:2185
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Επιλογή διάταξης για τα μενού πλοήγησης."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2190
+#: ../gramps/plugins/webreport/narrativeweb.py:2192
 msgid "Normal Outline Style"
 msgstr "Κανονικό στυλ περιγράμματος"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2194
+#: ../gramps/plugins/webreport/narrativeweb.py:2196
 #, fuzzy
 #| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "Διάταξη σελίδας των αναφορών παραπομπής"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2200
+#: ../gramps/plugins/webreport/narrativeweb.py:2202
 #, fuzzy
 #| msgid ""
 #| "Determine the default layout for the Source Page's Citation Referents "
@@ -40350,161 +40353,171 @@ msgstr ""
 "Προσδιορίστε την προεπιλεγμένη διάταξη για την ενότητα αναφοράς παραπομπών "
 "της σελίδας πηγών"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2206
+#: ../gramps/plugins/webreport/narrativeweb.py:2208
 msgid "Include ancestor's tree"
 msgstr "Να συμπεριληφθεί το δέντρο των προγόνων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2208
+#: ../gramps/plugins/webreport/narrativeweb.py:2210
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr ""
 "Εάν θα συμπεριληφθεί ή όχι το δέντρο των προγόνων σε κάθε ατομική σελίδα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2213
+#: ../gramps/plugins/webreport/narrativeweb.py:2215
 #, fuzzy
 msgid "Add previous/next"
 msgstr "Προσθήκη συζύγου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2214
+#: ../gramps/plugins/webreport/narrativeweb.py:2216
 msgid "Add previous/next to the navigation bar."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2217
+#: ../gramps/plugins/webreport/narrativeweb.py:2219
 msgid "This is a secure site (HTTPS)"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2218
+#: ../gramps/plugins/webreport/narrativeweb.py:2220
 msgid "Whether to use http:// or https://"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2221
+#: ../gramps/plugins/webreport/narrativeweb.py:2223
 #, fuzzy
 msgid "Toggle sections"
 msgstr "Επιλογή φίλτρου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2222
+#: ../gramps/plugins/webreport/narrativeweb.py:2224
 msgid "Check it if you want to open/close a section"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2231
+#: ../gramps/plugins/webreport/narrativeweb.py:2227
+msgid "Max. rows in an index"
+msgstr ""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:2229
+#, fuzzy
+#| msgid "The maximum number of ancestors to include."
+msgid "The maximum number of rows to include in an index page"
+msgstr "Ο μέγιστος αριθμός των προγόνων που θα συμπεριληφθούν."
+
+#: ../gramps/plugins/webreport/narrativeweb.py:2239
 #, fuzzy
 msgid "Extra Pages"
 msgstr "Εξαγωγή δεδομένων τοποθεσίας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2234
+#: ../gramps/plugins/webreport/narrativeweb.py:2242
 #, fuzzy
 msgid "Extra page name"
 msgstr "Εξαγωγή δεδομένων τοποθεσίας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2236
+#: ../gramps/plugins/webreport/narrativeweb.py:2244
 msgid "Your extra page name like it is shown in the menubar"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2241
+#: ../gramps/plugins/webreport/narrativeweb.py:2249
 msgid "Your extra page path"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2242
+#: ../gramps/plugins/webreport/narrativeweb.py:2250
 msgid "Your extra page path without extension"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2257
+#: ../gramps/plugins/webreport/narrativeweb.py:2265
 msgid "Do we use multiple translations?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2260
+#: ../gramps/plugins/webreport/narrativeweb.py:2268
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2274
+#: ../gramps/plugins/webreport/narrativeweb.py:2282
 msgid "Sort all children in birth order"
 msgstr "Ταξινόμηση τέκνων κατά σειρά γέννησης"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2276
+#: ../gramps/plugins/webreport/narrativeweb.py:2284
 #, fuzzy
 #| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
 msgstr ""
 "Εάν θα εμφανίζονται τα τέκνα κατά σειρά γέννησης ή κατά σειρά καταχώρησης."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2281
+#: ../gramps/plugins/webreport/narrativeweb.py:2289
 msgid "Do we display coordinates in the places list?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2284
+#: ../gramps/plugins/webreport/narrativeweb.py:2292
 #, fuzzy
 msgid "Whether to display latitude/longitude in the places list."
 msgstr "Εάν θα συμπεριληφθούν ή όχι οι σελίδες αποθετηρίων."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2289
+#: ../gramps/plugins/webreport/narrativeweb.py:2297
 msgid "Sort places references either by date or by name"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2293
+#: ../gramps/plugins/webreport/narrativeweb.py:2301
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2299
+#: ../gramps/plugins/webreport/narrativeweb.py:2307
 msgid "Graph generations"
 msgstr "Γενεές"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2301
+#: ../gramps/plugins/webreport/narrativeweb.py:2309
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Ο αριθμός γενεών που θα περιλαμβάνει το δέντρο των προγόνων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2307
+#: ../gramps/plugins/webreport/narrativeweb.py:2315
 msgid "Include narrative notes just after name, gender"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2311
+#: ../gramps/plugins/webreport/narrativeweb.py:2319
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2324
+#: ../gramps/plugins/webreport/narrativeweb.py:2332
 msgid "Page Generation"
 msgstr "Δημιουργία σελίδας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2327
+#: ../gramps/plugins/webreport/narrativeweb.py:2335
 msgid "Home page note"
 msgstr "Σημείωση αρχικής σελίδας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2328
+#: ../gramps/plugins/webreport/narrativeweb.py:2336
 msgid "A note to be used on the home page"
 msgstr "Σημείωση που θα χρησιμοποιηθεί στην αρχική σελίδα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2331
+#: ../gramps/plugins/webreport/narrativeweb.py:2339
 msgid "Home page image"
 msgstr "Εικόνα αρχική σελίδας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2332
+#: ../gramps/plugins/webreport/narrativeweb.py:2340
 msgid "An image to be used on the home page"
 msgstr "Εικόνα που θα χρησιμοποιηθεί στην αρχική σελίδα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2335
+#: ../gramps/plugins/webreport/narrativeweb.py:2343
 msgid "Introduction note"
 msgstr "Εισαγωγικό σημείωμα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2336
+#: ../gramps/plugins/webreport/narrativeweb.py:2344
 msgid "A note to be used as the introduction"
 msgstr "Κείμενο που θα χρησιμοποιηθεί στην εισαγωγή"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2339
+#: ../gramps/plugins/webreport/narrativeweb.py:2347
 msgid "Introduction image"
 msgstr "Εισαγωγική εικόνα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2340
+#: ../gramps/plugins/webreport/narrativeweb.py:2348
 msgid "An image to be used as the introduction"
 msgstr "Εικόνα που θα χρησιμοποιηθεί στην εισαγωγή"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2343
+#: ../gramps/plugins/webreport/narrativeweb.py:2351
 msgid "Publisher contact note"
 msgstr "Στοιχεία επικοινωνίας συγγραφέα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2346
+#: ../gramps/plugins/webreport/narrativeweb.py:2354
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -40514,11 +40527,11 @@ msgstr ""
 "Εφόσον δε δοθεί καμμία τέτοια πληροφορία,\n"
 "δε θα δημιουργηθεί αυτή η σελίδα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2353
+#: ../gramps/plugins/webreport/narrativeweb.py:2361
 msgid "Publisher contact image"
 msgstr "Εικόνα σελίδας επικοινωνίας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2356
+#: ../gramps/plugins/webreport/narrativeweb.py:2364
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -40528,69 +40541,69 @@ msgstr ""
 "Εφόσον δε δοθεί καμμία τέτοια πληροφορία,\n"
 "δε θα δημιουργηθεί αυτή η σελίδα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2363
+#: ../gramps/plugins/webreport/narrativeweb.py:2371
 msgid "HTML user header"
 msgstr "Κεφαλίδα HTML"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2365
+#: ../gramps/plugins/webreport/narrativeweb.py:2373
 #, fuzzy
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr "Σημείωση που θα χρησιμοποιηθεί ως κεφαλίδα της σελίδας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2369
+#: ../gramps/plugins/webreport/narrativeweb.py:2377
 msgid "HTML user footer"
 msgstr "Υποσέλιδο HTML "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2370
+#: ../gramps/plugins/webreport/narrativeweb.py:2378
 msgid "A note to be used as the page footer"
 msgstr "Σημείωση που θα χρησιμοποιηθεί ως υποσέλιδο της σελίδας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2375
+#: ../gramps/plugins/webreport/narrativeweb.py:2383
 msgid "PHP user session"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2378
+#: ../gramps/plugins/webreport/narrativeweb.py:2386
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2391
+#: ../gramps/plugins/webreport/narrativeweb.py:2399
 #, fuzzy
 msgid "Images Generation"
 msgstr "Δημιουργία σελίδας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2394
+#: ../gramps/plugins/webreport/narrativeweb.py:2402
 msgid "Include images and media objects"
 msgstr "Να συμπεριληφθούν εικόνες και αντικείμενα μέσων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2395
+#: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "Whether to include a gallery of media objects"
 msgstr "Εάν θα συμπεριληφθεί ή όχι η συλλογή των αντικειμένων μέσων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2399
+#: ../gramps/plugins/webreport/narrativeweb.py:2407
 msgid "Create the images index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2401
+#: ../gramps/plugins/webreport/narrativeweb.py:2409
 msgid "This option allows you to create the images index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2407
+#: ../gramps/plugins/webreport/narrativeweb.py:2415
 #, fuzzy
 msgid "Include unused images and media objects"
 msgstr "Να συμπεριληφθούν εικόνες και αντικείμενα μέσων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2410
+#: ../gramps/plugins/webreport/narrativeweb.py:2418
 #, fuzzy
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "Εάν θα συμπεριληφθεί ή όχι η συλλογή των αντικειμένων μέσων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2415
+#: ../gramps/plugins/webreport/narrativeweb.py:2423
 msgid "Create and only use thumbnail- sized images"
 msgstr "Δημιουργία και χρήση μόνον μικρογραφιών των εικόνων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2419
+#: ../gramps/plugins/webreport/narrativeweb.py:2427
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -40601,20 +40614,20 @@ msgstr ""
 "σημαντικά μικρότερο συνολικό μέγεθος μεταφόρτωσης προς το διακομιστή "
 "φιλοξενίας της ιστοσελίδας σας."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2429
+#: ../gramps/plugins/webreport/narrativeweb.py:2437
 #, fuzzy
 msgid "Create the thumbnail index"
 msgstr "Δημιουργία και χρήση μόνον μικρογραφιών των εικόνων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2432
+#: ../gramps/plugins/webreport/narrativeweb.py:2440
 msgid "This option allows you to create the thumbnail index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2438
+#: ../gramps/plugins/webreport/narrativeweb.py:2446
 msgid "Max width of initial image"
 msgstr "Μέγιστο πλάτος αρχικής εικόνας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2442
+#: ../gramps/plugins/webreport/narrativeweb.py:2450
 #, fuzzy
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
@@ -40623,111 +40636,111 @@ msgstr ""
 "Σας επιτρέπει να ορίσετε το μέγιστο πλάτος της εικόνας που προβάλλεται στη "
 "σελίδα μέσων. Ορίστε τιμή 0 εάν θέλετε να αγνοηθεί ο περιορισμός."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2459
+#: ../gramps/plugins/webreport/narrativeweb.py:2467
 msgid "Include download page"
 msgstr "Να συμπεριληφθεί σελίδα μεταφόρτωσης"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2460
+#: ../gramps/plugins/webreport/narrativeweb.py:2468
 msgid "Whether to include a database download option"
 msgstr "Εάν θα υπάρχει επιλογή για το κατέβασμα της βάσης δεδομένων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2465
+#: ../gramps/plugins/webreport/narrativeweb.py:2473
 msgid "How many downloads"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2468
+#: ../gramps/plugins/webreport/narrativeweb.py:2476
 #, fuzzy
 msgid "The number of download files to include in the download page"
 msgstr "Ο αριθμός των γενεών που θα συμπεριληφθούν στο δέντρο"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2478
+#: ../gramps/plugins/webreport/narrativeweb.py:2486
 #, fuzzy, python-format
 msgid "Download Filename #%c"
 msgstr "Όνομα αρχείου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2480
+#: ../gramps/plugins/webreport/narrativeweb.py:2488
 msgid "File to be used for downloading of database"
 msgstr "Το αρχείο που θα χρησιμοποιηθεί για το κατέβασμα της βάσης δεδομένων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2485
+#: ../gramps/plugins/webreport/narrativeweb.py:2493
 msgid "Description for download"
 msgstr "Περιγραφή"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2485
+#: ../gramps/plugins/webreport/narrativeweb.py:2493
 #, fuzzy, python-format
 msgid "Family Tree #%c"
 msgstr "Οικογενειακό Δέντρο"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2487
+#: ../gramps/plugins/webreport/narrativeweb.py:2495
 msgid "Give a description for this file."
 msgstr "Δώστε μια περιγραφή για αυτό το αρχείο."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2499
+#: ../gramps/plugins/webreport/narrativeweb.py:2507
 #: ../gramps/plugins/webreport/webcal.py:2049
 msgid "Advanced Options"
 msgstr "Προχωρημένες επιλογές"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2503
+#: ../gramps/plugins/webreport/narrativeweb.py:2511
 #: ../gramps/plugins/webreport/webcal.py:2052
 msgid "Character set encoding"
 msgstr "Κωδικοποίηση χαρακτήρων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2507
+#: ../gramps/plugins/webreport/narrativeweb.py:2515
 #: ../gramps/plugins/webreport/webcal.py:2056
 msgid "The encoding to be used for the web files"
 msgstr ""
 "Η κωδικοποίηση χαρακτήρων που θα χρησιμοποιηθεί για τα αρχεία διαδικτύου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2511
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 msgid "Include link to active person on every page"
 msgstr "Να συμπεριληφθεί σύνδεσμος προς το ενεργό άτομο σε κάθε σελίδα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2514
+#: ../gramps/plugins/webreport/narrativeweb.py:2522
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr ""
 "Να συμπεριληφθεί σύνδεσμος προς το ενεργό άτομο (εφόσον διαθέτει ιστοσελίδα)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2519
+#: ../gramps/plugins/webreport/narrativeweb.py:2527
 msgid "Include a column for birth dates on the index pages"
 msgstr ""
 "Να συμπεριληφθεί στήλη με τις ημερομηνίες γέννησης στις σελίδες ευρετηρίου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2521
+#: ../gramps/plugins/webreport/narrativeweb.py:2529
 msgid "Whether to include a birth column"
 msgstr "Εάν θα συμπεριληφθεί ή όχι στήλη με τις ημερομηνίες γέννησης"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2525
+#: ../gramps/plugins/webreport/narrativeweb.py:2533
 msgid "Include a column for death dates on the index pages"
 msgstr ""
 "Να συμπεριληφθεί στήλη με τις ημερομηνίες θανάτου στις σελίδες ευρετηρίου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2527
+#: ../gramps/plugins/webreport/narrativeweb.py:2535
 msgid "Whether to include a death column"
 msgstr "Εάν θα συμπεριληφθεί ή όχι στήλη με τις ημερομηνίες θανάτου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2531
+#: ../gramps/plugins/webreport/narrativeweb.py:2539
 msgid "Include a column for partners on the index pages"
 msgstr "Να συμπεριληφθεί στήλη συζύγων στις σελίδες ευρετηρίου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2533
+#: ../gramps/plugins/webreport/narrativeweb.py:2541
 msgid "Whether to include a partners column"
 msgstr "Εάν θα συμπεριληφθεί ή όχι στήλη συζύγων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2537
+#: ../gramps/plugins/webreport/narrativeweb.py:2545
 msgid "Include a column for parents on the index pages"
 msgstr "Να συμπεριληφθεί στήλη γονέων στις σελίδες ευρετηρίου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2539
+#: ../gramps/plugins/webreport/narrativeweb.py:2547
 msgid "Whether to include a parents column"
 msgstr "Εάν θα συμπεριληφθεί ή όχι στήλη γονέων."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2543
+#: ../gramps/plugins/webreport/narrativeweb.py:2551
 #, fuzzy
 #| msgid "Include half and/ or step-siblings on the individual pages"
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr "Να συμπεριληφθούν τα ετεροθαλή αδέρφια στις ατομικές σελίδες"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2547
+#: ../gramps/plugins/webreport/narrativeweb.py:2555
 #, fuzzy
 #| msgid ""
 #| "Whether to include half and/ or step-siblings with the parents and "
@@ -40738,87 +40751,87 @@ msgstr ""
 "Εάν θα συμπεριληφθούν ή όχι και τα ετεροθαλή αδέρφια μαζί με τους γονείς και "
 "τα αδέρφια."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2562
+#: ../gramps/plugins/webreport/narrativeweb.py:2570
 msgid "Include family pages"
 msgstr "Να συμπεριληφθούν οι οικογενειακές σελίδες"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2563
+#: ../gramps/plugins/webreport/narrativeweb.py:2571
 msgid "Whether or not to include family pages."
 msgstr "Εάν θα συμπεριληφθούν ή όχι οι οικογενειακές σελίδες."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2566
+#: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include event pages"
 msgstr "Να συμπεριληφθούν οι σελίδες συμβάντων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2567
+#: ../gramps/plugins/webreport/narrativeweb.py:2575
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
 "Εάν θα προστεθεί ή όχι ένας πλήρης κατάλογος συμβάντων και σχετικών σελίδων."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2570
+#: ../gramps/plugins/webreport/narrativeweb.py:2578
 #, fuzzy
 msgid "Include other roles"
 msgstr "Να συμπεριληφθούν τα συμβάντα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2571
+#: ../gramps/plugins/webreport/narrativeweb.py:2579
 #, fuzzy
 #| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
 msgstr "Gramplet που δείχνει τις σημειώσεις ενός συμβάντος"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2574
+#: ../gramps/plugins/webreport/narrativeweb.py:2582
 #, fuzzy
 msgid "Include place pages"
 msgstr "Να συμπεριληφθούν οι τοποθεσίες"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2575
+#: ../gramps/plugins/webreport/narrativeweb.py:2583
 #, fuzzy
 msgid "Whether or not to include the place pages."
 msgstr "Εάν θα συμπεριληφθούν ή όχι οι σελίδες αποθετηρίων."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2578
+#: ../gramps/plugins/webreport/narrativeweb.py:2586
 #, fuzzy
 msgid "Include unused place pages"
 msgstr "Να συμπεριληφθούν οι τοποθεσίες"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2579
+#: ../gramps/plugins/webreport/narrativeweb.py:2587
 #, fuzzy
 msgid "Whether or not to include the unused place pages."
 msgstr "Εάν θα συμπεριληφθούν ή όχι οι σελίδες αποθετηρίων."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2582
+#: ../gramps/plugins/webreport/narrativeweb.py:2590
 #, fuzzy
 msgid "Include source pages"
 msgstr "Να συμπεριληφθούν οι σημειώσεις των πηγών"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2583
+#: ../gramps/plugins/webreport/narrativeweb.py:2591
 #, fuzzy
 msgid "Whether or not to include the source pages."
 msgstr "Εάν θα συμπεριληφθούν ή όχι οι σελίδες αποθετηρίων."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2586
+#: ../gramps/plugins/webreport/narrativeweb.py:2594
 msgid "Include repository pages"
 msgstr "Να συμπεριληφθούν οι σελίδες αποθετηρίων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2587
+#: ../gramps/plugins/webreport/narrativeweb.py:2595
 #, fuzzy
 #| msgid "Whether or not to include the Repository Pages."
 msgid "Whether or not to include the repository pages."
 msgstr "Εάν θα συμπεριληφθούν ή όχι οι σελίδες αποθετηρίων."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2590
+#: ../gramps/plugins/webreport/narrativeweb.py:2598
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Να συμπεροληφθεί αρχείο GENDEX (/gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2591
+#: ../gramps/plugins/webreport/narrativeweb.py:2599
 msgid "Whether to include a GENDEX file or not"
 msgstr "Εάν θα συμπεριληφθεί ή όχι αρχείο GENDEX"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2594
+#: ../gramps/plugins/webreport/narrativeweb.py:2602
 msgid "Include address book pages"
 msgstr "Να συμπεριληφθούν σελίδες διευθύνσεων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2597
+#: ../gramps/plugins/webreport/narrativeweb.py:2605
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -40826,44 +40839,44 @@ msgstr ""
 "Εάν θα προστεθούν ή όχι διευθύνσεις όπως π.χ. ηλεκτρονικής αλληλογραφίας, "
 "ιστοσελίδων, ταχυδρομικές διευθύνσεις καθώς και στοιχεία τόπων διαμονής.  "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2605
+#: ../gramps/plugins/webreport/narrativeweb.py:2613
 #, fuzzy
 msgid "Include the statistics page"
 msgstr "Δημιουργία σελίδων οικογενειακών"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2606
+#: ../gramps/plugins/webreport/narrativeweb.py:2614
 #, fuzzy
 msgid "Whether or not to add statistics page"
 msgstr "Εάν θα συμπεριληφθούν ή όχι οι οικογενειακές σελίδες."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2615
+#: ../gramps/plugins/webreport/narrativeweb.py:2623
 msgid "Place Map Options"
 msgstr "Επιλογές χάρτη τοποθεσιών"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2620
+#: ../gramps/plugins/webreport/narrativeweb.py:2628
 #, fuzzy
 msgid "Stamen Map"
 msgstr "Επιλογές περιεχομένου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2621
+#: ../gramps/plugins/webreport/narrativeweb.py:2629
 msgid "Google"
 msgstr "Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2623
+#: ../gramps/plugins/webreport/narrativeweb.py:2631
 msgid "Map Service"
 msgstr "Χαρτογραφική υπηρεσία"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2627
+#: ../gramps/plugins/webreport/narrativeweb.py:2635
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
 "Επιλέξτε χαρτογραφική υπηρεσία για τη δημιουργία των σελίδων Χάρτης "
 "τοποθεσιών."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2633
+#: ../gramps/plugins/webreport/narrativeweb.py:2641
 msgid "Include Place map on Place Pages"
 msgstr "Να συμπεριληφθεί χάρτης στις σελίδες τοποθεσίας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2637
+#: ../gramps/plugins/webreport/narrativeweb.py:2645
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -40871,12 +40884,12 @@ msgstr ""
 "Εάν θα συμπεριληφθεί ή όχι χάρτης στις σελίδες τοποθεσίας, εφόσον είναι "
 "διαθέσιμο το γεωγραφικό μήκος/πλάτος."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2645
+#: ../gramps/plugins/webreport/narrativeweb.py:2653
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr ""
 "Να συμπεριληφθούν σύνδεσμοι προς τον χάρτη με όλες τις τοποθεσίες οικογενείας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2649
+#: ../gramps/plugins/webreport/narrativeweb.py:2657
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -40885,23 +40898,23 @@ msgstr ""
 "σχετικός σύνδεσμος στη σελίδα ενός ατόμου. Αυτό σας επιτρέπει να δείτε τις "
 "μετακινήσεις της οικογενείας σας μέσα στο χώρο."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2659
+#: ../gramps/plugins/webreport/narrativeweb.py:2667
 msgid "Family Links"
 msgstr "Σύνδεσμοι οικογενείας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2660
+#: ../gramps/plugins/webreport/narrativeweb.py:2668
 msgid "Drop"
 msgstr "Τοποθετήστε"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2661
+#: ../gramps/plugins/webreport/narrativeweb.py:2669
 msgid "Markers"
 msgstr "Δέικτες (πινέζες)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2664
+#: ../gramps/plugins/webreport/narrativeweb.py:2672
 msgid "Google/ FamilyMap Option"
 msgstr "Google/ Επιλογή οικογενειακού χάρτη"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2670
+#: ../gramps/plugins/webreport/narrativeweb.py:2678
 #, fuzzy
 #| msgid ""
 #| "Select which option that you would like to have for the Google Maps "
@@ -40912,49 +40925,49 @@ msgid ""
 msgstr ""
 "Επιλογή της επιθυμητής επιλογής για τον οικογενειακό χάρτη της Google Maps..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2676
+#: ../gramps/plugins/webreport/narrativeweb.py:2684
 #, fuzzy
 msgid "Google maps API key"
 msgstr "GoogleMaps"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2679
+#: ../gramps/plugins/webreport/narrativeweb.py:2687
 #, fuzzy
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
 msgstr "Το πρότυπο που χρησιμοποιείται στο υποσέλιδο."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2691
-#: ../gramps/plugins/webreport/narrativeweb.py:2731
+#: ../gramps/plugins/webreport/narrativeweb.py:2699
+#: ../gramps/plugins/webreport/narrativeweb.py:2739
 #, fuzzy
 msgid "How to get the API key"
 msgstr "GoogleMaps"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2694
+#: ../gramps/plugins/webreport/narrativeweb.py:2702
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2702
+#: ../gramps/plugins/webreport/narrativeweb.py:2710
 msgid "Toner"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2703
+#: ../gramps/plugins/webreport/narrativeweb.py:2711
 msgid "Terrain"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2704
+#: ../gramps/plugins/webreport/narrativeweb.py:2712
 #, fuzzy
 msgid "WaterColor"
 msgstr "Χρώμα"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2706
+#: ../gramps/plugins/webreport/narrativeweb.py:2714
 #, fuzzy
 msgid "Stamen Option"
 msgstr "Επιλογές περιεχομένου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2711
+#: ../gramps/plugins/webreport/narrativeweb.py:2719
 #, fuzzy
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
@@ -40962,42 +40975,42 @@ msgid ""
 msgstr ""
 "Επιλογή της επιθυμητής επιλογής για τον οικογενειακό χάρτη της Google Maps..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2716
+#: ../gramps/plugins/webreport/narrativeweb.py:2724
 #, fuzzy
 msgid "Stamen maps API key"
 msgstr "GoogleMaps"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2719
+#: ../gramps/plugins/webreport/narrativeweb.py:2727
 #, fuzzy
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr "Το πρότυπο που χρησιμοποιείται στο υποσέλιδο."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2734
+#: ../gramps/plugins/webreport/narrativeweb.py:2742
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2751
+#: ../gramps/plugins/webreport/narrativeweb.py:2759
 #, fuzzy, python-format
 #| msgid "Died %(month_year)s (%(age)s)."
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
 msgstr "Απεβίωσε τον %(month_year)s σε ηλικία %(age)s ετών."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2752
+#: ../gramps/plugins/webreport/narrativeweb.py:2760
 #, fuzzy
 #| msgid "Dates"
 msgid "latest"
 msgstr "Ημερομηνίες"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2754
+#: ../gramps/plugins/webreport/narrativeweb.py:2762
 msgid "openlayers version to use"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2759
+#: ../gramps/plugins/webreport/narrativeweb.py:2767
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -41006,168 +41019,168 @@ msgid ""
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2776
+#: ../gramps/plugins/webreport/narrativeweb.py:2784
 #, fuzzy
 msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "Ο τίτλος του ημερολογίου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2780
+#: ../gramps/plugins/webreport/narrativeweb.py:2788
 #, fuzzy
 msgid "Do we include these pages in a CMS web?"
 msgstr "Ο τίτλος του ημερολογίου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2787
+#: ../gramps/plugins/webreport/narrativeweb.py:2795
 #, fuzzy
 msgid "URI"
 msgstr "URL"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2789
+#: ../gramps/plugins/webreport/narrativeweb.py:2797
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2797
+#: ../gramps/plugins/webreport/narrativeweb.py:2805
 #, fuzzy
 msgid "Include the news and updates page"
 msgstr "Δημιουργία σελίδων οικογενειακών"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2798
+#: ../gramps/plugins/webreport/narrativeweb.py:2806
 #, fuzzy
 msgid "Whether to include a page with the last updates"
 msgstr "Εάν θα υπάρχει επιλογή για το κατέβασμα της βάσης δεδομένων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2802
+#: ../gramps/plugins/webreport/narrativeweb.py:2810
 #, fuzzy
 msgid "Max days for updates"
 msgstr "Μέγ. αριθμός καταχωρήσεων για χρήση πίτας"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2804
+#: ../gramps/plugins/webreport/narrativeweb.py:2812
 msgid "You want to see the last updates on how many days?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2809
+#: ../gramps/plugins/webreport/narrativeweb.py:2817
 #, fuzzy
 msgid "Max number of updates per object to show"
 msgstr "Μέγιστος αριθμός τοποθεσιών προς εμφάνιση"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2811
+#: ../gramps/plugins/webreport/narrativeweb.py:2819
 msgid "How many updates do you want to see max"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2823
+#: ../gramps/plugins/webreport/narrativeweb.py:2831
 #, fuzzy
 msgid "Translations"
 msgstr "Μετάφραση"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2826
+#: ../gramps/plugins/webreport/narrativeweb.py:2834
 #, fuzzy
 msgid "Second language"
 msgstr "<b>Δεύτερη ημερομηνία</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2831
+#: ../gramps/plugins/webreport/narrativeweb.py:2839
 msgid "Site name for your second language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2831
-#: ../gramps/plugins/webreport/narrativeweb.py:2840
-#: ../gramps/plugins/webreport/narrativeweb.py:2849
-#: ../gramps/plugins/webreport/narrativeweb.py:2858
-#: ../gramps/plugins/webreport/narrativeweb.py:2867
+#: ../gramps/plugins/webreport/narrativeweb.py:2839
+#: ../gramps/plugins/webreport/narrativeweb.py:2848
+#: ../gramps/plugins/webreport/narrativeweb.py:2857
+#: ../gramps/plugins/webreport/narrativeweb.py:2866
+#: ../gramps/plugins/webreport/narrativeweb.py:2875
 #, fuzzy
 msgid "This site title"
 msgstr "Ονομασία ιστοτόπου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2833
-#: ../gramps/plugins/webreport/narrativeweb.py:2842
-#: ../gramps/plugins/webreport/narrativeweb.py:2851
-#: ../gramps/plugins/webreport/narrativeweb.py:2860
-#: ../gramps/plugins/webreport/narrativeweb.py:2869
+#: ../gramps/plugins/webreport/narrativeweb.py:2841
+#: ../gramps/plugins/webreport/narrativeweb.py:2850
+#: ../gramps/plugins/webreport/narrativeweb.py:2859
+#: ../gramps/plugins/webreport/narrativeweb.py:2868
+#: ../gramps/plugins/webreport/narrativeweb.py:2877
 msgid "Enter a title in the respective language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2835
+#: ../gramps/plugins/webreport/narrativeweb.py:2843
 #, fuzzy
 msgid "Third language"
 msgstr "<b>Δεύτερη ημερομηνία</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2840
+#: ../gramps/plugins/webreport/narrativeweb.py:2848
 msgid "Site name for your third language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2844
+#: ../gramps/plugins/webreport/narrativeweb.py:2852
 #, fuzzy
 msgid "Fourth language"
 msgstr "<b>Δεύτερη ημερομηνία</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2849
+#: ../gramps/plugins/webreport/narrativeweb.py:2857
 msgid "Site name for your fourth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2853
+#: ../gramps/plugins/webreport/narrativeweb.py:2861
 #, fuzzy
 msgid "Fifth language"
 msgstr "<b>Δεύτερη ημερομηνία</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2858
+#: ../gramps/plugins/webreport/narrativeweb.py:2866
 msgid "Site name for your fifth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2862
+#: ../gramps/plugins/webreport/narrativeweb.py:2870
 #, fuzzy
 msgid "Sixth language"
 msgstr "<b>Δεύτερη ημερομηνία</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2867
+#: ../gramps/plugins/webreport/narrativeweb.py:2875
 msgid "Site name for your sixth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3100
+#: ../gramps/plugins/webreport/narrativeweb.py:3108
 #, fuzzy
 msgid "Calendar Options"
 msgstr "Επιλογές χαρτιού"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3106
+#: ../gramps/plugins/webreport/narrativeweb.py:3114
 #, fuzzy
 msgid "Do we include the web calendar ?"
 msgstr "Ο τίτλος του ημερολογίου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3108
+#: ../gramps/plugins/webreport/narrativeweb.py:3116
 #, fuzzy, python-format
 msgid "Whether to include a calendar for year %s"
 msgstr "Εάν θα συμπεριληφθεί ή όχι η συλλογή των αντικειμένων μέσων"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3135
+#: ../gramps/plugins/webreport/narrativeweb.py:3143
 #: ../gramps/plugins/webreport/webcal.py:2060
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "Δημιουργία σελίδων ημερησίων συμβάντων του συνοπτικού ημερολογίου"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3137
+#: ../gramps/plugins/webreport/narrativeweb.py:3145
 #: ../gramps/plugins/webreport/webcal.py:2062
 msgid "Whether to create one day pages or not"
 msgstr "Εάν θα δημιουργηθούν ή όχι ημερήσιες σελίδες"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3141
+#: ../gramps/plugins/webreport/narrativeweb.py:3149
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include birthdays in the calendar"
 msgstr "Να συμπεριληφθούν οι ημερομηνίες γέννησης στο ημερολόγιο"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3145
+#: ../gramps/plugins/webreport/narrativeweb.py:3153
 #: ../gramps/plugins/webreport/webcal.py:2070
 msgid "Include anniversaries in the calendar"
 msgstr "Να συμπεριληφθούν οι επέτειοι στο ημερολόγιο"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3158
+#: ../gramps/plugins/webreport/narrativeweb.py:3166
 #: ../gramps/plugins/webreport/webcal.py:2085
 msgid "Show data only after year"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3165
+#: ../gramps/plugins/webreport/narrativeweb.py:3173
 #: ../gramps/plugins/webreport/webcal.py:2092
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
 
-#: ../gramps/plugins/webreport/person.py:168
+#: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
 msgstr "Δημιουργία σελίδων ατομικών"
 
@@ -41177,7 +41190,7 @@ msgctxt "letter"
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "Επώνυμα %(surname)s που ξεκινούν με το γράμμα %(letter)s"
 
-#: ../gramps/plugins/webreport/person.py:372
+#: ../gramps/plugins/webreport/person.py:373
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their last names. Selecting the person&#8217;s name will take you to that "
@@ -41187,18 +41200,18 @@ msgstr ""
 "ταξινομημένα κατά το επώνυμό τους. Επιλέξτε το όνομα ενός ατόμου για να "
 "μεταβείτε στη σελίδα του."
 
-#: ../gramps/plugins/webreport/person.py:472
+#: ../gramps/plugins/webreport/person.py:454
 #: ../gramps/plugins/webreport/surname.py:101
 #: ../gramps/plugins/webreport/surnamelist.py:327
 msgid "<absent>"
 msgstr "<απουσιάζει>"
 
-#: ../gramps/plugins/webreport/person.py:1010
+#: ../gramps/plugins/webreport/person.py:1060
 #, python-format
 msgid "Tracking %s"
 msgstr "Εντοπισμός του(ης) %s"
 
-#: ../gramps/plugins/webreport/person.py:1016
+#: ../gramps/plugins/webreport/person.py:1066
 #, fuzzy
 #| msgid ""
 #| "This map page represents that person and any descendants with all of "
@@ -41220,52 +41233,52 @@ msgstr ""
 "όνομα μιας τοποθεσίας στην ενότητα αναφοράς για να μεταβείτε στη σελίδα της "
 "τοποθεσίας αυτής."
 
-#: ../gramps/plugins/webreport/person.py:1068
+#: ../gramps/plugins/webreport/person.py:1118
 msgid "Place Title"
 msgstr "Τίτλος τοποθεσίας"
 
-#: ../gramps/plugins/webreport/person.py:1186
+#: ../gramps/plugins/webreport/person.py:1236
 msgid "Drop Markers"
 msgstr "Τοποθέτηση δεικτών"
 
-#: ../gramps/plugins/webreport/person.py:1785
+#: ../gramps/plugins/webreport/person.py:1835
 msgid "Call Name"
 msgstr "Υποκοριστικό"
 
-#: ../gramps/plugins/webreport/person.py:1806
+#: ../gramps/plugins/webreport/person.py:1856
 msgid "Nick Name"
 msgstr "Παρατσούκλι"
 
-#: ../gramps/plugins/webreport/person.py:1863
+#: ../gramps/plugins/webreport/person.py:1913
 msgid "Age at Death"
 msgstr "Ηλικία κατά το θάνατο"
 
-#: ../gramps/plugins/webreport/person.py:2057
+#: ../gramps/plugins/webreport/person.py:2107
 msgid "Stepfather"
 msgstr "Θετός πατέρας"
 
-#: ../gramps/plugins/webreport/person.py:2070
+#: ../gramps/plugins/webreport/person.py:2120
 msgid "Stepmother"
 msgstr "Θετή μητέρα"
 
-#: ../gramps/plugins/webreport/person.py:2097
+#: ../gramps/plugins/webreport/person.py:2147
 msgid "Not siblings"
 msgstr "Όχι αδέρφια"
 
-#: ../gramps/plugins/webreport/person.py:2238
+#: ../gramps/plugins/webreport/person.py:2288
 #, fuzzy
 msgid "Relation to the center person"
 msgstr "Σχέση με το άτομο βάσης"
 
-#: ../gramps/plugins/webreport/person.py:2283
+#: ../gramps/plugins/webreport/person.py:2333
 msgid "Relation to main person"
 msgstr "Σχέση με το άτομο βάσης"
 
-#: ../gramps/plugins/webreport/person.py:2288
+#: ../gramps/plugins/webreport/person.py:2338
 msgid "Relation within this family (if not by birth)"
 msgstr "Σχέση εντός της οικογένειας (εφόσον διαφέρει από τη γέννηση)"
 
-#: ../gramps/plugins/webreport/place.py:131
+#: ../gramps/plugins/webreport/place.py:133
 msgid "Creating place pages"
 msgstr "Δημιουργία σελίδων τοποθεσιών"
 
@@ -41274,7 +41287,7 @@ msgstr "Δημιουργία σελίδων τοποθεσιών"
 msgid "Places beginning with letter %s"
 msgstr "Τοποθεσίες που ξεκινούν με το γράμμα %s"
 
-#: ../gramps/plugins/webreport/place.py:283
+#: ../gramps/plugins/webreport/place.py:293
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
@@ -41284,22 +41297,22 @@ msgstr ""
 "δεδομένων, ταξινομημένες κατά όνομα. Κάνετε κλικ στο όνομα μιας τοποθεσίας "
 "για να μεταβείτε στη σελίδα της."
 
-#: ../gramps/plugins/webreport/place.py:327
-#: ../gramps/plugins/webreport/place.py:339
+#: ../gramps/plugins/webreport/place.py:346
+#: ../gramps/plugins/webreport/place.py:358
 #, fuzzy
 #| msgid "Name"
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Όνομα"
 
-#: ../gramps/plugins/webreport/place.py:328
-#: ../gramps/plugins/webreport/place.py:340
+#: ../gramps/plugins/webreport/place.py:347
+#: ../gramps/plugins/webreport/place.py:359
 #, fuzzy
 #| msgid "State/Province:"
 msgid "State/Province"
 msgstr "Περιφέρεια/Επαρχία:"
 
-#: ../gramps/plugins/webreport/place.py:567
+#: ../gramps/plugins/webreport/place.py:609
 msgid "Place Map"
 msgstr "Χάρτης τοποθεσιών"
 
@@ -41324,11 +41337,11 @@ msgctxt "Repository"
 msgid "Name"
 msgstr "Όνομα"
 
-#: ../gramps/plugins/webreport/source.py:107
+#: ../gramps/plugins/webreport/source.py:115
 msgid "Creating source pages"
 msgstr "Δημιουργία σελίδων πηγών"
 
-#: ../gramps/plugins/webreport/source.py:156
+#: ../gramps/plugins/webreport/source.py:160
 msgid ""
 "This page contains an index of all the sources in the database, sorted by "
 "their title. Clicking on a source&#8217;s title will take you to that "
@@ -41338,12 +41351,12 @@ msgstr ""
 "ταξινομημένες κατά όνομα. Κάνετε κλικ σε μια πηγή για να μεταβείτε στη "
 "σελίδα της."
 
-#: ../gramps/plugins/webreport/source.py:177
+#: ../gramps/plugins/webreport/source.py:208
 msgctxt "Source Name"
 msgid "Name"
 msgstr "Όνομα"
 
-#: ../gramps/plugins/webreport/source.py:295
+#: ../gramps/plugins/webreport/source.py:403
 msgid "Publication information"
 msgstr "Πληροφορίες έκδοσης"
 
@@ -41661,6 +41674,24 @@ msgid "No style sheet"
 msgstr "Χωρίς χρωματικό θέμα"
 
 #, fuzzy
+#~ msgid ", death: "
+#~ msgstr "Θάνατος"
+
+#, fuzzy
+#~| msgid "birth"
+#~ msgid "birth: "
+#~ msgstr "γέννηση"
+
+#, fuzzy
+#~| msgid "' and '"
+#~ msgid " and "
+#~ msgstr "' και '"
+
+#, fuzzy, python-format
+#~ msgid "%s"
+#~ msgstr "%s, ..."
+
+#, fuzzy
 #~| msgid "Example"
 #~ msgid "Example.gramps"
 #~ msgstr "Παράδειγμα"
@@ -41693,9 +41724,6 @@ msgstr "Χωρίς χρωματικό θέμα"
 
 #~ msgid "descendant death-related date"
 #~ msgstr "ημερομηνία σχετική με θάνατο απογόνου"
-
-#~ msgid "ancestor birth date"
-#~ msgstr "ημερομηνία γέννησης προγόνου"
 
 #~ msgid "ancestor death date"
 #~ msgstr "ημερομηνία θανάτου προγόνου"
