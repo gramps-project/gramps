@@ -30,7 +30,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-01 17:31+0000\n"
-"PO-Revision-Date: 2025-02-01 01:44+0000\n"
+"PO-Revision-Date: 2025-02-02 21:41+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -828,14 +828,6 @@ msgstr ""
 "Du kan även utnyttja bokmärken för de flesta övriga objekt."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit > Preferences > Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -848,7 +840,7 @@ msgstr ""
 "format. Felaktiga datumformat kommer att visas i Gramps med en rödaktig "
 "bakgrund eller en röd punkt vid fältets högra kant. Rätta till med hjälp av "
 "dialogrutan för datumval genom att klicka på datumknappen. Datumformatet "
-"ställs in under \"Redigera > Inställningar > Visa\"."
+"ställs in under \"Redigera > Inställningar > Data\"."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -10864,6 +10856,8 @@ msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
 "{death_src:s}"
 msgstr ""
+"Direkt bevis för denna person - födelse: {birth_min_src:s}, död:  "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:351
 msgid "mother's age"
@@ -10902,28 +10896,32 @@ msgid "birth date and known to be dead"
 msgstr "födelsedatum och känt för att vara död"
 
 #: ../gramps/gen/utils/alive.py:431
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "förfäders födelsedatum"
+msgstr "förskjutning från födelsedatum"
 
 #: ../gramps/gen/utils/alive.py:440
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"Direkt bevis för denna person - födelse: {birth_min_src:s}, död: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:447
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"slutsats från föräldrar och syskon - födelse: {birth_min_src:s}, död: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:454
 msgid ""
 "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
 "{birth_max_src:s} (latest), death: {death_src:s}"
 msgstr ""
+"slutsats från föräldrar och syskon - födelse:  {birth_min_src:s} (tidigast) "
+"till {birth_max_src:s} (senast), död: {death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:543
 msgid "a spouse's birth-related date, "
@@ -10952,10 +10950,9 @@ msgstr[0] "ättlingars död: {antal} generation "
 msgstr[1] "ättlingars död: {antal} generationer "
 
 #: ../gramps/gen/utils/alive.py:802
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Databasfel: slinga i %s's ättlingar"
+msgstr "Databasfel: slinga i %s ättlingar."
 
 #: ../gramps/gen/utils/alive.py:854
 msgid "mother birth "
@@ -10978,10 +10975,9 @@ msgid "father death "
 msgstr "fars död "
 
 #: ../gramps/gen/utils/alive.py:961
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Databasfel: slinga i %s's anor"
+msgstr "Databasfel: slinga i %s anor."
 
 #: ../gramps/gen/utils/alive.py:1043 ../gramps/gen/utils/alive.py:1052
 msgid "no evidence"
@@ -38380,13 +38376,11 @@ msgstr "Kontrollera det om du vill öppna/stänga en sektion"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Max. rader i ett index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2229
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Maximalt antal förfäder som skall tas med."
+msgstr "Det maximala antalet rader som ska inkluderas på en indexsida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2239
 msgid "Extra Pages"
