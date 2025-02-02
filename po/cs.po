@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-01 17:31+0000\n"
-"PO-Revision-Date: 2025-02-01 16:04+0000\n"
+"PO-Revision-Date: 2025-02-02 10:43+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -833,14 +833,6 @@ msgstr ""
 "Ctrl+D. Záložky můžete vytvořit také pro většinu ostatních objektů."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit > Preferences > Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -853,7 +845,7 @@ msgstr ""
 "v neplatném formátu jsou zvýrazněna v Gramps červeným pozadím, nebo červenou "
 "tečkou v pravé části pole. Datum můžete opravit prostřednictvím dialogu "
 "výběru data. Ten se objeví po stisknutí tlačítka datum. Formát data lze "
-"nastavit v \"Úpravy > Předvolby > Zobrazení\"."
+"nastavit v \"Úpravy > Předvolby > Datum\"."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -10848,6 +10840,8 @@ msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
 "{death_src:s}"
 msgstr ""
+"Přímý důkaz pro tuto osobu – narození: {birth_min_src:s}, úmrtí: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:351
 msgid "mother's age"
@@ -10886,28 +10880,32 @@ msgid "birth date and known to be dead"
 msgstr "datum narození a známé úmrtí"
 
 #: ../gramps/gen/utils/alive.py:431
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "datum narození předka"
+msgstr "posun od data narození"
 
 #: ../gramps/gen/utils/alive.py:440
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"Přímý důkaz pro tuto osobu – narození: {birth_min_src:s}, úmrtí: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:447
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"odvozeno od rodičů a sourozenců - narození: {birth_min_src:s}, úmrtí: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:454
 msgid ""
 "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
 "{birth_max_src:s} (latest), death: {death_src:s}"
 msgstr ""
+"odvozeno od rodičů a sourozenců – narození: {birth_min_src:s} (nejdříve) do "
+"{birth_max_src:s} (nejnovější), úmrtí: {death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:543
 msgid "a spouse's birth-related date, "
@@ -10938,10 +10936,9 @@ msgstr[1] "úmrtí potomka: {number_of} generace "
 msgstr[2] "úmrtí potomka:  {number_of} generací "
 
 #: ../gramps/gen/utils/alive.py:802
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Chyba databáze: smyčka v %s potomcích"
+msgstr "Chyba databáze: smyčka v potomcích osoby %s"
 
 #: ../gramps/gen/utils/alive.py:854
 msgid "mother birth "
@@ -10964,10 +10961,9 @@ msgid "father death "
 msgstr "úmrtí otce "
 
 #: ../gramps/gen/utils/alive.py:961
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Chyba databáze: smyčka v %s předcích"
+msgstr "Chyba databáze: smyčka v předcích osoby %s"
 
 #: ../gramps/gen/utils/alive.py:1043 ../gramps/gen/utils/alive.py:1052
 msgid "no evidence"
@@ -23547,16 +23543,12 @@ msgid "Total people"
 msgstr "Celkem osob"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
+msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
+msgstr "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -38329,13 +38321,11 @@ msgstr "Zaškrtněte, pokud chcete otevřít/zavřít sekci"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Max. řádků v indexu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2229
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Maximální počet zahrnutých předků."
+msgstr "Maximální počet řádků, které lze zahrnout do stránky indexu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2239
 msgid "Extra Pages"
