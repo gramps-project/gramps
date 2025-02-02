@@ -7,15 +7,16 @@
 # Reza Almanda <rezaalmanda27@gmail.com>, 2023.
 # maarif s <tuttuldesign@gmail.com>, 2023.
 # mohamadsyalvassr <mohamadsyalva@outlook.com>, 2024.
+# Nefla <neflaprojekt@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-01 17:31+0000\n"
-"PO-Revision-Date: 2025-01-24 17:44+0000\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/id/>\n"
+"PO-Revision-Date: 2025-02-01 19:40+0000\n"
+"Last-Translator: Nefla <neflaprojekt@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -290,9 +291,8 @@ msgstr "Keturunan"
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
-#, fuzzy
 msgid "Descendant Fan"
-msgstr "Fan Keturunan"
+msgstr "Kipas Turunan"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:350
@@ -638,13 +638,6 @@ msgstr ""
 "di atas tombol dan tooltip akan muncul."
 
 #: ../data/tips.xml:40
-#, fuzzy
-#| msgid ""
-#| "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
-#| "occurred, Gramps allows you to enter a wide range of date formats based "
-#| "on a guess or an estimate. For instance, \"about 1908\" is a valid entry "
-#| "for a birth date in Gramps. Click the Date button next to the date field "
-#| "and see the Gramps Manual to learn more."
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -652,12 +645,12 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
-"<b>Tidak Yakin dengan suatu Tanggal?</b><br/>Jika Anda tidak yakin tentang "
-"tanggal terjadinya suatu peristiwa, Gramps memungkinkan Anda memasukkan "
-"berbagai format tanggal berdasarkan tebakan atau perkiraan. Misalnya, "
-"\"sekitar 1908\" adalah entri yang valid untuk tanggal lahir di Gramps. Klik "
-"tombol Tanggal di sebelah ruas tanggal dan lihat Manual Gramps untuk "
-"mempelajari lebih lanjut."
+"<b>Tidak Yakin dengan Tanggal tepatnya?</b><br/>Jika Anda tidak yakin "
+"tentang tanggal terjadinya suatu peristiwa, Gramps memungkinkan Anda "
+"memasukkan berbagai format tanggal berdasarkan tebakan atau perkiraan. "
+"Misalnya, \"sekitar 1908\" adalah entri yang valid untuk tanggal lahir di "
+"Gramps. Klik tombol Tanggal di sebelah ruas tanggal dan lihat Manual Gramps "
+"untuk mempelajari lebih lanjut."
 
 #: ../data/tips.xml:42
 #, fuzzy
@@ -713,19 +706,29 @@ msgstr ""
 "alat di pojok kanan atas atau di bawah menu \"Tampilan\"."
 
 #: ../data/tips.xml:48
+#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
 "through the list using \"Go > Forward\" and \"Go > Back\" or the arrow "
 "buttons."
 msgstr ""
+"<b>Menavigasi Maju dan Mundur</b><br/>Gramps mempertahankan daftar dari "
+"objek aktif sebelumnya seperti Orang dan kejadian. Anda bisa Maju dan Mundur "
+"dari daftar yang ada menggunakan \"Panah kanan > untuk maju\" dan Panah kiri "
+"untuk mundur\""
 
 #: ../data/tips.xml:50
+#, fuzzy
 msgid ""
 "<b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the "
 "keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. "
 "If one exists for a function it is displayed on the right side of the menu."
 msgstr ""
+"<b>Pintas Keyboard</b><br/>Lelah berpindah tangan dari keyboard untuk "
+"menggunakan mouse? Banyak fungsi pada Gramps yang memiliki pintasan "
+"keyboard. Jika ada untuk suatu fungsi, itu akan ditampilkan di sisi kanan "
+"menu."
 
 #: ../data/tips.xml:52
 msgid ""
@@ -734,6 +737,9 @@ msgid ""
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
+"<b>Bacalah petunjuk</b><br/>Jangan lupa untuk membaca petunjuk Gramps, "
+"\"Help > User Manual\". Developer telah susah payah membuat petunjuk yang "
+"mudah dimengerti agar menjadikan penggunaan software lebih produktif."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -887,11 +893,15 @@ msgid ""
 msgstr ""
 
 #: ../data/tips.xml:80
+#, fuzzy
 msgid ""
 "<b>Managing Places</b><br/>The Places View shows a list of all places in the "
 "database. The list can be sorted by a number of different criteria, such as "
 "City, County or State."
 msgstr ""
+"<b>Mengatur Tempat</b><br/>Tampilan tempat menunjukkan daftar dari "
+"keseluruhan tempat yang di entri pada basis data. Daftar ini dapat di sortir "
+"berdasarkan berbagai macam kriteria, seperti Kota, Negara."
 
 #: ../data/tips.xml:82
 msgid ""
@@ -953,16 +963,23 @@ msgid ""
 msgstr ""
 
 #: ../data/tips.xml:94
+#, fuzzy
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
+"<b>Melaporkan bug di Gramps</b><br/>Cara terbaik untuk melaporkan bug pada "
+"Gramps adalah menggunakan sistem bug tracking dengan mengakses https"
+"://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
+#, fuzzy
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
+"<b>Beranda Gramps</b><br/>Beranda Gramps bisa di akses melalui  https"
+"://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1037,6 +1054,9 @@ msgid ""
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
+"<b>Tidak bisa berbahasa Inggris?</b><br/>Relawan telah menterjemahkan ke "
+"lebih dari 40 bahasa. Jika Gramps mendukung bahasamu dan tidak ditampilkan, "
+"atur bahasa bawaan Anda pada pada sistem operasi komputer dan restart Gramps."
 
 #: ../data/tips.xml:116
 msgid ""
@@ -1108,9 +1128,9 @@ msgid ""
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:264
-#, python-format
+#, fuzzy, python-format
 msgid "Error: Import file %s not found."
-msgstr ""
+msgstr "Error: Import file %s not found."
 
 #: ../gramps/cli/arghandler.py:284
 #, python-format
@@ -1127,17 +1147,17 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:313
 msgid "OK to overwrite?"
-msgstr ""
+msgstr "OK untuk menimpa?"
 
 #: ../gramps/cli/arghandler.py:315 ../gramps/cli/arghandler.py:317
 #: ../gramps/cli/clidbman.py:469
 msgid "yes"
-msgstr ""
+msgstr "ya"
 
 #: ../gramps/cli/arghandler.py:316 ../gramps/cli/clidbman.py:470
 #: ../gramps/cli/clidbman.py:471
 msgid "no"
-msgstr ""
+msgstr "tidak"
 
 #: ../gramps/cli/arghandler.py:320
 #, python-format
@@ -1203,7 +1223,7 @@ msgstr "Membersihkan."
 
 #: ../gramps/cli/arghandler.py:533
 msgid "Created empty Family Tree successfully"
-msgstr ""
+msgstr "Membuat Pohon Keluarga kosong berhasil"
 
 #: ../gramps/cli/arghandler.py:536 ../gramps/cli/arghandler.py:563
 msgid "Error opening the file."
@@ -1433,7 +1453,7 @@ msgstr "Pengaturan konfigurasi Gramps saat ini: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:383
 msgid "DEFAULT"
-msgstr ""
+msgstr "BAWAAN"
 
 #: ../gramps/cli/argparser.py:392
 #, python-format
@@ -1453,7 +1473,7 @@ msgstr "Galat saat mengurai argumen"
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:208
 #: ../gramps/gui/clipboard.py:209 ../gramps/gui/plug/_windows.py:1498
 msgid "Unavailable"
-msgstr ""
+msgstr "Tidak tersedia"
 
 #: ../gramps/cli/clidbman.py:86
 #, python-format
@@ -1475,7 +1495,7 @@ msgstr ""
 
 #: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:131
 msgid "Database"
-msgstr ""
+msgstr "Basis data"
 
 #: ../gramps/cli/clidbman.py:180 ../gramps/gui/dbman.py:434
 msgid "Last accessed"
@@ -1483,7 +1503,7 @@ msgstr ""
 
 #: ../gramps/cli/clidbman.py:181
 msgid "Locked?"
-msgstr ""
+msgstr "Terkunci?"
 
 #: ../gramps/cli/clidbman.py:216
 #, python-format
@@ -1521,15 +1541,16 @@ msgstr ""
 
 #: ../gramps/cli/clidbman.py:321
 msgid "Import finished..."
-msgstr ""
+msgstr "Import selesai..."
 
 #: ../gramps/cli/clidbman.py:406 ../gramps/plugins/importer/importcsv.py:537
+#, fuzzy
 msgid "Importing data..."
-msgstr ""
+msgstr "Importing data..."
 
 #: ../gramps/cli/clidbman.py:466
 msgid "Remove family tree warning"
-msgstr ""
+msgstr "Menghapus peringatan pohon keluarga"
 
 #: ../gramps/cli/clidbman.py:467
 #, python-format
@@ -1540,11 +1561,11 @@ msgstr ""
 
 #: ../gramps/cli/clidbman.py:479 ../gramps/gui/dbman.py:791
 msgid "Could not delete Family Tree"
-msgstr ""
+msgstr "Tidak dapat menghapus Pohon Keluarga"
 
 #: ../gramps/cli/clidbman.py:492
 msgid "Could not rename Family Tree"
-msgstr ""
+msgstr "Tidak dapat merubah nama Pohon Keluarga"
 
 #: ../gramps/cli/clidbman.py:528
 #, python-format
@@ -1561,7 +1582,7 @@ msgstr ""
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2330
 #: ../gramps/gui/plug/_windows.py:773
 msgid "Never"
-msgstr ""
+msgstr "Tidak pernah"
 
 #: ../gramps/cli/clidbman.py:602
 #, python-format
@@ -1645,7 +1666,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3041
 #: ../gramps/plugins/webreport/basepage.py:3232
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 #: ../gramps/cli/grampscli.py:86
 #, python-format
@@ -1660,7 +1681,7 @@ msgstr ""
 #: ../gramps/cli/grampscli.py:107 ../gramps/cli/user.py:219
 #: ../gramps/gui/dialog.py:317
 msgid "Low level database corruption detected"
-msgstr ""
+msgstr "Terdeteksi kerusakan basis data tingkat rendah"
 
 #: ../gramps/cli/grampscli.py:110 ../gramps/cli/user.py:221
 #: ../gramps/gui/dialog.py:319
@@ -1669,6 +1690,9 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
+"Gramps telah mendeteksi masalah pada basis data yang mendasarinya. Masalah "
+"ini terkadang dapat diperbaiki melalui Family Tree Manager. Pilih basis data "
+"dan klik tombol Perbaiki"
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
@@ -1677,12 +1701,12 @@ msgstr ""
 #: ../gramps/cli/grampscli.py:160 ../gramps/gui/dbloader.py:166
 #: ../gramps/gui/dbloader.py:510
 msgid "You do not have write access to the selected file."
-msgstr ""
+msgstr "Anda tidak memiliki akses menulis ke berkas yang dipilih."
 
 #: ../gramps/cli/grampscli.py:198 ../gramps/gui/dbloader.py:238
 #: ../gramps/gui/dbloader.py:241 ../gramps/gui/dbloader.py:244
 msgid "Cannot open database"
-msgstr ""
+msgstr "Tidak dapat membuka basis data"
 
 #: ../gramps/cli/grampscli.py:201 ../gramps/gui/dbloader.py:247
 #: ../gramps/gui/dbloader.py:461
@@ -1692,21 +1716,21 @@ msgstr ""
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Could not load a recent Family Tree."
-msgstr ""
+msgstr "Tidak dapat memuat Pohon Keluarga terbaru."
 
 #: ../gramps/cli/grampscli.py:261
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr ""
+msgstr "Pohon Keluarga tidak ada, karena telah dihapus."
 
 #: ../gramps/cli/grampscli.py:267
 msgid "The database is locked."
-msgstr ""
+msgstr "Basis data terkunci."
 
 #: ../gramps/cli/grampscli.py:269
 msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
-msgstr ""
+msgstr "Gunakan opsi --force-unlock jika anda yakin basis data tidak digunakan."
 
 #: ../gramps/cli/grampscli.py:348
 #, python-format
