@@ -14,7 +14,7 @@ Requirements
 ============
 The following packages **MUST** be installed in order for Gramps to work:
 
-* [**Python**](https://www.python.org/) 3.10 or greater - The programming language used by Gramps.
+* [**Python**](https://www.python.org/) 3.9 or greater - The programming language used by Gramps.
 * [**GTK**](http://www.gtk.org/) 3.24 or greater - A cross-platform widget toolkit for creating graphical user interfaces.
 * [**pygobject**](https://wiki.gnome.org/Projects/PyGObject) 3.12 or greater - Python Bindings for GLib/GObject/GIO/GTK+
 
