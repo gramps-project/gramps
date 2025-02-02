@@ -15,16 +15,16 @@
 # Mikal Thunold-Olsen <mikal@thunold-olsen.no>, 2023, 2024.
 # Harald <haraldh@users.noreply.hosted.weblate.org>, 2024.
 # Harald Herreros <haraldh@users.noreply.hosted.weblate.org>, 2024.
-# Harald Herreros <h.herreros@proton.me>, 2024.
+# Harald Herreros <h.herreros@proton.me>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-01 17:31+0000\n"
-"PO-Revision-Date: 2025-01-25 12:37+0000\n"
-"Last-Translator: Para <ahh-produktivitet@tutanota.com>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/nb_NO/>\n"
+"PO-Revision-Date: 2025-02-02 21:41+0000\n"
+"Last-Translator: Harald Herreros <h.herreros@proton.me>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -440,17 +440,6 @@ msgstr ""
 "glem å registrere samtalene!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter. Then select this filter in the Filter field on Sidebar, then "
-#| "click Find button. If the Sidebar is not visible, select View &gt; "
-#| "Sidebar."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -462,14 +451,14 @@ msgid ""
 "visible, select View > Sidebar."
 msgstr ""
 "<b>Filtrering av personer</b><br/>I personvisningen kan du filtrere personer "
-"etter mange kriterier. For å definere et nytt filter, gå til «Rediger &gt; "
-"Behandle personfilter». Der kan du navngi filteret ditt, legge til og "
-"kombinere regler ved å bruke de mange forhåndsinnstilte reglene. For "
-"eksempel kan du definere et filter til å finne alle adopterte personer i "
-"slektstreet. Personer uten en angitt fødselsdato kan også filtreres. For å "
-"få frem resultatene må du lagre filteret ditt. I sidepanelet velg deretter "
-"dette filteret i filter-feltet, og klikk på finn-knappen. Hvis sidepanelet "
-"ikke er synlig, velg «Vis &gt; Sidepanel»."
+"utfra en rekke kriterier. For å definere et nytt filter, gå til «Rediger > "
+"Behandle personfilter». Der kan du gi filteret ditt et navn, legge til, samt "
+"kombinere regler ved hjelp av de mange forhåndsinnstilte reglene. For "
+"eksempel kan du lage et filter for å finne alle adopterte personer i "
+"slektstreet eller for å filtrere ut de som mangler oppgitt fødselsdato. Når "
+"du har lagret filteret, velger du det i filterfeltet i sidepanelet og "
+"trykker på «finn»-knappen. Hvis sidepanelet ikke er synlig, velg «Vis > "
+"Sidepanel»."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -519,21 +508,14 @@ msgstr ""
 "velge blant vedkommendes ektefeller, søsken, barn eller foreldre."
 
 #: ../data/tips.xml:24
-#, fuzzy
-#| msgid ""
-#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-#| "&gt; Compare Individual Events...\" you can compare the data of "
-#| "individuals in your database. This is useful, say, if you wish to list "
-#| "the birth dates of everyone in your database. You can use a custom filter "
-#| "to narrow the results."
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>Hvem ble født når?</b><br/>Under «Verktøy &gt; Analyse og utforskning "
-"&gt; Sammenligne enkelthendelser...» kan du sammenligne opplysninger om "
+"<b>Hvem ble født når?</b><br/>Under «Verktøy > Analyse og utforskning > "
+"Sammenligne enkelthendelser...» kan du sammenligne opplysninger om "
 "enkeltpersoner i databasen din. Dette er nyttig for eksempel hvis du ønsker "
 "å liste fødselsdatoene til alle i databasen din. Du kan bruke et tilpasset "
 "filter for å avgrense resultatene."
@@ -553,12 +535,6 @@ msgstr ""
 "finnes under menyen «Verktøy»."
 
 #: ../data/tips.xml:28
-#, fuzzy
-#| msgid ""
-#| "<b>Calculating Relationships</b><br/>To check if two people in the "
-#| "database are related (by blood, not marriage) try the tool under \"Tools "
-#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
-#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
@@ -566,8 +542,8 @@ msgid ""
 "ancestors are reported."
 msgstr ""
 "<b>Beregne relasjoner</b><br/> For å sjekke om to personer i databasen er i "
-"slekt (biologisk, ikke inngiftet) kan du prøve verktøyet under «Verktøy &gt; "
-"Redskaper &gt; Relasjonsberegning...». Det nøyaktige slektskapet så vel som "
+"slekt (biologisk, ikke inngiftet) kan du prøve verktøyet under «Verktøy > "
+"Redskaper > Relasjonsberegning...». Det nøyaktige slektskapet så vel som "
 "felles aner blir vist."
 
 #: ../data/tips.xml:30
@@ -589,23 +565,16 @@ msgstr ""
 "til SoundEx Gramplet."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\"."
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"<b>Angi dine innstillinger</b><br/>«Rediger &gt; Innstillinger...» lar deg "
+"<b>Angi dine innstillinger</b><br/>«Rediger > Innstillinger...» lar deg "
 "endre mange innstillinger, f.eks. sti til mediefilene eller hvordan Gramps "
 "skal se ut for å gjøre det mest mulig brukervennlig for deg. Hver visning "
-"kan også konfigureres under «Vis &gt; Konfigurer...»."
+"kan også konfigureres under «Vis > Konfigurer...»."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -623,13 +592,6 @@ msgstr ""
 "for det."
 
 #: ../data/tips.xml:36
-#, fuzzy
-#| msgid ""
-#| "<b>Starting a New Family Tree</b><br/>A good way to start a new family "
-#| "tree is to enter all the members of the family into the database using "
-#| "the Person View (use \"Edit &gt; Add...\" or click on the Add a new "
-#| "person button from the People View). Then go to the Relationship View and "
-#| "create relationships between people."
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -639,8 +601,8 @@ msgid ""
 msgstr ""
 "<b>Opprett et nytt slektstre</b><br/>En god måte å starte et nytt slektstre "
 "på er å legge inn alle familiemedlemmene i databasen ved å bruke "
-"Personvisning (bruk «Rediger &gt; opprett...» eller klikk på opprett-knappen "
-"i personvisningen). Bytt så til slektskapsvisningen og opprett relasjoner "
+"Personvisning (bruk «Rediger > opprett...» eller klikk på opprett-knappen i "
+"personvisningen). Bytt så til slektskapsvisningen og opprett relasjoner "
 "mellom personene."
 
 #: ../data/tips.xml:38
@@ -672,18 +634,10 @@ msgid ""
 "of the same person entered more than once in the database."
 msgstr ""
 "<b>Dupliserte oppføringer</b><br/>Verktøyet «Verktøy > Slektstrebehandling > "
-"Finn mulig dupliserte personer...» lar deg lokalisere (og flette sammen) "
+"Finn mulige dupliserte personer...» lar deg lokalisere (og flette sammen) "
 "oppføringer av samme person som er registrert flere ganger i databasen."
 
 #: ../data/tips.xml:44
-#, fuzzy
-#| msgid ""
-#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you "
-#| "to combine separately listed people into one. Select the second entry by "
-#| "holding the Control key as you click. This is very useful for combining "
-#| "two databases with overlapping people, or combining erroneously entered "
-#| "differing names for one individual. Merging is available in all list "
-#| "views for all primary object types."
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -692,13 +646,13 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Flett sammen oppføringer</b><br/>Funksjonen «Rediger &gt; Flett "
-"sammen...» lar deg kombinere to personer til en. Hold nede CTRL-tasten og "
-"klikk på to personer. Dette er veldig nyttig for å kombinere to databaser "
-"der samme person går igjen i begge databasene, eller om du feilaktig har "
-"skrevet inn samme person flere ganger i databasen med forskjellige "
-"skrivemåter. Sammmenfletting er tilgjengelig i alle listevisninger for alle "
-"primære objekttyper."
+"<b>Flett sammen oppføringer</b><br/>Funksjonen «Rediger > Flett sammen...» "
+"lar deg kombinere to personer til en. Hold nede CTRL-tasten og klikk på to "
+"personer. Dette er veldig nyttig for å kombinere to databaser der samme "
+"person går igjen i begge databasene, eller om du feilaktig har skrevet inn "
+"samme person flere ganger i databasen med forskjellige skrivemåter. "
+"Sammmenfletting er tilgjengelig i alle listevisninger for alle primære "
+"objekttyper."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -713,12 +667,6 @@ msgstr ""
 "eller under menyen «Vis»."
 
 #: ../data/tips.xml:48
-#, fuzzy
-#| msgid ""
-#| "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of "
-#| "previous active objects such as People and Events. You can move forward "
-#| "and backward through the list using \"Go &gt; Forward\" and \"Go &gt; "
-#| "Back\" or the arrow buttons."
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -727,8 +675,8 @@ msgid ""
 msgstr ""
 "<b>Navigere frem og tilbake</b><br/>Gramps opprettholder en liste over "
 "tidligere aktive objekter slik som personer og hendelser. Du kan bevege deg "
-"frem og tilbake gjennom listen ved å bruke «Gå &gt; Frem» og «Gå &gt; "
-"Tilbake», eller med piltastene."
+"frem og tilbake gjennom listen ved å bruke «Gå > Frem» og «Gå > Tilbake», "
+"eller med piltastene."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -741,12 +689,6 @@ msgstr ""
 "hurtigtaster. Hvis en funksjon har slike vil de vises til høyre for menyen."
 
 #: ../data/tips.xml:52
-#, fuzzy
-#| msgid ""
-#| "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
-#| "&gt; User Manual\". The developers have worked hard to make most "
-#| "operations intuitive but the manual is full of information that will make "
-#| "your time spent on genealogy more productive."
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
 "User Manual\". The developers have worked hard to make most operations "
@@ -754,7 +696,7 @@ msgid ""
 "spent on genealogy more productive."
 msgstr ""
 "<b>Les brukermanualen</b><br/>Glem ikke å lese brukermanualen til Gramps "
-"under «Hjelp &gt; Brukermanual». Utviklerne har lagt ned stor innsats for å "
+"under «Hjelp > Brukermanual». Utviklerne har lagt ned stor innsats for å "
 "gjøre de fleste operasjoner intuitive, men manualen inneholder mye "
 "informasjon som vil gjøre tiden du bruker på slektsforskning mer effektiv."
 
@@ -813,14 +755,6 @@ msgstr ""
 "men det kan være fint å diskutere dine ideer på e-postelistene også."
 
 #: ../data/tips.xml:62
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about "
-#| "Gramps? Check out the gramps-users email list. Many helpful people are on "
-#| "the list, so you're likely to get an answer quickly. If you have "
-#| "questions related to the development of Gramps, try the gramps-devel "
-#| "list. You can see the lists by selecting \"Help &gt; Gramps Mailing "
-#| "Lists\"."
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -832,18 +766,9 @@ msgstr ""
 "svar på? Sjekk ut e-postlisten gramps-users. Det er mange hjelpsomme "
 "personer på listen, så det er sannsynlig at du får raskt svar. Hvis du har "
 "et spørsmål om utviklingen av Gramps, prøv listen gramps-devel. Du kan se "
-"listene ved å velge «Hjelp &gt; Gramps e-postlister»."
+"listene ved å velge «Hjelp > Gramps e-postlister»."
 
 #: ../data/tips.xml:64
-#, fuzzy
-#| msgid ""
-#| "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't "
-#| "write programs? Not a problem! A project as large as Gramps requires "
-#| "people with a wide variety of skills. Contributions can be anything from "
-#| "writing documentation to testing development versions and helping with "
-#| "the web site. Start by subscribing to the Gramps developers mailing list, "
-#| "gramps-devel, and introducing yourself. Subscription information can be "
-#| "found at \"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -858,7 +783,7 @@ msgstr ""
 "med ulike ferdigheter. Du kan bidra med alt fra å skrive dokumentasjon til å "
 "teste utviklerversjoner og hjelpe til med nettsiden. Start med å abonnere på "
 "Gramps e-postliste for utviklere, gramps-devel, og introduser deg selv. "
-"Informasjon om påmelding finner du under «Hjelp &gt; Gramps e-postlister»."
+"Informasjon om påmelding finner du under «Hjelp > Gramps e-postlister»."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -877,13 +802,6 @@ msgstr ""
 "slektsdata som inneholder hundretusener av personer."
 
 #: ../data/tips.xml:68
-#, fuzzy
-#| msgid ""
-#| "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient "
-#| "place to store the names of frequently used individuals. Selecting a "
-#| "bookmark will make that person the Active Person. To bookmark someone "
-#| "make them the Active Person then go to \"Bookmarks &gt; Add Bookmark\" or "
-#| "press Ctrl+D. You can also bookmark most of the other objects."
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -894,18 +812,10 @@ msgstr ""
 "<b>Bokmerke personer</b><br/>Bokmerkemenyen på toppen av vinduet er stedet "
 "for å lagre navn på personer du bruker ofte. Ved å velge et bokmerke blir "
 "den valgte personen den aktive personen. For å bokmerke noen må personen "
-"først gjøres aktiv, deretter gå til «Bokmerker &gt; Legg til bokmerke» eller "
+"først gjøres aktiv, deretter gå til «Bokmerker > Legg til bokmerke» eller "
 "trykk CTRL+D. Du kan også legge til bokmerker for de fleste andre objektene."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit &gt; Preferences &gt; Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -914,19 +824,13 @@ msgid ""
 "on the date button. The format of the date is set under \"Edit > Preferences "
 "> Data\"."
 msgstr ""
-"<b>Feil datoer</b><br/>Alle legger fra tid til annen inn datoer med feil "
-"format. Datoer med feil format vil vises i Gramps med enten en rødlig "
-"bakgrunn eller en rød prikk på høyre kant av feltet. Du kan rette opp i "
-"feilen ved å bruke Datobehandleren, som åpnes ved å trykke på datoknappen. "
-"Formatet for datoen angis under \"Rediger &gt; Innstillinger &gt; Vis\"."
+"<b>Feil datoer</b><br/>Alle legger fra tid til annen inn datoer med ugyldig "
+"format. Datoer med ugyldig format vil vises i Gramps med enten en rødlig "
+"bakgrunn eller en rød prikk på høyre kant av feltet. Du kan rette datoen ved "
+"å bruke Datobehandleren, som åpnes ved å trykke på datoknappen. Datoformatet "
+"er angitt under «Rediger > Innstillinger > Data»."
 
 #: ../data/tips.xml:72
-#, fuzzy
-#| msgid ""
-#| "<b>Listing Events</b><br/>Events are added using the editor opened with "
-#| "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
-#| "event types. You can add your own event types by typing in the text "
-#| "field, they will be added to the available events, but not translated."
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person > Edit Person > Events\". There is a long list of preset event "
@@ -934,10 +838,10 @@ msgid ""
 "will be added to the available events, but not translated."
 msgstr ""
 "<b>Opplisting av hendelser</b><br/>Hendelser legges til ved å bruke "
-"redigeringsvinduet som åpnes med «Person &gt; Rediger person». Det finnes en "
-"lang liste med forhåndsdefinerte hendelsestyper. Du kan legge til dine egne "
-"hendelsestyper ved å skrive i tekstfeltet. Disse vil da bli tilgjengelig i "
-"listen, men de vil ikke bli oversatt til andre språk."
+"redigeringsvinduet som åpnes med «Person > Rediger person > Hendelser». Det "
+"finnes en lang liste med forhåndsdefinerte hendelsestyper. Du kan legge til "
+"dine egne hendelsestyper ved å skrive i tekstfeltet. De blir da lagt til "
+"blant de tilgjengelige hendelsene, men oversettes ikke."
 
 #: ../data/tips.xml:74
 msgid ""
@@ -997,12 +901,6 @@ msgstr ""
 "dokumenter o.l."
 
 #: ../data/tips.xml:84
-#, fuzzy
-#| msgid ""
-#| "<b>Filters</b><br/>Filters allow you to limit the people seen in the "
-#| "People View. In addition to the many preset filters, Custom Filters can "
-#| "be created limited only by your imagination. Custom filters are created "
-#| "from \"Edit &gt; Person Filter Editor\"."
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -1012,7 +910,7 @@ msgstr ""
 "<b>Filtre</b><br/>Filtre lar deg avgrense hvilke personer som vises i "
 "personvisningen. I tillegg til de mange forhåndsdefinerte filtrene, kan man "
 "også lage tilpassede filtre som kun fantasien setter grenser for. Tilpassede "
-"filtre kan lages fra «Rediger &gt; Behandle personfilter»."
+"filtre kan lages fra «Rediger > Behandle personfilter»."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -1077,16 +975,12 @@ msgstr ""
 "project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b>Gramps sin nettside</b><br/>Nettsiden til Gramps finner du på http://"
-"gramps-project.org/."
+"<b>Gramps sin nettside</b><br/>Nettsiden til Gramps finner du på https"
+"://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1117,12 +1011,6 @@ msgstr ""
 "se ut som feil i kilder."
 
 #: ../data/tips.xml:102
-#, fuzzy
-#| msgid ""
-#| "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added "
-#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
-#| "Reports/Tools\". This is the best way for advanced users to experiment "
-#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help > Extra Reports/"
@@ -1130,40 +1018,29 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Ekstra rapporter og verktøy</b><br/>Ekstra rapporter og verktøy kan "
-"legges til i Gramps med utvidelser. Utforsk dem under «Hjelp &gt; Ekstra "
+"legges til i Gramps med utvidelser. Utforsk dem under «Hjelp > Ekstra "
 "rapporter/verktøy». Dette er den beste måten for avanserte brukere å "
 "eksperimentere og skape ny funksjonalitet."
 
 #: ../data/tips.xml:104
-#, fuzzy
-#| msgid ""
-#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
-#| "allows you to collect a variety of reports into a single document. This "
-#| "single report is easier to distribute than multiple reports, especially "
-#| "when printed."
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports > Books...\" allows "
 "you to collect a variety of reports into a single document. This single "
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Bokrapporter</b><br/>Bokrapporten under «Rapporter &gt; Bøker...» lar deg "
+"<b>Bokrapporter</b><br/>Bokrapporten under «Rapporter > Bøker...» lar deg "
 "samle ulike rapporter i ett enkelt dokument. Denne rapporten er enklere å "
 "distribuere enn flere separate rapporter, spesielt når de skal skrives ut."
 
 #: ../data/tips.xml:106
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
-#| "version of Gramps is released? Join the Gramps-announce mailing list at "
-#| "\"Help &gt; Gramps Mailing Lists\"."
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help > Gramps Mailing Lists\"."
 msgstr ""
 "<b>Gramps kunngjøringer</b><br/>Ønsker du å bli varslet når en ny versjon av "
-"Gramps lanseres? Meld deg på e-postlisten Gramps-announce under «Hjelp &gt; "
+"Gramps lanseres? Meld deg på e-postlisten Gramps-announce under «Hjelp > "
 "Gramps e-postlister»."
 
 #: ../data/tips.xml:108
@@ -1235,12 +1112,6 @@ msgstr ""
 "støtte. Særtegn for alle språk skal vises riktig."
 
 #: ../data/tips.xml:120
-#, fuzzy
-#| msgid ""
-#| "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
-#| "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
-#| "person is the person who is selected when the database is opened or when "
-#| "the home button is pressed."
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit > Set Home Person\" in the Person View. The home person "
@@ -1248,7 +1119,7 @@ msgid ""
 "button is pressed."
 msgstr ""
 "<b>Startpersonen</b><br/>Hvem som helst kan velges som startperson i Gramps. "
-"I personvisningen «Rediger &gt; Gjør til startperson». Startpersonen er den "
+"I personvisningen «Rediger > Gjør til startperson». Startpersonen er den "
 "personen som er valgt når databasen åpnes, eller når man trykker på hjem-"
 "knappen."
 
@@ -1282,12 +1153,6 @@ msgstr ""
 "Free Software Foundation og Open Source Initiative på Internett."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1296,7 +1161,7 @@ msgid ""
 msgstr ""
 "<b>Gramps programvarelisensen</b><br/>Du står fritt til å bruke og dele "
 "Gramps med andre. Gramps kan fritt distribueres under General Public "
-"License. Se http://www.gnu.org/licenses/licenses.html#GPL for å lese om "
+"License. Se https://www.gnu.org/licenses/licenses.html#GPL for å lese om "
 "rettigheter og begrensninger i lisensen."
 
 #: ../data/tips.xml:128
@@ -1315,8 +1180,8 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"Feil: Slektsdatabasen '%s' finnes allerede.\n"
-"Valget '-C' kan ikke brukes."
+"Feil: Slektstreet «%s» finnes allerede.\n"
+"Valget «-C» kan ikke brukes."
 
 #: ../gramps/cli/arghandler.py:248
 #, python-format
@@ -1325,9 +1190,9 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
-"Feil: Slektsdatabasen «%s» finnes ikke.\n"
-"Hvis formatet er GEDCOM, Gramps-xml eller grdb, bruk valget -i for å "
-"importere til en slektsdatabase i stedet."
+"Feil: Slektstreet «%s» finnes ikke.\n"
+"Hvis formatet er GEDCOM, Gramps-XML eller grdb, bruk valget -i for å "
+"importere det til et slektstre i stedet."
 
 #: ../gramps/cli/arghandler.py:264
 #, python-format
@@ -1381,7 +1246,7 @@ msgstr "Feil: kan ikke åpne '%s'"
 
 #: ../gramps/cli/arghandler.py:422
 msgid "List of known Family Trees in your database path\n"
-msgstr "Liste over kjente slektsdatabaser i databasestien din\n"
+msgstr "Liste over kjente slektstrær i databasestien din.\n"
 
 #: ../gramps/cli/arghandler.py:434
 #, python-format
@@ -1390,7 +1255,7 @@ msgstr "%(full_DB_path)s med navn «%(f_t_name)s»"
 
 #: ../gramps/cli/arghandler.py:452 ../gramps/cli/clidbman.py:197
 msgid "Gramps Family Trees:"
-msgstr "Gramps Slektsdatabaser:"
+msgstr "Gramps slektstrær:"
 
 #: ../gramps/cli/arghandler.py:458 ../gramps/cli/arghandler.py:460
 #: ../gramps/cli/arghandler.py:464 ../gramps/cli/arghandler.py:466
@@ -1398,7 +1263,7 @@ msgstr "Gramps Slektsdatabaser:"
 #: ../gramps/cli/clidbman.py:177 ../gramps/cli/clidbman.py:216
 #: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:2385
 msgid "Family Tree"
-msgstr "Slektsdatabase"
+msgstr "Slektstre"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:466 ../gramps/cli/arghandler.py:470
@@ -1428,7 +1293,7 @@ msgstr "Rydder opp."
 
 #: ../gramps/cli/arghandler.py:533
 msgid "Created empty Family Tree successfully"
-msgstr "Vellykket opprettelse av en tom slektsdatabase"
+msgstr "Tomt slektstre ble opprettet"
 
 #: ../gramps/cli/arghandler.py:536 ../gramps/cli/arghandler.py:563
 msgid "Error opening the file."
@@ -1854,7 +1719,7 @@ msgstr "Importerer data..."
 
 #: ../gramps/cli/clidbman.py:466
 msgid "Remove family tree warning"
-msgstr "Fjerne advarsel ved slektsdatabase"
+msgstr "Advarsel om fjerning av slektstre"
 
 #: ../gramps/cli/clidbman.py:467
 #, python-format
@@ -1862,16 +1727,16 @@ msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
 msgstr ""
-"Er du sikker på at du vil fjerne slektsdatabasen med navnet\n"
+"Er du sikker på at du vil fjerne slektstreet med navnet\n"
 "«%s»?"
 
 #: ../gramps/cli/clidbman.py:479 ../gramps/gui/dbman.py:791
 msgid "Could not delete Family Tree"
-msgstr "Kunne ikke fjerne slektsdatabase"
+msgstr "Kunne ikke slette slektstre"
 
 #: ../gramps/cli/clidbman.py:492
 msgid "Could not rename Family Tree"
-msgstr "Kunne ikke omdøpe slektsdatabasen"
+msgstr "Kunne ikke endre navn på slektstreet"
 
 #: ../gramps/cli/clidbman.py:528
 #, python-format
@@ -2033,7 +1898,7 @@ msgstr "Kunne ikke laste et av de siste Slektstrærne."
 
 #: ../gramps/cli/grampscli.py:261
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "Slektsdatabasen finnes ikke, da den har blitt slettet."
+msgstr "Slektstreet finnes ikke, da det har blitt slettet."
 
 #: ../gramps/cli/grampscli.py:267
 msgid "The database is locked."
@@ -2333,10 +2198,8 @@ msgstr "Måned Dag, År"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
-msgstr "Måned Dag, År"
+msgstr "Mnd Dag, År"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:88
@@ -2345,10 +2208,8 @@ msgstr "Dag Måned År"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
-msgstr "Dag Måned År"
+msgstr "Dag Mnd År"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
@@ -3295,13 +3156,13 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different Python versions."
 msgstr ""
-"Pythonversjonen er ikke støttet av denne versjonen av Gramps.\n"
+"Python-versjonen er ikke støttet av denne versjonen av Gramps.\n"
 "\n"
-"Denne slektsdatabasen har Pythonversjon %(tree_vers)s, og denne versjonen av "
-"Gramps støtter versjonene fra %(min_vers)s til %(max_vers)s\n"
+"Dette slektstreet bruker Python-versjon %(tree_vers)s, mens denne versjonen "
+"av Gramps støtter versjoner fra %(min_vers)s til %(max_vers)s\n"
 "\n"
-"Vennligst oppgrader til den korresponderende versjonen, eller bruk XML for å "
-"flytte data mellom de forskjellige Pythonversjonene."
+"Vennligst oppgrader til en kompatibel versjon eller bruk XML for å overføre "
+"data mellom ulike Python-versjoner."
 
 #: ../gramps/gen/db/exceptions.py:154
 #, python-format
@@ -3323,24 +3184,23 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"Den slektsdatabasen du prøver å åpne er med laget med databaseskjemaversjon "
-"%(oldschema)s. Denne versjonen av Gramps bruker skjemaversjon %(newschema)s. "
-"Derfor kan du ikke åpne denne slektsdatabasen uten å oppgradere "
-"skjemaversjonen for slektsdatabasen.\n"
+"Slektstreet du prøver å åpne er i skjemaversjon %(oldschema)s. Denne "
+"versjonen av Gramps bruker skjemaversjon %(newschema)s. Derfor kan du ikke "
+"åpne dette slektstreet uten å oppgradere skjemaversjonen.\n"
 "\n"
-"Hvis du oppgraderer, vil du ikke kunne bruke den forrige versjonen av "
-"Gramps, selv om du senere også %(wiki_manual_backup_html_start)slager en "
+"Hvis du oppgraderer, vil du ikke kunne bruke den tidligere versjonen av "
+"Gramps, selv om du senere %(wiki_manual_backup_html_start)slager en "
 "sikkerhetskopi%(html_end)s eller "
-"%(wiki_manual_export_html_start)seksporterer%(html_end)s den oppgraderte "
-"slektsdatabasen.\n"
+"%(wiki_manual_export_html_start)seksporterer%(html_end)s det oppgraderte "
+"slektstreet.\n"
 "\n"
-"Oppgraderingen er vanskelig og kan permanent ødelegge slektsdatabasen din "
-"hvis oppgraderingen avbrytes eller feiler.\n"
+"Oppgraderingen er en krevende prosess som kan føre til permanent skade på "
+"slektstreet hvis den avbrytes eller mislykkes.\n"
 "\n"
-"Hvis du ikke allerede har laget en sikkerhetskopi av slektsdatabasen din bør "
+"Hvis du ikke allerede har laget en sikkerhetskopi av slektstreet ditt, bør "
 "du starte den %(bold_start)sgamle%(bold_end)s versjonen av Gramps og "
-"%(wiki_backup_html_start)slage en sikkerhetskopi%(html_end)s av "
-"slektsdatabasen."
+"%(wiki_backup_html_start)slage en sikkerhetskopi%(html_end)s før du "
+"fortsetter."
 
 #: ../gramps/gen/db/exceptions.py:195
 #, python-format
@@ -4208,16 +4068,12 @@ msgstr ""
 "Matcher siteringer med notater som inneholder tekst fra et regulært uttrykk"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Citations with the <tag>"
 msgid "Citations with a note of type <type>"
-msgstr "Siteringer med <etiketten>"
+msgstr "Siteringer med notat av typen <type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches a citation with a source with a specified Gramps ID"
 msgid "Matches citations with a note of the specified type"
-msgstr "Matcher en sitering med en kilde med en angitt Gramps-ID"
+msgstr "Matcher siteringer med et notat av den angitte typen"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4225,8 +4081,6 @@ msgstr "Matcher en sitering med en kilde med en angitt Gramps-ID"
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:50
-#, fuzzy
-#| msgid "Note Filters"
 msgid "Note filters"
 msgstr "Notatfiltre"
 
@@ -4339,7 +4193,7 @@ msgstr "Siteringer med <etiketten>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:53
 msgid "Matches citations with the particular tag"
-msgstr "Finner sitater med den bestemte etiketten"
+msgstr "Matcher sitater med den bestemte etiketten"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
 msgid "Citations matching the <filter>"
@@ -4518,16 +4372,12 @@ msgid "Main Participants:"
 msgstr "Hoveddeltakere:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
-#, fuzzy
-#| msgid "Notes matching parameters"
 msgid "Events matching parameters"
-msgstr "Notater som matcher parametre"
+msgstr "Hendelser som matcher parametrene"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches events with particular parameters"
-msgstr "Matcher notater med spesielle parametre"
+msgstr "Matcher hendelser med bestemte parametre"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4573,16 +4423,12 @@ msgstr ""
 "regulært uttrykk"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "Hendelser med <etiketten>"
+msgstr "Hendelser med et notat av typen <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Matcher hendelser fra et bestemt filternavn"
+msgstr "Matcher hendelser med et notat av den angitte typen"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4864,16 +4710,12 @@ msgstr ""
 "delstreng"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "Familier med far med <navn>"
+msgstr "Familier med et notat av typen <type>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Matcher familier som matcher det bestemte filternavnet"
+msgstr "Matcher familier med et notat av den angitte typen"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -5686,16 +5528,12 @@ msgstr ""
 "regulært uttrykk"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "Personer med <navnetype>"
+msgstr "Personer med et notat av typen <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Matcher personer som er aner til en bestemt person"
+msgstr "Matcher personer med et notat av den angitte typen"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 msgid "People who are neither male nor female"
@@ -6350,16 +6188,12 @@ msgstr ""
 "delstreng"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "Steder med <etiketten>"
+msgstr "Steder med et notat av typen <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Matcher steder fra et bestemt filternavn"
+msgstr "Matcher steder med et notat av den angitte typen"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "Street:"
@@ -6530,11 +6364,11 @@ msgstr "Enheter:"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:60
 msgid "Places within an area"
-msgstr "Steder i et område"
+msgstr "Steder innenfor et område"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:61
 msgid "Matches places within a given distance of another place"
-msgstr "Matcher steder innen en gitt avstand fra et annet sted"
+msgstr "Matcher steder innenfor en gitt avstand fra et annet sted"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid "Cannot use the filter 'within area'"
@@ -6753,16 +6587,12 @@ msgstr ""
 "delstreng"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "Kilder med <etiketten>"
+msgstr "Kilder med et notat av typen <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "Matcher kilder fra et bestemt filternavn"
+msgstr "Matcher kilder med et notat av den angitte typen"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -6793,10 +6623,8 @@ msgstr ""
 "inneholder en delstreng i «Objekt-ID»"
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches sources with particular parameters"
-msgstr "Matcher notater med spesielle parametre"
+msgstr "Matcher kilder med bestemte parametre"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -7438,12 +7266,11 @@ msgid "unknown"
 msgstr "ukjent"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "større enn %s år"
-msgstr[1] "større enn %s år"
+msgstr[0] "større enn {number_of} år"
+msgstr[1] "større enn {number_of} år"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -7874,7 +7701,7 @@ msgstr "Nabo"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "Seremonileder"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -8846,18 +8673,14 @@ msgid "Matrilineal"
 msgstr "Matrilineær"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Yrke"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
-msgstr "Plassering"
+msgstr "Stedsnavn"
 
 #: ../gramps/gen/lib/nametype.py:58
 msgid "Also Known As"
@@ -9109,7 +8932,7 @@ msgstr "Personreferanser"
 
 #: ../gramps/gen/lib/person.py:607
 msgid "Merged Gramps ID"
-msgstr "Flettet sammen Gramps-ID"
+msgstr "Flettet Gramps-ID"
 
 #: ../gramps/gen/lib/personref.py:102 ../gramps/gui/clipboard.py:692
 msgid "Person ref"
@@ -9550,7 +9373,7 @@ msgstr "FTP"
 
 #: ../gramps/gen/merge/diff.py:104
 msgid "Family Tree Differences"
-msgstr "Ulikheter i slektsdatabasen"
+msgstr "Ulikheter i slektstreet"
 
 #: ../gramps/gen/merge/diff.py:104
 msgid "Searching..."
@@ -10865,9 +10688,9 @@ msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"Slektsdatabasen går bakover med mer enn det maksimale antallet generasjoner "
-"på %d.\n"
-"Det er mulig at noen slektsforhold ikke ble med"
+"Slektstreet strekker seg bakover med mer enn det maksimale antallet "
+"generasjoner på (%d).\n"
+"Det er mulig at noen slektsforhold har blitt utelatt"
 
 #: ../gramps/gen/relationship.py:1574
 msgid "Relationship loop detected:"
@@ -11016,89 +10839,79 @@ msgstr "dato"
 
 #: ../gramps/gen/utils/alive.py:212 ../gramps/gen/utils/alive.py:243
 msgid "date fallback"
-msgstr ""
+msgstr "alternativ dato"
 
 #: ../gramps/gen/utils/alive.py:262
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
 "{death_src:s}"
 msgstr ""
+"Direkte bevis for denne personen - fødsel: {birth_min_src:s}, død:  "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:351
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
-msgstr "Mors alder"
+msgstr "mors alder"
 
 #: ../gramps/gen/utils/alive.py:356
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
-msgstr "Fars alder"
+msgstr "fars alder"
 
 #: ../gramps/gen/utils/alive.py:360
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "dødsdato"
+msgstr "fra dødsdato"
 
 #: ../gramps/gen/utils/alive.py:364
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "Mors alder"
+msgstr "mors død"
 
 #: ../gramps/gen/utils/alive.py:369
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "Fars alder"
+msgstr "fars død"
 
 #: ../gramps/gen/utils/alive.py:373
-#, fuzzy
-#| msgid "%(person)s, birth"
 msgid "person's death"
-msgstr "%(person)s, født"
+msgstr "persons død"
 
 #: ../gramps/gen/utils/alive.py:380
-#, fuzzy
-#| msgid "Not siblings"
 msgid "oldest sibling's age"
-msgstr "Ikke søsken"
+msgstr "eldste søskens alder"
 
 #: ../gramps/gen/utils/alive.py:385
-#, fuzzy
-#| msgid "Not siblings"
 msgid "youngest sibling's age"
-msgstr "Ikke søsken"
+msgstr "yngste søskens alder"
 
 #: ../gramps/gen/utils/alive.py:428
 msgid "birth date and known to be dead"
 msgstr "fødselsdato og som er kjent for å være død"
 
 #: ../gramps/gen/utils/alive.py:431
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "anes fødselsdato"
+msgstr "forskyvning fra fødselsdato"
 
 #: ../gramps/gen/utils/alive.py:440
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"Direkte bevis for denne personen - fødsel: {birth_min_src:s}, død: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:447
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"utledet fra foreldre og søsken - fødsel: {birth_min_src:s}, død: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:454
 msgid ""
 "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
 "{birth_max_src:s} (latest), death: {death_src:s}"
 msgstr ""
+"utledet fra foreldre og søsken - fødsel:  {birth_min_src:s} (tidligst) til "
+"{birth_max_src:s} (senest), død: {death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:543
 msgid "a spouse's birth-related date, "
@@ -11113,62 +10926,48 @@ msgid "event with spouse"
 msgstr "hendelse med partner"
 
 #: ../gramps/gen/utils/alive.py:764
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "etterkommerfødsel: {} generasjoner "
-msgstr[1] "etterkommerfødsel: {} generasjoner "
+msgstr[0] "etterkommerfødsel: {number_of} generasjon "
+msgstr[1] "etterkommerfødsel: {number_of} generasjoner "
 
 #: ../gramps/gen/utils/alive.py:787
-#, fuzzy, python-brace-format
-#| msgid "Max descendant generations"
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "Maks etterkommergenerasjoner"
-msgstr[1] "Maks etterkommergenerasjoner"
+msgstr[0] "etterkommer død: {number_of} generasjon "
+msgstr[1] "etterkommer død: {number_of} generasjoner "
 
 #: ../gramps/gen/utils/alive.py:802
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Databasefeil: uendelig løkke i %s sine etterkommere"
+msgstr "Databasefeil: uendelig løkke i etterkommere av %s."
 
 #: ../gramps/gen/utils/alive.py:854
-#, fuzzy
-#| msgid "Death before birth"
 msgid "mother birth "
-msgstr "Død før fødsel"
+msgstr "mors fødsel "
 
 #: ../gramps/gen/utils/alive.py:858 ../gramps/gen/utils/alive.py:864
-#, fuzzy
-#| msgid "Death before birth"
 msgid "father birth "
-msgstr "Død før fødsel"
+msgstr "fars fødsel "
 
 #: ../gramps/gen/utils/alive.py:872 ../gramps/gen/utils/alive.py:903
-#, fuzzy
-#| msgid "Ancestor"
 msgid "ancestor "
-msgstr "Ane"
+msgstr "ane "
 
 #: ../gramps/gen/utils/alive.py:878
-#, fuzzy
-#| msgid "Compute death age"
 msgid "mother death "
-msgstr "Beregn alder ved død"
+msgstr "mors død "
 
 #: ../gramps/gen/utils/alive.py:882 ../gramps/gen/utils/alive.py:888
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "Alder ved død"
+msgstr "fars død "
 
 #: ../gramps/gen/utils/alive.py:961
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Databasefeil: løkke i %s sine aner"
+msgstr "Databasefeil: løkke i anene til %s."
 
 #: ../gramps/gen/utils/alive.py:1043 ../gramps/gen/utils/alive.py:1052
 msgid "no evidence"
@@ -12852,35 +12651,28 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Vis eller skjul ikon for innstillinger i verktøylinjen."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "mediareferanser"
+msgstr "Bruk standard innstilling"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Kun tekst"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Kun nye utvidelser"
+msgstr "Kun ikoner"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "Både tekst og ikoner"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "Vis tekst, ikoner eller begge deler for knappene i verktøylinjen."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "Verk_tøylinje"
+msgstr "Verktøylinjestil"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -13253,7 +13045,7 @@ msgstr "_Stopp"
 
 #: ../gramps/gui/dbloader.py:220
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "Er du sikker på at du vil oppgradere denne slektsdatabasen?"
+msgstr "Er du sikker på at du vil oppgradere dette slektstreet?"
 
 #: ../gramps/gui/dbloader.py:223
 msgid ""
@@ -13348,11 +13140,11 @@ msgstr ""
 #: ../gramps/gui/dbman.py:99
 #, python-format
 msgid "%s_-_Manage_Family_Trees"
-msgstr "%s_-_Administrer slektsdatabaser"
+msgstr "%s_-_Manage_Family_Trees"
 
 #: ../gramps/gui/dbman.py:100
 msgid "Family_Trees_manager_window"
-msgstr "Vindu_for_Håndtering_av_Slektsdatabaser"
+msgstr "Family_Trees_manager_window"
 
 #: ../gramps/gui/dbman.py:114 ../gramps/gui/glade/dbman.glade:344
 msgid "_Archive"
@@ -13425,7 +13217,7 @@ msgstr "Slektstree"
 
 #: ../gramps/gui/dbman.py:407
 msgid "Family Tree name"
-msgstr "Navn på slektsdatabase"
+msgstr "Navn på slektstre"
 
 #: ../gramps/gui/dbman.py:426
 msgid "Database Type"
@@ -13470,7 +13262,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:668
 msgid "Could not rename the Family Tree."
-msgstr "Kunne ikke endre navn på Slektsdatabasen."
+msgstr "Kunne ikke endre navn på slektstreet."
 
 #: ../gramps/gui/dbman.py:669
 msgid "Family Tree already exists, choose a unique name."
@@ -13487,15 +13279,15 @@ msgstr "Importerer arkiv..."
 #: ../gramps/gui/dbman.py:744
 #, python-format
 msgid "Remove the '%s' Family Tree?"
-msgstr "Fjerne slektsdatabasen '%s'?"
+msgstr "Fjerne slektstreet «%s»?"
 
 #: ../gramps/gui/dbman.py:745
 msgid "Removing this Family Tree will permanently destroy the data."
-msgstr "Fjerning av denne slektsdatabasen vil ødelegge dataene permanent."
+msgstr "Fjerning av dette slektstreet vil permanent slette alle data."
 
 #: ../gramps/gui/dbman.py:746
 msgid "Remove Family Tree"
-msgstr "Fjerne slektsdatabase"
+msgstr "Fjerne slektstre"
 
 #: ../gramps/gui/dbman.py:754
 #, python-format
@@ -13538,8 +13330,7 @@ msgstr "Konvertere databasen '%s'?"
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
 msgstr ""
-"Ønsker du å konvertere denne slektsdatabasen til en %(database_type)s "
-"database?"
+"Ønsker du å konvertere dette slektstreet til en %(database_type)s database?"
 
 #: ../gramps/gui/dbman.py:845
 msgid "Convert"
@@ -13580,7 +13371,7 @@ msgstr "Et forsøk på å importere databasen feilet."
 
 #: ../gramps/gui/dbman.py:961
 msgid "Repair Family Tree?"
-msgstr "Reparere slektsdatabase?"
+msgstr "Reparere slektstre?"
 
 #: ../gramps/gui/dbman.py:963
 #, python-format
@@ -13649,7 +13440,7 @@ msgstr "Feil ved innhenting av data fra sikkerhetskopi"
 
 #: ../gramps/gui/dbman.py:1062
 msgid "Could not create Family Tree"
-msgstr "Kunne ikke opprette slektsdatabase"
+msgstr "Kunne ikke opprette slektstre"
 
 #: ../gramps/gui/dbman.py:1186
 msgid "Retrieve failed"
@@ -13819,20 +13610,19 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"Denne Gramps 4.x-trunk er utviklerversjon. Denne versjonen er ikke ment å "
-"være for normal bruk. Bruk den på egen risiko.\n"
+"Denne versjonen er ikke beregnet for vanlig bruk. Bruk den på egen risiko.\n"
 "\n"
 "Denne versjonen kan:\n"
-"1) Fungere annerledes enn du så for deg.\n"
-"2) Ikke kunne kjøre i det hele tatt.\n"
+"1) Fungere annerledes enn du forventer.\n"
+"2) Ikke starte i det hele tatt.\n"
 "3) Kræsje ofte.\n"
-"4) Ødelegge dine data.\n"
-"5) Lagre data i et format som ikke er kompatibelt med den offisielle "
-"versjonen.\n"
+"4) Skade dataene dine.\n"
+"5) Lagre data i et format som ikke er kompatibelt med den offisielle utgaven."
 "\n"
-"%(bold_start)sLAG SIKKERHETSKOPI%(bold_end)s av dine slektsdatabaser før du "
-"åpner dem med denne versjonen. Sørg også for å eksportere dine data til XML "
-"nå og da."
+"\n"
+"%(bold_start)sLAG SIKKERHETSKOPI%(bold_end)s av dine eksisterende databaser "
+"før du åpner dem med denne versjonen. Sørg også for å eksportere dataene "
+"dine til XML med jevne mellomrom."
 
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
@@ -14304,10 +14094,8 @@ msgid "_Names"
 msgstr "_Navn"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Set as Preferred name"
-msgstr "Foretrukket navn"
+msgstr "Sett som foretrukket navn"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
@@ -14542,7 +14330,7 @@ msgstr "Flytt det valgte etternavnet nedover"
 #: ../gramps/gui/editors/displaytabs/surnametab.py:83
 #: ../gramps/plugins/lib/libgedcom.py:753
 msgid "Origin"
-msgstr "Opprinnelig"
+msgstr "Opprinnelse"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:94
 msgid "Multiple Surnames"
@@ -15475,29 +15263,21 @@ msgstr "Nytt sted"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:242
-#, fuzzy
-#| msgid ""
-#| "Invalid latitude\n"
-#| "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Ugyldig breddegrad\n"
-"(syntaks: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+"(syntaks: 18°9'48.21\"S, -18.2412 eller -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:250
-#, fuzzy
-#| msgid ""
-#| "Invalid longitude\n"
-#| "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Ugyldig lengdegrad\n"
-"(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+"(syntaks: 18°9'48.21\"E, -18.2412 eller -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:289
 #: ../gramps/plugins/lib/maps/geography.py:994
@@ -16174,7 +15954,7 @@ msgstr "Dødssted"
 
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:121
 msgid "Within"
-msgstr "Innen"
+msgstr "Innenfor"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
 #: ../gramps/gui/plug/_windows.py:847
@@ -16211,7 +15991,7 @@ msgstr "Medgått tid: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr "Du bør velge et sted når du bruker 'Innenfor'-regelen"
+msgstr "Du bør velge et sted når du bruker regelen «Innenfor»"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
@@ -16220,7 +16000,7 @@ msgstr "Oppgi minst én verdi"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "Opprettet av Filter gramplet {today}"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19359,10 +19139,8 @@ msgid "All statuses"
 msgstr "Alle statuser"
 
 #: ../gramps/gui/plug/_windows.py:463
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
-msgstr "Gjenopprett til standard"
+msgstr "Tilbakestill utvidelsesfiltre til standard"
 
 #: ../gramps/gui/plug/_windows.py:477
 msgid "Settings"
@@ -19397,38 +19175,28 @@ msgid "Insert a project"
 msgstr "Legg inn et prosjekt"
 
 #: ../gramps/gui/plug/_windows.py:705
-#, fuzzy
-#| msgid "Remove the selected person"
 msgid "Remove the selected project"
-msgstr "Fjern den valgte personen"
+msgstr "Fjern det valgte prosjektet"
 
 #: ../gramps/gui/plug/_windows.py:707
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "Flytt barnet oppover i barnelisten"
+msgstr "Flytt prosjektet oppover i listen"
 
 #: ../gramps/gui/plug/_windows.py:709
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "Flytt barnet nedover i barnelisten"
+msgstr "Flytt prosjektet nedover i listen"
 
 #: ../gramps/gui/plug/_windows.py:711
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
-msgstr "Gjenopprett prosjektstandarder"
+msgstr "Tilbakestill til prosjektets standarder"
 
 #: ../gramps/gui/plug/_windows.py:748
 msgid "Allow Gramps to install required Python modules"
 msgstr "Tillat Gramps å installere nødvendige Python-moduler"
 
 #: ../gramps/gui/plug/_windows.py:750
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "Tillat Gramps å installere nødvendige Python-moduler"
+msgstr "Forsøk å installere manglende påkrevde Python-moduler der det er mulig"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Scheduled update checks"
@@ -19856,7 +19624,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:629
 msgid "Error exporting your Family Tree"
-msgstr "Feil ved eksport av din slektsdatabase"
+msgstr "Feil ved eksport av slektstreet ditt"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:637
 #: ../gramps/gui/plug/export/_exportassistant.py:673
@@ -20407,7 +20175,7 @@ msgstr "Slektstrebehandling"
 
 #: ../gramps/gui/plug/tool.py:70
 msgid "Family Tree Repair"
-msgstr "Reparere slektsdatabase"
+msgstr "Reparere slektstre"
 
 #: ../gramps/gui/plug/tool.py:71
 msgid "Revision Control"
@@ -21307,8 +21075,8 @@ msgid ""
 "Matches places within a given distance of the active place. You have no "
 "active place."
 msgstr ""
-"Jamfører steder innen en gitt avstand fra aktivt sted. Du har ikke noe "
-"aktivt sted."
+"Matcher steder innenfor en gitt avstand fra det aktive stedet. Du har ikke "
+"noe aktivt sted."
 
 #: ../gramps/gui/widgets/progressdialog.py:300
 msgid "Progress Information"
@@ -23240,11 +23008,11 @@ msgstr "Eksportvalg for Gramps-pakke"
 
 #: ../gramps/plugins/export/export.gpr.py:150
 msgid "Gramps XML (family tree)"
-msgstr "Gramps XML (slektsdatabase)"
+msgstr "Gramps XML (slektstre)"
 
 #: ../gramps/plugins/export/export.gpr.py:151
 msgid "Gramps _XML (family tree)"
-msgstr "Gramps _XML (slektsdatabase)"
+msgstr "Gramps _XML (slektstre)"
 
 #: ../gramps/plugins/export/export.gpr.py:153
 msgid ""
@@ -23450,22 +23218,15 @@ msgid "Enter a date, click Run"
 msgstr "Skriv inn en dato, klikk Kjør"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
-#, fuzzy
-#| msgid ""
-#| "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. "
-#| "This will compute the ages for everyone in your Family Tree on that date. "
-#| "You can then sort by the age column, and double-click the row to view or "
-#| "edit."
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
 "This will compute the ages for everyone in your Family Tree on that date. "
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"Skriv inn en gyldig dato (som DD.MM.YYYY) i feltet under og klikk kjør. "
-"Dette vil beregne alder for alle personer i slektstreet ditt på den datoen. "
-"Du kan da sortere på alder og dobbeltklikke på en rad for å se eller "
-"redigere."
+"Skriv inn en gyldig dato (som YYYY-MM-DD) i tekstfeltet under og klikk kjør. "
+"Dette vil beregne alderen til alle i slektstreet ditt på den datoen. Du kan "
+"da sortere etter alder og dobbeltklikke på en rad for å se eller redigere."
 
 #: ../gramps/plugins/gramplet/agestats.py:84
 #: ../gramps/plugins/gramplet/agestats.py:97
@@ -23563,10 +23324,9 @@ msgid "Key"
 msgstr "Tast"
 
 #: ../gramps/plugins/gramplet/backlinks.py:238
-#, fuzzy, python-format
-#| msgid "_Make Active Media"
+#, python-format
 msgid "_Make Active %s"
-msgstr "_Lag aktivt media"
+msgstr "_Aktiver %s"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
@@ -23832,7 +23592,7 @@ msgstr "Dobbeltklikk på fornavn for å se detaljer"
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:65
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
-msgstr "Ingen Slektsdatabase er lastet."
+msgstr "Ingen slektstre er lastet."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:156
 msgid "Total unique given names"
@@ -23849,16 +23609,12 @@ msgid "Total people"
 msgstr "Totalt antall personer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
+msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
+msgstr "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -25052,10 +24808,8 @@ msgid "Unattached"
 msgstr "Ikke vedlagt"
 
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
-#, fuzzy
-#| msgid "Number of ranks to display"
 msgid "Number of Surnames to display"
-msgstr "Antall nivåer som skal vises"
+msgstr "Antall etternavn som skal vises"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
@@ -26065,8 +25819,8 @@ msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files)."
 msgstr ""
-"Importere data fra en Gramps-pakke (en arkivert XML-slektsdatabase sammen "
-"med medieobjektfiler)."
+"Importer data fra en Gramps-pakke (et arkivert XML-slektstre sammen med "
+"medieobjektfiler)."
 
 #: ../gramps/plugins/importer/import.gpr.py:115
 msgid "Gramps XML Family Tree"
@@ -26140,22 +25894,16 @@ msgid "call"
 msgstr "tiltalsnavn"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "kallenavn"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "_Kallenavn:"
+msgstr "Kallenavn"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "kallenavn"
+msgstr "kalle_navn"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -27126,7 +26874,7 @@ msgid ""
 "Objects that are candidates to be merged:"
 msgstr ""
 "\n"
-"Objekter som er kandidater til å bli slått sammen:"
+"Objekter som kan flettes sammen:"
 
 #: ../gramps/plugins/importer/importxml.py:907
 #: ../gramps/plugins/importer/importxml.py:1444
@@ -31418,9 +31166,9 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "person."
 msgstr ""
-"Nøyaktig to personer må velges for å gjennomføre en sammensmelting. Person "
-"nummer to kan velges ved å holde inne CTRL-tasten når du klikker på ønsket "
-"person."
+"Nøyaktig to personer må velges for å utføre en fletting. Den andre personen "
+"kan velges ved å holde inne CTRL-tasten mens du klikker på den ønskede "
+"personen."
 
 #: ../gramps/plugins/lib/libplaceview.py:118
 msgid "Edit the selected place"
@@ -31497,15 +31245,12 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "place."
 msgstr ""
-"Nøyaktig to steder må velges for å gjennomføre en sammensmelting. Sted "
-"nummer to kan velges ved å holde inne CTRL-tasten mens du klikker på ønsket "
-"sted."
+"Nøyaktig to steder må velges for å utføre en fletting. Det andre stedet kan "
+"velges ved å holde inne CTRL-tasten mens du klikker på det ønskede stedet."
 
 #: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr ""
-"Sammensmelting av disse stedene ville laget en sirkelkobling i "
-"stedshierarkiet."
+msgstr "Fletting av disse stedene ville forårsaket en løkke i stedshierarkiet."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:37
 msgid "Provides a library for using Cairo to generate documents."
@@ -33247,10 +32992,8 @@ msgid "Show gender symbol in front of name"
 msgstr "Vis kjønnssymbol foran navnet"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "Om skilsmisseinformasjon skal være med i rapporten."
+msgstr "Om kjønnssymbol skal vises foran navn i rapporten."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -33452,10 +33195,8 @@ msgstr "Bruk tiltalsnavn som første navn."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to include Gramps ID next to names."
 msgid "Whether to show gender symbol in front of name."
-msgstr "Om Gramps ID skal tas med ved siden av navnene."
+msgstr "Om kjønnssymbol skal vises foran navn."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
@@ -34007,16 +33748,12 @@ msgid "The maximum number of ancestor generations"
 msgstr "Maksimalt antall generasjoner med aner"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
-#| msgid "Show gramps id"
 msgid "Show Gramps ID"
-msgstr "Vis Gramps-ID"
+msgstr "Vis Gramps ID"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
-msgstr "Om Gramps-IDer skal tas med eller ikke"
+msgstr "Om Gramps ID skal vises"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:390
 msgid "Whether to include spouses"
@@ -34414,7 +34151,7 @@ msgstr "Lager en rapport over bursdager og jubileer"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:83
 msgid "Add custom text to the book report"
-msgstr "Legg til fritekst i bokrapporten"
+msgstr "Legg til tilpasset tekst i bokrapporten"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:104
 msgid "Descendant Report"
@@ -35559,7 +35296,7 @@ msgstr "Ser etter siteringsfelt"
 
 #: ../gramps/plugins/tool/mergecitations.py:246
 msgid "Number of merges done"
-msgstr "Antall flettinger"
+msgstr "Antall utførte flettinger"
 
 #: ../gramps/plugins/tool/mergecitations.py:249
 #, python-brace-format
@@ -38066,10 +37803,9 @@ msgstr "Fortellende"
 
 #: ../gramps/plugins/webreport/basepage.py:904
 #: ../gramps/plugins/webreport/basepage.py:974
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr "(%(str1)s) %(str2)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1511
 #: ../gramps/plugins/webreport/basepage.py:3403
@@ -38631,21 +38367,15 @@ msgid "Normal Outline Style"
 msgstr "Normal stil for omriss"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2196
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "Utseende på siteringsreferanser"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Avgjør standardlayouten til avsnittet for kildesidens siteringsreferanser"
+"Angi standardlayouten til avsnittet for siteringsreferanser på kildesiden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2208
 msgid "Include ancestor's tree"
@@ -38681,13 +38411,11 @@ msgstr "Kryss av hvis du vil åpne/lukke en seksjon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Maks rader i en indeks"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2229
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Maksimalt antall aner som skal inkluderes."
+msgstr "Maksimalt antall rader som skal inkluderes på en indeksside"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2239
 msgid "Extra Pages"
@@ -39042,16 +38770,12 @@ msgstr ""
 "Legg til en fullstendig liste med hendelser og relevante sider eller ikke"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2578
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "Inkluder andre hendelser"
+msgstr "Inkluder andre roller"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2579
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "Gramplet som viser notatene for en hendelse"
+msgstr "Inkluder personer med andre roller til en hendelse"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2582
 msgid "Include place pages"
@@ -39626,10 +39350,9 @@ msgid "Number of People"
 msgstr "Antall personer"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
-#, fuzzy, python-brace-format
-#| msgid "Surnames beginning with letter '%s' %s"
+#, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "Etternavn som begynner med bokstaven '%s' %s"
+msgstr "Etternavn som begynner med bokstav '{letter}' {char}"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 msgid ""
