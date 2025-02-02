@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-01 17:31+0000\n"
-"PO-Revision-Date: 2025-02-01 16:04+0000\n"
+"PO-Revision-Date: 2025-02-02 10:43+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -823,14 +823,6 @@ msgstr ""
 "Ctrl+D. Também pode marcar a maioria dos outros objectos."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit > Preferences > Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -10921,6 +10913,8 @@ msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
 "{death_src:s}"
 msgstr ""
+"Evidência directa para este indivíduo - nascimento: {birth_min_src:s}, óbito:"
+" {death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:351
 msgid "mother's age"
@@ -10959,28 +10953,32 @@ msgid "birth date and known to be dead"
 msgstr "data de nascimento e já falecido"
 
 #: ../gramps/gen/utils/alive.py:431
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "data de nascimento de ascendente"
+msgstr "desvio da data de nascimento"
 
 #: ../gramps/gen/utils/alive.py:440
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"Evidência directa para este indivíduo - nascimento: {birth_min_src:s}, óbito:"
+" {death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:447
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"inferida de pais e irmãos - nascimento: {birth_min_src:s}, óbito: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:454
 msgid ""
 "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
 "{birth_max_src:s} (latest), death: {death_src:s}"
 msgstr ""
+"inferida de pais e irmãos - nascimento: {birth_min_src:s} (mais recente) até "
+"{birth_max_src:s} (mais antigo), óbito: {death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:543
 msgid "a spouse's birth-related date, "
@@ -11009,10 +11007,9 @@ msgstr[0] "óbito de descendentes: {number_of} geração "
 msgstr[1] "óbito de descendentes: {number_of} gerações "
 
 #: ../gramps/gen/utils/alive.py:802
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Erro de base de dados: ciclo em descendente de %s"
+msgstr "Erro de base de dados: ciclo em descendentes de %s."
 
 #: ../gramps/gen/utils/alive.py:854
 msgid "mother birth "
@@ -11035,10 +11032,9 @@ msgid "father death "
 msgstr "óbito do pai "
 
 #: ../gramps/gen/utils/alive.py:961
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Erro na base de dados: ciclo em ascendente de %s"
+msgstr "Erro na base de dados: ciclo em ascendentes de %s."
 
 #: ../gramps/gen/utils/alive.py:1043 ../gramps/gen/utils/alive.py:1052
 msgid "no evidence"
@@ -38639,13 +38635,11 @@ msgstr "Marcar se deseja abrir/fechar secções"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Máx. de colunas num índice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2229
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Número máximo de ascendentes a incluir."
+msgstr "Número máximo de colunas a incluir numa página de índice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2239
 msgid "Extra Pages"
