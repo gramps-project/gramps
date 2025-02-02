@@ -316,9 +316,9 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
-        person = self.db.get_person_from_gramps_id(val)
-        if person:
-            return self.get_person_from_handle(person.get_handle())
+        data = self.db.get_raw_person_from_id_data(val)
+        if data:
+            return self.get_person_from_handle(data.handle)
         else:
             return None
 
@@ -327,9 +327,9 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
-        family = self.db.get_family_from_gramps_id(val)
-        if family:
-            return self.get_family_from_handle(family.get_handle())
+        data = self.db.get_raw_family_from_id_data(val)
+        if data:
+            return self.get_family_from_handle(data.handle)
         else:
             return None
 
@@ -338,9 +338,9 @@ class FilterProxyDb(ProxyDbBase):
         Finds an Event in the database from the passed Gramps ID.
         If no such Event exists, None is returned.
         """
-        event = self.db.get_event_from_gramps_id(val)
-        if event:
-            return self.get_event_from_handle(event.get_handle())
+        data = self.db.get_raw_event_from_id_data(val)
+        if data:
+            return self.get_event_from_handle(data.handle)
         else:
             return None
 
@@ -349,9 +349,9 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Place in the database from the passed Gramps ID.
         If no such Place exists, None is returned.
         """
-        place = self.db.get_place_from_gramps_id(val)
-        if place:
-            return self.get_place_from_handle(place.get_handle())
+        data = self.db.get_raw_place_from_id_data(val)
+        if data:
+            return self.get_place_from_handle(data.handle)
         else:
             return None
 
@@ -360,9 +360,9 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Source in the database from the passed Gramps ID.
         If no such Source exists, None is returned.
         """
-        source = self.db.get_source_from_gramps_id(val)
-        if source:
-            return self.get_source_from_handle(source.get_handle())
+        data = self.db.get_raw_source_from_id_data(val)
+        if data:
+            return self.get_source_from_handle(data.handle)
         else:
             return None
 
@@ -371,9 +371,9 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Citation in the database from the passed Gramps ID.
         If no such Citation exists, None is returned.
         """
-        citation = self.db.get_citation_from_gramps_id(val)
-        if citation:
-            return self.get_citation_from_handle(citation.get_handle())
+        data = self.db.get_raw_citation_from_id_data(val)
+        if data:
+            return self.get_citation_from_handle(data.handle)
         else:
             return None
 
@@ -382,9 +382,9 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Media in the database from the passed Gramps ID.
         If no such Media exists, None is returned.
         """
-        media = self.db.get_media_from_gramps_id(val)
-        if media:
-            return self.get_media_from_handle(media.get_handle())
+        data = self.db.get_raw_media_from_id_data(val)
+        if data:
+            return self.get_media_from_handle(data.handle)
         else:
             return None
 
@@ -393,9 +393,9 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Repository in the database from the passed Gramps ID.
         If no such Repository exists, None is returned.
         """
-        repository = self.db.get_repository_from_gramps_id(val)
-        if repository:
-            return self.get_repository_from_handle(repository.get_handle())
+        data = self.db.get_raw_repository_from_id_data(val)
+        if data:
+            return self.get_repository_from_handle(data.handle)
         else:
             return None
 
@@ -404,9 +404,9 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Note in the database from the passed Gramps ID.
         If no such Note exists, None is returned.
         """
-        note = self.db.get_note_from_gramps_id(val)
-        if note:
-            return self.get_note_from_handle(note.get_handle())
+        data = self.db.get_raw_note_from_id_data(val)
+        if data:
+            return self.get_note_from_handle(data.handle)
         else:
             return None
 
