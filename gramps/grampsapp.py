@@ -202,7 +202,7 @@ from .gen.mime import mime_type_is_defined
 #
 # -------------------------------------------------------------------------
 
-MIN_PYTHON_VERSION = (3, 8, 0, "", 0)
+MIN_PYTHON_VERSION = (3, 9, 0, "", 0)
 if not sys.version_info >= MIN_PYTHON_VERSION:
     logging.warning(
         _(
