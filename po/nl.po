@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-01 17:31+0000\n"
-"PO-Revision-Date: 2025-02-01 16:04+0000\n"
+"PO-Revision-Date: 2025-02-02 02:50+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -832,14 +832,6 @@ msgstr ""
 "ook de meeste andere objecten als bladwijzer toevoegen."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit > Preferences > Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -853,7 +845,7 @@ msgstr ""
 "een rode achtergrond of een rode stip aan de rechterkant van het veld. U "
 "kunt de datum corrigeren met behulp van het dialoogvenster voor "
 "datumselectie dat kan worden geopend door op de datumknop te klikken. De "
-"datumindeling wordt ingesteld onder \"Bewerken > Voorkeuren > Weergave\"."
+"datumindeling wordt ingesteld onder \"Bewerken > Voorkeuren > Gegevens\"."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -7404,8 +7396,8 @@ msgstr "onbekend"
 #, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "meer dan (number_of) jaar"
-msgstr[1] "meer dan (number_of) jaar"
+msgstr[0] "meer dan {number_of} jaar"
+msgstr[1] "meer dan {number_of} jaren"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -10992,6 +10984,8 @@ msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
 "{death_src:s}"
 msgstr ""
+"Direct bewijs voor deze persoon - geboorte: {birth_min_src:s}, overlijden:  "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:351
 msgid "mother's age"
@@ -11030,28 +11024,32 @@ msgid "birth date and known to be dead"
 msgstr "geboortedatum en bekend als overleden"
 
 #: ../gramps/gen/utils/alive.py:431
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "geboortedatum voorouder"
+msgstr "verschuiving van geboortedatum"
 
 #: ../gramps/gen/utils/alive.py:440
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"Direct bewijs voor deze persoon - geboorte: {birth_min_src:s}, overlijden: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:447
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"afgeleid van ouders en broers en zussen - geboorte: {birth_min_src:s}, "
+"overlijden: {death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:454
 msgid ""
 "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
 "{birth_max_src:s} (latest), death: {death_src:s}"
 msgstr ""
+"afgeleid van ouders en broers en zussen - geboorte:  {birth_min_src:s} "
+"(vroegst) tot {birth_max_src:s} (laatst), overlijden: {death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:543
 msgid "a spouse's birth-related date, "
@@ -11080,10 +11078,9 @@ msgstr[0] "afstammeling overleden: {number_of} generatie "
 msgstr[1] "afstammeling overleden: {number_of} generaties "
 
 #: ../gramps/gen/utils/alive.py:802
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Databasefout: lus in de afstammelingen van %s"
+msgstr "Databasefout: lus in de afstammelingen van %s."
 
 #: ../gramps/gen/utils/alive.py:854
 msgid "mother birth "
@@ -11106,10 +11103,9 @@ msgid "father death "
 msgstr "overlijden vader "
 
 #: ../gramps/gen/utils/alive.py:961
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Databasefout: lus in de voorouders van %s"
+msgstr "Databasefout: lus in de voorouders van %s."
 
 #: ../gramps/gen/utils/alive.py:1043 ../gramps/gen/utils/alive.py:1052
 msgid "no evidence"
@@ -38819,13 +38815,11 @@ msgstr "Controleer of u een sectie wilt openen/sluiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Max. rijen in een index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2229
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Het maximumaantal voorouders dat moet worden opgenomen."
+msgstr "Het maximum aantal rijen die moeten worden opgenomen in een indexpagina"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2239
 msgid "Extra Pages"
