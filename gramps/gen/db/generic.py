@@ -77,6 +77,15 @@ from ..types import (
     NoteHandle,
     TagHandle,
     TableObjectType,
+    PersonGrampsID,
+    EventGrampsID,
+    FamilyGrampsID,
+    PlaceGrampsID,
+    SourceGrampsID,
+    RepositoryGrampsID,
+    CitationGrampsID,
+    MediaGrampsID,
+    NoteGrampsID,
 )
 from ..updatecallback import UpdateCallback
 from ..utils.callback import Callback
@@ -1156,7 +1165,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         map_index += 1
         return (map_index, index)
 
-    def find_next_person_gramps_id(self):
+    def find_next_person_gramps_id(self) -> PersonGrampsID:
         """
         Return the next available GRAMPS' ID for a Person object based off the
         person ID prefix.
@@ -1166,7 +1175,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         )
         return gid
 
-    def find_next_place_gramps_id(self):
+    def find_next_place_gramps_id(self) -> PlaceGrampsID:
         """
         Return the next available GRAMPS' ID for a Place object based off the
         place ID prefix.
@@ -1176,7 +1185,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         )
         return gid
 
-    def find_next_event_gramps_id(self):
+    def find_next_event_gramps_id(self) -> EventGrampsID:
         """
         Return the next available GRAMPS' ID for a Event object based off the
         event ID prefix.
@@ -1186,7 +1195,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         )
         return gid
 
-    def find_next_media_gramps_id(self):
+    def find_next_media_gramps_id(self) -> MediaGrampsID:
         """
         Return the next available GRAMPS' ID for a Media object based
         off the media object ID prefix.
@@ -1196,7 +1205,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         )
         return gid
 
-    def find_next_citation_gramps_id(self):
+    def find_next_citation_gramps_id(self) -> CitationGrampsID:
         """
         Return the next available GRAMPS' ID for a Citation object based off the
         citation ID prefix.
@@ -1206,7 +1215,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         )
         return gid
 
-    def find_next_source_gramps_id(self):
+    def find_next_source_gramps_id(self) -> SourceGrampsID:
         """
         Return the next available GRAMPS' ID for a Source object based off the
         source ID prefix.
@@ -1216,7 +1225,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         )
         return gid
 
-    def find_next_family_gramps_id(self):
+    def find_next_family_gramps_id(self) -> FamilyGrampsID:
         """
         Return the next available GRAMPS' ID for a Family object based off the
         family ID prefix.
@@ -1226,7 +1235,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         )
         return gid
 
-    def find_next_repository_gramps_id(self):
+    def find_next_repository_gramps_id(self) -> RepositoryGrampsID:
         """
         Return the next available GRAMPS' ID for a Respository object based
         off the repository ID prefix.
@@ -1236,7 +1245,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         )
         return gid
 
-    def find_next_note_gramps_id(self):
+    def find_next_note_gramps_id(self) -> NoteGrampsID:
         """
         Return the next available GRAMPS' ID for a Note object based off the
         note ID prefix.
@@ -1449,39 +1458,41 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def get_person_from_gramps_id(self, gramps_id) -> Person:
+    def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person:
         data = self._get_raw_person_from_id_data(gramps_id)
         return self.serializer.data_to_object(data, Person)
 
-    def get_family_from_gramps_id(self, gramps_id) -> Family:
+    def get_family_from_gramps_id(self, gramps_id: FamilyGrampsID) -> Family:
         data = self._get_raw_family_from_id_data(gramps_id)
         return self.serializer.data_to_object(data, Family)
 
-    def get_citation_from_gramps_id(self, gramps_id) -> Citation:
+    def get_citation_from_gramps_id(self, gramps_id: CitationGrampsID) -> Citation:
         data = self._get_raw_citation_from_id_data(gramps_id)
         return self.serializer.data_to_object(data, Citation)
 
-    def get_source_from_gramps_id(self, gramps_id) -> Source:
+    def get_source_from_gramps_id(self, gramps_id: SourceGrampsID) -> Source:
         data = self._get_raw_source_from_id_data(gramps_id)
         return self.serializer.data_to_object(data, Source)
 
-    def get_event_from_gramps_id(self, gramps_id) -> Event:
+    def get_event_from_gramps_id(self, gramps_id: EventGrampsID) -> Event:
         data = self._get_raw_event_from_id_data(gramps_id)
         return self.serializer.data_to_object(data, Event)
 
-    def get_media_from_gramps_id(self, gramps_id) -> Media:
+    def get_media_from_gramps_id(self, gramps_id: MediaGrampsID) -> Media:
         data = self._get_raw_media_from_id_data(gramps_id)
         return self.serializer.data_to_object(data, Media)
 
-    def get_place_from_gramps_id(self, gramps_id) -> Place:
+    def get_place_from_gramps_id(self, gramps_id: PlaceGrampsID) -> Place:
         data = self._get_raw_place_from_id_data(gramps_id)
         return self.serializer.data_to_object(data, Place)
 
-    def get_repository_from_gramps_id(self, gramps_id) -> Repository:
+    def get_repository_from_gramps_id(
+        self, gramps_id: RepositoryGrampsID
+    ) -> Repository:
         data = self._get_raw_repository_from_id_data(gramps_id)
         return self.serializer.data_to_object(data, Repository)
 
-    def get_note_from_gramps_id(self, gramps_id) -> Note:
+    def get_note_from_gramps_id(self, gramps_id: NoteGrampsID) -> Note:
         data = self._get_raw_note_from_id_data(gramps_id)
         return self.serializer.data_to_object(data, Note)
 
@@ -1536,31 +1547,31 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def _has_gramps_id(self, obj_key, gramps_id) -> bool:
         raise NotImplementedError
 
-    def has_person_gramps_id(self, gramps_id) -> bool:
+    def has_person_gramps_id(self, gramps_id: PersonGrampsID) -> bool:
         return self._has_gramps_id(PERSON_KEY, gramps_id)
 
-    def has_family_gramps_id(self, gramps_id) -> bool:
+    def has_family_gramps_id(self, gramps_id: FamilyGrampsID) -> bool:
         return self._has_gramps_id(FAMILY_KEY, gramps_id)
 
-    def has_source_gramps_id(self, gramps_id) -> bool:
+    def has_source_gramps_id(self, gramps_id: SourceGrampsID) -> bool:
         return self._has_gramps_id(SOURCE_KEY, gramps_id)
 
-    def has_citation_gramps_id(self, gramps_id) -> bool:
+    def has_citation_gramps_id(self, gramps_id: CitationGrampsID) -> bool:
         return self._has_gramps_id(CITATION_KEY, gramps_id)
 
-    def has_event_gramps_id(self, gramps_id) -> bool:
+    def has_event_gramps_id(self, gramps_id: EventGrampsID) -> bool:
         return self._has_gramps_id(EVENT_KEY, gramps_id)
 
-    def has_media_gramps_id(self, gramps_id) -> bool:
+    def has_media_gramps_id(self, gramps_id: MediaGrampsID) -> bool:
         return self._has_gramps_id(MEDIA_KEY, gramps_id)
 
-    def has_place_gramps_id(self, gramps_id) -> bool:
+    def has_place_gramps_id(self, gramps_id: PlaceGrampsID) -> bool:
         return self._has_gramps_id(PLACE_KEY, gramps_id)
 
-    def has_repository_gramps_id(self, gramps_id) -> bool:
+    def has_repository_gramps_id(self, gramps_id: RepositoryGrampsID) -> bool:
         return self._has_gramps_id(REPOSITORY_KEY, gramps_id)
 
-    def has_note_gramps_id(self, gramps_id) -> bool:
+    def has_note_gramps_id(self, gramps_id: NoteGrampsID) -> bool:
         return self._has_gramps_id(NOTE_KEY, gramps_id)
 
     ################################################################
@@ -1852,31 +1863,31 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         raise NotImplementedError
 
-    def _get_raw_person_from_id_data(self, gramps_id):
+    def _get_raw_person_from_id_data(self, gramps_id: PersonGrampsID):
         return self._get_raw_from_id_data(PERSON_KEY, gramps_id)
 
-    def _get_raw_family_from_id_data(self, gramps_id):
+    def _get_raw_family_from_id_data(self, gramps_id: FamilyGrampsID):
         return self._get_raw_from_id_data(FAMILY_KEY, gramps_id)
 
-    def _get_raw_source_from_id_data(self, gramps_id):
+    def _get_raw_source_from_id_data(self, gramps_id: SourceGrampsID):
         return self._get_raw_from_id_data(SOURCE_KEY, gramps_id)
 
-    def _get_raw_citation_from_id_data(self, gramps_id):
+    def _get_raw_citation_from_id_data(self, gramps_id: CitationGrampsID):
         return self._get_raw_from_id_data(CITATION_KEY, gramps_id)
 
-    def _get_raw_event_from_id_data(self, gramps_id):
+    def _get_raw_event_from_id_data(self, gramps_id: EventGrampsID):
         return self._get_raw_from_id_data(EVENT_KEY, gramps_id)
 
-    def _get_raw_media_from_id_data(self, gramps_id):
+    def _get_raw_media_from_id_data(self, gramps_id: MediaGrampsID):
         return self._get_raw_from_id_data(MEDIA_KEY, gramps_id)
 
-    def _get_raw_place_from_id_data(self, gramps_id):
+    def _get_raw_place_from_id_data(self, gramps_id: PlaceGrampsID):
         return self._get_raw_from_id_data(PLACE_KEY, gramps_id)
 
-    def _get_raw_repository_from_id_data(self, gramps_id):
+    def _get_raw_repository_from_id_data(self, gramps_id: RepositoryGrampsID):
         return self._get_raw_from_id_data(REPOSITORY_KEY, gramps_id)
 
-    def _get_raw_note_from_id_data(self, gramps_id):
+    def _get_raw_note_from_id_data(self, gramps_id: NoteGrampsID):
         return self._get_raw_from_id_data(NOTE_KEY, gramps_id)
 
     ################################################################
