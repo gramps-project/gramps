@@ -37,6 +37,15 @@ from . import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # Everyone
 #
 # -------------------------------------------------------------------------
@@ -50,5 +59,5 @@ class Everything(Rule):
     def is_empty(self):
         return True
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         return True

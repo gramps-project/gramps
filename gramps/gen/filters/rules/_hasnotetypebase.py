@@ -31,6 +31,14 @@ from ...const import GRAMPS_LOCALE as glocale
 from ...lib.notetype import NoteType
 from . import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.notebase import NoteBase
+from ...db import Database
+
 _ = glocale.translation.gettext
 
 
@@ -53,7 +61,7 @@ class HasNoteTypeBase(Rule):
         super().__init__(arg, use_regex, use_case)
         self.note_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
@@ -61,11 +69,11 @@ class HasNoteTypeBase(Rule):
             self.note_type = NoteType()
             self.note_type.set_from_xml_str(self.list[0])
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: NoteBase):
         """
         Apply the rule. Return True on a match.
         """
-        notelist = obj.get_note_list()
+        notelist = obj.note_list
         for notehandle in notelist:
             note = db.get_note_from_handle(notehandle)
             if note.get_type() == self.note_type:

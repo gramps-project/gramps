@@ -36,6 +36,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib import Person
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 # "People having notes that contain a substring"
 # -------------------------------------------------------------------------
 class HasNoteSubstrBase(Rule):
@@ -46,11 +55,11 @@ class HasNoteSubstrBase(Rule):
     description = "Matches objects whose notes contain text matching a " "substring"
     category = _("General filters")
 
-    def apply(self, db, person):
-        notelist = person.get_note_list()
+    def apply_to_one(self, db, person: Person) -> bool:
+        notelist = person.note_list
         for notehandle in notelist:
             note = db.get_note_from_handle(notehandle)
-            n = note.get()
+            n = str(note.text)
             if n.upper().find(self.list[0].upper()) != -1:
                 return True
         return False

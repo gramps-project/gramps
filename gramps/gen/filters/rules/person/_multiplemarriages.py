@@ -36,6 +36,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 # "People with multiple marriage records"
 # -------------------------------------------------------------------------
 class MultipleMarriages(Rule):
@@ -45,5 +54,5 @@ class MultipleMarriages(Rule):
     description = _("Matches people who have more than one spouse")
     category = _("Family filters")
 
-    def apply(self, db, person):
-        return len(person.get_family_handle_list()) > 1
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return len(person.family_list) > 1

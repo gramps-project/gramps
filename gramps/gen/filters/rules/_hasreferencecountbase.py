@@ -36,6 +36,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 # "Objects with a certain reference count"
 # -------------------------------------------------------------------------
 class HasReferenceCountBase(Rule):
@@ -46,7 +55,7 @@ class HasReferenceCountBase(Rule):
     description = "Matches objects with a certain reference count"
     category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         # things we want to do just once, not for every handle
         if self.list[0] == "less than":
             self.count_type = 0
@@ -57,8 +66,8 @@ class HasReferenceCountBase(Rule):
 
         self.userSelectedCount = int(self.list[1])
 
-    def apply(self, db, obj):
-        handle = obj.get_handle()
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
+        handle = obj.handle
         count = 0
         for item in db.find_backlink_handles(handle):
             count += 1

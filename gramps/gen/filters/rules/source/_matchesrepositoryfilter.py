@@ -26,6 +26,15 @@
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Source
+from ....db import Database
+
+
 _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
@@ -53,17 +62,18 @@ class MatchesRepositoryFilter(MatchesFilterBase):
     # we want to have this filter show repository filters
     namespace = "Repository"
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MRF_filt = self.find_filter()
 
-    def apply(self, db, object):
+    def apply_to_one(self, db: Database, object: Source) -> bool:
         if self.MRF_filt is None:
             return False
 
-        repolist = [x.ref for x in object.get_reporef_list()]
+        repolist = [x.ref for x in object.reporef_list]
         for repohandle in repolist:
             # check if repo in repository filter
-            if self.MRF_filt.check(db, repohandle):
+            repo = db.get_repository_from_handle(repohandle)
+            if self.MRF_filt.apply_to_one(db, repo):
                 return True
         return False

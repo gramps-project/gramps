@@ -40,6 +40,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.notebase import NoteBase
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 # "Objects having notes"
 # -------------------------------------------------------------------------
 class HasNoteBase(Rule):
@@ -58,7 +67,7 @@ class HasNoteBase(Rule):
         else:
             Rule.__init__(self, arg, use_regex, use_case)
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         # things we want to do just once, not for every handle
         if self.list[1] == "less than":
             self.count_type = 0
@@ -69,8 +78,8 @@ class HasNoteBase(Rule):
 
         self.userSelectedCount = int(self.list[0])
 
-    def apply(self, db, obj):
-        count = len(obj.get_note_list())
+    def apply_to_one(self, db: Database, obj: NoteBase) -> bool:
+        count = len(obj.note_list)
         if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount
         elif self.count_type == 2:  # "greater than"

@@ -36,6 +36,14 @@ _ = glocale.translation.sgettext
 from .. import Rule
 from ....utils.location import located_in
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Place
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 #
@@ -52,13 +60,13 @@ class IsEnclosedBy(Rule):
     description = _("Matches a place enclosed by a particular place")
     category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.handle = None
         place = db.get_place_from_gramps_id(self.list[0])
         if place:
             self.handle = place.handle
 
-    def apply(self, db, place):
+    def apply_to_one(self, db: Database, place: Place) -> bool:
         if self.handle is None:
             return False
         if self.list[1] == "1" and place.handle == self.handle:

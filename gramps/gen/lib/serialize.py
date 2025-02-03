@@ -38,6 +38,7 @@ LOG = logging.getLogger(".serialize")
 # Gramps modules
 #
 # ------------------------------------------------------------------------
+import gramps.gen.lib as lib
 from .json_utils import (
     dict_to_string,
     data_to_object,

@@ -37,6 +37,16 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsDescendantOf
 #
 # -------------------------------------------------------------------------
@@ -49,9 +59,9 @@ class IsDescendantOf(Rule):
     category = _("Descendant filters")
     description = _("Matches all descendants for the specified person")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.selected_handles: Set[str] = set()
         try:
             first = False if int(self.list[1]) else True
         except IndexError:
@@ -63,20 +73,20 @@ class IsDescendantOf(Rule):
             pass
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()
 
-    def apply(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles
 
-    def init_list(self, person, first):
-        if not person or person.handle in self.map:
+    def init_list(self, person: Person, first: bool):
+        if not person or person.handle in self.selected_handles:
             # if we have been here before, skip
             return
         if not first:
-            self.map.add(person.handle)
+            self.selected_handles.add(person.handle)
 
-        for fam_id in person.get_family_handle_list():
+        for fam_id in person.family_list:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
-                for child_ref in fam.get_child_ref_list():
-                    self.init_list(self.db.get_person_from_handle(child_ref.ref), 0)
+                for child_ref in fam.child_ref_list:
+                    self.init_list(self.db.get_person_from_handle(child_ref.ref), False)

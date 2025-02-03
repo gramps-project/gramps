@@ -115,7 +115,5 @@ class DataListTest(unittest.TestCase):
         self.assertIsInstance(dl[0], int)
 
     def test_combined_list(self):
-        # FIXME: dealt with in a later PR
         dl = DataList([])
-        with self.assertRaises(AssertionError):
-            self.assertIsInstance(dl + [], DataList)
+        self.assertIsInstance(dl + [], DataList)

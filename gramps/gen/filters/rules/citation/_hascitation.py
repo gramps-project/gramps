@@ -41,6 +41,15 @@ from ....datehandler import parser
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Citation
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasCitation
 #
 # -------------------------------------------------------------------------
@@ -53,7 +62,7 @@ class HasCitation(Rule):
     description = _("Matches citations with particular parameters")
     allow_regex = True
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.date = None
         try:
             if self.list[1]:
@@ -61,16 +70,16 @@ class HasCitation(Rule):
         except:
             pass
 
-    def apply(self, dbase, citation):
-        if not self.match_substring(0, citation.get_page()):
+    def apply_to_one(self, dbase: Database, citation: Citation) -> bool:
+        if not self.match_substring(0, citation.page):
             return False
 
         if self.date:
-            if not citation.get_date_object().match(self.date):
+            if not citation.date.match(self.date):
                 return False
 
         if self.list[2]:
-            if citation.get_confidence_level() < int(self.list[2]):
+            if citation.confidence < int(self.list[2]):
                 return False
 
         return True

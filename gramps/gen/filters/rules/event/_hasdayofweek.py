@@ -31,6 +31,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Event
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasDayOfWeek
 #
 # -------------------------------------------------------------------------
@@ -42,9 +51,11 @@ class HasDayOfWeek(Rule):
     description = _("Matches events occurring on a particular day of the week")
     category = _("General filters")
 
-    def apply(self, db, event):
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         if not self.list[0]:
             return False
         else:
-            dow = event.get_date_object().get_dow()
-            return dow == int(self.list[0])
+            if event.date:
+                dow = event.date.get_dow()
+                return dow == int(self.list[0])
+            return False

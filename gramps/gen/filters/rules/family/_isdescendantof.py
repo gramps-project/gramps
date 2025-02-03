@@ -31,6 +31,16 @@ Rule that checks for a family that is a descendant of a specified family.
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Family
+from ....db import Database
+
+
 _ = glocale.translation.gettext
 
 
@@ -49,30 +59,30 @@ class IsDescendantOf(Rule):
     category = _("General filters")
     description = _("Matches descendant families of the specified family")
 
-    def prepare(self, db, user):
-        self.map = set()
+    def prepare(self, db: Database, user):
+        self.selected_handles: Set[str] = set()
         first = False if int(self.list[1]) else True
         root_family = db.get_family_from_gramps_id(self.list[0])
         self.init_list(db, root_family, first)
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()
 
-    def apply(self, db, family):
-        return family.handle in self.map
+    def apply_to_one(self, db: Database, family: Family) -> bool:
+        return family.handle in self.selected_handles
 
-    def init_list(self, db, family, first):
+    def init_list(self, db: Database, family: Family, first: bool) -> None:
         """
         Initialise family handle list.
         """
         if not family:
             return
         if not first:
-            self.map.add(family.handle)
+            self.selected_handles.add(family.handle)
 
-        for child_ref in family.get_child_ref_list():
+        for child_ref in family.child_ref_list:
             child = db.get_person_from_handle(child_ref.ref)
             if child:
-                for family_handle in child.get_family_handle_list():
+                for family_handle in child.family_list:
                     child_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, child_family, 0)
+                    self.init_list(db, child_family, False)

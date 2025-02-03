@@ -33,7 +33,15 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from ..person import RegExpName
-from ._memberbase import father_base
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Family
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -50,5 +58,13 @@ class RegExpFatherName(RegExpName):
         "matching a specified regular expression"
     )
     category = _("Father filters")
-    base_class = RegExpName
-    apply = father_base
+
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
+        father_handle = family.father_handle
+        if father_handle:
+            father = db.get_person_from_handle(father_handle)
+            if father:
+                return super().apply_to_one(db, father)
+            else:
+                return False
+        return False

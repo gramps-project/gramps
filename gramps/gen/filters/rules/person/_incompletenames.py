@@ -37,6 +37,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IncompleteNames
 #
 # -------------------------------------------------------------------------
@@ -47,13 +56,13 @@ class IncompleteNames(Rule):
     description = _("Matches people with firstname or lastname missing")
     category = _("General filters")
 
-    def apply(self, db, person):
-        for name in [person.get_primary_name()] + person.get_alternate_names():
-            if name.get_first_name().strip() == "":
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        for name in [person.primary_name] + person.alternate_names:
+            if name.first_name.strip() == "":
                 return True
-            if name.get_surname_list():
-                for surn in name.get_surname_list():
-                    if surn.get_surname().strip() == "":
+            if name.surname_list:
+                for surn in name.surname_list:
+                    if surn.surname.strip() == "":
                         return True
             else:
                 return True

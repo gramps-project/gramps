@@ -37,6 +37,17 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import List, Set, Dict
+from ....lib import Person
+from ....db import Database
+from ....types import PersonHandle
+
+
+# -------------------------------------------------------------------------
+#
 # RelationshipPathBetween
 #
 # -------------------------------------------------------------------------
@@ -53,63 +64,71 @@ class RelationshipPathBetween(Rule):
         "path between two persons."
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.selected_handles: Set[PersonHandle] = set()
         try:
-            root1_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-            root2_handle = db.get_person_from_gramps_id(self.list[1]).get_handle()
+            root1_handle = db.get_person_from_gramps_id(self.list[0]).handle
+            root2_handle = db.get_person_from_gramps_id(self.list[1]).handle
             self.init_list(root1_handle, root2_handle)
         except:
             pass
 
     def reset(self):
-        self.map = ()
+        self.selected_handles.clear()
 
-    def desc_list(self, handle, map, first):
+    def desc_list(self, handle: PersonHandle, map, first: bool):
         if not first:
             map.add(handle)
 
         p = self.db.get_person_from_handle(handle)
-        for fam_id in p.get_family_handle_list():
+        for fam_id in p.family_list:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
-                for child_ref in fam.get_child_ref_list():
+                for child_ref in fam.child_ref_list:
                     if child_ref.ref:
-                        self.desc_list(child_ref.ref, map, 0)
+                        self.desc_list(child_ref.ref, map, False)
 
-    def apply_filter(self, rank, handle, plist, pmap):
+    def apply_filter(
+        self,
+        rank: int,
+        handle: PersonHandle,
+        plist: Set[PersonHandle],
+        pmap: Dict[PersonHandle, int],
+    ):
         if not handle:
             return
         person = self.db.get_person_from_handle(handle)
         if person is None:
             return
         plist.add(handle)
-        pmap[person.get_handle()] = rank
+        pmap[person.handle] = rank
 
-        fam_id = person.get_main_parents_family_handle()
+        fam_id = (
+            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
+        )
         if not fam_id:
             return
         family = self.db.get_family_from_handle(fam_id)
         if family is not None:
-            self.apply_filter(rank + 1, family.get_father_handle(), plist, pmap)
-            self.apply_filter(rank + 1, family.get_mother_handle(), plist, pmap)
+            self.apply_filter(rank + 1, family.father_handle, plist, pmap)
+            self.apply_filter(rank + 1, family.mother_handle, plist, pmap)
 
-    def apply(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles
 
-    def init_list(self, p1_handle, p2_handle):
-        firstMap = {}
-        firstList = set()
-        secondMap = {}
-        secondList = set()
-        common = []
+    def init_list(self, p1_handle: PersonHandle, p2_handle: PersonHandle):
+        firstMap: Dict[PersonHandle, int] = {}
+        firstList: Set[PersonHandle] = set()
+        secondMap: Dict[PersonHandle, int] = {}
+        secondList: Set[PersonHandle] = set()
+        common: List[PersonHandle] = []
         rank = 9999999
 
         self.apply_filter(0, p1_handle, firstList, firstMap)
         self.apply_filter(0, p2_handle, secondList, secondMap)
 
-        for person_handle in firstList & secondList:
+        for person_handle in firstList and secondList:
             new_rank = firstMap[person_handle]
             if new_rank < rank:
                 rank = new_rank
@@ -121,8 +140,8 @@ class RelationshipPathBetween(Rule):
         path2 = set([p2_handle])
 
         for person_handle in common:
-            new_map = set()
-            self.desc_list(person_handle, new_map, 1)
+            new_map: Set[PersonHandle] = set()
+            self.desc_list(person_handle, new_map, True)
             path1.update(new_map.intersection(firstMap))
             path2.update(new_map.intersection(secondMap))
-        self.map.update(path1, path2, common)
+        self.selected_handles.update(path1, path2, common)

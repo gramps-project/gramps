@@ -38,6 +38,14 @@ from ....lib.person import Person
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasOtherGender
 #
 # -------------------------------------------------------------------------
@@ -48,5 +56,5 @@ class HasOtherGender(Rule):
     category = _("General filters")
     description = _("Matches all people with other gender")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.gender == Person.OTHER

@@ -38,6 +38,15 @@ from . import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasIdOf
 #
 # -------------------------------------------------------------------------
@@ -49,7 +58,7 @@ class HasGrampsId(Rule):
     description = "Matches objects with a specified Gramps ID"
     category = _("General filters")
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         """
         apply the rule on the obj.
         return true if the rule passes, false otherwise.

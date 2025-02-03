@@ -37,6 +37,15 @@ from .._matchesfilterbase import MatchesFilterBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Event
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # MatchesFilter
 #
 # -------------------------------------------------------------------------
@@ -58,10 +67,9 @@ class MatchesPlaceFilter(MatchesFilterBase):
     # we want to have this filter show place filters
     namespace = "Place"
 
-    def apply(self, db, event):
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
-            handle = event.get_place_handle()
-            if handle and filt.check(db, handle):
+            if event and filt.apply_to_one(db, event):
                 return True
         return False

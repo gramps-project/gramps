@@ -40,6 +40,15 @@ from .._haseventbase import HasEventBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Family
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasEvent
 #
 # -------------------------------------------------------------------------
@@ -56,11 +65,11 @@ class HasEvent(HasEventBase):
     name = _("Families with the <event>")
     description = _("Matches families with an event of a particular value")
 
-    def apply(self, dbase, family):
-        for event_ref in family.get_event_ref_list():
+    def apply_to_one(self, dbase: Database, family: Family) -> bool:  # type: ignore[override]
+        for event_ref in family.event_ref_list:
             if not event_ref:
                 continue
             event = dbase.get_event_from_handle(event_ref.ref)
-            if HasEventBase.apply(self, dbase, event):
+            if HasEventBase.apply_to_one(self, dbase, event):
                 return True
         return False

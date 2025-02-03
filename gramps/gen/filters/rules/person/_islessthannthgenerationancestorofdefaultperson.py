@@ -37,6 +37,17 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Person
+from ....db import Database
+from ....types import PersonHandle
+
+
+# -------------------------------------------------------------------------
+#
 # IsLessThanNthGenerationAncestorOfDefaultPerson
 #
 # -------------------------------------------------------------------------
@@ -52,44 +63,38 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
         "Matches ancestors of the Home Person " "not more than N generations away"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
-        p = db.get_default_person()
+        self.selected_handles: Set[PersonHandle] = set()
+        p: Person = db.get_default_person()
         if p:
-            self.def_handle = p.get_handle()
-            self.apply = self.apply_real
-            self.init_ancestor_list(self.def_handle, 1)
-        else:
-            self.apply = lambda db, p: False
+            self.init_ancestor_list(p.handle, 1)
 
-    def init_ancestor_list(self, handle, gen):
-        #        if p.get_handle() in self.map:
-        #            loop_error(self.orig,p)
-        if not handle or handle in self.map:
+    def init_ancestor_list(self, handle: PersonHandle, gen: int):
+        if not handle or handle in self.selected_handles:
             # if we have been here before, skip
             return
         if gen:
-            self.map.add(handle)
+            self.selected_handles.add(handle)
             if gen >= int(self.list[0]):
                 return
 
         p = self.db.get_person_from_handle(handle)
-        fam_id = p.get_main_parents_family_handle()
+        fam_id = p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
         if not fam_id:
             return
         fam = self.db.get_family_from_handle(fam_id)
         if fam:
-            f_id = fam.get_father_handle()
-            m_id = fam.get_mother_handle()
+            f_id = fam.father_handle
+            m_id = fam.mother_handle
 
             if f_id:
                 self.init_ancestor_list(f_id, gen + 1)
             if m_id:
                 self.init_ancestor_list(m_id, gen + 1)
 
-    def apply_real(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()

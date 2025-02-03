@@ -23,6 +23,8 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
+
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -34,6 +36,8 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from ._isdescendantfamilyof import IsDescendantFamilyOf
 from ._matchesfilter import MatchesFilter
+from ....types import PersonHandle
+from ....db.generic import Database
 
 
 # -------------------------------------------------------------------------
@@ -53,9 +57,9 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
         "of anybody matched by a filter"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.matches = set()
+        self.selected_handles: Set[PersonHandle] = set()
 
         self.matchfilt = MatchesFilter(self.list[0:1])
         self.matchfilt.requestprepare(db, user)
@@ -65,14 +69,14 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        for person in db.iter_people():
+        for handle, person in db._iter_raw_person_data():
             if user:
                 user.step_progress()
-            if self.matchfilt.apply(db, person):
+            if self.matchfilt.apply_to_one(db, person):
                 self.add_matches(person)
         if user:
             user.end_progress()
 
     def reset(self):
         self.matchfilt.requestreset()
-        self.matches = set()
+        self.selected_handles.clear()

@@ -41,6 +41,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasAssociation
 #
 # -------------------------------------------------------------------------
@@ -52,7 +61,7 @@ class HasAssociation(Rule):
     description = _("Matches people with a certain number of associations")
     category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         # things we want to do just once, not for every handle
         if self.list[1] == "less than":
             self.count_type = 0
@@ -63,8 +72,8 @@ class HasAssociation(Rule):
 
         self.selected_count = int(self.list[0])
 
-    def apply(self, db, person):
-        count = len(person.get_person_ref_list())
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        count = len(person.person_ref_list)
         if self.count_type == 0:  # "less than"
             return count < self.selected_count
         elif self.count_type == 2:  # "greater than"

@@ -38,6 +38,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Any
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasNameOf
 #
 # -------------------------------------------------------------------------
@@ -49,12 +58,12 @@ class SearchName(Rule):
     description = _("Matches people with a specified (partial) name")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Any) -> bool:
         src = self.list[0].upper()
         if not src:
             return False
 
-        for name in [person.get_primary_name()] + person.get_alternate_names():
+        for name in [person.primary_name] + person.alternate_names:
             for field in [
                 name.first_name,
                 name.get_surname(),

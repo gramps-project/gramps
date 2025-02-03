@@ -38,6 +38,16 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsDuplicatedAncestorOf
 #
 # -------------------------------------------------------------------------
@@ -52,38 +62,40 @@ class IsDuplicatedAncestorOf(Rule):
         "Matches people that are ancestors twice or more " "of a specified person"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
-        self.map2 = set()
+        self.cache: Set[str] = set()
+        self.selected_handles: Set[str] = set()
         root_person = db.get_person_from_gramps_id(self.list[0])
         if root_person:
             self.init_ancestor_list(db, root_person)
 
     def reset(self):
-        self.map.clear()
-        self.map2.clear()
+        self.cache.clear()
+        self.selected_handles.clear()
 
-    def apply(self, db, person):
-        return person.handle in self.map2
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles
 
-    def init_ancestor_list(self, db, person):
-        fam_id = person.get_main_parents_family_handle()
+    def init_ancestor_list(self, db: Database, person: Person):
+        fam_id = (
+            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
+        )
         if fam_id:
             fam = db.get_family_from_handle(fam_id)
             if fam:
-                f_id = fam.get_father_handle()
-                m_id = fam.get_mother_handle()
+                f_id = fam.father_handle
+                m_id = fam.mother_handle
                 if m_id:
                     self.go_deeper(db, db.get_person_from_handle(m_id))
                 if f_id:
                     self.go_deeper(db, db.get_person_from_handle(f_id))
 
-    def go_deeper(self, db, person):
-        if person and person.handle in self.map:
-            self.map2.add((person.handle))
+    def go_deeper(self, db: Database, person: Person):
+        if person and person.handle in self.cache:
+            self.selected_handles.add((person.handle))
             # the following keeps from scanning same parts of tree multiple
             # times and avoids crash on tree loops.
             return
-        self.map.add((person.handle))
+        self.cache.add(person.handle)
         self.init_ancestor_list(db, person)

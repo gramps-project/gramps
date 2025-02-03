@@ -100,6 +100,7 @@ gramps/gen/filters/__init__.py
 gramps/gen/filters/_filterlist.py
 gramps/gen/filters/_paramfilter.py
 gramps/gen/filters/_searchfilter.py
+gramps/gen/filters/optimizer.py
 #
 # gen.filters.rules package
 #
@@ -117,7 +118,6 @@ gramps/gen/filters/rules/event/__init__.py
 # gen.filters.rules.family package
 #
 gramps/gen/filters/rules/family/__init__.py
-gramps/gen/filters/rules/family/_memberbase.py
 #
 # gen.filters.rules.media package
 #

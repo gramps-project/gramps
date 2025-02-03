@@ -578,7 +578,10 @@ class DbRandomTest(unittest.TestCase):
         with cursor_func() as cursor:
             for handle, data1 in cursor:
                 data2 = raw_func(handle)
-                self.assertEqual(data1, data2)
+                if isinstance(data1, dict) and isinstance(data2, dict):
+                    self.assertDictEqual(dict(data1), dict(data2))
+                else:
+                    self.assertEqual(data1, data2)
 
     def test_get_person_cursor(self):
         self.__get_cursor_test(self.db.get_person_cursor, self.db.get_raw_person_data)

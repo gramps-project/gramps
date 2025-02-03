@@ -37,6 +37,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasFamilyAttribute
 #
 # -------------------------------------------------------------------------
@@ -49,17 +58,17 @@ class HasFamilyAttribute(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if not self.list[0]:
             return False
-        for f_id in person.get_family_handle_list():
+        for f_id in person.family_list:
             f = db.get_family_from_handle(f_id)
             if not f:
                 continue
-            for attr in f.get_attribute_list():
+            for attr in f.attribute_list:
                 if attr:
-                    name_match = self.list[0] == attr.get_type()
-                    value_match = self.match_substring(1, attr.get_value())
+                    name_match = self.list[0] == attr.type
+                    value_match = self.match_substring(1, attr.value)
                     if name_match and value_match:
                         return True
         return False
