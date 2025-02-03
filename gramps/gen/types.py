@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2025       David Straub
+# Copyright (C) 2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -61,3 +62,26 @@ PrimaryObjectHandle = (
 )
 AnyHandle = PrimaryObjectHandle | TagHandle
 TableObjectType = TypeVar("TableObjectType", bound=TableObject)
+
+PersonGrampsID = NewType("PersonGrampsID", str)
+FamilyGrampsID = NewType("FamilyGrampsID", str)
+EventGrampsID = NewType("EventGrampsID", str)
+PlaceGrampsID = NewType("PlaceGrampsID", str)
+SourceGrampsID = NewType("SourceGrampsID", str)
+RepositoryGrampsID = NewType("RepositoryGrampsID", str)
+CitationGrampsID = NewType("CitationGrampsID", str)
+MediaGrampsID = NewType("MediaGrampsID", str)
+NoteGrampsID = NewType("NoteGrampsID", str)
+# No Tag IDs
+PrimaryObjectGrampsID = (
+    PersonGrampsID
+    | FamilyGrampsID
+    | EventGrampsID
+    | PlaceGrampsID
+    | SourceGrampsID
+    | RepositoryGrampsID
+    | CitationGrampsID
+    | MediaGrampsID
+    | NoteGrampsID
+)
+AnyGrampsID = PrimaryObjectGrampsID  # No Tag IDs
