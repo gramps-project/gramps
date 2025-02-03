@@ -27,6 +27,7 @@ The following three packages with GObject Introspection bindings (the gi package
 * [**librsvg2**](http://live.gnome.org/LibRsvg) - (SVG icon view) a library to render SVG files using cairo.
 * [**bsddb3**](https://pypi.python.org/pypi/bsddb3/) - Python bindings for Oracle Berkeley database.
 * [**sqlite3**](https://www.sqlite.org/) - Python bindings for SQLite Database library.
+* [**orjson**](https://pypi.org/project/orjson/) - A fast JSON library for Python. Used to increase the performance of Gramps.
 
 The following package is needed for full translation of the interface
 to your language:
@@ -41,11 +42,6 @@ to your language:
 
 The following packages are **STRONGLY RECOMMENDED** to be installed:
 --------------------------------------------------------------------
-*  [**orjson**](https://pypi.org/project/orjson/)
-
-  A fast JSON library for Python. Used to increase the performance of Gramps.
-  The package name is usually orjson, python-orjson or python3-orjson.
-
 *  [**osmgpsmap**](https://nzjrs.github.io/osm-gps-map/)
 
  Used to show maps in the [Geography Category](https://gramps-project.org/wiki/index.php?title=Gramps_5.1_Wiki_Manual_-_Categories#Geography_Category).

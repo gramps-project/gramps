@@ -219,6 +219,17 @@ if not sys.version_info >= MIN_PYTHON_VERSION:
     )
     sys.exit(1)
 
+try:
+    import orjson
+except ImportError:
+    logging.warning(
+        _(
+            "The orjson package is needed to start Gramps.\n\n"
+            "Gramps will terminate now."
+        )
+    )
+    sys.exit(1)
+
 # -------------------------------------------------------------------------
 #
 # Gramps libraries
@@ -556,10 +567,10 @@ def show_settings():
     print(" pycairo   : %s" % pycairover_str)
     print(" Pango     : %s" % pangover_str)
     print(" PangoCairo: %s" % pangocairo_str)
+    print(" orjson    : %s" % orjson_str)
     print("")
     print("Recommended:")
     print("------------")
-    print(" orjson    : %s" % orjson_str)
     print(" osmgpsmap : %s" % osmgpsmap_str)
     print(" Graphviz  : %s" % dotversion_str)
     print(" Ghostscr. : %s" % gsversion_str)
