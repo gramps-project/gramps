@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-01 17:31+0000\n"
-"PO-Revision-Date: 2025-02-02 10:43+0000\n"
+"PO-Revision-Date: 2025-02-04 09:22+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -7970,7 +7970,7 @@ msgstr "Žádost o rozvod"
 
 #: ../gramps/gen/lib/eventtype.py:242
 msgid "Annulment"
-msgstr "Storno"
+msgstr "Anulování"
 
 #: ../gramps/gen/lib/eventtype.py:243
 msgid "Alternate Marriage"
