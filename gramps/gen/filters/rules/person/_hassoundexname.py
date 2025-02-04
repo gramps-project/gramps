@@ -109,7 +109,7 @@ class HasSoundexName(Rule):
         """
         if soundex(str(surname.get_surname())) == self.soundex:
             return True
-        if int(surname.origintype) == NameOriginType.PATRONYMIC:
+        if int(surname.origintype.value) == NameOriginType.PATRONYMIC:
             if soundex(str(surname.surname)) == self.soundex:
                 return True
         return False

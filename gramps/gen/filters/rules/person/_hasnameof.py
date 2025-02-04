@@ -106,7 +106,7 @@ class HasNameOf(Rule):
             return False
         if self.list[8] and not self.match_substring(8, surn.connector):
             return False
-        if int(surn.origintype) == NameOriginType.PATRONYMIC:
+        if int(surn.origintype.value) == NameOriginType.PATRONYMIC:
             if self.list[9] and not self.match_substring(9, surn.surname):
                 return False
         return True

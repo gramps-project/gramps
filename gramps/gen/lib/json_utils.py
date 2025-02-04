@@ -72,9 +72,7 @@ class DataDict(dict):
                 "this method cannot be used to access hidden attributes"
             )
 
-        if "_object" in self:
-            return getattr(self["_object"], key)
-        elif key in self:
+        if key in self:
             value = self[key]
             if isinstance(value, dict):
                 return DataDict(value)
@@ -83,7 +81,10 @@ class DataDict(dict):
             else:
                 return value
         else:
+            # Some method or attribute not available
+            # otherwise. Cache it:
             self["_object"] = data_to_object(self)
+            # And return the attr from the object:
             return getattr(self["_object"], key)
 
 
