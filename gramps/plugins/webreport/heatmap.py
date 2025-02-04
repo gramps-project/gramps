@@ -614,8 +614,8 @@ class HeatmapPage(BasePage):
             result = self.write_header(event_type)
             events = self.get_all_events(event_type)
             msg = self._(
-                "This section contains the map for all people with the event: %s (%s)"
-            ) % (event_type, self.selected_filter)
+                "This section contains the map for all people with the event: {event_type} ({selected_filter})"
+            ).format(event_type=event_type, selected_filter=self.selected_filter)
             if not len(self.places):
                 msg += self._(" which has no event for the selected filter.")
             tracelife = self.create_tracelife(self.places, events)
@@ -626,10 +626,9 @@ class HeatmapPage(BasePage):
             )
             result = self.write_header(surname[0])
             selected = self.get_surname_events(surname[2])
-            msg = self._("This section contains the map of all events for: %s (%s)") % (
-                surname[0],
-                self.selected_filter,
-            )
+            msg = self._(
+                "This section contains the map of all events for: {surname} ({selected_filter})"
+            ).format(surname=surname[0], selected_filter=self.selected_filter)
             if not len(self.places):
                 msg += self._(" which has no event for the selected filter.")
             tracelife = self.create_tracelife(self.places, selected)
@@ -638,8 +637,8 @@ class HeatmapPage(BasePage):
             result = self.write_header(tag[0])
             selected = self.get_tag_events(tag)
             msg = self._(
-                "This section contains the map for all people, events with the tag: %s (%s)"
-            ) % (tag[0], self.selected_filter)
+                "This section contains the map for all people, events with the tag: {tag} ({selected_filter})"
+            ).format(tag=tag[0], selected_filter=self.selected_filter)
             if not len(self.places):
                 msg += self._(" which has no event for the selected filter.")
             tracelife = self.create_tracelife(self.places, tag)
