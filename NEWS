@@ -1,3 +1,180 @@
+2025-02-04
+Version 6.0.0-beta1
+* Update translations: ar, bg, br, ca, cs, da.po, de, de_AT, el, en_GB, eo, es,
+  fa, fi, fr, ga, gl, he, hr, hu, id, is, it, ja, ko, lt, mk, nb, nl, nn, pl,
+  pt_BR, pt_PT, ro, ru, sk, sl, sq, sr, sv, ta, tr, uk, vi, zh_CN, zh_HK, zh_TW.
+* Update development status classifier.
+* Update translation template for new release.
+* Fix xgettext format string.
+* Add missing files to `POTFILES.in`.
+* Fix accessing an attribute in a DataDict.
+* Add missing future import for annotations.
+* Add type hints to modified functions.
+* Optimise get_object_from_gramps_id methods in filter proxy.
+* Refactor, fix, and optimize filters/rules.
+* Add GrampsID type hints to DbGeneric.
+* Define types for Gramps IDs.
+* Add licence and copyright.
+* Make the orjson package mandatory.
+* Use orjson with a hand-coded encoder/decoder. Assumes orjson is installed.
+* Disable pylintrc no-else-return check.
+* Allow web-accessible file references in media objects.
+* Add type hints to the generic database handler.
+* Update Info.plist for Gramps 6.0. The important change is that macOS 11.0 is
+  now the minimum required for both Intel and Apple Silicon Macs.
+* Add heatmap to the narrative web report.
+* Memorise report options for each database. Fixes #2455
+* Add help_url to built-in tools.
+* Add help button to plugin selection dialogs. Issue #13467.
+* Enhance display_help utility function:
+  * Allow the webpage to include a section separated by a hash (#) character.
+  * Allow a webpage starting with http:// or https:// to specify a full url.
+  * Add unit tests. Fixes #13562.
+* Update minimum python version.
+* Add type hints to latitude and logitude related methods and functions.
+* Use attributes rather than dictionary lookup in the model classes.
+* Crash with empty ADDR in narrative web. Fixes #13479
+* New indexes for big databases in the narrative web report.
+* Correct the tab name for setting the date format in a Tip of the Day.
+* Remove unnecessary translations.
+* Fixes to probably alive code following reviewer comments.
+* Fix safe mode on Windows Safe mode.
+* Make cleanup optional after an AIO build.
+* Add type information to base selector.
+* Use search bar filters instead of fast filter classes.
+* Search bar filter has precedence.
+* Add the standard search bar to the SelectPerson dialog.
+* Add a preference option for the selection of the toolbar style.
+* Use ngettext when displaying the max probably alive age in years.
+* Rephrase the citation references option in the narrative web report.
+* The example filename in the welcome gramplet should not be translated.
+* The space used as an empty column heading does not need translation.
+* Add a translation context to a couple of name origin types.
+* Use ngettext in probably alive function.
+* Remove unreachable else statement in probably alive code.
+* Fix "alt_names" typo in the place model.
+* Add new place to example database.
+* Fix date modifiers for is.
+* Fix de_AT translation.
+* Change http:// to https:// in Tip of the Day file.
+* Strongly recommend orjson in the README.
+* Add orjson version strings.
+* Add orjson dependency to Windows AIO.
+* Add orjson dependency to Mac bundle.
+* Use orjson, if available.
+* Fix exact search filters in selector dialogs.
+* Allow importing and exporting nicknames to CSV.
+* Replace assert statements with TestCase methods in unit tests.
+* Fix python format string related xgettext warnings.
+* Fix narrative web when a person excluded by a proxy is referenced.
+* Recognize event reference citations in editor event tabs.
+* Display the source icon in the event tab of an editor if the event has either
+  an event citation or event reference citation.  Fixes #13401.
+* Fix AttributeError in editor surname tab. Fixes #13322
+* Allow multiple selection in the gallery tab in editors.
+* Allow multiple selection in the media selector dialog.
+* Add optional support for multiple selction in selector dialogs.
+* Merge the two different MultiTreeView classes.
+* dd path column to the media selector dialog.
+* Remove serialize from changenames.
+* Create DataDict from object; Get object with from_dict():
+  * Allow construction of a DataDict from an instance.
+  * Clean up DataDict a bit * Return object instance from_dict() if it exists.
+* Improve language and hamburger menus in narrative web report:
+  * Improve the backlinks (References) gramplets
+  * Enhance ListModel to handle middle mouse clicks.
+  * Allow an object to be made active from within the backlinks gramplet.
+  * Add a context menu to make "Edit" and "Make Active" more discoverable.
+  * Allow objects in the backlinks gramplets to be dragged to the clipboard.
+  * Display the Date column for all objects which are an instance of DateBase.
+* Fix exception during Redo operation.
+* Set initial focus in EditPlaceRef dialog.
+* Add edit capability to the set of Notes gramplets.
+* Update the gramplet display when a note is updated, added or deleted.
+* Use Ubuntu 22.04 for CI.
+* Add gender symbol option to the detailed descendant report.
+* Add gender symbol option to the detailed ancestral report.
+* Add gender symbol option to the descendant report.
+* Add an option to insert a gender symbol before the person's name.
+* Enable mypy static type checking.
+* Remove trailing whitespace check. This is now performed by black.
+* Fix the spelling of "because" in comments.
+* Refactor GrampsType set method to use functools.singledispatchmethod.
+* Convert images in tree reports to thumbnails for embedding.
+* Improve the ProbablyAlive code. Implements #13443.
+* Update bundle for gspell, new enchant.
+* Convert 'Tip of the Day' window to `Gtk.Template`.
+* Add PyPI upload workflow.
+* Change variable name to 'data' for consistency across the code base.
+* Fix error in Fast*Filter.
+* Update GrampsType to work with dict objects.
+* Replace deprecated 'warn' method with 'warning'.
+* Replace deprecated makeSuite with TestLoader().loadTestsFromTestCase.
+* Skip TestImports if en_US locale is not available on build host. Fixes #13079.
+* Fix unittest for local timezones.
+* Update Debian build to include Ubuntu 24.04.
+* Add new HasEvent and HasSource rules.
+* Translate the filter comment string.
+* Use css error class rather then hardcoding the colour "red".
+* Enhanced version of the Filter gramplet.
+* Add new 'having note of type' rule.
+* Change layout of places and dates in familylines plugin. Adds symbols and
+  changes format of birth and death events. Implements #7788, #10699.
+* Show other roles for an event in the narrative web report.
+* Harmonize Date Format label capitalization.
+* Add link to Sphinx footer add hotlink to footer for potential contributors.
+* Add missing tooltips in the Addon Manager Implements #13358.
+* Add Gramps ID option to Kinship Report.
+* Allow Gramps to run from an extracted source distribution.
+* Use standard decorator form of defining properties.
+* Replace deprecated Gdk.Color by Gdk.RGBA.
+* Fix deprecation on ElementTree truth testing.
+* Stop displaying Python-sqlite3 version.
+* implify multiple calls to `str.startswith` / `str.endswith`.
+* Remove redundant definition of _has_webpage_extension.
+* Use contextlib to redirect stdout/stderr.
+* Remove deprecated use-action-appearance property.
+* Remove stock items from Glade files.
+* Fix xalign deprecations in Glade files.
+* Fix margin-* deprecations in Glade files.
+* Added 11k serialize tests.
+* Added a dict wrapper that acts like an object.
+* Switch from pickled blobs to JSON data.
+* Store empty date objects instead of null in the JSON schema.
+* Refactor JSON serialization.
+* Make BaseObject the parent class for Date, StyledText and StyledTextTag.
+* Add PyPI upload workflow.
+* Some filter rule type related cleanups.
+* Add new role types present in the Gedcom 7.0 specification.
+* Replace deprecated Gtk[HV]Box with GtkBox.
+* Add support for ISO 639-3 part 3 standard language code. Fixes #12772.
+* Change the output of ADDR tags in the Gedcom export.
+* Use preferred name instead of default name in name editor. Fixes #13256.
+* Prevent forwards/backwards when history is locked.
+* Add forwards and backwards navigation using mouse buttons.
+* Pylint cleanups for gen/db/*.py.
+* Some pylint cleanups for gramps/gen/plug/*.py.
+* Pylint cleanups for plugins/db/dbapi/*.py.
+* Pylint cleanups for gen/lib/*.py:
+  * Reformat to default 88 columns and factor out EventBase.
+  * Use of _ is cleaner for unreferenced vars.
+* Allow 0 ancestors/descendants in hourglass graph.
+* Sort AIO prerequisites + remove unneeded.
+* Simplify some Cairo drawing.
+* Remove unused Subversion keyword substitutions.
+* Replace GtkMenu with GioMenu in DropdownSidebar.
+* Convert navigator from a Notebook to a Stack.
+* onvert navigator menu into a combo box.
+* Fix typo in Navigator action/section id.
+* Remove unused code from Navigator.
+* Replace GtkMenu with GioMenu in Gramplets bar.
+* Replace GtkArrow with GtkImage and symbolic icons.
+* Update format of Glade files.
+  * Glade files regenerated using 3.40.0.
+  * Required Gtk version set to 3.24.
+* Restrict CI workflow to run on a single branch.
+* Update GitHub actions to latest versions.
+
 2025-01-12
 Version 5.2.4
 * Translations:
