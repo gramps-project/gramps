@@ -31,10 +31,10 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-01 17:31+0000\n"
-"PO-Revision-Date: 2025-01-27 18:10+0000\n"
+"PO-Revision-Date: 2025-02-03 03:44+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -849,14 +849,6 @@ msgstr ""
 "kannst auch für die meisten anderen Objekte Lesezeichen anlegen."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit > Preferences > Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -870,7 +862,7 @@ msgstr ""
 "Hintergrund gezeigt. Du kannst das Datum durch Verwendung des "
 "Datumsauswahldialoges korrigieren, welcher durch das Klicken auf die "
 "Datumsauswahlschaltfläche geöffnet werden kann. Das Datumsformat wird "
-"eingestellt unter \"Bearbeiten > Einstellungen > Anzeige\"."
+"eingestellt unter \"Bearbeiten > Einstellungen > Daten\"."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -1020,16 +1012,12 @@ msgstr ""
 "org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b>Die Gramps-Homepage</b><br/>Die Homepage von Gramps befindet sich unter "
-"https://gramps-project.org/."
+"<b>Die Gramps-Homepage</b><br/>Die Gramps-Hompage befindet sich unter https"
+"://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1209,12 +1197,6 @@ msgstr ""
 "Initiative."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1222,9 +1204,9 @@ msgid ""
 "the rights and restrictions of this license."
 msgstr ""
 "<b>Die Gramps-Softwarelizenz</b><br/>Es steht dir frei, Gramps zu verwenden "
-"und mit anderen zu teilen. Gramps wird frei unter der General Public License "
-"vertrieben, siehe: https://www.gnu.org/licenses/licenses.html#GPL für die "
-"Rechte und Einschränkungen der Lizenz."
+"und mit anderen zu teilen. Gramps wird frei unter der GNU General Public "
+"License zur Verfügung gestellt, siehe https://www.gnu.org/licenses/"
+"licenses.html#GPL für die Rechte und Einschränkungen dieser Lizenz."
 
 #: ../data/tips.xml:128
 msgid ""
@@ -7462,12 +7444,11 @@ msgid "unknown"
 msgstr "unbekannt"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "mehr als %s Jahre"
-msgstr[1] "mehr als %s Jahre"
+msgstr[0] "mehr als {number_of} Jahr"
+msgstr[1] "mehr als {number_of} Jahre"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -8868,15 +8849,11 @@ msgid "Matrilineal"
 msgstr "Matrilinear"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Beruf"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
 msgstr "Standort"
@@ -11061,6 +11038,8 @@ msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
 "{death_src:s}"
 msgstr ""
+"Direkter Nachweis für diese Person - Geburt: {Geburt_min_src:s}, Tod:  "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:351
 msgid "mother's age"
@@ -11099,28 +11078,32 @@ msgid "birth date and known to be dead"
 msgstr "Geburtsdatum und bekannt als verstorben"
 
 #: ../gramps/gen/utils/alive.py:431
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "Vorfahre Geburtsdatum"
+msgstr "Abweichung vom Geburtsdatum"
 
 #: ../gramps/gen/utils/alive.py:440
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"Direkter Nachweis für diese Person - Geburt: {Geburt_min_src:s}, Tod: "
+"{Tod_Ursprung:s}"
 
 #: ../gramps/gen/utils/alive.py:447
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"abgeleitet von Eltern und Geschwistern - Geburt: {birth_min_src:s}, Tod: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:454
 msgid ""
 "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
 "{birth_max_src:s} (latest), death: {death_src:s}"
 msgstr ""
+"abgeleitet von Eltern und Geschwistern - Geburt:  {birth_min_src:s} "
+"(frühestens) bis {birth_max_src:s} (spätestens), Tod: {death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:543
 msgid "a spouse's birth-related date, "
@@ -11135,26 +11118,23 @@ msgid "event with spouse"
 msgstr "Ereignisse mit Partner(in)"
 
 #: ../gramps/gen/utils/alive.py:764
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "Nachkommen-Geburten: {} Generationen "
-msgstr[1] "Nachkommen-Geburten: {} Generationen "
+msgstr[0] "Nachkomme Geburt: {number_of} Generation "
+msgstr[1] "Nachkomme Geburt: {number_of} Generationen "
 
 #: ../gramps/gen/utils/alive.py:787
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "Nachkommen-Tode: {} Generationen "
-msgstr[1] "Nachkommen-Tode: {} Generationen "
+msgstr[0] "Nachkomme Tod: {number_of} Generation "
+msgstr[1] "Nachkomme Tod: {number_of} Generationen "
 
 #: ../gramps/gen/utils/alive.py:802
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Datenbankfehler: Schleife in %s's Nachkommen"
+msgstr "Datenbankfehler: Schleife in Nachkommen von %s."
 
 #: ../gramps/gen/utils/alive.py:854
 msgid "mother birth "
@@ -11177,10 +11157,9 @@ msgid "father death "
 msgstr "Tod des Vaters "
 
 #: ../gramps/gen/utils/alive.py:961
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Datenbankfehler: Schleife in %s's Vorfahren"
+msgstr "Datenbankfehler: Schleife in Vorfahren von %s."
 
 #: ../gramps/gen/utils/alive.py:1043 ../gramps/gen/utils/alive.py:1052
 msgid "no evidence"
@@ -12869,35 +12848,29 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Einstellungensymbol in Symbolleiste ein-/ausblenden."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "Medienreferenzen"
+msgstr "Standardeinstellung verwenden"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Nur Text"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Nur neue Erweiterungen"
+msgstr "Nur Symbole"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "Beides, Text und Symbole"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
 msgstr ""
+"Text, Symbole oder beides auf den Schaltflächen der Werkzeugleiste anzeigen."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "Symbolleis_te"
+msgstr "Stil der Symbolleiste"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -26271,22 +26244,16 @@ msgid "call"
 msgstr "Rufname"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "Spitzname"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "_Spitzname:"
+msgstr "Spitzname"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "Spitzname"
+msgstr "Spitz_name"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -33890,7 +33857,7 @@ msgstr "Ob detaillierte Daten über den Ehepartner eingefügt werden."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1155
 msgid "Include spouse reference"
-msgstr "Eheartner-Referenzen einfügen"
+msgstr "Ehepartnerreferenzen einfügen"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1156
 msgid "Whether to include reference to spouse."
@@ -38875,22 +38842,15 @@ msgid "Normal Outline Style"
 msgstr "Normaler Konturenstil"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2196
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
-msgstr "Fundstellenreferenzen-Layout"
+msgstr "Fundstellenreferenzenlayout"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Bestimmt das Standardlayout für den Fundstellenreferenzabschnitt der "
-"Quellenseite"
+"Standardlayout für den Fundstellen-Abschnitt auf der Quellenseite festlegen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2208
 msgid "Include ancestor's tree"
@@ -38926,13 +38886,11 @@ msgstr "Überprüfen, ob ein Abschnitt geöffnet oder geschlossen werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Max. Zeilen in einem Index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2229
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Maximale Anzahl der Vorfahren, die eingefügt wird."
+msgstr "Maximale Anzahl der Zeilen, die in eine Indexseite eingefügt werden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2239
 msgid "Extra Pages"
