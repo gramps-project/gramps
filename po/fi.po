@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-01 17:31+0000\n"
-"PO-Revision-Date: 2025-02-02 16:48+0000\n"
+"PO-Revision-Date: 2025-02-04 09:41+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -1127,7 +1127,7 @@ msgid ""
 "button is pressed."
 msgstr ""
 "<b>Kotihenkilö</b><br/>Voit asettaa kenet tahansa Grampsin 'kotihenkilöksi' "
-"valitsemalla \"Muokkaa > Aseta kotihenkilö\". Kotihenkilö on henkilö, joka "
+"valitsemalla \"Muokkaa > Tee kotihenkilö\". Kotihenkilö on henkilö, joka "
 "valitaan kun tietokanta avataan tai painat Kotipainiketta."
 
 #: ../data/tips.xml:122
@@ -1158,12 +1158,6 @@ msgstr ""
 "lisenssinsä mukaisesti."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1171,8 +1165,8 @@ msgid ""
 "the rights and restrictions of this license."
 msgstr ""
 "<b>Gramps-käyttölisenssi</b><br/>Gramps on vapaasti levitettävissä GNU "
-"General Public Licence -lisenssin ehtojen mukaisesti, kts. http://www.gnu."
-"org/licenses/licenses.html#GPL."
+"General Public Licence -lisenssin ehtojen mukaisesti, kts. https://"
+"www.gnu.org/licenses/licenses.html#GPL."
 
 #: ../data/tips.xml:128
 msgid ""
@@ -2213,8 +2207,6 @@ msgstr "Kuukausi Päivä, Vuosi"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
 msgstr "Kuukausi Päivä, Vuosi"
 
@@ -2225,8 +2217,6 @@ msgstr "Päivä Kuukausi Vuosi"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
 msgstr "Päivä Kuukausi Vuosi"
 
@@ -3914,10 +3904,8 @@ msgid "Note type:"
 msgstr "Lisätietotyyppi:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:48
-#, fuzzy
-#| msgid "Matches notes with the particular type "
 msgid "Objects with notes with the particular type"
-msgstr "Poimii lisätiedot, joilla on tietty tyyppi "
+msgstr "Poimii lisätiedot, joilla on tietty tyyppi"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:49
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
@@ -4127,16 +4115,12 @@ msgstr ""
 "säännöllistä lauseketta"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Citations with the <tag>"
 msgid "Citations with a note of type <type>"
-msgstr "Lainaukset, joilla on tietty <tagi>"
+msgstr "Lainaukset, joiden lisätiedot on tyyppiä <tyyppi>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches a citation with a source with a specified Gramps ID"
 msgid "Matches citations with a note of the specified type"
-msgstr "Poimii lainauksen, jonka lähteellä on määritelty Gramps ID"
+msgstr "Poimii lainauksen, joissa on tietyn tyyppinen lisätieto"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4144,8 +4128,6 @@ msgstr "Poimii lainauksen, jonka lähteellä on määritelty Gramps ID"
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:50
-#, fuzzy
-#| msgid "Note Filters"
 msgid "Note filters"
 msgstr "Lisätietosuotimet"
 
@@ -4438,16 +4420,12 @@ msgid "Main Participants:"
 msgstr "Pääosalliset:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
-#, fuzzy
-#| msgid "Notes matching parameters"
 msgid "Events matching parameters"
-msgstr "Lisätiedot jotka vastaavat annettuja parametreja"
+msgstr "Tapahtumat, jotka vastaavat parametreja"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches events with particular parameters"
-msgstr "Poimii lisätiedot, joilla on tietyt parametrit"
+msgstr "Poimii tapahtumat, joilla on tietyt parametrit"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4492,16 +4470,12 @@ msgstr ""
 "lausekkeen"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "Tapahtumat, joihin on liitetty <tagi>"
+msgstr "Tapahtumat, joiden lisätiedot on tyypiltään <tyyppi>."
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Poimii tapahtumat, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii tapahtumat, joiden lisätieto on määritettyä tyyppiä"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4787,16 +4761,12 @@ msgstr ""
 "mukaisen tekstin"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "Perheet, joiden isällä on <nimi>"
+msgstr "Perheet, joiden lisätietotyyppi on <tyyppi>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Poimii perheet, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii perheet, joiden lisätietotyyppi on määritetty."
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -5208,7 +5178,7 @@ msgstr "Lisätiedot, joilla on merkitty <tagi>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
-msgstr "Poimii tapahtumat, joilla on tietty tagi"
+msgstr "Poimii lisätiedot, joilla on tietty tagi"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:48
 msgid "Notes with the particular type"
@@ -5627,16 +5597,12 @@ msgstr ""
 "lausekkeen mukaisen tekstin"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "Henkilöt, joilla on <nimityyppi>"
+msgstr "Henkilöt, joiden lisätieto on tyypiltään <tyyppi>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Poimii valitun henkilön esivanhemmat"
+msgstr "Poimii henkilöt, joiden lisätietotyyppi on määritetty"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 msgid "People who are neither male nor female"
@@ -6299,16 +6265,12 @@ msgstr ""
 "tekstin"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "Paikat, joilla on <tagi>"
+msgstr "Paikat, joiden lisätietotyyppi on <tyyppi>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Poimii paikat, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii paikat, joissa on tietyn tyyppinen huomautus"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "Street:"
@@ -6713,16 +6675,12 @@ msgstr ""
 "mukaisen tekstin"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "Lähteet, joilla on <tagi>"
+msgstr "Lähteet, joiden lisätieto on tyyppiä <tyyppi>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "Poimii lähteet, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii lähteet, joiden lisätietotyyppi on määritetty"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -6754,10 +6712,8 @@ msgstr ""
 "sisältää osamerkkijonon \"Arkiston viitenumero\""
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches sources with particular parameters"
-msgstr "Poimii lisätiedot, joilla on tietyt parametrit"
+msgstr "Poimii lähteet, joilla on tietyt parametrit"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -7400,12 +7356,11 @@ msgid "unknown"
 msgstr "tuntematon"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "korkeitaan %s vuotta"
-msgstr[1] "korkeitaan %s vuotta"
+msgstr[0] "suurempi kuin {number_of} vuosi"
+msgstr[1] "yli {number_of} vuotta"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -7823,20 +7778,16 @@ msgid "Child"
 msgstr "Lapsi"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "Useita vanhempia"
+msgstr "Monisikiöinen synnytys"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
 msgstr "Ystävä"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "Kulmakunta"
+msgstr "Naapuri"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
@@ -8478,16 +8429,12 @@ msgid "Type"
 msgstr "Tyyppi"
 
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "Mukautettu suodin"
+msgstr "Mukautettu tyyppi"
 
 #: ../gramps/gen/lib/grampstype.py:272
-#, fuzzy
-#| msgid "Type face"
 msgid "Type code"
-msgstr "Kirjasintyyli"
+msgstr "Koodin tyyppi"
 
 #: ../gramps/gen/lib/ldsord.py:95
 msgid "Endowment"
@@ -8814,15 +8761,11 @@ msgid "Matrilineal"
 msgstr "Äitilinjainen"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Ammatti"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
 msgstr "Sijainti"
@@ -10999,6 +10942,8 @@ msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
 "{death_src:s}"
 msgstr ""
+"Suorat todisteet tästä henkilöstä - syntymä: {birth_min_src:s}, kuolema:  "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:351
 msgid "mother's age"
@@ -11009,10 +10954,8 @@ msgid "father's age"
 msgstr "isän ikä"
 
 #: ../gramps/gen/utils/alive.py:360
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "kuolinaika"
+msgstr "kuolinpäivästä"
 
 #: ../gramps/gen/utils/alive.py:364
 msgid "mother's death"
@@ -11023,50 +10966,48 @@ msgid "father's death"
 msgstr "isän kuolema"
 
 #: ../gramps/gen/utils/alive.py:373
-#, fuzzy
-#| msgid "%(person)s, birth"
 msgid "person's death"
-msgstr "%(person)s, syntyi"
+msgstr "henkilön kuolema"
 
 #: ../gramps/gen/utils/alive.py:380
-#, fuzzy
-#| msgid "Not siblings"
 msgid "oldest sibling's age"
-msgstr "Ei sisaruksia"
+msgstr "vanhimman sisaruksen ikä"
 
 #: ../gramps/gen/utils/alive.py:385
-#, fuzzy
-#| msgid "Not siblings"
 msgid "youngest sibling's age"
-msgstr "Ei sisaruksia"
+msgstr "nuorimman sisaruksen ikä"
 
 #: ../gramps/gen/utils/alive.py:428
 msgid "birth date and known to be dead"
 msgstr "syntymäaika ja tiedetään kuolleen"
 
 #: ../gramps/gen/utils/alive.py:431
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "esivanhemman syntymäaika"
+msgstr "offset syntymäpäivästä"
 
 #: ../gramps/gen/utils/alive.py:440
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"Suorat todisteet tästä henkilöstä - syntymä: {birth_min_src:s}, kuolema: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:447
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
 "{death_src:s}"
 msgstr ""
+"vanhempien ja sisarusten perusteella - syntymä: {birth_min_src:s}, kuolema: "
+"{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:454
 msgid ""
 "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
 "{birth_max_src:s} (latest), death: {death_src:s}"
 msgstr ""
+"vanhempien ja sisarusten perusteella - syntymä:  (varhaisin) - "
+"{birth_max_src:s} (myöhäisin), kuolema: {death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:543
 msgid "a spouse's birth-related date, "
@@ -11081,62 +11022,48 @@ msgid "event with spouse"
 msgstr "tapahtuma puolison kanssa"
 
 #: ../gramps/gen/utils/alive.py:764
-#, fuzzy, python-brace-format
-#| msgid "Max descendant generations"
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "Jälkeläissukupolvien enimmäismäärä"
-msgstr[1] "Jälkeläissukupolvien enimmäismäärä"
+msgstr[0] "jälkeläisen syntymä: {number_of} sukupolvi "
+msgstr[1] "jälkeläisen syntymä: {number_of} sukupolvea "
 
 #: ../gramps/gen/utils/alive.py:787
-#, fuzzy, python-brace-format
-#| msgid "Max descendant generations"
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "Jälkeläissukupolvien enimmäismäärä"
-msgstr[1] "Jälkeläissukupolvien enimmäismäärä"
+msgstr[0] "jälkeläisen kuolema: {number_of} sukupolvi "
+msgstr[1] "jälkeläisen kuolema: {number_of} sukupolvea "
 
 #: ../gramps/gen/utils/alive.py:802
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Tietokantavirhe: silmukka %s's jälkeläisissä"
+msgstr "Tietokantavirhe: silmukka %s:n jälkeläisissä."
 
 #: ../gramps/gen/utils/alive.py:854
-#, fuzzy
-#| msgid "Death before birth"
 msgid "mother birth "
-msgstr "Kuolema ennen syntymää"
+msgstr "äidin syntymä "
 
 #: ../gramps/gen/utils/alive.py:858 ../gramps/gen/utils/alive.py:864
-#, fuzzy
-#| msgid "Death before birth"
 msgid "father birth "
-msgstr "Kuolema ennen syntymää"
+msgstr "Kuolema ennen syntymää "
 
 #: ../gramps/gen/utils/alive.py:872 ../gramps/gen/utils/alive.py:903
-#, fuzzy
-#| msgid "Ancestors"
 msgid "ancestor "
-msgstr "Esivanhemmat"
+msgstr "esivanhemmat "
 
 #: ../gramps/gen/utils/alive.py:878
-#, fuzzy
-#| msgid "Compute death age"
 msgid "mother death "
-msgstr "Laske kuolinikä"
+msgstr "äidin kuolema "
 
 #: ../gramps/gen/utils/alive.py:882 ../gramps/gen/utils/alive.py:888
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "Kuolinikä"
+msgstr "isän kuolema "
 
 #: ../gramps/gen/utils/alive.py:961
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Tietokantavirhe: silmukka %s esivanhemmissa"
+msgstr "Tietokantavirhe: silmukka %s:n esivanhemmissa."
 
 #: ../gramps/gen/utils/alive.py:1043 ../gramps/gen/utils/alive.py:1052
 msgid "no evidence"
@@ -12820,21 +12747,16 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Näytä tai piilota asetukset-kuvake työkalupalkissa."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "mediaviitteet"
+msgstr "Käytä oletusasetuksia"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Vain tekstinä"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Vain uudet laajennukset"
+msgstr "Vain kuvakkeet"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
@@ -12845,10 +12767,8 @@ msgid "Display text, icons or both on the toolbar buttons."
 msgstr "Näytä teksti, kuvakkeet tai molemmat työkalupalkin painikkeissa."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "T_yökalupalkki"
+msgstr "Työkalurivin tyyli"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -15325,11 +15245,11 @@ msgstr "Muokkaa objektin ominaisuuksia"
 
 #: ../gramps/gui/editors/editperson.py:788
 msgid "Make Active Person"
-msgstr "Tee aktiiviseksi henkilöksi"
+msgstr "Aktivoi henkilö"
 
 #: ../gramps/gui/editors/editperson.py:788
 msgid "Make Home Person"
-msgstr "Aseta kotihenkilöksi (koetiksi)"
+msgstr "Tee Kotihenkilöksi"
 
 #: ../gramps/gui/editors/editperson.py:909
 msgid "Problem changing the gender"
@@ -15438,29 +15358,21 @@ msgstr "Uusi paikka"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:242
-#, fuzzy
-#| msgid ""
-#| "Invalid latitude\n"
-#| "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Virheellinen leveysaste\n"
-"(syntaksi: 18\\u00b09'48.21\"E, -18.2412 tai -18:9:48.21)"
+"(syntaksi: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:250
-#, fuzzy
-#| msgid ""
-#| "Invalid longitude\n"
-#| "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Virheellinen pituusaste\n"
-"(syntaksi: 18\\u00b09'48.21\"I, -18.2412 tai -18:9:48.21)"
+"(syntaksi: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:289
 #: ../gramps/plugins/lib/maps/geography.py:994
@@ -19324,10 +19236,8 @@ msgid "All statuses"
 msgstr "Kaikki asemat"
 
 #: ../gramps/gui/plug/_windows.py:463
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
-msgstr "Palauta oletusasetukset"
+msgstr "Nollaa laajennuksen suodattimet oletusasetuksiin"
 
 #: ../gramps/gui/plug/_windows.py:477
 msgid "Settings"
@@ -19366,32 +19276,24 @@ msgid "Remove the selected project"
 msgstr "Poista valittu projekti"
 
 #: ../gramps/gui/plug/_windows.py:707
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "Siirrä lasta ylöspäin lapsilistassa"
+msgstr "Siirrä projektia ylöspäin luettelossa"
 
 #: ../gramps/gui/plug/_windows.py:709
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "Siirrä lasta alaspäin lapsilistassa"
+msgstr "Siirrä projektia alaspäin luettelossa"
 
 #: ../gramps/gui/plug/_windows.py:711
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
-msgstr "Palauta oletusasetukset"
+msgstr "Palauta projektin oletusasetukset"
 
 #: ../gramps/gui/plug/_windows.py:748
 msgid "Allow Gramps to install required Python modules"
 msgstr "Salli Grampsin asentaa tarvittavat python-moduulit"
 
 #: ../gramps/gui/plug/_windows.py:750
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "Salli Grampsin asentaa tarvittavat python-moduulit"
+msgstr "Yritä mahdollisuuksien mukaan asentaa puuttuvat Python-moduulit"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Scheduled update checks"
@@ -20932,7 +20834,7 @@ msgstr "Kirjanmerkin asetus epäonnistui, koska mitään ei ollut valittuna."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid "No Home Person"
-msgstr "Kotihenkilöä ei ole asetettu"
+msgstr "Kotihenkilöä ei ole tehty"
 
 #: ../gramps/gui/views/navigationview.py:326
 msgid ""
@@ -20940,9 +20842,9 @@ msgid ""
 "person you want as 'Home Person', then confirm your choice via the menu Edit "
 "-> Set Home Person."
 msgstr ""
-"Sinun täytyy asettaa \"Kotihenkilö\" jatkaaksesi. Valitse Henkilönäkymä, "
-"valitse haluamasi henkilö kotihenkilöksi ja vahvista valintasi Muokkaa-> "
-"Aseta kotihenkilö-valinnalla."
+"Sinun täytyy tehdä \"Kotihenkilö\" jatkaaksesi. Valitse Henkilönäkymä, "
+"valitse haluamasi henkilö kotihenkilöksi ja vahvista valintasi Muokkaa-> Tee "
+"kotihenkilö-valinnalla."
 
 #: ../gramps/gui/views/navigationview.py:339
 #: ../gramps/gui/views/navigationview.py:344
@@ -23432,21 +23334,15 @@ msgid "Enter a date, click Run"
 msgstr "Anna päivämäärä, napsauta Suorita"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
-#, fuzzy
-#| msgid ""
-#| "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. "
-#| "This will compute the ages for everyone in your Family Tree on that date. "
-#| "You can then sort by the age column, and double-click the row to view or "
-#| "edit."
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
 "This will compute the ages for everyone in your Family Tree on that date. "
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"Anna päivämäärä (VVVV-KK-PP) alla olevaan kenttään ja napsauta Suorita. Tämä "
-"laskee iät kaikille Sukupuusi henkilöille tuona päivänä. Voit sitten "
-"järjestää tiedot ikäsarakkeen perusteella ja kaksoisnapsauttaa riviä "
+"Anna päivämäärä (VVVV-KK-PP) alla olevaan tekstikenttään ja napsauta "
+"Suorita. Tämä laskee iät kaikille Sukupuusi henkilöille tuona päivänä. Voit "
+"sitten järjestää tiedot ikäsarakkeen perusteella ja kaksoisnapsauttaa riviä "
 "tarkistaaksesi tai muokataksesi sitä."
 
 #: ../gramps/plugins/gramplet/agestats.py:84
@@ -23545,10 +23441,9 @@ msgid "Key"
 msgstr "Avain"
 
 #: ../gramps/plugins/gramplet/backlinks.py:238
-#, fuzzy, python-format
-#| msgid "_Make Active Media"
+#, python-format
 msgid "_Make Active %s"
-msgstr "Tee aktiiviseksi mediaksi"
+msgstr "Tee  %s aktiiviseksi"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
@@ -25309,7 +25204,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/whatsnext.py:163
 msgid "No Home Person set."
-msgstr "Kotihenkilöä ei ole asetettu."
+msgstr "Kotihenkilöä ei ole tehty."
 
 #: ../gramps/plugins/gramplet/whatsnext.py:346
 msgid "first name unknown"
@@ -26121,20 +26016,14 @@ msgid "call"
 msgstr "kutsumanimi"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "lempinimi"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "_Lempinimi:"
+msgstr "Lempinimi"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
 msgstr "lempinimi"
 
@@ -31303,7 +31192,7 @@ msgstr "Henkilösuodinmuokkain"
 #: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/view/pedigreeview.py:1783
 msgid "Set _Home Person"
-msgstr "_Aseta kotihenkilö"
+msgstr "Tee kotihenkilöksi"
 
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/view/fanchartview.py:186
@@ -32160,7 +32049,7 @@ msgstr "Lasten henkilökohtaiset tapahtumat"
 
 #: ../gramps/plugins/quickview/all_relations.py:73
 msgid "Home person not set."
-msgstr "Kotihenkilöä ei ole asetettu."
+msgstr "Kotihenkilöä ei ole tehty."
 
 #: ../gramps/plugins/quickview/all_relations.py:83
 #: ../gramps/plugins/tool/relcalc.py:209
@@ -33989,14 +33878,10 @@ msgid "The maximum number of ancestor generations"
 msgstr "Enin määrä esivanhempien sukupolvia"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
-#| msgid "Show gramps id"
 msgid "Show Gramps ID"
 msgstr "Näytä gramps-ID"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
 msgstr "Lisätäänkö Gramps ID"
 
@@ -38049,10 +37934,9 @@ msgstr "Kerrottua"
 
 #: ../gramps/plugins/webreport/basepage.py:904
 #: ../gramps/plugins/webreport/basepage.py:974
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr ""
 
 #: ../gramps/plugins/webreport/basepage.py:1511
 #: ../gramps/plugins/webreport/basepage.py:3403
@@ -38617,21 +38501,14 @@ msgid "Normal Outline Style"
 msgstr "Normaali asetelmatyyli"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2196
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "Lainausviitteiden asetelma"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
-msgstr ""
-"Määritä oletusasetelma käytettäväksi lähdesivun lainausviitteet osiossa"
+msgstr "Määritä lähdesivun lainausviitteet osan oletusasettelu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2208
 msgid "Include ancestor's tree"
@@ -38670,10 +38547,8 @@ msgid "Max. rows in an index"
 msgstr "Indeksin maksimirivit"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2229
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Suurin mahdollinen määrä lisättäviä esivanhempia."
+msgstr "Indeksisivulle sisällytettävien rivien enimmäismäärä"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2239
 msgid "Extra Pages"
@@ -39029,16 +38904,12 @@ msgid "Add a complete events list and relevant pages or not"
 msgstr "Lisätäänkö täydellinen tapahtumalista ja ao. sivut vai ei"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2578
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "Lisää muita tapahtumia"
+msgstr "Sisällytä muita rooleja"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2579
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "Gramplet näyttää tapahtuman lisätiedot"
+msgstr "Ota mukaan henkilöitä, joilla on muita tapahtumarooleja"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2582
 msgid "Include place pages"
@@ -39616,10 +39487,9 @@ msgid "Number of People"
 msgstr "Henkilöiden määrä"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
-#, fuzzy, python-brace-format
-#| msgid "Surnames beginning with letter '%s' %s"
+#, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "Sukunimet alkavat kirjaimilla '%s' %s"
+msgstr "Sukunimet, jotka alkavat kirjaimella '{letter}' {char}"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 msgid ""
