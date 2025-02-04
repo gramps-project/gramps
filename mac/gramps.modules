@@ -32,9 +32,9 @@
     </dependencies>
   </distutils>
  <distutils id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v5.2.4.tar.gz"
-	    repo="github-tarball" version="5.2.4"
-            checkoutdir="gramps-gramps-5.2.4" />
+    <branch module="gramps-project/gramps/archive/v6.0.0-beta1.tar.gz"
+	    repo="github-tarball" version="6.0.0-beta1"
+            checkoutdir="gramps-gramps-6.0.0-beta1" />
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
