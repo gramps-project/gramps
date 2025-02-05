@@ -198,7 +198,10 @@ class SidebarFilter(DbGUIElement):
 
     def add_text_entry(self, name, widget, tooltip=None):
         self.add_entry(name, widget)
-        widget.connect("key-press-event", self.key_press)
+        if isinstance(widget, widgets.DateEntry):
+            widget.entry.connect("key-press-event", self.key_press)
+        else:
+            widget.connect("key-press-event", self.key_press)
         if tooltip:
             widget.set_tooltip_text(tooltip)
 
