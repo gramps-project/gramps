@@ -4,6 +4,9 @@
 #
 # install prerequisites
 ## prerequisites in msys packages
+pacman -Syy
+pacman -Syyu --noconfirm
+
 pacman -S --needed --noconfirm \
     base-devel \
     git \
@@ -49,6 +52,9 @@ pacman -S --needed --noconfirm \
 
 wget --no-verbose -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 pacman -U --needed --noconfirm mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
+
+wget --no-verbose -N https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-python-cx-freeze-7.2.8-1-any.pkg.tar.zst
+pacman -U --needed --noconfirm mingw-w64-x86_64-python-cx-freeze-7.2.8-1-any.pkg.tar.zst
 
 ## create a python virtual environment so that we have a clean starting point
 pythonvenv=$TMP/grampspythonenv
