@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-04 15:17+0000\n"
+"POT-Creation-Date: 2025-02-06 17:15+0000\n"
 "PO-Revision-Date: 2025-02-05 17:52+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
@@ -10876,10 +10876,13 @@ msgstr "dátum"
 msgid "date fallback"
 msgstr "nahradenie dátumu"
 
-#: ../gramps/gen/utils/alive.py:263
+#: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "Direct evidence for this person - birth: {birth_min_src:s}, death: "
+#| "{death_src:s}"
 msgid ""
-"Direct evidence for this person - birth: {birth_min_src:s}, death:  "
-"{death_src:s}"
+"Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
 "Priamy dôkaz pre túto osobu – narodenie: {birth_min_src:s}, smrť: {death_src:"
 "s}"
@@ -10924,26 +10927,26 @@ msgstr "dátum narodenia a známy ako mŕtvy"
 msgid "offset from birth date"
 msgstr "odstup od dátumu narodenia"
 
-#: ../gramps/gen/utils/alive.py:441
-msgid ""
-"Direct evidence for this person - birth: {birth_min_src:s}, death: "
-"{death_src:s}"
-msgstr ""
-"Priamy dôkaz pre túto osobu – narodenie: {birth_min_src:s}, smrť: {death_src:"
-"s}"
-
 #: ../gramps/gen/utils/alive.py:448
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
+#| "{death_src:s}"
 msgid ""
-"inferred from parents and siblings - birth: {birth_min_src:s}, death: "
-"{death_src:s}"
+"inferred from parents and siblings - birth: {birth_min_src}, death: "
+"{death_src}"
 msgstr ""
 "odvodené od rodičov a súrodencov - narodenie: {birth_min_src:s}, smrť: "
 "{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:455
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) "
+#| "to {birth_max_src:s} (latest), death: {death_src:s}"
 msgid ""
-"inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
-"{birth_max_src:s} (latest), death: {death_src:s}"
+"inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
+"{birth_max_src} (latest), death: {death_src}"
 msgstr ""
 "odvodené od rodičov a súrodencov – narodenie: {birth_min_src:s} (najskôr) do "
 "{birth_max_src:s} (najnovšie), smrť: {death_src:s}"
@@ -39802,6 +39805,13 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Žiadna šablóna štýlu"
+
+#~ msgid ""
+#~ "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
+#~ "{death_src:s}"
+#~ msgstr ""
+#~ "Priamy dôkaz pre túto osobu – narodenie: {birth_min_src:s}, smrť: "
+#~ "{death_src:s}"
 
 #~ msgid ", death: "
 #~ msgstr ", úmrtie: "

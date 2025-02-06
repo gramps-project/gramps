@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-04 15:17+0000\n"
+"POT-Creation-Date: 2025-02-06 17:15+0000\n"
 "PO-Revision-Date: 2025-02-05 17:52+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
@@ -10925,10 +10925,13 @@ msgstr "data"
 msgid "date fallback"
 msgstr "data de recurso"
 
-#: ../gramps/gen/utils/alive.py:263
+#: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "Direct evidence for this person - birth: {birth_min_src:s}, death: "
+#| "{death_src:s}"
 msgid ""
-"Direct evidence for this person - birth: {birth_min_src:s}, death:  "
-"{death_src:s}"
+"Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
 "Evidência directa para este indivíduo - nascimento: {birth_min_src:s}, "
 "óbito: {death_src:s}"
@@ -10973,26 +10976,26 @@ msgstr "data de nascimento e já falecido"
 msgid "offset from birth date"
 msgstr "desvio da data de nascimento"
 
-#: ../gramps/gen/utils/alive.py:441
-msgid ""
-"Direct evidence for this person - birth: {birth_min_src:s}, death: "
-"{death_src:s}"
-msgstr ""
-"Evidência directa para este indivíduo - nascimento: {birth_min_src:s}, "
-"óbito: {death_src:s}"
-
 #: ../gramps/gen/utils/alive.py:448
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
+#| "{death_src:s}"
 msgid ""
-"inferred from parents and siblings - birth: {birth_min_src:s}, death: "
-"{death_src:s}"
+"inferred from parents and siblings - birth: {birth_min_src}, death: "
+"{death_src}"
 msgstr ""
 "inferida de pais e irmãos - nascimento: {birth_min_src:s}, óbito: {death_src:"
 "s}"
 
 #: ../gramps/gen/utils/alive.py:455
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) "
+#| "to {birth_max_src:s} (latest), death: {death_src:s}"
 msgid ""
-"inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
-"{birth_max_src:s} (latest), death: {death_src:s}"
+"inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
+"{birth_max_src} (latest), death: {death_src}"
 msgstr ""
 "inferida de pais e irmãos - nascimento: {birth_min_src:s} (mais recente) até "
 "{birth_max_src:s} (mais antigo), óbito: {death_src:s}"
@@ -38443,8 +38446,8 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
-"Esta secção contém o mapa para todos os indivíduos com o evento: {event_type}"
-" ({selected_filter})"
+"Esta secção contém o mapa para todos os indivíduos com o evento: "
+"{event_type} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
@@ -39995,6 +39998,13 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Sem folha de estilos"
+
+#~ msgid ""
+#~ "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
+#~ "{death_src:s}"
+#~ msgstr ""
+#~ "Evidência directa para este indivíduo - nascimento: {birth_min_src:s}, "
+#~ "óbito: {death_src:s}"
 
 #~ msgid ", death: "
 #~ msgstr ", óbito: "
