@@ -30,7 +30,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-04 15:17+0000\n"
-"PO-Revision-Date: 2025-02-02 21:41+0000\n"
+"PO-Revision-Date: 2025-02-04 22:36+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -3620,10 +3620,8 @@ msgid "Filter"
 msgstr "Filter"
 
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "Läser data..."
+msgstr "Förbereder ..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -11755,21 +11753,12 @@ msgstr ""
 "Gramps kommer att avslutas nu."
 
 #: ../gramps/grampsapp.py:227
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "You don't have the python3 bsddb3 package installed. This package is "
-#| "needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
 msgid ""
 "The orjson package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"\n"
-"Du har inte paketet med python3 bsddb3 installerat. Detta paket behövs för "
-"at starta Gramps.\n"
+"Orjson-paketet behövs för att starta Gramps.\n"
 "\n"
 "Gramps kommer att avslutas nu."
 
@@ -37866,7 +37855,7 @@ msgstr "Hem"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Färgdiagram"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -37896,7 +37885,7 @@ msgstr "Webbkalender"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Färgdiagram"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:436
@@ -38148,19 +38137,17 @@ msgid "Family Map for %s"
 msgstr "Karta för familjeplatser för %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Skapar händelseförteckning"
+msgstr "Skapa färgdiagrams-sidor för händelser"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
 msgstr ""
+"Nästa avsnitt innehåller ett index över alla händelser för en Färgdiagrams-"
+"karta."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Namn"
@@ -38176,19 +38163,18 @@ msgstr "Platser som börjar på bokstaven %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Testa det valda filtret"
+msgstr "Färgdiagram för %s inom det valda filtret"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
 msgstr ""
+"Nästa avsnitt innehåller ett index över alla efternamn för en Färgdiagrams-"
+"karta."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "Efternamn"
@@ -38196,6 +38182,8 @@ msgstr "Efternamn"
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr ""
+"Nästa avsnitt innehåller ett index över alla taggar för en Färgdiagrams-"
+"karta."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38203,14 +38191,14 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Det här avsnittet innehåller kartan för alla personer med händelsen: "
+"{event_type} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Radera det valda filtret"
+msgstr " som inte har någon händelse för det valda filtret."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38218,6 +38206,8 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"Det här avsnittet innehåller kartan över alla händelser för: {surname} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -38225,6 +38215,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"Det här avsnittet innehåller kartan för alla personer, händelser med taggen: "
+"{tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -39247,46 +39239,40 @@ msgstr ""
 "ålder troligen levande' som är definierad i fliken för datuminställningar."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Platskartealternativ"
+msgstr "Färgdiagramsalternativ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Ta med händelsesidor"
+msgstr "Ta med färgdiagrams-sidor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Huruvida ta med alternativa namn på föräldrar."
+msgstr "Om färgdiagrams-sidor ska inkluderas för händelser"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Typsnittsstorlek"
+msgstr "Punktstorlek"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "Storlek på notis, i punkter."
+msgstr ""
+"Ställ in storleken på färgdiagram-punkterna.\n"
+"Default: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "Suddighet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Ställ in storlek på oskärpa.\n"
+"Standard: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
@@ -39918,8 +39904,6 @@ msgstr "Inget mallblad"
 #~ msgstr "Din version av Gtk är för gammal."
 
 #, fuzzy
-#~| msgctxt "localized lexeme inflections"
-#~| msgid "January"
 #~ msgctxt "localized lexeme inflections"
 #~ msgid "|January"
 #~ msgstr "januari"
