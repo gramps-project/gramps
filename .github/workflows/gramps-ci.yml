@@ -29,9 +29,15 @@ jobs:
   build:
 
     runs-on: ubuntu-22.04
-
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.13"]
     steps:
     - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -41,22 +47,11 @@ jobs:
         sudo apt-get install librsvg2-common
         sudo apt-get install libglib2.0-dev
         sudo apt-get install intltool
-        sudo apt-get install python3-gi
-        sudo apt-get install python3-cairo
-        sudo apt-get install python3-gi-cairo
-        sudo apt-get install python3-bsddb3
-        sudo apt-get install python3-dev
-        sudo apt-get install python3-nose
-        sudo apt-get install python3-mock
-        sudo apt-get install python3-icu
-        sudo apt-get install python3-coverage
-        sudo apt-get install python3-jsonschema
-        sudo apt-get install libxml2-utils
-        sudo apt-get install python3-lxml
-        sudo apt-get install python3-libxml2
         sudo apt-get install zlib1g-dev
-        sudo apt-get install python3-setuptools
-        python3 -m pip install orjson
+        sudo apt-get install libgirepository1.0-dev
+        sudo apt-get install libicu-dev
+        python3 -m pip install --upgrade pip setuptools build wheel
+        python3 -m pip install orjson Pillow PyICU PyGObject pycairo jsonschema mock lxml
     - name: Install addons
       run: |
         mkdir -p ~/.gramps/gramps60/plugins/
