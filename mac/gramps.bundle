@@ -58,10 +58,6 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libgtkspell3-3.0.dylib
-  </binary>
-
-  <binary>
     ${prefix}/lib/enchant-2
   </binary>
 
