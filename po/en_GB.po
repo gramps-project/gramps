@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-04 15:17+0000\n"
+"POT-Creation-Date: 2025-02-06 17:15+0000\n"
 "PO-Revision-Date: 2025-02-04 15:20+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
@@ -10947,10 +10947,10 @@ msgstr "date"
 msgid "date fallback"
 msgstr "date fallback"
 
-#: ../gramps/gen/utils/alive.py:263
+#: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
+#, python-brace-format
 msgid ""
-"Direct evidence for this person - birth: {birth_min_src:s}, death:  "
-"{death_src:s}"
+"Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:352
@@ -11011,22 +11011,18 @@ msgstr "birth date and known to be dead"
 msgid "offset from birth date"
 msgstr "ancestor birth date"
 
-#: ../gramps/gen/utils/alive.py:441
-msgid ""
-"Direct evidence for this person - birth: {birth_min_src:s}, death: "
-"{death_src:s}"
-msgstr ""
-
 #: ../gramps/gen/utils/alive.py:448
+#, python-brace-format
 msgid ""
-"inferred from parents and siblings - birth: {birth_min_src:s}, death: "
-"{death_src:s}"
+"inferred from parents and siblings - birth: {birth_min_src}, death: "
+"{death_src}"
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:455
+#, python-brace-format
 msgid ""
-"inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
-"{birth_max_src:s} (latest), death: {death_src:s}"
+"inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
+"{birth_max_src} (latest), death: {death_src}"
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:544

@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-04 15:17+0000\n"
+"POT-Creation-Date: 2025-02-06 17:15+0000\n"
 "PO-Revision-Date: 2025-02-06 10:55+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
@@ -10953,12 +10953,15 @@ msgstr "päivämäärä"
 msgid "date fallback"
 msgstr "vaihtoehtoinen päiväys"
 
-#: ../gramps/gen/utils/alive.py:263
+#: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "Direct evidence for this person - birth: {birth_min_src:s}, death: "
+#| "{death_src:s}"
 msgid ""
-"Direct evidence for this person - birth: {birth_min_src:s}, death:  "
-"{death_src:s}"
+"Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
-"Suorat todisteet tästä henkilöstä - syntymä: {birth_min_src:s}, kuolema:  "
+"Suorat todisteet tästä henkilöstä - syntymä: {birth_min_src:s}, kuolema: "
 "{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:352
@@ -11001,26 +11004,26 @@ msgstr "syntymäaika ja tiedetään kuolleen"
 msgid "offset from birth date"
 msgstr "offset syntymäpäivästä"
 
-#: ../gramps/gen/utils/alive.py:441
-msgid ""
-"Direct evidence for this person - birth: {birth_min_src:s}, death: "
-"{death_src:s}"
-msgstr ""
-"Suorat todisteet tästä henkilöstä - syntymä: {birth_min_src:s}, kuolema: "
-"{death_src:s}"
-
 #: ../gramps/gen/utils/alive.py:448
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
+#| "{death_src:s}"
 msgid ""
-"inferred from parents and siblings - birth: {birth_min_src:s}, death: "
-"{death_src:s}"
+"inferred from parents and siblings - birth: {birth_min_src}, death: "
+"{death_src}"
 msgstr ""
 "vanhempien ja sisarusten perusteella - syntymä: {birth_min_src:s}, kuolema: "
 "{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:455
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) "
+#| "to {birth_max_src:s} (latest), death: {death_src:s}"
 msgid ""
-"inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
-"{birth_max_src:s} (latest), death: {death_src:s}"
+"inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
+"{birth_max_src} (latest), death: {death_src}"
 msgstr ""
 "vanhempien ja sisarusten perusteella - syntymä:  (varhaisin) - "
 "{birth_max_src:s} (myöhäisin), kuolema: {death_src:s}"
@@ -39904,6 +39907,13 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Ei tyylitiedostoa"
+
+#~ msgid ""
+#~ "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
+#~ "{death_src:s}"
+#~ msgstr ""
+#~ "Suorat todisteet tästä henkilöstä - syntymä: {birth_min_src:s}, kuolema:  "
+#~ "{death_src:s}"
 
 #~ msgid ", death: "
 #~ msgstr ", kuolema: "

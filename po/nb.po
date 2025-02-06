@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-04 15:17+0000\n"
+"POT-Creation-Date: 2025-02-06 17:15+0000\n"
 "PO-Revision-Date: 2025-02-03 13:09+0000\n"
 "Last-Translator: Harald Herreros <h.herreros@proton.me>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
@@ -10860,12 +10860,15 @@ msgstr "dato"
 msgid "date fallback"
 msgstr "alternativ dato"
 
-#: ../gramps/gen/utils/alive.py:263
+#: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "Direct evidence for this person - birth: {birth_min_src:s}, death: "
+#| "{death_src:s}"
 msgid ""
-"Direct evidence for this person - birth: {birth_min_src:s}, death:  "
-"{death_src:s}"
+"Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
-"Direkte bevis for denne personen - fødsel: {birth_min_src:s}, død:  "
+"Direkte bevis for denne personen - fødsel: {birth_min_src:s}, død: "
 "{death_src:s}"
 
 #: ../gramps/gen/utils/alive.py:352
@@ -10908,26 +10911,26 @@ msgstr "fødselsdato og som er kjent for å være død"
 msgid "offset from birth date"
 msgstr "forskyvning fra fødselsdato"
 
-#: ../gramps/gen/utils/alive.py:441
-msgid ""
-"Direct evidence for this person - birth: {birth_min_src:s}, death: "
-"{death_src:s}"
-msgstr ""
-"Direkte bevis for denne personen - fødsel: {birth_min_src:s}, død: "
-"{death_src:s}"
-
 #: ../gramps/gen/utils/alive.py:448
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
+#| "{death_src:s}"
 msgid ""
-"inferred from parents and siblings - birth: {birth_min_src:s}, death: "
-"{death_src:s}"
+"inferred from parents and siblings - birth: {birth_min_src}, death: "
+"{death_src}"
 msgstr ""
 "utledet fra foreldre og søsken - fødsel: {birth_min_src:s}, død: {death_src:"
 "s}"
 
 #: ../gramps/gen/utils/alive.py:455
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) "
+#| "to {birth_max_src:s} (latest), death: {death_src:s}"
 msgid ""
-"inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to "
-"{birth_max_src:s} (latest), death: {death_src:s}"
+"inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
+"{birth_max_src} (latest), death: {death_src}"
 msgstr ""
 "utledet fra foreldre og søsken - fødsel:  {birth_min_src:s} (tidligst) til "
 "{birth_max_src:s} (senest), død: {death_src:s}"
@@ -39787,6 +39790,13 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Ingen stilsett"
+
+#~ msgid ""
+#~ "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
+#~ "{death_src:s}"
+#~ msgstr ""
+#~ "Direkte bevis for denne personen - fødsel: {birth_min_src:s}, død:  "
+#~ "{death_src:s}"
 
 #~ msgid ", death: "
 #~ msgstr ", død: "
