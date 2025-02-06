@@ -2092,7 +2092,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.origin_types.update(
             [str(surn.origintype) for surn in all_surn if surn.origintype.is_custom()]
         )
-        all_surn = None
+
         self.url_types.update(
             [str(url.type) for url in person.urls if url.type.is_custom()]
         )
