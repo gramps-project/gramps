@@ -2951,4 +2951,5 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "tag", what=what, where=where, order_by=order_by, env=env
         )
 
+
 Database = DbGeneric
