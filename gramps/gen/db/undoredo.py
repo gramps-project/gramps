@@ -26,9 +26,18 @@ Base class for undo/redo functionality.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
+from typing import Deque
 import time
 from abc import ABCMeta, abstractmethod
 from collections import deque
+
+# ------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# ------------------------------------------------------------------------
+from ..types import Database
 
 
 # -------------------------------------------------------------------------
@@ -43,8 +52,12 @@ class DbUndo(metaclass=ABCMeta):
     """
 
     __slots__ = ("undodb", "db", "undo_history_timestamp", "undoq", "redoq")
+    db: Database
+    undoq: Deque[DbTxn]
+    redoq: Deque[DbTxn]
+    undo_history_timestamp: float
 
-    def __init__(self, db):
+    def __init__(self, db: Database):
         """
         Class constructor. Set up main instance variables
         """
@@ -53,7 +66,7 @@ class DbUndo(metaclass=ABCMeta):
         self.redoq = deque()
         self.undo_history_timestamp = time.time()
 
-    def clear(self):
+    def clear(self) -> None:
         """
         Clear the undo/redo list (but not the backing storage)
         """
@@ -118,14 +131,14 @@ class DbUndo(metaclass=ABCMeta):
         """
 
     @abstractmethod
-    def _redo(self, update_history):
+    def _redo(self, update_history: bool) -> bool:
         """ """
 
     @abstractmethod
-    def _undo(self, update_history):
+    def _undo(self, update_history: bool) -> bool:
         """ """
 
-    def commit(self, txn, msg):
+    def commit(self, txn: DbTxn, msg: str) -> None:
         """
         Commit the transaction to the undo/redo database.  "txn" should be
         an instance of Gramps transaction class
@@ -135,12 +148,12 @@ class DbUndo(metaclass=ABCMeta):
         self.undoq.append(txn)
         self._after_commit(txn)
 
-    def _after_commit(self, transaction):
+    def _after_commit(self, transaction: DbTxn) -> None:
         """
         Post-transaction commit processing.
         """
 
-    def undo(self, update_history=True):
+    def undo(self, update_history: bool = True) -> bool:
         """
         Undo a previously committed transaction
         """
@@ -148,7 +161,7 @@ class DbUndo(metaclass=ABCMeta):
             return False
         return self._undo(update_history)
 
-    def redo(self, update_history=True):
+    def redo(self, update_history: bool = True) -> bool:
         """
         Redo a previously committed, then undone, transaction
         """

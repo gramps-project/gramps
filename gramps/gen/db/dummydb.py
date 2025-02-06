@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2016       Tim G L Lyons
+# Copyright (C) 2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -57,7 +58,7 @@ import logging
 from abc import ABCMeta
 from functools import wraps
 from types import FunctionType
-from typing import Any
+from typing import Any, Generator, Iterator, List, NoReturn, Tuple
 
 # -------------------------------------------------------------------------
 #
@@ -66,11 +67,49 @@ from typing import Any
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 from ..errors import HandleError
+from ..lib import (
+    Citation,
+    Event,
+    Family,
+    Media,
+    NameOriginType,
+    Note,
+    Person,
+    Place,
+    Repository,
+    Source,
+    Tag,
+)
 from ..lib import Researcher
 from ..utils.callback import Callback
 from .base import DbReadBase
 from .bookmarks import DbBookmarks
 from .dbconst import DBLOGNAME
+from ..types import (
+    AnyHandle,
+    PersonHandle,
+    EventHandle,
+    FamilyHandle,
+    PlaceHandle,
+    PrimaryObject,
+    SourceHandle,
+    RepositoryHandle,
+    CitationHandle,
+    MediaHandle,
+    NoteHandle,
+    TagHandle,
+    PrimaryObjectHandle,
+    TableObjectType,
+    PersonGrampsID,
+    EventGrampsID,
+    FamilyGrampsID,
+    PlaceGrampsID,
+    SourceGrampsID,
+    RepositoryGrampsID,
+    CitationGrampsID,
+    MediaGrampsID,
+    NoteGrampsID,
+)
 
 LOG = logging.getLogger(DBLOGNAME)
 
@@ -211,7 +250,9 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("database is readonly")
         return False
 
-    def find_backlink_handles(self, handle, include_classes=None):
+    def find_backlink_handles(
+        self, handle: AnyHandle, include_classes: List[str] | None = None
+    ) -> Generator[Tuple[str, AnyHandle]]:
         """
         Find all objects that hold a reference to the object handle.
 
@@ -238,14 +279,14 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         yield from ()
 
-    def find_initial_person(self):
+    def find_initial_person(self) -> None:
         """
         Returns first person in the database
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
 
-    def find_next_event_gramps_id(self):
+    def find_next_event_gramps_id(self) -> EventGrampsID:
         """
         Return the next available Gramps ID for a Event object based off the
         event ID prefix.
@@ -254,7 +295,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return EventGrampsID("")
 
-    def find_next_family_gramps_id(self):
+    def find_next_family_gramps_id(self) -> FamilyGrampsID:
         """
         Return the next available Gramps ID for a Family object based off the
         family ID prefix.
@@ -263,7 +304,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return FamilyGrampsID("")
 
-    def find_next_note_gramps_id(self):
+    def find_next_note_gramps_id(self) -> NoteGrampsID:
         """
         Return the next available Gramps ID for a Note object based off the
         note ID prefix.
@@ -272,7 +313,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return NoteGrampsID("")
 
-    def find_next_media_gramps_id(self):
+    def find_next_media_gramps_id(self) -> MediaGrampsID:
         """
         Return the next available Gramps ID for a Media object based
         off the media object ID prefix.
@@ -281,7 +322,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return MediaGrampsID("")
 
-    def find_next_person_gramps_id(self):
+    def find_next_person_gramps_id(self) -> PersonGrampsID:
         """
         Return the next available Gramps ID for a Person object based off the
         person ID prefix.
@@ -290,7 +331,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return PersonGrampsID("")
 
-    def find_next_place_gramps_id(self):
+    def find_next_place_gramps_id(self) -> PlaceGrampsID:
         """
         Return the next available Gramps ID for a Place object based off the
         place ID prefix.
@@ -299,7 +340,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return PlaceGrampsID("")
 
-    def find_next_repository_gramps_id(self):
+    def find_next_repository_gramps_id(self) -> RepositoryGrampsID:
         """
         Return the next available Gramps ID for a Repository object based
         off the repository ID prefix.
@@ -308,7 +349,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return RepositoryGrampsID("")
 
-    def find_next_source_gramps_id(self):
+    def find_next_source_gramps_id(self) -> SourceGrampsID:
         """
         Return the next available Gramps ID for a Source object based off the
         source ID prefix.
@@ -364,7 +405,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_event_from_gramps_id(self, gramps_id):
+    def get_event_from_gramps_id(self, gramps_id: EventGrampsID) -> Event | None:
         """
         Find an Event in the database from the passed Gramps ID.
 
@@ -375,7 +416,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
         return None
 
-    def get_event_from_handle(self, handle):
+    def get_event_from_handle(self, handle: EventHandle) -> Event:
         """
         Find a Event in the database from the passed Gramps ID.
 
@@ -454,7 +495,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_family_from_gramps_id(self, gramps_id):
+    def get_family_from_gramps_id(self, gramps_id: FamilyGrampsID) -> Family | None:
         """
         Find a Family in the database from the passed Gramps ID.
 
@@ -466,7 +507,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
         return None
 
-    def get_family_from_handle(self, handle):
+    def get_family_from_handle(self, handle: FamilyHandle) -> Family:
         """
         Find a Family in the database from the passed Gramps ID.
 
@@ -477,7 +518,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_family_handles(self, sort_handles=False, locale=glocale):
+    def get_family_handles(self, sort_handles: bool = False, locale=glocale):
         """
         Return a list of database handles, one handle for each Family in
         the database.
@@ -525,7 +566,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_media_handles(self, sort_handles=False, locale=glocale):
+    def get_media_handles(self, sort_handles: bool = False, locale=glocale):
         """
         Return a list of database handles, one handle for each Media in
         the database.
@@ -555,7 +596,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_name_group_mapping(self, surname):
+    def get_name_group_mapping(self, surname: str) -> str:
         """
         Return the default grouping name for a surname.
         """
@@ -597,7 +638,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_note_from_gramps_id(self, gramps_id):
+    def get_note_from_gramps_id(self, gramps_id: NoteGrampsID) -> Note | None:
         """
         Find a Note in the database from the passed Gramps ID.
 
@@ -608,7 +649,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
         return None
 
-    def get_note_from_handle(self, handle):
+    def get_note_from_handle(self, handle: NoteHandle) -> Note:
         """
         Find a Note in the database from the passed Gramps ID.
 
@@ -619,7 +660,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_note_handles(self):
+    def get_note_handles(self) -> List[NoteHandle]:
         """
         Return a list of database handles, one handle for each Note in the
         database.
@@ -637,7 +678,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_number_of_events(self):
+    def get_number_of_events(self) -> int:
         """
         Return the number of events currently in the database.
         """
@@ -645,7 +686,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return 0
 
-    def get_number_of_families(self):
+    def get_number_of_families(self) -> int:
         """
         Return the number of families currently in the database.
         """
@@ -653,7 +694,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return 0
 
-    def get_number_of_media(self):
+    def get_number_of_media(self) -> int:
         """
         Return the number of media objects currently in the database.
         """
@@ -661,7 +702,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return 0
 
-    def get_number_of_notes(self):
+    def get_number_of_notes(self) -> int:
         """
         Return the number of notes currently in the database.
         """
@@ -669,7 +710,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return 0
 
-    def get_number_of_people(self):
+    def get_number_of_people(self) -> int:
         """
         Return the number of people currently in the database.
         """
@@ -677,7 +718,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return 0
 
-    def get_number_of_places(self):
+    def get_number_of_places(self) -> int:
         """
         Return the number of places currently in the database.
         """
@@ -685,7 +726,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return 0
 
-    def get_number_of_repositories(self):
+    def get_number_of_repositories(self) -> int:
         """
         Return the number of source repositories currently in the database.
         """
@@ -693,7 +734,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return 0
 
-    def get_number_of_sources(self):
+    def get_number_of_sources(self) -> int:
         """
         Return the number of sources currently in the database.
         """
@@ -701,7 +742,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return 0
 
-    def get_number_of_citations(self):
+    def get_number_of_citations(self) -> int:
         """
         Return the number of citations currently in the database.
         """
@@ -709,7 +750,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return 0
 
-    def get_number_of_tags(self):
+    def get_number_of_tags(self) -> int:
         """
         Return the number of tags currently in the database.
         """
@@ -717,7 +758,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return 0
 
-    def get_media_from_gramps_id(self, gramps_id):
+    def get_media_from_gramps_id(self, gramps_id: MediaGrampsID) -> Media | None:
         """
         Find a Media in the database from the passed Gramps ID.
 
@@ -728,7 +769,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
         return None
 
-    def get_media_from_handle(self, handle):
+    def get_media_from_handle(self, handle: MediaHandle) -> Media:
         """
         Find an Object in the database from the passed Gramps ID.
 
@@ -764,7 +805,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_person_from_gramps_id(self, gramps_id):
+    def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person | None:
         """
         Find a Person in the database from the passed Gramps ID.
 
@@ -775,7 +816,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
         return None
 
-    def get_person_from_handle(self, handle):
+    def get_person_from_handle(self, handle: PersonHandle) -> Person:
         """
         Find a Person in the database from the passed Gramps ID.
 
@@ -786,7 +827,9 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_person_handles(self, sort_handles=False, locale=glocale):
+    def get_person_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[PersonHandle]:
         """
         Return a list of database handles, one handle for each Person in
         the database.
@@ -825,7 +868,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_place_from_gramps_id(self, gramps_id):
+    def get_place_from_gramps_id(self, gramps_id: PlaceGrampsID) -> Place | None:
         """
         Find a Place in the database from the passed Gramps ID.
 
@@ -836,7 +879,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
         return None
 
-    def get_place_from_handle(self, handle):
+    def get_place_from_handle(self, handle: PlaceHandle) -> Place:
         """
         Find a Place in the database from the passed Gramps ID.
 
@@ -847,7 +890,9 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_place_handles(self, sort_handles=False, locale=glocale):
+    def get_place_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[PlaceHandle]:
         """
         Return a list of database handles, one handle for each Place in
         the database.
@@ -861,7 +906,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_raw_event_data(self, handle):
+    def get_raw_event_data(self, handle: EventHandle):
         """
         Return raw (serialized and pickled) Event object from handle
         """
@@ -870,7 +915,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_raw_family_data(self, handle):
+    def get_raw_family_data(self, handle: FamilyHandle):
         """
         Return raw (serialized and pickled) Family object from handle
         """
@@ -879,7 +924,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_raw_note_data(self, handle):
+    def get_raw_note_data(self, handle: NoteHandle):
         """
         Return raw (serialized and pickled) Note object from handle
         """
@@ -888,7 +933,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_raw_media_data(self, handle):
+    def get_raw_media_data(self, handle: MediaHandle):
         """
         Return raw (serialized and pickled) Family object from handle
         """
@@ -897,7 +942,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_raw_person_data(self, handle):
+    def get_raw_person_data(self, handle: PersonHandle):
         """
         Return raw (serialized and pickled) Person object from handle
         """
@@ -906,7 +951,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_raw_place_data(self, handle):
+    def get_raw_place_data(self, handle: PlaceHandle):
         """
         Return raw (serialized and pickled) Place object from handle
         """
@@ -915,7 +960,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_raw_repository_data(self, handle):
+    def get_raw_repository_data(self, handle: RepositoryHandle):
         """
         Return raw (serialized and pickled) Repository object from handle
         """
@@ -924,7 +969,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_raw_source_data(self, handle):
+    def get_raw_source_data(self, handle: SourceHandle):
         """
         Return raw (serialized and pickled) Source object from handle
         """
@@ -933,7 +978,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_raw_citation_data(self, handle):
+    def get_raw_citation_data(self, handle: CitationHandle):
         """
         Return raw (serialized and pickled) Citation object from handle
         """
@@ -942,7 +987,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_raw_tag_data(self, handle):
+    def get_raw_tag_data(self, handle: TagHandle):
         """
         Return raw (serialized and pickled) Tag object from handle
         """
@@ -967,7 +1012,9 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_repository_from_gramps_id(self, gramps_id):
+    def get_repository_from_gramps_id(
+        self, gramps_id: RepositoryGrampsID
+    ) -> Repository | None:
         """
         Find a Repository in the database from the passed Gramps ID.
 
@@ -978,7 +1025,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
         return None
 
-    def get_repository_from_handle(self, handle):
+    def get_repository_from_handle(self, handle: RepositoryHandle) -> Repository:
         """
         Find a Repository in the database from the passed Gramps ID.
 
@@ -989,7 +1036,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_repository_handles(self):
+    def get_repository_handles(self) -> List[RepositoryHandle]:
         """
         Return a list of database handles, one handle for each Repository in
         the database.
@@ -1038,7 +1085,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_source_from_gramps_id(self, gramps_id):
+    def get_source_from_gramps_id(self, gramps_id: SourceGrampsID) -> Source | None:
         """
         Find a Source in the database from the passed Gramps ID.
 
@@ -1049,7 +1096,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
         return None
 
-    def get_source_from_handle(self, handle):
+    def get_source_from_handle(self, handle: SourceHandle) -> Source:
         """
         Find a Source in the database from the passed Gramps ID.
 
@@ -1060,7 +1107,9 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_source_handles(self, sort_handles=False, locale=glocale):
+    def get_source_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[SourceHandle]:
         """
         Return a list of database handles, one handle for each Source in
         the database.
@@ -1099,7 +1148,9 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_citation_from_gramps_id(self, gramps_id):
+    def get_citation_from_gramps_id(
+        self, gramps_id: CitationGrampsID
+    ) -> Citation | None:
         """
         Find a Citation in the database from the passed Gramps ID.
 
@@ -1110,7 +1161,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
         return None
 
-    def get_citation_from_handle(self, handle):
+    def get_citation_from_handle(self, handle: CitationHandle) -> Citation:
         """
         Find a Citation in the database from the passed Gramps ID.
 
@@ -1121,7 +1172,9 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_citation_handles(self, sort_handles=False, locale=glocale):
+    def get_citation_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[CitationHandle]:
         """
         Return a list of database handles, one handle for each Citation in
         the database.
@@ -1151,7 +1204,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def get_tag_from_handle(self, handle):
+    def get_tag_from_handle(self, handle: TagHandle) -> Tag:
         """
         Find a Tag in the database from the passed handle.
 
@@ -1162,7 +1215,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_tag_from_name(self, name):
+    def get_tag_from_name(self, name: str) -> None:
         """
         Find a Tag in the database from the passed Tag name.
 
@@ -1172,7 +1225,9 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         LOG.warning("tag name %s does not exist in the dummy database", name)
 
-    def get_tag_handles(self, sort_handles=False, locale=glocale):
+    def get_tag_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[TagHandle]:
         """
         Return a list of database handles, one handle for each Tag in
         the database.
@@ -1204,7 +1259,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return []
 
-    def has_event_handle(self, handle):
+    def has_event_handle(self, handle: EventHandle) -> bool:
         """
         Return True if the handle exists in the current Event database.
         """
@@ -1212,7 +1267,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return False
 
-    def has_family_handle(self, handle):
+    def has_family_handle(self, handle: FamilyHandle) -> bool:
         """
         Return True if the handle exists in the current Family database.
         """
@@ -1228,7 +1283,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return False
 
-    def has_note_handle(self, handle):
+    def has_note_handle(self, handle: NoteHandle) -> bool:
         """
         Return True if the handle exists in the current Note database.
         """
@@ -1236,7 +1291,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return False
 
-    def has_media_handle(self, handle):
+    def has_media_handle(self, handle: MediaHandle) -> bool:
         """
         Return True if the handle exists in the current Mediadatabase.
         """
@@ -1244,7 +1299,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return False
 
-    def has_person_handle(self, handle):
+    def has_person_handle(self, handle: PersonHandle) -> bool:
         """
         Return True if the handle exists in the current Person database.
         """
@@ -1252,7 +1307,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return False
 
-    def has_place_handle(self, handle):
+    def has_place_handle(self, handle: PlaceHandle) -> bool:
         """
         Return True if the handle exists in the current Place database.
         """
@@ -1260,7 +1315,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return False
 
-    def has_repository_handle(self, handle):
+    def has_repository_handle(self, handle: RepositoryHandle) -> bool:
         """
         Return True if the handle exists in the current Repository database.
         """
@@ -1268,7 +1323,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return False
 
-    def has_source_handle(self, handle):
+    def has_source_handle(self, handle: SourceHandle) -> bool:
         """
         Return True if the handle exists in the current Source database.
         """
@@ -1276,7 +1331,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return False
 
-    def has_tag_handle(self, handle):
+    def has_tag_handle(self, handle: TagHandle) -> bool:
         """
         Return True if the handle exists in the current Tag database.
         """
@@ -1284,13 +1339,13 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         return False
 
-    def is_open(self):
+    def is_open(self) -> bool:
         """
         Return True if the database has been opened.
         """
         return self.db_is_open
 
-    def iter_citations(self):
+    def iter_citations(self) -> Generator[Citation]:
         """
         Return an iterator over objects for Citations in the database
         """
@@ -1298,7 +1353,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_event_handles(self):
+    def iter_event_handles(self) -> Generator[EventHandle]:
         """
         Return an iterator over handles for Events in the database
         """
@@ -1306,7 +1361,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_events(self):
+    def iter_events(self) -> Generator[Event]:
         """
         Return an iterator over objects for Events in the database
         """
@@ -1314,7 +1369,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_families(self):
+    def iter_families(self) -> Generator[Family]:
         """
         Return an iterator over objects for Families in the database
         """
@@ -1322,7 +1377,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_family_handles(self):
+    def iter_family_handles(self) -> Generator[FamilyHandle]:
         """
         Return an iterator over handles for Families in the database
         """
@@ -1330,7 +1385,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_media_handles(self):
+    def iter_media_handles(self) -> Generator[MediaHandle]:
         """
         Return an iterator over handles for Media in the database
         """
@@ -1338,7 +1393,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_media(self):
+    def iter_media(self) -> Generator[Media]:
         """
         Return an iterator over objects for Medias in the database
         """
@@ -1346,7 +1401,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_note_handles(self):
+    def iter_note_handles(self) -> Generator[NoteHandle]:
         """
         Return an iterator over handles for Notes in the database
         """
@@ -1354,7 +1409,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_notes(self):
+    def iter_notes(self) -> Generator[Note]:
         """
         Return an iterator over objects for Notes in the database
         """
@@ -1362,7 +1417,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_people(self):
+    def iter_people(self) -> Generator[Person]:
         """
         Return an iterator over objects for Persons in the database
         """
@@ -1370,7 +1425,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_person_handles(self):
+    def iter_person_handles(self) -> Generator[PersonHandle]:
         """
         Return an iterator over handles for Persons in the database
         """
@@ -1378,7 +1433,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_place_handles(self):
+    def iter_place_handles(self) -> Generator[PlaceHandle]:
         """
         Return an iterator over handles for Places in the database
         """
@@ -1386,7 +1441,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_places(self):
+    def iter_places(self) -> Generator[Place]:
         """
         Return an iterator over objects for Places in the database
         """
@@ -1394,7 +1449,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_repositories(self):
+    def iter_repositories(self) -> Generator[Repository]:
         """
         Return an iterator over objects for Repositories in the database
         """
@@ -1402,7 +1457,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_repository_handles(self):
+    def iter_repository_handles(self) -> Generator[RepositoryHandle]:
         """
         Return an iterator over handles for Repositories in the database
         """
@@ -1410,7 +1465,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_source_handles(self):
+    def iter_source_handles(self) -> Generator[SourceHandle]:
         """
         Return an iterator over handles for Sources in the database
         """
@@ -1418,7 +1473,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_sources(self):
+    def iter_sources(self) -> Generator[Source]:
         """
         Return an iterator over objects for Sources in the database
         """
@@ -1426,7 +1481,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_tag_handles(self):
+    def iter_tag_handles(self) -> Generator[TagHandle]:
         """
         Return an iterator over handles for Tags in the database
         """
@@ -1434,7 +1489,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
             LOG.debug("database is closed")
         yield from ()
 
-    def iter_tags(self):
+    def iter_tags(self) -> Generator[Tag]:
         """
         Return an iterator over objects for Tags in the database
         """

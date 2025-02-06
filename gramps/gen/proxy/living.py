@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2016       Matt Keenan <matt.keenan@gmail.com>
+# Copyright (C) 2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +23,13 @@
 """
 Proxy class for the Gramps databases. Filter out all living people.
 """
+# -------------------------------------------------------------------------
+#
+# Standard python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+from typing import Generator, List, Tuple
 
 # -------------------------------------------------------------------------
 #
@@ -47,6 +55,7 @@ from ..lib import (
 )
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
+from ..types import AnyHandle, FamilyGrampsID, PersonGrampsID, PrimaryObjectHandle
 
 
 # -------------------------------------------------------------------------
@@ -146,7 +155,7 @@ class LivingProxyDb(ProxyDbBase):
             else:
                 yield person
 
-    def get_person_from_gramps_id(self, gramps_id):
+    def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person | None:
         """
         Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
@@ -160,7 +169,7 @@ class LivingProxyDb(ProxyDbBase):
         else:
             return person
 
-    def get_family_from_gramps_id(self, gramps_id):
+    def get_family_from_gramps_id(self, gramps_id: FamilyGrampsID) -> Family | None:
         """
         Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
@@ -198,7 +207,9 @@ class LivingProxyDb(ProxyDbBase):
             return True
         return False
 
-    def find_backlink_handles(self, handle, include_classes=None):
+    def find_backlink_handles(
+        self, handle: AnyHandle, include_classes: List[str] | None = None
+    ) -> Generator[Tuple[str, AnyHandle]]:
         """
         Find all objects that hold a reference to the object handle.
         Returns an iterator over a list of (class_name, handle) tuples.

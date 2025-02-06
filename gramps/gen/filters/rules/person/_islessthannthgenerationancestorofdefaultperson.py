@@ -23,6 +23,7 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
