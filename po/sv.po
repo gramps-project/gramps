@@ -25,13 +25,14 @@
 # Pär Ekholm <par.ekholm@pekholm.org>, 2021.
 # Pär Ekholm <github1@m.pekholm.org>, 2022, 2023, 2024, 2025.
 # Luna Jernberg <droidbittin@gmail.com>, 2023.
+# Nick Hall <nick-h@gramps-project.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-04 15:17+0000\n"
-"PO-Revision-Date: 2025-02-04 22:36+0000\n"
-"Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
+"PO-Revision-Date: 2025-02-05 17:52+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
 "Language: sv\n"
@@ -7286,8 +7287,8 @@ msgstr "okänd"
 #, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "större än {antal} år"
-msgstr[1] "större än {antal} år"
+msgstr[0] "större än {number_of} år"
+msgstr[1] "större än {number_of} år"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -10956,15 +10957,15 @@ msgstr "händelse med make/maka"
 #, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "ättlingars födelse: {antal} generation "
-msgstr[1] "ättlingars födelse: {antal} generationer "
+msgstr[0] "ättlingars födelse: {number_of} generation "
+msgstr[1] "ättlingars födelse: {number_of} generationer "
 
 #: ../gramps/gen/utils/alive.py:788
 #, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "ättlingars död: {antal} generation "
-msgstr[1] "ättlingars död: {antal} generationer "
+msgstr[0] "ättlingars död: {number_of} generation "
+msgstr[1] "ättlingars död: {number_of} generationer "
 
 #: ../gramps/gen/utils/alive.py:803
 #, python-format
