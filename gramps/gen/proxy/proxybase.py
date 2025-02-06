@@ -643,12 +643,12 @@ class ProxyDbBase(DbReadBase):
             self.include_note, self.db.get_note_from_gramps_id(gramps_id)
         )
 
-    def get_tag_from_name(self, val):
+    def get_tag_from_name(self, name):
         """
         Finds a Tag in the database from the passed tag name.
         If no such Tag exists, None is returned.
         """
-        return self.gfilter(self.include_tag, self.db.get_tag_from_name(val))
+        return self.gfilter(self.include_tag, self.db.get_tag_from_name(name))
 
     def get_name_group_mapping(self, surname):
         """
