@@ -34,6 +34,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 # "People marked private"
 # -------------------------------------------------------------------------
 class IsPrivate(Rule):
@@ -43,5 +52,5 @@ class IsPrivate(Rule):
     description = "Matches objects that are indicated as private"
     category = _("General filters")
 
-    def apply(self, db, obj):
-        return obj.get_privacy()
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
+        return obj.private

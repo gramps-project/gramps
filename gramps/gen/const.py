@@ -31,6 +31,7 @@ Provides constants for other modules
 #
 # -------------------------------------------------------------------------
 import os
+import random
 import sys
 import uuid
 
@@ -99,10 +100,13 @@ if "GRAMPSHOME" in os.environ:
     HOME_DIR = os.path.join(USER_HOME, "gramps")
 elif "USERPROFILE" in os.environ:
     USER_HOME = get_env_var("USERPROFILE")
-    if "APPDATA" in os.environ:
-        HOME_DIR = os.path.join(get_env_var("APPDATA"), "gramps")
-    else:
-        HOME_DIR = os.path.join(USER_HOME, "gramps")
+    HOME_DIR = os.path.join(GLib.get_user_config_dir(), "gramps")
+    if not os.path.exists(HOME_DIR):
+        homedir = get_env_var("APPDATA") if "APPDATA" in os.environ else USER_HOME
+        homedir = os.path.join(homedir, "gramps")
+        dbpath = os.path.join(homedir, "grampsdb")
+        if os.path.isdir(dbpath) and os.listdir(dbpath):
+            HOME_DIR = homedir
 else:
     USER_HOME = get_env_var("HOME")
     HOME_DIR = os.path.join(USER_HOME, ".gramps")
@@ -250,7 +254,7 @@ GTK_GETTEXT_DOMAIN = "gtk30"
 # About box information
 #
 # -------------------------------------------------------------------------
-COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2024 The Gramps Developers"
+COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2025 The Gramps Developers"
 COMMENTS = _(
     "Gramps is a genealogy program that is both intuitive for hobbyists "
     "and feature-complete for professional genealogists."
@@ -284,6 +288,7 @@ THUMBSCALE = 96.0
 THUMBSCALE_LARGE = 180.0
 SIZE_NORMAL = 0
 SIZE_LARGE = 1
+REMOTE_MIME = "application/http"
 XMLFILE = "data.gramps"
 NO_SURNAME = "(%s)" % _("none", "surname")
 NO_GIVEN = "(%s)" % _("none", "given-name")
@@ -409,3 +414,6 @@ EXPANDED = 2
 
 TYPE_BOX_NORMAL = 0
 TYPE_BOX_FAMILY = 1
+
+# instance of random.Random that can be used for predictable unit tests
+TEST_RANDOM = random.Random()

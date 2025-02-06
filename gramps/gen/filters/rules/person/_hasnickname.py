@@ -38,6 +38,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasNickname
 #
 # -------------------------------------------------------------------------
@@ -48,7 +57,7 @@ class HasNickname(Rule):
     description = _("Matches people with a nickname")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if person.get_nick_name():
             return True
         return False

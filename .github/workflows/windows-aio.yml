@@ -19,7 +19,14 @@
 
 name: Windows AIO
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      cleanup:
+        description: 'Cleanup python environment on completion?'
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   build:
@@ -38,7 +45,7 @@ jobs:
     - name: Build
       run: |
         cd aio
-        ./build.sh
+        ./build.sh ${{ inputs.cleanup }}
     - uses: actions/upload-artifact@v4
       with:
         name: GrampsAIO

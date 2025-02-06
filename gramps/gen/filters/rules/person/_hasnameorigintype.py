@@ -36,6 +36,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasNameOriginType
 #
 # -------------------------------------------------------------------------
@@ -53,7 +62,7 @@ class HasNameOriginType(Rule):
         super().__init__(arg, use_regex, use_case)
         self.name_origin_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
@@ -61,13 +70,13 @@ class HasNameOriginType(Rule):
             self.name_origin_type = NameOriginType()
             self.name_origin_type.set_from_xml_str(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Person) -> bool:
         """
         Apply the rule. Return True on a match.
         """
         if self.name_origin_type:
-            for name in [obj.get_primary_name()] + obj.get_alternate_names():
-                for surname in name.get_surname_list():
-                    if surname.get_origintype() == self.name_origin_type:
+            for name in [obj.primary_name] + obj.alternate_names:
+                for surname in name.surname_list:
+                    if surname.origintype == self.name_origin_type:
                         return True
         return False

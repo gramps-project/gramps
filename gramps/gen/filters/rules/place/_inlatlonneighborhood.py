@@ -40,6 +40,16 @@ from ....utils.place import conv_lat_lon
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Union
+from ....lib import Place
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # InLatLonNeighborhood
 #
 # -------------------------------------------------------------------------
@@ -61,7 +71,9 @@ class InLatLonNeighborhood(Rule):
     )
     category = _("Position filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
+        self.halfheight: Union[float, None] = None
+        self.halfwidth: Union[float, None] = None
         if self.list[0]:
             try:
                 self.halfheight = float(self.list[2]) / 2.0
@@ -87,7 +99,8 @@ class InLatLonNeighborhood(Rule):
             self.list[1] = "0.0"
 
         # we allow a band instead of a triangle
-        self.lat, self.lon = conv_lat_lon(self.list[0], self.list[1], "D.D8")
+        results = conv_lat_lon(self.list[0], self.list[1], "D.D8")  # type: ignore
+        self.lat, self.lon = results if isinstance(results, tuple) else (None, None)  # type: ignore
         if self.lat is not None and self.lon is not None:
             self.lat = float(self.lat)
             self.lon = float(self.lon)
@@ -131,7 +144,7 @@ class InLatLonNeighborhood(Rule):
                     self.E2 = 180.0
                     self.W = -180
 
-    def apply(self, db, place):
+    def apply_to_one(self, db: Database, place: Place) -> bool:
         if self.halfheight == -1 and self.halfwidth == -1:
             return False
 
@@ -146,16 +159,17 @@ class InLatLonNeighborhood(Rule):
         # now we know at least one is given in the filter and is valid
 
         # the place we look at must have lat AND lon entered
-        if not (place.get_latitude().strip and place.get_longitude().strip()):
+        if not (place.lat.strip() and place.long.strip()):
             return False
 
-        latpl, lonpl = conv_lat_lon(place.get_latitude(), place.get_longitude(), "D.D8")
+        results = conv_lat_lon(place.lat, place.long, "D.D8")  # type: ignore
+        latpl, lonpl = results if isinstance(results, tuple) else (None, None)  # type: ignore
         if latpl and lonpl:
-            latpl = float(latpl)
-            lonpl = float(lonpl)
+            latpl = float(latpl)  # type: ignore
+            lonpl = float(lonpl)  # type: ignore
             if self.halfheight != -1:
                 # check lat
-                if latpl < self.N or latpl > self.S:
+                if latpl < self.N or latpl > self.S:  # type: ignore
                     return False
 
             if self.halfwidth != -1:
@@ -163,11 +177,11 @@ class InLatLonNeighborhood(Rule):
                 # and must keep counting
                 if self.doublesquares:
                     # two squares to look in :
-                    if (lonpl < self.W or lonpl > self.E) and (
-                        lonpl < self.W2 or lonpl > self.E2
-                    ):
+                    left = lonpl < self.W or lonpl > self.E  # type: ignore
+                    right = lonpl < self.W2 or lonpl > self.E2  # type: ignore
+                    if left and right:  # type: ignore
                         return False
-                elif lonpl < self.W or lonpl > self.E:
+                elif lonpl < self.W or lonpl > self.E:  # type: ignore
                     return False
 
             return True

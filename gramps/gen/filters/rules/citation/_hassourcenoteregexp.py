@@ -42,6 +42,15 @@ from .._hasnoteregexbase import HasNoteRegexBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib.refbase import RefBase
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasSourceNoteRegexp
 #
 # -------------------------------------------------------------------------
@@ -58,8 +67,6 @@ class HasSourceNoteRegexp(HasNoteRegexBase):
     )
     category = _("Source filters")
 
-    def apply(self, db, citation):
-        source = db.get_source_from_handle(citation.get_reference_handle())
-        if HasNoteRegexBase.apply(self, db, source):
-            return True
-        return False
+    def apply_to_one(self, db: Database, citation: RefBase) -> bool:  # type: ignore[override]
+        source = db.get_source_from_handle(citation.ref)
+        return HasNoteRegexBase.apply_to_one(self, db, source)

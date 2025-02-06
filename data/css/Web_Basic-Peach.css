@@ -195,6 +195,12 @@ div#nav ul li a:hover, #subnavigation ul li a:hover {
     background-color: #FFC35E;
     border-bottom: solid 1px #36220B;
 }
+div#ltr.pnav ul.ltr li.CurrentSection, div#rtl.pnav ul.rtl li.CurrentSection,
+div#ltr ul.ltr li.CurrentSection, div#rtl ul.rtl li.CurrentSection {
+    font-weight: bold;
+    font-style: italic;
+    background-color: #FFC35E;
+}
 div#nav ul li.CurrentSection a {
     position: relative;
     top: 1px;
@@ -208,14 +214,12 @@ div#nav ul li.CurrentSection a {
 div#nav li.lang {
     font-size: smaller;
     font-family: sans-serif;
-    padding-top: .3em;
-    padding-bottom: .3em;
     font-weight: bold;
 }
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
-    width: 80px;
+    width: 300px;
     padding-right: 5px;
 }
 div#nav ul.lang {
@@ -225,7 +229,7 @@ div#nav ul.lang {
     z-index: 999;
     padding: 5px 2px;
     background-color: #FFE09F;
-    top: -1em;
+    top: 1em;
     font-size: larger;
     font-family: sans-serif;
 }
@@ -367,7 +371,7 @@ div#nav::after {
     }
     button.navIcon {
         display: block;
-        font-size:2.9em;
+        font-size:4.9em;
         line-height: 35px;
         border: 0px;
         color: #EA8414;
@@ -380,7 +384,13 @@ div#nav::after {
         float: right;
     }
 
-    .nav.responsive {position: absolute; display: block; z-index: 100;}
+    .nav.responsive {
+        position: absolute;
+        display: block;
+        z-index: 100;
+        font-size: 36px;
+        background-color: #FFC35E;
+    }
     .nav.responsive a.icon {
         position: absolute;
         right: 0;
@@ -393,13 +403,18 @@ div#nav::after {
     .nav.ltr.responsive li.lang {
         text-align: left;
     }
+    .nav.responsive ul.lang li {
+        font-size: smaller;
+        width: 430px;
+        background-color: #FFC35E;
+    }
     .nav.responsive li {
         display: block;
         text-align: left;
         background-color: #FFC35E;
         /* required by IE */
         clear: both;
-        width: 200px;
+        width: 300px;
     }
 
     div#nav ul, #subnavigation ul {

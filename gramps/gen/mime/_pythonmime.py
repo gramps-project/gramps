@@ -20,7 +20,7 @@
 # gen/mime/_pythonmime.py
 
 import mimetypes
-from ..const import GRAMPS_LOCALE as glocale
+from ..const import GRAMPS_LOCALE as glocale, REMOTE_MIME
 
 _ = glocale.translation.gettext
 
@@ -34,6 +34,7 @@ _type_map = {
     "image/png": "PNG image",
     "application/pdf": "PDF document",
     "text/rtf": "Rich Text File",
+    REMOTE_MIME: "External web page",
 }
 
 mimetypes.add_type("application/x-gramps", ".grdb")
@@ -54,6 +55,8 @@ def get_description(mime_type):
 
 def get_type(filename):
     """Return the mime type of the specified file"""
+    if filename.startswith(("http://", "https://")):
+        return REMOTE_MIME
     value = mimetypes.guess_type(filename)
     if value and value[0]:
         return value[0]

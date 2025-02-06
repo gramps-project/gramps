@@ -47,7 +47,7 @@ from gi.repository import Gtk
 #
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Place, PlaceType
-from gramps.gen.lib.serialize import from_dict
+from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.display.place import displayer as place_displayer
@@ -124,30 +124,28 @@ class PlaceBaseModel:
         return len(self.fmap) + 1
 
     def column_title(self, data):
-        handle = data["handle"]
+        handle = data.handle
         cached, value = self.get_cached_value(handle, "PLACE")
         if not cached:
-            place = from_dict(data)
+            place = data_to_object(data)
             value = place_displayer.display(self.db, place)
             self.set_cached_value(handle, "PLACE", value)
         return value
 
     def column_name(self, data):
         """Return the primary name"""
-        return data["name"]["value"]
+        return data.name.value
 
     def search_name(self, data):
         """The search name includes all alt names to enable finding by alt name"""
-        return ",".join(
-            [data["name"]["value"]] + [name["value"] for name in data["alt_name"]]
-        )
+        return ",".join([data.name.value] + [name.value for name in data.alt_names])
 
     def column_longitude(self, data):
-        if not data["long"]:
+        if not data.long:
             return ""
         value = conv_lat_lon(
             "0",
-            data["long"],
+            data.long,
             format=coord_formats[config.get("preferences.coord-format")],
         )[1]
         if not value:
@@ -155,10 +153,10 @@ class PlaceBaseModel:
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def column_latitude(self, data):
-        if not data["lat"]:
+        if not data.lat:
             return ""
         value = conv_lat_lon(
-            data["lat"],
+            data.lat,
             "0",
             format=coord_formats[config.get("preferences.coord-format")],
         )[0]
@@ -167,45 +165,42 @@ class PlaceBaseModel:
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def sort_longitude(self, data):
-        if not data["long"]:
+        if not data.long:
             return ""
-        value = (
-            conv_lat_lon("0", data["long"], format="ISO-DMS") if data["long"] else ""
-        )
+        value = conv_lat_lon("0", data.long, format="ISO-DMS") if data.long else ""
         if not value:
             return _("Error in format")
         return value
 
     def sort_latitude(self, data):
-        if not data["lat"]:
+        if not data.lat:
             return ""
-        value = conv_lat_lon(data["lat"], "0", format="ISO-DMS") if data["lat"] else ""
+        value = conv_lat_lon(data.lat, "0", format="ISO-DMS") if data.lat else ""
         if not value:
             return _("Error in format")
         return value
 
     def column_id(self, data):
-        return data["gramps_id"]
+        return data.gramps_id
 
     def column_type(self, data):
-        pt = from_dict(data["place_type"])
-        return str(pt)
+        return PlaceType.get_str(data.place_type)
 
     def column_code(self, data):
-        return data["code"]
+        return data.code
 
     def column_private(self, data):
-        if data["private"]:
+        if data.private:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
             return ""
 
     def sort_change(self, data):
-        return "%012x" % data["change"]
+        return "%012x" % data.change
 
     def column_change(self, data):
-        return format_time(data["change"])
+        return format_time(data.change)
 
     def get_tag_name(self, tag_handle):
         """
@@ -221,12 +216,12 @@ class PlaceBaseModel:
         """
         Return the tag color.
         """
-        tag_handle = data["handle"]
+        tag_handle = data.handle
         cached, value = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data["tag_list"]:
+            for handle in data.tag_list:
                 tag = self.db.get_tag_from_handle(handle)
                 if tag:
                     this_priority = tag.get_priority()
@@ -241,7 +236,7 @@ class PlaceBaseModel:
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data["tag_list"]))
+        tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
         return ", ".join(sorted(tag_list, key=glocale.sort_key))
 
@@ -362,8 +357,8 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         data        The object data.
         """
         sort_key = self.sort_func(data)
-        if len(data["placeref_list"]) > 0:
-            parent = data["placeref_list"][0]["ref"]
+        if len(data.placeref_list) > 0:
+            parent = data.placeref_list[0].ref
         else:
             parent = None
 

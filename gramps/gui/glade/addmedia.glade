@@ -20,7 +20,6 @@
             <child>
               <object class="GtkButton" id="button81">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -36,7 +35,6 @@
             <child>
               <object class="GtkButton" id="button79">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -53,7 +51,6 @@
             <child>
               <object class="GtkButton" id="button103">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -212,7 +209,6 @@
                 <child>
                   <object class="GtkCheckButton" id="relpath">
                     <property name="label" translatable="yes">Convert to a relative path</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>

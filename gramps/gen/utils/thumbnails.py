@@ -28,6 +28,7 @@ Handles generation and access to thumbnails used in Gramps.
 # Standard python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import os
 import logging
 from hashlib import md5
@@ -59,9 +60,10 @@ from gramps.gen.const import (
     THUMB_NORMAL,
     SIZE_NORMAL,
     SIZE_LARGE,
+    REMOTE_MIME,
 )
-from gramps.gen.plug import BasePluginManager, START
 from gramps.gen.mime import get_type
+from gramps.gen.plug import BasePluginManager, START, Thumbnailer
 
 # -------------------------------------------------------------------------
 #
@@ -70,7 +72,7 @@ from gramps.gen.mime import get_type
 # -------------------------------------------------------------------------
 LOG = logging.getLogger(".thumbnail")
 
-THUMBNAILERS = []
+THUMBNAILERS: list[Thumbnailer] = []
 
 
 def get_thumbnailers():
@@ -256,7 +258,13 @@ def get_thumbnail_path(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     :rtype: GdkPixbuf.Pixbuf
     """
     filename = __build_thumb_path(src_file, rectangle, size)
-    if not os.path.isfile(src_file):
+    if src_file.startswith(("http://", "https://")):
+        mtype = REMOTE_MIME
+        if not os.path.isfile(filename):
+            if not __create_thumbnail_image(src_file, mtype, rectangle, size):
+                return os.path.join(IMAGE_DIR, "gramps-url.png")
+        return os.path.abspath(filename)
+    elif not os.path.isfile(src_file):
         return os.path.join(IMAGE_DIR, "image-missing.png")
     else:
         if (not os.path.isfile(filename)) or (

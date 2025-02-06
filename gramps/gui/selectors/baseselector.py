@@ -21,6 +21,13 @@
 
 # -------------------------------------------------------------------------
 #
+# Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
@@ -39,6 +46,7 @@ from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
+from gramps.gui.widgets.multitreeview import MultiTreeView
 
 
 # -------------------------------------------------------------------------
@@ -56,23 +64,25 @@ class BaseSelector(ManagedWindow):
     MARKUP = 1
     IMAGE = 2
 
+    WIKI_HELP_PAGE: str
+    WIKI_HELP_SEC: str
+
     def __init__(
         self,
         dbstate,
         uistate,
         track=[],
-        filter=None,
+        filter: tuple[int, str] | None = None,  # tuple[filter_id, search_string]
         skip=set(),
-        show_search_bar=True,
+        show_search_bar: bool = True,
         default=None,
+        allow_multiple_selection: bool = False,
     ):
         """Set up the dialog with the dbstate and uistate, track of parent
         windows for ManagedWindow, initial filter for the model, skip with
         set of handles to skip in the view, and search_bar to show the
         SearchBar at the top or not.
         """
-        self.filter = (2, filter, False)
-
         # Set window title, some selectors may set self.title in their __init__
         if not hasattr(self, "title"):
             self.title = self.get_window_title()
@@ -90,12 +100,18 @@ class BaseSelector(ManagedWindow):
         self.glade = Glade()
 
         window = self.glade.toplevel
-        self.showall = self.glade.get_object("showall")
         title_label = self.glade.get_object("title")
         vbox = self.glade.get_object("select_person_vbox")
         objectlist = self.glade.get_object("plist")
-        _name = self.get_config_name()
-        self.tree = PersistentTreeView(self.uistate, _name)
+        _config_name = self.get_config_name()
+        self.allow_multiple_selection = allow_multiple_selection
+        self.tree = (
+            MultiTreeView(self.uistate, _config_name)
+            if self.allow_multiple_selection
+            else PersistentTreeView(self.uistate, _config_name)
+        )
+        if self.allow_multiple_selection:
+            self.tree.get_selection().set_mode(Gtk.SelectionMode.MULTIPLE)
         scrolledwindow = self.glade.get_object("scrolledwindow33")
         scrolledwindow.remove(objectlist)
         scrolledwindow.add(self.tree)
@@ -112,11 +128,12 @@ class BaseSelector(ManagedWindow):
         self.tree.connect("key-press-event", self.searchbox.treeview_keypress)
 
         # add the search bar
-        self.search_bar = SearchBar(
-            dbstate, uistate, self.build_tree, apply_clear=self.apply_clear
-        )
+        self.search_bar = SearchBar(dbstate, uistate, self.build_tree)
         filter_box = self.search_bar.build()
         self.setup_filter()
+        if filter:
+            self.search_bar.filter_list.set_active(filter[0])
+            self.search_bar.filter_text.set_text(filter[1])
         vbox.pack_start(filter_box, False, False, 0)
         vbox.reorder_child(filter_box, 1)
 
@@ -125,7 +142,7 @@ class BaseSelector(ManagedWindow):
         # set up sorting
         self.sort_col = 0
         self.setupcols = True
-        self.columns = []
+        self.columns: list[Gtk.TreeViewColumn] = []
         self.sortorder = Gtk.SortType.ASCENDING
 
         self.skip_list = skip
@@ -138,12 +155,6 @@ class BaseSelector(ManagedWindow):
         self.show()
         # show or hide search bar?
         self.set_show_search_bar(show_search_bar)
-        # Hide showall if no filter is specified
-        if self.filter[1] is not None:
-            self.showall.connect("toggled", self.show_toggle)
-            self.showall.show()
-        else:
-            self.showall.hide()
         while Gtk.events_pending():
             Gtk.main_iteration()
         self.build_tree()
@@ -222,9 +233,19 @@ class BaseSelector(ManagedWindow):
         val = self.window.run()
         result = None
         if val == Gtk.ResponseType.OK:
-            id_list = self.get_selected_ids()
-            if id_list and id_list[0]:
-                result = self.get_from_handle_func()(id_list[0])
+            handle_list = self.get_selected_ids()
+            if handle_list:
+                if self.allow_multiple_selection:
+                    # always return a list, but may be length 0
+                    result = [
+                        self.get_from_handle_func()(handle)
+                        for handle in handle_list
+                        if handle
+                    ]
+                else:
+                    # return None or a valid handle
+                    if handle_list[0]:
+                        result = self.get_from_handle_func()(handle_list[0])
             self.close()
         elif val != Gtk.ResponseType.DELETE_EVENT:
             self.close()
@@ -248,9 +269,11 @@ class BaseSelector(ManagedWindow):
         Defines the columns to show in the selector. Must be defined in the
         subclasses.
         :returns: a list of tuples with four entries. The four entries should
-                be 0: column header string, 1: column width,
-                2: TEXT, MARKUP or IMAGE, 3: column in the model that must be
-                used.
+                be:
+                0: column header string,
+                1: column width,
+                2: TEXT, MARKUP or IMAGE,
+                3: column in the model that must be used.
         """
         raise NotImplementedError
 
@@ -284,7 +307,7 @@ class BaseSelector(ManagedWindow):
         Builds the default filters and add them to the filter bar.
         """
         cols = [
-            (pair[3], pair[1], pair[0] in self.exact_search())
+            (pair[3], pair[1], pair[1] in self.exact_search())
             for pair in self.column_order()
             if pair[0]
         ]
@@ -294,10 +317,17 @@ class BaseSelector(ManagedWindow):
         """
         Builds the selection people see in the Selector
         """
-        if not self.filter[1]:
-            filter_info = (False, self.search_bar.get_value(), False)
-        else:
-            filter_info = self.filter
+        search_bar_filter = self.search_bar.get_value()
+        filter_info = (
+            (
+                0,
+                search_bar_filter,
+                search_bar_filter[0] in self.exact_search(),
+            )
+            if search_bar_filter[1]
+            else None
+        )
+
         if self.model:
             sel = self.first_selected()
         else:
@@ -356,31 +386,12 @@ class BaseSelector(ManagedWindow):
 
         return True
 
-    def show_toggle(self, obj):
-        filter_info = None if obj.get_active() else self.filter
-        self.clear_model()
-        self.model = self.get_model_class()(
-            self.db,
-            self.uistate,
-            self.sort_col,
-            self.sortorder,
-            sort_map=self.column_order(),
-            skip=self.skip_list,
-            search=filter_info,
-        )
-        self.tree.set_model(self.model)
-        self.tree.restore_column_size()
-        self.tree.grab_focus()
-
     def clear_model(self):
         if self.model:
             self.tree.set_model(None)
             if hasattr(self.model, "destroy"):
                 self.model.destroy()
             self.model = None
-
-    def apply_clear(self):
-        self.showall.set_active(False)
 
     def _cleanup_on_exit(self):
         """Unset all things that can block garbage collection.

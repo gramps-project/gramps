@@ -37,7 +37,6 @@ import logging
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
 from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
-from gramps.gen.lib.serialize import to_dict
 from gramps.gen.lib import EventType, NameOriginType, Tag, MarkerType
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
@@ -56,7 +55,6 @@ from .dbconst import (
 )
 from ..const import GRAMPS_LOCALE as glocale
 from .conversion_tools import convert_21
-from gramps.gen.lib.serialize import to_dict
 
 _ = glocale.translation.gettext
 
@@ -384,7 +382,9 @@ def gramps_upgrade_17(self):
             n -= 1
 
         if parent_handle is not None:
-            placeref_list = [(parent_handle.decode("utf-8"), None)]
+            if isinstance(parent_handle, bytes):
+                parent_handle = parent_handle.decode("utf-8")
+            placeref_list = [(parent_handle, None)]
         else:
             placeref_list = []
 
@@ -554,7 +554,9 @@ def add_place(self, name, level, parent, title):
     gid = self.place_prefix % self.max_id
     placetype = (7 - level, "")
     if parent is not None:
-        placeref_list = [(parent.decode("utf-8"), None)]
+        if isinstance(parent, bytes):
+            parent = parent.decode("utf-8")
+        placeref_list = [(parent, None)]
     else:
         placeref_list = []
     place = (

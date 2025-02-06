@@ -67,7 +67,7 @@
 
 <tip number="36"><b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place to store the names of frequently used individuals. Selecting a bookmark will make that person the Active Person. To bookmark someone make them the Active Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. You can also bookmark most of the other objects.</tip>
 
-<tip number="37"><b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a either a reddish background or a red dot on the right edge of the field. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;.</tip>
+<tip number="37"><b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a either a reddish background or a red dot on the right edge of the field. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Data&quot;.</tip>
 
 <tip number="38"><b>Listing Events</b><br/>Events are added using the editor opened with &quot;Person &gt; Edit Person &gt; Events&quot;. There is a long list of preset event types. You can add your own event types by typing in the text field, they will be added to the available events, but not translated.</tip>
 
@@ -93,7 +93,7 @@
 
 <tip number="50"><b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is to use the Gramps bug tracking system at https://gramps-project.org/bugs/.</tip>
 
-<tip number="51"><b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-project.org/.</tip>
+<tip number="51"><b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-project.org/.</tip>
 
 <tip number="53"><b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports. Look for the padlock which toggles records between private and public.</tip>
 
@@ -123,7 +123,7 @@
 
 <tip number="71"><b>Open Source Software</b><br/>The Free/Libre and Open Source Software (FLOSS) development model means Gramps can be extended by any programmer since all of the source code is freely available under its license. So it's not just about free beer, it's also about freedom to study and change the tool. For more about Open Source software lookup the Free Software Foundation and the Open Source Initiative.</tip>
 
-<tip number="72"><b>The Gramps Software License</b><br/>You are free to use and share Gramps with others. Gramps is freely distributable under the GNU General Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the rights and restrictions of this license.</tip>
+<tip number="72"><b>The Gramps Software License</b><br/>You are free to use and share Gramps with others. Gramps is freely distributable under the GNU General Public License, see https://www.gnu.org/licenses/licenses.html#GPL to read about the rights and restrictions of this license.</tip>
 
 <tip number="73"><b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine.</tip>
 

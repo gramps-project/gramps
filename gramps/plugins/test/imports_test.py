@@ -36,7 +36,8 @@ from gramps.gen.utils.config import config
 
 config.set("preferences.date-format", 0)
 from gramps.gen.db.utils import import_as_dict
-from gramps.gen.merge.diff import diff_dbs, to_dict
+from gramps.gen.merge.diff import diff_dbs
+from gramps.gen.lib.json_utils import object_to_dict
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.gen.user import User
@@ -53,12 +54,6 @@ TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 #  Local Functions
 # ------------------------------------------------------------------
 
-# These tests assume a US date and time format.
-try:
-    locale.setlocale(locale.LC_ALL, "en_US.utf8")
-except locale.Error:  # seems to fail on Windows system for some reason
-    locale.setlocale(locale.LC_ALL, "English_United States")
-
 
 def mock_time(*args):
     """
@@ -74,6 +69,22 @@ def mock_localtime(*args):
     return strptime("25 Dec 1999", "%d %b %Y")
 
 
+# These tests assume a US date and time format.
+# If the locale is not available on the
+# build host, skip these tests.
+en_US_locale_available = False
+try:
+    locale.setlocale(locale.LC_ALL, "en_US.utf8")
+    en_US_locale_available = True
+except locale.Error:  # seems to fail on Windows system for some reason
+    try:
+        locale.setlocale(locale.LC_ALL, "English_United States")
+        en_US_locale_available = True
+    except locale.Error:
+        pass
+
+
+@unittest.skipUnless(en_US_locale_available, "en_US locale is not avaiable")
 class TestImports(unittest.TestCase):
     """The test class cases will be dynamically created at import time from
     files to be tested.  The following defs are used by the test cases
@@ -89,7 +100,9 @@ class TestImports(unittest.TestCase):
         if diffs:
             for diff in diffs:
                 obj_type, item1, item2 = diff
-                msg = self._report_diff(obj_type, to_dict(item1), to_dict(item2))
+                msg = self._report_diff(
+                    obj_type, object_to_dict(item1), object_to_dict(item2)
+                )
                 if msg != "":
                     if hasattr(item1, "gramps_id"):
                         self.msg += "%s: %s  handle=%s\n" % (

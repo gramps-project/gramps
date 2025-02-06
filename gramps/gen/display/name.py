@@ -58,8 +58,10 @@ Specific symbols for parts of a name are defined:
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import re
 import logging
+from typing import Callable
 
 LOG = logging.getLogger(".gramps.gen")
 
@@ -73,7 +75,7 @@ from ..const import ARABIC_COMMA, ARABIC_SEMICOLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..lib.name import Name
 from ..lib.nameorigintype import NameOriginType
-from ..lib.serialize import to_dict
+from ..lib.json_utils import object_to_data
 
 try:
     from ..config import config
@@ -371,8 +373,8 @@ class NameDisplay:
         if only one surname, see if pa/ma should be considered as 'the' surname.
     """
 
-    format_funcs = {}
-    raw_format_funcs = {}
+    format_funcs: dict[str, Callable] = {}
+    raw_format_funcs: dict[str, Callable] = {}
 
     def __init__(self, xlocale=glocale):
         """
@@ -734,7 +736,7 @@ class NameDisplay:
 
         The new function is of the form::
 
-        def fn(first, raw_surname_list, suffix, title, call,):
+        def fn(first, raw_surname_list, suffix, title, call, nick, famnick):
             return "%s %s" % (first,suffix)
 
         Specific symbols for parts of a name are defined (keywords given):
@@ -910,7 +912,7 @@ class NameDisplay:
         try:
             s = func(
                 first,
-                [to_dict(surn) for surn in surname_list],
+                [object_to_data(surn) for surn in surname_list],
                 suffix,
                 title,
                 call,
@@ -1157,8 +1159,7 @@ class NameDisplay:
 
     def _make_fn(self, format_str, d, args):
         """
-        Create the name display function and handles dependent
-        punctuation.
+        Create the name display function and handles dependent punctuation.
         """
         # d is a dict: dict[code] = (expr, word, translated word)
 
@@ -1266,18 +1267,17 @@ def fn(%s):
             ",".join(param),
         )
         try:
-            exec(s) in globals(), locals()
-            return locals()["fn"]
-        except:
+            result = {}
+            exec(s, globals(), result)
+            return result["fn"]
+        except SyntaxError:
             LOG.error(
-                "\n"
-                + "Wrong name format string %s" % new_fmt
-                + "\n"
-                + ("ERROR, Edit Name format in Preferences->Display to correct")
-                + "\n"
-                + _("Wrong name format string %s") % new_fmt
-                + "\n"
-                + ("ERROR, Edit Name format in Preferences->Display to correct")
+                "Wrong name format string %s\n"
+                "ERROR, Edit Name format in Preferences->Display to correct\n"
+                + _("Wrong name format string %s")
+                + "\nERROR, Edit Name format in Preferences->Display to correct",
+                new_fmt,
+                new_fmt,
             )
 
             def errfn(*arg):

@@ -36,6 +36,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 # "People with incomplete events"
 # -------------------------------------------------------------------------
 class PersonWithIncompleteEvent(Rule):
@@ -45,12 +54,12 @@ class PersonWithIncompleteEvent(Rule):
     description = _("Matches people with missing date or place in an event")
     category = _("Event filters")
 
-    def apply(self, db, person):
-        for event_ref in person.get_event_ref_list():
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        for event_ref in person.event_ref_list:
             if event_ref:
                 event = db.get_event_from_handle(event_ref.ref)
-                if not event.get_place_handle():
+                if not event.place:
                     return True
-                if not event.get_date_object():
+                if not event.date:
                     return True
         return False

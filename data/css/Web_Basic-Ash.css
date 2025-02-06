@@ -185,12 +185,18 @@ div#nav ul li a, #subnavigation ul li a {
     display: block;
     font-size: smaller;
     font-weight: bold;
-    border-bottom: solid 1px #EEE;
+    border-bottom: solid 1px #CCC;
 }
 div#nav ul li a:hover, #subnavigation ul li a:hover {
     text-decoration: none;
     background-color: #CCC;
     border-bottom: solid 1px black;
+}
+div#ltr.pnav ul.ltr li.CurrentSection, div#rtl.pnav ul.rtl li.CurrentSection,
+div#ltr ul.ltr li.CurrentSection, div#rtl ul.rtl li.CurrentSection {
+    font-weight: bold;
+    font-style: italic;
+    background-color: #CCC;
 }
 div#nav ul li.CurrentSection a {
     position: relative;
@@ -204,19 +210,23 @@ div#nav ul li.CurrentSection a {
 }
 div#nav li.lang {
     font-family: sans-serif;
+    font-size: smaller;
+    font-weight: bold;
 }
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
-    width: 80px;
     padding-right: 5px;
+    background-color: #CCC;
 }
 div#nav ul.lang {
     position: absolute;
+    top: 1.5em;
     visibility: hidden;
     opacity: 0;
     z-index: 999;
-    background-color: #EEE;
+    width: 430px;
+    background-color: #CCC;
     font-family: sans-serif;
 }
 div#nav ul.lang:hover {
@@ -224,7 +234,8 @@ div#nav ul.lang:hover {
 }
 div#nav ul.lang li {
     float: none;
-    padding: 2px;
+    padding: 5px;
+    width: 300px;
 }
 .ltr, .ltr li {
     float: left;
@@ -318,7 +329,6 @@ div#nav::after {
     .nav ul, #subnavigation ul {
         list-style: none;
         min-width: unset;
-        width: 200px;
         margin: 0;
         padding: 0;
     }
@@ -344,7 +354,7 @@ div#nav::after {
     }
     button.navIcon {
         display: block;
-        font-size:2.9em;
+        font-size:4.9em;
         border: 0px;
         color: #555;
         background-color: #EEE;
@@ -356,11 +366,18 @@ div#nav::after {
     h1#SiteTitle.rlt  {
         float: right;
     }
-    .nav.responsive {position: absolute; display: block; z-index: 100;}
+    .nav.responsive {
+        position: absolute;
+        display: block;
+        z-index: 100;
+        font-size: 36px;
+        background-color: #CCC;
+        width: 100%;
+    }
     .nav.responsive a.icon {
         position: absolute;
-        right: 0;
-        top: 0;
+        right: 5px;
+        top: 5px;
         margin-right: 10px;
     }
     .nav.rtl.responsive li.lang {
@@ -371,10 +388,10 @@ div#nav::after {
     }
     .nav.responsive li {
         display: block;
-        background-color: #CCC;
         /* required by IE */
         clear: both;
-        width: 150px;
+        width: 380px;
+        background-color: #CCC;
     }
 
     div#nav ul, #subnavigation ul {
@@ -386,6 +403,7 @@ div#nav::after {
     }
     .lang {
         position: relative;
+        background-color: #CCC;
     }
     .lang > .lang {
         top: 0;
@@ -395,6 +413,7 @@ div#nav::after {
         -webkit-border-radius: 0 6px 6px 6px;
         -moz-border-radius: 0 6px 6px 6px;
         border-radius: 0 6px 6px 6px;
+        background-color: #CCC;
     }
     .lang:hover > .lang {
         display: block;

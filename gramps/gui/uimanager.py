@@ -261,7 +261,12 @@ class UIManager:
         tb_show = toolbar.get_visible()
         toolbar_parent.remove(toolbar)
         toolbar = self.builder.get_object("ToolBar")  # new toolbar
-        if config.get("interface.toolbar-text"):
+        toolbar_style = config.get("interface.toolbar-style")
+        if toolbar_style == 1:
+            toolbar.set_style(Gtk.ToolbarStyle.TEXT)
+        elif toolbar_style == 2:
+            toolbar.set_style(Gtk.ToolbarStyle.ICONS)
+        elif toolbar_style == 3:
             toolbar.set_style(Gtk.ToolbarStyle.BOTH)
         toolbar_parent.pack_start(toolbar, False, True, 0)
         if tb_show:
@@ -290,7 +295,7 @@ class UIManager:
                 el_id = update.attrib["id"]
                 # find the parent of the id'd element in original xml
                 parent = self.et_xml.find(".//*[@id='%s'].." % el_id)
-                if parent:
+                if parent is not None:
                     # we found it, now delete original, inset updated
                     for indx in range(len(parent)):
                         if parent[indx].get("id") == el_id:
@@ -330,7 +335,7 @@ class UIManager:
             el_id = update.attrib["id"]
             # find parent of id'd element
             element = self.et_xml.find(".//*[@id='%s']" % el_id)
-            if element:  # element may have already been deleted
+            if element is not None:  # element may have already been deleted
                 for dummy in range(len(element)):
                     del element[0]
         # results = ET.tostring(self.et_xml, encoding="unicode")

@@ -29,8 +29,8 @@
 # -------------------------------------------------------------------------
 import sys
 import os
+import platform
 import signal
-
 import logging
 
 LOG = logging.getLogger(".")
@@ -202,7 +202,7 @@ from .gen.mime import mime_type_is_defined
 #
 # -------------------------------------------------------------------------
 
-MIN_PYTHON_VERSION = (3, 8, 0, "", 0)
+MIN_PYTHON_VERSION = (3, 9, 0, "", 0)
 if not sys.version_info >= MIN_PYTHON_VERSION:
     logging.warning(
         _(
@@ -216,6 +216,17 @@ if not sys.version_info >= MIN_PYTHON_VERSION:
             "v2": MIN_PYTHON_VERSION[1],
             "v3": MIN_PYTHON_VERSION[2],
         }
+    )
+    sys.exit(1)
+
+try:
+    import orjson
+except ImportError:
+    logging.warning(
+        _(
+            "The orjson package is needed to start Gramps.\n\n"
+            "Gramps will terminate now."
+        )
     )
     sys.exit(1)
 
@@ -310,6 +321,17 @@ def show_settings():
         pangocairo_str = PangoCairo._version
     except ImportError:
         pangocairo_str = _("not found")
+
+    try:
+        import orjson
+
+        try:
+            orjson_str = orjson.__version__
+        except:  # any failure to 'get' the version
+            orjson_str = "unknown version"
+
+    except ImportError:
+        orjson_str = "not found"
 
     try:
         from gi import Repository
@@ -471,12 +493,10 @@ def show_settings():
     try:
         import sqlite3
 
-        sqlite3_py_version_str = sqlite3.version
         sqlite3_version_str = sqlite3.sqlite_version
         sqlite3_location_str = sqlite3.__file__
     except:
         sqlite3_version_str = "not found"
-        sqlite3_py_version_str = "not found"
         sqlite3_location_str = "not found"
 
     try:
@@ -534,7 +554,7 @@ def show_settings():
     print("Gramps Settings:")
     print("----------------")
     print(" gramps    : %s" % gramps_str)
-    print(" o.s.      : %s" % sys.platform)
+    print(" o.s.      : %s" % platform.system())
     if kernel:
         print(" kernel    : %s" % kernel)
     print("")
@@ -547,6 +567,7 @@ def show_settings():
     print(" pycairo   : %s" % pycairover_str)
     print(" Pango     : %s" % pangover_str)
     print(" PangoCairo: %s" % pangocairo_str)
+    print(" orjson    : %s" % orjson_str)
     print("")
     print("Recommended:")
     print("------------")
@@ -591,7 +612,6 @@ def show_settings():
     print("     location    : %s" % bsddb_location_str)
     print(" sqlite3   :")
     print("     version     : %s" % sqlite3_version_str)
-    print("     py version  : %s" % sqlite3_py_version_str)
     print("     location    : %s" % sqlite3_location_str)
     print("")
 

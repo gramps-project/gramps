@@ -38,6 +38,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasFamilyEvent
 #
 # -------------------------------------------------------------------------
@@ -57,7 +66,7 @@ class HasFamilyEvent(Rule):
         self.date = None
         self.event_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         if self.list[0]:
             self.event_type = EventType()
             self.event_type.set_from_xml_str(self.list[0])
@@ -67,22 +76,22 @@ class HasFamilyEvent(Rule):
         except:
             pass
 
-    def apply(self, db, person):
-        for handle in person.get_family_handle_list():
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        for handle in person.family_list:
             family = db.get_family_from_handle(handle)
-            for event_ref in family.get_event_ref_list():
+            for event_ref in family.event_ref_list:
                 event = db.get_event_from_handle(event_ref.ref)
                 val = 1
                 if self.event_type and event.type != self.event_type:
                     val = 0
                 if self.list[3]:
-                    if not self.match_substring(3, event.get_description()):
+                    if not self.match_substring(3, event.description):
                         val = 0
                 if self.date:
-                    if not event.get_date_object().match(self.date):
+                    if not event.date.match(self.date):
                         val = 0
                 if self.list[2]:
-                    place_id = event.get_place_handle()
+                    place_id = event.place
                     if place_id:
                         place = db.get_place_from_handle(place_id)
                         place_title = place_displayer.display(db, place)

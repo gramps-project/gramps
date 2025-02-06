@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -45,6 +44,7 @@ Classe:
 from collections import defaultdict
 from operator import itemgetter
 from decimal import Decimal, getcontext
+from unicodedata import normalize
 import logging
 
 # ------------------------------------------------
@@ -57,7 +57,6 @@ from gramps.gen.lib import (
     Name,
     Person,
     EventRoleType,
-    Family,
     Event,
     EventType,
 )
@@ -81,6 +80,8 @@ from gramps.gen.relationship import get_relationship_calculator
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (
     alphabet_navigation,
+    partial_navigation,
+    create_indexes_pages,
     add_birthdate,
     FULLCLEAR,
     _find_birth_date,
@@ -192,7 +193,6 @@ class PersonPages(BasePage):
         date,
         tbody,
         bucket_letter,
-        bucket_link,
         showbirth,
         showdeath,
         showpartner,
@@ -224,9 +224,8 @@ class PersonPages(BasePage):
             )
             tcell += Html(
                 "a",
-                html_escape(surnamed),
+                html_escape(bucket_letter),
                 name=bucket_letter,
-                id_=bucket_link,
                 title=ttle,
             )
         elif first_individual:
@@ -339,30 +338,32 @@ class PersonPages(BasePage):
             trow += Html("td", class_="ColumnParents", inline=samerow) + tcell
         return (date, first_surname, first_individual)
 
-    def individuallistpage(self, report, the_lang, the_title, ppl_handle_list):
+    def part_individuallistpage(
+        self,
+        report,
+        index_list,
+        name,
+        letter,
+        surname_handle_list,
+        part=None,
+        subp=None,
+        partial_list=None,
+    ):
         """
-        Creates an individual page
-
-        @param: report          -- The instance of the main report class
-                                   for this report
-        @param: the_lang        -- The lang to process
-        @param: the_title       -- The title page related to the language
-        @param: ppl_handle_list -- The list of people for whom we need
-                                   to create a page.
+        Creates a partial of individual index
         """
-        BasePage.__init__(self, report, the_lang, the_title)
-
-        # plugin variables for this module
-        showbirth = report.options["showbirth"]
-        showdeath = report.options["showdeath"]
-        showpartner = report.options["showpartner"]
-        showparents = report.options["showparents"]
-
-        output_file, sio = self.report.create_file("individuals")
+        nav_name = part_name = name
+        if part != 0 and subp != 0:
+            part_name += str(part)
+            nav_name = part_name
+        if subp and subp != 0:
+            part_name += subp
+        output_file, sio = self.report.create_file(part_name)
         result = self.write_header(self._("Individuals"))
         indlistpage, dummy_head, dummy_body, outerwrapper = result
         date = 0
 
+        # for each bucket, output the surnames in that bucket
         # begin Individuals division
         with Html("div", class_="content", id="Individuals") as individuallist:
             outerwrapper += individuallist
@@ -377,31 +378,32 @@ class PersonPages(BasePage):
             )
             individuallist += Html("p", msg, id="description")
 
-            # add alphabet navigation
-            # Assemble all the handles for each surname into a dictionary
-            # We don't call sort_people because we don't care about sorting
-            # individuals, only surnames
-            surname_handle_dict = defaultdict(list)
-            for person_handle in ppl_handle_list:
-                person = self.r_db.get_person_from_handle(person_handle)
-                surname = get_surname_from_person(self.r_db, person)
-                surname_handle_dict[surname].append(person_handle)
-
-            # Assemble the alphabeticIndex
-            index = AlphabeticIndex(self.rlocale)
-            for surname, handle_list in surname_handle_dict.items():
-                index.addRecord(surname, handle_list)
-
-            # Extract the buckets from the index
-            index_list = []
-            index.resetBucketIterator()
-            while index.nextBucket():
-                if index.bucketRecordCount != 0:
-                    index_list.append(index.bucketLabel)
-            # Output the navigation
-            alpha_nav = alphabet_navigation(index_list, self.rlocale, rtl=self.dir)
+            alpha_nav = alphabet_navigation(
+                index_list,
+                self.rlocale,
+                current=part_name,
+                rtl=self.dir,
+                new_page="individuals",
+                ext=self.ext,
+            )
             if alpha_nav is not None:
                 individuallist += alpha_nav
+
+            if part is not None:
+                # We need to create a new navigation tab for partial page index.
+                partial_nav = partial_navigation(
+                    partial_list,
+                    self.rlocale,
+                    current=part_name,
+                    rtl=self.dir,
+                    ext=self.ext,
+                    new_page=nav_name,
+                )
+                if partial_nav is not None:
+                    individuallist += Html(
+                        "div", style="clear: both;"
+                    )  # This to align the next div to the left.
+                    individuallist += partial_nav
 
             # begin table and table head
             with Html(
@@ -420,22 +422,22 @@ class PersonPages(BasePage):
                 )
                 trow += Html("th", self._("Name"), class_="ColumnName", inline=True)
 
-                if showbirth:
+                if report.options["showbirth"]:
                     trow += Html(
                         "th", self._("Birth"), class_="ColumnDate", inline=True
                     )
 
-                if showdeath:
+                if report.options["showdeath"]:
                     trow += Html(
                         "th", self._("Death"), class_="ColumnDate", inline=True
                     )
 
-                if showpartner:
+                if report.options["showpartner"]:
                     trow += Html(
                         "th", self._("Partner"), class_="ColumnPartner", inline=True
                     )
 
-                if showparents:
+                if report.options["showparents"]:
                     trow += Html(
                         "th", self._("Parents"), class_="ColumnParents", inline=True
                     )
@@ -443,68 +445,42 @@ class PersonPages(BasePage):
             tbody = Html("tbody")
             table += tbody
 
-            # for each bucket, output the surnames in that bucket
-            index.resetBucketIterator()
-            output = []
-            dup_index = 0
-            while index.nextBucket():
-                if index.bucketRecordCount != 0:
-                    surname_handle_dict = defaultdict(list)
-                    bucket_letter = index.bucketLabel
-                    bucket_link = bucket_letter
-                    if bucket_letter in output:
-                        bucket_link = "%s (%i)" % (bucket_letter, dup_index)
-                        dup_index += 1
-                    output.append(bucket_letter)
-                    while index.nextRecord():
-                        surname = index.recordName
-                        handle_list = index.recordData
-                        for handle in handle_list:
-                            surname_handle_dict[surname].append(handle)
-                    surname_handle_list = list(surname_handle_dict.items())
-                    # sort by surname
-                    surname_handle_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
+            name_format = self.report.options["name_format"]
+            nme_format = _nd.name_formats[name_format][1]
+            first_surname = True
+            first_individual = True
+            for handle, surname in surname_handle_list:
+                if not surname or surname.isspace():
+                    surname = self._("<absent>")
 
-                    name_format = self.report.options["name_format"]
-                    nme_format = _nd.name_formats[name_format][1]
-                    for surname, handle_list in surname_handle_list:
-                        if not surname or surname.isspace():
-                            surname = self._("<absent>")
-
-                        # In case the user choose a format name like "*SURNAME*"
-                        # We must display this field in upper case. So we use
-                        # the english format of format_name to find if this is
-                        # the case. name_format =
-                        # self.report.options['name_format'] nme_format =
-                        # _nd.name_formats[name_format][1]
-                        if "SURNAME" in nme_format:
-                            surnamed = surname.upper()
-                        else:
-                            surnamed = surname
-                        first_surname = True
-                        first_individual = True
-                        for person_handle in sorted(
-                            handle_list, key=self.sort_on_name_and_grampsid
-                        ):
-                            (
-                                date,
-                                first_surname,
-                                first_individual,
-                            ) = self.__output_person(
-                                date,
-                                tbody,
-                                bucket_letter,
-                                bucket_link,
-                                showbirth,
-                                showdeath,
-                                showpartner,
-                                showparents,
-                                surname,
-                                surnamed,
-                                first_surname,
-                                first_individual,
-                                person_handle,
-                            )
+                # In case the user choose a format name like "*SURNAME*"
+                # We must display this field in upper case. So we use
+                # the english format of format_name to find if this is
+                # the case. name_format =
+                # self.report.options['name_format'] nme_format =
+                # _nd.name_formats[name_format][1]
+                if "SURNAME" in nme_format:
+                    surnamed = surname.upper()
+                else:
+                    surnamed = surname
+                (
+                    date,
+                    first_surname,
+                    first_individual,
+                ) = self.__output_person(
+                    date,
+                    tbody,
+                    letter,
+                    report.options["showbirth"],
+                    report.options["showdeath"],
+                    report.options["showpartner"],
+                    report.options["showparents"],
+                    surname,
+                    surnamed,
+                    first_surname,
+                    first_individual,
+                    handle[0],
+                )
 
         # create clear line for proper styling
         # create footer section
@@ -514,6 +490,80 @@ class PersonPages(BasePage):
         # send page out for processing
         # and close the file
         self.xhtml_writer(indlistpage, output_file, sio, date)
+
+    def individuallistpage(self, report, the_lang, the_title, ppl_handle_list):
+        """
+        Creates an individual page
+
+        @param: report          -- The instance of the main report class
+                                   for this report
+        @param: the_lang        -- The lang to process
+        @param: the_title       -- The title page related to the language
+        @param: ppl_handle_list -- The list of people for whom we need
+                                   to create a page.
+        """
+        BasePage.__init__(self, report, the_lang, the_title)
+
+        surname_handle_dict = defaultdict(list)
+        surname_handle_list = []
+        for person_handle in ppl_handle_list:
+            person = self.r_db.get_person_from_handle(person_handle)
+            surname = get_surname_from_person(self.r_db, person)
+            surname_handle_dict[surname].append(person_handle)
+        # Assemble the alphabeticIndex
+        index = AlphabeticIndex(self.rlocale)
+        for surname, handle_list in surname_handle_dict.items():
+            index.addRecord(surname, handle_list)
+        index_list = []
+        surname_handle_dict = defaultdict(list)
+        max_letter_rows = defaultdict(int)
+        # Extract the buckets from the index
+        index.resetBucketIterator()
+        while index.nextBucket():
+            if index.bucketRecordCount != 0:
+                letter = index.bucketLabel
+                if letter not in index_list:
+                    index_list.append(letter)
+                bletter = normalize("NFKD", letter)[0] if len(letter) > 0 else letter
+                while index.nextRecord():
+                    handle_list = index.recordData
+                    if handle_list:
+                        for handle in handle_list:
+                            surname_handle_dict[bletter].append(
+                                (handle, index.recordName)
+                            )
+                        if bletter in max_letter_rows:
+                            max_letter_rows[bletter] += len(handle_list)
+                        else:
+                            max_letter_rows[bletter] = len(handle_list)
+
+        surname_handle_list = list(surname_handle_dict.items())
+        # sort by surname
+        surname_handle_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
+        extended_handle_list = defaultdict(list)
+        name_format = self.report.options["name_format"]
+        for bletter, hdlel in surname_handle_list:
+            bletter = normalize("NFKD", bletter)[0] if len(bletter) > 0 else bletter
+            bletter = bletter[0] if len(bletter) > 0 else bletter
+            bletter = bletter.upper() if bletter.isalpha() else "…"
+            for hdle in hdlel:
+                person = self.r_db.get_person_from_handle(hdle[0])
+                primary_name = person.get_primary_name()
+                nname = Name(primary_name)
+                nname.set_display_as(name_format)
+                fname = _nd.display_name(nname)
+                extended_handle_list[bletter].append((hdle, fname))
+        extended_handle_list = list(extended_handle_list.items())
+        max_rows = max_letter_rows[bletter]
+        create_indexes_pages(
+            report,
+            "individuals",
+            index_list,
+            self.part_individuallistpage,
+            extended_handle_list,
+            max_rows,
+            locale=self.rlocale,
+        )
 
     #################################################
     #
@@ -838,6 +888,7 @@ class PersonPages(BasePage):
         number_markers = len(place_lat_long)
         if number_markers > 1:
             for latitude, longitude, placetitle, handle, event in place_lat_long:
+                latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 xwidth.append(latitude)
                 yheight.append(longitude)
             xwidth.sort()
@@ -853,9 +904,7 @@ class PersonPages(BasePage):
             miny, maxy = Decimal(miny), Decimal(maxy)
             midy_ = str(Decimal((miny + maxy) / 2))
 
-            midx_, midy_ = conv_lat_lon(
-                midx_, midy_, coord_formats[self.report.options["coord_format"]]
-            )
+            midx_, midy_ = conv_lat_lon(midx_, midy_, "D.D8")
 
             # get the integer span of latitude and longitude
             dummy_spanx = int(maxx - minx)
@@ -1154,9 +1203,26 @@ class PersonPages(BasePage):
                 # we are using OpenStreetMap
                 elif self.mapservice == "OpenStreetMap":
                     if midy_ is None:
-                        jsc += OSM_MARKERS % (tracelife, longitude, latitude, 10)
+                        latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
+                        jsc += OSM_MARKERS % (
+                            "markers",
+                            tracelife,
+                            longitude,
+                            latitude,
+                            10,
+                            0,
+                            0,
+                        )
                     else:
-                        jsc += OSM_MARKERS % (tracelife, midy_, midx_, zoomlevel)
+                        jsc += OSM_MARKERS % (
+                            "markers",
+                            tracelife,
+                            midy_,
+                            midx_,
+                            zoomlevel,
+                            0,
+                            0,
+                        )
                     jsc += OPENLAYER
                 # we are using StamenMap
                 elif self.mapservice == "StamenMap":

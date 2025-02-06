@@ -38,6 +38,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Event
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasData
 #
 # -------------------------------------------------------------------------
@@ -57,7 +66,7 @@ class HasData(Rule):
         self.event_type = None
         self.date = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
@@ -71,20 +80,20 @@ class HasData(Rule):
         if self.date:
             self.date = parser.parse(self.date)
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: Event) -> bool:
         """
         Apply the rule. Return True on a match.
         """
-        if self.event_type and obj.get_type() != self.event_type:
+        if self.event_type and obj.type != self.event_type:
             # No match
             return False
 
-        if self.date and not obj.get_date_object().match(self.date):
+        if self.date and not obj.date.match(self.date):
             # No match
             return False
 
         if self.list[2]:
-            place_id = obj.get_place_handle()
+            place_id = obj.place
             if place_id:
                 place = db.get_place_from_handle(place_id)
                 place_title = place_displayer.display(db, place)
@@ -95,7 +104,7 @@ class HasData(Rule):
                 # No place attached to event
                 return False
 
-        if not self.match_substring(3, obj.get_description()):
+        if not self.match_substring(3, obj.description):
             # No match
             return False
 

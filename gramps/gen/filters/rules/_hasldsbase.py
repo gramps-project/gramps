@@ -41,6 +41,15 @@ from . import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.ldsordbase import LdsOrdBase
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasLDSBase
 #
 # -------------------------------------------------------------------------
@@ -52,7 +61,7 @@ class HasLDSBase(Rule):
     description = "Matches objects with LDS events"
     category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         # things we want to do just once, not for every handle
         if self.list[1] == "less than":
             self.count_type = 0
@@ -63,8 +72,8 @@ class HasLDSBase(Rule):
 
         self.userSelectedCount = int(self.list[0])
 
-    def apply(self, db, obj):
-        count = len(obj.get_lds_ord_list())
+    def apply_to_one(self, db: Database, obj: LdsOrdBase) -> bool:
+        count = len(obj.lds_ord_list)
         if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount
         elif self.count_type == 2:  # "greater than"

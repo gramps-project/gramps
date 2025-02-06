@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -44,6 +43,7 @@ Classe:
 from collections import defaultdict
 from operator import itemgetter
 from decimal import getcontext
+import unicodedata
 import logging
 
 # ------------------------------------------------
@@ -61,6 +61,8 @@ from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (
     _EVENTMAP,
     alphabet_navigation,
+    partial_navigation,
+    create_indexes_pages,
     FULLCLEAR,
     sort_event_types,
     AlphabeticIndex,
@@ -139,7 +141,6 @@ class EventPages(BasePage):
         event_type,
         tbody,
         bucket_letter,
-        bucket_link,
         first_letter,
         _event_displayed,
         first_type,
@@ -153,7 +154,6 @@ class EventPages(BasePage):
         @param: tbody           -- The current HTML body into which the data is
                                    assembled
         @param: bucket_letter   -- The AlphabeticIndex bucket for this event
-        @param: bucket_link     -- ????
         @param: first_letter    -- Whether this is the first event for this
                                    letter
         @param: event_displayed -- List of events already displayed
@@ -199,7 +199,7 @@ class EventPages(BasePage):
                     trow.attr = t_a
                     letter = bucket_letter
                     ttle = self._("Event types beginning " "with letter %s") % letter
-                    tcell += Html("a", letter, name=letter, id_=bucket_link, title=ttle)
+                    tcell += Html("a", letter, name=letter, title=ttle)
                     tcell = Html(
                         "td", class_="ColumnType", title=self._(event_type), inline=True
                     )
@@ -243,25 +243,30 @@ class EventPages(BasePage):
         _event_displayed.append(gid)
         return (ldatec, first_letter, first_type, _event_displayed)
 
-    def eventlistpage(
-        self, report, the_lang, the_title, event_types, event_handle_list
+    def part_eventlistpage(
+        self,
+        report,
+        index_list,
+        name,
+        letter,
+        index,
+        part=None,
+        subp=None,
+        partial_list=None,
     ):
         """
-        Will create the event list page
-
-        @param: report            -- The instance of the main report class for
-                                     this report
-        @param: the_lang          -- The lang to process
-        @param: the_title         -- The title page related to the language
-        @param: event_types       -- A list of the type in the events database
-        @param: event_handle_list -- A list of event handles
+        Will create the part of event list page
         """
-        BasePage.__init__(self, report, the_lang, the_title)
-        ldatec = 0
-
-        output_file, sio = self.report.create_file("events")
+        nav_name = part_name = name
+        if part != 0 and subp != 0:
+            part_name += str(part)
+            nav_name = part_name
+        if subp and subp != 0:
+            part_name += subp
+        output_file, sio = self.report.create_file(part_name)
         result = self.write_header(self._("Events"))
         eventslistpage, dummy_head, dummy_body, outerwrapper = result
+        ldatec = 0
 
         # begin events list  division
         with Html("div", class_="content", id="EventList") as eventlist:
@@ -275,24 +280,33 @@ class EventPages(BasePage):
             )
             eventlist += Html("p", msg, id="description")
 
-            # get alphabet navigation...
-            # Assemble all the event types
-            index = AlphabeticIndex(self.rlocale)
-            for event_type, data_list in sort_event_types(
-                self.r_db, event_types, event_handle_list, self.rlocale
-            ):
-                index.addRecord(event_type, data_list)
-
-            # Extract the buckets from the index
-            index_list = []
-            index.resetBucketIterator()
-            while index.nextBucket():
-                if index.bucketRecordCount != 0:
-                    index_list.append(index.bucketLabel)
             # Output the navigation
-            alpha_nav = alphabet_navigation(index_list, self.rlocale, rtl=self.dir)
+            alpha_nav = alphabet_navigation(
+                index_list,
+                self.rlocale,
+                current=part_name,
+                rtl=self.dir,
+                new_page="events",
+                ext=self.ext,
+            )
             if alpha_nav:
                 eventlist += alpha_nav
+
+            if part is not None:
+                # We need to create a new navigation tab for partial page index.
+                partial_nav = partial_navigation(
+                    partial_list,
+                    self.rlocale,
+                    current=part_name,
+                    rtl=self.dir,
+                    ext=self.ext,
+                    new_page=nav_name,
+                )
+                if partial_nav is not None:
+                    eventlist += Html(
+                        "div", style="clear: both;"
+                    )  # This to align the next div to the left.
+                    eventlist += partial_nav
 
             # begin alphabet event table
             with Html(
@@ -320,44 +334,32 @@ class EventPages(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
+                first_letter = True
+                first_type = True
+                _event_displayed = []
                 # for each bucket, output the events in that bucket
-                index.resetBucketIterator()
-                output = []
-                dup_index = 0
-                while index.nextBucket():
-                    if index.bucketRecordCount != 0:
-                        bucket_letter = index.bucketLabel
-                        bucket_link = bucket_letter
-                        if bucket_letter in output:
-                            bucket_link = "%s (%i)" % (bucket_letter, dup_index)
-                            dup_index += 1
-                        output.append(bucket_letter)
-                        first_letter = True
-                        while index.nextRecord():
-                            _event_displayed = []
-                            first_type = True
-                            event_type = index.recordName
-                            data_list = index.recordData
-                            # sort datalist by date of event and by event
-                            # handle...
-                            data_list = sorted(data_list, key=itemgetter(0, 1))
-                            for dummy_sort_value, event_handle in data_list:
-                                (
-                                    ldatec,
-                                    first_letter,
-                                    first_type,
-                                    _event_displayed,
-                                ) = self.__output_event(
-                                    ldatec,
-                                    event_type,
-                                    tbody,
-                                    bucket_letter,
-                                    bucket_link,
-                                    first_letter,
-                                    _event_displayed,
-                                    first_type,
-                                    event_handle,
-                                )
+                # letter, handle_list = index
+                evttype = ""
+                for evt_hdle, event_type in index:
+                    evt_type = event_type.split(" (")[0]
+                    if evt_type != evttype:
+                        evttype = evt_type
+                        first_type = True
+                    (
+                        ldatec,
+                        first_letter,
+                        first_type,
+                        _event_displayed,
+                    ) = self.__output_event(
+                        ldatec,
+                        evt_type,
+                        tbody,
+                        letter,
+                        first_letter,
+                        _event_displayed,
+                        first_type,
+                        evt_hdle,
+                    )
 
         # add clearline for proper styling
         # add footer section
@@ -368,14 +370,99 @@ class EventPages(BasePage):
         # and close the file
         self.xhtml_writer(eventslistpage, output_file, sio, ldatec)
 
-    def _geteventdate(self, event_handle):
+    def eventlistpage(
+        self, report, the_lang, the_title, event_types, event_handle_list
+    ):
+        """
+        Will create the event list page
+
+        @param: report            -- The instance of the main report class for
+                                     this report
+        @param: the_lang          -- The lang to process
+        @param: the_title         -- The title page related to the language
+        @param: event_types       -- A list of the type in the events database
+        @param: event_handle_list -- A list of event handles
+        """
+        BasePage.__init__(self, report, the_lang, the_title)
+        # get alphabet navigation...
+        # Assemble all the event types
+        index = AlphabeticIndex(self.rlocale)
+        for event_type, data_list in sort_event_types(
+            self.r_db, event_types, event_handle_list, self.rlocale
+        ):
+            index.addRecord(event_type, data_list)
+
+        # Extract the buckets from the index
+        index_list = []
+        index.resetBucketIterator()
+        events_handle_dict = defaultdict(list)
+        events_handle_list = []
+        max_letter_rows = defaultdict(int)
+        while index.nextBucket():
+            if index.bucketRecordCount != 0:
+                letter = index.bucketLabel
+                if letter not in index_list:
+                    index_list.append(letter)
+                bletter = (
+                    unicodedata.normalize("NFKD", letter)[0]
+                    if len(letter) > 0
+                    else letter
+                )
+                while index.nextRecord():
+                    handle_list = index.recordData
+                    if handle_list:
+                        for handle in handle_list:
+                            event = self.r_db.get_event_from_handle(handle[1])
+                            if event:
+                                date = event.get_date_object()
+                                sdate = str(self._geteventdate(event))
+                                evt_date = ""
+                                if date and date is not Date.EMPTY:
+                                    evt_date = self.rlocale.get_date(date)
+                                if evt_date == "":
+                                    evt_date = event.get_gramps_id()
+                                goto = index.recordName + " (%s)" % evt_date
+                            events_handle_dict[bletter].append((handle[1], sdate, goto))
+                        if bletter in max_letter_rows:
+                            max_letter_rows[bletter] += len(handle_list)
+                        else:
+                            max_letter_rows[bletter] = len(handle_list)
+        events_handle_list = list(events_handle_dict.items())
+        extended_handle_list = defaultdict(list)
+        for bletter, hdlel in events_handle_list:
+            bletter = (
+                unicodedata.normalize("NFKD", bletter)[0]
+                if len(bletter) > 0
+                else bletter
+            )
+            bletter = bletter[0] if len(bletter) > 0 else bletter
+            bletter = bletter.upper() if bletter.isalpha() else "…"
+
+            def sort_on_event_and_date(evt):
+                return evt[2].split(" (")[0], evt[1]
+
+            hdlel = sorted(hdlel, key=sort_on_event_and_date)
+            for hdle in hdlel:
+                extended_handle_list[bletter].append((hdle[0], hdle[2]))
+        extended_handle_list = list(extended_handle_list.items())
+        max_rows = max_letter_rows[bletter]
+        create_indexes_pages(
+            report,
+            "events",
+            index_list,
+            self.part_eventlistpage,
+            extended_handle_list,
+            max_rows,
+            locale=self.rlocale,
+        )
+
+    def _geteventdate(self, event):
         """
         Get the event date
 
         @param: event_handle -- The handle for the event to use
         """
         event_date = Date.EMPTY
-        event = self.r_db.get_event_from_handle(event_handle)
         if event:
             date = event.get_date_object()
             if date:

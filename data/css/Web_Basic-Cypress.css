@@ -193,12 +193,19 @@ div#nav ul li a, #subnavigation ul li a {
     font-size: smaller;
     font-weight: bold;
     color: #E0E6E0;
+    background-color: #454;
     border-bottom: solid 1px #454;
 }
 div#nav ul li a:hover, #subnavigation ul li a:hover {
     text-decoration: none;
     background-color: #9DBF9D;
     border-bottom: solid 1px black;
+}
+div#ltr.pnav ul.ltr li.CurrentSection, div#rtl.pnav ul.rtl li.CurrentSection,
+div#ltr ul.ltr li.CurrentSection, div#rtl ul.rtl li.CurrentSection {
+    font-weight: bold;
+    font-style: italic;
+    background-color: #9DBF9D;
 }
 div#nav ul li.CurrentSection a {
     position: relative;
@@ -216,15 +223,11 @@ div#nav li.lang {
     color: #E0E6E0;
     font-size: smaller;
     font-family: sans-serif;
-    padding-top: .3em;
-    padding-bottom: .3em;
     font-weight: bold;
 }
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
-    width: 80px;
-    padding-right: 5px;
 }
 div#nav ul.lang {
     position: absolute;
@@ -232,10 +235,11 @@ div#nav ul.lang {
     opacity: 0;
     z-index: 999;
     padding: 0px;
-    background-color: #454;
-    top: -1em;
-    font-size: larger;
+    width: 480px;
+    top: 1.5em;
+    font-size: smaller;
     font-family: sans-serif;
+    width: 480px;
 }
 div#nav ul.lang:hover {
     float: initial;
@@ -365,8 +369,7 @@ div#nav::after {
     button.navIcon {
         display: block;
         float: left;
-        font-size:2.9em;
-        line-height: 35px;
+        font-size:4.9em;
         border: 0px;
         color: #E0E6E0;
         background-color: #454;
@@ -378,7 +381,14 @@ div#nav::after {
         float: right;
     }
 
-    .nav.responsive {position: absolute; display: block; z-index: 100;}
+    .nav.responsive {
+        position: absolute;
+        display: block;
+        z-index: 100;
+        font-size: 36px;
+        width: 300px;
+        background-color: #7C8F7C;
+    }
     .nav.responsive a.icon {
         position: absolute;
         right: 0;
@@ -395,11 +405,9 @@ div#nav::after {
         display: block;
         text-align: left;
         color: #454;
-        background-color: #454;
         /* required by IE */
         float: left;
         clear: both;
-        width: 200px;
     }
     .nav.responsive li#CurrentSection a {
         color: #454;
@@ -408,6 +416,8 @@ div#nav::after {
 
     div#nav ul, #subnavigation ul {
         padding-left: 0px;
+        background-color: #E0E6E0;
+        background-color: #454;
     }
 
     .content {

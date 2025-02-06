@@ -41,7 +41,7 @@ from gi.repository import Gtk
 #
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Address, RepositoryType, Url, UrlType
-from gramps.gen.lib.serialize import from_dict
+from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.datehandler import format_time
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -131,18 +131,18 @@ class RepositoryModel(FlatBaseModel):
         return len(self.fmap) + 1
 
     def column_id(self, data):
-        return data["gramps_id"]
+        return data.gramps_id
 
     def column_type(self, data):
-        return str(RepositoryType(data["type"]))
+        return RepositoryType.get_str(data.type)
 
     def column_name(self, data):
-        return data["name"]
+        return data.name
 
     def column_city(self, data):
         try:
-            if data["address_list"]:
-                addr = from_dict(data["address_list"][0])
+            if data.address_list:
+                addr = data_to_object(data.address_list[0])
                 return addr.get_city()
         except:
             pass
@@ -150,8 +150,8 @@ class RepositoryModel(FlatBaseModel):
 
     def column_street(self, data):
         try:
-            if data["address_list"]:
-                addr = from_dict(data["address_list"][0])
+            if data.address_list:
+                addr = data_to_object(data.address_list[0])
                 return addr.get_street()
         except:
             pass
@@ -159,8 +159,8 @@ class RepositoryModel(FlatBaseModel):
 
     def column_locality(self, data):
         try:
-            if data["address_list"]:
-                addr = from_dict(data["address_list"][0])
+            if data.address_list:
+                addr = data_to_object(data.address_list[0])
                 return addr.get_locality()
         except:
             pass
@@ -168,8 +168,8 @@ class RepositoryModel(FlatBaseModel):
 
     def column_state(self, data):
         try:
-            if data["address_list"]:
-                addr = from_dict(data["address_list"][0])
+            if data.address_list:
+                addr = data_to_object(data.address_list[0])
                 return addr.get_state()
         except:
             pass
@@ -177,8 +177,8 @@ class RepositoryModel(FlatBaseModel):
 
     def column_country(self, data):
         try:
-            if data["address_list"]:
-                addr = from_dict(data["address_list"][0])
+            if data.address_list:
+                addr = data_to_object(data.address_list[0])
                 return addr.get_country()
         except:
             pass
@@ -186,8 +186,8 @@ class RepositoryModel(FlatBaseModel):
 
     def column_postal_code(self, data):
         try:
-            if data["address_list"]:
-                addr = from_dict(data["address_list"][0])
+            if data.address_list:
+                addr = data_to_object(data.address_list[0])
                 return addr.get_postal_code()
         except:
             pass
@@ -195,49 +195,49 @@ class RepositoryModel(FlatBaseModel):
 
     def column_phone(self, data):
         try:
-            if data["address_list"]:
-                addr = from_dict(data["address_list"][0])
+            if data.address_list:
+                addr = data_to_object(data.address_list[0])
                 return addr.get_phone()
         except:
             pass
         return ""
 
     def column_email(self, data):
-        if data["urls"]:
-            for url_data in data["urls"]:
-                url = from_dict(url_data)
+        if data.urls:
+            for url_data in data.urls:
+                url = data_to_object(url_data)
                 if url.get_type() == UrlType.EMAIL:
                     return url.path
         return ""
 
     def column_search_url(self, data):
-        if data["urls"]:
-            for url_data in data["urls"]:
-                url = from_dict(url_data)
+        if data.urls:
+            for url_data in data.urls:
+                url = data_to_object(url_data)
                 if url.get_type() == UrlType.WEB_SEARCH:
                     return url.path
         return ""
 
     def column_home_url(self, data):
-        if data["urls"]:
-            for url_data in data["urls"]:
-                url = from_dict(url_data)
+        if data.urls:
+            for url_data in data.urls:
+                url = data_to_object(url_data)
                 if url.get_type() == UrlType.WEB_HOME:
                     return url.path
         return ""
 
     def column_private(self, data):
-        if data["private"]:
+        if data.private:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
             return ""
 
     def sort_change(self, data):
-        return "%012x" % data["change"]
+        return "%012x" % data.change
 
     def column_change(self, data):
-        return format_time(data["change"])
+        return format_time(data.change)
 
     def get_tag_name(self, tag_handle):
         """
@@ -254,12 +254,12 @@ class RepositoryModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data["handle"]
+        tag_handle = data.handle
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data["tag_list"]:
+            for handle in data.tag_list:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -272,6 +272,6 @@ class RepositoryModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data["tag_list"]))
+        tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
         return ", ".join(sorted(tag_list, key=glocale.sort_key))

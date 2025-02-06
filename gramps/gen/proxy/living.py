@@ -45,7 +45,6 @@ from ..lib import (
     Note,
     Tag,
 )
-from ..utils.alive import probably_alive
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 
@@ -256,6 +255,8 @@ class LivingProxyDb(ProxyDbBase):
         Returns True if the person is considered living.
         Returns False if the person is not considered living.
         """
+        from ..utils.alive import probably_alive
+
         person_handle = person.get_handle()
         unfil_person = self.get_unfiltered_person(person_handle)
         return probably_alive(

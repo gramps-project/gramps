@@ -37,6 +37,16 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsDefaultPerson
 #
 # -------------------------------------------------------------------------
@@ -47,13 +57,11 @@ class IsDefaultPerson(Rule):
     category = _("General filters")
     description = _("Matches the Home Person")
 
-    def prepare(self, db, user):
-        p = db.get_default_person()
+    def prepare(self, db: Database, user):
+        self.selected_handles: Set[str] = set()
+        p: Person = db.get_default_person()
         if p:
-            self.def_handle = p.get_handle()
-            self.apply = self.apply_real
-        else:
-            self.apply = lambda db, p: False
+            self.selected_handles.add(p.handle)
 
-    def apply_real(self, db, person):
-        return person.handle == self.def_handle
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles

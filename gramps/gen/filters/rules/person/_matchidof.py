@@ -37,6 +37,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasIdOf
 #
 # -------------------------------------------------------------------------
@@ -48,5 +57,5 @@ class MatchIdOf(Rule):
     description = _("Matches person with a specified Gramps ID")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.gramps_id.find(self.list[0]) != -1

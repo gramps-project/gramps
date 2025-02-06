@@ -113,7 +113,6 @@ body > div {
 /* General Text
 ----------------------------------------------------- */
 h1 {
-    font-size: x-large;
     font-weight: bold;
     padding-left: 15px;
 }
@@ -155,7 +154,7 @@ a[href]:hover, a[href]:active {
 /* Header
 ----------------------------------------------------- */
 #SiteTitle {
-    width: 95%;
+    width: 1080px;
     color: #204D91;
 }
 #user_header, #user_footer {
@@ -196,6 +195,12 @@ div#nav ul li a:hover, #subnavigation ul li a:hover {
     background-color: #BFD0EA;
     border-bottom: solid 1px black;
 }
+div#ltr.pnav ul.ltr li.CurrentSection, div#rtl.pnav ul.rtl li.CurrentSection,
+div#ltr ul.ltr li.CurrentSection, div#rtl ul.rtl li.CurrentSection {
+    font-weight: bold;
+    font-style: italic;
+    background-color: #BFD0EA;
+}
 div#nav ul li.CurrentSection a {
     position: relative;
     top: 1px;
@@ -209,8 +214,6 @@ div#nav ul li.CurrentSection a {
 div#nav li.lang {
     font-size: smaller;
     font-family: sans-serif;
-    padding-top: .3em;
-    padding-bottom: .3em;
     font-weight: bold;
 }
 div#nav li.lang:hover > ul {
@@ -226,7 +229,8 @@ div#nav ul.lang {
     opacity: 0;
     z-index: 999;
     background-color: #EAEEF4;
-    top: -1em;
+    width: 300px;
+    top: 1em;
     font-size: larger;
     font-family: sans-serif;
 }
@@ -235,7 +239,10 @@ div#nav ul.lang:hover {
 }
 div#nav ul.lang li {
     float: none;
-    padding: 1px 2px;
+    width: 300px;
+    padding-right: 8px;
+    padding-left: 8px;
+    background-color: #EAEEF4;
 }
 .ltr, .ltr li {
     float: left;
@@ -366,8 +373,7 @@ div#nav::after {
     }
     button.navIcon {
         display: block;
-        font-size:2.9em;
-        line-height: 35px;
+        font-size:4.9em;
         border: 0px;
         color: #204D91;
         background-color: #EAEEF4;
@@ -379,7 +385,13 @@ div#nav::after {
         float: right;
     }
 
-    .nav.responsive {position: absolute; display: block; z-index: 100;}
+    .nav.responsive {
+        position: absolute;
+        display: block;
+        z-index: 100;
+        font-size: 36px;
+        background-color: #CCC;
+    }
     .nav.responsive a.icon {
         position: absolute;
         right: 0;
@@ -392,12 +404,20 @@ div#nav::after {
     .nav.ltr.responsive li.lang {
         text-align: left;
     }
+    .nav.responsive ul.lang {
+        background-color: #CCC;
+    }
+    div#nav ul.lang li {
+        background-color: #CCC;
+        font-size: smaller;
+        width: 430px;
+    }
     .nav.responsive li {
         display: block;
         background-color: #CCC;
         /* required by IE */
         clear: both;
-        width: 150px;
+        width: 300px;
     }
 
     div#nav ul, #subnavigation ul {

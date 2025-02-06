@@ -31,6 +31,7 @@ localized tasks.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import datetime
 
 # -------------------------------------------------------------------------
@@ -68,7 +69,7 @@ class DateDisplay:
     Base date display class.
     """
 
-    formats = (
+    formats: tuple[str, ...] = (
         # format 0 - must always be ISO
         # Translators: Numeric year, month, day
         _T_("YYYY-MM-DD (ISO)"),
@@ -82,11 +83,11 @@ class DateDisplay:
         # Translators: Full month name, day, year
         _T_("Month Day, Year"),
         # Translators: Abbreviated month name, day, year
-        _T_("MON DAY, YEAR"),
+        _T_("Mon Day, Year"),
         # Translators: Day, full month name, year
         _T_("Day Month Year"),
         # Translators: Day, abbreviated month name, year
-        _T_("DAY MON YEAR"),
+        _T_("Day Mon Year"),
     )
     """
     .. note:: Will be overridden if a locale-specific date displayer exists.

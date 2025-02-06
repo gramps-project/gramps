@@ -36,6 +36,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 # "People without a birth date"
 # -------------------------------------------------------------------------
 class NoBirthdate(Rule):
@@ -45,15 +54,18 @@ class NoBirthdate(Rule):
     description = _("Matches people without a known birthdate")
     category = _("General filters")
 
-    def apply(self, db, person):
-        birth_ref = person.get_birth_ref()
-        if not birth_ref:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        if 0 <= person.birth_ref_index < len(person.event_ref_list):
+            birth_ref = person.event_ref_list[person.birth_ref_index]
+            if not birth_ref:
+                return True
+            birth = db.get_event_from_handle(birth_ref.ref)
+            if birth:
+                birth_obj = birth.date
+                if not birth_obj:
+                    return True
+                if birth_obj.sortval == 0:
+                    return True
+            return False
+        else:
             return True
-        birth = db.get_event_from_handle(birth_ref.ref)
-        if birth:
-            birth_obj = birth.get_date_object()
-            if not birth_obj:
-                return True
-            if birth_obj.sortval == 0:
-                return True
-        return False

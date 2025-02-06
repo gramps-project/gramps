@@ -89,6 +89,7 @@ from gramps.gen.plug.menu import (
     MediaOption,
     DestinationOption,
 )
+from gramps.gen.plug import BasePluginManager
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
@@ -127,6 +128,15 @@ from gramps.plugins.webreport.introduction import IntroductionPage
 from gramps.plugins.webreport.addressbook import AddressBookPage
 from gramps.plugins.webreport.addressbooklist import AddressBookListPage
 from gramps.plugins.webreport.calendar import CalendarPage
+from gramps.plugins.webreport.heatmap import HeatmapPage
+from gramps.plugins.webreport.multiselect import (
+    MultiSelectEvents,
+    HeatmapEventsScrolled,
+    MultiSelectSurnames,
+    HeatmapSurnamesScrolled,
+    MultiSelectTags,
+    HeatmapTagsScrolled,
+)
 
 from gramps.plugins.webreport.common import (
     get_gendex_data,
@@ -215,6 +225,9 @@ class NavWebReport(Report):
         # create an event pages or not?
         self.inc_events = self.options["inc_events"]
 
+        # Include other roles to an event?
+        self.inc_other_roles = self.options["inc_other_roles"]
+
         # create places pages or not?
         self.inc_places = self.options["inc_places"]
 
@@ -246,6 +259,7 @@ class NavWebReport(Report):
         self.use_contact = self.opts["contactnote"] or self.opts["contactimg"]
         self.inc_stats = self.opts["inc_stats"]
         self.inc_updates = self.opts["updates"]
+        self.inc_heatmaps = self.opts["heatmaps"]
         self.create_unused_media = self.opts["unused"]
 
         # Do we need to include this in a CMS?
@@ -264,6 +278,9 @@ class NavWebReport(Report):
 
         # Do we need to include news and updates page?
         self.inc_updates = self.options["updates"]
+
+        # Do we need to include heatmap pages?
+        self.inc_heatmaps = self.options["heatmaps"]
 
         # either include the gender graphics or not?
         self.ancestortree = self.options["ancestortree"]
@@ -548,7 +565,8 @@ class NavWebReport(Report):
                 self.tab["Event"].display_pages(the_lang, the_title)
 
             # build classes PlaceListPage and PlacePage
-            self.tab["Place"].display_pages(the_lang, the_title)
+            if self.inc_places:
+                self.tab["Place"].display_pages(the_lang, the_title)
 
             # build classes RepositoryListPage and RepositoryPage
             if self.inc_repository:
@@ -567,7 +585,8 @@ class NavWebReport(Report):
                 self.addressbook_pages(self.obj_dict[Person])
 
             # build classes SourceListPage and SourcePage
-            self.tab["Source"].display_pages(the_lang, the_title)
+            if self.inc_sources:
+                self.tab["Source"].display_pages(the_lang, the_title)
 
             # build calendar for the current year
             if self.usecal:
@@ -581,6 +600,10 @@ class NavWebReport(Report):
             # build classes Updates
             if self.inc_updates:
                 self.updates_preview_page()
+
+            # build Heatmaps
+            if self.inc_heatmaps:
+                self.heatmap_pages(self.filter.get_name(self.rlocale))
 
         # copy all of the necessary files
         self.copy_narrated_files()
@@ -653,6 +676,15 @@ class NavWebReport(Report):
                 self._add_person(handle, "", "")
                 step()
                 index += 1
+            # The following lines are used to avoid crashes when we create associations or
+            # relationships for living people. The option "Living people:" is set to "Not included"
+            for person_handle in list(self.obj_dict[Person].keys()):
+                result = self.obj_dict[Person][person_handle]
+                if not isinstance(result, tuple) or len(result) != 3:
+                    LOG.debug(
+                        f"Removing living person_handle: {person_handle} because we don't want it."
+                    )
+                    del self.obj_dict[Person][person_handle]
 
         LOG.debug(
             "final object dictionary \n"
@@ -1017,7 +1049,7 @@ class NavWebReport(Report):
                 name = ""
         if config.get("preferences.place-auto"):
             place_name = _pd.display_event(self._db, event, fmt=0)
-            if event:
+            if event and place_name:
                 cplace_name = place_name.split()[-1]
                 if len(place_name.split()) > 1:
                     splace_name = place_name.split()[-2]
@@ -1429,6 +1461,12 @@ class NavWebReport(Report):
         pgr_title = self.pgrs_title(self.the_lang)
         with self.user.progress(pgr_title, _("Creating updates page..."), 1):
             UpdatesPage(self, self.the_lang, self.the_title)
+
+    def heatmap_pages(self, filter):
+        """
+        creates the statistics preview page
+        """
+        HeatmapPage(self, self.the_lang, self.the_title, filter)
 
     def addressbook_pages(self, ind_list):
         """
@@ -2005,6 +2043,7 @@ class NavWebOptions(MenuReportOptions):
         self.__css = None
         self.__gallery = None
         self.__updates = None
+        self.__heatmaps = None
         self.__maxdays = None
         self.__maxupdates = None
         self.__unused = None
@@ -2036,8 +2075,7 @@ class NavWebOptions(MenuReportOptions):
         self.__after_year = None
         self.__ext = None
         self.__phpnote = None
-        db_options = name + " " + dbase.get_dbname()
-        MenuReportOptions.__init__(self, db_options, dbase)
+        MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
         """
@@ -2055,6 +2093,7 @@ class NavWebOptions(MenuReportOptions):
         self.__add_advanced_options(menu)
         self.__add_advanced_options_2(menu)
         self.__add_place_map_options(menu)
+        self.__add_heatmap_options(menu)
         self.__add_others_options(menu)
         self.__add_translations(menu)
         self.__add_calendar_options(menu)
@@ -2179,14 +2218,14 @@ class NavWebOptions(MenuReportOptions):
             (_("Drop-Down  -- WebKit Browsers Only"), "DropDown"),
         ]
         self.__citationreferents = EnumeratedListOption(
-            _("Citation Referents Layout"), _cit_opts[0][1]
+            _("Citation References Layout"), _cit_opts[0][1]
         )
         for layout in _cit_opts:
             self.__citationreferents.add_item(layout[1], layout[0])
         self.__citationreferents.set_help(
             _(
-                "Determine the default layout for the "
-                "Source Page's Citation Referents section"
+                "Specify the default layout for the "
+                "Citation References section on the source page"
             )
         )
         addopt("citationreferents", self.__citationreferents)
@@ -2209,6 +2248,12 @@ class NavWebOptions(MenuReportOptions):
         self.__toggle = BooleanOption(_("Toggle sections"), False)
         self.__toggle.set_help(_("Check it if you want to open/close" " a section"))
         addopt("toggle", self.__toggle)
+
+        self.__splitindex = NumberOption(_("Max. rows in an index"), 500, 10, 2000)
+        self.__splitindex.set_help(
+            _("The maximum number of rows to include in an index page")
+        )
+        addopt("splitindex", self.__splitindex)
 
     def __add_more_pages(self, menu):
         """
@@ -2554,6 +2599,10 @@ class NavWebOptions(MenuReportOptions):
         inc_events = BooleanOption(_("Include event pages"), False)
         inc_events.set_help(_("Add a complete events list and relevant pages or not"))
         addopt("inc_events", inc_events)
+
+        inc_other_roles = BooleanOption(_("Include other roles"), False)
+        inc_other_roles.set_help(_("Include persons with other roles to an event"))
+        addopt("inc_other_roles", inc_other_roles)
 
         inc_places = BooleanOption(_("Include place pages"), False)
         inc_places.set_help(_("Whether or not to include the place pages."))
@@ -3153,6 +3202,45 @@ class NavWebOptions(MenuReportOptions):
             )
         )
         menu.add_option(category_name, "after_year", self.__after_year)
+
+    def __add_heatmap_options(self, menu):
+        """
+        Options on the "Heatmap Options" tab.
+        """
+        pmgr = BasePluginManager.get_instance()
+        pmgr.register_option(MultiSelectEvents, HeatmapEventsScrolled)
+        pmgr.register_option(MultiSelectSurnames, HeatmapSurnamesScrolled)
+        pmgr.register_option(MultiSelectTags, HeatmapTagsScrolled)
+
+        category_name = _("HeatMap Options")
+        addopt = partial(menu.add_option, category_name)
+
+        self.__heatmaps = BooleanOption(_("Include heatmap pages"), True)
+        self.__heatmaps.set_help(_("Whether to include heatmap pages for events"))
+        addopt("heatmaps", self.__heatmaps)
+
+        # -------------------
+        # HeatMap options
+        # -------------------
+        radius = NumberOption(_("Point size"), 8, 1, 50)
+        radius.set_help(_("Set the size of the heatmap points.\nDefault: 8"))
+        menu.add_option(category_name, "radius", radius)
+
+        blur = NumberOption(_("Blur"), 15, 1, 50)
+        blur.set_help(_("Set the blur size.\nDefault: 15"))
+        menu.add_option(category_name, "blur", blur)
+
+        zoom = NumberOption(_("Zoom"), 4, 1, 15)
+        menu.add_option(category_name, "start_zoom", zoom)
+
+        selected_evts = MultiSelectEvents(_("Events"), [])
+        menu.add_option(category_name, "selected_evts", selected_evts)
+
+        selected_surnames = MultiSelectSurnames(_("Surnames"), [])
+        menu.add_option(category_name, "selected_surnames", selected_surnames)
+
+        selected_tags = MultiSelectTags(_("Tags"), [])
+        menu.add_option(category_name, "selected_tags", selected_tags)
 
     def __usecal_changed(self):
         """

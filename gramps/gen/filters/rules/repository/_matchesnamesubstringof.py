@@ -36,6 +36,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Repository
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 # "Repositories having a name that contain a substring"
 # -------------------------------------------------------------------------
 class MatchesNameSubstringOf(Rule):
@@ -47,6 +56,6 @@ class MatchesNameSubstringOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, repository):
+    def apply_to_one(self, db: Database, repository: Repository) -> bool:
         """Apply the filter"""
-        return self.match_substring(0, repository.get_name())
+        return self.match_substring(0, repository.name)

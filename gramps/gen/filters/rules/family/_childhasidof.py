@@ -33,7 +33,15 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import RegExpIdBase
-from ._memberbase import child_base
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Family
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -48,5 +56,10 @@ class ChildHasIdOf(RegExpIdBase):
     name = _("Families having child with Id containing <text>")
     description = _("Matches families where child has a specified " "Gramps ID")
     category = _("Child filters")
-    base_class = RegExpIdBase
-    apply = child_base
+
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
+        for child_ref in family.child_ref_list:
+            child = db.get_person_from_handle(child_ref.ref)
+            if super().apply_to_one(db, child):
+                return True
+        return False

@@ -73,15 +73,14 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        for handle in db.iter_person_handles():
-            person = db.get_person_from_handle(handle)
+        for person in db.iter_people():
             if user:
                 user.step_progress()
-            if person and self.filt.apply(db, person):
+            if person and self.filt.apply_to_one(db, person):
                 # store all people in the filter so as to compare later
                 self.with_people.append(person.handle)
                 # fill list of ancestor of person if not present yet
-                if handle not in self.ancestor_cache:
+                if person.handle not in self.ancestor_cache:
                     self.add_ancs(db, person)
         if user:
             user.end_progress()

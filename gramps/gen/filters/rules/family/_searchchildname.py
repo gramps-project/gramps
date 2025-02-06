@@ -33,7 +33,15 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from ..person import SearchName
-from ._memberbase import child_base
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Family
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -49,5 +57,10 @@ class SearchChildName(SearchName):
         "Matches families where any child has a specified " "(partial) name"
     )
     category = _("Child filters")
-    base_class = SearchName
-    apply = child_base
+
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
+        for child_ref in family.child_ref_list:
+            child = db.get_person_from_handle(child_ref.ref)
+            if super().apply_to_one(db, child):
+                return True
+        return False

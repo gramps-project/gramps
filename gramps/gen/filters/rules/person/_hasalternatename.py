@@ -38,6 +38,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasAlternateName
 #
 # -------------------------------------------------------------------------
@@ -48,8 +57,5 @@ class HasAlternateName(Rule):
     description = _("Matches people with an alternate name")
     category = _("General filters")
 
-    def apply(self, db, person):
-        if person.get_alternate_names():
-            return True
-        else:
-            return False
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return True if person.alternate_names else False

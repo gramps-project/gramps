@@ -43,7 +43,6 @@
             <child>
               <object class="GtkButton" id="button15">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -62,7 +61,6 @@
             <child>
               <object class="GtkButton" id="ok">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -80,7 +78,6 @@
             <child>
               <object class="GtkButton" id="button134">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -128,8 +125,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">3</property>
-                        <property name="margin-right">3</property>
+                        <property name="margin-start">3</property>
+                        <property name="margin-end">3</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">_Given:</property>
@@ -191,8 +188,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">3</property>
-                        <property name="margin-right">3</property>
+                        <property name="margin-start">3</property>
+                        <property name="margin-end">3</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">T_itle:</property>
@@ -241,8 +238,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">3</property>
-                        <property name="margin-right">3</property>
+                        <property name="margin-start">3</property>
+                        <property name="margin-end">3</property>
                         <property name="label" translatable="yes">_Nick:</property>
                         <property name="use-underline">True</property>
                         <property name="mnemonic-widget">nickname</property>
@@ -349,7 +346,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="multsurnamebtn">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -393,7 +389,6 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                         <child>
                           <object class="GtkToggleButton" id="private">
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
@@ -444,8 +439,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">6</property>
-                            <property name="margin-right">6</property>
+                            <property name="margin-start">6</property>
+                            <property name="margin-end">6</property>
                             <property name="margin-top">3</property>
                             <property name="margin-bottom">3</property>
                             <property name="label" translatable="yes">_Surname:</property>
@@ -505,7 +500,6 @@ Indicate that the surname consists of different parts. Every surname has its own
                     </child>
                     <child>
                       <object class="GtkButton" id="editnamebtn">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -581,8 +575,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">6</property>
-                            <property name="margin-right">6</property>
+                            <property name="margin-start">6</property>
+                            <property name="margin-end">6</property>
                             <property name="label" translatable="yes">G_ender:</property>
                             <property name="use-underline">True</property>
                             <property name="mnemonic-widget">gender</property>
@@ -646,8 +640,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">6</property>
-                            <property name="margin-right">6</property>
+                            <property name="margin-start">6</property>
+                            <property name="margin-end">6</property>
                             <property name="label" translatable="yes">_Tags:</property>
                             <property name="use-underline">True</property>
                             <property name="mnemonic-widget">tag_button</property>
@@ -671,7 +665,6 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                         <child>
                           <object class="GtkButton" id="tag_button">
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
@@ -721,8 +714,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">3</property>
-                        <property name="margin-right">3</property>
+                        <property name="margin-start">3</property>
+                        <property name="margin-end">3</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">_Type:</property>
@@ -740,8 +733,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">3</property>
-                        <property name="margin-right">3</property>
+                        <property name="margin-start">3</property>
+                        <property name="margin-end">3</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
                         <property name="hexpand">True</property>

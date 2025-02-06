@@ -74,7 +74,7 @@ class ResourcePath:
         package_path = os.path.abspath(
             os.path.join(os.path.dirname(__file__), "..", "..", "..")
         )
-        installed = not os.path.exists(os.path.join(package_path, ".git"))
+        installed = not os.path.exists(os.path.join(package_path, "MANIFEST.in"))
         if installed:
             test_path = os.path.join("gramps", "authors.xml")
         else:

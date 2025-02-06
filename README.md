@@ -14,7 +14,7 @@ Requirements
 ============
 The following packages **MUST** be installed in order for Gramps to work:
 
-* [**Python**](https://www.python.org/) 3.8 or greater - The programming language used by Gramps.
+* [**Python**](https://www.python.org/) 3.9 or greater - The programming language used by Gramps.
 * [**GTK**](http://www.gtk.org/) 3.24 or greater - A cross-platform widget toolkit for creating graphical user interfaces.
 * [**pygobject**](https://wiki.gnome.org/Projects/PyGObject) 3.12 or greater - Python Bindings for GLib/GObject/GIO/GTK+
 
@@ -27,6 +27,7 @@ The following three packages with GObject Introspection bindings (the gi package
 * [**librsvg2**](http://live.gnome.org/LibRsvg) - (SVG icon view) a library to render SVG files using cairo.
 * [**bsddb3**](https://pypi.python.org/pypi/bsddb3/) - Python bindings for Oracle Berkeley database.
 * [**sqlite3**](https://www.sqlite.org/) - Python bindings for SQLite Database library.
+* [**orjson**](https://pypi.org/project/orjson/) - A fast JSON library for Python. Used to increase the performance of Gramps.
 
 The following package is needed for full translation of the interface
 to your language:

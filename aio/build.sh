@@ -7,6 +7,7 @@
 pacman -S --needed --noconfirm \
     base-devel \
     git \
+    intltool \
     mingw-w64-x86_64-adwaita-icon-theme \
     mingw-w64-x86_64-enchant \
     mingw-w64-x86_64-geocode-glib \
@@ -20,12 +21,16 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-nsis \
     mingw-w64-x86_64-osm-gps-map \
     mingw-w64-x86_64-python \
+    mingw-w64-x86_64-python-bsddb3 \
+    mingw-w64-x86_64-python-build \
     mingw-w64-x86_64-python-cairo \
     mingw-w64-x86_64-python-cx-freeze \
+    mingw-w64-x86_64-python-distlib \
     mingw-w64-x86_64-python-gobject \
     mingw-w64-x86_64-python-graphviz \
     mingw-w64-x86_64-python-icu \
     mingw-w64-x86_64-python-jsonschema \
+    mingw-w64-x86_64-python-lief \
     mingw-w64-x86_64-python-lxml \
     mingw-w64-x86_64-python-networkx \
     mingw-w64-x86_64-python-nose \
@@ -33,26 +38,27 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-python-pillow \
     mingw-w64-x86_64-python-pip \
     mingw-w64-x86_64-python-psycopg2 \
-    mingw-w64-x86_64-python-pycountry \
     mingw-w64-x86_64-python-requests \
+    mingw-w64-x86_64-python-setuptools \
     mingw-w64-x86_64-python-wheel \
+    mingw-w64-x86_64-rust \
+    mingw-w64-x86_64-toolchain \
     perl-XML-Parser \
-    unzip \
-    upx
-pacman -S --needed --noconfirm mingw-w64-x86_64-toolchain
-
-wget --no-verbose -N https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-python-cx-freeze-6.15.9-1-any.pkg.tar.zst
-pacman -U --needed --noconfirm mingw-w64-x86_64-python-cx-freeze-6.15.9-1-any.pkg.tar.zst
+    subversion \
+    unzip
 
 wget --no-verbose -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 pacman -U --needed --noconfirm mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 
-pacman -S --needed --noconfirm  mingw-w64-x86_64-python-bsddb3
+## create a python virtual environment so that we have a clean starting point
+pythonvenv=$TMP/grampspythonenv
+rm -rf $pythonvenv
+python -m venv $pythonvenv --system-site-packages
+source $pythonvenv/bin/activate
 
 ## prerequisites in pip packages
 python -m pip install --upgrade pip
-pip install --upgrade pydot pydotplus requests asyncio
-SETUPTOOLS_USE_DISTUTILS=stdlib pip install pygraphviz
+pip install --upgrade asyncio orjson pydot pydotplus pygraphviz requests
 
 ## download dictionaries
 mkdir -p /mingw64/share/enchant/hunspell
@@ -105,32 +111,29 @@ popd
 mkdir -p /mingw64/share/enchant/voikko
 pushd /mingw64/share/enchant/voikko
 wget --no-verbose -N https://www.puimula.org/htp/testing/voikko-snapshot-v5/dict.zip
-unzip -o dict.zip
+unzip -q -o dict.zip
 rm dict.zip
 popd
 
 # Assumption: script is executed from the 'aio' directory!
-#cd D:/a/gramps/gramps/aio
 
 ## create a directory structure for icons
-mkdir /mingw64/share/icons/gnome
-mkdir /mingw64/share/icons/gnome/48x48
-mkdir /mingw64/share/icons/gnome/48x48/mimetypes
-mkdir /mingw64/share/icons/gnome/scalable
-mkdir /mingw64/share/icons/gnome/scalable/mimetypes
-mkdir /mingw64/share/icons/gnome/scalable/places
+mkdir -p /mingw64/share/icons/gnome
+mkdir -p /mingw64/share/icons/gnome/48x48
+mkdir -p /mingw64/share/icons/gnome/48x48/mimetypes
+mkdir -p /mingw64/share/icons/gnome/scalable
+mkdir -p /mingw64/share/icons/gnome/scalable/mimetypes
+mkdir -p /mingw64/share/icons/gnome/scalable/places
 
 # Change to the gramps root directory
 cd ..
 cp images/gramps.png /mingw64/share/icons
 cd images/hicolor/48x48/mimetypes
-for f in *.png
-do
+for f in *.png; do
     cp $f /mingw64/share/icons/gnome/48x48/mimetypes/gnome-mime-$f
 done
 cd ../../scalable/mimetypes
-for f in *.svg
-do
+for f in *.svg; do
     cp $f /mingw64/share/icons/gnome/scalable/mimetypes/gnome-mime-$f
 done
 cd ../../../..
@@ -140,17 +143,24 @@ cp /mingw64/share/icons/hicolor/scalable/places/*.svg /mingw64/share/icons/gnome
 rm -rf dist aio/dist
 python setup.py bdist_wheel
 appbuild="r$(git rev-list --count HEAD)-$(git rev-parse --short HEAD)"
-appversion=$(grep "^VERSION_TUPLE" gramps/version.py|sed 's/.*(//;s/, */\./g;s/).*//')
-unzip -d aio/dist dist/*.whl
+appversion=$(grep "^VERSION_TUPLE" gramps/version.py | sed 's/.*(//;s/, */\./g;s/).*//')
+unzip -q -d aio/dist dist/*.whl
 cd aio
 
 # create nsis script
-cat grampsaio64.nsi.template|sed "s/yourVersion/$appversion/;s/yourBuild/$appbuild/">grampsaio64.nsi
+cat grampsaio64.nsi.template | sed "s/yourVersion/$appversion/;s/yourBuild/$appbuild/" >grampsaio64.nsi
 # build cx_freeze executables
-python setup.py build_exe --no-compress
+python setup.py build_exe
 # build installer
 cd mingw64/src
 makensis grampsaio64.nsi
 # result is in mingw64/src
+
+# deactivate and delete the python virtual environment
+if [ "$1" = "true" ]; then
+    echo "post build cleanup"
+    deactivate
+    rm -rf $pythonvenv
+fi
 
 exit 0

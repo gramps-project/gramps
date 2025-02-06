@@ -20,18 +20,19 @@
 
 # test/GrampsLogger/GtkHandler_Test.py
 
+import os
 import unittest
 import logging
 import sys
+
 from gi.repository import Gtk
-import os
 
 log = logging.getLogger("Gramps.Tests.GrampsLogger")
 import gramps.gen.const as const
 
-const.rootDir = os.path.join(os.path.dirname(__file__), "../../gramps")
-sys.path.append(os.path.join(const.rootDir, "test"))
-sys.path.append(const.rootDir)
+rootDir = os.path.join(os.path.dirname(__file__), "../../gramps")
+sys.path.append(os.path.join(rootDir, "test"))
+sys.path.append(rootDir)
 
 from gramps.gui.logger import RotateHandler, GtkHandler
 
@@ -55,7 +56,7 @@ class GtkHandlerTest(unittest.TestCase):
         l.addHandler(gtkh)
 
         l.info("An info message")
-        l.warn("A warn message")
+        l.warning("A warn message")
         l.debug("A debug message")
         log_message = "Debug message"
 
@@ -71,7 +72,7 @@ class GtkHandlerTest(unittest.TestCase):
 
 
 def testSuite():
-    suite = unittest.makeSuite(GtkHandlerTest, "test")
+    suite = unittest.TestLoader().loadTestsFromTestCase(GtkHandlerTest)
     return suite
 
 

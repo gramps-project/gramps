@@ -27,9 +27,11 @@ This module is used to share variables, enums and functions between all modules
 
 """
 
+from __future__ import annotations
 from collections import defaultdict
 from hashlib import md5
 import re
+import os
 import logging
 from xml.sax.saxutils import escape
 
@@ -78,7 +80,7 @@ LOG = logging.getLogger(".NarrativeWeb")
 # define clear blank line for proper styling
 FULLCLEAR = Html("div", class_="fullclear", inline=True)
 # define all possible web page filename extensions
-_WEB_EXT = [".html", ".htm", ".shtml", ".php", ".cgi"]
+_WEB_EXT = (".html", ".htm", ".shtml", ".php", ".cgi")
 # used to select secured web site or not
 HTTP = "http://"
 HTTPS = "https://"
@@ -229,6 +231,7 @@ https://openlayers.org/en/latest/examples/
 OSM_MARKERS = """
   window.addEventListener("load", function() {
     var map;
+    var heat = '%s';
     var tracelife = %s;
     var iconStyle = new ol.style.Style({
       image: new ol.style.Icon(({
@@ -241,6 +244,10 @@ OSM_MARKERS = """
     });
     var markerSource = new ol.source.Vector({
     });
+    var centerCoord = new ol.proj.transform([%s, %s], 'EPSG:4326', 'EPSG:3857');
+    var zoom = %d;
+    var radius = %d;
+    var blur = %d;
     for (var i = 0; i < tracelife.length; i++) {
       var loc = tracelife[i];
       var iconFeature = new ol.Feature({
@@ -260,13 +267,27 @@ OSM_MARKERS = """
       source: markerSource,
       style: iconStyle
     });
-    var centerCoord = new ol.proj.transform([%s, %s], 'EPSG:4326', 'EPSG:3857');
-    map = new ol.Map({
-                 target: 'map_canvas',
-                 layers: [new ol.layer.Tile({ source: new ol.source.OSM() }),
-                          markerLayer, tooltip],
-                 view: new ol.View({ center: centerCoord, zoom: %d })
-                 });
+    heatmap = new ol.layer.Heatmap({
+      source: markerSource,
+      radius: radius,
+      blur: blur,
+      style: iconStyle
+    });
+    if (heat == "heatmap") {
+      map = new ol.Map({
+                   target: 'map_canvas',
+                   layers: [new ol.layer.Tile({ source: new ol.source.OSM() }),
+                            heatmap],
+                   view: new ol.View({ center: centerCoord, zoom: zoom })
+                   });
+    } else {
+      map = new ol.Map({
+                   target: 'map_canvas',
+                   layers: [new ol.layer.Tile({ source: new ol.source.OSM() }),
+                            markerLayer, tooltip],
+                   view: new ol.View({ center: centerCoord, zoom: zoom })
+                   });
+    };
 """
 
 STAMEN_MARKERS = """
@@ -322,6 +343,8 @@ OPENLAYER = """
     var closer = document.getElementById('popup-closer');
     var tip = document.getElementById('tooltip');
     var tipcontent = document.getElementById('tooltip-content');
+    var tltip1 = undefined;
+    var tltip2 = undefined;
     var tooltip = new ol.Overlay({
       element: tip,
       positioning: 'bottom-center',
@@ -343,12 +366,18 @@ OPENLAYER = """
     closer.onclick = function() {
       popup.setPosition(undefined);
       closer.blur();
+      tltip1 = undefined;
+      tltip2 = undefined;
       return false;
     };
     map.on('pointermove', function(evt) {
       evt.preventDefault()
+      if (tltip2 !== undefined) {
+        return;
+      }
       var feature = this.forEachFeatureAtPixel(evt.pixel,
                                                function(feature, layer) {
+        tltip1 = feature;
         return feature;
       });
       map.getTargetElement().style.cursor = feature ? 'pointer' : '';
@@ -366,8 +395,12 @@ OPENLAYER = """
     });
     map.on('singleclick', function(evt) {
       evt.preventDefault();
+      if (tltip1 !== undefined) {
+        tooltip.setPosition(undefined);
+      }
       var feature = map.forEachFeatureAtPixel(evt.pixel,
                                               function(feature, layer) {
+        tltip2 = feature;
         return feature;
       });
       if (feature) {
@@ -396,7 +429,7 @@ CSS = PLUGMAN.process_plugin_data("WEBSTUFF")
 
 # _NAME_COL = 3
 
-_WRONGMEDIAPATH = []
+_WRONGMEDIAPATH: list[list[str]] = []
 
 _HTML_DBL_QUOTES = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _HTML_SNG_QUOTES = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
@@ -646,24 +679,39 @@ if HAVE_ALPHABETICINDEX:
                     super().addLabels(loc)
 
 else:
-    AlphabeticIndex = localAlphabeticIndex
+    AlphabeticIndex = localAlphabeticIndex  # type: ignore[misc, assignment]
 
 
-def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False):
+def alphabet_navigation(
+    sorted_alpha_index,
+    rlocale=glocale,
+    current=None,
+    rtl=False,
+    only=True,
+    new_page=False,
+    ext=None,
+):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
     SurnameListPage, PlaceListPage, and EventList
 
     @param: index_list -- a dictionary of either letters or words
     @param: rlocale    -- The locale to use
+    @param: current    -- The current page
+    @param: rtl        -- Do we use rtl language ?
+    @param: only       -- Used only for alphabet letters
+    @param: new_page   -- Used to have multiple index pages
+    @param: ext        -- The default extension when new_page is used
     """
     # if no letters, return None to its callers
     if not sorted_alpha_index:
         return None
 
     num_ltrs = len(sorted_alpha_index)
-    num_of_cols = 26
-    num_of_rows = (num_ltrs // num_of_cols) + 1
+    # num_of_cols = 26
+    num_of_cols = num_ltrs
+    # num_of_rows = (num_ltrs // num_of_cols) + 1
+    num_of_rows = 1
 
     # begin alphabet navigation division
     with Html("div", id=rtl) as alphabetnavigation:
@@ -690,8 +738,46 @@ def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False):
                     dup_index += 1
                 output.append(menu_item)
 
-                hyper = Html("a", menu_item, title=title_str, href="#%s" % link)
-                unordered.extend(Html("li", hyper, inline=True))
+                check_cs = False
+                if new_page:
+                    new_index, extension = os.path.splitext(new_page)
+                    if extension == "":
+                        extension = ext
+                    pathl = os.path.dirname(new_index)
+                    filel = os.path.basename(new_index)
+                    if len(filel) > 6:  # 6 is the length of "events"
+                        url = "/".join((pathl, "events" + str(index + 1) + extension))
+                    else:
+                        url = "/".join((pathl, "events" + extension))
+                    hyper = Html("a", filel, title=title_str, href=url)
+                    if cols != 0:
+                        next_name = new_index + str(cols)
+                        hyper = Html(
+                            "a",
+                            menu_item,
+                            title=title_str,
+                            href="%s" % next_name + extension,
+                        )
+                    else:
+                        next_name = new_index
+                        hyper = Html(
+                            "a",
+                            menu_item,
+                            title=title_str,
+                            href="%s" % new_index + extension,
+                        )
+                    current = current.split("_")[0]
+                    if current == next_name:
+                        check_cs = True
+                    temp_cs = 'class = "CurrentSection"'
+                    check_cs = temp_cs if check_cs else False
+                else:
+                    hyper = Html("a", menu_item, title=title_str, href="#%s" % link)
+                if check_cs:
+                    next_elem = Html("li", hyper, attr=check_cs, inline=True)
+                else:
+                    next_elem = Html("li", hyper, inline=True)
+                unordered.extend(next_elem)
 
                 index += 1
                 cols += 1
@@ -702,13 +788,86 @@ def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False):
     return alphabetnavigation
 
 
+def partial_navigation(
+    partial_index, rlocale=glocale, current=None, rtl=False, new_page=False, ext=None
+):
+    """
+    Will create the partial navigation bar for big indexes
+
+    @param: partial_index -- a dictionary of (name, handle)
+    @param: rlocale       -- The locale to use
+    @param: current       -- The current page
+    @param: rtl           -- Do we use rtl language ?
+    @param: new_page      -- Used to have multiple index pages
+    @param: ext           -- The default extension when new_page is used
+    """
+    # if no letters, return None to its callers
+    if not partial_index:
+        return None
+
+    num_pages = len(partial_index)
+    num_of_rows = 1
+
+    # begin alphabet navigation division
+    with Html("div", id=rtl, class_="pnav") as partialnavigation:
+        index = 0
+        for dummy_row in range(num_of_rows):
+            unordered = Html("ul", class_=rtl)
+
+            while index < num_pages:
+                handle, name = partial_index[index]
+                title_txt = "Go to: "
+                title_str = rlocale.translation.sgettext(title_txt) + name
+                check_cs = False
+                if new_page:
+                    if index == 0:
+                        new_index = new_page
+                    else:
+                        new_index = new_page[:-1]
+                    new_index, extension = os.path.splitext(new_page)
+                    if extension == "":
+                        extension = ext
+                    if index == 0:
+                        next_name = new_index
+                        hyper = Html(
+                            "a",
+                            name + " \u27a1 ",
+                            title=title_str,
+                            href="%s" % new_index + extension,
+                        )
+                    else:
+                        next_name = new_index + "_%d" % index
+                        hyper = Html(
+                            "a",
+                            name + " \u27a1 ",
+                            title=title_str,
+                            href="%s" % new_index + "_%d" % index + extension,
+                        )
+                    if current == next_name:
+                        check_cs = True
+                    temp_cs = 'class = "CurrentSection"'
+                    check_cs = temp_cs if check_cs else False
+                else:
+                    hyper = Html("a", name, title=title_str, href="#%s" % "link")
+                if check_cs:
+                    next_elem = Html("li", hyper, attr=check_cs, inline=True)
+                else:
+                    next_elem = Html("li", hyper, inline=True)
+                unordered.extend(next_elem)
+
+                index += 1
+            num_of_rows -= 1
+            partialnavigation += unordered
+    return partialnavigation
+
+
 def _has_webpage_extension(url):
     """
     determine if a filename has an extension or not...
 
     @param: url -- filename to be checked
     """
-    return any(url.endswith(ext) for ext in _WEB_EXT)
+    return url.endswith(_WEB_EXT)
 
 
 def add_birthdate(dbase, ppl_handle_list, rlocale):
@@ -927,3 +1086,71 @@ def html_escape(text):
     text = text.replace("'", "&#39;")
 
     return text
+
+
+def create_indexes_pages(
+    report, name, index_list, function, handle_list, max_rows, locale=None
+):
+    """
+    This is used to create indexes depending on a row limit.
+
+    @param: report      -- The instance of the main report class
+    @param: name        -- The base name of the file to create
+    @param: index_list  -- The base name of the file to create
+    @param: function    -- The function used to create the page
+    @param: handle_list -- The list of handles to manage
+    @param: max_rows    -- The number of rows included in this page
+    @param: locale      -- The locale used for sor t, ...
+    """
+    row_count = report.options["splitindex"]
+    max_rows += row_count  # For the last incomplete page
+    max_rows = int(max_rows / row_count) * row_count
+    page = 0
+    for letter, hdle_list in handle_list:
+        if not "events" in name:
+            hdle_list.sort(key=lambda x: locale.sort_key(x[1]))
+        if len(hdle_list) <= row_count:
+            function(
+                report,
+                index_list,
+                name,
+                letter,
+                hdle_list,
+                part=page,
+            )
+        else:
+            partial_list = []
+            for idx in range(0, int(len(hdle_list) / row_count) + 1, 1):
+                if (idx * row_count) < len(hdle_list):
+                    partial_list.append(hdle_list[idx * row_count])
+            sub_page = 0
+            part = 0
+            start = 0
+            while start < len(hdle_list):
+                phdle_list = []
+                for nbh in range(len(hdle_list)):
+                    if nbh < start:
+                        continue
+                    if nbh >= start + row_count:
+                        break
+                    if nbh > len(hdle_list):
+                        break
+                    phdle_list.append(hdle_list[nbh])
+                if sub_page != 0:
+                    subp = "_%d" % sub_page
+                else:
+                    subp = None
+                function(
+                    report,
+                    index_list,
+                    name,
+                    letter,
+                    phdle_list,
+                    part=page,
+                    subp=subp,
+                    partial_list=partial_list,
+                )
+                part += 1
+                start += row_count
+                sub_page += 1
+        page += 1

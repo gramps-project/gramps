@@ -31,6 +31,15 @@ _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 # "People marked public"
 # -------------------------------------------------------------------------
 class IsPublic(Rule):
@@ -40,5 +49,5 @@ class IsPublic(Rule):
     description = "Matches objects that are not indicated as private"
     category = _("General filters")
 
-    def apply(self, db, obj):
-        return not obj.get_privacy()
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
+        return not obj.private

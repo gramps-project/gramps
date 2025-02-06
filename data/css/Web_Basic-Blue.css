@@ -283,6 +283,12 @@ div#nav ul li a:hover, #subnavigation ul li a:hover {
     background-color: #CCC;
     border-bottom: solid 1px black;
 }
+div#ltr.pnav ul.ltr li.CurrentSection, div#rtl.pnav ul.rtl li.CurrentSection,
+div#ltr ul.ltr li.CurrentSection, div#rtl ul.rtl li.CurrentSection {
+    font-weight: bold;
+    font-style: italic;
+    background-color: #CCC;
+}
 div#nav ul li.CurrentSection a {
     position: relative;
     top: 1px;
@@ -294,14 +300,14 @@ div#nav ul li.CurrentSection a {
     background-color: #903;
 }
 div#nav li.lang {
-    font-size: 12px;
+    font-size: smaller;
     font-weight: bold;
-    padding-top: .5em;
 }
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
-    width: 80px;
+    width: 450px;
+    background-color: #13A926;
     padding-right: 5px;
 }
 div#nav ul.lang {
@@ -491,6 +497,7 @@ div#nav::after {
     .nav ul, #subnavigation ul {
         list-style: none;
         min-width: unset;
+        font-size: smaller;
         width: 200px;
         margin: 0;
         padding: 0;
@@ -518,7 +525,7 @@ div#nav::after {
 
     button.navIcon {
         display: block;
-        font-size:2.9em;
+        font-size:4.9em;
         line-height: 60px;
         border: 0px;
         color: #FFF;
@@ -531,7 +538,13 @@ div#nav::after {
         float: right;
     }
 
-    .nav.responsive {position: absolute; display: block; z-index: 100;}
+    .nav.responsive {
+        position: absolute;
+        display: block;
+        z-index: 100;
+        font-size: 36px;
+        background-color: #13A926;
+    }
     .nav.responsive a.icon {
         right: 0;
         top: 0;
@@ -548,7 +561,7 @@ div#nav::after {
         background-color: #13A926;
         /* required by IE */
         clear: both;
-        width: 150px;
+        width: 300px;
     }
 
     div#nav ul, #subnavigation ul {

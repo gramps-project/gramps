@@ -39,6 +39,15 @@ from ....lib.nameorigintype import NameOriginType
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasNameOf
 #
 # -------------------------------------------------------------------------
@@ -63,43 +72,41 @@ class HasNameOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, person):
-        for name in [person.get_primary_name()] + person.get_alternate_names():
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        for name in [person.primary_name] + person.alternate_names:
             if self.match_name(name):
                 return True
         return False
 
     def match_name(self, name):
-        if self.list[0] and not self.match_substring(0, name.get_first_name()):
+        if self.list[0] and not self.match_substring(0, name.first_name):
             return False
         elif self.list[1] and not self.match_substring(1, name.get_surname()):
             return False
-        elif self.list[2] and not self.match_substring(2, name.get_title()):
+        elif self.list[2] and not self.match_substring(2, name.title):
             return False
-        elif self.list[3] and not self.match_substring(3, name.get_suffix()):
+        elif self.list[3] and not self.match_substring(3, name.suffix):
             return False
-        elif self.list[4] and not self.match_substring(4, name.get_call_name()):
+        elif self.list[4] and not self.match_substring(4, name.call):
             return False
-        elif self.list[5] and not self.match_substring(5, name.get_nick_name()):
+        elif self.list[5] and not self.match_substring(5, name.nick):
             return False
-        elif self.list[10] and not self.match_substring(
-            10, name.get_family_nick_name()
-        ):
+        elif self.list[10] and not self.match_substring(10, name.famnick):
             return False
         else:
-            for surn in name.get_surname_list():
+            for surn in name.surname_list:
                 if self.match_surname(surn):
                     return True
         return False
 
     def match_surname(self, surn):
-        if self.list[6] and not self.match_substring(6, surn.get_prefix()):
+        if self.list[6] and not self.match_substring(6, surn.prefix):
             return False
-        if self.list[7] and not self.match_substring(7, surn.get_surname()):
+        if self.list[7] and not self.match_substring(7, surn.surname):
             return False
-        if self.list[8] and not self.match_substring(8, surn.get_connector()):
+        if self.list[8] and not self.match_substring(8, surn.connector):
             return False
-        if surn.get_origintype().value == NameOriginType.PATRONYMIC:
-            if self.list[9] and not self.match_substring(9, surn.get_surname()):
+        if int(surn.origintype.value) == NameOriginType.PATRONYMIC:
+            if self.list[9] and not self.match_substring(9, surn.surname):
                 return False
         return True

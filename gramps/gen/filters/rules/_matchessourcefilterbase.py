@@ -38,6 +38,15 @@ from . import MatchesFilterBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.citationbase import CitationBase
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # MatchesFilter
 #
 # -------------------------------------------------------------------------
@@ -56,17 +65,17 @@ class MatchesSourceFilterBase(MatchesFilterBase):
     # we want to have this filter show source filters
     namespace = "Source"
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MSF_filt = self.find_filter()
 
-    def apply(self, db, object):
+    def apply_to_one(self, db, object: CitationBase) -> bool:
         if self.MSF_filt is None:
             return False
 
-        for citation_handle in object.get_citation_list():
+        for citation_handle in object.citation_list:
             citation = db.get_citation_from_handle(citation_handle)
-            sourcehandle = citation.get_reference_handle()
-            if self.MSF_filt.check(db, sourcehandle):
+            source = db.get_source_from_handle(citation.ref)
+            if self.MSF_filt.apply_to_one(db, source):
                 return True
         return False

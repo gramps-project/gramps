@@ -525,8 +525,9 @@ class ConfigureDialog(ManagedWindow):
             hexval = colors[scheme]
         else:
             hexval = colors
-        color = Gdk.color_parse(hexval)
-        entry = Gtk.ColorButton(color=color)
+        rgba = Gdk.RGBA()
+        rgba.parse(hexval)
+        entry = Gtk.ColorButton.new_with_rgba(rgba)
         color_hex_label = BasicLabel(hexval)
         color_hex_label.set_hexpand(True)
         entry.connect("notify::color", self.update_color, constant, color_hex_label)
@@ -851,7 +852,7 @@ class GrampsPreferences(ConfigureDialog):
         row += 1
         label = self.add_text(
             grid,
-            _(
+            _(  # xgettext: no-python-format
                 "Default Gramps ID formats containing a letter prefix"
                 ' followed by a numerical string. "I%04d" creates IDs'
                 " from I0000 to I9999. Large databases may need larger"
@@ -1393,6 +1394,13 @@ class GrampsPreferences(ConfigureDialog):
         Called when the toolbar is changed.
         """
         self.uistate.emit("toolbar-changed")
+
+    def cb_toolbar_style_changed(self, obj):
+        """
+        Called when the toolbar style is changed.
+        """
+        config.set("interface.toolbar-style", obj.get_active())
+        self.uistate.uimanager.update_menu()
 
     def add_data_panel(self, configdialog):
         """
@@ -2108,6 +2116,24 @@ class GrampsPreferences(ConfigureDialog):
             tooltip=_("Show or hide the Preferences icon on the toolbar."),
             extra_callback=self.cb_toolbar_changed,
         )
+
+        row += 1
+        # Toolbar styles:
+        obox = Gtk.ComboBoxText()
+        formats = [
+            _("Use default preference"),
+            _("Text only"),
+            _("Icons only"),
+            _("Both text and icons"),
+        ]
+        list(map(obox.append_text, formats))
+        active = config.get("interface.toolbar-style")
+        obox.set_active(active)
+        obox.set_tooltip_text(_("Display text, icons or both on the toolbar buttons."))
+        obox.connect("changed", self.cb_toolbar_style_changed)
+        lwidget = BasicLabel(_("%s: ") % _("Toolbar Style"))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(obox, 2, row, 1, 1)
 
         row += 1
         # Gramplet bar close buttons:

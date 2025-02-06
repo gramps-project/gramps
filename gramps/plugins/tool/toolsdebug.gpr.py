@@ -18,15 +18,16 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 from gramps.gen.plug._pluginreg import *
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import URL_MANUAL_PAGE, GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
+DEBUG_HELP = URL_MANUAL_PAGE + "_-_Tools#Debug"
 
 """
 GRAMPS registration file
 """
 
-MODULE_VERSION = "5.3"
+MODULE_VERSION = "6.0"
 
 # ------------------------------------------------------------------------
 #
@@ -55,6 +56,7 @@ register(
     toolclass="DateParserDisplayTest",
     optionclass="DateParserDisplayTestOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=DEBUG_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -80,6 +82,7 @@ register(
     toolclass="DumpGenderStats",
     optionclass="DumpGenderStatsOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=DEBUG_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -107,6 +110,7 @@ register(
     toolclass="TestcaseGenerator",
     optionclass="TestcaseGeneratorOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=DEBUG_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -134,4 +138,5 @@ register(
     toolclass="PopulateSources",
     optionclass="PopulateSourcesOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=DEBUG_HELP,
 )

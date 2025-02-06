@@ -43,7 +43,7 @@ from gi.repository import Gtk
 # -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Event, EventType
-from gramps.gen.lib.serialize import from_dict
+from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
@@ -121,38 +121,38 @@ class EventModel(FlatBaseModel):
         return len(self.fmap) + 1
 
     def column_description(self, data):
-        return data["description"]
+        return data.description
 
     def column_participant(self, data):
-        handle = data["handle"]
+        handle = data.handle
         cached, value = self.get_cached_value(handle, "PARTICIPANT")
         if not cached:
             value = get_participant_from_event(
-                self.db, data["handle"], all_=True
+                self.db, data.handle, all_=True
             )  # all participants
             self.set_cached_value(handle, "PARTICIPANT", value)
         return value
 
     def column_place(self, data):
-        if data["place"]:
-            cached, value = self.get_cached_value(data["handle"], "PLACE")
+        if data.place:
+            cached, value = self.get_cached_value(data.handle, "PLACE")
             if not cached:
-                event = from_dict(data)
+                event = data_to_object(data)
                 value = place_displayer.display_event(self.db, event)
-                self.set_cached_value(data["handle"], "PLACE", value)
+                self.set_cached_value(data.handle, "PLACE", value)
             return value
         else:
             return ""
 
     def column_type(self, data):
-        return str(EventType(data["type"]))
+        return EventType.get_str(data.type)
 
     def column_id(self, data):
-        return data["gramps_id"]
+        return data.gramps_id
 
     def column_date(self, data):
-        if data["date"]:
-            event = from_dict(data)
+        if data.date:
+            event = data_to_object(data)
             date_str = get_date(event)
             if date_str != "":
                 retval = escape(date_str)
@@ -165,8 +165,8 @@ class EventModel(FlatBaseModel):
         return ""
 
     def sort_date(self, data):
-        if data["date"]:
-            event = from_dict(data)
+        if data.date:
+            event = data_to_object(data)
             retval = "%09d" % event.get_date_object().get_sort_value()
             if not get_date_valid(event):
                 return INVALID_DATE_FORMAT % retval
@@ -176,17 +176,17 @@ class EventModel(FlatBaseModel):
         return ""
 
     def column_private(self, data):
-        if data["private"]:
+        if data.private:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
             return ""
 
     def sort_change(self, data):
-        return "%012x" % data["change"]
+        return "%012x" % data.change
 
     def column_change(self, data):
-        return format_time(data["change"])
+        return format_time(data.change)
 
     def get_tag_name(self, tag_handle):
         """
@@ -203,12 +203,12 @@ class EventModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data["handle"]
+        tag_handle = data.handle
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data["tag_list"]:
+            for handle in data.tag_list:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -221,6 +221,6 @@ class EventModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data["tag_list"]))
+        tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
         return ", ".join(sorted(tag_list, key=glocale.sort_key))

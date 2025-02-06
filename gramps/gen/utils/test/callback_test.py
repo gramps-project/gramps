@@ -22,11 +22,6 @@ import unittest
 
 from ..callback import Callback
 
-try:
-    log
-except NameError:
-    log = None
-
 
 class TestCallback(unittest.TestCase):
     def test_simple(self):
@@ -63,17 +58,9 @@ class TestCallback(unittest.TestCase):
 
         t = TestSignals()
 
-        def null(s):
-            pass
-
-        global log
-        _log = log
-        log = null
-
         t.connect("test-signal", borked)
         t.connect("test-signal", fn)
         t.emit("test-signal", (1,))
-        log = _log
 
         self.assertEqual(len(rl), 1, "No signal emitted")
         self.assertEqual(rl[0], 1, "Wrong argument received")

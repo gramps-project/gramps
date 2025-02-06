@@ -37,6 +37,16 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import List, Set
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # RelatedWith
 #
 # -------------------------------------------------------------------------
@@ -48,64 +58,62 @@ class IsRelatedWith(Rule):
     category = _("Relationship filters")
     description = _("Matches people related to a specified person")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """prepare so the rule can be executed efficiently
         we build the list of people related to <person> here,
         so that apply is only a check into this list
         """
         self.db = db
 
-        self.relatives = []
+        self.selected_handles: Set[str] = set()
         self.add_relative(db.get_person_from_gramps_id(self.list[0]))
 
     def reset(self):
-        self.relatives = []
+        self.selected_handles.clear()
 
-    def apply(self, db, person):
-        return person.handle in self.relatives
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles
 
-    def add_relative(self, start):
-        """Non-recursive function that scans relatives and add them to self.relatives"""
+    def add_relative(self, start: Person):
+        """Non-recursive function that scans relatives and add them to self.selected_handles"""
         if not (start):
             return
 
-        expand = [start]
-        relatives = {}
+        queue: List[Person] = [start]
 
-        while expand:
-            person = expand.pop()
+        while queue:
+            person = queue.pop()
             # Add the relative to the list
-            if person is None or (person.handle in relatives):
+            if person is None or (person.handle in self.selected_handles):
                 continue
-            relatives[person.handle] = True
+            self.selected_handles.add(person.handle)
 
-            for family_handle in person.get_parent_family_handle_list():
+            for family_handle in person.parent_family_list:
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
                     # Check Parents
                     for parent_handle in (
-                        family.get_father_handle(),
-                        family.get_mother_handle(),
+                        family.father_handle,
+                        family.mother_handle,
                     ):
                         if parent_handle:
-                            expand.append(self.db.get_person_from_handle(parent_handle))
+                            queue.append(self.db.get_person_from_handle(parent_handle))
                     # Check Sibilings
-                    for child_ref in family.get_child_ref_list():
-                        expand.append(self.db.get_person_from_handle(child_ref.ref))
+                    for child_ref in family.child_ref_list:
+                        queue.append(self.db.get_person_from_handle(child_ref.ref))
 
-            for family_handle in person.get_family_handle_list():
+            for family_handle in person.family_list:
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
                     # Check Spouse
                     for parent_handle in (
-                        family.get_father_handle(),
-                        family.get_mother_handle(),
+                        family.father_handle,
+                        family.mother_handle,
                     ):
                         if parent_handle:
-                            expand.append(self.db.get_person_from_handle(parent_handle))
+                            queue.append(self.db.get_person_from_handle(parent_handle))
                     # Check Children
-                    for child_ref in family.get_child_ref_list():
-                        expand.append(self.db.get_person_from_handle(child_ref.ref))
+                    for child_ref in family.child_ref_list:
+                        queue.append(self.db.get_person_from_handle(child_ref.ref))
 
-        self.relatives = list(relatives.keys())
         return

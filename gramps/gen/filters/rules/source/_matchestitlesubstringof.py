@@ -36,6 +36,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Source
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 # "Sources having a title that contain a substring"
 # -------------------------------------------------------------------------
 class MatchesTitleSubstringOf(Rule):
@@ -47,6 +56,6 @@ class MatchesTitleSubstringOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, source):
+    def apply_to_one(self, db: Database, source: Source) -> bool:
         """Apply the filter"""
-        return self.match_substring(0, source.get_title())
+        return self.match_substring(0, source.title)

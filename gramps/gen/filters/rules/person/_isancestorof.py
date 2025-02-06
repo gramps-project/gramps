@@ -37,6 +37,16 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsAncestorOf
 #
 # -------------------------------------------------------------------------
@@ -48,14 +58,14 @@ class IsAncestorOf(Rule):
     category = _("Ancestral filters")
     description = _("Matches people that are ancestors of a specified person")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """Assume that if 'Inclusive' not defined, assume inclusive"""
         self.db = db
-        self.map = set()
+        self.selected_handles: Set[str] = set()
         try:
-            first = 0 if int(self.list[1]) else 1
+            first = False if int(self.list[1]) else True
         except IndexError:
-            first = 1
+            first = True
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             self.init_ancestor_list(db, root_person, first)
@@ -63,26 +73,28 @@ class IsAncestorOf(Rule):
             pass
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()
 
-    def apply(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles
 
-    def init_ancestor_list(self, db, person, first):
+    def init_ancestor_list(self, db: Database, person: Person, first: bool) -> None:
         if not person:
             return
-        if person.handle in self.map:
+        if person.handle in self.selected_handles:
             return
         if not first:
-            self.map.add(person.handle)
-        fam_id = person.get_main_parents_family_handle()
+            self.selected_handles.add(person.handle)
+        fam_id = (
+            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
+        )
         if fam_id:
             fam = db.get_family_from_handle(fam_id)
             if fam:
-                f_id = fam.get_father_handle()
-                m_id = fam.get_mother_handle()
+                f_id = fam.father_handle
+                m_id = fam.mother_handle
 
                 if f_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(f_id), 0)
+                    self.init_ancestor_list(db, db.get_person_from_handle(f_id), False)
                 if m_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(m_id), 0)
+                    self.init_ancestor_list(db, db.get_person_from_handle(m_id), False)

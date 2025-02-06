@@ -38,6 +38,15 @@ from . import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasIdOf
 #
 # -------------------------------------------------------------------------
@@ -56,5 +65,5 @@ class RegExpIdBase(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         return self.match_substring(0, obj.gramps_id)

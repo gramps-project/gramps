@@ -38,6 +38,15 @@ from .._regexpidbase import RegExpIdBase
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib.refbase import RefBase
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasIdOf
 #
 # -------------------------------------------------------------------------
@@ -54,8 +63,6 @@ class RegExpSourceIdOf(RegExpIdBase):
     )
     category = _("Source filters")
 
-    def apply(self, dbase, citation):
-        source = dbase.get_source_from_handle(citation.get_reference_handle())
-        if RegExpIdBase.apply(self, dbase, source):
-            return True
-        return False
+    def apply_to_one(self, dbase: Database, citation: RefBase) -> bool:  # type: ignore[override]
+        source = dbase.get_source_from_handle(citation.ref)
+        return RegExpIdBase.apply_to_one(self, dbase, source)

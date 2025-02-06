@@ -36,6 +36,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasEvent
 #
 # -------------------------------------------------------------------------
@@ -55,15 +64,15 @@ class HasEvent(HasEventBase):
     name = _("People with the personal <event>")
     description = _("Matches people with a personal event of a particular value")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:  # type: ignore[override]
         """
         Apply the rule. Return True if a match.
         """
-        for event_ref in person.get_event_ref_list():
-            if int(self.list[5]) and event_ref.role != EventRoleType.PRIMARY:
+        for event_ref in person.event_ref_list:
+            if int(self.list[5]) and event_ref.role.value != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue
             event = db.get_event_from_handle(event_ref.ref)
-            if HasEventBase.apply(self, db, event):
+            if HasEventBase.apply_to_one(self, db, event):
                 return True
         return False

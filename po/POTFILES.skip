@@ -30,6 +30,7 @@ gramps/gen/errors.py
 gramps/gen/git_revision.py
 gramps/gen/sort.py
 gramps/gen/soundex.py
+gramps/gen/types.py
 gramps/gen/updatecallback.py
 gramps/gen/user.py
 #
@@ -99,6 +100,7 @@ gramps/gen/filters/__init__.py
 gramps/gen/filters/_filterlist.py
 gramps/gen/filters/_paramfilter.py
 gramps/gen/filters/_searchfilter.py
+gramps/gen/filters/optimizer.py
 #
 # gen.filters.rules package
 #
@@ -116,7 +118,6 @@ gramps/gen/filters/rules/event/__init__.py
 # gen.filters.rules.family package
 #
 gramps/gen/filters/rules/family/__init__.py
-gramps/gen/filters/rules/family/_memberbase.py
 #
 # gen.filters.rules.media package
 #
@@ -165,6 +166,7 @@ gramps/gen/lib/datebase.py
 gramps/gen/lib/eventbase.py
 gramps/gen/lib/gcalendar.py
 gramps/gen/lib/genderstats.py
+gramps/gen/lib/json_utils.py
 gramps/gen/lib/ldsordbase.py
 gramps/gen/lib/locationbase.py
 gramps/gen/lib/mediabase.py
@@ -261,6 +263,11 @@ gramps/gen/proxy/filter.py
 gramps/gen/proxy/living.py
 gramps/gen/proxy/proxybase.py
 gramps/gen/proxy/referencedbyselection.py
+#
+# gen.proxy.test
+#
+gramps/gen/proxy/test/__init__.py
+gramps/gen/proxy/test/proxies_test.py
 #
 # gen.simple
 #
@@ -414,6 +421,7 @@ gramps/gui/selectors/selectorfactory.py
 #
 # gui.test package
 #
+gramps/gui/test/display_test.py
 gramps/gui/test/user_test.py
 #
 # gui/views - the GUI views package

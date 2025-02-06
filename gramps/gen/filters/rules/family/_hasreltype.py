@@ -36,6 +36,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Family
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasRelType
 #
 # -------------------------------------------------------------------------
@@ -53,7 +62,7 @@ class HasRelType(Rule):
         super().__init__(arg, use_regex, use_case)
         self.relation_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
@@ -61,14 +70,14 @@ class HasRelType(Rule):
             self.relation_type = FamilyRelType()
             self.relation_type.set_from_xml_str(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Family) -> bool:
         """
         Apply the rule. Return True on a match.
         """
         if self.relation_type:
             if self.relation_type.is_custom() and self.use_regex:
-                if self.regex[0].search(str(obj.get_relationship())) is None:
+                if self.regex[0].search(str(obj.type)) is None:
                     return False
-            elif self.relation_type != obj.get_relationship():
+            elif self.relation_type != obj.type:
                 return False
         return True

@@ -51,6 +51,7 @@ from ._hasnickname import HasNickname
 from ._hasnote import HasNote
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
 from ._hasnoteregexp import HasNoteRegexp
+from ._hasnotetype import HasNoteType
 from ._hasothergender import HasOtherGender
 from ._hasrelationship import HasRelationship
 from ._hassourcecount import HasSourceCount
@@ -187,6 +188,7 @@ editor_rule_list = [
     RelationshipPathBetweenBookmarks,
     HasTextMatchingSubstringOf,
     HasNote,
+    HasNoteType,
     HasNoteRegexp,
     RegExpIdOf,
     RegExpName,

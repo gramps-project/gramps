@@ -30,6 +30,7 @@ This module exports the Html class
 # ------------------------------------------------------------------------
 # Python modules
 # ------------------------------------------------------------------------
+from __future__ import annotations
 
 # ------------------------------------------------------------------------
 #
@@ -353,7 +354,7 @@ class Html(list):
                 self[len(self) :] = ["</%s>" % tag]  # add it on the end
 
     #
-    def __add(self, value):
+    def __add(self, value) -> Html:
         """
         Helper function for +, +=, operators and append() and extend()
         methods
@@ -374,8 +375,11 @@ class Html(list):
         self[index:index] = value
         return self
 
-    #
-    __iadd__ = __add__ = __add
+    def __iadd__(self, value):
+        return self.__add(value)
+
+    def __add__(self, value):
+        return self.__add(value)
 
     #
     def append(self, value):
@@ -520,9 +524,10 @@ class Html(list):
             self[0:0] = [doctype]
 
     #
-    def __gettag(self):
+    @property
+    def tag(self):
         """
-        Returns HTML tag for this object
+        The HTML tag for this object.
 
         :rtype:   string
         :returns: HTML tag
@@ -530,13 +535,8 @@ class Html(list):
         return self[0].split()[0].strip("< >")
 
     #
-    def __settag(self, newtag):
-        """
-        Sets a new HTML tag for this object
-
-        :type  name: string
-        :param name: new HTML tag
-        """
+    @tag.setter
+    def tag(self, newtag):
         curtag = self.tag
 
         # Replace closing tag, if any
@@ -548,12 +548,11 @@ class Html(list):
 
         self[0] = self[0].replace("<" + curtag, "<" + newtag)
 
-    tag = property(__gettag, __settag)
-
     #
-    def __getattr(self):
+    @property
+    def attr(self):
         """
-        Returns HTML attributes for this object
+        The HTML attributes for this object.
 
         :rtype:   string
         :returns: HTML attributes
@@ -562,13 +561,8 @@ class Html(list):
         return attr[1] if len(attr) > 1 else ""
 
     #
-    def __setattr(self, value):
-        """
-        Sets new HTML attributes for this object
-
-        :type  name: string
-        :param name: new HTML attributes
-        """
+    @attr.setter
+    def attr(self, value):
         beg = len(self.tag) + 1
 
         # See if self-closed or normal
@@ -577,10 +571,8 @@ class Html(list):
         self[0] = self[0][:beg] + " " + value + self[0][end:]
 
     #
-    def __delattr(self):
-        """
-        Removes HTML attributes for this object
-        """
+    @attr.deleter
+    def attr(self):
         self[0] = (
             "<"
             + self.tag
@@ -590,12 +582,10 @@ class Html(list):
         )
 
     #
-    attr = property(__getattr, __setattr, __delattr)
-
-    #
-    def __getinside(self):
+    @property
+    def inside(self):
         """
-        Returns list of items between opening and closing tags
+        The list of items between opening and closing tags.
 
         :rtype:   list
         :returns: list of items between opening and closing HTML tags
@@ -603,13 +593,8 @@ class Html(list):
         return self[1:-1]
 
     #
-    def __setinside(self, value):
-        """
-        Sets new contents between opening and closing tags
-
-        :type  name: list
-        :param name: new HTML contents
-        """
+    @inside.setter
+    def inside(self, value):
         if len(self) < 2:
             raise AttributeError("No closing tag. Cannot set inside value")
         if (
@@ -621,14 +606,10 @@ class Html(list):
         self[1:-1] = value
 
     #
-    def __delinside(self):
-        """
-        Removes contents between opening and closing tag
-        """
+    @inside.deleter
+    def inside(self):
         if len(self) > 2:
             self[:] = self[:1] + self[-1:]
-
-    inside = property(__getinside, __setinside, __delinside)
 
     #
     def __enter__(self):

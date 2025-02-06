@@ -309,7 +309,7 @@ class StyleEditor(ManagedWindow):
         for widget_name in ("color", "bgcolor", "line_color", "fill_color"):
             color = self.top.get_object(widget_name)
             label = self.top.get_object(widget_name + "_code")
-            color.connect("notify::color", self.color_changed, label)
+            color.connect("notify::rgba", self.rgba_changed, label)
 
         self.top.get_object("style_name").set_text(name)
 
@@ -395,10 +395,10 @@ class StyleEditor(ManagedWindow):
         self.top.get_object("line_style").set_active(g.get_line_style())
         self.top.get_object("line_width").set_value(g.get_line_width())
 
-        self.line_color = rgb2color(g.get_color())
-        self.top.get_object("line_color").set_color(self.line_color)
-        self.fill_color = rgb2color(g.get_fill_color())
-        self.top.get_object("fill_color").set_color(self.fill_color)
+        line_color = tuple2rgba(g.get_color())
+        self.top.get_object("line_color").set_rgba(line_color)
+        fill_color = tuple2rgba(g.get_fill_color())
+        self.top.get_object("fill_color").set_rgba(fill_color)
 
         self.top.get_object("shadow").set_active(g.get_shadow())
         self.top.get_object("shadow_space").set_value(g.get_shadow_space())
@@ -497,17 +497,17 @@ class StyleEditor(ManagedWindow):
         self.top.get_object("rborder").set_active(p.get_right_border())
         self.top.get_object("bborder").set_active(p.get_bottom_border())
 
-        color = rgb2color(font.get_color())
-        self.top.get_object("color").set_color(color)
-        bg_color = rgb2color(p.get_background_color())
-        self.top.get_object("bgcolor").set_color(bg_color)
+        color = tuple2rgba(font.get_color())
+        self.top.get_object("color").set_rgba(color)
+        bg_color = tuple2rgba(p.get_background_color())
+        self.top.get_object("bgcolor").set_rgba(bg_color)
 
-    def color_changed(self, color, name, label):
+    def rgba_changed(self, color, name, label):
         """
         Called to set the color code when a color is changed.
         """
-        rgb = color2rgb(color.get_color())
-        label.set_text("#%02X%02X%02X" % color2rgb(color.get_color()))
+        rgb = rgba2tuple(color.get_rgba())
+        label.set_text("#%02X%02X%02X" % rgb)
 
     def save(self):
         """
@@ -529,10 +529,10 @@ class StyleEditor(ManagedWindow):
         g = self.current_style
         g.set_line_style(self.top.get_object("line_style").get_active())
         g.set_line_width(self.top.get_object("line_width").get_value())
-        line_color = self.top.get_object("line_color").get_color()
-        g.set_color(color2rgb(line_color))
-        fill_color = self.top.get_object("fill_color").get_color()
-        g.set_fill_color(color2rgb(fill_color))
+        line_color = self.top.get_object("line_color").get_rgba()
+        g.set_color(rgba2tuple(line_color))
+        fill_color = self.top.get_object("fill_color").get_rgba()
+        g.set_fill_color(rgba2tuple(fill_color))
         shadow = self.top.get_object("shadow").get_active()
         shadow_space = self.top.get_object("shadow_space").get_value()
         g.set_shadow(shadow, shadow_space)
@@ -599,10 +599,10 @@ class StyleEditor(ManagedWindow):
         p.set_right_border(self.top.get_object("rborder").get_active())
         p.set_bottom_border(self.top.get_object("bborder").get_active())
 
-        color = self.top.get_object("color").get_color()
-        font.set_color(color2rgb(color))
-        bg_color = self.top.get_object("bgcolor").get_color()
-        p.set_background_color(color2rgb(bg_color))
+        color = self.top.get_object("color").get_rgba()
+        font.set_color(rgba2tuple(color))
+        bg_color = self.top.get_object("bgcolor").get_rgba()
+        p.set_background_color(rgba2tuple(bg_color))
 
         self.style.add_paragraph_style(self.current_name, self.current_style)
 
@@ -635,18 +635,22 @@ class StyleEditor(ManagedWindow):
         self.draw()
 
 
-def rgb2color(rgb):
+def tuple2rgba(rgb):
     """
-    Convert a tuple containing RGB values into a Gdk Color.
+    Convert a tuple containing 8-bit RGB values into a Gdk.RGBA.
     """
-    return Gdk.Color(rgb[0] << 8, rgb[1] << 8, rgb[2] << 8)
+    rgba = Gdk.RGBA()
+    rgba.red = rgb[0] / 0xFF
+    rgba.green = rgb[1] / 0xFF
+    rgba.blue = rgb[2] / 0xFF
+    return rgba
 
 
-def color2rgb(color):
+def rgba2tuple(rgba):
     """
-    Convert a Gdk Color into a tuple containing RGB values.
+    Convert a Gdk.RGBA into a tuple containing 8-bit RGB values.
     """
-    return (color.red >> 8, color.green >> 8, color.blue >> 8)
+    return (int(rgba.red * 0xFF), int(rgba.green * 0xFF), int(rgba.blue * 0xFF))
 
 
 def dummy_callback(obj):

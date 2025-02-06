@@ -92,11 +92,20 @@ except:
 try:
     import sqlite3
 
-    sqlite3_py_version_str = sqlite3.version
     sqlite3_version_str = sqlite3.sqlite_version
 except:
-    sqlite3_py_version_str = "not found"
     sqlite3_version_str = "not found"
+
+try:
+    import orjson
+
+    try:
+        orjson_str = orjson.__version__
+    except:  # any failure to 'get' the version
+        orjson_str = "unknown version"
+
+except ImportError:
+    orjson_str = "not found"
 
 
 # -------------------------------------------------------------------------
@@ -154,11 +163,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         if hasattr(os, "uname"):
             distro = "\n" + _("Distribution: %s") % ellipses(os.uname()[2])
 
-        sqlite = (
-            "sqlite"
-            + COLON
-            + " %s (%s)\n" % (sqlite3_version_str, sqlite3_py_version_str)
-        )
+        sqlite = f"sqlite{COLON} {sqlite3_version_str}\n"
 
         return (
             "\n\n"
@@ -172,6 +177,9 @@ class GrampsAboutDialog(Gtk.AboutDialog):
             + COLON
             + " %s \n"
             + sqlite
+            + "orjson"
+            + COLON
+            + " %s\n"
             + "LANG"
             + COLON
             + " %s\n"
@@ -181,6 +189,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
             ellipses(str(VERSION)),
             ellipses(platform.python_version()),
             BSDDB_STR,
+            orjson_str,
             ellipses(get_env_var("LANG", "")),
             ellipses(platform.system()),
         )

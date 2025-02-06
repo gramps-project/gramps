@@ -41,6 +41,15 @@ from ....utils.location import get_locations
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Place
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasPlace
 #
 # -------------------------------------------------------------------------
@@ -73,11 +82,11 @@ class HasPlace(Rule):
         PlaceType.PARISH: 8,
     }
 
-    def apply(self, db, place):
-        if not self.match_substring(0, place.get_title()):
+    def apply_to_one(self, db: Database, place: Place) -> bool:
+        if not self.match_substring(0, place.title):
             return False
 
-        if not self.match_substring(7, place.get_code()):
+        if not self.match_substring(7, place.code):
             return False
 
         # If no location data was given then we're done: match

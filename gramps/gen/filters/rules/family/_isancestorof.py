@@ -31,6 +31,16 @@ Rule that checks for a family that is an ancestor of a specified family.
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Family
+from ....db import Database
+
+
 _ = glocale.translation.gettext
 
 
@@ -49,33 +59,37 @@ class IsAncestorOf(Rule):
     category = _("General filters")
     description = _("Matches ancestor families of the specified family")
 
-    def prepare(self, db, user):
-        self.map = set()
+    def prepare(self, db: Database, user):
+        self.selected_handles: Set[str] = set()
         first = False if int(self.list[1]) else True
         root_family = db.get_family_from_gramps_id(self.list[0])
         self.init_list(db, root_family, first)
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()
 
-    def apply(self, db, family):
-        return family.handle in self.map
+    def apply_to_one(self, db: Database, family: Family) -> bool:
+        return family.handle in self.selected_handles
 
-    def init_list(self, db, family, first):
+    def init_list(self, db: Database, family: Family, first: bool):
         """
         Initialise family handle list.
         """
         if not family:
             return
-        if family.handle in self.map:
+        if family.handle in self.selected_handles:
             return
         if not first:
-            self.map.add(family.handle)
+            self.selected_handles.add(family.handle)
 
-        for parent_handle in [family.get_father_handle(), family.get_mother_handle()]:
+        for parent_handle in [family.father_handle, family.mother_handle]:
             if parent_handle:
                 parent = db.get_person_from_handle(parent_handle)
-                family_handle = parent.get_main_parents_family_handle()
+                family_handle = (
+                    parent.parent_family_list[0]
+                    if len(parent.parent_family_list) > 0
+                    else None
+                )
                 if family_handle:
                     parent_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, parent_family, 0)
+                    self.init_list(db, parent_family, False)

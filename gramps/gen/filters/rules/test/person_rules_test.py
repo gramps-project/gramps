@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2016 Tom Samstag
+# Copyright (C) 2025 Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,6 +26,7 @@ import unittest
 import os
 from time import perf_counter
 import inspect
+from contextlib import contextmanager
 
 from ....filters import reload_custom_filters
 
@@ -100,6 +102,37 @@ from ..person import (
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
+
+
+@contextmanager
+def count_method_calls(cls, method_name):
+    """
+    Context manager to monkey-patch a method and count its calls.
+
+    Args:
+        cls: The class containing the method.
+        method_name: The name of the method to patch.
+
+    Yields:
+        A callable that returns the call count.
+    """
+    original_method = getattr(cls, method_name)
+    call_count = 0
+
+    def patched_method(self, *args, **kwargs):
+        nonlocal call_count
+        call_count += 1
+        return original_method(self, *args, **kwargs)
+
+    setattr(cls, method_name, patched_method)
+
+    def get_call_count():
+        return call_count
+
+    try:
+        yield get_call_count
+    finally:
+        setattr(cls, method_name, original_method)
 
 
 class BaseTest(unittest.TestCase):
@@ -393,7 +426,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = ProbablyAlive(["1900"])
         res = self.filter_with_rule(rule)
-        self.assertEqual(len(res), 733)
+        self.assertEqual(len(res), 897)
 
     def test_RegExpName(self):
         """
@@ -1088,6 +1121,34 @@ class BaseTest(unittest.TestCase):
                 ]
             ),
         )
+
+    def test_isdefaultperson_optimized(self):
+        """
+        Test IsDefaultPerson rule.
+        """
+        with count_method_calls(IsDefaultPerson, "apply_to_one") as get_call_count:
+            rule = IsDefaultPerson([])
+            self.assertEqual(
+                self.filter_with_rule(rule),
+                set(
+                    [
+                        "GNUJQCL9MD64AM56OH",
+                    ]
+                ),
+            )
+            # This used the optimizer, so it didn't loop through DB
+            self.assertEqual(get_call_count(), 1)
+
+    def test_isfemale_not_optimized(self):
+        """
+        Test IsFemale rule. Same as below, but tests optimizer.
+        """
+        with count_method_calls(IsFemale, "apply_to_one") as get_call_count:
+            rule = IsFemale([])
+            # too many to list out to test explicitly
+            self.assertEqual(len(self.filter_with_rule(rule)), 940)
+            # This did not use the optimizer, so it did loop through DB
+            self.assertEqual(get_call_count(), self.db.get_number_of_people())
 
     def test_isfemale(self):
         """

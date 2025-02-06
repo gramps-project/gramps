@@ -26,6 +26,15 @@
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Source
+from ....db import Database
+
+
 _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
@@ -51,8 +60,8 @@ class HasRepositoryCallNumberRef(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, obj):
-        for repo_ref in obj.get_reporef_list():
+    def apply_to_one(self, db: Database, obj: Source) -> bool:
+        for repo_ref in obj.reporef_list:
             if self.match_substring(0, repo_ref.call_number):
                 return True
         return False

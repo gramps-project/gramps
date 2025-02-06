@@ -761,7 +761,7 @@ class RelationshipView(NavigationView):
         else:
             birth_title = self.bth
 
-        subgrid.attach(widgets.BasicLabel(_("%s") % birth_title), 1, 1, 1, 1)
+        subgrid.attach(widgets.BasicLabel(birth_title), 1, 1, 1, 1)
         birthwidget = widgets.BasicLabel(self.format_event(birth))
         birthwidget.set_selectable(True)
         subgrid.attach(birthwidget, 2, 1, 1, 1)
@@ -787,9 +787,7 @@ class RelationshipView(NavigationView):
                         age = (death_date - birth_date).format(
                             precision=self.age_precision
                         )
-                        subgrid.attach(
-                            widgets.BasicLabel(_("%s") % death_title), 1, 2, 1, 1
-                        )
+                        subgrid.attach(widgets.BasicLabel(death_title), 1, 2, 1, 1)
                         deathwidget = widgets.BasicLabel(
                             "%s (%s)" % (self.format_event(death), age),
                             Pango.EllipsizeMode.END,
@@ -811,9 +809,7 @@ class RelationshipView(NavigationView):
                             1,
                         )
                     else:
-                        subgrid.attach(
-                            widgets.BasicLabel(_("%s") % self.dth), 1, 2, 1, 1
-                        )
+                        subgrid.attach(widgets.BasicLabel(self.dth), 1, 2, 1, 1)
                         subgrid.attach(
                             widgets.BasicLabel(
                                 "%s (%s)" % (_("unknown"), age), Pango.EllipsizeMode.END
@@ -826,7 +822,7 @@ class RelationshipView(NavigationView):
                     showed_death = True
 
         if not showed_death:
-            subgrid.attach(widgets.BasicLabel(_("%s") % death_title), 1, 2, 1, 1)
+            subgrid.attach(widgets.BasicLabel(death_title), 1, 2, 1, 1)
             deathwidget = widgets.BasicLabel(self.format_event(death))
             deathwidget.set_selectable(True)
             subgrid.attach(deathwidget, 2, 2, 1, 1)

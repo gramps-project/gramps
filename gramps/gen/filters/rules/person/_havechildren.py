@@ -38,6 +38,15 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # "People with children"
 #
 # -------------------------------------------------------------------------
@@ -48,9 +57,9 @@ class HaveChildren(Rule):
     description = _("Matches people who have children")
     category = _("Family filters")
 
-    def apply(self, db, person):
-        for family_handle in person.get_family_handle_list():
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        for family_handle in person.family_list:
             family = db.get_family_from_handle(family_handle)
-            if family is not None and family.get_child_ref_list():
+            if family is not None and family.child_ref_list:
                 return True
         return False

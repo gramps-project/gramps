@@ -38,6 +38,16 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsBookmarked
 #
 # -------------------------------------------------------------------------
@@ -48,8 +58,8 @@ class IsBookmarked(Rule):
     category = _("General filters")
     description = _("Matches the people on the bookmark list")
 
-    def prepare(self, db, user):
-        self.bookmarks = db.get_bookmarks().get()
+    def prepare(self, db: Database, user):
+        self.selected_handles: Set[str] = set(list(db.get_bookmarks().get()))
 
-    def apply(self, db, person):
-        return person.handle in self.bookmarks
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles

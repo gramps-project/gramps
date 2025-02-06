@@ -38,6 +38,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Note
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 # Notes that contain a substring or match a regular expression
 # -------------------------------------------------------------------------
 class MatchesRegexpOf(Rule):
@@ -49,8 +58,6 @@ class MatchesRegexpOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, note):
+    def apply_to_one(self, db: Database, note: Note) -> bool:
         """Apply the filter"""
-        if self.match_substring(0, note.get()):
-            return True
-        return False
+        return self.match_substring(0, str(note.text))

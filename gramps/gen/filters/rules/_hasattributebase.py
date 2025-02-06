@@ -37,6 +37,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.attrbase import AttributeBase
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasAttributeBase
 #
 # -------------------------------------------------------------------------
@@ -55,7 +64,7 @@ class HasAttributeBase(Rule):
         super().__init__(arg, use_regex, use_case)
         self.attribute_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things that should only be done once.
         """
@@ -63,14 +72,14 @@ class HasAttributeBase(Rule):
             self.attribute_type = AttributeType()
             self.attribute_type.set_from_xml_str(self.list[0])
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: AttributeBase) -> bool:
         """
         Apply the rule. Return True if a match.
         """
         if self.attribute_type:
-            for attribute in obj.get_attribute_list():
-                name_match = attribute.get_type() == self.attribute_type
+            for attribute in obj.attribute_list:
+                name_match = attribute.type == self.attribute_type
                 if name_match:
-                    if self.match_substring(1, attribute.get_value()):
+                    if self.match_substring(1, attribute.value):
                         return True
         return False

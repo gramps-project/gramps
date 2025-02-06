@@ -28,7 +28,7 @@ Provide a python evaluation window
 # standard python modules
 #
 # ------------------------------------------------------------------------
-import sys
+import contextlib
 from io import StringIO
 import traceback
 
@@ -110,20 +110,15 @@ class PythonEvaluation(Gramplet):
             )
         )
 
-        oldout = sys.stdout
-        olderr = sys.stderr
         outtext = StringIO()
         errtext = StringIO()
-        sys.stdout = outtext
-        sys.stderr = errtext
-        try:
-            exec(text)
-        except:
-            traceback.print_exc()
+        with contextlib.redirect_stdout(outtext), contextlib.redirect_stderr(errtext):
+            try:
+                exec(text)
+            except:
+                traceback.print_exc()
         self.dbuf.set_text(outtext.getvalue())
         self.error.set_text(errtext.getvalue())
-        sys.stdout = oldout
-        sys.stderr = olderr
 
     def clear_clicked(self, obj):
         self.dbuf.set_text("")
