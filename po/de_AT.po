@@ -31,10 +31,10 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-04 15:17+0000\n"
-"PO-Revision-Date: 2025-02-03 03:44+0000\n"
+"PO-Revision-Date: 2025-02-06 16:19+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1598,7 +1598,7 @@ msgstr ""
 "f gramps -i Datei4.wft -f wft -a check\n"
 "\n"
 "3. Zum Aufzeichnen der Datenbank, die aus allen Importen resultiert, "
-"verwende das Kennzeichen -e\n"
+"verwende die Option -e\n"
 "(verwende -f , wenn Gramps das Dateiformat nicht durch den Dateinamen "
 "erkennen kann):\n"
 "gramps -i Datei1.ged -i Datei2.gpkg -e ~/new-package -f gramps-pkg\n"
@@ -1615,8 +1615,8 @@ msgstr ""
 "6. Eine Datenbank öffnen und anhand ihrer Daten einen Zeitleistenbericht im "
 "PDF-Format erstellen\n"
 "und die Ausgabe in meine_zeitleiste.pdf exportieren:\n"
-"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,"
-"of=meine_zeitleiste.pdf\n"
+"gramps -O 'Stammbaum 1' -a report -p "
+"name=timeline,off=pdf,of=meine_zeitleiste.pdf\n"
 "\n"
 "7. Um eine Zusammenfassung der Datenbank zu erstellen, verwende:\n"
 "gramps -O 'Stammbaum 1' -a report -p name=summary\n"
@@ -1624,18 +1624,18 @@ msgstr ""
 "8. Berichtsoptionen auflisten\n"
 "Verwende name=timeline,show=all um alle Optionen für den Zeitlinienbericht "
 "zu erhalten.\n"
-"Um Details zu einer bestimmten Option zu erhalten, verwende "
-"show=Optionsname , z.B.. name=timeline,show=off string.\n"
+"Um Details zu einer bestimmten Option zu erhalten, verwende show=Optionsname "
+", z.B.. name=timeline,show=off string.\n"
 "Um die verfügbaren Berichtsnamen zu sehen, verwende name=show string.\n"
 "\n"
-"9. Um einen Stammbaum schnell in eine Gramps XML-Datei umzuwandeln, "
-"verwende:\n"
+"9. Um einen Stammbaum schnell in eine Gramps XML-Datei umzuwandeln, verwende:"
+"\n"
 "gramps -O 'Stammbaum 1' -e Ausgabe.gramps -f gramps\n"
 "\n"
-"10. Um einen Webauftritt in einer anderen Sprache zu erstellen (z.B. in "
-"österreichischem Deutsch), verwende:\n"
+"10. Um einen Webauftritt in einer anderen Sprache (in österreichischem "
+"Deutsch) zu erstellen, verwende:\n"
 "LANGUAGE=de_AT; LANG=de_AT.UTF-8 gramps -O 'Stammbaum 1' -a report -p "
-"name=navwebpage,target=/../de\n"
+"name=navwebpage,target=/../de_AT\n"
 "\n"
 "11. Um abschließend eine normale interaktive Sitzung zu starten, gib "
 "Folgendes ein:\n"
@@ -3381,7 +3381,7 @@ msgstr "Anzahl der Notizen"
 
 #: ../gramps/gen/db/generic.py:2676
 msgid "Number of tags"
-msgstr "Anzahl der Markierungen"
+msgstr "Anzahl an Kennzeichen"
 
 #: ../gramps/gen/db/generic.py:2677
 msgid "Schema version"
@@ -3676,10 +3676,8 @@ msgid "Filter"
 msgstr "Filter"
 
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "Lese Daten…"
+msgstr "Vorbereiten ..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -4273,11 +4271,11 @@ msgstr "Markierung:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Citations with the <tag>"
-msgstr "Fundstellen mit der <Markierung>"
+msgstr "Fundstellen mit dem <Kennzeichen>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:53
 msgid "Matches citations with the particular tag"
-msgstr "Entspricht Fundstellen mit der angegebenen Markierung"
+msgstr "Entspricht Fundstellen mit bestimmtem Kennzeichen"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
 msgid "Citations matching the <filter>"
@@ -4452,7 +4450,7 @@ msgstr "Wochentag:"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:50
 msgid "Events occurring on a particular day of the week"
-msgstr "An einem bestimmten Wochentag stattfindende Ereignisse"
+msgstr "Ereignisse, die an einem bestimmten Wochentag stattfanden"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:51
 msgid "Matches events occurring on a particular day of the week"
@@ -4543,11 +4541,11 @@ msgstr "Entspricht Ereignissen mit einer bestimmten Anzahl verknüpfter Quellen"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Events with the <tag>"
-msgstr "Ereignisse mit der <Markierung>"
+msgstr "Ereignisse mit dem <Kennzeichen>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:53
 msgid "Matches events with the particular tag"
-msgstr "Entspricht Ereignissen mit einer bestimmten Markierung"
+msgstr "Entspricht Ereignissen mit einem bestimmten Kennzeichen"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:57
 msgid "Events with the particular type"
@@ -4868,11 +4866,11 @@ msgstr "Entspricht Familien, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:52
 msgid "Families with the <tag>"
-msgstr "Familien mit der <Markierung>"
+msgstr "Familien mit dem <Kennzeichen>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:53
 msgid "Matches families with the particular tag"
-msgstr "Liefert Familien mit bestimmter Markierung"
+msgstr "Entspricht Familien mit bestimmtem Kennzeichen"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:56
 msgid "Families with twins"
@@ -5153,11 +5151,11 @@ msgstr "Entspricht Medien, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:52
 msgid "Media objects with the <tag>"
-msgstr "Medienobjekte mit der <Markierung>"
+msgstr "Medienobjekte mit dem <Kennzeichen>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:53
 msgid "Matches media objects with the particular tag"
-msgstr "Entspricht Medienobjekten mit einer bestimmten Markierung"
+msgstr "Entspricht Medienobjekten mit einem bestimmten Kennzeichen"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
@@ -5241,11 +5239,11 @@ msgstr "Entspricht Notizen mit einer bestimmten Anzahl an Referenzen"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:52
 msgid "Notes with the <tag>"
-msgstr "Notizen mit der <Markierung>"
+msgstr "Notizen mit dem <Kennzeichen>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
-msgstr "Entspricht Notizen mit bestimmter Markierung"
+msgstr "Entspricht Notizen mit bestimmtem Kennzeichen"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:57
 msgid "Notes with the particular type"
@@ -5762,11 +5760,11 @@ msgstr "Entspricht Personen, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "People with the <tag>"
-msgstr "Personen mit der <Markierung>"
+msgstr "Personen mit dem <Kennzeichen>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:53
 msgid "Matches people with the particular tag"
-msgstr "Entspricht Personen mit einer bestimmten Markierung"
+msgstr "Entspricht Personen mit bestimmtem Kennzeichen"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:66
 #: ../gramps/gui/editors/filtereditor.py:609
@@ -6423,11 +6421,11 @@ msgstr "Entspricht Orten, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:52
 msgid "Places with the <tag>"
-msgstr "Orte mit der <Markierung>"
+msgstr "Orte mit dem <Kennzeichen>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:53
 msgid "Matches places with the particular tag"
-msgstr "Entspricht Orten mit der bestimmten Markierung"
+msgstr "Entspricht Orten mit bestimmtem Kennzeichen"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:60
 msgid "Places matching a title"
@@ -6651,11 +6649,11 @@ msgstr "Entspricht Aufbewahrungsorten mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Repositories with the <tag>"
-msgstr "Aufbewahrungsorte mit der <Markierung>"
+msgstr "Aufbewahrungsorte mit dem <Kennzeichen>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:53
 msgid "Matches repositories with the particular tag"
-msgstr "Entspricht Aufbewahrungsorten mit einer bestimmten Markierung"
+msgstr "Entspricht Aufbewahrungsorten mit bestimmtem Kennzeichen"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
@@ -6814,11 +6812,11 @@ msgstr "Entspricht Quellen mit gegebenen Parametern"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
-msgstr "Quellen mit der <Markierung>"
+msgstr "Quellen mit dem <Kennzeichen>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:53
 msgid "Matches sources with the particular tag"
-msgstr "Entspricht Quellen mit bestimmter Markierung"
+msgstr "Entspricht Quellen mit bestimmtem Kennzeichen"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
@@ -9073,11 +9071,11 @@ msgstr "Namensänderungen"
 
 #: ../gramps/gen/lib/person.py:206
 msgid "Death reference index"
-msgstr "Tod Referenzindex"
+msgstr "Sterbereferenzregister"
 
 #: ../gramps/gen/lib/person.py:210
 msgid "Birth reference index"
-msgstr "Geburt Referenzindex"
+msgstr "Geburtenreferenzregister"
 
 #: ../gramps/gen/lib/person.py:215
 msgid "Event references"
@@ -10694,7 +10692,7 @@ msgstr "Einfügen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
 msgid "Whether to include tags"
-msgstr "Ob Markierungen eingefügt werden"
+msgstr "Ob Kennzeichen eingefügt werden sollen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:397
 msgid "Share an existing line"
@@ -11940,21 +11938,12 @@ msgstr ""
 "Gramps wird nun beendet."
 
 #: ../gramps/grampsapp.py:227
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "You don't have the python3 bsddb3 package installed. This package is "
-#| "needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
 msgid ""
 "The orjson package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"\n"
-"Du hast das Python3 Bsddb3 Paket nicht installiert. Dieses Paket wird "
-"benötigt, um Gramps zu starten.\n"
+"Das orjson-Paket wird benötigt, um Gramps zu starten.\n"
 "\n"
 "Gramps wird nun beendet."
 
@@ -12922,7 +12911,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2155
 msgid "Markup for invalid date format"
-msgstr "Kennzeichen für ungültiges Datumsformat"
+msgstr "Auszeichnung für ungültiges Datumsformat"
 
 #: ../gramps/gui/configure.py:2161
 #, python-format
@@ -12941,7 +12930,7 @@ msgid ""
 "For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "will display <u><b>Underlined bold date</b></u>.\n"
 msgstr ""
-"Beliebte Hervorhebungen sind:\n"
+"Beliebte Auszeichnungen sind:\n"
 "<b>&lt;b&gt;Fett&lt;/b&gt;</b>\n"
 "<big>&lt;big&gt;Macht Schrift relativ größer&lt;/big&gt;</big>\n"
 "<i>&lt;i&gt;Kursiv&lt;/i&gt;</i>\n"
@@ -13069,16 +13058,16 @@ msgstr "Eintragsmarkierungen"
 
 #: ../gramps/gui/configure.py:2416
 msgid "Add tag on import"
-msgstr "Markierung beim Import hinzufügen"
+msgstr "Kennzeichen beim Import hinzufügen"
 
 #: ../gramps/gui/configure.py:2423
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Die angegebene Markierung wird beim Importieren allen Einträgen "
-"hinzugefügt.\n"
-"Leeren um Standardwert zu setzen."
+"Das angegebene Kennzeichen wird beim Importieren allen Einträgen hinzugefügt."
+"\n"
+"Löschen um Standardwert zu setzen."
 
 #: ../gramps/gui/configure.py:2432
 msgid ""
@@ -17081,7 +17070,7 @@ msgstr "_Markierung:"
 #: ../gramps/gui/glade/editfamily.glade:778
 #: ../gramps/gui/widgets/monitoredwidgets.py:864
 msgid "Edit the tag list"
-msgstr "Liste der Markierungen bearbeiten"
+msgstr "Kennzeichenliste bearbeiten"
 
 #: ../gramps/gui/glade/editldsord.glade:177
 msgid "Ordinance:"
@@ -17555,7 +17544,7 @@ msgstr "G_eschlecht:"
 
 #: ../gramps/gui/glade/editperson.glade:628
 msgid "A unique ID for the person."
-msgstr "Ein eindeutiges Kennzeichen für die Person."
+msgstr "Eine eindeutige ID für die Person."
 
 #: ../gramps/gui/glade/editpersonref.glade:94
 msgid "_Person:"
@@ -18038,7 +18027,7 @@ msgid ""
 "families will be combined."
 msgstr ""
 "Ereignisse, HLT-_Ord, Medienobjekte, Attribute, Notizen, Quellen und "
-"Markierungen von beiden Familien werden kombiniert."
+"Kennzeichen von beiden Familien werden kombiniert."
 
 #: ../gramps/gui/glade/mergemedia.glade:94
 msgid ""
@@ -18059,7 +18048,7 @@ msgstr "Objekt 2"
 #: ../gramps/gui/glade/mergemedia.glade:443
 msgid "Attributes, sources, notes and tags of both objects will be combined."
 msgstr ""
-"Attribute, Quellen, Notizen und Markierungen von beiden Objekte werden "
+"Attribute, Quellen, Notizen und Kennzeichen von beiden Objekte werden "
 "kombiniert."
 
 #: ../gramps/gui/glade/mergenote.glade:94
@@ -18112,7 +18101,7 @@ msgid ""
 "of both persons will be combined."
 msgstr ""
 "Ereignisse, Medienobjekte, Adressen, Attribute, URLs, Notizen, Quellen und "
-"Markierungen von beiden Personen werden kombiniert."
+"Kennzeichen von beiden Personen werden kombiniert."
 
 #: ../gramps/gui/glade/mergeperson.glade:490
 msgid "Context Information"
@@ -21134,12 +21123,12 @@ msgstr "Neue_Markierung_Dialog"
 #: ../gramps/gui/views/tags.py:257
 #, python-format
 msgid "Add tag '%s'"
-msgstr "Markierung '%s' hinzufügen"
+msgstr "Kennzeichen '%s' hinzufügen"
 
 #: ../gramps/gui/views/tags.py:265
 #, python-format
 msgid "Remove tag '%s'"
-msgstr "Markierung '%s' entfernen"
+msgstr "Kennzeichen '%s' entfernen"
 
 #: ../gramps/gui/views/tags.py:328
 msgid "Adding Tags"
@@ -21166,14 +21155,14 @@ msgstr "Ändere die Priorität der Markierung"
 #: ../gramps/gui/views/tags.py:565
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Markierung '%s' entfernen?"
+msgstr "Kennzeichen '%s' entfernen?"
 
 #: ../gramps/gui/views/tags.py:567
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"Die Markierungsdefinition wird entfernt. Die Markierung wird auch aus allen "
+"Die Kennzeichendefinition wird entfernt. Das Kennzeichen wird auch aus allen "
 "Objekten in der Datenbank entfernt."
 
 #: ../gramps/gui/views/tags.py:606
@@ -21192,11 +21181,11 @@ msgstr "Neue Markierung"
 
 #: ../gramps/gui/views/tags.py:684
 msgid "Cannot save tag"
-msgstr "Kann Markierung nicht speichern"
+msgstr "Kann Kennzeichen nicht speichern"
 
 #: ../gramps/gui/views/tags.py:685
 msgid "The tag name cannot be empty"
-msgstr "Der Name der Markierung darf nicht leer sein"
+msgstr "Der Name des Kennzeichens darf nicht leer sein"
 
 #: ../gramps/gui/views/tags.py:691
 #, python-format
@@ -21436,7 +21425,7 @@ msgstr "Hintergrundfarbe"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Clear Markup"
-msgstr "Markierungen löschen"
+msgstr "Auszeichnung löschen"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Font Color"
@@ -21894,19 +21883,19 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:877
 msgid "Show Index"
-msgstr "Index zeigen"
+msgstr "Register anzeigen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:878
 msgid "Display index of each person"
-msgstr "Index für jede Person anzeigen"
+msgstr "Register für jede Person anzeigen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:882
 msgid "Start Index"
-msgstr "Startindex"
+msgstr "Registeranfang"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:883
 msgid "The start index"
-msgstr "Der Startindex"
+msgstr "Der Registeranfang"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:899
 #: ../gramps/plugins/drawreport/descendtree.py:1631
@@ -22399,7 +22388,7 @@ msgstr "Land für Feiertage"
 #: ../gramps/plugins/drawreport/calendarreport.py:661
 #: ../gramps/plugins/textreport/birthdayreport.py:631
 msgid "Select the country to see associated holidays"
-msgstr "Wähle ein Land aus um dessen Feiertage zu sehen"
+msgstr "Wähle ein Land aus, um dessen Feiertage zu sehen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:664
 #: ../gramps/plugins/webreport/narrativeweb.py:3146
@@ -24222,7 +24211,7 @@ msgstr "Wohnort der Person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:522
 msgid "Gramplet showing residence events for a person"
-msgstr "Gramplet zum Anzeigen von Wohnortsereignissen für eine Person"
+msgstr "Gramplet zum Anzeigen von Wohnortsereignissen einer Person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:537
 msgid "Person Events"
@@ -26297,7 +26286,7 @@ msgstr "Spitz_name"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
-msgstr "Markierung"
+msgstr "Kennzeichen"
 
 #: ../gramps/plugins/importer/importcsv.py:231
 msgid "title"
@@ -26434,35 +26423,35 @@ msgstr "Beruf Quelle"
 
 #: ../gramps/plugins/importer/importcsv.py:331
 msgid "residence date"
-msgstr "Wohnort Datum"
+msgstr "Datum des Wohnorts"
 
 #: ../gramps/plugins/importer/importcsv.py:331
 msgid "residencedate"
-msgstr "wohnortdatum"
+msgstr "Wohnortdatum"
 
 #: ../gramps/plugins/importer/importcsv.py:334
 msgid "residenceplace"
-msgstr "wohnortort"
+msgstr "Wohnortort"
 
 #: ../gramps/plugins/importer/importcsv.py:335
 msgid "residence place"
-msgstr "Wohnort Ort"
+msgstr "Wohnort"
 
 #: ../gramps/plugins/importer/importcsv.py:339
 msgid "residenceplace_id"
-msgstr "wohnortort_id"
+msgstr "Wohnortort_ID"
 
 #: ../gramps/plugins/importer/importcsv.py:340
 msgid "residence place id"
-msgstr "Wohnort Ort ID"
+msgstr "Wohnort-ID"
 
 #: ../gramps/plugins/importer/importcsv.py:344
 msgid "residencesource"
-msgstr "wohnortquelle"
+msgstr "Wohnortquelle"
 
 #: ../gramps/plugins/importer/importcsv.py:345
 msgid "residence source"
-msgstr "Wohnort Quelle"
+msgstr "Wohnortquelle"
 
 #: ../gramps/plugins/importer/importcsv.py:347
 msgid "attribute type"
@@ -26945,7 +26934,7 @@ msgid ""
 "all object tags."
 msgstr ""
 "Aktiviere/Deaktiviere\n"
-"alle Objekt-Markierungen."
+"alle Objektkennzeichen."
 
 #: ../gramps/plugins/importer/importprogen.glade:1135
 msgid "Tag Text"
@@ -27645,7 +27634,7 @@ msgstr "GEDCOM Daten"
 
 #: ../gramps/plugins/lib/libgedcom.py:3987
 msgid "Unknown tag"
-msgstr "Unbekannte Markierung"
+msgstr "Unbekanntes Kennzeichen"
 
 #: ../gramps/plugins/lib/libgedcom.py:3989
 #: ../gramps/plugins/lib/libgedcom.py:4003
@@ -33174,11 +33163,11 @@ msgstr "Erweiterung"
 #: ../gramps/plugins/textreport/alphabeticalindex.py:74
 #: ../gramps/plugins/textreport/textplugins.gpr.py:413
 msgid "Alphabetical Index"
-msgstr "Alphabetischer Index"
+msgstr "Alphabetisches Register"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:78
 msgid "Index"
-msgstr "Index"
+msgstr "Register"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:98
 #: ../gramps/plugins/textreport/tableofcontents.py:97
@@ -34158,7 +34147,7 @@ msgstr "Markierungen einfügen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1182
 msgid "Whether to include tags."
-msgstr "Ob Markierungen eingefügt werden."
+msgstr "Ob Kennzeichen eingefügt werden."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1185
 msgid "Include Attributes"
@@ -34588,7 +34577,7 @@ msgstr "Markierungen-Bericht"
 #: ../gramps/plugins/textreport/tagreport.py:115
 msgid "You must first create a tag before running this report."
 msgstr ""
-"Du musst eine Markierung erstellen, bevor du diesen Bericht ausführen kannst."
+"Du musst ein Kennzeichen erstellen, bevor du diesen Bericht ausführen kannst."
 
 #: ../gramps/plugins/textreport/tagreport.py:125
 #, python-format
@@ -34606,7 +34595,7 @@ msgstr "Publikationsdaten"
 
 #: ../gramps/plugins/textreport/tagreport.py:927
 msgid "The tag to use for the report"
-msgstr "Markierung, die für den Bericht verwendet wird"
+msgstr "Kennzeichen, das für den Bericht verwendet wird"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:39
 msgid "Ahnentafel Report"
@@ -34680,7 +34669,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:273
 msgid "Produces a list of people with a specified tag"
-msgstr "Erstellt eine Liste von Personen mit einer festgelegten Markierung"
+msgstr "Erstellt eine Liste von Personen mit einem festgelegten Kennzeichen"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:296
 msgid "Number of Ancestors Report"
@@ -34712,7 +34701,7 @@ msgstr "Erstellt ein Inhaltsverzeichnis für Buchberichte."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:414
 msgid "Produces an alphabetical index for book reports."
-msgstr "Erstellt einen alphabetischen Index für Buchberichte."
+msgstr "Erstellt ein alphabetisches Register für Buchberichte."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:436
 msgid "Records Report"
@@ -35021,7 +35010,7 @@ msgstr "Aktualisiere Prüfsummen der Medien"
 
 #: ../gramps/plugins/tool/check.py:2145
 msgid "Looking for tag reference problems"
-msgstr "Suche nach Problemen mit Markierungsreferenzen"
+msgstr "Suche nach Problemen mit Kennzeichenreferenzen"
 
 #: ../gramps/plugins/tool/check.py:2289
 msgid "Looking for media source reference problems"
@@ -35223,10 +35212,9 @@ msgstr[1] "{quantity} Notizobjekte wurden referenziert, aber nicht gefunden\n"
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] ""
-"{quantity} Markierungsobjekt wurde referenziert, aber nicht gefunden\n"
+msgstr[0] "{quantity} Kennzeichenobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
-"{quantity} Markierungsobjekte wurden referenziert, aber nicht gefunden\n"
+"{quantity} Kennzeichenobjekte wurden referenziert, aber nicht gefunden\n"
 
 #: ../gramps/plugins/tool/check.py:2999
 #, python-brace-format
@@ -35821,8 +35809,8 @@ msgstr "Jeder in der Datenbank ist verwandt mit %s"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "Setze Markierung für {number_of} Person"
-msgstr[1] "Setze Markierung für {number_of} Personen"
+msgstr[0] "Setze Kennzeichen für {number_of} Person"
+msgstr[1] "Setze Kennzeichen für {number_of} Personen"
 
 #: ../gramps/plugins/tool/notrelated.py:303
 #, python-brace-format
@@ -35978,15 +35966,15 @@ msgstr "Daten aus Namen extrahieren"
 
 #: ../gramps/plugins/tool/rebuild.py:78
 msgid "Rebuilding secondary indexes..."
-msgstr "Erstelle sekundäre Datenbankindexe neu…"
+msgstr "Untergeordnete Register neu erstellen..."
 
 #: ../gramps/plugins/tool/rebuild.py:85
 msgid "Secondary indexes rebuilt"
-msgstr "Sekundäre Indexe neu erstellt"
+msgstr "Untergeordnete Register neu erstellt"
 
 #: ../gramps/plugins/tool/rebuild.py:86
 msgid "All secondary indexes have been rebuilt."
-msgstr "Alle sekundäre Indexe wurden neu erstellt."
+msgstr "Alle untergeordneten Register wurden neu erstellt."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:83
 msgid "Rebuilding gender statistics for name gender guessing..."
@@ -36489,11 +36477,11 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:299
 msgid "Rebuild Secondary Indexes"
-msgstr "Neuaufbau sekundäre Indexe"
+msgstr "Untergeordnete Register neu erstellen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:300
 msgid "Rebuilds secondary indexes"
-msgstr "Erstellt sekundäre Indexe neu"
+msgstr "Erstellt untergeordnete Register neu"
 
 #: ../gramps/plugins/tool/tools.gpr.py:323
 msgid "Rebuild Reference Maps"
@@ -37899,7 +37887,7 @@ msgstr "Unbekannte Personen anzeigen"
 
 #: ../gramps/plugins/view/pedigreeview.py:2251
 msgid "Show tags"
-msgstr "Markierungen anzeigen"
+msgstr "Kennzeichen anzeigen"
 
 #: ../gramps/plugins/view/pedigreeview.py:2255
 msgid "Tree style"
@@ -38297,10 +38285,10 @@ msgid ""
 "Links. Selecting the person&#8217;s name will take you to their individual "
 "Address Book page."
 msgstr ""
-"Diese Seite enthält einen Index aller Personen in der Datenbank, die nach "
-"Nachnamen sortiert sind mit einem der folgenden: Adresse, Aufenthaltsort "
-"oder Weblink . Das Auswählen des Personennamens wird dich zu der "
-"Adressbuchseite der Person bringen."
+"Diese Seite enthält ein Register aller Personen in der Datenbank, sortiert "
+"nach Nachnamen, mit einer der folgenden Angaben: Adresse, Wohnort oder "
+"Weblink . Das Auswählen des Personennamens wird dich zu der Adressbuchseite "
+"der Person bringen."
 
 #: ../gramps/plugins/webreport/addressbooklist.py:117
 msgid "Full Name"
@@ -38372,7 +38360,7 @@ msgstr "Startseite"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Heatmaps"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -38402,7 +38390,7 @@ msgstr "Webkalender"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Heatmap"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:436
@@ -38616,7 +38604,7 @@ msgid ""
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
 "ID will open a page for that event."
 msgstr ""
-"Diese Seite enthält einen Index mit allen Ereignissen in der Datenbank, die "
+"Diese Seite enthält ein Register mit allen Ereignissen in der Datenbank, die "
 "nach Art und Datum (falls vorhanden) sortiert sind. Klicke auf eine Gramp-ID "
 "um eine Seite für dieses Ereignis zu öffnen."
 
@@ -38645,7 +38633,7 @@ msgid ""
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
-"Diese Seite enthält ein Verzeichnis aller Familien/Beziehungen in der "
+"Diese Seite enthält ein Register aller Familien/Beziehungen in der "
 "Datenbank, sortiert nach Familien-/Nachnamen. Beim Klicken auf den Namen "
 "einer Person gelangst du zur Seite der Familie/Beziehungsverhältnisse."
 
@@ -38655,19 +38643,17 @@ msgid "Family Map for %s"
 msgstr "Familienkarte für %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Erstelle Ereignisseiten"
+msgstr "Erstellen von Heatmap-Seiten für Ereignisse"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
 msgstr ""
+"Der nächste Abschnitt enthält ein Register aller Ereignisse für eine Heatmap-"
+"Karte."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Name"
@@ -38683,19 +38669,18 @@ msgstr "Orte mit Anfangsbuchstabe %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Den gewählten Filter testen"
+msgstr "Heatmap für %s innerhalb des ausgewählten Filters"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
 msgstr ""
+"Der nächste Abschnitt enthält ein Register aller Nachnamen für eine Heatmap-"
+"Karte."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "Nachname"
@@ -38703,6 +38688,8 @@ msgstr "Nachname"
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr ""
+"Der nächste Abschnitt enthält ein Register aller Kennzeichen für eine "
+"Heatmap-Karte."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38710,14 +38697,14 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Dieser Abschnitt enthält die Karte für alle Personen mit dem Ereignis: "
+"{event_type} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Gewählten Filter löschen"
+msgstr " die kein Ereignis für den ausgewählten Filter hat/haben."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38725,6 +38712,8 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"Dieser Abschnitt enthält eine Karte alle Ereignisse für: {surname} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -38732,6 +38721,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"Dieser Abschnitt enthält die Karte für alle Personen und Ereignisse mit dem "
+"Kennzeichen: {tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -38748,10 +38739,10 @@ msgid ""
 "object&#8217;s page.  If you see media size dimensions above an image, click "
 "on the image to see the full sized version.  "
 msgstr ""
-"Diese Seite enthält einen Index mit allen Medienobjekten in der Datenbank, "
-"die nach Titel geordnet sind. Durch Klicken auf den Titel gelangst du zur "
-"Seite des Medienobjektes. Wenn du Mediengrößen über einem Bild siehst, "
-"klicke auf das Bild um es in Originalgröße zu sehen.  "
+"Diese Seite enthält ein Register aller Medienobjekte in der Datenbank, das "
+"nach Titel geordnet ist. Durch Klicken auf den Titel gelangst du zur Seite "
+"des Medienobjektes.  Wenn du Mediengrößen über einem Bild siehst, klicke auf "
+"das Bild, um es in Originalgröße zu sehen.  "
 
 #: ../gramps/plugins/webreport/media.py:248
 msgctxt "Media "
@@ -39018,11 +39009,11 @@ msgstr "Überprüfen, ob ein Abschnitt geöffnet oder geschlossen werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2252
 msgid "Max. rows in an index"
-msgstr "Max. Zeilen in einem Index"
+msgstr "Max. Zeilen in einem Register"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
 msgid "The maximum number of rows to include in an index page"
-msgstr "Maximale Anzahl der Zeilen, die in eine Indexseite eingefügt werden"
+msgstr "Maximale Anzahl der Zeilen, die in eine Registerseite eingefügt werden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2264
 msgid "Extra Pages"
@@ -39323,7 +39314,7 @@ msgstr "Link zur aktiven Person einfügen (falls sie eine Website hat)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2552
 msgid "Include a column for birth dates on the index pages"
-msgstr "Spalte für Geburtsdaten auf den Indexseiten einfügen"
+msgstr "Spalte für Geburtsdaten auf den Registerseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2554
 msgid "Whether to include a birth column"
@@ -39331,7 +39322,7 @@ msgstr "Ob eine Spalte für Geburt eingefügt wird"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Include a column for death dates on the index pages"
-msgstr "Spalte für Todesdaten auf den Indexseiten einfügen"
+msgstr "Spalte für Sterbedaten auf den Registerseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
 msgid "Whether to include a death column"
@@ -39339,7 +39330,7 @@ msgstr "Ob eine Spalte für Tod eingefügt wird"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2564
 msgid "Include a column for partners on the index pages"
-msgstr "Spalte für Partner auf den Indexseiten einfügen"
+msgstr "Spalte für Partner auf den Registerseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2566
 msgid "Whether to include a partners column"
@@ -39347,7 +39338,7 @@ msgstr "Ob eine Spalte für Ehepartner eingefügt wird"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
 msgid "Include a column for parents on the index pages"
-msgstr "Spalte für Eltern auf den Indexseiten einfügen"
+msgstr "Spalte für Eltern auf den Registerseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2572
 msgid "Whether to include a parents column"
@@ -39761,46 +39752,40 @@ msgstr ""
 "Berechnungsgrenzen definiert ist."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Ortekartenoptionen"
+msgstr "Heatmap-Optionen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Ereignisseiten einfügen"
+msgstr "Heatmap-Seiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Ob geänderte Namen der Eltern eingefügt werden."
+msgstr "Ob Heatmap-Seiten für Ereignisse eingefügt werden sollen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Schriftgröße"
+msgstr "Punktgröße"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "Die Größe des Notizentext in Punkten."
+msgstr ""
+"Legt die Größe der Heatmap-Punkte fest.\n"
+"Standard: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "Weichzeichnen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Legt die Größe des Weichzeichners fest.\n"
+"Standard: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
@@ -39822,9 +39807,9 @@ msgid ""
 "by their last names. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
-"Diese Seite listet alle Personen in der Datenbank sortiert nach Nachnamen "
-"auf . Durch Auswählen des Namens einer Person gelangst du zur Seite der "
-"Person."
+"Diese Seite enthält ein Register aller Personen in der Datenbank, sortiert "
+"nach ihrem Nachnamen. Durch Auswählen des Namens einer Person gelangst du "
+"zur Seite der Person."
 
 #: ../gramps/plugins/webreport/person.py:454
 #: ../gramps/plugins/webreport/surname.py:101
@@ -39905,8 +39890,9 @@ msgid ""
 "their title. Clicking on a place&#8217;s title will take you to that "
 "place&#8217;s page."
 msgstr ""
-"Diese Seite listet alle Orte in der Datenbank sortiert nach Titel auf. Wenn "
-"du auf den Titel des Ortes klickst, gelangst du zur Seite des Ortes."
+"Diese Seite enthält ein Register alle Orte in der Datenbank, sortiert nach "
+"Titel. Wenn du auf den Titel des Ortes klickst, gelangst du zur Seite des "
+"Ortes."
 
 #: ../gramps/plugins/webreport/place.py:346
 #: ../gramps/plugins/webreport/place.py:358
@@ -39933,9 +39919,9 @@ msgid ""
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
-"Diese Seite listet alle Aufbewahrungsorte in der Datenbank sortiert nach "
-"Titel auf. Durch Klicken auf den Titel des Aufbewahrungsortes gelangst du "
-"zur Seite des Aufbewahrungsortes."
+"Diese Seite enthält ein Register aller Aufbewahrungsorte in der Datenbank, "
+"sortiert nach Titel. Durch Klicken auf den Titel des Aufbewahrungsortes "
+"gelangst du zur Seite des Aufbewahrungsortes."
 
 #: ../gramps/plugins/webreport/repository.py:177
 msgctxt "Repository"
@@ -39952,8 +39938,9 @@ msgid ""
 "their title. Clicking on a source&#8217;s title will take you to that "
 "source&#8217;s page."
 msgstr ""
-"Diese Seite listet alle Quellen in der Datenbank sortiert nach ihrem Titel "
-"auf. Durch Klicken auf den Titel der Quelle gelangst du zur Seite der Quelle."
+"Diese Seite enthält ein Register aller Quellen in der Datenbank, sortiert "
+"nach ihrem Titel. Durch Klicken auf den Titel der Quelle gelangst du zur "
+"Seite der Quelle."
 
 #: ../gramps/plugins/webreport/source.py:208
 msgctxt "Source Name"
@@ -39979,9 +39966,9 @@ msgid ""
 "surname of %s. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
-"Diese Seite listet alle in der Datenbank vorkommenden Personen auf, die den "
-"Nachnamen %s tragen. Durch Klick auf den Namen einer Person gelangst du zu "
-"deren Seite."
+"Diese Seite enthält ein Register aller in der Datenbank vorkommenden "
+"Personen, die den Nachnamen %s tragen. Durch Klick auf den Namen einer "
+"Person gelangst du zu deren Seite."
 
 #: ../gramps/plugins/webreport/surnamelist.py:114
 msgid "Surnames by person count"
@@ -39993,8 +39980,9 @@ msgid ""
 "link will lead to a list of individuals in the database with this same "
 "surname."
 msgstr ""
-"Diese Seite listet alle Nachnamen in der Datenbank auf. Jeder Link führt zu "
-"einer Liste von Personen in der Datenbank mit demselben Nachnamen."
+"Diese Seite enthält ein Register aller Nachnamen in der Datenbank. Die "
+"Auswahl eines Links führt zu einer Liste von Personen in der Datenbank mit "
+"demselben Nachnamen."
 
 #: ../gramps/plugins/webreport/surnamelist.py:192
 msgid "Number of People"
@@ -40012,9 +40000,10 @@ msgid ""
 "this database. Clicking on a thumbnail will take you to that image&#8217;s "
 "page."
 msgstr ""
-"Diese Seite listet alle Medienobjekte dieser Datenbank auf. Sie ist nach "
-"Medientitel sortiert. Es gibt eine Übersicht aller Medienobjekte in dieser "
-"Datenbank. Ein Klick auf ein Miniaturbild öffnet die Seite zum Bild."
+"Diese Seite zeigt eine indizierte Liste aller Medienobjekte dieser Datenbank "
+"an. Sie ist nach Medientitel sortiert. Es gibt ein Register aller "
+"Medienobjekte in dieser Datenbank. Ein Klick auf ein Miniaturbild öffnet die "
+"Seite zum Bild."
 
 #: ../gramps/plugins/webreport/updates.py:88
 msgid "New and updated objects"
