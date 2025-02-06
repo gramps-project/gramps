@@ -1286,7 +1286,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_event_handles(self):
         """
@@ -1294,7 +1294,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_events(self):
         """
@@ -1302,7 +1302,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_families(self):
         """
@@ -1310,7 +1310,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_family_handles(self):
         """
@@ -1318,7 +1318,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_media_handles(self):
         """
@@ -1326,7 +1326,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_media(self):
         """
@@ -1334,7 +1334,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_note_handles(self):
         """
@@ -1342,7 +1342,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_notes(self):
         """
@@ -1350,7 +1350,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_people(self):
         """
@@ -1358,7 +1358,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_person_handles(self):
         """
@@ -1366,7 +1366,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_place_handles(self):
         """
@@ -1374,7 +1374,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_places(self):
         """
@@ -1382,7 +1382,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_repositories(self):
         """
@@ -1390,7 +1390,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_repository_handles(self):
         """
@@ -1398,7 +1398,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_source_handles(self):
         """
@@ -1406,7 +1406,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_sources(self):
         """
@@ -1414,7 +1414,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_tag_handles(self):
         """
@@ -1422,7 +1422,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def iter_tags(self):
         """
@@ -1430,7 +1430,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return []
+        yield from ()
 
     def load(
         self,
