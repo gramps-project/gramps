@@ -1152,7 +1152,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_tag_from_name(self, val):
+    def get_tag_from_name(self, name):
         """
         Find a Tag in the database from the passed Tag name.
 
@@ -1160,7 +1160,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        LOG.warning("tag name %s does not exist in the dummy database", val)
+        LOG.warning("tag name %s does not exist in the dummy database", name)
 
     def get_tag_handles(self, sort_handles=False, locale=glocale):
         """
