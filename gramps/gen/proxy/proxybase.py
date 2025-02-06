@@ -562,72 +562,86 @@ class ProxyDbBase(DbReadBase):
         """
         return self.gfilter(self.include_tag, self.db.get_tag_from_handle(handle))
 
-    def get_person_from_gramps_id(self, val):
+    def get_person_from_gramps_id(self, gramps_id):
         """
         Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
-        return self.gfilter(self.include_person, self.db.get_person_from_gramps_id(val))
+        return self.gfilter(
+            self.include_person, self.db.get_person_from_gramps_id(gramps_id)
+        )
 
-    def get_family_from_gramps_id(self, val):
+    def get_family_from_gramps_id(self, gramps_id):
         """
         Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
-        return self.gfilter(self.include_family, self.db.get_family_from_gramps_id(val))
+        return self.gfilter(
+            self.include_family, self.db.get_family_from_gramps_id(gramps_id)
+        )
 
-    def get_event_from_gramps_id(self, val):
+    def get_event_from_gramps_id(self, gramps_id):
         """
         Finds an Event in the database from the passed Gramps ID.
         If no such Event exists, None is returned.
         """
-        return self.gfilter(self.include_event, self.db.get_event_from_gramps_id(val))
+        return self.gfilter(
+            self.include_event, self.db.get_event_from_gramps_id(gramps_id)
+        )
 
-    def get_place_from_gramps_id(self, val):
+    def get_place_from_gramps_id(self, gramps_id):
         """
         Finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned.
         """
-        return self.gfilter(self.include_place, self.db.get_place_from_gramps_id(val))
+        return self.gfilter(
+            self.include_place, self.db.get_place_from_gramps_id(gramps_id)
+        )
 
-    def get_source_from_gramps_id(self, val):
+    def get_source_from_gramps_id(self, gramps_id):
         """
         Finds a Source in the database from the passed gramps' ID.
         If no such Source exists, None is returned.
         """
-        return self.gfilter(self.include_source, self.db.get_source_from_gramps_id(val))
+        return self.gfilter(
+            self.include_source, self.db.get_source_from_gramps_id(gramps_id)
+        )
 
-    def get_citation_from_gramps_id(self, val):
+    def get_citation_from_gramps_id(self, gramps_id):
         """
         Finds a Citation in the database from the passed gramps' ID.
         If no such Citation exists, None is returned.
         """
         return self.gfilter(
-            self.include_citation, self.db.get_citation_from_gramps_id(val)
+            self.include_citation, self.db.get_citation_from_gramps_id(gramps_id)
         )
 
-    def get_media_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, gramps_id):
         """
         Finds a Media in the database from the passed gramps' ID.
         If no such Media exists, None is returned.
         """
-        return self.gfilter(self.include_media, self.db.get_media_from_gramps_id(val))
+        return self.gfilter(
+            self.include_media, self.db.get_media_from_gramps_id(gramps_id)
+        )
 
-    def get_repository_from_gramps_id(self, val):
+    def get_repository_from_gramps_id(self, gramps_id):
         """
         Finds a Repository in the database from the passed gramps' ID.
         If no such Repository exists, None is returned.
         """
         return self.gfilter(
-            self.include_repository, self.db.get_repository_from_gramps_id(val)
+            self.include_repository, self.db.get_repository_from_gramps_id(gramps_id)
         )
 
-    def get_note_from_gramps_id(self, val):
+    def get_note_from_gramps_id(self, gramps_id):
         """
         Finds a Note in the database from the passed gramps' ID.
         If no such Note exists, None is returned.
         """
-        return self.gfilter(self.include_note, self.db.get_note_from_gramps_id(val))
+        return self.gfilter(
+            self.include_note, self.db.get_note_from_gramps_id(gramps_id)
+        )
 
     def get_tag_from_name(self, val):
         """
