@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-04 15:17+0000\n"
-"PO-Revision-Date: 2025-02-02 02:50+0000\n"
+"PO-Revision-Date: 2025-02-06 08:22+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -1012,9 +1012,9 @@ msgid ""
 msgstr ""
 "<b>Privacy in Gramps</b><br/>Gramps helpt u persoonlijke informatie veilig "
 "te houden door u toe te staan informatie als privé te markeren. Gegevens die "
-"zijn gemarkeerd als privé, kunnen worden uitgesloten van verslagen en "
-"gegevensexporten. Zoek naar het hangslot waarmee u kunt wisselen tussen "
-"privé en openbaar."
+"zijn gemarkeerd als privé, kunnen worden uitgesloten van verslagen en export "
+"van gegevens. Zoek naar het hangslot waarmee u kunt wisselen tussen privé en "
+"openbaar."
 
 #: ../data/tips.xml:100
 msgid ""
@@ -1115,7 +1115,7 @@ msgid ""
 msgstr ""
 "<b>Spreekt u geen Engels?</b><br/>Vrijwilligers hebben Gramps vertaald in "
 "meer dan 40 talen. Als Gramps uw taal ondersteunt en deze niet wordt "
-"weergegeven, stelt u uw standaardtaal in uw besturingssysteem in en start u "
+"weergegeven, stelt u uw standaardtaal in uw besturingssysteem in en start "
 "Gramps opnieuw op."
 
 #: ../data/tips.xml:116
@@ -1126,8 +1126,8 @@ msgid ""
 msgstr ""
 "<b>Gramps vertalers</b><br/>Gramps is zo ontworpen dat nieuwe vertalingen "
 "gemakkelijk kunnen worden toegevoegd met weinig ontwikkelingsinspanning. Als "
-"u interesse heeft om deel te nemen, stuur dan een e-mail naar gramps-"
-"devel@lists.sf.net."
+"u interesse heeft om en bijdrage te leveren, stuur dan een e-mail naar "
+"gramps-devel@lists.sf.net."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -1135,7 +1135,7 @@ msgid ""
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
 "<b>Hallo, привет of 喂</b><br/>Welk schrift u ook gebruikt, Gramps biedt "
-"volledige Unicode-ondersteuning. Karakters voor alle talen worden correct "
+"volledige Unicode-ondersteuning. Lettertekens worden in alle talen correct "
 "weergegeven."
 
 #: ../data/tips.xml:120
@@ -1160,8 +1160,7 @@ msgstr ""
 "<b>De Gramps-code</b><br/>Gramps is geschreven in de computertaal Python met "
 "behulp van de GTK- en GNOME-bibliotheken voor de grafische interface. Gramps "
 "wordt ondersteund op elk computersysteem waar deze programma's naar zijn "
-"overgezet. Gramps staat erom bekend om te draaien op Linux, BSD, Solaris, "
-"Windows en Mac OS X."
+"overgezet. Gramps werkt op Linux, BSD, Solaris, Windows en Mac OS X."
 
 #: ../data/tips.xml:124
 msgid ""
@@ -1174,7 +1173,7 @@ msgid ""
 msgstr ""
 "<b>Opensourcesoftware</b><br/>Het ontwikkelingsmodel van Free / Libre en "
 "Open Source Software (FLOSS) betekent dat Gramps door elke programmeur kan "
-"worden uitgebreid, aangezien alle broncode gratis beschikbaar is onder deze "
+"worden uitgebreid, aangezien alle broncode vrij beschikbaar is onder deze "
 "licentie. Het gaat dus niet alleen om gratis bier, het gaat ook om vrijheid "
 "om de tool te bestuderen en te veranderen. Meer informatie over Opensource "
 "software kunt u bij de Free Software Foundation en het Open Source "
@@ -1239,7 +1238,7 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
-"WAARSCHUWING: het uitvoerbestand bestaat al!\n"
+"WAARSCHUWING: uitvoerbestand bestaat reeds!\n"
 "WAARSCHUWING: het wordt overschreven:\n"
 "   %s"
 
@@ -1260,7 +1259,7 @@ msgstr "nee"
 #: ../gramps/cli/arghandler.py:320
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr "Het bestaande bestand %s wordt overschreven"
+msgstr "Het bestaande bestand overschrijven: %s"
 
 #: ../gramps/cli/arghandler.py:339
 #, python-format
@@ -1303,12 +1302,12 @@ msgstr "\"%s\""
 #: ../gramps/cli/arghandler.py:478
 #, python-format
 msgid "Performing action: %s."
-msgstr "Actie %s uitvoeren."
+msgstr "Uitvoering actie: %s."
 
 #: ../gramps/cli/arghandler.py:480 ../gramps/gen/plug/report/stdoptions.py:338
 #, python-format
 msgid "Using options string: %s"
-msgstr "Stringoptie %s gebruiken"
+msgstr "Optiereeks: %s"
 
 #: ../gramps/cli/arghandler.py:485
 #, python-format
@@ -1361,7 +1360,7 @@ msgstr ""
 #: ../gramps/cli/arghandler.py:635 ../gramps/cli/arghandler.py:692
 #: ../gramps/cli/arghandler.py:740
 msgid "Ignoring invalid options string."
-msgstr "Ongeldige optietekens worden genegeerd."
+msgstr "Ongeldige optiereeks negeren."
 
 #: ../gramps/cli/arghandler.py:664
 msgid "Unknown report name."
@@ -1636,7 +1635,7 @@ msgstr ""
 #: ../gramps/cli/argparser.py:336
 #, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr "Onbekende actie: %s. Genegeerd."
+msgstr "Onbekende actie: %s. Negeren."
 
 #: ../gramps/cli/argparser.py:346
 msgid "setup debugging"
@@ -1668,7 +1667,7 @@ msgstr "Gramps: deze configuratie-instelling bestaat niet: '%s'"
 
 #: ../gramps/cli/argparser.py:498
 msgid "Error parsing the arguments"
-msgstr "Fout bij het ontleden van de argumenten"
+msgstr "Fout bij het verwerken van de parameters"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:208
@@ -1740,7 +1739,7 @@ msgstr "%(str1)s: %(str2)s"
 #: ../gramps/cli/clidbman.py:315
 #, python-format
 msgid "Starting Import, %s"
-msgstr "Importeren gestart, %s"
+msgstr "Import gestart, %s"
 
 #: ../gramps/cli/clidbman.py:321
 msgid "Import finished..."
@@ -2099,7 +2098,7 @@ msgstr "Gebruik '%(notranslate)s' om geldige waarden te zien."
 #: ../gramps/gen/plug/report/stdoptions.py:334
 #, python-format
 msgid "Ignoring unknown option: %s"
-msgstr "Onbekende optie: %s wordt genegeerd"
+msgstr "Onbekende optie genegeerd: %s"
 
 #: ../gramps/cli/plug/__init__.py:679
 msgid "   Available options:"
@@ -2129,7 +2128,7 @@ msgstr "Kan verslag niet schrijven. "
 #: ../gramps/cli/plug/__init__.py:905
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr "Kan '%s'-verslag niet maken."
+msgstr "Kan '%s'-verslag niet aanmaken."
 
 #: ../gramps/cli/user.py:241 ../gramps/gui/dialog.py:298
 msgid "Error detected in database"
@@ -2690,8 +2689,7 @@ msgstr "Jan|Louwmaand|IJsmaand|Wolfsmaand|Hardmaand"
 #: ../gramps/gen/datehandler/_datestrings.py:132
 msgctxt "alternative month names for February"
 msgid ""
-msgstr ""
-"Feb|Sprokkelmaand|Schrikkelmaand|Kortemaand|Slijkmaand|Regenmaand|Selle"
+msgstr "Feb|Sprokkelmaand|Schrikkelmaand|Kortemaand|Slijkmaand|Regenmaand|Selle"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133
 msgctxt "alternative month names for March"
@@ -2766,7 +2764,7 @@ msgstr "Frans republikeins"
 #: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:661
 msgctxt "calendar"
 msgid "Persian"
-msgstr "Persisch"
+msgstr "Perzisch"
 
 #: ../gramps/gen/datehandler/_datestrings.py:152 ../gramps/gen/lib/date.py:662
 msgctxt "calendar"
@@ -3223,14 +3221,14 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"De stamboom die u probeert te laden is gemaakt in schemaversie "
-"%(oldschema)s. Deze versie van Gramps gebruikt schemaversie %(newschema)s. "
-"Daarom kunt u deze stamboom niet laden zonder de schemaversie van de "
-"stamboom te upgraden.\n"
+"De stamboom die u probeert te laden is gemaakt in schemaversie %(oldschema)"
+"s. Deze versie van Gramps gebruikt schemaversie %(newschema)s. Daarom kunt u "
+"deze stamboom niet laden zonder de schemaversie van de stamboom te upgraden."
+"\n"
 "\n"
 "Als u een upgrade uitvoert kunt u de vorige versie van Gramps niet "
-"gebruiken, zelfs niet als u vervolgens een "
-"%(wiki_manual_backup_html_start)sback-up%(html_end)s maakt of een "
+"gebruiken, zelfs niet als u vervolgens een %(wiki_manual_backup_html_start"
+")sback-up%(html_end)s maakt of een "
 "%(wiki_manual_export_html_start)sexport%(html_end)s uitvoert van uw "
 "bijgewerkte stamboom.\n"
 "\n"
@@ -3294,12 +3292,12 @@ msgstr ""
 #: ../gramps/gen/db/generic.py:2276
 #, python-format
 msgid "_Undo %s"
-msgstr "_Maak ongedaan %s"
+msgstr "_Ongedaan maken %s"
 
 #: ../gramps/gen/db/generic.py:236 ../gramps/gen/db/generic.py:286
 #, python-format
 msgid "_Redo %s"
-msgstr "_Doe opnieuw %s"
+msgstr "Op_nieuw uitvoeren %s"
 
 #: ../gramps/gen/db/generic.py:2667
 msgid "Number of people"
@@ -3356,23 +3354,21 @@ msgstr "Aantal labels"
 
 #: ../gramps/gen/db/generic.py:2677
 msgid "Schema version"
-msgstr "Schema versie"
+msgstr "Schema-versie"
 
 #: ../gramps/gen/db/upgrade.py:655
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Personen        opgewaardeerd met %(n2)6d citaten in %(n3)6d "
-"seconden\n"
+"%(n1)6d  Personen        bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
 #: ../gramps/gen/db/upgrade.py:659
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Gezinnen      opgewaardeerd met %(n2)6d citaten in %(n3)6d "
-"seconden\n"
+"%(n1)6d  Gezinnen      bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
 #: ../gramps/gen/db/upgrade.py:663
 #, python-format
@@ -3387,36 +3383,32 @@ msgstr ""
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Media Objecten opgewaardeerd met %(n2)6d citaten in %(n3)6d "
-"seconden\n"
+"%(n1)6d  Media Objecten bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
 #: ../gramps/gen/db/upgrade.py:671
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Locaties        opgewaardeerd met %(n2)6d citaten in %(n3)6d "
-"seconden\n"
+"%(n1)6d  Locaties        bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
 #: ../gramps/gen/db/upgrade.py:675
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Bibliotheken  opgewaardeerd met %(n2)6d citaten in %(n3)6d "
-"seconden\n"
+"%(n1)6d  Bibliotheken  bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
 #: ../gramps/gen/db/upgrade.py:679
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Bronnen       opgewaardeerd met %(n2)6d citaten in %(n3)6d "
-"seconden\n"
+"%(n1)6d  Bronnen       bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
 #: ../gramps/gen/db/upgrade.py:1244
 msgid "Number of new objects upgraded:\n"
-msgstr "Aantal opgewaardeerde nieuwe objecten:\n"
+msgstr "Aantal bijgewerkte nieuwe objecten:\n"
 
 #: ../gramps/gen/db/upgrade.py:1255
 msgid ""
@@ -3436,7 +3428,7 @@ msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:1260
 msgid "Upgrade Statistics"
-msgstr "Statistieken opwaarderen"
+msgstr "Statistieken bijwerken"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:393 ../gramps/plugins/lib/libtreebase.py:725
@@ -3506,7 +3498,7 @@ msgstr "roepnaam"
 #: ../gramps/gen/display/name.py:652 ../gramps/gen/display/name.py:779
 msgctxt "Name"
 msgid "common"
-msgstr "gewoon"
+msgstr "algemeen"
 
 #: ../gramps/gen/display/name.py:658 ../gramps/gen/display/name.py:784
 msgid "initials"
@@ -3597,8 +3589,8 @@ msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
-"WAARSCHUWING: Te veel argumenten in filter '%s'!\n"
-"Probeert te laden met een subset van argumenten."
+"WAARSCHUWING: Te veel parameters in filter '%s'!\n"
+"Er wordt een poging gedaan met een deel van de parameters."
 
 #: ../gramps/gen/filters/_filterparser.py:142
 #, python-format
@@ -3606,7 +3598,7 @@ msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
-"WAARSCHUWING: Te weinig argumenten in filter '%s'!\n"
+"WAARSCHUWING: Te weinig parameters in filter '%s'!\n"
 "         Er wordt toch een poging gedaan in de hoop dat dit lukt."
 
 #: ../gramps/gen/filters/_filterparser.py:154
@@ -3650,10 +3642,8 @@ msgid "Filter"
 msgstr "Filter"
 
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "Gegevens lezen…"
+msgstr "Voorbereiden…"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -4053,11 +4043,11 @@ msgstr "Waarde:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
 msgid "Citations with the attribute <attribute>"
-msgstr "Citaten met het kenmerk <attribute>"
+msgstr "Citaten met het kenmerk <attribuut>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:49
 msgid "Matches citations with the attribute of a particular value"
-msgstr "Vind citaten met het kenmerk van een bepaalde waarde"
+msgstr "Vindt citaten met het kenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:59
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -4298,7 +4288,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:50
 msgid "Citations with Id containing <text>"
-msgstr "Citaten met Id die <tekst> bevatten"
+msgstr "Citaten met ID die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:52
 msgid "Matches citations whose Gramps ID matches the regular expression"
@@ -4327,7 +4317,7 @@ msgstr "Vindt alle gebeurtenissen in de database"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:49
 msgid "Events changed after <date time>"
-msgstr "Gebeurtenissen die na <datum tijd> gewijzigd zijn"
+msgstr "Gebeurtenissen die na <datum tijd> zijn gewijzigd"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:51
 msgid ""
@@ -4357,8 +4347,7 @@ msgstr "Gebeurtenissen met het <kenmerk>"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:48
 msgid "Matches events with the event attribute of a particular value"
-msgstr ""
-"Vindt gebeurtenissen met een gebeurteniskenmerk van een bepaalde waarde"
+msgstr "Vindt gebeurtenissen met een gebeurteniskenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 msgid "Events with the <citation>"
@@ -4568,7 +4557,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:47
 msgid "Events with at least one direct source >= <confidence level>"
 msgstr ""
-"Gebeurtenissen met ten minste één directe bron >= Betrouwbaarheidsniveau"
+"Gebeurtenissen met ten minste één directe bron >= <betrouwbaarheidsniveau>"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:49
 msgid "Matches events with at least one direct source with confidence level(s)"
@@ -5338,7 +5327,8 @@ msgstr "Gezinnen met onvolledige gebeurtenissen"
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:55
 msgid "Matches people with missing date or place in an event of the family"
 msgstr ""
-"Vindt personen waarvan een datum of plaats in een familiegebeurtenis mist"
+"Vindt personen waarvan een datum of plaats ontbreekt in een "
+"familiegebeurtenis"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:60
 msgid "People with <count> addresses"
@@ -11887,6 +11877,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Het orjson-pakket is nodig om Gramps op te starten.\n"
+"\n"
+"Gramps wordt nu beëindigd."
 
 #: ../gramps/grampsapp.py:323 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:408 ../gramps/grampsapp.py:425
@@ -12554,7 +12547,7 @@ msgstr "Het hele jaar"
 
 #: ../gramps/gui/configure.py:1590
 msgid "Display ages for events after death *"
-msgstr "Leeftijd bij gebeurtenissen na de dood weergeven *"
+msgstr "Leeftijd bij gebeurtenissen na overlijden weergeven *"
 
 #: ../gramps/gui/configure.py:1606
 msgid "Calendar on reports"
@@ -14092,28 +14085,28 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:65
 msgid "Add a new family event"
-msgstr "Voeg een nieuwe gezinsgebeurtenis toe"
+msgstr "Een nieuwe gezinsgebeurtenis toevoegen"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:66
 msgid "Remove the selected family event"
-msgstr "Verwijder de geselecteerde gezinsgebeurtenis"
+msgstr "De geselecteerde gezinsgebeurtenis verwijderen"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 msgid "Edit the selected family event or edit person"
-msgstr "Pas de geselecteerde gezinsgebeurtenis aan of pas de persoon aan"
+msgstr "De geselecteerde gezinsgebeurtenis of persoon bewerken"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:60
 msgid "Share an existing event"
-msgstr "Deel een bestaande gebeurtenis"
+msgstr "Een bestaande gebeurtenis delen"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:69
 msgid "Move the selected event upwards"
-msgstr "Verplaats de geselecteerde gebeurtenis naar boven"
+msgstr "De geselecteerde gebeurtenis omhoog verplaatsen"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:70
 msgid "Move the selected event downwards"
-msgstr "Verplaats de geselecteerde gebeurtenis naar beneden"
+msgstr "De geselecteerde gebeurtenis omlaag verplaatsen"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:95
 #: ../gramps/plugins/gramplet/events.py:110
@@ -14344,26 +14337,25 @@ msgstr "<Onbekend>"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:57
 msgid "Add a new personal event"
-msgstr "Voeg een nieuwe persoonlijke gebeurtenis toe"
+msgstr "Een nieuwe persoonlijke gebeurtenis toevoegen"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Remove the selected personal event"
-msgstr "Verwijder de geselecteerde persoonlijke gebeurtenis"
+msgstr "De geselecteerde persoonlijke gebeurtenis verwijderen"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
 msgid "Edit the selected personal event or edit family"
-msgstr "Pas de geselecteerde persoonlijke gebeurtenis aan of pas het gezin aan"
+msgstr "De geselecteerde persoonlijke gebeurtenis of het gezin bewerken"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:61
 msgid "Move the selected event upwards or change family order"
 msgstr ""
-"Verplaats de geselecteerde gebeurtenis naar boven of wijzig de gezinsvolgorde"
+"De geselecteerde gebeurtenis omhoog verplaatsen of de gezinsvolgorde wijzigen"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:62
 msgid "Move the selected event downwards or change family order"
 msgstr ""
-"Verplaats de geselecteerde gebeurtenis naar beneden of wijzig de "
-"gezinsvolgorde"
+"De geselecteerde gebeurtenis omlaag verplaatsen of de gezinsvolgorde wijzigen"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:145
 msgid "Cannot change Family"
@@ -14741,7 +14733,7 @@ msgstr "Nieuwe gebeurtenis"
 #: ../gramps/plugins/view/geoperson.py:566
 #: ../gramps/plugins/view/geoperson.py:608
 msgid "Edit Event"
-msgstr "Pas gebeurtenis aan"
+msgstr "Gebeurtenis bewerken"
 
 #: ../gramps/gui/editors/editevent.py:286
 #: ../gramps/gui/editors/editevent.py:314
@@ -14766,7 +14758,7 @@ msgstr "Het gebeurtenistype mag niet leeg zijn"
 #: ../gramps/gui/editors/editevent.py:323
 #, python-format
 msgid "Add Event (%s)"
-msgstr "Voeg gebeurtenis (%s) toe"
+msgstr "Gebeurtenis toevoegen (%s)"
 
 #: ../gramps/gui/editors/editevent.py:329
 #, python-format
@@ -14793,7 +14785,7 @@ msgstr "_Algemeen"
 
 #: ../gramps/gui/editors/editeventref.py:324
 msgid "Modify Event"
-msgstr "Gebeurtenis aanpassen"
+msgstr "Gebeurtenis bewerken"
 
 #: ../gramps/gui/editors/editeventref.py:329
 msgid "Add Event"
@@ -18805,7 +18797,7 @@ msgstr ""
 
 #: ../gramps/gui/grampsgui.py:616
 msgid "Error parsing arguments"
-msgstr "Fout bij het ontleden van argumenten"
+msgstr "Fout bij het verwerken van parameters"
 
 #: ../gramps/gui/grampsgui.py:636
 msgid "Gramps terminated because of no DISPLAY"
@@ -20474,7 +20466,7 @@ msgstr "Selecteer_Bron-_of_Citaatgenerator"
 
 #: ../gramps/gui/selectors/selectevent.py:60
 msgid "Select Event"
-msgstr "Selecteer gebeurtenis"
+msgstr "Gebeurtenis selecteren"
 
 #: ../gramps/gui/selectors/selectevent.py:83
 msgctxt "manual"
@@ -23639,7 +23631,7 @@ msgstr "Id"
 
 #: ../gramps/plugins/gramplet/coordinates.py:155
 msgid "Edit the event"
-msgstr "De gebeurtenis aanpassen"
+msgstr "De gebeurtenis bewerken"
 
 #: ../gramps/plugins/gramplet/coordinates.py:160
 msgid "Edit the place"
@@ -23775,7 +23767,7 @@ msgid ""
 "person/source/event?%(html_end)s\n"
 msgstr ""
 "  8. %(gramps_FAQ_html_start)s%(faq_section)sHoe voeg je een foto toe van "
-"een persoon / bron / gebeurtenis?%(html_end)s\n"
+"een persoon/bron/gebeurtenis?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
@@ -24487,7 +24479,7 @@ msgstr "Gebeurtenisfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1194
 msgid "Gramplet providing an event filter"
-msgstr "Gramplet dat een gebeurtenisfilter toont"
+msgstr "Gramplet dat een gebeurtenisfilter ter beschikking stelt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1209
 msgid "Source Filter"
@@ -24654,7 +24646,7 @@ msgstr "Gebeurtenissencoördinaten"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1544
 msgid "Geography coordinates for Family Events"
-msgstr "Geografische coördinaten voor gezin-gebeurtenissen"
+msgstr "Geografische coördinaten voor gezinsgebeurtenissen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1545
 msgid "Gramplet showing the events for all the family"
@@ -25915,7 +25907,7 @@ msgstr "Symbolen voor gebeurtenissen weergeven"
 msgid "Show genealogical symbols for birth, marriage and death events."
 msgstr ""
 "Toon genealogische symbolen voor geboorte-, huwelijks- en "
-"doodsgebeurtenissen."
+"overlijdensgebeurtenissen."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:226
 #: ../gramps/plugins/textreport/indivcomplete.py:861
@@ -27305,7 +27297,7 @@ msgstr "Naam getuige: %s"
 
 #: ../gramps/plugins/importer/importxml.py:1445
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "Elke gebeurtenisreferentie moet een 'hlink'-kenmerk hebben."
+msgstr "Elke gebeurtenisreferentie moet een 'hlink'-kenmerk bevatten."
 
 #: ../gramps/plugins/importer/importxml.py:1738
 msgid "Any person reference must have a 'hlink' attribute."
@@ -27712,7 +27704,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:7926
 msgid "Look for nameless events."
-msgstr "Zoek naar naamloze gebeurtenissen."
+msgstr "Zoek naar gebeurtenissen zonder naam."
 
 #: ../gramps/plugins/lib/libgedcom.py:7950
 msgid "Character set"
@@ -32699,11 +32691,11 @@ msgstr "Geen gebeurtenissen op deze exacte datum"
 
 #: ../gramps/plugins/quickview/onthisday.py:124
 msgid "Other events on this month/day in history"
-msgstr "Andere gebeurtenissen op deze maand/dag in de geschiedenis"
+msgstr "Andere gebeurtenissen op deze dag/maand in de geschiedenis"
 
 #: ../gramps/plugins/quickview/onthisday.py:127
 msgid "No other events on this month/day in history"
-msgstr "Geen andere gebeurtenissen op deze maand/dag in de geschiedenis"
+msgstr "Geen andere gebeurtenissen op deze dag/maand in de geschiedenis"
 
 #: ../gramps/plugins/quickview/onthisday.py:133
 #, python-format
@@ -32734,7 +32726,7 @@ msgstr "Alle gebeurtenissen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:83
 msgid "Display a person's events, both personal and family."
-msgstr "Toon de gebeurtenissen van een persoon, zowel persoonlijk als familie."
+msgstr "Toon de gebeurtenissen van een persoon, zowel persoonlijk als gezin."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:99
 msgid "All Family Events"
@@ -32742,7 +32734,7 @@ msgstr "Alle gezinsgebeurtenissen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:100
 msgid "Display the family and family members events."
-msgstr "Toon de gebeurtenissen van familie en familieleden."
+msgstr "Toon de gebeurtenissen van het gezin en gezinsleden."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:121
 msgid "Relation to Home Person"
@@ -33235,7 +33227,7 @@ msgstr "Toon jaar gebeurtenis"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:612
 msgid "Prints the year the event took place in the report"
-msgstr "Drukt het jaar af waarop de gebeurtenis plaatsvond in het verslag"
+msgstr "Drukt het jaar waarop de gebeurtenis plaatsvond af in het verslag"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:617
 #: ../gramps/plugins/textreport/birthdayreport.py:618
@@ -33466,8 +33458,7 @@ msgstr "%s, "
 #: ../gramps/plugins/textreport/detancestralreport.py:509
 #, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
-msgstr ""
-"%(event_role)s op %(event_name)s van %(primary_person)s: %(event_text)s"
+msgstr "%(event_role)s op %(event_name)s van %(primary_person)s: %(event_text)s"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:529
@@ -34036,7 +34027,7 @@ msgstr "(afbeelding)"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1111
 msgid "List events chronologically"
-msgstr "Geef gebeurtenissen chronologisch weer"
+msgstr "Gebeurtenissen chronologisch weergeven"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1112
 msgid "Whether to sort events into chronological order."
@@ -34227,7 +34218,7 @@ msgstr "Alle namen: %s"
 
 #: ../gramps/plugins/textreport/placereport.py:236
 msgid "Events that happened at this place"
-msgstr "Gebeurtenissen die op deze plaats zijn gebeurd"
+msgstr "Gebeurtenissen die op deze plaats hebben plaatsgevonden"
 
 #: ../gramps/plugins/textreport/placereport.py:242
 #: ../gramps/plugins/textreport/placereport.py:328
@@ -34713,9 +34704,9 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"Deze tool hernoemt alle gebeurtenissen van het ene type naar een ander type. "
-"Eenmaal voltooid, kan dit niet ongedaan worden gemaakt door de normale "
-"functie Ongedaan maken."
+"Dit hulpmiddel hernoemt alle gebeurtenissen van het ene type naar een ander "
+"type. Eenmaal voltooid, kan de standaardfunctie Ongedaan maken dit NIET "
+"ongedaan maken."
 
 #: ../gramps/plugins/tool/changetypes.glade:110
 msgid "Original event type:"
@@ -34727,7 +34718,7 @@ msgstr "Nieuw gebeurtenistype:"
 
 #: ../gramps/plugins/tool/changetypes.py:66
 msgid "Change Event Types"
-msgstr "Wijzig Gebeurtenistypen"
+msgstr "Gebeurtenistypen wijzigen"
 
 #: ../gramps/plugins/tool/changetypes.py:121
 #: ../gramps/plugins/tool/changetypes.py:146
@@ -34740,7 +34731,7 @@ msgstr "Gebeurtenissen Analyseren"
 
 #: ../gramps/plugins/tool/changetypes.py:137
 msgid "No event record was modified."
-msgstr "Er is geen gebeurtenisgegeven gewijzigd."
+msgstr "Er zijn geen gebeurtenisgegevens gewijzigd."
 
 #: ../gramps/plugins/tool/changetypes.py:141
 #, python-brace-format
@@ -35096,8 +35087,7 @@ msgstr[1] "{quantity} gebeurtenissen werden genoemd maar niet gevonden\n"
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
 msgstr[0] "{quantity} ongeldige naam voor geboortegebeurtenis is opgelost\n"
-msgstr[1] ""
-"{quantity} namen van ongeldige geboortegebeurtenissen zijn opgelost\n"
+msgstr[1] "{quantity} namen van ongeldige geboortegebeurtenissen zijn opgelost\n"
 
 #: ../gramps/plugins/tool/check.py:2919
 #, python-brace-format
@@ -35280,7 +35270,7 @@ msgstr "Filterselectie voor gebeurtenisvergelijking"
 
 #: ../gramps/plugins/tool/eventcmp.py:173
 msgid "Event Comparison tool"
-msgstr "Gebeurtenis vergelijkingstool"
+msgstr "Hulpmiddel voor vergelijking van gebeurtenissen"
 
 #: ../gramps/plugins/tool/eventcmp.py:173
 msgid "Filter selection"
@@ -35301,7 +35291,7 @@ msgstr "Er zijn geen overeenkomsten gevonden"
 #: ../gramps/plugins/tool/eventcmp.py:250
 #: ../gramps/plugins/tool/eventcmp.py:285
 msgid "Event Comparison Results"
-msgstr "Gebeurtenis Vergelijkingsresultaten"
+msgstr "Resultaten Gebeurtenissen vergelijken"
 
 #: ../gramps/plugins/tool/eventcmp.py:263
 #, python-format
@@ -35327,7 +35317,7 @@ msgstr "Selecteer bestandsnaam"
 
 #: ../gramps/plugins/tool/eventnames.py:81
 msgid "Event name changes"
-msgstr "Gebeurtenisnaam wijzigt"
+msgstr "Gebeurtenisnaam verandert"
 
 #: ../gramps/plugins/tool/eventnames.py:86
 #: ../gramps/plugins/tool/tools.gpr.py:148
@@ -36029,7 +36019,7 @@ msgstr "ongeldig karakter in plaats van \"-\""
 
 #: ../gramps/plugins/tool/removeunused.glade:90
 msgid "Search for events"
-msgstr "Zoek naar gebeurtenissen"
+msgstr "Gebeurtenissen zoeken"
 
 #: ../gramps/plugins/tool/removeunused.glade:106
 msgid "Search for sources"
@@ -36175,11 +36165,11 @@ msgstr "Ongebruikte ID's vinden en toewijzen."
 
 #: ../gramps/plugins/tool/sortevents.py:84
 msgid "Sort Events"
-msgstr "Sorteer gebeurtenissen"
+msgstr "Gebeurtenissen sorteren"
 
 #: ../gramps/plugins/tool/sortevents.py:106
 msgid "Sort event changes"
-msgstr "Sorteer gebeurteniswijzigingen"
+msgstr "Gebeurteniswijzigingen sorteren"
 
 #: ../gramps/plugins/tool/sortevents.py:122
 msgid "Sorting personal events..."
@@ -36211,7 +36201,7 @@ msgstr "Inclusief gezinsgebeurtenissen"
 
 #: ../gramps/plugins/tool/sortevents.py:202
 msgid "Sort family events of the person"
-msgstr "Sorteer gezinsgebeurtenissen van de persoon"
+msgstr "Gezinsgebeurtenissen van de persoon sorteren"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:128
 msgid "Generate_Testcases_for_Persons_and_Families"
@@ -36327,7 +36317,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:68
 msgid "Rename Event Types"
-msgstr "Hernoem gebeurtenistypen"
+msgstr "Gebeurtenistypen aanpassen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:70
 msgid "Allows all the events of a certain name to be renamed to a new name."
@@ -36347,7 +36337,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:120
 msgid "Compare Individual Events"
-msgstr "Vergelijk individuele gebeurtenissen"
+msgstr "Individuele gebeurtenissen vergelijken"
 
 #: ../gramps/plugins/tool/tools.gpr.py:122
 msgid ""
@@ -36448,7 +36438,7 @@ msgstr "Herschikt de Gramps-ID's volgens de standaardregels van Gramps."
 #: ../gramps/plugins/tool/tools.gpr.py:443
 #: ../gramps/plugins/tool/tools.gpr.py:444
 msgid "Sort events"
-msgstr "Sorteer gebeurtenissen"
+msgstr "Gebeurtenissen sorteren"
 
 #: ../gramps/plugins/tool/tools.gpr.py:467
 msgid "Verify the Data"
@@ -36759,11 +36749,11 @@ msgstr "Persoon heeft gebeurtenissen met rol Onbekend"
 
 #: ../gramps/plugins/tool/verify.py:2600
 msgid "Family events are not in chronological order"
-msgstr "Familiegebeurtenissen zijn niet in chronologische volgorde"
+msgstr "Gezinsgebeurtenissen staan niet in chronologische volgorde"
 
 #: ../gramps/plugins/tool/verify.py:2613
 msgid "Person events are not in chronological order"
-msgstr "Persoonsgebeurtenissen zijn niet in chronologische volgorde"
+msgstr "Persoonsgebeurtenissen staan niet in chronologische volgorde"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
@@ -36938,7 +36928,7 @@ msgstr "Dashboard"
 
 #: ../gramps/plugins/view/eventview.py:113
 msgid "Add a new event"
-msgstr "Voeg een nieuwe gebeurtenis toe"
+msgstr "Een nieuwe gebeurtenis toevoegen"
 
 #: ../gramps/plugins/view/eventview.py:114
 msgid "Edit the selected event"
@@ -36946,11 +36936,11 @@ msgstr "De geselecteerde gebeurtenis bewerken"
 
 #: ../gramps/plugins/view/eventview.py:115
 msgid "Delete the selected event"
-msgstr "Verwijder de geselecteerde gebeurtenis"
+msgstr "De geselecteerde gebeurtenis verwijderen"
 
 #: ../gramps/plugins/view/eventview.py:116
 msgid "Merge the selected events"
-msgstr "Voeg de geselecteerde gebeurtenissen samen"
+msgstr "De geselecteerde gebeurtenissen samenvoegen"
 
 #: ../gramps/plugins/view/eventview.py:254
 msgid "Event Filter Editor"
@@ -37276,7 +37266,7 @@ msgstr "De selectieparameters"
 
 #: ../gramps/plugins/view/geoevents.py:168
 msgid "Events places map"
-msgstr "Gebeurtenissenlocaties kaart"
+msgstr "Kaart met locaties van gebeurtenissen"
 
 #: ../gramps/plugins/view/geoevents.py:192
 msgid "GeoEvents"
@@ -37305,7 +37295,7 @@ msgstr ""
 #: ../gramps/plugins/view/geoevents.py:427
 #: ../gramps/plugins/view/geoevents.py:459
 msgid "Bookmark this event"
-msgstr "Maak een bladwijzer van deze gebeurtenis"
+msgstr "Bladwijzer aanmaken van deze gebeurtenis"
 
 #: ../gramps/plugins/view/geoevents.py:471
 msgid "Show all events"
@@ -37476,7 +37466,8 @@ msgstr ""
 
 #: ../gramps/plugins/view/geography.gpr.py:134
 msgid "Every residence or move for a person and any descendants"
-msgstr "Elke woning of verhuizing van een persoon en eventuele afstammelingen"
+msgstr ""
+"Elke woonplaats of verhuizing van een persoon en eventuele afstammelingen"
 
 #: ../gramps/plugins/view/geography.gpr.py:136
 msgid ""
@@ -38286,7 +38277,7 @@ msgstr "Begin"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Heatmaps"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -38316,7 +38307,7 @@ msgstr "Webkalender"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Heatmap"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:436
@@ -38517,7 +38508,7 @@ msgstr "Geen bestand om te downloaden"
 
 #: ../gramps/plugins/webreport/event.py:123
 msgid "Creating event pages"
-msgstr "Gebeurtenispagina's maken"
+msgstr "Gebeurtenispagina's aanmaken"
 
 #: ../gramps/plugins/webreport/event.py:201
 #, python-format
@@ -38569,19 +38560,17 @@ msgid "Family Map for %s"
 msgstr "Gezinskaart voor %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Gebeurtenispagina's maken"
+msgstr "Heatmappagina's maken voor gebeurtenissen"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
 msgstr ""
+"De volgende sectie bevat een index van alle gebeurtenissen voor een heatmap-"
+"kaart."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Naam"
@@ -38597,19 +38586,18 @@ msgstr "Locaties die beginnen met letter %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Test het geselecteerde filter"
+msgstr "Heatmap voor %s binnen het geselecteerde filter"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
 msgstr ""
+"De volgende sectie bevat een index van alle achternamen voor een Heatmap-"
+"kaart."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "Achternaam"
@@ -38617,6 +38605,7 @@ msgstr "Achternaam"
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr ""
+"De volgende sectie bevat een index van alle labels voor een Heatmap-kaart."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38624,14 +38613,14 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Deze sectie bevat de kaart voor alle personen met de gebeurtenis: "
+"{event_type} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Verwijder het geselecteerde filter"
+msgstr " zonder gebeurtenis voor het geselecteerde filter."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38639,6 +38628,8 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"Deze sectie bevat de kaart van alle gebeurtenissen voor: {surname} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -38646,6 +38637,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"Deze sectie bevat de kaart voor alle personen, gebeurtenissen met het label: "
+"{tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -39302,7 +39295,7 @@ msgstr "Inclusief gebeurtenispagina's"
 #: ../gramps/plugins/webreport/narrativeweb.py:2600
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
-"Voeg al dan niet een volledige gebeurtenissenlijst en relevante pagina's toe"
+"Al dan niet een volledige gebeurtenissenlijst en relevante pagina's toevoegen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2603
 msgid "Include other roles"
@@ -39652,7 +39645,7 @@ msgstr "Of een kalender voor het jaar %s moet worden opgenomen"
 #: ../gramps/plugins/webreport/webcal.py:2060
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr ""
-"Maak eendaagse gebeurtenispagina's voor de Jaar in een Oogopslagkalender"
+"Eendaagse gebeurtenispagina's aanmaken voor de kalender Jaar in een Oogopslag"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3170
 #: ../gramps/plugins/webreport/webcal.py:2062
@@ -39685,50 +39678,44 @@ msgstr ""
 "tabblad voor voorkeursdata."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Locatiekaart Opties"
+msgstr "Heatmap Opties"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Inclusief gebeurtenispagina's"
+msgstr "Inclusief heatmappagina's"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Of alternatieve namen voor ouders moeten worden opgenomen."
+msgstr "Of er heatmap-pagina's voor gebeurtenissen moeten worden opgenomen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Lettertypegrootte"
+msgstr "Puntgrootte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "De grootte van de notitietekst, in punten."
+msgstr ""
+"De grootte van punten in de heatmap.\n"
+"Standaard: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "Vervaging"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Grootte vervaging instellen.\n"
+"Standaard: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 #: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
