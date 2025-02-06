@@ -22,7 +22,7 @@
 
 from __future__ import annotations
 
-from typing import NewType, Type, TypeVar
+from typing import NewType, Type, TypeVar, Union
 
 from .lib import (
     Citation,
@@ -49,18 +49,18 @@ CitationHandle = NewType("CitationHandle", str)
 MediaHandle = NewType("MediaHandle", str)
 NoteHandle = NewType("NoteHandle", str)
 TagHandle = NewType("TagHandle", str)
-PrimaryObjectHandle = (
-    PersonHandle
-    | FamilyHandle
-    | EventHandle
-    | PlaceHandle
-    | SourceHandle
-    | RepositoryHandle
-    | CitationHandle
-    | MediaHandle
-    | NoteHandle
-)
-AnyHandle = PrimaryObjectHandle | TagHandle
+PrimaryObjectHandle = Union[
+    PersonHandle,
+    FamilyHandle,
+    EventHandle,
+    PlaceHandle,
+    SourceHandle,
+    RepositoryHandle,
+    CitationHandle,
+    MediaHandle,
+    NoteHandle,
+]
+AnyHandle = Union[PrimaryObjectHandle, TagHandle]
 TableObjectType = TypeVar("TableObjectType", bound=TableObject)
 
 PersonGrampsID = NewType("PersonGrampsID", str)
@@ -73,15 +73,15 @@ CitationGrampsID = NewType("CitationGrampsID", str)
 MediaGrampsID = NewType("MediaGrampsID", str)
 NoteGrampsID = NewType("NoteGrampsID", str)
 # No Tag IDs
-PrimaryObjectGrampsID = (
-    PersonGrampsID
-    | FamilyGrampsID
-    | EventGrampsID
-    | PlaceGrampsID
-    | SourceGrampsID
-    | RepositoryGrampsID
-    | CitationGrampsID
-    | MediaGrampsID
-    | NoteGrampsID
-)
+PrimaryObjectGrampsID = Union[
+    PersonGrampsID,
+    FamilyGrampsID,
+    EventGrampsID,
+    PlaceGrampsID,
+    SourceGrampsID,
+    RepositoryGrampsID,
+    CitationGrampsID,
+    MediaGrampsID,
+    NoteGrampsID,
+]
 AnyGrampsID = PrimaryObjectGrampsID  # No Tag IDs
