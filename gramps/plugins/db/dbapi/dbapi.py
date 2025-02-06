@@ -28,9 +28,11 @@ Database API interface
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import logging
 import json
 import time
+from typing import cast
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -1185,13 +1187,13 @@ class DBAPI(DbGeneric):
 
         # Derived fields
         if table == "Person":
-            given_name, surname = self._get_person_data(obj)
+            given_name, surname = self._get_person_data(cast(Person, obj))
             sets.append("given_name = ?")
             values.append(given_name)
             sets.append("surname = ?")
             values.append(surname)
         if table == "Place":
-            handle = self._get_place_data(obj)
+            handle = self._get_place_data(cast(Place, obj))
             sets.append("enclosed_by = ?")
             values.append(handle)
 
