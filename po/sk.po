@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-04 15:17+0000\n"
-"PO-Revision-Date: 2025-02-02 10:43+0000\n"
+"PO-Revision-Date: 2025-02-05 17:52+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -3597,10 +3597,8 @@ msgid "Filter"
 msgstr "Filter"
 
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "Čítanie údajov..."
+msgstr "Príprava ..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -8476,7 +8474,7 @@ msgstr "Stav"
 #: ../gramps/gen/lib/location.py:89 ../gramps/gui/clipboard.py:338
 #: ../gramps/gui/plug/_windows.py:1646
 msgid "Location"
-msgstr "Poloha"
+msgstr "Lokalita"
 
 #: ../gramps/gen/lib/location.py:100 ../gramps/gen/lib/placetype.py:79
 #: ../gramps/plugins/view/geoplaces.py:627
@@ -8705,18 +8703,14 @@ msgid "Matrilineal"
 msgstr "Matrilineárne"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Povolanie"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
-msgstr "Poloha"
+msgstr "Lokalita"
 
 #: ../gramps/gen/lib/nametype.py:58
 msgid "Also Known As"
@@ -11767,23 +11761,14 @@ msgstr ""
 "Program Gramps sa teraz ukončí."
 
 #: ../gramps/grampsapp.py:227
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "You don't have the python3 bsddb3 package installed. This package is "
-#| "needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
 msgid ""
 "The orjson package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Na spustenie programu Gramps je potrebný balík orjson.\n"
 "\n"
-"Nemáte nainštalovaný balík python bsddb3. Tento balík je potrebný pre "
-"spustenie Grampsu.\n"
-"\n"
-"Gramps sa teraz ukončí."
+"Program Gramps sa teraz ukončí."
 
 #: ../gramps/grampsapp.py:323 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:408 ../gramps/grampsapp.py:425
@@ -14971,7 +14956,7 @@ msgstr "Internetová adresa"
 
 #: ../gramps/gui/editors/editlocation.py:47
 msgid "Location Editor"
-msgstr "Editor polohy"
+msgstr "Editor lokalít"
 
 #: ../gramps/gui/editors/editmedia.py:73
 msgctxt "manual"
@@ -37935,7 +37920,7 @@ msgstr "Domov"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Heatmapy"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -37965,7 +37950,7 @@ msgstr "Webový kalendár"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Heatmapa"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:436
@@ -38220,22 +38205,18 @@ msgid "Family Map for %s"
 msgstr "Mapa rodiny pre %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Vytváranie stránok udalosti"
+msgstr "Vytváranie stránok heatmap pre udalosti"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
-msgstr ""
+msgstr "Nasledujúca časť obsahuje súpis všetkých udalostí pre heatmapu."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
-msgstr "Meno"
+msgstr "Názov"
 
 #: ../gramps/plugins/webreport/heatmap.py:291
 #: ../gramps/plugins/webreport/heatmap.py:425
@@ -38248,26 +38229,23 @@ msgstr "Miesta začínajúce písmenom %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Testovať vybraný filter"
+msgstr "Heatmapa pre %s v rámci vybraného filtra"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
-msgstr ""
+msgstr "Nasledujúca časť obsahuje súpis všetkých priezvisk pre heatmapu."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "Priezvisko"
 
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
-msgstr ""
+msgstr "Nasledujúca časť obsahuje index všetkých značiek pre heatmapu."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38275,14 +38253,14 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Táto časť obsahuje mapu pre všetkých ľudí s udalosťou: {event_type} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Vymazať vybraný filter"
+msgstr " ktorá nemá žiadnu udalosť pre vybraný filter."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38290,6 +38268,7 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"Táto časť obsahuje mapu všetkých udalostí pre: {surname} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -38297,6 +38276,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"Táto časť obsahuje mapu pre všetkých ľudí, udalosti so značkou: {tag} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -39325,50 +39306,42 @@ msgstr ""
 "preferencií dátumov."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Voľby mapy miesta"
+msgstr "Možnosti heatmapy"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Zahrnúť stránky udalostí"
+msgstr "Zahrnúť stránky heatmapy"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Či sa majú uvádzať alternatívne mená pre rodičov."
+msgstr "Či sa majú zahrnúť stránky heatmapy pre udalosti."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Veľkosť písma"
+msgstr "Veľkosť bodu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "Veľkosť textu poznámky (v bodoch)."
+msgstr ""
+"Nastaví veľkosť bodov heatmapy.\n"
+"Predvolené nastavenie: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "Rozmazanie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Nastaví veľkosť rozmazania.\n"
+"Predvolené nastavenie: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
-#, fuzzy
-#| msgid "Zoom In"
 msgid "Zoom"
 msgstr "Priblížiť"
 
