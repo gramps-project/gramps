@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-04 15:17+0000\n"
-"PO-Revision-Date: 2025-02-04 15:42+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2025-02-06 10:55+0000\n"
+"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -3658,10 +3658,8 @@ msgid "Filter"
 msgstr "Suodin"
 
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "Luetaan tietoja..."
+msgstr "Valmistelu ..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -11158,7 +11156,7 @@ msgstr "lainaus"
 
 #: ../gramps/gen/utils/grampslocale.py:787
 msgid "See details"
-msgstr "Katso lisätiedot"
+msgstr "Katso tiedot"
 
 #: ../gramps/gen/utils/image.py:135
 msgid ""
@@ -11842,6 +11840,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Orjson-pakettia tarvitaan Grampsin käynnistämiseen.\n"
+"\n"
+"Gramps suljetaan nyt."
 
 #: ../gramps/grampsapp.py:323 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:408 ../gramps/grampsapp.py:425
@@ -11978,7 +11979,7 @@ msgstr "Kaikki muutokset tallennetaan välittömästi"
 #, python-format
 msgctxt "the object"
 msgid "See %s details"
-msgstr "Katso %s lisätiedot"
+msgstr "Avaa %s ikkunaan"
 
 #: ../gramps/gui/clipboard.py:1518 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
@@ -38017,7 +38018,7 @@ msgstr "Koti"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Lämpökartat"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -38047,7 +38048,7 @@ msgstr "Nettikalenteri"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Lämpökartta"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:436
@@ -38300,19 +38301,16 @@ msgid "Family Map for %s"
 msgstr "Perhekartta kohteelle %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Luodaan tapahtumasivut"
+msgstr "Lämpökarttasivujen luominen tapahtumia varten"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
 msgstr ""
+"Seuraava osio sisältää hakemiston kaikista lämpökarttakartan tapahtumista."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Nimi"
@@ -38328,19 +38326,16 @@ msgstr "Kirjaimella %s alkavat paikat"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Testaa valittua suodinta"
+msgstr "Lämpökartta %s valitun suodattimen sisällä"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
-msgstr ""
+msgstr "Seuraava osio sisältää hakemiston kaikista lämpökartan sukunimistä."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "Sukunimi"
@@ -38348,6 +38343,7 @@ msgstr "Sukunimi"
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr ""
+"Seuraava osio sisältää hakemiston kaikista lämpökarttakartan tunnisteista."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38355,14 +38351,14 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Tämä osio sisältää kartan kaikille ihmisille, joilla on tapahtuma: "
+"{event_type} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Poista valittu suodin"
+msgstr " jolla ei ole tapahtumaa valitulle suodattimelle."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38370,6 +38366,8 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"Tämä osio sisältää kartan kaikista tapahtumista: {surname} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -38377,6 +38375,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"Tämä osio sisältää kartan kaikille ihmisille, tapahtumille tunnisteella: "
+"{tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -39408,50 +39408,44 @@ msgstr ""
 "päivämääränvalinta välilehdessä."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Paikkakarttojen valinnat"
+msgstr "Lämpökartta valinnat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Lisää tapahtumasivut"
+msgstr "Lisää lämpökarttasivut"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Lisätäänkö vaihtoehtoiset vanhempien nimet."
+msgstr "Lisätäänkö tapahtumien lämpökarttasivut"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Kirjasinkoko"
+msgstr "Pistekoko"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "Tekstin koko pisteinä."
+msgstr ""
+"Valitse lämpökarttapisteiden koko.\n"
+"Oletus: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "Sumeus"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Määritä sumeuden koko.\n"
+"Oletus: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
-msgstr ""
+msgstr "Suurennus"
 
 #: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
