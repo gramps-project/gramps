@@ -321,70 +321,70 @@ class ProxyDbBase(DbReadBase):
         Return an iterator over database handles, one handle for each Person in
         the database.
         """
-        return filter(self.include_person, self.db.iter_person_handles())
+        yield from filter(self.include_person, self.db.iter_person_handles())
 
     def iter_family_handles(self):
         """
         Return an iterator over database handles, one handle for each Family in
         the database.
         """
-        return filter(self.include_family, self.db.iter_family_handles())
+        yield from filter(self.include_family, self.db.iter_family_handles())
 
     def iter_event_handles(self):
         """
         Return an iterator over database handles, one handle for each Event in
         the database.
         """
-        return filter(self.include_event, self.db.iter_event_handles())
+        yield from filter(self.include_event, self.db.iter_event_handles())
 
     def iter_source_handles(self):
         """
         Return an iterator over database handles, one handle for each Source in
         the database.
         """
-        return filter(self.include_source, self.db.iter_source_handles())
+        yield from filter(self.include_source, self.db.iter_source_handles())
 
     def iter_citation_handles(self):
         """
         Return an iterator over database handles, one handle for each Citation
         in the database.
         """
-        return filter(self.include_citation, self.db.iter_citation_handles())
+        yield from filter(self.include_citation, self.db.iter_citation_handles())
 
     def iter_place_handles(self):
         """
         Return an iterator over database handles, one handle for each Place in
         the database.
         """
-        return filter(self.include_place, self.db.iter_place_handles())
+        yield from filter(self.include_place, self.db.iter_place_handles())
 
     def iter_media_handles(self):
         """
         Return an iterator over database handles, one handle for each Media
         Object in the database.
         """
-        return filter(self.include_media, self.db.iter_media_handles())
+        yield from filter(self.include_media, self.db.iter_media_handles())
 
     def iter_repository_handles(self):
         """
         Return an iterator over database handles, one handle for each
         Repository in the database.
         """
-        return filter(self.include_repository, self.db.iter_repository_handles())
+        yield from filter(self.include_repository, self.db.iter_repository_handles())
 
     def iter_note_handles(self):
         """
         Return an iterator over database handles, one handle for each Note in
         the database.
         """
-        return filter(self.include_note, self.db.iter_note_handles())
+        yield from filter(self.include_note, self.db.iter_note_handles())
 
     def iter_tag_handles(self):
         """
         Return an iterator over database handles, one handle for each Tag in
         the database.
         """
-        return filter(self.include_tag, self.db.iter_tag_handles())
+        yield from filter(self.include_tag, self.db.iter_tag_handles())
 
     def __iter_object(self, selector, method):
         """Helper function to return an iterator over an object class"""
