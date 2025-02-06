@@ -15,13 +15,14 @@
 # Michał Moczulski <michalmoczulski1a@gmail.com>, 2024.
 # Marcin Woroch <bishkopt@gmail.com>, 2024.
 # Gracjan Wiśniewski <gracjan122@op.pl>, 2024.
+# Piotr Strebski <strebski@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-04 15:17+0000\n"
-"PO-Revision-Date: 2025-01-26 20:01+0000\n"
-"Last-Translator: Michał Stojek <stojex@gmail.com>\n"
+"PO-Revision-Date: 2025-02-05 17:52+0000\n"
+"Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -12040,17 +12041,14 @@ msgstr ""
 "Gramps kończy teraz działanie."
 
 #: ../gramps/grampsapp.py:227
-#, fuzzy
 msgid ""
 "The orjson package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Pakiet orjson jest potrzebny do uruchomienia Gramps.\n"
 "\n"
-"Nie posiadasz zainstalowanego pakietu bsddb. Jest on wymagany, aby uruchomić "
-"Gramps.\n"
-"\n"
-"Gramps kończy teraz działanie."
+"Gramps zostanie teraz zakończony."
 
 #: ../gramps/grampsapp.py:323 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:408 ../gramps/grampsapp.py:425
@@ -23724,10 +23722,9 @@ msgid "Key"
 msgstr "Klucz"
 
 #: ../gramps/plugins/gramplet/backlinks.py:238
-#, fuzzy, python-format
-#| msgid "_Make Active Media"
+#, python-format
 msgid "_Make Active %s"
-msgstr "_Zaznacz ten obiekt jako aktywny"
+msgstr "_Zaznacz jako aktywny %s"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
@@ -26325,10 +26322,8 @@ msgid "nick"
 msgstr "przydomek"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "Przydomek:"
+msgstr "Przydomek"
 
 #: ../gramps/plugins/importer/importcsv.py:228
 #, fuzzy
@@ -38679,10 +38674,9 @@ msgstr "Miejsca zaczynające się literą %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Testuj wybrany filtr"
+msgstr "Mapa cieplna dla %s w ramach wybranego filtra"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
@@ -38710,10 +38704,8 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Usuń wybrany filtr"
+msgstr " który nie ma żadnego zdarzenia dla wybranego filtra."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
