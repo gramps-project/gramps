@@ -80,7 +80,7 @@ class GenericFilter:
         """
         Return True or False depending on whether the handle matches the filter.
         """
-        obj = self.get_object(handle)
+        obj = self.get_object(db, handle)
         return self.apply_to_one(db, obj)
 
     def is_empty(self):
