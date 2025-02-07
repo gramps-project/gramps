@@ -36,6 +36,7 @@ from __future__ import annotations
 # Gramps libraries
 #
 # -------------------------------------------------------------------------
+from ..errors import AccessDeniedError
 from .proxybase import ProxyDbBase
 from ..lib import (
     Date,
@@ -126,12 +127,10 @@ class FilterProxyDb(ProxyDbBase):
     def get_person_from_handle(self, handle):
         """
         Finds a Person in the database from the passed Gramps ID.
-        If no such Person exists, None is returned.
+        If no such Person exists, or the handle is not in plist, an error is raised.
         """
         if handle in self.plist:
             person = self.db.get_person_from_handle(handle)
-            if person is None:
-                return None
             person.set_person_ref_list(
                 [ref for ref in person.get_person_ref_list() if ref.ref in self.plist]
             )
@@ -165,7 +164,7 @@ class FilterProxyDb(ProxyDbBase):
 
             return person
         else:
-            return None
+            raise AccessDeniedError(f"Handle {handle} not in person_filter result")
 
     def include_person(self, handle):
         return handle in self.plist
@@ -261,7 +260,7 @@ class FilterProxyDb(ProxyDbBase):
             self.sanitize_notebase(event)
             return event
         else:
-            return None
+            raise AccessDeniedError(f"Handle {handle} not in event_filter result")
 
     def get_family_from_handle(self, handle):
         """
@@ -270,8 +269,6 @@ class FilterProxyDb(ProxyDbBase):
         """
         if handle in self.flist:
             family = self.db.get_family_from_handle(handle)
-            if family is None:
-                return None
             eref_list = [
                 eref for eref in family.get_event_ref_list() if eref.ref in self.elist
             ]
@@ -318,7 +315,7 @@ class FilterProxyDb(ProxyDbBase):
 
             return family
         else:
-            return None
+            raise AccessDeniedError(f"Handle {handle} not in family list")
 
     def get_repository_from_handle(self, handle):
         """
@@ -339,7 +336,7 @@ class FilterProxyDb(ProxyDbBase):
         if handle in self.nlist:
             return self.db.get_note_from_handle(handle)
         else:
-            return None
+            raise AccessDeniedError(f"Handle {handle} not in note_filter result")
 
     def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person | None:
         """
