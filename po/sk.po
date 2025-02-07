@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-02-05 17:52+0000\n"
+"PO-Revision-Date: 2025-02-07 08:32+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -10877,15 +10877,11 @@ msgid "date fallback"
 msgstr "nahradenie dátumu"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Direct evidence for this person - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
-"Priamy dôkaz pre túto osobu – narodenie: {birth_min_src:s}, smrť: {death_src:"
-"s}"
+"Priamy dôkaz pre túto osobu – narodenie: {birth_min_src}, smrť: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 msgid "mother's age"
@@ -10928,28 +10924,22 @@ msgid "offset from birth date"
 msgstr "odstup od dátumu narodenia"
 
 #: ../gramps/gen/utils/alive.py:448
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
-"odvodené od rodičov a súrodencov - narodenie: {birth_min_src:s}, smrť: "
-"{death_src:s}"
+"odvodené od rodičov a súrodencov - narodenie: {birth_min_src}, smrť: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) "
-#| "to {birth_max_src:s} (latest), death: {death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
-"odvodené od rodičov a súrodencov – narodenie: {birth_min_src:s} (najskôr) do "
-"{birth_max_src:s} (najnovšie), smrť: {death_src:s}"
+"odvodené od rodičov a súrodencov – narodenie: {birth_min_src} (najskôr) do "
+"{birth_max_src} (najnovšie), smrť: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -39318,7 +39308,7 @@ msgstr "Zahrnúť stránky heatmapy"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
 msgid "Whether to include heatmap pages for events"
-msgstr "Či sa majú zahrnúť stránky heatmapy pre udalosti."
+msgstr "Či sa majú zahrnúť stránky heatmapy pre udalosti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
 msgid "Point size"
