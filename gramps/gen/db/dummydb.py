@@ -383,6 +383,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_event_handles(self):
         """

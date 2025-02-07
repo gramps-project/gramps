@@ -30,6 +30,7 @@ Proxy class for the Gramps databases. Filter out all data marked private.
 #
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from ..errors import AccessDeniedError
 
 _ = glocale.translation.gettext
 import logging
@@ -82,12 +83,12 @@ class PrivateProxyDb(ProxyDbBase):
     def get_person_from_handle(self, handle):
         """
         Finds a Person in the database from the passed Gramps ID.
-        If no such Person exists, None is returned.
+        If no such Person exists, or the privacy option is True an error is raised.
         """
         person = self.db.get_person_from_handle(handle)
-        if person and not person.get_privacy():
+        if not person.get_privacy():
             return sanitize_person(self.db, person)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
     def get_source_from_handle(self, handle):
         """
@@ -95,9 +96,9 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Source exists, None is returned.
         """
         source = self.db.get_source_from_handle(handle)
-        if source and not source.get_privacy():
+        if not source.get_privacy():
             return sanitize_source(self.db, source)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
     def get_citation_from_handle(self, handle):
         """
@@ -105,9 +106,9 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Citation exists, None is returned.
         """
         citation = self.db.get_citation_from_handle(handle)
-        if citation and not citation.get_privacy():
+        if not citation.get_privacy():
             return sanitize_citation(self.db, citation)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
     def get_media_from_handle(self, handle):
         """
@@ -115,9 +116,9 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Object exists, None is returned.
         """
         media = self.db.get_media_from_handle(handle)
-        if media and not media.get_privacy():
+        if not media.get_privacy():
             return sanitize_media(self.db, media)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
     def get_place_from_handle(self, handle):
         """
@@ -125,9 +126,9 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Place exists, None is returned.
         """
         place = self.db.get_place_from_handle(handle)
-        if place and not place.get_privacy():
+        if not place.get_privacy():
             return sanitize_place(self.db, place)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
     def get_event_from_handle(self, handle):
         """
@@ -135,9 +136,9 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Event exists, None is returned.
         """
         event = self.db.get_event_from_handle(handle)
-        if event and not event.get_privacy():
+        if not event.get_privacy():
             return sanitize_event(self.db, event)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
     def get_family_from_handle(self, handle):
         """
@@ -145,9 +146,9 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Family exists, None is returned.
         """
         family = self.db.get_family_from_handle(handle)
-        if family and not family.get_privacy():
+        if not family.get_privacy():
             return sanitize_family(self.db, family)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
     def get_repository_from_handle(self, handle):
         """
@@ -155,9 +156,9 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Repository exists, None is returned.
         """
         repository = self.db.get_repository_from_handle(handle)
-        if repository and not repository.get_privacy():
+        if not repository.get_privacy():
             return sanitize_repository(self.db, repository)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
     def get_note_from_handle(self, handle):
         """
@@ -165,10 +166,9 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Note exists, None is returned.
         """
         note = self.db.get_note_from_handle(handle)
-        if note and not note.get_privacy():
-            # Nothing to sanitize in note object:
+        if not note.get_privacy():
             return note
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
     def get_person_from_gramps_id(self, gramps_id):
         """
