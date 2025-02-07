@@ -31,8 +31,8 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-02-05 17:52+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2025-02-07 04:46+0000\n"
+"Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
 "Language: sv\n"
@@ -10870,15 +10870,11 @@ msgid "date fallback"
 msgstr "datumreserv"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Direct evidence for this person - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
-"Direkt bevis för denna person - födelse: {birth_min_src:s}, död: {death_src:"
-"s}"
+"Direkt bevis för denna person - födelse: {birth_min_src}, död: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 msgid "mother's age"
@@ -10921,28 +10917,22 @@ msgid "offset from birth date"
 msgstr "förskjutning från födelsedatum"
 
 #: ../gramps/gen/utils/alive.py:448
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
-"slutsats från föräldrar och syskon - födelse: {birth_min_src:s}, död: "
-"{death_src:s}"
+"slutsats från föräldrar och syskon - födelse: {birth_min_src}, död: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) "
-#| "to {birth_max_src:s} (latest), death: {death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
-"slutsats från föräldrar och syskon - födelse:  {birth_min_src:s} (tidigast) "
-"till {birth_max_src:s} (senast), död: {death_src:s}"
+"slutsats från föräldrar och syskon - födelse: {birth_min_src} (tidigast) "
+"till {birth_max_src} (senast), död: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
