@@ -105,20 +105,28 @@ class Evaluator:
             ops = [self.convert_to_sql(arg) for arg in node.ops]
             left = self.convert_to_sql(node.left)
 
-            if comparators[0][0] == "(" or comparators[0] == "null":
-                # item in (1, 2, 3)
-                if comparators[0] == "null":
-                    comparators[0] = "()"
-                if ops[0] == " IN ":
-                    return "%s IN %s" % (left, comparators[0])
-                elif ops[0] == " NOT IN ":
-                    return "%s NOT IN %s" % (left, comparators[0])
-            else:
-                # "<string> IN X":
-                if ops[0] == " IN ":
-                    return "%s LIKE '%%%s%%'" % (comparators[0], left[1:-1])
-                elif ops[0] == " NOT IN ":
-                    return "%s NOT LIKE '%%%s%%'" % (comparators[0], left[1:-1])
+            if ops[0] in [" IN ", " NOT IN "]:
+                # FIXME: this just checks the first
+                # should pre-process, and leave for
+                # zip below
+                if (
+                    isinstance(comparators[0], str)
+                    and comparators[0][0] == "("
+                    or comparators[0] == "null"
+                ):
+                    # item in (1, 2, 3)
+                    if comparators[0] == "null":
+                        comparators[0] = "()"
+                    if ops[0] == " IN ":
+                        return "%s IN %s" % (left, comparators[0])
+                    elif ops[0] == " NOT IN ":
+                        return "%s NOT IN %s" % (left, comparators[0])
+                else:
+                    # "<string> IN X":
+                    if ops[0] == " IN ":
+                        return "%s LIKE '%%%s%%'" % (comparators[0], left[1:-1])
+                    elif ops[0] == " NOT IN ":
+                        return "%s NOT LIKE '%%%s%%'" % (comparators[0], left[1:-1])
 
             retval = ""
             for op, right in zip(ops, comparators):
