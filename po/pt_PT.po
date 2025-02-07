@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-02-05 17:52+0000\n"
+"PO-Revision-Date: 2025-02-07 04:46+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -10926,15 +10926,12 @@ msgid "date fallback"
 msgstr "data de recurso"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Direct evidence for this person - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
-"Evidência directa para este indivíduo - nascimento: {birth_min_src:s}, "
-"óbito: {death_src:s}"
+"Evidência directa para este indivíduo - nascimento: {birth_min_src}, óbito: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 msgid "mother's age"
@@ -10977,28 +10974,21 @@ msgid "offset from birth date"
 msgstr "desvio da data de nascimento"
 
 #: ../gramps/gen/utils/alive.py:448
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
-"inferida de pais e irmãos - nascimento: {birth_min_src:s}, óbito: {death_src:"
-"s}"
+"inferida de pais e irmãos - nascimento: {birth_min_src}, óbito: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) "
-#| "to {birth_max_src:s} (latest), death: {death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
-"inferida de pais e irmãos - nascimento: {birth_min_src:s} (mais recente) até "
-"{birth_max_src:s} (mais antigo), óbito: {death_src:s}"
+"inferida de pais e irmãos - nascimento: {birth_min_src} (mais recente) até "
+"{birth_max_src} (mais antigo), óbito: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
