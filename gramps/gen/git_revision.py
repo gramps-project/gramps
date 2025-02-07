@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2025       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,18 +21,18 @@
 #
 
 """
-Find the latest git revision.
+Use `git describe` to obtain a description of the revision.
 """
 
 import subprocess
 
 
-def get_git_revision(path=""):
+def get_git_revision():
     """
-    Return the short commit hash of the latest commit.
+    Return a description of the latest commit.
     """
     stdout = ""
-    command = ["git", "log", "-1", "--format=%h", path]
+    command = ["git", "describe"]
     try:
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         (stdout, stderr) = proc.communicate()
@@ -43,6 +44,6 @@ def get_git_revision(path=""):
             stdout = stdout.decode("utf-8", errors="replace")
         except UnicodeDecodeError:
             pass
-        return "-" + stdout if stdout else ""
-    else:  # no output from git log
+        return stdout
+    else:  # no output from git describe
         return ""

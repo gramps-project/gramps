@@ -5,6 +5,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2012       Doug Blank
 # Copyright (C) 2013       John Ralls <jralls@ceridwen.us>
+# Copyright (C) 2025       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -173,14 +174,11 @@ if LIB_PATH not in sys.path:
 #
 # -------------------------------------------------------------------------
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
-
 sys.path.insert(0, ROOT_DIR)
-git_revision = get_git_revision(ROOT_DIR).replace("\n", "")
-if sys.platform == "win32" and git_revision == "":
-    git_revision = get_git_revision(os.path.split(ROOT_DIR)[1])
-if DEV_VERSION:
-    VERSION += git_revision
-# VERSION += "-1"
+
+git_revision = get_git_revision()
+if DEV_VERSION and git_revision:
+    VERSION = git_revision
 
 #
 # Glade files
