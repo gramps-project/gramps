@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-02-06 10:55+0000\n"
+"PO-Revision-Date: 2025-02-07 08:32+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -10954,15 +10954,12 @@ msgid "date fallback"
 msgstr "vaihtoehtoinen päiväys"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Direct evidence for this person - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
-"Suorat todisteet tästä henkilöstä - syntymä: {birth_min_src:s}, kuolema: "
-"{death_src:s}"
+"Suorat todisteet tästä henkilöstä - syntymä: {birth_min_src}, kuolema: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 msgid "mother's age"
@@ -11005,28 +11002,22 @@ msgid "offset from birth date"
 msgstr "offset syntymäpäivästä"
 
 #: ../gramps/gen/utils/alive.py:448
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
-"vanhempien ja sisarusten perusteella - syntymä: {birth_min_src:s}, kuolema: "
-"{death_src:s}"
+"vanhempien ja sisarusten perusteella - syntymä: {birth_min_src}, kuolema: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) "
-#| "to {birth_max_src:s} (latest), death: {death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
-"vanhempien ja sisarusten perusteella - syntymä:  (varhaisin) - "
-"{birth_max_src:s} (myöhäisin), kuolema: {death_src:s}"
+"vanhempien ja sisarusten perusteella - syntymä: {birth_min_src} (varhaisin) -"
+" {birth_max_src} (myöhäisin), kuolema: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
