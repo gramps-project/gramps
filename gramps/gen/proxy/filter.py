@@ -459,13 +459,13 @@ class FilterProxyDb(ProxyDbBase):
         Return an iterator over database handles, one handle for each Person in
         the database.
         """
-        return self.plist
+        yield from self.plist
 
     def iter_people(self):
         """
         Return an iterator over objects for Persons in the database
         """
-        return map(self.get_person_from_handle, self.plist)
+        yield from map(self.get_person_from_handle, self.plist)
 
     def get_event_handles(self):
         """
@@ -479,13 +479,13 @@ class FilterProxyDb(ProxyDbBase):
         Return an iterator over database handles, one handle for each Event in
         the database.
         """
-        return self.elist
+        yield from self.elist
 
     def iter_events(self):
         """
         Return an iterator over objects for Events in the database
         """
-        return map(self.get_event_from_handle, self.elist)
+        yield from map(self.get_event_from_handle, self.elist)
 
     def get_family_handles(self, sort_handles=False, locale=glocale):
         """
@@ -505,13 +505,13 @@ class FilterProxyDb(ProxyDbBase):
         Return an iterator over database handles, one handle for each Family in
         the database.
         """
-        return self.flist
+        yield from self.flist
 
     def iter_families(self):
         """
         Return an iterator over objects for Families in the database
         """
-        return map(self.get_family_from_handle, self.flist)
+        yield from map(self.get_family_from_handle, self.flist)
 
     def get_note_handles(self):
         """
@@ -525,13 +525,13 @@ class FilterProxyDb(ProxyDbBase):
         Return an iterator over database handles, one handle for each Note in
         the database.
         """
-        return self.nlist
+        yield from self.nlist
 
     def iter_notes(self):
         """
         Return an iterator over objects for Notes in the database
         """
-        return map(self.get_note_from_handle, self.nlist)
+        yield from map(self.get_note_from_handle, self.nlist)
 
     def get_default_person(self):
         """returns the default Person of the database"""
