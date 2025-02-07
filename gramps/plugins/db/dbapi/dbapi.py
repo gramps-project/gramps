@@ -1204,7 +1204,7 @@ class DBAPI(DbGeneric):
         if isinstance(value, str):
             if value.startswith("{") or value.startswith("["):
                 try:
-                    return self.serializer.string_to_object(None, value)
+                    return self.serializer.string_to_data(value)
                 except Exception:
                     # Must be an value
                     pass
@@ -1270,9 +1270,12 @@ class DBAPI(DbGeneric):
         else:
             order_by_expr = evaluator.get_order_by(order_by)
 
-        self.dbapi.execute(
-            f"SELECT {what_expr} from {table_name}{where_expr}{order_by_expr};"
-        )
+        query = f"SELECT {what_expr} from {table_name}{where_expr}{order_by_expr};"
+        try:
+            self.dbapi.execute(query)
+        except Exception as exc:
+            raise Exception(query) from None
+
         row = self.dbapi.fetchone()
         while row:
             if what_expr == "json_data":
