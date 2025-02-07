@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        python-version: ["3.9", "3.13"]
+        python-version: ["3.13"]
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
@@ -69,4 +69,5 @@ jobs:
     - name: Run unit test suite
       run: |
         export GDK_BACKEND=-
-        python3 setup.py test
+        export GRAMPS_RESOURCES=.
+        python3 -m unittest discover --durations 0 -p "*_test.py"
