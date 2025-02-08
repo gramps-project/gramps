@@ -65,6 +65,7 @@ from gramps.gen.lib import (
 )
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
+from gramps.gen.errors import HandleError
 
 LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
@@ -1045,7 +1046,8 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         if row:
             return self.serializer.string_to_data(row[0])
-        return None
+
+        raise HandleError(f"Handle {handle} not found")
 
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
