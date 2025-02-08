@@ -923,30 +923,31 @@ class HeatmapPage(BasePage):
                 links = "''"
                 for event_ID in events:
                     event = self.r_db.get_event_from_gramps_id(event_ID)
-                    handle = event.get_place_handle()
-                    if handle:
-                        place = self.r_db.get_place_from_handle(handle)
-                        placename = _pd.display(self.r_db, place, fmt=0)
-                        p_fname = (
-                            self.report.build_url_fname(handle, "plc", self.uplink)
-                            + self.ext
-                        )
-                        placetitle = ' <a href="%s">%s</a>' % (p_fname, placename)
-
-                    bkref_list = self.report.bkref_dict[Event][event.handle]
-                    for ref in bkref_list:
-                        (bkref_class, bkref_hdle, role) = ref
-                        if bkref_class == Person:
-                            person = self.r_db.get_person_from_handle(bkref_hdle)
-                            links = self.__create_links_tracelife(
-                                links,
-                                person,
-                                placetitle,
-                                latitude,
-                                longitude,
-                                ref,
-                                event,
+                    if event:
+                        handle = event.get_place_handle()
+                        if handle:
+                            place = self.r_db.get_place_from_handle(handle)
+                            placename = _pd.display(self.r_db, place, fmt=0)
+                            p_fname = (
+                                self.report.build_url_fname(handle, "plc", self.uplink)
+                                + self.ext
                             )
+                            placetitle = ' <a href="%s">%s</a>' % (p_fname, placename)
+
+                        bkref_list = self.report.bkref_dict[Event][event.handle]
+                        for ref in bkref_list:
+                            (bkref_class, bkref_hdle, role) = ref
+                            if bkref_class == Person:
+                                person = self.r_db.get_person_from_handle(bkref_hdle)
+                                links = self.__create_links_tracelife(
+                                    links,
+                                    person,
+                                    placetitle,
+                                    latitude,
+                                    longitude,
+                                    ref,
+                                    event,
+                                )
                 debug = 0
                 tracelife = self._create_family_tracelife(
                     tracelife, placetitle, latitude, longitude, links
