@@ -163,12 +163,35 @@ class ProxyDbBase(DbReadBase):
         return obj.include()
 
     # Define default predicates for each object type
+    def include_person(self, handle):
+        return True
 
-    include_person = include_family = include_event = include_source = (
-        include_citation
-    ) = include_place = include_media = include_repository = include_note = (
-        include_tag
-    ) = None
+    def include_family(self, handle):
+        return True
+
+    def include_event(self, handle):
+        return True
+
+    def include_source(self, handle):
+        return True
+
+    def include_citation(self, handle):
+        return True
+
+    def include_place(self, handle):
+        return True
+
+    def include_media(self, handle):
+        return True
+
+    def include_repository(self, handle):
+        return True
+
+    def include_note(self, handle):
+        return True
+
+    def include_tag(self, handle):
+        return True
 
     def get_person_cursor(self):
         return ProxyCursor(self.get_raw_person_data, self.get_person_handles)
@@ -456,9 +479,9 @@ class ProxyDbBase(DbReadBase):
     @staticmethod
     def gfilter(predicate, obj):
         """
-        Returns obj if predicate is True or not callable, else returns None
+        Returns obj if predicate is True, else returns None
         """
-        if predicate is not None and obj is not None:
+        if obj is not None:
             return obj if predicate(obj.handle) else None
         return obj
 
