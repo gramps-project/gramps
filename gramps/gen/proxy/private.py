@@ -468,7 +468,7 @@ class PrivateProxyDb(ProxyDbBase):
                     yield (class_name, handle)
             else:
                 raise NotImplementedError
-        return
+        yield from ()
 
 
 def copy_media_ref_list(db, original_obj, clean_obj):

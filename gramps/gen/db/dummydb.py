@@ -236,7 +236,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        return []
+        yield from ()
 
     def find_initial_person(self):
         """
