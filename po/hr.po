@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-01-30 23:48+0000\n"
+"PO-Revision-Date: 2025-02-08 18:00+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -803,14 +803,6 @@ msgstr ""
 "koristiti i za većinu drugih objekata."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit > Preferences > Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -823,7 +815,7 @@ msgstr ""
 "formatu. Neispravni formati datuma prikazat će se crvenkastom pozadinom ili "
 "crvenom točkom na desnoj strani polja. Možeš ga ispraviti u dijaloškom "
 "okviru datuma, pritiskom na gumb za određivanje datuma. Format datuma možeš "
-"postaviti korištenjem izbornika „Uredi > Postavke > Prikaz”."
+"postaviti korištenjem izbornika „Uredi > Postavke > Podaci”."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -3581,10 +3573,8 @@ msgid "Filter"
 msgstr "Filtar"
 
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "Učitavanje podataka ..."
+msgstr "Pripremanje ..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -7284,13 +7274,12 @@ msgid "unknown"
 msgstr "nepoznato"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "više od %s godina"
-msgstr[1] "više od %s godina"
-msgstr[2] "više od %s godina"
+msgstr[0] "više od {number_of} godine"
+msgstr[1] "više od {number_of} godine"
+msgstr[2] "više od {number_of} godina"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -8704,18 +8693,14 @@ msgid "Matrilineal"
 msgstr "Matrilinearno"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Zanimanje"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
-msgstr "Lokacija"
+msgstr "Mjesto"
 
 #: ../gramps/gen/lib/nametype.py:58
 msgid "Also Known As"
@@ -9803,7 +9788,7 @@ msgstr "Pravokutno"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:156
 msgid "Graphviz Layout"
-msgstr "Prijelom stranice pomoću Graphviza"
+msgstr "Graphviz raspored"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:158
 #: ../gramps/gui/widgets/styledtexteditor.py:84
@@ -10889,6 +10874,7 @@ msgstr "zamjenski datum"
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
+"Izravni dokaz za ovu osobu – rođenje: {birth_min_src}, smrt: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 msgid "mother's age"
@@ -10927,10 +10913,8 @@ msgid "birth date and known to be dead"
 msgstr "datum rođenja i zna se da je mrtav/mrtva"
 
 #: ../gramps/gen/utils/alive.py:432
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "datum rođenja predaka"
+msgstr "odmak od datuma rođenja"
 
 #: ../gramps/gen/utils/alive.py:448
 #, python-brace-format
@@ -10938,6 +10922,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
+"izvedeno od roditelja i braće/sestara – rođenje: {birth_min_src}, smrt: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -10945,6 +10931,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"izvedeno od roditelja i braće/sestara – rođenje: {birth_min_src} (najranije) "
+"do {birth_max_src} (najkasnije), smrt: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -10959,28 +10947,25 @@ msgid "event with spouse"
 msgstr "događaj sa supružnikom"
 
 #: ../gramps/gen/utils/alive.py:765
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "rođenje potomka: {} generacija "
-msgstr[1] "rođenje potomka: {} generacija "
-msgstr[2] "rođenje potomka: {} generacija "
+msgstr[0] "rođenje potomka: {number_of} generacija "
+msgstr[1] "rođenje potomka: {number_of} generacije "
+msgstr[2] "rođenje potomka: {number_of} generacija "
 
 #: ../gramps/gen/utils/alive.py:788
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "smrt potomka: {} generacija "
-msgstr[1] "smrt potomka: {} generacija "
-msgstr[2] "smrt potomka: {} generacija "
+msgstr[0] "smrt potomka: {number_of} generacija "
+msgstr[1] "smrt potomka: {number_of} generacije "
+msgstr[2] "smrt potomka: {number_of} generacija "
 
 #: ../gramps/gen/utils/alive.py:803
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Greška u bazi podataka: beskonačna petlja u potomcima od %s"
+msgstr "Greška u bazi podataka: petlja u potomcima od %s."
 
 #: ../gramps/gen/utils/alive.py:855
 msgid "mother birth "
@@ -11003,10 +10988,9 @@ msgid "father death "
 msgstr "smrt oca "
 
 #: ../gramps/gen/utils/alive.py:962
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Greška u bazi podataka: beskonačna petlja u precima od %s"
+msgstr "Greška u bazi podataka: petlja u precima od %s."
 
 #: ../gramps/gen/utils/alive.py:1044 ../gramps/gen/utils/alive.py:1053
 msgid "no evidence"
@@ -11768,6 +11752,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Za pokretanje Grampsa je potreban orjson paket.\n"
+"\n"
+"Gramps će se sada zatvoriti."
 
 #: ../gramps/grampsapp.py:323 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:408 ../gramps/grampsapp.py:425
@@ -12216,15 +12203,15 @@ msgstr "Boje za obiteljska čvorišta"
 
 #: ../gramps/gui/configure.py:911
 msgid "Other colors"
-msgstr "Boje za ostalo"
+msgstr "Druge boje"
 
 #: ../gramps/gui/configure.py:914
 msgid "Background for Alive"
-msgstr "Boja pozadine za žive"
+msgstr "Pozadina za žive"
 
 #: ../gramps/gui/configure.py:915
 msgid "Background for Dead"
-msgstr "Boja pozadine za umrle"
+msgstr "Pozadina za umrle"
 
 #: ../gramps/gui/configure.py:916
 msgid "Border for Alive"
@@ -12236,27 +12223,27 @@ msgstr "Rub za umrle"
 
 #: ../gramps/gui/configure.py:942
 msgid "Default background"
-msgstr "Standardna boja pozadina"
+msgstr "Zadana pozadina"
 
 #: ../gramps/gui/configure.py:943
 msgid "Background for Married"
-msgstr "Boja pozadine za vjenčane"
+msgstr "Pozadina za vjenčane"
 
 #: ../gramps/gui/configure.py:944
 msgid "Background for Unmarried"
-msgstr "Boja pozadine za nevjenčane"
+msgstr "Pozadina za nevjenčane"
 
 #: ../gramps/gui/configure.py:945
 msgid "Background for Civil union"
-msgstr "Boja pozadine za životno partnerstvo"
+msgstr "Pozadina za životno partnerstvo"
 
 #: ../gramps/gui/configure.py:946
 msgid "Background for Unknown"
-msgstr "Boja pozadine za nepoznato"
+msgstr "Pozadina za nepoznate"
 
 #: ../gramps/gui/configure.py:947
 msgid "Background for Divorced"
-msgstr "Boja pozadine za rastavljene"
+msgstr "Pozadina za rastavljene"
 
 #: ../gramps/gui/configure.py:948
 msgid "Default border"
@@ -12268,7 +12255,7 @@ msgstr "Rub za rastavljene"
 
 #: ../gramps/gui/configure.py:951
 msgid "Background for Home Person"
-msgstr "Boja pozadine za početnu osobu"
+msgstr "Pozadina za početnu osobu"
 
 #: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2815
 #, python-format
@@ -12694,35 +12681,28 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Prikaži ili sakrij ikonu postavki u alatnoj traci."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "reference medija"
+msgstr "Koristi zadanu postavku"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Samo tekst"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Samo novi dodaci"
+msgstr "Samo ikone"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "Tekst i ikone"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "Prikaži tekst, ikone ili oboje na gumbima u alatnoj traci."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "Ala_tna traka"
+msgstr "Stil alatne trake"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -17213,10 +17193,11 @@ msgid ""
 "Use monospace font to keep preformatting."
 msgstr ""
 "Ako je uključeno, razmaci u zabilješkama će biti sačuvani u izvještajima. "
-"Koristi ovu mogućnost za formatiranje teksta s razmacima, npr. za tablice.\n"
+"Koristi ovu mogućnost za formatiranje rasporeda s razmacima, npr. za tablice."
+"\n"
 "Ako je isključeno, svi će razmaci biti automatski uklonjeni prilikom izrade "
 "izvještaja, što će poboljšati izgled izvještaja.\n"
-"Koristi font fiksne širine za zadržavanje formatiranog teksta."
+"Koristi font fiksne širine za zadržavanje predformatiranog teksta."
 
 #: ../gramps/gui/glade/editperson.glade:163
 msgid "C_all:"
@@ -21047,7 +21028,7 @@ msgstr "Broj stupaca"
 
 #: ../gramps/gui/widgets/grampletpane.py:1643
 msgid "Gramplet Layout"
-msgstr "Razmještaj grampleta"
+msgstr "Raspored grampleta"
 
 #: ../gramps/gui/widgets/grampletpane.py:1686
 msgid "Use maximum height available"
@@ -21356,11 +21337,11 @@ msgstr "Prikazuje zadnju stranicu"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:190
 msgid "Zooms to fit the page width"
-msgstr "Zumiranje na širinu stranice"
+msgstr "Zumira na širinu stranice"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:204
 msgid "Zooms to fit the whole page"
-msgstr "Zumiranje na cijelu stranicu"
+msgstr "Zumira na cijelu stranicu"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:217
 msgid "Zooms the page in"
@@ -25621,7 +25602,7 @@ msgid ""
 "that fathers are always on the left branch and mothers are on the right "
 "branch."
 msgstr ""
-"Prisili redoslijed rasporeda za Sosa/Sosa-Stradonitz/ploču predaka za sve "
+"Prisili (Sosa/Sosa-Stradonitz/Ploča predaka) raspored redoslijeda za sve "
 "pretke, tako da se očevi uvijek nalaze na lijevoj grani a majke na desnoj."
 
 #: ../gramps/plugins/graph/gvhourglass.py:533
@@ -31574,11 +31555,11 @@ msgstr "Dodaj nišanski znak"
 
 #: ../gramps/plugins/lib/maps/geography.py:408
 msgid "Unlock zoom and position"
-msgstr "Otključaj veličinu i poziciju"
+msgstr "Otključaj zoom i položaj"
 
 #: ../gramps/plugins/lib/maps/geography.py:410
 msgid "Lock zoom and position"
-msgstr "Zaključaj veličinu i poziciju"
+msgstr "Zaključaj zoom i položaj"
 
 #: ../gramps/plugins/lib/maps/geography.py:415
 msgid "Add place"
@@ -31692,7 +31673,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1444
 msgid "Zoom used when centering"
-msgstr "Zumiranje, korišteno pri centriranju"
+msgstr "Korišteni zoom pri centriranju"
 
 #: ../gramps/plugins/lib/maps/geography.py:1451
 msgid "The maximum number of places to show"
@@ -37926,7 +37907,7 @@ msgstr "Početna"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Toplinske karte"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -37956,7 +37937,7 @@ msgstr "Web kalendar"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Toplinska karta"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:436
@@ -38214,19 +38195,15 @@ msgid "Family Map for %s"
 msgstr "Karta obitelji za %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Izrada stranica događaja"
+msgstr "Stvaranje stranica toplinske karte za događaje"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
-msgstr ""
+msgstr "Sljedeći odjeljak sadrži indeks svih događaja za toplinsku kartu."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Ime"
@@ -38242,26 +38219,23 @@ msgstr "Mjesta koja počinju sa slovom %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Provjeri odabrani filtar"
+msgstr "Toplinska karta za %s unutar odabrnog filtra"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
-msgstr ""
+msgstr "Sljedeći odjeljak sadrži indeks svih prezimena za toplinsku kartu."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "Prezime"
 
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
-msgstr ""
+msgstr "Sljedeći odjeljak sadrži indeks svih oznaka za toplinsku kartu."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38269,14 +38243,14 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Sljedeći odjeljak sadrži kartu svih osoba s događajem: {event_type} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Izbriši odabrani filtar"
+msgstr " koji nema nijedan događaj za odabrani filter."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38284,6 +38258,7 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"Ovaj odjeljak sadrži kartu svih događaja za: {surname} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -38291,6 +38266,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"Ovaj odjeljak sadrži kartu za sve osobe, događaje s oznakom: {tag} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -38521,31 +38498,25 @@ msgstr "Padajući izbornik – samo za WebKit preglednike"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2205
 msgid "Navigation Menu Layout"
-msgstr "Izgled izbornika navigacije"
+msgstr "Raspored izbornika navigacije"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2210
 msgid "Choose which layout for the Navigation Menus."
-msgstr "Odaberi izgled izbornika navigacije."
+msgstr "Odaberi raspored za izbornike navigacije."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2217
 msgid "Normal Outline Style"
 msgstr "Normalni obrubni stil"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2221
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
-msgstr "Prijelom referentnih citata"
+msgstr "Raspored referenci citata"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
-msgstr "Odredi standardni izgled odlomka referentnih citata na stranici izvora"
+msgstr "Odredi zadani raspored za odlomak referenca citata na stranici izvora"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2233
 msgid "Include ancestor's tree"
@@ -38581,13 +38552,11 @@ msgstr "Označi, ako želiš otvoriti/zatvoriti odjeljak"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2252
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Maks. broj redaka u indeksu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Maksimalni broj uključenih predaka."
+msgstr "Maksimalni broj redaka za uključivanje u stranicu indeksa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2264
 msgid "Extra Pages"
@@ -39325,50 +39294,44 @@ msgstr ""
 "postavkama na kartici za datum."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Opcije za kartu mjesta"
+msgstr "Opcije za toplinsku kartu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Uključi stranice događaja"
+msgstr "Uključi stranice toplinske karte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Da li uključiti alternativna imena roditelja."
+msgstr "Da li uključiti stranice toplinske karte za događaje"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Veličina fonta"
+msgstr "Veličina točaka"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "Veličina teksta zabilješke u tipografskim točkama."
+msgstr ""
+"Postavi veličinu točaka toplinske karte.\n"
+"Zadano: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "Zamuti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Postavi količinu zamućenja.\n"
+"Zadano: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 #: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
