@@ -31,10 +31,10 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-02-06 16:19+0000\n"
+"PO-Revision-Date: 2025-02-09 19:28+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11051,15 +11051,12 @@ msgid "date fallback"
 msgstr "Datumsersatz"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Direct evidence for this person - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
-"Direkter Nachweis für diese Person - Geburt: {Geburt_min_src:s}, Tod: "
-"{Tod_Ursprung:s}"
+"Direkter Nachweis für diese Person - Geburt: {birth_min_src}, Tod: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 msgid "mother's age"
@@ -11102,28 +11099,22 @@ msgid "offset from birth date"
 msgstr "Abweichung vom Geburtsdatum"
 
 #: ../gramps/gen/utils/alive.py:448
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
-"abgeleitet von Eltern und Geschwistern - Geburt: {birth_min_src:s}, Tod: "
-"{death_src:s}"
+"abgeleitet von Eltern und Geschwistern - Geburt: {birth_min_src}, Tod: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) "
-#| "to {birth_max_src:s} (latest), death: {death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
-"abgeleitet von Eltern und Geschwistern - Geburt:  {birth_min_src:s} "
-"(frühestens) bis {birth_max_src:s} (spätestens), Tod: {death_src:s}"
+"abgeleitet von Eltern und Geschwistern - Geburt: {birth_min_src} (frühestens)"
+" bis {birth_max_src} (spätestens), Tod: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -18635,14 +18626,14 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Addon Manager."
 msgstr ""
-"Gramps wird mit einem Basissatz von Zusatzmodulen ausgeliefert. Darüber "
-"hinaus kannst du mit zusätzlichen Erweiterungen deren Funktionalität "
-"ergänzen. Diese Erweiterungen liefern Berichte, Listen, Ansichten, Gramplets "
-"und mehr. Hier kannst du unter den verfügbaren Erweiterungen auswählen. Sie "
-"werden aus dem Internet von der Gramps-Webseite geladen und lokal auf deinem "
-"Rechner installiert. Wenn du diesen Dialog jetzt schließt, kannst du "
-"Erweiterungen später über das Menü Bearbeiten -> Erweiterungsverwaltung "
-"installieren."
+"Gramps wird mit einem Grundstock an Zusatzmodulen geliefert, die alle "
+"notwendigen Funktionen bieten. Darüber hinaus kannst du deren Funktionalität "
+"mit zusätzlichen Erweiterungen ergänzen. Diese Erweiterungen bieten "
+"Berichte, Listen, Ansichten, Gramplets und mehr. Hier kannst du unter den "
+"verfügbaren Erweiterungen wählen, sie werden aus dem Internet von der Gramps-"
+"Webseite geladen und lokal auf deinem Rechner installiert. Wenn du diesen "
+"Dialog jetzt schließt, kannst du Erweiterungen später über das Menü "
+"Bearbeiten -> Erweiterungsverwaltung installieren."
 
 #: ../gramps/gui/glade/updateaddons.glade:103
 msgid "_Select All"
@@ -26723,7 +26714,7 @@ msgstr "GeneWeb importieren"
 #, python-brace-format
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
-"Ungültiges Datum {date} in {gw_snippet}, Datum wird als Text gespeichert."
+"Ungültiges Datum {date} in {gw_snippet}, Datum wird als Text beibehalten."
 
 #: ../gramps/plugins/importer/importgpkg.py:76
 #, python-format
@@ -27153,7 +27144,7 @@ msgstr "vCard ist fehlerhaft. Falsche Anzahl an Namensbestandteilen."
 #, python-brace-format
 msgid "Invalid date in BDAY {vcard_snippet}, preserving date as text."
 msgstr ""
-"Ungültiges Datum in BDAY {vcard_snippet}, Datum wird als Text gespeichert."
+"Ungültiges Datum in BDAY {vcard_snippet}, Datum wird als Text beibehalten."
 
 #: ../gramps/plugins/importer/importvcard.py:585
 #, python-brace-format
@@ -27162,7 +27153,7 @@ msgid ""
 "as text."
 msgstr ""
 "Datum {vcard_snippet} nicht im richtigen Format JJJJ-MM-TT, Datum wird als "
-"Text gespeichert."
+"Text beibehalten."
 
 #: ../gramps/plugins/importer/importxml.py:151
 #: ../gramps/plugins/tool/eventnames.py:141
@@ -33261,7 +33252,7 @@ msgstr[1] ""
 #: ../gramps/plugins/textreport/birthdayreport.py:522
 #, python-brace-format
 msgid "✝ {person}, death {relation}"
-msgstr "✝ {person}, tot {relation}"
+msgstr "✝ {person}, Tod {relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:527
 #, python-brace-format
