@@ -162,7 +162,6 @@ class LivingProxyDb(ProxyDbBase):
         """
         from ..utils.alive import probably_alive
 
-        person = self.get_person_from_handle(person.handle)
         # Note: probably_alive uses *all* data to compute
         # alive status
         return probably_alive(
