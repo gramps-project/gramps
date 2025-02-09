@@ -258,6 +258,7 @@ class LivingProxyDb(ProxyDbBase):
 
         return new_person
 
+
 class FilterProxyDb(ProxyDbBase):
     def __init__(
         self, db, person_filter=None, event_filter=None, note_filter=None, user=None
@@ -272,6 +273,8 @@ class FilterProxyDb(ProxyDbBase):
     def get_person_map(self):
         # Get a map from map[handle] = {"surname": "Name"}
         if self.person_filter:
-            return self.person_filter.apply(self.db, self.db.iter_person_handles(), user=self.user)
+            return self.person_filter.apply(
+                self.db, self.db.iter_person_handles(), user=self.user
+            )
         else:
             return super().get_person_map()
