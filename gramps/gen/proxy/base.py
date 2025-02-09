@@ -101,8 +101,8 @@ class ProxyDbBase:
     def get_number_of_people(self):
         return len(self.person_map)
 
-    def process_person(self, handle):
-        return self.get_person_from_handle(handle)
+    def process_person(self, person):
+        return person
 
     @functools.cache
     def get_person_from_handle(self, handle):
