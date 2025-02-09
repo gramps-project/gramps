@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-02-07 04:46+0000\n"
+"PO-Revision-Date: 2025-02-09 08:03+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -26175,7 +26175,7 @@ msgstr "Resultaten"
 #: ../gramps/plugins/importer/importprogen.py:219
 #: ../gramps/plugins/importer/importvcard.py:91
 msgid "done"
-msgstr "uitgevoerd"
+msgstr "klaar"
 
 #: ../gramps/plugins/importer/importcsv.py:204
 msgid "given name"
