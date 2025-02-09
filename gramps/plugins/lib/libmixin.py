@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2024       Doug Blank
+# Copyright (C) 2024       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -67,7 +68,7 @@ class DbMixin:
         transaction,
         class_type,
         has_obj_handle,
-        get_raw_obj_data,
+        get_obj_from_handle,
         add_func,
     ):
         """
@@ -84,8 +85,7 @@ class DbMixin:
         handle = str(handle)
         new = True
         if has_obj_handle(handle):
-            raw = get_raw_obj_data(handle)
-            obj = data_to_object(raw)
+            obj = get_obj_from_handle(handle)
             # references create object with id None before object is really made
             if obj.gramps_id is not None:
                 new = False
@@ -100,7 +100,7 @@ class DbMixin:
         transaction,
         class_type,
         has_obj_handle,
-        get_raw_obj_data,
+        get_obj_from_handle,
         add_func,
     ):
         """
@@ -116,8 +116,7 @@ class DbMixin:
         obj = class_type()
         handle = str(handle)
         if has_obj_handle(handle):
-            raw = get_raw_obj_data(handle)
-            obj = data_to_object(raw)
+            obj = get_obj_from_handle(handle)
             return obj, False
         else:
             obj.set_handle(handle)
@@ -170,7 +169,7 @@ class DbMixin:
             transaction,
             Person,
             self.has_person_handle,
-            self.get_raw_person_data,
+            self.get_person_from_handle,
             self.add_person,
         )
 
@@ -189,7 +188,7 @@ class DbMixin:
             transaction,
             Source,
             self.has_source_handle,
-            self.get_raw_source_data,
+            self.get_source_from_handle,
             self.add_source,
         )
 
@@ -208,7 +207,7 @@ class DbMixin:
             transaction,
             Event,
             self.has_event_handle,
-            self.get_raw_event_data,
+            self.get_event_from_handle,
             self.add_event,
         )
 
@@ -227,7 +226,7 @@ class DbMixin:
             transaction,
             Media,
             self.has_object_handle,
-            self.get_raw_object_data,
+            self.get_object_from_handle,
             self.add_object,
         )
 
@@ -246,7 +245,7 @@ class DbMixin:
             transaction,
             Place,
             self.has_place_handle,
-            self.get_raw_place_data,
+            self.get_place_from_handle,
             self.add_place,
         )
 
@@ -265,7 +264,7 @@ class DbMixin:
             transaction,
             Family,
             self.has_family_handle,
-            self.get_raw_family_data,
+            self.get_family_from_handle,
             self.add_family,
         )
 
@@ -284,7 +283,7 @@ class DbMixin:
             transaction,
             Repository,
             self.has_repository_handle,
-            self.get_raw_repository_data,
+            self.get_repository_from_handle,
             self.add_repository,
         )
 
@@ -303,7 +302,7 @@ class DbMixin:
             transaction,
             Note,
             self.has_note_handle,
-            self.get_raw_note_data,
+            self.get_note_from_handle,
             self.add_note,
         )
 
@@ -322,7 +321,7 @@ class DbMixin:
             transaction,
             Tag,
             self.has_tag_handle,
-            self.get_raw_tag_data,
+            self.get_tag_from_handle,
             self.add_tag,
         )
 
