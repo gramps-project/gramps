@@ -373,6 +373,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
+        return None
 
     def get_event_from_handle(self, handle):
         """
@@ -463,6 +464,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
+        return None
 
     def get_family_from_handle(self, handle):
         """
@@ -604,6 +606,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
+        return None
 
     def get_note_from_handle(self, handle):
         """
@@ -723,6 +726,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
+        return None
 
     def get_media_from_handle(self, handle):
         """
@@ -769,6 +773,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
+        return None
 
     def get_person_from_handle(self, handle):
         """
@@ -829,6 +834,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
+        return None
 
     def get_place_from_handle(self, handle):
         """
@@ -970,6 +976,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
+        return None
 
     def get_repository_from_handle(self, handle):
         """
@@ -1040,6 +1047,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
+        return None
 
     def get_source_from_handle(self, handle):
         """
@@ -1100,6 +1108,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
+        return None
 
     def get_citation_from_handle(self, handle):
         """
