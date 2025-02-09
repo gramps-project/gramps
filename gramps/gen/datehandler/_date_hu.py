@@ -191,11 +191,13 @@ class DateParserHU(DateParser):
     #    month_to_int["Álom hava"] = 12
 
     modifier_to_int = {
+        "-tól": Date.MOD_FROM,
+        "-ig": Date.MOD_TO,
+    }
+    modifier_after_to_int = {
         "előtt": Date.MOD_BEFORE,
         "körül": Date.MOD_ABOUT,
         "után": Date.MOD_AFTER,
-        "-tól": Date.MOD_FROM,
-        "-ig": Date.MOD_TO,
     }
 
     quality_to_int = {
