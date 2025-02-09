@@ -67,12 +67,10 @@ class RelationshipPathBetween(Rule):
     def prepare(self, db: Database, user):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
-        try:
-            root1_handle = db.get_person_from_gramps_id(self.list[0]).handle
-            root2_handle = db.get_person_from_gramps_id(self.list[1]).handle
-            self.init_list(root1_handle, root2_handle)
-        except:
-            pass
+        root1 = db.get_person_from_gramps_id(self.list[0])
+        root2 = db.get_person_from_gramps_id(self.list[1])
+        if root1 and root2:
+            self.init_list(root1.handle, root2.handle)
 
     def reset(self):
         self.selected_handles.clear()
