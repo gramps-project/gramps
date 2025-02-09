@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2009
 # First Translator: Igal Shapira <igal.shapira@gmail.com>, 2009, 2010, 2011.
-# Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021, 2022, 2023, 2024.
+# Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021, 2022, 2023, 2024, 2025.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2023, 2024.
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2021, 2022, 2023.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2023, 2024.
@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2024-11-30 07:00+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2025-02-09 19:28+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -7746,7 +7746,7 @@ msgstr "מספר הורים"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "חבר"
 
 #: ../gramps/gen/lib/eventroletype.py:89
 #, fuzzy
@@ -7757,6 +7757,8 @@ msgstr "שכונה"
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
 msgstr ""
+"פקיד רישמי הוא אדם שעורך טקס. הוא יכול להיות פקיד דת או פקיד אזרחי. באירוע "
+"המרמז על \"פקיד רישמי\", תקן ג'דקום מתאר תפקיד \"כמורה\" כפקיד דתי."
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -10889,13 +10891,13 @@ msgstr "תאריך"
 
 #: ../gramps/gen/utils/alive.py:213 ../gramps/gen/utils/alive.py:244
 msgid "date fallback"
-msgstr ""
+msgstr "תאריך נסיגה לאחור"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
 #, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
-msgstr ""
+msgstr "ראיות ישירות לאדם זה – לידה: {birth_min_src}, פטירה: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 #, fuzzy
@@ -10947,7 +10949,7 @@ msgstr "לא אַחָאִים"
 
 #: ../gramps/gen/utils/alive.py:429
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "תאריך לידה וידוע כי האדם נפטר"
 
 #: ../gramps/gen/utils/alive.py:432
 #, fuzzy
