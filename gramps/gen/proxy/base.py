@@ -101,6 +101,23 @@ class ProxyDbBase:
     def get_number_of_people(self):
         return len(self.person_map)
 
+    def process_person(self, handle):
+        return self.get_person_from_handle(handle)
+
+    @functools.cache
+    def get_person_from_handle(self, handle):
+        person = self.db.get_person_from_handle(handle)
+        processed = self.process_person(person)
+        return processed
+
+    def iter_people(self):
+        for handle in self.person_map:
+            yield self.get_person_from_handle(handle)
+
+    def iter_person_handles(self):
+        for handle in self.person_map:
+            yield handle
+
 
 class PrivateProxyDb(ProxyDbBase):
     def get_person_map(self):
@@ -117,18 +134,8 @@ class PrivateProxyDb(ProxyDbBase):
                 }
         return map
 
-    @functools.cache
-    def get_person_from_handle(self, handle):
-        person = self.db.get_person_from_handle(handle)
-        privatized = self.process_person(person)
-        return privatized
-
     def process_person(self, person):
         return sanitize_person(self.db, person)
-
-    def iter_people(self):
-        for handle in self.person_map:
-            yield self.get_person_from_handle(handle)
 
 
 class LivingProxyDb(ProxyDbBase):
@@ -196,12 +203,6 @@ class LivingProxyDb(ProxyDbBase):
 
         return map
 
-    @functools.cache
-    def get_person_from_handle(self, handle):
-        person = self.db.get_person_from_handle(handle)
-        processed = self.process_person(person)
-        return processed
-
     def process_person(self, person):
         """
         Remove information from a person and replace the first name with
@@ -257,6 +258,20 @@ class LivingProxyDb(ProxyDbBase):
 
         return new_person
 
-    def iter_people(self):
-        for handle in self.person_map:
-            yield self.get_person_from_handle(handle)
+class FilterProxyDb(ProxyDbBase):
+    def __init__(
+        self, db, person_filter=None, event_filter=None, note_filter=None, user=None
+    ):
+        self.person_filter = person_filter
+        self.event_filter = event_filter
+        self.note_filter = note_filter
+        self.user = user
+
+        super().__init__(db)
+
+    def get_person_map(self):
+        # Get a map from map[handle] = {"surname": "Name"}
+        if self.person_filter:
+            return self.person_filter.apply(self.db, self.db.iter_person_handles(), user=self.user)
+        else:
+            return super().get_person_map()
