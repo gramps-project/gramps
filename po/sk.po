@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-02-07 08:32+0000\n"
+"PO-Revision-Date: 2025-02-09 13:53+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -6237,7 +6237,7 @@ msgstr "Krajina:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:67
 msgid "ZIP/Postal Code:"
-msgstr "PSČ/Poštové smerovacie číslo:"
+msgstr "PSČ/poštové smerovacie číslo:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:68
 msgid "Church Parish:"
@@ -23224,7 +23224,7 @@ msgstr "Žiadne rodiny nezodpovedajú vybranému filtru"
 #: ../gramps/plugins/export/exportxml.py:196
 #, python-format
 msgid "Failure writing %s"
-msgstr "Zlyhanie zápisu %s"
+msgstr "Chyba pri zápise %s"
 
 #: ../gramps/plugins/export/exportxml.py:153
 msgid ""
