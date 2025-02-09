@@ -78,7 +78,9 @@ class IsAncestorOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_ancestor_list(self, db: Database, person: Person, first: bool) -> None:
+    def init_ancestor_list(
+        self, db: Database, person: Person | None, first: bool
+    ) -> None:
         if not person:
             return
         if person.handle in self.selected_handles:

@@ -78,7 +78,7 @@ class IsDescendantOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_list(self, person: Person, first: bool):
+    def init_list(self, person: Person | None, first: bool) -> None:
         if not person or person.handle in self.selected_handles:
             # if we have been here before, skip
             return

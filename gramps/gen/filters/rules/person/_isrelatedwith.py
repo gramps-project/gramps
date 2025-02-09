@@ -74,9 +74,9 @@ class IsRelatedWith(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def add_relative(self, start: Person):
+    def add_relative(self, start: Person | None):
         """Non-recursive function that scans relatives and add them to self.selected_handles"""
-        if not (start):
+        if not start:
             return
 
         queue: List[Person] = [start]
