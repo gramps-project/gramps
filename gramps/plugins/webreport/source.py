@@ -319,14 +319,12 @@ class SourcePages(BasePage):
             for hdle in hdlel:
                 extended_handle_list[bletter].append((hdle))
         extended_handle_list = list(extended_handle_list.items())
-        max_rows = max_letter_rows[bletter]
         create_indexes_pages(
             report,
             "sources",
             index_list,
             self.part_sourcelistpage,
             extended_handle_list,
-            max_rows,
             locale=self.rlocale,
         )
 
