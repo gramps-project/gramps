@@ -31,6 +31,7 @@ Proxy class for a Gramps database.
 # -------------------------------------------------------------------------
 import types
 import functools
+import locale
 
 # -------------------------------------------------------------------------
 #
@@ -77,6 +78,22 @@ class ProxyDbBase:
 
     def __getattr__(self, name):
         return getattr(self.db, name)
+
+    def locale_sort(self, class_name, collation):
+        old_locale = locale.getlocale()
+        try:
+            locale.setlocale(locale.LC_ALL, collation)
+            return sorted(
+                self.proxy_map[class_name],
+                key=lambda item: locale.strxfrm(
+                    self.proxy_map[class_name][item]["surname"]
+                ),
+            )
+        except locale.Error:
+            # TODO: LOG.warning()
+            return list(self.proxy_map[class_name].keys())
+        finally:
+            locale.setlocale(locale.LC_ALL, old_locale)
 
     def get_person_map(self):
         # Get a map from map[handle] = {"surname": "Name"}
@@ -137,6 +154,15 @@ class ProxyDbBase:
             processed = self.proxy_process_person(person)
         else:
             None
+
+    def get_person_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            sorted_handles = self.locale_sort("Person", locale.collation)
+            for handle in sorted_handles:
+                yield handle
+        else:
+            for handle in self.proxy_map["Person"]:
+                yield handle
 
     @functools.cache
     def get_family_from_handle(self, handle):
@@ -376,6 +402,22 @@ class FilterProxyDb(ProxyDbBase):
             )
         else:
             return super().get_person_map()
+
+    def get_event_map(self):
+        if self.event_filter:
+            return self.event_filter.apply(
+                self.db, self.db.iter_event_handles(), user=self.user
+            )
+        else:
+            return super().get_event_map()
+
+    def get_note_map(self):
+        if self.note_filter:
+            return self.note_filter.apply(
+                self.db, self.db.iter_note_handles(), user=self.user
+            )
+        else:
+            return super().get_note_map()
 
 
 class ReferencedBySelectionProxyDb(ProxyDbBase):
