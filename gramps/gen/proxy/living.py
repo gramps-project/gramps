@@ -146,12 +146,12 @@ class LivingProxyDb(ProxyDbBase):
             else:
                 yield person
 
-    def get_person_from_gramps_id(self, val):
+    def get_person_from_gramps_id(self, gramps_id):
         """
         Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
-        person = self.db.get_person_from_gramps_id(val)
+        person = self.db.get_person_from_gramps_id(gramps_id)
         if person and self.__is_living(person):
             if self.mode == self.MODE_EXCLUDE_ALL:
                 return None
@@ -160,12 +160,12 @@ class LivingProxyDb(ProxyDbBase):
         else:
             return person
 
-    def get_family_from_gramps_id(self, val):
+    def get_family_from_gramps_id(self, gramps_id):
         """
         Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
-        family = self.db.get_family_from_gramps_id(val)
+        family = self.db.get_family_from_gramps_id(gramps_id)
         family = self.__remove_living_from_family(family)
         return family
 
