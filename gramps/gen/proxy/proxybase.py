@@ -613,84 +613,57 @@ class ProxyDbBase:
 
     def get_person_handles(self, sort_handles=False, locale=glocale):
         if sort_handles:
-            sorted_handles = self.locale_sort("Person", locale.collation)
-            for handle in sorted_handles:
-                yield handle
+            return list(self.locale_sort("Person", locale.collation))
         else:
-            for handle in self.proxy_map["Person"]:
-                yield handle
+            return list(self.proxy_map["Person"])
 
     def get_family_handles(self, sort_handles=False, locale=glocale):
         if sort_handles:
-            sorted_handles = self.locale_sort("Family", locale.collation)
-            for handle in sorted_handles:
-                yield handle
+            return list(self.locale_sort("Family", locale.collation))
         else:
-            for handle in self.proxy_map["Family"]:
-                yield handle
+            return list(self.proxy_map["Family"])
 
     def get_event_handles(self, sort_handles=False, locale=glocale):
         if sort_handles:
-            sorted_handles = self.locale_sort("Event", locale.collation)
-            for handle in sorted_handles:
-                yield handle
+            return list(self.locale_sort("Event", locale.collation))
         else:
-            for handle in self.proxy_map["Event"]:
-                yield handle
+            return list(self.proxy_map["Event"])
 
     def get_place_handles(self, sort_handles=False, locale=glocale):
         if sort_handles:
-            sorted_handles = self.locale_sort("Place", locale.collation)
-            for handle in sorted_handles:
-                yield handle
+            return list(self.locale_sort("Place", locale.collation))
         else:
-            for handle in self.proxy_map["Place"]:
-                yield handle
+            return list(self.proxy_map["Place"])
 
     def get_repository_handles(self, sort_handles=False, locale=glocale):
         if sort_handles:
-            sorted_handles = self.locale_sort("Repository", locale.collation)
-            for handle in sorted_handles:
-                yield handle
+            return list(self.locale_sort("Repository", locale.collation))
         else:
-            for handle in self.proxy_map["Repository"]:
-                yield handle
+            return list(self.proxy_map["Repository"])
 
     def get_media_handles(self, sort_handles=False, locale=glocale):
         if sort_handles:
-            sorted_handles = self.locale_sort("Media", locale.collation)
-            for handle in sorted_handles:
-                yield handle
+            return list(self.locale_sort("Media", locale.collation))
         else:
-            for handle in self.proxy_map["Media"]:
-                yield handle
+            return list(self.proxy_map["Media"])
 
     def get_citation_handles(self, sort_handles=False, locale=glocale):
         if sort_handles:
-            sorted_handles = self.locale_sort("Citation", locale.collation)
-            for handle in sorted_handles:
-                yield handle
+            return list(self.locale_sort("Citation", locale.collation))
         else:
-            for handle in self.proxy_map["Citation"]:
-                yield handle
+            return list(self.proxy_map["Citation"])
 
     def get_source_handles(self, sort_handles=False, locale=glocale):
         if sort_handles:
-            sorted_handles = self.locale_sort("Source", locale.collation)
-            for handle in sorted_handles:
-                yield handle
+            return list(self.locale_sort("Source", locale.collation))
         else:
-            for handle in self.proxy_map["Source"]:
-                yield handle
+            return list(self.proxy_map["Source"])
 
     def get_note_handles(self, sort_handles=False, locale=glocale):
         if sort_handles:
-            sorted_handles = self.locale_sort("Note", locale.collation)
-            for handle in sorted_handles:
-                yield handle
+            return list(self.locale_sort("Note", locale.collation))
         else:
-            for handle in self.proxy_map["Note"]:
-                yield handle
+            return list(self.proxy_map["Note"])
 
     # Iter objects:
 
