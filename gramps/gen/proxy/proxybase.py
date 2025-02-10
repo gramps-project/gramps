@@ -611,31 +611,31 @@ class ProxyDbBase:
         for handle in self.proxy_map["Person"]:
             yield self.get_person_from_handle(handle)
 
-    def iter_people(self):
+    def iter_families(self):
         for handle in self.proxy_map["Family"]:
             yield self.get_family_from_handle(handle)
 
-    def iter_people(self):
+    def iter_events(self):
         for handle in self.proxy_map["Event"]:
             yield self.get_event_from_handle(handle)
 
-    def iter_people(self):
+    def iter_places(self):
         for handle in self.proxy_map["Place"]:
             yield self.get_place_from_handle(handle)
 
-    def iter_people(self):
+    def iter_repositories(self):
         for handle in self.proxy_map["Repository"]:
             yield self.get_repository_from_handle(handle)
 
-    def iter_people(self):
+    def iter_media(self):
         for handle in self.proxy_map["Media"]:
             yield self.get_media_from_handle(handle)
 
-    def iter_people(self):
+    def iter_citations(self):
         for handle in self.proxy_map["Citation"]:
             yield self.get_citation_from_handle(handle)
 
-    def iter_people(self):
+    def iter_notes(self):
         for handle in self.proxy_map["Note"]:
             yield self.get_note_from_handle(handle)
 
