@@ -145,8 +145,8 @@ class LivingProxyTest(unittest.TestCase):
 
     def test_dead_person_data(self):
         handle = "66TJQC6CC7ZWL9YZ64"
-        data = self.db.get_raw_person_data(handle)
-        self.assertIs(data, None)
+        with self.assertRaises(HandleError):
+            data = self.db.get_raw_person_data(handle)
 
     def test_live_person(self):
         handle = "004KQCGYT27EEPQHK"
@@ -155,8 +155,8 @@ class LivingProxyTest(unittest.TestCase):
 
     def test_dead_person(self):
         handle = "66TJQC6CC7ZWL9YZ64"
-        person = self.db.get_person_from_handle(handle)
-        self.assertIs(person, None)
+        with self.assertRaises(HandleError):
+            person = self.db.get_person_from_handle(handle)
 
 
 class LivingPrivateProxyTest(unittest.TestCase):
@@ -183,8 +183,9 @@ class LivingPrivateProxyTest(unittest.TestCase):
     def test_private_person(self):
         # A private person:
         handle = "0GDKQC54XKSWZKEBWW"
-        person = self.db.get_person_from_handle(handle)
-        self.assertIs(person, None)
+        with self.assertRaises(HandleError):
+            person = self.db.get_person_from_handle(handle)
+
         # But they are visible without proxy:
         person = self.db.basedb.get_person_from_handle(handle)
         self.assertIsNot(person, None)
