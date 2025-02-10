@@ -121,7 +121,7 @@ class LivingProxyDb(ProxyDbBase):
 
     def get_family_map(self):
         map = {}
-        for family in self.iter_families():
+        for family in self.db.iter_families():
             father_not_living = family.father_handle in self.proxy_map["Person"]
             mother_not_living = family.mother_handle in self.proxy_map["Person"]
             if (

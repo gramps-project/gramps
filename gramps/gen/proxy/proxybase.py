@@ -38,11 +38,34 @@ import locale
 # Gramps libraries
 #
 # -------------------------------------------------------------------------
-from ..lib.json_utils import object_to_data
 from ..const import GRAMPS_LOCALE as glocale
-from ..db.bookmarks import DbBookmarks
 from ..db import Database
+from ..db.bookmarks import DbBookmarks
 from ..errors import HandleError
+from ..lib.json_utils import object_to_data
+
+
+class ProxyCursor:
+    """
+    A cursor for moving through proxied data.
+    """
+
+    def __init__(self, get_raw, get_handles):
+        self.get_raw = get_raw
+        self.get_handles = get_handles
+
+    def __enter__(self):
+        """
+        Context manager enter method
+        """
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
+
+    def __iter__(self):
+        for handle in self.get_handles():
+            yield handle, self.get_raw(handle)
 
 
 class ProxyDbBase:
@@ -51,6 +74,7 @@ class ProxyDbBase:
         Create a new ProxyDb instance.
         """
         self.db = db  # The db on the next lower layer
+        self.basedb = db.basedb  # the basedb
         self.proxy_map = {}
         self.proxy_map["Person"] = self.get_person_map()
         self.proxy_map["Family"] = self.get_family_map()
@@ -91,7 +115,10 @@ class ProxyDbBase:
         )
 
     def __getattr__(self, name):
-        return getattr(self.db, name)
+        if name == "readonly":
+            return True
+        else:
+            return getattr(self.db, name)
 
     def locale_sort(self, class_name, collation):
         old_locale = locale.getlocale()
@@ -769,6 +796,35 @@ class ProxyDbBase:
 
     def has_note_handle(self, handle):
         return handle in self.proxy_map["Note"]
+
+    # Cursors:
+
+    def get_person_cursor(self):
+        return ProxyCursor(self.get_raw_person_data, self.get_person_handles)
+
+    def get_family_cursor(self):
+        return ProxyCursor(self.get_raw_family_data, self.get_family_handles)
+
+    def get_event_cursor(self):
+        return ProxyCursor(self.get_raw_event_data, self.get_event_handles)
+
+    def get_place_cursor(self):
+        return ProxyCursor(self.get_raw_place_data, self.get_place_handles)
+
+    def get_repository_cursor(self):
+        return ProxyCursor(self.get_raw_repository_data, self.get_repository_handles)
+
+    def get_media_cursor(self):
+        return ProxyCursor(self.get_raw_media_data, self.get_media_handles)
+
+    def get_citation_cursor(self):
+        return ProxyCursor(self.get_raw_citation_data, self.get_citation_handles)
+
+    def get_source_cursor(self):
+        return ProxyCursor(self.get_raw_source_data, self.get_source_handles)
+
+    def get_note_cursor(self):
+        return ProxyCursor(self.get_raw_note_data, self.get_note_handles)
 
     # Misc:
 
