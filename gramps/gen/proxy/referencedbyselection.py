@@ -31,18 +31,6 @@ a person.
 #
 # -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
-from ..lib import (
-    Person,
-    Family,
-    Source,
-    Citation,
-    Event,
-    Media,
-    Place,
-    Repository,
-    Note,
-    Tag,
-)
 
 
 class ReferencedBySelectionProxyDb(ProxyDbBase):
@@ -53,7 +41,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
     is eventually referenced by one of the selected objects.
     """
 
-    def __init__(self, dbase, all_people=False):
+    def __init__(self, db, all_people=False):
         """
         Create a new ReferencedByPeopleProxyDb instance.
 
@@ -62,7 +50,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                            something, and all of items they link to.
         :type all_people: boolean
         """
-        ProxyDbBase.__init__(self, dbase)
+        self.db = db
         self.reset_references()
         # If restricted_to["Person"] is a set, restrict process to
         # them, and do not process others outside of them
@@ -73,7 +61,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.queue = []
         if all_people:
             # Do not add references to those not already included
-            self.restricted_to["Person"] = [x for x in self.db.iter_person_handles()]
+            self.restricted_to["Person"] = list(self.db.iter_person_handles())
             # Spread activation to all other items:
             for handle in self.restricted_to["Person"]:
                 if handle:
@@ -81,8 +69,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         else:
             # get rid of orphaned people:
             # first, get all of the links from people:
-            for person in self.db.iter_people():
-                self.queue_object("Person", person.handle, False)
+            for handle in self.db.iter_person_handles():
+                self.queue_object("Person", handle, False)
             # save those people:
             self.restricted_to["Person"] = self.referenced["Person"]
             # reset, and just follow those people
@@ -95,8 +83,13 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             obj_type, handle, reference = self.queue.pop()
             self.process_object(obj_type, handle, reference)
 
+        super().__init__(db)
+
     def queue_object(self, obj_type, handle, reference=True):
         self.queue.append((obj_type, handle, reference))
+
+    def get_person_map(self):
+        return self.referenced["Person"]
 
     def reset_references(self):
         self.referenced = {
@@ -157,9 +150,6 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Follow the person object and find all of the primary objects
         that it references.
         """
-        # A non-person:
-        if person is None:
-            return
         # A person we have seen before:
         if person.handle in self.referenced["Person"]:
             return
@@ -471,73 +461,3 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         event = self.db.get_event_from_handle(event_ref.ref)
         if event:
             self.process_event(event)
-
-    # ---------------------------------------------------
-
-    def include_person(self, handle):
-        """
-        Filter for person
-        """
-        return handle in self.referenced["Person"]
-
-    def include_place(self, handle):
-        """
-        Filter for places
-        """
-        return handle in self.referenced["Place"]
-
-    def include_family(self, handle):
-        """
-        Filter for families
-        """
-        return handle in self.referenced["Family"]
-
-    def include_media(self, handle):
-        """
-        Filter for media objects
-        """
-        return handle in self.referenced["Media"]
-
-    def include_event(self, handle):
-        """
-        Filter for events
-        """
-        return handle in self.referenced["Event"]
-
-    def include_source(self, handle):
-        """
-        Filter for sources
-        """
-        return handle in self.referenced["Source"]
-
-    def include_citation(self, handle):
-        """
-        Filter for citations
-        """
-        return handle in self.referenced["Citation"]
-
-    def include_repository(self, handle):
-        """
-        Filter for repositories
-        """
-        return handle in self.referenced["Repository"]
-
-    def include_note(self, handle):
-        """
-        Filter for notes
-        """
-        return handle in self.referenced["Note"]
-
-    def include_tag(self, handle):
-        """
-        Filter for tags
-        """
-        return handle in self.referenced["Tag"]
-
-    def find_backlink_handles(self, handle, include_classes=None):
-        """
-        Return appropriate backlink handles for this proxy.
-        """
-        for objclass, handle in self.db.find_backlink_handles(handle, include_classes):
-            if handle in self.referenced[objclass]:
-                yield (objclass, handle)

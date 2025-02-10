@@ -30,7 +30,7 @@ from ...const import DATA_DIR
 from ...user import User
 from ...lib.person import Person
 from ...lib.json_utils import remove_object
-
+from ...errors import HandleError
 from ...proxy import PrivateProxyDb, LivingProxyDb
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
@@ -68,8 +68,9 @@ class PrivateProxyTest(unittest.TestCase):
     def test_private_person_data(self):
         # A private person:
         handle = "0GDKQC54XKSWZKEBWW"
-        data = self.db.get_raw_person_data(handle)
-        self.assertIs(data, None)
+        with self.assertRaises(HandleError):
+            data = self.db.get_raw_person_data(handle)
+
         # But they are visible without proxy:
         data = self.db.basedb.get_raw_person_data(handle)
         self.assertIsNot(data, None)
@@ -88,8 +89,9 @@ class PrivateProxyTest(unittest.TestCase):
     def test_private_person(self):
         # A private person:
         handle = "0GDKQC54XKSWZKEBWW"
-        person = self.db.get_person_from_handle(handle)
-        self.assertIs(person, None)
+        with self.assertRaises(HandleError):
+            person = self.db.get_person_from_handle(handle)
+
         # But they are visible without proxy:
         person = self.db.basedb.get_person_from_handle(handle)
         self.assertIsNot(person, None)
