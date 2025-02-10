@@ -221,7 +221,7 @@ class DbBsddb(SQLite):
                 else:
                     # Not metadata, but gramps object
                     self._txn_begin()
-                    self.dbapi(
+                    self.dbapi.execute(
                         f"INSERT INTO {new_t} (handle, blob_data) VALUES " "(?, ?)",
                         [key.decode("utf-8"), pickle.dumps(data)],
                     )
