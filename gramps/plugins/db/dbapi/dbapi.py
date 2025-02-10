@@ -1102,7 +1102,7 @@ class DBAPI(DbGeneric):
                     f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
                     [handle, self.serializer.data_to_string(data)],
                 )
-            obj = self.serializer.data_to_object(data)
+            obj = self.serializer.data_to_object(data, cls)
             self._update_secondary_values(obj)
 
     def get_surname_list(self):
