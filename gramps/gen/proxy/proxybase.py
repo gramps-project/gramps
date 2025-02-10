@@ -64,6 +64,30 @@ class ProxyDbBase:
         self.bookmarks = DbBookmarks(
             self.filter_person_handles(self.db.bookmarks.get())
         )
+        self.family_bookmarks = DbBookmarks(
+            self.filter_family_handles(self.db.family_bookmarks.get())
+        )
+        self.event_bookmarks = DbBookmarks(
+            self.filter_event_handles(self.db.event_bookmarks.get())
+        )
+        self.place_bookmarks = DbBookmarks(
+            self.filter_place_handles(self.db.place_bookmarks.get())
+        )
+        self.citation_bookmarks = DbBookmarks(
+            self.filter_citation_handles(self.db.citation_bookmarks.get())
+        )
+        self.source_bookmarks = DbBookmarks(
+            self.filter_source_handles(self.db.source_bookmarks.get())
+        )
+        self.repo_bookmarks = DbBookmarks(
+            self.filter_repository_handles(self.db.repo_bookmarks.get())
+        )
+        self.media_bookmarks = DbBookmarks(
+            self.filter_media_handles(self.db.media_bookmarks.get())
+        )
+        self.note_bookmarks = DbBookmarks(
+            self.filter_note_handles(self.db.note_bookmarks.get())
+        )
 
     def __getattr__(self, name):
         return getattr(self.db, name)
@@ -201,6 +225,48 @@ class ProxyDbBase:
             person = self.get_person_from_handle(handle)
             yield handle, object_to_data(person)
 
+    def _iter_raw_family_data(self):
+        for handle in self.proxy_map["Family"]:
+            # Currently the proxies use Gramps Objects for processing:
+            family = self.get_family_from_handle(handle)
+            yield handle, object_to_data(family)
+
+    def _iter_raw_event_data(self):
+        for handle in self.proxy_map["Event"]:
+            # Currently the proxies use Gramps Objects for processing:
+            event = self.get_event_from_handle(handle)
+            yield handle, object_to_data(event)
+
+    def _iter_raw_place_data(self):
+        for handle in self.proxy_map["Place"]:
+            # Currently the proxies use Gramps Objects for processing:
+            place = self.get_place_from_handle(handle)
+            yield handle, object_to_data(place)
+
+    def _iter_raw_repository_data(self):
+        for handle in self.proxy_map["Repository"]:
+            # Currently the proxies use Gramps Objects for processing:
+            repository = self.get_repository_from_handle(handle)
+            yield handle, object_to_data(repository)
+
+    def _iter_raw_media_data(self):
+        for handle in self.proxy_map["Media"]:
+            # Currently the proxies use Gramps Objects for processing:
+            media = self.get_media_from_handle(handle)
+            yield handle, object_to_data(media)
+
+    def _iter_raw_citation_data(self):
+        for handle in self.proxy_map["Citation"]:
+            # Currently the proxies use Gramps Objects for processing:
+            citation = self.get_citation_from_handle(handle)
+            yield handle, object_to_data(citation)
+
+    def _iter_raw_note_data(self):
+        for handle in self.proxy_map["Note"]:
+            # Currently the proxies use Gramps Objects for processing:
+            note = self.get_note_from_handle(handle)
+            yield handle, object_to_data(note)
+
     # Get numbers:
 
     def get_number_of_people(self):
@@ -208,6 +274,24 @@ class ProxyDbBase:
 
     def get_number_of_families(self):
         return len(self.proxy_map["Family"])
+
+    def get_number_of_events(self):
+        return len(self.proxy_map["Event"])
+
+    def get_number_of_places(self):
+        return len(self.proxy_map["Place"])
+
+    def get_number_of_repositories(self):
+        return len(self.proxy_map["Repository"])
+
+    def get_number_of_media(self):
+        return len(self.proxy_map["Media"])
+
+    def get_number_of_citations(self):
+        return len(self.proxy_map["Citation"])
+
+    def get_number_of_notes(self):
+        return len(self.proxy_map["Note"])
 
     # Get from handles:
 
@@ -229,9 +313,62 @@ class ProxyDbBase:
         else:
             raise HandleError(f"Handle {handle} not found")
 
-    # Get raw data:
+    @functools.cache
+    def get_event_from_handle(self, handle):
+        if handle in self.proxy_map["Event"]:
+            event = self.db.get_event_from_handle(handle)
+            processed = self.proxy_process_event(event)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
 
     @functools.cache
+    def get_place_from_handle(self, handle):
+        if handle in self.proxy_map["Place"]:
+            place = self.db.get_place_from_handle(handle)
+            processed = self.proxy_process_place(place)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_repository_from_handle(self, handle):
+        if handle in self.proxy_map["Repository"]:
+            repository = self.db.get_repository_from_handle(handle)
+            processed = self.proxy_process_repository(repository)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_media_from_handle(self, handle):
+        if handle in self.proxy_map["Media"]:
+            media = self.db.get_media_from_handle(handle)
+            processed = self.proxy_process_media(media)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_citation_from_handle(self, handle):
+        if handle in self.proxy_map["Citation"]:
+            citation = self.db.get_citation_from_handle(handle)
+            processed = self.proxy_process_citation(citation)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_note_from_handle(self, handle):
+        if handle in self.proxy_map["Note"]:
+            note = self.db.get_note_from_handle(handle)
+            processed = self.proxy_process_note(note)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    # Get raw data:
+
     def get_raw_person_data(self, handle):
         if handle in self.proxy_map["Person"]:
             person = self.db.get_person_from_handle(handle)
@@ -240,9 +377,64 @@ class ProxyDbBase:
         else:
             raise HandleError(f"Handle {handle} not found")
 
+    def get_raw_family_data(self, handle):
+        if handle in self.proxy_map["Family"]:
+            family = self.db.get_family_from_handle(handle)
+            processed = self.proxy_process_family(family)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_event_data(self, handle):
+        if handle in self.proxy_map["Event"]:
+            event = self.db.get_event_from_handle(handle)
+            processed = self.proxy_process_event(event)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_place_data(self, handle):
+        if handle in self.proxy_map["Place"]:
+            place = self.db.get_place_from_handle(handle)
+            processed = self.proxy_process_place(place)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_repository_data(self, handle):
+        if handle in self.proxy_map["Repository"]:
+            repository = self.db.get_repository_from_handle(handle)
+            processed = self.proxy_process_repository(repository)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_media_data(self, handle):
+        if handle in self.proxy_map["Media"]:
+            media = self.db.get_media_from_handle(handle)
+            processed = self.proxy_process_media(media)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_citation_data(self, handle):
+        if handle in self.proxy_map["Citation"]:
+            citation = self.db.get_citation_from_handle(handle)
+            processed = self.proxy_process_citation(citation)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_note_data(self, handle):
+        if handle in self.proxy_map["Note"]:
+            note = self.db.get_note_from_handle(handle)
+            processed = self.proxy_process_note(note)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
     # Get from gramps id:
 
-    @functools.cache
     def get_person_from_gramps_id(self, gramps_id):
         """
         Finds a Person in the database from the passed Gramps ID.
@@ -251,6 +443,90 @@ class ProxyDbBase:
         person = self.db.get_person_from_gramps_id(gramps_id)
         if person and person.handle in self.proxy_map["Person"]:
             processed = self.proxy_process_person(person)
+            return processed
+        else:
+            return None
+
+    def get_family_from_gramps_id(self, gramps_id):
+        """
+        Finds a Family in the database from the passed Gramps ID.
+        If no such Family exists, None is returned.
+        """
+        family = self.db.get_family_from_gramps_id(gramps_id)
+        if family and family.handle in self.proxy_map["Family"]:
+            processed = self.proxy_process_family(family)
+            return processed
+        else:
+            return None
+
+    def get_event_from_gramps_id(self, gramps_id):
+        """
+        Finds a Event in the database from the passed Gramps ID.
+        If no such Event exists, None is returned.
+        """
+        event = self.db.get_event_from_gramps_id(gramps_id)
+        if event and event.handle in self.proxy_map["Event"]:
+            processed = self.proxy_process_event(event)
+            return processed
+        else:
+            return None
+
+    def get_place_from_gramps_id(self, gramps_id):
+        """
+        Finds a Place in the database from the passed Gramps ID.
+        If no such Place exists, None is returned.
+        """
+        place = self.db.get_place_from_gramps_id(gramps_id)
+        if place and place.handle in self.proxy_map["Place"]:
+            processed = self.proxy_process_place(place)
+            return processed
+        else:
+            return None
+
+    def get_repository_from_gramps_id(self, gramps_id):
+        """
+        Finds a Repository in the database from the passed Gramps ID.
+        If no such Repository exists, None is returned.
+        """
+        repository = self.db.get_repository_from_gramps_id(gramps_id)
+        if repository and repository.handle in self.proxy_map["Repository"]:
+            processed = self.proxy_process_repository(repository)
+            return processed
+        else:
+            return None
+
+    def get_media_from_gramps_id(self, gramps_id):
+        """
+        Finds a Media in the database from the passed Gramps ID.
+        If no such Media exists, None is returned.
+        """
+        media = self.db.get_media_from_gramps_id(gramps_id)
+        if media and media.handle in self.proxy_map["Media"]:
+            processed = self.proxy_process_media(media)
+            return processed
+        else:
+            return None
+
+    def get_citation_from_gramps_id(self, gramps_id):
+        """
+        Finds a Citation in the database from the passed Gramps ID.
+        If no such Citation exists, None is returned.
+        """
+        citation = self.db.get_citation_from_gramps_id(gramps_id)
+        if citation and citation.handle in self.proxy_map["Citation"]:
+            processed = self.proxy_process_citation(citation)
+            return processed
+        else:
+            return None
+
+    def get_note_from_gramps_id(self, gramps_id):
+        """
+        Finds a Note in the database from the passed Gramps ID.
+        If no such Note exists, None is returned.
+        """
+        note = self.db.get_note_from_gramps_id(gramps_id)
+        if note and note.handle in self.proxy_map["Note"]:
+            processed = self.proxy_process_note(note)
             return processed
         else:
             return None
@@ -266,11 +542,102 @@ class ProxyDbBase:
             for handle in self.proxy_map["Person"]:
                 yield handle
 
+    def get_family_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            sorted_handles = self.locale_sort("Family", locale.collation)
+            for handle in sorted_handles:
+                yield handle
+        else:
+            for handle in self.proxy_map["Family"]:
+                yield handle
+
+    def get_event_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            sorted_handles = self.locale_sort("Event", locale.collation)
+            for handle in sorted_handles:
+                yield handle
+        else:
+            for handle in self.proxy_map["Event"]:
+                yield handle
+
+    def get_place_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            sorted_handles = self.locale_sort("Place", locale.collation)
+            for handle in sorted_handles:
+                yield handle
+        else:
+            for handle in self.proxy_map["Place"]:
+                yield handle
+
+    def get_repository_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            sorted_handles = self.locale_sort("Repository", locale.collation)
+            for handle in sorted_handles:
+                yield handle
+        else:
+            for handle in self.proxy_map["Repository"]:
+                yield handle
+
+    def get_media_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            sorted_handles = self.locale_sort("Media", locale.collation)
+            for handle in sorted_handles:
+                yield handle
+        else:
+            for handle in self.proxy_map["Media"]:
+                yield handle
+
+    def get_citation_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            sorted_handles = self.locale_sort("Citation", locale.collation)
+            for handle in sorted_handles:
+                yield handle
+        else:
+            for handle in self.proxy_map["Citation"]:
+                yield handle
+
+    def get_note_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            sorted_handles = self.locale_sort("Note", locale.collation)
+            for handle in sorted_handles:
+                yield handle
+        else:
+            for handle in self.proxy_map["Note"]:
+                yield handle
+
     # Iter objects:
 
     def iter_people(self):
         for handle in self.proxy_map["Person"]:
             yield self.get_person_from_handle(handle)
+
+    def iter_people(self):
+        for handle in self.proxy_map["Family"]:
+            yield self.get_family_from_handle(handle)
+
+    def iter_people(self):
+        for handle in self.proxy_map["Event"]:
+            yield self.get_event_from_handle(handle)
+
+    def iter_people(self):
+        for handle in self.proxy_map["Place"]:
+            yield self.get_place_from_handle(handle)
+
+    def iter_people(self):
+        for handle in self.proxy_map["Repository"]:
+            yield self.get_repository_from_handle(handle)
+
+    def iter_people(self):
+        for handle in self.proxy_map["Media"]:
+            yield self.get_media_from_handle(handle)
+
+    def iter_people(self):
+        for handle in self.proxy_map["Citation"]:
+            yield self.get_citation_from_handle(handle)
+
+    def iter_people(self):
+        for handle in self.proxy_map["Note"]:
+            yield self.get_note_from_handle(handle)
 
     # Iter handles:
 
@@ -280,6 +647,30 @@ class ProxyDbBase:
 
     def iter_family_handles(self):
         for handle in self.proxy_map["Family"]:
+            yield handle
+
+    def iter_event_handles(self):
+        for handle in self.proxy_map["Event"]:
+            yield handle
+
+    def iter_place_handles(self):
+        for handle in self.proxy_map["Place"]:
+            yield handle
+
+    def iter_repository_handles(self):
+        for handle in self.proxy_map["Repository"]:
+            yield handle
+
+    def iter_media_handles(self):
+        for handle in self.proxy_map["Media"]:
+            yield handle
+
+    def iter_citation_handles(self):
+        for handle in self.proxy_map["Citation"]:
+            yield handle
+
+    def iter_note_handles(self):
+        for handle in self.proxy_map["Note"]:
             yield handle
 
     # Misc:
