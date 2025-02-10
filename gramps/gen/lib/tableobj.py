@@ -62,7 +62,7 @@ class TableObject(BaseObject):
         """
         Initialize a TableObject.
 
-        If source is None, the handle is assigned as an empty string.
+        If source is None, the handle is initialized to None.
         If source is not None, then the handle is initialized from the value in
         the source object.
 

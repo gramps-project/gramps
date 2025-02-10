@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2015-2016,2024 Douglas S. Blank <doug.blank@gmail.com>
 # Copyright (C) 2016-2017      Nick Hall
+# Copyright (C) 2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,9 +29,11 @@ Database API interface
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import logging
 import json
 import time
+from typing import Any, cast, Dict, Generator, List, Tuple
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -61,8 +64,36 @@ from gramps.gen.lib import (
     Source,
     Tag,
 )
+from gramps.gen.lib.tableobj import TableObject
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
+from gramps.gen.errors import HandleError
+from gramps.gen.types import (
+    AnyHandle,
+    PersonHandle,
+    EventHandle,
+    FamilyHandle,
+    PlaceHandle,
+    PrimaryObject,
+    SourceHandle,
+    RepositoryHandle,
+    CitationHandle,
+    MediaHandle,
+    NoteHandle,
+    TagHandle,
+    PrimaryObjectHandle,
+    TableObjectType,
+    PersonGrampsID,
+    EventGrampsID,
+    FamilyGrampsID,
+    PlaceGrampsID,
+    SourceGrampsID,
+    RepositoryGrampsID,
+    CitationGrampsID,
+    MediaGrampsID,
+    NoteGrampsID,
+    AnyGrampsID,
+)
 
 LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
@@ -78,10 +109,12 @@ class DBAPI(DbGeneric):
     Database backends class for DB-API 2.0 databases
     """
 
+    dbapi: Any  # might be better to have a specific ConnectionBase class
+
     def _initialize(self, directory, username, password):
         raise NotImplementedError
 
-    def use_json_data(self):
+    def use_json_data(self) -> bool:
         """
         A DBAPI level method for testing if the
         database supports JSON access.
@@ -90,7 +123,7 @@ class DBAPI(DbGeneric):
         # if the database has been converted to use JSON data
         return self.dbapi.column_exists("metadata", "json_data")
 
-    def upgrade_table_for_json_data(self, table_name):
+    def upgrade_table_for_json_data(self, table_name: str) -> None:
         """
         A DBAPI level method for upgrading the given table
         adding a json_data column.
@@ -98,7 +131,7 @@ class DBAPI(DbGeneric):
         if not self.dbapi.column_exists(table_name, "json_data"):
             self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name)
 
-    def _schema_exists(self):
+    def _schema_exists(self) -> bool:
         """
         Check to see if the schema exists.
 
@@ -107,7 +140,7 @@ class DBAPI(DbGeneric):
         """
         return self.dbapi.table_exists("person")
 
-    def _create_schema(self):
+    def _create_schema(self) -> None:
         """
         Create and update schema.
         """
@@ -246,10 +279,10 @@ class DBAPI(DbGeneric):
 
         self.dbapi.commit()
 
-    def _close(self):
+    def _close(self) -> None:
         self.dbapi.close()
 
-    def _txn_begin(self):
+    def _txn_begin(self) -> None:
         """
         Lowlevel interface to the backend transaction.
         Executes a db BEGIN;
@@ -258,7 +291,7 @@ class DBAPI(DbGeneric):
             _LOG.debug("    DBAPI %s transaction begin", hex(id(self)))
             self.dbapi.begin()
 
-    def _txn_commit(self):
+    def _txn_commit(self) -> None:
         """
         Lowlevel interface to the backend transaction.
         Executes a db END;
@@ -267,7 +300,7 @@ class DBAPI(DbGeneric):
             _LOG.debug("    DBAPI %s transaction commit", hex(id(self)))
             self.dbapi.commit()
 
-    def _txn_abort(self):
+    def _txn_abort(self) -> None:
         """
         Lowlevel interface to the backend transaction.
         Executes a db ROLLBACK;
@@ -303,7 +336,7 @@ class DBAPI(DbGeneric):
         self.dbapi.begin()
         return transaction
 
-    def transaction_commit(self, transaction):
+    def transaction_commit(self, transaction) -> None:
         """
         Executed at the end of a transaction.
         """
@@ -350,7 +383,7 @@ class DBAPI(DbGeneric):
         transaction.clear()
         self.has_changed += 1  # Also gives commits since startup
 
-    def transaction_abort(self, transaction):
+    def transaction_abort(self, transaction) -> None:
         """
         Executed after a batch operation abort.
         """
@@ -419,7 +452,7 @@ class DBAPI(DbGeneric):
         # not None test below fixes db corrupted by 11011 for export
         return [row[0] for row in self.dbapi.fetchall() if row[1] is not None]
 
-    def get_name_group_mapping(self, surname):
+    def get_name_group_mapping(self, surname: str) -> str:
         """
         Return the default grouping name for a surname.
         """
@@ -430,7 +463,9 @@ class DBAPI(DbGeneric):
             return row[0]
         return surname
 
-    def get_person_handles(self, sort_handles=False, locale=glocale):
+    def get_person_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[PersonHandle]:
         """
         Return a list of database handles, one handle for each Person in
         the database.
@@ -450,7 +485,9 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("SELECT handle FROM person")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def get_family_handles(self, sort_handles=False, locale=glocale):
+    def get_family_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[FamilyHandle]:
         """
         Return a list of database handles, one handle for each Family in
         the database.
@@ -482,7 +519,7 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("SELECT handle FROM family")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def get_event_handles(self):
+    def get_event_handles(self) -> List[EventHandle]:
         """
         Return a list of database handles, one handle for each Event in the
         database.
@@ -490,7 +527,9 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("SELECT handle FROM event")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def get_citation_handles(self, sort_handles=False, locale=glocale):
+    def get_citation_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[CitationHandle]:
         """
         Return a list of database handles, one handle for each Citation in
         the database.
@@ -510,7 +549,9 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("SELECT handle FROM citation")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def get_source_handles(self, sort_handles=False, locale=glocale):
+    def get_source_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[SourceHandle]:
         """
         Return a list of database handles, one handle for each Source in
         the database.
@@ -530,7 +571,9 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("SELECT handle from source")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def get_place_handles(self, sort_handles=False, locale=glocale):
+    def get_place_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[PlaceHandle]:
         """
         Return a list of database handles, one handle for each Place in
         the database.
@@ -550,7 +593,7 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("SELECT handle FROM place")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def get_repository_handles(self):
+    def get_repository_handles(self) -> List[RepositoryHandle]:
         """
         Return a list of database handles, one handle for each Repository in
         the database.
@@ -558,7 +601,9 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("SELECT handle FROM repository")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def get_media_handles(self, sort_handles=False, locale=glocale):
+    def get_media_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[MediaHandle]:
         """
         Return a list of database handles, one handle for each Media in
         the database.
@@ -578,7 +623,7 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("SELECT handle FROM media")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def get_note_handles(self):
+    def get_note_handles(self) -> List[NoteHandle]:
         """
         Return a list of database handles, one handle for each Note in the
         database.
@@ -586,7 +631,9 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("SELECT handle FROM note")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def get_tag_handles(self, sort_handles=False, locale=glocale):
+    def get_tag_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[TagHandle]:
         """
         Return a list of database handles, one handle for each Tag in
         the database.
@@ -606,7 +653,7 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("SELECT handle FROM tag")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def get_tag_from_name(self, name):
+    def get_tag_from_name(self, name: str) -> Tag | None:
         """
         Find a Tag in the database from the passed Tag name.
 
@@ -620,13 +667,13 @@ class DBAPI(DbGeneric):
             return self.serializer.string_to_object(Tag, row[0])
         return None
 
-    def _get_number_of(self, obj_key):
+    def _get_number_of(self, obj_key) -> int:
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(f"SELECT count(1) FROM {table}")
         row = self.dbapi.fetchone()
         return row[0]
 
-    def has_name_group_key(self, key):
+    def has_name_group_key(self, key) -> bool:
         """
         Return if a key exists in the name_group table.
         """
@@ -701,7 +748,7 @@ class DBAPI(DbGeneric):
 
         return old_data
 
-    def _commit_raw(self, data, obj_key):
+    def _commit_raw(self, data, obj_key) -> None:
         """
         Commit a serialized primary object to the database, storing the
         changes as part of the transaction.
@@ -722,7 +769,7 @@ class DBAPI(DbGeneric):
                 [handle, self.serializer.data_to_string(data)],
             )
 
-    def _update_backlinks(self, obj, transaction):
+    def _update_backlinks(self, obj: TableObject, transaction) -> None:
         if not transaction.batch:
             # Find existing references
             self.dbapi.execute(
@@ -787,7 +834,7 @@ class DBAPI(DbGeneric):
                     [obj.handle, obj.__class__.__name__, ref_handle, ref_class_name],
                 )
 
-    def _do_remove(self, handle, transaction, obj_key):
+    def _do_remove(self, handle: AnyHandle, transaction, obj_key) -> None:
         if self.readonly or not handle:
             return
         if self._has_handle(obj_key, handle):
@@ -799,7 +846,7 @@ class DBAPI(DbGeneric):
             if not transaction.batch:
                 transaction.add(obj_key, TXNDEL, handle, data, None)
 
-    def _remove_backlinks(self, obj_class, obj_handle, transaction):
+    def _remove_backlinks(self, obj_class, obj_handle: AnyHandle, transaction) -> None:
         """
         Removes all references from this object (backlinks).
         """
@@ -818,7 +865,9 @@ class DBAPI(DbGeneric):
                 old_data = (obj_handle, obj_class, ref_handle, ref_class_name)
                 transaction.add(REFERENCE_KEY, TXNDEL, key, old_data, None)
 
-    def find_backlink_handles(self, handle, include_classes=None):
+    def find_backlink_handles(
+        self, handle: AnyHandle, include_classes: List[str] | None = None
+    ) -> Generator[Tuple[str, AnyHandle]]:
         """
         Find all objects that hold a reference to the object handle.
 
@@ -844,7 +893,7 @@ class DBAPI(DbGeneric):
             if (include_classes is None) or (row[0] in include_classes):
                 yield (row[0], row[1])
 
-    def find_initial_person(self):
+    def find_initial_person(self) -> Person | None:
         """
         Returns first person in the database
         """
@@ -860,7 +909,7 @@ class DBAPI(DbGeneric):
             return self.get_person_from_handle(row[0])
         return None
 
-    def _iter_handles(self, obj_key):
+    def _iter_handles(self, obj_key) -> Generator[AnyHandle]:
         """
         Return an iterator over handles in the database
         """
@@ -899,7 +948,7 @@ class DBAPI(DbGeneric):
                 to_do.append(row[0])
                 yield (row[0], self.serializer.string_to_data(row[1]))
 
-    def reindex_reference_map(self, callback):
+    def reindex_reference_map(self, callback) -> None:
         """
         Reindex all primary records in the database.
         """
@@ -957,7 +1006,7 @@ class DBAPI(DbGeneric):
                     self.update()
         self._txn_commit()
 
-    def rebuild_secondary(self, callback=None):
+    def rebuild_secondary(self, callback=None) -> None:
         """
         Rebuild secondary indices
         """
@@ -1005,12 +1054,12 @@ class DBAPI(DbGeneric):
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
 
-    def _has_handle(self, obj_key, handle):
+    def _has_handle(self, obj_key, handle: AnyHandle) -> bool:
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(f"SELECT 1 FROM {table} WHERE handle = ?", [handle])
         return self.dbapi.fetchone() is not None
 
-    def _has_gramps_id(self, obj_key, gramps_id):
+    def _has_gramps_id(self, obj_key, gramps_id: AnyGrampsID) -> bool:
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(f"SELECT 1 FROM {table} WHERE gramps_id = ?", [gramps_id])
         return self.dbapi.fetchone() is not None
@@ -1020,7 +1069,7 @@ class DBAPI(DbGeneric):
         self.dbapi.execute(f"SELECT gramps_id FROM {table}")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def _get_raw_data(self, obj_key, handle):
+    def _get_raw_data(self, obj_key, handle: AnyHandle):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(
             f"SELECT {self.serializer.data_field} FROM {table} WHERE handle = ?",
@@ -1029,7 +1078,8 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         if row:
             return self.serializer.string_to_data(row[0])
-        return None
+
+        raise HandleError(f"Handle {handle} not found")
 
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
@@ -1042,7 +1092,7 @@ class DBAPI(DbGeneric):
             return self.serializer.string_to_data(row[0])
         return None
 
-    def get_gender_stats(self):
+    def get_gender_stats(self) -> Dict[str, Tuple[int, int, int]]:
         """
         Returns a dictionary of
         {given_name: (male_count, female_count, unknown_count)}
@@ -1066,7 +1116,7 @@ class DBAPI(DbGeneric):
             )
         self._txn_commit()
 
-    def undo_reference(self, data, handle):
+    def undo_reference(self, data, handle: AnyHandle):
         """
         Helper method to undo a reference map entry
         """
@@ -1083,7 +1133,7 @@ class DBAPI(DbGeneric):
                 data,
             )
 
-    def undo_data(self, data, handle, obj_key):
+    def undo_data(self, data, handle: AnyHandle, obj_key):
         """
         Helper method to undo/redo the changes made
         """
@@ -1105,7 +1155,7 @@ class DBAPI(DbGeneric):
             obj = self.serializer.data_to_object(data)
             self._update_secondary_values(obj)
 
-    def get_surname_list(self):
+    def get_surname_list(self) -> List[str]:
         """
         Return the list of locale-sorted surnames contained in the database.
         """
@@ -1115,7 +1165,7 @@ class DBAPI(DbGeneric):
             surname_list.append(row[0])
         return surname_list
 
-    def _sql_type(self, schema_type, max_length):
+    def _sql_type(self, schema_type: str, max_length: int) -> str:
         """
         Given a schema type, return the SQL type for
         a new column.
@@ -1130,7 +1180,7 @@ class DBAPI(DbGeneric):
             return "REAL"
         return "BLOB"
 
-    def _create_secondary_columns(self):
+    def _create_secondary_columns(self) -> None:
         """
         Create secondary columns.
         """
@@ -1155,7 +1205,7 @@ class DBAPI(DbGeneric):
                         f"ALTER TABLE {table_name} ADD COLUMN {field} {sql_type}"
                     )
 
-    def _update_secondary_values(self, obj):
+    def _update_secondary_values(self, obj: PrimaryObject) -> None:
         """
         Given a primary object update its secondary field values
         in the database.
@@ -1171,13 +1221,13 @@ class DBAPI(DbGeneric):
 
         # Derived fields
         if table == "Person":
-            given_name, surname = self._get_person_data(obj)
+            given_name, surname = self._get_person_data(cast(Person, obj))
             sets.append("given_name = ?")
             values.append(given_name)
             sets.append("surname = ?")
             values.append(surname)
         if table == "Place":
-            handle = self._get_place_data(obj)
+            handle = self._get_place_data(cast(Place, obj))
             sets.append("enclosed_by = ?")
             values.append(handle)
 
@@ -1188,7 +1238,7 @@ class DBAPI(DbGeneric):
                 self._sql_cast_list(values) + [obj.handle],
             )
 
-    def _sql_cast_list(self, values):
+    def _sql_cast_list(self, values) -> List[Any]:
         """
         Given a list of field names and values, return the values
         in the appropriate type.

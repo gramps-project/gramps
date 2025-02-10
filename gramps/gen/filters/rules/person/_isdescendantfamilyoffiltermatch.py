@@ -37,7 +37,7 @@ _ = glocale.translation.gettext
 from ._isdescendantfamilyof import IsDescendantFamilyOf
 from ._matchesfilter import MatchesFilter
 from ....types import PersonHandle
-from ....db.generic import Database
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
