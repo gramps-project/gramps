@@ -24,6 +24,7 @@ from __future__ import annotations
 
 from typing import NewType, Type, TypeVar, Union
 
+from .db import DbGeneric
 from .lib import (
     Citation,
     Event,
@@ -38,6 +39,8 @@ from .lib import (
     Tag,
 )
 from .lib.tableobj import TableObject
+
+Database = DbGeneric
 
 PersonHandle = NewType("PersonHandle", str)
 FamilyHandle = NewType("FamilyHandle", str)

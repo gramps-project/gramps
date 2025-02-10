@@ -52,7 +52,7 @@ LOG = logging.getLogger(".")
 #
 # -------------------------------------------------------------------------
 from typing import Any, List
-from ...db import Database
+from ...types import Database
 
 
 # -------------------------------------------------------------------------

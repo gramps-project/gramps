@@ -42,7 +42,7 @@ from . import Rule
 #
 # -------------------------------------------------------------------------
 from ...lib.notebase import NoteBase
-from ...db import Database
+from ...types import Database
 
 
 # -------------------------------------------------------------------------
