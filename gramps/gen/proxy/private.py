@@ -105,9 +105,6 @@ class PrivateProxyDb(ProxyDbBase):
     def proxy_process_source(self, source):
         return sanitize_source(self.db, source)
 
-    def proxy_process_note(self, note):
-        return sanitize_note(self.db, note)
-
 
 def copy_media_ref_list(db, original_obj, clean_obj):
     """
