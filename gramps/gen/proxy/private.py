@@ -87,6 +87,27 @@ class PrivateProxyDb(ProxyDbBase):
     def proxy_process_family(self, family):
         return sanitize_family(self.db, family)
 
+    def proxy_process_event(self, event):
+        return sanitize_event(self.db, event)
+
+    def proxy_process_place(self, place):
+        return sanitize_place(self.db, place)
+
+    def proxy_process_repository(self, repository):
+        return sanitize_repository(self.db, repository)
+
+    def proxy_process_media(self, media):
+        return sanitize_media(self.db, media)
+
+    def proxy_process_citation(self, citation):
+        return sanitize_citation(self.db, citation)
+
+    def proxy_process_source(self, source):
+        return sanitize_source(self.db, source)
+
+    def proxy_process_note(self, note):
+        return sanitize_note(self.db, note)
+
 
 def copy_media_ref_list(db, original_obj, clean_obj):
     """
