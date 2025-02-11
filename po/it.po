@@ -67,8 +67,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-02-01 01:44+0000\n"
-"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"PO-Revision-Date: 2025-02-11 10:02+0000\n"
+"Last-Translator: Fabio Restante <frestante@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -884,14 +884,6 @@ msgstr ""
 "altri tipi di oggetti."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit > Preferences > Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -905,8 +897,7 @@ msgstr ""
 "in Gramps con uno sfondo rossastro oppure con un punto rosso sul lato destro "
 "del campo. È possibile correggere le date tramite la finestra di dialogo "
 "Selezione data che può essere aperta facendo clic sul pulsante della data. "
-"Il formato della data è impostato tramite \"Modifica > Preferenze > "
-"Visualizzazione\"."
+"Il formato della data è impostato tramite \"Modifica > Preferenze > Data\"."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -3721,10 +3712,8 @@ msgid "Filter"
 msgstr "Filtro"
 
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "Lettura dati..."
+msgstr "In preparazione..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -11076,6 +11065,8 @@ msgstr "data basata su altro evento"
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
+"Evidenza diretta per questa persona - nascita: {birth_min_src}, morte: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 msgid "mother's age"
@@ -11125,6 +11116,7 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
+"dedotto da genitori e fratelli - nascita: {birth_min_src}, morte: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -11132,6 +11124,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"dedotto da genitori e fratelli - nascita: da {birth_min_src} (data più "
+"antica) a {birth_max_src} (data più recente), morte: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11160,10 +11154,9 @@ msgstr[0] "decesso di discendente: {number_of} generazione "
 msgstr[1] "decesso di discendente: {number_of} generazioni "
 
 #: ../gramps/gen/utils/alive.py:803
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Errore nel database: ciclo nei discendenti di %s"
+msgstr "Errore nel database: ciclo nei discendenti di %s."
 
 #: ../gramps/gen/utils/alive.py:855
 msgid "mother birth "
@@ -11186,10 +11179,9 @@ msgid "father death "
 msgstr "decesso del padre "
 
 #: ../gramps/gen/utils/alive.py:962
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Errore nel database: ciclo negli ascendenti di %s"
+msgstr "Errore nel database: ciclo negli ascendenti di %s."
 
 #: ../gramps/gen/utils/alive.py:1044 ../gramps/gen/utils/alive.py:1053
 msgid "no evidence"
@@ -11947,21 +11939,13 @@ msgstr ""
 "Adesso Gramps verrà chiuso."
 
 #: ../gramps/grampsapp.py:227
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "You don't have the python3 bsddb3 package installed. This package is "
-#| "needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
 msgid ""
 "The orjson package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"\n"
-"Il pacchetto bsddb3 di Python 3 non è installato. Questo pacchetto è "
-"necessario per eseguire Gramps.\n"
+"Il pacchetto orjson non è installato. Questo pacchetto è necessario per "
+"eseguire Gramps.\n"
 "\n"
 "Adesso Gramps verrà chiuso."
 
@@ -13401,7 +13385,7 @@ msgstr "%s_-_Gestione_alberi_genealogici"
 
 #: ../gramps/gui/dbman.py:100
 msgid "Family_Trees_manager_window"
-msgstr ""
+msgstr "Finestra_gestione_alberi_genealogici"
 
 #: ../gramps/gui/dbman.py:114 ../gramps/gui/glade/dbman.glade:344
 msgid "_Archive"
@@ -38520,7 +38504,7 @@ msgstr "Home"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Heatmap"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -38550,7 +38534,7 @@ msgstr "Calendario web"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Heatmap"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:436
@@ -38803,15 +38787,15 @@ msgid "Family Map for %s"
 msgstr "Mappa famiglia per %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Generazione pagine degli eventi"
+msgstr "Generazione pagine heatmap per gli eventi"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
 msgstr ""
+"La prossima sezione contiene l'indice di tutti gli eventi compresi in una "
+"mappa Heatmap."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
 #, fuzzy
@@ -38831,19 +38815,18 @@ msgstr "Luoghi che iniziano con la lettera %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Verifica il filtro selezionato"
+msgstr "Heatmap di %s secondo i filtri selezionati"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
 msgstr ""
+"La prossima sezione contiene l'indice di tutti i cognomi usati per una mappa "
+"Heatmap."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "Cognome"
@@ -38851,6 +38834,8 @@ msgstr "Cognome"
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr ""
+"La sezione successiva contiene un indice di tutte le etichette per una mappa "
+"Heatmap."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38858,14 +38843,14 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Questa sezione contiene la mappa per tutte le persone che hanno l'evento: "
+"{event_type} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Elimina il filtro selezionato"
+msgstr " che non hanno eventi con il filtro selezionato."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38873,6 +38858,8 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"Questa sezione contiene la mappa di tutti gli eventi per: {surname} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -38880,6 +38867,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"Questa sezione contiene la mappa per tutte le persone, eventi con "
+"l'etichetta: {tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -39169,13 +39158,11 @@ msgstr "Selezionare se si desidera aprire/chiudere una sezione"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2252
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Numero massimo di righe in un indice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Numero massimo di ascendenti da includere."
+msgstr "Numero massimo di righe da includere in una pagina di indice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2264
 msgid "Extra Pages"
@@ -39927,45 +39914,40 @@ msgstr ""
 "scheda delle preferenze delle date."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Opzioni mappa dei luoghi"
+msgstr "Opzioni mappa HeatMap"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Includere le pagine degli eventi"
+msgstr "Includere le pagine HeatMap"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
 msgid "Whether to include heatmap pages for events"
-msgstr "Indica se includere gli eventi."
+msgstr "Indica se includere le pagine heatmap per gli eventi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Dimensione carattere"
+msgstr "Dimensione punto"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "La dimensione del testo della nota in punti."
+msgstr ""
+"Decidi la grandezza dei punti della heatmap.\n"
+"Default: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "Sfocatura"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Scegli la grandezza della sfocatura.\n"
+"Default: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
