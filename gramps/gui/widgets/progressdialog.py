@@ -432,6 +432,7 @@ class _GtkProgressBar(Gtk.Box):
         # self.set_border_width(24)
 
         self._pbar = Gtk.ProgressBar()
+        self._pbar.set_valign(Gtk.Align.CENTER)
         self._hbox = Gtk.Box()
 
         # Only display the cancel button is the operation
@@ -440,9 +441,9 @@ class _GtkProgressBar(Gtk.Box):
             self._cancel = Gtk.Button.new_with_mnemonic(_("_Cancel"))
             self._cancel.connect("clicked", lambda x: long_op_status.cancel())
             self._cancel.show()
-            self._hbox.pack_end(self._cancel, False, True, 0)
+            self._hbox.pack_end(self._cancel, False, True, 6)
 
-        self._hbox.pack_start(self._pbar, True, True, 0)
+        self._hbox.pack_start(self._pbar, True, True, 6)
 
         self.pack_start(self._lbl, False, False, 0)
         self.pack_start(self._hbox, False, False, 0)
