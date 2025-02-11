@@ -107,40 +107,39 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
 
     def process_object(self, class_name, handle, reference=True):
         if class_name == "Person":
-            if self.db.has_person_handle():
+            if self.db.has_person_handle(handle):
                 obj = self.db.get_person_from_handle(handle)
                 self.process_person(obj, reference)
-
         elif class_name == "Family":
-            if self.db.has_family_handle():
+            if self.db.has_family_handle(handle):
                 obj = self.db.get_family_from_handle(handle)
                 self.process_family(obj)
         elif class_name == "Event":
-            if self.db.has_event_handle():
+            if self.db.has_event_handle(handle):
                 obj = self.db.get_event_from_handle(handle)
                 self.process_event(obj)
         elif class_name == "Place":
-            if self.db.has_place_handle():
+            if self.db.has_place_handle(handle):
                 obj = self.db.get_place_from_handle(handle)
                 self.process_place(obj)
         elif class_name == "Source":
-            if self.db.has_source_handle():
+            if self.db.has_source_handle(handle):
                 obj = self.db.get_source_from_handle(handle)
                 self.process_source(obj)
         elif class_name == "Citation":
-            if self.db.has_citation_handle():
+            if self.db.has_citation_handle(handle):
                 obj = self.db.get_citation_from_handle(handle)
                 self.process_citation(obj)
         elif class_name == "Repository":
-            if self.db.has_repository_handle():
+            if self.db.has_repository_handle(handle):
                 obj = self.db.get_repository_from_handle(handle)
                 self.process_repository(obj)
         elif class_name == "Media":
-            if self.db.has_media_handle():
+            if self.db.has_media_handle(handle):
                 obj = self.db.get_media_from_handle(handle)
                 self.process_media(obj)
         elif class_name == "Note":
-            if self.db.has_note_handle():
+            if self.db.has_note_handle(handle):
                 obj = self.db.get_note_from_handle(handle)
                 self.process_note(obj)
         else:
