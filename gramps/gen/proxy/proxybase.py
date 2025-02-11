@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2025       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +21,7 @@
 #
 
 """
-Proxy class for the Gramps databases. Filter out all data marked private.
+Proxy class for a Gramps database.
 """
 
 # -------------------------------------------------------------------------
@@ -29,27 +30,19 @@ Proxy class for the Gramps databases. Filter out all data marked private.
 #
 # -------------------------------------------------------------------------
 import types
+import functools
+import locale
 
 # -------------------------------------------------------------------------
 #
 # Gramps libraries
 #
 # -------------------------------------------------------------------------
-from ..db.base import DbReadBase, DbWriteBase
-from ..lib import (
-    Citation,
-    Event,
-    Family,
-    Media,
-    Note,
-    Person,
-    Place,
-    Repository,
-    Source,
-    Tag,
-)
-from ..lib.json_utils import object_to_data
 from ..const import GRAMPS_LOCALE as glocale
+from ..db import Database
+from ..db.bookmarks import DbBookmarks
+from ..errors import HandleError
+from ..lib.json_utils import object_to_data
 
 
 class ProxyCursor:
@@ -75,100 +68,709 @@ class ProxyCursor:
             yield handle, self.get_raw(handle)
 
 
-class ProxyMap:
-    """
-    A dictionary-like object for accessing "raw" proxied data. Of
-    course, proxied data may have been changed by the proxy.
-    """
-
-    def __init__(self, db, get_raw, get_keys):
-        self.get_raw = get_raw
-        self.get_keys = get_keys
-        self.db = db
-
-    def __getitem__(self, handle):
-        return self.get_raw(handle)
-
-    def keys(self):
-        """return the keys"""
-        return self.get_keys()
-
-
-class ProxyDbBase(DbReadBase):
-    """
-    ProxyDbBase is a base class for building a proxy to a Gramps database.
-    This class attempts to implement functions that are likely to be common
-    among proxy classes. Functions that are not likely to be common raise a
-    NotImplementedError to remind the developer to implement those functions.
-
-    Real database proxy classes can inherit from this class to make sure the
-    database interface is properly implemented.
-    """
-
-    def __init__(self, db):
+class ProxyDbBase:
+    def __init__(self, db: Database):
         """
         Create a new ProxyDb instance.
         """
-        self.db = self.basedb = db
-        while isinstance(self.basedb, ProxyDbBase):
-            self.basedb = self.basedb.db
-        self.name_formats = db.name_formats
-        self.bookmarks = db.bookmarks
-        self.family_bookmarks = db.family_bookmarks
-        self.event_bookmarks = db.event_bookmarks
-        self.place_bookmarks = db.place_bookmarks
-        self.source_bookmarks = db.source_bookmarks
-        self.citation_bookmarks = db.citation_bookmarks
-        self.repo_bookmarks = db.repo_bookmarks
-        self.media_bookmarks = db.media_bookmarks
-        self.note_bookmarks = db.note_bookmarks
+        self.db = db  # The db on the next lower layer
+        self.basedb = db.basedb  # the basedb
+        self.proxy_map = {}
+        self.proxy_map["Person"] = self.get_person_map()
+        self.proxy_map["Family"] = self.get_family_map()
+        self.proxy_map["Event"] = self.get_event_map()
+        self.proxy_map["Place"] = self.get_place_map()
+        self.proxy_map["Repository"] = self.get_repository_map()
+        self.proxy_map["Media"] = self.get_media_map()
+        self.proxy_map["Citation"] = self.get_citation_map()
+        self.proxy_map["Source"] = self.get_source_map()
+        self.proxy_map["Note"] = self.get_note_map()
 
-        self.person_map = ProxyMap(
-            self, self.get_raw_person_data, self.get_person_handles
+        self.bookmarks = DbBookmarks(
+            self.filter_person_handles(self.db.bookmarks.get())
         )
-        self.family_map = ProxyMap(
-            self, self.get_raw_family_data, self.get_family_handles
+        self.family_bookmarks = DbBookmarks(
+            self.filter_family_handles(self.db.family_bookmarks.get())
         )
-        self.event_map = ProxyMap(self, self.get_raw_event_data, self.get_event_handles)
-        self.place_map = ProxyMap(self, self.get_raw_place_data, self.get_place_handles)
-        self.source_map = ProxyMap(
-            self, self.get_raw_source_data, self.get_source_handles
+        self.event_bookmarks = DbBookmarks(
+            self.filter_event_handles(self.db.event_bookmarks.get())
         )
-        self.repository_map = ProxyMap(
-            self, self.get_raw_repository_data, self.get_repository_handles
+        self.place_bookmarks = DbBookmarks(
+            self.filter_place_handles(self.db.place_bookmarks.get())
         )
-        self.media_map = ProxyMap(self, self.get_raw_media_data, self.get_media_handles)
-        self.note_map = ProxyMap(self, self.get_raw_note_data, self.get_note_handles)
+        self.citation_bookmarks = DbBookmarks(
+            self.filter_citation_handles(self.db.citation_bookmarks.get())
+        )
+        self.source_bookmarks = DbBookmarks(
+            self.filter_source_handles(self.db.source_bookmarks.get())
+        )
+        self.repo_bookmarks = DbBookmarks(
+            self.filter_repository_handles(self.db.repo_bookmarks.get())
+        )
+        self.media_bookmarks = DbBookmarks(
+            self.filter_media_handles(self.db.media_bookmarks.get())
+        )
+        self.note_bookmarks = DbBookmarks(
+            self.filter_note_handles(self.db.note_bookmarks.get())
+        )
 
-    def is_open(self):
+    def __getattr__(self, name):
+        if name == "readonly":
+            return True
+        else:
+            return getattr(self.db, name)
+
+    def locale_sort(self, class_name, collation):
+        old_locale = locale.getlocale()
+        try:
+            locale.setlocale(locale.LC_ALL, collation)
+            return sorted(
+                self.proxy_map[class_name],
+                key=lambda item: locale.strxfrm(
+                    self.proxy_map[class_name][item]["surname"]
+                ),
+            )
+        except locale.Error:
+            # TODO: LOG.warning()
+            return list(self.proxy_map[class_name].keys())
+        finally:
+            locale.setlocale(locale.LC_ALL, old_locale)
+
+    # Get maps:
+
+    def get_person_map(self):
+        # Get a map from map[handle] = {"surname": "Name"}
+        map = {}
+        for handle, data in self.db._iter_raw_person_data():
+            map[handle] = {
+                "surname": (
+                    data.primary_name.surname_list[0].surname
+                    if data.primary_name.surname_list
+                    else ""
+                )
+            }
+        return map
+
+    def get_family_map(self):
+        map = {}
+        for handle in self.db.iter_family_handles():
+            map[handle] = {"surname": "TODO"}
+        return map
+
+    def get_event_map(self):
+        map = {}
+        for handle in self.db.iter_event_handles():
+            map[handle] = {}
+        return map
+
+    def get_place_map(self):
+        map = {}
+        for handle in self.db.iter_place_handles():
+            map[handle] = {}
+        return map
+
+    def get_repository_map(self):
+        map = {}
+        for handle in self.db.iter_repository_handles():
+            map[handle] = {}
+        return map
+
+    def get_media_map(self):
+        map = {}
+        for handle in self.db.iter_media_handles():
+            map[handle] = {}
+        return map
+
+    def get_citation_map(self):
+        map = {}
+        for handle in self.db.iter_citation_handles():
+            map[handle] = {}
+        return map
+
+    def get_source_map(self):
+        map = {}
+        for handle in self.db.iter_source_handles():
+            map[handle] = {}
+        return map
+
+    def get_note_map(self):
+        map = {}
+        for handle in self.db.iter_note_handles():
+            map[handle] = {}
+        return map
+
+    # Proxy process:
+
+    def proxy_process_person(self, person):
+        return person
+
+    def proxy_process_family(self, family):
+        return family
+
+    def proxy_process_event(self, event):
+        return event
+
+    def proxy_process_place(self, place):
+        return place
+
+    def proxy_process_repository(self, repository):
+        return repository
+
+    def proxy_process_media(self, media):
+        return media
+
+    def proxy_process_citation(self, citation):
+        return citation
+
+    def proxy_process_source(self, source):
+        return source
+
+    def proxy_process_note(self, note):
+        return note
+
+    # Filter handles:
+
+    def filter_person_handles(self, handles):
+        return [handle for handle in handles if handle in self.proxy_map["Person"]]
+
+    def filter_family_handles(self, handles):
+        return [handle for handle in handles if handle in self.proxy_map["Family"]]
+
+    def filter_event_handles(self, handles):
+        return [handle for handle in handles if handle in self.proxy_map["Event"]]
+
+    def filter_place_handles(self, handles):
+        return [handle for handle in handles if handle in self.proxy_map["Place"]]
+
+    def filter_repository_handles(self, handles):
+        return [handle for handle in handles if handle in self.proxy_map["Repository"]]
+
+    def filter_media_handles(self, handles):
+        return [handle for handle in handles if handle in self.proxy_map["Media"]]
+
+    def filter_citation_handles(self, handles):
+        return [handle for handle in handles if handle in self.proxy_map["Citation"]]
+
+    def filter_source_handles(self, handles):
+        return [handle for handle in handles if handle in self.proxy_map["Source"]]
+
+    def filter_note_handles(self, handles):
+        return [handle for handle in handles if handle in self.proxy_map["Note"]]
+
+    # Iter raw data:
+
+    def _iter_raw_person_data(self):
+        for handle in self.proxy_map["Person"]:
+            # Currently the proxies use Gramps Objects for processing:
+            person = self.get_person_from_handle(handle)
+            yield handle, object_to_data(person)
+
+    def _iter_raw_family_data(self):
+        for handle in self.proxy_map["Family"]:
+            # Currently the proxies use Gramps Objects for processing:
+            family = self.get_family_from_handle(handle)
+            yield handle, object_to_data(family)
+
+    def _iter_raw_event_data(self):
+        for handle in self.proxy_map["Event"]:
+            # Currently the proxies use Gramps Objects for processing:
+            event = self.get_event_from_handle(handle)
+            yield handle, object_to_data(event)
+
+    def _iter_raw_place_data(self):
+        for handle in self.proxy_map["Place"]:
+            # Currently the proxies use Gramps Objects for processing:
+            place = self.get_place_from_handle(handle)
+            yield handle, object_to_data(place)
+
+    def _iter_raw_repository_data(self):
+        for handle in self.proxy_map["Repository"]:
+            # Currently the proxies use Gramps Objects for processing:
+            repository = self.get_repository_from_handle(handle)
+            yield handle, object_to_data(repository)
+
+    def _iter_raw_media_data(self):
+        for handle in self.proxy_map["Media"]:
+            # Currently the proxies use Gramps Objects for processing:
+            media = self.get_media_from_handle(handle)
+            yield handle, object_to_data(media)
+
+    def _iter_raw_citation_data(self):
+        for handle in self.proxy_map["Citation"]:
+            # Currently the proxies use Gramps Objects for processing:
+            citation = self.get_citation_from_handle(handle)
+            yield handle, object_to_data(citation)
+
+    def _iter_raw_source_data(self):
+        for handle in self.proxy_map["Source"]:
+            # Currently the proxies use Gramps Objects for processing:
+            source = self.get_source_from_handle(handle)
+            yield handle, object_to_data(source)
+
+    def _iter_raw_note_data(self):
+        for handle in self.proxy_map["Note"]:
+            # Currently the proxies use Gramps Objects for processing:
+            note = self.get_note_from_handle(handle)
+            yield handle, object_to_data(note)
+
+    # Get numbers:
+
+    def get_number_of_people(self):
+        return len(self.proxy_map["Person"])
+
+    def get_number_of_families(self):
+        return len(self.proxy_map["Family"])
+
+    def get_number_of_events(self):
+        return len(self.proxy_map["Event"])
+
+    def get_number_of_places(self):
+        return len(self.proxy_map["Place"])
+
+    def get_number_of_repositories(self):
+        return len(self.proxy_map["Repository"])
+
+    def get_number_of_media(self):
+        return len(self.proxy_map["Media"])
+
+    def get_number_of_citations(self):
+        return len(self.proxy_map["Citation"])
+
+    def get_number_of_sources(self):
+        return len(self.proxy_map["Source"])
+
+    def get_number_of_notes(self):
+        return len(self.proxy_map["Note"])
+
+    # Get from handles:
+
+    @functools.cache
+    def get_person_from_handle(self, handle):
+        if handle in self.proxy_map["Person"]:
+            person = self.db.get_person_from_handle(handle)
+            processed = self.proxy_process_person(person)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_family_from_handle(self, handle):
+        if handle in self.proxy_map["Family"]:
+            family = self.db.get_family_from_handle(handle)
+            processed = self.proxy_process_family(family)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_event_from_handle(self, handle):
+        if handle in self.proxy_map["Event"]:
+            event = self.db.get_event_from_handle(handle)
+            processed = self.proxy_process_event(event)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_place_from_handle(self, handle):
+        if handle in self.proxy_map["Place"]:
+            place = self.db.get_place_from_handle(handle)
+            processed = self.proxy_process_place(place)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_repository_from_handle(self, handle):
+        if handle in self.proxy_map["Repository"]:
+            repository = self.db.get_repository_from_handle(handle)
+            processed = self.proxy_process_repository(repository)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_media_from_handle(self, handle):
+        if handle in self.proxy_map["Media"]:
+            media = self.db.get_media_from_handle(handle)
+            processed = self.proxy_process_media(media)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_citation_from_handle(self, handle):
+        if handle in self.proxy_map["Citation"]:
+            citation = self.db.get_citation_from_handle(handle)
+            processed = self.proxy_process_citation(citation)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_source_from_handle(self, handle):
+        if handle in self.proxy_map["Source"]:
+            source = self.db.get_source_from_handle(handle)
+            processed = self.proxy_process_source(source)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    @functools.cache
+    def get_note_from_handle(self, handle):
+        if handle in self.proxy_map["Note"]:
+            note = self.db.get_note_from_handle(handle)
+            processed = self.proxy_process_note(note)
+            return processed
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    # Get raw data:
+
+    def get_raw_person_data(self, handle):
+        if handle in self.proxy_map["Person"]:
+            person = self.db.get_person_from_handle(handle)
+            processed = self.proxy_process_person(person)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_family_data(self, handle):
+        if handle in self.proxy_map["Family"]:
+            family = self.db.get_family_from_handle(handle)
+            processed = self.proxy_process_family(family)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_event_data(self, handle):
+        if handle in self.proxy_map["Event"]:
+            event = self.db.get_event_from_handle(handle)
+            processed = self.proxy_process_event(event)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_place_data(self, handle):
+        if handle in self.proxy_map["Place"]:
+            place = self.db.get_place_from_handle(handle)
+            processed = self.proxy_process_place(place)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_repository_data(self, handle):
+        if handle in self.proxy_map["Repository"]:
+            repository = self.db.get_repository_from_handle(handle)
+            processed = self.proxy_process_repository(repository)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_media_data(self, handle):
+        if handle in self.proxy_map["Media"]:
+            media = self.db.get_media_from_handle(handle)
+            processed = self.proxy_process_media(media)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_citation_data(self, handle):
+        if handle in self.proxy_map["Citation"]:
+            citation = self.db.get_citation_from_handle(handle)
+            processed = self.proxy_process_citation(citation)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_source_data(self, handle):
+        if handle in self.proxy_map["Source"]:
+            source = self.db.get_source_from_handle(handle)
+            processed = self.proxy_process_source(source)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    def get_raw_note_data(self, handle):
+        if handle in self.proxy_map["Note"]:
+            note = self.db.get_note_from_handle(handle)
+            processed = self.proxy_process_note(note)
+            return object_to_data(processed)
+        else:
+            raise HandleError(f"Handle {handle} not found")
+
+    # Get from gramps id:
+
+    def get_person_from_gramps_id(self, gramps_id):
         """
-        Return True if the database has been opened.
+        Finds a Person in the database from the passed Gramps ID.
+        If no such Person exists, None is returned.
         """
-        return self.db.is_open()
+        person = self.db.get_person_from_gramps_id(gramps_id)
+        if person and person.handle in self.proxy_map["Person"]:
+            processed = self.proxy_process_person(person)
+            return processed
+        else:
+            return None
 
-    def get_researcher(self):
-        """returns the Researcher instance, providing information about
-        the owner of the database"""
-        return self.db.get_researcher()
-
-    def include_something(self, handle, obj=None):
+    def get_family_from_gramps_id(self, gramps_id):
         """
-        Model predicate. Returns True if object referred to by handle is to be
-        included, otherwise returns False.
+        Finds a Family in the database from the passed Gramps ID.
+        If no such Family exists, None is returned.
         """
-        if obj is None:
-            obj = self.get_unfiltered_something(handle)
+        family = self.db.get_family_from_gramps_id(gramps_id)
+        if family and family.handle in self.proxy_map["Family"]:
+            processed = self.proxy_process_family(family)
+            return processed
+        else:
+            return None
 
-        # Call function to determine if object should be included or not
-        return obj.include()
+    def get_event_from_gramps_id(self, gramps_id):
+        """
+        Finds a Event in the database from the passed Gramps ID.
+        If no such Event exists, None is returned.
+        """
+        event = self.db.get_event_from_gramps_id(gramps_id)
+        if event and event.handle in self.proxy_map["Event"]:
+            processed = self.proxy_process_event(event)
+            return processed
+        else:
+            return None
 
-    # Define default predicates for each object type
+    def get_place_from_gramps_id(self, gramps_id):
+        """
+        Finds a Place in the database from the passed Gramps ID.
+        If no such Place exists, None is returned.
+        """
+        place = self.db.get_place_from_gramps_id(gramps_id)
+        if place and place.handle in self.proxy_map["Place"]:
+            processed = self.proxy_process_place(place)
+            return processed
+        else:
+            return None
 
-    include_person = include_family = include_event = include_source = (
-        include_citation
-    ) = include_place = include_media = include_repository = include_note = (
-        include_tag
-    ) = None
+    def get_repository_from_gramps_id(self, gramps_id):
+        """
+        Finds a Repository in the database from the passed Gramps ID.
+        If no such Repository exists, None is returned.
+        """
+        repository = self.db.get_repository_from_gramps_id(gramps_id)
+        if repository and repository.handle in self.proxy_map["Repository"]:
+            processed = self.proxy_process_repository(repository)
+            return processed
+        else:
+            return None
+
+    def get_media_from_gramps_id(self, gramps_id):
+        """
+        Finds a Media in the database from the passed Gramps ID.
+        If no such Media exists, None is returned.
+        """
+        media = self.db.get_media_from_gramps_id(gramps_id)
+        if media and media.handle in self.proxy_map["Media"]:
+            processed = self.proxy_process_media(media)
+            return processed
+        else:
+            return None
+
+    def get_citation_from_gramps_id(self, gramps_id):
+        """
+        Finds a Citation in the database from the passed Gramps ID.
+        If no such Citation exists, None is returned.
+        """
+        citation = self.db.get_citation_from_gramps_id(gramps_id)
+        if citation and citation.handle in self.proxy_map["Citation"]:
+            processed = self.proxy_process_citation(citation)
+            return processed
+        else:
+            return None
+
+    def get_source_from_gramps_id(self, gramps_id):
+        """
+        Finds a Source in the database from the passed Gramps ID.
+        If no such Source exists, None is returned.
+        """
+        source = self.db.get_source_from_gramps_id(gramps_id)
+        if source and source.handle in self.proxy_map["Source"]:
+            processed = self.proxy_process_source(source)
+            return processed
+        else:
+            return None
+
+    def get_note_from_gramps_id(self, gramps_id):
+        """
+        Finds a Note in the database from the passed Gramps ID.
+        If no such Note exists, None is returned.
+        """
+        note = self.db.get_note_from_gramps_id(gramps_id)
+        if note and note.handle in self.proxy_map["Note"]:
+            processed = self.proxy_process_note(note)
+            return processed
+        else:
+            return None
+
+    # Get all handles:
+
+    def get_person_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            return list(self.locale_sort("Person", locale.collation))
+        else:
+            return list(self.proxy_map["Person"])
+
+    def get_family_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            return list(self.locale_sort("Family", locale.collation))
+        else:
+            return list(self.proxy_map["Family"])
+
+    def get_event_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            return list(self.locale_sort("Event", locale.collation))
+        else:
+            return list(self.proxy_map["Event"])
+
+    def get_place_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            return list(self.locale_sort("Place", locale.collation))
+        else:
+            return list(self.proxy_map["Place"])
+
+    def get_repository_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            return list(self.locale_sort("Repository", locale.collation))
+        else:
+            return list(self.proxy_map["Repository"])
+
+    def get_media_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            return list(self.locale_sort("Media", locale.collation))
+        else:
+            return list(self.proxy_map["Media"])
+
+    def get_citation_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            return list(self.locale_sort("Citation", locale.collation))
+        else:
+            return list(self.proxy_map["Citation"])
+
+    def get_source_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            return list(self.locale_sort("Source", locale.collation))
+        else:
+            return list(self.proxy_map["Source"])
+
+    def get_note_handles(self, sort_handles=False, locale=glocale):
+        if sort_handles:
+            return list(self.locale_sort("Note", locale.collation))
+        else:
+            return list(self.proxy_map["Note"])
+
+    # Iter objects:
+
+    def iter_people(self):
+        for handle in self.proxy_map["Person"]:
+            yield self.get_person_from_handle(handle)
+
+    def iter_families(self):
+        for handle in self.proxy_map["Family"]:
+            yield self.get_family_from_handle(handle)
+
+    def iter_events(self):
+        for handle in self.proxy_map["Event"]:
+            yield self.get_event_from_handle(handle)
+
+    def iter_places(self):
+        for handle in self.proxy_map["Place"]:
+            yield self.get_place_from_handle(handle)
+
+    def iter_repositories(self):
+        for handle in self.proxy_map["Repository"]:
+            yield self.get_repository_from_handle(handle)
+
+    def iter_media(self):
+        for handle in self.proxy_map["Media"]:
+            yield self.get_media_from_handle(handle)
+
+    def iter_citations(self):
+        for handle in self.proxy_map["Citation"]:
+            yield self.get_citation_from_handle(handle)
+
+    def iter_sources(self):
+        for handle in self.proxy_map["Source"]:
+            yield self.get_source_from_handle(handle)
+
+    def iter_notes(self):
+        for handle in self.proxy_map["Note"]:
+            yield self.get_note_from_handle(handle)
+
+    # Iter handles:
+
+    def iter_person_handles(self):
+        for handle in self.proxy_map["Person"]:
+            yield handle
+
+    def iter_family_handles(self):
+        for handle in self.proxy_map["Family"]:
+            yield handle
+
+    def iter_event_handles(self):
+        for handle in self.proxy_map["Event"]:
+            yield handle
+
+    def iter_place_handles(self):
+        for handle in self.proxy_map["Place"]:
+            yield handle
+
+    def iter_repository_handles(self):
+        for handle in self.proxy_map["Repository"]:
+            yield handle
+
+    def iter_media_handles(self):
+        for handle in self.proxy_map["Media"]:
+            yield handle
+
+    def iter_citation_handles(self):
+        for handle in self.proxy_map["Citation"]:
+            yield handle
+
+    def iter_source_handles(self):
+        for handle in self.proxy_map["Source"]:
+            yield handle
+
+    def iter_note_handles(self):
+        for handle in self.proxy_map["Note"]:
+            yield handle
+
+    # Has handle:
+
+    def has_person_handle(self, handle):
+        return handle in self.proxy_map["Person"]
+
+    def has_family_handle(self, handle):
+        return handle in self.proxy_map["Family"]
+
+    def has_event_handle(self, handle):
+        return handle in self.proxy_map["Event"]
+
+    def has_place_handle(self, handle):
+        return handle in self.proxy_map["Place"]
+
+    def has_repository_handle(self, handle):
+        return handle in self.proxy_map["Repository"]
+
+    def has_media_handle(self, handle):
+        return handle in self.proxy_map["Media"]
+
+    def has_citation_handle(self, handle):
+        return handle in self.proxy_map["Citation"]
+
+    def has_source_handle(self, handle):
+        return handle in self.proxy_map["Source"]
+
+    def has_note_handle(self, handle):
+        return handle in self.proxy_map["Note"]
+
+    # Cursors:
 
     def get_person_cursor(self):
         return ProxyCursor(self.get_raw_person_data, self.get_person_handles)
@@ -179,813 +781,57 @@ class ProxyDbBase(DbReadBase):
     def get_event_cursor(self):
         return ProxyCursor(self.get_raw_event_data, self.get_event_handles)
 
-    def get_source_cursor(self):
-        return ProxyCursor(self.get_raw_source_data, self.get_source_handles)
-
-    def get_citation_cursor(self):
-        return ProxyCursor(self.get_raw_citation_data, self.get_citation_handles)
-
     def get_place_cursor(self):
         return ProxyCursor(self.get_raw_place_data, self.get_place_handles)
-
-    def get_media_cursor(self):
-        return ProxyCursor(self.get_raw_media_data, self.get_media_handles)
 
     def get_repository_cursor(self):
         return ProxyCursor(self.get_raw_repository_data, self.get_repository_handles)
 
+    def get_media_cursor(self):
+        return ProxyCursor(self.get_raw_media_data, self.get_media_handles)
+
+    def get_citation_cursor(self):
+        return ProxyCursor(self.get_raw_citation_data, self.get_citation_handles)
+
+    def get_source_cursor(self):
+        return ProxyCursor(self.get_raw_source_data, self.get_source_handles)
+
     def get_note_cursor(self):
         return ProxyCursor(self.get_raw_note_data, self.get_note_handles)
 
-    def get_tag_cursor(self):
-        return ProxyCursor(self.get_raw_tag_data, self.get_tag_handles)
+    # Misc:
 
-    def get_person_handles(self, sort_handles=False, locale=glocale):
-        """
-        Return a list of database handles, one handle for each Person in
-        the database. If sort_handles is True, the list is sorted by surnames
-        """
-        if (self.db is not None) and self.db.is_open():
-            proxied = set(self.iter_person_handles())
-            all = self.basedb.get_person_handles(
-                sort_handles=sort_handles, locale=locale
-            )
-            return [hdl for hdl in all if hdl in proxied]
-        else:
-            return []
-
-    def get_family_handles(self, sort_handles=False, locale=glocale):
-        """
-        Return a list of database handles, one handle for each Family in
-        the database. If sort_handles is True, the list is sorted by surnames
-        """
-        if (self.db is not None) and self.db.is_open():
-            proxied = set(self.iter_family_handles())
-            all = self.basedb.get_family_handles(
-                sort_handles=sort_handles, locale=locale
-            )
-            return [hdl for hdl in all if hdl in proxied]
-        else:
-            return []
-
-    def get_event_handles(self):
-        """
-        Return a list of database handles, one handle for each Event in
-        the database.
-        """
-        if (self.db is not None) and self.db.is_open():
-            return list(self.iter_event_handles())
-        else:
-            return []
-
-    def get_source_handles(self, sort_handles=False, locale=glocale):
-        """
-        Return a list of database handles, one handle for each Source in
-        the database.
-        """
-        if (self.db is not None) and self.db.is_open():
-            return list(self.iter_source_handles())
-        else:
-            return []
-
-    def get_citation_handles(self, sort_handles=False, locale=glocale):
-        """
-        Return a list of database handles, one handle for each Citation in
-        the database.
-        """
-        if (self.db is not None) and self.db.is_open():
-            return list(self.iter_citation_handles())
-        else:
-            return []
-
-    def get_place_handles(self, sort_handles=False, locale=glocale):
-        """
-        Return a list of database handles, one handle for each Place in
-        the database.
-        """
-        if (self.db is not None) and self.db.is_open():
-            return list(self.iter_place_handles())
-        else:
-            return []
-
-    def get_media_handles(self, sort_handles=False, locale=glocale):
-        """
-        Return a list of database handles, one handle for each Media in
-        the database.
-        """
-        if (self.db is not None) and self.db.is_open():
-            return list(self.iter_media_handles())
-        else:
-            return []
-
-    def get_repository_handles(self):
-        """
-        Return a list of database handles, one handle for each Repository in
-        the database.
-        """
-        if (self.db is not None) and self.db.is_open():
-            return list(self.iter_repository_handles())
-        else:
-            return []
-
-    def get_note_handles(self):
-        """
-        Return a list of database handles, one handle for each Note in
-        the database.
-        """
-        if (self.db is not None) and self.db.is_open():
-            return list(self.iter_note_handles())
-        else:
-            return []
-
-    def get_tag_handles(self, sort_handles=False, locale=glocale):
-        """
-        Return a list of database handles, one handle for each Tag in
-        the database.
-        """
-        if (self.db is not None) and self.db.is_open():
-            return list(self.iter_tag_handles())
-        else:
-            return []
+    def find_backlink_handles(self, handle, include_classes=None):
+        for class_name, obj_handle in self.db.find_backlink_handles(
+            handle, include_classes
+        ):
+            if obj_handle in self.proxy_map[class_name]:
+                yield (class_name, obj_handle)
 
     def get_default_person(self):
         """returns the default Person of the database"""
-        return self.db.get_default_person()
-
-    def get_default_handle(self):
-        """returns the default Person of the database"""
-        return self.db.get_default_handle()
-
-    def iter_person_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Person in
-        the database.
-        """
-        return filter(self.include_person, self.db.iter_person_handles())
-
-    def iter_family_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Family in
-        the database.
-        """
-        return filter(self.include_family, self.db.iter_family_handles())
-
-    def iter_event_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Event in
-        the database.
-        """
-        return filter(self.include_event, self.db.iter_event_handles())
-
-    def iter_source_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Source in
-        the database.
-        """
-        return filter(self.include_source, self.db.iter_source_handles())
-
-    def iter_citation_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Citation
-        in the database.
-        """
-        return filter(self.include_citation, self.db.iter_citation_handles())
-
-    def iter_place_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Place in
-        the database.
-        """
-        return filter(self.include_place, self.db.iter_place_handles())
-
-    def iter_media_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Media
-        Object in the database.
-        """
-        return filter(self.include_media, self.db.iter_media_handles())
-
-    def iter_repository_handles(self):
-        """
-        Return an iterator over database handles, one handle for each
-        Repository in the database.
-        """
-        return filter(self.include_repository, self.db.iter_repository_handles())
-
-    def iter_note_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Note in
-        the database.
-        """
-        return filter(self.include_note, self.db.iter_note_handles())
-
-    def iter_tag_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Tag in
-        the database.
-        """
-        return filter(self.include_tag, self.db.iter_tag_handles())
-
-    def __iter_object(self, selector, method):
-        """Helper function to return an iterator over an object class"""
-        retval = filter(
-            lambda obj: ((selector is None) or selector(obj.handle)), method()
-        )
-        return retval
-
-    def iter_people(self):
-        """
-        Return an iterator over Person objects in the database
-        """
-        return self.__iter_object(self.include_person, self.db.iter_people)
-
-    def iter_families(self):
-        """
-        Return an iterator over Family objects in the database
-        """
-        return self.__iter_object(self.include_family, self.db.iter_families)
-
-    def iter_events(self):
-        """
-        Return an iterator over Event objects in the database
-        """
-        return self.__iter_object(self.include_event, self.db.iter_events)
-
-    def iter_places(self):
-        """
-        Return an iterator over Place objects in the database
-        """
-        return self.__iter_object(self.include_place, self.db.iter_places)
-
-    def iter_sources(self):
-        """
-        Return an iterator over Source objects in the database
-        """
-        return self.__iter_object(self.include_source, self.db.iter_sources)
-
-    def iter_citations(self):
-        """
-        Return an iterator over Citation objects in the database
-        """
-        return self.__iter_object(self.include_citation, self.db.iter_citations)
-
-    def iter_media(self):
-        """
-        Return an iterator over Media objects in the database
-        """
-        return self.__iter_object(self.include_media, self.db.iter_media)
-
-    def iter_repositories(self):
-        """
-        Return an iterator over Repositories objects in the database
-        """
-        return self.__iter_object(self.include_repository, self.db.iter_repositories)
-
-    def iter_notes(self):
-        """
-        Return an iterator over Note objects in the database
-        """
-        return self.__iter_object(self.include_note, self.db.iter_notes)
-
-    def iter_tags(self):
-        """
-        Return an iterator over Tag objects in the database
-        """
-        return self.__iter_object(self.include_tag, self.db.iter_tags)
-
-    @staticmethod
-    def gfilter(predicate, obj):
-        """
-        Returns obj if predicate is True or not callable, else returns None
-        """
-        if predicate is not None and obj is not None:
-            return obj if predicate(obj.handle) else None
-        return obj
-
-    def __getattr__(self, name):
-        """Handle unknown attribute lookups"""
-        if name == "readonly":
-            return True
-        sname = name.split("_")
-        if sname[:2] == ["get", "unfiltered"]:
-            """
-            Handle get_unfiltered calls.  Return the name of the access
-            method for the base database object.  Call setattr before
-            returning so that the lookup happens at most once for a given
-            method call and a given object.
-            """
-            attr = getattr(self.basedb, "get_" + sname[2] + "_from_handle")
-            setattr(self, name, attr)
-            return attr
-
-        # if a write-method:
-        if (
-            name in DbWriteBase.__dict__
-            and not name.startswith("__")
-            and type(DbWriteBase.__dict__[name]) is types.FunctionType
-        ):
-            raise AttributeError
-        # Default behaviour: lookup attribute in parent object
-        return getattr(self.db, name)
-
-    def get_person_from_handle(self, handle):
-        """
-        Finds a Person in the database from the passed gramps handle.
-        If no such Person exists, None is returned.
-        """
-        return self.gfilter(self.include_person, self.db.get_person_from_handle(handle))
-
-    def get_family_from_handle(self, handle):
-        """
-        Finds a Family in the database from the passed gramps handle.
-        If no such Family exists, None is returned.
-        """
-        return self.gfilter(self.include_family, self.db.get_family_from_handle(handle))
-
-    def get_event_from_handle(self, handle):
-        """
-        Finds a Event in the database from the passed gramps handle.
-        If no such Event exists, None is returned.
-        """
-        return self.gfilter(self.include_event, self.db.get_event_from_handle(handle))
-
-    def get_source_from_handle(self, handle):
-        """
-        Finds a Source in the database from the passed gramps handle.
-        If no such Source exists, None is returned.
-        """
-        return self.gfilter(self.include_source, self.db.get_source_from_handle(handle))
-
-    def get_citation_from_handle(self, handle):
-        """
-        Finds a Citation in the database from the passed gramps handle.
-        If no such Citation exists, None is returned.
-        """
-        return self.gfilter(
-            self.include_citation, self.db.get_citation_from_handle(handle)
-        )
-
-    def get_place_from_handle(self, handle):
-        """
-        Finds a Place in the database from the passed gramps handle.
-        If no such Place exists, None is returned.
-        """
-        return self.gfilter(self.include_place, self.db.get_place_from_handle(handle))
-
-    def get_media_from_handle(self, handle):
-        """
-        Finds an Object in the database from the passed gramps handle.
-        If no such Object exists, None is returned.
-        """
-        return self.gfilter(self.include_media, self.db.get_media_from_handle(handle))
-
-    def get_repository_from_handle(self, handle):
-        """
-        Finds a Repository in the database from the passed gramps handle.
-        If no such Repository exists, None is returned.
-        """
-        return self.gfilter(
-            self.include_repository, self.db.get_repository_from_handle(handle)
-        )
-
-    def get_note_from_handle(self, handle):
-        """
-        Finds a Note in the database from the passed gramps handle.
-        If no such Note exists, None is returned.
-        """
-        return self.gfilter(self.include_note, self.db.get_note_from_handle(handle))
-
-    def get_tag_from_handle(self, handle):
-        """
-        Finds a Tag in the database from the passed gramps handle.
-        If no such Tag exists, None is returned.
-        """
-        return self.gfilter(self.include_tag, self.db.get_tag_from_handle(handle))
-
-    def get_person_from_gramps_id(self, val):
-        """
-        Finds a Person in the database from the passed Gramps ID.
-        If no such Person exists, None is returned.
-        """
-        return self.gfilter(self.include_person, self.db.get_person_from_gramps_id(val))
-
-    def get_family_from_gramps_id(self, val):
-        """
-        Finds a Family in the database from the passed Gramps ID.
-        If no such Family exists, None is returned.
-        """
-        return self.gfilter(self.include_family, self.db.get_family_from_gramps_id(val))
-
-    def get_event_from_gramps_id(self, val):
-        """
-        Finds an Event in the database from the passed Gramps ID.
-        If no such Event exists, None is returned.
-        """
-        return self.gfilter(self.include_event, self.db.get_event_from_gramps_id(val))
-
-    def get_place_from_gramps_id(self, val):
-        """
-        Finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, None is returned.
-        """
-        return self.gfilter(self.include_place, self.db.get_place_from_gramps_id(val))
-
-    def get_source_from_gramps_id(self, val):
-        """
-        Finds a Source in the database from the passed gramps' ID.
-        If no such Source exists, None is returned.
-        """
-        return self.gfilter(self.include_source, self.db.get_source_from_gramps_id(val))
-
-    def get_citation_from_gramps_id(self, val):
-        """
-        Finds a Citation in the database from the passed gramps' ID.
-        If no such Citation exists, None is returned.
-        """
-        return self.gfilter(
-            self.include_citation, self.db.get_citation_from_gramps_id(val)
-        )
-
-    def get_media_from_gramps_id(self, val):
-        """
-        Finds a Media in the database from the passed gramps' ID.
-        If no such Media exists, None is returned.
-        """
-        return self.gfilter(self.include_media, self.db.get_media_from_gramps_id(val))
-
-    def get_repository_from_gramps_id(self, val):
-        """
-        Finds a Repository in the database from the passed gramps' ID.
-        If no such Repository exists, None is returned.
-        """
-        return self.gfilter(
-            self.include_repository, self.db.get_repository_from_gramps_id(val)
-        )
-
-    def get_note_from_gramps_id(self, val):
-        """
-        Finds a Note in the database from the passed gramps' ID.
-        If no such Note exists, None is returned.
-        """
-        return self.gfilter(self.include_note, self.db.get_note_from_gramps_id(val))
-
-    def get_tag_from_name(self, val):
-        """
-        Finds a Tag in the database from the passed tag name.
-        If no such Tag exists, None is returned.
-        """
-        return self.gfilter(self.include_tag, self.db.get_tag_from_name(val))
-
-    def get_name_group_mapping(self, surname):
-        """
-        Return the default grouping name for a surname
-        """
-        return self.db.get_name_group_mapping(surname)
-
-    def has_name_group_key(self, name):
-        """
-        Return if a key exists in the name_group table
-        """
-        return self.db.has_name_group_key(name)
-
-    def get_name_group_keys(self):
-        """
-        Return the defined names that have been assigned to a default grouping
-        """
-        return self.db.get_name_group_keys()
-
-    def get_number_of_people(self):
-        """
-        Return the number of people currently in the database.
-        """
-        return len(self.get_person_handles())
-
-    def get_number_of_families(self):
-        """
-        Return the number of families currently in the database.
-        """
-        return len(self.get_family_handles())
-
-    def get_number_of_events(self):
-        """
-        Return the number of events currently in the database.
-        """
-        return len(self.get_event_handles())
-
-    def get_number_of_places(self):
-        """
-        Return the number of places currently in the database.
-        """
-        return len(self.get_place_handles())
-
-    def get_number_of_sources(self):
-        """
-        Return the number of sources currently in the database.
-        """
-        return len(self.get_source_handles())
-
-    def get_number_of_citations(self):
-        """
-        Return the number of Citations currently in the database.
-        """
-        return len(self.get_citation_handles())
-
-    def get_number_of_media(self):
-        """
-        Return the number of media objects currently in the database.
-        """
-        return len(self.get_media_handles())
-
-    def get_number_of_repositories(self):
-        """
-        Return the number of source repositories currently in the database.
-        """
-        return len(self.get_repository_handles())
-
-    def get_number_of_notes(self):
-        """
-        Return the number of notes currently in the database.
-        """
-        return len(self.get_note_handles())
-
-    def get_number_of_tags(self):
-        """
-        Return the number of tags currently in the database.
-        """
-        return len(self.get_tag_handles())
-
-    def get_save_path(self):
-        """returns the save path of the file, or "" if one does not exist"""
-        return self.db.get_save_path()
-
-    def get_event_attribute_types(self):
-        """returns a list of all Attribute types associated with Event
-        instances in the database"""
-        return self.db.get_event_attribute_types()
-
-    def get_event_types(self):
-        """returns a list of all event types in the database"""
-        return self.db.get_event_types()
-
-    def get_person_event_types(self):
-        """Deprecated:  Use get_event_types"""
-        return self.db.get_event_types()
-
-    def get_person_attribute_types(self):
-        """returns a list of all Attribute types associated with Person
-        instances in the database"""
-        return self.db.get_person_attribute_types()
-
-    def get_family_attribute_types(self):
-        """returns a list of all Attribute types associated with Family
-        instances in the database"""
-        return self.db.get_family_attribute_types()
-
-    def get_family_event_types(self):
-        """Deprecated:  Use get_event_types"""
-        return self.db.get_event_types()
-
-    def get_media_attribute_types(self):
-        """returns a list of all Attribute types associated with Media
-        and MediaRef instances in the database"""
-        return self.db.get_media_attribute_types()
-
-    def get_family_relation_types(self):
-        """returns a list of all relationship types associated with Family
-        instances in the database"""
-        return self.db.get_family_relation_types()
-
-    def get_child_reference_types(self):
-        """returns a list of all child reference types associated with Family
-        instances in the database"""
-        return self.db.get_child_reference_types()
-
-    def get_event_roles(self):
-        """returns a list of all custom event role names associated with Event
-        instances in the database"""
-        return self.db.get_event_roles()
-
-    def get_name_types(self):
-        """returns a list of all custom names types associated with Person
-        instances in the database"""
-        return self.db.get_name_types()
-
-    def get_origin_types(self):
-        """
-        returns a list of all custom origin types
-        associated with Person/Surname
-        instances in the database
-        """
-        return self.db.get_origin_types()
-
-    def get_repository_types(self):
-        """returns a list of all custom repository types associated with
-        Repository instances in the database"""
-        return self.db.get_repository_types()
-
-    def get_note_types(self):
-        """returns a list of all custom note types associated with
-        Note instances in the database"""
-        return self.db.get_note_types()
-
-    def get_source_attribute_types(self):
-        """returns a list of all Attribute types associated with
-        Source/Citation instances in the database"""
-        return self.db.get_source_attribute_types()
-
-    def get_source_media_types(self):
-        """returns a list of all custom source media types associated with
-        Source instances in the database"""
-        return self.db.get_source_media_types()
-
-    def get_url_types(self):
-        """returns a list of all custom names types associated with Url
-        instances in the database"""
-        return self.db.get_url_types()
-
-    def get_raw_person_data(self, handle):
-        return object_to_data(self.get_person_from_handle(handle))
-
-    def get_raw_family_data(self, handle):
-        return object_to_data(self.get_family_from_handle(handle))
-
-    def get_raw_media_data(self, handle):
-        return object_to_data(self.get_media_from_handle(handle))
-
-    def get_raw_place_data(self, handle):
-        return object_to_data(self.get_place_from_handle(handle))
-
-    def get_raw_event_data(self, handle):
-        return object_to_data(self.get_event_from_handle(handle))
-
-    def get_raw_source_data(self, handle):
-        return object_to_data(self.get_source_from_handle(handle))
-
-    def get_raw_citation_data(self, handle):
-        return object_to_data(self.get_citation_from_handle(handle))
-
-    def get_raw_repository_data(self, handle):
-        return object_to_data(self.get_repository_from_handle(handle))
-
-    def get_raw_note_data(self, handle):
-        return object_to_data(self.get_note_from_handle(handle))
-
-    def get_raw_tag_data(self, handle):
-        return object_to_data(self.get_tag_from_handle(handle))
-
-    def has_person_handle(self, handle):
-        """
-        Returns True if the handle exists in the current Person database.
-        """
-        return (
-            self.gfilter(self.include_person, self.db.get_person_from_handle(handle))
-            is not None
-        )
-
-    def has_family_handle(self, handle):
-        """
-        Returns True if the handle exists in the current Family database.
-        """
-        return (
-            self.gfilter(self.include_family, self.db.get_family_from_handle(handle))
-            is not None
-        )
-
-    def has_event_handle(self, handle):
-        """
-        returns True if the handle exists in the current Event database.
-        """
-        return (
-            self.gfilter(self.include_event, self.db.get_event_from_handle(handle))
-            is not None
-        )
-
-    def has_source_handle(self, handle):
-        """
-        returns True if the handle exists in the current Source database.
-        """
-        return (
-            self.gfilter(self.include_source, self.db.get_source_from_handle(handle))
-            is not None
-        )
-
-    def has_citation_handle(self, handle):
-        """
-        returns True if the handle exists in the current Citation database.
-        """
-        return (
-            self.gfilter(
-                self.include_citation, self.db.get_citation_from_handle(handle)
-            )
-            is not None
-        )
-
-    def has_place_handle(self, handle):
-        """
-        returns True if the handle exists in the current Place database.
-        """
-        return (
-            self.gfilter(self.include_place, self.db.get_place_from_handle(handle))
-            is not None
-        )
-
-    def has_media_handle(self, handle):
-        """
-        returns True if the handle exists in the current Mediadatabase.
-        """
-        return (
-            self.gfilter(self.include_media, self.db.get_media_from_handle(handle))
-            is not None
-        )
-
-    def has_repository_handle(self, handle):
-        """
-        returns True if the handle exists in the current Repository database.
-        """
-        return (
-            self.gfilter(
-                self.include_repository, self.db.get_repository_from_handle(handle)
-            )
-            is not None
-        )
-
-    def has_note_handle(self, handle):
-        """
-        returns True if the handle exists in the current Note database.
-        """
-        return (
-            self.gfilter(self.include_note, self.db.get_note_from_handle(handle))
-            is not None
-        )
-
-    def has_tag_handle(self, handle):
-        """
-        returns True if the handle exists in the current Tag database.
-        """
-        return (
-            self.gfilter(self.include_tag, self.db.get_tag_from_handle(handle))
-            is not None
-        )
-
-    def get_mediapath(self):
-        """returns the default media path of the database"""
-        return self.db.get_mediapath()
-
-    def get_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
-        return self.bookmarks
-
-    def get_family_bookmarks(self):
-        """returns the list of Family handles in the bookmarks"""
-        return self.family_bookmarks
-
-    def get_event_bookmarks(self):
-        """returns the list of Event handles in the bookmarks"""
-        return self.event_bookmarks
-
-    def get_place_bookmarks(self):
-        """returns the list of Place handles in the bookmarks"""
-        return self.place_bookmarks
-
-    def get_source_bookmarks(self):
-        """returns the list of Source handles in the bookmarks"""
-        return self.source_bookmarks
-
-    def get_citation_bookmarks(self):
-        """returns the list of Citation handles in the bookmarks"""
-        return self.citation_bookmarks
-
-    def get_media_bookmarks(self):
-        """returns the list of Media handles in the bookmarks"""
-        return self.media_bookmarks
-
-    def get_repo_bookmarks(self):
-        """returns the list of Repository handles in the bookmarks"""
-        return self.repo_bookmarks
-
-    def get_note_bookmarks(self):
-        """returns the list of Note handles in the bookmarks"""
-        return self.note_bookmarks
-
-    def close(self):
-        """
-        Close on a proxy closes real database.
-        """
-        self.basedb.close()
-
-    def find_initial_person(self):
-        """
-        Find an initial person, given that they might not be
-        available.
-        """
-        person = self.basedb.find_initial_person()
-        if person and self.has_person_handle(person.handle):
+        person = self.db.get_default_person()
+        if person and person.handle in self.proxy_map["Person"]:
             return person
         else:
             return None
 
-    def get_dbid(self):
+    def get_default_handle(self):
+        """returns the default Person of the database"""
+        handle = self.db.get_default_handle()
+        if handle in self.proxy_map["Person"]:
+            return handle
+        else:
+            return None
+
+    def find_initial_person(self):
         """
-        Return the database ID.
+        Returns first person in the database
         """
-        return self.basedb.get_dbid()
+        handle = self.get_default_handle()
+        if handle and handle in self.proxy_map["Person"]:
+            return self.get_person_from_handle(handle)
+        elif len(self.proxy_map["Person"]) > 0:
+            return self.get_person_from_handle(self.proxy_map["Person"])
+        else:
+            return None
