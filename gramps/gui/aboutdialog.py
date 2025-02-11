@@ -122,7 +122,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         self.set_transient_for(parent)
         self.set_modal(True)
 
-        self.set_name(PROGRAM_NAME)
+        self.set_program_name(PROGRAM_NAME)
         self.set_version(VERSION)
         self.set_copyright(COPYRIGHT_MSG)
         artists = _(
