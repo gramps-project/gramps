@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-02-09 19:28+0000\n"
+"PO-Revision-Date: 2025-02-11 10:01+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -16022,7 +16022,7 @@ msgstr ""
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
-msgstr ""
+msgstr "נא לספק ערך אחד בלבד"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
 #, python-brace-format
@@ -19129,7 +19129,7 @@ msgstr "לא נמצאו תוספים מתאימים."
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
-msgstr ""
+msgstr "נא להזין מייזם"
 
 #: ../gramps/gui/plug/_windows.py:705
 #, fuzzy
@@ -39027,7 +39027,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
-msgstr ""
+msgstr "תקריב"
 
 #: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
