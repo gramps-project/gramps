@@ -24,6 +24,8 @@
 Package providing filtering framework for Gramps.
 """
 
+from __future__ import annotations
+
 import logging
 import time
 
@@ -260,7 +262,7 @@ class GenericFilter:
             raise Exception("invalid operator: %r" % self.logical_op)
         return res != self.invert
 
-    def apply(self, db, id_list=None, tupleind=None, user: User = None, tree=False):
+    def apply(self, db, id_list=None, tupleind=None, user: None | User = None, tree=False):
         """
         Apply the filter using db.
         If id_list given, the handles in id_list are used. If not given
