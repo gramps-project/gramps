@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-02-02 16:32+0000\n"
+"PO-Revision-Date: 2025-02-11 21:36+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/is/>\n"
@@ -3473,10 +3473,8 @@ msgid "Filter"
 msgstr "Síun"
 
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "Les gögn..."
+msgstr "Undirbý..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -11626,21 +11624,12 @@ msgstr ""
 "Gramps hættir núna."
 
 #: ../gramps/grampsapp.py:227
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "You don't have the python3 bsddb3 package installed. This package is "
-#| "needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
 msgid ""
 "The orjson package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"\n"
-"Útgáfa þín af Python uppfyllir ekki gerðar kröfur. Að minnsta kosti python "
-"%(v1)d.%(v2)d.%(v3)d þarf til að ræsa Gramps.\n"
+"Pakkinn 'orjson' er nauðsynlegur til að ræsa Gramps.\n"
 "\n"
 "Gramps hættir núna."
 
