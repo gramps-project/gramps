@@ -43,6 +43,7 @@ from .. import Rule
 from typing import List, Set
 from ....lib import Person
 from ....db import Database
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -58,7 +59,7 @@ class IsRelatedWith(Rule):
     category = _("Relationship filters")
     description = _("Matches people related to a specified person")
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         """prepare so the rule can be executed efficiently
         we build the list of people related to <person> here,
         so that apply is only a check into this list
@@ -66,7 +67,7 @@ class IsRelatedWith(Rule):
         self.db = db
 
         self.selected_handles: Set[str] = set()
-        self.add_relative(db.get_person_from_gramps_id(self.list[0]))
+        self.add_relative(db.get_person_from_gramps_id(self.list[0]), user)
 
     def reset(self):
         self.selected_handles.clear()
@@ -74,7 +75,7 @@ class IsRelatedWith(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def add_relative(self, start: Person):
+    def add_relative(self, start: Person, user: User):
         """Non-recursive function that scans relatives and add them to self.selected_handles"""
         if not (start):
             return
@@ -82,6 +83,8 @@ class IsRelatedWith(Rule):
         queue: List[Person] = [start]
 
         while queue:
+            if user.get_cancelled():
+                return
             person = queue.pop()
             # Add the relative to the list
             if person is None or (person.handle in self.selected_handles):

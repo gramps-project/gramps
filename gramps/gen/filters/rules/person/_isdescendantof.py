@@ -43,6 +43,7 @@ from .. import Rule
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -59,7 +60,7 @@ class IsDescendantOf(Rule):
     category = _("Descendant filters")
     description = _("Matches all descendants for the specified person")
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: Set[str] = set()
         try:
@@ -68,7 +69,7 @@ class IsDescendantOf(Rule):
             first = True
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
-            self.init_list(root_person, first)
+            self.init_list(root_person, first, user)
         except:
             pass
 
@@ -78,7 +79,7 @@ class IsDescendantOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_list(self, person: Person, first: bool):
+    def init_list(self, person: Person, first: bool, user: User):
         if not person or person.handle in self.selected_handles:
             # if we have been here before, skip
             return
@@ -86,7 +87,11 @@ class IsDescendantOf(Rule):
             self.selected_handles.add(person.handle)
 
         for fam_id in person.family_list:
+            if user.get_cancelled():
+                break
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 for child_ref in fam.child_ref_list:
-                    self.init_list(self.db.get_person_from_handle(child_ref.ref), False)
+                    self.init_list(
+                        self.db.get_person_from_handle(child_ref.ref), False, user
+                    )

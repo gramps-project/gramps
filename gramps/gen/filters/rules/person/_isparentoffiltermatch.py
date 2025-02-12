@@ -44,6 +44,7 @@ from ._matchesfilter import MatchesFilter
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -60,7 +61,7 @@ class IsParentOfFilterMatch(Rule):
     category = _("Family filters")
     description = _("Matches parents of anybody matched by a filter")
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: Set[str] = set()
         self.filt = MatchesFilter(self.list)
@@ -70,10 +71,13 @@ class IsParentOfFilterMatch(Rule):
                 self.category,
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
+                can_cancel=True,
             )
         for person in db.iter_people():
             if user:
                 user.step_progress()
+                if user.get_cancelled():
+                    break
             if self.filt.apply_to_one(db, person):
                 self.init_list(person)
         if user:

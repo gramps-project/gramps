@@ -44,6 +44,7 @@ from typing import Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -63,14 +64,16 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
         "Matches ancestors of the Home Person " "not more than N generations away"
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
         p: Person = db.get_default_person()
         if p:
-            self.init_ancestor_list(p.handle, 1)
+            self.init_ancestor_list(p.handle, 1, user)
 
-    def init_ancestor_list(self, handle: PersonHandle, gen: int):
+    def init_ancestor_list(self, handle: PersonHandle, gen: int, user: User):
+        if user.get_cancelled():
+            return
         if not handle or handle in self.selected_handles:
             # if we have been here before, skip
             return
@@ -89,9 +92,9 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
             m_id = fam.mother_handle
 
             if f_id:
-                self.init_ancestor_list(f_id, gen + 1)
+                self.init_ancestor_list(f_id, gen + 1, user)
             if m_id:
-                self.init_ancestor_list(m_id, gen + 1)
+                self.init_ancestor_list(m_id, gen + 1, user)
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles

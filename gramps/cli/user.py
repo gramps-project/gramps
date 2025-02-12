@@ -82,7 +82,9 @@ class User(user.UserBase):
                 self._default_callback
             ) = yes
 
-    def begin_progress(self, title, message, steps):
+    def begin_progress(
+        self, title, message, steps, can_cancel=False, cancel_callback=None
+    ):
         """
         Start showing a progress indicator to the user.
 
@@ -100,6 +102,9 @@ class User(user.UserBase):
         self.current_step = 0
         self.display_progress()
         self._fileout.write(message)
+
+    def get_cancelled(self):
+        return False
 
     def step_progress(self):
         """

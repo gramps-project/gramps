@@ -70,7 +70,9 @@ class User(user.UserBase):
         else:
             self.parent = None
 
-    def begin_progress(self, title, message, steps):
+    def begin_progress(
+        self, title, message, steps, can_cancel=False, cancel_callback=None
+    ):
         """
         Start showing a progress indicator to the user.
 
@@ -84,11 +86,24 @@ class User(user.UserBase):
         :type steps: int
         :returns: none
         """
-        self._progress = ProgressMeter(title, parent=self.parent)
+        self._progress = ProgressMeter(
+            title,
+            parent=self.parent,
+            can_cancel=can_cancel,
+            cancel_callback=cancel_callback,
+        )
         if steps > 0:
             self._progress.set_pass(message, steps, ProgressMeter.MODE_FRACTION)
         else:
             self._progress.set_pass(message, mode=ProgressMeter.MODE_ACTIVITY)
+
+    def get_cancelled(
+        self,
+    ):
+        if self._progress:
+            return self._progress.get_cancelled()
+        else:
+            return False
 
     def step_progress(self):
         """

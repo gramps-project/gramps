@@ -24,6 +24,8 @@
 Package providing filtering framework for Gramps.
 """
 
+from __future__ import annotations
+
 import logging
 import time
 
@@ -45,6 +47,7 @@ from ..lib.tag import Tag
 from ..const import GRAMPS_LOCALE as glocale
 from .rules import Rule
 from .optimizer import Optimizer
+from ..user import User
 
 _ = glocale.translation.gettext
 LOG = logging.getLogger(".filter.results")
@@ -140,7 +143,7 @@ class GenericFilter:
         return db.get_number_of_people()
 
     def apply_logical_op_to_all(
-        self, db, id_list, apply_logical_op, user=None, tupleind=None, tree=False
+        self, db, id_list, apply_logical_op, user: User, tupleind=None, tree=False
     ):
         final_list = []
 
@@ -154,13 +157,16 @@ class GenericFilter:
         LOG.debug("Optimizer handles_out: %s", len(handles_out))
         if id_list is None:
             if handles_in is not None:
-                if user:
-                    user.begin_progress(_("Filter"), _("Applying ..."), len(handles_in))
+                user.begin_progress(
+                    _("Filter"), _("Applying ..."), len(handles_in), can_cancel=True
+                )
 
                 # Use these rather than going through entire database
                 for handle in handles_in:
-                    if user:
-                        user.step_progress()
+                    if user.get_cancelled():
+                        break
+
+                    user.step_progress()
 
                     if handle is None:
                         continue
@@ -174,14 +180,18 @@ class GenericFilter:
                 with (
                     self.get_tree_cursor(db) if tree else self.get_cursor(db)
                 ) as cursor:
-                    if user:
-                        user.begin_progress(
-                            _("Filter"), _("Applying ..."), self.get_number(db)
-                        )
+                    user.begin_progress(
+                        _("Filter"),
+                        _("Applying ..."),
+                        self.get_number(db),
+                        can_cancel=True,
+                    )
 
                     for handle, obj in cursor:
-                        if user:
-                            user.step_progress()
+                        if user.get_cancelled():
+                            break
+
+                        user.step_progress()
 
                         if handle in handles_out:
                             continue
@@ -190,12 +200,15 @@ class GenericFilter:
                             final_list.append(handle)
 
         else:
-            if user:
-                id_list = list(id_list)
-                user.begin_progress(_("Filter"), _("Applying ..."), len(id_list))
+            id_list = list(id_list)
+            user.begin_progress(
+                _("Filter"), _("Applying ..."), len(id_list), can_cancel=True
+            )
             for handle_data in id_list:
-                if user:
-                    user.step_progress()
+                if user.get_cancelled():
+                    break
+
+                user.step_progress()
 
                 if tupleind is None:
                     handle = handle_data
@@ -213,7 +226,6 @@ class GenericFilter:
                 if apply_logical_op(db, obj, self.flist) != self.invert:
                     final_list.append(handle_data)
 
-        if user:
             user.end_progress()
 
         return final_list
@@ -250,7 +262,9 @@ class GenericFilter:
             raise Exception("invalid operator: %r" % self.logical_op)
         return res != self.invert
 
-    def apply(self, db, id_list=None, tupleind=None, user=None, tree=False):
+    def apply(
+        self, db, id_list=None, tupleind=None, user: None | User = None, tree=False
+    ):
         """
         Apply the filter using db.
         If id_list given, the handles in id_list are used. If not given
@@ -267,20 +281,29 @@ class GenericFilter:
                 if id_list not given, all items in the database that
                 match the filter are returned as a list of handles
         """
-        if user:
-            user.begin_progress(_("Filter"), _("Preparing ..."), len(self.flist) + 1)
-            # FIXME: this dialog doesn't show often. Adding a time.sleep(0.1) here
-            # can help on my machine
+        if user is None:
+            user = User()
+
+        user.begin_progress(
+            _("Filter"), _("Preparing ..."), len(self.flist) + 1, can_cancel=True
+        )
+        # FIXME: this dialog doesn't show often. Adding a time.sleep(0.1) here
+        # can help on my machine
+        time.sleep(0.1)
 
         start_time = time.time()
         for rule in self.flist:
-            if user:
-                user.step_progress()
+            if user.get_cancelled():
+                break
+            user.step_progress()
             rule.requestprepare(db, user)
         LOG.debug("Prepare time: %s seconds", time.time() - start_time)
 
-        if user:
-            user.end_progress()
+        user.end_progress()
+        if user.get_cancelled():
+            for rule in self.flist:
+                rule.requestreset()
+            return []
 
         if self.logical_op == "and":
             apply_logical_op = self.and_test
@@ -291,11 +314,14 @@ class GenericFilter:
         else:
             raise Exception("invalid operator: %r" % self.logical_op)
 
-        start_time = time.time()
-        res = self.apply_logical_op_to_all(
-            db, id_list, apply_logical_op, user, tupleind, tree
-        )
-        LOG.debug("Apply time: %s seconds", time.time() - start_time)
+        if user.get_cancelled():
+            res = []
+        else:
+            start_time = time.time()
+            res = self.apply_logical_op_to_all(
+                db, id_list, apply_logical_op, user, tupleind, tree
+            )
+            LOG.debug("Apply time: %s seconds", time.time() - start_time)
 
         for rule in self.flist:
             rule.requestreset()
