@@ -45,6 +45,7 @@ from ..lib.tag import Tag
 from ..const import GRAMPS_LOCALE as glocale
 from .rules import Rule
 from .optimizer import Optimizer
+from ..user import User
 
 _ = glocale.translation.gettext
 LOG = logging.getLogger(".filter.results")
@@ -140,7 +141,7 @@ class GenericFilter:
         return db.get_number_of_people()
 
     def apply_logical_op_to_all(
-        self, db, id_list, apply_logical_op, user=None, tupleind=None, tree=False
+        self, db, id_list, apply_logical_op, user: User, tupleind=None, tree=False
     ):
         final_list = []
 
@@ -259,7 +260,7 @@ class GenericFilter:
             raise Exception("invalid operator: %r" % self.logical_op)
         return res != self.invert
 
-    def apply(self, db, id_list=None, tupleind=None, user=None, tree=False):
+    def apply(self, db, id_list=None, tupleind=None, user: User = None, tree=False):
         """
         Apply the filter using db.
         If id_list given, the handles in id_list are used. If not given
@@ -276,6 +277,9 @@ class GenericFilter:
                 if id_list not given, all items in the database that
                 match the filter are returned as a list of handles
         """
+        if user is None:
+            user = User()
+
         user.begin_progress(
             _("Filter"), _("Preparing ..."), len(self.flist) + 1, can_cancel=True
         )
