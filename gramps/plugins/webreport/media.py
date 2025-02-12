@@ -407,6 +407,10 @@ class MediaPages(BasePage):
             target_exists = newpath is not None
         else:
             target_exists = False
+        remote_target = False
+        path = media.get_path()
+        if path.startswith(("http://", "https://")):
+            remote_target = media.get_path()
 
         self.copy_thumbnail(media_handle, media)
         self.page_title = media.get_description()
@@ -450,6 +454,14 @@ class MediaPages(BasePage):
 
             # missing media error message
             errormsg = self._("The file has been moved or deleted.")
+            if remote_target:
+                ttlen = self._("This is a remote media")
+                descr = media.get_description()
+                if not descr:
+                    descr = remote_target
+                errormsg = Html(
+                    "a", descr, href=remote_target, title=ttlen, target="_remote"
+                )
 
             # begin summaryarea division
             with Html("div", id="summaryarea") as summaryarea:
