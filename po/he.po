@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-06 17:15+0000\n"
-"PO-Revision-Date: 2025-02-11 10:01+0000\n"
+"PO-Revision-Date: 2025-02-12 09:45+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -428,17 +428,6 @@ msgstr ""
 "במקרה הגרוע ביותר, תוכלו לשמוע כמה סיפורים טובים. לא לשכוח להקליט את השיחות!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter. Then select this filter in the Filter field on Sidebar, then "
-#| "click Find button. If the Sidebar is not visible, select View &gt; "
-#| "Sidebar."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -450,12 +439,12 @@ msgid ""
 "visible, select View > Sidebar."
 msgstr ""
 "<b>מסנן אנשים<br/></b>במצג 'אנשים', ניתן 'לסנן' אנשים על פי קריטריונים רבים. "
-"יצירת מסנן חדש נעשית מתפריט &rsquo;עריכה &lt; עורך מסנן אנשים&lsquo; יש לתת "
-"שם למסנן, להוסיף ולשלב כללים מתוך הכללים הרבים שהוגדרו מראש. לדוגמה, ניתן "
+"יצירת מסנן חדש נעשית מתפריט &rsquo;עריכת עורך מסנן אנשים&lsquo; יש לתת שם "
+"למסנן, להוסיף ולשלב כללים מתוך הכללים הרבים שהוגדרו מראש. לדוגמה, ניתן "
 "להגדיר מסנן למציאת כל האנשים המאומצים באילן־היוחסין, כמו גם את כל האנשים "
 "חסרי תאריך לידה. לקבלת התוצאות, יש לשמור את המסנן. לאחר מכן, לבחור מסנן זה "
 "משדה ה'מסנן' בסרגל־הצד ולהקיש על לחצן ה'חיפוש'. אם סרגל הצד אינו גלוי, נא "
-"לבחור באפשרות &rsquo;מצג &lt; סרגל־צד&lsquo;."
+"לבחור באפשרות &rsquo;מצג סרגל־צד&lsquo;."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -502,22 +491,16 @@ msgstr ""
 "הקשת עכבר ימנית לבחירת אחד מבני המשפחה, בני זוגם, אַחָאִים, צאצאים או הורים."
 
 #: ../data/tips.xml:24
-#, fuzzy
-#| msgid ""
-#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-#| "&gt; Compare Individual Events...\" you can compare the data of "
-#| "individuals in your database. This is useful, say, if you wish to list "
-#| "the birth dates of everyone in your database. You can use a custom filter "
-#| "to narrow the results."
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>מי נולד מתי?</b><br/>מתפריט 'כלים>ניתוח וחקירה>השוואת אירועים אישיים...' "
-"ניתן להשוות נתונים של האנשים במסד הנתונים. יכול לשמש לדוגמה, ליצירת רשימת "
-"ימי ההולדת של כל האנשים במסד הנתונים. ניתן להשתמש בסינון על מנת לצמצם תוצאות."
+"<b>מי נולד מתי?</b><br/>מתפריט 'כלים > ניתוח וחקירה > השוואת אירועים "
+"אישיים...' ניתן להשוות נתונים של האנשים במסד הנתונים. יכול לשמש לדוגמה, "
+"ליצירת רשימת ימי ההולדת של כל האנשים במסד הנתונים. ניתן להשתמש בסינון על מנת "
+"לצמצם תוצאות."
 
 #: ../data/tips.xml:26
 msgid ""
@@ -533,12 +516,6 @@ msgstr ""
 "ניתן לגשת לכלים מתפריט 'כלים'."
 
 #: ../data/tips.xml:28
-#, fuzzy
-#| msgid ""
-#| "<b>Calculating Relationships</b><br/>To check if two people in the "
-#| "database are related (by blood, not marriage) try the tool under \"Tools "
-#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
-#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
@@ -10962,7 +10939,7 @@ msgstr "תאריך לידה של אב קדמון"
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
-msgstr ""
+msgstr "הסקה מהורים ואחאים - לידה: {birth_min_src}, פטירה: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -10970,6 +10947,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"הסקה מהורים ואחאים - לידה: {birth_min_src}, (מוקדם ביותר) עד {birth_max_src} "
+"(מאוחר ביותר) פטירה: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11688,7 +11667,7 @@ msgstr "יפנית"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "קוריאנית"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -11797,6 +11776,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"חבילת orjson נדרשת כדי להפעיל את גרמפס.\n"
+"\n"
+"גרמפס יפסק כעת."
 
 #: ../gramps/grampsapp.py:323 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:408 ../gramps/grampsapp.py:425
@@ -12726,11 +12708,11 @@ msgstr "תוספים חדשים בלבד"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "גם מלל וגם סמלים"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "הצגת מלל, סמלים או את שניהם בלחתני סרגל הכלים."
 
 #: ../gramps/gui/configure.py:2134
 #, fuzzy
@@ -16006,6 +15988,8 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"פעולה זו פותחת תיבת דו־שיח להוספת מסנן מותאם אישית חדש שמבוסס על הערכים "
+"שסופקו."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16014,11 +15998,11 @@ msgstr "שיצוב"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "זמן שחלף: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "נדשר לבחור מקום בעת שימוש בכלל 'בתוך'"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
 msgid "Supply at least one value"
