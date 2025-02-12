@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-06 17:15+0000\n"
+"POT-Creation-Date: 2025-02-12 22:44+0000\n"
 "PO-Revision-Date: 2021-06-04 21:08+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/gramps-project/"
@@ -307,7 +307,7 @@ msgstr "Sistemi Gjenealogjik i GRAMPS"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:233
 #: ../gramps/plugins/view/pedigreeview.py:565
 #: ../gramps/plugins/view/view.gpr.py:135
-#: ../gramps/plugins/webreport/person.py:1747
+#: ../gramps/plugins/webreport/person.py:1745
 msgid "Pedigree"
 msgstr "Prejardhja"
 
@@ -374,7 +374,7 @@ msgstr "Mardhëniet"
 #: ../gramps/plugins/tool/reorderids.glade:762
 #: ../gramps/plugins/webreport/event.py:330
 #: ../gramps/plugins/webreport/family.py:314
-#: ../gramps/plugins/webreport/person.py:1640
+#: ../gramps/plugins/webreport/person.py:1638
 msgid "Person"
 msgstr "Personi"
 
@@ -1709,7 +1709,7 @@ msgstr "E bllokuar nga: %s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:878
 #: ../gramps/plugins/textreport/indivcomplete.py:99
 #: ../gramps/plugins/textreport/indivcomplete.py:971
-#: ../gramps/plugins/tool/check.py:2716 ../gramps/plugins/tool/check.py:2744
+#: ../gramps/plugins/tool/check.py:2717 ../gramps/plugins/tool/check.py:2745
 #: ../gramps/plugins/tool/dumpgenderstats.py:74
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:102
@@ -2061,11 +2061,11 @@ msgstr "emri i dhënë"
 #: ../gramps/plugins/webreport/basepage.py:235
 #: ../gramps/plugins/webreport/basepage.py:3382
 #: ../gramps/plugins/webreport/basepage.py:3403
-#: ../gramps/plugins/webreport/family.py:521
-#: ../gramps/plugins/webreport/heatmap.py:1028
-#: ../gramps/plugins/webreport/heatmap.py:1030
+#: ../gramps/plugins/webreport/family.py:519
+#: ../gramps/plugins/webreport/heatmap.py:1029
+#: ../gramps/plugins/webreport/heatmap.py:1031
+#: ../gramps/plugins/webreport/person.py:861
 #: ../gramps/plugins/webreport/person.py:863
-#: ../gramps/plugins/webreport/person.py:865
 msgid ":"
 msgstr ""
 
@@ -3542,9 +3542,9 @@ msgstr "Leximi i bazave të të dhënave..."
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:66
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:66
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:59
-#: ../gramps/gen/filters/rules/family/_isancestorof.py:59
+#: ../gramps/gen/filters/rules/family/_isancestorof.py:65
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:57
-#: ../gramps/gen/filters/rules/family/_isdescendantof.py:59
+#: ../gramps/gen/filters/rules/family/_isdescendantof.py:65
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:64
 #: ../gramps/gen/filters/rules/note/_hasnote.py:62
 #: ../gramps/gen/filters/rules/note/_hastype.py:59
@@ -3714,19 +3714,19 @@ msgid "Number of instances:"
 msgstr "Numri i paraardhësve"
 
 #: ../gramps/gen/filters/rules/_hasgrampsid.py:56
-#: ../gramps/gen/filters/rules/family/_isancestorof.py:57
-#: ../gramps/gen/filters/rules/family/_isdescendantof.py:57
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:148
+#: ../gramps/gen/filters/rules/family/_isancestorof.py:63
+#: ../gramps/gen/filters/rules/family/_isdescendantof.py:63
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:57
-#: ../gramps/gen/filters/rules/person/_isancestorof.py:56
-#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:62
-#: ../gramps/gen/filters/rules/person/_isdescendantof.py:57
+#: ../gramps/gen/filters/rules/person/_isancestorof.py:57
+#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:63
+#: ../gramps/gen/filters/rules/person/_isdescendantof.py:58
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:58
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:58
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:57
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:58
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:58
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:57
-#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:56
+#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:57
 #: ../gramps/gen/filters/rules/person/_matchidof.py:55
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:58
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:58
@@ -3799,7 +3799,7 @@ msgid "Source ID:"
 msgstr "ID e burimit:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:67
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:148
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:49
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:58
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:58
@@ -4801,22 +4801,22 @@ msgstr "Familje me <ngjarje>"
 msgid "Matches families with twins"
 msgstr "Pëputh ngjarje me tip të caktuar"
 
-#: ../gramps/gen/filters/rules/family/_isancestorof.py:57
-#: ../gramps/gen/filters/rules/family/_isdescendantof.py:57
-#: ../gramps/gen/filters/rules/person/_isancestorof.py:56
-#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:62
-#: ../gramps/gen/filters/rules/person/_isdescendantof.py:57
+#: ../gramps/gen/filters/rules/family/_isancestorof.py:63
+#: ../gramps/gen/filters/rules/family/_isdescendantof.py:63
+#: ../gramps/gen/filters/rules/person/_isancestorof.py:57
+#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:63
+#: ../gramps/gen/filters/rules/person/_isdescendantof.py:58
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:58
 #: ../gramps/gui/editors/filtereditor.py:607
 msgid "Inclusive:"
 msgstr "Përfshij:"
 
-#: ../gramps/gen/filters/rules/family/_isancestorof.py:58
+#: ../gramps/gen/filters/rules/family/_isancestorof.py:64
 #, fuzzy
 msgid "Ancestor families of <family>"
 msgstr "Paraardhës të përputhshmëris <filtër>"
 
-#: ../gramps/gen/filters/rules/family/_isancestorof.py:60
+#: ../gramps/gen/filters/rules/family/_isancestorof.py:66
 #, fuzzy
 msgid "Matches ancestor families of the specified family"
 msgstr "Përputh familje që janë t përputhura nga emëri filtër i caktuar"
@@ -4829,12 +4829,12 @@ msgstr "Familje në librin e shënimeve"
 msgid "Matches the families on the bookmark list"
 msgstr "Përputh njerëz në listën e librit të shënimeve"
 
-#: ../gramps/gen/filters/rules/family/_isdescendantof.py:58
+#: ../gramps/gen/filters/rules/family/_isdescendantof.py:64
 #, fuzzy
 msgid "Descendant families of <family>"
 msgstr "Familjet Pasardhëse të %s"
 
-#: ../gramps/gen/filters/rules/family/_isdescendantof.py:60
+#: ../gramps/gen/filters/rules/family/_isdescendantof.py:66
 #, fuzzy
 msgid "Matches descendant families of the specified family"
 msgstr "Përputh të gjith pasardhësit për personin e caktuar"
@@ -5247,19 +5247,19 @@ msgid ""
 "ss) or in the range, if a second date-time is given."
 msgstr ""
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:150
 #, fuzzy
 msgid "Relationship path between <person> and people matching <filter>"
 msgstr "Shteg i marrëdhënieve në mes të <persons>"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:150
-#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:58
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:151
+#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:59
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:60
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:65
 msgid "Relationship filters"
 msgstr "Filtra të marrëdhënieve"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:152
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:153
 msgid ""
 "Searches over the database starting from a specified person and returns "
 "everyone between that person and a set of target people specified with a "
@@ -5268,13 +5268,13 @@ msgid ""
 "necessarily the shortest path."
 msgstr ""
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:171
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:184
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:172
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:185
 #, fuzzy
 msgid "Finding relationship paths"
 msgstr "Redakto mardhënie"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:172
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:173
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:73
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:81
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:71
@@ -5286,7 +5286,7 @@ msgstr "Redakto mardhënie"
 msgid "Retrieving all sub-filter matches"
 msgstr "Motra/Vëllezër të përputhjes <filtër>"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:185
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:186
 #, fuzzy
 msgid "Evaluating people"
 msgstr "Përzgjedhja e njerëzve"
@@ -5400,7 +5400,7 @@ msgstr "Njerëz me paraardhës të pëbashkët me <personin>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:59
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:54
-#: ../gramps/gen/filters/rules/person/_isancestorof.py:58
+#: ../gramps/gen/filters/rules/person/_isancestorof.py:59
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:60
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:60
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:60
@@ -5789,11 +5789,11 @@ msgstr "Njerëz me emra jo të plotë"
 msgid "Matches people with firstname or lastname missing"
 msgstr "Përputh njerëz të cilëve ju mungojnë emri ose mbiemri"
 
-#: ../gramps/gen/filters/rules/person/_isancestorof.py:57
+#: ../gramps/gen/filters/rules/person/_isancestorof.py:58
 msgid "Ancestors of <person>"
 msgstr "Paraardhës i <personit>"
 
-#: ../gramps/gen/filters/rules/person/_isancestorof.py:59
+#: ../gramps/gen/filters/rules/person/_isancestorof.py:60
 msgid "Matches people that are ancestors of a specified person"
 msgstr "Pëputh njerëz që janë paraardhës të personave të caktuar"
 
@@ -5831,20 +5831,20 @@ msgstr "Person i parazgjedhur"
 msgid "Matches the Home Person"
 msgstr "Përputh personin e parazgjedhur"
 
-#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:63
+#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:64
 msgid "Descendant family members of <person>"
 msgstr "Pasardhës të anëtarëve të familjes së <person>"
 
-#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:64
+#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:65
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:54
-#: ../gramps/gen/filters/rules/person/_isdescendantof.py:59
+#: ../gramps/gen/filters/rules/person/_isdescendantof.py:60
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:60
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:59
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:60
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:59
 msgid "Descendant filters"
 msgstr "Filtra të pasardhësve"
 
-#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:66
+#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:67
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
@@ -5865,11 +5865,11 @@ msgid ""
 msgstr ""
 "Përputh njerëz që janë pasardhës i çdonjërit që përputhet nga një filtër"
 
-#: ../gramps/gen/filters/rules/person/_isdescendantof.py:58
+#: ../gramps/gen/filters/rules/person/_isdescendantof.py:59
 msgid "Descendants of <person>"
 msgstr "Pasardhës të <person>"
 
-#: ../gramps/gen/filters/rules/person/_isdescendantof.py:60
+#: ../gramps/gen/filters/rules/person/_isdescendantof.py:61
 msgid "Matches all descendants for the specified person"
 msgstr "Përputh të gjith pasardhësit për personin e caktuar"
 
@@ -5909,7 +5909,7 @@ msgstr "Përputh të gjitha femrat"
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:58
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:64
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:59
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:57
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:58
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:58
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:57
 #: ../gramps/gui/editors/filtereditor.py:555
@@ -5953,11 +5953,11 @@ msgstr ""
 "Përputh paraardhës të personit të parazgjedhur jo më shumë se N gjenerata "
 "larg"
 
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:58
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:59
 msgid "Descendants of <person> not more than <N> generations away"
 msgstr "Pasardhës të <person> jo më shumë se <N> gjenerata larg"
 
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:61
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:62
 msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
@@ -6011,12 +6011,12 @@ msgstr "Prind nga <filtër> përputhja"
 msgid "Matches parents of anybody matched by a filter"
 msgstr "Përputh prind të çdokujt që përputhen nga një filtër"
 
-#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:57
+#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:58
 #, fuzzy
 msgid "People related to <Person>"
 msgstr "Nuk janë të lidhur me \"%s\""
 
-#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:59
+#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:60
 #, fuzzy
 msgid "Matches people related to a specified person"
 msgstr "Pëputh njerëz që janë paraardhës të personave të caktuar"
@@ -6918,7 +6918,7 @@ msgstr "Adresa"
 #: ../gramps/gen/lib/place.py:210 ../gramps/gen/lib/repo.py:127
 #: ../gramps/gen/lib/reporef.py:114 ../gramps/gen/lib/src.py:144
 #: ../gramps/gen/lib/srcattribute.py:75 ../gramps/gen/lib/url.py:93
-#: ../gramps/gen/proxy/private.py:869
+#: ../gramps/gen/proxy/private.py:872
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:82
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:66
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:89
@@ -7016,7 +7016,7 @@ msgstr "Citat"
 #: ../gramps/plugins/view/view.gpr.py:111
 #: ../gramps/plugins/webreport/basepage.py:1659
 #: ../gramps/plugins/webreport/basepage.py:2828
-#: ../gramps/plugins/webreport/person.py:1642
+#: ../gramps/plugins/webreport/person.py:1640
 #: ../gramps/plugins/webreport/updates.py:158
 msgid "Notes"
 msgstr "Vërejtje"
@@ -7274,7 +7274,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:167
 #: ../gramps/gui/glade/editplaceformat.glade:186
 #: ../gramps/plugins/graph/gvfamilylines.py:96
-#: ../gramps/plugins/tool/check.py:2772
+#: ../gramps/plugins/tool/check.py:2773
 msgid "None"
 msgstr "Asgjë "
 
@@ -7349,11 +7349,11 @@ msgstr "Citat"
 #: ../gramps/plugins/tool/findloop.py:118
 #: ../gramps/plugins/webreport/basepage.py:3372
 #: ../gramps/plugins/webreport/event.py:329
-#: ../gramps/plugins/webreport/event.py:556
-#: ../gramps/plugins/webreport/media.py:614
-#: ../gramps/plugins/webreport/person.py:1886
+#: ../gramps/plugins/webreport/event.py:554
+#: ../gramps/plugins/webreport/media.py:626
+#: ../gramps/plugins/webreport/person.py:1884
 #: ../gramps/plugins/webreport/repository.py:264
-#: ../gramps/plugins/webreport/source.py:400
+#: ../gramps/plugins/webreport/source.py:398
 #, fuzzy
 msgid "Gramps ID"
 msgstr "GRAMPS Numri i Identifikimit"
@@ -7430,7 +7430,7 @@ msgstr "Burimi"
 #: ../gramps/plugins/webreport/basepage.py:2314
 #: ../gramps/plugins/webreport/basepage.py:2630
 #: ../gramps/plugins/webreport/media.py:212
-#: ../gramps/plugins/webreport/media.py:414
+#: ../gramps/plugins/webreport/media.py:418
 #: ../gramps/plugins/webreport/updates.py:152
 msgid "Media"
 msgstr "Media"
@@ -7475,13 +7475,13 @@ msgstr "Ndryshimet e fundit"
 #: ../gramps/plugins/view/noteview.py:86 ../gramps/plugins/view/repoview.py:99
 #: ../gramps/plugins/view/sourceview.py:90
 #: ../gramps/plugins/webreport/basepage.py:3521
-#: ../gramps/plugins/webreport/event.py:583
-#: ../gramps/plugins/webreport/family.py:521
-#: ../gramps/plugins/webreport/media.py:660
+#: ../gramps/plugins/webreport/event.py:581
+#: ../gramps/plugins/webreport/family.py:519
+#: ../gramps/plugins/webreport/media.py:672
 #: ../gramps/plugins/webreport/narrativeweb.py:3242
-#: ../gramps/plugins/webreport/person.py:1981
+#: ../gramps/plugins/webreport/person.py:1979
 #: ../gramps/plugins/webreport/repository.py:287
-#: ../gramps/plugins/webreport/source.py:416
+#: ../gramps/plugins/webreport/source.py:414
 msgid "Tags"
 msgstr ""
 
@@ -7495,7 +7495,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/indivcomplete.py:694
 #: ../gramps/plugins/tool/dumpgenderstats.py:47
 #: ../gramps/plugins/view/relview.py:815
-#: ../gramps/plugins/webreport/person.py:590
+#: ../gramps/plugins/webreport/person.py:588
 msgid "unknown"
 msgstr "e panjohur"
 
@@ -7643,8 +7643,8 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3051
 #: ../gramps/plugins/webreport/event.py:328
 #: ../gramps/plugins/webreport/media.py:249
-#: ../gramps/plugins/webreport/media.py:641
-#: ../gramps/plugins/webreport/person.py:1116
+#: ../gramps/plugins/webreport/media.py:653
+#: ../gramps/plugins/webreport/person.py:1114
 msgid "Date"
 msgstr "Data"
 
@@ -7893,7 +7893,7 @@ msgstr "prindi2"
 #: ../gramps/plugins/textreport/tagreport.py:261
 #: ../gramps/plugins/view/familyview.py:83
 #: ../gramps/plugins/view/relview.py:1107
-#: ../gramps/plugins/webreport/person.py:2120
+#: ../gramps/plugins/webreport/person.py:2118
 msgid "Father"
 msgstr "Babai"
 
@@ -7915,7 +7915,7 @@ msgstr "Babai"
 #: ../gramps/plugins/textreport/tagreport.py:267
 #: ../gramps/plugins/view/familyview.py:84
 #: ../gramps/plugins/view/relview.py:1108
-#: ../gramps/plugins/webreport/person.py:2133
+#: ../gramps/plugins/webreport/person.py:2131
 msgid "Mother"
 msgstr "Nëna"
 
@@ -8526,9 +8526,9 @@ msgstr "Fëmijë "
 #: ../gramps/plugins/webreport/basepage.py:2137
 #: ../gramps/plugins/webreport/basepage.py:2260
 #: ../gramps/plugins/webreport/event.py:267
-#: ../gramps/plugins/webreport/event.py:517
+#: ../gramps/plugins/webreport/event.py:515
 #: ../gramps/plugins/webreport/narrativeweb.py:3236
-#: ../gramps/plugins/webreport/person.py:2007
+#: ../gramps/plugins/webreport/person.py:2005
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
 msgstr "Ngjarjet"
@@ -8808,7 +8808,7 @@ msgstr "Besimi"
 #: ../gramps/plugins/tool/verify.py:823 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:546
 #: ../gramps/plugins/webreport/person.py:423
-#: ../gramps/plugins/webreport/person.py:2350
+#: ../gramps/plugins/webreport/person.py:2348
 #: ../gramps/plugins/webreport/surname.py:148
 msgid "Name"
 msgstr "Emri"
@@ -9175,7 +9175,7 @@ msgstr "Shënime për Referencën e Fëmijës"
 #: ../gramps/plugins/lib/libpersonview.py:102
 #: ../gramps/plugins/quickview/siblings.py:50
 #: ../gramps/plugins/textreport/indivcomplete.py:957
-#: ../gramps/plugins/webreport/person.py:1897
+#: ../gramps/plugins/webreport/person.py:1895
 msgid "Gender"
 msgstr "Gjinia"
 
@@ -9285,7 +9285,7 @@ msgstr "Gjerësia"
 #: ../gramps/plugins/webreport/basepage.py:2131
 #: ../gramps/plugins/webreport/basepage.py:2261
 #: ../gramps/plugins/webreport/place.py:282
-#: ../gramps/plugins/webreport/place.py:481
+#: ../gramps/plugins/webreport/place.py:479
 #: ../gramps/plugins/webreport/updates.py:127
 msgid "Places"
 msgstr "Vendet"
@@ -9455,7 +9455,7 @@ msgstr "E sigurt"
 #: ../gramps/plugins/textreport/tagreport.py:760
 #: ../gramps/plugins/view/sourceview.py:86
 #: ../gramps/plugins/webreport/source.py:207
-#: ../gramps/plugins/webreport/source.py:401
+#: ../gramps/plugins/webreport/source.py:399
 msgid "Author"
 msgstr "Autori"
 
@@ -9470,7 +9470,7 @@ msgstr "Informacion mbi publikimin"
 #: ../gramps/gui/selectors/selectcitation.py:73
 #: ../gramps/gui/selectors/selectsource.py:68
 #: ../gramps/plugins/view/sourceview.py:87
-#: ../gramps/plugins/webreport/source.py:402
+#: ../gramps/plugins/webreport/source.py:400
 msgid "Abbreviation"
 msgstr "Shkurtesa"
 
@@ -11740,7 +11740,7 @@ msgstr ""
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:94
 #: ../gramps/plugins/tool/dumpgenderstats.py:47
-#: ../gramps/plugins/webreport/person.py:587
+#: ../gramps/plugins/webreport/person.py:585
 msgid "male"
 msgstr "mashkull"
 
@@ -11749,7 +11749,7 @@ msgstr "mashkull"
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:94
 #: ../gramps/plugins/tool/dumpgenderstats.py:47
-#: ../gramps/plugins/webreport/person.py:588
+#: ../gramps/plugins/webreport/person.py:586
 msgid "female"
 msgstr "femër"
 
@@ -12293,7 +12293,7 @@ msgstr ""
 msgid "Distribution: %s"
 msgstr "Përshkrimi:"
 
-#: ../gramps/gui/aboutdialog.py:186
+#: ../gramps/gui/aboutdialog.py:180
 #, fuzzy, python-format
 msgid "OS: %s"
 msgstr "Shënim: %s"
@@ -12534,10 +12534,10 @@ msgstr ""
 #: ../gramps/gui/glade/mergeplace.glade:51
 #: ../gramps/gui/glade/mergerepository.glade:51
 #: ../gramps/gui/glade/mergesource.glade:51
-#: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/reorder.glade:51
-#: ../gramps/gui/glade/rule.glade:40 ../gramps/gui/glade/rule.glade:342
-#: ../gramps/gui/glade/rule.glade:766 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/logger/_errorview.py:190 ../gramps/gui/plug/_windows.py:390
+#: ../gramps/gui/glade/reorder.glade:51 ../gramps/gui/glade/rule.glade:40
+#: ../gramps/gui/glade/rule.glade:342 ../gramps/gui/glade/rule.glade:766
+#: ../gramps/gui/grampsgui.py:58 ../gramps/gui/logger/_errorview.py:190
+#: ../gramps/gui/plug/_windows.py:390
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
@@ -13422,7 +13422,7 @@ msgstr "Përzgjedh media direktoriumin"
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:267
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1251
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
-#: ../gramps/gui/widgets/progressdialog.py:440
+#: ../gramps/gui/widgets/progressdialog.py:441
 #: ../gramps/plugins/importer/importprogen.glade:28
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
@@ -16548,7 +16548,7 @@ msgstr "Nga babai"
 #: ../gramps/gui/widgets/reorderfam.py:105
 #: ../gramps/plugins/textreport/tagreport.py:273
 #: ../gramps/plugins/view/familyview.py:85
-#: ../gramps/plugins/webreport/person.py:1641
+#: ../gramps/plugins/webreport/person.py:1639
 msgid "Relationship"
 msgstr "Marëdhënia"
 
@@ -16558,8 +16558,8 @@ msgstr "çdonjë"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:164
 #: ../gramps/plugins/export/exportcsv.py:428
-#: ../gramps/plugins/webreport/person.py:1957
-#: ../gramps/plugins/webreport/person.py:2351
+#: ../gramps/plugins/webreport/person.py:1955
+#: ../gramps/plugins/webreport/person.py:2349
 msgid "Birth date"
 msgstr "Data e Lindjes"
 
@@ -16578,8 +16578,8 @@ msgstr "Vendi i Lindjes"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:170
 #: ../gramps/plugins/export/exportcsv.py:434
-#: ../gramps/plugins/webreport/person.py:1968
-#: ../gramps/plugins/webreport/person.py:2352
+#: ../gramps/plugins/webreport/person.py:1966
+#: ../gramps/plugins/webreport/person.py:2350
 msgid "Death date"
 msgstr "Data e Vdekjes"
 
@@ -16623,15 +16623,15 @@ msgstr "Rivendos"
 msgid "Elapsed time: %.2fs"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:379
 msgid "You should select a place when using the 'Within' rule"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:389
 msgid "Supply at least one value"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:404
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
 msgstr ""
@@ -18531,6 +18531,10 @@ msgstr "_Fundi"
 msgid "Metric"
 msgstr "Metrik"
 
+#: ../gramps/gui/glade/plugins.glade:22
+msgid "_Wiki"
+msgstr ""
+
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
 msgstr "Ekzekuto veprim të përzgjedhur"
@@ -19516,7 +19520,7 @@ msgstr "%(type)s: %(value)s"
 
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:94
-#: ../gramps/plugins/webreport/person.py:589
+#: ../gramps/plugins/webreport/person.py:587
 #, fuzzy
 #| msgid "Mother"
 msgid "other"
@@ -19534,7 +19538,7 @@ msgstr "Bashko Njerëz"
 #: ../gramps/plugins/view/relview.py:689 ../gramps/plugins/view/relview.py:1068
 #: ../gramps/plugins/view/relview.py:1106
 #: ../gramps/plugins/webreport/person.py:442
-#: ../gramps/plugins/webreport/person.py:2328
+#: ../gramps/plugins/webreport/person.py:2326
 #: ../gramps/plugins/webreport/surname.py:167
 msgid "Parents"
 msgstr "Prindërit"
@@ -24554,7 +24558,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:118
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:125
-#: ../gramps/plugins/webreport/person.py:1562
+#: ../gramps/plugins/webreport/person.py:1560
 msgid "Ancestors"
 msgstr "Paraardhësit"
 
@@ -25094,8 +25098,8 @@ msgstr "Rregullo emrin për 1 person"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1137
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1153
 #: ../gramps/plugins/webreport/basepage.py:3881
-#: ../gramps/plugins/webreport/person.py:1102
-#: ../gramps/plugins/webreport/thumbnail.py:172
+#: ../gramps/plugins/webreport/person.py:1100
+#: ../gramps/plugins/webreport/thumbnail.py:188
 msgid "References"
 msgstr "Referenca"
 
@@ -27922,9 +27926,9 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:2061
 #: ../gramps/plugins/webreport/basepage.py:2125
 #: ../gramps/plugins/webreport/basepage.py:2262
-#: ../gramps/plugins/webreport/person.py:1643
+#: ../gramps/plugins/webreport/person.py:1641
 #: ../gramps/plugins/webreport/source.py:151
-#: ../gramps/plugins/webreport/source.py:356
+#: ../gramps/plugins/webreport/source.py:354
 #: ../gramps/plugins/webreport/updates.py:134
 msgid "Sources"
 msgstr "Burimet"
@@ -33050,7 +33054,7 @@ msgstr "Vendi i ngjarjes"
 #: ../gramps/plugins/quickview/all_events.py:62
 #: ../gramps/plugins/quickview/all_events.py:114
 #: ../gramps/plugins/quickview/all_events.py:131
-#: ../gramps/plugins/webreport/person.py:1118
+#: ../gramps/plugins/webreport/person.py:1116
 msgid "Event Type"
 msgstr "Tipi i ngjarjes"
 
@@ -34919,7 +34923,7 @@ msgid "Alternate Parents"
 msgstr "Prind Alternativ"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:469
-#: ../gramps/plugins/webreport/person.py:1622
+#: ../gramps/plugins/webreport/person.py:1620
 #, fuzzy
 msgid "Associations"
 msgstr "Shoqërime"
@@ -35785,11 +35789,11 @@ msgstr "Kërki i objekteve të papërdorura"
 msgid "Select file"
 msgstr "Përzgjedh skedar"
 
-#: ../gramps/plugins/tool/check.py:865
+#: ../gramps/plugins/tool/check.py:866
 msgid "Media object could not be found"
 msgstr "Media objekti nuk mund të gjindet"
 
-#: ../gramps/plugins/tool/check.py:867
+#: ../gramps/plugins/tool/check.py:868
 #, fuzzy, python-format
 msgid ""
 "The file:\n"
@@ -35806,173 +35810,173 @@ msgstr ""
 "zhvendosni referencën nga baza e të dhënave, të mbani referencën te skedari "
 "që mungon, ose të përzgjedhni një skedar të ri."
 
-#: ../gramps/plugins/tool/check.py:947
+#: ../gramps/plugins/tool/check.py:948
 msgid "Looking for empty people records"
 msgstr "Kërkim i regjistrimeve për njrëzit e zbrazët"
 
-#: ../gramps/plugins/tool/check.py:956
+#: ../gramps/plugins/tool/check.py:957
 msgid "Looking for empty family records"
 msgstr "Kërkim i regjistrimeve të zbrazëta për familje"
 
-#: ../gramps/plugins/tool/check.py:965
+#: ../gramps/plugins/tool/check.py:966
 msgid "Looking for empty event records"
 msgstr "Kërkim i regjistrimeve të zbrazëta për ngjarje"
 
-#: ../gramps/plugins/tool/check.py:974
+#: ../gramps/plugins/tool/check.py:975
 msgid "Looking for empty source records"
 msgstr "Kërkim i regjistrimeve të zbrazëta për burime"
 
-#: ../gramps/plugins/tool/check.py:983
+#: ../gramps/plugins/tool/check.py:984
 #, fuzzy
 msgid "Looking for empty citation records"
 msgstr "Kërkim i regjistrimeve të zbrazëta për media"
 
-#: ../gramps/plugins/tool/check.py:992
+#: ../gramps/plugins/tool/check.py:993
 msgid "Looking for empty place records"
 msgstr "Kërkim i regjistrimeve  të zbrazëta pë vende"
 
-#: ../gramps/plugins/tool/check.py:1001
+#: ../gramps/plugins/tool/check.py:1002
 msgid "Looking for empty media records"
 msgstr "Kërkim i regjistrimeve të zbrazëta për media"
 
-#: ../gramps/plugins/tool/check.py:1010
+#: ../gramps/plugins/tool/check.py:1011
 msgid "Looking for empty repository records"
 msgstr "Kërkim i regjistrimeve të zbrazëta për depo"
 
-#: ../gramps/plugins/tool/check.py:1019
+#: ../gramps/plugins/tool/check.py:1020
 msgid "Looking for empty note records"
 msgstr "Kërkim i regjistrimeve të zbrazëta për shënime"
 
-#: ../gramps/plugins/tool/check.py:1072
+#: ../gramps/plugins/tool/check.py:1073
 msgid "Looking for empty families"
 msgstr "Kërkim i familjeve të zbrazëta"
 
-#: ../gramps/plugins/tool/check.py:1109
+#: ../gramps/plugins/tool/check.py:1110
 msgid "Looking for broken parent relationships"
 msgstr "Kërkim i mardhënieve të prishura të prindërve"
 
-#: ../gramps/plugins/tool/check.py:1150
+#: ../gramps/plugins/tool/check.py:1151
 msgid "Looking for event problems"
 msgstr "Kërkim i probleme të ngjarjeve"
 
-#: ../gramps/plugins/tool/check.py:1355 ../gramps/plugins/tool/check.py:1384
-#: ../gramps/plugins/tool/check.py:1412
+#: ../gramps/plugins/tool/check.py:1356 ../gramps/plugins/tool/check.py:1385
+#: ../gramps/plugins/tool/check.py:1413
 #, fuzzy
 msgid "Looking for backlink reference problems"
 msgstr "Kërkim i problemeve për referencën e vendit"
 
-#: ../gramps/plugins/tool/check.py:1447
+#: ../gramps/plugins/tool/check.py:1448
 msgid "Looking for person reference problems"
 msgstr "Kërkim i probleme të referencës së personit"
 
-#: ../gramps/plugins/tool/check.py:1483
+#: ../gramps/plugins/tool/check.py:1484
 #, fuzzy
 msgid "Looking for family reference problems"
 msgstr "Kërkim i problemeve për referencën e vendit"
 
-#: ../gramps/plugins/tool/check.py:1514
+#: ../gramps/plugins/tool/check.py:1515
 msgid "Looking for repository reference problems"
 msgstr "Kërkim i problemeve për referencën e depos "
 
-#: ../gramps/plugins/tool/check.py:1554
+#: ../gramps/plugins/tool/check.py:1555
 msgid "Looking for place reference problems"
 msgstr "Kërkim i problemeve për referencën e vendit"
 
-#: ../gramps/plugins/tool/check.py:1686
+#: ../gramps/plugins/tool/check.py:1687
 #, fuzzy
 msgid "Looking for citation reference problems"
 msgstr "Kërkim i problemeve për referencën e burimit"
 
-#: ../gramps/plugins/tool/check.py:1806
+#: ../gramps/plugins/tool/check.py:1807
 #, fuzzy
 msgid "Looking for source reference problems"
 msgstr "Kërkim i problemeve për referencën e shënimeve"
 
-#: ../gramps/plugins/tool/check.py:1853
+#: ../gramps/plugins/tool/check.py:1854
 msgid "Looking for media object reference problems"
 msgstr "Kërkimi i probemeve për referencën e media objektit"
 
-#: ../gramps/plugins/tool/check.py:1984
+#: ../gramps/plugins/tool/check.py:1985
 msgid "Looking for note reference problems"
 msgstr "Kërkim i problemeve për referencën e shënimeve"
 
-#: ../gramps/plugins/tool/check.py:2117
+#: ../gramps/plugins/tool/check.py:2118
 msgid "Updating checksums on media"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:2145
+#: ../gramps/plugins/tool/check.py:2146
 #, fuzzy
 msgid "Looking for tag reference problems"
 msgstr "Kërkim i problemeve për referencën e shënimeve"
 
-#: ../gramps/plugins/tool/check.py:2289
+#: ../gramps/plugins/tool/check.py:2290
 #, fuzzy
 msgid "Looking for media source reference problems"
 msgstr "Kërkim i problemeve për referencën e shënimeve"
 
-#: ../gramps/plugins/tool/check.py:2359
+#: ../gramps/plugins/tool/check.py:2360
 #, fuzzy
 msgid "Looking for Duplicated Gramps ID problems"
 msgstr "Kërkim i bashkëshortëve duplikat"
 
-#: ../gramps/plugins/tool/check.py:2511
+#: ../gramps/plugins/tool/check.py:2512
 #, fuzzy
 msgid "Checking for bad links in Notes"
 msgstr "Kërko vende"
 
-#: ../gramps/plugins/tool/check.py:2684
+#: ../gramps/plugins/tool/check.py:2685
 msgid "No errors were found"
 msgstr "Nuk ishin gjetur gabime"
 
-#: ../gramps/plugins/tool/check.py:2685
+#: ../gramps/plugins/tool/check.py:2686
 msgid "The database has passed internal checks"
 msgstr "Baza e të dhënave ka kaluar kontrollime të brendshme"
 
-#: ../gramps/plugins/tool/check.py:2691
+#: ../gramps/plugins/tool/check.py:2692
 #, fuzzy
 msgid "No errors were found: the database has passed internal checks."
 msgstr "Baza e të dhënave ka kaluar kontrollime të brendshme"
 
-#: ../gramps/plugins/tool/check.py:2701
+#: ../gramps/plugins/tool/check.py:2702
 #, fuzzy, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "U rregullua 1 lidhje e prishur familjare/fëmijë\n"
 msgstr[1] "U rregullua 1 lidhje e prishur familjare/fëmijë\n"
 
-#: ../gramps/plugins/tool/check.py:2710
+#: ../gramps/plugins/tool/check.py:2711
 msgid "Non existing child"
 msgstr "Fëmijë që nuk ekziston"
 
-#: ../gramps/plugins/tool/check.py:2721
+#: ../gramps/plugins/tool/check.py:2722
 #, fuzzy, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%s ishte larguar nga familja e %s\n"
 
-#: ../gramps/plugins/tool/check.py:2729
+#: ../gramps/plugins/tool/check.py:2730
 #, fuzzy, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] "U rregullua 1 lidhje familjare/bashëshort\n"
 msgstr[1] "U rregullua 1 lidhje familjare/bashëshort\n"
 
-#: ../gramps/plugins/tool/check.py:2738 ../gramps/plugins/tool/check.py:2766
+#: ../gramps/plugins/tool/check.py:2739 ../gramps/plugins/tool/check.py:2767
 msgid "Non existing person"
 msgstr "Person që nuk ekziston"
 
-#: ../gramps/plugins/tool/check.py:2749 ../gramps/plugins/tool/check.py:2777
+#: ../gramps/plugins/tool/check.py:2750 ../gramps/plugins/tool/check.py:2778
 #, fuzzy, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%s ju restaurua në familjen e %s\n"
 
-#: ../gramps/plugins/tool/check.py:2757
+#: ../gramps/plugins/tool/check.py:2758
 #, fuzzy, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] "U gjet 1 lidhje duplikate familjare/bashkëshort\n"
 msgstr[1] "U gjet 1 lidhje duplikate familjare/bashkëshort\n"
 
-#: ../gramps/plugins/tool/check.py:2785
+#: ../gramps/plugins/tool/check.py:2786
 #, fuzzy, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
@@ -35980,154 +35984,154 @@ msgid_plural ""
 msgstr[0] "U largua 1 familje prindët ose fëmijët e të cilëve nuk u gjetën.\n"
 msgstr[1] "U largua 1 familje prindët ose fëmijët e të cilëve nuk u gjetën.\n"
 
-#: ../gramps/plugins/tool/check.py:2799
+#: ../gramps/plugins/tool/check.py:2800
 #, fuzzy, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
 msgstr[0] "%d u rregullua mardhënia e familjes së prishur\n"
 msgstr[1] "%d u rregullua mardhënia e familjes së prishur\n"
 
-#: ../gramps/plugins/tool/check.py:2809
+#: ../gramps/plugins/tool/check.py:2810
 #, fuzzy, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
 msgstr[0] "U rregullua emri i 1 ngjarje të pavlefshme të vdekjes\n"
 msgstr[1] "U rregullua emri i 1 ngjarje të pavlefshme të vdekjes\n"
 
-#: ../gramps/plugins/tool/check.py:2819
+#: ../gramps/plugins/tool/check.py:2820
 #, fuzzy, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
 msgstr[0] "U referencua 1 vend por nuk u gjet\n"
 msgstr[1] "U referencua 1 vend por nuk u gjet\n"
 
-#: ../gramps/plugins/tool/check.py:2829
+#: ../gramps/plugins/tool/check.py:2830
 #, fuzzy, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] "U referencua 1 vend por nuk u gjet\n"
 msgstr[1] "U referencua 1 vend por nuk u gjet\n"
 
-#: ../gramps/plugins/tool/check.py:2839
+#: ../gramps/plugins/tool/check.py:2840
 #, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/plugins/tool/check.py:2849
+#: ../gramps/plugins/tool/check.py:2850
 #, fuzzy, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
 msgstr[0] "U referencua 1 depo por nuk u gjet\n"
 msgstr[1] "U referencua 1 depo por nuk u gjet\n"
 
-#: ../gramps/plugins/tool/check.py:2859 ../gramps/plugins/tool/check.py:2959
+#: ../gramps/plugins/tool/check.py:2860 ../gramps/plugins/tool/check.py:2960
 #, fuzzy, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
 msgstr[0] "U referencua 1 media objekt por nuk u gjet\n"
 msgstr[1] "U referencua 1 media objekt por nuk u gjet\n"
 
-#: ../gramps/plugins/tool/check.py:2869
+#: ../gramps/plugins/tool/check.py:2870
 #, fuzzy, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "U mbajt refrencë në 1 media objekti që mungonte\n"
 msgstr[1] "U mbajt refrencë në 1 media objekti që mungonte\n"
 
-#: ../gramps/plugins/tool/check.py:2879
+#: ../gramps/plugins/tool/check.py:2880
 #, fuzzy, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
 msgstr[0] "U zëvendësua 1 media objekt që mungonte\n"
 msgstr[1] "U zëvendësua 1 media objekt që mungonte\n"
 
-#: ../gramps/plugins/tool/check.py:2889
+#: ../gramps/plugins/tool/check.py:2890
 #, fuzzy, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
 msgstr[0] "U largua 1 media objekt që mungon\n"
 msgstr[1] "U largua 1 media objekt që mungon\n"
 
-#: ../gramps/plugins/tool/check.py:2899
+#: ../gramps/plugins/tool/check.py:2900
 #, fuzzy, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
 msgstr[0] "U referencua 1 vend por nuk u gjet\n"
 msgstr[1] "U referencua 1 vend por nuk u gjet\n"
 
-#: ../gramps/plugins/tool/check.py:2909
+#: ../gramps/plugins/tool/check.py:2910
 #, fuzzy, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
 msgstr[0] "U rregullua emri i 1 ngjarje të pavlefshme të datlindjes\n"
 msgstr[1] "U rregullua emri i 1 ngjarje të pavlefshme të datlindjes\n"
 
-#: ../gramps/plugins/tool/check.py:2919
+#: ../gramps/plugins/tool/check.py:2920
 #, fuzzy, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
 msgstr[0] "U rregullua emri i 1 ngjarje të pavlefshme të vdekjes\n"
 msgstr[1] "U rregullua emri i 1 ngjarje të pavlefshme të vdekjes\n"
 
-#: ../gramps/plugins/tool/check.py:2929
+#: ../gramps/plugins/tool/check.py:2930
 #, fuzzy, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
 msgstr[0] "U referencua 1 vend por nuk u gjet\n"
 msgstr[1] "U referencua 1 vend por nuk u gjet\n"
 
-#: ../gramps/plugins/tool/check.py:2939
+#: ../gramps/plugins/tool/check.py:2940
 #, fuzzy, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
 msgstr[0] "U referencua 1 vend por nuk u gjet\n"
 msgstr[1] "U referencua 1 vend por nuk u gjet\n"
 
-#: ../gramps/plugins/tool/check.py:2949
+#: ../gramps/plugins/tool/check.py:2950
 #, fuzzy, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
 msgstr[0] "u referencua 1 burim por nuk u gjet\n"
 msgstr[1] "u referencua 1 burim por nuk u gjet\n"
 
-#: ../gramps/plugins/tool/check.py:2969
+#: ../gramps/plugins/tool/check.py:2970
 #, fuzzy, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
 msgstr[0] "U refrencua 1 objekt shënim por nuk u gjet\n"
 msgstr[1] "U refrencua 1 objekt shënim por nuk u gjet\n"
 
-#: ../gramps/plugins/tool/check.py:2979 ../gramps/plugins/tool/check.py:2989
+#: ../gramps/plugins/tool/check.py:2980 ../gramps/plugins/tool/check.py:2990
 #, fuzzy, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
 msgstr[0] "U refrencua 1 objekt shënim por nuk u gjet\n"
 msgstr[1] "U refrencua 1 objekt shënim por nuk u gjet\n"
 
-#: ../gramps/plugins/tool/check.py:2999
+#: ../gramps/plugins/tool/check.py:3000
 #, fuzzy, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
 msgstr[0] "U largua referenca e 1 formati të emrit të pavlefshëm \n"
 msgstr[1] "U largua referenca e 1 formati të emrit të pavlefshëm \n"
 
-#: ../gramps/plugins/tool/check.py:3009
+#: ../gramps/plugins/tool/check.py:3010
 #, fuzzy, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "U rregullua emri i 1 ngjarje të pavlefshme të datlindjes\n"
 msgstr[1] "U rregullua emri i 1 ngjarje të pavlefshme të datlindjes\n"
 
-#: ../gramps/plugins/tool/check.py:3019
+#: ../gramps/plugins/tool/check.py:3020
 #, fuzzy, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
 msgstr[0] "U rregullua emri i 1 ngjarje të pavlefshme të vdekjes\n"
 msgstr[1] "U rregullua emri i 1 ngjarje të pavlefshme të vdekjes\n"
 
-#: ../gramps/plugins/tool/check.py:3028
+#: ../gramps/plugins/tool/check.py:3029
 #, fuzzy, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -36149,27 +36153,27 @@ msgstr ""
 "   %d objekte të vendit\n"
 "   %d objekte të depove\n"
 
-#: ../gramps/plugins/tool/check.py:3053
+#: ../gramps/plugins/tool/check.py:3054
 #, python-format
 msgid "%d bad backlinks were fixed;\n"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:3054
+#: ../gramps/plugins/tool/check.py:3055
 #: ../gramps/plugins/tool/rebuildrefmap.py:91
 #: ../gramps/plugins/tool/rebuildrefmap.py:95
 msgid "All reference maps have been rebuilt."
 msgstr "Të gjitha planet e referencës u rindërtuan. "
 
-#: ../gramps/plugins/tool/check.py:3059
+#: ../gramps/plugins/tool/check.py:3060
 #, python-format
 msgid "%d bad Note Links were fixed;\n"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:3089
+#: ../gramps/plugins/tool/check.py:3090
 msgid "Integrity Check Results"
 msgstr "Rezultate nga kontrollimi i tërësishëm"
 
-#: ../gramps/plugins/tool/check.py:3096
+#: ../gramps/plugins/tool/check.py:3097
 msgid "Check and Repair"
 msgstr "Kontrollo dhe Riparo"
 
@@ -39421,7 +39425,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
-#: ../gramps/plugins/webreport/thumbnail.py:118
+#: ../gramps/plugins/webreport/thumbnail.py:121
 #, fuzzy
 msgid "Thumbnails"
 msgstr "Vendndodhja miniatureske"
@@ -39451,12 +39455,12 @@ msgid "Heatmap"
 msgstr ""
 
 #: ../gramps/plugins/webreport/basepage.py:2223
-#: ../gramps/plugins/webreport/media.py:436
+#: ../gramps/plugins/webreport/media.py:440
 msgid "Previous"
 msgstr "I mëparshëm"
 
 #: ../gramps/plugins/webreport/basepage.py:2225
-#: ../gramps/plugins/webreport/media.py:449
+#: ../gramps/plugins/webreport/media.py:453
 msgid "Next"
 msgstr "Tjetra"
 
@@ -39475,9 +39479,9 @@ msgstr "Krijo dhe shto një LDS urdhëresë të re"
 
 #: ../gramps/plugins/webreport/basepage.py:3140
 #: ../gramps/plugins/webreport/basepage.py:3142
-#: ../gramps/plugins/webreport/family.py:564
-#: ../gramps/plugins/webreport/person.py:880
-#: ../gramps/plugins/webreport/person.py:1284
+#: ../gramps/plugins/webreport/family.py:562
+#: ../gramps/plugins/webreport/person.py:878
+#: ../gramps/plugins/webreport/person.py:1282
 #, fuzzy
 msgid "Family Map"
 msgstr "Menyja e familjes "
@@ -39705,7 +39709,7 @@ msgstr ""
 "klasifikuar sipas titullit të tyre. Nëse klikoni në titullin e vendit do "
 "t'ju çojë në faqen e atij vendi."
 
-#: ../gramps/plugins/webreport/family.py:618
+#: ../gramps/plugins/webreport/family.py:616
 #, fuzzy, python-format
 msgid "Family Map for %s"
 msgstr "Grafi i Rreshatve familjare"
@@ -39834,7 +39838,7 @@ msgstr "Ueb sajti rrëfyes"
 msgid "Below unused media objects"
 msgstr "Numri i media objekteve të vetme"
 
-#: ../gramps/plugins/webreport/media.py:438
+#: ../gramps/plugins/webreport/media.py:442
 #, fuzzy, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of "
@@ -39843,17 +39847,22 @@ msgstr ""
 "<strong id=\"GalleryCurrent\">%(page_number)d</strong> të <strong "
 "id=\"GalleryTotal\">%(total_pages)d</strong>"
 
-#: ../gramps/plugins/webreport/media.py:452
+#: ../gramps/plugins/webreport/media.py:456
 #, fuzzy
 msgid "The file has been moved or deleted."
 msgstr "Skedari u largua ose redaktua"
 
-#: ../gramps/plugins/webreport/media.py:627
+#: ../gramps/plugins/webreport/media.py:458
+#: ../gramps/plugins/webreport/thumbnail.py:174
+msgid "This is a remote media"
+msgstr ""
+
+#: ../gramps/plugins/webreport/media.py:639
 #, fuzzy
 msgid "File Type"
 msgstr "Tipi i skedarit"
 
-#: ../gramps/plugins/webreport/media.py:765
+#: ../gramps/plugins/webreport/media.py:777
 msgid "Missing media object:"
 msgstr "Mungon media objekti:"
 
@@ -40936,12 +40945,12 @@ msgstr ""
 msgid "<absent>"
 msgstr ""
 
-#: ../gramps/plugins/webreport/person.py:1059
+#: ../gramps/plugins/webreport/person.py:1057
 #, python-format
 msgid "Tracking %s"
 msgstr ""
 
-#: ../gramps/plugins/webreport/person.py:1065
+#: ../gramps/plugins/webreport/person.py:1063
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -40950,55 +40959,55 @@ msgid ""
 "you to that place&#8217;s page."
 msgstr ""
 
-#: ../gramps/plugins/webreport/person.py:1117
+#: ../gramps/plugins/webreport/person.py:1115
 #, fuzzy
 msgid "Place Title"
 msgstr "Titulli i vendit"
 
-#: ../gramps/plugins/webreport/person.py:1252
+#: ../gramps/plugins/webreport/person.py:1250
 msgid "Drop Markers"
 msgstr ""
 
-#: ../gramps/plugins/webreport/person.py:1851
+#: ../gramps/plugins/webreport/person.py:1849
 msgid "Call Name"
 msgstr "Emri thirrës"
 
-#: ../gramps/plugins/webreport/person.py:1872
+#: ../gramps/plugins/webreport/person.py:1870
 #, fuzzy
 msgid "Nick Name"
 msgstr "Nofkë"
 
-#: ../gramps/plugins/webreport/person.py:1929
+#: ../gramps/plugins/webreport/person.py:1927
 #, fuzzy
 msgid "Age at Death"
 msgstr "Mosha kur ka vdek"
 
-#: ../gramps/plugins/webreport/person.py:2123
+#: ../gramps/plugins/webreport/person.py:2121
 #, fuzzy
 msgid "Stepfather"
 msgstr "babai"
 
-#: ../gramps/plugins/webreport/person.py:2136
+#: ../gramps/plugins/webreport/person.py:2134
 #, fuzzy
 msgid "Stepmother"
 msgstr "nëna "
 
-#: ../gramps/plugins/webreport/person.py:2163
+#: ../gramps/plugins/webreport/person.py:2161
 #, fuzzy
 msgid "Not siblings"
 msgstr "Shfaq vëllezër dhe motra..."
 
-#: ../gramps/plugins/webreport/person.py:2304
+#: ../gramps/plugins/webreport/person.py:2302
 #, fuzzy
 msgid "Relation to the center person"
 msgstr "Mardhënia me personin shtëpi"
 
-#: ../gramps/plugins/webreport/person.py:2349
+#: ../gramps/plugins/webreport/person.py:2347
 #, fuzzy
 msgid "Relation to main person"
 msgstr "Mardhënia me personin shtëpi"
 
-#: ../gramps/plugins/webreport/person.py:2354
+#: ../gramps/plugins/webreport/person.py:2352
 msgid "Relation within this family (if not by birth)"
 msgstr ""
 
@@ -41032,7 +41041,7 @@ msgstr "Emri"
 msgid "State/Province"
 msgstr "Shteti/Krahina:"
 
-#: ../gramps/plugins/webreport/place.py:609
+#: ../gramps/plugins/webreport/place.py:607
 #, fuzzy
 msgid "Place Map"
 msgstr "Vendi 1"
@@ -41081,7 +41090,7 @@ msgctxt "Source Name"
 msgid "Name"
 msgstr "Shënime për Burimin"
 
-#: ../gramps/plugins/webreport/source.py:403
+#: ../gramps/plugins/webreport/source.py:401
 msgid "Publication information"
 msgstr "Informacion mbi publikimin"
 
@@ -41130,7 +41139,7 @@ msgstr "Numri i njerëzve"
 msgid "Surnames beginning with letter '{letter}' {char}"
 msgstr "Filtër i Vendit"
 
-#: ../gramps/plugins/webreport/thumbnail.py:125
+#: ../gramps/plugins/webreport/thumbnail.py:128
 #, fuzzy
 msgid ""
 "This page displays a indexed list of all the media objects in this database. "
