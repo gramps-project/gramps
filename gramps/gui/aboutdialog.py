@@ -122,7 +122,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         self.set_transient_for(parent)
         self.set_modal(True)
 
-        self.set_name(PROGRAM_NAME)
+        self.set_program_name(PROGRAM_NAME)
         self.set_version(VERSION)
         self.set_copyright(COPYRIGHT_MSG)
         artists = _(
@@ -167,13 +167,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
 
         return (
             "\n\n"
-            + "GRAMPS"
-            + COLON
-            + " %s \n"
             + "Python"
-            + COLON
-            + " %s \n"
-            + "BSDDB"
             + COLON
             + " %s \n"
             + sqlite
@@ -186,9 +180,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
             + _("OS: %s")
             + distro
         ) % (
-            ellipses(str(VERSION)),
             ellipses(platform.python_version()),
-            BSDDB_STR,
             orjson_str,
             ellipses(get_env_var("LANG", "")),
             ellipses(platform.system()),
