@@ -43,6 +43,7 @@ from .. import Rule
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -58,7 +59,7 @@ class IsAncestorOf(Rule):
     category = _("Ancestral filters")
     description = _("Matches people that are ancestors of a specified person")
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         """Assume that if 'Inclusive' not defined, assume inclusive"""
         self.db = db
         self.selected_handles: Set[str] = set()
@@ -68,7 +69,7 @@ class IsAncestorOf(Rule):
             first = True
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
-            self.init_ancestor_list(db, root_person, first)
+            self.init_ancestor_list(db, root_person, first, user)
         except:
             pass
 
@@ -78,7 +79,11 @@ class IsAncestorOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_ancestor_list(self, db: Database, person: Person, first: bool) -> None:
+    def init_ancestor_list(
+        self, db: Database, person: Person, first: bool, user: User
+    ) -> None:
+        if user.get_cancelled():
+            return
         if not person:
             return
         if person.handle in self.selected_handles:
@@ -95,6 +100,10 @@ class IsAncestorOf(Rule):
                 m_id = fam.mother_handle
 
                 if f_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(f_id), False)
+                    self.init_ancestor_list(
+                        db, db.get_person_from_handle(f_id), False, user
+                    )
                 if m_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(m_id), False)
+                    self.init_ancestor_list(
+                        db, db.get_person_from_handle(m_id), False, user
+                    )

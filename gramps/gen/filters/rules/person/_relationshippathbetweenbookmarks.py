@@ -47,6 +47,7 @@ from typing import List, Set, Dict
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle, FamilyHandle
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -69,13 +70,13 @@ class RelationshipPathBetweenBookmarks(Rule):
         "path(s) between bookmarked persons."
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
         bookmarks = db.get_bookmarks().get()
         self.bookmarks: Set[PersonHandle] = set(bookmarks)
         try:
-            self.init_list()
+            self.init_list(user)
         except:
             pass
 
@@ -161,7 +162,7 @@ class RelationshipPathBetweenBookmarks(Rule):
         # print "  In rel_path_for_two, returning rel_path = ", rel_path
         return rel_path
 
-    def init_list(self) -> None:
+    def init_list(self, user: User) -> None:
         self.selected_handles.update(self.bookmarks)
         if len(self.bookmarks) < 2:
             return
@@ -172,6 +173,8 @@ class RelationshipPathBetweenBookmarks(Rule):
         lb = len(bmarks)
         for i in range(lb - 1):
             for j in range(i + 1, lb):
+                if user.get_cancelled():
+                    return
                 try:
                     pathmap = self.rel_path_for_two(bmarks[i], bmarks[j])
                     self.selected_handles.update(pathmap)

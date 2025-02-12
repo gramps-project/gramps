@@ -45,6 +45,7 @@ from typing import Union, List, Set, Dict
 from ....lib import Person
 from ....db import Database
 from ....types import FamilyHandle, PersonHandle
+from ....user import User
 
 _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
@@ -112,6 +113,8 @@ def find_deep_relations(
     done[person.handle] = None
 
     while todo:
+        if user.get_cancelled():
+            break
         handle = todo.popleft()
 
         if user:
@@ -158,7 +161,7 @@ class DeepRelationshipPathBetween(Rule):
         " the shortest path."
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         root_person_id = self.list[0]
         root_person = db.get_person_from_gramps_id(root_person_id)
 
@@ -171,9 +174,12 @@ class DeepRelationshipPathBetween(Rule):
                 _("Finding relationship paths"),
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
+                can_cancel=True,
             )
         target_people = []
         for person in db.iter_people():
+            if user.get_cancelled():
+                break
             if self.filt.apply_to_one(db, person):
                 target_people.append(person.handle)
             if user:
@@ -184,6 +190,7 @@ class DeepRelationshipPathBetween(Rule):
                 _("Finding relationship paths"),
                 _("Evaluating people"),
                 db.get_number_of_people(),
+                can_cancel=True,
             )
         self.selected_handles: Set[str] = find_deep_relations(
             db, user, root_person, target_people

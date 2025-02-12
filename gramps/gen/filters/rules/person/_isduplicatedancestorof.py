@@ -44,6 +44,7 @@ from .. import Rule
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -62,13 +63,13 @@ class IsDuplicatedAncestorOf(Rule):
         "Matches people that are ancestors twice or more " "of a specified person"
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.cache: Set[str] = set()
         self.selected_handles: Set[str] = set()
         root_person = db.get_person_from_gramps_id(self.list[0])
         if root_person:
-            self.init_ancestor_list(db, root_person)
+            self.init_ancestor_list(db, root_person, user)
 
     def reset(self):
         self.cache.clear()
@@ -77,7 +78,7 @@ class IsDuplicatedAncestorOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_ancestor_list(self, db: Database, person: Person):
+    def init_ancestor_list(self, db: Database, person: Person, user: User):
         fam_id = (
             person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
         )
@@ -87,15 +88,17 @@ class IsDuplicatedAncestorOf(Rule):
                 f_id = fam.father_handle
                 m_id = fam.mother_handle
                 if m_id:
-                    self.go_deeper(db, db.get_person_from_handle(m_id))
+                    self.go_deeper(db, db.get_person_from_handle(m_id), user)
                 if f_id:
-                    self.go_deeper(db, db.get_person_from_handle(f_id))
+                    self.go_deeper(db, db.get_person_from_handle(f_id), user)
 
-    def go_deeper(self, db: Database, person: Person):
+    def go_deeper(self, db: Database, person: Person, user: User):
+        if user.get_cancelled():
+            return
         if person and person.handle in self.cache:
             self.selected_handles.add((person.handle))
             # the following keeps from scanning same parts of tree multiple
             # times and avoids crash on tree loops.
             return
         self.cache.add(person.handle)
-        self.init_ancestor_list(db, person)
+        self.init_ancestor_list(db, person, user)

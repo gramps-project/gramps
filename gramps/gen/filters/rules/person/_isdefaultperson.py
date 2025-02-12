@@ -43,6 +43,7 @@ from .. import Rule
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -57,7 +58,7 @@ class IsDefaultPerson(Rule):
     category = _("General filters")
     description = _("Matches the Home Person")
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.selected_handles: Set[str] = set()
         p: Person = db.get_default_person()
         if p:

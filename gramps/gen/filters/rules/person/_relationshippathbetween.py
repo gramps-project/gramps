@@ -44,6 +44,7 @@ from typing import List, Set, Dict
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -64,13 +65,13 @@ class RelationshipPathBetween(Rule):
         "path between two persons."
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
         try:
             root1_handle = db.get_person_from_gramps_id(self.list[0]).handle
             root2_handle = db.get_person_from_gramps_id(self.list[1]).handle
-            self.init_list(root1_handle, root2_handle)
+            self.init_list(root1_handle, root2_handle, user)
         except:
             pass
 
@@ -117,7 +118,7 @@ class RelationshipPathBetween(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_list(self, p1_handle: PersonHandle, p2_handle: PersonHandle):
+    def init_list(self, p1_handle: PersonHandle, p2_handle: PersonHandle, user: User):
         firstMap: Dict[PersonHandle, int] = {}
         firstList: Set[PersonHandle] = set()
         secondMap: Dict[PersonHandle, int] = {}
@@ -140,6 +141,8 @@ class RelationshipPathBetween(Rule):
         path2 = set([p2_handle])
 
         for person_handle in common:
+            if user.get_cancelled():
+                return
             new_map: Set[PersonHandle] = set()
             self.desc_list(person_handle, new_map, True)
             path1.update(new_map.intersection(firstMap))

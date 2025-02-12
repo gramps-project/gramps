@@ -48,6 +48,7 @@ from typing import List, Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -67,11 +68,11 @@ class IsDescendantFamilyOf(Rule):
         "of a descendant of a specified person"
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
         self.root_person = db.get_person_from_gramps_id(self.list[0])
-        self.add_matches(self.root_person)
+        self.add_matches(self.root_person, user)
         try:
             if int(self.list[1]):
                 inclusive = True
@@ -88,7 +89,7 @@ class IsDescendantFamilyOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def add_matches(self, person: Person):
+    def add_matches(self, person: Person, user: User):
         if not person:
             return
 
@@ -96,6 +97,8 @@ class IsDescendantFamilyOf(Rule):
         queue: List[Person] = [person]
 
         while queue:
+            if user.get_cancelled():
+                break
             person = queue.pop(0)
             if person is None or person.handle in self.selected_handles:
                 # if we have been here before, skip

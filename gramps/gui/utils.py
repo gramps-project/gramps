@@ -324,6 +324,11 @@ class ProgressMeter:
         Returns cancelled setting. True if progress meter has been
         cancelled.
         """
+        from gi.repository import Gtk
+
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+
         return self.__cancelled
 
     def set_pass(self, header="", total=100, mode=MODE_FRACTION):

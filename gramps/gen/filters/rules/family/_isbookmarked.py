@@ -43,6 +43,7 @@ from .. import Rule
 from typing import Set
 from ....lib import Family
 from ....db import Database
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -57,7 +58,7 @@ class IsBookmarked(Rule):
     category = _("General filters")
     description = _("Matches the families on the bookmark list")
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.selected_handles: Set[str] = set(list(db.get_family_bookmarks().get()))
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
