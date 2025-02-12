@@ -1,6 +1,28 @@
 #!/usr/bin/env bash
 #
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2025       Steve Youngs <steve@youngs.cc>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
 # Assumption: script is executed from the 'aio' directory
+#
+# arguments: build.sh <cleanup> <build-number>
+#   clean-up     : [true|false]. clean the python venv on completion
+#   build-number : the build number to use when DEV_VERSION is not True
 #
 # install prerequisites
 ## prerequisites in msys packages
@@ -142,7 +164,14 @@ cp /mingw64/share/icons/hicolor/scalable/places/*.svg /mingw64/share/icons/gnome
 # build gramps
 rm -rf dist aio/dist
 python setup.py bdist_wheel
-appbuild="r$(git rev-list --count HEAD)-$(git rev-parse --short HEAD)"
+if `grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py`; then
+    # <branch_name>-<short_commit_id>
+    appbuild="$(git rev-parse --abbrev-ref HEAD)-$(git rev-parse --short HEAD)"
+else
+    # <VERSION_QUALIFIER>-<build-number>
+    # VERSION_QUALIFIER is taken from gramps/version.py
+    appbuild="$(sed -nr "s/^VERSION_QUALIFIER = \"-(.+)\"/\1/p" gramps/version.py)-$2"
+fi
 appversion=$(grep "^VERSION_TUPLE" gramps/version.py | sed 's/.*(//;s/, */\./g;s/).*//')
 unzip -q -d aio/dist dist/*.whl
 cd aio

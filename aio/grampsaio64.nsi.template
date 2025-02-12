@@ -24,7 +24,7 @@
 !define APPNAMEANDVERSION "${APPNAME} ${APPVERSION}"
 !define APP_PUBLISHER "The Gramps project"
 !define APP_WEB_SITE "https://gramps-project.org"
-BrandingText "Version ${APPVERSION}-${APPBUILD} -- a new maintenance release"
+BrandingText "Version ${APPVERSION}-${APPBUILD}"
 
 ; Main Install settings
 Name "${APPNAME}-${APPVERSION}-${APPBUILD}"
