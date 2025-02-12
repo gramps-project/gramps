@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-06 17:15+0000\n"
+"POT-Creation-Date: 2025-02-12 22:44+0000\n"
 "PO-Revision-Date: 2025-02-09 19:28+0000\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
@@ -289,7 +289,7 @@ msgstr "Gramps Fejlesztői Csapat"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:233
 #: ../gramps/plugins/view/pedigreeview.py:565
 #: ../gramps/plugins/view/view.gpr.py:135
-#: ../gramps/plugins/webreport/person.py:1747
+#: ../gramps/plugins/webreport/person.py:1745
 msgid "Pedigree"
 msgstr "Családfa"
 
@@ -355,7 +355,7 @@ msgstr "Kapcsolatok"
 #: ../gramps/plugins/tool/reorderids.glade:762
 #: ../gramps/plugins/webreport/event.py:330
 #: ../gramps/plugins/webreport/family.py:314
-#: ../gramps/plugins/webreport/person.py:1640
+#: ../gramps/plugins/webreport/person.py:1638
 msgid "Person"
 msgstr "Személy"
 
@@ -752,10 +752,10 @@ msgid ""
 msgstr ""
 "<b>A Gramps továbbfejlesztése</b><br/>A felhasználókat arra bátorítjuk, hogy "
 "kérjenek fejlesztéseket a Gramps-hoz. Fejlesztés kérése lehetséges a Gramps-"
-"felhasználók, vagy a Gramps-fejlesztők levelezési listáján, esetleg a https"
-"://gramps-project.org/bugs/ címen egy Szolgáltatás Igénylése létrehozásával. "
-"A Szolgáltatás igénylés kitöltése a leginkább javasolt, de előtte célszerű "
-"az ötlet megtárgyalása a levelező listán."
+"felhasználók, vagy a Gramps-fejlesztők levelezési listáján, esetleg a "
+"https://gramps-project.org/bugs/ címen egy Szolgáltatás Igénylése "
+"létrehozásával. A Szolgáltatás igénylés kitöltése a leginkább javasolt, de "
+"előtte célszerű az ötlet megtárgyalása a levelező listán."
 
 #: ../data/tips.xml:62
 msgid ""
@@ -801,12 +801,12 @@ msgid ""
 msgstr ""
 "<b>Szóval: mi ez a név?</b><br/>A Gramps nevet az eredeti program "
 "fejlesztőjének, Don Allingham-nek az édesapja javasolta. A Gramps a "
-"Származástani Kutatás és Elemzés Kezelő Programrendszer angol rövidítése ("
-"<i>Genealogical Research and Analysis Management Program System</i>). Ez egy "
-"számos funkcióval ellátott származástani program, amely lehetőséget nyújt "
-"önnek, hogy tárolja, szerkessze és kutassa származástani adatait. A Gramps "
-"adatbázis háttere olyan robusztus, hogy néhány felhasználó több százezer "
-"személyt tartalmazó családfát képes vele kezelni."
+"Származástani Kutatás és Elemzés Kezelő Programrendszer angol rövidítése "
+"(<i>Genealogical Research and Analysis Management Program System</i>). Ez "
+"egy számos funkcióval ellátott származástani program, amely lehetőséget "
+"nyújt önnek, hogy tárolja, szerkessze és kutassa származástani adatait. A "
+"Gramps adatbázis háttere olyan robusztus, hogy néhány felhasználó több "
+"százezer személyt tartalmazó családfát képes vele kezelni."
 
 #: ../data/tips.xml:68
 msgid ""
@@ -1214,7 +1214,8 @@ msgstr "Hiba: A(z) %s import fájl nem található."
 #: ../gramps/cli/arghandler.py:284
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
-msgstr "Hiba: Ismeretlen típus: \"%(format)s\" a(z) %(filename)s import fájlhoz"
+msgstr ""
+"Hiba: Ismeretlen típus: \"%(format)s\" a(z) %(filename)s import fájlhoz"
 
 #: ../gramps/cli/arghandler.py:307
 #, python-format
@@ -1841,7 +1842,7 @@ msgstr "%s által zárolt"
 #: ../gramps/plugins/textreport/detdescendantreport.py:878
 #: ../gramps/plugins/textreport/indivcomplete.py:99
 #: ../gramps/plugins/textreport/indivcomplete.py:971
-#: ../gramps/plugins/tool/check.py:2716 ../gramps/plugins/tool/check.py:2744
+#: ../gramps/plugins/tool/check.py:2717 ../gramps/plugins/tool/check.py:2745
 #: ../gramps/plugins/tool/dumpgenderstats.py:74
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:102
@@ -2076,7 +2077,8 @@ msgstr ""
 #: ../gramps/cli/plug/__init__.py:580
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr "Használja a(z) '%(notranslate)s'-t az érvényes értékek megtekintéséhez."
+msgstr ""
+"Használja a(z) '%(notranslate)s'-t az érvényes értékek megtekintéséhez."
 
 #: ../gramps/cli/plug/__init__.py:600
 #: ../gramps/gen/plug/report/stdoptions.py:334
@@ -2182,11 +2184,11 @@ msgstr "nincs"
 #: ../gramps/plugins/webreport/basepage.py:235
 #: ../gramps/plugins/webreport/basepage.py:3382
 #: ../gramps/plugins/webreport/basepage.py:3403
-#: ../gramps/plugins/webreport/family.py:521
-#: ../gramps/plugins/webreport/heatmap.py:1028
-#: ../gramps/plugins/webreport/heatmap.py:1030
+#: ../gramps/plugins/webreport/family.py:519
+#: ../gramps/plugins/webreport/heatmap.py:1029
+#: ../gramps/plugins/webreport/heatmap.py:1031
+#: ../gramps/plugins/webreport/person.py:861
 #: ../gramps/plugins/webreport/person.py:863
-#: ../gramps/plugins/webreport/person.py:865
 msgid ":"
 msgstr ":"
 
@@ -3213,8 +3215,9 @@ msgstr ""
 "Családfát a Családfa séma frissítése nélkül nem tudja betölteni.\n"
 "\n"
 "Ha frissített, akkor nem lesz képes használni a Gramps előző változatát, még "
-"akkor sem, ha a %(wiki_manual_backup_html_start)s szerint mentette%(html_end)"
-"s, vagy %(wiki_manual_export_html_start)sexportálta%(html_end)s a frissített "
+"akkor sem, ha a %(wiki_manual_backup_html_start)s szerint "
+"mentette%(html_end)s, vagy "
+"%(wiki_manual_export_html_start)sexportálta%(html_end)s a frissített "
 "Családfát.\n"
 "\n"
 "A frissítés egy nehéz feladat, ami hiba, vagy megszakadás esetén "
@@ -3262,8 +3265,9 @@ msgstr ""
 "Ezt a Családfát ezért frissítés nélkül nem tudja betölteni.\n"
 "\n"
 "Ha frissít, akkor nem lesz képes használni a Gramps előző változatát, még "
-"akkor sem, ha a %(wiki_manual_backup_html_start)s szerint mentette%(html_end)"
-"s, vagy %(wiki_manual_export_html_start)sexportálta%(html_end)s a frissített "
+"akkor sem, ha a %(wiki_manual_backup_html_start)s szerint "
+"mentette%(html_end)s, vagy "
+"%(wiki_manual_export_html_start)sexportálta%(html_end)s a frissített "
 "Családfát.\n"
 "\n"
 "Ezért erősen ajánljuk a Családfáját menteni.\n"
@@ -3660,9 +3664,9 @@ msgstr "Előkészítés..."
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:66
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:66
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:59
-#: ../gramps/gen/filters/rules/family/_isancestorof.py:59
+#: ../gramps/gen/filters/rules/family/_isancestorof.py:65
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:57
-#: ../gramps/gen/filters/rules/family/_isdescendantof.py:59
+#: ../gramps/gen/filters/rules/family/_isdescendantof.py:65
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:64
 #: ../gramps/gen/filters/rules/note/_hasnote.py:62
 #: ../gramps/gen/filters/rules/note/_hastype.py:59
@@ -3828,19 +3832,19 @@ msgid "Number of instances:"
 msgstr "Példányok száma:"
 
 #: ../gramps/gen/filters/rules/_hasgrampsid.py:56
-#: ../gramps/gen/filters/rules/family/_isancestorof.py:57
-#: ../gramps/gen/filters/rules/family/_isdescendantof.py:57
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:148
+#: ../gramps/gen/filters/rules/family/_isancestorof.py:63
+#: ../gramps/gen/filters/rules/family/_isdescendantof.py:63
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:57
-#: ../gramps/gen/filters/rules/person/_isancestorof.py:56
-#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:62
-#: ../gramps/gen/filters/rules/person/_isdescendantof.py:57
+#: ../gramps/gen/filters/rules/person/_isancestorof.py:57
+#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:63
+#: ../gramps/gen/filters/rules/person/_isdescendantof.py:58
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:58
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:58
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:57
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:58
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:58
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:57
-#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:56
+#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:57
 #: ../gramps/gen/filters/rules/person/_matchidof.py:55
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:58
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:58
@@ -3911,7 +3915,7 @@ msgid "Source ID:"
 msgstr "Forrás azonosító:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:67
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:148
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:49
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:58
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:58
@@ -3999,8 +4003,8 @@ msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Idézetek találatai, melyek egy meghatározott dátum-idő (éééé-hh-nn óó:pp:ss)"
-", vagy időintervallum - ha a második dátum-idő adott - után változtak."
+"Idézetek találatai, melyek egy meghatározott dátum-idő (éééé-hh-nn óó:pp:"
+"ss), vagy időintervallum - ha a második dátum-idő adott - után változtak."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:45
 msgid "Citations marked private"
@@ -4516,7 +4520,8 @@ msgstr "<person filter> szűrővel egyező személyek eseményei"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:64
 msgid "Matches events of persons matched by the specified person filter name"
-msgstr "Meghatározott személyszűrő névvel egyező személynek megfelelő események"
+msgstr ""
+"Meghatározott személyszűrő névvel egyező személynek megfelelő események"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:60
 #: ../gramps/gui/editors/filtereditor.py:576
@@ -4806,21 +4811,21 @@ msgstr "Családok ikrekkel"
 msgid "Matches families with twins"
 msgstr "Ikrekkel rendelkező családok"
 
-#: ../gramps/gen/filters/rules/family/_isancestorof.py:57
-#: ../gramps/gen/filters/rules/family/_isdescendantof.py:57
-#: ../gramps/gen/filters/rules/person/_isancestorof.py:56
-#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:62
-#: ../gramps/gen/filters/rules/person/_isdescendantof.py:57
+#: ../gramps/gen/filters/rules/family/_isancestorof.py:63
+#: ../gramps/gen/filters/rules/family/_isdescendantof.py:63
+#: ../gramps/gen/filters/rules/person/_isancestorof.py:57
+#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:63
+#: ../gramps/gen/filters/rules/person/_isdescendantof.py:58
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:58
 #: ../gramps/gui/editors/filtereditor.py:607
 msgid "Inclusive:"
 msgstr "Bezárólag:"
 
-#: ../gramps/gen/filters/rules/family/_isancestorof.py:58
+#: ../gramps/gen/filters/rules/family/_isancestorof.py:64
 msgid "Ancestor families of <family>"
 msgstr "A <family> családok őse"
 
-#: ../gramps/gen/filters/rules/family/_isancestorof.py:60
+#: ../gramps/gen/filters/rules/family/_isancestorof.py:66
 msgid "Matches ancestor families of the specified family"
 msgstr "A meghatározott családnak megfelelő ős-családok"
 
@@ -4832,11 +4837,11 @@ msgstr "Könyvjelzőzött családok"
 msgid "Matches the families on the bookmark list"
 msgstr "Könyvjelző listán levő családok"
 
-#: ../gramps/gen/filters/rules/family/_isdescendantof.py:58
+#: ../gramps/gen/filters/rules/family/_isdescendantof.py:64
 msgid "Descendant families of <family>"
 msgstr "A <family> család leszármazott családjai"
 
-#: ../gramps/gen/filters/rules/family/_isdescendantof.py:60
+#: ../gramps/gen/filters/rules/family/_isdescendantof.py:66
 msgid "Matches descendant families of the specified family"
 msgstr "A meghatározott családnak megfelelő leszármazott családok"
 
@@ -5219,22 +5224,21 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Személy adatok találatai, melyek egy meghatározott dátum-idő (éééé-hh-nn "
-"óó:pp:ss), vagy időintervallum - ha a második dátum-idő adott - után "
-"változtak."
+"Személy adatok találatai, melyek egy meghatározott dátum-idő (éééé-hh-nn óó:"
+"pp:ss), vagy időintervallum - ha a második dátum-idő adott - után változtak."
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:150
 msgid "Relationship path between <person> and people matching <filter>"
 msgstr "Kapcsolati útvonal <person> és a <filter> személy-találatok között"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:150
-#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:58
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:151
+#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:59
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:60
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:65
 msgid "Relationship filters"
 msgstr "Kapcsolatszűrők"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:152
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:153
 msgid ""
 "Searches over the database starting from a specified person and returns "
 "everyone between that person and a set of target people specified with a "
@@ -5248,12 +5252,12 @@ msgstr ""
 "a meghatározott és a célszemélyek között. Az összes útvonal nem "
 "szükségképpen a legrövidebb."
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:171
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:184
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:172
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:185
 msgid "Finding relationship paths"
 msgstr "Kapcsolati útvonalak keresése"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:172
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:173
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:73
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:81
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:71
@@ -5264,7 +5268,7 @@ msgstr "Kapcsolati útvonalak keresése"
 msgid "Retrieving all sub-filter matches"
 msgstr "Az összes al-szűrő találat helyreállítása"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:185
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:186
 msgid "Evaluating people"
 msgstr "Emberek értékelése"
 
@@ -5365,7 +5369,7 @@ msgstr "Emberek közös őse vele: <person>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:59
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:54
-#: ../gramps/gen/filters/rules/person/_isancestorof.py:58
+#: ../gramps/gen/filters/rules/person/_isancestorof.py:59
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:60
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:60
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:60
@@ -5377,7 +5381,8 @@ msgstr "Ős-szűrő"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:61
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr "Olyan emberek találatai, akiknek közös az őse egy meghatározott személy"
+msgstr ""
+"Olyan emberek találatai, akiknek közös az őse egy meghatározott személy"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:50
 msgid "People with a common ancestor with <filter> match"
@@ -5716,11 +5721,11 @@ msgstr "Hiányos nevű emberek"
 msgid "Matches people with firstname or lastname missing"
 msgstr "Emberek hiányzó vezeték-, vagy utónévvel"
 
-#: ../gramps/gen/filters/rules/person/_isancestorof.py:57
+#: ../gramps/gen/filters/rules/person/_isancestorof.py:58
 msgid "Ancestors of <person>"
 msgstr "<person> ősei"
 
-#: ../gramps/gen/filters/rules/person/_isancestorof.py:59
+#: ../gramps/gen/filters/rules/person/_isancestorof.py:60
 msgid "Matches people that are ancestors of a specified person"
 msgstr "Emberek, akik egy meghatározott személy ősei"
 
@@ -5757,20 +5762,20 @@ msgstr "Kiinduló személy"
 msgid "Matches the Home Person"
 msgstr "A kiinduló személlyel egyező személy"
 
-#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:63
+#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:64
 msgid "Descendant family members of <person>"
 msgstr "<person> leszármazott családtagjai"
 
-#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:64
+#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:65
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:54
-#: ../gramps/gen/filters/rules/person/_isdescendantof.py:59
+#: ../gramps/gen/filters/rules/person/_isdescendantof.py:60
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:60
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:59
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:60
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:59
 msgid "Descendant filters"
 msgstr "Leszármazott-szűrő"
 
-#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:66
+#: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:67
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
@@ -5790,11 +5795,11 @@ msgstr ""
 "Emberek találatai, akik leszármazottai, vagy házastársai bárkinek, aki "
 "megfelel a szűrő feltételeinek"
 
-#: ../gramps/gen/filters/rules/person/_isdescendantof.py:58
+#: ../gramps/gen/filters/rules/person/_isdescendantof.py:59
 msgid "Descendants of <person>"
 msgstr "<person> leszármazottai"
 
-#: ../gramps/gen/filters/rules/person/_isdescendantof.py:60
+#: ../gramps/gen/filters/rules/person/_isdescendantof.py:61
 msgid "Matches all descendants for the specified person"
 msgstr "Emberek, akik egy meghatározott személy összes leszármazottjai"
 
@@ -5834,7 +5839,7 @@ msgstr "Minden nő találat"
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:58
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:64
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:59
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:57
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:58
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:58
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:57
 #: ../gramps/gui/editors/filtereditor.py:555
@@ -5871,12 +5876,12 @@ msgstr ""
 msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr "A kiinduló személy ősei, akik N-nél nem távolibb generációjúak"
 
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:58
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:59
 msgid "Descendants of <person> not more than <N> generations away"
 msgstr ""
 "<person> leszármazottai, akik nem több, mint <N> generációval távoliabbak"
 
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:61
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:62
 msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
@@ -5927,11 +5932,11 @@ msgstr "<filter> szűrőnek megfelelő szülők"
 msgid "Matches parents of anybody matched by a filter"
 msgstr "Bárki szülő találatai, akik megfelelnek a szűrő feltételeinek"
 
-#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:57
+#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:58
 msgid "People related to <Person>"
 msgstr "<Person>-hoz köthető emberek"
 
-#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:59
+#: ../gramps/gen/filters/rules/person/_isrelatedwith.py:60
 msgid "Matches people related to a specified person"
 msgstr "Emberek, akik egy meghatározott személyhez köthetőek"
 
@@ -6373,7 +6378,8 @@ msgstr "<event filter> szűrőnek megfelelő események helyei"
 msgid ""
 "Matches places where events happened that match the specified event filter "
 "name"
-msgstr "Meghatározott eseményszűrő nevével egyező eseményeknek megfelelő helyek"
+msgstr ""
+"Meghatározott eseményszűrő nevével egyező eseményeknek megfelelő helyek"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:46
 msgid "Places matching the <filter>"
@@ -6420,7 +6426,8 @@ msgstr "Helyek egy körzetben"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:72
 msgid "Matches places within a given distance of another place"
-msgstr "Egy helyhez viszonyított meghatározott távolságon belül levő helyszínek"
+msgstr ""
+"Egy helyhez viszonyított meghatározott távolságon belül levő helyszínek"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:94
 msgid "Cannot use the filter 'within area'"
@@ -6761,7 +6768,7 @@ msgstr "Lakcím"
 #: ../gramps/gen/lib/place.py:210 ../gramps/gen/lib/repo.py:127
 #: ../gramps/gen/lib/reporef.py:114 ../gramps/gen/lib/src.py:144
 #: ../gramps/gen/lib/srcattribute.py:75 ../gramps/gen/lib/url.py:93
-#: ../gramps/gen/proxy/private.py:869
+#: ../gramps/gen/proxy/private.py:872
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:82
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:66
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:89
@@ -6858,7 +6865,7 @@ msgstr "Idézetek"
 #: ../gramps/plugins/view/view.gpr.py:111
 #: ../gramps/plugins/webreport/basepage.py:1659
 #: ../gramps/plugins/webreport/basepage.py:2828
-#: ../gramps/plugins/webreport/person.py:1642
+#: ../gramps/plugins/webreport/person.py:1640
 #: ../gramps/plugins/webreport/updates.py:158
 msgid "Notes"
 msgstr "Jegyzetek"
@@ -7113,7 +7120,7 @@ msgstr "Kezelő"
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:167
 #: ../gramps/gui/glade/editplaceformat.glade:186
 #: ../gramps/plugins/graph/gvfamilylines.py:96
-#: ../gramps/plugins/tool/check.py:2772
+#: ../gramps/plugins/tool/check.py:2773
 msgid "None"
 msgstr "Nincs"
 
@@ -7184,11 +7191,11 @@ msgstr "Idézet"
 #: ../gramps/plugins/tool/findloop.py:118
 #: ../gramps/plugins/webreport/basepage.py:3372
 #: ../gramps/plugins/webreport/event.py:329
-#: ../gramps/plugins/webreport/event.py:556
-#: ../gramps/plugins/webreport/media.py:614
-#: ../gramps/plugins/webreport/person.py:1886
+#: ../gramps/plugins/webreport/event.py:554
+#: ../gramps/plugins/webreport/media.py:626
+#: ../gramps/plugins/webreport/person.py:1884
 #: ../gramps/plugins/webreport/repository.py:264
-#: ../gramps/plugins/webreport/source.py:400
+#: ../gramps/plugins/webreport/source.py:398
 msgid "Gramps ID"
 msgstr "Gramps azonosító"
 
@@ -7264,7 +7271,7 @@ msgstr "Forrás"
 #: ../gramps/plugins/webreport/basepage.py:2314
 #: ../gramps/plugins/webreport/basepage.py:2630
 #: ../gramps/plugins/webreport/media.py:212
-#: ../gramps/plugins/webreport/media.py:414
+#: ../gramps/plugins/webreport/media.py:418
 #: ../gramps/plugins/webreport/updates.py:152
 msgid "Media"
 msgstr "Média"
@@ -7307,13 +7314,13 @@ msgstr "Utoljára változott"
 #: ../gramps/plugins/view/noteview.py:86 ../gramps/plugins/view/repoview.py:99
 #: ../gramps/plugins/view/sourceview.py:90
 #: ../gramps/plugins/webreport/basepage.py:3521
-#: ../gramps/plugins/webreport/event.py:583
-#: ../gramps/plugins/webreport/family.py:521
-#: ../gramps/plugins/webreport/media.py:660
+#: ../gramps/plugins/webreport/event.py:581
+#: ../gramps/plugins/webreport/family.py:519
+#: ../gramps/plugins/webreport/media.py:672
 #: ../gramps/plugins/webreport/narrativeweb.py:3242
-#: ../gramps/plugins/webreport/person.py:1981
+#: ../gramps/plugins/webreport/person.py:1979
 #: ../gramps/plugins/webreport/repository.py:287
-#: ../gramps/plugins/webreport/source.py:416
+#: ../gramps/plugins/webreport/source.py:414
 msgid "Tags"
 msgstr "Címkék"
 
@@ -7327,7 +7334,7 @@ msgstr "Címkék"
 #: ../gramps/plugins/textreport/indivcomplete.py:694
 #: ../gramps/plugins/tool/dumpgenderstats.py:47
 #: ../gramps/plugins/view/relview.py:815
-#: ../gramps/plugins/webreport/person.py:590
+#: ../gramps/plugins/webreport/person.py:588
 msgid "unknown"
 msgstr "ismeretlen"
 
@@ -7469,8 +7476,8 @@ msgstr "0 nap"
 #: ../gramps/plugins/webreport/basepage.py:3051
 #: ../gramps/plugins/webreport/event.py:328
 #: ../gramps/plugins/webreport/media.py:249
-#: ../gramps/plugins/webreport/media.py:641
-#: ../gramps/plugins/webreport/person.py:1116
+#: ../gramps/plugins/webreport/media.py:653
+#: ../gramps/plugins/webreport/person.py:1114
 msgid "Date"
 msgstr "Dátum"
 
@@ -7708,7 +7715,7 @@ msgstr "keresztszülő"
 #: ../gramps/plugins/textreport/tagreport.py:261
 #: ../gramps/plugins/view/familyview.py:83
 #: ../gramps/plugins/view/relview.py:1107
-#: ../gramps/plugins/webreport/person.py:2120
+#: ../gramps/plugins/webreport/person.py:2118
 msgid "Father"
 msgstr "Apa"
 
@@ -7730,7 +7737,7 @@ msgstr "Apa"
 #: ../gramps/plugins/textreport/tagreport.py:267
 #: ../gramps/plugins/view/familyview.py:84
 #: ../gramps/plugins/view/relview.py:1108
-#: ../gramps/plugins/webreport/person.py:2133
+#: ../gramps/plugins/webreport/person.py:2131
 msgid "Mother"
 msgstr "Anya"
 
@@ -8316,9 +8323,9 @@ msgstr "Gyermekek"
 #: ../gramps/plugins/webreport/basepage.py:2137
 #: ../gramps/plugins/webreport/basepage.py:2260
 #: ../gramps/plugins/webreport/event.py:267
-#: ../gramps/plugins/webreport/event.py:517
+#: ../gramps/plugins/webreport/event.py:515
 #: ../gramps/plugins/webreport/narrativeweb.py:3236
-#: ../gramps/plugins/webreport/person.py:2007
+#: ../gramps/plugins/webreport/person.py:2005
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
 msgstr "Események"
@@ -8589,7 +8596,7 @@ msgstr "Régió"
 #: ../gramps/plugins/tool/verify.py:823 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:546
 #: ../gramps/plugins/webreport/person.py:423
-#: ../gramps/plugins/webreport/person.py:2350
+#: ../gramps/plugins/webreport/person.py:2348
 #: ../gramps/plugins/webreport/surname.py:148
 msgid "Name"
 msgstr "Név"
@@ -8936,7 +8943,7 @@ msgstr "Gyermek hivatkozás jegyzet"
 #: ../gramps/plugins/lib/libpersonview.py:102
 #: ../gramps/plugins/quickview/siblings.py:50
 #: ../gramps/plugins/textreport/indivcomplete.py:957
-#: ../gramps/plugins/webreport/person.py:1897
+#: ../gramps/plugins/webreport/person.py:1895
 msgid "Gender"
 msgstr "Nem"
 
@@ -9038,7 +9045,7 @@ msgstr "Szélességi f"
 #: ../gramps/plugins/webreport/basepage.py:2131
 #: ../gramps/plugins/webreport/basepage.py:2261
 #: ../gramps/plugins/webreport/place.py:282
-#: ../gramps/plugins/webreport/place.py:481
+#: ../gramps/plugins/webreport/place.py:479
 #: ../gramps/plugins/webreport/updates.py:127
 msgid "Places"
 msgstr "Helyek"
@@ -9200,7 +9207,7 @@ msgstr "Széf"
 #: ../gramps/plugins/textreport/tagreport.py:760
 #: ../gramps/plugins/view/sourceview.py:86
 #: ../gramps/plugins/webreport/source.py:207
-#: ../gramps/plugins/webreport/source.py:401
+#: ../gramps/plugins/webreport/source.py:399
 msgid "Author"
 msgstr "Szerző"
 
@@ -9214,7 +9221,7 @@ msgstr "Kiadás információ"
 #: ../gramps/gui/selectors/selectcitation.py:73
 #: ../gramps/gui/selectors/selectsource.py:68
 #: ../gramps/plugins/view/sourceview.py:87
-#: ../gramps/plugins/webreport/source.py:402
+#: ../gramps/plugins/webreport/source.py:400
 msgid "Abbreviation"
 msgstr "Rövidítés"
 
@@ -10760,8 +10767,8 @@ msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"A Családfa visszamenőleg több generációt ért el, mint a keresett %d maximuma."
-"\n"
+"A Családfa visszamenőleg több generációt ért el, mint a keresett %d "
+"maximuma.\n"
 "Lehetséges, hogy valahol rokonság jelölés maradt el"
 
 #: ../gramps/gen/relationship.py:1574
@@ -10976,9 +10983,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
-"szülőktől és testvérektől következtetett - születés: "
-"{birth_min_src}(legkorábbi) {birth_max_src}-ig (legkésőbbi), halál: "
-"{death_src}"
+"szülőktől és testvérektől következtetett - születés: {birth_min_src}"
+"(legkorábbi) {birth_max_src}-ig (legkésőbbi), halál: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11349,7 +11355,7 @@ msgstr "Futtatható fájlok"
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:94
 #: ../gramps/plugins/tool/dumpgenderstats.py:47
-#: ../gramps/plugins/webreport/person.py:587
+#: ../gramps/plugins/webreport/person.py:585
 msgid "male"
 msgstr "férfi"
 
@@ -11358,7 +11364,7 @@ msgstr "férfi"
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:94
 #: ../gramps/plugins/tool/dumpgenderstats.py:47
-#: ../gramps/plugins/webreport/person.py:588
+#: ../gramps/plugins/webreport/person.py:586
 msgid "female"
 msgstr "nő"
 
@@ -11876,7 +11882,7 @@ msgstr ""
 msgid "Distribution: %s"
 msgstr "Elosztás: %s"
 
-#: ../gramps/gui/aboutdialog.py:186
+#: ../gramps/gui/aboutdialog.py:180
 #, python-format
 msgid "OS: %s"
 msgstr "Op.Rendsz.: %s"
@@ -12047,8 +12053,8 @@ msgstr ""
 "<tt>  \n"
 "  <b>Given</b>      - keresztnév             <b>Surname</b>      - "
 "vezetéknév (előtaggal és összekötőkkel)\n"
-"  <b>Title</b>      - cím (Dr., Mrs.)        <b>Suffix</b>       - utótag ("
-"Ifj., Id.)\n"
+"  <b>Title</b>      - cím (Dr., Mrs.)        <b>Suffix</b>       - utótag "
+"(Ifj., Id.)\n"
 "  <b>Call</b>       - hívó név               <b>Nickname</b>     - becenév\n"
 "  <b>Initials</b>   - keresztnév első betűi  <b>Common</b>       - becenév, "
 "egyébként első keresztnév\n"
@@ -12071,8 +12077,8 @@ msgstr ""
 "     <i>Edwin Jose</i>: keresztnév, <i>von der</i>: előtag, <i>Smith</i> és "
 "<i>Weston</i>: vezetéknév,  <i>and</i>: összekötő, <i>Wilson</i>: apai "
 "vezetéknév,\n"
-"     <i>Dr.</i>: cím, <i>Sr</i>: utótag, <i>Ed</i>: becenév, "
-"<i>Underhills</i>: családi bece/gúnynév, <i>Jose</i>: hívó név.\n"
+"     <i>Dr.</i>: cím, <i>Sr</i>: utótag, <i>Ed</i>: becenév, <i>Underhills</"
+"i>: családi bece/gúnynév, <i>Jose</i>: hívó név.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
@@ -12141,10 +12147,10 @@ msgstr "%s: "
 #: ../gramps/gui/glade/mergeplace.glade:51
 #: ../gramps/gui/glade/mergerepository.glade:51
 #: ../gramps/gui/glade/mergesource.glade:51
-#: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/reorder.glade:51
-#: ../gramps/gui/glade/rule.glade:40 ../gramps/gui/glade/rule.glade:342
-#: ../gramps/gui/glade/rule.glade:766 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/logger/_errorview.py:190 ../gramps/gui/plug/_windows.py:390
+#: ../gramps/gui/glade/reorder.glade:51 ../gramps/gui/glade/rule.glade:40
+#: ../gramps/gui/glade/rule.glade:342 ../gramps/gui/glade/rule.glade:766
+#: ../gramps/gui/grampsgui.py:58 ../gramps/gui/logger/_errorview.py:190
+#: ../gramps/gui/plug/_windows.py:390
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
@@ -12986,7 +12992,7 @@ msgstr "A média könyvtár kiválasztása"
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:267
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1251
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
-#: ../gramps/gui/widgets/progressdialog.py:440
+#: ../gramps/gui/widgets/progressdialog.py:441
 #: ../gramps/plugins/importer/importprogen.glade:28
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
@@ -13693,9 +13699,9 @@ msgstr ""
 "5) Olyan formátumban menti az adatait, ami nem kompatibilis a hivatalos "
 "kiadással.\n"
 "\n"
-"Mielőtt használja ezt változatot, adatbázisáról készítsen %(bold_start)"
-"sBIZTONSÁGI MENTÉST%(bold_end)s, valamint minden mostani és későbbi "
-"alkalomkor exportálja adatait XML formátumba."
+"Mielőtt használja ezt változatot, adatbázisáról készítsen "
+"%(bold_start)sBIZTONSÁGI MENTÉST%(bold_end)s, valamint minden mostani és "
+"későbbi alkalomkor exportálja adatait XML formátumba."
 
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
@@ -16000,7 +16006,7 @@ msgstr "Résztvevők"
 #: ../gramps/gui/widgets/reorderfam.py:105
 #: ../gramps/plugins/textreport/tagreport.py:273
 #: ../gramps/plugins/view/familyview.py:85
-#: ../gramps/plugins/webreport/person.py:1641
+#: ../gramps/plugins/webreport/person.py:1639
 msgid "Relationship"
 msgstr "Rokonság"
 
@@ -16010,8 +16016,8 @@ msgstr "mind"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:164
 #: ../gramps/plugins/export/exportcsv.py:428
-#: ../gramps/plugins/webreport/person.py:1957
-#: ../gramps/plugins/webreport/person.py:2351
+#: ../gramps/plugins/webreport/person.py:1955
+#: ../gramps/plugins/webreport/person.py:2349
 msgid "Birth date"
 msgstr "Születési dátum"
 
@@ -16030,8 +16036,8 @@ msgstr "Születési hely"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:170
 #: ../gramps/plugins/export/exportcsv.py:434
-#: ../gramps/plugins/webreport/person.py:1968
-#: ../gramps/plugins/webreport/person.py:2352
+#: ../gramps/plugins/webreport/person.py:1966
+#: ../gramps/plugins/webreport/person.py:2350
 msgid "Death date"
 msgstr "Halálozás dátuma"
 
@@ -16078,15 +16084,15 @@ msgstr "Visszaállítás"
 msgid "Elapsed time: %.2fs"
 msgstr "Eltelt idő: %.2fmp"
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:376
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:379
 msgid "You should select a place when using the 'Within' rule"
 msgstr "Helyet kell választania, ha 'Megfelelő' szabályt használ"
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:386
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:389
 msgid "Supply at least one value"
 msgstr "Biztosítson legalább egy értéket"
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:401
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:404
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
 msgstr "A {today} Szűrő gramplet által létrehozott"
@@ -16553,8 +16559,8 @@ msgid ""
 "Note: several predefined attributes refer to values present in the GEDCOM "
 "standard."
 msgstr ""
-"Egy tulajdonság neve, amit használni szeretne. Például: magasság (személynél)"
-", nap időjárása (eseménynél), ...\n"
+"Egy tulajdonság neve, amit használni szeretne. Például: magasság "
+"(személynél), nap időjárása (eseménynél), ...\n"
 "Használja összegyűjtött információ töredékek mentésére, és helyesen akar "
 "hivatkozni a forrásra. A tulajdonságokat használhatja emberekre, családokra, "
 "eseményekre és médiára.\n"
@@ -17369,7 +17375,8 @@ msgstr ""
 #: ../gramps/gui/glade/editpersonref.glade:159
 #: ../gramps/gui/glade/editpersonref.glade:223
 msgid "Select a person that has an association to the edited person."
-msgstr "Válasszon egy személyt, aki a szerkesztett személlyel kapcsolattal bír."
+msgstr ""
+"Válasszon egy személyt, aki a szerkesztett személlyel kapcsolattal bír."
 
 #: ../gramps/gui/glade/editplace.glade:108
 #: ../gramps/gui/glade/editplaceref.glade:249
@@ -17828,7 +17835,8 @@ msgstr "Objektum 2"
 
 #: ../gramps/gui/glade/mergemedia.glade:443
 msgid "Attributes, sources, notes and tags of both objects will be combined."
-msgstr "Mindkét objektum tulajdonságai, jegyzetei és címkéi kombinálva lesznek."
+msgstr ""
+"Mindkét objektum tulajdonságai, jegyzetei és címkéi kombinálva lesznek."
 
 #: ../gramps/gui/glade/mergenote.glade:94
 msgid ""
@@ -18003,6 +18011,12 @@ msgstr "_Lent:"
 #: ../gramps/gui/glade/papermenu.glade:379
 msgid "Metric"
 msgstr "Metrikus"
+
+#: ../gramps/gui/glade/plugins.glade:22
+#, fuzzy
+#| msgid "Wiki"
+msgid "_Wiki"
+msgstr "Wiki"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -18950,7 +18964,7 @@ msgstr "%(key)s:\t%(value)s"
 
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:94
-#: ../gramps/plugins/webreport/person.py:589
+#: ../gramps/plugins/webreport/person.py:587
 msgid "other"
 msgstr "más"
 
@@ -18966,7 +18980,7 @@ msgstr "Emberek összefűzése"
 #: ../gramps/plugins/view/relview.py:689 ../gramps/plugins/view/relview.py:1068
 #: ../gramps/plugins/view/relview.py:1106
 #: ../gramps/plugins/webreport/person.py:442
-#: ../gramps/plugins/webreport/person.py:2328
+#: ../gramps/plugins/webreport/person.py:2326
 #: ../gramps/plugins/webreport/surname.py:167
 msgid "Parents"
 msgstr "Szülők"
@@ -23415,7 +23429,8 @@ msgstr "A kiválasztott gyermek szerkesztéséhez kattintson kétszer a soron."
 
 #: ../gramps/plugins/gramplet/citations.py:94
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "A kiválasztott forrás/idézet szerkesztéséhez kattintson kettőt a soron."
+msgstr ""
+"A kiválasztott forrás/idézet szerkesztéséhez kattintson kettőt a soron."
 
 #: ../gramps/plugins/gramplet/citations.py:103
 msgid "Source/Date"
@@ -23609,8 +23624,8 @@ msgstr ""
 #, python-format
 msgid " 11. %(web_html_start)sHow do I record one's occupation?%(html_end)s\n"
 msgstr ""
-" 11. %(web_html_start)sHogyan rögzítsem valaki birtokba vételét?%(html_end)"
-"s\n"
+" 11. %(web_html_start)sHogyan rögzítsem valaki birtokba vételét?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:206
 #, python-format
@@ -23627,8 +23642,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)sLétezik Gramps "
-"kézikönyv?%(html_end)s\n"
+" 13. %(gramps_wiki_html_start)s%(section)sLétezik Gramps kézikönyv?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:224
 #, python-format
@@ -23649,8 +23664,8 @@ msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 16. %(gramps_wiki_html_start)s%(section)sHogyan segíthetek a Gramps-"
-"al?%(html_end)s\n"
+" 16. %(gramps_wiki_html_start)s%(section)sHogyan segíthetek a Gramps-al?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:56
 msgid "Double-click given name for details"
@@ -23724,7 +23739,7 @@ msgstr "Aktív személy leszármazottait mutató gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:118
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:125
-#: ../gramps/plugins/webreport/person.py:1562
+#: ../gramps/plugins/webreport/person.py:1560
 msgid "Ancestors"
 msgstr "Ősök"
 
@@ -24198,8 +24213,8 @@ msgstr "Egy személy vissza-hivatkozásait mutató gramplet"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1137
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1153
 #: ../gramps/plugins/webreport/basepage.py:3881
-#: ../gramps/plugins/webreport/person.py:1102
-#: ../gramps/plugins/webreport/thumbnail.py:172
+#: ../gramps/plugins/webreport/person.py:1100
+#: ../gramps/plugins/webreport/thumbnail.py:188
 msgid "References"
 msgstr "Hivatkozások"
 
@@ -25384,7 +25399,8 @@ msgstr "Lekerekített sarkok"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:195
 msgid "Use rounded corners e.g. to differentiate between women and men."
-msgstr "Lekerekített sarkok használata pl. nők és férfiak megkülönböztetéséhez."
+msgstr ""
+"Lekerekített sarkok használata pl. nők és férfiak megkülönböztetéséhez."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:216
 msgid "Use subgraphs"
@@ -25471,7 +25487,8 @@ msgstr "A gyermekek számával együtt"
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
-msgstr "Mutatva legyenek-e a családok gyermekszámai egynél több gyermek esetén."
+msgstr ""
+"Mutatva legyenek-e a családok gyermekszámai egynél több gyermek esetén."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:305
 #: ../gramps/plugins/graph/gvrelgraph.py:1004
@@ -25833,7 +25850,8 @@ msgstr "A kapcsolatok hibakeresési számaival együtt"
 #: ../gramps/plugins/graph/gvrelgraph.py:1034
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
-msgstr "Legyen-e a 'Ga' és 'Gb' is benne a kapcsolat kalkulátor hibakeresésénél"
+msgstr ""
+"Legyen-e a 'Ga' és 'Gb' is benne a kapcsolat kalkulátor hibakeresésénél"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1068
 msgid "Indicate non-birth relationships with dotted lines"
@@ -26508,8 +26526,8 @@ msgstr ""
 "verziójú Gramps-ot kell használnia, ebbe kell importálnia az adatbázist. Ezt "
 "követően adatait Gramps XML (családfa) adatba kell exportálnia. Frissítsen a "
 "legújabb Gramps változatra (például erre), hozzon létre egy üres adatbázist, "
-"majd importálja a Gramps XML fájlt ebbe a verzióba. Kérem nézze meg "
-"ezt:%(gramps_wiki_migrate_two_to_three_url)s"
+"majd importálja a Gramps XML fájlt ebbe a verzióba. Kérem nézze meg ezt:"
+"%(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:44
 msgid "_Ok"
@@ -26906,9 +26924,9 @@ msgstr "  {obj} {id1} {id2}-val"
 #: ../gramps/plugins/webreport/basepage.py:2061
 #: ../gramps/plugins/webreport/basepage.py:2125
 #: ../gramps/plugins/webreport/basepage.py:2262
-#: ../gramps/plugins/webreport/person.py:1643
+#: ../gramps/plugins/webreport/person.py:1641
 #: ../gramps/plugins/webreport/source.py:151
-#: ../gramps/plugins/webreport/source.py:356
+#: ../gramps/plugins/webreport/source.py:354
 #: ../gramps/plugins/webreport/updates.py:134
 msgid "Sources"
 msgstr "Források"
@@ -27150,8 +27168,8 @@ msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
 " Writing to %(filename)s in format %(impliedext)s."
 msgstr ""
-"Nem illeszkedik a kiválasztott %(ext)s kiterjesztés az aktuális formátummal."
-"\n"
+"Nem illeszkedik a kiválasztott %(ext)s kiterjesztés az aktuális "
+"formátummal.\n"
 " %(filename)s írása %(impliedext)s formátumban."
 
 #: ../gramps/plugins/lib/libgedcom.py:739
@@ -28000,7 +28018,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:256
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s."
-msgstr "A hölgy (lány) halálozási dátuma %(death_date)s, helye %(death_place)s."
+msgstr ""
+"A hölgy (lány) halálozási dátuma %(death_date)s, helye %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:257
 #, python-format
@@ -28092,7 +28111,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:299
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s."
-msgstr "A hölgy (lány) halálozási dátuma %(death_date)s, helye %(death_place)s."
+msgstr ""
+"A hölgy (lány) halálozási dátuma %(death_date)s, helye %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:300
 #, python-format
@@ -28188,8 +28208,8 @@ msgstr "%(unknown_gender_name)s halálozási dátuma %(death_date)s."
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s halálozási dátuma %(death_date)s, ekkor a kora %(age)"
-"s volt."
+"%(unknown_gender_name)s halálozási dátuma %(death_date)s, ekkor a kora "
+"%(age)s volt."
 
 #: ../gramps/plugins/lib/libnarrate.py:351
 #, python-format
@@ -28316,7 +28336,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:412
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s."
-msgstr "A hölgy (lány) halálozási dátuma %(month_year)s, helye %(death_place)s."
+msgstr ""
+"A hölgy (lány) halálozási dátuma %(month_year)s, helye %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:413
 #, python-format
@@ -28344,8 +28365,8 @@ msgstr "%(unknown_gender_name)s halálozási dátuma %(month_year)s."
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s halálozási dátuma %(month_year)s, ekkor a kora %(age)"
-"s volt."
+"%(unknown_gender_name)s halálozási dátuma %(month_year)s, ekkor a kora "
+"%(age)s volt."
 
 #: ../gramps/plugins/lib/libnarrate.py:429
 #, python-format
@@ -28418,8 +28439,8 @@ msgstr "%(unknown_gender_name)s halálozási helye %(death_place)s."
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s halálozási helye %(death_place)s, ekkor a kora %(age)"
-"s volt."
+"%(unknown_gender_name)s halálozási helye %(death_place)s, ekkor a kora "
+"%(age)s volt."
 
 #: ../gramps/plugins/lib/libnarrate.py:464
 #, python-format
@@ -28595,7 +28616,8 @@ msgstr "A hölgy (lány) temetésének ideje: %(burial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:564
 #, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s temetésének ideje: %(burial_date)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s temetésének ideje: %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:565
 #, python-format
@@ -28806,7 +28828,8 @@ msgstr "A hölgy (lány) temetési helye %(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:656
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s temetésének helye %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s temetésének helye %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:657
 #, python-format
@@ -29492,7 +29515,8 @@ msgstr "Keresztelésének helye %(christening_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:973
 #, python-format
 msgid "%(female_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s keresztelsének helye %(christening_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s keresztelsének helye %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:974
 #, python-format
@@ -30196,8 +30220,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Nem házassági kapcsolat %(spouse)s-al %(partial_date)s, %(place)s%(endnotes)"
-"s helyen."
+"Nem házassági kapcsolat %(spouse)s-al %(partial_date)s, "
+"%(place)s%(endnotes)s helyen."
 
 #: ../gramps/plugins/lib/libnarrate.py:1291
 #: ../gramps/plugins/lib/libnarrate.py:1338
@@ -30216,8 +30240,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Nem házassági kapcsolat %(spouse)s-al %(modified_date)s, %(place)s%(endnotes)"
-"s helyen."
+"Nem házassági kapcsolat %(spouse)s-al %(modified_date)s, "
+"%(place)s%(endnotes)s helyen."
 
 #: ../gramps/plugins/lib/libnarrate.py:1302
 #, python-format
@@ -30225,8 +30249,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"A személy nem házassági kapcsolatban volt %(spouse)s-al is: %(partial_date)"
-"s, %(place)s%(endnotes)s."
+"A személy nem házassági kapcsolatban volt %(spouse)s-al is: "
+"%(partial_date)s, %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1305
 #, python-format
@@ -30243,8 +30267,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"A személy nem házassági kapcsolatban volt %(spouse)s-al is: %(modified_date)"
-"s, %(place)s%(endnotes)s."
+"A személy nem házassági kapcsolatban volt %(spouse)s-al is: "
+"%(modified_date)s, %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1313
 #, python-format
@@ -30497,24 +30521,24 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"A személy nem házassági kapcsolatban volt %(spouse)s-al %(place)s%(endnotes)"
-"s helyen."
+"A személy nem házassági kapcsolatban volt %(spouse)s-al "
+"%(place)s%(endnotes)s helyen."
 
 #: ../gramps/plugins/lib/libnarrate.py:1433
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"A személy nem házassági kapcsolatban volt %(spouse)s-al %(place)s%(endnotes)"
-"s helyen."
+"A személy nem házassági kapcsolatban volt %(spouse)s-al "
+"%(place)s%(endnotes)s helyen."
 
 #: ../gramps/plugins/lib/libnarrate.py:1436
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"A személy nem házassági kapcsolatban volt %(spouse)s-al %(place)s%(endnotes)"
-"s helyen."
+"A személy nem házassági kapcsolatban volt %(spouse)s-al "
+"%(place)s%(endnotes)s helyen."
 
 #: ../gramps/plugins/lib/libnarrate.py:1438
 #: ../gramps/plugins/lib/libnarrate.py:1451
@@ -30574,7 +30598,8 @@ msgstr "Nem házassági kapcsolat %(spouse)s%(endnotes)s-al."
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "A személy nem házassági kapcsolatban volt %(spouse)s%(endnotes)s-al is."
+msgstr ""
+"A személy nem házassági kapcsolatban volt %(spouse)s%(endnotes)s-al is."
 
 #: ../gramps/plugins/lib/libnarrate.py:1468
 #, python-format
@@ -30618,7 +30643,8 @@ msgstr ""
 msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "Kapcsolata volt %(spouse)s-al: %(partial_date)s, %(place)s%(endnotes)s."
+msgstr ""
+"Kapcsolata volt %(spouse)s-al: %(partial_date)s, %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1499
 #, python-format
@@ -30640,7 +30666,8 @@ msgstr ""
 msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "Kapcsolata volt %(spouse)s-al: %(partial_date)s, %(place)s%(endnotes)s."
+msgstr ""
+"Kapcsolata volt %(spouse)s-al: %(partial_date)s, %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1510
 #, python-format
@@ -32064,7 +32091,7 @@ msgstr "Esemény helye"
 #: ../gramps/plugins/quickview/all_events.py:62
 #: ../gramps/plugins/quickview/all_events.py:114
 #: ../gramps/plugins/quickview/all_events.py:131
-#: ../gramps/plugins/webreport/person.py:1118
+#: ../gramps/plugins/webreport/person.py:1116
 msgid "Event Type"
 msgstr "Eseménytípus"
 
@@ -33260,8 +33287,8 @@ msgstr "%s, "
 #, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
 msgstr ""
-"%(primary_person)s: %(event_text)s %(event_role)s a(z) "
-"%(event_name)s-ban(-ben)"
+"%(primary_person)s: %(event_text)s %(event_role)s a(z) %(event_name)s-ban(-"
+"ben)"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:529
@@ -33803,7 +33830,7 @@ msgid "Alternate Parents"
 msgstr "Alternatív szülők"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:469
-#: ../gramps/plugins/webreport/person.py:1622
+#: ../gramps/plugins/webreport/person.py:1620
 msgid "Associations"
 msgstr "Társítások"
 
@@ -34138,7 +34165,8 @@ msgstr "Képméret"
 msgid ""
 "Size of the image in cm. A value of 0 indicates that the image should be fit "
 "to the page."
-msgstr "A kép mérete cm-ben. A 0 érték a kép egész oldalas illesztését jelenti."
+msgstr ""
+"A kép mérete cm-ben. A 0 érték a kép egész oldalas illesztését jelenti."
 
 #: ../gramps/plugins/textreport/summary.py:98
 #: ../gramps/plugins/textreport/textplugins.gpr.py:366
@@ -34605,11 +34633,11 @@ msgstr "Nem használt objektumok keresése"
 msgid "Select file"
 msgstr "Fájl kiválasztása"
 
-#: ../gramps/plugins/tool/check.py:865
+#: ../gramps/plugins/tool/check.py:866
 msgid "Media object could not be found"
 msgstr "Médiaobjektum nem található"
 
-#: ../gramps/plugins/tool/check.py:867
+#: ../gramps/plugins/tool/check.py:868
 #, python-format
 msgid ""
 "The file:\n"
@@ -34626,163 +34654,163 @@ msgstr ""
 "Az adatbázisból eltávolíthatja a hivatkozást, a hiányzó\n"
 "fájlhivatkozást megtarthatja, vagy egy új fájlt jelölhet ki."
 
-#: ../gramps/plugins/tool/check.py:947
+#: ../gramps/plugins/tool/check.py:948
 msgid "Looking for empty people records"
 msgstr "Üres emberek rekord keresése"
 
-#: ../gramps/plugins/tool/check.py:956
+#: ../gramps/plugins/tool/check.py:957
 msgid "Looking for empty family records"
 msgstr "Üres család rekordok keresése"
 
-#: ../gramps/plugins/tool/check.py:965
+#: ../gramps/plugins/tool/check.py:966
 msgid "Looking for empty event records"
 msgstr "Üres esemény rekordok keresése"
 
-#: ../gramps/plugins/tool/check.py:974
+#: ../gramps/plugins/tool/check.py:975
 msgid "Looking for empty source records"
 msgstr "Üres forrás rekordok keresése"
 
-#: ../gramps/plugins/tool/check.py:983
+#: ../gramps/plugins/tool/check.py:984
 msgid "Looking for empty citation records"
 msgstr "Üres idézet rekordok keresése"
 
-#: ../gramps/plugins/tool/check.py:992
+#: ../gramps/plugins/tool/check.py:993
 msgid "Looking for empty place records"
 msgstr "Üres hely rekordok keresése"
 
-#: ../gramps/plugins/tool/check.py:1001
+#: ../gramps/plugins/tool/check.py:1002
 msgid "Looking for empty media records"
 msgstr "Üres média rekordok keresése"
 
-#: ../gramps/plugins/tool/check.py:1010
+#: ../gramps/plugins/tool/check.py:1011
 msgid "Looking for empty repository records"
 msgstr "Üres tároló rekordok keresése"
 
-#: ../gramps/plugins/tool/check.py:1019
+#: ../gramps/plugins/tool/check.py:1020
 msgid "Looking for empty note records"
 msgstr "Üres jegyzet rekordok keresése"
 
-#: ../gramps/plugins/tool/check.py:1072
+#: ../gramps/plugins/tool/check.py:1073
 msgid "Looking for empty families"
 msgstr "Üres családok keresése"
 
-#: ../gramps/plugins/tool/check.py:1109
+#: ../gramps/plugins/tool/check.py:1110
 msgid "Looking for broken parent relationships"
 msgstr "Törött szülőkapcsolatok keresése"
 
-#: ../gramps/plugins/tool/check.py:1150
+#: ../gramps/plugins/tool/check.py:1151
 msgid "Looking for event problems"
 msgstr "Eseményproblémák keresése"
 
-#: ../gramps/plugins/tool/check.py:1355 ../gramps/plugins/tool/check.py:1384
-#: ../gramps/plugins/tool/check.py:1412
+#: ../gramps/plugins/tool/check.py:1356 ../gramps/plugins/tool/check.py:1385
+#: ../gramps/plugins/tool/check.py:1413
 msgid "Looking for backlink reference problems"
 msgstr "Visszahivatkozási problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:1447
+#: ../gramps/plugins/tool/check.py:1448
 msgid "Looking for person reference problems"
 msgstr "Személyhivatkozási problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:1483
+#: ../gramps/plugins/tool/check.py:1484
 msgid "Looking for family reference problems"
 msgstr "Családhivatkozási problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:1514
+#: ../gramps/plugins/tool/check.py:1515
 msgid "Looking for repository reference problems"
 msgstr "Tárolóhivatkozási problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:1554
+#: ../gramps/plugins/tool/check.py:1555
 msgid "Looking for place reference problems"
 msgstr "Helyhivatkozási problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:1686
+#: ../gramps/plugins/tool/check.py:1687
 msgid "Looking for citation reference problems"
 msgstr "Idézet hivatkozási problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:1806
+#: ../gramps/plugins/tool/check.py:1807
 msgid "Looking for source reference problems"
 msgstr "Forrás hivatkozási problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:1853
+#: ../gramps/plugins/tool/check.py:1854
 msgid "Looking for media object reference problems"
 msgstr "Médiaobjektum hivatkozási problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:1984
+#: ../gramps/plugins/tool/check.py:1985
 msgid "Looking for note reference problems"
 msgstr "Jegyzethivatkozási problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:2117
+#: ../gramps/plugins/tool/check.py:2118
 msgid "Updating checksums on media"
 msgstr "Média ellenőrző összegének frissítése"
 
-#: ../gramps/plugins/tool/check.py:2145
+#: ../gramps/plugins/tool/check.py:2146
 msgid "Looking for tag reference problems"
 msgstr "Címke hivatkozási problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:2289
+#: ../gramps/plugins/tool/check.py:2290
 msgid "Looking for media source reference problems"
 msgstr "Média forrás hivatkozási problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:2359
+#: ../gramps/plugins/tool/check.py:2360
 msgid "Looking for Duplicated Gramps ID problems"
 msgstr "Kettőzött Gramps-azonosító problémák keresése"
 
-#: ../gramps/plugins/tool/check.py:2511
+#: ../gramps/plugins/tool/check.py:2512
 msgid "Checking for bad links in Notes"
 msgstr "Rossz hivatkozások ellenőrzése a Megjegyzésekben"
 
-#: ../gramps/plugins/tool/check.py:2684
+#: ../gramps/plugins/tool/check.py:2685
 msgid "No errors were found"
 msgstr "Nincs hiba"
 
-#: ../gramps/plugins/tool/check.py:2685
+#: ../gramps/plugins/tool/check.py:2686
 msgid "The database has passed internal checks"
 msgstr "Az adatbázis megfelelt a belső ellenőrzésnek"
 
-#: ../gramps/plugins/tool/check.py:2691
+#: ../gramps/plugins/tool/check.py:2692
 msgid "No errors were found: the database has passed internal checks."
 msgstr "Nincs hiba: az adatbázis megfelelt a belső ellenőrzésnek."
 
-#: ../gramps/plugins/tool/check.py:2701
+#: ../gramps/plugins/tool/check.py:2702
 #, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "{quantity} törött gyermek/család hivatkozás javítva\n"
 msgstr[1] "{quantity} törött gyermek/család hivatkozás javítva\n"
 
-#: ../gramps/plugins/tool/check.py:2710
+#: ../gramps/plugins/tool/check.py:2711
 msgid "Non existing child"
 msgstr "Nem létező gyermek"
 
-#: ../gramps/plugins/tool/check.py:2721
+#: ../gramps/plugins/tool/check.py:2722
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(family)s családjából %(person)s személy lett eltávolítva\n"
 
-#: ../gramps/plugins/tool/check.py:2729
+#: ../gramps/plugins/tool/check.py:2730
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] "{quantity} törött házastárs/család hivatkozás javítva\n"
 msgstr[1] "{quantity} törött házastárs/család hivatkozás javítva\n"
 
-#: ../gramps/plugins/tool/check.py:2738 ../gramps/plugins/tool/check.py:2766
+#: ../gramps/plugins/tool/check.py:2739 ../gramps/plugins/tool/check.py:2767
 msgid "Non existing person"
 msgstr "Nem létező személy"
 
-#: ../gramps/plugins/tool/check.py:2749 ../gramps/plugins/tool/check.py:2777
+#: ../gramps/plugins/tool/check.py:2750 ../gramps/plugins/tool/check.py:2778
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(family)s családjába %(person)s személy vissza lett helyezve\n"
 
-#: ../gramps/plugins/tool/check.py:2757
+#: ../gramps/plugins/tool/check.py:2758
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] "{quantity} kettőzött házastárs/család kapcsolatot találtam\n"
 msgstr[1] "{quantity} kettőzött házastárs/család kapcsolatot találtam\n"
 
-#: ../gramps/plugins/tool/check.py:2785
+#: ../gramps/plugins/tool/check.py:2786
 #, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
@@ -34792,133 +34820,135 @@ msgstr[0] ""
 msgstr[1] ""
 "{quantity} szülők, vagy gyermekek nélküli család találat, eltávolítva.\n"
 
-#: ../gramps/plugins/tool/check.py:2799
+#: ../gramps/plugins/tool/check.py:2800
 #, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
 msgstr[0] "{quantity} hibás családi kapcsolat kijavítva\n"
 msgstr[1] "{quantity} hibás családi kapcsolat kijavítva\n"
 
-#: ../gramps/plugins/tool/check.py:2809
+#: ../gramps/plugins/tool/check.py:2810
 #, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
 msgstr[0] "{quantity} hely helyettesítő név javításra került\n"
 msgstr[1] "{quantity} hely helyettesítő név javításra került\n"
 
-#: ../gramps/plugins/tool/check.py:2819
+#: ../gramps/plugins/tool/check.py:2820
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
 msgstr[0] "{quantity} személyre van hivatkozás, de az nem található\n"
 msgstr[1] "{quantity} személyre van hivatkozás, de azok nem találhatóak\n"
 
-#: ../gramps/plugins/tool/check.py:2829
+#: ../gramps/plugins/tool/check.py:2830
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] "{quantity} családra hivatkoznak, de azok nem találhatóak\n"
 msgstr[1] "{quantity} családra hivatkoznak, de az nem található\n"
 
-#: ../gramps/plugins/tool/check.py:2839
+#: ../gramps/plugins/tool/check.py:2840
 #, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] "{quantity} dátum kijavítva\n"
 msgstr[1] "{quantity} dátum kijavítva\n"
 
-#: ../gramps/plugins/tool/check.py:2849
+#: ../gramps/plugins/tool/check.py:2850
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
 msgstr[0] "{quantity} tárolóra volt hivatkozás, de az nem található\n"
 msgstr[1] "{quantity} tárolóra volt hivatkozás, de azok nem találhatóak\n"
 
-#: ../gramps/plugins/tool/check.py:2859 ../gramps/plugins/tool/check.py:2959
+#: ../gramps/plugins/tool/check.py:2860 ../gramps/plugins/tool/check.py:2960
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
 msgstr[0] "{quantity} médiaobjektumra hivatkoznak, de az nem található\n"
 msgstr[1] "{quantity} médiaobjektumra hivatkoznak, de azok nem találhatóak\n"
 
-#: ../gramps/plugins/tool/check.py:2869
+#: ../gramps/plugins/tool/check.py:2870
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "{quantity} elveszett médiaobjektum hivatkozás megtartva\n"
 msgstr[1] "{quantity} elveszett médiaobjektum hivatkozás megtartva\n"
 
-#: ../gramps/plugins/tool/check.py:2879
+#: ../gramps/plugins/tool/check.py:2880
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
 msgstr[0] "{quantity} elveszett médiaobjektum áthelyezve\n"
 msgstr[1] "{quantity} elveszett médiaobjektum áthelyezve\n"
 
-#: ../gramps/plugins/tool/check.py:2889
+#: ../gramps/plugins/tool/check.py:2890
 #, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
 msgstr[0] "{quantity} elveszett médiaobjektum eltávolítva\n"
 msgstr[1] "{quantity} elveszett médiaobjektum eltávolítva\n"
 
-#: ../gramps/plugins/tool/check.py:2899
+#: ../gramps/plugins/tool/check.py:2900
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
 msgstr[0] "{quantity} eseményre van hivatkozás, de az nem található\n"
 msgstr[1] "{quantity} eseményre van hivatkozás, de azok nem találhatók\n"
 
-#: ../gramps/plugins/tool/check.py:2909
+#: ../gramps/plugins/tool/check.py:2910
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
 msgstr[0] "{quantity} érvénytelen születési esemény neve javításra került\n"
 msgstr[1] "{quantity} érvénytelen születési esemény neve javításra került\n"
 
-#: ../gramps/plugins/tool/check.py:2919
+#: ../gramps/plugins/tool/check.py:2920
 #, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
 msgstr[0] "{quantity} érvénytelen halálozási esemény neve javításra került\n"
 msgstr[1] "{quantity} érvénytelen halálozási esemény neve javításra került\n"
 
-#: ../gramps/plugins/tool/check.py:2929
+#: ../gramps/plugins/tool/check.py:2930
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
 msgstr[0] "{quantity} helységre hivatkoztak, de az nem található\n"
 msgstr[1] "{quantity} helységre hivatkoztak, de azok nem találhatók\n"
 
-#: ../gramps/plugins/tool/check.py:2939
+#: ../gramps/plugins/tool/check.py:2940
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
 msgstr[0] "{quantity} idézetre hivatkoztak, de az nem található\n"
 msgstr[1] "{quantity} idézetre hivatkoztak, de azok nem találhatók\n"
 
-#: ../gramps/plugins/tool/check.py:2949
+#: ../gramps/plugins/tool/check.py:2950
 #, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
 msgstr[0] "{quantity} forrásra hivatkoznak, de az nem található\n"
 msgstr[1] "{quantity} helységre hivatkoznak, de azok nem találhatóak\n"
 
-#: ../gramps/plugins/tool/check.py:2969
+#: ../gramps/plugins/tool/check.py:2970
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
 msgstr[0] "{quantity} jegyzet objektumra hivatkoznak, de az nem található\n"
-msgstr[1] "{quantity} jegyzet objektumra hivatkoznak, de azok nem találhatóak\n"
+msgstr[1] ""
+"{quantity} jegyzet objektumra hivatkoznak, de azok nem találhatóak\n"
 
-#: ../gramps/plugins/tool/check.py:2979 ../gramps/plugins/tool/check.py:2989
+#: ../gramps/plugins/tool/check.py:2980 ../gramps/plugins/tool/check.py:2990
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
 msgstr[0] "{quantity} címke objektumra van hivatkozás, de az nem található\n"
-msgstr[1] "{quantity} címke objektumra van hivatkozás, de azok nem találhatóak\n"
+msgstr[1] ""
+"{quantity} címke objektumra van hivatkozás, de azok nem találhatóak\n"
 
-#: ../gramps/plugins/tool/check.py:2999
+#: ../gramps/plugins/tool/check.py:3000
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
@@ -34927,21 +34957,21 @@ msgstr[0] ""
 msgstr[1] ""
 "{quantity} érvénytelen névformátum-hivatkozás került eltávolításra\n"
 
-#: ../gramps/plugins/tool/check.py:3009
+#: ../gramps/plugins/tool/check.py:3010
 #, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "{quantity} érvénytelen születési esemény neve javításra került\n"
 msgstr[1] "{quantity} érvénytelen születési esemény neve javításra került\n"
 
-#: ../gramps/plugins/tool/check.py:3019
+#: ../gramps/plugins/tool/check.py:3020
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
 msgstr[0] "{quantity} duplázott Gramps-azonosító kijavítva\n"
 msgstr[1] "{quantity} duplázott Gramps-azonosító kijavítva\n"
 
-#: ../gramps/plugins/tool/check.py:3028
+#: ../gramps/plugins/tool/check.py:3029
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -34964,27 +34994,27 @@ msgstr ""
 "   %(repo)d tárolóobjektum\n"
 "   %(note)d jegyzet objektum\n"
 
-#: ../gramps/plugins/tool/check.py:3053
+#: ../gramps/plugins/tool/check.py:3054
 #, python-format
 msgid "%d bad backlinks were fixed;\n"
 msgstr "%d rossz visszahivatkozás javítva;\n"
 
-#: ../gramps/plugins/tool/check.py:3054
+#: ../gramps/plugins/tool/check.py:3055
 #: ../gramps/plugins/tool/rebuildrefmap.py:91
 #: ../gramps/plugins/tool/rebuildrefmap.py:95
 msgid "All reference maps have been rebuilt."
 msgstr "Minden hivatkozási térkép újraépült."
 
-#: ../gramps/plugins/tool/check.py:3059
+#: ../gramps/plugins/tool/check.py:3060
 #, python-format
 msgid "%d bad Note Links were fixed;\n"
 msgstr "%d rossz Megjegyzés hivatkozás javítva;\n"
 
-#: ../gramps/plugins/tool/check.py:3089
+#: ../gramps/plugins/tool/check.py:3090
 msgid "Integrity Check Results"
 msgstr "Teljesség-ellenőrzés eredményei"
 
-#: ../gramps/plugins/tool/check.py:3096
+#: ../gramps/plugins/tool/check.py:3097
 msgid "Check and Repair"
 msgstr "Ellenőrzés és javítás"
 
@@ -35455,7 +35485,8 @@ msgstr "Idézetek_összefűzése"
 #: ../gramps/plugins/tool/mergecitations.py:136
 msgid ""
 "Notes, media objects and data-items of matching citations will be combined."
-msgstr "Az egyező jegyzetek, média objektumok és adatelemek kombinálva lesznek."
+msgstr ""
+"Az egyező jegyzetek, média objektumok és adatelemek kombinálva lesznek."
 
 #: ../gramps/plugins/tool/mergecitations.py:170
 msgid "Merge citations tool"
@@ -36206,7 +36237,8 @@ msgstr "Használatlan objektumokat távolít el az adatbázisból"
 
 #: ../gramps/plugins/tool/tools.gpr.py:420
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
-msgstr "Az alapértelmezett szabályok szerint a Gramps azonosítókat újrarendezi."
+msgstr ""
+"Az alapértelmezett szabályok szerint a Gramps azonosítókat újrarendezi."
 
 #: ../gramps/plugins/tool/tools.gpr.py:443
 #: ../gramps/plugins/tool/tools.gpr.py:444
@@ -37211,7 +37243,8 @@ msgstr "Minden ismert helyszín egy Személyhez"
 
 #: ../gramps/plugins/view/geography.gpr.py:98
 msgid "A view showing the places visited by one person during his life."
-msgstr "A nézet egy személy egész élete alatt felkeresett helyszíneket mutatja."
+msgstr ""
+"A nézet egy személy egész élete alatt felkeresett helyszíneket mutatja."
 
 #: ../gramps/plugins/view/geography.gpr.py:106
 #: ../gramps/plugins/view/geography.gpr.py:125
@@ -37229,7 +37262,8 @@ msgstr "Minden ismert helyszín egy Családhoz"
 
 #: ../gramps/plugins/view/geography.gpr.py:117
 msgid "A view showing the places visited by one family during all their life."
-msgstr "A nézet egy család teljes élete alatt felkeresett helyszíneket mutatja."
+msgstr ""
+"A nézet egy család teljes élete alatt felkeresett helyszíneket mutatja."
 
 #: ../gramps/plugins/view/geography.gpr.py:134
 msgid "Every residence or move for a person and any descendants"
@@ -37251,8 +37285,8 @@ msgid ""
 "A view showing the places visited by all family's members during their life: "
 "have these two people been able to meet?"
 msgstr ""
-"A nézet minden családtag teljes élete alatt felkeresett helyszíneket mutatja:"
-" találkozhattak ezek az emberek?"
+"A nézet minden családtag teljes élete alatt felkeresett helyszíneket "
+"mutatja: találkozhattak ezek az emberek?"
 
 #: ../gramps/plugins/view/geography.gpr.py:180
 msgid ""
@@ -38043,7 +38077,7 @@ msgstr "Hőtérképek"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
-#: ../gramps/plugins/webreport/thumbnail.py:118
+#: ../gramps/plugins/webreport/thumbnail.py:121
 msgid "Thumbnails"
 msgstr "Bélyegképek"
 
@@ -38072,12 +38106,12 @@ msgid "Heatmap"
 msgstr "Hőtérkép"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
-#: ../gramps/plugins/webreport/media.py:436
+#: ../gramps/plugins/webreport/media.py:440
 msgid "Previous"
 msgstr "Előző"
 
 #: ../gramps/plugins/webreport/basepage.py:2225
-#: ../gramps/plugins/webreport/media.py:449
+#: ../gramps/plugins/webreport/media.py:453
 msgid "Next"
 msgstr "Következő"
 
@@ -38095,9 +38129,9 @@ msgstr "Utolsó Napok Szentjei/Mormon rend"
 
 #: ../gramps/plugins/webreport/basepage.py:3140
 #: ../gramps/plugins/webreport/basepage.py:3142
-#: ../gramps/plugins/webreport/family.py:564
-#: ../gramps/plugins/webreport/person.py:880
-#: ../gramps/plugins/webreport/person.py:1284
+#: ../gramps/plugins/webreport/family.py:562
+#: ../gramps/plugins/webreport/person.py:878
+#: ../gramps/plugins/webreport/person.py:1282
 msgid "Family Map"
 msgstr "Családtérkép"
 
@@ -38316,7 +38350,7 @@ msgstr ""
 "tartalmazza a család neve/vezetékneve szerint. A személy nevére kattintva a "
 "név a család/kapcsolat oldalára juttat."
 
-#: ../gramps/plugins/webreport/family.py:618
+#: ../gramps/plugins/webreport/family.py:616
 #, python-format
 msgid "Family Map for %s"
 msgstr "Családtérkép %s számára"
@@ -38328,7 +38362,8 @@ msgstr "Hőtérkép lapok létrehozása eseményekhez"
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
-msgstr "A következő szakasz minden esemény indexét tartalmazza egy Hőtérképhez."
+msgstr ""
+"A következő szakasz minden esemény indexét tartalmazza egy Hőtérképhez."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
 msgctxt "Event Name"
@@ -38439,7 +38474,7 @@ msgstr "Leíró web-oldal összesítő"
 msgid "Below unused media objects"
 msgstr "Alább a használatlan média objektumok"
 
-#: ../gramps/plugins/webreport/media.py:438
+#: ../gramps/plugins/webreport/media.py:442
 #, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of "
@@ -38448,15 +38483,20 @@ msgstr ""
 "A %(strong2_strt)s%(total_pages)d%(strong_end)s "
 "%(strong1_strt)s%(page_number)d%(strong_end)s-a(e)"
 
-#: ../gramps/plugins/webreport/media.py:452
+#: ../gramps/plugins/webreport/media.py:456
 msgid "The file has been moved or deleted."
 msgstr "A fájl mozgatva, vagy törölve lett."
 
-#: ../gramps/plugins/webreport/media.py:627
+#: ../gramps/plugins/webreport/media.py:458
+#: ../gramps/plugins/webreport/thumbnail.py:174
+msgid "This is a remote media"
+msgstr ""
+
+#: ../gramps/plugins/webreport/media.py:639
 msgid "File Type"
 msgstr "Fájltípus"
 
-#: ../gramps/plugins/webreport/media.py:765
+#: ../gramps/plugins/webreport/media.py:777
 msgid "Missing media object:"
 msgstr "Hiányzó médiaobjektum:"
 
@@ -39485,12 +39525,12 @@ msgstr ""
 msgid "<absent>"
 msgstr "<hiányzó>"
 
-#: ../gramps/plugins/webreport/person.py:1059
+#: ../gramps/plugins/webreport/person.py:1057
 #, python-format
 msgid "Tracking %s"
 msgstr "%s követése"
 
-#: ../gramps/plugins/webreport/person.py:1065
+#: ../gramps/plugins/webreport/person.py:1063
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -39504,47 +39544,47 @@ msgstr ""
 "(ha van bármilyen). A Hivatkozás részben a helyszín nevére kattintva a "
 "helyszín oldalára kerülünk."
 
-#: ../gramps/plugins/webreport/person.py:1117
+#: ../gramps/plugins/webreport/person.py:1115
 msgid "Place Title"
 msgstr "Helycím"
 
-#: ../gramps/plugins/webreport/person.py:1252
+#: ../gramps/plugins/webreport/person.py:1250
 msgid "Drop Markers"
 msgstr "Jelölések dobása"
 
-#: ../gramps/plugins/webreport/person.py:1851
+#: ../gramps/plugins/webreport/person.py:1849
 msgid "Call Name"
 msgstr "Hívónév"
 
-#: ../gramps/plugins/webreport/person.py:1872
+#: ../gramps/plugins/webreport/person.py:1870
 msgid "Nick Name"
 msgstr "Bece-név"
 
-#: ../gramps/plugins/webreport/person.py:1929
+#: ../gramps/plugins/webreport/person.py:1927
 msgid "Age at Death"
 msgstr "Kora a halálakor"
 
-#: ../gramps/plugins/webreport/person.py:2123
+#: ../gramps/plugins/webreport/person.py:2121
 msgid "Stepfather"
 msgstr "Mostohaapa"
 
-#: ../gramps/plugins/webreport/person.py:2136
+#: ../gramps/plugins/webreport/person.py:2134
 msgid "Stepmother"
 msgstr "Mostohaanya"
 
-#: ../gramps/plugins/webreport/person.py:2163
+#: ../gramps/plugins/webreport/person.py:2161
 msgid "Not siblings"
 msgstr "Nem testvérek"
 
-#: ../gramps/plugins/webreport/person.py:2304
+#: ../gramps/plugins/webreport/person.py:2302
 msgid "Relation to the center person"
 msgstr "Kapcsolat a kiinduló személlyel"
 
-#: ../gramps/plugins/webreport/person.py:2349
+#: ../gramps/plugins/webreport/person.py:2347
 msgid "Relation to main person"
 msgstr "Kapcsolat a fő személyhez"
 
-#: ../gramps/plugins/webreport/person.py:2354
+#: ../gramps/plugins/webreport/person.py:2352
 msgid "Relation within this family (if not by birth)"
 msgstr "Kapcsolat a családon belül (ha az nem születési)"
 
@@ -39573,7 +39613,7 @@ msgstr "Név"
 msgid "State/Province"
 msgstr "Állam/Tartomány"
 
-#: ../gramps/plugins/webreport/place.py:609
+#: ../gramps/plugins/webreport/place.py:607
 msgid "Place Map"
 msgstr "Helytérkép"
 
@@ -39614,7 +39654,7 @@ msgctxt "Source Name"
 msgid "Name"
 msgstr "Forrásnév"
 
-#: ../gramps/plugins/webreport/source.py:403
+#: ../gramps/plugins/webreport/source.py:401
 msgid "Publication information"
 msgstr "Kiadvány információ"
 
@@ -39659,7 +39699,7 @@ msgstr "Emberek Száma"
 msgid "Surnames beginning with letter '{letter}' {char}"
 msgstr "'{letter}' {char} betűvel kezdődő vezetéknevek"
 
-#: ../gramps/plugins/webreport/thumbnail.py:125
+#: ../gramps/plugins/webreport/thumbnail.py:128
 msgid ""
 "This page displays a indexed list of all the media objects in this database. "
 "It is sorted by media title. There is an index of all the media objects in "
