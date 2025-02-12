@@ -1,3 +1,48 @@
+2025-02-12
+Version 6.0.0-beta2
+* Update translations: cs, de, de_AT, fi, he, hr, hu, is, it, nl, pl, pt_PT, sk,
+  sv.
+* Narrative web:
+  * Add remote media to thumbnail index.
+  * Remote media cannot be opened.  Fixes #13628.
+  * Fix crash with empty an database.  Fixes #13619.
+  * Fix to show tree on print page. Fixes #13614.
+  * Correctly handle Event == None.
+* Windows AIO:
+  * Set appbuild correctly.
+  * Add a build-number input to the workflow.
+  * Remove the "-- a new maintenance release" branding from the installer.
+* Mac:
+  * Remove obsolete gtkspell3 from bundlefile. We're using gspell now.
+  * Package Gramps 6.0.0-beta1 for macOS.
+* Center the progress bar in the main window status bar. Fixes #13630.
+* Fix bug in generic filter (swapped lines).
+* Fix the program name in the About dialog.
+* Remove BSDDB version and duplicate Gramps version from About dialog.
+  Fixes #13624.
+* Rename "Help" button to "Wiki" in plugins dialog. Fixes #13625.
+* Change the progress bar vertical alignment and padding. Fixes #13623.
+* Import annotations in files using type hints.
+* Specify the `obj_class` when calling `data_to_object.`
+* Fix crash during bsddb upgrade. Fixes #13627.
+* Fix error when upgrading a database from 5.1 to 6.0. Fixes #13622.
+* Ignore missing remote media in check and repair tool. Fixes #13618.
+* Don't try to run `get_git_version` in release versions.
+* Correct the parameter type hints to accept <object> | None.
+* Private proxy fixes.
+* Fixed an iter that bypasses proxy.
+* Fix modifiers in Hungarian date handler.
+* Added orjson, and 'all' to the setup script.
+* Updated the README (bsddb3 made optional, removed sqlite3).
+* Fix the match method in the GenericFilter class. Fixes #13606.
+* Replace unittest `assertEquals` by `assertEqual`.
+* Fix type annotation syntax for Python 3.9.
+* Fix error when searching by name in the place selector. Fixes #13605.
+* Enable <Enter> key press on date fields in sidebar filters. Fixes #13607.
+* Fix all_people() simple access method to use new data format Fixes #13603.
+* Translation fixes in probably alive code. Fixes #13604.
+* Update CI workflow to run on the gramps60 branch.
+
 2025-02-04
 Version 6.0.0-beta1
 * Update translations: ar, bg, br, ca, cs, da.po, de, de_AT, el, en_GB, eo, es,
