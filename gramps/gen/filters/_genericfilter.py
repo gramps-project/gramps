@@ -190,8 +190,8 @@ class GenericFilter:
                             final_list.append(handle)
 
         else:
+            id_list = list(id_list)
             if user:
-                id_list = list(id_list)
                 user.begin_progress(_("Filter"), _("Applying ..."), len(id_list))
             for handle_data in id_list:
                 if user:
