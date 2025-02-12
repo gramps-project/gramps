@@ -41,7 +41,9 @@ class UserBase(metaclass=ABCMeta):
         self.dbstate = dbstate
 
     @abstractmethod
-    def begin_progress(self, title, message, steps):
+    def begin_progress(
+        self, title, message, steps, can_cancel=False, cancel_callback=None
+    ):
         """
         Start showing a progress indicator to the user.
 
@@ -56,6 +58,12 @@ class UserBase(metaclass=ABCMeta):
             meter should just show activity.
         :type steps: int
         :returns: none
+        """
+
+    @abstractmethod
+    def get_cancelled(self):
+        """
+        Get the cancelled state.
         """
 
     @abstractmethod
@@ -208,8 +216,13 @@ class User(UserBase):
     def __cb(self, percent, text=None):
         return
 
-    def begin_progress(self, title, message, steps):
+    def begin_progress(
+        self, title, message, steps, can_cancel=False, cancel_callback=None
+    ):
         pass
+
+    def get_cancelled(self):
+        return False
 
     def step_progress(self):
         pass

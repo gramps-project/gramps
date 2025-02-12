@@ -67,7 +67,7 @@ class IsAncestorOf(Rule):
             first = True
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
-            self.init_ancestor_list(db, root_person, first)
+            self.init_ancestor_list(db, root_person, first, user)
         except:
             pass
 
@@ -78,8 +78,10 @@ class IsAncestorOf(Rule):
         return person.handle in self.selected_handles
 
     def init_ancestor_list(
-        self, db: Database, person: Person | None, first: bool
+        self, db: Database, person: Person | None, first: bool, user=None
     ) -> None:
+        if user and user.get_cancelled():
+            return
         if not person:
             return
         if person.handle in self.selected_handles:
@@ -96,6 +98,10 @@ class IsAncestorOf(Rule):
                 m_id = fam.mother_handle
 
                 if f_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(f_id), False)
+                    self.init_ancestor_list(
+                        db, db.get_person_from_handle(f_id), False, user
+                    )
                 if m_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(m_id), False)
+                    self.init_ancestor_list(
+                        db, db.get_person_from_handle(m_id), False, user
+                    )

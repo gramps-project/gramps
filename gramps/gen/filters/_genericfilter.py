@@ -187,8 +187,10 @@ class GenericFilter:
         #    len(possible_handles),
         # )
 
-        # if user:
-        #    user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
+        if user:
+            user.begin_progress(
+                _("Filter"), _("Applying ..."), len(possible_handles), can_cancel=True
+            )
 
         # test each value in possible_handles to compute the final_list
         final_list = []
@@ -199,6 +201,8 @@ class GenericFilter:
                 continue
 
             if user:
+                if user.get_cancelled():
+                    break
                 user.step_progress()
 
             obj = self.get_object(db, handle)
@@ -278,9 +282,24 @@ class GenericFilter:
                 match the filter are returned as a list of handles
         """
         start_time = time.time()
+        if user:
+            user.begin_progress(
+                _("Filter"), _("Preparing ..."), len(self.flist) + 1, can_cancel=True
+            )
         for rule in self.flist:
+            if user and user.get_cancelled():
+                break
+            if user:
+                user.step_progress()
             rule.requestprepare(db, user)
+        if user:
+            user.end_progress()
         LOG.debug("Prepare time: %s seconds", time.time() - start_time)
+
+        if user and user.get_cancelled():
+            for rule in self.flist:
+                rule.requestreset()
+            return []
 
         if self.logical_op == "and":
             apply_logical_op = self.and_test
@@ -312,7 +331,12 @@ class GenericFilter:
         else:
             possible_handles = set(self.get_all_handles(db))
 
-        res = self.apply_logical_op_to_all(db, possible_handles, apply_logical_op, user)
+        if user and user.get_cancelled():
+            res = []
+        else:
+            res = self.apply_logical_op_to_all(
+                db, possible_handles, apply_logical_op, user
+            )
 
         # convert the filtered set of handles to the correct result type
         if id_list is not None and tupleind is not None:

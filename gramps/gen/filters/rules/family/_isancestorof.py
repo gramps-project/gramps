@@ -68,7 +68,7 @@ class IsAncestorOf(Rule):
         self.selected_handles: Set[str] = set()
         first = False if int(self.list[1]) else True
         root_family = db.get_family_from_gramps_id(self.list[0])
-        self.init_list(db, root_family, first)
+        self.init_list(db, root_family, first, user)
 
     def reset(self):
         self.selected_handles.clear()
@@ -76,10 +76,14 @@ class IsAncestorOf(Rule):
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
 
-    def init_list(self, db: Database, family: Family | None, first: bool) -> None:
+    def init_list(
+        self, db: Database, family: Family | None, first: bool, user=None
+    ) -> None:
         """
         Initialise family handle list.
         """
+        if user and user.get_cancelled():
+            return
         if not family:
             return
         if family.handle in self.selected_handles:
@@ -97,4 +101,4 @@ class IsAncestorOf(Rule):
                 )
                 if family_handle:
                     parent_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, parent_family, False)
+                    self.init_list(db, parent_family, False, user)

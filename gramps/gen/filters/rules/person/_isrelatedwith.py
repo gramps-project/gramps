@@ -65,7 +65,7 @@ class IsRelatedWith(Rule):
         self.db = db
 
         self.selected_handles: Set[str] = set()
-        self.add_relative(db.get_person_from_gramps_id(self.list[0]))
+        self.add_relative(db.get_person_from_gramps_id(self.list[0]), user)
 
     def reset(self):
         self.selected_handles.clear()
@@ -73,7 +73,7 @@ class IsRelatedWith(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def add_relative(self, start: Person | None):
+    def add_relative(self, start: Person | None, user=None):
         """Non-recursive function that scans relatives and add them to self.selected_handles"""
         if not start:
             return
@@ -81,6 +81,8 @@ class IsRelatedWith(Rule):
         queue: List[Person] = [start]
 
         while queue:
+            if user and user.get_cancelled():
+                break
             person = queue.pop()
             # Add the relative to the list
             if person is None or (person.handle in self.selected_handles):

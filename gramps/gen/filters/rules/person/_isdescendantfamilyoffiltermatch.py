@@ -37,6 +37,7 @@ from ._isdescendantfamilyof import IsDescendantFamilyOf
 from ._matchesfilter import MatchesFilter
 from ....types import PersonHandle
 from ....db.generic import Database
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -56,7 +57,7 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
         "of anybody matched by a filter"
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
 
@@ -67,14 +68,17 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
                 self.category,
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
+                can_cancel=True,
             )
         # Must use db.iter_people() rather that db._iter_raw_person_data()
         # because of proxies:
         for person in db.iter_people():
             if user:
                 user.step_progress()
+                if user.get_cancelled():
+                    break
             if self.matchfilt.apply_to_one(db, person):
-                self.add_matches(person)
+                self.add_matches(person, user)
         if user:
             user.end_progress()
 
