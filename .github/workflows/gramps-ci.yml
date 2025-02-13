@@ -28,10 +28,10 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
-        python-version: ["3.13"]
+        python-version: ["3.9", "3.12"]
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
@@ -50,6 +50,9 @@ jobs:
         sudo apt-get install zlib1g-dev
         sudo apt-get install libgirepository1.0-dev
         sudo apt-get install libicu-dev
+        sudo apt-get install libcairo2-dev
+        sudo apt-get install libpython3-dev
+        sudo apt-get install python3-dev
         python3 -m pip install --upgrade pip setuptools build wheel
         python3 -m pip install orjson Pillow PyICU PyGObject pycairo jsonschema mock lxml
     - name: Install addons
@@ -70,4 +73,4 @@ jobs:
       run: |
         export GDK_BACKEND=-
         export GRAMPS_RESOURCES=.
-        python3 -m unittest discover --durations 0 -p "*_test.py"
+        python3 -m unittest discover -p "*_test.py"
