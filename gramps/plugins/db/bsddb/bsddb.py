@@ -109,13 +109,11 @@ class DbBsddb(SQLite):
             username=username,
             password=password,
         )
-        # Default new DBAPI uses "json" serializer
-        # So, we force read/write in blobs:
-        self.set_serializer("blob")
 
-        # now read in the bsddb and copy to dbapi
-        schema_vers = None
-        total = 0
+        # Because this is an old version of a gramps database
+        # we need to make sure it goes into blobs. So we make
+        # a blob_data column for all of the tables:
+
         tables = (
             ("person", "person"),
             ("family", "family"),
@@ -129,6 +127,22 @@ class DbBsddb(SQLite):
             ("tag", "tag"),
             ("meta_data", "metadata"),
         )
+
+        self.dbapi.begin()
+        for old_name, table_name in tables:
+            if not self.dbapi.column_exists(table_name, "blob_data"):
+                self.dbapi.execute(
+                    f"ALTER TABLE {table_name} ADD COLUMN blob_data BLOB;"
+                )
+        self.dbapi.commit()
+
+        # Default new DBAPI uses "json" serializer
+        # So, we force read/write in blobs:
+        self.set_serializer("blob")
+
+        # now read in the bsddb and copy to dbapi
+        schema_vers = None
+        total = 0
 
         # open each dbmap, and get its length for the total
         file_name = os.path.join(dirname, "name_group.db")
