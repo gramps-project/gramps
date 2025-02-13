@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-12 22:44+0000\n"
-"PO-Revision-Date: 2025-02-07 04:46+0000\n"
+"PO-Revision-Date: 2025-02-13 19:33+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10-rc\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -18237,10 +18237,8 @@ msgid "Metric"
 msgstr "Metrisch"
 
 #: ../gramps/gui/glade/plugins.glade:22
-#, fuzzy
-#| msgid "Wiki"
 msgid "_Wiki"
-msgstr "Wiki"
+msgstr "_Wiki"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -21543,7 +21541,7 @@ msgstr "Alt"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
 msgid "Legacy citation formatter"
-msgstr "Veraltetes Formatierungsprogramm für Fundstellen"
+msgstr "Alter Fundstellenformatierer"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -38781,7 +38779,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
 msgid " which has no event for the selected filter."
-msgstr " die kein Ereignis für den ausgewählten Filter haben."
+msgstr " die kein Ereignis für den ausgewählten Filter enthält."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38858,7 +38856,7 @@ msgstr "Die Datei wurde verschoben oder gelöscht."
 #: ../gramps/plugins/webreport/media.py:458
 #: ../gramps/plugins/webreport/thumbnail.py:174
 msgid "This is a remote media"
-msgstr ""
+msgstr "Dies ist ein Remote-Medium"
 
 #: ../gramps/plugins/webreport/media.py:639
 msgid "File Type"
@@ -39890,7 +39888,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
-msgstr "Zoom"
+msgstr "Vergrößerung"
 
 #: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
