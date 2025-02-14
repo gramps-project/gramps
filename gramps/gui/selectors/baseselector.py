@@ -319,13 +319,9 @@ class BaseSelector(ManagedWindow):
         """
         search_bar_filter = self.search_bar.get_value()
         filter_info = (
-            (
-                0,
-                search_bar_filter,
-                search_bar_filter[0] in self.exact_search(),
-            )
-            if search_bar_filter[1]
-            else None
+            0,
+            search_bar_filter if search_bar_filter[1] else None,
+            search_bar_filter[0] in self.exact_search(),
         )
 
         if self.model:
