@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps-5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-12 22:44+0000\n"
+"POT-Creation-Date: 2025-02-14 22:21+0000\n"
 "PO-Revision-Date: 2025-01-13 22:21+0000\n"
 "Last-Translator: Osama Taghlebi <osametto@outlook.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/gramps-project/"
@@ -1316,7 +1316,7 @@ msgstr "أشجار عائلة غرمبز:"
 #: ../gramps/cli/arghandler.py:464 ../gramps/cli/arghandler.py:466
 #: ../gramps/cli/arghandler.py:468 ../gramps/cli/clidbman.py:70
 #: ../gramps/cli/clidbman.py:177 ../gramps/cli/clidbman.py:216
-#: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:2385
+#: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:2384
 msgid "Family Tree"
 msgstr "شجرة العائلة"
 
@@ -1792,7 +1792,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2330
+#: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2329
 #: ../gramps/gui/plug/_windows.py:773
 msgid "Never"
 msgstr "أبداً"
@@ -3580,21 +3580,21 @@ msgstr "خطأ بالملف '%s': لا يمكن تحميله."
 msgid "Full"
 msgstr "الاسم الكامل"
 
-#: ../gramps/gen/filters/_filterparser.py:130
+#: ../gramps/gen/filters/_filterparser.py:132
 #, python-format
 msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
 
-#: ../gramps/gen/filters/_filterparser.py:142
+#: ../gramps/gen/filters/_filterparser.py:144
 #, python-format
 msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
 
-#: ../gramps/gen/filters/_filterparser.py:154
+#: ../gramps/gen/filters/_filterparser.py:156
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr ""
@@ -7892,7 +7892,7 @@ msgid "Adopted"
 msgstr "تبنّي"
 
 #: ../gramps/gen/lib/eventtype.py:201 ../gramps/gen/utils/symbols.py:94
-#: ../gramps/gui/configure.py:2800 ../gramps/gui/merge/mergeperson.py:206
+#: ../gramps/gui/configure.py:2799 ../gramps/gui/merge/mergeperson.py:206
 #: ../gramps/plugins/export/exportvcalendar.py:149
 #: ../gramps/plugins/gramplet/ancestor.py:69
 #: ../gramps/plugins/gramplet/descendant.py:67
@@ -7908,7 +7908,7 @@ msgstr "تبنّي"
 msgid "Birth"
 msgstr "ميلاد"
 
-#: ../gramps/gen/lib/eventtype.py:202 ../gramps/gui/configure.py:2806
+#: ../gramps/gen/lib/eventtype.py:202 ../gramps/gui/configure.py:2805
 #: ../gramps/gui/merge/mergeperson.py:213
 #: ../gramps/plugins/export/exportvcalendar.py:158
 #: ../gramps/plugins/importer/importprogen.glade:1422
@@ -7926,7 +7926,7 @@ msgid "Adult Christening"
 msgstr "تعميد للبالغين"
 
 #: ../gramps/gen/lib/eventtype.py:204 ../gramps/gen/lib/ldsord.py:94
-#: ../gramps/gui/configure.py:2801
+#: ../gramps/gui/configure.py:2800
 msgid "Baptism"
 msgstr "تعميد"
 
@@ -8046,7 +8046,7 @@ msgid "Will"
 msgstr "وصية"
 
 #: ../gramps/gen/lib/eventtype.py:234 ../gramps/gen/plug/docgen/treedoc.py:223
-#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2803
+#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2802
 #: ../gramps/gui/merge/mergeperson.py:278
 #: ../gramps/plugins/export/exportcsv.py:581
 #: ../gramps/plugins/export/exportvcalendar.py:137
@@ -8078,7 +8078,7 @@ msgid "Engagement"
 msgstr "خطبة"
 
 #: ../gramps/gen/lib/eventtype.py:240 ../gramps/gen/utils/symbols.py:98
-#: ../gramps/gui/configure.py:2805 ../gramps/plugins/webreport/family.py:317
+#: ../gramps/gui/configure.py:2804 ../gramps/plugins/webreport/family.py:317
 msgid "Divorce"
 msgstr "طلاق"
 
@@ -8897,7 +8897,7 @@ msgstr "ملاحظة"
 msgid "Format"
 msgstr "صيغة"
 
-#: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/configure.py:2206
+#: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/configure.py:2205
 #: ../gramps/gui/editors/editeventref.py:102
 #: ../gramps/gui/editors/editmediaref.py:121
 #: ../gramps/gui/editors/editplaceref.py:84
@@ -10252,7 +10252,7 @@ msgid "Not shown"
 msgstr "لم يُعْثَر على أبوين"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:94 ../gramps/gui/configure.py:105
-#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2640
+#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2639
 #: ../gramps/gui/displaystate.py:430 ../gramps/gui/views/pageview.py:652
 msgid "Preferences"
 msgstr "تفضيلات"
@@ -11691,7 +11691,7 @@ msgstr "متوقع"
 msgid "Baptism/Christening"
 msgstr "تعميد للأطفال"
 
-#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2802
+#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2801
 #, fuzzy
 msgid "Engaged"
 msgstr "خطبة"
@@ -11701,12 +11701,12 @@ msgstr "خطبة"
 msgid "Unmarried partnership"
 msgstr "زوج"
 
-#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2808
+#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2807
 #, fuzzy
 msgid "Buried"
 msgstr "دفن"
 
-#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2809
+#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2808
 msgid "Cremated/Funeral urn"
 msgstr ""
 
@@ -12192,8 +12192,8 @@ msgstr "شجرة: لا يمكن تغيير العمود الأول \"%s\""
 msgid "Drag and drop the columns to change the order"
 msgstr "لتغيير الترتيب قم بالنقر و السحب على الأعمدة"
 
-#: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2526
-#: ../gramps/gui/configure.py:2554 ../gramps/gui/configure.py:2583
+#: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2525
+#: ../gramps/gui/configure.py:2553 ../gramps/gui/configure.py:2582
 #: ../gramps/gui/plug/_dialogs.py:146 ../gramps/gui/viewmanager.py:1947
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
@@ -12304,8 +12304,8 @@ msgstr "تعريف صيغة غير مكتملة أو خاطئة."
 #: ../gramps/gui/configure.py:1619 ../gramps/gui/configure.py:1640
 #: ../gramps/gui/configure.py:1658 ../gramps/gui/configure.py:1663
 #: ../gramps/gui/configure.py:1684 ../gramps/gui/configure.py:1700
-#: ../gramps/gui/configure.py:2134 ../gramps/gui/configure.py:2252
-#: ../gramps/gui/configure.py:2341 ../gramps/gui/plug/_windows.py:783
+#: ../gramps/gui/configure.py:2133 ../gramps/gui/configure.py:2251
+#: ../gramps/gui/configure.py:2340 ../gramps/gui/plug/_windows.py:783
 #: ../gramps/gui/plug/_windows.py:803 ../gramps/gui/plug/_windows.py:839
 #: ../gramps/gui/plug/_windows.py:847 ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:111
@@ -12427,7 +12427,7 @@ msgstr "ألوان العائلة"
 msgid "Color scheme"
 msgstr "لون"
 
-#: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2818
+#: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2817
 #, fuzzy
 msgid "Restore to defaults"
 msgstr "هل تريد استعادة الافتراضيات؟"
@@ -12529,7 +12529,7 @@ msgstr "إعادة ترتيب العائلات"
 msgid "Background for Home Person"
 msgstr "قرابة الشخص الرئيسي"
 
-#: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2815
+#: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2814
 #, fuzzy, python-format
 msgid "<b>%s</b>"
 msgstr "<b>رجال</b>"
@@ -12780,7 +12780,7 @@ msgstr "قرابة العائلة الافتراضية"
 msgid "Hide LDS tab in person and family editors"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1715 ../gramps/gui/configure.py:2197
+#: ../gramps/gui/configure.py:1715 ../gramps/gui/configure.py:2196
 msgid "* Requires Restart"
 msgstr ""
 
@@ -12981,11 +12981,8 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr ""
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
-msgid "Use default preference"
-msgstr "مراجع الوسائط"
+msgid "Both text and icons"
+msgstr ""
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
@@ -12997,34 +12994,30 @@ msgstr "نص فقط"
 msgid "Icons only"
 msgstr "الإضافات الجديدة فقط"
 
-#: ../gramps/gui/configure.py:2127
-msgid "Both text and icons"
-msgstr ""
-
-#: ../gramps/gui/configure.py:2132
+#: ../gramps/gui/configure.py:2131
 msgid "Display text, icons or both on the toolbar buttons."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2134
+#: ../gramps/gui/configure.py:2133
 #, fuzzy
 #| msgid "_Toolbar"
 msgid "Toolbar Style"
 msgstr "_شريط الأدوات"
 
-#: ../gramps/gui/configure.py:2142
+#: ../gramps/gui/configure.py:2141
 msgid "Show close button in gramplet bar tabs"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2148
+#: ../gramps/gui/configure.py:2147
 msgid "Show close button to simplify removing gramplets from bars."
 msgstr ""
 
 # شك
-#: ../gramps/gui/configure.py:2155
+#: ../gramps/gui/configure.py:2154
 msgid "Markup for invalid date format"
 msgstr "تمييز في حالة صيغة التاريخ الخاطئة"
 
-#: ../gramps/gui/configure.py:2161
+#: ../gramps/gui/configure.py:2160
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -13042,101 +13035,101 @@ msgid ""
 "will display <u><b>Underlined bold date</b></u>.\n"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2182
+#: ../gramps/gui/configure.py:2181
 #, fuzzy
 msgid "Multiple surname box height"
 msgstr "<b>أسماء متعدّدة للعائلة</b>"
 
-#: ../gramps/gui/configure.py:2188
+#: ../gramps/gui/configure.py:2187
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2247
+#: ../gramps/gui/configure.py:2246
 #, fuzzy
 msgid "Database Setting"
 msgstr "إصدار محرك قاعدة بيانات بيركلي"
 
-#: ../gramps/gui/configure.py:2252
+#: ../gramps/gui/configure.py:2251
 #, fuzzy
 msgid "Database backend"
 msgstr "تم فتح قاعدة بيانات"
 
-#: ../gramps/gui/configure.py:2260
+#: ../gramps/gui/configure.py:2259
 #, fuzzy
 msgid ""
 "\n"
 "Database Location"
 msgstr "لا توجد معلومات عن التاريخ"
 
-#: ../gramps/gui/configure.py:2271
+#: ../gramps/gui/configure.py:2270
 msgid "Host"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2275
+#: ../gramps/gui/configure.py:2274
 #, fuzzy
 msgid "Port"
 msgstr "بالطول"
 
-#: ../gramps/gui/configure.py:2284
+#: ../gramps/gui/configure.py:2283
 #, fuzzy
 msgid "Database path"
 msgstr "تم فتح قاعدة بيانات"
 
-#: ../gramps/gui/configure.py:2295
+#: ../gramps/gui/configure.py:2294
 #, fuzzy
 msgid ""
 "\n"
 "Backup Management"
 msgstr "إحباط النسخ الاحتياطي"
 
-#: ../gramps/gui/configure.py:2308
+#: ../gramps/gui/configure.py:2307
 #, fuzzy
 msgid "Backup path"
 msgstr "إحباط النسخ الاحتياطي"
 
-#: ../gramps/gui/configure.py:2318
+#: ../gramps/gui/configure.py:2317
 #, fuzzy
 msgid "Backup on exit"
 msgstr "إحباط النسخ الاحتياطي"
 
-#: ../gramps/gui/configure.py:2323
+#: ../gramps/gui/configure.py:2322
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2331
+#: ../gramps/gui/configure.py:2330
 #, fuzzy
 msgid "Every 15 minutes"
 msgstr "كل ملاحظة"
 
-#: ../gramps/gui/configure.py:2332
+#: ../gramps/gui/configure.py:2331
 #, fuzzy
 msgid "Every 30 minutes"
 msgstr "كل ملاحظة"
 
-#: ../gramps/gui/configure.py:2333
+#: ../gramps/gui/configure.py:2332
 #, fuzzy
 msgid "Every hour"
 msgstr "كل مصدر"
 
-#: ../gramps/gui/configure.py:2334
+#: ../gramps/gui/configure.py:2333
 #, fuzzy
 msgid "Every 12 hours"
 msgstr "كل مصدر"
 
 # شك
-#: ../gramps/gui/configure.py:2335
+#: ../gramps/gui/configure.py:2334
 #, fuzzy
 msgid "Every day"
 msgstr "كل عائلة"
 
-#: ../gramps/gui/configure.py:2341
+#: ../gramps/gui/configure.py:2340
 #, fuzzy
 msgid "Autobackup"
 msgstr "نسخ احتياطي تلقائي..."
 
-#: ../gramps/gui/configure.py:2348
+#: ../gramps/gui/configure.py:2347
 #, fuzzy
 #| msgid "Family Tree Database path"
 msgid ""
@@ -13144,37 +13137,37 @@ msgid ""
 "Family Tree's Media path"
 msgstr "مسار قاعدة بيانات شجرة العائلة"
 
-#: ../gramps/gui/configure.py:2361
+#: ../gramps/gui/configure.py:2360
 #, fuzzy
 #| msgid "Cannot set base media path"
 msgid "Base media path"
 msgstr "غير قادر على تخصيص مسار الوسائط"
 
-#: ../gramps/gui/configure.py:2373
+#: ../gramps/gui/configure.py:2372
 msgid ""
 "The base relative media path is specific to the active family tree. It is "
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2394
+#: ../gramps/gui/configure.py:2393
 #, fuzzy
 #| msgid "Records"
 msgid "Tag Records"
 msgstr "سجلات"
 
-#: ../gramps/gui/configure.py:2416
+#: ../gramps/gui/configure.py:2415
 #, fuzzy
 msgid "Add tag on import"
 msgstr "إضافة مصدر افتراضي عند الاستيراد"
 
-#: ../gramps/gui/configure.py:2423
+#: ../gramps/gui/configure.py:2422
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2432
+#: ../gramps/gui/configure.py:2431
 #, fuzzy
 #| msgid "GEDCOM import"
 msgid ""
@@ -13182,21 +13175,21 @@ msgid ""
 "Source GEDCOM import"
 msgstr "إستيراد GEDCOM"
 
-#: ../gramps/gui/configure.py:2444
+#: ../gramps/gui/configure.py:2443
 #, fuzzy
 msgid "Add default source on GEDCOM import"
 msgstr "إضافة مصدر افتراضي عند الاستيراد"
 
-#: ../gramps/gui/configure.py:2451 ../gramps/gui/dbloader.py:400
+#: ../gramps/gui/configure.py:2450 ../gramps/gui/dbloader.py:400
 msgid "Import"
 msgstr "استيراد"
 
-#: ../gramps/gui/configure.py:2520
+#: ../gramps/gui/configure.py:2519
 msgid "Select media directory"
 msgstr "تحديد مجلد الوسائط"
 
-#: ../gramps/gui/configure.py:2524 ../gramps/gui/configure.py:2554
-#: ../gramps/gui/configure.py:2581 ../gramps/gui/dbloader.py:363
+#: ../gramps/gui/configure.py:2523 ../gramps/gui/configure.py:2553
+#: ../gramps/gui/configure.py:2580 ../gramps/gui/dbloader.py:363
 #: ../gramps/gui/dbloader.py:400 ../gramps/gui/editors/edittaglist.py:122
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:25
@@ -13257,15 +13250,15 @@ msgstr "تحديد مجلد الوسائط"
 msgid "_Cancel"
 msgstr "إلغاء الأمر"
 
-#: ../gramps/gui/configure.py:2549
+#: ../gramps/gui/configure.py:2548
 msgid "Select database directory"
 msgstr "تحديد مجلد قاعدة البيانات"
 
-#: ../gramps/gui/configure.py:2577 ../gramps/gui/viewmanager.py:1942
+#: ../gramps/gui/configure.py:2576 ../gramps/gui/viewmanager.py:1942
 msgid "Select backup directory"
 msgstr "تحديد مجلد النسخ الاحتياطي"
 
-#: ../gramps/gui/configure.py:2652
+#: ../gramps/gui/configure.py:2651
 msgid ""
 "If checked, use the standard genealogic symbols (death symbol is user "
 "selectable).\n"
@@ -13273,32 +13266,32 @@ msgid ""
 "yourself."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2659
+#: ../gramps/gui/configure.py:2658
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2665
+#: ../gramps/gui/configure.py:2664
 msgid "Use symbols"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2679
+#: ../gramps/gui/configure.py:2678
 #, fuzzy
 msgid "Select default death symbol"
 msgstr "تخصيص كاسم إفتراضي"
 
-#: ../gramps/gui/configure.py:2689
+#: ../gramps/gui/configure.py:2688
 #, fuzzy
 msgid "Genealogical Symbols"
 msgstr "نظام الأنساب"
 
-#: ../gramps/gui/configure.py:2720 ../gramps/gui/glade/editfamily.glade:142
+#: ../gramps/gui/configure.py:2719 ../gramps/gui/glade/editfamily.glade:142
 #: ../gramps/gui/glade/editfamily.glade:405
 msgid "Death:"
 msgstr "ممات:"
 
-#: ../gramps/gui/configure.py:2804
+#: ../gramps/gui/configure.py:2803
 #: ../gramps/plugins/quickview/all_relations.py:345
 #: ../gramps/plugins/view/relview.py:498
 #: ../gramps/plugins/webreport/basepage.py:3168
@@ -13308,15 +13301,15 @@ msgstr "ممات:"
 msgid "Partner"
 msgstr "شريك"
 
-#: ../gramps/gui/configure.py:2807
+#: ../gramps/gui/configure.py:2806
 msgid "Killed"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2811
+#: ../gramps/gui/configure.py:2810
 msgid "Default genealogy symbols replacement"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2824
+#: ../gramps/gui/configure.py:2823
 msgid ""
 "You can set any text you want for this field.\n"
 "You can drag and drop a symbol from the symbol list above.\n"
@@ -39851,6 +39844,12 @@ msgstr "نبراسكا"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "بدون قالب"
+
+#, fuzzy
+#~| msgctxt "Filtering_on"
+#~| msgid "media references"
+#~ msgid "Use default preference"
+#~ msgstr "مراجع الوسائط"
 
 #, fuzzy
 #~ msgid ", death: "

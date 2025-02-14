@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-12 22:44+0000\n"
+"POT-Creation-Date: 2025-02-14 22:21+0000\n"
 "PO-Revision-Date: 2025-01-16 15:26+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
@@ -1264,7 +1264,7 @@ msgstr "குடும்ப மரங்களை கிராம்ப்ச�
 #: ../gramps/cli/arghandler.py:464 ../gramps/cli/arghandler.py:466
 #: ../gramps/cli/arghandler.py:468 ../gramps/cli/clidbman.py:70
 #: ../gramps/cli/clidbman.py:177 ../gramps/cli/clidbman.py:216
-#: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:2385
+#: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:2384
 msgid "Family Tree"
 msgstr "குடும்ப மரம்"
 
@@ -1757,7 +1757,7 @@ msgstr ""
 " %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2330
+#: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2329
 #: ../gramps/gui/plug/_windows.py:773
 msgid "Never"
 msgstr "ஒருபோதும்"
@@ -3553,7 +3553,7 @@ msgstr "'%s' கோப்பில் பிழை: ஏற்ற முடிய
 msgid "Full"
 msgstr "முழு"
 
-#: ../gramps/gen/filters/_filterparser.py:130
+#: ../gramps/gen/filters/_filterparser.py:132
 #, python-format
 msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
@@ -3562,7 +3562,7 @@ msgstr ""
 "எச்சரிக்கை: வடிகட்டி '%s' இல் பல வாதங்கள்!\n"
 " வாதங்களின் துணைக்குழுவுடன் ஏற்ற முயற்சிக்கிறது."
 
-#: ../gramps/gen/filters/_filterparser.py:142
+#: ../gramps/gen/filters/_filterparser.py:144
 #, python-format
 msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
@@ -3571,7 +3571,7 @@ msgstr ""
 "எச்சரிக்கை: வடிகட்டியில் மிகக் குறைவான வாதங்கள் '%s'!\n"
 " இது மேம்படுத்தப்படும் என்ற நம்பிக்கையில் எப்படியும் ஏற்ற முயற்சிக்கிறது."
 
-#: ../gramps/gen/filters/_filterparser.py:154
+#: ../gramps/gen/filters/_filterparser.py:156
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr "பிழை: வடிகட்டி %s சரியாக ஏற்ற முடியாது. வடிகட்டியைத் திருத்தவும்!"
@@ -7860,7 +7860,7 @@ msgid "Adopted"
 msgstr "தத்தெடுக்கப்பட்ட"
 
 #: ../gramps/gen/lib/eventtype.py:201 ../gramps/gen/utils/symbols.py:94
-#: ../gramps/gui/configure.py:2800 ../gramps/gui/merge/mergeperson.py:206
+#: ../gramps/gui/configure.py:2799 ../gramps/gui/merge/mergeperson.py:206
 #: ../gramps/plugins/export/exportvcalendar.py:149
 #: ../gramps/plugins/gramplet/ancestor.py:69
 #: ../gramps/plugins/gramplet/descendant.py:67
@@ -7876,7 +7876,7 @@ msgstr "தத்தெடுக்கப்பட்ட"
 msgid "Birth"
 msgstr "பிறப்பு"
 
-#: ../gramps/gen/lib/eventtype.py:202 ../gramps/gui/configure.py:2806
+#: ../gramps/gen/lib/eventtype.py:202 ../gramps/gui/configure.py:2805
 #: ../gramps/gui/merge/mergeperson.py:213
 #: ../gramps/plugins/export/exportvcalendar.py:158
 #: ../gramps/plugins/importer/importprogen.glade:1422
@@ -7894,7 +7894,7 @@ msgid "Adult Christening"
 msgstr "வயதுவந்த கிறிச்டிங்"
 
 #: ../gramps/gen/lib/eventtype.py:204 ../gramps/gen/lib/ldsord.py:94
-#: ../gramps/gui/configure.py:2801
+#: ../gramps/gui/configure.py:2800
 msgid "Baptism"
 msgstr "ஞானச்நானம்"
 
@@ -8009,7 +8009,7 @@ msgid "Will"
 msgstr "உயில்"
 
 #: ../gramps/gen/lib/eventtype.py:234 ../gramps/gen/plug/docgen/treedoc.py:223
-#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2803
+#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2802
 #: ../gramps/gui/merge/mergeperson.py:278
 #: ../gramps/plugins/export/exportcsv.py:581
 #: ../gramps/plugins/export/exportvcalendar.py:137
@@ -8041,7 +8041,7 @@ msgid "Engagement"
 msgstr "நிச்சயதாம்பூலம்"
 
 #: ../gramps/gen/lib/eventtype.py:240 ../gramps/gen/utils/symbols.py:98
-#: ../gramps/gui/configure.py:2805 ../gramps/plugins/webreport/family.py:317
+#: ../gramps/gui/configure.py:2804 ../gramps/plugins/webreport/family.py:317
 msgid "Divorce"
 msgstr "மணவிலக்கு"
 
@@ -8821,7 +8821,7 @@ msgstr "குறிப்பு"
 msgid "Format"
 msgstr "வடிவம்"
 
-#: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/configure.py:2206
+#: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/configure.py:2205
 #: ../gramps/gui/editors/editeventref.py:102
 #: ../gramps/gui/editors/editmediaref.py:121
 #: ../gramps/gui/editors/editplaceref.py:84
@@ -10143,7 +10143,7 @@ msgid "Not shown"
 msgstr "காட்டப்படவில்லை"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:94 ../gramps/gui/configure.py:105
-#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2640
+#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2639
 #: ../gramps/gui/displaystate.py:430 ../gramps/gui/views/pageview.py:652
 msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
@@ -11515,7 +11515,7 @@ msgstr "சட்டவிரோதமான"
 msgid "Baptism/Christening"
 msgstr "ஞானச்நானம்/கிறிச்டனிங்"
 
-#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2802
+#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2801
 msgid "Engaged"
 msgstr "மண உறுதி"
 
@@ -11523,11 +11523,11 @@ msgstr "மண உறுதி"
 msgid "Unmarried partnership"
 msgstr "திருமணமாகாத கூட்டு"
 
-#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2808
+#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2807
 msgid "Buried"
 msgstr "புதைக்கப்பட்டது"
 
-#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2809
+#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2808
 msgid "Cremated/Funeral urn"
 msgstr "தகனம்/இறுதி சடங்கு"
 
@@ -11983,8 +11983,8 @@ msgstr "மரக் காட்சி: முதல் நெடுவரி�
 msgid "Drag and drop the columns to change the order"
 msgstr "வரிசையை மாற்ற நெடுவரிசைகளை இழுத்து விடுங்கள்"
 
-#: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2526
-#: ../gramps/gui/configure.py:2554 ../gramps/gui/configure.py:2583
+#: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2525
+#: ../gramps/gui/configure.py:2553 ../gramps/gui/configure.py:2582
 #: ../gramps/gui/plug/_dialogs.py:146 ../gramps/gui/viewmanager.py:1947
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
@@ -12117,8 +12117,8 @@ msgstr "தவறான அல்லது முழுமையற்ற வட
 #: ../gramps/gui/configure.py:1619 ../gramps/gui/configure.py:1640
 #: ../gramps/gui/configure.py:1658 ../gramps/gui/configure.py:1663
 #: ../gramps/gui/configure.py:1684 ../gramps/gui/configure.py:1700
-#: ../gramps/gui/configure.py:2134 ../gramps/gui/configure.py:2252
-#: ../gramps/gui/configure.py:2341 ../gramps/gui/plug/_windows.py:783
+#: ../gramps/gui/configure.py:2133 ../gramps/gui/configure.py:2251
+#: ../gramps/gui/configure.py:2340 ../gramps/gui/plug/_windows.py:783
 #: ../gramps/gui/plug/_windows.py:803 ../gramps/gui/plug/_windows.py:839
 #: ../gramps/gui/plug/_windows.py:847 ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:111
@@ -12240,7 +12240,7 @@ msgstr "ஒளி வண்ணங்கள்"
 msgid "Color scheme"
 msgstr "வண்ணத் திட்டம்"
 
-#: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2818
+#: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2817
 msgid "Restore to defaults"
 msgstr "இயல்புநிலைக்கு மீட்டமைக்கவும்"
 
@@ -12324,7 +12324,7 @@ msgstr "மணமுறிவு செய்யப்பட்ட எல்ல�
 msgid "Background for Home Person"
 msgstr "வீட்டு நபருக்கான பின்னணி"
 
-#: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2815
+#: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2814
 #, python-format
 msgid "<b>%s</b>"
 msgstr "<b>%s </b>"
@@ -12555,7 +12555,7 @@ msgstr "இயல்புநிலை குடும்ப உறவு"
 msgid "Hide LDS tab in person and family editors"
 msgstr "எல்.டி.எச் தாவலை நேரில் மற்றும் குடும்ப ஆசிரியர்களில் மறைக்கவும்"
 
-#: ../gramps/gui/configure.py:1715 ../gramps/gui/configure.py:2197
+#: ../gramps/gui/configure.py:1715 ../gramps/gui/configure.py:2196
 msgid "* Requires Restart"
 msgstr "* மறுதொடக்கம் தேவை"
 
@@ -12745,11 +12745,8 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "கருவிப்பட்டியில் விருப்பத்தேர்வுகள் ஐகானைக் காட்டவும் அல்லது மறைக்கவும்."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
-msgid "Use default preference"
-msgstr "ஊடக குறிப்புகள்"
+msgid "Both text and icons"
+msgstr ""
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
@@ -12761,33 +12758,29 @@ msgstr "உரை மட்டும்"
 msgid "Icons only"
 msgstr "புதிய துணை நிரல்கள் மட்டுமே"
 
-#: ../gramps/gui/configure.py:2127
-msgid "Both text and icons"
-msgstr ""
-
-#: ../gramps/gui/configure.py:2132
+#: ../gramps/gui/configure.py:2131
 msgid "Display text, icons or both on the toolbar buttons."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2134
+#: ../gramps/gui/configure.py:2133
 #, fuzzy
 #| msgid "_Toolbar"
 msgid "Toolbar Style"
 msgstr "கருவிப்பட்டை"
 
-#: ../gramps/gui/configure.py:2142
+#: ../gramps/gui/configure.py:2141
 msgid "Show close button in gramplet bar tabs"
 msgstr "கிராம்பட் பார் தாவல்களில் மூடு பொத்தானைக் காட்டு"
 
-#: ../gramps/gui/configure.py:2148
+#: ../gramps/gui/configure.py:2147
 msgid "Show close button to simplify removing gramplets from bars."
 msgstr "பட்டிகளிலிருந்து கிராம்ப்ட்களை அகற்றுவதை எளிதாக்க மூடு பொத்தானைக் காட்டுங்கள்."
 
-#: ../gramps/gui/configure.py:2155
+#: ../gramps/gui/configure.py:2154
 msgid "Markup for invalid date format"
 msgstr "தவறான தேதி வடிவமைப்பிற்கான மார்க்அப்"
 
-#: ../gramps/gui/configure.py:2161
+#: ../gramps/gui/configure.py:2160
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -12820,11 +12813,11 @@ msgstr ""
 " எடுத்துக்காட்டாக: & lt; உ & gt; & lt; b & gt;%s & lt;/b & gt; & lt;/u & gt;\n"
 " <u> <b> அடிக்கோடிட்ட தைரியமான தேதி </b> </u> ஐக் காண்பிக்கும்.\n"
 
-#: ../gramps/gui/configure.py:2182
+#: ../gramps/gui/configure.py:2181
 msgid "Multiple surname box height"
 msgstr "பல குடும்பப்பெயர் பெட்டி உயரம்"
 
-#: ../gramps/gui/configure.py:2188
+#: ../gramps/gui/configure.py:2187
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
@@ -12832,15 +12825,15 @@ msgstr ""
 "பிக்சல்களில் உயரத்தை உள்ளிடவும். பல குடும்பப்பெயர்கள் உள்ளிடப்படும்போது, இந்த பெயர்கள் ஒரு "
 "பெட்டியில் காண்பிக்கப்படும். இந்த அமைப்பு இந்த பெட்டியின் அளவை அமைக்கிறது."
 
-#: ../gramps/gui/configure.py:2247
+#: ../gramps/gui/configure.py:2246
 msgid "Database Setting"
 msgstr "தரவுத்தள அமைப்பு"
 
-#: ../gramps/gui/configure.py:2252
+#: ../gramps/gui/configure.py:2251
 msgid "Database backend"
 msgstr "தரவுத்தள பின்தளத்தில்"
 
-#: ../gramps/gui/configure.py:2260
+#: ../gramps/gui/configure.py:2259
 msgid ""
 "\n"
 "Database Location"
@@ -12848,19 +12841,19 @@ msgstr ""
 "\n"
 "தரவுத்தள இடம்"
 
-#: ../gramps/gui/configure.py:2271
+#: ../gramps/gui/configure.py:2270
 msgid "Host"
 msgstr "விருந்தோம்பி"
 
-#: ../gramps/gui/configure.py:2275
+#: ../gramps/gui/configure.py:2274
 msgid "Port"
 msgstr "துறைமுகம்"
 
-#: ../gramps/gui/configure.py:2284
+#: ../gramps/gui/configure.py:2283
 msgid "Database path"
 msgstr "தரவுத்தள பாதை"
 
-#: ../gramps/gui/configure.py:2295
+#: ../gramps/gui/configure.py:2294
 msgid ""
 "\n"
 "Backup Management"
@@ -12868,45 +12861,45 @@ msgstr ""
 "\n"
 "காப்பு மேலாண்மை"
 
-#: ../gramps/gui/configure.py:2308
+#: ../gramps/gui/configure.py:2307
 msgid "Backup path"
 msgstr "காப்பு பாதை"
 
-#: ../gramps/gui/configure.py:2318
+#: ../gramps/gui/configure.py:2317
 msgid "Backup on exit"
 msgstr "வெளியேறும்போது காப்புப்பிரதி"
 
-#: ../gramps/gui/configure.py:2323
+#: ../gramps/gui/configure.py:2322
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
 "மேலே குறிப்பிடப்பட்ட காப்பு பாதைக்கு வெளியேறும்போது உங்கள் குடும்ப மரத்தை காப்புப் பிரதி "
 "எடுக்கவும்."
 
-#: ../gramps/gui/configure.py:2331
+#: ../gramps/gui/configure.py:2330
 msgid "Every 15 minutes"
 msgstr "ஒவ்வொரு 15 நிமிடங்களுக்கும்"
 
-#: ../gramps/gui/configure.py:2332
+#: ../gramps/gui/configure.py:2331
 msgid "Every 30 minutes"
 msgstr "ஒவ்வொரு 30 நிமிடங்களுக்கும்"
 
-#: ../gramps/gui/configure.py:2333
+#: ../gramps/gui/configure.py:2332
 msgid "Every hour"
 msgstr "ஒவ்வொரு மணி நேரமும்"
 
-#: ../gramps/gui/configure.py:2334
+#: ../gramps/gui/configure.py:2333
 msgid "Every 12 hours"
 msgstr "ஒவ்வொரு 12 மணி நேரமும்"
 
-#: ../gramps/gui/configure.py:2335
+#: ../gramps/gui/configure.py:2334
 msgid "Every day"
 msgstr "தினமும்"
 
-#: ../gramps/gui/configure.py:2341
+#: ../gramps/gui/configure.py:2340
 msgid "Autobackup"
 msgstr "ஆட்டோபேக்கப்"
 
-#: ../gramps/gui/configure.py:2348
+#: ../gramps/gui/configure.py:2347
 msgid ""
 "\n"
 "Family Tree's Media path"
@@ -12914,11 +12907,11 @@ msgstr ""
 "\n"
 "குடும்ப மரத்தின் ஊடக பாதை"
 
-#: ../gramps/gui/configure.py:2361
+#: ../gramps/gui/configure.py:2360
 msgid "Base media path"
 msgstr "அடிப்படை ஊடக பாதை"
 
-#: ../gramps/gui/configure.py:2373
+#: ../gramps/gui/configure.py:2372
 msgid ""
 "The base relative media path is specific to the active family tree. It is "
 "not a global setting. Each family tree is able to have a unique relative "
@@ -12928,15 +12921,15 @@ msgstr ""
 "அமைப்பு அல்ல. ஒவ்வொரு குடும்ப மரமும் தரவுத்தளத்துடன் சேமிக்கப்படும் ஒரு தனித்துவமான "
 "உறவினர் ஊடக பாதையைக் கொண்டிருக்க முடியும்."
 
-#: ../gramps/gui/configure.py:2394
+#: ../gramps/gui/configure.py:2393
 msgid "Tag Records"
 msgstr "குறிச்சொல் பதிவுகள்"
 
-#: ../gramps/gui/configure.py:2416
+#: ../gramps/gui/configure.py:2415
 msgid "Add tag on import"
 msgstr "இறக்குமதியில் குறிச்சொல்லைச் சேர்க்கவும்"
 
-#: ../gramps/gui/configure.py:2423
+#: ../gramps/gui/configure.py:2422
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
@@ -12944,7 +12937,7 @@ msgstr ""
 "இறக்குமதி குறித்த அனைத்து பதிவுகளிலும் குறிப்பிட்ட குறிச்சொல் சேர்க்கப்படும்.\n"
 " இயல்புநிலை மதிப்பை அமைக்க அழிக்கவும்."
 
-#: ../gramps/gui/configure.py:2432
+#: ../gramps/gui/configure.py:2431
 msgid ""
 "\n"
 "Source GEDCOM import"
@@ -12952,20 +12945,20 @@ msgstr ""
 "\n"
 "மூல GEDCOM இறக்குமதி"
 
-#: ../gramps/gui/configure.py:2444
+#: ../gramps/gui/configure.py:2443
 msgid "Add default source on GEDCOM import"
 msgstr "GEDCOM இறக்குமதியில் இயல்புநிலை மூலத்தைச் சேர்க்கவும்"
 
-#: ../gramps/gui/configure.py:2451 ../gramps/gui/dbloader.py:400
+#: ../gramps/gui/configure.py:2450 ../gramps/gui/dbloader.py:400
 msgid "Import"
 msgstr "இறக்குமதி"
 
-#: ../gramps/gui/configure.py:2520
+#: ../gramps/gui/configure.py:2519
 msgid "Select media directory"
 msgstr "மீடியா கோப்பகத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: ../gramps/gui/configure.py:2524 ../gramps/gui/configure.py:2554
-#: ../gramps/gui/configure.py:2581 ../gramps/gui/dbloader.py:363
+#: ../gramps/gui/configure.py:2523 ../gramps/gui/configure.py:2553
+#: ../gramps/gui/configure.py:2580 ../gramps/gui/dbloader.py:363
 #: ../gramps/gui/dbloader.py:400 ../gramps/gui/editors/edittaglist.py:122
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:25
@@ -13025,15 +13018,15 @@ msgstr "மீடியா கோப்பகத்தைத் தேர்ந�
 msgid "_Cancel"
 msgstr "_CANCEL"
 
-#: ../gramps/gui/configure.py:2549
+#: ../gramps/gui/configure.py:2548
 msgid "Select database directory"
 msgstr "தரவுத்தள கோப்பகத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: ../gramps/gui/configure.py:2577 ../gramps/gui/viewmanager.py:1942
+#: ../gramps/gui/configure.py:2576 ../gramps/gui/viewmanager.py:1942
 msgid "Select backup directory"
 msgstr "காப்பு கோப்பகத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: ../gramps/gui/configure.py:2652
+#: ../gramps/gui/configure.py:2651
 msgid ""
 "If checked, use the standard genealogic symbols (death symbol is user "
 "selectable).\n"
@@ -13044,7 +13037,7 @@ msgstr ""
 "தேர்ந்தெடுக்கக்கூடியது).\n"
 " சரிபார்க்கப்படாவிட்டால், சின்னங்களை நீங்களே தனிப்பயனாக்க கீழ் பேனலைப் பயன்படுத்தலாம்."
 
-#: ../gramps/gui/configure.py:2659
+#: ../gramps/gui/configure.py:2658
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
@@ -13053,24 +13046,24 @@ msgstr ""
 "விரும்பினால் அல்லது கிரேக்க மற்றும் ரச்ய போன்ற பல மொழிகளை கலந்தால் இது பயனுள்ளதாக "
 "இருக்கும்."
 
-#: ../gramps/gui/configure.py:2665
+#: ../gramps/gui/configure.py:2664
 msgid "Use symbols"
 msgstr "சின்னங்களைப் பயன்படுத்துங்கள்"
 
-#: ../gramps/gui/configure.py:2679
+#: ../gramps/gui/configure.py:2678
 msgid "Select default death symbol"
 msgstr "இயல்புநிலை இறப்பு சின்னத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: ../gramps/gui/configure.py:2689
+#: ../gramps/gui/configure.py:2688
 msgid "Genealogical Symbols"
 msgstr "பரம்பரை சின்னங்கள்"
 
-#: ../gramps/gui/configure.py:2720 ../gramps/gui/glade/editfamily.glade:142
+#: ../gramps/gui/configure.py:2719 ../gramps/gui/glade/editfamily.glade:142
 #: ../gramps/gui/glade/editfamily.glade:405
 msgid "Death:"
 msgstr "மரணம்:"
 
-#: ../gramps/gui/configure.py:2804
+#: ../gramps/gui/configure.py:2803
 #: ../gramps/plugins/quickview/all_relations.py:345
 #: ../gramps/plugins/view/relview.py:498
 #: ../gramps/plugins/webreport/basepage.py:3168
@@ -13080,15 +13073,15 @@ msgstr "மரணம்:"
 msgid "Partner"
 msgstr "பங்குதாரர்"
 
-#: ../gramps/gui/configure.py:2807
+#: ../gramps/gui/configure.py:2806
 msgid "Killed"
 msgstr "கொல்லப்பட்டார்"
 
-#: ../gramps/gui/configure.py:2811
+#: ../gramps/gui/configure.py:2810
 msgid "Default genealogy symbols replacement"
 msgstr "இயல்புநிலை பரம்பரை சின்னங்கள் மாற்றீடு"
 
-#: ../gramps/gui/configure.py:2824
+#: ../gramps/gui/configure.py:2823
 msgid ""
 "You can set any text you want for this field.\n"
 "You can drag and drop a symbol from the symbol list above.\n"
@@ -39902,6 +39895,12 @@ msgstr "நெப்ராச்கா"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "பாணி சீட் இல்லை"
+
+#, fuzzy
+#~| msgctxt "Filtering_on"
+#~| msgid "media references"
+#~ msgid "Use default preference"
+#~ msgstr "ஊடக குறிப்புகள்"
 
 #, fuzzy
 #~| msgid "death"

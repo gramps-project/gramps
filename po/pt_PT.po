@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-12 22:44+0000\n"
+"POT-Creation-Date: 2025-02-14 22:21+0000\n"
 "PO-Revision-Date: 2025-02-13 04:02+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
@@ -1270,7 +1270,7 @@ msgstr "Árvores genealógicas do Gramps:"
 #: ../gramps/cli/arghandler.py:464 ../gramps/cli/arghandler.py:466
 #: ../gramps/cli/arghandler.py:468 ../gramps/cli/clidbman.py:70
 #: ../gramps/cli/clidbman.py:177 ../gramps/cli/clidbman.py:216
-#: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:2385
+#: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:2384
 msgid "Family Tree"
 msgstr "Árvore genealógica"
 
@@ -1773,7 +1773,7 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2330
+#: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2329
 #: ../gramps/gui/plug/_windows.py:773
 msgid "Never"
 msgstr "Nunca"
@@ -3562,7 +3562,7 @@ msgstr "Erro no ficheiro \"%s\": impossível carregar."
 msgid "Full"
 msgstr "Completo"
 
-#: ../gramps/gen/filters/_filterparser.py:130
+#: ../gramps/gen/filters/_filterparser.py:132
 #, python-format
 msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
@@ -3571,7 +3571,7 @@ msgstr ""
 "AVISO: demasiados argumentos no filtro \"%s\"!\n"
 "A tentar carregar com um sub-conjunto de argumentos."
 
-#: ../gramps/gen/filters/_filterparser.py:142
+#: ../gramps/gen/filters/_filterparser.py:144
 #, python-format
 msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
@@ -3580,7 +3580,7 @@ msgstr ""
 "AVISO: argumentos insuficientes no filtro \"%s\"!\n"
 "       A tentar carregar esperando que seja actualizado."
 
-#: ../gramps/gen/filters/_filterparser.py:154
+#: ../gramps/gen/filters/_filterparser.py:156
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr "ERRO: o filtro %s não pôde ser carregado correctamente. Modifique-o!"
@@ -7863,7 +7863,7 @@ msgid "Adopted"
 msgstr "Adoptado"
 
 #: ../gramps/gen/lib/eventtype.py:201 ../gramps/gen/utils/symbols.py:94
-#: ../gramps/gui/configure.py:2800 ../gramps/gui/merge/mergeperson.py:206
+#: ../gramps/gui/configure.py:2799 ../gramps/gui/merge/mergeperson.py:206
 #: ../gramps/plugins/export/exportvcalendar.py:149
 #: ../gramps/plugins/gramplet/ancestor.py:69
 #: ../gramps/plugins/gramplet/descendant.py:67
@@ -7879,7 +7879,7 @@ msgstr "Adoptado"
 msgid "Birth"
 msgstr "Nascimento"
 
-#: ../gramps/gen/lib/eventtype.py:202 ../gramps/gui/configure.py:2806
+#: ../gramps/gen/lib/eventtype.py:202 ../gramps/gui/configure.py:2805
 #: ../gramps/gui/merge/mergeperson.py:213
 #: ../gramps/plugins/export/exportvcalendar.py:158
 #: ../gramps/plugins/importer/importprogen.glade:1422
@@ -7897,7 +7897,7 @@ msgid "Adult Christening"
 msgstr "Baptismo em adulto"
 
 #: ../gramps/gen/lib/eventtype.py:204 ../gramps/gen/lib/ldsord.py:94
-#: ../gramps/gui/configure.py:2801
+#: ../gramps/gui/configure.py:2800
 msgid "Baptism"
 msgstr "Baptismo"
 
@@ -8012,7 +8012,7 @@ msgid "Will"
 msgstr "Testamento"
 
 #: ../gramps/gen/lib/eventtype.py:234 ../gramps/gen/plug/docgen/treedoc.py:223
-#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2803
+#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2802
 #: ../gramps/gui/merge/mergeperson.py:278
 #: ../gramps/plugins/export/exportcsv.py:581
 #: ../gramps/plugins/export/exportvcalendar.py:137
@@ -8045,7 +8045,7 @@ msgid "Engagement"
 msgstr "Noivado"
 
 #: ../gramps/gen/lib/eventtype.py:240 ../gramps/gen/utils/symbols.py:98
-#: ../gramps/gui/configure.py:2805 ../gramps/plugins/webreport/family.py:317
+#: ../gramps/gui/configure.py:2804 ../gramps/plugins/webreport/family.py:317
 msgid "Divorce"
 msgstr "Divórcio"
 
@@ -8817,7 +8817,7 @@ msgstr "Nota"
 msgid "Format"
 msgstr "Formato"
 
-#: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/configure.py:2206
+#: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/configure.py:2205
 #: ../gramps/gui/editors/editeventref.py:102
 #: ../gramps/gui/editors/editmediaref.py:121
 #: ../gramps/gui/editors/editplaceref.py:84
@@ -10145,7 +10145,7 @@ msgid "Not shown"
 msgstr "Não mostrado"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:94 ../gramps/gui/configure.py:105
-#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2640
+#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2639
 #: ../gramps/gui/displaystate.py:430 ../gramps/gui/views/pageview.py:652
 msgid "Preferences"
 msgstr "Preferências"
@@ -11492,7 +11492,7 @@ msgstr "Ilegítimo"
 msgid "Baptism/Christening"
 msgstr "Baptismo"
 
-#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2802
+#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2801
 msgid "Engaged"
 msgstr "Noivado"
 
@@ -11500,11 +11500,11 @@ msgstr "Noivado"
 msgid "Unmarried partnership"
 msgstr "União de facto"
 
-#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2808
+#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2807
 msgid "Buried"
 msgstr "Funeral"
 
-#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2809
+#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2808
 msgid "Cremated/Funeral urn"
 msgstr "Cremação"
 
@@ -11963,8 +11963,8 @@ msgstr "Separador Árvore: impossível alterar a primeira coluna \"%s\""
 msgid "Drag and drop the columns to change the order"
 msgstr "Arraste e largue as colunas para alterar a ordem"
 
-#: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2526
-#: ../gramps/gui/configure.py:2554 ../gramps/gui/configure.py:2583
+#: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2525
+#: ../gramps/gui/configure.py:2553 ../gramps/gui/configure.py:2582
 #: ../gramps/gui/plug/_dialogs.py:146 ../gramps/gui/viewmanager.py:1947
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
@@ -12101,8 +12101,8 @@ msgstr "Definição de formato inválida ou incompleta."
 #: ../gramps/gui/configure.py:1619 ../gramps/gui/configure.py:1640
 #: ../gramps/gui/configure.py:1658 ../gramps/gui/configure.py:1663
 #: ../gramps/gui/configure.py:1684 ../gramps/gui/configure.py:1700
-#: ../gramps/gui/configure.py:2134 ../gramps/gui/configure.py:2252
-#: ../gramps/gui/configure.py:2341 ../gramps/gui/plug/_windows.py:783
+#: ../gramps/gui/configure.py:2133 ../gramps/gui/configure.py:2251
+#: ../gramps/gui/configure.py:2340 ../gramps/gui/plug/_windows.py:783
 #: ../gramps/gui/plug/_windows.py:803 ../gramps/gui/plug/_windows.py:839
 #: ../gramps/gui/plug/_windows.py:847 ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:111
@@ -12225,7 +12225,7 @@ msgstr "Cores claras"
 msgid "Color scheme"
 msgstr "Esquema de cores"
 
-#: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2818
+#: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2817
 msgid "Restore to defaults"
 msgstr "Repor pré-definições"
 
@@ -12309,7 +12309,7 @@ msgstr "Contorno para Divorciado"
 msgid "Background for Home Person"
 msgstr "Fundo para Indivíduo inicial"
 
-#: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2815
+#: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2814
 #, python-format
 msgid "<b>%s</b>"
 msgstr "<b>%s</b>"
@@ -12545,7 +12545,7 @@ msgstr "Relação familiar pré-definida"
 msgid "Hide LDS tab in person and family editors"
 msgstr "Ocultar separador SUD nos editores individual e familiar"
 
-#: ../gramps/gui/configure.py:1715 ../gramps/gui/configure.py:2197
+#: ../gramps/gui/configure.py:1715 ../gramps/gui/configure.py:2196
 msgid "* Requires Restart"
 msgstr "* Requer reinício"
 
@@ -12736,8 +12736,8 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Mostrar ou ocultar o ícone de preferências na barra de ferramentas."
 
 #: ../gramps/gui/configure.py:2124
-msgid "Use default preference"
-msgstr "Utilizar a pré-definição"
+msgid "Both text and icons"
+msgstr "Texto e ícones"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
@@ -12747,32 +12747,28 @@ msgstr "Só texto"
 msgid "Icons only"
 msgstr "Só ícones"
 
-#: ../gramps/gui/configure.py:2127
-msgid "Both text and icons"
-msgstr "Texto e ícones"
-
-#: ../gramps/gui/configure.py:2132
+#: ../gramps/gui/configure.py:2131
 msgid "Display text, icons or both on the toolbar buttons."
 msgstr "Mostrar texto, ícones ou ambos nos botões das barras."
 
-#: ../gramps/gui/configure.py:2134
+#: ../gramps/gui/configure.py:2133
 msgid "Toolbar Style"
 msgstr "Estilo da barra de ferramentas"
 
-#: ../gramps/gui/configure.py:2142
+#: ../gramps/gui/configure.py:2141
 msgid "Show close button in gramplet bar tabs"
 msgstr "Mostrar botão de fecho nos separadores dos gramplets"
 
-#: ../gramps/gui/configure.py:2148
+#: ../gramps/gui/configure.py:2147
 msgid "Show close button to simplify removing gramplets from bars."
 msgstr ""
 "Mostrar botão de fecho para simplificar a remoção de gramplets das barras."
 
-#: ../gramps/gui/configure.py:2155
+#: ../gramps/gui/configure.py:2154
 msgid "Markup for invalid date format"
 msgstr "Marcação de formatos de data inválidos"
 
-#: ../gramps/gui/configure.py:2161
+#: ../gramps/gui/configure.py:2160
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -12803,11 +12799,11 @@ msgstr ""
 "Por exemplo: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "mostrará uma <u><b>data sublinhada e em negrito</b></u>.\n"
 
-#: ../gramps/gui/configure.py:2182
+#: ../gramps/gui/configure.py:2181
 msgid "Multiple surname box height"
 msgstr "Altura da caixa de múltiplos apelidos"
 
-#: ../gramps/gui/configure.py:2188
+#: ../gramps/gui/configure.py:2187
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
@@ -12815,15 +12811,15 @@ msgstr ""
 "Insira a altura em pixels. Quando são inseridos múltiplos apelidos, são "
 "mostrados numa caixa. Isto define o tamanho dessa caixa."
 
-#: ../gramps/gui/configure.py:2247
+#: ../gramps/gui/configure.py:2246
 msgid "Database Setting"
 msgstr "Configuração da base de dados"
 
-#: ../gramps/gui/configure.py:2252
+#: ../gramps/gui/configure.py:2251
 msgid "Database backend"
 msgstr "Motor de base de dados"
 
-#: ../gramps/gui/configure.py:2260
+#: ../gramps/gui/configure.py:2259
 msgid ""
 "\n"
 "Database Location"
@@ -12831,19 +12827,19 @@ msgstr ""
 "\n"
 "Localização da base de dados"
 
-#: ../gramps/gui/configure.py:2271
+#: ../gramps/gui/configure.py:2270
 msgid "Host"
 msgstr "Anfitrião"
 
-#: ../gramps/gui/configure.py:2275
+#: ../gramps/gui/configure.py:2274
 msgid "Port"
 msgstr "Porta"
 
-#: ../gramps/gui/configure.py:2284
+#: ../gramps/gui/configure.py:2283
 msgid "Database path"
 msgstr "Caminho da base de dados"
 
-#: ../gramps/gui/configure.py:2295
+#: ../gramps/gui/configure.py:2294
 msgid ""
 "\n"
 "Backup Management"
@@ -12851,43 +12847,43 @@ msgstr ""
 "\n"
 "Gestão de salvaguardas"
 
-#: ../gramps/gui/configure.py:2308
+#: ../gramps/gui/configure.py:2307
 msgid "Backup path"
 msgstr "Caminho das salvaguardas"
 
-#: ../gramps/gui/configure.py:2318
+#: ../gramps/gui/configure.py:2317
 msgid "Backup on exit"
 msgstr "Salvaguarda ao sair"
 
-#: ../gramps/gui/configure.py:2323
+#: ../gramps/gui/configure.py:2322
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr "Fazer uma salvaguarda da árvore ao sair, na pasta especificada acima."
 
-#: ../gramps/gui/configure.py:2331
+#: ../gramps/gui/configure.py:2330
 msgid "Every 15 minutes"
 msgstr "Cada 15 minutos"
 
-#: ../gramps/gui/configure.py:2332
+#: ../gramps/gui/configure.py:2331
 msgid "Every 30 minutes"
 msgstr "Cada 30 minutos"
 
-#: ../gramps/gui/configure.py:2333
+#: ../gramps/gui/configure.py:2332
 msgid "Every hour"
 msgstr "Cada hora"
 
-#: ../gramps/gui/configure.py:2334
+#: ../gramps/gui/configure.py:2333
 msgid "Every 12 hours"
 msgstr "Cada 12 horas"
 
-#: ../gramps/gui/configure.py:2335
+#: ../gramps/gui/configure.py:2334
 msgid "Every day"
 msgstr "Cada dia"
 
-#: ../gramps/gui/configure.py:2341
+#: ../gramps/gui/configure.py:2340
 msgid "Autobackup"
 msgstr "Salvaguarda automática"
 
-#: ../gramps/gui/configure.py:2348
+#: ../gramps/gui/configure.py:2347
 msgid ""
 "\n"
 "Family Tree's Media path"
@@ -12895,11 +12891,11 @@ msgstr ""
 "\n"
 "Caminho da multimédia da árvore"
 
-#: ../gramps/gui/configure.py:2361
+#: ../gramps/gui/configure.py:2360
 msgid "Base media path"
 msgstr "Caminho base da multimédia"
 
-#: ../gramps/gui/configure.py:2373
+#: ../gramps/gui/configure.py:2372
 msgid ""
 "The base relative media path is specific to the active family tree. It is "
 "not a global setting. Each family tree is able to have a unique relative "
@@ -12909,15 +12905,15 @@ msgstr ""
 "activa. Não é uma definição global. Cada árvore genealógica pode ter o seu "
 "próprio caminho relativo da multimédia, que é armazenado na base de dados."
 
-#: ../gramps/gui/configure.py:2394
+#: ../gramps/gui/configure.py:2393
 msgid "Tag Records"
 msgstr "Etiquetar registos"
 
-#: ../gramps/gui/configure.py:2416
+#: ../gramps/gui/configure.py:2415
 msgid "Add tag on import"
 msgstr "Adicionar etiqueta na importação"
 
-#: ../gramps/gui/configure.py:2423
+#: ../gramps/gui/configure.py:2422
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
@@ -12925,7 +12921,7 @@ msgstr ""
 "A etiqueta especificada será adicionada a todos os registos ao importar.\n"
 "Limpe para usar a pré-definição."
 
-#: ../gramps/gui/configure.py:2432
+#: ../gramps/gui/configure.py:2431
 msgid ""
 "\n"
 "Source GEDCOM import"
@@ -12933,20 +12929,20 @@ msgstr ""
 "\n"
 "Fonte na importação GEDCOM"
 
-#: ../gramps/gui/configure.py:2444
+#: ../gramps/gui/configure.py:2443
 msgid "Add default source on GEDCOM import"
 msgstr "Adicionar fonte pré-definida na importação GEDCOM"
 
-#: ../gramps/gui/configure.py:2451 ../gramps/gui/dbloader.py:400
+#: ../gramps/gui/configure.py:2450 ../gramps/gui/dbloader.py:400
 msgid "Import"
 msgstr "Importar"
 
-#: ../gramps/gui/configure.py:2520
+#: ../gramps/gui/configure.py:2519
 msgid "Select media directory"
 msgstr "Seleccionar a pasta multimédia"
 
-#: ../gramps/gui/configure.py:2524 ../gramps/gui/configure.py:2554
-#: ../gramps/gui/configure.py:2581 ../gramps/gui/dbloader.py:363
+#: ../gramps/gui/configure.py:2523 ../gramps/gui/configure.py:2553
+#: ../gramps/gui/configure.py:2580 ../gramps/gui/dbloader.py:363
 #: ../gramps/gui/dbloader.py:400 ../gramps/gui/editors/edittaglist.py:122
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:25
@@ -13006,15 +13002,15 @@ msgstr "Seleccionar a pasta multimédia"
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../gramps/gui/configure.py:2549
+#: ../gramps/gui/configure.py:2548
 msgid "Select database directory"
 msgstr "Seleccionar a pasta da base de dados"
 
-#: ../gramps/gui/configure.py:2577 ../gramps/gui/viewmanager.py:1942
+#: ../gramps/gui/configure.py:2576 ../gramps/gui/viewmanager.py:1942
 msgid "Select backup directory"
 msgstr "Seleccionar a pasta da salvaguarda"
 
-#: ../gramps/gui/configure.py:2652
+#: ../gramps/gui/configure.py:2651
 msgid ""
 "If checked, use the standard genealogic symbols (death symbol is user "
 "selectable).\n"
@@ -13026,7 +13022,7 @@ msgstr ""
 "Senão, pode utilizar o painel inferior para escolher os seus próprios "
 "símbolos."
 
-#: ../gramps/gui/configure.py:2659
+#: ../gramps/gui/configure.py:2658
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
@@ -13035,24 +13031,24 @@ msgstr ""
 "como se pronuncia um nome, ou se misturar múltiplos idiomas, como grego e "
 "russo."
 
-#: ../gramps/gui/configure.py:2665
+#: ../gramps/gui/configure.py:2664
 msgid "Use symbols"
 msgstr "Usar símbolos"
 
-#: ../gramps/gui/configure.py:2679
+#: ../gramps/gui/configure.py:2678
 msgid "Select default death symbol"
 msgstr "Seleccionar símbolo de falecido pré-definido"
 
-#: ../gramps/gui/configure.py:2689
+#: ../gramps/gui/configure.py:2688
 msgid "Genealogical Symbols"
 msgstr "Símbolos genealógicos"
 
-#: ../gramps/gui/configure.py:2720 ../gramps/gui/glade/editfamily.glade:142
+#: ../gramps/gui/configure.py:2719 ../gramps/gui/glade/editfamily.glade:142
 #: ../gramps/gui/glade/editfamily.glade:405
 msgid "Death:"
 msgstr "Óbito:"
 
-#: ../gramps/gui/configure.py:2804
+#: ../gramps/gui/configure.py:2803
 #: ../gramps/plugins/quickview/all_relations.py:345
 #: ../gramps/plugins/view/relview.py:498
 #: ../gramps/plugins/webreport/basepage.py:3168
@@ -13062,15 +13058,15 @@ msgstr "Óbito:"
 msgid "Partner"
 msgstr "Parceiro"
 
-#: ../gramps/gui/configure.py:2807
+#: ../gramps/gui/configure.py:2806
 msgid "Killed"
 msgstr "Morto"
 
-#: ../gramps/gui/configure.py:2811
+#: ../gramps/gui/configure.py:2810
 msgid "Default genealogy symbols replacement"
 msgstr "Pré-definição dos símbolos genealógicos"
 
-#: ../gramps/gui/configure.py:2824
+#: ../gramps/gui/configure.py:2823
 msgid ""
 "You can set any text you want for this field.\n"
 "You can drag and drop a symbol from the symbol list above.\n"
@@ -39997,6 +39993,9 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Sem folha de estilos"
+
+#~ msgid "Use default preference"
+#~ msgstr "Utilizar a pré-definição"
 
 #~ msgid ""
 #~ "Direct evidence for this person - birth: {birth_min_src:s}, death:  "
