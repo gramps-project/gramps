@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-12 22:44+0000\n"
-"PO-Revision-Date: 2025-01-27 18:10+0000\n"
+"PO-Revision-Date: 2025-02-14 17:46+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -4590,16 +4590,12 @@ msgstr ""
 "Notları, normal bir ifadeyle eşleşen metin içeren etkinliklerle eşleştirir"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "<tag> etiketi olan etkinlikler"
+msgstr "<type> türü bir nota sahip etkinlikler"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Belirtilen süzgeç adıyla eşleşen etkinliklerle eşleşir"
+msgstr "Etkinlikleri belirtilen türden bir notla eşleştirir"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4875,23 +4871,19 @@ msgstr "Notları bir alt dizeyle eşleşen metin içeren ailelerle eşleşir"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:42
 msgid "Families having notes containing <text>"
-msgstr "<Metin> içeren notlara sahip aileler"
+msgstr "<text> içeren notlara sahip aileler"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:44
 msgid "Matches families whose notes contain text matching a regular expression"
 msgstr "Notları normal bir ifadeyle eşleşen metin içeren ailelerle eşleşir"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "<Ad> adlı babası olan aileler"
+msgstr "<type> türü bir nota sahip aileler"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Belirtilen süzgeç adıyla eşleşen ailelerle eşleşir"
+msgstr "Aileleri belirtilen türde bir notla eşleştirir"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -5711,16 +5703,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Notları normal bir ifadeyle eşleşen metin içeren kişilerle eşleşir"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "<Ad türü> olan kişiler"
+msgstr "<type> türü bir nota sahip kişiler"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Belirli bir kişinin ataları olan kişilerle eşleşir"
+msgstr "İnsanları belirtilen türden bir notla eşleştirir"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:55
 msgid "People who are neither male nor female"
@@ -6369,16 +6357,12 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Notları normal bir ifadeyle eşleşen metin içeren yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "<tag> olan yerler"
+msgstr "<type> türü notu olan yerler"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Belirtilen süzgeç adıyla eşleşen yerleri eşleştirir"
+msgstr "Belirtilen türden bir notla eşleşen yerler"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:61
 msgid "Street:"
@@ -6770,16 +6754,12 @@ msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr "Notları normal bir ifadeyle eşleşen metin içeren kaynaklarla eşleşir"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "<tag> ile kaynaklar"
+msgstr "<type> türü notu olan kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "Belirtilen süzgeç adıyla eşleşen kaynakları eşleştirir"
+msgstr "Kaynakları belirtilen türden bir notla eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -7459,11 +7439,10 @@ msgid "unknown"
 msgstr "bilinmeyen"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "%s yıldan daha büyük"
+msgstr[0] "{number_of} yıllarından büyük"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -7878,10 +7857,8 @@ msgid "Child"
 msgstr "Çocuk"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "Çoklu ebeveyn"
+msgstr "Çoklu doğum"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
@@ -8532,10 +8509,8 @@ msgid "Type"
 msgstr "Tür"
 
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "Özel süzgeç"
+msgstr "Özel tür"
 
 #: ../gramps/gen/lib/grampstype.py:272
 #, fuzzy
@@ -8869,15 +8844,11 @@ msgid "Matrilineal"
 msgstr "Anaerkil"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Uğraşı"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
 msgstr "Konum"
@@ -11049,55 +11020,39 @@ msgstr "tarih geri dönüşü"
 #, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
-msgstr ""
+msgstr "Bu kişi için doğrudan bulgu - doğum: {birth_min_src}, ölüm: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
-msgstr "Annenin Yaşı"
+msgstr "annenin yaşı"
 
 #: ../gramps/gen/utils/alive.py:357
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
-msgstr "Babanın Yaşı"
+msgstr "babanın yaşı"
 
 #: ../gramps/gen/utils/alive.py:361
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "ölüm tarihi"
+msgstr "ölüm tarihinden itibaren"
 
 #: ../gramps/gen/utils/alive.py:365
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "Annenin Yaşı"
+msgstr "annenin ölümü"
 
 #: ../gramps/gen/utils/alive.py:370
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "Babanın Yaşı"
+msgstr "babanın ölümü"
 
 #: ../gramps/gen/utils/alive.py:374
-#, fuzzy
-#| msgid "%(person)s, birth"
 msgid "person's death"
-msgstr "%(person)s, doğum"
+msgstr "kişinin ölümü"
 
 #: ../gramps/gen/utils/alive.py:381
-#, fuzzy
-#| msgid "Not siblings"
 msgid "oldest sibling's age"
-msgstr "Kardeş değil"
+msgstr "en büyük kardeşin yaşı"
 
 #: ../gramps/gen/utils/alive.py:386
-#, fuzzy
-#| msgid "Not siblings"
 msgid "youngest sibling's age"
-msgstr "Kardeş değil"
+msgstr "en genç kardeşin yaşı"
 
 #: ../gramps/gen/utils/alive.py:429
 msgid "birth date and known to be dead"
@@ -11115,6 +11070,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
+"ebeveynlerden ve kardeşlerden çıkarılmış - doğum: {birth_min_src}, ölüm: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -11122,6 +11079,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"ebeveynlerden ve kardeşlerden çıkarılmış - doğum: {birth_min_src} (en erken) "
+"ila {birth_max_src} (en geç), ölüm: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11136,60 +11095,46 @@ msgid "event with spouse"
 msgstr "eş ile etkinlik"
 
 #: ../gramps/gen/utils/alive.py:765
-#, fuzzy, python-brace-format
-#| msgid "Max descendant generations"
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "En fazla descendant kuşağı"
+msgstr[0] "altsoy doğumu: {number_of} kuşak "
 
 #: ../gramps/gen/utils/alive.py:788
-#, fuzzy, python-brace-format
-#| msgid "Max descendant generations"
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "En fazla descendant kuşağı"
+msgstr[0] "altsoy ölümü: {number_of} kuşak "
 
 #: ../gramps/gen/utils/alive.py:803
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Veri tabanı hatası: %s'nin soyundan gelenlerinde döngü"
+msgstr "Veri tabanı hatası: %s'nin soyundan gelenlerde döngü."
 
 #: ../gramps/gen/utils/alive.py:855
-#, fuzzy
-#| msgid "Death before birth"
 msgid "mother birth "
-msgstr "Doğumdan önce ölüm"
+msgstr "anne doğumu "
 
 #: ../gramps/gen/utils/alive.py:859 ../gramps/gen/utils/alive.py:865
-#, fuzzy
-#| msgid "Death before birth"
 msgid "father birth "
-msgstr "Doğumdan önce ölüm"
+msgstr "baba doğumu "
 
 #: ../gramps/gen/utils/alive.py:873 ../gramps/gen/utils/alive.py:904
-#, fuzzy
-#| msgid "Ancestor"
 msgid "ancestor "
-msgstr "Atası"
+msgstr "atası "
 
 #: ../gramps/gen/utils/alive.py:879
-#, fuzzy
-#| msgid "Compute death age"
 msgid "mother death "
-msgstr "Ölüm yaşını hesapla"
+msgstr "anne ölümü "
 
 #: ../gramps/gen/utils/alive.py:883 ../gramps/gen/utils/alive.py:889
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "Ölüm yaşı"
+msgstr "baba ölümü "
 
 #: ../gramps/gen/utils/alive.py:962
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Veri tabanı hatası: %s'nin atalarında döngü"
+msgstr "Veri tabanı hatası: %s'nin atalarında döngü."
 
 #: ../gramps/gen/utils/alive.py:1044 ../gramps/gen/utils/alive.py:1053
 msgid "no evidence"
@@ -11952,6 +11897,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Gramps'ı başlatmak için orjson paketi gereklidir.\n"
+"\n"
+"Gramps şimdi sonlandırılıyor."
 
 #: ../gramps/grampsapp.py:323 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:408 ../gramps/grampsapp.py:425
@@ -12870,35 +12818,29 @@ msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Araç çubuğunda Tercihler simgesini göster veya gizle."
 
 #: ../gramps/gui/configure.py:2124
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "media references"
 msgid "Use default preference"
-msgstr "ortam referanslarında"
+msgstr "Varsayılan tercihi kullan"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Sadece yazı"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Yalnızca yeni eklentiler"
+msgstr "Yalnızca simgeler"
 
 #: ../gramps/gui/configure.py:2127
 msgid "Both text and icons"
-msgstr ""
+msgstr "Hem metin hem de simgeler"
 
 #: ../gramps/gui/configure.py:2132
 msgid "Display text, icons or both on the toolbar buttons."
 msgstr ""
+"Araç çubuğu düğmelerinde metin, simgeler veya her ikisini de görüntüleyin."
 
 #: ../gramps/gui/configure.py:2134
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "_Araç Çubuğu"
+msgstr "Araç Çubuğu Stili"
 
 #: ../gramps/gui/configure.py:2142
 msgid "Show close button in gramplet bar tabs"
@@ -14320,10 +14262,8 @@ msgid "_Names"
 msgstr "_Adlar"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Set as Preferred name"
-msgstr "Tercih edilen ad"
+msgstr "Tercih edilen ad olarak ayarlayın"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
@@ -15488,29 +15428,21 @@ msgstr "Yeni Yer"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:242
-#, fuzzy
-#| msgid ""
-#| "Invalid latitude\n"
-#| "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Geçersiz enlem\n"
-"(sözdizimi: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+"(söz dizimi: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:250
-#, fuzzy
-#| msgid ""
-#| "Invalid longitude\n"
-#| "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 "Geçersiz boylam\n"
-"(sözdizimi: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+"(söz dizimi: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:289
 #: ../gramps/plugins/lib/maps/geography.py:994
@@ -18170,10 +18102,8 @@ msgid "Metric"
 msgstr "Metrik"
 
 #: ../gramps/gui/glade/plugins.glade:22
-#, fuzzy
-#| msgid "Wiki"
 msgid "_Wiki"
-msgstr "Wiki"
+msgstr "_Viki"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -19379,10 +19309,8 @@ msgid "All statuses"
 msgstr "Tüm durumlar"
 
 #: ../gramps/gui/plug/_windows.py:463
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
-msgstr "Varsayılanlara geri yükle"
+msgstr "Eklenti süzgeçlerini varsayılana sıfırlayın"
 
 #: ../gramps/gui/plug/_windows.py:477
 msgid "Settings"
@@ -19417,38 +19345,28 @@ msgid "Insert a project"
 msgstr "Bir proje ekleyin"
 
 #: ../gramps/gui/plug/_windows.py:705
-#, fuzzy
-#| msgid "Remove the selected personal event"
 msgid "Remove the selected project"
-msgstr "Seçili kişisel etkinliği kaldır"
+msgstr "Seçilen projeyi kaldır"
 
 #: ../gramps/gui/plug/_windows.py:707
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "Çocuğu listede yukarı taşı"
+msgstr "Projeyi listede yukarı doğru hareket ettirin"
 
 #: ../gramps/gui/plug/_windows.py:709
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "Çocuğu listede aşağı taşı"
+msgstr "Projeyi listede aşağıya doğru hareket ettirin"
 
 #: ../gramps/gui/plug/_windows.py:711
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
-msgstr "Proje varsayılanlarını geri yükle"
+msgstr "Proje varsayılanına geri dön"
 
 #: ../gramps/gui/plug/_windows.py:748
 msgid "Allow Gramps to install required Python modules"
 msgstr "Gramps'in gerekli Python modüllerini yüklemesine izin ver"
 
 #: ../gramps/gui/plug/_windows.py:750
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "Gramps'in gerekli Python modüllerini yüklemesine izin ver"
+msgstr "Mümkün olduğunda, eksik ön koşul modüllerini kurmaya çalış"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Scheduled update checks"
@@ -23873,10 +23791,8 @@ msgid "Total people"
 msgstr "Kişi toplamı"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
+msgstr "Gramps_6.0_Viki_Kitapçığı_-_Grampletler#Gramplet_Listesi"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
 #, fuzzy
@@ -25074,10 +24990,8 @@ msgid "Unattached"
 msgstr "Bağlanmamış"
 
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
-#, fuzzy
-#| msgid "Number of ranks to display"
 msgid "Number of Surnames to display"
-msgstr "Görüntülenecek sıra sayısı"
+msgstr "Görüntülenecek soyadı sayısı"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
@@ -26171,22 +26085,16 @@ msgid "call"
 msgstr "seslenme"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "lakap"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "Laka_p:"
+msgstr "Lakap"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "lakap"
+msgstr "la_kap"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -34093,16 +34001,12 @@ msgid "The maximum number of ancestor generations"
 msgstr "Azami üstsoy kuşak sayısı"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
-#| msgid "Show gramps id"
 msgid "Show Gramps ID"
-msgstr "Gramps KNo göster"
+msgstr "Gramps KNo Göster"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
-msgstr "Gramps kimlik numaralarının dahil edilip edilmeyeceği"
+msgstr "Gramps KNo'nın gösterilip gösterilmeyeceği"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:390
 msgid "Whether to include spouses"
@@ -38122,10 +38026,9 @@ msgstr "Anlatı"
 
 #: ../gramps/plugins/webreport/basepage.py:904
 #: ../gramps/plugins/webreport/basepage.py:974
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr "(%(str1)s) %(str2)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1511
 #: ../gramps/plugins/webreport/basepage.py:3427
@@ -38180,7 +38083,7 @@ msgstr "Ev"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Isı haritaları"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -38210,7 +38113,7 @@ msgstr "Web Takvimi"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Isı haritası"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:440
@@ -38462,19 +38365,16 @@ msgid "Family Map for %s"
 msgstr "%s için Aile Haritası"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Olay sayfaları oluşturma"
+msgstr "Etkinlikler için ısı haritası sayfaları oluştur"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
 msgstr ""
+"Bir sonraki bölüm, ısı haritası için tüm etkinliklerin bir dizinini içerir."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Adı"
@@ -38490,19 +38390,17 @@ msgstr "%s harfi ile başlayan yerler"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Seçilen süzgeci test edin"
+msgstr "Seçilen süzgeç içinde %s için ısı haritası"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
 msgstr ""
+"Bir sonraki bölüm, ısı haritası için tüm soyadların bir dizinini içerir."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "Soyadı"
@@ -38510,6 +38408,7 @@ msgstr "Soyadı"
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr ""
+"Bir sonraki bölüm, ısı haritası için tüm etiketlerin bir dizinini içerir."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38517,14 +38416,14 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Bu bölüm, etkinliğe sahip tüm insanlar için haritayı içerir: {event_type} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Seçili süzgeci sil"
+msgstr " seçilen süzgeç için hiçbir etkinlik yoktur."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38532,6 +38431,7 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"Bu bölüm, tüm etkinliklerin haritasını içerir: {surname} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -38539,6 +38439,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"Bu bölüm tüm insanlar için {tag} ({selected_filter}) etiketli etkinliklerin "
+"haritasını içerir."
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -38598,7 +38500,7 @@ msgstr "Dosya taşındı veya silindi."
 #: ../gramps/plugins/webreport/media.py:458
 #: ../gramps/plugins/webreport/thumbnail.py:174
 msgid "This is a remote media"
-msgstr ""
+msgstr "Bu uzak bir ortam dosyası"
 
 #: ../gramps/plugins/webreport/media.py:639
 msgid "File Type"
@@ -38791,15 +38693,11 @@ msgid "Citation References Layout"
 msgstr "Alıntı Referansı Yerleşimi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Kaynak Sayfanın Alıntı Referansları bölümü için varsayılan düzeni belirleyin"
+"Kaynak sayfadaki alıntı referansları bölümünün varsayılan düzeni belirtin"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2233
 msgid "Include ancestor's tree"
@@ -38835,13 +38733,11 @@ msgstr "Bir bölümü açmak/kapatmak istiyorsanız işaretleyin"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2252
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Bir dizindeki en fazla satır"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Dahil edilecek azami ata sayısı."
+msgstr "Bir dizin sayfasına dahil edilecek en fazla satır sayısı"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2264
 msgid "Extra Pages"
@@ -39201,16 +39097,12 @@ msgid "Add a complete events list and relevant pages or not"
 msgstr "Tam bir etkinlik listesi ve ilgili sayfalar ekleyin veya eklemeyin"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2603
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "Diğer olayları dahil et"
+msgstr "Diğer rolleri dahil et"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2604
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "Bir etkinlik için notları gösteren Gramplet"
+msgstr "Bir etkinliğe başka rolleri olan kişileri ekleyin"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2607
 msgid "Include place pages"
@@ -39588,50 +39480,44 @@ msgstr ""
 "  tarihler tercihi sekmesinde tanımlanan 'muhtemelen yaşayan en fazla yaş'."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Yer Harita Seçenekleri"
+msgstr "Isı Haritası Seçenekleri"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Olay sayfalarını dahil et"
+msgstr "Isı haritası sayfalarını içer"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Ebeveynler için başka adların dahil edilip edilmeyeceği."
+msgstr "Etkinlikler için ısı haritası sayfalarının dahil edilip edilmeyeceği"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Yazı tipi boyutu"
+msgstr "Nokta boyutu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "Not metninin punto cinsinden boyutu."
+msgstr ""
+"Isı haritası noktalarının boyutunu ayarlayın.\n"
+"Varsayılan: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "Bulanık"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Bulanıklık boyutunu ayarlayın.\n"
+"Varsayılan: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
-msgstr ""
+msgstr "Yakınlık"
 
 #: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
@@ -39829,10 +39715,9 @@ msgid "Number of People"
 msgstr "Kişilerin sayısı"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
-#, fuzzy, python-brace-format
-#| msgid "Surnames beginning with letter '%s' %s"
+#, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "'%s' %s harfi ile başlayan soyadları"
+msgstr "'{letter}' {char} harfiyle başlayan soyadları"
 
 #: ../gramps/plugins/webreport/thumbnail.py:128
 msgid ""
