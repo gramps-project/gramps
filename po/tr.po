@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-12 22:44+0000\n"
-"PO-Revision-Date: 2025-02-14 17:46+0000\n"
+"PO-Revision-Date: 2025-02-14 22:15+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -2350,8 +2350,6 @@ msgstr "Ay Gün, Yıl"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
 msgstr "Ay Gün, Yıl"
 
@@ -2362,8 +2360,6 @@ msgstr "Gün Ay Yıl"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
 msgstr "Gün Ay Yıl"
 
@@ -3757,10 +3753,8 @@ msgid "Filter"
 msgstr "Süzgeç"
 
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "Veri okunuyor..."
+msgstr "Hazırlanıyor..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -4240,10 +4234,8 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:50
-#, fuzzy
-#| msgid "Note Filters"
 msgid "Note filters"
-msgstr "Not Süzgeçleri"
+msgstr "Not süzgeçleri"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
 msgid "Citations with a reference count of <count>"
@@ -23792,13 +23784,11 @@ msgstr "Kişi toplamı"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_6.0_Viki_Kitapçığı_-_Grampletler#Gramplet_Listesi"
+msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets/tr#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_5.2_Wiki_Manual_-_Tools#Hata Ayıklama"
+msgstr "Gramps_6.0_Wiki_Manual_-_Tools/tr#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
