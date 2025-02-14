@@ -131,9 +131,14 @@ class DbBsddb(SQLite):
         self.dbapi.begin()
         for old_name, table_name in tables:
             if not self.dbapi.column_exists(table_name, "blob_data"):
-                self.dbapi.execute(
-                    f"ALTER TABLE {table_name} ADD COLUMN blob_data BLOB;"
-                )
+                if table_name == "metadata":
+                    self.dbapi.execute(
+                        f"ALTER TABLE {table_name} ADD COLUMN value BLOB;"
+                    )
+                else:
+                    self.dbapi.execute(
+                        f"ALTER TABLE {table_name} ADD COLUMN blob_data BLOB;"
+                    )
         self.dbapi.commit()
 
         # Default new DBAPI uses "json" serializer
