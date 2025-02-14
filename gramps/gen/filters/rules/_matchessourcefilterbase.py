@@ -75,7 +75,7 @@ class MatchesSourceFilterBase(MatchesFilterBase):
 
         for citation_handle in object.citation_list:
             citation = db.get_citation_from_handle(citation_handle)
-            source = db.get_source_from_handle(citation.ref)
+            source = db.get_source_from_handle(citation.source_handle)
             if self.MSF_filt.apply_to_one(db, source):
                 return True
         return False

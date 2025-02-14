@@ -41,7 +41,7 @@ from .._hasgrampsid import HasGrampsId
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from ....lib.refbase import RefBase
+from ....lib import Citation
 from ....db import Database
 
 
@@ -58,6 +58,6 @@ class HasSourceIdOf(HasGrampsId):
     description = _("Matches a citation with a source with a specified Gramps " "ID")
     category = _("Source filters")
 
-    def apply_to_one(self, dbase: Database, citation: RefBase) -> bool:  # type: ignore[override]
-        source = dbase.get_source_from_handle(citation.ref)
+    def apply_to_one(self, dbase: Database, citation: Citation) -> bool:  # type: ignore[override]
+        source = dbase.get_source_from_handle(citation.source_handle)
         return HasGrampsId.apply_to_one(self, dbase, source)  # type: ignore[override]

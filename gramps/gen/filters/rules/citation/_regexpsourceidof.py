@@ -41,7 +41,7 @@ from .._regexpidbase import RegExpIdBase
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from ....lib.refbase import RefBase
+from ....lib import Citation
 from ....db import Database
 
 
@@ -63,6 +63,6 @@ class RegExpSourceIdOf(RegExpIdBase):
     )
     category = _("Source filters")
 
-    def apply_to_one(self, dbase: Database, citation: RefBase) -> bool:  # type: ignore[override]
-        source = dbase.get_source_from_handle(citation.ref)
+    def apply_to_one(self, dbase: Database, citation: Citation) -> bool:  # type: ignore[override]
+        source = dbase.get_source_from_handle(citation.source_handle)
         return RegExpIdBase.apply_to_one(self, dbase, source)

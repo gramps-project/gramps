@@ -45,7 +45,7 @@ from .._hasnoteregexbase import HasNoteRegexBase
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from ....lib.refbase import RefBase
+from ....lib import Citation
 from ....db import Database
 
 
@@ -67,6 +67,6 @@ class HasSourceNoteRegexp(HasNoteRegexBase):
     )
     category = _("Source filters")
 
-    def apply_to_one(self, db: Database, citation: RefBase) -> bool:  # type: ignore[override]
-        source = db.get_source_from_handle(citation.ref)
+    def apply_to_one(self, db: Database, citation: Citation) -> bool:  # type: ignore[override]
+        source = db.get_source_from_handle(citation.source_handle)
         return HasNoteRegexBase.apply_to_one(self, db, source)
