@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-12 22:44+0000\n"
-"PO-Revision-Date: 2025-02-09 08:03+0000\n"
+"PO-Revision-Date: 2025-02-13 04:02+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -18142,10 +18142,8 @@ msgid "Metric"
 msgstr "Metrisch"
 
 #: ../gramps/gui/glade/plugins.glade:22
-#, fuzzy
-#| msgid "Wiki"
 msgid "_Wiki"
-msgstr "Wiki"
+msgstr "_Wiki"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -38701,7 +38699,7 @@ msgstr "Het bestand is verplaatst of verwijderd."
 #: ../gramps/plugins/webreport/media.py:458
 #: ../gramps/plugins/webreport/thumbnail.py:174
 msgid "This is a remote media"
-msgstr ""
+msgstr "Dit is een media op afstand"
 
 #: ../gramps/plugins/webreport/media.py:639
 msgid "File Type"
