@@ -713,18 +713,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # run backend-specific code:
         self._initialize(directory, username, password)
 
-        need_to_set_version = False
         if not self._schema_exists():
             self._create_schema()
-            need_to_set_version = True
+            self.set_schema_version(str(self.VERSION[0]))
 
         if self.use_json_data():
             self.set_serializer("json")
         else:
             self.set_serializer("blob")
-
-        if need_to_set_version:
-            self._set_metadata("version", str(self.VERSION[0]))
 
         # Load metadata
         self.name_formats = self._get_metadata("name_formats")
@@ -2773,7 +2769,16 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_schema_version(self, value):
         """set the current schema version"""
+        # First, set anything in the old blob metadata needed
+        # To open properly in gramps 5.2 and earlier:
+        self.set_serializer("blob")
         self._set_metadata("version", str(value))
+
+        # And set the json data, if possible:
+        if self.use_json_data():
+            self.set_serializer("json")
+            self._set_metadata("version", str(value))
+            self._set_metadata("name_formats", [])
 
     def set_serializer(self, serializer_name):
         """

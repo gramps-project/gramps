@@ -60,6 +60,7 @@ class BlobSerializer:
     and string is pickled bytes.
     """
 
+    name = "blob"
     data_field = "blob_data"
     metadata_field = "value"
 
@@ -112,6 +113,7 @@ class JSONSerializer:
     and string is a JSON string.
     """
 
+    name = "json"
     data_field = "json_data"
     metadata_field = "json_data"
 

@@ -110,6 +110,11 @@ def gramps_upgrade_21(self):
 
     self.set_serializer("json")
     self._set_metadata("version", 21, use_txn=False)
+    # Set the blob metadata "version" so that old version of gramps
+    # will know what version it is
+    self.set_serializer("blob")
+    self._set_metadata("version", 21, use_txn=False)
+    self.set_serializer("json")
     self._txn_commit()
     # Bump up database version. Separate transaction to save metadata.
 

@@ -208,7 +208,8 @@ class DBAPI(DbGeneric):
             "CREATE TABLE metadata "
             "("
             "setting VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            "json_data TEXT, "
+            "value BLOB"
             ")"
         )
         self.dbapi.execute(
@@ -410,6 +411,38 @@ class DBAPI(DbGeneric):
             )
         if use_txn:
             self._txn_commit()
+
+        if self.serializer.name == "json":
+            # For compatibility with old Gramps versions:
+            self._set_metadata_blob(key, value, use_txn)
+
+    def _set_metadata_blob(self, key, value, use_txn=True):
+        """
+        key: string
+        value: item, will be serialized here
+
+        Note: if use_txn, then begin/commit txn
+
+        Note: assumes json serializer
+        """
+        self.set_serializer("blob")
+        if use_txn:
+            self._txn_begin()
+        self.dbapi.execute("SELECT 1 FROM metadata WHERE setting = ?", [key])
+        row = self.dbapi.fetchone()
+        if row:
+            self.dbapi.execute(
+                f"UPDATE metadata SET {self.serializer.metadata_field} = ? WHERE setting = ?",
+                [self.serializer.object_to_metadata(value), key],
+            )
+        else:
+            self.dbapi.execute(
+                f"INSERT INTO metadata (setting, {self.serializer.metadata_field}) VALUES (?, ?)",
+                [key, self.serializer.object_to_metadata(value)],
+            )
+        if use_txn:
+            self._txn_commit()
+        self.set_serializer("json")
 
     def get_name_group_keys(self):
         """
