@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-12 22:44+0000\n"
-"PO-Revision-Date: 2025-02-13 19:33+0000\n"
+"PO-Revision-Date: 2025-02-14 21:15+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-rc\n"
+"X-Generator: Weblate 5.10\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -775,12 +775,13 @@ msgid ""
 "org/bugs/ and creating a Feature Request. Filing a Feature Request is "
 "preferred but it can be good to discuss your ideas on the email lists."
 msgstr ""
-"<b>Verbesserung von Gramps</b><br/>Anwender werden ermutigt, Verbesserungen "
-"für Gramps vorzuschlagen. Verbesserungsvorschläge können entweder durch die "
-"Gramps-Benutzer oder gramps-devel-Mailinglisten gestellt werden, oder indem "
-"du auf https://gramps-project.org/bugs/ eine Funktionsanfrage erstellst. Das "
-"Einreichen einer Funktionsanfrage wird bevorzugt, aber es kann auch gut "
-"sein, deine Ideen auf den Email-Listen zu diskutieren."
+"<b>Verbesserung von Gramps</b><br/>Benutzerinnen und Benutzer werden "
+"ermutigt, Verbesserungen für Gramps vorzuschlagen. Verbesserungsanfragen "
+"können durch die Mailverteiler gramps-users oder gramps-devel gestellt "
+"werden, oder indem du auf https://gramps-project.org/bugs/ eine "
+"Funktionsanfrage erstellst. Das Einreichen einer Funktionsanfrage wird "
+"bevorzugt, aber es kann gut sein, deine Ideen auf den Email-Listen zu "
+"diskutieren."
 
 #: ../data/tips.xml:62
 msgid ""
@@ -790,12 +791,12 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
-"<b>Gramps-Mailinglisten</b><br/> Willst du Antworten auf deine Fragen zu "
-"Gramps? Probiere die Mailingliste gramps-users aus. Viele Menschen stehen "
-"auf der Liste. Du bekommst normalerweise schnell eine Antwort. Hast du "
-"Fragen zur Entwicklung von Gramps, probiere die Mailingliste gramps-devel. "
-"Du kannst die Listen durch die Auswahl von \"Hilfe > Gramps-Mailinglisten\" "
-"sehen."
+"<b>Gramps-Mailverteiler</b><br/> Willst du Antworten auf deine Fragen zu "
+"Gramps? Probiere den Mailverteiler gramps-users aus. Viele Menschen stehen "
+"auf der Liste, so bekommst du üblicherweise schnell eine Antwort. Wenn du "
+"Fragen zur Entwicklung von Gramps hast, probiere den Mailverteiler gramps-"
+"devel aus. Du kannst die Verteiler durch Auswahl von "
+"\"Hilfe > Gramps-Mailverteiler\" sehen."
 
 #: ../data/tips.xml:64
 msgid ""
@@ -808,12 +809,13 @@ msgid ""
 "Gramps Mailing Lists\"."
 msgstr ""
 "<b>Zu Gramps beitragen</b><br/>Willst du bei Gramps helfen, kannst aber "
-"nicht programmieren? Kein Problem! Ein so großes Projekt wie Gramps benötigt "
-"Menschen mit vielen unterschiedlichen Qualifikationen. Mitarbeit kann sowohl "
-"das Schreiben von Dokumentation, das Testen von Entwicklungsversionen als "
-"auch das Helfen bei der Webseite beinhalten. Beginne mit dem Eintragen in "
-"die Gramps-Entwickler-Mailingliste gramps-devel und arbeite dich ein. "
-"Informationen zum Anmelden findest du unter \"Hilfe > Gramps-Mailinglisten\"."
+"nicht programmieren? Kein Problem! Ein so großes Projekt wie Gramps braucht "
+"Menschen mit vielen unterschiedlichen Fähigkeiten. Mitarbeit kann sowohl das "
+"Schreiben von Dokumentation, das Testen von Entwicklungsversionen als auch "
+"das Helfen bei der Webseite beinhalten. Beginne mit dem Eintragen in den "
+"Mailverteiler gramps-devel für Gramps-Entwickler und stell dich vor. "
+"Informationen zur Anmeldung findest du unter \"Hilfe > Gramps-Mailverteiler\""
+"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -826,12 +828,12 @@ msgid ""
 msgstr ""
 "<b>Namen sind Schall und Rauch</b><br/>Der Name Gramps wurde dem "
 "ursprünglichen Entwickler Don Allingham von seinem Vater vorgeschlagen. Er "
-"bedeutet <i>Genealogical Research and Analysis Management Program System "
-"(auf Deutsch: Genealogisches Recherche- und Analyse-Management-Programm-"
+"bedeutet <i>Genealogical Research and Analysis Management Program System ("
+"auf Deutsch: Genealogisches Recherche- und Analyse-Management-Programm-"
 "System)</i>. Es ist ein umfangreiches Ahnenforschungsprogramm um "
 "genealogische Daten zu speichern, zu bearbeiten und zu durchforsten. Das "
-"Datenbank-Backend von Gramps ist so robust, dass einige Benutzer Stammbäume "
-"mit Hunderttausenden Personen damit verwalten."
+"Datenbank-Backend von Gramps ist so robust, dass einige Benutzerinnen und "
+"Benutzer Stammbäume mit Hunderttausenden Personen damit verwalten."
 
 #: ../data/tips.xml:68
 msgid ""
@@ -958,10 +960,11 @@ msgid ""
 "importing and exporting GEDCOM files trivial."
 msgstr ""
 "<b>Das GEDCOM-Dateiformat</b><br/>Gramps erlaubt das Importieren aus und das "
-"Exportieren in das GEDCOM-Format. Es existiert eine weit verbreitete "
-"Unterstützung für den Industriestandard GEDCOM in Version 5.5, sodass du "
-"einfach Gramps-Informationen mit den meisten Nutzern von anderen "
-"Ahnenforschungsprogrammen austauschen kannst."
+"Exportieren in das GEDCOM-Format. Es gibt umfangreiche Unterstützung für den "
+"Industriestandard GEDCOM Version 5.5, sodass du einfach Gramps-Informationen "
+"mit den meisten Benutzerinnen und Benutzern von anderen "
+"Ahnenforschungsprogrammen austauschen kannst. Es gibt Filter, die das "
+"Importieren und Exportieren von GEDCOM-Dateien vereinfachen."
 
 #: ../data/tips.xml:88
 msgid ""
@@ -972,13 +975,13 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>Das Gramps XML-Paket</b><br/>Du kannst deinen Stammbaum in ein Gramps XML-"
+"<b>Das Gramps XML-Paket</b><br/>Du kannst deinen Stammbaum in ein Gramps-XML-"
 "Paket exportieren. Dieses Paket ist eine komprimierte Datei, in der deine "
 "Stammbaumdaten und Mediendateien, wie z.B. Bilder, enthalten sind. Diese "
-"Datei ist komplett portabel und somit besonders für Backups oder den "
-"Austausch mit anderen Gramps Anwendern geeignet. Dieses Format hat den "
-"Hauptvorteil gegenüber GEDCOM, das beim Export oder Import keine "
-"Informationen verloren gehen."
+"Datei ist vollständig portabel und somit besonders für Backups oder den "
+"Austausch mit anderen Benutzerinnen und Benutzern von Gramps geeignet. "
+"Dieses Format hat den Hauptvorteil gegenüber GEDCOM, dass beim Export oder "
+"Import keine Informationen verloren gehen."
 
 #: ../data/tips.xml:90
 msgid ""
@@ -1057,9 +1060,10 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Weitere Berichte und Werkzeuge</b><br/>Weitere Berichte und Werkzeuge "
-"können in Gramps als Erweiterungen hinzugefügt werden. Siehe unter \"Hilfe > "
-"Weitere Berichte/Werkzeuge\". Dies ist für fortgeschrittene Anwender der "
-"beste Weg zum Experimentieren und um neue Funktionen zu erstellen."
+"können in Gramps als Erweiterungen hinzugefügt werden. Siehe unter "
+"\"Hilfe > Weitere Berichte/Werkzeuge\". Dies ist für fortgeschrittene "
+"Benutzerinnen und Benutzer der beste Weg zum Experimentieren und um neue "
+"Funktionen zu erstellen."
 
 #: ../data/tips.xml:104
 msgid ""
@@ -1080,8 +1084,8 @@ msgid ""
 "\"Help > Gramps Mailing Lists\"."
 msgstr ""
 "<b>Gramps-Ankündigungen</b><br/>Bist du daran interessiert, benachrichtigt "
-"zu werden, wenn eine neue Version von Gramps erscheint? Tritt der Gramps-"
-"Mailingliste unter \"Hilfe > Gramps-Mailinglisten\" bei."
+"zu werden, wenn eine neue Version von Gramps erscheint? Trage dich in den "
+"Mailverteiler gramps-announce unter \"Hilfe > Gramps-Mailverteiler\" ein."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1214,9 +1218,9 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
-"<b>Gramps für Gnome oder KDE?</b><br/>Für Linux-Anwender läuft Gramps "
-"hervorragend auf jeder Desktopumgebung, die du bevorzugst. Hauptsache, die "
-"benötigten GTK-Bibliotheken sind installiert."
+"<b>Gramps für Gnome oder KDE?</b><br/>Für Benutzerinnen und Benutzer von "
+"Linux läuft Gramps hervorragend, egal welche Desktopumgebung du bevorzugst. "
+"Hauptsache, die benötigten GTK-Bibliotheken sind installiert."
 
 #: ../gramps/cli/arghandler.py:233
 #, python-format
@@ -1477,7 +1481,7 @@ msgid ""
 msgstr ""
 "\n"
 "Aufruf: gramps [OPTION...]\n"
-"  --load-modules=MODUL1,MODUL2,...     Dynamische Module zum nachladen\n"
+"  --load-modules=MODUL1,MODUL2,...     Dynamische Module zum Nachladen\n"
 "\n"
 "Hilfeoptionen\n"
 "  -?, --help                             Zeigt diese Hilfe an\n"
@@ -9698,7 +9702,7 @@ msgstr "Exporteur"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
 msgid "Document creator"
-msgstr "Ersteller des Dokuments"
+msgstr "Erstellerin/Ersteller des Dokuments"
 
 #: ../gramps/gen/plug/_pluginreg.py:125
 msgid "Plugin library"
@@ -9740,7 +9744,7 @@ msgstr "Miniaturbildgenerator"
 
 #: ../gramps/gen/plug/_pluginreg.py:134 ../gramps/gui/configure.py:1663
 msgid "Citation formatter"
-msgstr "Fundstellenformatierer"
+msgstr "Fundstellenformatierung"
 
 #: ../gramps/gen/plug/_pluginreg.py:645
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
@@ -12830,43 +12834,43 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2059
 msgid "Show Clipboard icon on toolbar"
-msgstr "Zwischenablagesymbol in der Symbolleiste einblenden"
+msgstr "Symbol für Zwischenablage in der Symbolleiste einblenden"
 
 #: ../gramps/gui/configure.py:2064
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr "Zwischenablagesymbol in Symbolleiste ein-/ausblenden."
+msgstr "Symbol für Zwischenablage in Symbolleiste ein-/ausblenden."
 
 #: ../gramps/gui/configure.py:2072
 msgid "Show Reports icon on toolbar"
-msgstr "Berichtesymbol in Symbolleiste einblenden"
+msgstr "Symbol für Berichte in Symbolleiste einblenden"
 
 #: ../gramps/gui/configure.py:2077
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr "Berichtesymbol in Symbolleiste ein-/ausblenden."
+msgstr "Symbol für Berichte in Symbolleiste ein-/ausblenden."
 
 #: ../gramps/gui/configure.py:2085
 msgid "Show Tools icon on toolbar"
-msgstr "Werkzeugsymbol in Symbolleiste einblenden"
+msgstr "Symbol für Werkzeuge in Symbolleiste einblenden"
 
 #: ../gramps/gui/configure.py:2090
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr "Werkzeugsymbol in Symbolleiste ein-/ausblenden."
+msgstr "Symbol für Werkzeuge in Symbolleiste ein-/ausblenden."
 
 #: ../gramps/gui/configure.py:2098
 msgid "Show Addons icon on toolbar"
-msgstr "Erweiterungensymbol in der Symbolleiste einblenden"
+msgstr "Symbol für Erweiterungen in der Symbolleiste einblenden"
 
 #: ../gramps/gui/configure.py:2103
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Erweiterungensymbol in der Symbolleiste ein-/ausblenden."
+msgstr "Symbol für Erweiterungen in der Symbolleiste ein-/ausblenden."
 
 #: ../gramps/gui/configure.py:2111
 msgid "Show Preferences icon on toolbar"
-msgstr "Einstellungensymbol in Symbolleiste einblenden"
+msgstr "Symbol für Einstellungen in Symbolleiste einblenden"
 
 #: ../gramps/gui/configure.py:2116
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr "Einstellungensymbol in Symbolleiste ein-/ausblenden."
+msgstr "Symbol für Einstellungen in Symbolleiste ein-/ausblenden."
 
 #: ../gramps/gui/configure.py:2124
 msgid "Use default preference"
@@ -13160,7 +13164,7 @@ msgid ""
 "yourself."
 msgstr ""
 "Wenn diese Option aktiviert ist, werden die Standard-Genealogiesymbole "
-"verwendet (das Sterbesymbol kann vom Benutzer ausgewählt werden).\n"
+"verwendet (das Sterbesymbol kann selbst ausgesucht werden).\n"
 "Wenn diese Option nicht aktiviert ist, kannst du die Symbole in der unteren "
 "Leiste selbst anpassen."
 
@@ -18669,7 +18673,7 @@ msgstr "Gramps-_Homepage"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Gramps _Mailing Lists"
-msgstr "Gramps-_Mailinglisten"
+msgstr "Gramps-_Mailverteiler"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Make Backup..."
@@ -19068,9 +19072,9 @@ msgid ""
 "Gramps is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
 msgstr ""
-"Gramps ist ein Open-Source-Projekt. Sein Erfolg hängt von seinen Benutzern "
-"ab. Benutzer-Feedback ist wichtig. Danke, dass du dir für das Ausfüllen "
-"eines Fehlerberichts Zeit genommen hast."
+"Gramps ist ein Open-Source-Projekt. Sein Erfolg hängt von seinen "
+"Benutzerinnen und Benutzern ab. Feedback ist wichtig. Danke, dass du dir für "
+"das Ausfüllen eines Fehlerberichts Zeit genommen hast."
 
 #: ../gramps/gui/logger/_errorview.py:48
 msgctxt "manual"
@@ -21354,7 +21358,7 @@ msgstr "Gramplet-Layout"
 
 #: ../gramps/gui/widgets/grampletpane.py:1686
 msgid "Use maximum height available"
-msgstr "Verwende maximale verfügbare Höhe"
+msgstr "Verwende maximal verfügbare Höhe"
 
 #: ../gramps/gui/widgets/grampletpane.py:1694
 msgid "Height if not maximized"
@@ -25206,8 +25210,9 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
-"Auf den Mailinglisten und im Discourse-Forum gibt es eine aktive "
-"Gemeinschaft von Nutzern, die Ideen und Techniken austauschen.\n"
+"In den Mailverteilern und im Discourse-Forum gibt es eine aktive "
+"Gemeinschaft von Nutzerinnen und Nutzern, die Ideen und Techniken "
+"austauschen.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:143
@@ -25216,7 +25221,7 @@ msgstr "Gramps online Handbuch"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:146
 msgid "Ask questions on gramps-users mailing list"
-msgstr "Fragen an die Mailing-Liste gramps-users stellen"
+msgstr "Fragen im Mailverteiler gramps-users stellen"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:152
 msgid "Gramps Discourse Forum"
@@ -35711,10 +35716,9 @@ msgid ""
 "does this by prepending the base path as given in the Preferences, or if "
 "that is not set, it prepends user's directory."
 msgstr ""
-"Dieses Werkzeug erlaubt es, relative Medienpfade in absolute zu "
-"konvertieren. Dabei wird der in den Einstellungen angegebene Basispfad "
-"vorangestellt oder, wenn dieser nicht festgelegt ist, das "
-"Benutzerverzeichnis vorangestellt."
+"Dieses Werkzeug ermöglicht die Umwandlung relativer in absolute Medienpfade. "
+"Dabei wird der in den Einstellungen angegebene Basispfad vorangestellt oder, "
+"wenn dieser nicht festgelegt ist, das Benutzerverzeichnis vorangestellt."
 
 #: ../gramps/plugins/tool/mediamanager.py:637
 msgid "Convert paths from absolute to r_elative"
@@ -35727,9 +35731,9 @@ msgid ""
 "Preferences, or if that is not set, user's directory. A relative path allows "
 "to tie the file location to a base path that can change to your needs."
 msgstr ""
-"Dieses Werkzeug erlaubt es, absolute Medienpfade in relative zu "
-"konvertieren. Der relative Pfad ist relativ zum Basispfad, wie er in den "
-"Voreinstellungen angegeben ist oder, wenn dieser nicht festgelegt ist, zum "
+"Dieses Werkzeug ermöglicht die Umwandlung absoluter in relative Medienpfade. "
+"Der relative Pfad ist relativ zum Basispfad, wie er in den Voreinstellungen "
+"angegeben ist oder, wenn dieser nicht festgelegt ist, zum "
 "Benutzerverzeichnis. Ein relativer Pfad ermöglicht es, den Speicherort der "
 "Datei an einen Basispfad zu binden, der sich nach deinen Bedürfnissen ändern "
 "kann."
@@ -36549,7 +36553,7 @@ msgstr "Daten überprüfen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:468
 msgid "Verifies the data against user-defined tests"
-msgstr "Überprüft die Daten gegen benutzerdefinierte Tests"
+msgstr "Überprüft die Daten anhand benutzerdefinierter Tests"
 
 #: ../gramps/plugins/tool/tools.gpr.py:493
 msgid ""
@@ -38590,11 +38594,11 @@ msgid ""
 "download page and files have the same copyright as the remainder of these "
 "web pages."
 msgstr ""
-"Auf dieser Seite teilt der Ersteller/Anwender dieses Stammbaums bzw. dieser "
-"Erzählenden Website ein paar die Familie betreffenden Dateien mit dir. Falls "
-"Dateien unten gelistet sind, kannst du sie durch Anklicken herunterladen. "
-"Die Downloadseite und -dateien unterliegen demselben Copyright wie der Rest "
-"der Website."
+"Auf dieser Seite teilt die Benutzerin/Erstellerin bzw. der Benutzer/"
+"Ersteller dieses Stammbaums bzw. dieser Erzählenden Website ein paar die "
+"Familie betreffenden Dateien mit dir. Falls  untenDateien aufgeführt werden, "
+"kannst du sie durch Anklicken herunterladen. Die Downloadseite und -dateien "
+"unterliegen demselben Copyright wie der Rest der Website."
 
 #: ../gramps/plugins/webreport/download.py:128
 msgid "File Name"
