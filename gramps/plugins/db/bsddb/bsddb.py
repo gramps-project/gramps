@@ -236,7 +236,8 @@ class DbBsddb(SQLite):
                         # These are list, but need to be set
                         data = set(data)
 
-                    self._set_metadata(key.decode("utf-8"), data)
+                    if data is not None:
+                        self._set_metadata(key.decode("utf-8"), data)
                 else:
                     # Not metadata, but gramps object
                     self._txn_begin()
