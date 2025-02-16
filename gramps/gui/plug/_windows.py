@@ -433,7 +433,7 @@ class AddonManager(ManagedWindow):
         self.projects = config.get("behavior.addons-projects")
         # strip the incoming URLs to avoid any leading or trailing whitespace
         for project in self.projects:
-            project[1] = project[1].strip() 
+            project[1] = project[1].strip()
         self.project_combo = Gtk.ComboBoxText()
         self.project_combo.set_entry_text_column(0)
         self.project_combo.connect("changed", self.__combo_changed)
