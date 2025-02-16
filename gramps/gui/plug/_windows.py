@@ -431,6 +431,9 @@ class AddonManager(ManagedWindow):
         hbox.pack_start(self.addon_combo, False, False, 0)
 
         self.projects = config.get("behavior.addons-projects")
+        # strip the incoming URLs to avoid any leading or trailing whitespace
+        for project in self.projects:
+            project[1] = project[1].strip() 
         self.project_combo = Gtk.ComboBoxText()
         self.project_combo.set_entry_text_column(0)
         self.project_combo.connect("changed", self.__combo_changed)
@@ -863,7 +866,7 @@ class AddonManager(ManagedWindow):
             if row.project[0] == "":
                 self.project_list.add(row)
             row.project[0] = name.get_text()
-            row.project[1] = url.get_text()
+            row.project[1] = url.get_text().strip()
             row.update()
             self.update_project_list()
             self.refresh()
