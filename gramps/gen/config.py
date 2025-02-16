@@ -174,7 +174,7 @@ register("behavior.surname-guessing", 0)
 register("behavior.translator-needed", True)
 register("behavior.use-tips", False)
 register("behavior.welcome", 100)
-register("behavior.web-search-url", "http://google.com/#&q=%(text)s")
+register("behavior.web-search-url", "https://google.com/search?q=%(text)s")
 register(
     "behavior.addons-url",
     "https://raw.githubusercontent.com/gramps-project/addons/master/gramps60",
