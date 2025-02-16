@@ -281,7 +281,7 @@ gramps(1)                4.0.0               gramps(1)
         opção de ajuda.
 
         A documentação para desenvolvedores pode ser encontrada na 
-        página https://developers.gramps-project.org.
+        página https://www.gramps-project.org/wiki/index.php?title=Portal:Developers.
 
 
 
