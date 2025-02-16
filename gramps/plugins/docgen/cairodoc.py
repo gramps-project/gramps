@@ -81,7 +81,7 @@ class CairoDocgen(libcairodoc.CairoDoc):
 
     def create_cairo_surface(self, fobj, width_in_points, height_in_points):
         # See
-        # http://cairographics.org/documentation/pycairo/3/reference/surfaces.html#class-pssurface-surface
+        # https://cairographics.org/documentation/pycairo/3/reference/surfaces.html#class-pssurface-surface
         # for the arg semantics.
         raise "Missing surface factory override!!!"
 

@@ -17,7 +17,7 @@ Which will produce the html output in docs/_build/html
 Documentation Guidelines
 =======================
 
-Doc strings in python files should be written in reStructured text: http://docutils.sourceforge.net/docs/user/rst/quickref.html
+Doc strings in python files should be written in reStructured text: https://docutils.sourceforge.net/docs/user/rst/quickref.html
 
 The typical docstring for Gramps should look like this:
 
@@ -62,7 +62,7 @@ the order).
 
 For a class, use :cvar variable: for class variable, :ivar variable: for instance class
 variable, .. attribute:: attribute: for attributes, .... 
-See http://sphinx-doc.org/markup/ and http://sphinx-doc.org/markup/inline.html
+See https://sphinx-doc.org/markup/ and https://sphinx-doc.org/markup/inline.html
 
 Tips and Tricks
 ===============

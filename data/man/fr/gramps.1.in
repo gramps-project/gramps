@@ -312,7 +312,7 @@ besoins
 .TP
 .B \fBAUTEURS\fP
 Donald Allingham <\fI\%don@gramps\-project.org\fP>
-\fI\%http://gramps\-project.org/\fP
+\fI\%https://gramps\-project.org/\fP
 .sp
 Cette page man a d\(aqabord été écrite par :
 Brandon L. Griffith <\fI\%brandon@debian.org\fP>
@@ -329,7 +329,7 @@ La documentation\-utilisateur est disponible par un navigateur
 standard sous la forme du manuel Gramps.
 .sp
 La documentation pour développeur est disponible sur le site
-\fI\%http://www.gramps\-project.org/wiki/index.php?title=Portal:Developers\fP .
+\fI\%https://www.gramps\-project.org/wiki/index.php?title=Portal:Developers\fP .
 .UNINDENT
 .sp
 gramps(1)                 @VERSION@               gramps(1)

@@ -2133,7 +2133,7 @@ class TestcaseGenerator(tool.BatchTool):
 
         if isinstance(obj, Url):
             obj.set_path(
-                "http://www.gramps-project.org/?test=%s" % self.rand_text(self.SHORT)
+                "https://www.gramps-project.org/?test=%s" % self.rand_text(self.SHORT)
             )
             obj.set_description(self.rand_text(self.SHORT))
             obj.set_type(self.rand_type(UrlType()))

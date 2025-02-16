@@ -289,7 +289,7 @@ Förutom att skapa utskrift på skrivare direkt, kan rapportgeneratorer ha andra
 .SH FÖRFATTARE
 Donald Allingham \fI<don@gramps-project.org>\fR
 .br 
-\fIhttp://gramps.sourceforge.net\fR
+\fIhttps://gramps.sourceforge.net\fR
 .LP 
 Denna man-sida skrevs ursprungligen av:
 .br 
@@ -313,4 +313,4 @@ som \fBgramps-manual.xml\fR under \fIdoc/gramps-manual/$LANG\fR i den officiella
 källdistributionen. Dock ej på svenska. 
 .LP 
 Utvecklingsdokumentationen kan hittas på
-\fIhttp://developers.gramps-project.org\fR. 
+\fIhttps://developers.gramps-project.org\fR. 

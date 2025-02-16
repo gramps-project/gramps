@@ -50,7 +50,7 @@ __all__ = ["Html"]
 #
 # XHTML DOCTYPE constants to be used in <!DOCTYPE ... > statements
 #
-# Reference: http://www.w3.org/QA/2002/04/valid-dtd-list.html
+# Reference: https://www.w3.org/QA/2002/04/valid-dtd-list.html
 #
 # ------------------------------------------------------------------------
 
@@ -304,7 +304,7 @@ class Html(list):
         :returns:        reference to the newly-created Html instance
 
         For full usage of the Html class with examples, please see the wiki
-        page at: http://www.gramps-project.org/wiki/index.php?title=Libhtml
+        page at: https://www.gramps-project.org/wiki/index.php?title=Libhtml
         """
         # Replace super(Html, self) with list
         # Issue with Python 2.6 and reload of plugin

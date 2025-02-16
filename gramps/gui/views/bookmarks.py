@@ -504,7 +504,7 @@ class CitationBookmarks(ListBookmarks):
             # citation. This can occur when in the Citation Tree View and we
             # bookmark a source.
 
-            # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
+            # FIXME: See https://www.gramps-project.org/bugs/view.php?id=6352 a
             # more comprehensive solution is needed in the long term. See also
             # change_active in CitatinTreeView
             from ..dialog import WarningDialog

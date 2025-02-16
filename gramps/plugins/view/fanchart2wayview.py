@@ -24,7 +24,7 @@
 ##   http://www.cs.utah.edu/~draperg/research/fanchart/demo/
 
 ## Found by redwood:
-## http://www.gramps-project.org/bugs/view.php?id=2611
+## https://www.gramps-project.org/bugs/view.php?id=2611
 
 # -------------------------------------------------------------------------
 #

@@ -241,7 +241,7 @@ gramps(1)			     3.4.0			     gramps(1)
 
 **AUTEURS**
        Donald Allingham <don@gramps-project.org>
-       http://gramps-project.org/
+       https://gramps-project.org/
 
        Deze man pagina werd oorspronkelijk geschreven door:
        Brandon L. Griffith <brandon@debian.org>
@@ -258,7 +258,7 @@ gramps(1)			     3.4.0			     gramps(1)
        De gebruikersdocumentatie is beschikbaar via browser in de webstek.
 
        De  ontwikkelingsdocumentatie kan gevonden worden op de 
-       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
+       https://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
        webstek.
 
 

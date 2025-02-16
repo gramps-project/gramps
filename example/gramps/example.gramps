@@ -28386,7 +28386,7 @@
         <citationref hlink="_c140d5e5dbf300411bf"/>
       </attribute>
       <attribute type="Description" value="10 fingers, 10 toes."/>
-      <url  href="http://www.gramps-project.org/" type="Web Home"/>
+      <url  href="https://www.gramps-project.org/" type="Web Home"/>
       <childof hlink="_8OUJQCUVZ0XML7BQLF"/>
       <parentin hlink="_9OUJQCBOHW9UEK9CNV"/>
       <personref hlink="_VJFKQCFO7WESWPNKHE" rel="Godfather">
@@ -65750,7 +65750,7 @@
         <state>ST</state>
         <country>USA</country>
       </address>
-      <url  href="http://library.gramps-project.org" type="Web Home"/>
+      <url  href="https://library.gramps-project.org" type="Web Home"/>
       <noteref hlink="_ac3804aac6b762b75a5"/>
     </repository>
     <repository handle="_b39fe38593f3f8c4f12" change="1234370614" id="R0000">
@@ -65762,7 +65762,7 @@
         <state>MT</state>
         <country>USA</country>
       </address>
-      <url  href="http://great-falls.org" type="Web Home"/>
+      <url  href="https://great-falls.org" type="Web Home"/>
       <noteref hlink="_b39fe2e143d1e599450"/>
     </repository>
   </repositories>
@@ -65779,7 +65779,7 @@
     <note handle="_ac380498c020c7bcdc7" change="1185438865" id="N0003" type="Person Note">
       <text>We have committed to synergistically disseminate resource-leveling methods of empowerment to set us apart from the competition. We envision to globally integrate inexpensive paradigms and professionally engineer timely technology while promoting personal employee growth. Our mission is to assertively build world-class methods of empowerment so that we may professionally promote parallel services to set us apart from the competition. It's our responsibility to dramatically maintain value-added services as well as to professionally simplify principle-centered technology for 100% customer satisfaction.
 
-Thanks to the Mission Statement Generator from http://www.dilbert.com.</text>
+Thanks to the Mission Statement Generator from https://www.dilbert.com.</text>
     </note>
     <note handle="_ac3804a1d66258b8e13" change="1185438865" id="N0004" type="Attribute Note">
       <text>Courtesy of pyschoanalyze-pinhead from Emacs.
@@ -66054,7 +66054,7 @@ __MEDIA_wrong id__</text>
       <style name="link" value="gramps://Person/handle/GNUJQCL9MD64AM56OH">
         <range start="355" end="371"/>
       </style>
-      <style name="link" value="http://blog.codinghorror.com/">
+      <style name="link" value="https://blog.codinghorror.com/">
         <range start="621" end="639"/>
       </style>
       <style name="link" value="gramps://Source/handle/VUBKMQTA2XZG1V6QP8">
