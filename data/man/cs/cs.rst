@@ -258,7 +258,7 @@ gramps(1)			     3.4.0			     gramps(1)
 
 **AUTOŘI**
        Donald Allingham <don@gramps-project.org>
-       http://gramps-project.org/
+       https://gramps-project.org/
 
        Originální manuálovou stránku vytvořil:
        Brandon L. Griffith <brandon@debian.org>
@@ -275,7 +275,7 @@ gramps(1)			     3.4.0			     gramps(1)
        manual/$LANG v oficiální distribuci zdrojového kódu.
 
        Dokumentace  pro  vývojáře  je  k  dispozici  na  webu
-       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers
+       https://www.gramps-project.org/wiki/index.php?title=Portal:Developers
 
 
 

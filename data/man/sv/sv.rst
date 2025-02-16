@@ -255,7 +255,7 @@ Gramps(1)			     3.4.0			     Gramps(1)
 
 **FÖRFATTARE**
        Donald Allingham <don@gramps-project.org>
-       http://gramps-project.org/
+       https://gramps-project.org/
 
        Denna man-sida skrevs ursprungligen av:
        Brandon L. Griffith <brandon@debian.org>
@@ -275,7 +275,7 @@ Gramps(1)			     3.4.0			     Gramps(1)
        källdistributionen. Dock ej på svenska.
 
        Utvecklingsdokumentationen kan hittas på
-       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
+       https://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
 
 
 Januari 2013			     4.0.0			     Gramps(1)

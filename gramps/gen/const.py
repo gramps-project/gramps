@@ -60,11 +60,11 @@ PROGRAM_NAME = "Gramps"
 # Standard Gramps Websites
 #
 # -------------------------------------------------------------------------
-URL_HOMEPAGE = "http://gramps-project.org/"
-URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
-URL_BUGHOME = "http://gramps-project.org/bugs"
-URL_BUGTRACKER = "http://gramps-project.org/bugs/bug_report_page.php"
-URL_WIKISTRING = "http://gramps-project.org/wiki/index.php?title="
+URL_HOMEPAGE = "https://gramps-project.org/"
+URL_MAILINGLIST = "https://sourceforge.net/mail/?group_id=25770"
+URL_BUGHOME = "https://gramps-project.org/bugs"
+URL_BUGTRACKER = "https://gramps-project.org/bugs/bug_report_page.php"
+URL_WIKISTRING = "https://gramps-project.org/wiki/index.php?title="
 URL_MANUAL_PAGE = "Gramps_%s_Wiki_Manual" % major_version
 URL_MANUAL_DATA = "%s_-_Entering_and_editing_data:_detailed" % URL_MANUAL_PAGE
 URL_MANUAL_SECT1 = "%s_-_part_1" % URL_MANUAL_DATA

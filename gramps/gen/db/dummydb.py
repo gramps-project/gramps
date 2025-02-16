@@ -77,7 +77,7 @@ LOG = logging.getLogger(DBLOGNAME)
 
 # -------------------------------------------------------------------------
 #
-# some magic, see http://stackoverflow.com/questions/11349183/how-to-wrap-every-
+# some magic, see https://stackoverflow.com/questions/11349183/how-to-wrap-every-
 # method-of-a-class
 #
 # This processes the DummyDb class for diagnostic purposes to wrap each method
@@ -141,7 +141,7 @@ class M_A_M_B(ABCMeta, MetaClass):
     error: "metaclass conflict: the metaclass of a derived class must be a (non-
     strict) subclass of the metaclasses of all its bases"
 
-    See recipe: http://code.activestate.com/recipes/204197-solving-the-
+    See recipe: https://code.activestate.com/recipes/204197-solving-the-
     metaclass-conflict/
     """
 

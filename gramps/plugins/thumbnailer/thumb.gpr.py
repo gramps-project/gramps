@@ -40,7 +40,7 @@ register(
     fname="gnomethumb.py",
     thumbnailer="GnomeThumb",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
 )
 
 register(
@@ -55,5 +55,5 @@ register(
     fname="imagethumb.py",
     thumbnailer="ImageThumb",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
 )
