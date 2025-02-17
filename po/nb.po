@@ -21,16 +21,16 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-03 13:09+0000\n"
+"PO-Revision-Date: 2025-02-16 01:18+0000\n"
 "Last-Translator: Harald Herreros <h.herreros@proton.me>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/nb_NO/>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -3612,10 +3612,8 @@ msgid "Filter"
 msgstr "Filter"
 
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "Leser data..."
+msgstr "Forbereder..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -8359,8 +8357,6 @@ msgid "Custom type"
 msgstr "Tilpasset type"
 
 #: ../gramps/gen/lib/grampstype.py:272
-#, fuzzy
-#| msgid "Type face"
 msgid "Type code"
 msgstr "Skrifttype"
 
@@ -10861,15 +10857,11 @@ msgid "date fallback"
 msgstr "alternativ dato"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Direct evidence for this person - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
-"Direkte bevis for denne personen - fødsel: {birth_min_src:s}, død: "
-"{death_src:s}"
+"Direkte bevis for denne personen - fødsel: {birth_min_src}, død: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 msgid "mother's age"
@@ -10912,28 +10904,21 @@ msgid "offset from birth date"
 msgstr "forskyvning fra fødselsdato"
 
 #: ../gramps/gen/utils/alive.py:448
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth: {birth_min_src:s}, death: "
-#| "{death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
-"utledet fra foreldre og søsken - fødsel: {birth_min_src:s}, død: {death_src:"
-"s}"
+"utledet fra foreldre og søsken - fødsel: {birth_min_src}, død: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) "
-#| "to {birth_max_src:s} (latest), death: {death_src:s}"
+#, python-brace-format
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
-"utledet fra foreldre og søsken - fødsel:  {birth_min_src:s} (tidligst) til "
-"{birth_max_src:s} (senest), død: {death_src:s}"
+"utledet fra foreldre og søsken - fødsel: {birth_min_src} (tidligst) til "
+"{birth_max_src} (senest), død: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11746,23 +11731,14 @@ msgstr ""
 "Gramps vil avslutte nå."
 
 #: ../gramps/grampsapp.py:227
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "You don't have the python3 bsddb3 package installed. This package is "
-#| "needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
 msgid ""
 "The orjson package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Pakken orjson er nødvendig for å starte Gramps.\n"
 "\n"
-"Du har ikke pakken python3 bsddb3 installert.  Denne pakken behøves for å "
-"starte Gramps.\n"
-"\n"
-"Gramps vil avslutte nå."
+"Gramps avsluttes nå."
 
 #: ../gramps/grampsapp.py:323 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:408 ../gramps/grampsapp.py:425
@@ -17969,10 +17945,8 @@ msgid "Metric"
 msgstr "Metrisk"
 
 #: ../gramps/gui/glade/plugins.glade:22
-#, fuzzy
-#| msgid "Wiki"
 msgid "_Wiki"
-msgstr "Wiki"
+msgstr "_Wiki"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -26568,7 +26542,7 @@ msgid ""
 "Copy Default Text\n"
 "to all Tag Text'."
 msgstr ""
-"Kopier standardtekst\n"
+"Kopier standard tekst\n"
 "til alle etikettekster."
 
 #: ../gramps/plugins/importer/importprogen.glade:1072
@@ -26576,16 +26550,16 @@ msgid ""
 "Copy Default Filename\n"
 "to all sensitive Tag Text'."
 msgstr ""
-"Kopier Standard Filnavn\n"
-"til alle sensitive Etikett-Tekster."
+"Kopier standard filnavn\n"
+"til alle sensitive etikettekster."
 
 #: ../gramps/plugins/importer/importprogen.glade:1089
 msgid ""
 "Copy Default Date\n"
 "to all sensitive Tag Text'."
 msgstr ""
-"Kopier Standard Dato\n"
-"til all sensitiv Etikett-Tekster."
+"Kopier standard dato\n"
+"til alle sensitive etikettekster."
 
 #: ../gramps/plugins/importer/importprogen.glade:1102
 msgid "  Objects"
@@ -37905,7 +37879,7 @@ msgstr "Forside"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Varmekart"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -37935,7 +37909,7 @@ msgstr "Nettkalender"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Varmekart"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:440
@@ -38187,19 +38161,15 @@ msgid "Family Map for %s"
 msgstr "Slektskart for %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Lager side over hendelser"
+msgstr "Oppretter varmekartsider for hendelser"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
-msgstr ""
+msgstr "Neste seksjon inneholder en indeks over alle hendelser i varmekartet."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Navn"
@@ -38215,26 +38185,23 @@ msgstr "Steder som begynner med bokstaven %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Test det valgte filteret"
+msgstr "Varmekart for %s innenfor det valgte filteret"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
-msgstr ""
+msgstr "Neste seksjon inneholder en indeks over alle etternavn i varmekartet."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "Etternavn"
 
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
-msgstr ""
+msgstr "Neste seksjon inneholder en indeks over alle etiketter i varmekartet."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38242,14 +38209,14 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Denne seksjonen inneholder kartet for alle personer med hendelsen: "
+"{event_type} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Slett det valgte filteret"
+msgstr " som ikke har noen hendelse for det valgte filteret."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38257,6 +38224,8 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"Denne seksjonen inneholder kartet over alle hendelser for: {surname} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -38264,6 +38233,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"Denne seksjonen inneholder kartet for alle personer, hendelser med etiketten:"
+" {tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -38322,7 +38293,7 @@ msgstr "Filen har blitt flyttet eller slettet."
 #: ../gramps/plugins/webreport/media.py:458
 #: ../gramps/plugins/webreport/thumbnail.py:174
 msgid "This is a remote media"
-msgstr ""
+msgstr "Dette er et eksternt medie"
 
 #: ../gramps/plugins/webreport/media.py:639
 msgid "File Type"
@@ -39292,52 +39263,44 @@ msgstr ""
 "datoinnstillinger."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Innstillinger for Stedskart"
+msgstr "Varmekartalternativer"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Inkluder hendelsessider"
+msgstr "Inkluder varmekartsider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Om alternative navn for foreldre skal tas med."
+msgstr "Om varmekartsider for hendelser skal inkluderes"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Skriftstørrelse"
+msgstr "Punktstørrelse"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "Notattekstens størrelse (antall punkter)."
+msgstr ""
+"Angi størrelsen på varmekartpunktene.\n"
+"Standard: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "Uskarphet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Angi uskarphetsstørrelse.\n"
+"Standard: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
-#, fuzzy
-#| msgid "Zoom In"
 msgid "Zoom"
-msgstr "Forstørre"
+msgstr "Zoom"
 
 #: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
