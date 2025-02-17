@@ -610,7 +610,7 @@ class Convert2Abs(BatchOp):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = data_to_opject(data)
+                obj = data_to_object(data)
                 if not os.path.isabs(obj.path):
                     self.handle_list.append(handle)
                     self.path_list.append(obj.path)
