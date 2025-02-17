@@ -1150,11 +1150,11 @@ class EditFamily(EditPrimary):
         if orig_handle != new_handle:
             if orig_handle:
                 person = self.db.get_person_from_handle(orig_handle)
-                person.family_list.remove(self.obj.handle)
+                person.remove_family_handle(self.obj.handle)
                 self.db.commit_person(person, trans)
             if new_handle:
                 person = self.db.get_person_from_handle(new_handle)
-                person.family_list.append(self.obj.handle)
+                person.add_family_handle(self.obj.handle)
                 self.db.commit_person(person, trans)
 
     def on_drag_fatherdata_received(self, widget, context, x, y, sel_data, info, time):
