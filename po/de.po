@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-13 19:33+0000\n"
+"PO-Revision-Date: 2025-02-16 01:18+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-rc\n"
+"X-Generator: Weblate 5.10\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -19595,7 +19595,7 @@ msgstr "Überprüfung von Erweiterungen fehlgeschlagen"
 #: ../gramps/gui/plug/_windows.py:964
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
-"Der Erweiterung-Aufbewahrungsort scheint nicht verfügbar zu sein. Bitte "
+"Der Aufbewahrungsort für Erweiterung scheint nicht verfügbar zu sein. Bitte "
 "versuche es später noch einmal."
 
 #: ../gramps/gui/plug/_windows.py:979
@@ -20312,7 +20312,7 @@ msgstr "Konfiguration"
 #: ../gramps/gui/plug/report/_styleeditor.py:132
 #: ../gramps/gui/plug/report/_styleeditor.py:304
 msgid "Style"
-msgstr "Format"
+msgstr "Stil"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:375
 #: ../gramps/plugins/drawreport/ancestortree.py:897
@@ -22789,7 +22789,7 @@ msgstr "Erzeugt Fächerdiagramme"
 #: ../gramps/plugins/drawreport/statisticschart.py:971
 #: ../gramps/plugins/drawreport/statisticschart.py:973
 msgid "Statistics Charts"
-msgstr "Statistik-Diagramme"
+msgstr "Statistikdiagramme"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:209
 msgid "Produces statistical bar and pie charts of the people in the database"
@@ -22992,7 +22992,7 @@ msgstr "Anzahl der Kinder"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:447
 msgid "Age at marriage"
-msgstr "Alter bei der Heirat"
+msgstr "Alter bei der Eheschließung"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:453
 msgid "Age at death"
@@ -39460,7 +39460,7 @@ msgstr "Ereignisseiten einbeziehen"
 #: ../gramps/plugins/webreport/narrativeweb.py:2600
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
-"Hinzufügen einer vollständigen Ereignisliste und relevanter Seiten oder nicht"
+"Eine vollständige Ereignisliste und relevante Seiten hinzufügen oder nicht"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2603
 msgid "Include other roles"
