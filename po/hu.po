@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-09 19:28+0000\n"
+"PO-Revision-Date: 2025-02-16 01:18+0000\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hu/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2910,7 +2910,7 @@ msgstr "Extra"
 #: ../gramps/gen/datehandler/_datestrings.py:205
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr "Muharram"
+msgstr "Megtiltott (Muharram)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:206
 msgctxt "Islamic month lexeme"
@@ -10042,7 +10042,7 @@ msgstr "PDF (Ghostscript)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1170
 msgid "PDF (Graphviz)"
-msgstr "PDF (Graphviz)"
+msgstr "PDF fájl (Graphviz)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1180
 #: ../gramps/plugins/docgen/docgen.gpr.py:161
@@ -18009,10 +18009,8 @@ msgid "Metric"
 msgstr "Metrikus"
 
 #: ../gramps/gui/glade/plugins.glade:22
-#, fuzzy
-#| msgid "Wiki"
 msgid "_Wiki"
-msgstr "Wiki"
+msgstr "_Wiki"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -22061,10 +22059,10 @@ msgid_plural ""
 " {person}, {nyears}"
 msgstr[0] ""
 "{wife} és\n"
-" {person}, {nyears}"
+"{person}, {nyears}"
 msgstr[1] ""
 "{wife} és\n"
-" {person}, {nyears}"
+"{person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:602
 #: ../gramps/plugins/webreport/webcal.py:1853
@@ -24610,9 +24608,9 @@ msgid ""
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[0] ""
-" {max_count_person} személyből {count_person} személy ({percent} kész)\n"
+" {max_count_person} személyből {count_person} személy ({percent}-a kész)\n"
 msgstr[1] ""
-" {max_count_person} személyből {count_person} személy ({percent} kész)\n"
+" {max_count_person} személyből {count_person} személy ({percent}-a kész)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:305
 msgid "All generations"
@@ -38486,7 +38484,7 @@ msgstr "A fájl mozgatva, vagy törölve lett."
 #: ../gramps/plugins/webreport/media.py:458
 #: ../gramps/plugins/webreport/thumbnail.py:174
 msgid "This is a remote media"
-msgstr ""
+msgstr "Ez nem helyi média"
 
 #: ../gramps/plugins/webreport/media.py:639
 msgid "File Type"
