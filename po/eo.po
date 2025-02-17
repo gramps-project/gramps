@@ -5,7 +5,7 @@
 # translation of template.po to Esperanto
 # Copyright (C) YEAR ORGANIZATION
 #
-# Pier Luigi Cinquantini <plcinquantini@gmail.com>, 2003, 2014, 2017, 2018, 2023.
+# Pier Luigi Cinquantini <plcinquantini@gmail.com>, 2003, 2014, 2017, 2018, 2023, 2025.
 # Robin van der Vliet <info@robinvandervliet.com>, 2018.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Michael <moralesmike14@gmail.com>, 2022.
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2023-02-15 19:39+0000\n"
+"PO-Revision-Date: 2025-02-17 03:25+0000\n"
 "Last-Translator: Pier Luigi Cinquantini <plcinquantini@gmail.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/eo/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 5.10\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -373,7 +373,6 @@ msgid "GeneWeb source file"
 msgstr "Fontdosiero de GeneWeb"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
@@ -381,10 +380,9 @@ msgid ""
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
 "<b>Labori per datoj</b><br/>Oni povas doni intervalon de datoj utiligante la "
-"formaton &quot;inter la 4a de januaro 2000 kaj la 2a de marto 2003&quot;. "
-"Oni povas ankaŭ indiki la nivelon de konfido pri dato kaj eĉ elekti inter "
-"sep malsamaj kalendaroj. Provu la butonon apud la datkampo en la "
-"Eventoredaktilo."
+"formaton \"inter la 4a de januaro 2000 kaj la 2a de marto 2003\". Oni povas "
+"ankaŭ indiki la nivelon de konfido pri dato kaj eĉ elekti inter sep malsamaj "
+"kalendaroj. Provu la butonon apud la datkampo en la Eventoredaktilo."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -438,7 +436,6 @@ msgstr ""
 "grandaj rakontojn. Ne forgesu surbendigi la konversaciojn!"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -450,14 +447,13 @@ msgid ""
 "visible, select View > Sidebar."
 msgstr ""
 "<b>Filtrado de la Personoj</b><br/>En la Person-vido, vi povas 'filtri' "
-"individuojn laŭ multaj kriterioj. Por difini novan filtrilon iru al &quot;"
-"Redaktu&gt; Persona Filtrilredaktilo&quot;.  Tie vi povas nomi vian "
-"filtrilon kaj aldoni kaj kombini regulojn uzante la tie jam ĉeestantajn. "
-"Ekzemple, vi povas difini filtrilon por trovi ĉiujn adoptitajn gefilojn en "
-"la genealogia arbo. Ankaŭ personoj sen naskiĝdato estos filtritaj. Por "
-"ricevi la rezultojn konservu vian filtrilonkaj elektu ĝin ĉe la malsupro de "
-"la Filtrila Flanka Breto, tiam alklaku Apliku. Se la Filtrila Flanka Breto "
-"ne videblas, elektu Vidigu &gt; Filtrilo."
+"individuojn laŭ multaj kriterioj. Por difini novan filtrilon iru al "
+"\"Redaktu > Persona Filtrilredaktilo\". Tie vi povas nomi vian filtrilon kaj "
+"aldoni kaj kombini regulojn uzante la tie jam ĉeestantajn. Ekzemple, vi "
+"povas difini filtrilon por trovi ĉiujn adoptitajn gefilojn en la genealogia "
+"arbo. Ankaŭ personoj sen naskiĝdato estos filtritaj. Por ricevi la rezultojn "
+"konservu vian filtrilon. Poste elektu ĝin ĉe la Filtrila Flanka Breto, tiam "
+"alklaku Trovu. Se la Flanka Breto ne videblas, elektu Vidigu > Flanka Breto."
 
 #: ../data/tips.xml:16
 #, fuzzy
@@ -1394,9 +1390,8 @@ msgid "Database needs recovery, cannot open it!"
 msgstr "La datumbazo bezonas riparon, ne eblas malfermi ĝin!"
 
 #: ../gramps/cli/arghandler.py:584
-#, fuzzy
 msgid "Database backend unavailable, cannot open it!"
-msgstr "La datumbazo estas blokita, ne eblas malfermi ĝin!"
+msgstr "La interna datumbazo ne estas disponebla, ne eblas malfermi ĝin!"
 
 #: ../gramps/cli/arghandler.py:635 ../gramps/cli/arghandler.py:692
 #: ../gramps/cli/arghandler.py:740
@@ -1705,11 +1700,13 @@ msgid "Trying to open: %s ..."
 msgstr "Provas malfermi; %s ..."
 
 #: ../gramps/cli/argparser.py:326
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
+"WARNING: %(strerr)s (errno=%(errno)s):\n"
+"WARNING: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:336
 #, python-format
@@ -2332,194 +2329,194 @@ msgid "Day Mon Year"
 msgstr "Tago Monato Jaro"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:183
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:190
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:197
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:204
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:211
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:217
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:223
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:229
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:235
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:241
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:245
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:252
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:259
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:266
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:273
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:279
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:285
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:291
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:297
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:303
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
@@ -2608,33 +2605,33 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:540
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:676
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{long_month} {day:d}, {year}"
-msgstr ""
+msgstr "{long_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:702
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{short_month} {day:d}, {year}"
-msgstr ""
+msgstr "{short_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:728
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{day:d} {long_month} {year}"
-msgstr ""
+msgstr "{day:d} {long_month} {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:754
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{day:d} {short_month} {year}"
-msgstr ""
+msgstr "{day:d} {short_month} {year}"
 
 #: ../gramps/gen/datehandler/_dateparser.py:509
 msgid "today"
@@ -3150,14 +3147,14 @@ msgstr "ĉirkaŭ "
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "de "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "ĝis "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
@@ -3329,6 +3326,11 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
+"Datumbaza konekto malsukcesis.\n"
+"\n"
+"%(message)s\n"
+"Bonvolu kontroli la agordaran dosieron:\n"
+"%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:213
 #, fuzzy, python-format
@@ -4047,11 +4049,11 @@ msgstr "Neniu priskribo"
 
 #: ../gramps/gen/filters/rules/_rule.py:112
 msgid "The filter definition contains a loop."
-msgstr ""
+msgstr "La filtrila difino entenas iteracion."
 
 #: ../gramps/gen/filters/rules/_rule.py:114
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "Unu regulo referencas al alia kiu, tre verŝajne referencas al la unua."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 msgid "Every citation"
@@ -6552,13 +6554,15 @@ msgstr "Kongruas kun lokoj kun difinita distanco de alia loko"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:94
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "Ne eblas uzi la filtrilon 'en la areo'"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:96
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"La loko elektita entenas malbonajn koordinatojn. Bonvolu ruli la ilon "
+"'forigu la enmetitajn datumojn'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:46
 msgid "Every repository"
@@ -7691,7 +7695,7 @@ msgstr "intervalo"
 
 #: ../gramps/gen/lib/date.py:2006
 msgid "from"
-msgstr ""
+msgstr "de"
 
 #: ../gramps/gen/lib/date.py:2007
 #, fuzzy
@@ -7900,7 +7904,7 @@ msgstr "Tro da gepatroj"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Amiko"
 
 #: ../gramps/gen/lib/eventroletype.py:89
 #, fuzzy
@@ -7909,8 +7913,9 @@ msgid "Neighbor"
 msgstr "Proksimeco"
 
 #: ../gramps/gen/lib/eventroletype.py:90
+#, fuzzy
 msgid "Officiator"
-msgstr ""
+msgstr "Celebranto"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -9524,8 +9529,9 @@ msgstr "Ligilo"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:75
 #: ../gramps/gui/widgets/styledtexteditor.py:84
+#, fuzzy
 msgid "Strikethrough"
-msgstr ""
+msgstr "Trastrekita"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:76
 #: ../gramps/gui/widgets/styledtexteditor.py:84
@@ -9697,11 +9703,11 @@ msgstr "Nestabila"
 
 #: ../gramps/gen/plug/_pluginreg.py:70
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperimenta"
 
 #: ../gramps/gen/plug/_pluginreg.py:71
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: ../gramps/gen/plug/_pluginreg.py:72
 msgid "Stable"
@@ -9709,11 +9715,11 @@ msgstr "Stabila"
 
 #: ../gramps/gen/plug/_pluginreg.py:80
 msgid "Developer"
-msgstr ""
+msgstr "Programisto"
 
 #: ../gramps/gen/plug/_pluginreg.py:80
 msgid "Expert"
-msgstr ""
+msgstr "Spertulo"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
 #, fuzzy
@@ -10261,7 +10267,7 @@ msgstr "Meza"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Short"
-msgstr ""
+msgstr "Mallonga"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 #, fuzzy
@@ -10287,7 +10293,7 @@ msgstr "Familinomo, Antaŭnomo"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Auto"
-msgstr ""
+msgstr "Aŭtomata"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
 #, fuzzy
@@ -10302,8 +10308,9 @@ msgid "Whole Given Name"
 msgstr "Antaŭnomo"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:86
+#, fuzzy
 msgid "Above"
-msgstr ""
+msgstr "Supre"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:87
 #, fuzzy
@@ -10323,11 +10330,11 @@ msgstr "Agordoj"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Down (↓)"
-msgstr ""
+msgstr "Malsupren (↓)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:99
 msgid "Up (↑)"
-msgstr ""
+msgstr "Supren (↓)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:100
 #, fuzzy
@@ -10336,11 +10343,11 @@ msgstr "Dekstra"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:101
 msgid "Left (←)"
-msgstr ""
+msgstr "Maldekstren (←)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:105
 msgid "Perpendicular"
-msgstr ""
+msgstr "Perpendikulara"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:107
 #, fuzzy
@@ -10349,15 +10356,15 @@ msgstr "nedifinita"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:111
 msgid "Swing"
-msgstr ""
+msgstr "Oscila"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:114
 msgid "Mesh"
-msgstr ""
+msgstr "Maŝo"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:120
 msgid "Tiny"
-msgstr ""
+msgstr "Eta"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:121
 #, fuzzy
@@ -10371,7 +10378,7 @@ msgstr "Suba paĝotitolo"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:123
 msgid "Small"
-msgstr ""
+msgstr "Malgranda"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:124 ../gramps/gen/utils/string.py:64
 #: ../gramps/gui/editors/editcitation.py:240
@@ -10387,36 +10394,32 @@ msgid "Large"
 msgstr "Larĝo"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:126
-#, fuzzy
 msgid "Very large"
-msgstr "Ĉiuj lokoj"
+msgstr "Tre larĝa"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:127
-#, fuzzy
 msgid "Extra large"
-msgstr "Ekstraktu lokdatumojn"
+msgstr "Larĝega"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:128
 msgid "Huge"
-msgstr ""
+msgstr "Tre granda"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:129
 msgid "Extra huge"
-msgstr ""
+msgstr "Grandega"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:194
-#, fuzzy
 msgid "Node Options"
-msgstr "Arbo-opcioj"
+msgstr "Nod-opcioj"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:197
-#, fuzzy
 msgid "Node detail"
-msgstr "Vidu detalojn"
+msgstr "Nod-detalo"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:200
 msgid "Detail of information to be shown in a node."
-msgstr ""
+msgstr "Detalo de la informo montrota en nodo."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:204
 #, fuzzy
@@ -10440,6 +10443,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"Elektu la parton de la antaŭnomo markota kiel preferata. Automate agordas la "
+"voknomon se ĝi ekzistas, alie la plenan antaŭnomon."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:226
 #, fuzzy
@@ -10456,6 +10461,8 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
 msgstr ""
+"Unu dimensio de la nodo, en mm. Se la tempofluo estas supren aŭ malsupren, "
+"tio estas la larĝo, alie ĝi estas la alto."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:241
 #, fuzzy
@@ -10467,6 +10474,8 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
 msgstr ""
+"Unu dimensio de la nodo, en mm. Se la tempofluo estas supren aŭ malsupren, "
+"tio estas la alto, alie ĝi estas la larĝo."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:255
 #, fuzzy
@@ -10486,46 +10495,41 @@ msgstr "Horo"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:266
 msgid "Direction that the graph will grow over time."
-msgstr ""
+msgstr "Direkto kien la diagramo kreskos en la tempo."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:270
-#, fuzzy
 msgid "Edge style"
-msgstr "Arbostilo"
+msgstr "Randostilo"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:273
 msgid "Style of the edges between nodes."
-msgstr ""
+msgstr "Randostilo inter la nodoj."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:277
 msgid "Level distance"
-msgstr ""
+msgstr "Niveldistanco"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:280
-#, fuzzy
 msgid ""
 "The minimum amount of free space, in mm, between levels.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"La minimuma kvanto da libera spaco, en coloj, inter la rangoj. Por "
-"vertikalaj diagramoj, tio samvaloras al interspaco inter la linioj. Por "
-"horizontalaj diagramoj, tio samvaloras al interspaco inter la kolumnoj."
+"La minimuma kvanto da libera spaco, en milimetroj, inter la rangoj. Por "
+"vertikalaj diagramoj, tio samvaloras kiel interspaco inter la linioj. Por "
+"horizontalaj diagramoj, tio samvaloras kiel interspaco inter la kolumnoj."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:294
-#, fuzzy
 msgid "Note to add to the tree"
-msgstr "Noto aldonota al la diagramo"
+msgstr "Noto aldonota al la arbo"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:295
-#, fuzzy
 msgid "This text will be added to the tree."
-msgstr "Ĉi tiu teksto estos aldonita al la diagramo."
+msgstr "Ĉi tiu teksto estos aldonita al la arbo."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:310
-#, fuzzy
 msgid "The size of note text."
-msgstr "La grando de la noto, en ratrumeroj."
+msgstr "La grando de la teksta noto."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:832
 #: ../gramps/plugins/graph/gvfamilylines.py:472
@@ -10536,17 +10540,15 @@ msgstr "Malplena raporto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:848
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:858
-#, fuzzy
 msgid "Graph File for genealogytree"
-msgstr "Generacioj"
+msgstr "Diagrama dosiero por genealogytree"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:867
-#, fuzzy
 msgid "LaTeX File"
-msgstr "LaTeX"
+msgstr "LaTeX-dosiero"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:148
 #, python-format
@@ -10556,7 +10558,7 @@ msgstr "Valoro '%(val)s' ne trovita por la opcio '%(opt)s'"
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:151
 #: ../gramps/gen/plug/report/stdoptions.py:335
 msgid "Valid values: "
-msgstr "Validaj valoroj:"
+msgstr "Validaj valoroj: "
 
 #: ../gramps/gen/plug/report/_book.py:73 ../gramps/gui/plug/_dialogs.py:61
 #: ../gramps/gui/plug/report/_bookdialog.py:88 ../gramps/gui/viewmanager.py:143
@@ -10589,9 +10591,8 @@ msgid "Graphs"
 msgstr "Diagramoj"
 
 #: ../gramps/gen/plug/report/_constants.py:59
-#, fuzzy
 msgid "Trees"
-msgstr "Arbogrando"
+msgstr "Arboj"
 
 #: ../gramps/gen/plug/report/_constants.py:63
 msgid "Graphics"
@@ -10675,9 +10676,8 @@ msgid "The translation to be used for the report."
 msgstr "La stilo uzota por la raporto."
 
 #: ../gramps/gen/plug/report/stdoptions.py:84
-#, fuzzy
 msgid "The additional translation to be used for the report."
-msgstr "La stilo uzota por la raporto."
+msgstr "La kroma traduko uzota por la raporto."
 
 #: ../gramps/gen/plug/report/stdoptions.py:94 ../gramps/gui/configure.py:1505
 #: ../gramps/plugins/webreport/webcal.py:1905
@@ -10735,7 +10735,7 @@ msgstr "Ĉu limigi la datumojn al la ĵusmortintaj personoj"
 
 #: ../gramps/gen/plug/report/stdoptions.py:307
 msgid "Date format"
-msgstr "Datoformo:"
+msgstr "Datoformo"
 
 #: ../gramps/gen/plug/report/stdoptions.py:310
 msgid "The format and language for dates, with examples"
@@ -10760,9 +10760,8 @@ msgid "Include"
 msgstr "Inkluzivu"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
-#, fuzzy
 msgid "Whether to include tags"
-msgstr "Ĉu inkluzivi etikedojn."
+msgstr "Ĉu inkluzivi etikedojn"
 
 #: ../gramps/gen/plug/report/stdoptions.py:397
 msgid "Share an existing line"
@@ -10774,33 +10773,27 @@ msgstr "Sur propra linio"
 
 #: ../gramps/gen/plug/report/stdoptions.py:399
 msgid "Whether (and where) to include Gramps IDs"
-msgstr "Ĉu (kaj kie) inkluzivi Gramps-ID'oJn."
+msgstr "Ĉu (kaj kie) inkluzivi Gramps-ID'ojn"
 
 #: ../gramps/gen/plug/report/stdoptions.py:402
 msgid "Whether to include Gramps IDs"
 msgstr "Ĉu inkluzivi Gramps-ID'oJn"
 
 #: ../gramps/gen/plug/report/stdoptions.py:411
-#, fuzzy
 msgid "Place format"
-msgstr "Paperformato"
+msgstr "Lokformato"
 
 #: ../gramps/gen/plug/report/stdoptions.py:415
-#, fuzzy
 msgid "Select the format to display places"
-msgstr "Elektu la formon por montri la nomojn"
+msgstr "Elektu la tekstaranĝon por montri la nomojn"
 
 #: ../gramps/gen/plug/report/stdoptions.py:425 ../gramps/gui/configure.py:1462
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "Datoformo:"
+msgstr "Koordinat-aranĝo"
 
 #: ../gramps/gen/plug/report/stdoptions.py:428
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "Elektu la formon por montri la nomojn"
+msgstr "Elektu la aranĝon por montri la nomojn"
 
 #: ../gramps/gen/plug/report/utils.py:184
 #: ../gramps/plugins/textreport/indivcomplete.py:947
@@ -10909,12 +10902,12 @@ msgstr "Testas '%s'..."
 #: ../gramps/gen/plug/utils.py:413
 #, python-format
 msgid "'%s' is for this version of Gramps."
-msgstr "'%s' estas por ĉi tiu versio de Gramps"
+msgstr "'%s' estas por ĉi tiu versio de Gramps."
 
 #: ../gramps/gen/plug/utils.py:421
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
-msgstr "'%s' NE estas por ĉi tiu versio de Gramps"
+msgstr "'%s' NE estas por ĉi tiu versio de Gramps."
 
 #: ../gramps/gen/plug/utils.py:427
 #, python-format
@@ -10971,7 +10964,7 @@ msgid ""
 "It is possible that relationships have been missed"
 msgstr ""
 "La genealogia arbo atingis pli ol la maksimumo de %d generacioj serĉataj.\n"
-"Eblas ke kelkaj parencecoj ne estis konsideritaj."
+"Eblas ke kelkaj parencecoj ne estis konsideritaj"
 
 #: ../gramps/gen/relationship.py:1574
 msgid "Relationship loop detected:"
@@ -11127,6 +11120,8 @@ msgstr ""
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
+"Rekta evidentaĵo por ĉi tiu persono - naskiĝo: {birth_min_src}, morto: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 #, fuzzy
@@ -11178,7 +11173,7 @@ msgstr "Ne gefratoj"
 
 #: ../gramps/gen/utils/alive.py:429
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "naskiĝdato kaj laŭscie mortinta"
 
 #: ../gramps/gen/utils/alive.py:432
 #, fuzzy
@@ -11192,6 +11187,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
+"deduktita de gepatroj kaj gefratoj - naskiĝo: {birth_min_src}, morto: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -11199,6 +11196,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"deduktita de gepatroj kaj gefratoj - naskiĝo: {birth_min_src} (plej frue) "
+"ĝis {birth_max_src} (plej malfrue), morto: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11527,24 +11526,29 @@ msgid "%(west_longitude)s W"
 msgstr "%(west_longitude)s U"
 
 #: ../gramps/gen/utils/place.py:84
+#, fuzzy
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: ../gramps/gen/utils/place.py:86
+#, fuzzy
 msgid "DEG-:"
-msgstr ""
+msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:88
+#, fuzzy
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:90
+#, fuzzy
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:92
+#, fuzzy
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:100
 #, fuzzy
@@ -11553,28 +11557,31 @@ msgid "Degree, minutes, seconds notation"
 msgstr "Forigu la elektitan citaĵon"
 
 #: ../gramps/gen/utils/place.py:101
+#, fuzzy
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Aranĝo de gradoj, minutoj, sekundoj per:"
 
 #: ../gramps/gen/utils/place.py:102
+#, fuzzy
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Grad-aranĝo, 4 dekonoj"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Grad-aranĝo, 8 dekonoj (precizeco kiel ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:104
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Eliga aranĝo por la sveda sistemo de koordinatoj RT90"
 
 #: ../gramps/gen/utils/requirements.py:158
 msgid "Python modules"
-msgstr ""
+msgstr "Pitonmoduloj"
 
 #: ../gramps/gen/utils/requirements.py:165
+#, fuzzy
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "Introspektaj moduloj de GObject"
 
 #: ../gramps/gen/utils/requirements.py:172
 #, fuzzy
@@ -11688,23 +11695,23 @@ msgstr "Viro"
 
 #: ../gramps/gen/utils/symbols.py:86
 msgid "Asexuality, sexless, genderless"
-msgstr ""
+msgstr "Sensekseco, senseksa, sengenra"
 
 #: ../gramps/gen/utils/symbols.py:87
 msgid "Transgender, hermaphrodite (in entomology)"
-msgstr ""
+msgstr "Transgenra, hermafrodito (en entomologio)"
 
 #: ../gramps/gen/utils/symbols.py:88
 msgid "Lesbianism"
-msgstr ""
+msgstr "Lesbismo"
 
 #: ../gramps/gen/utils/symbols.py:89
 msgid "Male homosexuality"
-msgstr ""
+msgstr "Vira samseksemo"
 
 #: ../gramps/gen/utils/symbols.py:90
 msgid "Heterosexuality"
-msgstr ""
+msgstr "Heterosekseco"
 
 #: ../gramps/gen/utils/symbols.py:91
 #, fuzzy
@@ -11713,7 +11720,7 @@ msgstr "sekso"
 
 #: ../gramps/gen/utils/symbols.py:92
 msgid "Neuter"
-msgstr ""
+msgstr "Neŭtra"
 
 #: ../gramps/gen/utils/symbols.py:93
 #, fuzzy
@@ -11741,7 +11748,7 @@ msgstr "Entombigo"
 
 #: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2808
 msgid "Cremated/Funeral urn"
-msgstr ""
+msgstr "Kremaciita/Funebra urno"
 
 #: ../gramps/gen/utils/symbols.py:102
 #, fuzzy
@@ -11749,8 +11756,9 @@ msgid "Killed in action"
 msgstr "Kolekto"
 
 #: ../gramps/gen/utils/symbols.py:103
+#, fuzzy
 msgid "Extinct"
-msgstr ""
+msgstr "Formortinta"
 
 #: ../gramps/gen/utils/symbols.py:109
 #, fuzzy
@@ -11759,27 +11767,28 @@ msgstr "En"
 
 #: ../gramps/gen/utils/symbols.py:111
 msgid "Skull and crossbones"
-msgstr ""
+msgstr "Kranio kaj krucitaj tibioj"
 
 #: ../gramps/gen/utils/symbols.py:112
 msgid "Ankh"
-msgstr ""
+msgstr "Ansa kruco"
 
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Orthodox cross"
-msgstr ""
+msgstr "Ortodoksa kruco"
 
 #: ../gramps/gen/utils/symbols.py:114
+#, fuzzy
 msgid "Chi rho"
-msgstr ""
+msgstr "Krismo"
 
 #: ../gramps/gen/utils/symbols.py:115
 msgid "Cross of Lorraine"
-msgstr ""
+msgstr "Lorena kruco"
 
 #: ../gramps/gen/utils/symbols.py:116
 msgid "Cross of Jerusalem"
-msgstr ""
+msgstr "Jerusalema kruco"
 
 #: ../gramps/gen/utils/symbols.py:117
 #, fuzzy
@@ -11788,7 +11797,7 @@ msgstr "Ĉu startigi la datoteston?"
 
 #: ../gramps/gen/utils/symbols.py:118
 msgid "West Syriac cross"
-msgstr ""
+msgstr "Okcidentsiria kruco"
 
 #: ../gramps/gen/utils/symbols.py:119
 #, fuzzy
@@ -11796,8 +11805,9 @@ msgid "East Syriac cross"
 msgstr "Lasta aliro"
 
 #: ../gramps/gen/utils/symbols.py:120
+#, fuzzy
 msgid "Heavy Greek cross"
-msgstr ""
+msgstr "Greka kruco"
 
 #: ../gramps/gen/utils/symbols.py:121
 #, fuzzy
@@ -11806,7 +11816,7 @@ msgstr "Loko"
 
 #: ../gramps/gen/utils/symbols.py:122
 msgid "Shadowed White Latin cross"
-msgstr ""
+msgstr "Latina kruco blanka ombrumita"
 
 #: ../gramps/gen/utils/symbols.py:123
 #, fuzzy
@@ -11815,11 +11825,11 @@ msgstr "Maskloj"
 
 #: ../gramps/gen/utils/symbols.py:124
 msgid "Star of David"
-msgstr ""
+msgstr "Davida stelo"
 
 #: ../gramps/gen/utils/symbols.py:125
 msgid "Dead"
-msgstr ""
+msgstr "Mortinta"
 
 #: ../gramps/gen/utils/unknown.py:154
 msgid "Unknown, created to replace a missing note object."
@@ -11866,7 +11876,7 @@ msgstr "Germana"
 
 #: ../gramps/gen/utils/win32locale.py:52
 msgid "German (Austria)"
-msgstr ""
+msgstr "Germana (Aŭstrio)"
 
 #: ../gramps/gen/utils/win32locale.py:53
 msgid "Greek"
@@ -11890,7 +11900,7 @@ msgstr "Hispana"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "Persa"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -11906,7 +11916,7 @@ msgstr "Gaela"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr ""
+msgstr "Galicia"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
@@ -11922,7 +11932,7 @@ msgstr "Hungara"
 
 #: ../gramps/gen/utils/win32locale.py:68
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonezia"
 
 #: ../gramps/gen/utils/win32locale.py:69
 msgid "Icelandic"
@@ -11938,7 +11948,7 @@ msgstr "Japana"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "Korea"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -12069,11 +12079,11 @@ msgstr "Ne trovita"
 
 #: ../gramps/grampsapp.py:387
 msgid "not found because exiv2 is not installed"
-msgstr ""
+msgstr "ne trovita ĉar exiv2 ne estas instalita"
 
 #: ../gramps/grampsapp.py:423
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "Instalita sed ne provizas la version"
 
 #: ../gramps/grampsapp.py:444
 #, fuzzy
@@ -12494,7 +12504,7 @@ msgstr "Restaŭru defaultajn agordojn"
 
 #: ../gramps/gui/configure.py:899
 msgid "Restore colors for current theme to default."
-msgstr ""
+msgstr "Restaŭru la kolorojn por la aktuala temo al la defaŭltaj."
 
 #: ../gramps/gui/configure.py:906
 #, fuzzy
@@ -12503,11 +12513,11 @@ msgstr "Koloro por duoblaĵoj"
 
 #: ../gramps/gui/configure.py:907
 msgid "Colors for Female persons"
-msgstr ""
+msgstr "Koloroj por virinaj personoj"
 
 #: ../gramps/gui/configure.py:908
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Koloroj por personoj nek maskloj nek inaj"
 
 #: ../gramps/gui/configure.py:909
 #, fuzzy
@@ -12600,7 +12610,7 @@ msgstr "Koloroj"
 
 #: ../gramps/gui/configure.py:1004
 msgid "Warnings and Error dialogs"
-msgstr ""
+msgstr "Averta kaj erara dialogoj"
 
 #: ../gramps/gui/configure.py:1016
 #, fuzzy
@@ -12618,8 +12628,9 @@ msgid "Suppress warning about missing researcher when exporting to GEDCOM"
 msgstr "Forigu averton pri mankanta esploranto dum eksportado al GEDCOM."
 
 #: ../gramps/gui/configure.py:1040
+#, fuzzy
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "Kaŝu avertajn sugestojn pri la datumoj tuj konservitaj"
 
 #: ../gramps/gui/configure.py:1048
 #, fuzzy
@@ -12793,13 +12804,15 @@ msgstr "Montras la postan paĝon"
 
 #: ../gramps/gui/configure.py:1629
 msgid "Only on leap years"
-msgstr ""
+msgstr "Nur dum superjaroj"
 
 #: ../gramps/gui/configure.py:1636
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"Por ne superjaroj, la datrevenoj en la Gregoriaj kalendaroj estas montrataj "
+"la 28a de februaro, la 1an de marto aŭ tute ne"
 
 #: ../gramps/gui/configure.py:1640
 #, fuzzy
@@ -12837,11 +12850,11 @@ msgstr "Defaŭlta familia parenceco"
 
 #: ../gramps/gui/configure.py:1707
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "Kaŝu LDS-langeton en la person- kaj famili-redaktiloj"
 
 #: ../gramps/gui/configure.py:1715 ../gramps/gui/configure.py:2196
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Postulas restartigon"
 
 #: ../gramps/gui/configure.py:1724
 #, fuzzy
@@ -12850,7 +12863,7 @@ msgstr "Dato"
 
 #: ../gramps/gui/configure.py:1742
 msgid "Conditional Text Replacements"
-msgstr ""
+msgstr "Kondiĉa teskt-anstataŭigo"
 
 #: ../gramps/gui/configure.py:1753
 msgid "Missing surname"
@@ -12932,7 +12945,7 @@ msgstr "Maksimuma nombro de generacioj por parencecoj"
 
 #: ../gramps/gui/configure.py:1956
 msgid "Limits"
-msgstr ""
+msgstr "Limoj"
 
 #: ../gramps/gui/configure.py:1969
 #, fuzzy
@@ -12946,7 +12959,7 @@ msgstr "Montru la ĉiutagan sugeston"
 
 #: ../gramps/gui/configure.py:1986
 msgid "Show useful information about using Gramps on startup."
-msgstr ""
+msgstr "Montru utilajn informojn pri la uzado de Gramps ĉe la startigo."
 
 #: ../gramps/gui/configure.py:1991
 #, fuzzy
@@ -12959,6 +12972,8 @@ msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
+"Ne malfermu la dialogon por elekti la familian arbon ĉe la startigo, ŝargu "
+"la lastan uzitan."
 
 #: ../gramps/gui/configure.py:2005
 msgid "Remember last view displayed"
@@ -13008,47 +13023,47 @@ msgstr "Montru tekston apud la navigaj butonoj (postulas restartigon)"
 
 #: ../gramps/gui/configure.py:2059
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "Montru la Tondujan piktogramon sur la ilobreto"
 
 #: ../gramps/gui/configure.py:2064
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "Montru aŭ kaŝu la Tondujan piktogramon sur la ilobreto."
 
 #: ../gramps/gui/configure.py:2072
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "Montru la Raportan piktogramon sur la ilobreto"
 
 #: ../gramps/gui/configure.py:2077
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "Montru aŭ kaŝu la Raportan piktogramon sur la ilobreton."
 
 #: ../gramps/gui/configure.py:2085
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "Montru la Ilan piktogramon sur la ilobreto"
 
 #: ../gramps/gui/configure.py:2090
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "Montru aŭ kaŝu la Ilan piktogramon sur la ilobreto."
 
 #: ../gramps/gui/configure.py:2098
 msgid "Show Addons icon on toolbar"
-msgstr ""
+msgstr "Montru Helprograman piktogramon sur la ilobreto"
 
 #: ../gramps/gui/configure.py:2103
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr ""
+msgstr "Montru aŭ kaŝu la Helpprograma piktogramo sur la ilobreto."
 
 #: ../gramps/gui/configure.py:2111
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "Montru Agordaran piktogramon sur la ilobreto"
 
 #: ../gramps/gui/configure.py:2116
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "Montru aŭ kaŝu la Agordaran piktogramon sur la ilobreton."
 
 #: ../gramps/gui/configure.py:2124
 msgid "Both text and icons"
-msgstr ""
+msgstr "Kaj teksto kaj piktogramoj"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
@@ -13062,7 +13077,7 @@ msgstr "Nur novaj helpprogramoj"
 
 #: ../gramps/gui/configure.py:2131
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "Montru tekston, piktogramojn aŭ ambaŭ sur la ilobretaj butonoj."
 
 #: ../gramps/gui/configure.py:2133
 #, fuzzy
@@ -13126,6 +13141,8 @@ msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
+"Enmetu la alton en ratrumeroj. Kiam oni enmetas plurajn familnomojn, ĉi tiuj "
+"aperas en kadro. Tia agordo montras la grandon de la kadro."
 
 #: ../gramps/gui/configure.py:2246
 #, fuzzy
@@ -13146,7 +13163,7 @@ msgstr "Informoj pri la datumbazo"
 
 #: ../gramps/gui/configure.py:2270
 msgid "Host"
-msgstr ""
+msgstr "Gastiga komputilo"
 
 #: ../gramps/gui/configure.py:2274
 #, fuzzy
@@ -13178,6 +13195,8 @@ msgstr "Faru sekurkopion dum eliro"
 #: ../gramps/gui/configure.py:2322
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
+"Faru savkopion de via familia arbo dum eliro sur la savkopia vojo specifita "
+"antaŭe."
 
 #: ../gramps/gui/configure.py:2330
 msgid "Every 15 minutes"
@@ -32347,8 +32366,8 @@ msgstr ""
 #, python-brace-format
 msgid "You have {places_nb} place to edit."
 msgid_plural "You have {places_nb} places to edit."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Oni devas redakti {places_nb} lokon."
+msgstr[1] "Oni devas redakti {places_nb} lokojn."
 
 #: ../gramps/plugins/lib/maps/geography.py:1158
 #, fuzzy
@@ -32478,12 +32497,18 @@ msgid ""
 "In the following table you may have :\n"
 " - a green row related to a selected place."
 msgstr ""
+"\n"
+"En la sekva tabelo oni povas havi:\n"
+" - verdan linion rilatantan al elektita loko."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:134
+#, fuzzy
 msgid ""
 "\n"
 " - a red row related to a geocoding result."
 msgstr ""
+"\n"
+" - ruĝa linio rilatanta al georeferencada rezulto."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:178
 msgid "The green values in the row correspond to the current place values."
@@ -32495,16 +32520,16 @@ msgstr "Nova loko kun malplenaj kampoj"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:316
 msgid "you have a wrong latitude for:"
-msgstr ""
+msgstr "vi havas eraran latitudon por:"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:318
 #: ../gramps/plugins/lib/maps/placeselection.py:328
 msgid "Please, correct this before linking"
-msgstr ""
+msgstr "Bonvolu korekti antaŭ ol ligi"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:326
 msgid "you have a wrong longitude for:"
-msgstr ""
+msgstr "vi havas eraran longitudon por:"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:57
 msgid "Denmark"
@@ -33509,7 +33534,7 @@ msgstr "Mia naskiĝtaga raporto"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:85
 msgid "✝"
-msgstr ""
+msgstr "✝"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:249
 #, python-format
@@ -33742,7 +33767,7 @@ msgstr "La nombra sistemo uzota"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "Montru la genran simbolon antaŭ la nomo"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
 #, fuzzy
@@ -34254,9 +34279,10 @@ msgid "F"
 msgstr "F"
 
 #: ../gramps/plugins/textreport/familygroup.py:520
+#, fuzzy
 msgctxt "acronym for other"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: ../gramps/plugins/textreport/familygroup.py:522
 #, python-format
@@ -34427,6 +34453,7 @@ msgid ""
 "Whether the title should be the name of the person, or 'Complete Individual "
 "Report'"
 msgstr ""
+"Ĉu la titolo devus esti la nomo de la persono aŭ 'Kompleta Individua Raporto'"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1151
 msgid "Include Notes"
@@ -35585,7 +35612,7 @@ msgstr ""
 #: ../gramps/plugins/tool/check.py:3054
 #, python-format
 msgid "%d bad backlinks were fixed;\n"
-msgstr ""
+msgstr "oni riparis %d erarajn inversajn ligilojn;\n"
 
 #: ../gramps/plugins/tool/check.py:3055
 #: ../gramps/plugins/tool/rebuildrefmap.py:91
@@ -35596,7 +35623,7 @@ msgstr "Ĉiuj referencmapoj estis rekonstruitaj."
 #: ../gramps/plugins/tool/check.py:3060
 #, python-format
 msgid "%d bad Note Links were fixed;\n"
-msgstr ""
+msgstr "oni riparis %d erarajn Not-ligilojn;\n"
 
 #: ../gramps/plugins/tool/check.py:3090
 msgid "Integrity Check Results"
@@ -36354,14 +36381,16 @@ msgid "Their common ancestors are: "
 msgstr "Iliaj komunaj prauloj estas: "
 
 #: ../gramps/plugins/tool/removespaces.py:56
+#, fuzzy
 msgctxt "manual"
 msgid "Remove_leading_and_trailing_spaces"
-msgstr ""
+msgstr "Remove_leading_and_trailing_spaces"
 
 #: ../gramps/plugins/tool/removespaces.py:91
 #: ../gramps/plugins/tool/tools.gpr.py:543
+#, fuzzy
 msgid "Clean input data"
-msgstr ""
+msgstr "Forigu enigajn datumojn"
 
 #: ../gramps/plugins/tool/removespaces.py:114
 #, fuzzy
@@ -36401,13 +36430,13 @@ msgstr "Grupigu kiel"
 
 #: ../gramps/plugins/tool/removespaces.py:203
 msgid "tooltip"
-msgstr ""
+msgstr "sugesto"
 
 #: ../gramps/plugins/tool/removespaces.py:278
 #: ../gramps/plugins/tool/removespaces.py:288
 #: ../gramps/plugins/tool/removespaces.py:300
 msgid "leading and/or trailing spaces"
-msgstr ""
+msgstr "spacoj komencaj aŭ finaj"
 
 #: ../gramps/plugins/tool/removespaces.py:285
 #: ../gramps/plugins/tool/removespaces.py:297
@@ -36418,12 +36447,12 @@ msgstr "Nevalida formo"
 #: ../gramps/plugins/tool/removespaces.py:291
 #: ../gramps/plugins/tool/removespaces.py:303
 msgid "comma instead of dot"
-msgstr ""
+msgstr "komo anstataŭ punkto"
 
 #: ../gramps/plugins/tool/removespaces.py:294
 #: ../gramps/plugins/tool/removespaces.py:306
 msgid "invalid char instead of '-'"
-msgstr ""
+msgstr "nevalida signo anstataŭ '-'"
 
 #: ../gramps/plugins/tool/removeunused.glade:90
 msgid "Search for events"
@@ -37147,7 +37176,7 @@ msgstr "Malfruaĝa geedziĝo"
 
 #: ../gramps/plugins/tool/verify.py:2435
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Bapto tro malfrua laŭ familia tradicio"
 
 #: ../gramps/plugins/tool/verify.py:2460
 #, fuzzy
@@ -37169,7 +37198,7 @@ msgstr "Ĉu ordigi eventojn en kronologia ordo."
 
 #: ../gramps/plugins/tool/verify.py:2574
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "Familio havas eventojn kun Nekonata rolo"
 
 #: ../gramps/plugins/tool/verify.py:2587
 #, fuzzy
@@ -38696,8 +38725,9 @@ msgstr "Hejmo"
 
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
+#, fuzzy
 msgid "Heatmaps"
-msgstr ""
+msgstr "Termomapoj"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -38726,8 +38756,9 @@ msgid "Web Calendar"
 msgstr "Retkalendaro"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
+#, fuzzy
 msgid "Heatmap"
-msgstr ""
+msgstr "Termomapo"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:440
@@ -38741,7 +38772,7 @@ msgstr "Posta"
 
 #: ../gramps/plugins/webreport/basepage.py:2775
 msgid "Other media: videos, pdfs..."
-msgstr ""
+msgstr "Aliaj aŭdvideaĵoj: videoj, pdf'oj..."
 
 #: ../gramps/plugins/webreport/basepage.py:2947
 msgid " [Click to Go]"
@@ -38784,7 +38815,7 @@ msgstr "Lokigoj"
 
 #: ../gramps/plugins/webreport/basepage.py:3794
 msgid "circa"
-msgstr ""
+msgstr "ĉirkaŭ"
 
 #: ../gramps/plugins/webreport/basepage.py:3796
 #, fuzzy
@@ -38869,7 +38900,7 @@ msgstr "%s malnova"
 #: ../gramps/plugins/webreport/webcal.py:2333
 #, python-format
 msgid "%s since death"
-msgstr ""
+msgstr "%s depost la morto"
 
 #: ../gramps/plugins/webreport/calendar.py:1442
 #: ../gramps/plugins/webreport/webcal.py:2333
@@ -38920,7 +38951,7 @@ msgstr "Laste modifita"
 
 #: ../gramps/plugins/webreport/download.py:131
 msgid "MD5"
-msgstr ""
+msgstr "MD5"
 
 #: ../gramps/plugins/webreport/download.py:187
 #, fuzzy
@@ -38989,7 +39020,7 @@ msgstr "Kreas event-paĝojn"
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
-msgstr ""
+msgstr "La venonta sekcio entenas indekson de ĉiuj eventoj por termomapo."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
 #, fuzzy
@@ -39017,7 +39048,7 @@ msgstr "Testu la elektitan filtrilon"
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
-msgstr ""
+msgstr "La venonta sekcio entenas indekson de ĉiuj familinomoj por termomapo."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
 #, fuzzy
@@ -39028,7 +39059,7 @@ msgstr "Familinomo"
 
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
-msgstr ""
+msgstr "La venonta sekcio entenas indekson de ĉiuj etikedoj por termomapo."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -39036,6 +39067,8 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"La venonta sekcio entenas mapon por ĉiuj personoj kun evento: {event_type} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
@@ -39051,6 +39084,8 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"La venonta sekcio entenas mapon por ĉiuj eventoj por: {surname} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -39058,6 +39093,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"La venonta sekcio entenas mapon por ĉiuj personoj, eventoj kun la etikedo: "
+"{tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -39117,7 +39154,7 @@ msgstr "La dosiero estis movita aŭ forigita."
 #: ../gramps/plugins/webreport/media.py:458
 #: ../gramps/plugins/webreport/thumbnail.py:174
 msgid "This is a remote media"
-msgstr ""
+msgstr "Tio estas fora aŭdvideaĵo"
 
 #: ../gramps/plugins/webreport/media.py:639
 msgid "File Type"
@@ -39349,8 +39386,9 @@ msgid "Add previous/next"
 msgstr "Aldonu geedzon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2241
+#, fuzzy
 msgid "Add previous/next to the navigation bar."
-msgstr ""
+msgstr "Aldonu antaŭen/malantaŭen la navigan listelon."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2244
 #, fuzzy
@@ -39369,11 +39407,11 @@ msgstr "Titol-elekto"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2249
 msgid "Check it if you want to open/close a section"
-msgstr ""
+msgstr "Marku ĝin se oni volas maplfermi/fermi sekcion"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2252
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Maksimuma kvanto da linioj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
 #, fuzzy
@@ -39397,15 +39435,15 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2274
 msgid "Your extra page path"
-msgstr ""
+msgstr "Vojo al la ekstra paĝo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2275
 msgid "Your extra page path without extension"
-msgstr ""
+msgstr "Vojo al la ekstra paĝo sen sufikso"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2290
 msgid "Do we use multiple translations?"
-msgstr ""
+msgstr "Ĉu ni uzas plurajn tradukojn?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2293
 msgid ""
