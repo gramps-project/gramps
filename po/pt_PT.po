@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-13 04:02+0000\n"
+"PO-Revision-Date: 2025-02-16 10:55+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -19345,7 +19345,7 @@ msgstr "Não perguntar sobre as extensões anteriormente notificadas"
 
 #: ../gramps/gui/plug/_windows.py:816
 msgid "Check for updated addons now"
-msgstr "Procurar actualizações agora"
+msgstr "Procurar extensões actualizadas agora"
 
 #: ../gramps/gui/plug/_windows.py:829
 msgid "New Project"
@@ -19374,8 +19374,8 @@ msgstr "Falha ao procurar extensões"
 #: ../gramps/gui/plug/_windows.py:964
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
-"Parece que o repositório de extensões está indisponível. Por favor, tente "
-"novamente mais tarde."
+"O repositório de extensões parece estar indisponível. Por favor, tente mais "
+"tarde."
 
 #: ../gramps/gui/plug/_windows.py:979
 msgid "There are no available addons of this type"
@@ -38269,7 +38269,7 @@ msgstr "%(spouse)s e %(person)s"
 #: ../gramps/plugins/webreport/webcal.py:2317
 #, python-format
 msgid "%s old"
-msgstr "%s"
+msgstr "%s de idade"
 
 #: ../gramps/plugins/webreport/calendar.py:1440
 #: ../gramps/plugins/webreport/webcal.py:2333
@@ -38359,7 +38359,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:357
 #: ../gramps/plugins/webreport/surnamelist.py:177
 msgid "Letter"
-msgstr "Letra"
+msgstr "Carta"
 
 #: ../gramps/plugins/webreport/family.py:117
 msgid "Creating family pages..."
