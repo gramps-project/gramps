@@ -12,22 +12,22 @@
 # Kristijan Fremen Velkovski <me@krisfremen.com>, 2022, 2023.
 # AND <andrejdam@protonmail.com>, 2023.
 # "Kristijan \"Fremen\" Velkovski" <me@krisfremen.com>, 2023, 2024.
-# AND <andam.i380f@aleeas.com>, 2024.
+# AND <andam.i380f@aleeas.com>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2024-09-29 18:15+0000\n"
+"PO-Revision-Date: 2025-02-16 01:18+0000\n"
 "Last-Translator: AND <andam.i380f@aleeas.com>\n"
-"Language-Team: Macedonian <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/mk/>\n"
+"Language-Team: Macedonian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/mk/>\n"
 "Language: mk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.10\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -839,7 +839,6 @@ msgstr ""
 "најдете на lists.sf.net."
 
 #: ../data/tips.xml:66
-#, fuzzy
 msgid ""
 "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the "
 "original developer, Don Allingham, by his father. It stands for "
@@ -848,14 +847,15 @@ msgid ""
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"GRAMPS е Генеалошки истражувачки и Анализирачки управувачки програмски "
-"систем. Тој е генеалошка програма со сите ставки, дозволувајќи ви да ги "
-"зачувувате, уредувате и истражувате вашите генеалошки податоци. Заднината на "
-"Gramps базата на податоци е толку огромна така што некои корисници "
-"управуваат со генеалогии што содржат стотици илјади луѓе."
+"<b>Кое е значењето на GRAMPS? (Дедовник)</b><br/> Името беше предложено на "
+"оригиналниот развивач, Дон Елингем, од страна на неговиот татко. Тоа е "
+"скратеница од Генеалошки истражувачки и Анализирачки управувачки програмски "
+"систем. Дедовникот е родословна програма со сите ставки, дозволувајќи ви да "
+"ги зачувувате, уредувате и истражувате вашите родословни податоци. Заднината "
+"на базата на податоци на Дедовникот е толку огромна така што некои корисници "
+"управуваат со родослови што содржат стотици илјади луѓе."
 
 #: ../data/tips.xml:68
-#, fuzzy
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -863,14 +863,13 @@ msgid ""
 "Person then go to \"Bookmarks > Add Bookmark\" or press Ctrl+D. You can also "
 "bookmark most of the other objects."
 msgstr ""
-"<b>Означување поединци</b>: Менито за Означување на врвот од прозорецот е "
-"соодветно место за зачувување на имињата на често употребуваните лица. Со "
+"<b>Означување поединци</b><br/>: Менито за Означување на врвот од прозорецот "
+"е соодветно место за зачувување на имињата на често употребуваните лица. Со "
 "кликање на означен поединец ќе го направите Активно лице. За да направите "
 "означувач за некое лице, направете го Активно лице, десен клик на неговото "
 "име и кликнете на „додади ознака“."
 
 #: ../data/tips.xml:70
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -880,7 +879,7 @@ msgid ""
 "> Data\"."
 msgstr ""
 "<b>Неточни датуми</b>: Секој повремено внесува датуми со неважечка форма. "
-"Неточените датумски форми ќе се појават со црвено копче веднаш до датумот. "
+"Неточенте датумски форми ќе се појават со црвено копче веднаш до датумот. "
 "Зелено значи дека е во ред, килибар значи дека е прифатливо. Дијалогот Избор "
 "на датум може да биде повикан со кликање на обоеното копче."
 
@@ -1325,15 +1324,13 @@ msgstr "ОК да се презапише?"
 
 #: ../gramps/cli/arghandler.py:315 ../gramps/cli/arghandler.py:317
 #: ../gramps/cli/clidbman.py:469
-#, fuzzy
 msgid "yes"
-msgstr "Пре_врти ознаки"
+msgstr "да"
 
 #: ../gramps/cli/arghandler.py:316 ../gramps/cli/clidbman.py:470
 #: ../gramps/cli/clidbman.py:471
-#, fuzzy
 msgid "no"
-msgstr "Ниедно"
+msgstr "не"
 
 #: ../gramps/cli/arghandler.py:320
 #, python-format
