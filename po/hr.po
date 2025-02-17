@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-13 22:21+0000\n"
+"PO-Revision-Date: 2025-02-17 03:25+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10-rc\n"
+"X-Generator: Weblate 5.10\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -9556,7 +9556,7 @@ msgstr "Gramplet"
 
 #: ../gramps/gen/plug/_pluginreg.py:130
 msgid "Sidebar"
-msgstr "Bočni stupac"
+msgstr "Bočna traka"
 
 #: ../gramps/gen/plug/_pluginreg.py:132
 msgid "Rule"
@@ -16800,7 +16800,7 @@ msgid ""
 "The relationship type, eg 'Married' or 'Unmarried'. Use Events for more "
 "details."
 msgstr ""
-"Vrsta veze, npr. „Brak” ili „Nevjenčani”. Za detalje, koristi događaje."
+"Vrsta veze, npr. „Vjenčani” ili „Nevjenčani”. Za detalje koristi događaje."
 
 #: ../gramps/gui/glade/editfamily.glade:748
 #: ../gramps/gui/glade/editmedia.glade:355
@@ -19266,7 +19266,7 @@ msgstr "Sigurno?"
 
 #: ../gramps/gui/plug/_windows.py:962
 msgid "Checking Addons Failed"
-msgstr "Neuspjela provjera dodataka"
+msgstr "Provjera dodataka neuspjela"
 
 #: ../gramps/gui/plug/_windows.py:964
 msgid "The addon repository appears to be unavailable. Please try again later."
@@ -20754,7 +20754,7 @@ msgstr "_Donja traka"
 
 #: ../gramps/gui/views/pageview.py:109
 msgid "_Sidebar"
-msgstr "Bočni _stupac"
+msgstr "Bočna _traka"
 
 #: ../gramps/gui/views/pageview.py:611
 #, python-format
@@ -20824,7 +20824,7 @@ msgstr "Uklanjanje oznaka"
 #: ../gramps/gui/views/tags.py:394 ../gramps/gui/views/tags.py:404
 #: ../gramps/gui/views/tags.py:470
 msgid "Organize Tags"
-msgstr "Uredi oznake"
+msgstr "Organiziraj oznake"
 
 #: ../gramps/gui/views/tags.py:422
 msgid "Change Tag Priority"
@@ -25000,7 +25000,7 @@ msgid ""
 msgstr ""
 "Trenutačno se nalaziš u prikazu „Pregledna ploča”, gdje možeš dodati "
 "vlastite gramplete. Možeš ih dodati i u bilo koji drugi prikaz. Za to, "
-"otvori bočni stupac i/ili donju traku, te pritisni desnu tipku miša desno od "
+"otvori bočnu traku i/ili donju traku, te pritisni desnu tipku miša desno od "
 "kartice.\n"
 "\n"
 "Pritisni ikonu konfiguracije za dodavanje stupaca. Pritisni desnim gumbom "
@@ -27256,7 +27256,7 @@ msgstr "INDI (osoba) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:4230
 msgid "Empty Alias <NAME PERSONAL> ignored"
-msgstr "Prazni alias <OSOBNO IME> je zanemareno"
+msgstr "Prazni alias <OSOBNO IME> se zanemaruje"
 
 #: ../gramps/plugins/lib/libgedcom.py:5475
 #, python-format
@@ -27277,16 +27277,16 @@ msgstr "Nije bilo moguće uvesti %s"
 #: ../gramps/plugins/lib/libgedcom.py:5947
 #: ../gramps/plugins/lib/libgedcom.py:7356
 msgid "Media-Type"
-msgstr "_Vrsta medija"
+msgstr "Vrsta medija"
 
 #: ../gramps/plugins/lib/libgedcom.py:5971
 #: ../gramps/plugins/lib/libgedcom.py:7260
 msgid "Multiple FILE in a single OBJE ignored"
-msgstr "Mnogostruki FILE u jedinstvenom OBJE je zanemareno"
+msgstr "Višestruki FILE u jednom OBJE se zanemaruje"
 
 #: ../gramps/plugins/lib/libgedcom.py:6111
 msgid "A second PLAC ignored"
-msgstr "Jedan drugi PLAC je zanemaren"
+msgstr "Jedan drugi PLAC se zanemaruje"
 
 #: ../gramps/plugins/lib/libgedcom.py:6249
 msgid "Detail"
@@ -27294,7 +27294,7 @@ msgstr "Detalj"
 
 #: ../gramps/plugins/lib/libgedcom.py:6265
 msgid "Location already populated; ADDR ignored"
-msgstr "Lokacija je već popunjena; ADDR je zanemareno"
+msgstr "Lokacija je već popunjena; ADDR se zanemaruje"
 
 #: ../gramps/plugins/lib/libgedcom.py:6667
 #: ../gramps/plugins/lib/libgedcom.py:7564
@@ -31071,7 +31071,7 @@ msgstr "_Uredi ..."
 #: ../gramps/plugins/view/pedigreeview.py:724
 #: ../gramps/plugins/view/relview.py:411
 msgid "Person Filter Editor"
-msgstr "Uređivač filtra osobe"
+msgstr "Uređivač filtra za osobe"
 
 #: ../gramps/plugins/lib/libpersonview.py:275
 #: ../gramps/plugins/lib/libpersonview.py:385
@@ -31212,7 +31212,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:354
 msgid "Place Filter Editor"
-msgstr "Uređivač filtra mjesta"
+msgstr "Uređivač filtra za mjesta"
 
 #: ../gramps/plugins/lib/libplaceview.py:447
 msgid "_Look up with Map Service"
@@ -32690,11 +32690,11 @@ msgstr "Pritisni za biranje prikaza"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:35
 msgid "Category Sidebar"
-msgstr "Bočni izbornik kategorija"
+msgstr "Bočna traka kategorija"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:36
 msgid "A sidebar to allow the selection of view categories"
-msgstr "Bočni stupac za biranje prikaza kategorija"
+msgstr "Bočna traka za biranje prikaza kategorija"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:44
 msgid "Category"
@@ -32702,7 +32702,7 @@ msgstr "Kategorija"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:51
 msgid "Drop-down Sidebar"
-msgstr "Padajući bočni izbornik"
+msgstr "Bočna traka padajućeg izbornika"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:52
 msgid "Selection of categories and views from drop-down lists"
@@ -32714,7 +32714,7 @@ msgstr "Padajući izbornik"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:67
 msgid "Expander Sidebar"
-msgstr "Stablasti bočni izbornik"
+msgstr "Bočna traka stablastog izbornika"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:68
 msgid "Selection of views from lists with expanders"
@@ -34139,7 +34139,7 @@ msgstr "Izvještaj o oznakama"
 
 #: ../gramps/plugins/textreport/tagreport.py:115
 msgid "You must first create a tag before running this report."
-msgstr "Za izradu ovog izvještaja moraš najprije stvoriti jednu oznaku."
+msgstr "Za pokretanje ovog izvještaja moraš najprije stvoriti jednu oznaku."
 
 #: ../gramps/plugins/textreport/tagreport.py:125
 #, python-format
@@ -34921,7 +34921,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/eventcmp.glade:266
 msgid "Custom filter _editor"
-msgstr "Uređivač _prilagođenog filtra"
+msgstr "_Uređivač prilagođenog filtra"
 
 #: ../gramps/plugins/tool/eventcmp.py:72
 msgctxt "manual"
@@ -35171,7 +35171,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:357
 msgid "Affected path"
-msgstr "Dotična linija/staza"
+msgstr "Dotična staza"
 
 #: ../gramps/plugins/tool/mediamanager.py:366
 msgid ""
@@ -36458,7 +36458,7 @@ msgstr "Prikaz citata"
 #: ../gramps/plugins/view/citationlistview.py:241
 #: ../gramps/plugins/view/citationtreeview.py:391
 msgid "Citation Filter Editor"
-msgstr "Uređivač filtra citata"
+msgstr "Uređivač filtra za citate"
 
 #: ../gramps/plugins/view/citationlistview.py:417
 msgid ""
@@ -36587,7 +36587,7 @@ msgstr "Spoji odabrane događaje"
 
 #: ../gramps/plugins/view/eventview.py:254
 msgid "Event Filter Editor"
-msgstr "Uređivač filtra događaja"
+msgstr "Uređivač filtra za događaje"
 
 #: ../gramps/plugins/view/eventview.py:431
 msgid "Cannot merge event objects."
@@ -36624,7 +36624,7 @@ msgstr "Spoji odabrane obitelji"
 
 #: ../gramps/plugins/view/familyview.py:211
 msgid "Family Filter Editor"
-msgstr "Uređivač filtra obitelji"
+msgstr "Uređivač filtra za obitelji"
 
 #: ../gramps/plugins/view/familyview.py:303
 msgid "Make Father Active Person"
@@ -37305,7 +37305,7 @@ msgstr "Spoji medijske objekte"
 
 #: ../gramps/plugins/view/mediaview.py:318
 msgid "Media Filter Editor"
-msgstr "Uređivač filtra medija"
+msgstr "Uređivač filtra za medije"
 
 #: ../gramps/plugins/view/mediaview.py:410
 msgid "View in the default viewer"
@@ -37334,7 +37334,7 @@ msgstr "Spoji odabrane zabilješke"
 
 #: ../gramps/plugins/view/noteview.py:199
 msgid "Note Filter Editor"
-msgstr "Uređivač filtra zabilješke"
+msgstr "Uređivač filtra za zabilješke"
 
 #: ../gramps/plugins/view/noteview.py:365
 msgid "Cannot merge notes."
@@ -37683,7 +37683,7 @@ msgstr "Spoji odabrana spremišta"
 
 #: ../gramps/plugins/view/repoview.py:236
 msgid "Repository Filter Editor"
-msgstr "Uređivač filtra spremišta"
+msgstr "Uređivač filtra za spremišta"
 
 #: ../gramps/plugins/view/repoview.py:395
 msgid "Cannot merge repositories."
