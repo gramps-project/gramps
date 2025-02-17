@@ -89,7 +89,7 @@ class LibSourceView:
                     ref_obj = self.dbstate.db.method("get_%s_from_handle", ref_type)(
                         ref_hndl
                     )
-                    ref_obj.remove_handle_references(obj_type, [cit_hndl])
+                    ref_obj.remove_handle_references("Citation", [cit_hndl])
                     self.dbstate.db.method("commit_%s", ref_type)(ref_obj, trans)
                 # and delete the citation
                 self.dbstate.db.remove_citation(cit_hndl, trans)
