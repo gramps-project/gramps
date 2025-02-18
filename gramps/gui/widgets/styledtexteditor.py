@@ -617,11 +617,6 @@ class StyledTextEditor(Gtk.TextView):
         builder.set_translation_domain(glocale.get_localedomain())
         builder.add_from_string(FORMAT_TOOLBAR)
 
-        # fallback icons
-        icon_theme = Gtk.IconTheme().get_default()
-        icon_theme.connect("changed", self.__set_fallback_icons, builder)
-        self.__set_fallback_icons(icon_theme, builder)
-
         # define the actions...
         _actions = [
             ("ITALIC", self._on_toggle_action_activate, "<PRIMARY>i", False),
@@ -684,22 +679,6 @@ class StyledTextEditor(Gtk.TextView):
         toolbar = builder.get_object("ToolBar")
 
         return toolbar, self.action_group
-
-    def __set_fallback_icons(self, icon_theme, builder):
-        """
-        Set fallbacks for icons that are not available in the current theme.
-        """
-        fallbacks = (
-            ("superscript", "format-text-superscript", "go-up"),
-            ("subscript", "format-text-subscript", "go-down"),
-        )
-        for obj_name, primary, fallback in fallbacks:
-            tool_button = builder.get_object(obj_name)
-            icon = tool_button.get_child().get_child()
-            name = primary
-            if not icon_theme.has_icon(primary):
-                name = fallback
-            icon.set_from_icon_name(name, Gtk.IconSize.LARGE_TOOLBAR)
 
     def set_transient_parent(self, parent=None):
         self.transient_parent = parent
