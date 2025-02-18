@@ -221,7 +221,7 @@ To explicitly specify the formats in the above example, append filenames with
 appropriate **-f** options::
 
     gramps -i file1.ged -f gedcom -i file2.tgz -f gramps-pkg \
-    -i ~/db3.gramps -f gramps -i file4.wft -f wft -a check
+    -i ~/db3.gramps -f gramps-xml -i file4.wft -f wft -a check
 
 To record the database resulting from all imports, supply a **-e** flag (use
 **-f** if the filename does not allow gramps to guess the format)::
@@ -285,15 +285,15 @@ FILES
 AUTHORS
 #######
 
-Donald Allingham <don@gramps-project.org>
-https://www.gramps-project.org/
+Donald Allingham <`don@gramps-project.org`>
+`https://www.gramps-project.org/`
 
 This man page was originally written by:
-Brandon L. Griffith <brandon@debian.org>
+Brandon L. Griffith <`brandon@debian.org`>
 for inclusion in the Debian GNU/Linux system.
 
 This man page is currently maintained by:
-Gramps project <xxx@gramps-project.org>
+Gramps project <`xxx@gramps-project.org`>
 
 #############
 DOCUMENTATION
@@ -303,5 +303,5 @@ The user documentation is available through a web browser in the form of the
 Gramps Manual.
 
 The developer documentation can be found on the
-https://www.gramps-project.org/wiki/index.php/Portal:Developers
+`https://www.gramps-project.org/wiki/index.php/Portal:Developers`
 portal.
