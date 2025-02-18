@@ -61,6 +61,7 @@ PROGRAM_NAME = "Gramps"
 #
 # -------------------------------------------------------------------------
 URL_HOMEPAGE = "https://gramps-project.org/"
+URL_NS = "http://gramps-project.org/"  # XML NS URI
 URL_MAILINGLIST = "https://sourceforge.net/mail/?group_id=25770"
 URL_BUGHOME = "https://gramps-project.org/bugs"
 URL_BUGTRACKER = "https://gramps-project.org/bugs/bug_report_page.php"
