@@ -7,7 +7,7 @@
     <key>CFBundleExecutable</key>
     <string>Gramps</string>
     <key>CFBundleGetInfoString</key>
-    <string>Gramps-6.0.0-beta1-1, (C) 1997-2025 The Gramps Team http://www.gramps-project.org</string>
+    <string>Gramps-6.0.0-beta1-1, (C) 1997-2025 The Gramps Team https://www.gramps-project.org</string>
     <key>CFBundleIconFile</key>
     <string>gramps.icns</string>
     <key>CFBundleIdentifier</key>

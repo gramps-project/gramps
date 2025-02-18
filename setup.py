@@ -444,7 +444,7 @@ setup(
     author_email="don@gramps-project.org",
     maintainer="Gramps Development Team",
     maintainer_email="benny.malengier@gmail.com",
-    url="http://gramps-project.org",
+    url="https://gramps-project.org",
     license="GPL v2 or greater",
     platforms=["FreeBSD", "Linux", "MacOS", "Windows"],
     cmdclass={"build": build, "test": test},

@@ -338,7 +338,7 @@ class Note(BasicPrimaryObject):
         Return examples::
 
             [("gramps", "Person", "handle", "7657626365362536"),
-             ("external", "www", "url", "http://example.com")]
+             ("external", "www", "url", "https://example.com")]
 
         :returns: list of [(domain, type, propery, value), ...]
         :rtype: list

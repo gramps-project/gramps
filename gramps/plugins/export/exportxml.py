@@ -58,7 +58,7 @@ LOG = logging.getLogger(".WriteXML")
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
-from gramps.gen.const import URL_HOMEPAGE
+from gramps.gen.const import URL_NS
 from gramps.gen.lib import Date, Person
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
@@ -259,13 +259,12 @@ class GrampsXmlWriter(UpdateCallback):
             '"%sxml/%s/grampsxml.dtd">\n'
             % (
                 libgrampsxml.GRAMPS_XML_VERSION,
-                URL_HOMEPAGE,
+                URL_NS,
                 libgrampsxml.GRAMPS_XML_VERSION,
             )
         )
         self.g.write(
-            '<database xmlns="%sxml/%s/">\n'
-            % (URL_HOMEPAGE, libgrampsxml.GRAMPS_XML_VERSION)
+            '<database xmlns="%sxml/%s/">\n' % (URL_NS, libgrampsxml.GRAMPS_XML_VERSION)
         )
         self.g.write("  <header>\n")
         self.g.write('    <created date="%04d-%02d-%02d"' % date[:3])

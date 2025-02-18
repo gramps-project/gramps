@@ -188,7 +188,7 @@ def importData(database, filename, user):
 
 # -------------------------------------------------------------------------
 # For a description of the file format see
-# http://cristal.inria.fr/~ddr/GeneWeb/en/gwformat.htm
+# https://cristal.inria.fr/~ddr/GeneWeb/en/gwformat.htm
 # https://github.com/geneanet/geneweb/issues/315
 # -------------------------------------------------------------------------
 class GeneWebParser:

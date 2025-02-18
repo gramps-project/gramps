@@ -1048,7 +1048,7 @@ def uri_dialog(self, uri, callback):
     if obj:
         if uri is None:
             # make a default link
-            uri = "http://"
+            uri = "https://"
             # Check in order for an open page:
             for object_class in [
                 "Person",

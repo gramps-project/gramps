@@ -85,7 +85,7 @@ try:
     #  This follows the US convention of DAY_1 being Sunday,
     #  not the international convention (ISO 8601) that Monday
     #  is the first day of the week."
-    # see http://docs.python.org/library/locale.html
+    # see https://docs.python.org/library/locale.html
     _deprecated_long_days = (
         "",
         locale.nl_langinfo(locale.DAY_1),  # Sunday
@@ -147,7 +147,7 @@ except:
     # strftime takes a (from the doc of standard Python library "time")
     #  "tuple or struct_time representing a time as returned by gmtime()
     #   or localtime()"
-    # see http://docs.python.org/library/time.html
+    # see https://docs.python.org/library/time.html
     # The seventh tuple entry returned by gmtime() is the day-of-the-week
     # number. tm_wday => range [0,6], Monday is 0
     # Note. Only the seventh tuple entry matters. The others are
