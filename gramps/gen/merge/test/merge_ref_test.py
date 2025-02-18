@@ -43,7 +43,7 @@ _ = glocale.translation.sgettext
 
 HAS_CLIMERGE = os.path.isdir(os.path.join(USER_PLUGINS, "CliMerge"))
 HAS_EXPORTRAW = os.path.isdir(os.path.join(USER_PLUGINS, "ExportRaw"))
-NS_G = "https://gramps-project.org/xml/%s/" % GRAMPS_XML_VERSION
+NS_G = "http://gramps-project.org/xml/%s/" % GRAMPS_XML_VERSION
 NSP = "{%s}" % NS_G
 
 
