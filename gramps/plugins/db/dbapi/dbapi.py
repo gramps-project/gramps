@@ -107,11 +107,17 @@ class DBAPI(DbGeneric):
         """
         return self.dbapi.table_exists("person")
 
-    def _create_schema(self):
+    def _create_schema(self, json_data):
         """
         Create and update schema.
         """
         self.dbapi.begin()
+        if json_data:
+            col_data = "json_data TEXT"
+            meta_col_data = "json_data TEXT, value BLOB"
+        else:
+            col_data = "blob_data BLOB"
+            meta_col_data = "value BLOB"
 
         # make sure schema is up to date:
         self.dbapi.execute(
@@ -120,42 +126,42 @@ class DBAPI(DbGeneric):
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "given_name TEXT, "
             "surname TEXT, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE family "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE source "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE citation "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE event "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE media "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
@@ -163,28 +169,28 @@ class DBAPI(DbGeneric):
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "enclosed_by VARCHAR(50), "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE repository "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE note "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE tag "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         # Secondary:
@@ -208,7 +214,7 @@ class DBAPI(DbGeneric):
             "CREATE TABLE metadata "
             "("
             "setting VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{meta_col_data}"
             ")"
         )
         self.dbapi.execute(
@@ -245,6 +251,14 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
 
         self.dbapi.commit()
+
+    def _drop_column(self, table_name, column_name):
+        """
+        Used to remove a column of data which we don't need anymore.
+        Must be used within a tranaction
+        If db doesn't support, nothing happens
+        """
+        self.dbapi.drop_column(table_name, column_name)
 
     def _close(self):
         self.dbapi.close()

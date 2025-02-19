@@ -208,6 +208,12 @@ class Connection:
         )
         return self.fetchone()[0] != 0
 
+    def drop_column(self, table_name, column_name):
+        # DROP COLUMN is available with Sqlite v 3.35.0, released 2021-03-12
+        db_ver = sqlite3.sqlite_version.split(".")
+        if int(db_ver[0]) == 3 and int(db_ver[1]) >= 35:
+            self.execute(f"ALTER TABLE {table_name} DROP COLUMN {column_name};")
+
     def close(self):
         """
         Close the current database.

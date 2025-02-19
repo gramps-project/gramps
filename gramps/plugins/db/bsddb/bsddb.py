@@ -75,6 +75,7 @@ class DbBsddb(SQLite):
         update=True,
         username=None,
         password=None,
+        json_data=False,
     ):
         """
         Here we create a sqlite db, and copy the bsddb into it.
@@ -108,6 +109,7 @@ class DbBsddb(SQLite):
             force_schema_upgrade=False,
             username=username,
             password=password,
+            json_data=False,
         )
         # Default new DBAPI uses "json" serializer
         # So, we force read/write in blobs:
@@ -153,6 +155,10 @@ class DbBsddb(SQLite):
         self.set_total(total)
         # copy data from each dbmap to sqlite table
         for old_t, new_t, dbmap in table_list:
+            # if new_t != "metadata":
+            #     self.dbapi.execute("ALTER TABLE %s ADD COLUMN blob_data BLOB;" % new_t)
+            # else:
+            #     self.dbapi.execute("ALTER TABLE %s ADD COLUMN value BLOB;" % new_t)
             for key in dbmap.keys():
                 self.update()
                 # Try to unpickle data saved before db version 19:
@@ -181,8 +187,11 @@ class DbBsddb(SQLite):
                             if len(fmat) == 3:
                                 fmat = fmat + (True,)
                                 data[format_ix] = fmat
+                        else:
+                            data = []
                     elif key == b"gender_stats":
                         # data is a dict, containing entries (see GenderStats)
+                        self._txn_begin()
                         self.dbapi.execute("DELETE FROM gender_stats")
                         g_sql = (
                             "INSERT INTO gender_stats "
@@ -192,6 +201,7 @@ class DbBsddb(SQLite):
                         for name in data:
                             female, male, unknown = data[name]
                             self.dbapi.execute(g_sql, [name, female, male, unknown])
+                        self._txn_commit()
                         continue  # don't need this in metadata anymore
                     elif key == b"default":
                         # convert to string and change key
@@ -217,7 +227,8 @@ class DbBsddb(SQLite):
                         # These are list, but need to be set
                         data = set(data)
 
-                    self._set_metadata(key.decode("utf-8"), data)
+                    if data is not None:
+                        self._set_metadata(key.decode("utf-8"), data)
                 else:
                     # Not metadata, but gramps object
                     self._txn_begin()

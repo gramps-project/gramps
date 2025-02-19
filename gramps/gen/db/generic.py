@@ -622,6 +622,24 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.set_event_id_prefix("E%04d")
         self.set_repository_id_prefix("R%04d")
         self.set_note_id_prefix("N%04d")
+        # Custom type values
+        self.event_names = set()
+        self.family_attributes = set()
+        self.individual_attributes = set()
+        self.source_attributes = set()
+        self.marker_names = set()
+        self.child_ref_types = set()
+        self.family_rel_types = set()
+        self.event_role_names = set()
+        self.name_types = set()
+        self.origin_types = set()
+        self.repository_types = set()
+        self.note_types = set()
+        self.source_media_types = set()
+        self.url_types = set()
+        self.media_attributes = set()
+        self.event_attributes = set()
+        self.place_types = set()
         # ----------------------------------
         self.undodb = None
         self.cmap_index = 0
@@ -698,6 +716,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         update=True,
         username=None,
         password=None,
+        json_data=True,
     ):
         """
         If update is False: then don't update any files
@@ -713,17 +732,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # run backend-specific code:
         self._initialize(directory, username, password)
 
-        need_to_set_version = False
+        need_to_set_metadata = False
         if not self._schema_exists():
-            self._create_schema()
-            need_to_set_version = True
+            self._create_schema(json_data)
+            need_to_set_metadata = True
 
         if self.use_json_data():
             self.set_serializer("json")
         else:
             self.set_serializer("blob")
 
-        if need_to_set_version:
+        if need_to_set_metadata:
             self._set_metadata("version", str(self.VERSION[0]))
 
         # Load metadata
@@ -787,6 +806,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.rmap_index = self._get_metadata("rmap_index", 0)
         self.nmap_index = self._get_metadata("nmap_index", 0)
 
+        if need_to_set_metadata:
+            # for new db we always need blob metadata to allow prior Gramps versions
+            # to make it to the downgrade version check
+            # Note: downgrade check only works from v5.1.2 and later on sqlite
+            self.set_serializer("blob")
+            self.has_changed = 1  # to make sure genderstats gets saved
+            self._set_all_metadata()
+            self.has_changed = 0  # number of commits
+            if self.use_json_data():
+                self.set_serializer("json")
+
         self.db_is_open = True
 
         # Check on db version to see if we need upgrade or too new
@@ -828,55 +858,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 # the database for gramps.cli.clidbman:
                 filename = os.path.join(self._directory, "meta_data.db")
                 Path(filename).touch()
-
-                # Save metadata
-                self._set_metadata("name_formats", self.name_formats)
-                self._set_metadata("researcher", self.owner)
-
-                # Bookmarks
-                self._set_metadata("bookmarks", self.bookmarks.get())
-                self._set_metadata("family_bookmarks", self.family_bookmarks.get())
-                self._set_metadata("event_bookmarks", self.event_bookmarks.get())
-                self._set_metadata("place_bookmarks", self.place_bookmarks.get())
-                self._set_metadata("repo_bookmarks", self.repo_bookmarks.get())
-                self._set_metadata("source_bookmarks", self.source_bookmarks.get())
-                self._set_metadata("citation_bookmarks", self.citation_bookmarks.get())
-                self._set_metadata("media_bookmarks", self.media_bookmarks.get())
-                self._set_metadata("note_bookmarks", self.note_bookmarks.get())
-
-                # Custom type values, sets
-                self._set_metadata("event_names", self.event_names)
-                self._set_metadata("fattr_names", self.family_attributes)
-                self._set_metadata("pattr_names", self.individual_attributes)
-                self._set_metadata("sattr_names", self.source_attributes)
-                self._set_metadata("marker_names", self.marker_names)
-                self._set_metadata("child_refs", self.child_ref_types)
-                self._set_metadata("family_rels", self.family_rel_types)
-                self._set_metadata("event_roles", self.event_role_names)
-                self._set_metadata("name_types", self.name_types)
-                self._set_metadata("origin_types", self.origin_types)
-                self._set_metadata("repo_types", self.repository_types)
-                self._set_metadata("note_types", self.note_types)
-                self._set_metadata("sm_types", self.source_media_types)
-                self._set_metadata("url_types", self.url_types)
-                self._set_metadata("mattr_names", self.media_attributes)
-                self._set_metadata("eattr_names", self.event_attributes)
-                self._set_metadata("place_types", self.place_types)
-
-                # Save misc items:
-                if self.has_changed:
-                    self.save_gender_stats(self.genderStats)
-
-                # Indexes:
-                self._set_metadata("cmap_index", self.cmap_index)
-                self._set_metadata("smap_index", self.smap_index)
-                self._set_metadata("emap_index", self.emap_index)
-                self._set_metadata("pmap_index", self.pmap_index)
-                self._set_metadata("fmap_index", self.fmap_index)
-                self._set_metadata("lmap_index", self.lmap_index)
-                self._set_metadata("omap_index", self.omap_index)
-                self._set_metadata("rmap_index", self.rmap_index)
-                self._set_metadata("nmap_index", self.nmap_index)
+                self._set_all_metadata()
 
             self._close()
 
@@ -890,6 +872,60 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def is_open(self):
         return self.db_is_open
+
+    def _set_all_metadata(self):
+        """
+        sets all the metadata
+        """
+        # Save metadata
+        self._set_metadata("version", str(self.VERSION[0]))
+        self._set_metadata("name_formats", self.name_formats)
+        self._set_metadata("researcher", self.owner)
+
+        # Bookmarks
+        self._set_metadata("bookmarks", self.bookmarks.get())
+        self._set_metadata("family_bookmarks", self.family_bookmarks.get())
+        self._set_metadata("event_bookmarks", self.event_bookmarks.get())
+        self._set_metadata("place_bookmarks", self.place_bookmarks.get())
+        self._set_metadata("repo_bookmarks", self.repo_bookmarks.get())
+        self._set_metadata("source_bookmarks", self.source_bookmarks.get())
+        self._set_metadata("citation_bookmarks", self.citation_bookmarks.get())
+        self._set_metadata("media_bookmarks", self.media_bookmarks.get())
+        self._set_metadata("note_bookmarks", self.note_bookmarks.get())
+
+        # Custom type values, sets
+        self._set_metadata("event_names", self.event_names)
+        self._set_metadata("fattr_names", self.family_attributes)
+        self._set_metadata("pattr_names", self.individual_attributes)
+        self._set_metadata("sattr_names", self.source_attributes)
+        self._set_metadata("marker_names", self.marker_names)
+        self._set_metadata("child_refs", self.child_ref_types)
+        self._set_metadata("family_rels", self.family_rel_types)
+        self._set_metadata("event_roles", self.event_role_names)
+        self._set_metadata("name_types", self.name_types)
+        self._set_metadata("origin_types", self.origin_types)
+        self._set_metadata("repo_types", self.repository_types)
+        self._set_metadata("note_types", self.note_types)
+        self._set_metadata("sm_types", self.source_media_types)
+        self._set_metadata("url_types", self.url_types)
+        self._set_metadata("mattr_names", self.media_attributes)
+        self._set_metadata("eattr_names", self.event_attributes)
+        self._set_metadata("place_types", self.place_types)
+
+        # Save misc items:
+        if self.has_changed:
+            self.save_gender_stats(self.genderStats)
+
+        # Indexes:
+        self._set_metadata("cmap_index", self.cmap_index)
+        self._set_metadata("smap_index", self.smap_index)
+        self._set_metadata("emap_index", self.emap_index)
+        self._set_metadata("pmap_index", self.pmap_index)
+        self._set_metadata("fmap_index", self.fmap_index)
+        self._set_metadata("lmap_index", self.lmap_index)
+        self._set_metadata("omap_index", self.omap_index)
+        self._set_metadata("rmap_index", self.rmap_index)
+        self._set_metadata("nmap_index", self.nmap_index)
 
     def get_dbid(self):
         """
