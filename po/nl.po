@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-13 04:02+0000\n"
+"PO-Revision-Date: 2025-02-19 08:36+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1145,9 +1145,9 @@ msgid ""
 "is the person who is selected when the database is opened or when the home "
 "button is pressed."
 msgstr ""
-"<b>De beginpersoon</b><br/>Iedereen kan worden gekozen als de beginpersoon "
-"in Gramps. Gebruik \"Bewerken > Beginpersoon instellen\" in de "
-"persoonsweergave. De beginpersoon is de persoon die wordt geselecteerd "
+"<b>De Centrale persoon</b><br/>Iedereen kan worden gekozen als de Centrale "
+"persoon in Gramps. Gebruik \"Bewerken > Centrale persoon instellen\" in de "
+"persoonsweergave. De Centrale persoon is de persoon die wordt geselecteerd "
 "wanneer de database wordt geopend of wanneer op de startknop wordt gedrukt."
 
 #: ../data/tips.xml:122
@@ -3384,7 +3384,7 @@ msgstr ""
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Media Objecten bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
+"%(n1)6d  Media-objecten bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
 #: ../gramps/gen/db/upgrade.py:671
 #, python-format
@@ -3792,7 +3792,7 @@ msgstr "Citaten met overeenkomende parameters"
 #: ../gramps/gen/filters/rules/_hascitationbase.py:63
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:62
 msgid "Matches citations with particular parameters"
-msgstr "Vindt citaten met bepaalde parameters"
+msgstr "Overeenkomst met citaten met bepaalde parameters"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:64
 #: ../gramps/gen/filters/rules/_hassourcebase.py:59
@@ -3903,7 +3903,7 @@ msgstr "Objecten met notities van een specifiek type"
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:57
 #: ../gramps/gen/filters/rules/note/_hastype.py:58
 msgid "Matches notes with the particular type "
-msgstr "Vindt notities van een specifiek type "
+msgstr "Overeenkomst met notities met het bepaalde type "
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:53
 #: ../gramps/gui/editors/filtereditor.py:551
@@ -3979,7 +3979,7 @@ msgstr "Elk citaat"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:48
 msgid "Matches every citation in the database"
-msgstr "Komt overeen met elk citaat in de database"
+msgstr "Overeenkomst met elk citaat in de database"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:47
 #: ../gramps/gen/filters/rules/event/_changedsince.py:48
@@ -4014,9 +4014,9 @@ msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Vindt citaatvermeldingen die na een gespecificeerde datum-tijd (jjjj-mm-dd "
-"uu:mm:ss) gewijzigd zijn, of binnen een periode als een tweede datum-tijd "
-"opgegeven is."
+"Overeenkomst met citaatvermeldingen die na een specifieke datum-tijd (jjjj-"
+"mm-dd uu:mm:ss) gewijzigd zijn, of binnen een periode als een tweede datum-"
+"tijd opgegeven is."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:45
 msgid "Citations marked private"
@@ -4024,7 +4024,7 @@ msgstr "Citaten gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:46
 msgid "Matches citations that are indicated as private"
-msgstr "Vindt citaten die als privé aangegeven zijn"
+msgstr "Overeenkomst met citaten die als privé aangegeven zijn"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 msgid "Citation attribute:"
@@ -4048,7 +4048,7 @@ msgstr "Citaten met het kenmerk <attribuut>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:49
 msgid "Matches citations with the attribute of a particular value"
-msgstr "Vindt citaten met het kenmerk van een bepaalde waarde"
+msgstr "Overeenkomst met citaten met het kenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:59
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -4071,15 +4071,15 @@ msgstr "Citaten met <aantal> media"
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:48
 msgid "Matches citations with a certain number of items in the gallery"
-msgstr "Vindt citaten met een bepaald aantal items in de galerij"
+msgstr "Overeenkomst met citaten met een bepaald aantal items in de galerij"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:47
 msgid "Citation with <Id>"
-msgstr "Citaat met <Id>"
+msgstr "Citaat met <ID>"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:48
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Vindt een citaat met een opgegeven Gramps-ID"
+msgstr "Overeenkomst met een citaat met een specifiek Gramps-ID"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:48
 msgid "Citations having <count> notes"
@@ -4087,7 +4087,7 @@ msgstr "Citaten met <aantal> notities"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:49
 msgid "Matches citations having a certain number of notes"
-msgstr "Vindt citaten met een bepaald aantal notities"
+msgstr "Overeenkomst met citaten met een bepaald aantal notities"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:45
 msgid "Citations having notes containing <substring>"
@@ -4096,8 +4096,8 @@ msgstr "Citaten met aantekeningen die een <deeltekenreeks> bevatten"
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:47
 msgid "Matches citations whose notes contain text matching a substring"
 msgstr ""
-"Vindt citaten waarvan de notities tekst bevatten die overeenkomt met een "
-"deeltekenreeks"
+"Overeenkomst met citaten waarvan de notities tekst bevatten die overeenkomt "
+"met een deeltekenreeks"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:43
 msgid "Citations having notes containing <text>"
@@ -4107,8 +4107,8 @@ msgstr "Citaten met notities die <tekst> bevatten"
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt citaten waarvan de notities tekst bevatten die overeenkomt met een "
-"reguliere expressie"
+"Overeenkomst met citaten waarvan de notities tekst bevatten die overeenkomt "
+"met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
 msgid "Citations with a note of type <type>"
@@ -4116,7 +4116,7 @@ msgstr "Citaten met notities van type <type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
 msgid "Matches citations with a note of the specified type"
-msgstr "Vindt citaten met een notitie van het opgegeven type"
+msgstr "Overeenkomst met citaten met een notitie van het opgegeven type"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4133,7 +4133,8 @@ msgstr "Citaten waar <aantal> keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:46
 msgid "Matches citations with a certain reference count"
-msgstr "Vindt citaten waar een bepaald aantal keer naar verwezen wordt"
+msgstr ""
+"Overeenkomst met citaten waar een bepaald aantal keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:59
 #: ../gramps/gen/filters/rules/source/_hassource.py:49
@@ -4188,7 +4189,7 @@ msgstr "Bronnen met overeenkomende parameters"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:61
 msgid "Matches citations with a source of a particular value"
-msgstr "Vindt citaten met een bron van een bepaalde waarde"
+msgstr "Overeenkomst met citaten met een bron van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:62
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:59
@@ -4199,11 +4200,11 @@ msgstr "Bronfilters"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:57
 msgid "Citation with Source <Id>"
-msgstr "Citaat met bron <Id>"
+msgstr "Citaat met bron <ID>"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:58
 msgid "Matches a citation with a source with a specified Gramps ID"
-msgstr "Vindt een citaat met een bron met een opgegeven Gramps-ID"
+msgstr "Overeenkomst met een citaat met een bron met een specifieke Gramps-ID"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:63
 msgid "Citations having source notes containing <text>"
@@ -4214,8 +4215,8 @@ msgid ""
 "Matches citations whose source notes contain a substring or match a regular "
 "expression"
 msgstr ""
-"Vindt citaten waarvan de bronnotities een deeltekenreeks bevatten of "
-"overeenkomen met een reguliere expressie"
+"Overeenkomst met citaten waarvan de bronnotities een deeltekenreeks bevatten "
+"of overeenkomen met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
 #: ../gramps/gen/filters/rules/event/_hastag.py:51
@@ -4236,7 +4237,7 @@ msgstr "Citaten met het <label>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:53
 msgid "Matches citations with the particular tag"
-msgstr "Vindt citaten met een bepaald label"
+msgstr "Overeenkomst met citaten met een bepaald label"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
 msgid "Citations matching the <filter>"
@@ -4244,7 +4245,7 @@ msgstr "Citaten die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:48
 msgid "Matches citations matched by the specified filter name"
-msgstr "Vindt citaten die overeenkomen met de opgegeven filternaam"
+msgstr "Overeenkomst met citaten die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:54
 msgid "Citations with Volume/Page containing <text>"
@@ -4253,7 +4254,8 @@ msgstr "Citaten met volume/pagina die <tekst> bevat"
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:56
 msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr ""
-"Vindt citaten waarvan het volume/pagina een bepaalde deeltekenreeks bevat"
+"Overeenkomst met citaten waarvan het volume/pagina een bepaalde "
+"deeltekenreeks bevat"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:57
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:54
@@ -4274,8 +4276,8 @@ msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Koppelt citaten aan bronnen met een bibliotheek-referentie die overeenkomt "
-"met een bepaald bibliotheek-filter"
+"Overeenkomst met citaten bij bronnen met een bibliotheek-referentie die "
+"overeenkomt met een bepaald bibliotheek-filter"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:60
 msgid "Citations with source matching the <source filter>"
@@ -4285,7 +4287,8 @@ msgstr "Citaten waarvan de bron overeenkomt met het <bronfilter>"
 msgid ""
 "Matches citations with sources that match the specified source filter name"
 msgstr ""
-"Vindt citaten met bronnen die overeenkomen met de opgegeven bronfilternaam"
+"Overeenkomst met citaten bij bronnen die overeenkomen met de specifieke "
+"bronfilternaam"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:50
 msgid "Citations with Id containing <text>"
@@ -4294,7 +4297,8 @@ msgstr "Citaten met ID die <tekst> bevatten"
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:52
 msgid "Matches citations whose Gramps ID matches the regular expression"
 msgstr ""
-"Vindt citaten waarvan het Gramps-ID overeenkomt met de reguliere expressie"
+"Overeenkomst met citaten waarvan het Gramps-ID overeenkomt met de reguliere "
+"expressie"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:59
 msgid "Citations with Source Id containing <text>"
@@ -4305,8 +4309,8 @@ msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
 msgstr ""
-"Vindt citaten waarvan de bron een Gramps-ID heeft die overeenkomt met de "
-"reguliere expressie"
+"Overeenkomst met citaten waarvan de bron een Gramps-ID heeft dat overeenkomt "
+"met de reguliere expressie"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:46
 msgid "Every event"
@@ -4314,7 +4318,7 @@ msgstr "Iedere gebeurtenis"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:47
 msgid "Matches every event in the database"
-msgstr "Vindt alle gebeurtenissen in de database"
+msgstr "Overeenkomst met alle gebeurtenissen in de database"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:49
 msgid "Events changed after <date time>"
@@ -4325,8 +4329,9 @@ msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
 msgstr ""
-"Vindt gebeurtenissen die gewijzigd zijn na een opgegeven datum/tijd (jjjj-mm-"
-"dd uu:mm:ss), of binnen een periode als een tweede datum/tijd is opgegeven."
+"Overeenkomst met gebeurtenissen die gewijzigd zijn na een specifieke datum/"
+"tijd (jjjj-mm-dd uu:mm:ss), of binnen een periode als een tweede datum/tijd "
+"is opgegeven."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:44
 msgid "Events marked private"
@@ -4334,7 +4339,7 @@ msgstr "Gebeurtenissen gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:45
 msgid "Matches events that are indicated as private"
-msgstr "Vindt gebeurtenissen die als privé aangegeven zijn"
+msgstr "Overeenkomst met gebeurtenissen die als privé aangegeven zijn"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:116
@@ -4349,7 +4354,8 @@ msgstr "Gebeurtenissen met het <kenmerk>"
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:48
 msgid "Matches events with the event attribute of a particular value"
 msgstr ""
-"Vindt gebeurtenissen met een gebeurteniskenmerk van een bepaalde waarde"
+"Overeenkomst met gebeurtenissen met een gebeurteniskenmerk van een bepaalde "
+"waarde"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 msgid "Events with the <citation>"
@@ -4357,7 +4363,8 @@ msgstr "Gebeurtenissen met het <citaat>"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:52
 msgid "Matches events with a citation of a particular value"
-msgstr "Vindt gebeurtenissen met een citaat die een bepaalde waarde bevat"
+msgstr ""
+"Overeenkomst met gebeurtenissen met een citaat die een bepaalde waarde bevat"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:58
 #: ../gramps/gen/filters/rules/event/_hasevent.py:53
@@ -4399,7 +4406,8 @@ msgstr "Gebeurtenissen met <gegevens>"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:60
 msgid "Matches events with data of a particular value"
-msgstr "Vindt gebeurtenissen met gegevens die een bepaalde waarde bevatten"
+msgstr ""
+"Overeenkomst met gebeurtenissen met gegevens die een bepaalde waarde bevatten"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:49
 #: ../gramps/gui/editors/filtereditor.py:630
@@ -4412,7 +4420,9 @@ msgstr "Gebeurtenissen die plaatsvinden op een bepaalde dag van de week"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:51
 msgid "Matches events occurring on a particular day of the week"
-msgstr "Vindt gebeurtenissen die plaatsvinden op een bepaalde dag van de week"
+msgstr ""
+"Overeenkomst met gebeurtenissen die plaatsvinden op een bepaalde dag van de "
+"week"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:54
 #: ../gramps/gen/filters/rules/person/_hasevent.py:61
@@ -4425,7 +4435,7 @@ msgstr "Gebeurtenissen met overeenkomende parameters"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
 msgid "Matches events with particular parameters"
-msgstr "Vindt gebeurtenissen met bepaalde parameters"
+msgstr "Overeenkomst met gebeurtenissen met bepaalde parameters"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4433,15 +4443,16 @@ msgstr "Gebeurtenissen met <aantal> media"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:48
 msgid "Matches events with a certain number of items in the gallery"
-msgstr "Vindt gebeurtenissen met een bepaald aantal items in de galerij"
+msgstr ""
+"Overeenkomst met gebeurtenissen met een bepaald aantal items in de galerij"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:46
 msgid "Event with <Id>"
-msgstr "Gebeurtenis met <Id>"
+msgstr "Gebeurtenis met <ID>"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:47
 msgid "Matches an event with a specified Gramps ID"
-msgstr "Vindt gebeurtenissen met een opgegeven Gramps-ID"
+msgstr "Overeenkomst met gebeurtenissen met een specifiek Gramps-ID"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:47
 msgid "Events having <count> notes"
@@ -4449,7 +4460,7 @@ msgstr "Gebeurtenissen met <aantal> notities"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:48
 msgid "Matches events having a certain number of notes"
-msgstr "Vindt gebeurtenissen met een bepaald aantal notities"
+msgstr "Overeenkomst met gebeurtenissen met een bepaald aantal notities"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:44
 msgid "Events having notes containing <substring>"
@@ -4458,8 +4469,8 @@ msgstr "Gebeurtenissen met notities die een <deeltekenreeks> bevatten"
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:45
 msgid "Matches events whose notes contain text matching a substring"
 msgstr ""
-"Vindt gebeurtenissen waarvan de notities tekst bevatten die overeenkomt met "
-"een deeltekenreeks"
+"Overeenkomst met gebeurtenissen waarvan de notities tekst bevatten die "
+"overeenkomt met een deeltekenreeks"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:42
 msgid "Events having notes containing <text>"
@@ -4468,8 +4479,8 @@ msgstr "Gebeurtenissen met notities die <tekst> bevatten"
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt gebeurtenissen waarvan de notities tekst bevatten die overeenkomt met "
-"een reguliere expressie"
+"Overeenkomst met gebeurtenissen waarvan de notities tekst bevatten die "
+"overeenkomt met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
 msgid "Events with a note of type <type>"
@@ -4477,7 +4488,7 @@ msgstr "Gebeurtenissen met een notitie van het type <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
 msgid "Matches events with a note of the specified type"
-msgstr "Vindt gebeurtenissen met een notitie van het opgegeven type"
+msgstr "Overeenkomst met gebeurtenissen met een notitie van het specifieke type"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4485,7 +4496,9 @@ msgstr "Gebeurtenissen waar <aantal> keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:45
 msgid "Matches events with a certain reference count"
-msgstr "Vindt gebeurtenissen waar een bepaald aantal keer naar verwezen wordt"
+msgstr ""
+"Overeenkomst met gebeurtenissen waar een bepaald aantal keer naar verwezen "
+"wordt"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:46
 msgid "Events with <count> sources"
@@ -4493,7 +4506,7 @@ msgstr "Gebeurtenissen met <aantal> bronnen"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:47
 msgid "Matches events with a certain number of sources connected to it"
-msgstr "Vindt gebeurtenissen met een bepaald aantal bronverwijzingen"
+msgstr "Overeenkomst met gebeurtenissen met een bepaald aantal bronverwijzingen"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Events with the <tag>"
@@ -4501,7 +4514,7 @@ msgstr "Gebeurtenissen met het <label>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:53
 msgid "Matches events with the particular tag"
-msgstr "Vindt gebeurtenissen met een bepaald label"
+msgstr "Overeenkomst met gebeurtenissen met een bepaald label"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:57
 msgid "Events with the particular type"
@@ -4509,7 +4522,7 @@ msgstr "Gebeurtenissen van een bepaald type"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:58
 msgid "Matches events with the particular type "
-msgstr "Vindt gebeurtenissen van een bepaald type "
+msgstr "Overeenkomst met gebeurtenissen met het bepaalde type "
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:46
 msgid "Events matching the <filter>"
@@ -4517,7 +4530,8 @@ msgstr "Gebeurtenissen die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:47
 msgid "Matches events matched by the specified filter name"
-msgstr "Vindt gebeurtenissen die overeenkomen met de opgegeven filternaam"
+msgstr ""
+"Overeenkomst met gebeurtenissen die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:61
 #: ../gramps/gui/editors/filtereditor.py:613
@@ -4536,8 +4550,8 @@ msgstr "Gebeurtenissen van personen die overeenkomen met het <persoonsfilter>"
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:64
 msgid "Matches events of persons matched by the specified person filter name"
 msgstr ""
-"Vindt gebeurtenissen van personen die overeenkomen met de opgegeven "
-"persoonsfilternaam"
+"Overeenkomst met gebeurtenissen van personen die overeenkomen met de "
+"specifieke persoonsfilternaam"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:60
 #: ../gramps/gui/editors/filtereditor.py:576
@@ -4553,8 +4567,8 @@ msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
 msgstr ""
-"Vindt gebeurtenissen die hebben plaatsgevonden op plaatsen die overeenkomen "
-"met de opgegeven plaatsfilternaam"
+"Overeenkomst met gebeurtenissen die hebben plaatsgevonden op plaatsen die "
+"overeenkomen met de specifieke plaatsfilternaam"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:47
 msgid "Events with at least one direct source >= <confidence level>"
@@ -4564,7 +4578,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:49
 msgid "Matches events with at least one direct source with confidence level(s)"
 msgstr ""
-"Vindt gebeurtenissen met ten minste één directe bron met "
+"Overeenkomst met gebeurtenissen met ten minste één directe bron met "
 "betrouwbaarheidsniveau('s)"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:51
@@ -4574,18 +4588,18 @@ msgstr "Gebeurtenissen waarvan de bron overeenkomt met het <bronfilter>"
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:53
 msgid "Matches events with sources that match the specified source filter name"
 msgstr ""
-"Vindt gebeurtenissen met bronnen die overeenkomen met de opgegeven "
-"bronfilternaam"
+"Overeenkomst met gebeurtenissen met bronnen die overeenkomen met de "
+"specifieke bronfilternaam"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:49
 msgid "Events with Id containing <text>"
-msgstr "Gebeurtenissen met Id die <tekst> bevatten"
+msgstr "Gebeurtenissen met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:50
 msgid "Matches events whose Gramps ID matches the regular expression"
 msgstr ""
-"Vindt gebeurtenissen waarvan het Gramps-ID overeenkomt met de reguliere "
-"expressie"
+"Overeenkomst met gebeurtenissen waarvan het Gramps-ID overeenkomt met de "
+"reguliere expressie"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:46
 #: ../gramps/gen/plug/report/utils.py:414
@@ -4594,33 +4608,34 @@ msgstr "Elk gezin"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:47
 msgid "Matches every family in the database"
-msgstr "Vindt alle gezinnen in de database"
+msgstr "Overeenkomst met alle gezinnen in de database"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:49
 msgid "Families changed after <date time>"
-msgstr "Gezinnen die na <datum tijd> gewijzigd zijn>"
+msgstr "Gezinnen die gewijzigd zijn na <datum tijd>"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:51
 msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Vindt gezinnen die gewijzigd zijn na een gespecificeerde datum-tijd (jjjj-mm-"
-"dd uu:mm:ss), of binnen een periode als een tweede datum-tijd is opgegeven."
+"Overeenkomst met gezinnen die gewijzigd zijn na een specifieke datum-tijd "
+"(jjjj-mm-dd uu:mm:ss), of binnen een periode als een tweede datum-tijd is "
+"opgegeven."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:55
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:55
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:55
 msgid "Person ID:"
-msgstr "Persoon ID:"
+msgstr "Persoon-ID:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:56
 msgid "Families having child with Id containing <text>"
-msgstr "Gezinnen met een kind waarvan het ID uit <tekst> bestaat"
+msgstr "Gezinnen met een kind met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:57
 msgid "Matches families where child has a specified Gramps ID"
-msgstr "Vindt gezinnen waar het kind een opgegeven Gramps-ID heeft"
+msgstr "Overeenkomst met gezinnen met een kind met een specifiek Gramps-ID"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:58
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:59
@@ -4636,7 +4651,9 @@ msgstr "Gezinnen met een kind met de <naam>"
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:58
 msgid "Matches families where child has a specified (partial) name"
-msgstr "Vindt gezinnen waar het kind een (gedeeltelijk) opgegeven naam heeft"
+msgstr ""
+"Overeenkomst met gezinnen met een kind met een specifieke (gedeeltelijke) "
+"naam"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:44
 msgid "Families marked private"
@@ -4644,15 +4661,16 @@ msgstr "Gezinnen gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:45
 msgid "Matches families that are indicated as private"
-msgstr "Vindt gezinnen die als privé zijn aangegeven"
+msgstr "Overeenkomst met gezinnen die als privé zijn aangegeven"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:56
 msgid "Families having father with Id containing <text>"
-msgstr "Gezinnen met een vader waarvan het ID uit <tekst> bestaat"
+msgstr "Gezinnen met een vader met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:57
 msgid "Matches families whose father has a specified Gramps ID"
-msgstr "Vindt gezinnen waarvan de vader een opgegeven Gramps-ID heeft"
+msgstr ""
+"Overeenkomst met gezinnen waarvan de vader een specifiek Gramps-ID heeft"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:58
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:57
@@ -4669,7 +4687,8 @@ msgstr "Gezinnen met een vader met de <naam>"
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:56
 msgid "Matches families whose father has a specified (partial) name"
 msgstr ""
-"Vindt gezinnen waarvan de vader een (gedeeltelijk) opgegeven naam heeft"
+"Overeenkomst met gezinnen waarvan de vader een specifieke (gedeeltelijke) "
+"naam heeft"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:55
@@ -4684,7 +4703,7 @@ msgstr "Gezinnen met een <gezinskenmerk>"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:49
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Vindt gezinnen met een gezinskenmerk van een bepaalde waarde"
+msgstr "Overeenkomst met gezinnen met een gezinskenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:51
 msgid "Families with the <citation>"
@@ -4692,7 +4711,7 @@ msgstr "Gezinnen met het <citaat>"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:52
 msgid "Matches families with a citation of a particular value"
-msgstr "Vindt gezinnen met een citaat van een bepaalde waarde"
+msgstr "Overeenkomst met gezinnen met een citaat met een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:59
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:58
@@ -4711,11 +4730,11 @@ msgstr "Belangrijkste deelnemers"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:65
 msgid "Families with the <event>"
-msgstr "Gezinnen met <gebeurtenis>"
+msgstr "Gezinnen met de <gebeurtenis>"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:66
 msgid "Matches families with an event of a particular value"
-msgstr "Vindt gezinnen met een gebeurtenis van een bepaalde waarde"
+msgstr "Overeenkomst met gezinnen met een gebeurtenis van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:47
 msgid "Families with <count> media"
@@ -4723,15 +4742,15 @@ msgstr "Gezinnen met <aantal> media"
 
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:48
 msgid "Matches families with a certain number of items in the gallery"
-msgstr "Vindt gezinnen met een bepaald aantal items in de galerij"
+msgstr "Overeenkomst met gezinnen met een bepaald aantal items in de galerij"
 
 #: ../gramps/gen/filters/rules/family/_hasidof.py:46
 msgid "Family with <Id>"
-msgstr "Gezin met <Id>"
+msgstr "Gezin met <ID>"
 
 #: ../gramps/gen/filters/rules/family/_hasidof.py:47
 msgid "Matches a family with a specified Gramps ID"
-msgstr "Vindt een gezin met een opgegeven Gramps-ID"
+msgstr "Overeenkomst met een gezin met een specifieke Gramps-ID"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:50
 msgid "Families with <count> LDS events"
@@ -4739,7 +4758,7 @@ msgstr "Gezinnen met <aantal> LDS-gebeurtenissen"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:51
 msgid "Matches families with a certain number of LDS events"
-msgstr "Vindt gezinnen met een bepaald aantal LDS-gebeurtenissen"
+msgstr "Overeenkomst met gezinnen met een bepaald aantal LDS-gebeurtenissen"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:47
 msgid "Families having <count> notes"
@@ -4747,7 +4766,7 @@ msgstr "Gezinnen met <aantal> notities"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:48
 msgid "Matches families having a certain number notes"
-msgstr "Vindt gezinnen met een bepaald aantal notities"
+msgstr "Overeenkomst met gezinnen met een bepaald aantal notities"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:44
 msgid "Families having notes containing <substring>"
@@ -4756,8 +4775,8 @@ msgstr "Gezinnen met notities die een <deeltekenreeks> bevatten"
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:45
 msgid "Matches families whose notes contain text matching a substring"
 msgstr ""
-"Vindt gezinnen waarvan de notities tekst bevatten die overeenkomt met een "
-"deeltekenreeks"
+"Overeenkomst met gezinnen waarvan de notities tekst bevatten die overeenkomt "
+"met een deeltekenreeks"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:42
 msgid "Families having notes containing <text>"
@@ -4766,8 +4785,8 @@ msgstr "Gezinnen met notities die <tekst> bevatten"
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:44
 msgid "Matches families whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt gezinnen wiens notities tekst bevatten die overeenkomt met een "
-"reguliere expressie"
+"Overeenkomst met gezinnen waarvan notities tekst bevatten die overeenkomt "
+"met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
 msgid "Families with a note of type <type>"
@@ -4775,7 +4794,7 @@ msgstr "Gezinnen met een notitie van type <type>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
 msgid "Matches families with a note of the specified type"
-msgstr "Vindt gezinnen met een notitie van het opgegeven type"
+msgstr "Overeenkomst met gezinnen met een notitie van het specifieke type"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -4783,7 +4802,9 @@ msgstr "Gezinnen waar <aantal> keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:45
 msgid "Matches family objects with a certain reference count"
-msgstr "Vindt gezinsobjecten waar een bepaald aantal keer naar verwezen wordt"
+msgstr ""
+"Overeenkomst met gezinsobjecten waar een bepaald aantal keer naar verwezen "
+"wordt"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:56
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:58
@@ -4798,7 +4819,8 @@ msgstr "Gezinnen met een verwantschapstype"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:58
 msgid "Matches families with the relationship type of a particular value"
-msgstr "Vindt gezinnen met een verwantschapstype van een bepaalde waarde"
+msgstr ""
+"Overeenkomst met gezinnen met een verwantschapstype van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:47
 msgid "Families with <count> sources"
@@ -4806,7 +4828,7 @@ msgstr "Gezinnen met <aantal> bronnen"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:48
 msgid "Matches families with a certain number of sources connected to it"
-msgstr "Vindt gezinnen met een bepaald aantal bronverwijzingen"
+msgstr "Overeenkomst met gezinnen met een bepaald aantal bronverwijzingen"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:48
 msgid "Families with the <source>"
@@ -4814,7 +4836,7 @@ msgstr "Gezinnen verbonden aan <bron>"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:50
 msgid "Matches families who have a particular source"
-msgstr "Vindt gezinnen met een bepaalde bron"
+msgstr "Overeenkomst met gezinnen met een bepaalde bron"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:52
 msgid "Families with the <tag>"
@@ -4822,7 +4844,7 @@ msgstr "Gezinnen met het <label>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:53
 msgid "Matches families with the particular tag"
-msgstr "Vindt gezinnen met een bepaald label"
+msgstr "Overeenkomst met gezinnen met een bepaald label"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:56
 msgid "Families with twins"
@@ -4830,7 +4852,7 @@ msgstr "Gezinnen met tweelingen"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:57
 msgid "Matches families with twins"
-msgstr "Vindt gezinnen met tweelingen"
+msgstr "Overeenkomst met gezinnen met tweelingen"
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:63
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:63
@@ -4848,7 +4870,7 @@ msgstr "Voorouderfamilies van <gezin>"
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:66
 msgid "Matches ancestor families of the specified family"
-msgstr "Vindt voorouderfamilies van het opgegeven gezin"
+msgstr "Overeenkomst met vooroudergezinnen van het specifieke gezin"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:56
 msgid "Bookmarked families"
@@ -4856,7 +4878,7 @@ msgstr "Gezinnen met bladwijzers"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:58
 msgid "Matches the families on the bookmark list"
-msgstr "Komt overeen met de gezinnen op de bladwijzerlijst"
+msgstr "Overeenkomst met de gezinnen op de bladwijzerlijst"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:64
 msgid "Descendant families of <family>"
@@ -4864,7 +4886,7 @@ msgstr "Afstammelingen van <gezin>"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:66
 msgid "Matches descendant families of the specified family"
-msgstr "Vindt afstammelingen van het opgegeven gezin"
+msgstr "Overeenkomst met nakomelingsgezinnen van het specifieke gezin"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:46
 msgid "Families matching the <filter>"
@@ -4872,7 +4894,7 @@ msgstr "Gezinnen die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:47
 msgid "Matches families matched by the specified filter name"
-msgstr "Vindt gezinnen die overeenkomen met de opgegeven filternaam"
+msgstr "Overeenkomst met gezinnen die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:46
 msgid "Families with at least one direct source >= <confidence level>"
@@ -4882,16 +4904,17 @@ msgstr "Gezinnen met ten minste één directe bron >= <betrouwbaarheidsniveau>"
 msgid ""
 "Matches families with at least one direct source with confidence level(s)"
 msgstr ""
-"Vindt gezinnen met ten minste één rechtstreekse bron met een bepaald "
-"betrouwbaarheidsniveau"
+"Overeenkomst met gezinnen met ten minste één rechtstreekse bron met een "
+"bepaald betrouwbaarheidsniveau"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:56
 msgid "Families having mother with Id containing <text>"
-msgstr "Gezinnen met een moeder waarvan het ID uit <tekst> bestaat"
+msgstr "Gezinnen met een moeder met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:57
 msgid "Matches families whose mother has a specified Gramps ID"
-msgstr "Vindt gezinnen waarvan de moeder een opgegeven Gramps-ID heeft"
+msgstr ""
+"Overeenkomst met gezinnen waarvan de moeder een specifieke Gramps-ID heeft"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:58
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:57
@@ -4908,63 +4931,64 @@ msgstr "Gezinnen met een moeder met de <naam>"
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:56
 msgid "Matches families whose mother has a specified (partial) name"
 msgstr ""
-"Vindt gezinnen waarvan de moeder een bepaalde (gedeeltelijk) opgegeven naam "
-"heeft"
+"Overeenkomst met gezinnen waarvan de moeder een specifieke (gedeeltelijke) "
+"naam heeft"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:55
 msgid "Families with child matching the <regex_name>"
-msgstr "Gezinnen met kinderen die overeenkomen met <regex_naam>"
+msgstr "Gezinnen met kind dat overeenkomt met <regex_naam>"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:57
 msgid ""
 "Matches families where some child has a name that matches a specified "
 "regular expression"
 msgstr ""
-"Vindt gezinnen waarvan een kind een naam heeft die overeenkomt met een "
-"opgegeven reguliere expressie"
+"Overeenkomst met gezinnen waarvan een kind een naam heeft die overeenkomt "
+"met een opgegeven reguliere expressie"
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:55
 msgid "Families with father matching the <regex_name>"
-msgstr "Gezinnen waarvan de vader overeenkomt met <regex_naam>"
+msgstr "Gezinnen met vader die overeenkomt met <regex_naam>"
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:57
 msgid ""
 "Matches families whose father has a name matching a specified regular "
 "expression"
 msgstr ""
-"Vindt gezinnen waarvan de vader een naam heeft die overeenkomt met een "
-"opgegeven reguliere expressie"
+"Overeenkomst met gezinnen waarvan de vader een naam heeft die overeenkomt "
+"met een opgegeven reguliere expressie"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
 msgid "Families with Id containing <text>"
-msgstr "Gezinnen met ID die <tekst> bevatten"
+msgstr "Gezinnen met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:51
 msgid "Matches families whose Gramps ID matches the regular expression"
 msgstr ""
-"Vindt gezinnen waarvan het Gramps-ID overeenkomt met de reguliere expressie"
+"Overeenkomst met gezinnen waarvan het Gramps-ID overeenkomt met de reguliere "
+"expressie"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:55
 msgid "Families with mother matching the <regex_name>"
-msgstr "Gezinnen waarvan de moeder overeenkomt met <regex_naam>"
+msgstr "Gezinnen met moeder die overeenkomt met <regex_naam>"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:57
 msgid ""
 "Matches families whose mother has a name matching a specified regular "
 "expression"
 msgstr ""
-"Vindt gezinnen waarvan de moeder een naam heeft die overeenkomt met een "
-"opgegeven reguliere expressie"
+"Overeenkomst met gezinnen waarvan de moeder een naam heeft die overeenkomt "
+"met een opgegeven reguliere expressie"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:55
 msgid "Families with any child matching the <name>"
-msgstr "Gezinnen met een kind die overeenkomt met <naam>"
+msgstr "Gezinnen met kinderen die overeenkomen met <naam>"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:57
 msgid "Matches families where any child has a specified (partial) name"
 msgstr ""
-"Vindt gezinnen waarvan kinderen een bepaalde (gedeeltelijk) opgegeven naam "
-"hebben"
+"Overeenkomst met gezinnen waarvan een kind een specifieke (gedeeltelijke) "
+"naam heeft"
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:55
 msgid "Families with father matching the <name>"
@@ -4980,7 +5004,7 @@ msgstr "Elk media-object"
 
 #: ../gramps/gen/filters/rules/media/_allmedia.py:47
 msgid "Matches every media object in the database"
-msgstr "Vindt elk media-object in de database"
+msgstr "Overeenkomst met elk media-object in de database"
 
 #: ../gramps/gen/filters/rules/media/_changedsince.py:47
 msgid "Media objects changed after <date time>"
@@ -4991,22 +5015,23 @@ msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
 msgstr ""
-"Vindt media-objecten die gewijzigd zijn na een opgegeven datum:tijd (jjjj-mm-"
-"dd uu:mm:ss), of binnen een periode als een tweede datum:tijd is opgegeven."
+"Overeenkomst met media-objecten die gewijzigd zijn na een specifieke datum:"
+"tijd (jjjj-mm-dd uu:mm:ss), of binnen een periode als een tweede datum:tijd "
+"is opgegeven."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:117
 #: ../gramps/gui/editors/filtereditor.py:592
 msgid "Media attribute:"
-msgstr "Mediakenmerk:"
+msgstr "Media-kenmerk:"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:47
 msgid "Media objects with the attribute <attribute>"
-msgstr "Mediaobjecten met het kenmerk <kenmerk>"
+msgstr "Media-objecten met het kenmerk <kenmerk>"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:48
 msgid "Matches media objects with the attribute of a particular value"
-msgstr "Vindt media-objecten met een kenmerk van een bepaalde waarde"
+msgstr "Overeenkomst met media-objecten met een kenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:50
 msgid "Media with the <citation>"
@@ -5014,15 +5039,15 @@ msgstr "Media met het <citaat>"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:51
 msgid "Matches media with a citation of a particular value"
-msgstr "Vindt media met een citaat van een bepaalde waarde"
+msgstr "Overeenkomst met media met een citaat van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:46
 msgid "Media object with <Id>"
-msgstr "Media-object met <Id>"
+msgstr "Media-object met <ID>"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:47
 msgid "Matches a media object with a specified Gramps ID"
-msgstr "Vindt een media-object met een opgegeven Gramps-ID"
+msgstr "Overeenkomst met een media-object met een specifieke Gramps-ID"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:58
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:58
@@ -5052,7 +5077,7 @@ msgstr "Media-objecten met overeenkomende parameters"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:63
 msgid "Matches media objects with particular parameters"
-msgstr "Vindt media-objecten met bepaalde parameters"
+msgstr "Overeenkomst met media-objecten met bepaalde parameters"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:44
 msgid "Media objects having notes containing <substring>"
@@ -5061,8 +5086,8 @@ msgstr "Media-objecten met notities die een <deeltekenreeks> bevatten"
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:46
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
-"Vindt media-objecten waarvan de notities tekst bevatten die overeenkomt met "
-"een deeltekenreeks"
+"Overeenkomst met media-objecten waarvan de notities tekst bevatten die "
+"overeenkomt met een deeltekenreeks"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:42
 msgid "Media objects having notes containing <text>"
@@ -5072,8 +5097,8 @@ msgstr "Media-objecten met notities die <tekst> bevatten"
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt media-objecten waarvan de notities tekst bevatten die overeenkomt met "
-"een reguliere expressie"
+"Overeenkomst met media-objecten waarvan de notities tekst bevatten die "
+"overeenkomt met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:44
 msgid "Media objects with a reference count of <count>"
@@ -5081,7 +5106,9 @@ msgstr "Media-objecten waar <aantal> keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:45
 msgid "Matches media objects with a certain reference count"
-msgstr "Vindt media-objecten waar een bepaald aantal keer naar verwezen wordt"
+msgstr ""
+"Overeenkomst met media-objecten waar een bepaald aantal keer naar verwezen "
+"wordt"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:47
 msgid "Media with <count> sources"
@@ -5089,7 +5116,7 @@ msgstr "Media met <aantal> bronnen"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:48
 msgid "Matches media with a certain number of sources connected to it"
-msgstr "Vindt media met een bepaald aantal bronverwijzingen"
+msgstr "Overeenkomst met media met een bepaald aantal bronverwijzingen"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:48
 msgid "Media with the <source>"
@@ -5097,7 +5124,7 @@ msgstr "Media met de <bron>"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:50
 msgid "Matches media who have a particular source"
-msgstr "Vindt media die een bepaalde bron hebben"
+msgstr "Overeenkomst met media met een bepaalde bron"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:52
 msgid "Media objects with the <tag>"
@@ -5105,7 +5132,7 @@ msgstr "Media-objecten met het <label>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:53
 msgid "Matches media objects with the particular tag"
-msgstr "Vindt media-objecten met een bepaald label"
+msgstr "Overeenkomst met media-objecten met een bepaald label"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
@@ -5113,7 +5140,8 @@ msgstr "Media-objecten die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:47
 msgid "Matches media objects matched by the specified filter name"
-msgstr "Vindt media-objecten die overeenkomen met de opgegeven filternaam"
+msgstr ""
+"Overeenkomst met media-objecten die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:46
 msgid "Media with a direct source >= <confidence level>"
@@ -5122,7 +5150,8 @@ msgstr "Media met een directe bron >= <betrouwbaarheidsniveau>"
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:48
 msgid "Matches media with at least one direct source with confidence level(s)"
 msgstr ""
-"Vindt media met ten minste één directe bron met betrouwbaarheidsniveau('s)"
+"Overeenkomst met media met ten minste één directe bron met "
+"betrouwbaarheidsniveau('s)"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:44
 msgid "Media objects marked private"
@@ -5130,17 +5159,17 @@ msgstr "Media-objecten gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:45
 msgid "Matches Media objects that are indicated as private"
-msgstr "Vindt media-objecten die als privé zijn aangegeven"
+msgstr "Overeenkomst met media-objecten die als privé zijn aangegeven"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:49
 msgid "Media objects with Id containing <text>"
-msgstr "Media-objecten met ID die <tekst> bevatten"
+msgstr "Media-objecten met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:51
 msgid "Matches media objects whose Gramps ID matches the regular expression"
 msgstr ""
-"Vindt media-objecten waarvan het Gramps-ID overeenkomt met de reguliere "
-"expressie"
+"Overeenkomst met media-objecten waarvan het Gramps-ID overeenkomt met de "
+"reguliere expressie"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:46
 msgid "Every note"
@@ -5148,7 +5177,7 @@ msgstr "Elke notitie"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:47
 msgid "Matches every note in the database"
-msgstr "Vindt alle notities in de database"
+msgstr "Overeenkomst met alle notities in de database"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:49
 msgid "Notes changed after <date time>"
@@ -5159,16 +5188,17 @@ msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Vindt notities die gewijzigd zijn na een opgegeven datum-tijd (jjjj-mm-dd uu:"
-"mm:ss), of binnen een periode als een tweede datum-tijd opgegeven is."
+"Overeenkomst met notities die gewijzigd zijn na een specifieke datum-tijd "
+"(jjjj-mm-dd uu:mm:ss), of binnen een periode als een tweede datum-tijd "
+"opgegeven is."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
-msgstr "Notitie met <Id>"
+msgstr "Notitie met <ID>"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:47
 msgid "Matches a note with a specified Gramps ID"
-msgstr "Vindt een notitie met een opgegeven Gramps-ID"
+msgstr "Overeenkomst met een notitie met een specifiek Gramps-ID"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:60
 msgid "Notes matching parameters"
@@ -5176,15 +5206,16 @@ msgstr "Notities met overeenkomende parameters"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:61
 msgid "Matches Notes with particular parameters"
-msgstr "Vindt notities met bepaalde parameters"
+msgstr "Overeenkomst met notities met bepaalde parameters"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:44
 msgid "Notes with a reference count of <count>"
-msgstr "Notities waar <aantal> keer naar verwezen wordt"
+msgstr "Notities met <aantal> verwijzingen"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:45
 msgid "Matches notes with a certain reference count"
-msgstr "Vindt notities waar een bepaald aantal keer naar verwezen wordt"
+msgstr ""
+"Overeenkomst met notities waar een bepaald aantal keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:52
 msgid "Notes with the <tag>"
@@ -5192,11 +5223,11 @@ msgstr "Notities met het <label>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
-msgstr "Vindt notities met een bepaald label"
+msgstr "Overeenkomst met notities met een bepaald label"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:57
 msgid "Notes with the particular type"
-msgstr "Notities van een specifiek type"
+msgstr "Notities van een bepaald type"
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:46
 msgid "Notes matching the <filter>"
@@ -5204,7 +5235,7 @@ msgstr "Notities die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:47
 msgid "Matches notes matched by the specified filter name"
-msgstr "Vindt notities die overeenkomen met de opgegeven filternaam"
+msgstr "Overeenkomst met notities die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:54
 msgid "Notes containing <text>"
@@ -5213,8 +5244,8 @@ msgstr "Notities die <tekst> bevatten"
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:56
 msgid "Matches notes that contain a substring or match a regular expression"
 msgstr ""
-"Vindt notities die een deeltekenreeks bevatten of overeenkomen met een "
-"reguliere expressie"
+"Overeenkomst met notities die een deeltekenreeks bevatten of overeenkomen "
+"met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:55
 msgid "Notes containing <substring>"
@@ -5223,7 +5254,8 @@ msgstr "Notities die <deeltekenreeks> bevatten"
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:56
 msgid "Matches notes that contain text which matches a substring"
 msgstr ""
-"Vindt notities die tekst bevatten die overeenkomt met een deeltekenreeks"
+"Overeenkomst met notities die tekst bevatten die overeenkomt met een "
+"deeltekenreeks"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:44
 msgid "Notes marked private"
@@ -5231,34 +5263,34 @@ msgstr "Notities gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:45
 msgid "Matches notes that are indicated as private"
-msgstr "Vindt notities die als privé zijn aangegeven"
+msgstr "Overeenkomst met notities die als privé zijn aangegeven"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:49
 msgid "Notes with Id containing <text>"
-msgstr "Notities met ID die <tekst> bevatten"
+msgstr "Notities met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:50
 msgid "Matches notes whose Gramps ID matches the regular expression"
 msgstr ""
-"Vindt notities waarvan het Gramps-ID overeenkomt met de reguliere expressie"
+"Overeenkomst met notities waarvan het Gramps-ID overeenkomt met de reguliere "
+"expressie"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:49
 msgid "Persons changed after <date time>"
-msgstr "Personen die na <datum tijd> gewijzigd zijn"
+msgstr "Personen die gewijzigd zijn na <datum tijd>"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:51
 msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Vindt personen die gewijzigd zijn na een opgegeven datum-tijd (jjjj-mm-dd uu:"
-"mm:ss), of binnen een periode als een tweede datum-tijd opgegeven is."
+"Overeenkomst met personen die gewijzigd zijn na een specifieke datum-tijd "
+"(jjjj-mm-dd uu:mm:ss), of binnen een periode als een tweede datum-tijd "
+"opgegeven is."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:150
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr ""
-"Verwantschappelijke lijn tussen <persoon> en personen die overeenkomen met "
-"<filter>"
+msgstr "Verwantschap tussen <persoon> en personen die overeenkomen met <filter>"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:151
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:59
@@ -5284,7 +5316,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:172
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:185
 msgid "Finding relationship paths"
-msgstr "Relatiepaden vinden"
+msgstr "Verwantschappen zoeken"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:173
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:73
@@ -5310,8 +5342,8 @@ msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
 msgstr ""
-"Vindt personen die geen familierelaties hebben met een andere persoon in de "
-"database"
+"Overeenkomst met personen die geen familierelaties hebben met een andere "
+"persoon in de database"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:55
 #: ../gramps/gen/plug/_pluginreg.py:80
@@ -5320,7 +5352,7 @@ msgstr "Iedereen"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:57
 msgid "Matches everyone in the database"
-msgstr "Vindt iedereen in de database"
+msgstr "Overeenkomst met iedereen in de database"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:53
 msgid "Families with incomplete events"
@@ -5329,7 +5361,7 @@ msgstr "Gezinnen met onvolledige gebeurtenissen"
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:55
 msgid "Matches people with missing date or place in an event of the family"
 msgstr ""
-"Vindt personen waarvan een datum of plaats ontbreekt in een "
+"Overeenkomst met personen waarvan een datum of plaats ontbreekt bij een "
 "familiegebeurtenis"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:60
@@ -5338,15 +5370,17 @@ msgstr "Personen met <aantal> adressen"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:61
 msgid "Matches people with a certain number of personal addresses"
-msgstr "Vindt personen met een bepaald aantal persoonlijke adressen"
+msgstr "Overeenkomst met personen met een bepaald aantal persoonlijke adressen"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:53
 msgid "People with an address containing <text>"
-msgstr "Personen met een adres dat <text> bevat"
+msgstr "Personen met een adres met <text>"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:55
 msgid "Matches people with a personal address containing the given text"
-msgstr "Vindt personen met een persoonlijk adres dat de gegeven tekst bevat"
+msgstr ""
+"Overeenkomst met personen met een persoonlijk adres dat de gegeven tekst "
+"bevat"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:56
 msgid "People with an alternate name"
@@ -5354,7 +5388,7 @@ msgstr "Personen met een alternatieve naam"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:57
 msgid "Matches people with an alternate name"
-msgstr "Vindt personen met een alternatieve naam"
+msgstr "Overeenkomst met personen met een alternatieve naam"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:60
 msgid "People with <count> associations"
@@ -5362,7 +5396,7 @@ msgstr "Personen met <aantal> connecties"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:61
 msgid "Matches people with a certain number of associations"
-msgstr "Vindt personen met een bepaald aantal connecties"
+msgstr "Overeenkomst met personen met een bepaald aantal connecties"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:114
@@ -5376,7 +5410,7 @@ msgstr "Personen met persoonlijk <kenmerk>"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:49
 msgid "Matches people with the personal attribute of a particular value"
-msgstr "Vindt personen met een bepaald persoonlijk kenmerk"
+msgstr "Overeenkomst met personen met een bepaald persoonlijk kenmerk"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:60
 msgid "People with the <birth data>"
@@ -5384,7 +5418,7 @@ msgstr "Personen met <geboortedatum>"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:61
 msgid "Matches people with birth data of a particular value"
-msgstr "Vindt personen met een bepaalde geboortedatum"
+msgstr "Overeenkomst met personen met een bepaalde geboortedatum"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:50
 msgid "People with the <citation>"
@@ -5392,7 +5426,7 @@ msgstr "Personen met het <citaat>"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:51
 msgid "Matches people with a citation of a particular value"
-msgstr "Vindt personen met een bepaald citaat"
+msgstr "Overeenkomst met personen met een bepaald citaat"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:58
 msgid "People with a common ancestor with <person>"
@@ -5413,8 +5447,8 @@ msgstr "Voorouderfilters"
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:61
 msgid "Matches people that have a common ancestor with a specified person"
 msgstr ""
-"Vindt personen die een gemeenschappelijke voorouder hebben met een "
-"gespecificeerd persoon"
+"Overeenkomst met personen die een gemeenschappelijke voorouder hebben met "
+"een specifiek persoon"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:50
 msgid "People with a common ancestor with <filter> match"
@@ -5425,8 +5459,8 @@ msgstr ""
 msgid ""
 "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
-"Vindt personen die een gemeenschappelijke voorouder hebben met iedereen die "
-"overeenkomt met een filter"
+"Overeenkomst met personen die een gemeenschappelijke voorouder hebben met "
+"iedereen die overeenkomt met een filter"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:60
 msgid "People with the <death data>"
@@ -5434,7 +5468,7 @@ msgstr "Personen met <overlijdensgegevens>"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:61
 msgid "Matches people with death data of a particular value"
-msgstr "Vindt personen met bepaalde overlijdensgegevens"
+msgstr "Overeenkomst met personen met bepaalde overlijdensgegevens"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:57
 #: ../gramps/gui/editors/filtereditor.py:111
@@ -5453,23 +5487,23 @@ msgstr "Personen met de persoonlijke <gebeurtenis>"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:65
 msgid "Matches people with a personal event of a particular value"
-msgstr "Vindt personen met een bepaalde persoonlijke gebeurtenis"
+msgstr "Overeenkomst met personen met een bepaalde persoonlijke gebeurtenis"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:56
 msgid "People with the family <attribute>"
-msgstr "Personen met <gezinskenmerk>"
+msgstr "Personen met het gezin <kenmerk>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:57
 msgid "Matches people with the family attribute of a particular value"
-msgstr "Vindt personen met een bepaald gezinskenmerk"
+msgstr "Overeenkomst met personen met een bepaald gezinskenmerk"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:59
 msgid "People with the family <event>"
-msgstr "Personen met de <gezinsgebeurtenis>"
+msgstr "Personen met het gezin <gebeurtenis>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:60
 msgid "Matches people with a family event of a particular value"
-msgstr "Vindt personen met een bepaalde gezinsgebeurtenis"
+msgstr "Overeenkomst met personen met een bepaalde gezinsgebeurtenis"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:44
 msgid "People with <count> media"
@@ -5477,17 +5511,17 @@ msgstr "Personen met <aantal> media"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:45
 msgid "Matches people with a certain number of items in the gallery"
-msgstr "Vindt personen met een bepaald aantal items in de galerij"
+msgstr "Overeenkomst met personen met een bepaald aantal items in de galerij"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:46
 #: ../gramps/gen/filters/rules/person/_matchidof.py:56
 msgid "Person with <Id>"
-msgstr "Persoon met <Id>"
+msgstr "Persoon met <ID>"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:47
 #: ../gramps/gen/filters/rules/person/_matchidof.py:57
 msgid "Matches person with a specified Gramps ID"
-msgstr "Vindt een persoon met een opgegeven Gramps-ID"
+msgstr "Overeenkomst met een persoon met een specifieke Gramps-ID"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:50
 msgid "People with <count> LDS events"
@@ -5495,7 +5529,7 @@ msgstr "Personen met <aantal> LDS-gebeurtenissen"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:51
 msgid "Matches people with a certain number of LDS events"
-msgstr "Vindt personen met een bepaald aantal LDS-gebeurtenissen"
+msgstr "Overeenkomst met personen met een bepaald aantal LDS-gebeurtenissen"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:58
 msgid "Given name:"
@@ -5542,7 +5576,7 @@ msgstr "Patroniem:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:68
 msgid "Family Nick Name:"
-msgstr "Familie bijnaam:"
+msgstr "Familiebijnaam:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:70
 msgid "People with the <name>"
@@ -5551,21 +5585,21 @@ msgstr "Personen met de <naam>"
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:71
 #: ../gramps/gen/filters/rules/person/_searchname.py:58
 msgid "Matches people with a specified (partial) name"
-msgstr "Vindt personen met een (gedeeltelijk) opgegeven naam"
+msgstr "Overeenkomst met personen met een specifieke (gedeeltelijke) naam"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:56
 #: ../gramps/gui/editors/filtereditor.py:121
 #: ../gramps/gui/editors/filtereditor.py:600
 msgid "Surname origin type:"
-msgstr "Type achternaamoorsprong:"
+msgstr "Type oorspronkelijke achternaam:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:57
 msgid "People with the <Surname origin type>"
-msgstr "Personen met het type <achternaamoorsprong>>"
+msgstr "Personen met het <type oorspronkelijke achternaam>"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:58
 msgid "Matches people with a surname origin"
-msgstr "Vindt personen met dezelfde achternaamoorsprong"
+msgstr "Overeenkomst met personen met dezelfde oorspronkelijke achternaam"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:56
 #: ../gramps/gui/editors/filtereditor.py:120
@@ -5579,7 +5613,7 @@ msgstr "Personen met het <naamtype>"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:58
 msgid "Matches people with a type of name"
-msgstr "Vindt personen met een naamtype"
+msgstr "Overeenkomst met personen met een type naam"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:56
 msgid "People with a nickname"
@@ -5587,7 +5621,7 @@ msgstr "Personen met een bijnaam"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:57
 msgid "Matches people with a nickname"
-msgstr "Vindt personen met een bijnaam"
+msgstr "Overeenkomst met personen met een bijnaam"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:47
 msgid "People having <count> notes"
@@ -5595,27 +5629,27 @@ msgstr "Personen met <aantal> notities"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:48
 msgid "Matches people having a certain number of notes"
-msgstr "Vindt personen met een bepaald aantal notities"
+msgstr "Overeenkomst met personen met een bepaald aantal notities"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:44
 msgid "People having notes containing <substring>"
-msgstr "Personen met notities die een <deeltekenreeks> bevatten"
+msgstr "Personen met notities met <deeltekenreeks>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:45
 msgid "Matches people whose notes contain text matching a substring"
 msgstr ""
-"Vindt personen wiens notities tekst bevatten die overeenkomt met een "
-"deeltekenreeks"
+"Overeenkomst met personen wiens notities tekst bevatten die overeenkomt met "
+"een deeltekenreeks"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:42
 msgid "People having notes containing <text>"
-msgstr "Personen met notities die <tekst> bevatten"
+msgstr "Personen met notities met <tekst>"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:44
 msgid "Matches people whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die overeenkomt met een "
-"reguliere expressie"
+"Overeenkomst met personen van wie de notities tekst bevatten die overeenkomt "
+"met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
 msgid "People with a note of type <type>"
@@ -5623,7 +5657,7 @@ msgstr "Personen met een notitie van het type <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
 msgid "Matches people with a note of the specified type"
-msgstr "Vindt personen met een notitie van het opgegeven type"
+msgstr "Overeenkomst met personen met een notitie van het specifieke type"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:55
 msgid "People who are neither male nor female"
@@ -5631,7 +5665,7 @@ msgstr "Personen die noch man noch vrouw zijn"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:57
 msgid "Matches all people with other gender"
-msgstr "Vindt alle personen met ander geslacht"
+msgstr "Overeenkomst met alle personen met ander geslacht"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:57
 msgid "Number of relationships:"
@@ -5647,7 +5681,7 @@ msgstr "Personen met de <verwantschappen>"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:62
 msgid "Matches people with a particular relationship"
-msgstr "Vindt personen die een bepaalde verwantschap hebben"
+msgstr "Overeenkomst met personen met een bepaalde verwantschap"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:63
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:56
@@ -5678,15 +5712,16 @@ msgstr "Naam:"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:58
 msgid "Soundex match of People with the <name>"
-msgstr "Soundex-match van personen met de <naam>"
+msgstr "Soundex-overeenstemming van personen met de <naam>"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:60
 msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"Soundex-match van personen met een opgegeven naam. De voornaam, achternaam, "
-"roepnaam en bijnaam worden gezocht in primaire en alternatieve namen."
+"Soundex-overeenkomst van personen met een specifieke naam. De voornaam, "
+"achternaam, roepnaam en bijnaam worden gezocht in primaire en alternatieve "
+"namen."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:47
 msgid "People with <count> sources"
@@ -5694,7 +5729,7 @@ msgstr "Personen met <aantal> bronnen"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:48
 msgid "Matches people with a certain number of sources connected to it"
-msgstr "Vindt personen met een bepaald aantal bronnen"
+msgstr "Overeenkomst met personen met een bepaald aantal bronnen"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:48
 msgid "People with the <source>"
@@ -5702,7 +5737,7 @@ msgstr "Personen met de <bron>"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:50
 msgid "Matches people who have a particular source"
-msgstr "Vindt personen die een bepaalde bron hebben"
+msgstr "Overeenkomst met personen met een bepaalde bron"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "People with the <tag>"
@@ -5710,7 +5745,7 @@ msgstr "Personen met het <label>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:53
 msgid "Matches people with the particular tag"
-msgstr "Vindt personen met een bepaald label"
+msgstr "Overeenkomst met personen met een bepaald label"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:66
 #: ../gramps/gui/editors/filtereditor.py:609
@@ -5719,13 +5754,13 @@ msgstr "Hoofdlettergevoelig:"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:67
 msgid "People with records containing <substring>"
-msgstr "Personen met gegevens die <deeltekenreeks> bevatten"
+msgstr "Personen met gegevens met <deeltekenreeks>"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:68
 msgid "Matches people whose records contain text matching a substring"
 msgstr ""
-"Vindt personen wier vermeldingen tekst bevatten die overeenkomt met een "
-"deeltekenreeks"
+"Overeenkomst met personen waarvan vermeldingen tekst bevatten die "
+"overeenkomt met een deeltekenreeks"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:55
 msgid "People with unknown gender"
@@ -5733,7 +5768,7 @@ msgstr "Personen met onbekend geslacht"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:57
 msgid "Matches all people with unknown gender"
-msgstr "Vindt alle personen met onbekend geslacht"
+msgstr "Overeenkomst met alle personen met onbekend geslacht"
 
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:54
 msgid "Adopted people"
@@ -5741,7 +5776,7 @@ msgstr "Geadopteerde personen"
 
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:55
 msgid "Matches people who were adopted"
-msgstr "Vindt personen die geadopteerd zijn"
+msgstr "Overeenkomst met personen die geadopteerd zijn"
 
 #: ../gramps/gen/filters/rules/person/_havechildren.py:56
 msgid "People with children"
@@ -5749,7 +5784,7 @@ msgstr "Personen met kinderen"
 
 #: ../gramps/gen/filters/rules/person/_havechildren.py:57
 msgid "Matches people who have children"
-msgstr "Vindt personen die kinderen hebben"
+msgstr "Overeenkomst met personen met kinderen"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:55
 msgid "People with incomplete names"
@@ -5757,7 +5792,7 @@ msgstr "Personen met onvolledige namen"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:56
 msgid "Matches people with firstname or lastname missing"
-msgstr "Vindt personen waarvan de voornaam of achternaam ontbreekt"
+msgstr "Overeenkomst met personen waarvan de voor- of achternaam ontbreekt"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:58
 msgid "Ancestors of <person>"
@@ -5765,17 +5800,17 @@ msgstr "Voorouders van <persoon>"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:60
 msgid "Matches people that are ancestors of a specified person"
-msgstr "Vindt personen die voorouders zijn van een bepaalde persoon"
+msgstr "Overeenkomst met personen die voorouders zijn van een specifiek persoon"
 
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:59
 msgid "Ancestors of <filter> match"
-msgstr "Voorouders van <filter> komen overeen"
+msgstr "Voorouders van overeenkomsten met <filter>"
 
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:62
 msgid "Matches people that are ancestors of anybody matched by a filter"
 msgstr ""
-"Vindt personen die de voorouders zijn van iedereen die overeenkomt met een "
-"filter"
+"Overeenkomst met personen die de voorouder zijn van iedereen die overeenkomt "
+"met een filter"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:57
 msgid "Bookmarked people"
@@ -5783,27 +5818,29 @@ msgstr "Personen met bladwijzers"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:59
 msgid "Matches the people on the bookmark list"
-msgstr "Komt overeen met de personen op de bladwijzerlijst"
+msgstr "Overeenkomst met de personen op de bladwijzerlijst"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:59
 msgid "Children of <filter> match"
-msgstr "Kinderen uit het <filter> resultaat"
+msgstr "Kinderen met overeenkomsten uit <filter>"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:61
 msgid "Matches children of anybody matched by a filter"
-msgstr "Vindt de kinderen van iedereen die overeenkomt met een filterresultaat"
+msgstr ""
+"Overeenkomst met de kinderen van iedereen die overeenkomt met een "
+"filterresultaat"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:56
 msgid "Home Person"
-msgstr "Beginpersoon"
+msgstr "Centrale persoon"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:58
 msgid "Matches the Home Person"
-msgstr "Vindt de beginpersoon"
+msgstr "Overeenkomst met de Centrale persoon"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:64
 msgid "Descendant family members of <person>"
-msgstr "Afstammelingen van <persoon>"
+msgstr "Afstammende familieleden van <persoon>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:65
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:54
@@ -5819,20 +5856,20 @@ msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
 msgstr ""
-"Vindt personen die afstammelingen zijn of de echtgenoot van een afstammeling "
-"van een bepaalde persoon"
+"Overeenkomst met personen die afstammeling of partner zijn van een "
+"afstammeling van een specifiek persoon"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:53
 msgid "Descendant family members of <filter> match"
-msgstr "Familieleden van afstammelingen uit het <filter> resultaat"
+msgstr "Afstammende familieleden uit het <filter> resultaat"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:56
 msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
 msgstr ""
-"Vindt personen die afstammelingen zijn of de echtgenoot van iemand die met "
-"een filterresultaat overeenkomt"
+"Overeenkomst met personen die afstammeling of partner zijn van iemand die "
+"overeenkomt met een filterresultaat"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:59
 msgid "Descendants of <person>"
@@ -5840,17 +5877,17 @@ msgstr "Afstammelingen van <persoon>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:61
 msgid "Matches all descendants for the specified person"
-msgstr "Vindt alle nakomelingen van de opgegeven persoon"
+msgstr "Overeenkomst met alle nakomelingen van de specifieke persoon"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:59
 msgid "Descendants of <filter> match"
-msgstr "Afstammelingen uit <filter> resultaat"
+msgstr "Afstammelingen van <filter> resultaat"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:62
 msgid "Matches people that are descendants of anybody matched by a filter"
 msgstr ""
-"Vindt personen die afstammelingen zijn van iedereen die met een "
-"filterresultaat overeenkomt"
+"Overeenkomst met personen die afstammeling zijn van iedereen die overeenkomt "
+"met een filterresultaat"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:59
 msgid "Duplicated ancestors of <person>"
@@ -5859,7 +5896,8 @@ msgstr "Dubbele voorouders van <persoon>"
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:62
 msgid "Matches people that are ancestors twice or more of a specified person"
 msgstr ""
-"Vindt personen die twee of meer keer voorouders zijn van een bepaalde persoon"
+"Overeenkomst met personen die twee generaties of meer voorouder zijn van een "
+"specifiek persoon"
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:55
 #: ../gramps/plugins/gramplet/statsgramplet.py:153
@@ -5873,7 +5911,7 @@ msgstr "Vrouwen"
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:57
 msgid "Matches all females"
-msgstr "Vindt alle vrouwen"
+msgstr "Overeenkomst met alle vrouwen"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:58
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:64
@@ -5887,55 +5925,52 @@ msgstr "Aantal generaties:"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:59
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr ""
-"Voorouders van <persoon> op een afstand van niet meer dan <N> generaties"
+msgstr "Voorouders van <persoon> niet meer dan <N> generaties verwijderd"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:62
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
 msgstr ""
-"Vindt personen die voorouders zijn van een bepaalde persoon en die op een "
-"afstand van niet meer dan N generaties staan"
+"Overeenkomst met personen die niet meer dan N generaties voorouder zijn van "
+"een specifieke persoon"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:65
 msgid "Ancestors of bookmarked people not more than <N> generations away"
 msgstr ""
-"Voorouders van personen met een bladwijzer op een afstand van niet meer dan "
-"<N> generaties"
+"Voorouders van personen met een bladwijzer niet meer dan <N> generaties "
+"verwijderd"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:68
 msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr ""
-"Komt overeen met voorouders van personen met een bladwijzer die op een "
-"afstand van niet meer dan N generaties staan"
+"Overeenkomst met voorouders die niet meer dan N generaties af staan van "
+"personen op bladwijzers"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:60
 msgid "Ancestors of the Home Person not more than <N> generations away"
 msgstr ""
-"Voorouders van de beginpersoon op een afstand van niet meer dan <N> "
-"generaties"
+"Voorouders van de Centrale persoon niet meer dan <N> generaties verwijderd"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:63
 msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
-"Vindt voorouders van de beginpersoon die op een afstand van niet meer dan N "
-"generaties staan"
+"Overeenkomst met personen die niet meer dan N generaties voorouder zijn van "
+"de Centrale persoon"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:59
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr ""
-"Afstammelingen van <persoon> op een afstand van niet meer dan <N> generaties"
+msgstr "Afstammelingen van <persoon> niet meer dan <N> generaties verwijderd"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:62
 msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
 msgstr ""
-"Vindt afstammelingen van de beginpersoon die op een afstand van niet meer "
-"dan N generaties staan"
+"Overeenkomst met afstammelingen die niet meer dan N generaties af staan van "
+"de specifieke persoon"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:55
 #: ../gramps/plugins/gramplet/statsgramplet.py:150
@@ -5949,32 +5984,31 @@ msgstr "Mannen"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:57
 msgid "Matches all males"
-msgstr "Vindt alle mannen"
+msgstr "Overeenkomst met alle mannen"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:59
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr "Voorouders van <persoon> op een afstand van minstens <N> generaties"
+msgstr "Voorouders van <persoon> minstens <N> generaties verwijderd"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:62
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr ""
-"Vindt voorouders van persoon die op een afstand van minstens N generaties "
-"staan"
+"Overeenkomst met voorouders die minstens N generaties af staan van een "
+"specifiek persoon"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:58
 msgid "Descendants of <person> at least <N> generations away"
-msgstr ""
-"Afstammelingen van <persoon> op een afstand van minstens <N> generaties"
+msgstr "Afstammelingen van <persoon> minstens <N> generaties verwijderd"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:61
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr ""
-"Vindt afstammelingen van persoon die op een afstand van minstens N "
-"generaties staan"
+"Overeenkomst met afstammelingen die minstens N generaties af staan van een "
+"specifiek persoon"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:59
 msgid "Parents of <filter> match"
@@ -5982,7 +6016,8 @@ msgstr "Ouders van het <filter> resultaat"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:61
 msgid "Matches parents of anybody matched by a filter"
-msgstr "Vindt ouders van iedereen die overeenkomt met een filterresultaat"
+msgstr ""
+"Overeenkomst met ouders van iedereen die overeenkomt met een filterresultaat"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:58
 msgid "People related to <Person>"
@@ -5990,7 +6025,7 @@ msgstr "Personen verwant aan <persoon>"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:60
 msgid "Matches people related to a specified person"
-msgstr "Personen die verwant zijn aan een bepaalde persoon"
+msgstr "Overeenkomst met personen die verwant zijn aan een specifiek persoon"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:58
 msgid "Siblings of <filter> match"
@@ -5999,7 +6034,8 @@ msgstr "Broers en zussen van <filter> resultaat"
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:60
 msgid "Matches siblings of anybody matched by a filter"
 msgstr ""
-"Vindt broers en zussen van iemand die overeenkomt met een filterresultaat"
+"Overeenkomst met broers en zussen van iedereen die overeenkomt met een "
+"filterresultaat"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:58
 msgid "Spouses of <filter> match"
@@ -6008,8 +6044,8 @@ msgstr "Echtgenoten van <filter> resultaat"
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:59
 msgid "Matches people married to anybody matching a filter"
 msgstr ""
-"Vindt personen die getrouwd zijn met iemand die overeenkomt met een "
-"filterresultaat"
+"Overeenkomst met personen die getrouwd zijn met iedereen die overeenkomt met "
+"een filterresultaat"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:58
 msgid "Witnesses"
@@ -6017,7 +6053,7 @@ msgstr "Getuigen"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:59
 msgid "Matches people who are witnesses in any event"
-msgstr "Vindt personen die getuigen zijn bij een gebeurtenis"
+msgstr "Overeenkomst met personen die getuigen zijn bij een gebeurtenis"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:60
@@ -6033,8 +6069,8 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:56
 msgid "Matches persons who have events that match a certain event filter"
 msgstr ""
-"Vindt personen die gebeurtenissen hebben die overeenkomen met een bepaald "
-"gebeurtenisfilter"
+"Overeenkomst met personen met gebeurtenissen die overeenkomen met een "
+"bepaald gebeurtenisfilter"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:46
 msgid "People matching the <filter>"
@@ -6042,7 +6078,7 @@ msgstr "Personen die overeenkomen met het <filter> resultaat"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:47
 msgid "Matches people matched by the specified filter name"
-msgstr "Vindt personen die overeenkomen met de opgegeven filternaam"
+msgstr "Overeenkomst met personen die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:46
 msgid "Persons with at least one direct source >= <confidence level>"
@@ -6052,7 +6088,8 @@ msgstr "Personen met minstens één directe bron >= <betrouwbaarheidsniveau>"
 msgid ""
 "Matches persons with at least one direct source with confidence level(s)"
 msgstr ""
-"Vindt personen met ten minste één directe bron met betrouwbaarheidsniveau(s)"
+"Overeenkomst met personen met ten minste één directe bron met "
+"betrouwbaarheidsniveau(s)"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:54
 msgid "People missing parents"
@@ -6063,8 +6100,8 @@ msgid ""
 "Matches people that are children in a family with less than two parents or "
 "are not children in any family."
 msgstr ""
-"Vindt personen die kinderen zijn in een gezin met minder dan twee ouders of "
-"geen kinderen zijn in een gezin."
+"Overeenkomst met personen die kinderen zijn in een gezin met minder dan twee "
+"ouders of geen kinderen zijn in een gezin."
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:53
 msgid "People with multiple marriage records"
@@ -6072,7 +6109,7 @@ msgstr "Personen met meerdere huwelijksgegevens"
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:54
 msgid "Matches people who have more than one spouse"
-msgstr "Vindt personen die meer dan één echtgenoot hebben"
+msgstr "Overeenkomst met personen met meer dan één partner"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:53
 msgid "People with no marriage records"
@@ -6080,7 +6117,7 @@ msgstr "Personen zonder huwelijksgegevens"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:54
 msgid "Matches people who have no spouse"
-msgstr "Vindt personen die geen echtgenoot hebben"
+msgstr "Overeenkomst met personen zonder partner"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:53
 msgid "People without a known birth date"
@@ -6088,7 +6125,7 @@ msgstr "Personen zonder bekende geboortedatum"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:54
 msgid "Matches people without a known birthdate"
-msgstr "Vindt personen zonder bekende geboortedatum"
+msgstr "Overeenkomst met personen zonder bekende geboortedatum"
 
 #: ../gramps/gen/filters/rules/person/_nodeathdate.py:53
 msgid "People without a known death date"
@@ -6096,7 +6133,7 @@ msgstr "Personen zonder bekende overlijdensdatum"
 
 #: ../gramps/gen/filters/rules/person/_nodeathdate.py:54
 msgid "Matches people without a known deathdate"
-msgstr "Vindt personen zonder bekende overlijdensdatum"
+msgstr "Overeenkomst met personen zonder bekende overlijdensdatum"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:44
 msgid "People marked private"
@@ -6104,7 +6141,7 @@ msgstr "Personen gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:45
 msgid "Matches people that are indicated as private"
-msgstr "Vindt personen die als privé zijn aangegeven"
+msgstr "Overeenkomst met personen die als privé zijn aangegeven"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:45
 msgid "People not marked private"
@@ -6112,7 +6149,7 @@ msgstr "Personen die niet als privé zijn gemarkeerd"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:46
 msgid "Matches people that are not indicated as private"
-msgstr "Vindt personen die niet als privé zijn aangegeven"
+msgstr "Overeenkomst met personen die niet als privé zijn aangegeven"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:53
 msgid "People with incomplete events"
@@ -6120,7 +6157,9 @@ msgstr "Personen met onvolledige gebeurtenissen"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:54
 msgid "Matches people with missing date or place in an event"
-msgstr "Vindt personen met een ontbrekende datum of plaats in een gebeurtenis"
+msgstr ""
+"Overeenkomst met personen met een ontbrekende datum of plaats bij een "
+"gebeurtenis"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:55
 msgid "On date:"
@@ -6132,15 +6171,19 @@ msgstr "Personen die waarschijnlijk in leven zijn"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:57
 msgid "Matches people without indications of death that are not too old"
-msgstr "Vindt personen zonder indicaties van overlijden die niet te oud zijn"
+msgstr ""
+"Overeenkomst met personen zonder indicaties van overlijden die niet te oud "
+"zijn"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:48
 msgid "People with Id containing <text>"
-msgstr "Personen met een ID die <tekst> bevat"
+msgstr "Personen met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:49
 msgid "Matches people whose Gramps ID matches the regular expression"
-msgstr "Vindt personen wiens Gramps-ID overeenkomt met de reguliere expressie"
+msgstr ""
+"Overeenkomst met personen van wie het Gramps-ID overeenkomt met de reguliere "
+"expressie"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:57
 msgid "People with a name matching <text>"
@@ -6151,8 +6194,8 @@ msgid ""
 "Matches people's names containing a substring or matching a regular "
 "expression"
 msgstr ""
-"Vindt namen van personen die een deeltekenreeks bevatten of overeenkomen met "
-"een reguliere expressie"
+"Overeenkomst met namen van personen die een deeltekenreeks bevatten of "
+"overeenkomen met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:59
 msgid "Relationship path between <persons>"
@@ -6163,7 +6206,7 @@ msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
 msgstr ""
-"Stemt de voorouders van twee personen af op een gemeenschappelijke "
+"Overeenkomst met de voorouders van twee personen van een gemeenschappelijke "
 "voorouder, waardoor het verwantschapslijn tussen twee personen ontstaat."
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:64
@@ -6175,7 +6218,7 @@ msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"Komt overeen met de voorouders van personen met een bladwijzer af op "
+"Overeenkomst met de voorouders van personen met een bladwijzer af op "
 "gemeenschappelijke voorouders, waardoor verwantschapslijnen tussen personen "
 "met een bladwijzer ontstaan."
 
@@ -6189,7 +6232,7 @@ msgstr "Elke locatie"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:47
 msgid "Matches every place in the database"
-msgstr "Vindt elke plaats in de database"
+msgstr "Overeenkomst met elke plaats in de database"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:49
 msgid "Places changed after <date time>"
@@ -6200,9 +6243,9 @@ msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Vindt plaatsvermeldingen die gewijzigd zijn na een gespecificeerde datum-"
-"tijd (jjjj-mm-dd uu:mm:ss), of binnen een periode als een tweede datum-tijd "
-"is opgegeven."
+"Overeenkomst met plaatsvermeldingen die gewijzigd zijn na een specifieke "
+"datum-tijd (jjjj-mm-dd uu:mm:ss), of binnen een periode als een tweede datum-"
+"tijd is opgegeven."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
@@ -6210,7 +6253,7 @@ msgstr "Locatie met het <citaat>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 msgid "Matches places with a citation of a particular value"
-msgstr "Vindt locaties met een citaat van een bepaalde waarde"
+msgstr "Overeenkomst met locaties met een citaat van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:58
 #: ../gramps/gui/editors/editplace.py:106
@@ -6242,7 +6285,7 @@ msgstr "Locaties met overeenkomende parameters"
 #: ../gramps/gen/filters/rules/place/_hasdata.py:63
 #: ../gramps/gen/filters/rules/place/_hasplace.py:71
 msgid "Matches places with particular parameters"
-msgstr "Vindt locaties met bepaalde parameters"
+msgstr "Overeenkomst met locaties met bepaalde parameters"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:47
 msgid "Places with <count> media"
@@ -6250,15 +6293,15 @@ msgstr "Locaties met <aantal> media"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:48
 msgid "Matches places with a certain number of items in the gallery"
-msgstr "Vindt locaties met een bepaald aantal items in de galerij"
+msgstr "Overeenkomst met locaties met een bepaald aantal items in de galerij"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:46
 msgid "Place with <Id>"
-msgstr "Locatie met <Id>"
+msgstr "Locatie met <ID>"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:47
 msgid "Matches a place with a specified Gramps ID"
-msgstr "Vindt een locatie met een opgegeven Gramps-ID"
+msgstr "Overeenkomst met een locatie met een specifieke Gramps-ID"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:58
 msgid "Places with no latitude or longitude given"
@@ -6266,7 +6309,7 @@ msgstr "Locaties zonder lengte- of breedtegraad"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:59
 msgid "Matches places with empty latitude or longitude"
-msgstr "Vindt plaatsen met een lege lengte- of breedtegraad"
+msgstr "Overeenkomst met plaatsen met een lege lengte- of breedtegraad"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:60
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:72
@@ -6280,7 +6323,7 @@ msgstr "Locaties met <aantal> notities"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:48
 msgid "Matches places having a certain number of notes"
-msgstr "Vindt locaties met een bepaald aantal notities"
+msgstr "Overeenkomst met locaties met een bepaald aantal notities"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:44
 msgid "Places having notes containing <substring>"
@@ -6289,8 +6332,8 @@ msgstr "Locaties met notities die een <deeltekenreeks> bevatten"
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:45
 msgid "Matches places whose notes contain text matching a substring"
 msgstr ""
-"Locaties waarvan de notities tekst bevatten die overeenkomt met een "
-"deeltekenreeks"
+"Overeenkomst met locaties waarvan de notities tekst bevatten die overeenkomt "
+"met een deeltekenreeks"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:42
 msgid "Places having notes containing <text>"
@@ -6299,8 +6342,8 @@ msgstr "Locaties met notities die <tekst> bevatten"
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:44
 msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt locaties waarvan de notities tekst bevatten die overeenkomt met een "
-"reguliere expressie"
+"Overeenkomst met locaties waarvan de notities tekst bevatten die overeenkomt "
+"met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
 msgid "Places with a note of type <type>"
@@ -6308,7 +6351,7 @@ msgstr "Locaties met een notitie van type <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
 msgid "Matches places with a note of the specified type"
-msgstr "Vindt locaties met een notitie van het opgegeven type"
+msgstr "Overeenkomst met locaties met een notitie van het specifieke type"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:61
 msgid "Street:"
@@ -6348,7 +6391,8 @@ msgstr "Locaties waar <aantal> keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:45
 msgid "Matches places with a certain reference count"
-msgstr "Vindt locaties waar een bepaald aantal keer naar verwezen wordt"
+msgstr ""
+"Overeenkomst met locaties waar een bepaald aantal keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:47
 msgid "Place with <count> sources"
@@ -6356,7 +6400,7 @@ msgstr "Locaties met <aantal> bronnen"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:48
 msgid "Matches places with a certain number of sources connected to it"
-msgstr "Vindt locaties met een bepaald aantal bronverwijzingen"
+msgstr "Overeenkomst met locaties met een bepaald aantal bronverwijzingen"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
 msgid "Places with the <source>"
@@ -6364,7 +6408,7 @@ msgstr "Locaties met de <bron>"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:50
 msgid "Matches places who have a particular source"
-msgstr "Vindt locaties met een bepaalde bron"
+msgstr "Overeenkomst met locaties met een bepaalde bron"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:52
 msgid "Places with the <tag>"
@@ -6372,7 +6416,7 @@ msgstr "Locaties met het <label>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:53
 msgid "Matches places with the particular tag"
-msgstr "Vindt locaties met een bepaald label"
+msgstr "Overeenkomst met locaties met een bepaald label"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:60
 msgid "Places matching a title"
@@ -6380,7 +6424,7 @@ msgstr "Locaties die overeenkomen met een titel"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:61
 msgid "Matches places with a particular title"
-msgstr "Vindt locaties die overeenkomen met een titel"
+msgstr "Overeenkomst met locaties met een bepaalde titel"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:61
 #: ../gramps/gui/glade/editplaceref.glade:278
@@ -6416,9 +6460,9 @@ msgid ""
 "height and width (in degrees), and with middlepoint the given latitude and "
 "longitude."
 msgstr ""
-"Vindt locaties met lengte- en breedtegraad in een rechthoek met een gegeven "
-"hoogte en breedte (in graden), en met middelpunt de gegeven breedte- en "
-"lengtegraad."
+"Overeenkomst met locaties met lengte- en breedtegraad in een rechthoek met "
+"een gegeven hoogte en breedte (in graden), en met middelpunt de gegeven "
+"breedte- en lengtegraad."
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:59
 msgid "Places enclosed by another place"
@@ -6426,7 +6470,7 @@ msgstr "Locaties omsloten door een andere plaats"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:60
 msgid "Matches a place enclosed by a particular place"
-msgstr "Vindt een locatie omsloten door een bepaalde plaats"
+msgstr "Overeenkomst met een locatie omsloten door een bepaalde plaats"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:61
 msgid "Places of events matching the <event filter>"
@@ -6438,8 +6482,8 @@ msgid ""
 "Matches places where events happened that match the specified event filter "
 "name"
 msgstr ""
-"Vindt plaatsen waar gebeurtenissen plaatsvonden die overeenkomen met de "
-"opgegeven naam in het gebeurtenisfilter"
+"Overeenkomst met plaatsen waar gebeurtenissen plaatsvonden die overeenkomen "
+"met de specifieke naam in het gebeurtenisfilter"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:46
 msgid "Places matching the <filter>"
@@ -6447,7 +6491,7 @@ msgstr "Locaties die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:47
 msgid "Matches places matched by the specified filter name"
-msgstr "Vindt locaties die overeenkomen met de opgegeven filternaam"
+msgstr "Overeenkomst met locaties die overeenkomen met de opgegeven filternaam"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:46
 msgid "Place with a direct source >= <confidence level>"
@@ -6456,7 +6500,8 @@ msgstr "Locatie met een directe bron >= <betrouwbaarheidsniveau>"
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:48
 msgid "Matches places with at least one direct source with confidence level(s)"
 msgstr ""
-"Vindt locaties met ten minste één directe bron met betrouwbaarheidsniveau('s)"
+"Overeenkomst met locaties met ten minste één directe bron met "
+"betrouwbaarheidsniveau('s)"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:44
 msgid "Places marked private"
@@ -6464,16 +6509,17 @@ msgstr "Locaties gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:45
 msgid "Matches places that are indicated as private"
-msgstr "Vindt locaties die als privé zijn aangegeven"
+msgstr "Overeenkomst met locaties die als privé zijn aangegeven"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:49
 msgid "Places with Id containing <text>"
-msgstr "Locaties met ID die <tekst> bevatten"
+msgstr "Locaties met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:50
 msgid "Matches places whose Gramps ID matches the regular expression"
 msgstr ""
-"Vindt locaties waarvan het Gramps-ID overeenkomt met de reguliere expressie"
+"Overeenkomst met locaties waarvan het Gramps-ID overeenkomt met de reguliere "
+"expressie"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:70
 #: ../gramps/gui/editors/filtereditor.py:634
@@ -6486,7 +6532,8 @@ msgstr "Locaties binnen een gebied"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:72
 msgid "Matches places within a given distance of another place"
-msgstr "Vindt locaties binnen een bepaalde afstand van een andere locatie"
+msgstr ""
+"Overeenkomst met locaties binnen een bepaalde afstand van een andere locatie"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:94
 msgid "Cannot use the filter 'within area'"
@@ -6506,7 +6553,7 @@ msgstr "Elke bibliotheek"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:47
 msgid "Matches every repository in the database"
-msgstr "Vindt alle bibliotheken in de database"
+msgstr "Overeenkomst met alle bibliotheken in de database"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:49
 msgid "Repositories changed after <date time>"
@@ -6517,8 +6564,9 @@ msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
-"Vindt bibliotheken die gewijzigd zijn na een opgegeven datum/tijd (jjjj-mm-"
-"dd uu:mm:ss), of binnen een periode als een tweede datum/tijd is opgegeven."
+"Overeenkomst met bibliotheken die gewijzigd zijn na een specifieke datum/"
+"tijd (jjjj-mm-dd uu:mm:ss), of binnen een periode als een tweede datum/tijd "
+"is opgegeven."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repository attribute:"
@@ -6530,15 +6578,15 @@ msgstr "Bibliotheken met het kenmerk <kenmerk>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:49
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Vindt bibliotheken met een kenmerk van een bepaalde waarde"
+msgstr "Overeenkomst met bibliotheken met een kenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:46
 msgid "Repository with <Id>"
-msgstr "Bibliotheek met <Id>"
+msgstr "Bibliotheek met <ID>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Vindt een bibliotheek met een opgegeven Gramps-ID"
+msgstr "Overeenkomst met een bibliotheek met een specifieke Gramps-ID"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:44
 msgid "Repositories having notes containing <substring>"
@@ -6547,8 +6595,8 @@ msgstr "Bibliotheken met notities die een <deeltekenreeks> bevatten"
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:46
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Vindt bibliotheken waarvan de notities tekst bevatten die overeenkomt met "
-"een deeltekenreeks"
+"Overeenkomst met bibliotheken waarvan de notities tekst bevatten die "
+"overeenkomt met een deeltekenreeks"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
 msgid "Repositories having notes containing <text>"
@@ -6558,8 +6606,8 @@ msgstr "Bibliotheken met notities die <tekst> bevatten"
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt bibliotheken met notities die tekst bevatten die overeenkomt met een "
-"reguliere expressie"
+"Overeenkomst met bibliotheken met notities die tekst bevatten die "
+"overeenkomt met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Repositories with a reference count of <count>"
@@ -6567,7 +6615,9 @@ msgstr "Bibliotheken waar <aantal> keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:45
 msgid "Matches repositories with a certain reference count"
-msgstr "Vindt bibliotheken waar een bepaald aantal keer naar verwezen wordt"
+msgstr ""
+"Overeenkomst met bibliotheken waar een bepaald aantal keer naar verwezen "
+"wordt"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:57
 #: ../gramps/gui/glade/mergerepository.glade:208
@@ -6591,7 +6641,7 @@ msgstr "Bibliotheken met overeenkomende parameters"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:63
 msgid "Matches Repositories with particular parameters"
-msgstr "Vindt bibliotheken met bepaalde parameters"
+msgstr "Overeenkomst met bibliotheken met bepaalde parameters"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Repositories with the <tag>"
@@ -6599,7 +6649,7 @@ msgstr "Bibliotheken met het <label>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:53
 msgid "Matches repositories with the particular tag"
-msgstr "Vindt bibliotheken met een bepaald label"
+msgstr "Overeenkomst met bibliotheken met een bepaald label"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
@@ -6607,7 +6657,8 @@ msgstr "Bibliotheken die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:47
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Vindt bibliotheken die overeenkomen met de opgegeven filternaam"
+msgstr ""
+"Overeenkomst met bibliotheken die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:54
 msgid "Repositories with name containing <text>"
@@ -6615,17 +6666,19 @@ msgstr "Bibliotheken met een naam die <tekst> bevat"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:55
 msgid "Matches repositories whose name contains a certain substring"
-msgstr "Vindt bibliotheken wiens naam een bepaalde deeltekenreeks bevat"
+msgstr ""
+"Overeenkomst met bibliotheken waarvan de naam een bepaalde deeltekenreeks "
+"bevat"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
 msgid "Repositories with Id containing <text>"
-msgstr "Bibliotheken met Id die <tekst> bevatten"
+msgstr "Bibliotheken met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:51
 msgid "Matches repositories whose Gramps ID matches the regular expression"
 msgstr ""
-"Vindt bibliotheken waarvan het Gramps-ID overeenkomt met de reguliere "
-"expressie"
+"Overeenkomst met bibliotheken waarvan het Gramps-ID overeenkomt met de "
+"reguliere expressie"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:44
 msgid "Repositories marked private"
@@ -6633,7 +6686,7 @@ msgstr "Bibliotheken gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:45
 msgid "Matches repositories that are indicated as private"
-msgstr "Vindt bibliotheken die als privé aangegeven zijn"
+msgstr "Overeenkomst met bibliotheken die als privé aangegeven zijn"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:46
 msgid "Every source"
@@ -6641,7 +6694,7 @@ msgstr "Elke bron"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:47
 msgid "Matches every source in the database"
-msgstr "Vindt elke bron in de database"
+msgstr "Overeenkomst met elke bron in de database"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:49
 msgid "Sources changed after <date time>"
@@ -6652,9 +6705,9 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Vindt bronvermeldingen die gewijzigd zijn na een opgegeven datum-tijd (jjjj-"
-"mm-dd uu:mm:ss), of binnen een periode als een tweede datum-tijd opgegeven "
-"is."
+"Overeenkomst met bronvermeldingen die gewijzigd zijn na een specifieke datum-"
+"tijd (jjjj-mm-dd uu:mm:ss), of binnen een periode als een tweede datum-tijd "
+"opgegeven is."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Source attribute:"
@@ -6666,7 +6719,7 @@ msgstr "Bronnen met het kenmerk <kenmerk>"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:49
 msgid "Matches sources with the attribute of a particular value"
-msgstr "Vindt bronnen met het kenmerk van een bepaalde waarde"
+msgstr "Overeenkomst met bronnen met een kenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:47
 msgid "Sources with <count> media"
@@ -6674,15 +6727,15 @@ msgstr "Bronnen met <aantal> media"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:48
 msgid "Matches sources with a certain number of items in the gallery"
-msgstr "Vindt bronnen met een bepaald aantal items in de galerij"
+msgstr "Overeenkomst met bronnen met een bepaald aantal items in de galerij"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:46
 msgid "Source with <Id>"
-msgstr "Bron met <Id>"
+msgstr "Bron met <ID>"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:47
 msgid "Matches a source with a specified Gramps ID"
-msgstr "Vindt een bron met een opgegeven Gramps-ID"
+msgstr "Overeenkomst met een bron met een specifieke Gramps-ID"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:47
 msgid "Sources having <count> notes"
@@ -6690,7 +6743,7 @@ msgstr "Bronnen met <aantal> notities"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:48
 msgid "Matches sources having a certain number of notes"
-msgstr "Vindt bronnen met een bepaald aantal notities"
+msgstr "Overeenkomst met bronnen met een bepaald aantal notities"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:44
 msgid "Sources having notes containing <substring>"
@@ -6699,8 +6752,8 @@ msgstr "Bronnen met notities die een <deeltekenreeks> bevatten"
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:45
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr ""
-"Vindt bronnen waarvan de notities tekst bevatten die overeenkomt met een "
-"deeltekenreeks"
+"Overeenkomst met bronnen waarvan de notities tekst bevatten die overeenkomt "
+"met een deeltekenreeks"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:42
 msgid "Sources having notes containing <text>"
@@ -6709,8 +6762,8 @@ msgstr "Bronnen met notities die <tekst> bevatten"
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:44
 msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt bronnen wiens notities tekst bevatten die overeenkomt met een "
-"reguliere expressie"
+"Overeenkomst met bronnen waarvan notities tekst bevatten die overeenkomt met "
+"een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
 msgid "Sources with a note of type <type>"
@@ -6718,7 +6771,7 @@ msgstr "Bronnen met een notitie van type <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
 msgid "Matches sources with a note of the specified type"
-msgstr "Vindt bronnen met een notitie van het opgegeven type"
+msgstr "Overeenkomst met bronnen met een notitie van het specifieke type"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -6726,7 +6779,8 @@ msgstr "Bronnen waar <aantal> keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:45
 msgid "Matches sources with a certain reference count"
-msgstr "Vindt bronnen waar een bepaald aantal keer naar verwezen wordt"
+msgstr ""
+"Overeenkomst met bronnen waar een bepaald aantal keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:59
 msgid "Sources with <count> Repository references"
@@ -6734,7 +6788,7 @@ msgstr "Bronnen met <aantal> bibliotheekverwijzingen"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:60
 msgid "Matches sources with a certain number of repository references"
-msgstr "Vindt bronnen met een bepaald aantal bibliotheekverwijzingen"
+msgstr "Overeenkomst met bronnen met een bepaald aantal bibliotheekverwijzingen"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:55
 msgid "Sources with repository reference containing <text> in \"Call Number\""
@@ -6747,12 +6801,12 @@ msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"Vindt bronnen met een bibliotheekverwijzing\n"
+"Overeenkomst met bronnen met een bibliotheekverwijzing\n"
 "die een deeltekenreeks bevat in \"Inventarisnummer\""
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
 msgid "Matches sources with particular parameters"
-msgstr "Vindt bronnen met bepaalde parameters"
+msgstr "Overeenkomst met bronnen met bepaalde parameters"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -6760,7 +6814,7 @@ msgstr "Bronnen met het <label>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:53
 msgid "Matches sources with the particular tag"
-msgstr "Vindt bronnen met een bepaald label"
+msgstr "Overeenkomst met bronnen met een bepaald label"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
@@ -6768,7 +6822,7 @@ msgstr "Bronnen die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:47
 msgid "Matches sources matched by the specified filter name"
-msgstr "Vindt bronnen die overeenkomen met de opgegeven filternaam"
+msgstr "Overeenkomst met bronnen die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:55
 msgid "Sources with repository reference matching the <repository filter>"
@@ -6780,8 +6834,8 @@ msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"Vindt bronnen met een bibliotheekverwijzing die overeenkomt met een bepaald\n"
-"bibliotheekfilter"
+"Overeenkomst met bronnen met een bibliotheekverwijzing die overeenkomt\n"
+"met een bepaald bibliotheekfilter"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:54
 msgid "Sources with title containing <text>"
@@ -6789,16 +6843,18 @@ msgstr "Bronnen met een titel die <tekst> bevat"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:55
 msgid "Matches sources whose title contains a certain substring"
-msgstr "Vindt bronnen waarvan de titel een bepaalde deeltekenreeks bevat"
+msgstr ""
+"Overeenkomst met bronnen waarvan de titel een bepaalde deeltekenreeks bevat"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:49
 msgid "Sources with Id containing <text>"
-msgstr "Bronnen met Id die <tekst> bevatten"
+msgstr "Bronnen met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:50
 msgid "Matches sources whose Gramps ID matches the regular expression"
 msgstr ""
-"Vindt bronnen waarvan het Gramps-ID overeenkomt met de reguliere expressie"
+"Overeenkomst met bronnen waarvan het Gramps-ID overeenkomt met de reguliere "
+"expressie"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:44
 msgid "Sources marked private"
@@ -6806,7 +6862,7 @@ msgstr "Bronnen gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:45
 msgid "Matches sources that are indicated as private"
-msgstr "Vindt bronnen die als privé aangegeven zijn"
+msgstr "Overeenkomst met bronnen die als privé aangegeven zijn"
 
 #: ../gramps/gen/lib/address.py:106 ../gramps/gui/clipboard.py:317
 #: ../gramps/gui/configure.py:708 ../gramps/gui/editors/editaddress.py:200
@@ -7091,7 +7147,7 @@ msgstr "Beschrijving"
 
 #: ../gramps/gen/lib/attrtype.py:78
 msgid "Identification Number"
-msgstr "Identificatie Nummer"
+msgstr "Identificatienummer"
 
 #: ../gramps/gen/lib/attrtype.py:79
 msgid "National Origin"
@@ -12375,7 +12431,7 @@ msgstr "Rand voor 'gescheiden'"
 
 #: ../gramps/gui/configure.py:951
 msgid "Background for Home Person"
-msgstr "Achtergrond voor beginpersoon"
+msgstr "Achtergrond voor Centrale persoon"
 
 #: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2814
 #, python-format
@@ -12584,7 +12640,7 @@ msgstr "Naam en ID van de actieve persoon"
 #: ../gramps/gui/configure.py:1647
 #: ../gramps/plugins/textreport/indivcomplete.py:395
 msgid "Relationship to home person"
-msgstr "Verwantschap met de beginpersoon"
+msgstr "Verwantschap met de Centrale persoon"
 
 #: ../gramps/gui/configure.py:1658
 msgid "Status bar"
@@ -14181,16 +14237,16 @@ msgid ""
 "\n"
 "To edit this media reference, you need to close the media object."
 msgstr ""
-"Deze mediaverwijzing kan momenteel niet worden bewerkt. Het gekoppelde media-"
-"object wordt al aangepast of een andere mediaverwijzing die aan hetzelfde "
-"media-object is gekoppeld, wordt aangepast.\n"
+"Deze media-verwijzing kan momenteel niet worden bewerkt. Het gekoppelde "
+"media-object wordt al aangepast of een andere media-verwijzing die aan "
+"hetzelfde media-object is gekoppeld, wordt aangepast.\n"
 "\n"
-"Om deze mediaverwijzing aan te passen, moet u het media-object sluiten."
+"Om deze media-verwijzing aan te passen, moet u het media-object sluiten."
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:629
 #: ../gramps/plugins/view/mediaview.py:216
 msgid "Drag Media Object"
-msgstr "Versleep Media-object"
+msgstr "Media-object slepen"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:52
 msgid "Create and add a new LDS ordinance"
@@ -15109,7 +15165,7 @@ msgstr "Nieuwe media"
 
 #: ../gramps/gui/editors/editmedia.py:279
 msgid "Edit Media Object"
-msgstr "Bewerk media-object"
+msgstr "Media-object bewerken"
 
 #: ../gramps/gui/editors/editmedia.py:326
 msgid "Cannot save media object"
@@ -15144,7 +15200,7 @@ msgstr ""
 #: ../gramps/gui/editors/editmediaref.py:590
 #, python-format
 msgid "Add Media Object (%s)"
-msgstr "Voeg media-object (%s) toe"
+msgstr "Media-object toevoegen (%s)"
 
 #: ../gramps/gui/editors/editmedia.py:377
 #: ../gramps/gui/editors/editmediaref.py:583
@@ -15320,7 +15376,7 @@ msgstr "Stel in als Actieve persoon"
 
 #: ../gramps/gui/editors/editperson.py:788
 msgid "Make Home Person"
-msgstr "Instellen als beginpersoon"
+msgstr "Instellen als Centrale persoon"
 
 #: ../gramps/gui/editors/editperson.py:909
 msgid "Problem changing the gender"
@@ -15959,8 +16015,8 @@ msgstr "Verwijder bron"
 #: ../gramps/gui/editors/objectentries.py:516
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
-"Gebruik slepen en neerzetten of gebruik de knoppen om een media-object te "
-"selecteren"
+"Om een media-object te selecteren, gebruik slepen en neerzetten of gebruik "
+"de knoppen"
 
 #: ../gramps/gui/editors/objectentries.py:518
 #: ../gramps/gui/plug/_guioptions.py:1123
@@ -15979,7 +16035,7 @@ msgstr "Selecteer een bestaand media-object"
 #: ../gramps/gui/editors/objectentries.py:521
 #: ../gramps/plugins/view/mediaview.py:128
 msgid "Add a new media object"
-msgstr "Voeg een nieuw media-object toe"
+msgstr "Nieuw media-object toevoegen"
 
 #: ../gramps/gui/editors/objectentries.py:522
 msgid "Remove media object"
@@ -17090,9 +17146,9 @@ msgstr ""
 "Pad van het media-object op uw computer.\n"
 "Gramps slaat media niet in zichzelf op, het slaat alleen het pad er naartoe "
 "op! Stel het 'Relatieve pad' in de 'Voorkeuren' in om te voorkomen dat u de "
-"naam van de algemene basisdirectory (het volledige pad), waar al uw media "
-"zijn opgeslagen, telkens opnieuw moet typen. De tool 'Mediabeheerder' kan "
-"helpen bij het beheren van paden van een verzameling media-objecten."
+"naam van de algemene basismap (het volledige pad), waar al uw media zijn "
+"opgeslagen, telkens opnieuw moet typen. De tool 'Mediabeheerder' kan helpen "
+"bij het beheren van paden van een verzameling media-objecten."
 
 #: ../gramps/gui/glade/editmedia.glade:217
 #: ../gramps/gui/glade/editmediaref.glade:425
@@ -17112,7 +17168,7 @@ msgstr "Map"
 
 #: ../gramps/gui/glade/editmedia.glade:298
 msgid "A unique ID to identify the Media object."
-msgstr "Een uniek ID om het Media-object te identificeren."
+msgstr "Een uniek ID om het media-object te identificeren."
 
 #: ../gramps/gui/glade/editmedia.glade:341
 msgid ""
@@ -17151,10 +17207,10 @@ msgid ""
 "corner of the region you want, dragging the mouse to the bottom right corner "
 "of the region, and then releasing the mouse button."
 msgstr ""
-"Gedeelte van het beeldmedia-object waarnaar wordt verwezen.\n"
+"Gedeelte van het afbeeldingsmedia-object waarnaar wordt verwezen.\n"
 "Selecteer een gedeelte door de muisknop in de linkerbovenhoek van het "
-"gewenste deel aan te klikken en vast te houden, de muis naar de "
-"rechteronderhoek van het gedeelte te slepen en vervolgens de muisknop los te "
+"gewenste deel aan te klikken en vast te houden, de muis naar de hoek "
+"rechtsonder van het gedeelte te slepen en vervolgens de muisknop los te "
 "laten."
 
 #: ../gramps/gui/glade/editmediaref.glade:209
@@ -17194,7 +17250,7 @@ msgstr "Dubbelklik op de afbeelding om het in een extern programma te bekijken"
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr ""
 "Type media-object zoals aangegeven door de computer, bijv. Afbeelding, "
-"video, …"
+"Video, …"
 
 #: ../gramps/gui/glade/editmediaref.glade:652
 msgid "Select a file"
@@ -17655,7 +17711,7 @@ msgstr "Op welk type media is deze bron beschikbaar in de bibliotheek."
 
 #: ../gramps/gui/glade/editreporef.glade:207
 msgid "Id number of the source in the repository."
-msgstr "Id-nummer van de bron in de bibliotheek."
+msgstr "ID-nummer van de bron in de bibliotheek."
 
 #: ../gramps/gui/glade/editreporef.glade:272
 #: ../gramps/gui/glade/editrepository.glade:98
@@ -17937,7 +17993,7 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Gebeurtenissen, lds_wijd., media-objecten, kenmerken, notities, bronnen en "
+"Gebeurtenissen, LDS_wijd., media-objecten, kenmerken, notities, bronnen en "
 "labels van beide families worden samengevoegd."
 
 #: ../gramps/gui/glade/mergemedia.glade:94
@@ -20485,7 +20541,7 @@ msgstr "Selecteer_notitiekiezer"
 
 #: ../gramps/gui/selectors/selectobject.py:70
 msgid "Select Media Object"
-msgstr "Selecteer media-object"
+msgstr "Media-object selecteren"
 
 #: ../gramps/gui/selectors/selectobject.py:143
 msgctxt "manual"
@@ -20957,7 +21013,7 @@ msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid "No Home Person"
-msgstr "Geen beginpersoon"
+msgstr "Geen Centrale persoon"
 
 #: ../gramps/gui/views/navigationview.py:326
 msgid ""
@@ -20965,9 +21021,9 @@ msgid ""
 "person you want as 'Home Person', then confirm your choice via the menu Edit "
 "-> Set Home Person."
 msgstr ""
-"U moet een 'beginpersoon' instellen om naar toe te gaan. Selecteer de "
-"weergave 'Personen', selecteer de gewenste persoon als 'Beginpersoon' en "
-"bevestig uw keuze via het menu Bewerken -> Beginpersoon instellen."
+"U moet een 'Centrale persoon' instellen om naar toe te gaan. Selecteer de "
+"weergave 'Personen', selecteer de gewenste persoon als 'Centrale persoon' en "
+"bevestig uw keuze via het menu Bewerken -> Centrale persoon instellen."
 
 #: ../gramps/gui/views/navigationview.py:339
 #: ../gramps/gui/views/navigationview.py:344
@@ -21306,7 +21362,7 @@ msgid ""
 "Matches places within a given distance of the active place. You have no "
 "active place."
 msgstr ""
-"Komt overeen met locaties binnen een bepaalde afstand van de actieve "
+"Overeenkomst met locaties binnen een bepaalde afstand van de actieve "
 "locatie. U heeft geen actieve locatie."
 
 #: ../gramps/gui/widgets/progressdialog.py:300
@@ -23623,7 +23679,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/tagreport.py:748
 #: ../gramps/plugins/textreport/tagreport.py:830
 msgid "Id"
-msgstr "Id"
+msgstr "ID"
 
 #: ../gramps/plugins/gramplet/coordinates.py:155
 msgid "Edit the event"
@@ -24982,7 +25038,7 @@ msgstr "Media-objecten"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:197
 msgid "Individuals with media objects"
-msgstr "Individuen met media-objecten"
+msgstr "Personen met media-objecten"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:204
 #: ../gramps/plugins/webreport/statistics.py:160
@@ -25351,7 +25407,7 @@ msgstr "Label om aan te geven dat een persoon of familie moet worden genegeerd"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:163
 msgid "No Home Person set."
-msgstr "Geen beginpersoon ingesteld."
+msgstr "Geen Centrale persoon ingesteld."
 
 #: ../gramps/plugins/gramplet/whatsnext.py:346
 msgid "first name unknown"
@@ -26688,7 +26744,7 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"De stamboom waarin u heeft geïmporteerd, heeft al een basispad voo rmedia: "
+"De stamboom waarin u heeft geïmporteerd, heeft al een basispad voor media: "
 "%(orig_path)s. De geïmporteerde media-objecten zijn echter relatief van het "
 "pad %(path)s. U kunt het mediapad wijzigen in de Voorkeuren of u kunt de "
 "geïmporteerde bestanden converteren naar het bestaande basispad voor media. "
@@ -31412,7 +31468,7 @@ msgstr "Persoonsfilter-bewerker"
 #: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/view/pedigreeview.py:1783
 msgid "Set _Home Person"
-msgstr "Begin_persoon instellen"
+msgstr "_Centrale persoon instellen"
 
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/view/fanchartview.py:186
@@ -31423,7 +31479,7 @@ msgstr "Begin_persoon instellen"
 #: ../gramps/plugins/view/pedigreeview.py:733
 #: ../gramps/plugins/view/relview.py:455
 msgid "Go to the home person"
-msgstr "Ga naar de beginpersoon"
+msgstr "Ga naar de Centrale persoon"
 
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libplaceview.py:363
@@ -32226,7 +32282,8 @@ msgid ""
 "Living matches: %(alive)d, Deceased matches: %(dead)d\n"
 msgstr ""
 "\n"
-"In leven zijn: %(alive)d, Overleden zijn: %(dead)d\n"
+"Overeenkomsten die in leven zijn: %(alive)d, Overleden overeenkomsten: "
+"%(dead)d\n"
 
 #: ../gramps/plugins/quickview/all_events.py:59
 #, python-format
@@ -32281,7 +32338,7 @@ msgstr "Persoonlijke gebeurtenissen van de kinderen"
 
 #: ../gramps/plugins/quickview/all_relations.py:73
 msgid "Home person not set."
-msgstr "Beginpersoon niet ingesteld."
+msgstr "Centrale persoon niet ingesteld."
 
 #: ../gramps/plugins/quickview/all_relations.py:83
 #: ../gramps/plugins/tool/relcalc.py:209
@@ -32734,11 +32791,11 @@ msgstr "Toon de gebeurtenissen van het gezin en gezinsleden."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:121
 msgid "Relation to Home Person"
-msgstr "Verwantschap met beginpersoon"
+msgstr "Verwantschap met Centrale persoon"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:122
 msgid "Display all relationships between person and home person."
-msgstr "Toon alle verwantschappen tussen persoon en beginpersoon."
+msgstr "Toon alle verwantschappen tussen persoon en Centrale persoon."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:144
 msgid "Display filtered data"
@@ -34330,8 +34387,7 @@ msgstr "Voettekstzin voor de pagina."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:164
 msgid "Gramps ID of the media object to use as an image."
-msgstr ""
-"Gramps-ID van het media-object dat als afbeelding moet worden gebruikt."
+msgstr "Gramps-ID van het media-object dat als afbeelding moet worden gebruikt."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:167
 msgid "Image Size"
@@ -34913,7 +34969,7 @@ msgstr "Zoeken naar bronreferentieproblemen"
 
 #: ../gramps/plugins/tool/check.py:1854
 msgid "Looking for media object reference problems"
-msgstr "Zoeken naar media-objectreferentieproblemen"
+msgstr "Zoeken naar referentieproblemen met media-objecten"
 
 #: ../gramps/plugins/tool/check.py:1985
 msgid "Looking for note reference problems"
@@ -35047,8 +35103,8 @@ msgstr[1] "{quantity} bibliotheken werden genoemd maar niet gevonden\n"
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
-msgstr[0] "{quantity} media-object werd genoemd maar niet gevonden\n"
-msgstr[1] "{quantity} media-objecten werden genoemd maar niet gevonden\n"
+msgstr[0] "{quantity} media-object werd vermeld maar niet gevonden\n"
+msgstr[1] "{quantity} media-objecten werden vermeld maar niet gevonden\n"
 
 #: ../gramps/plugins/tool/check.py:2870
 #, python-brace-format
@@ -35485,7 +35541,7 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"Dit hulpmiddel maakt batchbewerkingen mogelijk op media-objecten die zijn "
+"Dit hulpmiddel maakt bewerkingsreeksen mogelijk op media-objecten die zijn "
 "opgeslagen in Gramps. Er moet een belangrijk onderscheid worden gemaakt "
 "tussen een Gramps-media-object en zijn bestand.\n"
 "\n"
@@ -35560,7 +35616,7 @@ msgid ""
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
 msgstr ""
-"Met deze tool kunt u een opgegeven deeltekenreeks in het pad van media-"
+"Met dit hulpmiddel kunt u een opgegeven deeltekenreeks in het pad van media-"
 "objecten vervangen door een andere deeltekenreeks. Dit kan handig zijn "
 "wanneer u uw mediabestanden van de ene map naar de andere verplaatst"
 
@@ -36098,7 +36154,7 @@ msgstr " Hoeveelheid"
 
 #: ../gramps/plugins/tool/reorderids.glade:1433
 msgid "Actual / Upcoming ID format."
-msgstr "Huidige / Volgende Id-formaat."
+msgstr "Huidige / Volgende ID-formaat."
 
 #: ../gramps/plugins/tool/reorderids.glade:1446
 msgid "Change"
@@ -36507,7 +36563,7 @@ msgstr "_Schat ontbrekende of onnauwkeurige datums in"
 
 #: ../gramps/plugins/tool/verify.glade:375
 msgid "_Identify invalid dates"
-msgstr "_Identificeer ongeldige datums"
+msgstr "Ongeldige datums _identificeren"
 
 #: ../gramps/plugins/tool/verify.glade:453
 msgid "Mi_nimum age to bear a child"
@@ -37661,11 +37717,11 @@ msgstr "Het geselecteerde media-object bewerken"
 
 #: ../gramps/plugins/view/mediaview.py:130
 msgid "Delete the selected media object"
-msgstr "Verwijder het geselecteerde media-object"
+msgstr "Het geselecteerde media-object verwijderen"
 
 #: ../gramps/plugins/view/mediaview.py:131
 msgid "Merge the selected media objects"
-msgstr "Voeg de geselecteerde media-objecten samen"
+msgstr "De geselecteerde media-objecten samenvoegen"
 
 #: ../gramps/plugins/view/mediaview.py:318
 msgid "Media Filter Editor"
@@ -39140,8 +39196,7 @@ msgstr "Inclusief ongebruikte afbeeldingen en media-objecten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2443
 msgid "Whether to include unused or unreferenced media objects"
-msgstr ""
-"Of ongebruikte of niet-gerefereerde media-objecten moeten worden opgenomen"
+msgstr "Of ongebruikte of niet-vermelde media-objecten moeten worden opgenomen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2448
 msgid "Create and only use thumbnail- sized images"
