@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
 "PO-Revision-Date: 2025-02-18 17:37+0000\n"
-"Last-Translator: Fedir Zinchuk <fedikw@gmail.com>\n"
+"Last-Translator: Illia Maier <Illia-M@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
 "Language: uk\n"
@@ -7714,7 +7714,7 @@ msgstr "Сусід/Сусідка"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr "Офіціатор"
+msgstr "Священнослужитель"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
