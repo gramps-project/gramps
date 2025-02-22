@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-17 03:25+0000\n"
+"PO-Revision-Date: 2025-02-20 23:04+0000\n"
 "Last-Translator: Pier Luigi Cinquantini <plcinquantini@gmail.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/eo/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -13260,6 +13260,8 @@ msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
+"La specifita etikedo estos aldonita al ĉiuj rikordoj dum la importo.\n"
+"Purigu por agordi al la defaŭlta valoro."
 
 #: ../gramps/gui/configure.py:2431
 #, fuzzy
@@ -13357,16 +13359,22 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
+"Se markita, oni utiligas la normajn genealogiajn simbolojn (la mortsimbolon "
+"povas elekti la uzanto).\n"
+"Se ne markita, oni povas uzi la malsupran panelon por mem tajlorila "
+"simbolojn."
 
 #: ../gramps/gui/configure.py:2658
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
+"Tio povas utili se oni volas aldoni fenetikon en noto por montri kiel "
+"prononci nomon aŭ se oni miksas plurajn lingvojn kiel grekan kaj rusan."
 
 #: ../gramps/gui/configure.py:2664
 msgid "Use symbols"
-msgstr ""
+msgstr "Utiligu simbolojn"
 
 #: ../gramps/gui/configure.py:2678
 #, fuzzy
@@ -13395,11 +13403,11 @@ msgstr "Partnero"
 
 #: ../gramps/gui/configure.py:2806
 msgid "Killed"
-msgstr ""
+msgstr "Murdita"
 
 #: ../gramps/gui/configure.py:2810
 msgid "Default genealogy symbols replacement"
-msgstr ""
+msgstr "Anstataŭigo de la genealogiaj simboloj"
 
 #: ../gramps/gui/configure.py:2823
 msgid ""
@@ -13407,6 +13415,9 @@ msgid ""
 "You can drag and drop a symbol from the symbol list above.\n"
 "It will be visible only if your font contains this glyph."
 msgstr ""
+"Oni povas enmeti kiun ajn tekston en ĉi tiu kampo.\n"
+"Oni povas ŝovi kaj demeti simbolon el la supra simbollisto.\n"
+"Ĝi estos videbla nur se via tiparo entenas ĉi tiun signobildon."
 
 #: ../gramps/gui/csvdialect.py:63
 #, fuzzy
@@ -13426,10 +13437,12 @@ msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"La ŝanĝoj estas senprokrastaj.\n"
+"Oni uzas tion kiam oni eksportas la vidojn en CSV-formo."
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
-msgstr ""
+msgstr "Disigilo:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:124
 msgid "Undo history warning"
@@ -13491,7 +13504,7 @@ msgstr "Elektu dosiertipon:"
 
 #: ../gramps/gui/dbloader.py:341 ../gramps/gui/dbloader.py:363
 msgid "Login"
-msgstr ""
+msgstr "Ensalutu"
 
 #: ../gramps/gui/dbloader.py:349
 #, fuzzy
@@ -13746,6 +13759,7 @@ msgstr "Ĉu konverti la datumbazon '%s'?"
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
 msgstr ""
+"Ĉu vi volas konverti ĉi tiun familian arbon en datumbazon %(database_type)s?"
 
 #: ../gramps/gui/dbman.py:845
 msgid "Convert"
@@ -14925,7 +14939,7 @@ msgstr "Intervalo"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "De"
 
 #: ../gramps/gui/editors/editdate.py:83
 #, fuzzy
@@ -16413,18 +16427,22 @@ msgstr "URL"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:80
 msgid "This updates the view with the current filter parameters."
-msgstr ""
+msgstr "Tio ĉi ĝisdatigas la vidon per la aktualaj filtroparametroj."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:85
 msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
+"Tio ĉi restaŭras la filtroparametrojn al la malplena stato.  La butonon "
+"'Trovu' oni devus utiligi por ĝisdatigi la vidon al ĝiaj aktualaj defaŭltoj."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:93
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"Tio ĉi malfermas dialogujon por aldoni novan propran filtrilon bazitan sur "
+"la donitaj valoroj."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16433,15 +16451,15 @@ msgstr "Reŝargu"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "Pasinta tempo: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:379
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "Oni devus elekti la lokon kiam oni uzas la regulon 'Ene de'"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:389
 msgid "Supply at least one value"
-msgstr ""
+msgstr "Aldonu almenaŭ unu valoron"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:404
 #, python-brace-format
@@ -18402,8 +18420,9 @@ msgid "Metric"
 msgstr "Metra"
 
 #: ../gramps/gui/glade/plugins.glade:22
+#, fuzzy
 msgid "_Wiki"
-msgstr ""
+msgstr "_Vikio"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -19561,12 +19580,13 @@ msgid "Install"
 msgstr "Nestabila"
 
 #: ../gramps/gui/plug/_windows.py:265
+#, fuzzy
 msgid "Wiki"
-msgstr ""
+msgstr "Vikio"
 
 #: ../gramps/gui/plug/_windows.py:270
 msgid "Requires"
-msgstr ""
+msgstr "Postulas"
 
 #: ../gramps/gui/plug/_windows.py:275
 #, fuzzy
@@ -19582,7 +19602,7 @@ msgstr "La forigo malsukcesis "
 
 #: ../gramps/gui/plug/_windows.py:314
 msgid "Gramps was unable to install the required modules"
-msgstr ""
+msgstr "Gramps ne povis instali la postulitajn modulojn"
 
 #: ../gramps/gui/plug/_windows.py:344
 #, fuzzy
