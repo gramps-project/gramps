@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-19 08:36+0000\n"
+"PO-Revision-Date: 2025-02-20 11:39+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -5661,7 +5661,7 @@ msgstr "Overeenkomst met personen met een notitie van het specifieke type"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:55
 msgid "People who are neither male nor female"
-msgstr "Personen die noch man noch vrouw zijn"
+msgstr "Personen die mannelijk noch vrouwelijk zijn"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:57
 msgid "Matches all people with other gender"
@@ -5907,7 +5907,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/statistics.py:130
 #: ../gramps/plugins/webreport/statistics.py:240
 msgid "Females"
-msgstr "Vrouwen"
+msgstr "Vrouwelijk"
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:57
 msgid "Matches all females"
@@ -5980,7 +5980,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/statistics.py:128
 #: ../gramps/plugins/webreport/statistics.py:238
 msgid "Males"
-msgstr "Mannen"
+msgstr "Mannelijk"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:57
 msgid "Matches all males"
@@ -9921,7 +9921,7 @@ msgstr "Links, boven"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:96
 msgid "Compress to minimal size"
-msgstr "Comprimeer tot minimale grootte"
+msgstr "Comprimeren to minimale grootte"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:97
 msgid "Fill the given area"
@@ -12732,7 +12732,7 @@ msgstr "Bereik datum 'voor' jaar: (datum + #)"
 
 #: ../gramps/gui/configure.py:1917
 msgid "Maximum age probably alive"
-msgstr "Maximale leeftijd waarschijnlijk 'in leven'"
+msgstr "Maximale leeftijd waarschijnlijk in leven"
 
 #: ../gramps/gui/configure.py:1925
 msgid "Maximum sibling age difference"
@@ -15433,11 +15433,11 @@ msgstr ""
 
 #: ../gramps/gui/editors/editperson.py:1237
 msgid "_Male"
-msgstr "_Man"
+msgstr "_Mannelijk"
 
 #: ../gramps/gui/editors/editperson.py:1238
 msgid "_Female"
-msgstr "_Vrouw"
+msgstr "_Vrouwelijk"
 
 #: ../gramps/gui/editors/editperson.py:1239
 msgid "_Other"
@@ -27016,8 +27016,8 @@ msgid ""
 "Change name of male\n"
 "to e.g. wifes name."
 msgstr ""
-"Wijzig de naam van man\n"
-"naar bv. zijn vrouws naam."
+"De naam van man wijzigen\n"
+"naar die van bv. zijn vrouw."
 
 #: ../gramps/plugins/importer/importprogen.glade:1542
 msgid "Female surname"
@@ -27028,8 +27028,8 @@ msgid ""
 "Change name of female\n"
 "to e.g. husbands name."
 msgstr ""
-"Wijzig de naam van vrouw\n"
-"naar bv. haar mans naam."
+"De naam van vrouw wijzigen\n"
+"naar die van bv. haar man."
 
 #: ../gramps/plugins/importer/importprogen.glade:1599
 msgid "Option"
@@ -32490,12 +32490,12 @@ msgstr "alle notities"
 #: ../gramps/plugins/quickview/filterbyname.py:60
 msgctxt "Filtering_on"
 msgid "males"
-msgstr "mannen"
+msgstr "mannelijk"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
 msgctxt "Filtering_on"
 msgid "females"
-msgstr "vrouwen"
+msgstr "vrouwelijk"
 
 #: ../gramps/plugins/quickview/filterbyname.py:62
 msgctxt "Filtering_on"
@@ -32663,7 +32663,7 @@ msgstr "Opmerking"
 
 #: ../gramps/plugins/quickview/lineage.py:73
 msgid "Direct line male descendants"
-msgstr "Mannelijke afstammelingen in rechte lijn"
+msgstr "Mannelijke afstammelingen in directe lijn"
 
 #: ../gramps/plugins/quickview/lineage.py:87
 #, python-format
@@ -32686,7 +32686,7 @@ msgstr "Naam moeder"
 
 #: ../gramps/plugins/quickview/lineage.py:108
 msgid "Direct line female descendants"
-msgstr "Vrouwelijke afstammelingen in rechte lijn"
+msgstr "Vrouwelijke afstammelingen in directe lijn"
 
 #: ../gramps/plugins/quickview/lineage.py:134
 #: ../gramps/plugins/quickview/lineage.py:235
@@ -34172,11 +34172,11 @@ msgstr "Verwantschapsverslag voor %s"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:378
 msgid "The maximum number of descendant generations"
-msgstr "Het maximale aantal afstammelingsgeneraties"
+msgstr "Het maximale aantal generaties afstammelingen"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:382
 msgid "The maximum number of ancestor generations"
-msgstr "Het maximale aantal vooroudergeneraties"
+msgstr "Het maximale aantal generaties voorouders"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
 msgid "Show Gramps ID"
@@ -34414,12 +34414,12 @@ msgstr "Aantal individuen: %d"
 #: ../gramps/plugins/textreport/summary.py:191
 #, python-format
 msgid "Males: %d"
-msgstr "Mannen: %d"
+msgstr "Mannelijk: %d"
 
 #: ../gramps/plugins/textreport/summary.py:195
 #, python-format
 msgid "Females: %d"
-msgstr "Vrouwen: %d"
+msgstr "Vrouwelijk: %d"
 
 #: ../gramps/plugins/textreport/summary.py:199
 #, python-format
@@ -36555,7 +36555,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/verify.glade:336
 msgid "Maximum age for an _unmarried person"
-msgstr "Maximale leeftijd voor een _ongehuwd persoon"
+msgstr "Maximum leeftijd voor een _ongehuwd persoon"
 
 #: ../gramps/plugins/tool/verify.glade:359
 msgid "_Estimate missing or inexact dates"
@@ -36596,7 +36596,7 @@ msgstr "Maximaal aantal jaren _tussen kinderen"
 
 #: ../gramps/plugins/tool/verify.glade:775
 msgid "Maximum _span of years for all children"
-msgstr "Maximale _periode in jaren voor alle kinderen"
+msgstr "Maximale _tijdspanne in jaren voor alle kinderen"
 
 #: ../gramps/plugins/tool/verify.glade:1030
 #: ../gramps/plugins/tool/verify.py:945
@@ -36679,7 +36679,7 @@ msgstr "Vrouwelijke echtgenoot"
 
 #: ../gramps/plugins/tool/verify.py:1663
 msgid "Male wife"
-msgstr "Man vrouw"
+msgstr "Mannelijke echtgenoot"
 
 #: ../gramps/plugins/tool/verify.py:1697
 msgid "Husband and wife with the same surname"
@@ -37585,7 +37585,7 @@ msgstr "Maak een bladwijzer van deze persoon"
 
 #: ../gramps/plugins/view/geomoves.py:780
 msgid "The maximum number of generations.\n"
-msgstr "Het maximale aantal generaties.\n"
+msgstr "Het maximum aantal generaties.\n"
 
 #: ../gramps/plugins/view/geomoves.py:785
 msgid "Time in milliseconds between drawing two generations.\n"
@@ -37675,7 +37675,7 @@ msgstr "De locatienaam in de statusbalk is uitgeschakeld."
 #: ../gramps/plugins/view/geoplaces.py:482
 #, python-format
 msgid "The maximum number of places is reached (%d)."
-msgstr "Het maximale aantal locaties is bereikt (%d)."
+msgstr "Het maximum aantal locaties is bereikt (%d)."
 
 #: ../gramps/plugins/view/geoplaces.py:485
 msgid "Some information are missing."
@@ -39731,9 +39731,9 @@ msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
-"Gegevens pas na dit jaar weergeven. Standaard is het huidige jaar - "
-"'maximale leeftijd waarschijnlijk levend', die is gedefinieerd in het "
-"tabblad voor voorkeursdata."
+"Gegevens pas na dit jaar weergeven. Standaard is het huidige jaar - 'maximum "
+"leeftijd waarschijnlijk levend', die is gedefinieerd in het tabblad voor "
+"voorkeursdata."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
 msgid "HeatMap Options"
