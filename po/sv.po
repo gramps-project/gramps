@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-13 19:33+0000\n"
+"PO-Revision-Date: 2025-02-19 19:18+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-rc\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -27122,7 +27122,7 @@ msgstr "Ögonfärg"
 
 #: ../gramps/plugins/lib/libgedcom.py:747
 msgid "Height"
-msgstr "Längd"
+msgstr "Höjd"
 
 #: ../gramps/plugins/lib/libgedcom.py:748
 msgid "Initiatory (LDS)"
