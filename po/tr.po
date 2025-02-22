@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-14 22:15+0000\n"
+"PO-Revision-Date: 2025-02-20 02:35+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -4179,7 +4179,7 @@ msgstr "<count> ortam içeren alıntılar"
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:48
 msgid "Matches citations with a certain number of items in the gallery"
-msgstr "Alıntıları galerideki belirli sayıda öğeyle eşleştirir"
+msgstr "Alıntıları galerideki belirli sayıda ögeyle eşleştirir"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:47
 msgid "Citation with <Id>"
@@ -4546,7 +4546,7 @@ msgstr "<count> ortam içeren etkinlikler"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:48
 msgid "Matches events with a certain number of items in the gallery"
-msgstr "Etkinlikleri galerideki belirli sayıda öğeyle eşleştirir"
+msgstr "Etkinlikleri galerideki belirli sayıda ögeyle eşleştirir"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:46
 msgid "Event with <Id>"
@@ -4827,7 +4827,7 @@ msgstr "<count> ortamı olan aileler"
 
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:48
 msgid "Matches families with a certain number of items in the gallery"
-msgstr "Galerideki belirli sayıda öğeye sahip aileleri eşleştirir"
+msgstr "Galerideki belirli sayıda ögeye sahip aileleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/family/_hasidof.py:46
 msgid "Family with <Id>"
@@ -5558,7 +5558,7 @@ msgstr "<count> ortama sahip kişiler"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:45
 msgid "Matches people with a certain number of items in the gallery"
-msgstr "Galeride belirli sayıda öğeye sahip kişileri eşleştirir"
+msgstr "Galeride belirli sayıda ögeye sahip kişileri eşleştirir"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:46
 #: ../gramps/gen/filters/rules/person/_matchidof.py:56
@@ -5924,7 +5924,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:59
 msgid "Duplicated ancestors of <person>"
-msgstr "<person> öğesinin yinelenen ataları"
+msgstr "<person> ögesinin yinelenen ataları"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:62
 msgid "Matches people that are ancestors twice or more of a specified person"
@@ -6300,7 +6300,7 @@ msgstr "<count> ortam içeren yerler"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:48
 msgid "Matches places with a certain number of items in the gallery"
-msgstr "Galerideki belirli sayıda öğeye sahip yerleri eşleştirir"
+msgstr "Galerideki belirli sayıda ögeye sahip yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:46
 msgid "Place with <Id>"
@@ -6711,7 +6711,7 @@ msgstr "<count> ortam içeren kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:48
 msgid "Matches sources with a certain number of items in the gallery"
-msgstr "Galerideki belirli sayıda öğeye sahip kaynakları eşleştirir"
+msgstr "Galerideki belirli sayıda ögeye sahip kaynakları eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:46
 msgid "Source with <Id>"
@@ -16254,11 +16254,11 @@ msgstr "Önceden oluşturulmuş kitapları yönetin"
 
 #: ../gramps/gui/glade/book.glade:487
 msgid "Add an item to the book"
-msgstr "Kitaba bir öğe ekleyin"
+msgstr "Kitaba bir öge ekleyin"
 
 #: ../gramps/gui/glade/book.glade:510
 msgid "Remove currently selected item from the book"
-msgstr "Seçili öğeyi kitaptan kaldır"
+msgstr "Seçili ögeyi kitaptan kaldır"
 
 #: ../gramps/gui/glade/book.glade:532
 msgid "Move current selection one step up in the book"
@@ -16270,7 +16270,7 @@ msgstr "Geçerli seçimi kitapta bir adım aşağı taşı"
 
 #: ../gramps/gui/glade/book.glade:576
 msgid "Configure currently selected item"
-msgstr "Şu anda seçili öğeyi yapılandır"
+msgstr "Şu anda seçili ögeyi yapılandır"
 
 #: ../gramps/gui/glade/clipboard.glade:38
 msgid "Clear _All"
@@ -16411,7 +16411,7 @@ msgstr "_Hayır"
 #: ../gramps/gui/glade/dialog.glade:474
 #: ../gramps/plugins/tool/reorderids.glade:26
 msgid "Do not apply the operation to this item"
-msgstr "İşlemi bu öğeye uygulamayın"
+msgstr "İşlemi bu ögeye uygulamayın"
 
 #: ../gramps/gui/glade/dialog.glade:485 ../gramps/gui/views/listview.py:726
 #: ../gramps/plugins/tool/reorderids.glade:37
@@ -16421,7 +16421,7 @@ msgstr "_Evet"
 #: ../gramps/gui/glade/dialog.glade:492
 #: ../gramps/plugins/tool/reorderids.glade:44
 msgid "Apply the operation to this item"
-msgstr "İşlemi bu öğeye uygula"
+msgstr "İşlemi bu ögeye uygula"
 
 #: ../gramps/gui/glade/dialog.glade:566
 #: ../gramps/plugins/tool/reorderids.glade:118
@@ -16434,7 +16434,7 @@ msgid ""
 "If you check this button, your next answer will apply to the rest of the "
 "selected items"
 msgstr ""
-"Bu düğmeyi işaretlerseniz, bir sonraki yanıtınız seçilen öğelerin geri "
+"Bu düğmeyi işaretlerseniz, bir sonraki yanıtınız seçilen ögelerin geri "
 "kalanı için geçerli olacaktır"
 
 #: ../gramps/gui/glade/dialog.glade:838 ../gramps/gui/glade/dialog.glade:855
@@ -16986,7 +16986,7 @@ msgstr "_Durum:"
 
 #: ../gramps/gui/glade/editlink.glade:95
 msgid "Gramps item:"
-msgstr "Gramps öğesi:"
+msgstr "Gramps ögesi:"
 
 #: ../gramps/gui/glade/editlink.glade:109
 msgid "Internet Address:"
@@ -17635,7 +17635,7 @@ msgid ""
 "repository."
 msgstr ""
 "<b>Not:</b> Paylaşılan depo bilgilerindeki herhangi bir değişiklik, depoya "
-"başvuran tüm öğeler için depo kendisine yansıtılacaktır."
+"başvuran tüm ögeler için depo kendisine yansıtılacaktır."
 
 #: ../gramps/gui/glade/editreporef.glade:378
 #: ../gramps/gui/glade/editrepository.glade:180
@@ -17783,7 +17783,7 @@ msgstr "Gramps KNo:"
 #: ../gramps/gui/glade/mergecitation.glade:443
 msgid "Notes, media objects and data-items of both citations will be combined."
 msgstr ""
-"Her iki alıntının notları, ortam nesneleri ve veri öğeleri "
+"Her iki alıntının notları, ortam nesneleri ve veri ögeleri "
 "birleştirilecektir."
 
 #: ../gramps/gui/glade/mergecitation.glade:459
@@ -18021,7 +18021,7 @@ msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
 msgstr ""
-"Her iki kaynağın notları, ortam nesneleri, veri öğeleri ve depo referansları "
+"Her iki kaynağın notları, ortam nesneleri, veri ögeleri ve depo referansları "
 "birleştirilecektir."
 
 #: ../gramps/gui/glade/papermenu.glade:8
@@ -19990,7 +19990,7 @@ msgstr "Yeni kitap"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:389
 msgid "_Available items"
-msgstr "_Mevcut öğeler"
+msgstr "_Mevcut ögeler"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:393
 msgid "Current _book"
@@ -20027,16 +20027,16 @@ msgstr ""
 "\n"
 "Bu, kitapta kaydedilen merkezi kişiye yapılan referansları geçersiz kılar.\n"
 "\n"
-"Bu nedenle, her öğe için merkezi kişi, o anda açık olan veri tabanının etkin "
+"Bu nedenle, her öge için merkezi kişi, o anda açık olan veri tabanının etkin "
 "kişisine ayarlanıyor."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:577
 msgid "No selected book item"
-msgstr "Seçili kitap öğesi yok"
+msgstr "Seçili kitap ögesi yok"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:578
 msgid "Please select a book item to configure."
-msgstr "Lütfen yapılandırmak için bir kitap öğesi seçin."
+msgstr "Lütfen yapılandırmak için bir kitap ögesi seçin."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:643
 #: ../gramps/gui/views/bookmarks.py:310 ../gramps/gui/views/tags.py:493
@@ -20060,7 +20060,7 @@ msgstr "Öğe yok"
 #: ../gramps/gui/plug/report/_bookdialog.py:738
 #: ../gramps/gui/plug/report/_bookdialog.py:749
 msgid "This book has no items."
-msgstr "Bu kitap hiçbir öğeye sahip değildir."
+msgstr "Bu kitap hiçbir ögeye sahip değildir."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:755
 msgid "No book name"
@@ -20838,8 +20838,8 @@ msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
 msgstr ""
-"Bu öğe şu anda kullanılıyor. Silinmesi, onu veri tabanından ve ona başvuran "
-"diğer tüm öğelerden kaldıracaktır."
+"Bu öge şu anda kullanılıyor. Silinmesi, onu veri tabanından ve ona başvuran "
+"diğer tüm ögelerden kaldıracaktır."
 
 #: ../gramps/gui/views/listview.py:726
 #: ../gramps/plugins/lib/libpersonview.py:481
@@ -21162,7 +21162,7 @@ msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
-"Gramplet çubuğu, varsayılan Gramplet öğelerini içerecek şekilde geri "
+"Gramplet çubuğu, varsayılan Gramplet ögelerini içerecek şekilde geri "
 "yüklenecektir.\tBu işlem geri alınamaz."
 
 #: ../gramps/gui/widgets/grampletpane.py:837
@@ -22912,7 +22912,7 @@ msgstr "Süzgeç için merkez kişi."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1137
 msgid "Sort chart items by"
-msgstr "Çizelge öğelerini şuna göre sırala"
+msgstr "Çizelge ögelerini şuna göre sırala"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1140
 msgid "Select how the statistical data is sorted."
@@ -22960,13 +22960,13 @@ msgstr "İstatistiklere dahil edilecek cinsiyetleri seçin."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1166
 msgid "Max. items for a pie"
-msgstr "Pasta için en fazla öğe"
+msgstr "Pasta için en fazla öge"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1169
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
-"Daha az öğe ile çubuk çizelge yerine pasta çizelge ve gösterge "
+"Daha az öge ile çubuk çizelge yerine pasta çizelge ve gösterge "
 "kullanılacaktır."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1176
@@ -23885,7 +23885,7 @@ msgstr "Tüm adları bir metin bulutu olarak gösteren Gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:247
 msgid "Gramplet showing an active item Quick View"
-msgstr "Etkin bir öğeyi gösteren Gramplet Hızlı Görünüm"
+msgstr "Etkin bir ögeyi gösteren Gramplet Hızlı Görünüm"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:264
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:270
@@ -23963,7 +23963,7 @@ msgstr "Sıradaki ne"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:379
 msgid "Gramplet suggesting items to research"
-msgstr "Araştırma için öğeleri öneren Gramplet"
+msgstr "Araştırma için ögeleri öneren Gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:385
 msgid "What's Next?"
@@ -24822,7 +24822,7 @@ msgstr "SoundEx kodu:"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:61
 msgid "Double-click item to see matches"
-msgstr "Eşleşmeleri görmek için öğeye çift tıklayın"
+msgstr "Eşleşmeleri görmek için ögeye çift tıklayın"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:97
 #: ../gramps/plugins/textreport/summary.py:335
@@ -25103,11 +25103,11 @@ msgid ""
 "in Gramps. The flexibility allows you to choose which fits your work style.\n"
 "\n"
 msgstr ""
-"Şimdi ilk Ailenize girmeye başlamak isteyeceksiniz ve bu ilk kişi ile "
-"başlar.\n"
+"Şimdi ilk Ailenize girmeye başlamak isteyeceksiniz ve bu ilk kişi ile başlar."
 "\n"
-"\"Kişiler\" görünümüne geçin ve menüden \"Ekle\"yi ve ardından \"Kişi\"yi "
-"(veya [+] simgesini kullanarak) tıklayarak bir kişi girmek için pencereyi "
+"\n"
+"\"Kişiler\" görünümüne geçin ve menüden \"Ekle\"yi ve ardından \"Kişi\"yi ("
+"veya [+] simgesini kullanarak) tıklayarak bir kişi girmek için pencereyi "
 "açın. Temel bilgileri girmek ve kaydı kaydetmek size bir başlangıç noktası "
 "sağlar. Bu kişinin kaydını seçin ve şimdi \"İlişkiler\" görünümüne geçin.\n"
 "\n"
@@ -25115,7 +25115,7 @@ msgstr ""
 "hale geldi. Farenizi simgelerin üzerine hareket ettirerek biraz bekletin. "
 "İmleciniz bir simgenin üzerinden geçtiğinde, size simgenin işlevini bildiren "
 "bir mesaj görüntülenecektir. Aynısı herhangi bir düzenleme penceresi için de "
-"geçerlidir. Fare imlecini bir öğenin üzerine getirmek size ne yapacağını "
+"geçerlidir. Fare imlecini bir ögenin üzerine getirmek size ne yapacağını "
 "söyleyecektir.\n"
 "\n"
 "Artık ebeveynler, eş ve çocuklar ekleyerek aileler oluşturabilirsiniz. "
@@ -25125,8 +25125,8 @@ msgstr ""
 "\n"
 "Gramps'ı kullanmaya başladığınızda, bilgilerin çeşitli görünümlerden "
 "girilebileceğini göreceksiniz. Gramps'ta çoğu etkinliği yapmanın birden çok "
-"yolu vardır. Esneklik, çalışma tarzınıza uygun olanı seçmenize olanak "
-"tanır.\n"
+"yolu vardır. Esneklik, çalışma tarzınıza uygun olanı seçmenize olanak tanır."
+"\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:203
@@ -25234,7 +25234,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
-msgstr "Görüntülenecek asgari öğe sayısı"
+msgstr "Görüntülenecek asgari öge sayısı"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:63
 msgid "Descendant generations per ancestor generation"
@@ -27409,7 +27409,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:3868
 #, python-format
 msgid "ADDR element ignored '%s'"
-msgstr "ADDR öğesi '%s' yok sayıldı"
+msgstr "ADDR ögesi '%s' yok sayıldı"
 
 #: ../gramps/plugins/lib/libgedcom.py:3888
 msgid "TRLR (trailer)"
@@ -32400,7 +32400,7 @@ msgstr "Mevcut seçimin özet sayıları"
 
 #: ../gramps/plugins/quickview/filterbyname.py:91
 msgid "Right-click row (or press ENTER) to see selected items."
-msgstr "Seçilen öğeleri görmek için satıra sağ tıklayın (veya ENTER'a basın)."
+msgstr "Seçilen ögeleri görmek için satıra sağ tıklayın (veya ENTER'a basın)."
 
 #: ../gramps/plugins/quickview/filterbyname.py:93
 msgid "Count/Total"
@@ -33708,7 +33708,7 @@ msgstr "%s için Satır Sonu Raporu"
 #: ../gramps/plugins/textreport/endoflinereport.py:174
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
-msgstr "Bir ebeveyni eksik olan %s öğesinin tüm üstsoyu"
+msgstr "Bir ebeveyni eksik olan %s ögesinin tüm üstsoyu"
 
 #: ../gramps/plugins/textreport/endoflinereport.py:317
 #: ../gramps/plugins/textreport/placereport.py:552
@@ -35491,7 +35491,7 @@ msgstr "Alıntıları_birleştir"
 msgid ""
 "Notes, media objects and data-items of matching citations will be combined."
 msgstr ""
-"Eşleşen alıntıların notları, ortam nesneleri ve veri öğeleri "
+"Eşleşen alıntıların notları, ortam nesneleri ve veri ögeleri "
 "birleştirilecektir."
 
 #: ../gramps/plugins/tool/mergecitations.py:170
