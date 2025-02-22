@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-13 19:33+0000\n"
+"PO-Revision-Date: 2025-02-20 23:04+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10-rc\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -9300,7 +9300,7 @@ msgstr "Podčiarknuté"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:69
 msgid "Fontface"
-msgstr "Písmo"
+msgstr "Tvar písma"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:70
 msgid "Fontsize"
@@ -10135,7 +10135,7 @@ msgstr "Drobná"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:121
 msgid "Script"
-msgstr "Písmo"
+msgstr "Skript"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:122
 msgid "Footnote"
@@ -12178,7 +12178,7 @@ msgstr "Farebná schéma"
 
 #: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2817
 msgid "Restore to defaults"
-msgstr "Obnoviť predvolené nastavenia"
+msgstr "Obnoviť na predvolené"
 
 #: ../gramps/gui/configure.py:899
 msgid "Restore colors for current theme to default."
@@ -13967,7 +13967,7 @@ msgstr "Presunúť vybranú udalosť nižšie"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:95
 #: ../gramps/plugins/gramplet/events.py:110
 msgid "Role"
-msgstr "Úloha"
+msgstr "Rola"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:132
 msgid "_Events"
@@ -22304,8 +22304,8 @@ msgstr "Priami potomkovia tučným písmom"
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr ""
-"Či zvýrazniť tých ľudí, ktorí sú priamymi (nie nevlastnými alebo "
-"polovičnými) potomkami."
+"Či zvýrazniť tých ľudí, ktorí sú priamymi (nie nevlastnými alebo polorodnými)"
+" potomkami."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1624
 msgid "Indent Spouses"
@@ -38436,11 +38436,11 @@ msgstr "Môj rodinný strom"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2126
 msgid "Website title"
-msgstr "Názov webovej stránky"
+msgstr "Titul web sídla"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "The title of the website"
-msgstr "Názov webovej stránky"
+msgstr "Názov web sídla"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
 msgid "Select filter to restrict people that appear on the website"
@@ -38898,15 +38898,13 @@ msgstr "Či zahrnúť stĺpec s rodičmi"
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr ""
-"Zahrnúť nevlastných a/alebo nemanželských súrodencov na jednotlivých "
-"stránkach"
+"Zahrnúť polorodných a/alebo nevlastných súrodencov na jednotlivých stránkach"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2580
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
-"Či zahrnúť nevlastných a/alebo nemanželských súrodencov s rodičmi a "
-"súrodencami"
+"Či zahrnúť polorodných a/alebo nevlastných súrodencov s rodičmi a súrodencami"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2595
 msgid "Include family pages"
