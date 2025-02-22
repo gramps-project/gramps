@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-17 19:34+0000\n"
+"PO-Revision-Date: 2025-02-21 17:44+0000\n"
 "Last-Translator: Harald Herreros <h.herreros@proton.me>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
@@ -6621,15 +6621,15 @@ msgstr "Matcher kilder med et bestemt antall arkivreferanser"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:55
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr "Kilder med arkivreferanse som inneholder <tekst> i «Objekt-ID»"
+msgstr "Kilder med arkivreferanse som inneholder <tekst> i «arkivsignatur»"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:57
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"Matcher kilder med en arkivreferanse som \n"
-"inneholder en delstreng i «Objekt-ID»"
+"Matcher kilder med en arkivreferanse\n"
+"som inneholder en delstreng i «arkivsignatur»"
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
 msgid "Matches sources with particular parameters"
@@ -7833,7 +7833,7 @@ msgstr "Voksendåp"
 #: ../gramps/gen/lib/eventtype.py:204 ../gramps/gen/lib/ldsord.py:94
 #: ../gramps/gui/configure.py:2800
 msgid "Baptism"
-msgstr "Dåp, baptism"
+msgstr "Dåp"
 
 #: ../gramps/gen/lib/eventtype.py:205
 msgid "Bar Mitzvah"
@@ -7861,7 +7861,7 @@ msgstr "Folketelling"
 
 #: ../gramps/gen/lib/eventtype.py:211
 msgid "Christening"
-msgstr "Barnedåp"
+msgstr "Dåp"
 
 #: ../gramps/gen/lib/eventtype.py:212 ../gramps/gen/lib/ldsord.py:96
 msgid "Confirmation"
@@ -9100,7 +9100,7 @@ msgstr "Arkivref."
 #: ../gramps/gen/lib/reporef.py:112
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:69
 msgid "Call Number"
-msgstr "Objekt-ID"
+msgstr "Arkivsignatur"
 
 #: ../gramps/gen/lib/repotype.py:64
 msgid "Library"
@@ -16543,9 +16543,9 @@ msgid ""
 "house was visited during a census, or the date an entry was made in a birth "
 "log/registry."
 msgstr ""
-"Dato for innførselen i den kilden du henviser til, f.eks. dato for "
-"folketelling eller dato for når en innførsel i en dåpsprotokoll ble "
-"registrert."
+"Datoen for oppføringen i kilden du viser til, for eksempel når et hus ble "
+"besøkt under en folketelling, eller når en oppføring ble ført inn i en "
+"dåpsprotokoll."
 
 #: ../gramps/gui/glade/editcitation.glade:202
 msgid ""
@@ -22133,7 +22133,7 @@ msgstr "Velg gifte kvinners viste etternavn"
 #: ../gramps/plugins/webreport/narrativeweb.py:3173
 #: ../gramps/plugins/webreport/webcal.py:2065
 msgid "Include birthdays"
-msgstr "Inkluder fødselsdager"
+msgstr "Inkluder bursdager"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:685
 #: ../gramps/plugins/textreport/birthdayreport.py:646
@@ -23125,7 +23125,7 @@ msgstr "Dåpssted"
 
 #: ../gramps/plugins/export/exportcsv.py:433
 msgid "Baptism source"
-msgstr "Kilde for dåp"
+msgstr "Dåpskilde"
 
 #: ../gramps/plugins/export/exportcsv.py:436
 msgid "Death source"
@@ -28987,7 +28987,7 @@ msgstr "Hun ble døpt i %(baptism_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:812
 #, python-format
 msgid "%(unknown_gender_name)s was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble døpt %(baptism_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s ble døpt i %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:813
 #, python-format
@@ -32499,7 +32499,7 @@ msgstr "Ingen referanser for denne %s"
 #: ../gramps/plugins/quickview/reporef.py:64
 #: ../gramps/plugins/webreport/basepage.py:3638
 msgid "Call number"
-msgstr "Objekt-ID"
+msgstr "Arkivsignatur"
 
 #: ../gramps/plugins/quickview/reporef.py:64
 msgid "Type of media"
@@ -36338,7 +36338,7 @@ msgstr "Dødsdato er lik ekteskapsdato"
 
 #: ../gramps/plugins/tool/verify.py:2435
 msgid "Baptism too late according to family tradition"
-msgstr "Dåp for sent ifølge familietradisjonen"
+msgstr "Dåp for sent i henhold til familietradisjon"
 
 #: ../gramps/plugins/tool/verify.py:2460
 msgid "Burial too late"
@@ -39239,7 +39239,7 @@ msgstr "Om det skal lages endagsider eller ikke"
 #: ../gramps/plugins/webreport/narrativeweb.py:3174
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include birthdays in the calendar"
-msgstr "Inkluder fødselsdager i kalenderen"
+msgstr "Inkluder bursdager i kalenderen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3178
 #: ../gramps/plugins/webreport/webcal.py:2070
