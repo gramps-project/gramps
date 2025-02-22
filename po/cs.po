@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-13 19:33+0000\n"
+"PO-Revision-Date: 2025-02-20 23:04+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -50,7 +50,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10-rc\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -22233,8 +22233,8 @@ msgstr "Zvýraznit přímé potomky"
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr ""
-"Zda zvýraznit tyto osoby, které jsou přímými (ne nevlastními nebo "
-"nemanželskými) potomky."
+"Zda zvýraznit tyto osoby, které jsou přímými (ne nevlastními nebo polorodými)"
+" potomky."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1624
 msgid "Indent Spouses"
@@ -38766,14 +38766,13 @@ msgstr "Zda zahrnout sloupec rodičů"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 msgid "Include half and/or step-siblings on the individual pages"
-msgstr ""
-"Zahrnout nevlastní a/nebo nemanželské sourozence na jednotlivých stránkách"
+msgstr "Zahrnout polorodé a/nebo nevlastní sourozence na jednotlivých stránkách"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2580
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
-"Zda zahrnovat nevlastní a/nebo nemanželské sourozence s rodiči a sourozenci"
+"Zda zahrnovat polorodé a/nebo nevlastní sourozence s rodiči a sourozenci"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2595
 msgid "Include family pages"
