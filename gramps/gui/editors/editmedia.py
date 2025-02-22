@@ -363,7 +363,7 @@ class EditMedia(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        self.obj.set_path(path)
+        self.obj.set_path(path.strip())
 
         if not self.obj.handle:
             with DbTxn(
