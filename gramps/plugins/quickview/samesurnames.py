@@ -43,7 +43,7 @@ class IncompleteSurname(Rule):
     description = _("Matches people with lastname missing")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.get_group_name() == "":
                 return True
@@ -58,7 +58,7 @@ class SameSurname(Rule):
     description = _("Matches people with same lastname")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, person):
         src = self.list[0].upper()
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.get_surname() and name.get_surname().upper() == src.upper():
@@ -74,7 +74,7 @@ class SameGiven(Rule):
     description = _("Matches people with same given name")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, person):
         src = self.list[0].upper()
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.first_name:
@@ -101,7 +101,7 @@ class IncompleteGiven(Rule):
     description = _("Matches people with firstname missing")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.get_first_name() == "":
                 return True
