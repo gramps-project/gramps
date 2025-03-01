@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-20 23:04+0000\n"
+"PO-Revision-Date: 2025-02-26 20:54+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -22139,7 +22139,7 @@ msgstr "Anzeigeformat für die Ehebox."
 #: ../gramps/plugins/drawreport/ancestortree.py:1015
 #: ../gramps/plugins/drawreport/descendtree.py:1742
 msgid "Advanced"
-msgstr "Erweitert"
+msgstr "Fortgeschrittene"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1018
 #: ../gramps/plugins/drawreport/descendtree.py:1745
