@@ -271,17 +271,17 @@ def db_load(tstfile, self):
         return db
     # Get here is there is an exception the while loop does not handle
     except DbVersionError as msg:
-        self.assertTrue(True, msg=(_("Cannot open database") + str(msg)))
+        self.assertTrue(True, msg=("Cannot open database" + str(msg)))
     except DbPythonError as msg:
-        self.assertTrue(True, msg=(_("Cannot open database") + str(msg)))
+        self.assertTrue(True, msg=("Cannot open database" + str(msg)))
     except DbConnectionError as msg:
-        self.assertTrue(True, msg=(_("Cannot open database") + str(msg)))
+        self.assertTrue(True, msg=("Cannot open database" + str(msg)))
     except OSError as msg:
-        self.assertTrue(True, msg=(_("Could not open file: %s") % tstfile + str(msg)))
+        self.assertTrue(True, msg=("Could not open file: %s" % tstfile + str(msg)))
     except DbError as msg:
-        self.assertTrue(True, msg=(_("Cannot open database") + str(msg)))
+        self.assertTrue(True, msg=("Cannot open database" + str(msg)))
     except Exception as msg:
-        self.assertTrue(True, msg=(_("Cannot open database") + str(msg)))
+        self.assertTrue(True, msg=("Cannot open database" + str(msg)))
     return
 
 
