@@ -31,16 +31,16 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-14 21:15+0000\n"
+"PO-Revision-Date: 2025-02-26 00:15+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -9744,7 +9744,7 @@ msgstr "Miniaturbildgenerator"
 
 #: ../gramps/gen/plug/_pluginreg.py:134 ../gramps/gui/configure.py:1663
 msgid "Citation formatter"
-msgstr "Fundstellenformatierung"
+msgstr "Fundstellenformatierer"
 
 #: ../gramps/gen/plug/_pluginreg.py:645
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
@@ -11592,7 +11592,7 @@ msgstr "Männlich"
 
 #: ../gramps/gen/utils/symbols.py:86
 msgid "Asexuality, sexless, genderless"
-msgstr "Asexualität, geschlechtslos"
+msgstr "Asexualität, ungeschlechtlich, geschlechtslos"
 
 #: ../gramps/gen/utils/symbols.py:87
 msgid "Transgender, hermaphrodite (in entomology)"
@@ -12351,7 +12351,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:878
 msgid "Colors used for boxes in the graphical views"
-msgstr "Farben für die Kästen in den grafischen Ansichten"
+msgstr "Farben für die Felder in den grafischen Ansichten"
 
 #: ../gramps/gui/configure.py:889
 msgid "Dark colors"
@@ -12940,7 +12940,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2181
 msgid "Multiple surname box height"
-msgstr "Höhe des Kastens mit mehreren Nachnamen"
+msgstr "Höhe des Feldes mit mehreren Nachnamen"
 
 #: ../gramps/gui/configure.py:2187
 msgid ""
@@ -12948,8 +12948,8 @@ msgid ""
 "display in a box. This setting sets the size of this box."
 msgstr ""
 "Gib die Höhe in Pixel ein. Wenn mehrere Nachnamen eingegeben werden, werden "
-"diese Namen in einem Kasten angezeigt. Mit dieser Einstellung wird die Größe "
-"dieses Kastens festgelegt."
+"diese Namen in einem Feld angezeigt. Mit dieser Einstellung wird die Größe "
+"dieses Feldes festgelegt."
 
 #: ../gramps/gui/configure.py:2246
 msgid "Database Setting"
@@ -21864,7 +21864,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:861
 msgid "The number of generations of empty boxes that will be displayed"
-msgstr "Die Anzahl der Generationen, die mit leeren Kästen angezeigt werden"
+msgstr "Die Anzahl der Generationen, die mit leeren Feldern angezeigt werden"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:868
 #: ../gramps/plugins/drawreport/descendtree.py:1606
@@ -22046,7 +22046,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:978
 msgid "Display format for the fathers box."
-msgstr "Anzeigeformat für den Vater-Kasten."
+msgstr "Anzeigeformat für das Feld des Vaters."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:990
 msgid ""
@@ -22058,7 +22058,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:993
 msgid "Display format for the mothers box."
-msgstr "Anzeigeformat für den Mutter-Kasten."
+msgstr "Anzeigeformat für das Feld der Mutter."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:996
 msgid ""
@@ -22083,13 +22083,12 @@ msgstr "Das Anzeigeformat für die Hauptperson"
 #: ../gramps/plugins/drawreport/ancestortree.py:1002
 #: ../gramps/plugins/drawreport/descendtree.py:1729
 msgid "Include Marriage box"
-msgstr "Eheschließungskasten einfügen"
+msgstr "Eheschließungsfeld einfügen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1004
 #: ../gramps/plugins/drawreport/descendtree.py:1731
 msgid "Whether to include a separate marital box in the report"
-msgstr ""
-"Ob ein separater Kasten für den Familienstand im Bericht eingefügt wird"
+msgstr "Ob ein separates Feld für den Familienstand im Bericht eingefügt wird"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1009
 #: ../gramps/plugins/drawreport/descendtree.py:1736
@@ -22103,7 +22102,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:1010
 #: ../gramps/plugins/drawreport/descendtree.py:1737
 msgid "Display format for the marital box."
-msgstr "Anzeigeformat für den Ehe-Kasten."
+msgstr "Anzeigeformat für das Ehe-Feld."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1015
 #: ../gramps/plugins/drawreport/descendtree.py:1742
@@ -22161,33 +22160,33 @@ msgstr "Wo die Notiz platziert wird."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1049
 msgid "inter-box scale factor"
-msgstr "Skalierungsfaktor für den Abstand zwischen Kästen"
+msgstr "Skalierungsfaktor für den Abstand zwischen Feldern"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1051
 msgid "Make the inter-box spacing bigger or smaller"
-msgstr "Vergrößere oder verkleinere den Abstand zwischen Kästen"
+msgstr "Vergrößere oder verkleinere den Abstand zwischen Feldern"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1055
 #: ../gramps/plugins/drawreport/descendtree.py:1774
 msgid "box shadow scale factor"
-msgstr "Skalierungsfaktor für Schatten von Kästen"
+msgstr "Skalierungsfaktor für Schatten von Feldern"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1057
 #: ../gramps/plugins/drawreport/descendtree.py:1776
 msgid "Make the box shadow bigger or smaller"
-msgstr "Macht den Schatten der Kästen größer oder kleiner"
+msgstr "Macht den Schatten der Felder größer oder kleiner"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1094
 msgid "No generations of empty boxes for unknown ancestors"
-msgstr "Keine leeren Kästen für unbekannte Vorfahren erzeugen"
+msgstr "Keine leeren Felder für unbekannte Vorfahren erzeugen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1098
 msgid "One Generation of empty boxes for unknown ancestors"
-msgstr "Leere Kästen für unbekannte Vorfahren erzeugen"
+msgstr "Leere Felder für unbekannte Vorfahren erzeugen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1102
 msgid " Generations of empty boxes for unknown ancestors"
-msgstr " Leere Kästen für unbekannte Vorfahren erzeugen"
+msgstr " Leere Felder für unbekannte Vorfahren erzeugen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1119
 #: ../gramps/plugins/drawreport/descendtree.py:1831
@@ -22661,11 +22660,11 @@ msgstr "Anzeigeformat für eine(n) Partner(in)."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1768
 msgid "inter-box Y scale factor"
-msgstr "Skalierungsfaktor für den Y-Abstand zwischen Kästen"
+msgstr "Skalierungsfaktor für den Y-Abstand zwischen Feldern"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1770
 msgid "Make the inter-box Y bigger or smaller"
-msgstr "Vergrößere oder verkleinere den Y-Abstand zwischen Kästen"
+msgstr "Vergrößere oder verkleinere den Y-Abstand zwischen Feldern"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1841
 msgid "The bold style used for the text display."
@@ -22673,19 +22672,19 @@ msgstr "Die Fettformatierung, die für die Textanzeige verwendet wird."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1865
 msgid "The style for the marriage box."
-msgstr "Der Stil für den Eheschließungs-Kasten."
+msgstr "Der Stil für das Eheschließungs-Feld."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1872
 msgid "The style for the spouse box."
-msgstr "Der Stil für den Ehepartner-Kasten."
+msgstr "Der Stil für das Ehepartner-Feld."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1879
 msgid "The style for the direct descendant box."
-msgstr "Der Stil für den Kasten der direkten Nachkommen."
+msgstr "Der Stil für das Feld der direkten Nachkommen."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1885
 msgid "The style for the note box."
-msgstr "Der Stil für den Notiz-Kasten."
+msgstr "Der Stil für das Notizfeld."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1890
 msgid "The style for the connection lines and report border."
@@ -22850,7 +22849,7 @@ msgstr "Drucke strahlenförmigen Text aufrecht oder ringsum"
 
 #: ../gramps/plugins/drawreport/fanchart.py:831
 msgid "Draw empty boxes"
-msgstr "Zeichne leere Kästen"
+msgstr "Zeichne leere Felder"
 
 #: ../gramps/plugins/drawreport/fanchart.py:833
 msgid "Draw the background although there is no information"
@@ -25244,7 +25243,7 @@ msgstr ""
 "Aktivität stattfinden kann.\n"
 "\n"
 "Um einen neuen Stammbaum (manchmal auch \"Datenbank\" genannt) zu erstellen, "
-"wähle \"Stammbäume\" aus dem Menü, wähle \"Stammbäume verwalten\", drücke "
+"dann \"Stammbäume\" aus dem Menü, wähle \"Stammbäume verwalten\", drücke "
 "\"Neu\" und benenne deinen Stammbaum. Wähle \"Stammbaum laden\", um den "
 "Stammbaum aktiv und bereit für die Aufnahme von Daten zu machen, indem du "
 "deine erste Familie eingibst oder einen Stammbaum importierst. Für weitere "
@@ -35343,7 +35342,7 @@ msgstr "Bestanden"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:58
 msgid "Gender Statistics tool"
-msgstr "Geschlechtsstatistik Werkzeug"
+msgstr "Geschlechterstatistik-Werkzeug"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:75
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
@@ -36001,16 +36000,19 @@ msgstr "Alle untergeordneten Register wurden neu erstellt."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:83
 msgid "Rebuilding gender statistics for name gender guessing..."
-msgstr "Erstelle Geschlechtsstatistik für das Vermuten des Geschlechts neu…"
+msgstr ""
+"Neuerstellen der Geschlechterstatistik für das Raten des Geschlechts anhand "
+"des Namens…"
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:98
 msgid "Gender statistics rebuilt"
-msgstr "Geschlechtsstatistik neu erstellen"
+msgstr "Geschlechterstatistik neu erstellt"
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:99
 msgid "Gender statistics for name gender guessing have been rebuilt."
 msgstr ""
-"Geschlechtsstatistik für das Vermuten des Geschlechts wurde neu erstellt."
+"Geschlechterstatistik für das Raten des Geschlechts anhand des Namens wurde "
+"neu erstellt."
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:90
 msgid "Reference maps rebuilt"
@@ -36516,11 +36518,13 @@ msgstr "Erstellt interne Referenzen neu"
 
 #: ../gramps/plugins/tool/tools.gpr.py:347
 msgid "Rebuild Gender Statistics"
-msgstr "Geschlechtsstatistik neu erstellen"
+msgstr "Geschlechterstatistik neu erstellen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:348
 msgid "Rebuilds gender statistics for name gender guessing..."
-msgstr "Erstellt Geschlechtsstatistik für das Vermuten des Geschlechts neu…"
+msgstr ""
+"Erstellt Geschlechterstatistik für das Vermuten des Geschlechts anhand des "
+"Namens neu…"
 
 #: ../gramps/plugins/tool/tools.gpr.py:372
 msgid "Calculates the relationship between two people"
@@ -36574,7 +36578,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:71
 msgid "Dump Gender Statistics"
-msgstr "Geschlechtsstatistik verwerfen"
+msgstr "Geschlechterstatistik verwerfen"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:73
 msgid "Will dump the statistics for guessing the gender from the first name."
