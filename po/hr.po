@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-19 18:13+0000\n"
+"PO-Revision-Date: 2025-02-27 14:37+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -5696,11 +5696,11 @@ msgstr "Pronalazi djecu osoba određenog filtra"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:56
 msgid "Home Person"
-msgstr "Zadana osoba"
+msgstr "Početna osoba"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:58
 msgid "Matches the Home Person"
-msgstr "Pronalazi zadanu osobu"
+msgstr "Pronalazi početnu osobu"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:64
 msgid "Descendant family members of <person>"
@@ -5805,12 +5805,12 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:60
 msgid "Ancestors of the Home Person not more than <N> generations away"
-msgstr "Preci zadane osobe, udaljene do <broj> generacija"
+msgstr "Preci početne osobe, udaljene do <broj> generacija"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:63
 msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
-"Pronalazi osobe, koje su preci zadane osobe, udaljene do <broj> generacija"
+"Pronalazi osobe, koje su preci početne osobe, udaljene do <broj> generacija"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:59
 msgid "Descendants of <person> not more than <N> generations away"
@@ -12118,7 +12118,7 @@ msgstr "Istraživač"
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
 #: ../gramps/plugins/view/repoview.py:93
 msgid "State/County"
-msgstr "Pokrajina/Regija"
+msgstr "Država/Okrug"
 
 #: ../gramps/gui/configure.py:727 ../gramps/plugins/view/repoview.py:95
 msgid "ZIP/Postal Code"
@@ -15174,11 +15174,11 @@ msgstr "Uredi svojstva objekta"
 
 #: ../gramps/gui/editors/editperson.py:788
 msgid "Make Active Person"
-msgstr "Postavi aktivnu osobu"
+msgstr "Postavi kao aktivnu osobu"
 
 #: ../gramps/gui/editors/editperson.py:788
 msgid "Make Home Person"
-msgstr "Postavi početnu osobu"
+msgstr "Postavi kao početnu osobu"
 
 #: ../gramps/gui/editors/editperson.py:909
 msgid "Problem changing the gender"
@@ -16364,7 +16364,7 @@ msgstr "Naselje ili grad"
 #: ../gramps/gui/glade/editaddress.glade:152
 #: ../gramps/plugins/tool/ownereditor.glade:155
 msgid "_State/County:"
-msgstr "_Pokrajina/Regija:"
+msgstr "_Država/Regija:"
 
 #: ../gramps/gui/glade/editaddress.glade:167
 #: ../gramps/gui/glade/editlocation.glade:246
@@ -16392,7 +16392,7 @@ msgstr "Telefonski broj, vezan za adresu."
 #: ../gramps/gui/glade/editaddress.glade:237
 msgid ""
 "The state or county of the address in case a mail address must contain this."
-msgstr "Pokrajina ili regija, u slučaju da ih poštanska adresa mora sadržati."
+msgstr "Država ili okrug, u slučaju da ih poštanska adresa mora sadržati."
 
 #: ../gramps/gui/glade/editaddress.glade:251
 msgid "Country of the address"
@@ -16878,7 +16878,7 @@ msgstr "Treća razina podjele mjesta: npr., okrug u SAD, županija u Hrvatskoj."
 
 #: ../gramps/gui/glade/editlocation.glade:190
 msgid "_State:"
-msgstr "_Pokrajina:"
+msgstr "_Država:"
 
 #: ../gramps/gui/glade/editlocation.glade:204
 msgid ""
@@ -20440,7 +20440,8 @@ msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
 msgstr ""
-"Odustajanje od promjena vratiti će bazu u stanje prije pokretanja ove sesije."
+"Prekidanje promjena će vratiti bazu podataka u stanje prije pokretanja ove "
+"sesije."
 
 #: ../gramps/gui/viewmanager.py:678
 msgid "Abort changes"
@@ -31088,7 +31089,7 @@ msgstr "Postavi _početnu osobu"
 #: ../gramps/plugins/view/pedigreeview.py:733
 #: ../gramps/plugins/view/relview.py:455
 msgid "Go to the home person"
-msgstr "Idi na zadanu osobu"
+msgstr "Idi na početnu osobu"
 
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libplaceview.py:363
@@ -31802,7 +31803,7 @@ msgstr " župa"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:93
 msgid " state"
-msgstr " pokrajina"
+msgstr " država"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:160
 msgid "Latitude not within '54.55' to '69.05'\n"
@@ -32392,11 +32393,11 @@ msgstr "Prikaži događaje obitelji i njenjih članova."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:121
 msgid "Relation to Home Person"
-msgstr "Veza s početnom osobom"
+msgstr "Srodstvo s početnom osobom"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:122
 msgid "Display all relationships between person and home person."
-msgstr "Prikaži srodstvo osobe s početnom osobom."
+msgstr "Prikaži sva srodstva između osobe i početne osobe."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:144
 msgid "Display filtered data"
@@ -37860,7 +37861,7 @@ msgstr "(%(str1)s) %(str2)s"
 #: ../gramps/plugins/webreport/basepage.py:3427
 #: ../gramps/plugins/webreport/basepage.py:3505
 msgid "State/ Province"
-msgstr "Pokrajina"
+msgstr "Država/Pokrajina"
 
 #: ../gramps/plugins/webreport/basepage.py:1698
 #, python-format
