@@ -7,7 +7,7 @@
 # Erik De Richter <frederik.de.richter@gmail.com>, 2006, 2007, 2008, 2009, 2010 , 2011, 2012, 2013.
 # Harmen Huizinga <harmenhuizinga@sigmo.nl>, 2013
 # Jan Sparreboom <jan@sparreboom.net>, 2020, 2021.
-# Nick Hall <nick-h@gramps-project.org>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021, 2025.
 # Milan <mobrcian@hotmail.com>, 2021.
 # Freek Olgers <freek@olgers.com>, 2022.
 # Niko Strijbol <strijbol.niko@gmail.com>, 2022, 2024.
@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-20 11:39+0000\n"
-"Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
+"PO-Revision-Date: 2025-02-25 14:21+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
 "Language: nl\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -11999,8 +11999,18 @@ msgstr "Bijdragen van"
 #: ../gramps/gui/aboutdialog.py:153
 msgid "translator-credits"
 msgstr ""
-"Frederik De Richter\n"
-"Jan Sparreboom (2020)"
+"Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.\n"
+"Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.\n"
+"Erik De Richter <frederik.de.richter@gmail.com>, 2006, 2007, 2008, 2009, "
+"2010, 2011, 2012, 2013.\n"
+"Harmen Huizinga <harmenhuizinga@sigmo.nl>, 2013\n"
+"Jan Sparreboom <jan@sparreboom.net>, 2020, 2021.\n"
+"Milan <mobrcian@hotmail.com>, 2021.\n"
+"Freek Olgers <freek@olgers.com>, 2022.\n"
+"Niko Strijbol <strijbol.niko@gmail.com>, 2022, 2024.\n"
+"Stephan Paternotte <stephan@paternottes.net>, 2022, 2023, 2024, 2025.\n"
+"Ailean Riepsaame-Duffy <aileanr@gmail.com>, 2024.\n"
+"Enno Borgsteede <ennoborg@gmail.com>, 2024."
 
 #: ../gramps/gui/aboutdialog.py:164
 #, python-format
