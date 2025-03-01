@@ -48,8 +48,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-03 20:20+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"PO-Revision-Date: 2025-02-28 08:44+0000\n"
+"Last-Translator: Emmanuel Vallois <emmanuel@vallois.name>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -57,7 +57,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.2-rc\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -878,14 +878,6 @@ msgstr ""
 "Vous pouvez aussi mettre un signet sur la plupart des autres objets."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit > Preferences > Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -898,8 +890,8 @@ msgstr ""
 "dates avec un format invalide. Dans ce cas, la couleur d'arrière-plan du "
 "champ de saisie devient rouge ou un point rouge s'affiche sur le bord droit. "
 "Vous pouvez rectifier la date en utilisant le sélecteur de dates qui s’ouvre "
-"en cliquant sur le bouton Date. Le format de la date est défini dans "
-"« Édition > Préférences > Données »."
+"en cliquant sur le bouton Date. Le format de la date est défini dans « "
+"Édition > Préférences > Données »."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -1471,7 +1463,6 @@ msgstr "Action inconnue : %s."
 
 # master
 #: ../gramps/cli/argparser.py:67
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps [OPTION...]\n"
@@ -1519,60 +1510,59 @@ msgid ""
 msgstr ""
 "\n"
 "Utilisation : gramps.py [OPTION...]\n"
-"  --load-modules=MODULE1,MODULE2...     Modules dynamiques à charger\n"
+"  --load-modules=MODULE1,MODULE2...      Modules dynamiques à charger\n"
 "\n"
-"Options d'aide\n"
-"  -?, --help                             Affiche ce message d'aide\n"
-"  --usage                                Affiche une aide à l'utilisation\n"
+"Options d’aide\n"
+"  -?, --help                             Affiche ce message d’aide\n"
+"  --usage                                Affiche une aide à l’utilisation\n"
 "\n"
-"Options de l'application\n"
-"  -O, --open=ARBRE_FAMILIAL              Ouvre l'arbre familial\n"
-"  -U, --username=NOM_UTILISATEUR         Nom d'utilisateur de la base de\n"
-"                                         données\n"
+"Options de l’application\n"
+"  -O, --open=ARBRE_FAMILIAL              Ouvre l’arbre familial\n"
+"  -U, --username=NOM_UTILISATEUR         Nom d’utilisateur de la base de "
+"données\n"
 "  -P, --password=MOT_DE_PASSE            Mot de passe de la base de données\n"
-"  -C, --create=ARBRE_FAMILIAL            Créé à l'ouverture si nouvel arbre\n"
-"                                         familial\n"
+"  -C, --create=ARBRE_FAMILIAL            Crée à l’ouverture si nouvel arbre "
+"familial\n"
 "  -i, --import=FICHIER                   Importe un fichier\n"
 "  -e, --export=FICHIER                   Exporte un fichier\n"
-"  -r, --remove=MODELE_ARBRE              Enlève les arbres correspondants\n"
-"                                         (utilise les expressions\n"
-"                                         rationnelles)\n"
-"  -f, --format=FORMAT                    Spécifie le format de l'arbre\n"
-"  -a, --action=ACTION                    Spécifie l'action\n"
-"  -p, --options=OPTIONS                  Spécifie les options\n"
+"  -r, --remove=MODÈLE_ARBRE              Enlève les arbres correspondants\n"
+"                                         (utilise les expressions "
+"rationnelles)\n"
+"  -f, --format=FORMAT                    Spécifie le format de l’arbre\n"
+"  -a, --action=ACTION                    Spécifie l’action\n"
+"  -p, --options=CHAÎNE_D’OPTIONS         Spécifie les options\n"
 "  -d, --debug=NOM_DE_JOURNAL             Active les journaux de débogage\n"
-"  -l  [MODÈLE_ARBRE_FAMILIAL...]         Liste les arbres familiaux\n"
-"  -L [MODÈLE_ARBRE_FAMILIAL...]          Liste les arbres familiaux en\n"
-"                                         détail\n"
-"  -t [MODÈLE_ARBRE_FAMILIAL...]          Liste les arbres familiaux dans un\n"
-"                                         format tabulé\n"
-"  -u, --force-unlock                     Force le déverrouillage de l'arbre\n"
-"                                         familial\n"
-"  -s, --show                             Affiche les paramètres de\n"
-"                                         configuration\n"
-"  -c, --config=[config.param[:valeur]]   Définit un ou plusieurs paramètres\n"
-"                                         de configuration et lance Gramps\n"
-"  -y, --yes                              Ne pas demander de confirmation\n"
-"                                         pour les actions dangereuses\n"
+"  -l [MODÈLE_ARBRE_FAMILIAL...]          Liste les arbres familiaux\n"
+"  -L [MODÈLE_ARBRE_FAMILIAL...]          Liste les arbres familiaux en "
+"détail\n"
+"  -t [MODÈLE_ARBRE_FAMILIAL...]          Liste les arbres familiaux dans un "
+"format tabulé\n"
+"  -u, --force-unlock                     Force le déverrouillage de l’arbre "
+"familial\n"
+"  -s, --show                             Affiche les paramètres de "
+"configuration\n"
+"  -c, --config=[config.param[:valeur]]   Définit un(des) paramètre(s) de "
+"configuration et lance Gramps\n"
+"  -y, --yes                              Ne pas demander de confirmation "
+"pour les actions dangereuses\n"
 "                                         (hors interface graphique)\n"
-"  -q, --quiet                            Supprimer l'indication de\n"
-"                                         progression pour la sortie (hors\n"
-"                                         interface graphique)\n"
-"  -v, --version                          Affiche les versions des\n"
-"                                         bibliothèques\n"
-"  -S, --safe                             Lance Gramps en « Mode sans "
-"échec »\n"
-"                                         (utilise temporairement les\n"
-"                                         paramètres par défaut)\n"
-"  -D, --default=[APXFE]                  Réinitialise les paramètres à\n"
-"                                         leurs valeurs par défaut ;\n"
+"  -q, --quiet                            Supprimer l’indication de "
+"progression pour la sortie\n"
+"                                         (hors interface graphique)\n"
+"  -v, --version                          Affiche les versions des "
+"bibliothèques\n"
+"  -S, --safe                             Lance Gramps en « Mode sans échec »"
+"\n"
+"                                         (utilise temporairement les "
+"paramètres par défaut)\n"
+"  -D, --default=[APXFE]                  Réinitialise les paramètres à leurs "
+"valeurs par défaut ;\n"
 "                 A - les greffons sont effacés\n"
 "                 P - les Préférences reprennent leurs valeurs par défaut\n"
 "                 X - les livres sont effacés, les paramètres des rapports\n"
 "                     et des outils reprennent leurs valeurs par défaut\n"
 "                 F - les filtres sont effacés\n"
-"                 E - Tout est effacé et tous les paramètres reprennent\n"
-"                     leurs valeurs par défaut\n"
+"                 E - Tout est effacé ou reprend sa valeur par défaut\n"
 
 # master
 #: ../gramps/cli/argparser.py:108
@@ -1634,60 +1624,62 @@ msgid ""
 "Syntax may be different for other shells and for Windows.\n"
 msgstr ""
 "\n"
-"Exemples d'utilisation de l'interface en ligne de commande Gramps\n"
+"Exemples d’utilisation de l’interface en ligne de commande Gramps\n"
 "\n"
-"1. Importer quatre bases de données (dont les formats sont déterminés depuis "
-"leurs noms) puis vérifier les bases résultantes, on peut faire :\n"
-"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
-"name=check\n"
+"1. Pour importer quatre bases de données (dont les formats sont déterminés "
+"depuis leurs noms)\n"
+"puis vérifier les bases résultantes, on peut faire :\n"
+"gramps -i fic1.ged -i fic2.gpkg -i ~/bd3.gramps -i fic4.wft -a tool -p name="
+"check\n"
 "\n"
-"2. Spécifier explicitement les formats dans l'exemple précédent, ajouter "
-"l'option -f après les noms de fichier :\n"
-"gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
-"gramps -i file4.wft -f wft -a tool -p name=check\n"
+"2. Pour spécifier explicitement les formats dans l’exemple précédent, "
+"ajouter l’option -f après les noms de fichier :\n"
+"gramps -i fic1.ged -f gedcom -i fic2.gpkg -f gramps-pkg -i ~/bd3.gramps -f "
+"gramps -i fic4.wft -f wft -a tool -p name=check\n"
 "\n"
-"3. Enregistrer les bases de données résultantes des importations, utilisez "
-"l'option -e (préférez -f si le nom du fichier ne permet pas à Gramps de "
-"deviner le format) :\n"
-"gramps -i file1.ged -i file2.gpkg -e ~/nouveau-paquet -f gramps-pkg\n"
+"3. Pour enregistrer la base de donnée résultante des importations, utilisez "
+"l’option -e (préférez -f si le nom du fichier ne permet pas à Gramps de "
+"deviner le format) :\n"
+"gramps -i fic1.ged -i fic2.gpkg -e ~/nouveau-paquet -f gramps-pkg\n"
 "\n"
-"4. Enregistrer tout message d'erreur de l'exemple précédent dans "
-"fichier_sortie et fichier_erreurs, lancez :\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/nouveau-paquet -f gramps-pkg "
+"4. Pour enregistrer tout message d’erreur de l’exemple précédent dans "
+"fichier_sortie et fichier_erreurs, lancez :\n"
+"gramps -i fic1.ged -i fic2.dpkg -e ~/nouveau-paquet -f gramps-pkg "
 ">fichier_sortie 2>fichier_erreurs\n"
 "\n"
-"5. Importer trois bases de données et débuter une session interactive de "
-"Gramps avec le résultat :\n"
-"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
+"5. Pour importer trois bases de données et débuter une session interactive "
+"de Gramps avec le résultat :\n"
+"gramps -i fic1.ged -i fic2.gpkg -i ~/bd3.gramps\n"
 "\n"
-"6. Ouvrir une base de données et, basé sur ces données, générer le rapport "
-"graphique temporel au format PDF dont le fichier de sortie sera fil_du_temps."
-"pdf :\n"
-"gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=fil_du_temps."
-"pdf\n"
+"6. Pour ouvrir une base de données et, basé sur ces données, générer le "
+"rapport graphique temporel au format PDF dont le fichier de sortie sera "
+"fil_du_temps.pdf :\n"
+"gramps -O 'Arbre familial 1' -a report -p "
+"name=timeline,off=pdf,of=fil_du_temps.pdf\n"
 "\n"
-"7. Générer un résumé de la base de données « Arbre de famille 1 » :\n"
-"gramps -O 'Arbre de famille 1' -a report -p name=summary\n"
+"7. Pour générer un résumé de la base de données « Arbre familial 1 » :\n"
+"gramps -O 'Arbre de familial 1' -a report -p name=summary\n"
 "\n"
-"8. Lister les options d'un rapport :\n"
-"- Utiliser name=timeline,show=all pour trouver toutes les options "
-"disponibles du rapport graphique temporel.\n"
-"- Pour obtenir les détails d'une option particulière, utiliser "
-"show=option_name, par exemple : name=timeline,show=off.\n"
-"- Pour en savoir plus sur les noms de rapport disponibles, utilisez la "
-"chaîne name=show.\n"
+"8. Lister les options d’un rapport :\n"
+"Utiliser name=timeline,show=all pour trouver toutes les options disponibles "
+"du rapport graphique temporel.\n"
+"Pour obtenir les détails d’une option particulière, utiliser "
+"show=nom_option, par exemple : name=timeline,show=off.\n"
+"Pour apprendre les noms de rapport disponibles, utilisez la chaîne name=show."
 "\n"
-"9. Convertir un arbre familial vers un fichier XML .gramps :\n"
-"gramps -O 'Family Tree 1' -e output.gramps -f gramps\n"
 "\n"
-"10. Générer un site web dans une autre langue (par exemple en allemand) :\n"
-"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Arbre de famille 1' -a report -p "
+"9. Pour convertir un arbre familial vers un fichier XML .gramps :\n"
+"gramps -O 'Arbre familial 1' -e output.gramps -f gramps\n"
+"\n"
+"10. Pour générer un site web dans une autre langue (par exemple en allemand) "
+":\n"
+"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Arbre familial 1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
-"11. Enfin, pour démarrer une session interactive normale, saisissez :\n"
+"11. Enfin, pour démarrer une session interactive normale, saisissez :\n"
 "gramps\n"
 "\n"
-"Note : ces exemples sont pour le shell bash.\n"
+"Note : ces exemples sont pour le shell bash.\n"
 "La syntaxe peut être différente pour les autres shells ou sous Windows.\n"
 
 #: ../gramps/cli/argparser.py:281
@@ -1862,11 +1854,11 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"ERREUR : mauvais chemin de base de données dans\n"
-"le menu Édition -> Préférences.\n"
-"Ouvrez les préférences et définissez un bon chemin.\n"
+"ERREUR : Mauvais chemin de base de données dans le menu Édition -> "
+"Préférences.\n"
+"Ouvrez les préférences et définissez le bon chemin de la base de données.\n"
 "\n"
-"Détails : impossible de créer le chemin de base de données :\n"
+"Détails : impossible de créer le chemin de base de données :\n"
 "    %s\n"
 "\n"
 
@@ -3938,10 +3930,8 @@ msgstr "Filtre"
 
 # Substantif (GNOME fr)
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "Lecture des données..."
+msgstr "Préparation…"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -4612,7 +4602,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:59
 msgid "Citations with Source Id containing <text>"
-msgstr "Citations dont l'identifiant de la source contient le <texte>."
+msgstr "Citations dont l’identifiant de la source contient le <texte>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:61
 msgid ""
@@ -4668,7 +4658,7 @@ msgstr "Correspond aux évènements avec un attribut de même valeur"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 msgid "Events with the <citation>"
-msgstr "Évènements avec la <citation>."
+msgstr "Évènements avec la <citation>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hascitation.py:52
@@ -4887,7 +4877,8 @@ msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
 msgstr ""
-"Correspond aux évènements dont les lieux correspondent au filtre sur le lieu."
+"Correspond aux évènements dont les lieux correspondent au filtre sur le lieu "
+"spécifié"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:47
 msgid "Events with at least one direct source >= <confidence level>"
@@ -5588,7 +5579,7 @@ msgstr "Notes avec l'<étiquette>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
-msgstr "Correspond aux notes avec une étiquette particulière ."
+msgstr "Correspond aux notes avec une étiquette particulière"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:57
 msgid "Notes with the particular type"
@@ -7934,12 +7925,11 @@ msgstr "inconnu"
 
 # trunk
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "plus de %s ans"
-msgstr[1] "plus de %s ans"
+msgstr[0] "plus de {number_of} an"
+msgstr[1] "plus de {number_of} ans"
 
 # ex : 10 ans
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
@@ -9042,10 +9032,8 @@ msgstr "Type personnalisé"
 
 # trunk
 #: ../gramps/gen/lib/grampstype.py:272
-#, fuzzy
-#| msgid "Type face"
 msgid "Type code"
-msgstr "Police de caractères"
+msgstr "Code du type"
 
 # Dotation ?
 #: ../gramps/gen/lib/ldsord.py:95
@@ -9396,18 +9384,14 @@ msgid "Matrilineal"
 msgstr "Lignée maternelle (nom de la mère)"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Profession"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
-msgstr "Emplacement"
+msgstr "Lieu"
 
 #: ../gramps/gen/lib/nametype.py:58
 msgid "Also Known As"
@@ -10313,9 +10297,8 @@ msgid "Rule"
 msgstr "Règle"
 
 #: ../gramps/gen/plug/_pluginreg.py:133
-#, fuzzy
 msgid "Thumbnailer"
-msgstr "Aperçus"
+msgstr "Générateur de miniatures"
 
 #: ../gramps/gen/plug/_pluginreg.py:134 ../gramps/gui/configure.py:1663
 msgid "Citation formatter"
@@ -10889,7 +10872,7 @@ msgstr "non défini(e)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:111
 msgid "Swing"
-msgstr ""
+msgstr "Courbe spline"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:114
 msgid "Mesh"
@@ -11676,13 +11659,15 @@ msgstr "date"
 
 #: ../gramps/gen/utils/alive.py:213 ../gramps/gen/utils/alive.py:244
 msgid "date fallback"
-msgstr ""
+msgstr "date de repli"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
 #, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
+"Preuve directe pour cet individu - naissance : {birth_min_src}, décès : "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 msgid "mother's age"
@@ -11722,10 +11707,8 @@ msgid "birth date and known to be dead"
 msgstr "date de naissance et connu pour être décédé"
 
 #: ../gramps/gen/utils/alive.py:432
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "date de naissance d'un ascendant"
+msgstr "intervalle fixe depuis la date de naissance"
 
 #: ../gramps/gen/utils/alive.py:448
 #, python-brace-format
@@ -11733,6 +11716,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
+"déduit des parents et de la fratrie - naissance : {birth_min_src}, décès : "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -11740,6 +11725,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"déduit des parents et de la fratrie - naissance : {birth_min_src} (au plus "
+"tôt) à {birth_max_src} (au plus tard), décès : {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11755,27 +11742,24 @@ msgstr "évènement avec le conjoint"
 
 # master
 #: ../gramps/gen/utils/alive.py:765
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "naissance de descendant : {} générations "
-msgstr[1] "naissance de descendant : {} générations "
+msgstr[0] "naissance de descendant : {number_of} génération "
+msgstr[1] "naissance de descendant : {number_of} générations "
 
 # master
 #: ../gramps/gen/utils/alive.py:788
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "naissance d’ascendant : {} générations "
-msgstr[1] "naissance d’ascendant : {} générations "
+msgstr[0] "décès de descendant : {number_of} génération "
+msgstr[1] "décès de descendant : {number_of} générations "
 
 #: ../gramps/gen/utils/alive.py:803
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Erreur dans la base de données : boucle dans les descendants de %s"
+msgstr "Erreur dans la base de données : boucle dans les descendants de %s."
 
 #: ../gramps/gen/utils/alive.py:855
 msgid "mother birth "
@@ -11798,10 +11782,9 @@ msgid "father death "
 msgstr "décès du père "
 
 #: ../gramps/gen/utils/alive.py:962
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Erreur dans la base de données : boucle dans les ascendants de %s"
+msgstr "Erreur dans la base de données : boucle dans les ascendants de %s."
 
 #: ../gramps/gen/utils/alive.py:1044 ../gramps/gen/utils/alive.py:1053
 msgid "no evidence"
@@ -12588,6 +12571,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Le paquet orjson est nécessaire pour démarrer Gramps.\n"
+"\n"
+"Gramps va maintenant s’arrêter."
 
 # master
 #: ../gramps/grampsapp.py:323 ../gramps/grampsapp.py:384
@@ -13487,9 +13473,8 @@ msgstr "Nb. d'années après les dates « après »"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1909
-#, fuzzy
 msgid "Date 'before' year range: (date - #)"
-msgstr "Nb. d'années avant les dates « avant »"
+msgstr "Nb. d'années avant les dates « avant » : (date - n)"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1917
@@ -13641,27 +13626,25 @@ msgstr "Afficher ou masquer l'icone Préférences sur la barre d'outils."
 
 #: ../gramps/gui/configure.py:2124
 msgid "Both text and icons"
-msgstr ""
+msgstr "Et le texte et les icônes"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Texte seulement"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Seulement les nouveaux greffons"
+msgstr "Seulement les icônes"
 
 #: ../gramps/gui/configure.py:2131
 msgid "Display text, icons or both on the toolbar buttons."
 msgstr ""
+"Affiche le texte, les icônes ou les deux sur les boutons de la barre "
+"d’outils."
 
 #: ../gramps/gui/configure.py:2133
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "Barre d'ou_tils"
+msgstr "Style de la barre d’outils"
 
 #: ../gramps/gui/configure.py:2141
 msgid "Show close button in gramplet bar tabs"
@@ -17208,7 +17191,7 @@ msgstr "Fournir au moins une valeur"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:404
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "Créé par le gramplet Filtre le {today}"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19309,10 +19292,8 @@ msgid "Metric"
 msgstr "Métrique"
 
 #: ../gramps/gui/glade/plugins.glade:22
-#, fuzzy
-#| msgid "Wiki"
 msgid "_Wiki"
-msgstr "Wiki"
+msgstr "_Wiki"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -25345,10 +25326,11 @@ msgstr "Total des individus"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgstr ""
+"Fr:Manuel_wiki_pour_Gramps_6.0_-_Gramplets#Liste_des_Gramplets_disponibles"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr ""
+msgstr "Fr:Manuel_wiki_pour_Gramps_6.0_-_Outils#D.C3.A9bogage"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -34549,16 +34531,12 @@ msgid "Father lineage for %s"
 msgstr "Lignée paternelle de %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
-#, fuzzy
-#| msgid ""
-#| "This report shows the father lineage, also called patronymic lineage or Y-"
-#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
 "Ce rapport fournit la lignée paternelle, également appelée lignée "
-"patronymique ou lignée Y. Les individus de cette lignée partagent le même "
+"patrilinéaire ou lignée Y. Les individus de cette lignée partagent le même "
 "chromosome Y."
 
 #: ../gramps/plugins/quickview/lineage.py:65
@@ -34581,19 +34559,14 @@ msgid "Mother lineage for %s"
 msgstr "Lignée maternelle de %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
-#, fuzzy
-#| msgid ""
-#| "This report shows the mother lineage, also called matronymic lineage "
-#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
-#| "DNA (mtDNA)."
 msgid ""
 "This report shows the mother lineage, also called the matrilineal lineage "
 "mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
 "(mtDNA)."
 msgstr ""
 "Ce rapport fournit la lignée maternelle, également appelée lignée "
-"matronymique ou lignée mtDNA. Les individus de cette lignée partagent le "
-"même ADN mitochondrial (mtDNA)."
+"matrilinéaire ou lignée ADNmt. Les individus de cette lignée partagent le "
+"même ADN mitochondrial (ADNmt)."
 
 #: ../gramps/plugins/quickview/lineage.py:100
 msgid "Name Mother"
@@ -35121,7 +35094,7 @@ msgid "Relationships shown are to %s"
 msgstr "Relations affichées pour %s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:372
-#, fuzzy, python-format
+#, python-format
 msgid "* %(person)s, birth %(relation)s"
 msgstr "* %(person)s, naissance %(relation)s"
 
@@ -40628,7 +40601,7 @@ msgstr "Accueil"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Cartes thermiques"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -40658,7 +40631,7 @@ msgstr "Calendrier internet"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Carte thermique"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:440
@@ -40922,20 +40895,18 @@ msgstr "Carte de la famille %s"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Création des pages pour l'évènement"
+msgstr "Création des pages de carte thermique pour les évènements"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
 msgstr ""
+"La section suivante contient un index de tous les évènements pour une carte "
+"thermique."
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Nom"
@@ -40951,19 +40922,18 @@ msgstr "Lieux commençant par la lettre %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Tester le filtre sélectionné"
+msgstr "Carte thermique de %s selon le filtre sélectionné"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
 msgstr ""
+"La section suivante contient un index de tous les noms de famille d’une "
+"carte thermique."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "Nom"
@@ -40971,6 +40941,8 @@ msgstr "Nom"
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr ""
+"La section suivante contient un index de toutes les étiquettes d‘une carte "
+"thermique."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -40978,15 +40950,15 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Cette section contient la carte de tous les individus avec l’évènement : "
+"{event_type} ({selected_filter})"
 
 # objet sélectionné
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Supprimer le filtre sélectionné"
+msgstr " qui n’a pas d’évènement pour le filtre sélectionné."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -40994,6 +40966,8 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"Cette section contient la carte de tous les évènements pour : {surname} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -41001,6 +40975,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"Cette section contient la carte pour tous les individus, évènements avec l’"
+"étiquette : {tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -41066,7 +41042,7 @@ msgstr "Ce fichier a été déplacé ou supprimé."
 #: ../gramps/plugins/webreport/media.py:458
 #: ../gramps/plugins/webreport/thumbnail.py:174
 msgid "This is a remote media"
-msgstr ""
+msgstr "Ceci est un médium distant"
 
 #: ../gramps/plugins/webreport/media.py:639
 msgid "File Type"
@@ -41266,21 +41242,15 @@ msgid "Normal Outline Style"
 msgstr "Style normal de bordure"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2221
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "Mise en page des références de citation"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Déterminer la mise en page par défaut pour la section Références de la "
+"Spécifie la mise en page par défaut pour la section Références de la "
 "citation dans la page source"
 
 # en général plusieurs ascendants
@@ -41313,9 +41283,8 @@ msgid "Whether to use http:// or https://"
 msgstr "Utiliser http:// ou https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2248
-#, fuzzy
 msgid "Toggle sections"
-msgstr "Sections basculantes"
+msgstr "Sections dépliantes"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2249
 msgid "Check it if you want to open/close a section"
@@ -41323,13 +41292,11 @@ msgstr "Cochez-le si vous souhaitez ouvrir/fermer une section"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2252
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Nombre maximum de lignes dans un index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Le nombre maximal d'ascendants à inclure."
+msgstr "Le nombre maximal de lignes à inclure dans une page d’index"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/webreport/narrativeweb.py:2264
@@ -41734,12 +41701,10 @@ msgid "Whether or not to include the unused place pages."
 msgstr "Inclure ou non les pages des lieux inutilisés."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2615
-#, fuzzy
 msgid "Include source pages"
 msgstr "Inclure les pages des sources"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2616
-#, fuzzy
 msgid "Whether or not to include the source pages."
 msgstr "Inclure ou non les pages des sources."
 
@@ -41903,13 +41868,12 @@ msgid "Stamen Option"
 msgstr "Option Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2744
-#, fuzzy
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
 msgstr ""
-"Sélectionnez l'option que vous souhaitez utiliser pour les pages "
-"cartographiques Stamenmap..."
+"Sélectionnez l’option que vous souhaitez utiliser pour les pages "
+"cartographiques Stamen map…"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2749
@@ -41945,12 +41909,10 @@ msgid "latest"
 msgstr "dernier"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2787
-#, fuzzy
 msgid "openlayers version to use"
 msgstr "version openlayers à utiliser"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2792
-#, fuzzy
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -41966,13 +41928,11 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2809
-#, fuzzy
 msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "Autres inclusions (CMS, calendrier internet, PHP)"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2813
-#, fuzzy
 msgid "Do we include these pages in a CMS web?"
 msgstr "Doit-on inclure ces pages dans un CMS web ?"
 
@@ -41983,7 +41943,6 @@ msgstr "URI"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2822
-#, fuzzy
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "Où doit-on générer le site web ? Par défaut = /NAVWEB"
 
@@ -42025,9 +41984,8 @@ msgid "Second language"
 msgstr "Deuxième langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2864
-#, fuzzy
 msgid "Site name for your second language"
-msgstr "Nom du site pour une langue secondaire"
+msgstr "Nom du site pour votre seconde langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2864
 #: ../gramps/plugins/webreport/narrativeweb.py:2873
@@ -42087,7 +42045,6 @@ msgstr "Options du calendrier"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:3139
-#, fuzzy
 msgid "Do we include the web calendar ?"
 msgstr "Doit-on inclure le calendrier internet ?"
 
@@ -42132,50 +42089,44 @@ msgstr ""
 "l'onglet des préférences de dates."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Options Carte du lieu"
+msgstr "Options de carte thermique"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Inclure les pages évènement"
+msgstr "Inclure les pages de carte thermique"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Inclure ou non les noms alternatifs pour les parents."
+msgstr "Inclure ou non les pages de carte thermique pour les évènements"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Taille de la police"
+msgstr "Taille des points"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "La taille du texte de la note, en points."
+msgstr ""
+"Règle la taille des points de la carte thermique.\n"
+"Par défaut : 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "Floutage"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Indique la taille du floutage.\n"
+"Par défaut : 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/webreport/person.py:169
