@@ -86,10 +86,55 @@ register(
     status=STABLE,
     fname="calendargramplet.py",
     height=200,
-    gramplet="CalendarGramplet",
+    gramplet="StandardCalendar",
     gramplet_title=_("Calendar"),
-    version="1.0.0",
+    version="1.1.0",
     gramps_target_version=MODULE_VERSION,
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="Person Calendar",
+    name=_("Person Calendar"),
+    description=_("Gramplet showing the birth for a person on the calendar"),
+    version="1.1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="calendargramplet.py",
+    gramplet="PersonCalendar",
+    gramplet_title=_("Person Calendar"),
+    navtypes=["Person"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="Family Calendar",
+    name=_("Family Calendar"),
+    description=_("Gramplet showing the marriage for a family on the calendar"),
+    version="1.1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="calendargramplet.py",
+    gramplet="FamilyCalendar",
+    gramplet_title=_("Family Calendar"),
+    navtypes=["Family"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="Event Calendar",
+    name=_("Event Calendar"),
+    description=_("Gramplet showing the date for an event on the calendar"),
+    version="1.1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="calendargramplet.py",
+    gramplet="EventCalendar",
+    gramplet_title=_("Event Calendar"),
+    navtypes=["Event"],
     help_url=GRAMPLET_HELP,
 )
 

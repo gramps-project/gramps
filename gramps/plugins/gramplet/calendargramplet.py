@@ -16,7 +16,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-
 # ------------------------------------------------------------------------
 #
 # Gtk modules
@@ -31,8 +30,10 @@ from gi.repository import Gtk
 # ------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.plug.quick import run_quick_report_by_name
-from gramps.gen.lib import Date
+from gramps.gen.lib.date import Date, Today
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.utils.db import get_birth_or_fallback
+from gramps.gen.lib import EventType
 
 _ = glocale.translation.sgettext
 
@@ -46,6 +47,50 @@ class CalendarGramplet(Gramplet):
     """
     Gramplet showing a calendar of events.
     """
+
+    def __init__(self, classname, gui, nav_group=0):
+        self.__classname = classname  # must be set before calling super().__init__
+        super().__init__(gui, nav_group)
+
+    def db_changed(self):
+        self.main()
+
+    def main(self):
+        active_handle = self.get_active(self.__classname)
+        date = Today()
+        if active_handle:
+            if self.__classname == "Event":
+                active = self.dbstate.db.get_event_from_handle(active_handle)
+                if active:
+                    date = active.get_date_object()
+            elif self.__classname == "Person":
+                active = self.dbstate.db.get_person_from_handle(active_handle)
+                if active:
+                    bd_event = get_birth_or_fallback(self.dbstate.db, active)
+                    if bd_event:
+                        date = bd_event.get_date_object()
+            elif self.__classname == "Family":
+                active = self.dbstate.db.get_family_from_handle(active_handle)
+                if active:
+                    fam_evt_ref_list = active.get_event_ref_list()
+                    if fam_evt_ref_list:
+                        for evt_ref in fam_evt_ref_list:
+                            evt = self.dbstate.db.get_event_from_handle(evt_ref.ref)
+                            if evt:
+                                evt_type = evt.get_type()
+                                if evt_type == EventType.MARRIAGE:
+                                    date = evt.get_date_object()
+            year = date.get_year()
+            if year < 1:
+                date = Today()
+                year = date.get_year()
+            month = date.get_month()
+            if month > 0 and month < 13:
+                month -= 1
+            else:
+                month = 0
+            self.gui.calendar.select_month(month, date.get_year())
+            self.gui.calendar.select_day(date.get_day())
 
     def init(self):
         self.set_tooltip(_("Double-click a day for details"))
@@ -69,3 +114,45 @@ class CalendarGramplet(Gramplet):
         date = Date()
         date.set_yr_mon_day(year, month + 1, day)
         run_quick_report_by_name(self.gui.dbstate, self.gui.uistate, "onthisday", date)
+
+    def active_changed(self, handle):
+        self.main()
+
+
+class StandardCalendar(CalendarGramplet):
+    """
+    Displays the calendar for other usage.
+    """
+
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Other", gui, nav_group)
+
+
+class PersonCalendar(CalendarGramplet):
+    """
+    Displays the calendar for a person.
+    """
+
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Person", gui, nav_group)
+        self.connect_signal("Person", self.update)
+
+
+class FamilyCalendar(CalendarGramplet):
+    """
+    Displays the calendar for a family.
+    """
+
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Family", gui, nav_group)
+        self.connect_signal("Family", self.update)
+
+
+class EventCalendar(CalendarGramplet):
+    """
+    Displays the calendar for an event.
+    """
+
+    def __init__(self, gui, nav_group=0):
+        super().__init__("Event", gui, nav_group)
+        self.connect_signal("Event", self.update)
