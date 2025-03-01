@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-25 14:21+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2025-02-28 12:01+0000\n"
+"Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
 "Language: nl\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.2-dev\n"
+"X-Generator: Weblate 5.10.2-rc\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -400,8 +400,8 @@ msgstr ""
 "<b>Objecten bewerken</b><br/>In de meeste gevallen zal dubbelklikken op een "
 "naam, bron, plaats of media-item een venster openen waarin u het object kunt "
 "bewerken. Merk op dat het resultaat afhankelijk kan zijn van de context. Als "
-"u bijvoorbeeld in de gezinsweergave op een ouder of kind klikt, wordt de "
-"relatie-editor getoond."
+"u bijvoorbeeld in de gezinsweergave op een ouder of kind klikt, wordt "
+"Verwantschap bewerken getoond."
 
 #: ../data/tips.xml:8
 msgid ""
@@ -508,7 +508,7 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>De Actieve persoon wisselen</b><br/>Het wijzigen van de actieve persoon "
-"in weergaven is eenvoudig. Klik in de relatieweergave gewoon op iemand. "
+"in weergaven is eenvoudig. Klik in de weergave Verwantschap op een persoon. "
 "Dubbelklik in de kwartierstaat op de persoon of klik met de rechtermuisknop "
 "om een van hun echtgenoten, broers en zussen, kinderen of ouders te "
 "selecteren."
@@ -548,10 +548,10 @@ msgid ""
 "> Relationship Calculator...\". The exact relationship as well as all common "
 "ancestors are reported."
 msgstr ""
-"<b>Verwantschap berekenen</b><br/>Probeer \"Hulpmiddelen > Gereedschap > "
-"Relatiecalculator…\" om te controleren of twee personen in de database "
-"bloedverwant zijn (dus niet door huwelijk). De exacte relatie en alle "
-"gemeenschappelijke voorouders worden getoond."
+"<b>Verwantschap berekenen</b><br/>Probeer "
+"\"Hulpmiddelen > Gereedschap > Verwantschap berekenen…\" om te controleren "
+"of twee personen in de database bloedverwant zijn (dus niet door huwelijk). "
+"De exacte relatie en alle gemeenschappelijke voorouders worden getoond."
 
 #: ../data/tips.xml:30
 msgid ""
@@ -674,7 +674,7 @@ msgstr ""
 "<b>De weergaven organiseren</b><br/>Veel van de weergaven kunnen uw gegevens "
 "presenteren als een hiërarchische boom of als een eenvoudige lijst. Iedere "
 "weergave kan ook worden geconfigureerd zoals u dat wilt. Kijk rechts van de "
-"bovenste werkbalk of onder het menu &quot;Beeld&quot;."
+"bovenste werkbalk of onder het menu \"Beeld\"."
 
 #: ../data/tips.xml:48
 msgid ""
@@ -745,7 +745,7 @@ msgid ""
 "Show All checkbutton."
 msgstr ""
 "<b>Selectievakje 'Alles weergeven'</b><br/>Wanneer u een bestaande persoon "
-"als echtgenoot toevoegt, wordt de lijst met getoonde personen gefilterd om "
+"als partner toevoegt, wordt de lijst met getoonde personen gefilterd om "
 "alleen personen weer te geven die realistisch in de rol zouden kunnen passen "
 "(op basis van datums in de database). Als Gramps deze keuze niet goed maakt, "
 "kunt u het filter negeren door de knop 'Alles weergeven' aan te vinken."
@@ -1621,7 +1621,7 @@ msgstr ""
 #: ../gramps/cli/argparser.py:281
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr "Tracht te openen: %s …"
+msgstr "Proberen te openen: %s…"
 
 #: ../gramps/cli/argparser.py:326
 #, python-format
@@ -1922,7 +1922,7 @@ msgstr "Kan database niet openen"
 #: ../gramps/gui/dbloader.py:461
 #, python-format
 msgid "Could not open file: %s"
-msgstr "Kon dit bestand niet openen: %s"
+msgstr "Kan dit bestand niet openen: %s"
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Could not load a recent Family Tree."
@@ -3222,14 +3222,14 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"De stamboom die u probeert te laden is gemaakt in schemaversie "
-"%(oldschema)s. Deze versie van Gramps gebruikt schemaversie %(newschema)s. "
-"Daarom kunt u deze stamboom niet laden zonder de schemaversie van de "
-"stamboom te upgraden.\n"
+"De stamboom die u probeert te laden is gemaakt in schemaversie %(oldschema)"
+"s. Deze versie van Gramps gebruikt schemaversie %(newschema)s. Daarom kunt u "
+"deze stamboom niet laden zonder de schemaversie van de stamboom te upgraden."
+"\n"
 "\n"
 "Als u een upgrade uitvoert kunt u de vorige versie van Gramps niet "
-"gebruiken, zelfs niet als u vervolgens een "
-"%(wiki_manual_backup_html_start)sback-up%(html_end)s maakt of een "
+"gebruiken, zelfs niet als u vervolgens een %(wiki_manual_backup_html_start"
+")sback-up%(html_end)s maakt of een "
 "%(wiki_manual_export_html_start)sexport%(html_end)s uitvoert van uw "
 "bijgewerkte stamboom.\n"
 "\n"
@@ -3238,7 +3238,7 @@ msgstr ""
 "\n"
 "Als u nog geen back-up van uw stamboom hebt gemaakt, moet u uw "
 "%(bold_start)soude%(bold_end)s versie van Gramps starten en "
-"%(wiki_backup_html_start)smaak een backup%(html_end)s van uw stamboom."
+"%(wiki_backup_html_start)smaak een back-up%(html_end)s van uw stamboom."
 
 #: ../gramps/gen/db/exceptions.py:195
 #, python-format
@@ -3343,7 +3343,7 @@ msgstr "Aantal locaties"
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
-msgstr "Aantal bibliotheken"
+msgstr "Aantal opslagplaatsen"
 
 #: ../gramps/gen/db/generic.py:2675
 msgid "Number of notes"
@@ -3398,7 +3398,7 @@ msgstr ""
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Bibliotheken  bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
+"%(n1)6d  Opslagplaatsen bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
 #: ../gramps/gen/db/upgrade.py:679
 #, python-format
@@ -4261,23 +4261,23 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:54
 #: ../gramps/gui/editors/filtereditor.py:574
 msgid "Repository filter name:"
-msgstr "Bibliotheekfilternaam:"
+msgstr "Naam Opslagplaatsfilter:"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:59
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Citaten met een bron die een bibliotheek-referentie bevat dat overeenkomt "
-"met het <bibliotheekfilter>"
+"Citaten met een bron die een opslagplaats-referentie bevat dat overeenkomt "
+"met het <opslagplaatsfilter>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:63
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Overeenkomst met citaten bij bronnen met een bibliotheek-referentie die "
-"overeenkomt met een bepaald bibliotheek-filter"
+"Overeenkomst met citaten bij bronnen met een opslagplaats-referentie die "
+"overeenkomt met een bepaald opslagplaatsfilter"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:60
 msgid "Citations with source matching the <source filter>"
@@ -6039,7 +6039,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:58
 msgid "Spouses of <filter> match"
-msgstr "Echtgenoten van <filter> resultaat"
+msgstr "Partners van <filter> resultaat"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:59
 msgid "Matches people married to anybody matching a filter"
@@ -6093,7 +6093,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:54
 msgid "People missing parents"
-msgstr "Personen zonder ouders"
+msgstr "Personen die ouders missen"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:56
 msgid ""
@@ -6145,7 +6145,7 @@ msgstr "Overeenkomst met personen die als privé zijn aangegeven"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:45
 msgid "People not marked private"
-msgstr "Personen die niet als privé zijn gemarkeerd"
+msgstr "Personen niet gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:46
 msgid "Matches people that are not indicated as private"
@@ -6228,7 +6228,7 @@ msgstr "Personen die overeenkomen met de <naam>"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:46
 msgid "Every place"
-msgstr "Elke locatie"
+msgstr "Elke plaats"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:47
 msgid "Matches every place in the database"
@@ -6236,7 +6236,7 @@ msgstr "Overeenkomst met elke plaats in de database"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:49
 msgid "Places changed after <date time>"
-msgstr "Locaties die na <datum tijd> gewijzigd zijn>"
+msgstr "Plaatsen die na <datum tijd> gewijzigd zijn"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:51
 msgid ""
@@ -6249,7 +6249,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
-msgstr "Locatie met het <citaat>"
+msgstr "Plaats met het <citaat>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 msgid "Matches places with a citation of a particular value"
@@ -6280,7 +6280,7 @@ msgstr "Code:"
 #: ../gramps/gen/filters/rules/place/_hasdata.py:62
 #: ../gramps/gen/filters/rules/place/_hasplace.py:70
 msgid "Places matching parameters"
-msgstr "Locaties met overeenkomende parameters"
+msgstr "Plaatsen met overeenkomende parameters"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:63
 #: ../gramps/gen/filters/rules/place/_hasplace.py:71
@@ -6289,7 +6289,7 @@ msgstr "Overeenkomst met locaties met bepaalde parameters"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:47
 msgid "Places with <count> media"
-msgstr "Locaties met <aantal> media"
+msgstr "Plaatsen met <aantal> media"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:48
 msgid "Matches places with a certain number of items in the gallery"
@@ -6305,7 +6305,7 @@ msgstr "Overeenkomst met een locatie met een specifieke Gramps-ID"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:58
 msgid "Places with no latitude or longitude given"
-msgstr "Locaties zonder lengte- of breedtegraad"
+msgstr "Plaatsen zonder gegeven lengte- of breedtegraad"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:59
 msgid "Matches places with empty latitude or longitude"
@@ -6319,7 +6319,7 @@ msgstr "Locatiefilters"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:47
 msgid "Places having <count> notes"
-msgstr "Locaties met <aantal> notities"
+msgstr "Plaatsen met <aantal> notities"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:48
 msgid "Matches places having a certain number of notes"
@@ -6327,7 +6327,7 @@ msgstr "Overeenkomst met locaties met een bepaald aantal notities"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:44
 msgid "Places having notes containing <substring>"
-msgstr "Locaties met notities die een <deeltekenreeks> bevatten"
+msgstr "Plaatsen met notities die een <deeltekenreeks> bevatten"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:45
 msgid "Matches places whose notes contain text matching a substring"
@@ -6337,7 +6337,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:42
 msgid "Places having notes containing <text>"
-msgstr "Locaties met notities die <tekst> bevatten"
+msgstr "Plaatsen met notities die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:44
 msgid "Matches places whose notes contain text matching a regular expression"
@@ -6347,7 +6347,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
 msgid "Places with a note of type <type>"
-msgstr "Locaties met een notitie van type <type>"
+msgstr "Plaatsen met een notitie van type <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
 msgid "Matches places with a note of the specified type"
@@ -6387,7 +6387,7 @@ msgstr "Kerkparochie:"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:44
 msgid "Places with a reference count of <count>"
-msgstr "Locaties waar <aantal> keer naar verwezen wordt"
+msgstr "Plaatsen waar <aantal> keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:45
 msgid "Matches places with a certain reference count"
@@ -6396,7 +6396,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:47
 msgid "Place with <count> sources"
-msgstr "Locaties met <aantal> bronnen"
+msgstr "Plaatsen met <aantal> bronnen"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:48
 msgid "Matches places with a certain number of sources connected to it"
@@ -6404,7 +6404,7 @@ msgstr "Overeenkomst met locaties met een bepaald aantal bronverwijzingen"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
 msgid "Places with the <source>"
-msgstr "Locaties met de <bron>"
+msgstr "Plaatsen met de <bron>"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:50
 msgid "Matches places who have a particular source"
@@ -6412,7 +6412,7 @@ msgstr "Overeenkomst met locaties met een bepaalde bron"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:52
 msgid "Places with the <tag>"
-msgstr "Locaties met het <label>"
+msgstr "Plaatsen met het <label>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:53
 msgid "Matches places with the particular tag"
@@ -6420,7 +6420,7 @@ msgstr "Overeenkomst met locaties met een bepaald label"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:60
 msgid "Places matching a title"
-msgstr "Locaties die overeenkomen met een titel"
+msgstr "Plaatsen die overeenkomen met een titel"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:61
 msgid "Matches places with a particular title"
@@ -6452,7 +6452,7 @@ msgstr "Breedte rechthoek:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:66
 msgid "Places in neighborhood of given position"
-msgstr "Locaties in de buurt van een bepaalde positie"
+msgstr "Plaatsen in de buurt van een gegeven positie"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:68
 msgid ""
@@ -6466,7 +6466,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:59
 msgid "Places enclosed by another place"
-msgstr "Locaties omsloten door een andere plaats"
+msgstr "Plaatsen omsloten door een andere plaats"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:60
 msgid "Matches a place enclosed by a particular place"
@@ -6475,7 +6475,7 @@ msgstr "Overeenkomst met een locatie omsloten door een bepaalde plaats"
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:61
 msgid "Places of events matching the <event filter>"
 msgstr ""
-"Locaties van gebeurtenissen die overeenkomen met het <gebeurtenisfilter>"
+"Plaatsen van gebeurtenissen die overeenkomen met het <gebeurtenisfilter>"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:63
 msgid ""
@@ -6487,7 +6487,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:46
 msgid "Places matching the <filter>"
-msgstr "Locaties die overeenkomen met het <filter>"
+msgstr "Plaatsen die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:47
 msgid "Matches places matched by the specified filter name"
@@ -6495,7 +6495,7 @@ msgstr "Overeenkomst met locaties die overeenkomen met de opgegeven filternaam"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:46
 msgid "Place with a direct source >= <confidence level>"
-msgstr "Locatie met een directe bron >= <betrouwbaarheidsniveau>"
+msgstr "Plaatsen met een directe bron >= <betrouwbaarheidsniveau>"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:48
 msgid "Matches places with at least one direct source with confidence level(s)"
@@ -6505,7 +6505,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:44
 msgid "Places marked private"
-msgstr "Locaties gemarkeerd als privé"
+msgstr "Plaatsen gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:45
 msgid "Matches places that are indicated as private"
@@ -6528,7 +6528,7 @@ msgstr "Eenheden:"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:71
 msgid "Places within an area"
-msgstr "Locaties binnen een gebied"
+msgstr "Plaatsen binnen een gebied"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:72
 msgid "Matches places within a given distance of another place"
@@ -6537,86 +6537,86 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:94
 msgid "Cannot use the filter 'within area'"
-msgstr "Kan het filter 'binnen gebied' niet gebruiken"
+msgstr "Kan het filter niet gebruiken 'binnen gebied'"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:96
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
-"De door u geselecteerde locatie bevat slechte coördinaten. Voer het "
-"hulpprogramma 'opschonen invoergegevens' uit"
+"De door u geselecteerde plaatsen bevat slechte coördinaten. Voer het "
+"hulpprogramma 'Invoergegevens opschonen' uit"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:46
 msgid "Every repository"
-msgstr "Elke bibliotheek"
+msgstr "Elke opslagplaats"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:47
 msgid "Matches every repository in the database"
-msgstr "Overeenkomst met alle bibliotheken in de database"
+msgstr "Overeenkomst met elke opslagplaats in de database"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:49
 msgid "Repositories changed after <date time>"
-msgstr "Bibliotheken die na <datum tijd> gewijzigd zijn"
+msgstr "Opslagplaatsen die na <datum tijd> gewijzigd zijn"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:51
 msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
-"Overeenkomst met bibliotheken die gewijzigd zijn na een specifieke datum/"
+"Overeenkomst met opslagplaats die gewijzigd zijn na een specifieke datum/"
 "tijd (jjjj-mm-dd uu:mm:ss), of binnen een periode als een tweede datum/tijd "
 "is opgegeven."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repository attribute:"
-msgstr "Bibliotheek-kenmerk:"
+msgstr "Opslagplaatskenmerk:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
 msgid "Repositories with the attribute <attribute>"
-msgstr "Bibliotheken met het kenmerk <kenmerk>"
+msgstr "Opslagplaatsen met het kenmerk <kenmerk>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:49
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Overeenkomst met bibliotheken met een kenmerk van een bepaalde waarde"
+msgstr "Overeenkomst met opslagplaatsen met een kenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:46
 msgid "Repository with <Id>"
-msgstr "Bibliotheek met <ID>"
+msgstr "Opslagplaats met <ID>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Overeenkomst met een bibliotheek met een specifieke Gramps-ID"
+msgstr "Overeenkomst met een opslagplaats met een specifieke Gramps-ID"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:44
 msgid "Repositories having notes containing <substring>"
-msgstr "Bibliotheken met notities die een <deeltekenreeks> bevatten"
+msgstr "Opslagplaatsen met notities die <deeltekenreeks> bevatten"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:46
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Overeenkomst met bibliotheken waarvan de notities tekst bevatten die "
+"Overeenkomst met opslagplaatsen waarvan de notities tekst bevatten die "
 "overeenkomt met een deeltekenreeks"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
 msgid "Repositories having notes containing <text>"
-msgstr "Bibliotheken met notities die <tekst> bevatten"
+msgstr "Opslagplaatsen met notities die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:44
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Overeenkomst met bibliotheken met notities die tekst bevatten die "
+"Overeenkomst met opslagplaatsen met notities die tekst bevatten die "
 "overeenkomt met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Repositories with a reference count of <count>"
-msgstr "Bibliotheken waar <aantal> keer naar verwezen wordt"
+msgstr "Opslagplaatsen waar <aantal> keer naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:45
 msgid "Matches repositories with a certain reference count"
 msgstr ""
-"Overeenkomst met bibliotheken waar een bepaald aantal keer naar verwezen "
+"Overeenkomst met opslagplaatsen waar een bepaald aantal keer naar verwezen "
 "wordt"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:57
@@ -6637,56 +6637,56 @@ msgstr "URL:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:62
 msgid "Repositories matching parameters"
-msgstr "Bibliotheken met overeenkomende parameters"
+msgstr "Opslagplaatsen met overeenkomende parameters"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:63
 msgid "Matches Repositories with particular parameters"
-msgstr "Overeenkomst met bibliotheken met bepaalde parameters"
+msgstr "Overeenkomst met opslagplaatsen met bepaalde parameters"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Repositories with the <tag>"
-msgstr "Bibliotheken met het <label>"
+msgstr "Opslagplaatsen met het <label>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:53
 msgid "Matches repositories with the particular tag"
-msgstr "Overeenkomst met bibliotheken met een bepaald label"
+msgstr "Overeenkomst met opslagplaatsen met een bepaald label"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
-msgstr "Bibliotheken die overeenkomen met het <filter>"
+msgstr "Opslagplaatsen die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:47
 msgid "Matches repositories matched by the specified filter name"
 msgstr ""
-"Overeenkomst met bibliotheken die overeenkomen met de specifieke filternaam"
+"Overeenkomst met opslagplaatsen die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:54
 msgid "Repositories with name containing <text>"
-msgstr "Bibliotheken met een naam die <tekst> bevat"
+msgstr "Opslagplaatsen met een naam die <tekst> bevat"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:55
 msgid "Matches repositories whose name contains a certain substring"
 msgstr ""
-"Overeenkomst met bibliotheken waarvan de naam een bepaalde deeltekenreeks "
+"Overeenkomst met opslagplaatsen waarvan de naam een bepaalde deeltekenreeks "
 "bevat"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
 msgid "Repositories with Id containing <text>"
-msgstr "Bibliotheken met ID met <tekst>"
+msgstr "Opslagplaatsen met ID met <tekst>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:51
 msgid "Matches repositories whose Gramps ID matches the regular expression"
 msgstr ""
-"Overeenkomst met bibliotheken waarvan het Gramps-ID overeenkomt met de "
+"Overeenkomst met opslagplaatsen waarvan het Gramps-ID overeenkomt met de "
 "reguliere expressie"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:44
 msgid "Repositories marked private"
-msgstr "Bibliotheken gemarkeerd als privé"
+msgstr "Opslagplaatsen gemarkeerd als privé"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:45
 msgid "Matches repositories that are indicated as private"
-msgstr "Overeenkomst met bibliotheken die als privé aangegeven zijn"
+msgstr "Overeenkomst met opslagplaatsen die als privé aangegeven zijn"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:46
 msgid "Every source"
@@ -6747,7 +6747,7 @@ msgstr "Overeenkomst met bronnen met een bepaald aantal notities"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:44
 msgid "Sources having notes containing <substring>"
-msgstr "Bronnen met notities die een <deeltekenreeks> bevatten"
+msgstr "Bronnen met notities die <deeltekenreeks> bevatten"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:45
 msgid "Matches sources whose notes contain text matching a substring"
@@ -6784,16 +6784,17 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:59
 msgid "Sources with <count> Repository references"
-msgstr "Bronnen met <aantal> bibliotheekverwijzingen"
+msgstr "Bronnen met <aantal> opslagplaatsverwijzingen"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:60
 msgid "Matches sources with a certain number of repository references"
-msgstr "Overeenkomst met bronnen met een bepaald aantal bibliotheekverwijzingen"
+msgstr ""
+"Overeenkomst met bronnen met een bepaald aantal opslagplaatsverwijzingen"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:55
 msgid "Sources with repository reference containing <text> in \"Call Number\""
 msgstr ""
-"Bronnen met een bibliotheekverwijzing die <tekst> bevat in "
+"Bronnen met een opslagplaatsverwijzing die <tekst> bevat in "
 "\"Inventarisnummer\""
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:57
@@ -6801,7 +6802,7 @@ msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"Overeenkomst met bronnen met een bibliotheekverwijzing\n"
+"Overeenkomst met bronnen met een opslagplaatsverwijzing\n"
 "die een deeltekenreeks bevat in \"Inventarisnummer\""
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
@@ -6827,15 +6828,16 @@ msgstr "Overeenkomst met bronnen die overeenkomen met de specifieke filternaam"
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:55
 msgid "Sources with repository reference matching the <repository filter>"
 msgstr ""
-"Bronnen met bibliotheekverwijzing die overeenkomt met het <bibliotheekfilter>"
+"Bronnen met opslagplaatsverwijzing die overeenkomt met het "
+"<opslagplaatsfilter>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:57
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"Overeenkomst met bronnen met een bibliotheekverwijzing die overeenkomt\n"
-"met een bepaald bibliotheekfilter"
+"Overeenkomst met bronnen met een opslagplaatsverwijzing die overeenkomt\n"
+"met een bepaald opslagplaatsfilter"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:54
 msgid "Sources with title containing <text>"
@@ -7151,7 +7153,7 @@ msgstr "Identificatienummer"
 
 #: ../gramps/gen/lib/attrtype.py:79
 msgid "National Origin"
-msgstr "Nationale oorsprong"
+msgstr "Nationale herkomst"
 
 #: ../gramps/gen/lib/attrtype.py:80 ../gramps/plugins/lib/libpersonview.py:110
 msgid "Number of Children"
@@ -7211,7 +7213,7 @@ msgstr "Beroep"
 
 #: ../gramps/gen/lib/childref.py:106 ../gramps/gui/editors/editchildref.py:202
 msgid "Child Reference"
-msgstr "Verwijzing naar kind"
+msgstr "Kinderverwijzing"
 
 #: ../gramps/gen/lib/childref.py:123 ../gramps/gen/lib/citation.py:113
 #: ../gramps/gen/lib/event.py:182 ../gramps/gen/lib/family.py:164
@@ -7314,7 +7316,7 @@ msgstr "Citaat"
 #: ../gramps/plugins/webreport/repository.py:264
 #: ../gramps/plugins/webreport/source.py:398
 msgid "Gramps ID"
-msgstr "Gramps ID"
+msgstr "Gramps-ID"
 
 #: ../gramps/gen/lib/citation.py:117
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:87
@@ -8547,7 +8549,7 @@ msgstr "Aan ouders verzegeld"
 
 #: ../gramps/gen/lib/ldsord.py:98
 msgid "Sealed to Spouse"
-msgstr "Aan echtgenoot verzegeld"
+msgstr "Aan partner verzegeld"
 
 #: ../gramps/gen/lib/ldsord.py:102
 msgid "<No Status>"
@@ -9032,11 +9034,11 @@ msgstr "Locatienotitie"
 
 #: ../gramps/gen/lib/notetype.py:111
 msgid "Repository Note"
-msgstr "Bibliotheeknotitie"
+msgstr "Opslagplaatsnotitie"
 
 #: ../gramps/gen/lib/notetype.py:112
 msgid "Repository Reference Note"
-msgstr "Bibliotheekverwijzingsnotitie"
+msgstr "Opslagplaatsverwijzingsnotitie"
 
 #: ../gramps/gen/lib/notetype.py:113
 msgid "Media Note"
@@ -9272,7 +9274,7 @@ msgstr "Opslagplaats"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:531
 msgid "Repository ref"
-msgstr "Bibliotheek verw"
+msgstr "Opslagplaatsverw."
 
 #: ../gramps/gen/lib/reporef.py:112
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:69
@@ -9357,7 +9359,7 @@ msgstr "Afkorting"
 #: ../gramps/plugins/webreport/repository.py:243
 #: ../gramps/plugins/webreport/updates.py:141
 msgid "Repositories"
-msgstr "Bibliotheken"
+msgstr "Opslagplaatsen"
 
 #: ../gramps/gen/lib/srcmediatype.py:68
 msgid "Audio"
@@ -9629,7 +9631,7 @@ msgstr "Locaties samenvoegen"
 #: ../gramps/gen/merge/mergerepositoryquery.py:62
 #: ../gramps/gui/merge/mergerepository.py:71
 msgid "Merge Repositories"
-msgstr "Bibliotheken samenvoegen"
+msgstr "Opslagplaatsen samenvoegen"
 
 #: ../gramps/gen/merge/mergesourcequery.py:64
 msgid "Merge Source"
@@ -10616,7 +10618,7 @@ msgstr "Naamopmaak"
 
 #: ../gramps/gen/plug/report/stdoptions.py:129
 msgid "Include data marked private"
-msgstr "Inclusief gegevens toe die gemarkeerd zijn als privé"
+msgstr "Inclusief gegevens die gemarkeerd zijn als privé"
 
 #: ../gramps/gen/plug/report/stdoptions.py:130
 msgid "Whether to include private data"
@@ -11114,15 +11116,15 @@ msgstr ""
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
-msgstr "de aan geboorte gerelateerde datum van een echtgenoot, "
+msgstr "een geboortegerelateerde datum van de partner, "
 
 #: ../gramps/gen/utils/alive.py:557
 msgid "a spouse's death-related date, "
-msgstr "de aan overlijden gerelateerde datum van een echtgenoot, "
+msgstr "een overlijdensgerelateerde datum van de partner, "
 
 #: ../gramps/gen/utils/alive.py:587
 msgid "event with spouse"
-msgstr "gebeurtenis met echtgenoot"
+msgstr "gebeurtenis met partner"
 
 #: ../gramps/gen/utils/alive.py:765
 #, python-brace-format
@@ -11219,7 +11221,7 @@ msgstr "de gebeurtenis"
 
 #: ../gramps/gen/utils/grampslocale.py:775
 msgid "the repository"
-msgstr "de bibliotheek"
+msgstr "de opslagplaats"
 
 #: ../gramps/gen/utils/grampslocale.py:777
 msgid "the note"
@@ -11504,7 +11506,7 @@ msgstr "onbekend"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:114
 msgctxt "gender"
 msgid "other"
-msgstr "andere"
+msgstr "anders"
 
 #: ../gramps/gen/utils/string.py:58
 msgid "Invalid"
@@ -11999,18 +12001,17 @@ msgstr "Bijdragen van"
 #: ../gramps/gui/aboutdialog.py:153
 msgid "translator-credits"
 msgstr ""
-"Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.\n"
-"Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.\n"
-"Erik De Richter <frederik.de.richter@gmail.com>, 2006, 2007, 2008, 2009, "
-"2010, 2011, 2012, 2013.\n"
+"Stephan Paternotte <stephan@paternottes.net>, 2022-2025\n"
+"Enno Borgsteede <ennoborg@gmail.com>, 2024\n"
+"Ailean Riepsaame-Duffy <aileanr@gmail.com>, 2024\n"
+"Niko Strijbol <strijbol.niko@gmail.com>, 2022-2024\n"
+"Freek Olgers <freek@olgers.com>, 2022\n"
+"Milan <mobrcian@hotmail.com>, 2021\n"
+"Jan Sparreboom <jan@sparreboom.net>, 2020-2021\n"
 "Harmen Huizinga <harmenhuizinga@sigmo.nl>, 2013\n"
-"Jan Sparreboom <jan@sparreboom.net>, 2020, 2021.\n"
-"Milan <mobrcian@hotmail.com>, 2021.\n"
-"Freek Olgers <freek@olgers.com>, 2022.\n"
-"Niko Strijbol <strijbol.niko@gmail.com>, 2022, 2024.\n"
-"Stephan Paternotte <stephan@paternottes.net>, 2022, 2023, 2024, 2025.\n"
-"Ailean Riepsaame-Duffy <aileanr@gmail.com>, 2024.\n"
-"Enno Borgsteede <ennoborg@gmail.com>, 2024."
+"Erik De Richter <frederik.de.richter@gmail.com>, 2006-2013\n"
+"Kees Bakker <kees.bakker@xs4all.nl>, 2005-2007\n"
+"Tino Meinen <a.t.meinen@chello.nl>, 2003-2005"
 
 #: ../gramps/gui/aboutdialog.py:164
 #, python-format
@@ -12338,7 +12339,7 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
-"Standaard Gramps ID-indelingen die een lettervoorvoegsel bevatten, gevolgd "
+"Standaard Gramps-ID-indelingen die een lettervoorvoegsel bevatten, gevolgd "
 "door een numerieke tekenreeks. \"I%04d\" maakt ID's aan van I0000 tot I9999. "
 "Grote databases hebben mogelijk grotere ID's nodig. \"I%06d\" maakt ID's aan "
 "van I000000 tot I99999.\n"
@@ -12770,12 +12771,12 @@ msgstr "Omgevingsinstellingen"
 
 #: ../gramps/gui/configure.py:1981
 msgid "Display Tip of the Day"
-msgstr "Toon Tip van de dag"
+msgstr "Tip van de dag weergeven"
 
 #: ../gramps/gui/configure.py:1986
 msgid "Show useful information about using Gramps on startup."
 msgstr ""
-"Toont nuttige informatie over het gebruik van Gramps bij het opstarten."
+"Nuttige informatie over het gebruik van Gramps weergeven bij het opstarten."
 
 #: ../gramps/gui/configure.py:1991
 msgid "Remember last Family Tree"
@@ -12786,8 +12787,8 @@ msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
-"Open geen dialoogvenster om de te laden stamboom te kiezen bij het "
-"opstarten, maar laad gewoon de laatst gebruikte."
+"Geen dialoogvenster openen om bij het opstarten de te laden stamboom te "
+"kiezen, maar gewoon de laatst gebruikte laden."
 
 #: ../gramps/gui/configure.py:2005
 msgid "Remember last view displayed"
@@ -12833,7 +12834,7 @@ msgstr "Klembordpictogram op werkbalk weergeven"
 
 #: ../gramps/gui/configure.py:2064
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr "Het klembordpictogram op de werkbalk weergeven/verbergen."
+msgstr "Het pictogram klembord op de werkbalk weergeven/verbergen."
 
 #: ../gramps/gui/configure.py:2072
 msgid "Show Reports icon on toolbar"
@@ -12980,7 +12981,7 @@ msgid ""
 "Backup Management"
 msgstr ""
 "\n"
-"Back-upbeheer"
+"Back-ups beheren"
 
 #: ../gramps/gui/configure.py:2307
 msgid "Backup path"
@@ -13145,7 +13146,7 @@ msgstr "Selecteer databasemap"
 
 #: ../gramps/gui/configure.py:2576 ../gramps/gui/viewmanager.py:1942
 msgid "Select backup directory"
-msgstr "Back-up map kiezen"
+msgstr "Back-upmap kiezen"
 
 #: ../gramps/gui/configure.py:2651
 msgid ""
@@ -13236,7 +13237,7 @@ msgstr "Scheidingsteken:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:124
 msgid "Undo history warning"
-msgstr "Ongedaan-maken-geschiedenis waarschuwing"
+msgstr "Bewerkingsgeschiedenis waarschuwing"
 
 #: ../gramps/gui/dbloader.py:118
 msgid ""
@@ -13247,7 +13248,7 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"Als u doorgaat met importeren, wordt de ongedaan-geschiedenis voor deze "
+"Als u doorgaat met importeren, wordt de bewerkingsgeschiedenis voor deze "
 "sessie gewist. Met name kunt u de import of eerdere wijzigingen niet "
 "terugdraaien.\n"
 "\n"
@@ -13363,7 +13364,7 @@ msgstr "%s_-_Stambomen beheren"
 
 #: ../gramps/gui/dbman.py:100
 msgid "Family_Trees_manager_window"
-msgstr "Stamboombeheerder"
+msgstr "Stambomen beheren"
 
 #: ../gramps/gui/dbman.py:114 ../gramps/gui/glade/dbman.glade:344
 msgid "_Archive"
@@ -13732,7 +13733,7 @@ msgstr "Kan database niet laden"
 
 #: ../gramps/gui/displaystate.py:410
 msgid "Open the Clipboard dialog"
-msgstr "Open het dialoogvenster Klembord"
+msgstr "Dialoogvenster Klembord openen"
 
 #: ../gramps/gui/displaystate.py:411 ../gramps/gui/grampsgui.py:58
 msgid "Clip_board"
@@ -13740,7 +13741,7 @@ msgstr "_Klembord"
 
 #: ../gramps/gui/displaystate.py:416
 msgid "Open the reports dialog"
-msgstr "Open het dialoogvenster Verslagen"
+msgstr "Dialoogvenster Verslagen openen"
 
 #: ../gramps/gui/displaystate.py:417
 msgid "Reports"
@@ -13748,7 +13749,7 @@ msgstr "Verslagen"
 
 #: ../gramps/gui/displaystate.py:419
 msgid "Open the tools dialog"
-msgstr "Open het dialoogvenster Tools"
+msgstr "Dialoogvenster Hulpmiddelen openen"
 
 #: ../gramps/gui/displaystate.py:419
 msgid "Tools"
@@ -13756,7 +13757,7 @@ msgstr "Hulpmiddelen"
 
 #: ../gramps/gui/displaystate.py:423
 msgid "Open Addon Manager"
-msgstr "Uitbreidingenbeheer openen"
+msgstr "Uitbreidingen beheren openen"
 
 #: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:474
 msgid "Addons"
@@ -13793,7 +13794,7 @@ msgstr "Geen actief citaat"
 
 #: ../gramps/gui/displaystate.py:456
 msgid "No active repository"
-msgstr "Geen actieve bibliotheek"
+msgstr "Geen actieve opslagplaats"
 
 #: ../gramps/gui/displaystate.py:457
 msgid "No active media"
@@ -14227,7 +14228,7 @@ msgstr "_Beeld"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:161
 #: ../gramps/plugins/view/mediaview.py:426
 msgid "Open Containing _Folder"
-msgstr "Open de bijbehorende _map"
+msgstr "Bijbehorende _map openen"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:169
 msgid "_Make Active Media"
@@ -14494,32 +14495,32 @@ msgstr "De plaats die u toevoegt is al ingesloten door deze plaats"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Create and add a new repository"
-msgstr "Maak en voeg een nieuwe bibliotheek toe"
+msgstr "Een nieuwe opslagplaats aanmaken en toevoegen"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:57
 msgid "Remove the existing repository"
-msgstr "Verwijder de bestaande bibliotheek"
+msgstr "De bestaande opslagplaats verwijderen"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
 #: ../gramps/plugins/view/repoview.py:140
 msgid "Edit the selected repository"
-msgstr "Pas de geselecteerde bibliotheek aan"
+msgstr "De geselecteerde opslagplaats bewerken"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Add an existing repository"
-msgstr "Voeg een bestaande bibliotheek toe"
+msgstr "Een bestaande opslagplaats toevoegen"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:60
 msgid "Move the selected repository upwards"
-msgstr "Verplaats de geselecteerde bibliotheek naar boven"
+msgstr "De geselecteerde opslagplaats omhoog verplaatsen"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:61
 msgid "Move the selected repository downwards"
-msgstr "Verplaats de geselecteerde bibliotheek naar beneden"
+msgstr "De geselecteerde opslagplaats omlaag verplaatsen"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:81
 msgid "_Repositories"
-msgstr "_Bibliotheken"
+msgstr "_Opslagplaatsen"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:184
 msgid ""
@@ -14529,12 +14530,12 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
-"Deze bibliotheekreferentie kan op dit moment niet worden bewerkt. Ofwel de "
-"bijbehorende bibliotheek wordt al bewerkt of een andere "
-"bibliotheekreferentie die aan dezelfde bibliotheek is gekoppeld, wordt "
+"Deze opslagplaatsreferentie kan op dit moment niet worden bewerkt. Ofwel de "
+"bijbehorende opslagplaats wordt al bewerkt of een andere "
+"opslagplaatsreferentie die aan dezelfde opslagplaats is gekoppeld, wordt "
 "bewerkt.\n"
 "\n"
-"Om deze bibliotheekreferentie aan te passen, moet u de bibliotheek sluiten."
+"Om deze opslagplaatsreferentie aan te passen, moet u de opslagplaats sluiten."
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:69
 msgid "Create and add a new surname"
@@ -14969,10 +14970,10 @@ msgid ""
 "available when you create a new family. The remaining fields will become "
 "available after you attempt to select a parent."
 msgstr ""
-"Het is mogelijk om per ongeluk meerdere gezinnen met dezelfde ouders te "
-"creëren. Om dit probleem te helpen voorkomen, zijn alleen de knoppen om "
-"ouders te selecteren beschikbaar wanneer u een nieuw gezin maakt. De "
-"resterende velden komen beschikbaar nadat u probeert een ouder te selecteren."
+"Het is mogelijk om per ongeluk meerdere gezinnen met dezelfde ouders aan te "
+"maken. Om dit probleem te helpen voorkomen, zijn alleen de knoppen om ouders "
+"te selecteren beschikbaar wanneer u een nieuw gezin maakt. De resterende "
+"velden komen beschikbaar nadat u probeert een ouder te selecteren."
 
 #: ../gramps/gui/editors/editfamily.py:562
 msgid "Family has changed"
@@ -15451,7 +15452,7 @@ msgstr "_Vrouwelijk"
 
 #: ../gramps/gui/editors/editperson.py:1239
 msgid "_Other"
-msgstr "_Andere"
+msgstr "_Anders"
 
 #: ../gramps/gui/editors/editperson.py:1240
 msgid "_Unknown"
@@ -15600,7 +15601,7 @@ msgstr ""
 #: ../gramps/gui/editors/editreference.py:295
 #: ../gramps/gui/editors/editrepository.py:220
 msgid "Cannot save repository. ID already exists."
-msgstr "Kan bibliotheek niet opslaan. ID bestaat al."
+msgstr "Kan opslagplaats niet opslaan. ID bestaat al."
 
 #: ../gramps/gui/editors/editreference.py:298
 msgid "Cannot save item. ID already exists."
@@ -15608,17 +15609,17 @@ msgstr "Kan item niet opslaan. ID bestaat al."
 
 #: ../gramps/gui/editors/editreporef.py:61
 msgid "Repository Reference Editor"
-msgstr "Bibliotheekreferentie-bewerker"
+msgstr "Opslagplaatsreferentie bewerken"
 
 #: ../gramps/gui/editors/editreporef.py:213
 #, python-format
 msgid "Repository: %s"
-msgstr "Bibliotheek: %s"
+msgstr "Opslagplaats: %s"
 
 #: ../gramps/gui/editors/editreporef.py:215
 #: ../gramps/gui/editors/editrepository.py:87
 msgid "New Repository"
-msgstr "Nieuwe bibliotheek"
+msgstr "Nieuwe opslagplaats"
 
 #: ../gramps/gui/editors/editreporef.py:216
 msgid "Repo Reference Editor"
@@ -15626,41 +15627,41 @@ msgstr "Biblio-referentie-bewerker"
 
 #: ../gramps/gui/editors/editreporef.py:222
 msgid "Modify Repository"
-msgstr "Wijzig bibliotheek"
+msgstr "Opslagplaats aanpassen"
 
 #: ../gramps/gui/editors/editreporef.py:227
 msgid "Add Repository"
-msgstr "Voeg bibliotheek toe"
+msgstr "Opslagplaats toevoegen"
 
 #: ../gramps/gui/editors/editrepository.py:60
 msgctxt "manual"
 msgid "New_Repository_dialog"
-msgstr "Dialoogvenster_nieuwe_bibliotheek"
+msgstr "Dialoogvenster_nieuwe_opslagplaats"
 
 #: ../gramps/gui/editors/editrepository.py:97
 msgid "Edit Repository"
-msgstr "Bibliotheek bewerken"
+msgstr "Opslagplaats bewerken"
 
 #: ../gramps/gui/editors/editrepository.py:206
 msgid "Cannot save repository"
-msgstr "Kan bibliotheek niet opslaan"
+msgstr "Kan opslagplaats niet opslaan"
 
 #: ../gramps/gui/editors/editrepository.py:208
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"Er bestaan geen gegevens voor deze bibliotheek. Voer gegevens in of annuleer "
-"de bewerking."
+"Er bestaan geen gegevens voor deze opslagplaats. Voer gegevens in of "
+"annuleer de bewerking."
 
 #: ../gramps/gui/editors/editrepository.py:233
 #, python-format
 msgid "Add Repository (%s)"
-msgstr "Voeg bibliotheek (%s) toe"
+msgstr "Opslagplaats toevoegen (%s)"
 
 #: ../gramps/gui/editors/editrepository.py:239
 #, python-format
 msgid "Edit Repository (%s)"
-msgstr "Bibliotheek bewerken (%s)"
+msgstr "Opslagplaats bewerken (%s)"
 
 #: ../gramps/gui/editors/editsource.py:71
 msgctxt "manual"
@@ -15747,7 +15748,7 @@ msgstr "Gebeurtenisfilters"
 
 #: ../gramps/gui/editors/filtereditor.py:102
 msgid "Place Filters"
-msgstr "Locatiefilters"
+msgstr "Plaatsfilters"
 
 #: ../gramps/gui/editors/filtereditor.py:103
 msgid "Source Filters"
@@ -15759,7 +15760,7 @@ msgstr "Mediafilters"
 
 #: ../gramps/gui/editors/filtereditor.py:105
 msgid "Repository Filters"
-msgstr "Bibliotheekfilters"
+msgstr "Opslagplaatsfilters"
 
 #: ../gramps/gui/editors/filtereditor.py:106
 msgid "Note Filters"
@@ -15817,7 +15818,7 @@ msgstr "Gebruik reguliere expressie"
 
 #: ../gramps/gui/editors/filtereditor.py:614
 msgid "Also family events where person is spouse"
-msgstr "Ook familie-gebeurtenissen waarbij de persoon de echtgenoot is"
+msgstr "Ook familie-gebeurtenissen waarbij de persoon de partner is"
 
 #: ../gramps/gui/editors/filtereditor.py:616
 msgid "Only include primary participants"
@@ -16235,7 +16236,7 @@ msgstr "Herstellen"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr "Verlopen tijd: %.2fs"
+msgstr "Verstreken tijd: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:379
 msgid "You should select a place when using the 'Within' rule"
@@ -16325,7 +16326,7 @@ msgstr "Wis het boek"
 
 #: ../gramps/gui/glade/book.glade:240
 msgid "Save current set of configured selections"
-msgstr "Sla de huidige set geconfigureerde selecties op"
+msgstr "De huidige set geconfigureerde selecties opslaan"
 
 #: ../gramps/gui/glade/book.glade:263
 msgid "Open previously created book"
@@ -16333,7 +16334,7 @@ msgstr "Eerder gemaakt boek openen"
 
 #: ../gramps/gui/glade/book.glade:285
 msgid "Manage previously created books"
-msgstr "Beheer eerder gemaakte boeken"
+msgstr "Eerder gemaakte boeken beheren"
 
 #: ../gramps/gui/glade/book.glade:487
 msgid "Add an item to the book"
@@ -16353,7 +16354,7 @@ msgstr "Verplaats de huidige selectie een stap naar beneden in het boek"
 
 #: ../gramps/gui/glade/book.glade:576
 msgid "Configure currently selected item"
-msgstr "Configureer momenteel geselecteerd item"
+msgstr "Huidige geselecteerd item configureren"
 
 #: ../gramps/gui/glade/clipboard.glade:38
 msgid "Clear _All"
@@ -16735,7 +16736,7 @@ msgstr "Naam kind:"
 
 #: ../gramps/gui/glade/editchildref.glade:226
 msgid "Open person editor of this child"
-msgstr "Open persoonseditor van dit kind"
+msgstr "Persoon bewerken van dit kind openen"
 
 #: ../gramps/gui/glade/editchildref.glade:236
 #: ../gramps/gui/glade/editfamily.glade:273
@@ -17157,8 +17158,8 @@ msgstr ""
 "Gramps slaat media niet in zichzelf op, het slaat alleen het pad er naartoe "
 "op! Stel het 'Relatieve pad' in de 'Voorkeuren' in om te voorkomen dat u de "
 "naam van de algemene basismap (het volledige pad), waar al uw media zijn "
-"opgeslagen, telkens opnieuw moet typen. De tool 'Mediabeheerder' kan helpen "
-"bij het beheren van paden van een verzameling media-objecten."
+"opgeslagen, telkens opnieuw moet typen. De tool 'Mediabeheer' kan helpen bij "
+"het beheren van paden van een verzameling media-objecten."
 
 #: ../gramps/gui/glade/editmedia.glade:217
 #: ../gramps/gui/glade/editmediaref.glade:425
@@ -17167,9 +17168,7 @@ msgstr "Beschrijvende titel voor dit media-object."
 
 #: ../gramps/gui/glade/editmedia.glade:266
 msgid "Open File Browser to select a media file on your computer."
-msgstr ""
-"Open Bestandsbeheer (bijv. Verkenner in Microsoft Windows) om een "
-"mediabestand op uw computer te selecteren."
+msgstr "Open Bestandsbeheer om een mediabestand op uw computer te selecteren."
 
 #: ../gramps/gui/glade/editmedia.glade:275
 #: ../gramps/gui/glade/editmediaref.glade:662
@@ -17717,11 +17716,11 @@ msgstr "_Inventarisnummer:"
 
 #: ../gramps/gui/glade/editreporef.glade:155
 msgid "On what type of media this source is available in the repository."
-msgstr "Op welk type media is deze bron beschikbaar in de bibliotheek."
+msgstr "Op welk type media is deze bron beschikbaar in de opslagplaats."
 
 #: ../gramps/gui/glade/editreporef.glade:207
 msgid "Id number of the source in the repository."
-msgstr "ID-nummer van de bron in de bibliotheek."
+msgstr "ID-nummer van de bron in de opslagplaats."
 
 #: ../gramps/gui/glade/editreporef.glade:272
 #: ../gramps/gui/glade/editrepository.glade:98
@@ -17741,14 +17740,14 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>Let op:</b> Alle wijzigingen in de gedeelde bibliotheek-informatie worden "
-"weerspiegeld in de bibliotheek zelf, voor alle items die naar de bibliotheek "
-"verwijzen."
+"<b>Let op:</b> Alle wijzigingen in de gedeelde opslagplaats -informatie "
+"worden weerspiegeld in de opslagplaats zelf, voor alle items die naar de "
+"opslagplaats verwijzen."
 
 #: ../gramps/gui/glade/editreporef.glade:378
 #: ../gramps/gui/glade/editrepository.glade:180
 msgid "A unique ID to identify the repository."
-msgstr "Een uniek ID om de bibliotheek te identificeren."
+msgstr "Een uniek ID om de opslagplaats te identificeren."
 
 #: ../gramps/gui/glade/editreporef.glade:431
 #: ../gramps/gui/glade/editrepository.glade:145
@@ -18105,21 +18104,21 @@ msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
 msgstr ""
-"Selecteer de bibliotheek die de primaire gegevens\n"
-"voor de samengevoegde bibliotheek zal verstrekken."
+"Selecteer de opslagplaats die de primaire gegevens\n"
+"voor de samengevoegde opslagplaats zal verstrekken."
 
 #: ../gramps/gui/glade/mergerepository.glade:182
 msgid "Repository 1"
-msgstr "Bibliotheek 1"
+msgstr "Opslagplaats 1"
 
 #: ../gramps/gui/glade/mergerepository.glade:196
 msgid "Repository 2"
-msgstr "Bibliotheek 2"
+msgstr "Opslagplaats 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:388
 msgid "Addresses, urls and notes of both repositories will be combined."
 msgstr ""
-"Adressen, url's en notities van beide bibliotheken worden gecombineerd."
+"Adressen, url's en notities van beide opslagplaatsen worden gecombineerd."
 
 #: ../gramps/gui/glade/mergesource.glade:94
 msgid ""
@@ -18134,7 +18133,7 @@ msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
 msgstr ""
-"Notities, media-objecten, data-items en bibliotheek-referenties van beide "
+"Notities, media-objecten, data-items en opslagplaats-referenties van beide "
 "bronnen worden samengevoegd."
 
 #: ../gramps/gui/glade/papermenu.glade:8
@@ -18234,7 +18233,7 @@ msgstr "Ouderrelaties"
 
 #: ../gramps/gui/glade/reorder.glade:111 ../gramps/gui/glade/reorder.glade:244
 msgid "Arrow top"
-msgstr "Pijl boven"
+msgstr "Pijl omhoog"
 
 #: ../gramps/gui/glade/reorder.glade:118
 msgid "Move parent up"
@@ -18600,7 +18599,7 @@ msgstr "Geselecteerde _Uitbreidingen installeren"
 #: ../gramps/gui/glade/updateaddons.glade:70
 #: ../gramps/gui/plug/_windows.py:2103
 msgid "Available Gramps Updates for Addons"
-msgstr "Beschikbare Gramps-updates voor uitbreidingen"
+msgstr "Beschikbare updates voor Gramps-uitbreidingen"
 
 #: ../gramps/gui/glade/updateaddons.glade:87
 msgid ""
@@ -18619,7 +18618,7 @@ msgstr ""
 "selecteren welke van internet wordt opgehaald van de Gramps-website en "
 "lokaal op uw computer geïnstalleerd. Als u dit dialoogvenster nu sluit, kunt "
 "u later uitbreidingen installeren vanuit het menu onder Bewerken -> "
-"Uitbreidingenbeheer."
+"Uitbreidingen beheren."
 
 #: ../gramps/gui/glade/updateaddons.glade:103
 msgid "_Select All"
@@ -18635,7 +18634,7 @@ msgstr "Boeken..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Configure the active view"
-msgstr "Configureer de actieve weergave"
+msgstr "De actieve weergave configureren"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Connect to a recent database"
@@ -18655,7 +18654,7 @@ msgstr "Gramps _mailinglijsten"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Make Backup..."
-msgstr "Backup maken..."
+msgstr "Back-up maken…"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Manage databases"
@@ -18672,7 +18671,7 @@ msgstr "Tip van de dag"
 
 #: ../gramps/gui/grampsgui.py:58 ../gramps/gui/undohistory.py:74
 msgid "Undo History"
-msgstr "Geschiedenis ongedaan maken"
+msgstr "Bewerkingsgeschiedenis"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Abandon Changes and Quit"
@@ -18684,7 +18683,7 @@ msgstr "_Over Gramps"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Addon Manager..."
-msgstr "_Uitbreidingenbeheer..."
+msgstr "_Uitbreidingen beheren…"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -18724,7 +18723,7 @@ msgstr "_Sneltoetsen"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Manage Family Trees..."
-msgstr "_Stambomen beheren ..."
+msgstr "_Stambomen beheren…"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Navigator"
@@ -18732,7 +18731,7 @@ msgstr "_Navigatie"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Plugin Manager"
-msgstr "_Uitbreidingenbeheer"
+msgstr "_Uitbreidingen beheren"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Preferences..."
@@ -19027,8 +19026,8 @@ msgid ""
 "submit report"
 msgstr ""
 "Gebruik deze knop om de foutmelding naar het klembord te kopiëren. Ga "
-"vervolgens naar de foutvolg-website met behulp van de onderstaande knop, "
-"plak de melding en klik op indienen"
+"vervolgens naar de foutregistratie-website met behulp van de onderstaande "
+"knop, plak de melding en klik op indienen"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:735
 #: ../gramps/gui/logger/_errorreportassistant.py:766
@@ -19159,7 +19158,7 @@ msgstr "%(key)s:\t%(value)s"
 #: ../gramps/gui/views/treemodels/peoplemodel.py:94
 #: ../gramps/plugins/webreport/person.py:587
 msgid "other"
-msgstr "andere"
+msgstr "anders"
 
 #: ../gramps/gui/merge/mergeperson.py:103
 msgid "Merge People"
@@ -19203,7 +19202,7 @@ msgstr "Echtgenoten"
 #: ../gramps/plugins/textreport/familygroup.py:581
 #: ../gramps/plugins/view/relview.py:1651
 msgid "Spouse"
-msgstr "Echtgenoot"
+msgstr "Partner"
 
 #: ../gramps/gui/merge/mergeperson.py:288
 msgid "No spouses or children found"
@@ -19233,7 +19232,7 @@ msgstr "Locaties_samenvoegen"
 #: ../gramps/gui/merge/mergerepository.py:45
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "Bibliotheken_samenvoegen"
+msgstr "Opslagplaatsen_samenvoegen"
 
 #: ../gramps/gui/merge/mergesource.py:46
 msgctxt "manual"
@@ -19246,7 +19245,7 @@ msgstr "Bronnen samenvoegen"
 
 #: ../gramps/gui/plug/_dialogs.py:320
 msgid "Report Selection"
-msgstr "Verslagselectie"
+msgstr "Verslagen"
 
 #: ../gramps/gui/plug/_dialogs.py:322
 msgid "_Generate"
@@ -19258,11 +19257,11 @@ msgstr "Genereer geselecteerd verslag"
 
 #: ../gramps/gui/plug/_dialogs.py:354
 msgid "Tool Selection"
-msgstr "Hulpmiddel selectie"
+msgstr "Hulpmiddelen"
 
 #: ../gramps/gui/plug/_dialogs.py:355
 msgid "Select a tool from those available on the left."
-msgstr "Selecteer een tool uit de lijst aan de linkerkant."
+msgstr "Selecteer een hulpmiddel uit de lijst aan de linkerkant."
 
 #: ../gramps/gui/plug/_dialogs.py:356 ../gramps/plugins/tool/verify.glade:142
 msgid "_Run"
@@ -19325,7 +19324,7 @@ msgstr "Opslaan als"
 #: ../gramps/gui/plug/report/_bookdialog.py:650
 #: ../gramps/gui/plug/report/_fileentry.py:68
 msgid "_Open"
-msgstr "_Open"
+msgstr "_Openen"
 
 #: ../gramps/gui/plug/_guioptions.py:1837
 #: ../gramps/gui/plug/report/_reportdialog.py:337
@@ -19378,7 +19377,7 @@ msgstr "Vereisten"
 
 #: ../gramps/gui/plug/_windows.py:380
 msgid "Addon Manager"
-msgstr "Uitbreidingenbeheer"
+msgstr "Uitbreidingen beheren"
 
 #: ../gramps/gui/plug/_windows.py:388 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
@@ -19493,7 +19492,7 @@ msgstr "Eens per week"
 
 #: ../gramps/gui/plug/_windows.py:776
 msgid "Once a day"
-msgstr "Eens per dag"
+msgstr "Een keer per dag"
 
 #: ../gramps/gui/plug/_windows.py:777
 msgid "Always"
@@ -19501,7 +19500,7 @@ msgstr "Altijd"
 
 #: ../gramps/gui/plug/_windows.py:783
 msgid "Check for addon updates"
-msgstr "Uitbreidingen op updates controleren"
+msgstr "Uitbreidingen controleren op updates"
 
 #: ../gramps/gui/plug/_windows.py:790
 msgid "Updated addons only"
@@ -19525,7 +19524,7 @@ msgstr "Vraag niet naar eerder aangemelde uitbreidingen"
 
 #: ../gramps/gui/plug/_windows.py:816
 msgid "Check for updated addons now"
-msgstr "Nu op bijgewerkte uitbreidingen controleren"
+msgstr "Nu controleren op bijgewerkte uitbreidingen"
 
 #: ../gramps/gui/plug/_windows.py:829
 msgid "New Project"
@@ -19554,8 +19553,8 @@ msgstr "Controle op uitbreidingen is mislukt"
 #: ../gramps/gui/plug/_windows.py:964
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
-"De bibliotheek met uitbreidingen lijkt niet beschikbaar te zijn. Probeer het "
-"later opnieuw."
+"De opslagplaats met uitbreidingen lijkt niet beschikbaar te zijn. Probeer "
+"het later opnieuw."
 
 #: ../gramps/gui/plug/_windows.py:979
 msgid "There are no available addons of this type"
@@ -19588,7 +19587,7 @@ msgstr "Zichtbaar"
 
 #: ../gramps/gui/plug/_windows.py:1027
 msgid "Plugin Manager"
-msgstr "Uitbreidingenbeheer"
+msgstr "Uitbreidingen beheren"
 
 #: ../gramps/gui/plug/_windows.py:1079 ../gramps/gui/plug/_windows.py:1137
 msgid "Info"
@@ -20484,9 +20483,9 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"Als u doorgaat met deze tool, wordt de geschiedenis van het ongedaan maken "
-"van deze sessie gewist. In het bijzonder kunt u de wijzigingen die door deze "
-"tool zijn aangebracht of eerdere wijzigingen niet ongedaan maken.\n"
+"Als u doorgaat met deze tool, wordt de bewerkingsgeschiedenis van deze "
+"sessie gewist. In het bijzonder kunt u de wijzigingen die door deze tool "
+"zijn aangebracht of eerdere wijzigingen niet ongedaan maken.\n"
 "\n"
 "Als u denkt dat u deze tool misschien wilt terugdraaien, stop dan hier en "
 "maak een back-up van uw database."
@@ -20589,12 +20588,12 @@ msgstr "Selecteer_locatiekiezer"
 
 #: ../gramps/gui/selectors/selectrepository.py:60
 msgid "Select Repository"
-msgstr "Selecteer bibliotheek"
+msgstr "Opslagplaats selecteren"
 
 #: ../gramps/gui/selectors/selectrepository.py:79
 msgctxt "manual"
 msgid "Select_Repository_selector"
-msgstr "Selecteer_bibliotheekkiezer"
+msgstr "Opslagplaats_Selecteren_kiezer"
 
 #: ../gramps/gui/selectors/selectsource.py:60
 msgid "Select Source"
@@ -20654,7 +20653,7 @@ msgstr "Bevestiging verwijderen"
 
 #: ../gramps/gui/undohistory.py:197
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "Weet u zeker dat u de Ongedaan-maken geschiedenis wilt wissen?"
+msgstr "Weet u zeker dat u de bewerkingsgeschiedenis wilt wissen?"
 
 #: ../gramps/gui/undohistory.py:198 ../gramps/plugins/gramplet/eval.py:83
 msgid "Clear"
@@ -20813,7 +20812,7 @@ msgstr ""
 "(%(firstauthoremail)s).\n"
 "\n"
 "Als u niet wilt dat Gramps deze weergave opnieuw probeert te laden, kunt u "
-"deze verbergen met behulp van Uitbreidingenbeheer in het Help-menu."
+"deze verbergen met behulp van Uitbreidingen beheren in het Help-menu."
 
 #: ../gramps/gui/viewmanager.py:1701
 msgid "Failed Loading Plugin"
@@ -20842,11 +20841,11 @@ msgstr ""
 "(%(firstauthoremail)s).\n"
 "\n"
 "Als u niet wilt dat Gramps deze uitbreiding opnieuw probeert te laden, kunt "
-"u deze verbergen met behulp van de Uitbreidingenbeheer in het Help-menu."
+"u deze verbergen met behulp van de Uitbreidingen beheren in het Help-menu."
 
 #: ../gramps/gui/viewmanager.py:1799
 msgid "Gramps XML Backup"
-msgstr "Gramps XML-back-up"
+msgstr "Gramps XML back-up"
 
 #: ../gramps/gui/viewmanager.py:1826
 msgid "File:"
@@ -20882,7 +20881,7 @@ msgstr "Doorgaan en overschrijven"
 
 #: ../gramps/gui/viewmanager.py:1891
 msgid "Cancel the backup"
-msgstr "De back-up annuleren"
+msgstr "Back-up annuleren"
 
 #: ../gramps/gui/viewmanager.py:1906 ../gramps/gui/viewmanager.py:1911
 msgid "Making backup..."
@@ -20998,7 +20997,7 @@ msgstr "CSV"
 
 #: ../gramps/gui/views/listview.py:1262
 msgid "OpenDocument Spreadsheet"
-msgstr "OpenDocument-spreadsheet"
+msgstr "OpenDocument Spreadsheet"
 
 #: ../gramps/gui/views/listview.py:1448
 msgid "Columns"
@@ -21056,7 +21055,7 @@ msgstr "_Zijbalk"
 #: ../gramps/gui/views/pageview.py:611
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
-msgstr "Configureer %(cat)s - %(view)s"
+msgstr "%(cat)s - %(view)s configureren"
 
 #: ../gramps/gui/views/pageview.py:633
 #, python-format
@@ -21066,7 +21065,7 @@ msgstr "%(cat)s - %(view)s"
 #: ../gramps/gui/views/pageview.py:670
 #, python-format
 msgid "Configure %s View"
-msgstr "Configureer weergave %s"
+msgstr "Weergave %s configureren"
 
 #: ../gramps/gui/views/pageview.py:688
 #, python-format
@@ -21216,7 +21215,7 @@ msgstr "Gezin bewerken"
 #: ../gramps/gui/widgets/fanchart.py:2074
 #: ../gramps/plugins/view/relview.py:1021
 msgid "Reorder families"
-msgstr "Gezinnen herordenen"
+msgstr "Gezinnen opnieuw rangschikken"
 
 #: ../gramps/gui/widgets/fanchart.py:2080
 #: ../gramps/plugins/view/pedigreeview.py:1880
@@ -21382,16 +21381,16 @@ msgstr "Voortgangsinformatie"
 #: ../gramps/gui/widgets/reorderfam.py:65
 msgctxt "manual"
 msgid "Reorder_Relationships_dialog"
-msgstr "Dialoogvenster_verwantschappen_herordenen"
+msgstr "Dialoogvenster_verwantschappen_opnieuw_rangschikken"
 
 #: ../gramps/gui/widgets/reorderfam.py:94
 msgid "Reorder Relationships"
-msgstr "Verwantschappen herordenen"
+msgstr "Verwantschappen opnieuw rangschikken"
 
 #: ../gramps/gui/widgets/reorderfam.py:183
 #, python-format
 msgid "Reorder Relationships: %s"
-msgstr "Herorder verwantschappen: %s"
+msgstr "Verwantschappen opnieuw rangschikken: %s"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Background Color"
@@ -21447,7 +21446,7 @@ msgstr "Kopieer _E-mailadres"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:551
 msgid "_Open Link"
-msgstr "_Open link"
+msgstr "Koppeling _openen"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:553
 msgid "Copy _Link Address"
@@ -21574,7 +21573,7 @@ msgstr "Genereert documenten in LaTeX-indeling."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:119
 msgid "OpenDocument Text"
-msgstr "OpenDocument-tekst"
+msgstr "OpenDocument Text"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:120
 msgid "Generates documents in OpenDocument Text format (.odt)."
@@ -22396,8 +22395,7 @@ msgstr "Vrouwen gebruiken achternaam van echtgenoot (vermeld bij eerste gezin)"
 #: ../gramps/plugins/webreport/narrativeweb.py:3160
 #: ../gramps/plugins/webreport/webcal.py:1982
 msgid "Wives use husband's surname (from last family listed)"
-msgstr ""
-"Vrouwen gebruiken achternaam van echtgenoot (vermeld bij laatste gezin)"
+msgstr "Vrouwen gebruiken achternaam van echtgenoot (vermeld bij laatste gezin)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:680
 #: ../gramps/plugins/textreport/birthdayreport.py:641
@@ -22447,7 +22445,7 @@ msgstr "Inclusief overlijdensdatums"
 #: ../gramps/plugins/webreport/narrativeweb.py:3182
 #: ../gramps/plugins/webreport/webcal.py:2074
 msgid "Include death anniversaries in the calendar"
-msgstr "Overlijdensherdenkingsdagen opnemen in de kalender"
+msgstr "Overlijdensdagen opnemen in de kalender"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:776
 msgid "Title text and background color"
@@ -22459,15 +22457,15 @@ msgstr "Kalenderdagnummers"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:785
 msgid "Daily text display"
-msgstr "Tekstweergave dagen"
+msgstr "Dagelijkse tekstweergave"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:787
 msgid "Holiday text display"
-msgstr "Tekstweergave feestdagen"
+msgstr "Feestdagen tekstweergave"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:792
 msgid "Days of the week text"
-msgstr "Tekst dagen van de week"
+msgstr "Weekdagentekst"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:799
 #: ../gramps/plugins/textreport/birthdayreport.py:766
@@ -22556,8 +22554,8 @@ msgstr "Niveau van echtgenoten"
 #: ../gramps/plugins/drawreport/descendtree.py:1592
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr ""
-"0 = geen echtgenoten, 1 = inclusief echtgenoten, 2 = inclusief echtgenoten "
-"van de echtgenoot, enz"
+"0 = geen partner, 1 = inclusief partners, 2 = inclusief partners van de "
+"partner, enz"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1599
 msgid "Start with the parent(s) of the selected first"
@@ -22628,12 +22626,12 @@ msgid ""
 "Spousal\n"
 "Display Format"
 msgstr ""
-"Echtgenoot\n"
+"Partner\n"
 "Weergaveopmaak"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1726
 msgid "Display format for a spouse."
-msgstr "Weergaveopmaak voor een echtgenoot."
+msgstr "Weergaveopmaak voor een partner."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1768
 msgid "inter-box Y scale factor"
@@ -23259,7 +23257,7 @@ msgstr "Web stamboom-indeling"
 
 #: ../gramps/plugins/export/export.gpr.py:70
 msgid "Web Family Tree export options"
-msgstr "Web stamboom exportopties"
+msgstr "Web Family Tree exportopties"
 
 #: ../gramps/plugins/export/export.gpr.py:81
 #: ../gramps/plugins/importer/import.gpr.py:55
@@ -23339,7 +23337,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:164
 msgid "Gramps XML export options"
-msgstr "XML-exportopties voor Gramps"
+msgstr "Gramps XML-exportopties"
 
 #: ../gramps/plugins/export/export.gpr.py:175
 msgid "vCalendar"
@@ -23355,7 +23353,7 @@ msgstr "vCalendar wordt gebruikt in veel agenda- en PIM-toepassingen."
 
 #: ../gramps/plugins/export/export.gpr.py:185
 msgid "vCalendar export options"
-msgstr "Exportopties voor vCalendar"
+msgstr "vCalendar exportopties"
 
 #: ../gramps/plugins/export/export.gpr.py:196
 #: ../gramps/plugins/importer/import.gpr.py:174
@@ -23372,7 +23370,7 @@ msgstr "vCard wordt gebruikt in veel adresboek- en PIM-toepassingen."
 
 #: ../gramps/plugins/export/export.gpr.py:206
 msgid "vCard export options"
-msgstr "Exportopties voor vCard"
+msgstr "vCard exportopties"
 
 #: ../gramps/plugins/export/exportcsv.py:147
 msgid "Include people"
@@ -23479,7 +23477,7 @@ msgstr "Notities schrijven"
 
 #: ../gramps/plugins/export/exportgedcom.py:1127
 msgid "Writing repositories"
-msgstr "Bibliotheken schrijven"
+msgstr "Opslagplaatsen schrijven"
 
 #: ../gramps/plugins/export/exportgedcom.py:1253
 #: ../gramps/plugins/lib/libgedcom.py:6399
@@ -23728,7 +23726,7 @@ msgid ""
 "Right-click for options\n"
 "Click and drag in open area to rotate"
 msgstr ""
-"Klik om persoon uit te breiden / in te krimpen\n"
+"Klik om persoon uit of in te klappen\n"
 "Klik met de rechtermuisknop voor opties\n"
 "Klik en sleep in een open gebied om te draaien"
 
@@ -23762,8 +23760,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
-"  2. %(gramps_FAQ_html_start)s%(faq_section)sHoe voeg ik een extra "
-"echtgenoot toe?%(html_end)s\n"
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sHoe voeg ik een extra partner "
+"toe?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:95
 #, python-format
@@ -23771,8 +23769,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  3. %(gramps_FAQ_html_start)s%(faq_section)sHoe verwijder ik een echtgenoot?"
-"%(html_end)s\n"
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sHoe verwijder ik een "
+"partner?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:102
 msgid "Backups and Updates"
@@ -23784,8 +23782,8 @@ msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
 msgstr ""
-"  4. %(gramps_FAQ_html_start)s%(faq_section)sHoe maak ik veilig back-ups?"
-"%(html_end)s\n"
+"  4. %(gramps_FAQ_html_start)s%(faq_section)sHoe maak ik veilig back-"
+"ups?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
 #, python-format
@@ -24134,11 +24132,11 @@ msgstr "Details"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:413
 msgid "Repository Details"
-msgstr "Bibliotheekdetails"
+msgstr "Opslagplaatsdetails"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:414
 msgid "Gramplet showing details of a repository"
-msgstr "Gramplet dat details van een bibliotheek toont"
+msgstr "Gramplet dat details van een opslagplaats toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:429
 msgid "Place Details"
@@ -24356,11 +24354,11 @@ msgstr "Gramplet dat de notities van een citaat toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:857
 msgid "Repository Notes"
-msgstr "Bibliotheeknotities"
+msgstr "Opslagplaatsnotities"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:858
 msgid "Gramplet showing the notes for a repository"
-msgstr "Gramplet dat de notities van een bibliotheek toont"
+msgstr "Gramplet dat de notities van een opslagplaats toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:873
 msgid "Media Notes"
@@ -24497,11 +24495,11 @@ msgstr "Gramplet dat de verwijzingen naar een citaat toont"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1113
 #: ../gramps/plugins/quickview/quickview.gpr.py:276
 msgid "Repository References"
-msgstr "Bibliotheekreferenties"
+msgstr "Opslagplaatsreferenties"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1114
 msgid "Gramplet showing the backlink references for a repository"
-msgstr "Gramplet dat de verwijzingen naar een bibliotheek toont"
+msgstr "Gramplet dat de verwijzingen naar een opslagplaats toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1129
 msgid "Media References"
@@ -24577,11 +24575,11 @@ msgstr "Gramplet dat een mediafilter toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1273
 msgid "Repository Filter"
-msgstr "Bibliotheekfilter"
+msgstr "Opslagplaatsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1274
 msgid "Gramplet providing a repository filter"
-msgstr "Gramplet dat een bibliotheekfilter toont"
+msgstr "Gramplet dat een opslagplaatsfilter beschikbaar stelt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1289
 msgid "Note Filter"
@@ -24652,11 +24650,11 @@ msgstr "Gramplet dat de takenlijst voor een citaat toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1419
 msgid "Repository To Do"
-msgstr "Bibliotheektaken"
+msgstr "Opslagplaatstaken"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1420
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Gramplet dat de takenlijst voor een bibliotheek toont"
+msgstr "Gramplet dat de takenlijst voor een opslagplaats toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1435
 msgid "Media To Do"
@@ -24953,7 +24951,7 @@ msgstr "Log van deze sessie"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:60
 msgid "Opened data base -----------\n"
-msgstr "Database geopend -----------\n"
+msgstr "Geopende database -----------\n"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:62
 msgid "Added"
@@ -25097,11 +25095,11 @@ msgstr "Max lettergrootte"
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:184
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:123
 msgid "Total unique surnames"
-msgstr "Totaal aantal unieke achternamen"
+msgstr "Aantal unieke achternamen"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:186
 msgid "Total surnames showing"
-msgstr "Totaal aantal weergegeven achternamen"
+msgstr "Aantal weergegeven achternamen"
 
 #: ../gramps/plugins/gramplet/todo.py:63
 #: ../gramps/plugins/gramplet/todogramplet.py:63
@@ -25168,11 +25166,11 @@ msgid ""
 "powerful, yet easy to use.\n"
 "\n"
 msgstr ""
-"Gramps is gemaakt door genealogen voor genealogen, georganiseerd in het "
-"Gramps Project. Gramps is een open source-softwarepakket, wat betekent dat u "
-"vrij bent om kopieën te maken en te verspreiden aan iedereen die u wilt. Het "
-"is ontwikkeld en onderhouden door een wereldwijd team van vrijwilligers met "
-"als doel om Gramps krachtig en toch gebruiksvriendelijk te maken.\n"
+"Gramps is gemaakt door en voor genealogen, georganiseerd in het Gramps "
+"Project. Gramps is een open source-softwarepakket, wat betekent dat u vrij "
+"bent om kopieën te maken en te verspreiden aan iedereen die u wilt. Het is "
+"ontwikkeld en onderhouden door een wereldwijd team van vrijwilligers met als "
+"doel om Gramps krachtig en toch gebruiksvriendelijk te maken.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:140
@@ -25259,13 +25257,13 @@ msgid ""
 "in Gramps. The flexibility allows you to choose which fits your work style.\n"
 "\n"
 msgstr ""
-"U begint nu met het invoeren van uw eerste familie en dat start bij de "
-"eerste persoon.\n"
+"U begint nu met het invoeren van uw eerste gezin en dat start bij de eerste "
+"persoon.\n"
 "\n"
-"Schakel over naar de weergave \"Mensen\" en klik in het menu op "
-"\"Toevoegen\" en klik vervolgens op \"Persoon\" (of gebruik het pictogram "
-"[+]) om het venster te openen om een persoon in te voeren. Het invoeren van "
-"de basisinformatie en het opslaan van het record geeft u een startpunt. "
+"Schakel over naar de weergave \"Personen\" en klik in het menu op "
+"\"Toevoegen\" en klik vervolgens op \"Persoon\" (of gebruik het pictogram [+]"
+") om het venster te openen om een persoon in te voeren. Het invoeren van de "
+"basisinformatie en het opslaan van het record geeft u een startpunt. "
 "Selecteer het record van deze persoon en schakel nu over naar de weergave "
 "\"Relaties\".\n"
 "\n"
@@ -25276,15 +25274,15 @@ msgstr ""
 "bewerkingsvensters. Als u de muiscursor over een item beweegt, weet u wat "
 "het zal doen.\n"
 "\n"
-"U kunt nu gezinnen creëren door ouders, een echtgeno(o)t(e) en kinderen toe "
-"te voegen. Eenmaal gestart, kunt u evenementen toevoegen aan mensen en "
+"U kunt nu families aanmaken door ouders, een partner en kinderen toe te "
+"voegen. Eenmaal gestart, kunt u evenementen toevoegen aan mensen en "
 "gezinnen. U kunt bronnen en citaten toevoegen als documentatie voor uw "
 "invoer.\n"
 "\n"
-"Terwijl u Gramps gebruikt, zult u merken dat informatie uit alle "
+"Met het gebruik van Gramps, zult u merken dat informatie uit alle "
 "verschillende weergaven kan worden ingevoerd. Er zijn dus verschillende "
 "manieren om de meeste activiteiten in Gramps uit te voeren. Door deze "
-"flexibiliteit kunt u kiezen wat het beste bij uw werkstijl past.\n"
+"flexibiliteit kunt u kiezen wat het beste past bij uw werkstijl.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:203
@@ -25358,9 +25356,9 @@ msgid ""
 "\n"
 msgstr ""
 "Er zijn veel uitbreidingen of \"Gramplets\" beschikbaar om u te helpen bij "
-"het invoeren van gegevens en het visualiseren van uw stamboom. Veel van deze "
-"hulpmiddelen zijn standaard voorhanden. Er zijn er nog veel meer beschikbaar "
-"om te downloaden en te installeren.\n"
+"het invoeren van gegevens en het visualiseren van uw stamboom.\n"
+"Veel van deze hulpmiddelen zijn direct te gebruiken. Er zijn er nog veel "
+"meer beschikbaar om te downloaden en te installeren.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:257
@@ -25491,7 +25489,7 @@ msgstr "locatie onbekend"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:502
 msgid "spouse missing"
-msgstr "echtgenoot ontbreekt"
+msgstr "partner ontbreekt"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:505
 msgid "father missing"
@@ -26101,7 +26099,7 @@ msgstr "Of het laatste beroep moet worden opgenomen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1030
 msgid "Include relationship debugging numbers also"
-msgstr "Inclusief Foutopsporingsnummers voor verwantschappen"
+msgstr "Inclusief foutopsporingsnummers voor verwantschappen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1034
 msgid ""
@@ -26736,7 +26734,7 @@ msgstr ""
 "Het basispad voor media van deze stamboom is ingesteld op %s. Overweeg om "
 "een eenvoudiger pad te kiezen. U kunt dit wijzigen in de Voorkeuren, terwijl "
 "u uw mediabestanden naar de nieuwe positie verplaatst en met behulp van de "
-"Mediabeheerder optie 'Vervang substring in het pad' om de juiste paden in uw "
+"Mediabeheer optie 'Vervang substring in het pad' om de juiste paden in uw "
 "media-objecten in te stellen."
 
 #: ../gramps/plugins/importer/importgpkg.py:128
@@ -26759,8 +26757,8 @@ msgstr ""
 "pad %(path)s. U kunt het mediapad wijzigen in de Voorkeuren of u kunt de "
 "geïmporteerde bestanden converteren naar het bestaande basispad voor media. "
 "U kunt dat doen door uw mediabestanden naar de nieuwe positie te verplaatsen "
-"en met de Mediabeheerder de optie 'Vervang substring in het pad' om de "
-"juiste paden in uw media-objecten in te stellen."
+"en met de Mediabeheer de optie 'Vervang substring in het pad' om de juiste "
+"paden in uw media-objecten in te stellen."
 
 #: ../gramps/plugins/importer/importgrdb.py:65
 #: ../gramps/plugins/importer/importprogen.py:211
@@ -27265,7 +27263,7 @@ msgid ""
 "Copy the files to a correct directory or change the media path in the "
 "Preferences."
 msgstr ""
-"Het geopende bestand heeft mediapad %s, wat conflicteert met het mediapad "
+"Het geopende bestand heeft mediapad %s, dat conflicteert met het mediapad "
 "van de stamboom waarin u importeert. Het oorspronkelijke mediapad is "
 "behouden. Kopieer de bestanden naar een juiste directory of wijzig het "
 "mediapad in de Voorkeuren."
@@ -27389,7 +27387,7 @@ msgstr "Elke notitiereferentie moet een 'hlink'-kenmerk hebben."
 #: ../gramps/plugins/importer/importxml.py:2741
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
-msgstr "Ongeldige datum {date} in XML {xml}, XML werd als tekst behouden"
+msgstr "Ongeldige datum {date} in XML {xml}, XML wordt als tekst behouden"
 
 #: ../gramps/plugins/importer/importxml.py:2795
 #, python-format
@@ -27688,17 +27686,17 @@ msgstr "Geen titel - ID %s"
 #: ../gramps/plugins/lib/libgedcom.py:6972
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
-msgstr "SOUR (bron) Gramps ID %s"
+msgstr "SOUR (bron) Gramps-ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7234
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
-msgstr "OBJE (multimedia-object) Gramps ID %s"
+msgstr "OBJE (multimedia-object) Gramps-ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7453
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
-msgstr "REPO (bibliotheek) Gramps ID %s"
+msgstr "REPO (opslagplaats) Gramps-ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7514
 #: ../gramps/plugins/lib/libgedcom.py:8536
@@ -27812,7 +27810,7 @@ msgstr "Lege notitie genegeerd"
 #: ../gramps/plugins/lib/libgedcom.py:8148
 #, python-format
 msgid "NOTE Gramps ID %s"
-msgstr "NOTITIE Gramps ID %s"
+msgstr "NOTE Gramps-ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:8203
 msgid "Submission: Submitter"
@@ -31669,7 +31667,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libplugins.gpr.py:37
 msgid "Provides a library for using Cairo to generate documents."
 msgstr ""
-"Biedt een bibliotheek voor het gebruik van Caïro om documenten te genereren."
+"Biedt een bibliotheek voor het gebruik van Cairo om documenten te genereren."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:56
 msgid "Provides GEDCOM processing functionality"
@@ -31953,7 +31951,7 @@ msgstr ""
 "De tegelmap bestaat niet meer :\n"
 "%s\n"
 "Het is niet gelukt om een nieuwe aan te maken.\n"
-"Configureer de weergave voor het tegelpad en start gramps opnieuw op."
+"Configureer de weergave voor het tegelpad en start Gramps opnieuw op."
 
 #: ../gramps/plugins/lib/maps/geography.py:400
 msgid "Remove cross hair"
@@ -32261,7 +32259,7 @@ msgstr "OpenStreetMap"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:76
 msgid "Open on openstreetmap.org"
-msgstr "Opent op openstreetmap.org"
+msgstr "Openen op openstreetmap.org"
 
 #: ../gramps/plugins/quickview/ageondate.py:51
 #, python-format
@@ -32445,7 +32443,7 @@ msgstr "Omgekeerde bron"
 #: ../gramps/plugins/quickview/filterbyname.py:49
 msgctxt "Filtering_on"
 msgid "Inverse Repository"
-msgstr "Omgekeerde bibliotheek"
+msgstr "Inverse opslagplaats"
 
 #: ../gramps/plugins/quickview/filterbyname.py:50
 msgctxt "Filtering_on"
@@ -32485,7 +32483,7 @@ msgstr "alle bronnen"
 #: ../gramps/plugins/quickview/filterbyname.py:57
 msgctxt "Filtering_on"
 msgid "all repositories"
-msgstr "alle bibliotheken"
+msgstr "alle opslagplaatsen"
 
 #: ../gramps/plugins/quickview/filterbyname.py:58
 msgctxt "Filtering_on"
@@ -32862,8 +32860,8 @@ msgstr "Toon koppelingsreferenties voor een notitie"
 msgid ""
 "Display the repository reference for sources related to the active repository"
 msgstr ""
-"Toon de bibliotheek-referentie weer voor bronnen die betrekking hebben op de "
-"actieve bibliotheek"
+"Toon de opslagplaats-referentie weer voor bronnen die betrekking hebben op "
+"de actieve opslagplaats"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:301
 msgid "Same Surnames"
@@ -33299,7 +33297,7 @@ msgstr "Jaar van verslag"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:653
 msgid "Include death anniversaries"
-msgstr "Inclusief overlijdensherdenkdagen"
+msgstr "Inclusief overlijdensdagen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:654
 msgid "Whether to include anniversaries of death"
@@ -33467,7 +33465,7 @@ msgstr "De stijl die wordt gebruikt voor de weergave van niveau %d."
 #: ../gramps/plugins/textreport/descendreport.py:671
 #, python-format
 msgid "The style used for the spouse level %d display."
-msgstr "De stijl die wordt gebruikt voor de weergave van echtgenoot %d."
+msgstr "De stijl die wordt gebruikt voor de weergave van partner %d."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:233
 #, python-format
@@ -33549,7 +33547,7 @@ msgstr "Meer over %(mother_name)s en %(father_name)s:"
 #: ../gramps/plugins/textreport/detdescendantreport.py:655
 #, python-format
 msgid "Spouse: %s"
-msgstr "Echtgenoot: %s"
+msgstr "Partner: %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:786
 #: ../gramps/plugins/textreport/detdescendantreport.py:657
@@ -33863,15 +33861,15 @@ msgstr "Inclusief echtgenoten"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1152
 msgid "Whether to include detailed spouse information."
-msgstr "Of gedetailleerde echtgenootinformatie moet worden opgenomen."
+msgstr "Of gedetailleerde informatie van de partner moet worden opgenomen."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1155
 msgid "Include spouse reference"
-msgstr "Inclusief referentie naar echtgenoot/echtgenote"
+msgstr "Inclusief referentie naar partner"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1156
 msgid "Whether to include reference to spouse."
-msgstr "Of een verwijzing naar de echtgenoot/echtgenote moet worden opgenomen."
+msgstr "Of een verwijzing naar de partner moet worden opgenomen."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1203
 msgid "Include sign of succession ('+') in child-list"
@@ -34023,8 +34021,7 @@ msgstr "Datums van familieleden"
 #: ../gramps/plugins/textreport/familygroup.py:800
 msgid "Whether to include dates for relatives (father, mother, spouse)."
 msgstr ""
-"Of datums voor familieleden (vader, moeder, echtgenoot) moeten worden "
-"opgenomen."
+"Of datums voor familieleden (vader, moeder, partner) moeten worden opgenomen."
 
 #: ../gramps/plugins/textreport/familygroup.py:804
 msgid "Children Marriages"
@@ -34158,7 +34155,7 @@ msgstr "Controleer of een apart gedeelte vereist is."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1279
 msgid "The style used for the spouse's name."
-msgstr "De stijl die wordt gebruikt voor de naam van de echtgenoot."
+msgstr "De stijl die wordt gebruikt voor de naam van de partner."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1298
 #: ../gramps/plugins/textreport/notelinkreport.py:227
@@ -34190,7 +34187,7 @@ msgstr "Het maximale aantal generaties voorouders"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
 msgid "Show Gramps ID"
-msgstr "Toon Gramps-ID"
+msgstr "Gramps-ID weergeven"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
 msgid "Whether to show Gramps ID"
@@ -34509,12 +34506,12 @@ msgstr "Aantal citaten: %d"
 
 #: ../gramps/plugins/textreport/summary.py:303
 msgid "Repository Information"
-msgstr "Informatie van bibliotheek"
+msgstr "Informatie van Opslagplaats"
 
 #: ../gramps/plugins/textreport/summary.py:308
 #, python-format
 msgid "Number of repositories: %d"
-msgstr "Aantal bibliotheken: %d"
+msgstr "Aantal opslagplaatsen: %d"
 
 #: ../gramps/plugins/textreport/summary.py:342
 #, python-format
@@ -34930,7 +34927,7 @@ msgstr "Zoeken naar lege mediagegevens"
 
 #: ../gramps/plugins/tool/check.py:1011
 msgid "Looking for empty repository records"
-msgstr "Zoeken naar lege bibliotheekgegevens"
+msgstr "Zoeken naar lege opslagplaatsgegevens"
 
 #: ../gramps/plugins/tool/check.py:1020
 msgid "Looking for empty note records"
@@ -34963,7 +34960,7 @@ msgstr "Zoeken naar gezinssreferentieproblemen"
 
 #: ../gramps/plugins/tool/check.py:1515
 msgid "Looking for repository reference problems"
-msgstr "Zoeken naar bibliotheekreferentieproblemen"
+msgstr "Zoeken naar problemen met opslagplaatsreferenties"
 
 #: ../gramps/plugins/tool/check.py:1555
 msgid "Looking for place reference problems"
@@ -34999,7 +34996,7 @@ msgstr "Zoeken naar mediabron-referentieproblemen"
 
 #: ../gramps/plugins/tool/check.py:2360
 msgid "Looking for Duplicated Gramps ID problems"
-msgstr "Zoeken naar dubbele Gramps ID-problemen"
+msgstr "Zoeken naar problemen met dubbele Gramps-ID's"
 
 #: ../gramps/plugins/tool/check.py:2512
 msgid "Checking for bad links in Notes"
@@ -35039,8 +35036,8 @@ msgstr "%(person)s is verwijderd uit de familie van %(family)s\n"
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
-msgstr[0] "{quantity} verbroken echtgenoot-/gezinsverwijzing is hersteld\n"
-msgstr[1] "{quantity} verbroken echtgenoot-/gezinsverwijzingen zijn hersteld\n"
+msgstr[0] "{quantity} verbroken partner-/gezinsverwijzing is hersteld\n"
+msgstr[1] "{quantity} verbroken partner-/gezinsverwijzingen zijn hersteld\n"
 
 #: ../gramps/plugins/tool/check.py:2739 ../gramps/plugins/tool/check.py:2767
 msgid "Non existing person"
@@ -35055,8 +35052,8 @@ msgstr "%(person)s is hersteld in de familie van %(family)s\n"
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
-msgstr[0] "{quantity} dubbele echtgenoot/familie-verwijzing gevonden\n"
-msgstr[1] "{quantity} dubbele echtgenoot/familie-verwijzingen gevonden\n"
+msgstr[0] "{quantity} dubbele partner-/familie-verwijzing gevonden\n"
+msgstr[1] "{quantity} dubbele partner-/familie-verwijzingen gevonden\n"
 
 #: ../gramps/plugins/tool/check.py:2786
 #, python-brace-format
@@ -35106,8 +35103,8 @@ msgstr[1] "{quantity} datums zijn gecorrigeerd\n"
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "{quantity} bibliotheek werd genoemd maar niet gevonden\n"
-msgstr[1] "{quantity} bibliotheken werden genoemd maar niet gevonden\n"
+msgstr[0] "{quantity} opslagplaats werd genoemd maar niet gevonden\n"
+msgstr[1] "{quantity} opslagplaatsen werden genoemd maar niet gevonden\n"
 
 #: ../gramps/plugins/tool/check.py:2860 ../gramps/plugins/tool/check.py:2960
 #, python-brace-format
@@ -35214,7 +35211,7 @@ msgstr[1] "{quantity} ongeldige bronvermeldingen zijn opgelost\n"
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
-msgstr[0] "{quantity} dubbele Gramps-ID opgelost\n"
+msgstr[0] "{quantity} dubbel Gramps-ID opgelost\n"
 msgstr[1] "{quantity} dubbele Gramps-ID's opgelost\n"
 
 #: ../gramps/plugins/tool/check.py:3029
@@ -35237,7 +35234,7 @@ msgstr ""
 "   %(source)d bronobjecten\n"
 "   %(media)d media-objecten\n"
 "   %(place)d locatie-objecten\n"
-"   %(repo)d bibliotheekobjecten\n"
+"   %(repo)d opslagplaats-objecten\n"
 "   %(note)d notitie-objecten\n"
 
 #: ../gramps/plugins/tool/check.py:3054
@@ -36103,7 +36100,7 @@ msgstr "Zoek naar media"
 
 #: ../gramps/plugins/tool/removeunused.glade:169
 msgid "Search for repositories"
-msgstr "Zoek naar bibliotheken"
+msgstr "Zoeken naar opslagplaatsen"
 
 #: ../gramps/plugins/tool/removeunused.glade:185
 msgid "Search for notes"
@@ -36144,11 +36141,11 @@ msgstr "Verwijder ongebruikte objecten"
 
 #: ../gramps/plugins/tool/reorderids.glade:1388
 msgid "Enable ID reordering."
-msgstr "Schakel ID-herordening in."
+msgstr "ID-rangschikking inschakelen."
 
 #: ../gramps/plugins/tool/reorderids.glade:1402
 msgid "List next ID available (may not be continuous)."
-msgstr "Toon eerstvolgend beschikbare ID (is mogelijk niet doorlopend)."
+msgstr "Eerstvolgend beschikbare ID tonen (is mogelijk niet doorlopend)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1405
 msgid "  Actual"
@@ -36172,7 +36169,7 @@ msgstr "Wijzig"
 
 #: ../gramps/plugins/tool/reorderids.glade:1451
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr "Herordenen van ID inschakelen met start/stap-volgorde."
+msgstr "Opnieuw rangschikken van ID inschakelen met start/stap-reeks."
 
 #: ../gramps/plugins/tool/reorderids.glade:1462
 msgid "Start"
@@ -36180,7 +36177,7 @@ msgstr "Start"
 
 #: ../gramps/plugins/tool/reorderids.glade:1467
 msgid "Reorder ID start number."
-msgstr "Herorden ID startnummer."
+msgstr "ID-startnummer opnieuw ordenen."
 
 #: ../gramps/plugins/tool/reorderids.glade:1480
 msgid "Step"
@@ -36188,7 +36185,7 @@ msgstr "Stap"
 
 #: ../gramps/plugins/tool/reorderids.glade:1485
 msgid "Reorder ID step width."
-msgstr "Herorden ID stapbreedte."
+msgstr "ID-stapgrootte opnieuw ordenen."
 
 #: ../gramps/plugins/tool/reorderids.glade:1497
 msgid "Keep"
@@ -36201,7 +36198,7 @@ msgstr "Laat ID's met alternatieve voorvoegsels onaangeroerd."
 #: ../gramps/plugins/tool/reorderids.py:65
 msgctxt "manual"
 msgid "Reorder_Gramps_ID"
-msgstr "Herorden_Gramps_ID"
+msgstr "Gramps-ID's_opnieuw_rangschikken"
 
 #: ../gramps/plugins/tool/reorderids.py:249
 #: ../gramps/plugins/tool/reorderids.py:477
@@ -36210,13 +36207,13 @@ msgstr "Herorden_Gramps_ID"
 #: ../gramps/plugins/tool/reorderids.py:698
 #: ../gramps/plugins/tool/tools.gpr.py:419
 msgid "Reorder Gramps IDs"
-msgstr "Herorden Gramps ID's"
+msgstr "Gramps-ID's opnieuw rangschikken"
 
 #: ../gramps/plugins/tool/reorderids.py:600
 #: ../gramps/plugins/tool/reorderids.py:605
 #, python-format
 msgid "Reorder %s IDs ..."
-msgstr "%s ID's opnieuw ordenen…"
+msgstr "%s ID's opnieuw rangschikken…"
 
 #: ../gramps/plugins/tool/reorderids.py:703
 #, python-format
@@ -36497,7 +36494,7 @@ msgstr "Verwijdert ongebruikte objecten uit de database"
 
 #: ../gramps/plugins/tool/tools.gpr.py:420
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
-msgstr "Herschikt de Gramps-ID's volgens de standaardregels van Gramps."
+msgstr "Rangschikt de Gramps-ID's opnieuw volgens de standaardregels."
 
 #: ../gramps/plugins/tool/tools.gpr.py:443
 #: ../gramps/plugins/tool/tools.gpr.py:444
@@ -37921,11 +37918,11 @@ msgstr "Deze hele groep uitvouwen"
 
 #: ../gramps/plugins/view/relview.py:390
 msgid "Organize Bookmarks..."
-msgstr "Bladwijzers organiseren..."
+msgstr "Bladwijzers organiseren…"
 
 #: ../gramps/plugins/view/relview.py:411
 msgid "Add Existing Parents..."
-msgstr "Bestaande ouders toevoegen ..."
+msgstr "Bestaande ouders toevoegen…"
 
 #: ../gramps/plugins/view/relview.py:411
 msgid "Add Partner..."
@@ -37933,27 +37930,27 @@ msgstr "Partner toevoegen..."
 
 #: ../gramps/plugins/view/relview.py:411 ../gramps/plugins/view/relview.py:498
 msgid "_Reorder"
-msgstr "_Herorden"
+msgstr "Opnieuw _rangschikken"
 
 #: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1018
 msgid "Add a new family with person as parent"
-msgstr "Voeg een nieuw gezin toe met de persoon als ouder"
+msgstr "Een nieuw gezin toevoegen met de persoon als ouder"
 
 #: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1012
 msgid "Add a new set of parents"
-msgstr "Voeg een nieuw stel ouders toe"
+msgstr "Een nieuw stel ouders toevoegen"
 
 #: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1013
 msgid "Add person as child to an existing family"
-msgstr "Voeg persoon als kind toe aan een bestaand gezin"
+msgstr "Persoon als kind toevoegen aan een bestaand gezin"
 
 #: ../gramps/plugins/view/relview.py:498
 msgid "Change order of parents and families"
-msgstr "Verander de volgorde van ouders en families"
+msgstr "De volgorde van ouders en families wijzigen"
 
 #: ../gramps/plugins/view/relview.py:498
 msgid "Edit the active person"
-msgstr "Bewerk de actieve persoon"
+msgstr "De actieve persoon bewerken"
 
 #: ../gramps/plugins/view/relview.py:802
 msgid "Alive"
@@ -37970,11 +37967,11 @@ msgstr "Ouders bewerken"
 
 #: ../gramps/plugins/view/relview.py:1015
 msgid "Reorder parents"
-msgstr "Herorden ouders"
+msgstr "Ouders opnieuw rangschikken"
 
 #: ../gramps/plugins/view/relview.py:1016
 msgid "Remove person as child of these parents"
-msgstr "Verwijder persoon als kind van deze ouders"
+msgstr "Persoon als kind van deze ouders verwijderen"
 
 #: ../gramps/plugins/view/relview.py:1022
 msgid "Remove person as parent in this family"
@@ -38100,23 +38097,23 @@ msgstr "Zoek URL"
 
 #: ../gramps/plugins/view/repoview.py:139
 msgid "Add a new repository"
-msgstr "Voeg een nieuwe bibliotheek toe"
+msgstr "Een nieuwe opslagplaats toevoegen"
 
 #: ../gramps/plugins/view/repoview.py:141
 msgid "Delete the selected repository"
-msgstr "Verwijder de geselecteerde bibliotheek"
+msgstr "De geselecteerde opslagplaats verwijderen"
 
 #: ../gramps/plugins/view/repoview.py:142
 msgid "Merge the selected repositories"
-msgstr "Voeg de geselecteerde bibliotheken samen"
+msgstr "De geselecteerde opslagplaatsen samenvoegen"
 
 #: ../gramps/plugins/view/repoview.py:236
 msgid "Repository Filter Editor"
-msgstr "Bibliotheekfilter-bewerker"
+msgstr "Opslagplaatsfilter bewerken"
 
 #: ../gramps/plugins/view/repoview.py:395
 msgid "Cannot merge repositories."
-msgstr "Kan bibliotheken niet samenvoegen."
+msgstr "Kan opslagplaatsen niet samenvoegen."
 
 #: ../gramps/plugins/view/repoview.py:397
 msgid ""
@@ -38124,9 +38121,10 @@ msgid ""
 "repository can be selected by holding down the control key while clicking on "
 "the desired repository."
 msgstr ""
-"Er moeten precies twee bibliotheken worden geselecteerd om een samenvoeging "
-"uit te voeren. Een tweede bibliotheek kan worden geselecteerd door de Ctrl-"
-"toets ingedrukt te houden terwijl u op de gewenste bibliotheek klikt."
+"Er moeten precies twee opslagplaatsen worden geselecteerd om een "
+"samenvoeging uit te voeren. Een tweede opslagplaats kan worden geselecteerd "
+"door de Ctrl-toets ingedrukt te houden terwijl u op de gewenste opslagplaats "
+"klikt."
 
 #: ../gramps/plugins/view/sourceview.py:112
 msgid "Edit the selected source"
@@ -38232,7 +38230,7 @@ msgstr "Een weergave van locaties in een boomstructuur."
 
 #: ../gramps/plugins/view/view.gpr.py:269
 msgid "The view showing all the repositories"
-msgstr "De weergave toont alle bibliotheken"
+msgstr "De weergave toont alle opslagplaatsen"
 
 #: ../gramps/plugins/view/view.gpr.py:285
 msgid "The view showing all the sources"
@@ -38329,7 +38327,7 @@ msgstr "Slechtziend"
 
 #: ../gramps/plugins/webreport/basepage.py:2017
 msgid "Go to top"
-msgstr "Ga naar de beginpersoon"
+msgstr "Ga naar boven"
 
 #: ../gramps/plugins/webreport/basepage.py:2052
 #: ../gramps/plugins/webreport/basepage.py:2111
@@ -38803,7 +38801,7 @@ msgstr "Ontbrekende media-objecten:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:671
 msgid "Constructing list of other objects..."
-msgstr "Lijst met andere objecten maken…"
+msgstr "Lijst met andere objecten aanmaken…"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:954
 #, python-format
@@ -39399,11 +39397,11 @@ msgstr "Of de bronpagina's moeten worden opgenomen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2619
 msgid "Include repository pages"
-msgstr "Inclusief bibliotheekpagina's"
+msgstr "Inclusief opslagplaatspagina's"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2620
 msgid "Whether or not to include the repository pages."
-msgstr "Of de bibliotheekpagina's moeten worden opgenomen."
+msgstr "Of de opslagplaatspagina's moeten worden opgenomen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2623
 msgid "Include GENDEX file (/gendex.txt)"
@@ -39906,7 +39904,7 @@ msgstr "Locatiekaart"
 
 #: ../gramps/plugins/webreport/repository.py:107
 msgid "Creating repository pages"
-msgstr "Bibliotheek-pagina's maken"
+msgstr "Opslagplaatspagina's aanmaken"
 
 #: ../gramps/plugins/webreport/repository.py:155
 msgid ""
@@ -39914,9 +39912,9 @@ msgid ""
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
-"Deze pagina bevat een index van alle bibliotheken in de database, gesorteerd "
-"op titel. Als u op de titel van een bibliotheek klikt, gaat u naar de pagina "
-"van die bibliotheek."
+"Deze pagina bevat een index van alle opslagplaatsen in de database, "
+"gesorteerd op titel. Als u op de titel van een opslagplaats klikt, gaat u "
+"naar de pagina van die opslagplaats."
 
 #: ../gramps/plugins/webreport/repository.py:177
 msgctxt "Repository"
