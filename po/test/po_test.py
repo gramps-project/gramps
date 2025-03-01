@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" Unittest for testing POTFILES.in and Makefile contents """
+"""Unittest for testing POTFILES.in and Makefile contents"""
 
 # PYTHONPATH=/../gramps python po_test.py
 

@@ -1,5 +1,5 @@
 """
- WithinArea : used to verify if a place is contained in a specific area
+WithinArea : used to verify if a place is contained in a specific area
 """
 
 #

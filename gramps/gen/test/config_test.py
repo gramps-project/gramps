@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" Unittest for config.py """
+"""Unittest for config.py"""
 
 import os
 import unittest

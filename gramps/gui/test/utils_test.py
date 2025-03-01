@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-""" Unittest for utils.py """
+"""Unittest for utils.py"""
 
 import unittest
 from ..utils import get_contrast_color

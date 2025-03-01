@@ -25,8 +25,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-"""Report output generator based on Cairo.
-"""
+"""Report output generator based on Cairo."""
 
 # ------------------------------------------------------------------------
 #

@@ -20,7 +20,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" This contains the main class corresponding to a running gramps process """
+"""This contains the main class corresponding to a running gramps process"""
 
 # -------------------------------------------------------------------------
 #

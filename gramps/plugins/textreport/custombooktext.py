@@ -20,7 +20,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" custom text for the book report """
+"""custom text for the book report"""
 
 # Written by Alex Roitman,
 # largely based on the SimpleBookTitle.py by Don Allingham

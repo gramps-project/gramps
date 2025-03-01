@@ -18,7 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-"""class for generating dialogs for graphviz-based reports """
+"""class for generating dialogs for graphviz-based reports"""
 
 # -------------------------------------------------------------------------------
 #

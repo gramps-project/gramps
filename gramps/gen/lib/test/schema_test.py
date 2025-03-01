@@ -18,7 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" Unittest for JSON schema """
+"""Unittest for JSON schema"""
 
 import json
 import os

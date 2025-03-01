@@ -22,7 +22,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" GUI dialog for creating and managing books """
+"""GUI dialog for creating and managing books"""
 
 # Written by Alex Roitman,
 # largely based on the BaseDoc classes by Don Allingham

@@ -18,8 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" Recursive base classes for reports
-"""
+"""Recursive base classes for reports"""
 
 from gramps.gen.plug.report import utils
 

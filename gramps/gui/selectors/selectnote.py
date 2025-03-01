@@ -19,8 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-"""Handling of selection dialog for selecting notes
-"""
+"""Handling of selection dialog for selecting notes"""
 
 # -------------------------------------------------------------------------
 #

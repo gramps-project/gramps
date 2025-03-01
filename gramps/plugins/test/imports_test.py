@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
-""" Test program for import modules
-"""
+"""Test program for import modules"""
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
