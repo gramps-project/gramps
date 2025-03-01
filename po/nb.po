@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-21 17:44+0000\n"
+"PO-Revision-Date: 2025-02-25 04:52+0000\n"
 "Last-Translator: Harald Herreros <h.herreros@proton.me>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -720,10 +720,10 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>Endre slektsforhold mellom foreldre og barn</b><br/>Du kan endre "
+"<b>Endre slektsforhold mellom foreldre og barn</b><br/> Du kan endre "
 "slektsforholdet et barn har til sine foreldre ved å dobbeltklikke på barnet "
-"i Familieredigeringsvinduet. Forholdet kan være Adoptert, Født, Foster, "
-"Ingen, Pleie, Stebarn eller Ukjent."
+"i Familieredigeringsvinduet. Forholdet kan være Adoptert, Født, Fosterbarn, "
+"Ingen, Fadderbarn, Stebarn og Ukjent."
 
 #: ../data/tips.xml:58
 msgid ""
@@ -5033,7 +5033,7 @@ msgstr "Medie med <kilden>"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:50
 msgid "Matches media who have a particular source"
-msgstr "Matcher media som har en bestemt kilde"
+msgstr "Matcher medier som har en bestemt kilde"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:52
 msgid "Media objects with the <tag>"
@@ -7080,11 +7080,11 @@ msgstr "Stebarn"
 
 #: ../gramps/gen/lib/childreftype.py:78
 msgid "Sponsored"
-msgstr "Fadder"
+msgstr "Fadderbarn"
 
 #: ../gramps/gen/lib/childreftype.py:79
 msgid "Foster"
-msgstr "Pleie"
+msgstr "Fosterbarn"
 
 #: ../gramps/gen/lib/citation.py:107 ../gramps/gen/lib/notetype.py:91
 #: ../gramps/gui/clipboard.py:482 ../gramps/gui/configure.py:810
@@ -13994,7 +13994,7 @@ msgstr "Kan ikke endre personen"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:387
 msgid "You cannot change Person events in the Family Editor"
-msgstr "Du kan ikke endre Personhendelser i Familieeditoren"
+msgstr "Du kan ikke endre personhendelser under familieredigering"
 
 #: ../gramps/gui/editors/displaytabs/eventrefmodel.py:76
 #: ../gramps/gui/editors/displaytabs/namemodel.py:69
