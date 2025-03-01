@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-17 19:34+0000\n"
+"PO-Revision-Date: 2025-02-26 10:05+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1476,6 +1476,45 @@ msgid ""
 "                 F - filters are cleared\n"
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
+"\n"
+"사용법: gramps [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     장착할 동적 모듈\n"
+"\n"
+"도움말 쓰는 방법\n"
+"  -?, --help                             이 도움말 쓰는 법 보이기\n"
+"  --usage                                요약 사용 문구 보이기\n"
+"\n"
+"옵션 적용하기\n"
+"  -O, --open=FAMILY_TREE                 가계도 열기\n"
+"  -U, --username=USERNAME                데이타베이스 사용자 이름\n"
+"  -P, --password=PASSWORD                데이타베이스 암호\n"
+"  -C, --create=FAMILY_TREE               새 가계도면 만들기\n"
+"  -i, --import=FILENAME                  파일 가져오기\n"
+"  -e, --export=FILENAME                  파일 내보내기\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       (정규식 사용) 가계도 제거하기\n"
+"  -f, --format=FORMAT                    가계도 양식 지정하기\n"
+"  -a, --action=ACTION                    동작 지정하기\n"
+"  -p, --options=OPTIONS_STRING           옵션 지정하기\n"
+"  -d, --debug=LOGGER_NAME                디버그 기록 활성화\n"
+"  -l [FAMILY_TREE_PATTERN...]            가계도 나열하기\n"
+"  -L [FAMILY_TREE_PATTERN...]            가계도 상세하게 나열하기\n"
+"  -t [FAMILY_TREE_PATTERN...]            가계도 나열하기, 띄어쓰기 무제한\n"
+"  -u, --force-unlock                     가계도 해제 강제하기\n"
+"  -s, --show                             설정 보이기\n"
+"  -c, --config=[config.setting[:value]]  설정값을 정하고 그람프스 시작하기\n"
+"  -y, --yes                              (그래픽 환경 아닐때만) 위험한 동작 "
+"확인 묻지 않기\n"
+"  -q, --quiet                            (그래픽 환경 아닐때만) 진척 사항 "
+"안내 축약하기\n"
+"  -v, --version                          버전 보이기\n"
+"  -S, --safe                             '안전 모드'에서 그람프스 시작하기\n"
+"                                          (임시로 기본 설정값 상태)\n"
+"  -D, --default=[APXFE]                  모든 설정값을 기본값으로 하기;\n"
+"                 A - 애드온 지우기\n"
+"                 P - 기본값 설정\n"
+"                 X - 책과 보고서 등을 지워서 기본값으로 설정하기\n"
+"                 F - 필터값 지우기\n"
+"                 E - 모든 설정값을 지우거나 기본값으로 하기\n"
 
 #: ../gramps/cli/argparser.py:108
 msgid ""
@@ -1539,7 +1578,7 @@ msgstr ""
 #: ../gramps/cli/argparser.py:281
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr ""
+msgstr "열기 시도 중: %s ..."
 
 #: ../gramps/cli/argparser.py:326
 #, python-format
@@ -1547,29 +1586,31 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
+"경고: %(strerr)s (오류번호=%(errno)s):\n"
+"경고: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:336
 #, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr ""
+msgstr "알 수 없는 동작 : %s. 무시하는 중."
 
 #: ../gramps/cli/argparser.py:346
 msgid "setup debugging"
-msgstr ""
+msgstr "디버깅 설정"
 
 #: ../gramps/cli/argparser.py:359
 #, python-format
 msgid "Gramps config settings from %s:"
-msgstr ""
+msgstr "%s에서 그람프스 설정:"
 
 #: ../gramps/cli/argparser.py:377
 #, python-format
 msgid "Current Gramps config setting: %(name)s:%(value)s"
-msgstr ""
+msgstr "현재 그람프스 설정값: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:383
 msgid "DEFAULT"
-msgstr ""
+msgstr "기본값"
 
 #: ../gramps/cli/argparser.py:392
 #, python-format
