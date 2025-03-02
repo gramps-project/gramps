@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-27 14:37+0000\n"
+"PO-Revision-Date: 2025-03-02 13:48+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10.2-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -6203,7 +6203,7 @@ msgstr "Grad:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:64
 msgid "County:"
-msgstr "Regija:"
+msgstr "Okrug:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:65
 msgid "State:"
@@ -6851,7 +6851,7 @@ msgstr "Grad"
 #: ../gramps/plugins/webreport/basepage.py:3426
 #: ../gramps/plugins/webreport/basepage.py:3504
 msgid "County"
-msgstr "Regija"
+msgstr "Okrug"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:96
 #: ../gramps/gen/lib/placetype.py:76
@@ -9050,7 +9050,7 @@ msgstr "Gradska četvrt"
 
 #: ../gramps/gen/lib/placetype.py:86 ../gramps/plugins/view/geoplaces.py:625
 msgid "District"
-msgstr "Okrug"
+msgstr "Kotar"
 
 #: ../gramps/gen/lib/placetype.py:87 ../gramps/plugins/view/geoplaces.py:606
 msgid "Borough"
@@ -16897,7 +16897,7 @@ msgstr "Najniža razina podjele mjesta: npr., ime ulice."
 
 #: ../gramps/gui/glade/editlocation.glade:325
 msgid "A district within, or a settlement near to, a town or city."
-msgstr "Naselje u ili u blizini grada."
+msgstr "Kotar ili naselje u blizini grada."
 
 #: ../gramps/gui/glade/editmedia.glade:137
 #: ../gramps/gui/glade/editmediaref.glade:381
@@ -18376,7 +18376,7 @@ msgstr "Gram_ps web stranica"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Gramps _Mailing Lists"
-msgstr "Gra_mps pretplatnička lista"
+msgstr "Gra_mps pretplatničke liste"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Make Backup..."
@@ -24855,8 +24855,8 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
-"Postoji aktivna zajednica korisnika dostupna na mailing listama i Discourse "
-"forum za razmjenu ideja i tehnika.\n"
+"Za razmjenu ideja i tehnika postoji aktivna zajednica korisnika na "
+"pretplatničkim listama i u Discourse forumu.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:143
