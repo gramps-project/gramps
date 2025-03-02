@@ -95,15 +95,30 @@ register(
 
 register(
     GRAMPLET,
-    id="Person Calendar",
-    name=_("Person Calendar"),
+    id="Person's birth Calendar",
+    name=_("Person's birth Calendar"),
     description=_("Gramplet showing the birth for a person on the calendar"),
     version="1.1.0",
     gramps_target_version=MODULE_VERSION,
     status=STABLE,
     fname="calendargramplet.py",
-    gramplet="PersonCalendar",
-    gramplet_title=_("Person Calendar"),
+    gramplet="PersonBirthCalendar",
+    gramplet_title=_("Person's birth Calendar"),
+    navtypes=["Person"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="Person's death Calendar",
+    name=_("Person's death Calendar"),
+    description=_("Gramplet showing the death for a person on the calendar"),
+    version="1.1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="calendargramplet.py",
+    gramplet="PersonDeathCalendar",
+    gramplet_title=_("Person's death Calendar"),
     navtypes=["Person"],
     help_url=GRAMPLET_HELP,
 )
