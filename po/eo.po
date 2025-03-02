@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-03-01 20:24+0000\n"
+"PO-Revision-Date: 2025-03-02 19:07+0000\n"
 "Last-Translator: Pier Luigi Cinquantini <plcinquantini@gmail.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/eo/>\n"
@@ -905,7 +905,7 @@ msgid ""
 "Person Filter Editor\"."
 msgstr ""
 "<b>Filtriloj</b><br/>Filtriloj permesas limigi la personojn montritajn en la "
-"Personvido. Krom la jam pretajn, oni povas krei  Proprajn filtrilojn laŭ via "
+"Personvido. Krom la jam pretajn, oni povas krei Proprajn filtrilojn laŭ via "
 "elpenso. Proprajn filtrilojn oni kreas el "
 "\"Redaktu > Persona filtrilredaktilo\"."
 
@@ -976,7 +976,7 @@ msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b> Hejmpaĝo de Gramps</b><br/>La  hejmpaĝo de Gramps homepage estas ĉe https"
+"<b> Hejmpaĝo de Gramps</b><br/>La hejmpaĝo de Gramps homepage estas ĉe https"
 "://gramps-project.org/."
 
 #: ../data/tips.xml:98
@@ -2132,7 +2132,7 @@ msgstr "(nedisponebla helpo)"
 
 #: ../gramps/cli/plug/__init__.py:699
 msgid "   Available values are:"
-msgstr "Disponeblaj valoroj estas:"
+msgstr "   Disponeblaj valoroj estas:"
 
 #: ../gramps/cli/plug/__init__.py:712
 #, python-format
@@ -2257,8 +2257,6 @@ msgstr "Monato Tago, Jaro"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
 msgstr "Monato Tago, Jaro"
 
@@ -2322,7 +2320,7 @@ msgstr "{long_month} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:217
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -6000,7 +5998,7 @@ msgstr "Eventfiltrilnomo:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:54
 msgid "Persons with events matching the <event filter>"
-msgstr "Personoj kun eventoj  kongruaj kun la <eventfiltrilo>"
+msgstr "Personoj kun eventoj kongruaj kun la <eventfiltrilo>"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:56
 msgid "Matches persons who have events that match a certain event filter"
@@ -7534,9 +7532,8 @@ msgid "Sort value"
 msgstr "Ordiga valoro"
 
 #: ../gramps/gen/lib/date.py:799
-#, fuzzy
 msgid "New year begins"
-msgstr "La nova jaro komenciĝas la"
+msgstr "La nova jaro komenciĝas je"
 
 #: ../gramps/gen/lib/date.py:1975
 msgctxt "date-quality"
@@ -7788,9 +7785,8 @@ msgid "Neighbor"
 msgstr "Najbar(in)o"
 
 #: ../gramps/gen/lib/eventroletype.py:90
-#, fuzzy
 msgid "Officiator"
-msgstr "Celebranto"
+msgstr "Oficanto"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -10978,8 +10974,6 @@ msgid "birth date and known to be dead"
 msgstr "naskiĝdato kaj laŭscie mortinta"
 
 #: ../gramps/gen/utils/alive.py:432
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
 msgstr "intervalo de la naskiĝdato"
 
@@ -11017,8 +11011,8 @@ msgstr "evento kun geedzo"
 #, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "praida naskiĝo:  {number_of} generacio "
-msgstr[1] "praida naskiĝo:  {number_of} generacioj "
+msgstr[0] "praida naskiĝo: {number_of} generacio "
+msgstr[1] "praida naskiĝo: {number_of} generacioj "
 
 #: ../gramps/gen/utils/alive.py:788
 #, python-brace-format
@@ -11524,7 +11518,6 @@ msgid "Killed in action"
 msgstr "Mortigita en batalo"
 
 #: ../gramps/gen/utils/symbols.py:103
-#, fuzzy
 msgid "Extinct"
 msgstr "Formortinta"
 
@@ -11569,7 +11562,6 @@ msgid "East Syriac cross"
 msgstr "Orientsiria kruco"
 
 #: ../gramps/gen/utils/symbols.py:120
-#, fuzzy
 msgid "Heavy Greek cross"
 msgstr "Greka kruco"
 
@@ -11852,22 +11844,17 @@ msgid "Could not read configuration"
 msgstr "Ne eblis legi la konfiguron"
 
 #: ../gramps/grampsapp.py:636
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"Ne eblis trovi difinon por MIME-tipo %s\n"
+"Ne eblis trovi difinon por aŭdvidea tipo %s\n"
 "\n"
-" Eble la instalo de Gramps estis nekompleta. Certiĝu ke MIME-tipoj de Gramps "
-"estas ĝuste instalitaj."
+" Eble la instalo de Gramps estis nekompleta. Certiĝu ke io por trakti la "
+"aŭdvideajn tipojn de Gramps estas ĝuste instalita."
 
 #: ../gramps/gui/aboutdialog.py:129
 msgid ""
@@ -12101,7 +12088,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
-msgstr "Nomredaktilo"
+msgstr " Nomredaktilo"
 
 #: ../gramps/gui/configure.py:267 ../gramps/gui/configure.py:275
 #: ../gramps/gui/configure.py:1239
@@ -13488,7 +13475,7 @@ msgid ""
 msgstr ""
 "Se oni alklakas %(bold_start)sProcedu%(bold_end)s, Gramps provos ripari la "
 "genealogian arbonn de la lasta bona sekurkopio. Tio tamen povas kaŭzi "
-"nedeziratajn efikojn, do  %(bold_start)ssekurkopiu%(bold_end)s unue la "
+"nedeziratajn efikojn, do %(bold_start)ssekurkopiu%(bold_end)s unue la "
 "genealogian arbon.\n"
 "La genealogia arbo elektita estas konservita en %(dirname)s.\n"
 "\n"
@@ -16617,7 +16604,6 @@ msgstr ""
 "naskiĝon en oficiala naskiĝlibro."
 
 #: ../gramps/gui/glade/editcitation.glade:202
-#, fuzzy
 msgid ""
 "Conveys the submitter's quantitative evaluation of the credibility of a "
 "piece of information, based upon its supporting evidence. It is not intended "
@@ -16629,7 +16615,7 @@ msgid ""
 "-Very High =Direct and primary evidence used, or by dominance of the "
 "evidence."
 msgstr ""
-"Komunikas la kvantan takson de la transendinto pri la fidindeco de parto de "
+"Komunikas la kvantan takson de la transsendinto pri la fidindeco de parto de "
 "informo, bazita sur la graveco de la indico. Ĝi ne volas eviti al la "
 "ricevintoj kontroli mem la indicon.\n"
 "Tre malalta =Nefidindaj indico aŭ taksitaj datumoj.\n"
@@ -20596,8 +20582,8 @@ msgstr ""
 "%(error_msg)s\n"
 "\n"
 "Se ne eblas mem ripari la misfunkcion oni povas sendi cimon al "
-"%(gramps_bugtracker_url)s  aŭ kontakti la aŭtoron (%(firstauthoremail)s) "
-"dela vidigo.\n"
+"%(gramps_bugtracker_url)s aŭ kontakti la aŭtoron (%(firstauthoremail)s) dela "
+"vidigo.\n"
 "\n"
 "Se oni ne volas ke Gramps provu kaj ŝargu denove ĉi tiun vidon, oni povas "
 "kaŝi ĝin uzante la Kromprograman Administrilon ĉe la Helpmenuo."
@@ -21262,8 +21248,6 @@ msgid "'%s' is not a valid date value"
 msgstr "%s ne estas valida datvaloro"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
-#| msgid "Legal"
 msgid "Legacy"
 msgstr "Malnova"
 
@@ -22376,7 +22360,7 @@ msgstr "Praidara grafikaĵo por [elektita(j) persono(j)]"
 #: ../gramps/plugins/drawreport/descendtree.py:1635
 #: ../gramps/plugins/drawreport/descendtree.py:1808
 msgid "Family Chart for [names of chosen family]"
-msgstr "Familia grafikaĵo por  [nomoj de la elektita familio]"
+msgstr "Familia grafikaĵo por [nomoj de la elektita familio]"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1637
 #: ../gramps/plugins/drawreport/descendtree.py:1810
@@ -23776,7 +23760,7 @@ msgid ""
 "Gramplet showing active person's direct ancestors and descendants as a "
 "fanchart"
 msgstr ""
-"Gramplet por montri rektajn praidojn  kaj praavojn de aktiva persono per "
+"Gramplet por montri rektajn praidojn kaj praavojn de aktiva persono per "
 "ventumila grafikaĵo"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:186
@@ -24484,9 +24468,8 @@ msgid "Gramplet showing the events for all the family"
 msgstr "Gramplet por montri la eventojn por la tuta familio"
 
 #: ../gramps/plugins/gramplet/leak.py:102
-#, fuzzy
 msgid "Referrer"
-msgstr "Referanta"
+msgstr "Referanto"
 
 #: ../gramps/plugins/gramplet/leak.py:106
 msgid "Uncollected object"
@@ -24982,8 +24965,8 @@ msgid ""
 "\n"
 msgstr ""
 "Kiam oni startigas Gramps'on por la unua fojo ĉiuj Vidoj estas malplenaj. "
-"Esta vere malmultaj menuopcioj. Necesas unu Familian  Arbon por ke ekokazu "
-"iu ajn aktivaĵo.\n"
+"Esta vere malmultaj menuopcioj. Necesas unu Familian Arbon por ke ekokazu iu "
+"ajn aktivaĵo.\n"
 "\n"
 "Por krei novan Genealogian Arbon (kelkfoje nomata 'datumbazo'), elektu "
 "\"Genealogia arbo\" el la menuo, en ĝi \"Administru genealogiajn arbojn\", "
@@ -25033,8 +25016,8 @@ msgstr ""
 "Komutu al la vidigo \"Personoj\" kaj el la menu alklakante \"Aldonu\" kaj "
 "alklakante \"Persono\" (aŭ uzante la [+] piktogramon) ekaperos fenestron por "
 "enigi personon. Enmetinte la bazajn informojn kaj konservante la rikordon vi "
-"havos vian komencan punkton.  Elektu ĉi tiun Personrikordon kaj nun komutu "
-"al la vidigo \"Parencecoj\".\n"
+"havos vian komencan punkton. Elektu ĉi tiun Personrikordon kaj nun komutu al "
+"la vidigo \"Parencecoj\".\n"
 "\n"
 "Kun ĉi tiu unua perosno, ĉiuj menuaj opcioj kaj piktogramaj funkcioj fariĝas "
 "disponeblaj. Pasigu iom da tempo ŝovante la kursoron super la piktogramoj. "
@@ -26005,8 +25988,6 @@ msgid "nick_name"
 msgstr "neformala_nomo"
 
 #: ../gramps/plugins/importer/importcsv.py:230
-#, fuzzy
-#| msgid "Tag"
 msgid "tag"
 msgstr "marko"
 
@@ -26477,7 +26458,7 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"La baza vojo de la aŭdvidaĵoj de ĉi tiu genealogia arbo estas agordita al  "
+"La baza vojo de la aŭdvidaĵoj de ĉi tiu genealogia arbo estas agordita al "
 "%s. Konsideru havi pli simplan vojon. Oni povas modifi tion en Agordoj, dum "
 "la movo de la aŭdvidaĵoj al nova pozicio, kaj uzante la aŭdvidaĵa "
 "administrilo, opcio 'Anstataŭigu subĉenon en la vojo' por agordi ĝuste la "
@@ -26733,7 +26714,6 @@ msgstr ""
 "en la event-priskribo."
 
 #: ../gramps/plugins/importer/importprogen.glade:1443
-#, fuzzy
 msgid "Diverse"
 msgstr "Malsama"
 
@@ -27689,8 +27669,6 @@ msgid "Namespace"
 msgstr "Nomspaco"
 
 #: ../gramps/plugins/lib/libmetadata.py:229
-#, fuzzy
-#| msgid "label"
 msgid "Label"
 msgstr "Etikedo"
 
@@ -31504,7 +31482,6 @@ msgid "Saving."
 msgstr "Konservas."
 
 #: ../gramps/plugins/lib/libprogen.py:995
-#, fuzzy
 msgid "Pro-Gen Import"
 msgstr "Pro-Gen-importo"
 
@@ -33008,19 +32985,16 @@ msgid "Dead Symbol"
 msgstr "Mortsimbolo"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:604
-#, fuzzy
 msgid "This will show after name to indicate that person is dead"
-msgstr "Etikedo por montri ke persono estas kompleta"
+msgstr "Tio estos montrita post la nomo por indiki ke la persono estas mortinta"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:611
-#, fuzzy
 msgid "Show event year"
-msgstr "Nova eventotipo:"
+msgstr "Montru la jaron de la evento"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:612
-#, fuzzy
 msgid "Prints the year the event took place in the report"
-msgstr "Determinas kiujn personojn inkluzivi en la raporto"
+msgstr "Printas la jaron de kiam la evento okazis"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:617
 #: ../gramps/plugins/textreport/birthdayreport.py:618
@@ -33028,14 +33002,12 @@ msgid "Year of report"
 msgstr "Jaro de la raporto"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:653
-#, fuzzy
 msgid "Include death anniversaries"
-msgstr "Inkluzivu datrevenojn"
+msgstr "Inkluzivu mort-datrevenojn"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:654
-#, fuzzy
 msgid "Whether to include anniversaries of death"
-msgstr "Ĉu inkluzivi datrevenojn"
+msgstr "Ĉu inkluzivi mort-datrevenojn"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:659
 #: ../gramps/plugins/textreport/indivcomplete.py:1197
@@ -33102,7 +33074,7 @@ msgstr "geed. %(spouse)s"
 #: ../gramps/plugins/textreport/descendreport.py:368
 #, python-format
 msgid "sp. see %(reference)s: %(spouse)s"
-msgstr "geed. vidu  %(reference)s : %(spouse)s"
+msgstr "geed. vidu %(reference)s : %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:429
 #, python-format
@@ -33153,10 +33125,8 @@ msgid "Show gender symbol in front of name"
 msgstr "Montru la genran simbolon antaŭ la nomo"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "Ĉu montri divorcajn informojn en la raporto."
+msgstr "Ĉu montri la genran simbolon antaŭ la nomo en la raporto."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -33175,20 +33145,16 @@ msgid "Whether to show divorce information in the report."
 msgstr "Ĉu montri divorcajn informojn en la raporto."
 
 #: ../gramps/plugins/textreport/descendreport.py:613
-#, fuzzy
-#| msgid "Show divorce info"
 msgid "Show birth and death info"
-msgstr "Montru divorcajn informojn"
+msgstr "Montru naskiĝ- kaj mort-informojn"
 
 #: ../gramps/plugins/textreport/descendreport.py:615
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show birth and death information in the report."
-msgstr "Ĉu montri divorcajn informojn en la raporto."
+msgstr "Ĉu montri naskiĝ- kaj mort-informojn en la raporto."
 
 #: ../gramps/plugins/textreport/descendreport.py:619
 msgid "Show duplicate trees"
-msgstr "Montru  duobligitajn arbojn"
+msgstr "Montru duobligitajn arbojn"
 
 #: ../gramps/plugins/textreport/descendreport.py:620
 msgid "Whether to show duplicate Family Trees in the report."
@@ -33361,10 +33327,8 @@ msgstr "Ĉu uzi la voknomon kiel antaŭnomon."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to include Gramps ID next to names."
 msgid "Whether to show gender symbol in front of name."
-msgstr "Ĉu inkluzivi Gramps-ID'on apud nomoj."
+msgstr "Ĉu montri genran simbolon antaŭ la nomoj."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
@@ -33646,10 +33610,9 @@ msgid "The style used for the subtitle."
 msgstr "La stilo uzota por la subtitolo."
 
 #: ../gramps/plugins/textreport/familygroup.py:415
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "Parenceco:"
+msgstr "Parenceco: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:516
 msgctxt "acronym for male"
@@ -33662,7 +33625,6 @@ msgid "F"
 msgstr "F"
 
 #: ../gramps/plugins/textreport/familygroup.py:520
-#, fuzzy
 msgctxt "acronym for other"
 msgid "X"
 msgstr "X"
@@ -33827,9 +33789,8 @@ msgid "Whether to sort events into chronological order."
 msgstr "Ĉu ordigi eventojn en kronologia ordo."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1119
-#, fuzzy
 msgid "Use name of person as title"
-msgstr "Alklaku nomon por aktivigi personon\n"
+msgstr "Uzu la nomon de la persono kiel titolon"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1122
 msgid ""
@@ -33919,15 +33880,12 @@ msgid "The maximum number of ancestor generations"
 msgstr "La maksimuma nombro de praulaj generacioj"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
 msgid "Show Gramps ID"
-msgstr "Gramps-Id"
+msgstr "Montru Gramps-ID'on"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
-msgstr "Ĉu inkluzivi Gramps-ID'oJn"
+msgstr "Ĉu montri Gramps-ID'on"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:390
 msgid "Whether to include spouses"
@@ -34095,7 +34053,6 @@ msgid "The style used for the footer."
 msgstr "La stilo uzota por la suba paĝotitolo."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:145
-#, fuzzy
 msgctxt "book"
 msgid "Title of the Book"
 msgstr "Titolo de la libro"
@@ -34166,10 +34123,9 @@ msgid "Females: %d"
 msgstr "Virinoj: %d"
 
 #: ../gramps/plugins/textreport/summary.py:199
-#, fuzzy, python-format
-#| msgid "Individuals with unknown gender: %d"
+#, python-format
 msgid "Individuals with other gender: %d"
-msgstr "Pesonoj kun nekonata sekso: %d"
+msgstr "Personoj kun alia genro: %d"
 
 #: ../gramps/plugins/textreport/summary.py:203
 #, python-format
@@ -34207,63 +34163,49 @@ msgid "Number of families: %d"
 msgstr "Nombro de familioj: %d"
 
 #: ../gramps/plugins/textreport/summary.py:247
-#, fuzzy
-#| msgid "Context Information"
 msgid "Event Information"
-msgstr "Kuntekstaj informoj"
+msgstr "Eventinformoj"
 
 #: ../gramps/plugins/textreport/summary.py:252
-#, fuzzy, python-format
-#| msgid "Number of events"
+#, python-format
 msgid "Number of events: %d"
-msgstr "Nombro de eventoj"
+msgstr "Nombro da eventoj: %d"
 
 #: ../gramps/plugins/textreport/summary.py:261
-#, fuzzy
 msgid "Place Information"
-msgstr "Paperformato"
+msgstr "Lokinformoj"
 
 #: ../gramps/plugins/textreport/summary.py:266
-#, fuzzy, python-format
-#| msgid "Number of places"
+#, python-format
 msgid "Number of places: %d"
-msgstr "Nombro de lokoj"
+msgstr "Nombro da lokoj: %d"
 
 #: ../gramps/plugins/textreport/summary.py:275
-#, fuzzy
-#| msgid "Shared Information"
 msgid "Source Information"
-msgstr "Kunhavigataj Informoj"
+msgstr "Fontinformoj"
 
 #: ../gramps/plugins/textreport/summary.py:280
-#, fuzzy, python-format
-#| msgid "Number of sources"
+#, python-format
 msgid "Number of sources: %d"
-msgstr "Nombro de fontoj"
+msgstr "Nombro da fontoj: %d"
 
 #: ../gramps/plugins/textreport/summary.py:289
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Citation Information"
-msgstr "Publikaĵaj informoj"
+msgstr "Citaĵinformoj"
 
 #: ../gramps/plugins/textreport/summary.py:294
-#, fuzzy, python-format
-#| msgid "Number of citations"
+#, python-format
 msgid "Number of citations: %d"
-msgstr "Nombro de citaĵoj"
+msgstr "Nombro da citaĵoj: %d"
 
 #: ../gramps/plugins/textreport/summary.py:303
-#, fuzzy
-#| msgid "Relationship Information"
 msgid "Repository Information"
-msgstr "Parencecinformoj"
+msgstr "Deponejinformoj"
 
 #: ../gramps/plugins/textreport/summary.py:308
-#, fuzzy, python-format
-#| msgid "Number of repositories"
+#, python-format
 msgid "Number of repositories: %d"
-msgstr "Nomrbo de deponejoj"
+msgstr "Nomrbo da deponejoj: %d"
 
 #: ../gramps/plugins/textreport/summary.py:342
 #, python-format
@@ -34276,16 +34218,13 @@ msgid "Total size of media objects: %s MB"
 msgstr "Totala grando de aŭdvideaj objektoj: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:364
-#, fuzzy
-#| msgid "No Date Information"
 msgid "Note Information"
-msgstr "Neniu datinformo"
+msgstr "Notinformoi"
 
 #: ../gramps/plugins/textreport/summary.py:369
-#, fuzzy, python-format
-#| msgid "Number of notes"
+#, python-format
 msgid "Number of notes: %d"
-msgstr "Nombro de notoj"
+msgstr "Nombro da notoj: %d"
 
 #: ../gramps/plugins/textreport/summary.py:399
 msgid "Whether to count private data"
@@ -34449,15 +34388,13 @@ msgstr "Montras la staton de la ligiloj en notoj"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
 msgid "Gnome Thumbnailer"
-msgstr "Publikaĵaj informoj:"
+msgstr "Gnome-miniaturgenerilo"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
 msgid "Image Thumbnailer"
-msgstr "Publikaĵaj informoj:"
+msgstr "Bilda miniaturgenerilo"
 
 #: ../gramps/plugins/tool/changenames.glade:33
 msgid ""
@@ -34700,9 +34637,8 @@ msgstr "Serĉas eventproblemojn"
 
 #: ../gramps/plugins/tool/check.py:1356 ../gramps/plugins/tool/check.py:1385
 #: ../gramps/plugins/tool/check.py:1413
-#, fuzzy
 msgid "Looking for backlink reference problems"
-msgstr "Serĉas lokreferencajn problemojn"
+msgstr "Serĉas problemojn en la inversligaj referencoj"
 
 #: ../gramps/plugins/tool/check.py:1448
 msgid "Looking for person reference problems"
@@ -34753,9 +34689,8 @@ msgid "Looking for Duplicated Gramps ID problems"
 msgstr "Serĉas duobligitajn Gramps-ID-problemojn"
 
 #: ../gramps/plugins/tool/check.py:2512
-#, fuzzy
 msgid "Checking for bad links in Notes"
-msgstr "Kontrolu ĝisdatigojn de helpprogramojn"
+msgstr "Kontrolas erarajn ligojn en notoj"
 
 #: ../gramps/plugins/tool/check.py:2685
 msgid "No errors were found"
@@ -34868,13 +34803,10 @@ msgstr[0] "{quantity} aŭdvidea objekto estis referencita sed ne trovita\n"
 msgstr[1] "{quantity} aŭdvideaj objektoj estis referencitaj sed ne trovitaj\n"
 
 #: ../gramps/plugins/tool/check.py:2870
-#, fuzzy, python-brace-format
-#| msgid "Reference to {quantity} missing media object was kept\n"
-#| msgid_plural "References to {quantity} media objects were kept\n"
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] ""
-"Referenco al {quantity} mankanta aŭdvidea objekto estis konservita\n"
+msgstr[0] "Referenco al {quantity} mankanta aŭdvidea objekto estis konservita\n"
 msgstr[1] ""
 "Referencoj al {quantity} mankantaj aŭdvideaj objektoj estis konservitaj\n"
 
@@ -35046,9 +34978,8 @@ msgid "Date Test Plugin"
 msgstr "Datotesta kromprogramo"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:260
-#, fuzzy
 msgid "Pass"
-msgstr "Procedo"
+msgstr "Sukcesis"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:58
 msgid "Gender Statistics tool"
@@ -35270,9 +35201,8 @@ msgid "Media Manager"
 msgstr "Aŭdvidaĵa administrilo"
 
 #: ../gramps/plugins/tool/mediamanager.py:95
-#, fuzzy
 msgid "Help"
-msgstr "_Helpo"
+msgstr "Helpo"
 
 #: ../gramps/plugins/tool/mediamanager.py:105
 #: ../gramps/plugins/webreport/basepage.py:2053
@@ -35315,7 +35245,7 @@ msgstr ""
 "mem%(bold_end)s.\n"
 "\n"
 "La dosieroj entenantaj bildon, sonon, filmon, ktp, ekzistas aparte sur "
-"propra fiksita disko.  Ĉi tiuj dosieroj ne estas administrata de Gramps kaj "
+"propra fiksita disko. Ĉi tiuj dosieroj ne estas administrata de Gramps kaj "
 "ne estas inkluzivitaj en la datumbazo de Gramps. La datumbazo de Gramps "
 "enmemorigas nur la vojon kaj la dosiernomojn.\n"
 "\n"
@@ -35764,52 +35694,45 @@ msgid "Their common ancestors are: "
 msgstr "Iliaj komunaj prauloj estas: "
 
 #: ../gramps/plugins/tool/removespaces.py:56
-#, fuzzy
 msgctxt "manual"
 msgid "Remove_leading_and_trailing_spaces"
 msgstr "Remove_leading_and_trailing_spaces"
 
 #: ../gramps/plugins/tool/removespaces.py:91
 #: ../gramps/plugins/tool/tools.gpr.py:543
-#, fuzzy
 msgid "Clean input data"
 msgstr "Forigu enigajn datumojn"
 
 #: ../gramps/plugins/tool/removespaces.py:114
-#, fuzzy
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
 "or bad sign in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
-"Traserĉas la tutan datumbazon, serĉante citaĵojn kiuj havas la samajn "
-"Volumon/Paĝon, Daton kaj Konfidon."
+"Serĉado de komencaj kaj/aŭ finaj spacetoj por personoj aŭ lokoj. Serĉado de "
+"komoj aŭ eraraj signoj en la koordinataj kampoj.\n"
+"Duobla alklako sur linio por redakti ĝian entenon."
 
 #: ../gramps/plugins/tool/removespaces.py:125
-#, fuzzy
 msgid "Looking for possible fields with leading or trailing spaces"
-msgstr "Serĉas eblan iteracion por ĉiu persono"
+msgstr "Serĉado de eblaj kampoj kun komencaj aŭ finaj spacetoj"
 
 #: ../gramps/plugins/tool/removespaces.py:141
 #: ../gramps/plugins/tool/removespaces.py:190
-#, fuzzy
 msgid "handle"
-msgstr "Traktu"
+msgstr "traktu"
 
 #: ../gramps/plugins/tool/removespaces.py:145
-#, fuzzy
 msgid "firstname"
-msgstr "nekonata antaŭnomo"
+msgstr "antaŭnomo"
 
 #: ../gramps/plugins/tool/removespaces.py:153
-#, fuzzy
 msgid "alternate name"
-msgstr "Alternativaj nomoj"
+msgstr "alternativa nomo"
 
 #: ../gramps/plugins/tool/removespaces.py:157
-#, fuzzy
 msgid "group as"
-msgstr "Grupigu kiel"
+msgstr "grupigu kiel"
 
 #: ../gramps/plugins/tool/removespaces.py:203
 msgid "tooltip"
@@ -35823,9 +35746,8 @@ msgstr "spacoj komencaj aŭ finaj"
 
 #: ../gramps/plugins/tool/removespaces.py:285
 #: ../gramps/plugins/tool/removespaces.py:297
-#, fuzzy
 msgid "invalid format"
-msgstr "Nevalida formo"
+msgstr "nevalida formo"
 
 #: ../gramps/plugins/tool/removespaces.py:291
 #: ../gramps/plugins/tool/removespaces.py:303
@@ -35903,18 +35825,14 @@ msgid "Enable ID reordering."
 msgstr "Ebligu ID-reordigo."
 
 #: ../gramps/plugins/tool/reorderids.glade:1402
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
 msgstr ""
 "Listigu la venontan ID disponeblan\n"
-"(povus ne esti kontinua)."
+" (povus ne esti kontinua)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1405
 msgid "  Actual"
-msgstr "Aktuala"
+msgstr "  Aktuala"
 
 #: ../gramps/plugins/tool/reorderids.glade:1417
 msgid "Amount of ID in use."
@@ -35922,7 +35840,7 @@ msgstr "Sumo de ID'oj uzataj"
 
 #: ../gramps/plugins/tool/reorderids.glade:1419
 msgid " Quantity"
-msgstr "Kvanto"
+msgstr " Kvanto"
 
 #: ../gramps/plugins/tool/reorderids.glade:1433
 msgid "Actual / Upcoming ID format."
@@ -35933,13 +35851,9 @@ msgid "Change"
 msgstr "Ŝanĝu"
 
 #: ../gramps/plugins/tool/reorderids.glade:1451
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
 msgstr ""
-"Ebligu ID-reordigo\n"
+"Ebligu ID-reordigon\n"
 "per sinsekvo Komencu/Paŝo."
 
 #: ../gramps/plugins/tool/reorderids.glade:1462
@@ -35963,14 +35877,10 @@ msgid "Keep"
 msgstr "Konservu"
 
 #: ../gramps/plugins/tool/reorderids.glade:1502
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
 msgstr ""
-"Konservu la ID'ojn per alternativaj\n"
-"antaŭfamilinomaj vortetoj nemodifitaj."
+"Konservu la ID'ojn kun alternativaj\n"
+"prefiksoj nemodifitaj."
 
 #: ../gramps/plugins/tool/reorderids.py:65
 msgctxt "manual"
@@ -35990,12 +35900,12 @@ msgstr "Reordigu Gramps-ID'ojn"
 #: ../gramps/plugins/tool/reorderids.py:605
 #, python-format
 msgid "Reorder %s IDs ..."
-msgstr "Reordigu  %sID'ojn..."
+msgstr "Reordigu %sID'ojn..."
 
 #: ../gramps/plugins/tool/reorderids.py:703
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to replace %s?"
-msgstr "Ne inkluzivu datojn aŭ lokojn"
+msgstr "Ĉu vi volas anstataŭigi %s?"
 
 #: ../gramps/plugins/tool/reorderids.py:766
 msgid "Finding and assigning unused IDs."
@@ -36268,10 +36178,8 @@ msgstr "Reordigas la Gramps-ID'ojn laŭ la defaŭltaj reguloj de GRAMPS."
 
 #: ../gramps/plugins/tool/tools.gpr.py:443
 #: ../gramps/plugins/tool/tools.gpr.py:444
-#, fuzzy
-#| msgid "Sorts events"
 msgid "Sort events"
-msgstr "Ordigas eventojn"
+msgstr "Ordigu eventojn"
 
 #: ../gramps/plugins/tool/tools.gpr.py:467
 msgid "Verify the Data"
@@ -36294,13 +36202,12 @@ msgid "Searches the entire database, looking for a possible loop."
 msgstr "Traserĉas la tutan datumbazon, serĉante eventualajn iteraciojn."
 
 #: ../gramps/plugins/tool/tools.gpr.py:545
-#, fuzzy
 msgid ""
 "Searches the entire database, looking for trailing or leading spaces for "
 "places and people. Search comma in coordinates fields in places."
 msgstr ""
-"Traserĉas la tutan datumbazon, serĉante citaĵojn kiuj havas la samajn "
-"Volumon/Paĝon, Daton kaj Konfidon."
+"Traserĉas la tutan datumbazon, serĉante komencajn aŭ finajn spacetojn por "
+"lokoj kaj personoj. Serĉas komojn en koordinataj kampoj en lokoj."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:71
 msgid "Dump Gender Statistics"
@@ -36543,63 +36450,48 @@ msgid "Old age but no death"
 msgstr "Maljunaĝa sed sen morto"
 
 #: ../gramps/plugins/tool/verify.py:2332
-#, fuzzy
 msgid "Birth date equals death date"
-msgstr "Naskiĝdato"
+msgstr "Naskiĝdato estas sama kiel mortodato"
 
 #: ../gramps/plugins/tool/verify.py:2353
-#, fuzzy
 msgid "Birth date equals marriage date"
-msgstr "Plej mallonga pasinta geedziĝo"
+msgstr "Naskiĝdato estas sama kiel geedziĝodato"
 
 #: ../gramps/plugins/tool/verify.py:2374
-#, fuzzy
 msgid "Death date equals marriage date"
-msgstr "Malfruaĝa geedziĝo"
+msgstr "Mortodato estas sama kiel geedziĝodato"
 
 #: ../gramps/plugins/tool/verify.py:2435
 msgid "Baptism too late according to family tradition"
 msgstr "Bapto tro malfrua laŭ familia tradicio"
 
 #: ../gramps/plugins/tool/verify.py:2460
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Entombigdato"
+msgstr "Entombigo tro malfrua"
 
 #: ../gramps/plugins/tool/verify.py:2497
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Ĉu ordigi eventojn en kronologia ordo."
+msgstr "La gefiloj ne estas kronologie ordigitaj"
 
 #: ../gramps/plugins/tool/verify.py:2561
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Ĉu ordigi eventojn en kronologia ordo."
+msgstr "La familioj ne estas kronologie ordigitaj"
 
 #: ../gramps/plugins/tool/verify.py:2574
 msgid "Family has events with role Unknown"
 msgstr "Familio havas eventojn kun Nekonata rolo"
 
 #: ../gramps/plugins/tool/verify.py:2587
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Personaj eventoj de la gefiloj"
+msgstr "Persono havas eventojn kun nekonata rolo"
 
 #: ../gramps/plugins/tool/verify.py:2600
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Ĉu ordigi eventojn en kronologia ordo."
+msgstr "Familiaj eventoj ne estas kronologie ordigitaj"
 
 #: ../gramps/plugins/tool/verify.py:2613
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Ĉu ordigi eventojn en kronologia ordo."
+msgstr "Personaj eventoj ne estas kronologie ordigitaj"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
@@ -36946,7 +36838,6 @@ msgstr "Homogena gefildistribuo"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:366
 #: ../gramps/plugins/view/fanchartdescview.py:362
-#, fuzzy
 msgid "Size proportional to number of descendants"
 msgstr "Grando proporcia al praida nombro"
 
@@ -36963,9 +36854,8 @@ msgid "Flip name on the left of the fan"
 msgstr "Rotaciigu la nomon maldekstren de la ventolilo"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:387
-#, fuzzy
 msgid "Show the gramps id"
-msgstr "Montras la lastan paĝon"
+msgstr "Montru la gramps-id'on"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:390
 #: ../gramps/plugins/view/fanchartdescview.py:386
@@ -37003,9 +36893,8 @@ msgstr "Kvadranto"
 
 #: ../gramps/plugins/view/fanchartdescview.py:383
 #: ../gramps/plugins/view/fanchartview.py:459
-#, fuzzy
 msgid "Show gramps id"
-msgstr "Gramps-Id"
+msgstr "Montru gramps-id'on"
 
 #: ../gramps/plugins/view/fanchartview.py:229
 msgid "Print or save the Fan Chart View"
@@ -37124,15 +37013,14 @@ msgid "Selecting all events"
 msgstr "Elektas ciujn eventojn"
 
 #: ../gramps/plugins/view/geoevents.py:391
-#, fuzzy
 msgid ""
 "Right click on the map and select 'show all events' to show all known events "
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
-"Dekstre alklaku sur la mapo kaj elektu 'montru ĉiujn lokojn' por montri "
-"ĉiujn konatajn lokojn kun koordinatoj. Oni povas ŝanĝi la markilkoloron "
-"depende de la loktipo. Oni povas uzi la filtradon."
+"Dekstre alklaku sur la mapo kaj elektu 'montru ĉiujn eventojn' por montri "
+"ĉiujn konatajn eventojn kun koordinatoj. Vi povas uzi la historion por "
+"navigi sur la mapo. Vi povas uzi la filtradon."
 
 #: ../gramps/plugins/view/geoevents.py:427
 #: ../gramps/plugins/view/geoevents.py:459
@@ -37350,8 +37238,6 @@ msgid "A view showing all the event places of the database."
 msgstr "Vido kiu montras ĉiujn eventlokojn de la datumbazo."
 
 #: ../gramps/plugins/view/geomoves.py:210
-#, fuzzy
-#| msgid "Descendance of the active person."
 msgid "Descendants of the active person."
 msgstr "Praidaro de aktiva persono."
 
@@ -37360,10 +37246,9 @@ msgid "GeoMoves"
 msgstr "GeoMoves"
 
 #: ../gramps/plugins/view/geomoves.py:602
-#, fuzzy, python-format
-#| msgid "All descendance for %s"
+#, python-format
 msgid "All descendants for %s"
-msgstr "Ĉiuj praidoj de %s"
+msgstr "Ĉiuj praidoj por %s"
 
 #: ../gramps/plugins/view/geomoves.py:750
 msgid "Bookmark this person"
@@ -37487,9 +37372,8 @@ msgid "Show all places"
 msgstr "Montru ĉiujn lokojn"
 
 #: ../gramps/plugins/view/geoplaces.py:635
-#, fuzzy
 msgid "Custom places name"
-msgstr "Kompleta loknomo"
+msgstr "Propra loknomo"
 
 #: ../gramps/plugins/view/geoplaces.py:643
 msgid "The places marker color"
@@ -37620,9 +37504,8 @@ msgid "Left <-> Right"
 msgstr "Dekstren <-> Maldekstren"
 
 #: ../gramps/plugins/view/pedigreeview.py:1829
-#, fuzzy
 msgid "About Pedigree View"
-msgstr "Genealogio"
+msgstr "Pri Genealogia Vido"
 
 #: ../gramps/plugins/view/pedigreeview.py:2043
 #: ../gramps/plugins/view/relview.py:411
@@ -37694,9 +37577,8 @@ msgid "Expand this Entire Group"
 msgstr "Etendu la tutan grupon"
 
 #: ../gramps/plugins/view/relview.py:390
-#, fuzzy
 msgid "Organize Bookmarks..."
-msgstr "Organizu legosignojn"
+msgstr "Organizu legosignojn..."
 
 #: ../gramps/plugins/view/relview.py:411
 msgid "Add Existing Parents..."
@@ -37810,17 +37692,17 @@ msgid "Relationship type: %s"
 msgstr "Parencec-tipo: %s"
 
 #: ../gramps/plugins/view/relview.py:1587
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s en %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1594
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1598
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
@@ -38060,10 +37942,9 @@ msgstr "Rakonta"
 
 #: ../gramps/plugins/webreport/basepage.py:904
 #: ../gramps/plugins/webreport/basepage.py:974
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr "(%(str1)s) %(str2)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1511
 #: ../gramps/plugins/webreport/basepage.py:3427
@@ -38084,7 +37965,7 @@ msgstr "La lasta ŝanĝo estis la %(date)s"
 #: ../gramps/plugins/webreport/basepage.py:1712
 #, python-format
 msgid " on %(date)s"
-msgstr "je %(date)s"
+msgstr " je %(date)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1739
 #: ../gramps/plugins/webreport/basepage.py:1744
@@ -38103,9 +37984,8 @@ msgid "Visually Impaired"
 msgstr "Vidnekapablulo"
 
 #: ../gramps/plugins/webreport/basepage.py:2017
-#, fuzzy
 msgid "Go to top"
-msgstr "Iru al la defaŭlta persono"
+msgstr "Iru al la supro"
 
 #: ../gramps/plugins/webreport/basepage.py:2052
 #: ../gramps/plugins/webreport/basepage.py:2111
@@ -38116,7 +37996,6 @@ msgstr "Hejmo"
 
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
-#, fuzzy
 msgid "Heatmaps"
 msgstr "Termomapoj"
 
@@ -38147,7 +38026,6 @@ msgid "Web Calendar"
 msgstr "Retkalendaro"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
-#, fuzzy
 msgid "Heatmap"
 msgstr "Termomapo"
 
@@ -38182,18 +38060,20 @@ msgid "Family Map"
 msgstr "Famili-mapo"
 
 #: ../gramps/plugins/webreport/basepage.py:3387
-#, fuzzy
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr "Nevalida latitudo (syntax: 18\\u00b09'"
+msgstr ""
+"Nevalida latitudo\n"
+"(syntakso: 18\\u00b09'48.21\"S, -18.2412 aŭ -18:9:48.21)"
 
 #: ../gramps/plugins/webreport/basepage.py:3408
-#, fuzzy
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr "Nevalida longitudo (syntax: 18\\u00b09'"
+msgstr ""
+"Nevalida longitudo\n"
+"(syntakso: 18\\u00b09'48.21\"E, -18.2412 aŭ -18:9:48.21)"
 
 #: ../gramps/plugins/webreport/basepage.py:3425
 #: ../gramps/plugins/webreport/basepage.py:3503
@@ -38209,9 +38089,8 @@ msgid "circa"
 msgstr "ĉirkaŭ"
 
 #: ../gramps/plugins/webreport/basepage.py:3796
-#, fuzzy
 msgid "around"
-msgstr "Fono"
+msgstr "ĉirkaŭ"
 
 #: ../gramps/plugins/webreport/calendar.py:231
 #: ../gramps/plugins/webreport/calendar.py:686
@@ -38295,9 +38174,8 @@ msgstr "%s depost la morto"
 
 #: ../gramps/plugins/webreport/calendar.py:1442
 #: ../gramps/plugins/webreport/webcal.py:2333
-#, fuzzy
 msgid "death"
-msgstr "Morto"
+msgstr "morto"
 
 #: ../gramps/plugins/webreport/calendar.py:1450
 #: ../gramps/plugins/webreport/webcal.py:2340
@@ -38345,9 +38223,8 @@ msgid "MD5"
 msgstr "MD5"
 
 #: ../gramps/plugins/webreport/download.py:187
-#, fuzzy
 msgid "No file to download"
-msgstr "Priskribo por elŝutado"
+msgstr "Neniu dosiero por elŝuti"
 
 #: ../gramps/plugins/webreport/event.py:123
 msgid "Creating event pages"
@@ -38398,15 +38275,13 @@ msgstr ""
 "paĝon de familio/parenceco."
 
 #: ../gramps/plugins/webreport/family.py:616
-#, fuzzy, python-format
+#, python-format
 msgid "Family Map for %s"
-msgstr "Famililokoj por %s"
+msgstr "Familimapo por %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Kreas event-paĝojn"
+msgstr "Kreas termomapon por eventoj"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
@@ -38414,8 +38289,6 @@ msgid ""
 msgstr "La venonta sekcio entenas indekson de ĉiuj eventoj por termomapo."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Nomo"
@@ -38431,10 +38304,9 @@ msgstr "Lokoj komenciĝantaj per litero %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Testu la elektitan filtrilon"
+msgstr "Termomapo por %s laŭ la elektitaj filtroj"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
@@ -38442,8 +38314,6 @@ msgid ""
 msgstr "La venonta sekcio entenas indekson de ĉiuj familinomoj por termomapo."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "Familinomo"
@@ -38464,10 +38334,8 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Forigu la elektitan filtrilon"
+msgstr " kiu ne havas eventojn por elektita filtrilo."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38510,16 +38378,15 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:248
 msgctxt "Media "
 msgid " Name"
-msgstr "Nomo"
+msgstr " Nomo"
 
 #: ../gramps/plugins/webreport/media.py:250
 msgid "Mime Type"
 msgstr "Mime-tipo"
 
 #: ../gramps/plugins/webreport/media.py:263
-#, fuzzy
 msgid "Creating list of media pages"
-msgstr "Kreas aŭdvidaĵajn paĝojn"
+msgstr "Kreas liston de aŭdvidaĵajn paĝojn"
 
 #: ../gramps/plugins/webreport/media.py:265
 msgid "Narrated Web Site Report"
@@ -38530,13 +38397,13 @@ msgid "Below unused media objects"
 msgstr "Ĉimalsupre neuzitaj aŭdvideaj objektoj"
 
 #: ../gramps/plugins/webreport/media.py:442
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of "
 "%(strong2_strt)s%(total_pages)d%(strong_end)s"
 msgstr ""
 "%(strong1_start)s%(page_number)d%(strong_end)s el "
-"%(strong2_start)s%(total_pages)d%(strong_end)s"
+"%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
 #: ../gramps/plugins/webreport/media.py:456
 msgid "The file has been moved or deleted."
@@ -38617,35 +38484,29 @@ msgid "Creating statistics page..."
 msgstr "Kreas statistikajn paĝojn..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1462
-#, fuzzy
 msgid "Creating updates page..."
-msgstr "Kreas statistikajn paĝojn..."
+msgstr "Kreas ĝisdatigan paĝon..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1508
 msgid "Creating address book pages ..."
 msgstr "Kreas adreslibrajn-paĝojn ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1988
-#, fuzzy, python-format
+#, python-format
 msgid "Narrative Website Report for the %s language"
-msgstr "Rakonta Reteja raporto"
+msgstr "Rakonta Reteja raporto por la %s lingvo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1990
-#, fuzzy
 msgid "Narrative Website Report"
-msgstr "Rakonta Reteja raporto"
+msgstr "Rakonta Reteja Raporto"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2110
-#, fuzzy
-#| msgid "Store web pages in .tar.gz archive"
 msgid "Store website in .tar.gz archive"
-msgstr "Konservu retpaĝojn en arkivo .tar.gz"
+msgstr "Enmemorigu retpaĝon en arkivo .tar.gz"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2111
-#, fuzzy
-#| msgid "Whether to store the web pages in an archive file"
 msgid "Whether to store the website in an archive file"
-msgstr "Ĉu konservi la retpaĝojn en arkiva dosiero"
+msgstr "Ĉu enmemorigi la retpaĝon en arkiva dosiero"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2121
 #: ../gramps/plugins/webreport/webcal.py:1843
@@ -38657,34 +38518,28 @@ msgid "My Family Tree"
 msgstr "Mia genealogia arbo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2126
-#, fuzzy
-#| msgid "Web site title"
 msgid "Website title"
 msgstr "Retpaĝtitolo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2127
-#, fuzzy
-#| msgid "The title of the web site"
 msgid "The title of the website"
-msgstr "La titolo de la retejo"
+msgstr "La titolo de la retpaĝo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-#, fuzzy
-#| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
 msgstr "Elektu filtrilon por malmultigi la personojn aperontajn en la retejo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2144
-#, fuzzy
 msgid "Show the relationship between the current person and the active person"
-msgstr "Montras ĉiujn parencecojn inter la perosno kaj la hejmpersono."
+msgstr "Montras la parencecon inter la aktuala persono kaj la aktiva persono"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2151
-#, fuzzy
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
-msgstr "Montras ĉiujn parencecojn inter la perosno kaj la hejmpersono."
+msgstr ""
+"Por ĉiu personpaĝo, montru la parencecon inter ĉi tiu persono kaj la aktiva "
+"persono."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2175
 #: ../gramps/plugins/webreport/webcal.py:1865
@@ -38712,9 +38567,8 @@ msgid "StyleSheet"
 msgstr "Stilfolio"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2194
-#, fuzzy
 msgid "The default stylesheet to be used for the pages"
-msgstr "La stilfolio uzota por la retpaĝoj"
+msgstr "La defaŭlta stilfolio uzota por la paĝoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2199
 msgid "Horizontal -- Default"
@@ -38746,22 +38600,16 @@ msgid "Normal Outline Style"
 msgstr "Normala konturstilo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2221
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "Aspekto de citaĵoreferencantoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Determinas la defaŭltan aspekton por la sekcio de la referencantoj de "
-"fontpaĝaj citaĵoj"
+"Specifas la defaŭltan aspekton por la sekcio de la citaĵoreferencoj sur la "
+"fontpaĝo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2233
 msgid "Include ancestor's tree"
@@ -38772,29 +38620,24 @@ msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Ĉu inkluzivi praulan grafikaĵon sur ciu individua paĝo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2240
-#, fuzzy
 msgid "Add previous/next"
-msgstr "Aldonu geedzon"
+msgstr "Aldonu antaŭan/postan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2241
-#, fuzzy
 msgid "Add previous/next to the navigation bar."
-msgstr "Aldonu antaŭen/malantaŭen la navigan listelon."
+msgstr "Aldonu antaŭen/malantaŭen de la naviga breto."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2244
-#, fuzzy
-#| msgid "This is a secure site (https)"
 msgid "This is a secure site (HTTPS)"
-msgstr "Tio estas sekura retejo (https)"
+msgstr "Tio estas sekura retejo (HTTPS)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2245
 msgid "Whether to use http:// or https://"
 msgstr "Ĉu uzi http:// aŭ https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2248
-#, fuzzy
 msgid "Toggle sections"
-msgstr "Titol-elekto"
+msgstr "Baskuligu sekciojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2249
 msgid "Check it if you want to open/close a section"
@@ -38805,20 +38648,16 @@ msgid "Max. rows in an index"
 msgstr "Maksimuma kvanto da linioj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "La maksimuma nombro de prauloj inkluzivotaj."
+msgstr "La maksimuma nombro de linioj inkluzivotaj en indeksa paĝo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2264
-#, fuzzy
 msgid "Extra Pages"
-msgstr "Ekstraktu lokdatumojn"
+msgstr "Kromaj paĝoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2267
-#, fuzzy
 msgid "Extra page name"
-msgstr "Privata antaŭnomo"
+msgstr "Nomo de la kroma paĝo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2269
 msgid "Your extra page name like it is shown in the menubar"
@@ -38851,8 +38690,6 @@ msgid "Sort all children in birth order"
 msgstr "Ordigu ĉiujn gefilojn laŭ naskiĝordo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2309
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
 msgstr "Ĉu montri gefilojn laŭ naskiĝ- aŭ enig-ordo."
 
@@ -38861,9 +38698,8 @@ msgid "Do we display coordinates in the places list?"
 msgstr "Ĉu montritaj la koordinatoj en la lok-listo?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2317
-#, fuzzy
 msgid "Whether to display latitude/longitude in the places list."
-msgstr "Ĉu inkluzivi aŭ ne deponejpaĝojn"
+msgstr "Ĉu imontri latitudon/longitudon en la lokolisto."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2322
 msgid "Sort places references either by date or by name"
@@ -38964,9 +38800,8 @@ msgid "HTML user header"
 msgstr "Propra HTML-paĝokapo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2398
-#, fuzzy
 msgid "A note to be used as the page header or a PHP code to insert."
-msgstr "Noto uzota kiel paĝa kaplinio"
+msgstr "Noto uzota kiel paĝa kaplinio aŭ PHP-kodo enmetota."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2402
 msgid "HTML user footer"
@@ -39031,9 +38866,8 @@ msgstr ""
 "bajtoj al via gastiga retejo."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2462
-#, fuzzy
 msgid "Create the thumbnail index"
-msgstr "Grando de la miniatura bildo"
+msgstr "Kreu miniaturan indekson"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2465
 msgid "This option allows you to create the thumbnail index"
@@ -39044,13 +38878,12 @@ msgid "Max width of initial image"
 msgstr "Maks. grando de komenca bildo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2475
-#, fuzzy
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page."
 msgstr ""
 "Tio permesos agordi la maksimuman grandon de la montrota bildo sur la "
-"aŭdvidaĵa paĝo. Agordu al 0 por senlima."
+"aŭdvidaĵa paĝo."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2492
 msgid "Include download page"
@@ -39065,14 +38898,13 @@ msgid "How many downloads"
 msgstr "Kiom da elŝutoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2501
-#, fuzzy
 msgid "The number of download files to include in the download page"
-msgstr "La nombro de generacioj inkluzivotaj en la arbo"
+msgstr "La nombro de elŝutaj dosieroj inkluzivotaj en la elŝutpaĝo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2511
-#, fuzzy, python-format
+#, python-format
 msgid "Download Filename #%c"
-msgstr "Elŝut-dosiernomo"
+msgstr "Elŝutu dosiernomon #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2513
 msgid "File to be used for downloading of database"
@@ -39083,9 +38915,9 @@ msgid "Description for download"
 msgstr "Priskribo por elŝutado"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2518
-#, fuzzy, python-format
+#, python-format
 msgid "Family Tree #%c"
-msgstr "Genealogia arbo"
+msgstr "Genealogia arbo #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2520
 msgid "Give a description for this file."
@@ -39147,16 +38979,10 @@ msgid "Whether to include a parents column"
 msgstr "Ĉu inkluzivi gepatrokolumnon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
-#, fuzzy
-#| msgid "Include half and/ or step-siblings on the individual pages"
 msgid "Include half and/or step-siblings on the individual pages"
-msgstr "Inkluzivu duon- kaj/aŭ vic-gefratojn en la paĝoj de individuoj"
+msgstr "Inkluzivu duon- kaj/aŭ vic-gefratojn en la individuaj paĝoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2580
-#, fuzzy
-#| msgid ""
-#| "Whether to include half and/ or step-siblings with the parents and "
-#| "siblings"
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr "Ĉu inkluzivi duon- kaj/aŭ vic-gefratojn kun gepatroj kaj gefratoj"
@@ -39178,56 +39004,44 @@ msgid "Add a complete events list and relevant pages or not"
 msgstr "Aldoni au ne kompletan eventoliston kaj gravajn paĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2603
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "Inkluzivu aliajn eventojn"
+msgstr "Inkluzivu aliajn rolojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2604
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "Gramplet por montri la notojn por evento"
+msgstr "Inkluzivu personojn kun aliaj roloj al evento"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2607
-#, fuzzy
 msgid "Include place pages"
-msgstr "Inkluzivu lokojn"
+msgstr "Inkluzivu lokpaĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2608
-#, fuzzy
 msgid "Whether or not to include the place pages."
-msgstr "Ĉu inkluzivi aŭ ne deponejpaĝojn"
+msgstr "Ĉu inkluzivi aŭ ne lokpaĝojn."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2611
-#, fuzzy
 msgid "Include unused place pages"
-msgstr "Inkluzivu lokojn"
+msgstr "Inkluzivu neuzitajn lokpaĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2612
-#, fuzzy
 msgid "Whether or not to include the unused place pages."
-msgstr "Ĉu inkluzivi aŭ ne deponejpaĝojn"
+msgstr "Ĉu inkluzivi aŭ ne la neuzitajn lokpaĝojn."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2615
-#, fuzzy
 msgid "Include source pages"
-msgstr "Inkluzivu fontnotojn"
+msgstr "Inkluzivu fontpaĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2616
-#, fuzzy
 msgid "Whether or not to include the source pages."
-msgstr "Ĉu inkluzivi aŭ ne deponejpaĝojn"
+msgstr "Ĉu inkluzivi aŭ ne la fontpaĝojn."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2619
 msgid "Include repository pages"
 msgstr "Ĉu inkluzivi deponej-paĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2620
-#, fuzzy
-#| msgid "Whether or not to include the Repository Pages."
 msgid "Whether or not to include the repository pages."
-msgstr "Ĉu inkluzivi aŭ ne deponejpaĝojn"
+msgstr "Ĉu inkluzivi aŭ ne la deponejpaĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2623
 msgid "Include GENDEX file (/gendex.txt)"
@@ -39250,23 +39064,20 @@ msgstr ""
 "retejajn adresojn kaj personajn adresan/rezidejan eventojn."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2638
-#, fuzzy
 msgid "Include the statistics page"
-msgstr "Kreas statistikajn paĝojn..."
+msgstr "Inkluzivu la statistikajn paĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2639
-#, fuzzy
 msgid "Whether or not to add statistics page"
-msgstr "Ĉu inkluzivi aŭ ne famili-paĝojn."
+msgstr "Ĉu inkluzivi aŭ ne statistikajn paĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2648
 msgid "Place Map Options"
 msgstr "Lokmapaj opcioj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2653
-#, fuzzy
 msgid "Stamen Map"
-msgstr "Enten-opcioj"
+msgstr "Stamen-mapo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2654
 msgid "Google"
@@ -39320,33 +39131,27 @@ msgid "Google/ FamilyMap Option"
 msgstr "Google/ Familimapa Opcio"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2703
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Google Maps "
-#| "Family Map pages..."
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
-msgstr "Elektu la opcion deziratan por la Google-mapo de familio Mappaĝoj..."
+msgstr "Elektu la opcion deziratan por la familimapa paĝo de Google-Maps..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2709
 msgid "Google maps API key"
 msgstr "API key de GoogleMaps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2712
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "La API key uzota por Google maps"
+msgstr ""
+"La API-ŝlosilo uzota por Google maps.\n"
+"Ĉi tiu ŝlosilo estas deviga kaj devas esti valida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2724
 #: ../gramps/plugins/webreport/narrativeweb.py:2764
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "API key de GoogleMaps"
+msgstr "Kiel akiri API-ŝlosilon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2727
 msgid ""
@@ -39368,33 +39173,29 @@ msgstr "Tereno"
 #: ../gramps/plugins/webreport/narrativeweb.py:2737
 #, fuzzy
 msgid "WaterColor"
-msgstr "Koloro"
+msgstr "AkvoKoloro"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2739
-#, fuzzy
 msgid "Stamen Option"
-msgstr "Enten-opcioj"
+msgstr "Stamen-opcio"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2744
-#, fuzzy
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
-msgstr "Elektu la opcion deziratan por la Google-mapo de familio Mappaĝoj..."
+msgstr "Elektu la opcion deziratan por la mappaĝoj de Stamen map..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2749
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "API key de GoogleMaps"
+msgstr "API-ŝlosilo de Stamen-mapoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2752
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
-msgstr "La API key uzota por Google maps"
+msgstr ""
+"La API key uzota por Stamen-mapoj.\n"
+"Ĉi tiu ŝlosilo estas deviga kaj devas esti valida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2767
 msgid ""
@@ -39405,17 +39206,14 @@ msgstr ""
 "Stamen-maps-servo devas estis elektita."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2784
-#, fuzzy, python-format
-#| msgid "Died %(month_year)s (%(age)s)."
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "Mortinta je %(month_year)s (%(age)s)."
+msgstr "en %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2785
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "Datoj"
+msgstr "lasta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2787
 msgid "openlayers version to use"
@@ -39436,64 +39234,52 @@ msgstr ""
 "Vidu OLDER VERSIONS en https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2809
-#, fuzzy
-#| msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgid "Other inclusion (CMS, web calendar, PHP)"
-msgstr "Alia enmeto (CMS, Retkalendaro, Pfp)"
+msgstr "Alia enmeto (CMS, Retkalendaro, PHP)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2813
-#, fuzzy
-#| msgid "Do we include these pages in a cms web ?"
 msgid "Do we include these pages in a CMS web?"
-msgstr "Ĉu enmeti ĉi tiujn paĝojn en interreta cms?"
+msgstr "Ĉu enmeti ĉi tiujn paĝojn en CMS-Reton?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2820
 msgid "URI"
 msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2822
-#, fuzzy
-#| msgid "Where do you place your web site ? default = /NAVWEB"
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "Kie lokigi vian retejon? defaŭlta = /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2830
-#, fuzzy
 msgid "Include the news and updates page"
-msgstr "Kreas statistikajn paĝojn..."
+msgstr "Inkluzivu la paĝon de novaĵoj kaj ĝisdatigoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2831
-#, fuzzy
 msgid "Whether to include a page with the last updates"
-msgstr "Ĉu inkluzivi la lastan okupon"
+msgstr "Ĉu inkluzivi paĝon kun la lastaj ĝisdatigoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2835
-#, fuzzy
 msgid "Max days for updates"
-msgstr "Maksimumaj elementoj por torto"
+msgstr "Maksimumaj tagoj por ĝisdatigoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2837
 msgid "You want to see the last updates on how many days?"
 msgstr "Por kiom da tagoj vidi la lastajn ĝisdatigojn?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2842
-#, fuzzy
 msgid "Max number of updates per object to show"
-msgstr "La maksimuma nombro de montrotaj lokoj"
+msgstr "La maksimuma nombro de ĝisdatigoj montrota por ĉiu objekto"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2844
 msgid "How many updates do you want to see max"
 msgstr "Kiom da maksimumaj ĝisdatigoj montri"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2856
-#, fuzzy
 msgid "Translations"
-msgstr "Traduko"
+msgstr "Tradukoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2859
-#, fuzzy
 msgid "Second language"
-msgstr "Dua dato"
+msgstr "Dua lingvo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2864
 msgid "Site name for your second language"
@@ -39504,9 +39290,8 @@ msgstr "Nomo de la retejo por via dua lingvo"
 #: ../gramps/plugins/webreport/narrativeweb.py:2882
 #: ../gramps/plugins/webreport/narrativeweb.py:2891
 #: ../gramps/plugins/webreport/narrativeweb.py:2900
-#, fuzzy
 msgid "This site title"
-msgstr "Retpaĝtitolo"
+msgstr "La titolo de ĉi tiu retejo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2866
 #: ../gramps/plugins/webreport/narrativeweb.py:2875
@@ -39517,54 +39302,49 @@ msgid "Enter a title in the respective language"
 msgstr "Enmetu titolon en la respektiva lingvo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2868
-#, fuzzy
 msgid "Third language"
-msgstr "Lingvo"
+msgstr "Tria lingvo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2873
 msgid "Site name for your third language"
 msgstr "Nomo de la retejo por via tria lingvo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2877
-#, fuzzy
 msgid "Fourth language"
-msgstr "Lingvo"
+msgstr "Kvara lingvo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2882
 msgid "Site name for your fourth language"
 msgstr "Nomo de la retejo por via kvara lingvo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2886
-#, fuzzy
 msgid "Fifth language"
-msgstr "Lingvo"
+msgstr "Kvina lingvo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2891
 msgid "Site name for your fifth language"
 msgstr "Nomo de la retejo por via kvina lingvo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2895
-#, fuzzy
 msgid "Sixth language"
-msgstr "Lingvo"
+msgstr "Sesa lingvo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2900
 msgid "Site name for your sixth language"
 msgstr "Nomo de la retejo por via sesa lingvo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3133
-#, fuzzy
 msgid "Calendar Options"
-msgstr "Paper-opcioj"
+msgstr "Kalendar-opcioj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3139
 msgid "Do we include the web calendar ?"
 msgstr "Ĉu ni inkluzivu la interretkalendaron?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3141
-#, fuzzy, python-format
+#, python-format
 msgid "Whether to include a calendar for year %s"
-msgstr "Ĉu inkluzivi galerion de aŭdvideaj objektoj"
+msgstr "Ĉu inkluzivi kalendaron por la jaro %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3168
 #: ../gramps/plugins/webreport/webcal.py:2060
@@ -39593,46 +39373,37 @@ msgstr "Montru la datumojn nur post la jaro"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3198
 #: ../gramps/plugins/webreport/webcal.py:2092
-#, fuzzy
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
-"Montru la datumojn nur post ĉi tiu jaro. La defaŭlta estas la aktuala jaro "
-"minus la 'maksimuma aĝo por taksi personon vivanta' difinita en la langeto "
-"de la dat-preferoj."
+"Montru la datumojn nur post ĉi tiu jaro. La defaŭlta estas la aktuala jaro -"
+"  la 'maksimuma aĝo por taksi personon vivanta' difinita en la langeto de la "
+"dat-preferoj."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Lokmapaj opcioj"
+msgstr "Termomapaj opcioj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Inkluzivu event-paĝojn"
+msgstr "Inkluzivu termomapajn paĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Ĉu inkluzivi alternativajn nomojn por gepatroj."
+msgstr "Ĉu inkluzivi termomapajn paĝojn por eventoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Tipargrando"
+msgstr "Grando de la rastrumero"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "La grando de la noto, en ratrumeroj."
+msgstr ""
+"Agordu la grandon de la termomapaj rastrumeroj.\n"
+"Defaŭlta: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
@@ -39647,19 +39418,18 @@ msgstr ""
 "Defaŭlta: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
-#, fuzzy
 msgid "Zoom"
-msgstr "de"
+msgstr "Zomado"
 
 #: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
 msgstr "Kreas person-paĝojn"
 
 #: ../gramps/plugins/webreport/person.py:222
-#, fuzzy, python-format
+#, python-format
 msgctxt "letter"
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
-msgstr "Familinomoj %(surname)s komenciĝantajn per litero %(letter)s"
+msgstr "Familinomoj %(surname)s komenciĝantaj per litero %(letter)s"
 
 #: ../gramps/plugins/webreport/person.py:373
 msgid ""
@@ -39683,13 +39453,6 @@ msgid "Tracking %s"
 msgstr "Ŝanĝospurado %s"
 
 #: ../gramps/plugins/webreport/person.py:1063
-#, fuzzy
-#| msgid ""
-#| "This map page represents that person and any descendants with all of "
-#| "their event/ places. If you place your mouse over the marker it will "
-#| "display the place name. The markers and the Reference list are sorted in "
-#| "date order (if any?). Clicking on a place&#8217;s name in the Reference "
-#| "section will take you to that place&#8217;s page."
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -39698,9 +39461,10 @@ msgid ""
 "you to that place&#8217;s page."
 msgstr ""
 "Ĉi tiu paĝo reprezentas tiun personon kaj liajn praidojn kun ĉiuj iliaj "
-"eventoj/lokoj. Se oni movas la muso super la markilo ĝi montors la loknomon. "
+"eventoj/lokoj. Se oni movas la muso super la markilo ĝi montros la loknomon. "
 "La markiloj kaj la referencolisto estas ordigitaj laŭ dato (se ekzistanta). "
-"La alklako de la loknomo en la Referenca sekcio portos al la paĝo de la loko."
+"La alklako sur la loknomo en la Referenca sekcio portos al la paĝo de la "
+"loko."
 
 #: ../gramps/plugins/webreport/person.py:1115
 msgid "Place Title"
@@ -39761,17 +39525,14 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/place.py:346
 #: ../gramps/plugins/webreport/place.py:358
-#, fuzzy
-#| msgid "Name"
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Nomo"
 
 #: ../gramps/plugins/webreport/place.py:347
 #: ../gramps/plugins/webreport/place.py:359
-#, fuzzy
 msgid "State/Province"
-msgstr "Ŝtato/Distrikto:"
+msgstr "Ŝtato/Distrikto"
 
 #: ../gramps/plugins/webreport/place.py:607
 msgid "Place Map"
@@ -39792,8 +39553,6 @@ msgstr ""
 "deponejo mem."
 
 #: ../gramps/plugins/webreport/repository.py:177
-#, fuzzy
-#| msgid "Name"
 msgctxt "Repository"
 msgid "Name"
 msgstr "Nomo"
@@ -39858,33 +39617,25 @@ msgid "Number of People"
 msgstr "Nombro de personoj"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
-#, fuzzy, python-brace-format
-#| msgid "Surnames beginning with letter %s"
+#, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "Familinomoj komenciĝantaj per litero  %s"
+msgstr "Familinomoj komenciĝantaj per litero '{letter}' {char}"
 
 #: ../gramps/plugins/webreport/thumbnail.py:128
-#, fuzzy
-#| msgid ""
-#| "This page displays a indexed list of all the media objects in this "
-#| "database.  It is sorted by media title.  There is an index of all the "
-#| "media objects in this database.  Clicking on a thumbnail will take you to "
-#| "that image&#8217;s page."
 msgid ""
 "This page displays a indexed list of all the media objects in this database. "
 "It is sorted by media title. There is an index of all the media objects in "
 "this database. Clicking on a thumbnail will take you to that image&#8217;s "
 "page."
 msgstr ""
-"Ĉi tiu paĝo montras indeksitan liston de ĉiuj aŭdvideaj objektoj en la "
+"Ĉi tiu paĝo montras indeksitan liston de ĉiuj aŭdvideaj objektoj en ĉi tiu "
 "datumbazo. Ĝi estas ordigita laŭ aŭdvidaĵa titolo. Ekzistas indekso de ĉiuj "
 "aŭdvideaj objektoj de ĉi tiu datumbazo. La alklako de miniaturo portos al la "
 "paĝo de la bildo."
 
 #: ../gramps/plugins/webreport/updates.py:88
-#, fuzzy
 msgid "New and updated objects"
-msgstr "Nur novaj kaj ĝisdatigitaj helpprogramoj"
+msgstr "Novaj kaj ĝisdatigitaj objektoj"
 
 #: ../gramps/plugins/webreport/updates.py:99
 #, python-format
@@ -39898,7 +39649,6 @@ msgstr ""
 
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1671
-#, fuzzy
 msgid "WebCal"
 msgstr "WebCal"
 
