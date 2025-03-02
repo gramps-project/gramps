@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-03-02 13:48+0000\n"
+"PO-Revision-Date: 2025-03-02 21:10+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -18368,7 +18368,7 @@ msgstr "Spoji se na nedavno otvorenu bazu podataka"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "F_ull Screen"
-msgstr "Prikaz preko cijelog _zaslona"
+msgstr "Cijelo_ekranski prikaz"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Gramps _Home Page"
@@ -18388,7 +18388,7 @@ msgstr "Upravljaj bazama podataka"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Open _Recent"
-msgstr "Otvori _nedavne stavke"
+msgstr "Otvori _nedavne"
 
 #: ../gramps/gui/grampsgui.py:58 ../gramps/gui/tipofday.py:73
 #: ../gramps/gui/tipofday.py:120
@@ -18429,7 +18429,7 @@ msgstr "_Dodatni izvještaji/alati"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_FAQ"
-msgstr "Pitanja i _odgovori"
+msgstr "Č_PP"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Family Trees"
