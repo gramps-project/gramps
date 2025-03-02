@@ -96,7 +96,7 @@ class StandardCalendar(CalendarGramplet):
     """
 
     def __init__(self, gui, nav_group=0):
-        super().__init__("Other", gui, nav_group)
+        super().__init__(gui, nav_group)
 
 
 class PersonBirthCalendar(CalendarGramplet):
@@ -115,17 +115,15 @@ class PersonBirthCalendar(CalendarGramplet):
         self.connect(self.dbstate.db, "person-update", self.update)
 
     def main(self):
-        active_handle = self.get_active("Person")
         date = Today()
+        active_handle = self.get_active("Person")
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
             if active:
                 bd_event = get_birth_or_fallback(self.dbstate.db, active)
                 if bd_event:
                     date = bd_event.get_date_object()
-
         self.show_on_calendar(date)
-
 
 
 class PersonDeathCalendar(CalendarGramplet):
@@ -144,15 +142,14 @@ class PersonDeathCalendar(CalendarGramplet):
         self.connect(self.dbstate.db, "person-update", self.update)
 
     def main(self):
-        active_handle = self.get_active("Person")
         date = Today()
+        active_handle = self.get_active("Person")
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
             if active:
                 bd_event = get_death_or_fallback(self.dbstate.db, active)
                 if bd_event:
                     date = bd_event.get_date_object()
-
         self.show_on_calendar(date)
 
 
@@ -172,19 +169,20 @@ class FamilyCalendar(CalendarGramplet):
         self.connect(self.dbstate.db, "family-update", self.update)
 
     def main(self):
-        active_handle = self.get_active("Family")
         date = Today()
-        active = self.dbstate.db.get_family_from_handle(active_handle)
-        if active:
-            fam_evt_ref_list = active.get_event_ref_list()
-            if fam_evt_ref_list:
-                for evt_ref in fam_evt_ref_list:
-                    evt = self.dbstate.db.get_event_from_handle(evt_ref.ref)
-                    if evt:
-                        evt_type = evt.get_type()
-                        if evt_type == EventType.MARRIAGE:
-                            date = evt.get_date_object()
-                            break
+        active_handle = self.get_active("Family")
+        if active_handle:
+            active = self.dbstate.db.get_family_from_handle(active_handle)
+            if active:
+                fam_evt_ref_list = active.get_event_ref_list()
+                if fam_evt_ref_list:
+                    for evt_ref in fam_evt_ref_list:
+                        evt = self.dbstate.db.get_event_from_handle(evt_ref.ref)
+                        if evt:
+                            evt_type = evt.get_type()
+                            if evt_type == EventType.MARRIAGE:
+                                date = evt.get_date_object()
+                                break
         self.show_on_calendar(date)
 
 
@@ -204,9 +202,10 @@ class EventCalendar(CalendarGramplet):
         self.connect(self.dbstate.db, "event-update", self.update)
 
     def main(self):
-        active_handle = self.get_active("Event")
         date = Today()
-        event = self.dbstate.db.get_event_from_handle(active_handle)
-        if event:
-            date = event.get_date_object()
+        active_handle = self.get_active("Event")
+        if active_handle:
+            event = self.dbstate.db.get_event_from_handle(active_handle)
+            if event:
+                date = event.get_date_object()
         self.show_on_calendar(date)
