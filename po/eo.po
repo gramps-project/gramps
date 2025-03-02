@@ -7,15 +7,15 @@
 #
 # Pier Luigi Cinquantini <plcinquantini@gmail.com>, 2003, 2014, 2017, 2018, 2023, 2025.
 # Robin van der Vliet <info@robinvandervliet.com>, 2018.
-# Nick Hall <nick-h@gramps-project.org>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021, 2025.
 # Michael <moralesmike14@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-03-02 19:07+0000\n"
-"Last-Translator: Pier Luigi Cinquantini <plcinquantini@gmail.com>\n"
+"PO-Revision-Date: 2025-03-02 21:33+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/eo/>\n"
 "Language: eo\n"
@@ -11018,8 +11018,8 @@ msgstr[1] "praida naskiĝo: {number_of} generacioj "
 #, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "Maks. praidaraj generacioj "
-msgstr[1] "Maks. praidaraj generacioj "
+msgstr[0] "Maks. praidaraj {number_of} generacioj "
+msgstr[1] "Maks. praidaraj {number_of} generacioj "
 
 #: ../gramps/gen/utils/alive.py:803
 #, python-format
@@ -38402,7 +38402,7 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of "
 "%(strong2_strt)s%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_start)s%(page_number)d%(strong_end)s el "
+"%(strong1_strt)s%(page_number)d%(strong_end)s el "
 "%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
 #: ../gramps/plugins/webreport/media.py:456
