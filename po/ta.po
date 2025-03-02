@@ -3,15 +3,15 @@
 # Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
 # Copyright முரளி (murali) (Logan M) <vmmlog@gmail.com>, 2012, 2014, 2017
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
-# Nick Hall <nick-h@gramps-project.org>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021, 2025.
 # தமிழ்நேரம் <anishprabu.t@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-21 17:44+0000\n"
-"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"PO-Revision-Date: 2025-03-02 21:10+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ta/>\n"
 "Language: ta\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 "X-Launchpad-Export-Date: 2014-07-26 03:32+0000\n"
 
 #: ../data/holidays.xml:3
@@ -30058,7 +30058,7 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"இந்த நபர் %(பகுதி_ டேட்) எச் %(spouse)s%(endnotes)s இல் %(partial_date)s உடன் "
+"இந்த நபர் %(place)s எச் %(spouse)s%(endnotes)s இல் %(partial_date)s உடன் "
 "திருமணமாகாத உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1258
@@ -30174,8 +30174,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"இந்த நபர் %(இடம்) %(spouse)s%(endnotes)s இல் %(full_date)s மீது %(place)s உடன் "
-"திருமணமாகாத உறவைக் கொண்டிருந்தார்."
+"இந்த நபர் %(spouse)s%(endnotes)s இல் %(full_date)s மீது %(place)s உடன் திருமணமாகா"
+"த உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1308
 #, python-format
@@ -30246,7 +30246,7 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
-"இந்த நபர் %(துணை_ டேட்) எச்%(endnotes)s இல் %(spouse)s உடன் திருமணமாகாத உறவைக் "
+"இந்த நபர் %(partial_date)s எச்%(endnotes)s இல் %(spouse)s உடன் திருமணமாகாத உறவைக் "
 "கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1352
@@ -30527,8 +30527,8 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"இந்த நபருக்கு %(பகுதி_ டேட்) எச் %(spouse)s%(endnotes)s இல் %(partial_date)s உடன் "
-"உறவு இருந்தது."
+"இந்த நபருக்கு %(place)s எச் %(spouse)s%(endnotes)s இல் %(partial_date)s உடன் உறவு "
+"இருந்தது."
 
 #: ../gramps/plugins/lib/libnarrate.py:1488
 #, python-format
@@ -30544,8 +30544,8 @@ msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"இந்த நபருக்கு %(spouse)s %(modified_date)s%(endnotes)s இல் %(place)s %(endnotes)"
-"s உடன் உறவு இருந்தது."
+"இந்த நபருக்கு %(spouse)s %(modified_date)s இல் %(place)s %(endnotes)s உடன் உறவு "
+"இருந்தது."
 
 #: ../gramps/plugins/lib/libnarrate.py:1496
 #, python-format
@@ -30596,8 +30596,8 @@ msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"%(இடம்) %(spouse)s%(endnotes)s இல் %(modified_date)s %(place)s உடன் அவளுக்கு உறவு"
-" இருந்தது."
+"%(spouse)s%(endnotes)s இல் %(modified_date)s %(place)s உடன் அவளுக்கு உறவு "
+"இருந்தது."
 
 #: ../gramps/plugins/lib/libnarrate.py:1517
 #, python-format
@@ -30621,7 +30621,7 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"இந்த நபர் %(பகுதி_ டேட்) எச் %(spouse)s %(partial_date)s %(place)s உடன் உறவைக் "
+"இந்த நபர் %(endnotes)s எச் %(spouse)s %(partial_date)s %(place)s உடன் உறவைக் "
 "கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1529
@@ -30825,7 +30825,8 @@ msgstr ""
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "%(பகுதி_ டேட்) எச்%(endnotes)s இல் %(spouse)s உடன் உறவு கொண்டிருந்தார்."
+msgstr ""
+"%(partial_date)s எச்%(endnotes)s இல் %(spouse)s உடன் உறவு கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1620
 #, python-format
@@ -31461,7 +31462,7 @@ msgstr "புரோ-சென் இறக்குமதி"
 #: ../gramps/plugins/lib/libprogen.py:1239
 #, python-format
 msgid "Date did not match: '%(text)s' (%(msg)s)"
-msgstr "தேதி பொருந்தவில்லை: '%(text)s' (%(எம்.எச்.சி) எச்)"
+msgstr "தேதி பொருந்தவில்லை: '%(text)s' (%(msg)s எச்)"
 
 #: ../gramps/plugins/lib/libprogen.py:1255
 #, python-format
@@ -31608,7 +31609,7 @@ msgstr "மிகப்பெரிய அகவை வேறுபாடு க
 #: ../gramps/plugins/lib/librecords.py:656
 #, python-format
 msgid "\"%(callname)s\" (%(firstname)s)"
-msgstr "\"%(callname)s\" (%(முதல் பெயர்) கள்)"
+msgstr "\"%(callname)s\" (%(firstname)s கள்)"
 
 #: ../gramps/plugins/lib/libtreebase.py:778
 msgid "Top Left"
@@ -31683,7 +31684,7 @@ msgstr "'%(map)s' ஐ => ஆல் மாற்றவும்"
 #: ../gramps/plugins/lib/maps/geography.py:450
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
-msgstr "புலப்படும் அனைத்து ஓடுகளையும் '%(வரைபடங்கள்' என்பதற்கு மீண்டும் ஏற்றவும்."
+msgstr "புலப்படும் அனைத்து ஓடுகளையும் '%(map)s' என்பதற்கு மீண்டும் ஏற்றவும்."
 
 #: ../gramps/plugins/lib/maps/geography.py:456
 #, python-format
@@ -32044,7 +32045,7 @@ msgstr "%(person)s மற்றும் %(active_person)s ஒரே நபர�
 #: ../gramps/plugins/tool/relcalc.py:222
 #, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
-msgstr "%(person)s என்பது %(உறவு) %(relationship)s."
+msgstr "%(person)s என்பது %(active_person)s %(relationship)s."
 
 #: ../gramps/plugins/quickview/all_relations.py:114
 #, python-format
@@ -32064,7 +32065,7 @@ msgstr "%(person)s முதல் %(active_person)s உறவுகள்"
 #: ../gramps/plugins/quickview/all_relations.py:320
 #, python-format
 msgid "Detailed path from %(person)s to common ancestor"
-msgstr "%(நபர்) முதல் பொதுவான மூதாதையர் வரை விரிவான பாதை"
+msgstr "%(person)s முதல் பொதுவான மூதாதையர் வரை விரிவான பாதை"
 
 #: ../gramps/plugins/quickview/all_relations.py:323
 msgid "Name Common ancestor"
@@ -32425,7 +32426,7 @@ msgstr "இந்த குறிப்புக்கான இணைப்ப�
 #: ../gramps/plugins/quickview/onthisday.py:80
 #, python-format
 msgid "Events of %(date)s"
-msgstr "%(தேதி) நிகழ்வுகள்"
+msgstr "%(date)s நிகழ்வுகள்"
 
 #: ../gramps/plugins/quickview/onthisday.py:115
 msgid "Events on this exact date"
@@ -32446,12 +32447,12 @@ msgstr "வரலாற்றில் இந்த மாதம்/நாளி
 #: ../gramps/plugins/quickview/onthisday.py:133
 #, python-format
 msgid "Other events in %(year)d"
-msgstr "%(ஆண்டு) இல் உள்ள பிற நிகழ்வுகள் டி"
+msgstr "%(year)d இல் உள்ள பிற நிகழ்வுகள் டி"
 
 #: ../gramps/plugins/quickview/onthisday.py:137
 #, python-format
 msgid "No other events in %(year)d"
-msgstr "%(ஆண்டு) இல் வேறு நிகழ்வுகள் இல்லை டி"
+msgstr "%(year)d இல் வேறு நிகழ்வுகள் இல்லை டி"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:39
 msgid "Display people and ages on a particular date"
@@ -32526,7 +32527,7 @@ msgstr "மூல அல்லது மேற்கோள்"
 #: ../gramps/plugins/quickview/quickview.gpr.py:238
 #, python-format
 msgid "%s References"
-msgstr "%குறிப்புகள்"
+msgstr "%s குறிப்புகள்"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:239
 #, python-format
@@ -33157,7 +33158,7 @@ msgstr "%s க்கான மூதாதையர் அறிக்கை"
 #: ../gramps/plugins/textreport/detdescendantreport.py:999
 #, python-format
 msgid "More about %(person_name)s:"
-msgstr "மேலும் %(நபர்_ பெயர்) கள்:"
+msgstr "மேலும் %(person_name)s கள்:"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:343
 #, python-format
@@ -33611,7 +33612,7 @@ msgstr "ஃச்"
 #, python-format
 msgctxt "acronym for unknown"
 msgid "%dU"
-msgstr "%"
+msgstr "%dU"
 
 #: ../gramps/plugins/textreport/familygroup.py:629
 #, python-format
@@ -33727,13 +33728,13 @@ msgstr "பெற்றோரின் பெயருக்குப் பய�
 #: ../gramps/plugins/textreport/indivcomplete.py:210
 #, python-format
 msgid "%(str1)s in %(str2)s. "
-msgstr "%(str1) கள் %(str2) கள். "
+msgstr "%(str1)s கள் %(str2)s கள். "
 
 #. Translators: e.g. (a stepfather): John Smith, relationship: Step
 #: ../gramps/plugins/textreport/indivcomplete.py:268
 #, python-format
 msgid "%(parent-name)s, relationship: %(rel-type)s"
-msgstr "%(பெற்றோர்-பெயர்) கள், உறவு: %(ரெல்-டைப்) கள்"
+msgstr "%(parent-name)s கள், உறவு: %(rel-type)s கள்"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:328
 msgid "Alternate Parents"
@@ -33927,7 +33928,7 @@ msgid ""
 "Total ancestors in generations %(second_generation)d to %(last_generation)d "
 "is %(count)d. %(percent)s"
 msgstr ""
-"தலைமுறை %(இரண்டாம் தலைமுறை முதல் %(second_generation)d %(last_generation)d. "
+"தலைமுறை %(second_generation)d தலைமுறை முதல் %(last_generation)d %(count)d. "
 "%(percent)s"
 
 #: ../gramps/plugins/textreport/placereport.py:136
@@ -33944,7 +33945,7 @@ msgstr "இதை இயக்குவதற்கு முன் குறை
 #: ../gramps/plugins/textreport/placereport.py:189
 #, python-format
 msgid "Gramps ID: %s "
-msgstr "கிராம்ப்ச்: %a "
+msgstr "கிராம்ப்ச்: %s "
 
 #: ../gramps/plugins/textreport/placereport.py:208
 #, python-format
@@ -35215,13 +35216,13 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"இந்த கருவி கிராம்ப்களில் சேமிக்கப்பட்ட ஊடக பொருட்களில் தொகுதி செயல்பாடுகளை "
-"அனுமதிக்கிறது. கிராம்ப்ச் மீடியா பொருளுக்கும் அதன் கோப்பிற்கும் இடையே ஒரு முக்கியமான "
-"வேறுபாடு இருக்க வேண்டும்.\n"
+"இந்த கருவி கிராம்ப்களில் சேமிக்கப்பட்ட ஊடக பொருட்களில் தொகுதி செயல்பாடுகளை அனுமதிக்கிறது"
+". கிராம்ப்ச் மீடியா பொருளுக்கும் அதன் கோப்பிற்கும் இடையே ஒரு முக்கியமான வேறுபாடு இருக்க "
+"வேண்டும்.\n"
 "\n"
 " கிராம்ப்ச் மீடியா பொருள் என்பது மீடியா பொருள் கோப்பைப் பற்றிய தரவுகளின் தொகுப்பாகும்: அதன் "
 "கோப்பு பெயர் மற்றும்/அல்லது பாதை, அதன் விளக்கம், அதன் ஐடி, குறிப்புகள், மூல குறிப்புகள் "
-"போன்றவை. ) கள்.\n"
+"போன்றவை. %(bold_start)s%(bold_end)s கள்.\n"
 "\n"
 " படம், ஒலி, வீடியோ போன்றவற்றைக் கொண்ட கோப்புகள் உங்கள் வன்வட்டில் தனித்தனியாக உள்ளன. இந்த "
 "கோப்புகள் கிராம்ப்களால் நிர்வகிக்கப்படவில்லை மற்றும் கிராம்ப்ச் தரவுத்தளத்தில் சேர்க்கப்படவில்லை. "
@@ -35229,8 +35230,8 @@ msgstr ""
 "\n"
 " உங்கள் கிராம்ப்ச் தரவுத்தளத்தில் உள்ள பதிவுகளை மட்டுமே மாற்ற இந்த கருவி உங்களை "
 "அனுமதிக்கிறது. நீங்கள் கோப்புகளை நகர்த்தவோ அல்லது மறுபெயரிடவோ விரும்பினால், அதை நீங்கள் "
-"சொந்தமாக, கிராம்ப்களுக்கு வெளியே செய்ய வேண்டும். இந்த கருவியைப் பயன்படுத்தி பாதைகளை "
-"நீங்கள் சரிசெய்யலாம், இதனால் மீடியா பொருள்கள் சரியான கோப்பு இருப்பிடங்களை சேமிக்கின்றன."
+"சொந்தமாக, கிராம்ப்களுக்கு வெளியே செய்ய வேண்டும். இந்த கருவியைப் பயன்படுத்தி பாதைகளை நீங்கள்"
+" சரிசெய்யலாம், இதனால் மீடியா பொருள்கள் சரியான கோப்பு இருப்பிடங்களை சேமிக்கின்றன."
 
 #: ../gramps/plugins/tool/mediamanager.py:357
 msgid "Affected path"
@@ -35663,7 +35664,7 @@ msgstr "அவர்களின் பொதுவான மூதாதைய�
 #: ../gramps/plugins/tool/relcalc.py:241
 #, python-format
 msgid "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
-msgstr "அவற்றின் பொதுவான மூதாதையர் %(மூதாதையர் 1) கள் மற்றும் %(மூதாதையர் 2) கள்."
+msgstr "அவற்றின் பொதுவான மூதாதையர் %(ancestor1)s கள் மற்றும் %(ancestor2)s கள்."
 
 #: ../gramps/plugins/tool/relcalc.py:245
 msgid "Their common ancestors are: "
