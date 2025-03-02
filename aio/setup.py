@@ -89,7 +89,6 @@ PACKAGES = [
     "pygraphviz",
     "pydot",
     "orjson",
-    "selenium",
 ]
 EXCLUDES = [
     "tkinter",

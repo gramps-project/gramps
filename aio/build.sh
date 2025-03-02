@@ -80,7 +80,7 @@ source $pythonvenv/bin/activate
 
 ## prerequisites in pip packages
 python -m pip install --upgrade pip
-pip install --upgrade asyncio orjson pydot pydotplus pygraphviz requests selenium
+pip install --upgrade asyncio orjson pydot pydotplus pygraphviz requests
 
 ## download dictionaries
 mkdir -p /mingw64/share/enchant/hunspell
