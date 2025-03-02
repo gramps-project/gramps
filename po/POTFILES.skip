@@ -342,6 +342,7 @@ gramps/gui/editors/displaytabs/citationrefmodel.py
 gramps/gui/editors/displaytabs/eventattrembedlist.py
 gramps/gui/editors/displaytabs/eventbackreflist.py
 gramps/gui/editors/displaytabs/familyattrembedlist.py
+gramps/gui/editors/displaytabs/familybackreflist.py
 gramps/gui/editors/displaytabs/grampstab.py
 gramps/gui/editors/displaytabs/groupembeddedlist.py
 gramps/gui/editors/displaytabs/ldsmodel.py
