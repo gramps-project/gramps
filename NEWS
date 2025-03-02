@@ -1,3 +1,33 @@
+2025-03-02
+Version 6.0.0-rc1
+* Update translations: ca, cs, da, de, de_AT, en_GB, eo, fi, fr, he, hr, hu, id,
+  ko, mk, nb, nl, pt_PT, ru, sk, sv, ta, tr, uk.
+* Add selenium to Windows AIO build.
+* Simplify RelationshipPathBetween prepare method.
+* Simplify HaseSourceOfBase prepare method.
+* Fix upgrades from bsddb. Fixes #13633, #13652.
+* Always return str from to_string methods.
+* Fix bug with surname rules in Quick Views. Fixes #13657.
+* Reformat code using the latest stable version of black.
+* Strip whitespace from media path in media editor.
+* Strip whitespace from name and URL in Addon Manager project editor.
+* Provide new editor fallback icons for superscript and subscript. Fixes #13548.
+* Change default preferences to be more appropriate for new users.
+* Add extra checks when changing a parent in the family editor.  Fixes #13642.
+* Hide navigation bar selector when only one sidebar plugin is loaded.
+  Fixes #13640.
+* Fix media manager bug with relative to absolute path conversion. Fixes #13644.
+* Fix bug removing citation references after deleting a source. Fixes #13639.
+* Update the web search URL so that it works.
+* Remove the default toolbar style option and replace it with "Both".
+* Fix citation filter rules that search the source. Fixes #13635.
+* Fix crash in source/citation selector with an empty filter. Fixes #13634.
+* Convert deprecated filter operator "xor" to its synonym "one".
+* Mac:
+  * Package release 6.0.0-beta2 on macOS.
+  * Update dependency versions, bundle contents.
+  * Remove python-fontconfig from the build, no longer used.
+
 2025-02-12
 Version 6.0.0-beta2
 * Update translations: cs, de, de_AT, fi, he, hr, hu, is, it, nl, pl, pt_PT, sk,
