@@ -18,7 +18,7 @@
 # PKEv <pkev@yandex.ru>, 2022.
 # Павел Жуков <papazukko@gmail.com>, 2023, 2024.
 # Dmitriy Q <krotesk@mail.ru>, 2023.
-# Nick Hall <nick-h@gramps-project.org>, 2023.
+# Nick Hall <nick-h@gramps-project.org>, 2023, 2025.
 # Vlad Arkhipov <vlad@arkhipov.ru>, 2023.
 # OIS <mistresssilvara@hotmail.com>, 2023.
 msgid ""
@@ -26,8 +26,8 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-01-25 12:37+0000\n"
-"Last-Translator: Stanislav <bsv999@mail.ru>\n"
+"PO-Revision-Date: 2025-03-02 21:10+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -36,7 +36,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7440,13 +7440,12 @@ msgid "unknown"
 msgstr "неизвестен"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "больше чем %s лет"
-msgstr[1] "больше чем %s лет"
-msgstr[2] "больше чем %s лет"
+msgstr[0] "больше чем {number_of} лет"
+msgstr[1] "больше чем {number_of} лет"
+msgstr[2] "больше чем {number_of} лет"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -11131,22 +11130,20 @@ msgid "event with spouse"
 msgstr "события с супругом/супругой"
 
 #: ../gramps/gen/utils/alive.py:765
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "рождение потомков: {} поколений "
-msgstr[1] "рождение потомков: {} поколений "
-msgstr[2] "рождение потомков: {} поколений "
+msgstr[0] "рождение потомков: {number_of} поколений "
+msgstr[1] "рождение потомков: {number_of} поколений "
+msgstr[2] "рождение потомков: {number_of} поколений "
 
 #: ../gramps/gen/utils/alive.py:788
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "смерти потомков: {} поколений "
-msgstr[1] "смерти потомков: {} поколений "
-msgstr[2] "смерти потомков: {} поколений "
+msgstr[0] "смерти потомков: {number_of} поколений "
+msgstr[1] "смерти потомков: {number_of} поколений "
+msgstr[2] "смерти потомков: {number_of} поколений "
 
 #: ../gramps/gen/utils/alive.py:803
 #, fuzzy, python-format
@@ -38731,10 +38728,9 @@ msgstr "Места на букву %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Тестировать выделенный фильтр"
+msgstr "Тестировать %s выделенный фильтр"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
