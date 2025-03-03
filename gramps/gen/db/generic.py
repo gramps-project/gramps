@@ -832,7 +832,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             if force_schema_upgrade:
                 self._gramps_upgrade(dbversion, directory, callback)
             else:
-                self.close()
+                self.close(update=False)
                 raise DbUpgradeRequiredError(dbversion, self.VERSION[0])
 
     def _create_undo_manager(self):
