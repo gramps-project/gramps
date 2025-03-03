@@ -270,18 +270,16 @@ def db_load(tstfile, self):
                 continue
         return db
     # Get here is there is an exception the while loop does not handle
-    except DbVersionError as msg:
-        self.assertTrue(True, msg=("Cannot open database" + str(msg)))
-    except DbPythonError as msg:
-        self.assertTrue(True, msg=("Cannot open database" + str(msg)))
-    except DbConnectionError as msg:
-        self.assertTrue(True, msg=("Cannot open database" + str(msg)))
-    except OSError as msg:
-        self.assertTrue(True, msg=("Could not open file: %s" % tstfile + str(msg)))
-    except DbError as msg:
-        self.assertTrue(True, msg=("Cannot open database" + str(msg)))
-    except Exception as msg:
-        self.assertTrue(True, msg=("Cannot open database" + str(msg)))
+    except (
+        DbVersionError,
+        DbPythonError,
+        DbConnectionError,
+        OSError,
+        DbError,
+        Exception,
+    ) as msg:
+        msg = str(msg)
+        self.assertTrue(False, msg=f"Cannot open database {tstfile} {msg}")
     return
 
 
@@ -332,9 +330,16 @@ def make_tst_function(tstfile, file_name):
                 )
             set_det_id(True)
             self.database2 = import_as_dict(fn2, self.user)
-        self.assertIsNotNone(self.database1, "Unable to import file: %s" % fn1)
+            msg = (
+                "\n****Captured Output****\n"
+                + str(output[0])
+                + "\n****Captured Err****\n"
+                + str(output[1])
+                + "\n****End Capture Err****\n"
+            )
+        self.assertIsNotNone(self.database1, f"Unable to import file: {fn1} {msg}")
         self.assertIsNotNone(
-            self.database2, "Unable to import expected result file: %s" % fn2
+            self.database2, f"Unable to import expected result file: {fn2} {msg}"
         )
         if self.database2 is None or self.database1 is None:
             return
