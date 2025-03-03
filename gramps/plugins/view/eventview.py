@@ -483,6 +483,7 @@ class EventView(ListView):
                 "Event Notes",
                 "Event Attributes",
                 "Event Backlinks",
+                "Event Calendar",
             ),
         )
 
