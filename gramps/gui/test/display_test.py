@@ -1,4 +1,4 @@
-""" Unittest for display.py """
+"""Unittest for display.py"""
 
 import unittest
 from unittest.mock import patch

@@ -175,10 +175,10 @@ if LIB_PATH not in sys.path:
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 sys.path.insert(0, ROOT_DIR)
-git_revision = get_git_revision(ROOT_DIR).replace("\n", "")
-if sys.platform == "win32" and git_revision == "":
-    git_revision = get_git_revision(os.path.split(ROOT_DIR)[1])
 if DEV_VERSION:
+    git_revision = get_git_revision(ROOT_DIR).replace("\n", "")
+    if sys.platform == "win32" and git_revision == "":
+        git_revision = get_git_revision(os.path.split(ROOT_DIR)[1])
     VERSION += git_revision
 # VERSION += "-1"
 

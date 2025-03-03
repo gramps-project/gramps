@@ -25,6 +25,7 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 from collections import deque
 
 # -------------------------------------------------------------------------
@@ -91,7 +92,7 @@ def get_person_family_people(
 
 
 def find_deep_relations(
-    db: Database, user, person: Person, target_people: List[str]
+    db: Database, user, person: Person | None, target_people: List[str]
 ) -> Set[str]:
     """This explores all possible paths between a person and one or more
     targets.  The algorithm processes paths in a breadth first wave, one

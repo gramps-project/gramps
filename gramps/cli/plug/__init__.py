@@ -26,7 +26,7 @@
 # cli.plug.__init__
 #
 
-""" Enable report generation from the command line interface (CLI) """
+"""Enable report generation from the command line interface (CLI)"""
 
 # -------------------------------------------------------------------------
 #

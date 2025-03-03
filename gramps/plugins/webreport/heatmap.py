@@ -614,8 +614,8 @@ class HeatmapPage(BasePage):
             result = self.write_header(event_type)
             events = self.get_all_events(event_type)
             msg = self._(
-                "This section contains the map for all people with the event: %s (%s)"
-            ) % (event_type, self.selected_filter)
+                "This section contains the map for all people with the event: {event_type} ({selected_filter})"
+            ).format(event_type=event_type, selected_filter=self.selected_filter)
             if not len(self.places):
                 msg += self._(" which has no event for the selected filter.")
             tracelife = self.create_tracelife(self.places, events)
@@ -626,10 +626,9 @@ class HeatmapPage(BasePage):
             )
             result = self.write_header(surname[0])
             selected = self.get_surname_events(surname[2])
-            msg = self._("This section contains the map of all events for: %s (%s)") % (
-                surname[0],
-                self.selected_filter,
-            )
+            msg = self._(
+                "This section contains the map of all events for: {surname} ({selected_filter})"
+            ).format(surname=surname[0], selected_filter=self.selected_filter)
             if not len(self.places):
                 msg += self._(" which has no event for the selected filter.")
             tracelife = self.create_tracelife(self.places, selected)
@@ -638,8 +637,8 @@ class HeatmapPage(BasePage):
             result = self.write_header(tag[0])
             selected = self.get_tag_events(tag)
             msg = self._(
-                "This section contains the map for all people, events with the tag: %s (%s)"
-            ) % (tag[0], self.selected_filter)
+                "This section contains the map for all people, events with the tag: {tag} ({selected_filter})"
+            ).format(tag=tag[0], selected_filter=self.selected_filter)
             if not len(self.places):
                 msg += self._(" which has no event for the selected filter.")
             tracelife = self.create_tracelife(self.places, tag)
@@ -924,30 +923,31 @@ class HeatmapPage(BasePage):
                 links = "''"
                 for event_ID in events:
                     event = self.r_db.get_event_from_gramps_id(event_ID)
-                    handle = event.get_place_handle()
-                    if handle:
-                        place = self.r_db.get_place_from_handle(handle)
-                        placename = _pd.display(self.r_db, place, fmt=0)
-                        p_fname = (
-                            self.report.build_url_fname(handle, "plc", self.uplink)
-                            + self.ext
-                        )
-                        placetitle = ' <a href="%s">%s</a>' % (p_fname, placename)
-
-                    bkref_list = self.report.bkref_dict[Event][event.handle]
-                    for ref in bkref_list:
-                        (bkref_class, bkref_hdle, role) = ref
-                        if bkref_class == Person:
-                            person = self.r_db.get_person_from_handle(bkref_hdle)
-                            links = self.__create_links_tracelife(
-                                links,
-                                person,
-                                placetitle,
-                                latitude,
-                                longitude,
-                                ref,
-                                event,
+                    if event:
+                        handle = event.get_place_handle()
+                        if handle:
+                            place = self.r_db.get_place_from_handle(handle)
+                            placename = _pd.display(self.r_db, place, fmt=0)
+                            p_fname = (
+                                self.report.build_url_fname(handle, "plc", self.uplink)
+                                + self.ext
                             )
+                            placetitle = ' <a href="%s">%s</a>' % (p_fname, placename)
+
+                        bkref_list = self.report.bkref_dict[Event][event.handle]
+                        for ref in bkref_list:
+                            (bkref_class, bkref_hdle, role) = ref
+                            if bkref_class == Person:
+                                person = self.r_db.get_person_from_handle(bkref_hdle)
+                                links = self.__create_links_tracelife(
+                                    links,
+                                    person,
+                                    placetitle,
+                                    latitude,
+                                    longitude,
+                                    ref,
+                                    event,
+                                )
                 debug = 0
                 tracelife = self._create_family_tracelife(
                     tracelife, placetitle, latitude, longitude, links

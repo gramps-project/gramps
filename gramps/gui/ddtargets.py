@@ -22,26 +22,26 @@
 #
 
 """
-   This module provides management of all the drag and drop target information
-   required by gramps widgets.
+This module provides management of all the drag and drop target information
+required by gramps widgets.
 
-   Adding a new drag and drop target.
-   ==================================
+Adding a new drag and drop target.
+==================================
 
-   To add a new target: add a new _DdType to in _DdTargets.__init__ and
-   then add this new type to the list returned from either all_text_types()
-   and all_text_targets() or  or all_gramps_targets() and all_gramps_types().
+To add a new target: add a new _DdType to in _DdTargets.__init__ and
+then add this new type to the list returned from either all_text_types()
+and all_text_targets() or  or all_gramps_targets() and all_gramps_types().
 
-   Usage
-   =====
+Usage
+=====
 
-   The module defines a singleton instance of _DdTargets called DdTargets.
+The module defines a singleton instance of _DdTargets called DdTargets.
 
-   from .ddtargets import DdTargets
+from .ddtargets import DdTargets
 
-   drag_dest_set(Gtk.DestDefaults.ALL,
-                 DdTargets.all_targets(),
-                 Gdk.DragAction.COPY)
+drag_dest_set(Gtk.DestDefaults.ALL,
+              DdTargets.all_targets(),
+              Gdk.DragAction.COPY)
 
 """
 

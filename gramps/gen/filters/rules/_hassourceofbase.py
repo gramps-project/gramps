@@ -59,16 +59,12 @@ class HasSourceOfBase(Rule):
     description = "Matches objects who have a particular source"
 
     def prepare(self, db: Database, user):
-        if self.list[0] == "":
+        self.nosource = self.list[0] == ""
+        if self.nosource:
             self.source_handle = None
-            self.nosource = True
-            return
-
-        self.nosource = False
-        try:
-            self.source_handle = db.get_source_from_gramps_id(self.list[0]).handle
-        except:
-            self.source_handle = None
+        else:
+            source = db.get_source_from_gramps_id(self.list[0])
+            self.source_handle = source.handle if source else None
 
     def apply_to_one(self, db: Database, object: CitationBase) -> bool:
         if not self.source_handle:

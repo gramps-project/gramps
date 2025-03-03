@@ -22,6 +22,12 @@
 """
 Rule that checks for a family that is a descendant of a specified family.
 """
+# -------------------------------------------------------------------------
+#
+# Standard python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
@@ -71,7 +77,7 @@ class IsDescendantOf(Rule):
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
 
-    def init_list(self, db: Database, family: Family, first: bool) -> None:
+    def init_list(self, db: Database, family: Family | None, first: bool) -> None:
         """
         Initialise family handle list.
         """

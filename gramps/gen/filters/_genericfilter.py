@@ -80,7 +80,7 @@ class GenericFilter:
         """
         Return True or False depending on whether the handle matches the filter.
         """
-        obj = self.get_object(handle)
+        obj = self.get_object(db, handle)
         return self.apply_to_one(db, obj)
 
     def is_empty(self):
@@ -190,8 +190,8 @@ class GenericFilter:
                             final_list.append(handle)
 
         else:
+            id_list = list(id_list)
             if user:
-                id_list = list(id_list)
                 user.begin_progress(_("Filter"), _("Applying ..."), len(id_list))
             for handle_data in id_list:
                 if user:

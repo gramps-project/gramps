@@ -95,7 +95,7 @@ class Navigator:
         self.top.show()
 
         self.select_button = Gtk.ComboBoxText()
-        self.select_button.show()
+        self.select_button.hide()
         self.top.pack_end(self.select_button, False, True, 0)
 
         self.stack = Gtk.Stack(homogeneous=False)

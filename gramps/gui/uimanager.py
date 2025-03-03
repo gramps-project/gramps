@@ -262,12 +262,12 @@ class UIManager:
         toolbar_parent.remove(toolbar)
         toolbar = self.builder.get_object("ToolBar")  # new toolbar
         toolbar_style = config.get("interface.toolbar-style")
-        if toolbar_style == 1:
-            toolbar.set_style(Gtk.ToolbarStyle.TEXT)
-        elif toolbar_style == 2:
-            toolbar.set_style(Gtk.ToolbarStyle.ICONS)
-        elif toolbar_style == 3:
+        if toolbar_style == 0:
             toolbar.set_style(Gtk.ToolbarStyle.BOTH)
+        elif toolbar_style == 1:
+            toolbar.set_style(Gtk.ToolbarStyle.TEXT)
+        else:
+            toolbar.set_style(Gtk.ToolbarStyle.ICONS)
         toolbar_parent.pack_start(toolbar, False, True, 0)
         if tb_show:
             toolbar.show_all()

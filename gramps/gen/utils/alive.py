@@ -260,7 +260,7 @@ class ProbablyAlive:
             birth_evidence_direct = True
             if death_date is not None:
                 explanation = _(
-                    "Direct evidence for this person - birth: {birth_min_src:s}, death:  {death_src:s}"
+                    "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
                 ).format(
                     birth_min_src=explain_birth_min,
                     death_src=explain_death,
@@ -438,21 +438,21 @@ class ProbablyAlive:
         #  or else both are zero (if None then it's a bug).
         if birth_evidence_direct:
             explanation = _(
-                "Direct evidence for this person - birth: {birth_min_src:s}, death: {death_src:s}"
+                "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
             ).format(
                 birth_min_src=explain_birth_min,
                 death_src=explain_death,
             )
         elif explain_birth_max == "":
             explanation = _(
-                "inferred from parents and siblings - birth: {birth_min_src:s}, death: {death_src:s}"
+                "inferred from parents and siblings - birth: {birth_min_src}, death: {death_src}"
             ).format(
                 birth_min_src=explain_birth_min,
                 death_src=explain_death,
             )
         else:
             explanation = _(
-                "inferred from parents and siblings - birth:  {birth_min_src:s} (earliest) to {birth_max_src:s} (latest), death: {death_src:s}"
+                "inferred from parents and siblings - birth: {birth_min_src} (earliest) to {birth_max_src} (latest), death: {death_src}"
             ).format(
                 birth_min_src=explain_birth_min,
                 birth_max_src=explain_birth_max,

@@ -846,6 +846,7 @@ class CheckIntegrity:
             if (
                 photo_name is not None
                 and photo_name != ""
+                and not photo_name.startswith(("http://", "https://"))
                 and not find_file(photo_name)
             ):
                 if cli:

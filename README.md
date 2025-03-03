@@ -25,8 +25,6 @@ The following three packages with GObject Introspection bindings (the gi package
 * [**pango**](http://www.pango.org/) - a library for laying out and rendering of text, with an emphasis on internationalization.
 * [**pangocairo**](http://www.pango.org/) - Allows you to use Pango with Cairo.
 * [**librsvg2**](http://live.gnome.org/LibRsvg) - (SVG icon view) a library to render SVG files using cairo.
-* [**bsddb3**](https://pypi.python.org/pypi/bsddb3/) - Python bindings for Oracle Berkeley database.
-* [**sqlite3**](https://www.sqlite.org/) - Python bindings for SQLite Database library.
 * [**orjson**](https://pypi.org/project/orjson/) - A fast JSON library for Python. Used to increase the performance of Gramps.
 
 The following package is needed for full translation of the interface
@@ -81,6 +79,10 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
 
 The following packages are optional:
 ------------------------------------
+* [**bsddb3**](https://pypi.python.org/pypi/bsddb3/)
+
+Python bindings for Oracle Berkeley database. Only needed to upgrade older Gramps databases.
+
 * **gspell**
 
  Enable spell checking in the notes.

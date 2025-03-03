@@ -19,7 +19,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-""" Generic upgrade module for dbapi dbs """
+"""Generic upgrade module for dbapi dbs"""
 # ------------------------------------------------------------------------
 #
 # Python Modules
@@ -78,6 +78,20 @@ def gramps_upgrade_21(self):
 
     self._txn_begin()
     self.upgrade_table_for_json_data("metadata")
+    # the *map_keys are not in some older versions of the db so we will initialize
+    # them here; needed in blobs if someone tries to downgrade the db so we don't
+    # crash before the warning is generated.
+    self.set_serializer("blob")
+    self._set_metadata("cmap_index", self.cmap_index, use_txn=False)
+    self._set_metadata("smap_index", self.smap_index, use_txn=False)
+    self._set_metadata("emap_index", self.emap_index, use_txn=False)
+    self._set_metadata("pmap_index", self.pmap_index, use_txn=False)
+    self._set_metadata("fmap_index", self.fmap_index, use_txn=False)
+    self._set_metadata("lmap_index", self.lmap_index, use_txn=False)
+    self._set_metadata("omap_index", self.omap_index, use_txn=False)
+    self._set_metadata("rmap_index", self.rmap_index, use_txn=False)
+    self._set_metadata("nmap_index", self.nmap_index, use_txn=False)
+
     keys = self._get_metadata_keys()
     for key in keys:
         self.set_serializer("blob")
@@ -107,7 +121,10 @@ def gramps_upgrade_21(self):
             # has "handle", "_class", and uses json.dumps()
             self._commit_raw(json_data, key)
             self.update()
+        self._drop_column(table_name, "blob_data")
 
+    self.set_serializer("blob")
+    self._set_metadata("version", 21, use_txn=False)  # keep blob version up to date
     self.set_serializer("json")
     self._set_metadata("version", 21, use_txn=False)
     self._txn_commit()

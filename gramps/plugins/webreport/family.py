@@ -435,14 +435,12 @@ class FamilyPages(BasePage):
                 fname = _nd.display_name(nname)
                 extended_handle_list[bletter].append((hdle, fname))
         extended_handle_list = list(extended_handle_list.items())
-        max_rows = max_letter_rows[bletter]
         create_indexes_pages(
             report,
             "families",
             index_list,
             self.part_familylistpage,
             extended_handle_list,
-            max_rows,
             locale=self.rlocale,
         )
 

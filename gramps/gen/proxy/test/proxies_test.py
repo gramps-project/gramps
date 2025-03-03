@@ -52,7 +52,7 @@ class PrivateProxyTest(unittest.TestCase):
     def assertDataEquals(self, data1, data2):
         self.assertIsInstance(data1, dict)
         self.assertIsInstance(data2, dict)
-        self.assertEquals(
+        self.assertEqual(
             remove_object(data1),
             remove_object(data2),
         )
@@ -80,7 +80,7 @@ class PrivateProxyTest(unittest.TestCase):
         data = self.db.get_raw_person_data(handle)
         self.assertIsNot(data, None)
         self.assertIsInstance(data, dict)
-        self.assertEquals(data.handle, handle)
+        self.assertEqual(data.handle, handle)
         # Should be same:
         data_orig = self.db.basedb.get_raw_person_data(handle)
         self.assertDataEquals(data, data_orig)
@@ -102,7 +102,7 @@ class PrivateProxyTest(unittest.TestCase):
         self.assertIsInstance(person, Person)
         person_orig = self.db.basedb.get_person_from_handle(handle)
         # Same person:
-        self.assertEquals(person.gramps_id, person_orig.gramps_id)
+        self.assertEqual(person.gramps_id, person_orig.gramps_id)
 
     def test_person_with_private_data(self):
         # A person with private data:
@@ -139,7 +139,7 @@ class LivingProxyTest(unittest.TestCase):
         handle = "004KQCGYT27EEPQHK"
         data = self.db.get_raw_person_data(handle)
         self.assertIsInstance(data, dict)
-        self.assertEquals(data.primary_name.first_name, "Martha")
+        self.assertEqual(data.primary_name.first_name, "Martha")
 
     def test_dead_person_data(self):
         handle = "66TJQC6CC7ZWL9YZ64"

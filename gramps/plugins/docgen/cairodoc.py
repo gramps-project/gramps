@@ -20,8 +20,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-"""PS/PDF output generator based on Cairo.
-"""
+"""PS/PDF output generator based on Cairo."""
 
 # ------------------------------------------------------------------------
 #

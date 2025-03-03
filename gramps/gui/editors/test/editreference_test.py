@@ -18,7 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" Unittest for editreference.py """
+"""Unittest for editreference.py"""
 
 import unittest
 from unittest.mock import Mock, patch

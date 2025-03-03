@@ -19,8 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-"""The core library of Gramps objects
-"""
+"""The core library of Gramps objects"""
 # Dates
 from .date import Date, DateError, Span
 

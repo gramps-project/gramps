@@ -58,6 +58,7 @@ class Statusbar(Gtk.Box):
         self.set_border_width(2)
 
         self.__progress = Gtk.ProgressBar()
+        self.__progress.set_valign(Gtk.Align.CENTER)
         self.__progress.set_size_request(100, -1)
         self.__progress.hide()
 

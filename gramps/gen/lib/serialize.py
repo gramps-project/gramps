@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2017,2024       Nick Hall
-# Copyright (C) 2024            Doug Blank
+# Copyright (C) 2024-2025       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -64,6 +64,13 @@ class BlobSerializer:
     metadata_field = "value"
 
     @staticmethod
+    def get_from_data_by_name(data, item):
+        if item == "handle":
+            return data[0]
+        else:
+            raise ValueError(f"unknown data name: {item}")
+
+    @staticmethod
     def data_to_object(data, obj_class):
         LOG.debug("blob, data_to_object: %s(%r)", obj_class, data)
         return obj_class.create(data)
@@ -107,6 +114,13 @@ class JSONSerializer:
 
     data_field = "json_data"
     metadata_field = "json_data"
+
+    @staticmethod
+    def get_from_data_by_name(data, item):
+        if item == "handle":
+            return data["handle"]
+        else:
+            raise ValueError(f"unknown data name: {item}")
 
     @staticmethod
     def data_to_object(data, obj_class=None):

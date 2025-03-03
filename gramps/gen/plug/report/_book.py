@@ -24,7 +24,7 @@
 # Written by Alex Roitman,
 # largely based on the BaseDoc classes by Don Allingham
 
-""" the non-UI-specific (i.e. common, shared) classes for books """
+"""the non-UI-specific (i.e. common, shared) classes for books"""
 
 # -------------------------------------------------------------------------
 #

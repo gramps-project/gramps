@@ -79,6 +79,8 @@ class FilterParser(handler.ContentHandler):
                         op = "and"
                 except ValueError:
                     op = attrs["function"]
+                    if op == "xor":  # Synonym for "one" removed in v6.0
+                        op = "one"
                 self.f.set_logical_op(op)
             if "invert" in attrs:
                 self.f.set_invert(attrs["invert"])

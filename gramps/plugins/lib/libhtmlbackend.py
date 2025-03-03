@@ -18,8 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-"""Html and Html format management for the different reports
-"""
+"""Html and Html format management for the different reports"""
 
 # ------------------------------------------------------------------------
 #

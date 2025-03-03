@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" Unittest for argparser.py """
+"""Unittest for argparser.py"""
 
 import unittest
 from unittest.mock import Mock

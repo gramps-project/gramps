@@ -21,7 +21,7 @@
 #
 
 """
-    base class for generating dialogs for docgen-derived reports
+base class for generating dialogs for docgen-derived reports
 """
 
 # -------------------------------------------------------------------------

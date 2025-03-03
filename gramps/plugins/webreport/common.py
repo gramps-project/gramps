@@ -1088,9 +1088,7 @@ def html_escape(text):
     return text
 
 
-def create_indexes_pages(
-    report, name, index_list, function, handle_list, max_rows, locale=None
-):
+def create_indexes_pages(report, name, index_list, function, handle_list, locale=None):
     """
     This is used to create indexes depending on a row limit.
 
@@ -1099,15 +1097,12 @@ def create_indexes_pages(
     @param: index_list  -- The base name of the file to create
     @param: function    -- The function used to create the page
     @param: handle_list -- The list of handles to manage
-    @param: max_rows    -- The number of rows included in this page
     @param: locale      -- The locale used for sor t, ...
     """
     row_count = report.options["splitindex"]
-    max_rows += row_count  # For the last incomplete page
-    max_rows = int(max_rows / row_count) * row_count
     page = 0
     for letter, hdle_list in handle_list:
-        if not "events" in name:
+        if "events" not in name:
             hdle_list.sort(key=lambda x: locale.sort_key(x[1]))
         if len(hdle_list) <= row_count:
             function(

@@ -20,9 +20,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" Dump Gender Statistics.
+"""Dump Gender Statistics.
 
-    Tools/Debug/Dump Gender Statistics
+Tools/Debug/Dump Gender Statistics
 """
 
 # -------------------------------------------------------------------------

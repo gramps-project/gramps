@@ -463,11 +463,11 @@ class ArgHandler:
             for summary in sorted(
                 summary_list, key=lambda sum: sum[_("Family Tree")].lower()
             ):
-                line_list = [(_('"%s"') % summary[_("Family Tree")])]
+                line_list = [_('"%s"') % summary[_("Family Tree")]]
                 for item in sorted(summary):
                     if item != _("Family Tree"):
                         # Translators: used in French+Russian, ignore otherwise
-                        line_list += [(_('"%s"') % summary[item])]
+                        line_list += [_('"%s"') % summary[item]]
                 print("\t".join(line_list))
             return
 

@@ -862,8 +862,8 @@ class AddonManager(ManagedWindow):
         if dialog.run() == Gtk.ResponseType.OK:
             if row.project[0] == "":
                 self.project_list.add(row)
-            row.project[0] = name.get_text()
-            row.project[1] = url.get_text()
+            row.project[0] = name.get_text().strip()
+            row.project[1] = url.get_text().strip()
             row.update()
             self.update_project_list()
             self.refresh()

@@ -2121,10 +2121,9 @@ class GrampsPreferences(ConfigureDialog):
         # Toolbar styles:
         obox = Gtk.ComboBoxText()
         formats = [
-            _("Use default preference"),
+            _("Both text and icons"),
             _("Text only"),
             _("Icons only"),
-            _("Both text and icons"),
         ]
         list(map(obox.append_text, formats))
         active = config.get("interface.toolbar-style")

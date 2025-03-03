@@ -161,11 +161,11 @@ def string_to_dict(string: str | bytes) -> dict:
     return orjson.loads(string)
 
 
-def dict_to_string(dict: dict) -> str | bytes:
+def dict_to_string(dict: dict) -> str:
     """
     Convert a dict into its JSON string representation.
     """
-    return orjson.dumps(dict)
+    return orjson.dumps(dict).decode()
 
 
 def object_to_dict(obj):
@@ -218,18 +218,18 @@ def data_to_object(data):
     return data
 
 
-def object_to_string(obj: object) -> str | bytes:
+def object_to_string(obj: object) -> str:
     """
     Convert any Gramps object into a JSON string/bytes.
     """
-    return orjson.dumps(obj, default=convert_object_to_state)
+    return orjson.dumps(obj, default=convert_object_to_state).decode()
 
 
-def data_to_string(data: DataDict):
+def data_to_string(data: DataDict) -> str:
     """
     Convert a DataDict into a string.
     """
-    return orjson.dumps(remove_object(data))
+    return orjson.dumps(remove_object(data)).decode()
 
 
 def string_to_object(string: str | bytes):

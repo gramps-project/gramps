@@ -1,6 +1,6 @@
 """
- Use with:
- python3 setup.py build_exe --no-compress -O1
+Use with:
+python3 setup.py build_exe --no-compress -O1
 """
 
 import sys
@@ -89,6 +89,7 @@ PACKAGES = [
     "pygraphviz",
     "pydot",
     "orjson",
+    "selenium",
 ]
 EXCLUDES = [
     "tkinter",
