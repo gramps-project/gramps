@@ -28,7 +28,7 @@
 import os
 import pickle
 import logging
-from bsddb3.db import DB, DB_DUP, DB_HASH, DB_RDONLY, DB_BTREE, DBInvalidArgError
+from bsddb3.db import DB, DB_DUP, DB_HASH, DB_RDONLY
 
 # -------------------------------------------------------------------------
 #
@@ -137,15 +137,7 @@ class DbBsddb(SQLite):
         if os.path.isfile(file_name):
             name_group_dbmap = DB()
             name_group_dbmap.set_flags(DB_DUP)
-            try:
-                # some early versions of Gramps used btree for the name_group
-                name_group_dbmap.open(file_name, "name_group", DB_BTREE, DB_RDONLY)
-            except DBInvalidArgError:
-                name_group_dbmap.close()
-                # and other Gramps versions used hash
-                name_group_dbmap = DB()
-                name_group_dbmap.set_flags(DB_DUP)
-                name_group_dbmap.open(file_name, "name_group", DB_HASH, DB_RDONLY)
+            name_group_dbmap.open(file_name, "name_group", DB_HASH, DB_RDONLY)
             total += len(name_group_dbmap)
         else:
             name_group_dbmap = None
