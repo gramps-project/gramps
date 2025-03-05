@@ -13,13 +13,14 @@
 # Proof-reading: Vlora Jakupi <vlorajak@hotmail.com>, 2008
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# Usergnv Gnvuser <gnvuser131@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2021-06-04 21:08+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2025-03-05 02:54+0000\n"
+"Last-Translator: Usergnv Gnvuser <gnvuser131@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sq/>\n"
 "Language: sq\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 "X-Poedit-Basepath: /home/jole/SVN/gramps/gramps30/src\n"
 "X-Poedit-Language: MACEDONIA\n"
 "X-Poedit-Country: MACEDONIA\n"
@@ -42,7 +43,7 @@ msgstr "Bugarisht"
 
 #: ../data/holidays.xml:52
 msgid "Canada"
-msgstr "Kanada "
+msgstr "Kanada"
 
 #: ../data/holidays.xml:84
 #, fuzzy
@@ -57,7 +58,7 @@ msgstr "Fëmija"
 
 #: ../data/holidays.xml:124
 msgid "China"
-msgstr ""
+msgstr "Kina"
 
 #: ../data/holidays.xml:127
 #, fuzzy
@@ -88,11 +89,11 @@ msgstr "Gjermanisht"
 
 #: ../data/holidays.xml:335
 msgid "Japan"
-msgstr ""
+msgstr "Japonisht"
 
 #: ../data/holidays.xml:358
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "Fundjava e çifuteve"
 
 #: ../data/holidays.xml:359
 msgid "Purim"
