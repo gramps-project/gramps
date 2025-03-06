@@ -467,6 +467,8 @@ class MediaView(ListView):
       <section>
         <placeholder id='QuickReport'>
         </placeholder>
+        <placeholder id='WebConnect'>
+        </placeholder>
       </section>
       <section>
         <placeholder id='AfterTools'>

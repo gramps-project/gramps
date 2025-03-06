@@ -69,7 +69,6 @@ from ..widgets.menuitem import add_menuitem
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.utils.debug import profile
 from gramps.gen.utils.string import data_recover_msg
-from gramps.gen.plug import CATEGORY_QR_PERSON
 from ..dialog import QuestionDialog, QuestionDialog3, ErrorDialog, MultiSelectDialog
 from ..editors import FilterEditor
 from ..ddtargets import DdTargets
@@ -1066,7 +1065,7 @@ class ListView(NavigationView):
                     self.at_popup_menu.append(qr_ui)
 
             # Web Connects
-            if self.QR_CATEGORY == CATEGORY_QR_PERSON:
+            if self.QR_CATEGORY > -1:
                 (web_ui, web_actions) = create_web_connect_menu(
                     self.dbstate,
                     self.uistate,

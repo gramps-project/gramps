@@ -477,6 +477,8 @@ class PlaceBaseView(ListView):
       <section>
         <placeholder id='QuickReport'>
         </placeholder>
+        <placeholder id='WebConnect'>
+        </placeholder>
       </section>
       <section>
         <item>
