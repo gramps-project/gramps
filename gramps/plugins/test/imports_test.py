@@ -30,7 +30,6 @@ import os
 import sys
 import re
 import locale
-import tempfile
 from time import localtime, strptime
 from unittest.mock import patch
 import zipfile
@@ -234,17 +233,18 @@ def _format_struct_path(path):
     return retval
 
 
-def db_load(tstfile, self):
+def db_load(zipfn, self):
     """load a legacy db (typically bsddb, but sqlite allowed)
-    Note: tstfile is a zip of the the db directory.
+    Note: zipfn is a location for zip of the the db directory.
     To make this code easier, the db dir must be named with same root name as the
     zip file.  For example the "imp_413.zip" must contain a single "imp_413" dir
     (not the usual 8 hex character name).
     """
-    with zipfile.ZipFile(tstfile, "r") as myzip:
-        myzip.extractall(path=TEMP_DIR)
-    (tstfile, _ext) = os.path.splitext(tstfile)
+    (tstfile, _ext) = os.path.splitext(zipfn)
     tstfile = os.path.join(TEMP_DIR, os.path.basename(tstfile))
+    shutil.rmtree(tstfile, ignore_errors=True)
+    with zipfile.ZipFile(zipfn, "r") as myzip:
+        myzip.extractall(path=TEMP_DIR)
     force_schema_upgrade = True
     try:
         while True:
