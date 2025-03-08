@@ -95,7 +95,7 @@ class BaseSelector(ManagedWindow):
         self.renderer.set_property("ellipsize", Pango.EllipsizeMode.END)
 
         self.dbstate = dbstate
-        self.db_connections = []
+        self.db_connections: list[int] = []
         self.tree = None
         self.model = None
 
