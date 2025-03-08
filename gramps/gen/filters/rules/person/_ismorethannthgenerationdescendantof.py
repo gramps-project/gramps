@@ -33,7 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
-
+from ....lib.json_utils import DataDict
 
 # -------------------------------------------------------------------------
 #
@@ -77,7 +77,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_list(self, person: Person, gen: int) -> None:
+    def init_list(self, person: DataDict | None, gen: int) -> None:
         if not person:
             return
         if gen >= int(self.list[1]):
@@ -87,6 +87,4 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 for child_ref in fam.child_ref_list:
-                    self.init_list(
-                        self.db.get_person_from_handle(child_ref.ref), gen + 1
-                    )
+                    self.init_list(self.db.get_raw_person_data(child_ref.ref), gen + 1)
