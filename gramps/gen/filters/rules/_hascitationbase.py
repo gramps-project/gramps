@@ -44,7 +44,7 @@ from . import Rule
 # -------------------------------------------------------------------------
 from ...lib.citationbase import CitationBase
 from ...lib import Citation
-from ...db import Database
+from ...types import Database
 
 
 # -------------------------------------------------------------------------

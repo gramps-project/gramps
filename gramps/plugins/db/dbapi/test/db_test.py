@@ -23,6 +23,7 @@
 # Standard python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import unittest
 
 # -------------------------------------------------------------------------
@@ -178,7 +179,7 @@ class DbRandomTest(unittest.TestCase):
     #
     ################################################################
     def __get_handles_test(
-        self, obj_type, handles_func, number_func, sort_handles=False
+        self, obj_type, handles_func, number_func, sort_handles: bool = False
     ):
         if sort_handles:
             handles = handles_func(sort_handles=True)
