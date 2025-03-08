@@ -1208,7 +1208,7 @@ class Date(BaseObject):
         the integer number of days that have elapsed since Monday, January 1,
         4713 BC in the proleptic Julian calendar.
 
-        .. seealso:: http://en.wikipedia.org/wiki/Julian_day
+        .. seealso:: https://en.wikipedia.org/wiki/Julian_day
         """
         return self.sortval
 

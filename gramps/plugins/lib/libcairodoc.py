@@ -669,7 +669,7 @@ class GtkDocParagraph(GtkDocBaseElement):
 
         ##      GTK3 PROBLEM: get_iterator no longer available!!
         ##      REFERENCES:
-        ##          http://www.gramps-project.org/bugs/view.php?id=6208
+        ##          https://www.gramps-project.org/bugs/view.php?id=6208
         ##          https://bugzilla.gnome.org/show_bug.cgi?id=646788
         ##          workaround: https://github.com/matasbbb/pitivit/commit/da815339e5ce3631b122a72158ba9ffcc9ee4372
         ##      OLD EASY CODE:
@@ -1595,7 +1595,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
 WARNING: This version of cairo (%s) does NOT support clickable links.
 The first version that is suppose to is v1.12.  See the roadmap:
 
-    http://www.cairographics.org/roadmap/
+    https://www.cairographics.org/roadmap/
 
 The work around is to save to another format that supports clickable
 links (like ODF) and write PDF from that format.

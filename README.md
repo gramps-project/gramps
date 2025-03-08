@@ -15,12 +15,12 @@ Requirements
 The following packages **MUST** be installed in order for Gramps to work:
 
 * [**Python**](https://www.python.org/) 3.9 or greater - The programming language used by Gramps.
-* [**GTK**](http://www.gtk.org/) 3.24 or greater - A cross-platform widget toolkit for creating graphical user interfaces.
+* [**GTK**](https://www.gtk.org/) 3.24 or greater - A cross-platform widget toolkit for creating graphical user interfaces.
 * [**pygobject**](https://wiki.gnome.org/Projects/PyGObject) 3.12 or greater - Python Bindings for GLib/GObject/GIO/GTK+
 
 The following three packages with GObject Introspection bindings (the gi packages)
 
-* [**cairo**](http://cairographics.org/) 1.14.0 or greater - a 2D graphics library with support for multiple output devices.
+* [**cairo**](https://cairographics.org/) 1.14.0 or greater - a 2D graphics library with support for multiple output devices.
 * [**Pycairo**](https://github.com/pygobject/pycairo) 1.13.3 or greater - GObject Introspection bindings for cairo.
 * [**pango**](http://www.pango.org/) - a library for laying out and rendering of text, with an emphasis on internationalization.
 * [**pangocairo**](http://www.pango.org/) - Allows you to use Pango with Cairo.
@@ -47,7 +47,7 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
  but the Python bindings for this must also be present, so gir1.2-osmgpsmap-1.0.
  Without this the GeoView will not be active.
 
-* [**Graphviz**](http://www.graphviz.org)
+* [**Graphviz**](https://www.graphviz.org)
 
   Enable creation of graphs using Graphviz engine.
   Without this, three reports cannot be run.

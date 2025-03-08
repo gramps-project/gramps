@@ -1735,8 +1735,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         self.stfile = StringIO()
         # This minimal settings file has been taken from
-        # http://mashupguide.net/1.0/html/ch17s03.xhtml (Creative commons
-        # licence): http://mashupguide.net/1.0/html/apas02.xhtml
+        # https://mashupguide.net/1.0/html/ch17s03.xhtml (Creative commons
+        # licence): https://mashupguide.net/1.0/html/apas02.xhtml
         self.stfile.write(
             '<?xml version="1.0" encoding="UTF-8"?>\n'
             + '<office:document-settings office:version="1.0"\n'
@@ -2015,7 +2015,7 @@ def process_spaces(line, format):
                 pass
             elif format == 1:
                 # preformatted, section White-space characters of
-                # http://docs.oasis-open.org/office/v1.1/OS/OpenDocument-v1.1-html/OpenDocument-v1.1.html#5.1.1.White-space%20Characters|outline
+                # https://docs.oasis-open.org/office/v1.1/OS/OpenDocument-v1.1-html/OpenDocument-v1.1.html#5.1.1.White-space%20Characters|outline
                 txt += "<text:s/>"
             else:
                 txt += char

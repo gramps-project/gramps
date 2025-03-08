@@ -4,19 +4,19 @@
 <moduleset>
 
   <repository type="tarball" name="sourceforge"
-              href="http://downloads.sourceforge.net/sourceforge/"/>
+              href="https://downloads.sourceforge.net/sourceforge/"/>
   <repository type="tarball" name="pywebkitgtk"
 	      href="http://pywebkitgtk.googlecode.com/files/"/>
   <repository type="tarball" name="ftp.gnome.org"
-	      href="http://ftp.gnome.org/pub/GNOME/sources/"/>
+	      href="https://ftp.gnome.org/pub/GNOME/sources/"/>
   <repository type="tarball" name="oracle"
-	      href="http://download.oracle.com/"/>
+	      href="https://download.oracle.com/"/>
   <repository type="tarball" name="pymodules"
 	      href="https://files.pythonhosted.org/packages/"/>
   <repository type="git" name="github" href="https://github.com/"/>
   <repository type="tarball" name="github-tarball" href="https://github.com/"/>
   <repository type="tarball" name="exiv2.org"
-	      href="http://www.exiv2.org/releases/"/>
+	      href="https://www.exiv2.org/releases/"/>
   <repository type="tarball" name="pythonware"
               href="http://effbot.org/downloads/"/>
 
