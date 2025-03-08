@@ -23,6 +23,8 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
+from typing import cast, Generator, Tuple
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -42,6 +44,7 @@ from .. import MatchesFilterBase
 # -------------------------------------------------------------------------
 from ....lib import Event
 from ....db import Database
+from ....types import FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -88,8 +91,9 @@ class MatchesPersonFilter(MatchesFilterBase):
                     return True
             if self.MPF_famevents:
                 # also include if family event of the person
-                for classname, handle in db.find_backlink_handles(
-                    event.handle, ["Family"]
+                for classname, handle in cast(
+                    Generator[Tuple[str, FamilyHandle]],
+                    db.find_backlink_handles(event.handle, ["Family"]),
                 ):
                     family = db.get_family_from_handle(handle)
                     father = (
