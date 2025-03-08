@@ -1,10 +1,11 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007-2008       Brian G. Matherly
-# Copyright (C) 2008            Gary Burton
-# Copyright (C) 2008            Robert Cheramy <robert@cheramy.net>
+# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2008       Gary Burton
+# Copyright (C) 2008       Robert Cheramy <robert@cheramy.net>
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +31,8 @@ Proxy class for the Gramps databases. Apply filter
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+from typing import Generator, List, Set, Tuple
+
 
 # -------------------------------------------------------------------------
 #
@@ -38,6 +41,8 @@ from __future__ import annotations
 # -------------------------------------------------------------------------
 from ..errors import AccessDeniedError
 from .proxybase import ProxyDbBase
+from gramps.gen.lib.addressbase import AddressBase
+from gramps.gen.lib.notebase import NoteBase
 from ..lib import (
     Date,
     Person,
@@ -68,6 +73,7 @@ from ..types import (
     MediaHandle,
     NoteHandle,
     TagHandle,
+    PrimaryObjectHandle,
     TableObjectType,
     PersonGrampsID,
     EventGrampsID,
@@ -87,6 +93,11 @@ class FilterProxyDb(ProxyDbBase):
     but all data that does not match the provided filters will be hidden from
     the user.
     """
+
+    plist: Set[PersonHandle]
+    elist: Set[EventHandle]
+    nlist: Set[NoteHandle]
+    flist: Set[FamilyHandle]
 
     def __init__(
         self, db, person_filter=None, event_filter=None, note_filter=None, user=None
@@ -124,7 +135,7 @@ class FilterProxyDb(ProxyDbBase):
                 self.flist.update(person.get_family_handle_list())
                 self.flist.update(person.get_parent_family_handle_list())
 
-    def get_person_from_handle(self, handle):
+    def get_person_from_handle(self, handle: PersonHandle) -> Person:
         """
         Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, or the handle is not in plist, an error is raised.
@@ -166,22 +177,21 @@ class FilterProxyDb(ProxyDbBase):
         else:
             raise AccessDeniedError(f"Handle {handle} not in person_filter result")
 
-    def include_person(self, handle):
+    def include_person(self, handle: PersonHandle) -> bool:
         return handle in self.plist
 
-    def include_family(self, handle):
+    def include_family(self, handle: FamilyHandle) -> bool:
         return handle in self.flist
 
-    def include_event(self, handle):
+    def include_event(self, handle: EventHandle) -> bool:
         return handle in self.elist
 
-    def include_note(self, handle):
+    def include_note(self, handle: NoteHandle) -> bool:
         return handle in self.nlist
 
-    def get_source_from_handle(self, handle):
+    def get_source_from_handle(self, handle: SourceHandle) -> Source:
         """
         Finds a Source in the database from the passed Gramps ID.
-        If no such Source exists, None is returned.
         """
         source = self.db.get_source_from_handle(handle)
 
@@ -202,20 +212,18 @@ class FilterProxyDb(ProxyDbBase):
 
         return source
 
-    def get_citation_from_handle(self, handle):
+    def get_citation_from_handle(self, handle: CitationHandle) -> Citation:
         """
         Finds a Citation in the database from the passed Gramps ID.
-        If no such Citation exists, None is returned.
         """
         citation = self.db.get_citation_from_handle(handle)
         # Filter notes out
         self.sanitize_notebase(citation)
         return citation
 
-    def get_media_from_handle(self, handle):
+    def get_media_from_handle(self, handle: MediaHandle) -> Media:
         """
         Finds a Media in the database from the passed Gramps handle.
-        If no such Object exists, None is returned.
         """
         media = self.db.get_media_from_handle(handle)
 
@@ -229,10 +237,9 @@ class FilterProxyDb(ProxyDbBase):
 
         return media
 
-    def get_place_from_handle(self, handle):
+    def get_place_from_handle(self, handle: PlaceHandle) -> Place:
         """
         Finds a Place in the database from the passed Gramps handle.
-        If no such Place exists, None is returned.
         """
         place = self.db.get_place_from_handle(handle)
 
@@ -249,10 +256,10 @@ class FilterProxyDb(ProxyDbBase):
 
         return place
 
-    def get_event_from_handle(self, handle):
+    def get_event_from_handle(self, handle: EventHandle) -> Event:
         """
         Finds a Event in the database from the passed Gramps ID.
-        If no such Event exists, None is returned.
+        If no such Event exists, or the handle is not in elist, an error is raised.
         """
         if handle in self.elist:
             event = self.db.get_event_from_handle(handle)
@@ -262,10 +269,10 @@ class FilterProxyDb(ProxyDbBase):
         else:
             raise AccessDeniedError(f"Handle {handle} not in event_filter result")
 
-    def get_family_from_handle(self, handle):
+    def get_family_from_handle(self, handle: FamilyHandle) -> Family:
         """
         Finds a Family in the database from the passed Gramps ID.
-        If no such Family exists, None is returned.
+        If no such Family exists, or the handle is not in flist, an error is raised.
         """
         if handle in self.flist:
             family = self.db.get_family_from_handle(handle)
@@ -317,10 +324,9 @@ class FilterProxyDb(ProxyDbBase):
         else:
             raise AccessDeniedError(f"Handle {handle} not in family list")
 
-    def get_repository_from_handle(self, handle):
+    def get_repository_from_handle(self, handle: RepositoryHandle) -> Repository:
         """
         Finds a Repository in the database from the passed Gramps ID.
-        If no such Repository exists, None is returned.
         """
         repository = self.db.get_repository_from_handle(handle)
         # Filter notes out
@@ -328,10 +334,10 @@ class FilterProxyDb(ProxyDbBase):
         self.sanitize_addressbase(repository)
         return repository
 
-    def get_note_from_handle(self, handle):
+    def get_note_from_handle(self, handle: NoteHandle) -> Note:
         """
         Finds a Note in the database from the passed Gramps ID.
-        If no such Note exists, None is returned.
+        If no such Note exists, or the handle is not in nlist, an error is raised.
         """
         if handle in self.nlist:
             return self.db.get_note_from_handle(handle)
@@ -441,7 +447,9 @@ class FilterProxyDb(ProxyDbBase):
         else:
             return None
 
-    def get_person_handles(self, sort_handles=False, locale=glocale):
+    def get_person_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[PersonHandle]:
         """
         Return a list of database handles, one handle for each Person in
         the database.
@@ -454,40 +462,42 @@ class FilterProxyDb(ProxyDbBase):
         # FIXME: plist is not a sorted list of handles
         return list(self.plist)
 
-    def iter_person_handles(self):
+    def iter_person_handles(self) -> Generator[PersonHandle]:
         """
         Return an iterator over database handles, one handle for each Person in
         the database.
         """
         yield from self.plist
 
-    def iter_people(self):
+    def iter_people(self) -> Generator[Person]:
         """
         Return an iterator over objects for Persons in the database
         """
         yield from map(self.get_person_from_handle, self.plist)
 
-    def get_event_handles(self):
+    def get_event_handles(self) -> List[EventHandle]:
         """
         Return a list of database handles, one handle for each Event in
         the database.
         """
         return list(self.elist)
 
-    def iter_event_handles(self):
+    def iter_event_handles(self) -> Generator[EventHandle]:
         """
         Return an iterator over database handles, one handle for each Event in
         the database.
         """
         yield from self.elist
 
-    def iter_events(self):
+    def iter_events(self) -> Generator[Event]:
         """
         Return an iterator over objects for Events in the database
         """
         yield from map(self.get_event_from_handle, self.elist)
 
-    def get_family_handles(self, sort_handles=False, locale=glocale):
+    def get_family_handles(
+        self, sort_handles: bool = False, locale=glocale
+    ) -> List[FamilyHandle]:
         """
         Return a list of database handles, one handle for each Family in
         the database.
@@ -500,40 +510,40 @@ class FilterProxyDb(ProxyDbBase):
         # FIXME: flist is not a sorted list of handles
         return list(self.flist)
 
-    def iter_family_handles(self):
+    def iter_family_handles(self) -> Generator[FamilyHandle]:
         """
         Return an iterator over database handles, one handle for each Family in
         the database.
         """
         yield from self.flist
 
-    def iter_families(self):
+    def iter_families(self) -> Generator[Family]:
         """
         Return an iterator over objects for Families in the database
         """
         yield from map(self.get_family_from_handle, self.flist)
 
-    def get_note_handles(self):
+    def get_note_handles(self) -> List[NoteHandle]:
         """
         Return a list of database handles, one handle for each Note in
         the database.
         """
         return list(self.nlist)
 
-    def iter_note_handles(self):
+    def iter_note_handles(self) -> Generator[NoteHandle]:
         """
         Return an iterator over database handles, one handle for each Note in
         the database.
         """
         yield from self.nlist
 
-    def iter_notes(self):
+    def iter_notes(self) -> Generator[Note]:
         """
         Return an iterator over objects for Notes in the database
         """
         yield from map(self.get_note_from_handle, self.nlist)
 
-    def get_default_person(self):
+    def get_default_person(self) -> Person | None:
         """returns the default Person of the database"""
         person = self.db.get_default_person()
         if person and person.get_handle() in self.plist:
@@ -541,7 +551,7 @@ class FilterProxyDb(ProxyDbBase):
         else:
             return None
 
-    def get_default_handle(self):
+    def get_default_handle(self) -> PersonHandle | None:
         """returns the default Person of the database"""
         handle = self.db.get_default_handle()
         if handle in self.plist:
@@ -549,31 +559,33 @@ class FilterProxyDb(ProxyDbBase):
         else:
             return None
 
-    def has_person_handle(self, handle):
+    def has_person_handle(self, handle: PersonHandle) -> bool:
         """
         returns True if the handle exists in the current Person database.
         """
         return handle in self.plist
 
-    def has_event_handle(self, handle):
+    def has_event_handle(self, handle: EventHandle) -> bool:
         """
         returns True if the handle exists in the current Event database.
         """
         return handle in self.elist
 
-    def has_family_handle(self, handle):
+    def has_family_handle(self, handle: FamilyHandle) -> bool:
         """
         returns True if the handle exists in the current Family database.
         """
         return handle in self.flist
 
-    def has_note_handle(self, handle):
+    def has_note_handle(self, handle: NoteHandle) -> bool:
         """
         returns True if the handle exists in the current Note database.
         """
         return handle in self.nlist
 
-    def find_backlink_handles(self, handle, include_classes=None):
+    def find_backlink_handles(
+        self, handle: AnyHandle, include_classes: List[str] | None = None
+    ) -> Generator[Tuple[str, AnyHandle]]:
         """
         Find all objects that hold a reference to the object handle.
         Returns an iterator over a list of (class_name, handle) tuples.
@@ -597,7 +609,7 @@ class FilterProxyDb(ProxyDbBase):
         # FIXME: add a filter for returned handles (see private.py as an example)
         return self.db.find_backlink_handles(handle, include_classes)
 
-    def sanitize_notebase(self, notebase):
+    def sanitize_notebase(self, notebase: NoteBase) -> None:
         """
         Filters notes out of the passed notebase object according to the Note Filter.
 
@@ -609,13 +621,13 @@ class FilterProxyDb(ProxyDbBase):
             new_note_list = [note for note in note_list if note in self.nlist]
             notebase.set_note_list(new_note_list)
 
-    def sanitize_addressbase(self, addressbase):
+    def sanitize_addressbase(self, addressbase: AddressBase) -> None:
         if addressbase:
             addresses = addressbase.get_address_list()
             for address in addresses:
                 self.sanitize_notebase(address)
 
-    def sanitize_person(self, person):
+    def sanitize_person(self, person: Person) -> None:
         """
         Cleans filtered notes out of the passed person
 
