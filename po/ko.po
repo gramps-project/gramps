@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-03-06 06:20+0000\n"
+"PO-Revision-Date: 2025-03-10 07:19+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -1674,17 +1674,17 @@ msgstr "    새 그람프스 설정값: %(name)s:%(value)s"
 #: ../gramps/cli/argparser.py:405
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
-msgstr ""
+msgstr "그람프스: 그런 설정 없음: '%s'"
 
 #: ../gramps/cli/argparser.py:498
 msgid "Error parsing the arguments"
-msgstr ""
+msgstr "문구 추출 오류"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:208
 #: ../gramps/gui/clipboard.py:209 ../gramps/gui/plug/_windows.py:1498
 msgid "Unavailable"
-msgstr ""
+msgstr "사용할 수 없음"
 
 #: ../gramps/cli/clidbman.py:86
 #, python-format
@@ -1692,6 +1692,8 @@ msgid ""
 "ERROR: %(title)s \n"
 "       %(message)s"
 msgstr ""
+"오류: %(title)s \n"
+"       %(message)s"
 
 #: ../gramps/cli/clidbman.py:178 ../gramps/gen/lib/media.py:152
 #: ../gramps/gen/lib/url.py:94
@@ -1702,24 +1704,24 @@ msgstr ""
 #: ../gramps/gui/selectors/selectobject.py:84
 #: ../gramps/plugins/view/mediaview.py:103
 msgid "Path"
-msgstr ""
+msgstr "경로"
 
 #: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:131
 msgid "Database"
-msgstr ""
+msgstr "데이타베이스"
 
 #: ../gramps/cli/clidbman.py:180 ../gramps/gui/dbman.py:434
 msgid "Last accessed"
-msgstr ""
+msgstr "마지막으로 접근함"
 
 #: ../gramps/cli/clidbman.py:181
 msgid "Locked?"
-msgstr ""
+msgstr "잠김?"
 
 #: ../gramps/cli/clidbman.py:216
 #, python-format
 msgid "Family Tree \"%s\":"
-msgstr ""
+msgstr "가계도 \"%s\":"
 
 #. Translators: needed for French, ignore otherwise
 #. Translators: for French, else ignore
@@ -1743,24 +1745,24 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3112
 #, python-format
 msgid "%(str1)s: %(str2)s"
-msgstr ""
+msgstr "%(str1)s: %(str2)s"
 
 #: ../gramps/cli/clidbman.py:315
 #, python-format
 msgid "Starting Import, %s"
-msgstr ""
+msgstr "가져오기 시작, %s"
 
 #: ../gramps/cli/clidbman.py:321
 msgid "Import finished..."
-msgstr ""
+msgstr "가져오기 끝..."
 
 #: ../gramps/cli/clidbman.py:406 ../gramps/plugins/importer/importcsv.py:537
 msgid "Importing data..."
-msgstr ""
+msgstr "자료 가져오는 중..."
 
 #: ../gramps/cli/clidbman.py:466
 msgid "Remove family tree warning"
-msgstr ""
+msgstr "가계도 경고 제거하기"
 
 #: ../gramps/cli/clidbman.py:467
 #, python-format
@@ -1768,14 +1770,16 @@ msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
 msgstr ""
+"아래 가계도를 제거하려고 하십니까\n"
+"\"%s\"?"
 
 #: ../gramps/cli/clidbman.py:479 ../gramps/gui/dbman.py:791
 msgid "Could not delete Family Tree"
-msgstr ""
+msgstr "가계도를 삭제할 수 없음"
 
 #: ../gramps/cli/clidbman.py:492
 msgid "Could not rename Family Tree"
-msgstr ""
+msgstr "가계도 이름을 변경할 수 없음"
 
 #: ../gramps/cli/clidbman.py:528
 #, python-format
@@ -1788,16 +1792,23 @@ msgid ""
 "    %s\n"
 "\n"
 msgstr ""
+"\n"
+"오류: 편집->선호에서 잘못된 데이타베이스 경로.\n"
+"선호를 열어 데이타베이스 경로를 정정하라.\n"
+"\n"
+"세부사항: 데이타베이스 디렉토리를 만들 수 없음:\n"
+"    %s\n"
+"\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2329
 #: ../gramps/gui/plug/_windows.py:773
 msgid "Never"
-msgstr ""
+msgstr "안됨"
 
 #: ../gramps/cli/clidbman.py:602
 #, python-format
 msgid "Locked by %s"
-msgstr ""
+msgstr "%s 에 잠김"
 
 #: ../gramps/cli/clidbman.py:604 ../gramps/gen/lib/attrtype.py:74
 #: ../gramps/gen/lib/childreftype.py:80 ../gramps/gen/lib/eventroletype.py:71
@@ -1876,22 +1887,22 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3045
 #: ../gramps/plugins/webreport/basepage.py:3236
 msgid "Unknown"
-msgstr ""
+msgstr "알 수 없음"
 
 #: ../gramps/cli/grampscli.py:86
 #, python-format
 msgid "WARNING: %s"
-msgstr ""
+msgstr "경고: %s"
 
 #: ../gramps/cli/grampscli.py:93 ../gramps/cli/grampscli.py:247
 #, python-format
 msgid "ERROR: %s"
-msgstr ""
+msgstr "오류: %s"
 
 #: ../gramps/cli/grampscli.py:107 ../gramps/cli/user.py:219
 #: ../gramps/gui/dialog.py:317
 msgid "Low level database corruption detected"
-msgstr ""
+msgstr "저 수위 데이타베이스 파손 감지됨"
 
 #: ../gramps/cli/grampscli.py:110 ../gramps/cli/user.py:221
 #: ../gramps/gui/dialog.py:319
