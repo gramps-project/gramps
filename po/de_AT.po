@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-26 00:15+0000\n"
+"PO-Revision-Date: 2025-03-11 15:44+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.2-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -22748,7 +22748,7 @@ msgstr "Fächerdiagramm"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:185
 msgid "Produces fan charts"
-msgstr "Erstellt Fächerdiagramme"
+msgstr "Erzeugt Fächerdiagramme"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:207
 #: ../gramps/plugins/drawreport/statisticschart.py:916
@@ -22761,7 +22761,7 @@ msgstr "Statistikdiagramme"
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:209
 msgid "Produces statistical bar and pie charts of the people in the database"
 msgstr ""
-"Erstellt Statistikbalken und Tortendiagramme für die Personen in der "
+"Erzeugt statistische Balken- und Tortendiagramme der Personen in der "
 "Datenbank"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:233
@@ -25560,7 +25560,7 @@ msgstr "Beziehungsgrafik"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:86
 msgid "Produces relationship graphs using Graphviz."
-msgstr "Erstellt Beziehungsgrafiken mit Graphviz."
+msgstr "Erzeugt Beziehungsgrafiken mit Graphviz."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:83
 #: ../gramps/plugins/graph/gvhourglass.py:67
@@ -32029,7 +32029,7 @@ msgstr "Ort aus kml hinzufügen"
 
 #: ../gramps/plugins/lib/maps/geography.py:427
 msgid "Center here"
-msgstr "Zentrieren"
+msgstr "Hier zentrieren"
 
 #: ../gramps/plugins/lib/maps/geography.py:437
 #, python-format
@@ -32044,7 +32044,7 @@ msgstr "Lade alle sichtbaren Kacheln für '%(map)s' neu."
 #: ../gramps/plugins/lib/maps/geography.py:456
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr "Leert den '%(map)s' Kacheln Cache."
+msgstr "Leert den Kachel-Cache von '%(map)s'."
 
 #: ../gramps/plugins/lib/maps/geography.py:998
 #: ../gramps/plugins/view/geoclose.py:687
@@ -32059,7 +32059,7 @@ msgstr "Leert den '%(map)s' Kacheln Cache."
 #: ../gramps/plugins/view/geoplaces.py:516
 #: ../gramps/plugins/view/geoplaces.py:539
 msgid "Center on this place"
-msgstr "Karte hier zentrieren"
+msgstr "Auf diesen Ort zentrieren"
 
 #: ../gramps/plugins/lib/maps/geography.py:1111
 msgid "Select a kml file used to add places"
@@ -32073,16 +32073,16 @@ msgstr "Du musst jeden Ort manuell bearbeiten, um Ortstyp, ... hinzuzufügen\n"
 #, python-brace-format
 msgid "You have {places_nb} place to edit."
 msgid_plural "You have {places_nb} places to edit."
-msgstr[0] "Du hast {places_nb} Ort zu bearbeiten."
-msgstr[1] "Du hast {places_nb} Orte zu bearbeiten."
+msgstr[0] "Du hast {places_nb} Ort zum Bearbeiten."
+msgstr[1] "Du hast {places_nb} Orte zum Bearbeiten."
 
 #: ../gramps/plugins/lib/maps/geography.py:1158
 msgid "You have more than 5 places in this kml file."
-msgstr "Du hast mehr als fünf Orte in dieser kml-Datei."
+msgstr "Es gibt mehr als fünf Orte in dieser kml-Datei."
 
 #: ../gramps/plugins/lib/maps/geography.py:1227
 msgid "You have at least two places with the same title."
-msgstr "Du hast mindestens zwei Orte mit demselben Titel."
+msgstr "Es gibt mindestens zwei Orte mit demselben Titel."
 
 #: ../gramps/plugins/lib/maps/geography.py:1229
 #, python-format
@@ -32094,12 +32094,12 @@ msgid ""
 "\n"
 "%(bold_start)sI can't proceed with your request%(bold_end)s.\n"
 msgstr ""
-"Der Titel dieses Ortes lautet :\n"
+"Der Titel der Orte lautet:\n"
 "%(title)s\n"
-"Die folgenden Orte sind identisch : %(gid)s\n"
-"Du solltest die Orte umbenennen oder zusammenführen.\n"
+"Die folgenden Orte sind ähnlich: %(gid)s\n"
+"Du solltest entweder die Orte umbenennen oder sie zusammenführen.\n"
 "\n"
-"%(bold_start)sIch kann deine Anfrage nicht durchführen%(bold_end)s.\n"
+"%(bold_start)s Ich kann deiner Anfrage nicht nachkommen%(bold_end)s.\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1402
 msgid "Nothing for this view."
@@ -32111,7 +32111,7 @@ msgstr "Bestimmte Parameter"
 
 #: ../gramps/plugins/lib/maps/geography.py:1424
 msgid "Where to save the tiles for offline mode."
-msgstr "Wo die Kacheln für den offline Modus gespeichert werden."
+msgstr "Wo die Kacheln für den Offline-Modus gespeichert werden."
 
 #: ../gramps/plugins/lib/maps/geography.py:1434
 msgid ""
@@ -32119,13 +32119,13 @@ msgid ""
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Wenn du keinen Platz auf deinem Dateisystem mehr hast, kannst du alle "
-"Kacheln entfernen, die im obigen Pfad liegen.\n"
+"Wenn du keinen Platz mehr in deinem Dateisystem hast, kannst du alle Kacheln "
+"entfernen, die sich in dem oben genannten Pfad befinden.\n"
 "Sei vorsichtig! Wenn du kein Internet hast, bekommst du keine Karte."
 
 #: ../gramps/plugins/lib/maps/geography.py:1444
 msgid "Zoom used when centering"
-msgstr "Zoom der beim Zentrieren verwendet wird"
+msgstr "Beim Zentrieren verwendeter Zoom"
 
 #: ../gramps/plugins/lib/maps/geography.py:1451
 msgid "The maximum number of places to show"
@@ -32147,14 +32147,12 @@ msgstr "Die Karte"
 
 #: ../gramps/plugins/lib/maps/geography.py:1533
 msgid "Select tile cache directory for offline mode"
-msgstr "Wähle das Verzeichnis für die Kacheln für de offline Modus"
+msgstr "Kachelcacheverzeichnis für den Offlinemodus auswählen"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
 #, python-format
 msgid "Can't create tile cache directory %s"
-msgstr ""
-"Das Verzeichnis %s zum Zwischenspeichern von Kacheln kann nicht erstellt "
-"werden"
+msgstr "Kachelcacheverzeichnis %s kann nicht erstellt werden"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
 #, python-format
@@ -32176,20 +32174,20 @@ msgstr ""
 "…\n"
 "[geography]\n"
 "…\n"
-"path = 'ungültig/Pfad'\n"
+"path = 'ungültiger/Pfad'\n"
 "…\n"
 "in der Datei gramps.ini:\n"
 "%s\n"
 "\n"
 "Bevor du die Datei gramps.ini ändern kannst, musst du Gramps schließen\n"
 "\n"
-"Die nächsten Fehler sind normal"
+"Die folgenden Fehler sind zu erwarten"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:194
 #: ../gramps/plugins/lib/maps/osmgps.py:261
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Kann Titelzwischenspeicherverzeichnis für '%s' nicht erstellen."
+msgstr "Kachelcacheverzeichnis für '%s' kann nicht erstellt werden."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:120
 #: ../gramps/plugins/lib/maps/placeselection.py:123
@@ -32202,7 +32200,7 @@ msgid ""
 "On the map you should see a circle or an oval depending on the latitude."
 msgstr ""
 "Wähle den Radius der Auswahl.\n"
-"Auf der Karte solltest du einen Kreis oder Oval abhängig vom Breitengrad "
+"Auf der Karte solltest du je nach Breitengrad einen Kreis oder ein Oval "
 "sehen."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:130
@@ -32221,7 +32219,7 @@ msgid ""
 " - a red row related to a geocoding result."
 msgstr ""
 "\n"
-"- Eine rote Zeile in Bezug auf ein Geokodierungsergebnis."
+" - eine rote Zeile, die sich auf ein Geokodierungsergebnis bezieht."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:178
 msgid "The green values in the row correspond to the current place values."
@@ -32273,7 +32271,7 @@ msgstr "Eniro-Karte nicht verfügbar"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:198
 msgid "Coordinates needed in Denmark"
-msgstr "Koordinaten innerhalb Dänemarks benötigt"
+msgstr "Benötigt Koordinaten in Dänemark"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:206
 msgid ""
@@ -32311,7 +32309,7 @@ msgstr "Öffnen auf openstreetmap.org"
 #: ../gramps/plugins/quickview/ageondate.py:51
 #, python-format
 msgid "People and their ages the %s"
-msgstr "Personen und ihr Alter das %s"
+msgstr "Personen und ihr Alter %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:53
 #, python-format
@@ -32322,7 +32320,7 @@ msgstr "Personen und ihr Alter am %s"
 #: ../gramps/plugins/quickview/ageondate.py:68
 #, python-format
 msgid "Alive: %s"
-msgstr "Lebt: %s"
+msgstr "Lebend: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:74
 #: ../gramps/plugins/quickview/ageondate.py:77
@@ -32426,7 +32424,7 @@ msgstr "Beziehung von %(person)s zu %(active_person)s"
 #: ../gramps/plugins/quickview/all_relations.py:320
 #, python-format
 msgid "Detailed path from %(person)s to common ancestor"
-msgstr "Genauer Weg von %(person)s zum gemeinsamen Vorfahren"
+msgstr "Genauer Pfad von %(person)s zum gemeinsamen Vorfahren"
 
 #: ../gramps/plugins/quickview/all_relations.py:323
 msgid "Name Common ancestor"
@@ -32434,7 +32432,7 @@ msgstr "Name des gemeinsamen Vorfahren"
 
 #: ../gramps/plugins/quickview/all_relations.py:376
 msgid "Partial"
-msgstr "Partiell"
+msgstr "Teilweise"
 
 #: ../gramps/plugins/quickview/all_relations.py:396
 msgid "Remarks with inlaw family"
@@ -32451,7 +32449,7 @@ msgstr "Die folgenden Probleme wurden festgestellt:"
 #: ../gramps/plugins/quickview/attributematch.py:34
 #, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "Personen, die das '%s' Attribut besitzen"
+msgstr "Personen, die das Attribut '%s' besitzen"
 
 #: ../gramps/plugins/quickview/attributematch.py:48
 #, python-format
@@ -34295,7 +34293,7 @@ msgid ""
 "is %(count)d. %(percent)s"
 msgstr ""
 "Die Gesamtmenge der Vorfahren der %(second_generation)d. bis "
-"%(last_generation)d. Generation ist %(count)d. %(percent)s"
+"%(last_generation)d. Generation beträgt %(count)d. %(percent)s"
 
 #: ../gramps/plugins/textreport/placereport.py:136
 #: ../gramps/plugins/textreport/placereport.py:151
@@ -34306,7 +34304,7 @@ msgstr "Ortsbericht"
 
 #: ../gramps/plugins/textreport/placereport.py:137
 msgid "Please select at least one place before running this."
-msgstr "Bitte wähle erst mindestens einen Ort, bevor du dies durchführst."
+msgstr "Bitte wähle zumindest einen Ort aus, bevor du dies ausführst."
 
 #: ../gramps/plugins/textreport/placereport.py:189
 #, python-format
@@ -34344,15 +34342,15 @@ msgstr "%(father)s (%(father_id)s) und %(mother)s (%(mother_id)s)"
 
 #: ../gramps/plugins/textreport/placereport.py:478
 msgid "Select using filter"
-msgstr "Unter Verwendung vom Filter wählen"
+msgstr "Mit Filter auswählen"
 
 #: ../gramps/plugins/textreport/placereport.py:479
 msgid "Select places using a filter"
-msgstr "Ort unter Verwendung vom Filter wählen"
+msgstr "Orte mit Hilfe eines Filters auswählen"
 
 #: ../gramps/plugins/textreport/placereport.py:486
 msgid "Select places individually"
-msgstr "Orte einzeln wählen"
+msgstr "Orte einzeln auswählen"
 
 #: ../gramps/plugins/textreport/placereport.py:487
 msgid "List of places to report on"
@@ -34360,11 +34358,11 @@ msgstr "Liste der Orte für den Bericht"
 
 #: ../gramps/plugins/textreport/placereport.py:490
 msgid "Center on"
-msgstr "Zentrieren an"
+msgstr "Zentrieren auf"
 
 #: ../gramps/plugins/textreport/placereport.py:492
 msgid "If report is event or person centered"
-msgstr "Ob der Bericht ereignis- oder an personenzentriert ist"
+msgstr "Ob der Bericht ereignis- oder personenzentriert ist"
 
 #: ../gramps/plugins/textreport/recordsreport.py:195
 #, python-format
@@ -34377,11 +34375,11 @@ msgstr "Anzahl der angezeigten Ränge"
 
 #: ../gramps/plugins/textreport/recordsreport.py:249
 msgid "Use call name"
-msgstr "Rufname"
+msgstr "Rufname verwenden"
 
 #: ../gramps/plugins/textreport/recordsreport.py:252
 msgid "Don't use call name"
-msgstr "Rufname nicht verwenden"
+msgstr "Rufnamen nicht verwenden"
 
 #: ../gramps/plugins/textreport/recordsreport.py:253
 msgid "Replace first names with call name"
@@ -34407,7 +34405,7 @@ msgstr "Buchtitel"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:146
 msgid "Title string for the book."
-msgstr "Titeltext des Buches."
+msgstr "Titelzeichenfolge für das Buch."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:149
 msgid "Subtitle"
@@ -34419,7 +34417,7 @@ msgstr "Untertitel des Buches"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:150
 msgid "Subtitle string for the book."
-msgstr "Untertiteltext des Buches."
+msgstr "Untertitelzeichenfolge für das Buch."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:155
 #, python-format
@@ -34432,7 +34430,7 @@ msgstr "Fußzeile"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:160
 msgid "Footer string for the page."
-msgstr "Text für die Fußzeile."
+msgstr "Fußzeilenzeichenfolge für die Seite."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:164
 msgid "Gramps ID of the media object to use as an image."
@@ -34447,28 +34445,28 @@ msgid ""
 "Size of the image in cm. A value of 0 indicates that the image should be fit "
 "to the page."
 msgstr ""
-"Größe des Bild in cm. Ein Wert 0 bedeutet, dass das Bild die Seite ausfüllen "
-"soll."
+"Größe des Bildes in cm. Ein Wert von 0 bedeutet, dass das Bild in die Seite "
+"eingepasst werden soll."
 
 #: ../gramps/plugins/textreport/summary.py:98
 #: ../gramps/plugins/textreport/textplugins.gpr.py:366
 msgid "Database Summary Report"
-msgstr "Datenbank-Übersichtsbericht"
+msgstr "Datenbankzusammenfassungsbericht"
 
 #: ../gramps/plugins/textreport/summary.py:187
 #, python-format
 msgid "Number of individuals: %d"
-msgstr "Personenzahl: %d"
+msgstr "Personenanzahl: %d"
 
 #: ../gramps/plugins/textreport/summary.py:191
 #, python-format
 msgid "Males: %d"
-msgstr "Männer; %d"
+msgstr "Männlich: %d"
 
 #: ../gramps/plugins/textreport/summary.py:195
 #, python-format
 msgid "Females: %d"
-msgstr "Frauen: %d"
+msgstr "Weiblich: %d"
 
 #: ../gramps/plugins/textreport/summary.py:199
 #, python-format
@@ -34493,7 +34491,7 @@ msgstr "Personen mit fehlendem Geburtsdatum: %d"
 #: ../gramps/plugins/textreport/summary.py:217
 #, python-format
 msgid "Disconnected individuals: %d"
-msgstr "Einzeln stehende Personen: %d"
+msgstr "Nicht verbundene Personen: %d"
 
 #: ../gramps/plugins/textreport/summary.py:221
 #, python-format
@@ -34517,7 +34515,7 @@ msgstr "Ereignisdaten"
 #: ../gramps/plugins/textreport/summary.py:252
 #, python-format
 msgid "Number of events: %d"
-msgstr "Anzahl der Ereignisse: %d"
+msgstr "Ereignisanzahl: %d"
 
 #: ../gramps/plugins/textreport/summary.py:261
 msgid "Place Information"
@@ -34526,7 +34524,7 @@ msgstr "Ortsdaten"
 #: ../gramps/plugins/textreport/summary.py:266
 #, python-format
 msgid "Number of places: %d"
-msgstr "Anzahl der Orte: %d"
+msgstr "Ortsanzahl: %d"
 
 #: ../gramps/plugins/textreport/summary.py:275
 msgid "Source Information"
@@ -34535,7 +34533,7 @@ msgstr "Quellenangaben"
 #: ../gramps/plugins/textreport/summary.py:280
 #, python-format
 msgid "Number of sources: %d"
-msgstr "Anzahl der Quellen: %d"
+msgstr "Quellenanzahl: %d"
 
 #: ../gramps/plugins/textreport/summary.py:289
 msgid "Citation Information"
@@ -34544,7 +34542,7 @@ msgstr "Fundstellendaten"
 #: ../gramps/plugins/textreport/summary.py:294
 #, python-format
 msgid "Number of citations: %d"
-msgstr "Anzahl der Zitate: %d"
+msgstr "Fundstellenanzahl: %d"
 
 #: ../gramps/plugins/textreport/summary.py:303
 msgid "Repository Information"
@@ -34553,12 +34551,12 @@ msgstr "Aufbewahrungsortdaten"
 #: ../gramps/plugins/textreport/summary.py:308
 #, python-format
 msgid "Number of repositories: %d"
-msgstr "Anzahl der Aufbewahrungsorte: %d"
+msgstr "Aufbewahrungsorteanzahl: %d"
 
 #: ../gramps/plugins/textreport/summary.py:342
 #, python-format
 msgid "Number of unique media objects: %d"
-msgstr "Anzahl von eindeutigen Medienobjekten: %d"
+msgstr "Anzahl eindeutiger Medienobjekte: %d"
 
 #: ../gramps/plugins/textreport/summary.py:346
 #, python-format
@@ -34572,7 +34570,7 @@ msgstr "Notizdaten"
 #: ../gramps/plugins/textreport/summary.py:369
 #, python-format
 msgid "Number of notes: %d"
-msgstr "Anzahl der Notizen: %d"
+msgstr "Notizenanzahl: %d"
 
 #: ../gramps/plugins/textreport/summary.py:399
 msgid "Whether to count private data"
@@ -34594,7 +34592,7 @@ msgstr "Der Stil, der für Überschriften der 3. Ebene verwendet wird."
 #: ../gramps/plugins/textreport/tagreport.py:114
 #: ../gramps/plugins/textreport/textplugins.gpr.py:272
 msgid "Tag Report"
-msgstr "Markierungen-Bericht"
+msgstr "Kennzeichenbericht"
 
 #: ../gramps/plugins/textreport/tagreport.py:115
 msgid "You must first create a tag before running this report."
@@ -34604,7 +34602,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/tagreport.py:125
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Markierungen-Bericht für %s Objekte"
+msgstr "Kennzeichenbericht für %s Objekte"
 
 #: ../gramps/plugins/textreport/tagreport.py:681
 msgid "Email Address"
@@ -34625,11 +34623,11 @@ msgstr "Ahnentafel-Bericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:40
 msgid "Produces a textual ancestral report"
-msgstr "Erstellt eine schriftlich Ahnentafel"
+msgstr "Erzeugt einen Ahnenbericht in Textform"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:63
 msgid "Produces a report of birthdays and anniversaries"
-msgstr "Erstellt einen Bericht über Geburtstage und Jahrestage"
+msgstr "Erzeugt einen Bericht über Geburts- und Jahrestage"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:86
 msgid "Add custom text to the book report"
@@ -34641,7 +34639,7 @@ msgstr "Nachkommenbericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:109
 msgid "Produces a list of descendants of the active person"
-msgstr "Generiert eine Liste der Nachkommen der aktiven Person"
+msgstr "Erzeugt eine Liste der Nachkommen der aktiven Person"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:131
 msgid "Detailed Ancestral Report"
@@ -34649,7 +34647,7 @@ msgstr "Ausführlicher Vorfahrenbericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:132
 msgid "Produces a detailed ancestral report"
-msgstr "Erstellt eine ausführliche Ahnenübersicht"
+msgstr "Erzeugt einen ausführlichen Vorfahrenbericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:154
 msgid "Detailed Descendant Report"
@@ -34657,27 +34655,27 @@ msgstr "Ausführlicher Nachkommenbericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:155
 msgid "Produces a detailed descendant report"
-msgstr "Erstellt eine ausführliche Nachkommenübersicht"
+msgstr "Erzeugt einen ausführlichen Nachkommenbericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:177
 msgid "End of Line Report"
-msgstr "Sackgassen-Liste"
+msgstr "Linienendebericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:178
 msgid "Produces a textual end of line report"
-msgstr "Erstellt eine schriftliche Sackgassen-Liste"
+msgstr "Erzeugt einen Linienendebericht in Textform"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:202
 msgid ""
 "Produces a family group report showing information on a set of parents and "
 "their children."
 msgstr ""
-"Erstellt einen Familien-Gruppenbericht mit Daten über eine Gruppe von Eltern "
+"Erstellt einen Familiengruppenbericht mit Daten über eine Gruppe von Eltern "
 "mit deren Kindern."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:227
 msgid "Produces a complete report on the selected people"
-msgstr "Erstellt einen vollständigen Bericht über die gewählten Personen"
+msgstr "Erzeugt einen vollständigen Bericht über die ausgewählten Personen"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:249
 msgid "Kinship Report"
@@ -34686,24 +34684,24 @@ msgstr "Verwandtschaftsbericht"
 #: ../gramps/plugins/textreport/textplugins.gpr.py:250
 msgid "Produces a textual report of kinship for a given person"
 msgstr ""
-"Erstellt einen schriftlichen Bericht über die Verwandten einer bestimmten "
+"Erzeugt einen Bericht in Textform über die Verwandtschaft einer bestimmten "
 "Person"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:273
 msgid "Produces a list of people with a specified tag"
-msgstr "Erstellt eine Liste von Personen mit einem festgelegten Kennzeichen"
+msgstr "Erzeugt eine Liste von Personen mit einem festgelegten Kennzeichen"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:296
 msgid "Number of Ancestors Report"
-msgstr "Anzahl der Vorfahren"
+msgstr "Vorfahrenanzahlbericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:297
 msgid "Counts number of ancestors of selected person"
-msgstr "Zählt die Anzahl der Vorfahren der gewählten Person"
+msgstr "Zählt die Anzahl der Vorfahren der ausgewählten Person"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:320
 msgid "Produces a textual place report"
-msgstr "Erstellt einen schriftlichen Ortsbericht"
+msgstr "Erzeugt einen Ortsbericht in Textform"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:343
 msgid "Title Page"
@@ -34711,7 +34709,7 @@ msgstr "Titelseite"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:344
 msgid "Produces a title page for book reports."
-msgstr "Erstellt eine Titelseite für Buchberichte."
+msgstr "Erzeugt eine Titelseite für Buchberichte."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:367
 msgid "Provides a summary of the current database"
@@ -34719,11 +34717,11 @@ msgstr "Erstellt eine Übersicht über die aktuelle Datenbank"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:391
 msgid "Produces a table of contents for book reports."
-msgstr "Erstellt ein Inhaltsverzeichnis für Buchberichte."
+msgstr "Erzeugt ein Inhaltsverzeichnis für Buchberichte."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:414
 msgid "Produces an alphabetical index for book reports."
-msgstr "Erstellt ein alphabetisches Register für Buchberichte."
+msgstr "Erzeugt ein alphabetisches Register für Buchberichte."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:436
 msgid "Records Report"
@@ -40236,11 +40234,12 @@ msgstr "Erzählende Website"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:38
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
-msgstr "Erstellt Webseiten (HTML) für Personen oder eine Gruppe von Personen"
+msgstr ""
+"Erzeugt Webseiten (HTML) für einzelne Personen oder eine Gruppe von Personen"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:62
 msgid "Produces web (HTML) calendars."
-msgstr "Erstellt Web-Kalender (HTML)."
+msgstr "Erzeugt Webkalender (HTML)."
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:38
 msgid "Webstuff"
