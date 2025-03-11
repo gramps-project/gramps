@@ -11,13 +11,14 @@
 # jcreusand <joan.creusandreu@gmail.com>, 2021, 2024.
 # Maite Guix <maite.guix@gmail.com>, 2022.
 # Arnau Llovet Vidal <arnaullv@gmail.com>, 2022, 2023, 2025.
+# leo-jmateo <jmateo.sanchez@tinet.cat>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-23 23:40+0000\n"
-"Last-Translator: Arnau Llovet Vidal <arnaullv@gmail.com>\n"
+"PO-Revision-Date: 2025-03-09 20:50+0000\n"
+"Last-Translator: leo-jmateo <jmateo.sanchez@tinet.cat>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
 "Language: ca\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8239,7 +8240,7 @@ msgstr "cau.def."
 #: ../gramps/gen/lib/eventtype.py:261
 msgctxt "Census abbreviation"
 msgid "cens."
-msgstr "cens"
+msgstr "Cens."
 
 #: ../gramps/gen/lib/eventtype.py:262
 msgctxt "Christening abbreviation"
@@ -8249,87 +8250,87 @@ msgstr "bap."
 #: ../gramps/gen/lib/eventtype.py:263
 msgctxt "Confirmation abbreviation"
 msgid "conf."
-msgstr "conf."
+msgstr "Conf."
 
 #: ../gramps/gen/lib/eventtype.py:264
 msgctxt "Cremation abbreviation"
 msgid "crem."
-msgstr "crem."
+msgstr "Crem."
 
 #: ../gramps/gen/lib/eventtype.py:265
 msgctxt "Degree abbreviation"
 msgid "deg."
-msgstr "títl."
+msgstr "Títl."
 
 #: ../gramps/gen/lib/eventtype.py:266
 msgctxt "Education abbreviation"
 msgid "edu."
-msgstr "edu."
+msgstr "Edu."
 
 #: ../gramps/gen/lib/eventtype.py:267
 msgctxt "Elected abbreviation"
 msgid "elec."
-msgstr "eleg."
+msgstr "Eleg."
 
 #: ../gramps/gen/lib/eventtype.py:268
 msgctxt "Emigration abbreviation"
 msgid "em."
-msgstr "em."
+msgstr "Em."
 
 #: ../gramps/gen/lib/eventtype.py:269
 msgctxt "First Communion abbreviation"
 msgid "f.comm."
-msgstr "pr.com."
+msgstr "Pr.com."
 
 #: ../gramps/gen/lib/eventtype.py:270
 msgctxt "Immigration abbreviation"
 msgid "im."
-msgstr "imm."
+msgstr "Imm."
 
 #: ../gramps/gen/lib/eventtype.py:271
 msgctxt "Graduation abbreviation"
 msgid "grad."
-msgstr "grad."
+msgstr "Grad."
 
 #: ../gramps/gen/lib/eventtype.py:272
 msgctxt "Medical Information abbreviation"
 msgid "medinf."
-msgstr "infmèd."
+msgstr "Infmèd."
 
 #: ../gramps/gen/lib/eventtype.py:273
 msgctxt "Military Service abbreviation"
 msgid "milser."
-msgstr "mili."
+msgstr "Mili."
 
 #: ../gramps/gen/lib/eventtype.py:274
 msgctxt "Naturalization abbreviation"
 msgid "nat."
-msgstr "nat."
+msgstr "Nat."
 
 #: ../gramps/gen/lib/eventtype.py:275
 msgctxt "Nobility Title abbreviation"
 msgid "nob."
-msgstr "nob."
+msgstr "Nob."
 
 #: ../gramps/gen/lib/eventtype.py:276
 msgctxt "Number of Marriages abbreviation"
 msgid "n.o.mar."
-msgstr "núm.matr."
+msgstr "Núm.matr."
 
 #: ../gramps/gen/lib/eventtype.py:277
 msgctxt "Occupation abbreviation"
 msgid "occ."
-msgstr "ofc."
+msgstr "Ofc."
 
 #: ../gramps/gen/lib/eventtype.py:278
 msgctxt "Ordination abbreviation"
 msgid "ord."
-msgstr "ord."
+msgstr "Ord."
 
 #: ../gramps/gen/lib/eventtype.py:279
 msgctxt "Probate abbreviation"
 msgid "prob."
-msgstr "ex.test."
+msgstr "Ex.test."
 
 #: ../gramps/gen/lib/eventtype.py:280
 msgctxt "Property abbreviation"
@@ -21937,8 +21938,7 @@ msgstr ""
 "   l'alçada de la pàgina canvia de mida fins l'alçada de l'arbre\n"
 "\n"
 "Amb 'Escalar l'arbre perquè càpiga a la pàgina' la pàgina\n"
-"   canvia de mida per treure qualsevol buit tant en alçada\n"
-"   com en amplada"
+"  canvia de mida per treure qualsevol buit tant en alçada com en amplada"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:953
 #: ../gramps/plugins/drawreport/descendtree.py:1690
@@ -22235,10 +22235,10 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{wife} i\n"
+"{wife} and\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{wife} i\n"
+"{wife} and\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:602
@@ -34765,12 +34765,12 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
-"L'arbre genealògic conté nanses duplicades entre taules.\n"
-" Això és dolent i es pot arreglar fent una còpia de seguretat\n"
-"de l'Arbre Genealògic i important-la sobre un Arbre Genealògic\n"
-"buit. La resta de comprovacions se salten, caldria tornar a\n"
-"executar l'eina de Comprova i Repara sobre aquest Arbre\n"
-"Genealògic nou."
+"El teu arbre genealògic conté manejadors duplicats de taula creuada.\n"
+"Això és un error i es pot solucionar fent una còpia de seguretat del teu\n"
+"arbre genealògic i important aquesta còpia de seguretat en un arbre "
+"genealògic buit.\n"
+"La resta de les comprovacions se saltaran, i l’eina de Comprovació i\n"
+"Reparació hauria de tornar a executar-se en aquest nou arbre genealògic."
 
 #: ../gramps/plugins/tool/check.py:210
 msgid "Check Integrity"
@@ -38467,7 +38467,7 @@ msgstr "%(spouse)s i %(person)s"
 #: ../gramps/plugins/webreport/webcal.py:2317
 #, python-format
 msgid "%s old"
-msgstr "%s"
+msgstr "%s antic"
 
 #: ../gramps/plugins/webreport/calendar.py:1440
 #: ../gramps/plugins/webreport/webcal.py:2333
