@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-19 12:17+0000\n"
+"PO-Revision-Date: 2025-03-07 14:06+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -4427,16 +4427,12 @@ msgid "Matches events whose notes contain text matching a regular expression"
 msgstr "Matches events whose notes contain text matching a regular expression"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "Events with the <tag>"
+msgstr "Events with a note of type <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Matches events matched by the specified filter name"
+msgstr "Matches events with a note of the specified type"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4718,16 +4714,12 @@ msgstr ""
 "Matches families whose notes contain text matching a regular expression"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "Families with father with the <name>"
+msgstr "Families with a note of type <type>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Matches families matched by the specified filter name"
+msgstr "Matches families with a note of the specified type"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -5542,16 +5534,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Matches people whose notes contain text matching a regular expression"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "People with the <Name type>"
+msgstr "People with a note of type <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Matches people that are ancestors of a specified person"
+msgstr "Matches people with a note of the specified type"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:55
 msgid "People who are neither male nor female"
@@ -6203,16 +6191,12 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Matches places whose notes contain text matching a regular expression"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "Places with the <tag>"
+msgstr "Places with a note of type <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Matches places matched by the specified filter name"
+msgstr "Matches places with a note of the specified type"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:61
 msgid "Street:"
@@ -6605,16 +6589,12 @@ msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr "Matches sources whose notes contain text matching a regular expression"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "Sources with the <tag>"
+msgstr "Sources with a note of type <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "Matches sources matched by the specified filter name"
+msgstr "Matches sources with a note of the specified type"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
