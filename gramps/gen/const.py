@@ -90,47 +90,33 @@ APP_VCARD = ["text/x-vcard", "text/x-vcalendar"]
 
 # -------------------------------------------------------------------------
 #
-# Determine the home directory. According to Wikipedia, most UNIX like
-# systems use HOME. I'm assuming that this would apply to OS X as well.
-# Windows apparently uses USERPROFILE
+# Determine the user data and user configuration directories.
 #
 # -------------------------------------------------------------------------
 if "GRAMPSHOME" in os.environ:
     USER_HOME = get_env_var("GRAMPSHOME")
-    HOME_DIR = os.path.join(USER_HOME, "gramps")
+    USER_DATA = os.path.join(USER_HOME, "gramps")
+    USER_CONFIG = USER_DATA
 elif "USERPROFILE" in os.environ:
     USER_HOME = get_env_var("USERPROFILE")
-    HOME_DIR = os.path.join(GLib.get_user_config_dir(), "gramps")
-    if not os.path.exists(HOME_DIR):
-        homedir = get_env_var("APPDATA") if "APPDATA" in os.environ else USER_HOME
-        homedir = os.path.join(homedir, "gramps")
-        dbpath = os.path.join(homedir, "grampsdb")
-        if os.path.isdir(dbpath) and os.listdir(dbpath):
-            HOME_DIR = homedir
+    if "APPDATA" in os.environ:
+        USER_DATA = os.path.join(get_env_var("APPDATA"), "gramps")
+    else:
+        USER_DATA = os.path.join(USER_HOME, "AppData", "Roaming", "gramps")
+    USER_CONFIG = USER_DATA
 else:
     USER_HOME = get_env_var("HOME")
-    HOME_DIR = os.path.join(USER_HOME, ".gramps")
-ORIG_HOME_DIR = HOME_DIR
-if "SAFEMODE" in os.environ:
-    if "USERPROFILE" in os.environ:
-        USER_HOME = get_env_var("USERPROFILE")
-    else:
-        USER_HOME = get_env_var("HOME")
-    HOME_DIR = get_env_var("SAFEMODE")
-
-
-if os.path.exists(HOME_DIR) or "GRAMPSHOME" in os.environ or "SAFEMODE" in os.environ:
-    USER_DATA = HOME_DIR
-    USER_CONFIG = HOME_DIR
-    USER_CACHE = HOME_DIR
-else:
     USER_DATA = os.path.join(GLib.get_user_data_dir(), "gramps")
     USER_CONFIG = os.path.join(GLib.get_user_config_dir(), "gramps")
-    USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
+
+USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
+
+if "SAFEMODE" in os.environ:
+    USER_CONFIG = get_env_var("SAFEMODE")
 
 USER_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
 if not USER_PICTURES:
-    USER_PICTURES = HOME_DIR
+    USER_PICTURES = USER_DATA
 
 VERSION_DIR_NAME = "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
 VERSION_DIR = os.path.join(USER_CONFIG, VERSION_DIR_NAME)

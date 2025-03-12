@@ -51,7 +51,7 @@ if "-S" in sys.argv or "--safe" in sys.argv:
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .gen.const import APP_GRAMPS, USER_DIRLIST, USER_DATA, ORIG_HOME_DIR
+from .gen.const import APP_GRAMPS, USER_DIRLIST, USER_DATA
 from .gen.constfunc import mac
 from .version import VERSION_TUPLE
 from .gen.constfunc import win, get_env_var
@@ -653,11 +653,6 @@ def run():
 
     argv_copy = sys.argv[:]
     argpars = ArgParser(argv_copy)
-
-    # if in safe mode we should point the db dir back to the original dir.
-    # It is ok to import config here, 'Defaults' command had its chance...
-    if "SAFEMODE" in os.environ:
-        config.set("database.path", os.path.join(ORIG_HOME_DIR, "grampsdb"))
 
     # On windows the fontconfig handler is a better choice
     if win() and ("PANGOCAIRO_BACKEND" not in os.environ):
