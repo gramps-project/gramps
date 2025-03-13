@@ -391,11 +391,24 @@ register("utf8.killed-symbol", "x")
 if __debug__:  # enable a simple CLI test to see if the datestrings exist
     register("test.january", _("January", "localized lexeme inflections"))
 
+
 # ---------------------------------------------------------------
 #
 # Upgrade Conversions go here.
 #
 # ---------------------------------------------------------------
+def load_previous(ini_file):
+    """
+    Attempt to load a `gramps.ini` file from an earlier version.
+    Return True if the file exists.
+    """
+    if os.path.exists(ini_file):
+        logging.info("Importing old config file '%s'...", ini_file)
+        CONFIGMAN.load(ini_file)
+        logging.info("Done importing old config file '%s'", ini_file)
+        return True
+    return False
+
 
 # If we have not already upgraded to this version,
 # we can tell by seeing if there is a key file for this version:
@@ -410,6 +423,7 @@ if not os.path.exists(CONFIGMAN.filename):
     # check previous version of gramps:
     fullpath, filename = os.path.split(CONFIGMAN.filename)
     fullpath, previous = os.path.split(fullpath)
+    oldpath = os.path.join(USER_HOME, ".gramps")
     match = re.match(r"gramps(\d*)", previous)
     if match:
         # cycle back looking for previous versions of gramps
@@ -422,11 +436,11 @@ if not os.path.exists(CONFIGMAN.filename):
             # Perhaps addings specific list of versions to check
             # -----------------------------------------
             digits = str(int(match.groups()[0]) - i)
-            previous_grampsini = os.path.join(fullpath, "gramps" + digits, filename)
-            if os.path.exists(previous_grampsini):
-                logging.info("Importing old config file '%s'...", previous_grampsini)
-                CONFIGMAN.load(previous_grampsini)
-                logging.info("Done importing old config file '%s'", previous_grampsini)
+            grampsini = os.path.join(fullpath, "gramps" + digits, filename)
+            if load_previous(grampsini):
+                break
+            grampsini = os.path.join(oldpath, "gramps" + digits, filename)
+            if load_previous(grampsini):
                 break
 
 # ---------------------------------------------------------------
