@@ -34,6 +34,10 @@ import os
 import random
 import sys
 import uuid
+import shutil
+import logging
+
+LOG = logging.getLogger(".")
 
 from gi.repository import GLib
 
@@ -104,10 +108,26 @@ elif "USERPROFILE" in os.environ:
     else:
         USER_DATA = os.path.join(USER_HOME, "AppData", "Roaming", "gramps")
     USER_CONFIG = USER_DATA
+    # Migrate data from AppData\Local to AppData\Roaming on Windows.
+    OLD_HOME = os.path.join(USER_HOME, "AppData", "Local", "gramps")
+    if os.path.exists(OLD_HOME):
+        if os.path.exists(USER_DATA):
+            LOG.warning("Two Gramps application data directories exist.")
+        else:
+            shutil.move(OLD_HOME, USER_DATA)
 else:
     USER_HOME = get_env_var("HOME")
     USER_DATA = os.path.join(GLib.get_user_data_dir(), "gramps")
     USER_CONFIG = os.path.join(GLib.get_user_config_dir(), "gramps")
+    # Copy the database directory into the XDG directory.
+    OLD_HOME = os.path.join(USER_HOME, ".gramps")
+    if os.path.exists(OLD_HOME):
+        if os.path.exists(USER_DATA) or os.path.exists(USER_CONFIG):
+            LOG.warning("Two Gramps application data directories exist.")
+        else:
+            db_dir = os.path.join(OLD_HOME, "grampsdb")
+            if os.path.exists(db_dir):
+                shutil.copytree(db_dir, os.path.join(USER_DATA, "grampsdb"))
 
 USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
 
