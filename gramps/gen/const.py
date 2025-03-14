@@ -35,7 +35,12 @@ import random
 import sys
 import uuid
 
-from gi.repository import GLib
+try:
+    from gi.repository import GLib
+
+    _GOBJECT_AVAILABLE = True
+except ModuleNotFoundError:
+    _GOBJECT_AVAILABLE = False
 
 # -------------------------------------------------------------------------
 #
@@ -119,7 +124,12 @@ if "SAFEMODE" in os.environ:
     HOME_DIR = get_env_var("SAFEMODE")
 
 
-if os.path.exists(HOME_DIR) or "GRAMPSHOME" in os.environ or "SAFEMODE" in os.environ:
+if (
+    os.path.exists(HOME_DIR)
+    or "GRAMPSHOME" in os.environ
+    or "SAFEMODE" in os.environ
+    or not _GOBJECT_AVAILABLE
+):
     USER_DATA = HOME_DIR
     USER_CONFIG = HOME_DIR
     USER_CACHE = HOME_DIR
@@ -128,8 +138,11 @@ else:
     USER_CONFIG = os.path.join(GLib.get_user_config_dir(), "gramps")
     USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
 
-USER_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
-if not USER_PICTURES:
+if _GOBJECT_AVAILABLE:
+    USER_PICTURES = (
+        GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES) or HOME_DIR
+    )
+else:
     USER_PICTURES = HOME_DIR
 
 VERSION_DIR_NAME = "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
