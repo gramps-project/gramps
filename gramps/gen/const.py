@@ -39,8 +39,6 @@ import logging
 
 LOG = logging.getLogger(".")
 
-from gi.repository import GLib
-
 # -------------------------------------------------------------------------
 #
 # Gramps modules
@@ -97,46 +95,55 @@ APP_VCARD = ["text/x-vcard", "text/x-vcalendar"]
 # Determine the user data and user configuration directories.
 #
 # -------------------------------------------------------------------------
-if "GRAMPSHOME" in os.environ:
-    USER_HOME = get_env_var("GRAMPSHOME")
+if "GRAMPSHOME_ISOLATED" in os.environ:
+    USER_HOME = get_env_var("GRAMPSHOME_ISOLATED")
     USER_DATA = os.path.join(USER_HOME, "gramps")
-    USER_CONFIG = USER_DATA
-elif "USERPROFILE" in os.environ:
-    USER_HOME = get_env_var("USERPROFILE")
-    if "APPDATA" in os.environ:
-        USER_DATA = os.path.join(get_env_var("APPDATA"), "gramps")
-    else:
-        USER_DATA = os.path.join(USER_HOME, "AppData", "Roaming", "gramps")
-    USER_CONFIG = USER_DATA
-    # Migrate data from AppData\Local to AppData\Roaming on Windows.
-    OLD_HOME = os.path.join(USER_HOME, "AppData", "Local", "gramps")
-    if os.path.exists(OLD_HOME):
-        if os.path.exists(USER_DATA):
-            LOG.warning("Two Gramps application data directories exist.")
-        else:
-            shutil.move(OLD_HOME, USER_DATA)
+    USER_CONFIG = os.path.join(USER_DATA, "config")
+    USER_CACHE = os.path.join(USER_DATA, "cache")
+    USER_PICTURES = os.path.join(USER_DATA, "pictures")
 else:
-    USER_HOME = get_env_var("HOME")
-    USER_DATA = os.path.join(GLib.get_user_data_dir(), "gramps")
-    USER_CONFIG = os.path.join(GLib.get_user_config_dir(), "gramps")
-    # Copy the database directory into the XDG directory.
-    OLD_HOME = os.path.join(USER_HOME, ".gramps")
-    if os.path.exists(OLD_HOME):
-        if os.path.exists(USER_DATA) or os.path.exists(USER_CONFIG):
-            LOG.warning("Two Gramps application data directories exist.")
+    from gi.repository import GLib
+
+    if "GRAMPSHOME" in os.environ:
+        USER_HOME = get_env_var("GRAMPSHOME")
+        USER_DATA = os.path.join(USER_HOME, "gramps")
+        USER_CONFIG = USER_DATA
+    elif "USERPROFILE" in os.environ:
+        USER_HOME = get_env_var("USERPROFILE")
+        if "APPDATA" in os.environ:
+            USER_DATA = os.path.join(get_env_var("APPDATA"), "gramps")
         else:
-            db_dir = os.path.join(OLD_HOME, "grampsdb")
-            if os.path.exists(db_dir):
-                shutil.copytree(db_dir, os.path.join(USER_DATA, "grampsdb"))
+            USER_DATA = os.path.join(USER_HOME, "AppData", "Roaming", "gramps")
+        USER_CONFIG = USER_DATA
+        # Migrate data from AppData\Local to AppData\Roaming on Windows.
+        OLD_HOME = os.path.join(USER_HOME, "AppData", "Local", "gramps")
+        if os.path.exists(OLD_HOME):
+            if os.path.exists(USER_DATA):
+                LOG.warning("Two Gramps application data directories exist.")
+            else:
+                shutil.move(OLD_HOME, USER_DATA)
+    else:
+        USER_HOME = get_env_var("HOME")
+        USER_DATA = os.path.join(GLib.get_user_data_dir(), "gramps")
+        USER_CONFIG = os.path.join(GLib.get_user_config_dir(), "gramps")
+        # Copy the database directory into the XDG directory.
+        OLD_HOME = os.path.join(USER_HOME, ".gramps")
+        if os.path.exists(OLD_HOME):
+            if os.path.exists(USER_DATA) or os.path.exists(USER_CONFIG):
+                LOG.warning("Two Gramps application data directories exist.")
+            else:
+                db_dir = os.path.join(OLD_HOME, "grampsdb")
+                if os.path.exists(db_dir):
+                    shutil.copytree(db_dir, os.path.join(USER_DATA, "grampsdb"))
 
-USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
+    USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
 
-if "SAFEMODE" in os.environ:
-    USER_CONFIG = get_env_var("SAFEMODE")
+    if "SAFEMODE" in os.environ:
+        USER_CONFIG = get_env_var("SAFEMODE")
 
-USER_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
-if not USER_PICTURES:
-    USER_PICTURES = USER_DATA
+    USER_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
+    if not USER_PICTURES:
+        USER_PICTURES = USER_DATA
 
 VERSION_DIR_NAME = "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
 VERSION_DIR = os.path.join(USER_CONFIG, VERSION_DIR_NAME)
