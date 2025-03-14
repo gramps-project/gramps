@@ -27,13 +27,6 @@ from importlib.util import find_spec
 
 # -------------------------------------------------------------------------
 #
-# GTK modules
-#
-# -------------------------------------------------------------------------
-import gi
-
-# -------------------------------------------------------------------------
-#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
@@ -90,9 +83,11 @@ class Requirements:
         Test to see if a particular version of a module is available.
         """
         try:
+            import gi
+
             gi.require_version(module, version)
             return True
-        except ValueError:
+        except (ModuleNotFoundError, ValueError):
             return False
 
     def check_exe(self, executable):

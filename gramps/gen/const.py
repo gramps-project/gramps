@@ -39,7 +39,12 @@ import logging
 
 LOG = logging.getLogger(".")
 
-from gi.repository import GLib
+try:
+    from gi.repository import GLib
+
+    _GOBJECT_AVAILABLE = True
+except ModuleNotFoundError:
+    _GOBJECT_AVAILABLE = False
 
 # -------------------------------------------------------------------------
 #
@@ -117,8 +122,12 @@ elif "USERPROFILE" in os.environ:
             shutil.move(OLD_HOME, USER_DATA)
 else:
     USER_HOME = get_env_var("HOME")
-    USER_DATA = os.path.join(GLib.get_user_data_dir(), "gramps")
-    USER_CONFIG = os.path.join(GLib.get_user_config_dir(), "gramps")
+    USER_DATA = os.path.join(
+        GLib.get_user_data_dir() if _GOBJECT_AVAILABLE else USER_HOME, "gramps"
+    )
+    USER_CONFIG = os.path.join(
+        GLib.get_user_config_dir() if _GOBJECT_AVAILABLE else USER_HOME, "gramps"
+    )
     # Copy the database directory into the XDG directory.
     OLD_HOME = os.path.join(USER_HOME, ".gramps")
     if os.path.exists(OLD_HOME):
@@ -134,7 +143,8 @@ USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
 if "SAFEMODE" in os.environ:
     USER_CONFIG = get_env_var("SAFEMODE")
 
-USER_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
+if _GOBJECT_AVAILABLE:
+    USER_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
 if not USER_PICTURES:
     USER_PICTURES = USER_DATA
 
