@@ -46,6 +46,7 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-python-bsddb3 \
     mingw-w64-x86_64-python-build \
     mingw-w64-x86_64-python-cairo \
+    mingw-w64-x86_64-python-cffi \
     mingw-w64-x86_64-python-cx-freeze \
     mingw-w64-x86_64-python-distlib \
     mingw-w64-x86_64-python-gobject \
