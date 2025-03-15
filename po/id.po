@@ -9,14 +9,14 @@
 # mohamadsyalvassr <mohamadsyalva@outlook.com>, 2024.
 # Nefla <neflaprojekt@gmail.com>, 2025.
 # Doctorredits_here <182783629+doctorreditshere@users.noreply.github.com>, 2025.
+# Erik Faderik <erikfaderik@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-27 14:37+0000\n"
-"Last-Translator: Doctorredits_here "
-"<182783629+doctorreditshere@users.noreply.github.com>\n"
+"PO-Revision-Date: 2025-03-15 05:20+0000\n"
+"Last-Translator: Erik Faderik <erikfaderik@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/id/>\n"
 "Language: id\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10.2-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -512,24 +512,17 @@ msgstr ""
 "saudara, anak, atau orang tua mereka."
 
 #: ../data/tips.xml:24
-#, fuzzy
-#| msgid ""
-#| "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
-#| "&gt; Compare Individual Events...\" you can compare the data of "
-#| "individuals in your database. This is useful, say, if you wish to list "
-#| "the birth dates of everyone in your database. You can use a custom filter "
-#| "to narrow the results."
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>Siapa yang Lahir Kapan?</b><br/>Di bawah \"Alat &gt; Analisis dan "
-"eksplorasi &gt; Bandingkan Peristiwa Individu...\" Anda dapat membandingkan "
-"data individu dalam database Anda. Ini berguna, katakanlah, jika Anda ingin "
-"membuat daftar tanggal lahir semua orang di database Anda. Anda dapat "
-"menggunakan filter khusus untuk mempersempit hasil."
+"<b>Siapa yang Lahir Kapan?</b><br/>Di bawah "
+"\"Alat > Analisis dan eksplorasi > Bandingkan Peristiwa Individu...\" Anda "
+"dapat membandingkan data individu dalam database Anda. Ini berguna, "
+"katakanlah, jika Anda ingin membuat daftar tanggal lahir semua orang di "
+"database Anda. Anda dapat menggunakan filter khusus untuk mempersempit hasil."
 
 #: ../data/tips.xml:26
 msgid ""
@@ -547,12 +540,6 @@ msgstr ""
 "\"Alat\"."
 
 #: ../data/tips.xml:28
-#, fuzzy
-#| msgid ""
-#| "<b>Calculating Relationships</b><br/>To check if two people in the "
-#| "database are related (by blood, not marriage) try the tool under \"Tools "
-#| "&gt; Utilities &gt; Relationship Calculator...\". The exact relationship "
-#| "as well as all common ancestors are reported."
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
@@ -560,8 +547,8 @@ msgid ""
 "ancestors are reported."
 msgstr ""
 "<b> Menghitung Hubungan</b><br/>Untuk memeriksa apakah dua orang dalam basis "
-"data terkait (hubungan darah, bukan pernikahan) cobalah alat di bawah \"Alat "
-"&gt; Utilitas &gt; Kalkulator Hubungan ...\". Hubungan yang tepat serta "
+"data terkait (hubungan darah, bukan pernikahan) cobalah alat di bawah "
+"\"Alat > Utilitas > Kalkulator Hubungan ...\". Hubungan yang tepat serta "
 "semua nenek moyang yang sama dilaporkan."
 
 #: ../data/tips.xml:30

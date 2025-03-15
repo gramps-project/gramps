@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-02-28 19:20+0000\n"
+"PO-Revision-Date: 2025-03-13 05:41+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -6922,7 +6922,7 @@ msgstr "Cidade"
 #: ../gramps/plugins/webreport/basepage.py:3426
 #: ../gramps/plugins/webreport/basepage.py:3504
 msgid "County"
-msgstr "Concelho"
+msgstr "Condado"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:96
 #: ../gramps/gen/lib/placetype.py:76
