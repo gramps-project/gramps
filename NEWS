@@ -1,3 +1,17 @@
+2025-03-15
+Version 6.0.0-rc2
+* Update translations: ca, de_AT, en_GB, eo, id, ko, pt_PT, sk, sq.
+* Add python-cffi to the Windows AIO build script.
+* Remove check that path exists in the media path unit test. Fixes #13305.
+* Simplify logic for setting data, config and cache directories.
+  Fixes #13261, #13686.
+* Migrate data from old the directory structure. Fixes #13300.
+* Fix nested transaction error in the Test Case Generator tool. Fixes #13680.
+* Enable Web Connection menu in all list views.
+* Fix schema upgrade errors. Fixes #13674.
+* Add database upgrade unit tests.
+* Package Gramps-6.0.0-rc1 for macOS.
+
 2025-03-02
 Version 6.0.0-rc1
 * Update translations: ca, cs, da, de, de_AT, en_GB, eo, fi, fr, he, hr, hu, id,
