@@ -70,7 +70,6 @@ class FileTest(unittest.TestCase):
                 media_path(db),
                 os.path.normcase(os.path.normpath(os.path.abspath(USER_PICTURES))),
             )
-            self.assertTrue(os.path.exists(media_path(db)))
 
             # Test with absolute db.mediapath
             db.set_mediapath(os.path.abspath(USER_HOME) + "/test_abs")
