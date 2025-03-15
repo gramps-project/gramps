@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-03-10 07:19+0000\n"
+"PO-Revision-Date: 2025-03-14 09:31+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1911,114 +1911,116 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
+"그람프스는 밑에 있는 데이타베이스에서 문제를 발견했다. 가계도 관리자를 "
+"통해서 문제를 해결할 수 있다. 데이타베이스를 선택하여 수리를 눌러라"
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
-msgstr ""
+msgstr "읽기 전용 데이타베이스"
 
 #: ../gramps/cli/grampscli.py:160 ../gramps/gui/dbloader.py:166
 #: ../gramps/gui/dbloader.py:510
 msgid "You do not have write access to the selected file."
-msgstr ""
+msgstr "선택한 파일에 쓰기 접근을 할 수 없음."
 
 #: ../gramps/cli/grampscli.py:198 ../gramps/gui/dbloader.py:238
 #: ../gramps/gui/dbloader.py:241 ../gramps/gui/dbloader.py:244
 msgid "Cannot open database"
-msgstr ""
+msgstr "데이타베이스를 열 수 없음"
 
 #: ../gramps/cli/grampscli.py:201 ../gramps/gui/dbloader.py:247
 #: ../gramps/gui/dbloader.py:461
 #, python-format
 msgid "Could not open file: %s"
-msgstr ""
+msgstr "파일을 열 수 없음: %s"
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Could not load a recent Family Tree."
-msgstr ""
+msgstr "최근 가계도를 불러올 수 없음."
 
 #: ../gramps/cli/grampscli.py:261
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr ""
+msgstr "가계도가 삭제되어 존재하지 않음."
 
 #: ../gramps/cli/grampscli.py:267
 msgid "The database is locked."
-msgstr ""
+msgstr "데이타베이스가 잠김."
 
 #: ../gramps/cli/grampscli.py:269
 msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
-msgstr ""
+msgstr "데이타베이스 사용 중이 아닌게 확실하다면 --force-unlock 옵션을 사용하라."
 
 #: ../gramps/cli/grampscli.py:348
 #, python-format
 msgid "Error encountered: %s"
-msgstr ""
+msgstr "오류 검출: %s"
 
 #: ../gramps/cli/grampscli.py:350 ../gramps/cli/grampscli.py:357
 #, python-format
 msgid "  Details: %s"
-msgstr ""
+msgstr "  세부사항: %s"
 
 #: ../gramps/cli/grampscli.py:355
 #, python-format
 msgid "Error encountered in argument parsing: %s"
-msgstr ""
+msgstr "문구 변환 중에 오류 검출: %s"
 
 #: ../gramps/cli/plug/__init__.py:198
 msgid "ERROR: Please specify a person"
-msgstr ""
+msgstr "오류: 인물을 지정하시오"
 
 #: ../gramps/cli/plug/__init__.py:222
 msgid "ERROR: Please specify a family"
-msgstr ""
+msgstr "오류: 가문을 지정하시오"
 
 #: ../gramps/cli/plug/__init__.py:323
 msgid "=filename"
-msgstr ""
+msgstr "=파일이름"
 
 #: ../gramps/cli/plug/__init__.py:323
 msgid "Output file name. MANDATORY"
-msgstr ""
+msgstr "내보내기 파일 이름. 필수"
 
 #: ../gramps/cli/plug/__init__.py:324
 msgid "=format"
-msgstr ""
+msgstr "=양식"
 
 #: ../gramps/cli/plug/__init__.py:324
 msgid "Output file format."
-msgstr ""
+msgstr "내보내기 파일 양식."
 
 #: ../gramps/cli/plug/__init__.py:325 ../gramps/cli/plug/__init__.py:326
 msgid "=name"
-msgstr ""
+msgstr "=이름"
 
 #: ../gramps/cli/plug/__init__.py:325
 msgid "Style name."
-msgstr ""
+msgstr "양식 이름."
 
 #: ../gramps/cli/plug/__init__.py:326
 msgid "Paper size name."
-msgstr ""
+msgstr "종이 크기 이름."
 
 #: ../gramps/cli/plug/__init__.py:327 ../gramps/cli/plug/__init__.py:328
 #: ../gramps/cli/plug/__init__.py:329 ../gramps/cli/plug/__init__.py:330
 #: ../gramps/cli/plug/__init__.py:331
 msgid "=number"
-msgstr ""
+msgstr "=숫자"
 
 #: ../gramps/cli/plug/__init__.py:327
 msgid "Paper orientation number."
-msgstr ""
+msgstr "종이 안내 숫자."
 
 #: ../gramps/cli/plug/__init__.py:328
 msgid "Left paper margin"
-msgstr ""
+msgstr "왼쪽 종이 여백"
 
 #: ../gramps/cli/plug/__init__.py:328 ../gramps/cli/plug/__init__.py:329
 #: ../gramps/cli/plug/__init__.py:330 ../gramps/cli/plug/__init__.py:331
 msgid "Size in cm"
-msgstr ""
+msgstr "cm 단위 크기"
 
 #: ../gramps/cli/plug/__init__.py:329
 msgid "Right paper margin"
