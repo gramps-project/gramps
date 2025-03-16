@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.2//EN"
+"http://gramps-project.org/xml/1.7.2/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.2/">
   <header>
-    <created date="2025-01-27" version="5.1.6"/>
+    <created date="2025-03-16" version="6.0.0"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
