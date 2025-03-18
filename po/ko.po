@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-03-14 09:31+0000\n"
+"PO-Revision-Date: 2025-03-18 09:38+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -2024,38 +2024,38 @@ msgstr "cm 단위 크기"
 
 #: ../gramps/cli/plug/__init__.py:329
 msgid "Right paper margin"
-msgstr ""
+msgstr "오른쪽 종이 여백"
 
 #: ../gramps/cli/plug/__init__.py:330
 msgid "Top paper margin"
-msgstr ""
+msgstr "상단 종이 여백"
 
 #: ../gramps/cli/plug/__init__.py:331
 msgid "Bottom paper margin"
-msgstr ""
+msgstr "하단 종이 여백"
 
 #: ../gramps/cli/plug/__init__.py:332
 msgid "=css filename"
-msgstr ""
+msgstr "=css 파일이름"
 
 #: ../gramps/cli/plug/__init__.py:332
 msgid "CSS filename to use, html format only"
-msgstr ""
+msgstr "사용할 CSS 파일 이름, html 양식만"
 
 #. Translators: needed for French, Hebrew and Arabic
 #: ../gramps/cli/plug/__init__.py:447
 #, python-format
 msgid "%(id)s:\t%(father)s, %(mother)s"
-msgstr ""
+msgstr "%(id)s:\t%(father)s, %(mother)s"
 
 #: ../gramps/cli/plug/__init__.py:495
 #, python-format
 msgid "Unknown option: %s"
-msgstr ""
+msgstr "알 수 없는 옵션: %s"
 
 #: ../gramps/cli/plug/__init__.py:497 ../gramps/cli/plug/__init__.py:602
 msgid "   Valid options are:"
-msgstr ""
+msgstr "   유효한 옵션은:"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/cli/plug/__init__.py:498 ../gramps/cli/plug/__init__.py:603
@@ -2078,13 +2078,13 @@ msgstr ""
 #: ../gramps/plugins/textreport/descendreport.py:314
 #: ../gramps/plugins/textreport/placereport.py:203
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: ../gramps/cli/plug/__init__.py:503 ../gramps/cli/plug/__init__.py:608
 #: ../gramps/cli/plug/__init__.py:691
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
-msgstr ""
+msgstr "   설명과 수용 가능 값을 보려면 '%(donottranslate)s' 사용하라"
 
 #: ../gramps/cli/plug/__init__.py:569
 #, python-format
@@ -2092,49 +2092,52 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using "
 "'%(notranslate1)s=%(notranslate3)s'."
 msgstr ""
+"'%(notranslate1)s=%(notranslate2)s' 무시하고 "
+"'%(notranslate1)s=%(notranslate3)s' 사용하기."
 
 #: ../gramps/cli/plug/__init__.py:580
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr ""
+msgstr "유효한 값을 보려면 '%(notranslate)s' 사용하라."
 
 #: ../gramps/cli/plug/__init__.py:600
 #: ../gramps/gen/plug/report/stdoptions.py:334
 #, python-format
 msgid "Ignoring unknown option: %s"
-msgstr ""
+msgstr "알 수 없는 옵션 무시하기: %s"
 
 #: ../gramps/cli/plug/__init__.py:679
 msgid "   Available options:"
-msgstr ""
+msgstr "   이용가능한 옵션들:"
 
 #: ../gramps/cli/plug/__init__.py:687
 msgid "(no help available)"
-msgstr ""
+msgstr "(도움말 이용 불가)"
 
 #: ../gramps/cli/plug/__init__.py:699
 msgid "   Available values are:"
-msgstr ""
+msgstr "   이용 가능한 값은:"
 
 #: ../gramps/cli/plug/__init__.py:712
 #, python-format
 msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
-msgstr ""
+msgstr "'%(optionname)s' 옵션은 유효하지 않음. 유효한 옵션을 보려면 "
+"'%(donottranslate)s'을 사용하라."
 
 #: ../gramps/cli/plug/__init__.py:730
 msgid "Failed to write report. "
-msgstr ""
+msgstr "보고서 쓰기 실패함. "
 
 #: ../gramps/cli/plug/__init__.py:905
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr ""
+msgstr "'%s' 보고서 생성 실패."
 
 #: ../gramps/cli/user.py:241 ../gramps/gui/dialog.py:298
 msgid "Error detected in database"
-msgstr ""
+msgstr "데이타베이스에서 발견된 오류"
 
 #: ../gramps/cli/user.py:243 ../gramps/gui/dialog.py:300
 #, python-format
@@ -2146,26 +2149,32 @@ msgid ""
 "bug report at %(gramps_bugtracker_url)s\n"
 "\n"
 msgstr ""
+"그람프스는 데이타베이스에서 오류를 확인했다. \"데이타베이스 점검 및 수정\" "
+"도구를 실행하여 해결할 수 있다.\n"
+"\n"
+"해당 도구를 실행한 후에도 문제가 계속 있으면, %(gramps_bugtracker_url)s에 "
+"오류 보고서를 만들어라\n"
+"\n"
 
 #: ../gramps/gen/config.py:302
 msgid "Imported %Y/%m/%d %H:%M:%S"
-msgstr ""
+msgstr "%Y/%m/%d %H:%M:%S 에 불러옴"
 
 #: ../gramps/gen/config.py:314
 msgid "Missing Given Name"
-msgstr ""
+msgstr "성을 분실함"
 
 #: ../gramps/gen/config.py:315
 msgid "Missing Record"
-msgstr ""
+msgstr "기록 분실함"
 
 #: ../gramps/gen/config.py:316
 msgid "Missing Surname"
-msgstr ""
+msgstr "중간 이름 분실함"
 
 #: ../gramps/gen/config.py:323 ../gramps/gen/config.py:325
 msgid "[Living]"
-msgstr ""
+msgstr "[생존]"
 
 #: ../gramps/gen/config.py:324
 msgid "Private Record"
