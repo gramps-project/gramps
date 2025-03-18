@@ -347,6 +347,8 @@ class FamilyView(ListView):
       <section>
         <placeholder id='QuickReport'>
         </placeholder>
+        <placeholder id='WebConnect'>
+        </placeholder>
       </section>
     </menu>
 """

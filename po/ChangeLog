@@ -1,354 +1,65 @@
-2025-03-02  Nick Hall <nick-h@gramps-project.org>
+2025-03-15  Erik Faderik <erikfaderik@gmail.com>
 
-	* po/eo.po: Translated using Weblate (Esperanto) Currently translated at 99.6% (7181 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/
-
-2025-03-02  Nick Hall <nick-h@gramps-project.org>
-
-	* po/ru.po, po/ta.po: Translated using Weblate (Tamil) Currently translated at 98.5% (7099 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ta/ Translated using Weblate (Russian) Currently translated at 98.7% (7115 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
-
-2025-03-02  Milo Ivir <mail@milotype.de>
-
-	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
-
-2025-03-02  Milo Ivir <mail@milotype.de>
-
-	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
-
-2025-03-02  Pier Luigi Cinquantini <plcinquantini@gmail.com>
-
-	* po/eo.po: Translated using Weblate (Esperanto) Currently translated at 99.6% (7181 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/ Translated using Weblate (Esperanto) Currently translated at 97.3% (7012 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/
-
-2025-03-01  Bora Atıcı <boratici.acc@gmail.com>
-
-	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
-
-2025-03-01  Pedro Albuquerque <pmra@protonmail.com>
-
-	* po/pt_PT.po: Translated using Weblate (Portuguese (Portugal)) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/
-
-2025-03-01  Emmanuel Vallois <emmanuel@vallois.name>
-
-	* po/fr.po: Translated using Weblate (French) Currently translated at 99.8% (7196 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
-
-2025-03-01  Doctorredits_here <182783629+doctorreditshere@users.noreply.github.com>
-
-	* po/id.po: Translated using Weblate (Indonesian) Currently translated at 3.6% (261 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	* po/id.po: Translated using Weblate (Indonesian) Currently translated at 3.6% (263 of 7205 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/id/
 
-2025-03-01  Milo Ivir <mail@milotype.de>
-
-	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
-
-2025-03-01  Pier Luigi Cinquantini <plcinquantini@gmail.com>
-
-	* po/eo.po: Translated using Weblate (Esperanto) Currently translated at 97.0% (6995 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/ Translated using Weblate (Esperanto) Currently translated at 94.8% (6834 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/ Translated using Weblate (Esperanto) Currently translated at 93.2% (6717 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/ Translated using Weblate (Esperanto) Currently translated at 89.7% (6463 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/ Translated using Weblate (Esperanto) Currently translated at 89.5% (6450 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/ Translated using Weblate (Esperanto) Currently translated at 89.4% (6447 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/
-
-2025-03-01  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de/ Translated using Weblate (German) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de/
-
-2025-03-01  Stephan Paternotte <stephan@paternottes.net>
-
-	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/ Translated using Weblate (Dutch) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/ Translated using Weblate (Dutch) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/ Translated using Weblate (Dutch) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/ Translated using Weblate (Dutch) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
-
-2025-03-01  Nick Hall <nick-h@gramps-project.org>
-
-	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
-
-2025-03-01  Christoph Eder <christoph.eder@phsalzburg.at>
-
-	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/ Translated using Weblate (German (Austria)) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
-
-2025-03-01  Alexander Son <soneus72@snu.ac.kr>
-
-	* po/ko.po: Translated using Weblate (Korean) Currently translated at 2.3% (166 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ko/ Translated using Weblate (Korean) Currently translated at 2.2% (165 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ko/ Translated using Weblate (Korean) Currently translated at 2.2% (163 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ko/
-
-2025-03-01  Kaj Arne Mikkelsen <kmi@vgdata.dk>
-
-	* po/da.po: Translated using Weblate (Danish) Currently translated at 99.3% (7161 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/da/
-
-2025-03-01  Harald Herreros <h.herreros@proton.me>
-
-	* po/nb.po: Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/
-
-2025-03-01  Arnau Llovet Vidal <arnaullv@gmail.com>
+2025-03-15  Arnau Llovet Vidal <arnaullv@gmail.com>
 
 	* po/ca.po: Translated using Weblate (Catalan) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/ca/
 
-2025-02-22  Arnau Llovet Vidal <arnaullv@gmail.com>
+2025-03-15  Alexander Son <soneus72@snu.ac.kr>
 
-	* po/ca.po: Translated using Weblate (Catalan) Currently translated at 99.1% (7142 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ca/
-
-2025-02-22  தமிழ்நேரம் <anishprabu.t@gmail.com>
-
-	* po/ta.po: Translated using Weblate (Tamil) Currently translated at 98.5% (7099 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ta/
-
-2025-02-22  Pier Luigi Cinquantini <plcinquantini@gmail.com>
-
-	* po/eo.po: Translated using Weblate (Esperanto) Currently translated at 88.4% (6373 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/
-
-2025-02-22  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de/
-
-2025-02-22  Milan <mobrcian@hotmail.com>
-
-	* po/cs.po, po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
-
-2025-02-22  Stephan Paternotte <stephan@paternottes.net>
-
-	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
-
-2025-02-22  Harald Herreros <h.herreros@proton.me>
-
-	* po/nb.po: Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/
-
-2025-02-22  Matti Niemelä <matti.u.niemela@gmail.com>
-
-	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 99.9% (7201 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/fi/ Translated using Weblate (Finnish) Currently translated at 99.9% (7201 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
-
-2025-02-22  Bora Atıcı <boratici.acc@gmail.com>
-
-	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 99.5% (7175 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
-
-2025-02-22  PeterJPower <pekka.valta@kolumbus.fi>
-
-	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 99.9% (7200 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
-
-2025-02-22  Pär Ekholm <github1@m.pekholm.org>
-
-	* po/sv.po: Translated using Weblate (Swedish) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sv/
-
-2025-02-22  Milo Ivir <mail@milotype.de>
-
-	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
-
-2025-02-19  Andi Chandler <andi@gowling.com>
-
-	* po/en_GB.po: Translated using Weblate (English (United Kingdom)) Currently translated at 98.9% (7128 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/en_GB/ Translated using Weblate (English (United Kingdom)) Currently translated at 98.7% (7114 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/en_GB/ Translated using Weblate (English (United Kingdom)) Currently translated at 98.7% (7113 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/en_GB/
-
-2025-02-19  Fedir Zinchuk <fedikw@gmail.com>
-
-	* po/uk.po: Translated using Weblate (Ukrainian) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/uk/
-
-2025-02-19  Illia Maier <Illia-M@users.noreply.hosted.weblate.org>
-
-	* po/uk.po: Translated using Weblate (Ukrainian) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/uk/
-
-2025-02-19  Fedir Zinchuk <fedikw@gmail.com>
-
-	* po/uk.po: Translated using Weblate (Ukrainian) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/uk/
-
-2025-02-19  Максим Горпиніч <maksimgorpinic2005a@gmail.com>
-
-	* po/uk.po: Translated using Weblate (Ukrainian) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/uk/
-
-2025-02-19  Stephan Paternotte <stephan@paternottes.net>
-
-	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/ Translated using Weblate (Dutch) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
-
-2025-02-19  Matti Niemelä <matti.u.niemela@gmail.com>
-
-	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 99.9% (7200 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/fi/ Translated using Weblate (Finnish) Currently translated at 99.9% (7200 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
-
-2025-02-19  Alexander Son <soneus72@snu.ac.kr>
-
-	* po/ko.po: Translated using Weblate (Korean) Currently translated at 2.1% (158 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	* po/ko.po: Translated using Weblate (Korean) Currently translated at 3.0% (217 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ko/ Translated using Weblate (Korean) Currently translated at 2.8% (203 of 7205 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/ko/
 
-2025-02-19  தமிழ்நேரம் <anishprabu.t@gmail.com>
-
-	* po/ta.po: Translated using Weblate (Tamil) Currently translated at 98.5% (7098 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ta/
-
-2025-02-19  Harald Herreros <h.herreros@proton.me>
-
-	* po/nb.po: Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/
-
-2025-02-17  தமிழ்நேரம் <anishprabu.t@gmail.com>
-
-	* po/ta.po: Translated using Weblate (Tamil) Currently translated at 98.5% (7099 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ta/ Translated using Weblate (Tamil) Currently translated at 98.5% (7099 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ta/ Translated using Weblate (Tamil) Currently translated at 98.5% (7098 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ta/
-
-2025-02-17  Pedro Albuquerque <pmra@protonmail.com>
+2025-03-15  Pedro Albuquerque <pmra@protonmail.com>
 
 	* po/pt_PT.po: Translated using Weblate (Portuguese (Portugal)) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/ Translated using Weblate (Portuguese (Portugal)) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/
 
-2025-02-17  Harald Herreros <h.herreros@proton.me>
+2025-03-11  Christoph Eder <christoph.eder@phsalzburg.at>
 
-	* po/nb.po: Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/
+	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
 
-2025-02-17  AND <andam.i380f@aleeas.com>
+2025-03-11  leo-jmateo <jmateo.sanchez@tinet.cat>
 
-	* po/mk.po: Translated using Weblate (Macedonian) Currently translated at 28.9% (2085 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/mk/
+	* po/ca.po: Translated using Weblate (Catalan) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ca/
 
-2025-02-17  Lajos Nemeséri <nemeseril@gmail.com>
+2025-03-11  Milan <mobrcian@hotmail.com>
 
-	* po/hu.po: Translated using Weblate (Hungarian) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hu/
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
 
-2025-02-17  Milo Ivir <mail@milotype.de>
+2025-03-11  Alexander Son <soneus72@snu.ac.kr>
 
-	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/ Translated using Weblate (Croatian) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
+	* po/ko.po: Translated using Weblate (Korean) Currently translated at 2.6% (192 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ko/ Translated using Weblate (Korean) Currently translated at 2.6% (191 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ko/ Translated using Weblate (Korean) Currently translated at 2.5% (185 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ko/
 
-2025-02-17  Pier Luigi Cinquantini <plcinquantini@gmail.com>
+2025-03-11  Andi Chandler <andi@gowling.com>
 
-	* po/eo.po: Translated using Weblate (Esperanto) Currently translated at 88.1% (6353 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/ Translated using Weblate (Esperanto) Currently translated at 86.9% (6265 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/eo/ Translated using Weblate (Esperanto) Currently translated at 86.5% (6235 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	* po/en_GB.po: Translated using Weblate (English (United Kingdom)) Currently translated at 99.0% (7138 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/en_GB/
+
+2025-03-06  Alexander Son <soneus72@snu.ac.kr>
+
+	* po/ko.po: Translated using Weblate (Korean) Currently translated at 2.3% (168 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ko/
+
+2025-03-06  Usergnv Gnvuser <gnvuser131@gmail.com>
+
+	* po/sq.po: Translated using Weblate (Albanian) Currently translated at 35.6% (2572 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sq/
+
+2025-03-06  Pier Luigi Cinquantini <plcinquantini@gmail.com>
+
+	* Translated using Weblate (Esperanto) Currently translated at 99.6% (7183 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/eo/ Translated using Weblate (Esperanto) Currently translated at 99.6% (7183 of 7205 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/eo/ Translated using Weblate (Esperanto) Currently translated at 99.6% (7181 of 7205 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/eo/
-
-2025-02-17  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7205 of 7205 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de/
-
-2025-02-14  Hosted Weblate <hosted@weblate.org>
-
-	* po/ar.po, po/bg.po, po/br.po, po/ca.po, po/cs.po, po/da.po,
-	po/de.po, po/de_AT.po, po/el.po, po/en_GB.po, po/eo.po, po/es.po,
-	po/fa.po, po/fi.po, po/fr.po, po/ga.po, po/gl.po, po/he.po,
-	po/hr.po, po/hu.po, po/id.po, po/is.po, po/it.po, po/ja.po,
-	po/ko.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po, po/nn.po,
-	po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po, po/sk.po,
-	po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po, po/sv.po, po/ta.po,
-	po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_HK.po, po/zh_TW.po: 
-	Update translation files Updated by "Update PO files to match POT (msgmerge)" hook in
-	Weblate.  Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/
-
-2025-02-14  Christoph Eder <christoph.eder@phsalzburg.at>
-
-	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7206 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
-
-2025-02-14  Bora Atıcı <boratici.acc@gmail.com>
-
-	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 99.5% (7176 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/tr/ Translated using Weblate (Turkish) Currently translated at 99.5% (7175 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
-
-2025-02-14  Bora Atıcı <boratici.acc@gmail.com>
-
-	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 99.5% (7171 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/tr/ Translated using Weblate (Turkish) Currently translated at 98.7% (7119 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
-
-2025-02-14  Milo Ivir <mail@milotype.de>
-
-	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7206 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
-
-2025-02-14  Christoph Eder <christoph.eder@phsalzburg.at>
-
-	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7206 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
-
-2025-02-14  Pär Ekholm <github1@m.pekholm.org>
-
-	* po/sv.po: Translated using Weblate (Swedish) Currently translated at 100.0% (7206 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sv/
-
-2025-02-14  Avi Markovitz <avi.markovitz@gmail.com>
-
-	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 98.4% (7091 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/he/
-
-2025-02-14  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7206 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de/
-
-2025-02-14  Milan <mobrcian@hotmail.com>
-
-	* po/cs.po, po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7206 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 100.0% (7206 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/cs/
-
-2025-02-14  Pedro Albuquerque <pmra@protonmail.com>
-
-	* po/pt_PT.po: Translated using Weblate (Portuguese (Portugal)) Currently translated at 100.0% (7206 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/
-
-2025-02-14  Stephan Paternotte <stephan@paternottes.net>
-
-	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7206 of 7206 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
-
-2025-02-12  Hosted Weblate <hosted@weblate.org>
-
-	* Update translation files Updated by "Update PO files to match POT (msgmerge)" hook in
-	Weblate.  Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/
 
