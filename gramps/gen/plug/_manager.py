@@ -216,6 +216,8 @@ class BasePluginManager:
         # Get the addon rules and import them and make them findable
         for plugin in self.__pgr.rule_plugins():
             mod = self.load_plugin(plugin)  # load the addon rule
+            if mod is None:
+                continue
             # get place in rule heirarchy to put the new rule
             obj_rules = importlib.import_module(
                 "gramps.gen.filters.rules." + plugin.namespace.lower()
