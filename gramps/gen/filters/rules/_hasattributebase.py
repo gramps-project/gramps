@@ -41,7 +41,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from ...lib.attrbase import AttributeBase
-from ...db import Database
+from ...types import Database
 
 
 # -------------------------------------------------------------------------

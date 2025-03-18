@@ -46,7 +46,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from ...lib.primaryobj import PrimaryObject
-from ...db import Database
+from ...types import Database
 
 
 # -------------------------------------------------------------------------
