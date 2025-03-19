@@ -18,7 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-DEV_VERSION = True
+DEV_VERSION = False
 VERSION_TUPLE = (6, 0, 0)
 VERSION_QUALIFIER = ""
 VERSION = ".".join(map(str, VERSION_TUPLE)) + VERSION_QUALIFIER
