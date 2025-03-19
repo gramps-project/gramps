@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-03-17 09:07+0000\n"
+"PO-Revision-Date: 2025-03-19 15:06+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -3991,10 +3991,8 @@ msgid "Citations with a note of type <type>"
 msgstr "מובאות עם הערות מסוג <סוג>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches a citation with a source with a specified Gramps ID"
 msgid "Matches citations with a note of the specified type"
-msgstr "‪איתור מובאה עם מקור, עם מזהה גרמפס שצוין"
+msgstr "‪התאמת מובאות עם הערה מסוג מסויים"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4002,8 +4000,6 @@ msgstr "‪איתור מובאה עם מקור, עם מזהה גרמפס שצו�
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:50
-#, fuzzy
-#| msgid "Note Filters"
 msgid "Note filters"
 msgstr "מסנני הערות"
 
@@ -4288,16 +4284,12 @@ msgid "Main Participants:"
 msgstr "משתתפים עקריים:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
-#, fuzzy
-#| msgid "Notes matching parameters"
 msgid "Events matching parameters"
-msgstr "הערות תואמים למשתנים"
+msgstr "אירועים שתואמים למשתנים"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches events with particular parameters"
-msgstr "איתור הערות בהן מופיעים משתנים מסוימים"
+msgstr "התאמת אירועים עם משתנים מסוימים"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4340,10 +4332,8 @@ msgid "Matches events whose notes contain text matching a regular expression"
 msgstr "איתור אירועים שההערות שלהם מכילות מלל שתואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "אירועים שמתויגים ב<תג>"
+msgstr "אירועים עם סוג מסוג ב<סוג>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
 #, fuzzy
@@ -8591,8 +8581,6 @@ msgid "Occupation"
 msgstr "עיסוק"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
 msgstr "מיקום"
@@ -10750,34 +10738,24 @@ msgid ""
 msgstr "ראיות ישירות לאדם זה – לידה: {birth_min_src}, פטירה: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
 msgstr "גיל האם"
 
 #: ../gramps/gen/utils/alive.py:357
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
 msgstr "גיל האב"
 
 #: ../gramps/gen/utils/alive.py:361
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "תאריך פטירה"
+msgstr "מתאריך פטירה"
 
 #: ../gramps/gen/utils/alive.py:365
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "גיל האם"
+msgstr "פטירת האם"
 
 #: ../gramps/gen/utils/alive.py:370
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "גיל האב"
+msgstr "פטירת האב"
 
 #: ../gramps/gen/utils/alive.py:374
 #, fuzzy
@@ -10852,46 +10830,34 @@ msgstr[0] "מספר מרבי של דורות של צאצאים"
 msgstr[1] "מספר מרבי של דורות של צאצאים"
 
 #: ../gramps/gen/utils/alive.py:803
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "שגיאת מסד־נתונים: לולאה בצאצאים של %s"
+msgstr "שגיאת מסד־נתונים: לולאה בצאצאים של %s."
 
 #: ../gramps/gen/utils/alive.py:855
-#, fuzzy
-#| msgid "Death before birth"
 msgid "mother birth "
-msgstr "פטירה לפני הלידה"
+msgstr "לידת האם "
 
 #: ../gramps/gen/utils/alive.py:859 ../gramps/gen/utils/alive.py:865
-#, fuzzy
-#| msgid "Death before birth"
 msgid "father birth "
-msgstr "פטירה לפני הלידה"
+msgstr "לידת האב "
 
 #: ../gramps/gen/utils/alive.py:873 ../gramps/gen/utils/alive.py:904
-#, fuzzy
-#| msgid "Ancestors"
 msgid "ancestor "
-msgstr "אָבוֹת קַדמוֹנִים"
+msgstr "אב קדמון "
 
 #: ../gramps/gen/utils/alive.py:879
-#, fuzzy
-#| msgid "Compute death age"
 msgid "mother death "
-msgstr "חשב גיל פטירה"
+msgstr "פטירת האם "
 
 #: ../gramps/gen/utils/alive.py:883 ../gramps/gen/utils/alive.py:889
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "גיל בעת הפטירה"
+msgstr "פטירת האב "
 
 #: ../gramps/gen/utils/alive.py:962
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "שגיאת מסד־נתונים: לולאה באבות הקדמונים של %s"
+msgstr "שגיאת מסד־נתונים: לולאה באבות הקדמונים של %s."
 
 #: ../gramps/gen/utils/alive.py:1044 ../gramps/gen/utils/alive.py:1053
 msgid "no evidence"
@@ -12571,20 +12537,16 @@ msgid "Text only"
 msgstr "מלל בלבד"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "תוספים חדשים בלבד"
+msgstr "סמלים בלבד"
 
 #: ../gramps/gui/configure.py:2131
 msgid "Display text, icons or both on the toolbar buttons."
 msgstr "הצגת מלל, סמלים או את שניהם בלחתני סרגל הכלים."
 
 #: ../gramps/gui/configure.py:2133
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "_סרגל כלים"
+msgstr "סיגנון סרגל כלים"
 
 #: ../gramps/gui/configure.py:2141
 msgid "Show close button in gramplet bar tabs"
@@ -13985,10 +13947,8 @@ msgid "_Names"
 msgstr "_שמות"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Set as Preferred name"
-msgstr "שם מועדף"
+msgstr "הגדרה כשם מועדף"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
@@ -15137,29 +15097,21 @@ msgstr "מקום חדש"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:242
-#, fuzzy
-#| msgid ""
-#| "Invalid latitude\n"
-#| "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 "קו רוחב לא תקין\n"
-"‏(תחביר: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+"‏(תחביר: 18°9'48.21\"S, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:250
-#, fuzzy
-#| msgid ""
-#| "Invalid longitude\n"
-#| "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 "קו אורך לא תקין\n"
-"‏(תחביר: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+"‏(תחביר: 18°9'48.21\"E, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:289
 #: ../gramps/plugins/lib/maps/geography.py:994
@@ -17756,10 +17708,8 @@ msgid "Metric"
 msgstr "מטרי"
 
 #: ../gramps/gui/glade/plugins.glade:22
-#, fuzzy
-#| msgid "Wiki"
 msgid "_Wiki"
-msgstr "ויקי"
+msgstr "_ויקי"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -18950,10 +18900,8 @@ msgid "All statuses"
 msgstr "כל המצבים"
 
 #: ../gramps/gui/plug/_windows.py:463
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
-msgstr "שחזור לברירת מחדל"
+msgstr "שיצוב מתקע מסננים לברירת מחדל"
 
 #: ../gramps/gui/plug/_windows.py:477
 msgid "Settings"
@@ -18988,38 +18936,28 @@ msgid "Insert a project"
 msgstr "נא להזין מייזם"
 
 #: ../gramps/gui/plug/_windows.py:705
-#, fuzzy
-#| msgid "Remove the selected personal event"
 msgid "Remove the selected project"
-msgstr "הסרת האירוע הפרטי שנבחר"
+msgstr "הסרת המיזם שנבחר"
 
 #: ../gramps/gui/plug/_windows.py:707
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "העברת צאצא מעלה ברשימת הצאצאים"
+msgstr "העברת מיזם מעלה ברשימה"
 
 #: ../gramps/gui/plug/_windows.py:709
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "העברת צאצא מטה ברשימת הצאצאים"
+msgstr "העברת מיזם מטה ברשימה"
 
 #: ../gramps/gui/plug/_windows.py:711
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
-msgstr "שחזור המיזם לברירות המחדל"
+msgstr "החזרה לברירות מחדל המיזם"
 
 #: ../gramps/gui/plug/_windows.py:748
 msgid "Allow Gramps to install required Python modules"
 msgstr "לאפשר לגרמפס להתקין פרקני פייתון נדרשים"
 
 #: ../gramps/gui/plug/_windows.py:750
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "לאפשר לגרמפס להתקין פרקני פייתון נדרשים"
+msgstr "כאשר מתאפשר, לנסות להתקין פרקני פייתון דרישות קדם"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Scheduled update checks"
@@ -23007,19 +22945,13 @@ msgid "Enter a date, click Run"
 msgstr "נא למלא תאריך וללחוץ על הרצה"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
-#, fuzzy
-#| msgid ""
-#| "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. "
-#| "This will compute the ages for everyone in your Family Tree on that date. "
-#| "You can then sort by the age column, and double-click the row to view or "
-#| "edit."
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
 "This will compute the ages for everyone in your Family Tree on that date. "
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"נא להזין תאריך חוקי (כגון YYYY-MM-DD) ברשומה שלהלן להקיש על 'הרצה'. מהלך זה "
+"נא להזין תאריך חוקי (כגון YYYY-MM-DD) בתיבת המלל ולהקיש על 'הרצה'. מהלך זה "
 "יחשב את הגילאים לכל אדם באילן־היוחסין לתאריך שהוזן. לאחר מכן ניתן יהיה למיין "
 "לפי עמודת הגיל, הקשה כפולה על השורה תאפשר הצגה או עריכה."
 
@@ -23118,10 +23050,9 @@ msgid "Key"
 msgstr "מפתח"
 
 #: ../gramps/plugins/gramplet/backlinks.py:238
-#, fuzzy, python-format
-#| msgid "_Make Active Media"
+#, python-format
 msgid "_Make Active %s"
-msgstr "_הפיכה למדיה פעילה"
+msgstr "_הפיכת %s לפעילה"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
@@ -23399,16 +23330,12 @@ msgid "Total people"
 msgstr "סך־כל מספר אנשים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets/he#Gramplet_List"
+msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets/he#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_5.2_Wiki_Manual_-_Tools/he#ניפוי תקלים"
+msgstr "Gramps_6.0_Wiki_Manual_-_Tools/he#ניפוי תקלים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -24595,10 +24522,8 @@ msgid "Unattached"
 msgstr "לא מצורף"
 
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:45
-#, fuzzy
-#| msgid "Number of ranks to display"
 msgid "Number of Surnames to display"
-msgstr "מספר דרגות לתצודה"
+msgstr "מספר שמות משפחה לתצוגה"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Intro"
@@ -25659,20 +25584,14 @@ msgid "call"
 msgstr "שם מקובל"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "כינוי"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "_חיבה:"
+msgstr "כינוי"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
 msgstr "כינוי"
 
@@ -32627,10 +32546,8 @@ msgid "Show gender symbol in front of name"
 msgstr "להציג סמל מגדל לפני השם"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "האם להציג מידע על גירושין בדוח."
+msgstr "האם להציג סמל מגדר לפני השם בדוח."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -32832,10 +32749,8 @@ msgstr "האם להשתמש בשם מקובל כשם פרטי."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to use the call name as the first name."
 msgid "Whether to show gender symbol in front of name."
-msgstr "האם להשתמש בשם מקובל כשם פרטי."
+msgstr "האם להציג סמל מגדר לפני שם."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
@@ -33386,16 +33301,12 @@ msgid "The maximum number of ancestor generations"
 msgstr "מספר מרבי של דורות אָבוֹת קַדמוֹנִים"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
-#| msgid "Show gramps id"
 msgid "Show Gramps ID"
 msgstr "הצגת מזהה גרמפס"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
-msgstr "האם לכלול מזהי גרמפס"
+msgstr "האם להציג מזהי גרמפס"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:390
 msgid "Whether to include spouses"
@@ -37407,10 +37318,9 @@ msgstr "עלילה"
 
 #: ../gramps/plugins/webreport/basepage.py:904
 #: ../gramps/plugins/webreport/basepage.py:974
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr "(%(str1)s) %(str2)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1511
 #: ../gramps/plugins/webreport/basepage.py:3427
@@ -37741,10 +37651,8 @@ msgid "Family Map for %s"
 msgstr "מפת משפחת %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "יצירת עמודי אירועים"
+msgstr "יצירת עמודי מפות חום לאירועים"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
@@ -37752,8 +37660,6 @@ msgid ""
 msgstr "המקטע הבא מכיל מפתח כל האירועים במפת חום."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "שם"
@@ -37769,10 +37675,9 @@ msgstr "מקומות המתחילים באות %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "בדיקת המסנן שנבחר"
+msgstr "מפת חום עבור %s במסנן שנבחר"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
@@ -37780,8 +37685,6 @@ msgid ""
 msgstr "המקטע הבא מכיל מפתח כל שמות המשפחה במפת חום."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "שם משפחה"
@@ -37800,10 +37703,8 @@ msgstr "מקטע זה מכיל את מפת כל האנשים עם האירוע: 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "מחיקת המסנן שנבחר"
+msgstr " ללא אירועים למסנן שנבחר."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38061,16 +37962,10 @@ msgid "Normal Outline Style"
 msgstr "סגנון מתאר תקני"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2221
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
-msgstr "תסדיר אזכורים מובאה"
+msgstr "תסדיר אזכורי מובאה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
@@ -38113,10 +38008,8 @@ msgid "Max. rows in an index"
 msgstr "מספר שורות מירבי במפתח"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "לכלול מספר מרבי של הורים."
+msgstr "מספר שורות מרבי שיכללו בעמוד מפתח"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2264
 msgid "Extra Pages"
@@ -38466,16 +38359,12 @@ msgid "Add a complete events list and relevant pages or not"
 msgstr "הוספת רשימת אירועים מלאה ודפים מן העיניין או לא"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2603
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "לכלול אירועים אחרים"
+msgstr "לכלול תפקידים אחרים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2604
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "גרמפלט להצגת הערות לאירוע"
+msgstr "לכלול אנשים עם תפקיד 'אחר' באירוע"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2607
 msgid "Include place pages"
@@ -38845,36 +38734,28 @@ msgstr ""
 "ל'כנראה בחיים'' שמוגדר בלשונית' העדפות תאריך'."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "אפשרויות מפת מקומות"
+msgstr "אפשרויות מפת חום"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "לכלול עמודי אירוע"
+msgstr "לכלול עמודי מפת חום"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "האם לכלול שמות חלופיים להורים."
+msgstr "האם לכלול מפות חום לאירועים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "גודל גופן"
+msgstr "גודל נקודה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "גודל מלל ההערה בנקודות."
+msgstr ""
+"הגדרת גודל נקודות במפת חום.\n"
+"ברירת מחדל: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
@@ -39083,10 +38964,9 @@ msgid "Number of People"
 msgstr "מספר אנשים"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
-#, fuzzy, python-brace-format
-#| msgid "Surnames beginning with letter '%s' %s"
+#, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "שמות משפחה המתחילים באות '%s' %s"
+msgstr "שמות משפחה שמתחילים באות '{letter}' {char}"
 
 #: ../gramps/plugins/webreport/thumbnail.py:128
 msgid ""
