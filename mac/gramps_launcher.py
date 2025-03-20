@@ -33,7 +33,8 @@ environ["GVBINDIR"] = join(bundle_lib, "graphviz")
 environ["ENCHANT_MODULE_PATH"] = join(bundle_lib, "enchant")
 
 # Set $PYTHON to point inside the bundle
-PYVER = "python" + version[:3]
+PYVER = "python" + version[:4] # As is 4 characters to get
+'3.13'
 
 environ["GRAMPSDIR"] = join(bundle_lib, PYVER, "site-packages", "gramps")
 environ["GRAMPSI18N"] = join(bundle_data, "locale")
