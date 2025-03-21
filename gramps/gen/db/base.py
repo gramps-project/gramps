@@ -92,7 +92,7 @@ class DbReadBase:
 
     def db_has_bm_changes(self):
         """
-        Return whethere there were bookmark changes during the session.
+        Return whether there were bookmark changes during the session.
         """
         raise NotImplementedError
 

@@ -28,9 +28,11 @@ Database API interface
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import logging
 import json
 import time
+from typing import cast
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -63,6 +65,7 @@ from gramps.gen.lib import (
 )
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
+from gramps.gen.errors import HandleError
 
 LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
@@ -1043,7 +1046,8 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         if row:
             return self.serializer.string_to_data(row[0])
-        return None
+
+        raise HandleError(f"Handle {handle} not found")
 
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
@@ -1185,13 +1189,13 @@ class DBAPI(DbGeneric):
 
         # Derived fields
         if table == "Person":
-            given_name, surname = self._get_person_data(obj)
+            given_name, surname = self._get_person_data(cast(Person, obj))
             sets.append("given_name = ?")
             values.append(given_name)
             sets.append("surname = ?")
             values.append(surname)
         if table == "Place":
-            handle = self._get_place_data(obj)
+            handle = self._get_place_data(cast(Place, obj))
             sets.append("enclosed_by = ?")
             values.append(handle)
 

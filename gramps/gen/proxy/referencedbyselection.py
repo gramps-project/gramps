@@ -66,14 +66,14 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.reset_references()
         # If restricted_to["Person"] is a set, restrict process to
         # them, and do not process others outside of them
-        self.restricted_to = {"Person": None}
+        self.restricted_to = {"Person": set()}
         # Build lists of referenced objects
         # iter through whatever object(s) you want to start
         # the trace.
         self.queue = []
         if all_people:
             # Do not add references to those not already included
-            self.restricted_to["Person"] = [x for x in self.db.iter_person_handles()]
+            self.restricted_to["Person"] = set(self.db.iter_person_handles())
             # Spread activation to all other items:
             for handle in self.restricted_to["Person"]:
                 if handle:
