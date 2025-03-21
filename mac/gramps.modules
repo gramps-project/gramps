@@ -23,14 +23,14 @@
   <include href="https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/modulesets-stable/gtk-osx.modules"/>
   <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
-  <distutils id="gramps-git" supports-non-srcdir-builds="no">
+  <pip id="gramps-git" supports-non-srcdir-builds="no">
     <branch module="gramps-project/gramps.git" repo="github"
             revision="maintenance/gramps52"
 	    checkoutdir="gramps-git"/>
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
-  </distutils>
+  </pip>
  <pip id="gramps" supports-non-srcdir-builds="no">
     <branch module="gramps-project/gramps/archive/v6.0.0.tar.gz"
 	    repo="github-tarball" version="6.0.0"
@@ -40,13 +40,13 @@
     </dependencies>
   </pip>
 
-  <distutils id="gramps-addons-git">
+  <pip id="gramps-addons-git">
     <branch module="gramps-project/gramps-addons"
 	    repo="github"/>
     <dependencies>
       <dep package="gramps-git"/>
     </dependencies>
-  </distutils>
+  </pip>
 
   <meson id="json-glib" mesonargs="-Dgtk_doc=disabled -Dman=false -Dtests=false">
     <branch module="json-glib/1.10/json-glib-1.10.6.tar.xz"
