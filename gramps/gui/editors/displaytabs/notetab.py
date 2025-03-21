@@ -206,10 +206,13 @@ class NoteTab(EmbeddedList, DbGUIElement):
     def share_button_clicked(self, obj):
         SelectNote = SelectorFactory("Note")
 
-        sel = SelectNote(self.dbstate, self.uistate, self.track)
-        note = sel.run()
-        if note:
-            self.add_callback(note.handle)
+        sel = SelectNote(
+            self.dbstate, self.uistate, self.track, allow_multiple_selection=True
+        )
+        notes = sel.run()
+        if notes:
+            for note in notes:
+                self.add_callback(note.handle)
 
     def get_icon_name(self):
         """
