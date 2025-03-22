@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-14 22:21+0000\n"
+"POT-Creation-Date: 2025-03-19 17:49+0000\n"
 "PO-Revision-Date: 2025-02-28 12:01+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
@@ -256,7 +256,7 @@ msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr "Genealogie;Familiegeschiedenis;Onderzoek;Stamboom;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
-#: ../gramps/gen/const.py:259
+#: ../gramps/gen/const.py:265
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
@@ -548,10 +548,10 @@ msgid ""
 "> Relationship Calculator...\". The exact relationship as well as all common "
 "ancestors are reported."
 msgstr ""
-"<b>Verwantschap berekenen</b><br/>Probeer "
-"\"Hulpmiddelen > Gereedschap > Verwantschap berekenen…\" om te controleren "
-"of twee personen in de database bloedverwant zijn (dus niet door huwelijk). "
-"De exacte relatie en alle gemeenschappelijke voorouders worden getoond."
+"<b>Verwantschap berekenen</b><br/>Probeer \"Hulpmiddelen > Gereedschap > "
+"Verwantschap berekenen…\" om te controleren of twee personen in de database "
+"bloedverwant zijn (dus niet door huwelijk). De exacte relatie en alle "
+"gemeenschappelijke voorouders worden getoond."
 
 #: ../data/tips.xml:30
 msgid ""
@@ -2185,17 +2185,17 @@ msgctxt "localized lexeme inflections"
 msgid "January"
 msgstr "januari"
 
-#: ../gramps/gen/const.py:293
+#: ../gramps/gen/const.py:299
 msgctxt "surname"
 msgid "none"
 msgstr "geen"
 
-#: ../gramps/gen/const.py:294
+#: ../gramps/gen/const.py:300
 msgctxt "given-name"
 msgid "none"
 msgstr "geen"
 
-#: ../gramps/gen/const.py:298 ../gramps/plugins/gramplet/todo.py:208
+#: ../gramps/gen/const.py:304 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:235
 #: ../gramps/plugins/webreport/basepage.py:3382
 #: ../gramps/plugins/webreport/basepage.py:3403
@@ -3222,14 +3222,14 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"De stamboom die u probeert te laden is gemaakt in schemaversie %(oldschema)"
-"s. Deze versie van Gramps gebruikt schemaversie %(newschema)s. Daarom kunt u "
-"deze stamboom niet laden zonder de schemaversie van de stamboom te upgraden."
-"\n"
+"De stamboom die u probeert te laden is gemaakt in schemaversie "
+"%(oldschema)s. Deze versie van Gramps gebruikt schemaversie %(newschema)s. "
+"Daarom kunt u deze stamboom niet laden zonder de schemaversie van de "
+"stamboom te upgraden.\n"
 "\n"
 "Als u een upgrade uitvoert kunt u de vorige versie van Gramps niet "
-"gebruiken, zelfs niet als u vervolgens een %(wiki_manual_backup_html_start"
-")sback-up%(html_end)s maakt of een "
+"gebruiken, zelfs niet als u vervolgens een "
+"%(wiki_manual_backup_html_start)sback-up%(html_end)s maakt of een "
 "%(wiki_manual_export_html_start)sexport%(html_end)s uitvoert van uw "
 "bijgewerkte stamboom.\n"
 "\n"
@@ -3290,7 +3290,7 @@ msgstr ""
 "up%(html_end)s van uw stamboom maken."
 
 #: ../gramps/gen/db/generic.py:231 ../gramps/gen/db/generic.py:281
-#: ../gramps/gen/db/generic.py:2276
+#: ../gramps/gen/db/generic.py:2312
 #, python-format
 msgid "_Undo %s"
 msgstr "_Ongedaan maken %s"
@@ -3300,78 +3300,78 @@ msgstr "_Ongedaan maken %s"
 msgid "_Redo %s"
 msgstr "Op_nieuw uitvoeren %s"
 
-#: ../gramps/gen/db/generic.py:2667
+#: ../gramps/gen/db/generic.py:2703
 msgid "Number of people"
 msgstr "Aantal personen"
 
-#: ../gramps/gen/db/generic.py:2668
+#: ../gramps/gen/db/generic.py:2704
 #: ../gramps/plugins/gramplet/statsgramplet.py:187
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
 msgstr "Aantal gezinnen"
 
-#: ../gramps/gen/db/generic.py:2669
+#: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 msgid "Number of sources"
 msgstr "Aantal bronnen"
 
-#: ../gramps/gen/db/generic.py:2670
+#: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
 msgstr "Aantal citaten"
 
-#: ../gramps/gen/db/generic.py:2671
+#: ../gramps/gen/db/generic.py:2707
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
 msgstr "Aantal gebeurtenissen"
 
-#: ../gramps/gen/db/generic.py:2672
+#: ../gramps/gen/db/generic.py:2708
 msgid "Number of media"
 msgstr "Aantal media-objecten"
 
-#: ../gramps/gen/db/generic.py:2673
+#: ../gramps/gen/db/generic.py:2709
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 msgid "Number of places"
 msgstr "Aantal locaties"
 
-#: ../gramps/gen/db/generic.py:2674
+#: ../gramps/gen/db/generic.py:2710
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
 msgstr "Aantal opslagplaatsen"
 
-#: ../gramps/gen/db/generic.py:2675
+#: ../gramps/gen/db/generic.py:2711
 msgid "Number of notes"
 msgstr "Aantal notities"
 
-#: ../gramps/gen/db/generic.py:2676
+#: ../gramps/gen/db/generic.py:2712
 msgid "Number of tags"
 msgstr "Aantal labels"
 
-#: ../gramps/gen/db/generic.py:2677
+#: ../gramps/gen/db/generic.py:2713
 msgid "Schema version"
 msgstr "Schema-versie"
 
-#: ../gramps/gen/db/upgrade.py:655
+#: ../gramps/gen/db/upgrade.py:672
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Personen        bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
-#: ../gramps/gen/db/upgrade.py:659
+#: ../gramps/gen/db/upgrade.py:676
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Gezinnen      bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
-#: ../gramps/gen/db/upgrade.py:663
+#: ../gramps/gen/db/upgrade.py:680
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3379,39 +3379,39 @@ msgstr ""
 "%(n1)6d  Gebeurtenissen        opgewaardeerd met %(n2)6d citaten in %(n3)6d "
 "seconden\n"
 
-#: ../gramps/gen/db/upgrade.py:667
+#: ../gramps/gen/db/upgrade.py:684
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Media-objecten bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
-#: ../gramps/gen/db/upgrade.py:671
+#: ../gramps/gen/db/upgrade.py:688
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Locaties        bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
-#: ../gramps/gen/db/upgrade.py:675
+#: ../gramps/gen/db/upgrade.py:692
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Opslagplaatsen bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
-#: ../gramps/gen/db/upgrade.py:679
+#: ../gramps/gen/db/upgrade.py:696
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Bronnen       bijgewerkt met %(n2)6d citaten in %(n3)6d seconden\n"
 
-#: ../gramps/gen/db/upgrade.py:1244
+#: ../gramps/gen/db/upgrade.py:1261
 msgid "Number of new objects upgraded:\n"
 msgstr "Aantal bijgewerkte nieuwe objecten:\n"
 
-#: ../gramps/gen/db/upgrade.py:1255
+#: ../gramps/gen/db/upgrade.py:1272
 msgid ""
 "\n"
 "\n"
@@ -3427,7 +3427,7 @@ msgstr ""
 "uitvoeren om citaten met vergelijkbare informatie\n"
 "samen te voegen"
 
-#: ../gramps/gen/db/upgrade.py:1260
+#: ../gramps/gen/db/upgrade.py:1277
 msgid "Upgrade Statistics"
 msgstr "Statistieken bijwerken"
 
@@ -4488,7 +4488,8 @@ msgstr "Gebeurtenissen met een notitie van het type <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
 msgid "Matches events with a note of the specified type"
-msgstr "Overeenkomst met gebeurtenissen met een notitie van het specifieke type"
+msgstr ""
+"Overeenkomst met gebeurtenissen met een notitie van het specifieke type"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4506,7 +4507,8 @@ msgstr "Gebeurtenissen met <aantal> bronnen"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:47
 msgid "Matches events with a certain number of sources connected to it"
-msgstr "Overeenkomst met gebeurtenissen met een bepaald aantal bronverwijzingen"
+msgstr ""
+"Overeenkomst met gebeurtenissen met een bepaald aantal bronverwijzingen"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Events with the <tag>"
@@ -4703,7 +4705,8 @@ msgstr "Gezinnen met een <gezinskenmerk>"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:49
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Overeenkomst met gezinnen met een gezinskenmerk van een bepaalde waarde"
+msgstr ""
+"Overeenkomst met gezinnen met een gezinskenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:51
 msgid "Families with the <citation>"
@@ -4894,7 +4897,8 @@ msgstr "Gezinnen die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:47
 msgid "Matches families matched by the specified filter name"
-msgstr "Overeenkomst met gezinnen die overeenkomen met de specifieke filternaam"
+msgstr ""
+"Overeenkomst met gezinnen die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:46
 msgid "Families with at least one direct source >= <confidence level>"
@@ -5031,7 +5035,8 @@ msgstr "Media-objecten met het kenmerk <kenmerk>"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:48
 msgid "Matches media objects with the attribute of a particular value"
-msgstr "Overeenkomst met media-objecten met een kenmerk van een bepaalde waarde"
+msgstr ""
+"Overeenkomst met media-objecten met een kenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:50
 msgid "Media with the <citation>"
@@ -5235,7 +5240,8 @@ msgstr "Notities die overeenkomen met het <filter>"
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:47
 msgid "Matches notes matched by the specified filter name"
-msgstr "Overeenkomst met notities die overeenkomen met de specifieke filternaam"
+msgstr ""
+"Overeenkomst met notities die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:54
 msgid "Notes containing <text>"
@@ -5290,7 +5296,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:150
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Verwantschap tussen <persoon> en personen die overeenkomen met <filter>"
+msgstr ""
+"Verwantschap tussen <persoon> en personen die overeenkomen met <filter>"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:151
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:59
@@ -5800,7 +5807,8 @@ msgstr "Voorouders van <persoon>"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:60
 msgid "Matches people that are ancestors of a specified person"
-msgstr "Overeenkomst met personen die voorouders zijn van een specifiek persoon"
+msgstr ""
+"Overeenkomst met personen die voorouders zijn van een specifiek persoon"
 
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:59
 msgid "Ancestors of <filter> match"
@@ -6078,7 +6086,8 @@ msgstr "Personen die overeenkomen met het <filter> resultaat"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:47
 msgid "Matches people matched by the specified filter name"
-msgstr "Overeenkomst met personen die overeenkomen met de specifieke filternaam"
+msgstr ""
+"Overeenkomst met personen die overeenkomen met de specifieke filternaam"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:46
 msgid "Persons with at least one direct source >= <confidence level>"
@@ -6578,7 +6587,8 @@ msgstr "Opslagplaatsen met het kenmerk <kenmerk>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:49
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Overeenkomst met opslagplaatsen met een kenmerk van een bepaalde waarde"
+msgstr ""
+"Overeenkomst met opslagplaatsen met een kenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:46
 msgid "Repository with <Id>"
@@ -7418,7 +7428,7 @@ msgstr "Laatst gewijzigd"
 #: ../gramps/gui/glade/editmediaref.glade:728
 #: ../gramps/gui/glade/editnote.glade:278
 #: ../gramps/gui/glade/editperson.glade:677
-#: ../gramps/gui/selectors/selectnote.py:75
+#: ../gramps/gui/selectors/selectnote.py:74
 #: ../gramps/plugins/importer/importprogen.glade:561
 #: ../gramps/plugins/importer/importxml.py:358
 #: ../gramps/plugins/lib/libpersonview.py:113
@@ -8491,7 +8501,7 @@ msgstr "Geregistreerd partnerschap"
 #: ../gramps/gui/plug/report/_bookdialog.py:397
 #: ../gramps/gui/plug/report/_bookdialog.py:401
 #: ../gramps/gui/selectors/selectevent.py:67
-#: ../gramps/gui/selectors/selectnote.py:74
+#: ../gramps/gui/selectors/selectnote.py:73
 #: ../gramps/gui/selectors/selectobject.py:82
 #: ../gramps/gui/selectors/selectplace.py:70
 #: ../gramps/plugins/export/exportcsv.py:310
@@ -9791,21 +9801,21 @@ msgid ""
 msgstr ""
 "FOUT: Python-bestand %(filename)s in registerbestand %(regfile)s bestaat niet"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:142
+#: ../gramps/gen/plug/docbackend/docbackend.py:141
 msgid "Close file first"
 msgstr "Sluit eerst het bestand"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:152
+#: ../gramps/gen/plug/docbackend/docbackend.py:151
 msgid "No filename given"
 msgstr "Geen bestandsnaam opgegeven"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:155
+#: ../gramps/gen/plug/docbackend/docbackend.py:154
 #, python-format
 msgid "File %s already open, close it first."
 msgstr "Bestand %s is al geopend, sluit het eerst."
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:161
-#: ../gramps/gen/plug/docbackend/docbackend.py:164
+#: ../gramps/gen/plug/docbackend/docbackend.py:160
+#: ../gramps/gen/plug/docbackend/docbackend.py:163
 #: ../gramps/gen/plug/docgen/treedoc.py:832
 #: ../gramps/gen/utils/docgen/odstab.py:344
 #: ../gramps/gen/utils/docgen/odstab.py:346
@@ -9820,8 +9830,8 @@ msgstr "Bestand %s is al geopend, sluit het eerst."
 #: ../gramps/gen/utils/docgen/odstab.py:495
 #: ../gramps/gen/utils/docgen/odstab.py:498
 #: ../gramps/plugins/docgen/asciidoc.py:185
-#: ../gramps/plugins/docgen/cairodoc.py:210
-#: ../gramps/plugins/docgen/cairodoc.py:213
+#: ../gramps/plugins/docgen/cairodoc.py:209
+#: ../gramps/plugins/docgen/cairodoc.py:212
 #: ../gramps/plugins/docgen/odfdoc.py:1194
 #: ../gramps/plugins/docgen/odfdoc.py:1197
 #: ../gramps/plugins/docgen/rtfdoc.py:102
@@ -9838,10 +9848,10 @@ msgstr "Bestand %s is al geopend, sluit het eerst."
 #: ../gramps/plugins/export/exportvcalendar.py:127
 #: ../gramps/plugins/export/exportvcard.py:74
 #: ../gramps/plugins/export/exportvcard.py:78
-#: ../gramps/plugins/lib/libhtmlbackend.py:259
-#: ../gramps/plugins/lib/libhtmlbackend.py:262
-#: ../gramps/plugins/lib/libhtmlbackend.py:267
-#: ../gramps/plugins/lib/libhtmlbackend.py:270
+#: ../gramps/plugins/lib/libhtmlbackend.py:258
+#: ../gramps/plugins/lib/libhtmlbackend.py:261
+#: ../gramps/plugins/lib/libhtmlbackend.py:266
+#: ../gramps/plugins/lib/libhtmlbackend.py:269
 #: ../gramps/plugins/webreport/narrativeweb.py:418
 #, python-format
 msgid "Could not create %s"
@@ -11955,7 +11965,7 @@ msgid "installed"
 msgstr "geïnstalleerd"
 
 #: ../gramps/grampsapp.py:625 ../gramps/grampsapp.py:634
-#: ../gramps/grampsapp.py:689
+#: ../gramps/grampsapp.py:684
 msgid "Configuration error:"
 msgstr "Configuratiefout:"
 
@@ -12103,6 +12113,8 @@ msgstr "Versleep de kolomnamen om de volgorde te wijzigen"
 #: ../gramps/gui/plug/_dialogs.py:146 ../gramps/gui/viewmanager.py:1947
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
+#: ../gramps/plugins/tool/eventcmp.glade:189
+#: ../gramps/plugins/tool/notrelated.glade:141
 msgid "_Apply"
 msgstr "_Toepassen"
 
@@ -12151,6 +12163,15 @@ msgstr "Naamweergave-bewerker"
 #: ../gramps/gui/widgets/grampletpane.py:258
 #: ../gramps/plugins/lib/maps/placeselection.py:122
 #: ../gramps/plugins/tool/dumpgenderstats.py:86
+#: ../gramps/plugins/tool/eventcmp.glade:21
+#: ../gramps/plugins/tool/eventcmp.glade:173
+#: ../gramps/plugins/tool/finddupes.glade:242
+#: ../gramps/plugins/tool/notrelated.glade:21
+#: ../gramps/plugins/tool/relcalc.glade:22
+#: ../gramps/plugins/tool/removespaces.glade:23
+#: ../gramps/plugins/tool/removeunused.glade:36
+#: ../gramps/plugins/tool/verify.glade:126
+#: ../gramps/plugins/tool/verify.glade:850
 msgid "_Close"
 msgstr "_Sluiten"
 
@@ -12285,14 +12306,27 @@ msgstr "%s: "
 #: ../gramps/gui/glade/mergesource.glade:51
 #: ../gramps/gui/glade/reorder.glade:51 ../gramps/gui/glade/rule.glade:40
 #: ../gramps/gui/glade/rule.glade:342 ../gramps/gui/glade/rule.glade:766
-#: ../gramps/gui/grampsgui.py:58 ../gramps/gui/logger/_errorview.py:190
-#: ../gramps/gui/plug/_windows.py:390
+#: ../gramps/gui/glade/styleeditor.glade:119
+#: ../gramps/gui/glade/styleeditor.glade:1803 ../gramps/gui/grampsgui.py:58
+#: ../gramps/gui/logger/_errorview.py:190 ../gramps/gui/plug/_windows.py:390
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
 #: ../gramps/gui/widgets/grampletbar.py:712
 #: ../gramps/gui/widgets/grampletpane.py:264
 #: ../gramps/plugins/importer/importprogen.glade:61
+#: ../gramps/plugins/tool/changenames.glade:72
+#: ../gramps/plugins/tool/eventcmp.glade:53
+#: ../gramps/plugins/tool/eventcmp.glade:205
+#: ../gramps/plugins/tool/finddupes.glade:60
+#: ../gramps/plugins/tool/finddupes.glade:274
+#: ../gramps/plugins/tool/mergecitations.glade:60
+#: ../gramps/plugins/tool/notrelated.glade:37
+#: ../gramps/plugins/tool/ownereditor.glade:53
+#: ../gramps/plugins/tool/patchnames.glade:21
+#: ../gramps/plugins/tool/relcalc.glade:37
+#: ../gramps/plugins/tool/removespaces.glade:40
+#: ../gramps/plugins/tool/reorderids.glade:213
 #: ../gramps/plugins/tool/testcasegenerator.py:396
 msgid "_Help"
 msgstr "_Help"
@@ -13134,8 +13168,15 @@ msgstr "Selecteer mediamap"
 #: ../gramps/plugins/importer/importprogen.glade:28
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
+#: ../gramps/plugins/tool/changenames.glade:88
+#: ../gramps/plugins/tool/changetypes.glade:22
 #: ../gramps/plugins/tool/check.py:830 ../gramps/plugins/tool/eventcmp.py:410
+#: ../gramps/plugins/tool/finddupes.glade:28
+#: ../gramps/plugins/tool/mergecitations.glade:28
+#: ../gramps/plugins/tool/ownereditor.glade:21
+#: ../gramps/plugins/tool/patchnames.glade:37
 #: ../gramps/plugins/tool/populatesources.py:99
+#: ../gramps/plugins/tool/reorderids.glade:181
 #: ../gramps/plugins/tool/testcasegenerator.py:394
 msgid "_Cancel"
 msgstr "_Annuleren"
@@ -13421,8 +13462,15 @@ msgstr "Database-informatie"
 #: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:857
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:281
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
-#: ../gramps/plugins/tool/check.py:830 ../gramps/plugins/tool/patchnames.py:152
+#: ../gramps/plugins/importer/importgedcom.glade:46
+#: ../gramps/plugins/tool/changetypes.glade:38
+#: ../gramps/plugins/tool/check.py:830
+#: ../gramps/plugins/tool/finddupes.glade:44
+#: ../gramps/plugins/tool/mergecitations.glade:44
+#: ../gramps/plugins/tool/ownereditor.glade:37
+#: ../gramps/plugins/tool/patchnames.py:152
 #: ../gramps/plugins/tool/populatesources.py:99
+#: ../gramps/plugins/tool/reorderids.glade:197
 #: ../gramps/plugins/tool/testcasegenerator.py:395
 msgid "_OK"
 msgstr "_OK"
@@ -13978,7 +14026,7 @@ msgstr "_Kenmerken"
 #: ../gramps/gui/selectors/selectcitation.py:74
 #: ../gramps/gui/selectors/selectevent.py:72
 #: ../gramps/gui/selectors/selectfamily.py:67
-#: ../gramps/gui/selectors/selectnote.py:73
+#: ../gramps/gui/selectors/selectnote.py:72
 #: ../gramps/gui/selectors/selectobject.py:81
 #: ../gramps/gui/selectors/selectperson.py:100
 #: ../gramps/gui/selectors/selectplace.py:69
@@ -14122,13 +14170,13 @@ msgstr "Bron_citaten"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:344
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:320
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:376
-#: ../gramps/plugins/view/citationtreeview.py:622
-#: ../gramps/plugins/view/citationtreeview.py:646
+#: ../gramps/plugins/view/citationtreeview.py:624
+#: ../gramps/plugins/view/citationtreeview.py:648
 msgid "Cannot share this reference"
 msgstr "Kan deze referentie niet delen"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:235
-#: ../gramps/plugins/view/citationtreeview.py:656
+#: ../gramps/plugins/view/citationtreeview.py:658
 msgid ""
 "This citation cannot be created at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -14376,7 +14424,7 @@ msgstr "Verplaats de geselecteerde notitie naar beneden"
 #: ../gramps/gui/glade/editmedia.glade:186
 #: ../gramps/gui/glade/editmediaref.glade:191
 #: ../gramps/gui/glade/editmediaref.glade:505
-#: ../gramps/gui/selectors/selectnote.py:72
+#: ../gramps/gui/selectors/selectnote.py:71
 #: ../gramps/plugins/view/noteview.py:82
 msgid "Preview"
 msgstr "Voorbeeld"
@@ -14997,7 +15045,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:571
 #: ../gramps/plugins/importer/importcsv.py:360
-#: ../gramps/plugins/view/familyview.py:410
+#: ../gramps/plugins/view/familyview.py:412
 msgid "family"
 msgstr "gezin"
 
@@ -16079,6 +16127,7 @@ msgstr "Verwijder notitie"
 
 #: ../gramps/gui/filters/_searchbar.py:59
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:78
+#: ../gramps/plugins/tool/removeunused.glade:213
 msgid "_Find"
 msgstr "_Vinden"
 
@@ -16288,6 +16337,7 @@ msgstr "Items laden…"
 #: ../gramps/plugins/lib/libplaceview.py:333
 #: ../gramps/plugins/lib/libplaceview.py:393
 #: ../gramps/plugins/lib/libplaceview.py:447
+#: ../gramps/plugins/tool/removeunused.glade:20
 #: ../gramps/plugins/view/citationlistview.py:220
 #: ../gramps/plugins/view/citationlistview.py:280
 #: ../gramps/plugins/view/citationlistview.py:333
@@ -18553,6 +18603,7 @@ msgid "_Display on startup"
 msgstr "_Weergeven tijdens opstarten"
 
 #: ../gramps/gui/glade/tipofday.glade:112
+#: ../gramps/plugins/docgen/gtkprint.glade:93
 #: ../gramps/plugins/lib/libpersonview.py:234
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libplaceview.py:319
@@ -18737,7 +18788,7 @@ msgstr "_Uitbreidingen beheren"
 msgid "_Preferences..."
 msgstr "_Voorkeuren..."
 
-#: ../gramps/gui/grampsgui.py:58
+#: ../gramps/gui/grampsgui.py:58 ../gramps/plugins/docgen/gtkprint.glade:25
 msgid "_Quit"
 msgstr "_Afsluiten"
 
@@ -20511,7 +20562,7 @@ msgstr "Bron: titel of citaat: volume/pagina"
 #: ../gramps/gui/selectors/selectcitation.py:75
 #: ../gramps/gui/selectors/selectevent.py:73
 #: ../gramps/gui/selectors/selectfamily.py:70
-#: ../gramps/gui/selectors/selectnote.py:76
+#: ../gramps/gui/selectors/selectnote.py:75
 #: ../gramps/gui/selectors/selectobject.py:83
 #: ../gramps/gui/selectors/selectperson.py:107
 #: ../gramps/gui/selectors/selectplace.py:72
@@ -20539,11 +20590,11 @@ msgctxt "manual"
 msgid "Select_Family_selector"
 msgstr "Selecteer_gezinkiezer"
 
-#: ../gramps/gui/selectors/selectnote.py:65
+#: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
 msgstr "Selecteer notitie"
 
-#: ../gramps/gui/selectors/selectnote.py:86
+#: ../gramps/gui/selectors/selectnote.py:85
 msgctxt "manual"
 msgid "Select_Note_selector"
 msgstr "Selecteer_notitiekiezer"
@@ -20937,7 +20988,7 @@ msgstr "Actief object niet zichtbaar"
 #: ../gramps/gui/views/navigationview.py:252
 #: ../gramps/plugins/lib/maps/geography.py:236
 #: ../gramps/plugins/lib/maps/geography.py:254
-#: ../gramps/plugins/view/familyview.py:376
+#: ../gramps/plugins/view/familyview.py:378
 msgid "Could Not Set a Bookmark"
 msgstr "Kan geen bladwijzer instellen"
 
@@ -20946,7 +20997,7 @@ msgid "A bookmark could not be set because nothing was selected."
 msgstr ""
 "Er kan geen bladwijzer worden ingesteld omdat er niets is geselecteerd."
 
-#: ../gramps/gui/views/listview.py:627 ../gramps/plugins/view/eventview.py:412
+#: ../gramps/gui/views/listview.py:627 ../gramps/plugins/view/eventview.py:414
 #, python-brace-format
 msgid "Delete {type} [{gid}]?"
 msgstr "Verwijder {type} [{gid}]?"
@@ -20978,7 +21029,7 @@ msgstr ""
 
 #: ../gramps/gui/views/listview.py:726
 #: ../gramps/plugins/lib/libpersonview.py:481
-#: ../gramps/plugins/view/familyview.py:410
+#: ../gramps/plugins/view/familyview.py:412
 #, python-format
 msgid "Delete %s?"
 msgstr "%s verwijderen?"
@@ -21015,7 +21066,7 @@ msgstr "%s is als bladwijzer toegevoegd"
 #: ../gramps/gui/views/navigationview.py:253
 #: ../gramps/plugins/lib/maps/geography.py:237
 #: ../gramps/plugins/lib/maps/geography.py:255
-#: ../gramps/plugins/view/familyview.py:377
+#: ../gramps/plugins/view/familyview.py:379
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
 "Er kan geen bladwijzer worden ingesteld omdat er niemand is geselecteerd."
@@ -21456,11 +21507,11 @@ msgstr "Kopieer _link adres"
 msgid "_Edit Link"
 msgstr "Link _bewerken"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:828
+#: ../gramps/gui/widgets/styledtexteditor.py:807
 msgid "Select font color"
 msgstr "Selecteer lettertypekleur"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:832
+#: ../gramps/gui/widgets/styledtexteditor.py:811
 msgid "Select background color"
 msgstr "Selecteer achtergrondkleur"
 
@@ -21615,13 +21666,73 @@ msgstr "Afdrukvoorbeeld"
 msgid "Closes print preview window"
 msgstr "Sluit het afdrukvoorbeeldvenster"
 
+#: ../gramps/plugins/docgen/gtkprint.glade:39
+#, fuzzy
+#| msgid "Print..."
+msgid "_Print"
+msgstr "Afdrukken…"
+
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
 msgstr "Drukt het huidige bestand af"
 
+#: ../gramps/plugins/docgen/gtkprint.glade:63
+msgid "_First"
+msgstr ""
+
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
 msgstr "Toont de eerste pagina"
+
+#: ../gramps/plugins/docgen/gtkprint.glade:78
+#: ../gramps/plugins/lib/libpersonview.py:234
+#: ../gramps/plugins/lib/libpersonview.py:289
+#: ../gramps/plugins/lib/libpersonview.py:385
+#: ../gramps/plugins/lib/libplaceview.py:319
+#: ../gramps/plugins/lib/libplaceview.py:363
+#: ../gramps/plugins/lib/libplaceview.py:447
+#: ../gramps/plugins/view/citationlistview.py:206
+#: ../gramps/plugins/view/citationlistview.py:250
+#: ../gramps/plugins/view/citationlistview.py:333
+#: ../gramps/plugins/view/citationtreeview.py:348
+#: ../gramps/plugins/view/citationtreeview.py:400
+#: ../gramps/plugins/view/citationtreeview.py:505
+#: ../gramps/plugins/view/eventview.py:219
+#: ../gramps/plugins/view/eventview.py:263
+#: ../gramps/plugins/view/eventview.py:346
+#: ../gramps/plugins/view/familyview.py:176
+#: ../gramps/plugins/view/familyview.py:220
+#: ../gramps/plugins/view/familyview.py:303
+#: ../gramps/plugins/view/fanchartview.py:145
+#: ../gramps/plugins/view/fanchartview.py:186
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoevents.py:68
+#: ../gramps/plugins/view/geoevents.py:103
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamily.py:67
+#: ../gramps/plugins/view/geofamily.py:102
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:111
+#: ../gramps/plugins/view/geoperson.py:69
+#: ../gramps/plugins/view/geoperson.py:110
+#: ../gramps/plugins/view/geoplaces.py:70
+#: ../gramps/plugins/view/geoplaces.py:105
+#: ../gramps/plugins/view/mediaview.py:283
+#: ../gramps/plugins/view/mediaview.py:327
+#: ../gramps/plugins/view/mediaview.py:426
+#: ../gramps/plugins/view/noteview.py:164
+#: ../gramps/plugins/view/noteview.py:208
+#: ../gramps/plugins/view/noteview.py:291
+#: ../gramps/plugins/view/pedigreeview.py:691
+#: ../gramps/plugins/view/pedigreeview.py:733
+#: ../gramps/plugins/view/relview.py:455 ../gramps/plugins/view/repoview.py:201
+#: ../gramps/plugins/view/repoview.py:245
+#: ../gramps/plugins/view/repoview.py:328
+#: ../gramps/plugins/view/sourceview.py:173
+#: ../gramps/plugins/view/sourceview.py:217
+#: ../gramps/plugins/view/sourceview.py:300
+msgid "_Back"
+msgstr "_Terug"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:83
 msgid "Shows previous page"
@@ -21630,6 +21741,10 @@ msgstr "Toont vorige pagina"
 #: ../gramps/plugins/docgen/gtkprint.glade:98
 msgid "Shows the next page"
 msgstr "Toont de volgende pagina"
+
+#: ../gramps/plugins/docgen/gtkprint.glade:108
+msgid "_Last"
+msgstr ""
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -21651,7 +21766,7 @@ msgstr "Zoomt de pagina in"
 msgid "Zooms the page out"
 msgstr "Zoomt de pagina uit"
 
-#: ../gramps/plugins/docgen/gtkprint.py:476
+#: ../gramps/plugins/docgen/gtkprint.py:475
 #, python-format
 msgid "of %d"
 msgstr "van %d"
@@ -22395,7 +22510,8 @@ msgstr "Vrouwen gebruiken achternaam van echtgenoot (vermeld bij eerste gezin)"
 #: ../gramps/plugins/webreport/narrativeweb.py:3160
 #: ../gramps/plugins/webreport/webcal.py:1982
 msgid "Wives use husband's surname (from last family listed)"
-msgstr "Vrouwen gebruiken achternaam van echtgenoot (vermeld bij laatste gezin)"
+msgstr ""
+"Vrouwen gebruiken achternaam van echtgenoot (vermeld bij laatste gezin)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:680
 #: ../gramps/plugins/textreport/birthdayreport.py:641
@@ -23769,8 +23885,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  3. %(gramps_FAQ_html_start)s%(faq_section)sHoe verwijder ik een "
-"partner?%(html_end)s\n"
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sHoe verwijder ik een partner?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:102
 msgid "Backups and Updates"
@@ -23782,8 +23898,8 @@ msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
 msgstr ""
-"  4. %(gramps_FAQ_html_start)s%(faq_section)sHoe maak ik veilig back-"
-"ups?%(html_end)s\n"
+"  4. %(gramps_FAQ_html_start)s%(faq_section)sHoe maak ik veilig back-ups?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
 #, python-format
@@ -25261,9 +25377,9 @@ msgstr ""
 "persoon.\n"
 "\n"
 "Schakel over naar de weergave \"Personen\" en klik in het menu op "
-"\"Toevoegen\" en klik vervolgens op \"Persoon\" (of gebruik het pictogram [+]"
-") om het venster te openen om een persoon in te voeren. Het invoeren van de "
-"basisinformatie en het opslaan van het record geeft u een startpunt. "
+"\"Toevoegen\" en klik vervolgens op \"Persoon\" (of gebruik het pictogram "
+"[+]) om het venster te openen om een persoon in te voeren. Het invoeren van "
+"de basisinformatie en het opslaan van het record geeft u een startpunt. "
 "Selecteer het record van deze persoon en schakel nu over naar de weergave "
 "\"Relaties\".\n"
 "\n"
@@ -27424,7 +27540,7 @@ msgstr ""
 "Fout: kind '%(child)s' van gezin '%(family)s' verwijst niet terug naar het "
 "gezin. Referentie toegevoegd."
 
-#: ../gramps/plugins/lib/libcairodoc.py:1447
+#: ../gramps/plugins/lib/libcairodoc.py:1446
 #, python-format
 msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
@@ -31312,55 +31428,6 @@ msgstr "_Bladwijzer toevoegen"
 #: ../gramps/plugins/lib/libpersonview.py:234
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libpersonview.py:385
-#: ../gramps/plugins/lib/libplaceview.py:319
-#: ../gramps/plugins/lib/libplaceview.py:363
-#: ../gramps/plugins/lib/libplaceview.py:447
-#: ../gramps/plugins/view/citationlistview.py:206
-#: ../gramps/plugins/view/citationlistview.py:250
-#: ../gramps/plugins/view/citationlistview.py:333
-#: ../gramps/plugins/view/citationtreeview.py:348
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:505
-#: ../gramps/plugins/view/eventview.py:219
-#: ../gramps/plugins/view/eventview.py:263
-#: ../gramps/plugins/view/eventview.py:346
-#: ../gramps/plugins/view/familyview.py:176
-#: ../gramps/plugins/view/familyview.py:220
-#: ../gramps/plugins/view/familyview.py:303
-#: ../gramps/plugins/view/fanchartview.py:145
-#: ../gramps/plugins/view/fanchartview.py:186
-#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geoevents.py:68
-#: ../gramps/plugins/view/geoevents.py:103
-#: ../gramps/plugins/view/geofamclose.py:68
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geofamily.py:67
-#: ../gramps/plugins/view/geofamily.py:102
-#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:111
-#: ../gramps/plugins/view/geoperson.py:69
-#: ../gramps/plugins/view/geoperson.py:110
-#: ../gramps/plugins/view/geoplaces.py:70
-#: ../gramps/plugins/view/geoplaces.py:105
-#: ../gramps/plugins/view/mediaview.py:283
-#: ../gramps/plugins/view/mediaview.py:327
-#: ../gramps/plugins/view/mediaview.py:426
-#: ../gramps/plugins/view/noteview.py:164
-#: ../gramps/plugins/view/noteview.py:208
-#: ../gramps/plugins/view/noteview.py:291
-#: ../gramps/plugins/view/pedigreeview.py:691
-#: ../gramps/plugins/view/pedigreeview.py:733
-#: ../gramps/plugins/view/relview.py:455 ../gramps/plugins/view/repoview.py:201
-#: ../gramps/plugins/view/repoview.py:245
-#: ../gramps/plugins/view/repoview.py:328
-#: ../gramps/plugins/view/sourceview.py:173
-#: ../gramps/plugins/view/sourceview.py:217
-#: ../gramps/plugins/view/sourceview.py:300
-msgid "_Back"
-msgstr "_Terug"
-
-#: ../gramps/plugins/lib/libpersonview.py:234
-#: ../gramps/plugins/lib/libpersonview.py:289
-#: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/view/fanchartview.py:145
 #: ../gramps/plugins/view/fanchartview.py:186
 #: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
@@ -31445,23 +31512,23 @@ msgstr "_Samenvoegen..."
 #: ../gramps/plugins/lib/libpersonview.py:274
 #: ../gramps/plugins/lib/libpersonview.py:434
 #: ../gramps/plugins/lib/libplaceview.py:353
-#: ../gramps/plugins/lib/libplaceview.py:490
+#: ../gramps/plugins/lib/libplaceview.py:492
 #: ../gramps/plugins/view/citationlistview.py:240
-#: ../gramps/plugins/view/citationlistview.py:371
+#: ../gramps/plugins/view/citationlistview.py:373
 #: ../gramps/plugins/view/citationtreeview.py:390
-#: ../gramps/plugins/view/citationtreeview.py:558
+#: ../gramps/plugins/view/citationtreeview.py:560
 #: ../gramps/plugins/view/eventview.py:253
-#: ../gramps/plugins/view/eventview.py:384
+#: ../gramps/plugins/view/eventview.py:386
 #: ../gramps/plugins/view/familyview.py:210
-#: ../gramps/plugins/view/familyview.py:353
+#: ../gramps/plugins/view/familyview.py:355
 #: ../gramps/plugins/view/mediaview.py:317
-#: ../gramps/plugins/view/mediaview.py:477
+#: ../gramps/plugins/view/mediaview.py:479
 #: ../gramps/plugins/view/noteview.py:198
-#: ../gramps/plugins/view/noteview.py:329
+#: ../gramps/plugins/view/noteview.py:331
 #: ../gramps/plugins/view/repoview.py:235
-#: ../gramps/plugins/view/repoview.py:366
+#: ../gramps/plugins/view/repoview.py:368
 #: ../gramps/plugins/view/sourceview.py:207
-#: ../gramps/plugins/view/sourceview.py:338
+#: ../gramps/plugins/view/sourceview.py:340
 msgctxt "action"
 msgid "_Edit..."
 msgstr "_Bewerken…"
@@ -31619,7 +31686,7 @@ msgstr "Locatiefilter-bewerker"
 msgid "_Look up with Map Service"
 msgstr "_Opzoeken met Kaartservice"
 
-#: ../gramps/plugins/lib/libplaceview.py:500
+#: ../gramps/plugins/lib/libplaceview.py:502
 msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
@@ -31627,15 +31694,15 @@ msgstr ""
 "Probeer geselecteerde plaatsen weer te geven met een kaartendienst "
 "(OpenstreetMap, Google Maps, ...)"
 
-#: ../gramps/plugins/lib/libplaceview.py:500
+#: ../gramps/plugins/lib/libplaceview.py:502
 msgid "Select a Map Service"
 msgstr "Selecteer een Kaartservice"
 
-#: ../gramps/plugins/lib/libplaceview.py:542
+#: ../gramps/plugins/lib/libplaceview.py:544
 msgid "Cannot delete place."
 msgstr "Kan locatie niet verwijderen."
 
-#: ../gramps/plugins/lib/libplaceview.py:544
+#: ../gramps/plugins/lib/libplaceview.py:546
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
@@ -31643,12 +31710,12 @@ msgstr ""
 "Naar deze locatie wordt momenteel verwezen door een andere locatie. "
 "Verwijder eerst de locaties die het bevat."
 
-#: ../gramps/plugins/lib/libplaceview.py:567
-#: ../gramps/plugins/lib/libplaceview.py:578
+#: ../gramps/plugins/lib/libplaceview.py:569
+#: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Cannot merge places."
 msgstr "Kan locaties niet samenvoegen."
 
-#: ../gramps/plugins/lib/libplaceview.py:569
+#: ../gramps/plugins/lib/libplaceview.py:571
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -31658,7 +31725,7 @@ msgstr ""
 "te voeren. Een tweede locatie kan worden geselecteerd door de Ctrl-toets "
 "ingedrukt te houden terwijl u op de gewenste locatie klikt."
 
-#: ../gramps/plugins/lib/libplaceview.py:580
+#: ../gramps/plugins/lib/libplaceview.py:582
 msgid "Merging these places would create a cycle in the place hierarchy."
 msgstr ""
 "Door deze plaatsen samen te voegen, ontstaat er een lus in de "
@@ -34394,7 +34461,8 @@ msgstr "Voettekstzin voor de pagina."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:164
 msgid "Gramps ID of the media object to use as an image."
-msgstr "Gramps-ID van het media-object dat als afbeelding moet worden gebruikt."
+msgstr ""
+"Gramps-ID van het media-object dat als afbeelding moet worden gebruikt."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:167
 msgid "Image Size"
@@ -35304,6 +35372,12 @@ msgstr "Hulpmiddel voor geslachtsstatistieken"
 msgid "Guess"
 msgstr "Raden"
 
+#: ../gramps/plugins/tool/eventcmp.glade:37
+#, fuzzy
+#| msgid "Save As"
+msgid "Save _As"
+msgstr "Opslaan als"
+
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
 msgstr "_Filter:"
@@ -35514,6 +35588,7 @@ msgid "Media Manager"
 msgstr "Mediabeheer"
 
 #: ../gramps/plugins/tool/mediamanager.py:95
+#: ../gramps/plugins/tool/verify.glade:110
 msgid "Help"
 msgstr "Help"
 
@@ -36331,36 +36406,35 @@ msgstr "Databasefouten genereren"
 msgid "Generating families"
 msgstr "Gezinnen genereren"
 
-#: ../gramps/plugins/tool/testcasegenerator.py:530
-#: ../gramps/plugins/tool/testcasegenerator.py:569
-#: ../gramps/plugins/tool/testcasegenerator.py:617
-#: ../gramps/plugins/tool/testcasegenerator.py:635
-#: ../gramps/plugins/tool/testcasegenerator.py:668
-#: ../gramps/plugins/tool/testcasegenerator.py:740
-#: ../gramps/plugins/tool/testcasegenerator.py:776
-#: ../gramps/plugins/tool/testcasegenerator.py:799
-#: ../gramps/plugins/tool/testcasegenerator.py:818
-#: ../gramps/plugins/tool/testcasegenerator.py:838
-#: ../gramps/plugins/tool/testcasegenerator.py:862
-#: ../gramps/plugins/tool/testcasegenerator.py:881
-#: ../gramps/plugins/tool/testcasegenerator.py:900
-#: ../gramps/plugins/tool/testcasegenerator.py:919
-#: ../gramps/plugins/tool/testcasegenerator.py:947
-#: ../gramps/plugins/tool/testcasegenerator.py:974
-#: ../gramps/plugins/tool/testcasegenerator.py:1002
-#: ../gramps/plugins/tool/testcasegenerator.py:1040
-#: ../gramps/plugins/tool/testcasegenerator.py:1052
-#: ../gramps/plugins/tool/testcasegenerator.py:1064
-#: ../gramps/plugins/tool/testcasegenerator.py:1076
-#: ../gramps/plugins/tool/testcasegenerator.py:1093
-#: ../gramps/plugins/tool/testcasegenerator.py:1111
-#: ../gramps/plugins/tool/testcasegenerator.py:1136
-#: ../gramps/plugins/tool/testcasegenerator.py:1153
-#: ../gramps/plugins/tool/testcasegenerator.py:1171
-#: ../gramps/plugins/tool/testcasegenerator.py:1206
-#: ../gramps/plugins/tool/testcasegenerator.py:1654
-#: ../gramps/plugins/tool/testcasegenerator.py:1761
-#: ../gramps/plugins/tool/testcasegenerator.py:1787
+#: ../gramps/plugins/tool/testcasegenerator.py:459
+#: ../gramps/plugins/tool/testcasegenerator.py:534
+#: ../gramps/plugins/tool/testcasegenerator.py:573
+#: ../gramps/plugins/tool/testcasegenerator.py:621
+#: ../gramps/plugins/tool/testcasegenerator.py:639
+#: ../gramps/plugins/tool/testcasegenerator.py:672
+#: ../gramps/plugins/tool/testcasegenerator.py:744
+#: ../gramps/plugins/tool/testcasegenerator.py:780
+#: ../gramps/plugins/tool/testcasegenerator.py:803
+#: ../gramps/plugins/tool/testcasegenerator.py:822
+#: ../gramps/plugins/tool/testcasegenerator.py:842
+#: ../gramps/plugins/tool/testcasegenerator.py:866
+#: ../gramps/plugins/tool/testcasegenerator.py:885
+#: ../gramps/plugins/tool/testcasegenerator.py:904
+#: ../gramps/plugins/tool/testcasegenerator.py:923
+#: ../gramps/plugins/tool/testcasegenerator.py:951
+#: ../gramps/plugins/tool/testcasegenerator.py:978
+#: ../gramps/plugins/tool/testcasegenerator.py:1006
+#: ../gramps/plugins/tool/testcasegenerator.py:1044
+#: ../gramps/plugins/tool/testcasegenerator.py:1056
+#: ../gramps/plugins/tool/testcasegenerator.py:1068
+#: ../gramps/plugins/tool/testcasegenerator.py:1080
+#: ../gramps/plugins/tool/testcasegenerator.py:1097
+#: ../gramps/plugins/tool/testcasegenerator.py:1115
+#: ../gramps/plugins/tool/testcasegenerator.py:1140
+#: ../gramps/plugins/tool/testcasegenerator.py:1157
+#: ../gramps/plugins/tool/testcasegenerator.py:1175
+#: ../gramps/plugins/tool/testcasegenerator.py:1210
+#: ../gramps/plugins/tool/testcasegenerator.py:1783
 #, python-format
 msgid "Testcase generator step %d"
 msgstr "Testgeval generator stap %d"
@@ -36874,7 +36948,7 @@ msgstr "Citaatweergave"
 msgid "Citation Filter Editor"
 msgstr "Citaatfilter-bewerker"
 
-#: ../gramps/plugins/view/citationlistview.py:417
+#: ../gramps/plugins/view/citationlistview.py:419
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation "
 "is already being edited or another object that is associated with the same "
@@ -36888,15 +36962,15 @@ msgstr ""
 "\n"
 "Om dit citaat te bewerken, moet u het object sluiten."
 
-#: ../gramps/plugins/view/citationlistview.py:431
-#: ../gramps/plugins/view/citationlistview.py:443
-#: ../gramps/plugins/view/citationtreeview.py:682
-#: ../gramps/plugins/view/citationtreeview.py:699
+#: ../gramps/plugins/view/citationlistview.py:433
+#: ../gramps/plugins/view/citationlistview.py:445
+#: ../gramps/plugins/view/citationtreeview.py:684
+#: ../gramps/plugins/view/citationtreeview.py:701
 msgid "Cannot merge citations."
 msgstr "Kan citaten niet samenvoegen."
 
-#: ../gramps/plugins/view/citationlistview.py:433
-#: ../gramps/plugins/view/citationtreeview.py:684
+#: ../gramps/plugins/view/citationlistview.py:435
+#: ../gramps/plugins/view/citationtreeview.py:686
 msgid ""
 "Exactly two citations must be selected to perform a merge. A second citation "
 "can be selected by holding down the control key while clicking on the "
@@ -36906,8 +36980,8 @@ msgstr ""
 "te voeren. Een tweede citaat kan worden geselecteerd door de Ctrl-toets "
 "ingedrukt te houden terwijl u op het gewenste citaat klikt."
 
-#: ../gramps/plugins/view/citationlistview.py:445
-#: ../gramps/plugins/view/citationtreeview.py:701
+#: ../gramps/plugins/view/citationlistview.py:447
+#: ../gramps/plugins/view/citationtreeview.py:703
 msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
@@ -36955,7 +37029,7 @@ msgstr "Vouw alle knooppunten samen"
 msgid "Expand all Nodes"
 msgstr "Vouw alle knooppunten uit"
 
-#: ../gramps/plugins/view/citationtreeview.py:668
+#: ../gramps/plugins/view/citationtreeview.py:670
 msgid ""
 "This source cannot be edited at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -36969,11 +37043,11 @@ msgstr ""
 "\n"
 "Om deze bron te bewerken, moet u het object sluiten."
 
-#: ../gramps/plugins/view/citationtreeview.py:712
+#: ../gramps/plugins/view/citationtreeview.py:714
 msgid "Cannot perform merge."
 msgstr "Kan niet samenvoegen."
 
-#: ../gramps/plugins/view/citationtreeview.py:714
+#: ../gramps/plugins/view/citationtreeview.py:716
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
@@ -37007,11 +37081,11 @@ msgstr "De geselecteerde gebeurtenissen samenvoegen"
 msgid "Event Filter Editor"
 msgstr "Gebeurtenisfilter-bewerker"
 
-#: ../gramps/plugins/view/eventview.py:431
+#: ../gramps/plugins/view/eventview.py:433
 msgid "Cannot merge event objects."
 msgstr "Kan gebeurtenisobjecten niet samenvoegen."
 
-#: ../gramps/plugins/view/eventview.py:433
+#: ../gramps/plugins/view/eventview.py:435
 msgid ""
 "Exactly two events must be selected to perform a merge. A second object can "
 "be selected by holding down the control key while clicking on the desired "
@@ -37053,11 +37127,11 @@ msgstr "Maak vader de actieve persoon"
 msgid "Make Mother Active Person"
 msgstr "Maak moeder de actieve persoon"
 
-#: ../gramps/plugins/view/familyview.py:436
+#: ../gramps/plugins/view/familyview.py:438
 msgid "Cannot merge families."
 msgstr "Kan gezinnen niet samenvoegen."
 
-#: ../gramps/plugins/view/familyview.py:438
+#: ../gramps/plugins/view/familyview.py:440
 msgid ""
 "Exactly two families must be selected to perform a merge. A second family "
 "can be selected by holding down the control key while clicking on the "
@@ -37738,11 +37812,11 @@ msgstr "Mediafilter-bewerker"
 msgid "View in the default viewer"
 msgstr "Weergeven in de standaardviewer"
 
-#: ../gramps/plugins/view/mediaview.py:510
+#: ../gramps/plugins/view/mediaview.py:512
 msgid "Cannot merge media objects."
 msgstr "Kan media-objecten niet samenvoegen."
 
-#: ../gramps/plugins/view/mediaview.py:512
+#: ../gramps/plugins/view/mediaview.py:514
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -37764,11 +37838,11 @@ msgstr "Voeg de geselecteerde notities samen"
 msgid "Note Filter Editor"
 msgstr "Notitiefilter-bewerker"
 
-#: ../gramps/plugins/view/noteview.py:365
+#: ../gramps/plugins/view/noteview.py:367
 msgid "Cannot merge notes."
 msgstr "Kan notities niet samenvoegen."
 
-#: ../gramps/plugins/view/noteview.py:367
+#: ../gramps/plugins/view/noteview.py:369
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
@@ -38111,11 +38185,11 @@ msgstr "De geselecteerde opslagplaatsen samenvoegen"
 msgid "Repository Filter Editor"
 msgstr "Opslagplaatsfilter bewerken"
 
-#: ../gramps/plugins/view/repoview.py:395
+#: ../gramps/plugins/view/repoview.py:397
 msgid "Cannot merge repositories."
 msgstr "Kan opslagplaatsen niet samenvoegen."
 
-#: ../gramps/plugins/view/repoview.py:397
+#: ../gramps/plugins/view/repoview.py:399
 msgid ""
 "Exactly two repositories must be selected to perform a merge. A second "
 "repository can be selected by holding down the control key while clicking on "
@@ -38142,11 +38216,11 @@ msgstr "Voeg de geselecteerde bronnen samen"
 msgid "Source Filter Editor"
 msgstr "Bronfilter-bewerker"
 
-#: ../gramps/plugins/view/sourceview.py:359
+#: ../gramps/plugins/view/sourceview.py:361
 msgid "Cannot merge sources."
 msgstr "Kan bronnen niet samenvoegen."
 
-#: ../gramps/plugins/view/sourceview.py:361
+#: ../gramps/plugins/view/sourceview.py:363
 msgid ""
 "Exactly two sources must be selected to perform a merge. A second source can "
 "be selected by holding down the control key while clicking on the desired "
