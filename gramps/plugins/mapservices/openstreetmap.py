@@ -39,8 +39,8 @@ from gramps.gen.lib import PlaceType
 
 
 class OpensStreetMapService(MapService):
-    """Map  service using http://openstreetmap.org
-    Resource: http://wiki.openstreetmap.org/wiki/Nominatim
+    """Map  service using https://openstreetmap.org
+    Resource: https://wiki.openstreetmap.org/wiki/Nominatim
     """
 
     def __init__(self):
@@ -54,7 +54,7 @@ class OpensStreetMapService(MapService):
         place = self._get_first_place()[0]
         latitude, longitude = self._lat_lon(place)
         if longitude and latitude:
-            self.url = "http://www.openstreetmap.org/" "?lat=%s&lon=%s&zoom=15" % (
+            self.url = "https://www.openstreetmap.org/" "?lat=%s&lon=%s&zoom=15" % (
                 latitude,
                 longitude,
             )
@@ -62,6 +62,6 @@ class OpensStreetMapService(MapService):
             return
 
         titledescr = place_displayer.display(self.database, place)
-        self.url = "http://nominatim.openstreetmap.org/" "search?q=%s" % "+".join(
+        self.url = "https://nominatim.openstreetmap.org/" "search?q=%s" % "+".join(
             titledescr.split()
         )

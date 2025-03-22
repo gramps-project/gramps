@@ -2139,7 +2139,7 @@ class RelationshipCalculator:
         Ga and Gb can be used to mathematically calculate the relationship.
 
         .. seealso::
-            http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+            https://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
 
         :param Ga: The number of generations between the main person and the
                    common ancestor.
@@ -2253,7 +2253,7 @@ class RelationshipCalculator:
         Ga and Gb can be used to mathematically calculate the relationship.
 
         .. seealso::
-            http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+            https://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
 
         Some languages need to know the specific path to the common ancestor.
         Those languages should use reltocommon_a and reltocommon_b which is

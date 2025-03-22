@@ -152,7 +152,7 @@ class KinshipReport(Report):
         for Ga, Gbs in self.kinship_map.items():
             for Gb in Gbs:
                 # To understand these calculations, see:
-                # http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+                # https://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
                 _x_ = min(Ga, Gb)
                 _y_ = abs(Ga - Gb)
                 # Skip unrequested people

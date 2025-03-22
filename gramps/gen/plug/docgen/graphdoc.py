@@ -163,7 +163,7 @@ class GVOptions:
                 "Choose the font family. If international "
                 "characters don't show, use FreeSans font. "
                 "FreeSans is available from: "
-                "http://www.nongnu.org/freefont/"
+                "https://www.nongnu.org/freefont/"
             )
         )
         menu.add_option(category, "font_family", font_family)

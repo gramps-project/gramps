@@ -152,7 +152,7 @@ def mod_key():
 # environment variables if there's any chance they might contain
 # Unicode, and especially for paths.
 
-# Shamelessly lifted from http://stackoverflow.com/questions/2608200/problems-with-umlauts-in-python-appdata-environvent-variable, answer 1.
+# Shamelessly lifted from https://stackoverflow.com/questions/2608200/problems-with-umlauts-in-python-appdata-environvent-variable, answer 1.
 
 
 def get_env_var(name, default=None):

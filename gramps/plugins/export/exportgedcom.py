@@ -1612,7 +1612,7 @@ class GedcomWriter(UpdateCallback):
         +1 CTRY <ADDRESS_COUNTRY> {0:1}
 
         This is done along the lines suggested by Tamura Jones in
-        http://www.tamurajones.net/GEDCOMADDR.xhtml as a result of bug 6382.
+        https://www.tamurajones.net/GEDCOMADDR.xhtml as a result of bug 6382.
         "GEDCOM writers should always use the structured address format,
         and it use it for all addresses, including the submitter address and
         their own corporate address." "Vendors that want their product to pass

@@ -183,7 +183,7 @@
                   <object class="UndoableEntry" id="url_addr">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
-                    <property name="tooltip-text" translatable="yes">The internet address as needed to navigate to it, eg. http://gramps-project.org</property>
+                    <property name="tooltip-text" translatable="yes">The internet address as needed to navigate to it, eg. https://gramps-project.org</property>
                     <property name="hexpand">True</property>
                     <property name="invisible-char">●</property>
                   </object>

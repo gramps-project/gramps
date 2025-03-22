@@ -92,7 +92,7 @@ def lon2pixel(zoom, longitude, size):
 
 def lat2pixel(zoom, latitude, size):
     """
-    http://manialabs.wordpress.com/2013/01/26/converting-latitude-and-longitude-to-map-tile-in-mercator-projection/
+    https://manialabs.wordpress.com/2013/01/26/converting-latitude-and-longitude-to-map-tile-in-mercator-projection/
 
     pixel_y = -(2^zoom * size * lat_m) / 2PI + (2^zoom * size) / 2
     """
