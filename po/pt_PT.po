@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-13 05:41+0000\n"
+"PO-Revision-Date: 2025-03-22 06:31+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -21469,9 +21469,8 @@ msgid "Closes print preview window"
 msgstr "Fecha a janela de antevisão da impressão"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:39
-#, fuzzy
 msgid "_Print"
-msgstr "Imprimir..."
+msgstr "Im_primir"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
@@ -21479,7 +21478,7 @@ msgstr "Imprime o ficheiro actual"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:63
 msgid "_First"
-msgstr ""
+msgstr "_Primeiro"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
@@ -21545,7 +21544,7 @@ msgstr "Mostra a página seguinte"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:108
 msgid "_Last"
-msgstr ""
+msgstr "Ú_ltimo"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -35132,10 +35131,8 @@ msgid "Guess"
 msgstr "Palpite"
 
 #: ../gramps/plugins/tool/eventcmp.glade:37
-#, fuzzy
-#| msgid "Save As"
 msgid "Save _As"
-msgstr "Gravar como"
+msgstr "Gr_avar como"
 
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
