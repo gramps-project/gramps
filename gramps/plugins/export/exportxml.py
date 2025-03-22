@@ -561,7 +561,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.write_line("gender", "M", index + 1)
         elif person.get_gender() == Person.FEMALE:
             self.write_line("gender", "F", index + 1)
-        elif person.get_gender() == Person.OTHER:
+       elif person.get_gender() == Person.OTHER:
             self.write_line("gender", "X", index + 1)
         else:
             self.write_line("gender", "U", index + 1)
@@ -783,7 +783,7 @@ class GrampsXmlWriter(UpdateCallback):
         attribute_list = eventref.get_attribute_list()
         citation_list = eventref.get_citation_list()
         note_list = eventref.get_note_list()
-        if len(citation_list) + len(attribute_list) + len(note_list) == 0:
+       if len(citation_list) + len(attribute_list) + len(note_list) == 0:
             self.write_ref(
                 "eventref",
                 eventref.ref,
@@ -801,7 +801,7 @@ class GrampsXmlWriter(UpdateCallback):
             )
             self.write_attribute_list(attribute_list, index + 1)
             self.write_note_list(note_list, index + 1)
-            for citation_handle in citation_list:
+           for citation_handle in citation_list:
                 self.write_ref("citationref", citation_handle, index + 1)
             self.g.write("%s</eventref>\n" % sp)
 
@@ -855,6 +855,9 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write("%s</event>\n" % sp)
 
     def dump_ordinance(self, ord, index=1):
+======
+
+>>>>>>> eae5d2732 (linting)
         name = ord.type2xml()
 
         sp = "  " * index

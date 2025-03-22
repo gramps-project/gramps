@@ -23,13 +23,12 @@
 """
 This module is the base class for all geography view module
 """
-
 # -------------------------------------------------------------------------
 #
 # Python modules
 #
 # -------------------------------------------------------------------------
-from __future__ import annotations
+rom __future__ import annotations
 import os
 import re
 import time
@@ -42,7 +41,7 @@ import gi
 # GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
-from gi.repository import GLib
+rom gi.repository import GLib
 from gi.repository import Gtk
 from gi.repository import OsmGpsMap as osmgpsmap
 
@@ -51,7 +50,7 @@ from gi.repository import OsmGpsMap as osmgpsmap
 # Gramps Modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.db import DbTxn
+rom gramps.gen.db import DbTxn
 from gramps.gen.lib import EventType, Place, PlaceRef, PlaceName
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
@@ -71,7 +70,6 @@ from .selectionlayer import SelectionLayer
 from .placeselection import PlaceSelection
 from .cairoprint import CairoPrintSave
 from .libkml import Kml
-
 gi.require_version("OsmGpsMap", "1.0")
 
 # ------------------------------------------------------------------------
@@ -86,7 +84,7 @@ _LOG = logging.getLogger("maps.geography")
 # Constants
 #
 # -------------------------------------------------------------------------
-_ = glocale.translation.sgettext
+ = glocale.translation.sgettext
 
 # -------------------------------------------------------------------------
 #
@@ -117,7 +115,6 @@ class GeoGraphyView(OsmGps, NavigationView):
     View for pedigree tree.
     Displays the ancestors of a selected individual.
     """
-
     # settings in the config file
     CONFIGSETTINGS: tuple[tuple[str, Any], ...] = (
         ("geography.path", constants.GEOGRAPHY_PATH),
@@ -147,7 +144,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.centerlat = config.get("geography.center-lat")
         self.zoom = config.get("geography.zoom")
         self.lock = config.get("geography.lock")
-        tile_path = config.get("geography.path")
+       tile_path = config.get("geography.path")
         if tile_path == "":
             config.set("geography.path", constants.GEOGRAPHY_PATH)
         else:
@@ -410,6 +407,9 @@ class GeoGraphyView(OsmGps, NavigationView):
             title = _("Lock zoom and position")
         add_item = Gtk.MenuItem(label=title)
         add_item.connect("activate", self.config_zoom_and_position, event, lat, lon)
+======
+        add_item.show()
+>>>>>>> eae5d2732 (linting)
         menu.append(add_item)
 
         add_item = Gtk.MenuItem(label=_("Add place"))
@@ -448,13 +448,13 @@ class GeoGraphyView(OsmGps, NavigationView):
             changemap.append(changemapitem)
 
         reload_text = _("Reload all visible tiles for '%(map)s'.") % {"map": map_name}
-        reloadtiles = Gtk.MenuItem(label=reload_text)
+       reloadtiles = Gtk.MenuItem(label=reload_text)
         reloadtiles.connect("activate", self.reload_visible_tiles)
 
         menu.append(reloadtiles)
 
         clear_text = _("Clear the '%(map)s' tiles cache.") % {"map": map_name}
-        clearmap = Gtk.MenuItem(label=clear_text)
+       clearmap = Gtk.MenuItem(label=clear_text)
         clearmap.connect(
             "activate",
             self.clear_map,
@@ -462,7 +462,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         )
 
         menu.append(clearmap)
-        menu.show_all()
+       menu.show_all()
         menu.popup_at_pointer(event)
         return 1
 
@@ -499,7 +499,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.osm.set_center_and_zoom(lat, lon, config.get("geography.zoom_when_center"))
         self.save_center(lat, lon)
 
-    # ------------------------------------------------------------------------
+   # ------------------------------------------------------------------------
     #
     # Markers management
     #
@@ -926,7 +926,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                 mnam = _nd.display(mother) if mother else _("Unknown")
         return (fnam, mnam)
 
-    # ------------------------------------------------------------------------
+   # ------------------------------------------------------------------------
     #
     # KML functionalities
     #
@@ -957,6 +957,18 @@ class GeoGraphyView(OsmGps, NavigationView):
         Print or save the view that is currently shown
         """
         dummy_obj = obj
+======
+        if Gtk.MAJOR_VERSION == 3 and Gtk.MINOR_VERSION < 11:
+            from gramps.gui.dialog import WarningDialog
+
+            WarningDialog(
+                _("You can't use the print functionality"),
+                _("Your Gtk version is too old."),
+                parent=self.uistate.window,
+            )
+            return
+
+>>>>>>> eae5d2732 (linting)
         req = self.osm.get_allocation()
         widthpx = req.width
         heightpx = req.height
@@ -1115,7 +1127,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         kml.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Apply"), Gtk.ResponseType.OK
         )
-        mpath = USER_HOME
+       mpath = USER_HOME
         kml.set_current_folder(os.path.dirname(mpath))
         kml.set_filter(filtering)
 
@@ -1350,7 +1362,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             except WindowActiveError:
                 pass
 
-    # ------------------------------------------------------------------------
+   # ------------------------------------------------------------------------
     #
     # Geography preferences
     #
@@ -1431,7 +1443,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         configdialog.add_text(
             grid,
             _(
-                "If you have no more space in your file system,"
+               "If you have no more space in your file system,"
                 " you can remove all tiles placed in the above"
                 " path.\nBe careful! If you have no internet,"
                 " you'll get no map."
@@ -1440,7 +1452,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             line_wrap=False,
         )
         configdialog.add_slider(
-            grid,
+           grid,
             _("Zoom used when centering"),
             3,
             "geography.zoom_when_center",
@@ -1501,7 +1513,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         Save the provider map path in the config section.
         """
         map_source = obj[0].get_text()
-        # name = constants.TILES_PATH[constants.PERSONAL]
+       # name = constants.TILES_PATH[constants.PERSONAL]
         # config.set("geography.personal-map", map_source)
         # self.clear_map(None, name)
         if map_source == "":
@@ -1509,7 +1521,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             self.change_map(self.osm, config.get("geography.map_service"))
             self.reload_tiles()
             return
-        # if map_source != config.get("geography.personal-map"):
+       # if map_source != config.get("geography.personal-map"):
         #     config.set("geography.map_service", constants.PERSONAL)
         #     self.change_new_map(name, map_source)
         #     self.reload_tiles()
@@ -1522,7 +1534,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         if self.path_entry.get_text().strip():
             config.set("geography.path", self.path_entry.get_text())
         else:
-            config.set("geography.path", constants.GEOGRAPHY_PATH)
+           config.set("geography.path", constants.GEOGRAPHY_PATH)
 
     def select_tilepath(self, *obj):
         """

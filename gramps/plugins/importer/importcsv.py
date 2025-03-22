@@ -25,6 +25,15 @@
 
 "Import from CSV Spreadsheet"
 
+======
+# -------------------------------------------------------------------------
+#
+# Standard Python Modules
+#
+# -------------------------------------------------------------------------
+import time
+import csv
+>>>>>>> eae5d2732 (linting)
 import codecs
 import csv
 
@@ -34,7 +43,6 @@ import csv
 #
 # ------------------------------------------------------------------------
 import logging
-
 # -------------------------------------------------------------------------
 #
 # Standard Python Modules
@@ -51,6 +59,35 @@ from gramps.gen.config import config
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+======
+
+_ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
+from gramps.gen.lib import (
+    ChildRef,
+    Citation,
+    Event,
+    EventRef,
+    EventType,
+    Family,
+    FamilyRelType,
+    Name,
+    NameType,
+    Note,
+    NoteType,
+    Person,
+    Place,
+    Source,
+    Surname,
+    Tag,
+    PlaceName,
+    PlaceType,
+    PlaceRef,
+    Attribute,
+    AttributeType,
+)
+from gramps.gen.db import DbTxn
+>>>>>>> eae5d2732 (linting)
 from gramps.gen.datehandler import parser as _dp
 from gramps.gen.db import DbTxn
 from gramps.gen.display.place import displayer as place_displayer
@@ -85,7 +122,7 @@ from gramps.gen.utils.unknown import create_explanation_note
 
 LOG = logging.getLogger(".ImportCSV")
 
-_ = glocale.translation.sgettext
+ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 
 # -------------------------------------------------------------------------
@@ -93,7 +130,6 @@ ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 # Support Functions
 #
 # -------------------------------------------------------------------------
-
 
 def get_primary_event_ref_from_type(dbase, person, event_name):
     """
@@ -215,7 +251,7 @@ class CSVParser:
                 _("Call"),
                 _("call"),
             ),
-            "nickname": (
+           "nickname": (
                 "nickname",
                 _("nickname"),
                 "Nickname",
@@ -546,7 +582,7 @@ class CSVParser:
             self.db.enable_signals()
             self.db.request_rebuild()
             tym = time.time() - tym
-            # Translators: leave all/any {...} untranslated
+           # Translators: leave all/any {...} untranslated
             msg = ngettext(
                 "Import Complete: {number_of} second",
                 "Import Complete: {number_of} seconds",
@@ -652,7 +688,6 @@ class CSVParser:
         if husband is None and wife is None and marriage_ref is None:
             # might have children, so go ahead and add
             LOG.warning("no parents on line %d; adding family anyway" % line_number)
-
         family = self.get_or_create_family(marriage_ref, husband, wife)
         # adjust gender, if not already provided
         if husband:
@@ -693,7 +728,7 @@ class CSVParser:
             if tag:
                 self.add_tag(marriage, tag)
             if note:
-                self.add_note(NoteType.EVENT, marriage, note)
+               self.add_note(NoteType.EVENT, marriage, note)
             self.db.commit_event(marriage, self.trans)
 
         self.db.commit_family(family, self.trans)
@@ -704,6 +739,9 @@ class CSVParser:
         if family_ref is None:
             LOG.warning("no family reference found for family on line %d" % line_number)
             return  # required
+======
+        child = rd(line_number, row, col, "child")
+>>>>>>> eae5d2732 (linting)
         source = rd(line_number, row, col, "source")
         note = rd(line_number, row, col, "note")
         gender = rd(line_number, row, col, "gender")
@@ -716,7 +754,7 @@ class CSVParser:
                 "no matching family reference found for family "
                 "on line %d" % line_number
             )
-            return
+           return
         if child:
             # is this child already in this family? If so, don't add
             LOG.debug("children: %s", [ref.ref for ref in family.get_child_ref_list()])

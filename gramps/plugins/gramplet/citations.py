@@ -38,7 +38,7 @@ from gramps.gen.datehandler._dateutils import get_date
 from gramps.gui.dbguielement import DbGUIElement
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gui.widgets.persistenttreeview import PersistentTreeView
+rom gramps.gui.widgets.persistenttreeview import PersistentTreeView
 
 _ = glocale.translation.gettext
 
@@ -53,6 +53,12 @@ class Citations(Gramplet, DbGUIElement):
         DbGUIElement.__init__(self, self.dbstate.db)
         self.source_nodes = {}
 
+======
+    """
+    Displays the citations for an object.
+    """
+
+>>>>>>> eae5d2732 (linting)
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -93,14 +99,14 @@ class Citations(Gramplet, DbGUIElement):
         """
         tip = _("Double-click on a row to edit the selected source/citation.")
         self.set_tooltip(tip)
-        top = PersistentTreeView(self.uistate, __name__)
+       top = PersistentTreeView(self.uistate, __name__)
         titles = [
             (
                 "",
                 NOSORT,
                 50,
             ),
-            (_("Source/Date"), 1, 350),
+           (_("Source/Date"), 1, 350),
             (_("Volume/Page"), 2, 150),
             (_("Confidence Level"), 3, 150),
             (_("Author"), 4, 200),
@@ -184,7 +190,7 @@ class Citations(Gramplet, DbGUIElement):
         citation = self.dbstate.db.get_citation_from_handle(citation_handle)
         page = citation.get_page()
         if not page:
-            page = _("<No Volume/Page>")
+           page = _("<No Volume/Page>")
         source_handle = citation.get_reference_handle()
         source = self.dbstate.db.get_source_from_handle(source_handle)
         title = source.get_title()
@@ -197,7 +203,7 @@ class Citations(Gramplet, DbGUIElement):
             self.source_nodes[source_handle] = node
 
         self.model.add(
-            [
+           [
                 citation_handle,
                 get_date(citation),
                 page,

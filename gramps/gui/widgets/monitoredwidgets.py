@@ -82,6 +82,9 @@ _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 #
 # -------------------------------------------------------------------------
 class MonitoredCheckbox:
+======
+
+>>>>>>> eae5d2732 (linting)
     def __init__(self, obj, button, set_val, get_val, on_toggle=None, readonly=False):
         self.button = button
         self.button.connect("toggled", self._on_toggle)
@@ -113,6 +116,9 @@ class MonitoredCheckbox:
 #
 # -------------------------------------------------------------------------
 class MonitoredEntry:
+======
+
+>>>>>>> eae5d2732 (linting)
     def __init__(
         self, obj, set_val, get_val, read_only=False, autolist=None, changed=None
     ):
@@ -370,6 +376,9 @@ class MonitoredText:
 #
 # -------------------------------------------------------------------------
 class MonitoredType:
+======
+
+>>>>>>> eae5d2732 (linting)
     def __init__(
         self, obj, set_val, get_val, mapping, custom, readonly=False, custom_values=None
     ):
@@ -419,6 +428,9 @@ class MonitoredType:
 #
 # -------------------------------------------------------------------------
 class MonitoredDataType:
+======
+
+>>>>>>> eae5d2732 (linting)
     def __init__(
         self,
         obj,
@@ -515,6 +527,9 @@ class MonitoredDataType:
 #
 # -------------------------------------------------------------------------
 class MonitoredMenu:
+======
+
+>>>>>>> eae5d2732 (linting)
     def __init__(self, obj, set_val, get_val, mapping, readonly=False, changed=None):
         self.set_val = set_val
         self.get_val = get_val
@@ -835,6 +850,12 @@ class MonitoredTagList:
     A MonitoredTagList consists of a label to display a list of tags and a
     button to invoke the tag editor.
     """
+======
+
+    def __init__(
+        self, label, button, set_list, get_list, db, uistate, track, readonly=False
+    ):
+>>>>>>> eae5d2732 (linting)
 
     def __init__(
         self, label, button, set_list, get_list, db, uistate, track, readonly=False

@@ -27,7 +27,7 @@ Provide merge capabilities for events.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from ..lib import Person, Family, Note
+rom ..lib import Person, Family, Note
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
 

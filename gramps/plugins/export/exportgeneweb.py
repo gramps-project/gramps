@@ -90,6 +90,9 @@ class GeneWebWriter:
         self.g.write(self.iso8859("%s\n" % (text)))
 
     def export_data(self):
+======
+
+>>>>>>> eae5d2732 (linting)
         self.dirname = os.path.dirname(self.filename)
         try:
             with open(self.filename, "wb") as self.g:
@@ -483,7 +486,7 @@ class GeneWebWriter:
                     self.format_single_date(date.get_start_date(), cal, mod),
                     self.format_single_date(date.get_stop_date(), cal, mod),
                 )
-            elif mod == Date.MOD_FROM:
+           elif mod == Date.MOD_FROM:
                 retval = "%s..0" % (
                     self.format_single_date(date.get_start_date(), cal, mod)
                 )

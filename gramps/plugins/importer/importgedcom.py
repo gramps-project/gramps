@@ -50,7 +50,7 @@ from gramps.gen.utils.libformatting import ImportInfo
 module = __import__(
     "gramps.plugins.lib.libgedcom", fromlist=["gramps.plugins.lib"]
 )  # why o why ?? as above!
-import importlib
+mport importlib
 
 importlib.reload(module)
 

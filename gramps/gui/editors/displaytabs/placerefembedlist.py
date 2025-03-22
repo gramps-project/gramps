@@ -75,7 +75,7 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
             track,
             _("Enclosed By"),
             PlaceRefModel,
-            config_key,
+           config_key,
             share_button=True,
             move_buttons=True,
         )

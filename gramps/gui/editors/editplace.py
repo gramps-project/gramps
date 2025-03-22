@@ -74,7 +74,7 @@ from gramps.gen.const import URL_MANUAL_SECT2
 # -------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _("Place_Editor_dialog", "manual")
+IKI_HELP_SEC = _("Place_Editor_dialog", "manual")
 
 
 # -------------------------------------------------------------------------
@@ -103,7 +103,7 @@ class EditPlace(EditPrimary):
         self.set_window(self.top.toplevel, None, self.get_menu_title())
         self.setup_configs("interface.place", 650, 450)
         self.place_name_label = self.top.get_object("place_name_label")
-        self.place_name_label.set_text(_("Name:", "place"))
+       self.place_name_label.set_text(_("Name:", "place"))
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():
@@ -129,6 +129,9 @@ class EditPlace(EditPrimary):
         self._add_db_signal("place-delete", self.check_for_close)
 
     def _setup_fields(self):
+======
+
+>>>>>>> eae5d2732 (linting)
         if not config.get("preferences.place-auto"):
             self.top.get_object("place_title").show()
             self.top.get_object("place_title_label").show()
@@ -240,7 +243,7 @@ class EditPlace(EditPrimary):
 
         """
         try:
-            # Bug 12349, 12374
+           # Bug 12349, 12374
             parts = value.split(", ")
             if len(parts) == 2:
                 latitude = parts[0].strip().replace(",", ".")
@@ -263,7 +266,7 @@ class EditPlace(EditPrimary):
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == "lat") and not conv_lat_lon(text, "0", "ISO-D"):
             return ValidationError(
-                # Translators: translate the "S" too (and the "or" of course)
+               # Translators: translate the "S" too (and the "or" of course)
                 _(
                     "Invalid latitude\n(syntax: "
                     "18\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
@@ -271,7 +274,7 @@ class EditPlace(EditPrimary):
             )
         elif (typedeg == "lon") and not conv_lat_lon("0", text, "ISO-D"):
             return ValidationError(
-                # Translators: translate the "E" too (and the "or" of course)
+               # Translators: translate the "E" too (and the "or" of course)
                 _(
                     "Invalid longitude\n(syntax: "
                     "18\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
@@ -301,7 +304,7 @@ class EditPlace(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_placeref_list(),
-            "place_editor_placerefs",
+           "place_editor_placerefs",
             self.obj.handle,
             self.update_title,
         )
@@ -309,7 +312,7 @@ class EditPlace(EditPrimary):
         self.track_ref_for_deletion("placeref_list")
 
         self.alt_name_list = PlaceNameEmbedList(
-            self.dbstate,
+           self.dbstate,
             self.uistate,
             self.track,
             self.obj.alt_names,
@@ -320,7 +323,7 @@ class EditPlace(EditPrimary):
 
         if len(self.obj.alt_loc) > 0:
             self.loc_list = LocationEmbedList(
-                self.dbstate,
+               self.dbstate,
                 self.uistate,
                 self.track,
                 self.obj.alt_loc,
@@ -334,7 +337,7 @@ class EditPlace(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_citation_list(),
-            "place_editor_citations",
+           "place_editor_citations",
             self.get_menu_title(),
         )
         self._add_tab(notebook, self.citation_list)
@@ -345,7 +348,7 @@ class EditPlace(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
-            "place_editor_notes",
+           "place_editor_notes",
             self.get_menu_title(),
             notetype=NoteType.PLACE,
         )
@@ -353,7 +356,7 @@ class EditPlace(EditPrimary):
         self.track_ref_for_deletion("note_tab")
 
         self.gallery_tab = GalleryTab(
-            self.dbstate,
+           self.dbstate,
             self.uistate,
             self.track,
             self.obj.get_media_list(),
@@ -362,7 +365,7 @@ class EditPlace(EditPrimary):
         self.track_ref_for_deletion("gallery_tab")
 
         self.web_list = WebEmbedList(
-            self.dbstate,
+           self.dbstate,
             self.uistate,
             self.track,
             self.obj.get_url_list(),
@@ -376,7 +379,7 @@ class EditPlace(EditPrimary):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.obj.handle),
-            "place_editor_references",
+           "place_editor_references",
         )
         self.backref_tab = self._add_tab(notebook, self.backref_list)
         self.track_ref_for_deletion("backref_list")
@@ -440,3 +443,46 @@ class EditPlace(EditPrimary):
         self._do_close()
         if self.callback:
             self.callback(self.obj)
+======
+
+
+# -------------------------------------------------------------------------
+#
+# DeletePlaceQuery
+#
+# -------------------------------------------------------------------------
+class DeletePlaceQuery:
+
+    def __init__(self, dbstate, uistate, place, person_list, family_list, event_list):
+        self.db = dbstate.db
+        self.uistate = uistate
+        self.obj = place
+        self.person_list = person_list
+        self.family_list = family_list
+        self.event_list = event_list
+
+    def query_response(self):
+        place_title = place_displayer.display(self.db, self.obj)
+        with DbTxn(_("Delete Place (%s)") % place_title, self.db) as trans:
+            self.db.disable_signals()
+
+            place_handle = self.obj.get_handle()
+
+            for handle in self.person_list:
+                person = self.db.get_person_from_handle(handle)
+                person.remove_handle_references("Place", place_handle)
+                self.db.commit_person(person, trans)
+
+            for handle in self.family_list:
+                family = self.db.get_family_from_handle(handle)
+                family.remove_handle_references("Place", place_handle)
+                self.db.commit_family(family, trans)
+
+            for handle in self.event_list:
+                event = self.db.get_event_from_handle(handle)
+                event.remove_handle_references("Place", place_handle)
+                self.db.commit_event(event, trans)
+
+            self.db.enable_signals()
+            self.db.remove_place(place_handle, trans)
+>>>>>>> eae5d2732 (linting)

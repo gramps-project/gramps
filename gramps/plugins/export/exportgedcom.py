@@ -203,7 +203,7 @@ def breakup(txt, limit):
         # look for non-space pair to break between
         # fix issue #0012709 by removing Python2 code obsoleted by Python3
         idx = limit
-        while idx > 0 and (txt[idx - 1].isspace() or txt[idx].isspace()):
+       while idx > 0 and (txt[idx - 1].isspace() or txt[idx].isspace()):
             idx -= 1
         if idx == 0:
             # no words to break on, just break at limit anyway
@@ -1387,7 +1387,7 @@ class GedcomWriter(UpdateCallback):
         suffix = name.get_suffix()
         title = name.get_title()
         nick = name.get_nick_name()
-        call = name.get_call_name()
+       call = name.get_call_name()
         if nick.strip() == "":
             nick = attr_nick
 
@@ -1407,7 +1407,7 @@ class GedcomWriter(UpdateCallback):
             self._writeln(2, "SPFX", surprefix)
         if surname:
             self._writeln(2, "SURN", surname)
-        if call:
+       if call:
             self._writeln(2, "_RUFNAME", call)
         if name.get_suffix():
             self._writeln(2, "NSFX", suffix)
@@ -1463,6 +1463,9 @@ class GedcomWriter(UpdateCallback):
             self._date(level + 2, citation.get_date_object())
 
         if len(citation.get_note_list()) > 0:
+======
+
+>>>>>>> eae5d2732 (linting)
             note_list = [
                 self.dbase.get_note_from_handle(h) for h in citation.get_note_list()
             ]
@@ -1598,6 +1601,35 @@ class GedcomWriter(UpdateCallback):
             self._writeln(level + 1, "MAP")
             self._writeln(level + 2, "LATI", latitude)
             self._writeln(level + 2, "LONG", longitude)
+======
+
+        # The Gedcom standard shows that an optional address structure can
+        # be written out in the event detail.
+        # http://homepages.rootsweb.com/~pmcbride/gedcom/55gcch2.htm#EVENT_DETAIL
+        location = get_main_location(self.dbase, place)
+        street = location.get(PlaceType.STREET)
+        locality = location.get(PlaceType.LOCALITY)
+        city = location.get(PlaceType.CITY)
+        state = location.get(PlaceType.STATE)
+        country = location.get(PlaceType.COUNTRY)
+        postal_code = place.get_code()
+
+        if street or locality or city or state or postal_code or country:
+            self._writeln(level, "ADDR", street)
+            if street:
+                self._writeln(level + 1, "ADR1", street)
+            if locality:
+                self._writeln(level + 1, "ADR2", locality)
+            if city:
+                self._writeln(level + 1, "CITY", city)
+            if state:
+                self._writeln(level + 1, "STAE", state)
+            if postal_code:
+                self._writeln(level + 1, "POST", postal_code)
+            if country:
+                self._writeln(level + 1, "CTRY", country)
+
+>>>>>>> eae5d2732 (linting)
         self._note_references(place.get_note_list(), level + 1)
 
     def __write_addr(self, level, addr):
@@ -1625,7 +1657,7 @@ class GedcomWriter(UpdateCallback):
         @param addr: The location or address
         @type addr: [a super-type of] LocationBase
         """
-        addr_lines = addr.get_address_lines()
+       addr_lines = addr.get_address_lines()
         if addr_lines:
             self._writeln(level, "ADDR", addr_lines[0])
             for line in addr_lines[1:]:

@@ -457,7 +457,7 @@ class PG30DefTable(object):
                 flds.append(self.get_mem_text(mems, rec[i]))
             else:
                 # Not a record number, not a memory type. It must be just text.
-                fld = record.strip()
+               fld = record.strip()
                 fld = fld.decode("cp850")  # Convert to unicode
                 flds.append(fld)
 

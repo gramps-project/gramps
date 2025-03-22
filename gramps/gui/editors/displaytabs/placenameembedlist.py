@@ -75,7 +75,7 @@ class PlaceNameEmbedList(EmbeddedList):
             track,
             _("Alternative Names"),
             PlaceNameModel,
-            config_key,
+           config_key,
             move_buttons=True,
         )
 

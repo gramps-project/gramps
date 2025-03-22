@@ -271,7 +271,13 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :rtype: list
         """
 
-        ret = self.media_list + self.alt_loc + self.urls + [self.name] + self.alt_names
+        ret = (
+            self.media_list
+            + self.alt_loc
+            + self.urls
+            + self.name.get_text_data_child_list()
+            + self.alt_names
+        )
         return ret
 
     def get_citation_child_list(self):

@@ -91,7 +91,7 @@ from gramps.gen.lib import (
     Tag,
     Url,
 )
-from gramps.gen.lib.json_utils import data_to_object
+rom gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.db import DbTxn
 
 # from gramps.gen.db.write import CLASS_TO_KEY_MAP
@@ -242,7 +242,6 @@ def rs(text):
 def fix_spaces(text_list):
     return "\n".join(map(rs, text_list))
 
-
 # -------------------------------------------------------------------------
 #
 #
@@ -330,7 +329,7 @@ class ImportInfo:
             CITATION_KEY: _("Citation"),
         }
         if key == PERSON_KEY:
-            return _("  {id1} - {text} with {id2}").format(
+           return _("  {id1} - {text} with {id2}").format(
                 id1=obj.gramps_id,
                 text=name_displayer.display(obj),
                 id2=sec_obj.gramps_id,
@@ -347,7 +346,7 @@ class ImportInfo:
         Construct an info message from the data in the class.
         """
         key2string = {
-            PERSON_KEY: _("People"),
+           PERSON_KEY: _("People"),
             FAMILY_KEY: _("Families"),
             SOURCE_KEY: _("Sources"),
             EVENT_KEY: _("Events"),
@@ -364,14 +363,14 @@ class ImportInfo:
             label = _("%s:") % key2string[key]
             new = "%d" % self.data_newobject[self.key2data[key]]
             if any(self.data_unknownobject):
-                unknown = "(%d)" % self.data_unknownobject[self.key2data[key]]
+               unknown = "(%d)" % self.data_unknownobject[self.key2data[key]]
                 table.append([label, new, unknown])
             else:
                 table.append([label, new])
         txt.append(table)
 
         if any(self.data_unknownobject):
-            txt.append(
+           txt.append(
                 _(
                     "\nThe imported file was not self-contained.\n"
                     "To correct for that, %(new)d objects were created and\n"
@@ -1050,7 +1049,7 @@ class GrampsParser(UpdateCallback):
         :param ifile: must be a file handle that is already open, with position
                       at the start of the file
         """
-        with DbTxn(_("Gramps XML import"), self.db, batch=True) as self.trans:
+       with DbTxn(_("Gramps XML import"), self.db, batch=True) as self.trans:
             self.set_total(linecount)
 
             self.db.disable_signals()
@@ -2735,7 +2734,7 @@ class GrampsParser(UpdateCallback):
                 ]
             ),
         )
-        # Translators: leave the {date} and {xml} untranslated in the format string,
+       # Translators: leave the {date} and {xml} untranslated in the format string,
         # but you may re-order them if needed.
         LOG.warning(
             _("Invalid date {date} in XML {xml}, preserving XML as text").format(
@@ -3073,7 +3072,7 @@ class GrampsParser(UpdateCallback):
             self.person.set_gender(Person.MALE)
         elif t == "F":
             self.person.set_gender(Person.FEMALE)
-        elif t == "X":
+       elif t == "X":
             self.person.set_gender(Person.OTHER)
         else:
             self.person.set_gender(Person.UNKNOWN)

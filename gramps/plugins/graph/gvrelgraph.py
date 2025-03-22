@@ -169,13 +169,13 @@ class RelGraphReport(Report):
         self.colorize = get_value("color")
         color_males = get_value("colormales")
         color_females = get_value("colorfemales")
-        color_other = get_value("colorother")
+       color_other = get_value("colorother")
         color_unknown = get_value("colorunknown")
         color_families = get_value("colorfamilies")
         self.colors = {
             "male": color_males,
             "female": color_females,
-            "other": color_other,
+           "other": color_other,
             "unknown": color_unknown,
             "family": color_families,
         }
@@ -608,7 +608,7 @@ class RelGraphReport(Report):
                 color = self.colors["male"]
             elif gender == person.FEMALE:
                 color = self.colors["female"]
-            elif gender == person.OTHER:
+           elif gender == person.OTHER:
                 color = self.colors["other"]
             else:
                 color = self.colors["unknown"]
@@ -618,7 +618,7 @@ class RelGraphReport(Report):
                 fill = self.colors["male"]
             elif gender == person.FEMALE:
                 fill = self.colors["female"]
-            elif gender == person.OTHER:
+           elif gender == person.OTHER:
                 fill = self.colors["other"]
             else:
                 fill = self.colors["unknown"]
@@ -1050,7 +1050,7 @@ class RelGraphOptions(MenuReportOptions):
         color_females.set_help(_("The color to use to display women."))
         add_option("colorfemales", color_females)
 
-        color_other = ColorOption(_("Other"), "#94ef9e")
+       color_other = ColorOption(_("Other"), "#94ef9e")
         color_other.set_help(
             _("The color to use to display people who are " "neither men nor women.")
         )

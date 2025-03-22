@@ -134,7 +134,7 @@ class PlaceBaseModel:
 
     def column_name(self, data):
         """Return the primary name"""
-        return data.name.value
+       return data.name.value
 
     def search_name(self, data):
         """The search name includes all alt names to enable finding by alt name"""
@@ -153,7 +153,7 @@ class PlaceBaseModel:
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def column_latitude(self, data):
-        if not data.lat:
+       if not data.lat:
             return ""
         value = conv_lat_lon(
             data.lat,
@@ -165,7 +165,7 @@ class PlaceBaseModel:
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def sort_longitude(self, data):
-        if not data.long:
+       if not data.long:
             return ""
         value = conv_lat_lon("0", data.long, format="ISO-DMS") if data.long else ""
         if not value:
@@ -173,7 +173,7 @@ class PlaceBaseModel:
         return value
 
     def sort_latitude(self, data):
-        if not data.lat:
+       if not data.lat:
             return ""
         value = conv_lat_lon(data.lat, "0", format="ISO-DMS") if data.lat else ""
         if not value:
@@ -190,7 +190,7 @@ class PlaceBaseModel:
         return data.code
 
     def column_private(self, data):
-        if data.private:
+       if data.private:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
@@ -270,6 +270,19 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
     """
     Flat place model.  (Original code in PlaceBaseModel).
     """
+======
+
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
+>>>>>>> eae5d2732 (linting)
 
     def __init__(
         self,
@@ -303,6 +316,19 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
     """
     Hierarchical place model.
     """
+======
+
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
+>>>>>>> eae5d2732 (linting)
 
     def __init__(
         self,

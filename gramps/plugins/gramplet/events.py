@@ -46,11 +46,14 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gen.config import config
 from gramps.gen.proxy.cache import CacheProxyDb
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gui.widgets.persistenttreeview import PersistentTreeView
+rom gramps.gui.widgets.persistenttreeview import PersistentTreeView
 
 _ = glocale.translation.gettext
 
 age_precision = config.get("preferences.age-display-precision")
+======
+
+>>>>>>> eae5d2732 (linting)
 
 
 class Events(Gramplet, DbGUIElement):
@@ -92,7 +95,7 @@ class Events(Gramplet, DbGUIElement):
         """
         tip = _("Double-click on a row to edit the selected event.")
         self.set_tooltip(tip)
-        top = PersistentTreeView(self.uistate, __name__)
+       top = PersistentTreeView(self.uistate, __name__)
         titles = [
             (
                 "",

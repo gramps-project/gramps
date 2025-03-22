@@ -28,7 +28,7 @@ Place Reference class for Gramps
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
+rom ..const import GRAMPS_LOCALE as glocale
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from .datebase import DateBase
 from .refbase import RefBase
@@ -88,7 +88,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
             "title": _("Place ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "ref": {
+               "ref": {
                     "type": "string",
                     "title": _("Handle"),
                     "maxLength": 50,

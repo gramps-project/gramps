@@ -158,7 +158,7 @@ from gramps.gen.lib import (
     PlaceRef,
     PlaceName,
 )
-from gramps.gen.lib.json_utils import data_to_object, object_to_dict
+rom gramps.gen.lib.json_utils import data_to_object, object_to_dict
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path
@@ -321,7 +321,7 @@ TOKENS = {
     "_AKAN": TOKEN__AKA,
     "_ALIA": TOKEN_ALIA,
     "_ANCES_ORDRE": TOKEN_IGNORE,
-    "_APID": TOKEN__APID,  # Ancestry.com database and page id
+   "_APID": TOKEN__APID,  # Ancestry.com database and page id
     "_CAT": TOKEN_IGNORE,
     "_CHUR": TOKEN_IGNORE,
     "_COMM": TOKEN__COMM,
@@ -354,7 +354,7 @@ TOKENS = {
     "_PRIMARY": TOKEN__PRIMARY,
     "_PRIV": TOKEN__PRIV,
     "_PUBLISHER": TOKEN_IGNORE,
-    "_RUFNAME": TOKEN__CALLNAME,
+   "_RUFNAME": TOKEN__CALLNAME,
     "_SCBK": TOKEN_IGNORE,
     "_SCHEMA": TOKEN__SCHEMA,
     "_SSHOW": TOKEN_IGNORE,
@@ -633,7 +633,7 @@ QUALITY_MAP = {
 SEX_MAP = {
     "F": Person.FEMALE,
     "M": Person.MALE,
-    "X": Person.OTHER,
+   "X": Person.OTHER,
 }
 
 FAMILYCONSTANTEVENTS = {
@@ -862,7 +862,7 @@ DATE_MODIFIER = {
     Date.MOD_ABOUT: "ABT",
     Date.MOD_BEFORE: "BEF",
     Date.MOD_AFTER: "AFT",
-    Date.MOD_FROM: "FROM",
+   Date.MOD_FROM: "FROM",
     Date.MOD_TO: "TO",
     # Date.MOD_INTERPRETED : "INT",
 }
@@ -882,7 +882,7 @@ CONT_RE = re.compile(r"\s*\d+\s+CONT\s?(.*)$")
 CONC_RE = re.compile(r"\s*\d+\s+CONC\s?(.*)$")
 PERSON_RE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 MOD = re.compile(r"\s*(INT|EST|CAL)\s+(.*)$")
-CAL = re.compile(r"\s*(ABT|BEF|AFT|FROM|TO)?\s*@#D?([^@]+)@\s*(.*)$")
+AL = re.compile(r"\s*(ABT|BEF|AFT|FROM|TO)?\s*@#D?([^@]+)@\s*(.*)$")
 RANGE = re.compile(r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
 RANGE1 = re.compile(r"\s*BET\s+\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
 RANGE2 = re.compile(r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+\s*(.*)$")
@@ -1006,7 +1006,7 @@ class Lexer:
                     line_value = line[2].lstrip()
                     # Ignore meaningless @IDENT@ on CONT or CONC line
                     # as noted at http://www.tamurajones.net/IdentCONT.xhtml
-                    if line_value.startswith(("CONT ", "CONC ")):
+                   if line_value.startswith(("CONT ", "CONC ")):
                         line = line_value.partition(" ")
                         tag = line[0]
                         line_value = line[2]
@@ -2163,7 +2163,7 @@ class GedcomParser(UpdateCallback):
     __TRUNC_MSG = _(
         "Your GEDCOM file is corrupted. " "It appears to have been truncated."
     )
-    _EMPTY_LOC = object_to_dict(Location())
+   _EMPTY_LOC = object_to_dict(Location())
 
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
@@ -2449,7 +2449,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_GIVN: self.__name_givn,
             # NICK <NAME_PIECE_NICKNAME> {0:1}
             TOKEN_NICK: self.__name_nick,
-            # _RUFNAME <NAME_PIECE_CALLNAME> {0:1}
+           # _RUFNAME <NAME_PIECE_CALLNAME> {0:1}
             TOKEN__CALLNAME: self.__name_call,
             # +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1}
             TOKEN_SPFX: self.__name_spfx,
@@ -2668,7 +2668,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_TEXT: self.__citation_data_text,
             TOKEN__LINK: self.__citation_link,
             TOKEN__JUST: self.__citation__just,
-            TOKEN__APID: self.__citation__apid,
+           TOKEN__APID: self.__citation__apid,
         }
         self.func_list.append(self.citation_parse_tbl)
 
@@ -2817,7 +2817,7 @@ class GedcomParser(UpdateCallback):
             # not legal, but Ultimate Family Tree does this
             TOKEN_DATE: self.__ignore,
             TOKEN_IGNORE: self.__ignore,
-            TOKEN__APID: self.__source_attr,
+           TOKEN__APID: self.__source_attr,
         }
         self.func_list.append(self.source_func)
 
@@ -3103,7 +3103,7 @@ class GedcomParser(UpdateCallback):
           0 TRLR                                          {1:1}
 
         """
-        with DbTxn(_("GEDCOM import"), self.dbase, not use_trans) as self.trans:
+       with DbTxn(_("GEDCOM import"), self.dbase, not use_trans) as self.trans:
             self.dbase.disable_signals()
             self.__parse_header_head()
             self.want_parse_warnings = False
@@ -3583,6 +3583,9 @@ class GedcomParser(UpdateCallback):
         self.backoff = True
 
     def __check_xref(self):
+======
+
+>>>>>>> eae5d2732 (linting)
         def __check(_map, has_gid_func, class_func, commit_func, gramps_id2handle, msg):
             for input_id, gramps_id in _map.map().items():
                 # Check whether an object exists for the mapped gramps_id
@@ -3845,6 +3848,9 @@ class GedcomParser(UpdateCallback):
             or addr.get_state()
             or addr.get_postal_code()
         ):
+======
+
+>>>>>>> eae5d2732 (linting)
             addr.set_street(free_form_address)
             return free_form_address
         else:
@@ -4007,7 +4013,7 @@ class GedcomParser(UpdateCallback):
                 self.__check_msgs(_("Top Level"), state, None)
             elif key in ("SOUR", "SOURCE"):
                 self.__parse_source(line.token_text, 1)
-            elif line.data.startswith(("SOUR ", "SOURCE ")):
+           elif line.data.startswith(("SOUR ", "SOURCE ")):
                 # A source formatted in a single line, for example:
                 # 0 @S62@ SOUR This is the title of the source
                 source = self.__find_or_create_source(self.sid_map[line.data])

@@ -20,7 +20,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-"""
+""
 GrampsLocale encapsulates localization and locale
 initialization. There's a default locale object but more can be
 created with a different locale and translation binding to enable
@@ -62,18 +62,18 @@ _HDLR = None
 # logging.WARN. Uncomment the following to change it to logging.DEBUG:
 # LOG.setLevel(logging.DEBUG)
 try:
-    from icu import Locale, Collator, ICUError
+   from icu import Locale, Collator, ICUError
 
     HAVE_ICU = True
 except ImportError:
     try:
-        from PyICU import Locale, Collator, ICUError
+       from PyICU import Locale, Collator, ICUError
 
         HAVE_ICU = True
     except ImportError as err:
         ERRSTR = str(err)
         # No logger, save the warning message for later.
-        _ICU_ERR = (
+       _ICU_ERR = (
             f"ICU not loaded because {ERRSTR}. Localization will be "
             "impaired. Use your package manager to install PyICU"
         )
@@ -81,11 +81,72 @@ except ImportError:
 ICU_LOCALES = None
 if HAVE_ICU:
     ICU_LOCALES = Locale.getAvailableLocales()
+======
+
+# Map of languages for converting to Microsoft locales and naming
+# locales for display to the user.  It's important to add to this list
+# when a new translation is added.  Note the dummy _(): That's just to
+# get xgettext to include the string in gramps.pot; actual translation
+# is done in _get_language_string() below.
+# (The gramps officially-supported language list is ALL_LINGUAS in setup.py)
+_ = lambda x: x
+_LOCALE_NAMES = {
+    "ar": ("Arabic_Saudi Arabia", "1256", _("Arabic")),
+    "bg": ("Bulgrian_Bulgaria", "1251", _("Bulgarian")),
+    "br": (None, None, _("Breton")),  # Windows has no translation for Breton
+    "ca": ("Catalan_Spain", "1252", _("Catalan")),
+    "cs": ("Czech_Czech Republic", "1250", _("Czech")),
+    "da": ("Danish_Denmark", "1252", _("Danish")),
+    "de": ("German_Germany", "1252", _("German")),
+    "el": ("Greek_Greece", "1253", _("Greek")),
+    "en": ("English_United States", "1252", _("English (USA)")),
+    "en_GB": ("English_United Kingdom", "1252", _("English")),
+    "eo": (None, None, _("Esperanto")),  # Windows has no translation for Esperanto
+    "es": ("Spanish_Spain", "1252", _("Spanish")),
+    "fi": ("Finnish_Finland", "1252", _("Finnish")),
+    "fr": ("French_France", "1252", _("French")),
+    "ga": (None, None, _("Gaelic")),  # Windows has no translation for Gaelic
+    "he": ("Hebrew_Israel", "1255", _("Hebrew")),
+    "hr": ("Croatian_Croatia", "1250", _("Croatian")),
+    "hu": ("Hungarian_Hungary", "1250", _("Hungarian")),
+    "is": ("Icelandic", "1252", _("Icelandic")),
+    "it": ("Italian_Italy", "1252", _("Italian")),
+    "ja": ("Japanese_Japan", "932", _("Japanese")),
+    "lt": ("Lithuanian_Lithuania", "1252", _("Lithuanian")),
+    "mk": (None, None, _("Macedonian")),  # Windows has no translation for Macedonian
+    "nb": ("Norwegian_Norway", "1252", _("Norwegian Bokmal")),
+    "nl": ("Dutch_Netherlands", "1252", _("Dutch")),
+    "nn": ("Norwegian-Nynorsk_Norway", "1252", _("Norwegian Nynorsk")),
+    "pl": ("Polish_Poland", "1250", _("Polish")),
+    "pt_BR": ("Portuguese_Brazil", "1252", _("Portuguese (Brazil)")),
+    "pt_PT": ("Portuguese_Portugal", "1252", _("Portuguese (Portugal)")),
+    "ro": ("Romanian_Romania", "1250", _("Romanian")),
+    "ru": ("Russian_Russia", "1251", _("Russian")),
+    "sk": (
+        "Slovak_Slovakia",
+        "1250",
+        _("Slovak"),
+    ),
+    "sl": ("Slovenian_Slovenia", "1250", _("Slovenian")),
+    "sq": ("Albanian_Albania", "1250", _("Albanian")),
+    "sr": ("Serbian(Cyrillic)_Serbia and Montenegro", "1251", _("Serbian")),
+    "sv": ("Swedish_Sweden", "1252", _("Swedish")),
+    "ta": (None, None, _("Tamil")),  # Windows has no codepage for Tamil
+    "tr": ("Turkish_Turkey", "1254", _("Turkish")),
+    "uk": ("Ukrainian_Ukraine", "1251", _("Ukrainian")),
+    "vi": ("Vietnamese_Vietnam", "1258", _("Vietnamese")),
+    "zh_CN": ("Chinese_China", "936", _("Chinese (Simplified)")),
+    "zh_HK": ("Chinese_Hong Kong", "950", _("Chinese (Hong Kong)")),
+    "zh_TW": ("Chinese_Taiwan", "950", _("Chinese (Traditional)")),
+}
+
+>>>>>>> eae5d2732 (linting)
 # locales with right-to-left text
 _RTL_LOCALES = ("ar", "he")
 
 # locales with less than 70% currently translated
-INCOMPLETE_TRANSLATIONS = ("ar", "bg", "ko", "sq", "zh_HK", "zh_TW")
+NCOMPLETE_TRANSLATIONS = ("ar", "bg", "ko", "sq", "zh_HK", "zh_TW")
+
 
 
 def _check_gformat():
@@ -98,7 +159,7 @@ def _check_gformat():
         # Gramps treats dates with '-' as ISO format, so replace separator
         # on locale dates that use '-' to prevent confict
         gformat = gformat.replace("-", "/")
-    except locale.Error:
+   except locale.Error:
         # Depending on the locale, the value returned for 20th Feb 2009
         # could be '20/2/2009', '20/02/2009', '20.2.2009', '20.02.2009',
         # '20-2-2009', '20-02-2009', '2009/02/20', '2009.02.20',
@@ -172,14 +233,14 @@ class GrampsLocale:
 
         if not cls.__first_instance.initialized:
             raise RuntimeError(
-                "Second GrampsLocale created before " "first one was initialized"
+               "Second GrampsLocale created before " "first one was initialized"
             )
         if cls.__first_instance._matches(localedir, lang, domain, languages):
             return cls.__first_instance
 
         return super(GrampsLocale, cls).__new__(cls)
 
-    def _matches(self, localedir, lang, domain, languages):
+   def _matches(self, localedir, lang, domain, languages):
         matches = localedir is None or self.localedir == localedir
         matches = matches and (lang is None or self.lang == lang)
         matches = matches and (domain is None or self.localedomain == domain)
@@ -191,7 +252,7 @@ class GrampsLocale:
         def _check_locale(loc):
             if not loc[0]:
                 return False
-            lang = self.check_available_translations(loc[0])
+           lang = self.check_available_translations(loc[0])
             if not lang and loc[0].startswith("en"):
                 loc = ("en_GB", "UTF-8")
                 lang = "en_GB"
@@ -205,14 +266,14 @@ class GrampsLocale:
         _failure = False
         try:
             locale.setlocale(locale.LC_ALL, "")
-            if not _check_locale(locale.getlocale(category=locale.LC_MESSAGES)):
+           if not _check_locale(locale.getlocale(category=locale.LC_MESSAGES)):
                 LOG.debug("Usable locale not found, localization " "settings ignored.")
                 self.lang = "C"
                 self.encoding = "ascii"
                 self.language = ["en"]
                 _failure = True
 
-        except locale.Error as loc_err:
+       except locale.Error as loc_err:
             LOG.debug("Locale error %s, localization settings ignored.", loc_err)
             self.lang = "C"
             self.encoding = "ascii"
@@ -220,7 +281,7 @@ class GrampsLocale:
             _failure = True
 
         # LC_MESSAGES
-        loc_tuple = locale.getlocale(locale.LC_MESSAGES)
+       loc_tuple = locale.getlocale(locale.LC_MESSAGES)
         loc = loc_tuple[0]
         if loc:
             language = self.check_available_translations(loc)
@@ -247,6 +308,20 @@ class GrampsLocale:
 
         if HAVE_ICU and "COLLATION" in os.environ:
             self.collation = os.environ["COLLATION"]
+======
+
+        loc = locale.getlocale(locale.LC_NUMERIC)
+        if loc and loc[0]:
+            self.numeric = ".".join(loc)
+        else:
+            self.numeric = self.lang
+
+        loc = locale.getlocale(locale.LC_MONETARY)
+        if loc and loc[0]:
+            self.currency = ".".join(loc)
+        else:
+            self.currency = self.lang
+>>>>>>> eae5d2732 (linting)
 
         # $LANGUAGE overrides $LANG, $LC_MESSAGES
         if "LANGUAGE" in os.environ:
@@ -262,7 +337,7 @@ class GrampsLocale:
                 self.language = language
                 if not self.lang.startswith(self.language[0]):
                     LOG.debug(
-                        "Overiding locale setting '%s' with " "LANGUAGE setting '%s'",
+                       "Overiding locale setting '%s' with " "LANGUAGE setting '%s'",
                         self.lang,
                         self.language[0],
                     )
@@ -274,6 +349,26 @@ class GrampsLocale:
             LOG.debug(
                 "The locale tformat for '%s' is '%s'", self.lang, _check_gformat()
             )
+======
+
+    def _win_bindtextdomain(self, localedomain, localedir):
+        """
+        Help routine for loading and setting up libintl attributes
+        Returns libintl
+        """
+        from ctypes import cdll
+
+        try:
+            libintl = cdll.LoadLibrary("libintl-8")
+            libintl.bindtextdomain(localedomain, localedir)
+            libintl.textdomain(localedomain)
+            libintl.bind_textdomain_codeset(localedomain, "UTF-8")
+
+        except WindowsError:
+            LOG.warning(
+                "Localization library libintl not on %PATH%, localization will be incomplete"
+            )
+>>>>>>> eae5d2732 (linting)
 
     def __init_first_instance(self):
         """
@@ -297,7 +392,7 @@ class GrampsLocale:
         # expected behavior), do platform-specific setup:
         if not (self.lang and self.language):
             if sys.platform == "darwin":
-                mac_setup_localization(self)
+               mac_setup_localization(self)
             elif sys.platform == "win32":
                 win32_locale_init_from_env(self, HAVE_ICU, ICU_LOCALES)
             else:
@@ -311,7 +406,7 @@ class GrampsLocale:
             self.language.append("en")
         if not self.localedir and not self.lang.startswith("en"):
             LOG.warning(
-                "No translations for %s were found, setting "
+               "No translations for %s were found, setting "
                 "localization to U.S. English",
                 self.localedomain,
             )
@@ -364,7 +459,7 @@ class GrampsLocale:
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
         if self.localedir:
-            if sys.platform == "win32":
+           if sys.platform == "win32":
                 win32_locale_bindtextdomain(
                     self.localedomain.encode("utf-8"), self.localedir.encode("utf-8")
                 )
@@ -392,7 +487,7 @@ class GrampsLocale:
 
         _first = self._GrampsLocale__first_instance
         if not self.localedomain:
-            if _first.localedomain:
+           if _first.localedomain:
                 self.localedomain = _first.localedomain
             else:
                 self.localedomain = "gramps"
@@ -421,7 +516,7 @@ class GrampsLocale:
         environment if this is the first run. Return __first_instance
         otherwise if called without arguments.
         """
-        global _HDLR
+       global _HDLR
         # initialized is special, used only for the "first instance",
         # and created by __new__(). It's used to prevent re-__init__ing
         # __first_instance when __new__() returns its pointer.
@@ -490,7 +585,7 @@ class GrampsLocale:
             )
         except ValueError:
             LOG.warning(
-                "Unable to find translation for languages in %s, " "using US English",
+               "Unable to find translation for languages in %s, " "using US English",
                 ":".join(self.language),
             )
             self.translation = GrampsNullTranslations()
@@ -518,7 +613,7 @@ class GrampsLocale:
         for lang in languages:
             if gettext.find(domain, localedir, [lang]):
                 translator = gettext.translation(
-                    domain,
+                   domain,
                     localedir=localedir,
                     languages=[lang],
                     class_=GrampsTranslations,
@@ -534,7 +629,7 @@ class GrampsLocale:
         if not languages or len(languages) == 0:
             LOG.warning("No language provided, using US English")
         else:
-            lang_str = ":".join(languages)
+           lang_str = ":".join(languages)
             raise ValueError(f"No usable translations in {lang_str}" f" for {domain}")
         translator = GrampsNullTranslations()
         translator.lang = "en"
@@ -581,13 +676,17 @@ class GrampsLocale:
         # PyLint will whine about these not being at the top level but putting
         # it there creates a circular import.
         from ..config import config
-        from ..datehandler import LANG_TO_DISPLAY as displayers
+       from ..datehandler import LANG_TO_DISPLAY as displayers
 
         try:
             val = config.get("preferences.date-format")
         except AttributeError:
             val = 0
 
+======
+        from ..datehandler import LANG_TO_DISPLAY as displayers
+
+>>>>>>> eae5d2732 (linting)
         _first = self._GrampsLocale__first_instance
         if self.calendar in displayers:
             self._dd = displayers[self.calendar](val)
@@ -653,7 +752,7 @@ class GrampsLocale:
         """
         return self.language
 
-    def locale_code(self):
+   def locale_code(self):
         """
         Return the locale code.
         """
@@ -711,7 +810,7 @@ class GrampsLocale:
 
         for langdir in os.listdir(self.localedir):
             mofilename = os.path.join(
-                localedir, langdir, "LC_MESSAGES", f"{localedomain}.mo"
+               localedir, langdir, "LC_MESSAGES", f"{localedomain}.mo"
             )
             if os.path.exists(mofilename):
                 languages.append(langdir)
@@ -727,7 +826,7 @@ class GrampsLocale:
         """
         if not self.localedir:
             return None
-        # Note that this isn't a typo for self.language; self.language
+       # Note that this isn't a typo for self.language; self.language
         # is cached so we don't have to query the file system every
         # time this function is called.
         if not hasattr(self, "languages"):
@@ -736,7 +835,7 @@ class GrampsLocale:
         if not loc:
             return None
 
-        if loc[:5] in self.languages:
+       if loc[:5] in self.languages:
             return loc[:5]
         # US English is the outlier, all other English locales want real English:
         if loc[:2] == "en" and loc[:5] != "en_US":
@@ -796,7 +895,7 @@ class GrampsLocale:
         if HAVE_ICU and self.collator:
             # ICU can digest strings and unicode
             # Use hexlify() as to make a consistent string, fixing bug #10077
-            key = self.collator.getCollationKey(string)
+           key = self.collator.getCollationKey(string)
             return hexlify(key.getByteArray()).decode()
 
         if isinstance(string, bytes):
@@ -814,7 +913,7 @@ class GrampsLocale:
         """
         Return the collation without any character encoding.
         """
-        if self.collation is not None:
+       if self.collation is not None:
             return self.collation.split(".")[0]
         return "C"
 
@@ -852,6 +951,10 @@ class GrampsLocale:
         # PyLint will complain about this not being at top level but putting it there
         # creates a circular import.
         from ..lib.grampstype import GrampsType
+======
+
+        return GrampsType.xml_str(name)
+>>>>>>> eae5d2732 (linting)
 
         return GrampsType.xml_str(name)
 
@@ -877,7 +980,7 @@ class GrampsLocale:
             try:
                 if point == ",":
                     return locale.atof(val.replace(" ", sep).replace(".", sep))
-                if point == ".":
+               if point == ".":
                     return locale.atof(val.replace(" ", sep).replace(",", sep))
                 return None
             except ValueError:

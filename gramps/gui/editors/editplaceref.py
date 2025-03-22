@@ -74,7 +74,7 @@ class EditPlaceRef(EditReference):
         self.define_warn_box(self.top.get_object("warning"))
         self.define_expander(self.top.get_object("expander"))
         # self.place_name_label = self.top.get_object('place_name_label')
-        # self.place_name_label.set_text(_('Name:', 'place'))
+       # self.place_name_label.set_text(_('Name:', 'place'))
 
         tblref = self.top.get_object("table64")
         notebook = self.top.get_object("notebook_ref")
@@ -90,7 +90,6 @@ class EditPlaceRef(EditReference):
         self.primtab = RefTab(
             self.dbstate, self.uistate, self.track, _("_General"), tblref
         )
-
     def _post_init(self):
         self.name.grab_focus()
 
@@ -117,6 +116,9 @@ class EditPlaceRef(EditReference):
         return (_("Place Reference Editor"), submenu_label)
 
     def _setup_fields(self):
+======
+
+>>>>>>> eae5d2732 (linting)
         self.date_field = MonitoredDate(
             self.top.get_object("date_entry"),
             self.top.get_object("date_stat"),
@@ -214,7 +216,7 @@ class EditPlaceRef(EditReference):
 
     def set_latlongitude(self, value):
         try:
-            # Bug 12349, 12374
+           # Bug 12349, 12374
             parts = value.split(", ")
             if len(parts) == 2:
                 latitude = parts[0].strip().replace(",", ".")
@@ -237,7 +239,7 @@ class EditPlaceRef(EditReference):
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == "lat") and not conv_lat_lon(text, "0", "ISO-D"):
             return ValidationError(
-                # Translators: translate the "S" too (and the "or" of course)
+               # Translators: translate the "S" too (and the "or" of course)
                 _(
                     "Invalid latitude\n(syntax: "
                     "18\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
@@ -245,7 +247,7 @@ class EditPlaceRef(EditReference):
             )
         elif (typedeg == "lon") and not conv_lat_lon("0", text, "ISO-D"):
             return ValidationError(
-                # Translators: translate the "E" too (and the "or" of course)
+               # Translators: translate the "E" too (and the "or" of course)
                 _(
                     "Invalid longitude\n(syntax: "
                     "18\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
@@ -278,7 +280,7 @@ class EditPlaceRef(EditReference):
             self.uistate,
             self.track,
             self.source.get_placeref_list(),
-            "placeref_editor_placerefs",
+           "placeref_editor_placerefs",
             self.source.handle,
             self.update_title,
         )
@@ -286,7 +288,7 @@ class EditPlaceRef(EditReference):
         self.track_ref_for_deletion("placeref_list")
 
         self.alt_name_list = PlaceNameEmbedList(
-            self.dbstate,
+           self.dbstate,
             self.uistate,
             self.track,
             self.source.alt_names,
@@ -297,7 +299,7 @@ class EditPlaceRef(EditReference):
 
         if len(self.source.alt_loc) > 0:
             self.loc_list = LocationEmbedList(
-                self.dbstate,
+               self.dbstate,
                 self.uistate,
                 self.track,
                 self.source.alt_loc,
@@ -307,7 +309,7 @@ class EditPlaceRef(EditReference):
             self.track_ref_for_deletion("loc_list")
 
         self.citation_list = CitationEmbedList(
-            self.dbstate,
+           self.dbstate,
             self.uistate,
             self.track,
             self.source.get_citation_list(),
@@ -321,14 +323,14 @@ class EditPlaceRef(EditReference):
             self.uistate,
             self.track,
             self.source.get_note_list(),
-            "placeref_editor_notes",
+           "placeref_editor_notes",
             notetype=NoteType.PLACE,
         )
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
 
         self.gallery_tab = GalleryTab(
-            self.dbstate,
+           self.dbstate,
             self.uistate,
             self.track,
             self.source.get_media_list(),
@@ -337,7 +339,7 @@ class EditPlaceRef(EditReference):
         self.track_ref_for_deletion("gallery_tab")
 
         self.web_list = WebEmbedList(
-            self.dbstate,
+           self.dbstate,
             self.uistate,
             self.track,
             self.source.get_url_list(),
@@ -351,7 +353,7 @@ class EditPlaceRef(EditReference):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.source.handle),
-            "placeref_editor_references",
+           "placeref_editor_references",
         )
         self.backref_tab = self._add_tab(notebook, self.backref_list)
         self.track_ref_for_deletion("backref_list")

@@ -90,7 +90,7 @@ from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 #
 # -------------------------------------------------------------------------
 WIKI_HELP_PAGE = "%s_-_Filters" % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _("Add_Rule_dialog", "manual")
+IKI_HELP_SEC = _("Add_Rule_dialog", "manual")
 WIKI_HELP_SEC2 = _("Define_Filter_dialog", "manual")
 WIKI_HELP_SEC3 = _("Custom_Filters", "manual")
 
@@ -281,7 +281,6 @@ class MyLesserEqualGreater(Gtk.ComboBox):
         else:
             self.set_active(self.clist.index("equal to"))
 
-
 # -------------------------------------------------------------------------
 #
 # MyPlaces - AutoCombo text entry with list of places attached. Provides
@@ -407,6 +406,12 @@ class MySource(MyID):
         "Give or select a source ID, leave empty to find objects" " with no source."
     )
 
+======
+    _empty_id_txt = _(
+        "Give or select a source ID, leave empty to find objects" " with no source."
+    )
+
+>>>>>>> eae5d2732 (linting)
     def __init__(self, dbstate, uistate, track):
         MyID.__init__(self, dbstate, uistate, track, namespace="Source")
         self.entry.set_tooltip_text(self._empty_id_txt)
@@ -488,7 +493,7 @@ class EditRule(ManagedWindow):
         self.window.hide()
         self.valuebox = self.get_widget("valuebox")
         self.rname_filter = self.get_widget("ruletreefilter")
-        self.rule_name = self.get_widget("rulename")
+       self.rule_name = self.get_widget("rulename")
         self.description = self.get_widget("description")
 
         objectlist = self.get_widget("ruletree")
@@ -650,7 +655,7 @@ class EditRule(ManagedWindow):
                 use_regex = Gtk.CheckButton(label=_("Use regular expressions"))
                 tip = _(
                     "Interpret the contents of string fields as regular "
-                    "expressions:\n"
+                   "expressions:\n"
                     ".\tA decimal point will match any character.\n"
                     "?\tA question mark will match zero or one occurences "
                     "of the previous character or group.\n"
@@ -749,7 +754,7 @@ class EditRule(ManagedWindow):
         config.register("interface.edit-rule-pane", 205)
         panepos = config.get("interface.edit-rule-pane")
         self.get_widget("hpaned1").set_position(panepos)
-        self.rname.restore_column_size()
+       self.rname.restore_column_size()
         self.show()
 
     def regex_selection(self, widget=None, use_case=None):
@@ -872,6 +877,9 @@ class EditRule(ManagedWindow):
 #
 # -------------------------------------------------------------------------
 class EditFilter(ManagedWindow):
+======
+
+>>>>>>> eae5d2732 (linting)
     def __init__(
         self,
         namespace,
@@ -883,6 +891,9 @@ class EditFilter(ManagedWindow):
         update=None,
         selection_callback=None,
     ):
+======
+
+>>>>>>> eae5d2732 (linting)
         ManagedWindow.__init__(self, uistate, track, self)
         self.namespace = namespace
         self.update = update
@@ -900,7 +911,6 @@ class EditFilter(ManagedWindow):
             _("Define filter"),
         )
         self.setup_configs("interface.edit-filter", 500, 420)
-
         objectlist = self.get_widget("rule_list")
         self.rule_list = PersistentTreeView(uistate, "filt_rule")
         self.rule_list.set_vexpand(True)
@@ -1184,6 +1194,9 @@ class FilterEditor(ManagedWindow):
         self.namespace = namespace
 
         self.define_glade("filter_list", RULE_GLADE)
+======
+        self.filter_list = self.get_widget("filters")
+>>>>>>> eae5d2732 (linting)
         self.edit = self.get_widget("filter_list_edit")
         self.clone = self.get_widget("filter_list_clone")
         self.delete = self.get_widget("filter_list_delete")
@@ -1194,7 +1207,7 @@ class FilterEditor(ManagedWindow):
         self.delete.set_sensitive(False)
         self.test.set_sensitive(False)
 
-        objectlist = self.get_widget("filters")
+       objectlist = self.get_widget("filters")
         self.filter_list = PersistentTreeView(self.uistate, "filt_list")
         scrolledwindow = self.get_widget("scrolledwindow2")
         scrolledwindow.remove(objectlist)

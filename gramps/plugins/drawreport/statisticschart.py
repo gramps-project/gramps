@@ -46,7 +46,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 # Person and relation types
 from gramps.gen.lib import Person, FamilyRelType, EventType, EventRoleType
-from gramps.gen.lib.date import Date
+rom gramps.gen.lib.date import Date
 
 # gender and report type names
 from gramps.gen.plug.docgen import (
@@ -334,7 +334,7 @@ class _options:
         (Person.UNKNOWN, "All", _("All")),
         (Person.MALE, "Men", _("Men")),
         (Person.FEMALE, "Women", _("Women")),
-        (Person.OTHER, "Other", _("Other")),
+       (Person.OTHER, "Other", _("Other")),
     ]
 
 
@@ -359,7 +359,7 @@ class Extract:
         self.extractors = {
             "data_title": (
                 "Title",
-                _T_("Title", "person"),
+               _T_("Title", "person"),
                 self.get_person,
                 self.get_title,
             ),
@@ -1135,7 +1135,7 @@ class StatisticsChartOptions(MenuReportOptions):
         self.__pid.connect("value-changed", self.__update_filters)
 
         sortby = EnumeratedListOption(_("Sort chart items by"), _options.SORT_VALUE)
-        for item_idx, item in enumerate(_options.opt_sorts):
+       for item_idx, item in enumerate(_options.opt_sorts):
             sortby.add_item(item_idx, item[2])
         sortby.set_help(_("Select how the statistical data is sorted."))
         add_option("sortby", sortby)
@@ -1158,7 +1158,7 @@ class StatisticsChartOptions(MenuReportOptions):
         add_option("no_years", no_years)
 
         gender = EnumeratedListOption(_("Genders included"), Person.UNKNOWN)
-        for first, second, third in _options.opt_genders:
+       for first, second, third in _options.opt_genders:
             gender.add_item(first, third)
         gender.set_help(_("Select which genders are included into " "statistics."))
         add_option("gender", gender)

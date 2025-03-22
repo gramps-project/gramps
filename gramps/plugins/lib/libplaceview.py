@@ -231,7 +231,7 @@ class PlaceBaseView(ListView):
         """
         if action:
             action.set_state(value)
-            self.mapservice = value.get_string()
+           self.mapservice = value.get_string()
         else:
             self.mapservice = value
         config.set("interface.mapservice", self.mapservice)
@@ -350,7 +350,7 @@ class PlaceBaseView(ListView):
         </item>
       </section>
 """
-        % _("_Edit...", "action"),  # to use sgettext()
+       % _("_Edit...", "action"),  # to use sgettext()
         """
         <placeholder id='otheredit'>
         <item>
@@ -489,7 +489,7 @@ class PlaceBaseView(ListView):
       </section>
     </menu>
 """
-        % _("_Edit...", "action"),
+       % _("_Edit...", "action"),
     ]  # to use sgettext()
 
     map_ui_menu = """
@@ -540,7 +540,7 @@ class PlaceBaseView(ListView):
     def remove(self, *obj):
         ht_list = []
         for handle in self.selected_handles():
-            for _link in self.dbstate.db.find_backlink_handles(handle, ["Place"]):
+           for _link in self.dbstate.db.find_backlink_handles(handle, ["Place"]):
                 msg = _("Cannot delete place.")
                 msg2 = _(
                     "This place is currently referenced by another place."

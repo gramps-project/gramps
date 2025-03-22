@@ -59,7 +59,6 @@ from gramps.gen.filters.rules.place import (
 
 GenericPlaceFilter = GenericFilterFactory("Place")
 
-
 # -------------------------------------------------------------------------
 #
 # PlaceSidebarFilter class
@@ -93,7 +92,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.filter_within = widgets.PlaceWithin(dbstate, uistate, [])
 
         self.filter_regex = Gtk.CheckButton(label=_("Use regular expressions"))
-        self.sensitive_regex = Gtk.CheckButton(label=_("Case sensitive"))
+       self.sensitive_regex = Gtk.CheckButton(label=_("Case sensitive"))
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
 

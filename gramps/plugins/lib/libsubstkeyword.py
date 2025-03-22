@@ -33,7 +33,7 @@ Will return a value such as:
 Mary Smith was born on 3/28/1923.
 """
 
-from __future__ import annotations
+rom __future__ import annotations
 
 # ------------------------------------------------------------------------
 #
@@ -191,7 +191,7 @@ class NameFormat(GenericFormat):
             name.get_suffix,  # s
             name.get_surname,  # l
             name.get_family_nick_name,  # g
-            name.get_primary,  # p
+           name.get_primary,  # p
         ]
 
         return self.generic_format(name, code, upper, function)
@@ -1326,7 +1326,7 @@ if __name__ == "__main__":
 
     from gramps.gen.lib.date import Date
 
-    y_or_n: tuple[int, ...] = ()
+   y_or_n: tuple[int, ...] = ()
     date_to_test = Date()
 
     def date_set():

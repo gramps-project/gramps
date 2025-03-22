@@ -41,7 +41,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.const import URL_MANUAL_SECT2
 
-try:
+ry:
     import pycountry
 
     def validate_iso(text):
@@ -69,7 +69,7 @@ except ModuleNotFoundError:
 #
 # -------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _("Place_Name_Editor_dialog", "manual")
+IKI_HELP_SEC = _("Place_Name_Editor_dialog", "manual")
 
 
 # -------------------------------------------------------------------------

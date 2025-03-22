@@ -25,7 +25,7 @@
 # Python modules
 #
 # -------------------------------------------------------------------------
-import re
+mport re
 import math
 import logging
 import gi
@@ -36,7 +36,7 @@ from gi.repository import Gtk
 # Gramps Modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+rom gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.dialog import WarningDialog
@@ -299,7 +299,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
 
         # place
         for entry in self.place_list:
-            if math.hypot(lat - float(entry[3]), lon - float(entry[4])) <= rds:
+           if math.hypot(lat - float(entry[3]), lon - float(entry[4])) <= rds:
                 # Do we already have this place ? avoid duplicates
                 (country, state, county, place, other) = self.get_location(entry[9])
                 if not [country, state, county, place, other] in self.places:
@@ -329,7 +329,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
                     WarningDialog(warn1, warn2, parent=self.uistate.window)
                     self.warning = True
                     continue
-                if math.hypot(lat - float(latn), lon - float(lonn)) <= rds:
+               if math.hypot(lat - float(latn), lon - float(lonn)) <= rds:
                     (country, state, county, place, other) = self.get_location(
                         place.get_gramps_id()
                     )

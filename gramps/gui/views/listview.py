@@ -29,7 +29,7 @@ Provide the base classes for GRAMPS' DataView classes
 # python modules
 #
 # ----------------------------------------------------------------
-from __future__ import annotations
+rom __future__ import annotations
 from abc import abstractmethod
 import os
 import pickle
@@ -94,7 +94,7 @@ ICON = 3
 #
 # ----------------------------------------------------------------
 class ListView(NavigationView):
-    COLUMNS: list[tuple[str, int, str | None]] = []
+   COLUMNS: list[tuple[str, int, str | None]] = []
     # listview config settings that are always present related to the columns
     CONFIGSETTINGS = (
         ("columns.visible", []),
@@ -105,7 +105,7 @@ class ListView(NavigationView):
     EDIT_MSG = ""
     DEL_MSG = ""
     MERGE_MSG = ""
-    FILTER_TYPE = ""  # Set in inheriting class
+   FILTER_TYPE = ""  # Set in inheriting class
     QR_CATEGORY = CATEGORY_QR_MISC
 
     def __init__(
@@ -600,7 +600,7 @@ class ListView(NavigationView):
         """
         Function to remove selected objects
         """
-        if len(ht_list) == 1:
+       if len(ht_list) == 1:
             obj = self.dbstate.db.method("get_%s_from_handle", ht_list[0][0])(
                 ht_list[0][1]
             )
@@ -1095,7 +1095,7 @@ class ListView(NavigationView):
             popup_menu = Gtk.Menu.new_from_model(menu)
             popup_menu.attach_to_widget(obj, None)
             popup_menu.show_all()
-            popup_menu.popup_at_pointer(event)
+           popup_menu.popup_at_pointer(event)
             return True
 
         return False
@@ -1456,7 +1456,7 @@ class ListView(NavigationView):
                 self.get_column_widths(),
                 self.set_column_order,
                 tree=not flat,
-                resizable=self.list,
+               resizable=self.list,
             )
 
         def csvdialect(configdialog):

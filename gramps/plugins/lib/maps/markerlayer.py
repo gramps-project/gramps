@@ -25,6 +25,10 @@
 # Python modules
 #
 # -------------------------------------------------------------------------
+======
+from gi.repository import GObject
+from gi.repository import Gdk
+>>>>>>> eae5d2732 (linting)
 import time
 import logging
 from math import pi as PI
@@ -37,6 +41,10 @@ from gi.repository import Gdk
 # Set up logging
 #
 # ------------------------------------------------------------------------
+======
+import logging
+
+>>>>>>> eae5d2732 (linting)
 _LOG = logging.getLogger("maps.markerlayer")
 
 # -------------------------------------------------------------------------
@@ -64,6 +72,7 @@ try:
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
+
 
 
 class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
@@ -188,7 +197,7 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
 GObject.type_register(MarkerLayer)
 
 
-def draw_marker(ctx, x01, y01, size, color):
+ef draw_marker(ctx, x01, y01, size, color):
     width = 48.0 * size
     height = width / 2
     rgba = Gdk.RGBA()
@@ -212,7 +221,7 @@ def draw_marker(ctx, x01, y01, size, color):
     ctx.stroke()
 
     ctx.save()
-    ctx.translate(x01, y01 - height * 2 - width / 4)
+   ctx.translate(x01, y01 - height * 2 - width / 4)
     ctx.scale(width / 2, height / 2)
     ctx.arc(0.0, 0.0, 1.0, 0.0, 2 * PI)
     ctx.restore()

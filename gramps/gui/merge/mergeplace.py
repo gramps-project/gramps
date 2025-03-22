@@ -51,7 +51,7 @@ from gramps.gen.config import config
 #
 # -------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _("Merge_Places", "manual")
+IKI_HELP_SEC = _("Merge_Places", "manual")
 _GLADE_FILE = "mergeplace.glade"
 PLACE_NAME = _("Name:", "place")
 

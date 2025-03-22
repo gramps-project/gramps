@@ -47,7 +47,7 @@ from ..lib import (
     Address,
     EventRef,
     Person,
-    PersonRef,
+   PersonRef,
     Name,
     Source,
     RepoRef,
