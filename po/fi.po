@@ -11,13 +11,14 @@
 # Oskari Lavinto <olavinto@protonmail.com>, 2023.
 # A <ogloppi@mailbox.org>, 2023.
 # Ricky Tigg <ricky.tigg@gmail.com>, 2025.
+# Jorma-Juhani Könönen <jorma@tuta.io>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-19 22:04+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2025-03-22 06:31+0000\n"
+"Last-Translator: Jorma-Juhani Könönen <jorma@tuta.io>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -251,7 +252,9 @@ msgstr "Sukututkimusjärjestelmä"
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr "Hallinnoi sukutietoja, tee sukututkimusta ja analysoi sukutietoja"
+msgstr ""
+"Hallinnoi sukutietoja, tee sukututkimusta ja analysoi sukutietoja. Hallitse "
+"sukututkimusta, suorita sukututkimusta ja -analyysiä"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
@@ -263,8 +266,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"Gramps on sukututkimusohjelma, joka on harrastelijalle helppo käyttää ja "
-"jossa on ammattitutkijan tarvitsemat ominaisuudet."
+"Gramps on sukututkimusohjelma, joka on sekä intuitiivinen harrastajille että "
+"täydellinen ammattimaisille sukututkijoille."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -4479,7 +4482,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
 msgid "Events with a note of type <type>"
-msgstr "Tapahtumat, joiden lisätiedot on tyypiltään <tyyppi>."
+msgstr "Tapahtumat, joiden lisätiedot on tyypiltään <tyyppi>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
 msgid "Matches events with a note of the specified type"
@@ -4774,7 +4777,7 @@ msgstr "Perheet, joiden lisätietotyyppi on <tyyppi>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
 msgid "Matches families with a note of the specified type"
-msgstr "Poimii perheet, joiden lisätietotyyppi on määritetty."
+msgstr "Poimii perheet, joiden lisätietotyyppi on määritetty"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -9181,7 +9184,7 @@ msgstr "Sijaintinumero"
 #: ../gramps/plugins/quickview/filterbyname.py:347
 #: ../gramps/plugins/tool/reorderids.glade:836
 msgid "Repository"
-msgstr "Arkisto"
+msgstr "arkisto"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:531
 msgid "Repository ref"
@@ -16152,7 +16155,7 @@ msgstr "Kulunut aika: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:379
 msgid "You should select a place when using the 'Within' rule"
-msgstr "Sinun on valittava paikka, kun käytät ”sisältää”sääntöä."
+msgstr "Sinun tulee valita paikka, kun käytät Sisällä-sääntöä"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:389
 msgid "Supply at least one value"
@@ -23568,7 +23571,7 @@ msgstr "Avain"
 #: ../gramps/plugins/gramplet/backlinks.py:238
 #, python-format
 msgid "_Make Active %s"
-msgstr "Tee  %s aktiiviseksi"
+msgstr "Tee %s aktiiviseksi"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:51
 msgid "Double-click a day for details"
