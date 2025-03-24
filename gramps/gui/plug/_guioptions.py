@@ -718,7 +718,7 @@ class GuiPersonOption(Gtk.Box):
             self.__uistate,
             self.__track,
             title=_("Select a person for the report"),
-            filter=rfilter,
+            # filter=rfilter,
         )
         person = sel.run()
         self.__update_person(person)
