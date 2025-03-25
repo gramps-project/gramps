@@ -36,7 +36,7 @@
 # msansm1 <ronanbarbot@dizalch.fr>, 2021.
 # Translator <kvb@tuta.io>, 2022.
 # Olivier Berten <olivier.berten@gmail.com>, 2023.
-# jmichault <jmt.2000@free.fr>, 2023.
+# jmichault <jmt.2000@free.fr>, 2023, 2025.
 # Nick Hall <nick-h@gramps-project.org>, 2023.
 # Patrice Legoux <patrice.legoux.perso@gmail.com>, 2023.
 # Jacob Wagner <doubleujacob@gmail.com>, 2024.
@@ -49,8 +49,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-24 00:52+0000\n"
-"Last-Translator: Frédéric Schwartz <frederic@online404.com>\n"
+"PO-Revision-Date: 2025-03-25 17:26+0000\n"
+"Last-Translator: jmichault <jmt.2000@free.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -765,11 +765,11 @@ msgid ""
 "Then choose to create a new person or add an existing person. You can also "
 "add children (or siblings) from inside the Family Editor."
 msgstr ""
-"<b>Ajout d'enfants</b><br/>Pour ajouter des enfants dans Gramps il y a deux "
-"options. Vous pouvez rechercher l'un des deux parents dans la vue Familles "
-"et ouvrir la famille. Puis choisissez de créer un enfant ou d'ajouter un "
-"individu existant. Vous pouvez également ajouter des enfants (ou des frères "
-"et sœurs) depuis l'éditeur de famille."
+"<b>Ajouter des enfants</b><br/>Pour ajouter des enfants dans Gramps, il y a "
+"deux options. Vous pouvez trouver un de leurs parents dans la vue Familles "
+"et ouvrir la famille. Choisissez ensuite de créer un nouvel individu ou "
+"d'ajouter un individu existant. Vous pouvez également ajouter des enfants ("
+"ou des frères et sœurs) depuis l'éditeur de famille."
 
 #: ../data/tips.xml:56
 msgid ""
@@ -1039,8 +1039,8 @@ msgid ""
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
 "<b>Signaler un problème dans Gramps</b><br/>Le meilleur moyen de signaler un "
-"problème dans Gramps est d'utiliser le système de suivi de bogues, https://"
-"gramps-project.org/bugs/"
+"problème dans Gramps est d'utiliser le système de suivi de bogue, https"
+"://gramps-project.org/bugs/ ."
 
 #: ../data/tips.xml:96
 msgid ""
@@ -14717,7 +14717,7 @@ msgstr ""
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr "Sélecteur d'objet medium"
+msgstr ".C3.89dition_des_r.C3.A9f.C3.A9rences_de_l.27objet_medium"
 
 #: ../gramps/gui/editors/addmedia.py:105
 msgid "Select a media object"
@@ -15512,7 +15512,7 @@ msgstr "_Aller à"
 #: ../gramps/gui/editors/editaddress.py:67
 msgctxt "manual"
 msgid "Address_Editor_dialog"
-msgstr "Éditeur d'adresse"
+msgstr "Adresses"
 
 #: ../gramps/gui/editors/editaddress.py:92
 #: ../gramps/gui/editors/editaddress.py:200
@@ -15523,7 +15523,7 @@ msgstr "Éditeur d'adresse"
 #: ../gramps/gui/editors/editattribute.py:63
 msgctxt "manual"
 msgid "Attribute_Editor_dialog"
-msgstr "Éditeur d'attribut"
+msgstr "Attributs"
 
 #: ../gramps/gui/editors/editattribute.py:95
 #: ../gramps/gui/editors/editattribute.py:141
@@ -15547,7 +15547,7 @@ msgstr "Le type d'attribut ne peut pas être vide"
 #: ../gramps/gui/editors/editchildref.py:67
 msgctxt "manual"
 msgid "Child_Reference_Editor"
-msgstr "Éditeur de la référence à un enfant"
+msgstr ""
 
 #: ../gramps/gui/editors/editchildref.py:100
 #: ../gramps/gui/editors/editchildref.py:202
@@ -15668,7 +15668,7 @@ msgstr "Calculé(e)"
 #: ../gramps/gui/editors/editdate.py:105
 msgctxt "manual"
 msgid "Editing_dates"
-msgstr "Édition des dates"
+msgstr ".C3.89dition_des_dates"
 
 #: ../gramps/gui/editors/editdate.py:131 ../gramps/gui/editors/editdate.py:299
 msgid "Date selection"
@@ -15743,7 +15743,7 @@ msgstr "Éditer l'évènement (%s)"
 #: ../gramps/gui/editors/editeventref.py:69
 msgctxt "manual"
 msgid "Event_Reference_Editor_dialog"
-msgstr "Éditeur de la référence à un évènement"
+msgstr ".C3.89dition_des_r.C3.A9f.C3.A9rences_.C3.A0_l.27.C3.A9v.C3.A9nement"
 
 #: ../gramps/gui/editors/editeventref.py:88
 #: ../gramps/gui/editors/editeventref.py:318
@@ -15770,7 +15770,7 @@ msgstr "Ajouter un évènement"
 #: ../gramps/gui/editors/editfamily.py:106
 msgctxt "manual"
 msgid "Family_Editor_dialog"
-msgstr "Éditeur de famille"
+msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:127
 msgid "Create a new person and add the child to the family"
@@ -16040,7 +16040,7 @@ msgstr "Ajouter une famille"
 #: ../gramps/gui/editors/editldsord.py:67
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
-msgstr "Éditeur d'ordonnance Saints des Derniers Jours"
+msgstr ""
 
 #: ../gramps/gui/editors/editldsord.py:157
 #: ../gramps/gui/editors/editldsord.py:338
@@ -16068,7 +16068,7 @@ msgstr "%(mother)s [%(gramps_id)s]"
 #: ../gramps/gui/editors/editlink.py:50
 msgctxt "manual"
 msgid "Link_Editor"
-msgstr "Éditeur de lien"
+msgstr ".C3.89diteur_de_lien"
 
 #: ../gramps/gui/editors/editlink.py:89 ../gramps/gui/editors/editlink.py:252
 msgid "Link Editor"
@@ -22934,10 +22934,8 @@ msgstr "Ferme la fenêtre de l'aperçu avant impression"
 
 # trunk
 #: ../gramps/plugins/docgen/gtkprint.glade:39
-#, fuzzy
-#| msgid "_Print..."
 msgid "_Print"
-msgstr "_Impression..."
+msgstr "_Imprimer"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
@@ -37432,10 +37430,8 @@ msgid "Guess"
 msgstr "Estimation"
 
 #: ../gramps/plugins/tool/eventcmp.glade:37
-#, fuzzy
-#| msgid "Save As"
 msgid "Save _As"
-msgstr "Enregistrer sous"
+msgstr "_Enregistrer sous"
 
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
