@@ -3,13 +3,14 @@
 # Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2007.
 # msansm1 <ronanbarbot@dizalch.fr>, 2021.
+# AP <kubanto@users.noreply.hosted.weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2021-07-21 12:33+0000\n"
-"Last-Translator: msansm1 <ronanbarbot@dizalch.fr>\n"
+"PO-Revision-Date: 2025-03-21 23:00+0000\n"
+"Last-Translator: AP <kubanto@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Breton <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/br/>\n"
 "Language: br\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -29,7 +30,7 @@ msgstr "Kanada"
 
 #: ../data/holidays.xml:84
 msgid "Catalonia"
-msgstr ""
+msgstr "Katalonia"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -69,16 +70,15 @@ msgstr "Japan"
 
 #: ../data/holidays.xml:358
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "Gouelioù yuzev"
 
 #: ../data/holidays.xml:359
-#, fuzzy
 msgid "Purim"
-msgstr "KWord"
+msgstr "Pourim"
 
 #: ../data/holidays.xml:360
 msgid "Passover"
-msgstr ""
+msgstr "Pesac'h"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
@@ -106,11 +106,11 @@ msgstr ""
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
-msgstr ""
+msgstr "Chavouot"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "Roch ha-Chanah"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
@@ -118,11 +118,11 @@ msgstr ""
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
-msgstr ""
+msgstr "Yom Kippour"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
-msgstr ""
+msgstr "Soukot"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
@@ -150,11 +150,11 @@ msgstr ""
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
-msgstr ""
+msgstr "Simc'hat Torah"
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
-msgstr ""
+msgstr "Hanouka"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
@@ -185,13 +185,12 @@ msgid "8 of Hanuka"
 msgstr ""
 
 #: ../data/holidays.xml:388
-#, fuzzy
 msgid "Italy"
-msgstr "Stouet"
+msgstr "Italia"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
-msgstr "Zeland-Nevez"
+msgstr "Zeland-Nevez / Aotearoa"
 
 #: ../data/holidays.xml:418
 msgid "Russia"
@@ -215,7 +214,7 @@ msgstr "Sveden"
 
 #: ../data/holidays.xml:508
 msgid "Turkey"
-msgstr ""
+msgstr "Turkia"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -231,9 +230,8 @@ msgid "Gramps"
 msgstr "Gramps"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:3
-#, fuzzy
 msgid "Genealogy System"
-msgstr "Reizhiad skoazellañ"
+msgstr "Reizhiad genealogiezh"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:5
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
@@ -362,9 +360,8 @@ msgid "Gramps XML database"
 msgstr "Diaz roadennoù GRAMPS XML"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
-#, fuzzy
 msgid "GeneWeb source file"
-msgstr "Sanell darzh er restr :"
+msgstr "Restr tarzh GeneWeb :"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -754,11 +751,12 @@ msgid ""
 msgstr ""
 
 #: ../data/tips.xml:96
-#, fuzzy
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
-msgstr "Lec'hienn kenrouedad GRAMPS http://gramps-project.org/"
+msgstr ""
+"<b>Pennbajenn Gramps</b><br/>Emañ pennbajenn Gramps war http://gramps-"
+"project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -948,9 +946,9 @@ msgid "ERROR: Unrecognized format for export file %s"
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:374
-#, fuzzy, python-format
+#, python-format
 msgid "Error: cannot open '%s'"
-msgstr "Digeriñ penel ar fazioù"
+msgstr "Fazi: n'haller ket digeriñ '%s'"
 
 #: ../gramps/cli/arghandler.py:422
 #, fuzzy
