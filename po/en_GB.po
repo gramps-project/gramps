@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-07 14:06+0000\n"
+"PO-Revision-Date: 2025-03-25 20:29+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -6625,10 +6625,8 @@ msgstr ""
 "containing a substring in \"Call Number\""
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches sources with particular parameters"
-msgstr "Matches Notes with particular parameters"
+msgstr "Matches sources with particular parameters"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -7274,12 +7272,11 @@ msgid "unknown"
 msgstr "unknown"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "greater than %s years"
-msgstr[1] "greater than %s years"
+msgstr[0] "greater than {number_of} year"
+msgstr[1] "greater than {number_of} years"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -7697,20 +7694,16 @@ msgid "Child"
 msgstr "Child"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "Multiple parents"
+msgstr "Multiple birth"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
 msgstr "Friend"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "Neighbourhood"
+msgstr "Neighbour"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
@@ -8353,16 +8346,12 @@ msgid "Type"
 msgstr "Type"
 
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "Custom filter"
+msgstr "Custom type"
 
 #: ../gramps/gen/lib/grampstype.py:272
-#, fuzzy
-#| msgid "Type face"
 msgid "Type code"
-msgstr "Type face"
+msgstr "Type code"
 
 #: ../gramps/gen/lib/ldsord.py:95
 msgid "Endowment"
@@ -8690,15 +8679,11 @@ msgid "Matrilineal"
 msgstr "Matrilineal"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Occupation"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
 msgstr "Location"
@@ -10872,10 +10857,8 @@ msgstr ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
-msgstr "Mother's Age"
+msgstr "mother's age"
 
 #: ../gramps/gen/utils/alive.py:357
 #, fuzzy
