@@ -10,13 +10,14 @@
 # Jano Svitok <jan.svitok@gmail.com>, 2022.
 # Milan Šalka <salka.milan@googlemail.com>, 2023, 2024.
 # Martin Štefany <m.stefany89@gmail.com>, 2024.
+# Milan <admin@thedigitaltechnologist.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-24 00:52+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2025-03-24 13:44+0000\n"
+"Last-Translator: Milan <admin@thedigitaltechnologist.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -21386,8 +21387,9 @@ msgid "Prints the current file"
 msgstr "Tlačí aktuálny súbor"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:63
+#, fuzzy
 msgid "_First"
-msgstr ""
+msgstr "_First"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
@@ -21452,8 +21454,9 @@ msgid "Shows the next page"
 msgstr "Zobrazí nasledujúcu stranu"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:108
+#, fuzzy
 msgid "_Last"
-msgstr ""
+msgstr "_Last"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -34956,10 +34959,8 @@ msgid "Guess"
 msgstr "Odhad"
 
 #: ../gramps/plugins/tool/eventcmp.glade:37
-#, fuzzy
-#| msgid "Save As"
 msgid "Save _As"
-msgstr "Uložiť ako"
+msgstr "Uložiť _ako"
 
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
