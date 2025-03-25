@@ -67,8 +67,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-02-11 10:02+0000\n"
-"Last-Translator: Fabio Restante <frestante@gmail.com>\n"
+"PO-Revision-Date: 2025-03-25 17:26+0000\n"
+"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -76,7 +76,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -11105,10 +11105,8 @@ msgid "birth date and known to be dead"
 msgstr "data di nascita presente e decesso noto"
 
 #: ../gramps/gen/utils/alive.py:432
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "data di nascita dell'ascendente"
+msgstr "scostamento dalla data di nascita"
 
 #: ../gramps/gen/utils/alive.py:448
 #, python-brace-format
@@ -13406,7 +13404,7 @@ msgstr ""
 "nuovamente"
 
 #: ../gramps/gui/dbman.py:99
-#, fuzzy, python-format
+#, python-format
 msgid "%s_-_Manage_Family_Trees"
 msgstr "%s_-_Gestione_alberi_genealogici"
 
@@ -18275,10 +18273,8 @@ msgid "Metric"
 msgstr "Metrico"
 
 #: ../gramps/gui/glade/plugins.glade:22
-#, fuzzy
-#| msgid "Wiki"
 msgid "_Wiki"
-msgstr "Wiki"
+msgstr "_Wiki"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -21721,9 +21717,8 @@ msgid "Closes print preview window"
 msgstr "Chiude la finestra di anteprima"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:39
-#, fuzzy
 msgid "_Print"
-msgstr "Stampa"
+msgstr "Stam_pa"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
@@ -21731,7 +21726,7 @@ msgstr "Stampa il file corrente"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:63
 msgid "_First"
-msgstr ""
+msgstr "_Primo"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
@@ -21797,7 +21792,7 @@ msgstr "Mostra pagina successiva"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:108
 msgid "_Last"
-msgstr ""
+msgstr "U_ltimo"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -35521,10 +35516,8 @@ msgid "Guess"
 msgstr "Ipotizza"
 
 #: ../gramps/plugins/tool/eventcmp.glade:37
-#, fuzzy
-#| msgid "Save As"
 msgid "Save _As"
-msgstr "Salva come"
+msgstr "Salv_a come"
 
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
@@ -38861,8 +38854,6 @@ msgstr ""
 "mappa Heatmap."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Nome"
@@ -38990,10 +38981,8 @@ msgstr "Il file è stato spostato o eliminato."
 
 #: ../gramps/plugins/webreport/media.py:458
 #: ../gramps/plugins/webreport/thumbnail.py:174
-#, fuzzy
-#| msgid "This prints in September"
 msgid "This is a remote media"
-msgstr "Note relative a settembre"
+msgstr "Questo è un oggetto multimediale remoto"
 
 #: ../gramps/plugins/webreport/media.py:639
 msgid "File Type"
