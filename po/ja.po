@@ -4,13 +4,14 @@
 # Keiichiro Yamamoto <k.yanmar@gmail.com>, 2011, 2020.
 # Megumi Sakata <megumi.sakata.k@gmail.com>, 2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2022.
+# coolz daddy <coolzdaddy55@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2022-03-04 22:09+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2025-03-22 06:31+0000\n"
+"Last-Translator: coolz daddy <coolzdaddy55@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ja/>\n"
 "Language: ja\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=0;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../data/holidays.xml:3
@@ -30,10 +31,8 @@ msgid "Canada"
 msgstr "カナダ"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "カタロニア語"
+msgstr "カタロニア"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -188,8 +187,6 @@ msgid "8 of Hanuka"
 msgstr "ハヌカー8日目"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
 msgstr "斜体"
 
@@ -218,10 +215,8 @@ msgid "Sweden"
 msgstr "スウェーデン"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "トルコ語"
+msgstr "トルコ"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -275,9 +270,8 @@ msgid ""
 msgstr "全ての調査は整理され、検索可能であり、必要に応じた正確さで保たれます。"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "Gramps Genealogy System"
+msgstr "Gramps 系譜システム"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:227
@@ -377,6 +371,10 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
+"<b>日付の操作</b><br/>日付の範囲は、「2000 年 1 月 4 日から 2003 年 3 月 20 "
+"日まで」という形式を使用して指定できます。日付の信頼度レベルを指定したり、7 "
+"つの異なるカレンダーから選択したりすることもできます。イベント "
+"エディターの日付フィールドの横にあるボタンを試してください。"
 
 #: ../data/tips.xml:6
 msgid ""
@@ -385,6 +383,12 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
+"<b>オブジェクトの編集</b><br/>ほとんどの場合、名前、ソース、場所、"
+"またはメディア "
+"エントリをダブルクリックすると、オブジェクトを編集できるウィンドウが表示され"
+"ます。結果はコンテキストによって異なる場合があることに注意してください。たと"
+"えば、ファミリー "
+"ビューで親または子をクリックすると、関係エディターが表示されます。"
 
 #: ../data/tips.xml:8
 msgid ""
@@ -393,6 +397,11 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
+"<b>画像の追加</b><br/>画像は、ファイル マネージャーまたは Web "
+"ブラウザーからドラッグ アンド ドロップすることで、"
+"任意のギャラリーまたはメディア "
+"ビューに追加できます。実際には、このようにあらゆる種類のファイルを追加できま"
+"す。これは、ドキュメントやその他のデジタル ソースのスキャンに便利です。"
 
 #: ../data/tips.xml:10
 msgid ""
@@ -400,6 +409,9 @@ msgid ""
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
+"<b>家族内の子供の順序付け</b><br/>家族内の子供の出生順序は、ドラッグ アンド "
+"ドロップを使用して設定できます。この順序は、生年月日がない場合でも保持されま"
+"す。"
 
 #: ../data/tips.xml:12
 msgid ""
@@ -410,6 +422,11 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
+"<b>手遅れになる前に親戚と話をする</b><br/"
+">最も古い親戚は、最も重要な情報源になります。彼らは通常、家族について書き留め"
+"られていない事柄を知っています。彼らは、いつか新しい研究の道につながるかもし"
+"れない人々についての貴重な情報を教えてくれるかもしれません。少なくとも、素晴"
+"らしい話を聞くことができるでしょう。会話を録音するのを忘れないでください"
 
 #: ../data/tips.xml:14
 msgid ""
@@ -422,6 +439,16 @@ msgid ""
 "the Filter field on Sidebar, then click Find button. If the Sidebar is not "
 "visible, select View > Sidebar."
 msgstr ""
+"<b>人物のフィルタリング</b><br/"
+">人物ビューでは、さまざまな基準に基づいて個人を「フィルタリング」できます。新"
+"しいフィルタを定義するには、「編集 > 人物フィルタ "
+"エディタ」に進みます。ここで、フィルタに名前を付け、多数のプリセット "
+"ルールを使用してルールを追加および組み合わせることができます。たとえば、家系"
+"図で養子縁組された人をすべて検索するフィルタを定義できます。生年月日が記載さ"
+"れていない人もフィルタリングできます。結果を取得するには、フィルタを保存しま"
+"す。次に、サイドバーのフィルタ "
+"フィールドでこのフィルタを選択し、「検索」ボタンをクリックします。サイドバー"
+"が表示されていない場合は、「表示 > サイドバー」を選択します。"
 
 #: ../data/tips.xml:16
 msgid ""
@@ -430,6 +457,10 @@ msgid ""
 "instance, by inverting the 'People with children' filter you can select all "
 "people without children."
 msgstr ""
+"<b>反転フィルタリング</b><br/>「フィルタ "
+"ルールに一致しない値を返す」という「反転」オプションを使用すると、フィルタを"
+"簡単に反転できます。たとえば、「子供がいる人」フィルタを反転すると、子供がい"
+"ないすべての人を選択できます。"
 
 #: ../data/tips.xml:18
 msgid ""
@@ -440,12 +471,19 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
+"<b>人物の検索</b><br/>グループ化された人物ビューでは、各姓は 1 "
+"つだけリストされます。名前の左側にある矢印をクリックすると、リストが拡大され"
+"、その姓を持つすべての個人が表示されます。長いリストから任意の姓を検索するに"
+"は、姓 (個人ではありません) "
+"を選択して入力を開始します。入力した文字に一致する最初の姓にビューがジャンプ"
+"します。"
 
 #: ../data/tips.xml:20
 msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
-msgstr ""
+msgstr "<b>ファミリー ビュー</b><br/>ファミリー ビューは、2 "
+"人の親と子供からなる典型的な家族単位を表示するために使用されます。"
 
 #: ../data/tips.xml:22
 msgid ""
@@ -454,6 +492,10 @@ msgid ""
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
+"<b>アクティブ パーソンの変更</b><br/>ビューでアクティブ "
+"パーソンを変更するのは簡単です。関係ビューでは、任意の人物をクリックするだけ"
+"です。家系ビューでは、人物をダブルクリックするか、右クリックして配偶者、兄弟"
+"、子供、または両親のいずれかを選択します。"
 
 #: ../data/tips.xml:24
 msgid ""
@@ -462,6 +504,10 @@ msgid ""
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
+"<b>誰がいつ生まれたか?</b><br/>「ツール > 分析と探索 > "
+"個々のイベントを比較...」で、データベース内の個人のデータを比較できます。これ"
+"は、たとえば、データベース内の全員の誕生日を一覧表示したい場合に便利です。"
+"カスタム フィルターを使用して結果を絞り込むことができます。"
 
 #: ../data/tips.xml:26
 msgid ""
@@ -471,6 +517,11 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
+"<b>Gramps ツール</b><br/>Gramps には豊富なツール "
+"セットが付属しています。これらを使用すると、データベースのエラーや一貫性をチ"
+"ェックするなどの操作を実行できます。イベントの比較、重複した人物の検索、イン"
+"タラクティブな子孫ブラウザーなど、調査および分析ツールが多数あります。すべて"
+"のツールは、[ツール] メニューからアクセスできます。"
 
 #: ../data/tips.xml:28
 msgid ""
@@ -479,6 +530,10 @@ msgid ""
 "> Relationship Calculator...\". The exact relationship as well as all common "
 "ancestors are reported."
 msgstr ""
+"<b>関係の計算</b><br/>データベース内の 2 人の人物が血縁関係 "
+"(婚姻関係ではなく) にあるかどうかを確認するには、「ツール > ユーティリティ > "
+"関係計算...」のツールを試してください。正確な関係とすべての共通の祖先が報告さ"
+"れます。"
 
 #: ../data/tips.xml:30
 msgid ""
@@ -490,6 +545,14 @@ msgid ""
 "library or other research facility. To view the SoundEx codes for surnames "
 "in your database, add the SoundEx Gramplet."
 msgstr ""
+"<b>SoundEx は家族の調査に役立ちます</b><br/>SoundEx "
+"は、スペルのバリエーションをどのように処理するかという、系図学における長年の"
+"問題を解決します。SoundEx Gramplet "
+"は姓を受け取り、似た発音の名前に相当する簡略化された形式を生成します。姓の "
+"SoundEx コードを知っておくと、図書館やその他の研究施設で国勢調査データ "
+"ファイル (マイクロフィルム) を調査する際に非常に役立ちます。"
+"データベース内の姓の SoundEx コードを表示するには、SoundEx Gramplet "
+"を追加します。"
 
 #: ../data/tips.xml:32
 msgid ""
@@ -498,6 +561,10 @@ msgid ""
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
+"<b>設定の変更</b><br/>「編集 > 設定...」では、メディア "
+"ファイルへのパスなどのさまざまな設定を変更でき、Gramps "
+"プレゼンテーションのさまざまな側面をニーズに合わせて調整できます。各ビューは"
+"、「表示 > ビューの構成...」で個別に構成することもできます。"
 
 #: ../data/tips.xml:34
 msgid ""
@@ -507,6 +574,12 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
+"<b>Gramps レポート</b><br/>Gramps はさまざまなレポートを提供しています。"
+"グラフィカル "
+"レポートとグラフを使用すると、複雑な関係を簡単に表現できます。また、テキスト "
+"レポートは、家系図の結果を家族に電子メールで送信する場合に特に便利です。"
+"家系図の Web "
+"サイトを作成する準備ができている場合は、そのためのレポートもあります。"
 
 #: ../data/tips.xml:36
 msgid ""
@@ -516,12 +589,19 @@ msgid ""
 "People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
+"<b>新しい家系図の作成</b><br/>新しい家系図を作成する良い方法は、"
+"人物ビューを使用して家族のすべてのメンバーをデータベースに入力することです "
+"(「編集 > "
+"追加...」を使用するか、人物ビューから新しい人物の追加ボタンをクリックします)"
+"。次に、関係ビューに移動して、人々の間に関係を作成します。"
 
 #: ../data/tips.xml:38
 msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
-msgstr ""
+msgstr "<b>これは何の用途ですか?</b><br/"
+">ボタンの機能がわからない場合は、ボタンの上にマウスを置くだけでツールヒントが"
+"表示されます。"
 
 #: ../data/tips.xml:40
 msgid ""
@@ -531,6 +611,11 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
+"<b>日付がわからない場合</b><br/>イベントが発生した日付がわからない場合は、"
+"Gramps で推測や推定に基づいてさまざまな日付形式を入力できます。たとえば、「"
+"約 1908 年」は Gramps の生年月日として有効です。日付フィールドの横にある "
+"[日付エディターを起動] ボタンをクリックします。詳細については、Gramps "
+"マニュアルを参照してください。"
 
 #: ../data/tips.xml:42
 msgid ""
@@ -538,6 +623,10 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
+"<b>重複エントリ</b><br/>「ツール > 家系図処理 > "
+"重複する可能性のある人物を検索...」ツールを使用すると、"
+"データベースに複数回入力された同じ人物のエントリを検索 (および結合) "
+"できます。"
 
 #: ../data/tips.xml:44
 msgid ""
@@ -548,6 +637,13 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
+"<b>エントリの結合</b><br/>「編集 > 結合...」機能を使用すると、"
+"別々にリストされている人物を 1 つに結合できます。Ctrl "
+"キーを押しながらクリックして、2 番目のエントリを選択します。これは、"
+"人物が重複している 2 つのデータベースを結合する場合や、"
+"誤って入力された異なる名前を 1 "
+"人の人物に結合する場合に非常に便利です。結合は、すべてのプライマリ "
+"オブジェクト タイプのすべてのリスト ビューで使用できます。"
 
 #: ../data/tips.xml:46
 msgid ""
@@ -556,6 +652,10 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
+"<b>ビューの整理</b><br/"
+">多くのビューでは、データを階層ツリーまたは単純なリストとして表示できます。各"
+"ビューは、好みに合わせて構成することもできます。上部のツールバーの右側または"
+"「表示」メニューの下をご覧ください。"
 
 #: ../data/tips.xml:48
 msgid ""
@@ -564,6 +664,10 @@ msgid ""
 "through the list using \"Go > Forward\" and \"Go > Back\" or the arrow "
 "buttons."
 msgstr ""
+"<b>前後への移動</b><br/>Gramps "
+"は、人物やイベントなどの以前のアクティブなオブジェクトのリストを保持していま"
+"す。「移動 > 進む」および「移動 > "
+"戻る」または矢印ボタンを使用して、リスト内を前後に移動できます。"
 
 #: ../data/tips.xml:50
 msgid ""
@@ -571,6 +675,11 @@ msgid ""
 "keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. "
 "If one exists for a function it is displayed on the right side of the menu."
 msgstr ""
+"<b>キーボード ショートカット</b><br/"
+">マウスを使用するためにキーボードから手を離すのにうんざりしていませんか? "
+"Gramps の多くの機能にはキーボード "
+"ショートカットがあります。機能にショートカットがある場合は、メニューの右側に"
+"表示されます。"
 
 #: ../data/tips.xml:52
 msgid ""
@@ -579,6 +688,10 @@ msgid ""
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
+"<b>マニュアルを読む</b><br/>Gramps のマニュアル「ヘルプ > ユーザー "
+"マニュアル」を必ずお読みください。開発者はほとんどの操作を直感的に行えるよう"
+"に努力しましたが、マニュアルには系図作成に費やす時間をより生産的にする情報が"
+"満載です。"
 
 #: ../data/tips.xml:54
 msgid ""
@@ -587,6 +700,11 @@ msgid ""
 "Then choose to create a new person or add an existing person. You can also "
 "add children (or siblings) from inside the Family Editor."
 msgstr ""
+"<b>子供を追加する</b><br/>Gramps で子供を追加するには、2 つの方法があります。"
+"ファミリー ビューで両親の 1 "
+"人を見つけて、ファミリーを開きます。次に、新しい人物を作成するか、既存の人物"
+"を追加するかを選択します。ファミリー エディター内から子供 (または兄弟) "
+"を追加することもできます。"
 
 #: ../data/tips.xml:56
 msgid ""
@@ -811,6 +929,10 @@ msgid ""
 "all the details of where the information came from. Whenever possible get a "
 "copy of original documents."
 msgstr ""
+"<b>情報源を記録する</b><br/"
+">家族について収集した情報は、その情報源の信頼性に左右されます。時間と労力をか"
+"けて、情報の出所の詳細をすべて記録してください。可能な場合は、元の文書のコピ"
+"ーを入手してください。"
 
 #: ../data/tips.xml:110
 msgid ""
@@ -820,6 +942,11 @@ msgid ""
 "time looking through thousands of records hoping for a trail when you have "
 "other unexplored leads."
 msgstr ""
+"<b>調査の方向性</b><br/"
+">わかっていることから、わかっていないことへと進みます。推測する前に、わかって"
+"いることはすべて記録してください。多くの場合、手元にある事実から、さらに調査"
+"を進めるための十分な方向性が示唆されます。他に未調査の手がかりがあるのに、手"
+"がかりを期待して何千もの記録を調べることに時間を無駄にしないでください。"
 
 #: ../data/tips.xml:112
 msgid ""
@@ -828,6 +955,11 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
+"<b>系図の「方法と理由」</b><br/> "
+"系図は日付と名前だけではありません。人々に関するものです。説明的に記述してく"
+"ださい。物事が起こった理由や、子孫が経験した出来事によってどのように形成され"
+"たかを含めてください。物語は、家族の歴史を生き生きとさせるのに大いに役立ちま"
+"す。"
 
 #: ../data/tips.xml:114
 msgid ""
@@ -836,6 +968,10 @@ msgid ""
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
+"<b>英語が話せませんか?</b><br/>ボランティアが Gramps を 40 "
+"以上の言語に翻訳しました。Gramps "
+"があなたの言語をサポートしているのに表示されない場合は、オペレーティング "
+"システムでデフォルトの言語を設定して、Gramps を再起動してください。"
 
 #: ../data/tips.xml:116
 msgid ""
@@ -843,12 +979,19 @@ msgid ""
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
+"<b>Gramps Translators</b><br/>Gramps "
+"は、開発の手間をかけずに新しい翻訳を簡単に追加できるように設計されています。"
+"参加にご興味がある場合は、gramps-devel@lists.sf.net "
+"までメールでお問い合わせください。"
 
 #: ../data/tips.xml:118
 msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
+"<b>Hello、привет または 喂</b><br/>どのスクリプトを使用しても、Gramps "
+"は完全な Unicode "
+"サポートを提供します。すべての言語の文字が適切に表示されます。"
 
 #: ../data/tips.xml:120
 msgid ""
@@ -857,6 +1000,10 @@ msgid ""
 "is the person who is selected when the database is opened or when the home "
 "button is pressed."
 msgstr ""
+"<b>ホーム パーソン</b><br/>Gramps では誰でもホーム "
+"パーソンとして選択できます。パーソン ビューで [編集 > ホーム パーソンの設定] "
+"を使用します。ホーム パーソンとは、データベースを開いたとき、またはホーム "
+"ボタンが押されたときに選択される人物です。"
 
 #: ../data/tips.xml:122
 msgid ""
@@ -865,6 +1012,12 @@ msgid ""
 "is supported on any computer system where these programs have been ported. "
 "Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
 msgstr ""
+"<b>Gramps コード</b><br/>Gramps は、グラフィカル インターフェイスに GTK "
+"および GNOME ライブラリを使用して、Python "
+"と呼ばれるコンピュータ言語で記述されています。Gramps は、"
+"これらのプログラムが移植されているすべてのコンピュータ "
+"システムでサポートされています。Gramps は、Linux、BSD、Solaris、Windows、"
+"および Mac OS X で実行できることが知られています。"
 
 #: ../data/tips.xml:124
 msgid ""
@@ -875,6 +1028,13 @@ msgid ""
 "tool. For more about Open Source software lookup the Free Software "
 "Foundation and the Open Source Initiative."
 msgstr ""
+"<b>オープンソース ソフトウェア</b><br/>Free/Libre および Open Source "
+"Software (FLOSS) 開発モデルでは、すべてのソース "
+"コードがライセンスに基づいて自由に利用できるため、Gramps "
+"はどのプログラマーでも拡張できます。つまり、無料のビールが手に入るだけでなく"
+"、ツールを研究したり変更したりする自由も得られます。オープンソース "
+"ソフトウェアの詳細については、Free Software Foundation および Open Source "
+"Initiative を参照してください。"
 
 #: ../data/tips.xml:126
 msgid ""
@@ -883,6 +1043,11 @@ msgid ""
 "License, see https://www.gnu.org/licenses/licenses.html#GPL to read about "
 "the rights and restrictions of this license."
 msgstr ""
+"<b>Gramps ソフトウェア ライセンス</b><br/>Gramps "
+"は自由に使用し、他のユーザーと共有できます。Gramps は GNU "
+"一般公衆利用許諾契約書に基づいて自由に配布できます。このライセンスの権利と制"
+"限については、https://www.gnu.org/licenses/licenses.html#GPL "
+"を参照してください。"
 
 #: ../data/tips.xml:128
 msgid ""
@@ -890,6 +1055,9 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
+"<b>Gramps は Gnome 用ですか、それとも KDE 用ですか?</b><br/>Linux "
+"ユーザーの場合、Gramps はどちらのデスクトップ環境でも動作します。必要な GTK "
+"ライブラリがインストールされていれば、問題なく動作します。"
 
 #: ../gramps/cli/arghandler.py:233
 #, python-format
@@ -970,7 +1138,7 @@ msgstr "データベースパス内にある家系図リスト\n"
 #: ../gramps/cli/arghandler.py:434
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr ""
+msgstr "\"%(f_t_name)s\" という名前の %(full_DB_path)s"
 
 #: ../gramps/cli/arghandler.py:452 ../gramps/cli/clidbman.py:197
 msgid "Gramps Family Trees:"
@@ -989,7 +1157,7 @@ msgstr "家系図"
 #: ../gramps/plugins/cite/legacy.py:91
 #, python-format
 msgid "\"%s\""
-msgstr ""
+msgstr "\"%s\""
 
 #: ../gramps/cli/arghandler.py:478
 #, python-format
@@ -1368,6 +1536,13 @@ msgid ""
 "    %s\n"
 "\n"
 msgstr ""
+"\n"
+"エラー : 編集メニュー -> 設定のデータベース パスが間違っています。\n"
+"設定を開いて正しいデータベース パスを設定してください。\n"
+"\n"
+"詳細 : データベース ディレクトリを作成できませんでした :\n"
+"    %s\n"
+"\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2329
 #: ../gramps/gui/plug/_windows.py:773
@@ -1475,7 +1650,6 @@ msgstr "低レベルのデータベース故障が検出されました"
 
 #: ../gramps/cli/grampscli.py:110 ../gramps/cli/user.py:221
 #: ../gramps/gui/dialog.py:319
-#, fuzzy
 msgid ""
 "Gramps has detected a problem in the underlying database. This can sometimes "
 "be repaired from the Family Tree Manager. Select the database and click on "
@@ -1618,7 +1792,7 @@ msgstr "使用するCSSファイル名、HTML形式のみ"
 #: ../gramps/cli/plug/__init__.py:447
 #, python-format
 msgid "%(id)s:\t%(father)s, %(mother)s"
-msgstr ""
+msgstr "%(id)s:\t%(father)s, %(mother)s"
 
 #: ../gramps/cli/plug/__init__.py:495
 #, python-format
@@ -1650,7 +1824,7 @@ msgstr " 有効なオプション:"
 #: ../gramps/plugins/textreport/descendreport.py:314
 #: ../gramps/plugins/textreport/placereport.py:203
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: ../gramps/cli/plug/__init__.py:503 ../gramps/cli/plug/__init__.py:608
 #: ../gramps/cli/plug/__init__.py:691
@@ -1731,7 +1905,7 @@ msgstr ""
 
 #: ../gramps/gen/config.py:302
 msgid "Imported %Y/%m/%d %H:%M:%S"
-msgstr ""
+msgstr "インポート済 %Y/%m/%d %H:%M:%S"
 
 #: ../gramps/gen/config.py:314
 msgid "Missing Given Name"
@@ -1783,7 +1957,7 @@ msgstr "なし"
 #: ../gramps/plugins/webreport/person.py:861
 #: ../gramps/plugins/webreport/person.py:863
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: ../gramps/gen/datehandler/__init__.py:95
 #, python-format
@@ -1798,7 +1972,7 @@ msgstr "‘%s’ のデータ表示は利用できません、初期値を使っ
 #. Translators: Numeric year, month, day
 #: ../gramps/gen/datehandler/_datedisplay.py:75
 msgid "YYYY-MM-DD (ISO)"
-msgstr ""
+msgstr "YYYY-MM-DD (ISO)"
 
 #. Translators: You may translate this as "Numerical",
 #. "System preferred", or similar.
@@ -1810,27 +1984,27 @@ msgstr "数字"
 #. Translators: Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:84
 msgid "Month Day, Year"
-msgstr ""
+msgstr "月日、年"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
 msgid "Mon Day, Year"
-msgstr ""
+msgstr "月 日、年"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:88
 msgid "Day Month Year"
-msgstr ""
+msgstr "日 月 年"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
 msgid "Day Mon Year"
-msgstr ""
+msgstr "日 月 年"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1840,7 +2014,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1850,7 +2024,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1860,7 +2034,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1870,7 +2044,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1880,7 +2054,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1890,7 +2064,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1900,7 +2074,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1910,7 +2084,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1920,12 +2094,12 @@ msgstr ""
 #, python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:245
 #, python-brace-format
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1935,7 +2109,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1945,7 +2119,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1955,7 +2129,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1965,7 +2139,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1975,7 +2149,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1985,7 +2159,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1995,7 +2169,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2005,7 +2179,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2015,7 +2189,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
@@ -2105,31 +2279,31 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:540
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:676
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
-msgstr ""
+msgstr "{long_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:702
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
-msgstr ""
+msgstr "{short_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:728
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
-msgstr ""
+msgstr "{day:d} {long_month} {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:754
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
-msgstr ""
+msgstr "{day:d} {short_month} {year}"
 
 #: ../gramps/gen/datehandler/_dateparser.py:509
 msgid "today"
@@ -2360,67 +2534,67 @@ msgstr "スウェーデン暦"
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr ""
+msgstr "Tishri"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgctxt "Hebrew month lexeme"
 msgid "Heshvan"
-msgstr ""
+msgstr "Heshvan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:165
 msgctxt "Hebrew month lexeme"
 msgid "Kislev"
-msgstr ""
+msgstr "Kislev"
 
 #: ../gramps/gen/datehandler/_datestrings.py:166
 msgctxt "Hebrew month lexeme"
 msgid "Tevet"
-msgstr ""
+msgstr "Tevet"
 
 #: ../gramps/gen/datehandler/_datestrings.py:167
 msgctxt "Hebrew month lexeme"
 msgid "Shevat"
-msgstr ""
+msgstr "Shevat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
 msgctxt "Hebrew month lexeme"
 msgid "AdarI"
-msgstr ""
+msgstr "AdarI"
 
 #: ../gramps/gen/datehandler/_datestrings.py:169
 msgctxt "Hebrew month lexeme"
 msgid "AdarII"
-msgstr ""
+msgstr "AdarII"
 
 #: ../gramps/gen/datehandler/_datestrings.py:170
 msgctxt "Hebrew month lexeme"
 msgid "Nisan"
-msgstr ""
+msgstr "Nisan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:171
 msgctxt "Hebrew month lexeme"
 msgid "Iyyar"
-msgstr ""
+msgstr "Iyyar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
 msgctxt "Hebrew month lexeme"
 msgid "Sivan"
-msgstr ""
+msgstr "Sivan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:173
 msgctxt "Hebrew month lexeme"
 msgid "Tammuz"
-msgstr ""
+msgstr "Tammuz"
 
 #: ../gramps/gen/datehandler/_datestrings.py:174
 msgctxt "Hebrew month lexeme"
 msgid "Av"
-msgstr ""
+msgstr "Av"
 
 #: ../gramps/gen/datehandler/_datestrings.py:175
 msgctxt "Hebrew month lexeme"
 msgid "Elul"
-msgstr ""
+msgstr "Elul"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2434,62 +2608,62 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:185
 msgctxt "French month lexeme"
 msgid "Brumaire"
-msgstr ""
+msgstr "Brumaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:186
 msgctxt "French month lexeme"
 msgid "Frimaire"
-msgstr ""
+msgstr "Frimaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:187
 msgctxt "French month lexeme"
 msgid "Nivôse"
-msgstr ""
+msgstr "Nivôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "French month lexeme"
 msgid "Pluviôse"
-msgstr ""
+msgstr "Pluviôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "French month lexeme"
 msgid "Ventôse"
-msgstr ""
+msgstr "Ventôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "French month lexeme"
 msgid "Germinal"
-msgstr ""
+msgstr "Germinal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "French month lexeme"
 msgid "Floréal"
-msgstr ""
+msgstr "Floréal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "French month lexeme"
 msgid "Prairial"
-msgstr ""
+msgstr "Prairial"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "French month lexeme"
 msgid "Messidor"
-msgstr ""
+msgstr "Messidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "French month lexeme"
 msgid "Thermidor"
-msgstr ""
+msgstr "Thermidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "French month lexeme"
 msgid "Fructidor"
-msgstr ""
+msgstr "Fructidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgctxt "French month lexeme"
 msgid "Extra"
-msgstr ""
+msgstr "エクストラ"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2498,62 +2672,62 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:205
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr ""
+msgstr "Muharram"
 
 #: ../gramps/gen/datehandler/_datestrings.py:206
 msgctxt "Islamic month lexeme"
 msgid "Safar"
-msgstr ""
+msgstr "Safar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:207
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr ""
+msgstr "Rabi`al-Awwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:208
 msgctxt "Islamic month lexeme"
 msgid "Rabi`ath-Thani"
-msgstr ""
+msgstr "Rabi`ath-Thani"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr ""
+msgstr "Jumada l-Ula"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Islamic month lexeme"
 msgid "Jumada t-Tania"
-msgstr ""
+msgstr "Jumada t-Tania"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr ""
+msgstr "Rajab"
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Islamic month lexeme"
 msgid "Sha`ban"
-msgstr ""
+msgstr "Sha`ban"
 
 #: ../gramps/gen/datehandler/_datestrings.py:213
 msgctxt "Islamic month lexeme"
 msgid "Ramadan"
-msgstr ""
+msgstr "Ramadan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:214
 msgctxt "Islamic month lexeme"
 msgid "Shawwal"
-msgstr ""
+msgstr "Shawwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Qa`da"
-msgstr ""
+msgstr "Dhu l-Qa`da"
 
 #: ../gramps/gen/datehandler/_datestrings.py:216
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Hijja"
-msgstr ""
+msgstr "Dhu l-Hijja"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2562,62 +2736,62 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "Persian month lexeme"
 msgid "Farvardin"
-msgstr ""
+msgstr "Farvardin"
 
 #: ../gramps/gen/datehandler/_datestrings.py:226
 msgctxt "Persian month lexeme"
 msgid "Ordibehesht"
-msgstr ""
+msgstr "Ordibehesht"
 
 #: ../gramps/gen/datehandler/_datestrings.py:227
 msgctxt "Persian month lexeme"
 msgid "Khordad"
-msgstr ""
+msgstr "Khordad"
 
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgctxt "Persian month lexeme"
 msgid "Tir"
-msgstr ""
+msgstr "Tir"
 
 #: ../gramps/gen/datehandler/_datestrings.py:229
 msgctxt "Persian month lexeme"
 msgid "Mordad"
-msgstr ""
+msgstr "Mordad"
 
 #: ../gramps/gen/datehandler/_datestrings.py:230
 msgctxt "Persian month lexeme"
 msgid "Shahrivar"
-msgstr ""
+msgstr "Shahrivar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:231
 msgctxt "Persian month lexeme"
 msgid "Mehr"
-msgstr ""
+msgstr "Mehr"
 
 #: ../gramps/gen/datehandler/_datestrings.py:232
 msgctxt "Persian month lexeme"
 msgid "Aban"
-msgstr ""
+msgstr "Aban"
 
 #: ../gramps/gen/datehandler/_datestrings.py:233
 msgctxt "Persian month lexeme"
 msgid "Azar"
-msgstr ""
+msgstr "Azar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:234
 msgctxt "Persian month lexeme"
 msgid "Dey"
-msgstr ""
+msgstr "Dey"
 
 #: ../gramps/gen/datehandler/_datestrings.py:235
 msgctxt "Persian month lexeme"
 msgid "Bahman"
-msgstr ""
+msgstr "Bahman"
 
 #: ../gramps/gen/datehandler/_datestrings.py:236
 msgctxt "Persian month lexeme"
 msgid "Esfand"
-msgstr ""
+msgstr "Esfand"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
@@ -2643,16 +2817,18 @@ msgstr " 頃"
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:255
+#, fuzzy
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "from "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:258
+#, fuzzy
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "to "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
@@ -2799,6 +2975,23 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
+"ロードしようとしているファミリー ツリーは、スキーマ バージョン %(oldschema)s "
+"形式です。このバージョンの Gramps は、スキーマ バージョン %(newschema)s "
+"を使用します。したがって、ファミリー ツリーのスキーマ "
+"バージョンをアップグレードしないと、このファミリー ツリーをロードできません。"
+"\n"
+"\n"
+"アップグレードすると、アップグレードしたファミリー ツリーを後で "
+"%(wiki_manual_backup_html_start)sbackup%(html_end)s または "
+"%(wiki_manual_export_html_start)sexport%(html_end)s しても、"
+"以前のバージョンの Gramps を使用できなくなります。\n"
+"\n"
+"アップグレードは困難な作業であり、中断または失敗すると、ファミリー "
+"ツリーが回復不能に破損する可能性があります。\n"
+"\n"
+"ファミリー ツリーのバックアップをまだ作成していない場合は、Gramps の "
+"%(bold_start)sold%(bold_end)s バージョンを起動し、ファミリー ツリーの "
+"%(wiki_backup_html_start)sバックアップを作成%(html_end)s する必要があります。"
 
 #: ../gramps/gen/db/exceptions.py:195
 #, python-format
@@ -2809,6 +3002,11 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
+"データベース接続に失敗しました。\n"
+"\n"
+"%(message)s\n"
+"接続設定ファイルを確認してください :\n"
+"%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:213
 #, python-format
@@ -2828,6 +3026,20 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
+"ロードしようとしているファミリー ツリーは %(dbtype)s "
+"データベースにありますが、このデータベースはサポートされていません。\n"
+"\n"
+"したがって、アップグレードしないとこのファミリー ツリーをロードできません。\n"
+"アップグレードすると、アップグレードしたファミリー ツリーを後で "
+"%(wiki_manual_backup_html_start)sバックアップ%(html_end)s または "
+"%(wiki_manual_export_html_start)sエクスポート%(html_end)s しても、"
+"以前のバージョンの Gramps を使用できなくなります。\n"
+"\n"
+"ファミリー ツリーをバックアップすることを強くお勧めします。\n"
+"\n"
+"ファミリー ツリーのバックアップをまだ作成していない場合は、"
+"以前のバージョンの Gramps を起動して、ファミリー ツリーの "
+"%(wiki_backup_html_start)sバックアップを作成%(html_end)s する必要があります。"
 
 #: ../gramps/gen/db/generic.py:231 ../gramps/gen/db/generic.py:281
 #: ../gramps/gen/db/generic.py:2312
@@ -2898,46 +3110,50 @@ msgid "Schema version"
 msgstr "スキーマのバージョン"
 
 #: ../gramps/gen/db/upgrade.py:672
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d 人 の人が %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされました\n"
 
 #: ../gramps/gen/db/upgrade.py:676
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d ファミリが %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされました\n"
 
 #: ../gramps/gen/db/upgrade.py:680
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d 件のイベントが %(n2)6d 件の引用で %(n3)6d "
+"秒でアップグレードされました\n"
 
 #: ../gramps/gen/db/upgrade.py:684
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d 個のメディア オブジェクトが %(n2)6d 個の引用とともに %(n3)6d "
+"秒でアップグレードされました\n"
 
 #: ../gramps/gen/db/upgrade.py:688
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d か所が %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされました\n"
 
 #: ../gramps/gen/db/upgrade.py:692
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d 個のリポジトリが %(n2)6d 個の引用で %(n3)6d "
+"秒でアップグレードされました\n"
 
 #: ../gramps/gen/db/upgrade.py:696
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d 件のソースが %(n2)6d 件の引用で %(n3)6d "
+"秒でアップグレードされました\n"
 
 #: ../gramps/gen/db/upgrade.py:1261
 msgid "Number of new objects upgraded:\n"
@@ -2952,6 +3168,12 @@ msgid ""
 "in order to merge citations that contain similar\n"
 "information"
 msgstr ""
+"\n"
+"\n"
+"類似の情報を含む引用をマージするには、\n"
+"ツール -> ファミリー ツリー処理 -> マージ\n"
+"を実行することをお勧めします。\n"
+"情報"
 
 #: ../gramps/gen/db/upgrade.py:1277
 msgid "Upgrade Statistics"
@@ -2960,7 +3182,7 @@ msgstr "統計をアップグレード"
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:393 ../gramps/plugins/lib/libtreebase.py:725
 msgid ","
-msgstr ""
+msgstr ","
 
 #: ../gramps/gen/display/name.py:396
 msgid "Default format (defined by Gramps preferences)"
