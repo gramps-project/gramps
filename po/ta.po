@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-14 22:21+0000\n"
+"POT-Creation-Date: 2025-03-19 17:49+0000\n"
 "PO-Revision-Date: 2025-03-02 21:10+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
@@ -246,7 +246,7 @@ msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr "பரம்பரை; குடும்ப வரலாறு; ஆராய்ச்சி; குடும்ப மரம்; கெட்காம்;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
-#: ../gramps/gen/const.py:259
+#: ../gramps/gen/const.py:265
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
@@ -2144,17 +2144,17 @@ msgctxt "localized lexeme inflections"
 msgid "January"
 msgstr "ஜனவரி"
 
-#: ../gramps/gen/const.py:293
+#: ../gramps/gen/const.py:299
 msgctxt "surname"
 msgid "none"
 msgstr "எதுவுமில்லை"
 
-#: ../gramps/gen/const.py:294
+#: ../gramps/gen/const.py:300
 msgctxt "given-name"
 msgid "none"
 msgstr "எதுவுமில்லை"
 
-#: ../gramps/gen/const.py:298 ../gramps/plugins/gramplet/todo.py:208
+#: ../gramps/gen/const.py:304 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:235
 #: ../gramps/plugins/webreport/basepage.py:3382
 #: ../gramps/plugins/webreport/basepage.py:3403
@@ -3252,7 +3252,7 @@ msgstr ""
 "காப்புப்பிரதித்%(html_end)s தொடங்க வேண்டும்."
 
 #: ../gramps/gen/db/generic.py:231 ../gramps/gen/db/generic.py:281
-#: ../gramps/gen/db/generic.py:2276
+#: ../gramps/gen/db/generic.py:2312
 #, python-format
 msgid "_Undo %s"
 msgstr "%s-யை செயல்நீக்குக (_U)"
@@ -3262,64 +3262,64 @@ msgstr "%s-யை செயல்நீக்குக (_U)"
 msgid "_Redo %s"
 msgstr "_ ரெடோ %s"
 
-#: ../gramps/gen/db/generic.py:2667
+#: ../gramps/gen/db/generic.py:2703
 msgid "Number of people"
 msgstr "மக்களின் எண்ணிக்கை"
 
-#: ../gramps/gen/db/generic.py:2668
+#: ../gramps/gen/db/generic.py:2704
 #: ../gramps/plugins/gramplet/statsgramplet.py:187
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
 msgstr "குடும்பங்களின் எண்ணிக்கை"
 
-#: ../gramps/gen/db/generic.py:2669
+#: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 msgid "Number of sources"
 msgstr "ஆதாரங்களின் எண்ணிக்கை"
 
-#: ../gramps/gen/db/generic.py:2670
+#: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
 msgstr "மேற்கோள்களின் எண்ணிக்கை"
 
-#: ../gramps/gen/db/generic.py:2671
+#: ../gramps/gen/db/generic.py:2707
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
 msgstr "நிகழ்வுகளின் எண்ணிக்கை"
 
-#: ../gramps/gen/db/generic.py:2672
+#: ../gramps/gen/db/generic.py:2708
 msgid "Number of media"
 msgstr "ஊடகங்களின் எண்ணிக்கை"
 
-#: ../gramps/gen/db/generic.py:2673
+#: ../gramps/gen/db/generic.py:2709
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 msgid "Number of places"
 msgstr "இடங்களின் எண்ணிக்கை"
 
-#: ../gramps/gen/db/generic.py:2674
+#: ../gramps/gen/db/generic.py:2710
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
 msgstr "களஞ்சியங்களின் எண்ணிக்கை"
 
-#: ../gramps/gen/db/generic.py:2675
+#: ../gramps/gen/db/generic.py:2711
 msgid "Number of notes"
 msgstr "குறிப்புகளின் எண்ணிக்கை"
 
-#: ../gramps/gen/db/generic.py:2676
+#: ../gramps/gen/db/generic.py:2712
 msgid "Number of tags"
 msgstr "குறிச்சொற்களின் எண்ணிக்கை"
 
-#: ../gramps/gen/db/generic.py:2677
+#: ../gramps/gen/db/generic.py:2713
 msgid "Schema version"
 msgstr "ச்கீமா பதிப்பு"
 
-#: ../gramps/gen/db/upgrade.py:655
+#: ../gramps/gen/db/upgrade.py:672
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3327,52 +3327,52 @@ msgstr ""
 "%(n1)6d   நபர்கள்          %(n2)6d மேற்கோள்களுடன் %(n3)6d நொடிகளில் "
 "மேம்படுத்தப்பட்டனர்\n"
 
-#: ../gramps/gen/db/upgrade.py:659
+#: ../gramps/gen/db/upgrade.py:676
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d குடும்பங்கள் %(n2)6d மேற்கோள்களுடன் %(n3)6d நொடிகளில் மேம்படுத்தப்படுகின்றன\n"
 
-#: ../gramps/gen/db/upgrade.py:663
+#: ../gramps/gen/db/upgrade.py:680
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d நிகழ்வுகள் %(n2)6d மேற்கோள்களுடன் %(n3)6d நொடிகளில் மேம்படுத்தப்படுகின்றன\n"
 
-#: ../gramps/gen/db/upgrade.py:667
+#: ../gramps/gen/db/upgrade.py:684
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d ஊடக பொருள்கள் %(n2)6d மேற்கோள்களுடன் %(n3)6d நொடிகளில் மேம்படுத்தப்படுகின்றன\n"
 
-#: ../gramps/gen/db/upgrade.py:671
+#: ../gramps/gen/db/upgrade.py:688
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d இடங்கள் %(n2)6d மேற்கோள்களுடன் %(n3)6d நொடிகளில் மேம்படுத்தப்படுகின்றன\n"
 
-#: ../gramps/gen/db/upgrade.py:675
+#: ../gramps/gen/db/upgrade.py:692
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d களஞ்சியங்கள் %(n2)6d மேற்கோள்களுடன் %(n3)6d நொடிகளில் மேம்படுத்தப்படுகின்றன\n"
 
-#: ../gramps/gen/db/upgrade.py:679
+#: ../gramps/gen/db/upgrade.py:696
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d மூலங்கள் %(n2)6d மேற்கோள்களுடன் %(n3)6d நொடிகளில் மேம்படுத்தப்படுகின்றன\n"
 
-#: ../gramps/gen/db/upgrade.py:1244
+#: ../gramps/gen/db/upgrade.py:1261
 msgid "Number of new objects upgraded:\n"
 msgstr "மேம்படுத்தப்பட்ட புதிய பொருட்களின் எண்ணிக்கை:\n"
 
-#: ../gramps/gen/db/upgrade.py:1255
+#: ../gramps/gen/db/upgrade.py:1272
 msgid ""
 "\n"
 "\n"
@@ -3388,7 +3388,7 @@ msgstr ""
 " ஒத்த இடங்களைக் கொண்ட மேற்கோள்களை ஒன்றிணைக்கும் பொருட்டு\n"
 " செய்தி"
 
-#: ../gramps/gen/db/upgrade.py:1260
+#: ../gramps/gen/db/upgrade.py:1277
 msgid "Upgrade Statistics"
 msgstr "புள்ளிவிவரங்களை மேம்படுத்தவும்"
 
@@ -7287,7 +7287,7 @@ msgstr "கடைசியாக மாற்றப்பட்டது"
 #: ../gramps/gui/glade/editmediaref.glade:728
 #: ../gramps/gui/glade/editnote.glade:278
 #: ../gramps/gui/glade/editperson.glade:677
-#: ../gramps/gui/selectors/selectnote.py:75
+#: ../gramps/gui/selectors/selectnote.py:74
 #: ../gramps/plugins/importer/importprogen.glade:561
 #: ../gramps/plugins/importer/importxml.py:358
 #: ../gramps/plugins/lib/libpersonview.py:113
@@ -8364,7 +8364,7 @@ msgstr "குடிமை தொழிற்சங்கம்"
 #: ../gramps/gui/plug/report/_bookdialog.py:397
 #: ../gramps/gui/plug/report/_bookdialog.py:401
 #: ../gramps/gui/selectors/selectevent.py:67
-#: ../gramps/gui/selectors/selectnote.py:74
+#: ../gramps/gui/selectors/selectnote.py:73
 #: ../gramps/gui/selectors/selectobject.py:82
 #: ../gramps/gui/selectors/selectplace.py:70
 #: ../gramps/plugins/export/exportcsv.py:310
@@ -9669,21 +9669,21 @@ msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr "பிழை: பைதான் கோப்பு %(filename)s பதிவுக் கோப்பு %(regfile)s இல்லை"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:142
+#: ../gramps/gen/plug/docbackend/docbackend.py:141
 msgid "Close file first"
 msgstr "முதலில் கோப்பை மூடு"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:152
+#: ../gramps/gen/plug/docbackend/docbackend.py:151
 msgid "No filename given"
 msgstr "கோப்பு பெயர் கொடுக்கப்படவில்லை"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:155
+#: ../gramps/gen/plug/docbackend/docbackend.py:154
 #, python-format
 msgid "File %s already open, close it first."
 msgstr "கோப்பு %s ஏற்கனவே திறந்திருக்கும், முதலில் அதை மூடு."
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:161
-#: ../gramps/gen/plug/docbackend/docbackend.py:164
+#: ../gramps/gen/plug/docbackend/docbackend.py:160
+#: ../gramps/gen/plug/docbackend/docbackend.py:163
 #: ../gramps/gen/plug/docgen/treedoc.py:832
 #: ../gramps/gen/utils/docgen/odstab.py:344
 #: ../gramps/gen/utils/docgen/odstab.py:346
@@ -9698,8 +9698,8 @@ msgstr "கோப்பு %s ஏற்கனவே திறந்திரு�
 #: ../gramps/gen/utils/docgen/odstab.py:495
 #: ../gramps/gen/utils/docgen/odstab.py:498
 #: ../gramps/plugins/docgen/asciidoc.py:185
-#: ../gramps/plugins/docgen/cairodoc.py:210
-#: ../gramps/plugins/docgen/cairodoc.py:213
+#: ../gramps/plugins/docgen/cairodoc.py:209
+#: ../gramps/plugins/docgen/cairodoc.py:212
 #: ../gramps/plugins/docgen/odfdoc.py:1194
 #: ../gramps/plugins/docgen/odfdoc.py:1197
 #: ../gramps/plugins/docgen/rtfdoc.py:102
@@ -9716,10 +9716,10 @@ msgstr "கோப்பு %s ஏற்கனவே திறந்திரு�
 #: ../gramps/plugins/export/exportvcalendar.py:127
 #: ../gramps/plugins/export/exportvcard.py:74
 #: ../gramps/plugins/export/exportvcard.py:78
-#: ../gramps/plugins/lib/libhtmlbackend.py:259
-#: ../gramps/plugins/lib/libhtmlbackend.py:262
-#: ../gramps/plugins/lib/libhtmlbackend.py:267
-#: ../gramps/plugins/lib/libhtmlbackend.py:270
+#: ../gramps/plugins/lib/libhtmlbackend.py:258
+#: ../gramps/plugins/lib/libhtmlbackend.py:261
+#: ../gramps/plugins/lib/libhtmlbackend.py:266
+#: ../gramps/plugins/lib/libhtmlbackend.py:269
 #: ../gramps/plugins/webreport/narrativeweb.py:418
 #, python-format
 msgid "Could not create %s"
@@ -11826,7 +11826,7 @@ msgid "installed"
 msgstr "நிறுவப்பட்டது"
 
 #: ../gramps/grampsapp.py:625 ../gramps/grampsapp.py:634
-#: ../gramps/grampsapp.py:689
+#: ../gramps/grampsapp.py:684
 msgid "Configuration error:"
 msgstr "உள்ளமைவு பிழை:"
 
@@ -11964,6 +11964,8 @@ msgstr "வரிசையை மாற்ற நெடுவரிசைகள�
 #: ../gramps/gui/plug/_dialogs.py:146 ../gramps/gui/viewmanager.py:1947
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
+#: ../gramps/plugins/tool/eventcmp.glade:189
+#: ../gramps/plugins/tool/notrelated.glade:141
 msgid "_Apply"
 msgstr "செயல்படுத்து"
 
@@ -12012,6 +12014,15 @@ msgstr "காட்சி பெயர் எடிட்டர்"
 #: ../gramps/gui/widgets/grampletpane.py:258
 #: ../gramps/plugins/lib/maps/placeselection.py:122
 #: ../gramps/plugins/tool/dumpgenderstats.py:86
+#: ../gramps/plugins/tool/eventcmp.glade:21
+#: ../gramps/plugins/tool/eventcmp.glade:173
+#: ../gramps/plugins/tool/finddupes.glade:242
+#: ../gramps/plugins/tool/notrelated.glade:21
+#: ../gramps/plugins/tool/relcalc.glade:22
+#: ../gramps/plugins/tool/removespaces.glade:23
+#: ../gramps/plugins/tool/removeunused.glade:36
+#: ../gramps/plugins/tool/verify.glade:126
+#: ../gramps/plugins/tool/verify.glade:850
 msgid "_Close"
 msgstr "மூடு (_C)"
 
@@ -12069,8 +12080,8 @@ msgstr ""
 " <b> எடுத்துக்காட்டு </b>: டாக்டர் எட்வின் சோச் வான் டெர் ச்மித் மற்றும் வெச்டன் வில்சன் எச்.ஆர் "
 "(\"எட்\") - அண்டர்இல்ச்\n"
 " <i> எட்வின் சோச் </i>: கொடுக்கப்பட்ட, <i> வான் டெர் </i>: முன்னொட்டு, <i> ச்மித் </i> "
-"மற்றும் <i> வெச்டன் </i>: முதன்மை, <i> மற்றும் </ i>: [con], <i> வில்சன் </i>: புரவலன்,"
-"\n"
+"மற்றும் <i> வெச்டன் </i>: முதன்மை, <i> மற்றும் </ i>: [con], <i> வில்சன் </i>: "
+"புரவலன்,\n"
 " <i> டாக்டர் /i>: அழைப்பு.\n"
 
 #: ../gramps/gui/configure.py:162
@@ -12142,14 +12153,27 @@ msgstr "%s: "
 #: ../gramps/gui/glade/mergesource.glade:51
 #: ../gramps/gui/glade/reorder.glade:51 ../gramps/gui/glade/rule.glade:40
 #: ../gramps/gui/glade/rule.glade:342 ../gramps/gui/glade/rule.glade:766
-#: ../gramps/gui/grampsgui.py:58 ../gramps/gui/logger/_errorview.py:190
-#: ../gramps/gui/plug/_windows.py:390
+#: ../gramps/gui/glade/styleeditor.glade:119
+#: ../gramps/gui/glade/styleeditor.glade:1803 ../gramps/gui/grampsgui.py:58
+#: ../gramps/gui/logger/_errorview.py:190 ../gramps/gui/plug/_windows.py:390
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
 #: ../gramps/gui/widgets/grampletbar.py:712
 #: ../gramps/gui/widgets/grampletpane.py:264
 #: ../gramps/plugins/importer/importprogen.glade:61
+#: ../gramps/plugins/tool/changenames.glade:72
+#: ../gramps/plugins/tool/eventcmp.glade:53
+#: ../gramps/plugins/tool/eventcmp.glade:205
+#: ../gramps/plugins/tool/finddupes.glade:60
+#: ../gramps/plugins/tool/finddupes.glade:274
+#: ../gramps/plugins/tool/mergecitations.glade:60
+#: ../gramps/plugins/tool/notrelated.glade:37
+#: ../gramps/plugins/tool/ownereditor.glade:53
+#: ../gramps/plugins/tool/patchnames.glade:21
+#: ../gramps/plugins/tool/relcalc.glade:37
+#: ../gramps/plugins/tool/removespaces.glade:40
+#: ../gramps/plugins/tool/reorderids.glade:213
 #: ../gramps/plugins/tool/testcasegenerator.py:396
 msgid "_Help"
 msgstr "உதவி (_H)"
@@ -12988,8 +13012,15 @@ msgstr "மீடியா கோப்பகத்தைத் தேர்ந�
 #: ../gramps/plugins/importer/importprogen.glade:28
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
+#: ../gramps/plugins/tool/changenames.glade:88
+#: ../gramps/plugins/tool/changetypes.glade:22
 #: ../gramps/plugins/tool/check.py:830 ../gramps/plugins/tool/eventcmp.py:410
+#: ../gramps/plugins/tool/finddupes.glade:28
+#: ../gramps/plugins/tool/mergecitations.glade:28
+#: ../gramps/plugins/tool/ownereditor.glade:21
+#: ../gramps/plugins/tool/patchnames.glade:37
 #: ../gramps/plugins/tool/populatesources.py:99
+#: ../gramps/plugins/tool/reorderids.glade:181
 #: ../gramps/plugins/tool/testcasegenerator.py:394
 msgid "_Cancel"
 msgstr "_CANCEL"
@@ -13273,8 +13304,15 @@ msgstr "தரவுத்தள செய்தி"
 #: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:857
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:281
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
-#: ../gramps/plugins/tool/check.py:830 ../gramps/plugins/tool/patchnames.py:152
+#: ../gramps/plugins/importer/importgedcom.glade:46
+#: ../gramps/plugins/tool/changetypes.glade:38
+#: ../gramps/plugins/tool/check.py:830
+#: ../gramps/plugins/tool/finddupes.glade:44
+#: ../gramps/plugins/tool/mergecitations.glade:44
+#: ../gramps/plugins/tool/ownereditor.glade:37
+#: ../gramps/plugins/tool/patchnames.py:152
 #: ../gramps/plugins/tool/populatesources.py:99
+#: ../gramps/plugins/tool/reorderids.glade:197
 #: ../gramps/plugins/tool/testcasegenerator.py:395
 msgid "_OK"
 msgstr "_Ok"
@@ -13476,18 +13514,18 @@ msgstr ""
 " பழுதுபார்க்கும் முன், குடும்ப மரத்தை இனி திறக்க முடியாது என்பதை சரிபார்க்கவும், ஏனெனில் "
 "தரவுத்தள பின்-இறுதி சில பிழைகளிலிருந்து தானாகவே மீட்க முடியும்.\n"
 "\n"
-"%(bold_start)sவிவரங்கள்:%(bold_end)s ஒரு குடும்ப மரத்தைச் சரிசெய்வது உண்மையில் குடும்"
-"ப மரத்தின் கடைசி காப்புப்பிரதியைப் பயன்படுத்துகிறது, இது கடைசி பயன்பாட்டில் சேமிக்கப்பட்ட "
-"கிராம்ப்கள். கிராம்ப்களை மூடாமல் நீங்கள் பல மணிநேரம்/நாட்கள் வேலை செய்திருந்தால், இந்தத் "
-"தகவல்கள் அனைத்தும் இழக்கப்படும்! பழுது தோல்வியுற்றால், அசல் குடும்ப மரம் என்றென்றும் "
-"இழக்கப்படும், எனவே காப்புப்பிரதி தேவைப்படுகிறது. பழுதுபார்ப்பு தோல்வியுற்றால், அல்லது "
-"அதிகமான தகவல்கள் இழந்தால், அசல் குடும்ப மரத்தைக் கைமுறையாகச் சரிசெய்யலாம். விவரங்களுக்கு, "
-"வலைப்பக்கத்தைப் பார்க்கவும்\n"
+"%(bold_start)sவிவரங்கள்:%(bold_end)s ஒரு குடும்ப மரத்தைச் சரிசெய்வது உண்மையில் "
+"குடும்ப மரத்தின் கடைசி காப்புப்பிரதியைப் பயன்படுத்துகிறது, இது கடைசி பயன்பாட்டில் "
+"சேமிக்கப்பட்ட கிராம்ப்கள். கிராம்ப்களை மூடாமல் நீங்கள் பல மணிநேரம்/நாட்கள் வேலை "
+"செய்திருந்தால், இந்தத் தகவல்கள் அனைத்தும் இழக்கப்படும்! பழுது தோல்வியுற்றால், அசல் குடும்ப "
+"மரம் என்றென்றும் இழக்கப்படும், எனவே காப்புப்பிரதி தேவைப்படுகிறது. பழுதுபார்ப்பு "
+"தோல்வியுற்றால், அல்லது அதிகமான தகவல்கள் இழந்தால், அசல் குடும்ப மரத்தைக் கைமுறையாகச் "
+"சரிசெய்யலாம். விவரங்களுக்கு, வலைப்பக்கத்தைப் பார்க்கவும்\n"
 "%(gramps_wiki_recover_url)s\n"
 " பழுதுபார்ப்பதற்கு முன், குடும்ப மரத்தைச் சாதாரண முறையில் திறக்க முயற்சிக்கவும். "
-"பழுதுபார்க்கும் பொத்தானைத் தூண்டும் பல பிழைகள் தானாகச் சரிசெய்யப்படலாம். இதுபோன்றால், குடும்"
-"ப மர கோப்பகத்தில் %(recover_file)s கோப்பை அகற்றுவதன் மூலம் பழுதுபார்க்கும் பொத்தானை "
-"முடக்கலாம்."
+"பழுதுபார்க்கும் பொத்தானைத் தூண்டும் பல பிழைகள் தானாகச் சரிசெய்யப்படலாம். இதுபோன்றால், "
+"குடும்ப மர கோப்பகத்தில் %(recover_file)s கோப்பை அகற்றுவதன் மூலம் பழுதுபார்க்கும் "
+"பொத்தானை முடக்கலாம்."
 
 #: ../gramps/gui/dbman.py:997
 msgid "Proceed, I have taken a backup"
@@ -13819,7 +13857,7 @@ msgstr "_பண்புகள்"
 #: ../gramps/gui/selectors/selectcitation.py:74
 #: ../gramps/gui/selectors/selectevent.py:72
 #: ../gramps/gui/selectors/selectfamily.py:67
-#: ../gramps/gui/selectors/selectnote.py:73
+#: ../gramps/gui/selectors/selectnote.py:72
 #: ../gramps/gui/selectors/selectobject.py:81
 #: ../gramps/gui/selectors/selectperson.py:100
 #: ../gramps/gui/selectors/selectplace.py:69
@@ -13963,13 +14001,13 @@ msgstr "_ சோர்ச் மேற்கோள்கள்"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:344
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:320
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:376
-#: ../gramps/plugins/view/citationtreeview.py:622
-#: ../gramps/plugins/view/citationtreeview.py:646
+#: ../gramps/plugins/view/citationtreeview.py:624
+#: ../gramps/plugins/view/citationtreeview.py:648
 msgid "Cannot share this reference"
 msgstr "இந்த குறிப்பைப் பகிர முடியாது"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:235
-#: ../gramps/plugins/view/citationtreeview.py:656
+#: ../gramps/plugins/view/citationtreeview.py:658
 msgid ""
 "This citation cannot be created at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -14218,7 +14256,7 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட குறி�
 #: ../gramps/gui/glade/editmedia.glade:186
 #: ../gramps/gui/glade/editmediaref.glade:191
 #: ../gramps/gui/glade/editmediaref.glade:505
-#: ../gramps/gui/selectors/selectnote.py:72
+#: ../gramps/gui/selectors/selectnote.py:71
 #: ../gramps/plugins/view/noteview.py:82
 msgid "Preview"
 msgstr "முன்னோட்டம்"
@@ -14834,7 +14872,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:571
 #: ../gramps/plugins/importer/importcsv.py:360
-#: ../gramps/plugins/view/familyview.py:410
+#: ../gramps/plugins/view/familyview.py:412
 msgid "family"
 msgstr "குடும்பம்"
 
@@ -15911,6 +15949,7 @@ msgstr "குறிப்பை அகற்று"
 
 #: ../gramps/gui/filters/_searchbar.py:59
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:78
+#: ../gramps/plugins/tool/removeunused.glade:213
 msgid "_Find"
 msgstr "_ ஃபைண்ட்"
 
@@ -16118,6 +16157,7 @@ msgstr "உருப்படிகளை ஏற்றுகிறது ..."
 #: ../gramps/plugins/lib/libplaceview.py:333
 #: ../gramps/plugins/lib/libplaceview.py:393
 #: ../gramps/plugins/lib/libplaceview.py:447
+#: ../gramps/plugins/tool/removeunused.glade:20
 #: ../gramps/plugins/view/citationlistview.py:220
 #: ../gramps/plugins/view/citationlistview.py:280
 #: ../gramps/plugins/view/citationlistview.py:333
@@ -18348,6 +18388,7 @@ msgid "_Display on startup"
 msgstr "தொடக்கத்தில் _ டைச்ப்ளே"
 
 #: ../gramps/gui/glade/tipofday.glade:112
+#: ../gramps/plugins/docgen/gtkprint.glade:93
 #: ../gramps/plugins/lib/libpersonview.py:234
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libplaceview.py:319
@@ -18531,7 +18572,7 @@ msgstr "செருகுநிரல் மேலாளர் (_P)"
 msgid "_Preferences..."
 msgstr "_ முனைகள் ..."
 
-#: ../gramps/gui/grampsgui.py:58
+#: ../gramps/gui/grampsgui.py:58 ../gramps/plugins/docgen/gtkprint.glade:25
 msgid "_Quit"
 msgstr "வெளியேறு(_Q)"
 
@@ -20291,7 +20332,7 @@ msgstr "ஆதாரம்: தலைப்பு அல்லது மேற�
 #: ../gramps/gui/selectors/selectcitation.py:75
 #: ../gramps/gui/selectors/selectevent.py:73
 #: ../gramps/gui/selectors/selectfamily.py:70
-#: ../gramps/gui/selectors/selectnote.py:76
+#: ../gramps/gui/selectors/selectnote.py:75
 #: ../gramps/gui/selectors/selectobject.py:83
 #: ../gramps/gui/selectors/selectperson.py:107
 #: ../gramps/gui/selectors/selectplace.py:72
@@ -20319,11 +20360,11 @@ msgctxt "manual"
 msgid "Select_Family_selector"
 msgstr "Select_family_Selector"
 
-#: ../gramps/gui/selectors/selectnote.py:65
+#: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
 msgstr "குறிப்பு தேர்ந்தெடுக்கவும்"
 
-#: ../gramps/gui/selectors/selectnote.py:86
+#: ../gramps/gui/selectors/selectnote.py:85
 msgctxt "manual"
 msgid "Select_Note_selector"
 msgstr "Select_Note_Selector"
@@ -20585,9 +20626,9 @@ msgstr ""
 "\n"
 " %(error_msg)s\n"
 "\n"
-" பிழையை நீங்களே சரிசெய்ய முடியாவிட்டால், நீங்கள் ஒரு பிழையை %(gramps_bugtracker_url)"
-"s இல் சமர்ப்பிக்கலாம் அல்லது பார்வை ஆசிரியரை (%(firstauthoremail)s) தொடர்பு கொள்ளலாம்."
-"\n"
+" பிழையை நீங்களே சரிசெய்ய முடியாவிட்டால், நீங்கள் ஒரு பிழையை "
+"%(gramps_bugtracker_url)s இல் சமர்ப்பிக்கலாம் அல்லது பார்வை ஆசிரியரை "
+"(%(firstauthoremail)s) தொடர்பு கொள்ளலாம்.\n"
 "\n"
 " கிராம்ப்ச் இந்தப் பார்வையை மீண்டும் ஏற்ற விரும்பவில்லை என்றால், உதவி பட்டியலில் சொருகி "
 "மேலாளரைப் பயன்படுத்தி அதை மறைக்கலாம்."
@@ -20715,7 +20756,7 @@ msgstr "செயலில் உள்ள பொருள் தெரியவ
 #: ../gramps/gui/views/navigationview.py:252
 #: ../gramps/plugins/lib/maps/geography.py:236
 #: ../gramps/plugins/lib/maps/geography.py:254
-#: ../gramps/plugins/view/familyview.py:376
+#: ../gramps/plugins/view/familyview.py:378
 msgid "Could Not Set a Bookmark"
 msgstr "ஒரு புத்தகக்குறியை அமைக்க முடியவில்லை"
 
@@ -20723,7 +20764,7 @@ msgstr "ஒரு புத்தகக்குறியை அமைக்க 
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "எதுவும் தேர்ந்தெடுக்கப்படாததால் ஒரு புத்தகக்குறியை அமைக்க முடியவில்லை."
 
-#: ../gramps/gui/views/listview.py:627 ../gramps/plugins/view/eventview.py:412
+#: ../gramps/gui/views/listview.py:627 ../gramps/plugins/view/eventview.py:414
 #, python-brace-format
 msgid "Delete {type} [{gid}]?"
 msgstr "{type} [{gid}] ஐ நீக்கு?"
@@ -20755,7 +20796,7 @@ msgstr ""
 
 #: ../gramps/gui/views/listview.py:726
 #: ../gramps/plugins/lib/libpersonview.py:481
-#: ../gramps/plugins/view/familyview.py:410
+#: ../gramps/plugins/view/familyview.py:412
 #, python-format
 msgid "Delete %s?"
 msgstr "%s ஐ அழிக்க வேண்டுமா?"
@@ -20792,7 +20833,7 @@ msgstr "%s புக்மார்க்கு செய்யப்பட்�
 #: ../gramps/gui/views/navigationview.py:253
 #: ../gramps/plugins/lib/maps/geography.py:237
 #: ../gramps/plugins/lib/maps/geography.py:255
-#: ../gramps/plugins/view/familyview.py:377
+#: ../gramps/plugins/view/familyview.py:379
 msgid "A bookmark could not be set because no one was selected."
 msgstr "யாரும் தேர்ந்தெடுக்கப்படாததால் ஒரு புத்தகக்குறியை அமைக்க முடியவில்லை."
 
@@ -21228,11 +21269,11 @@ msgstr "_ லிங்க் முகவரியை நகலெடுக்�
 msgid "_Edit Link"
 msgstr "தொகு (_E) இணைப்பு"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:828
+#: ../gramps/gui/widgets/styledtexteditor.py:807
 msgid "Select font color"
 msgstr "எழுத்துரு வண்ணத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:832
+#: ../gramps/gui/widgets/styledtexteditor.py:811
 msgid "Select background color"
 msgstr "பின்னணி நிறத்தைத் தேர்ந்தெடுக்கவும்"
 
@@ -21387,13 +21428,72 @@ msgstr "முன்னோட்டம் அச்சு"
 msgid "Closes print preview window"
 msgstr "அச்சு முன்னோட்ட சாளரத்தை மூடுகிறது"
 
+#: ../gramps/plugins/docgen/gtkprint.glade:39
+#, fuzzy
+msgid "_Print"
+msgstr "திருத்து... (_E)"
+
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
 msgstr "தற்போதைய கோப்பை அச்சிடுகிறது"
 
+#: ../gramps/plugins/docgen/gtkprint.glade:63
+msgid "_First"
+msgstr ""
+
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
 msgstr "முதல் பக்கத்தைக் காட்டுகிறது"
+
+#: ../gramps/plugins/docgen/gtkprint.glade:78
+#: ../gramps/plugins/lib/libpersonview.py:234
+#: ../gramps/plugins/lib/libpersonview.py:289
+#: ../gramps/plugins/lib/libpersonview.py:385
+#: ../gramps/plugins/lib/libplaceview.py:319
+#: ../gramps/plugins/lib/libplaceview.py:363
+#: ../gramps/plugins/lib/libplaceview.py:447
+#: ../gramps/plugins/view/citationlistview.py:206
+#: ../gramps/plugins/view/citationlistview.py:250
+#: ../gramps/plugins/view/citationlistview.py:333
+#: ../gramps/plugins/view/citationtreeview.py:348
+#: ../gramps/plugins/view/citationtreeview.py:400
+#: ../gramps/plugins/view/citationtreeview.py:505
+#: ../gramps/plugins/view/eventview.py:219
+#: ../gramps/plugins/view/eventview.py:263
+#: ../gramps/plugins/view/eventview.py:346
+#: ../gramps/plugins/view/familyview.py:176
+#: ../gramps/plugins/view/familyview.py:220
+#: ../gramps/plugins/view/familyview.py:303
+#: ../gramps/plugins/view/fanchartview.py:145
+#: ../gramps/plugins/view/fanchartview.py:186
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoevents.py:68
+#: ../gramps/plugins/view/geoevents.py:103
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamily.py:67
+#: ../gramps/plugins/view/geofamily.py:102
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:111
+#: ../gramps/plugins/view/geoperson.py:69
+#: ../gramps/plugins/view/geoperson.py:110
+#: ../gramps/plugins/view/geoplaces.py:70
+#: ../gramps/plugins/view/geoplaces.py:105
+#: ../gramps/plugins/view/mediaview.py:283
+#: ../gramps/plugins/view/mediaview.py:327
+#: ../gramps/plugins/view/mediaview.py:426
+#: ../gramps/plugins/view/noteview.py:164
+#: ../gramps/plugins/view/noteview.py:208
+#: ../gramps/plugins/view/noteview.py:291
+#: ../gramps/plugins/view/pedigreeview.py:691
+#: ../gramps/plugins/view/pedigreeview.py:733
+#: ../gramps/plugins/view/relview.py:455 ../gramps/plugins/view/repoview.py:201
+#: ../gramps/plugins/view/repoview.py:245
+#: ../gramps/plugins/view/repoview.py:328
+#: ../gramps/plugins/view/sourceview.py:173
+#: ../gramps/plugins/view/sourceview.py:217
+#: ../gramps/plugins/view/sourceview.py:300
+msgid "_Back"
+msgstr "_ பேக்"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:83
 msgid "Shows previous page"
@@ -21402,6 +21502,10 @@ msgstr "முந்தைய பக்கத்தைக் காட்டு�
 #: ../gramps/plugins/docgen/gtkprint.glade:98
 msgid "Shows the next page"
 msgstr "அடுத்த பக்கத்தைக் காட்டுகிறது"
+
+#: ../gramps/plugins/docgen/gtkprint.glade:108
+msgid "_Last"
+msgstr ""
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -21423,7 +21527,7 @@ msgstr "பக்கத்தை பெரிதாக்குகிறது"
 msgid "Zooms the page out"
 msgstr "பக்கத்தை பெரிதாக்குகிறது"
 
-#: ../gramps/plugins/docgen/gtkprint.py:476
+#: ../gramps/plugins/docgen/gtkprint.py:475
 #, python-format
 msgid "of %d"
 msgstr "of %d"
@@ -27059,8 +27163,8 @@ msgid ""
 "for more info."
 msgstr ""
 "நீங்கள் இறக்குமதி செய்யும். கிராம்ப்ச் கோப்புப் பதிப்பு %(oldgramps)s கிராம்ப் மூலம் "
-"செய்யப்பட்டது, அதே நேரத்தில் நீங்கள் மிகச் அண்மைக் கால பதிப்பு %(newgramps)s இயக்குகிறீர்கள்."
-"\n"
+"செய்யப்பட்டது, அதே நேரத்தில் நீங்கள் மிகச் அண்மைக் கால பதிப்பு %(newgramps)s "
+"இயக்குகிறீர்கள்.\n"
 "\n"
 " இறக்குமதி செய்தபிறகு எல்லாம் சரியாக இறக்குமதி செய்யப்படுவதை உறுதிசெய்க. சிக்கல்கள் "
 "ஏற்பட்டால், தயவுசெய்து ஒரு பிழையைச் சமர்ப்பிக்கவும், இந்தக் கோப்பை இறக்குமதி செய்ய "
@@ -27149,7 +27253,7 @@ msgstr ""
 "பிழை: குடும்பம் '%(family)s' குழந்தை '%(child)s' குடும்பத்தை மீண்டும் குறிக்கவில்லை. "
 "குறிப்பு சேர்க்கப்பட்டது."
 
-#: ../gramps/plugins/lib/libcairodoc.py:1447
+#: ../gramps/plugins/lib/libcairodoc.py:1446
 #, python-format
 msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
@@ -27678,8 +27782,7 @@ msgstr "சிட்டை"
 #: ../gramps/plugins/lib/libnarrate.py:111
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s %(birth_date)s அன்று %(birth_place)s இல் பிறந்தன."
+msgstr "%(unknown_gender_name)s %(birth_date)s அன்று %(birth_place)s இல் பிறந்தன."
 
 #: ../gramps/plugins/lib/libnarrate.py:113
 #, python-format
@@ -27822,8 +27925,7 @@ msgstr "பிறப்பு %(modified_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:175
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s %(month_year)s அன்று %(birth_place)sஇல் பிறந்தது."
+msgstr "%(unknown_gender_name)s %(month_year)s அன்று %(birth_place)sஇல் பிறந்தது."
 
 #: ../gramps/plugins/lib/libnarrate.py:177
 #, python-format
@@ -27928,8 +28030,7 @@ msgstr "%(birth_place)s இல் பிறப்பு."
 #: ../gramps/plugins/lib/libnarrate.py:226
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
-msgstr ""
-"%(unknown_gender_name)s %(death_date)s அன்று %(death_place)s இல் இறந்தார்."
+msgstr "%(unknown_gender_name)s %(death_date)s அன்று %(death_place)s இல் இறந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:228
 #, python-format
@@ -27976,8 +28077,7 @@ msgstr "இந்த நபர் %(death_date)s அன்று %(death_place)s
 #, python-format
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"இந்த நபர் %(death_date)s அன்று %(death_place)s இல் %(age)s வயதில் இறந்தார்."
+msgstr "இந்த நபர் %(death_date)s அன்று %(death_place)s இல் %(age)s வயதில் இறந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:252
 #, python-format
@@ -28014,8 +28114,7 @@ msgstr "%(death_date)s அன்று %(death_place)s இல் %(age)sவய�
 #: ../gramps/plugins/lib/libnarrate.py:269
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
-msgstr ""
-"%(unknown_gender_name)s இறந்தார் %(death_date)s அன்று %(death_place)sஇல்."
+msgstr "%(unknown_gender_name)s இறந்தார் %(death_date)s அன்று %(death_place)sஇல்."
 
 #: ../gramps/plugins/lib/libnarrate.py:271
 #, python-format
@@ -28059,8 +28158,7 @@ msgstr "இந்த நபர் %(death_date)s அன்று %(death_place)s
 #, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"இந்த நபர் %(death_date)s அன்று %(death_place)sஇல் %(age)s வயதில் இறந்தார்."
+msgstr "இந்த நபர் %(death_date)s அன்று %(death_place)sஇல் %(age)s வயதில் இறந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:295
 #, python-format
@@ -28265,8 +28363,7 @@ msgstr "இந்த நபர் %(month_year)s %(death_place)s இறந்த
 #, python-format
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"இந்த நபர் %(month_year)s அன்று %(death_place)s இல் %(age)s வயதில் இறந்தார்."
+msgstr "இந்த நபர் %(month_year)s அன்று %(death_place)s இல் %(age)s வயதில் இறந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:408
 #, python-format
@@ -28498,8 +28595,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:543
 #, python-format
 msgid "She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"அவர் %(burial_date)s %(burial_place)s %(endnotes)sஇல் அடக்கம் செய்யப்பட்டார்."
+msgstr "அவர் %(burial_date)s %(burial_place)s %(endnotes)sஇல் அடக்கம் செய்யப்பட்டார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:547
 #, python-format
@@ -28545,8 +28641,7 @@ msgstr "அவள் %(burial_date)s %(endnotes)s மீது அடக்க�
 #: ../gramps/plugins/lib/libnarrate.py:564
 #, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s %(burial_date)s %(endnotes)s மீது புதைக்கப்பட்டது."
+msgstr "%(unknown_gender_name)s %(burial_date)s %(endnotes)s மீது புதைக்கப்பட்டது."
 
 #: ../gramps/plugins/lib/libnarrate.py:565
 #, python-format
@@ -28569,8 +28664,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:575
 #, python-format
 msgid "He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"அவன் %(month_year)s %(burial_place)s%(endnotes)sஇல் அடக்கம் செய்யப்பட்டான்."
+msgstr "அவன் %(month_year)s %(burial_place)s%(endnotes)sஇல் அடக்கம் செய்யப்பட்டான்."
 
 #: ../gramps/plugins/lib/libnarrate.py:579
 #, python-format
@@ -28583,8 +28677,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:581
 #, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"அவள் %(month_year)s %(burial_place)s%(endnotes)sஇல் அடக்கம் செய்யப்பட்டாள்."
+msgstr "அவள் %(month_year)s %(burial_place)s%(endnotes)sஇல் அடக்கம் செய்யப்பட்டாள்."
 
 #: ../gramps/plugins/lib/libnarrate.py:585
 #, python-format
@@ -28651,8 +28744,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:613
 #, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"அவர் %(modified_date)s %(burial_place)s%(endnotes)s அடக்கம் செய்யப்பட்டார்."
+msgstr "அவர் %(modified_date)s %(burial_place)s%(endnotes)s அடக்கம் செய்யப்பட்டார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:617
 #, python-format
@@ -28844,8 +28936,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:703
 #, python-format
 msgid "Baptized %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"%(baptism_date)s அன்று %(baptism_place)s%(endnotes)s ஞானச்நானம் பெற்றார்."
+msgstr "%(baptism_date)s அன்று %(baptism_place)s%(endnotes)s ஞானச்நானம் பெற்றார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:708
 #, python-format
@@ -28860,8 +28951,7 @@ msgstr "அவன் %(baptism_date)s%(endnotes)s அன்று முழு�
 #: ../gramps/plugins/lib/libnarrate.py:712
 #, python-format
 msgid "%(female_name)s was baptized on %(baptism_date)s%(endnotes)s."
-msgstr ""
-"%(female_name)s %(baptism_date)s%(endnotes)s இல் முழுக்காட்டுதல் பெற்றாள்."
+msgstr "%(female_name)s %(baptism_date)s%(endnotes)s இல் முழுக்காட்டுதல் பெற்றாள்."
 
 #: ../gramps/plugins/lib/libnarrate.py:713
 #, python-format
@@ -28905,8 +28995,8 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s %(month_year)s அன்று %(baptism_place)s%(endnotes)s இல் ஞானச்நானம்"
-" பெற்றாள்."
+"%(female_name)s %(month_year)s அன்று %(baptism_place)s%(endnotes)s இல் "
+"ஞானச்நானம் பெற்றாள்."
 
 #: ../gramps/plugins/lib/libnarrate.py:733
 #, python-format
@@ -28948,8 +29038,7 @@ msgstr "அவன் %(month_year)s%(endnotes)s இல் ஞானச்நா�
 #: ../gramps/plugins/lib/libnarrate.py:752
 #, python-format
 msgid "%(female_name)s was baptized in %(month_year)s%(endnotes)s."
-msgstr ""
-"%(female_name)s %(month_year)s%(endnotes)s அன்று முழுக்காட்டுதல் பெற்றாள்."
+msgstr "%(female_name)s %(month_year)s%(endnotes)s அன்று முழுக்காட்டுதல் பெற்றாள்."
 
 #: ../gramps/plugins/lib/libnarrate.py:753
 #, python-format
@@ -29048,8 +29137,7 @@ msgstr "அவள் ஞானச்நானம் பெற்றது %(modi
 #: ../gramps/plugins/lib/libnarrate.py:796
 #, python-format
 msgid "%(unknown_gender_name)s was baptized %(modified_date)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s ஞானச்நானம் பெற்றது %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s ஞானச்நானம் பெற்றது %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:797
 #, python-format
@@ -29074,8 +29162,7 @@ msgstr "அவர் %(baptism_place)s%(endnotes)s இல் ஞானச்ந�
 #: ../gramps/plugins/lib/libnarrate.py:808
 #, python-format
 msgid "%(female_name)s was baptized in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"%(female_name)s %(baptism_place)s%(endnotes)s இல் முழுக்காட்டுதல் பெற்றாள்."
+msgstr "%(female_name)s %(baptism_place)s%(endnotes)s இல் முழுக்காட்டுதல் பெற்றாள்."
 
 #: ../gramps/plugins/lib/libnarrate.py:809
 #, python-format
@@ -29157,8 +29244,8 @@ msgid ""
 "%(female_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s %(christening_date)s அன்று %(christening_place)s%(endnotes)sஇல்"
-" பெயரிடப்பட்டாள்."
+"%(female_name)s %(christening_date)s அன்று "
+"%(christening_place)s%(endnotes)sஇல் பெயரிடப்பட்டாள்."
 
 #: ../gramps/plugins/lib/libnarrate.py:853
 #, python-format
@@ -29242,8 +29329,7 @@ msgstr ""
 #, python-format
 msgid ""
 "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr ""
-"அவர் %(month_year)s %(christening_place)s%(endnotes)s இல் பெயரிடப்பட்டார்."
+msgstr "அவர் %(month_year)s %(christening_place)s%(endnotes)s இல் பெயரிடப்பட்டார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:896
 #, python-format
@@ -29267,8 +29353,8 @@ msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s %(month_year)s %(christening_place)s%(endnotes)s களில்"
-" பெயரிடப்பட்டது."
+"%(unknown_gender_name)s %(month_year)s %(christening_place)s%(endnotes)s "
+"களில் பெயரிடப்பட்டது."
 
 #: ../gramps/plugins/lib/libnarrate.py:905
 #, python-format
@@ -29412,8 +29498,7 @@ msgstr "கிறிச்டென்ட் %(modified_date)s %(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:969
 #, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
-"%(male_name)s %(christening_place)s %(endnotes)s என்று பெயர் சூட்டப்பட்டன."
+msgstr "%(male_name)s %(christening_place)s %(endnotes)s என்று பெயர் சூட்டப்பட்டன."
 
 #: ../gramps/plugins/lib/libnarrate.py:970
 #, python-format
@@ -29441,8 +29526,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:980
 #, python-format
 msgid "This person was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
-"இந்த நபர் %(christening_place)s %(endnotes)s என்று பெயர் சூட்டப்பட்டார்."
+msgstr "இந்த நபர் %(christening_place)s %(endnotes)s என்று பெயர் சூட்டப்பட்டார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:982
 #, python-format
@@ -29752,14 +29836,12 @@ msgstr "%(spouse)s%(endnotes)s இல் %(partial_date)s இல் %(place)s �
 #: ../gramps/plugins/lib/libnarrate.py:1134
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"அவள் %(place)s%(endnotes)s இல் %(full_date)s அன்று %(spouse)sஐ மணந்தாள்."
+msgstr "அவள் %(place)s%(endnotes)s இல் %(full_date)s அன்று %(spouse)sஐ மணந்தாள்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1135
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"அவள் %(spouse)sஐ மணந்தாள் %(modified_date)s அன்று %(place)s%(endnotes)sஇல்."
+msgstr "அவள் %(spouse)sஐ மணந்தாள் %(modified_date)s அன்று %(place)s%(endnotes)sஇல்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1138
 #, python-format
@@ -29797,8 +29879,7 @@ msgstr "இந்த நபர் %(spouse)s %(full_date)s%(endnotes)s இல்
 msgid ""
 "This person also married %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
-msgstr ""
-"இந்த நபர் %(spouse)s %(modified_date)s இல் %(place)s %(endnotes)s மணந்தார்."
+msgstr "இந்த நபர் %(spouse)s %(modified_date)s இல் %(place)s %(endnotes)s மணந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1157
 #, python-format
@@ -29853,8 +29934,7 @@ msgstr "திருமணமான %(spouse)s %(modified_date)s %(place)s %(end
 #: ../gramps/plugins/lib/libnarrate.py:1175
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"இந்த நபர் %(spouse)s %(partial_date)s %(endnotes)s திருமணம் செய்து கொண்டார்."
+msgstr "இந்த நபர் %(spouse)s %(partial_date)s %(endnotes)s திருமணம் செய்து கொண்டார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1176
 #, python-format
@@ -30067,8 +30147,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"இந்த நபருக்கு %(spouse)s %(full_date)s%(endnotes)s இல் %(place)s உடன் திருமணமாகா"
-"த உறவைக் கொண்டிருந்தார்."
+"இந்த நபருக்கு %(spouse)s %(full_date)s%(endnotes)s இல் %(place)s உடன் "
+"திருமணமாகாத உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1261
 #, python-format
@@ -30076,8 +30156,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"இந்த நபர் %(spouse)s%(endnotes)s இல் %(modified_date)s %(place)s உடன் திருமணமாகா"
-"த உறவைக் கொண்டிருந்தார்."
+"இந்த நபர் %(spouse)s%(endnotes)s இல் %(modified_date)s %(place)s உடன் "
+"திருமணமாகாத உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1266
 #, python-format
@@ -30174,8 +30254,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"இந்த நபர் %(spouse)s%(endnotes)s இல் %(full_date)s மீது %(place)s உடன் திருமணமாகா"
-"த உறவைக் கொண்டிருந்தார்."
+"இந்த நபர் %(spouse)s%(endnotes)s இல் %(full_date)s மீது %(place)s உடன் "
+"திருமணமாகாத உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1308
 #, python-format
@@ -30183,8 +30263,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"இந்த நபர் %(spouse)s%(endnotes)s இல் %(modified_date)s %(place)s உடன் திருமணமாகா"
-"த உறவைக் கொண்டிருந்தார்."
+"இந்த நபர் %(spouse)s%(endnotes)s இல் %(modified_date)s %(place)s உடன் "
+"திருமணமாகாத உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1313
 #, python-format
@@ -30219,8 +30299,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"%(spouse)s%(endnotes)s இல் %(partial_date)s இல் %(place)s உடன் திருமணமாகாத உறவைக்"
-" கொண்டிருந்தார்."
+"%(spouse)s%(endnotes)s இல் %(partial_date)s இல் %(place)s உடன் திருமணமாகாத "
+"உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1327
 #, python-format
@@ -30237,8 +30317,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"%(spouse)s%(endnotes)s இல் %(modified_date)s %(place)s உடன் திருமணமாகாத உறவையும்"
-" கொண்டிருந்தார்."
+"%(spouse)s%(endnotes)s இல் %(modified_date)s %(place)s உடன் திருமணமாகாத "
+"உறவையும் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1349
 #, python-format
@@ -30448,8 +30528,7 @@ msgstr ""
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"%(spouse)s%(endnotes)s இல் %(place)s உடன் திருமணமாகாத உறவைக் கொண்டிருந்தார்."
+msgstr "%(spouse)s%(endnotes)s இல் %(place)s உடன் திருமணமாகாத உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1438
 #: ../gramps/plugins/lib/libnarrate.py:1451
@@ -30471,8 +30550,7 @@ msgstr ""
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in "
 "%(place)s%(endnotes)s."
-msgstr ""
-"%(spouse)s%(endnotes)s இல் %(place)s உடன் திருமணமாகாத உறவைக் கொண்டிருந்தார்."
+msgstr "%(spouse)s%(endnotes)s இல் %(place)s உடன் திருமணமாகாத உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1449
 #, python-format
@@ -30485,8 +30563,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1456
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
-"இந்த நபர் %(spouse)s %(endnotes)s உடன் திருமணமாகாத உறவைக் கொண்டிருந்தார்."
+msgstr "இந்த நபர் %(spouse)s %(endnotes)s உடன் திருமணமாகாத உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1458
 #, python-format
@@ -30508,8 +30585,7 @@ msgstr "%(spouse)s %(endnotes)s உடன் திருமணமாகாத �
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
-"இந்த நபர் %(spouse)s %(endnotes)s உடன் திருமணமாகாத உறவைக் கொண்டிருந்தார்."
+msgstr "இந்த நபர் %(spouse)s %(endnotes)s உடன் திருமணமாகாத உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1468
 #, python-format
@@ -30715,8 +30791,7 @@ msgstr "%(spouse)s %(modified_date)s %(place)s%(endnotes)s இல் உறவ�
 msgid ""
 "This person had a relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
-msgstr ""
-"இந்த நபருக்கு %(spouse)s %(partial_date)s %(endnotes)s உடன் உறவு இருந்தது."
+msgstr "இந்த நபருக்கு %(spouse)s %(partial_date)s %(endnotes)s உடன் உறவு இருந்தது."
 
 #: ../gramps/plugins/lib/libnarrate.py:1574
 #, python-format
@@ -30738,14 +30813,12 @@ msgstr "%(spouse)s%(endnotes)s இல் %(partial_date)s உடன் உறவ
 #: ../gramps/plugins/lib/libnarrate.py:1582
 #, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"அவர் %(spouse)s உடன் %(full_date)s %(endnotes)s அன்று உறவு கொண்டிருந்தார்."
+msgstr "அவர் %(spouse)s உடன் %(full_date)s %(endnotes)s அன்று உறவு கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1583
 #, python-format
 msgid "He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"அவர் %(spouse)s %(modified_date)s %(endnotes)s உடன் உறவு கொண்டிருந்தார்."
+msgstr "அவர் %(spouse)s %(modified_date)s %(endnotes)s உடன் உறவு கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1586
 #, python-format
@@ -30760,8 +30833,7 @@ msgstr "%(spouse)s %(endnotes)s மீது %(full_date)s உடன் உற�
 #: ../gramps/plugins/lib/libnarrate.py:1588
 #, python-format
 msgid "She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"அவர் %(spouse)s %(modified_date)s %(endnotes)s உடன் உறவு கொண்டிருந்தார்."
+msgstr "அவர் %(spouse)s %(modified_date)s %(endnotes)s உடன் உறவு கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1591
 #, python-format
@@ -30783,8 +30855,7 @@ msgstr "%(spouse)s %(modified_date)s %(endnotes)s உடனான உறவு."
 msgid ""
 "This person also had a relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
-msgstr ""
-"இந்த நபருக்கு %(spouse)s %(partial_date)s%(endnotes)s இல் உறவு இருந்தது."
+msgstr "இந்த நபருக்கு %(spouse)s %(partial_date)s%(endnotes)s இல் உறவு இருந்தது."
 
 #: ../gramps/plugins/lib/libnarrate.py:1603
 #, python-format
@@ -30825,8 +30896,7 @@ msgstr ""
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"%(partial_date)s எச்%(endnotes)s இல் %(spouse)s உடன் உறவு கொண்டிருந்தார்."
+msgstr "%(partial_date)s எச்%(endnotes)s இல் %(spouse)s உடன் உறவு கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1620
 #, python-format
@@ -30882,8 +30952,7 @@ msgstr "%(spouse)s %(place)s %(endnotes)s உடனான உறவு."
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"இந்த நபர் %(spouse)s%(endnotes)s இல் %(place)s உடன் உறவைக் கொண்டிருந்தார்."
+msgstr "இந்த நபர் %(spouse)s%(endnotes)s இல் %(place)s உடன் உறவைக் கொண்டிருந்தார்."
 
 #: ../gramps/plugins/lib/libnarrate.py:1646
 #, python-format
@@ -31009,55 +31078,6 @@ msgstr "புக்மார்க்கைச் சேர்க்கவு�
 #: ../gramps/plugins/lib/libpersonview.py:234
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libpersonview.py:385
-#: ../gramps/plugins/lib/libplaceview.py:319
-#: ../gramps/plugins/lib/libplaceview.py:363
-#: ../gramps/plugins/lib/libplaceview.py:447
-#: ../gramps/plugins/view/citationlistview.py:206
-#: ../gramps/plugins/view/citationlistview.py:250
-#: ../gramps/plugins/view/citationlistview.py:333
-#: ../gramps/plugins/view/citationtreeview.py:348
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:505
-#: ../gramps/plugins/view/eventview.py:219
-#: ../gramps/plugins/view/eventview.py:263
-#: ../gramps/plugins/view/eventview.py:346
-#: ../gramps/plugins/view/familyview.py:176
-#: ../gramps/plugins/view/familyview.py:220
-#: ../gramps/plugins/view/familyview.py:303
-#: ../gramps/plugins/view/fanchartview.py:145
-#: ../gramps/plugins/view/fanchartview.py:186
-#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geoevents.py:68
-#: ../gramps/plugins/view/geoevents.py:103
-#: ../gramps/plugins/view/geofamclose.py:68
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geofamily.py:67
-#: ../gramps/plugins/view/geofamily.py:102
-#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:111
-#: ../gramps/plugins/view/geoperson.py:69
-#: ../gramps/plugins/view/geoperson.py:110
-#: ../gramps/plugins/view/geoplaces.py:70
-#: ../gramps/plugins/view/geoplaces.py:105
-#: ../gramps/plugins/view/mediaview.py:283
-#: ../gramps/plugins/view/mediaview.py:327
-#: ../gramps/plugins/view/mediaview.py:426
-#: ../gramps/plugins/view/noteview.py:164
-#: ../gramps/plugins/view/noteview.py:208
-#: ../gramps/plugins/view/noteview.py:291
-#: ../gramps/plugins/view/pedigreeview.py:691
-#: ../gramps/plugins/view/pedigreeview.py:733
-#: ../gramps/plugins/view/relview.py:455 ../gramps/plugins/view/repoview.py:201
-#: ../gramps/plugins/view/repoview.py:245
-#: ../gramps/plugins/view/repoview.py:328
-#: ../gramps/plugins/view/sourceview.py:173
-#: ../gramps/plugins/view/sourceview.py:217
-#: ../gramps/plugins/view/sourceview.py:300
-msgid "_Back"
-msgstr "_ பேக்"
-
-#: ../gramps/plugins/lib/libpersonview.py:234
-#: ../gramps/plugins/lib/libpersonview.py:289
-#: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/view/fanchartview.py:145
 #: ../gramps/plugins/view/fanchartview.py:186
 #: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
@@ -31142,23 +31162,23 @@ msgstr "_மர் ..."
 #: ../gramps/plugins/lib/libpersonview.py:274
 #: ../gramps/plugins/lib/libpersonview.py:434
 #: ../gramps/plugins/lib/libplaceview.py:353
-#: ../gramps/plugins/lib/libplaceview.py:490
+#: ../gramps/plugins/lib/libplaceview.py:492
 #: ../gramps/plugins/view/citationlistview.py:240
-#: ../gramps/plugins/view/citationlistview.py:371
+#: ../gramps/plugins/view/citationlistview.py:373
 #: ../gramps/plugins/view/citationtreeview.py:390
-#: ../gramps/plugins/view/citationtreeview.py:558
+#: ../gramps/plugins/view/citationtreeview.py:560
 #: ../gramps/plugins/view/eventview.py:253
-#: ../gramps/plugins/view/eventview.py:384
+#: ../gramps/plugins/view/eventview.py:386
 #: ../gramps/plugins/view/familyview.py:210
-#: ../gramps/plugins/view/familyview.py:353
+#: ../gramps/plugins/view/familyview.py:355
 #: ../gramps/plugins/view/mediaview.py:317
-#: ../gramps/plugins/view/mediaview.py:477
+#: ../gramps/plugins/view/mediaview.py:479
 #: ../gramps/plugins/view/noteview.py:198
-#: ../gramps/plugins/view/noteview.py:329
+#: ../gramps/plugins/view/noteview.py:331
 #: ../gramps/plugins/view/repoview.py:235
-#: ../gramps/plugins/view/repoview.py:366
+#: ../gramps/plugins/view/repoview.py:368
 #: ../gramps/plugins/view/sourceview.py:207
-#: ../gramps/plugins/view/sourceview.py:338
+#: ../gramps/plugins/view/sourceview.py:340
 msgctxt "action"
 msgid "_Edit..."
 msgstr "தொகு (_E) ..."
@@ -31315,7 +31335,7 @@ msgstr "வடிகட்டி எடிட்டரை வைக்கவு�
 msgid "_Look up with Map Service"
 msgstr "_ வரைபட சேவையுடன் பாருங்கள்"
 
-#: ../gramps/plugins/lib/libplaceview.py:500
+#: ../gramps/plugins/lib/libplaceview.py:502
 msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
@@ -31323,15 +31343,15 @@ msgstr ""
 "வரைபட சேவையுடன் தேர்ந்தெடுக்கப்பட்ட இடங்களைக் காண முயற்சி (OpenStreetMap, Google "
 "Maps, ...)"
 
-#: ../gramps/plugins/lib/libplaceview.py:500
+#: ../gramps/plugins/lib/libplaceview.py:502
 msgid "Select a Map Service"
 msgstr "வரைபட சேவையைத் தேர்ந்தெடுக்கவும்"
 
-#: ../gramps/plugins/lib/libplaceview.py:542
+#: ../gramps/plugins/lib/libplaceview.py:544
 msgid "Cannot delete place."
 msgstr "இடத்தை நீக்க முடியாது."
 
-#: ../gramps/plugins/lib/libplaceview.py:544
+#: ../gramps/plugins/lib/libplaceview.py:546
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
@@ -31339,12 +31359,12 @@ msgstr ""
 "இந்த இடம் தற்போது மற்றொரு இடத்தால் குறிப்பிடப்பட்டுள்ளது. முதலில் அதில் உள்ள இடங்களை "
 "அகற்றவும்."
 
-#: ../gramps/plugins/lib/libplaceview.py:567
-#: ../gramps/plugins/lib/libplaceview.py:578
+#: ../gramps/plugins/lib/libplaceview.py:569
+#: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Cannot merge places."
 msgstr "இடங்களை ஒன்றாக்க முடியாது."
 
-#: ../gramps/plugins/lib/libplaceview.py:569
+#: ../gramps/plugins/lib/libplaceview.py:571
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -31354,7 +31374,7 @@ msgstr ""
 "செய்யும் போது கட்டுப்பாட்டு விசையை அழுத்திப் பிடிப்பதன் மூலம் இரண்டாவது இடத்தைத் "
 "தேர்ந்தெடுக்கலாம்."
 
-#: ../gramps/plugins/lib/libplaceview.py:580
+#: ../gramps/plugins/lib/libplaceview.py:582
 msgid "Merging these places would create a cycle in the place hierarchy."
 msgstr "இந்த இடங்களை ஒன்றிணைப்பது இட வரிசைமுறையில் ஒரு சுழற்சியை உருவாக்கும்."
 
@@ -34972,6 +34992,12 @@ msgstr "பாலின புள்ளிவிவர கருவி"
 msgid "Guess"
 msgstr "யூகிக்க"
 
+#: ../gramps/plugins/tool/eventcmp.glade:37
+#, fuzzy
+#| msgid "Save As"
+msgid "Save _As"
+msgstr "இப்படி சேமி"
+
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
 msgstr "_FILTER:"
@@ -35182,6 +35208,7 @@ msgid "Media Manager"
 msgstr "ஊடக மேலாளர்"
 
 #: ../gramps/plugins/tool/mediamanager.py:95
+#: ../gramps/plugins/tool/verify.glade:110
 msgid "Help"
 msgstr "உதவி"
 
@@ -35216,9 +35243,9 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"இந்த கருவி கிராம்ப்களில் சேமிக்கப்பட்ட ஊடக பொருட்களில் தொகுதி செயல்பாடுகளை அனுமதிக்கிறது"
-". கிராம்ப்ச் மீடியா பொருளுக்கும் அதன் கோப்பிற்கும் இடையே ஒரு முக்கியமான வேறுபாடு இருக்க "
-"வேண்டும்.\n"
+"இந்த கருவி கிராம்ப்களில் சேமிக்கப்பட்ட ஊடக பொருட்களில் தொகுதி செயல்பாடுகளை "
+"அனுமதிக்கிறது. கிராம்ப்ச் மீடியா பொருளுக்கும் அதன் கோப்பிற்கும் இடையே ஒரு முக்கியமான "
+"வேறுபாடு இருக்க வேண்டும்.\n"
 "\n"
 " கிராம்ப்ச் மீடியா பொருள் என்பது மீடியா பொருள் கோப்பைப் பற்றிய தரவுகளின் தொகுப்பாகும்: அதன் "
 "கோப்பு பெயர் மற்றும்/அல்லது பாதை, அதன் விளக்கம், அதன் ஐடி, குறிப்புகள், மூல குறிப்புகள் "
@@ -35230,8 +35257,8 @@ msgstr ""
 "\n"
 " உங்கள் கிராம்ப்ச் தரவுத்தளத்தில் உள்ள பதிவுகளை மட்டுமே மாற்ற இந்த கருவி உங்களை "
 "அனுமதிக்கிறது. நீங்கள் கோப்புகளை நகர்த்தவோ அல்லது மறுபெயரிடவோ விரும்பினால், அதை நீங்கள் "
-"சொந்தமாக, கிராம்ப்களுக்கு வெளியே செய்ய வேண்டும். இந்த கருவியைப் பயன்படுத்தி பாதைகளை நீங்கள்"
-" சரிசெய்யலாம், இதனால் மீடியா பொருள்கள் சரியான கோப்பு இருப்பிடங்களை சேமிக்கின்றன."
+"சொந்தமாக, கிராம்ப்களுக்கு வெளியே செய்ய வேண்டும். இந்த கருவியைப் பயன்படுத்தி பாதைகளை "
+"நீங்கள் சரிசெய்யலாம், இதனால் மீடியா பொருள்கள் சரியான கோப்பு இருப்பிடங்களை சேமிக்கின்றன."
 
 #: ../gramps/plugins/tool/mediamanager.py:357
 msgid "Affected path"
@@ -35989,36 +36016,35 @@ msgstr "தரவுத்தள பிழைகளை உருவாக்க�
 msgid "Generating families"
 msgstr "குடும்பங்களை உருவாக்குதல்"
 
-#: ../gramps/plugins/tool/testcasegenerator.py:530
-#: ../gramps/plugins/tool/testcasegenerator.py:569
-#: ../gramps/plugins/tool/testcasegenerator.py:617
-#: ../gramps/plugins/tool/testcasegenerator.py:635
-#: ../gramps/plugins/tool/testcasegenerator.py:668
-#: ../gramps/plugins/tool/testcasegenerator.py:740
-#: ../gramps/plugins/tool/testcasegenerator.py:776
-#: ../gramps/plugins/tool/testcasegenerator.py:799
-#: ../gramps/plugins/tool/testcasegenerator.py:818
-#: ../gramps/plugins/tool/testcasegenerator.py:838
-#: ../gramps/plugins/tool/testcasegenerator.py:862
-#: ../gramps/plugins/tool/testcasegenerator.py:881
-#: ../gramps/plugins/tool/testcasegenerator.py:900
-#: ../gramps/plugins/tool/testcasegenerator.py:919
-#: ../gramps/plugins/tool/testcasegenerator.py:947
-#: ../gramps/plugins/tool/testcasegenerator.py:974
-#: ../gramps/plugins/tool/testcasegenerator.py:1002
-#: ../gramps/plugins/tool/testcasegenerator.py:1040
-#: ../gramps/plugins/tool/testcasegenerator.py:1052
-#: ../gramps/plugins/tool/testcasegenerator.py:1064
-#: ../gramps/plugins/tool/testcasegenerator.py:1076
-#: ../gramps/plugins/tool/testcasegenerator.py:1093
-#: ../gramps/plugins/tool/testcasegenerator.py:1111
-#: ../gramps/plugins/tool/testcasegenerator.py:1136
-#: ../gramps/plugins/tool/testcasegenerator.py:1153
-#: ../gramps/plugins/tool/testcasegenerator.py:1171
-#: ../gramps/plugins/tool/testcasegenerator.py:1206
-#: ../gramps/plugins/tool/testcasegenerator.py:1654
-#: ../gramps/plugins/tool/testcasegenerator.py:1761
-#: ../gramps/plugins/tool/testcasegenerator.py:1787
+#: ../gramps/plugins/tool/testcasegenerator.py:459
+#: ../gramps/plugins/tool/testcasegenerator.py:534
+#: ../gramps/plugins/tool/testcasegenerator.py:573
+#: ../gramps/plugins/tool/testcasegenerator.py:621
+#: ../gramps/plugins/tool/testcasegenerator.py:639
+#: ../gramps/plugins/tool/testcasegenerator.py:672
+#: ../gramps/plugins/tool/testcasegenerator.py:744
+#: ../gramps/plugins/tool/testcasegenerator.py:780
+#: ../gramps/plugins/tool/testcasegenerator.py:803
+#: ../gramps/plugins/tool/testcasegenerator.py:822
+#: ../gramps/plugins/tool/testcasegenerator.py:842
+#: ../gramps/plugins/tool/testcasegenerator.py:866
+#: ../gramps/plugins/tool/testcasegenerator.py:885
+#: ../gramps/plugins/tool/testcasegenerator.py:904
+#: ../gramps/plugins/tool/testcasegenerator.py:923
+#: ../gramps/plugins/tool/testcasegenerator.py:951
+#: ../gramps/plugins/tool/testcasegenerator.py:978
+#: ../gramps/plugins/tool/testcasegenerator.py:1006
+#: ../gramps/plugins/tool/testcasegenerator.py:1044
+#: ../gramps/plugins/tool/testcasegenerator.py:1056
+#: ../gramps/plugins/tool/testcasegenerator.py:1068
+#: ../gramps/plugins/tool/testcasegenerator.py:1080
+#: ../gramps/plugins/tool/testcasegenerator.py:1097
+#: ../gramps/plugins/tool/testcasegenerator.py:1115
+#: ../gramps/plugins/tool/testcasegenerator.py:1140
+#: ../gramps/plugins/tool/testcasegenerator.py:1157
+#: ../gramps/plugins/tool/testcasegenerator.py:1175
+#: ../gramps/plugins/tool/testcasegenerator.py:1210
+#: ../gramps/plugins/tool/testcasegenerator.py:1783
 #, python-format
 msgid "Testcase generator step %d"
 msgstr "டெச்ட்கேச் செனரேட்டர் படி %d"
@@ -36525,7 +36551,7 @@ msgstr "மேற்கோள் பார்வை"
 msgid "Citation Filter Editor"
 msgstr "மேற்கோள் வடிகட்டி எடிட்டர்"
 
-#: ../gramps/plugins/view/citationlistview.py:417
+#: ../gramps/plugins/view/citationlistview.py:419
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation "
 "is already being edited or another object that is associated with the same "
@@ -36538,15 +36564,15 @@ msgstr ""
 "\n"
 " இந்த மேற்கோளைத் திருத்த, நீங்கள் பொருளை மூட வேண்டும்."
 
-#: ../gramps/plugins/view/citationlistview.py:431
-#: ../gramps/plugins/view/citationlistview.py:443
-#: ../gramps/plugins/view/citationtreeview.py:682
-#: ../gramps/plugins/view/citationtreeview.py:699
+#: ../gramps/plugins/view/citationlistview.py:433
+#: ../gramps/plugins/view/citationlistview.py:445
+#: ../gramps/plugins/view/citationtreeview.py:684
+#: ../gramps/plugins/view/citationtreeview.py:701
 msgid "Cannot merge citations."
 msgstr "மேற்கோள்களை ஒன்றிணைக்க முடியாது."
 
-#: ../gramps/plugins/view/citationlistview.py:433
-#: ../gramps/plugins/view/citationtreeview.py:684
+#: ../gramps/plugins/view/citationlistview.py:435
+#: ../gramps/plugins/view/citationtreeview.py:686
 msgid ""
 "Exactly two citations must be selected to perform a merge. A second citation "
 "can be selected by holding down the control key while clicking on the "
@@ -36556,8 +36582,8 @@ msgstr ""
 "சொடுக்கு செய்யும் போது கட்டுப்பாட்டு விசையை அழுத்திப் பிடிப்பதன் மூலம் இரண்டாவது "
 "மேற்கோளைத் தேர்ந்தெடுக்கலாம்."
 
-#: ../gramps/plugins/view/citationlistview.py:445
-#: ../gramps/plugins/view/citationtreeview.py:701
+#: ../gramps/plugins/view/citationlistview.py:447
+#: ../gramps/plugins/view/citationtreeview.py:703
 msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
@@ -36605,7 +36631,7 @@ msgstr "எல்லா முனைகளையும் சரிவு"
 msgid "Expand all Nodes"
 msgstr "அனைத்து முனைகளையும் விரிவாக்குங்கள்"
 
-#: ../gramps/plugins/view/citationtreeview.py:668
+#: ../gramps/plugins/view/citationtreeview.py:670
 msgid ""
 "This source cannot be edited at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -36619,11 +36645,11 @@ msgstr ""
 "\n"
 " இந்த மூலத்தைத் திருத்த, நீங்கள் பொருளை மூட வேண்டும்."
 
-#: ../gramps/plugins/view/citationtreeview.py:712
+#: ../gramps/plugins/view/citationtreeview.py:714
 msgid "Cannot perform merge."
 msgstr "ஒன்றிணைக்க முடியாது."
 
-#: ../gramps/plugins/view/citationtreeview.py:714
+#: ../gramps/plugins/view/citationtreeview.py:716
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
@@ -36657,11 +36683,11 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட நிகழ�
 msgid "Event Filter Editor"
 msgstr "நிகழ்வு வடிகட்டி எடிட்டர்"
 
-#: ../gramps/plugins/view/eventview.py:431
+#: ../gramps/plugins/view/eventview.py:433
 msgid "Cannot merge event objects."
 msgstr "நிகழ்வு பொருள்களை ஒன்றிணைக்க முடியாது."
 
-#: ../gramps/plugins/view/eventview.py:433
+#: ../gramps/plugins/view/eventview.py:435
 msgid ""
 "Exactly two events must be selected to perform a merge. A second object can "
 "be selected by holding down the control key while clicking on the desired "
@@ -36703,11 +36729,11 @@ msgstr "தந்தையை சுறுசுறுப்பாக ஆக்�
 msgid "Make Mother Active Person"
 msgstr "தாயை சுறுசுறுப்பாக ஆக்குங்கள்"
 
-#: ../gramps/plugins/view/familyview.py:436
+#: ../gramps/plugins/view/familyview.py:438
 msgid "Cannot merge families."
 msgstr "குடும்பங்களை ஒன்றிணைக்க முடியாது."
 
-#: ../gramps/plugins/view/familyview.py:438
+#: ../gramps/plugins/view/familyview.py:440
 msgid ""
 "Exactly two families must be selected to perform a merge. A second family "
 "can be selected by holding down the control key while clicking on the "
@@ -37378,11 +37404,11 @@ msgstr "மீடியா வடிகட்டி எடிட்டர்"
 msgid "View in the default viewer"
 msgstr "இயல்பான காட்டியில் காண்"
 
-#: ../gramps/plugins/view/mediaview.py:510
+#: ../gramps/plugins/view/mediaview.py:512
 msgid "Cannot merge media objects."
 msgstr "ஊடக பொருட்களை ஒன்றிணைக்க முடியாது."
 
-#: ../gramps/plugins/view/mediaview.py:512
+#: ../gramps/plugins/view/mediaview.py:514
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -37404,11 +37430,11 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட குறி�
 msgid "Note Filter Editor"
 msgstr "குறிப்பு வடிகட்டி எடிட்டர்"
 
-#: ../gramps/plugins/view/noteview.py:365
+#: ../gramps/plugins/view/noteview.py:367
 msgid "Cannot merge notes."
 msgstr "குறிப்புகளை ஒன்றிணைக்க முடியாது."
 
-#: ../gramps/plugins/view/noteview.py:367
+#: ../gramps/plugins/view/noteview.py:369
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
@@ -37751,11 +37777,11 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட களஞ்�
 msgid "Repository Filter Editor"
 msgstr "களஞ்சிய வடிகட்டி எடிட்டர்"
 
-#: ../gramps/plugins/view/repoview.py:395
+#: ../gramps/plugins/view/repoview.py:397
 msgid "Cannot merge repositories."
 msgstr "களஞ்சியங்களை ஒன்றிணைக்க முடியாது."
 
-#: ../gramps/plugins/view/repoview.py:397
+#: ../gramps/plugins/view/repoview.py:399
 msgid ""
 "Exactly two repositories must be selected to perform a merge. A second "
 "repository can be selected by holding down the control key while clicking on "
@@ -37781,11 +37807,11 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட ஆதார�
 msgid "Source Filter Editor"
 msgstr "மூல வடிகட்டி எடிட்டர்"
 
-#: ../gramps/plugins/view/sourceview.py:359
+#: ../gramps/plugins/view/sourceview.py:361
 msgid "Cannot merge sources."
 msgstr "மூலங்களை ஒன்றாக்க முடியாது."
 
-#: ../gramps/plugins/view/sourceview.py:361
+#: ../gramps/plugins/view/sourceview.py:363
 msgid ""
 "Exactly two sources must be selected to perform a merge. A second source can "
 "be selected by holding down the control key while clicking on the desired "
@@ -40231,10 +40257,6 @@ msgstr "பாணி சீட் இல்லை"
 #, fuzzy
 #~ msgid "_Delete Item"
 #~ msgstr "அழி (_D)"
-
-#, fuzzy
-#~ msgid "_Print..."
-#~ msgstr "திருத்து... (_E)"
 
 #, fuzzy
 #~ msgid "Map Menu"
