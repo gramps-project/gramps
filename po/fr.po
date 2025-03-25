@@ -43,13 +43,14 @@
 # Boris Dauriac <dauriacboris+gramps@gmail.com>, 2024.
 # Emmanuel Vallois <emmanuel@vallois.name>, 2024, 2025.
 # n4n5 <email.n4n5@gmail.com>, 2024.
+# Frédéric Schwartz <frederic@online404.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-02-28 08:44+0000\n"
-"Last-Translator: Emmanuel Vallois <emmanuel@vallois.name>\n"
+"PO-Revision-Date: 2025-03-24 00:52+0000\n"
+"Last-Translator: Frédéric Schwartz <frederic@online404.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -57,7 +58,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.10.2-rc\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1551,13 +1552,13 @@ msgstr ""
 "                                         (hors interface graphique)\n"
 "  -v, --version                          Affiche les versions des "
 "bibliothèques\n"
-"  -S, --safe                             Lance Gramps en « Mode sans "
-"échec »\n"
+"  -S, --safe                             Lance Gramps en « Mode sans échec »"
+"\n"
 "                                         (utilise temporairement les "
 "paramètres par défaut)\n"
 "  -D, --default=[APXFE]                  Réinitialise les paramètres à leurs "
 "valeurs par défaut ;\n"
-"                 A - les greffons sont effacés\n"
+"                 A - les extensions sont effacées\n"
 "                 P - les Préférences reprennent leurs valeurs par défaut\n"
 "                 X - les livres sont effacés, les paramètres des rapports\n"
 "                     et des outils reprennent leurs valeurs par défaut\n"
@@ -2289,7 +2290,7 @@ msgstr "aucun"
 #: ../gramps/plugins/webreport/person.py:861
 #: ../gramps/plugins/webreport/person.py:863
 msgid ":"
-msgstr " : "
+msgstr ":"
 
 # trunk
 #: ../gramps/gen/datehandler/__init__.py:95
@@ -10318,7 +10319,7 @@ msgstr "Divers"
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr ""
-"ERREUR : échec à la lecture de l'enregistrement du greffon %(filename)s"
+"ERREUR : échec à la lecture de l'enregistrement de l'extension %(filename)s"
 
 #: ../gramps/gen/plug/_pluginreg.py:1418
 #, python-format
@@ -10326,7 +10327,7 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"AVERTISSEMENT : le greffon %(plugin_name)s n'a pas de traduction pour vos "
+"AVERTISSEMENT : l'extension %(plugin_name)s n'a pas de traduction pour vos "
 "langues configurées, utilisation de l'anglais américain."
 
 #: ../gramps/gen/plug/_pluginreg.py:1467
@@ -10337,9 +10338,9 @@ msgid ""
 "\"%(gramps_target_version)s\" which is invalid for Gramps "
 "\"%(gramps_version)s\"."
 msgstr ""
-"ERREUR : le fichier greffon %(filename)s est en version "
-"« %(gramps_target_version)s » ce qui est incompatible avec Gramps "
-"« %(gramps_version)s »."
+"ERREUR : le fichier d'extension %(filename)s est en version « "
+"%(gramps_target_version)s » ce qui est incompatible avec Gramps « "
+"%(gramps_version)s »."
 
 #: ../gramps/gen/plug/_pluginreg.py:1495
 #, python-format
@@ -13205,8 +13206,8 @@ msgstr ""
 #: ../gramps/gui/configure.py:1048
 msgid "Show plugin status dialog on plugin load error"
 msgstr ""
-"Afficher la fenêtre d'état des greffons quand il y a une erreur au "
-"chargement d'un greffon"
+"Afficher la fenêtre d'état des extensions quand il y a une erreur au "
+"chargement d'une extension"
 
 #: ../gramps/gui/configure.py:1054
 msgid "Warnings"
@@ -14616,11 +14617,11 @@ msgstr "Outils"
 
 #: ../gramps/gui/displaystate.py:423
 msgid "Open Addon Manager"
-msgstr "Gestionnaire de greffons"
+msgstr "Gestionnaire d'extensions"
 
 #: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:474
 msgid "Addons"
-msgstr "Greffons"
+msgstr "Extensions"
 
 #: ../gramps/gui/displaystate.py:429
 msgid "Open Preferences"
@@ -19778,7 +19779,7 @@ msgstr "Installer les g_reffons sélectionnés"
 #: ../gramps/gui/glade/updateaddons.glade:70
 #: ../gramps/gui/plug/_windows.py:2103
 msgid "Available Gramps Updates for Addons"
-msgstr "Mises à jour disponibles pour les greffons Gramps"
+msgstr "Mises à jour disponibles pour des extensions Gramps"
 
 # trunk
 #: ../gramps/gui/glade/updateaddons.glade:87
@@ -19791,14 +19792,14 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Addon Manager."
 msgstr ""
-"Gramps fournit un ensemble de greffons pour toutes les fonctionnalités "
-"nécessaires. De plus, vous pouvez étendre ces fonctions avec des greffons "
-"supplémentaires. Ces greffons fournissent des rapports, des listes, des "
-"vues, des Gramplets et d'avantage. Vous pouvez y sélectionner des greffons "
-"supplémentaires, ils seront téléchargés depuis Internet via le site de "
+"Gramps fournit un ensemble d'extensions pour toutes les fonctionnalités "
+"nécessaires. De plus, vous pouvez étendre ces fonctions avec des extensions "
+"supplémentaires. Ces extensions fournissent des rapports, des listes, des "
+"vues, des Gramplets et d'avantage. Vous pouvez y sélectionner des extensions "
+"supplémentaires, elles seront téléchargées depuis Internet via le site de "
 "Gramps puis installés localement sur votre ordinateur. Si vous fermez cette "
-"boîte de dialogue maintenant, vous pourrez toujours installer ces greffons "
-"plus tard depuis le menu Édition -> Gestionnaire de greffons."
+"boîte de dialogue maintenant, vous pourrez toujours installer ces extensions "
+"plus tard depuis le menu Édition -> Gestionnaire des extensions."
 
 # trunk
 #: ../gramps/gui/glade/updateaddons.glade:103
@@ -19866,7 +19867,7 @@ msgstr "À _propos"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Addon Manager..."
-msgstr "Gestionnaire de greffons…"
+msgstr "Gestionnaire des extensions…"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -19915,7 +19916,7 @@ msgstr "_Navigateur"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Plugin Manager"
-msgstr "_Gestionnaire de greffons"
+msgstr "_Gestionnaire des extensions"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Preferences..."
@@ -20595,7 +20596,7 @@ msgstr "Exigences"
 
 #: ../gramps/gui/plug/_windows.py:380
 msgid "Addon Manager"
-msgstr "Gestionnaire de greffons"
+msgstr "Gestionnaire des extensions"
 
 #: ../gramps/gui/plug/_windows.py:388 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
@@ -20607,7 +20608,7 @@ msgstr "Filtres"
 
 #: ../gramps/gui/plug/_windows.py:425
 msgid "All addons"
-msgstr "Tous les greffons"
+msgstr "Toutes les extensions"
 
 #: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:632
 msgid "Not installed"
@@ -20639,7 +20640,7 @@ msgstr "Tout statut"
 # trunk
 #: ../gramps/gui/plug/_windows.py:463
 msgid "Reset addon filters to defaults"
-msgstr "Réinitialiser les filtres des greffons aux valeurs par défaut"
+msgstr "Réinitialiser les filtres des extensions aux valeurs par défaut"
 
 # master
 #: ../gramps/gui/plug/_windows.py:477
@@ -20661,15 +20662,15 @@ msgstr "Chargement…"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "Addon Registration Failed"
-msgstr "L'enregistrement du greffon a échoué"
+msgstr "L'enregistrement de l'extension a échoué"
 
 #: ../gramps/gui/plug/_windows.py:564
 msgid "The addon will be unavailable in your current configuration."
-msgstr "Le greffon ne sera pas disponible dans votre configuration actuelle."
+msgstr "L'extensions ne sera pas disponible dans votre configuration actuelle."
 
 #: ../gramps/gui/plug/_windows.py:589
 msgid "No matching addons found."
-msgstr "Aucun greffon correspondant trouvé"
+msgstr "Aucune extension correspondante trouvée"
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
@@ -20730,15 +20731,15 @@ msgstr "Vérification des mises à jour"
 
 #: ../gramps/gui/plug/_windows.py:790
 msgid "Updated addons only"
-msgstr "Seulement les greffons mis à jour"
+msgstr "Seulement les extensions mises à jour"
 
 #: ../gramps/gui/plug/_windows.py:791
 msgid "New addons only"
-msgstr "Seulement les nouveaux greffons"
+msgstr "Seulement les nouvelles extensions"
 
 #: ../gramps/gui/plug/_windows.py:792
 msgid "New and updated addons"
-msgstr "Les greffons mis à jour et les nouveaux"
+msgstr "Les extensions mises à jour et les nouvelles"
 
 #: ../gramps/gui/plug/_windows.py:803
 msgid "What to check"
@@ -20746,7 +20747,7 @@ msgstr "Vérifier"
 
 #: ../gramps/gui/plug/_windows.py:809
 msgid "Do not ask about previously notified addons"
-msgstr "Ne plus demander pour les greffons notifiés précédemment"
+msgstr "Ne plus demander pour les extensions notifiées précédemment"
 
 # master
 #: ../gramps/gui/plug/_windows.py:816
@@ -20777,15 +20778,15 @@ msgstr "Etes-vous certain(e) ?"
 # Substantif (GNOME fr)
 #: ../gramps/gui/plug/_windows.py:962
 msgid "Checking Addons Failed"
-msgstr "La vérification des greffons a échoué"
+msgstr "La vérification des extensions a échoué"
 
 #: ../gramps/gui/plug/_windows.py:964
 msgid "The addon repository appears to be unavailable. Please try again later."
-msgstr "Le dépôt des greffons semble inaccessible. Essayez un peu plus tard."
+msgstr "Le dépôt des extensions semble inaccessible. Essayez un peu plus tard."
 
 #: ../gramps/gui/plug/_windows.py:979
 msgid "There are no available addons of this type"
-msgstr "Il n'y a pas de greffon de ce type disponible"
+msgstr "Il n'y a pas d'extensions de ce type disponible"
 
 #: ../gramps/gui/plug/_windows.py:980
 msgid "' and '"
@@ -20814,7 +20815,7 @@ msgstr "Visible"
 
 #: ../gramps/gui/plug/_windows.py:1027
 msgid "Plugin Manager"
-msgstr "Gestionnaire de greffons"
+msgstr "Gestionnaire des extensions"
 
 #: ../gramps/gui/plug/_windows.py:1079 ../gramps/gui/plug/_windows.py:1137
 msgid "Info"
@@ -20830,7 +20831,7 @@ msgstr "Charger"
 
 #: ../gramps/gui/plug/_windows.py:1097
 msgid "Registered Plugins"
-msgstr "Greffons enregistrés"
+msgstr "Extensions enregistrées"
 
 #: ../gramps/gui/plug/_windows.py:1116
 msgid "Loaded"
@@ -20849,20 +20850,20 @@ msgstr "Message"
 # Substantif (GNOME fr)
 #: ../gramps/gui/plug/_windows.py:1156
 msgid "Loaded Plugins"
-msgstr "Greffons chargés"
+msgstr "Extensions chargées"
 
 #: ../gramps/gui/plug/_windows.py:1178
 msgid "Addon Name"
-msgstr "Nom du greffon ajouté"
+msgstr "Nom de l'extension ajoutée"
 
 #: ../gramps/gui/plug/_windows.py:1190
 msgid "Path to Addon:"
-msgstr "Chemin vers le greffon :"
+msgstr "Chemin vers l'extension :"
 
 # bouton
 #: ../gramps/gui/plug/_windows.py:1210
 msgid "Install Addon"
-msgstr "Installer le greffon"
+msgstr "Installer l'extension"
 
 # bouton
 #: ../gramps/gui/plug/_windows.py:1213
@@ -20891,7 +20892,7 @@ msgstr "Lecture depuis gramps-project.org..."
 # Substantif (GNOME fr)
 #: ../gramps/gui/plug/_windows.py:1281
 msgid "Checking addon..."
-msgstr "Vérification du greffon..."
+msgstr "Vérification de l'extension..."
 
 #: ../gramps/gui/plug/_windows.py:1289
 msgid "Unknown Help URL"
@@ -20914,11 +20915,11 @@ msgstr "Installation..."
 # bouton
 #: ../gramps/gui/plug/_windows.py:1394
 msgid "Installing Addon"
-msgstr "Installation du greffon"
+msgstr "Installation de l'extension"
 
 #: ../gramps/gui/plug/_windows.py:1417
 msgid "Load Addon"
-msgstr "Chargement du greffon"
+msgstr "Chargement de l'extension"
 
 #: ../gramps/gui/plug/_windows.py:1509
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
@@ -20931,7 +20932,7 @@ msgstr "OK"
 
 #: ../gramps/gui/plug/_windows.py:1640
 msgid "Plugin name"
-msgstr "Nom du greffon"
+msgstr "Nom de l'extension"
 
 #: ../gramps/gui/plug/_windows.py:1643
 msgid "Authors"
@@ -20948,7 +20949,7 @@ msgstr "Information détaillée"
 
 #: ../gramps/gui/plug/_windows.py:1703
 msgid "Plugin Error"
-msgstr "Erreur de greffon"
+msgstr "Erreur de l'extension"
 
 # master
 #: ../gramps/gui/plug/_windows.py:1772
@@ -20964,7 +20965,7 @@ msgstr "Fenêtre principale"
 
 #: ../gramps/gui/plug/_windows.py:2208
 msgid "Downloading and installing selected addons..."
-msgstr "Téléchargement et installation des greffons sélectionnés..."
+msgstr "Téléchargement et installation des extensions sélectionnées..."
 
 # master
 #: ../gramps/gui/plug/_windows.py:2251
@@ -20974,19 +20975,19 @@ msgstr "Erreur d'installation"
 # master
 #: ../gramps/gui/plug/_windows.py:2252
 msgid "The following addons had errors: "
-msgstr "Les greffons suivants comportent des erreurs : "
+msgstr "Les extensions suivantes comportent des erreurs : "
 
 #: ../gramps/gui/plug/_windows.py:2260 ../gramps/gui/plug/_windows.py:2277
 msgid "Done downloading and installing addons"
-msgstr "Greffons téléchargés et installés"
+msgstr "Extensions téléchargées et installées"
 
 # trunk
 #: ../gramps/gui/plug/_windows.py:2265
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] "{number_of} greffon a été installé."
-msgstr[1] "{number_of} greffons ont été installés."
+msgstr[0] "{number_of} extension a été installée."
+msgstr[1] "{number_of} extensions ont été installées."
 
 #: ../gramps/gui/plug/_windows.py:2270
 msgid "If you have installed a 'View', you will need to restart Gramps."
@@ -20995,7 +20996,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/_windows.py:2278
 msgid "No addons were installed."
-msgstr "Aucun greffon n'a été installé."
+msgstr "Aucune extension n'a été installée."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:126
 msgid "Export Assistant"
@@ -22009,7 +22010,7 @@ msgstr "Aucun arbre familial"
 # Substantif (GNOME fr)
 #: ../gramps/gui/viewmanager.py:612
 msgid "Registering plugins..."
-msgstr "Enregistrement des greffons..."
+msgstr "Enregistrement des extensions..."
 
 #: ../gramps/gui/viewmanager.py:619
 msgid "Ready"
@@ -22106,12 +22107,13 @@ msgstr ""
 "de cette vue (%(firstauthoremail)s).\n"
 "\n"
 "Si vous ne souhaitez plus que Gramps essaie de charger cette vue, alors vous "
-"pouvez la masquer en utilisant le gestionnaire de greffons dans le menu Aide."
+"pouvez la masquer en utilisant le gestionnaire des extensions dans le menu "
+"Aide."
 
 # Substantif (GNOME fr)
 #: ../gramps/gui/viewmanager.py:1701
 msgid "Failed Loading Plugin"
-msgstr "Échec du chargement du greffon"
+msgstr "Échec du chargement de l'extension"
 
 # master
 #: ../gramps/gui/viewmanager.py:1703
@@ -22128,7 +22130,7 @@ msgid ""
 "If you do not want Gramps to try and load this plugin again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
-"Le greffon %(name)s n'a pas été chargé et a retourné une erreur.\n"
+"L'extension %(name)s n'a pas été chargé et a retourné une erreur.\n"
 "\n"
 "%(error_msg)s\n"
 "\n"
@@ -22136,9 +22138,9 @@ msgstr ""
 "pouvez soumettre un bogue à %(gramps_bugtracker_url)s ou contacter l'auteur "
 "(%(firstauthoremail)s).\n"
 "\n"
-"Si vous ne souhaitez plus que Gramps essaie de charger ce greffon, alors "
-"vous pouvez le masquer en utilisant le gestionnaire de greffons dans le menu "
-"Aide."
+"Si vous ne souhaitez plus que Gramps essaie de charger cette extension, "
+"alors vous pouvez le masquer en utilisant le gestionnaire des extensions "
+"dans le menu Aide."
 
 #: ../gramps/gui/viewmanager.py:1799
 msgid "Gramps XML Backup"
@@ -26907,7 +26909,7 @@ msgstr "Catégories des vues Gramps"
 #: ../gramps/plugins/gramplet/welcomegramplet.py:246
 #: ../gramps/plugins/gramplet/welcomegramplet.py:255
 msgid "Addons and \"Gramplets\""
-msgstr "Greffons et « Gramplets »"
+msgstr "Extensions et « Gramplets »"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:249
 msgid ""
@@ -35506,7 +35508,7 @@ msgstr "%(event_role)s à %(event_name)s de %(primary_person)s : %(event_text)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:554
 #: ../gramps/plugins/textreport/familygroup.py:146
 msgid "; "
-msgstr " ; "
+msgstr "; "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:639
 #: ../gramps/plugins/textreport/detdescendantreport.py:716
@@ -37410,7 +37412,7 @@ msgstr "Génération des dates"
 # master
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:255
 msgid "Date Test Plugin"
-msgstr "Greffon de test sur les dates"
+msgstr "Extension de test sur les dates"
 
 # master
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:260
