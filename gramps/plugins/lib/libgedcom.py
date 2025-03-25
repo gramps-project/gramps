@@ -3062,7 +3062,7 @@ class GedcomParser(UpdateCallback):
         data = next(cursor)
         while data:
             (handle, val) = data
-            self.place_names[val[2]].append(handle)
+            self.place_names[val.title].append(handle)
             data = next(cursor)
         cursor.close()
 
