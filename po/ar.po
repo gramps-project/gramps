@@ -7,13 +7,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Sulaiman A <67igltrpe@mozmail.com>, 2023.
 # Osama Taghlebi <osametto@outlook.com>, 2025.
+# Explorewhere <explorewhere.channel@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps-5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-01-13 22:21+0000\n"
-"Last-Translator: Osama Taghlebi <osametto@outlook.com>\n"
+"PO-Revision-Date: 2025-03-21 23:00+0000\n"
+"Last-Translator: Explorewhere <explorewhere.channel@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ar/>\n"
 "Language: ar\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Poedit-Language: Arabic\n"
 "X-Language: ar\n"
 "X-Source-Language: C\n"
@@ -258,7 +259,7 @@ msgstr "إدارة معلومات الأنساب، وإجراء البحوث و�
 
 #: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr ""
+msgstr "Genealogy; Family History; Research; Family Tree; GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
 #: ../gramps/gen/const.py:265
@@ -281,9 +282,8 @@ msgid ""
 msgstr ""
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "غرمبز نظام الأنساب"
+msgstr "Gramps Development الفريق"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:227
