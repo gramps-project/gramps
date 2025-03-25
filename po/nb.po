@@ -21,16 +21,16 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-02-25 04:52+0000\n"
+"PO-Revision-Date: 2025-03-24 00:52+0000\n"
 "Last-Translator: Harald Herreros <h.herreros@proton.me>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/nb_NO/>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.2-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -21379,10 +21379,8 @@ msgid "Closes print preview window"
 msgstr "Lukker vindu for forhåndsvisning"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:39
-#, fuzzy
-#| msgid "_Print..."
 msgid "_Print"
-msgstr "_Skriv ut..."
+msgstr "_Skriv ut"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
@@ -21390,7 +21388,7 @@ msgstr "Skriver ut gjeldende fil"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:63
 msgid "_First"
-msgstr ""
+msgstr "_Første"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
@@ -21456,7 +21454,7 @@ msgstr "Viser neste side"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:108
 msgid "_Last"
-msgstr ""
+msgstr "_Siste"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -26008,7 +26006,7 @@ msgstr "Resultater"
 #: ../gramps/plugins/importer/importprogen.py:219
 #: ../gramps/plugins/importer/importvcard.py:91
 msgid "done"
-msgstr "utført"
+msgstr "fullført"
 
 #: ../gramps/plugins/importer/importcsv.py:204
 msgid "given name"
@@ -34933,10 +34931,8 @@ msgid "Guess"
 msgstr "Gjetting"
 
 #: ../gramps/plugins/tool/eventcmp.glade:37
-#, fuzzy
-#| msgid "Save As"
 msgid "Save _As"
-msgstr "Lagre som"
+msgstr "_Lagre som"
 
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
