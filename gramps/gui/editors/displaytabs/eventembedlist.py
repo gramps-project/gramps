@@ -299,28 +299,36 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     def share_button_clicked(self, obj):
         SelectEvent = SelectorFactory("Event")
 
-        sel = SelectEvent(self.dbstate, self.uistate, self.track)
-        event = sel.run()
-        if event:
-            try:
-                ref = EventRef()
-                ref.set_role(self.default_role())
-                self.get_ref_editor()(
-                    self.dbstate,
-                    self.uistate,
-                    self.track,
-                    event,
-                    ref,
-                    self.object_added,
-                )
-            except WindowActiveError:
-                from ...dialog import WarningDialog
+        sel = SelectEvent(
+            self.dbstate, self.uistate, self.track, allow_multiple_selection=True
+        )
+        events = sel.run()
+        if events:
+            if len(events) > 1:
+                for event in events:
+                    ref = EventRef()
+                    ref.set_role(self.default_role())
+                    self.object_added(ref, event)
+            else:
+                try:
+                    ref = EventRef()
+                    ref.set_role(self.default_role())
+                    self.get_ref_editor()(
+                        self.dbstate,
+                        self.uistate,
+                        self.track,
+                        events[0],
+                        ref,
+                        self.object_added,
+                    )
+                except WindowActiveError:
+                    from ...dialog import WarningDialog
 
-                WarningDialog(
-                    _("Cannot share this reference"),
-                    self.__blocked_text(),
-                    parent=self.uistate.window,
-                )
+                    WarningDialog(
+                        _("Cannot share this reference"),
+                        self.__blocked_text(),
+                        parent=self.uistate.window,
+                    )
 
     def edit_button_clicked(self, obj):
         ref = self.get_selected()

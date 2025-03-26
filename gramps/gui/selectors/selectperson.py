@@ -62,6 +62,7 @@ class SelectPerson(BaseSelector):
         skip=set(),
         show_search_bar=True,
         default=None,
+        allow_multiple_selection=False,
     ):
         # SelectPerson may have a title passed to it which should be used
         # instead of the default defined for get_window_title()
@@ -78,7 +79,15 @@ class SelectPerson(BaseSelector):
             self.WIKI_HELP_SEC = _("Select_Person_selector", "manual")
 
         BaseSelector.__init__(
-            self, dbstate, uistate, track, filter, skip, show_search_bar, default
+            self,
+            dbstate,
+            uistate,
+            track,
+            filter,
+            skip,
+            show_search_bar,
+            default,
+            allow_multiple_selection,
         )
 
     def _local_init(self):
