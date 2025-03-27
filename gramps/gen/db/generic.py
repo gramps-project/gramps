@@ -813,9 +813,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.set_serializer("blob")
             self.has_changed = 1  # to make sure genderstats gets saved
             self._set_all_metadata()
-            self.has_changed = 0  # number of commits
             if self.use_json_data():
                 self.set_serializer("json")
+                self._set_all_metadata()
+            self.has_changed = 0  # number of commits
 
         self.db_is_open = True
 
