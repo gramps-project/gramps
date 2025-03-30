@@ -59,7 +59,7 @@ from gi.repository import Gtk
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.config import config
-from gramps.gen.lib.date import Date, DateError, calendar_has_fixed_newyear
+from gramps.gen.lib.date import Date, DateError, calendar_has_fixed_newyear, Today
 from gramps.gen.datehandler import displayer
 from gramps.gen.const import URL_MANUAL_SECT1
 from ..display import display_help
@@ -180,11 +180,30 @@ class EditDate(ManagedWindow):
 
         self.dual_dated = self.top.get_object("dualdated")
 
+        # The following is not described in the glade file.
+        # glade is not for Gtk4.
+        table48 = self.top.get_object("table48")
+        self.first_date = Gtk.Calendar()
+        self.first_date.set_display_options(
+            Gtk.CalendarDisplayOptions.SHOW_DAY_NAMES
+            | Gtk.CalendarDisplayOptions.SHOW_HEADING
+        )
+        self.first_date.connect("day-selected", self.date_change_in_calendar, "start")
+        self.second_date = Gtk.Calendar()
+        self.second_date.set_display_options(
+            Gtk.CalendarDisplayOptions.SHOW_DAY_NAMES
+            | Gtk.CalendarDisplayOptions.SHOW_HEADING
+        )
+        self.second_date.connect("day-selected", self.date_change_in_calendar, "stop")
+        table48.attach(self.first_date, 0, 6, 3, 6)
+        table48.attach(self.second_date, 3, 6, 5, 6)
+
         # Disable second date controls if not compound date
         if not self.date.is_compound():
             self.stop_day.set_sensitive(0)
             self.stop_month_box.set_sensitive(0)
             self.stop_year.set_sensitive(0)
+            self.second_date.set_sensitive(0)
 
         # Disable the rest of controls if a text-only date
         if self.date.get_modifier() == Date.MOD_TEXTONLY:
@@ -195,6 +214,8 @@ class EditDate(ManagedWindow):
             self.quality_box.set_sensitive(0)
             self.dual_dated.set_sensitive(0)
             self.new_year.set_sensitive(0)
+            self.first_date.set_sensitive(0)
+            self.second_date.set_sensitive(0)
 
         self.text_entry = self.top.get_object("date_text_entry")
         self.text_entry.set_text(self.date.get_text())
@@ -246,6 +267,31 @@ class EditDate(ManagedWindow):
                     self.return_date.copy(self.validated_date)
                 self.close()
                 break
+
+    def show_on_calendar(self, calendar, date):
+        date = date.to_calendar("gregorian")
+        year = date.get_year()
+        if year < 0:  # Gtk.Calendar only works for positive years
+            date = Today()
+            year = date.get_year()
+        month = date.get_month()
+        if month > 0 and month < 13:
+            month -= 1
+        else:
+            month = 0
+        calendar.select_month(month, date.get_year())
+        calendar.select_day(date.get_day())
+
+    def date_change_in_calendar(self, calendar, date):
+        current = calendar.get_date()
+        if date == "start":
+            self.start_day.set_value(current.day)
+            self.start_month_box.set_active(current.month+1)
+            self.start_year.set_value(current.year)
+        else:
+            self.stop_day.set_value(current.day)
+            self.stop_month_box.set_active(current.month+1)
+            self.stop_year.set_value(current.year)
 
     def revalidate(self, obj=None):
         """
@@ -335,6 +381,12 @@ class EditDate(ManagedWindow):
                 self.stop_year.get_value_as_int(),
                 self.dual_dated.get_active(),
             )
+            dat1 = Date()
+            dat1.set_yr_mon_day(self.start_year.get_value(), self.start_month_box.get_active(), self.start_day.get_value())
+            self.show_on_calendar(self.first_date, dat1)
+            dat2 = Date()
+            dat2.set_yr_mon_day(self.stop_year.get_value(), self.stop_month_box.get_active(), self.stop_day.get_value())
+            self.show_on_calendar(self.second_date, dat2)
         else:
             value = (
                 self.start_day.get_value_as_int(),
@@ -342,6 +394,12 @@ class EditDate(ManagedWindow):
                 self.start_year.get_value_as_int(),
                 self.dual_dated.get_active(),
             )
+            dat1 = Date()
+            dat1.set_yr_mon_day(self.start_year.get_value(), self.start_month_box.get_active(), self.start_day.get_value())
+            self.show_on_calendar(self.first_date, dat1)
+            dat2 = Date()
+            dat2.set_yr_mon_day(0, 0, 0)  # This is to avoid the current date
+            self.show_on_calendar(self.second_date, dat2)
         calendar = self.calendar_box.get_active()
         newyear = Date.newyear_to_code(self.new_year.get_text())
         return (quality, modifier, calendar, value, text, newyear)
@@ -363,6 +421,7 @@ class EditDate(ManagedWindow):
         self.stop_day.set_sensitive(stop_date_sensitivity)
         self.stop_month_box.set_sensitive(stop_date_sensitivity)
         self.stop_year.set_sensitive(stop_date_sensitivity)
+        self.second_date.set_sensitive(stop_date_sensitivity)
 
         # Disable/enable the rest of the controls if the type is text-only.
         date_sensitivity = not the_modifier == Date.MOD_TEXTONLY
