@@ -286,11 +286,11 @@ class EditDate(ManagedWindow):
         current = calendar.get_date()
         if date == "start":
             self.start_day.set_value(current.day)
-            self.start_month_box.set_active(current.month+1)
+            self.start_month_box.set_active(current.month + 1)
             self.start_year.set_value(current.year)
         else:
             self.stop_day.set_value(current.day)
-            self.stop_month_box.set_active(current.month+1)
+            self.stop_month_box.set_active(current.month + 1)
             self.stop_year.set_value(current.year)
 
     def revalidate(self, obj=None):
@@ -382,10 +382,18 @@ class EditDate(ManagedWindow):
                 self.dual_dated.get_active(),
             )
             dat1 = Date()
-            dat1.set_yr_mon_day(self.start_year.get_value(), self.start_month_box.get_active(), self.start_day.get_value())
+            dat1.set_yr_mon_day(
+                self.start_year.get_value(),
+                self.start_month_box.get_active(),
+                self.start_day.get_value(),
+            )
             self.show_on_calendar(self.first_date, dat1)
             dat2 = Date()
-            dat2.set_yr_mon_day(self.stop_year.get_value(), self.stop_month_box.get_active(), self.stop_day.get_value())
+            dat2.set_yr_mon_day(
+                self.stop_year.get_value(),
+                self.stop_month_box.get_active(),
+                self.stop_day.get_value(),
+            )
             self.show_on_calendar(self.second_date, dat2)
         else:
             value = (
@@ -395,7 +403,11 @@ class EditDate(ManagedWindow):
                 self.dual_dated.get_active(),
             )
             dat1 = Date()
-            dat1.set_yr_mon_day(self.start_year.get_value(), self.start_month_box.get_active(), self.start_day.get_value())
+            dat1.set_yr_mon_day(
+                self.start_year.get_value(),
+                self.start_month_box.get_active(),
+                self.start_day.get_value(),
+            )
             self.show_on_calendar(self.first_date, dat1)
             dat2 = Date()
             dat2.set_yr_mon_day(0, 0, 0)  # This is to avoid the current date
