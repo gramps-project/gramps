@@ -212,6 +212,12 @@ class NavigationView(PageView):
         if handle and not hobj.lock and not (handle == hobj.present()):
             hobj.push(handle)
 
+    def new_object_added(self, object):
+        handle = object.get_handle()
+        hobj = self.get_history()
+        if handle and not hobj.lock and not (handle == hobj.present()):
+            hobj.push(handle, False)
+
     @abstractmethod
     def goto_handle(self, handle):
         """
