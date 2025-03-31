@@ -444,18 +444,22 @@ class NavigationView(PageView):
         nav_type = self.navigation_type()
         hobj = self.get_history()
         menu_len = min(len(items) - 1, MRU_SIZE)
-
+        active_handle = hobj.present()
+        hotkey_index = 0
         data = []
-        for index in range(menu_len - 1, -1, -1):
+        for index in range(menu_len, -1, -1):
             name, _obj = navigation_label(self.dbstate.db, nav_type, items[index])
             menus += menuitem % (nav_type, index, html.escape(name))
+            active = items[index] == active_handle
             data.append(
                 (
                     "%s%02d" % (nav_type, index),
                     make_callback(hobj.push, items[index]),
-                    "%s%d" % (mod_key(), menu_len - 1 - index),
+                    "%s%d" % (mod_key(), hotkey_index) if not active else "",
                 )
             )
+            if not active:
+                hotkey_index += 1
         self.mru_ui = [MRU_TOP + menus + MRU_BTM]
 
         self.mru_action = ActionGroup(name=self.title + "/MRU")
