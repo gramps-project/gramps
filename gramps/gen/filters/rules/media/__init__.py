@@ -27,6 +27,7 @@ from ._regexpidof import RegExpIdOf
 from ._hascitation import HasCitation
 from ._hasnoteregexp import HasNoteRegexp
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from ._hasnotetype import HasNoteType
 from ._hasreferencecountof import HasReferenceCountOf
 from ._hassourcecount import HasSourceCount
 from ._hassourceof import HasSourceOf
@@ -45,6 +46,7 @@ editor_rule_list = [
     RegExpIdOf,
     HasNoteRegexp,
     HasReferenceCountOf,
+    HasNoteType,
     HasSourceCount,
     HasSourceOf,
     MediaPrivate,
