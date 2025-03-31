@@ -155,12 +155,12 @@ class PlaceBaseView(ListView):
     def navigation_type(self):
         return "Place"
 
-    def setup_filter(self):
-        """Build the default filters and add them to the filter menu.
+    def setup_searches(self):
+        """Build the default searches and add them to the search bar.
         This overrides the listview method because we use the hidden
         COL_SEARCH that has alt names as well as primary name for name
         searching"""
-        self.search_bar.setup_filter(
+        self.search_bar.setup_searches(
             [
                 (
                     self.COLUMNS[pair[1]][0],
