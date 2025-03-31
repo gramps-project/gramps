@@ -54,12 +54,12 @@ class SearchBar:
         self.apply_text = ""
         self.visible = False
 
-        self.filterbar = Gtk.Box()
-        self.filter_text = Gtk.Entry()
-        self.filter_button = Gtk.Button.new_with_mnemonic(_("_Find"))
+        self.searchbar = Gtk.Box()
+        self.search_text = Gtk.Entry()
+        self.find_button = Gtk.Button.new_with_mnemonic(_("_Find"))
         self.clear_button = Gtk.Button.new_with_mnemonic(_("_Clear"))
-        self.filter_list = Gtk.ComboBox()
-        self.filter_model = Gtk.ListStore(
+        self.search_list = Gtk.ComboBox()
+        self.search_model = Gtk.ListStore(
             GObject.TYPE_STRING, GObject.TYPE_INT, GObject.TYPE_BOOLEAN
         )
 
@@ -71,37 +71,37 @@ class SearchBar:
         self.uistate = None
 
     def build(self):
-        self.filterbar.set_spacing(4)
-        self.filter_list.connect("changed", self.filter_changed)
+        self.searchbar.set_spacing(4)
+        self.search_list.connect("changed", self.search_changed)
 
-        self.filter_text.connect("key-press-event", self.key_press)
-        self.filter_text.connect("changed", self.text_changed)
+        self.search_text.connect("key-press-event", self.key_press)
+        self.search_text.connect("changed", self.text_changed)
 
-        self.filter_button.connect("clicked", self.apply_filter_clicked)
-        self.filter_button.set_sensitive(False)
+        self.find_button.connect("clicked", self.apply_find_clicked)
+        self.find_button.set_sensitive(False)
 
         self.clear_button.connect("clicked", self.apply_clear)
         self.clear_button.set_sensitive(False)
 
-        self.filterbar.pack_start(self.filter_list, False, True, 0)
-        self.filterbar.pack_start(self.filter_text, True, True, 0)
-        self.filterbar.pack_end(self.clear_button, False, True, 0)
-        self.filterbar.pack_end(self.filter_button, False, True, 0)
+        self.searchbar.pack_start(self.search_list, False, True, 0)
+        self.searchbar.pack_start(self.search_text, True, True, 0)
+        self.searchbar.pack_end(self.clear_button, False, True, 0)
+        self.searchbar.pack_end(self.find_button, False, True, 0)
 
-        return self.filterbar
+        return self.searchbar
 
-    def setup_filter(self, column_data):
+    def setup_searches(self, column_data):
         """
         column_data is a list of tuples:
         [(trans_col_name, index, use_exact), ...]
         """
-        self.filter_model.clear()
-        old_value = self.filter_list.get_active()
+        self.search_model.clear()
+        old_value = self.search_list.get_active()
 
         cell = Gtk.CellRendererText()
-        self.filter_list.clear()
-        self.filter_list.pack_start(cell, True)
-        self.filter_list.add_attribute(cell, "text", 0)
+        self.search_list.clear()
+        self.search_list.pack_start(cell, True)
+        self.search_list.add_attribute(cell, "text", 0)
 
         maxval = 0
         for col, index, exact in column_data:
@@ -109,75 +109,75 @@ class SearchBar:
                 rule = _("%s is") % col
             else:
                 rule = _("%s contains") % col
-            self.filter_model.append(row=[rule, index, False])
+            self.search_model.append(row=[rule, index, False])
             maxval += 1
             if exact:
                 rule = _("%s is not") % col
             else:
                 rule = _("%s does not contain") % col
-            self.filter_model.append(row=[rule, index, True])
+            self.search_model.append(row=[rule, index, True])
             maxval += 1
 
-        self.filter_list.set_model(self.filter_model)
+        self.search_list.set_model(self.search_model)
         if old_value == -1 or old_value >= maxval:
-            self.filter_list.set_active(0)
+            self.search_list.set_active(0)
         else:
-            self.filter_list.set_active(old_value)
+            self.search_list.set_active(old_value)
 
-    def filter_changed(self, obj):
-        self.filter_button.set_sensitive(True)
+    def search_changed(self, obj):
+        self.find_button.set_sensitive(True)
         self.clear_button.set_sensitive(True)
 
     def text_changed(self, obj):
         text = obj.get_text()
         if self.apply_text == "" and text == "":
-            self.filter_button.set_sensitive(False)
+            self.find_button.set_sensitive(False)
             self.clear_button.set_sensitive(False)
         elif self.apply_text == text:
-            self.filter_button.set_sensitive(False)
+            self.find_button.set_sensitive(False)
             self.clear_button.set_sensitive(True)
         else:
-            self.filter_button.set_sensitive(True)
+            self.find_button.set_sensitive(True)
             self.clear_button.set_sensitive(True)
 
     def key_press(self, obj, event):
         if no_match_primary_mask(event.get_state()):
             if event.keyval in (_RETURN, _KP_ENTER):
-                self.filter_button.set_sensitive(False)
+                self.find_button.set_sensitive(False)
                 self.clear_button.set_sensitive(True)
-                self.apply_filter()
+                self.apply_search()
         return False
 
-    def apply_filter_clicked(self, obj):
-        self.apply_filter()
+    def apply_find_clicked(self, obj):
+        self.apply_search()
 
     def apply_clear(self, obj):
-        self.filter_text.set_text("")
-        self.apply_filter()
+        self.search_text.set_text("")
+        self.apply_search()
         if self.apply_clear_callback is not None:
             self.apply_clear_callback()
 
     def get_value(self):
-        text = str(self.filter_text.get_text()).strip()
-        node = self.filter_list.get_active_iter()
-        index = self.filter_model.get_value(node, 1)
-        inv = self.filter_model.get_value(node, 2)
+        text = str(self.search_text.get_text()).strip()
+        node = self.search_list.get_active_iter()
+        index = self.search_model.get_value(node, 1)
+        inv = self.search_model.get_value(node, 2)
         return (index, text, inv)
 
-    def apply_filter(self, current_model=None):
-        self.apply_text = str(self.filter_text.get_text())
-        self.filter_button.set_sensitive(False)
+    def apply_search(self, current_model=None):
+        self.apply_text = str(self.search_text.get_text())
+        self.find_button.set_sensitive(False)
         self.uistate.status_text(_("Updating display..."))
         self.on_apply_callback()
-        self.filter_text.grab_focus()
+        self.search_text.grab_focus()
         self.uistate.modify_statusbar(self.dbstate)
 
     def show(self):
-        self.filterbar.show()
+        self.searchbar.show()
         self.visible = True
 
     def hide(self):
-        self.filterbar.hide()
+        self.searchbar.hide()
         self.visible = False
 
     def is_visible(self):

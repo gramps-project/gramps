@@ -129,13 +129,13 @@ class BaseSelector(ManagedWindow):
 
         # add the search bar
         self.search_bar = SearchBar(dbstate, uistate, self.build_tree)
-        filter_box = self.search_bar.build()
-        self.setup_filter()
+        search_box = self.search_bar.build()
+        self.setup_searches()
         if filter:
-            self.search_bar.filter_list.set_active(filter[0])
-            self.search_bar.filter_text.set_text(filter[1])
-        vbox.pack_start(filter_box, False, False, 0)
-        vbox.reorder_child(filter_box, 1)
+            self.search_bar.search_list.set_active(filter[0])
+            self.search_bar.search_text.set_text(filter[1])
+        vbox.pack_start(search_box, False, False, 0)
+        vbox.reorder_child(search_box, 1)
 
         self.set_window(window, title_label, self.title)
 
@@ -302,16 +302,16 @@ class BaseSelector(ManagedWindow):
         """
         return ()
 
-    def setup_filter(self):
+    def setup_searches(self):
         """
-        Builds the default filters and add them to the filter bar.
+        Builds the default searches and add them to the search bar.
         """
         cols = [
             (pair[3], pair[1], pair[1] in self.exact_search())
             for pair in self.column_order()
             if pair[0]
         ]
-        self.search_bar.setup_filter(cols)
+        self.search_bar.setup_searches(cols)
 
     def build_tree(self):
         """
