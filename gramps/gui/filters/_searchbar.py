@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,7 +61,11 @@ class SearchBar:
         self.clear_button = Gtk.Button.new_with_mnemonic(_("_Clear"))
         self.search_list = Gtk.ComboBox()
         self.search_model = Gtk.ListStore(
-            GObject.TYPE_STRING, GObject.TYPE_INT, GObject.TYPE_BOOLEAN
+            GObject.TYPE_STRING,  # rule name
+            GObject.TYPE_INT,  # index of column to search
+            GObject.TYPE_BOOLEAN,  # inversion: invert the search result if True
+            GObject.TYPE_BOOLEAN,  # type : True = filter, False = search
+            GObject.TYPE_PYOBJECT,  # filter object
         )
 
     def destroy(self):
@@ -109,13 +114,13 @@ class SearchBar:
                 rule = _("%s is") % col
             else:
                 rule = _("%s contains") % col
-            self.search_model.append(row=[rule, index, False])
+            self.search_model.append(row=[rule, index, False, False, None])
             maxval += 1
             if exact:
                 rule = _("%s is not") % col
             else:
                 rule = _("%s does not contain") % col
-            self.search_model.append(row=[rule, index, True])
+            self.search_model.append(row=[rule, index, True, False, None])
             maxval += 1
 
         self.search_list.set_model(self.search_model)
@@ -124,9 +129,16 @@ class SearchBar:
         else:
             self.search_list.set_active(old_value)
 
+    def append_filter(self, filter_name, filter):
+        self.search_model.append(row=[filter_name, -1, False, True, filter])
+
     def search_changed(self, obj):
         self.find_button.set_sensitive(True)
-        self.clear_button.set_sensitive(True)
+        # only make the search_text and clear_button widgets sensitive for searches
+        node = self.search_list.get_active_iter()
+        type = self.search_model.get_value(node, 3)
+        self.clear_button.set_sensitive(not type)
+        self.search_text.set_sensitive(not type)
 
     def text_changed(self, obj):
         text = obj.get_text()
@@ -162,7 +174,9 @@ class SearchBar:
         node = self.search_list.get_active_iter()
         index = self.search_model.get_value(node, 1)
         inv = self.search_model.get_value(node, 2)
-        return (index, text, inv)
+        type = self.search_model.get_value(node, 3)
+        filter = self.search_model.get_value(node, 4)
+        return (type, filter, False) if type else (type, (index, text, inv), False)
 
     def apply_search(self, current_model=None):
         self.apply_text = str(self.search_text.get_text())

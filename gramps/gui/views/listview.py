@@ -336,8 +336,13 @@ class ListView(NavigationView):
             if not self.search_bar.is_visible():
                 filter_info = (True, self.generic_filter, False)
             else:
-                value = self.search_bar.get_value()
-                filter_info = (False, value, value[0] in self.exact_search())
+                filter_info = self.search_bar.get_value()
+                if not filter_info[0]:
+                    filter_info = (
+                        filter_info[0],
+                        filter_info[1],
+                        filter_info[1][0] in self.exact_search(),
+                    )
 
             if self.dirty or not self.model:
                 if self.model:

@@ -984,7 +984,7 @@ class EditFamily(EditPrimary):
             self.uistate,
             self.track,
             _("Select Mother"),
-            filter=(4, _("Female")),
+            search_or_filter=(4, _("Female")),
             skip=[x.ref for x in self.obj.get_child_ref_list()],
         )
         person = sel.run()
@@ -1033,7 +1033,7 @@ class EditFamily(EditPrimary):
             self.uistate,
             self.track,
             _("Select Father"),
-            filter=(4, _("Male")),
+            search_or_filter=(4, _("Male")),
             skip=[x.ref for x in self.obj.get_child_ref_list()],
         )
         person = sel.run()

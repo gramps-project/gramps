@@ -58,7 +58,7 @@ class SelectPerson(BaseSelector):
         uistate,
         track=[],
         title=None,
-        filter=None,
+        search_or_filter=None,
         skip=set(),
         show_search_bar=True,
         default=None,
@@ -78,7 +78,14 @@ class SelectPerson(BaseSelector):
             self.WIKI_HELP_SEC = _("Select_Person_selector", "manual")
 
         BaseSelector.__init__(
-            self, dbstate, uistate, track, filter, skip, show_search_bar, default
+            self,
+            dbstate,
+            uistate,
+            track,
+            search_or_filter,
+            skip,
+            show_search_bar,
+            default,
         )
 
     def _local_init(self):
