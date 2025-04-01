@@ -458,14 +458,14 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
           with the new entries
         """
         if search:
-            if search[0] == 1:  # Filter
+            if search[0]:  # Filter
                 # following is None if no data given in filter sidebar
                 self.search = search[1]
                 if self.has_secondary:
                     self.search2 = search[1]
                     _LOG.debug("search2 filter %s %s" % (search[0], search[1]))
                 self._build_data = self._rebuild_filter
-            elif search[0] == 0:  # Search
+            else:  # Search
                 if search[1]:
                     # we have search[1] = (index, text_unicode, inversion)
                     col, text, inv = search[1]
@@ -485,12 +485,6 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                     if self.has_secondary:
                         self.search2 = None
                         _LOG.debug("search2 search with no data")
-                self._build_data = self._rebuild_search
-            else:  # Fast filter
-                self.search = search[1]
-                if self.has_secondary:
-                    self.search2 = search[2]
-                    _LOG.debug("search2 fast filter")
                 self._build_data = self._rebuild_search
         else:
             self.search = None
