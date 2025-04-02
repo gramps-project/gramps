@@ -197,6 +197,9 @@ class EditDate(ManagedWindow):
         self.second_date.connect("day-selected", self.date_change_in_calendar, "stop")
         table48.attach(self.first_date, 0, 6, 3, 6)
         table48.attach(self.second_date, 3, 6, 5, 6)
+        self.ofdate = self.first_date.get_date()
+        self.osdate = self.second_date.get_date()
+        self.showcal = True
 
         # Disable second date controls if not compound date
         if not self.date.is_compound():
@@ -279,19 +282,39 @@ class EditDate(ManagedWindow):
             month -= 1
         else:
             month = 0
+        if not self.showcal:
+            # not set a date for any calendar other than the Gregorian calendar
+            # only true after calendar change
+            return  # only true after calendar change
         calendar.select_month(month, date.get_year())
         calendar.select_day(date.get_day())
 
     def date_change_in_calendar(self, calendar, date):
+        if self.calendar_box.get_active() != Date.CAL_GREGORIAN:
+            return
         current = calendar.get_date()
+        if date == "start" and current == self.ofdate:
+            return False
+        elif current == self.osdate:
+            return False
+        newdate = Date(current.year, current.month + 1, current.day)
+        newdate = newdate.to_calendar(self.calendar_box.get_active())
         if date == "start":
-            self.start_day.set_value(current.day)
-            self.start_month_box.set_active(current.month + 1)
-            self.start_year.set_value(current.year)
+            if self.ofdate.day != current.day:
+                self.start_day.set_value(newdate.get_day())
+            if self.ofdate.month != current.month:
+                self.start_month_box.set_active(newdate.get_month())
+            if self.ofdate.year != current.year:
+                self.start_year.set_value(newdate.get_year())
+            self.ofdate = current
         else:
-            self.stop_day.set_value(current.day)
-            self.stop_month_box.set_active(current.month + 1)
-            self.stop_year.set_value(current.year)
+            if self.osdate.day != current.day:
+                self.stop_day.set_value(newdate.get_day())
+            if self.osdate.month != current.month:
+                self.stop_month_box.set_active(newdate.get_month())
+            if self.osdate.year != current.year:
+                self.stop_year.set_value(newdate.get_year())
+            self.osdate = current
 
     def revalidate(self, obj=None):
         """
@@ -370,6 +393,8 @@ class EditDate(ManagedWindow):
 
         quality = QUAL_TEXT[self.quality_box.get_active()][0]
 
+        new_cal = self.calendar_box.get_active()
+
         if modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
             value = (
                 self.start_day.get_value_as_int(),
@@ -383,17 +408,19 @@ class EditDate(ManagedWindow):
             )
             dat1 = Date()
             dat1.set_yr_mon_day(
-                self.start_year.get_value(),
+                self.start_year.get_value_as_int(),
                 self.start_month_box.get_active(),
-                self.start_day.get_value(),
+                self.start_day.get_value_as_int(),
             )
+            dat1.set_calendar(new_cal)
             self.show_on_calendar(self.first_date, dat1)
             dat2 = Date()
             dat2.set_yr_mon_day(
-                self.stop_year.get_value(),
+                self.stop_year.get_value_as_int(),
                 self.stop_month_box.get_active(),
-                self.stop_day.get_value(),
+                self.stop_day.get_value_as_int(),
             )
+            dat1.set_calendar(new_cal)
             self.show_on_calendar(self.second_date, dat2)
         else:
             value = (
@@ -403,15 +430,20 @@ class EditDate(ManagedWindow):
                 self.dual_dated.get_active(),
             )
             dat1 = Date()
+            dat1.set_calendar(self.calendar_box.get_active())
             dat1.set_yr_mon_day(
-                self.start_year.get_value(),
+                self.start_year.get_value_as_int(),
                 self.start_month_box.get_active(),
-                self.start_day.get_value(),
+                self.start_day.get_value_as_int(),
             )
+            dat1.set_calendar(new_cal)
             self.show_on_calendar(self.first_date, dat1)
-            dat2 = Date()
-            dat2.set_yr_mon_day(0, 0, 0)  # This is to avoid the current date
-            self.show_on_calendar(self.second_date, dat2)
+            self.show_on_calendar(self.second_date, dat1)
+
+        if new_cal != Date.CAL_GREGORIAN:
+            self.first_date.set_sensitive(0)
+            self.second_date.set_sensitive(0)
+
         calendar = self.calendar_box.get_active()
         newyear = Date.newyear_to_code(self.new_year.get_text())
         return (quality, modifier, calendar, value, text, newyear)
@@ -478,6 +510,12 @@ class EditDate(ManagedWindow):
             ">>>switch_calendar: {0} changed, {1} -> {2}".format(obj, old_cal, new_cal)
         )
 
+        if new_cal == Date.CAL_GREGORIAN:
+            self.first_date.set_sensitive(1)
+            self.second_date.set_sensitive(1)
+            self.showcal = True
+        else:
+            self.showcal = False
         self.align_newyear_ui_with_calendar(new_cal)
 
         (
