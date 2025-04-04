@@ -189,7 +189,7 @@ def mac_setup_localization(glocale):
                 return locale_values
             LOG.debug("Global defaults locale %s isn't supported", loc)
 
-        return (None, None, None)
+        return (None, None)
 
     def _mac_get_collation():
         """
