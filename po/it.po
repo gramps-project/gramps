@@ -62,13 +62,14 @@
 # Alessandro Combatti <combatti.alessandro@gmail.com>, 2022.
 # Mauro Piccotti <mauro.piccotti@gmail.com>, 2024.
 # Fabio Restante <frestante@gmail.com>, 2025.
+# Roberto Coppes Telefono <robertocoppes71@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-25 17:26+0000\n"
-"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"PO-Revision-Date: 2025-03-31 10:13+0000\n"
+"Last-Translator: Roberto Coppes Telefono <robertocoppes71@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -24105,7 +24106,7 @@ msgstr "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
 #: ../gramps/plugins/quickview/quickview.gpr.py:38
 msgid "Age on Date"
-msgstr "Età in data"
+msgstr "Età alla data"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:52
 msgid "Gramplet showing ages of living people on a specific date"
