@@ -7,7 +7,7 @@
 # Copyright (C) 2020 Juan Saavedra <jcsaaver@gmail.com>
 #
 #
-# Juan Saavedra <jcsaaver@gmail.com>, 2021, 2023, 2024.
+# Juan Saavedra <jcsaaver@gmail.com>, 2021, 2023, 2024, 2025.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
 # S <sendoasojo@gmail.com>, 2021.
@@ -28,8 +28,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-25 10:12+0000\n"
-"Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
+"PO-Revision-Date: 2025-03-28 08:34+0000\n"
+"Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -2258,10 +2258,8 @@ msgstr "Mes Día, Año"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
-msgstr "Mes Día, Año"
+msgstr "Mes (abreviado) Día, Año"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:88
@@ -2270,10 +2268,8 @@ msgstr "Día Mes Año"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
-msgstr "Día Mes Año"
+msgstr "Día Mes (abreviado) Año"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
@@ -3479,7 +3475,7 @@ msgstr "Apellidos, Nombre Sufijo"
 #: ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:206
 msgid "Given"
-msgstr "Nombre"
+msgstr "Nombre de pila"
 
 #: ../gramps/gen/display/name.py:399
 msgid "Given Surname Suffix"
@@ -8663,7 +8659,7 @@ msgstr "Estado"
 #: ../gramps/gen/lib/location.py:89 ../gramps/gui/clipboard.py:338
 #: ../gramps/gui/plug/_windows.py:1646
 msgid "Location"
-msgstr "Lugar"
+msgstr "Ubicación"
 
 #: ../gramps/gen/lib/location.py:100 ../gramps/gen/lib/placetype.py:79
 #: ../gramps/plugins/view/geoplaces.py:627
@@ -8749,7 +8745,7 @@ msgstr "Nombre"
 
 #: ../gramps/gen/lib/name.py:181 ../gramps/plugins/importer/importcsv.py:207
 msgid "Given name"
-msgstr "Nombre"
+msgstr "Nombre de pila"
 
 #: ../gramps/gen/lib/name.py:185 ../gramps/plugins/webreport/basepage.py:2056
 #: ../gramps/plugins/webreport/basepage.py:2114
@@ -11080,7 +11076,7 @@ msgstr "fecha"
 
 #: ../gramps/gen/utils/alive.py:213 ../gramps/gen/utils/alive.py:244
 msgid "date fallback"
-msgstr "fecha predeterminada"
+msgstr "Inferencia de fecha"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
 #, python-brace-format
@@ -11136,6 +11132,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
+"inferido de padres y hermanos - nacimiento: {birth_min_src}, defunción: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -11143,6 +11141,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"inferido de padres y hermanos - nacimiento: {birth_min_src} (más antiguo) a "
+"{birth_max_src} (más reciente), defunción: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11157,25 +11157,23 @@ msgid "event with spouse"
 msgstr "evento con el cónyuge"
 
 #: ../gramps/gen/utils/alive.py:765
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "Máximo nacimiento de descendiente: {} generaciones "
-msgstr[1] "Máximo nacimiento de descendiente: {} generaciones "
+msgstr[0] "nacimiento de descendiente: {number_of} generación "
+msgstr[1] "nacimiento de descendiente: {number_of} generaciones "
 
 #: ../gramps/gen/utils/alive.py:788
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "Máximo fallecimiento de descendiente: {} generaciones "
-msgstr[1] "Máximo fallecimiento de descendiente: {} generaciones "
+msgstr[0] "defunción de descendiente: {number_of} generación "
+msgstr[1] "defunción de descendiente: {number_of} generaciones "
 
 #: ../gramps/gen/utils/alive.py:803
 #, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Error en la base de datos: bucle en los descendientes de %s"
+msgstr "Error en la base de datos: bucle en los descendientes de %s."
 
 #: ../gramps/gen/utils/alive.py:855
 msgid "mother birth "
@@ -11957,15 +11955,12 @@ msgstr ""
 "Gramps se cerrará ahora."
 
 #: ../gramps/grampsapp.py:227
-#, fuzzy
 msgid ""
 "The orjson package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"\n"
-"No tiene instalado el paquete bsddb3 para Python. Se requiere este paquete "
-"para usar Gramps.\n"
+"El paquete orjson es necesario para iniciar Gramps.\n"
 "\n"
 "Gramps se cerrará ahora."
 
@@ -12835,7 +12830,7 @@ msgstr "Mostrar información útil sobre el uso de Gramps al inicio."
 
 #: ../gramps/gui/configure.py:1991
 msgid "Remember last Family Tree"
-msgstr "Quitar el último árbol genealógico"
+msgstr "Recordar el último árbol genealógico"
 
 #: ../gramps/gui/configure.py:1997
 msgid ""
@@ -12843,7 +12838,7 @@ msgid ""
 "used."
 msgstr ""
 "No abrir diálogo para elegir el árbol genealógico a cargar en el inicio, "
-"simplemente csrgar el último usado."
+"simplemente cargar el último usado."
 
 #: ../gramps/gui/configure.py:2005
 msgid "Remember last view displayed"
@@ -13835,7 +13830,7 @@ msgstr "Abrir Gestor de Complementos"
 
 #: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:474
 msgid "Addons"
-msgstr "Nombres de complementos"
+msgstr "Complementos"
 
 #: ../gramps/gui/displaystate.py:429
 msgid "Open Preferences"
@@ -16312,7 +16307,7 @@ msgstr "Proporcione al menos un valor"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:404
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr "Creado por Filtro gramplet en {today}"
+msgstr "Creado por el gramplete Filtro el {today}"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -38411,7 +38406,7 @@ msgstr "Página inicial"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Mapas de calor"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -38441,7 +38436,7 @@ msgstr "Calendario Web"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Mapa de calor"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:440
@@ -38694,15 +38689,15 @@ msgid "Family Map for %s"
 msgstr "Mapa de familia para %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Creando las páginas de eventos"
+msgstr "Creando las páginas del mapa de calor para eventos"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
 msgstr ""
+"La siguiente sección contiene un índice de todos los eventos para un Mapa de "
+"calor."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
 msgctxt "Event Name"
@@ -38720,15 +38715,16 @@ msgstr "Lugares que comienzan con la letra %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Probar el filtro seleccionado"
+msgstr "Mapa de calor para %s dentro del filtro seleccionado"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
 msgstr ""
+"La siguiente sección contiene un índice de todos los apellidos para un Mapa "
+"de calor."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
 msgctxt "Name"
@@ -38738,6 +38734,8 @@ msgstr "Apellidos"
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr ""
+"La siguiente sección contiene un índice de todas las etiquetas para un Mapa "
+"de calor."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38745,6 +38743,8 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Esta sección contiene el mapa para todas las personas con el evento: "
+"{event_type} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
@@ -39817,35 +39817,27 @@ msgstr ""
 "preferencia de fechas."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Opciones del mapa de lugares"
+msgstr "Opciones del Mapa de Calor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Incluir páginas de evento"
+msgstr "Incluir páginas del mapa de calor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Si se deben incluir las páginas heatmap para eventos"
+msgstr "Si se deben incluir las páginas del mapa de calor para eventos"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
 msgid "Point size"
 msgstr "Tamaño de punto"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
 msgstr ""
-"Tamaño del texto de la nota en puntos.\n"
+"Defina el tamaño de los puntos del mapa de calor.\n"
 "Predeterminado: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
