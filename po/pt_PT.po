@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-22 06:31+0000\n"
+"PO-Revision-Date: 2025-04-06 10:05+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -7133,12 +7133,12 @@ msgstr "Nenhum"
 #: ../gramps/gen/lib/childreftype.py:75
 msgctxt "relationship"
 msgid "Birth"
-msgstr "Nascimento"
+msgstr "Nascido"
 
 #: ../gramps/gen/lib/childreftype.py:76
 msgctxt "relationship"
 msgid "Adopted"
-msgstr "Adoptado(a)"
+msgstr "Adoptado"
 
 #: ../gramps/gen/lib/childreftype.py:77
 msgid "Stepchild"
@@ -11940,19 +11940,19 @@ msgstr "Qualquer mudança é imediatamente gravada"
 #, python-format
 msgctxt "the object"
 msgid "See %s details"
-msgstr "Ver detalhes de %s"
+msgstr "Ver detalhes d%s"
 
 #: ../gramps/gui/clipboard.py:1518 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
 msgctxt "the object"
 msgid "Make %s active"
-msgstr "Tornar %s activo"
+msgstr "Activar %s"
 
 #: ../gramps/gui/clipboard.py:1544
 #, python-format
 msgctxt "the object"
 msgid "Create Filter from %s selected..."
-msgstr "Criar filtro a partir de %s seleccionado..."
+msgstr "Criar filtro a partir da selecção d%s..."
 
 #: ../gramps/gui/columnorder.py:94
 #, python-format
@@ -12614,7 +12614,7 @@ msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
 msgstr ""
-"Mudar o formato da data não terá efeito até a próxima vez que o Gramps for "
+"Mudar o formato da data não terá efeito até à próxima vez que o Gramps for "
 "iniciado."
 
 #: ../gramps/gui/configure.py:1886
@@ -16603,11 +16603,11 @@ msgstr ""
 
 #: ../gramps/gui/glade/editchildref.glade:95
 msgid "Relationship to _Mother:"
-msgstr "Parentesco com a _mãe:"
+msgstr "Relação com a _mãe:"
 
 #: ../gramps/gui/glade/editchildref.glade:128
 msgid "Relationship to _Father:"
-msgstr "Parentesco com o _pai:"
+msgstr "Relação com o _pai:"
 
 #: ../gramps/gui/glade/editchildref.glade:192
 msgid "Name Child:"
@@ -18936,7 +18936,7 @@ msgid ""
 msgstr ""
 "Os dados estão a salvo mas é aconselhável que reinicie o GRAMPS "
 "imediatamente. Se quiser preencher um relatório de erro para a equipa do "
-"GRAMPS, por favor clique em Relatar e o assistente de relatório de erros "
+"GRAMPS, por favor clique em Relatório e o assistente de relatório de erros "
 "ajudá-lo-á a produzir o relatório."
 
 #: ../gramps/gui/logger/_errorview.py:165
@@ -19624,7 +19624,7 @@ msgstr "Assistente de exportação"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:188
 msgid "Saving your data"
-msgstr "A gravar os seus dados"
+msgstr "Gravar os seus dados"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:234
 msgid "Choose the output format"
@@ -19815,7 +19815,7 @@ msgstr "Calcular antevisões"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:303
 msgid "_Person Filter"
-msgstr "Filtro de _indivíduo"
+msgstr "Filtro de _indivíduos"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:321
 msgid "Click to see preview after person filter"
