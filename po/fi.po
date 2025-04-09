@@ -12,13 +12,14 @@
 # A <ogloppi@mailbox.org>, 2023.
 # Ricky Tigg <ricky.tigg@gmail.com>, 2025.
 # Jorma-Juhani Könönen <jorma@tuta.io>, 2025.
+# Ossi Viljakainen <arjunanda@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-22 06:31+0000\n"
-"Last-Translator: Jorma-Juhani Könönen <jorma@tuta.io>\n"
+"PO-Revision-Date: 2025-04-07 03:47+0000\n"
+"Last-Translator: Ossi Viljakainen <arjunanda@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -2440,7 +2441,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:500
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr "kuukaudesta"
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
