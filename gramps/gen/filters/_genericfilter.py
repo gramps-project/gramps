@@ -267,20 +267,10 @@ class GenericFilter:
                 if id_list not given, all items in the database that
                 match the filter are returned as a list of handles
         """
-        if user:
-            user.begin_progress(_("Filter"), _("Preparing ..."), len(self.flist) + 1)
-            # FIXME: this dialog doesn't show often. Adding a time.sleep(0.1) here
-            # can help on my machine
-
         start_time = time.time()
         for rule in self.flist:
-            if user:
-                user.step_progress()
             rule.requestprepare(db, user)
         LOG.debug("Prepare time: %s seconds", time.time() - start_time)
-
-        if user:
-            user.end_progress()
 
         if self.logical_op == "and":
             apply_logical_op = self.and_test
