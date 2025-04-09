@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-24 07:25+0000\n"
+"PO-Revision-Date: 2025-04-09 13:46+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -3094,79 +3094,79 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:271
 msgid "Sunday"
-msgstr ""
+msgstr "일요일"
 
 #: ../gramps/gen/datehandler/_datestrings.py:272
 msgid "Monday"
-msgstr ""
+msgstr "월요일"
 
 #: ../gramps/gen/datehandler/_datestrings.py:273
 msgid "Tuesday"
-msgstr ""
+msgstr "화요일"
 
 #: ../gramps/gen/datehandler/_datestrings.py:274
 msgid "Wednesday"
-msgstr ""
+msgstr "수요일"
 
 #: ../gramps/gen/datehandler/_datestrings.py:275
 msgid "Thursday"
-msgstr ""
+msgstr "목요일"
 
 #: ../gramps/gen/datehandler/_datestrings.py:276
 msgid "Friday"
-msgstr ""
+msgstr "금요일"
 
 #: ../gramps/gen/datehandler/_datestrings.py:277
 msgid "Saturday"
-msgstr ""
+msgstr "토요일"
 
 #: ../gramps/gen/datehandler/_datestrings.py:282
 msgid "Sun"
-msgstr ""
+msgstr "일"
 
 #: ../gramps/gen/datehandler/_datestrings.py:283
 msgid "Mon"
-msgstr ""
+msgstr "월"
 
 #: ../gramps/gen/datehandler/_datestrings.py:284
 msgid "Tue"
-msgstr ""
+msgstr "화"
 
 #: ../gramps/gen/datehandler/_datestrings.py:285
 msgid "Wed"
-msgstr ""
+msgstr "수"
 
 #: ../gramps/gen/datehandler/_datestrings.py:286
 msgid "Thu"
-msgstr ""
+msgstr "목"
 
 #: ../gramps/gen/datehandler/_datestrings.py:287
 msgid "Fri"
-msgstr ""
+msgstr "금"
 
 #: ../gramps/gen/datehandler/_datestrings.py:288
 msgid "Sat"
-msgstr ""
+msgstr "토"
 
 #: ../gramps/gen/db/base.py:1824 ../gramps/gui/widgets/fanchart.py:2311
 msgid "Add child to family"
-msgstr ""
+msgstr "가문에 아이 추가하기"
 
 #: ../gramps/gen/db/base.py:1837 ../gramps/gen/db/base.py:1843
 msgid "Remove child from family"
-msgstr ""
+msgstr "가문에서 아이 삭제하기"
 
 #: ../gramps/gen/db/base.py:1922 ../gramps/gen/db/base.py:1926
 msgid "Remove Family"
-msgstr ""
+msgstr "가문 삭제하기"
 
 #: ../gramps/gen/db/base.py:1965
 msgid "Remove father from family"
-msgstr ""
+msgstr "가문에서 아버지 삭제하기"
 
 #: ../gramps/gen/db/base.py:1967
 msgid "Remove mother from family"
-msgstr ""
+msgstr "가문에서 어머니 삭제하기"
 
 #: ../gramps/gen/db/exceptions.py:99
 #, python-format
@@ -3222,6 +3222,11 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
+"데이바테이스 연결 실패함.\n"
+"\n"
+"%(message)s\n"
+"연결 설정 파일을 확인하시오:\n"
+"%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:213
 #, python-format
@@ -3246,69 +3251,69 @@ msgstr ""
 #: ../gramps/gen/db/generic.py:2312
 #, python-format
 msgid "_Undo %s"
-msgstr ""
+msgstr "%s 되돌리기"
 
 #: ../gramps/gen/db/generic.py:236 ../gramps/gen/db/generic.py:286
 #, python-format
 msgid "_Redo %s"
-msgstr ""
+msgstr "%s 다시하기"
 
 #: ../gramps/gen/db/generic.py:2703
 msgid "Number of people"
-msgstr ""
+msgstr "인원수"
 
 #: ../gramps/gen/db/generic.py:2704
 #: ../gramps/plugins/gramplet/statsgramplet.py:187
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
-msgstr ""
+msgstr "가문수"
 
 #: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 msgid "Number of sources"
-msgstr ""
+msgstr "자료수"
 
 #: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
-msgstr ""
+msgstr "인용수"
 
 #: ../gramps/gen/db/generic.py:2707
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
-msgstr ""
+msgstr "사건수"
 
 #: ../gramps/gen/db/generic.py:2708
 msgid "Number of media"
-msgstr ""
+msgstr "매체수"
 
 #: ../gramps/gen/db/generic.py:2709
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 msgid "Number of places"
-msgstr ""
+msgstr "장소수"
 
 #: ../gramps/gen/db/generic.py:2710
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
-msgstr ""
+msgstr "저장소수"
 
 #: ../gramps/gen/db/generic.py:2711
 msgid "Number of notes"
-msgstr ""
+msgstr "주석수"
 
 #: ../gramps/gen/db/generic.py:2712
 msgid "Number of tags"
-msgstr ""
+msgstr "꼬리표수"
 
 #: ../gramps/gen/db/generic.py:2713
 msgid "Schema version"
-msgstr ""
+msgstr "스키마버전"
 
 #: ../gramps/gen/db/upgrade.py:672
 #, python-format
@@ -3354,7 +3359,7 @@ msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:1261
 msgid "Number of new objects upgraded:\n"
-msgstr ""
+msgstr "새 객체 숫자가 갱신됨:\n"
 
 #: ../gramps/gen/db/upgrade.py:1272
 msgid ""
@@ -3368,16 +3373,16 @@ msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:1277
 msgid "Upgrade Statistics"
-msgstr ""
+msgstr "통계 갱신하기"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:393 ../gramps/plugins/lib/libtreebase.py:725
 msgid ","
-msgstr ""
+msgstr ","
 
 #: ../gramps/gen/display/name.py:396
 msgid "Default format (defined by Gramps preferences)"
-msgstr ""
+msgstr "기본 양식 (그람프스 설정에 정의된)"
 
 #: ../gramps/gen/display/name.py:397
 msgid "Surname, Given Suffix"
@@ -3969,7 +3974,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Value:"
-msgstr ""
+msgstr "값:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
 msgid "Citations with the attribute <attribute>"
@@ -6347,15 +6352,15 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:59
 msgid "Address:"
-msgstr ""
+msgstr "주소:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:60
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:62
 msgid "Repositories matching parameters"
-msgstr ""
+msgstr "매개변수와 맞는 저장소들"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:63
 msgid "Matches Repositories with particular parameters"
