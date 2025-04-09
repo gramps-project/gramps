@@ -5,13 +5,14 @@
 # Megumi Sakata <megumi.sakata.k@gmail.com>, 2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2022.
 # coolz daddy <coolzdaddy55@gmail.com>, 2025.
+# Aindriú Mac Giolla Eoin <aindriu80@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-22 06:31+0000\n"
-"Last-Translator: coolz daddy <coolzdaddy55@gmail.com>\n"
+"PO-Revision-Date: 2025-03-31 18:14+0000\n"
+"Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ja/>\n"
 "Language: ja\n"
