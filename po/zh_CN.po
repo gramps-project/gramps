@@ -13,7 +13,7 @@
 # 张子涵 <zhangzihanzhangzihan@live.com>, 2023.
 # linluoxue <linluomoxue@foxmail.com>, 2023.
 # 快乐的老鼠宝宝 <keaitianxinmail@qq.com>, 2023.
-# Tian Shixiong <tiansworld@fedoraproject.org>, 2023, 2024.
+# Tian Shixiong <tiansworld@fedoraproject.org>, 2023, 2024, 2025.
 # Nick Hall <nick-h@gramps-project.org>, 2024.
 # 快乐的老鼠宝宝 <laoshubaby@protonmail.com>, 2024.
 # pyccl <changcongliang@163.com>, 2024.
@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2024-10-18 00:20+0000\n"
-"Last-Translator: pyccl <changcongliang@163.com>\n"
+"PO-Revision-Date: 2025-04-09 13:46+0000\n"
+"Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -2813,7 +2813,7 @@ msgstr "瑞典历"
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr ""
+msgstr "Tishri"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgctxt "Hebrew month lexeme"
@@ -2981,7 +2981,7 @@ msgstr "塔尼娅节"
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr ""
+msgstr "Rajab"
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Islamic month lexeme"
@@ -3401,25 +3401,25 @@ msgstr ""
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "已升级 %(n1)6d   个媒体对象，带有  %(n2)6d 个引用， 耗时  %(n3)6d 秒\n"
 
 #: ../gramps/gen/db/upgrade.py:688
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "已升级 %(n1)6d   个地点        带有  %(n2)6d 个引用， 耗时  %(n3)6d 秒\n"
 
 #: ../gramps/gen/db/upgrade.py:692
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "已升级 %(n1)6d   个库，带有  %(n2)6d 个引用， 耗时  %(n3)6d 秒\n"
 
 #: ../gramps/gen/db/upgrade.py:696
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "已升级 %(n1)6d   个源        带有  %(n2)6d 个引用， 耗时  %(n3)6d 秒\n"
 
 #: ../gramps/gen/db/upgrade.py:1261
 msgid "Number of new objects upgraded:\n"
@@ -3997,7 +3997,7 @@ msgstr "筛选器中包含了循环。"
 
 #: ../gramps/gen/filters/rules/_rule.py:114
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "一条规则涉及了另一条规则，而另一条又最终涉及到第一条。"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 msgid "Every citation"
@@ -6467,7 +6467,7 @@ msgstr "匹配出生日期符合特定值的成员"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:94
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "无法使用“在区域中”进行筛选"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:96
 msgid ""
@@ -7818,7 +7818,7 @@ msgstr "多个父母"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "朋友"
 
 #: ../gramps/gen/lib/eventroletype.py:89
 #, fuzzy
@@ -7828,7 +7828,7 @@ msgstr "近邻社区 (Neighborhood)"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "司仪"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -9613,6 +9613,8 @@ msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
 "  but is not known to the module.  Ignoring..."
 msgstr ""
+"'%(opt_name)s' 选项在 %(file)s 中出现\n"
+"  但模块无法识别。  忽略..."
 
 #: ../gramps/gen/plug/_pluginreg.py:69
 msgid "Unstable"
@@ -11012,13 +11014,13 @@ msgstr "日期"
 
 #: ../gramps/gen/utils/alive.py:213 ../gramps/gen/utils/alive.py:244
 msgid "date fallback"
-msgstr ""
+msgstr "后备日期"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
 #, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
-msgstr ""
+msgstr "此人员的直接证据：出生：{birth_min_src}，去世：{death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 #, fuzzy
@@ -11083,7 +11085,7 @@ msgstr "先辈出生日期"
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
-msgstr ""
+msgstr "从父母和兄弟姐妹的信息推理 - 出生：{birth_min_src}，去世：{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -11091,6 +11093,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"从父母和兄弟姐妹的信息推理 - 出生：{birth_min_src} "
+"（最早）{birth_max_src}（最晚），去世：{death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11461,11 +11465,11 @@ msgstr "度、分、秒表示法："
 
 #: ../gramps/gen/utils/place.py:102
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "角度标记，4 位小数"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "角度标记，8 位小数（精度像 ISO-DMS）"
 
 #: ../gramps/gen/utils/place.py:104
 msgid "Output format for the Swedish coordinate system RT90"
@@ -12023,7 +12027,8 @@ msgstr ""
 "十分感谢！\n"
 "YH Tan, 2014\n"
 "霍东灵 Anthony Fok <foka@debian.org>, 2015\n"
-"Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021,2022,2023\n"
+"Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021,2022,2023,2024,"
+"2025\n"
 "快乐的老鼠宝宝 LaoshuBaby <laoshubaby@protonmail.com>, 2022, 2023"
 
 #: ../gramps/gui/aboutdialog.py:164
@@ -12509,7 +12514,7 @@ msgstr "导出到 GEDCOM 时不提示关于缺少研究者的警告"
 
 #: ../gramps/gui/configure.py:1040
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "取消工具提示关于数据被立即保存的警告"
 
 #: ../gramps/gui/configure.py:1048
 msgid "Show plugin status dialog on plugin load error"
@@ -12686,7 +12691,7 @@ msgstr "仅在闰年"
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
-msgstr ""
+msgstr "非闰年时，纪念日显示在 2 月 28 日或 3 月 1 日，或者干脆不在格里高利历中显示。"
 
 #: ../gramps/gui/configure.py:1640
 #, fuzzy
@@ -12921,11 +12926,11 @@ msgstr "在工具栏上显示或隐藏工具图标。"
 
 #: ../gramps/gui/configure.py:2098
 msgid "Show Addons icon on toolbar"
-msgstr ""
+msgstr "在工具栏中显示加载项的图标"
 
 #: ../gramps/gui/configure.py:2103
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr ""
+msgstr "在工具条栏显示或隐藏加载项图标。"
 
 #: ../gramps/gui/configure.py:2111
 msgid "Show Preferences icon on toolbar"
@@ -12937,7 +12942,7 @@ msgstr "在工具栏上显示或隐藏偏好设置图标。"
 
 #: ../gramps/gui/configure.py:2124
 msgid "Both text and icons"
-msgstr ""
+msgstr "文字和图标"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
@@ -12951,7 +12956,7 @@ msgstr "仅新插件"
 
 #: ../gramps/gui/configure.py:2131
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "在工具栏按钮上显示文字或图标，或者全部显示。"
 
 #: ../gramps/gui/configure.py:2133
 #, fuzzy
@@ -13317,6 +13322,8 @@ msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"修改立即生效。\n"
+"这会在 CSV 格式下导出视图时使用。"
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
@@ -16281,7 +16288,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:93
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
-msgstr ""
+msgstr "这会打开对话框来按照给定值增加一个新的自定义筛选。"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16290,20 +16297,20 @@ msgstr "重设"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "耗时：%.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:379
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "使用“在……之内”规则时需要选择一个地点"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:389
 msgid "Supply at least one value"
-msgstr ""
+msgstr "提供至少一个值"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:404
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "由筛选器 gramplet 在 {today} 创建"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19433,7 +19440,7 @@ msgstr "操作失败"
 
 #: ../gramps/gui/plug/_windows.py:564
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "该加载项在当前配置下将会不可用。"
 
 #: ../gramps/gui/plug/_windows.py:589
 #, fuzzy
@@ -19443,7 +19450,7 @@ msgstr "未找到匹配"
 
 #: ../gramps/gui/plug/_windows.py:703
 msgid "Insert a project"
-msgstr ""
+msgstr "插入项目"
 
 #: ../gramps/gui/plug/_windows.py:705
 #, fuzzy
@@ -25208,6 +25215,8 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
+"在邮件列表和 Discourse 论坛上都有活跃用户分享着想法和技巧。\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:143
 msgid "Gramps online manual"
@@ -25219,7 +25228,7 @@ msgstr "在 gramps-users 邮件列表上发问"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:152
 msgid "Gramps Discourse Forum"
-msgstr ""
+msgstr "Gramps Discourse 论坛"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:156
 msgid "Getting Started"
@@ -25965,7 +25974,7 @@ msgstr "显示所有事件"
 
 #: ../gramps/plugins/graph/gvhourglass.py:542
 msgid "Show genealogical symbols for birth, marriage and death events."
-msgstr ""
+msgstr "显示出生、婚姻和死亡的系谱学符号。"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:226
 #: ../gramps/plugins/textreport/indivcomplete.py:861
