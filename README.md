@@ -1,14 +1,14 @@
 [The Gramps Project](https://gramps-project.org)
 ===================
-[![GitHub CI](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml/badge.svg?event=push&branch=maintenance/gramps52)](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml?query=branch%3Amaintenance/gramps52)
-[![codecov.io](https://codecov.io/github/gramps-project/gramps/coverage.svg?branch=maintenance/gramps52)](https://app.codecov.io/gh/gramps-project/gramps/branch/maintenance/gramps52)
+[![GitHub CI](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml/badge.svg?event=push&branch=maintenance/gramps60)](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml?query=branch%3Amaintenance/gramps60)
+[![codecov.io](https://codecov.io/github/gramps-project/gramps/coverage.svg?branch=maintenance/gramps60)](https://app.codecov.io/gh/gramps-project/gramps/branch/maintenance/gramps60)
 [![Translation status](https://hosted.weblate.org/widgets/gramps-project/-/gramps/svg-badge.svg)](https://hosted.weblate.org/engage/gramps-project)
 
 We strive to produce a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists.
 
-Please read the [**COPYING**](https://github.com/gramps-project/gramps/blob/maintenance/gramps52/COPYING) file first.
+Please read the [**COPYING**](https://github.com/gramps-project/gramps/blob/maintenance/gramps60/COPYING) file first.
 
-Please read the [**INSTALL**](https://github.com/gramps-project/gramps/blob/maintenance/gramps52/INSTALL) file if you intend to build from source.
+Please read the [**INSTALL**](https://github.com/gramps-project/gramps/blob/maintenance/gramps60/INSTALL) file if you intend to build from source.
 
 Requirements
 ============
@@ -42,7 +42,7 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
 --------------------------------------------------------------------
 *  [**osmgpsmap**](https://nzjrs.github.io/osm-gps-map/)
 
- Used to show maps in the [Geography Category](https://gramps-project.org/wiki/index.php?title=Gramps_5.1_Wiki_Manual_-_Categories#Geography_Category).
+ Used to show maps in the [Geography Category](https://gramps-project.org/wiki/index.php?title=Gramps_6.0_Wiki_Manual_-_Categories#Geography_Category).
  It may be osmgpsmap, osm-gps-map, or python-osmgpsmap,
  but the Python bindings for this must also be present, so gir1.2-osmgpsmap-1.0.
  Without this the GeoView will not be active.
@@ -90,7 +90,7 @@ Python bindings for Oracle Berkeley database. Only needed to upgrade older Gramp
 * [**rcs**](https://www.gnu.org/software/rcs/)
 
  The GNU Revision Control System (RCS) can be used to
- [archive a family tree](https://gramps-project.org/wiki/index.php?title=Gramps_5.1_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree).
+ [archive a family tree](https://gramps-project.org/wiki/index.php?title=Gramps_6.0_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree).
  Multiple revisions of your family trees can be managed.
  Only rcs is needed, NO python bindings are required.
 
