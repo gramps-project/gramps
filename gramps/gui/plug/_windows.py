@@ -80,7 +80,13 @@ from ..dialog import InfoDialog, OkDialog, QuestionDialog2
 from ..editors import EditPerson
 from ..glade import Glade
 from ..listmodel import ListModel, NOSORT, TOGGLE
-from gramps.gen.const import URL_WIKISTRING, USER_HOME, WIKI_EXTRAPLUGINS_RAWDATA, COLON
+from gramps.gen.const import (
+    URL_WIKISTRING,
+    URL_MANUAL_PAGE,
+    USER_HOME,
+    WIKI_EXTRAPLUGINS_RAWDATA,
+    COLON,
+)
 from gramps.gen.config import config
 from ..widgets.progressdialog import LongOpStatus, ProgressMonitor, GtkProgressDialog
 
@@ -497,7 +503,8 @@ class AddonManager(ManagedWindow):
         Display the Addon Manager help page.
         """
         display_help(
-            "Gramps_5.2_Wiki_Manual_-_Navigation", "Using_the_Addon_Manager..."
+            URL_MANUAL_PAGE + "_-_Navigation",
+            "Using_the_Addon_Manager...",
         )
 
     def __create_filter_combo(self, store, default):
