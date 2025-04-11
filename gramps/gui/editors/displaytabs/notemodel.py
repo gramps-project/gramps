@@ -37,9 +37,7 @@ class NoteModel(Gtk.ListStore):
         self.db = db
         for handle in note_list:
             note = self.db.get_note_from_handle(handle)
-            text = note.get()[:85].replace("\n", " ")
-            if len(text) > 80:
-                text = text[:80] + "..."
+            text = note.get_preview()
             self.append(
                 row=[
                     str(note.get_type()),

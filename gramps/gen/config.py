@@ -275,6 +275,7 @@ register("interface.toolbar-tools", True)
 register("interface.view", True)
 register("interface.surname-box-height", 150)
 register("interface.treemodel-cache-size", 1000)
+register("interface.note-preview-length", 80)
 
 register("paths.recent-export-dir", USER_HOME)
 register("paths.recent-file", "")
