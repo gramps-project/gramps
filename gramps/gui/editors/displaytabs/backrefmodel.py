@@ -137,9 +137,7 @@ class BackRefModel(Gtk.ListStore):
                 p = self.db.get_note_from_handle(ref[1])
                 if not p:
                     continue
-                name = " ".join(p.get().split())
-                if len(name) > 80:
-                    name = name[:80] + "..."
+                name = p.get_preview()
                 gid = p.gramps_id
                 handle = p.handle
             else:

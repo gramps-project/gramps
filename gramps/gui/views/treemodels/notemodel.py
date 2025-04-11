@@ -122,12 +122,7 @@ class NoteModel(FlatBaseModel):
 
     def column_preview(self, data):
         """Return a shortend version of the Note's text."""
-        note = data.text.string
-        note = " ".join(note.split())
-        if len(note) > 80:
-            return note[:80] + "..."
-        else:
-            return note
+        return data.get_preview()
 
     def column_private(self, data):
         if data.private:
