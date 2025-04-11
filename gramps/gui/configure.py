@@ -2191,6 +2191,16 @@ class GrampsPreferences(ConfigureDialog):
         )
 
         row += 1
+        # Maximum visible length of a note in characters.
+        self.add_spinner(
+            grid,
+            _("Note preview length"),
+            row,
+            "interface.note-preview-length",
+            (80, 2000),
+        )
+
+        row += 1
         label = self.add_text(
             grid,
             _("* Requires Restart"),

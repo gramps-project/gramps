@@ -47,6 +47,7 @@ from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.config import config
 
 _ = glocale.translation.gettext
 
@@ -453,16 +454,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         note = self.tables[the_type]["get_func"](handle)
 
         # get the note text; this ignores (discards) formatting
-        text = note.get()
-
-        # convert whitespace to a single space
-        text = " ".join(text.split())
-
-        # if the note is too long, truncate it
-        if len(text) > 80:
-            text = text[:80] + "..."
-
-        return text
+        return note.get_preview()
 
     def get_place_text(self, the_type, handle, data):
         """
