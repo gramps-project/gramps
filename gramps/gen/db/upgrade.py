@@ -61,6 +61,75 @@ _ = glocale.translation.gettext
 LOG = logging.getLogger(".upgrade")
 
 
+def gramps_upgrade_22(self):
+    """
+    Upgrade database from version 21 to 22.
+    This upgrade adds a MIME type field to the Note object.
+    """
+    # Use JSON serialization since version 21 has already converted everything to JSON
+    self.set_serializer("json")
+
+    length = self.get_number_of_notes()
+    self.set_total(length)
+    self._txn_begin()
+    
+    # First, ensure the mime column exists in the note table
+    if not self.dbapi.column_exists("note", "mime"):
+        self.dbapi.execute("ALTER TABLE note ADD COLUMN mime TEXT;")
+        # Add an index for the mime column to improve query performance
+        self.dbapi.execute("CREATE INDEX note_mime ON note(mime);")
+
+    # Add mime type to notes
+    for note_handle in self.get_note_handles():
+        # Get the raw note data (in JSON format)
+        note = self.get_raw_note_data(note_handle)
+        
+        # For a Note object in JSON format, we can directly access the properties
+        if isinstance(note, dict):
+            # Set default MIME type
+            mime_type = "text/x-gramps-styledtext"
+            
+            # Get note type
+            note_type = note.get("type", {}).get("string", "")
+            
+            # Set MIME type based on note type
+            if note_type == "HTML code":
+                mime_type = "text/html"
+            
+            # Check if it's an Association Note linked to a DNA Association
+            if note_type == "Association Note":
+                # Check if the text content contains DNA Segment data
+                text = note.get("text", {}).get("string", "")
+                if "DNA Segment" in text:
+                    mime_type = "text/csv"
+            
+            # Add the MIME type to the note data
+            note["mime"] = mime_type
+            
+            # Update the note in the database
+            table = "note"
+            self.dbapi.execute(
+                f"UPDATE {table} SET json_data = ? WHERE handle = ?",
+                [self.serializer.data_to_string(note), note_handle]
+            )
+            
+            # Also update the secondary column directly
+            self.dbapi.execute(
+                "UPDATE note SET mime = ? WHERE handle = ?",
+                [mime_type, note_handle]
+            )
+        else:
+            # In case we encounter a legacy format, handle it appropriately
+            # But this shouldn't happen if version 21 conversion was complete
+            self.update()
+            continue
+            
+        self.update()
+
+    self._txn_commit()
+    # Bump up database version. Separate transaction to save metadata.
+    self._set_metadata("version", 22)
+
 def gramps_upgrade_21(self):
     """
     Add json_data field to tables.

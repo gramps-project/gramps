@@ -183,6 +183,7 @@ class DBAPI(DbGeneric):
             "CREATE TABLE note "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            "mime TEXT, "  # Add MIME type column
             f"{col_data}"
             ")"
         )
@@ -248,6 +249,7 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX event_gramps_id ON event(gramps_id)")
         self.dbapi.execute("CREATE INDEX repository_gramps_id ON repository(gramps_id)")
         self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
+        self.dbapi.execute("CREATE INDEX note_mime ON note(mime)")  # Add index for mime type
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
 
         self.dbapi.commit()
@@ -1168,6 +1170,11 @@ class DBAPI(DbGeneric):
                     self.dbapi.execute(
                         f"ALTER TABLE {table_name} ADD COLUMN {field} {sql_type}"
                     )
+            
+            # Add mime column to note table if the class is Note
+            if cls.__name__ == "Note":
+                if not self.dbapi.column_exists("note", "mime"):
+                    self.dbapi.execute("ALTER TABLE note ADD COLUMN mime TEXT")
 
     def _update_secondary_values(self, obj):
         """
@@ -1194,6 +1201,10 @@ class DBAPI(DbGeneric):
             handle = self._get_place_data(obj)
             sets.append("enclosed_by = ?")
             values.append(handle)
+        # Add MIME type to Note secondary values
+        if table == "Note" and hasattr(obj, "mime"):
+            sets.append("mime = ?")
+            values.append(obj.mime)
 
         if len(values) > 0:
             table_name = table.lower()

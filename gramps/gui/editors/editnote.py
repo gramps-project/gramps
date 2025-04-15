@@ -240,6 +240,13 @@ class EditNote(EditPrimary):
             self.db.readonly,
         )
 
+        self.mime = MonitoredEntry(
+            self.top.get_object("mime"),
+            self.obj.set_mime,
+            self.obj.get_mime,
+            self.db.readonly,
+        )
+
         self.tags = MonitoredTagList(
             self.top.get_object("tag_label"),
             self.top.get_object("tag_button"),

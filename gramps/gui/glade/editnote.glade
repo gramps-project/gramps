@@ -116,7 +116,7 @@
                   </packing>
                 </child>
                 <child>
-                  <!-- n-columns=5 n-rows=3 -->
+                  <!-- n-columns=5 n-rows=4 -->
                   <object class="GtkGrid" id="table79">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -246,7 +246,7 @@ Use monospace font to keep preformatting.</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">2</property>
+                        <property name="top-attach">3</property>
                       </packing>
                     </child>
                     <child>
@@ -285,6 +285,36 @@ Use monospace font to keep preformatting.</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">3</property>
+                        <property name="width">4</property>
+                      </packing>
+                    </child>
+                    <!-- New MIME type label -->
+                    <child>
+                      <object class="GtkLabel" id="label-mime">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">_MIME Type:</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">mime</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">2</property>
+                      </packing>
+                    </child>
+                    <!-- New MIME type entry field -->
+                    <child>
+                      <object class="UndoableEntry" id="mime">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">The MIME type of the note content (e.g., text/x-gramps-styledtext, text/html, text/markdown)</property>
+                        <property name="hexpand">True</property>
+                        <property name="invisible-char">●</property>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>

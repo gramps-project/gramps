@@ -73,6 +73,7 @@ class Note(BasicPrimaryObject):
         self.text = StyledText(text)
         self.format = Note.FLOWED
         self.type = NoteType()
+        self.mime = "text/x-gramps-styledtext"  # Default mime type
 
     def serialize(self):
         """Convert the object to a serialized tuple of data.
@@ -90,6 +91,7 @@ class Note(BasicPrimaryObject):
             self.change,
             TagBase.serialize(self),
             self.private,
+            self.mime,
         )
 
     @classmethod
@@ -121,6 +123,7 @@ class Note(BasicPrimaryObject):
                     "title": _("Tags"),
                 },
                 "private": {"type": "boolean", "title": _("Private")},
+                "mime": {"type": "string", "title": _("MIME Type")},
             },
         }
 
@@ -130,16 +133,32 @@ class Note(BasicPrimaryObject):
         :param data: The serialized format of a Note.
         :type: data: tuple
         """
-        (
-            self.handle,
-            self.gramps_id,
-            the_text,
-            self.format,
-            the_type,
-            self.change,
-            tag_list,
-            self.private,
-        ) = data
+        if len(data) == 8:
+            # Pre-6.0 format without mime
+            (
+                self.handle,
+                self.gramps_id,
+                the_text,
+                self.format,
+                the_type,
+                self.change,
+                tag_list,
+                self.private,
+            ) = data
+            self.mime = "text/x-gramps-styledtext"  # Default for older format
+        else:
+            # 6.0 format with mime (9 items)
+            (
+                self.handle,
+                self.gramps_id,
+                the_text,
+                self.format,
+                the_type,
+                self.change,
+                tag_list,
+                self.private,
+                self.mime,
+            ) = data
 
         self.text = StyledText()
         self.text.unserialize(the_text)
@@ -330,25 +349,86 @@ class Note(BasicPrimaryObject):
         """
         return self.type
 
+    def set_mime(self, mime):
+        """Set the MIME type of the Note.
+
+        :param mime: MIME type of the note content
+        :type mime: str
+        """
+        self.mime = mime
+
+    def get_mime(self):
+        """Get MIME type of the Note.
+
+        :returns: the MIME type of the Note
+        :rtype: str
+        """
+        return self.mime
+
     def get_links(self):
-        """
-        Get the jump links from this note. Links can be external, to
-        urls, or can be internal to gramps objects.
+            """
+            Get the jump links from this note. Links can be external, to
+            urls, or can be internal to gramps objects.
 
-        Return examples::
+            Return examples::
 
-            [("gramps", "Person", "handle", "7657626365362536"),
-             ("external", "www", "url", "http://example.com")]
+                [("gramps", "Person", "handle", "7657626365362536"),
+                 ("external", "www", "url", "http://example.com")]
 
-        :returns: list of [(domain, type, propery, value), ...]
-        :rtype: list
-        """
-        retval = []
-        for styledtext_tag in self.text.get_tags():
-            if int(styledtext_tag.name) == StyledTextTagType.LINK:
-                if styledtext_tag.value.startswith("gramps://"):
-                    object_class, prop, value = styledtext_tag.value[9:].split("/", 2)
-                    retval.append(("gramps", object_class, prop, value))
-                else:
-                    retval.append(("external", "www", "url", styledtext_tag.value))
-        return retval
+            :returns: list of [(domain, type, propery, value), ...]
+            :rtype: list
+            """
+            retval = []
+            
+            # Handle StyledText links (default format)
+            if self.mime == "text/x-gramps-styledtext":
+                for styledtext_tag in self.text.get_tags():
+                    if int(styledtext_tag.name) == StyledTextTagType.LINK:
+                        if styledtext_tag.value.startswith("gramps://"):
+                            object_class, prop, value = styledtext_tag.value[9:].split("/", 2)
+                            retval.append(("gramps", object_class, prop, value))
+                        else:
+                            retval.append(("external", "www", "url", styledtext_tag.value))
+            
+            # Handle HTML links
+            elif self.mime == "text/html":
+                import re
+                html_content = str(self.text)
+                
+                # Extract gramps internal links (could be in custom format like gramps://Person/handle/123456)
+                gramps_pattern = r'href=["\']gramps://([^/]+)/([^/]+)/([^"\']+)["\']'
+                for match in re.finditer(gramps_pattern, html_content):
+                    obj_class, prop, value = match.groups()
+                    retval.append(("gramps", obj_class, prop, value))
+                
+                # Extract regular HTML links
+                url_pattern = r'href=["\'](?!gramps://)([^"\']+)["\']'
+                for match in re.finditer(url_pattern, html_content):
+                    url = match.group(1)
+                    retval.append(("external", "www", "url", url))
+                    
+            # Handle Markdown links
+            elif self.mime == "text/markdown":
+                import re
+                md_content = str(self.text)
+                
+                # Extract gramps internal links in markdown
+                # Format could be [text](gramps://Person/handle/123456)
+                gramps_pattern = r'\[.*?\]\(gramps://([^/]+)/([^/]+)/([^)]+)\)'
+                for match in re.finditer(gramps_pattern, md_content):
+                    obj_class, prop, value = match.groups()
+                    retval.append(("gramps", obj_class, prop, value))
+                
+                # Extract regular markdown links [text](url)
+                url_pattern = r'\[.*?\]\((?!gramps://)([^)]+)\)'
+                for match in re.finditer(url_pattern, md_content):
+                    url = match.group(1)
+                    retval.append(("external", "www", "url", url))
+                
+                # Also catch bare URLs (optional, as they might not be intended as links)
+                bare_url_pattern = r'(?<!\()(https?://[^\s\)]+)(?!\))'
+                for match in re.finditer(bare_url_pattern, md_content):
+                    url = match.group(1)
+                    retval.append(("external", "www", "url", url))
+            
+            return retval
