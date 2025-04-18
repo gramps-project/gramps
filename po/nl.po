@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-20 04:17+0000\n"
+"PO-Revision-Date: 2025-04-14 22:32+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -706,10 +706,10 @@ msgid ""
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Lees de handleiding</b><br/>Vergeet niet de Gramps-handleiding, \"Help > "
-"Handleiding\" te lezen. De ontwikkelaars hebben hun best gedaan om de meeste "
-"bewerkingen intuïtief te maken, maar de handleiding staat vol met informatie "
-"die uw tijd aan genealogie productiever zal maken."
+"<b>Lees de handleiding</b><br/>Vergeet niet de Gramps-handleiding, "
+"\"Hulp > Handleiding\" te lezen. De ontwikkelaars hebben hun best gedaan om "
+"de meeste bewerkingen intuïtief te maken, maar de handleiding staat vol met "
+"informatie die uw tijd aan genealogie productiever zal maken."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -777,7 +777,7 @@ msgstr ""
 "Bekijk de e-maillijst van gramps-gebruikers. Er staan veel behulpzame "
 "personen op de lijst, dus u krijgt waarschijnlijk snel een antwoord. Als u "
 "vragen heeft over de ontwikkeling van Gramps, probeer dan de gramps-devel "
-"lijst. U kunt de lijsten bekijken door \"Help > Gramps mailinglijsten\" te "
+"lijst. U kunt de lijsten bekijken door \"Hulp > Gramps mailinglijsten\" te "
 "selecteren."
 
 #: ../data/tips.xml:64
@@ -796,8 +796,8 @@ msgstr ""
 "kunnen van alles zijn, van het schrijven van documentatie tot het testen van "
 "ontwikkelingsversies en het helpen met de website. Begin met een aanmelding "
 "op de Gramps-ontwikkelaarsmailinglijst, gramps-devel en uzelf voor te "
-"stellen. Inschrijvingsinformatie is te vinden op \"Help > Gramps "
-"mailinglijsten\"."
+"stellen. Inschrijvingsinformatie is te vinden op "
+"\"Hulp > Gramps mailinglijsten\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -1041,7 +1041,7 @@ msgid ""
 msgstr ""
 "<b>Extra verslagen en hulpmiddelen</b><br/>Extra verslagen en hulpmiddelen "
 "kunnen worden toegevoegd aan Gramps met het systeem van uitbreidingen. Zie "
-"ze onder \"Help > Extra Verslagen / Hulpmiddelen\". Dit is de beste manier "
+"ze onder \"Hulp > Extra Verslagen / Hulpmiddelen\". Dit is de beste manier "
 "voor ervaren gebruikers om te experimenteren en nieuwe functionaliteit te "
 "creëren."
 
@@ -1065,7 +1065,7 @@ msgid ""
 msgstr ""
 "<b>Gramps-aankondigingen</b><br/>Wilt u een melding ontvangen wanneer er een "
 "nieuwe versie van Gramps wordt uitgebracht? Word lid van de Gramps-announce "
-"mailinglijst op \"Help > Gramps mailinglijsten\"."
+"mailinglijst op \"Hulp > Gramps mailinglijsten\"."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1456,7 +1456,7 @@ msgstr ""
 "Gebruik: gramps [OPTION...]\n"
 "  --load-modules=MODULE1,MODULE2,...     Te laden Dynamische modules\n"
 "\n"
-"Help opties\n"
+"Hulp-opties\n"
 "  -?, --help                             Toon dit helpbericht\n"
 "  --usage                                Kort gebruiksoverzicht weergeven\n"
 "\n"
@@ -12329,7 +12329,7 @@ msgstr "%s: "
 #: ../gramps/plugins/tool/reorderids.glade:213
 #: ../gramps/plugins/tool/testcasegenerator.py:396
 msgid "_Help"
-msgstr "_Help"
+msgstr "_Hulp"
 
 #: ../gramps/gui/configure.py:700 ../gramps/gui/configure.py:755
 msgid "Researcher"
@@ -19713,7 +19713,7 @@ msgstr "Uitbreiding controleren…"
 
 #: ../gramps/gui/plug/_windows.py:1289
 msgid "Unknown Help URL"
-msgstr "Onbekende Help-URL"
+msgstr "Onbekende Hulp-URL"
 
 #: ../gramps/gui/plug/_windows.py:1300
 msgid "Unknown URL"
@@ -20863,7 +20863,7 @@ msgstr ""
 "(%(firstauthoremail)s).\n"
 "\n"
 "Als u niet wilt dat Gramps deze weergave opnieuw probeert te laden, kunt u "
-"deze verbergen met behulp van Uitbreidingen beheren in het Help-menu."
+"deze verbergen met behulp van Uitbreidingen beheren in het Hulp-menu."
 
 #: ../gramps/gui/viewmanager.py:1701
 msgid "Failed Loading Plugin"
@@ -20892,7 +20892,7 @@ msgstr ""
 "(%(firstauthoremail)s).\n"
 "\n"
 "Als u niet wilt dat Gramps deze uitbreiding opnieuw probeert te laden, kunt "
-"u deze verbergen met behulp van de Uitbreidingen beheren in het Help-menu."
+"u deze verbergen met behulp van de Uitbreidingen beheren in het Hulp-menu."
 
 #: ../gramps/gui/viewmanager.py:1799
 msgid "Gramps XML Backup"
@@ -21335,7 +21335,7 @@ msgstr "Standaard-Gramplets herstellen"
 
 #: ../gramps/gui/widgets/grampletbar.py:560
 msgid "Gramplet Bar Help"
-msgstr "Gramplet-werkbalk Help"
+msgstr "Gramplet-werkbalk Hulp"
 
 #: ../gramps/gui/widgets/grampletbar.py:561
 msgid "About Gramplets"
@@ -25455,7 +25455,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:242
 msgid "Gramps View Categories"
-msgstr "Gramps weergave-categorieën"
+msgstr "Gramps Weergave Categorieën"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:246
 #: ../gramps/plugins/gramplet/welcomegramplet.py:255
@@ -33166,7 +33166,7 @@ msgstr "Klik om een weergave te selecteren"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:35
 msgid "Category Sidebar"
-msgstr "Categorie Zijbalk"
+msgstr "Zijbalk Categorieën"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:36
 msgid "A sidebar to allow the selection of view categories"
@@ -33174,7 +33174,7 @@ msgstr "Een zijbalk om de selectie van weergavecategorieën mogelijk te maken"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:44
 msgid "Category"
-msgstr "Categorie"
+msgstr "Categorieën"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:51
 msgid "Drop-down Sidebar"
@@ -35586,7 +35586,7 @@ msgstr "Mediabeheer"
 #: ../gramps/plugins/tool/mediamanager.py:95
 #: ../gramps/plugins/tool/verify.glade:110
 msgid "Help"
-msgstr "Help"
+msgstr "Hulp"
 
 #: ../gramps/plugins/tool/mediamanager.py:105
 #: ../gramps/plugins/webreport/basepage.py:2053
