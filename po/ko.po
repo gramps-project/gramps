@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-04-09 13:46+0000\n"
+"PO-Revision-Date: 2025-04-18 06:03+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -4156,7 +4156,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hastag.py:51
 #: ../gramps/gui/editors/filtereditor.py:617
 msgid "Tag:"
-msgstr ""
+msgstr "꼬리표:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Citations with the <tag>"
@@ -4229,7 +4229,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:46
 msgid "Every event"
-msgstr ""
+msgstr "모든 사건"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:47
 msgid "Matches every event in the database"
@@ -4285,7 +4285,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeevent.glade:301
 #: ../gramps/gui/glade/mergeevent.glade:316
 msgid "Description:"
-msgstr ""
+msgstr "설명:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:58
 #: ../gramps/gen/filters/rules/event/_hasevent.py:50
@@ -4294,7 +4294,7 @@ msgstr ""
 #: ../gramps/gui/editors/filtereditor.py:113
 #: ../gramps/gui/editors/filtereditor.py:581
 msgid "Event type:"
-msgstr ""
+msgstr "사건 유형:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:58
 #: ../gramps/gen/filters/rules/event/_hasevent.py:52
@@ -4307,7 +4307,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeevent.glade:270
 #: ../gramps/gui/glade/mergeevent.glade:285
 msgid "Place:"
-msgstr ""
+msgstr "장소:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:59
 msgid "Events with <data>"
@@ -4917,13 +4917,13 @@ msgstr ""
 #: ../gramps/gui/glade/mergerepository.glade:239
 #: ../gramps/gui/glade/mergerepository.glade:254
 msgid "Type:"
-msgstr ""
+msgstr "형태:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:59
 #: ../gramps/gui/glade/mergemedia.glade:239
 #: ../gramps/gui/glade/mergemedia.glade:254 ../gramps/gui/viewmanager.py:1805
 msgid "Path:"
-msgstr ""
+msgstr "경로:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:62
 msgid "Media objects matching parameters"
@@ -5171,7 +5171,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_everyone.py:55
 #: ../gramps/gen/plug/_pluginreg.py:80
 msgid "Everyone"
-msgstr ""
+msgstr "전부"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:57
 msgid "Matches everyone in the database"
@@ -5483,7 +5483,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:59
 msgid "Number of children:"
-msgstr ""
+msgstr "자녀 숫자:"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:61
 msgid "People with the <relationships>"
@@ -5518,7 +5518,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeplace.glade:443
 #: ../gramps/plugins/gramplet/soundgen.py:68
 msgid "Name:"
-msgstr ""
+msgstr "이름:"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:58
 msgid "Soundex match of People with the <name>"
@@ -5577,7 +5577,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:54
 msgid "Adopted people"
-msgstr ""
+msgstr "입양아"
 
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:55
 msgid "Matches people who were adopted"
@@ -6784,7 +6784,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:209
 #: ../gramps/plugins/importer/importprogen.glade:363
 msgid "Attribute"
-msgstr ""
+msgstr "속성"
 
 #: ../gramps/gen/lib/attribute.py:258 ../gramps/gen/lib/srcattribute.py:77
 #: ../gramps/gen/lib/styledtexttag.py:121 ../gramps/gui/clipboard.py:924
@@ -6797,7 +6797,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:1398
 #: ../gramps/plugins/webreport/basepage.py:1658
 msgid "Value"
-msgstr ""
+msgstr "값"
 
 #: ../gramps/gen/lib/attrtype.py:75 ../gramps/gen/lib/childreftype.py:81
 #: ../gramps/gen/lib/eventroletype.py:72 ../gramps/gen/lib/eventtype.py:199
@@ -6843,7 +6843,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:382
 #: ../gramps/plugins/webreport/heatmap.py:514
 msgid "Description"
-msgstr ""
+msgstr "설명"
 
 #: ../gramps/gen/lib/attrtype.py:78
 msgid "Identification Number"
@@ -6859,7 +6859,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/attrtype.py:81
 msgid "Social Security Number"
-msgstr ""
+msgstr "사회 보장 번호"
 
 #: ../gramps/gen/lib/attrtype.py:82 ../gramps/gen/utils/keyword.py:74
 #: ../gramps/gui/configure.py:1088 ../gramps/gui/configure.py:1090
@@ -6868,7 +6868,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importcsv.py:222
 #: ../gramps/plugins/tool/patchnames.py:488
 msgid "Nickname"
-msgstr ""
+msgstr "별명"
 
 #: ../gramps/gen/lib/attrtype.py:83
 msgid "Cause"
@@ -6885,15 +6885,15 @@ msgstr ""
 #: ../gramps/plugins/gramplet/events.py:106
 #: ../gramps/plugins/quickview/ageondate.py:54
 msgid "Age"
-msgstr ""
+msgstr "나이"
 
 #: ../gramps/gen/lib/attrtype.py:86
 msgid "Father's Age"
-msgstr ""
+msgstr "아버지 나이"
 
 #: ../gramps/gen/lib/attrtype.py:87
 msgid "Mother's Age"
-msgstr ""
+msgstr "어머니 나이"
 
 #: ../gramps/gen/lib/attrtype.py:88 ../gramps/gen/lib/eventroletype.py:79
 msgid "Witness"
@@ -6907,7 +6907,7 @@ msgstr ""
 #: ../gramps/gen/plug/docgen/treedoc.py:589
 #: ../gramps/plugins/gramplet/persondetails.py:171
 msgid "Occupation"
-msgstr ""
+msgstr "직업"
 
 #: ../gramps/gen/lib/childref.py:106 ../gramps/gui/editors/editchildref.py:202
 msgid "Child Reference"
