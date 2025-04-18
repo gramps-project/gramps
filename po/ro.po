@@ -1,24 +1,24 @@
 # Romanian translation for Gramps
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) YEAR ORGANIZATION
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Vlad-Mihai Chirculete <mihai.chirculete@tutanota.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2003-03-03 09:54+0100\n"
-"Last-Translator: Radu Bogdan Mare <bogdan_mare@web.de>\n"
-"Language-Team: romanian <ro@li.org>\n"
+"PO-Revision-Date: 2025-04-14 07:21+0000\n"
+"Last-Translator: Vlad-Mihai Chirculete <mihai.chirculete@tutanota.com>\n"
+"Language-Team: Romanian <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/ro/>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 5.11-dev\n"
 "Generated-By: pygettext.py 1.4\n"
-"X-Generator: KBabel 0.9.6\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2);\n"
 
 #: ../data/holidays.xml:3
 #, fuzzy
@@ -8370,9 +8370,8 @@ msgstr "Copii"
 #: ../gramps/plugins/webreport/narrativeweb.py:3236
 #: ../gramps/plugins/webreport/person.py:2005
 #: ../gramps/plugins/webreport/updates.py:120
-#, fuzzy
 msgid "Events"
-msgstr "Eveniment"
+msgstr "Evenimente"
 
 #: ../gramps/gen/lib/family.py:200 ../gramps/gen/lib/person.py:250
 #, fuzzy
@@ -9274,7 +9273,7 @@ msgstr "Noiembrie"
 #: ../gramps/plugins/quickview/filterbyname.py:347
 #: ../gramps/plugins/tool/reorderids.glade:836
 msgid "Repository"
-msgstr ""
+msgstr "Repertoriu"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:531
 #, fuzzy
@@ -9914,9 +9913,8 @@ msgstr "Nu am putut crea %s"
 #: ../gramps/gen/plug/report/stdoptions.py:412
 #: ../gramps/plugins/importer/importprogen.glade:415
 #: ../gramps/plugins/webreport/webcal.py:531
-#, fuzzy
 msgid "Default"
-msgstr "implicit"
+msgstr "Implicit"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 #, fuzzy
@@ -27310,9 +27308,8 @@ msgid "marriage"
 msgstr "Căsătorie"
 
 #: ../gramps/plugins/importer/importcsv.py:384
-#, fuzzy
 msgid "place"
-msgstr "Localitatea"
+msgstr "loc"
 
 #: ../gramps/plugins/importer/importcsv.py:385
 #, fuzzy
