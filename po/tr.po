@@ -12,13 +12,14 @@
 # Bora Atıcı <boratici.acc@gmail.com>, 2022, 2023, 2024, 2025.
 # Nick Hall <nick-h@gramps-project.org>, 2022.
 # Oğuz Ersen <oguz@ersen.moe>, 2024.
+# mahmutozcan <mahmutozcan@protonmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-01 00:40+0000\n"
-"Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
+"PO-Revision-Date: 2025-04-14 07:21+0000\n"
+"Last-Translator: mahmutozcan <mahmutozcan@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -21363,10 +21364,8 @@ msgid "Closes print preview window"
 msgstr "Baskı önizleme penceresini kapatır"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:39
-#, fuzzy
-#| msgid "Print..."
 msgid "_Print"
-msgstr "Yazdır..."
+msgstr "_Yazdır"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
@@ -21374,7 +21373,7 @@ msgstr "Geçerli dosyayı yazdırır"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:63
 msgid "_First"
-msgstr ""
+msgstr "_İlk"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
@@ -21440,7 +21439,7 @@ msgstr "Sonraki sayfayı gösterir"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:108
 msgid "_Last"
-msgstr ""
+msgstr "_Sonuncu"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -34963,8 +34962,6 @@ msgid "Guess"
 msgstr "Tahmin"
 
 #: ../gramps/plugins/tool/eventcmp.glade:37
-#, fuzzy
-#| msgid "Save As"
 msgid "Save _As"
 msgstr "Farklı Kaydet"
 
