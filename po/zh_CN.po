@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-04-09 13:46+0000\n"
+"PO-Revision-Date: 2025-04-14 22:32+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
@@ -436,7 +436,6 @@ msgstr ""
 "事的机会。不管如何，不要忘了把聊天记录下来！"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -447,11 +446,12 @@ msgid ""
 "the Filter field on Sidebar, then click Find button. If the Sidebar is not "
 "visible, select View > Sidebar."
 msgstr ""
-"<b>筛查成员</b><br/>在成员视图中，您可以基于许多标准过滤个体。定义新的筛查器"
-"请到 “编辑 &gt; 成员筛查编辑器”。您可以命名您的筛查器并添加与合并之前预设的规"
-"则。比如，您可以定义一个筛查器并在家族树中寻找所有适合的成员。没有出生日期的"
-"成员也可以被筛查。为了获得结果保存您的筛查器并在筛查器边框底部选择。然后点击 "
-"“应用”。如果筛查器边栏不可见，选择 “视图 &gt; 筛查器”。"
+"成员视图中的<b>筛选成员</b><br/"
+">功能，可以通过许多规则来进行人员筛选。要定义新的筛选器，请到 “编辑 > "
+"成员筛选编辑器”。您可以命名并添加您的筛选器并可与现有的预设规则进行合并。比如"
+"，您可以定义一个筛选器，实现在家族树中查找所有收养的成员。也可以筛查出没有出"
+"生日期的成员。为了获得结果，首先保存好您的筛选器，然后在侧边栏的筛选器中选择"
+"您保存过的筛选器，点击查找按钮。如果没看到侧边栏，请点击视图 > 侧边栏。"
 
 #: ../data/tips.xml:16
 msgid ""
@@ -498,19 +498,17 @@ msgstr ""
 "妹、子女或者父母之一即可将其设为活跃。"
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>谁生在什么时候？</b><br/>在 &quot;工具 &gt; 分析和探索 &gt; 对比个人事"
-"件...&quot; 您可以对您数据库中的个体数据进行比较。这很有用，也就是说，如果您"
-"希望您数据库中每个人的出生日期，您可以使用定制的筛查器过滤并缩小结果范围。"
+"<b>谁生在什么时候？</b><br/>位于“工具 > 分析和探索 > "
+"比较个人事件...”下，您可以对您数据库中的个体数据进行比较。这很有用，比如您想"
+"列出数据库中每个人的出生日期。您可以使用自定义筛选器减少结果。"
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -518,21 +516,22 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Gramps 工具</b><br/>Gramps 拥有丰富的工具。这些允许您执行类似数据库纠错和"
-"一致性检查，也有搜索和分析工具用于事件比较，寻找重复的人，交互式后代浏览，以"
-"及其他。所有的工具可以从菜单 &quot;工具&quot; 进入。"
+"<b>Gramps 工具</b><br/>Gramps "
+"拥有丰富的工具。这些工具可让您进行诸如数据库纠错和一致性等检查。也有搜索和分"
+"析工具，可用于事件比较，寻找重复的人，交互式后代浏览等等。所有工具都可以从“"
+"菜单 > 工具”中找到。"
 
 #: ../data/tips.xml:28
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
 "> Relationship Calculator...\". The exact relationship as well as all common "
 "ancestors are reported."
 msgstr ""
-"<b>关系分析</b><br/>确认数据库中的两个人之间是否有血缘关系（血缘，非结婚的）"
-"本工具，位于&quot;工具&gt;实用功能&gt; 关系分析器...&quot;。同时也会得出精确"
-"的共同的祖先。"
+"<b>关系计算</b><br/"
+">要查看数据库中的两个人之间是否有亲属关系（指血缘，非婚姻的关系），可使用该工"
+"具。它位于“工具 > 实用工具 > "
+"关系计算...”。精确的亲属关系以及共同祖先都会显示出来。"
 
 #: ../data/tips.xml:30
 msgid ""
@@ -551,22 +550,15 @@ msgstr ""
 "氏的 SoundEx 编码，请加载 SoundEx Gramplet。"
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\"."
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"<b>设置您的首选项</b><br/>&quot;编辑 &gt; 首选项...&quot; 允许您修改若干设"
-"置，比如您媒体文件的路径，并允许您根据您的需要，调整很多方面 Gramps 的显示。"
-"每种分别的视图可以在 &quot;视图 &gt; 配置视图...&quot; 中配置。"
+"<b>设置您的首选项</b><br/>在“编辑 > 首选项...\" "
+"中，您可以修改若干设置，比如您媒体文件的路径，以及按需调整 Gramps "
+"的展示方式。每种独立视图也可以在“视图 > 配置视图...”中进行配置。"
 
 #: ../data/tips.xml:34
 msgid ""
@@ -581,7 +573,6 @@ msgstr ""
 "您准备为您的家族树创建网站，那么也同样有对应的报告类型。"
 
 #: ../data/tips.xml:36
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -589,9 +580,11 @@ msgid ""
 "People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>开始一个新的家族树</b><br/>开始一个新的家族树的一个好方法是，先使用“成员视"
-"图”把所有成员输入数据库（使用 &quot;编辑 &gt;添加...&quot; 或者在“成员视图”里"
-"点击“添加”按钮）。然后，进入“关系视图”并为成员建立关系。"
+"<b>创建新家族树</b><br/"
+">创建新家族树的一个好方法是，先使用“成员视图”把所有成员输入数据库（使用“编辑 "
+"> "
+"添加...”或者在“成员视图”里点击“添加新成员”按钮）。然后进入“关系视图”创建人员"
+"之间的关系。"
 
 #: ../data/tips.xml:38
 msgid ""
@@ -602,7 +595,6 @@ msgstr ""
 "方片刻，提示信息就会出现。"
 
 #: ../data/tips.xml:40
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -610,23 +602,20 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
-"<b>您不能确认的日期?</b><br/>如果您不能确认一个事件发生的日期（比如出生和死亡"
-"日期），Gramps 允许您基于猜测或推测填写一个范围的日期。例如：&quot;大约 "
-"1908&quot; 在 Gramps 属于有效的出生日期输入。参考 Gramps 手册了解关于日期输入"
-"选项的完整说明。"
+"<b>日期不确定？</b><br/>如果您不能确认一个事件发生的日期，Gramps "
+"允许您基于猜测或推测填写一个日期范围。例如：“大约 1908”，在 Gramps "
+"中是属于有效的出生日期输入。点击日期字段旁的“打开日期编辑器”按钮。参考 "
+"Gramps 手册了解关于日期输入选项的完整说明。"
 
 #: ../data/tips.xml:42
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
-msgstr ""
-"<b>重复的录入</b><br/>&quot;工具 &gt; 数据处理 &gt; 寻找可能重复的成员..."
-"&quot; 允许您定位（并合并）在数据中录入多次的相同的人员信息。"
+msgstr "<b>重复的录入</b><br/>“工具 > 家族树处理 > "
+"寻找可能重复的成员...”允许您定位（并合并）在数据中录入多次的相同人员的信息。"
 
 #: ../data/tips.xml:44
-#, fuzzy
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -635,33 +624,31 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>合并</b><br/>&quot;编辑 &gt; 比较与合并...&quot;功能可以将两个分开的成员合"
-"并成一个人. 本功能在合并两个数据库中重复的人，或者合并多个不同姓名的人时非常"
-"有用."
+"<b>合并</b><br/>“编辑 > 合并...”功能可以将分开列出的成员合并成。在按住 Ctrl "
+"键的同时选择第二个条目。本功能在合并两个数据库中重复的人，或者合并因错误输入"
+"导致的同人不同名时非常有用。合并功能适用于所有主要对象类型的全部列表视图。"
 
 #: ../data/tips.xml:46
-#, fuzzy
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
-"<b>整理视图</b><br/>很多视图可以以金字塔树或者简单列表模式显示您的数据。每种"
-"视图可以配置为您喜爱的方式。查看右边栏上方的工具条或者 &quot;视图&quot; 菜"
-"单。"
+"<b>整理视图</b><br/"
+">很多视图都可以以金字塔树或者简单列表模式显示您的数据。每种视图均可以配置为您"
+"喜爱的方式。可在顶部工具栏右侧或者“视图” 菜单中找到。"
 
 #: ../data/tips.xml:48
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
 "through the list using \"Go > Forward\" and \"Go > Back\" or the arrow "
 "buttons."
 msgstr ""
-"<b>向前和向后浏览</b> <br/>Gramps 会维护一份先前对象列表，比如人物、事件等。"
-"您可以使用&quot;转到 &gt;前进&quot; 和 &quot;转到 &gt; 后退&quot; 或者箭头按"
-"钮在列表内向前或向后。"
+"<b>向前和向后浏览</b> <br/>Gramps "
+"会维护一份之前活动对象的列表，比如人物、事件等。您可使用“转到 > 前进”和 “"
+"转到 > 后退”或者箭头按钮向前或向后浏览此列表。"
 
 #: ../data/tips.xml:50
 msgid ""
@@ -673,16 +660,15 @@ msgstr ""
 "了快捷键。如果该功能存在快捷方式，它会显示在菜单的右半边。"
 
 #: ../data/tips.xml:52
-#, fuzzy
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
 "User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>阅读手册</b><br/>不要忘记阅读 Gramps 手册，&quot;Help &gt; User "
-"Manual&quot;。虽然开发者已经尽力让所有的操作都一目了然，但是手册中包含全部的"
-"信息，它将会让您操作时更加有效率。"
+"<b>阅读手册</b><br/>不要忘记阅读 Gramps 手册，位于\"帮助 > 用户手册\""
+"。虽然开发者已经尽力让所有的操作都一目了然，但是手册中详尽地介绍了完整的使用"
+"方法，这会让您使用起来更加高效。"
 
 #: ../data/tips.xml:54
 msgid ""
@@ -933,14 +919,10 @@ msgstr ""
 "gramps-project.org/bugs/ 使用 Gramps 的报告追踪系统。"
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
-msgstr "<b>Gramps 主页</b><br/>Gramps 主页是 http://gramps-project.org/ 。"
+msgstr "<b>Gramps 主页</b><br/>Gramps 主页是 https://gramps-project.org/ 。"
 
 #: ../data/tips.xml:98
 msgid ""
@@ -968,28 +950,26 @@ msgstr ""
 "来源。"
 
 #: ../data/tips.xml:102
-#, fuzzy
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help > Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
-"<b>额外报告和工具</b><br/>其他工具和报告可以在 &quot;插件&quot; 中添加到 "
-"Gramps 系统中。在 &quot;帮助 &gt; 其他报告/工具&quot; 中查看。对于高级用户来"
-"讲，这是最好体验和创建新功能的方案。"
+"<b>额外报告和工具</b><br/>额外报告和工具可以通过“插件”添加到 Gramps 中。可在“"
+"帮助 > "
+"其他报告/工具”中找到。对于高级用户来讲，这是尝试和创建新功能的最佳方式。"
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports > Books...\" allows "
 "you to collect a variety of reports into a single document. This single "
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>书册报告</b><br/>书册报告在 &quot;报告 &gt; 书册 &gt; 书册报告...&quot;，"
-"允许您收集各种信息到一个单一文档中，这个单独的报告比多页报告更便于发布，特别"
-"当打印的时候。"
+"<b>书册报告</b><br/>书册报告位于“报告 > "
+"书册报告...”下，通过它您可将多种报告集合到单一文档中。单独一份报告总比多份报"
+"告更便于发布，尤其是在需要打印的时候。"
 
 #: ../data/tips.xml:106
 #, fuzzy
@@ -1101,21 +1081,15 @@ msgstr ""
 "Software Foundation) 及开放源代码促进会 (Open Source Initiative)。"
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
 "License, see https://www.gnu.org/licenses/licenses.html#GPL to read about "
 "the rights and restrictions of this license."
 msgstr ""
-"<b>Gramps 软件许可</b><br/>您有权自由地使用并与其他人分享 它。它是基于 GNU 通"
-"用公共许可证 (GNU General Public License) 自由发布，请参见 https://www.gnu."
-"org/licenses/licenses.html#GPL 阅读此许可证的权利和约束。"
+"<b>Gramps 软件许可</b><br/>您有权自由地使用并与其他人分享 Gramps。它基于 GNU "
+"通用公共许可证 (GNU General Public License) 自由发布，请访问 https://"
+"www.gnu.org/licenses/licenses.html#GPL 来了解此许可证的权利和约束。"
 
 #: ../data/tips.xml:128
 msgid ""
@@ -1328,53 +1302,6 @@ msgid "Unknown action: %s."
 msgstr "未知行动：%s。"
 
 #: ../gramps/cli/argparser.py:67
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Usage: gramps.py [OPTION...]\n"
-#| "  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
-#| "\n"
-#| "Help options\n"
-#| "  -?, --help                             Show this help message\n"
-#| "  --usage                                Display brief usage message\n"
-#| "\n"
-#| "Application options\n"
-#| "  -O, --open=FAMILY_TREE                 Open Family Tree\n"
-#| "  -U, --username=USERNAME                Database username\n"
-#| "  -P, --password=PASSWORD                Database password\n"
-#| "  -C, --create=FAMILY_TREE               Create on open if new Family "
-#| "Tree\n"
-#| "  -i, --import=FILENAME                  Import file\n"
-#| "  -e, --export=FILENAME                  Export file\n"
-#| "  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) "
-#| "(use regular expressions)\n"
-#| "  -f, --format=FORMAT                    Specify Family Tree format\n"
-#| "  -a, --action=ACTION                    Specify action\n"
-#| "  -p, --options=OPTIONS_STRING           Specify options\n"
-#| "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
-#| "  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
-#| "  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
-#| "  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab "
-#| "delimited\n"
-#| "  -u, --force-unlock                     Force unlock of Family Tree\n"
-#| "  -s, --show                             Show config settings\n"
-#| "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
-#| "Gramps\n"
-#| "  -y, --yes                              Don't ask to confirm dangerous "
-#| "actions (non-GUI mode only)\n"
-#| "  -q, --quiet                            Suppress progress indication "
-#| "output (non-GUI mode only)\n"
-#| "  -v, --version                          Show versions\n"
-#| "  -S, --safe                             Start Gramps in 'Safe mode'\n"
-#| "                                          (temporarily use default "
-#| "settings)\n"
-#| "  -D, --default=[APXFE]                  Reset settings to default;\n"
-#| "                 A - addons are cleared\n"
-#| "                 P - Preferences to default\n"
-#| "                 X - Books are cleared, reports and tool settings to "
-#| "default\n"
-#| "                 F - filters are cleared\n"
-#| "                 E - Everything is set to default or cleared\n"
 msgid ""
 "\n"
 "Usage: gramps [OPTION...]\n"
@@ -1421,7 +1348,7 @@ msgid ""
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
 "\n"
-"用法：gramps.py [选项...]\n"
+"用法：gramps [选项...]\n"
 "  --load-modules=MODULE1,MODULE2,...     要载入的动态模块\n"
 "\n"
 "帮助选项\n"
@@ -1446,10 +1373,10 @@ msgstr ""
 "  -u, --force-unlock                     强制解锁家族树\n"
 "  -s, --show                             显示配置参数n\n"
 "  -c, --config=[config.setting[:value]]  设置配置参数并启动 Gramps\n"
-"  -y, --yes                              不询问确认，直接执行危险动作（仅限于"
-"非图形界面模式）\n"
-"  -q, --quiet                            阻止进度指示输出（仅限于非图形界面模"
-"式）\n"
+"  -y, --yes                              "
+"不询问确认，直接执行危险动作（仅限于非图形界面模式）\n"
+"  -q, --quiet                            "
+"阻止进度指示输出（仅限于非图形界面模式）\n"
 "  -v, --version                          显示版本信息\n"
 "  -S, --safe                             启动 Gramps 到安全模式\n"
 "                                          (临时使用默认设置)\n"
@@ -1461,63 +1388,6 @@ msgstr ""
 "                 E - 清理所有内容或设为默认\n"
 
 #: ../gramps/cli/argparser.py:108
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Example of usage of Gramps command line interface\n"
-#| "\n"
-#| "1. To import four databases (whose formats can be determined from their "
-#| "names)\n"
-#| "and then check the resulting database for errors, one may type:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
-#| "name=check.\n"
-#| "\n"
-#| "2. To explicitly specify the formats in the above example, append "
-#| "filenames with appropriate -f options:\n"
-#| "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps "
-#| "-f gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
-#| "\n"
-#| "3. To record the database resulting from all imports, supply -e flag\n"
-#| "(use -f if the filename does not allow Gramps to guess the format):\n"
-#| "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
-#| "\n"
-#| "4. To save any error messages of the above example into files outfile and "
-#| "errfile, run:\n"
-#| "gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-#| "2>errfile\n"
-#| "\n"
-#| "5. To import three databases and start interactive Gramps session with "
-#| "the result:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
-#| "\n"
-#| "6. To open a database and, based on that data, generate timeline report "
-#| "in PDF format\n"
-#| "putting the output into the my_timeline.pdf file:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,"
-#| "of=my_timeline.pdf\n"
-#| "\n"
-#| "7. To generate a summary of a database:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=summary\n"
-#| "\n"
-#| "8. Listing report options\n"
-#| "Use the name=timeline,show=all to find out about all available options "
-#| "for the timeline report.\n"
-#| "To find out details of a particular option, use show=option_name , e.g. "
-#| "name=timeline,show=off string.\n"
-#| "To learn about available report names, use name=show string.\n"
-#| "\n"
-#| "9. To convert a Family Tree on the fly to a .gramps xml file:\n"
-#| "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
-#| "\n"
-#| "10. To generate a web site into an other locale (in german):\n"
-#| "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
-#| "name=navwebpage,target=/../de\n"
-#| "\n"
-#| "11. Finally, to start normal interactive session type:\n"
-#| "gramps\n"
-#| "\n"
-#| "Note: These examples are for bash shell.\n"
-#| "Syntax may be different for other shells and for Windows.\n"
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -1592,8 +1462,8 @@ msgstr ""
 "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
 "\n"
 "4. 把上述示例中的错误信息保存为文件 outfile 和 errfile，可执行：\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-"2>errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
 "5. 导入三个数据库并用最终结果启动交互式 Gramps 会话，可执行：\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
@@ -1613,7 +1483,7 @@ msgstr ""
 "要了解可用的报告名称，使用 name=show string。\n"
 "\n"
 "9. 要将正在运行的家族树转换为 .gramps xml 文件，可执行：\n"
-"gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
+"gramps -O 'Family Tree 1' -e output.gramps -f gramps\n"
 "\n"
 "10. 如果要生成其他语言的网页（比如德语），可执行：\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
@@ -1902,14 +1772,13 @@ msgstr "侦测到低层数据库损坏"
 
 #: ../gramps/cli/grampscli.py:110 ../gramps/cli/user.py:221
 #: ../gramps/gui/dialog.py:319
-#, fuzzy
 msgid ""
 "Gramps has detected a problem in the underlying database. This can sometimes "
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
-msgstr ""
-"Gramps 侦测到在 Berkeley 数据库中有一个问题。可以从“家族树管理器”中修复。选"
-"择“数据库”并点击“修复”按钮"
+msgstr "Gramps "
+"检测到当前数据库中存在问题。问题有时可以从“家族树管理器”中进行修复。选择“数据"
+"库”并点击“修复”按钮"
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
@@ -3666,10 +3535,8 @@ msgid "Filter"
 msgstr "筛查器"
 
 #: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
 msgid "Preparing ..."
-msgstr "读取数据..."
+msgstr "准备中..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -3922,15 +3789,13 @@ msgid "Note type:"
 msgstr "笔记类型："
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:56
-#, fuzzy
 msgid "Objects with notes with the particular type"
-msgstr "匹配符合特定类型的事件 "
+msgstr "匹配符合特定类型注释的对象"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:57
 #: ../gramps/gen/filters/rules/note/_hastype.py:58
-#, fuzzy
 msgid "Matches notes with the particular type "
-msgstr "匹配符合特定类型的事件 "
+msgstr "匹配符合特定类型的注释 "
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:53
 #: ../gramps/gui/editors/filtereditor.py:551
@@ -4069,14 +3934,12 @@ msgid "Value:"
 msgstr "值："
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
-#, fuzzy
 msgid "Citations with the attribute <attribute>"
-msgstr "事件的属性为<attribute>"
+msgstr "引用的属性为<attribute>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:49
-#, fuzzy
 msgid "Matches citations with the attribute of a particular value"
-msgstr "匹配含有特定数值属性的媒体对象"
+msgstr "匹配属性为特定值的引用"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:59
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -4710,14 +4573,12 @@ msgid "Matches families with the family attribute of a particular value"
 msgstr "匹配家庭属性为特定数值的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:51
-#, fuzzy
 msgid "Families with the <citation>"
-msgstr "家庭标签为 <tag>"
+msgstr "带有 <citation> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:52
-#, fuzzy
 msgid "Matches families with a citation of a particular value"
-msgstr "匹配事件含有特定数值的家庭"
+msgstr "匹配引用含有特定值的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:59
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:58
@@ -4791,16 +4652,12 @@ msgid "Matches families whose notes contain text matching a regular expression"
 msgstr "匹配笔记中含有匹配特定表达文字的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "家庭中父亲的名字为<name>"
+msgstr "注释类型为 <type> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "匹配特定筛选名称的家庭"
+msgstr "匹配具有特定类型注释的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -4834,14 +4691,12 @@ msgid "Matches families with a certain number of sources connected to it"
 msgstr "匹配含有一定数量来源相关联的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:48
-#, fuzzy
 msgid "Families with the <source>"
-msgstr "家庭事件为<event>"
+msgstr "带有 <source> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:50
-#, fuzzy
 msgid "Matches families who have a particular source"
-msgstr "匹配 拥有特定配偶的成员"
+msgstr "匹配拥有特定源的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:52
 msgid "Families with the <tag>"
@@ -4870,14 +4725,12 @@ msgid "Inclusive:"
 msgstr "包含："
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:64
-#, fuzzy
 msgid "Ancestor families of <family>"
-msgstr "匹配 <filter> 的先辈们"
+msgstr "<family> 的祖先家庭"
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:66
-#, fuzzy
 msgid "Matches ancestor families of the specified family"
-msgstr "匹配特定筛选名称的家庭"
+msgstr "匹配指定家庭的祖先家庭"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:56
 msgid "Bookmarked families"
@@ -4888,14 +4741,12 @@ msgid "Matches the families on the bookmark list"
 msgstr "匹配在书签列表中的家庭"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:64
-#, fuzzy
 msgid "Descendant families of <family>"
-msgstr "%s 的后代家庭"
+msgstr "<family> 的后代家庭"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:66
-#, fuzzy
 msgid "Matches descendant families of the specified family"
-msgstr "匹配某个成员的所有后代"
+msgstr "匹配指定家庭的后代家庭"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:46
 msgid "Families matching the <filter>"
@@ -4915,9 +4766,8 @@ msgid ""
 msgstr "匹配至少有一个直接的来源包含隐私等级的家庭"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:56
-#, fuzzy
 msgid "Families having mother with Id containing <text>"
-msgstr "拥有笔记中包含 <substring> 的家庭"
+msgstr "母亲 ID 名称包含 <text> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:57
 msgid "Matches families whose mother has a specified Gramps ID"
@@ -4960,9 +4810,8 @@ msgid ""
 msgstr "匹配父亲的名字符合特定规则表达的家庭"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
-#, fuzzy
 msgid "Families with Id containing <text>"
-msgstr "家庭事件为<event>"
+msgstr "ID 带有 <text> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:51
 msgid "Matches families whose Gramps ID matches the regular expression"
@@ -5029,14 +4878,12 @@ msgid "Matches media objects with the attribute of a particular value"
 msgstr "匹配含有特定数值属性的媒体对象"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:50
-#, fuzzy
 msgid "Media with the <citation>"
-msgstr "事件中数据位<data>"
+msgstr "带有 <citation> 的媒体"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:51
-#, fuzzy
 msgid "Matches media with a citation of a particular value"
-msgstr "匹配事件含有特定数值的家庭"
+msgstr "匹配引用中含有特定值的媒体"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:46
 msgid "Media object with <Id>"
@@ -5112,9 +4959,8 @@ msgid "Matches media with a certain number of sources connected to it"
 msgstr "匹配含有一定数量来源相关联的家庭"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:48
-#, fuzzy
 msgid "Media with the <source>"
-msgstr "成员，拥有来源 <source>"
+msgstr "拥有 <source> 的媒体"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:50
 #, fuzzy
@@ -5217,9 +5063,8 @@ msgid "Matches notes with the particular tag"
 msgstr "匹配符合特定标签的注释"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:57
-#, fuzzy
 msgid "Notes with the particular type"
-msgstr "符合特定类型的事件"
+msgstr "符合特定类型的注释"
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:46
 msgid "Notes matching the <filter>"
@@ -5230,9 +5075,8 @@ msgid "Matches notes matched by the specified filter name"
 msgstr "符合特定筛选名称的笔记"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:54
-#, fuzzy
 msgid "Notes containing <text>"
-msgstr "笔记包含字串"
+msgstr "包含 <text> 的注释"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:56
 msgid "Matches notes that contain a substring or match a regular expression"
@@ -7332,9 +7176,8 @@ msgstr "来源属性"
 #: ../gramps/gen/lib/note.py:117 ../gramps/gen/lib/person.py:262
 #: ../gramps/gen/lib/place.py:204 ../gramps/gen/lib/repo.py:121
 #: ../gramps/gen/lib/src.py:128 ../gramps/gen/lib/tag.py:166
-#, fuzzy
 msgid "Last changed"
-msgstr "上次修订"
+msgstr "上次修改"
 
 #: ../gramps/gen/lib/citation.py:148 ../gramps/gen/lib/event.py:217
 #: ../gramps/gen/lib/family.py:216 ../gramps/gen/lib/media.py:176
@@ -7386,11 +7229,10 @@ msgid "unknown"
 msgstr "未知"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "大于 %s 年"
+msgstr[0] "大于 {number_of} 年"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -7539,9 +7381,8 @@ msgid "Modifier"
 msgstr "修饰符"
 
 #: ../gramps/gen/lib/date.py:791
-#, fuzzy
 msgid "Quality"
-msgstr "<b>准确度(_U)</b>"
+msgstr "质量"
 
 #: ../gramps/gen/lib/date.py:794 ../gramps/gui/editors/filtereditor.py:913
 #: ../gramps/gui/glade/rule.glade:949
@@ -7611,10 +7452,8 @@ msgid "from"
 msgstr "从"
 
 #: ../gramps/gen/lib/date.py:2007
-#, fuzzy
-#| msgid "Stop"
 msgid "to"
-msgstr "停止"
+msgstr "到"
 
 #: ../gramps/gen/lib/date.py:2008
 msgid "span"
@@ -7742,10 +7581,8 @@ msgid "Informant"
 msgstr "线人"
 
 #: ../gramps/gen/lib/eventroletype.py:82
-#, fuzzy
-#| msgid "parent2"
 msgid "Godparent"
-msgstr "父母 2"
+msgstr "教父教母"
 
 #: ../gramps/gen/lib/eventroletype.py:83 ../gramps/gen/lib/family.py:169
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
@@ -7811,20 +7648,16 @@ msgid "Child"
 msgstr "子女"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "多个父母"
+msgstr "多胎"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
 msgstr "朋友"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "近邻社区 (Neighborhood)"
+msgstr "邻居"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
@@ -7864,9 +7697,8 @@ msgid "Family"
 msgstr "家庭"
 
 #: ../gramps/gen/lib/eventtype.py:171
-#, fuzzy
 msgid "Religious"
-msgstr "宗教信仰"
+msgstr "宗教"
 
 #: ../gramps/gen/lib/eventtype.py:184
 msgid "Vocational"
@@ -8515,9 +8347,8 @@ msgid "Completed"
 msgstr "完成"
 
 #: ../gramps/gen/lib/ldsord.py:108
-#, fuzzy
 msgid "Do not seal"
-msgstr "不要缩放报告"
+msgstr "不要密封"
 
 #: ../gramps/gen/lib/ldsord.py:109
 msgid "Infant"
@@ -8532,9 +8363,8 @@ msgid "Qualified"
 msgstr "合格的"
 
 #: ../gramps/gen/lib/ldsord.py:112
-#, fuzzy
 msgid "Do not seal/Cancel"
-msgstr "不要再次询问"
+msgstr "不要密封/取消"
 
 #: ../gramps/gen/lib/ldsord.py:113
 msgid "Stillborn"
@@ -8910,10 +8740,8 @@ msgid "Research"
 msgstr "调查"
 
 #: ../gramps/gen/lib/notetype.py:88
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "分析姓名"
+msgstr "分析"
 
 #: ../gramps/gen/lib/notetype.py:89
 msgid "Transcript"
@@ -9457,10 +9285,8 @@ msgstr ""
 
 #: ../gramps/gen/lib/styledtexttagtype.py:76
 #: ../gramps/gui/widgets/styledtexteditor.py:84
-#, fuzzy
-#| msgid "Superscript"
 msgid "Subscript"
-msgstr "上标"
+msgstr "下标"
 
 #: ../gramps/gen/lib/surname.py:113 ../gramps/gen/lib/surname.py:116
 #: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/clipboard.py:617
@@ -9709,10 +9535,8 @@ msgid "Thumbnailer"
 msgstr "缩略图"
 
 #: ../gramps/gen/plug/_pluginreg.py:134 ../gramps/gui/configure.py:1663
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Citation formatter"
-msgstr "出版信息"
+msgstr "格式化引用"
 
 #: ../gramps/gen/plug/_pluginreg.py:645
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
@@ -10657,9 +10481,8 @@ msgid "Include"
 msgstr "包含"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
-#, fuzzy
 msgid "Whether to include tags"
-msgstr "是否包含图像."
+msgstr "是否包含标签"
 
 #: ../gramps/gen/plug/report/stdoptions.py:397
 #, fuzzy
@@ -10687,16 +10510,12 @@ msgid "Select the format to display places"
 msgstr "选择地点显示格式"
 
 #: ../gramps/gen/plug/report/stdoptions.py:425 ../gramps/gui/configure.py:1462
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "日期格式"
+msgstr "坐标格式"
 
 #: ../gramps/gen/plug/report/stdoptions.py:428
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "选择用于显示姓名的格式"
+msgstr "选择用于坐标显示的格式"
 
 #: ../gramps/gen/plug/report/utils.py:184
 #: ../gramps/plugins/textreport/indivcomplete.py:947
