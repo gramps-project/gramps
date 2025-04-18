@@ -1,15 +1,14 @@
 # Greek translation for Gramps
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# GiannosOB <giannos2105@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.3.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2021-05-22 18:06+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2025-04-11 13:45+0000\n"
+"Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/el/>\n"
 "Language: el\n"
@@ -17,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,-1,-1,-1,-1,5751\n"
 
 #: ../data/holidays.xml:3
@@ -29,10 +28,8 @@ msgid "Canada"
 msgstr "Καναδάς"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Καταλανικά"
+msgstr "Καταλονία"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -187,10 +184,8 @@ msgid "8 of Hanuka"
 msgstr "8η ημέρα της Χανουκά"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Πλάγια"
+msgstr "Ιταλία"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -202,31 +197,27 @@ msgstr "Ρωσία"
 
 #: ../data/holidays.xml:434
 msgid "Serbia"
-msgstr ""
+msgstr "Σερβία"
 
 #: ../data/holidays.xml:449
 msgid "Serbia (Latin)"
-msgstr ""
+msgstr "Σερβία (Λατινική)"
 
 #: ../data/holidays.xml:464
-#, fuzzy
 msgid "Slovakia"
-msgstr "Σλοβακικά"
+msgstr "Σλοβακία"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:49
 msgid "Sweden"
 msgstr "Σουηδία"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Τουρκικά"
+msgstr "Τουρκία"
 
 #: ../data/holidays.xml:536
-#, fuzzy
 msgid "Ukraine"
-msgstr "Ουκρανικά"
+msgstr "Ουκρανία"
 
 #: ../data/holidays.xml:563
 msgid "United States of America"
@@ -249,7 +240,7 @@ msgstr "Διαχείριση γενεαλογικών δεδομένων, γεν
 
 #: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr ""
+msgstr "Γενεαλογία, οικογενειακή ιστορία, έρευνα, οικογενειακό δέντρο, GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
 #: ../gramps/gen/const.py:265
@@ -257,6 +248,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
+"Gramps είναι ένα πρόγραμμα γενεαλογίας που είναι τόσο διαισθητικό για τους "
+"χoμπίστες και ολοκληρωμένο για επαγγελματίες γενοτεχνικούς."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -264,17 +257,22 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
+"Σας δίνει την ικανότητα να καταγράψετε τις πολλές λεπτομέρειες της ζωής ενός "
+"ατόμου καθώς και τις σύνθετες σχέσεις μεταξύ διαφόρων ανθρώπων, τοποθεσιών "
+"και γεγονότων."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
+"Όλη η έρευνά σας είναι οργανωμένη, αναζητήσημη και τόσο ακριβής όσο πρέπει "
+"να είναι."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
 #, fuzzy
 msgid "Gramps Development Team"
-msgstr "Σύστημα γενεαλογίας Gramps"
+msgstr "Ανάπτυξη Ομάδας Gramps"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:227
@@ -368,18 +366,17 @@ msgid "GeneWeb source file"
 msgstr "Πηγαίο αρχείο GeneWeb"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Εργασία με ημερομηνίες</b><br/>Μπορείτε να ορίσετε μια περίοδο "
-"χρησιμοποιώντας τη μορφή &quot;μεταξύ 4 Ιανουαρίου, 2000 και 20 Μαρτίου, "
-"2003&quot;. Μπορείτε επίσης να δηλώσετε τον βαθμό αξιοπιστίας μιας "
-"ημερομηνίας καθώς και να επιλέξετε από 7 διαφορετικά ημερολόγια. Δοκιμάστε "
-"το κουμπί δίπλα στο πεδίο ημερομηνίας στον επεξεργαστή συμβάντων"
+"<b>Εργασία με ημερομηνίες</b><br/>Μια σειρά ημερομηνιών μπορεί να δοθεί με "
+"τη χρήση της μορφής \" μεταξύ 4 Ιανουαρίου 2000 και 20 Μαρτίου 2003\". "
+"Μπορείτε επίσης να υποδείξετε το επίπεδο εμπιστοσύνης σε μια ημερομηνία και "
+"να επιλέξετε μεταξύ επτά διαφορετικών ημερολογίων. Δοκιμάστε το κουμπί δίπλα "
+"στο πεδίο ημερομηνίας στον επεξεργαστή Γεγονότων."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -1404,7 +1401,7 @@ msgstr "Οικογενειακό Δέντρο"
 #: ../gramps/plugins/cite/legacy.py:91
 #, python-format
 msgid "\"%s\""
-msgstr ""
+msgstr "\"%s\""
 
 #: ../gramps/cli/arghandler.py:478
 #, python-format
