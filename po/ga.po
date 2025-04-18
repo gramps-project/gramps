@@ -5,13 +5,14 @@
 # Dale Athanasias <dalegrind@hotmail.com>, 2021.
 # OscarBrownbread <brian.tuffy@gmail.com>, 2024.
 # Aindriú Mac Giolla Eoin <aindriu80@gmail.com>, 2025.
+# Nick Hall <nick-h@gramps-project.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-31 18:14+0000\n"
-"Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
+"PO-Revision-Date: 2025-04-18 19:38+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
 "Language: ga\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1753,7 +1754,7 @@ msgstr "Sonraí a iompórtáil..."
 
 #: ../gramps/cli/clidbman.py:466
 msgid "Remove family tree warning"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/cli/clidbman.py:467
 #, python-format
@@ -3290,7 +3291,7 @@ msgstr ""
 "\n"
 "Mura bhfuil cúltaca déanta agat cheana féin de do Chrann Teaghlaigh, ansin "
 "ba chóir duit do leagan roimhe seo de Gramps a thosú agus "
-"%(wiki_backup_html_start) smake cúltac %(html_end)s de do Chrann Teaghlaigh."
+"%(wiki_backup_html_start)s smake cúltac %(html_end)s de do Chrann Teaghlaigh."
 
 #: ../gramps/gen/db/generic.py:231 ../gramps/gen/db/generic.py:281
 #: ../gramps/gen/db/generic.py:2312
@@ -8665,7 +8666,7 @@ msgstr "Ainm Nick"
 
 #: ../gramps/gen/lib/name.py:195
 msgid "Family nick name"
-msgstr "Tamailis"
+msgstr ""
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:500 ../gramps/gen/lib/name.py:517
@@ -10666,7 +10667,7 @@ msgstr "TEAGHLACH"
 #: ../gramps/gen/plug/report/utils.py:422
 #, python-format
 msgid "Ancestor Families of %s"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gen/plug/utils.py:307
 msgid "Updated"
@@ -11577,7 +11578,7 @@ msgstr "Anaithnid, cruthaithe chun réad nóta atá in easnamh in ionad."
 #: ../gramps/gen/utils/unknown.py:167
 #, python-format
 msgid "Unknown, was missing %(time)s (%(count)d)"
-msgstr "Anaithnid, bhí %(time)s ( %(count) d) in easnamh"
+msgstr "Anaithnid, bhí %(time)s ( %(count)d) in easnamh"
 
 #: ../gramps/gen/utils/unknown.py:188
 #, python-format
@@ -11786,8 +11787,8 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Ní chomhlíonann do leagan Python na riachtanais. Teastaíonn Python %(v1) d. "
-"%(v2) d. %(v3) d ar a laghad chun Gramps a thosú.\n"
+"Ní chomhlíonann do leagan Python na riachtanais. Teastaíonn Python %(v1)d. "
+"%(v2)d. %(v3)d ar a laghad chun Gramps a thosú.\n"
 "\n"
 "Cuirfidh Gramps deireadh anois."
 
@@ -11872,7 +11873,7 @@ msgstr "creidmheasanna aistritheora"
 #: ../gramps/gui/aboutdialog.py:164
 #, python-format
 msgid "Distribution: %s"
-msgstr "Cumraíocht"
+msgstr ""
 
 #: ../gramps/gui/aboutdialog.py:180
 #, python-format
@@ -12314,7 +12315,7 @@ msgstr "teorainn réamhshocraithe"
 
 #: ../gramps/gui/configure.py:949
 msgid "Border for Divorced"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/configure.py:951
 msgid "Background for Home Person"
@@ -12323,7 +12324,7 @@ msgstr "Peirsis"
 #: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2814
 #, python-format
 msgid "<b>%s</b>"
-msgstr "Dáta:"
+msgstr ""
 
 #: ../gramps/gui/configure.py:983
 msgid "Colors"
@@ -12652,7 +12653,7 @@ msgstr "Taispeáin faisnéis úsáideach faoi Gramps a úsáid ar thosú."
 
 #: ../gramps/gui/configure.py:1991
 msgid "Remember last Family Tree"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/configure.py:1997
 msgid ""
@@ -12894,8 +12895,6 @@ msgid ""
 "\n"
 "Family Tree's Media path"
 msgstr ""
-"\n"
-"Tamailis"
 
 #: ../gramps/gui/configure.py:2360
 msgid "Base media path"
@@ -13185,7 +13184,7 @@ msgstr "Pasfhocal: "
 
 #: ../gramps/gui/dbloader.py:387
 msgid "Import Family Tree"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/dbloader.py:408
 msgid "All supported files"
@@ -13237,11 +13236,11 @@ msgstr ""
 #: ../gramps/gui/dbman.py:99
 #, python-format
 msgid "%s_-_Manage_Family_Trees"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/dbman.py:100
 msgid "Family_Trees_manager_window"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/dbman.py:114 ../gramps/gui/glade/dbman.glade:344
 msgid "_Archive"
@@ -13317,11 +13316,11 @@ msgstr "Socrú"
 
 #: ../gramps/gui/dbman.py:224
 msgid "Family Trees"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/dbman.py:407
 msgid "Family Tree name"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/dbman.py:426
 msgid "Database Type"
@@ -13392,7 +13391,7 @@ msgstr "Scriosfaidh an Crann Teaghlaigh seo na sonraí go buan a bhaint."
 
 #: ../gramps/gui/dbman.py:746
 msgid "Remove Family Tree"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/dbman.py:754
 #, python-format
@@ -13475,7 +13474,7 @@ msgstr "Theip ar iarracht iompórtáil isteach sa bhunachar sonraí."
 
 #: ../gramps/gui/dbman.py:961
 msgid "Repair Family Tree?"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/dbman.py:963
 #, python-format
@@ -15680,7 +15679,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:568
 msgid "Family filter name:"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:608
 msgid "Include selected Gramps ID"
@@ -16945,7 +16944,7 @@ msgstr "LDS _Teampall:"
 
 #: ../gramps/gui/glade/editldsord.glade:220
 msgid "_Family:"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/glade/editldsord.glade:244
 #: ../gramps/gui/selectors/selectfamily.py:60
@@ -17230,7 +17229,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:440
 msgid "Family Names "
-msgstr "Tamailis "
+msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:479
 msgid "G_roup as:"
@@ -17861,11 +17860,11 @@ msgstr "Caidreamh:"
 
 #: ../gramps/gui/glade/mergefamily.glade:405
 msgid "Family 1"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/glade/mergefamily.glade:419
 msgid "Family 2"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/glade/mergefamily.glade:446
 msgid ""
@@ -18576,7 +18575,7 @@ msgstr "_COITIANTA"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Family Trees"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Go"
@@ -18592,7 +18591,7 @@ msgstr "_Ceangail Eochair"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Manage Family Trees..."
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Navigator"
@@ -18685,7 +18684,7 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "Ní chomhlíonann do leagan Gtk na riachtanais.\n"
-"Teastaíonn %(major) d. %(minor) d ar a laghad chun Gramps a thosú le GUI.\n"
+"Teastaíonn %(major)d. %(minor)d ar a laghad chun Gramps a thosú le GUI.\n"
 "\n"
 "Cuirfidh Gramps deireadh anois."
 
@@ -20586,7 +20585,7 @@ msgstr "Ní féidir eagarthóir lua nua a oscailt"
 
 #: ../gramps/gui/viewmanager.py:382 ../gramps/gui/viewmanager.py:1168
 msgid "No Family Tree"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/gui/viewmanager.py:612
 msgid "Registering plugins..."
@@ -23181,15 +23180,15 @@ msgstr "Roghanna scarbhileog CSV"
 
 #: ../gramps/plugins/export/export.gpr.py:60
 msgid "Web Family Tree"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:61
 msgid "_Web Family Tree"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:62
 msgid "Web Family Tree format"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:70
 msgid "Web Family Tree export options"
@@ -23551,14 +23550,14 @@ msgstr "Cliceáil faoi dhó chun %d daoine a fheiceáil"
 #: ../gramps/plugins/gramplet/ancestor.py:195
 #: ../gramps/plugins/gramplet/descendant.py:180
 #: ../gramps/plugins/gramplet/descendant.py:189
-#, python-format
+#, fuzzy, python-format
 msgid "%(abbr)s %(date)s"
-msgstr "%(date)s"
+msgstr "%(abbr)s %(date)s"
 
 #: ../gramps/plugins/gramplet/ancestor.py:202
-#, python-format
+#, fuzzy, python-format
 msgid "%(depth)s. %(name)s"
-msgstr "%(date)s"
+msgstr "%(depth)s. %(name)s"
 
 #: ../gramps/plugins/gramplet/attributes.py:56
 msgid ""
@@ -24554,7 +24553,7 @@ msgstr "Gramplet ag taispeáint na nótaí To Do d'imeacht"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1355
 msgid "Family To Do"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1356
 msgid "Gramplet showing the To Do notes for a family"
@@ -24769,7 +24768,7 @@ msgstr " tá 1 de 1 duine aonair (%(percent)s iomlán)\n"
 #: ../gramps/plugins/textreport/endoflinereport.py:193
 #, python-format
 msgid "Generation %d"
-msgstr "Giniúin% d"
+msgstr "Giniúin %d"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:284
 #, python-format
@@ -25229,7 +25228,7 @@ msgstr "Sonraí a iontráil agus a chur in eagar (gairid)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:209
 msgid "Importing a Family Tree"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:212
 msgid ""
@@ -26186,7 +26185,7 @@ msgstr "Nick"
 
 #: ../gramps/plugins/importer/importcsv.py:228
 msgid "nick_name"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -26569,7 +26568,7 @@ msgstr "Dífhoirmiú"
 
 #: ../gramps/plugins/importer/importgeneweb.py:125
 msgid "LDS Family Link"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/importer/importgeneweb.py:126
 #: ../gramps/plugins/lib/libgedcom.py:746
@@ -26777,7 +26776,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:397
 msgid "Import Text"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:450
 msgid ""
@@ -26789,7 +26788,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:478
 msgid "Import Filename."
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:526
 msgid "Default (System-)Date."
@@ -26960,7 +26959,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1542
 msgid "Female surname"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1546
 msgid ""
@@ -27298,7 +27297,7 @@ msgid ""
 "not change this grouping to \"%(value)s\"."
 msgstr ""
 "Níor athraigh ainm do ghrúpaí Crann Teaghlaigh “%(key)s” mar aon le "
-"“%(parent) s”, an grúpáil seo go “%(value)s”."
+"“%(parent)s”, an grúpáil seo go “%(value)s”."
 
 #: ../gramps/plugins/importer/importxml.py:1933
 msgid "Gramps ignored a name grouping"
@@ -27829,9 +27828,9 @@ msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
 #: ../gramps/plugins/lib/libmetadata.py:87
-#, python-format
+#, fuzzy, python-format
 msgid "%(date)s %(time)s"
-msgstr "%(date)s"
+msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
 msgid "Descriptive Tags"
@@ -31600,7 +31599,7 @@ msgstr "Ionadaigh"
 
 #: ../gramps/plugins/lib/libprogen.py:1734
 msgid "Importing families."
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/lib/libprogen.py:1856
 msgid "Civil union"
@@ -33723,7 +33722,7 @@ msgstr "An stíl a úsáidtear don fhotheideal."
 #: ../gramps/plugins/textreport/familygroup.py:415
 #, python-format
 msgid "Relationship: %s"
-msgstr "Dearbhú"
+msgstr ""
 
 #: ../gramps/plugins/textreport/familygroup.py:516
 msgctxt "acronym for male"
@@ -34085,7 +34084,7 @@ msgstr "Aitheantas Gramps: %s "
 #, python-format
 msgctxt "places"
 msgid "All Names: %s"
-msgstr "Ainm:"
+msgstr ""
 
 #: ../gramps/plugins/textreport/placereport.py:236
 msgid "Events that happened at this place"
@@ -34287,7 +34286,7 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/textreport/summary.py:252
 #, python-format
 msgid "Number of events: %d"
-msgstr "Uimhir:"
+msgstr ""
 
 #: ../gramps/plugins/textreport/summary.py:261
 msgid "Place Information"
@@ -34296,7 +34295,7 @@ msgstr "Ionadaigh"
 #: ../gramps/plugins/textreport/summary.py:266
 #, python-format
 msgid "Number of places: %d"
-msgstr "Uimhir:"
+msgstr ""
 
 #: ../gramps/plugins/textreport/summary.py:275
 msgid "Source Information"
@@ -34305,7 +34304,7 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/textreport/summary.py:280
 #, python-format
 msgid "Number of sources: %d"
-msgstr "Uimhir:"
+msgstr ""
 
 #: ../gramps/plugins/textreport/summary.py:289
 msgid "Citation Information"
@@ -34314,7 +34313,7 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/textreport/summary.py:294
 #, python-format
 msgid "Number of citations: %d"
-msgstr "Peirsis"
+msgstr ""
 
 #: ../gramps/plugins/textreport/summary.py:303
 msgid "Repository Information"
@@ -34323,7 +34322,7 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/textreport/summary.py:308
 #, python-format
 msgid "Number of repositories: %d"
-msgstr "Peirsis"
+msgstr ""
 
 #: ../gramps/plugins/textreport/summary.py:342
 #, python-format
@@ -34342,7 +34341,7 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/textreport/summary.py:369
 #, python-format
 msgid "Number of notes: %d"
-msgstr "Uimhir:"
+msgstr ""
 
 #: ../gramps/plugins/textreport/summary.py:399
 msgid "Whether to count private data"
@@ -35895,7 +35894,7 @@ msgstr "Vítneaimis"
 
 #: ../gramps/plugins/tool/removespaces.py:153
 msgid "alternate name"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/tool/removespaces.py:157
 msgid "group as"
@@ -36063,7 +36062,7 @@ msgstr "Atheagrú IDanna Gramps"
 #: ../gramps/plugins/tool/reorderids.py:605
 #, python-format
 msgid "Reorder %s IDs ..."
-msgstr "Peirsis"
+msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.py:703
 #, python-format
@@ -36893,7 +36892,7 @@ msgstr "Cumaisc na teaghlaigh roghnaithe"
 
 #: ../gramps/plugins/view/familyview.py:211
 msgid "Family Filter Editor"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/view/familyview.py:303
 msgid "Make Father Active Person"
@@ -37873,9 +37872,9 @@ msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
 #: ../gramps/plugins/view/relview.py:1475
 #: ../gramps/plugins/view/relview.py:1477
-#, python-format
+#, fuzzy, python-format
 msgid "%(event)s %(date)s"
-msgstr "%(date)s"
+msgstr "%(event)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1536
 #, python-format
@@ -37883,19 +37882,19 @@ msgid "Relationship type: %s"
 msgstr "Cineál caidrimh: %s"
 
 #: ../gramps/plugins/view/relview.py:1587
-#, python-format
+#, fuzzy, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr "%(date)s"
+msgstr "%(event_type)s %(date)s in %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1594
-#, python-format
+#, fuzzy, python-format
 msgid "%(event_type)s %(date)s"
-msgstr "%(date)s"
+msgstr "%(event_type)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1598
-#, python-format
+#, fuzzy, python-format
 msgid "%(event_type)s %(place)s"
-msgstr "%(date)s"
+msgstr "%(event_type)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1609
 msgid "Broken family detected"
@@ -38475,7 +38474,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/family.py:616
 #, python-format
 msgid "Family Map for %s"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/webreport/heatmap.py:183
 msgid "Creating heatmap pages for events"
@@ -38668,7 +38667,7 @@ msgstr "Teaghlach de %(husband)s agus %(spouse)s"
 #: ../gramps/plugins/webreport/narrativeweb.py:965
 #, python-format
 msgid "Family of %s"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1348
 msgid "Creating GENDEX file"
@@ -39124,7 +39123,7 @@ msgstr "Cur síos le híoslódáil"
 #: ../gramps/plugins/webreport/narrativeweb.py:2518
 #, python-format
 msgid "Family Tree #%c"
-msgstr "Tamailis"
+msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2520
 msgid "Give a description for this file."
@@ -39425,10 +39424,10 @@ msgstr ""
 "Ní mór seirbhís léarscáileanna Stamen a roghnú."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2784
-#, python-format
+#, fuzzy, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "%(date)s"
+msgstr "in %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2785
 msgid "latest"
@@ -39566,7 +39565,7 @@ msgstr "An gcuirimid an féilire gréasáin san áireamh?"
 #: ../gramps/plugins/webreport/narrativeweb.py:3141
 #, python-format
 msgid "Whether to include a calendar for year %s"
-msgstr "Peirsis"
+msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3168
 #: ../gramps/plugins/webreport/webcal.py:2060
