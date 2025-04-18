@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-22 13:33+0000\n"
+"PO-Revision-Date: 2025-04-18 06:03+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -5361,7 +5361,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_everyone.py:55
 #: ../gramps/gen/plug/_pluginreg.py:80
 msgid "Everyone"
-msgstr "Alle"
+msgstr "Jeder"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:57
 msgid "Matches everyone in the database"
@@ -16227,7 +16227,7 @@ msgstr "Beziehung"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:111
 msgid "any"
-msgstr "alle"
+msgstr "jede"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:164
 #: ../gramps/plugins/export/exportcsv.py:428
