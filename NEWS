@@ -1,3 +1,27 @@
+2025-04-18
+Version 6.0.1
+* Update translations: ar, br, ca, cs, de, de_AT, el, en_GB, es, fi, fr, ga, he,
+  it, ja, ko, nb, nl, pl, pt_PT, ro, sk, sv, tr, uk, zh_CN.
+* Update translation template for new release.
+* Extend SearchBar so that it supports text search and filters. Fixes #13720.
+* Fix patronymic in name display. Fixes #13764.
+* Update links in the README to v6.0.
+* Update the INSTALL file. Issue #13717.
+  * Change install from `setup.py` to `pip`.
+  * Update typical installation locations.
+  * Remove the `--resourcepath` option which no longer exists.
+* Fix wiki help link in the Addon Manager. Fixes #13735.
+* Remove the outer progress meter from the filter prepare phase. Fixes #13725.
+* Fix error when importing a GEDCOM file into an existing tree. Fixes #13726.
+* Avoid empty metadata fields. Fixes #13721.
+* Update Italian date modifiers.
+* Mac:
+  * Fix return value list for no locale.  Fixes #13727.
+  * Change gramps-git and gramps-addons-git modules to pip module type.
+  * [mac gramps_launcher] Fix bad comment formatting.
+  * Fix GRAMPSDIR for Python versions > 9.
+  * Package Gramps-6.0.0 on macOS.
+
 2025-03-19
 Version 6.0.0
 * Update translations: he, id, ko, sk.
