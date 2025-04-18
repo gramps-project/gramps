@@ -695,6 +695,7 @@ class GuiPersonOption(Gtk.Box):
         """
         # Create a filter for the person selector.
         rfilter = GenericFilter()
+        rfilter.set_name(_("Active, bookmarked or home people"))
         rfilter.set_logical_op("or")
         rfilter.add_rule(rules.person.IsBookmarked([]))
         rfilter.add_rule(rules.person.HasIdOf([self.__option.get_value()]))
@@ -718,7 +719,7 @@ class GuiPersonOption(Gtk.Box):
             self.__uistate,
             self.__track,
             title=_("Select a person for the report"),
-            filter=rfilter,
+            search_or_filter=rfilter,
         )
         person = sel.run()
         self.__update_person(person)
@@ -852,6 +853,8 @@ class GuiFamilyOption(Gtk.Box):
         """
         # Create a filter for the person selector.
         rfilter = GenericFilterFactory("Family")()
+        rfilter.set_name(_("Active or bookmarked families"))
+
         rfilter.set_logical_op("or")
 
         # Add the current family
@@ -881,7 +884,9 @@ class GuiFamilyOption(Gtk.Box):
         # rfilter.add_rule(rules.family.HasIdOf([gid]))
 
         select_class = SelectorFactory("Family")
-        sel = select_class(self.__dbstate, self.__uistate, self.__track, filter=rfilter)
+        sel = select_class(
+            self.__dbstate, self.__uistate, self.__track, search_or_filter=rfilter
+        )
         family = sel.run()
         if family:
             self.__update_family(family.get_handle())

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
 #               2009-2011  Gary Burton
+#               2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,6 +46,7 @@ from ..glade import Glade
 from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.filters import GenericFilter
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 from gramps.gui.widgets.multitreeview import MultiTreeView
 
@@ -72,7 +74,9 @@ class BaseSelector(ManagedWindow):
         dbstate,
         uistate,
         track=[],
-        filter: tuple[int, str] | None = None,  # tuple[filter_id, search_string]
+        search_or_filter: (
+            tuple[int, str] | GenericFilter | None
+        ) = None,  # tuple[search_index, search_string]
         skip=set(),
         show_search_bar: bool = True,
         default=None,
@@ -129,13 +133,18 @@ class BaseSelector(ManagedWindow):
 
         # add the search bar
         self.search_bar = SearchBar(dbstate, uistate, self.build_tree)
-        filter_box = self.search_bar.build()
-        self.setup_filter()
-        if filter:
-            self.search_bar.filter_list.set_active(filter[0])
-            self.search_bar.filter_text.set_text(filter[1])
-        vbox.pack_start(filter_box, False, False, 0)
-        vbox.reorder_child(filter_box, 1)
+        search_box = self.search_bar.build()
+        self.setup_searches()
+        if isinstance(search_or_filter, GenericFilter):
+            self.search_bar.append_filter(search_or_filter.name, search_or_filter)
+            self.search_bar.search_list.set_active(
+                self.search_bar.search_model.iter_n_children(None) - 1
+            )
+        elif isinstance(search_or_filter, tuple):
+            self.search_bar.search_list.set_active(search_or_filter[0])
+            self.search_bar.search_text.set_text(search_or_filter[1])
+        vbox.pack_start(search_box, False, False, 0)
+        vbox.reorder_child(search_box, 1)
 
         self.set_window(window, title_label, self.title)
 
@@ -302,27 +311,28 @@ class BaseSelector(ManagedWindow):
         """
         return ()
 
-    def setup_filter(self):
+    def setup_searches(self):
         """
-        Builds the default filters and add them to the filter bar.
+        Builds the default searches and add them to the search bar.
         """
         cols = [
             (pair[3], pair[1], pair[1] in self.exact_search())
             for pair in self.column_order()
             if pair[0]
         ]
-        self.search_bar.setup_filter(cols)
+        self.search_bar.setup_searches(cols)
 
     def build_tree(self):
         """
         Builds the selection people see in the Selector
         """
-        search_bar_filter = self.search_bar.get_value()
-        filter_info = (
-            0,
-            search_bar_filter if search_bar_filter[1] else None,
-            search_bar_filter[0] in self.exact_search(),
-        )
+        filter_info = self.search_bar.get_value()
+        if not filter_info[0]:
+            filter_info = (
+                filter_info[0],
+                filter_info[1],
+                filter_info[1][0] in self.exact_search(),
+            )
 
         if self.model:
             sel = self.first_selected()
