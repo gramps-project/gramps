@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-04-06 10:05+0000\n"
+"PO-Revision-Date: 2025-04-16 15:50+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -5474,7 +5474,7 @@ msgstr "Sufixo:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:62
 msgid "Call Name:"
-msgstr "Nome usual:"
+msgstr "Usual:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:63
 msgid "Nick Name:"
@@ -12063,7 +12063,7 @@ msgid ""
 msgstr ""
 "As palavras-chave a seguir são substituídas pela parte do nome apropriada:"
 "<tt>  \n"
-"  <b>NomePróprio</b>     - primeiro nome e outros <b>Apelido</b>      - "
+"  <b>Nome próprio</b>     - primeiro nome e outros <b>Apelido</b>      - "
 "apelidos (com prefixo e conectores)\n"
 "  <b>Título</b>          - título (Dr., Sr.)      <b>Sufixo</b>       - "
 "sufixo (Jr., Sr.)\n"
@@ -12082,7 +12082,7 @@ msgstr ""
 "  <b>Patronímico ou [nom] ou [ape] ou [con]</b>     - apelido pa/matronímico "
 "completo, prefixo, só apelido, conector\n"
 "</tt>\n"
-"A palavra MAIÚSCULAS força as maiúsculas. Extra parênteses e vírgulas são "
+"A palavra em MAIÚSCULAS força as maiúsculas. Parênteses extra e vírgulas são "
 "removidos. Outro texto aparece literalmente.\n"
 "\n"
 "<b>Exemplo</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
@@ -12267,11 +12267,11 @@ msgstr "Cores para indivíduos femininos"
 
 #: ../gramps/gui/configure.py:908
 msgid "Colors for people who are neither male nor female"
-msgstr "Cores para indivíduos de sexo desconhecido"
+msgstr "Cores para indivíduos não são homem nem mulher"
 
 #: ../gramps/gui/configure.py:909
 msgid "Colors for Unknown persons"
-msgstr "Cores para indivíduos desconhecidos"
+msgstr "Cores para indivíduos de sexo desconhecido"
 
 #: ../gramps/gui/configure.py:910
 msgid "Colors for Family nodes"
@@ -12467,9 +12467,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1519
 msgid "Custom name display options are unique to each family tree."
-msgstr ""
-"Opções personalizadas de exibição do nome são únicas para cada árvore "
-"genealógica."
+msgstr "Opções personalizadas de nome são únicas para cada árvore genealógica."
 
 #: ../gramps/gui/configure.py:1531
 msgid "Consider single pa/matronymic as surname"
@@ -12513,7 +12511,7 @@ msgstr "Calendário na entrada"
 
 #: ../gramps/gui/configure.py:1627
 msgid "On the previous day"
-msgstr "no dia anterior"
+msgstr "No dia anterior"
 
 #: ../gramps/gui/configure.py:1628
 msgid "On the next day"
@@ -12623,15 +12621,15 @@ msgstr "Limites de cálculo"
 
 #: ../gramps/gui/configure.py:1893
 msgid "Date 'about' year range: (date ± #)"
-msgstr "Margem para datas \"Cerca de\": (data ± #)"
+msgstr "Margem para datas \"Cerca de\" (data ± #)"
 
 #: ../gramps/gui/configure.py:1901
 msgid "Date 'after' year range:  (date + #)"
-msgstr "Margem para datas \"Depois de\": (data ± #)"
+msgstr "Margem para datas \"Depois de\" (data ± #)"
 
 #: ../gramps/gui/configure.py:1909
 msgid "Date 'before' year range: (date - #)"
-msgstr "Margem para datas \"Antes de\": (data ± #)"
+msgstr "Margem para datas \"Antes de\" (data ± #)"
 
 #: ../gramps/gui/configure.py:1917
 msgid "Maximum age probably alive"
@@ -12683,11 +12681,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2005
 msgid "Remember last view displayed"
-msgstr "Lembrar o último separador"
+msgstr "Lembrar a última categoria usada"
 
 #: ../gramps/gui/configure.py:2010
 msgid "Remember last view displayed and open it next time."
-msgstr "Lembrar o último separador e abri-lo da próxima vez."
+msgstr "Lembrar a última categoria e abri-la da próxima vez."
 
 #: ../gramps/gui/configure.py:2015
 msgid "Enable spell checker"
@@ -12963,7 +12961,7 @@ msgstr "Importar"
 
 #: ../gramps/gui/configure.py:2519
 msgid "Select media directory"
-msgstr "Seleccionar a pasta multimédia"
+msgstr "Seleccionar a pasta da multimédia"
 
 #: ../gramps/gui/configure.py:2523 ../gramps/gui/configure.py:2553
 #: ../gramps/gui/configure.py:2580 ../gramps/gui/dbloader.py:363
@@ -13068,7 +13066,7 @@ msgstr "Usar símbolos"
 
 #: ../gramps/gui/configure.py:2678
 msgid "Select default death symbol"
-msgstr "Seleccionar símbolo de falecido pré-definido"
+msgstr "Seleccionar símbolo pré-definido de óbito"
 
 #: ../gramps/gui/configure.py:2688
 msgid "Genealogical Symbols"
@@ -17218,7 +17216,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:440
 msgid "Family Names "
-msgstr "Nomes de família "
+msgstr "Múltiplos apelidos "
 
 #: ../gramps/gui/glade/editname.glade:479
 msgid "G_roup as:"
@@ -19256,7 +19254,7 @@ msgstr "Todas as extensões"
 
 #: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:632
 msgid "Not installed"
-msgstr "Não instalado"
+msgstr "Não instaladas"
 
 #: ../gramps/gui/plug/_windows.py:427 ../gramps/gui/plug/_windows.py:635
 msgid "Installed"
@@ -20845,7 +20843,7 @@ msgstr "Coluna clicada, a ordenar..."
 
 #: ../gramps/gui/views/listview.py:1246
 msgid "Export View as Spreadsheet"
-msgstr "Exportar separador como folha de cálculo"
+msgstr "Exportar lista como folha de cálculo"
 
 #: ../gramps/gui/views/listview.py:1261
 msgid "CSV"
@@ -21691,7 +21689,7 @@ msgstr "%s não está na base de dados"
 #: ../gramps/plugins/drawreport/ancestortree.py:743
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:56
 msgid "Ancestor Tree"
-msgstr "Árvore de costados"
+msgstr "Árvore de ascendentes"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:651
 msgid "Making the Tree..."
@@ -22579,7 +22577,7 @@ msgstr "O estilo das linhas de ligação e contorno do relatório."
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:39
 msgid "Ancestor Chart"
-msgstr "Árvore de ascendentes"
+msgstr "Diagrama de ascendentes"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:40
 msgid "Produces a graphical ancestral chart"
@@ -31221,7 +31219,7 @@ msgstr "_Adicionar marcador"
 #: ../gramps/plugins/view/pedigreeview.py:1773
 #: ../gramps/plugins/view/relview.py:390 ../gramps/plugins/view/relview.py:455
 msgid "_Home"
-msgstr "_Início"
+msgstr "_Indivíduo inicial"
 
 #: ../gramps/plugins/lib/libpersonview.py:254
 #: ../gramps/plugins/lib/libpersonview.py:332
@@ -38155,7 +38153,7 @@ msgstr "Ir para o topo"
 #: ../gramps/plugins/webreport/basepage.py:2295
 msgctxt "Html"
 msgid "Home"
-msgstr "Início"
+msgstr "Página inicial"
 
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
@@ -38523,7 +38521,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
-msgstr "Início"
+msgstr "Página inicial"
 
 #: ../gramps/plugins/webreport/media.py:120
 msgid "Creating media pages"
@@ -39864,7 +39862,7 @@ msgstr "Ano inicial do(s) calendário(s)"
 
 #: ../gramps/plugins/webreport/webcal.py:1940
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr "Insira o ano de início para os calendários entre 1900 e 3000"
+msgstr "Insira o ano inicial para os calendários entre 1900 e 3000"
 
 #: ../gramps/plugins/webreport/webcal.py:1945
 msgid "End Year for the Calendar(s)"
