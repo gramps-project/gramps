@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 17:49+0000\n"
-"PO-Revision-Date: 2025-03-24 13:44+0000\n"
+"PO-Revision-Date: 2025-04-18 06:03+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -4148,7 +4148,7 @@ msgstr "איתור מובאות עם מקורות עם אזכורי מאגר ש�
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:60
 msgid "Citations with source matching the <source filter>"
-msgstr "מובאות עם מקורותשעונים על <מסנן מקור>"
+msgstr "מובאות עם מקורות שעונים על <מסנן מקור>"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:62
 msgid ""
@@ -4373,7 +4373,7 @@ msgstr "איתור אירועים מסוג מסוים "
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:46
 msgid "Events matching the <filter>"
-msgstr "אירועיםשעונים על <מסנן>"
+msgstr "אירועים שעונים על <מסנן>"
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:47
 msgid "Matches events matched by the specified filter name"
@@ -4422,7 +4422,7 @@ msgstr "איתור אירועים עם מקור ישיר אחד לפחות בר�
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:51
 msgid "Events with source matching the <source filter>"
-msgstr "אירועים עם מקורותשעונים על <מסנן מקור>"
+msgstr "אירועים עם מקורות שעונים על <מסנן מקור>"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:53
 msgid "Matches events with sources that match the specified source filter name"
@@ -5799,7 +5799,7 @@ msgstr "שם מסנן אירוע:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:54
 msgid "Persons with events matching the <event filter>"
-msgstr "אנשים עם אירועיםשעונים על <מסנן אירוע>"
+msgstr "אנשים עם אירועים שעונים על <מסנן אירוע>"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:56
 msgid "Matches persons who have events that match a certain event filter"
@@ -5945,7 +5945,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:57
 msgid "People matching the <name>"
-msgstr "אנשיםשעונים על <שם>"
+msgstr "אנשים שעונים על <שם>"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:46
 msgid "Every place"
@@ -6351,7 +6351,7 @@ msgstr "איתור מאגרי מידע שמתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
-msgstr "מאגריםשעונים על <מסנן>"
+msgstr "מאגרים שעונים על <מסנן>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:47
 msgid "Matches repositories matched by the specified filter name"
@@ -6503,7 +6503,7 @@ msgstr "איתור מקורות שמתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
-msgstr "מקורותשעונים על <מסנן>"
+msgstr "מקורות שעונים על <מסנן>"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:47
 msgid "Matches sources matched by the specified filter name"
@@ -32071,7 +32071,7 @@ msgstr "איתור אנשים בעלי שם משפחה זהה"
 
 #: ../gramps/plugins/quickview/samesurnames.py:73
 msgid "People matching the <given>"
-msgstr "אנשיםשעונים על <פרטי>"
+msgstr "אנשים שעונים על <פרטי>"
 
 #: ../gramps/plugins/quickview/samesurnames.py:74
 msgid "Matches people with same given name"
