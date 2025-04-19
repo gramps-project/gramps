@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2013       John Ralls <jralls@ceridwen.us>
-# Copyright (C) 2020       Nick Hall <nick-h@gramps-project.org>
+# Copyright (C) 2020,2025  Nick Hall <nick-h@gramps-project.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -75,10 +75,7 @@ class ResourcePath:
             os.path.join(os.path.dirname(__file__), "..", "..", "..")
         )
         installed = not os.path.exists(os.path.join(package_path, "MANIFEST.in"))
-        if installed:
-            test_path = os.path.join("gramps", "authors.xml")
-        else:
-            test_path = os.path.join("data", "authors.xml")
+        test_path = os.path.join("gramps", "authors.xml")
         resource_path = None
         tmp_path = get_env_var("GRAMPS_RESOURCES")
         if tmp_path and os.path.exists(os.path.join(tmp_path, test_path)):
@@ -103,23 +100,16 @@ class ResourcePath:
                 sys.exit(1)
         else:
             # Let's try to run from source without env['GRAMPS_RESOURCES']:
-            resource_path = package_path
+            resource_path = os.path.join(package_path, "build", "share")
 
         if not os.path.exists(os.path.join(resource_path, test_path)):
             LOG.error("Resource Path %s is invalid", resource_path)
             sys.exit(1)
 
         resource_path = os.path.abspath(resource_path)
-        if installed:
-            self.locale_dir = os.path.join(resource_path, "locale")
-            self.data_dir = os.path.join(resource_path, "gramps")
-            self.image_dir = os.path.join(resource_path, "gramps", "images")
-            self.doc_dir = os.path.join(resource_path, "doc", "gramps")
-
-        else:
-            self.locale_dir = os.path.join(resource_path, "build", "mo")
-            self.image_dir = os.path.join(resource_path, "images")
-            self.data_dir = os.path.join(resource_path, "data")
-            self.doc_dir = os.path.join(resource_path, "build", "data")
+        self.locale_dir = os.path.join(resource_path, "locale")
+        self.data_dir = os.path.join(resource_path, "gramps")
+        self.image_dir = os.path.join(resource_path, "gramps", "images")
+        self.doc_dir = os.path.join(resource_path, "doc", "gramps")
 
         self.initialized = True
