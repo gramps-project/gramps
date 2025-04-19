@@ -1,0 +1,141 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2012,2020,2025  Nick Hall
+# Copyright (C) 2012            Rob G. Healey
+# Copyright (C) 2012            Benny Malengier
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gramps"
+dynamic = ["version"]
+description = "Gramps (Genealogical Research and Analysis Management Programming System)"
+readme = "README.md"
+license = "GPL-2.0-or-later"
+license-files = ["LICENSE"]
+keywords = ["Genealogy", "Family Tree"]
+authors = [
+    {name = "Donald N. Allingham", email = "don@gramps-project.org"},
+]
+maintainers = [
+    {name = "Gramps Development Team", email = "benny.malengier@gmail.com"}
+]
+requires-python = ">= 3.10"
+dependencies = ["orjson"]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Environment :: Console",
+    "Environment :: MacOS X",
+    "Environment :: Plugins",
+    "Environment :: Web Environment",
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: Education",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Other Audience",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    "Natural Language :: Arabic",
+    "Natural Language :: Bulgarian",
+    "Natural Language :: Catalan",
+    "Natural Language :: Chinese (Simplified)",
+    "Natural Language :: Croatian",
+    "Natural Language :: Czech",
+    "Natural Language :: Danish",
+    "Natural Language :: Dutch",
+    "Natural Language :: English",
+    "Natural Language :: Esperanto",
+    "Natural Language :: Finnish",
+    "Natural Language :: French",
+    "Natural Language :: German",
+    "Natural Language :: Greek",
+    "Natural Language :: Hebrew",
+    "Natural Language :: Hungarian",
+    "Natural Language :: Icelandic",
+    "Natural Language :: Italian",
+    "Natural Language :: Japanese",
+    "Natural Language :: Macedonian",
+    "Natural Language :: Norwegian",
+    "Natural Language :: Polish",
+    "Natural Language :: Portuguese",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Natural Language :: Romanian",
+    "Natural Language :: Russian",
+    "Natural Language :: Serbian",
+    "Natural Language :: Slovak",
+    "Natural Language :: Slovenian",
+    "Natural Language :: Spanish",
+    "Natural Language :: Swedish",
+    "Natural Language :: Turkish",
+    "Natural Language :: Vietnamese",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: Other OS",
+    "Operating System :: POSIX :: BSD",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: POSIX :: SunOS/Solaris",
+    "Operating System :: Unix",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Database",
+    "Topic :: Desktop Environment :: Gnome",
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Sociology :: Genealogy",
+]
+
+[project.optional-dependencies]
+image = ["Pillow"]
+i18n = ["PyICU"]
+gui = ["PyGObject", "pycairo"]
+all = ["Pillow",
+       "PyGObject",
+       "PyICU",
+       "imagesize",
+       "pycairo",
+       "pycountry",
+]
+testing = ["jsonschema", "mock", "lxml"]
+
+[project.urls]
+Homepage = "https://gramps-project.org"
+Documentation = "https://gramps-project.org/wiki"
+Source = "https://github.com/gramps-project/gramps"
+Issues = "https://gramps-project.org/bugs"
+Donate = "https://gramps-project.org/contribute"
+
+[project.gui-scripts]
+gramps = "gramps.grampsapp:main"
+
+[tool.hatch.build.targets.wheel]
+exclude = [
+  "test/",
+  "catalog/",
+]
+
+[tool.hatch.metadata.hooks.custom]
+path = "scripts/version_hook.py"
+
+[tool.hatch.build.targets.wheel.hooks.custom]
+path = "scripts/build_hook.py"
+
+[tool.hatch.build.targets.wheel.shared-data]
+"build/share" = "share"
