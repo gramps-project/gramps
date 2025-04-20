@@ -10,14 +10,14 @@
 # Taz Petrov <ev_ko@abv.bg>, 2023.
 # trifa <tanu78@yahoo.com>, 2024.
 # 109247019824 <109247019824@users.noreply.hosted.weblate.org>, 2025.
+# Ivan Kostov <jiveq1@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-01-08 23:00+0000\n"
-"Last-Translator: 109247019824 <109247019824@users.noreply.hosted.weblate."
-"org>\n"
+"PO-Revision-Date: 2025-04-19 20:17+0000\n"
+"Last-Translator: Ivan Kostov <jiveq1@gmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/bg/>\n"
 "Language: bg\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 "X-Poedit-Language: Bulgarian\n"
 "X-Poedit-Country: BULGARIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -88,7 +88,7 @@ msgstr "Пурим"
 
 #: ../data/holidays.xml:360
 msgid "Passover"
-msgstr "Пасха"
+msgstr "Пасха (еврейска)"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
@@ -120,11 +120,11 @@ msgstr "Шавуот"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr "Рош Хашана"
+msgstr "Рош ХаШана"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr "Рош Хашана 2"
+msgstr "Рош ХаШана 2"
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
@@ -132,35 +132,35 @@ msgstr "Йом Кипур"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
-msgstr ""
+msgstr "Сукот"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
-msgstr ""
+msgstr "Втори ден на Сукот"
 
 #: ../data/holidays.xml:373
 msgid "3 of Sukot"
-msgstr ""
+msgstr "Трети ден на Сукот"
 
 #: ../data/holidays.xml:374
 msgid "4 of Sukot"
-msgstr ""
+msgstr "Четвърти ден на Сукот"
 
 #: ../data/holidays.xml:375
 msgid "5 of Sukot"
-msgstr ""
+msgstr "Пети ден на Сукот"
 
 #: ../data/holidays.xml:376
 msgid "6 of Sukot"
-msgstr ""
+msgstr "Шести ден на Сукот"
 
 #: ../data/holidays.xml:377
 msgid "7 of Sukot"
-msgstr ""
+msgstr "Седми ден на Сукот"
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
-msgstr ""
+msgstr "Симхат Тора (Радостта от Тората)"
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
@@ -168,31 +168,31 @@ msgstr "Ханука"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr "2-ри ден Ханука"
+msgstr "2-ри ден на  Ханука"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr "3-ти ден Ханука"
+msgstr "3-ти ден на  Ханука"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr "4-ти ден Ханука"
+msgstr "4-ти ден на  Ханука"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr "5-ти ден Ханука"
+msgstr "5-ти ден на  Ханука"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr "6-ти ден Ханука"
+msgstr "6-ти ден на  Ханука"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr "7-ми ден Ханука"
+msgstr "7-ми ден на  Ханука"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr "8-ми ден Ханука"
+msgstr "8-ми ден на  Ханука"
 
 #: ../data/holidays.xml:388
 msgid "Italy"
@@ -261,8 +261,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"Gramps е генеалогична програма, която е едновременно интуитивна за любители "
-"и пълна с функции за професионални генеалози."
+"Gramps е програма за генеалогия, която е едновременно интуитивна за "
+"любителите и напълно оборудвана с функции за професионалните генеалози."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -376,20 +376,19 @@ msgstr "База данни XML на Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
-msgstr "GeneWeb файл източник"
+msgstr "Изходен файл на GeneWeb"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Работа с дати</b><br/>Един времеви интервал може да се зададе ползвайки "
-"израз като &quot;между 4 януари 2000 и 20 март 2003&quot;. Може и да "
-"зададете степен на доверие за дадена дата и дори да изберете между различни "
-"календари. Опитайте бутонът до полето за добавяне на дата в редактора на "
+"<b>Работа с дати</b><br/>Може да се въведе диапазон от дати, като се "
+"използва формата \"между 4 януари 2000 г. и 20 март 2003 г.\"Можете също "
+"така да посочите нивото на увереност в дадена дата и дори да изберете между "
+"седем различни календари. Опитайте бутона до полето за дата в редактора на "
 "събития."
 
 #: ../data/tips.xml:6
@@ -399,11 +398,11 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
-"<b>Редактиране на обекти</b><br/>В повечето случаи, двойното щракване върху "
-"име, източник, място или мултимедиен елемент ще стартира редактор за "
-"съответния обект. Забележете, че извиканият редактор зависи от контекста. "
-"Например, двойно натискане върху родител или дете в изглед Семейство ще "
-"извика редактор за Промяна на родителите."
+"<b>Редактиране на обекти</b><br/>В повечето случаи двойното щракване върху "
+"име, източник, място или мултимедиен елемент стартира редактор за съответния "
+"обект. Забележете, че кой редактор ще се отвори зависи от контекста. "
+"Например, двойно щракване върху родител или дете в изглед „Семейство“ ще "
+"отвори редактор за промяна на родителските взаимоотношения."
 
 #: ../data/tips.xml:8
 msgid ""
@@ -412,9 +411,9 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
-"<b>Добавяне на Изображения</b><br/>Изображение може да бъде добавено към коя "
-"да е галерия или в изглед Медия чрез влачене и пускане от файловия мениджър "
-"или Интернет браузър."
+"<b>Добавяне на Изображения</b><br/>Изображение може да бъде добавено към "
+"която и да е галерия или към изгледа „Медия“ чрез влачене и пускане от "
+"файловия мениджър или интернет браузър."
 
 #: ../data/tips.xml:10
 msgid ""
