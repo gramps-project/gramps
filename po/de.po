@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-18 06:03+0000\n"
+"PO-Revision-Date: 2025-04-19 22:46+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -19368,10 +19368,8 @@ msgid "Select a different person"
 msgstr "Eine andere Person auswählen"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Personen mit Lesezeichen"
+msgstr "Aktiv, mit Lesezeichen versehen oder Hauptperon"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -19382,10 +19380,8 @@ msgid "Select a different family"
 msgstr "Eine andere Familie auswählen"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "Familien mit Lesezeichen"
+msgstr "Aktive oder mit Lesezeichen versehene Familien"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
@@ -20224,7 +20220,7 @@ msgstr "Artikelname"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:403
 msgid "Subject"
-msgstr "Thema"
+msgstr "Gegenstand"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:418
 msgid "Book selection list"
