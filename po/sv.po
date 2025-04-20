@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-03-20 17:24+0000\n"
+"PO-Revision-Date: 2025-04-19 20:17+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -19064,10 +19064,8 @@ msgid "Select a different person"
 msgstr "Välj en annan person"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Bokmärkta personer"
+msgstr "Aktiva, bokmärkta eller hempersoner"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -19078,10 +19076,8 @@ msgid "Select a different family"
 msgstr "Välj en annan familj"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "Bokmärkta familjer"
+msgstr "Aktiva eller bokmärkta familjer"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
