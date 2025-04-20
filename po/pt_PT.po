@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-16 15:50+0000\n"
+"PO-Revision-Date: 2025-04-20 15:28+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -16286,7 +16286,7 @@ msgstr "Fe_char janela"
 
 #: ../gramps/gui/glade/dbman.glade:148
 msgid "_Load Family Tree"
-msgstr "_Carregar árvore genealógica"
+msgstr "Carregar árvore _genealógica"
 
 #: ../gramps/gui/glade/dbman.glade:239 ../gramps/gui/glade/editlink.glade:205
 msgid "_New"
@@ -16303,7 +16303,7 @@ msgstr "_Renomear"
 #: ../gramps/gui/glade/dbman.glade:299
 #: ../gramps/gui/glade/grampletpane.glade:134
 msgid "Close"
-msgstr "Fechar"
+msgstr "Fe_char"
 
 #: ../gramps/gui/glade/dbman.glade:314
 msgid "Con_vert"
@@ -18085,7 +18085,7 @@ msgstr "Endereço do autor:"
 
 #: ../gramps/gui/glade/reorder.glade:84
 msgid "Parent relationships"
-msgstr "Parentesco com os pais"
+msgstr "Parentesco com pais"
 
 #: ../gramps/gui/glade/reorder.glade:111 ../gramps/gui/glade/reorder.glade:244
 msgid "Arrow top"
@@ -18105,7 +18105,7 @@ msgstr "Mover progenitor abaixo"
 
 #: ../gramps/gui/glade/reorder.glade:194
 msgid "Family relationships"
-msgstr "Parentescos com família"
+msgstr "Parentesco com família"
 
 #: ../gramps/gui/glade/reorder.glade:251
 msgid "Move family up"
@@ -19149,10 +19149,8 @@ msgid "Select a different person"
 msgstr "Seleccionar um indivíduo diferente"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Indivíduos marcados"
+msgstr "Indivíduos activos, marcados ou inicial"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -19163,10 +19161,8 @@ msgid "Select a different family"
 msgstr "Seleccione uma família diferente"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "Famílias marcadas"
+msgstr "Famílias activas ou marcadas"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
@@ -24376,7 +24372,7 @@ msgstr "Gramplet que mostra as referências de um evento"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1049
 msgid "Family References"
-msgstr "Referências da família"
+msgstr "Referências à família"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1050
 msgid "Gramplet showing the backlink references for a family"
@@ -37670,7 +37666,7 @@ msgstr "Esquerda <-> Direita"
 
 #: ../gramps/plugins/view/pedigreeview.py:1829
 msgid "About Pedigree View"
-msgstr "Acerca da vista Costados"
+msgstr "Acerca do diagrama Costados"
 
 #: ../gramps/plugins/view/pedigreeview.py:2043
 #: ../gramps/plugins/view/relview.py:411
