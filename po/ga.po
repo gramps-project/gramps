@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 17:49+0000\n"
+"POT-Creation-Date: 2025-04-18 20:48+0100\n"
 "PO-Revision-Date: 2025-04-18 19:38+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
@@ -636,8 +636,8 @@ msgid ""
 msgstr ""
 "Iontrál@@ <b>acha <br/> D</b> úblacha Ligeann an uirlis “Uirlis> Próiseáil "
 "Crann Teaghlaigh > Faigh Daoine Dúblacha Féideartha...” duit iontrálacha an "
-"duine céanna a iontráiltear níos mó ná uair sa bhunachar sonraí a aimsiú ("
-"agus a chumasc"
+"duine céanna a iontráiltear níos mó ná uair sa bhunachar sonraí a aimsiú "
+"(agus a chumasc"
 
 #: ../data/tips.xml:44
 msgid ""
@@ -677,8 +677,8 @@ msgid ""
 msgstr ""
 "<b>Coinníonn Navigation Back and Forward</b> <br/> Gramps liosta de rudaí "
 "gníomhacha roimhe seo mar Daoine agus Imeachtaí. Is féidir leat bogadh ar "
-"aghaidh agus ar ais tríd an liosta trí úsáid a bhaint as “Téigh > Ar aghaidh”"
-" agus “Téigh > Ar ais” nó na cnaipí saigheada."
+"aghaidh agus ar ais tríd an liosta trí úsáid a bhaint as “Téigh > Ar "
+"aghaidh” agus “Téigh > Ar ais” nó na cnaipí saigheada."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -756,10 +756,10 @@ msgid ""
 msgstr ""
 "<b>Spreagtar Úsáide <br/> oirí Gramps</b> a fheabhsú chun feabhsuithe a "
 "iarraidh ar Gramps. Is féidir feabhsú a iarraidh tríd na liostaí seoltaí "
-"gramps-úsáideoirí nó gramps-devel, nó trí dhul chuig https://gramps-"
-"project.org/bugs/ agus Iarratas ar Gné a chruthú. Is fearr Iarratas ar Gné a "
-"chomhdú ach is féidir go mbeadh sé go maith do chuid smaointe a phlé ar na "
-"liostaí ríomhphoist."
+"gramps-úsáideoirí nó gramps-devel, nó trí dhul chuig https://gramps-project."
+"org/bugs/ agus Iarratas ar Gné a chruthú. Is fearr Iarratas ar Gné a chomhdú "
+"ach is féidir go mbeadh sé go maith do chuid smaointe a phlé ar na liostaí "
+"ríomhphoist."
 
 #: ../data/tips.xml:62
 msgid ""
@@ -773,8 +773,8 @@ msgstr ""
 "cheisteanna faoi Gramps? Amharc ar liosta ríomhphoist gramps-úsáideoirí. Tá "
 "go leor daoine cabhracha ar an liosta, mar sin is dócha go bhfaighidh tú "
 "freagra go tapa. Má tá ceisteanna agat a bhaineann le forbairt Gramps, bain "
-"triail as an liosta gramps-devel. Is féidir leat na liostaí a fheiceáil trí “"
-"Cabhair > Liostaí Ríomhphoist Gramps” a roghnú."
+"triail as an liosta gramps-devel. Is féidir leat na liostaí a fheiceáil trí "
+"“Cabhair > Liostaí Ríomhphoist Gramps” a roghnú."
 
 #: ../data/tips.xml:64
 msgid ""
@@ -821,8 +821,8 @@ msgstr ""
 "<b>Leabharmharcáil Daoine</b> <br/> Aonair Is áit áisiúil é an roghchlár "
 "Leabharmharcanna chun ainmneacha daoine aonair a úsáidtear go minic Má "
 "roghnaíonn leabharmharc, beidh an duine sin mar an Duine Gníomhach. Chun "
-"leabharmharcáil duine déan an Duine Gníomhach dóibh ansin téigh go “"
-"Leabharmharcanna> Cuir Leabharmharc leis” nó brúigh Ctrl+D. Is féidir leat "
+"leabharmharcáil duine déan an Duine Gníomhach dóibh ansin téigh go "
+"“Leabharmharcanna> Cuir Leabharmharc leis” nó brúigh Ctrl+D. Is féidir leat "
 "an chuid is mó de na rudaí eile a leabharmharcáil freisin."
 
 #: ../data/tips.xml:70
@@ -996,8 +996,8 @@ msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b>Leathanach baile Gramps Tá <br/> leathanach</b> baile Gramps ag https"
-"://gramps-project.org/."
+"<b>Leathanach baile Gramps Tá <br/> leathanach</b> baile Gramps ag https://"
+"gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1022,11 +1022,11 @@ msgid ""
 "source."
 msgstr ""
 "<b>Taifid Mhaithe a Choinneáil</b> <br/> Bí cruinn agus faisnéis ghinealais "
-"á taifeadadh agat. Ná déan toimhde agus tú ag taifeadadh faisnéise bunscoile;"
-" scríobh é go díreach mar a fheiceann tú í. Úsáid tuairimí lúibín chun do "
-"chuid breiseanna, scriosadh nó tuairimí a chur in iúl. Moltar úsáid a bhaint "
-"as an Laidine 'sic' chun a dhearbhú go bhfuil trascríobh cruinn ar an rud is "
-"cosúil gur earráid é i bhfoinse."
+"á taifeadadh agat. Ná déan toimhde agus tú ag taifeadadh faisnéise "
+"bunscoile; scríobh é go díreach mar a fheiceann tú í. Úsáid tuairimí lúibín "
+"chun do chuid breiseanna, scriosadh nó tuairimí a chur in iúl. Moltar úsáid "
+"a bhaint as an Laidine 'sic' chun a dhearbhú go bhfuil trascríobh cruinn ar "
+"an rud is cosúil gur earráid é i bhfoinse."
 
 #: ../data/tips.xml:102
 msgid ""
@@ -1036,8 +1036,8 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Tuarascálacha agus Uirlis</b> <br/> í Breise Is féidir tuarascálacha agus "
-"uirlisí breise a chur le Gramps leis an gcóras “Addon”. Féach iad faoi “"
-"Cabhair > Tuarascálacha/Uirlisí Breise”. Is é seo an bealach is fearr "
+"uirlisí breise a chur le Gramps leis an gcóras “Addon”. Féach iad faoi "
+"“Cabhair > Tuarascálacha/Uirlisí Breise”. Is é seo an bealach is fearr "
 "d'ardúsáideoirí triail a bhaint as feidhmiúlacht nua agus a chruthú."
 
 #: ../data/tips.xml:104
@@ -1047,8 +1047,8 @@ msgid ""
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Tuarascálacha</b> <br/> Leabhar Ligeann tuarascáil Leabhar faoi “"
-"Tuarascálacha > Leabhair...” duit tuarascálacha éagsúla a bhailiú i "
+"<b>Tuarascálacha</b> <br/> Leabhar Ligeann tuarascáil Leabhar faoi "
+"“Tuarascálacha > Leabhair...” duit tuarascálacha éagsúla a bhailiú i "
 "ndoiciméad amháin. Tá sé níos éasca an tuarascáil aonair seo a dháileadh ná "
 "tuarascálacha iolracha, go háirithe"
 
@@ -1270,7 +1270,8 @@ msgstr "Earráid: ní féidir '%s' a oscailt"
 
 #: ../gramps/cli/arghandler.py:422
 msgid "List of known Family Trees in your database path\n"
-msgstr "Liosta de na Crainn Teaghlaigh aitheanta i do chonair bunachar sonraí\n"
+msgstr ""
+"Liosta de na Crainn Teaghlaigh aitheanta i do chonair bunachar sonraí\n"
 
 #: ../gramps/cli/arghandler.py:434
 #, python-format
@@ -1486,8 +1487,8 @@ msgstr ""
 "cuir tús le Gram\n"
 "  -y, --yes                              Ná iarr gníomhartha contúirteacha a "
 "dhearbhú (mód neamh-GUI amháin)\n"
-"  -q, --quiet                            Coisc aschur tásca dul chun cinn ("
-"mód neamh-GUI amháin)\n"
+"  -q, --quiet                            Coisc aschur tásca dul chun cinn "
+"(mód neamh-GUI amháin)\n"
 "  -v, --version                          Taispeáin leaganacha\n"
 "  -S, --safe                             Tosaigh Gram sa 'Mód Sábháilte'\n"
 "                                          (úsáid socruithe réamhshocraithe "
@@ -1571,8 +1572,8 @@ msgstr ""
 "\n"
 "2. Chun na formáidí sa sampla thuas a shonrú go sainráite, cuir ainmneacha "
 "comhaid le roghanna iomchuí -f:\n"
-"gramps -i comhad1.ged -f gedcom -i comhad2.gpkg -f gramps-pkg -i ~/"
-"db3.gramps -f gramps -i comhad4.wft -f wft -a uirlis -p ainm = seiceáil.\n"
+"gramps -i comhad1.ged -f gedcom -i comhad2.gpkg -f gramps-pkg -i ~/db3."
+"gramps -f gramps -i comhad4.wft -f wft -a uirlis -p ainm = seiceáil.\n"
 "\n"
 "3. Chun an bunachar sonraí a eascraíonn as gach allmhairí a thaifeadadh, "
 "soláthar\n"
@@ -1601,8 +1602,8 @@ msgstr ""
 "8. Roghanna tuairisc liostaithe\n"
 "Úsáid an ainm = amlíne, show = all chun a fháil amach faoi na roghanna go "
 "léir atá ar fáil don tuarascáil amlíne.\n"
-"Chun sonraí rogha áirithe a fháil amach, bain úsáid as show=option_name, "
-"m.sh. ainm=amlíne, show=off string.\n"
+"Chun sonraí rogha áirithe a fháil amach, bain úsáid as show=option_name, m."
+"sh. ainm=amlíne, show=off string.\n"
 "Chun foghlaim faoi ainmneacha tuarascála atá ar fáil, bain úsáid as "
 "name=show string.\n"
 "\n"
@@ -1618,8 +1619,8 @@ msgstr ""
 "gramps\n"
 "\n"
 "Nóta: Tá na samplaí seo le haghaidh bhlaosc bash.\n"
-"D'fhéadfadh comhréireacht a bheith difriúil do sliogáin eile agus do Windows."
-"\n"
+"D'fhéadfadh comhréireacht a bheith difriúil do sliogáin eile agus do "
+"Windows.\n"
 
 #: ../gramps/cli/argparser.py:281
 #, python-format
@@ -1674,7 +1675,7 @@ msgstr "Earráid ag paráil na hargóintí"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:208
-#: ../gramps/gui/clipboard.py:209 ../gramps/gui/plug/_windows.py:1498
+#: ../gramps/gui/clipboard.py:209 ../gramps/gui/plug/_windows.py:1505
 msgid "Unavailable"
 msgstr "Ar fáil"
 
@@ -1720,8 +1721,8 @@ msgstr "Crann Teaghlaigh “%s”:"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:187
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1703
-#: ../gramps/gui/plug/_windows.py:2147
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1710
+#: ../gramps/gui/plug/_windows.py:2154
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1793,7 +1794,7 @@ msgstr ""
 "\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2329
-#: ../gramps/gui/plug/_windows.py:773
+#: ../gramps/gui/plug/_windows.py:780
 msgid "Never"
 msgstr "Ná riamh"
 
@@ -2947,7 +2948,8 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr "Jumada l- UlaCity name (optional, probably does not need a translation)"
+msgstr ""
+"Jumada l- UlaCity name (optional, probably does not need a translation)"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Islamic month lexeme"
@@ -3294,7 +3296,7 @@ msgstr ""
 "%(wiki_backup_html_start)s smake cúltac %(html_end)s de do Chrann Teaghlaigh."
 
 #: ../gramps/gen/db/generic.py:231 ../gramps/gen/db/generic.py:281
-#: ../gramps/gen/db/generic.py:2312
+#: ../gramps/gen/db/generic.py:2313
 #, python-format
 msgid "_Undo %s"
 msgstr "Cealaigh %s"
@@ -3304,60 +3306,60 @@ msgstr "Cealaigh %s"
 msgid "_Redo %s"
 msgstr "_Athchóirigh %s"
 
-#: ../gramps/gen/db/generic.py:2703
+#: ../gramps/gen/db/generic.py:2704
 msgid "Number of people"
 msgstr "Líon na ndaoine"
 
-#: ../gramps/gen/db/generic.py:2704
+#: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/gramplet/statsgramplet.py:187
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
 msgstr "Líon na dteaghlaigh"
 
-#: ../gramps/gen/db/generic.py:2705
+#: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 msgid "Number of sources"
 msgstr "Líon na bhfoinsí"
 
-#: ../gramps/gen/db/generic.py:2706
+#: ../gramps/gen/db/generic.py:2707
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
 msgstr "Peirsis"
 
-#: ../gramps/gen/db/generic.py:2707
+#: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
 msgstr "Líon na n-imeachtaí"
 
-#: ../gramps/gen/db/generic.py:2708
+#: ../gramps/gen/db/generic.py:2709
 msgid "Number of media"
 msgstr "Líon na meán"
 
-#: ../gramps/gen/db/generic.py:2709
+#: ../gramps/gen/db/generic.py:2710
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 msgid "Number of places"
 msgstr "Líon na n-áiteanna"
 
-#: ../gramps/gen/db/generic.py:2710
+#: ../gramps/gen/db/generic.py:2711
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
 msgstr "Líon na stórálacha"
 
-#: ../gramps/gen/db/generic.py:2711
+#: ../gramps/gen/db/generic.py:2712
 msgid "Number of notes"
 msgstr "Líon na nótaí"
 
-#: ../gramps/gen/db/generic.py:2712
+#: ../gramps/gen/db/generic.py:2713
 msgid "Number of tags"
 msgstr "Uimhir:"
 
-#: ../gramps/gen/db/generic.py:2713
+#: ../gramps/gen/db/generic.py:2714
 msgid "Schema version"
 msgstr "Peirsis"
 
@@ -3365,7 +3367,8 @@ msgstr "Peirsis"
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%(n1)6d  Uasghrádaíodh        daoine le %(n2)6d lua i %(n3)6d soicind\n"
+msgstr ""
+"%(n1)6d  Uasghrádaíodh        daoine le %(n2)6d lua i %(n3)6d soicind\n"
 
 #: ../gramps/gen/db/upgrade.py:676
 #, python-format
@@ -3620,7 +3623,6 @@ msgstr "Déan iarratas a dhéanamh..."
 #: ../gramps/gen/filters/_genericfilter.py:158
 #: ../gramps/gen/filters/_genericfilter.py:179
 #: ../gramps/gen/filters/_genericfilter.py:195
-#: ../gramps/gen/filters/_genericfilter.py:271
 #: ../gramps/gui/editors/filtereditor.py:1225
 #: ../gramps/plugins/drawreport/calendarreport.py:600
 #: ../gramps/plugins/drawreport/statisticschart.py:1125
@@ -3645,10 +3647,6 @@ msgstr "Déan iarratas a dhéanamh..."
 #: ../gramps/plugins/webreport/webcal.py:1851
 msgid "Filter"
 msgstr "Scagaire"
-
-#: ../gramps/gen/filters/_genericfilter.py:271
-msgid "Preparing ..."
-msgstr "Ag ullmhú..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -4107,7 +4105,8 @@ msgstr "Luanna a bhfuil nótaí ina bhfuil <text>"
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:45
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
-msgstr "Meaitseálann luaiteanna a bhfuil a gcuid nótaí téacs a mheaitseálann le"
+msgstr ""
+"Meaitseálann luaiteanna a bhfuil a gcuid nótaí téacs a mheaitseálann le"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
 msgid "Citations with a note of type <type>"
@@ -4282,7 +4281,8 @@ msgstr "Luanna le foinse a mheaitseann leis an <source filter>"
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:62
 msgid ""
 "Matches citations with sources that match the specified source filter name"
-msgstr "Meaitseálann luachana le foinsí a mheaitseálann an ainm scagaire foinse"
+msgstr ""
+"Meaitseálann luachana le foinsí a mheaitseálann an ainm scagaire foinse"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:50
 msgid "Citations with Id containing <text>"
@@ -4290,7 +4290,8 @@ msgstr "Luanna le ID ina bhfuil <text>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:52
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "Meaitseálann luaiteanna a n-oireann a n-ID Gramps leis an léiriú rialta"
+msgstr ""
+"Meaitseálann luaiteanna a n-oireann a n-ID Gramps leis an léiriú rialta"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:59
 msgid "Citations with Source Id containing <text>"
@@ -5117,7 +5118,8 @@ msgstr "Rudaí meán le Id ina bhfuil <text>"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:51
 msgid "Matches media objects whose Gramps ID matches the regular expression"
-msgstr "Meaitseálann rudaí meán a n-oireann a n-ID Gramps leis an abairt rialta"
+msgstr ""
+"Meaitseálann rudaí meán a n-oireann a n-ID Gramps leis an abairt rialta"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:46
 msgid "Every note"
@@ -6456,8 +6458,8 @@ msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
-"Athraíodh taifid stór meaitseanna tar éis dáta/am sonraithe (yyyy-mm-dd "
-"hh:mm: ss) nó sa raon, má thugtar an dara dáta/am."
+"Athraíodh taifid stór meaitseanna tar éis dáta/am sonraithe (yyyy-mm-dd hh:"
+"mm: ss) nó sa raon, má thugtar an dara dáta/am."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repository attribute:"
@@ -6588,8 +6590,8 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Athraíodh taifid foinse meaitseála tar éis dáta-am sonraithe (yyyy-mm-dd "
-"hh:mm: ss) nó sa raon, má thugtar an dara dáta-am."
+"Athraíodh taifid foinse meaitseála tar éis dáta-am sonraithe (yyyy-mm-dd hh:"
+"mm: ss) nó sa raon, má thugtar an dara dáta-am."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Source attribute:"
@@ -6996,8 +6998,8 @@ msgstr "Cás"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:914 ../gramps/gui/glade/styleeditor.glade:276
-#: ../gramps/gui/plug/_windows.py:1069 ../gramps/gui/plug/_windows.py:1184
-#: ../gramps/gui/plug/_windows.py:1641 ../gramps/gui/plug/_windows.py:2134
+#: ../gramps/gui/plug/_windows.py:1076 ../gramps/gui/plug/_windows.py:1191
+#: ../gramps/gui/plug/_windows.py:1648 ../gramps/gui/plug/_windows.py:2141
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -7598,7 +7600,7 @@ msgstr "Imeacht"
 #: ../gramps/gui/editors/filtereditor.py:312
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:117
 #: ../gramps/gui/glade/editevent.glade:271 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_guioptions.py:1368
+#: ../gramps/gui/plug/_guioptions.py:1373
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/gui/views/treemodels/placemodel.py:350
 #: ../gramps/plugins/export/exportcsv.py:307
@@ -8358,9 +8360,9 @@ msgstr "Aontas Sibhialta"
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:105
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
-#: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:232
-#: ../gramps/gui/plug/_windows.py:1058 ../gramps/gui/plug/_windows.py:1181
-#: ../gramps/gui/plug/_windows.py:2132
+#: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:238
+#: ../gramps/gui/plug/_windows.py:1065 ../gramps/gui/plug/_windows.py:1188
+#: ../gramps/gui/plug/_windows.py:2139
 #: ../gramps/gui/plug/report/_bookdialog.py:397
 #: ../gramps/gui/plug/report/_bookdialog.py:401
 #: ../gramps/gui/selectors/selectevent.py:67
@@ -8496,8 +8498,8 @@ msgstr "Teampall"
 #: ../gramps/gen/lib/ldsord.py:204 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1062
-#: ../gramps/gui/plug/_windows.py:1124
+#: ../gramps/gui/plug/_windows.py:242 ../gramps/gui/plug/_windows.py:1069
+#: ../gramps/gui/plug/_windows.py:1131
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:532
 #: ../gramps/plugins/textreport/indivcomplete.py:737
@@ -8507,7 +8509,7 @@ msgid "Status"
 msgstr "Stádas"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gui/clipboard.py:338
-#: ../gramps/gui/plug/_windows.py:1646
+#: ../gramps/gui/plug/_windows.py:1653
 msgid "Location"
 msgstr "Suíomh"
 
@@ -8558,10 +8560,10 @@ msgstr "Réigiún"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:160
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1065
-#: ../gramps/gui/plug/_windows.py:2133
+#: ../gramps/gui/plug/_guioptions.py:1190 ../gramps/gui/plug/_windows.py:1072
+#: ../gramps/gui/plug/_windows.py:2140
 #: ../gramps/gui/plug/report/_bookdialog.py:397
-#: ../gramps/gui/selectors/selectperson.py:99
+#: ../gramps/gui/selectors/selectperson.py:106
 #: ../gramps/gui/selectors/selectplace.py:68
 #: ../gramps/gui/views/bookmarks.py:299 ../gramps/gui/views/tags.py:480
 #: ../gramps/gui/views/treemodels/peoplemodel.py:637
@@ -8816,7 +8818,7 @@ msgstr "Formáid"
 #: ../gramps/gui/glade/editplaceref.glade:178
 #: ../gramps/gui/glade/editplaceref.glade:690
 #: ../gramps/gui/glade/editreporef.glade:232
-#: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:734
+#: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:741
 #: ../gramps/plugins/tool/verify.glade:426
 msgid "General"
 msgstr "Gineréal"
@@ -8928,7 +8930,7 @@ msgstr "Nóta Tagartha do Leanaí"
 #: ../gramps/gen/lib/person.py:196 ../gramps/gui/editors/editfamily.py:140
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:162
 #: ../gramps/gui/merge/mergeperson.py:199
-#: ../gramps/gui/selectors/selectperson.py:101
+#: ../gramps/gui/selectors/selectperson.py:108
 #: ../gramps/plugins/drawreport/statisticschart.py:378
 #: ../gramps/plugins/export/exportcsv.py:427
 #: ../gramps/plugins/importer/importcsv.py:234
@@ -9379,7 +9381,7 @@ msgstr "Suibscríobh"
 #: ../gramps/gui/configure.py:1093 ../gramps/gui/configure.py:1094
 #: ../gramps/gui/configure.py:1095 ../gramps/gui/configure.py:1096
 #: ../gramps/gui/editors/displaytabs/surnametab.py:80
-#: ../gramps/gui/plug/_guioptions.py:92 ../gramps/gui/plug/_guioptions.py:1520
+#: ../gramps/gui/plug/_guioptions.py:92 ../gramps/gui/plug/_guioptions.py:1525
 #: ../gramps/plugins/drawreport/statisticschart.py:368
 #: ../gramps/plugins/export/exportcsv.py:420
 #: ../gramps/plugins/importer/importcsv.py:197
@@ -9410,7 +9412,7 @@ msgstr "%(first)s %(second)s"
 #: ../gramps/gen/lib/tag.py:159 ../gramps/gen/plug/docgen/treedoc.py:252
 #: ../gramps/gui/glade/styleeditor.glade:397
 #: ../gramps/gui/glade/styleeditor.glade:1482
-#: ../gramps/gui/plug/_guioptions.py:1521 ../gramps/gui/views/tags.py:481
+#: ../gramps/gui/plug/_guioptions.py:1526 ../gramps/gui/views/tags.py:481
 msgid "Color"
 msgstr "Dath"
 
@@ -10647,15 +10649,15 @@ msgstr "Sinsear %s"
 msgid "People with common ancestor with %s"
 msgstr "Daoine a bhfuil sinsear coiteann acu le %s"
 
-#: ../gramps/gen/plug/report/utils.py:389 ../gramps/gui/plug/_guioptions.py:903
+#: ../gramps/gen/plug/report/utils.py:389 ../gramps/gui/plug/_guioptions.py:908
 msgid "unknown father"
 msgstr "athair anaithnid"
 
-#: ../gramps/gen/plug/report/utils.py:395 ../gramps/gui/plug/_guioptions.py:909
+#: ../gramps/gen/plug/report/utils.py:395 ../gramps/gui/plug/_guioptions.py:914
 msgid "unknown mother"
 msgstr "máthair anaithnid"
 
-#: ../gramps/gen/plug/report/utils.py:397 ../gramps/gui/plug/_guioptions.py:911
+#: ../gramps/gen/plug/report/utils.py:397 ../gramps/gui/plug/_guioptions.py:916
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s agus %(mother_name)s (%(family_id)s)"
@@ -12002,8 +12004,8 @@ msgstr "Eagarthóir Ainm Taispeáin"
 #: ../gramps/gui/glade/plugins.glade:37 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1006 ../gramps/gui/glade/tipofday.glade:128
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:389 ../gramps/gui/plug/_windows.py:1035
-#: ../gramps/gui/plug/_windows.py:1709 ../gramps/gui/plug/_windows.py:1769
+#: ../gramps/gui/plug/_windows.py:395 ../gramps/gui/plug/_windows.py:1042
+#: ../gramps/gui/plug/_windows.py:1716 ../gramps/gui/plug/_windows.py:1776
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:708
@@ -12073,8 +12075,8 @@ msgstr ""
 "Cuireann eochairfhocal UPPERCASE i bhfeidhm ar an Baintear lúibíní breise, "
 "camóga. Tá téacs eile le feiceáil go litriúil.\n"
 "\n"
-"<b>Sampla</b>: An Dr. Edwin Jose von der Smith agus Weston Wilson Sr (“Ed”) -"
-" Underhills\n"
+"<b>Sampla</b>: An Dr. Edwin Jose von der Smith agus Weston Wilson Sr (“Ed”) "
+"- Underhills\n"
 " <i>Edwin Jose</i>: Given, <i>von der</i>: Réimír, <i>Smith</i> agus "
 "<i>Weston</i>: Bunscoile, <i>agus</i>: [con], <i>Wilson: Pátrúnach</i>,\n"
 " <i>Dr.</i><i>: Teideal, S <i>r</i>: Iarmhír, <i>Ed: L</i> easainm, "
@@ -12101,9 +12103,9 @@ msgstr "Sainmhíniú ar fhormáid neamhbhailí"
 #: ../gramps/gui/configure.py:1658 ../gramps/gui/configure.py:1663
 #: ../gramps/gui/configure.py:1684 ../gramps/gui/configure.py:1700
 #: ../gramps/gui/configure.py:2133 ../gramps/gui/configure.py:2251
-#: ../gramps/gui/configure.py:2340 ../gramps/gui/plug/_windows.py:783
-#: ../gramps/gui/plug/_windows.py:803 ../gramps/gui/plug/_windows.py:839
-#: ../gramps/gui/plug/_windows.py:847 ../gramps/gui/views/navigationview.py:351
+#: ../gramps/gui/configure.py:2340 ../gramps/gui/plug/_windows.py:790
+#: ../gramps/gui/plug/_windows.py:810 ../gramps/gui/plug/_windows.py:846
+#: ../gramps/gui/plug/_windows.py:854 ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:111
 #, python-format
 msgid "%s: "
@@ -12151,7 +12153,7 @@ msgstr "%s: "
 #: ../gramps/gui/glade/rule.glade:342 ../gramps/gui/glade/rule.glade:766
 #: ../gramps/gui/glade/styleeditor.glade:119
 #: ../gramps/gui/glade/styleeditor.glade:1803 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/logger/_errorview.py:190 ../gramps/gui/plug/_windows.py:390
+#: ../gramps/gui/logger/_errorview.py:190 ../gramps/gui/plug/_windows.py:396
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
@@ -12188,7 +12190,7 @@ msgstr "Stát/Contae"
 msgid "ZIP/Postal Code"
 msgstr "ZIP/Cód Poist"
 
-#: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1644
+#: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1651
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
 msgstr "Ríomhphost:"
@@ -12435,7 +12437,7 @@ msgstr "Dearbhú"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:511 ../gramps/gui/glade/rule.glade:452
 #: ../gramps/gui/glade/styleeditor.glade:1932
-#: ../gramps/gui/plug/_windows.py:1088 ../gramps/gui/plug/_windows.py:1147
+#: ../gramps/gui/plug/_windows.py:1095 ../gramps/gui/plug/_windows.py:1154
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -12991,11 +12993,11 @@ msgstr "Roghnaigh eolaire meán"
 #: ../gramps/gui/glade/rule.glade:734 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1770
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:857
-#: ../gramps/gui/plug/_windows.py:1420
+#: ../gramps/gui/plug/_guioptions.py:1762 ../gramps/gui/plug/_windows.py:864
+#: ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:267
-#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1256
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
 #: ../gramps/gui/widgets/progressdialog.py:441
 #: ../gramps/plugins/importer/importprogen.glade:28
@@ -13029,8 +13031,8 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
-"Má tá sé seiceáilte, bain úsáid as na siombailí géinealóige caighdeánacha ("
-"tá siombail bháis inroghnaithe\n"
+"Má tá sé seiceáilte, bain úsáid as na siombailí géinealóige caighdeánacha "
+"(tá siombail bháis inroghnaithe\n"
 "Mura ndéantar seiceáil, is féidir leat an painéal íochtarach a úsáid chun na "
 "siombailí a shaincheapadh tú féin."
 
@@ -13294,7 +13296,7 @@ msgstr "Dearbhú"
 #: ../gramps/gui/glade/reorder.glade:36 ../gramps/gui/glade/rule.glade:325
 #: ../gramps/gui/glade/rule.glade:750 ../gramps/gui/glade/styleeditor.glade:102
 #: ../gramps/gui/glade/styleeditor.glade:1786
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:857
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:864
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:281
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
 #: ../gramps/plugins/importer/importgedcom.glade:46
@@ -13574,8 +13576,8 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Theip ar iarracht an cartlann a chruthú leis an teachtaireacht seo a leanas:"
-"\n"
+"Theip ar iarracht an cartlann a chruthú leis an teachtaireacht seo a "
+"leanas:\n"
 "\n"
 "%s"
 
@@ -13594,8 +13596,8 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Theip ar iarracht na sonraí a chartlannú leis an teachtaireacht seo a leanas:"
-"\n"
+"Theip ar iarracht na sonraí a chartlannú leis an teachtaireacht seo a "
+"leanas:\n"
 "\n"
 "%s"
 
@@ -13644,7 +13646,7 @@ msgstr "Uirlisí"
 msgid "Open Addon Manager"
 msgstr "Oscail Bainisteoir Breiseáin"
 
-#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:474
+#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:480
 msgid "Addons"
 msgstr "Breiseáin"
 
@@ -13718,8 +13720,8 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"Níl an leagan seo i gceist le haghaidh gnáthúsáide. Úsáid ar do riosca féin."
-"\n"
+"Níl an leagan seo i gceist le haghaidh gnáthúsáide. Úsáid ar do riosca "
+"féin.\n"
 "\n"
 "Féadfaidh an leagan seo:\n"
 "1) Oibrigh go difriúil ná mar a bhfuil súil agat leis.\n"
@@ -13859,14 +13861,14 @@ msgstr "_Tréithe"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:112
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:194
-#: ../gramps/gui/plug/_guioptions.py:1186
-#: ../gramps/gui/plug/_guioptions.py:1369
+#: ../gramps/gui/plug/_guioptions.py:1191
+#: ../gramps/gui/plug/_guioptions.py:1374
 #: ../gramps/gui/selectors/selectcitation.py:74
 #: ../gramps/gui/selectors/selectevent.py:72
 #: ../gramps/gui/selectors/selectfamily.py:67
 #: ../gramps/gui/selectors/selectnote.py:72
 #: ../gramps/gui/selectors/selectobject.py:81
-#: ../gramps/gui/selectors/selectperson.py:100
+#: ../gramps/gui/selectors/selectperson.py:107
 #: ../gramps/gui/selectors/selectplace.py:69
 #: ../gramps/gui/selectors/selectrepository.py:68
 #: ../gramps/gui/selectors/selectsource.py:70
@@ -14210,14 +14212,14 @@ msgid "Set as Preferred name"
 msgstr "Sainroghanna"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
+#: ../gramps/gui/plug/_guioptions.py:1273 ../gramps/gui/plug/_windows.py:946
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr "Is ea"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:940
+#: ../gramps/gui/plug/_guioptions.py:1271 ../gramps/gui/plug/_windows.py:947
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
@@ -14685,8 +14687,8 @@ msgstr "Ní féidir imeacht a shábháil"
 #: ../gramps/gui/editors/editevent.py:288
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr ""
-"Níl aon sonraí ann don ócáid seo. Cuir isteach sonraí nó cealaigh an "
-"t-eagarthóireacht."
+"Níl aon sonraí ann don ócáid seo. Cuir isteach sonraí nó cealaigh an t-"
+"eagarthóireacht."
 
 #: ../gramps/gui/editors/editevent.py:300
 #: ../gramps/gui/editors/editreference.py:289
@@ -14775,7 +14777,7 @@ msgid "Maternal"
 msgstr "Máthar"
 
 #: ../gramps/gui/editors/editfamily.py:143
-#: ../gramps/gui/selectors/selectperson.py:102
+#: ../gramps/gui/selectors/selectperson.py:109
 #: ../gramps/plugins/gramplet/children.py:109
 #: ../gramps/plugins/gramplet/children.py:220
 #: ../gramps/plugins/lib/libpersonview.py:103
@@ -14797,7 +14799,7 @@ msgid "Birth Date"
 msgstr "Dáta Breithe"
 
 #: ../gramps/gui/editors/editfamily.py:144
-#: ../gramps/gui/selectors/selectperson.py:104
+#: ../gramps/gui/selectors/selectperson.py:111
 #: ../gramps/plugins/gramplet/children.py:111
 #: ../gramps/plugins/gramplet/children.py:222
 #: ../gramps/plugins/lib/libpersonview.py:105
@@ -14808,13 +14810,13 @@ msgid "Death Date"
 msgstr "Dáta Báis"
 
 #: ../gramps/gui/editors/editfamily.py:145
-#: ../gramps/gui/selectors/selectperson.py:103
+#: ../gramps/gui/selectors/selectperson.py:110
 #: ../gramps/plugins/lib/libpersonview.py:104
 msgid "Birth Place"
 msgstr "Áit Breithe"
 
 #: ../gramps/gui/editors/editfamily.py:146
-#: ../gramps/gui/selectors/selectperson.py:105
+#: ../gramps/gui/selectors/selectperson.py:112
 #: ../gramps/plugins/lib/libpersonview.py:106
 msgid "Death Place"
 msgstr "Áit Bháis"
@@ -14974,8 +14976,8 @@ msgstr "Ní féidir teaghlach a shábháil"
 #: ../gramps/gui/editors/editfamily.py:1249
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
-"Níl aon sonraí ann don teaghlach seo. Cuir isteach sonraí nó cealaigh an "
-"t-eagarthóireacht."
+"Níl aon sonraí ann don teaghlach seo. Cuir isteach sonraí nó cealaigh an t-"
+"eagarthóireacht."
 
 #: ../gramps/gui/editors/editfamily.py:1259
 msgid "Cannot save family. ID already exists."
@@ -15070,8 +15072,8 @@ msgstr "Ní féidir réad meán a shábháil"
 msgid ""
 "No data exists for this media object. Please enter data or cancel the edit."
 msgstr ""
-"Níl aon sonraí ann don réad meán seo. Cuir isteach sonraí nó cealaigh an "
-"t-eagarthóireacht."
+"Níl aon sonraí ann don réad meán seo. Cuir isteach sonraí nó cealaigh an t-"
+"eagarthóireacht."
 
 #: ../gramps/gui/editors/editmedia.py:340
 #: ../gramps/gui/editors/editreference.py:292
@@ -15149,8 +15151,8 @@ msgid ""
 "All people with the name of %(surname)s will no longer be grouped with the "
 "name of %(group_name)s."
 msgstr ""
-"Ní ghrúpáfar gach duine a bhfuil ainm %(surname)s acu le hainm %(group_name)"
-"s a thuilleadh."
+"Ní ghrúpáfar gach duine a bhfuil ainm %(surname)s acu le hainm "
+"%(group_name)s a thuilleadh."
 
 #: ../gramps/gui/editors/editname.py:418
 msgid "Continue"
@@ -15225,8 +15227,8 @@ msgstr "Ní féidir nóta a shábháil"
 #: ../gramps/gui/editors/editnote.py:351
 msgid "No data exists for this note. Please enter data or cancel the edit."
 msgstr ""
-"Níl aon sonraí ann don nóta seo. Cuir isteach sonraí nó cealaigh an "
-"t-eagarthóireacht."
+"Níl aon sonraí ann don nóta seo. Cuir isteach sonraí nó cealaigh an t-"
+"eagarthóireacht."
 
 #: ../gramps/gui/editors/editnote.py:361
 msgid "Cannot save note. ID already exists."
@@ -15291,8 +15293,8 @@ msgstr "Ní féidir duine a shábháil"
 #: ../gramps/gui/editors/editperson.py:926
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr ""
-"Níl aon sonraí ann don duine seo. Cuir isteach sonraí nó cealaigh an "
-"t-eagarthóireacht."
+"Níl aon sonraí ann don duine seo. Cuir isteach sonraí nó cealaigh an t-"
+"eagarthóireacht."
 
 #: ../gramps/gui/editors/editperson.py:956
 msgid "Cannot save person. ID already exists."
@@ -15530,8 +15532,8 @@ msgstr "Ní féidir stór a shábháil"
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"Níl aon sonraí ann don stór seo. Cuir isteach sonraí nó cealaigh an "
-"t-eagarthóireacht."
+"Níl aon sonraí ann don stór seo. Cuir isteach sonraí nó cealaigh an t-"
+"eagarthóireacht."
 
 #: ../gramps/gui/editors/editrepository.py:233
 #, python-format
@@ -15563,8 +15565,8 @@ msgstr "Ní féidir foinse a shábháil"
 #: ../gramps/gui/editors/editsource.py:245
 msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr ""
-"Níl aon sonraí ann don fhoinse seo. Cuir isteach sonraí nó cealaigh an "
-"t-eagarthóireacht."
+"Níl aon sonraí ann don fhoinse seo. Cuir isteach sonraí nó cealaigh an t-"
+"eagarthóireacht."
 
 #: ../gramps/gui/editors/editsource.py:257
 msgid "Cannot save source. ID already exists."
@@ -15911,7 +15913,7 @@ msgstr ""
 "na cnaipí"
 
 #: ../gramps/gui/editors/objectentries.py:518
-#: ../gramps/gui/plug/_guioptions.py:1123
+#: ../gramps/gui/plug/_guioptions.py:1128
 msgid "No image given, click button to select one"
 msgstr "Níl aon íomhá a thugtar, cliceáil cnaipe chun ceann a"
 
@@ -15920,7 +15922,7 @@ msgid "Edit media object"
 msgstr "Cuir réad meán in eagar"
 
 #: ../gramps/gui/editors/objectentries.py:520
-#: ../gramps/gui/plug/_guioptions.py:1101
+#: ../gramps/gui/plug/_guioptions.py:1106
 msgid "Select an existing media object"
 msgstr "Roghnaigh réad meán atá ann cheana"
 
@@ -15940,12 +15942,12 @@ msgstr ""
 "cnaipí"
 
 #: ../gramps/gui/editors/objectentries.py:588
-#: ../gramps/gui/plug/_guioptions.py:1021
+#: ../gramps/gui/plug/_guioptions.py:1026
 msgid "No note given, click button to select one"
 msgstr "Níl aon nóta tugtha, cliceáil cnaipe chun ceann a roghnú"
 
 #: ../gramps/gui/editors/objectentries.py:590
-#: ../gramps/gui/plug/_guioptions.py:996
+#: ../gramps/gui/plug/_guioptions.py:1001
 msgid "Select an existing note"
 msgstr "Roghnaigh nóta atá ann cheana"
 
@@ -15958,39 +15960,39 @@ msgstr "Cuir nóta nua leis"
 msgid "Remove note"
 msgstr "Bain nóta"
 
-#: ../gramps/gui/filters/_searchbar.py:59
+#: ../gramps/gui/filters/_searchbar.py:60
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:78
 #: ../gramps/plugins/tool/removeunused.glade:213
 msgid "_Find"
 msgstr "_Aimsigh"
 
-#: ../gramps/gui/filters/_searchbar.py:60
+#: ../gramps/gui/filters/_searchbar.py:61
 #: ../gramps/gui/glade/clipboard.glade:53 ../gramps/gui/undohistory.py:87
 msgid "_Clear"
 msgstr "Glan"
 
-#: ../gramps/gui/filters/_searchbar.py:109
+#: ../gramps/gui/filters/_searchbar.py:114
 #, python-format
 msgid "%s is"
 msgstr "Is é %s"
 
-#: ../gramps/gui/filters/_searchbar.py:111
+#: ../gramps/gui/filters/_searchbar.py:116
 #, python-format
 msgid "%s contains"
 msgstr "Tá %s"
 
-#: ../gramps/gui/filters/_searchbar.py:115
+#: ../gramps/gui/filters/_searchbar.py:120
 #, python-format
 msgid "%s is not"
 msgstr "Níl %s"
 
-#: ../gramps/gui/filters/_searchbar.py:117
+#: ../gramps/gui/filters/_searchbar.py:122
 #, python-format
 msgid "%s does not contain"
 msgstr "Ní chuimsíonn %s"
 
-#: ../gramps/gui/filters/_searchbar.py:170 ../gramps/gui/views/listview.py:1379
-#: ../gramps/gui/views/listview.py:1399 ../gramps/plugins/gramplet/leak.py:201
+#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1384
+#: ../gramps/gui/views/listview.py:1404 ../gramps/plugins/gramplet/leak.py:201
 #: ../gramps/plugins/gramplet/leak.py:208
 msgid "Updating display..."
 msgstr "Taispeáin a nuashonrú..."
@@ -16088,7 +16090,7 @@ msgid "Within"
 msgstr "Laistigh"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
-#: ../gramps/gui/plug/_windows.py:847
+#: ../gramps/gui/plug/_windows.py:854
 msgid "URL"
 msgstr "URL"
 
@@ -16158,13 +16160,13 @@ msgid "Show all"
 msgstr "Taispeáin gach"
 
 #: ../gramps/gui/glade/baseselector.glade:137
-#: ../gramps/gui/views/treemodels/treebasemodel.py:568
-#: ../gramps/gui/views/treemodels/treebasemodel.py:617
+#: ../gramps/gui/views/treemodels/treebasemodel.py:562
+#: ../gramps/gui/views/treemodels/treebasemodel.py:611
 msgid "Loading items..."
 msgstr "Míreanna á luchtú..."
 
 #: ../gramps/gui/glade/book.glade:22 ../gramps/gui/glade/dbman.glade:269
-#: ../gramps/gui/views/listview.py:608
+#: ../gramps/gui/views/listview.py:613
 #: ../gramps/plugins/lib/libpersonview.py:254
 #: ../gramps/plugins/lib/libpersonview.py:332
 #: ../gramps/plugins/lib/libpersonview.py:385
@@ -16371,7 +16373,7 @@ msgstr ""
 msgid "Cancel the rest of the operations"
 msgstr "Cealaigh an chuid eile de na hoibríochtaí"
 
-#: ../gramps/gui/glade/dialog.glade:469 ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/glade/dialog.glade:469 ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/tool/reorderids.glade:21
 msgid "_No"
 msgstr "_Téigh"
@@ -16381,7 +16383,7 @@ msgstr "_Téigh"
 msgid "Do not apply the operation to this item"
 msgstr "Ná cuir an oibríocht i bhfeidhm ar an mír seo"
 
-#: ../gramps/gui/glade/dialog.glade:485 ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/glade/dialog.glade:485 ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/tool/reorderids.glade:37
 msgid "_Yes"
 msgstr "_Is ea"
@@ -16418,7 +16420,7 @@ msgstr "Dún _gan sábháil"
 
 #: ../gramps/gui/glade/dialog.glade:935
 #: ../gramps/gui/plug/report/_bookdialog.py:649
-#: ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/views/listview.py:1256
 #: ../gramps/gui/widgets/grampletpane.py:614
 #: ../gramps/plugins/tool/eventcmp.py:410
 msgid "_Save"
@@ -16683,8 +16685,8 @@ msgid ""
 msgstr ""
 "Cuireann sé meastóireacht chainníochtúil an aighneora ar chreidiúnacht píosa "
 "faisnéise in iúl, bunaithe ar a fhianaise tacaíochta. Níl sé i gceist "
-"deireadh a chur le riachtanas an ghlacadóra an fhianaise dóibh féin a mheas."
-"\n"
+"deireadh a chur le riachtanas an ghlacadóra an fhianaise dóibh féin a "
+"mheas.\n"
 "-An-Íseal = Fianaise neamhiontaofa nó sonraí measta.\n"
 "-Íseal = Iontaofacht amhrasach fianaise (agallaimh, daonáireamh, ginealóidí "
 "ó bhéal, nó féidearthacht claonta mar shampla, féinbheathaisnéis).\n"
@@ -17266,8 +17268,8 @@ msgid ""
 "Here you can make sure this person is sorted according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Déantar daoine a shórtáil de réir an fhormáid ainm a thugtar sna Roghanna ("
-"an réamhshocrú).\n"
+"Déantar daoine a shórtáil de réir an fhormáid ainm a thugtar sna Roghanna "
+"(an réamhshocrú).\n"
 "Anseo is féidir leat a chinntiú go ndéantar an duine seo a shórtáil de réir "
 "formáid ainm saincheaptha (is féidir formáidí breise a shocrú sna Roghanna)."
 
@@ -17440,8 +17442,8 @@ msgid ""
 "Either use the two fields below to enter coordinates (latitude and "
 "longitude),"
 msgstr ""
-"Bain úsáid as an dá réimse thíos chun comhordanáidí a iontráil ("
-"domhanleithead agus domhanfhad),"
+"Bain úsáid as an dá réimse thíos chun comhordanáidí a iontráil "
+"(domhanleithead agus domhanfhad),"
 
 #: ../gramps/gui/glade/editplace.glade:121
 msgid "L_atitude:"
@@ -17467,8 +17469,8 @@ msgid ""
 msgstr ""
 "Domhnacht (suíomh os cionn an Meánchárnach) an áite i nótaí deachúil nó "
 "céime.\n"
-"Mar shampla, is iad na luachanna bailí 12.0154, 50° 52′21.92 ″ N, N50° 52′"
-"21.92 ″ nó 50:52:21.92\n"
+"Mar shampla, is iad na luachanna bailí 12.0154, 50° 52′21.92 ″ N, N50° "
+"52′21.92 ″ nó 50:52:21.92\n"
 "Is féidir leat na luachanna seo a shocrú tríd an Amharc Tíreolaíochta tríd "
 "an áit a chuardach, nó trí sheirbhís léarscáileanna sa radharc áite."
 
@@ -17484,8 +17486,8 @@ msgid ""
 msgstr ""
 "Fadmhéad (suíomh i gcoibhneas leis an bPríomh, nó Greenwich, Meiridian) an "
 "áite i nótaí deachúil nó céime.\n"
-"Mar shampla, is iad luachanna bailí -124.3647, 124° 52′21.92 ″ E, E124° 52′"
-"21.92 ″ nó 124:52:21.92\n"
+"Mar shampla, is iad luachanna bailí -124.3647, 124° 52′21.92 ″ E, E124° "
+"52′21.92 ″ nó 124:52:21.92\n"
 "Is féidir leat na luachanna seo a shocrú tríd an Amharc Tíreolaíochta tríd "
 "an áit a chuardach, nó trí sheirbhís léarscáileanna sa radharc áite."
 
@@ -17716,7 +17718,7 @@ msgid "Click to delete gramplet from view"
 msgstr "Cliceáil chun gramplet a scriosadh ón radharc"
 
 #: ../gramps/gui/glade/grampletpane.glade:141
-#: ../gramps/gui/views/listview.py:642
+#: ../gramps/gui/views/listview.py:647
 msgid "Delete"
 msgstr "Scrios %s ?"
 
@@ -17789,7 +17791,7 @@ msgid "_Merge and close"
 msgstr "_Cumaisc agus dún"
 
 #: ../gramps/gui/glade/mergedata.glade:170
-#: ../gramps/gui/glade/mergedata.glade:185 ../gramps/gui/plug/_windows.py:2126
+#: ../gramps/gui/glade/mergedata.glade:185 ../gramps/gui/plug/_windows.py:2133
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -17833,7 +17835,8 @@ msgstr "Nótaí"
 #: ../gramps/gui/glade/mergeevent.glade:498
 msgid ""
 "Attributes, notes, sources and media objects of both events will be combined."
-msgstr "Déanfar tréithe, nótaí, foinsí agus rudaí meán an dá imeacht le chéile."
+msgstr ""
+"Déanfar tréithe, nótaí, foinsí agus rudaí meán an dá imeacht le chéile."
 
 #: ../gramps/gui/glade/mergefamily.glade:95
 msgid ""
@@ -17911,7 +17914,7 @@ msgid "Note 2"
 msgstr "Nótaí"
 
 #: ../gramps/gui/glade/mergenote.glade:270
-#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1261
 msgid "Format:"
 msgstr "Formáid:"
 
@@ -18465,7 +18468,7 @@ msgid "Install Selected _Addons"
 msgstr "Suiteáil _Addons Roghnaithe"
 
 #: ../gramps/gui/glade/updateaddons.glade:70
-#: ../gramps/gui/plug/_windows.py:2103
+#: ../gramps/gui/plug/_windows.py:2110
 msgid "Available Gramps Updates for Addons"
 msgstr "Nuashonruithe Gramps atá ar fáil do Addons"
 
@@ -19066,7 +19069,7 @@ msgid "Spouses"
 msgstr "Céilí"
 
 #: ../gramps/gui/merge/mergeperson.py:270
-#: ../gramps/gui/selectors/selectperson.py:106
+#: ../gramps/gui/selectors/selectperson.py:113
 #: ../gramps/gui/widgets/reorderfam.py:105
 #: ../gramps/plugins/gramplet/children.py:113
 #: ../gramps/plugins/lib/libpersonview.py:107
@@ -19163,456 +19166,468 @@ msgstr "Sloinnte a aimsiú"
 msgid "Select a different person"
 msgstr "Roghnaigh duine difriúil"
 
-#: ../gramps/gui/plug/_guioptions.py:720
+#: ../gramps/gui/plug/_guioptions.py:698
+#, fuzzy
+#| msgid "Bookmarked people"
+msgid "Active, bookmarked or home people"
+msgstr "Daoine leabharmharcáilte"
+
+#: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
 msgstr "Roghnaigh duine don tuarascáil"
 
-#: ../gramps/gui/plug/_guioptions.py:803
+#: ../gramps/gui/plug/_guioptions.py:804
 msgid "Select a different family"
 msgstr "Roghnaigh teaghlach difriúil"
 
-#: ../gramps/gui/plug/_guioptions.py:1261
+#: ../gramps/gui/plug/_guioptions.py:856
+#, fuzzy
+#| msgid "Bookmarked families"
+msgid "Active or bookmarked families"
+msgstr "Teaghlaigh leabharmharcála"
+
+#: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
 msgid "Also include %s?"
 msgstr "Cuir %s san áireamh freisin?"
 
-#: ../gramps/gui/plug/_guioptions.py:1264
-#: ../gramps/gui/selectors/selectperson.py:92
+#: ../gramps/gui/plug/_guioptions.py:1269
+#: ../gramps/gui/selectors/selectperson.py:99
 msgid "Select Person"
 msgstr "Roghnaigh Duine"
 
-#: ../gramps/gui/plug/_guioptions.py:1590
+#: ../gramps/gui/plug/_guioptions.py:1595
 #, python-format
 msgid "Select color for %s"
 msgstr "Roghnaigh dath do %s"
 
-#: ../gramps/gui/plug/_guioptions.py:1754
+#: ../gramps/gui/plug/_guioptions.py:1759
 #: ../gramps/gui/plug/report/_reportdialog.py:462
 msgid "Save As"
 msgstr "Cuir i dtaisce &mar..."
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1420
+#: ../gramps/gui/plug/_guioptions.py:1762 ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_bookdialog.py:650
 #: ../gramps/gui/plug/report/_fileentry.py:68
 msgid "_Open"
 msgstr "_Oscailte"
 
-#: ../gramps/gui/plug/_guioptions.py:1837
+#: ../gramps/gui/plug/_guioptions.py:1842
 #: ../gramps/gui/plug/report/_reportdialog.py:337
 msgid "Style Editor"
 msgstr "Eagarthóir Stíl"
 
-#: ../gramps/gui/plug/_windows.py:230
+#: ../gramps/gui/plug/_windows.py:236
 msgid "Project"
 msgstr "Tionscadal"
 
-#: ../gramps/gui/plug/_windows.py:234
+#: ../gramps/gui/plug/_windows.py:240
 msgid "Audience"
 msgstr "Lucht féachana"
 
-#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1642
+#: ../gramps/gui/plug/_windows.py:244 ../gramps/gui/plug/_windows.py:1649
 msgid "Version"
 msgstr "Peirsis"
 
-#: ../gramps/gui/plug/_windows.py:241
+#: ../gramps/gui/plug/_windows.py:247
 msgid "Installed version"
 msgstr "Peirsis"
 
-#: ../gramps/gui/plug/_windows.py:259 ../gramps/gui/plug/_windows.py:260
+#: ../gramps/gui/plug/_windows.py:265 ../gramps/gui/plug/_windows.py:266
 msgid "Install"
 msgstr "Suiteáil"
 
-#: ../gramps/gui/plug/_windows.py:265
+#: ../gramps/gui/plug/_windows.py:271
 msgid "Wiki"
 msgstr "Wiki"
 
-#: ../gramps/gui/plug/_windows.py:270
+#: ../gramps/gui/plug/_windows.py:276
 msgid "Requires"
 msgstr "Éilíonn"
 
-#: ../gramps/gui/plug/_windows.py:275
+#: ../gramps/gui/plug/_windows.py:281
 msgid "Update"
 msgstr "Dáta:"
 
-#: ../gramps/gui/plug/_windows.py:302 ../gramps/gui/plug/_windows.py:313
+#: ../gramps/gui/plug/_windows.py:308 ../gramps/gui/plug/_windows.py:319
 msgid "Module installation failed"
 msgstr "Theip ar shuiteáil modúl"
 
-#: ../gramps/gui/plug/_windows.py:314
+#: ../gramps/gui/plug/_windows.py:320
 msgid "Gramps was unable to install the required modules"
 msgstr "Ní raibh Gramps in ann na modúil riachtanacha a shuiteáil"
 
-#: ../gramps/gui/plug/_windows.py:344
+#: ../gramps/gui/plug/_windows.py:350
 msgid "Requirements"
 msgstr "Riachtanais"
 
-#: ../gramps/gui/plug/_windows.py:380
+#: ../gramps/gui/plug/_windows.py:386
 msgid "Addon Manager"
 msgstr "Bainisteoir Breiseáin"
 
-#: ../gramps/gui/plug/_windows.py:388 ../gramps/plugins/gramplet/leak.py:114
+#: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
 msgstr "Athnuachan"
 
-#: ../gramps/gui/plug/_windows.py:419
+#: ../gramps/gui/plug/_windows.py:425
 msgid "Filters"
 msgstr "Nótaí"
 
-#: ../gramps/gui/plug/_windows.py:425
+#: ../gramps/gui/plug/_windows.py:431
 msgid "All addons"
 msgstr "Gach breiseán"
 
-#: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:632
+#: ../gramps/gui/plug/_windows.py:432 ../gramps/gui/plug/_windows.py:639
 msgid "Not installed"
 msgstr "Peirsis"
 
-#: ../gramps/gui/plug/_windows.py:427 ../gramps/gui/plug/_windows.py:635
+#: ../gramps/gui/plug/_windows.py:433 ../gramps/gui/plug/_windows.py:642
 msgid "Installed"
 msgstr "Peirsis"
 
-#: ../gramps/gui/plug/_windows.py:428 ../gramps/gui/plug/_windows.py:638
+#: ../gramps/gui/plug/_windows.py:434 ../gramps/gui/plug/_windows.py:645
 #: ../gramps/plugins/webreport/basepage.py:2078
 #: ../gramps/plugins/webreport/basepage.py:2146
 msgid "Updates"
 msgstr "Dáta:"
 
-#: ../gramps/gui/plug/_windows.py:440
+#: ../gramps/gui/plug/_windows.py:446
 msgid "All types"
 msgstr "Gach comhad"
 
-#: ../gramps/gui/plug/_windows.py:448
+#: ../gramps/gui/plug/_windows.py:454
 msgid "All audiences"
 msgstr "Gach comhad"
 
-#: ../gramps/gui/plug/_windows.py:455
+#: ../gramps/gui/plug/_windows.py:461
 msgid "All statuses"
 msgstr "Gach stádas"
 
-#: ../gramps/gui/plug/_windows.py:463
+#: ../gramps/gui/plug/_windows.py:469
 msgid "Reset addon filters to defaults"
 msgstr "Athshocraigh scagairí breiseáin go réamhshocraithe"
 
-#: ../gramps/gui/plug/_windows.py:477
+#: ../gramps/gui/plug/_windows.py:483
 msgid "Settings"
 msgstr "Socruithe"
 
-#: ../gramps/gui/plug/_windows.py:480
+#: ../gramps/gui/plug/_windows.py:486
 msgid "Projects"
 msgstr "Tionscadail"
 
-#: ../gramps/gui/plug/_windows.py:525 ../gramps/gui/plug/_windows.py:643
+#: ../gramps/gui/plug/_windows.py:532 ../gramps/gui/plug/_windows.py:650
 msgid "All projects"
 msgstr "Gach tionscadal"
 
-#: ../gramps/gui/plug/_windows.py:537
+#: ../gramps/gui/plug/_windows.py:544
 msgid "Loading..."
 msgstr "Cealaigh"
 
-#: ../gramps/gui/plug/_windows.py:563
+#: ../gramps/gui/plug/_windows.py:570
 msgid "Addon Registration Failed"
 msgstr "Theip ar Chlárú Addon"
 
-#: ../gramps/gui/plug/_windows.py:564
+#: ../gramps/gui/plug/_windows.py:571
 msgid "The addon will be unavailable in your current configuration."
 msgstr "Ní bheidh an breiseán ar fáil i do chumraíocht reatha."
 
-#: ../gramps/gui/plug/_windows.py:589
+#: ../gramps/gui/plug/_windows.py:596
 msgid "No matching addons found."
 msgstr "Níor aimsíodh aon bhreiseáin mheaitseála."
 
-#: ../gramps/gui/plug/_windows.py:703
+#: ../gramps/gui/plug/_windows.py:710
 msgid "Insert a project"
 msgstr "Cuir isteach tionscadal"
 
-#: ../gramps/gui/plug/_windows.py:705
+#: ../gramps/gui/plug/_windows.py:712
 msgid "Remove the selected project"
 msgstr "Bain an tionscadal roghnaithe"
 
-#: ../gramps/gui/plug/_windows.py:707
+#: ../gramps/gui/plug/_windows.py:714
 msgid "Move project upwards in the list"
 msgstr "Bogadh tionscadal aníos ar an liosta"
 
-#: ../gramps/gui/plug/_windows.py:709
+#: ../gramps/gui/plug/_windows.py:716
 msgid "Move project downwards in the list"
 msgstr "Bogadh tionscadal anuas ar an liosta"
 
-#: ../gramps/gui/plug/_windows.py:711
+#: ../gramps/gui/plug/_windows.py:718
 msgid "Revert to the project defaults"
 msgstr "Fill ar ais ar réamhshocruithe an tionscadail"
 
-#: ../gramps/gui/plug/_windows.py:748
+#: ../gramps/gui/plug/_windows.py:755
 msgid "Allow Gramps to install required Python modules"
 msgstr "Lig do Gramps modúil Python riachtanacha a shuiteáil"
 
-#: ../gramps/gui/plug/_windows.py:750
+#: ../gramps/gui/plug/_windows.py:757
 msgid "Where possible, try to install any missing prerequisite Python modules"
 msgstr ""
 "Nuair is féidir, déan iarracht aon mhodúil Python réamhriachtanas atá in eas"
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:765
 msgid "Scheduled update checks"
 msgstr "Seiceálacha nuashonraithe"
 
-#: ../gramps/gui/plug/_windows.py:774
+#: ../gramps/gui/plug/_windows.py:781
 msgid "Once a month"
 msgstr "Uair amháin sa mhí"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:782
 msgid "Once a week"
 msgstr "Uair sa tseachtain"
 
-#: ../gramps/gui/plug/_windows.py:776
+#: ../gramps/gui/plug/_windows.py:783
 msgid "Once a day"
 msgstr "Uair amháin sa lá"
 
-#: ../gramps/gui/plug/_windows.py:777
+#: ../gramps/gui/plug/_windows.py:784
 msgid "Always"
 msgstr "I gcónaí"
 
-#: ../gramps/gui/plug/_windows.py:783
+#: ../gramps/gui/plug/_windows.py:790
 msgid "Check for addon updates"
 msgstr "Seiceáil le haghaidh nuashonruithe breiseáin"
 
-#: ../gramps/gui/plug/_windows.py:790
+#: ../gramps/gui/plug/_windows.py:797
 msgid "Updated addons only"
 msgstr "Breiseáin nuashonraithe amháin"
 
-#: ../gramps/gui/plug/_windows.py:791
+#: ../gramps/gui/plug/_windows.py:798
 msgid "New addons only"
 msgstr "Breiseáin nua amháin"
 
-#: ../gramps/gui/plug/_windows.py:792
+#: ../gramps/gui/plug/_windows.py:799
 msgid "New and updated addons"
 msgstr "Breiseáin nua agus nuashonraithe"
 
-#: ../gramps/gui/plug/_windows.py:803
+#: ../gramps/gui/plug/_windows.py:810
 msgid "What to check"
 msgstr "Cad atá le seiceáil"
 
-#: ../gramps/gui/plug/_windows.py:809
+#: ../gramps/gui/plug/_windows.py:816
 msgid "Do not ask about previously notified addons"
 msgstr "Ná iarr faoi bhreiseáin a thugtar fógra roimhe seo"
 
-#: ../gramps/gui/plug/_windows.py:816
+#: ../gramps/gui/plug/_windows.py:823
 msgid "Check for updated addons now"
 msgstr "Seiceáil le haghaidh breiseáin nuashonraithe anois"
 
-#: ../gramps/gui/plug/_windows.py:829
+#: ../gramps/gui/plug/_windows.py:836
 msgid "New Project"
 msgstr "Tionscadal Nua"
 
-#: ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:838
 msgid "Edit Project"
 msgstr "Eagar %s"
 
-#: ../gramps/gui/plug/_windows.py:839
+#: ../gramps/gui/plug/_windows.py:846
 msgid "Project name"
 msgstr "Ainm an tionscadail"
 
-#: ../gramps/gui/plug/_windows.py:937
+#: ../gramps/gui/plug/_windows.py:944
 msgid "Restore project defaults"
 msgstr "Athchóirigh réamhshocruithe tionscad"
 
-#: ../gramps/gui/plug/_windows.py:938
+#: ../gramps/gui/plug/_windows.py:945
 msgid "Are you sure?"
 msgstr "An bhfuil tú cinnte?"
 
-#: ../gramps/gui/plug/_windows.py:962
+#: ../gramps/gui/plug/_windows.py:969
 msgid "Checking Addons Failed"
 msgstr "Theip ar Breiseáin a sheiceáil"
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:971
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
 "Is cosúil nach bhfuil an stór breiseáin ar fáil. Bain triail as arís níos "
 "déanaí."
 
-#: ../gramps/gui/plug/_windows.py:979
+#: ../gramps/gui/plug/_windows.py:986
 msgid "There are no available addons of this type"
 msgstr "Níl aon bhreiseáin den chineál seo ar fáil"
 
-#: ../gramps/gui/plug/_windows.py:980
+#: ../gramps/gui/plug/_windows.py:987
 msgid "' and '"
 msgstr "'agus'"
 
-#: ../gramps/gui/plug/_windows.py:980
+#: ../gramps/gui/plug/_windows.py:987
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Seiceáilte le haghaidh '%s'"
 
-#: ../gramps/gui/plug/_windows.py:986
+#: ../gramps/gui/plug/_windows.py:993
 msgid "new"
 msgstr "nua"
 
-#: ../gramps/gui/plug/_windows.py:986
+#: ../gramps/gui/plug/_windows.py:993
 msgid "update"
 msgstr "Dáta:"
 
-#: ../gramps/gui/plug/_windows.py:1021
+#: ../gramps/gui/plug/_windows.py:1028
 msgid "Hidden"
 msgstr "I bhfolach"
 
-#: ../gramps/gui/plug/_windows.py:1022
+#: ../gramps/gui/plug/_windows.py:1029
 msgid "Visible"
 msgstr "Infheicthe"
 
-#: ../gramps/gui/plug/_windows.py:1027
+#: ../gramps/gui/plug/_windows.py:1034
 msgid "Plugin Manager"
 msgstr "Bainisteoir Breiseán"
 
-#: ../gramps/gui/plug/_windows.py:1079 ../gramps/gui/plug/_windows.py:1137
+#: ../gramps/gui/plug/_windows.py:1086 ../gramps/gui/plug/_windows.py:1144
 msgid "Info"
 msgstr "Eolas"
 
-#: ../gramps/gui/plug/_windows.py:1082 ../gramps/gui/plug/_windows.py:1140
+#: ../gramps/gui/plug/_windows.py:1089 ../gramps/gui/plug/_windows.py:1147
 msgid "Hide/Unhide"
 msgstr "Flúdaí/Dífhoilte"
 
-#: ../gramps/gui/plug/_windows.py:1091 ../gramps/gui/plug/_windows.py:1150
+#: ../gramps/gui/plug/_windows.py:1098 ../gramps/gui/plug/_windows.py:1157
 msgid "Load"
 msgstr "Luchtaigh"
 
-#: ../gramps/gui/plug/_windows.py:1097
+#: ../gramps/gui/plug/_windows.py:1104
 msgid "Registered Plugins"
 msgstr "Breiseáin Cláraithe"
 
-#: ../gramps/gui/plug/_windows.py:1116
+#: ../gramps/gui/plug/_windows.py:1123
 msgid "Loaded"
 msgstr "Luchtaithe"
 
-#: ../gramps/gui/plug/_windows.py:1120
+#: ../gramps/gui/plug/_windows.py:1127
 #: ../gramps/plugins/importer/importprogen.glade:466
 #: ../gramps/plugins/importer/importprogen.glade:1068
 msgid "File"
 msgstr "Comhad"
 
-#: ../gramps/gui/plug/_windows.py:1127
+#: ../gramps/gui/plug/_windows.py:1134
 msgid "Message"
 msgstr "Teachtaireacht"
 
-#: ../gramps/gui/plug/_windows.py:1156
+#: ../gramps/gui/plug/_windows.py:1163
 msgid "Loaded Plugins"
 msgstr "Breiseáin luchtaithe"
 
-#: ../gramps/gui/plug/_windows.py:1178
+#: ../gramps/gui/plug/_windows.py:1185
 msgid "Addon Name"
 msgstr "Ainm an Addon"
 
-#: ../gramps/gui/plug/_windows.py:1190
+#: ../gramps/gui/plug/_windows.py:1197
 msgid "Path to Addon:"
 msgstr "Conair chuig Addon:"
 
-#: ../gramps/gui/plug/_windows.py:1210
+#: ../gramps/gui/plug/_windows.py:1217
 msgid "Install Addon"
 msgstr "Suiteáil Addon"
 
-#: ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/plug/_windows.py:1220
 msgid "Install All Addons"
 msgstr "Suiteáil Gach Breiseán"
 
-#: ../gramps/gui/plug/_windows.py:1216
+#: ../gramps/gui/plug/_windows.py:1223
 msgid "Refresh Addon List"
 msgstr "Athnuachan Liosta Breiseáin"
 
-#: ../gramps/gui/plug/_windows.py:1229
+#: ../gramps/gui/plug/_windows.py:1236
 msgid "Reload"
 msgstr "Athluchtaigh"
 
-#: ../gramps/gui/plug/_windows.py:1257
+#: ../gramps/gui/plug/_windows.py:1264
 msgid "Refreshing Addon List"
 msgstr "Liosta Breiseáin Athnuachana"
 
-#: ../gramps/gui/plug/_windows.py:1258 ../gramps/gui/plug/_windows.py:1263
-#: ../gramps/gui/plug/_windows.py:1396
+#: ../gramps/gui/plug/_windows.py:1265 ../gramps/gui/plug/_windows.py:1270
+#: ../gramps/gui/plug/_windows.py:1403
 msgid "Reading gramps-project.org..."
 msgstr "Ag léamh gramps-project.org..."
 
-#: ../gramps/gui/plug/_windows.py:1281
+#: ../gramps/gui/plug/_windows.py:1288
 msgid "Checking addon..."
 msgstr "Seiceáil breiseán..."
 
-#: ../gramps/gui/plug/_windows.py:1289
+#: ../gramps/gui/plug/_windows.py:1296
 msgid "Unknown Help URL"
 msgstr "URL Cabhair Anaithnid"
 
-#: ../gramps/gui/plug/_windows.py:1300
+#: ../gramps/gui/plug/_windows.py:1307
 msgid "Unknown URL"
 msgstr "URL anaithnid"
 
-#: ../gramps/gui/plug/_windows.py:1360
+#: ../gramps/gui/plug/_windows.py:1367
 msgid "Install all Addons"
 msgstr "Suiteáil na Breiseáin go léir"
 
-#: ../gramps/gui/plug/_windows.py:1361
+#: ../gramps/gui/plug/_windows.py:1368
 msgid "Installing..."
 msgstr "Suiteáil..."
 
-#: ../gramps/gui/plug/_windows.py:1394
+#: ../gramps/gui/plug/_windows.py:1401
 msgid "Installing Addon"
 msgstr "Suiteáil Addon"
 
-#: ../gramps/gui/plug/_windows.py:1417
+#: ../gramps/gui/plug/_windows.py:1424
 msgid "Load Addon"
 msgstr "Breiseán Luchtaigh"
 
-#: ../gramps/gui/plug/_windows.py:1509
+#: ../gramps/gui/plug/_windows.py:1516
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr "Teip"
 
-#: ../gramps/gui/plug/_windows.py:1532 ../gramps/gui/widgets/grampletbar.py:600
+#: ../gramps/gui/plug/_windows.py:1539 ../gramps/gui/widgets/grampletbar.py:600
 msgid "OK"
 msgstr "Tá go maith"
 
-#: ../gramps/gui/plug/_windows.py:1640
+#: ../gramps/gui/plug/_windows.py:1647
 msgid "Plugin name"
 msgstr "Ainm breiseán"
 
-#: ../gramps/gui/plug/_windows.py:1643
+#: ../gramps/gui/plug/_windows.py:1650
 msgid "Authors"
 msgstr "Údair"
 
-#: ../gramps/gui/plug/_windows.py:1645
+#: ../gramps/gui/plug/_windows.py:1652
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "Ainm comhaid"
 
-#: ../gramps/gui/plug/_windows.py:1648
+#: ../gramps/gui/plug/_windows.py:1655
 msgid "Detailed Info"
 msgstr "Eolas Mionsonraithe"
 
-#: ../gramps/gui/plug/_windows.py:1703
+#: ../gramps/gui/plug/_windows.py:1710
 msgid "Plugin Error"
 msgstr "Earráid Breiseán"
 
-#: ../gramps/gui/plug/_windows.py:1772
+#: ../gramps/gui/plug/_windows.py:1779
 msgid "_Execute"
 msgstr "_Forghníomhú"
 
-#: ../gramps/gui/plug/_windows.py:2070
+#: ../gramps/gui/plug/_windows.py:2077
 #: ../gramps/plugins/importer/importprogen.py:481
 #: ../gramps/plugins/tool/ownereditor.py:157
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr "Príomhfhuinneog"
 
-#: ../gramps/gui/plug/_windows.py:2208
+#: ../gramps/gui/plug/_windows.py:2215
 msgid "Downloading and installing selected addons..."
 msgstr "Íoslódáil agus suiteáil breiseáin roghnaithe..."
 
-#: ../gramps/gui/plug/_windows.py:2251
+#: ../gramps/gui/plug/_windows.py:2258
 msgid "Installation Errors"
 msgstr "Earráidí Suiteála"
 
-#: ../gramps/gui/plug/_windows.py:2252
+#: ../gramps/gui/plug/_windows.py:2259
 msgid "The following addons had errors: "
 msgstr "Bhí earráidí ag na breiseáin seo a leanas: "
 
-#: ../gramps/gui/plug/_windows.py:2260 ../gramps/gui/plug/_windows.py:2277
+#: ../gramps/gui/plug/_windows.py:2267 ../gramps/gui/plug/_windows.py:2284
 msgid "Done downloading and installing addons"
 msgstr "Déanta breiseáin a íoslódáil agus a shuiteáil"
 
-#: ../gramps/gui/plug/_windows.py:2265
+#: ../gramps/gui/plug/_windows.py:2272
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
@@ -19620,11 +19635,11 @@ msgstr[0] "Suiteáilíodh {number_of} addon."
 msgstr[1] "Suiteáladh {number_of} breiseán."
 msgstr[2] "Suiteáladh {number_of} breiseán."
 
-#: ../gramps/gui/plug/_windows.py:2270
+#: ../gramps/gui/plug/_windows.py:2277
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr "Má tá 'View' suiteáilte agat, beidh ort Gramps a atosú."
 
-#: ../gramps/gui/plug/_windows.py:2278
+#: ../gramps/gui/plug/_windows.py:2285
 msgid "No addons were installed."
 msgstr "Níor suiteáilíodh aon bhreiseáin."
 
@@ -20384,7 +20399,7 @@ msgstr "Foinse: Teideal nó Luan: Imleabhar/Leathanach"
 #: ../gramps/gui/selectors/selectfamily.py:70
 #: ../gramps/gui/selectors/selectnote.py:75
 #: ../gramps/gui/selectors/selectobject.py:83
-#: ../gramps/gui/selectors/selectperson.py:107
+#: ../gramps/gui/selectors/selectperson.py:114
 #: ../gramps/gui/selectors/selectplace.py:72
 #: ../gramps/gui/selectors/selectrepository.py:69
 #: ../gramps/gui/selectors/selectsource.py:71
@@ -20802,11 +20817,11 @@ msgstr "Eagraigh Leabharmharcanna"
 msgid "Cannot bookmark this reference"
 msgstr "Ní féidir an tagairt seo a leabharmharcáil"
 
-#: ../gramps/gui/views/listview.py:483
+#: ../gramps/gui/views/listview.py:488
 msgid "Active object not visible"
 msgstr "Rud gníomhach nach bhfuil feiceáil"
 
-#: ../gramps/gui/views/listview.py:495
+#: ../gramps/gui/views/listview.py:500
 #: ../gramps/gui/views/navigationview.py:252
 #: ../gramps/plugins/lib/maps/geography.py:236
 #: ../gramps/plugins/lib/maps/geography.py:254
@@ -20814,20 +20829,20 @@ msgstr "Rud gníomhach nach bhfuil feiceáil"
 msgid "Could Not Set a Bookmark"
 msgstr "Ní fhéadfaí Leabharmharc a shocrú"
 
-#: ../gramps/gui/views/listview.py:496
+#: ../gramps/gui/views/listview.py:501
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Ní fhéadfaí leabharmharc a shocrú toisc nach roghnaíodh aon rud."
 
-#: ../gramps/gui/views/listview.py:627 ../gramps/plugins/view/eventview.py:414
+#: ../gramps/gui/views/listview.py:632 ../gramps/plugins/view/eventview.py:414
 #, python-brace-format
 msgid "Delete {type} [{gid}]?"
 msgstr "Scrios {type} [{gid}]?"
 
-#: ../gramps/gui/views/listview.py:635 ../gramps/gui/views/listview.py:721
+#: ../gramps/gui/views/listview.py:640 ../gramps/gui/views/listview.py:726
 msgid "Deleting item will remove it from the database."
 msgstr "Bainfear mír as an mbunachar sonraí é a scriosadh."
 
-#: ../gramps/gui/views/listview.py:670
+#: ../gramps/gui/views/listview.py:675
 #: ../gramps/plugins/gramplet/givennamegramplet.py:73
 #: ../gramps/plugins/gramplet/recordsgramplet.py:51
 #: ../gramps/plugins/gramplet/statsgramplet.py:73
@@ -20836,11 +20851,11 @@ msgstr "Bainfear mír as an mbunachar sonraí é a scriosadh."
 msgid "Processing..."
 msgstr "Próiseáil..."
 
-#: ../gramps/gui/views/listview.py:684
+#: ../gramps/gui/views/listview.py:689
 msgid "Multiple Selection Delete"
 msgstr "Dearbhú"
 
-#: ../gramps/gui/views/listview.py:716
+#: ../gramps/gui/views/listview.py:721
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
@@ -20848,34 +20863,34 @@ msgstr ""
 "Tá an mír seo á úsáid faoi láthair. Déanfar é a scriosadh bainfear as an "
 "mbunachar sonraí agus ó gach mír eile a thagraíonn dó."
 
-#: ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/lib/libpersonview.py:481
 #: ../gramps/plugins/view/familyview.py:412
 #, python-format
 msgid "Delete %s?"
 msgstr "Scrios %s ?"
 
-#: ../gramps/gui/views/listview.py:763
+#: ../gramps/gui/views/listview.py:768
 msgid "Column clicked, sorting..."
 msgstr "Cliceáil ar an gcolún, sórtáil..."
 
-#: ../gramps/gui/views/listview.py:1246
+#: ../gramps/gui/views/listview.py:1251
 msgid "Export View as Spreadsheet"
 msgstr "Amharc Easpórtála mar Scairbhil"
 
-#: ../gramps/gui/views/listview.py:1261
+#: ../gramps/gui/views/listview.py:1266
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1262
+#: ../gramps/gui/views/listview.py:1267
 msgid "OpenDocument Spreadsheet"
 msgstr "Scarbhileog OpenDocument"
 
-#: ../gramps/gui/views/listview.py:1448
+#: ../gramps/gui/views/listview.py:1453
 msgid "Columns"
 msgstr "Colúin"
 
-#: ../gramps/gui/views/listview.py:1458
+#: ../gramps/gui/views/listview.py:1463
 msgid "CSV Dialect"
 msgstr "Canúint CSV"
 
@@ -21475,7 +21490,8 @@ msgstr "Doiciméad SVG"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:204
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr "Gineann sé doiciméid i bhformáid Grafaicí Veicteora Inscálaithe (.svg)."
+msgstr ""
+"Gineann sé doiciméid i bhformáid Grafaicí Veicteora Inscálaithe (.svg)."
 
 #: ../gramps/plugins/docgen/gtkprint.glade:7
 msgid "Print Preview"
@@ -22432,7 +22448,8 @@ msgstr "Cairt Sliocht do %(person)s, %(father1)s agus %(mother1)s"
 #, python-format
 msgid ""
 "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
-msgstr "Cairt Sliocht do %(father1)s, %(father2)s agus %(mother1)s, %(mother2)s"
+msgstr ""
+"Cairt Sliocht do %(father1)s, %(father2)s agus %(mother1)s, %(mother2)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:204
 #, python-format
@@ -23336,7 +23353,8 @@ msgstr "Ceangailte_ag"
 #: ../gramps/plugins/export/exportcsv.py:393
 #, python-brace-format
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
-msgstr "Ní thacaíonn onnmhairiú CSV le sloinnte neamh-bhunscoile, titim {count}"
+msgstr ""
+"Ní thacaíonn onnmhairiú CSV le sloinnte neamh-bhunscoile, titim {count}"
 
 #: ../gramps/plugins/export/exportcsv.py:430
 msgid "Birth source"
@@ -23584,7 +23602,8 @@ msgstr "Cliceáil faoi dhó in aghaidh an lae chun sonraí"
 #: ../gramps/plugins/gramplet/children.py:99
 #: ../gramps/plugins/gramplet/children.py:210
 msgid "Double-click on a row to edit the selected child."
-msgstr "Cliceáil faoi dhó ar shraith chun an leanbh roghnaithe a chur in eagar."
+msgstr ""
+"Cliceáil faoi dhó ar shraith chun an leanbh roghnaithe a chur in eagar."
 
 #: ../gramps/plugins/gramplet/citations.py:94
 msgid "Double-click on a row to edit the selected source/citation."
@@ -23785,8 +23804,8 @@ msgstr ""
 #, python-format
 msgid " 11. %(web_html_start)sHow do I record one's occupation?%(html_end)s\n"
 msgstr ""
-" 11. %(web_html_start)sConas a dhéanaim taifead ar ghairm an "
-"duine?%(html_end)s\n"
+" 11. %(web_html_start)sConas a dhéanaim taifead ar ghairm an duine?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:206
 #, python-format
@@ -26713,8 +26732,8 @@ msgstr ""
 "shonraí a easpórtáil chuig Gramps XML (Family Tree). Ansin ba chóir duit "
 "uasghrádú a dhéanamh go dtí an leagan is déanaí de Gramps (mar shampla an "
 "leagan seo), bunachar sonraí folamh nua a chruthú agus an Gramps XML a "
-"iompórtáil isteach sa leagan sin. Féach le do "
-"thoil:%(gramps_wiki_migrate_two_to_three_url)s"
+"iompórtáil isteach sa leagan sin. Féach le do thoil:"
+"%(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:44
 msgid "_Ok"
@@ -27053,7 +27072,8 @@ msgstr "Tá an vCard mífhoirmithe. Líon mícheart na gcomhpháirteanna ainm."
 #: ../gramps/plugins/importer/importvcard.py:574
 #, python-brace-format
 msgid "Invalid date in BDAY {vcard_snippet}, preserving date as text."
-msgstr "Dáta neamhbhailí i BDAY {vcard_snippet}, an dáta a chaomhnú mar théacs."
+msgstr ""
+"Dáta neamhbhailí i BDAY {vcard_snippet}, an dáta a chaomhnú mar théacs."
 
 #: ../gramps/plugins/importer/importvcard.py:585
 #, python-brace-format
@@ -28234,7 +28254,8 @@ msgstr "Fuair %(male_name)s bás%(death_date)s i%(death_place)s."
 #, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Fuair %(male_name)s bás%(death_date)s i%(death_place)s ag aois %(age)s."
+msgstr ""
+"Fuair %(male_name)s bás%(death_date)s i%(death_place)s ag aois %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:281
 #, python-format
@@ -28257,7 +28278,8 @@ msgstr "Fuair an duine seo bás%(death_date)s in%(death_place)s."
 #, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Fuair an duine seo bás%(death_date)s in%(death_place)s ag aois %(age)s."
+msgstr ""
+"Fuair an duine seo bás%(death_date)s in%(death_place)s ag aois %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:295
 #, python-format
@@ -28755,7 +28777,8 @@ msgstr "Adhlactha %(burial_date)s%(endnotes)s."
 #, python-format
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Cuireadh %(male_name)s i %(month_year)s i %(burial_place)s%(endnotes)s."
+msgstr ""
+"Cuireadh %(male_name)s i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:575
 #, python-format
@@ -29876,7 +29899,8 @@ msgstr "Phós an duine seo %(spouse)s ar %(full_date)s i %(place)s%(endnotes)s."
 #, python-format
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Phós an duine seo %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Phós an duine seo %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1128
 #, python-format
@@ -30980,7 +31004,8 @@ msgstr "Bhí caidreamh aige freisin le %(spouse)s ar %(full_date)s%(endnotes)s."
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Bhí caidreamh aige freisin le %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+"Bhí caidreamh aige freisin le %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1618
 #, python-format
@@ -30999,7 +31024,8 @@ msgstr "Bhí caidreamh aici freisin le %(spouse)s ar %(full_date)s%(endnotes)s."
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Bhí caidreamh aici freisin le %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+"Bhí caidreamh aici freisin le %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1624
 #, python-format
@@ -31041,7 +31067,8 @@ msgstr "Gaol le %(spouse)s i %(place)s%(endnotes)s."
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Bhí gaol ag an duine seo freisin le %(spouse)s i %(place)s%(endnotes)s."
+msgstr ""
+"Bhí gaol ag an duine seo freisin le %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1646
 #, python-format
@@ -31429,8 +31456,8 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Déan iarracht suíomhanna roghnaithe a fheiceáil le Seirbhís Léarscáileanna ("
-"OpenstreetMap, Google Maps, ...)"
+"Déan iarracht suíomhanna roghnaithe a fheiceáil le Seirbhís Léarscáileanna "
+"(OpenstreetMap, Google Maps, ...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:502
 msgid "Select a Map Service"
@@ -31623,7 +31650,8 @@ msgstr "Ní féidir athair a aimsiú do I% (duine) (Athair=% (athair))"
 
 #: ../gramps/plugins/lib/libprogen.py:2123
 msgid "Cannot find mother for I%(person)s (Mother=%(mother))"
-msgstr "Ní féidir máthair a aimsiú le haghaidh I% (duine) (Máthair=% (máthair))"
+msgstr ""
+"Ní féidir máthair a aimsiú le haghaidh I% (duine) (Máthair=% (máthair))"
 
 #: ../gramps/plugins/lib/librecords.py:66
 msgid "Youngest living person"
@@ -31825,8 +31853,8 @@ msgstr "Roghnaigh comhad kml a úsáidtear chun áiteanna a chur leis"
 #: ../gramps/plugins/lib/maps/geography.py:1149
 msgid "You will need to edit each place manually to add place type, ...\n"
 msgstr ""
-"Beidh ort gach áit a chur in eagar de láimh chun cineál áite a chur leis, ..."
-"\n"
+"Beidh ort gach áit a chur in eagar de láimh chun cineál áite a chur "
+"leis, ...\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1153
 #, python-brace-format
@@ -32761,9 +32789,12 @@ msgstr "Daoine a roinneann an sloinne '%s'"
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
-msgstr[0] "Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile air.\n"
-msgstr[1] "Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile orthu.\n"
-msgstr[2] "Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile orthu.\n"
+msgstr[0] ""
+"Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile air.\n"
+msgstr[1] ""
+"Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile orthu.\n"
+msgstr[2] ""
+"Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile orthu.\n"
 
 #: ../gramps/plugins/quickview/samesurnames.py:177
 #, python-format
@@ -33234,7 +33265,8 @@ msgstr "Taispeáin siombail inscne os comhair an ainm"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "Cé acu a thaispeánfar siombail inscne os comhair an ainm sa tuarascáil."
+msgstr ""
+"Cé acu a thaispeánfar siombail inscne os comhair an ainm sa tuarascáil."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -33843,8 +33875,8 @@ msgstr "Uimhreacha giniúna (athchúrsach amháin)"
 #: ../gramps/plugins/textreport/familygroup.py:812
 msgid "Whether to include the generation on each report (recursive only)."
 msgstr ""
-"Cé acu an ndéanfar an ghiniúint a chur san áireamh ar gach tuarascáil ("
-"athchúrsach amháin)."
+"Cé acu an ndéanfar an ghiniúint a chur san áireamh ar gach tuarascáil "
+"(athchúrsach amháin)."
 
 #: ../gramps/plugins/textreport/familygroup.py:816
 msgid "Print fields for missing information"
@@ -34061,8 +34093,8 @@ msgid ""
 "Total ancestors in generations %(second_generation)d to %(last_generation)d "
 "is %(count)d. %(percent)s"
 msgstr ""
-"Is é iomlán na sinsear sna glúnta %(second_generation)d go %(last_generation)"
-"d ná %(count)d. %(percent)s"
+"Is é iomlán na sinsear sna glúnta %(second_generation)d go "
+"%(last_generation)d ná %(count)d. %(percent)s"
 
 #: ../gramps/plugins/textreport/placereport.py:136
 #: ../gramps/plugins/textreport/placereport.py:151
@@ -34911,8 +34943,10 @@ msgstr[2] "Rinneadh tagairt do {quantity} daoine, ach níor aimsíodh iad\n"
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] "Rinneadh tagairt do theaghlach {quantity} ach níor aimsíodh é\n"
-msgstr[1] "Rinneadh tagairt do {quantity} do theaghlaigh, ach níor aimsíodh iad\n"
-msgstr[2] "Rinneadh tagairt do {quantity} do theaghlaigh, ach níor aimsíodh iad\n"
+msgstr[1] ""
+"Rinneadh tagairt do {quantity} do theaghlaigh, ach níor aimsíodh iad\n"
+msgstr[2] ""
+"Rinneadh tagairt do {quantity} do theaghlaigh, ach níor aimsíodh iad\n"
 
 #: ../gramps/plugins/tool/check.py:2840
 #, python-brace-format
@@ -35394,9 +35428,10 @@ msgstr ""
 "Gramps. Caithfear idirdhealú tábhachtach a dhéanamh idir réad meán Gramps "
 "agus a chomhad.\n"
 "\n"
-"Is éard atá i réad meán Gramps ná bailiúchán sonraí faoin gcomhad réada meán:"
-" a ainm comhaid agus/nó a chosán, a thuairisc, a ID, nótaí, tagairtí foinse, "
-"srl. Ní chuimsíonn na sonraí seo %(bold_start)s an comhad féin%(bold_end)s.\n"
+"Is éard atá i réad meán Gramps ná bailiúchán sonraí faoin gcomhad réada "
+"meán: a ainm comhaid agus/nó a chosán, a thuairisc, a ID, nótaí, tagairtí "
+"foinse, srl. Ní chuimsíonn na sonraí seo %(bold_start)s an comhad "
+"féin%(bold_end)s.\n"
 "\n"
 "Tá na comhaid ina bhfuil íomhá, fuaim, físeán, srl, ar leithligh ar do "
 "thiomáint crua. Ní bhainistíonn Gramps na comhaid seo agus níl siad san "
@@ -35726,10 +35761,10 @@ msgstr ""
 "Má ghlacann tú leis na hathruithe, modhnóidh Gramps na hiontrálacha atá "
 "roghnaithe.\n"
 "\n"
-"Taispeántar sloinnte cumaisc mar liostaí de "
-"[réimír sloinne, sloinne, cónascaire].\n"
-"Mar shampla, leis na réamhshocruithe, taispeánann an t-ainm "
-"\"de Mascarenhas da Silva e Lencastre\" mar:\n"
+"Taispeántar sloinnte cumaisc mar liostaí de [réimír sloinne, sloinne, "
+"cónascaire].\n"
+"Mar shampla, leis na réamhshocruithe, taispeánann an t-ainm \"de Mascarenhas "
+"da Silva e Lencastre\" mar:\n"
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
 "\n"
 "Rith an uirlis seo arís agus arís eile chun ainmneacha a cheartú a bhfuil "
@@ -38116,9 +38151,9 @@ msgid ""
 "Address Book page."
 msgstr ""
 "Tá innéacs ar an leathanach seo de na daoine aonair go léir sa bhunachar "
-"sonraí, curtha in eagar de réir a sloinne, le ceann de na nithe seo a leanas:"
-" Seoladh, Áit Chónaithe, nó Naisc Gréasáin. Má roghnaíonn tú ainm an duine, "
-"tógfaidh tú chuig a leathanach Leabhar Seoltaí aonair."
+"sonraí, curtha in eagar de réir a sloinne, le ceann de na nithe seo a "
+"leanas: Seoladh, Áit Chónaithe, nó Naisc Gréasáin. Má roghnaíonn tú ainm an "
+"duine, tógfaidh tú chuig a leathanach Leabhar Seoltaí aonair."
 
 #: ../gramps/plugins/webreport/addressbooklist.py:117
 msgid "Full Name"
@@ -38529,8 +38564,8 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
-"Tá an léarscáil san alt seo do gach duine a bhfuil an ócáid acu: {event_type}"
-" ({selected_filter})"
+"Tá an léarscáil san alt seo do gach duine a bhfuil an ócáid acu: "
+"{event_type} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
@@ -38821,7 +38856,8 @@ msgstr "Cuir crann sinsear san áireamh"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2235
 msgid "Whether to include an ancestor graph on each individual page"
-msgstr "Cé acu a chuirfear graf sinsear san áireamh ar gach leathanach ar leith"
+msgstr ""
+"Cé acu a chuirfear graf sinsear san áireamh ar gach leathanach ar leith"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2240
 msgid "Add previous/next"
@@ -39025,8 +39061,8 @@ msgid ""
 "This option will be available only if the .php file extension is selected."
 msgstr ""
 "Nóta le húsáid chun an seisiún php a thosú.\n"
-"Ní bheidh an rogha seo ar fáil ach amháin má roghnaítear an síneadh comhaid "
-".php."
+"Ní bheidh an rogha seo ar fáil ach amháin má roghnaítear an síneadh comhaid ."
+"php."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2424
 msgid "Images Generation"
@@ -39210,7 +39246,8 @@ msgstr "Cuir leathanaigh imeachta san áireamh"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2600
 msgid "Add a complete events list and relevant pages or not"
-msgstr "Cuir liosta iomlán imeachtaí agus leathanaigh ábhartha leis nó ná bíodh"
+msgstr ""
+"Cuir liosta iomlán imeachtaí agus leathanaigh ábhartha leis nó ná bíodh"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2603
 msgid "Include other roles"
@@ -39680,8 +39717,8 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"Léiríonn an leathanach léarscáile seo an duine sin agus aon sliocht lena "
-"n-imeacht/a n-áiteanna go léir. Má chuireann tú do luch os cionn an mharcóir "
+"Léiríonn an leathanach léarscáile seo an duine sin agus aon sliocht lena n-"
+"imeacht/a n-áiteanna go léir. Má chuireann tú do luch os cionn an mharcóir "
 "taispeánfaidh sé an logainm. Déantar na marcóirí agus an liosta Tagartha a "
 "shórtáil in ord dáta (más ann?). Má chliceálann tú ar ainm áite sa rannán "
 "Tagartha, téarfaidh tú chuig leathanach na háite sin."
@@ -40127,6 +40164,9 @@ msgstr "NebraskaCity name (optional, probably does not need a translation"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Gan stílbhileog"
+
+#~ msgid "Preparing ..."
+#~ msgstr "Ag ullmhú..."
 
 #, fuzzy
 #~ msgid "Use default preference"
