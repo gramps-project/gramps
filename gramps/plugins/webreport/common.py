@@ -73,7 +73,9 @@ except ImportError:
                 AlphabeticIndex as localAlphabeticIndex,
             )
     except ImportError:
-        pass
+        from gramps.plugins.webreport.alphabeticindex import (
+            AlphabeticIndex as localAlphabeticIndex,
+        )
 
 LOG = logging.getLogger(".NarrativeWeb")
 
