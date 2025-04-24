@@ -26,7 +26,7 @@ import unittest
 
 import jsonschema
 
-from ...const import DATA_DIR
+from ...const import TEST_DIR
 from ...db.utils import import_as_dict
 from ...user import User
 from .. import (
@@ -43,7 +43,6 @@ from .. import (
 )
 from ..json_utils import object_to_dict
 
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 

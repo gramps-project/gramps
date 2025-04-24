@@ -46,7 +46,7 @@ from gramps.gen.lib.json_utils import object_to_dict
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.gen.user import User
-from gramps.gen.const import USER_DATA, DATA_DIR
+from gramps.gen.const import USER_DATA, TEST_DIR
 from gramps.test.test_util import capture
 from gramps.plugins.export.exportxml import XmlWriter
 from gramps.gen.db.dbconst import DBBACKEND
@@ -62,8 +62,6 @@ from gramps.gen.db.exceptions import (
 
 # logger = logging.getLogger(__name__)
 
-# the following defines where to find the test import and result files
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 # the following defines where to find test error diffs and import result XML files
 TEMP_DIR = os.path.join(USER_DATA, "temp")
 if not os.path.isdir(TEMP_DIR):
