@@ -27,13 +27,12 @@ from time import localtime, strptime
 import tempfile
 
 from gramps.test.test_util import Gramps
-from gramps.gen.const import DATA_DIR
+from gramps.gen.const import TEST_DIR
 from gramps.gen.datehandler import set_format
 from gramps.gen.user import User
 from gramps.gen.utils.config import config
 
 TREE_NAME = "Test_exporttest"
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 
 
 def mock_localtime(*args):

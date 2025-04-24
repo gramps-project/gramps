@@ -25,14 +25,14 @@ import shutil
 
 from gramps.test.test_util import Gramps
 from gramps.gen.user import User
-from gramps.gen.const import DATA_DIR
+from gramps.gen.const import TEST_DIR
 
 # ddir = os.path.dirname(__file__)
 # example = os.path.join(ddir, "..", "..", "..",
 #                        "example", "gramps", "data.gramps")
 # sample = os.path.join(ddir, "..", "..", "..",
 #                       "example", "gedcom", "sample.ged")
-example = os.path.join(DATA_DIR, "tests", "data.gramps")
+example = os.path.join(TEST_DIR, "data.gramps")
 
 TREE_NAME = "Test_reporttest"
 
