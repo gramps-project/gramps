@@ -423,3 +423,5 @@ TYPE_BOX_FAMILY = 1
 
 # instance of random.Random that can be used for predictable unit tests
 TEST_RANDOM = random.Random()
+# location of directory holding test files used in unit tests
+TEST_DIR = os.path.abspath(os.path.join(ROOT_DIR, os.pardir, "data", "tests"))
