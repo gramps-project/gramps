@@ -26,7 +26,7 @@ import os
 
 from ....db.utils import import_as_dict
 from ....filters import GenericFilterFactory
-from ....const import DATA_DIR
+from ....const import TEST_DIR
 from ....user import User
 from ....utils.unittest import localize_date
 
@@ -50,7 +50,6 @@ from ..event import (
     HasDayOfWeek,
 )
 
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 GenericEventFilter = GenericFilterFactory("Event")
 
