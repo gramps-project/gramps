@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2024  Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2025  Steve Youngs <steve@youngs.cc>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,18 +55,19 @@ class Optimizer:
         Initialize the collection of selected_handles in the filter list.
         """
         self.all_selected_handles = []
-        self.walk_filters(filter, False, self.all_selected_handles)
+        self.walk_filters(filter, filter.logical_op, False, self.all_selected_handles)
 
-    def walk_filters(self, filter, parent_invert, result):
+    def walk_filters(self, filter, parent_logical_op, parent_invert, result):
         """
         Recursively walk all of the filters/rules and get
         rules with selected_handles
         """
         current_invert = parent_invert if not filter.invert else not parent_invert
         LOG.debug(
-            "walking, filter: %s, invert=%s, parent_invert=%s",
+            "walking, filter: %s, invert=%s, parent_logical_op=%s, parent_invert=%s",
             filter,
             filter.invert,
+            parent_logical_op,
             parent_invert,
         )
         rules_with_selected_handles = []
@@ -75,6 +77,7 @@ class Optimizer:
                 if rule_filter is not None:
                     self.walk_filters(
                         rule_filter,
+                        filter.logical_op,
                         current_invert,
                         result,
                     )
@@ -82,8 +85,9 @@ class Optimizer:
                 rules_with_selected_handles.append(set(item.selected_handles))
         if rules_with_selected_handles:
             LOG.debug(
-                "filter %s: parent_invert=%s, invert=%s, op=%s, number of rules with selected_handles=%s",
+                "filter %s: parent_logical_op=%s, parent_invert=%s, invert=%s, op=%s, number of rules with selected_handles=%s",
                 filter,
+                parent_logical_op,
                 parent_invert,
                 filter.invert,
                 filter.logical_op,
@@ -92,7 +96,7 @@ class Optimizer:
             result.append(
                 (
                     current_invert,
-                    filter.logical_op,
+                    parent_logical_op,
                     rules_with_selected_handles,
                 )
             )
