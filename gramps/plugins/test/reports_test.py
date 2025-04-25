@@ -90,7 +90,7 @@ def dynamic_report_method(report_name, test_function, files, *args, **options):
 
     def test_method(self):  # This needs to have "test" in name
         out, err = self.call(*args)
-        self.assertTrue(test_function(out, err, report_name, **options))
+        self.assertTrue(test_function(out, err, report_name, **options), out + err)
 
     return test_method
 
@@ -100,7 +100,7 @@ def dynamic_cli_method(report_name, test_function, files, *args, **options):
 
     def test_method(self):  # This needs to have "test" in name
         out, err = self.call(*args)
-        self.assertTrue(test_function(out, err, report_name, **options))
+        self.assertTrue(test_function(out, err, report_name, **options), out + err)
 
     return test_method
 
