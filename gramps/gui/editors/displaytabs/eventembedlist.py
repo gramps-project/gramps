@@ -118,7 +118,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         obj,
         config_key,
         build_model=EventRefModel,
-        **kwargs
+        **kwargs,
     ):
         self.obj = obj
         self._groups = []

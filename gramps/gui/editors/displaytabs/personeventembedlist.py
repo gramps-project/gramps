@@ -70,7 +70,7 @@ class PersonEventEmbedList(EventEmbedList):
         obj,
         config_key,
         build_model=EventRefModel,
-        **kwargs
+        **kwargs,
     ):
         self.dbstate = dbstate
         EventEmbedList.__init__(
