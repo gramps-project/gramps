@@ -78,11 +78,10 @@ def do_it(srcfile, tstfile, dfilter=None):
 
 def compare(expect_file, result_file, dfilter=None):
     """This uses the diff library to compare two files"""
-    with open(
-        expect_file, encoding="utf-8_sig", errors="surrogateescape"
-    ) as exp_f, open(
-        result_file, encoding="utf-8_sig", errors="surrogateescape"
-    ) as res_f:
+    with (
+        open(expect_file, encoding="utf-8_sig", errors="surrogateescape") as exp_f,
+        open(result_file, encoding="utf-8_sig", errors="surrogateescape") as res_f,
+    ):
         diff = difflib.unified_diff(
             exp_f.readlines(), res_f.readlines(), n=2, lineterm="\n"
         )
