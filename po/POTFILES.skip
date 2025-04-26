@@ -154,6 +154,11 @@ gramps/gen/filters/rules/test/person_rules_test.py
 gramps/gen/filters/rules/test/place_rules_test.py
 gramps/gen/filters/rules/test/repository_rules_test.py
 #
+# gen.filters.test package
+#
+gramps/gen/filters/test/__init__.py
+gramps/gen/filters/test/filter_optimizer_test.py
+#
 # gen lib API
 #
 gramps/gen/lib/__init__.py
