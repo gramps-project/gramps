@@ -1,4 +1,3 @@
-from gramps.gen.filters import FilterList
 import tempfile
 import os
 import unittest
@@ -6,12 +5,7 @@ import unittest
 from ...const import DATA_DIR
 from ...db.utils import import_as_dict
 from ...user import User
-from ...filters import reload_custom_filters
-
-reload_custom_filters()
-
-from ...filters import CustomFilters
-
+from ...filters import reload_custom_filters, CustomFilters, FilterList
 
 custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
 <filters>
@@ -56,10 +50,16 @@ class OptimizerTest(unittest.TestCase):
             fl = FilterList(tmp_file.name)
             fl.load()
 
-        the_custom_filters = CustomFilters.get_filters_dict("Person")
+        cls.the_custom_filters = CustomFilters.get_filters_dict("Person")
         cls.filters = fl.get_filters_dict("Person")
-        for filter_name in cls.filters:
-            the_custom_filters[filter_name] = cls.filters[filter_name]
+
+    def setUp(self):
+        for filter_name in self.filters:
+            self.the_custom_filters[filter_name] = self.filters[filter_name]
+
+    def tearDown(self):
+        for filter_name in self.filters:
+            CustomFilters.remove("Person", filter_name)
 
     def test_ancestors_of(self):
         filter = self.filters["Ancestors of"]

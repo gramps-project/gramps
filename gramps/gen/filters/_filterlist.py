@@ -102,6 +102,15 @@ class FilterList:
             self.filter_namespaces[namespace] = []
         self.filter_namespaces[namespace].append(filt)
 
+    def remove(self, namespace, filter_name):
+        """remove a custom filter from global list"""
+        # Remove filter_name from namespace:
+        for item in self.filter_namespaces[namespace][:]:
+            if item.name == filter_name:
+                self.filter_namespaces[namespace].remove(item)
+        # Remove from cache:
+        del self._cached[namespace][filter_name]
+
     def load(self):
         """load a custom filter"""
         try:
