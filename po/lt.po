@@ -4,22 +4,23 @@
 #
 # Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>, 2013.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# Vykintas Vyšniauskas <vykintasv@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2021-06-04 21:07+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
-"Language-Team: Lithuanian <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/lt/>\n"
+"PO-Revision-Date: 2025-04-27 12:18+0000\n"
+"Last-Translator: Vykintas Vyšniauskas <vykintasv@gmail.com>\n"
+"Language-Team: Lithuanian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"(n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 4.7-dev\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && ("
+"n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.12-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -31,10 +32,8 @@ msgid "Canada"
 msgstr "Kanada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Katalonų"
+msgstr "Katalonija"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -189,10 +188,8 @@ msgid "8 of Hanuka"
 msgstr "Hanuka 8"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Kursyvas"
+msgstr "Italija"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -219,10 +216,8 @@ msgid "Sweden"
 msgstr "Švedija"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Turkų"
+msgstr "Turkija"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -476,14 +471,6 @@ msgstr ""
 "vaikais' filtrą galite pažymėti asmenis be vaikų."
 
 #: ../data/tips.xml:18
-#, fuzzy
-#| msgid ""
-#| "<b>Locating People</b><br/>By default, each surname in the People View is "
-#| "listed only once. By clicking on the arrow to the left of a name, the "
-#| "list will expand to show all individuals with that last name. To locate "
-#| "any Family Name from a long list, select a Family Name (not a person) and "
-#| "start typing. The view will jump to the first Family Name matching the "
-#| "letters you enter."
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -492,12 +479,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Asmenų paieška</b><br/>Įprastiniais nustatymais, kiekviena pavardė Asmenų "
-"Vaizde yra rodoma tik vieną kartą. Kairiu pelės klavišu nuspaudus rodyklę "
-"vardo kairėje, sąrašas bus išskleistas ir bus rodomi visi asmenys su ta "
-"pavarde. Norint ilgame sąraše surasti bet kurią Pavardę, pasirinkite Pavardę "
-"(ne asmenį) ir pradėkite rašyti. Vaizdas nušoks į pirmą Pavardė, kuri "
-"atitinka suvestas raides."
+"<b>Asmenų paieška</b><br/>Sugrupuotų asmenų vaizde kiekviena pavardė yra "
+"rodoma tik vieną kartą. Kairiu pelės klavišu nuspaudus rodyklę vardo "
+"kairėje, sąrašas bus išskleistas ir bus rodomi visi asmenys su ta pavarde. "
+"Norint ilgame sąraše surasti bet kurią Pavardę, pasirinkite Pavardę (ne "
+"asmenį) ir pradėkite rašyti. Vaizdas nušoks į pirmą Pavardė, kuri atitinka "
+"suvestas raides."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -3151,14 +3138,14 @@ msgstr "apie "
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "nuo "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "iki "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
@@ -3330,6 +3317,11 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
+"Nepavyko prisijungti prie duombazės.\n"
+"\n"
+"%(message)s\n"
+"Patikrinkite savo prisijungimo nustatymų failą:\n"
+"%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:213
 #, fuzzy, python-format
@@ -4038,11 +4030,11 @@ msgstr "Nėra aprašymo"
 
 #: ../gramps/gen/filters/rules/_rule.py:112
 msgid "The filter definition contains a loop."
-msgstr ""
+msgstr "Filtro apibrėžime yra ciklas."
 
 #: ../gramps/gen/filters/rules/_rule.py:114
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "Viena taisyklė nurodo į kitą, kuri galiausiai nurodo į pirmąją."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 msgid "Every citation"
@@ -6523,21 +6515,23 @@ msgstr "Vienetai:"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:71
 msgid "Places within an area"
-msgstr "Vietovės esančios regijone"
+msgstr "Vietovės esančios regione"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:72
 msgid "Matches places within a given distance of another place"
-msgstr "Atitinka vietas, esančias aplink nurodytu atstumu nuo kitos vietos"
+msgstr "Atitinka vietas, esančias nurodytu atstumu nuo kitos vietos"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:94
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "Negalima naudoti filtro 'esančios regione'"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:96
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"Jūsų pasirinktai vietovei nurodytos blogos koordinatės. Prašome naudoti "
+"įrankį 'Tvarkyti įvestus duomenis'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:46
 msgid "Every repository"
@@ -7493,25 +7487,25 @@ msgstr "daugiau kaip apie"
 #, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{number_of} metai"
+msgstr[1] "{number_of} metai"
+msgstr[2] "{number_of} metų"
 
 #: ../gramps/gen/lib/date.py:483
 #, python-brace-format
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{number_of} mėnuo"
+msgstr[1] "{number_of} mėnesiai"
+msgstr[2] "{number_of} mėnesių"
 
 #: ../gramps/gen/lib/date.py:494
 #, python-brace-format
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{number_of} diena"
+msgstr[1] "{number_of} dienos"
+msgstr[2] "{number_of} dienų"
 
 #: ../gramps/gen/lib/date.py:500
 msgid "0 days"
@@ -7674,7 +7668,7 @@ msgstr "intervalas"
 
 #: ../gramps/gen/lib/date.py:2006
 msgid "from"
-msgstr ""
+msgstr "nuo"
 
 #: ../gramps/gen/lib/date.py:2007
 #, fuzzy
@@ -7883,7 +7877,7 @@ msgstr "Keletas tėvų"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Draugas(-ė)"
 
 #: ../gramps/gen/lib/eventroletype.py:89
 #, fuzzy
@@ -8159,11 +8153,11 @@ msgstr "Sužadėtuvės"
 #: ../gramps/gen/lib/eventtype.py:240 ../gramps/gen/utils/symbols.py:98
 #: ../gramps/gui/configure.py:2804 ../gramps/plugins/webreport/family.py:317
 msgid "Divorce"
-msgstr "Skirybos"
+msgstr "Skyrybos"
 
 #: ../gramps/gen/lib/eventtype.py:241
 msgid "Divorce Filing"
-msgstr "Galimos skirybos"
+msgstr "Galimos skyrybos"
 
 #: ../gramps/gen/lib/eventtype.py:242
 msgid "Annulment"
@@ -8171,7 +8165,7 @@ msgstr "Panaikinimas"
 
 #: ../gramps/gen/lib/eventtype.py:243
 msgid "Alternate Marriage"
-msgstr "Alternatyvi Santuoka"
+msgstr "Alternatyvi santuoka"
 
 #: ../gramps/gen/lib/eventtype.py:244
 #, fuzzy
@@ -8211,10 +8205,9 @@ msgid "cust."
 msgstr "savas"
 
 #: ../gramps/gen/lib/eventtype.py:253
-#, fuzzy
 msgctxt "Adopted abbreviation"
 msgid "adop."
-msgstr "prit."
+msgstr "įv."
 
 #: ../gramps/gen/lib/eventtype.py:254
 msgctxt "Adult Christening abbreviation"
@@ -10245,7 +10238,7 @@ msgstr "Vidutinis"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Short"
-msgstr ""
+msgstr "Trumpas"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 #, fuzzy
@@ -10289,12 +10282,11 @@ msgstr "Duotas vardas"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:86
 msgid "Above"
-msgstr ""
+msgstr "Aukščiau"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:87
-#, fuzzy
 msgid "Below"
-msgstr "Žem_iau:"
+msgstr "Žemiau"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:88
 #, fuzzy
@@ -10309,20 +10301,19 @@ msgstr "Nustatymai"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Down (↓)"
-msgstr ""
+msgstr "Žemyn (↓)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:99
 msgid "Up (↑)"
-msgstr ""
+msgstr "Aukštyn (↑)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:100
-#, fuzzy
 msgid "Right (→)"
-msgstr "Dešinėje"
+msgstr "Dešinėn (→)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:101
 msgid "Left (←)"
-msgstr ""
+msgstr "Kairėn (←)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:105
 msgid "Perpendicular"
@@ -11127,10 +11118,8 @@ msgid "father's age"
 msgstr "Tėvo amžius"
 
 #: ../gramps/gen/utils/alive.py:361
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "mirties data"
+msgstr "nuo mirties datos"
 
 #: ../gramps/gen/utils/alive.py:365
 #, fuzzy
@@ -11178,6 +11167,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
+"apskaičiuota pagal tėvus ir brolius/seseris - gimimo: {birth_min_src}, "
+"mirties: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -11185,6 +11176,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"apskaičiuota pagal tėvus ir brolius/seseris - gimimo: nuo {birth_min_src} "
+"(anksčiausia) iki {birth_max_src} (vėliausia), mirties: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -12066,17 +12059,15 @@ msgstr "Nerasta"
 
 #: ../gramps/grampsapp.py:387
 msgid "not found because exiv2 is not installed"
-msgstr ""
+msgstr "nerasta, nes neįdiegta exiv2"
 
 #: ../gramps/grampsapp.py:423
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "įdiegta, bet versija nepateikiama"
 
 #: ../gramps/grampsapp.py:444
-#, fuzzy
-#| msgid "Unstable"
 msgid "installed"
-msgstr "Nestabilus"
+msgstr "įdiegta"
 
 #: ../gramps/grampsapp.py:625 ../gramps/grampsapp.py:634
 #: ../gramps/grampsapp.py:684
@@ -12788,10 +12779,8 @@ msgid "Round the year"
 msgstr "Naudoti suapvalintus kampus"
 
 #: ../gramps/gui/configure.py:1590
-#, fuzzy
-#| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
-msgstr "Pavaizduoti nuorodas į  %s"
+msgstr "Rodyti amžių įvykiams po mirties *"
 
 #: ../gramps/gui/configure.py:1606
 msgid "Calendar on reports"
@@ -14955,21 +14944,19 @@ msgstr "Apie"
 
 #: ../gramps/gui/editors/editdate.py:81
 msgid "Range"
-msgstr "Intervalas"
+msgstr "Tarp"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "Nuo"
 
 #: ../gramps/gui/editors/editdate.py:83
-#, fuzzy
-#| msgid "Top"
 msgid "To"
-msgstr "Viršuje"
+msgstr "Iki"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
-msgstr "Tarpas"
+msgstr "Nuo–iki"
 
 #: ../gramps/gui/editors/editdate.py:90
 msgid "Estimated"
@@ -32716,12 +32703,12 @@ msgstr "Atverti su openstreetmap.org"
 #: ../gramps/plugins/quickview/ageondate.py:51
 #, python-format
 msgid "People and their ages the %s"
-msgstr "Žmonės ir jų amžiai %s"
+msgstr "Žmonės ir jų amžius %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:53
 #, python-format
 msgid "People and their ages on %s"
-msgstr "Žmonės ir jų amžiai %s"
+msgstr "Žmonės ir jų amžius %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:65
 #: ../gramps/plugins/quickview/ageondate.py:68
@@ -36500,7 +36487,7 @@ msgstr "Lyčių statistikos atnaujinimas"
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:99
 msgid "Gender statistics for name gender guessing have been rebuilt."
-msgstr "Lyčių statistika, spėjanti vardo lytį, buvo atstatyta"
+msgstr "Lyčių statistika vardų lyties nuspėjimui buvo perskaičiuota."
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:90
 msgid "Reference maps rebuilt"
@@ -36555,7 +36542,7 @@ msgstr ""
 #: ../gramps/plugins/tool/removespaces.py:91
 #: ../gramps/plugins/tool/tools.gpr.py:543
 msgid "Clean input data"
-msgstr ""
+msgstr "Tvarkyti įvestus duomenis"
 
 #: ../gramps/plugins/tool/removespaces.py:114
 #, fuzzy
@@ -36574,9 +36561,8 @@ msgstr "Ieškoma kiekvieno asmens galimų ciklų"
 
 #: ../gramps/plugins/tool/removespaces.py:141
 #: ../gramps/plugins/tool/removespaces.py:190
-#, fuzzy
 msgid "handle"
-msgstr "Tvarkyti"
+msgstr "identifikatorius"
 
 #: ../gramps/plugins/tool/removespaces.py:145
 #, fuzzy
