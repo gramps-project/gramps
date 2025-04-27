@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-14 22:32+0000\n"
+"PO-Revision-Date: 2025-04-24 09:52+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -35546,7 +35546,7 @@ msgstr "Remove_leading_and_trailing_spaces"
 #: ../gramps/plugins/tool/removespaces.py:91
 #: ../gramps/plugins/tool/tools.gpr.py:543
 msgid "Clean input data"
-msgstr ""
+msgstr "清除输入数据"
 
 #: ../gramps/plugins/tool/removespaces.py:114
 msgid ""
@@ -35796,7 +35796,7 @@ msgstr "排列人员的家庭事件"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:128
 msgid "Generate_Testcases_for_Persons_and_Families"
-msgstr ""
+msgstr "为人员和家庭生成测试实例"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:334
 #: ../gramps/plugins/tool/testcasegenerator.py:341
@@ -35890,7 +35890,7 @@ msgstr "正在生成家庭"
 #: ../gramps/plugins/tool/testcasegenerator.py:1783
 #, python-format
 msgid "Testcase generator step %d"
-msgstr ""
+msgstr "测试实例生成器步骤 %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:41
 msgid "Fix Capitalization of Family Names"
@@ -37834,7 +37834,7 @@ msgstr "首页"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "热图"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -37864,7 +37864,7 @@ msgstr "网页日历"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "热图"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:440
@@ -38494,7 +38494,7 @@ msgstr "如果你想打开/关闭一个部分，请选中它"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2252
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "索引中的最大行数"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
 #, fuzzy
@@ -38692,7 +38692,7 @@ msgstr "创建图片索引"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2434
 msgid "This option allows you to create the images index"
-msgstr ""
+msgstr "此选项可以创建图像索引"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2440
 msgid "Include unused images and media objects"
@@ -39096,6 +39096,9 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"只在当您无法在您的网站上看到 OpenStreetMap 或 Stamen 地图时使用此选项。\n"
+"可在指定文件中修改数值。要修改的选项名称为 openlayers_version。\n"
+"较早版本内容请阅读 https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2809
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -39282,13 +39285,15 @@ msgstr "笔记文本尺寸，in points."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "模糊"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"设置模糊尺寸。\n"
+"默认：15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
