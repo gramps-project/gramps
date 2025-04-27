@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-18 06:03+0000\n"
+"PO-Revision-Date: 2025-04-26 23:32+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -469,7 +469,7 @@ msgstr ""
 "<b>איתור אנשים<br/></b>כל שם משפחה במצג 'אנשים' מופיע פעם אחת בלבד. עם הקשה "
 "על החץ שמשמאל לשם, הרשימה תורחב וכול האנשים עם שם משפחה זה יוצגו. לאיתור שם "
 "משפחה מתוך רשימה ארוכה, אפשר להתחיל להקליד את שם המשפחה (לא שם פרטי) . הסמן "
-"ימוקם על שם המשפחה הראשון ברשימה שתואם את האותיות שהוזנו."
+"ימוקם על שם המשפחה הראשון ברשימה שתואם לאותיות שהוזנו."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -18771,10 +18771,8 @@ msgid "Select a different person"
 msgstr "נא לבחור אדם שונה"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "אנשים מסומנים"
+msgstr "אדם פעיל, אדם הבית או ננשים עם סמניות"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -18785,10 +18783,8 @@ msgid "Select a different family"
 msgstr "נא לבחור משפחה שונה"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "משפחות בסימניה"
+msgstr "משפחות פעולות או עם סמניות"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
