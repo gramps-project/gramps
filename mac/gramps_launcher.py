@@ -32,8 +32,8 @@ environ["GI_TYPELIB_PATH"] = join(bundle_lib, "girepository-1.0")
 environ["GVBINDIR"] = join(bundle_lib, "graphviz")
 environ["ENCHANT_MODULE_PATH"] = join(bundle_lib, "enchant")
 
-# Set $PYTHON to point inside the bundle
-PYVER = "python" + version[:3]
+# Set $PYTHON to point inside the bundle: 4 characters to get '3.13'
+PYVER = "python" + version[:4]
 
 environ["GRAMPSDIR"] = join(bundle_lib, PYVER, "site-packages", "gramps")
 environ["GRAMPSI18N"] = join(bundle_data, "locale")

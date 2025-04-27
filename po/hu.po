@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-14 22:21+0000\n"
+"POT-Creation-Date: 2025-04-18 20:48+0100\n"
 "PO-Revision-Date: 2025-02-16 01:18+0000\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
@@ -254,7 +254,7 @@ msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr "Származáskutatás;Családtörténet;Kutatás;Családfa;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
-#: ../gramps/gen/const.py:259
+#: ../gramps/gen/const.py:265
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
@@ -1657,7 +1657,7 @@ msgstr "Hiba a paraméterek feldolgozásakor"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:208
-#: ../gramps/gui/clipboard.py:209 ../gramps/gui/plug/_windows.py:1498
+#: ../gramps/gui/clipboard.py:209 ../gramps/gui/plug/_windows.py:1505
 msgid "Unavailable"
 msgstr "Elérhetetlen"
 
@@ -1703,8 +1703,8 @@ msgstr "\"%s\" családfa:"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:187
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1703
-#: ../gramps/gui/plug/_windows.py:2147
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1710
+#: ../gramps/gui/plug/_windows.py:2154
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1776,7 +1776,7 @@ msgstr ""
 "\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2329
-#: ../gramps/gui/plug/_windows.py:773
+#: ../gramps/gui/plug/_windows.py:780
 msgid "Never"
 msgstr "Soha"
 
@@ -2170,17 +2170,17 @@ msgctxt "localized lexeme inflections"
 msgid "January"
 msgstr "január"
 
-#: ../gramps/gen/const.py:293
+#: ../gramps/gen/const.py:299
 msgctxt "surname"
 msgid "none"
 msgstr "nincs"
 
-#: ../gramps/gen/const.py:294
+#: ../gramps/gen/const.py:300
 msgctxt "given-name"
 msgid "none"
 msgstr "nincs"
 
-#: ../gramps/gen/const.py:298 ../gramps/plugins/gramplet/todo.py:208
+#: ../gramps/gen/const.py:304 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:235
 #: ../gramps/plugins/webreport/basepage.py:3382
 #: ../gramps/plugins/webreport/basepage.py:3403
@@ -3277,7 +3277,7 @@ msgstr ""
 "mentést%(html_end)s."
 
 #: ../gramps/gen/db/generic.py:231 ../gramps/gen/db/generic.py:281
-#: ../gramps/gen/db/generic.py:2276
+#: ../gramps/gen/db/generic.py:2313
 #, python-format
 msgid "_Undo %s"
 msgstr "%s _visszavonása"
@@ -3287,78 +3287,78 @@ msgstr "%s _visszavonása"
 msgid "_Redo %s"
 msgstr "%s _ismétlése"
 
-#: ../gramps/gen/db/generic.py:2667
+#: ../gramps/gen/db/generic.py:2704
 msgid "Number of people"
 msgstr "Emberek száma"
 
-#: ../gramps/gen/db/generic.py:2668
+#: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/gramplet/statsgramplet.py:187
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
 msgstr "Családok száma"
 
-#: ../gramps/gen/db/generic.py:2669
+#: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 msgid "Number of sources"
 msgstr "Források száma"
 
-#: ../gramps/gen/db/generic.py:2670
+#: ../gramps/gen/db/generic.py:2707
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
 msgstr "Idézetek száma"
 
-#: ../gramps/gen/db/generic.py:2671
+#: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
 msgstr "Események száma"
 
-#: ../gramps/gen/db/generic.py:2672
+#: ../gramps/gen/db/generic.py:2709
 msgid "Number of media"
 msgstr "Médiumok száma"
 
-#: ../gramps/gen/db/generic.py:2673
+#: ../gramps/gen/db/generic.py:2710
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 msgid "Number of places"
 msgstr "Helyek száma"
 
-#: ../gramps/gen/db/generic.py:2674
+#: ../gramps/gen/db/generic.py:2711
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
 msgstr "Tárolók száma"
 
-#: ../gramps/gen/db/generic.py:2675
+#: ../gramps/gen/db/generic.py:2712
 msgid "Number of notes"
 msgstr "Megjegyzések száma"
 
-#: ../gramps/gen/db/generic.py:2676
+#: ../gramps/gen/db/generic.py:2713
 msgid "Number of tags"
 msgstr "Címek száma"
 
-#: ../gramps/gen/db/generic.py:2677
+#: ../gramps/gen/db/generic.py:2714
 msgid "Schema version"
 msgstr "Séma változat"
 
-#: ../gramps/gen/db/upgrade.py:655
+#: ../gramps/gen/db/upgrade.py:672
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  ember        %(n2)6d idézettel frissítésre került %(n3)6d mp alatt\n"
 
-#: ../gramps/gen/db/upgrade.py:659
+#: ../gramps/gen/db/upgrade.py:676
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  család      %(n2)6d idézettel frissítésre került %(n3)6d mp alatt\n"
 
-#: ../gramps/gen/db/upgrade.py:663
+#: ../gramps/gen/db/upgrade.py:680
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3366,7 +3366,7 @@ msgstr ""
 "%(n1)6d  esemény        %(n2)6d idézettel frissítésre került %(n3)6d mp "
 "alatt\n"
 
-#: ../gramps/gen/db/upgrade.py:667
+#: ../gramps/gen/db/upgrade.py:684
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3374,7 +3374,7 @@ msgstr ""
 "%(n1)6d  média objektum %(n2)6d idézettel frissítésre került %(n3)6d mp "
 "alatt\n"
 
-#: ../gramps/gen/db/upgrade.py:671
+#: ../gramps/gen/db/upgrade.py:688
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3382,14 +3382,14 @@ msgstr ""
 "%(n1)6d  helyszín        %(n2)6d idézettel frissítésre került %(n3)6d mp "
 "alatt\n"
 
-#: ../gramps/gen/db/upgrade.py:675
+#: ../gramps/gen/db/upgrade.py:692
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  tároló  %(n2)6d idézettel frissítésre került %(n3)6d mp alatt\n"
 
-#: ../gramps/gen/db/upgrade.py:679
+#: ../gramps/gen/db/upgrade.py:696
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
@@ -3397,11 +3397,11 @@ msgstr ""
 "%(n1)6d  forrás        %(n2)6d idézettel frissítésre került %(n3)6d mp "
 "alatt\n"
 
-#: ../gramps/gen/db/upgrade.py:1244
+#: ../gramps/gen/db/upgrade.py:1261
 msgid "Number of new objects upgraded:\n"
 msgstr "Az újonnan frissített objektumok száma:\n"
 
-#: ../gramps/gen/db/upgrade.py:1255
+#: ../gramps/gen/db/upgrade.py:1272
 msgid ""
 "\n"
 "\n"
@@ -3417,7 +3417,7 @@ msgstr ""
 "hogy összefűzze a hasonló információt tartalmazó\n"
 "idézeteket"
 
-#: ../gramps/gen/db/upgrade.py:1260
+#: ../gramps/gen/db/upgrade.py:1277
 msgid "Upgrade Statistics"
 msgstr "Statisztikák frissítése"
 
@@ -3606,7 +3606,6 @@ msgstr "Alkalmazás ..."
 #: ../gramps/gen/filters/_genericfilter.py:158
 #: ../gramps/gen/filters/_genericfilter.py:179
 #: ../gramps/gen/filters/_genericfilter.py:195
-#: ../gramps/gen/filters/_genericfilter.py:271
 #: ../gramps/gui/editors/filtereditor.py:1225
 #: ../gramps/plugins/drawreport/calendarreport.py:600
 #: ../gramps/plugins/drawreport/statisticschart.py:1125
@@ -3631,10 +3630,6 @@ msgstr "Alkalmazás ..."
 #: ../gramps/plugins/webreport/webcal.py:1851
 msgid "Filter"
 msgstr "Szűrő"
-
-#: ../gramps/gen/filters/_genericfilter.py:271
-msgid "Preparing ..."
-msgstr "Előkészítés..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -7008,8 +7003,8 @@ msgstr "Kaszt"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:914 ../gramps/gui/glade/styleeditor.glade:276
-#: ../gramps/gui/plug/_windows.py:1069 ../gramps/gui/plug/_windows.py:1184
-#: ../gramps/gui/plug/_windows.py:1641 ../gramps/gui/plug/_windows.py:2134
+#: ../gramps/gui/plug/_windows.py:1076 ../gramps/gui/plug/_windows.py:1191
+#: ../gramps/gui/plug/_windows.py:1648 ../gramps/gui/plug/_windows.py:2141
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -7299,7 +7294,7 @@ msgstr "Utoljára változott"
 #: ../gramps/gui/glade/editmediaref.glade:728
 #: ../gramps/gui/glade/editnote.glade:278
 #: ../gramps/gui/glade/editperson.glade:677
-#: ../gramps/gui/selectors/selectnote.py:75
+#: ../gramps/gui/selectors/selectnote.py:74
 #: ../gramps/plugins/importer/importprogen.glade:561
 #: ../gramps/plugins/importer/importxml.py:358
 #: ../gramps/plugins/lib/libpersonview.py:113
@@ -7606,7 +7601,7 @@ msgstr "Esemény"
 #: ../gramps/gui/editors/filtereditor.py:312
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:117
 #: ../gramps/gui/glade/editevent.glade:271 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_guioptions.py:1368
+#: ../gramps/gui/plug/_guioptions.py:1373
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/gui/views/treemodels/placemodel.py:350
 #: ../gramps/plugins/export/exportcsv.py:307
@@ -8366,13 +8361,13 @@ msgstr "Élettársi Kapcsolat"
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:105
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
-#: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:232
-#: ../gramps/gui/plug/_windows.py:1058 ../gramps/gui/plug/_windows.py:1181
-#: ../gramps/gui/plug/_windows.py:2132
+#: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:238
+#: ../gramps/gui/plug/_windows.py:1065 ../gramps/gui/plug/_windows.py:1188
+#: ../gramps/gui/plug/_windows.py:2139
 #: ../gramps/gui/plug/report/_bookdialog.py:397
 #: ../gramps/gui/plug/report/_bookdialog.py:401
 #: ../gramps/gui/selectors/selectevent.py:67
-#: ../gramps/gui/selectors/selectnote.py:74
+#: ../gramps/gui/selectors/selectnote.py:73
 #: ../gramps/gui/selectors/selectobject.py:82
 #: ../gramps/gui/selectors/selectplace.py:70
 #: ../gramps/plugins/export/exportcsv.py:310
@@ -8504,8 +8499,8 @@ msgstr "Templom"
 #: ../gramps/gen/lib/ldsord.py:204 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1062
-#: ../gramps/gui/plug/_windows.py:1124
+#: ../gramps/gui/plug/_windows.py:242 ../gramps/gui/plug/_windows.py:1069
+#: ../gramps/gui/plug/_windows.py:1131
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:532
 #: ../gramps/plugins/textreport/indivcomplete.py:737
@@ -8515,7 +8510,7 @@ msgid "Status"
 msgstr "Állapot"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gui/clipboard.py:338
-#: ../gramps/gui/plug/_windows.py:1646
+#: ../gramps/gui/plug/_windows.py:1653
 msgid "Location"
 msgstr "Helyszín"
 
@@ -8566,10 +8561,10 @@ msgstr "Régió"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:160
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1065
-#: ../gramps/gui/plug/_windows.py:2133
+#: ../gramps/gui/plug/_guioptions.py:1190 ../gramps/gui/plug/_windows.py:1072
+#: ../gramps/gui/plug/_windows.py:2140
 #: ../gramps/gui/plug/report/_bookdialog.py:397
-#: ../gramps/gui/selectors/selectperson.py:99
+#: ../gramps/gui/selectors/selectperson.py:106
 #: ../gramps/gui/selectors/selectplace.py:68
 #: ../gramps/gui/views/bookmarks.py:299 ../gramps/gui/views/tags.py:480
 #: ../gramps/gui/views/treemodels/peoplemodel.py:637
@@ -8824,7 +8819,7 @@ msgstr "Formátum"
 #: ../gramps/gui/glade/editplaceref.glade:178
 #: ../gramps/gui/glade/editplaceref.glade:690
 #: ../gramps/gui/glade/editreporef.glade:232
-#: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:734
+#: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:741
 #: ../gramps/plugins/tool/verify.glade:426
 msgid "General"
 msgstr "Általános"
@@ -8936,7 +8931,7 @@ msgstr "Gyermek hivatkozás jegyzet"
 #: ../gramps/gen/lib/person.py:196 ../gramps/gui/editors/editfamily.py:140
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:162
 #: ../gramps/gui/merge/mergeperson.py:199
-#: ../gramps/gui/selectors/selectperson.py:101
+#: ../gramps/gui/selectors/selectperson.py:108
 #: ../gramps/plugins/drawreport/statisticschart.py:378
 #: ../gramps/plugins/export/exportcsv.py:427
 #: ../gramps/plugins/importer/importcsv.py:234
@@ -9387,7 +9382,7 @@ msgstr "Alsó index"
 #: ../gramps/gui/configure.py:1093 ../gramps/gui/configure.py:1094
 #: ../gramps/gui/configure.py:1095 ../gramps/gui/configure.py:1096
 #: ../gramps/gui/editors/displaytabs/surnametab.py:80
-#: ../gramps/gui/plug/_guioptions.py:92 ../gramps/gui/plug/_guioptions.py:1520
+#: ../gramps/gui/plug/_guioptions.py:92 ../gramps/gui/plug/_guioptions.py:1525
 #: ../gramps/plugins/drawreport/statisticschart.py:368
 #: ../gramps/plugins/export/exportcsv.py:420
 #: ../gramps/plugins/importer/importcsv.py:197
@@ -9418,7 +9413,7 @@ msgstr "%(first)s %(second)s"
 #: ../gramps/gen/lib/tag.py:159 ../gramps/gen/plug/docgen/treedoc.py:252
 #: ../gramps/gui/glade/styleeditor.glade:397
 #: ../gramps/gui/glade/styleeditor.glade:1482
-#: ../gramps/gui/plug/_guioptions.py:1521 ../gramps/gui/views/tags.py:481
+#: ../gramps/gui/plug/_guioptions.py:1526 ../gramps/gui/views/tags.py:481
 msgid "Color"
 msgstr "Szín"
 
@@ -9670,21 +9665,21 @@ msgid ""
 msgstr ""
 "HIBA: A %(filename)s python fájl a %(regfile)s regiszter fájlban nem létezik"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:142
+#: ../gramps/gen/plug/docbackend/docbackend.py:141
 msgid "Close file first"
 msgstr "Először zárja be a fájlt"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:152
+#: ../gramps/gen/plug/docbackend/docbackend.py:151
 msgid "No filename given"
 msgstr "Hiányzó fájlnév"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:155
+#: ../gramps/gen/plug/docbackend/docbackend.py:154
 #, python-format
 msgid "File %s already open, close it first."
 msgstr "A %s fájl már nyitva van, először zárja be."
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:161
-#: ../gramps/gen/plug/docbackend/docbackend.py:164
+#: ../gramps/gen/plug/docbackend/docbackend.py:160
+#: ../gramps/gen/plug/docbackend/docbackend.py:163
 #: ../gramps/gen/plug/docgen/treedoc.py:832
 #: ../gramps/gen/utils/docgen/odstab.py:344
 #: ../gramps/gen/utils/docgen/odstab.py:346
@@ -9699,8 +9694,8 @@ msgstr "A %s fájl már nyitva van, először zárja be."
 #: ../gramps/gen/utils/docgen/odstab.py:495
 #: ../gramps/gen/utils/docgen/odstab.py:498
 #: ../gramps/plugins/docgen/asciidoc.py:185
-#: ../gramps/plugins/docgen/cairodoc.py:210
-#: ../gramps/plugins/docgen/cairodoc.py:213
+#: ../gramps/plugins/docgen/cairodoc.py:209
+#: ../gramps/plugins/docgen/cairodoc.py:212
 #: ../gramps/plugins/docgen/odfdoc.py:1194
 #: ../gramps/plugins/docgen/odfdoc.py:1197
 #: ../gramps/plugins/docgen/rtfdoc.py:102
@@ -9717,10 +9712,10 @@ msgstr "A %s fájl már nyitva van, először zárja be."
 #: ../gramps/plugins/export/exportvcalendar.py:127
 #: ../gramps/plugins/export/exportvcard.py:74
 #: ../gramps/plugins/export/exportvcard.py:78
-#: ../gramps/plugins/lib/libhtmlbackend.py:259
-#: ../gramps/plugins/lib/libhtmlbackend.py:262
-#: ../gramps/plugins/lib/libhtmlbackend.py:267
-#: ../gramps/plugins/lib/libhtmlbackend.py:270
+#: ../gramps/plugins/lib/libhtmlbackend.py:258
+#: ../gramps/plugins/lib/libhtmlbackend.py:261
+#: ../gramps/plugins/lib/libhtmlbackend.py:266
+#: ../gramps/plugins/lib/libhtmlbackend.py:269
 #: ../gramps/plugins/webreport/narrativeweb.py:418
 #, python-format
 msgid "Could not create %s"
@@ -10652,15 +10647,15 @@ msgstr "%s ősei"
 msgid "People with common ancestor with %s"
 msgstr "Közös őssel rendelkezők %s személlyel"
 
-#: ../gramps/gen/plug/report/utils.py:389 ../gramps/gui/plug/_guioptions.py:903
+#: ../gramps/gen/plug/report/utils.py:389 ../gramps/gui/plug/_guioptions.py:908
 msgid "unknown father"
 msgstr "ismeretlen apa"
 
-#: ../gramps/gen/plug/report/utils.py:395 ../gramps/gui/plug/_guioptions.py:909
+#: ../gramps/gen/plug/report/utils.py:395 ../gramps/gui/plug/_guioptions.py:914
 msgid "unknown mother"
 msgstr "ismeretlen anya"
 
-#: ../gramps/gen/plug/report/utils.py:397 ../gramps/gui/plug/_guioptions.py:911
+#: ../gramps/gen/plug/report/utils.py:397 ../gramps/gui/plug/_guioptions.py:916
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s és %(mother_name)s (%(family_id)s)"
@@ -11827,7 +11822,7 @@ msgid "installed"
 msgstr "telepített"
 
 #: ../gramps/grampsapp.py:625 ../gramps/grampsapp.py:634
-#: ../gramps/grampsapp.py:689
+#: ../gramps/grampsapp.py:684
 msgid "Configuration error:"
 msgstr "Konfigurációs hiba:"
 
@@ -11967,6 +11962,8 @@ msgstr "Húzd és ejtsd az oszlopokat a sorrend változtatásához"
 #: ../gramps/gui/plug/_dialogs.py:146 ../gramps/gui/viewmanager.py:1947
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
+#: ../gramps/plugins/tool/eventcmp.glade:189
+#: ../gramps/plugins/tool/notrelated.glade:141
 msgid "_Apply"
 msgstr "_Alkalmaz"
 
@@ -12007,14 +12004,23 @@ msgstr "Névszerkesztő mutatása"
 #: ../gramps/gui/glade/plugins.glade:37 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1006 ../gramps/gui/glade/tipofday.glade:128
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:389 ../gramps/gui/plug/_windows.py:1035
-#: ../gramps/gui/plug/_windows.py:1709 ../gramps/gui/plug/_windows.py:1769
+#: ../gramps/gui/plug/_windows.py:395 ../gramps/gui/plug/_windows.py:1042
+#: ../gramps/gui/plug/_windows.py:1716 ../gramps/gui/plug/_windows.py:1776
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:708
 #: ../gramps/gui/widgets/grampletpane.py:258
 #: ../gramps/plugins/lib/maps/placeselection.py:122
 #: ../gramps/plugins/tool/dumpgenderstats.py:86
+#: ../gramps/plugins/tool/eventcmp.glade:21
+#: ../gramps/plugins/tool/eventcmp.glade:173
+#: ../gramps/plugins/tool/finddupes.glade:242
+#: ../gramps/plugins/tool/notrelated.glade:21
+#: ../gramps/plugins/tool/relcalc.glade:22
+#: ../gramps/plugins/tool/removespaces.glade:23
+#: ../gramps/plugins/tool/removeunused.glade:36
+#: ../gramps/plugins/tool/verify.glade:126
+#: ../gramps/plugins/tool/verify.glade:850
 msgid "_Close"
 msgstr "_Bezárás"
 
@@ -12101,9 +12107,9 @@ msgstr "Hibás, vagy nem teljes formátum meghatározás."
 #: ../gramps/gui/configure.py:1658 ../gramps/gui/configure.py:1663
 #: ../gramps/gui/configure.py:1684 ../gramps/gui/configure.py:1700
 #: ../gramps/gui/configure.py:2133 ../gramps/gui/configure.py:2251
-#: ../gramps/gui/configure.py:2340 ../gramps/gui/plug/_windows.py:783
-#: ../gramps/gui/plug/_windows.py:803 ../gramps/gui/plug/_windows.py:839
-#: ../gramps/gui/plug/_windows.py:847 ../gramps/gui/views/navigationview.py:351
+#: ../gramps/gui/configure.py:2340 ../gramps/gui/plug/_windows.py:790
+#: ../gramps/gui/plug/_windows.py:810 ../gramps/gui/plug/_windows.py:846
+#: ../gramps/gui/plug/_windows.py:854 ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:111
 #, python-format
 msgid "%s: "
@@ -12149,14 +12155,27 @@ msgstr "%s: "
 #: ../gramps/gui/glade/mergesource.glade:51
 #: ../gramps/gui/glade/reorder.glade:51 ../gramps/gui/glade/rule.glade:40
 #: ../gramps/gui/glade/rule.glade:342 ../gramps/gui/glade/rule.glade:766
-#: ../gramps/gui/grampsgui.py:58 ../gramps/gui/logger/_errorview.py:190
-#: ../gramps/gui/plug/_windows.py:390
+#: ../gramps/gui/glade/styleeditor.glade:119
+#: ../gramps/gui/glade/styleeditor.glade:1803 ../gramps/gui/grampsgui.py:58
+#: ../gramps/gui/logger/_errorview.py:190 ../gramps/gui/plug/_windows.py:396
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
 #: ../gramps/gui/widgets/grampletbar.py:712
 #: ../gramps/gui/widgets/grampletpane.py:264
 #: ../gramps/plugins/importer/importprogen.glade:61
+#: ../gramps/plugins/tool/changenames.glade:72
+#: ../gramps/plugins/tool/eventcmp.glade:53
+#: ../gramps/plugins/tool/eventcmp.glade:205
+#: ../gramps/plugins/tool/finddupes.glade:60
+#: ../gramps/plugins/tool/finddupes.glade:274
+#: ../gramps/plugins/tool/mergecitations.glade:60
+#: ../gramps/plugins/tool/notrelated.glade:37
+#: ../gramps/plugins/tool/ownereditor.glade:53
+#: ../gramps/plugins/tool/patchnames.glade:21
+#: ../gramps/plugins/tool/relcalc.glade:37
+#: ../gramps/plugins/tool/removespaces.glade:40
+#: ../gramps/plugins/tool/reorderids.glade:213
 #: ../gramps/plugins/tool/testcasegenerator.py:396
 msgid "_Help"
 msgstr "_Súgó"
@@ -12175,7 +12194,7 @@ msgstr "Állam/Megye"
 msgid "ZIP/Postal Code"
 msgstr "Postai irányítószám"
 
-#: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1644
+#: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1651
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
 msgstr "Email"
@@ -12424,7 +12443,7 @@ msgstr "Megjelenítés opciók"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:511 ../gramps/gui/glade/rule.glade:452
 #: ../gramps/gui/glade/styleeditor.glade:1932
-#: ../gramps/gui/plug/_windows.py:1088 ../gramps/gui/plug/_windows.py:1147
+#: ../gramps/gui/plug/_windows.py:1095 ../gramps/gui/plug/_windows.py:1154
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -12982,18 +13001,25 @@ msgstr "A média könyvtár kiválasztása"
 #: ../gramps/gui/glade/rule.glade:734 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1770
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:857
-#: ../gramps/gui/plug/_windows.py:1420
+#: ../gramps/gui/plug/_guioptions.py:1762 ../gramps/gui/plug/_windows.py:864
+#: ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:267
-#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1256
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
 #: ../gramps/gui/widgets/progressdialog.py:441
 #: ../gramps/plugins/importer/importprogen.glade:28
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
+#: ../gramps/plugins/tool/changenames.glade:88
+#: ../gramps/plugins/tool/changetypes.glade:22
 #: ../gramps/plugins/tool/check.py:830 ../gramps/plugins/tool/eventcmp.py:410
+#: ../gramps/plugins/tool/finddupes.glade:28
+#: ../gramps/plugins/tool/mergecitations.glade:28
+#: ../gramps/plugins/tool/ownereditor.glade:21
+#: ../gramps/plugins/tool/patchnames.glade:37
 #: ../gramps/plugins/tool/populatesources.py:99
+#: ../gramps/plugins/tool/reorderids.glade:181
 #: ../gramps/plugins/tool/testcasegenerator.py:394
 msgid "_Cancel"
 msgstr "Még_se"
@@ -13276,11 +13302,18 @@ msgstr "Adatbázis információ"
 #: ../gramps/gui/glade/reorder.glade:36 ../gramps/gui/glade/rule.glade:325
 #: ../gramps/gui/glade/rule.glade:750 ../gramps/gui/glade/styleeditor.glade:102
 #: ../gramps/gui/glade/styleeditor.glade:1786
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:857
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:864
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:281
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
-#: ../gramps/plugins/tool/check.py:830 ../gramps/plugins/tool/patchnames.py:152
+#: ../gramps/plugins/importer/importgedcom.glade:46
+#: ../gramps/plugins/tool/changetypes.glade:38
+#: ../gramps/plugins/tool/check.py:830
+#: ../gramps/plugins/tool/finddupes.glade:44
+#: ../gramps/plugins/tool/mergecitations.glade:44
+#: ../gramps/plugins/tool/ownereditor.glade:37
+#: ../gramps/plugins/tool/patchnames.py:152
 #: ../gramps/plugins/tool/populatesources.py:99
+#: ../gramps/plugins/tool/reorderids.glade:197
 #: ../gramps/plugins/tool/testcasegenerator.py:395
 msgid "_OK"
 msgstr "_Rendben"
@@ -13610,7 +13643,7 @@ msgstr "Eszközök"
 msgid "Open Addon Manager"
 msgstr "Beépülő kezelő megnyitása"
 
-#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:474
+#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:480
 msgid "Addons"
 msgstr "Beépülők"
 
@@ -13824,14 +13857,14 @@ msgstr "_Tulajdonságok"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:112
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:194
-#: ../gramps/gui/plug/_guioptions.py:1186
-#: ../gramps/gui/plug/_guioptions.py:1369
+#: ../gramps/gui/plug/_guioptions.py:1191
+#: ../gramps/gui/plug/_guioptions.py:1374
 #: ../gramps/gui/selectors/selectcitation.py:74
 #: ../gramps/gui/selectors/selectevent.py:72
 #: ../gramps/gui/selectors/selectfamily.py:67
-#: ../gramps/gui/selectors/selectnote.py:73
+#: ../gramps/gui/selectors/selectnote.py:72
 #: ../gramps/gui/selectors/selectobject.py:81
-#: ../gramps/gui/selectors/selectperson.py:100
+#: ../gramps/gui/selectors/selectperson.py:107
 #: ../gramps/gui/selectors/selectplace.py:69
 #: ../gramps/gui/selectors/selectrepository.py:68
 #: ../gramps/gui/selectors/selectsource.py:70
@@ -13973,13 +14006,13 @@ msgstr "_Idézetek forrása"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:344
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:320
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:376
-#: ../gramps/plugins/view/citationtreeview.py:622
-#: ../gramps/plugins/view/citationtreeview.py:646
+#: ../gramps/plugins/view/citationtreeview.py:624
+#: ../gramps/plugins/view/citationtreeview.py:648
 msgid "Cannot share this reference"
 msgstr "A hivatkozás nem megosztható"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:235
-#: ../gramps/plugins/view/citationtreeview.py:656
+#: ../gramps/plugins/view/citationtreeview.py:658
 msgid ""
 "This citation cannot be created at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -14175,14 +14208,14 @@ msgid "Set as Preferred name"
 msgstr "Beállítás Alapértelmezett névnek"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
+#: ../gramps/gui/plug/_guioptions.py:1273 ../gramps/gui/plug/_windows.py:946
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr "Igen"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:940
+#: ../gramps/gui/plug/_guioptions.py:1271 ../gramps/gui/plug/_windows.py:947
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
@@ -14226,7 +14259,7 @@ msgstr "A kiválasztott jegyzet mozgatása lefelé"
 #: ../gramps/gui/glade/editmedia.glade:186
 #: ../gramps/gui/glade/editmediaref.glade:191
 #: ../gramps/gui/glade/editmediaref.glade:505
-#: ../gramps/gui/selectors/selectnote.py:72
+#: ../gramps/gui/selectors/selectnote.py:71
 #: ../gramps/plugins/view/noteview.py:82
 msgid "Preview"
 msgstr "Előnézet"
@@ -14744,7 +14777,7 @@ msgid "Maternal"
 msgstr "Anyai"
 
 #: ../gramps/gui/editors/editfamily.py:143
-#: ../gramps/gui/selectors/selectperson.py:102
+#: ../gramps/gui/selectors/selectperson.py:109
 #: ../gramps/plugins/gramplet/children.py:109
 #: ../gramps/plugins/gramplet/children.py:220
 #: ../gramps/plugins/lib/libpersonview.py:103
@@ -14766,7 +14799,7 @@ msgid "Birth Date"
 msgstr "Születési dátum"
 
 #: ../gramps/gui/editors/editfamily.py:144
-#: ../gramps/gui/selectors/selectperson.py:104
+#: ../gramps/gui/selectors/selectperson.py:111
 #: ../gramps/plugins/gramplet/children.py:111
 #: ../gramps/plugins/gramplet/children.py:222
 #: ../gramps/plugins/lib/libpersonview.py:105
@@ -14777,13 +14810,13 @@ msgid "Death Date"
 msgstr "Halálozási dátum"
 
 #: ../gramps/gui/editors/editfamily.py:145
-#: ../gramps/gui/selectors/selectperson.py:103
+#: ../gramps/gui/selectors/selectperson.py:110
 #: ../gramps/plugins/lib/libpersonview.py:104
 msgid "Birth Place"
 msgstr "Születési hely"
 
 #: ../gramps/gui/editors/editfamily.py:146
-#: ../gramps/gui/selectors/selectperson.py:105
+#: ../gramps/gui/selectors/selectperson.py:112
 #: ../gramps/plugins/lib/libpersonview.py:106
 msgid "Death Place"
 msgstr "Halálozási hely"
@@ -14848,7 +14881,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:571
 #: ../gramps/plugins/importer/importcsv.py:360
-#: ../gramps/plugins/view/familyview.py:410
+#: ../gramps/plugins/view/familyview.py:412
 msgid "family"
 msgstr "család"
 
@@ -15873,7 +15906,7 @@ msgstr ""
 "gombokat"
 
 #: ../gramps/gui/editors/objectentries.py:518
-#: ../gramps/gui/plug/_guioptions.py:1123
+#: ../gramps/gui/plug/_guioptions.py:1128
 msgid "No image given, click button to select one"
 msgstr "Nincs megadva kép, kattintson a gombon egynek a kiválasztásához"
 
@@ -15882,7 +15915,7 @@ msgid "Edit media object"
 msgstr "Média objektum szerkesztése"
 
 #: ../gramps/gui/editors/objectentries.py:520
-#: ../gramps/gui/plug/_guioptions.py:1101
+#: ../gramps/gui/plug/_guioptions.py:1106
 msgid "Select an existing media object"
 msgstr "Egy létező média objektum kiválasztása"
 
@@ -15901,12 +15934,12 @@ msgstr ""
 "Jegyzet kiválasztásához használja a fogd-és-ejtsd módszert, vagy a gombokat"
 
 #: ../gramps/gui/editors/objectentries.py:588
-#: ../gramps/gui/plug/_guioptions.py:1021
+#: ../gramps/gui/plug/_guioptions.py:1026
 msgid "No note given, click button to select one"
 msgstr "Nincs megadva jegyzet, kattintson a gombon egynek a kiválasztásához"
 
 #: ../gramps/gui/editors/objectentries.py:590
-#: ../gramps/gui/plug/_guioptions.py:996
+#: ../gramps/gui/plug/_guioptions.py:1001
 msgid "Select an existing note"
 msgstr "Egy létező jegyzet kiválasztása"
 
@@ -15919,38 +15952,39 @@ msgstr "Új jegyzet hozzáadása"
 msgid "Remove note"
 msgstr "Jegyzet eltávolítása"
 
-#: ../gramps/gui/filters/_searchbar.py:59
+#: ../gramps/gui/filters/_searchbar.py:60
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:78
+#: ../gramps/plugins/tool/removeunused.glade:213
 msgid "_Find"
 msgstr "_Keresés"
 
-#: ../gramps/gui/filters/_searchbar.py:60
+#: ../gramps/gui/filters/_searchbar.py:61
 #: ../gramps/gui/glade/clipboard.glade:53 ../gramps/gui/undohistory.py:87
 msgid "_Clear"
 msgstr "_Törlés"
 
-#: ../gramps/gui/filters/_searchbar.py:109
+#: ../gramps/gui/filters/_searchbar.py:114
 #, python-format
 msgid "%s is"
 msgstr "a(z) %s"
 
-#: ../gramps/gui/filters/_searchbar.py:111
+#: ../gramps/gui/filters/_searchbar.py:116
 #, python-format
 msgid "%s contains"
 msgstr "%s tartalmazza"
 
-#: ../gramps/gui/filters/_searchbar.py:115
+#: ../gramps/gui/filters/_searchbar.py:120
 #, python-format
 msgid "%s is not"
 msgstr "%s nem"
 
-#: ../gramps/gui/filters/_searchbar.py:117
+#: ../gramps/gui/filters/_searchbar.py:122
 #, python-format
 msgid "%s does not contain"
 msgstr "%s nem tartalmazza"
 
-#: ../gramps/gui/filters/_searchbar.py:170 ../gramps/gui/views/listview.py:1379
-#: ../gramps/gui/views/listview.py:1399 ../gramps/plugins/gramplet/leak.py:201
+#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1384
+#: ../gramps/gui/views/listview.py:1404 ../gramps/plugins/gramplet/leak.py:201
 #: ../gramps/plugins/gramplet/leak.py:208
 msgid "Updating display..."
 msgstr "Képernyő frissítése..."
@@ -16048,7 +16082,7 @@ msgid "Within"
 msgstr "Belül"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
-#: ../gramps/gui/plug/_windows.py:847
+#: ../gramps/gui/plug/_windows.py:854
 msgid "URL"
 msgstr "URL"
 
@@ -16117,19 +16151,20 @@ msgid "Show all"
 msgstr "Mindent megmutat"
 
 #: ../gramps/gui/glade/baseselector.glade:137
-#: ../gramps/gui/views/treemodels/treebasemodel.py:568
-#: ../gramps/gui/views/treemodels/treebasemodel.py:617
+#: ../gramps/gui/views/treemodels/treebasemodel.py:562
+#: ../gramps/gui/views/treemodels/treebasemodel.py:611
 msgid "Loading items..."
 msgstr "Elemek betöltése..."
 
 #: ../gramps/gui/glade/book.glade:22 ../gramps/gui/glade/dbman.glade:269
-#: ../gramps/gui/views/listview.py:608
+#: ../gramps/gui/views/listview.py:613
 #: ../gramps/plugins/lib/libpersonview.py:254
 #: ../gramps/plugins/lib/libpersonview.py:332
 #: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/lib/libplaceview.py:333
 #: ../gramps/plugins/lib/libplaceview.py:393
 #: ../gramps/plugins/lib/libplaceview.py:447
+#: ../gramps/plugins/tool/removeunused.glade:20
 #: ../gramps/plugins/view/citationlistview.py:220
 #: ../gramps/plugins/view/citationlistview.py:280
 #: ../gramps/plugins/view/citationlistview.py:333
@@ -16329,7 +16364,7 @@ msgstr ""
 msgid "Cancel the rest of the operations"
 msgstr "A hátralévő műveletek megszakítása"
 
-#: ../gramps/gui/glade/dialog.glade:469 ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/glade/dialog.glade:469 ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/tool/reorderids.glade:21
 msgid "_No"
 msgstr "_Nem"
@@ -16339,7 +16374,7 @@ msgstr "_Nem"
 msgid "Do not apply the operation to this item"
 msgstr "Ne alkalmazza a műveletet ehhez az elemhez"
 
-#: ../gramps/gui/glade/dialog.glade:485 ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/glade/dialog.glade:485 ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/tool/reorderids.glade:37
 msgid "_Yes"
 msgstr "_Igen"
@@ -16376,7 +16411,7 @@ msgstr "Bezárás _mentés nélkül"
 
 #: ../gramps/gui/glade/dialog.glade:935
 #: ../gramps/gui/plug/report/_bookdialog.py:649
-#: ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/views/listview.py:1256
 #: ../gramps/gui/widgets/grampletpane.py:614
 #: ../gramps/plugins/tool/eventcmp.py:410
 msgid "_Save"
@@ -17651,7 +17686,7 @@ msgid "Click to delete gramplet from view"
 msgstr "Kattintson a gramplet törléséhez"
 
 #: ../gramps/gui/glade/grampletpane.glade:141
-#: ../gramps/gui/views/listview.py:642
+#: ../gramps/gui/views/listview.py:647
 msgid "Delete"
 msgstr "Törlés"
 
@@ -17724,7 +17759,7 @@ msgid "_Merge and close"
 msgstr "_Összevonás és bezárás"
 
 #: ../gramps/gui/glade/mergedata.glade:170
-#: ../gramps/gui/glade/mergedata.glade:185 ../gramps/gui/plug/_windows.py:2126
+#: ../gramps/gui/glade/mergedata.glade:185 ../gramps/gui/plug/_windows.py:2133
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -17851,7 +17886,7 @@ msgid "Note 2"
 msgstr "Jegyzet 2"
 
 #: ../gramps/gui/glade/mergenote.glade:270
-#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1261
 msgid "Format:"
 msgstr "Formátum:"
 
@@ -18358,6 +18393,7 @@ msgid "_Display on startup"
 msgstr "_Megjelenítés induláskor"
 
 #: ../gramps/gui/glade/tipofday.glade:112
+#: ../gramps/plugins/docgen/gtkprint.glade:93
 #: ../gramps/plugins/lib/libpersonview.py:234
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libplaceview.py:319
@@ -18402,7 +18438,7 @@ msgid "Install Selected _Addons"
 msgstr "Kiválasztott _bővítmények telepítése"
 
 #: ../gramps/gui/glade/updateaddons.glade:70
-#: ../gramps/gui/plug/_windows.py:2103
+#: ../gramps/gui/plug/_windows.py:2110
 msgid "Available Gramps Updates for Addons"
 msgstr "Elérhető Gramps bővítmény frissítések"
 
@@ -18542,7 +18578,7 @@ msgstr "_Beépülő kezelő"
 msgid "_Preferences..."
 msgstr "_Beállítások..."
 
-#: ../gramps/gui/grampsgui.py:58
+#: ../gramps/gui/grampsgui.py:58 ../gramps/plugins/docgen/gtkprint.glade:25
 msgid "_Quit"
 msgstr "_Kilépés"
 
@@ -18997,7 +19033,7 @@ msgid "Spouses"
 msgstr "Házastársak"
 
 #: ../gramps/gui/merge/mergeperson.py:270
-#: ../gramps/gui/selectors/selectperson.py:106
+#: ../gramps/gui/selectors/selectperson.py:113
 #: ../gramps/gui/widgets/reorderfam.py:105
 #: ../gramps/plugins/gramplet/children.py:113
 #: ../gramps/plugins/lib/libpersonview.py:107
@@ -19094,466 +19130,478 @@ msgstr "Vezetéknév keresés"
 msgid "Select a different person"
 msgstr "Válasszon egy másik személyt"
 
-#: ../gramps/gui/plug/_guioptions.py:720
+#: ../gramps/gui/plug/_guioptions.py:698
+#, fuzzy
+#| msgid "Bookmarked people"
+msgid "Active, bookmarked or home people"
+msgstr "Könyvjelzőzött emberek"
+
+#: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
 msgstr "Válasszon egy személyt az összesítőből"
 
-#: ../gramps/gui/plug/_guioptions.py:803
+#: ../gramps/gui/plug/_guioptions.py:804
 msgid "Select a different family"
 msgstr "Válasszon egy másik családot"
 
-#: ../gramps/gui/plug/_guioptions.py:1261
+#: ../gramps/gui/plug/_guioptions.py:856
+#, fuzzy
+#| msgid "Bookmarked families"
+msgid "Active or bookmarked families"
+msgstr "Könyvjelzőzött családok"
+
+#: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
 msgid "Also include %s?"
 msgstr "%s-t is bezárólag?"
 
-#: ../gramps/gui/plug/_guioptions.py:1264
-#: ../gramps/gui/selectors/selectperson.py:92
+#: ../gramps/gui/plug/_guioptions.py:1269
+#: ../gramps/gui/selectors/selectperson.py:99
 msgid "Select Person"
 msgstr "Személy kiválasztása"
 
-#: ../gramps/gui/plug/_guioptions.py:1590
+#: ../gramps/gui/plug/_guioptions.py:1595
 #, python-format
 msgid "Select color for %s"
 msgstr "Szín kiválasztása ehhez: %s"
 
-#: ../gramps/gui/plug/_guioptions.py:1754
+#: ../gramps/gui/plug/_guioptions.py:1759
 #: ../gramps/gui/plug/report/_reportdialog.py:462
 msgid "Save As"
 msgstr "Mentés másként"
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1420
+#: ../gramps/gui/plug/_guioptions.py:1762 ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_bookdialog.py:650
 #: ../gramps/gui/plug/report/_fileentry.py:68
 msgid "_Open"
 msgstr "_Megnyitás"
 
-#: ../gramps/gui/plug/_guioptions.py:1837
+#: ../gramps/gui/plug/_guioptions.py:1842
 #: ../gramps/gui/plug/report/_reportdialog.py:337
 msgid "Style Editor"
 msgstr "Stílusszerkesztő"
 
-#: ../gramps/gui/plug/_windows.py:230
+#: ../gramps/gui/plug/_windows.py:236
 msgid "Project"
 msgstr "Projekt"
 
-#: ../gramps/gui/plug/_windows.py:234
+#: ../gramps/gui/plug/_windows.py:240
 msgid "Audience"
 msgstr "Közönség"
 
-#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1642
+#: ../gramps/gui/plug/_windows.py:244 ../gramps/gui/plug/_windows.py:1649
 msgid "Version"
 msgstr "Verzió"
 
-#: ../gramps/gui/plug/_windows.py:241
+#: ../gramps/gui/plug/_windows.py:247
 msgid "Installed version"
 msgstr "Telepített változat"
 
-#: ../gramps/gui/plug/_windows.py:259 ../gramps/gui/plug/_windows.py:260
+#: ../gramps/gui/plug/_windows.py:265 ../gramps/gui/plug/_windows.py:266
 msgid "Install"
 msgstr "Telepítés"
 
-#: ../gramps/gui/plug/_windows.py:265
+#: ../gramps/gui/plug/_windows.py:271
 msgid "Wiki"
 msgstr "Wiki"
 
-#: ../gramps/gui/plug/_windows.py:270
+#: ../gramps/gui/plug/_windows.py:276
 msgid "Requires"
 msgstr "Igényel"
 
-#: ../gramps/gui/plug/_windows.py:275
+#: ../gramps/gui/plug/_windows.py:281
 msgid "Update"
 msgstr "Frissítés"
 
-#: ../gramps/gui/plug/_windows.py:302 ../gramps/gui/plug/_windows.py:313
+#: ../gramps/gui/plug/_windows.py:308 ../gramps/gui/plug/_windows.py:319
 msgid "Module installation failed"
 msgstr "Sikertelen modul telepítés"
 
-#: ../gramps/gui/plug/_windows.py:314
+#: ../gramps/gui/plug/_windows.py:320
 msgid "Gramps was unable to install the required modules"
 msgstr "A GRAMPS nem tudta a szükséges modulokat telepíteni"
 
-#: ../gramps/gui/plug/_windows.py:344
+#: ../gramps/gui/plug/_windows.py:350
 msgid "Requirements"
 msgstr "Követelmények"
 
-#: ../gramps/gui/plug/_windows.py:380
+#: ../gramps/gui/plug/_windows.py:386
 msgid "Addon Manager"
 msgstr "Kiegészítő kezelő"
 
-#: ../gramps/gui/plug/_windows.py:388 ../gramps/plugins/gramplet/leak.py:114
+#: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
 msgstr "Frissítés"
 
-#: ../gramps/gui/plug/_windows.py:419
+#: ../gramps/gui/plug/_windows.py:425
 msgid "Filters"
 msgstr "Szűrők"
 
-#: ../gramps/gui/plug/_windows.py:425
+#: ../gramps/gui/plug/_windows.py:431
 msgid "All addons"
 msgstr "Minden kiegészítő"
 
-#: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:632
+#: ../gramps/gui/plug/_windows.py:432 ../gramps/gui/plug/_windows.py:639
 msgid "Not installed"
 msgstr "Nem telepített"
 
-#: ../gramps/gui/plug/_windows.py:427 ../gramps/gui/plug/_windows.py:635
+#: ../gramps/gui/plug/_windows.py:433 ../gramps/gui/plug/_windows.py:642
 msgid "Installed"
 msgstr "Telepített"
 
-#: ../gramps/gui/plug/_windows.py:428 ../gramps/gui/plug/_windows.py:638
+#: ../gramps/gui/plug/_windows.py:434 ../gramps/gui/plug/_windows.py:645
 #: ../gramps/plugins/webreport/basepage.py:2078
 #: ../gramps/plugins/webreport/basepage.py:2146
 msgid "Updates"
 msgstr "Frissítések"
 
-#: ../gramps/gui/plug/_windows.py:440
+#: ../gramps/gui/plug/_windows.py:446
 msgid "All types"
 msgstr "Minden típus"
 
-#: ../gramps/gui/plug/_windows.py:448
+#: ../gramps/gui/plug/_windows.py:454
 msgid "All audiences"
 msgstr "Teljes közönség"
 
-#: ../gramps/gui/plug/_windows.py:455
+#: ../gramps/gui/plug/_windows.py:461
 msgid "All statuses"
 msgstr "Minden állapot"
 
-#: ../gramps/gui/plug/_windows.py:463
+#: ../gramps/gui/plug/_windows.py:469
 msgid "Reset addon filters to defaults"
 msgstr "Kiegészítő szűrők alaphelyzetbe állítása"
 
-#: ../gramps/gui/plug/_windows.py:477
+#: ../gramps/gui/plug/_windows.py:483
 msgid "Settings"
 msgstr "Beállítások"
 
-#: ../gramps/gui/plug/_windows.py:480
+#: ../gramps/gui/plug/_windows.py:486
 msgid "Projects"
 msgstr "Projektek"
 
-#: ../gramps/gui/plug/_windows.py:525 ../gramps/gui/plug/_windows.py:643
+#: ../gramps/gui/plug/_windows.py:532 ../gramps/gui/plug/_windows.py:650
 msgid "All projects"
 msgstr "Minden projekt"
 
-#: ../gramps/gui/plug/_windows.py:537
+#: ../gramps/gui/plug/_windows.py:544
 msgid "Loading..."
 msgstr "Betöltés..."
 
-#: ../gramps/gui/plug/_windows.py:563
+#: ../gramps/gui/plug/_windows.py:570
 msgid "Addon Registration Failed"
 msgstr "Sikertelen kiegészítő regisztráció"
 
-#: ../gramps/gui/plug/_windows.py:564
+#: ../gramps/gui/plug/_windows.py:571
 msgid "The addon will be unavailable in your current configuration."
 msgstr "A kiegészítő nem lesz elérhető a jelenlegi konfigurációban."
 
-#: ../gramps/gui/plug/_windows.py:589
+#: ../gramps/gui/plug/_windows.py:596
 msgid "No matching addons found."
 msgstr "Nincsenek kiegészítő találatok."
 
-#: ../gramps/gui/plug/_windows.py:703
+#: ../gramps/gui/plug/_windows.py:710
 msgid "Insert a project"
 msgstr "Projekt beszúrása"
 
-#: ../gramps/gui/plug/_windows.py:705
+#: ../gramps/gui/plug/_windows.py:712
 msgid "Remove the selected project"
 msgstr "A kiválasztott projekt törlése"
 
-#: ../gramps/gui/plug/_windows.py:707
+#: ../gramps/gui/plug/_windows.py:714
 msgid "Move project upwards in the list"
 msgstr "A projekt listában mozgatása felfelé"
 
-#: ../gramps/gui/plug/_windows.py:709
+#: ../gramps/gui/plug/_windows.py:716
 msgid "Move project downwards in the list"
 msgstr "A projekt listában mozgatása lefelé"
 
-#: ../gramps/gui/plug/_windows.py:711
+#: ../gramps/gui/plug/_windows.py:718
 msgid "Revert to the project defaults"
 msgstr "Visszatérés a projekt alaphelyzethez"
 
-#: ../gramps/gui/plug/_windows.py:748
+#: ../gramps/gui/plug/_windows.py:755
 msgid "Allow Gramps to install required Python modules"
 msgstr "A szükséges Python modulok telepítésének engedélyezése a GRAMPS-nak"
 
-#: ../gramps/gui/plug/_windows.py:750
+#: ../gramps/gui/plug/_windows.py:757
 msgid "Where possible, try to install any missing prerequisite Python modules"
 msgstr ""
 "Ahol lehetséges próbálja meg az előzetesen szükséges Python modulok "
 "telepítését"
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:765
 msgid "Scheduled update checks"
 msgstr "Tervezett frissítések ellenőrzése"
 
-#: ../gramps/gui/plug/_windows.py:774
+#: ../gramps/gui/plug/_windows.py:781
 msgid "Once a month"
 msgstr "Egyszer egy hónapban"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:782
 msgid "Once a week"
 msgstr "Egyszer egy héten"
 
-#: ../gramps/gui/plug/_windows.py:776
+#: ../gramps/gui/plug/_windows.py:783
 msgid "Once a day"
 msgstr "Egyszer egy nap"
 
-#: ../gramps/gui/plug/_windows.py:777
+#: ../gramps/gui/plug/_windows.py:784
 msgid "Always"
 msgstr "Mindig"
 
-#: ../gramps/gui/plug/_windows.py:783
+#: ../gramps/gui/plug/_windows.py:790
 msgid "Check for addon updates"
 msgstr "Frissített bővítmények keresése"
 
-#: ../gramps/gui/plug/_windows.py:790
+#: ../gramps/gui/plug/_windows.py:797
 msgid "Updated addons only"
 msgstr "Csak a frissített bővítményeket"
 
-#: ../gramps/gui/plug/_windows.py:791
+#: ../gramps/gui/plug/_windows.py:798
 msgid "New addons only"
 msgstr "Csak az új bővítményeket"
 
-#: ../gramps/gui/plug/_windows.py:792
+#: ../gramps/gui/plug/_windows.py:799
 msgid "New and updated addons"
 msgstr "Új és frissített bővítmények"
 
-#: ../gramps/gui/plug/_windows.py:803
+#: ../gramps/gui/plug/_windows.py:810
 msgid "What to check"
 msgstr "Mit ellenőrizzen"
 
-#: ../gramps/gui/plug/_windows.py:809
+#: ../gramps/gui/plug/_windows.py:816
 msgid "Do not ask about previously notified addons"
 msgstr "Ne kérdezzen a korábban értesített bővítményekről"
 
-#: ../gramps/gui/plug/_windows.py:816
+#: ../gramps/gui/plug/_windows.py:823
 msgid "Check for updated addons now"
 msgstr "Frissített bővítmények keresése most"
 
-#: ../gramps/gui/plug/_windows.py:829
+#: ../gramps/gui/plug/_windows.py:836
 msgid "New Project"
 msgstr "Új projekt"
 
-#: ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:838
 msgid "Edit Project"
 msgstr "Projekt szerkesztése"
 
-#: ../gramps/gui/plug/_windows.py:839
+#: ../gramps/gui/plug/_windows.py:846
 msgid "Project name"
 msgstr "Projekt név"
 
-#: ../gramps/gui/plug/_windows.py:937
+#: ../gramps/gui/plug/_windows.py:944
 msgid "Restore project defaults"
 msgstr "Projekt alaphelyzet visszaállítása"
 
-#: ../gramps/gui/plug/_windows.py:938
+#: ../gramps/gui/plug/_windows.py:945
 msgid "Are you sure?"
 msgstr "Biztos benne?"
 
-#: ../gramps/gui/plug/_windows.py:962
+#: ../gramps/gui/plug/_windows.py:969
 msgid "Checking Addons Failed"
 msgstr "A Beépülők ellenőrzése meghiúsult"
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:971
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "A beépülő tároló úgy tűnik nem elérhető. Kérem próbálja meg később."
 
-#: ../gramps/gui/plug/_windows.py:979
+#: ../gramps/gui/plug/_windows.py:986
 msgid "There are no available addons of this type"
 msgstr "Nincsenek ilyen típusú elérhető bővítmények"
 
-#: ../gramps/gui/plug/_windows.py:980
+#: ../gramps/gui/plug/_windows.py:987
 msgid "' and '"
 msgstr "' és '"
 
-#: ../gramps/gui/plug/_windows.py:980
+#: ../gramps/gui/plug/_windows.py:987
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Ellenőrzött '%s'-re"
 
-#: ../gramps/gui/plug/_windows.py:986
+#: ../gramps/gui/plug/_windows.py:993
 msgid "new"
 msgstr "új"
 
-#: ../gramps/gui/plug/_windows.py:986
+#: ../gramps/gui/plug/_windows.py:993
 msgid "update"
 msgstr "frissítés"
 
-#: ../gramps/gui/plug/_windows.py:1021
+#: ../gramps/gui/plug/_windows.py:1028
 msgid "Hidden"
 msgstr "Rejtett"
 
-#: ../gramps/gui/plug/_windows.py:1022
+#: ../gramps/gui/plug/_windows.py:1029
 msgid "Visible"
 msgstr "Látható"
 
-#: ../gramps/gui/plug/_windows.py:1027
+#: ../gramps/gui/plug/_windows.py:1034
 msgid "Plugin Manager"
 msgstr "Beépülő kezelő"
 
-#: ../gramps/gui/plug/_windows.py:1079 ../gramps/gui/plug/_windows.py:1137
+#: ../gramps/gui/plug/_windows.py:1086 ../gramps/gui/plug/_windows.py:1144
 msgid "Info"
 msgstr "Információ"
 
-#: ../gramps/gui/plug/_windows.py:1082 ../gramps/gui/plug/_windows.py:1140
+#: ../gramps/gui/plug/_windows.py:1089 ../gramps/gui/plug/_windows.py:1147
 msgid "Hide/Unhide"
 msgstr "Elrejtés/Mutatás"
 
-#: ../gramps/gui/plug/_windows.py:1091 ../gramps/gui/plug/_windows.py:1150
+#: ../gramps/gui/plug/_windows.py:1098 ../gramps/gui/plug/_windows.py:1157
 msgid "Load"
 msgstr "Betöltés"
 
-#: ../gramps/gui/plug/_windows.py:1097
+#: ../gramps/gui/plug/_windows.py:1104
 msgid "Registered Plugins"
 msgstr "Regisztrált beépülők"
 
-#: ../gramps/gui/plug/_windows.py:1116
+#: ../gramps/gui/plug/_windows.py:1123
 msgid "Loaded"
 msgstr "Betöltött"
 
-#: ../gramps/gui/plug/_windows.py:1120
+#: ../gramps/gui/plug/_windows.py:1127
 #: ../gramps/plugins/importer/importprogen.glade:466
 #: ../gramps/plugins/importer/importprogen.glade:1068
 msgid "File"
 msgstr "Fájl"
 
-#: ../gramps/gui/plug/_windows.py:1127
+#: ../gramps/gui/plug/_windows.py:1134
 msgid "Message"
 msgstr "Üzenet"
 
-#: ../gramps/gui/plug/_windows.py:1156
+#: ../gramps/gui/plug/_windows.py:1163
 msgid "Loaded Plugins"
 msgstr "Betöltött beépülők"
 
-#: ../gramps/gui/plug/_windows.py:1178
+#: ../gramps/gui/plug/_windows.py:1185
 msgid "Addon Name"
 msgstr "Kiegészítő név"
 
-#: ../gramps/gui/plug/_windows.py:1190
+#: ../gramps/gui/plug/_windows.py:1197
 msgid "Path to Addon:"
 msgstr "Útvonal a kiegészítőhöz:"
 
-#: ../gramps/gui/plug/_windows.py:1210
+#: ../gramps/gui/plug/_windows.py:1217
 msgid "Install Addon"
 msgstr "Kiegészítő telepítése"
 
-#: ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/plug/_windows.py:1220
 msgid "Install All Addons"
 msgstr "Összes kiegészítő telepítése"
 
-#: ../gramps/gui/plug/_windows.py:1216
+#: ../gramps/gui/plug/_windows.py:1223
 msgid "Refresh Addon List"
 msgstr "Frissítse a kiegészítő listát"
 
-#: ../gramps/gui/plug/_windows.py:1229
+#: ../gramps/gui/plug/_windows.py:1236
 msgid "Reload"
 msgstr "Újratöltés"
 
-#: ../gramps/gui/plug/_windows.py:1257
+#: ../gramps/gui/plug/_windows.py:1264
 msgid "Refreshing Addon List"
 msgstr "Kiegészítő lista frissítése"
 
-#: ../gramps/gui/plug/_windows.py:1258 ../gramps/gui/plug/_windows.py:1263
-#: ../gramps/gui/plug/_windows.py:1396
+#: ../gramps/gui/plug/_windows.py:1265 ../gramps/gui/plug/_windows.py:1270
+#: ../gramps/gui/plug/_windows.py:1403
 msgid "Reading gramps-project.org..."
 msgstr "gramps-project.org beolvasása..."
 
-#: ../gramps/gui/plug/_windows.py:1281
+#: ../gramps/gui/plug/_windows.py:1288
 msgid "Checking addon..."
 msgstr "Kiegészítő ellenőrzése..."
 
-#: ../gramps/gui/plug/_windows.py:1289
+#: ../gramps/gui/plug/_windows.py:1296
 msgid "Unknown Help URL"
 msgstr "Ismeretlen súgó URL"
 
-#: ../gramps/gui/plug/_windows.py:1300
+#: ../gramps/gui/plug/_windows.py:1307
 msgid "Unknown URL"
 msgstr "Ismeretlen URL"
 
-#: ../gramps/gui/plug/_windows.py:1360
+#: ../gramps/gui/plug/_windows.py:1367
 msgid "Install all Addons"
 msgstr "Összes kiegészítő telepítése"
 
-#: ../gramps/gui/plug/_windows.py:1361
+#: ../gramps/gui/plug/_windows.py:1368
 msgid "Installing..."
 msgstr "Telepítés..."
 
-#: ../gramps/gui/plug/_windows.py:1394
+#: ../gramps/gui/plug/_windows.py:1401
 msgid "Installing Addon"
 msgstr "Kiegészítő telepítés"
 
-#: ../gramps/gui/plug/_windows.py:1417
+#: ../gramps/gui/plug/_windows.py:1424
 msgid "Load Addon"
 msgstr "Kiegészítő betöltése"
 
-#: ../gramps/gui/plug/_windows.py:1509
+#: ../gramps/gui/plug/_windows.py:1516
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr "Sikertelen"
 
-#: ../gramps/gui/plug/_windows.py:1532 ../gramps/gui/widgets/grampletbar.py:600
+#: ../gramps/gui/plug/_windows.py:1539 ../gramps/gui/widgets/grampletbar.py:600
 msgid "OK"
 msgstr "Rendben"
 
-#: ../gramps/gui/plug/_windows.py:1640
+#: ../gramps/gui/plug/_windows.py:1647
 msgid "Plugin name"
 msgstr "Beépülő név"
 
-#: ../gramps/gui/plug/_windows.py:1643
+#: ../gramps/gui/plug/_windows.py:1650
 msgid "Authors"
 msgstr "Szerzők"
 
-#: ../gramps/gui/plug/_windows.py:1645
+#: ../gramps/gui/plug/_windows.py:1652
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "Fájlnév"
 
-#: ../gramps/gui/plug/_windows.py:1648
+#: ../gramps/gui/plug/_windows.py:1655
 msgid "Detailed Info"
 msgstr "Részletes információ"
 
-#: ../gramps/gui/plug/_windows.py:1703
+#: ../gramps/gui/plug/_windows.py:1710
 msgid "Plugin Error"
 msgstr "Beépülő hiba"
 
-#: ../gramps/gui/plug/_windows.py:1772
+#: ../gramps/gui/plug/_windows.py:1779
 msgid "_Execute"
 msgstr "Vé_grehajtani"
 
-#: ../gramps/gui/plug/_windows.py:2070
+#: ../gramps/gui/plug/_windows.py:2077
 #: ../gramps/plugins/importer/importprogen.py:481
 #: ../gramps/plugins/tool/ownereditor.py:157
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr "Fő ablak"
 
-#: ../gramps/gui/plug/_windows.py:2208
+#: ../gramps/gui/plug/_windows.py:2215
 msgid "Downloading and installing selected addons..."
 msgstr "A kiválasztott kiegészítések letöltése és telepítése..."
 
-#: ../gramps/gui/plug/_windows.py:2251
+#: ../gramps/gui/plug/_windows.py:2258
 msgid "Installation Errors"
 msgstr "Telepítési hibák"
 
-#: ../gramps/gui/plug/_windows.py:2252
+#: ../gramps/gui/plug/_windows.py:2259
 msgid "The following addons had errors: "
 msgstr "A következő kiegészítők hibásak: "
 
-#: ../gramps/gui/plug/_windows.py:2260 ../gramps/gui/plug/_windows.py:2277
+#: ../gramps/gui/plug/_windows.py:2267 ../gramps/gui/plug/_windows.py:2284
 msgid "Done downloading and installing addons"
 msgstr "A kiegészítők letöltése és telepítése végrehajtva"
 
-#: ../gramps/gui/plug/_windows.py:2265
+#: ../gramps/gui/plug/_windows.py:2272
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "{number_of} bővítmény volt telepítve."
 msgstr[1] "{number_of} bővítmény volt telepítve."
 
-#: ../gramps/gui/plug/_windows.py:2270
+#: ../gramps/gui/plug/_windows.py:2277
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr "Ha telepítette a 'Nézet'-et, akkor a Gramps-ot újra kell indítania."
 
-#: ../gramps/gui/plug/_windows.py:2278
+#: ../gramps/gui/plug/_windows.py:2285
 msgid "No addons were installed."
 msgstr "Bővítmények nem voltak telepítve."
 
@@ -20303,9 +20351,9 @@ msgstr "Forrás: Cím vagy Idézet: Kötet/Oldal"
 #: ../gramps/gui/selectors/selectcitation.py:75
 #: ../gramps/gui/selectors/selectevent.py:73
 #: ../gramps/gui/selectors/selectfamily.py:70
-#: ../gramps/gui/selectors/selectnote.py:76
+#: ../gramps/gui/selectors/selectnote.py:75
 #: ../gramps/gui/selectors/selectobject.py:83
-#: ../gramps/gui/selectors/selectperson.py:107
+#: ../gramps/gui/selectors/selectperson.py:114
 #: ../gramps/gui/selectors/selectplace.py:72
 #: ../gramps/gui/selectors/selectrepository.py:69
 #: ../gramps/gui/selectors/selectsource.py:71
@@ -20331,11 +20379,11 @@ msgctxt "manual"
 msgid "Select_Family_selector"
 msgstr "Család_választó_kiválasztása"
 
-#: ../gramps/gui/selectors/selectnote.py:65
+#: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
 msgstr "Jegyzet kiválasztása"
 
-#: ../gramps/gui/selectors/selectnote.py:86
+#: ../gramps/gui/selectors/selectnote.py:85
 msgctxt "manual"
 msgid "Select_Note_selector"
 msgstr "Jegyzet_választó_kiválasztása"
@@ -20720,32 +20768,32 @@ msgstr "Könyvjelzők szerkesztése"
 msgid "Cannot bookmark this reference"
 msgstr "A hivatkozás nem könyvjelzőzhető"
 
-#: ../gramps/gui/views/listview.py:483
+#: ../gramps/gui/views/listview.py:488
 msgid "Active object not visible"
 msgstr "Aktív objektum nem látható"
 
-#: ../gramps/gui/views/listview.py:495
+#: ../gramps/gui/views/listview.py:500
 #: ../gramps/gui/views/navigationview.py:252
 #: ../gramps/plugins/lib/maps/geography.py:236
 #: ../gramps/plugins/lib/maps/geography.py:254
-#: ../gramps/plugins/view/familyview.py:376
+#: ../gramps/plugins/view/familyview.py:378
 msgid "Could Not Set a Bookmark"
 msgstr "Könyvjelző nem beállítható"
 
-#: ../gramps/gui/views/listview.py:496
+#: ../gramps/gui/views/listview.py:501
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "A könyvjelző nem beállítható, mert semmi sincs kiválasztva."
 
-#: ../gramps/gui/views/listview.py:627 ../gramps/plugins/view/eventview.py:412
+#: ../gramps/gui/views/listview.py:632 ../gramps/plugins/view/eventview.py:414
 #, python-brace-format
 msgid "Delete {type} [{gid}]?"
 msgstr "{type} [{gid}] törlése?"
 
-#: ../gramps/gui/views/listview.py:635 ../gramps/gui/views/listview.py:721
+#: ../gramps/gui/views/listview.py:640 ../gramps/gui/views/listview.py:726
 msgid "Deleting item will remove it from the database."
 msgstr "Az elem törlésével eltávolítja azt az adatbázisból."
 
-#: ../gramps/gui/views/listview.py:670
+#: ../gramps/gui/views/listview.py:675
 #: ../gramps/plugins/gramplet/givennamegramplet.py:73
 #: ../gramps/plugins/gramplet/recordsgramplet.py:51
 #: ../gramps/plugins/gramplet/statsgramplet.py:73
@@ -20754,11 +20802,11 @@ msgstr "Az elem törlésével eltávolítja azt az adatbázisból."
 msgid "Processing..."
 msgstr "Végrehajtás..."
 
-#: ../gramps/gui/views/listview.py:684
+#: ../gramps/gui/views/listview.py:689
 msgid "Multiple Selection Delete"
 msgstr "Többszörös törlés kiválasztás"
 
-#: ../gramps/gui/views/listview.py:716
+#: ../gramps/gui/views/listview.py:721
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
@@ -20766,34 +20814,34 @@ msgstr ""
 "Ez az elem most használatban van. Törlése eltávolítja azt az adatbázisból, "
 "és minden más elemből, ami hivatkozik rá."
 
-#: ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/lib/libpersonview.py:481
-#: ../gramps/plugins/view/familyview.py:410
+#: ../gramps/plugins/view/familyview.py:412
 #, python-format
 msgid "Delete %s?"
 msgstr "%s törlése?"
 
-#: ../gramps/gui/views/listview.py:763
+#: ../gramps/gui/views/listview.py:768
 msgid "Column clicked, sorting..."
 msgstr "Oszlop volt kattintva, válogatás..."
 
-#: ../gramps/gui/views/listview.py:1246
+#: ../gramps/gui/views/listview.py:1251
 msgid "Export View as Spreadsheet"
 msgstr "Nézet exportálása mint táblázat"
 
-#: ../gramps/gui/views/listview.py:1261
+#: ../gramps/gui/views/listview.py:1266
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1262
+#: ../gramps/gui/views/listview.py:1267
 msgid "OpenDocument Spreadsheet"
 msgstr "Open Document táblázat"
 
-#: ../gramps/gui/views/listview.py:1448
+#: ../gramps/gui/views/listview.py:1453
 msgid "Columns"
 msgstr "Oszlopok"
 
-#: ../gramps/gui/views/listview.py:1458
+#: ../gramps/gui/views/listview.py:1463
 msgid "CSV Dialect"
 msgstr "CSV dialektus"
 
@@ -20805,7 +20853,7 @@ msgstr "%s könyvjelzőzve lett"
 #: ../gramps/gui/views/navigationview.py:253
 #: ../gramps/plugins/lib/maps/geography.py:237
 #: ../gramps/plugins/lib/maps/geography.py:255
-#: ../gramps/plugins/view/familyview.py:377
+#: ../gramps/plugins/view/familyview.py:379
 msgid "A bookmark could not be set because no one was selected."
 msgstr "A könyvjelző nem beállítható, mert semmi sincs kiválasztva."
 
@@ -21243,11 +21291,11 @@ msgstr "Hivatkozás _cím másolása"
 msgid "_Edit Link"
 msgstr "Hivatkozás s_zerkesztése"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:828
+#: ../gramps/gui/widgets/styledtexteditor.py:807
 msgid "Select font color"
 msgstr "Betűszín kiválasztása"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:832
+#: ../gramps/gui/widgets/styledtexteditor.py:811
 msgid "Select background color"
 msgstr "Háttérszín kiválasztása"
 
@@ -21402,13 +21450,73 @@ msgstr "Nyomtatási előnézet"
 msgid "Closes print preview window"
 msgstr "A nyomtatási előnézet ablak bezárása"
 
+#: ../gramps/plugins/docgen/gtkprint.glade:39
+#, fuzzy
+#| msgid "_Print..."
+msgid "_Print"
+msgstr "_Nyomtatás..."
+
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
 msgstr "A jelenlegi fájl nyomtatása"
 
+#: ../gramps/plugins/docgen/gtkprint.glade:63
+msgid "_First"
+msgstr ""
+
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
 msgstr "Az első oldal mutatása"
+
+#: ../gramps/plugins/docgen/gtkprint.glade:78
+#: ../gramps/plugins/lib/libpersonview.py:234
+#: ../gramps/plugins/lib/libpersonview.py:289
+#: ../gramps/plugins/lib/libpersonview.py:385
+#: ../gramps/plugins/lib/libplaceview.py:319
+#: ../gramps/plugins/lib/libplaceview.py:363
+#: ../gramps/plugins/lib/libplaceview.py:447
+#: ../gramps/plugins/view/citationlistview.py:206
+#: ../gramps/plugins/view/citationlistview.py:250
+#: ../gramps/plugins/view/citationlistview.py:333
+#: ../gramps/plugins/view/citationtreeview.py:348
+#: ../gramps/plugins/view/citationtreeview.py:400
+#: ../gramps/plugins/view/citationtreeview.py:505
+#: ../gramps/plugins/view/eventview.py:219
+#: ../gramps/plugins/view/eventview.py:263
+#: ../gramps/plugins/view/eventview.py:346
+#: ../gramps/plugins/view/familyview.py:176
+#: ../gramps/plugins/view/familyview.py:220
+#: ../gramps/plugins/view/familyview.py:303
+#: ../gramps/plugins/view/fanchartview.py:145
+#: ../gramps/plugins/view/fanchartview.py:186
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoevents.py:68
+#: ../gramps/plugins/view/geoevents.py:103
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamily.py:67
+#: ../gramps/plugins/view/geofamily.py:102
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:111
+#: ../gramps/plugins/view/geoperson.py:69
+#: ../gramps/plugins/view/geoperson.py:110
+#: ../gramps/plugins/view/geoplaces.py:70
+#: ../gramps/plugins/view/geoplaces.py:105
+#: ../gramps/plugins/view/mediaview.py:283
+#: ../gramps/plugins/view/mediaview.py:327
+#: ../gramps/plugins/view/mediaview.py:426
+#: ../gramps/plugins/view/noteview.py:164
+#: ../gramps/plugins/view/noteview.py:208
+#: ../gramps/plugins/view/noteview.py:291
+#: ../gramps/plugins/view/pedigreeview.py:691
+#: ../gramps/plugins/view/pedigreeview.py:733
+#: ../gramps/plugins/view/relview.py:455 ../gramps/plugins/view/repoview.py:201
+#: ../gramps/plugins/view/repoview.py:245
+#: ../gramps/plugins/view/repoview.py:328
+#: ../gramps/plugins/view/sourceview.py:173
+#: ../gramps/plugins/view/sourceview.py:217
+#: ../gramps/plugins/view/sourceview.py:300
+msgid "_Back"
+msgstr "_Vissza"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:83
 msgid "Shows previous page"
@@ -21417,6 +21525,10 @@ msgstr "Az előző oldal mutatása"
 #: ../gramps/plugins/docgen/gtkprint.glade:98
 msgid "Shows the next page"
 msgstr "A következő oldal mutatása"
+
+#: ../gramps/plugins/docgen/gtkprint.glade:108
+msgid "_Last"
+msgstr ""
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -21438,7 +21550,7 @@ msgstr "Oldalnagyítás bekapcsolása"
 msgid "Zooms the page out"
 msgstr "Oldalnagyítás kikapcsolása"
 
-#: ../gramps/plugins/docgen/gtkprint.py:476
+#: ../gramps/plugins/docgen/gtkprint.py:475
 #, python-format
 msgid "of %d"
 msgstr "%d-hez"
@@ -27156,7 +27268,7 @@ msgstr ""
 "Hiba: a „%(family)s” család „%(child)s” gyermeke nem hivatkozik vissza a "
 "családra. Hivatkozás hozzáadva."
 
-#: ../gramps/plugins/lib/libcairodoc.py:1447
+#: ../gramps/plugins/lib/libcairodoc.py:1446
 #, python-format
 msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
@@ -31090,55 +31202,6 @@ msgstr "_Könyvjelző hozzáadása"
 #: ../gramps/plugins/lib/libpersonview.py:234
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libpersonview.py:385
-#: ../gramps/plugins/lib/libplaceview.py:319
-#: ../gramps/plugins/lib/libplaceview.py:363
-#: ../gramps/plugins/lib/libplaceview.py:447
-#: ../gramps/plugins/view/citationlistview.py:206
-#: ../gramps/plugins/view/citationlistview.py:250
-#: ../gramps/plugins/view/citationlistview.py:333
-#: ../gramps/plugins/view/citationtreeview.py:348
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:505
-#: ../gramps/plugins/view/eventview.py:219
-#: ../gramps/plugins/view/eventview.py:263
-#: ../gramps/plugins/view/eventview.py:346
-#: ../gramps/plugins/view/familyview.py:176
-#: ../gramps/plugins/view/familyview.py:220
-#: ../gramps/plugins/view/familyview.py:303
-#: ../gramps/plugins/view/fanchartview.py:145
-#: ../gramps/plugins/view/fanchartview.py:186
-#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geoevents.py:68
-#: ../gramps/plugins/view/geoevents.py:103
-#: ../gramps/plugins/view/geofamclose.py:68
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geofamily.py:67
-#: ../gramps/plugins/view/geofamily.py:102
-#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:111
-#: ../gramps/plugins/view/geoperson.py:69
-#: ../gramps/plugins/view/geoperson.py:110
-#: ../gramps/plugins/view/geoplaces.py:70
-#: ../gramps/plugins/view/geoplaces.py:105
-#: ../gramps/plugins/view/mediaview.py:283
-#: ../gramps/plugins/view/mediaview.py:327
-#: ../gramps/plugins/view/mediaview.py:426
-#: ../gramps/plugins/view/noteview.py:164
-#: ../gramps/plugins/view/noteview.py:208
-#: ../gramps/plugins/view/noteview.py:291
-#: ../gramps/plugins/view/pedigreeview.py:691
-#: ../gramps/plugins/view/pedigreeview.py:733
-#: ../gramps/plugins/view/relview.py:455 ../gramps/plugins/view/repoview.py:201
-#: ../gramps/plugins/view/repoview.py:245
-#: ../gramps/plugins/view/repoview.py:328
-#: ../gramps/plugins/view/sourceview.py:173
-#: ../gramps/plugins/view/sourceview.py:217
-#: ../gramps/plugins/view/sourceview.py:300
-msgid "_Back"
-msgstr "_Vissza"
-
-#: ../gramps/plugins/lib/libpersonview.py:234
-#: ../gramps/plugins/lib/libpersonview.py:289
-#: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/view/fanchartview.py:145
 #: ../gramps/plugins/view/fanchartview.py:186
 #: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
@@ -31223,23 +31286,23 @@ msgstr "Öss_zefűzés..."
 #: ../gramps/plugins/lib/libpersonview.py:274
 #: ../gramps/plugins/lib/libpersonview.py:434
 #: ../gramps/plugins/lib/libplaceview.py:353
-#: ../gramps/plugins/lib/libplaceview.py:490
+#: ../gramps/plugins/lib/libplaceview.py:492
 #: ../gramps/plugins/view/citationlistview.py:240
-#: ../gramps/plugins/view/citationlistview.py:371
+#: ../gramps/plugins/view/citationlistview.py:373
 #: ../gramps/plugins/view/citationtreeview.py:390
-#: ../gramps/plugins/view/citationtreeview.py:558
+#: ../gramps/plugins/view/citationtreeview.py:560
 #: ../gramps/plugins/view/eventview.py:253
-#: ../gramps/plugins/view/eventview.py:384
+#: ../gramps/plugins/view/eventview.py:386
 #: ../gramps/plugins/view/familyview.py:210
-#: ../gramps/plugins/view/familyview.py:353
+#: ../gramps/plugins/view/familyview.py:355
 #: ../gramps/plugins/view/mediaview.py:317
-#: ../gramps/plugins/view/mediaview.py:477
+#: ../gramps/plugins/view/mediaview.py:479
 #: ../gramps/plugins/view/noteview.py:198
-#: ../gramps/plugins/view/noteview.py:329
+#: ../gramps/plugins/view/noteview.py:331
 #: ../gramps/plugins/view/repoview.py:235
-#: ../gramps/plugins/view/repoview.py:366
+#: ../gramps/plugins/view/repoview.py:368
 #: ../gramps/plugins/view/sourceview.py:207
-#: ../gramps/plugins/view/sourceview.py:338
+#: ../gramps/plugins/view/sourceview.py:340
 msgctxt "action"
 msgid "_Edit..."
 msgstr "_Szerkesztés..."
@@ -31395,7 +31458,7 @@ msgstr "Helyszínszűrő szerkesztő"
 msgid "_Look up with Map Service"
 msgstr "_Megtekintés Térképszolgáltatással"
 
-#: ../gramps/plugins/lib/libplaceview.py:500
+#: ../gramps/plugins/lib/libplaceview.py:502
 msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
@@ -31403,15 +31466,15 @@ msgstr ""
 "Kiválasztott helyszín megtekintése Térképszolgáltatással (OpenstreetMap, "
 "Google Maps, ...)"
 
-#: ../gramps/plugins/lib/libplaceview.py:500
+#: ../gramps/plugins/lib/libplaceview.py:502
 msgid "Select a Map Service"
 msgstr "Térképszolgáltatás kiválasztása"
 
-#: ../gramps/plugins/lib/libplaceview.py:542
+#: ../gramps/plugins/lib/libplaceview.py:544
 msgid "Cannot delete place."
 msgstr "A hely nem törölhető."
 
-#: ../gramps/plugins/lib/libplaceview.py:544
+#: ../gramps/plugins/lib/libplaceview.py:546
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
@@ -31419,12 +31482,12 @@ msgstr ""
 "Egy másik hely hivatkozik erre a helyre. Először távolítsa el az ezt "
 "tartalmazó helyet."
 
-#: ../gramps/plugins/lib/libplaceview.py:567
-#: ../gramps/plugins/lib/libplaceview.py:578
+#: ../gramps/plugins/lib/libplaceview.py:569
+#: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Cannot merge places."
 msgstr "A helyek nem egyesíthetőek."
 
-#: ../gramps/plugins/lib/libplaceview.py:569
+#: ../gramps/plugins/lib/libplaceview.py:571
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -31433,7 +31496,7 @@ msgstr ""
 "Pontosan két helyszínt kell kiválasztani az egyesítéshez. A második helyszín "
 "a ctrl gomb lenyomásával és a másik helyszínre kattintással választható ki."
 
-#: ../gramps/plugins/lib/libplaceview.py:580
+#: ../gramps/plugins/lib/libplaceview.py:582
 msgid "Merging these places would create a cycle in the place hierarchy."
 msgstr "A helyek összefűzése a helyek rangsorában ciklikusságot okozhat."
 
@@ -35055,6 +35118,12 @@ msgstr "Nemi statisztika eszköz"
 msgid "Guess"
 msgstr "Becslés"
 
+#: ../gramps/plugins/tool/eventcmp.glade:37
+#, fuzzy
+#| msgid "Save As"
+msgid "Save _As"
+msgstr "Mentés másként"
+
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
 msgstr "_Szűrő:"
@@ -35265,6 +35334,7 @@ msgid "Media Manager"
 msgstr "Médiakezelő"
 
 #: ../gramps/plugins/tool/mediamanager.py:95
+#: ../gramps/plugins/tool/verify.glade:110
 msgid "Help"
 msgstr "Súgó"
 
@@ -36075,36 +36145,35 @@ msgstr "Adatbázis hibák generálása"
 msgid "Generating families"
 msgstr "Családok generálása"
 
-#: ../gramps/plugins/tool/testcasegenerator.py:530
-#: ../gramps/plugins/tool/testcasegenerator.py:569
-#: ../gramps/plugins/tool/testcasegenerator.py:617
-#: ../gramps/plugins/tool/testcasegenerator.py:635
-#: ../gramps/plugins/tool/testcasegenerator.py:668
-#: ../gramps/plugins/tool/testcasegenerator.py:740
-#: ../gramps/plugins/tool/testcasegenerator.py:776
-#: ../gramps/plugins/tool/testcasegenerator.py:799
-#: ../gramps/plugins/tool/testcasegenerator.py:818
-#: ../gramps/plugins/tool/testcasegenerator.py:838
-#: ../gramps/plugins/tool/testcasegenerator.py:862
-#: ../gramps/plugins/tool/testcasegenerator.py:881
-#: ../gramps/plugins/tool/testcasegenerator.py:900
-#: ../gramps/plugins/tool/testcasegenerator.py:919
-#: ../gramps/plugins/tool/testcasegenerator.py:947
-#: ../gramps/plugins/tool/testcasegenerator.py:974
-#: ../gramps/plugins/tool/testcasegenerator.py:1002
-#: ../gramps/plugins/tool/testcasegenerator.py:1040
-#: ../gramps/plugins/tool/testcasegenerator.py:1052
-#: ../gramps/plugins/tool/testcasegenerator.py:1064
-#: ../gramps/plugins/tool/testcasegenerator.py:1076
-#: ../gramps/plugins/tool/testcasegenerator.py:1093
-#: ../gramps/plugins/tool/testcasegenerator.py:1111
-#: ../gramps/plugins/tool/testcasegenerator.py:1136
-#: ../gramps/plugins/tool/testcasegenerator.py:1153
-#: ../gramps/plugins/tool/testcasegenerator.py:1171
-#: ../gramps/plugins/tool/testcasegenerator.py:1206
-#: ../gramps/plugins/tool/testcasegenerator.py:1654
-#: ../gramps/plugins/tool/testcasegenerator.py:1761
-#: ../gramps/plugins/tool/testcasegenerator.py:1787
+#: ../gramps/plugins/tool/testcasegenerator.py:459
+#: ../gramps/plugins/tool/testcasegenerator.py:534
+#: ../gramps/plugins/tool/testcasegenerator.py:573
+#: ../gramps/plugins/tool/testcasegenerator.py:621
+#: ../gramps/plugins/tool/testcasegenerator.py:639
+#: ../gramps/plugins/tool/testcasegenerator.py:672
+#: ../gramps/plugins/tool/testcasegenerator.py:744
+#: ../gramps/plugins/tool/testcasegenerator.py:780
+#: ../gramps/plugins/tool/testcasegenerator.py:803
+#: ../gramps/plugins/tool/testcasegenerator.py:822
+#: ../gramps/plugins/tool/testcasegenerator.py:842
+#: ../gramps/plugins/tool/testcasegenerator.py:866
+#: ../gramps/plugins/tool/testcasegenerator.py:885
+#: ../gramps/plugins/tool/testcasegenerator.py:904
+#: ../gramps/plugins/tool/testcasegenerator.py:923
+#: ../gramps/plugins/tool/testcasegenerator.py:951
+#: ../gramps/plugins/tool/testcasegenerator.py:978
+#: ../gramps/plugins/tool/testcasegenerator.py:1006
+#: ../gramps/plugins/tool/testcasegenerator.py:1044
+#: ../gramps/plugins/tool/testcasegenerator.py:1056
+#: ../gramps/plugins/tool/testcasegenerator.py:1068
+#: ../gramps/plugins/tool/testcasegenerator.py:1080
+#: ../gramps/plugins/tool/testcasegenerator.py:1097
+#: ../gramps/plugins/tool/testcasegenerator.py:1115
+#: ../gramps/plugins/tool/testcasegenerator.py:1140
+#: ../gramps/plugins/tool/testcasegenerator.py:1157
+#: ../gramps/plugins/tool/testcasegenerator.py:1175
+#: ../gramps/plugins/tool/testcasegenerator.py:1210
+#: ../gramps/plugins/tool/testcasegenerator.py:1783
 #, python-format
 msgid "Testcase generator step %d"
 msgstr "Teszt eset generálás %d lépés"
@@ -36611,7 +36680,7 @@ msgstr "Idézet nézet"
 msgid "Citation Filter Editor"
 msgstr "Idézet-szűrő szerkesztő"
 
-#: ../gramps/plugins/view/citationlistview.py:417
+#: ../gramps/plugins/view/citationlistview.py:419
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation "
 "is already being edited or another object that is associated with the same "
@@ -36625,15 +36694,15 @@ msgstr ""
 "\n"
 "Az idézet szerkesztéséhez be kell zárnia az objektumot."
 
-#: ../gramps/plugins/view/citationlistview.py:431
-#: ../gramps/plugins/view/citationlistview.py:443
-#: ../gramps/plugins/view/citationtreeview.py:682
-#: ../gramps/plugins/view/citationtreeview.py:699
+#: ../gramps/plugins/view/citationlistview.py:433
+#: ../gramps/plugins/view/citationlistview.py:445
+#: ../gramps/plugins/view/citationtreeview.py:684
+#: ../gramps/plugins/view/citationtreeview.py:701
 msgid "Cannot merge citations."
 msgstr "Nem összefűzhető idézetek."
 
-#: ../gramps/plugins/view/citationlistview.py:433
-#: ../gramps/plugins/view/citationtreeview.py:684
+#: ../gramps/plugins/view/citationlistview.py:435
+#: ../gramps/plugins/view/citationtreeview.py:686
 msgid ""
 "Exactly two citations must be selected to perform a merge. A second citation "
 "can be selected by holding down the control key while clicking on the "
@@ -36643,8 +36712,8 @@ msgstr ""
 "Ctrl-gomb lenyomása és a kiválasztott idézetre való egyidejű kattintással "
 "választhatja ki."
 
-#: ../gramps/plugins/view/citationlistview.py:445
-#: ../gramps/plugins/view/citationtreeview.py:701
+#: ../gramps/plugins/view/citationlistview.py:447
+#: ../gramps/plugins/view/citationtreeview.py:703
 msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
@@ -36692,7 +36761,7 @@ msgstr "Minden csomópont bezárása"
 msgid "Expand all Nodes"
 msgstr "Minden csomópont kibontása"
 
-#: ../gramps/plugins/view/citationtreeview.py:668
+#: ../gramps/plugins/view/citationtreeview.py:670
 msgid ""
 "This source cannot be edited at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -36706,11 +36775,11 @@ msgstr ""
 "\n"
 "A forrás szerkesztéséhez be kell zárnia az objektumot."
 
-#: ../gramps/plugins/view/citationtreeview.py:712
+#: ../gramps/plugins/view/citationtreeview.py:714
 msgid "Cannot perform merge."
 msgstr "Nem megvalósítható összefűzés."
 
-#: ../gramps/plugins/view/citationtreeview.py:714
+#: ../gramps/plugins/view/citationtreeview.py:716
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
@@ -36744,11 +36813,11 @@ msgstr "Kiválasztott események összefűzése"
 msgid "Event Filter Editor"
 msgstr "Eseményszűrő-szerkesztő"
 
-#: ../gramps/plugins/view/eventview.py:431
+#: ../gramps/plugins/view/eventview.py:433
 msgid "Cannot merge event objects."
 msgstr "Az esemény-objektumok nem összefűzhetőek."
 
-#: ../gramps/plugins/view/eventview.py:433
+#: ../gramps/plugins/view/eventview.py:435
 msgid ""
 "Exactly two events must be selected to perform a merge. A second object can "
 "be selected by holding down the control key while clicking on the desired "
@@ -36790,11 +36859,11 @@ msgstr "Az apa aktívvá tétele"
 msgid "Make Mother Active Person"
 msgstr "Az anya aktívvá tétele"
 
-#: ../gramps/plugins/view/familyview.py:436
+#: ../gramps/plugins/view/familyview.py:438
 msgid "Cannot merge families."
 msgstr "A családok összefűzése nem lehetséges."
 
-#: ../gramps/plugins/view/familyview.py:438
+#: ../gramps/plugins/view/familyview.py:440
 msgid ""
 "Exactly two families must be selected to perform a merge. A second family "
 "can be selected by holding down the control key while clicking on the "
@@ -37467,11 +37536,11 @@ msgstr "Médiaszűrő szerkesztő"
 msgid "View in the default viewer"
 msgstr "Nézet az alapértelmezett nézőkében"
 
-#: ../gramps/plugins/view/mediaview.py:510
+#: ../gramps/plugins/view/mediaview.py:512
 msgid "Cannot merge media objects."
 msgstr "Nem összefűzhető médiaobjektumok."
 
-#: ../gramps/plugins/view/mediaview.py:512
+#: ../gramps/plugins/view/mediaview.py:514
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -37493,11 +37562,11 @@ msgstr "A kiválasztott jegyzetek összefűzése"
 msgid "Note Filter Editor"
 msgstr "Jegyzetszűrő szerkesztő"
 
-#: ../gramps/plugins/view/noteview.py:365
+#: ../gramps/plugins/view/noteview.py:367
 msgid "Cannot merge notes."
 msgstr "Nem összefűzhető jegyzetek."
 
-#: ../gramps/plugins/view/noteview.py:367
+#: ../gramps/plugins/view/noteview.py:369
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
@@ -37840,11 +37909,11 @@ msgstr "A kiválasztott tárolók összefűzése"
 msgid "Repository Filter Editor"
 msgstr "Tárolószűrő szerkesztő"
 
-#: ../gramps/plugins/view/repoview.py:395
+#: ../gramps/plugins/view/repoview.py:397
 msgid "Cannot merge repositories."
 msgstr "Nem összefűzhető tárolók."
 
-#: ../gramps/plugins/view/repoview.py:397
+#: ../gramps/plugins/view/repoview.py:399
 msgid ""
 "Exactly two repositories must be selected to perform a merge. A second "
 "repository can be selected by holding down the control key while clicking on "
@@ -37870,11 +37939,11 @@ msgstr "A kiválasztott források összefűzése"
 msgid "Source Filter Editor"
 msgstr "Forrásszűrő szerkesztő"
 
-#: ../gramps/plugins/view/sourceview.py:359
+#: ../gramps/plugins/view/sourceview.py:361
 msgid "Cannot merge sources."
 msgstr "Nem összefűzhető források."
 
-#: ../gramps/plugins/view/sourceview.py:361
+#: ../gramps/plugins/view/sourceview.py:363
 msgid ""
 "Exactly two sources must be selected to perform a merge. A second source can "
 "be selected by holding down the control key while clicking on the desired "
@@ -39950,6 +40019,9 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Nincs stíluslap"
 
+#~ msgid "Preparing ..."
+#~ msgstr "Előkészítés..."
+
 #~ msgid "Use default preference"
 #~ msgstr "Használja az alapértelmezett értékeket"
 
@@ -40682,9 +40754,6 @@ msgstr "Nincs stíluslap"
 #~ "Induláshoz egy 'kiinduló személyt' kell beállítania. Válassza az Ember "
 #~ "nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá "
 #~ "a Szerkesztés -> Kiinduló személy beállítása menün keresztül."
-
-#~ msgid "_Print..."
-#~ msgstr "_Nyomtatás..."
 
 #~ msgid ""
 #~ "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "

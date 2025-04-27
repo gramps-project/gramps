@@ -13,7 +13,7 @@
 # 张子涵 <zhangzihanzhangzihan@live.com>, 2023.
 # linluoxue <linluomoxue@foxmail.com>, 2023.
 # 快乐的老鼠宝宝 <keaitianxinmail@qq.com>, 2023.
-# Tian Shixiong <tiansworld@fedoraproject.org>, 2023, 2024.
+# Tian Shixiong <tiansworld@fedoraproject.org>, 2023, 2024, 2025.
 # Nick Hall <nick-h@gramps-project.org>, 2024.
 # 快乐的老鼠宝宝 <laoshubaby@protonmail.com>, 2024.
 # pyccl <changcongliang@163.com>, 2024.
@@ -21,9 +21,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2024-10-18 00:20+0000\n"
-"Last-Translator: pyccl <changcongliang@163.com>\n"
+"POT-Creation-Date: 2025-04-18 20:48+0100\n"
+"PO-Revision-Date: 2025-04-24 09:52+0000\n"
+"Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -260,7 +260,7 @@ msgstr ""
 "树;家庭树;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
-#: ../gramps/gen/const.py:259
+#: ../gramps/gen/const.py:265
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
@@ -436,7 +436,6 @@ msgstr ""
 "事的机会。不管如何，不要忘了把聊天记录下来！"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -447,11 +446,12 @@ msgid ""
 "the Filter field on Sidebar, then click Find button. If the Sidebar is not "
 "visible, select View > Sidebar."
 msgstr ""
-"<b>筛查成员</b><br/>在成员视图中，您可以基于许多标准过滤个体。定义新的筛查器"
-"请到 “编辑 &gt; 成员筛查编辑器”。您可以命名您的筛查器并添加与合并之前预设的规"
-"则。比如，您可以定义一个筛查器并在家族树中寻找所有适合的成员。没有出生日期的"
-"成员也可以被筛查。为了获得结果保存您的筛查器并在筛查器边框底部选择。然后点击 "
-"“应用”。如果筛查器边栏不可见，选择 “视图 &gt; 筛查器”。"
+"成员视图中的<b>筛选成员</b><br/>功能，可以通过许多规则来进行人员筛选。要定义"
+"新的筛选器，请到 “编辑 > 成员筛选编辑器”。您可以命名并添加您的筛选器并可与现"
+"有的预设规则进行合并。比如，您可以定义一个筛选器，实现在家族树中查找所有收养"
+"的成员。也可以筛查出没有出生日期的成员。为了获得结果，首先保存好您的筛选器，"
+"然后在侧边栏的筛选器中选择您保存过的筛选器，点击查找按钮。如果没看到侧边栏，"
+"请点击视图 > 侧边栏。"
 
 #: ../data/tips.xml:16
 msgid ""
@@ -498,19 +498,17 @@ msgstr ""
 "妹、子女或者父母之一即可将其设为活跃。"
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>谁生在什么时候？</b><br/>在 &quot;工具 &gt; 分析和探索 &gt; 对比个人事"
-"件...&quot; 您可以对您数据库中的个体数据进行比较。这很有用，也就是说，如果您"
-"希望您数据库中每个人的出生日期，您可以使用定制的筛查器过滤并缩小结果范围。"
+"<b>谁生在什么时候？</b><br/>位于“工具 > 分析和探索 > 比较个人事件...”下，您可"
+"以对您数据库中的个体数据进行比较。这很有用，比如您想列出数据库中每个人的出生"
+"日期。您可以使用自定义筛选器减少结果。"
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -518,21 +516,20 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Gramps 工具</b><br/>Gramps 拥有丰富的工具。这些允许您执行类似数据库纠错和"
-"一致性检查，也有搜索和分析工具用于事件比较，寻找重复的人，交互式后代浏览，以"
-"及其他。所有的工具可以从菜单 &quot;工具&quot; 进入。"
+"<b>Gramps 工具</b><br/>Gramps 拥有丰富的工具。这些工具可让您进行诸如数据库纠"
+"错和一致性等检查。也有搜索和分析工具，可用于事件比较，寻找重复的人，交互式后"
+"代浏览等等。所有工具都可以从“菜单 > 工具”中找到。"
 
 #: ../data/tips.xml:28
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
 "> Relationship Calculator...\". The exact relationship as well as all common "
 "ancestors are reported."
 msgstr ""
-"<b>关系分析</b><br/>确认数据库中的两个人之间是否有血缘关系（血缘，非结婚的）"
-"本工具，位于&quot;工具&gt;实用功能&gt; 关系分析器...&quot;。同时也会得出精确"
-"的共同的祖先。"
+"<b>关系计算</b><br/>要查看数据库中的两个人之间是否有亲属关系（指血缘，非婚姻"
+"的关系），可使用该工具。它位于“工具 > 实用工具 > 关系计算...”。精确的亲属关系"
+"以及共同祖先都会显示出来。"
 
 #: ../data/tips.xml:30
 msgid ""
@@ -551,22 +548,15 @@ msgstr ""
 "氏的 SoundEx 编码，请加载 SoundEx Gramplet。"
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\"."
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"<b>设置您的首选项</b><br/>&quot;编辑 &gt; 首选项...&quot; 允许您修改若干设"
-"置，比如您媒体文件的路径，并允许您根据您的需要，调整很多方面 Gramps 的显示。"
-"每种分别的视图可以在 &quot;视图 &gt; 配置视图...&quot; 中配置。"
+"<b>设置您的首选项</b><br/>在“编辑 > 首选项...\" 中，您可以修改若干设置，比如"
+"您媒体文件的路径，以及按需调整 Gramps 的展示方式。每种独立视图也可以在“视图 "
+"> 配置视图...”中进行配置。"
 
 #: ../data/tips.xml:34
 msgid ""
@@ -581,7 +571,6 @@ msgstr ""
 "您准备为您的家族树创建网站，那么也同样有对应的报告类型。"
 
 #: ../data/tips.xml:36
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -589,9 +578,9 @@ msgid ""
 "People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>开始一个新的家族树</b><br/>开始一个新的家族树的一个好方法是，先使用“成员视"
-"图”把所有成员输入数据库（使用 &quot;编辑 &gt;添加...&quot; 或者在“成员视图”里"
-"点击“添加”按钮）。然后，进入“关系视图”并为成员建立关系。"
+"<b>创建新家族树</b><br/>创建新家族树的一个好方法是，先使用“成员视图”把所有成"
+"员输入数据库（使用“编辑 > 添加...”或者在“成员视图”里点击“添加新成员”按钮）。"
+"然后进入“关系视图”创建人员之间的关系。"
 
 #: ../data/tips.xml:38
 msgid ""
@@ -602,7 +591,6 @@ msgstr ""
 "方片刻，提示信息就会出现。"
 
 #: ../data/tips.xml:40
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -610,23 +598,21 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
-"<b>您不能确认的日期?</b><br/>如果您不能确认一个事件发生的日期（比如出生和死亡"
-"日期），Gramps 允许您基于猜测或推测填写一个范围的日期。例如：&quot;大约 "
-"1908&quot; 在 Gramps 属于有效的出生日期输入。参考 Gramps 手册了解关于日期输入"
+"<b>日期不确定？</b><br/>如果您不能确认一个事件发生的日期，Gramps 允许您基于猜"
+"测或推测填写一个日期范围。例如：“大约 1908”，在 Gramps 中是属于有效的出生日期"
+"输入。点击日期字段旁的“打开日期编辑器”按钮。参考 Gramps 手册了解关于日期输入"
 "选项的完整说明。"
 
 #: ../data/tips.xml:42
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools > Family Tree Processing > "
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>重复的录入</b><br/>&quot;工具 &gt; 数据处理 &gt; 寻找可能重复的成员..."
-"&quot; 允许您定位（并合并）在数据中录入多次的相同的人员信息。"
+"<b>重复的录入</b><br/>“工具 > 家族树处理 > 寻找可能重复的成员...”允许您定位"
+"（并合并）在数据中录入多次的相同人员的信息。"
 
 #: ../data/tips.xml:44
-#, fuzzy
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit > Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -635,33 +621,29 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>合并</b><br/>&quot;编辑 &gt; 比较与合并...&quot;功能可以将两个分开的成员合"
-"并成一个人. 本功能在合并两个数据库中重复的人，或者合并多个不同姓名的人时非常"
-"有用."
+"<b>合并</b><br/>“编辑 > 合并...”功能可以将分开列出的成员合并成。在按住 Ctrl "
+"键的同时选择第二个条目。本功能在合并两个数据库中重复的人，或者合并因错误输入"
+"导致的同人不同名时非常有用。合并功能适用于所有主要对象类型的全部列表视图。"
 
 #: ../data/tips.xml:46
-#, fuzzy
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
-"<b>整理视图</b><br/>很多视图可以以金字塔树或者简单列表模式显示您的数据。每种"
-"视图可以配置为您喜爱的方式。查看右边栏上方的工具条或者 &quot;视图&quot; 菜"
-"单。"
+"<b>整理视图</b><br/>很多视图都可以以金字塔树或者简单列表模式显示您的数据。每"
+"种视图均可以配置为您喜爱的方式。可在顶部工具栏右侧或者“视图” 菜单中找到。"
 
 #: ../data/tips.xml:48
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
 "through the list using \"Go > Forward\" and \"Go > Back\" or the arrow "
 "buttons."
 msgstr ""
-"<b>向前和向后浏览</b> <br/>Gramps 会维护一份先前对象列表，比如人物、事件等。"
-"您可以使用&quot;转到 &gt;前进&quot; 和 &quot;转到 &gt; 后退&quot; 或者箭头按"
-"钮在列表内向前或向后。"
+"<b>向前和向后浏览</b> <br/>Gramps 会维护一份之前活动对象的列表，比如人物、事"
+"件等。您可使用“转到 > 前进”和 “转到 > 后退”或者箭头按钮向前或向后浏览此列表。"
 
 #: ../data/tips.xml:50
 msgid ""
@@ -673,16 +655,15 @@ msgstr ""
 "了快捷键。如果该功能存在快捷方式，它会显示在菜单的右半边。"
 
 #: ../data/tips.xml:52
-#, fuzzy
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help > "
 "User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>阅读手册</b><br/>不要忘记阅读 Gramps 手册，&quot;Help &gt; User "
-"Manual&quot;。虽然开发者已经尽力让所有的操作都一目了然，但是手册中包含全部的"
-"信息，它将会让您操作时更加有效率。"
+"<b>阅读手册</b><br/>不要忘记阅读 Gramps 手册，位于\"帮助 > 用户手册\"。虽然开"
+"发者已经尽力让所有的操作都一目了然，但是手册中详尽地介绍了完整的使用方法，这"
+"会让您使用起来更加高效。"
 
 #: ../data/tips.xml:54
 msgid ""
@@ -933,14 +914,10 @@ msgstr ""
 "gramps-project.org/bugs/ 使用 Gramps 的报告追踪系统。"
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
-msgstr "<b>Gramps 主页</b><br/>Gramps 主页是 http://gramps-project.org/ 。"
+msgstr "<b>Gramps 主页</b><br/>Gramps 主页是 https://gramps-project.org/ 。"
 
 #: ../data/tips.xml:98
 msgid ""
@@ -968,28 +945,26 @@ msgstr ""
 "来源。"
 
 #: ../data/tips.xml:102
-#, fuzzy
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help > Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
-"<b>额外报告和工具</b><br/>其他工具和报告可以在 &quot;插件&quot; 中添加到 "
-"Gramps 系统中。在 &quot;帮助 &gt; 其他报告/工具&quot; 中查看。对于高级用户来"
-"讲，这是最好体验和创建新功能的方案。"
+"<b>额外报告和工具</b><br/>额外报告和工具可以通过“插件”添加到 Gramps 中。可"
+"在“帮助 > 其他报告/工具”中找到。对于高级用户来讲，这是尝试和创建新功能的最佳"
+"方式。"
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports > Books...\" allows "
 "you to collect a variety of reports into a single document. This single "
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>书册报告</b><br/>书册报告在 &quot;报告 &gt; 书册 &gt; 书册报告...&quot;，"
-"允许您收集各种信息到一个单一文档中，这个单独的报告比多页报告更便于发布，特别"
-"当打印的时候。"
+"<b>书册报告</b><br/>书册报告位于“报告 > 书册报告...”下，通过它您可将多种报告"
+"集合到单一文档中。单独一份报告总比多份报告更便于发布，尤其是在需要打印的时"
+"候。"
 
 #: ../data/tips.xml:106
 #, fuzzy
@@ -1101,21 +1076,15 @@ msgstr ""
 "Software Foundation) 及开放源代码促进会 (Open Source Initiative)。"
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
 "License, see https://www.gnu.org/licenses/licenses.html#GPL to read about "
 "the rights and restrictions of this license."
 msgstr ""
-"<b>Gramps 软件许可</b><br/>您有权自由地使用并与其他人分享 它。它是基于 GNU 通"
-"用公共许可证 (GNU General Public License) 自由发布，请参见 https://www.gnu."
-"org/licenses/licenses.html#GPL 阅读此许可证的权利和约束。"
+"<b>Gramps 软件许可</b><br/>您有权自由地使用并与其他人分享 Gramps。它基于 GNU "
+"通用公共许可证 (GNU General Public License) 自由发布，请访问 https://www.gnu."
+"org/licenses/licenses.html#GPL 来了解此许可证的权利和约束。"
 
 #: ../data/tips.xml:128
 msgid ""
@@ -1328,53 +1297,6 @@ msgid "Unknown action: %s."
 msgstr "未知行动：%s。"
 
 #: ../gramps/cli/argparser.py:67
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Usage: gramps.py [OPTION...]\n"
-#| "  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
-#| "\n"
-#| "Help options\n"
-#| "  -?, --help                             Show this help message\n"
-#| "  --usage                                Display brief usage message\n"
-#| "\n"
-#| "Application options\n"
-#| "  -O, --open=FAMILY_TREE                 Open Family Tree\n"
-#| "  -U, --username=USERNAME                Database username\n"
-#| "  -P, --password=PASSWORD                Database password\n"
-#| "  -C, --create=FAMILY_TREE               Create on open if new Family "
-#| "Tree\n"
-#| "  -i, --import=FILENAME                  Import file\n"
-#| "  -e, --export=FILENAME                  Export file\n"
-#| "  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) "
-#| "(use regular expressions)\n"
-#| "  -f, --format=FORMAT                    Specify Family Tree format\n"
-#| "  -a, --action=ACTION                    Specify action\n"
-#| "  -p, --options=OPTIONS_STRING           Specify options\n"
-#| "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
-#| "  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
-#| "  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
-#| "  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab "
-#| "delimited\n"
-#| "  -u, --force-unlock                     Force unlock of Family Tree\n"
-#| "  -s, --show                             Show config settings\n"
-#| "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
-#| "Gramps\n"
-#| "  -y, --yes                              Don't ask to confirm dangerous "
-#| "actions (non-GUI mode only)\n"
-#| "  -q, --quiet                            Suppress progress indication "
-#| "output (non-GUI mode only)\n"
-#| "  -v, --version                          Show versions\n"
-#| "  -S, --safe                             Start Gramps in 'Safe mode'\n"
-#| "                                          (temporarily use default "
-#| "settings)\n"
-#| "  -D, --default=[APXFE]                  Reset settings to default;\n"
-#| "                 A - addons are cleared\n"
-#| "                 P - Preferences to default\n"
-#| "                 X - Books are cleared, reports and tool settings to "
-#| "default\n"
-#| "                 F - filters are cleared\n"
-#| "                 E - Everything is set to default or cleared\n"
 msgid ""
 "\n"
 "Usage: gramps [OPTION...]\n"
@@ -1421,7 +1343,7 @@ msgid ""
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
 "\n"
-"用法：gramps.py [选项...]\n"
+"用法：gramps [选项...]\n"
 "  --load-modules=MODULE1,MODULE2,...     要载入的动态模块\n"
 "\n"
 "帮助选项\n"
@@ -1461,63 +1383,6 @@ msgstr ""
 "                 E - 清理所有内容或设为默认\n"
 
 #: ../gramps/cli/argparser.py:108
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Example of usage of Gramps command line interface\n"
-#| "\n"
-#| "1. To import four databases (whose formats can be determined from their "
-#| "names)\n"
-#| "and then check the resulting database for errors, one may type:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
-#| "name=check.\n"
-#| "\n"
-#| "2. To explicitly specify the formats in the above example, append "
-#| "filenames with appropriate -f options:\n"
-#| "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps "
-#| "-f gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
-#| "\n"
-#| "3. To record the database resulting from all imports, supply -e flag\n"
-#| "(use -f if the filename does not allow Gramps to guess the format):\n"
-#| "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
-#| "\n"
-#| "4. To save any error messages of the above example into files outfile and "
-#| "errfile, run:\n"
-#| "gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-#| "2>errfile\n"
-#| "\n"
-#| "5. To import three databases and start interactive Gramps session with "
-#| "the result:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
-#| "\n"
-#| "6. To open a database and, based on that data, generate timeline report "
-#| "in PDF format\n"
-#| "putting the output into the my_timeline.pdf file:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,"
-#| "of=my_timeline.pdf\n"
-#| "\n"
-#| "7. To generate a summary of a database:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=summary\n"
-#| "\n"
-#| "8. Listing report options\n"
-#| "Use the name=timeline,show=all to find out about all available options "
-#| "for the timeline report.\n"
-#| "To find out details of a particular option, use show=option_name , e.g. "
-#| "name=timeline,show=off string.\n"
-#| "To learn about available report names, use name=show string.\n"
-#| "\n"
-#| "9. To convert a Family Tree on the fly to a .gramps xml file:\n"
-#| "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
-#| "\n"
-#| "10. To generate a web site into an other locale (in german):\n"
-#| "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
-#| "name=navwebpage,target=/../de\n"
-#| "\n"
-#| "11. Finally, to start normal interactive session type:\n"
-#| "gramps\n"
-#| "\n"
-#| "Note: These examples are for bash shell.\n"
-#| "Syntax may be different for other shells and for Windows.\n"
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -1613,7 +1478,7 @@ msgstr ""
 "要了解可用的报告名称，使用 name=show string。\n"
 "\n"
 "9. 要将正在运行的家族树转换为 .gramps xml 文件，可执行：\n"
-"gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
+"gramps -O 'Family Tree 1' -e output.gramps -f gramps\n"
 "\n"
 "10. 如果要生成其他语言的网页（比如德语），可执行：\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
@@ -1678,7 +1543,7 @@ msgstr "解析参数错误"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:208
-#: ../gramps/gui/clipboard.py:209 ../gramps/gui/plug/_windows.py:1498
+#: ../gramps/gui/clipboard.py:209 ../gramps/gui/plug/_windows.py:1505
 msgid "Unavailable"
 msgstr "无效"
 
@@ -1724,8 +1589,8 @@ msgstr "家族树 \"%s\"："
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:187
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1703
-#: ../gramps/gui/plug/_windows.py:2147
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1710
+#: ../gramps/gui/plug/_windows.py:2154
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1797,7 +1662,7 @@ msgstr ""
 "\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2329
-#: ../gramps/gui/plug/_windows.py:773
+#: ../gramps/gui/plug/_windows.py:780
 msgid "Never"
 msgstr "从不"
 
@@ -1902,13 +1767,12 @@ msgstr "侦测到低层数据库损坏"
 
 #: ../gramps/cli/grampscli.py:110 ../gramps/cli/user.py:221
 #: ../gramps/gui/dialog.py:319
-#, fuzzy
 msgid ""
 "Gramps has detected a problem in the underlying database. This can sometimes "
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"Gramps 侦测到在 Berkeley 数据库中有一个问题。可以从“家族树管理器”中修复。选"
+"Gramps 检测到当前数据库中存在问题。问题有时可以从“家族树管理器”中进行修复。选"
 "择“数据库”并点击“修复”按钮"
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
@@ -2188,17 +2052,17 @@ msgctxt "localized lexeme inflections"
 msgid "January"
 msgstr "一月"
 
-#: ../gramps/gen/const.py:293
+#: ../gramps/gen/const.py:299
 msgctxt "surname"
 msgid "none"
 msgstr "无"
 
-#: ../gramps/gen/const.py:294
+#: ../gramps/gen/const.py:300
 msgctxt "given-name"
 msgid "none"
 msgstr "无"
 
-#: ../gramps/gen/const.py:298 ../gramps/plugins/gramplet/todo.py:208
+#: ../gramps/gen/const.py:304 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:235
 #: ../gramps/plugins/webreport/basepage.py:3382
 #: ../gramps/plugins/webreport/basepage.py:3403
@@ -2813,7 +2677,7 @@ msgstr "瑞典历"
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr ""
+msgstr "Tishri"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgctxt "Hebrew month lexeme"
@@ -2981,7 +2845,7 @@ msgstr "塔尼娅节"
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr ""
+msgstr "Rajab"
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Islamic month lexeme"
@@ -3311,7 +3175,7 @@ msgstr ""
 "建%(wiki_backup_html_start)s备份%(html_end)s。"
 
 #: ../gramps/gen/db/generic.py:231 ../gramps/gen/db/generic.py:281
-#: ../gramps/gen/db/generic.py:2276
+#: ../gramps/gen/db/generic.py:2313
 #, python-format
 msgid "_Undo %s"
 msgstr "撤销(_U) %s"
@@ -3321,111 +3185,112 @@ msgstr "撤销(_U) %s"
 msgid "_Redo %s"
 msgstr "重作(_R) %s"
 
-#: ../gramps/gen/db/generic.py:2667
+#: ../gramps/gen/db/generic.py:2704
 msgid "Number of people"
 msgstr "人数"
 
-#: ../gramps/gen/db/generic.py:2668
+#: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/gramplet/statsgramplet.py:187
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
 msgstr "家庭数量"
 
-#: ../gramps/gen/db/generic.py:2669
+#: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 msgid "Number of sources"
 msgstr "来源的数量"
 
-#: ../gramps/gen/db/generic.py:2670
+#: ../gramps/gen/db/generic.py:2707
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
 msgstr "引用数量"
 
-#: ../gramps/gen/db/generic.py:2671
+#: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
 msgstr "事件数量"
 
-#: ../gramps/gen/db/generic.py:2672
+#: ../gramps/gen/db/generic.py:2709
 msgid "Number of media"
 msgstr "媒体文件数量"
 
-#: ../gramps/gen/db/generic.py:2673
+#: ../gramps/gen/db/generic.py:2710
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 msgid "Number of places"
 msgstr "地点数量"
 
-#: ../gramps/gen/db/generic.py:2674
+#: ../gramps/gen/db/generic.py:2711
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 #, fuzzy
 msgid "Number of repositories"
 msgstr "搜寻文库"
 
-#: ../gramps/gen/db/generic.py:2675
+#: ../gramps/gen/db/generic.py:2712
 msgid "Number of notes"
 msgstr "注释的数量"
 
-#: ../gramps/gen/db/generic.py:2676
+#: ../gramps/gen/db/generic.py:2713
 msgid "Number of tags"
 msgstr "标签数量"
 
-#: ../gramps/gen/db/generic.py:2677
+#: ../gramps/gen/db/generic.py:2714
 msgid "Schema version"
 msgstr "Schema 版本"
 
-#: ../gramps/gen/db/upgrade.py:655
+#: ../gramps/gen/db/upgrade.py:672
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  人员        与 %(n2)6d 引用于 %(n3)6d 秒内已升级\n"
 
-#: ../gramps/gen/db/upgrade.py:659
+#: ../gramps/gen/db/upgrade.py:676
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d   家族      在 %(n3)6d 秒内获得了 %(n2)6d 引用的升级\n"
 
-#: ../gramps/gen/db/upgrade.py:663
+#: ../gramps/gen/db/upgrade.py:680
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:667
+#: ../gramps/gen/db/upgrade.py:684
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "已升级 %(n1)6d   个媒体对象，带有  %(n2)6d 个引用， 耗时  %(n3)6d 秒\n"
 
-#: ../gramps/gen/db/upgrade.py:671
+#: ../gramps/gen/db/upgrade.py:688
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"已升级 %(n1)6d   个地点        带有  %(n2)6d 个引用， 耗时  %(n3)6d 秒\n"
 
-#: ../gramps/gen/db/upgrade.py:675
+#: ../gramps/gen/db/upgrade.py:692
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "已升级 %(n1)6d   个库，带有  %(n2)6d 个引用， 耗时  %(n3)6d 秒\n"
 
-#: ../gramps/gen/db/upgrade.py:679
+#: ../gramps/gen/db/upgrade.py:696
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "已升级 %(n1)6d   个源        带有  %(n2)6d 个引用， 耗时  %(n3)6d 秒\n"
 
-#: ../gramps/gen/db/upgrade.py:1244
+#: ../gramps/gen/db/upgrade.py:1261
 msgid "Number of new objects upgraded:\n"
 msgstr "已升级的新对象数量：\n"
 
-#: ../gramps/gen/db/upgrade.py:1255
+#: ../gramps/gen/db/upgrade.py:1272
 msgid ""
 "\n"
 "\n"
@@ -3441,7 +3306,7 @@ msgstr ""
 "以便合并包含类似信息的引文\n"
 "信息"
 
-#: ../gramps/gen/db/upgrade.py:1260
+#: ../gramps/gen/db/upgrade.py:1277
 msgid "Upgrade Statistics"
 msgstr "升级统计"
 
@@ -3639,7 +3504,6 @@ msgstr "应用筛选器..."
 #: ../gramps/gen/filters/_genericfilter.py:158
 #: ../gramps/gen/filters/_genericfilter.py:179
 #: ../gramps/gen/filters/_genericfilter.py:195
-#: ../gramps/gen/filters/_genericfilter.py:271
 #: ../gramps/gui/editors/filtereditor.py:1225
 #: ../gramps/plugins/drawreport/calendarreport.py:600
 #: ../gramps/plugins/drawreport/statisticschart.py:1125
@@ -3664,12 +3528,6 @@ msgstr "应用筛选器..."
 #: ../gramps/plugins/webreport/webcal.py:1851
 msgid "Filter"
 msgstr "筛查器"
-
-#: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
-msgid "Preparing ..."
-msgstr "读取数据..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -3922,15 +3780,13 @@ msgid "Note type:"
 msgstr "笔记类型："
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:56
-#, fuzzy
 msgid "Objects with notes with the particular type"
-msgstr "匹配符合特定类型的事件 "
+msgstr "匹配符合特定类型注释的对象"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:57
 #: ../gramps/gen/filters/rules/note/_hastype.py:58
-#, fuzzy
 msgid "Matches notes with the particular type "
-msgstr "匹配符合特定类型的事件 "
+msgstr "匹配符合特定类型的注释 "
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:53
 #: ../gramps/gui/editors/filtereditor.py:551
@@ -3997,7 +3853,7 @@ msgstr "筛选器中包含了循环。"
 
 #: ../gramps/gen/filters/rules/_rule.py:114
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "一条规则涉及了另一条规则，而另一条又最终涉及到第一条。"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 msgid "Every citation"
@@ -4069,14 +3925,12 @@ msgid "Value:"
 msgstr "值："
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
-#, fuzzy
 msgid "Citations with the attribute <attribute>"
-msgstr "事件的属性为<attribute>"
+msgstr "引用的属性为<attribute>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:49
-#, fuzzy
 msgid "Matches citations with the attribute of a particular value"
-msgstr "匹配含有特定数值属性的媒体对象"
+msgstr "匹配属性为特定值的引用"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:59
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -4710,14 +4564,12 @@ msgid "Matches families with the family attribute of a particular value"
 msgstr "匹配家庭属性为特定数值的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:51
-#, fuzzy
 msgid "Families with the <citation>"
-msgstr "家庭标签为 <tag>"
+msgstr "带有 <citation> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:52
-#, fuzzy
 msgid "Matches families with a citation of a particular value"
-msgstr "匹配事件含有特定数值的家庭"
+msgstr "匹配引用含有特定值的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:59
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:58
@@ -4791,16 +4643,12 @@ msgid "Matches families whose notes contain text matching a regular expression"
 msgstr "匹配笔记中含有匹配特定表达文字的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "家庭中父亲的名字为<name>"
+msgstr "注释类型为 <type> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "匹配特定筛选名称的家庭"
+msgstr "匹配具有特定类型注释的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -4834,14 +4682,12 @@ msgid "Matches families with a certain number of sources connected to it"
 msgstr "匹配含有一定数量来源相关联的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:48
-#, fuzzy
 msgid "Families with the <source>"
-msgstr "家庭事件为<event>"
+msgstr "带有 <source> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:50
-#, fuzzy
 msgid "Matches families who have a particular source"
-msgstr "匹配 拥有特定配偶的成员"
+msgstr "匹配拥有特定源的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:52
 msgid "Families with the <tag>"
@@ -4870,14 +4716,12 @@ msgid "Inclusive:"
 msgstr "包含："
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:64
-#, fuzzy
 msgid "Ancestor families of <family>"
-msgstr "匹配 <filter> 的先辈们"
+msgstr "<family> 的祖先家庭"
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:66
-#, fuzzy
 msgid "Matches ancestor families of the specified family"
-msgstr "匹配特定筛选名称的家庭"
+msgstr "匹配指定家庭的祖先家庭"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:56
 msgid "Bookmarked families"
@@ -4888,14 +4732,12 @@ msgid "Matches the families on the bookmark list"
 msgstr "匹配在书签列表中的家庭"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:64
-#, fuzzy
 msgid "Descendant families of <family>"
-msgstr "%s 的后代家庭"
+msgstr "<family> 的后代家庭"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:66
-#, fuzzy
 msgid "Matches descendant families of the specified family"
-msgstr "匹配某个成员的所有后代"
+msgstr "匹配指定家庭的后代家庭"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:46
 msgid "Families matching the <filter>"
@@ -4915,9 +4757,8 @@ msgid ""
 msgstr "匹配至少有一个直接的来源包含隐私等级的家庭"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:56
-#, fuzzy
 msgid "Families having mother with Id containing <text>"
-msgstr "拥有笔记中包含 <substring> 的家庭"
+msgstr "母亲 ID 名称包含 <text> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:57
 msgid "Matches families whose mother has a specified Gramps ID"
@@ -4960,9 +4801,8 @@ msgid ""
 msgstr "匹配父亲的名字符合特定规则表达的家庭"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
-#, fuzzy
 msgid "Families with Id containing <text>"
-msgstr "家庭事件为<event>"
+msgstr "ID 带有 <text> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:51
 msgid "Matches families whose Gramps ID matches the regular expression"
@@ -5029,14 +4869,12 @@ msgid "Matches media objects with the attribute of a particular value"
 msgstr "匹配含有特定数值属性的媒体对象"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:50
-#, fuzzy
 msgid "Media with the <citation>"
-msgstr "事件中数据位<data>"
+msgstr "带有 <citation> 的媒体"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:51
-#, fuzzy
 msgid "Matches media with a citation of a particular value"
-msgstr "匹配事件含有特定数值的家庭"
+msgstr "匹配引用中含有特定值的媒体"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:46
 msgid "Media object with <Id>"
@@ -5112,9 +4950,8 @@ msgid "Matches media with a certain number of sources connected to it"
 msgstr "匹配含有一定数量来源相关联的家庭"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:48
-#, fuzzy
 msgid "Media with the <source>"
-msgstr "成员，拥有来源 <source>"
+msgstr "拥有 <source> 的媒体"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:50
 #, fuzzy
@@ -5217,9 +5054,8 @@ msgid "Matches notes with the particular tag"
 msgstr "匹配符合特定标签的注释"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:57
-#, fuzzy
 msgid "Notes with the particular type"
-msgstr "符合特定类型的事件"
+msgstr "符合特定类型的注释"
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:46
 msgid "Notes matching the <filter>"
@@ -5230,9 +5066,8 @@ msgid "Matches notes matched by the specified filter name"
 msgstr "符合特定筛选名称的笔记"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:54
-#, fuzzy
 msgid "Notes containing <text>"
-msgstr "笔记包含字串"
+msgstr "包含 <text> 的注释"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:56
 msgid "Matches notes that contain a substring or match a regular expression"
@@ -6467,7 +6302,7 @@ msgstr "匹配出生日期符合特定值的成员"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:94
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "无法使用“在区域中”进行筛选"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:96
 msgid ""
@@ -7050,8 +6885,8 @@ msgstr "种姓，阶级"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:914 ../gramps/gui/glade/styleeditor.glade:276
-#: ../gramps/gui/plug/_windows.py:1069 ../gramps/gui/plug/_windows.py:1184
-#: ../gramps/gui/plug/_windows.py:1641 ../gramps/gui/plug/_windows.py:2134
+#: ../gramps/gui/plug/_windows.py:1076 ../gramps/gui/plug/_windows.py:1191
+#: ../gramps/gui/plug/_windows.py:1648 ../gramps/gui/plug/_windows.py:2141
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -7332,9 +7167,8 @@ msgstr "来源属性"
 #: ../gramps/gen/lib/note.py:117 ../gramps/gen/lib/person.py:262
 #: ../gramps/gen/lib/place.py:204 ../gramps/gen/lib/repo.py:121
 #: ../gramps/gen/lib/src.py:128 ../gramps/gen/lib/tag.py:166
-#, fuzzy
 msgid "Last changed"
-msgstr "上次修订"
+msgstr "上次修改"
 
 #: ../gramps/gen/lib/citation.py:148 ../gramps/gen/lib/event.py:217
 #: ../gramps/gen/lib/family.py:216 ../gramps/gen/lib/media.py:176
@@ -7346,7 +7180,7 @@ msgstr "上次修订"
 #: ../gramps/gui/glade/editmediaref.glade:728
 #: ../gramps/gui/glade/editnote.glade:278
 #: ../gramps/gui/glade/editperson.glade:677
-#: ../gramps/gui/selectors/selectnote.py:75
+#: ../gramps/gui/selectors/selectnote.py:74
 #: ../gramps/plugins/importer/importprogen.glade:561
 #: ../gramps/plugins/importer/importxml.py:358
 #: ../gramps/plugins/lib/libpersonview.py:113
@@ -7386,11 +7220,10 @@ msgid "unknown"
 msgstr "未知"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "大于 %s 年"
+msgstr[0] "大于 {number_of} 年"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -7539,9 +7372,8 @@ msgid "Modifier"
 msgstr "修饰符"
 
 #: ../gramps/gen/lib/date.py:791
-#, fuzzy
 msgid "Quality"
-msgstr "<b>准确度(_U)</b>"
+msgstr "质量"
 
 #: ../gramps/gen/lib/date.py:794 ../gramps/gui/editors/filtereditor.py:913
 #: ../gramps/gui/glade/rule.glade:949
@@ -7611,10 +7443,8 @@ msgid "from"
 msgstr "从"
 
 #: ../gramps/gen/lib/date.py:2007
-#, fuzzy
-#| msgid "Stop"
 msgid "to"
-msgstr "停止"
+msgstr "到"
 
 #: ../gramps/gen/lib/date.py:2008
 msgid "span"
@@ -7653,7 +7483,7 @@ msgstr "事件"
 #: ../gramps/gui/editors/filtereditor.py:312
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:117
 #: ../gramps/gui/glade/editevent.glade:271 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_guioptions.py:1368
+#: ../gramps/gui/plug/_guioptions.py:1373
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/gui/views/treemodels/placemodel.py:350
 #: ../gramps/plugins/export/exportcsv.py:307
@@ -7742,10 +7572,8 @@ msgid "Informant"
 msgstr "线人"
 
 #: ../gramps/gen/lib/eventroletype.py:82
-#, fuzzy
-#| msgid "parent2"
 msgid "Godparent"
-msgstr "父母 2"
+msgstr "教父教母"
 
 #: ../gramps/gen/lib/eventroletype.py:83 ../gramps/gen/lib/family.py:169
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
@@ -7811,24 +7639,20 @@ msgid "Child"
 msgstr "子女"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "多个父母"
+msgstr "多胎"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "朋友"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "近邻社区 (Neighborhood)"
+msgstr "邻居"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "司仪"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -7864,9 +7688,8 @@ msgid "Family"
 msgstr "家庭"
 
 #: ../gramps/gen/lib/eventtype.py:171
-#, fuzzy
 msgid "Religious"
-msgstr "宗教信仰"
+msgstr "宗教"
 
 #: ../gramps/gen/lib/eventtype.py:184
 msgid "Vocational"
@@ -8424,13 +8247,13 @@ msgstr "民事结合"
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:105
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
-#: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:232
-#: ../gramps/gui/plug/_windows.py:1058 ../gramps/gui/plug/_windows.py:1181
-#: ../gramps/gui/plug/_windows.py:2132
+#: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:238
+#: ../gramps/gui/plug/_windows.py:1065 ../gramps/gui/plug/_windows.py:1188
+#: ../gramps/gui/plug/_windows.py:2139
 #: ../gramps/gui/plug/report/_bookdialog.py:397
 #: ../gramps/gui/plug/report/_bookdialog.py:401
 #: ../gramps/gui/selectors/selectevent.py:67
-#: ../gramps/gui/selectors/selectnote.py:74
+#: ../gramps/gui/selectors/selectnote.py:73
 #: ../gramps/gui/selectors/selectobject.py:82
 #: ../gramps/gui/selectors/selectplace.py:70
 #: ../gramps/plugins/export/exportcsv.py:310
@@ -8515,9 +8338,8 @@ msgid "Completed"
 msgstr "完成"
 
 #: ../gramps/gen/lib/ldsord.py:108
-#, fuzzy
 msgid "Do not seal"
-msgstr "不要缩放报告"
+msgstr "不要密封"
 
 #: ../gramps/gen/lib/ldsord.py:109
 msgid "Infant"
@@ -8532,9 +8354,8 @@ msgid "Qualified"
 msgstr "合格的"
 
 #: ../gramps/gen/lib/ldsord.py:112
-#, fuzzy
 msgid "Do not seal/Cancel"
-msgstr "不要再次询问"
+msgstr "不要密封/取消"
 
 #: ../gramps/gen/lib/ldsord.py:113
 msgid "Stillborn"
@@ -8568,8 +8389,8 @@ msgstr "圣殿"
 #: ../gramps/gen/lib/ldsord.py:204 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1062
-#: ../gramps/gui/plug/_windows.py:1124
+#: ../gramps/gui/plug/_windows.py:242 ../gramps/gui/plug/_windows.py:1069
+#: ../gramps/gui/plug/_windows.py:1131
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:532
 #: ../gramps/plugins/textreport/indivcomplete.py:737
@@ -8579,7 +8400,7 @@ msgid "Status"
 msgstr "状态"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gui/clipboard.py:338
-#: ../gramps/gui/plug/_windows.py:1646
+#: ../gramps/gui/plug/_windows.py:1653
 msgid "Location"
 msgstr "位置"
 
@@ -8630,10 +8451,10 @@ msgstr "地区 (Region)"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:160
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1065
-#: ../gramps/gui/plug/_windows.py:2133
+#: ../gramps/gui/plug/_guioptions.py:1190 ../gramps/gui/plug/_windows.py:1072
+#: ../gramps/gui/plug/_windows.py:2140
 #: ../gramps/gui/plug/report/_bookdialog.py:397
-#: ../gramps/gui/selectors/selectperson.py:99
+#: ../gramps/gui/selectors/selectperson.py:106
 #: ../gramps/gui/selectors/selectplace.py:68
 #: ../gramps/gui/views/bookmarks.py:299 ../gramps/gui/views/tags.py:480
 #: ../gramps/gui/views/treemodels/peoplemodel.py:637
@@ -8900,7 +8721,7 @@ msgstr "格式"
 #: ../gramps/gui/glade/editplaceref.glade:178
 #: ../gramps/gui/glade/editplaceref.glade:690
 #: ../gramps/gui/glade/editreporef.glade:232
-#: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:734
+#: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:741
 #: ../gramps/plugins/tool/verify.glade:426
 msgid "General"
 msgstr "一般"
@@ -8910,10 +8731,8 @@ msgid "Research"
 msgstr "调查"
 
 #: ../gramps/gen/lib/notetype.py:88
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "分析姓名"
+msgstr "分析"
 
 #: ../gramps/gen/lib/notetype.py:89
 msgid "Transcript"
@@ -9014,7 +8833,7 @@ msgstr "孩子参照笔记"
 #: ../gramps/gen/lib/person.py:196 ../gramps/gui/editors/editfamily.py:140
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:162
 #: ../gramps/gui/merge/mergeperson.py:199
-#: ../gramps/gui/selectors/selectperson.py:101
+#: ../gramps/gui/selectors/selectperson.py:108
 #: ../gramps/plugins/drawreport/statisticschart.py:378
 #: ../gramps/plugins/export/exportcsv.py:427
 #: ../gramps/plugins/importer/importcsv.py:234
@@ -9457,10 +9276,8 @@ msgstr ""
 
 #: ../gramps/gen/lib/styledtexttagtype.py:76
 #: ../gramps/gui/widgets/styledtexteditor.py:84
-#, fuzzy
-#| msgid "Superscript"
 msgid "Subscript"
-msgstr "上标"
+msgstr "下标"
 
 #: ../gramps/gen/lib/surname.py:113 ../gramps/gen/lib/surname.py:116
 #: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/clipboard.py:617
@@ -9469,7 +9286,7 @@ msgstr "上标"
 #: ../gramps/gui/configure.py:1093 ../gramps/gui/configure.py:1094
 #: ../gramps/gui/configure.py:1095 ../gramps/gui/configure.py:1096
 #: ../gramps/gui/editors/displaytabs/surnametab.py:80
-#: ../gramps/gui/plug/_guioptions.py:92 ../gramps/gui/plug/_guioptions.py:1520
+#: ../gramps/gui/plug/_guioptions.py:92 ../gramps/gui/plug/_guioptions.py:1525
 #: ../gramps/plugins/drawreport/statisticschart.py:368
 #: ../gramps/plugins/export/exportcsv.py:420
 #: ../gramps/plugins/importer/importcsv.py:197
@@ -9501,7 +9318,7 @@ msgstr "%(first)s %(second)s"
 #: ../gramps/gen/lib/tag.py:159 ../gramps/gen/plug/docgen/treedoc.py:252
 #: ../gramps/gui/glade/styleeditor.glade:397
 #: ../gramps/gui/glade/styleeditor.glade:1482
-#: ../gramps/gui/plug/_guioptions.py:1521 ../gramps/gui/views/tags.py:481
+#: ../gramps/gui/plug/_guioptions.py:1526 ../gramps/gui/views/tags.py:481
 msgid "Color"
 msgstr "颜色"
 
@@ -9613,6 +9430,8 @@ msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
 "  but is not known to the module.  Ignoring..."
 msgstr ""
+"'%(opt_name)s' 选项在 %(file)s 中出现\n"
+"  但模块无法识别。  忽略..."
 
 #: ../gramps/gen/plug/_pluginreg.py:69
 msgid "Unstable"
@@ -9707,10 +9526,8 @@ msgid "Thumbnailer"
 msgstr "缩略图"
 
 #: ../gramps/gen/plug/_pluginreg.py:134 ../gramps/gui/configure.py:1663
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Citation formatter"
-msgstr "出版信息"
+msgstr "格式化引用"
 
 #: ../gramps/gen/plug/_pluginreg.py:645
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
@@ -9757,21 +9574,21 @@ msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr "错误: Python 文件 %(filename)s 在注册的文件 %(regfile)s 中不存在"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:142
+#: ../gramps/gen/plug/docbackend/docbackend.py:141
 msgid "Close file first"
 msgstr "先关闭文档"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:152
+#: ../gramps/gen/plug/docbackend/docbackend.py:151
 msgid "No filename given"
 msgstr "未指出文件名"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:155
+#: ../gramps/gen/plug/docbackend/docbackend.py:154
 #, python-format
 msgid "File %s already open, close it first."
 msgstr "文件 %s 已打开，请先关闭。"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:161
-#: ../gramps/gen/plug/docbackend/docbackend.py:164
+#: ../gramps/gen/plug/docbackend/docbackend.py:160
+#: ../gramps/gen/plug/docbackend/docbackend.py:163
 #: ../gramps/gen/plug/docgen/treedoc.py:832
 #: ../gramps/gen/utils/docgen/odstab.py:344
 #: ../gramps/gen/utils/docgen/odstab.py:346
@@ -9786,8 +9603,8 @@ msgstr "文件 %s 已打开，请先关闭。"
 #: ../gramps/gen/utils/docgen/odstab.py:495
 #: ../gramps/gen/utils/docgen/odstab.py:498
 #: ../gramps/plugins/docgen/asciidoc.py:185
-#: ../gramps/plugins/docgen/cairodoc.py:210
-#: ../gramps/plugins/docgen/cairodoc.py:213
+#: ../gramps/plugins/docgen/cairodoc.py:209
+#: ../gramps/plugins/docgen/cairodoc.py:212
 #: ../gramps/plugins/docgen/odfdoc.py:1194
 #: ../gramps/plugins/docgen/odfdoc.py:1197
 #: ../gramps/plugins/docgen/rtfdoc.py:102
@@ -9804,10 +9621,10 @@ msgstr "文件 %s 已打开，请先关闭。"
 #: ../gramps/plugins/export/exportvcalendar.py:127
 #: ../gramps/plugins/export/exportvcard.py:74
 #: ../gramps/plugins/export/exportvcard.py:78
-#: ../gramps/plugins/lib/libhtmlbackend.py:259
-#: ../gramps/plugins/lib/libhtmlbackend.py:262
-#: ../gramps/plugins/lib/libhtmlbackend.py:267
-#: ../gramps/plugins/lib/libhtmlbackend.py:270
+#: ../gramps/plugins/lib/libhtmlbackend.py:258
+#: ../gramps/plugins/lib/libhtmlbackend.py:261
+#: ../gramps/plugins/lib/libhtmlbackend.py:266
+#: ../gramps/plugins/lib/libhtmlbackend.py:269
 #: ../gramps/plugins/webreport/narrativeweb.py:418
 #, python-format
 msgid "Could not create %s"
@@ -10655,9 +10472,8 @@ msgid "Include"
 msgstr "包含"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
-#, fuzzy
 msgid "Whether to include tags"
-msgstr "是否包含图像."
+msgstr "是否包含标签"
 
 #: ../gramps/gen/plug/report/stdoptions.py:397
 #, fuzzy
@@ -10685,16 +10501,12 @@ msgid "Select the format to display places"
 msgstr "选择地点显示格式"
 
 #: ../gramps/gen/plug/report/stdoptions.py:425 ../gramps/gui/configure.py:1462
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "日期格式"
+msgstr "坐标格式"
 
 #: ../gramps/gen/plug/report/stdoptions.py:428
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "选择用于显示姓名的格式"
+msgstr "选择用于坐标显示的格式"
 
 #: ../gramps/gen/plug/report/utils.py:184
 #: ../gramps/plugins/textreport/indivcomplete.py:947
@@ -10749,15 +10561,15 @@ msgstr "%s 的祖先"
 msgid "People with common ancestor with %s"
 msgstr "和 %s 拥有共同祖先的人"
 
-#: ../gramps/gen/plug/report/utils.py:389 ../gramps/gui/plug/_guioptions.py:903
+#: ../gramps/gen/plug/report/utils.py:389 ../gramps/gui/plug/_guioptions.py:908
 msgid "unknown father"
 msgstr "未知父亲"
 
-#: ../gramps/gen/plug/report/utils.py:395 ../gramps/gui/plug/_guioptions.py:909
+#: ../gramps/gen/plug/report/utils.py:395 ../gramps/gui/plug/_guioptions.py:914
 msgid "unknown mother"
 msgstr "未知母亲"
 
-#: ../gramps/gen/plug/report/utils.py:397 ../gramps/gui/plug/_guioptions.py:911
+#: ../gramps/gen/plug/report/utils.py:397 ../gramps/gui/plug/_guioptions.py:916
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s 和 %(mother_name)s (%(family_id)s)"
@@ -11012,13 +10824,13 @@ msgstr "日期"
 
 #: ../gramps/gen/utils/alive.py:213 ../gramps/gen/utils/alive.py:244
 msgid "date fallback"
-msgstr ""
+msgstr "后备日期"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
 #, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
-msgstr ""
+msgstr "此人员的直接证据：出生：{birth_min_src}，去世：{death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 #, fuzzy
@@ -11083,7 +10895,7 @@ msgstr "先辈出生日期"
 msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
-msgstr ""
+msgstr "从父母和兄弟姐妹的信息推理 - 出生：{birth_min_src}，去世：{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -11091,6 +10903,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"从父母和兄弟姐妹的信息推理 - 出生：{birth_min_src} （最早）{birth_max_src}"
+"（最晚），去世：{death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11461,11 +11275,11 @@ msgstr "度、分、秒表示法："
 
 #: ../gramps/gen/utils/place.py:102
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "角度标记，4 位小数"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "角度标记，8 位小数（精度像 ISO-DMS）"
 
 #: ../gramps/gen/utils/place.py:104
 msgid "Output format for the Swedish coordinate system RT90"
@@ -11966,7 +11780,7 @@ msgid "installed"
 msgstr "已安装"
 
 #: ../gramps/grampsapp.py:625 ../gramps/grampsapp.py:634
-#: ../gramps/grampsapp.py:689
+#: ../gramps/grampsapp.py:684
 msgid "Configuration error:"
 msgstr "配置错误："
 
@@ -12023,7 +11837,8 @@ msgstr ""
 "十分感谢！\n"
 "YH Tan, 2014\n"
 "霍东灵 Anthony Fok <foka@debian.org>, 2015\n"
-"Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021,2022,2023\n"
+"Shixiong Tian <tiansworld@fedoraproject.org>, 2020, "
+"2021,2022,2023,2024,2025\n"
 "快乐的老鼠宝宝 LaoshuBaby <laoshubaby@protonmail.com>, 2022, 2023"
 
 #: ../gramps/gui/aboutdialog.py:164
@@ -12118,6 +11933,8 @@ msgstr "拖放条栏改变顺序"
 #: ../gramps/gui/plug/_dialogs.py:146 ../gramps/gui/viewmanager.py:1947
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
+#: ../gramps/plugins/tool/eventcmp.glade:189
+#: ../gramps/plugins/tool/notrelated.glade:141
 msgid "_Apply"
 msgstr "应用(_A)"
 
@@ -12158,14 +11975,23 @@ msgstr "显示名称编辑器"
 #: ../gramps/gui/glade/plugins.glade:37 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1006 ../gramps/gui/glade/tipofday.glade:128
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:389 ../gramps/gui/plug/_windows.py:1035
-#: ../gramps/gui/plug/_windows.py:1709 ../gramps/gui/plug/_windows.py:1769
+#: ../gramps/gui/plug/_windows.py:395 ../gramps/gui/plug/_windows.py:1042
+#: ../gramps/gui/plug/_windows.py:1716 ../gramps/gui/plug/_windows.py:1776
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:708
 #: ../gramps/gui/widgets/grampletpane.py:258
 #: ../gramps/plugins/lib/maps/placeselection.py:122
 #: ../gramps/plugins/tool/dumpgenderstats.py:86
+#: ../gramps/plugins/tool/eventcmp.glade:21
+#: ../gramps/plugins/tool/eventcmp.glade:173
+#: ../gramps/plugins/tool/finddupes.glade:242
+#: ../gramps/plugins/tool/notrelated.glade:21
+#: ../gramps/plugins/tool/relcalc.glade:22
+#: ../gramps/plugins/tool/removespaces.glade:23
+#: ../gramps/plugins/tool/removeunused.glade:36
+#: ../gramps/plugins/tool/verify.glade:126
+#: ../gramps/plugins/tool/verify.glade:850
 msgid "_Close"
 msgstr "关闭(_C)"
 
@@ -12250,9 +12076,9 @@ msgstr "无效的或不完整的格式定义。"
 #: ../gramps/gui/configure.py:1658 ../gramps/gui/configure.py:1663
 #: ../gramps/gui/configure.py:1684 ../gramps/gui/configure.py:1700
 #: ../gramps/gui/configure.py:2133 ../gramps/gui/configure.py:2251
-#: ../gramps/gui/configure.py:2340 ../gramps/gui/plug/_windows.py:783
-#: ../gramps/gui/plug/_windows.py:803 ../gramps/gui/plug/_windows.py:839
-#: ../gramps/gui/plug/_windows.py:847 ../gramps/gui/views/navigationview.py:351
+#: ../gramps/gui/configure.py:2340 ../gramps/gui/plug/_windows.py:790
+#: ../gramps/gui/plug/_windows.py:810 ../gramps/gui/plug/_windows.py:846
+#: ../gramps/gui/plug/_windows.py:854 ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:111
 #, python-format
 msgid "%s: "
@@ -12298,14 +12124,27 @@ msgstr "%s： "
 #: ../gramps/gui/glade/mergesource.glade:51
 #: ../gramps/gui/glade/reorder.glade:51 ../gramps/gui/glade/rule.glade:40
 #: ../gramps/gui/glade/rule.glade:342 ../gramps/gui/glade/rule.glade:766
-#: ../gramps/gui/grampsgui.py:58 ../gramps/gui/logger/_errorview.py:190
-#: ../gramps/gui/plug/_windows.py:390
+#: ../gramps/gui/glade/styleeditor.glade:119
+#: ../gramps/gui/glade/styleeditor.glade:1803 ../gramps/gui/grampsgui.py:58
+#: ../gramps/gui/logger/_errorview.py:190 ../gramps/gui/plug/_windows.py:396
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
 #: ../gramps/gui/widgets/grampletbar.py:712
 #: ../gramps/gui/widgets/grampletpane.py:264
 #: ../gramps/plugins/importer/importprogen.glade:61
+#: ../gramps/plugins/tool/changenames.glade:72
+#: ../gramps/plugins/tool/eventcmp.glade:53
+#: ../gramps/plugins/tool/eventcmp.glade:205
+#: ../gramps/plugins/tool/finddupes.glade:60
+#: ../gramps/plugins/tool/finddupes.glade:274
+#: ../gramps/plugins/tool/mergecitations.glade:60
+#: ../gramps/plugins/tool/notrelated.glade:37
+#: ../gramps/plugins/tool/ownereditor.glade:53
+#: ../gramps/plugins/tool/patchnames.glade:21
+#: ../gramps/plugins/tool/relcalc.glade:37
+#: ../gramps/plugins/tool/removespaces.glade:40
+#: ../gramps/plugins/tool/reorderids.glade:213
 #: ../gramps/plugins/tool/testcasegenerator.py:396
 msgid "_Help"
 msgstr "帮助(_H)"
@@ -12324,7 +12163,7 @@ msgstr "县/郡"
 msgid "ZIP/Postal Code"
 msgstr "邮编"
 
-#: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1644
+#: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1651
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
 msgstr "电子邮件"
@@ -12485,7 +12324,7 @@ msgstr "导出到 GEDCOM 时不提示关于缺少研究者的警告"
 
 #: ../gramps/gui/configure.py:1040
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "取消工具提示关于数据被立即保存的警告"
 
 #: ../gramps/gui/configure.py:1048
 msgid "Show plugin status dialog on plugin load error"
@@ -12572,7 +12411,7 @@ msgstr "显示(_D)"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:511 ../gramps/gui/glade/rule.glade:452
 #: ../gramps/gui/glade/styleeditor.glade:1932
-#: ../gramps/gui/plug/_windows.py:1088 ../gramps/gui/plug/_windows.py:1147
+#: ../gramps/gui/plug/_windows.py:1095 ../gramps/gui/plug/_windows.py:1154
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -12663,6 +12502,7 @@ msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"非闰年时，纪念日显示在 2 月 28 日或 3 月 1 日，或者干脆不在格里高利历中显示。"
 
 #: ../gramps/gui/configure.py:1640
 #, fuzzy
@@ -12897,11 +12737,11 @@ msgstr "在工具栏上显示或隐藏工具图标。"
 
 #: ../gramps/gui/configure.py:2098
 msgid "Show Addons icon on toolbar"
-msgstr ""
+msgstr "在工具栏中显示加载项的图标"
 
 #: ../gramps/gui/configure.py:2103
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr ""
+msgstr "在工具条栏显示或隐藏加载项图标。"
 
 #: ../gramps/gui/configure.py:2111
 msgid "Show Preferences icon on toolbar"
@@ -12913,7 +12753,7 @@ msgstr "在工具栏上显示或隐藏偏好设置图标。"
 
 #: ../gramps/gui/configure.py:2124
 msgid "Both text and icons"
-msgstr ""
+msgstr "文字和图标"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
@@ -12927,7 +12767,7 @@ msgstr "仅新插件"
 
 #: ../gramps/gui/configure.py:2131
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "在工具栏按钮上显示文字或图标，或者全部显示。"
 
 #: ../gramps/gui/configure.py:2133
 #, fuzzy
@@ -13181,18 +13021,25 @@ msgstr "选择媒体目录"
 #: ../gramps/gui/glade/rule.glade:734 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1770
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:857
-#: ../gramps/gui/plug/_windows.py:1420
+#: ../gramps/gui/plug/_guioptions.py:1762 ../gramps/gui/plug/_windows.py:864
+#: ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:267
-#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1256
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
 #: ../gramps/gui/widgets/progressdialog.py:441
 #: ../gramps/plugins/importer/importprogen.glade:28
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
+#: ../gramps/plugins/tool/changenames.glade:88
+#: ../gramps/plugins/tool/changetypes.glade:22
 #: ../gramps/plugins/tool/check.py:830 ../gramps/plugins/tool/eventcmp.py:410
+#: ../gramps/plugins/tool/finddupes.glade:28
+#: ../gramps/plugins/tool/mergecitations.glade:28
+#: ../gramps/plugins/tool/ownereditor.glade:21
+#: ../gramps/plugins/tool/patchnames.glade:37
 #: ../gramps/plugins/tool/populatesources.py:99
+#: ../gramps/plugins/tool/reorderids.glade:181
 #: ../gramps/plugins/tool/testcasegenerator.py:394
 msgid "_Cancel"
 msgstr "取消(_C)"
@@ -13286,6 +13133,8 @@ msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"修改立即生效。\n"
+"这会在 CSV 格式下导出视图时使用。"
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
@@ -13472,11 +13321,18 @@ msgstr "数据库信息"
 #: ../gramps/gui/glade/reorder.glade:36 ../gramps/gui/glade/rule.glade:325
 #: ../gramps/gui/glade/rule.glade:750 ../gramps/gui/glade/styleeditor.glade:102
 #: ../gramps/gui/glade/styleeditor.glade:1786
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:857
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:864
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:281
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
-#: ../gramps/plugins/tool/check.py:830 ../gramps/plugins/tool/patchnames.py:152
+#: ../gramps/plugins/importer/importgedcom.glade:46
+#: ../gramps/plugins/tool/changetypes.glade:38
+#: ../gramps/plugins/tool/check.py:830
+#: ../gramps/plugins/tool/finddupes.glade:44
+#: ../gramps/plugins/tool/mergecitations.glade:44
+#: ../gramps/plugins/tool/ownereditor.glade:37
+#: ../gramps/plugins/tool/patchnames.py:152
 #: ../gramps/plugins/tool/populatesources.py:99
+#: ../gramps/plugins/tool/reorderids.glade:197
 #: ../gramps/plugins/tool/testcasegenerator.py:395
 msgid "_OK"
 msgstr "确认(_O)"
@@ -13800,7 +13656,7 @@ msgstr "工具"
 msgid "Open Addon Manager"
 msgstr "插件管理器"
 
-#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:474
+#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:480
 #, fuzzy
 #| msgid "Addon Name"
 msgid "Addons"
@@ -14015,14 +13871,14 @@ msgstr "属性(_A)"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:112
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:194
-#: ../gramps/gui/plug/_guioptions.py:1186
-#: ../gramps/gui/plug/_guioptions.py:1369
+#: ../gramps/gui/plug/_guioptions.py:1191
+#: ../gramps/gui/plug/_guioptions.py:1374
 #: ../gramps/gui/selectors/selectcitation.py:74
 #: ../gramps/gui/selectors/selectevent.py:72
 #: ../gramps/gui/selectors/selectfamily.py:67
-#: ../gramps/gui/selectors/selectnote.py:73
+#: ../gramps/gui/selectors/selectnote.py:72
 #: ../gramps/gui/selectors/selectobject.py:81
-#: ../gramps/gui/selectors/selectperson.py:100
+#: ../gramps/gui/selectors/selectperson.py:107
 #: ../gramps/gui/selectors/selectplace.py:69
 #: ../gramps/gui/selectors/selectrepository.py:68
 #: ../gramps/gui/selectors/selectsource.py:70
@@ -14167,13 +14023,13 @@ msgstr "来源引用(_S)"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:344
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:320
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:376
-#: ../gramps/plugins/view/citationtreeview.py:622
-#: ../gramps/plugins/view/citationtreeview.py:646
+#: ../gramps/plugins/view/citationtreeview.py:624
+#: ../gramps/plugins/view/citationtreeview.py:648
 msgid "Cannot share this reference"
 msgstr "无法共享此参照"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:235
-#: ../gramps/plugins/view/citationtreeview.py:656
+#: ../gramps/plugins/view/citationtreeview.py:658
 msgid ""
 "This citation cannot be created at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -14369,14 +14225,14 @@ msgid "Set as Preferred name"
 msgstr "首选姓名"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
+#: ../gramps/gui/plug/_guioptions.py:1273 ../gramps/gui/plug/_windows.py:946
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr "是"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:940
+#: ../gramps/gui/plug/_guioptions.py:1271 ../gramps/gui/plug/_windows.py:947
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
@@ -14420,7 +14276,7 @@ msgstr "下移所选注释"
 #: ../gramps/gui/glade/editmedia.glade:186
 #: ../gramps/gui/glade/editmediaref.glade:191
 #: ../gramps/gui/glade/editmediaref.glade:505
-#: ../gramps/gui/selectors/selectnote.py:72
+#: ../gramps/gui/selectors/selectnote.py:71
 #: ../gramps/plugins/view/noteview.py:82
 msgid "Preview"
 msgstr "预览"
@@ -14929,7 +14785,7 @@ msgid "Maternal"
 msgstr "母亲"
 
 #: ../gramps/gui/editors/editfamily.py:143
-#: ../gramps/gui/selectors/selectperson.py:102
+#: ../gramps/gui/selectors/selectperson.py:109
 #: ../gramps/plugins/gramplet/children.py:109
 #: ../gramps/plugins/gramplet/children.py:220
 #: ../gramps/plugins/lib/libpersonview.py:103
@@ -14951,7 +14807,7 @@ msgid "Birth Date"
 msgstr "出生日期"
 
 #: ../gramps/gui/editors/editfamily.py:144
-#: ../gramps/gui/selectors/selectperson.py:104
+#: ../gramps/gui/selectors/selectperson.py:111
 #: ../gramps/plugins/gramplet/children.py:111
 #: ../gramps/plugins/gramplet/children.py:222
 #: ../gramps/plugins/lib/libpersonview.py:105
@@ -14962,13 +14818,13 @@ msgid "Death Date"
 msgstr "去世日期"
 
 #: ../gramps/gui/editors/editfamily.py:145
-#: ../gramps/gui/selectors/selectperson.py:103
+#: ../gramps/gui/selectors/selectperson.py:110
 #: ../gramps/plugins/lib/libpersonview.py:104
 msgid "Birth Place"
 msgstr "出生地点"
 
 #: ../gramps/gui/editors/editfamily.py:146
-#: ../gramps/gui/selectors/selectperson.py:105
+#: ../gramps/gui/selectors/selectperson.py:112
 #: ../gramps/plugins/lib/libpersonview.py:106
 msgid "Death Place"
 msgstr "去世地点"
@@ -15029,7 +14885,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:571
 #: ../gramps/plugins/importer/importcsv.py:360
-#: ../gramps/plugins/view/familyview.py:410
+#: ../gramps/plugins/view/familyview.py:412
 msgid "family"
 msgstr "家庭"
 
@@ -16048,7 +15904,7 @@ msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "选择媒体，使用拖放功能或按钮"
 
 #: ../gramps/gui/editors/objectentries.py:518
-#: ../gramps/gui/plug/_guioptions.py:1123
+#: ../gramps/gui/plug/_guioptions.py:1128
 msgid "No image given, click button to select one"
 msgstr "未指定图像，点击按钮选择"
 
@@ -16057,7 +15913,7 @@ msgid "Edit media object"
 msgstr "编辑媒体对象"
 
 #: ../gramps/gui/editors/objectentries.py:520
-#: ../gramps/gui/plug/_guioptions.py:1101
+#: ../gramps/gui/plug/_guioptions.py:1106
 msgid "Select an existing media object"
 msgstr "选择一个现有媒体对象"
 
@@ -16075,12 +15931,12 @@ msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "选择注释，使用拖放功能或按钮"
 
 #: ../gramps/gui/editors/objectentries.py:588
-#: ../gramps/gui/plug/_guioptions.py:1021
+#: ../gramps/gui/plug/_guioptions.py:1026
 msgid "No note given, click button to select one"
 msgstr "未指定注释，点击按钮选择"
 
 #: ../gramps/gui/editors/objectentries.py:590
-#: ../gramps/gui/plug/_guioptions.py:996
+#: ../gramps/gui/plug/_guioptions.py:1001
 msgid "Select an existing note"
 msgstr "选择一个现有的注释"
 
@@ -16093,38 +15949,39 @@ msgstr "新增一项注释"
 msgid "Remove note"
 msgstr "移除注释"
 
-#: ../gramps/gui/filters/_searchbar.py:59
+#: ../gramps/gui/filters/_searchbar.py:60
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:78
+#: ../gramps/plugins/tool/removeunused.glade:213
 msgid "_Find"
 msgstr "查找(_F)"
 
-#: ../gramps/gui/filters/_searchbar.py:60
+#: ../gramps/gui/filters/_searchbar.py:61
 #: ../gramps/gui/glade/clipboard.glade:53 ../gramps/gui/undohistory.py:87
 msgid "_Clear"
 msgstr "清除(_C)"
 
-#: ../gramps/gui/filters/_searchbar.py:109
+#: ../gramps/gui/filters/_searchbar.py:114
 #, python-format
 msgid "%s is"
 msgstr "%s 是"
 
-#: ../gramps/gui/filters/_searchbar.py:111
+#: ../gramps/gui/filters/_searchbar.py:116
 #, python-format
 msgid "%s contains"
 msgstr "%s 包含"
 
-#: ../gramps/gui/filters/_searchbar.py:115
+#: ../gramps/gui/filters/_searchbar.py:120
 #, python-format
 msgid "%s is not"
 msgstr "%s 不是"
 
-#: ../gramps/gui/filters/_searchbar.py:117
+#: ../gramps/gui/filters/_searchbar.py:122
 #, python-format
 msgid "%s does not contain"
 msgstr "%s 不包含"
 
-#: ../gramps/gui/filters/_searchbar.py:170 ../gramps/gui/views/listview.py:1379
-#: ../gramps/gui/views/listview.py:1399 ../gramps/plugins/gramplet/leak.py:201
+#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1384
+#: ../gramps/gui/views/listview.py:1404 ../gramps/plugins/gramplet/leak.py:201
 #: ../gramps/plugins/gramplet/leak.py:208
 msgid "Updating display..."
 msgstr "正在更新显示...."
@@ -16223,7 +16080,7 @@ msgid "Within"
 msgstr "使用(_W)"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
-#: ../gramps/gui/plug/_windows.py:847
+#: ../gramps/gui/plug/_windows.py:854
 msgid "URL"
 msgstr "URL"
 
@@ -16242,7 +16099,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:93
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
-msgstr ""
+msgstr "这会打开对话框来按照给定值增加一个新的自定义筛选。"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16251,20 +16108,20 @@ msgstr "重设"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "耗时：%.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:379
 msgid "You should select a place when using the 'Within' rule"
-msgstr ""
+msgstr "使用“在……之内”规则时需要选择一个地点"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:389
 msgid "Supply at least one value"
-msgstr ""
+msgstr "提供至少一个值"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:404
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "由筛选器 gramplet 在 {today} 创建"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -16290,19 +16147,20 @@ msgid "Show all"
 msgstr "显示所有"
 
 #: ../gramps/gui/glade/baseselector.glade:137
-#: ../gramps/gui/views/treemodels/treebasemodel.py:568
-#: ../gramps/gui/views/treemodels/treebasemodel.py:617
+#: ../gramps/gui/views/treemodels/treebasemodel.py:562
+#: ../gramps/gui/views/treemodels/treebasemodel.py:611
 msgid "Loading items..."
 msgstr "正在载入项目…"
 
 #: ../gramps/gui/glade/book.glade:22 ../gramps/gui/glade/dbman.glade:269
-#: ../gramps/gui/views/listview.py:608
+#: ../gramps/gui/views/listview.py:613
 #: ../gramps/plugins/lib/libpersonview.py:254
 #: ../gramps/plugins/lib/libpersonview.py:332
 #: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/lib/libplaceview.py:333
 #: ../gramps/plugins/lib/libplaceview.py:393
 #: ../gramps/plugins/lib/libplaceview.py:447
+#: ../gramps/plugins/tool/removeunused.glade:20
 #: ../gramps/plugins/view/citationlistview.py:220
 #: ../gramps/plugins/view/citationlistview.py:280
 #: ../gramps/plugins/view/citationlistview.py:333
@@ -16501,7 +16359,7 @@ msgstr ""
 msgid "Cancel the rest of the operations"
 msgstr "取消其余操作"
 
-#: ../gramps/gui/glade/dialog.glade:469 ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/glade/dialog.glade:469 ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/tool/reorderids.glade:21
 msgid "_No"
 msgstr "否(_N)"
@@ -16511,7 +16369,7 @@ msgstr "否(_N)"
 msgid "Do not apply the operation to this item"
 msgstr "不要对此项目应用该操作"
 
-#: ../gramps/gui/glade/dialog.glade:485 ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/glade/dialog.glade:485 ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/tool/reorderids.glade:37
 msgid "_Yes"
 msgstr "是(_Y)"
@@ -16546,7 +16404,7 @@ msgstr "关闭不保存(_W)"
 
 #: ../gramps/gui/glade/dialog.glade:935
 #: ../gramps/gui/plug/report/_bookdialog.py:649
-#: ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/views/listview.py:1256
 #: ../gramps/gui/widgets/grampletpane.py:614
 #: ../gramps/plugins/tool/eventcmp.py:410
 msgid "_Save"
@@ -17777,7 +17635,7 @@ msgid "Click to delete gramplet from view"
 msgstr "点击从视图中删除 gramplet"
 
 #: ../gramps/gui/glade/grampletpane.glade:141
-#: ../gramps/gui/views/listview.py:642
+#: ../gramps/gui/views/listview.py:647
 msgid "Delete"
 msgstr "删除"
 
@@ -17849,7 +17707,7 @@ msgid "_Merge and close"
 msgstr "合并且关闭(_M)"
 
 #: ../gramps/gui/glade/mergedata.glade:170
-#: ../gramps/gui/glade/mergedata.glade:185 ../gramps/gui/plug/_windows.py:2126
+#: ../gramps/gui/glade/mergedata.glade:185 ../gramps/gui/plug/_windows.py:2133
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -17969,7 +17827,7 @@ msgid "Note 2"
 msgstr "注释 2"
 
 #: ../gramps/gui/glade/mergenote.glade:270
-#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1261
 msgid "Format:"
 msgstr "格式："
 
@@ -18477,6 +18335,7 @@ msgid "_Display on startup"
 msgstr "启动时显示(_D)"
 
 #: ../gramps/gui/glade/tipofday.glade:112
+#: ../gramps/plugins/docgen/gtkprint.glade:93
 #: ../gramps/plugins/lib/libpersonview.py:234
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libplaceview.py:319
@@ -18522,7 +18381,7 @@ msgid "Install Selected _Addons"
 msgstr "安装所选的插件"
 
 #: ../gramps/gui/glade/updateaddons.glade:70
-#: ../gramps/gui/plug/_windows.py:2103
+#: ../gramps/gui/plug/_windows.py:2110
 msgid "Available Gramps Updates for Addons"
 msgstr "可获取的Gramps 插件更新"
 
@@ -18670,7 +18529,7 @@ msgstr "插件管理器(_P)"
 msgid "_Preferences..."
 msgstr "首选项(_N)..."
 
-#: ../gramps/gui/grampsgui.py:58
+#: ../gramps/gui/grampsgui.py:58 ../gramps/plugins/docgen/gtkprint.glade:25
 msgid "_Quit"
 msgstr "退出(_Q)"
 
@@ -19105,7 +18964,7 @@ msgid "Spouses"
 msgstr "配偶"
 
 #: ../gramps/gui/merge/mergeperson.py:270
-#: ../gramps/gui/selectors/selectperson.py:106
+#: ../gramps/gui/selectors/selectperson.py:113
 #: ../gramps/gui/widgets/reorderfam.py:105
 #: ../gramps/plugins/gramplet/children.py:113
 #: ../gramps/plugins/lib/libpersonview.py:107
@@ -19201,526 +19060,538 @@ msgstr "寻找姓氏"
 msgid "Select a different person"
 msgstr "选择一个不同的人"
 
-#: ../gramps/gui/plug/_guioptions.py:720
+#: ../gramps/gui/plug/_guioptions.py:698
+#, fuzzy
+#| msgid "Bookmarked people"
+msgid "Active, bookmarked or home people"
+msgstr "收藏的成员"
+
+#: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
 msgstr "选择一个人输出报告"
 
-#: ../gramps/gui/plug/_guioptions.py:803
+#: ../gramps/gui/plug/_guioptions.py:804
 msgid "Select a different family"
 msgstr "选择一个不同的家庭"
 
-#: ../gramps/gui/plug/_guioptions.py:1261
+#: ../gramps/gui/plug/_guioptions.py:856
+#, fuzzy
+#| msgid "Bookmarked families"
+msgid "Active or bookmarked families"
+msgstr "收藏的家庭"
+
+#: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
 msgid "Also include %s?"
 msgstr "也包含 %s ?"
 
-#: ../gramps/gui/plug/_guioptions.py:1264
-#: ../gramps/gui/selectors/selectperson.py:92
+#: ../gramps/gui/plug/_guioptions.py:1269
+#: ../gramps/gui/selectors/selectperson.py:99
 msgid "Select Person"
 msgstr "选择人员"
 
-#: ../gramps/gui/plug/_guioptions.py:1590
+#: ../gramps/gui/plug/_guioptions.py:1595
 #, python-format
 msgid "Select color for %s"
 msgstr "为 %s 选择颜色"
 
-#: ../gramps/gui/plug/_guioptions.py:1754
+#: ../gramps/gui/plug/_guioptions.py:1759
 #: ../gramps/gui/plug/report/_reportdialog.py:462
 msgid "Save As"
 msgstr "保存为"
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1420
+#: ../gramps/gui/plug/_guioptions.py:1762 ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_bookdialog.py:650
 #: ../gramps/gui/plug/report/_fileentry.py:68
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: ../gramps/gui/plug/_guioptions.py:1837
+#: ../gramps/gui/plug/_guioptions.py:1842
 #: ../gramps/gui/plug/report/_reportdialog.py:337
 msgid "Style Editor"
 msgstr "样式编辑器"
 
-#: ../gramps/gui/plug/_windows.py:230
+#: ../gramps/gui/plug/_windows.py:236
 #, fuzzy
 #| msgid "Every object"
 msgid "Project"
 msgstr "每个对象"
 
-#: ../gramps/gui/plug/_windows.py:234
+#: ../gramps/gui/plug/_windows.py:240
 #, fuzzy
 #| msgid "Evidence"
 msgid "Audience"
 msgstr "证据"
 
-#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1642
+#: ../gramps/gui/plug/_windows.py:244 ../gramps/gui/plug/_windows.py:1649
 msgid "Version"
 msgstr "版本"
 
-#: ../gramps/gui/plug/_windows.py:241
+#: ../gramps/gui/plug/_windows.py:247
 #, fuzzy
 msgid "Installed version"
 msgstr "数据库 Schema 版本"
 
-#: ../gramps/gui/plug/_windows.py:259 ../gramps/gui/plug/_windows.py:260
+#: ../gramps/gui/plug/_windows.py:265 ../gramps/gui/plug/_windows.py:266
 #, fuzzy
 #| msgid "Unstable"
 msgid "Install"
 msgstr "不稳定版"
 
-#: ../gramps/gui/plug/_windows.py:265
+#: ../gramps/gui/plug/_windows.py:271
 msgid "Wiki"
 msgstr "维基"
 
-#: ../gramps/gui/plug/_windows.py:270
+#: ../gramps/gui/plug/_windows.py:276
 #, fuzzy
 #| msgid "* Requires Restart"
 msgid "Requires"
 msgstr "* 需要重新启动"
 
-#: ../gramps/gui/plug/_windows.py:275
+#: ../gramps/gui/plug/_windows.py:281
 #, fuzzy
 #| msgid "Updated"
 msgid "Update"
 msgstr "已更新"
 
-#: ../gramps/gui/plug/_windows.py:302 ../gramps/gui/plug/_windows.py:313
+#: ../gramps/gui/plug/_windows.py:308 ../gramps/gui/plug/_windows.py:319
 #, fuzzy
 #| msgid "Deletion failed"
 msgid "Module installation failed"
 msgstr "删除失败"
 
-#: ../gramps/gui/plug/_windows.py:314
+#: ../gramps/gui/plug/_windows.py:320
 msgid "Gramps was unable to install the required modules"
 msgstr "Gramps 无法安装所需模块"
 
-#: ../gramps/gui/plug/_windows.py:344
+#: ../gramps/gui/plug/_windows.py:350
 #, fuzzy
 #| msgid "Retirement"
 msgid "Requirements"
 msgstr "退休"
 
-#: ../gramps/gui/plug/_windows.py:380
+#: ../gramps/gui/plug/_windows.py:386
 #, fuzzy
 #| msgid "Addon Name"
 msgid "Addon Manager"
 msgstr "插件名称"
 
-#: ../gramps/gui/plug/_windows.py:388 ../gramps/plugins/gramplet/leak.py:114
+#: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
 msgstr "刷新"
 
-#: ../gramps/gui/plug/_windows.py:419
+#: ../gramps/gui/plug/_windows.py:425
 #, fuzzy
 #| msgid "Filter"
 msgid "Filters"
 msgstr "筛查器"
 
-#: ../gramps/gui/plug/_windows.py:425
+#: ../gramps/gui/plug/_windows.py:431
 #, fuzzy
 #| msgid "Addon Name"
 msgid "All addons"
 msgstr "插件名称"
 
-#: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:632
+#: ../gramps/gui/plug/_windows.py:432 ../gramps/gui/plug/_windows.py:639
 #, fuzzy
 #| msgid "Unstable"
 msgid "Not installed"
 msgstr "不稳定版"
 
-#: ../gramps/gui/plug/_windows.py:427 ../gramps/gui/plug/_windows.py:635
+#: ../gramps/gui/plug/_windows.py:433 ../gramps/gui/plug/_windows.py:642
 #, fuzzy
 #| msgid "Unstable"
 msgid "Installed"
 msgstr "不稳定版"
 
-#: ../gramps/gui/plug/_windows.py:428 ../gramps/gui/plug/_windows.py:638
+#: ../gramps/gui/plug/_windows.py:434 ../gramps/gui/plug/_windows.py:645
 #: ../gramps/plugins/webreport/basepage.py:2078
 #: ../gramps/plugins/webreport/basepage.py:2146
 #, fuzzy
 msgid "Updates"
 msgstr "已更新"
 
-#: ../gramps/gui/plug/_windows.py:440
+#: ../gramps/gui/plug/_windows.py:446
 #, fuzzy
 #| msgid "All files"
 msgid "All types"
 msgstr "所有文件"
 
-#: ../gramps/gui/plug/_windows.py:448
+#: ../gramps/gui/plug/_windows.py:454
 #, fuzzy
 #| msgid "Evidence"
 msgid "All audiences"
 msgstr "证据"
 
-#: ../gramps/gui/plug/_windows.py:455
+#: ../gramps/gui/plug/_windows.py:461
 msgid "All statuses"
 msgstr "所有状态"
 
-#: ../gramps/gui/plug/_windows.py:463
+#: ../gramps/gui/plug/_windows.py:469
 #, fuzzy
 #| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
 msgstr "恢复为默认值"
 
-#: ../gramps/gui/plug/_windows.py:477
+#: ../gramps/gui/plug/_windows.py:483
 #, fuzzy
 #| msgid "Setting"
 msgid "Settings"
 msgstr "设置"
 
-#: ../gramps/gui/plug/_windows.py:480
+#: ../gramps/gui/plug/_windows.py:486
 #, fuzzy
 #| msgid "Every object"
 msgid "Projects"
 msgstr "每个对象"
 
-#: ../gramps/gui/plug/_windows.py:525 ../gramps/gui/plug/_windows.py:643
+#: ../gramps/gui/plug/_windows.py:532 ../gramps/gui/plug/_windows.py:650
 #, fuzzy
 #| msgid "Every object"
 msgid "All projects"
 msgstr "每个对象"
 
-#: ../gramps/gui/plug/_windows.py:537
+#: ../gramps/gui/plug/_windows.py:544
 msgid "Loading..."
 msgstr "载入..."
 
-#: ../gramps/gui/plug/_windows.py:563
+#: ../gramps/gui/plug/_windows.py:570
 #, fuzzy
 #| msgid "Operation failed"
 msgid "Addon Registration Failed"
 msgstr "操作失败"
 
-#: ../gramps/gui/plug/_windows.py:564
+#: ../gramps/gui/plug/_windows.py:571
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "该加载项在当前配置下将会不可用。"
 
-#: ../gramps/gui/plug/_windows.py:589
+#: ../gramps/gui/plug/_windows.py:596
 #, fuzzy
 #| msgid "No matches found"
 msgid "No matching addons found."
 msgstr "未找到匹配"
 
-#: ../gramps/gui/plug/_windows.py:703
+#: ../gramps/gui/plug/_windows.py:710
 msgid "Insert a project"
-msgstr ""
+msgstr "插入项目"
 
-#: ../gramps/gui/plug/_windows.py:705
+#: ../gramps/gui/plug/_windows.py:712
 #, fuzzy
 #| msgid "Remove the selected person"
 msgid "Remove the selected project"
 msgstr "移除所选成员"
 
-#: ../gramps/gui/plug/_windows.py:707
+#: ../gramps/gui/plug/_windows.py:714
 #, fuzzy
 #| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
 msgstr "在子女列表中上移该子女"
 
-#: ../gramps/gui/plug/_windows.py:709
+#: ../gramps/gui/plug/_windows.py:716
 #, fuzzy
 #| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
 msgstr "在子女列表中下移该子女"
 
-#: ../gramps/gui/plug/_windows.py:711
+#: ../gramps/gui/plug/_windows.py:718
 #, fuzzy
 #| msgid "Restore to defaults"
 msgid "Revert to the project defaults"
 msgstr "恢复为默认值"
 
-#: ../gramps/gui/plug/_windows.py:748
+#: ../gramps/gui/plug/_windows.py:755
 msgid "Allow Gramps to install required Python modules"
 msgstr "允许 Gramps 安装所需 Python 模块"
 
-#: ../gramps/gui/plug/_windows.py:750
+#: ../gramps/gui/plug/_windows.py:757
 #, fuzzy
 #| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
 msgstr "允许 Gramps 安装所需 Python 模块"
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:765
 msgid "Scheduled update checks"
 msgstr "定期检查更新"
 
-#: ../gramps/gui/plug/_windows.py:774
+#: ../gramps/gui/plug/_windows.py:781
 msgid "Once a month"
 msgstr "每月一次"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:782
 msgid "Once a week"
 msgstr "每周一次"
 
-#: ../gramps/gui/plug/_windows.py:776
+#: ../gramps/gui/plug/_windows.py:783
 msgid "Once a day"
 msgstr "每天一次"
 
-#: ../gramps/gui/plug/_windows.py:777
+#: ../gramps/gui/plug/_windows.py:784
 msgid "Always"
 msgstr "经常的"
 
-#: ../gramps/gui/plug/_windows.py:783
+#: ../gramps/gui/plug/_windows.py:790
 msgid "Check for addon updates"
 msgstr "检查附件组件更新"
 
-#: ../gramps/gui/plug/_windows.py:790
+#: ../gramps/gui/plug/_windows.py:797
 msgid "Updated addons only"
 msgstr "仅更新插件"
 
-#: ../gramps/gui/plug/_windows.py:791
+#: ../gramps/gui/plug/_windows.py:798
 msgid "New addons only"
 msgstr "仅新插件"
 
-#: ../gramps/gui/plug/_windows.py:792
+#: ../gramps/gui/plug/_windows.py:799
 msgid "New and updated addons"
 msgstr "新插件和更新的插件"
 
-#: ../gramps/gui/plug/_windows.py:803
+#: ../gramps/gui/plug/_windows.py:810
 msgid "What to check"
 msgstr "检查什么"
 
-#: ../gramps/gui/plug/_windows.py:809
+#: ../gramps/gui/plug/_windows.py:816
 msgid "Do not ask about previously notified addons"
 msgstr "不再询问已通知过的插件"
 
-#: ../gramps/gui/plug/_windows.py:816
+#: ../gramps/gui/plug/_windows.py:823
 msgid "Check for updated addons now"
 msgstr "检查更新的附件组件"
 
-#: ../gramps/gui/plug/_windows.py:829
+#: ../gramps/gui/plug/_windows.py:836
 #, fuzzy
 #| msgid "New Person"
 msgid "New Project"
 msgstr "新人"
 
-#: ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:838
 #, fuzzy
 #| msgid "Edit Person"
 msgid "Edit Project"
 msgstr "编辑此人"
 
-#: ../gramps/gui/plug/_windows.py:839
+#: ../gramps/gui/plug/_windows.py:846
 #, fuzzy
 #| msgid "Preferred name"
 msgid "Project name"
 msgstr "首选姓名"
 
-#: ../gramps/gui/plug/_windows.py:937
+#: ../gramps/gui/plug/_windows.py:944
 #, fuzzy
 #| msgid "Restore to defaults"
 msgid "Restore project defaults"
 msgstr "恢复为默认值"
 
-#: ../gramps/gui/plug/_windows.py:938
+#: ../gramps/gui/plug/_windows.py:945
 msgid "Are you sure?"
 msgstr "您确定吗？"
 
-#: ../gramps/gui/plug/_windows.py:962
+#: ../gramps/gui/plug/_windows.py:969
 msgid "Checking Addons Failed"
 msgstr "检查附加组件失败"
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:971
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "加载项软件库好像不可用。请稍后再试。"
 
-#: ../gramps/gui/plug/_windows.py:979
+#: ../gramps/gui/plug/_windows.py:986
 msgid "There are no available addons of this type"
 msgstr "暂无此种有效的插件"
 
-#: ../gramps/gui/plug/_windows.py:980
+#: ../gramps/gui/plug/_windows.py:987
 msgid "' and '"
 msgstr "'和'"
 
-#: ../gramps/gui/plug/_windows.py:980
+#: ../gramps/gui/plug/_windows.py:987
 #, python-format
 msgid "Checked for '%s'"
 msgstr "查找 '%s'"
 
-#: ../gramps/gui/plug/_windows.py:986
+#: ../gramps/gui/plug/_windows.py:993
 msgid "new"
 msgstr "新"
 
-#: ../gramps/gui/plug/_windows.py:986
+#: ../gramps/gui/plug/_windows.py:993
 msgid "update"
 msgstr "更新"
 
-#: ../gramps/gui/plug/_windows.py:1021
+#: ../gramps/gui/plug/_windows.py:1028
 msgid "Hidden"
 msgstr "隐藏"
 
-#: ../gramps/gui/plug/_windows.py:1022
+#: ../gramps/gui/plug/_windows.py:1029
 msgid "Visible"
 msgstr "可见"
 
-#: ../gramps/gui/plug/_windows.py:1027
+#: ../gramps/gui/plug/_windows.py:1034
 msgid "Plugin Manager"
 msgstr "插件管理器"
 
-#: ../gramps/gui/plug/_windows.py:1079 ../gramps/gui/plug/_windows.py:1137
+#: ../gramps/gui/plug/_windows.py:1086 ../gramps/gui/plug/_windows.py:1144
 msgid "Info"
 msgstr "信息"
 
-#: ../gramps/gui/plug/_windows.py:1082 ../gramps/gui/plug/_windows.py:1140
+#: ../gramps/gui/plug/_windows.py:1089 ../gramps/gui/plug/_windows.py:1147
 msgid "Hide/Unhide"
 msgstr "隐藏/不隐藏"
 
-#: ../gramps/gui/plug/_windows.py:1091 ../gramps/gui/plug/_windows.py:1150
+#: ../gramps/gui/plug/_windows.py:1098 ../gramps/gui/plug/_windows.py:1157
 msgid "Load"
 msgstr "载入"
 
-#: ../gramps/gui/plug/_windows.py:1097
+#: ../gramps/gui/plug/_windows.py:1104
 msgid "Registered Plugins"
 msgstr "注册的插件."
 
-#: ../gramps/gui/plug/_windows.py:1116
+#: ../gramps/gui/plug/_windows.py:1123
 msgid "Loaded"
 msgstr "已载入"
 
-#: ../gramps/gui/plug/_windows.py:1120
+#: ../gramps/gui/plug/_windows.py:1127
 #: ../gramps/plugins/importer/importprogen.glade:466
 #: ../gramps/plugins/importer/importprogen.glade:1068
 msgid "File"
 msgstr "文件"
 
-#: ../gramps/gui/plug/_windows.py:1127
+#: ../gramps/gui/plug/_windows.py:1134
 msgid "Message"
 msgstr "信息"
 
-#: ../gramps/gui/plug/_windows.py:1156
+#: ../gramps/gui/plug/_windows.py:1163
 msgid "Loaded Plugins"
 msgstr "载入的插件"
 
-#: ../gramps/gui/plug/_windows.py:1178
+#: ../gramps/gui/plug/_windows.py:1185
 msgid "Addon Name"
 msgstr "插件名称"
 
-#: ../gramps/gui/plug/_windows.py:1190
+#: ../gramps/gui/plug/_windows.py:1197
 msgid "Path to Addon:"
 msgstr "插件路径："
 
-#: ../gramps/gui/plug/_windows.py:1210
+#: ../gramps/gui/plug/_windows.py:1217
 msgid "Install Addon"
 msgstr "安装插件"
 
-#: ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/plug/_windows.py:1220
 msgid "Install All Addons"
 msgstr "安装所有的插件"
 
-#: ../gramps/gui/plug/_windows.py:1216
+#: ../gramps/gui/plug/_windows.py:1223
 msgid "Refresh Addon List"
 msgstr "刷新插件列表"
 
-#: ../gramps/gui/plug/_windows.py:1229
+#: ../gramps/gui/plug/_windows.py:1236
 msgid "Reload"
 msgstr "重新载入"
 
-#: ../gramps/gui/plug/_windows.py:1257
+#: ../gramps/gui/plug/_windows.py:1264
 msgid "Refreshing Addon List"
 msgstr "刷新插件列表"
 
-#: ../gramps/gui/plug/_windows.py:1258 ../gramps/gui/plug/_windows.py:1263
-#: ../gramps/gui/plug/_windows.py:1396
+#: ../gramps/gui/plug/_windows.py:1265 ../gramps/gui/plug/_windows.py:1270
+#: ../gramps/gui/plug/_windows.py:1403
 msgid "Reading gramps-project.org..."
 msgstr "读取 gramps-project.org..."
 
-#: ../gramps/gui/plug/_windows.py:1281
+#: ../gramps/gui/plug/_windows.py:1288
 msgid "Checking addon..."
 msgstr "检查附件..."
 
-#: ../gramps/gui/plug/_windows.py:1289
+#: ../gramps/gui/plug/_windows.py:1296
 msgid "Unknown Help URL"
 msgstr "未知帮助URL"
 
-#: ../gramps/gui/plug/_windows.py:1300
+#: ../gramps/gui/plug/_windows.py:1307
 msgid "Unknown URL"
 msgstr "未知 URL"
 
-#: ../gramps/gui/plug/_windows.py:1360
+#: ../gramps/gui/plug/_windows.py:1367
 msgid "Install all Addons"
 msgstr "安装所有插件"
 
-#: ../gramps/gui/plug/_windows.py:1361
+#: ../gramps/gui/plug/_windows.py:1368
 msgid "Installing..."
 msgstr "安装..."
 
-#: ../gramps/gui/plug/_windows.py:1394
+#: ../gramps/gui/plug/_windows.py:1401
 msgid "Installing Addon"
 msgstr "安装插件"
 
-#: ../gramps/gui/plug/_windows.py:1417
+#: ../gramps/gui/plug/_windows.py:1424
 msgid "Load Addon"
 msgstr "载入插件"
 
-#: ../gramps/gui/plug/_windows.py:1509
+#: ../gramps/gui/plug/_windows.py:1516
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr "失败"
 
-#: ../gramps/gui/plug/_windows.py:1532 ../gramps/gui/widgets/grampletbar.py:600
+#: ../gramps/gui/plug/_windows.py:1539 ../gramps/gui/widgets/grampletbar.py:600
 msgid "OK"
 msgstr "确认"
 
-#: ../gramps/gui/plug/_windows.py:1640
+#: ../gramps/gui/plug/_windows.py:1647
 msgid "Plugin name"
 msgstr "插件名称"
 
-#: ../gramps/gui/plug/_windows.py:1643
+#: ../gramps/gui/plug/_windows.py:1650
 msgid "Authors"
 msgstr "作者"
 
-#: ../gramps/gui/plug/_windows.py:1645
+#: ../gramps/gui/plug/_windows.py:1652
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "文件名"
 
-#: ../gramps/gui/plug/_windows.py:1648
+#: ../gramps/gui/plug/_windows.py:1655
 msgid "Detailed Info"
 msgstr "详细信息"
 
-#: ../gramps/gui/plug/_windows.py:1703
+#: ../gramps/gui/plug/_windows.py:1710
 msgid "Plugin Error"
 msgstr "插件错误"
 
-#: ../gramps/gui/plug/_windows.py:1772
+#: ../gramps/gui/plug/_windows.py:1779
 msgid "_Execute"
 msgstr "执行(_E)"
 
-#: ../gramps/gui/plug/_windows.py:2070
+#: ../gramps/gui/plug/_windows.py:2077
 #: ../gramps/plugins/importer/importprogen.py:481
 #: ../gramps/plugins/tool/ownereditor.py:157
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr "主窗口"
 
-#: ../gramps/gui/plug/_windows.py:2208
+#: ../gramps/gui/plug/_windows.py:2215
 msgid "Downloading and installing selected addons..."
 msgstr "正在下载和安装所选加载项..."
 
-#: ../gramps/gui/plug/_windows.py:2251
+#: ../gramps/gui/plug/_windows.py:2258
 msgid "Installation Errors"
 msgstr "安装错误"
 
-#: ../gramps/gui/plug/_windows.py:2252
+#: ../gramps/gui/plug/_windows.py:2259
 msgid "The following addons had errors: "
 msgstr "以下插件出错： "
 
-#: ../gramps/gui/plug/_windows.py:2260 ../gramps/gui/plug/_windows.py:2277
+#: ../gramps/gui/plug/_windows.py:2267 ../gramps/gui/plug/_windows.py:2284
 msgid "Done downloading and installing addons"
 msgstr "下载和安装插件完毕"
 
-#: ../gramps/gui/plug/_windows.py:2265
+#: ../gramps/gui/plug/_windows.py:2272
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "已安装 {number_of} 个插件。"
 
-#: ../gramps/gui/plug/_windows.py:2270
+#: ../gramps/gui/plug/_windows.py:2277
 #, fuzzy
 #| msgid ""
 #| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr "如果您安装了“Gramps 视图”类插件，您需要重启 Gramps。"
 
-#: ../gramps/gui/plug/_windows.py:2278
+#: ../gramps/gui/plug/_windows.py:2285
 msgid "No addons were installed."
 msgstr "无插件被安装"
 
@@ -20460,9 +20331,9 @@ msgstr "来源：标题或引用：卷/页"
 #: ../gramps/gui/selectors/selectcitation.py:75
 #: ../gramps/gui/selectors/selectevent.py:73
 #: ../gramps/gui/selectors/selectfamily.py:70
-#: ../gramps/gui/selectors/selectnote.py:76
+#: ../gramps/gui/selectors/selectnote.py:75
 #: ../gramps/gui/selectors/selectobject.py:83
-#: ../gramps/gui/selectors/selectperson.py:107
+#: ../gramps/gui/selectors/selectperson.py:114
 #: ../gramps/gui/selectors/selectplace.py:72
 #: ../gramps/gui/selectors/selectrepository.py:69
 #: ../gramps/gui/selectors/selectsource.py:71
@@ -20488,11 +20359,11 @@ msgctxt "manual"
 msgid "Select_Family_selector"
 msgstr "Select_Family_selector"
 
-#: ../gramps/gui/selectors/selectnote.py:65
+#: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
 msgstr "选择笔记"
 
-#: ../gramps/gui/selectors/selectnote.py:86
+#: ../gramps/gui/selectors/selectnote.py:85
 msgctxt "manual"
 msgid "Select_Note_selector"
 msgstr "Select_Note_selector"
@@ -20875,32 +20746,32 @@ msgstr "整理书签"
 msgid "Cannot bookmark this reference"
 msgstr "无法为此参考添加书签"
 
-#: ../gramps/gui/views/listview.py:483
+#: ../gramps/gui/views/listview.py:488
 msgid "Active object not visible"
 msgstr "活跃目标不可见"
 
-#: ../gramps/gui/views/listview.py:495
+#: ../gramps/gui/views/listview.py:500
 #: ../gramps/gui/views/navigationview.py:252
 #: ../gramps/plugins/lib/maps/geography.py:236
 #: ../gramps/plugins/lib/maps/geography.py:254
-#: ../gramps/plugins/view/familyview.py:376
+#: ../gramps/plugins/view/familyview.py:378
 msgid "Could Not Set a Bookmark"
 msgstr "不能设定书签"
 
-#: ../gramps/gui/views/listview.py:496
+#: ../gramps/gui/views/listview.py:501
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "不能设定书签，因为未选中内容."
 
-#: ../gramps/gui/views/listview.py:627 ../gramps/plugins/view/eventview.py:412
+#: ../gramps/gui/views/listview.py:632 ../gramps/plugins/view/eventview.py:414
 #, python-brace-format
 msgid "Delete {type} [{gid}]?"
 msgstr "删除 {type} [{gid}]？"
 
-#: ../gramps/gui/views/listview.py:635 ../gramps/gui/views/listview.py:721
+#: ../gramps/gui/views/listview.py:640 ../gramps/gui/views/listview.py:726
 msgid "Deleting item will remove it from the database."
 msgstr "删除栏目将会从数据库中移除它."
 
-#: ../gramps/gui/views/listview.py:670
+#: ../gramps/gui/views/listview.py:675
 #: ../gramps/plugins/gramplet/givennamegramplet.py:73
 #: ../gramps/plugins/gramplet/recordsgramplet.py:51
 #: ../gramps/plugins/gramplet/statsgramplet.py:73
@@ -20909,44 +20780,44 @@ msgstr "删除栏目将会从数据库中移除它."
 msgid "Processing..."
 msgstr "处理中..."
 
-#: ../gramps/gui/views/listview.py:684
+#: ../gramps/gui/views/listview.py:689
 msgid "Multiple Selection Delete"
 msgstr "多个选择删除"
 
-#: ../gramps/gui/views/listview.py:716
+#: ../gramps/gui/views/listview.py:721
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
 msgstr "栏目现在正在被使用，删除它将会从数据库中移除所有和它有关信息."
 
-#: ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/lib/libpersonview.py:481
-#: ../gramps/plugins/view/familyview.py:410
+#: ../gramps/plugins/view/familyview.py:412
 #, python-format
 msgid "Delete %s?"
 msgstr "是否删除 %s ?"
 
-#: ../gramps/gui/views/listview.py:763
+#: ../gramps/gui/views/listview.py:768
 msgid "Column clicked, sorting..."
 msgstr "栏目点击，排序..."
 
-#: ../gramps/gui/views/listview.py:1246
+#: ../gramps/gui/views/listview.py:1251
 msgid "Export View as Spreadsheet"
 msgstr "将视图导出为电子表格"
 
-#: ../gramps/gui/views/listview.py:1261
+#: ../gramps/gui/views/listview.py:1266
 msgid "CSV"
 msgstr "CSV Comma Separated Value，逗号分隔文本"
 
-#: ../gramps/gui/views/listview.py:1262
+#: ../gramps/gui/views/listview.py:1267
 msgid "OpenDocument Spreadsheet"
 msgstr "OpenDocument 电子表格"
 
-#: ../gramps/gui/views/listview.py:1448
+#: ../gramps/gui/views/listview.py:1453
 msgid "Columns"
 msgstr "条目"
 
-#: ../gramps/gui/views/listview.py:1458
+#: ../gramps/gui/views/listview.py:1463
 msgid "CSV Dialect"
 msgstr "CSV方言"
 
@@ -20958,7 +20829,7 @@ msgstr "%s 已经被书签记录"
 #: ../gramps/gui/views/navigationview.py:253
 #: ../gramps/plugins/lib/maps/geography.py:237
 #: ../gramps/plugins/lib/maps/geography.py:255
-#: ../gramps/plugins/view/familyview.py:377
+#: ../gramps/plugins/view/familyview.py:379
 msgid "A bookmark could not be set because no one was selected."
 msgstr "由于没有选中内容，书签不能被设定."
 
@@ -21388,11 +21259,11 @@ msgstr "拷贝链接地址(_L)"
 msgid "_Edit Link"
 msgstr "编辑连接(_N)"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:828
+#: ../gramps/gui/widgets/styledtexteditor.py:807
 msgid "Select font color"
 msgstr "选择字体颜色"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:832
+#: ../gramps/gui/widgets/styledtexteditor.py:811
 msgid "Select background color"
 msgstr "选择背景颜色"
 
@@ -21553,13 +21424,73 @@ msgstr "打印预览"
 msgid "Closes print preview window"
 msgstr "关闭打印预览窗口"
 
+#: ../gramps/plugins/docgen/gtkprint.glade:39
+#, fuzzy
+#| msgid "Print"
+msgid "_Print"
+msgstr "打印"
+
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
 msgstr "打印当前文档"
 
+#: ../gramps/plugins/docgen/gtkprint.glade:63
+msgid "_First"
+msgstr ""
+
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
 msgstr "显示第一页"
+
+#: ../gramps/plugins/docgen/gtkprint.glade:78
+#: ../gramps/plugins/lib/libpersonview.py:234
+#: ../gramps/plugins/lib/libpersonview.py:289
+#: ../gramps/plugins/lib/libpersonview.py:385
+#: ../gramps/plugins/lib/libplaceview.py:319
+#: ../gramps/plugins/lib/libplaceview.py:363
+#: ../gramps/plugins/lib/libplaceview.py:447
+#: ../gramps/plugins/view/citationlistview.py:206
+#: ../gramps/plugins/view/citationlistview.py:250
+#: ../gramps/plugins/view/citationlistview.py:333
+#: ../gramps/plugins/view/citationtreeview.py:348
+#: ../gramps/plugins/view/citationtreeview.py:400
+#: ../gramps/plugins/view/citationtreeview.py:505
+#: ../gramps/plugins/view/eventview.py:219
+#: ../gramps/plugins/view/eventview.py:263
+#: ../gramps/plugins/view/eventview.py:346
+#: ../gramps/plugins/view/familyview.py:176
+#: ../gramps/plugins/view/familyview.py:220
+#: ../gramps/plugins/view/familyview.py:303
+#: ../gramps/plugins/view/fanchartview.py:145
+#: ../gramps/plugins/view/fanchartview.py:186
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoevents.py:68
+#: ../gramps/plugins/view/geoevents.py:103
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamily.py:67
+#: ../gramps/plugins/view/geofamily.py:102
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:111
+#: ../gramps/plugins/view/geoperson.py:69
+#: ../gramps/plugins/view/geoperson.py:110
+#: ../gramps/plugins/view/geoplaces.py:70
+#: ../gramps/plugins/view/geoplaces.py:105
+#: ../gramps/plugins/view/mediaview.py:283
+#: ../gramps/plugins/view/mediaview.py:327
+#: ../gramps/plugins/view/mediaview.py:426
+#: ../gramps/plugins/view/noteview.py:164
+#: ../gramps/plugins/view/noteview.py:208
+#: ../gramps/plugins/view/noteview.py:291
+#: ../gramps/plugins/view/pedigreeview.py:691
+#: ../gramps/plugins/view/pedigreeview.py:733
+#: ../gramps/plugins/view/relview.py:455 ../gramps/plugins/view/repoview.py:201
+#: ../gramps/plugins/view/repoview.py:245
+#: ../gramps/plugins/view/repoview.py:328
+#: ../gramps/plugins/view/sourceview.py:173
+#: ../gramps/plugins/view/sourceview.py:217
+#: ../gramps/plugins/view/sourceview.py:300
+msgid "_Back"
+msgstr "后退(_B)"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:83
 msgid "Shows previous page"
@@ -21568,6 +21499,10 @@ msgstr "显示前一页"
 #: ../gramps/plugins/docgen/gtkprint.glade:98
 msgid "Shows the next page"
 msgstr "显示下一页"
+
+#: ../gramps/plugins/docgen/gtkprint.glade:108
+msgid "_Last"
+msgstr ""
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -21589,7 +21524,7 @@ msgstr "放大页面"
 msgid "Zooms the page out"
 msgstr "缩小页面"
 
-#: ../gramps/plugins/docgen/gtkprint.py:476
+#: ../gramps/plugins/docgen/gtkprint.py:475
 #, python-format
 msgid "of %d"
 msgstr "%d 的"
@@ -25103,6 +25038,8 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
+"在邮件列表和 Discourse 论坛上都有活跃用户分享着想法和技巧。\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:143
 msgid "Gramps online manual"
@@ -25114,7 +25051,7 @@ msgstr "在 gramps-users 邮件列表上发问"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:152
 msgid "Gramps Discourse Forum"
-msgstr ""
+msgstr "Gramps Discourse 论坛"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:156
 msgid "Getting Started"
@@ -25860,7 +25797,7 @@ msgstr "显示所有事件"
 
 #: ../gramps/plugins/graph/gvhourglass.py:542
 msgid "Show genealogical symbols for birth, marriage and death events."
-msgstr ""
+msgstr "显示出生、婚姻和死亡的系谱学符号。"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:226
 #: ../gramps/plugins/textreport/indivcomplete.py:861
@@ -27273,7 +27210,7 @@ msgid ""
 "family. Reference added."
 msgstr ""
 
-#: ../gramps/plugins/lib/libcairodoc.py:1447
+#: ../gramps/plugins/lib/libcairodoc.py:1446
 #, python-format
 msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
@@ -31033,55 +30970,6 @@ msgstr "添加书签(_A)"
 #: ../gramps/plugins/lib/libpersonview.py:234
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libpersonview.py:385
-#: ../gramps/plugins/lib/libplaceview.py:319
-#: ../gramps/plugins/lib/libplaceview.py:363
-#: ../gramps/plugins/lib/libplaceview.py:447
-#: ../gramps/plugins/view/citationlistview.py:206
-#: ../gramps/plugins/view/citationlistview.py:250
-#: ../gramps/plugins/view/citationlistview.py:333
-#: ../gramps/plugins/view/citationtreeview.py:348
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:505
-#: ../gramps/plugins/view/eventview.py:219
-#: ../gramps/plugins/view/eventview.py:263
-#: ../gramps/plugins/view/eventview.py:346
-#: ../gramps/plugins/view/familyview.py:176
-#: ../gramps/plugins/view/familyview.py:220
-#: ../gramps/plugins/view/familyview.py:303
-#: ../gramps/plugins/view/fanchartview.py:145
-#: ../gramps/plugins/view/fanchartview.py:186
-#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geoevents.py:68
-#: ../gramps/plugins/view/geoevents.py:103
-#: ../gramps/plugins/view/geofamclose.py:68
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geofamily.py:67
-#: ../gramps/plugins/view/geofamily.py:102
-#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:111
-#: ../gramps/plugins/view/geoperson.py:69
-#: ../gramps/plugins/view/geoperson.py:110
-#: ../gramps/plugins/view/geoplaces.py:70
-#: ../gramps/plugins/view/geoplaces.py:105
-#: ../gramps/plugins/view/mediaview.py:283
-#: ../gramps/plugins/view/mediaview.py:327
-#: ../gramps/plugins/view/mediaview.py:426
-#: ../gramps/plugins/view/noteview.py:164
-#: ../gramps/plugins/view/noteview.py:208
-#: ../gramps/plugins/view/noteview.py:291
-#: ../gramps/plugins/view/pedigreeview.py:691
-#: ../gramps/plugins/view/pedigreeview.py:733
-#: ../gramps/plugins/view/relview.py:455 ../gramps/plugins/view/repoview.py:201
-#: ../gramps/plugins/view/repoview.py:245
-#: ../gramps/plugins/view/repoview.py:328
-#: ../gramps/plugins/view/sourceview.py:173
-#: ../gramps/plugins/view/sourceview.py:217
-#: ../gramps/plugins/view/sourceview.py:300
-msgid "_Back"
-msgstr "后退(_B)"
-
-#: ../gramps/plugins/lib/libpersonview.py:234
-#: ../gramps/plugins/lib/libpersonview.py:289
-#: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/view/fanchartview.py:145
 #: ../gramps/plugins/view/fanchartview.py:186
 #: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
@@ -31166,23 +31054,23 @@ msgstr "合并(_M)..."
 #: ../gramps/plugins/lib/libpersonview.py:274
 #: ../gramps/plugins/lib/libpersonview.py:434
 #: ../gramps/plugins/lib/libplaceview.py:353
-#: ../gramps/plugins/lib/libplaceview.py:490
+#: ../gramps/plugins/lib/libplaceview.py:492
 #: ../gramps/plugins/view/citationlistview.py:240
-#: ../gramps/plugins/view/citationlistview.py:371
+#: ../gramps/plugins/view/citationlistview.py:373
 #: ../gramps/plugins/view/citationtreeview.py:390
-#: ../gramps/plugins/view/citationtreeview.py:558
+#: ../gramps/plugins/view/citationtreeview.py:560
 #: ../gramps/plugins/view/eventview.py:253
-#: ../gramps/plugins/view/eventview.py:384
+#: ../gramps/plugins/view/eventview.py:386
 #: ../gramps/plugins/view/familyview.py:210
-#: ../gramps/plugins/view/familyview.py:353
+#: ../gramps/plugins/view/familyview.py:355
 #: ../gramps/plugins/view/mediaview.py:317
-#: ../gramps/plugins/view/mediaview.py:477
+#: ../gramps/plugins/view/mediaview.py:479
 #: ../gramps/plugins/view/noteview.py:198
-#: ../gramps/plugins/view/noteview.py:329
+#: ../gramps/plugins/view/noteview.py:331
 #: ../gramps/plugins/view/repoview.py:235
-#: ../gramps/plugins/view/repoview.py:366
+#: ../gramps/plugins/view/repoview.py:368
 #: ../gramps/plugins/view/sourceview.py:207
-#: ../gramps/plugins/view/sourceview.py:338
+#: ../gramps/plugins/view/sourceview.py:340
 msgctxt "action"
 msgid "_Edit..."
 msgstr "编辑(_E)..."
@@ -31336,32 +31224,32 @@ msgstr "地点筛选编辑器"
 msgid "_Look up with Map Service"
 msgstr "使用地图服务寻找(_L)"
 
-#: ../gramps/plugins/lib/libplaceview.py:500
+#: ../gramps/plugins/lib/libplaceview.py:502
 msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr "尝试使用地图服务（开放街道地图、Google 地图……）查看选中的位置"
 
-#: ../gramps/plugins/lib/libplaceview.py:500
+#: ../gramps/plugins/lib/libplaceview.py:502
 msgid "Select a Map Service"
 msgstr "选择一个地图服务"
 
-#: ../gramps/plugins/lib/libplaceview.py:542
+#: ../gramps/plugins/lib/libplaceview.py:544
 msgid "Cannot delete place."
 msgstr "无法删除地点。"
 
-#: ../gramps/plugins/lib/libplaceview.py:544
+#: ../gramps/plugins/lib/libplaceview.py:546
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
 msgstr ""
 
-#: ../gramps/plugins/lib/libplaceview.py:567
-#: ../gramps/plugins/lib/libplaceview.py:578
+#: ../gramps/plugins/lib/libplaceview.py:569
+#: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Cannot merge places."
 msgstr "无法合并地点."
 
-#: ../gramps/plugins/lib/libplaceview.py:569
+#: ../gramps/plugins/lib/libplaceview.py:571
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -31370,7 +31258,7 @@ msgstr ""
 "必须同时选中两个地点方可进行合并。点选了第一个地点后，按住 Ctrl 键即可同时选"
 "中第二个地点。"
 
-#: ../gramps/plugins/lib/libplaceview.py:580
+#: ../gramps/plugins/lib/libplaceview.py:582
 msgid "Merging these places would create a cycle in the place hierarchy."
 msgstr ""
 
@@ -34971,6 +34859,12 @@ msgstr "性别统计工具"
 msgid "Guess"
 msgstr "性别推测"
 
+#: ../gramps/plugins/tool/eventcmp.glade:37
+#, fuzzy
+#| msgid "Save As"
+msgid "Save _As"
+msgstr "保存为"
+
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
 msgstr "筛选器(_F)："
@@ -35178,6 +35072,7 @@ msgid "Media Manager"
 msgstr "媒体管理器"
 
 #: ../gramps/plugins/tool/mediamanager.py:95
+#: ../gramps/plugins/tool/verify.glade:110
 msgid "Help"
 msgstr "帮助"
 
@@ -35651,7 +35546,7 @@ msgstr "Remove_leading_and_trailing_spaces"
 #: ../gramps/plugins/tool/removespaces.py:91
 #: ../gramps/plugins/tool/tools.gpr.py:543
 msgid "Clean input data"
-msgstr ""
+msgstr "清除输入数据"
 
 #: ../gramps/plugins/tool/removespaces.py:114
 msgid ""
@@ -35901,7 +35796,7 @@ msgstr "排列人员的家庭事件"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:128
 msgid "Generate_Testcases_for_Persons_and_Families"
-msgstr ""
+msgstr "为人员和家庭生成测试实例"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:334
 #: ../gramps/plugins/tool/testcasegenerator.py:341
@@ -35964,39 +35859,38 @@ msgstr "正在生成数据库错误"
 msgid "Generating families"
 msgstr "正在生成家庭"
 
-#: ../gramps/plugins/tool/testcasegenerator.py:530
-#: ../gramps/plugins/tool/testcasegenerator.py:569
-#: ../gramps/plugins/tool/testcasegenerator.py:617
-#: ../gramps/plugins/tool/testcasegenerator.py:635
-#: ../gramps/plugins/tool/testcasegenerator.py:668
-#: ../gramps/plugins/tool/testcasegenerator.py:740
-#: ../gramps/plugins/tool/testcasegenerator.py:776
-#: ../gramps/plugins/tool/testcasegenerator.py:799
-#: ../gramps/plugins/tool/testcasegenerator.py:818
-#: ../gramps/plugins/tool/testcasegenerator.py:838
-#: ../gramps/plugins/tool/testcasegenerator.py:862
-#: ../gramps/plugins/tool/testcasegenerator.py:881
-#: ../gramps/plugins/tool/testcasegenerator.py:900
-#: ../gramps/plugins/tool/testcasegenerator.py:919
-#: ../gramps/plugins/tool/testcasegenerator.py:947
-#: ../gramps/plugins/tool/testcasegenerator.py:974
-#: ../gramps/plugins/tool/testcasegenerator.py:1002
-#: ../gramps/plugins/tool/testcasegenerator.py:1040
-#: ../gramps/plugins/tool/testcasegenerator.py:1052
-#: ../gramps/plugins/tool/testcasegenerator.py:1064
-#: ../gramps/plugins/tool/testcasegenerator.py:1076
-#: ../gramps/plugins/tool/testcasegenerator.py:1093
-#: ../gramps/plugins/tool/testcasegenerator.py:1111
-#: ../gramps/plugins/tool/testcasegenerator.py:1136
-#: ../gramps/plugins/tool/testcasegenerator.py:1153
-#: ../gramps/plugins/tool/testcasegenerator.py:1171
-#: ../gramps/plugins/tool/testcasegenerator.py:1206
-#: ../gramps/plugins/tool/testcasegenerator.py:1654
-#: ../gramps/plugins/tool/testcasegenerator.py:1761
-#: ../gramps/plugins/tool/testcasegenerator.py:1787
+#: ../gramps/plugins/tool/testcasegenerator.py:459
+#: ../gramps/plugins/tool/testcasegenerator.py:534
+#: ../gramps/plugins/tool/testcasegenerator.py:573
+#: ../gramps/plugins/tool/testcasegenerator.py:621
+#: ../gramps/plugins/tool/testcasegenerator.py:639
+#: ../gramps/plugins/tool/testcasegenerator.py:672
+#: ../gramps/plugins/tool/testcasegenerator.py:744
+#: ../gramps/plugins/tool/testcasegenerator.py:780
+#: ../gramps/plugins/tool/testcasegenerator.py:803
+#: ../gramps/plugins/tool/testcasegenerator.py:822
+#: ../gramps/plugins/tool/testcasegenerator.py:842
+#: ../gramps/plugins/tool/testcasegenerator.py:866
+#: ../gramps/plugins/tool/testcasegenerator.py:885
+#: ../gramps/plugins/tool/testcasegenerator.py:904
+#: ../gramps/plugins/tool/testcasegenerator.py:923
+#: ../gramps/plugins/tool/testcasegenerator.py:951
+#: ../gramps/plugins/tool/testcasegenerator.py:978
+#: ../gramps/plugins/tool/testcasegenerator.py:1006
+#: ../gramps/plugins/tool/testcasegenerator.py:1044
+#: ../gramps/plugins/tool/testcasegenerator.py:1056
+#: ../gramps/plugins/tool/testcasegenerator.py:1068
+#: ../gramps/plugins/tool/testcasegenerator.py:1080
+#: ../gramps/plugins/tool/testcasegenerator.py:1097
+#: ../gramps/plugins/tool/testcasegenerator.py:1115
+#: ../gramps/plugins/tool/testcasegenerator.py:1140
+#: ../gramps/plugins/tool/testcasegenerator.py:1157
+#: ../gramps/plugins/tool/testcasegenerator.py:1175
+#: ../gramps/plugins/tool/testcasegenerator.py:1210
+#: ../gramps/plugins/tool/testcasegenerator.py:1783
 #, python-format
 msgid "Testcase generator step %d"
-msgstr ""
+msgstr "测试实例生成器步骤 %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:41
 msgid "Fix Capitalization of Family Names"
@@ -36505,7 +36399,7 @@ msgstr "引用视图"
 msgid "Citation Filter Editor"
 msgstr "引用筛选编辑器"
 
-#: ../gramps/plugins/view/citationlistview.py:417
+#: ../gramps/plugins/view/citationlistview.py:419
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation "
 "is already being edited or another object that is associated with the same "
@@ -36518,15 +36412,15 @@ msgstr ""
 "\n"
 "要编辑此引用，您需要关闭该对象。"
 
-#: ../gramps/plugins/view/citationlistview.py:431
-#: ../gramps/plugins/view/citationlistview.py:443
-#: ../gramps/plugins/view/citationtreeview.py:682
-#: ../gramps/plugins/view/citationtreeview.py:699
+#: ../gramps/plugins/view/citationlistview.py:433
+#: ../gramps/plugins/view/citationlistview.py:445
+#: ../gramps/plugins/view/citationtreeview.py:684
+#: ../gramps/plugins/view/citationtreeview.py:701
 msgid "Cannot merge citations."
 msgstr "无法合并引用。"
 
-#: ../gramps/plugins/view/citationlistview.py:433
-#: ../gramps/plugins/view/citationtreeview.py:684
+#: ../gramps/plugins/view/citationlistview.py:435
+#: ../gramps/plugins/view/citationtreeview.py:686
 msgid ""
 "Exactly two citations must be selected to perform a merge. A second citation "
 "can be selected by holding down the control key while clicking on the "
@@ -36535,8 +36429,8 @@ msgstr ""
 "必须同时选中两个引用方可进行合并。选中了第一个引用后，按住 Ctrl 键点击，即可"
 "同时选中第二个引用。"
 
-#: ../gramps/plugins/view/citationlistview.py:445
-#: ../gramps/plugins/view/citationtreeview.py:701
+#: ../gramps/plugins/view/citationlistview.py:447
+#: ../gramps/plugins/view/citationtreeview.py:703
 msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
@@ -36583,7 +36477,7 @@ msgstr "折叠所有节点"
 msgid "Expand all Nodes"
 msgstr "展开所有节点"
 
-#: ../gramps/plugins/view/citationtreeview.py:668
+#: ../gramps/plugins/view/citationtreeview.py:670
 msgid ""
 "This source cannot be edited at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -36596,11 +36490,11 @@ msgstr ""
 "\n"
 "要编辑此来源，您需要先关闭该对象。"
 
-#: ../gramps/plugins/view/citationtreeview.py:712
+#: ../gramps/plugins/view/citationtreeview.py:714
 msgid "Cannot perform merge."
 msgstr "无法进行合并。"
 
-#: ../gramps/plugins/view/citationtreeview.py:714
+#: ../gramps/plugins/view/citationtreeview.py:716
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
@@ -36632,11 +36526,11 @@ msgstr "合并所选事件"
 msgid "Event Filter Editor"
 msgstr "事件过滤编辑器"
 
-#: ../gramps/plugins/view/eventview.py:431
+#: ../gramps/plugins/view/eventview.py:433
 msgid "Cannot merge event objects."
 msgstr "无法合并时间对象。"
 
-#: ../gramps/plugins/view/eventview.py:433
+#: ../gramps/plugins/view/eventview.py:435
 msgid ""
 "Exactly two events must be selected to perform a merge. A second object can "
 "be selected by holding down the control key while clicking on the desired "
@@ -36677,11 +36571,11 @@ msgstr "将父亲设为活跃人员"
 msgid "Make Mother Active Person"
 msgstr "将母亲设为活跃人员"
 
-#: ../gramps/plugins/view/familyview.py:436
+#: ../gramps/plugins/view/familyview.py:438
 msgid "Cannot merge families."
 msgstr "无法合并家庭。"
 
-#: ../gramps/plugins/view/familyview.py:438
+#: ../gramps/plugins/view/familyview.py:440
 msgid ""
 "Exactly two families must be selected to perform a merge. A second family "
 "can be selected by holding down the control key while clicking on the "
@@ -37347,11 +37241,11 @@ msgstr "媒体过滤编辑器"
 msgid "View in the default viewer"
 msgstr "使用默认查看器观看"
 
-#: ../gramps/plugins/view/mediaview.py:510
+#: ../gramps/plugins/view/mediaview.py:512
 msgid "Cannot merge media objects."
 msgstr "无法合并媒体对象。"
 
-#: ../gramps/plugins/view/mediaview.py:512
+#: ../gramps/plugins/view/mediaview.py:514
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -37372,11 +37266,11 @@ msgstr "合并所选注释"
 msgid "Note Filter Editor"
 msgstr "摘要过滤编辑器"
 
-#: ../gramps/plugins/view/noteview.py:365
+#: ../gramps/plugins/view/noteview.py:367
 msgid "Cannot merge notes."
 msgstr "无法合并注释。"
 
-#: ../gramps/plugins/view/noteview.py:367
+#: ../gramps/plugins/view/noteview.py:369
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
@@ -37716,11 +37610,11 @@ msgstr "合并所选文库"
 msgid "Repository Filter Editor"
 msgstr "文库筛选编辑器"
 
-#: ../gramps/plugins/view/repoview.py:395
+#: ../gramps/plugins/view/repoview.py:397
 msgid "Cannot merge repositories."
 msgstr "无法合并文库。"
 
-#: ../gramps/plugins/view/repoview.py:397
+#: ../gramps/plugins/view/repoview.py:399
 msgid ""
 "Exactly two repositories must be selected to perform a merge. A second "
 "repository can be selected by holding down the control key while clicking on "
@@ -37745,11 +37639,11 @@ msgstr "合并所选来源"
 msgid "Source Filter Editor"
 msgstr "来源筛选编辑器"
 
-#: ../gramps/plugins/view/sourceview.py:359
+#: ../gramps/plugins/view/sourceview.py:361
 msgid "Cannot merge sources."
 msgstr "无法合并来源。"
 
-#: ../gramps/plugins/view/sourceview.py:361
+#: ../gramps/plugins/view/sourceview.py:363
 msgid ""
 "Exactly two sources must be selected to perform a merge. A second source can "
 "be selected by holding down the control key while clicking on the desired "
@@ -37940,7 +37834,7 @@ msgstr "首页"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "热图"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -37970,7 +37864,7 @@ msgstr "网页日历"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "热图"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:440
@@ -38600,7 +38494,7 @@ msgstr "如果你想打开/关闭一个部分，请选中它"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2252
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "索引中的最大行数"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
 #, fuzzy
@@ -38798,7 +38692,7 @@ msgstr "创建图片索引"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2434
 msgid "This option allows you to create the images index"
-msgstr ""
+msgstr "此选项可以创建图像索引"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2440
 msgid "Include unused images and media objects"
@@ -39202,6 +39096,9 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"只在当您无法在您的网站上看到 OpenStreetMap 或 Stamen 地图时使用此选项。\n"
+"可在指定文件中修改数值。要修改的选项名称为 openlayers_version。\n"
+"较早版本内容请阅读 https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2809
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -39388,13 +39285,15 @@ msgstr "笔记文本尺寸，in points."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "模糊"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"设置模糊尺寸。\n"
+"默认：15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
@@ -39862,6 +39761,9 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "无样式表"
+
+#~ msgid "Preparing ..."
+#~ msgstr "准备中..."
 
 #, fuzzy
 #~| msgctxt "Filtering_on"
@@ -43654,9 +43556,6 @@ msgstr "无样式表"
 
 #~ msgid "Fathers use Main, and Mothers use the Secondary"
 #~ msgstr "父亲使用主要的，母亲使用次要的"
-
-#~ msgid "Print"
-#~ msgstr "打印"
 
 #~ msgid "One page report"
 #~ msgstr "单页报告"

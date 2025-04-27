@@ -7,7 +7,7 @@
 # Copyright (C) 2020 Juan Saavedra <jcsaaver@gmail.com>
 #
 #
-# Juan Saavedra <jcsaaver@gmail.com>, 2021, 2023, 2024.
+# Juan Saavedra <jcsaaver@gmail.com>, 2021, 2023, 2024, 2025.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
 # S <sendoasojo@gmail.com>, 2021.
@@ -22,13 +22,14 @@
 # Jesús Martínez <weblate@jandemor.com>, 2024.
 # Harald Herreros <h.herreros@proton.me>, 2024.
 # Jorge Martinez <6marvil@gmail.com>, 2025.
+# Francisco Serrador <fserrador@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-14 22:21+0000\n"
-"PO-Revision-Date: 2025-01-24 17:44+0000\n"
-"Last-Translator: Jorge Martinez <6marvil@gmail.com>\n"
+"POT-Creation-Date: 2025-04-18 20:48+0100\n"
+"PO-Revision-Date: 2025-03-28 08:34+0000\n"
+"Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -36,7 +37,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -264,7 +265,7 @@ msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr "Genealogía;Historia Familiar;Investigación;Árbol Familiar;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
-#: ../gramps/gen/const.py:259
+#: ../gramps/gen/const.py:265
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
@@ -841,14 +842,6 @@ msgstr ""
 "marcadores en la mayoría de los otros objetos."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit > Preferences > Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -862,7 +855,7 @@ msgstr ""
 "rojizo o un punto rojo a la derecha del campo. Puede arreglar la fecha "
 "mediante el diálogo de Selección de fecha que puede abrirse haciendo clic "
 "sobre el botón de fecha. El formato de la fecha se fija en \"Editar > "
-"Preferencias... > Mostrar\"."
+"Preferencias... > Datos\"."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -1012,16 +1005,12 @@ msgstr ""
 "https://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
 "<b>La página web de Gramps</b><br/>La página web de Gramps se encuentra en "
-"http://gramps-project.org/."
+"https://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1200,12 +1189,6 @@ msgstr ""
 "Foundation y la Open Source Initiative."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1214,7 +1197,7 @@ msgid ""
 msgstr ""
 "<b>La licencia de software de Gramps</b><br/>Puede utilizar y compartir "
 "Gramps con otros. Gramps puede distribuirse libremente siguiendo la Licencia "
-"Pública General de GNU, véase http://www.gnu.org/licenses/licenses.html#GPL "
+"Pública General de GNU, véase https://www.gnu.org/licenses/licenses.html#GPL "
 "para conocer más de los derechos y restricciones de esta licencia."
 
 #: ../data/tips.xml:128
@@ -1706,7 +1689,7 @@ msgstr "Error analizando los argumentos"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:208
-#: ../gramps/gui/clipboard.py:209 ../gramps/gui/plug/_windows.py:1498
+#: ../gramps/gui/clipboard.py:209 ../gramps/gui/plug/_windows.py:1505
 msgid "Unavailable"
 msgstr "No disponible"
 
@@ -1752,8 +1735,8 @@ msgstr "Árbol genealógico \"%s\":"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:187
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1703
-#: ../gramps/gui/plug/_windows.py:2147
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1710
+#: ../gramps/gui/plug/_windows.py:2154
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1825,7 +1808,7 @@ msgstr ""
 "\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2329
-#: ../gramps/gui/plug/_windows.py:773
+#: ../gramps/gui/plug/_windows.py:780
 msgid "Never"
 msgstr "Nunca"
 
@@ -2220,17 +2203,17 @@ msgctxt "localized lexeme inflections"
 msgid "January"
 msgstr "Enero"
 
-#: ../gramps/gen/const.py:293
+#: ../gramps/gen/const.py:299
 msgctxt "surname"
 msgid "none"
 msgstr "ninguno"
 
-#: ../gramps/gen/const.py:294
+#: ../gramps/gen/const.py:300
 msgctxt "given-name"
 msgid "none"
 msgstr "ninguno"
 
-#: ../gramps/gen/const.py:298 ../gramps/plugins/gramplet/todo.py:208
+#: ../gramps/gen/const.py:304 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:235
 #: ../gramps/plugins/webreport/basepage.py:3382
 #: ../gramps/plugins/webreport/basepage.py:3403
@@ -2275,10 +2258,8 @@ msgstr "Mes Día, Año"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
-msgstr "Mes Día, Año"
+msgstr "Mes (abreviado) Día, Año"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:88
@@ -2287,10 +2268,8 @@ msgstr "Día Mes Año"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
-msgstr "Día Mes Año"
+msgstr "Día Mes (abreviado) Año"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
@@ -3333,7 +3312,7 @@ msgstr ""
 "copia de seguridad%(html_end)s de su árbol genealógico."
 
 #: ../gramps/gen/db/generic.py:231 ../gramps/gen/db/generic.py:281
-#: ../gramps/gen/db/generic.py:2276
+#: ../gramps/gen/db/generic.py:2313
 #, python-format
 msgid "_Undo %s"
 msgstr "_Deshacer %s"
@@ -3343,116 +3322,116 @@ msgstr "_Deshacer %s"
 msgid "_Redo %s"
 msgstr "_Rehacer %s"
 
-#: ../gramps/gen/db/generic.py:2667
+#: ../gramps/gen/db/generic.py:2704
 msgid "Number of people"
 msgstr "Número de personas"
 
-#: ../gramps/gen/db/generic.py:2668
+#: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/gramplet/statsgramplet.py:187
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
 msgstr "Número de familias"
 
-#: ../gramps/gen/db/generic.py:2669
+#: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 msgid "Number of sources"
 msgstr "Número de fuentes"
 
-#: ../gramps/gen/db/generic.py:2670
+#: ../gramps/gen/db/generic.py:2707
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
 msgstr "Número de citas"
 
-#: ../gramps/gen/db/generic.py:2671
+#: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
 msgstr "Número de eventos"
 
-#: ../gramps/gen/db/generic.py:2672
+#: ../gramps/gen/db/generic.py:2709
 msgid "Number of media"
 msgstr "Número de medios"
 
-#: ../gramps/gen/db/generic.py:2673
+#: ../gramps/gen/db/generic.py:2710
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 msgid "Number of places"
 msgstr "Número de lugares"
 
-#: ../gramps/gen/db/generic.py:2674
+#: ../gramps/gen/db/generic.py:2711
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
 msgstr "Número de repositorios"
 
-#: ../gramps/gen/db/generic.py:2675
+#: ../gramps/gen/db/generic.py:2712
 msgid "Number of notes"
 msgstr "Número de notas"
 
-#: ../gramps/gen/db/generic.py:2676
+#: ../gramps/gen/db/generic.py:2713
 msgid "Number of tags"
 msgstr "Número de etiquetas"
 
-#: ../gramps/gen/db/generic.py:2677
+#: ../gramps/gen/db/generic.py:2714
 msgid "Schema version"
 msgstr "Versión de esquema"
 
-#: ../gramps/gen/db/upgrade.py:655
+#: ../gramps/gen/db/upgrade.py:672
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Personas      actualizadas con %(n2)6d citas en %(n3)6d segundos\n"
 
-#: ../gramps/gen/db/upgrade.py:659
+#: ../gramps/gen/db/upgrade.py:676
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Familias      actualizadas con %(n2)6d citas en %(n3)6d segundos\n"
 
-#: ../gramps/gen/db/upgrade.py:663
+#: ../gramps/gen/db/upgrade.py:680
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Eventos       actualizados con %(n2)6d citas en %(n3)6d segundos\n"
 
-#: ../gramps/gen/db/upgrade.py:667
+#: ../gramps/gen/db/upgrade.py:684
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Medios actualizados con %(n2)6d citas en %(n3)6d segundos\n"
 
-#: ../gramps/gen/db/upgrade.py:671
+#: ../gramps/gen/db/upgrade.py:688
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Lugares       actualizados con %(n2)6d citas en %(n3)6d segundos\n"
 
-#: ../gramps/gen/db/upgrade.py:675
+#: ../gramps/gen/db/upgrade.py:692
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Repositorios  actualizados con %(n2)6d citas en %(n3)6d segundos\n"
 
-#: ../gramps/gen/db/upgrade.py:679
+#: ../gramps/gen/db/upgrade.py:696
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 "%(n1)6d  Fuentes       actualizadas con %(n2)6d citas en %(n3)6d segundos\n"
 
-#: ../gramps/gen/db/upgrade.py:1244
+#: ../gramps/gen/db/upgrade.py:1261
 msgid "Number of new objects upgraded:\n"
 msgstr "Número de nuevos objetos actualizados:\n"
 
-#: ../gramps/gen/db/upgrade.py:1255
+#: ../gramps/gen/db/upgrade.py:1272
 msgid ""
 "\n"
 "\n"
@@ -3468,7 +3447,7 @@ msgstr ""
 "para fusionar citas que contengan información\n"
 "similar"
 
-#: ../gramps/gen/db/upgrade.py:1260
+#: ../gramps/gen/db/upgrade.py:1277
 msgid "Upgrade Statistics"
 msgstr "Estadísticas de la actualización"
 
@@ -3496,7 +3475,7 @@ msgstr "Apellidos, Nombre Sufijo"
 #: ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:206
 msgid "Given"
-msgstr "Nombre"
+msgstr "Nombre de pila"
 
 #: ../gramps/gen/display/name.py:399
 msgid "Given Surname Suffix"
@@ -3658,7 +3637,6 @@ msgstr "Aplicando..."
 #: ../gramps/gen/filters/_genericfilter.py:158
 #: ../gramps/gen/filters/_genericfilter.py:179
 #: ../gramps/gen/filters/_genericfilter.py:195
-#: ../gramps/gen/filters/_genericfilter.py:271
 #: ../gramps/gui/editors/filtereditor.py:1225
 #: ../gramps/plugins/drawreport/calendarreport.py:600
 #: ../gramps/plugins/drawreport/statisticschart.py:1125
@@ -3683,12 +3661,6 @@ msgstr "Aplicando..."
 #: ../gramps/plugins/webreport/webcal.py:1851
 msgid "Filter"
 msgstr "Filtro"
-
-#: ../gramps/gen/filters/_genericfilter.py:271
-#, fuzzy
-#| msgid "Reading data..."
-msgid "Preparing ..."
-msgstr "Leyendo datos..."
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
@@ -7170,8 +7142,8 @@ msgstr "Casta"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:914 ../gramps/gui/glade/styleeditor.glade:276
-#: ../gramps/gui/plug/_windows.py:1069 ../gramps/gui/plug/_windows.py:1184
-#: ../gramps/gui/plug/_windows.py:1641 ../gramps/gui/plug/_windows.py:2134
+#: ../gramps/gui/plug/_windows.py:1076 ../gramps/gui/plug/_windows.py:1191
+#: ../gramps/gui/plug/_windows.py:1648 ../gramps/gui/plug/_windows.py:2141
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -7461,7 +7433,7 @@ msgstr "Último cambio"
 #: ../gramps/gui/glade/editmediaref.glade:728
 #: ../gramps/gui/glade/editnote.glade:278
 #: ../gramps/gui/glade/editperson.glade:677
-#: ../gramps/gui/selectors/selectnote.py:75
+#: ../gramps/gui/selectors/selectnote.py:74
 #: ../gramps/plugins/importer/importprogen.glade:561
 #: ../gramps/plugins/importer/importxml.py:358
 #: ../gramps/plugins/lib/libpersonview.py:113
@@ -7501,12 +7473,11 @@ msgid "unknown"
 msgstr "desconocido"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "más de %s años"
-msgstr[1] "más de %s años"
+msgstr[0] "más de {number_of} año"
+msgstr[1] "más de {number_of} años"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:346 ../gramps/gen/lib/date.py:352
@@ -7769,7 +7740,7 @@ msgstr "Evento"
 #: ../gramps/gui/editors/filtereditor.py:312
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:117
 #: ../gramps/gui/glade/editevent.glade:271 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_guioptions.py:1368
+#: ../gramps/gui/plug/_guioptions.py:1373
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/gui/views/treemodels/placemodel.py:350
 #: ../gramps/plugins/export/exportcsv.py:307
@@ -8532,13 +8503,13 @@ msgstr "Unión civil"
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:105
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
-#: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:232
-#: ../gramps/gui/plug/_windows.py:1058 ../gramps/gui/plug/_windows.py:1181
-#: ../gramps/gui/plug/_windows.py:2132
+#: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:238
+#: ../gramps/gui/plug/_windows.py:1065 ../gramps/gui/plug/_windows.py:1188
+#: ../gramps/gui/plug/_windows.py:2139
 #: ../gramps/gui/plug/report/_bookdialog.py:397
 #: ../gramps/gui/plug/report/_bookdialog.py:401
 #: ../gramps/gui/selectors/selectevent.py:67
-#: ../gramps/gui/selectors/selectnote.py:74
+#: ../gramps/gui/selectors/selectnote.py:73
 #: ../gramps/gui/selectors/selectobject.py:82
 #: ../gramps/gui/selectors/selectplace.py:70
 #: ../gramps/plugins/export/exportcsv.py:310
@@ -8670,8 +8641,8 @@ msgstr "Templo"
 #: ../gramps/gen/lib/ldsord.py:204 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1062
-#: ../gramps/gui/plug/_windows.py:1124
+#: ../gramps/gui/plug/_windows.py:242 ../gramps/gui/plug/_windows.py:1069
+#: ../gramps/gui/plug/_windows.py:1131
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:532
 #: ../gramps/plugins/textreport/indivcomplete.py:737
@@ -8681,9 +8652,9 @@ msgid "Status"
 msgstr "Estado"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gui/clipboard.py:338
-#: ../gramps/gui/plug/_windows.py:1646
+#: ../gramps/gui/plug/_windows.py:1653
 msgid "Location"
-msgstr "Lugar"
+msgstr "Ubicación"
 
 #: ../gramps/gen/lib/location.py:100 ../gramps/gen/lib/placetype.py:79
 #: ../gramps/plugins/view/geoplaces.py:627
@@ -8732,10 +8703,10 @@ msgstr "Región"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:160
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1065
-#: ../gramps/gui/plug/_windows.py:2133
+#: ../gramps/gui/plug/_guioptions.py:1190 ../gramps/gui/plug/_windows.py:1072
+#: ../gramps/gui/plug/_windows.py:2140
 #: ../gramps/gui/plug/report/_bookdialog.py:397
-#: ../gramps/gui/selectors/selectperson.py:99
+#: ../gramps/gui/selectors/selectperson.py:106
 #: ../gramps/gui/selectors/selectplace.py:68
 #: ../gramps/gui/views/bookmarks.py:299 ../gramps/gui/views/tags.py:480
 #: ../gramps/gui/views/treemodels/peoplemodel.py:637
@@ -8769,7 +8740,7 @@ msgstr "Nombre"
 
 #: ../gramps/gen/lib/name.py:181 ../gramps/plugins/importer/importcsv.py:207
 msgid "Given name"
-msgstr "Nombre"
+msgstr "Nombre de pila"
 
 #: ../gramps/gen/lib/name.py:185 ../gramps/plugins/webreport/basepage.py:2056
 #: ../gramps/plugins/webreport/basepage.py:2114
@@ -8912,15 +8883,11 @@ msgid "Matrilineal"
 msgstr "Matrilineal"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "Ocupación"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
 msgstr "Lugar"
@@ -8994,7 +8961,7 @@ msgstr "Formato"
 #: ../gramps/gui/glade/editplaceref.glade:178
 #: ../gramps/gui/glade/editplaceref.glade:690
 #: ../gramps/gui/glade/editreporef.glade:232
-#: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:734
+#: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:741
 #: ../gramps/plugins/tool/verify.glade:426
 msgid "General"
 msgstr "General"
@@ -9106,7 +9073,7 @@ msgstr "Nota de referencia a hijo"
 #: ../gramps/gen/lib/person.py:196 ../gramps/gui/editors/editfamily.py:140
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:162
 #: ../gramps/gui/merge/mergeperson.py:199
-#: ../gramps/gui/selectors/selectperson.py:101
+#: ../gramps/gui/selectors/selectperson.py:108
 #: ../gramps/plugins/drawreport/statisticschart.py:378
 #: ../gramps/plugins/export/exportcsv.py:427
 #: ../gramps/plugins/importer/importcsv.py:234
@@ -9557,7 +9524,7 @@ msgstr "Subíndice"
 #: ../gramps/gui/configure.py:1093 ../gramps/gui/configure.py:1094
 #: ../gramps/gui/configure.py:1095 ../gramps/gui/configure.py:1096
 #: ../gramps/gui/editors/displaytabs/surnametab.py:80
-#: ../gramps/gui/plug/_guioptions.py:92 ../gramps/gui/plug/_guioptions.py:1520
+#: ../gramps/gui/plug/_guioptions.py:92 ../gramps/gui/plug/_guioptions.py:1525
 #: ../gramps/plugins/drawreport/statisticschart.py:368
 #: ../gramps/plugins/export/exportcsv.py:420
 #: ../gramps/plugins/importer/importcsv.py:197
@@ -9588,7 +9555,7 @@ msgstr "%(first)s %(second)s"
 #: ../gramps/gen/lib/tag.py:159 ../gramps/gen/plug/docgen/treedoc.py:252
 #: ../gramps/gui/glade/styleeditor.glade:397
 #: ../gramps/gui/glade/styleeditor.glade:1482
-#: ../gramps/gui/plug/_guioptions.py:1521 ../gramps/gui/views/tags.py:481
+#: ../gramps/gui/plug/_guioptions.py:1526 ../gramps/gui/views/tags.py:481
 msgid "Color"
 msgstr "Color"
 
@@ -9844,21 +9811,21 @@ msgstr ""
 "ERROR: El archivo python %(filename)s mencionado en el archivo de registro "
 "%(regfile)s no existe"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:142
+#: ../gramps/gen/plug/docbackend/docbackend.py:141
 msgid "Close file first"
 msgstr "Cierre el archivo antes"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:152
+#: ../gramps/gen/plug/docbackend/docbackend.py:151
 msgid "No filename given"
 msgstr "No se proporcionó nombre de archivo"
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:155
+#: ../gramps/gen/plug/docbackend/docbackend.py:154
 #, python-format
 msgid "File %s already open, close it first."
 msgstr "El archivo %s ya está abierto, ciérrelo antes."
 
-#: ../gramps/gen/plug/docbackend/docbackend.py:161
-#: ../gramps/gen/plug/docbackend/docbackend.py:164
+#: ../gramps/gen/plug/docbackend/docbackend.py:160
+#: ../gramps/gen/plug/docbackend/docbackend.py:163
 #: ../gramps/gen/plug/docgen/treedoc.py:832
 #: ../gramps/gen/utils/docgen/odstab.py:344
 #: ../gramps/gen/utils/docgen/odstab.py:346
@@ -9873,8 +9840,8 @@ msgstr "El archivo %s ya está abierto, ciérrelo antes."
 #: ../gramps/gen/utils/docgen/odstab.py:495
 #: ../gramps/gen/utils/docgen/odstab.py:498
 #: ../gramps/plugins/docgen/asciidoc.py:185
-#: ../gramps/plugins/docgen/cairodoc.py:210
-#: ../gramps/plugins/docgen/cairodoc.py:213
+#: ../gramps/plugins/docgen/cairodoc.py:209
+#: ../gramps/plugins/docgen/cairodoc.py:212
 #: ../gramps/plugins/docgen/odfdoc.py:1194
 #: ../gramps/plugins/docgen/odfdoc.py:1197
 #: ../gramps/plugins/docgen/rtfdoc.py:102
@@ -9891,10 +9858,10 @@ msgstr "El archivo %s ya está abierto, ciérrelo antes."
 #: ../gramps/plugins/export/exportvcalendar.py:127
 #: ../gramps/plugins/export/exportvcard.py:74
 #: ../gramps/plugins/export/exportvcard.py:78
-#: ../gramps/plugins/lib/libhtmlbackend.py:259
-#: ../gramps/plugins/lib/libhtmlbackend.py:262
-#: ../gramps/plugins/lib/libhtmlbackend.py:267
-#: ../gramps/plugins/lib/libhtmlbackend.py:270
+#: ../gramps/plugins/lib/libhtmlbackend.py:258
+#: ../gramps/plugins/lib/libhtmlbackend.py:261
+#: ../gramps/plugins/lib/libhtmlbackend.py:266
+#: ../gramps/plugins/lib/libhtmlbackend.py:269
 #: ../gramps/plugins/webreport/narrativeweb.py:418
 #, python-format
 msgid "Could not create %s"
@@ -10832,15 +10799,15 @@ msgstr "Ascendientes de %s"
 msgid "People with common ancestor with %s"
 msgstr "Personas con un ascendiente común con %s"
 
-#: ../gramps/gen/plug/report/utils.py:389 ../gramps/gui/plug/_guioptions.py:903
+#: ../gramps/gen/plug/report/utils.py:389 ../gramps/gui/plug/_guioptions.py:908
 msgid "unknown father"
 msgstr "padre desconocido"
 
-#: ../gramps/gen/plug/report/utils.py:395 ../gramps/gui/plug/_guioptions.py:909
+#: ../gramps/gen/plug/report/utils.py:395 ../gramps/gui/plug/_guioptions.py:914
 msgid "unknown mother"
 msgstr "madre desconocida"
 
-#: ../gramps/gen/plug/report/utils.py:397 ../gramps/gui/plug/_guioptions.py:911
+#: ../gramps/gen/plug/report/utils.py:397 ../gramps/gui/plug/_guioptions.py:916
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s y %(mother_name)s (%(family_id)s)"
@@ -11104,13 +11071,15 @@ msgstr "fecha"
 
 #: ../gramps/gen/utils/alive.py:213 ../gramps/gen/utils/alive.py:244
 msgid "date fallback"
-msgstr "fecha predeterminada"
+msgstr "Inferencia de fecha"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
 #, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
+"Evidencia directa para esta persona: nacimiento: {birth_min_src}, "
+"fallecimiento: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 msgid "mother's age"
@@ -11149,10 +11118,8 @@ msgid "birth date and known to be dead"
 msgstr "fecha de nacimiento y conocido como fallecido"
 
 #: ../gramps/gen/utils/alive.py:432
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "fecha de nacimiento de un ascendiente"
+msgstr "separación desde fecha de nacimiento"
 
 #: ../gramps/gen/utils/alive.py:448
 #, python-brace-format
@@ -11160,6 +11127,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
+"inferido de padres y hermanos - nacimiento: {birth_min_src}, defunción: "
+"{death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -11167,6 +11136,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"inferido de padres y hermanos - nacimiento: {birth_min_src} (más antiguo) a "
+"{birth_max_src} (más reciente), defunción: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11181,26 +11152,23 @@ msgid "event with spouse"
 msgstr "evento con el cónyuge"
 
 #: ../gramps/gen/utils/alive.py:765
-#, fuzzy, python-brace-format
-#| msgid "descendant birth: {} generations "
+#, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "Máximo nacimiento de descendiente: {} generaciones "
-msgstr[1] "Máximo nacimiento de descendiente: {} generaciones "
+msgstr[0] "nacimiento de descendiente: {number_of} generación "
+msgstr[1] "nacimiento de descendiente: {number_of} generaciones "
 
 #: ../gramps/gen/utils/alive.py:788
-#, fuzzy, python-brace-format
-#| msgid "descendant death: {} generations "
+#, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "Máximo fallecimiento de descendiente: {} generaciones "
-msgstr[1] "Máximo fallecimiento de descendiente: {} generaciones "
+msgstr[0] "defunción de descendiente: {number_of} generación "
+msgstr[1] "defunción de descendiente: {number_of} generaciones "
 
 #: ../gramps/gen/utils/alive.py:803
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Error en la base de dstos: bucle en los descendientes de %s"
+msgstr "Error en la base de datos: bucle en los descendientes de %s."
 
 #: ../gramps/gen/utils/alive.py:855
 msgid "mother birth "
@@ -11223,10 +11191,9 @@ msgid "father death "
 msgstr "muerte del padre "
 
 #: ../gramps/gen/utils/alive.py:962
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Error en la base de datos: bucle en los ancestros de %s"
+msgstr "Error en la base de datos: bucle en ancestros de %s."
 
 #: ../gramps/gen/utils/alive.py:1044 ../gramps/gen/utils/alive.py:1053
 msgid "no evidence"
@@ -11983,15 +11950,12 @@ msgstr ""
 "Gramps se cerrará ahora."
 
 #: ../gramps/grampsapp.py:227
-#, fuzzy
 msgid ""
 "The orjson package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"\n"
-"No tiene instalado el paquete bsddb3 para Python. Se requiere este paquete "
-"para usar Gramps.\n"
+"El paquete orjson es necesario para iniciar Gramps.\n"
 "\n"
 "Gramps se cerrará ahora."
 
@@ -12015,7 +11979,7 @@ msgid "installed"
 msgstr "instalado"
 
 #: ../gramps/grampsapp.py:625 ../gramps/grampsapp.py:634
-#: ../gramps/grampsapp.py:689
+#: ../gramps/grampsapp.py:684
 msgid "Configuration error:"
 msgstr "Error de configuración:"
 
@@ -12157,6 +12121,8 @@ msgstr "Arrastre y suelte las columnas para cambiar el orden"
 #: ../gramps/gui/plug/_dialogs.py:146 ../gramps/gui/viewmanager.py:1947
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
+#: ../gramps/plugins/tool/eventcmp.glade:189
+#: ../gramps/plugins/tool/notrelated.glade:141
 msgid "_Apply"
 msgstr "_Aplicar"
 
@@ -12197,14 +12163,23 @@ msgstr "Editor de formato de nombres"
 #: ../gramps/gui/glade/plugins.glade:37 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1006 ../gramps/gui/glade/tipofday.glade:128
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:389 ../gramps/gui/plug/_windows.py:1035
-#: ../gramps/gui/plug/_windows.py:1709 ../gramps/gui/plug/_windows.py:1769
+#: ../gramps/gui/plug/_windows.py:395 ../gramps/gui/plug/_windows.py:1042
+#: ../gramps/gui/plug/_windows.py:1716 ../gramps/gui/plug/_windows.py:1776
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:708
 #: ../gramps/gui/widgets/grampletpane.py:258
 #: ../gramps/plugins/lib/maps/placeselection.py:122
 #: ../gramps/plugins/tool/dumpgenderstats.py:86
+#: ../gramps/plugins/tool/eventcmp.glade:21
+#: ../gramps/plugins/tool/eventcmp.glade:173
+#: ../gramps/plugins/tool/finddupes.glade:242
+#: ../gramps/plugins/tool/notrelated.glade:21
+#: ../gramps/plugins/tool/relcalc.glade:22
+#: ../gramps/plugins/tool/removespaces.glade:23
+#: ../gramps/plugins/tool/removeunused.glade:36
+#: ../gramps/plugins/tool/verify.glade:126
+#: ../gramps/plugins/tool/verify.glade:850
 msgid "_Close"
 msgstr "_Cerrar"
 
@@ -12291,9 +12266,9 @@ msgstr "Definición de formato inválida o incompleta."
 #: ../gramps/gui/configure.py:1658 ../gramps/gui/configure.py:1663
 #: ../gramps/gui/configure.py:1684 ../gramps/gui/configure.py:1700
 #: ../gramps/gui/configure.py:2133 ../gramps/gui/configure.py:2251
-#: ../gramps/gui/configure.py:2340 ../gramps/gui/plug/_windows.py:783
-#: ../gramps/gui/plug/_windows.py:803 ../gramps/gui/plug/_windows.py:839
-#: ../gramps/gui/plug/_windows.py:847 ../gramps/gui/views/navigationview.py:351
+#: ../gramps/gui/configure.py:2340 ../gramps/gui/plug/_windows.py:790
+#: ../gramps/gui/plug/_windows.py:810 ../gramps/gui/plug/_windows.py:846
+#: ../gramps/gui/plug/_windows.py:854 ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:111
 #, python-format
 msgid "%s: "
@@ -12339,14 +12314,27 @@ msgstr "%s: "
 #: ../gramps/gui/glade/mergesource.glade:51
 #: ../gramps/gui/glade/reorder.glade:51 ../gramps/gui/glade/rule.glade:40
 #: ../gramps/gui/glade/rule.glade:342 ../gramps/gui/glade/rule.glade:766
-#: ../gramps/gui/grampsgui.py:58 ../gramps/gui/logger/_errorview.py:190
-#: ../gramps/gui/plug/_windows.py:390
+#: ../gramps/gui/glade/styleeditor.glade:119
+#: ../gramps/gui/glade/styleeditor.glade:1803 ../gramps/gui/grampsgui.py:58
+#: ../gramps/gui/logger/_errorview.py:190 ../gramps/gui/plug/_windows.py:396
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
 #: ../gramps/gui/widgets/grampletbar.py:712
 #: ../gramps/gui/widgets/grampletpane.py:264
 #: ../gramps/plugins/importer/importprogen.glade:61
+#: ../gramps/plugins/tool/changenames.glade:72
+#: ../gramps/plugins/tool/eventcmp.glade:53
+#: ../gramps/plugins/tool/eventcmp.glade:205
+#: ../gramps/plugins/tool/finddupes.glade:60
+#: ../gramps/plugins/tool/finddupes.glade:274
+#: ../gramps/plugins/tool/mergecitations.glade:60
+#: ../gramps/plugins/tool/notrelated.glade:37
+#: ../gramps/plugins/tool/ownereditor.glade:53
+#: ../gramps/plugins/tool/patchnames.glade:21
+#: ../gramps/plugins/tool/relcalc.glade:37
+#: ../gramps/plugins/tool/removespaces.glade:40
+#: ../gramps/plugins/tool/reorderids.glade:213
 #: ../gramps/plugins/tool/testcasegenerator.py:396
 msgid "_Help"
 msgstr "_Ayuda"
@@ -12365,7 +12353,7 @@ msgstr "Estado/Condado"
 msgid "ZIP/Postal Code"
 msgstr "C.P./Código Postal"
 
-#: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1644
+#: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1651
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
 msgstr "Correo electrónico"
@@ -12616,7 +12604,7 @@ msgstr "Opciones de presentación"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:511 ../gramps/gui/glade/rule.glade:452
 #: ../gramps/gui/glade/styleeditor.glade:1932
-#: ../gramps/gui/plug/_windows.py:1088 ../gramps/gui/plug/_windows.py:1147
+#: ../gramps/gui/plug/_windows.py:1095 ../gramps/gui/plug/_windows.py:1154
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -12837,7 +12825,7 @@ msgstr "Mostrar información útil sobre el uso de Gramps al inicio."
 
 #: ../gramps/gui/configure.py:1991
 msgid "Remember last Family Tree"
-msgstr "Quitar el último árbol genealógico"
+msgstr "Recordar el último árbol genealógico"
 
 #: ../gramps/gui/configure.py:1997
 msgid ""
@@ -12845,7 +12833,7 @@ msgid ""
 "used."
 msgstr ""
 "No abrir diálogo para elegir el árbol genealógico a cargar en el inicio, "
-"simplemente csrgar el último usado."
+"simplemente cargar el último usado."
 
 #: ../gramps/gui/configure.py:2005
 msgid "Remember last view displayed"
@@ -12931,27 +12919,23 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2124
 msgid "Both text and icons"
-msgstr ""
+msgstr "Ambos texto e iconos"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "Sólo texto"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "Sólo nuevas extensiones"
+msgstr "Sólo iconos nuevos"
 
 #: ../gramps/gui/configure.py:2131
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "Exhibe texto, iconos o ambos en los botones de barra de herramientas."
 
 #: ../gramps/gui/configure.py:2133
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "Barra de herramien_tas"
+msgstr "Estilo de barra de herramientas"
 
 #: ../gramps/gui/configure.py:2141
 msgid "Show close button in gramplet bar tabs"
@@ -13189,18 +13173,25 @@ msgstr "Seleccionar el directorio de objetos audiovisuales"
 #: ../gramps/gui/glade/rule.glade:734 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1770
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:857
-#: ../gramps/gui/plug/_windows.py:1420
+#: ../gramps/gui/plug/_guioptions.py:1762 ../gramps/gui/plug/_windows.py:864
+#: ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:267
-#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1256
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
 #: ../gramps/gui/widgets/progressdialog.py:441
 #: ../gramps/plugins/importer/importprogen.glade:28
 #: ../gramps/plugins/lib/maps/geography.py:1116
 #: ../gramps/plugins/lib/maps/geography.py:1538
+#: ../gramps/plugins/tool/changenames.glade:88
+#: ../gramps/plugins/tool/changetypes.glade:22
 #: ../gramps/plugins/tool/check.py:830 ../gramps/plugins/tool/eventcmp.py:410
+#: ../gramps/plugins/tool/finddupes.glade:28
+#: ../gramps/plugins/tool/mergecitations.glade:28
+#: ../gramps/plugins/tool/ownereditor.glade:21
+#: ../gramps/plugins/tool/patchnames.glade:37
 #: ../gramps/plugins/tool/populatesources.py:99
+#: ../gramps/plugins/tool/reorderids.glade:181
 #: ../gramps/plugins/tool/testcasegenerator.py:394
 msgid "_Cancel"
 msgstr "Cancelar"
@@ -13483,11 +13474,18 @@ msgstr "Información de la Base de Datos"
 #: ../gramps/gui/glade/reorder.glade:36 ../gramps/gui/glade/rule.glade:325
 #: ../gramps/gui/glade/rule.glade:750 ../gramps/gui/glade/styleeditor.glade:102
 #: ../gramps/gui/glade/styleeditor.glade:1786
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:857
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:864
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:281
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
-#: ../gramps/plugins/tool/check.py:830 ../gramps/plugins/tool/patchnames.py:152
+#: ../gramps/plugins/importer/importgedcom.glade:46
+#: ../gramps/plugins/tool/changetypes.glade:38
+#: ../gramps/plugins/tool/check.py:830
+#: ../gramps/plugins/tool/finddupes.glade:44
+#: ../gramps/plugins/tool/mergecitations.glade:44
+#: ../gramps/plugins/tool/ownereditor.glade:37
+#: ../gramps/plugins/tool/patchnames.py:152
 #: ../gramps/plugins/tool/populatesources.py:99
+#: ../gramps/plugins/tool/reorderids.glade:197
 #: ../gramps/plugins/tool/testcasegenerator.py:395
 msgid "_OK"
 msgstr "Aceptar"
@@ -13825,9 +13823,9 @@ msgstr "Herramientas"
 msgid "Open Addon Manager"
 msgstr "Abrir Gestor de Complementos"
 
-#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:474
+#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:480
 msgid "Addons"
-msgstr "Nombres de complementos"
+msgstr "Complementos"
 
 #: ../gramps/gui/displaystate.py:429
 msgid "Open Preferences"
@@ -14039,14 +14037,14 @@ msgstr "_Atributos"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:112
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:194
-#: ../gramps/gui/plug/_guioptions.py:1186
-#: ../gramps/gui/plug/_guioptions.py:1369
+#: ../gramps/gui/plug/_guioptions.py:1191
+#: ../gramps/gui/plug/_guioptions.py:1374
 #: ../gramps/gui/selectors/selectcitation.py:74
 #: ../gramps/gui/selectors/selectevent.py:72
 #: ../gramps/gui/selectors/selectfamily.py:67
-#: ../gramps/gui/selectors/selectnote.py:73
+#: ../gramps/gui/selectors/selectnote.py:72
 #: ../gramps/gui/selectors/selectobject.py:81
-#: ../gramps/gui/selectors/selectperson.py:100
+#: ../gramps/gui/selectors/selectperson.py:107
 #: ../gramps/gui/selectors/selectplace.py:69
 #: ../gramps/gui/selectors/selectrepository.py:68
 #: ../gramps/gui/selectors/selectsource.py:70
@@ -14188,13 +14186,13 @@ msgstr "Cita_s de fuentes"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:344
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:320
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:376
-#: ../gramps/plugins/view/citationtreeview.py:622
-#: ../gramps/plugins/view/citationtreeview.py:646
+#: ../gramps/plugins/view/citationtreeview.py:624
+#: ../gramps/plugins/view/citationtreeview.py:648
 msgid "Cannot share this reference"
 msgstr "No se puede compartir esta referencia"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:235
-#: ../gramps/plugins/view/citationtreeview.py:656
+#: ../gramps/plugins/view/citationtreeview.py:658
 msgid ""
 "This citation cannot be created at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -14388,14 +14386,14 @@ msgid "Set as Preferred name"
 msgstr "Configurar como nombre preferido"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:939
+#: ../gramps/gui/plug/_guioptions.py:1273 ../gramps/gui/plug/_windows.py:946
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr "Sí"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:940
+#: ../gramps/gui/plug/_guioptions.py:1271 ../gramps/gui/plug/_windows.py:947
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
@@ -14439,7 +14437,7 @@ msgstr "Mover la nota seleccionada hacia abajo"
 #: ../gramps/gui/glade/editmedia.glade:186
 #: ../gramps/gui/glade/editmediaref.glade:191
 #: ../gramps/gui/glade/editmediaref.glade:505
-#: ../gramps/gui/selectors/selectnote.py:72
+#: ../gramps/gui/selectors/selectnote.py:71
 #: ../gramps/plugins/view/noteview.py:82
 msgid "Preview"
 msgstr "Previsualización"
@@ -14956,7 +14954,7 @@ msgid "Maternal"
 msgstr "Materna"
 
 #: ../gramps/gui/editors/editfamily.py:143
-#: ../gramps/gui/selectors/selectperson.py:102
+#: ../gramps/gui/selectors/selectperson.py:109
 #: ../gramps/plugins/gramplet/children.py:109
 #: ../gramps/plugins/gramplet/children.py:220
 #: ../gramps/plugins/lib/libpersonview.py:103
@@ -14978,7 +14976,7 @@ msgid "Birth Date"
 msgstr "Fecha de nacimiento"
 
 #: ../gramps/gui/editors/editfamily.py:144
-#: ../gramps/gui/selectors/selectperson.py:104
+#: ../gramps/gui/selectors/selectperson.py:111
 #: ../gramps/plugins/gramplet/children.py:111
 #: ../gramps/plugins/gramplet/children.py:222
 #: ../gramps/plugins/lib/libpersonview.py:105
@@ -14989,13 +14987,13 @@ msgid "Death Date"
 msgstr "Fecha de defunción"
 
 #: ../gramps/gui/editors/editfamily.py:145
-#: ../gramps/gui/selectors/selectperson.py:103
+#: ../gramps/gui/selectors/selectperson.py:110
 #: ../gramps/plugins/lib/libpersonview.py:104
 msgid "Birth Place"
 msgstr "Lugar de nacimiento"
 
 #: ../gramps/gui/editors/editfamily.py:146
-#: ../gramps/gui/selectors/selectperson.py:105
+#: ../gramps/gui/selectors/selectperson.py:112
 #: ../gramps/plugins/lib/libpersonview.py:106
 msgid "Death Place"
 msgstr "Lugar de defunción"
@@ -15061,7 +15059,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:571
 #: ../gramps/plugins/importer/importcsv.py:360
-#: ../gramps/plugins/view/familyview.py:410
+#: ../gramps/plugins/view/familyview.py:412
 msgid "family"
 msgstr "familia"
 
@@ -16086,7 +16084,7 @@ msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Para seleccionar un objeto, arrastre y suelte o utilice los botones"
 
 #: ../gramps/gui/editors/objectentries.py:518
-#: ../gramps/gui/plug/_guioptions.py:1123
+#: ../gramps/gui/plug/_guioptions.py:1128
 msgid "No image given, click button to select one"
 msgstr "No se indicó imagen, haga clic en el botón para seleccionar una"
 
@@ -16095,7 +16093,7 @@ msgid "Edit media object"
 msgstr "Editar objeto audiovisual"
 
 #: ../gramps/gui/editors/objectentries.py:520
-#: ../gramps/gui/plug/_guioptions.py:1101
+#: ../gramps/gui/plug/_guioptions.py:1106
 msgid "Select an existing media object"
 msgstr "Seleccionar un objeto audiovisual existente"
 
@@ -16113,12 +16111,12 @@ msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Para seleccionar una nota, arrastre y suelte o utilice los botones"
 
 #: ../gramps/gui/editors/objectentries.py:588
-#: ../gramps/gui/plug/_guioptions.py:1021
+#: ../gramps/gui/plug/_guioptions.py:1026
 msgid "No note given, click button to select one"
 msgstr "No se indicó una nota, haga clic en el botón para seleccionar una"
 
 #: ../gramps/gui/editors/objectentries.py:590
-#: ../gramps/gui/plug/_guioptions.py:996
+#: ../gramps/gui/plug/_guioptions.py:1001
 msgid "Select an existing note"
 msgstr "Seleccionar una nota existente"
 
@@ -16131,38 +16129,39 @@ msgstr "Agregar una nueva nota"
 msgid "Remove note"
 msgstr "Quitar nota"
 
-#: ../gramps/gui/filters/_searchbar.py:59
+#: ../gramps/gui/filters/_searchbar.py:60
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:78
+#: ../gramps/plugins/tool/removeunused.glade:213
 msgid "_Find"
 msgstr "_Buscar"
 
-#: ../gramps/gui/filters/_searchbar.py:60
+#: ../gramps/gui/filters/_searchbar.py:61
 #: ../gramps/gui/glade/clipboard.glade:53 ../gramps/gui/undohistory.py:87
 msgid "_Clear"
 msgstr "_Borrar"
 
-#: ../gramps/gui/filters/_searchbar.py:109
+#: ../gramps/gui/filters/_searchbar.py:114
 #, python-format
 msgid "%s is"
 msgstr "%s es"
 
-#: ../gramps/gui/filters/_searchbar.py:111
+#: ../gramps/gui/filters/_searchbar.py:116
 #, python-format
 msgid "%s contains"
 msgstr "%s contiene"
 
-#: ../gramps/gui/filters/_searchbar.py:115
+#: ../gramps/gui/filters/_searchbar.py:120
 #, python-format
 msgid "%s is not"
 msgstr "%s no es"
 
-#: ../gramps/gui/filters/_searchbar.py:117
+#: ../gramps/gui/filters/_searchbar.py:122
 #, python-format
 msgid "%s does not contain"
 msgstr "%s no contiene"
 
-#: ../gramps/gui/filters/_searchbar.py:170 ../gramps/gui/views/listview.py:1379
-#: ../gramps/gui/views/listview.py:1399 ../gramps/plugins/gramplet/leak.py:201
+#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1384
+#: ../gramps/gui/views/listview.py:1404 ../gramps/plugins/gramplet/leak.py:201
 #: ../gramps/plugins/gramplet/leak.py:208
 msgid "Updating display..."
 msgstr "Actualizando la presentación..."
@@ -16260,7 +16259,7 @@ msgid "Within"
 msgstr "Dentro de"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
-#: ../gramps/gui/plug/_windows.py:847
+#: ../gramps/gui/plug/_windows.py:854
 msgid "URL"
 msgstr "URL"
 
@@ -16303,7 +16302,7 @@ msgstr "Proporcione al menos un valor"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:404
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "Creado por el gramplete Filtro el {today}"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -16329,19 +16328,20 @@ msgid "Show all"
 msgstr "Mostrar todos"
 
 #: ../gramps/gui/glade/baseselector.glade:137
-#: ../gramps/gui/views/treemodels/treebasemodel.py:568
-#: ../gramps/gui/views/treemodels/treebasemodel.py:617
+#: ../gramps/gui/views/treemodels/treebasemodel.py:562
+#: ../gramps/gui/views/treemodels/treebasemodel.py:611
 msgid "Loading items..."
 msgstr "Cargando ítems..."
 
 #: ../gramps/gui/glade/book.glade:22 ../gramps/gui/glade/dbman.glade:269
-#: ../gramps/gui/views/listview.py:608
+#: ../gramps/gui/views/listview.py:613
 #: ../gramps/plugins/lib/libpersonview.py:254
 #: ../gramps/plugins/lib/libpersonview.py:332
 #: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/lib/libplaceview.py:333
 #: ../gramps/plugins/lib/libplaceview.py:393
 #: ../gramps/plugins/lib/libplaceview.py:447
+#: ../gramps/plugins/tool/removeunused.glade:20
 #: ../gramps/plugins/view/citationlistview.py:220
 #: ../gramps/plugins/view/citationlistview.py:280
 #: ../gramps/plugins/view/citationlistview.py:333
@@ -16541,7 +16541,7 @@ msgstr ""
 msgid "Cancel the rest of the operations"
 msgstr "Cancelar el resto de las operaciones"
 
-#: ../gramps/gui/glade/dialog.glade:469 ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/glade/dialog.glade:469 ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/tool/reorderids.glade:21
 msgid "_No"
 msgstr "_No"
@@ -16551,7 +16551,7 @@ msgstr "_No"
 msgid "Do not apply the operation to this item"
 msgstr "No aplicar la operación a este ítem"
 
-#: ../gramps/gui/glade/dialog.glade:485 ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/glade/dialog.glade:485 ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/tool/reorderids.glade:37
 msgid "_Yes"
 msgstr "_Sí"
@@ -16588,7 +16588,7 @@ msgstr "Cerrar si_n guardar"
 
 #: ../gramps/gui/glade/dialog.glade:935
 #: ../gramps/gui/plug/report/_bookdialog.py:649
-#: ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/views/listview.py:1256
 #: ../gramps/gui/widgets/grampletpane.py:614
 #: ../gramps/plugins/tool/eventcmp.py:410
 msgid "_Save"
@@ -17895,7 +17895,7 @@ msgid "Click to delete gramplet from view"
 msgstr "Haga clic para eliminar el gramplete de esta vista"
 
 #: ../gramps/gui/glade/grampletpane.glade:141
-#: ../gramps/gui/views/listview.py:642
+#: ../gramps/gui/views/listview.py:647
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -17969,7 +17969,7 @@ msgid "_Merge and close"
 msgstr "_Mezclar y cerrar"
 
 #: ../gramps/gui/glade/mergedata.glade:170
-#: ../gramps/gui/glade/mergedata.glade:185 ../gramps/gui/plug/_windows.py:2126
+#: ../gramps/gui/glade/mergedata.glade:185 ../gramps/gui/plug/_windows.py:2133
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -18097,7 +18097,7 @@ msgid "Note 2"
 msgstr "Nota 2"
 
 #: ../gramps/gui/glade/mergenote.glade:270
-#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1261
 msgid "Format:"
 msgstr "Formato:"
 
@@ -18255,10 +18255,8 @@ msgid "Metric"
 msgstr "Métrico"
 
 #: ../gramps/gui/glade/plugins.glade:22
-#, fuzzy
-#| msgid "Wiki"
 msgid "_Wiki"
-msgstr "Wiki"
+msgstr "_Wiki"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -18606,6 +18604,7 @@ msgid "_Display on startup"
 msgstr "_Mostrar al arrancar"
 
 #: ../gramps/gui/glade/tipofday.glade:112
+#: ../gramps/plugins/docgen/gtkprint.glade:93
 #: ../gramps/plugins/lib/libpersonview.py:234
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libplaceview.py:319
@@ -18650,7 +18649,7 @@ msgid "Install Selected _Addons"
 msgstr "Instalar las extensiones seleccionadas"
 
 #: ../gramps/gui/glade/updateaddons.glade:70
-#: ../gramps/gui/plug/_windows.py:2103
+#: ../gramps/gui/plug/_windows.py:2110
 msgid "Available Gramps Updates for Addons"
 msgstr "Actualizaciones disponibles para las extensiones de Gramps"
 
@@ -18790,7 +18789,7 @@ msgstr "Administrador de com_plementos"
 msgid "_Preferences..."
 msgstr "_Preferencias..."
 
-#: ../gramps/gui/grampsgui.py:58
+#: ../gramps/gui/grampsgui.py:58 ../gramps/plugins/docgen/gtkprint.glade:25
 msgid "_Quit"
 msgstr "_Salir"
 
@@ -19250,7 +19249,7 @@ msgid "Spouses"
 msgstr "Cónyuges"
 
 #: ../gramps/gui/merge/mergeperson.py:270
-#: ../gramps/gui/selectors/selectperson.py:106
+#: ../gramps/gui/selectors/selectperson.py:113
 #: ../gramps/gui/widgets/reorderfam.py:105
 #: ../gramps/plugins/gramplet/children.py:113
 #: ../gramps/plugins/lib/libpersonview.py:107
@@ -19348,469 +19347,481 @@ msgstr "Búsqueda de apellidos"
 msgid "Select a different person"
 msgstr "Seleccionar una persona diferente"
 
-#: ../gramps/gui/plug/_guioptions.py:720
+#: ../gramps/gui/plug/_guioptions.py:698
+#, fuzzy
+#| msgid "Bookmarked people"
+msgid "Active, bookmarked or home people"
+msgstr "Personas en Favoritos"
+
+#: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
 msgstr "Seleccionar una persona para el informe"
 
-#: ../gramps/gui/plug/_guioptions.py:803
+#: ../gramps/gui/plug/_guioptions.py:804
 msgid "Select a different family"
 msgstr "Seleccionar una familia distinta"
 
-#: ../gramps/gui/plug/_guioptions.py:1261
+#: ../gramps/gui/plug/_guioptions.py:856
+#, fuzzy
+#| msgid "Bookmarked families"
+msgid "Active or bookmarked families"
+msgstr "Familias en marcadores"
+
+#: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
 msgid "Also include %s?"
 msgstr "¿Incluir también %s?"
 
-#: ../gramps/gui/plug/_guioptions.py:1264
-#: ../gramps/gui/selectors/selectperson.py:92
+#: ../gramps/gui/plug/_guioptions.py:1269
+#: ../gramps/gui/selectors/selectperson.py:99
 msgid "Select Person"
 msgstr "Seleccionar persona"
 
-#: ../gramps/gui/plug/_guioptions.py:1590
+#: ../gramps/gui/plug/_guioptions.py:1595
 #, python-format
 msgid "Select color for %s"
 msgstr "Seleccionar color para %s"
 
-#: ../gramps/gui/plug/_guioptions.py:1754
+#: ../gramps/gui/plug/_guioptions.py:1759
 #: ../gramps/gui/plug/report/_reportdialog.py:462
 msgid "Save As"
 msgstr "Guardar como"
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1420
+#: ../gramps/gui/plug/_guioptions.py:1762 ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_bookdialog.py:650
 #: ../gramps/gui/plug/report/_fileentry.py:68
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../gramps/gui/plug/_guioptions.py:1837
+#: ../gramps/gui/plug/_guioptions.py:1842
 #: ../gramps/gui/plug/report/_reportdialog.py:337
 msgid "Style Editor"
 msgstr "Editor de estilos"
 
-#: ../gramps/gui/plug/_windows.py:230
+#: ../gramps/gui/plug/_windows.py:236
 msgid "Project"
 msgstr "Proyecto"
 
-#: ../gramps/gui/plug/_windows.py:234
+#: ../gramps/gui/plug/_windows.py:240
 msgid "Audience"
 msgstr "Audiencia"
 
-#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1642
+#: ../gramps/gui/plug/_windows.py:244 ../gramps/gui/plug/_windows.py:1649
 msgid "Version"
 msgstr "Versión"
 
-#: ../gramps/gui/plug/_windows.py:241
+#: ../gramps/gui/plug/_windows.py:247
 msgid "Installed version"
 msgstr "Versión instalada"
 
-#: ../gramps/gui/plug/_windows.py:259 ../gramps/gui/plug/_windows.py:260
+#: ../gramps/gui/plug/_windows.py:265 ../gramps/gui/plug/_windows.py:266
 msgid "Install"
 msgstr "Instalar"
 
-#: ../gramps/gui/plug/_windows.py:265
+#: ../gramps/gui/plug/_windows.py:271
 msgid "Wiki"
 msgstr "Wiki"
 
-#: ../gramps/gui/plug/_windows.py:270
+#: ../gramps/gui/plug/_windows.py:276
 msgid "Requires"
 msgstr "Requiere"
 
-#: ../gramps/gui/plug/_windows.py:275
+#: ../gramps/gui/plug/_windows.py:281
 msgid "Update"
 msgstr "Actualizar"
 
-#: ../gramps/gui/plug/_windows.py:302 ../gramps/gui/plug/_windows.py:313
+#: ../gramps/gui/plug/_windows.py:308 ../gramps/gui/plug/_windows.py:319
 msgid "Module installation failed"
 msgstr "Falló la actualización del módulo"
 
-#: ../gramps/gui/plug/_windows.py:314
+#: ../gramps/gui/plug/_windows.py:320
 msgid "Gramps was unable to install the required modules"
 msgstr "Gramps no pudo instalar los módulos requeridos"
 
-#: ../gramps/gui/plug/_windows.py:344
+#: ../gramps/gui/plug/_windows.py:350
 msgid "Requirements"
 msgstr "Requerimientos"
 
-#: ../gramps/gui/plug/_windows.py:380
+#: ../gramps/gui/plug/_windows.py:386
 msgid "Addon Manager"
 msgstr "Gestor de Complementos"
 
-#: ../gramps/gui/plug/_windows.py:388 ../gramps/plugins/gramplet/leak.py:114
+#: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
 msgstr "Refrescar"
 
-#: ../gramps/gui/plug/_windows.py:419
+#: ../gramps/gui/plug/_windows.py:425
 msgid "Filters"
 msgstr "Filtros"
 
-#: ../gramps/gui/plug/_windows.py:425
+#: ../gramps/gui/plug/_windows.py:431
 msgid "All addons"
 msgstr "Todos los complementos"
 
-#: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:632
+#: ../gramps/gui/plug/_windows.py:432 ../gramps/gui/plug/_windows.py:639
 msgid "Not installed"
 msgstr "No instalado"
 
-#: ../gramps/gui/plug/_windows.py:427 ../gramps/gui/plug/_windows.py:635
+#: ../gramps/gui/plug/_windows.py:433 ../gramps/gui/plug/_windows.py:642
 msgid "Installed"
 msgstr "Instalado"
 
-#: ../gramps/gui/plug/_windows.py:428 ../gramps/gui/plug/_windows.py:638
+#: ../gramps/gui/plug/_windows.py:434 ../gramps/gui/plug/_windows.py:645
 #: ../gramps/plugins/webreport/basepage.py:2078
 #: ../gramps/plugins/webreport/basepage.py:2146
 msgid "Updates"
 msgstr "Actualizaciones"
 
-#: ../gramps/gui/plug/_windows.py:440
+#: ../gramps/gui/plug/_windows.py:446
 msgid "All types"
 msgstr "Todos los tipos"
 
-#: ../gramps/gui/plug/_windows.py:448
+#: ../gramps/gui/plug/_windows.py:454
 msgid "All audiences"
 msgstr "Todas las audiencias"
 
-#: ../gramps/gui/plug/_windows.py:455
+#: ../gramps/gui/plug/_windows.py:461
 msgid "All statuses"
 msgstr "Todos los estados"
 
-#: ../gramps/gui/plug/_windows.py:463
+#: ../gramps/gui/plug/_windows.py:469
 msgid "Reset addon filters to defaults"
 msgstr "Restaurar filtros de extensión a los valores por defecto"
 
-#: ../gramps/gui/plug/_windows.py:477
+#: ../gramps/gui/plug/_windows.py:483
 msgid "Settings"
 msgstr "Configuraciones"
 
-#: ../gramps/gui/plug/_windows.py:480
+#: ../gramps/gui/plug/_windows.py:486
 msgid "Projects"
 msgstr "Proyectos"
 
-#: ../gramps/gui/plug/_windows.py:525 ../gramps/gui/plug/_windows.py:643
+#: ../gramps/gui/plug/_windows.py:532 ../gramps/gui/plug/_windows.py:650
 msgid "All projects"
 msgstr "Todos los proyectos"
 
-#: ../gramps/gui/plug/_windows.py:537
+#: ../gramps/gui/plug/_windows.py:544
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: ../gramps/gui/plug/_windows.py:563
+#: ../gramps/gui/plug/_windows.py:570
 msgid "Addon Registration Failed"
 msgstr "Error al registrar el addon"
 
-#: ../gramps/gui/plug/_windows.py:564
+#: ../gramps/gui/plug/_windows.py:571
 msgid "The addon will be unavailable in your current configuration."
 msgstr "El addon no estará disponible en su configuración actual."
 
-#: ../gramps/gui/plug/_windows.py:589
+#: ../gramps/gui/plug/_windows.py:596
 msgid "No matching addons found."
 msgstr "No se encontraron complementos coincidentes."
 
-#: ../gramps/gui/plug/_windows.py:703
+#: ../gramps/gui/plug/_windows.py:710
 msgid "Insert a project"
 msgstr "Insertar un proyecto"
 
-#: ../gramps/gui/plug/_windows.py:705
+#: ../gramps/gui/plug/_windows.py:712
 msgid "Remove the selected project"
 msgstr "Eliminar el proyecto seleccionada"
 
-#: ../gramps/gui/plug/_windows.py:707
+#: ../gramps/gui/plug/_windows.py:714
 msgid "Move project upwards in the list"
 msgstr "Mover hacia arriba el proyecto en la lista"
 
-#: ../gramps/gui/plug/_windows.py:709
+#: ../gramps/gui/plug/_windows.py:716
 msgid "Move project downwards in the list"
 msgstr "Mover hacia abajo el proyecto en la lista"
 
-#: ../gramps/gui/plug/_windows.py:711
+#: ../gramps/gui/plug/_windows.py:718
 msgid "Revert to the project defaults"
 msgstr "Revertir a los valores por defecto del proyecto"
 
-#: ../gramps/gui/plug/_windows.py:748
+#: ../gramps/gui/plug/_windows.py:755
 msgid "Allow Gramps to install required Python modules"
 msgstr "Permita que Gramps instale los módulos de Python requeridos"
 
-#: ../gramps/gui/plug/_windows.py:750
+#: ../gramps/gui/plug/_windows.py:757
 msgid "Where possible, try to install any missing prerequisite Python modules"
 msgstr ""
 "Cuando sea posible, intentar instalar los módulos de Python requeridos que "
 "falten"
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:765
 msgid "Scheduled update checks"
 msgstr "Verificaciones de actualización programadas"
 
-#: ../gramps/gui/plug/_windows.py:774
+#: ../gramps/gui/plug/_windows.py:781
 msgid "Once a month"
 msgstr "Mensual"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:782
 msgid "Once a week"
 msgstr "Semanal"
 
-#: ../gramps/gui/plug/_windows.py:776
+#: ../gramps/gui/plug/_windows.py:783
 msgid "Once a day"
 msgstr "Diario"
 
-#: ../gramps/gui/plug/_windows.py:777
+#: ../gramps/gui/plug/_windows.py:784
 msgid "Always"
 msgstr "Siempre"
 
-#: ../gramps/gui/plug/_windows.py:783
+#: ../gramps/gui/plug/_windows.py:790
 msgid "Check for addon updates"
 msgstr "Buscar actualizaciones de extensiones"
 
-#: ../gramps/gui/plug/_windows.py:790
+#: ../gramps/gui/plug/_windows.py:797
 msgid "Updated addons only"
 msgstr "Sólo extensiones actualizadas"
 
-#: ../gramps/gui/plug/_windows.py:791
+#: ../gramps/gui/plug/_windows.py:798
 msgid "New addons only"
 msgstr "Sólo nuevas extensiones"
 
-#: ../gramps/gui/plug/_windows.py:792
+#: ../gramps/gui/plug/_windows.py:799
 msgid "New and updated addons"
 msgstr "Extensiones nuevas y actualizadas"
 
-#: ../gramps/gui/plug/_windows.py:803
+#: ../gramps/gui/plug/_windows.py:810
 msgid "What to check"
 msgstr "Qué comprobar"
 
-#: ../gramps/gui/plug/_windows.py:809
+#: ../gramps/gui/plug/_windows.py:816
 msgid "Do not ask about previously notified addons"
 msgstr "No preguntar sobre extensiones previamente notificadas"
 
-#: ../gramps/gui/plug/_windows.py:816
+#: ../gramps/gui/plug/_windows.py:823
 msgid "Check for updated addons now"
 msgstr "Buscar actualizaciones de extensiones ahora"
 
-#: ../gramps/gui/plug/_windows.py:829
+#: ../gramps/gui/plug/_windows.py:836
 msgid "New Project"
 msgstr "Nuevo Proyecto"
 
-#: ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:838
 msgid "Edit Project"
 msgstr "Editar Proyecto"
 
-#: ../gramps/gui/plug/_windows.py:839
+#: ../gramps/gui/plug/_windows.py:846
 msgid "Project name"
 msgstr "Nombre del Proyecto"
 
-#: ../gramps/gui/plug/_windows.py:937
+#: ../gramps/gui/plug/_windows.py:944
 msgid "Restore project defaults"
 msgstr "Restaurar predeterminados del proyecto"
 
-#: ../gramps/gui/plug/_windows.py:938
+#: ../gramps/gui/plug/_windows.py:945
 msgid "Are you sure?"
 msgstr "¿Está seguro?"
 
-#: ../gramps/gui/plug/_windows.py:962
+#: ../gramps/gui/plug/_windows.py:969
 msgid "Checking Addons Failed"
 msgstr "Falló la comprobación de extensiones"
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:971
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
 "El repositorio de extensiones parece no estar disponible. Por favor, "
 "inténtelo más tarde."
 
-#: ../gramps/gui/plug/_windows.py:979
+#: ../gramps/gui/plug/_windows.py:986
 msgid "There are no available addons of this type"
 msgstr "No hay extensiones disponibles de este tipo"
 
-#: ../gramps/gui/plug/_windows.py:980
+#: ../gramps/gui/plug/_windows.py:987
 msgid "' and '"
 msgstr "' y '"
 
 # TBC
-#: ../gramps/gui/plug/_windows.py:980
+#: ../gramps/gui/plug/_windows.py:987
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Comprobado por '%s'"
 
-#: ../gramps/gui/plug/_windows.py:986
+#: ../gramps/gui/plug/_windows.py:993
 msgid "new"
 msgstr "novedad"
 
-#: ../gramps/gui/plug/_windows.py:986
+#: ../gramps/gui/plug/_windows.py:993
 msgid "update"
 msgstr "actualización"
 
-#: ../gramps/gui/plug/_windows.py:1021
+#: ../gramps/gui/plug/_windows.py:1028
 msgid "Hidden"
 msgstr "Oculto"
 
-#: ../gramps/gui/plug/_windows.py:1022
+#: ../gramps/gui/plug/_windows.py:1029
 msgid "Visible"
 msgstr "Visible"
 
-#: ../gramps/gui/plug/_windows.py:1027
+#: ../gramps/gui/plug/_windows.py:1034
 msgid "Plugin Manager"
 msgstr "Administrador de complementos"
 
-#: ../gramps/gui/plug/_windows.py:1079 ../gramps/gui/plug/_windows.py:1137
+#: ../gramps/gui/plug/_windows.py:1086 ../gramps/gui/plug/_windows.py:1144
 msgid "Info"
 msgstr "Información"
 
-#: ../gramps/gui/plug/_windows.py:1082 ../gramps/gui/plug/_windows.py:1140
+#: ../gramps/gui/plug/_windows.py:1089 ../gramps/gui/plug/_windows.py:1147
 msgid "Hide/Unhide"
 msgstr "Ocultar/Mostrar"
 
-#: ../gramps/gui/plug/_windows.py:1091 ../gramps/gui/plug/_windows.py:1150
+#: ../gramps/gui/plug/_windows.py:1098 ../gramps/gui/plug/_windows.py:1157
 msgid "Load"
 msgstr "Cargar"
 
-#: ../gramps/gui/plug/_windows.py:1097
+#: ../gramps/gui/plug/_windows.py:1104
 msgid "Registered Plugins"
 msgstr "Complementos registrados"
 
-#: ../gramps/gui/plug/_windows.py:1116
+#: ../gramps/gui/plug/_windows.py:1123
 msgid "Loaded"
 msgstr "Cargados"
 
-#: ../gramps/gui/plug/_windows.py:1120
+#: ../gramps/gui/plug/_windows.py:1127
 #: ../gramps/plugins/importer/importprogen.glade:466
 #: ../gramps/plugins/importer/importprogen.glade:1068
 msgid "File"
 msgstr "Archivo"
 
-#: ../gramps/gui/plug/_windows.py:1127
+#: ../gramps/gui/plug/_windows.py:1134
 msgid "Message"
 msgstr "Mensaje"
 
-#: ../gramps/gui/plug/_windows.py:1156
+#: ../gramps/gui/plug/_windows.py:1163
 msgid "Loaded Plugins"
 msgstr "Complementos cargados"
 
-#: ../gramps/gui/plug/_windows.py:1178
+#: ../gramps/gui/plug/_windows.py:1185
 msgid "Addon Name"
 msgstr "Nombre de la extensión"
 
-#: ../gramps/gui/plug/_windows.py:1190
+#: ../gramps/gui/plug/_windows.py:1197
 msgid "Path to Addon:"
 msgstr "Ruta a la extensión:"
 
-#: ../gramps/gui/plug/_windows.py:1210
+#: ../gramps/gui/plug/_windows.py:1217
 msgid "Install Addon"
 msgstr "Instalar extensión"
 
-#: ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/plug/_windows.py:1220
 msgid "Install All Addons"
 msgstr "Instalar todas las extensiones"
 
-#: ../gramps/gui/plug/_windows.py:1216
+#: ../gramps/gui/plug/_windows.py:1223
 msgid "Refresh Addon List"
 msgstr "Refrescar la lista de las extensiones"
 
-#: ../gramps/gui/plug/_windows.py:1229
+#: ../gramps/gui/plug/_windows.py:1236
 msgid "Reload"
 msgstr "Recargar"
 
-#: ../gramps/gui/plug/_windows.py:1257
+#: ../gramps/gui/plug/_windows.py:1264
 msgid "Refreshing Addon List"
 msgstr "Refrescando la lista de extensiones"
 
-#: ../gramps/gui/plug/_windows.py:1258 ../gramps/gui/plug/_windows.py:1263
-#: ../gramps/gui/plug/_windows.py:1396
+#: ../gramps/gui/plug/_windows.py:1265 ../gramps/gui/plug/_windows.py:1270
+#: ../gramps/gui/plug/_windows.py:1403
 msgid "Reading gramps-project.org..."
 msgstr "Leyendo de gramps-project.org..."
 
-#: ../gramps/gui/plug/_windows.py:1281
+#: ../gramps/gui/plug/_windows.py:1288
 msgid "Checking addon..."
 msgstr "Comprobando la extensión..."
 
-#: ../gramps/gui/plug/_windows.py:1289
+#: ../gramps/gui/plug/_windows.py:1296
 msgid "Unknown Help URL"
 msgstr "URL de ayuda desconocida"
 
-#: ../gramps/gui/plug/_windows.py:1300
+#: ../gramps/gui/plug/_windows.py:1307
 msgid "Unknown URL"
 msgstr "URL desconocida"
 
-#: ../gramps/gui/plug/_windows.py:1360
+#: ../gramps/gui/plug/_windows.py:1367
 msgid "Install all Addons"
 msgstr "Instalar todas las extensiones"
 
-#: ../gramps/gui/plug/_windows.py:1361
+#: ../gramps/gui/plug/_windows.py:1368
 msgid "Installing..."
 msgstr "Instalando..."
 
-#: ../gramps/gui/plug/_windows.py:1394
+#: ../gramps/gui/plug/_windows.py:1401
 msgid "Installing Addon"
 msgstr "Instalando extensión"
 
-#: ../gramps/gui/plug/_windows.py:1417
+#: ../gramps/gui/plug/_windows.py:1424
 msgid "Load Addon"
 msgstr "Cargar extensión"
 
-#: ../gramps/gui/plug/_windows.py:1509
+#: ../gramps/gui/plug/_windows.py:1516
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr "Falló"
 
-#: ../gramps/gui/plug/_windows.py:1532 ../gramps/gui/widgets/grampletbar.py:600
+#: ../gramps/gui/plug/_windows.py:1539 ../gramps/gui/widgets/grampletbar.py:600
 msgid "OK"
 msgstr "Aceptar"
 
-#: ../gramps/gui/plug/_windows.py:1640
+#: ../gramps/gui/plug/_windows.py:1647
 msgid "Plugin name"
 msgstr "Nombre del complemento"
 
-#: ../gramps/gui/plug/_windows.py:1643
+#: ../gramps/gui/plug/_windows.py:1650
 msgid "Authors"
 msgstr "Autores"
 
-#: ../gramps/gui/plug/_windows.py:1645
+#: ../gramps/gui/plug/_windows.py:1652
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "Nombre del archivo"
 
-#: ../gramps/gui/plug/_windows.py:1648
+#: ../gramps/gui/plug/_windows.py:1655
 msgid "Detailed Info"
 msgstr "Información detallada"
 
-#: ../gramps/gui/plug/_windows.py:1703
+#: ../gramps/gui/plug/_windows.py:1710
 msgid "Plugin Error"
 msgstr "Error del complemento"
 
-#: ../gramps/gui/plug/_windows.py:1772
+#: ../gramps/gui/plug/_windows.py:1779
 msgid "_Execute"
 msgstr "_Ejecutar"
 
-#: ../gramps/gui/plug/_windows.py:2070
+#: ../gramps/gui/plug/_windows.py:2077
 #: ../gramps/plugins/importer/importprogen.py:481
 #: ../gramps/plugins/tool/ownereditor.py:157
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr "Ventana principal"
 
-#: ../gramps/gui/plug/_windows.py:2208
+#: ../gramps/gui/plug/_windows.py:2215
 msgid "Downloading and installing selected addons..."
 msgstr "Descargando e instalando las extensiones seleccionadas..."
 
-#: ../gramps/gui/plug/_windows.py:2251
+#: ../gramps/gui/plug/_windows.py:2258
 msgid "Installation Errors"
 msgstr "Errores en la Instalación"
 
-#: ../gramps/gui/plug/_windows.py:2252
+#: ../gramps/gui/plug/_windows.py:2259
 msgid "The following addons had errors: "
 msgstr "Los siguientes complementos tuvieron errores: "
 
-#: ../gramps/gui/plug/_windows.py:2260 ../gramps/gui/plug/_windows.py:2277
+#: ../gramps/gui/plug/_windows.py:2267 ../gramps/gui/plug/_windows.py:2284
 msgid "Done downloading and installing addons"
 msgstr "Terminadas la descarga e instalación de extensiones"
 
-#: ../gramps/gui/plug/_windows.py:2265
+#: ../gramps/gui/plug/_windows.py:2272
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "Se instaló {number_of} extensión."
 msgstr[1] "Se insaló {number_of} extensiones."
 
-#: ../gramps/gui/plug/_windows.py:2270
+#: ../gramps/gui/plug/_windows.py:2277
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr "Si ha instalado una 'Vista', necesitará reiniciar Gramps."
 
-#: ../gramps/gui/plug/_windows.py:2278
+#: ../gramps/gui/plug/_windows.py:2285
 msgid "No addons were installed."
 msgstr "No se instaló ninguna extensión."
 
@@ -20565,9 +20576,9 @@ msgstr "Fuente: Título o Cita: Volumen/Página"
 #: ../gramps/gui/selectors/selectcitation.py:75
 #: ../gramps/gui/selectors/selectevent.py:73
 #: ../gramps/gui/selectors/selectfamily.py:70
-#: ../gramps/gui/selectors/selectnote.py:76
+#: ../gramps/gui/selectors/selectnote.py:75
 #: ../gramps/gui/selectors/selectobject.py:83
-#: ../gramps/gui/selectors/selectperson.py:107
+#: ../gramps/gui/selectors/selectperson.py:114
 #: ../gramps/gui/selectors/selectplace.py:72
 #: ../gramps/gui/selectors/selectrepository.py:69
 #: ../gramps/gui/selectors/selectsource.py:71
@@ -20593,11 +20604,11 @@ msgctxt "manual"
 msgid "Select_Family_selector"
 msgstr "Seleccionar_selector_de_familia"
 
-#: ../gramps/gui/selectors/selectnote.py:65
+#: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
 msgstr "Seleccionar Nota"
 
-#: ../gramps/gui/selectors/selectnote.py:86
+#: ../gramps/gui/selectors/selectnote.py:85
 msgctxt "manual"
 msgid "Select_Note_selector"
 msgstr "Seleccionar_selector_de_notas"
@@ -20984,32 +20995,32 @@ msgstr "Organizar marcadores"
 msgid "Cannot bookmark this reference"
 msgstr "No se puede agregar a marcadores esta referencia"
 
-#: ../gramps/gui/views/listview.py:483
+#: ../gramps/gui/views/listview.py:488
 msgid "Active object not visible"
 msgstr "El objeto activo no es visible"
 
-#: ../gramps/gui/views/listview.py:495
+#: ../gramps/gui/views/listview.py:500
 #: ../gramps/gui/views/navigationview.py:252
 #: ../gramps/plugins/lib/maps/geography.py:236
 #: ../gramps/plugins/lib/maps/geography.py:254
-#: ../gramps/plugins/view/familyview.py:376
+#: ../gramps/plugins/view/familyview.py:378
 msgid "Could Not Set a Bookmark"
 msgstr "No se pudo establecer un Marcador"
 
-#: ../gramps/gui/views/listview.py:496
+#: ../gramps/gui/views/listview.py:501
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "No se pudo establecer el marcador porque no había nada seleccionado."
 
-#: ../gramps/gui/views/listview.py:627 ../gramps/plugins/view/eventview.py:412
+#: ../gramps/gui/views/listview.py:632 ../gramps/plugins/view/eventview.py:414
 #, python-brace-format
 msgid "Delete {type} [{gid}]?"
 msgstr "Eliminar {type} [{gid}]?"
 
-#: ../gramps/gui/views/listview.py:635 ../gramps/gui/views/listview.py:721
+#: ../gramps/gui/views/listview.py:640 ../gramps/gui/views/listview.py:726
 msgid "Deleting item will remove it from the database."
 msgstr "Eliminar el elemento lo quitará de la base de datos."
 
-#: ../gramps/gui/views/listview.py:670
+#: ../gramps/gui/views/listview.py:675
 #: ../gramps/plugins/gramplet/givennamegramplet.py:73
 #: ../gramps/plugins/gramplet/recordsgramplet.py:51
 #: ../gramps/plugins/gramplet/statsgramplet.py:73
@@ -21018,11 +21029,11 @@ msgstr "Eliminar el elemento lo quitará de la base de datos."
 msgid "Processing..."
 msgstr "Procesando..."
 
-#: ../gramps/gui/views/listview.py:684
+#: ../gramps/gui/views/listview.py:689
 msgid "Multiple Selection Delete"
 msgstr "Eliminar Selección Múltiple"
 
-#: ../gramps/gui/views/listview.py:716
+#: ../gramps/gui/views/listview.py:721
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
@@ -21030,34 +21041,34 @@ msgstr ""
 "Este elemento está en uso actualmente. Si lo elimina, se quitará de la base "
 "de datos y de todos los elementos que lo referencian."
 
-#: ../gramps/gui/views/listview.py:726
+#: ../gramps/gui/views/listview.py:731
 #: ../gramps/plugins/lib/libpersonview.py:481
-#: ../gramps/plugins/view/familyview.py:410
+#: ../gramps/plugins/view/familyview.py:412
 #, python-format
 msgid "Delete %s?"
 msgstr "¿Eliminar %s?"
 
-#: ../gramps/gui/views/listview.py:763
+#: ../gramps/gui/views/listview.py:768
 msgid "Column clicked, sorting..."
 msgstr "Se hizo clic en la columna. ordenando..."
 
-#: ../gramps/gui/views/listview.py:1246
+#: ../gramps/gui/views/listview.py:1251
 msgid "Export View as Spreadsheet"
 msgstr "Exportar la vista como una hoja de cálculo"
 
-#: ../gramps/gui/views/listview.py:1261
+#: ../gramps/gui/views/listview.py:1266
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1262
+#: ../gramps/gui/views/listview.py:1267
 msgid "OpenDocument Spreadsheet"
 msgstr "Hoja de cálculo OpenDocument"
 
-#: ../gramps/gui/views/listview.py:1448
+#: ../gramps/gui/views/listview.py:1453
 msgid "Columns"
 msgstr "Columnas"
 
-#: ../gramps/gui/views/listview.py:1458
+#: ../gramps/gui/views/listview.py:1463
 msgid "CSV Dialect"
 msgstr "Dialecto CSV"
 
@@ -21069,7 +21080,7 @@ msgstr "%s ha sido marcado"
 #: ../gramps/gui/views/navigationview.py:253
 #: ../gramps/plugins/lib/maps/geography.py:237
 #: ../gramps/plugins/lib/maps/geography.py:255
-#: ../gramps/plugins/view/familyview.py:377
+#: ../gramps/plugins/view/familyview.py:379
 msgid "A bookmark could not be set because no one was selected."
 msgstr "No se pudo establecer el marcador porque no había nadie seleccionado."
 
@@ -21510,11 +21521,11 @@ msgstr "Copiar dirección del _enlace"
 msgid "_Edit Link"
 msgstr "_Editar enlace"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:828
+#: ../gramps/gui/widgets/styledtexteditor.py:807
 msgid "Select font color"
 msgstr "Seleccionar color de letra"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:832
+#: ../gramps/gui/widgets/styledtexteditor.py:811
 msgid "Select background color"
 msgstr "Seleccionar color del fondo"
 
@@ -21670,13 +21681,71 @@ msgstr "Previsualización de la impresión"
 msgid "Closes print preview window"
 msgstr "Cierra la ventana de previsualización de la impresión"
 
+#: ../gramps/plugins/docgen/gtkprint.glade:39
+msgid "_Print"
+msgstr "Im_primir"
+
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
 msgstr "Imprime el archivo actual"
 
+#: ../gramps/plugins/docgen/gtkprint.glade:63
+msgid "_First"
+msgstr "_Nombre"
+
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
 msgstr "Muestra la primera página"
+
+#: ../gramps/plugins/docgen/gtkprint.glade:78
+#: ../gramps/plugins/lib/libpersonview.py:234
+#: ../gramps/plugins/lib/libpersonview.py:289
+#: ../gramps/plugins/lib/libpersonview.py:385
+#: ../gramps/plugins/lib/libplaceview.py:319
+#: ../gramps/plugins/lib/libplaceview.py:363
+#: ../gramps/plugins/lib/libplaceview.py:447
+#: ../gramps/plugins/view/citationlistview.py:206
+#: ../gramps/plugins/view/citationlistview.py:250
+#: ../gramps/plugins/view/citationlistview.py:333
+#: ../gramps/plugins/view/citationtreeview.py:348
+#: ../gramps/plugins/view/citationtreeview.py:400
+#: ../gramps/plugins/view/citationtreeview.py:505
+#: ../gramps/plugins/view/eventview.py:219
+#: ../gramps/plugins/view/eventview.py:263
+#: ../gramps/plugins/view/eventview.py:346
+#: ../gramps/plugins/view/familyview.py:176
+#: ../gramps/plugins/view/familyview.py:220
+#: ../gramps/plugins/view/familyview.py:303
+#: ../gramps/plugins/view/fanchartview.py:145
+#: ../gramps/plugins/view/fanchartview.py:186
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoevents.py:68
+#: ../gramps/plugins/view/geoevents.py:103
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamily.py:67
+#: ../gramps/plugins/view/geofamily.py:102
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:111
+#: ../gramps/plugins/view/geoperson.py:69
+#: ../gramps/plugins/view/geoperson.py:110
+#: ../gramps/plugins/view/geoplaces.py:70
+#: ../gramps/plugins/view/geoplaces.py:105
+#: ../gramps/plugins/view/mediaview.py:283
+#: ../gramps/plugins/view/mediaview.py:327
+#: ../gramps/plugins/view/mediaview.py:426
+#: ../gramps/plugins/view/noteview.py:164
+#: ../gramps/plugins/view/noteview.py:208
+#: ../gramps/plugins/view/noteview.py:291
+#: ../gramps/plugins/view/pedigreeview.py:691
+#: ../gramps/plugins/view/pedigreeview.py:733
+#: ../gramps/plugins/view/relview.py:455 ../gramps/plugins/view/repoview.py:201
+#: ../gramps/plugins/view/repoview.py:245
+#: ../gramps/plugins/view/repoview.py:328
+#: ../gramps/plugins/view/sourceview.py:173
+#: ../gramps/plugins/view/sourceview.py:217
+#: ../gramps/plugins/view/sourceview.py:300
+msgid "_Back"
+msgstr "A_trás"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:83
 msgid "Shows previous page"
@@ -21685,6 +21754,10 @@ msgstr "Muestra la página anterior"
 #: ../gramps/plugins/docgen/gtkprint.glade:98
 msgid "Shows the next page"
 msgstr "Muestra la página siguiente"
+
+#: ../gramps/plugins/docgen/gtkprint.glade:108
+msgid "_Last"
+msgstr "_Apellido"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -21706,7 +21779,7 @@ msgstr "Acerca la página"
 msgid "Zooms the page out"
 msgstr "Aleja la página"
 
-#: ../gramps/plugins/docgen/gtkprint.py:476
+#: ../gramps/plugins/docgen/gtkprint.py:475
 #, python-format
 msgid "of %d"
 msgstr "de %d"
@@ -23993,8 +24066,6 @@ msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 msgstr "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 
@@ -26308,20 +26379,14 @@ msgid "call"
 msgstr "corto"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
 msgstr "apodo"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "Apo_do:"
+msgstr "Apodo"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
 msgstr "apodo"
 
@@ -27490,7 +27555,7 @@ msgstr ""
 "Error: en la familia '%(family)s' el hijo '%(child)s' no tiene una "
 "referencia a la familia. Referencia añadida."
 
-#: ../gramps/plugins/lib/libcairodoc.py:1447
+#: ../gramps/plugins/lib/libcairodoc.py:1446
 #, python-format
 msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
@@ -31365,55 +31430,6 @@ msgstr "_Agregar marcador"
 #: ../gramps/plugins/lib/libpersonview.py:234
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libpersonview.py:385
-#: ../gramps/plugins/lib/libplaceview.py:319
-#: ../gramps/plugins/lib/libplaceview.py:363
-#: ../gramps/plugins/lib/libplaceview.py:447
-#: ../gramps/plugins/view/citationlistview.py:206
-#: ../gramps/plugins/view/citationlistview.py:250
-#: ../gramps/plugins/view/citationlistview.py:333
-#: ../gramps/plugins/view/citationtreeview.py:348
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:505
-#: ../gramps/plugins/view/eventview.py:219
-#: ../gramps/plugins/view/eventview.py:263
-#: ../gramps/plugins/view/eventview.py:346
-#: ../gramps/plugins/view/familyview.py:176
-#: ../gramps/plugins/view/familyview.py:220
-#: ../gramps/plugins/view/familyview.py:303
-#: ../gramps/plugins/view/fanchartview.py:145
-#: ../gramps/plugins/view/fanchartview.py:186
-#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geoevents.py:68
-#: ../gramps/plugins/view/geoevents.py:103
-#: ../gramps/plugins/view/geofamclose.py:68
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geofamily.py:67
-#: ../gramps/plugins/view/geofamily.py:102
-#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:111
-#: ../gramps/plugins/view/geoperson.py:69
-#: ../gramps/plugins/view/geoperson.py:110
-#: ../gramps/plugins/view/geoplaces.py:70
-#: ../gramps/plugins/view/geoplaces.py:105
-#: ../gramps/plugins/view/mediaview.py:283
-#: ../gramps/plugins/view/mediaview.py:327
-#: ../gramps/plugins/view/mediaview.py:426
-#: ../gramps/plugins/view/noteview.py:164
-#: ../gramps/plugins/view/noteview.py:208
-#: ../gramps/plugins/view/noteview.py:291
-#: ../gramps/plugins/view/pedigreeview.py:691
-#: ../gramps/plugins/view/pedigreeview.py:733
-#: ../gramps/plugins/view/relview.py:455 ../gramps/plugins/view/repoview.py:201
-#: ../gramps/plugins/view/repoview.py:245
-#: ../gramps/plugins/view/repoview.py:328
-#: ../gramps/plugins/view/sourceview.py:173
-#: ../gramps/plugins/view/sourceview.py:217
-#: ../gramps/plugins/view/sourceview.py:300
-msgid "_Back"
-msgstr "A_trás"
-
-#: ../gramps/plugins/lib/libpersonview.py:234
-#: ../gramps/plugins/lib/libpersonview.py:289
-#: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/view/fanchartview.py:145
 #: ../gramps/plugins/view/fanchartview.py:186
 #: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:111
@@ -31498,23 +31514,23 @@ msgstr "_Fusionar..."
 #: ../gramps/plugins/lib/libpersonview.py:274
 #: ../gramps/plugins/lib/libpersonview.py:434
 #: ../gramps/plugins/lib/libplaceview.py:353
-#: ../gramps/plugins/lib/libplaceview.py:490
+#: ../gramps/plugins/lib/libplaceview.py:492
 #: ../gramps/plugins/view/citationlistview.py:240
-#: ../gramps/plugins/view/citationlistview.py:371
+#: ../gramps/plugins/view/citationlistview.py:373
 #: ../gramps/plugins/view/citationtreeview.py:390
-#: ../gramps/plugins/view/citationtreeview.py:558
+#: ../gramps/plugins/view/citationtreeview.py:560
 #: ../gramps/plugins/view/eventview.py:253
-#: ../gramps/plugins/view/eventview.py:384
+#: ../gramps/plugins/view/eventview.py:386
 #: ../gramps/plugins/view/familyview.py:210
-#: ../gramps/plugins/view/familyview.py:353
+#: ../gramps/plugins/view/familyview.py:355
 #: ../gramps/plugins/view/mediaview.py:317
-#: ../gramps/plugins/view/mediaview.py:477
+#: ../gramps/plugins/view/mediaview.py:479
 #: ../gramps/plugins/view/noteview.py:198
-#: ../gramps/plugins/view/noteview.py:329
+#: ../gramps/plugins/view/noteview.py:331
 #: ../gramps/plugins/view/repoview.py:235
-#: ../gramps/plugins/view/repoview.py:366
+#: ../gramps/plugins/view/repoview.py:368
 #: ../gramps/plugins/view/sourceview.py:207
-#: ../gramps/plugins/view/sourceview.py:338
+#: ../gramps/plugins/view/sourceview.py:340
 msgctxt "action"
 msgid "_Edit..."
 msgstr "_Editar..."
@@ -31671,7 +31687,7 @@ msgstr "Editor de filtros de lugares"
 msgid "_Look up with Map Service"
 msgstr "_Buscar con el servicio de mapas"
 
-#: ../gramps/plugins/lib/libplaceview.py:500
+#: ../gramps/plugins/lib/libplaceview.py:502
 msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
@@ -31679,15 +31695,15 @@ msgstr ""
 "Intentar ver los lugares seleccionados con un servicio de mapas "
 "(OpenstreetMap, Google Maps, ...)"
 
-#: ../gramps/plugins/lib/libplaceview.py:500
+#: ../gramps/plugins/lib/libplaceview.py:502
 msgid "Select a Map Service"
 msgstr "Seleccionar un servicio de mapas"
 
-#: ../gramps/plugins/lib/libplaceview.py:542
+#: ../gramps/plugins/lib/libplaceview.py:544
 msgid "Cannot delete place."
 msgstr "No se pudo eliminar el lugar."
 
-#: ../gramps/plugins/lib/libplaceview.py:544
+#: ../gramps/plugins/lib/libplaceview.py:546
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
@@ -31695,12 +31711,12 @@ msgstr ""
 "Este lugar actualmente está referenciado por otro lugar. Primero quite los "
 "lugares que contiene."
 
-#: ../gramps/plugins/lib/libplaceview.py:567
-#: ../gramps/plugins/lib/libplaceview.py:578
+#: ../gramps/plugins/lib/libplaceview.py:569
+#: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Cannot merge places."
 msgstr "No se pudieron fusionar los lugares."
 
-#: ../gramps/plugins/lib/libplaceview.py:569
+#: ../gramps/plugins/lib/libplaceview.py:571
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -31710,7 +31726,7 @@ msgstr ""
 "puede seleccionar un segundo lugar manteniendo pulsada la tecla control "
 "mientras se pulsa en el lugar deseado."
 
-#: ../gramps/plugins/lib/libplaceview.py:580
+#: ../gramps/plugins/lib/libplaceview.py:582
 msgid "Merging these places would create a cycle in the place hierarchy."
 msgstr "Fusionar estos lugares crearía un bucle en la jerarquía de lugares."
 
@@ -35363,6 +35379,10 @@ msgstr "Herramienta de Estadísticas dee Género"
 msgid "Guess"
 msgstr "Adivinar"
 
+#: ../gramps/plugins/tool/eventcmp.glade:37
+msgid "Save _As"
+msgstr "Guardar _como"
+
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
 msgstr "_Filtro:"
@@ -35573,6 +35593,7 @@ msgid "Media Manager"
 msgstr "Administrador de objetos audiovisuales"
 
 #: ../gramps/plugins/tool/mediamanager.py:95
+#: ../gramps/plugins/tool/verify.glade:110
 msgid "Help"
 msgstr "Ayuda"
 
@@ -36391,36 +36412,35 @@ msgstr "Generando errores de base de datos"
 msgid "Generating families"
 msgstr "Generando familias"
 
-#: ../gramps/plugins/tool/testcasegenerator.py:530
-#: ../gramps/plugins/tool/testcasegenerator.py:569
-#: ../gramps/plugins/tool/testcasegenerator.py:617
-#: ../gramps/plugins/tool/testcasegenerator.py:635
-#: ../gramps/plugins/tool/testcasegenerator.py:668
-#: ../gramps/plugins/tool/testcasegenerator.py:740
-#: ../gramps/plugins/tool/testcasegenerator.py:776
-#: ../gramps/plugins/tool/testcasegenerator.py:799
-#: ../gramps/plugins/tool/testcasegenerator.py:818
-#: ../gramps/plugins/tool/testcasegenerator.py:838
-#: ../gramps/plugins/tool/testcasegenerator.py:862
-#: ../gramps/plugins/tool/testcasegenerator.py:881
-#: ../gramps/plugins/tool/testcasegenerator.py:900
-#: ../gramps/plugins/tool/testcasegenerator.py:919
-#: ../gramps/plugins/tool/testcasegenerator.py:947
-#: ../gramps/plugins/tool/testcasegenerator.py:974
-#: ../gramps/plugins/tool/testcasegenerator.py:1002
-#: ../gramps/plugins/tool/testcasegenerator.py:1040
-#: ../gramps/plugins/tool/testcasegenerator.py:1052
-#: ../gramps/plugins/tool/testcasegenerator.py:1064
-#: ../gramps/plugins/tool/testcasegenerator.py:1076
-#: ../gramps/plugins/tool/testcasegenerator.py:1093
-#: ../gramps/plugins/tool/testcasegenerator.py:1111
-#: ../gramps/plugins/tool/testcasegenerator.py:1136
-#: ../gramps/plugins/tool/testcasegenerator.py:1153
-#: ../gramps/plugins/tool/testcasegenerator.py:1171
-#: ../gramps/plugins/tool/testcasegenerator.py:1206
-#: ../gramps/plugins/tool/testcasegenerator.py:1654
-#: ../gramps/plugins/tool/testcasegenerator.py:1761
-#: ../gramps/plugins/tool/testcasegenerator.py:1787
+#: ../gramps/plugins/tool/testcasegenerator.py:459
+#: ../gramps/plugins/tool/testcasegenerator.py:534
+#: ../gramps/plugins/tool/testcasegenerator.py:573
+#: ../gramps/plugins/tool/testcasegenerator.py:621
+#: ../gramps/plugins/tool/testcasegenerator.py:639
+#: ../gramps/plugins/tool/testcasegenerator.py:672
+#: ../gramps/plugins/tool/testcasegenerator.py:744
+#: ../gramps/plugins/tool/testcasegenerator.py:780
+#: ../gramps/plugins/tool/testcasegenerator.py:803
+#: ../gramps/plugins/tool/testcasegenerator.py:822
+#: ../gramps/plugins/tool/testcasegenerator.py:842
+#: ../gramps/plugins/tool/testcasegenerator.py:866
+#: ../gramps/plugins/tool/testcasegenerator.py:885
+#: ../gramps/plugins/tool/testcasegenerator.py:904
+#: ../gramps/plugins/tool/testcasegenerator.py:923
+#: ../gramps/plugins/tool/testcasegenerator.py:951
+#: ../gramps/plugins/tool/testcasegenerator.py:978
+#: ../gramps/plugins/tool/testcasegenerator.py:1006
+#: ../gramps/plugins/tool/testcasegenerator.py:1044
+#: ../gramps/plugins/tool/testcasegenerator.py:1056
+#: ../gramps/plugins/tool/testcasegenerator.py:1068
+#: ../gramps/plugins/tool/testcasegenerator.py:1080
+#: ../gramps/plugins/tool/testcasegenerator.py:1097
+#: ../gramps/plugins/tool/testcasegenerator.py:1115
+#: ../gramps/plugins/tool/testcasegenerator.py:1140
+#: ../gramps/plugins/tool/testcasegenerator.py:1157
+#: ../gramps/plugins/tool/testcasegenerator.py:1175
+#: ../gramps/plugins/tool/testcasegenerator.py:1210
+#: ../gramps/plugins/tool/testcasegenerator.py:1783
 #, python-format
 msgid "Testcase generator step %d"
 msgstr "Generador de casos de pruebas paso %d"
@@ -36935,7 +36955,7 @@ msgstr "Vista de cita"
 msgid "Citation Filter Editor"
 msgstr "Editor de filtros de citas"
 
-#: ../gramps/plugins/view/citationlistview.py:417
+#: ../gramps/plugins/view/citationlistview.py:419
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation "
 "is already being edited or another object that is associated with the same "
@@ -36948,15 +36968,15 @@ msgstr ""
 "\n"
 "Para editar esta cita, debe cerrar el objeto antes."
 
-#: ../gramps/plugins/view/citationlistview.py:431
-#: ../gramps/plugins/view/citationlistview.py:443
-#: ../gramps/plugins/view/citationtreeview.py:682
-#: ../gramps/plugins/view/citationtreeview.py:699
+#: ../gramps/plugins/view/citationlistview.py:433
+#: ../gramps/plugins/view/citationlistview.py:445
+#: ../gramps/plugins/view/citationtreeview.py:684
+#: ../gramps/plugins/view/citationtreeview.py:701
 msgid "Cannot merge citations."
 msgstr "No se pudieron fusionar las citas."
 
-#: ../gramps/plugins/view/citationlistview.py:433
-#: ../gramps/plugins/view/citationtreeview.py:684
+#: ../gramps/plugins/view/citationlistview.py:435
+#: ../gramps/plugins/view/citationtreeview.py:686
 msgid ""
 "Exactly two citations must be selected to perform a merge. A second citation "
 "can be selected by holding down the control key while clicking on the "
@@ -36966,8 +36986,8 @@ msgstr ""
 "seleccionar una segunda cita manteniendo pulsada la tecla control mientras "
 "se pulsa en la cita deseada."
 
-#: ../gramps/plugins/view/citationlistview.py:445
-#: ../gramps/plugins/view/citationtreeview.py:701
+#: ../gramps/plugins/view/citationlistview.py:447
+#: ../gramps/plugins/view/citationtreeview.py:703
 msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
@@ -37014,7 +37034,7 @@ msgstr "Colapsar todos los nodos"
 msgid "Expand all Nodes"
 msgstr "Expandir todos los nodos"
 
-#: ../gramps/plugins/view/citationtreeview.py:668
+#: ../gramps/plugins/view/citationtreeview.py:670
 msgid ""
 "This source cannot be edited at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -37027,11 +37047,11 @@ msgstr ""
 "\n"
 "Para editar esta fuente, debe cerrar el objeto antes."
 
-#: ../gramps/plugins/view/citationtreeview.py:712
+#: ../gramps/plugins/view/citationtreeview.py:714
 msgid "Cannot perform merge."
 msgstr "No se pudo realizar la fusión."
 
-#: ../gramps/plugins/view/citationtreeview.py:714
+#: ../gramps/plugins/view/citationtreeview.py:716
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
@@ -37065,11 +37085,11 @@ msgstr "Fusionar los eventos seleccionados"
 msgid "Event Filter Editor"
 msgstr "Editor de filtros de eventos"
 
-#: ../gramps/plugins/view/eventview.py:431
+#: ../gramps/plugins/view/eventview.py:433
 msgid "Cannot merge event objects."
 msgstr "No se pudieron fusionar los objetos del evento."
 
-#: ../gramps/plugins/view/eventview.py:433
+#: ../gramps/plugins/view/eventview.py:435
 msgid ""
 "Exactly two events must be selected to perform a merge. A second object can "
 "be selected by holding down the control key while clicking on the desired "
@@ -37111,11 +37131,11 @@ msgstr "Hacer que el padre sea la persona activa"
 msgid "Make Mother Active Person"
 msgstr "Hacer que la madre sea la persona activa"
 
-#: ../gramps/plugins/view/familyview.py:436
+#: ../gramps/plugins/view/familyview.py:438
 msgid "Cannot merge families."
 msgstr "No se pudieron fusionar las familias."
 
-#: ../gramps/plugins/view/familyview.py:438
+#: ../gramps/plugins/view/familyview.py:440
 msgid ""
 "Exactly two families must be selected to perform a merge. A second family "
 "can be selected by holding down the control key while clicking on the "
@@ -37790,11 +37810,11 @@ msgstr "Editor de filtros de objetos"
 msgid "View in the default viewer"
 msgstr "Ver en el visor predefinido"
 
-#: ../gramps/plugins/view/mediaview.py:510
+#: ../gramps/plugins/view/mediaview.py:512
 msgid "Cannot merge media objects."
 msgstr "No se pudieron fusionar los objetos audiovisuales."
 
-#: ../gramps/plugins/view/mediaview.py:512
+#: ../gramps/plugins/view/mediaview.py:514
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -37817,11 +37837,11 @@ msgstr "Fusionar las notas seleccionadas"
 msgid "Note Filter Editor"
 msgstr "Editor de filtros de notas"
 
-#: ../gramps/plugins/view/noteview.py:365
+#: ../gramps/plugins/view/noteview.py:367
 msgid "Cannot merge notes."
 msgstr "No se pudieron fusionar las notas."
 
-#: ../gramps/plugins/view/noteview.py:367
+#: ../gramps/plugins/view/noteview.py:369
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
@@ -38165,11 +38185,11 @@ msgstr "Fusionar los repositorios seleccionados"
 msgid "Repository Filter Editor"
 msgstr "Editor de filtros de repositorios"
 
-#: ../gramps/plugins/view/repoview.py:395
+#: ../gramps/plugins/view/repoview.py:397
 msgid "Cannot merge repositories."
 msgstr "No se pudieron fusionar los repositorios."
 
-#: ../gramps/plugins/view/repoview.py:397
+#: ../gramps/plugins/view/repoview.py:399
 msgid ""
 "Exactly two repositories must be selected to perform a merge. A second "
 "repository can be selected by holding down the control key while clicking on "
@@ -38195,11 +38215,11 @@ msgstr "Mezclar las fuentes seleccionadas"
 msgid "Source Filter Editor"
 msgstr "Editor de filtros de fuentes"
 
-#: ../gramps/plugins/view/sourceview.py:359
+#: ../gramps/plugins/view/sourceview.py:361
 msgid "Cannot merge sources."
 msgstr "No se pudieron fusionar las fuentes."
 
-#: ../gramps/plugins/view/sourceview.py:361
+#: ../gramps/plugins/view/sourceview.py:363
 msgid ""
 "Exactly two sources must be selected to perform a merge. A second source can "
 "be selected by holding down the control key while clicking on the desired "
@@ -38393,7 +38413,7 @@ msgstr "Página inicial"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "Mapas de calor"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -38423,7 +38443,7 @@ msgstr "Calendario Web"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "Mapa de calor"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:440
@@ -38676,19 +38696,17 @@ msgid "Family Map for %s"
 msgstr "Mapa de familia para %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "Creando las páginas de eventos"
+msgstr "Creando las páginas del mapa de calor para eventos"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
 msgstr ""
+"La siguiente sección contiene un índice de todos los eventos para un Mapa de "
+"calor."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Nombre"
@@ -38704,26 +38722,27 @@ msgstr "Lugares que comienzan con la letra %s"
 #: ../gramps/plugins/webreport/heatmap.py:309
 #: ../gramps/plugins/webreport/heatmap.py:443
 #: ../gramps/plugins/webreport/heatmap.py:575
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Probar el filtro seleccionado"
+msgstr "Mapa de calor para %s dentro del filtro seleccionado"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
 msgstr ""
+"La siguiente sección contiene un índice de todos los apellidos para un Mapa "
+"de calor."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
-msgstr "Apellido"
+msgstr "Apellidos"
 
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr ""
+"La siguiente sección contiene un índice de todas las etiquetas para un Mapa "
+"de calor."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38731,14 +38750,14 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"Esta sección contiene el mapa para todas las personas con el evento: "
+"{event_type} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Eliminar el filtro seleccionado"
+msgstr " cual ni tiene evento para el filtro seleccionado."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -38746,6 +38765,8 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"Esta sección contiene la relación de todos los eventos para: {surname} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -38753,6 +38774,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"Esta sección contiene la relación para toda la gente, eventos con la "
+"etiqueta: {tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -38812,7 +38835,7 @@ msgstr "El archivo ha sido movido o eliminado."
 #: ../gramps/plugins/webreport/media.py:458
 #: ../gramps/plugins/webreport/thumbnail.py:174
 msgid "This is a remote media"
-msgstr ""
+msgstr "Esto es un medio remoto"
 
 #: ../gramps/plugins/webreport/media.py:639
 msgid "File Type"
@@ -39001,22 +39024,16 @@ msgid "Normal Outline Style"
 msgstr "Estilo normal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2221
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
-msgstr "Disposición para los referentes de las citas"
+msgstr "Disposición para los referencias de citas"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Determina la disposición predeterminada para la sección de referentes de las "
-"citas en la página de fuente"
+"Especifique la disposición por defecto para la sección de Referencias de "
+"Cita en la página origen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2233
 msgid "Include ancestor's tree"
@@ -39053,13 +39070,11 @@ msgstr "Marcar su desea abrir/cerrar una sección"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2252
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "Filas máx. en un índice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Número máximo de ascendientes a incluir."
+msgstr "El número máximo de filas a incluir dentro de una página índice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2264
 msgid "Extra Pages"
@@ -39428,10 +39443,8 @@ msgid "Include other roles"
 msgstr "Incluir otros roles"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2604
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "Gramplete que muestra las notas de un evento"
+msgstr "Incluir personas con otros roles a un evento"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2607
 msgid "Include place pages"
@@ -39811,52 +39824,44 @@ msgstr ""
 "preferencia de fechas."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Opciones del mapa de lugares"
+msgstr "Opciones del Mapa de Calor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "Incluir páginas de evento"
+msgstr "Incluir páginas del mapa de calor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Si se deben incluir los nombres alternativos de los padres."
+msgstr "Si se deben incluir las páginas del mapa de calor para eventos"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "Tamaño de letra"
+msgstr "Tamaño de punto"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "Tamaño del texto de la nota en puntos."
+msgstr ""
+"Defina el tamaño de los puntos del mapa de calor.\n"
+"Predeterminado: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
-msgstr ""
+msgstr "Difuminar"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Establecer el tamaño de difuminado.\n"
+"Predeterminado: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
-#, fuzzy
-#| msgid "Zoom In"
 msgid "Zoom"
-msgstr "Acercar"
+msgstr "Zoom"
 
 #: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
@@ -40316,6 +40321,9 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Sin hoja de estilo"
+
+#~ msgid "Preparing ..."
+#~ msgstr "Preparando..."
 
 #, fuzzy
 #~| msgctxt "Filtering_on"
@@ -41259,9 +41267,6 @@ msgstr "Sin hoja de estilo"
 #~ msgstr ""
 #~ "Intentar ver este lugar con un servicio de mapas (OpenstreetMap, Google "
 #~ "Maps, ...)"
-
-#~ msgid "_Print..."
-#~ msgstr "Im_primir..."
 
 #~ msgid "Map Menu"
 #~ msgstr "Menú de mapa"

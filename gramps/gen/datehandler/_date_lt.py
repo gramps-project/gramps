@@ -105,8 +105,8 @@ class DateParserLT(DateParser):
         "prieš": Date.MOD_BEFORE,
         "po": Date.MOD_AFTER,
         "apie": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "nuo": Date.MOD_FROM,
+        "iki": Date.MOD_TO,
     }
 
     calendar_to_int = {

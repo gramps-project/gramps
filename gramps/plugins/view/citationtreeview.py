@@ -180,13 +180,13 @@ class CitationTreeView(LibSourceView, ListView):
             # add in Bookmarks.CitationBookmarks
             pass
 
-    def setup_filter(self):
+    def setup_searches(self):
         """
         Override the setup of the default Search Bar in listview, so that only
         the searchable source fields are shown.
         """
 
-        self.search_bar.setup_filter(
+        self.search_bar.setup_searches(
             [
                 (self.COLUMNS[pair[1]][0], pair[1], pair[1] in self.exact_search())
                 for pair in self.column_order()

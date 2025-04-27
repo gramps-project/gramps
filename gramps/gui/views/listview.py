@@ -207,7 +207,7 @@ class ListView(NavigationView):
             self.selection.set_mode(Gtk.SelectionMode.MULTIPLE)
         self.selection.connect("changed", self.row_changed)
 
-        self.setup_filter()
+        self.setup_searches()
         self.list.restore_column_size()
         return self.vbox
 
@@ -336,8 +336,13 @@ class ListView(NavigationView):
             if not self.search_bar.is_visible():
                 filter_info = (True, self.generic_filter, False)
             else:
-                value = self.search_bar.get_value()
-                filter_info = (False, value, value[0] in self.exact_search())
+                filter_info = self.search_bar.get_value()
+                if not filter_info[0]:
+                    filter_info = (
+                        filter_info[0],
+                        filter_info[1],
+                        filter_info[1][0] in self.exact_search(),
+                    )
 
             if self.dirty or not self.model:
                 if self.model:
@@ -416,9 +421,9 @@ class ListView(NavigationView):
         except WindowActiveError:
             return
 
-    def setup_filter(self):
+    def setup_searches(self):
         """Build the default filters and add them to the filter menu."""
-        self.search_bar.setup_filter(
+        self.search_bar.setup_searches(
             [
                 (self.COLUMNS[pair[1]][0], pair[1], pair[1] in self.exact_search())
                 for pair in self.column_order()
@@ -556,7 +561,7 @@ class ListView(NavigationView):
         # column that was sorted on before is situated now.
         self.sort_col = 0
         self.sort_order = Gtk.SortType.ASCENDING
-        self.setup_filter()
+        self.setup_searches()
         self.build_tree(preserve_col=False)
 
     def column_order(self):

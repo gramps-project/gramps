@@ -75,8 +75,8 @@ class SelectPlace(BaseSelector):
     def get_from_handle_func(self):
         return self.db.get_place_from_handle
 
-    def setup_filter(self):
-        """Build the default filters and add them to the filter menu.
+    def setup_searches(self):
+        """Build the default searches and add them to the search bar.
         This overrides the baseselector method because we use the hidden
         COL_SEARCH (11) that has alt names as well as primary name for name
         searching"""
@@ -85,7 +85,7 @@ class SelectPlace(BaseSelector):
             for pair in self.column_order()
             if pair[0]
         ]
-        self.search_bar.setup_filter(cols)
+        self.search_bar.setup_searches(cols)
 
     def get_config_name(self):
         return __name__
