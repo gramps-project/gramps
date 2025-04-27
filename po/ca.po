@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-03-29 11:48+0000\n"
+"PO-Revision-Date: 2025-04-23 20:01+0000\n"
 "Last-Translator: Arnau Llovet Vidal <arnaullv@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -19298,10 +19298,8 @@ msgid "Select a different person"
 msgstr "Selecciona una persona diferent"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Persones en punts d'interès"
+msgstr "Persones actives, marcades a favorits o persona base"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -19312,10 +19310,8 @@ msgid "Select a different family"
 msgstr "Selecciona una família diferent"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "Famílies als punts d'interès"
+msgstr "Famílies actives o marcades com a favorites"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
