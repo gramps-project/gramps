@@ -31,16 +31,16 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-13 03:58+0000\n"
+"PO-Revision-Date: 2025-04-23 23:45+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1166,9 +1166,9 @@ msgid ""
 "button is pressed."
 msgstr ""
 "<b> Die Hauptperson</b><br/>Jeder kann in Gramps als Hauptperson ausgewählt "
-"werden. Verwende \"Bearbeiten > Hauptperson setzen\" in der Personenansicht. "
-"Die Hauptperson ist jene Person, die beim Öffnen der Datenbank oder beim "
-"Drücken der Haus-Schaltfläche angezeigt wird."
+"werden. Verwende \"Bearbeiten > Hauptperson festlegen\" in der "
+"Personenansicht. Die Hauptperson ist jene Person, die beim Öffnen der "
+"Datenbank oder beim Drücken des Haus-Buttons angezeigt wird."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -13078,9 +13078,9 @@ msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Das angegebene Kennzeichen wird beim Importieren allen Einträgen "
-"hinzugefügt.\n"
-"Löschen um Standardwert zu setzen."
+"Das angegebene Kennzeichen wird beim Importieren allen Einträgen hinzugefügt."
+"\n"
+"Löschen um Standardwert festzulegen."
 
 #: ../gramps/gui/configure.py:2431
 msgid ""
@@ -15317,7 +15317,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editname.py:418
 msgid "Continue"
-msgstr "Fortsetzen"
+msgstr "Weiter"
 
 #: ../gramps/gui/editors/editname.py:419
 msgid "Return to Name Editor"
@@ -15429,11 +15429,11 @@ msgstr "Objekteigenschaften bearbeiten"
 
 #: ../gramps/gui/editors/editperson.py:788
 msgid "Make Active Person"
-msgstr "Als Aktive Person setzen"
+msgstr "Zur aktiven Person machen"
 
 #: ../gramps/gui/editors/editperson.py:788
 msgid "Make Home Person"
-msgstr "Als Hauptperson setzen"
+msgstr "Als Hauptperson festlegen"
 
 #: ../gramps/gui/editors/editperson.py:909
 msgid "Problem changing the gender"
@@ -19351,10 +19351,8 @@ msgid "Select a different person"
 msgstr "Eine andere Person wählen"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Personen aus Lesezeichenliste"
+msgstr "Aktive, mit Lesezeichen versehene oder Hauptperson"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -19365,10 +19363,8 @@ msgid "Select a different family"
 msgstr "Eine andere Familie wählen"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "Familien in den Lesezeichen"
+msgstr "Aktive oder mit Lesezeichen versehene Familien"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
@@ -20174,7 +20170,7 @@ msgstr "Deine Änderungen wurden noch nicht gespeichert."
 #: ../gramps/gui/plug/report/_bookdialog.py:257
 #: ../gramps/gui/plug/report/_bookdialog.py:770
 msgid "Proceed"
-msgstr "Fortsetzen"
+msgstr "Fortfahren"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:319
 msgid "Name of the book. MANDATORY"
@@ -20949,7 +20945,7 @@ msgstr "Die Datei '%s' existiert."
 
 #: ../gramps/gui/viewmanager.py:1890
 msgid "Proceed and overwrite"
-msgstr "Fortsetzen und überschreiben"
+msgstr "Fortfahren und überschreiben"
 
 #: ../gramps/gui/viewmanager.py:1891
 msgid "Cancel the backup"
@@ -21103,8 +21099,9 @@ msgid ""
 "-> Set Home Person."
 msgstr ""
 "Du musst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
-"Personenansicht, wähle die Person, die du als 'Hauptperson' setzen willst "
-"und bestätige deine Wahl über Menü Bearbeiten -> Hauptperson setzen."
+"Personenansicht, wähle die Person aus, die du als 'Hauptperson' festlegen "
+"willst und bestätige deine Wahl über das Menü Bearbeiten -> Hauptperson "
+"festlegen."
 
 #: ../gramps/gui/views/navigationview.py:339
 #: ../gramps/gui/views/navigationview.py:344
@@ -23529,7 +23526,7 @@ msgstr "Orte einfügen"
 
 #: ../gramps/plugins/export/exportcsv.py:151
 msgid "Translate headers"
-msgstr "Überschriften übersetzen"
+msgstr "Kopfzeilen übersetzen"
 
 #: ../gramps/plugins/export/exportcsv.py:314
 msgid "Enclosed_by"
@@ -27442,8 +27439,8 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 " for more info."
 msgstr ""
-"Die .gramps-Datei, die du importierst, stammt aus Version %(oldgramps)s von "
-"Gramps. Du benutzt jedoch eine neuere Version %(newgramps)s. \n"
+"Die .gramps-Datei, die du importierst, wurde mit Version %(oldgramps)s von "
+"Gramps erstellt, aber du benutzt eine neuere Version %(newgramps)s. \n"
 "\n"
 "Die Datei wird nicht importiert. Bitte verwende eine ältere Version von "
 "Gramps, die die xml-Version %(xmlversion)s unterstützt.\n"
@@ -28767,7 +28764,7 @@ msgstr "Die Person starb im %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:440
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)s."
-msgstr "Die Person starb im %(month_year)s im Alter von %(age)s Jahren."
+msgstr "Diese Person starb im %(month_year)s im Alter von %(age)s Jahren."
 
 #: ../gramps/plugins/lib/libnarrate.py:443
 #, python-format
@@ -31584,7 +31581,7 @@ msgstr "Personenfiltereditor"
 #: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/view/pedigreeview.py:1783
 msgid "Set _Home Person"
-msgstr "Hauptperson _setzen"
+msgstr "_Hauptperson festlegen"
 
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/view/fanchartview.py:186
@@ -36366,7 +36363,7 @@ msgstr "Absteigend sortieren"
 
 #: ../gramps/plugins/tool/sortevents.py:198
 msgid "Set the sort order"
-msgstr "Sortiereihenfolge setzen"
+msgstr "Sortierreihenfolge festlegen"
 
 #: ../gramps/plugins/tool/sortevents.py:201
 msgid "Include family events"
@@ -37158,11 +37155,11 @@ msgstr "Familienfiltereditor"
 
 #: ../gramps/plugins/view/familyview.py:303
 msgid "Make Father Active Person"
-msgstr "Vater als aktive Person setzen"
+msgstr "Vater zur aktiven Person machen"
 
 #: ../gramps/plugins/view/familyview.py:303
 msgid "Make Mother Active Person"
-msgstr "Mutter als aktive Person setzen"
+msgstr "Mutter zur aktiven Person machen"
 
 #: ../gramps/plugins/view/familyview.py:438
 msgid "Cannot merge families."
@@ -38305,7 +38302,7 @@ msgstr "Diagramme"
 
 #: ../gramps/plugins/view/view.gpr.py:154
 msgid "A view showing parents through a fanchart"
-msgstr "Eine Ansicht, die die Eltern durch ein Fächerdiagramm anzeigt"
+msgstr "Eine Ansicht, die die Eltern durch ein Fächerdiagramm zeigt"
 
 #: ../gramps/plugins/view/view.gpr.py:170
 msgid "Showing descendants through a fanchart"
@@ -38539,7 +38536,7 @@ msgstr "Lagen"
 
 #: ../gramps/plugins/webreport/basepage.py:3794
 msgid "circa"
-msgstr "circa"
+msgstr "zirka"
 
 #: ../gramps/plugins/webreport/basepage.py:3796
 msgid "around"
