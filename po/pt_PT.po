@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-20 15:28+0000\n"
+"PO-Revision-Date: 2025-04-27 06:14+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -3760,7 +3760,7 @@ msgstr "Volume/Página:"
 #: ../gramps/gen/filters/rules/_hascitationbase.py:62
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:60
 msgid "Citations matching parameters"
-msgstr "Citações que cumprem os parâmetros"
+msgstr "Citações que correspondem aos parâmetros"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:63
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:62
@@ -31831,7 +31831,7 @@ msgstr "Centrar aqui"
 #: ../gramps/plugins/lib/maps/geography.py:437
 #, python-format
 msgid "Replace '%(map)s' by =>"
-msgstr "Substituir \"%(map)s\" por =>"
+msgstr "Substituir \"%(map)s\""
 
 #: ../gramps/plugins/lib/maps/geography.py:450
 #, python-format
@@ -31908,7 +31908,7 @@ msgstr "Parâmetros específicos"
 
 #: ../gramps/plugins/lib/maps/geography.py:1424
 msgid "Where to save the tiles for offline mode."
-msgstr "Onde gravar mosaicos para modo offline."
+msgstr "Onde gravar mosaicos para usar sem rede"
 
 #: ../gramps/plugins/lib/maps/geography.py:1434
 msgid ""
@@ -31940,7 +31940,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1497
 msgid "The map"
-msgstr "O mapa"
+msgstr "Mapa"
 
 #: ../gramps/plugins/lib/maps/geography.py:1533
 msgid "Select tile cache directory for offline mode"
@@ -36949,7 +36949,7 @@ msgstr "Esquema de cores clássico do relatório"
 #: ../gramps/plugins/view/fanchartdescview.py:311
 #: ../gramps/plugins/view/fanchartview.py:404
 msgid "Color scheme classic view"
-msgstr "Esquema de cores clássico da vista"
+msgstr "Esquema de cores clássico do diagrama"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:329
 #: ../gramps/plugins/view/fanchartdescview.py:321
@@ -37007,7 +37007,7 @@ msgstr "Inverter nome esquerdo do leque"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:387
 msgid "Show the gramps id"
-msgstr "Mostra a ID Gramps"
+msgstr "Mostrar a ID Gramps"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:390
 #: ../gramps/plugins/view/fanchartdescview.py:386
@@ -37147,7 +37147,7 @@ msgstr ""
 #: ../gramps/plugins/view/geoclose.py:738
 #: ../gramps/plugins/view/geofamclose.py:907
 msgid "The selection parameters"
-msgstr "Os parâmetros da selecção"
+msgstr "Parâmetros da selecção"
 
 #: ../gramps/plugins/view/geoevents.py:168
 msgid "Events places map"
@@ -37421,7 +37421,7 @@ msgstr "Pausa em mili-segundos entre o desenho de duas gerações.\n"
 
 #: ../gramps/plugins/view/geomoves.py:792
 msgid "The parameters for moves"
-msgstr "Os parâmetros para as deslocações"
+msgstr "Parâmetros para as deslocações"
 
 #: ../gramps/plugins/view/geoperson.py:213
 msgid "Person places map"
@@ -37461,7 +37461,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geoperson.py:669
 msgid "The animation parameters"
-msgstr "Os parâmetros de animação"
+msgstr "Parâmetros de animação"
 
 #: ../gramps/plugins/view/geoplaces.py:208
 msgid "Places map"
@@ -37537,7 +37537,7 @@ msgstr "Nome de locais personalizado"
 
 #: ../gramps/plugins/view/geoplaces.py:643
 msgid "The places marker color"
-msgstr "A cor do marcador de local"
+msgstr "Cor do marcador de local"
 
 #: ../gramps/plugins/view/mediaview.py:129
 msgid "Edit the selected media object"
