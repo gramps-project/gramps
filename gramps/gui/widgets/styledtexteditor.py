@@ -373,6 +373,10 @@ class StyledTextEditor(Gtk.TextView):
         # variable to not copy to clipboard on double/triple click
         self.selclick = False
 
+    def __del__(self):
+        # ensure that the spell checker gets removed with the editor (bug #13795)
+        self.spellcheck = None
+
     # virtual methods
 
     def do_match_changed(self, match):
