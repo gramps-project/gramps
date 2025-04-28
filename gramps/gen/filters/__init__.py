@@ -41,6 +41,10 @@ def reload_custom_filters():
     CustomFilters = FilterList(CUSTOM_FILTERS)
     CustomFilters.load()
 
+def set_custom_filters(filter_list):
+    global CustomFilters
+    CustomFilters = filter_list
+
 
 # if not CustomFilters:  # moved to viewmanager
 # reload_custom_filters()

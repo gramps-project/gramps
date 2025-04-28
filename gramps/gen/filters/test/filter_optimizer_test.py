@@ -25,7 +25,8 @@ import unittest
 from ...const import DATA_DIR
 from ...db.utils import import_as_dict
 from ...user import User
-from ...filters import reload_custom_filters, CustomFilters, FilterList
+from ...filters import reload_custom_filters, FilterList, set_custom_filters
+from ....gen import filters
 
 custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
 <filters>
@@ -49,6 +50,28 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
         <arg value="Ancestors of"/>
       </rule>
     </filter>
+    <filter name="Everyone" function="or">
+      <rule class="Everyone" use_regex="False" use_case="False">
+      </rule>
+    </filter>
+    <filter name="F1" function="or">
+      <rule class="Everyone" use_regex="False" use_case="False">
+      </rule>
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="F2"/>
+      </rule>
+    </filter>
+    <filter name="F2" function="and">
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="F3"/>
+      </rule>
+    </filter>
+    <filter name="F3" function="and">
+      <rule class="IsAncestorOf" use_regex="False" use_case="False">
+        <arg value="I0041"/>
+        <arg value="0"/>
+      </rule>
+    </filter>
   </object>
 </filters>
 """
@@ -70,16 +93,15 @@ class OptimizerTest(unittest.TestCase):
             fl = FilterList(tmp_file.name)
             fl.load()
 
-        cls.the_custom_filters = CustomFilters.get_filters_dict("Person")
+        filters.set_custom_filters(fl)
+        cls.the_custom_filters = filters.CustomFilters.get_filters_dict("Person")
         cls.filters = fl.get_filters_dict("Person")
+        for filter_name in cls.filters:
+            cls.the_custom_filters[filter_name] = cls.filters[filter_name]
 
-    def setUp(self):
-        for filter_name in self.filters:
-            self.the_custom_filters[filter_name] = self.filters[filter_name]
-
-    def tearDown(self):
-        for filter_name in self.filters:
-            CustomFilters.remove("Person", filter_name)
+    @classmethod
+    def tearDownClass(self):
+        filters.set_custom_filters(None)
 
     def test_ancestors_of(self):
         filter = self.filters["Ancestors of"]
@@ -95,3 +117,23 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["Family and their Spouses"]
         results = filter.apply(self.db)
         self.assertEqual(len(results), 25)
+
+    def test_everyone(self):
+        filter = self.filters["Everyone"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2128)
+
+    def test_f1(self):
+        filter = self.filters["F1"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2128)
+
+    def test_f2(self):
+        filter = self.filters["F2"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 16)
+
+    def test_f3(self):
+        filter = self.filters["F3"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 16)
