@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2024       Doug Blank
+# Copyright (C) 2024       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,7 +63,13 @@ class DbMixin:
     """
 
     def __find_primary_from_handle(
-        self, handle, transaction, class_type, get_raw_obj_data, add_func
+        self,
+        handle,
+        transaction,
+        class_type,
+        has_obj_handle,
+        get_obj_from_handle,
+        add_func,
     ):
         """
         Find a primary object of class_type in the database from the passed
@@ -77,9 +84,8 @@ class DbMixin:
         obj = class_type()
         handle = str(handle)
         new = True
-        raw = get_raw_obj_data(handle)
-        if raw is not None:
-            obj = data_to_object(raw)
+        if has_obj_handle(handle):
+            obj = get_obj_from_handle(handle)
             # references create object with id None before object is really made
             if obj.gramps_id is not None:
                 new = False
@@ -89,7 +95,13 @@ class DbMixin:
         return obj, new
 
     def __find_table_from_handle(
-        self, handle, transaction, class_type, get_raw_obj_data, add_func
+        self,
+        handle,
+        transaction,
+        class_type,
+        has_obj_handle,
+        get_obj_from_handle,
+        add_func,
     ):
         """
         Find a table object of class_type in the database from the passed
@@ -103,9 +115,8 @@ class DbMixin:
         """
         obj = class_type()
         handle = str(handle)
-        raw = get_raw_obj_data(handle)
-        if raw is not None:
-            obj = data_to_object(raw)
+        if has_obj_handle(handle):
+            obj = get_obj_from_handle(handle)
             return obj, False
         else:
             obj.set_handle(handle)
@@ -154,7 +165,12 @@ class DbMixin:
         @rtype: tuple
         """
         return self.__find_primary_from_handle(
-            handle, transaction, Person, self.get_raw_person_data, self.add_person
+            handle,
+            transaction,
+            Person,
+            self.has_person_handle,
+            self.get_person_from_handle,
+            self.add_person,
         )
 
     def find_source_from_handle(self, handle, transaction):
@@ -168,7 +184,12 @@ class DbMixin:
         @rtype: tuple
         """
         return self.__find_primary_from_handle(
-            handle, transaction, Source, self.get_raw_source_data, self.add_source
+            handle,
+            transaction,
+            Source,
+            self.has_source_handle,
+            self.get_source_from_handle,
+            self.add_source,
         )
 
     def find_event_from_handle(self, handle, transaction):
@@ -182,7 +203,12 @@ class DbMixin:
         @rtype: tuple
         """
         return self.__find_primary_from_handle(
-            handle, transaction, Event, self.get_raw_event_data, self.add_event
+            handle,
+            transaction,
+            Event,
+            self.has_event_handle,
+            self.get_event_from_handle,
+            self.add_event,
         )
 
     def find_object_from_handle(self, handle, transaction):
@@ -196,7 +222,12 @@ class DbMixin:
         @rtype: tuple
         """
         return self.__find_primary_from_handle(
-            handle, transaction, Media, self.get_raw_object_data, self.add_object
+            handle,
+            transaction,
+            Media,
+            self.has_object_handle,
+            self.get_object_from_handle,
+            self.add_object,
         )
 
     def find_place_from_handle(self, handle, transaction):
@@ -210,7 +241,12 @@ class DbMixin:
         @rtype: tuple
         """
         return self.__find_primary_from_handle(
-            handle, transaction, Place, self.get_raw_place_data, self.add_place
+            handle,
+            transaction,
+            Place,
+            self.has_place_handle,
+            self.get_place_from_handle,
+            self.add_place,
         )
 
     def find_family_from_handle(self, handle, transaction):
@@ -224,7 +260,12 @@ class DbMixin:
         @rtype: tuple
         """
         return self.__find_primary_from_handle(
-            handle, transaction, Family, self.get_raw_family_data, self.add_family
+            handle,
+            transaction,
+            Family,
+            self.has_family_handle,
+            self.get_family_from_handle,
+            self.add_family,
         )
 
     def find_repository_from_handle(self, handle, transaction):
@@ -241,7 +282,8 @@ class DbMixin:
             handle,
             transaction,
             Repository,
-            self.get_raw_repository_data,
+            self.has_repository_handle,
+            self.get_repository_from_handle,
             self.add_repository,
         )
 
@@ -256,7 +298,12 @@ class DbMixin:
         @rtype: tuple
         """
         return self.__find_primary_from_handle(
-            handle, transaction, Note, self.get_raw_note_data, self.add_note
+            handle,
+            transaction,
+            Note,
+            self.has_note_handle,
+            self.get_note_from_handle,
+            self.add_note,
         )
 
     def find_tag_from_handle(self, handle, transaction):
@@ -270,7 +317,12 @@ class DbMixin:
         @rtype: tuple
         """
         return self.__find_table_from_handle(
-            handle, transaction, Tag, self.get_raw_tag_data, self.add_tag
+            handle,
+            transaction,
+            Tag,
+            self.has_tag_handle,
+            self.get_tag_from_handle,
+            self.add_tag,
         )
 
     def check_person_from_handle(self, handle, transaction, set_gid=True):

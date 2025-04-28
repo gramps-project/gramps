@@ -42,7 +42,7 @@ from . import Rule
 #
 # -------------------------------------------------------------------------
 from ...lib.citationbase import CitationBase
-from ...db import Database
+from ...types import Database
 
 
 # -------------------------------------------------------------------------

@@ -41,7 +41,7 @@ from . import Rule
 #
 # -------------------------------------------------------------------------
 from ...lib.primaryobj import PrimaryObject
-from ...db import Database
+from ...types import Database
 
 
 # -------------------------------------------------------------------------
