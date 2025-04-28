@@ -64,8 +64,10 @@ class Optimizer:
         """
         current_invert = parent_invert if not filter.invert else not parent_invert
         LOG.debug(
-            "walking, filter: %s, invert=%s, parent_logical_op=%s, parent_invert=%s",
+            "walking, filter: %s, name=%s, logical_op=%s, invert=%s, parent_logical_op=%s, parent_invert=%s",
             filter,
+            filter.name,
+            filter.logical_op,
             filter.invert,
             parent_logical_op,
             parent_invert,
@@ -85,8 +87,9 @@ class Optimizer:
                 rules_with_selected_handles.append(set(item.selected_handles))
         if rules_with_selected_handles:
             LOG.debug(
-                "filter %s: parent_logical_op=%s, parent_invert=%s, invert=%s, op=%s, number of rules with selected_handles=%s",
+                "filter %s: name: %s, parent_logical_op=%s, parent_invert=%s, invert=%s, op=%s, number of rules with selected_handles=%s",
                 filter,
+                filter.name,
                 parent_logical_op,
                 parent_invert,
                 filter.invert,
