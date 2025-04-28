@@ -23,6 +23,7 @@
 """
 EventBase class for Gramps.
 """
+from collections.abc import Collection
 
 # -------------------------------------------------------------------------
 #
@@ -135,13 +136,12 @@ class EventBase:
         """
         return event_handle in [event_ref.ref for event_ref in self.event_ref_list]
 
-    def _remove_event_references(self, handle_list):
+    def _remove_event_references(self, handle_list: Collection[str]):
         """
         Remove any references to the given event handles from the instance's
         :class:`~.eventref.EventRef` list.
 
         :param handle_list: List of valid event handles to remove
-        :type handle_list: list
         """
         new_list = [
             event_ref
