@@ -23,7 +23,7 @@
 import os
 import unittest
 
-from ...const import DATA_DIR
+from ...const import TEST_DIR
 from ...db.utils import import_as_dict
 from ...user import User
 from .. import (
@@ -40,7 +40,6 @@ from .. import (
 )
 from ..json_utils import object_to_data, data_to_object
 
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 
