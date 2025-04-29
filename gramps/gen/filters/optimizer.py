@@ -79,7 +79,7 @@ class Optimizer:
                 if rule_filter is not None:
                     self.walk_filters(
                         rule_filter,
-                        filter.logical_op,
+                        parent_logical_op,
                         current_invert,
                         result,
                     )
