@@ -1269,7 +1269,7 @@ class NavWebReport(Report):
         # copy screen style sheet
         if CSS[self.css]["filename"]:
             fname = CSS[self.css]["filename"]
-            self.copy_file(fname, _NARRATIVESCREEN, "css")
+            self.copy_file(fname, _NARRATIVESCREEN, "css", True)
 
         # copy printer style sheet
         fname = CSS["Print-Default"]["filename"]
@@ -1904,7 +1904,7 @@ class NavWebReport(Report):
         )
         return real_path, thumb_path
 
-    def copy_file(self, from_fname, to_fname, to_dir=""):
+    def copy_file(self, from_fname, to_fname, to_dir="", clobber=False):
         """
         Copy a file from a source to a (report) destination.
         If to_dir is not present and if the target is not an archive,
@@ -1945,7 +1945,7 @@ class NavWebReport(Report):
                 os.makedirs(destdir)
 
             if from_fname != dest:
-                if not os.path.exists(dest):
+                if clobber or not os.path.exists(dest):
                     try:
                         shutil.copyfile(from_fname, dest)
                         os.utime(dest, (mtime, mtime))
