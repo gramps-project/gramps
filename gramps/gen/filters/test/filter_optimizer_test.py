@@ -87,11 +87,8 @@ class OptimizerTest(unittest.TestCase):
         """
         cls.db = import_as_dict(EXAMPLE, User())
 
-        with tempfile.NamedTemporaryFile(mode="w+", encoding="utf8") as tmp_file:
-            tmp_file.write(custom_filters_xml)
-            tmp_file.seek(0)
-            fl = FilterList(tmp_file.name)
-            fl.load()
+        fl = FilterList("")
+        fl.loadString(custom_filters_xml)
 
         filters.set_custom_filters(fl)
         cls.the_custom_filters = filters.CustomFilters.get_filters_dict("Person")
