@@ -90,19 +90,20 @@ class OptimizerTest(unittest.TestCase):
         fl = FilterList("")
         fl.loadString(custom_filters_xml)
 
-        # filters.set_custom_filters(fl)
-        # cls.the_custom_filters = filters.CustomFilters.get_filters_dict("Person")
+        filters.set_custom_filters(fl)
+        cls.the_custom_filters = filters.CustomFilters.get_filters_dict("Person")
         # cls.filters = fl.get_filters_dict("Person")
         # for filter_name in cls.filters:
         #     cls.the_custom_filters[filter_name] = cls.filters[filter_name]
 
     @classmethod
     def tearDownClass(self):
-        # filters.set_custom_filters(None)
+        filters.set_custom_filters(None)
         pass
 
     def test_ancestors_of(self):
         pass
+
     #     filter = self.filters["Ancestors of"]
     #     results = filter.apply(self.db)
     #     self.assertEqual(len(results), 7)
