@@ -124,6 +124,9 @@ class GenericFilter:
     def get_rules(self):
         return self.flist
 
+    def get_all_handles(self, db):
+        return db.get_person_handles()
+
     def get_cursor(self, db):
         return db.get_person_cursor()
 
@@ -144,7 +147,7 @@ class GenericFilter:
     ):
         final_list = []
 
-        optimizer = Optimizer(self)
+        optimizer = Optimizer(set(self.get_all_handles(db)), self)
         handles_in, handles_out = optimizer.get_handles()
 
         LOG.debug(
@@ -300,6 +303,9 @@ class GenericFamilyFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
+    def get_all_handles(self, db):
+        return db.get_family_handles()
+
     def get_cursor(self, db):
         return db.get_family_cursor()
 
@@ -319,6 +325,9 @@ class GenericFamilyFilter(GenericFilter):
 class GenericEventFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
+
+    def get_all_handles(self, db):
+        return db.get_event_handles()
 
     def get_cursor(self, db):
         return db.get_event_cursor()
@@ -340,6 +349,9 @@ class GenericSourceFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
+    def get_all_handles(self, db):
+        return db.get_source_handles()
+
     def get_cursor(self, db):
         return db.get_source_cursor()
 
@@ -359,6 +371,9 @@ class GenericSourceFilter(GenericFilter):
 class GenericCitationFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
+
+    def get_all_handles(self, db):
+        return db.get_citation_handles()
 
     def get_cursor(self, db):
         return db.get_citation_cursor()
@@ -383,6 +398,9 @@ class GenericPlaceFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
+    def get_all_handles(self, db):
+        return db.get_place_handles()
+
     def get_cursor(self, db):
         return db.get_place_cursor()
 
@@ -406,6 +424,9 @@ class GenericMediaFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
+    def get_all_handles(self, db):
+        return db.get_media_handles()
+
     def get_cursor(self, db):
         return db.get_media_cursor()
 
@@ -426,6 +447,9 @@ class GenericRepoFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
+    def get_all_handles(self, db):
+        return db.get_repository_handles()
+
     def get_cursor(self, db):
         return db.get_repository_cursor()
 
@@ -445,6 +469,9 @@ class GenericRepoFilter(GenericFilter):
 class GenericNoteFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
+
+    def get_all_handles(self, db):
+        return db.get_note_handles()
 
     def get_cursor(self, db):
         return db.get_note_cursor()

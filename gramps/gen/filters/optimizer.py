@@ -50,95 +50,55 @@ class Optimizer:
     to include or exclude.
     """
 
-    def __init__(self, filter):
+    def __init__(self, all_handles, filter):
         """
         Initialize the collection of selected_handles in the filter list.
         """
-        self.all_selected_handles = []
-        self.walk_filters(filter, filter.logical_op, False, self.all_selected_handles)
+        self.all_handles = all_handles
+        self.handles_in = self.compute_potential_handles_for_filter(filter)
+        self.handles_out = set()
 
-    def walk_filters(self, filter, parent_logical_op, parent_invert, result):
-        """
-        Recursively walk all of the filters/rules and get
-        rules with selected_handles
-        """
-        current_invert = parent_invert if not filter.invert else not parent_invert
-        LOG.debug(
-            "walking, filter: %s, name=%s, logical_op=%s, invert=%s, parent_logical_op=%s, parent_invert=%s",
-            filter,
-            filter.name,
-            filter.logical_op,
-            filter.invert,
-            parent_logical_op,
-            parent_invert,
-        )
-        rules_with_selected_handles = []
-        for item in filter.flist:
-            if hasattr(item, "find_filter"):
-                rule_filter = item.find_filter()
-                if rule_filter is not None:
-                    self.walk_filters(
-                        rule_filter,
-                        parent_logical_op,
-                        current_invert,
-                        result,
-                    )
-            elif hasattr(item, "selected_handles"):
-                rules_with_selected_handles.append(set(item.selected_handles))
-        if rules_with_selected_handles:
-            LOG.debug(
-                "filter %s: name: %s, parent_logical_op=%s, parent_invert=%s, invert=%s, op=%s, number of rules with selected_handles=%s",
-                filter,
-                filter.name,
-                parent_logical_op,
-                parent_invert,
-                filter.invert,
-                filter.logical_op,
-                len(rules_with_selected_handles),
-            )
-            result.append(
-                (
-                    current_invert,
-                    parent_logical_op,
-                    rules_with_selected_handles,
-                )
-            )
+    def compute_potential_handles_for_filter(self, filter):
+        if len(filter.flist) == 0:
+            return self.all_handles
+        handlesets = [
+            self.compute_potential_handles_for_rule(rule) for rule in filter.flist
+        ]
+
+        if filter.logical_op == "and":
+            handles = intersection(handlesets)
+        elif filter.logical_op in ("or", "one"):
+            handles = union(handlesets)
+
+        if filter.invert:
+            handles = self.all_handles.difference(handles)
+
+        return handles
+
+    def compute_potential_handles_for_rule(self, rule):
+        if hasattr(rule, "selected_handles"):
+            return rule.selected_handles  # this rule can be optimised
+        if hasattr(rule, "find_filter"):
+            filter = rule.find_filter()
+            if filter:
+                return self.compute_potential_handles_for_filter(filter)
+        return (
+            self.all_handles
+        )  # no optimization possible so assume all handles could match the rule
 
     def get_handles(self):
         """
         Returns handles_in, and handles_out.
 
-        `handles_in` is either None, or a set of handles to include.
-        if it is None, then there is no evidence to only include
-        particular handles. If it is a set, then those in the set
-        are a superset of the items that will match.
+        `handles_in` is a set of handles to include.
+        Then those in the set are a superset of the items that will match.
 
         `handles_out` is a set. If any handle is in the set, it will
         not be included in the final results.
-
-        The handles_in are selected if all of the rules are connected with
-        "and" and not inverted. The handles_out are selected if all of the
-        rules are connected with "and" and inverted.
         """
-        handles_in = None
-        handles_out = set()
-        # Get all positive non-inverted selected_handles
-        for inverted, logical_op, selected_handles in self.all_selected_handles:
-            if logical_op == "and" and not inverted:
-                LOG.debug("optimizer positive match!")
-                if handles_in is None:
-                    handles_in = intersection(selected_handles)
-                else:
-                    handles_in = intersection([handles_in] + selected_handles)
-
-        # Get all inverted selected_handles:
-        for inverted, logical_op, selected_handles in self.all_selected_handles:
-            if logical_op == "and" and inverted:
-                LOG.debug("optimizer inverted match!")
-                handles_out = union([handles_out] + selected_handles)
-
-        if handles_in is not None:
-            handles_in = handles_in - handles_out
-
-        LOG.debug("optimizer handles_in: %s", len(handles_in) if handles_in else 0)
-        return handles_in, handles_out
+        LOG.debug(
+            "optimizer handles_in: %s, handles_out: %s",
+            len(self.handles_in),
+            len(self.handles_out),
+        )
+        return self.handles_in, self.handles_out
