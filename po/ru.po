@@ -16,7 +16,7 @@
 # Artem <Localizer_in_Russian@protonmail.com>, 2021.
 # Viktor <xasertop@gmail.com>, 2022.
 # PKEv <pkev@yandex.ru>, 2022.
-# Павел Жуков <papazukko@gmail.com>, 2023, 2024.
+# Павел Жуков <papazukko@gmail.com>, 2023, 2024, 2025.
 # Dmitriy Q <krotesk@mail.ru>, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2023, 2025.
 # Vlad Arkhipov <vlad@arkhipov.ru>, 2023.
@@ -27,8 +27,8 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-28 14:07+0000\n"
-"Last-Translator: Sotski Eugene <jekakmail@gmail.com>\n"
+"PO-Revision-Date: 2025-04-28 14:29+0000\n"
+"Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -9746,7 +9746,7 @@ msgstr "Создатель миниатюр"
 
 #: ../gramps/gen/plug/_pluginreg.py:134 ../gramps/gui/configure.py:1663
 msgid "Citation formatter"
-msgstr "Форматирование цитат"
+msgstr "Формат выписок"
 
 #: ../gramps/gen/plug/_pluginreg.py:645
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
@@ -10249,7 +10249,7 @@ msgstr "Бытовое имя только"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Whole Given Name"
-msgstr "Полное Данное Имя"
+msgstr "Полное имя"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:86
 msgid "Above"
@@ -10378,9 +10378,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
-"Выберите часть имени, которую нужно пометить как предпочтительную. "
-"Автоматически устанавливается Прозвище, если оно существует. В противном "
-"случае — полное имя."
+"Укажите, какую часть полного имени пометить, как предпочитаемую. В режиме "
+"Авто это будет краткое имя, если есть, в ином случае выбирается полное имя."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:226
 msgid "Position of marriage information."
@@ -11453,7 +11452,7 @@ msgstr "Запись градусов, минут и секунд"
 
 #: ../gramps/gen/utils/place.py:101
 msgid "Degree, minutes, seconds notation with :"
-msgstr "Градусы, минуты и секунды с:"
+msgstr "Запись градусов, минут и секунд в виде:"
 
 #: ../gramps/gen/utils/place.py:102
 msgid "Degree notation, 4 decimals"
@@ -12663,7 +12662,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1640
 msgid "Show leap day anniversaries"
-msgstr "Показать годовщины високосного дня"
+msgstr "Показывать годовщины в високосные годы"
 
 #: ../gramps/gui/configure.py:1647
 msgid "Active person's name and ID"
@@ -12833,8 +12832,8 @@ msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"Не загружен GSpell. Проверка правописания недоступна.\n"
-"Для его сборки для Gramps см. %(gramps_wiki_build_spell_url)s"
+"Не загружен GtkSpell. Проверка правописания недоступна.\n"
+"Для его сборки для Gramps см. %(gramps_wiki_build_spell_url)s."
 
 #: ../gramps/gui/configure.py:2043
 msgid "Show text label beside Navigator buttons *"
@@ -13243,7 +13242,7 @@ msgstr ""
 #: ../gramps/gui/csvdialect.py:63
 msgctxt "character"
 msgid "Tab"
-msgstr "Вкладка"
+msgstr "Tab (табуляция)"
 
 #: ../gramps/gui/csvdialect.py:82
 msgid "Choose your dialect"
@@ -15916,7 +15915,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:89
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:73
 msgid "Case sensitive"
-msgstr "С учётом регистра"
+msgstr "Учитывать регистр"
 
 #: ../gramps/gui/editors/filtereditor.py:688
 msgid "Rule Name"
@@ -15971,11 +15970,11 @@ msgstr "Удалить фильтр"
 #: ../gramps/gui/editors/objectentries.py:306
 msgid "To select a person, use drag-and-drop or use the buttons"
 msgstr ""
-"Для выбора персоны используйте перетаскивание с помощью мыши или кнопки"
+"Для выбора человека пользуйтесь кнопками или перетаскиванием с помощью мыши"
 
 #: ../gramps/gui/editors/objectentries.py:308
 msgid "No person given, click button to select one"
-msgstr "Не указана персона, нажмите кнопку для выбора"
+msgstr "Не указан человек; нажмите кнопку чтобы выбрать"
 
 #: ../gramps/gui/editors/objectentries.py:309
 msgid "Edit person"
@@ -15983,7 +15982,7 @@ msgstr "Редактировать персону"
 
 #: ../gramps/gui/editors/objectentries.py:310
 msgid "Select an existing person"
-msgstr "Выбрать существующую персону"
+msgstr "Выбрать существующего человека"
 
 #: ../gramps/gui/editors/objectentries.py:311
 #: ../gramps/plugins/lib/libpersonview.py:144
@@ -15992,7 +15991,7 @@ msgstr "Добавить новое лицо"
 
 #: ../gramps/gui/editors/objectentries.py:312
 msgid "Remove person"
-msgstr "Удалить персону"
+msgstr "Удалить человека"
 
 #: ../gramps/gui/editors/objectentries.py:375
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -18616,13 +18615,13 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Addon Manager."
 msgstr ""
-"Grapms поставляется с набором модулей расширения, которые обеспечивают "
-"работу всех необходимых функций. Однако, Вы можете расширить набор доступных "
-"функций с помощью дополнительных модулей. Эти модули добавляют новые отчёты, "
-"списки, виды, грамплеты, и т.д. Ниже можете выбрать из списка доступных "
-"модулей. Выбранные модули будут загружены через интернет со страницы Gramps "
-"и установлены на Вашем компьютере. Если закроете это окно, то "
-"позжеустановить новые модули можно через меню Правка -> Менеджер дополнений."
+"Grapms поставляется с набором модулей, которые обеспечивают работу всех "
+"необходимых функций. Однако, Вы можете расширить набор доступных функций с "
+"помощью дополнительных модулей. Эти модули добавляют новые отчёты, списки, "
+"виды, грамплеты, и т.д. Ниже можете выбрать из списка доступных модулей. "
+"Выбранные модули будут загружены через интернет со страницы Gramps и "
+"установлены на Вашем компьютере. Если закроете это окно, то позже установить "
+"новые модули можно через меню Правка -> Менеджер дополнений."
 
 #: ../gramps/gui/glade/updateaddons.glade:103
 msgid "_Select All"
@@ -19466,7 +19465,7 @@ msgstr "Дополнение будет недоступно в вашей те�
 
 #: ../gramps/gui/plug/_windows.py:596
 msgid "No matching addons found."
-msgstr "Подходящих дополнений не найдено."
+msgstr "По вашим параметрам дополнений не найдено"
 
 #: ../gramps/gui/plug/_windows.py:710
 msgid "Insert a project"
@@ -19560,11 +19559,11 @@ msgstr "Новый Проект"
 
 #: ../gramps/gui/plug/_windows.py:838
 msgid "Edit Project"
-msgstr "Редактировать Проект"
+msgstr "Редактировать проект"
 
 #: ../gramps/gui/plug/_windows.py:846
 msgid "Project name"
-msgstr "Название Проекта"
+msgstr "Название проекта"
 
 #: ../gramps/gui/plug/_windows.py:944
 msgid "Restore project defaults"
@@ -21932,7 +21931,7 @@ msgstr "Подавлять ли отступы, резервирующие ме�
 
 #: ../gramps/plugins/drawreport/ancestortree.py:877
 msgid "Show Index"
-msgstr "Показывать индекс"
+msgstr "Отображать указатель"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:878
 msgid "Display index of each person"
@@ -22920,9 +22919,7 @@ msgstr "Разворачивать имена в нижнем полукруге
 
 #: ../gramps/plugins/drawreport/fanchart.py:850
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
-msgstr ""
-"Перевернуть имена для поколений 2, 3 и 4, то есть те, которые находятся в "
-"кругах"
+msgstr "Разворачивать имена для поколений 2, 3, 4 и др. внутри кругов"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
 msgid "Exclude the title of the chart"
@@ -25880,9 +25877,7 @@ msgstr "Цвет для отображения женщин."
 #: ../gramps/plugins/graph/gvhourglass.py:512
 #: ../gramps/plugins/graph/gvrelgraph.py:1055
 msgid "The color to use to display people who are neither men nor women."
-msgstr ""
-"Цвет, используемый для отображения людей, которые не являются ни мужчинами, "
-"ни женщинами."
+msgstr "Цвет для отображения лиц, не относящихся ни к мужчинам, ни к женщинам."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:354
 #: ../gramps/plugins/graph/gvhourglass.py:517
@@ -26040,7 +26035,7 @@ msgstr "Показать номер Sosa / Sosa-Stradonitz / Ahnentafel."
 
 #: ../gramps/plugins/graph/gvhourglass.py:540
 msgid "Show symbols for events"
-msgstr "Показать символы событий"
+msgstr "Отображать символы событий"
 
 #: ../gramps/plugins/graph/gvhourglass.py:542
 msgid "Show genealogical symbols for birth, marriage and death events."
