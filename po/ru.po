@@ -27,8 +27,8 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-28 14:29+0000\n"
-"Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
+"PO-Revision-Date: 2025-04-29 11:28+0000\n"
+"Last-Translator: Sotski Eugene <jekakmail@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -7146,7 +7146,7 @@ msgstr "Номер социального страхования"
 #: ../gramps/plugins/importer/importcsv.py:222
 #: ../gramps/plugins/tool/patchnames.py:488
 msgid "Nickname"
-msgstr "Прозвище"
+msgstr "Никнейм"
 
 #: ../gramps/gen/lib/attrtype.py:83
 msgid "Cause"
@@ -7437,8 +7437,8 @@ msgstr "неизвестен"
 #, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "больше чем {number_of} лет"
-msgstr[1] "больше чем {number_of} лет"
+msgstr[0] "больше чем {number_of} год"
+msgstr[1] "больше чем {number_of} года"
 msgstr[2] "больше чем {number_of} лет"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
@@ -8791,7 +8791,7 @@ msgstr "Прозвище"
 
 #: ../gramps/gen/lib/name.py:194
 msgid "Nick name"
-msgstr "Псевдоним"
+msgstr "Никнейм"
 
 #: ../gramps/gen/lib/name.py:195
 msgid "Family nick name"
@@ -10233,7 +10233,7 @@ msgstr "Фамилия, произошедшая от прозвища"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
 msgid "Surname, Given Nickname"
-msgstr "Фамилия, Данное Прозвище"
+msgstr "Фамилия, Никнейм"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:75
 msgid "GivenNicknameSurname"
@@ -11126,8 +11126,8 @@ msgstr "события с супругом/супругой"
 #, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "рождение потомков: {number_of} поколений "
-msgstr[1] "рождение потомков: {number_of} поколений "
+msgstr[0] "рождение потомков: {number_of} поколение "
+msgstr[1] "рождение потомков: {number_of} поколения "
 msgstr[2] "рождение потомков: {number_of} поколений "
 
 #: ../gramps/gen/utils/alive.py:788
@@ -11139,10 +11139,9 @@ msgstr[1] "смерти потомков: {number_of} поколений "
 msgstr[2] "смерти потомков: {number_of} поколений "
 
 #: ../gramps/gen/utils/alive.py:803
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's descendants"
+#, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Ошибка в базе данных: цикл в потомках %s"
+msgstr "Ошибка в базе данных: цикл в потомках %s."
 
 #: ../gramps/gen/utils/alive.py:855
 msgid "mother birth "
@@ -12623,10 +12622,8 @@ msgid "Age display precision *"
 msgstr "Точность отображения возраста *"
 
 #: ../gramps/gui/configure.py:1579
-#, fuzzy
-#| msgid "Rounded corners"
 msgid "Round the year"
-msgstr "Закруглять углы"
+msgstr "Округлять года"
 
 #: ../gramps/gui/configure.py:1590
 msgid "Display ages for events after death *"
@@ -12833,7 +12830,7 @@ msgid ""
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
 "Не загружен GtkSpell. Проверка правописания недоступна.\n"
-"Для его сборки для Gramps см. %(gramps_wiki_build_spell_url)s."
+"Для его сборки для Gramps см. %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:2043
 msgid "Show text label beside Navigator buttons *"
@@ -19465,7 +19462,7 @@ msgstr "Дополнение будет недоступно в вашей те�
 
 #: ../gramps/gui/plug/_windows.py:596
 msgid "No matching addons found."
-msgstr "По вашим параметрам дополнений не найдено"
+msgstr "По вашим параметрам дополнений не найдено."
 
 #: ../gramps/gui/plug/_windows.py:710
 msgid "Insert a project"
@@ -26319,7 +26316,7 @@ msgstr "прозвище"
 
 #: ../gramps/plugins/importer/importcsv.py:226
 msgid "Nick"
-msgstr "Прозвище"
+msgstr "Псевдоним"
 
 #: ../gramps/plugins/importer/importcsv.py:228
 #, fuzzy
@@ -38810,7 +38807,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
 msgid " which has no event for the selected filter."
-msgstr " Удалить выбранный фильтр не имеющий событий"
+msgstr " удалить выбранный фильтр не имеющий событий."
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -39896,7 +39893,9 @@ msgstr "Размер шрифта"
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "Установить размер шрифта для тепловой карты, в пунктах."
+msgstr ""
+"Установить размер шрифта для тепловой карты, в пунктах.\n"
+"По умолчанию: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
@@ -39970,7 +39969,7 @@ msgstr "Бытовое имя"
 
 #: ../gramps/plugins/webreport/person.py:1870
 msgid "Nick Name"
-msgstr "Прозвище"
+msgstr "Псевдоним"
 
 #: ../gramps/plugins/webreport/person.py:1927
 msgid "Age at Death"
