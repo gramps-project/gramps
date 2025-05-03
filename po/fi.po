@@ -13,13 +13,14 @@
 # Ricky Tigg <ricky.tigg@gmail.com>, 2025.
 # Jorma-Juhani Könönen <jorma@tuta.io>, 2025.
 # Ossi Viljakainen <arjunanda@gmail.com>, 2025.
+# Juha Mäkeläinen <juha.makelainen@iki.fi>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-30 06:19+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2025-05-03 11:01+0000\n"
+"Last-Translator: Juha Mäkeläinen <juha.makelainen@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -4522,7 +4523,7 @@ msgstr "Tapahtumat, jotka <suodin> hyväksyy"
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:47
 msgid "Matches events matched by the specified filter name"
-msgstr "Poimii tapahtumat, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii tapahtumat annetulla suotimella"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:61
 #: ../gramps/gui/editors/filtereditor.py:613
@@ -4540,9 +4541,7 @@ msgstr "Henkilöiden tapahtumat, jotka <henkilösuodin> hyväksyy"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:64
 msgid "Matches events of persons matched by the specified person filter name"
-msgstr ""
-"Poimii henkilöiden tapahtumat, jotka saadaan annetun nimisellä "
-"henkilösuotimella"
+msgstr "Poimii henkilön tapahtumat annetulla henkilösuotimella"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:60
 #: ../gramps/gui/editors/filtereditor.py:576
@@ -4870,7 +4869,7 @@ msgstr "Perheet, jotka <suodin> hyväksyy"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:47
 msgid "Matches families matched by the specified filter name"
-msgstr "Poimii perheet, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii perheet annetulla suotimella"
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:46
 msgid "Families with at least one direct source >= <confidence level>"
@@ -5105,7 +5104,7 @@ msgstr "Mediatiedostot, jotka <suodin> hyväksyy"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:47
 msgid "Matches media objects matched by the specified filter name"
-msgstr "Poimii mediatiedostot, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii suotimen mukaiset mediatiedostot"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:46
 msgid "Media with a direct source >= <confidence level>"
@@ -5197,7 +5196,7 @@ msgstr "Lisätiedot, jotka <suodin> hyväksyy"
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:47
 msgid "Matches notes matched by the specified filter name"
-msgstr "Poimii lisätiedot, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii suotimen mukaiset lisätiedot"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:54
 msgid "Notes containing <text>"
@@ -5413,8 +5412,8 @@ msgstr ""
 msgid ""
 "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
-"Poimii henkilöt, joilla on yhteinen esivanhempi kenen tahansa suotimen "
-"hyväksymän henkilön kanssa"
+"Poimii henkilöt, joilla on yhteinen esivanhempi jonkun suodatetun henkilön "
+"kanssa"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:60
 msgid "People with the <death data>"
@@ -5757,7 +5756,7 @@ msgstr "<Suotimen> hyväksymien henkilöiden esivanhemmat"
 
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:62
 msgid "Matches people that are ancestors of anybody matched by a filter"
-msgstr "Poimii suotimen hyväksymien henkilöiden esivanhemmat"
+msgstr "Poimii suodatettujen henkilöiden esivanhemmat"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:57
 msgid "Bookmarked people"
@@ -5773,7 +5772,7 @@ msgstr "<Suotimen> hyväksymien henkilöiden lapset"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:61
 msgid "Matches children of anybody matched by a filter"
-msgstr "Poimii suotimen hyväksymien henkilöiden lapset"
+msgstr "Poimii suodatettujen henkilöiden lapset"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:56
 msgid "Home Person"
@@ -5812,7 +5811,7 @@ msgstr "<Suotimen> hyväksymät jälkeläiset perheineen"
 msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
-msgstr "Poimii suotimen hyväksymien henkilöiden jälkeläiset ja heidän puolisot"
+msgstr "Poimii suodatettujen henkilöiden jälkeläiset ja heidän puolisonsa"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:59
 msgid "Descendants of <person>"
@@ -5828,7 +5827,7 @@ msgstr "<Suotimen> hyväksymien henkilöiden jälkeläiset"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:62
 msgid "Matches people that are descendants of anybody matched by a filter"
-msgstr "Poimii suotimen hyväksymien henkilöiden jälkeläiset"
+msgstr "Poimii suodatettujen henkilöiden jälkeläiset"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:59
 msgid "Duplicated ancestors of <person>"
@@ -5953,7 +5952,7 @@ msgstr "<Suotimen> hyväksymien henkilöiden vanhemmat"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:61
 msgid "Matches parents of anybody matched by a filter"
-msgstr "Poimii suotimen hyväksymien henkilöiden esivanhemmat"
+msgstr "Poimii suodatettujen henkilöiden esivanhemmat"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:58
 msgid "People related to <Person>"
@@ -5969,7 +5968,7 @@ msgstr "<Suotimen> hyväksymien henkilöiden sisarukset"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:60
 msgid "Matches siblings of anybody matched by a filter"
-msgstr "Poimii suotimen hyväksymien henkilöiden sisarukset"
+msgstr "Poimii suodatettujen henkilöiden sisarukset"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:58
 msgid "Spouses of <filter> match"
@@ -6009,7 +6008,7 @@ msgstr "Henkilöt, jotka <suodin> hyväksyy"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:47
 msgid "Matches people matched by the specified filter name"
-msgstr "Poimii henkilöt, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii suodatetut henkilöt henkilöt"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:46
 msgid "Persons with at least one direct source >= <confidence level>"
@@ -6415,7 +6414,7 @@ msgstr "Paikat, jotka <suodin> hyväksyy"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:47
 msgid "Matches places matched by the specified filter name"
-msgstr "Poimii paikat, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii suodatetut paikat"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:46
 msgid "Place with a direct source >= <confidence level>"
@@ -6577,7 +6576,7 @@ msgstr "Arkistot, jotka <suodin> hyväksyy"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:47
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Poimii arkistot, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii suodatetut arkistot"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:54
 msgid "Repositories with name containing <text>"
@@ -6736,7 +6735,7 @@ msgstr "Lähteet, jotka <suodin> hyväksyy"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:47
 msgid "Matches sources matched by the specified filter name"
-msgstr "Poimii lähteet, jotka saadaan annetun nimisellä suotimella"
+msgstr "Poimii suodatetut lähteet"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:55
 msgid "Sources with repository reference matching the <repository filter>"
@@ -23856,12 +23855,14 @@ msgid "Total people"
 msgstr "Henkilöitä yhteensä"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
+#, fuzzy
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr ""
+msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
+#, fuzzy
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr ""
+msgstr "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -38022,9 +38023,9 @@ msgstr "Kerrottua"
 
 #: ../gramps/plugins/webreport/basepage.py:904
 #: ../gramps/plugins/webreport/basepage.py:974
-#, python-format
+#, fuzzy, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr ""
+msgstr "(%(str1)s) %(str2)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1511
 #: ../gramps/plugins/webreport/basepage.py:3427
