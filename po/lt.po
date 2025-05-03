@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-27 12:18+0000\n"
+"PO-Revision-Date: 2025-04-28 14:07+0000\n"
 "Last-Translator: Vykintas Vyšniauskas <vykintasv@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/lt/>\n"
@@ -39897,22 +39897,16 @@ msgid "Whether to include a parents column"
 msgstr "Ar įtraukti tėvų stulpelį"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
-#, fuzzy
-#| msgid "Include half and/ or step-siblings on the individual pages"
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr ""
-"Įtraukti į įvaikaičius ir/arba netikrus brolius/seseris į asmeninius "
+"Įtraukti netikrus brolius/seseris ir/arba įbrolius/įseseres į asmeninius "
 "puslapius"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2580
-#, fuzzy
-#| msgid ""
-#| "Whether to include half and/ or step-siblings with the parents and "
-#| "siblings"
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
-"Ar įtraukti įvaikaičius ir/arba netikrus brolius/seseris su tėvais ir "
+"Ar įtraukti netikrus brolius/seseris ir/arba įbrolius/įseseres su tėvais ir "
 "broliais/seserimis"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2595
