@@ -21,13 +21,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2023, 2025.
 # Vlad Arkhipov <vlad@arkhipov.ru>, 2023.
 # OIS <mistresssilvara@hotmail.com>, 2023.
+# Sotski Eugene <jekakmail@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-03-02 21:10+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2025-04-28 14:07+0000\n"
+"Last-Translator: Sotski Eugene <jekakmail@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -36,7 +37,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -11134,7 +11135,7 @@ msgstr[2] "рождение потомков: {number_of} поколений "
 #, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
-msgstr[0] "смерти потомков: {number_of} поколений "
+msgstr[0] "смерти потомков: {number_of} поколение "
 msgstr[1] "смерти потомков: {number_of} поколений "
 msgstr[2] "смерти потомков: {number_of} поколений "
 
@@ -11165,10 +11166,9 @@ msgid "father death "
 msgstr "смерть отца "
 
 #: ../gramps/gen/utils/alive.py:962
-#, fuzzy, python-format
-#| msgid "Database error: loop in %s's ancestors"
+#, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Ошибка базы данных: зацикливание предков %s"
+msgstr "Ошибка базы данных: зацикливание предков %s."
 
 #: ../gramps/gen/utils/alive.py:1044 ../gramps/gen/utils/alive.py:1053
 msgid "no evidence"
@@ -11927,20 +11927,12 @@ msgstr ""
 "Gramps сейчас завершит работу."
 
 #: ../gramps/grampsapp.py:227
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "You don't have the python3 bsddb3 package installed. This package is "
-#| "needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
 msgid ""
 "The orjson package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"\n"
-"У вас не установлен пакет python3 bsddb3. Он требуется для запуска Gramps.\n"
+"Пакет orjson требуется для запуска Gramps.\n"
 "\n"
 "Сейчас Gramps завершит выполнение."
 
@@ -12196,12 +12188,12 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Нижеследующие ключевые слова будут заменены соответствующими частями имени:"
-"<tt>\n"
+"Нижеследующие ключевые слова будут заменены соответствующими частями "
+"имени:<tt>\n"
 "  <b>Имя</b>         - личное имя                   <b>Фамилия</b>     - "
 "фамилии (с префиксом и связками)\n"
-"  <b>Титул</b>       - звание (Др., Мис.)    <b>Суффикс</b>     - суффикс "
-"(Мл., Ст.)\n"
+"  <b>Титул</b>       - звание (Др., Мис.)    <b>Суффикс</b>     - суффикс ("
+"Мл., Ст.)\n"
 "  <b>Обиходное</b>   - бытовое или мирское имя   <b>Прозвище</b> - прозвище, "
 "псевдоним\n"
 "  <b>Инициалы</b>    - начальные буквы имён         <b>Разговорное</b> - "
@@ -12214,7 +12206,7 @@ msgstr ""
 "отчества или матронима\n"
 "  <b>Семпрозвище</b> - семейное прозвище            <b>Неглавные</b>   - "
 "фамилии без главной+отчества\n"
-"<b>Безотчества</b> - фамилии без отчества/матронима\n"
+"  <b>Безотчества</b> - фамилии без отчества/матронима\n"
 "  <b>Списокфо</b>    - фамилии и отчества (без префиксов и связок)\n"
 "</tt>\n"
 "Укажите ключевое слово ЗАГЛАВНЫМИ БУКВАМИ, чтобы соответствующие данные\n"
@@ -12224,11 +12216,10 @@ msgstr ""
 "\n"
 "<b>Пример</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
 "Underhills\n"
-"     <i>Edwin Jose</i>: личное имя, <i>von der</i>: префикс, <i>Smith</i> "
-"and <i>Weston</i>: Главная фамилия, \n"
-"     <i>and</i>: связка, <i>Wilson</i>: Отчество, <i>Dr.</i>: Титул, <i>Sr</"
-"i>: Суффикс, <i>Ed</i>: Прозвище, \n"
-"     <i>Underhills</i>: семейное прозвище, <i>Jose</i>: имя в быту.\n"
+"\t<i>Edwin Jose</i>: личное имя, <i>von der</i>: префикс, <i>Smith</i> и "
+"<i>Weston</i>: Главная фамилия,<i>and</i>: связка, <i>Wilson</i>: Отчество,\n"
+"\t<i>Dr.</i>: Титул, <i>Sr</i>: Суффикс, <i>Ed</i>: Прозвище, "
+"<i>Underhills</i>: семейное прозвище, <i>Jose</i>: имя в быту.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
@@ -26332,10 +26323,8 @@ msgid "nick"
 msgstr "прозвище"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
-#| msgid "_Nick:"
 msgid "Nick"
-msgstr "_Прозвище:"
+msgstr "Прозвище"
 
 #: ../gramps/plugins/importer/importcsv.py:228
 #, fuzzy
@@ -38825,10 +38814,8 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
 #: ../gramps/plugins/webreport/heatmap.py:643
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Удалить выделенный фильтр"
+msgstr " Удалить выбранный фильтр не имеющий событий"
 
 #: ../gramps/plugins/webreport/heatmap.py:630
 #, python-brace-format
@@ -39142,10 +39129,8 @@ msgid "Max. rows in an index"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2254
-#, fuzzy
-#| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
-msgstr "Максимальное число включаемых предков."
+msgstr "Максимальное число строк для включения в стартовую страницу"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2264
 msgid "Extra Pages"
@@ -39902,10 +39887,8 @@ msgid "Include heatmap pages"
 msgstr "Включить страницы с событиями"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
-msgstr "Включить альтернативные имена родителей."
+msgstr "Включить страницы тепловой карты для событий"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
 #, fuzzy
@@ -39915,12 +39898,10 @@ msgstr "Размер шрифта"
 
 # Это --- комментарий к сгенерированному графу, а не "Gramps Note" => НЕ «ЗАМЕТКА»!
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "Это размер шрифта для текста комментария, в пунктах."
+msgstr "Установить размер шрифта для тепловой карты, в пунктах."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3229
 msgid "Blur"
