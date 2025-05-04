@@ -19,29 +19,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+from functools import reduce
 import logging
 
 LOG = logging.getLogger(".filter.optimizer")
 
 
 def intersection(sets):
-    if sets:
-        result = sets[0]
-        for s in sets[1:]:
-            result = result.intersection(s)
-        return result
-    else:
-        return set()
+    return reduce(lambda x, y: x & y, sets, sets[0] if sets else set())
 
 
 def union(sets):
-    if sets:
-        result = sets[0]
-        for s in sets[1:]:
-            result = result.union(s)
-        return result
-    else:
-        return set()
+    return reduce(lambda x, y: x | y, sets, set())
 
 
 class Optimizer:
