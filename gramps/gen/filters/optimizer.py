@@ -40,7 +40,10 @@ class Optimizer:
     """
     Optimizer uses the filter's pre-selected selected_handles
     for each rule to reduce the search space.
-    selected_handles is a superset of the final result.
+    selected_handles is a superset of the final result of the rule.
+    the selected_handles of each rule in each filter of the filter list
+    are combined to create `possible_handles`, the superset of the result
+    of the filter list.
     """
 
     def __init__(self, all_handles, filter):
@@ -94,8 +97,7 @@ class Optimizer:
         """
         Returns possible_handles
 
-        `possible_handles` is a set of handles to include.
-        Then those in the set are a superset of the items that will match.
+        `possible_handles` is a superset of the handles that will match the filter.
         """
         LOG.debug("optimizer possible_handles: %s", len(self.possible_handles))
         return self.possible_handles
