@@ -59,6 +59,9 @@ class Optimizer:
         self.handles_out = set()
 
     def compute_potential_handles_for_filter(self, filter):
+        """
+        Compute the superset of handles which are the result of the supplied filter
+        """
         if len(filter.flist) == 0:
             return self.all_handles
         handlesets = [
@@ -76,6 +79,9 @@ class Optimizer:
         return handles
 
     def compute_potential_handles_for_rule(self, rule):
+        """
+        Compute the superset of handles which are the result of the supplied rule
+        """
         if hasattr(rule, "selected_handles"):
             return rule.selected_handles  # this rule can be optimised
         if hasattr(rule, "find_filter"):
