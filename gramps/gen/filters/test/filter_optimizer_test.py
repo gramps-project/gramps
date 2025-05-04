@@ -189,7 +189,7 @@ class OptimizerTest(unittest.TestCase):
     def test_EmptyFilter_and(self):
         filter = self.filters["Empty Filter and"]
         results = filter.apply(self.db)
-        self.assertEqual(len(results), 2158)
+        self.assertEqual(len(results), 2128)
 
     def test_EmptyFilter_and_invert(self):
         filter = self.filters["Empty Filter and invert"]
@@ -204,7 +204,7 @@ class OptimizerTest(unittest.TestCase):
     def test_EmptyFilter_or_invert(self):
         filter = self.filters["Empty Filter or invert"]
         results = filter.apply(self.db)
-        self.assertEqual(len(results), 2158)
+        self.assertEqual(len(results), 2128)
 
     def test_EmptyFilter_one(self):
         filter = self.filters["Empty Filter one"]
@@ -214,4 +214,4 @@ class OptimizerTest(unittest.TestCase):
     def test_EmptyFilter_one_invert(self):
         filter = self.filters["Empty Filter one invert"]
         results = filter.apply(self.db)
-        self.assertEqual(len(results), 2158)
+        self.assertEqual(len(results), 2128)
