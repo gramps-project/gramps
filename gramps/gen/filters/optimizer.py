@@ -26,7 +26,10 @@ LOG = logging.getLogger(".filter.optimizer")
 
 
 def intersection(sets):
-    return reduce(lambda x, y: x & y, sets, sets[0] if sets else set())
+    if len(sets) == 1:
+        return sets[0]  # avoid computing x&x when we only have a single set
+    else:
+        return reduce(lambda x, y: x & y, sets, set())
 
 
 def union(sets):
