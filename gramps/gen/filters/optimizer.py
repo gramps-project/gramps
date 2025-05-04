@@ -38,13 +38,14 @@ def union(sets):
 
 class Optimizer:
     """
-    Optimizer to use the filter's pre-selected selected_handles
-    to include or exclude.
+    Optimizer uses the filter's pre-selected selected_handles
+    for each rule to reduce the search space.
+    selected_handles is a superset of the final result.
     """
 
     def __init__(self, all_handles, filter):
         """
-        Initialize the collection of selected_handles in the filter list.
+        Compute handles_in for the filter list.
         """
         self.all_handles = all_handles
         self.handles_in = self.compute_potential_handles_for_filter(filter)
