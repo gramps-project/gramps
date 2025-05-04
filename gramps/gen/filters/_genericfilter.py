@@ -152,46 +152,25 @@ class GenericFilter:
 
         LOG.debug(
             "Optimizer handles_in: %s",
-            len(handles_in) if handles_in is not None else None,
+            len(handles_in),
         )
         LOG.debug("Optimizer handles_out: %s", len(handles_out))
         if id_list is None:
-            if handles_in is not None:
+            if user:
+                user.begin_progress(_("Filter"), _("Applying ..."), len(handles_in))
+
+            # Use these rather than going through entire database
+            for handle in handles_in:
                 if user:
-                    user.begin_progress(_("Filter"), _("Applying ..."), len(handles_in))
+                    user.step_progress()
 
-                # Use these rather than going through entire database
-                for handle in handles_in:
-                    if user:
-                        user.step_progress()
+                if handle is None:
+                    continue
 
-                    if handle is None:
-                        continue
+                obj = self.get_object(db, handle)
 
-                    obj = self.get_object(db, handle)
-
-                    if apply_logical_op(db, obj, self.flist) != self.invert:
-                        final_list.append(obj.handle)
-
-            else:
-                with (
-                    self.get_tree_cursor(db) if tree else self.get_cursor(db)
-                ) as cursor:
-                    if user:
-                        user.begin_progress(
-                            _("Filter"), _("Applying ..."), self.get_number(db)
-                        )
-
-                    for handle, obj in cursor:
-                        if user:
-                            user.step_progress()
-
-                        if handle in handles_out:
-                            continue
-
-                        if apply_logical_op(db, obj, self.flist) != self.invert:
-                            final_list.append(handle)
-
+                if apply_logical_op(db, obj, self.flist) != self.invert:
+                    final_list.append(obj.handle)
         else:
             id_list = list(id_list)
             if user:
@@ -205,10 +184,7 @@ class GenericFilter:
                 else:
                     handle = handle_data[tupleind]
 
-                if handles_in is not None:
-                    if handle not in handles_in:
-                        continue
-                elif handle in handles_out:
+                if handle not in handles_in:
                     continue
 
                 obj = self.get_object(db, handle)
