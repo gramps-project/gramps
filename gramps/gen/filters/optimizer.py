@@ -45,7 +45,6 @@ class Optimizer:
         """
         self.all_handles = all_handles
         self.handles_in = self.compute_potential_handles_for_filter(filter)
-        self.handles_out = set()
 
     def compute_potential_handles_for_filter(self, filter):
         """
@@ -89,17 +88,13 @@ class Optimizer:
 
     def get_handles(self):
         """
-        Returns handles_in, and handles_out.
+        Returns handles_in
 
         `handles_in` is a set of handles to include.
         Then those in the set are a superset of the items that will match.
-
-        `handles_out` is a set. If any handle is in the set, it will
-        not be included in the final results.
         """
         LOG.debug(
-            "optimizer handles_in: %s, handles_out: %s",
-            len(self.handles_in),
-            len(self.handles_out),
+            "optimizer handles_in: %s",
+            len(self.handles_in)
         )
-        return self.handles_in, self.handles_out
+        return self.handles_in

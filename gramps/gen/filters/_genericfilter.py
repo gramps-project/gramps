@@ -148,13 +148,12 @@ class GenericFilter:
         final_list = []
 
         optimizer = Optimizer(set(self.get_all_handles(db)), self)
-        handles_in, handles_out = optimizer.get_handles()
+        handles_in = optimizer.get_handles()
 
         LOG.debug(
             "Optimizer handles_in: %s",
             len(handles_in),
         )
-        LOG.debug("Optimizer handles_out: %s", len(handles_out))
         if id_list is None:
             if user:
                 user.begin_progress(_("Filter"), _("Applying ..."), len(handles_in))
