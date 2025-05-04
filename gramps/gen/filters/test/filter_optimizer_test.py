@@ -172,4 +172,4 @@ class OptimizerTest(unittest.TestCase):
     def test_I0001andI0002(self):
         filter = self.filters["I0001 and I0002"]
         results = filter.apply(self.db)
-        self.assertEqual(len(results), 2)
+        self.assertEqual(len(results), 0)
