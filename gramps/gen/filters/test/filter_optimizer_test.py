@@ -72,7 +72,31 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
         <arg value="0"/>
       </rule>
     </filter>
-  </object>
+    <filter name="I0001 xor I0002" function="one">
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0001"/>
+      </rule>
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0002"/>
+      </rule>
+    </filter>
+    <filter name="I0001 or I0002" function="or">
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0001"/>
+      </rule>
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0002"/>
+      </rule>
+    </filter>
+    <filter name="I0001 and I0002" function="and">
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0001"/>
+      </rule>
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0002"/>
+      </rule>
+    </filter>
+    </object>
 </filters>
 """
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
@@ -134,3 +158,18 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["F3"]
         results = filter.apply(self.db)
         self.assertEqual(len(results), 16)
+
+    def test_I0001xorI0002(self):
+        filter = self.filters["I0001 xor I0002"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2)
+
+    def test_I0001orI0002(self):
+        filter = self.filters["I0001 or I0002"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2)
+
+    def test_I0001andI0002(self):
+        filter = self.filters["I0001 and I0002"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2)
