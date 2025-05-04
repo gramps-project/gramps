@@ -75,7 +75,7 @@ class Optimizer:
         In the worst case, this is self.all_handles
         """
         if hasattr(rule, "selected_handles"):
-            # this rule has provided a superset of handles that 
+            # this rule has provided a superset of handles that
             # contain the result of the rule
             return rule.selected_handles
         if hasattr(rule, "find_filter"):
@@ -93,8 +93,5 @@ class Optimizer:
         `handles_in` is a set of handles to include.
         Then those in the set are a superset of the items that will match.
         """
-        LOG.debug(
-            "optimizer handles_in: %s",
-            len(self.handles_in)
-        )
+        LOG.debug("optimizer handles_in: %s", len(self.handles_in))
         return self.handles_in
