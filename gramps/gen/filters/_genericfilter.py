@@ -148,18 +148,20 @@ class GenericFilter:
         final_list = []
 
         optimizer = Optimizer(set(self.get_all_handles(db)), self)
-        handles_in = optimizer.get_handles()
+        possible_handles = optimizer.get_possible_handles()
 
         LOG.debug(
-            "Optimizer handles_in: %s",
-            len(handles_in),
+            "Optimizer possible_handles: %s",
+            len(possible_handles),
         )
         if id_list is None:
             if user:
-                user.begin_progress(_("Filter"), _("Applying ..."), len(handles_in))
+                user.begin_progress(
+                    _("Filter"), _("Applying ..."), len(possible_handles)
+                )
 
             # Use these rather than going through entire database
-            for handle in handles_in:
+            for handle in possible_handles:
                 if user:
                     user.step_progress()
 
@@ -183,7 +185,7 @@ class GenericFilter:
                 else:
                     handle = handle_data[tupleind]
 
-                if handle not in handles_in:
+                if handle not in possible_handles:
                     continue
 
                 obj = self.get_object(db, handle)

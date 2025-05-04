@@ -45,10 +45,10 @@ class Optimizer:
 
     def __init__(self, all_handles, filter):
         """
-        Compute handles_in for the filter list.
+        Compute possible_handles for the filter list.
         """
         self.all_handles = all_handles
-        self.handles_in = self.compute_potential_handles_for_filter(filter)
+        self.possible_handles = self.compute_potential_handles_for_filter(filter)
 
     def compute_potential_handles_for_filter(self, filter):
         """
@@ -90,12 +90,12 @@ class Optimizer:
             self.all_handles
         )  # no optimization ispossible so assume all handles could match the rule
 
-    def get_handles(self):
+    def get_possible_handles(self):
         """
-        Returns handles_in
+        Returns possible_handles
 
-        `handles_in` is a set of handles to include.
+        `possible_handles` is a set of handles to include.
         Then those in the set are a superset of the items that will match.
         """
-        LOG.debug("optimizer handles_in: %s", len(self.handles_in))
-        return self.handles_in
+        LOG.debug("optimizer possible_handles: %s", len(self.possible_handles))
+        return self.possible_handles
