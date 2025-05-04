@@ -96,6 +96,18 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
         <arg value="I0002"/>
       </rule>
     </filter>
+    <filter name="Empty Filter and" function="and">
+    </filter>
+    <filter name="Empty Filter and invert" function="and" invert="1">
+    </filter>
+    <filter name="Empty Filter or" function="or">
+    </filter>
+    <filter name="Empty Filter or invert" function="or" invert="1">
+    </filter>
+    <filter name="Empty Filter one" function="one">
+    </filter>
+    <filter name="Empty Filter one invert" function="one" invert="1">
+    </filter>
     </object>
 </filters>
 """
@@ -173,3 +185,33 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["I0001 and I0002"]
         results = filter.apply(self.db)
         self.assertEqual(len(results), 0)
+
+    def test_EmptyFilter_and(self):
+        filter = self.filters["Empty Filter and"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2158)
+
+    def test_EmptyFilter_and_invert(self):
+        filter = self.filters["Empty Filter and invert"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 0)
+
+    def test_EmptyFilter_or(self):
+        filter = self.filters["Empty Filter or"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 0)
+
+    def test_EmptyFilter_or_invert(self):
+        filter = self.filters["Empty Filter or invert"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2158)
+
+    def test_EmptyFilter_one(self):
+        filter = self.filters["Empty Filter one"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 0)
+
+    def test_EmptyFilter_one_invert(self):
+        filter = self.filters["Empty Filter one invert"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2158)
