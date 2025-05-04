@@ -50,6 +50,7 @@ class Optimizer:
     def compute_potential_handles_for_filter(self, filter):
         """
         Compute the superset of handles which are the result of the supplied filter
+        In the worst case, this is self.all_handles
         """
         if len(filter.flist) == 0:
             return self.all_handles
@@ -58,8 +59,10 @@ class Optimizer:
         ]
 
         if filter.logical_op == "and":
+            # the result of filter is contained within the intersection of the sets in handlesets
             handles = intersection(handlesets)
         elif filter.logical_op in ("or", "one"):
+            # the result of filter is contained within the union of the sets in handlesets
             handles = union(handlesets)
 
         if filter.invert:
@@ -70,16 +73,19 @@ class Optimizer:
     def compute_potential_handles_for_rule(self, rule):
         """
         Compute the superset of handles which are the result of the supplied rule
+        In the worst case, this is self.all_handles
         """
         if hasattr(rule, "selected_handles"):
-            return rule.selected_handles  # this rule can be optimised
+            # this rule has provided a superset of handles that 
+            # contain the result of the rule
+            return rule.selected_handles
         if hasattr(rule, "find_filter"):
             filter = rule.find_filter()
             if filter:
                 return self.compute_potential_handles_for_filter(filter)
         return (
             self.all_handles
-        )  # no optimization possible so assume all handles could match the rule
+        )  # no optimization ispossible so assume all handles could match the rule
 
     def get_handles(self):
         """
