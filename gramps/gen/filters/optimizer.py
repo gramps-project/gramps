@@ -44,16 +44,6 @@ def union(sets):
         return set()
 
 
-def symmetric_difference(sets):
-    if sets:
-        result = sets[0]
-        for s in sets[1:]:
-            result = result.symmetric_difference(s)
-        return result
-    else:
-        return set()
-
-
 class Optimizer:
     """
     Optimizer to use the filter's pre-selected selected_handles
@@ -77,10 +67,8 @@ class Optimizer:
 
         if filter.logical_op == "and":
             handles = intersection(handlesets)
-        elif filter.logical_op == "or":
+        elif filter.logical_op in ("or", "one"):
             handles = union(handlesets)
-        elif filter.logical_op == "one":
-            handles = symmetric_difference(handlesets)
 
         if filter.invert:
             handles = self.all_handles.difference(handles)
