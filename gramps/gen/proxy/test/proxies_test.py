@@ -27,6 +27,7 @@ import os
 
 from ...db.utils import import_as_dict
 from ...const import DATA_DIR
+from ...errors import AccessDeniedError
 from ...user import User
 from ...lib.person import Person
 from ...lib.json_utils import remove_object
@@ -68,8 +69,8 @@ class PrivateProxyTest(unittest.TestCase):
     def test_private_person_data(self):
         # A private person:
         handle = "0GDKQC54XKSWZKEBWW"
-        data = self.db.get_raw_person_data(handle)
-        self.assertIs(data, None)
+        with self.assertRaises(AccessDeniedError):
+            data = self.db.get_raw_person_data(handle)
         # But they are visible without proxy:
         data = self.db.basedb.get_raw_person_data(handle)
         self.assertIsNot(data, None)
@@ -88,8 +89,8 @@ class PrivateProxyTest(unittest.TestCase):
     def test_private_person(self):
         # A private person:
         handle = "0GDKQC54XKSWZKEBWW"
-        person = self.db.get_person_from_handle(handle)
-        self.assertIs(person, None)
+        with self.assertRaises(AccessDeniedError):
+            person = self.db.get_person_from_handle(handle)
         # But they are visible without proxy:
         person = self.db.basedb.get_person_from_handle(handle)
         self.assertIsNot(person, None)
@@ -181,8 +182,8 @@ class LivingPrivateProxyTest(unittest.TestCase):
     def test_private_person(self):
         # A private person:
         handle = "0GDKQC54XKSWZKEBWW"
-        person = self.db.get_person_from_handle(handle)
-        self.assertIs(person, None)
+        with self.assertRaises(AccessDeniedError):
+            person = self.db.get_person_from_handle(handle)
         # But they are visible without proxy:
         person = self.db.basedb.get_person_from_handle(handle)
         self.assertIsNot(person, None)

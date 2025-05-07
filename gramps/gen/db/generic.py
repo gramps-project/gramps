@@ -2093,7 +2093,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.origin_types.update(
             [str(surn.origintype) for surn in all_surn if surn.origintype.is_custom()]
         )
-        all_surn = None
+
         self.url_types.update(
             [str(url.type) for url in person.urls if url.type.is_custom()]
         )
@@ -2685,7 +2685,19 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_undodb(self):
         return self.undodb
 
-    def undo(self, update_history=True):
+    def undo_reference(self, data, handle: AnyHandle):
+        """
+        Helper method to undo a reference map entry
+        """
+        raise NotImplementedError
+
+    def undo_data(self, data, handle: AnyHandle, obj_key):
+        """
+        Helper method to undo/redo the changes made
+        """
+        raise NotImplementedError
+
+    def undo(self, update_history: bool = True):
         return self.undodb.undo(update_history)
 
     def redo(self, update_history=True):

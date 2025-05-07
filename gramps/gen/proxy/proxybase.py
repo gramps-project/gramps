@@ -50,6 +50,7 @@ from ..lib import (
 )
 from ..lib.json_utils import object_to_data
 from ..const import GRAMPS_LOCALE as glocale
+from ..errors import AccessDeniedError, HandleError
 
 
 class ProxyCursor:
@@ -163,12 +164,35 @@ class ProxyDbBase(DbReadBase):
         return obj.include()
 
     # Define default predicates for each object type
+    def include_person(self, handle):
+        return True
 
-    include_person = include_family = include_event = include_source = (
-        include_citation
-    ) = include_place = include_media = include_repository = include_note = (
-        include_tag
-    ) = None
+    def include_family(self, handle):
+        return True
+
+    def include_event(self, handle):
+        return True
+
+    def include_source(self, handle):
+        return True
+
+    def include_citation(self, handle):
+        return True
+
+    def include_place(self, handle):
+        return True
+
+    def include_media(self, handle):
+        return True
+
+    def include_repository(self, handle):
+        return True
+
+    def include_note(self, handle):
+        return True
+
+    def include_tag(self, handle):
+        return True
 
     def get_person_cursor(self):
         return ProxyCursor(self.get_raw_person_data, self.get_person_handles)
@@ -321,70 +345,70 @@ class ProxyDbBase(DbReadBase):
         Return an iterator over database handles, one handle for each Person in
         the database.
         """
-        return filter(self.include_person, self.db.iter_person_handles())
+        yield from filter(self.include_person, self.db.iter_person_handles())
 
     def iter_family_handles(self):
         """
         Return an iterator over database handles, one handle for each Family in
         the database.
         """
-        return filter(self.include_family, self.db.iter_family_handles())
+        yield from filter(self.include_family, self.db.iter_family_handles())
 
     def iter_event_handles(self):
         """
         Return an iterator over database handles, one handle for each Event in
         the database.
         """
-        return filter(self.include_event, self.db.iter_event_handles())
+        yield from filter(self.include_event, self.db.iter_event_handles())
 
     def iter_source_handles(self):
         """
         Return an iterator over database handles, one handle for each Source in
         the database.
         """
-        return filter(self.include_source, self.db.iter_source_handles())
+        yield from filter(self.include_source, self.db.iter_source_handles())
 
     def iter_citation_handles(self):
         """
         Return an iterator over database handles, one handle for each Citation
         in the database.
         """
-        return filter(self.include_citation, self.db.iter_citation_handles())
+        yield from filter(self.include_citation, self.db.iter_citation_handles())
 
     def iter_place_handles(self):
         """
         Return an iterator over database handles, one handle for each Place in
         the database.
         """
-        return filter(self.include_place, self.db.iter_place_handles())
+        yield from filter(self.include_place, self.db.iter_place_handles())
 
     def iter_media_handles(self):
         """
         Return an iterator over database handles, one handle for each Media
         Object in the database.
         """
-        return filter(self.include_media, self.db.iter_media_handles())
+        yield from filter(self.include_media, self.db.iter_media_handles())
 
     def iter_repository_handles(self):
         """
         Return an iterator over database handles, one handle for each
         Repository in the database.
         """
-        return filter(self.include_repository, self.db.iter_repository_handles())
+        yield from filter(self.include_repository, self.db.iter_repository_handles())
 
     def iter_note_handles(self):
         """
         Return an iterator over database handles, one handle for each Note in
         the database.
         """
-        return filter(self.include_note, self.db.iter_note_handles())
+        yield from filter(self.include_note, self.db.iter_note_handles())
 
     def iter_tag_handles(self):
         """
         Return an iterator over database handles, one handle for each Tag in
         the database.
         """
-        return filter(self.include_tag, self.db.iter_tag_handles())
+        yield from filter(self.include_tag, self.db.iter_tag_handles())
 
     def __iter_object(self, selector, method):
         """Helper function to return an iterator over an object class"""
@@ -454,12 +478,21 @@ class ProxyDbBase(DbReadBase):
         return self.__iter_object(self.include_tag, self.db.iter_tags)
 
     @staticmethod
+    def gfilter_none(predicate, obj):
+        """
+        Returns obj if predicate is True, else returns None
+        """
+        obj if obj is not None and predicate(obj.handle) else None
+
+    @staticmethod
     def gfilter(predicate, obj):
         """
-        Returns obj if predicate is True or not callable, else returns None
+        Returns obj if predicate is True, else raises an error
         """
-        if predicate is not None and obj is not None:
-            return obj if predicate(obj.handle) else None
+        if obj is None:
+            raise HandleError("obj is None")
+        if not predicate(obj.handle):
+            raise AccessDeniedError(f"predicate returned false for handle {obj.handle}")
         return obj
 
     def __getattr__(self, name):
@@ -562,79 +595,93 @@ class ProxyDbBase(DbReadBase):
         """
         return self.gfilter(self.include_tag, self.db.get_tag_from_handle(handle))
 
-    def get_person_from_gramps_id(self, val):
+    def get_person_from_gramps_id(self, gramps_id):
         """
         Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
-        return self.gfilter(self.include_person, self.db.get_person_from_gramps_id(val))
+        return self.gfilter_none(
+            self.include_person, self.db.get_person_from_gramps_id(gramps_id)
+        )
 
-    def get_family_from_gramps_id(self, val):
+    def get_family_from_gramps_id(self, gramps_id):
         """
         Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
-        return self.gfilter(self.include_family, self.db.get_family_from_gramps_id(val))
+        return self.gfilter_none(
+            self.include_family, self.db.get_family_from_gramps_id(gramps_id)
+        )
 
-    def get_event_from_gramps_id(self, val):
+    def get_event_from_gramps_id(self, gramps_id):
         """
         Finds an Event in the database from the passed Gramps ID.
         If no such Event exists, None is returned.
         """
-        return self.gfilter(self.include_event, self.db.get_event_from_gramps_id(val))
+        return self.gfilter_none(
+            self.include_event, self.db.get_event_from_gramps_id(gramps_id)
+        )
 
-    def get_place_from_gramps_id(self, val):
+    def get_place_from_gramps_id(self, gramps_id):
         """
         Finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned.
         """
-        return self.gfilter(self.include_place, self.db.get_place_from_gramps_id(val))
+        return self.gfilter_none(
+            self.include_place, self.db.get_place_from_gramps_id(gramps_id)
+        )
 
-    def get_source_from_gramps_id(self, val):
+    def get_source_from_gramps_id(self, gramps_id):
         """
         Finds a Source in the database from the passed gramps' ID.
         If no such Source exists, None is returned.
         """
-        return self.gfilter(self.include_source, self.db.get_source_from_gramps_id(val))
+        return self.gfilter_none(
+            self.include_source, self.db.get_source_from_gramps_id(gramps_id)
+        )
 
-    def get_citation_from_gramps_id(self, val):
+    def get_citation_from_gramps_id(self, gramps_id):
         """
         Finds a Citation in the database from the passed gramps' ID.
         If no such Citation exists, None is returned.
         """
-        return self.gfilter(
-            self.include_citation, self.db.get_citation_from_gramps_id(val)
+        return self.gfilter_none(
+            self.include_citation, self.db.get_citation_from_gramps_id(gramps_id)
         )
 
-    def get_media_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, gramps_id):
         """
         Finds a Media in the database from the passed gramps' ID.
         If no such Media exists, None is returned.
         """
-        return self.gfilter(self.include_media, self.db.get_media_from_gramps_id(val))
+        return self.gfilter_none(
+            self.include_media, self.db.get_media_from_gramps_id(gramps_id)
+        )
 
-    def get_repository_from_gramps_id(self, val):
+    def get_repository_from_gramps_id(self, gramps_id):
         """
         Finds a Repository in the database from the passed gramps' ID.
         If no such Repository exists, None is returned.
         """
-        return self.gfilter(
-            self.include_repository, self.db.get_repository_from_gramps_id(val)
+        return self.gfilter_none(
+            self.include_repository, self.db.get_repository_from_gramps_id(gramps_id)
         )
 
-    def get_note_from_gramps_id(self, val):
+    def get_note_from_gramps_id(self, gramps_id):
         """
         Finds a Note in the database from the passed gramps' ID.
         If no such Note exists, None is returned.
         """
-        return self.gfilter(self.include_note, self.db.get_note_from_gramps_id(val))
+        return self.gfilter_none(
+            self.include_note, self.db.get_note_from_gramps_id(gramps_id)
+        )
 
-    def get_tag_from_name(self, val):
+    def get_tag_from_name(self, name):
         """
         Finds a Tag in the database from the passed tag name.
         If no such Tag exists, None is returned.
         """
-        return self.gfilter(self.include_tag, self.db.get_tag_from_name(val))
+        return self.gfilter_none(self.include_tag, self.db.get_tag_from_name(name))
 
     def get_name_group_mapping(self, surname):
         """
@@ -838,7 +885,9 @@ class ProxyDbBase(DbReadBase):
         Returns True if the handle exists in the current Person database.
         """
         return (
-            self.gfilter(self.include_person, self.db.get_person_from_handle(handle))
+            self.gfilter_none(
+                self.include_person, self.db.get_person_from_handle(handle)
+            )
             is not None
         )
 
@@ -847,7 +896,9 @@ class ProxyDbBase(DbReadBase):
         Returns True if the handle exists in the current Family database.
         """
         return (
-            self.gfilter(self.include_family, self.db.get_family_from_handle(handle))
+            self.gfilter_none(
+                self.include_family, self.db.get_family_from_handle(handle)
+            )
             is not None
         )
 
@@ -856,7 +907,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Event database.
         """
         return (
-            self.gfilter(self.include_event, self.db.get_event_from_handle(handle))
+            self.gfilter_none(self.include_event, self.db.get_event_from_handle(handle))
             is not None
         )
 
@@ -865,7 +916,9 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Source database.
         """
         return (
-            self.gfilter(self.include_source, self.db.get_source_from_handle(handle))
+            self.gfilter_none(
+                self.include_source, self.db.get_source_from_handle(handle)
+            )
             is not None
         )
 
@@ -874,7 +927,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Citation database.
         """
         return (
-            self.gfilter(
+            self.gfilter_none(
                 self.include_citation, self.db.get_citation_from_handle(handle)
             )
             is not None
@@ -885,7 +938,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Place database.
         """
         return (
-            self.gfilter(self.include_place, self.db.get_place_from_handle(handle))
+            self.gfilter_none(self.include_place, self.db.get_place_from_handle(handle))
             is not None
         )
 
@@ -894,7 +947,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Mediadatabase.
         """
         return (
-            self.gfilter(self.include_media, self.db.get_media_from_handle(handle))
+            self.gfilter_none(self.include_media, self.db.get_media_from_handle(handle))
             is not None
         )
 
@@ -903,7 +956,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Repository database.
         """
         return (
-            self.gfilter(
+            self.gfilter_none(
                 self.include_repository, self.db.get_repository_from_handle(handle)
             )
             is not None
@@ -914,7 +967,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Note database.
         """
         return (
-            self.gfilter(self.include_note, self.db.get_note_from_handle(handle))
+            self.gfilter_none(self.include_note, self.db.get_note_from_handle(handle))
             is not None
         )
 
@@ -923,7 +976,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Tag database.
         """
         return (
-            self.gfilter(self.include_tag, self.db.get_tag_from_handle(handle))
+            self.gfilter_none(self.include_tag, self.db.get_tag_from_handle(handle))
             is not None
         )
 

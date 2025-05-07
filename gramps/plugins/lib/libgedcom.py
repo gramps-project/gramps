@@ -5200,7 +5200,7 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         # if the handle is not already in the person's parent family list, we
-        # need to add it to thie list.
+        # need to add it to the list.
 
         flist = state.person.get_parent_family_handle_list()
         if handle not in flist:

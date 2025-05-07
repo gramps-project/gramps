@@ -59,7 +59,7 @@ class IsDefaultPerson(Rule):
 
     def prepare(self, db: Database, user):
         self.selected_handles: Set[str] = set()
-        p: Person = db.get_default_person()
+        p = db.get_default_person()
         if p:
             self.selected_handles.add(p.handle)
 
