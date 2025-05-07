@@ -919,7 +919,7 @@
 2 CITY Someville
 2 STAE ST
 2 CTRY USA
-1 WWW http://library.gramps-project.org
+1 WWW https://library.gramps-project.org
 1 NOTE @N0006@
 0 @N0000@ NOTE Witness name: John Doe
 1 CONT Witness comment: This is a simple test.

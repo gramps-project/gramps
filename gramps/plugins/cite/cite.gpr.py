@@ -39,5 +39,5 @@ register(
     status=STABLE,
     fname="legacy.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
 )

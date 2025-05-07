@@ -16,20 +16,20 @@ see README and INSTALL.
 
 For linux, in Ubuntu 12.10 you can install 4.0.0, but you will need to 
 compile and install osmgpsmap manually to have the maps working (see 
-http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography ) 
+https://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography )
 
 
 Major enhancements in Gramps 4.0.0:
 
-* GEP 8: code reorganization: http://www.gramps-project.org/wiki/index.php?title=GEPS_008:_File_Organization
+* GEP 8: code reorganization: https://www.gramps-project.org/wiki/index.php?title=GEPS_008:_File_Organization
 
-* GEP 26: Replace make: http://www.gramps-project.org/wiki/index.php?title=GEPS_026:_Replace_%27make%27_for_Gramps_build
+* GEP 26: Replace make: https://www.gramps-project.org/wiki/index.php?title=GEPS_026:_Replace_%27make%27_for_Gramps_build
 
-* GEP 29: Gtk 3 :http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion
+* GEP 29: Gtk 3 :https://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion
 
-* GEP 31: Python 3 support: http://www.gramps-project.org/wiki/index.php?title=GEPS_031:_Python_3_support
+* GEP 31: Python 3 support: https://www.gramps-project.org/wiki/index.php?title=GEPS_031:_Python_3_support
 
 More info in the manual 
-http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_What%27s_new%3F
+https://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_What%27s_new%3F
 
 Everybody is invited to update the manual to make it current!

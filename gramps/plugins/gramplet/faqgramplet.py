@@ -188,7 +188,7 @@ class FAQGramplet(Gramplet):
         )
         faq_dict.update(
             {
-                "web_html_start": "<a href='http://sourceforge.net/mailarchive"
+                "web_html_start": "<a href='https://sourceforge.net/mailarchive"
                 "/message.php?msg_id=21487967'>"
             }
         )

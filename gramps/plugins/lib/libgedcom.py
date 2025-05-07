@@ -1005,7 +1005,7 @@ class Lexer:
                     tag = "@" + line[1] + "@"
                     line_value = line[2].lstrip()
                     # Ignore meaningless @IDENT@ on CONT or CONC line
-                    # as noted at http://www.tamurajones.net/IdentCONT.xhtml
+                    # as noted at https://www.tamurajones.net/IdentCONT.xhtml
                     if line_value.startswith(("CONT ", "CONC ")):
                         line = line_value.partition(" ")
                         tag = line[0]
@@ -3807,7 +3807,7 @@ class GedcomParser(UpdateCallback):
         +1 CTRY <ADDRESS_COUNTRY> {0:1}
 
         This is done along the lines suggested by Tamura Jones in
-        http://www.tamurajones.net/GEDCOMADDR.xhtml as a result of bug 6382.
+        https://www.tamurajones.net/GEDCOMADDR.xhtml as a result of bug 6382.
         "When a GEDCOM reader encounters a double address, it should read the
         structured address. ... A GEDCOM reader that does verify that the
         addresses are the same should issue an error if they are not".
@@ -7032,7 +7032,7 @@ class GedcomParser(UpdateCallback):
             #     +1 CALN <SOURCE_CALL_NUMBER>       {0:M}
             #        +2 MEDI <SOURCE_MEDIA_TYPE>     {0:1}
             #
-            # This format has no repository name. See http://west-
+            # This format has no repository name. See https://west-https://west-
             # penwith.org.uk/misc/ftmged.htm which points out this is
             # incorrect
             gid = self.rid_map[""]
@@ -7707,7 +7707,7 @@ class GedcomParser(UpdateCallback):
         """
         if line.data.strip() in ["FTW", "FTM"]:
             self.is_ftw = True
-        # Some software (e.g. RootsMagic (http://files.rootsmagic.com/PAF-
+        # Some software (e.g. RootsMagic (https://files.rootsmagic.com/PAF-
         # Book/RootsMagic-for-PAF-Users-Printable.pdf) use the Addr fields for
         # 'Place Details (address, hospital, cemetary)'
         if line.data.strip().lower() in ["rootsmagic"]:

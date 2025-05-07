@@ -175,7 +175,7 @@ class CitationTreeView(LibSourceView, ListView):
             self.dbstate.db.get_citation_from_handle(handle)
             super().change_active(handle)
         except HandleError:
-            # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
+            # FIXME: See https://www.gramps-project.org/bugs/view.php?id=6352 a
             # more comprehensive solution is needed in the long term. See also
             # add in Bookmarks.CitationBookmarks
             pass

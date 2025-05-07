@@ -55,13 +55,13 @@ DbBsddb
 
 The :py:class:`.DbBsddb` interface defines a hierarchical database
 (non-relational) written in
-`PyBSDDB <http://www.jcea.es/programacion/pybsddb.htm>`_. There is no
+`PyBSDDB <https://www.jcea.es/programacion/pybsddb.htm>`_. There is no
 such thing as a database schema, and the meaning of the data is
 defined in the Python classes above. The data is stored as pickled
 tuples and unserialized into the primary data types (below).
 
 More details can be found in the manual's
-`Using database API <http://www.gramps-project.org/wiki/index.php?title=Using_database_API>`_.
+`Using database API <https://www.gramps-project.org/wiki/index.php?title=Using_database_API>`_.
 """
 
 from .base import *

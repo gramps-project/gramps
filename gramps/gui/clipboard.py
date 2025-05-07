@@ -1218,7 +1218,7 @@ class ClipboardListView:
             # we know very well inside of Gramps what sel_data can be, so
             # we can anticipate on it, instead of letting the wrapper handle
             # it. This is less clean however !
-            # See http://www.gramps-project.org/bugs/view.php?id=3089 for
+            # See https://www.gramps-project.org/bugs/view.php?id=3089 for
             # an explaination of why this is required.
             dragtype = None
             try:

@@ -65,7 +65,7 @@ class U_ENUM_OUT_OF_SYNC_ERROR(Exception):  # pylint: disable=invalid-name
     pass
 
 
-# See : http://www.gramps-project.org/bugs/view.php?id = 4423
+# See : https://www.gramps-project.org/bugs/view.php?id = 4423
 
 # Contraction data taken from CLDR 22.1. Only the default variant is considered.
 # The languages included below are, by no means, all the langauges that have
@@ -138,7 +138,7 @@ CONTRACTIONS_DICT = {
     # contractions
     # Slovak,  validSubLocales="sk_SK" Slovak_Slovakia
     # having DZ in Slovak as a contraction was rejected in
-    # http://unicode.org/cldr/trac/ticket/2968
+    # https://unicode.org/cldr/trac/ticket/2968
     "sk": [(("ch", "cH", "Ch", "CH"), "Ch")],
     # sl Slovenian validSubLocales="sl_SI" no contractions
     # sv Swedish validSubLocales="sv_AX sv_FI sv_SE" default collation is
@@ -158,7 +158,7 @@ CONTRACTIONS_DICT = {
 # % words or names are only to be distinguished by 'v' or % 'w', 'v' is
 # % placed before 'w'.
 #
-# See : http://www.gramps-project.org/bugs/view.php?id = 2933
+# See : https://www.gramps-project.org/bugs/view.php?id = 2933
 #
 
 # HOWEVER: the characters V and W in Swedish are not considered as a special
@@ -213,7 +213,7 @@ else:
         The PyICU collation is not available.
 
         Returns true if there is a primary difference between the two parameters
-        See http://www.gramps-project.org/bugs/view.php?id=2933#c9317 if
+        See https://www.gramps-project.org/bugs/view.php?id=2933#c9317 if
         letter[i]+'a' < letter[i+1]+'b' and letter[i+1]+'a' < letter[i]+'b' is
         true then the letters should be grouped together
 

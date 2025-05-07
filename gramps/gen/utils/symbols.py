@@ -18,7 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # https://en.wikipedia.org/wiki/Miscellaneous_Symbols
-# http://www.w3schools.com/charsets/ref_utf_symbols.asp
+# https://www.w3schools.com/charsets/ref_utf_symbols.asp
 #
 
 # -------------------------------------------------------------------------

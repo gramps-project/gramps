@@ -663,7 +663,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         Ga and Gb can be used to mathematically calculate the relationship.
 
         .. seealso::
-            http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+            https://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
 
         :param Ga: The number of generations between the main person and the
                    common ancestor.
