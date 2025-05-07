@@ -77,6 +77,7 @@ from .displaytabs import (
     GalleryTab,
     FamilyLdsEmbedList,
     ChildModel,
+    FamilyBackRefList,
     TEXT_COL,
     MARKUP_COL,
     ICON_COL,
@@ -873,6 +874,16 @@ class EditFamily(EditPrimary):
         if not (config.get("interface.hide-lds") and self.lds_embed.is_empty()):
             self._add_tab(notebook, self.lds_embed)
         self.track_ref_for_deletion("lds_embed")
+
+        self.backref_tab = FamilyBackRefList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.db.find_backlink_handles(self.obj.handle),
+            "family_editor_references",
+        )
+        self._add_tab(notebook, self.backref_tab)
+        self.track_ref_for_deletion("backref_tab")
 
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
