@@ -134,7 +134,7 @@ class PersonTreeView(BasePersonView):
             preset_name(basepers, name)
         person.set_primary_name(name)
         try:
-            EditPerson(self.dbstate, self.uistate, [], person)
+            EditPerson(self.dbstate, self.uistate, [], person, self.new_object_added)
         except WindowActiveError:
             pass
 
