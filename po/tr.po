@@ -13,13 +13,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2022.
 # Oğuz Ersen <oguz@ersen.moe>, 2024.
 # mahmutozcan <mahmutozcan@protonmail.com>, 2025.
+# Serhat <serhat@10lineweb.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-14 07:21+0000\n"
-"Last-Translator: mahmutozcan <mahmutozcan@protonmail.com>\n"
+"PO-Revision-Date: 2025-05-09 07:16+0000\n"
+"Last-Translator: Serhat <serhat@10lineweb.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -19054,10 +19055,8 @@ msgid "Select a different person"
 msgstr "Farklı bir kişi seçin"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Yer imli kişiler"
+msgstr "Aktif, yer imli veya ana kişiler"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -19068,8 +19067,6 @@ msgid "Select a different family"
 msgstr "Başka bir aile seç"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
 msgstr "Yer imi konmuş aileler"
 
