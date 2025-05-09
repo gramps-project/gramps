@@ -680,7 +680,8 @@ class TabGramplet(Gtk.ScrolledWindow, GuiGramplet):
         """
         Called when the gramplet orientation changes.
         """
-        self.pui.set_orientation(orientation)
+        if self.pui:
+            self.pui.set_orientation(orientation)
 
 
 # -------------------------------------------------------------------------
