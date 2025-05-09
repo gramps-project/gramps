@@ -28,7 +28,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-29 11:28+0000\n"
+"PO-Revision-Date: 2025-05-04 12:03+0000\n"
 "Last-Translator: Yurt Page <yurtpage@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -4752,10 +4752,8 @@ msgid "Families with a note of type <type>"
 msgstr "Семьи с заметками типа <type>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "Выбирает семьи, соответствующие фильтру с указанным названием"
+msgstr "Выбирает семьи, с примечаниями указанного типа"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
