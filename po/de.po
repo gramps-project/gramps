@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-19 22:46+0000\n"
+"PO-Revision-Date: 2025-05-06 19:01+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7670,7 +7670,7 @@ msgstr "um"
 
 #: ../gramps/gen/lib/date.py:2005
 msgid "range"
-msgstr "Zeitraum"
+msgstr "Bereich"
 
 #: ../gramps/gen/lib/date.py:2006
 msgid "from"
@@ -14779,7 +14779,7 @@ msgstr "Um"
 
 #: ../gramps/gui/editors/editdate.py:81
 msgid "Range"
-msgstr "Zeitraum"
+msgstr "Bereich"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
