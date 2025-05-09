@@ -56,9 +56,13 @@ from .citationembedlist import CitationEmbedList
 from .personeventembedlist import PersonEventEmbedList
 from .personrefembedlist import PersonRefEmbedList
 from .personbackreflist import PersonBackRefList
+from .placeattrembedlist import PlaceAttrEmbedList
 from .placebackreflist import PlaceBackRefList
+from .placeeventembedlist import PlaceEventEmbedList
 from .placenameembedlist import PlaceNameEmbedList
 from .placerefembedlist import PlaceRefEmbedList
+from .placetypeembedlist import PlaceTypeEmbedList
+from .placeabbrevembedlist import PlaceAbbrevEmbedList
 from .repoembedlist import RepoEmbedList
 from .surnametab import SurnameTab
 from .sourcebackreflist import SourceBackRefList

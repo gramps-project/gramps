@@ -23,7 +23,6 @@
 """
 This module is the base class for all geography view module
 """
-
 # -------------------------------------------------------------------------
 #
 # Python modules
@@ -410,6 +409,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             title = _("Lock zoom and position")
         add_item = Gtk.MenuItem(label=title)
         add_item.connect("activate", self.config_zoom_and_position, event, lat, lon)
+        add_item.show()
         menu.append(add_item)
 
         add_item = Gtk.MenuItem(label=_("Add place"))
@@ -957,6 +957,16 @@ class GeoGraphyView(OsmGps, NavigationView):
         Print or save the view that is currently shown
         """
         dummy_obj = obj
+        if Gtk.MAJOR_VERSION == 3 and Gtk.MINOR_VERSION < 11:
+            from gramps.gui.dialog import WarningDialog
+
+            WarningDialog(
+                _("You can't use the print functionality"),
+                _("Your Gtk version is too old."),
+                parent=self.uistate.window,
+            )
+            return
+
         req = self.osm.get_allocation()
         widthpx = req.width
         heightpx = req.height
@@ -1134,7 +1144,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                     place_name = PlaceName()
                     place_name.set_value(name)
                     new_place = Place()
-                    new_place.set_name(place_name)
+                    new_place.add_name(place_name)
                     new_place.set_title(name)
                     new_place.set_latitude(str(lat))
                     new_place.set_longitude(str(lon))
@@ -1178,15 +1188,14 @@ class GeoGraphyView(OsmGps, NavigationView):
     def place_exists(self, place_name):
         """
         Do we have already this place in our database ?
-        return the handle for this place.
+        return the place.
         """
-        found = None
         place_name = place_name.replace("-", " ").lower()
         for place in self.dbstate.db.iter_places():
-            if place.name.get_value().lower() == place_name:
-                found = place.handle
-                break
-        return found
+            for pname in place.get_names():
+                if pname.get_value().lower() == place_name:
+                    return place
+        return None
 
     def link_place(self, menu, event, lat, lon):
         """
@@ -1280,7 +1289,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         if parent:
             if isinstance(parent, Place):
                 placeref = PlaceRef()
-                placeref.ref = parent
+                placeref.set_type_for_place(parent)
+                placeref.ref = parent.handle
                 new_place.add_placeref(placeref)
             elif isinstance(parent, gi.overrides.Gtk.TreeModelRow):
                 # We are here because we selected a place from geocoding
@@ -1291,24 +1301,29 @@ class GeoGraphyView(OsmGps, NavigationView):
                 value = self.select_fct.untag_text(parent[2], 1)
                 plname = PlaceName()
                 plname.set_value(value)
-                handle = self.place_exists(value)
-                if handle:
+                plc = self.place_exists(value)
+                if plc:
                     # The town already exists. We create a place with name
                     placeref = PlaceRef()
-                    placeref.ref = handle
+                    placeref.ref = plc.handle
+                    placeref.set_type_for_place(plc)
                     new_place.add_placeref(placeref)
                     value = self.select_fct.untag_text(parent[3], 1)
                     plname.set_value(value)
-                new_place.set_name(plname)
+                new_place.add_name(plname)
             else:
                 found = None
                 for place in self.dbstate.db.iter_places():
-                    found = place
-                    if place.name.get_value() == parent:
+                    for pname in place.get_names():
+                        if pname.get_value() == parent:
+                            found = place
+                            break
+                    if found:
+                        placeref = PlaceRef()
+                        placeref.ref = found.get_handle()
+                        placeref.set_type_for_place(found)
+                        new_place.add_placeref(placeref)
                         break
-                placeref = PlaceRef()
-                placeref.ref = found.get_handle()
-                new_place.add_placeref(placeref)
         try:
             EditPlace(self.dbstate, self.uistate, [], new_place)
             self.add_marker(None, None, plat, plon, None, True, 0)
@@ -1343,6 +1358,9 @@ class GeoGraphyView(OsmGps, NavigationView):
             if parent:
                 placeref = PlaceRef()
                 placeref.ref = parent
+                placeref.set_type_for_place(
+                    self.dbstate.db.get_place_from_handle(parent)
+                )
                 place.add_placeref(placeref)
             try:
                 EditPlace(self.dbstate, self.uistate, [], place)
@@ -1509,10 +1527,11 @@ class GeoGraphyView(OsmGps, NavigationView):
             self.change_map(self.osm, config.get("geography.map_service"))
             self.reload_tiles()
             return
-        # if map_source != config.get("geography.personal-map"):
-        #     config.set("geography.map_service", constants.PERSONAL)
-        #     self.change_new_map(name, map_source)
-        #     self.reload_tiles()
+
+    # if map_source != config.get("geography.personal-map"):
+    #     config.set("geography.map_service", constants.PERSONAL)
+    #     self.change_new_map(name, map_source)
+    #     self.reload_tiles()
 
     def set_tilepath(self, *obj):
         """

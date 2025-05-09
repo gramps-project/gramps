@@ -253,6 +253,30 @@ class TestcaseGenerator(tool.BatchTool):
         ]
     )
 
+    PLACETYPES = [
+        "Unknown",  # -1 original value
+        "Country",  # 1
+        "State",  # 2
+        "County",  # 3
+        "City",  # 4
+        "Parish",  # 5
+        "Locality",  # 6
+        "Street",  # 7
+        "Province",  # 8
+        "Region",  # 9
+        "Department",  # 10
+        "Neighborhood",  # 11
+        "District",  # 12
+        "Borough",  # 13
+        "Municipality",  # 14
+        "Town",  # 15
+        "Village",  # 16
+        "Hamlet",  # 17
+        "Farm",  # 18
+        "Building",  # 19
+        "Number",
+    ]  # 20
+
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         if uistate:
@@ -480,6 +504,33 @@ class TestcaseGenerator(tool.BatchTool):
         if not cli:
             self.top.destroy()
 
+    def generate_persons(self):
+        """This creates the persons and families"""
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans, self.progress(
+            _("Generating testcases"), _("Generating families"), self.max_person_count
+        ) as self.progress_step:
+            self.person_count = 0
+
+            while True:
+                if not self.persons_todo:
+                    pers_h = self.generate_person(0)
+                    self.persons_todo.append(pers_h)
+                    self.parents_todo.append(pers_h)
+                person_h = self.persons_todo.pop(0)
+                self.generate_family(person_h)
+                if _randint(0, 3) == 0:
+                    self.generate_family(person_h)
+                if _randint(0, 7) == 0:
+                    self.generate_family(person_h)
+                if self.person_count > self.max_person_count:
+                    break
+                for child_h in self.parents_todo:
+                    self.generate_parents(child_h)
+                    if self.person_count > self.max_person_count:
+                        break
+
     def generate_data_errors(self, step):
         """This generates errors in the database to test src/plugins/tool/Check
         The module names correspond to the checking methods in
@@ -660,7 +711,8 @@ class TestcaseGenerator(tool.BatchTool):
                 alt_name3,
             ]
             plac.set_name(pri_name)
-            plac.set_alternative_names(alt_names)
+            for name in alt_names:
+                plac.add_name(name)
             self.db.add_place(plac, self.trans)
 
     def test_fix_duplicated_grampsid(self):
@@ -1420,7 +1472,18 @@ class TestcaseGenerator(tool.BatchTool):
 
         place = Place()
         place.set_title(message)
+        # Place
         place.add_citation(_choice(c_h_list))
+        # Place : Name
+        pname = PlaceName(value="All Attribute Test")
+        pname.add_citation(_choice(c_h_list))
+        place.add_name(pname)
+        # Place : Type
+        ptype = PlaceType("Borough")
+        ptype.add_citation(_choice(c_h_list))
+        place.add_type(ptype)
+        # Place : Attribute
+        place.add_attribute(att)
         # Place : MediaRef
         mref = MediaRef()
         mref.set_reference_handle(med.handle)
@@ -1432,6 +1495,8 @@ class TestcaseGenerator(tool.BatchTool):
         att.add_citation(_choice(c_h_list))
         mref.add_attribute(att)
         place.add_media_reference(mref)
+        # Place : EventRef
+        place.add_event_ref(eref)
         self.db.add_place(place, self.trans)
 
         ref = Repository()
@@ -1654,6 +1719,7 @@ class TestcaseGenerator(tool.BatchTool):
         if person2_h and _randint(0, 2) > 0:
             self.parents_todo.append(person2_h)
 
+        self.transaction_count += 1
         fam = Family()
         self.add_defaults(fam)
         if person1_h:
@@ -1757,6 +1823,7 @@ class TestcaseGenerator(tool.BatchTool):
         if _randint(0, 2) > 1:
             self.parents_todo.append(person2_h)
 
+        self.transaction_count += 1
         fam = Family()
         self.add_defaults(fam)
         fam.set_father_handle(person1_h)
@@ -2032,7 +2099,6 @@ class TestcaseGenerator(tool.BatchTool):
         if isinstance(obj, Place):
             obj.set_title(self.rand_text(self.LONG))
             obj.set_name(PlaceName(value=self.rand_text(self.SHORT)))
-            obj.set_code(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
                 if _randint(0, 4) == 1:
                     obj.set_longitude(self.rand_text(self.SHORT))
@@ -2192,7 +2258,7 @@ class TestcaseGenerator(tool.BatchTool):
                 # skip some levels in the place hierarchy
                 continue
             place = Place()
-            place.set_type(PlaceType(type_num))
+            place.set_type(self.PLACETYPES[type_num])
             if parent_handle is not None:
                 self.add_parent_place(place, parent_handle)
             if type_num > 1 and _randint(1, 3) == 1:
@@ -2201,6 +2267,7 @@ class TestcaseGenerator(tool.BatchTool):
                 if parent_handle is not None:
                     self.add_parent_place(place, parent_handle)
             self.fill_object(place)
+            place.group = place.get_type().get_probable_group()
             self.db.add_place(place, self.trans)
             parent_handle = place.get_handle()
             self.generated_places.append(place.get_handle())

@@ -81,6 +81,7 @@ from gramps.gen.lib import (
     Person,
     Place,
     PlaceName,
+    PlaceType,
     Source,
     SrcAttribute,
     Surname,
@@ -909,6 +910,7 @@ class ProgenParser(UpdateCallback):
             place = Place()
             place.set_name(PlaceName(value=place_name))
             place.set_title(place_name)
+            place.group = place.get_type().get_probable_group()
             self.__add_tag("place", place)  # add tag to 'Place'
 
             self.dbase.add_place(place, self.trans)  # add & commit ...

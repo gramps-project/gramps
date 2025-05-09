@@ -169,9 +169,6 @@ class FilterParser(handler.ContentHandler):
         """
         Upgrade argument lists to latest version.
         """
-        # HasPlace rule has extra locality field in v3.3
-        if self.r == rules.place.HasPlace and len(self.a) == 8:
-            self.a = self.a[0:2] + [""] + self.a[4:8] + [self.a[3]] + [self.a[2]]
         # HasNameOf rule has new fields for surnames in v3.3
         if self.r == rules.person.HasNameOf and len(self.a) == 7:
             self.a = (

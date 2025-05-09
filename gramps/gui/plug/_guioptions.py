@@ -1881,6 +1881,12 @@ class GuiBooleanListOption(Gtk.Box):
         self.__cbutton = []
 
         default = option.get_value().split(",")
+        # bug fix; if the report list of boolean options changes size, we get
+        # a failure, because stored report config values are wrong, so just
+        # reset values to all true in this case
+        if len(default) != len(option.get_descriptions()):
+            default = ["True"] * len(option.get_descriptions())
+            option.set_value(",".join(default))
         if len(default) < 15:
             columns = 2  # number of checkbox columns
         else:

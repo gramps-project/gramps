@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2013,2017  Nick Hall
+# Copyright (C) 2019       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,6 +34,9 @@ from .const import DIFFERENT, EQUAL, IDENTICAL
 from .datebase import DateBase
 from .refbase import RefBase
 from .secondaryobj import SecondaryObject
+from .citationbase import CitationBase
+from .placehiertype import PlaceHierType
+from .placegrouptype import PlaceGroupType as P_G
 
 _ = glocale.translation.gettext
 
@@ -42,7 +46,7 @@ _ = glocale.translation.gettext
 # PlaceRef
 #
 # -------------------------------------------------------------------------
-class PlaceRef(RefBase, DateBase, SecondaryObject):
+class PlaceRef(RefBase, DateBase, CitationBase, SecondaryObject):
     """
     Place reference class.
 
@@ -56,20 +60,33 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         """
         RefBase.__init__(self, source)
         DateBase.__init__(self, source)
+        CitationBase.__init__(self, source)
+        if source:
+            self.type = PlaceHierType(source)
+        else:
+            self.type = PlaceHierType()
 
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (RefBase.serialize(self), DateBase.serialize(self))
+        return (
+            RefBase.serialize(self),
+            DateBase.serialize(self),
+            CitationBase.serialize(self),
+            self.type.serialize(),
+        )
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (ref, date) = data
+        (ref, date, citation_list, h_type) = data
         RefBase.unserialize(self, ref)
         DateBase.unserialize(self, date)
+        CitationBase.unserialize(self, citation_list)
+        self.type = PlaceHierType()
+        self.type.unserialize(h_type)
         return self
 
     @classmethod
@@ -88,12 +105,17 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
             "title": _("Place ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "ref": {
-                    "type": "string",
-                    "title": _("Handle"),
-                    "maxLength": 50,
+                "ref": {"type": "string", "title": _("Handle"), "maxLength": 50},
+                "date": {
+                    "oneOf": [{"type": "null"}, Date.get_schema()],
+                    "title": _("Date"),
                 },
-                "date": Date.get_schema(),
+                "citation_list": {
+                    "type": "array",
+                    "title": _("Citations"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "type": PlaceHierType.get_schema(),
             },
         }
 
@@ -110,27 +132,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         """
         Return the list of child objects that may carry textual data.
 
-        :returns: Returns the list of child objects that may carry textual data.
-        :rtype: list
-        """
-        return []
-
-    def get_citation_child_list(self):
-        """
-        Return the list of child secondary objects that may refer citations.
-
-        :returns: Returns the list of child secondary child objects that may
-                  refer citations.
-        :rtype: list
-        """
-        return []
-
-    def get_note_child_list(self):
-        """
-        Return the list of child secondary objects that may refer notes.
-
-        :returns: Returns the list of child secondary child objects that may
-                  refer notes.
+        :returns: list of child objects that may carry textual data.
         :rtype: list
         """
         return []
@@ -144,7 +146,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
                   objects.
         :rtype: list
         """
-        return [("Place", self.ref)]
+        return [("Place", self.ref)] + self.get_referenced_citation_handles()
 
     def get_handle_referents(self):
         """
@@ -156,18 +158,56 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         """
         return []
 
+    def set_type_for_place(self, place):
+        """
+        Set the hierarchy type for the PlaceRef based on the group of the
+        enclosing place.  If place group is a likely ADMIN candidate,
+        set to ADMIN.
+        If ref.type is already set, skip.
+        """
+        if self.type == PlaceHierType.UNKNOWN:
+            group = place.get_group()
+            groups = (P_G.PLACE, P_G.UNPOP, P_G.REGION, P_G.COUNTRY)
+            if group in groups:
+                self.type.set(PlaceHierType.ADMIN)
+
+    def set_type(self, p_type):
+        """
+        Set the type for the PlaceRef instance.
+        """
+        self.type.set(p_type)
+
+    def get_type(self):
+        """Return the type for the PlaceRef instance."""
+        return self.type
+
     def is_equivalent(self, other):
         """
-        Return if this eventref is equivalent, that is agrees in handle and
+        Return if this placeref is equivalent, that is agrees in handle and
         role, to other.
 
-        :param other: The eventref to compare this one to.
+        :param other: The placeref to compare this one to.
         :type other: PlaceRef
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
-        if self.ref != other.ref or self.date != other.date:
+        if (
+            self.ref != other.ref
+            or self.get_date_object() != other.get_date_object()
+            or self.type != other.type
+        ):
             return DIFFERENT
         if self.is_equal(other):
             return IDENTICAL
         return EQUAL
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this placeref.
+
+        Lost: hlink and role of acquisition.
+
+        :param acquisition: The placeref to merge with the present placeref.
+        :type acquisition: PlaceRef
+        """
+        self._merge_citation_list(acquisition)

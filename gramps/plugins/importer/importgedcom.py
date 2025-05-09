@@ -53,6 +53,7 @@ module = __import__(
 import importlib
 
 importlib.reload(module)
+import time
 
 from gramps.gen.config import config
 
@@ -113,9 +114,10 @@ def importData(database, filename, user):
 
     assert isinstance(code_set, str)
 
+    t1 = time.time()
     try:
         ifile = open(filename, "rb")
-        stage_one = libgedcom.GedcomStageOne(ifile)
+        stage_one = libgedcom.GedcomStageOne(ifile, database)
         stage_one.parse()
 
         if code_set:
@@ -167,4 +169,5 @@ def importData(database, filename, user):
         return
     ## a "GEDCOM import report" happens in GedcomParser so this is not needed:
     ## (but the imports_test.py unittest currently requires it, so here it is)
+    print("Import time", time.time() - t1)
     return ImportInfo({_("Results"): _("done")})

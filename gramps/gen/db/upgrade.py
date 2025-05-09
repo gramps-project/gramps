@@ -37,7 +37,16 @@ import logging
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
 from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
-from gramps.gen.lib import EventType, NameOriginType, Tag, MarkerType
+from gramps.gen.lib import (
+    Attribute,
+    AttributeType,
+    EventType,
+    MarkerType,
+    NameOriginType,
+    PlaceHierType,
+    Tag,
+)
+from ..lib.placetype import PlaceType, DM_GRP
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
 from gramps.gui.dialog import InfoDialog
@@ -53,12 +62,124 @@ from .dbconst import (
     NOTE_KEY,
     TAG_KEY,
 )
+from ..utils.place import translate_en_loc
 from ..const import GRAMPS_LOCALE as glocale
 from .conversion_tools import convert_21
 
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(".upgrade")
+
+
+def gramps_upgrade_22(self):
+    """
+    Upgrade database from version 21 to 22.
+    Place update.
+    """
+    PLACETYPES = [
+        "Unknown",  # -1 original value
+        "Country",  # 1
+        "State",  # 2
+        "County",  # 3
+        "City",  # 4
+        "Parish",  # 5
+        "Locality",  # 6
+        "Street",  # 7
+        "Province",  # 8
+        "Region",  # 9
+        "Department",  # 10
+        "Neighborhood",  # 11
+        "District",  # 12
+        "Borough",  # 13
+        "Municipality",  # 14
+        "Town",  # 15
+        "Village",  # 16
+        "Hamlet",  # 17
+        "Farm",  # 18
+        "Building",  # 19
+        "Number",
+    ]  # 20
+
+    length = self.get_number_of_places()
+    self.set_total(length)
+    self._txn_begin()
+    for handle in self.get_place_handles():
+        data = self.get_raw_place_data(handle)
+        for pref in data["placeref_list"]:  # placeref_list
+            pref["citation_list"] = []  # new empty citation_list
+            pref["type"] = {
+                "_class": "PlaceHierType",
+                "value": PlaceHierType.ADMIN,
+                "strint": "",
+            }
+        name_list = [data.pop("name")]  # old name is removed
+        name_list.extend(data.pop("alt_names"))  # old alt names removed
+        for nam in name_list:  # all old names
+            nam["citation_list"] = []  # new citation list
+            nam["abbrev_list"] = []  # new abbreviation list
+        data["name_list"] = name_list  # now we have a name list
+        # PlaceType
+        mtdate = {
+            "_class": "Date",
+            "format": None,
+            "calendar": 0,
+            "modifier": 0,
+            "quality": 0,
+            "dateval": [0, 0, 0, False],
+            "text": "",
+            "sortval": 0,
+            "newyear": 0,
+        }
+        old_type = data.pop("place_type")  # removes the old type
+        if old_type["value"] == 0:  # older CUSTOM value == 0
+            name = old_type["string"]
+            pt_id = PlaceType.CUSTOM
+        elif old_type["value"] == -1:  # older UNKNOWN
+            name = "Unknown"
+            pt_id = PlaceType.UNKNOWN  # new UNKNOWN
+        else:  # legacy place type value
+            pt_id = PLACETYPES[old_type["value"]]
+            name = pt_id
+        # the place type becomes the top (only) item in placetype list
+        data["type_list"] = [
+            {
+                "_class": "PlaceType",
+                "pt_id": pt_id,  # type id
+                "name": name,  # name
+                "date": mtdate,  # empty date
+                "citation_list": [],
+            }
+        ]  # add cit_list
+        data["group"] = PlaceType.DATAMAP[pt_id][DM_GRP].get_object_state()
+        data["event_ref_list"] = []
+
+        code = data.pop("code")  # we drop code field, but save data as attribute
+        if code:
+            code_attr = Attribute()
+            code_attr.set_type(AttributeType(value=AttributeType.POSTAL))
+            code_attr.set_value(code)
+            data["attribute_list"] = [code_attr]
+        else:
+            data["attribute_list"] = []
+        # get longitude localized E,W translated to English
+        data["long"] = (
+            data["long"]
+            .replace(translate_en_loc["E"], "E")
+            .replace(translate_en_loc["W"], "W")
+        )
+        # get latitude localized N,S translated to English
+        data["lat"] = (
+            data["lat"]
+            .replace(translate_en_loc["N"], "N")
+            .replace(translate_en_loc["S"], "S")
+        )
+        self._commit_raw(data, PLACE_KEY)
+        self.update()
+    self.set_serializer("blob")
+    self._set_metadata("version", 22, use_txn=False)  # keep blob version up to date
+    self.set_serializer("json")
+    self._set_metadata("version", 22, use_txn=False)
+    self._txn_commit()
 
 
 def gramps_upgrade_21(self):

@@ -71,6 +71,7 @@ from .widgets import MarkupLabel, BasicLabel
 from .dialog import ErrorDialog, OkDialog
 from .editors.editplaceformat import EditPlaceFormat
 from .display import display_help
+from .glade import Glade
 from gramps.gen.plug.utils import available_updates
 from .plug import PluginWindows
 
@@ -672,6 +673,7 @@ class GrampsPreferences(ConfigureDialog):
             on_close=update_constants,
         )
         help_btn = self.window.add_button(_("_Help"), Gtk.ResponseType.HELP)
+        self.panel.set_current_page(0)
         help_btn.connect(
             "clicked", lambda x: display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
         )
@@ -1150,17 +1152,17 @@ class GrampsPreferences(ConfigureDialog):
         in the format list. Don't compare with self (oldnode).
         """
         model = self.fmt_obox.get_model()
-        iter = model.get_iter_first()
-        while iter is not None:
-            othernum = model.get_value(iter, COL_NUM)
+        _iter = model.get_iter_first()
+        while _iter is not None:
+            othernum = model.get_value(_iter, COL_NUM)
             oldnum = model.get_value(oldnode, COL_NUM)
             if othernum == oldnum:
                 pass  # skip comparison with self
             else:
-                othername = model.get_value(iter, COL_NAME)
+                othername = model.get_value(_iter, COL_NAME)
                 if othername == name:
                     return True
-            iter = model.iter_next(iter)
+            _iter = model.iter_next(_iter)
         return False
 
     def __start_name_editing(self, dummy_renderer, dummy_editable, dummy_path):
@@ -1304,8 +1306,8 @@ class GrampsPreferences(ConfigureDialog):
         obj = self.fmt_obox
         the_list = obj.get_model()
         the_iter = obj.get_active_iter()
-        format = the_list.get_value(the_iter, COL_FMT)
-        if format != self.old_format:
+        _format = the_list.get_value(the_iter, COL_FMT)
+        if _format != self.old_format:
             # Yes a change; call the callback
             self.cb_name_changed(obj)
 
@@ -1823,11 +1825,15 @@ class GrampsPreferences(ConfigureDialog):
         """
         Called to rebuild the place format list.
         """
+        active = self.pformat.get_active()
         model = Gtk.ListStore(str)
         for fmt in _pd.get_formats():
             model.append([fmt.name])
         self.pformat.set_model(model)
-        self.pformat.set_active(0)
+        if active != -1 and active < len(model):
+            self.pformat.set_active(active)
+        else:
+            self.pformat.set_active(0)
 
     def toggle_tag_on_import(self, obj):
         """

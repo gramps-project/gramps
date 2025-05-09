@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2014-2017  Nick Hall
+# Copyright (C) 2019       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,19 +29,27 @@ Class handling displaying of places.
 #
 # ---------------------------------------------------------------
 import os
-import xml.dom.minidom
+import orjson
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from ..const import PLACE_FORMATS, GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
+import gramps.gen.lib as lib
+from ..lib.json_utils import data_to_object, object_to_string
 from ..config import config
 from ..utils.location import get_location_list
-from ..lib import PlaceType
+from ..lib import PlaceGroupType as P_G
+from ..lib import PlaceHierType
+from ..const import PLACE_FORMATS
+from ..const import GRAMPS_LOCALE as glocale
+
+
+_ = glocale.translation.gettext
+
+
+PFVERS = 1  # Place Format Version, change if incompatible with older
 
 
 # -------------------------------------------------------------------------
@@ -49,12 +58,120 @@ from ..lib import PlaceType
 #
 # -------------------------------------------------------------------------
 class PlaceFormat:
-    def __init__(self, name, levels, language, street, reverse):
-        self.name = name
-        self.levels = levels
-        self.language = language
-        self.street = street
-        self.reverse = reverse
+    """
+    This class stores the basic information about the place format
+    """
+
+    def __init__(self, name, language="", reverse=False, rules=None):
+        self.name = name  # str name of format
+        self.language = language  # Language desired of format
+        self.reverse = reverse  # Order of place title names is reversed
+        if rules is None:
+            rules = []
+        self.rules = rules  # list of rules for the format
+        self.version = PFVERS  # detects if the format or rule is different
+
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        :returns: Returns a dictionary of attributes that represent the state
+                  of the object.
+        :rtype: dict
+        """
+        attr_dict = dict(
+            (key, value)
+            for key, value in self.__dict__.items()
+            if not key.startswith("_")
+        )
+        attr_dict["_class"] = self.__class__.__name__
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        :param attr_dict: A dictionary of attributes that represent the state of
+                          the object.
+        :type attr_dict: dict
+        """
+        self.__dict__.update(attr_dict)
+
+
+# -------------------------------------------------------------------------
+#
+# PlaceRule class
+#
+# -------------------------------------------------------------------------
+class PlaceRule:
+    """
+    This class stores the place format rules.
+    """
+
+    V_NONE = 0  # visibility of item; None
+    V_STNUM = 1  # visibility of street/number; visible, street first
+    V_NUMST = 2  # visibility of street/number; visible, number first
+    V_ALL = 3  # visibility of item; All
+    V_SMALL = 4  # visibility of item; Only smallest of group or type
+    V_LARGE = 5  # visibility of item; Only largest of group or type
+    T_GRP = 0  # What does rule work with; Place Group
+    T_TYP = 1  # What does rule work with; Place Type
+    T_ST_NUM = 2  # What does rule work with; Street and number
+    A_NONE = -2  # indicates no abbrev, val is added to PlaceAbbrevType
+    A_FIRST = -3  # indicates first abbrev, val is added to PlaceAbbrevType
+
+    VIS_MAP = {
+        V_NONE: _("Hidden"),
+        V_SMALL: _("Show Smallest"),
+        V_LARGE: _("Show Largest"),
+        V_ALL: _("Show All"),
+        V_STNUM: _("Street Number"),
+        V_NUMST: _("Number Street"),
+    }
+
+    def __init__(self, where, r_type, r_value, vis, abb, hier):
+        """Place Format Rule"""
+        self.hier = hier  # PlaceHierType of format
+        self.where = where  # None, or place handle
+        self.where_id = None  # the place gramps_id
+        self.where_title = None  # the place title
+        self.type = r_type  # on of T_ group, type, or street/num
+        self.value = r_value  # int, PlaceType group or type number
+        self.vis = vis  # int, one of the V_ values above
+        self.abb = abb  # PlaceAbbrevType with extra values, A_NONE, A_FIRST
+
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        :returns: Returns a dictionary of attributes that represent the state
+                  of the object.
+        :rtype: dict
+        """
+        attr_dict = dict(
+            (key, value)
+            for key, value in self.__dict__.items()
+            if not key.startswith("_")
+        )
+        attr_dict["_class"] = self.__class__.__name__
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        :param attr_dict: A dictionary of attributes that represent the state of
+                          the object.
+        :type attr_dict: dict
+        """
+        self.__dict__.update(attr_dict)
+
+
+# enable db to unserialize our classes
+lib.__dict__["PlaceFormat"] = PlaceFormat
+lib.__dict__["PlaceRule"] = PlaceRule
 
 
 # -------------------------------------------------------------------------
@@ -63,151 +180,267 @@ class PlaceFormat:
 #
 # -------------------------------------------------------------------------
 class PlaceDisplay:
+    """
+    This is the place title display and format storage class.
+    """
+
     def __init__(self):
         self.place_formats = []
-        self.default_format = config.get("preferences.place-format")
-        if os.path.exists(PLACE_FORMATS):
-            try:
-                self.load_formats()
-                return
-            except BaseException:
-                print(_("Error in '%s' file: cannot load.") % PLACE_FORMATS)
-        pf = PlaceFormat(_("Full"), ":", "", 0, False)
-        self.place_formats.append(pf)
+        # initialize the default format
+        _pf = PlaceFormat(_("Full"))
+        self.place_formats.append(_pf)
 
-    def display_event(self, db, event, fmt=-1):
+    def display_event(self, _db, event, fmt=-1):
+        """
+        This displays an event's place title according to the specified
+        format.
+        """
         if not event:
             return ""
         place_handle = event.get_place_handle()
         if place_handle:
-            place = db.get_place_from_handle(place_handle)
-            return self.display(db, place, event.get_date_object(), fmt)
-        else:
-            return ""
+            place = _db.get_place_from_handle(place_handle)
+            return self.display(_db, place, event.get_date_object(), fmt)
+        return ""
 
-    def display(self, db, place, date=None, fmt=-1):
+    def display(self, _db, place, date=None, fmt=-1):
+        """
+        This is the place title display routine.  It displays a place title
+        according to the format and rules defined in PlaceFormat.
+        """
         if not place:
             return ""
         if not config.get("preferences.place-auto"):
             return place.title
-        else:
-            if fmt == -1:
-                fmt = config.get("preferences.place-format")
-            pf = self.place_formats[fmt]
-            lang = pf.language
-            all_places = get_location_list(db, place, date, lang)
+        if fmt == -1:
+            fmt = config.get("preferences.place-format")
+            if fmt > len(self.place_formats) - 1:
+                config.set("preferences.place-format", 0)
+        if fmt > len(self.place_formats) - 1:
+            fmt = 0
+        _pf = self.place_formats[fmt]
+        # sort the rules by hierarchy so we can do one hierarchy at a time
+        hiers = [PlaceHierType()]
+        rulesets = [[]]
+        for rule in _pf.rules:
+            for hier, rules in zip(hiers, rulesets):
+                if hier == rule.hier:
+                    rules.append(rule)
+                    break
+            else:
+                hiers.append(rule.hier)
+                rulesets.append([rule])
+        lang = _pf.language
 
-            # Apply format string to place list
-            index = _find_populated_place(all_places)
-            places = []
-            for slice in pf.levels.split(","):
-                parts = slice.split(":")
-                if len(parts) == 1:
-                    offset = _get_offset(parts[0], index)
-                    if offset is not None:
-                        try:
-                            places.append(all_places[offset])
-                        except IndexError:
-                            pass
-                elif len(parts) == 2:
-                    start = _get_offset(parts[0], index)
-                    end = _get_offset(parts[1], index)
-                    if start is None:
-                        places.extend(all_places[:end])
-                    elif end is None:
-                        places.extend(all_places[start:])
+        # process each hierarchy, starting with ADMIN
+        title = names = ""
+        for hier, rules in zip(hiers, rulesets):
+
+            all_places = get_location_list(_db, place, date, lang, hier=hier)
+
+            # Apply format to place list
+            # if ADMIN, start with everything shown, otherwise nothing shown
+            # val[0] is the place name
+            if hier == PlaceHierType.ADMIN:
+                places = [val[0] for val in all_places]
+            else:
+                places = [None] * len(all_places)
+            for rule in rules:
+                if rule.where:
+                    # this rule applies to a specific place
+                    for plac in all_places:
+                        if plac[2] == rule.where:  # test if handles match
+                            break  # rule is good for this place
+                    else:  # no match found for handle
+                        continue  # skip this rule
+                first = False
+                if rule.type == PlaceRule.T_GRP:
+                    # plac[4] and rule.value are PlaceGroupType
+                    if rule.vis == PlaceRule.V_LARGE:
+                        # go from largest down
+                        for indx in range(len(all_places) - 1, -1, -1):
+                            plac = all_places[indx]
+                            # plac[4] is a PlaceGroupType
+                            if plac[4] == rule.value:
+                                # match on group
+                                if first:  # If we found first one already
+                                    places[indx] = None  # remove this one
+                                else:
+                                    first = True
+                                    self._show(plac, rule, places, indx)
                     else:
-                        places.extend(all_places[start:end])
-
-            if pf.street:
-                types = [item[1] for item in places]
-                try:
-                    idx = types.index(PlaceType.NUMBER)
-                except ValueError:
-                    idx = None
-                if idx is not None and len(places) > idx + 1:
-                    if pf.street == 1:
-                        combined = (
-                            places[idx][0] + " " + places[idx + 1][0],
-                            places[idx + 1][1],
-                        )
+                        # work from smallest up
+                        for indx, plac in enumerate(all_places):
+                            if plac[4] == rule.value:
+                                # match on group
+                                if rule.vis == PlaceRule.V_SMALL:
+                                    if first:  # If we found first one already
+                                        places[indx] = None  # remove this one
+                                    else:
+                                        first = True
+                                        self._show(plac, rule, places, indx)
+                                elif rule.vis == PlaceRule.V_ALL:
+                                    self._show(plac, rule, places, indx)
+                                else:  # rule.vis == PlaceRule.V_NONE:
+                                    places[indx] = None  # remove this one
+                elif rule.type == PlaceRule.T_TYP:
+                    # plac[1] and rule.value are PlaceType
+                    if rule.vis == PlaceRule.V_LARGE:
+                        # go from largest down
+                        for indx in range(len(all_places) - 1, -1, -1):
+                            plac = all_places[indx]
+                            if plac[1].is_same(rule.value):
+                                # match on ptype
+                                if first:  # If we found first one already
+                                    places[indx] = None  # remove this one
+                                else:
+                                    first = True
+                                    self._show(plac, rule, places, indx)
                     else:
-                        combined = (
-                            places[idx + 1][0] + " " + places[idx][0],
-                            places[idx + 1][1],
-                        )
-                    places = places[:idx] + [combined] + places[idx + 2 :]
+                        # work from smallest up
+                        for indx, plac in enumerate(all_places):
+                            if plac[1].is_same(rule.value):
+                                # match on group
+                                if rule.vis == PlaceRule.V_SMALL:
+                                    if first:  # If we found first one already
+                                        places[indx] = None  # remove this one
+                                    else:
+                                        first = True
+                                        self._show(plac, rule, places, indx)
+                                elif rule.vis == PlaceRule.V_ALL:
+                                    self._show(plac, rule, places, indx)
+                                else:  # rule.vis == PlaceRule.V_NONE:
+                                    places[indx] = None  # remove this one
+                else:
+                    # we have a rule about street/number
+                    _st = _num = None
+                    for indx, plac in enumerate(all_places):
+                        # plac[1] is PlaceType
+                        p_type = plac[1].pt_id
+                        if (
+                            p_type == "Street" or p_type == "Number"
+                        ) and rule.vis == PlaceRule.V_NONE:
+                            places[indx] = None  # remove this one
+                        elif p_type == "Street":
+                            _st = indx
+                            places[indx] = plac[0]
+                        elif p_type == "Number":
+                            _num = indx
+                            places[indx] = plac[0]
+                    if _st is not None and _num is not None:
+                        if (rule.vis == PlaceRule.V_NUMST and _num < _st) or (
+                            rule.vis == PlaceRule.V_STNUM and _num > _st
+                        ):
+                            continue  # done with rule
+                        # need to swap final names
+                        street = places[_st]
+                        places[_st] = places[_num]
+                        places[_num] = street
 
-            names = [item[0] for item in places]
-            if pf.reverse:
-                names.reverse()
+            # For the ADMIN hierarchy, make sure that the smallest place is
+            # included for places not deeply enclosed.
+            if hier == PlaceHierType.ADMIN:
+                s_groups = [P_G.PLACE, P_G.UNPOP, P_G.NONE, P_G.BUILDING]
+                if places[0] is None and all_places[0][4] not in s_groups:
+                    places[0] = all_places[0][0]
 
-            # TODO for Arabic, should the next line's comma be translated?
-            return ", ".join(names)
+            names = ""
+            for indx in (
+                range(len(all_places) - 1, -1, -1)
+                if _pf.reverse
+                else range(len(all_places))
+            ):
+                name = places[indx]
+                if name is not None:
+                    names += (_(", ") + name) if names else name
+            if title and names:
+                title += _("; ")
+            title += names
+
+        return title
+
+    @staticmethod
+    def _show(place, rule, places, indx):
+        """
+        Place is to be shown, but need to deal with abbreviations.
+        place is a tuple of place to show
+        rule.abb is the selected abbreviation instruction
+        places is list of place tuples to show
+        """
+        do_abb = int(rule.abb)
+        name, dummy_type, dummy_hndl, abblist, _group = place
+        if do_abb == PlaceRule.A_FIRST:
+            if abblist:
+                name = abblist[0].get_value()
+        elif do_abb != PlaceRule.A_NONE:
+            for abb in abblist:
+                if rule.abb == abb.get_type():
+                    name = abb.get_value()
+        places[indx] = name
 
     def get_formats(self):
+        """return the available formats as a list"""
         return self.place_formats
 
     def set_formats(self, formats):
+        """set a list of place formats"""
         self.place_formats = formats
 
-    def load_formats(self):
-        dom = xml.dom.minidom.parse(PLACE_FORMATS)
-        top = dom.getElementsByTagName("place_formats")
+    def load_formats(self, formats):
+        """
+        :param formats: json string containing list of formats from db metadata.
+        :type formats: string.
 
-        for fmt in top[0].getElementsByTagName("format"):
-            name = fmt.attributes["name"].value
-            levels = fmt.attributes["levels"].value
-            language = fmt.attributes["language"].value
-            street = int(fmt.attributes["street"].value)
-            reverse = fmt.attributes["reverse"].value == "True"
-            pf = PlaceFormat(name, levels, language, street, reverse)
-            self.place_formats.append(pf)
+        load formats obtained from db, and from the saved json file.
 
-        dom.unlink()
+        If the current session has no user formats, we will load the last
+        saved json formats to form an initial format set.
+
+        If the current session already has user formats, from a prior opened
+        db, we will keep them to form an initial format set.
+
+        If the newly opened db making this call has a named format we will
+        not change it, and update the session to use it.
+
+        If the current contents of place formats from this session has new user
+        formats, they will end up in the db.
+        """
+        formats = data_to_object(formats)
+        if len(self.place_formats) == 1 and os.path.exists(PLACE_FORMATS):
+            try:
+                with open(PLACE_FORMATS, "r", encoding="utf8") as _fp:
+                    txt = _fp.read()
+                    load_formats = data_to_object(orjson.loads(txt))
+            except BaseException:
+                print(_("Error in '%s' file: cannot load.") % PLACE_FORMATS)
+            for indx, fmt in enumerate(load_formats):
+                # if not right version, just drop the format
+                if not hasattr(fmt, "version") or fmt.version != PFVERS or not indx:
+                    continue
+                self.place_formats.append(fmt)
+        for indx, fmt in enumerate(formats):
+            # if not right version, just drop the format
+            if not hasattr(fmt, "version") or fmt.version != PFVERS or not indx:
+                continue
+            for index in range(len(self.place_formats)):
+                if fmt.name == self.place_formats[index].name:
+                    self.place_formats[index] = fmt
+                    break
+            else:
+                self.place_formats.append(fmt)
 
     def save_formats(self):
-        doc = xml.dom.minidom.Document()
-        place_formats = doc.createElement("place_formats")
-        doc.appendChild(place_formats)
-        for fmt in self.place_formats:
-            node = doc.createElement("format")
-            place_formats.appendChild(node)
-            node.setAttribute("name", fmt.name)
-            node.setAttribute("levels", fmt.levels)
-            node.setAttribute("language", fmt.language)
-            node.setAttribute("street", str(fmt.street))
-            node.setAttribute("reverse", str(fmt.reverse))
-        with open(PLACE_FORMATS, "w", encoding="utf-8") as f_d:
-            doc.writexml(f_d, addindent="  ", newl="\n", encoding="utf-8")
-
-
-def _get_offset(value, index):
-    if index is not None and value.startswith("p"):
-        try:
-            offset = int(value[1:])
-        except ValueError:
-            offset = 0
-        offset += index
-    else:
-        try:
-            offset = int(value)
-        except ValueError:
-            offset = None
-    return offset
-
-
-def _find_populated_place(places):
-    populated_place = None
-    for index, item in enumerate(places):
-        if int(item[1]) in [
-            PlaceType.HAMLET,
-            PlaceType.VILLAGE,
-            PlaceType.TOWN,
-            PlaceType.CITY,
-        ]:
-            populated_place = index
-    return populated_place
+        """this saves the current format set to the json file.  Saving to the
+        db is done elsewhere.
+        """
+        if len(self.place_formats) > 1:
+            txt = object_to_string(self.place_formats)
+            try:
+                with open(PLACE_FORMATS, "w", encoding="utf8") as _fp:
+                    _fp.write(txt)
+                return txt
+            except BaseException:
+                print(_("Failure writing %s") % PLACE_FORMATS)
 
 
 displayer = PlaceDisplay()

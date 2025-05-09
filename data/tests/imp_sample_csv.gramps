@@ -1,393 +1,393 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.8.0//EN"
+"http://gramps-project.org/xml/1.8.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.8.0/">
   <header>
-    <created date="2018-11-28" version="5.0.1"/>
+    <created date="1999-12-25" version="5.1.2"/>
     <researcher>
     </researcher>
   </header>
   <events>
-    <event handle="_0000001f0000001f" change="1" id="E00000">
+    <event handle="_0000001f0000001f" change="1" id="E0000">
       <type>Birth</type>
       <dateval val="1965-08-26"/>
       <place hlink="_0000000e0000000e"/>
     </event>
-    <event handle="_0000002100000021" change="1" id="E00001">
+    <event handle="_0000002100000021" change="1" id="E0001">
       <type>Birth</type>
       <dateval val="1907-11-05"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000002200000022" change="1" id="E00002">
+    <event handle="_0000002200000022" change="1" id="E0002">
       <type>Death</type>
       <datestr val="29-May-85"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000002400000024" change="1" id="E00003">
+    <event handle="_0000002400000024" change="1" id="E0003">
       <type>Birth</type>
       <dateval val="1775" type="about"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000002600000026" change="1" id="E00004">
+    <event handle="_0000002600000026" change="1" id="E0004">
       <type>Birth</type>
       <dateval val="1935-12-02"/>
     </event>
-    <event handle="_0000002800000028" change="1" id="E00005">
+    <event handle="_0000002800000028" change="1" id="E0005">
       <type>Birth</type>
       <dateval val="1864-10-02"/>
       <place hlink="_0000000100000001"/>
     </event>
-    <event handle="_0000002900000029" change="1" id="E00006">
+    <event handle="_0000002900000029" change="1" id="E0006">
       <type>Death</type>
       <datestr val="29-Sep-45"/>
       <place hlink="_0000000200000002"/>
     </event>
-    <event handle="_0000002b0000002b" change="1" id="E00007">
+    <event handle="_0000002b0000002b" change="1" id="E0007">
       <type>Birth</type>
       <dateval val="1832-11-29"/>
       <place hlink="_0000001100000011"/>
     </event>
-    <event handle="_0000002c0000002c" change="1" id="E00008">
+    <event handle="_0000002c0000002c" change="1" id="E0008">
       <type>Death</type>
       <dateval val="1908" type="before"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000002e0000002e" change="1" id="E00009">
+    <event handle="_0000002e0000002e" change="1" id="E0009">
       <type>Birth</type>
       <dateval val="1966-07-02"/>
       <place hlink="_0000001a0000001a"/>
     </event>
-    <event handle="_0000003000000030" change="1" id="E00010">
+    <event handle="_0000003000000030" change="1" id="E0010">
       <type>Birth</type>
       <dateval val="1800-09-14"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000003100000031" change="1" id="E00011">
+    <event handle="_0000003100000031" change="1" id="E0011">
       <type>Death</type>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000003300000033" change="1" id="E00012">
+    <event handle="_0000003300000033" change="1" id="E0012">
       <type>Birth</type>
       <dateval val="1910-05-02"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000003400000034" change="1" id="E00013">
+    <event handle="_0000003400000034" change="1" id="E0013">
       <type>Death</type>
       <datestr val="26-Jun-90"/>
     </event>
-    <event handle="_0000003600000036" change="1" id="E00014">
+    <event handle="_0000003600000036" change="1" id="E0014">
       <type>Birth</type>
       <dateval val="1897" type="about"/>
     </event>
-    <event handle="_0000003800000038" change="1" id="E00015">
+    <event handle="_0000003800000038" change="1" id="E0015">
       <type>Birth</type>
       <dateval val="1889-08-31"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000003900000039" change="1" id="E00016">
+    <event handle="_0000003900000039" change="1" id="E0016">
       <type>Death</type>
       <dateval val="1945"/>
     </event>
-    <event handle="_0000003b0000003b" change="1" id="E00017">
+    <event handle="_0000003b0000003b" change="1" id="E0017">
       <type>Birth</type>
       <dateval val="1903-06-03"/>
       <place hlink="_0000001c0000001c"/>
     </event>
-    <event handle="_0000003c0000003c" change="1" id="E00018">
+    <event handle="_0000003c0000003c" change="1" id="E0018">
       <type>Death</type>
       <datestr val="22-Jun-80"/>
       <place hlink="_0000000600000006"/>
     </event>
-    <event handle="_0000003e0000003e" change="1" id="E00019">
+    <event handle="_0000003e0000003e" change="1" id="E0019">
       <type>Birth</type>
       <dateval val="1933-11-22"/>
       <place hlink="_0000000200000002"/>
     </event>
-    <event handle="_0000004000000040" change="1" id="E00020">
+    <event handle="_0000004000000040" change="1" id="E0020">
       <type>Birth</type>
       <dateval val="1998-04-12"/>
       <place hlink="_0000000700000007"/>
     </event>
-    <event handle="_0000004200000042" change="1" id="E00021">
+    <event handle="_0000004200000042" change="1" id="E0021">
       <type>Birth</type>
       <dateval val="1889-01-31"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000004300000043" change="1" id="E00022">
+    <event handle="_0000004300000043" change="1" id="E0022">
       <type>Death</type>
       <datestr val="21-Dec-63"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000004500000045" change="1" id="E00023">
+    <event handle="_0000004500000045" change="1" id="E0023">
       <type>Birth</type>
       <dateval val="1899-12-20"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000004600000046" change="1" id="E00024">
+    <event handle="_0000004600000046" change="1" id="E0024">
       <type>Death</type>
       <datestr val="28-Jan-59"/>
       <place hlink="_0000000600000006"/>
     </event>
-    <event handle="_0000004800000048" change="1" id="E00025">
+    <event handle="_0000004800000048" change="1" id="E0025">
       <type>Birth</type>
       <dateval val="1966" type="after"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000004c0000004c" change="1" id="E00026">
+    <event handle="_0000004c0000004c" change="1" id="E0026">
       <type>Birth</type>
       <dateval val="1961-05-24"/>
       <place hlink="_0000001000000010"/>
       <citationref hlink="_0000004b0000004b"/>
     </event>
-    <event handle="_0000004e0000004e" change="1" id="E00027">
+    <event handle="_0000004e0000004e" change="1" id="E0027">
       <type>Birth</type>
       <dateval val="1860-09-27"/>
       <place hlink="_0000000d0000000d"/>
     </event>
-    <event handle="_0000005000000050" change="1" id="E00028">
+    <event handle="_0000005000000050" change="1" id="E0028">
       <type>Birth</type>
       <dateval val="1963-08-28"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000005200000052" change="1" id="E00029">
+    <event handle="_0000005200000052" change="1" id="E0029">
       <type>Birth</type>
       <dateval val="1897-09-11"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000005300000053" change="1" id="E00030">
+    <event handle="_0000005300000053" change="1" id="E0030">
       <type>Death</type>
       <datestr val="21-Oct-63"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000005500000055" change="1" id="E00031">
+    <event handle="_0000005500000055" change="1" id="E0031">
       <type>Birth</type>
       <dateval val="1862-11-28"/>
       <place hlink="_0000000a0000000a"/>
     </event>
-    <event handle="_0000005600000056" change="1" id="E00032">
+    <event handle="_0000005600000056" change="1" id="E0032">
       <type>Death</type>
       <dateval val="1930-07-23" type="before"/>
       <place hlink="_0000000200000002"/>
     </event>
-    <event handle="_0000005800000058" change="1" id="E00033">
+    <event handle="_0000005800000058" change="1" id="E0033">
       <type>Birth</type>
       <dateval val="1821-01-29"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000005c0000005c" change="1" id="E00034">
+    <event handle="_0000005c0000005c" change="1" id="E0034">
       <type>Birth</type>
       <dateval val="1904-04-17"/>
       <place hlink="_0000000400000004"/>
       <citationref hlink="_0000005b0000005b"/>
     </event>
-    <event handle="_0000005d0000005d" change="1" id="E00035">
+    <event handle="_0000005d0000005d" change="1" id="E0035">
       <type>Death</type>
       <datestr val="29-Jan-77"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000006000000060" change="1" id="E00036">
+    <event handle="_0000006000000060" change="1" id="E0036">
       <type>Burial</type>
       <datestr val="5-Feb-77"/>
       <place hlink="_0000000300000003"/>
       <citationref hlink="_0000005f0000005f"/>
     </event>
-    <event handle="_0000006200000062" change="1" id="E00037">
+    <event handle="_0000006200000062" change="1" id="E0037">
       <type>Birth</type>
       <dateval val="1893-01-31"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000006300000063" change="1" id="E00038">
+    <event handle="_0000006300000063" change="1" id="E0038">
       <type>Death</type>
       <dateval val="1894-09-25"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000006500000065" change="1" id="E00039">
+    <event handle="_0000006500000065" change="1" id="E0039">
       <type>Birth</type>
       <dateval val="1895-04-07"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000006600000066" change="1" id="E00040">
+    <event handle="_0000006600000066" change="1" id="E0040">
       <type>Baptism</type>
       <dateval val="1895-06-03"/>
       <place hlink="_0000001300000013"/>
     </event>
-    <event handle="_0000006700000067" change="1" id="E00041">
+    <event handle="_0000006700000067" change="1" id="E0041">
       <type>Death</type>
       <datestr val="26-Jun-75"/>
       <place hlink="_0000000600000006"/>
     </event>
-    <event handle="_0000006900000069" change="1" id="E00042">
+    <event handle="_0000006900000069" change="1" id="E0042">
       <type>Birth</type>
       <dateval val="1823" type="after"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000006b0000006b" change="1" id="E00043">
+    <event handle="_0000006b0000006b" change="1" id="E0043">
       <type>Birth</type>
       <dateval val="1770" type="about"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000006d0000006d" change="1" id="E00044">
+    <event handle="_0000006d0000006d" change="1" id="E0044">
       <type>Birth</type>
       <dateval val="1826-01-29"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000006f0000006f" change="1" id="E00045">
+    <event handle="_0000006f0000006f" change="1" id="E0045">
       <type>Birth</type>
       <dateval val="1932-01-30"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000007100000071" change="1" id="E00046">
+    <event handle="_0000007100000071" change="1" id="E0046">
       <type>Birth</type>
       <dateval val="1966-08-11"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000007300000073" change="1" id="E00047">
+    <event handle="_0000007300000073" change="1" id="E0047">
       <type>Birth</type>
       <dateval val="1886-12-15"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000007400000074" change="1" id="E00048">
+    <event handle="_0000007400000074" change="1" id="E0048">
       <type>Death</type>
       <datestr val="18-Jul-66"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000007600000076" change="1" id="E00049">
+    <event handle="_0000007600000076" change="1" id="E0049">
       <type>Birth</type>
       <dateval val="1991-09-16"/>
       <place hlink="_0000000f0000000f"/>
     </event>
-    <event handle="_0000007800000078" change="1" id="E00050">
+    <event handle="_0000007800000078" change="1" id="E0050">
       <type>Birth</type>
       <dateval val="1935-03-13"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000007a0000007a" change="1" id="E00051">
+    <event handle="_0000007a0000007a" change="1" id="E0051">
       <type>Birth</type>
       <dateval val="1858-10-06"/>
       <place hlink="_0000000d0000000d"/>
     </event>
-    <event handle="_0000007b0000007b" change="1" id="E00052">
+    <event handle="_0000007b0000007b" change="1" id="E0052">
       <type>Death</type>
       <datestr val="20-Feb-10"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000007d0000007d" change="1" id="E00053">
+    <event handle="_0000007d0000007d" change="1" id="E0053">
       <type>Birth</type>
       <dateval val="1960-02-05"/>
       <place hlink="_0000001000000010"/>
     </event>
-    <event handle="_0000007f0000007f" change="1" id="E00054">
+    <event handle="_0000007f0000007f" change="1" id="E0054">
       <type>Birth</type>
       <dateval val="1934-11-04"/>
       <place hlink="_0000000600000006"/>
     </event>
-    <event handle="_0000008100000081" change="1" id="E00055">
+    <event handle="_0000008100000081" change="1" id="E0055">
       <type>Birth</type>
       <dateval val="1830-11-19"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000008200000082" change="1" id="E00056">
+    <event handle="_0000008200000082" change="1" id="E0056">
       <type>Baptism</type>
       <dateval val="1830-11-23"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000008300000083" change="1" id="E00057">
+    <event handle="_0000008300000083" change="1" id="E0057">
       <type>Death</type>
       <daterange start="1899" stop="1905"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000008500000085" change="1" id="E00058">
+    <event handle="_0000008500000085" change="1" id="E0058">
       <type>Birth</type>
       <daterange start="1794" stop="1796"/>
       <place hlink="_0000001200000012"/>
     </event>
-    <event handle="_0000008600000086" change="1" id="E00059">
+    <event handle="_0000008600000086" change="1" id="E0059">
       <type>Death</type>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000008800000088" change="1" id="E00060">
+    <event handle="_0000008800000088" change="1" id="E0060">
       <type>Birth</type>
       <dateval val="1996-06-26"/>
       <place hlink="_0000000700000007"/>
     </event>
-    <event handle="_0000008a0000008a" change="1" id="E00061">
+    <event handle="_0000008a0000008a" change="1" id="E0061">
       <type>Birth</type>
       <dateval val="1860-09-23"/>
       <place hlink="_0000000c0000000c"/>
     </event>
-    <event handle="_0000008b0000008b" change="1" id="E00062">
+    <event handle="_0000008b0000008b" change="1" id="E0062">
       <type>Death</type>
       <datestr val="2-Feb-27"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000008d0000008d" change="1" id="E00063">
+    <event handle="_0000008d0000008d" change="1" id="E0063">
       <type>Birth</type>
       <dateval val="1886" type="about"/>
     </event>
-    <event handle="_0000008f0000008f" change="1" id="E00064">
+    <event handle="_0000008f0000008f" change="1" id="E0064">
       <type>Birth</type>
       <datestr val="1-Jan-70"/>
       <place hlink="_0000001d0000001d"/>
     </event>
-    <event handle="_0000009200000092" change="1" id="E00065">
+    <event handle="_0000009200000092" change="1" id="E0065">
       <type>Marriage</type>
       <dateval val="1816" type="about"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000009400000094" change="1" id="E00066">
+    <event handle="_0000009400000094" change="1" id="E0066">
       <type>Marriage</type>
       <dateval val="1790" type="about"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000009600000096" change="1" id="E00067">
+    <event handle="_0000009600000096" change="1" id="E0067">
       <type>Marriage</type>
       <dateval val="1856" type="about"/>
     </event>
-    <event handle="_0000009800000098" change="1" id="E00068">
+    <event handle="_0000009800000098" change="1" id="E0068">
       <type>Marriage</type>
       <dateval val="1885-11-27"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000009a0000009a" change="1" id="E00069">
+    <event handle="_0000009a0000009a" change="1" id="E0069">
       <type>Marriage</type>
       <dateval val="1910" type="about"/>
     </event>
-    <event handle="_0000009c0000009c" change="1" id="E00070">
+    <event handle="_0000009c0000009c" change="1" id="E0070">
       <type>Marriage</type>
       <dateval val="1927-10-31"/>
       <place hlink="_0000000600000006"/>
     </event>
-    <event handle="_0000009e0000009e" change="1" id="E00071">
+    <event handle="_0000009e0000009e" change="1" id="E0071">
       <type>Marriage</type>
       <dateval val="1920" type="about"/>
     </event>
-    <event handle="_000000a0000000a0" change="1" id="E00072">
+    <event handle="_000000a0000000a0" change="1" id="E0072">
       <type>Marriage</type>
       <dateval val="1958-08-10"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_000000a3000000a3" change="1" id="E00073">
+    <event handle="_000000a3000000a3" change="1" id="E0073">
       <type>Marriage</type>
       <dateval val="1986-07-12"/>
       <place hlink="_0000001400000014"/>
     </event>
-    <event handle="_000000a5000000a5" change="1" id="E00074">
+    <event handle="_000000a5000000a5" change="1" id="E0074">
       <type>Marriage</type>
       <dateval val="1884-08-24"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_000000a9000000a9" change="1" id="E00075">
+    <event handle="_000000a9000000a9" change="1" id="E0075">
       <type>Marriage</type>
       <dateval val="1954-06-04"/>
       <place hlink="_0000000200000002"/>
       <citationref hlink="_000000a8000000a8"/>
     </event>
-    <event handle="_000000ab000000ab" change="1" id="E00076">
+    <event handle="_000000ab000000ab" change="1" id="E0076">
       <type>Marriage</type>
       <dateval val="1995-05-27"/>
       <place hlink="_0000001500000015"/>
     </event>
-    <event handle="_000000ae000000ae" change="1" id="E00077">
+    <event handle="_000000ae000000ae" change="1" id="E0077">
       <type>Marriage</type>
       <dateval val="1912-11-30"/>
       <place hlink="_0000000400000004"/>
@@ -980,134 +980,163 @@
     </source>
   </sources>
   <places>
-    <placeobj handle="_0000000100000001" change="1" id="P0000" type="Unknown">
+    <placeobj handle="_0000000100000001" change="1" id="P0000" group="Places">
       <ptitle>Löderup, Malmöhus Län, Sweden</ptitle>
       <pname value="Löderup, Malmöhus Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000200000002" change="1" id="P0001" type="Unknown">
+    <placeobj handle="_0000000200000002" change="1" id="P0001" group="Places">
       <ptitle>Sparks, Washoe Co., NV</ptitle>
       <pname value="Sparks, Washoe Co., NV"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000300000003" change="1" id="P0002" type="Unknown">
+    <placeobj handle="_0000000300000003" change="1" id="P0002" group="Places">
       <ptitle>San Francisco, San Francisco Co., CA</ptitle>
       <pname value="San Francisco, San Francisco Co., CA"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000400000004" change="1" id="P0003" type="Unknown">
+    <placeobj handle="_0000000400000004" change="1" id="P0003" group="Places">
       <ptitle>Rønne, Bornholm, Denmark</ptitle>
       <pname value="Rønne, Bornholm, Denmark"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000500000005" change="1" id="P0004" type="Unknown">
+    <placeobj handle="_0000000500000005" change="1" id="P0004" group="Places">
       <ptitle>Gladsax, Kristianstad Län, Sweden</ptitle>
       <pname value="Gladsax, Kristianstad Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000600000006" change="1" id="P0005" type="Unknown">
+    <placeobj handle="_0000000600000006" change="1" id="P0005" group="Places">
       <ptitle>Reno, Washoe Co., NV</ptitle>
       <pname value="Reno, Washoe Co., NV"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000700000007" change="1" id="P0006" type="Unknown">
+    <placeobj handle="_0000000700000007" change="1" id="P0006" group="Places">
       <ptitle>Hayward, Alameda Co., CA</ptitle>
       <pname value="Hayward, Alameda Co., CA"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000800000008" change="1" id="P0007" type="Unknown">
+    <placeobj handle="_0000000800000008" change="1" id="P0007" group="Places">
       <ptitle>Community Presbyterian Church, Danville, CA</ptitle>
       <pname value="Community Presbyterian Church, Danville, CA"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000900000009" change="1" id="P0008" type="Unknown">
+    <placeobj handle="_0000000900000009" change="1" id="P0008" group="Places">
       <ptitle>Sweden</ptitle>
       <pname value="Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000a0000000a" change="1" id="P0009" type="Unknown">
+    <placeobj handle="_0000000a0000000a" change="1" id="P0009" group="Places">
       <ptitle>Grostorp, Kristianstad Län, Sweden</ptitle>
       <pname value="Grostorp, Kristianstad Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000b0000000b" change="1" id="P0010" type="Unknown">
+    <placeobj handle="_0000000b0000000b" change="1" id="P0010" group="Places">
       <ptitle>Copenhagen, Denmark</ptitle>
       <pname value="Copenhagen, Denmark"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000c0000000c" change="1" id="P0011" type="Unknown">
+    <placeobj handle="_0000000c0000000c" change="1" id="P0011" group="Places">
       <ptitle>Hoya/Jona/Hoia, Sweden</ptitle>
       <pname value="Hoya/Jona/Hoia, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000d0000000d" change="1" id="P0012" type="Unknown">
+    <placeobj handle="_0000000d0000000d" change="1" id="P0012" group="Places">
       <ptitle>Simrishamn, Kristianstad Län, Sweden</ptitle>
       <pname value="Simrishamn, Kristianstad Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000e0000000e" change="1" id="P0013" type="Unknown">
+    <placeobj handle="_0000000e0000000e" change="1" id="P0013" group="Places">
       <ptitle>Fremont, Alameda Co., CA</ptitle>
       <pname value="Fremont, Alameda Co., CA"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000000f0000000f" change="1" id="P0016" type="Unknown">
+    <placeobj handle="_0000000f0000000f" change="1" id="P0016" group="Places">
       <ptitle>Santa Rosa, Sonoma Co., CA</ptitle>
       <pname value="Santa Rosa, Sonoma Co., CA"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000001000000010" change="1" id="P0017" type="Unknown">
+    <placeobj handle="_0000001000000010" change="1" id="P0017" group="Places">
       <ptitle>San Jose, Santa Clara Co., CA</ptitle>
       <pname value="San Jose, Santa Clara Co., CA"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000001100000011" change="1" id="P0019" type="Unknown">
+    <placeobj handle="_0000001100000011" change="1" id="P0019" group="Places">
       <ptitle>Smestorp, Kristianstad Län, Sweden</ptitle>
       <pname value="Smestorp, Kristianstad Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000001200000012" change="1" id="P0020" type="Unknown">
+    <placeobj handle="_0000001200000012" change="1" id="P0020" group="Places">
       <ptitle>Tommarp, Kristianstad Län, Sweden</ptitle>
       <pname value="Tommarp, Kristianstad Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000001300000013" change="1" id="P0021" type="Unknown">
+    <placeobj handle="_0000001300000013" change="1" id="P0021" group="Places">
       <ptitle>Rønne Bornholm, Denmark</ptitle>
       <pname value="Rønne Bornholm, Denmark"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000001400000014" change="1" id="P0022" type="Unknown">
+    <placeobj handle="_0000001400000014" change="1" id="P0022" group="Places">
       <ptitle>Woodland, Yolo Co., CA</ptitle>
       <pname value="Woodland, Yolo Co., CA"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000001500000015" change="1" id="P0023" type="Unknown">
+    <placeobj handle="_0000001500000015" change="1" id="P0023" group="Places">
       <ptitle>San Ramon, Conta Costa Co., CA</ptitle>
       <pname value="San Ramon, Conta Costa Co., CA"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000001600000016" change="1" id="P0026" type="Country">
+    <placeobj handle="_0000001600000016" change="1" id="P0026" group="Countries">
       <ptitle>United States of America</ptitle>
       <pname value="USA"/>
+      <ptype pt_id="Country" name="Country"/>
     </placeobj>
-    <placeobj handle="_0000001700000017" change="1" id="P0028" type="State">
+    <placeobj handle="_0000001700000017" change="1" id="P0028" group="Regions">
       <ptitle>California, USA</ptitle>
       <pname value="California"/>
-      <placeref hlink="_0000001600000016">
+      <ptype pt_id="State" name="State"/>
+      <placeref hlink="_0000001600000016" type="Administrative">
         <dateval val="2016-06-04"/>
       </placeref>
     </placeobj>
-    <placeobj handle="_0000001800000018" change="1" id="P0025" type="State">
+    <placeobj handle="_0000001800000018" change="1" id="P0025" group="Regions">
       <ptitle>Colorado, USA</ptitle>
       <pname value="Colorado"/>
-      <placeref hlink="_0000001600000016"/>
+      <ptype pt_id="State" name="State"/>
+      <placeref hlink="_0000001600000016" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000001900000019" change="1" id="P0027" type="County">
+    <placeobj handle="_0000001900000019" change="1" id="P0027" group="Regions">
       <ptitle>Sacramento Co., California, USA</ptitle>
       <pname value="Sacramento Co."/>
-      <placeref hlink="_0000001700000017">
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_0000001700000017" type="Administrative">
         <dateval val="2016-06-01"/>
       </placeref>
     </placeobj>
-    <placeobj handle="_0000001a0000001a" change="1" id="P0015" type="City">
+    <placeobj handle="_0000001a0000001a" change="1" id="P0015" group="Places">
       <ptitle>Sacramento, Sacramento Co., CA</ptitle>
       <pname value="Sacramento, Sacramento Co., CA"/>
-      <placeref hlink="_0000001900000019">
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_0000001900000019" type="Administrative">
         <dateval val="2016-06-04"/>
       </placeref>
     </placeobj>
-    <placeobj handle="_0000001b0000001b" change="1" id="P0024" type="County">
+    <placeobj handle="_0000001b0000001b" change="1" id="P0024" group="Regions">
       <ptitle>Denver Co., Colorado, USA</ptitle>
       <pname value="Denver Co."/>
-      <placeref hlink="_0000001800000018"/>
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_0000001800000018" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000001c0000001c" change="1" id="P0014" type="City">
+    <placeobj handle="_0000001c0000001c" change="1" id="P0014" group="Places">
       <ptitle>Denver, Denver Co., CO</ptitle>
-      <pname value="Denver, Denver Co., CO"/>
+      <pname value="Denver"/>
+      <ptype pt_id="City" name="City"/>
       <coord long="104.9903 W" lat="39.7392"/>
-      <placeref hlink="_0000001b0000001b"/>
+      <placeref hlink="_0000001b0000001b" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000001d0000001d" change="1" id="P0033" type="Unknown">
+    <placeobj handle="_0000001d0000001d" change="1" id="P0033" group="Places">
       <ptitle>UC Berkeley</ptitle>
       <pname value="UC Berkeley"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
   </places>
 </database>

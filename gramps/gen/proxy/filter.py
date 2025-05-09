@@ -238,7 +238,7 @@ class FilterProxyDb(ProxyDbBase):
         place = self.db.get_place_from_handle(handle)
 
         if place:
-            # Filter notes out
+            # Filter notes and events out
             self.sanitize_notebase(place)
 
             media_ref_list = place.get_media_list()
@@ -247,6 +247,19 @@ class FilterProxyDb(ProxyDbBase):
                 attributes = media_ref.get_attribute_list()
                 for attribute in attributes:
                     self.sanitize_notebase(attribute)
+            attributes = place.get_attribute_list()
+            for attribute in attributes:
+                self.sanitize_notebase(attribute)
+            eref_list = place.get_event_ref_list()
+
+            new_eref_list = [ref for ref in eref_list if ref.ref in self.elist]
+            for event_ref in new_eref_list:
+                self.sanitize_notebase(event_ref)
+                attributes = event_ref.get_attribute_list()
+                for attribute in attributes:
+                    self.sanitize_notebase(attribute)
+
+            place.set_event_ref_list(new_eref_list)
 
         return place
 

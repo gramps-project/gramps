@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.9.0//EN"
+"http://gramps-project.org/xml/1.9.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.9.0/">
   <header>
-    <created date="2016-10-29" version="5.0.0-alpha1"/>
+    <created date="2025-05-05" version="6.0.0"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
       <resaddr>Not Provided</resaddr>
@@ -34,10 +34,10 @@
       <place hlink="_0000000900000009"/>
       <description>Birth of Keith Lloyd Smith</description>
     </event>
-    <event handle="_0000000c0000000c" change="1465075916" id="E0003">
+    <event handle="_0000000c0000000c" change="1506719905" id="E0003">
       <type>Birth</type>
       <dateval val="1904-04-17"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Hans Peter Smith</description>
       <citationref hlink="_d53254b0c802fe24bdea26f3180"/>
     </event>
@@ -53,10 +53,10 @@
       <place hlink="_0000001300000013"/>
       <description>Birth of Hanna Smith</description>
     </event>
-    <event handle="_0000001600000016" change="1463929997" id="E0006">
+    <event handle="_0000001600000016" change="1506719905" id="E0006">
       <type>Birth</type>
       <dateval val="1889-08-31"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Herman Julius Nielsen</description>
     </event>
     <event handle="_0000001700000017" change="1463929997" id="E0007">
@@ -75,10 +75,10 @@
       <place hlink="_0000001e0000001e"/>
       <description>Birth of Marjorie Lee Smith</description>
     </event>
-    <event handle="_0000002100000021" change="1463929997" id="E0010">
+    <event handle="_0000002100000021" change="1506719905" id="E0010">
       <type>Birth</type>
       <dateval val="1897-09-11"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Gus Smith</description>
     </event>
     <event handle="_0000002200000022" change="1463929997" id="E0011">
@@ -87,10 +87,10 @@
       <place hlink="_0000000900000009"/>
       <description>Death of Gus Smith</description>
     </event>
-    <event handle="_0000002400000024" change="1463929997" id="E0012">
+    <event handle="_0000002400000024" change="1506719905" id="E0012">
       <type>Birth</type>
       <dateval val="1907-11-05"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Jennifer Anderson</description>
     </event>
     <event handle="_0000002500000025" change="1463929997" id="E0013">
@@ -99,10 +99,10 @@
       <place hlink="_0000000900000009"/>
       <description>Death of Jennifer Anderson</description>
     </event>
-    <event handle="_0000002700000027" change="1463929997" id="E0014">
+    <event handle="_0000002700000027" change="1506719905" id="E0014">
       <type>Birth</type>
       <dateval val="1910-05-02"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Lillie Harriet Jones</description>
     </event>
     <event handle="_0000002800000028" change="1463929997" id="E0015">
@@ -137,10 +137,10 @@
       <place hlink="_0000003400000034"/>
       <description>Christening of Amber Marie Smith</description>
     </event>
-    <event handle="_0000003700000037" change="1463929997" id="E0021">
+    <event handle="_0000003700000037" change="1506719905" id="E0021">
       <type>Birth</type>
       <dateval val="1899-12-20"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Carl Emil Smith</description>
     </event>
     <event handle="_0000003800000038" change="1463929997" id="E0022">
@@ -150,16 +150,16 @@
       <description>Death of Carl Emil Smith</description>
       <attribute type="Cause" value="Bad breath"/>
     </event>
-    <event handle="_0000003a0000003a" change="1463929997" id="E0023">
+    <event handle="_0000003a0000003a" change="1506719905" id="E0023">
       <type>Birth</type>
       <dateval val="1893-01-31"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Hjalmar Smith</description>
     </event>
-    <event handle="_0000003b0000003b" change="1463929997" id="E0024">
+    <event handle="_0000003b0000003b" change="1506719905" id="E0024">
       <type>Death</type>
       <dateval val="1894-09-25"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Death of Hjalmar Smith</description>
     </event>
     <event handle="_0000003d0000003d" change="1463929997" id="E0025">
@@ -180,10 +180,10 @@
       <place hlink="_0000001300000013"/>
       <description>Baptism of Martin Smith</description>
     </event>
-    <event handle="_0000004400000044" change="1463929997" id="E0028">
+    <event handle="_0000004400000044" change="1506719905" id="E0028">
       <type>Birth</type>
       <dateval val="1889-01-31"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Astrid Shermanna Augusta Smith</description>
     </event>
     <event handle="_0000004500000045" change="1463929997" id="E0029">
@@ -221,10 +221,10 @@
       <place hlink="_0000003f0000003f"/>
       <description>Birth of Marta Ericsdotter</description>
     </event>
-    <event handle="_0000005100000051" change="1463929997" id="E0035">
+    <event handle="_0000005100000051" change="1506719905" id="E0035">
       <type>Birth</type>
       <dateval val="1886-12-15"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Kirsti Marie Smith</description>
     </event>
     <event handle="_0000005200000052" change="1463929997" id="E0036">
@@ -245,10 +245,10 @@
       <place hlink="_0000005800000058"/>
       <description>Birth of Anna Streiffert</description>
     </event>
-    <event handle="_0000005900000059" change="1463929997" id="E0039">
+    <event handle="_0000005900000059" change="1506719905" id="E0039">
       <type>Death</type>
       <dateval val="1927-02-02"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Death of Anna Streiffert</description>
     </event>
     <event handle="_0000005c0000005c" change="1463929997" id="E0040">
@@ -268,10 +268,10 @@
       <place hlink="_0000006100000061"/>
       <description>Birth of Magnes Smith</description>
     </event>
-    <event handle="_0000006200000062" change="1463929997" id="E0043">
+    <event handle="_0000006200000062" change="1506719905" id="E0043">
       <type>Death</type>
       <dateval val="1910-02-20"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Death of Magnes Smith</description>
     </event>
     <event handle="_0000006400000064" change="1463929997" id="E0044">
@@ -431,10 +431,10 @@
       <place hlink="_0000001300000013"/>
       <description>Birth of Ingar Smith</description>
     </event>
-    <event handle="_0000009d0000009d" change="1463929997" id="E0072">
+    <event handle="_0000009d0000009d" change="1506719905" id="E0072">
       <type>Birth</type>
       <dateval val="1895-04-07"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Hjalmar Smith</description>
     </event>
     <event handle="_0000009e0000009e" change="1463929997" id="E0073">
@@ -443,10 +443,10 @@
       <place hlink="_0000001e0000001e"/>
       <description>Death of Hjalmar Smith</description>
     </event>
-    <event handle="_0000009f0000009f" change="1463929997" id="E0074">
+    <event handle="_0000009f0000009f" change="1506719952" id="E0074">
       <type>Baptism</type>
       <dateval val="1895-06-03"/>
-      <place hlink="_000000a0000000a0"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Baptism of Hjalmar Smith</description>
     </event>
     <event handle="_000000a1000000a1" change="1463929997" id="E0075">
@@ -478,10 +478,10 @@
       <place hlink="_000000a8000000a8"/>
       <description>Marriage of Eric Lloyd Smith and Darcy Horne</description>
     </event>
-    <event handle="_000000a9000000a9" change="1463929997" id="E0080">
+    <event handle="_000000a9000000a9" change="1506719905" id="E0080">
       <type>Marriage</type>
       <dateval val="1884-08-24"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Marriage of Magnes Smith and Anna Streiffert</description>
     </event>
     <event handle="_000000aa000000aa" change="1463929997" id="E0081">
@@ -508,10 +508,10 @@
       <dateval val="1856" type="about"/>
       <description>Marriage of Martin Smith and Kerstina Hansdotter</description>
     </event>
-    <event handle="_000000b1000000b1" change="1463929997" id="E0085">
+    <event handle="_000000b1000000b1" change="1506719905" id="E0085">
       <type>Marriage</type>
       <dateval val="1885-11-27"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Marriage of Gustaf Smith, Sr. and Anna Hansdotter</description>
     </event>
     <event handle="_000000b2000000b2" change="1463929997" id="E0086">
@@ -519,10 +519,10 @@
       <dateval val="1910" type="about"/>
       <description>Marriage of Edwin Willard and Kirsti Marie Smith</description>
     </event>
-    <event handle="_000000b3000000b3" change="1463929997" id="E0087">
+    <event handle="_000000b3000000b3" change="1506719905" id="E0087">
       <type>Marriage</type>
       <dateval val="1912-11-30"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Marriage of Herman Julius Nielsen and Astrid Shermanna Augusta Smith</description>
     </event>
     <event handle="_000000b4000000b4" change="1463929997" id="E0088">
@@ -624,8 +624,9 @@
       <datestr val="I think 1970 to 1971"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_d70acccb2bdd725c3180c78f28" change="1477758659" id="E0105">
+    <event handle="_d70acccb2bdd725c3180c78f28" change="1506722524" id="E0105">
       <type>Death</type>
+      <place hlink="_db41bb333d243420a5c6c590035"/>
     </event>
     <event handle="_d70ad043a9e669bb85bfe71deba" change="1477759023" id="E0106">
       <type>LossOfMojo</type>
@@ -635,6 +636,12 @@
     <event handle="_d70ad0ba90b766d0f8966fb0aba" change="1477759072" id="E0107">
       <type>GainOfMojo</type>
       <dateval val="1973-07-10"/>
+    </event>
+    <event handle="_e2f2e8d6cc0167e959e990d42f9" change="1559581285" id="E0103">
+      <type>History</type>
+      <dateval val="2009"/>
+      <place hlink="_e2f2ec25e2e5c0596ddb78719ba"/>
+      <description>Lisbon Treaty</description>
     </event>
   </events>
   <people>
@@ -773,8 +780,8 @@
       <gender>F</gender>
       <name type="Birth Name">
         <first>Amber Marie</first>
-        <surname>Smith</surname>
         <call>Marie</call>
+        <surname>Smith</surname>
       </name>
       <eventref hlink="_0000003100000031" role="Primary"/>
       <eventref hlink="_0000003300000033" role="Primary"/>
@@ -1104,14 +1111,14 @@
         <surname>リチミシキスイミ</surname>
       </name>
     </person>
-    <person handle="_d65a448167a2736b3dfc08c11d8" change="1477759240" id="I0044">
+    <person handle="_d65a448167a2736b3dfc08c11d8" change="1506722528" id="I0044">
       <gender>M</gender>
       <name type="Birth Name">
         <first>The</first>
         <surname>Tester</surname>
       </name>
       <eventref hlink="_d65a44813a618a10a0abaa1ed6a" role="Primary"/>
-      <eventref hlink="_d70acccb2bdd725c3180c78f28" role="Unknown"/>
+      <eventref hlink="_d70acccb2bdd725c3180c78f28" role="Primary"/>
       <eventref hlink="_d70ad043a9e669bb85bfe71deba" role="Primary"/>
       <eventref hlink="_d70ad0ba90b766d0f8966fb0aba" role="Primary"/>
       <lds_ord type="baptism">
@@ -1279,7 +1286,7 @@
       <rel type="Unknown"/>
       <father hlink="_0000000b0000000b"/>
       <mother hlink="_0000002600000026"/>
-      <childref hlink="_0000006f0000006f" frel="Adopted" mrel="Foster"/>
+      <childref hlink="_0000006f0000006f" mrel="Foster" frel="Adopted"/>
     </family>
     <family handle="_0000001000000010" change="1198222526" id="F0014">
       <rel type="Unknown"/>
@@ -1437,6 +1444,87 @@
       <noteref hlink="_d70a86ba52769996c5099561a3d"/>
       <sourceref hlink="_d65a448169824195df7cdb2236c"/>
     </citation>
+    <citation handle="_db41be3050d2f86673a06ba6b58" change="1506721313" id="C0008">
+      <page>widipedia</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_d7044abba5546284583fee1e21c"/>
+    </citation>
+    <citation handle="_e2f2d5a562c1235483408fee2a5" change="1559578714" id="C0009">
+      <page>GeoNames ID: 2614553</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_e2f2dc0bf2f71ebbef9a9db6c15" change="1559579385" id="C0010">
+      <page>None, just testing</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_e2f2e8197e64bec0c4d4bdadfd2" change="1559580649" id="C0011">
+      <dateval val="2019-06"/>
+      <page>Cit for test purposes</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_e2f2ea7c592294ab2a628e04b63" change="1559580899" id="C0012">
+      <page>GeoNames ID: 2267056</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_e2f2ead323e1d50820dcba94449" change="1559580935" id="C0013">
+      <page>GeoNames ID: 2264397</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_fdfdec436d8b2e9207f0858ec6" change="1745418952" id="C0014">
+      <page>GeoNames ID: 3996063</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_fdfe18fd2e95c39efa68fa61af2" change="1745423642" id="C0015">
+      <page>GeoNames ID: 5511077</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_fdfe19c646e7b2a11555470d7aa" change="1745423724" id="C0016">
+      <page>GeoNames ID: 5709906</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_fdfe19c6a127acb8004bdffe560" change="1745423724" id="C0017">
+      <page>GeoNames ID: 5709906</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_fdfe1a1da6e723689b9b967d720" change="1745423760" id="C0018">
+      <page>GeoNames ID: 5509151</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_fdfe1a88689319c7899e5b6cd27" change="1745423804" id="C0019">
+      <page>GeoNames ID: 6252001</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_fdfe1ee1a4666f788b93da07298" change="1745424260" id="C0020">
+      <page>GeoNames ID: 5512862</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_fdfe3f0a7555d462300ce984a46" change="1745427632" id="C0021">
+      <page>GeoNames ID: 5341531</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_fdfefc86f1d506d09f662c07577" change="1745447501" id="C0026">
+      <page>GeoNames ID: 5339268</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
+    <citation handle="_fdfefd1edca4f09d208c9b4f39e" change="1745447563" id="C0027">
+      <page>GeoNames ID: 5332921</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_e2f2d5a4c5a3cd14708e55e8fd8"/>
+    </citation>
   </citations>
   <sources>
     <source handle="_0000007c0000007c" change="1198222526" id="S0001">
@@ -1479,179 +1567,728 @@
       <sauthor>The tester</sauthor>
       <spubinfo>Published when the test was written</spubinfo>
       <sabbrev>TST</sabbrev>
-      <reporef hlink="_d7044c855b91ee04c40e98987e7"/>
+      <reporef hlink="_d7044c855b91ee04c40e98987e7" medium="Book"/>
+    </source>
+    <source handle="_e2f2d5a4c5a3cd14708e55e8fd8" change="1559578714" id="S0008">
+      <stitle>GeoNames</stitle>
+      <sauthor>Marc Wick</sauthor>
+      <reporef hlink="_e2f2d5a4c5a65d019c1ac47d963" medium="Electronic"/>
     </source>
   </sources>
   <places>
-    <placeobj handle="_0000000300000003" change="1465741826" id="P0000" type="Unknown">
+    <placeobj handle="_0000000300000003" change="1465741826" id="P0000" group="Places">
       <ptitle>Löderup, Malmöhus Län, Sweden</ptitle>
       <pname value="Löderup, Malmöhus Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
       <tagref hlink="_d54b22fbfc721be9331fb706e3"/>
     </placeobj>
-    <placeobj handle="_0000000500000005" change="1463929997" id="P0001" type="Unknown">
+    <placeobj handle="_0000000500000005" change="1745424260" id="GEO5512862" group="Places">
       <ptitle>Sparks, Washoe Co., NV</ptitle>
-      <pname value="Sparks, Washoe Co., NV"/>
+      <pname value="Sparks" lang="en"/>
+      <pname value="Sparks"/>
+      <pname value="Harriman"/>
+      <pname value="Sparks" lang="de"/>
+      <pname value="Sparks" lang="pl"/>
+      <pname value="Спаркс" lang="ru"/>
+      <ptype pt_id="City" name="City"/>
+      <coord long="-119.75269" lat="39.53491"/>
+      <placeref hlink="_fdfe18fcd72185778c9855e993c" type="Administrative"/>
+      <url  href="https://en.wikipedia.org/wiki/Sparks%2C_Nevada" type="Web Home" description="https://en.wikipedia.org/wiki/Sparks%2C_Nevada"/>
+      <citationref hlink="_fdfe1ee1a4666f788b93da07298"/>
+      <attribute type="Postal code" value="89431"/>
+      <attribute type="Postal code" value="89432"/>
+      <attribute type="Postal code" value="89434"/>
+      <attribute type="Postal code" value="89435"/>
+      <attribute type="Postal code" value="89436"/>
     </placeobj>
-    <placeobj handle="_0000000900000009" change="1463929997" id="P0002" type="Unknown">
+    <placeobj handle="_0000000900000009" change="1746487595" id="P0002" group="Places">
       <ptitle>San Francisco, San Francisco Co., CA</ptitle>
-      <pname value="San Francisco, San Francisco Co., CA"/>
+      <pname value="San Francisco"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_fde8799db083ebbccafd9c4301b" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000000d0000000d" change="1463929997" id="P0003" type="Unknown">
-      <ptitle>Rønne, Bornholm, Denmark</ptitle>
-      <pname value="Rønne, Bornholm, Denmark"/>
-    </placeobj>
-    <placeobj handle="_0000001300000013" change="1465741826" id="P0004" type="Unknown">
+    <placeobj handle="_0000001300000013" change="1745357328" id="P0004" group="Places">
       <ptitle>Gladsax, Kristianstad Län, Sweden</ptitle>
       <pname value="Gladsax, Kristianstad Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
       <tagref hlink="_d54b22fbfc721be9331fb706e3"/>
     </placeobj>
-    <placeobj handle="_0000001e0000001e" change="1463929997" id="P0005" type="Unknown">
+    <placeobj handle="_0000001e0000001e" change="1745423642" id="GEO5511077" group="Places">
       <ptitle>Reno, Washoe Co., NV</ptitle>
-      <pname value="Reno, Washoe Co., NV"/>
+      <pname value="Reno" lang="en"/>
+      <pname value="Reno"/>
+      <pname value="Fullers Crossing"/>
+      <pname value="Lakes Crossing"/>
+      <pname value="Reno" lang="da"/>
+      <pname value="Reno" lang="de"/>
+      <pname value="Reno" lang="es"/>
+      <pname value="Reno" lang="fi"/>
+      <pname value="Reno" lang="fr"/>
+      <pname value="Reno" lang="pl"/>
+      <pname value="Reno-Stead"/>
+      <pname value="Рино" lang="ru"/>
+      <ptype pt_id="City" name="City"/>
+      <coord long="-119.8138" lat="39.52963"/>
+      <placeref hlink="_fdfe18fcd72185778c9855e993c" type="Administrative"/>
+      <url  href="https://en.wikipedia.org/wiki/Reno%2C_Nevada" type="Web Home" description="https://en.wikipedia.org/wiki/Reno%2C_Nevada"/>
+      <url  href="https://ru.wikipedia.org/wiki/%D0%A0%D0%B8%D0%BD%D0%BE" type="Web Home" description="https://ru.wikipedia.org/wiki/%D0%A0%D0%B8%D0%BD%D0%BE"/>
+      <citationref hlink="_fdfe18fd2e95c39efa68fa61af2"/>
+      <attribute type="Postal code" value="89501"/>
+      <attribute type="Postal code" value="89502"/>
+      <attribute type="Postal code" value="89503"/>
+      <attribute type="Postal code" value="89504"/>
+      <attribute type="Postal code" value="89505"/>
+      <attribute type="Postal code" value="89506"/>
+      <attribute type="Postal code" value="89507"/>
+      <attribute type="Postal code" value="89509"/>
+      <attribute type="Postal code" value="89510"/>
+      <attribute type="Postal code" value="89511"/>
+      <attribute type="Postal code" value="89512"/>
+      <attribute type="Postal code" value="89513"/>
+      <attribute type="Postal code" value="89515"/>
+      <attribute type="Postal code" value="89520"/>
+      <attribute type="Postal code" value="89523"/>
+      <attribute type="Postal code" value="89533"/>
+      <attribute type="Postal code" value="89555"/>
+      <attribute type="Postal code" value="89557"/>
+      <attribute type="Postal code" value="89570"/>
+      <attribute type="Postal code" value="89595"/>
+      <attribute type="Postal code" value="89599"/>
     </placeobj>
-    <placeobj handle="_0000003200000032" change="1463929997" id="P0006" type="Unknown">
+    <placeobj handle="_0000003200000032" change="1746487556" id="P0006" group="Places">
       <ptitle>Hayward, Alameda Co., CA</ptitle>
-      <pname value="Hayward, Alameda Co., CA"/>
+      <pname value="Hayward"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_fde87abc62c39e29623816dd46f" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000003400000034" change="1477754702" id="P0007" type="Locality">
+    <placeobj handle="_0000003400000034" change="1745427470" id="P0007" group="Places">
       <ptitle>Community Presbyterian Church, Danville, CA</ptitle>
-      <pname value="Community Presbyterian Church, Danville, CA"/>
+      <pname value="Community Presbyterian Church"/>
+      <ptype pt_id="Locality" name="Locality"/>
+      <placeref hlink="_fdfe3d7f7f3182e47b0f916b836" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000003f0000003f" change="1463929997" id="P0008" type="Unknown">
+    <placeobj handle="_0000003f0000003f" change="1744843387" id="P0008" group="Places">
       <ptitle>Sweden</ptitle>
       <pname value="Sweden"/>
+      <ptype pt_id="Country" name="Country"/>
     </placeobj>
-    <placeobj handle="_0000004800000048" change="1465741826" id="P0009" type="Unknown">
+    <placeobj handle="_0000004800000048" change="1465741826" id="P0009" group="Places">
       <ptitle>Grostorp, Kristianstad Län, Sweden</ptitle>
       <pname value="Grostorp, Kristianstad Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
       <tagref hlink="_d54b22fbfc721be9331fb706e3"/>
     </placeobj>
-    <placeobj handle="_0000004b0000004b" change="1463929997" id="P0010" type="Unknown">
+    <placeobj handle="_0000004b0000004b" change="1744991487" id="object_364318" group="Places">
       <ptitle>Copenhagen, Denmark</ptitle>
-      <pname value="Copenhagen, Denmark"/>
+      <pname value="Copenhagen" lang="en"/>
+      <pname value="København" lang="da"/>
+      <pname value="Kopenhagen" lang="de"/>
+      <ptype pt_id="GOV_150" name="Stadt (Gebietskörperschaft)"/>
+      <placeref hlink="_e2ed125a528a2128aa55ad3b" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000005800000058" change="1463929997" id="P0011" type="Unknown">
+    <placeobj handle="_0000005800000058" change="1463929997" id="P0011" group="Places">
       <ptitle>Hoya/Jona/Hoia, Sweden</ptitle>
       <pname value="Hoya/Jona/Hoia, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000006100000061" change="1465741788" id="P0012" type="Unknown">
+    <placeobj handle="_0000006100000061" change="1465741788" id="P0012" group="Places">
       <ptitle>Simrishamn, Kristianstad Län, Sweden</ptitle>
       <pname value="Simrishamn, Kristianstad Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
       <tagref hlink="_d54b22fbfc721be9331fb706e3"/>
     </placeobj>
-    <placeobj handle="_0000006500000065" change="1463929997" id="P0013" type="Unknown">
+    <placeobj handle="_0000006500000065" change="1746487410" id="P0013" group="Places">
       <ptitle>Fremont, Alameda Co., CA</ptitle>
-      <pname value="Fremont, Alameda Co., CA"/>
+      <pname value="Fremont"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_fde87abc62c39e29623816dd46f" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000006a0000006a" change="1465074983" id="P0014" type="City">
+    <placeobj handle="_0000006a0000006a" change="1746487535" id="P0014" group="Places">
       <ptitle>Denver, Denver Co., CO</ptitle>
-      <pname value="Denver, Denver Co., CO"/>
+      <pname value="Denver"/>
+      <ptype pt_id="City" name="City"/>
       <coord long="104.9903 W" lat="39.7392"/>
-      <placeref hlink="_d5324558dba1394350365e4cf42"/>
+      <placeref hlink="_d5324558dba1394350365e4cf42" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000006e0000006e" change="1465075284" id="P0015" type="City">
+    <placeobj handle="_0000006e0000006e" change="1746487579" id="P0015" group="Places">
       <ptitle>Sacramento, Sacramento Co., CA</ptitle>
-      <pname value="Sacramento, Sacramento Co., CA"/>
-      <placeref hlink="_d5324e9474c3e534f8629e64977">
+      <pname value="Sacramento"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_d5324e9474c3e534f8629e64977" type="Administrative">
         <dateval val="2016-06-04"/>
       </placeref>
     </placeobj>
-    <placeobj handle="_0000007500000075" change="1463929997" id="P0016" type="Unknown">
+    <placeobj handle="_0000007500000075" change="1746487629" id="P0016" group="Places">
       <ptitle>Santa Rosa, Sonoma Co., CA</ptitle>
-      <pname value="Santa Rosa, Sonoma Co., CA"/>
+      <pname value="Santa Rosa"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_fde87cd604c24cf16a3e6a58bda" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000008100000081" change="1463929997" id="P0017" type="Unknown">
+    <placeobj handle="_0000008100000081" change="1746487606" id="P0017" group="Places">
       <ptitle>San Jose, Santa Clara Co., CA</ptitle>
-      <pname value="San Jose, Santa Clara Co., CA"/>
+      <pname value="San Jose"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_fde87d53fe23aa5088928279534" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000008500000085" change="1463929997" id="P0018" type="Unknown">
+    <placeobj handle="_0000008500000085" change="1744843974" id="P0018" group="Places">
       <ptitle>UC Berkeley</ptitle>
       <pname value="UC Berkeley"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_fde880cf96b11c1bde3421fed1c" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000008900000089" change="1463929997" id="P0019" type="Unknown">
+    <placeobj handle="_0000008900000089" change="1463929997" id="P0019" group="Places">
       <ptitle>Smestorp, Kristianstad Län, Sweden</ptitle>
       <pname value="Smestorp, Kristianstad Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000008d0000008d" change="1465741826" id="P0020" type="Unknown">
+    <placeobj handle="_0000008d0000008d" change="1465741826" id="P0020" group="Places">
       <ptitle>Tommarp, Kristianstad Län, Sweden</ptitle>
       <pname value="Tommarp, Kristianstad Län, Sweden"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
       <tagref hlink="_d54b22fbfc721be9331fb706e3"/>
     </placeobj>
-    <placeobj handle="_000000a0000000a0" change="1463929997" id="P0021" type="Unknown">
-      <ptitle>Rønne Bornholm, Denmark</ptitle>
-      <pname value="Rønne Bornholm, Denmark"/>
-    </placeobj>
-    <placeobj handle="_000000a8000000a8" change="1463929997" id="P0022" type="Unknown">
+    <placeobj handle="_000000a8000000a8" change="1746487648" id="P0022" group="Places">
       <ptitle>Woodland, Yolo Co., CA</ptitle>
-      <pname value="Woodland, Yolo Co., CA"/>
+      <pname value="Woodland"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_fde87ed011c4a887770b146d36" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_000000ae000000ae" change="1463929997" id="P0023" type="Unknown">
+    <placeobj handle="_000000ae000000ae" change="1746487616" id="P0023" group="Places">
       <ptitle>San Ramon, Conta Costa Co., CA</ptitle>
-      <pname value="San Ramon, Conta Costa Co., CA"/>
+      <pname value="San Ramon"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_fdfe3f0a15f57d0e0326a9b1cfb" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_d5324558dba1394350365e4cf42" change="1465316304" id="P0024" type="County">
+    <placeobj handle="_d5324558dba1394350365e4cf42" change="1744842947" id="P0024" group="Regions">
       <ptitle>Denver Co., Colorado, USA</ptitle>
       <pname value="Denver Co."/>
-      <placeref hlink="_d5324c1e94119eebf093a1e3865"/>
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_d5324c1e94119eebf093a1e3865" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_d5324c1e94119eebf093a1e3865" change="1465316280" id="P0025" type="State">
+    <placeobj handle="_d5324c1e94119eebf093a1e3865" change="1745424020" id="P0025" group="Regions">
       <ptitle>Colorado, USA</ptitle>
       <pname value="Colorado"/>
-      <placeref hlink="_d5324c509dc579ef9edb8afd4a8"/>
+      <ptype pt_id="State" name="State"/>
+      <placeref hlink="_fdfe1a1d4744f040fc9b21056f2" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_d5324c509dc579ef9edb8afd4a8" change="1465316343" id="P0026" type="Country">
-      <ptitle>United States of America</ptitle>
-      <pname value="USA"/>
-    </placeobj>
-    <placeobj handle="_d5324e9474c3e534f8629e64977" change="1465316324" id="P0027" type="County">
+    <placeobj handle="_d5324e9474c3e534f8629e64977" change="1744842955" id="P0027" group="Regions">
       <ptitle>Sacramento Co., California, USA</ptitle>
       <pname value="Sacramento Co."/>
-      <placeref hlink="_d5324f6ce236ebb32131789b38f">
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_d5324f6ce236ebb32131789b38f" type="Administrative">
         <dateval val="2016-06-01"/>
       </placeref>
     </placeobj>
-    <placeobj handle="_d5324f6ce236ebb32131789b38f" change="1465316268" id="P0028" type="State">
+    <placeobj handle="_d5324f6ce236ebb32131789b38f" change="1745448128" id="P0028" group="Regions">
       <ptitle>California, USA</ptitle>
-      <pname value="California"/>
-      <placeref hlink="_d5324c509dc579ef9edb8afd4a8">
-        <dateval val="2016-06-04"/>
-      </placeref>
+      <pname value="California">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="California" lang="en">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="Albion">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="Alta California" lang="es"/>
+      <pname value="Calif.">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="California" lang="es"/>
+      <pname value="California" lang="no"/>
+      <pname value="California" lang="sw"/>
+      <pname value="California Del Norte">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="California Republic" lang="en">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="California Septentrional">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="California Superior">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="Californie" lang="fr"/>
+      <pname value="Californien" lang="da"/>
+      <pname value="Estado de California" lang="es"/>
+      <pname value="Golden State" lang="en">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="Kalifornia" lang="fi"/>
+      <pname value="Kalifornia" lang="pl"/>
+      <pname value="Kalifornien" lang="de"/>
+      <pname value="New Albion">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="Noua Albion">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="Nueva California">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="State of California" lang="en">
+        <pabbr type="Abbreviation" value="CA"/>
+        <pabbr type="Abbreviation" value="Calif"/>
+      </pname>
+      <pname value="Калифорния" lang="ru"/>
+      <ptype pt_id="State" name="State"/>
+      <coord long="-119.75126" lat="37.25022"/>
+      <placeref hlink="_fdfe1a1d4744f040fc9b21056f2" type="Administrative"/>
+      <url  href="http://id.loc.gov/authorities/names/n79041717" type="Web Home" description="http://id.loc.gov/authorities/names/n79041717"/>
+      <url  href="https://en.wikipedia.org/wiki/California" type="Web Home" description="https://en.wikipedia.org/wiki/California"/>
+      <citationref hlink="_fdfefd1edca4f09d208c9b4f39e"/>
     </placeobj>
-    <placeobj handle="_d65a44813b0735f73085f380547" change="1472500308" id="P0029" type="Street">
+    <placeobj handle="_d65a44813b0735f73085f380547" change="1744843084" id="P0029" group="Buildings">
       <ptitle>123 High St, Cleveland, Cuyahoga, Ohio, USA, 44140</ptitle>
-      <code>44140</code>
-      <pname value="123 High St"/>
-      <placeref hlink="_d65a44816ac17876c5904523a6f"/>
+      <pname value="123 High St" lang="en">
+        <dateval val="1952" type="after"/>
+      </pname>
+      <ptype pt_id="Street" name="Street"/>
+      <placeref hlink="_d65a44816ac17876c5904523a6f" type="Administrative"/>
+      <attribute type="Postal code" value="44140"/>
     </placeobj>
-    <placeobj handle="_d65a448166f44db953c2fc173cf" change="1472500308" id="P0030" type="Address">
+    <placeobj handle="_d65a448166f44db953c2fc173cf" change="1746487442" id="P0030" group="Places">
       <ptitle>123 Main St., Winslow, PA, 12345</ptitle>
-      <pname value="123 Main St., Winslow, PA, 12345"/>
+      <pname value="123 Main St." lang="en">
+        <dateval val="1950" type="after"/>
+      </pname>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_db41b65b17175cbacac45a9ae06" type="Administrative"/>
       <location street="123 Main St." city="Winslow" state="PA" postal="12345"/>
     </placeobj>
-    <placeobj handle="_d65a44816ac17876c5904523a6f" change="1472500308" id="P0034" type="City">
+    <placeobj handle="_d65a44816ac17876c5904523a6f" change="1506720323" id="P0034" group="Places">
       <ptitle>Cleveland, Cuyahoga, Ohio, USA</ptitle>
-      <pname value="Cleveland"/>
-      <placeref hlink="_d65a44816b65ed679ad0a8edbc4"/>
+      <pname value="Cleveland" lang="en">
+        <dateval val="1796" type="after"/>
+      </pname>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_d65a44816b65ed679ad0a8edbc4" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_d65a44816b644bf4d11d3a0a5" change="1472500308" id="P0031" type="Country">
-      <ptitle>USA</ptitle>
-      <pname value="USA"/>
-    </placeobj>
-    <placeobj handle="_d65a44816b65ed679ad0a8edbc4" change="1472500308" id="P0033" type="County">
+    <placeobj handle="_d65a44816b65ed679ad0a8edbc4" change="1744842962" id="P0033" group="Regions">
       <ptitle>Cuyahoga, Ohio, USA</ptitle>
       <pname value="Cuyahoga"/>
-      <placeref hlink="_d65a44816b6da4fc40e3b078d8"/>
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_d65a44816b6da4fc40e3b078d8" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_d65a44816b6da4fc40e3b078d8" change="1472500308" id="P0032" type="State">
+    <placeobj handle="_d65a44816b6da4fc40e3b078d8" change="1745424020" id="P0032" group="Regions">
       <ptitle>Ohio, USA</ptitle>
       <pname value="Ohio"/>
-      <placeref hlink="_d65a44816b644bf4d11d3a0a5"/>
+      <ptype pt_id="State" name="State"/>
+      <placeref hlink="_fdfe1a1d4744f040fc9b21056f2" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_db41af47aef72a46a71b7444f18" change="1559579139" id="GEO2614553" group="Places">
+      <pname value="Rønne"/>
+      <pname value="Rønne" lang="de"/>
+      <pname value="Rønne" lang="en"/>
+      <pname value="Rønne" lang="da"/>
+      <ptype pt_id="City" name="City"/>
+      <ptype pt_id="GOV_39" name="place39"/>
+      <coord long="14.7" lat="55.1"/>
+      <placeref hlink="_e2f2d13908a47130650132fc52a" type="Administrative"/>
+      <url  href="https://en.wikipedia.org/wiki/R%C3%B8nne" type="Web Home" description="https://en.wikipedia.org/wiki/R%C3%B8nne"/>
+      <url  href="https://ru.wikipedia.org/wiki/%D0%A0%D1%91%D0%BD%D0%BD%D0%B5" type="Web Home" description="https://ru.wikipedia.org/wiki/%D0%A0%D1%91%D0%BD%D0%BD%D0%B5"/>
+      <citationref hlink="_e2f2d5a562c1235483408fee2a5"/>
+      <attribute type="Postal code" value="3700"/>
+      <attribute type="Demographic data" value="13890; Type: Population"/>
+    </placeobj>
+    <placeobj handle="_db41b642e10bf768be070f6283" change="1745424020" id="P0003" group="Regions">
+      <pname value="Pennsylvania"/>
+      <pname value="PA"/>
+      <ptype pt_id="State" name="State"/>
+      <placeref hlink="_fdfe1a1d4744f040fc9b21056f2" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_db41b65b17175cbacac45a9ae06" change="1506720492" id="P0021" group="Places">
+      <pname value="Winslow"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_db41b642e10bf768be070f6283" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_db41bb2b8ab59f82b97c9c21294" change="1745424020" id="P0031" group="Regions">
+      <pname value="Texas"/>
+      <ptype pt_id="State" name="State"/>
+      <placeref hlink="_fdfe1a1d4744f040fc9b21056f2" type="Administrative">
+        <dateval val="1845" type="after"/>
+      </placeref>
+      <placeref hlink="_db41bd0b3e94a8d7e20d37da900" type="Administrative">
+        <datespan start="1836" stop="1845"/>
+      </placeref>
+      <placeref hlink="_db41bda94f612959fee03427f4f" type="Administrative">
+        <datespan start="1690" stop="1821"/>
+      </placeref>
+      <objref hlink="_db41bee197b316a5371fe2bc0d9"/>
+      <noteref hlink="_db41be7a64eae2db056a8232f9"/>
+      <citationref hlink="_db41be3050d2f86673a06ba6b58"/>
+    </placeobj>
+    <placeobj handle="_db41bb2d3d929c33be5d3bd5f68" change="1744842971" id="P0035" group="Regions">
+      <pname value="Harris"/>
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_db41bb2b8ab59f82b97c9c21294" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_db41bb333d243420a5c6c590035" change="1506721000" id="P0036" group="Places">
+      <pname value="Houston"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_db41bb2d3d929c33be5d3bd5f68" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_db41bd0b3e94a8d7e20d37da900" change="1744842832" id="P0037" group="Countries">
+      <pname value="Republic of Texas"/>
+      <ptype pt_id="Country" name="Country"/>
+    </placeobj>
+    <placeobj handle="_db41bda94f612959fee03427f4f" change="1745418952" id="GEO3996063" group="Countries">
+      <pname value="Mexico" lang="en">
+        <pabbr type="ISO3166" value="MX"/>
+      </pname>
+      <pname value="Mexico">
+        <pabbr type="ISO3166" value="MX"/>
+      </pname>
+      <pname value="el País Azteca" lang="es"/>
+      <pname value="Estados Unidos Mexicanos" lang="es"/>
+      <pname value="Méjico" lang="es"/>
+      <pname value="Meksiko" lang="fi"/>
+      <pname value="Meksiko" lang="sw"/>
+      <pname value="Meksyk" lang="pl"/>
+      <pname value="Mèssico">
+        <pabbr type="ISO3166" value="MX"/>
+      </pname>
+      <pname value="Mexican Republic" lang="en">
+        <pabbr type="ISO3166" value="MX"/>
+      </pname>
+      <pname value="Mexico" lang="da"/>
+      <pname value="Mexico" lang="no"/>
+      <pname value="México" lang="es"/>
+      <pname value="Mexiko" lang="de"/>
+      <pname value="Mexiko" lang="sw"/>
+      <pname value="Mexiko">
+        <pabbr type="ISO3166" value="MX"/>
+      </pname>
+      <pname value="Mexique" lang="fr"/>
+      <pname value="Mexique">
+        <pabbr type="ISO3166" value="MX"/>
+      </pname>
+      <pname value="Nueva España" lang="es"/>
+      <pname value="República Mejicana" lang="es"/>
+      <pname value="República Méjico">
+        <pabbr type="ISO3166" value="MX"/>
+      </pname>
+      <pname value="Republica Mexicana">
+        <pabbr type="ISO3166" value="MX"/>
+      </pname>
+      <pname value="United Mexican States" lang="en">
+        <pabbr type="ISO3166" value="MX"/>
+      </pname>
+      <pname value="Мексика" lang="ru"/>
+      <ptype pt_id="Country" name="Country"/>
+      <coord long="-102" lat="23"/>
+      <url  href="http://id.loc.gov/authorities/names/n81013960" type="Web Home" description="http://id.loc.gov/authorities/names/n81013960"/>
+      <url  href="https://en.wikipedia.org/wiki/Mexico" type="Web Home" description="https://en.wikipedia.org/wiki/Mexico"/>
+      <url  href="https://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BA%D1%81%D0%B8%D0%BA%D0%B0" type="Web Home" description="https://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BA%D1%81%D0%B8%D0%BA%D0%B0"/>
+      <citationref hlink="_fdfdec436d8b2e9207f0858ec6"/>
+    </placeobj>
+    <placeobj handle="_e2ed125a528a2128aa55ad3b" change="1744842981" id="object_190123" group="Countries">
+      <pname value="Denmark" lang="en">
+        <pabbr type="ISO3166" value="DK"/>
+      </pname>
+      <pname value="Dinamarca" lang="es"/>
+      <pname value="Danemark" lang="fr"/>
+      <pname value="Dänemark" lang="de"/>
+      <pname value="Danmark" lang="sv"/>
+      <pname value="Danmark" lang="da"/>
+      <ptype pt_id="GOV_31" name="kingdom"/>
+      <coord long="9.986007029795344" lat="55.482291396214386"/>
+      <placeref hlink="_e2ed125b29615bd2f5306a2131c" type="Administrative">
+        <dateval val="1973" type="after"/>
+      </placeref>
+    </placeobj>
+    <placeobj handle="_e2ed125b29615bd2f5306a2131c" change="1744842811" id="object_1176980" group="Countries">
+      <pname value="European Union" lang="en">
+        <dateval val="2009" type="after"/>
+        <citationref hlink="_e2f2dc0bf2f71ebbef9a9db6c15"/>
+        <pabbr type="Abbreviation" value="EU"/>
+      </pname>
+      <pname value="Europese Unie" lang="nl"/>
+      <pname value="Euroopan Yhteisö" lang="fi">
+        <dateval val="2009" type="before"/>
+      </pname>
+      <pname value="Europäische Union" lang="de">
+        <dateval val="2009" type="after"/>
+      </pname>
+      <pname value="Union européenne" lang="fr"/>
+      <pname value="Euroopan Unioni" lang="fi"/>
+      <pname value="Aontais Eorpaigh" lang="ga"/>
+      <pname value="Europäische Gemeinschaft" lang="de">
+        <dateval val="2009" type="before"/>
+      </pname>
+      <pname value="Unión Europea" lang="es"/>
+      <pname value="European Community" lang="en">
+        <datespan start="1992" stop="2009"/>
+      </pname>
+      <ptype pt_id="GOV_71" name="confederation">
+        <citationref hlink="_e2f2e8197e64bec0c4d4bdadfd2"/>
+      </ptype>
+      <coord long="10.784505679371128" lat="50.342813093221025"/>
+      <eventref hlink="_e2f2e8d6cc0167e959e990d42f9" role="Place"/>
+    </placeobj>
+    <placeobj handle="_e2f2d13908a47130650132fc52a" change="1559578457" id="object_364181" group="Places">
+      <pname value="Bornholm" lang="da"/>
+      <ptype pt_id="GOV_57" name="Amt (dänisches)"/>
+      <ptype pt_id="CUSTOM" name="amt"/>
+      <coord long="14.91313861020408" lat="55.131626364795885"/>
+      <placeref hlink="_e2ed125a528a2128aa55ad3b" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_e2f2ea7bd233f3ffd10337aa14e" change="1744842998" id="GEO2264397" group="Countries">
+      <ptitle>Portugal</ptitle>
+      <pname value="Portugal" lang="en">
+        <pabbr type="ISO3166" value="PT"/>
+      </pname>
+      <pname value="Portuguese Republic">
+        <pabbr type="ISO3166" value="PT"/>
+      </pname>
+      <pname value="Lusitania">
+        <pabbr type="ISO3166" value="PT"/>
+      </pname>
+      <pname value="Portugal" lang="de"/>
+      <pname value="Portugal" lang="fr"/>
+      <pname value="Portuguese Republic" lang="en">
+        <pabbr type="ISO3166" value="PT"/>
+      </pname>
+      <pname value="Republic of Portugal">
+        <pabbr type="ISO3166" value="PT"/>
+      </pname>
+      <pname value="Portugal"/>
+      <pname value="República Portuguesa" lang="pt"/>
+      <ptype pt_id="GOV_56" name="republic"/>
+      <coord long="-8.13057" lat="39.6945"/>
+      <placeref hlink="_e2ed125b29615bd2f5306a2131c" type="Administrative">
+        <dateval val="1986" type="after"/>
+      </placeref>
+      <url  href="http://id.loc.gov/authorities/names/n80049716" type="Web Home" description="http://id.loc.gov/authorities/names/n80049716"/>
+      <url  href="https://en.wikipedia.org/wiki/Portugal" type="Web Home" description="https://en.wikipedia.org/wiki/Portugal"/>
+      <url  href="https://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D1%80%D1%82%D1%83%D0%B3%D0%B0%D0%BB%D0%B8%D1%8F" type="Web Home" description="https://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D1%80%D1%82%D1%83%D0%B3%D0%B0%D0%BB%D0%B8%D1%8F"/>
+      <citationref hlink="_e2f2ead323e1d50820dcba94449"/>
+    </placeobj>
+    <placeobj handle="_e2f2ec25e2e5c0596ddb78719ba" change="1559581285" id="object_1177032" group="Places">
+      <pname value="Lisbon" lang="en"/>
+      <pname value="Lisboa"/>
+      <pname value="Distrito de Lisboa"/>
+      <pname value="Lisbon District" lang="en"/>
+      <pname value="Lissabon" lang="de"/>
+      <pname value="District de Lisbonne" lang="fr"/>
+      <pname value="Distrikt Lissabon" lang="de"/>
+      <pname value="Lisbonne" lang="fr"/>
+      <ptype pt_id="GOV_51" name="town"/>
+      <ptype pt_id="District" name="District"/>
+      <coord long="-9.150028" lat="38.72564"/>
+      <placeref hlink="_e2f2ea7bd233f3ffd10337aa14e" type="Administrative"/>
+      <url  href="https://en.wikipedia.org/wiki/Lisbon_District" type="Web Home" description="https://en.wikipedia.org/wiki/Lisbon_District"/>
+      <citationref hlink="_e2f2ea7c592294ab2a628e04b63"/>
+    </placeobj>
+    <placeobj handle="_fde8799db083ebbccafd9c4301b" change="1744843244" id="P0039" group="Regions">
+      <pname value="San Francisco Co"/>
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_d5324f6ce236ebb32131789b38f" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_fde87abc62c39e29623816dd46f" change="1744843333" id="P0040" group="Regions">
+      <pname value="Alemeda Co"/>
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_d5324f6ce236ebb32131789b38f" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_fde87cd604c24cf16a3e6a58bda" change="1744843554" id="P0041" group="Regions">
+      <pname value="Sonoma Co"/>
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_d5324f6ce236ebb32131789b38f" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_fde87d53fe23aa5088928279534" change="1744843713" id="P0042" group="Regions">
+      <pname value="Santa Clara Co"/>
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_d5324f6ce236ebb32131789b38f" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_fde87ed011c4a887770b146d36" change="1744843761" id="P0043" group="Regions">
+      <pname value="Yolo Co"/>
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_d5324f6ce236ebb32131789b38f" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_fde880cf96b11c1bde3421fed1c" change="1744843970" id="P0045" group="Places">
+      <pname value="Berkeley"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_fde87abc62c39e29623816dd46f" type="Administrative"/>
+    </placeobj>
+    <placeobj handle="_fdfe18fcd72185778c9855e993c" change="1745423724" id="GEO5709906" group="Regions">
+      <ptitle>Washoe, Nevada, United States</ptitle>
+      <pname value="Washoe County" lang="en"/>
+      <pname value="Washoe County"/>
+      <pname value="Comté de Washoe" lang="fr"/>
+      <pname value="Condado de Washoe" lang="es"/>
+      <pname value="Hrabstwo Washoe" lang="pl"/>
+      <pname value="Lake County"/>
+      <pname value="Roop County"/>
+      <pname value="Washau County"/>
+      <pname value="Washoe" lang="en"/>
+      <pname value="Washoe"/>
+      <pname value="Washou County"/>
+      <pname value="Уошо" lang="ru"/>
+      <ptype pt_id="County" name="County"/>
+      <coord long="-119.6643" lat="40.66542"/>
+      <placeref hlink="_fdfe19c5f2453f56645c57a5c45" type="Administrative"/>
+      <url  href="https://en.wikipedia.org/wiki/Washoe_County%2C_Nevada" type="Web Home" description="https://en.wikipedia.org/wiki/Washoe_County%2C_Nevada"/>
+      <url  href="https://en.wikipedia.org/wiki/Washoe_County%2C_Nevada" type="Web Home" description="https://en.wikipedia.org/wiki/Washoe_County%2C_Nevada"/>
+      <citationref hlink="_fdfe19c646e7b2a11555470d7aa"/>
+      <citationref hlink="_fdfe19c6a127acb8004bdffe560"/>
+    </placeobj>
+    <placeobj handle="_fdfe19c5f2453f56645c57a5c45" change="1745423760" id="GEO5509151" group="Regions">
+      <ptitle>Nevada, United States</ptitle>
+      <pname value="Nevada" lang="en">
+        <pabbr type="Abbreviation" value="NV"/>
+      </pname>
+      <pname value="Nevada">
+        <pabbr type="Abbreviation" value="NV"/>
+      </pname>
+      <pname value="Estado de Nevada" lang="es"/>
+      <pname value="Nevada" lang="da"/>
+      <pname value="Nevada" lang="de"/>
+      <pname value="Nevada" lang="es"/>
+      <pname value="Nevada" lang="fi"/>
+      <pname value="Nevada" lang="fr"/>
+      <pname value="Nevada" lang="pl"/>
+      <pname value="Nevada" lang="sw"/>
+      <pname value="Silver State" lang="en">
+        <pabbr type="Abbreviation" value="NV"/>
+      </pname>
+      <pname value="State of Nevada" lang="en">
+        <pabbr type="Abbreviation" value="NV"/>
+      </pname>
+      <pname value="Невада" lang="ru"/>
+      <ptype pt_id="State" name="State"/>
+      <coord long="-116.75119" lat="39.25021"/>
+      <placeref hlink="_fdfe1a1d4744f040fc9b21056f2" type="Administrative"/>
+      <url  href="http://id.loc.gov/authorities/names/n79072716" type="Web Home" description="http://id.loc.gov/authorities/names/n79072716"/>
+      <url  href="https://en.wikipedia.org/wiki/Nevada" type="Web Home" description="https://en.wikipedia.org/wiki/Nevada"/>
+      <citationref hlink="_fdfe1a1da6e723689b9b967d720"/>
+    </placeobj>
+    <placeobj handle="_fdfe1a1d4744f040fc9b21056f2" change="1745424020" id="GEO6252001" group="Countries">
+      <ptitle>United States</ptitle>
+      <pname value="United States of America" lang="en">
+        <pabbr type="ISO3166" value="US"/>
+        <pabbr type="Abbreviation" value="U.S."/>
+        <pabbr type="Abbreviation" value="US"/>
+        <pabbr type="Abbreviation" value="U.S.A."/>
+        <pabbr type="Abbreviation" value="USA"/>
+      </pname>
+      <pname value="United States">
+        <pabbr type="ISO3166" value="US"/>
+        <pabbr type="Abbreviation" value="U.S."/>
+        <pabbr type="Abbreviation" value="US"/>
+        <pabbr type="Abbreviation" value="U.S.A."/>
+        <pabbr type="Abbreviation" value="USA"/>
+      </pname>
+      <pname value="America" lang="en">
+        <pabbr type="ISO3166" value="US"/>
+        <pabbr type="Abbreviation" value="U.S."/>
+        <pabbr type="Abbreviation" value="US"/>
+        <pabbr type="Abbreviation" value="U.S.A."/>
+        <pabbr type="Abbreviation" value="USA"/>
+      </pname>
+      <pname value="Amerikan Yhdysvallat" lang="fi"/>
+      <pname value="Amerikas Forenede Stater" lang="da"/>
+      <pname value="Estados Unidos" lang="es"/>
+      <pname value="États Unis" lang="fr"/>
+      <pname value="Marekani" lang="sw"/>
+      <pname value="United States" lang="en">
+        <pabbr type="ISO3166" value="US"/>
+        <pabbr type="Abbreviation" value="U.S."/>
+        <pabbr type="Abbreviation" value="US"/>
+        <pabbr type="Abbreviation" value="U.S.A."/>
+        <pabbr type="Abbreviation" value="USA"/>
+      </pname>
+      <pname value="USA" lang="da"/>
+      <pname value="USA" lang="de"/>
+      <pname value="USA" lang="en">
+        <pabbr type="ISO3166" value="US"/>
+        <pabbr type="Abbreviation" value="U.S."/>
+        <pabbr type="Abbreviation" value="US"/>
+        <pabbr type="Abbreviation" value="U.S.A."/>
+        <pabbr type="Abbreviation" value="USA"/>
+      </pname>
+      <pname value="USA" lang="fi"/>
+      <pname value="USA" lang="fr"/>
+      <pname value="USA" lang="no"/>
+      <pname value="USA" lang="pl"/>
+      <pname value="Vereinigten Staaten von Amerika" lang="de"/>
+      <pname value="Vereinigte Staaten" lang="de"/>
+      <pname value="Yhdysvallat" lang="fi"/>
+      <pname value="Соединенные Штаты" lang="ru"/>
+      <pname value="США" lang="ru"/>
+      <pname value="USA"/>
+      <pname value="United States of America"/>
+      <ptype pt_id="Country" name="Country"/>
+      <coord long="-98.5" lat="39.76"/>
+      <url  href="http://id.loc.gov/authorities/names/n78095330" type="Web Home" description="http://id.loc.gov/authorities/names/n78095330"/>
+      <url  href="https://de.wikipedia.org/wiki/Vereinigte_Staaten" type="Web Home" description="https://de.wikipedia.org/wiki/Vereinigte_Staaten"/>
+      <url  href="https://en.wikipedia.org/wiki/United_States" type="Web Home" description="https://en.wikipedia.org/wiki/United_States"/>
+      <url  href="https://it.wikipedia.org/wiki/Stati_Uniti_d%27America" type="Web Home" description="https://it.wikipedia.org/wiki/Stati_Uniti_d%27America"/>
+      <url  href="https://no.wikipedia.org/wiki/USA" type="Web Home" description="https://no.wikipedia.org/wiki/USA"/>
+      <url  href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BE%D0%B5%D0%B4%D0%B8%D0%BD%D1%91%D0%BD%D0%BD%D1%8B%D0%B5_%D0%A8%D1%82%D0%B0%D1%82%D1%8B_%D0%90%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B8" type="Web Home" description="https://ru.wikipedia.org/wiki/%D0%A1%D0%BE%D0%B5%D0%B4%D0%B8%D0%BD%D1%91%D0%BD%D0%BD%D1%8B%D0%B5_%D0%A8%D1%82%D0%B0%D1%82%D1%8B_%D0%90%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B8"/>
+      <url  href="https://tr.wikipedia.org/wiki/Amerika_Birle%C5%9Fik_Devletleri" type="Web Home" description="https://tr.wikipedia.org/wiki/Amerika_Birle%C5%9Fik_Devletleri"/>
+      <url  href="http://www.usa.gov/" type="Web Home" description="http://www.usa.gov/"/>
+      <url  href="http://www.whitehouse.gov/" type="Web Home" description="http://www.whitehouse.gov/"/>
+      <citationref hlink="_fdfe1a88689319c7899e5b6cd27"/>
+    </placeobj>
+    <placeobj handle="_fdfe3d7f7f3182e47b0f916b836" change="1745427632" id="GEO5341531" group="Places">
+      <ptitle>Danville, CA</ptitle>
+      <pname value="Danville"/>
+      <pname value="Danville" lang="da"/>
+      <pname value="Danville" lang="de"/>
+      <pname value="Danville" lang="en"/>
+      <pname value="Danville" lang="es"/>
+      <pname value="Danville" lang="fr"/>
+      <pname value="Danville" lang="pl"/>
+      <pname value="Danville" lang="sw"/>
+      <pname value="Дэнвилл" lang="ru"/>
+      <ptype pt_id="City" name="City"/>
+      <coord long="-121.99996" lat="37.82159"/>
+      <placeref hlink="_fdfe3f0a15f57d0e0326a9b1cfb" type="Administrative"/>
+      <url  href="http://id.loc.gov/authorities/names/n79117228" type="Web Home" description="http://id.loc.gov/authorities/names/n79117228"/>
+      <url  href="https://en.wikipedia.org/wiki/Danville%2C_California" type="Web Home" description="https://en.wikipedia.org/wiki/Danville%2C_California"/>
+      <citationref hlink="_fdfe3f0a7555d462300ce984a46"/>
+      <attribute type="Postal code" value="94506"/>
+      <attribute type="Postal code" value="94526"/>
+    </placeobj>
+    <placeobj handle="_fdfe3f0a15f57d0e0326a9b1cfb" change="1746487516" id="GEO5339268" group="Regions">
+      <ptitle>Contra Costa, California, United States</ptitle>
+      <pname value="Contra Costa County"/>
+      <pname value="Comté de Contra Costa" lang="fr"/>
+      <pname value="Condado de Contra Costa" lang="es"/>
+      <pname value="Contra Costa" lang="en"/>
+      <pname value="Contra Costa"/>
+      <pname value="Contra Costan piirikunta" lang="fi"/>
+      <pname value="Hrabstwo Contra Costa" lang="pl"/>
+      <pname value="Контра-Коста" lang="ru"/>
+      <pname value="Conta Costa Co"/>
+      <ptype pt_id="County" name="County"/>
+      <coord long="-121.95121" lat="37.92342"/>
+      <placeref hlink="_d5324f6ce236ebb32131789b38f" type="Administrative"/>
+      <url  href="http://id.loc.gov/authorities/names/n79096739.html" type="Web Home" description="http://id.loc.gov/authorities/names/n79096739.html"/>
+      <url  href="https://en.wikipedia.org/wiki/Contra_Costa_County%2C_California" type="Web Home" description="https://en.wikipedia.org/wiki/Contra_Costa_County%2C_California"/>
+      <citationref hlink="_fdfefc86f1d506d09f662c07577"/>
     </placeobj>
   </places>
   <objects>
     <object handle="_d54c1b52c8636648123580900ca" change="1477754617" id="O0000">
       <file src="O0.jpg" mime="image/jpeg" checksum="887d22e5822c86bd3961d0d179fbc0a2" description="Michael O'Toole 2015-11"/>
       <noteref hlink="_d70aa63baa15f9fee23b45f03b"/>
+    </object>
+    <object handle="_db41bee197b316a5371fe2bc0d9" change="1528658095" id="O0001">
+      <file src="1024px-Texas_flag_map.svg.png" mime="image/png" checksum="0775f316a04d11ee909a730a1358a4f3" description="1024px-Texas_flag_map.svg"/>
     </object>
   </objects>
   <repositories>
@@ -1723,6 +2360,13 @@
     </repository>
     <repository handle="_d7044c855b91ee04c40e98987e7" change="1477758030" id="R0006">
       <type>Library</type>
+    </repository>
+    <repository handle="_e2f2d5a4c5a65d019c1ac47d963" change="1559578714" id="R0007">
+      <rname>www.geonames.org</rname>
+      <type>Web site</type>
+      <url  href="http://www.geonames.org/" type="Web Home" description="GeoNames web site"/>
+      <url  href="marc@geonames.org" type="E-mail" description="GeoNames author"/>
+      <noteref hlink="_e2f2d5a4c5a1d2a563a17b27e7b"/>
     </repository>
   </repositories>
   <notes>
@@ -1826,6 +2470,25 @@ Only one phone number supported                                     Line     9: 
     </note>
     <note handle="_d70aa63baa15f9fee23b45f03b" change="1477754616" id="N0019" type="Media Note">
       <text>A bad photo for sure</text>
+    </note>
+    <note handle="_db41be7a64eae2db056a8232f9" change="1506721344" id="N0020" type="Place Note">
+      <text>Timeline
+French Texas	1684–1689
+Spanish Texas	1690–1821
+Mexican Texas	1821–1836
+Republic of Texas	1836–1845
+Statehood	1845–1860
+Civil War Era	1861–1865
+Reconstruction	1865–1899
+</text>
+    </note>
+    <note handle="_e2f2d5a4c5a1d2a563a17b27e7b" change="1559578714" id="N0021" type="Repository Note">
+      <text>GeoNames was founded by Marc Wick. You can reach him at marc@geonames.org
+GeoNames is a project of Unxos GmbH, Weingartenstrasse 8, 8708 Männedorf, Switzerland.
+This work is licensed under a Creative Commons Attribution 3.0 License</text>
+      <style name="link" value="https://creativecommons.org/licenses/by/3.0/legalcode">
+        <range start="191" end="231"/>
+      </style>
     </note>
   </notes>
 </database>

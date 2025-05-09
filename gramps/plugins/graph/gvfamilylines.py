@@ -205,6 +205,8 @@ class FamilyLinesOptions(MenuReportOptions):
 
         stdoptions.add_name_format_option(menu, category_name)
 
+        stdoptions.add_place_format_option(menu, category_name)
+
         stdoptions.add_private_data_option(menu, category_name, default=False)
 
         stdoptions.add_living_people_option(menu, category_name)
@@ -430,6 +432,7 @@ class FamilyLinesReport(Report):
         self._deleted_families = 0
         self._user = user
 
+        self._place_format = get_value("place_format")
         self._followpar = get_value("followpar")
         self._followchild = get_value("followchild")
         self._removeextra = get_value("removeextra")
@@ -1183,7 +1186,9 @@ class FamilyLinesReport(Report):
         if place_handle:
             place = self._db.get_place_from_handle(place_handle)
             if place:
-                place_text = _pd.display(self._db, place)
+                place_text = _pd.display(
+                    self._db, place, date=event.date, fmt=self._place_format
+                )
                 place_text = html.escape(place_text)
         return place_text
 

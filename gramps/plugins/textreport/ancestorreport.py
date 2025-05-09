@@ -126,9 +126,13 @@ class AncestorReport(Report):
             raise ReportError(_("Person %s is not in the Database") % pid)
 
         stdoptions.run_name_format_option(self, menu)
+        place_format = menu.get_option_by_name("place_format").get_value()
 
         self.__narrator = Narrator(
-            self.database, use_fulldate=True, nlocale=self._locale
+            self.database,
+            use_fulldate=True,
+            nlocale=self._locale,
+            place_format=place_format,
         )
 
     def apply_filter(self, person_handle, index, generation=1):
@@ -322,6 +326,8 @@ class AncestorOptions(MenuReportOptions):
         category_name = _("Report Options (2)")
 
         stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_place_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
 

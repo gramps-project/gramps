@@ -69,7 +69,7 @@ class SelectPlace(BaseSelector):
             (_("ID"), 75, BaseSelector.TEXT, 1),
             (_("Type"), 100, BaseSelector.TEXT, 3),
             (_("Title"), 300, BaseSelector.TEXT, 2),
-            (_("Last Change"), 150, BaseSelector.TEXT, 9),
+            (_("Last Change"), 150, BaseSelector.TEXT, 8),
         ]
 
     def get_from_handle_func(self):
@@ -78,10 +78,10 @@ class SelectPlace(BaseSelector):
     def setup_searches(self):
         """Build the default searches and add them to the search bar.
         This overrides the baseselector method because we use the hidden
-        COL_SEARCH (11) that has alt names as well as primary name for name
+        COL_SEARCH (10) that has alt names as well as primary name for name
         searching"""
         cols = [
-            (pair[3], pair[1] if pair[1] else 11, pair[0] in self.exact_search())
+            (pair[3], pair[1] if pair[1] else 10, pair[0] in self.exact_search())
             for pair in self.column_order()
             if pair[0]
         ]

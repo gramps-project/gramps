@@ -278,11 +278,25 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_notes(place)
         self.process_media_ref_list(place)
         self.process_urls(place)
+        self.process_attributes(place)
 
         for placeref in place.get_placeref_list():
+            self.process_citation_ref_list(placeref)
             place = self.db.get_place_from_handle(placeref.ref)
             if place:
                 self.process_place(place)
+
+        for event_ref in place.get_event_ref_list():
+            if event_ref:
+                event = self.db.get_event_from_handle(event_ref.ref)
+                if event:
+                    self.process_event_ref(event_ref)
+
+        for name in place.get_names():
+            self.process_citation_ref_list(name)
+
+        for ptype in place.get_types():
+            self.process_citation_ref_list(ptype)
 
         self.process_tags(place)
 

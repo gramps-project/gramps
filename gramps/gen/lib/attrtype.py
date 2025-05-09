@@ -66,6 +66,10 @@ class AttributeType(GrampsType):
     WITNESS = 13
     TIME = 14
     OCCUPATION = 15
+    AIDN = 16
+    DMGD = 17
+    MAIDEN = 18
+    POSTAL = 19
 
     _CUSTOM = CUSTOM
     _DEFAULT = ID
@@ -88,9 +92,37 @@ class AttributeType(GrampsType):
         (WITNESS, _T_("Witness"), "Witness"),
         (TIME, _T_("Time"), "Time"),
         (OCCUPATION, _T_("Occupation"), "Occupation"),
+        (POSTAL, _T_("Postal code"), "Postal code"),
+        (AIDN, _T_("Administrative Identifier"), "Administrative Identifier"),
+        (DMGD, _T_("Demographic data"), "Demographic data"),
+        (MAIDEN, _T_("Maidenhead Locator"), "Maidenhead Locator"),
     ]
 
     _DATAMAP = [(base[0], _(base[1]), base[2]) for base in _BASEMAP]
+
+    _MENU = [
+        [
+            None,
+            [
+                AGE,
+                AGENCY,
+                CASTE,
+                CAUSE,
+                DESCRIPTION,
+                FATHER_AGE,
+                ID,
+                MOTHER_AGE,
+                NATIONAL,
+                NICKNAME,
+                NUM_CHILD,
+                SSN,
+                TIME,
+                UNKNOWN,
+                WITNESS,
+            ],
+        ],
+        [_T_("Place Attributes"), [POSTAL, AIDN, DMGD, MAIDEN]],
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

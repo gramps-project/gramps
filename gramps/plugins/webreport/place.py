@@ -49,12 +49,12 @@ import logging
 # Gramps module
 # ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import PlaceType, Place, PlaceName, Media
+from gramps.gen.lib import PlaceGroupType as P_G, Place, PlaceName, Media
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.mime import is_image_type
 from gramps.plugins.lib.libhtml import Html
 from gramps.gen.utils.place import conv_lat_lon, coord_formats
-from gramps.gen.utils.location import get_main_location
+from gramps.gen.utils.location import get_location_list
 from gramps.gen.display.place import displayer as _pd
 
 # ------------------------------------------------
@@ -144,19 +144,26 @@ class PlacePages(BasePage):
                     if place_ref not in self.report.obj_dict[Place]:
                         place = self.r_db.get_place_from_handle(place_ref)
                         if place:
-                            place_name = place.get_title()
+                            p_name = _pd.display(self.r_db, place, fmt=0)
                             p_fname = self.report.build_url_fname(
                                 place_ref, "plc", False, init=True
                             )
                             p_fname += self.ext
-                            plc_dict = (p_fname, place_name, place.gramps_id, None)
+                            plc_dict = (p_fname, p_name, place.gramps_id, None)
                             self.report.obj_dict[Place][place_ref] = plc_dict
-                            p_name = _pd.display(self.r_db, place, fmt=0)
-                            cplace_name = p_name.split()[-1]
-                            if len(place_name.split()) > 1:
-                                splace_name = place_name.split()[-2]
-                            else:
-                                splace_name = cplace_name
+                            loc_list = get_location_list(self.r_db, place)
+                            splace_name = cplace_name = ""
+                            for loc in loc_list:
+                                # loc_list shoud be in order from small to largest
+                                name, place_type, dummy_hndl, _abbrs, group = loc
+                                if group == P_G.COUNTRY and not cplace_name:
+                                    # should find smaller of country group
+                                    cplace_name = name
+                                    continue
+                                elif group == P_G.REGION:
+                                    # should find largest (state)
+                                    splace_name = name
+                                    continue
                             plc_dict = (
                                 place_ref,
                                 p_name,
@@ -364,16 +371,7 @@ class PlacePages(BasePage):
                 # begin table body
                 for place_handle, pname in places_handle_list:
                     val = self.report.obj_dict[PlaceName][pname]
-                    nbelem = len(val)
-                    if val and nbelem > 3:
-                        if isinstance(place_handle, tuple):
-                            place = self.r_db.get_place_from_handle(place_handle[0])
-                        else:
-                            place = self.r_db.get_place_from_handle(place_handle)
-                        main_location = get_main_location(self.r_db, place)
-                        sname = main_location.get(PlaceType.STATE, "")
-                        cname = main_location.get(PlaceType.COUNTRY, "")
-                    elif nbelem == 3:
+                    if val:
                         cname = val[3]
                         sname = val[2]
                     else:

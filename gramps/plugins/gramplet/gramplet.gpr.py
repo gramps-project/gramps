@@ -757,6 +757,22 @@ register(
 
 register(
     GRAMPLET,
+    id="Place Attributes",
+    name=_("Place Attributes"),
+    description=_("Gramplet showing the attributes of a place object"),
+    version="1.0.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="attributes.py",
+    height=200,
+    gramplet="PlaceAttributes",
+    gramplet_title=_("Attributes"),
+    navtypes=["Place"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
     id="Person Notes",
     name=_("Person Notes"),
     description=_("Gramplet showing the notes for a person"),
@@ -1551,5 +1567,21 @@ register(
     gramplet="GeoFamilyEvents",
     gramplet_title=_("Events Coordinates"),
     navtypes=["Family"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="Place Events",
+    name=_("Place Events"),
+    description=_("Gramplet showing the events for a place"),
+    version="1.0.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="events.py",
+    height=200,
+    gramplet="PlaceEvents",
+    gramplet_title=_("Events"),
+    navtypes=["Place"],
     help_url=GRAMPLET_HELP,
 )

@@ -39,6 +39,8 @@ from .editpersonref import EditPersonRef
 from .editplace import EditPlace
 from .editplacename import EditPlaceName
 from .editplaceref import EditPlaceRef
+from .editplaceabbrev import EditPlaceAbbrev
+from .editplacetype import EditPlaceType
 from .editrepository import EditRepository
 from .editreporef import EditRepoRef
 from .editsource import EditSource

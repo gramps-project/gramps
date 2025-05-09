@@ -48,7 +48,7 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import EventType
-from gramps.gen.lib import PlaceType
+from gramps.gen.lib.placetype import PlaceType, DM_NAME
 from gramps.gen.config import config
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.place import conv_lat_lon
@@ -179,29 +179,6 @@ class GeoPlaces(GeoGraphyView):
         ("geography.max_places", 5000),
         ("geography.use-keypad", True),
         ("geography.personal-map", ""),
-        # specific to geoplaces :
-        ("geography.color.unknown", "#008b00"),
-        ("geography.color.custom", "#008b00"),
-        ("geography.color.country", "#008b00"),
-        ("geography.color.county", "#008b00"),
-        ("geography.color.state", "#008b00"),
-        ("geography.color.city", "#008b00"),
-        ("geography.color.parish", "#008b00"),
-        ("geography.color.locality", "#008b00"),
-        ("geography.color.street", "#008b00"),
-        ("geography.color.province", "#008b00"),
-        ("geography.color.region", "#008b00"),
-        ("geography.color.department", "#008b00"),
-        ("geography.color.neighborhood", "#008b00"),
-        ("geography.color.district", "#008b00"),
-        ("geography.color.borough", "#008b00"),
-        ("geography.color.municipality", "#008b00"),
-        ("geography.color.town", "#008b00"),
-        ("geography.color.village", "#008b00"),
-        ("geography.color.hamlet", "#008b00"),
-        ("geography.color.farm", "#008b00"),
-        ("geography.color.building", "#008b00"),
-        ("geography.color.number", "#008b00"),
     )
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
@@ -307,15 +284,7 @@ class GeoPlaces(GeoGraphyView):
         # one string. We have coordinates when the two values
         # contains non null string.
         if longitude and latitude:
-            colour = self.plc_color[int(place.get_type()) + 1]
-            if int(place.get_type()) == PlaceType.CUSTOM:
-                try:
-                    colour = (
-                        str(place.get_type()),
-                        self.plc_custom_color[str(place.get_type())],
-                    )
-                except Exception:
-                    colour = self.plc_color[PlaceType.CUSTOM + 1]
+            colour = place.get_type().get_color()
             self._append_to_places_list(
                 descr,
                 None,
@@ -360,30 +329,6 @@ class GeoPlaces(GeoGraphyView):
         self.kml_layer.clear()
         self.no_show_places_in_status_bar = False
         _col = self._config.get
-        self.plc_color = [
-            (PlaceType.UNKNOWN, _col("geography.color.unknown")),
-            (PlaceType.CUSTOM, _col("geography.color.custom")),
-            (PlaceType.COUNTRY, _col("geography.color.country")),
-            (PlaceType.STATE, _col("geography.color.state")),
-            (PlaceType.COUNTY, _col("geography.color.county")),
-            (PlaceType.CITY, _col("geography.color.city")),
-            (PlaceType.PARISH, _col("geography.color.parish")),
-            (PlaceType.LOCALITY, _col("geography.color.locality")),
-            (PlaceType.STREET, _col("geography.color.street")),
-            (PlaceType.PROVINCE, _col("geography.color.province")),
-            (PlaceType.REGION, _col("geography.color.region")),
-            (PlaceType.DEPARTMENT, _col("geography.color.department")),
-            (PlaceType.NEIGHBORHOOD, _col("geography.color.neighborhood")),
-            (PlaceType.DISTRICT, _col("geography.color.district")),
-            (PlaceType.BOROUGH, _col("geography.color.borough")),
-            (PlaceType.MUNICIPALITY, _col("geography.color.municipality")),
-            (PlaceType.TOWN, _col("geography.color.town")),
-            (PlaceType.VILLAGE, _col("geography.color.village")),
-            (PlaceType.HAMLET, _col("geography.color.hamlet")),
-            (PlaceType.FARM, _col("geography.color.farm")),
-            (PlaceType.BUILDING, _col("geography.color.building")),
-            (PlaceType.NUMBER, _col("geography.color.number")),
-        ]
         # base "villes de france" : 38101 places :
         # createmap : 8'50"; create_markers : 1'23"
         # base "villes de france" : 38101 places :
@@ -403,7 +348,6 @@ class GeoPlaces(GeoGraphyView):
             "%s",
             time.strftime("start createmap : " "%a %d %b %Y %H:%M:%S", time.gmtime()),
         )
-        self.custom_places()
         if self.show_all:
             self.show_all = False
             try:
@@ -584,77 +528,3 @@ class GeoPlaces(GeoGraphyView):
         Define the default gramplets for the sidebar and bottombar.
         """
         return (("Place Filter",), ())
-
-    def specific_options(self, configdialog):
-        """
-        Add specific entry to the preference menu.
-        Must be done in the associated view.
-        """
-        grid = Gtk.Grid()
-        grid.set_border_width(12)
-        grid.set_column_spacing(6)
-        grid.set_row_spacing(6)
-        configdialog.add_color(grid, _("Unknown"), 1, "geography.color.unknown", col=1)
-        configdialog.add_color(grid, _("Custom"), 2, "geography.color.custom", col=1)
-        configdialog.add_color(
-            grid, _("Locality"), 3, "geography.color.locality", col=1
-        )
-        configdialog.add_color(grid, _("Street"), 4, "geography.color.street", col=1)
-        configdialog.add_color(
-            grid, _("Neighborhood"), 5, "geography.color.neighborhood", col=1
-        )
-        configdialog.add_color(grid, _("Borough"), 6, "geography.color.borough", col=1)
-        configdialog.add_color(grid, _("Village"), 7, "geography.color.village", col=1)
-        configdialog.add_color(grid, _("Hamlet"), 8, "geography.color.hamlet", col=1)
-        configdialog.add_color(grid, _("Farm"), 9, "geography.color.farm", col=1)
-        configdialog.add_color(
-            grid, _("Building"), 10, "geography.color.building", col=1
-        )
-        configdialog.add_color(grid, _("Number"), 11, "geography.color.number", col=1)
-        configdialog.add_color(grid, _("Country"), 1, "geography.color.country", col=4)
-        configdialog.add_color(grid, _("State"), 2, "geography.color.state", col=4)
-        configdialog.add_color(grid, _("County"), 3, "geography.color.county", col=4)
-        configdialog.add_color(
-            grid, _("Province"), 4, "geography.color.province", col=4
-        )
-        configdialog.add_color(grid, _("Region"), 5, "geography.color.region", col=4)
-        configdialog.add_color(
-            grid, _("Department"), 6, "geography.color.department", col=4
-        )
-        configdialog.add_color(
-            grid, _("District"), 7, "geography.color.district", col=4
-        )
-        configdialog.add_color(grid, _("Parish"), 8, "geography.color.parish", col=4)
-        configdialog.add_color(grid, _("City"), 9, "geography.color.city", col=4)
-        configdialog.add_color(grid, _("Town"), 10, "geography.color.town", col=4)
-        configdialog.add_color(
-            grid, _("Municipality"), 11, "geography.color.municipality", col=4
-        )
-        self.custom_places()
-        if len(self.plc_custom_color) > 0:
-            configdialog.add_text(grid, _("Custom places name"), 12)
-            start = 13
-            for color in self.plc_custom_color.keys():
-                cust_col = "geography.color." + color.lower()
-                row = start if start % 2 else start - 1
-                column = 1 if start % 2 else 4
-                configdialog.add_color(grid, color, row, cust_col, col=column)
-                start += 1
-        return _("The places marker color"), grid
-
-    def custom_places(self):
-        """
-        looking for custom places
-        if not registered, register it.
-        """
-        self.plc_custom_color = defaultdict(set)
-        for place in self.dbstate.db.iter_places():
-            if int(place.get_type()) == PlaceType.CUSTOM:
-                cust_col = "geography.color." + str(place.get_type()).lower()
-                try:
-                    color = self._config.get(cust_col)
-                except Exception:
-                    color = "#008b00"
-                    self._config.register(cust_col, color)
-                if str(place.get_type()) not in self.plc_custom_color.keys():
-                    self.plc_custom_color[str(place.get_type())] = color.lower()

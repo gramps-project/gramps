@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-11 17:13-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: PlaceTypes/placetype_nl.gpr.py:33
+msgid "Provides a library of Netherlands PlaceType values."
+msgstr ""
+
+#: PlaceTypes/placetype_nl.py:96
+msgid "Country"
+msgstr ""
+
+#: PlaceTypes/placetype_nl.py:98
+msgid "nl|Province"
+msgstr ""
+
+#: PlaceTypes/placetype_nl.py:100
+msgid "nl|Municipality"
+msgstr ""
+
+#: PlaceTypes/placetype_nl.py:102
+msgid "nl|City"
+msgstr ""
+
+#: PlaceTypes/placetype_nl.py:104
+msgid "nl|Place"
+msgstr ""
+
+#: PlaceTypes/placetype_nl.py:106
+msgid "nl|Village"
+msgstr ""

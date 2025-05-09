@@ -1,12 +1,12 @@
-fam Smith Gustaf.0 +27/11/1885 #mp Rønne,_Bornholm,_Denmark Hansdotter Anna.1 2/10/1864 #bp Löderup,_Malmöhus_Län,_Sweden 29/9/1945 #dp Sparks,_Washoe_Co.,_NV 
+fam Smith Gustaf.0 +27/11/1885 #mp Rønne,_Bornholm,_Denmark Hansdotter Anna.1 2/10/1864 #bp Löderup,_Malmöhus_Län,_Sweden 29/9/1945 #dp Sparks,_Washoe_County,_Nevada,_United_States 
 beg
-- f Kirsti_Marie.2 15/12/1886 #bp Rønne,_Bornholm,_Denmark 18/7/1966 #dp San_Francisco,_San_Francisco_Co.,_CA 
-- f Astrid_Shermanna_Augusta.3 31/1/1889 #bp Rønne,_Bornholm,_Denmark 21/12/1963 #dp San_Francisco,_San_Francisco_Co.,_CA 
+- f Kirsti_Marie.2 15/12/1886 #bp Rønne,_Bornholm,_Denmark 18/7/1966 #dp San_Francisco,_San_Francisco_Co,_California,_United_States 
+- f Astrid_Shermanna_Augusta.3 31/1/1889 #bp Rønne,_Bornholm,_Denmark 21/12/1963 #dp San_Francisco,_San_Francisco_Co,_California,_United_States 
 - h Hjalmar.4 31/1/1893 #bp Rønne,_Bornholm,_Denmark 25/9/1894 #dp Rønne,_Bornholm,_Denmark 
-- h Hjalmar.5 7/4/1895 #bp Rønne,_Bornholm,_Denmark 26/6/1975 #dp Reno,_Washoe_Co.,_NV 
-- h Gus.6 11/9/1897 #bp Rønne,_Bornholm,_Denmark 21/10/1963 #dp San_Francisco,_San_Francisco_Co.,_CA 
-- h Carl_Emil.7 20/12/1899 #bp Rønne,_Bornholm,_Denmark 28/1/1959 #dp Reno,_Washoe_Co.,_NV 
-- h Hans_Peter.8 17/4/1904 #bp Rønne,_Bornholm,_Denmark 29/1/1977 #dp San_Francisco,_San_Francisco_Co.,_CA 
+- h Hjalmar.5 7/4/1895 #bp Rønne,_Bornholm,_Denmark 26/6/1975 #dp Reno,_Washoe_County,_Nevada,_United_States 
+- h Gus.6 11/9/1897 #bp Rønne,_Bornholm,_Denmark 21/10/1963 #dp San_Francisco,_San_Francisco_Co,_California,_United_States 
+- h Carl_Emil.7 20/12/1899 #bp Rønne,_Bornholm,_Denmark 28/1/1959 #dp Reno,_Washoe_County,_Nevada,_United_States 
+- h Hans_Peter.8 17/4/1904 #bp Rønne,_Bornholm,_Denmark 29/1/1977 #dp San_Francisco,_San_Francisco_Co,_California,_United_States 
 end
 
 notes Hansdotter Anna.1
@@ -23,20 +23,20 @@ Hjalmar sailed from Copenhagen, Denmark on the OSCAR II, 14 November 1912 arrivi
 Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corporal in the Medical Corp until his discharge 12 August 1919 at the Presidio in San Francisco, California. Both he and Marjorie are buried in the Masonic Memorial Gardens Mausoleum in Reno, he the 30th June 1975, and she the 25th of June 1980. 
 end notes
 
-fam Smith Lloyd.9 +10/8/1958 #mp San_Francisco,_San_Francisco_Co.,_CA Green Janis_Elaine.10 2/12/1935  
+fam Smith Lloyd.9 +10/8/1958 #mp San_Francisco,_San_Francisco_Co,_California,_United_States Green Janis_Elaine.10 2/12/1935  
 beg
-- h Eric_Lloyd.11 28/8/1963 #bp San_Francisco,_San_Francisco_Co.,_CA  
-- h Keith_Lloyd.12 11/8/1966 #bp San_Francisco,_San_Francisco_Co.,_CA  
-- h Craig_Peter.13 >1966 #bp San_Francisco,_San_Francisco_Co.,_CA  
-- h The.14 Tester 29/12/1954 #bp 123_High_St,_Cleveland,_Cuyahoga,_Ohio,_USA  
+- h Eric_Lloyd.11 28/8/1963 #bp San_Francisco,_San_Francisco_Co,_California,_United_States  
+- h Keith_Lloyd.12 11/8/1966 #bp San_Francisco,_San_Francisco_Co,_California,_United_States  
+- h Craig_Peter.13 >1966 #bp San_Francisco,_San_Francisco_Co,_California,_United_States  
+- h The.14 Tester 29/12/1954 #bp 123_High_St,_Cleveland,_Cuyahoga,_Ohio,_United_States  #dp Houston,_Harris,_Texas 
 end
 
 fam Smith Hans_Peter.8 + #nm Jones Lillie_Harriet.15 2/5/1910 #bp Rønne,_Bornholm,_Denmark 26/6/1990 
 beg
-- h Lloyd.9 13/3/1935 #bp San_Francisco,_San_Francisco_Co.,_CA  
+- h Lloyd.9 13/3/1935 #bp San_Francisco,_San_Francisco_Co,_California,_United_States  
 end
 
-fam Smith Hans_Peter.8 + #nm Anderson Jennifer.16 5/11/1907 #bp Rønne,_Bornholm,_Denmark 29/5/1985 #dp San_Francisco,_San_Francisco_Co.,_CA 
+fam Smith Hans_Peter.8 + #nm Anderson Jennifer.16 5/11/1907 #bp Rønne,_Bornholm,_Denmark 29/5/1985 #dp San_Francisco,_San_Francisco_Co,_California,_United_States 
 
 fam Smith Martin.17 +~1816 #mp Gladsax,_Kristianstad_Län,_Sweden Jefferson Elna.18 14/9/1800 #bp Gladsax,_Kristianstad_Län,_Sweden  #dp Sweden 
 beg
@@ -69,34 +69,34 @@ end notes
 
 fam Smith Gus.6 +~1920 Michaels Evelyn.25 ~1897 0 
 
-fam Smith Hjalmar.5 +31/10/1927 #mp Reno,_Washoe_Co.,_NV Ohman Marjorie.26 3/6/1903 #bp Denver,_Denver_Co.,_CO,_Denver_Co.,_Colorado,_USA 22/6/1980 #dp Reno,_Washoe_Co.,_NV 
+fam Smith Hjalmar.5 +31/10/1927 #mp Reno,_Washoe_County,_Nevada,_United_States Ohman Marjorie.26 3/6/1903 #bp Denver,_Denver_Co.,_Colorado,_United_States 22/6/1980 #dp Reno,_Washoe_County,_Nevada,_United_States 
 beg
-- h John_Hjalmar.27 30/1/1932 #bp San_Francisco,_San_Francisco_Co.,_CA  
-- f Marjorie_Lee.28 4/11/1934 #bp Reno,_Washoe_Co.,_NV  
+- h John_Hjalmar.27 30/1/1932 #bp San_Francisco,_San_Francisco_Co,_California,_United_States  
+- f Marjorie_Lee.28 4/11/1934 #bp Reno,_Washoe_County,_Nevada,_United_States  
 end
 
-fam Smith John_Hjalmar.27 +4/6/1954 #mp Sparks,_Washoe_Co.,_NV Perkins Alice_Paula.29 22/11/1933 #bp Sparks,_Washoe_Co.,_NV  
+fam Smith John_Hjalmar.27 +4/6/1954 #mp Sparks,_Washoe_County,_Nevada,_United_States Perkins Alice_Paula.29 22/11/1933 #bp Sparks,_Washoe_County,_Nevada,_United_States  
 beg
-- f Marjorie_Alice.30 5/2/1960 #bp San_Jose,_Santa_Clara_Co.,_CA  
-- h Edwin_Michael.31 24/5/1961 #bp San_Jose,_Santa_Clara_Co.,_CA  
+- f Marjorie_Alice.30 5/2/1960 #bp San_Jose,_Santa_Clara_Co,_California,_United_States  
+- h Edwin_Michael.31 24/5/1961 #bp San_Jose,_Santa_Clara_Co,_California,_United_States  
 end
 
-fam Smith Eric_Lloyd.11 +12/7/1986 #mp Woodland,_Yolo_Co.,_CA Horne Darcy.32 2/7/1966 #bp Sacramento,_Sacramento_Co.,_CA  
+fam Smith Eric_Lloyd.11 +12/7/1986 #mp Woodland,_Yolo_Co,_California,_United_States Horne Darcy.32 2/7/1966 #bp Sacramento  
 beg
-- h Lars_Peter.33 16/9/1991 #bp Santa_Rosa,_Sonoma_Co.,_CA  
+- h Lars_Peter.33 16/9/1991 #bp Santa_Rosa,_Sonoma_Co,_California,_United_States  
 end
 
-fam Smith Edwin_Michael.31 +27/5/1995 #mp San_Ramon,_Conta_Costa_Co.,_CA Adams Janice_Ann.34 26/8/1965 #bp Fremont,_Alameda_Co.,_CA  
+fam Smith Edwin_Michael.31 +27/5/1995 #mp San_Ramon,_Contra_Costa_County,_California,_United_States Adams Janice_Ann.34 26/8/1965 #bp Fremont,_Alemeda_Co,_California,_United_States  
 beg
-- h Mason_Michael.35 26/6/1996 #bp Hayward,_Alameda_Co.,_CA  
-- f Amber_Marie.36 12/4/1998 #bp Hayward,_Alameda_Co.,_CA  
+- h Mason_Michael.35 26/6/1996 #bp Hayward,_Alemeda_Co,_California,_United_States  
+- f Amber_Marie.36 12/4/1998 #bp Hayward,_Alemeda_Co,_California,_United_States  
 end
 
 fam Smith Martin.22 +~1856 Hansdotter Kerstina.37 29/11/1832 #bp Smestorp,_Kristianstad_Län,_Sweden <1908 #dp Sweden 
 beg
 - h Magnes.38 6/10/1858 #bp Simrishamn,_Kristianstad_Län,_Sweden 20/2/1910 #dp Rønne,_Bornholm,_Denmark 
 - h Emil.39 27/9/1860 #bp Simrishamn,_Kristianstad_Län,_Sweden 0 
-- h Gustaf.0 28/11/1862 #bp Grostorp,_Kristianstad_Län,_Sweden <23/7/1930 #dp Sparks,_Washoe_Co.,_NV 
+- h Gustaf.0 28/11/1862 #bp Grostorp,_Kristianstad_Län,_Sweden <23/7/1930 #dp Sparks,_Washoe_County,_Nevada,_United_States 
 end
 
 fam Smith Ingeman.40 ~1770 #bp Sweden 0 +~1790 #mp Sweden Ericsdotter Marta.41 ~1775 #bp Sweden 0 
@@ -111,7 +111,7 @@ fam Smith Magnes.38 +24/8/1884 #mp Rønne,_Bornholm,_Denmark Streiffert Anna.43 2
 fam Tester The.14 + Tester Mrs.44 0  
 beg
 - h Tom.45 Von_Tester_y_tested 0  
--  Fake.46 von_Person 1954 #bp Fremont,_Alameda_Co.,_CA  
+-  Fake.46 von_Person 1954 #bp Fremont,_Alemeda_Co,_California,_United_States  
 - f Mary.47 0  
 - f Martha.48 0  
 - h John.49 0  

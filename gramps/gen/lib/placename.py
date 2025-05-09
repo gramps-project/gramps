@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2015,2017  Nick Hall
+# Copyright (C) 2019       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +29,8 @@ Place name class for Gramps
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .citationbase import CitationBase
+from .placeabbrev import PlaceAbbrev
 from ..const import GRAMPS_LOCALE as glocale
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from .datebase import DateBase
@@ -41,7 +44,7 @@ _ = glocale.translation.gettext
 # PlaceName
 #
 # -------------------------------------------------------------------------
-class PlaceName(SecondaryObject, DateBase):
+class PlaceName(SecondaryObject, CitationBase, DateBase):
     """
     Place name class.
 
@@ -53,30 +56,41 @@ class PlaceName(SecondaryObject, DateBase):
         Create a new PlaceName instance, copying from the source if present.
         """
         DateBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         if source:
             self.value = source.value
             self.lang = source.lang
+            self.abbrev_list = list(map(PlaceAbbrev, source.abbrev_list))
         else:
             self.value = ""
             self.lang = ""
-        for key, value in kwargs.items():
-            if key in ["value", "lang"]:
-                setattr(self, key, value)
+            self.abbrev_list = []
+        for key in kwargs:
+            if key in ["value", "lang", "abbrev_list"]:
+                setattr(self, key, kwargs[key])
             else:
-                raise AttributeError(f"PlaceName does not have property '{key}'")
+                raise AttributeError("PlaceName does not have property '%s'" % key)
 
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.value, DateBase.serialize(self), self.lang)
+        return (
+            self.value,
+            DateBase.serialize(self),
+            self.lang,
+            [abb.serialize() for abb in self.abbrev_list],
+            CitationBase.serialize(self),
+        )
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (self.value, date, self.lang) = data
+        (self.value, date, self.lang, abbrs, citation_list) = data
         DateBase.unserialize(self, date)
+        self.abbrev_list = [PlaceAbbrev().unserialize(abb) for abb in abbrs]
+        CitationBase.unserialize(self, citation_list)
         return self
 
     @classmethod
@@ -98,14 +112,53 @@ class PlaceName(SecondaryObject, DateBase):
                 "value": {"type": "string", "title": _("Text")},
                 "date": Date.get_schema(),
                 "lang": {"type": "string", "title": _("Language")},
+                "abbrev_list": {
+                    "type": "array",
+                    "items": PlaceAbbrev.get_schema(),
+                    "title": _("Abbrevs"),
+                },
+                "citation_list": {
+                    "type": "array",
+                    "title": _("Citations"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
             },
         }
+
+    def get_abbrevs(self):
+        """
+        Return a list of abbrevs for the current Place name.
+
+        :returns: Returns the abbrevs for the Place name
+        :rtype: list of PlaceAbbrev
+        """
+        return self.abbrev_list
+
+    def set_abbrevs(self, abbrev_list):
+        """
+        Replace the current abbrevs list with the new one.
+
+        :param abbrev_list: The list of abbrevs to assign to the Place's
+                            internal abbrevs list.
+        :type abbrev_list: list of PlaceAbbrev
+        """
+        self.abbrev_list = abbrev_list
+
+    def add_abbrev(self, abbrev):
+        """
+        Add a abbrev to the abbrevs list.
+
+        :param abbrev: abbrev to add
+        :type abbrev: string
+        """
+        if abbrev not in self.abbrev_list:
+            self.abbrev_list.append(abbrev)
 
     def get_text_data_list(self):
         """
         Return the list of all textual attributes of the object.
 
-        :returns: Returns the list of all textual attributes of the object.
+        :returns: list of all textual attributes of the object.
         :rtype: list
         """
         return [self.value]
@@ -114,30 +167,10 @@ class PlaceName(SecondaryObject, DateBase):
         """
         Return the list of child objects that may carry textual data.
 
-        :returns: Returns the list of child objects that may carry textual data.
+        :returns: list of child objects that may carry textual data.
         :rtype: list
         """
-        return []
-
-    def get_citation_child_list(self):
-        """
-        Return the list of child secondary objects that may refer citations.
-
-        :returns: Returns the list of child secondary child objects that may
-                  refer citations.
-        :rtype: list
-        """
-        return []
-
-    def get_note_child_list(self):
-        """
-        Return the list of child secondary objects that may refer notes.
-
-        :returns: Returns the list of child secondary child objects that may
-                  refer notes.
-        :rtype: list
-        """
-        return []
+        return self.abbrev_list
 
     def get_referenced_handles(self):
         """
@@ -148,7 +181,7 @@ class PlaceName(SecondaryObject, DateBase):
                   objects.
         :rtype: list
         """
-        return []
+        return self.get_referenced_citation_handles()
 
     def get_handle_referents(self):
         """
@@ -160,19 +193,31 @@ class PlaceName(SecondaryObject, DateBase):
         """
         return []
 
+    def is_empty(self):
+        """Determine if this PlaceName is empty (not changed from initial
+        value)
+        """
+        return (
+            self.value == ""
+            and self.lang == ""
+            and self.get_date_object().is_empty()
+            and not self.abbrev_list
+            and not self.citation_list
+        )
+
     def is_equivalent(self, other):
         """
-        Return if this eventref is equivalent, that is agrees in handle and
-        role, to other.
+        Return if this placename is equivalent, that is agrees in type and
+        value, to other.
 
-        :param other: The eventref to compare this one to.
+        :param other: The placename to compare this one to.
         :type other: PlaceName
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
         if (
             self.value != other.value
-            or self.date != other.date
+            or self.get_date_object() != other.get_date_object()
             or self.lang != other.lang
         ):
             return DIFFERENT
@@ -207,3 +252,17 @@ class PlaceName(SecondaryObject, DateBase):
     def get_language(self):
         """Return the language for the PlaceName instance."""
         return self.lang
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this placename.
+
+        Lost: lang, date and value of acquisition.
+
+        :param acquisition: the placename to merge with.
+        :type acquisition: PlaceName
+        """
+        self._merge_citation_list(acquisition)
+        for abb in acquisition.abbrev_list:
+            if abb not in self.abbrev_list:
+                self.abbrev_list.append(abb)

@@ -41,6 +41,7 @@ from gramps.gen.lib import Place
 from gramps.gui.views.listview import ListView, TEXT, ICON
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import PlaceBookmarks
+from gramps.gui.views.placetypes import ReplacePlaceType, AssignPlaceGroup
 from gramps.gen.config import config
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.pluginmanager import GuiPluginManager
@@ -74,12 +75,12 @@ class PlaceBaseView(ListView):
     COL_ID = 1
     COL_TITLE = 2
     COL_TYPE = 3
-    COL_CODE = 4
-    COL_LAT = 5
-    COL_LON = 6
-    COL_PRIV = 7
-    COL_TAGS = 8
-    COL_CHAN = 9
+    COL_LAT = 4
+    COL_LON = 5
+    COL_PRIV = 6
+    COL_TAGS = 7
+    COL_CHAN = 8
+    COL_GROUP = 9
     COL_SEARCH = 11
     # column definitions
     COLUMNS = [
@@ -87,16 +88,17 @@ class PlaceBaseView(ListView):
         (_("ID"), TEXT, None),
         (_("Title"), TEXT, None),
         (_("Type"), TEXT, None),
-        (_("Code"), TEXT, None),
         (_("Latitude"), TEXT, None),
         (_("Longitude"), TEXT, None),
         (_("Private"), ICON, "gramps-lock"),
         (_("Tags"), TEXT, None),
         (_("Last Changed"), TEXT, None),
+        (_("Group"), TEXT, None),
     ]
+
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ("columns.visible", [COL_NAME, COL_ID, COL_TYPE, COL_CODE]),
+        ("columns.visible", [COL_NAME, COL_ID, COL_TYPE]),
         (
             "columns.rank",
             [
@@ -104,7 +106,7 @@ class PlaceBaseView(ListView):
                 COL_TITLE,
                 COL_ID,
                 COL_TYPE,
-                COL_CODE,
+                COL_GROUP,
                 COL_LAT,
                 COL_LON,
                 COL_PRIV,
@@ -112,7 +114,7 @@ class PlaceBaseView(ListView):
                 COL_CHAN,
             ],
         ),
-        ("columns.size", [250, 250, 75, 100, 100, 150, 150, 40, 100, 100]),
+        ("columns.size", [250, 250, 75, 100, 75, 150, 150, 40, 100, 100]),
     )
     ADD_MSG = _("Add a new place")
     EDIT_MSG = _("Edit the selected place")
@@ -150,6 +152,7 @@ class PlaceBaseView(ListView):
         uistate.connect("placeformat-changed", self.build_tree)
 
         _ui = self.__create_maps_menu_actions()
+        _ui.extend(self.build_placetype_menu())
         self.additional_uis.append(_ui)
 
     def navigation_type(self):
@@ -358,6 +361,8 @@ class PlaceBaseView(ListView):
           <attribute name="label" translatable="yes">"""
         """Place Filter Editor</attribute>
         </item>
+        <placeholder id='PlaceTypeMenu'>
+        </placeholder>
         </placeholder>
 """,  # Following are the Toolbar items
         """
@@ -487,6 +492,8 @@ class PlaceBaseView(ListView):
         """_Look up with Map Service</attribute>
         </item>
       </section>
+        <placeholder id='PlaceTypePopup'>
+        </placeholder>
     </menu>
 """
         % _("_Edit...", "action"),
@@ -648,9 +655,84 @@ class PlaceBaseView(ListView):
                 "Place Gallery",
                 "Place Citations",
                 "Place Notes",
+                "Place Attributes",
+                "Place Events",
                 "Place Backlinks",
             ),
         )
+
+    # -------------------------------------------------------------------------
+    #
+    # PlaceType menu
+    #
+    # -------------------------------------------------------------------------
+
+    def build_placetype_menu(self):
+        """
+        Create the menu items for these commands.
+        """
+        PT_1 = (
+            """
+              <placeholder id='PlaceTypeMenu' groups='RW'>
+                <submenu>
+                <attribute name="label" translatable="yes">"""
+            """Place Types and Group</attribute>
+                %s
+                </submenu>
+              </placeholder>
+            """
+        )
+
+        PT_2 = (
+            """
+              <placeholder id='PlaceTypePopup' groups='RW'>
+                <submenu>
+                <attribute name="label" translatable="yes">"""
+            """Place Types and Group</attribute>
+                %s
+                </submenu>
+              </placeholder>
+            """
+        )
+
+        PT_MENU = (
+            """<item>
+                  <attribute name="action">win.ReplacePlaceType</attribute>
+                  <attribute name="label" translatable="yes">"""
+            """Replace Place Type...</attribute>
+                </item>
+                <item>
+                  <attribute name="action">win.AssignPlaceGroup</attribute>
+                  <attribute name="label" translatable="yes">"""
+            """Assign Place Group...</attribute>
+                </item>
+            """
+        )
+        actions = []
+
+        actions.append(
+            (
+                "ReplacePlaceType",
+                self.doReplacePlaceType,
+            )
+        )
+        actions.append(
+            (
+                "AssignPlaceGroup",
+                self.doAssignPlaceGroup,
+            )
+        )
+
+        placetype_action = ActionGroup(name="PlaceType")
+        placetype_action.add_actions(actions)
+        self.uistate.uimanager.insert_action_group(placetype_action)
+        return [PT_1 % PT_MENU, PT_2 % PT_MENU]
+
+    def doReplacePlaceType(self, *_dummy):
+        ReplacePlaceType(self.dbstate, self.uistate)
+
+    def doAssignPlaceGroup(self, *_dummy):
+        AssignPlaceGroup(self.dbstate, self.uistate)
 
 
 def make_callback(func, val):

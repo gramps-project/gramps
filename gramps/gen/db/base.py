@@ -816,10 +816,24 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_place_types(self):
+    def get_placehier_types(self):
         """
-        Return a list of all custom place types assocated with Place instances
-        in the database.
+        Return a list of all custom place hierarchy types assocated with Place
+        instances in the database.
+        """
+        raise NotImplementedError
+
+    def get_placeabbr_types(self):
+        """
+        Return a list of all custom place name types assocated with Place
+        instances in the database.
+        """
+        raise NotImplementedError
+
+    def get_place_attribute_types(self):
+        """
+        Return a list of all custom place name types assocated with Place
+        instances in the database.
         """
         raise NotImplementedError
 
@@ -1760,6 +1774,20 @@ class DbWriteBase(DbReadBase):
 
         Needs to be overridden in the derived class.
         """
+        raise NotImplementedError
+
+    def save_place_types(self, close=False):
+        """
+        save the custom place type data
+
+        :param close: Indicates that db is being closed soon.  The place types
+                      are reset to their default values whe this is true.
+        :type close: bool
+        """
+        raise NotImplementedError
+
+    def save_place_formats(self, formats):
+        """save the place formats for the place displayer"""
         raise NotImplementedError
 
     def transaction_begin(self, transaction):

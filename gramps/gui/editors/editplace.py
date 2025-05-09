@@ -5,6 +5,7 @@
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2010,2015  Nick Hall
 # Copyright (C) 2011       Tim G L lyons
+# Copyright (C) 2019       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,12 +46,15 @@ from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
-from gramps.gen.lib import NoteType, Place
+from gramps.gen.lib import NoteType, Place, PlaceName, PlaceType, PlaceGroupType
 from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
 from .displaytabs import (
     PlaceRefEmbedList,
     PlaceNameEmbedList,
+    PlaceTypeEmbedList,
+    PlaceEventEmbedList,
+    PlaceAttrEmbedList,
     LocationEmbedList,
     CitationEmbedList,
     GalleryTab,
@@ -58,9 +62,12 @@ from .displaytabs import (
     WebEmbedList,
     PlaceBackRefList,
 )
+from .editplacename import EditPlaceName
+from .editplacetype import EditPlaceType
 from ..widgets import MonitoredEntry, PrivacyButton, MonitoredTagList, MonitoredDataType
+from ..widgets.placetypeselector import PlaceTypeSelector
 from gramps.gen.errors import ValidationError, WindowActiveError
-from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.utils.place import conv_lat_lon, translate_en_loc
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
 from ..dialog import ErrorDialog
@@ -84,6 +91,8 @@ WIKI_HELP_SEC = _("Place_Editor_dialog", "manual")
 # -------------------------------------------------------------------------
 class EditPlace(EditPrimary):
     def __init__(self, dbstate, uistate, track, place, callback=None):
+        if not place.get_names():
+            place.add_name(PlaceName())
         EditPrimary.__init__(
             self,
             dbstate,
@@ -104,6 +113,8 @@ class EditPlace(EditPrimary):
         self.setup_configs("interface.place", 650, 450)
         self.place_name_label = self.top.get_object("place_name_label")
         self.place_name_label.set_text(_("Name:", "place"))
+        self.name = None
+        self.place_type = None
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():
@@ -130,6 +141,7 @@ class EditPlace(EditPrimary):
 
     def _setup_fields(self):
         if not config.get("preferences.place-auto"):
+            self.top.get_object("preview_title").hide()
             self.top.get_object("place_title").show()
             self.top.get_object("place_title_label").show()
             self.title = MonitoredEntry(
@@ -172,24 +184,34 @@ class EditPlace(EditPrimary):
             self.top.get_object("private"), self.obj, self.db.readonly
         )
 
-        custom_place_types = sorted(self.db.get_place_types(), key=lambda s: s.lower())
-        self.place_type = MonitoredDataType(
-            self.top.get_object("place_type"),
-            self.obj.set_type,
-            self.obj.get_type,
-            self.db.readonly,
-            custom_place_types,
+        custom_placegroup_types = sorted(
+            self.db.get_placegroup_types(), key=lambda s: s.lower()
+        )
+        self.place_group = MonitoredDataType(
+            self.top.get_object("place_group"),
+            self.obj.set_group,
+            self.obj.get_group,
+            custom_placegroup_types,
         )
 
-        self.code = MonitoredEntry(
-            self.top.get_object("code_entry"),
-            self.obj.set_code,
-            self.obj.get_code,
-            self.db.readonly,
+        self.place_type = PlaceTypeSelector(
+            self.dbstate,
+            self.top.get_object("place_type"),
+            self.obj.get_type(),
+            changed=self.type_changed,
         )
+
+        type_button = self.top.get_object("type_button")
+        type_button.connect("clicked", self.edit_place_type)
 
         entry = self.top.get_object("lon_entry")
         entry.set_ltr_mode()
+        # get E,W translated to local
+        self.obj.set_longitude(
+            self.obj.get_longitude()
+            .replace("E", translate_en_loc["E"])
+            .replace("W", translate_en_loc["W"])
+        )
         self.longitude = MonitoredEntry(
             entry, self.obj.set_longitude, self.obj.get_longitude, self.db.readonly
         )
@@ -199,6 +221,12 @@ class EditPlace(EditPrimary):
 
         entry = self.top.get_object("lat_entry")
         entry.set_ltr_mode()
+        # get N,S translated to local
+        self.obj.set_latitude(
+            self.obj.get_latitude()
+            .replace("N", translate_en_loc["N"])
+            .replace("S", translate_en_loc["S"])
+        )
         self.latitude = MonitoredEntry(
             entry, self.obj.set_latitude, self.obj.get_latitude, self.db.readonly
         )
@@ -279,13 +307,36 @@ class EditPlace(EditPrimary):
             )
 
     def update_title(self):
-        new_title = place_displayer.display(self.db, self.obj)
-        self.top.get_object("preview_title").set_text(new_title)
+        if config.get("preferences.place-auto"):
+            new_title = place_displayer.display(self.db, self.obj, fmt=0)
+            self.top.get_object("preview_title").set_text(new_title)
 
-    def name_changed(self, obj):
+    def name_changed(self, _obj):
+        """deal with a change to the name list"""
         self.update_title()
+        self.name_list.rebuild()
 
-    def build_menu_names(self, place):
+    def update_name(self):
+        """User modified the name in entry"""
+        if self.name:
+            self.name.get_val = self.obj.get_name().get_value
+            self.name.set_val = self.obj.get_name().set_value
+            self.name.update()
+
+    def type_changed(self):
+        """deal with a change to the type list"""
+        if self.obj.group == PlaceGroupType.NONE:
+            self.obj.group = self.obj.get_type().get_probable_group()
+            self.place_group.update()
+        self.type_list.rebuild()
+
+    def update_type(self):
+        """User modified the type in the combo"""
+        if self.place_type:
+            self.place_type.update()
+
+    def build_menu_names(self, _place):
+        """names for menu and window"""
         return (_("Edit Place"), self.get_menu_title())
 
     def _create_tabbed_pages(self):
@@ -308,17 +359,29 @@ class EditPlace(EditPrimary):
         self._add_tab(notebook, self.placeref_list)
         self.track_ref_for_deletion("placeref_list")
 
-        self.alt_name_list = PlaceNameEmbedList(
+        self.name_list = PlaceNameEmbedList(
             self.dbstate,
             self.uistate,
             self.track,
-            self.obj.alt_names,
-            "place_editor_altnames",
+            self.obj.name_list,
+            "place_editor_names",
+            self.update_name,
         )
-        self._add_tab(notebook, self.alt_name_list)
-        self.track_ref_for_deletion("alt_name_list")
+        self._add_tab(notebook, self.name_list)
+        self.track_ref_for_deletion("name_list")
 
-        if len(self.obj.alt_loc) > 0:
+        self.type_list = PlaceTypeEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.type_list,
+            "place_editor_types",
+            self.update_type,
+        )
+        self._add_tab(notebook, self.type_list)
+        self.track_ref_for_deletion("type_list")
+
+        if self.obj.alt_loc:
             self.loc_list = LocationEmbedList(
                 self.dbstate,
                 self.uistate,
@@ -328,6 +391,16 @@ class EditPlace(EditPrimary):
             )
             self._add_tab(notebook, self.loc_list)
             self.track_ref_for_deletion("loc_list")
+
+        self.event_list = PlaceEventEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj,
+            "place_editor_events",
+        )
+        self._add_tab(notebook, self.event_list)
+        self.track_ref_for_deletion("event_list")
 
         self.citation_list = CitationEmbedList(
             self.dbstate,
@@ -339,6 +412,16 @@ class EditPlace(EditPrimary):
         )
         self._add_tab(notebook, self.citation_list)
         self.track_ref_for_deletion("citation_list")
+
+        self.attr_list = PlaceAttrEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_attribute_list(),
+            "place_editor_attributes",
+        )
+        self._add_tab(notebook, self.attr_list)
+        self.track_ref_for_deletion("attr_list")
 
         self.note_tab = NoteTab(
             self.dbstate,
@@ -401,6 +484,25 @@ class EditPlace(EditPrimary):
     def edit_callback(self, obj):
         value = self.obj.get_name().get_value()
         self.top.get_object("name_entry").set_text(value)
+        self.name_list.rebuild()
+
+    def edit_place_type(self, _obj):
+        """Invoke the PlaceType editor"""
+        try:
+            EditPlaceType(
+                self.dbstate,
+                self.uistate,
+                self.track,
+                self.obj.get_type(),
+                self.edit_type_callback,
+            )
+        except WindowActiveError:
+            return
+
+    def edit_type_callback(self, _obj):
+        """Update the type list after editing"""
+        self.type_list.rebuild()
+        self.update_type()
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
@@ -426,7 +528,20 @@ class EditPlace(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        place_title = place_displayer.display(self.db, self.obj)
+        place_title = place_displayer.display(self.db, self.obj, fmt=0)
+        # get localized E,W translated to English
+        self.obj.set_longitude(
+            self.obj.get_longitude()
+            .replace(translate_en_loc["E"], "E")
+            .replace(translate_en_loc["W"], "W")
+        )
+        # get localized N,S translated to English
+        self.obj.set_latitude(
+            self.obj.get_latitude()
+            .replace(translate_en_loc["N"], "N")
+            .replace(translate_en_loc["S"], "S")
+        )
+
         if not self.obj.handle:
             with DbTxn(_("Add Place (%s)") % place_title, self.db) as trans:
                 self.db.add_place(self.obj, trans)

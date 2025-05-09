@@ -112,14 +112,6 @@ class MergePlace(ManagedWindow):
             for widget_name in ("type1", "type2", "type_btn1", "type_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
-        entry1 = self.get_widget("code1")
-        entry2 = self.get_widget("code2")
-        entry1.set_text(self.pl1.get_code())
-        entry2.set_text(self.pl2.get_code())
-        if entry1.get_text() == entry2.get_text():
-            for widget_name in ("code1", "code2", "code_btn1", "code_btn2"):
-                self.get_widget(widget_name).set_sensitive(False)
-
         entry1 = self.get_widget("lat1")
         entry2 = self.get_widget("lat2")
         entry1.set_text(self.pl1.get_latitude())
@@ -153,10 +145,10 @@ class MergePlace(ManagedWindow):
         rbutton_label1 = self.get_widget("label_handle_btn1")
         rbutton_label2 = self.get_widget("label_handle_btn2")
         rbutton_label1.set_label(
-            title1 + " [" + gramps1 + "] " + str(self.pl1.place_type)
+            title1 + " [" + gramps1 + "] " + str(self.pl1.get_type())
         )
         rbutton_label2.set_label(
-            title2 + " [" + gramps2 + "] " + str(self.pl2.place_type)
+            title2 + " [" + gramps2 + "] " + str(self.pl2.get_type())
         )
         rbutton1.connect("toggled", self.on_handle1_toggled)
 
@@ -171,7 +163,6 @@ class MergePlace(ManagedWindow):
             self.get_widget("title_btn1").set_active(True)
             self.get_widget("name_btn1").set_active(True)
             self.get_widget("type_btn1").set_active(True)
-            self.get_widget("code_btn1").set_active(True)
             self.get_widget("lat_btn1").set_active(True)
             self.get_widget("long_btn1").set_active(True)
             self.get_widget("gramps_btn1").set_active(True)
@@ -179,7 +170,6 @@ class MergePlace(ManagedWindow):
             self.get_widget("title_btn2").set_active(True)
             self.get_widget("name_btn2").set_active(True)
             self.get_widget("type_btn2").set_active(True)
-            self.get_widget("code_btn2").set_active(True)
             self.get_widget("lat_btn2").set_active(True)
             self.get_widget("long_btn2").set_active(True)
             self.get_widget("gramps_btn2").set_active(True)
@@ -207,8 +197,6 @@ class MergePlace(ManagedWindow):
             phoenix.set_name(titanic.get_name())
         if self.get_widget("type_btn1").get_active() ^ use_handle1:
             phoenix.set_type(titanic.get_type())
-        if self.get_widget("code_btn1").get_active() ^ use_handle1:
-            phoenix.set_code(titanic.get_code())
         if self.get_widget("lat_btn1").get_active() ^ use_handle1:
             phoenix.set_latitude(titanic.get_latitude())
         if self.get_widget("long_btn1").get_active() ^ use_handle1:

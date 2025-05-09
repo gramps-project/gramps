@@ -202,9 +202,9 @@
 1 RESI
 2 DATE 1980
 2 ADDR 459 Main St., The Village, San Francisco, CA, USA
-3 ADR1 456 Main St
-3 ADR1 456 Main St again
-3 ADR2 The Village
+3 ADR1 459 Main St.
+3 ADR2 The Village, San Francisco, CA, 87654
+3 ADR3 USA
 3 CITY San Francisco
 3 CTRY USA
 3 PHON 555-666-7777

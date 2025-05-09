@@ -83,6 +83,13 @@ class AttributeRootBase:
         :type attribute: :class:`~.attribute.Attribute`
         """
         assert not isinstance(attribute, str)
+        for attr in self.attribute_list:
+            equi = attr.is_equivalent(attribute)
+            if equi == IDENTICAL:
+                return
+            elif equi == EQUAL:
+                attr.merge(attribute)
+                return
         self.attribute_list.append(attribute)
 
     def remove_attribute(self, attribute):

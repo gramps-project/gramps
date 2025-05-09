@@ -57,6 +57,7 @@ class EventType(GrampsType):
     .. attribute DEATH:     Death
     .. attribute ADULT_CHRISTEN: Adult Christening
     .. attribute BAPTISM:      Baptism
+    .. attribute BATTLE:      Battle
     .. attribute BAR_MITZVAH:  Bar Mitzvah
     .. attribute BAS_MITZVAH:  Bas Mitzvah
     .. attribute BLESS:        Blessing
@@ -95,8 +96,9 @@ class EventType(GrampsType):
     .. attribute DIVORCE:        Divorce
     .. attribute DIV_FILING:     Divorce Filing
     .. attribute ANNULMENT:      Annulment
-    .. attribute MARR_ALT:        Alternate Marriage
-    .. attribute STILLBIRTH:      Stillbirth
+    .. attribute MARR_ALT:       Alternate Marriage
+    .. attribute STILLBIRTH:     Stillbirth
+    .. attribute HISTORY:        History
     """
 
     UNKNOWN = -1
@@ -146,6 +148,8 @@ class EventType(GrampsType):
     RETIREMENT = 43
     WILL = 44
     STILLBIRTH = 45
+    HISTORY = 46
+    BATTLE = 47
 
     _MENU = [
         [
@@ -189,6 +193,7 @@ class EventType(GrampsType):
         [_T_("Legal"), [PROBATE, WILL]],
         [_T_("Residence"), [RESIDENCE, CENSUS, PROPERTY]],
         [_T_("Other"), [CAUSE_DEATH, MED_INFO, NOB_TITLE, NUM_MARRIAGES]],
+        [_T_("Place"), [HISTORY, BATTLE]],
     ]
 
     _CUSTOM = CUSTOM
@@ -198,6 +203,7 @@ class EventType(GrampsType):
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
         (ADOPT, _("Adopted"), "Adopted"),
+        (BATTLE, _("Battle"), "Battle"),
         (BIRTH, _("Birth"), "Birth"),
         (DEATH, _("Death"), "Death"),
         (ADULT_CHRISTEN, _("Adult Christening"), "Adult Christening"),
@@ -216,6 +222,7 @@ class EventType(GrampsType):
         (ELECTED, _("Elected"), "Elected"),
         (EMIGRATION, _("Emigration"), "Emigration"),
         (FIRST_COMMUN, _("First Communion"), "First Communion"),
+        (HISTORY, _("History"), "History"),
         (IMMIGRATION, _("Immigration"), "Immigration"),
         (GRADUATION, _("Graduation"), "Graduation"),
         (MED_INFO, _("Medical Information"), "Medical Information"),
@@ -255,6 +262,7 @@ class EventType(GrampsType):
         BAPTISM: _T_("bap.", "Baptism abbreviation"),
         BAR_MITZVAH: _T_("bar.", "Bar Mitzvah abbreviation"),
         BAS_MITZVAH: _T_("bat.", "Bat Mitzvah abbreviation"),
+        BATTLE: _T_("battle.", "Battle abbreviation"),
         BLESS: _T_("bles.", "Blessing abbreviation"),
         BURIAL: _T_("bur.", "Burial abbreviation"),
         CAUSE_DEATH: _T_("d.cau.", "Cause Of Death abbreviation"),
@@ -267,6 +275,7 @@ class EventType(GrampsType):
         ELECTED: _T_("elec.", "Elected abbreviation"),
         EMIGRATION: _T_("em.", "Emigration abbreviation"),
         FIRST_COMMUN: _T_("f.comm.", "First Communion abbreviation"),
+        HISTORY: _T_("hist.", "History abbreviation"),
         IMMIGRATION: _T_("im.", "Immigration abbreviation"),
         GRADUATION: _T_("grad.", "Graduation abbreviation"),
         MED_INFO: _T_("medinf.", "Medical Information abbreviation"),

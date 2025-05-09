@@ -26,7 +26,6 @@
 #
 # -------------------------------------------------------------------------
 import time
-import logging
 from math import pi as PI
 from gi.repository import GObject
 from gi.repository import Gdk
@@ -37,6 +36,8 @@ from gi.repository import Gdk
 # Set up logging
 #
 # ------------------------------------------------------------------------
+import logging
+
 _LOG = logging.getLogger("maps.markerlayer")
 
 # -------------------------------------------------------------------------

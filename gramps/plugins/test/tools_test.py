@@ -34,6 +34,9 @@ from gramps.gen.utils.config import config
 
 TREE_NAME = "Test_tooltest"
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
+if "GRAMPS_RESOURCES" not in os.environ:
+    RES_PATH = os.path.abspath(os.path.join(DATA_DIR, ".."))
+    os.environ["GRAMPS_RESOURCES"] = RES_PATH
 
 
 def call(*args):
@@ -145,17 +148,20 @@ class ToolControl(unittest.TestCase):
         self.assertTrue(check_res(out, err, expect, do_out=True))
         out, err = call("-O", TREE_NAME, "-y", "-a", "tool", "-p", "name=check")
         expect = [
+            "7 broken child/family links were fixed",
+            "4 broken spouse/family links were fixed",
+            "1 corrupted family relationship fixed",
             "1 place alternate name fixed",
-            "9 media objects were referenced, but not found",
-            "References to 9 missing media objects were kept",
+            "3 media objects were referenced, but not found",
+            "References to 3 missing media objects were kept",
             "3 events were referenced, but not found",
             "1 invalid birth event name was fixed",
             "1 invalid death event name was fixed",
             "2 places were referenced, but not found",
-            "16 citations were referenced, but not found",
-            "19 sources were referenced, but not found",
+            "18 citations were referenced, but not found",
+            "21 sources were referenced, but not found",
             "9 Duplicated Gramps IDs fixed",
-            "9 empty objects removed:",
+            "9 empty objects removed",
             "1 person objects",
             "1 family objects",
             "1 event objects",

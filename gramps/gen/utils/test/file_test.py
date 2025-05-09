@@ -142,6 +142,7 @@ class FileTest(unittest.TestCase):
 
             # Restore environment
             os.environ = old_env
+            db.close()
 
 
 # -------------------------------------------------------------------------

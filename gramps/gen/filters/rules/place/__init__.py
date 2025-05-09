@@ -25,7 +25,9 @@ Package providing filter rules for Gramps.
 """
 
 from ._allplaces import AllPlaces
+from ._hasattribute import HasAttribute
 from ._hascitation import HasCitation
+from ._hasevent import HasEvent
 from ._hasgallery import HasGallery
 from ._hasidof import HasIdOf
 from ._regexpidof import RegExpIdOf
@@ -38,7 +40,6 @@ from ._hassourcecount import HasSourceCount
 from ._hassourceof import HasSourceOf
 from ._placeprivate import PlacePrivate
 from ._matchesfilter import MatchesFilter
-from ._hasplace import HasPlace
 from ._hasdata import HasData
 from ._hasnolatorlon import HasNoLatOrLon
 from ._inlatlonneighborhood import InLatLonNeighborhood
@@ -52,7 +53,9 @@ from ._withinarea import WithinArea
 
 editor_rule_list = [
     AllPlaces,
+    HasAttribute,
     HasCitation,
+    HasEvent,
     HasGallery,
     HasIdOf,
     RegExpIdOf,

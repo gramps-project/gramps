@@ -46,7 +46,6 @@ from typing import Any, Generator, Type
 # Gramps modules
 #
 # ------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
 from ..errors import HandleError
 from ..lib import (
     Citation,
@@ -57,6 +56,7 @@ from ..lib import (
     Note,
     Person,
     Place,
+    PlaceType,
     Repository,
     Source,
     Tag,
@@ -115,10 +115,13 @@ from . import (
     DbUndo,
     DbWriteBase,
 )
+from ..display.place import displayer as _pd
 from .bookmarks import DbBookmarks
 from .exceptions import DbUpgradeRequiredError, DbVersionError
 from .utils import clear_lock_file, write_lock_file
 from typing import Union
+
+from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
@@ -419,9 +422,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     # 4. Signal for change in person group name, parameters are
     __signals__["person-groupname-rebuild"] = (str, str)
 
+    # 5. Special signal for change in custom type
+    __signals__["custom-type-changed"] = None
+
     __callback_map = {}
 
-    VERSION = (21, 0, 0)
+    VERSION = (22, 0, 0)
 
     def __init__(self, directory=None):
         DbReadBase.__init__(self)
@@ -777,7 +783,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.url_types = self._get_metadata("url_types", set())
         self.media_attributes = self._get_metadata("mattr_names", set())
         self.event_attributes = self._get_metadata("eattr_names", set())
+        self.place_attributes = self._get_metadata("placeattr_names", set())
+        self.placeabbr_types = self._get_metadata("placeabbr_types", set())
+        self.placegroup_types = self._get_metadata("placegroup_types", set())
+        self.placehier_types = self._get_metadata("placehier_types", set())
         self.place_types = self._get_metadata("place_types", set())
+        _pd.load_formats(self._get_metadata("place_formats", ""))
 
         # surname list
         self.surname_list = self.get_surname_list()
@@ -860,6 +871,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 filename = os.path.join(self._directory, "meta_data.db")
                 Path(filename).touch()
                 self._set_all_metadata()
+                self._set_metadata("place_types", self.place_types)
 
             self._close()
 
@@ -911,6 +923,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._set_metadata("url_types", self.url_types)
         self._set_metadata("mattr_names", self.media_attributes)
         self._set_metadata("eattr_names", self.event_attributes)
+        self._set_metadata("placeattr_names", self.place_attributes)
+        self._set_metadata("placeabbr_types", self.placeabbr_types)
+        self._set_metadata("placegroup_types", self.placegroup_types)
+        self._set_metadata("placehier_types", self.placehier_types)
         self._set_metadata("place_types", self.place_types)
 
         # Save misc items:
@@ -2237,8 +2253,25 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._commit_base(place, PLACE_KEY, transaction, change_time)
 
         # Misc updates:
-        if place.get_type().is_custom():
-            self.place_types.add(str(place.get_type()))
+        for p_name in place.get_names():
+            for abb in p_name.get_abbrevs():
+                typ = abb.get_type()
+                if typ.is_custom() and str(typ):
+                    self.placeabbr_types.add(str(typ))
+        for p_ref in place.get_placeref_list():
+            typ = p_ref.get_type()
+            if typ.is_custom() and str(typ):
+                self.placehier_types.add(str(typ))
+
+        if place.group.is_custom() and str(place.group):
+            self.placegroup_types.add(str(place.group))
+
+        for ptype in place.get_types():
+            if ptype.is_custom() and str(ptype):
+                orig = len(self.place_types)
+                self.place_types.add(ptype.name)
+                if len(self.place_types) != orig:
+                    self.emit("custom-type-changed")
 
         self.url_types.update(
             [str(url.type) for url in place.urls if url.type.is_custom()]
@@ -2252,6 +2285,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 if attr.type.is_custom() and str(attr.type)
             ]
         self.media_attributes.update(attr_list)
+        attr_list = [
+            str(attr.type)
+            for attr in place.attribute_list
+            if attr.type.is_custom() and str(attr.type)
+        ]
+        self.place_attributes.update(attr_list)
 
     def commit_event(self, event, transaction, change_time=None):
         """
@@ -2517,12 +2556,40 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         return list(self.url_types)
 
+    def get_placegroup_types(self):
+        """
+        Return a list of all custom place group types assocated with Place
+        instances in the database.
+        """
+        return list(self.placegroup_types)
+
     def get_place_types(self):
         """
         Return a list of all custom place types assocated with Place instances
         in the database.
         """
         return list(self.place_types)
+
+    def get_placehier_types(self):
+        """
+        Return a list of all custom place hierarchy types assocated with Place
+        instances in the database.
+        """
+        return list(self.placehier_types)
+
+    def get_placeabbr_types(self):
+        """
+        Return a list of all custom place name types assocated with Place
+        instances in the database.
+        """
+        return list(self.placeabbr_types)
+
+    def get_place_attribute_types(self):
+        """
+        Return a list of all custom place name types assocated with Place
+        instances in the database.
+        """
+        return list(self.place_attributes)
 
     ################################################################
     #
@@ -2562,6 +2629,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     # Other methods
     #
     ################################################################
+
+    def save_place_formats(self, formats):
+        """save the place formats for the place displayer"""
+        self._set_metadata("place_formats", formats)
 
     def get_default_handle(self):
         return self._get_metadata("default-person-handle", None)
@@ -2778,6 +2849,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_19,
             gramps_upgrade_20,
             gramps_upgrade_21,
+            gramps_upgrade_22,
         )
 
         if version < 14:
@@ -2796,6 +2868,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_20(self)
         if version < 21:
             gramps_upgrade_21(self)
+        if version < 22:
+            gramps_upgrade_22(self)
 
         self.rebuild_secondary(callback)
         self.reindex_reference_map(callback)

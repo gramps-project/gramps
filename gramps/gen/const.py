@@ -145,7 +145,7 @@ USER_DATA_VERSION = os.path.join(USER_DATA, VERSION_DIR_NAME)
 CUSTOM_FILTERS = os.path.join(VERSION_DIR, "custom_filters.xml")
 REPORT_OPTIONS = os.path.join(USER_CONFIG, "report_options.xml")
 TOOL_OPTIONS = os.path.join(USER_CONFIG, "tool_options.xml")
-PLACE_FORMATS = os.path.join(USER_CONFIG, "place_formats.xml")
+PLACE_FORMATS = os.path.join(USER_CONFIG, "place_formats.json")
 
 THUMB_DIR = os.path.join(USER_CACHE, "thumb")
 THUMB_NORMAL = os.path.join(THUMB_DIR, "normal")

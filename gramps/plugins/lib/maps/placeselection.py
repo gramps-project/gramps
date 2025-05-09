@@ -41,7 +41,7 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.dialog import WarningDialog
 from gramps.gen.utils.location import get_main_location
-from gramps.gen.lib import PlaceType
+from gramps.gen.lib import PlaceGroupType as P_G
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as _pd
 from .osmgps import OsmGps
@@ -213,9 +213,9 @@ class PlaceSelection(ManagedWindow, OsmGps):
             loc = get_main_location(self.dbstate.db, place)
             self.plist.append(
                 (
-                    PLACE_STRING % loc.get(PlaceType.COUNTRY, ""),
-                    PLACE_STRING % loc.get(PlaceType.STATE, ""),
-                    PLACE_STRING % loc.get(PlaceType.COUNTY, ""),
+                    PLACE_STRING % loc.get("Country", ""),
+                    PLACE_STRING % loc.get("State", ""),
+                    PLACE_STRING % loc.get("County", ""),
                     PLACE_STRING % _("Other"),
                     self.oldvalue,
                 )
@@ -267,25 +267,27 @@ class PlaceSelection(ManagedWindow, OsmGps):
         parent_place = None
         country = state = county = other = ""
         place = self.dbstate.db.get_place_from_gramps_id(gramps_id)
-        place_name = place.name.get_value()
+        place_name = place.get_names()[0].get_value()
         parent_list = place.get_placeref_list()
         while parent_list:
             place = self.dbstate.db.get_place_from_handle(parent_list[0].ref)
             parent_list = place.get_placeref_list()
-            if int(place.get_type()) == PlaceType.COUNTY:
-                county = place.name.get_value()
+            if (
+                place.get_type() == "County" or place.group == P_G.REGION and not county
+            ):  # County
+                county = place.get_names()[0].get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
-            elif int(place.get_type()) == PlaceType.STATE:
-                state = place.name.get_value()
+            elif place.group == P_G.REGION:  # Terrritory, State
+                state = place.get_names()[0].get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
-            elif int(place.get_type()) == PlaceType.COUNTRY:
-                country = place.name.get_value()
+            elif place.group == P_G.COUNTRY:  # Countries
+                country = place.get_names()[0].get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
             else:
-                other = place.name.get_value()
+                other = place.get_names()[0].get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
         return (country, state, county, place_name, other)

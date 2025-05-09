@@ -86,10 +86,11 @@ class Locations(Gramplet, DbGUIElement):
         top = Gtk.TreeView()
         titles = [
             ("", 0, 50),
-            (_("Name"), 1, 300),
-            (_("Type"), 2, 150),
-            (_("Date"), 5, 250),
-            (_("ID"), 4, 100),
+            (_("Name"), 1, 250),
+            (_("Type"), 2, 100),
+            (_("Date"), 6, 225),
+            (_("ID"), 4, 75),
+            (_("Hierarchy"), 5, 100),
             ("", NOSORT, 50),
         ]
         self.model = ListModel(
@@ -121,7 +122,10 @@ class Locations(Gramplet, DbGUIElement):
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             if active:
-                self.display_place(active, None, [active_handle], DateRange())
+                visited = [active_handle]
+                self.display_place(active, None, visited, DateRange())
+                self.callman.register_handles({"place": visited})
+
             else:
                 self.set_has_data(False)
         else:
@@ -139,6 +143,7 @@ class Locations(Gramplet, DbGUIElement):
         """
         place_date = get_date(placeref)
         place_sort = "%012d" % placeref.get_date_object().get_sort_value()
+        place_hier = str(placeref.get_type())
         place_name = place.get_name().get_value()
         place_type = str(place.get_type())
         place_id = place.get_gramps_id()
@@ -147,7 +152,15 @@ class Locations(Gramplet, DbGUIElement):
             place_date += " *"
 
         new_node = self.model.add(
-            [place.handle, place_name, place_type, place_date, place_id, place_sort],
+            [
+                place.handle,
+                place_name,
+                place_type,
+                place_date,
+                place_id,
+                place_hier,
+                place_sort,
+            ],
             node=node,
         )
 
@@ -181,12 +194,11 @@ class EnclosedBy(Locations):
         """
         Display the location hierarchy for the active place.
         """
-        self.callman.register_obj(place)
         for placeref in place.get_placeref_list():
             if placeref.ref in visited:
                 continue
 
-            dr2 = drange.intersect(placeref.date)
+            dr2 = drange.intersect(placeref.get_date_object())
             if dr2.is_empty():
                 continue
 
@@ -221,7 +233,6 @@ class Encloses(Locations):
         """
         Display the location hierarchy for the active place.
         """
-        self.callman.register_obj(place)
         for link in self.dbstate.db.find_backlink_handles(
             place.handle, include_classes=["Place"]
         ):
@@ -237,6 +248,7 @@ class Encloses(Locations):
                         continue
 
                     self.add_place(placeref, child_place, node, visited, dr2)
+                    self.callman.register_handles({"place": [child_place.handle]})
 
         self.set_has_data(self.model.count > 0)
         self.model.tree.expand_all()

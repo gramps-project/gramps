@@ -26,7 +26,7 @@
 [P0027],"Sacramento Co., California, USA",Sacramento Co.,County,,,,[P0028],2016-06-01,,,,,,,,,,,,,
 [P0015],"Sacramento, Sacramento Co., CA","Sacramento, Sacramento Co., CA",City,,,,[P0027],2016-06-04,,,,,,,,,,,,,
 [P0024],"Denver Co., Colorado, USA",Denver Co.,County,,,,[P0025],,,,,,,,,,,,,,
-[P0014],"Denver, Denver Co., CO","Denver, Denver Co., CO",City,39.7392,104.9903 W,,[P0024],,,,,,,,,,,,,,
+[P0014],"Denver, Denver Co., CO","Denver",City,39.7392,104.9903 W,,[P0024],,,,,,,,,,,,,,
 L18,UC Berkeley,UC Berkeley,Unknown,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,
 Person,Surname,Given,Call,Suffix,Prefix,Title,Gender,Nickname,Birth date,Birth place,birthplaceid,Birth source,Baptism date,Baptism place,Baptism source,Death date,Death place,Death source,Burial date,Burial place,Burial source,Note
@@ -41,7 +41,7 @@ Person,Surname,Given,Call,Suffix,Prefix,Title,Gender,Nickname,Birth date,Birth p
 [I0017],Jones,Lillie Harriet,,,,,female,,2 May 1910,"Rønne, Bornholm, Denmark",,,,,,26-Jun-90,,,,,,
 [I0013],Michaels,Evelyn,,,,,female,,about 1897,,,,,,,,,,,,,
 [I0012],Nielsen,Herman Julius,,,,,male,,31 Aug 1889,"Rønne, Bornholm, Denmark",,,,,,1945,,,,,,
-[I0031],Ohman,Marjorie,,,,,female,,3 Jun 1903,"Denver, Denver Co., CO, Denver Co., Colorado, USA",,,,,,22-Jun-80,"Reno, Washoe Co., NV",,,,,
+[I0031],Ohman,Marjorie,,,,,female,,3 Jun 1903,"Denver, Denver Co., Colorado, USA",,,,,,22-Jun-80,"Reno, Washoe Co., NV",,,,,
 [I0034],Perkins,Alice Paula,,,,,female,,22 Nov 1933,"Sparks, Washoe Co., NV",,,,,,,,,,,,
 [I0002],Smith,Amber Marie,,,,,female,,12 Apr 1998,"Hayward, Alameda Co., CA",,,,,,,,,,,,
 [I0023],Smith,Astrid Shermanna Augusta,,,,,female,,31 Jan 1889,"Rønne, Bornholm, Denmark",,,,,,21-Dec-63,"San Francisco, San Francisco Co., CA",,,,,
