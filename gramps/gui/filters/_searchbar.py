@@ -136,7 +136,7 @@ class SearchBar:
         self.find_button.set_sensitive(True)
         # only make the search_text and clear_button widgets sensitive for searches
         node = self.search_list.get_active_iter()
-        type = self.search_model.get_value(node, 3)
+        type = self.search_model.get_value(node, 3) if node else False
         self.clear_button.set_sensitive(not type)
         self.search_text.set_sensitive(not type)
 
