@@ -29,7 +29,7 @@ def intersection(sets):
     if len(sets) == 1:
         return sets[0]  # avoid computing x&x when we only have a single set
     else:
-        return reduce(lambda x, y: x & y, sets, set())
+        return reduce(lambda x, y: x & y, sorted(sets, lambda s: len(s)), set())
 
 
 def union(sets):
