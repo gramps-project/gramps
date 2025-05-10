@@ -147,54 +147,43 @@ class GenericFilter:
     ):
         final_list = []
 
+        # build the starting set of possible_handles
         if id_list:
-            optimizer = Optimizer(set(id_list), self)
+            if tupleind:
+                possible_handles = set(data[tupleind] for data in id_list)
+            else:
+                possible_handles = set(id_list)
         else:
-            optimizer = Optimizer(set(self.get_all_handles(db)), self)
+            possible_handles = set(self.get_all_handles(db))
+        # and make sure no None values are present
+        possible_handles.discard(None)
+
+        LOG.debug(
+            "Starting possible_handles: %s",
+            len(possible_handles),
+        )
+
+        # use the Optimizer to refine the set of possible_handles
+        optimizer = Optimizer(possible_handles, self)
         possible_handles = optimizer.get_possible_handles()
 
         LOG.debug(
             "Optimizer possible_handles: %s",
             len(possible_handles),
         )
-        if id_list is None:
+
+        if user:
+            user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
+
+        # Use these rather than going through entire database
+        for handle in possible_handles:
             if user:
-                user.begin_progress(
-                    _("Filter"), _("Applying ..."), len(possible_handles)
-                )
+                user.step_progress()
 
-            # Use these rather than going through entire database
-            for handle in possible_handles:
-                if user:
-                    user.step_progress()
+            obj = self.get_object(db, handle)
 
-                if handle is None:
-                    continue
-
-                obj = self.get_object(db, handle)
-
-                if apply_logical_op(db, obj, self.flist) != self.invert:
-                    final_list.append(obj.handle)
-        else:
-            id_list = list(id_list)
-            if user:
-                user.begin_progress(_("Filter"), _("Applying ..."), len(id_list))
-            for handle_data in id_list:
-                if user:
-                    user.step_progress()
-
-                if tupleind is None:
-                    handle = handle_data
-                else:
-                    handle = handle_data[tupleind]
-
-                if handle not in possible_handles:
-                    continue
-
-                obj = self.get_object(db, handle)
-
-                if apply_logical_op(db, obj, self.flist) != self.invert:
-                    final_list.append(handle_data)
+            if apply_logical_op(db, obj, self.flist) != self.invert:
+                final_list.append(obj.handle)
 
         if user:
             user.end_progress()
