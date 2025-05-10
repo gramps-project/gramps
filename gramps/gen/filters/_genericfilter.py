@@ -151,6 +151,8 @@ class GenericFilter:
                 possible_handles = set(data[tupleind] for data in id_list)
             else:
                 possible_handles = set(id_list)
+        elif tree:
+            possible_handles = set(handle for handle, obj in self.get_tree_cursor(db))
         else:
             possible_handles = set(self.get_all_handles(db))
 
