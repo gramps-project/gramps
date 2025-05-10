@@ -145,8 +145,6 @@ class GenericFilter:
     def apply_logical_op_to_all(
         self, db, id_list, apply_logical_op, user=None, tupleind=None, tree=False
     ):
-        final_list = []
-
         # build the starting set of possible_handles
         if id_list:
             if tupleind:
@@ -176,6 +174,7 @@ class GenericFilter:
             user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
 
         # test each value in possible_handles to compute the final_list
+        final_list = []
         for handle in possible_handles:
             if user:
                 user.step_progress()
