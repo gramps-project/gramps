@@ -155,8 +155,6 @@ class GenericFilter:
                 possible_handles = set(id_list)
         else:
             possible_handles = set(self.get_all_handles(db))
-        # and make sure no None values are present
-        possible_handles.discard(None)
 
         LOG.debug(
             "Starting possible_handles: %s",
@@ -166,6 +164,8 @@ class GenericFilter:
         # use the Optimizer to refine the set of possible_handles
         optimizer = Optimizer(possible_handles, self)
         possible_handles = optimizer.get_possible_handles()
+        # and make sure it does not include None
+        possible_handles.discard(None)
 
         LOG.debug(
             "Optimizer possible_handles: %s",
@@ -175,7 +175,7 @@ class GenericFilter:
         if user:
             user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
 
-        # Use these rather than going through entire database
+        # test each value in possible_handles to compute the final_list
         for handle in possible_handles:
             if user:
                 user.step_progress()
