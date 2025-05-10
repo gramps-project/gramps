@@ -33,7 +33,7 @@ def intersection(sets):
 
 
 def union(sets):
-    return reduce(lambda x, y: x | y, sets, set())
+    return set.union(*sets)
 
 
 class Optimizer:
