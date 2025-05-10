@@ -152,7 +152,8 @@ class GenericFilter:
             else:
                 possible_handles = set(id_list)
         elif tree:
-            possible_handles = set(handle for handle, obj in self.get_tree_cursor(db))
+            tree_handles = [handle for handle, obj in self.get_tree_cursor(db)]
+            possible_handles = set(tree_handles)
         else:
             possible_handles = set(self.get_all_handles(db))
 
@@ -185,6 +186,10 @@ class GenericFilter:
 
             if apply_logical_op(db, obj, self.flist) != self.invert:
                 final_list.append(obj.handle)
+
+        if tree:
+            # sort final_list into the same order as traversed by get_tree_cursor
+            final_list = sorted(final_list, key=lambda x: tree_handles.index(x))
 
         if user:
             user.end_progress()
