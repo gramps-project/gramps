@@ -156,6 +156,12 @@ class OptimizerTest(unittest.TestCase):
         results = filter.apply(self.db)
         self.assertEqual(len(results), 2128)
 
+    def test_everyone_with_id_list(self):
+        filter = self.filters["Everyone"]
+        id_list = [self.db.get_default_handle()]
+        results = filter.apply(self.db, id_list=id_list)
+        self.assertEqual(len(results), 1)
+
     def test_f1(self):
         filter = self.filters["F1"]
         results = filter.apply(self.db)

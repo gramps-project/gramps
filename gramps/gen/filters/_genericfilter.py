@@ -147,7 +147,10 @@ class GenericFilter:
     ):
         final_list = []
 
-        optimizer = Optimizer(set(self.get_all_handles(db)), self)
+        if id_list:
+            optimizer = Optimizer(set(id_list), self)
+        else:
+            optimizer = Optimizer(set(self.get_all_handles(db)), self)
         possible_handles = optimizer.get_possible_handles()
 
         LOG.debug(
