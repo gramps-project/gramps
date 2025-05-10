@@ -148,7 +148,11 @@ class GenericFilter:
         # build the starting set of possible_handles
         if id_list:
             if tupleind:
-                possible_handles = set(data[tupleind] for data in id_list)
+                # construct a dict from handle to corresponding tuple
+                # this is used to efficiently transform final_list from a list of
+                # handles to a list of tuples
+                handle_tuple = {data[tupleind]: data for data in id_list}
+                possible_handles = set(handle_tuple.keys())
             else:
                 possible_handles = set(id_list)
         elif tree:
@@ -187,7 +191,11 @@ class GenericFilter:
             if apply_logical_op(db, obj, self.flist) != self.invert:
                 final_list.append(obj.handle)
 
-        if tree:
+        if id_list and tupleind:
+            if len(final_list):
+                # convert the final_list of handles back to the corresponding final_list of tuples
+                final_list = [handle_tuple[handle] for handle in final_list]
+        elif tree:
             # sort final_list into the same order as traversed by get_tree_cursor
             final_list = sorted(final_list, key=lambda x: tree_handles.index(x))
 
