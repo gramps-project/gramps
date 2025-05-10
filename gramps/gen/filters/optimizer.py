@@ -29,7 +29,11 @@ def intersection(sets):
     if len(sets) == 1:
         return sets[0]  # avoid computing x&x when we only have a single set
     else:
-        return reduce(lambda x, y: x & y, sorted(sets, key=lambda s: len(s)), set())
+        # sort the sets by length, shortest first.
+        # with interrsection, the shortest of the starting sets determines the 
+        # maximum size of the result
+        sorted_sets = sorted(sets, key=lambda s: len(s))
+        return reduce(lambda x, y: x & y, sorted_sets[1:], sorted_sets[0])
 
 
 def union(sets):
