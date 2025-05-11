@@ -72,7 +72,7 @@ LOG = logging.getLogger(".filter.results")
 #
 # -------------------------------------------------------------------------
 class GenericFilter:
-    """Filter class that consists of several rules."""
+    """Filter class that consists of zero, one or more rules."""
 
     logical_functions = ["and", "or", "one"]
 
@@ -282,7 +282,7 @@ class GenericFilter:
 
         # build the starting set of possible_handles to be filtered
         possible_handles: Set[PrimaryObjectHandle]
-        if id_list is not None:
+        if id_list:
             if tupleind is not None:
                 # construct a dict from handle to corresponding tuple
                 # this is used to efficiently transform final_list from a list of
@@ -302,13 +302,12 @@ class GenericFilter:
         res = self.apply_logical_op_to_all(db, possible_handles, apply_logical_op, user)
 
         # convert the filtered set of handles to the correct result type
-        if id_list is not None and tupleind is not None:
-            if len(res):
-                # convert the final_list of handles back to the corresponding final_list of tuples
-                res = sorted(
-                    [handle_tuple[handle] for handle in res],
-                    key=lambda x: id_list.index(x),
-                )
+        if id_list and tupleind is not None:
+            # convert the final_list of handles back to the corresponding final_list of tuples
+            res = sorted(
+                [handle_tuple[handle] for handle in res],
+                key=lambda x: id_list.index(x),
+            )
         elif tree:
             # sort final_list into the same order as traversed by get_tree_cursor
             res = sorted(res, key=lambda x: tree_handles.index(x))
