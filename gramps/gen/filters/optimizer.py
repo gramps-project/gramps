@@ -31,9 +31,10 @@ import logging
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set
+from typing import List, Set, TYPE_CHECKING
 from .rules import Rule
-from . import GenericFilter
+if TYPE_CHECKING:
+    from ._genericfilter import GenericFilter
 from ..types import PrimaryObjectHandle
 
 LOG = logging.getLogger(".filter.optimizer")
