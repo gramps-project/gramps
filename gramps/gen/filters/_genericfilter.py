@@ -239,12 +239,21 @@ class GenericFilter:
     def apply(self, db, id_list=None, tupleind=None, user=None, tree=False):
         """
         Apply the filter using db.
-        If id_list given, the handles in id_list are used. If not given
-        a database cursor will be used over all entries.
 
-        If tupleind is given, id_list is supposed to consist of a list of
-        tuples, with the handle being index tupleind. So
-        handle_0 = id_list[0][tupleind]
+        If id_list and tupleind given, id_list is a list of tuples. tupleind is the
+        index of the object handle. So handle_0 = id_list[0][tupleind]. If multiple
+        tuples have the same handle, it is undefined which tuple is returned.
+
+        If id_list given and tupleind is None, id_list if the list of handles to use
+
+        If id_list is None and tree is False, all handles in the database are searched.
+        The order of handles in the result is not guaranteed
+
+        If id_list is None and tree is True, all handles in the database are searched.
+        The order of handles in the result matches the order of traversal
+        by get_tree_cursor
+
+        id_list takes precendence over tree
 
         user is optional. If present it must be an instance of a User class.
 
