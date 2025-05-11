@@ -242,8 +242,9 @@ class GenericFilter:
         Apply the filter using db.
 
         If id_list and tupleind given, id_list is a list of tuples. tupleind is the
-        index of the object handle. So handle_0 = id_list[0][tupleind]. If multiple
-        tuples have the same handle, it is undefined which tuple is returned.
+        index of the object handle. So handle_0 = id_list[0][tupleind]. The input
+        order in maintained in the output. If multiple tuples have the same handle,
+        it is undefined which tuple is returned.
 
         If id_list given and tupleind is None, id_list if the list of handles to use
 
@@ -304,7 +305,10 @@ class GenericFilter:
         if id_list is not None and tupleind is not None:
             if len(res):
                 # convert the final_list of handles back to the corresponding final_list of tuples
-                res = [handle_tuple[handle] for handle in res]
+                res = sorted(
+                    [handle_tuple[handle] for handle in res],
+                    key=lambda x: id_list.index(x),
+                )
         elif tree:
             # sort final_list into the same order as traversed by get_tree_cursor
             res = sorted(res, key=lambda x: tree_handles.index(x))
