@@ -4,6 +4,7 @@
 # Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2012,2024  Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2025       Steve Youngs <steve@youngs.cc>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -172,8 +173,6 @@ class GenericFilter:
         # use the Optimizer to refine the set of possible_handles
         optimizer = Optimizer(possible_handles, self)
         possible_handles = optimizer.get_possible_handles()
-        # and make sure it does not include None
-        possible_handles.discard(None)
 
         LOG.debug(
             "Optimizer possible_handles: %s",
@@ -290,6 +289,8 @@ class GenericFilter:
                 possible_handles = set(handle_tuple.keys())
             else:
                 possible_handles = set(id_list)
+            # and make sure it does not include None
+            possible_handles.discard(None)
         elif tree:
             tree_handles = [handle for handle, obj in self.get_tree_cursor(db)]
             possible_handles = set(tree_handles)
