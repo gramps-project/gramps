@@ -58,7 +58,7 @@ from .optimizer import Optimizer
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, Tuple
+from typing import Dict, List, Set, Tuple
 from ..db import Database
 from ..types import PrimaryObjectHandle
 
@@ -286,12 +286,10 @@ class GenericFilter:
                 # construct a dict from handle to corresponding tuple
                 # this is used to efficiently transform final_list from a list of
                 # handles to a list of tuples
-                handle_tuple = {data[tupleind]: data for data in id_list}
+                handle_tuple : Dict[PrimaryObjectHandle, Tuple]= {data[tupleind]: data for data in id_list}
                 possible_handles = set(handle_tuple.keys())
             else:
                 possible_handles = set(id_list)
-            # and make sure it does not include None
-            possible_handles.discard(None)
         elif tree:
             tree_handles = [handle for handle, obj in self.get_tree_cursor(db)]
             possible_handles = set(tree_handles)
