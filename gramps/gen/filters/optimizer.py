@@ -18,13 +18,28 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
 import logging
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import List, Set
+from .rules import Rule
+from . import GenericFilter
+from ..types import PrimaryObjectHandle
 
 LOG = logging.getLogger(".filter.optimizer")
 
 
-def intersection(sets):
+def intersection(sets: List[Set[PrimaryObjectHandle]]) -> Set[PrimaryObjectHandle]:
     # sort the sets by length, shortest first.
     # with intersection, the shortest of the starting sets determines the
     # maximum size of the result
@@ -32,7 +47,7 @@ def intersection(sets):
     return set.intersection(*sorted_sets)
 
 
-def union(sets):
+def union(sets: List[Set[PrimaryObjectHandle]]) -> Set[PrimaryObjectHandle]:
     return set.union(*sets)
 
 
@@ -46,21 +61,23 @@ class Optimizer:
     of the filter list.
     """
 
-    def __init__(self, all_handles, filter):
+    def __init__(self, all_handles: Set[PrimaryObjectHandle], filter: GenericFilter):
         """
         Compute possible_handles for the filter list.
         """
         self.all_handles = all_handles
         self.possible_handles = self.compute_potential_handles_for_filter(filter)
 
-    def compute_potential_handles_for_filter(self, filter):
+    def compute_potential_handles_for_filter(
+        self, filter: GenericFilter
+    ) -> Set[PrimaryObjectHandle]:
         """
         Compute the superset of handles which are the result of the supplied filter
         In the worst case, this is self.all_handles
         """
         if len(filter.flist) == 0:
             return self.all_handles
-        handlesets = [
+        handlesets: List[Set[PrimaryObjectHandle]] = [
             self.compute_potential_handles_for_rule(rule) for rule in filter.flist
         ]
 
@@ -76,7 +93,9 @@ class Optimizer:
 
         return handles
 
-    def compute_potential_handles_for_rule(self, rule):
+    def compute_potential_handles_for_rule(
+        self, rule: Rule
+    ) -> Set[PrimaryObjectHandle]:
         """
         Compute the superset of handles which are the result of the supplied rule
         In the worst case, this is self.all_handles
@@ -94,7 +113,7 @@ class Optimizer:
         )  # no optimization is possible so assume all the handles in
         # `all_handles` could match the rule
 
-    def get_possible_handles(self):
+    def get_possible_handles(self) -> Set[PrimaryObjectHandle]:
         """
         Returns possible_handles
 
