@@ -33,6 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import HasGrampsId
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -45,3 +46,4 @@ class HasIdOf(HasGrampsId):
 
     name = _("Place with <Id>")
     description = _("Matches a place with a specified Gramps ID")
+    _get_raw_object_from_id_data = staticmethod(Database._get_raw_place_from_id_data)

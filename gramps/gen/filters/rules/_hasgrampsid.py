@@ -24,6 +24,7 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 from ...const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -41,8 +42,10 @@ from . import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from ...lib.primaryobj import PrimaryObject
+from typing import Set
 from ...db import Database
+from ...lib.primaryobj import PrimaryObject
+from ...types import PrimaryObjectHandle
 
 
 # -------------------------------------------------------------------------
@@ -58,9 +61,18 @@ class HasGrampsId(Rule):
     description = "Matches objects with a specified Gramps ID"
     category = _("General filters")
 
+    def prepare(self, db, user):
+        self.selected_handles: Set[PrimaryObjectHandle] = set()
+        object = self._get_raw_object_from_id_data(db, self.list[0])
+        if object:
+            self.selected_handles.add(object.handle)
+
+    def reset(self):
+        self.selected_handles.clear()
+
     def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         """
         apply the rule on the obj.
         return true if the rule passes, false otherwise.
         """
-        return obj.gramps_id == self.list[0]
+        return obj.handle in self.selected_handles

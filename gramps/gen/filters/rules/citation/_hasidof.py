@@ -34,6 +34,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import HasGrampsId
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -46,3 +47,4 @@ class HasIdOf(HasGrampsId):
 
     name = _("Citation with <Id>")
     description = _("Matches a citation with a specified Gramps ID")
+    _get_raw_object_from_id_data = staticmethod(Database._get_raw_citation_from_id_data)
