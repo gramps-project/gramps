@@ -97,7 +97,8 @@ class Optimizer:
         """
         Returns possible_handles
 
-        `possible_handles` is a superset of the handles that will match the filter.
+        `possible_handles` is a superset of the handles in `all_handles` that will
+        match the filter.
         """
         LOG.debug("optimizer possible_handles: %s", len(self.possible_handles))
         return self.possible_handles
