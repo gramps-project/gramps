@@ -302,7 +302,7 @@ class GenericFilter:
         res = self.apply_logical_op_to_all(db, possible_handles, apply_logical_op, user)
 
         # convert the filtered set of handles to the correct result type
-        if id_list  is not None and tupleind is not None:
+        if id_list is not None and tupleind is not None:
             # convert the final_list of handles back to the corresponding final_list of tuples
             res = sorted(
                 [handle_tuple[handle] for handle in res],
