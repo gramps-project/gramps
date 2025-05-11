@@ -33,6 +33,7 @@ import logging
 # -------------------------------------------------------------------------
 from typing import List, Set, TYPE_CHECKING
 from .rules import Rule
+
 if TYPE_CHECKING:
     from ._genericfilter import GenericFilter
 from ..types import PrimaryObjectHandle
