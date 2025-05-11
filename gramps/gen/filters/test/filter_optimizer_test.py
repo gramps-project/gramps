@@ -21,6 +21,7 @@
 import tempfile
 import os
 import unittest
+import pytest
 
 from ...const import DATA_DIR
 from ...db.utils import import_as_dict
@@ -161,6 +162,36 @@ class OptimizerTest(unittest.TestCase):
         id_list = [self.db.get_default_handle()]
         results = filter.apply(self.db, id_list=id_list)
         self.assertEqual(len(results), 1)
+
+    def test_everyone_with_id_list_tupleind_0(self):
+        filter = self.filters["Everyone"]
+        default_person = self.db.get_default_person()
+        id_list = [(default_person.handle, default_person)]
+        results = filter.apply(self.db, id_list=id_list, tupleind=0)
+        self.assertEqual(results[0], id_list[0])
+        self.assertEqual(len(results), 1)
+
+    def test_everyone_with_id_list_tupleind_1(self):
+        filter = self.filters["Everyone"]
+        default_person = self.db.get_default_person()
+        id_list = [(default_person, default_person.handle)]
+        results = filter.apply(self.db, id_list=id_list, tupleind=1)
+        self.assertEqual(results[0], id_list[0])
+        self.assertEqual(len(results), 1)
+
+    def test_everyone_with_id_list_tupleind_3(self):
+        filter = self.filters["Everyone"]
+        default_person = self.db.get_default_person()
+        id_list = [(default_person, default_person.handle)]
+        with pytest.raises(IndexError) as excinfo:
+            results = filter.apply(self.db, id_list=id_list, tupleind=3)
+        self.assertEqual(str(excinfo.value), "tuple index out of range")
+
+    def test_everyone_with_id_list_empty(self):
+        filter = self.filters["Everyone"]
+        id_list = []
+        results = filter.apply(self.db, id_list=id_list)
+        self.assertEqual(len(results), 0)
 
     def test_f1(self):
         filter = self.filters["F1"]
