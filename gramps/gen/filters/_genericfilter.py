@@ -24,6 +24,12 @@
 Package providing filtering framework for Gramps.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
 import logging
 import time
 
@@ -45,6 +51,15 @@ from ..lib.tag import Tag
 from ..const import GRAMPS_LOCALE as glocale
 from .rules import Rule
 from .optimizer import Optimizer
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import List, Tuple
+from ..db import Database
+from ..types import PrimaryObjectHandle
 
 _ = glocale.translation.gettext
 LOG = logging.getLogger(".filter.results")
@@ -143,7 +158,13 @@ class GenericFilter:
         return db.get_number_of_people()
 
     def apply_logical_op_to_all(
-        self, db, id_list, apply_logical_op, user=None, tupleind=None, tree=False
+        self,
+        db,
+        id_list: List[PrimaryObjectHandle | Tuple],
+        apply_logical_op,
+        user=None,
+        tupleind: int | None = None,
+        tree: bool = False,
     ):
         # build the starting set of possible_handles
         if id_list:
@@ -236,7 +257,14 @@ class GenericFilter:
             raise Exception("invalid operator: %r" % self.logical_op)
         return res != self.invert
 
-    def apply(self, db, id_list=None, tupleind=None, user=None, tree=False):
+    def apply(
+        self,
+        db,
+        id_list: List[PrimaryObjectHandle | Tuple] = None,
+        tupleind: int | None = None,
+        user=None,
+        tree: bool = False,
+    ) -> List[PrimaryObjectHandle | Tuple]:
         """
         Apply the filter using db.
 
