@@ -182,12 +182,9 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["Everyone"]
         default_person = self.db.get_default_person()
         id_list = [(default_person, default_person.handle)]
-        raised = False
-        try:
-            results = filter.apply(self.db, id_list=id_list, tupleind=3)
-        except IndexError:
-            raised = True
-        self.assertTrue(raised)
+        self.assertRaises(
+            IndexError, filter.apply, self.db, id_list=id_list, tupleind=3
+        )
 
     def test_everyone_with_id_list_empty(self):
         filter = self.filters["Everyone"]
