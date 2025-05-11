@@ -233,7 +233,7 @@ class GenericFilter:
     def apply(
         self,
         db,
-        id_list: List[PrimaryObjectHandle | Tuple] = None,
+        id_list: List[PrimaryObjectHandle | Tuple] | None = None,
         tupleind: int | None = None,
         user=None,
         tree: bool = False,
@@ -280,6 +280,7 @@ class GenericFilter:
         start_time = time.time()
 
         # build the starting set of possible_handles to be filtered
+        possible_handles: Set[PrimaryObjectHandle]
         if id_list:
             if tupleind:
                 # construct a dict from handle to corresponding tuple
