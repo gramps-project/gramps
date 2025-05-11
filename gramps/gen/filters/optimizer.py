@@ -91,7 +91,8 @@ class Optimizer:
                 return self.compute_potential_handles_for_filter(filter)
         return (
             self.all_handles
-        )  # no optimization ispossible so assume all handles could match the rule
+        )  # no optimization is possible so assume all the handles in
+        # `all_handles` could match the rule
 
     def get_possible_handles(self):
         """
