@@ -26,7 +26,7 @@ LOG = logging.getLogger(".filter.optimizer")
 
 def intersection(sets):
     # sort the sets by length, shortest first.
-    # with interrsection, the shortest of the starting sets determines the
+    # with intersection, the shortest of the starting sets determines the
     # maximum size of the result
     sorted_sets = sorted(sets, key=lambda s: len(s))
     return set.intersection(*sorted_sets)
