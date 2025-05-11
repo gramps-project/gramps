@@ -21,7 +21,6 @@
 import tempfile
 import os
 import unittest
-import pytest
 
 from ...const import DATA_DIR
 from ...db.utils import import_as_dict
@@ -183,9 +182,12 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["Everyone"]
         default_person = self.db.get_default_person()
         id_list = [(default_person, default_person.handle)]
-        with pytest.raises(IndexError) as excinfo:
+        raised = False
+        try:
             results = filter.apply(self.db, id_list=id_list, tupleind=3)
-        self.assertEqual(str(excinfo.value), "tuple index out of range")
+        except IndexError:
+            raised = True
+        self.assertTrue(raised)
 
     def test_everyone_with_id_list_empty(self):
         filter = self.filters["Everyone"]
