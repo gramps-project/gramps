@@ -57,7 +57,7 @@ from .optimizer import Optimizer
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Tuple
+from typing import List, Set, Tuple
 from ..db import Database
 from ..types import PrimaryObjectHandle
 
@@ -160,28 +160,10 @@ class GenericFilter:
     def apply_logical_op_to_all(
         self,
         db,
-        id_list: List[PrimaryObjectHandle | Tuple],
+        possible_handles: Set[PrimaryObjectHandle],
         apply_logical_op,
         user=None,
-        tupleind: int | None = None,
-        tree: bool = False,
     ):
-        # build the starting set of possible_handles
-        if id_list:
-            if tupleind:
-                # construct a dict from handle to corresponding tuple
-                # this is used to efficiently transform final_list from a list of
-                # handles to a list of tuples
-                handle_tuple = {data[tupleind]: data for data in id_list}
-                possible_handles = set(handle_tuple.keys())
-            else:
-                possible_handles = set(id_list)
-        elif tree:
-            tree_handles = [handle for handle, obj in self.get_tree_cursor(db)]
-            possible_handles = set(tree_handles)
-        else:
-            possible_handles = set(self.get_all_handles(db))
-
         LOG.debug(
             "Starting possible_handles: %s",
             len(possible_handles),
@@ -211,14 +193,6 @@ class GenericFilter:
 
             if apply_logical_op(db, obj, self.flist) != self.invert:
                 final_list.append(obj.handle)
-
-        if id_list and tupleind:
-            if len(final_list):
-                # convert the final_list of handles back to the corresponding final_list of tuples
-                final_list = [handle_tuple[handle] for handle in final_list]
-        elif tree:
-            # sort final_list into the same order as traversed by get_tree_cursor
-            final_list = sorted(final_list, key=lambda x: tree_handles.index(x))
 
         if user:
             user.end_progress()
@@ -305,9 +279,34 @@ class GenericFilter:
             raise Exception("invalid operator: %r" % self.logical_op)
 
         start_time = time.time()
-        res = self.apply_logical_op_to_all(
-            db, id_list, apply_logical_op, user, tupleind, tree
-        )
+
+        # build the starting set of possible_handles to be filtered
+        if id_list:
+            if tupleind:
+                # construct a dict from handle to corresponding tuple
+                # this is used to efficiently transform final_list from a list of
+                # handles to a list of tuples
+                handle_tuple = {data[tupleind]: data for data in id_list}
+                possible_handles = set(handle_tuple.keys())
+            else:
+                possible_handles = set(id_list)
+        elif tree:
+            tree_handles = [handle for handle, obj in self.get_tree_cursor(db)]
+            possible_handles = set(tree_handles)
+        else:
+            possible_handles = set(self.get_all_handles(db))
+
+        res = self.apply_logical_op_to_all(db, possible_handles, apply_logical_op, user)
+
+        # convert the filtered set of handles to the correct result type
+        if id_list and tupleind:
+            if len(res):
+                # convert the final_list of handles back to the corresponding final_list of tuples
+                res = [handle_tuple[handle] for handle in res]
+        elif tree:
+            # sort final_list into the same order as traversed by get_tree_cursor
+            res = sorted(res, key=lambda x: tree_handles.index(x))
+
         LOG.debug("Apply time: %s seconds", time.time() - start_time)
 
         for rule in self.flist:
