@@ -30,7 +30,7 @@ def intersection(sets):
     # with interrsection, the shortest of the starting sets determines the
     # maximum size of the result
     sorted_sets = sorted(sets, key=lambda s: len(s))
-    return reduce(lambda x, y: x & y, sorted_sets[1:], sorted_sets[0])
+    return set.intersection(*sorted_sets)
 
 
 def union(sets):
