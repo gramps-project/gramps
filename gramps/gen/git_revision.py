@@ -26,12 +26,12 @@ Find the latest git revision.
 import subprocess
 
 
-def get_git_revision(path=""):
+def get_git_revision():
     """
     Return the short commit hash of the latest commit.
     """
     stdout = ""
-    command = ["git", "log", "-1", "--format=%h", path]
+    command = ["git", "log", "-1", "--format=%h"]
     try:
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         (stdout, stderr) = proc.communicate()
