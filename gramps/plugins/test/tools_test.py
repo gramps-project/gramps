@@ -26,14 +26,13 @@ import unittest
 import random
 
 from gramps.test.test_util import Gramps
-from gramps.gen.const import DATA_DIR, TEST_RANDOM
+from gramps.gen.const import TEST_DIR, TEST_RANDOM
 from gramps.gen.user import User
 from gramps.gen.utils.id import set_det_id
 from gramps.gen import const
 from gramps.gen.utils.config import config
 
 TREE_NAME = "Test_tooltest"
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 
 
 def call(*args):

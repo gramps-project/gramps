@@ -26,14 +26,13 @@ import unittest
 import os
 
 from ...db.utils import import_as_dict
-from ...const import DATA_DIR
+from ...const import TEST_DIR
 from ...user import User
 from ...lib.person import Person
 from ...lib.json_utils import remove_object
 
 from ...proxy import PrivateProxyDb, LivingProxyDb
 
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 
