@@ -42,7 +42,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Tuple
+from typing import Literal, Tuple
 from gramps.gen.filters import GenericFilter
 
 _ = glocale.translation.gettext
@@ -183,7 +183,10 @@ class SearchBar:
 
     def get_value(
         self,
-    ) -> Tuple[True, GenericFilter, False] | Tuple[False, Tuple[int, str, bool], False]:
+    ) -> (
+        Tuple[Literal[True], GenericFilter, Literal[False]]
+        | Tuple[Literal[False], Tuple[int, str, bool], Literal[False]]
+    ):
         """
         get the active searchbar value
 
