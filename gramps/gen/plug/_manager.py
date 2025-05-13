@@ -227,7 +227,8 @@ class BasePluginManager:
             # make the new rule findable via import statements
             setattr(obj_rules, plugin.ruleclass, r_class)
             # and add it to the correct fiter editor list
-            obj_rules.editor_rule_list.append(r_class)
+            if r_class not in obj_rules.editor_rule_list:
+                obj_rules.editor_rule_list.append(r_class)
 
     def is_loaded(self, pdata_id):
         """
