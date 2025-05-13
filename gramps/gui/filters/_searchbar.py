@@ -169,8 +169,12 @@ class SearchBar:
         if self.apply_clear_callback is not None:
             self.apply_clear_callback()
 
-    def get_value(self):
-        text = str(self.search_text.get_text()).strip()
+        """
+        get the active searchbar value
+
+        returns Tuple[is_filter, GenericFilter | Tuple[column_index, search_text, invert_result], exact_search]
+
+        """
         node = self.search_list.get_active_iter()
         index = self.search_model.get_value(node, 1)
         inv = self.search_model.get_value(node, 2)
