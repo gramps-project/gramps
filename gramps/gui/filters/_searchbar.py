@@ -18,20 +18,32 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-from gi.repository import GObject
-
 """
 Package providing filtering framework for Gramps.
 """
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+
 
 # -------------------------------------------------------------------------
 #
 # GTK
 #
 # -------------------------------------------------------------------------
-from gi.repository import Gdk
-from gi.repository import Gtk
+from gi.repository import Gdk, GObject, Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Tuple
+from gramps.gen.filters import GenericFilter
 
 _ = glocale.translation.gettext
 from ..utils import no_match_primary_mask
@@ -169,6 +181,9 @@ class SearchBar:
         if self.apply_clear_callback is not None:
             self.apply_clear_callback()
 
+    def get_value(
+        self,
+    ) -> Tuple[True, GenericFilter, False] | Tuple[False, Tuple[int, str, bool], False]:
         """
         get the active searchbar value
 
