@@ -18,20 +18,32 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-from gi.repository import GObject
-
 """
 Package providing filtering framework for Gramps.
 """
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+
 
 # -------------------------------------------------------------------------
 #
 # GTK
 #
 # -------------------------------------------------------------------------
-from gi.repository import Gdk
-from gi.repository import Gtk
+from gi.repository import Gdk, GObject, Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Literal, Tuple
+from gramps.gen.filters import GenericFilter
 
 _ = glocale.translation.gettext
 from ..utils import no_match_primary_mask
@@ -63,8 +75,8 @@ class SearchBar:
         self.search_model = Gtk.ListStore(
             GObject.TYPE_STRING,  # rule name
             GObject.TYPE_INT,  # index of column to search
-            GObject.TYPE_BOOLEAN,  # inversion: invert the search result if True
-            GObject.TYPE_BOOLEAN,  # type : True = filter, False = search
+            GObject.TYPE_BOOLEAN,  # invert_result: invert the search result if True
+            GObject.TYPE_BOOLEAN,  # is_filter : True = filter, False = search
             GObject.TYPE_PYOBJECT,  # filter object
         )
 
@@ -136,9 +148,9 @@ class SearchBar:
         self.find_button.set_sensitive(True)
         # only make the search_text and clear_button widgets sensitive for searches
         node = self.search_list.get_active_iter()
-        type = self.search_model.get_value(node, 3)
-        self.clear_button.set_sensitive(not type)
-        self.search_text.set_sensitive(not type)
+        is_filter = self.search_model.get_value(node, 3)
+        self.clear_button.set_sensitive(not is_filter)
+        self.search_text.set_sensitive(not is_filter)
 
     def text_changed(self, obj):
         text = obj.get_text()
@@ -169,14 +181,29 @@ class SearchBar:
         if self.apply_clear_callback is not None:
             self.apply_clear_callback()
 
-    def get_value(self):
-        text = str(self.search_text.get_text()).strip()
+    def get_value(
+        self,
+    ) -> (
+        Tuple[Literal[True], GenericFilter, Literal[False]]
+        | Tuple[Literal[False], Tuple[int, str, bool], Literal[False]]
+    ):
+        """
+        get the active searchbar value
+
+        returns Tuple[is_filter, GenericFilter | Tuple[column_index, search_text, invert_result], exact_search]
+
+        """
+        search_text = str(self.search_text.get_text()).strip()
         node = self.search_list.get_active_iter()
-        index = self.search_model.get_value(node, 1)
-        inv = self.search_model.get_value(node, 2)
-        type = self.search_model.get_value(node, 3)
+        column_index = self.search_model.get_value(node, 1)
+        invert_result = self.search_model.get_value(node, 2)
+        is_filter = self.search_model.get_value(node, 3)
         filter = self.search_model.get_value(node, 4)
-        return (type, filter, False) if type else (type, (index, text, inv), False)
+        return (
+            (True, filter, False)
+            if is_filter
+            else (False, (column_index, search_text, invert_result), False)
+        )
 
     def apply_search(self, current_model=None):
         self.apply_text = str(self.search_text.get_text())
