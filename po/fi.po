@@ -19,8 +19,8 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-05-03 11:01+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2025-05-04 12:03+0000\n"
+"Last-Translator: Juha Mäkeläinen <juha.makelainen@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -5952,7 +5952,7 @@ msgstr "<Suotimen> hyväksymien henkilöiden vanhemmat"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:61
 msgid "Matches parents of anybody matched by a filter"
-msgstr "Poimii suodatettujen henkilöiden esivanhemmat"
+msgstr "Poimii suodatettujen henkilöiden vanhemmat"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:58
 msgid "People related to <Person>"
@@ -23855,12 +23855,10 @@ msgid "Total people"
 msgstr "Henkilöitä yhteensä"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
-#, fuzzy
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 msgstr "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 
@@ -32415,7 +32413,7 @@ msgstr "Viite"
 
 #: ../gramps/plugins/quickview/filterbyname.py:494
 msgid "media"
-msgstr "media"
+msgstr "mediatiedot"
 
 #: ../gramps/plugins/quickview/filterbyname.py:498
 msgid "Unique Media"
@@ -33759,7 +33757,7 @@ msgstr "Vanhempien tapahtumat"
 
 #: ../gramps/plugins/textreport/familygroup.py:768
 msgid "Whether to include events for parents."
-msgstr "Lisätäänkö tapahtumat vanhemmille."
+msgstr "Näytetäänkö vanhempien tapahtumat."
 
 #: ../gramps/plugins/textreport/familygroup.py:771
 msgid "Parent Addresses"
@@ -33767,7 +33765,7 @@ msgstr "Vanhempien osoitteet"
 
 #: ../gramps/plugins/textreport/familygroup.py:772
 msgid "Whether to include addresses for parents."
-msgstr "Lisätäänkö osoitteet vanhemmille."
+msgstr "Näytetäänkö vanhempien osoitteet."
 
 #: ../gramps/plugins/textreport/familygroup.py:775
 msgid "Parent Notes"
@@ -33775,7 +33773,7 @@ msgstr "Lisätietoja vanhemmista"
 
 #: ../gramps/plugins/textreport/familygroup.py:776
 msgid "Whether to include notes for parents."
-msgstr "Lisätäänkö lisätiedot vanhemmille."
+msgstr "Näytetäänkö vanhempien lisätiedot."
 
 #: ../gramps/plugins/textreport/familygroup.py:779
 msgid "Parent Attributes"
@@ -33787,7 +33785,7 @@ msgstr "Vaihtoehtoiset vanhempien nimet"
 
 #: ../gramps/plugins/textreport/familygroup.py:784
 msgid "Whether to include alternate names for parents."
-msgstr "Lisätäänkö vaihtoehtoiset vanhempien nimet."
+msgstr "Näytetäänkö vanhempien vaihtoehtoiset nimet."
 
 #: ../gramps/plugins/textreport/familygroup.py:795
 msgid "Whether to include notes for families."
@@ -38023,7 +38021,7 @@ msgstr "Kerrottua"
 
 #: ../gramps/plugins/webreport/basepage.py:904
 #: ../gramps/plugins/webreport/basepage.py:974
-#, fuzzy, python-format
+#, python-format
 msgid "(%(str1)s) %(str2)s"
 msgstr "(%(str1)s) %(str2)s"
 
@@ -39054,11 +39052,11 @@ msgstr "Lisätäänkö kumppanisarake"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
 msgid "Include a column for parents on the index pages"
-msgstr "Lisää hakemistosivuille sarake vanhemmista"
+msgstr "Näytä vanhempien sarake hakemistosivuilla"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2572
 msgid "Whether to include a parents column"
-msgstr "Lisätäänkö vanhempien sarake"
+msgstr "Näytetäänkö vanhempien sarake"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 msgid "Include half and/or step-siblings on the individual pages"
@@ -39068,8 +39066,8 @@ msgstr "Lisää hakemistosivuille sarake sisaruspuolille"
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
-"Lisätäänkö hakemistosivuille sarake sisaruspuolille, vanhempineen ja "
-"sisaruksineen"
+"Näytetäänkö hakemistosivuilla sisaruspuolet vanhempien ja sisarusten "
+"yhteydessä"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2595
 msgid "Include family pages"
