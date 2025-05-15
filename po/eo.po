@@ -9,13 +9,14 @@
 # Robin van der Vliet <info@robinvandervliet.com>, 2018.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2025.
 # Michael <moralesmike14@gmail.com>, 2022.
+# jmichault <jmt.2000@free.fr>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-03-04 11:56+0000\n"
-"Last-Translator: Pier Luigi Cinquantini <plcinquantini@gmail.com>\n"
+"PO-Revision-Date: 2025-05-13 18:01+0000\n"
+"Last-Translator: jmichault <jmt.2000@free.fr>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/eo/>\n"
 "Language: eo\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -21435,9 +21436,8 @@ msgid "Closes print preview window"
 msgstr "Fermas printantaŭrigardan fenestron"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:39
-#, fuzzy
 msgid "_Print"
-msgstr "Redaktu..."
+msgstr "_Printu"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
@@ -35632,13 +35632,13 @@ msgid ""
 msgstr ""
 "Ĉi-malsupre estas listo de neformalaj nomoj, titoloj, antaŭfamilinomaj "
 "vortetoj kaj kunmetitaj familinomoj, kiujn Gramps povas ekstrakti el la "
-"genealogia arbo.\\ Se vi akceptas la ŝanĝojn, Gramps modifos la enigojn "
-"elektitajn.\n"
+"genealogia arbo.\n"
+"Se vi akceptas la ŝanĝojn, Gramps modifos la enigojn elektitajn.\n"
 "\n"
-"Kunmetitaj familinomoj estas montrataj kiel listoj de [antaŭfamilinoma "
-"vorteto, familinomo, kunligilo].\n"
-"Ekzemple, kun la defaŭltaj agordoj, la nomo \"de Mascarenhas da Silva e "
-"Lencastre\" montras:\n"
+"Kunmetitaj familinomoj estas montrataj kiel listoj de "
+"[antaŭfamilinoma vorteto, familinomo, kunligilo].\n"
+"Ekzemple, kun la defaŭltaj agordoj, la nomo "
+"\"de Mascarenhas da Silva e Lencastre\" montras\n"
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
 "\n"
 "Lanĉu ĉi tiun ilon diversajn fojojn por korekti nomojn kiuj havas multoblajn "
@@ -38261,7 +38261,7 @@ msgstr "Ĝis"
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
 msgstr[0] "{couple}, {years} datreveno"
-msgstr[1] "{couple}, {years} datreveno"
+msgstr[1] "{couple}, {years} datrevenoj"
 
 #: ../gramps/plugins/webreport/download.py:102
 msgid ""
