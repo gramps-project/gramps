@@ -2799,6 +2799,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         self.rebuild_secondary(callback)
         self.reindex_reference_map(callback)
+        self.surname_list = self.get_surname_list()
         self.reset()
 
         self.set_schema_version(self.VERSION[0])
