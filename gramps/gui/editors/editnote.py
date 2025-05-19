@@ -380,4 +380,4 @@ class EditNote(EditPrimary):
 
         self._do_close()
         if self.callback:
-            self.callback(self.obj.get_handle())
+            self.callback(self.obj)
