@@ -166,13 +166,13 @@ class NoteTab(EmbeddedList, DbGUIElement):
         except WindowActiveError:
             pass
 
-    def add_callback(self, name):
+    def add_callback(self, note):
         """
         Called to update the screen when a new note is added
         """
         data = self.get_data()
-        data.append(name)
-        self.callman.register_handles({"note": [name]})
+        data.append(note.handle)
+        self.callman.register_handles({"note": [note.handle]})
         self.changed = True
         self.rebuild()
         GLib.idle_add(self.tree.scroll_to_cell, len(data) - 1)
