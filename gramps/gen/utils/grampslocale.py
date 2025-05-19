@@ -369,9 +369,16 @@ class GrampsLocale:
                     self.localedomain.encode("utf-8"), self.localedir.encode("utf-8")
                 )
             else:
-                # bug12278, _build_popup_ui() under linux and macOS
-                locale.textdomain(self.localedomain)
-                locale.bindtextdomain(self.localedomain, self.localedir)
+                try:
+                    # bug12278, _build_popup_ui() under linux and macOS
+                    locale.textdomain(self.localedomain)
+                    locale.bindtextdomain(self.localedomain, self.localedir)
+                except AttributeError:
+                    LOG.warning(
+                        "Python compiled without gettext support in the locale module"
+                    )
+                    gettext.textdomain(self.localedomain)
+                    gettext.bindtextdomain(self.localedomain, self.localedir)
 
         self.rtl_locale = False
         if self.language[0] in _RTL_LOCALES:
