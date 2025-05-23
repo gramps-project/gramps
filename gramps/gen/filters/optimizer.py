@@ -79,8 +79,15 @@ class Optimizer:
         """
         if len(filter.flist) == 0:
             return self.all_handles
+        # for rules which are not optimized i.e. rules which do not have a
+        # `selected_handles` attribute
+        # compute the default set of handles which potentially match
+        # If the filter is inverted this is an empty set so that when, later,
+        # we compute the difference to self.all_handles, no handles are removed.
+        default_potential_handles = set() if filter.invert else self.all_handles
         handlesets: List[Set[PrimaryObjectHandle]] = [
-            self.compute_potential_handles_for_rule(rule) for rule in filter.flist
+            self.compute_potential_handles_for_rule(rule, default_potential_handles)
+            for rule in filter.flist
         ]
 
         if filter.logical_op == "and":
@@ -96,7 +103,7 @@ class Optimizer:
         return handles
 
     def compute_potential_handles_for_rule(
-        self, rule: Rule
+        self, rule: Rule, default_potential_handles: Set[PrimaryObjectHandle]
     ) -> Set[PrimaryObjectHandle]:
         """
         Compute the superset of handles which are the result of the supplied rule
@@ -110,10 +117,9 @@ class Optimizer:
             filter = rule.find_filter()
             if filter:
                 return self.compute_potential_handles_for_filter(filter)
-        return (
-            self.all_handles
-        )  # no optimization is possible so assume all the handles in
-        # `all_handles` could match the rule
+        # no optimization is possible so assume all the default_potential_handles
+        # could match the rule
+        return default_potential_handles
 
     def get_possible_handles(self) -> Set[PrimaryObjectHandle]:
         """
