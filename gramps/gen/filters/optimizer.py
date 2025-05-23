@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2024  Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2025  Steve Youngs <steve@youngs.cc>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,121 +18,115 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
 import logging
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import List, Set, TYPE_CHECKING
+from .rules import Rule
+
+if TYPE_CHECKING:
+    from ._genericfilter import GenericFilter
+from ..types import PrimaryObjectHandle
 
 LOG = logging.getLogger(".filter.optimizer")
 
 
-def intersection(sets):
-    if sets:
-        result = sets[0]
-        for s in sets[1:]:
-            result = result.intersection(s)
-        return result
-    else:
-        return set()
+def intersection(sets: List[Set[PrimaryObjectHandle]]) -> Set[PrimaryObjectHandle]:
+    # sort the sets by length, shortest first.
+    # with intersection, the shortest of the starting sets determines the
+    # maximum size of the result
+    sorted_sets = sorted(sets, key=lambda s: len(s))
+    return set.intersection(*sorted_sets)
 
 
-def union(sets):
-    if sets:
-        result = sets[0]
-        for s in sets[1:]:
-            result = result.union(s)
-        return result
-    else:
-        return set()
+def union(sets: List[Set[PrimaryObjectHandle]]) -> Set[PrimaryObjectHandle]:
+    return set.union(*sets)
 
 
 class Optimizer:
     """
-    Optimizer to use the filter's pre-selected selected_handles
-    to include or exclude.
+    Optimizer uses the filter's pre-selected selected_handles
+    for each rule to reduce the search space.
+    selected_handles is a superset of the final result of the rule.
+    the selected_handles of each rule in each filter of the filter list
+    are combined to create `possible_handles`, the superset of the result
+    of the filter list.
     """
 
-    def __init__(self, filter):
+    def __init__(self, all_handles: Set[PrimaryObjectHandle], filter: GenericFilter):
         """
-        Initialize the collection of selected_handles in the filter list.
+        Compute possible_handles for the filter list.
         """
-        self.all_selected_handles = []
-        self.walk_filters(filter, False, self.all_selected_handles)
+        self.all_handles = all_handles
+        self.possible_handles = self.compute_potential_handles_for_filter(filter)
 
-    def walk_filters(self, filter, parent_invert, result):
+    def compute_potential_handles_for_filter(
+        self, filter: GenericFilter
+    ) -> Set[PrimaryObjectHandle]:
         """
-        Recursively walk all of the filters/rules and get
-        rules with selected_handles
+        Compute the superset of handles which are the result of the supplied filter
+        In the worst case, this is self.all_handles
         """
-        current_invert = parent_invert if not filter.invert else not parent_invert
-        LOG.debug(
-            "walking, filter: %s, invert=%s, parent_invert=%s",
-            filter,
-            filter.invert,
-            parent_invert,
-        )
-        rules_with_selected_handles = []
-        for item in filter.flist:
-            if hasattr(item, "find_filter"):
-                rule_filter = item.find_filter()
-                if rule_filter is not None:
-                    self.walk_filters(
-                        rule_filter,
-                        current_invert,
-                        result,
-                    )
-            elif hasattr(item, "selected_handles"):
-                rules_with_selected_handles.append(set(item.selected_handles))
-        if rules_with_selected_handles:
-            LOG.debug(
-                "filter %s: parent_invert=%s, invert=%s, op=%s, number of rules with selected_handles=%s",
-                filter,
-                parent_invert,
-                filter.invert,
-                filter.logical_op,
-                len(rules_with_selected_handles),
-            )
-            result.append(
-                (
-                    current_invert,
-                    filter.logical_op,
-                    rules_with_selected_handles,
-                )
-            )
+        if len(filter.flist) == 0:
+            return self.all_handles
+        # for rules which are not optimized i.e. rules which do not have a
+        # `selected_handles` attribute
+        # compute the default set of handles which potentially match
+        # If the filter is inverted this is an empty set so that when, later,
+        # we compute the difference to self.all_handles, no handles are removed.
+        default_potential_handles = set() if filter.invert else self.all_handles
+        handlesets: List[Set[PrimaryObjectHandle]] = [
+            self.compute_potential_handles_for_rule(rule, default_potential_handles)
+            for rule in filter.flist
+        ]
 
-    def get_handles(self):
+        if filter.logical_op == "and":
+            # the result of filter is contained within the intersection of the sets in handlesets
+            handles = intersection(handlesets)
+        elif filter.logical_op in ("or", "one"):
+            # the result of filter is contained within the union of the sets in handlesets
+            handles = union(handlesets)
+
+        if filter.invert:
+            handles = self.all_handles.difference(handles)
+
+        return handles
+
+    def compute_potential_handles_for_rule(
+        self, rule: Rule, default_potential_handles: Set[PrimaryObjectHandle]
+    ) -> Set[PrimaryObjectHandle]:
         """
-        Returns handles_in, and handles_out.
-
-        `handles_in` is either None, or a set of handles to include.
-        if it is None, then there is no evidence to only include
-        particular handles. If it is a set, then those in the set
-        are a superset of the items that will match.
-
-        `handles_out` is a set. If any handle is in the set, it will
-        not be included in the final results.
-
-        The handles_in are selected if all of the rules are connected with
-        "and" and not inverted. The handles_out are selected if all of the
-        rules are connected with "and" and inverted.
+        Compute the superset of handles which are the result of the supplied rule
+        In the worst case, this is self.all_handles
         """
-        handles_in = None
-        handles_out = set()
-        # Get all positive non-inverted selected_handles
-        for inverted, logical_op, selected_handles in self.all_selected_handles:
-            if logical_op == "and" and not inverted:
-                LOG.debug("optimizer positive match!")
-                if handles_in is None:
-                    handles_in = intersection(selected_handles)
-                else:
-                    handles_in = intersection([handles_in] + selected_handles)
+        if hasattr(rule, "selected_handles"):
+            # this rule has provided a superset of handles that
+            # contain the result of the rule
+            return rule.selected_handles
+        if hasattr(rule, "find_filter"):
+            filter = rule.find_filter()
+            if filter:
+                return self.compute_potential_handles_for_filter(filter)
+        # no optimization is possible so assume all the default_potential_handles
+        # could match the rule
+        return default_potential_handles
 
-        # Get all inverted selected_handles:
-        for inverted, logical_op, selected_handles in self.all_selected_handles:
-            if logical_op == "and" and inverted:
-                LOG.debug("optimizer inverted match!")
-                handles_out = union([handles_out] + selected_handles)
+    def get_possible_handles(self) -> Set[PrimaryObjectHandle]:
+        """
+        Returns possible_handles
 
-        if handles_in is not None:
-            handles_in = handles_in - handles_out
-
-        LOG.debug("optimizer handles_in: %s", len(handles_in) if handles_in else 0)
-        return handles_in, handles_out
+        `possible_handles` is a superset of the handles in `all_handles` that will
+        match the filter.
+        """
+        LOG.debug("optimizer possible_handles: %s", len(self.possible_handles))
+        return self.possible_handles
