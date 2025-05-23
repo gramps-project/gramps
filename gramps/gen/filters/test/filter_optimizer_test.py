@@ -108,6 +108,16 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
     </filter>
     <filter name="Empty Filter one invert" function="one" invert="1">
     </filter>
+    <filter name="Tag = ToDo" function="and">
+      <rule class="HasTag" use_regex="False" use_case="False">
+        <arg value="ToDo"/>
+      </rule>
+    </filter>
+    <filter name="Tag = ToDo Invert" function="and" invert="1">
+      <rule class="HasTag" use_regex="False" use_case="False">
+        <arg value="ToDo"/>
+      </rule>
+    </filter>
     </object>
 </filters>
 """
@@ -251,3 +261,18 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["Empty Filter one invert"]
         results = filter.apply(self.db)
         self.assertEqual(len(results), 2128)
+
+    def test_EmptyFilter_one_invert(self):
+        filter = self.filters["Empty Filter one invert"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2128)
+
+    def test_TagToDo(self):
+        filter = self.filters["Tag = ToDo"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 1)
+
+    def test_TagToDo_invert(self):
+        filter = self.filters["Tag = ToDo Invert"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2127)
