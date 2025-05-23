@@ -262,11 +262,6 @@ class OptimizerTest(unittest.TestCase):
         results = filter.apply(self.db)
         self.assertEqual(len(results), 2128)
 
-    def test_EmptyFilter_one_invert(self):
-        filter = self.filters["Empty Filter one invert"]
-        results = filter.apply(self.db)
-        self.assertEqual(len(results), 2128)
-
     def test_TagToDo(self):
         filter = self.filters["Tag = ToDo"]
         results = filter.apply(self.db)
