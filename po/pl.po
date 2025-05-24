@@ -16,13 +16,14 @@
 # Marcin Woroch <bishkopt@gmail.com>, 2024.
 # Gracjan Wiśniewski <gracjan122@op.pl>, 2024.
 # Piotr Strebski <strebski@gmail.com>, 2025.
+# Klaudiusz Dybiec <klaudi30i@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-03-23 10:05+0000\n"
-"Last-Translator: Michał Stojek <stojex@gmail.com>\n"
+"PO-Revision-Date: 2025-05-23 19:01+0000\n"
+"Last-Translator: Klaudiusz Dybiec <klaudi30i@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -31,7 +32,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -7959,7 +7960,7 @@ msgstr "Wielu rodziców"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "Przyjaciel"
 
 #: ../gramps/gen/lib/eventroletype.py:89
 #, fuzzy
@@ -7969,7 +7970,7 @@ msgstr "Sąsiedztwo"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "Duchowny/urzędnik"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -11926,7 +11927,7 @@ msgstr "Japoński"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "Koreański"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
@@ -12998,7 +12999,7 @@ msgstr "Pokaż lub ukryj ikonę Preferencje na pasku narzędzi."
 
 #: ../gramps/gui/configure.py:2124
 msgid "Both text and icons"
-msgstr ""
+msgstr "Tekst oraz ikony"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
@@ -19579,7 +19580,7 @@ msgstr "Operacja zakończyła się niepowodzeniem"
 
 #: ../gramps/gui/plug/_windows.py:571
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "Ten dodatek będzie niedostępny przy twojej konfiguracji."
 
 #: ../gramps/gui/plug/_windows.py:596
 msgid "No matching addons found."
@@ -39860,6 +39861,8 @@ msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"Poziom rozmycia\n"
+"Domyślnie: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3233
 msgid "Zoom"
