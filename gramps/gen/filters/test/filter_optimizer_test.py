@@ -118,7 +118,27 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
         <arg value="ToDo"/>
       </rule>
     </filter>
-    </object>
+    <filter name="Family Name" function="and">
+      <rule class="HasNameOf" use_regex="False" use_case="False">
+        <arg value=""/>
+        <arg value=""/>
+        <arg value=""/>
+        <arg value=""/>
+        <arg value=""/>
+        <arg value=""/>
+        <arg value=""/>
+        <arg value="Garner"/>
+        <arg value=""/>
+        <arg value=""/>
+        <arg value=""/>
+      </rule>
+    </filter>
+    <filter name="NOT Family Name" function="and" invert="1">
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="Family Name"/>
+      </rule>
+    </filter>
+  </object>
 </filters>
 """
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
@@ -271,3 +291,13 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["Tag = ToDo Invert"]
         results = filter.apply(self.db)
         self.assertEqual(len(results), 2127)
+
+    def test_family_name(self):
+        filter = self.filters["Family Name"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 71)
+
+    def test_not_family_name(self):
+        filter = self.filters["NOT Family Name"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2128 - 71)
