@@ -98,7 +98,7 @@ class Optimizer:
         self,
         rule: Rule,
     ) -> Tuple[
-        Union[Set[PrimaryObjectHandle], None], Union[Set[PrimaryObjectHandle], None]
+        Set[PrimaryObjectHandle] |None, Set[PrimaryObjectHandle] | None
     ]:
         """ """
         if hasattr(rule, "selected_handles"):
