@@ -171,20 +171,25 @@ class GenericFilter:
         )
 
         # use the Optimizer to refine the set of possible_handles
-        optimizer = Optimizer(possible_handles, self)
-        possible_handles = optimizer.get_possible_handles()
+        optimizer = Optimizer()
+        handles_in, handles_out = optimizer.compute_potential_handles_for_filter(self)
 
-        LOG.debug(
-            "Optimizer possible_handles: %s",
-            len(possible_handles),
-        )
+        # LOG.debug(
+        #    "Optimizer possible_handles: %s",
+        #    len(possible_handles),
+        # )
 
-        if user:
-            user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
+        # if user:
+        #    user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
 
         # test each value in possible_handles to compute the final_list
         final_list = []
         for handle in possible_handles:
+            if handles_in is not None and handle not in handles_in:
+                continue
+            if handles_out is not None and handle in handles_out:
+                continue
+
             if user:
                 user.step_progress()
 

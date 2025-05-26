@@ -54,79 +54,53 @@ def union(sets: List[Set[PrimaryObjectHandle]]) -> Set[PrimaryObjectHandle]:
 
 
 class Optimizer:
-    """
-    Optimizer uses the filter's pre-selected selected_handles
-    for each rule to reduce the search space.
-    selected_handles is a superset of the final result of the rule.
-    the selected_handles of each rule in each filter of the filter list
-    are combined to create `possible_handles`, the superset of the result
-    of the filter list.
-    """
-
-    def __init__(self, all_handles: Set[PrimaryObjectHandle], filter: GenericFilter):
-        """
-        Compute possible_handles for the filter list.
-        """
-        self.all_handles = all_handles
-        self.possible_handles = self.compute_potential_handles_for_filter(filter)
-
     def compute_potential_handles_for_filter(
         self, filter: GenericFilter
     ) -> Set[PrimaryObjectHandle]:
-        """
-        Compute the superset of handles which are the result of the supplied filter
-        In the worst case, this is self.all_handles
-        """
         if len(filter.flist) == 0:
-            return self.all_handles
-        # for rules which are not optimized i.e. rules which do not have a
-        # `selected_handles` attribute
-        # compute the default set of handles which potentially match
-        # If the filter is inverted this is an empty set so that when, later,
-        # we compute the difference to self.all_handles, no handles are removed.
-        default_potential_handles = set() if filter.invert else self.all_handles
-        handlesets: List[Set[PrimaryObjectHandle]] = [
-            self.compute_potential_handles_for_rule(rule, default_potential_handles)
-            for rule in filter.flist
-        ]
+            return (None, None)
 
-        if filter.logical_op == "and":
-            # the result of filter is contained within the intersection of the sets in handlesets
-            handles = intersection(handlesets)
-        elif filter.logical_op in ("or", "one"):
-            # the result of filter is contained within the union of the sets in handlesets
-            handles = union(handlesets)
+        handles_in = None
+        handles_out = None
+        for rule in filter.flist:
+            rule_in, rule_out = self.compute_potential_handles_for_rule(rule)
+            if filter.logical_op == "and":
+                if rule_in is not None:
+                    if handles_in is None:
+                        handles_in = rule_in
+                    else:
+                        handles_in.intersection(rule_in)
+                if rule_out is not None:
+                    if handles_out is None:
+                        handles_out = rule_out
+                    else:
+                        handles_out.intersection(rule_out)
+            # elif filter.logical_op in ("or", "one"):
+            #    if rule_in is not None:
+            #        if handles_in is None:
+            #            handles_in = rule_in
+            #        else:
+            #            handles_in.union(rule_in)
+            #    if rule_out is not None:
+            #        if handles_out is None:
+            #            handles_out = rule_out
+            #        else:
+            #            handles_out.union(rule_out)
 
         if filter.invert:
-            handles = self.all_handles.difference(handles)
+            handles_in, handles_out = handles_out, handles_in
 
-        return handles
+        return handles_in, handles_out
 
     def compute_potential_handles_for_rule(
-        self, rule: Rule, default_potential_handles: Set[PrimaryObjectHandle]
+        self,
+        rule: Rule,
     ) -> Set[PrimaryObjectHandle]:
-        """
-        Compute the superset of handles which are the result of the supplied rule
-        In the worst case, this is self.all_handles
-        """
+        """ """
         if hasattr(rule, "selected_handles"):
-            # this rule has provided a superset of handles that
-            # contain the result of the rule
-            return rule.selected_handles
+            return (rule.selected_handles, None)
         if hasattr(rule, "find_filter"):
             filter = rule.find_filter()
             if filter:
                 return self.compute_potential_handles_for_filter(filter)
-        # no optimization is possible so assume all the default_potential_handles
-        # could match the rule
-        return default_potential_handles
-
-    def get_possible_handles(self) -> Set[PrimaryObjectHandle]:
-        """
-        Returns possible_handles
-
-        `possible_handles` is a superset of the handles in `all_handles` that will
-        match the filter.
-        """
-        LOG.debug("optimizer possible_handles: %s", len(self.possible_handles))
-        return self.possible_handles
+        return (None, None)
