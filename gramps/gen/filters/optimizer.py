@@ -31,7 +31,7 @@ import logging
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, TYPE_CHECKING, Tuple, Union
+from typing import List, Set, TYPE_CHECKING, Tuple
 from .rules import Rule
 
 if TYPE_CHECKING:
