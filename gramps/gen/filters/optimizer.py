@@ -57,7 +57,7 @@ class Optimizer:
     def compute_potential_handles_for_filter(
         self, filter: GenericFilter
     ) -> Tuple[
-        Union[Set[PrimaryObjectHandle], None], Union[Set[PrimaryObjectHandle], None]
+        Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None
     ]:
         if len(filter.flist) == 0:
             return (None, None)
