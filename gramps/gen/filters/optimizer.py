@@ -65,8 +65,8 @@ class Optimizer:
         handles_in = None
         handles_out = None
         for rule in filter.flist:
-            rule_in, rule_out = self.compute_potential_handles_for_rule(rule)
             if filter.logical_op == "and":
+                rule_in, rule_out = self.compute_potential_handles_for_rule(rule)
                 if rule_in is not None:
                     if handles_in is None:
                         handles_in = rule_in
