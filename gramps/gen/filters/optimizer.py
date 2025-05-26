@@ -31,7 +31,7 @@ import logging
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, TYPE_CHECKING
+from typing import List, Set, TYPE_CHECKING, Tuple, Union
 from .rules import Rule
 
 if TYPE_CHECKING:
@@ -56,7 +56,7 @@ def union(sets: List[Set[PrimaryObjectHandle]]) -> Set[PrimaryObjectHandle]:
 class Optimizer:
     def compute_potential_handles_for_filter(
         self, filter: GenericFilter
-    ) -> Set[PrimaryObjectHandle]:
+    ) -> Tuple[Union[Set[PrimaryObjectHandle], None], Union[Set[PrimaryObjectHandle], None]]:
         if len(filter.flist) == 0:
             return (None, None)
 
@@ -95,7 +95,7 @@ class Optimizer:
     def compute_potential_handles_for_rule(
         self,
         rule: Rule,
-    ) -> Set[PrimaryObjectHandle]:
+    ) -> Tuple[Union[Set[PrimaryObjectHandle], None], Union[Set[PrimaryObjectHandle], None]]:
         """ """
         if hasattr(rule, "selected_handles"):
             return (rule.selected_handles, None)
