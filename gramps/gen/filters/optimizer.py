@@ -74,7 +74,7 @@ class Optimizer:
                     if handles_out is None:
                         handles_out = rule_out
                     else:
-                        handles_out.union(rule_out)
+                        handles_out.intersection(rule_out)
             # elif filter.logical_op in ("or", "one"):
             #    if rule_in is not None:
             #        if handles_in is None:
