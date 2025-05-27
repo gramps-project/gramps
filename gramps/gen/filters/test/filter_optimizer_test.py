@@ -96,6 +96,50 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
         <arg value="I0002"/>
       </rule>
     </filter>
+    <filter name="not I0001" function="or" invert="1">
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0001"/>
+      </rule>
+    </filter>
+    <filter name="not I0002" function="or" invert="1">
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0002"/>
+      </rule>
+    </filter>
+    <filter name="(not I0001) and (not I0002)" function="and">
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="not I0001"/>
+      </rule>
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="not I0002"/>
+      </rule>
+    </filter>
+    <filter name="(not I0001) or (not I0002)" function="or">
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="not I0001"/>
+      </rule>
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="not I0002"/>
+      </rule>
+    </filter>
+
+    <filter name="not ((not I0001) and (not I0002))" function="and" invert="1">
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="not I0001"/>
+      </rule>
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="not I0002"/>
+      </rule>
+    </filter>
+
+    <filter name="not (I0001 and I0002)" function="and" invert="1">
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="I0001"/>
+      </rule>
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="I0002"/>
+      </rule>
+    </filter>
     <filter name="Empty Filter and" function="and">
     </filter>
     <filter name="Empty Filter and invert" function="and" invert="1">
@@ -301,3 +345,23 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["NOT Family Name"]
         results = filter.apply(self.db)
         self.assertEqual(len(results), 2128 - 71)
+
+    def test_not_i0001_and_not_i0002(self):
+        filter = self.filters["(not I0001) and (not I0002)"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2128 - 2)
+
+    def test_not_i0001_or_not_i0002(self):
+        filter = self.filters["(not I0001) or (not I0002)"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2128)
+
+    def test_not_not_i0001_and_not_i0002(self):
+        filter = self.filters["not ((not I0001) and (not I0002))"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2)
+
+    def test_not_i0001_and_i0002(self):
+        filter = self.filters["not (I0001 and I0002)"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2128)

@@ -63,29 +63,18 @@ class Optimizer:
         handles_in = None
         handles_out = None
         for rule in filter.flist:
-            if filter.logical_op == "and":
+            if filter.logical_op == "and" or len(filter.flist) == 1:
                 rule_in, rule_out = self.compute_potential_handles_for_rule(rule)
                 if rule_in is not None:
                     if handles_in is None:
                         handles_in = rule_in
                     else:
-                        handles_in.intersection(rule_in)
+                        handles_in = handles_in.intersection(rule_in)
                 if rule_out is not None:
                     if handles_out is None:
                         handles_out = rule_out
                     else:
-                        handles_out.intersection(rule_out)
-            # elif filter.logical_op in ("or", "one"):
-            #    if rule_in is not None:
-            #        if handles_in is None:
-            #            handles_in = rule_in
-            #        else:
-            #            handles_in.union(rule_in)
-            #    if rule_out is not None:
-            #        if handles_out is None:
-            #            handles_out = rule_out
-            #        else:
-            #            handles_out.union(rule_out)
+                        handles_out = handles_out.union(rule_out)
 
         if filter.invert:
             handles_in, handles_out = handles_out, handles_in
