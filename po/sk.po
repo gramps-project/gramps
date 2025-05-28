@@ -11,13 +11,14 @@
 # Milan Šalka <salka.milan@googlemail.com>, 2023, 2024.
 # Martin Štefany <m.stefany89@gmail.com>, 2024.
 # Milan <admin@thedigitaltechnologist.com>, 2025.
+# Jozef Gaal <preklady@mayday.sk>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-05-03 11:01+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2025-05-25 21:34+0000\n"
+"Last-Translator: Jozef Gaal <preklady@mayday.sk>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -6319,11 +6320,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:59
 msgid "Places enclosed by another place"
-msgstr "Miesta obklopené iným miestom"
+msgstr "Miesta priliehajúce k inému miestu"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:60
 msgid "Matches a place enclosed by a particular place"
-msgstr "Porovnáva miesto obklopené konkrétnym miestom"
+msgstr "Zodpovedá miestu priliehajúcemu konkrétnemu miestu"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:61
 msgid "Places of events matching the <event filter>"
@@ -10460,7 +10461,7 @@ msgstr "Zahrnutí, a všetky údaje"
 #: ../gramps/gen/plug/report/stdoptions.py:211
 msgctxt "'living people'"
 msgid "Full names, but data removed"
-msgstr "Úplné mená, ale údaje odstránené"
+msgstr "Celé mená, ale údaje odstránené"
 
 #: ../gramps/gen/plug/report/stdoptions.py:215
 msgctxt "'living people'"
@@ -10470,7 +10471,7 @@ msgstr "Dané (krstné) mená nahradené, a údaje odstránené"
 #: ../gramps/gen/plug/report/stdoptions.py:219
 msgctxt "'living people'"
 msgid "Complete names replaced, and data removed"
-msgstr "Úplné mená nahradené, a údaje odstránené"
+msgstr "Celé mená nahradené, a údaje odstránené"
 
 #: ../gramps/gen/plug/report/stdoptions.py:222
 msgctxt "'living people'"
@@ -14311,7 +14312,7 @@ msgstr "Alternatívne mená"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1504
 #: ../gramps/plugins/webreport/basepage.py:3529
 msgid "Enclosed By"
-msgstr "Obklopené"
+msgstr "Prilieha k"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:215
 msgid "Place cycle detected"
@@ -14319,7 +14320,7 @@ msgstr "Zistená slučka miesta"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:216
 msgid "The place you are adding is already enclosed by this place"
-msgstr "Miesto, ktoré pridávate, je už obklopené týmto miestom"
+msgstr "Miesto, ktoré pridávate, je už prilieha tomuto miestu"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Create and add a new repository"
@@ -19818,7 +19819,7 @@ msgstr "Nahradiť dané (krstné) mená žijúcich ľudí"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:789
 msgid "Replace complete name of living people"
-msgstr "Nahradiť úplné meno žijúcich ľudí"
+msgstr "Nahradiť celé meno žijúcich ľudí"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:790
 msgid "Do not include living people"
@@ -22080,7 +22081,7 @@ msgstr "%(person)s, narodenie"
 msgid "{person}, {age}"
 msgid_plural "{person}, {age}"
 msgstr[0] "{person}, {age} rok"
-msgstr[1] "{{person}, {age} roky"
+msgstr[1] "{person}, {age} roky"
 msgstr[2] "{person}, {age} rokov"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:519
@@ -23222,7 +23223,7 @@ msgstr "Preložiť záhlavia"
 
 #: ../gramps/plugins/export/exportcsv.py:314
 msgid "Enclosed_by"
-msgstr "Obklopené_"
+msgstr "Prilieha_k"
 
 #: ../gramps/plugins/export/exportcsv.py:393
 #, python-brace-format
@@ -24492,11 +24493,11 @@ msgstr "Gramplet na generovanie kódov SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1496
 msgid "Place Enclosed By"
-msgstr "Miesto obklopené"
+msgstr "Miesto priliehajúce k"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1497
 msgid "Gramplet showing the places enclosed by the active place"
-msgstr "Gramplet zobrazujúci miesta, ktoré sú obklopené aktívnym miestom"
+msgstr "Gramplet zobrazujúci miesta, ktoré priliehajú aktívnemu miestu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1512
 #: ../gramps/plugins/webreport/basepage.py:3567
@@ -26300,11 +26301,11 @@ msgstr "kód"
 
 #: ../gramps/plugins/importer/importcsv.py:393
 msgid "enclosed by"
-msgstr "obklopené"
+msgstr "prilieha k"
 
 #: ../gramps/plugins/importer/importcsv.py:395
 msgid "enclosed_by"
-msgstr "obklopené_"
+msgstr "prilieha_k"
 
 #: ../gramps/plugins/importer/importcsv.py:436
 #, python-format
@@ -37154,7 +37155,7 @@ msgstr ""
 #: ../gramps/plugins/view/geography.gpr.py:207
 #: ../gramps/plugins/view/geography.gpr.py:224
 msgid "Geography"
-msgstr "Zemepis"
+msgstr "Mapa"
 
 #: ../gramps/plugins/view/geography.gpr.py:115
 msgid "All known places for one Family"
@@ -37906,7 +37907,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/addressbooklist.py:117
 msgid "Full Name"
-msgstr "Úplné meno"
+msgstr "Celé meno"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:120
 #: ../gramps/plugins/webreport/basepage.py:2894
