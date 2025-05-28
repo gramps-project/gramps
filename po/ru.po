@@ -23,13 +23,14 @@
 # OIS <mistresssilvara@hotmail.com>, 2023.
 # Sotski Eugene <jekakmail@gmail.com>, 2025.
 # Yurt Page <yurtpage@gmail.com>, 2025.
+# Pavel <panyapacan@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-05-04 12:03+0000\n"
-"Last-Translator: Yurt Page <yurtpage@gmail.com>\n"
+"PO-Revision-Date: 2025-05-26 07:15+0000\n"
+"Last-Translator: Pavel <panyapacan@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -5581,10 +5582,8 @@ msgid "People with a note of type <type>"
 msgstr "Лица с пометкой типа <тип>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "Выбирает предков указанного лица"
+msgstr "Выбирает людей с заметкой указанного типа"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:55
 msgid "People who are neither male nor female"
@@ -6247,10 +6246,8 @@ msgid "Places with a note of type <type>"
 msgstr "Места с пометкой типа <тип>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "Выбирает места, соответствующие фильтру с указанным названием"
+msgstr "Выбирает места с заметкой указанного типа"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:61
 msgid "Street:"
@@ -6650,10 +6647,8 @@ msgstr ""
 "регулярному·выражению"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "Источники с <пометкой>"
+msgstr "Источники с заметкой типа <пометкой>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
 #, fuzzy
