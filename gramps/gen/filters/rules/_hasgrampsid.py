@@ -63,4 +63,7 @@ class HasGrampsId(Rule):
         apply the rule on the obj.
         return true if the rule passes, false otherwise.
         """
-        return obj.gramps_id == self.list[0]
+        return obj.handle in self.selected_handles
+
+    def reset(self):
+        self.selected_handles.clear()

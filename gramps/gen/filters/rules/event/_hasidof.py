@@ -24,6 +24,7 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+from ....db import Database
 
 _ = glocale.translation.gettext
 
@@ -45,3 +46,7 @@ class HasIdOf(HasGrampsId):
 
     name = _("Event with <Id>")
     description = _("Matches an event with a specified Gramps ID")
+
+    def prepare(self, db: Database, user):
+        data = db._get_raw_event_from_id_data(self.list[0])
+        self.selected_handles = set([data.handle])
