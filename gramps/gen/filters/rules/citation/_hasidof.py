@@ -50,4 +50,7 @@ class HasIdOf(HasGrampsId):
 
     def prepare(self, db: Database, user):
         data = db._get_raw_citation_from_id_data(self.list[0])
-        self.selected_handles = set([data.handle])
+        if data:
+            self.selected_handles = set([data.handle])
+        else:
+            self.selected_handles = set([])
