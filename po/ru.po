@@ -31,7 +31,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
 "PO-Revision-Date: 2025-05-27 19:01+0000\n"
-"Last-Translator: Maksim_220 Кабанов <law820314@gmail.com>\n"
+"Last-Translator: Pavel <panyapacan@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -6649,7 +6649,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
 msgid "Sources with a note of type <type>"
-msgstr "Источники с заметкой типа <пометкой>"
+msgstr "Источники с заметкой типа <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
 msgid "Matches sources with a note of the specified type"
