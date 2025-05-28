@@ -10,21 +10,22 @@
 # Nefla <neflaprojekt@gmail.com>, 2025.
 # Doctorredits_here <182783629+doctorreditshere@users.noreply.github.com>, 2025.
 # Erik Faderik <erikfaderik@gmail.com>, 2025.
+# Satria Manggala Jati <satriamanggalajati@ymail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-03-17 02:10+0000\n"
-"Last-Translator: Erik Faderik <erikfaderik@gmail.com>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/id/>\n"
+"PO-Revision-Date: 2025-05-21 17:01+0000\n"
+"Last-Translator: Satria Manggala Jati <satriamanggalajati@ymail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -561,6 +562,13 @@ msgid ""
 "library or other research facility. To view the SoundEx codes for surnames "
 "in your database, add the SoundEx Gramplet."
 msgstr ""
+"<b>SoundEx dapat membantu riset keluarga</b><br/>SoundEx menyelesaikan "
+"permasalahan yang telah lama ada di genealogi, yaitu penanganan variasi "
+"ejaan. SoundEx Gramplet mengambil nama keluarga dan membuat bentuk sederhana "
+"yang mirip dengan nama itu. Mengetahui kode SoundEx untuk nama keluarga "
+"sangat membantu dalam riset berkas Data Sensus (microfiche) pada sebuah "
+"pustaka atau fasilitas riset lainnya. Untuk melihat kode SoundEx untuk nama "
+"keluarga pada basis data Anda, tambahkan SoundEx Gramplet."
 
 #: ../data/tips.xml:32
 #, fuzzy
@@ -716,6 +724,11 @@ msgid ""
 "Then choose to create a new person or add an existing person. You can also "
 "add children (or siblings) from inside the Family Editor."
 msgstr ""
+"<b>Penambahan Anak</b><br/>Untuk menambah anak pada Gramps terdapat dua "
+"opsi. Anda dapat mencari salah satu orang tua mereka dalam View Keluarga dan "
+"membuka keluarga tersebut. Kemudian pilih buat orang baru atau tambahkan "
+"orang yang telah ada. Anda juga dapat menambahkan anak (atau saudara) "
+"melalui Editor Keluarga."
 
 #: ../data/tips.xml:56
 msgid ""
