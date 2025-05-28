@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-19 20:17+0000\n"
+"PO-Revision-Date: 2025-05-24 05:02+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -685,8 +685,8 @@ msgid ""
 msgstr ""
 "<b>Vooruit en achteruit navigeren</b><br/>Gramps houdt een lijst bij van "
 "eerdere actieve objecten zoals Personen en Gebeurtenissen. U kunt vooruit en "
-"achteruit door de lijst gaan met de knoppen \"Ga naar > Vooruit\" en \"Ga "
-"naar > Terug\" of met de pijltjesknoppen."
+"achteruit door de lijst gaan met de knoppen \"Ga naar > Volgende\" en "
+"\"Ga naar > Terug\" of met de pijltjesknoppen."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -15317,7 +15317,7 @@ msgstr "Doorgaan"
 
 #: ../gramps/gui/editors/editname.py:419
 msgid "Return to Name Editor"
-msgstr "Keer terug naar Naam-bewerker"
+msgstr "Terug naar Naam-bewerker"
 
 #: ../gramps/gui/editors/editname.py:446
 msgid "Group all people with the same name?"
@@ -18636,7 +18636,7 @@ msgstr "_Weergeven tijdens opstarten"
 #: ../gramps/plugins/view/sourceview.py:173
 #: ../gramps/plugins/view/sourceview.py:217
 msgid "_Forward"
-msgstr "_Vooruit"
+msgstr "_Volgende"
 
 #: ../gramps/gui/glade/updateaddons.glade:40
 msgid "Install Selected _Addons"
@@ -19888,7 +19888,7 @@ msgstr ""
 "Het geselecteerde bestand en opslagmap, kan niet worden aangemaakt of "
 "gevonden.\n"
 "\n"
-"Druk op Terug om terug te keren en een geldige bestandsnaam te selecteren."
+"Klik Terug om terug te keren en een geldige bestandsnaam te selecteren."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:527
 msgid "Your data has been saved"
@@ -31625,7 +31625,7 @@ msgstr "Bewerken..."
 #: ../gramps/plugins/view/repoview.py:328
 #: ../gramps/plugins/view/sourceview.py:300
 msgid "Forward"
-msgstr "Vooruit"
+msgstr "Volgende"
 
 #: ../gramps/plugins/lib/libpersonview.py:486
 msgid "Deleting the person will remove the person from the database."
