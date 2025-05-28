@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-26 23:32+0000\n"
+"PO-Revision-Date: 2025-05-21 17:01+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -6354,11 +6354,11 @@ msgstr "איתור מאגרים שתואמים לשם מסנן שצוין"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:54
 msgid "Repositories with name containing <text>"
-msgstr "מאגרים עם שם המכילות <מלל>"
+msgstr "מאגרים עם שם שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:55
 msgid "Matches repositories whose name contains a certain substring"
-msgstr "איתור מאגרים ששם מכיל מחרוזת משנה מסוימת"
+msgstr "איתור מאגרים עם שם שמכיל מחרוזת משנה מסוימת"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
 msgid "Repositories with Id containing <text>"
@@ -14371,7 +14371,7 @@ msgstr "תאריכי_עריכה"
 
 #: ../gramps/gui/editors/editdate.py:131 ../gramps/gui/editors/editdate.py:299
 msgid "Date selection"
-msgstr "נא לבחור תאריך"
+msgstr "בחירת תאריך"
 
 #: ../gramps/gui/editors/editdate.py:290
 #, python-brace-format
