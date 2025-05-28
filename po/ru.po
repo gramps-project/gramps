@@ -30,8 +30,8 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-05-27 19:01+0000\n"
-"Last-Translator: Pavel <panyapacan@gmail.com>\n"
+"PO-Revision-Date: 2025-05-28 14:13+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -2265,7 +2265,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[Р]} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2275,7 +2275,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[И]} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2285,7 +2285,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[Т]} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2295,7 +2295,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[Т]} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2305,7 +2305,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[Р]} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2315,7 +2315,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[Р]} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2325,7 +2325,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[Р]} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2335,7 +2335,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[Т]} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2345,7 +2345,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[И]} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:245
 #, python-brace-format
@@ -2360,7 +2360,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[Р]} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2370,7 +2370,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[И]} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2380,7 +2380,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[Т]} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2390,7 +2390,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[Т]} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2400,7 +2400,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[Р]} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2410,7 +2410,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[Р]} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2420,7 +2420,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[Р]} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2430,7 +2430,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[Т]} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2440,7 +2440,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[И]} {year}"
 
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
