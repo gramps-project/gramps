@@ -57,6 +57,7 @@ class HasGrampsId(Rule):
     name = "Object with <Id>"
     description = "Matches objects with a specified Gramps ID"
     category = _("General filters")
+    selected_handles = set([])
 
     def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         """
