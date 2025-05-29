@@ -573,7 +573,12 @@ class Gramps:
         dbstate = DbState()
         self._vm = ViewManager(app, dbstate, config.get("interface.view-categories"))
 
-        if lin() and glocale.lang != "C" and not gettext.find(GTK_GETTEXT_DOMAIN):
+        if (
+            lin()
+            and "SNAP" not in os.environ
+            and glocale.lang != "C"
+            and not gettext.find(GTK_GETTEXT_DOMAIN)
+        ):
             _display_gtk_gettext_message(parent=self._vm.window)
 
         _display_translator_message(parent=self._vm.window)
