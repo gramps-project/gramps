@@ -1083,7 +1083,8 @@ class NavWebReport(Report):
             place.gramps_id,
             event,
         )
-        self.obj_dict[PlaceName][place_name] = (
+        p_name = place_name + ":" + place.get_gramps_id()
+        self.obj_dict[PlaceName][p_name] = (
             place_handle,
             place_name,
             splace_name,
