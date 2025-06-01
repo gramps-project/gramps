@@ -192,6 +192,21 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
         <arg value="Family Name"/>
       </rule>
     </filter>
+    <filter name="Person I1041" function="and">
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I1041"/>
+      </rule>
+    </filter>
+    <filter name="Parents of Person I1041" function="or">
+      <rule class="IsParentOfFilterMatch" use_regex="False" use_case="False">
+        <arg value="Person I1041"/>
+      </rule>
+    </filter>
+    <filter name="not Parents of Person I1041" function="or" invert="1">
+      <rule class="IsParentOfFilterMatch" use_regex="False" use_case="False">
+        <arg value="Person I1041"/>
+      </rule>
+    </filter>
   </object>
 </filters>
 """
@@ -395,3 +410,18 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["not I0002"]
         results = filter.apply(self.db)
         self.assertEqual(len(results), 2127)
+
+    def test_person_I1041(self):
+        filter = self.filters["Person I1041"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 1)
+
+    def test_parents_of_person_I1041(self):
+        filter = self.filters["Parents of Person I1041"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2)
+
+    def test_not_parents_of_person_I1041(self):
+        filter = self.filters["not Parents of Person I1041"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2128 - 2)
