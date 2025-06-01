@@ -41,18 +41,6 @@ from ..types import PrimaryObjectHandle
 LOG = logging.getLogger(".filter.optimizer")
 
 
-def intersection(sets: List[Set[PrimaryObjectHandle]]) -> Set[PrimaryObjectHandle]:
-    # sort the sets by length, shortest first.
-    # with intersection, the shortest of the starting sets determines the
-    # maximum size of the result
-    sorted_sets = sorted(sets, key=lambda s: len(s))
-    return set.intersection(*sorted_sets)
-
-
-def union(sets: List[Set[PrimaryObjectHandle]]) -> Set[PrimaryObjectHandle]:
-    return set.union(*sets)
-
-
 class Optimizer:
     def compute_potential_handles_for_filter(
         self, filter: GenericFilter
