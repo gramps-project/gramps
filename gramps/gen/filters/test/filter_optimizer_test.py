@@ -392,6 +392,6 @@ class OptimizerTest(unittest.TestCase):
         self.assertEqual(len(results), 1)
 
     def test_not_i0002(self):
-        filter = self.filters["not I0001"]
+        filter = self.filters["not I0002"]
         results = filter.apply(self.db)
         self.assertEqual(len(results), 2127)
