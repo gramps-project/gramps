@@ -62,15 +62,13 @@ class Optimizer:
             handles_out_set_op = set.union
             support_unoptimized_rule = True
         elif filter.logical_op == "or":
-            return (None, None)
-            # handles_in_set_op = set.union
-            # handles_out_set_op = set.intersection
-            # support_unoptimized_rule = False  # with a logical_op of "or" it is not possible to optimize this filter if any rule is unoptimized
+            handles_in_set_op = set.union
+            handles_out_set_op = set.intersection
+            support_unoptimized_rule = False  # with a logical_op of "or" it is not possible to optimize this filter if any rule is unoptimized
         elif filter.logical_op == "one":
-            return (None, None)
-            # handles_in_set_op = set.difference
-            # handles_out_set_op = set.intersection
-            # support_unoptimized_rule = False  # with a logical_op of "one" it is not possible to optimize this filter if any rule is unoptimized
+            handles_in_set_op = set.difference
+            handles_out_set_op = set.intersection
+            support_unoptimized_rule = False  # with a logical_op of "one" it is not possible to optimize this filter if any rule is unoptimized
         else:
             assert_never(filter.logical_op)
 
