@@ -25,6 +25,7 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from io import StringIO
 from xml.sax import make_parser, SAXParseException
 import os
 from collections import abc
@@ -112,6 +113,15 @@ class FilterList:
                     parser.parse(the_file)
         except (IOError, OSError):
             print("IO/OSError in _filterlist.py")
+        except SAXParseException:
+            print("Parser error")
+
+    def loadString(self, string):
+        """load a custom filter from the provided string"""
+        try:
+            parser = make_parser()
+            parser.setContentHandler(FilterParser(self))
+            parser.parse(StringIO(string))
         except SAXParseException:
             print("Parser error")
 
