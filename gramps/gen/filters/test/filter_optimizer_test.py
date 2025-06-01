@@ -375,3 +375,23 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["not (I0001 and I0002)"]
         results = filter.apply(self.db)
         self.assertEqual(len(results), 2128)
+
+    def test_i0001(self):
+        filter = self.filters["I0001"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 1)
+
+    def test_not_i0001(self):
+        filter = self.filters["not I0001"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2127)
+
+    def test_i0002(self):
+        filter = self.filters["I0002"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 1)
+
+    def test_not_i0002(self):
+        filter = self.filters["not I0001"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 2127)
