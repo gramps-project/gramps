@@ -96,6 +96,16 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
         <arg value="I0002"/>
       </rule>
     </filter>
+    <filter name="I0001" function="or">
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0001"/>
+      </rule>
+    </filter>
+    <filter name="I0002" function="or">
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0002"/>
+      </rule>
+    </filter>
     <filter name="not I0001" function="or" invert="1">
       <rule class="HasIdOf" use_regex="False" use_case="False">
         <arg value="I0001"/>
