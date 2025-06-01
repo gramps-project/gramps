@@ -58,7 +58,7 @@ from .optimizer import Optimizer
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import cast, Dict, List, Set, Tuple
+from typing import cast, Dict, List, Literal, Set, Tuple
 from ..db import Database
 from ..types import PrimaryObjectHandle
 
@@ -75,6 +75,7 @@ class GenericFilter:
     """Filter class that consists of zero, one or more rules."""
 
     logical_functions = ["and", "or", "one"]
+    logical_op: Literal["and", "or", "one"]
 
     def __init__(self, source=None):
         if source:
