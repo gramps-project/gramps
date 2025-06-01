@@ -62,13 +62,15 @@ class Optimizer:
             handles_out_set_op = set.union
             support_unoptimized_rule = True
         elif filter.logical_op == "or":
-            handles_in_set_op = set.union
-            handles_out_set_op = set.intersection
-            support_unoptimized_rule = False  # with a logical_op of "or" it is not possible to optimize this filter if any rule is unoptimized
+            return (None, None)
+            # handles_in_set_op = set.union
+            # handles_out_set_op = set.intersection
+            # support_unoptimized_rule = False  # with a logical_op of "or" it is not possible to optimize this filter if any rule is unoptimized
         elif filter.logical_op == "one":
-            handles_in_set_op = set.difference
-            handles_out_set_op = set.intersection
-            support_unoptimized_rule = False  # with a logical_op of "one" it is not possible to optimize this filter if any rule is unoptimized
+            return (None, None)
+            # handles_in_set_op = set.difference
+            # handles_out_set_op = set.intersection
+            # support_unoptimized_rule = False  # with a logical_op of "one" it is not possible to optimize this filter if any rule is unoptimized
         else:
             assert_never(filter.logical_op)
 
@@ -103,7 +105,7 @@ class Optimizer:
     ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
         """ """
         if hasattr(rule, "selected_handles"):
-            return (rule.selected_handles, set[PrimaryObjectHandle]())
+            return (rule.selected_handles, None)
         if hasattr(rule, "find_filter"):
             filter = rule.find_filter()
             if filter:
