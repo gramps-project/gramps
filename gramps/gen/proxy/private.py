@@ -4,6 +4,7 @@
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +30,10 @@ Proxy class for the Gramps databases. Filter out all data marked private.
 # Python libraries
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
+from typing import Generator, List, Tuple
 from ..const import GRAMPS_LOCALE as glocale
+from ..errors import AccessDeniedError
 
 _ = glocale.translation.gettext
 import logging
@@ -64,6 +68,38 @@ from ..lib import (
     Note,
     Tag,
 )
+from ..lib.addressbase import AddressBase
+from ..lib.attrbase import AttributeRootBase
+from ..lib.citationbase import CitationBase
+from ..lib.ldsordbase import LdsOrdBase
+from ..lib.mediabase import MediaBase
+from ..lib.notebase import NoteBase
+from ..lib.urlbase import UrlBase
+from ..types import (
+    AnyHandle,
+    PersonHandle,
+    EventHandle,
+    FamilyHandle,
+    PlaceHandle,
+    PrimaryObject,
+    SourceHandle,
+    RepositoryHandle,
+    CitationHandle,
+    MediaHandle,
+    NoteHandle,
+    TagHandle,
+    PrimaryObjectHandle,
+    TableObjectType,
+    PersonGrampsID,
+    EventGrampsID,
+    FamilyGrampsID,
+    PlaceGrampsID,
+    SourceGrampsID,
+    RepositoryGrampsID,
+    CitationGrampsID,
+    MediaGrampsID,
+    NoteGrampsID,
+)
 from .proxybase import ProxyDbBase
 
 
@@ -79,260 +115,263 @@ class PrivateProxyDb(ProxyDbBase):
         """
         ProxyDbBase.__init__(self, db)
 
-    def get_person_from_handle(self, handle):
+    def get_person_from_handle(self, handle: PersonHandle) -> Person:
         """
         Finds a Person in the database from the passed Gramps ID.
-        If no such Person exists, None is returned.
+        If no such Person exists, or the privacy option is True an error is raised.
         """
         person = self.db.get_person_from_handle(handle)
-        if person and not person.get_privacy():
+        if not person.get_privacy():
             return sanitize_person(self.db, person)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
-    def get_source_from_handle(self, handle):
+    def get_source_from_handle(self, handle: SourceHandle) -> Source:
         """
         Finds a Source in the database from the passed Gramps ID.
-        If no such Source exists, None is returned.
+        If no such Source exists, or the privacy option is True an error is raised.
         """
         source = self.db.get_source_from_handle(handle)
-        if source and not source.get_privacy():
+        if not source.get_privacy():
             return sanitize_source(self.db, source)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
-    def get_citation_from_handle(self, handle):
+    def get_citation_from_handle(self, handle: CitationHandle) -> Citation:
         """
         Finds a Citation in the database from the passed Gramps ID.
-        If no such Citation exists, None is returned.
+        If no such Citation exists, or the privacy option is True an error is raised.
         """
         citation = self.db.get_citation_from_handle(handle)
-        if citation and not citation.get_privacy():
+        if not citation.get_privacy():
             return sanitize_citation(self.db, citation)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
-    def get_media_from_handle(self, handle):
+    def get_media_from_handle(self, handle: MediaHandle) -> Media:
         """
         Finds an Object in the database from the passed Gramps ID.
-        If no such Object exists, None is returned.
+        If no such Object exists, or the privacy option is True an error is raised.
         """
         media = self.db.get_media_from_handle(handle)
-        if media and not media.get_privacy():
+        if not media.get_privacy():
             return sanitize_media(self.db, media)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
-    def get_place_from_handle(self, handle):
+    def get_place_from_handle(self, handle: PlaceHandle) -> Place:
         """
         Finds a Place in the database from the passed Gramps ID.
-        If no such Place exists, None is returned.
+        If no such Place exists, or the privacy option is True an error is raised.
         """
         place = self.db.get_place_from_handle(handle)
-        if place and not place.get_privacy():
+        if not place.get_privacy():
             return sanitize_place(self.db, place)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
-    def get_event_from_handle(self, handle):
+    def get_event_from_handle(self, handle: EventHandle) -> Event:
         """
         Finds a Event in the database from the passed Gramps ID.
-        If no such Event exists, None is returned.
+        If no such Event exists, or the privacy option is True an error is raised.
         """
         event = self.db.get_event_from_handle(handle)
-        if event and not event.get_privacy():
+        if not event.get_privacy():
             return sanitize_event(self.db, event)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
-    def get_family_from_handle(self, handle):
+    def get_family_from_handle(self, handle: FamilyHandle) -> Family:
         """
         Finds a Family in the database from the passed Gramps ID.
-        If no such Family exists, None is returned.
+        If no such Family exists, or the privacy option is True an error is raised.
         """
         family = self.db.get_family_from_handle(handle)
-        if family and not family.get_privacy():
+        if not family.get_privacy():
             return sanitize_family(self.db, family)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
-    def get_repository_from_handle(self, handle):
+    def get_repository_from_handle(self, handle: RepositoryHandle) -> Repository:
         """
         Finds a Repository in the database from the passed Gramps ID.
-        If no such Repository exists, None is returned.
+        If no such Repository exists, or the privacy option is True an error is raised.
         """
         repository = self.db.get_repository_from_handle(handle)
-        if repository and not repository.get_privacy():
+        if not repository.get_privacy():
             return sanitize_repository(self.db, repository)
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
-    def get_note_from_handle(self, handle):
+    def get_note_from_handle(self, handle: NoteHandle) -> Note:
         """
         Finds a Note in the database from the passed Gramps ID.
-        If no such Note exists, None is returned.
+        If no such Note exists, or the privacy option is True an error is raised.
         """
         note = self.db.get_note_from_handle(handle)
-        if note and not note.get_privacy():
-            # Nothing to sanitize in note object:
+        if not note.get_privacy():
             return note
-        return None
+        raise AccessDeniedError(f"Handle {handle} is private")
 
-    def get_person_from_gramps_id(self, val):
+    def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person | None:
         """
         Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
-        person = self.db.get_person_from_gramps_id(val)
+        person = self.db.get_person_from_gramps_id(gramps_id)
         if person and not person.get_privacy():
             return sanitize_person(self.db, person)
         return None
 
-    def get_family_from_gramps_id(self, val):
+    def get_family_from_gramps_id(self, gramps_id: FamilyGrampsID) -> Family | None:
         """
         Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
-        family = self.db.get_family_from_gramps_id(val)
+        family = self.db.get_family_from_gramps_id(gramps_id)
         if family and not family.get_privacy():
             return sanitize_family(self.db, family)
         return None
 
-    def get_event_from_gramps_id(self, val):
+    def get_event_from_gramps_id(self, gramps_id: EventGrampsID) -> Event | None:
         """
         Finds an Event in the database from the passed Gramps ID.
         If no such Event exists, None is returned.
         """
-        event = self.db.get_event_from_gramps_id(val)
+        event = self.db.get_event_from_gramps_id(gramps_id)
         if event and not event.get_privacy():
             return sanitize_event(self.db, event)
         return None
 
-    def get_place_from_gramps_id(self, val):
+    def get_place_from_gramps_id(self, gramps_id: PlaceGrampsID) -> Place | None:
         """
         Finds a Place in the database from the passed Gramps ID.
         If no such Place exists, None is returned.
         """
-        place = self.db.get_place_from_gramps_id(val)
+        place = self.db.get_place_from_gramps_id(gramps_id)
         if place and not place.get_privacy():
             return sanitize_place(self.db, place)
         return None
 
-    def get_source_from_gramps_id(self, val):
+    def get_source_from_gramps_id(self, gramps_id: SourceGrampsID) -> Source | None:
         """
         Finds a Source in the database from the passed Gramps ID.
         If no such Source exists, None is returned.
         """
-        source = self.db.get_source_from_gramps_id(val)
+        source = self.db.get_source_from_gramps_id(gramps_id)
         if source and not source.get_privacy():
             return sanitize_source(self.db, source)
         return None
 
-    def get_citation_from_gramps_id(self, val):
+    def get_citation_from_gramps_id(
+        self, gramps_id: CitationGrampsID
+    ) -> Citation | None:
         """
         Finds a Citation in the database from the passed Gramps ID.
         If no such Citation exists, None is returned.
         """
-        citation = self.db.get_citation_from_gramps_id(val)
+        citation = self.db.get_citation_from_gramps_id(gramps_id)
         if citation and not citation.get_privacy():
             return sanitize_citation(self.db, citation)
         return None
 
-    def get_media_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, gramps_id: MediaGrampsID) -> Media | None:
         """
         Finds a Media in the database from the passed Gramps ID.
         If no such Media exists, None is returned.
         """
-        obj = self.db.get_media_from_gramps_id(val)
+        obj = self.db.get_media_from_gramps_id(gramps_id)
         if obj and not obj.get_privacy():
             return sanitize_media(self.db, obj)
         return None
 
-    def get_repository_from_gramps_id(self, val):
+    def get_repository_from_gramps_id(
+        self, gramps_id: RepositoryGrampsID
+    ) -> Repository | None:
         """
         Finds a Repository in the database from the passed Gramps ID.
         If no such Repository exists, None is returned.
         """
-        repository = self.db.get_repository_from_gramps_id(val)
+        repository = self.db.get_repository_from_gramps_id(gramps_id)
         if repository and not repository.get_privacy():
             return sanitize_repository(self.db, repository)
         return None
 
-    def get_note_from_gramps_id(self, val):
+    def get_note_from_gramps_id(self, gramps_id: NoteGrampsID) -> Note | None:
         """
         Finds a Note in the database from the passed Gramps ID.
         If no such Note exists, None is returned.
         """
-        note = self.db.get_note_from_gramps_id(val)
+        note = self.db.get_note_from_gramps_id(gramps_id)
         if note and not note.get_privacy():
             return note
         return None
 
     # Define predicate functions for use by default iterator methods
 
-    def include_person(self, handle):
+    def include_person(self, handle: PersonHandle) -> bool:
         """
         Predicate returning True if object is to be included, else False
         """
         obj = self.get_unfiltered_person(handle)
         return obj and not obj.get_privacy()
 
-    def include_family(self, handle):
+    def include_family(self, handle: FamilyHandle) -> bool:
         """
         Predicate returning True if object is to be included, else False
         """
         obj = self.get_unfiltered_family(handle)
         return obj and not obj.get_privacy()
 
-    def include_event(self, handle):
+    def include_event(self, handle: EventHandle) -> bool:
         """
         Predicate returning True if object is to be included, else False
         """
         obj = self.get_unfiltered_event(handle)
         return obj and not obj.get_privacy()
 
-    def include_source(self, handle):
+    def include_source(self, handle: SourceHandle) -> bool:
         """
         Predicate returning True if object is to be included, else False
         """
         obj = self.get_unfiltered_source(handle)
         return obj and not obj.get_privacy()
 
-    def include_citation(self, handle):
+    def include_citation(self, handle: CitationHandle) -> bool:
         """
         Predicate returning True if object is to be included, else False
         """
         obj = self.get_unfiltered_citation(handle)
         return obj and not obj.get_privacy()
 
-    def include_place(self, handle):
+    def include_place(self, handle: PlaceHandle) -> bool:
         """
         Predicate returning True if object is to be included, else False
         """
         obj = self.get_unfiltered_place(handle)
         return obj and not obj.get_privacy()
 
-    def include_media(self, handle):
+    def include_media(self, handle: MediaHandle) -> bool:
         """
         Predicate returning True if object is to be included, else False
         """
         obj = self.get_unfiltered_media(handle)
         return obj and not obj.get_privacy()
 
-    def include_repository(self, handle):
+    def include_repository(self, handle: RepositoryHandle) -> bool:
         """
         Predicate returning True if object is to be included, else False
         """
         obj = self.get_unfiltered_repository(handle)
         return obj and not obj.get_privacy()
 
-    def include_note(self, handle):
+    def include_note(self, handle: NoteHandle) -> bool:
         """
         Predicate returning True if object is to be included, else False
         """
         obj = self.get_unfiltered_note(handle)
         return obj and not obj.get_privacy()
 
-    def get_default_person(self):
+    def get_default_person(self) -> Person | None:
         """returns the default Person of the database"""
         person = self.db.get_default_person()
         if person and not person.get_privacy():
             return sanitize_person(self.db, person)
         return None
 
-    def get_default_handle(self):
+    def get_default_handle(self) -> PersonHandle | None:
         """returns the default Person of the database"""
         handle = self.db.get_default_handle()
         if handle:
@@ -341,7 +380,7 @@ class PrivateProxyDb(ProxyDbBase):
                 return handle
         return None
 
-    def has_person_handle(self, handle):
+    def has_person_handle(self, handle: PersonHandle) -> bool:
         """
         returns True if the handle exists in the current Person database.
         """
@@ -350,7 +389,7 @@ class PrivateProxyDb(ProxyDbBase):
             return True
         return False
 
-    def has_event_handle(self, handle):
+    def has_event_handle(self, handle: EventHandle) -> bool:
         """
         returns True if the handle exists in the current Event database.
         """
@@ -359,7 +398,7 @@ class PrivateProxyDb(ProxyDbBase):
             return True
         return False
 
-    def has_source_handle(self, handle):
+    def has_source_handle(self, handle: SourceHandle) -> bool:
         """
         returns True if the handle exists in the current Source database.
         """
@@ -368,7 +407,7 @@ class PrivateProxyDb(ProxyDbBase):
             return True
         return False
 
-    def has_citation_handle(self, handle):
+    def has_citation_handle(self, handle: CitationHandle) -> bool:
         """
         returns True if the handle exists in the current Citation database.
         """
@@ -377,7 +416,7 @@ class PrivateProxyDb(ProxyDbBase):
             return True
         return False
 
-    def has_place_handle(self, handle):
+    def has_place_handle(self, handle: PlaceHandle) -> bool:
         """
         returns True if the handle exists in the current Place database.
         """
@@ -386,7 +425,7 @@ class PrivateProxyDb(ProxyDbBase):
             return True
         return False
 
-    def has_family_handle(self, handle):
+    def has_family_handle(self, handle: FamilyHandle) -> bool:
         """
         Return True if the handle exists in the current Family database.
         """
@@ -395,7 +434,7 @@ class PrivateProxyDb(ProxyDbBase):
             return True
         return False
 
-    def has_object_handle(self, handle):
+    def has_object_handle(self, handle: MediaHandle) -> bool:
         """
         Return True if the handle exists in the current Mediadatabase.
         """
@@ -404,7 +443,7 @@ class PrivateProxyDb(ProxyDbBase):
             return True
         return False
 
-    def has_repository_handle(self, handle):
+    def has_repository_handle(self, handle: RepositoryHandle) -> bool:
         """
         Return True if the handle exists in the current Repository database.
         """
@@ -413,7 +452,7 @@ class PrivateProxyDb(ProxyDbBase):
             return True
         return False
 
-    def has_note_handle(self, handle):
+    def has_note_handle(self, handle: NoteHandle) -> bool:
         """
         Return True if the handle exists in the current Note database.
         """
@@ -422,7 +461,9 @@ class PrivateProxyDb(ProxyDbBase):
             return True
         return False
 
-    def find_backlink_handles(self, handle, include_classes=None):
+    def find_backlink_handles(
+        self, handle: AnyHandle, include_classes: List[str] | None = None
+    ) -> Generator[Tuple[str, AnyHandle]]:
         """
         Find all objects that hold a reference to the object handle.
         Returns an iterator over a list of (class_name, handle) tuples.
@@ -468,10 +509,10 @@ class PrivateProxyDb(ProxyDbBase):
                     yield (class_name, handle)
             else:
                 raise NotImplementedError
-        return
+        yield from ()
 
 
-def copy_media_ref_list(db, original_obj, clean_obj):
+def copy_media_ref_list(db, original_obj: MediaBase, clean_obj: MediaBase) -> None:
     """
     Copies media references from one object to another - excluding private
     references and references to private objects.
@@ -492,7 +533,9 @@ def copy_media_ref_list(db, original_obj, clean_obj):
                 clean_obj.add_media_reference(sanitize_media_ref(db, media_ref))
 
 
-def copy_citation_ref_list(db, original_obj, clean_obj):
+def copy_citation_ref_list(
+    db, original_obj: CitationBase, clean_obj: CitationBase
+) -> None:
     """
     Copies citation references from one object to another - excluding references
     to private citations, and references to citations that refer to private
@@ -515,7 +558,7 @@ def copy_citation_ref_list(db, original_obj, clean_obj):
                 clean_obj.add_citation(citation_handle)
 
 
-def copy_notes(db, original_obj, clean_obj):
+def copy_notes(db, original_obj: NoteBase, clean_obj: NoteBase) -> None:
     """
     Copies notes from one object to another - excluding references to private
     notes.
@@ -534,7 +577,7 @@ def copy_notes(db, original_obj, clean_obj):
             clean_obj.add_note(note_handle)
 
 
-def copy_associations(db, original_obj, clean_obj):
+def copy_associations(db, original_obj: Person, clean_obj: Person) -> None:
     """
     Copies associations from one object to another - excluding
     references to private notes.
@@ -557,7 +600,9 @@ def copy_associations(db, original_obj, clean_obj):
     clean_obj.set_person_ref_list(new_person_ref_list)
 
 
-def copy_attributes(db, original_obj, clean_obj):
+def copy_attributes(
+    db, original_obj: AttributeRootBase, clean_obj: AttributeRootBase
+) -> None:
     """
     Copies attributes from one object to another - excluding references to
     private attributes.
@@ -580,7 +625,9 @@ def copy_attributes(db, original_obj, clean_obj):
             clean_obj.add_attribute(new_attribute)
 
 
-def copy_srcattributes(db, original_obj, clean_obj):
+def copy_srcattributes(
+    db, original_obj: AttributeRootBase, clean_obj: AttributeRootBase
+) -> None:
     """
     Copies srcattributes from one object to another - excluding references to
     private srcattributes.
@@ -601,7 +648,7 @@ def copy_srcattributes(db, original_obj, clean_obj):
             clean_obj.add_attribute(new_attribute)
 
 
-def copy_urls(db, original_obj, clean_obj):
+def copy_urls(db, original_obj: UrlBase, clean_obj: UrlBase) -> None:
     """
     Copies urls from one object to another - excluding references to
     private urls.
@@ -619,7 +666,7 @@ def copy_urls(db, original_obj, clean_obj):
             clean_obj.add_url(url)
 
 
-def copy_lds_ords(db, original_obj, clean_obj):
+def copy_lds_ords(db, original_obj: LdsOrdBase, clean_obj: LdsOrdBase) -> None:
     """
     Copies LDS ORDs from one object to another - excluding references to
     private LDS ORDs.
@@ -637,7 +684,7 @@ def copy_lds_ords(db, original_obj, clean_obj):
             clean_obj.add_lds_ord(sanitize_lds_ord(db, lds_ord))
 
 
-def copy_addresses(db, original_obj, clean_obj):
+def copy_addresses(db, original_obj: AddressBase, clean_obj: AddressBase) -> None:
     """
     Copies addresses from one object to another - excluding references to
     private addresses.
@@ -655,7 +702,7 @@ def copy_addresses(db, original_obj, clean_obj):
             clean_obj.add_address(sanitize_address(db, address))
 
 
-def sanitize_lds_ord(db, lds_ord):
+def sanitize_lds_ord(db, lds_ord: LdsOrd) -> LdsOrd:
     """
     Create a new LdsOrd instance based off the passed LdsOrd
     instance. The returned instance has all private records
@@ -694,7 +741,7 @@ def sanitize_lds_ord(db, lds_ord):
     return new_lds_ord
 
 
-def sanitize_address(db, address):
+def sanitize_address(db, address: Address) -> Address:
     """
     Create a new Address instance based off the passed Address
     instance. The returned instance has all private records
@@ -726,7 +773,7 @@ def sanitize_address(db, address):
     return new_address
 
 
-def sanitize_name(db, name):
+def sanitize_name(db, name: Name) -> Name:
     """
     Create a new Name instance based off the passed Name
     instance. The returned instance has all private records
@@ -760,7 +807,7 @@ def sanitize_name(db, name):
     return new_name
 
 
-def sanitize_media_ref(db, media_ref):
+def sanitize_media_ref(db, media_ref: MediaRef) -> MediaRef:
     """
     Create a new MediaRef instance based off the passed MediaRef
     instance. The returned instance has all private records
@@ -785,7 +832,7 @@ def sanitize_media_ref(db, media_ref):
     return new_ref
 
 
-def sanitize_citation(db, citation):
+def sanitize_citation(db, citation: Citation) -> Citation:
     """
     Create a new Citation instance based off the passed Citation
     instance. The returned instance has all private records
@@ -815,7 +862,7 @@ def sanitize_citation(db, citation):
     return new_citation
 
 
-def sanitize_event_ref(db, event_ref):
+def sanitize_event_ref(db, event_ref: EventRef) -> EventRef:
     """
     Create a new EventRef instance based off the passed EventRef
     instance. The returned instance has all private records
@@ -840,7 +887,7 @@ def sanitize_event_ref(db, event_ref):
     return new_ref
 
 
-def sanitize_person(db, person):
+def sanitize_person(db, person: Person) -> Person:
     """
     Create a new Person instance based off the passed Person
     instance. The returned instance has all private records
@@ -934,7 +981,7 @@ def sanitize_person(db, person):
     return new_person
 
 
-def sanitize_source(db, source):
+def sanitize_source(db, source: Source) -> Source:
     """
     Create a new Source instance based off the passed Source
     instance. The returned instance has all private records
@@ -973,7 +1020,7 @@ def sanitize_source(db, source):
     return new_source
 
 
-def sanitize_media(db, media):
+def sanitize_media(db, media: Media) -> Media:
     """
     Create a new Media instance based off the passed Media
     instance. The returned instance has all private records
@@ -1006,7 +1053,7 @@ def sanitize_media(db, media):
     return new_media
 
 
-def sanitize_place(db, place):
+def sanitize_place(db, place: Place) -> Place:
     """
     Create a new Place instance based off the passed Place
     instance. The returned instance has all private records
@@ -1044,7 +1091,7 @@ def sanitize_place(db, place):
     return new_place
 
 
-def sanitize_event(db, event):
+def sanitize_event(db, event: Event) -> Event:
     """
     Create a new Event instance based off the passed Event
     instance. The returned instance has all private records
@@ -1082,7 +1129,7 @@ def sanitize_event(db, event):
     return new_event
 
 
-def sanitize_family(db, family):
+def sanitize_family(db, family: Family) -> Family:
     """
     Create a new Family instance based off the passed Family
     instance. The returned instance has all private records
@@ -1151,7 +1198,7 @@ def sanitize_family(db, family):
     return new_family
 
 
-def sanitize_repository(db, repository):
+def sanitize_repository(db, repository: Repository) -> Repository:
     """
     Create a new Repository instance based off the passed Repository
     instance. The returned instance has all private records

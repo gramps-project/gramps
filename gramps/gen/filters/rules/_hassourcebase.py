@@ -42,7 +42,7 @@ from . import Rule
 #
 # -------------------------------------------------------------------------
 from typing import Any
-from ...db import Database
+from ...types import Database
 
 
 # -------------------------------------------------------------------------

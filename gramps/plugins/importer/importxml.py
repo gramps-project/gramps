@@ -866,7 +866,7 @@ class GrampsParser(UpdateCallback):
                     "event": self.db.has_event_handle,
                     "place": self.db.has_place_handle,
                     "source": self.db.has_source_handle,
-                    "citation": self.db.get_raw_citation_data,
+                    "citation": self.db.has_citation_handle,
                     "repository": self.db.has_repository_handle,
                     "media": self.db.has_media_handle,
                     "note": self.db.has_note_handle,

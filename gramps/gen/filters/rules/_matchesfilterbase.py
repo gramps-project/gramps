@@ -47,7 +47,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from typing import Any, Union
-from ...db import Database
+from ...types import Database
 
 
 # -------------------------------------------------------------------------

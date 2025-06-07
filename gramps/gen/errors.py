@@ -138,6 +138,18 @@ class HandleError(Exception):
         return self.value
 
 
+class AccessDeniedError(HandleError):
+    """Error used to report a handle that would previously return None from a db proxy"""
+
+    def __init__(self, value):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        "Return string representation"
+        return self.value
+
+
 class WindowActiveError(Exception):
     """Error used to report that the request window is already displayed."""
 

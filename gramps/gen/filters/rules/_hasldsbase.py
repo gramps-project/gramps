@@ -45,7 +45,7 @@ from . import Rule
 #
 # -------------------------------------------------------------------------
 from ...lib.ldsordbase import LdsOrdBase
-from ...db import Database
+from ...types import Database
 
 
 # -------------------------------------------------------------------------

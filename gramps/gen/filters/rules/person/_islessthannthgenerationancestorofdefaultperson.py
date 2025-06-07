@@ -23,6 +23,7 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -66,7 +67,7 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
     def prepare(self, db: Database, user):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
-        p: Person = db.get_default_person()
+        p = db.get_default_person()
         if p:
             self.init_ancestor_list(p.handle, 1)
 
