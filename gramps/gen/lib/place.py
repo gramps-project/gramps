@@ -33,6 +33,8 @@ Place object for Gramps.
 # -------------------------------------------------------------------------
 from __future__ import annotations
 
+from typing_extensions import override
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
@@ -497,36 +499,18 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             else:
                 self.placeref_list.append(addendum)
 
-    def _has_handle_reference(self, classname, handle):
-        """
-        Return True if the object has reference to a given handle of given
-        primary object type.
-
-        :param classname: The name of the primary object class.
-        :type classname: str
-        :param handle: The handle to be checked.
-        :type handle: str
-        :returns: Returns whether the object has reference to this handle of
-                this object type.
-        :rtype: bool
-        """
+    @override
+    def _has_handle_reference(self, classname: str, handle: str) -> bool:
         if classname == "Place":
             for placeref in self.placeref_list:
                 if placeref.ref == handle:
                     return True
         return False
 
-    def _replace_handle_reference(self, classname, old_handle, new_handle):
-        """
-        Replace all references to old handle with those to the new handle.
-
-        :param classname: The name of the primary object class.
-        :type classname: str
-        :param old_handle: The handle to be replaced.
-        :type old_handle: str
-        :param new_handle: The handle to replace the old one with.
-        :type new_handle: str
-        """
+    @override
+    def _replace_handle_reference(
+        self, classname: str, old_handle: str, new_handle: str
+    ) -> None:
         if classname == "Place":
             for placeref in self.placeref_list:
                 if placeref.ref == old_handle:
