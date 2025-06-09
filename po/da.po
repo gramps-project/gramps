@@ -48,7 +48,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-02-24 11:27+0000\n"
+"PO-Revision-Date: 2025-06-03 07:01+0000\n"
 "Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
@@ -57,7 +57,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -7325,11 +7325,10 @@ msgid "unknown"
 msgstr "ukendt"
 
 #: ../gramps/gen/lib/date.py:305
-#, fuzzy, python-brace-format
-#| msgid "greater than %s years"
+#, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "større end %s år"
+msgstr[0] "større end {number_off} år"
 msgstr[1] "større end %s år"
 
 #: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:344
@@ -10930,6 +10929,7 @@ msgstr "dato reserve"
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
+"Direkte bevis for denne person - fødsel: {birth_min_src}, død: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
 msgid "mother's age"
@@ -10968,10 +10968,8 @@ msgid "birth date and known to be dead"
 msgstr "fødselsdato og vides død"
 
 #: ../gramps/gen/utils/alive.py:432
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "anes fødselsdato"
+msgstr "afstand fra fødselsdato"
 
 #: ../gramps/gen/utils/alive.py:448
 #, python-brace-format
