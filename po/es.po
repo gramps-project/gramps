@@ -9,7 +9,7 @@
 #
 # Juan Saavedra <jcsaaver@gmail.com>, 2021, 2023, 2024, 2025.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
-# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
+# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021, 2025.
 # S <sendoasojo@gmail.com>, 2021.
 # badlop <badlop@process-one.net>, 2021.
 # Mario Ruiz <marionetarh@gmail.com>, 2022.
@@ -28,9 +28,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-05-11 19:01+0000\n"
-"Last-Translator: Jaime Marquínez Ferrándiz "
-"<jaime.marquinez.ferrandiz@fastmail.net>\n"
+"PO-Revision-Date: 2025-06-08 16:42+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -1217,8 +1216,8 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"Error: El árbol genealógico '%s' ya existe.\n"
-"No puede usarse la opción '-C'."
+"Error: el árbol genealógico «%s» ya existe.\n"
+"No puede usarse la opción «-C»."
 
 #: ../gramps/cli/arghandler.py:248
 #, python-format
@@ -1281,7 +1280,7 @@ msgstr "ERROR: Formato no reconocido para el archivo de exportación %s"
 #: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:374
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr "Error: no se pudo abrir '%s'"
+msgstr "Error: no se puede abrir «%s»"
 
 #: ../gramps/cli/arghandler.py:422
 msgid "List of known Family Trees in your database path\n"
@@ -3599,7 +3598,7 @@ msgstr "ERROR, Editar formato de nombre en Preferencias"
 #: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:398
 #, python-format
 msgid "Error in '%s' file: cannot load."
-msgstr "Error en el archivo '%s': no se pudo cargar."
+msgstr "Error en el archivo «%s»: no se pudo cargar."
 
 #: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:66
 msgid "Full"
@@ -9462,7 +9461,7 @@ msgstr "Etiqueta"
 
 #: ../gramps/gen/lib/styledtexttag.py:131
 msgid "Ranges"
-msgstr "Rango"
+msgstr "Intervalos"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:66
 #: ../gramps/gui/widgets/styledtexteditor.py:84
@@ -10839,27 +10838,27 @@ msgstr "No se pudo abrir '%s'"
 #: ../gramps/gen/plug/utils.py:363
 #, python-format
 msgid "Error in reading '%s'"
-msgstr "Error leyendo '%s'"
+msgstr "Error al leer «%s»"
 
 #: ../gramps/gen/plug/utils.py:378
 #, python-format
 msgid "Error: unknown file type: '%s'"
-msgstr "Error: tipo de archivo desconocido: '%s'"
+msgstr "Error: tipo de archivo desconocido: «%s»"
 
 #: ../gramps/gen/plug/utils.py:384
 #, python-format
 msgid "Examining '%s'..."
-msgstr "Examinando '%s'..."
+msgstr "Examinando «%s»…"
 
 #: ../gramps/gen/plug/utils.py:413
 #, python-format
 msgid "'%s' is for this version of Gramps."
-msgstr "'%s' es para esta versión de Gramps."
+msgstr "«%s» es para esta versión de Gramps."
 
 #: ../gramps/gen/plug/utils.py:421
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
-msgstr "'%s' NO es para esta versión de Gramps."
+msgstr "«%s» NO es para esta versión de Gramps."
 
 #: ../gramps/gen/plug/utils.py:427
 #, python-format
@@ -14068,7 +14067,7 @@ msgstr "_Atributos"
 #: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/view/sourceview.py:85
 msgid "ID"
-msgstr "ID"
+msgstr "id."
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:70
 msgid "_References"
@@ -16233,7 +16232,7 @@ msgstr "Fecha de nacimiento"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:172
 #, python-format
 msgid "example: \"%(msg1)s\" or \"%(msg2)s\""
-msgstr "ejemplo: \"%(msg1)s\" o \"%(msg2)s\""
+msgstr "ejemplo: «%(msg1)s» o «%(msg2)s»"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:168
 #: ../gramps/plugins/drawreport/statisticschart.py:405
@@ -17736,7 +17735,7 @@ msgstr "Calle Número"
 #: ../gramps/gui/glade/editplacename.glade:157
 #: ../gramps/plugins/webreport/basepage.py:3457
 msgid "Date range in which the name is valid."
-msgstr "Rango de fechas en el que el nombre es válido."
+msgstr "Intervalo de fechas en el que el nombre es válido."
 
 #: ../gramps/gui/glade/editplacename.glade:170
 msgid "The name of the place."
@@ -20936,7 +20935,7 @@ msgstr "El archivo de respaldo ya existe. ¿Sobreescribir?"
 #: ../gramps/gui/viewmanager.py:1889
 #, python-format
 msgid "The file '%s' exists."
-msgstr "El archivo '%s' existe."
+msgstr "El archivo «%s» existe."
 
 #: ../gramps/gui/viewmanager.py:1890
 msgid "Proceed and overwrite"
@@ -21158,12 +21157,12 @@ msgstr "Diálogo_de_nueva_etiqueta"
 #: ../gramps/gui/views/tags.py:257
 #, python-format
 msgid "Add tag '%s'"
-msgstr "Agregar etiqueta '%s'"
+msgstr "Añadir etiqueta «%s»"
 
 #: ../gramps/gui/views/tags.py:265
 #, python-format
 msgid "Remove tag '%s'"
-msgstr "Quitar etiqueta '%s'"
+msgstr "Quitar etiqueta «%s»"
 
 #: ../gramps/gui/views/tags.py:328
 msgid "Adding Tags"
@@ -21529,7 +21528,7 @@ msgstr "Seleccionar color del fondo"
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1156
 #, python-format
 msgid "'%s' is not a valid value for this field"
-msgstr "'%s' no es un valor válido para este campo"
+msgstr "«%s» no es un valor válido para este campo"
 
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1196
 msgid "This field is mandatory"
@@ -21538,7 +21537,7 @@ msgstr "Este campo es obligatorio"
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1249
 #, python-format
 msgid "'%s' is not a valid date value"
-msgstr "'%s' no es una fecha válida"
+msgstr "«%s» no es una fecha válida"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
 msgid "Legacy"
@@ -40060,7 +40059,7 @@ msgstr "Número de personas"
 #: ../gramps/plugins/webreport/surnamelist.py:302
 #, python-brace-format
 msgid "Surnames beginning with letter '{letter}' {char}"
-msgstr "Apellidos que empiezan por la letra '{letter}' {char}"
+msgstr "Apellidos que empiezan por la letra «{letter}» {char}"
 
 #: ../gramps/plugins/webreport/thumbnail.py:128
 msgid ""
