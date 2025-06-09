@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-05-21 17:01+0000\n"
+"PO-Revision-Date: 2025-06-02 01:40+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -30526,7 +30526,7 @@ msgstr "ייצוא מצג‬..."
 #: ../gramps/plugins/view/repoview.py:188
 #: ../gramps/plugins/view/sourceview.py:160
 msgid "_Add Bookmark"
-msgstr "_ספר כתובות"
+msgstr "_הוספת סמניה"
 
 #: ../gramps/plugins/lib/libpersonview.py:234
 #: ../gramps/plugins/lib/libpersonview.py:289
@@ -38437,7 +38437,7 @@ msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
-"האם לכלול עמוד ספר כתובות, הכולל דואר אלקטרוני, כתובת אתר מרשתת "
+"האם לכלול עמודי ספר כתובות, שיכול לכולל דואר אלקטרוני, כתובת אתר מרשתת "
 "וכתבות/אירועי מגורים אישיים."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2638
