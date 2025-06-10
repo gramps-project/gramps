@@ -36,5 +36,6 @@ from hatchling.metadata.plugin.interface import MetadataHookInterface
 class GrampsMetaDataHook(MetadataHookInterface):
     def update(self, metadata):
         version_file = os.path.join(self.root, "gramps", "version.py")
-        exec(open(version_file).read(), globals())
-        metadata["version"] = VERSION.replace("-", ".")
+        version_info = {}
+        exec(open(version_file).read(), version_info)
+        metadata["version"] = version_info["VERSION"].replace("-", ".")
