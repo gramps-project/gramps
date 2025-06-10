@@ -48,7 +48,7 @@ class GrampsBuildHook(BuildHookInterface):
 
         self.build_trans(build_dir)
         self.build_intl(build_dir)
-        if not sys.platform == "win32":
+        if sys.platform != "win32":
             self.build_man(build_dir)
         self.copy_files(build_dir)
 
@@ -61,8 +61,7 @@ class GrampsBuildHook(BuildHookInterface):
             os.path.join(self.root, "po", "LINGUAS"), "r", encoding="utf-8"
         ) as linguas:
             for line in linguas:
-                if "#" in line:
-                    line = line[: line.find("#")]
+                line = line.split("#", maxsplit=1)[0]
                 all_linguas.extend(line.split())
         return all_linguas
 
@@ -78,8 +77,7 @@ class GrampsBuildHook(BuildHookInterface):
             )
 
             mo_dir = os.path.dirname(mo_file)
-            if not (os.path.isdir(mo_dir) or os.path.islink(mo_dir)):
-                os.makedirs(mo_dir)
+            os.makedirs(mo_dir, exist_ok=True)
 
             if newer(po_file, mo_file):
                 self.app.display_info(f"  - {lang}")
@@ -112,8 +110,7 @@ class GrampsBuildHook(BuildHookInterface):
             filenamelocal = os.path.join(self.root, "data", filename)
             newfile = os.path.join(build_dir, "share", target, filename)
             newdir = os.path.dirname(newfile)
-            if not (os.path.isdir(newdir) or os.path.islink(newdir)):
-                os.makedirs(newdir)
+            os.makedirs(newdir, exist_ok=True)
             self.app.display_info(f"  - {filename}")
             self.merge(filenamelocal + ".in", newfile, option)
 
@@ -153,8 +150,7 @@ class GrampsBuildHook(BuildHookInterface):
                 else:
                     lang = tail
                 newdir = os.path.join(build_dir, "share", "man", lang, "man1")
-                if not (os.path.isdir(newdir) or os.path.islink(newdir)):
-                    os.makedirs(newdir)
+                os.makedirs(newdir, exist_ok=True)
 
                 newfile = os.path.join(newdir, "gramps.1")
                 subst_vars = (("@VERSION@", self.metadata.version),)
