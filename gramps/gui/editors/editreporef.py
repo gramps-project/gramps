@@ -50,7 +50,7 @@ from ..glade import Glade
 # -------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _("Repository_Reference_Editor", "manual")
+WIKI_HELP_SEC = ("Repository_Reference_Editor", "manual")
 
 
 # -------------------------------------------------------------------------
