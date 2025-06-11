@@ -158,8 +158,10 @@ class GrampsBuildHook(BuildHookInterface):
 
                 src = "gramps.1"
                 if "NO_COMPRESS_MANPAGES" not in os.environ:
+                    import time
                     import gzip
 
+                    build_date = int(os.environ.get("SOURCE_DATE_EPOCH", time.time()))
                     src += ".gz"
                     man_file_gz = os.path.join(newdir, src)
                     if os.path.exists(man_file_gz):
@@ -173,7 +175,7 @@ class GrampsBuildHook(BuildHookInterface):
                         # Binary io, so open is OK
                         with (
                             open(newfile, "rb") as f_in,
-                            gzip.open(man_file_gz, "wb") as f_out,
+                            gzip.GzipFile(man_file_gz, "wb", mtime=build_date) as f_out,
                         ):
                             f_out.writelines(f_in)
                             self.app.display_info(f"  - {lang}/{src}")
