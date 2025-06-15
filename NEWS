@@ -1,3 +1,31 @@
+2025-06-15
+Version 6.0.2
+* Update translations: bg, ca, cs, da, de, de_AT, eo, es, fi, fr, ga, he, id,
+  ko, lt, nb, nl, pl, pt_PT, ru, sk, sv, tr, zh_CN.
+* Fix date modifiers for lt.
+* Update translation template for new release.
+* Add optimization to HasIdOf rules.
+* Connect the Help button in the repository reference editor. Fixes #13352.
+* Pass an object rather than a handle to the note editor callback. Fixes #13702.
+* Fix broken compound dates with bce year in XML import. Fixes #13631.
+* Avoid multiple copies of Rules after Plugin manager reload. Fixes #13844.
+* Fix bad surname list after upgrade from bsddb. Fixes #13807.
+* Fix narrated web when two places have same name but a different type.
+  Fixes #13841.
+* Fix crash in citation view due to wrong `filter_info`. Fixes #13796.
+* Don't attempt to call `set_orientation` if `self.pui` is `None`. Fixes #13820.
+* Don't crash in `search_changed` if `self.search_list` has no active item.
+  Fixes #13793.
+* Fix incorrect addons project after upgrade from Gramps 5.2. Fixes #13789.
+* Respect user choice of CSS files for existing narrated web site. Fixes #13792.
+* Ensure that the spell checker gets removed with the editor. Fixes #13795.
+* Fix `Optimizer` class when combining sub-filters. Fixes #13799.
+* Remove check for Gtk translations in Snap packages.
+* Mac:
+  * Add lxml to python modules included in Gramps.app.
+  * Fix macos build version error: Wrong tarball for 6.0.1.
+  * Package Gramps-6.0.1 for macOS
+
 2025-04-18
 Version 6.0.1
 * Update translations: ar, br, ca, cs, de, de_AT, el, en_GB, es, fi, fr, ga, he,
