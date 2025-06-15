@@ -12,13 +12,14 @@
 # Maite Guix <maite.guix@gmail.com>, 2022.
 # Arnau Llovet Vidal <arnaullv@gmail.com>, 2022, 2023, 2025.
 # leo-jmateo <jmateo.sanchez@tinet.cat>, 2025.
+# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-23 20:01+0000\n"
-"Last-Translator: Arnau Llovet Vidal <arnaullv@gmail.com>\n"
+"PO-Revision-Date: 2025-06-11 00:01+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
 "Language: ca\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1288,7 +1289,7 @@ msgstr "Arbre genealògic"
 #: ../gramps/plugins/cite/legacy.py:91
 #, python-format
 msgid "\"%s\""
-msgstr "\"%s\""
+msgstr "«%s»"
 
 #: ../gramps/cli/arghandler.py:478
 #, python-format
