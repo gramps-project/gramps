@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-23 23:45+0000\n"
+"PO-Revision-Date: 2025-06-15 18:19+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1515,13 +1515,13 @@ msgstr ""
 "  -c ,--config=[config.setting[:Wert]]   Setzt die "
 "Konfigurationseinstellung(en) und startet Gramps\n"
 "  -y, --yes                               Bei gefährlichen Aktion nicht "
-"nachfragen (nur nicht-GUI Modus)\n"
+"nachfragen (nur nicht-GUI-Modus)\n"
 "  -q, --quiet                            Blendet die Fortschrittsanzeige aus "
-"(nur nicht-GUI Modus 'Graphical User Interface')\n"
+"(nur nicht-GUI-Modus)\n"
 "  -v,--version                          Zeigt die Versionen an\n"
 "  -S, --safe                             Startet Gramps im 'Sicheren Modus'\n"
-"                                          (temporäre Verwendung der Standard "
-"Werte)\n"
+"                                          (temporäre Verwendung der "
+"Standardwerte)\n"
 "  -D, --default=[APXFE]                Setzt Werte auf Standard zurück;\n"
 "                 A - Erweiterungen werden gelöscht\n"
 "                 P - Einstellungen auf Standard\n"
@@ -11192,7 +11192,7 @@ msgid ""
 msgstr ""
 "WARNUNG: konnte Datei nicht analysieren:\n"
 "%(file)s\n"
-"weil %(error)s -- erstelle es neu\n"
+"weil %(error)s -- erstelle sie neu\n"
 
 #: ../gramps/gen/utils/db.py:287 ../gramps/gen/utils/db.py:305
 #, python-format
@@ -12092,7 +12092,7 @@ msgstr "Baumansicht: erste Spalte \"%s\" kann nicht geändert werden"
 
 #: ../gramps/gui/columnorder.py:102
 msgid "Drag and drop the columns to change the order"
-msgstr "Für eine andere Reihenfolge ziehe die Spalte an eine neue Position"
+msgstr "Ziehe die Spalten an eine neue Position um die Reihenfolge zu ändern"
 
 #: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2525
 #: ../gramps/gui/configure.py:2553 ../gramps/gui/configure.py:2582
@@ -15014,11 +15014,11 @@ msgid ""
 "available when you create a new family. The remaining fields will become "
 "available after you attempt to select a parent."
 msgstr ""
-"Es ist möglich, dass unglücklicherweise mehrere Familien mit denselben "
-"Eltern erzeugt werden. Um dieses Problem zu vermeiden, sind ausschließlich "
-"die Schaltflächen zur Auswahl der Eltern verfügbar, wenn du eine neue "
-"Familie anlegst. Die weiteren Felder stehen erst nach dem Auswählen der "
-"Eltern zur Verfügung."
+"Es ist möglich, dass aus Versehen mehrere Familien mit denselben Eltern "
+"erzeugt werden. Um dieses Problem zu vermeiden, sind ausschließlich die "
+"Schaltflächen zur Auswahl der Eltern verfügbar, wenn du eine neue Familie "
+"erstellst. Die übrigen Felder stehen erst zur Verfügung, nachdem du versucht "
+"hast einen Elternteil auszuwählen."
 
 #: ../gramps/gui/editors/editfamily.py:562
 msgid "Family has changed"
@@ -24216,7 +24216,7 @@ msgstr "Zu erledigen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:331
 msgid "Gramplet for displaying a To Do list"
-msgstr "Gramplet zeigt die Liste 'noch zu erledigen'"
+msgstr "Gramplet zeigt die Zu-erledigen-Liste"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:347
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:353
@@ -24737,68 +24737,68 @@ msgstr "Zeigt einige interessante Rekorde von Personen und Familien"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1323
 msgid "Person To Do"
-msgstr "Person 'zu erledigen'"
+msgstr "Zu erledigen Person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1324
 msgid "Gramplet showing the To Do notes for a person"
-msgstr "Gramplet zum Anzeigen der 'zu erledigen'-Notizen für eine Person"
+msgstr "Gramplet zum Anzeigen der Zu-erledigen-Notizen für eine Person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1339
 msgid "Event To Do"
-msgstr "Ereignis 'zu erledigen'"
+msgstr "Zu erledigen Ereignis"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1340
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Gramplet zum Anzeigen der 'zu erledigen'-Notizen für ein Ereignis"
+msgstr "Gramplet zum Anzeigen der Zu-erledigen-Notizen für ein Ereignis"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1355
 msgid "Family To Do"
-msgstr "Familie 'zu erledigen'"
+msgstr "Zu erledigen Familie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1356
 msgid "Gramplet showing the To Do notes for a family"
-msgstr "Gramplet zum Anzeigen der 'zu erledigen'-Notizen für eine Familie"
+msgstr "Gramplet zum Anzeigen der Zu-erledigen-Notizen für eine Familie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1371
 msgid "Place To Do"
-msgstr "Ort 'zu erledigen'"
+msgstr "Zu erledigen Ort"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1372
 msgid "Gramplet showing the To Do notes for a place"
-msgstr "Gramplet zum Anzeigen der 'zu erledigen'-Notizen für einen Ort"
+msgstr "Gramplet zum Anzeigen der Zu-erledigen-Notizen für einen Ort"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1387
 msgid "Source To Do"
-msgstr "Quelle 'zu erledigen'"
+msgstr "Zu erledigen Quelle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1388
 msgid "Gramplet showing the To Do notes for a source"
-msgstr "Gramplet zum Anzeigen der 'zu erledigen'-Notizen für eine Quelle"
+msgstr "Gramplet zum Anzeigen der Zu-erledigen-Notizen für eine Quelle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1403
 msgid "Citation To Do"
-msgstr "Fundstelle 'zu erledigen'"
+msgstr "Zu erledigen Fundestelle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1404
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Gramplet zum Anzeigen der 'zu erledigen'-Notizen für eine Fundstelle"
+msgstr "Gramplet zum Anzeigen der Zu erledigen-Notizen für eine Fundstelle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1419
 msgid "Repository To Do"
-msgstr "Aufbewahrungsort 'zu erledigen'"
+msgstr "Zu erledigen Aufbewahrungsort"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1420
 msgid "Gramplet showing the To Do notes for a repository"
 msgstr ""
-"Gramplet zum Anzeigen der 'zu erledigen'-Notizen für einen Aufbewahrungsort"
+"Gramplet zum Anzeigen der Zu-erledigen-Notizen für einen Aufbewahrungsort"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1435
 msgid "Media To Do"
-msgstr "Medien 'zu erledigen'"
+msgstr "Zu erledigen Medien"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1436
 msgid "Gramplet showing the To Do notes for a media object"
-msgstr "Gramplet zum Anzeigen der 'zu erledigen'-Notizen für ein Medienobjekt"
+msgstr "Gramplet zum Anzeigen der Zu-erledigen-Notizen für ein Medienobjekt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1481
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1489
@@ -25237,12 +25237,12 @@ msgstr "gesamte Nachnamen anzeigen"
 #: ../gramps/plugins/gramplet/todo.py:63
 #: ../gramps/plugins/gramplet/todogramplet.py:63
 msgid "Previous To Do note"
-msgstr "Vorherige 'noch zu erledigen' Notiz"
+msgstr "Vorherige Zu-erledigen-Notiz"
 
 #: ../gramps/plugins/gramplet/todo.py:67
 #: ../gramps/plugins/gramplet/todogramplet.py:67
 msgid "Next To Do note"
-msgstr "Nächste 'noch zu erledigen' Notiz"
+msgstr "Nächste Zu-erledigen-Notiz"
 
 #: ../gramps/plugins/gramplet/todo.py:71
 #: ../gramps/plugins/gramplet/todogramplet.py:71
@@ -25252,7 +25252,7 @@ msgstr "Gewählte 'noch zu erledigen' Notiz bearbeiten"
 #: ../gramps/plugins/gramplet/todo.py:75
 #: ../gramps/plugins/gramplet/todogramplet.py:75
 msgid "Add a new To Do note"
-msgstr "Eine neue 'noch zu erledigen' Notiz hinzufügen"
+msgstr "Eine neue 'zu erledigen' Notiz hinzufügen"
 
 #: ../gramps/plugins/gramplet/todo.py:207
 msgid "First select the object to which you want to attach a note"
@@ -36307,7 +36307,7 @@ msgstr "Lass IDs mit alternativen Präfixen unangetastet."
 #: ../gramps/plugins/tool/reorderids.py:65
 msgctxt "manual"
 msgid "Reorder_Gramps_ID"
-msgstr "Gramps-IDs_neuordnen"
+msgstr "Gramps-IDs_neu_ordnen"
 
 #: ../gramps/plugins/tool/reorderids.py:249
 #: ../gramps/plugins/tool/reorderids.py:477
@@ -36600,7 +36600,7 @@ msgstr "Löscht nicht referenzierte (unbenutzte) Objekte aus der Datenbank"
 
 #: ../gramps/plugins/tool/tools.gpr.py:420
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
-msgstr "Ordnet die Gramps-IDs nach Gramps ' Standardregeln neu."
+msgstr "Ordnet die Gramps-IDs gemäß den Standardregeln von Gramps neu an."
 
 #: ../gramps/plugins/tool/tools.gpr.py:443
 #: ../gramps/plugins/tool/tools.gpr.py:444
@@ -37547,7 +37547,7 @@ msgstr "Person : %(id)s %(name)s hat keine Familie."
 
 #: ../gramps/plugins/view/geofamclose.py:871
 msgid "Choose and bookmark the new reference family"
-msgstr "Wähle die neue Referenzfamilie und füge sie als Lesezeichen hinzu"
+msgstr "Wähle die neue Referenzfamilie aus und setze sie als Lesezeichen"
 
 #: ../gramps/plugins/view/geofamclose.py:894
 msgid ""
@@ -39675,7 +39675,7 @@ msgstr "in %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2785
 msgid "latest"
-msgstr "neueste"
+msgstr "spätestens"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2787
 msgid "openlayers version to use"
