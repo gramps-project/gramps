@@ -11,13 +11,14 @@
 # trifa <tanu78@yahoo.com>, 2024.
 # 109247019824 <109247019824@users.noreply.hosted.weblate.org>, 2025.
 # Ivan Kostov <jiveq1@gmail.com>, 2025.
+# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-19 20:17+0000\n"
-"Last-Translator: Ivan Kostov <jiveq1@gmail.com>\n"
+"PO-Revision-Date: 2025-06-11 00:01+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/bg/>\n"
 "Language: bg\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-Poedit-Language: Bulgarian\n"
 "X-Poedit-Country: BULGARIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -1375,7 +1376,7 @@ msgstr "Родословно дърво"
 #: ../gramps/plugins/cite/legacy.py:91
 #, python-format
 msgid "\"%s\""
-msgstr ""
+msgstr "„%s“"
 
 #: ../gramps/cli/arghandler.py:478
 #, fuzzy, python-format

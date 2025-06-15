@@ -10,13 +10,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2025.
 # Michael <moralesmike14@gmail.com>, 2022.
 # jmichault <jmt.2000@free.fr>, 2025.
+# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-05-13 18:01+0000\n"
-"Last-Translator: jmichault <jmt.2000@free.fr>\n"
+"PO-Revision-Date: 2025-06-11 00:01+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/eo/>\n"
 "Language: eo\n"
@@ -1269,7 +1270,7 @@ msgstr "Genealogia arbo"
 #: ../gramps/plugins/cite/legacy.py:91
 #, python-format
 msgid "\"%s\""
-msgstr "\"%s\""
+msgstr "„%s”"
 
 #: ../gramps/cli/arghandler.py:478
 #, python-format
