@@ -53,5 +53,5 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: GrampsAIO
-        path: D:\a\gramps\gramps\aio\mingw64\src\GrampsAIO-*.exe
+        path: C:\a\gramps\gramps\aio\mingw64\src\GrampsAIO-*.exe
         retention-days: 7
