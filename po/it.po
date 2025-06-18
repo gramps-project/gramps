@@ -67,7 +67,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-18 20:48+0100\n"
+"POT-Creation-Date: 2025-06-15 19:05+0100\n"
 "PO-Revision-Date: 2025-04-01 12:39+0000\n"
 "Last-Translator: Fabio Restante <frestante@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
@@ -3677,45 +3677,11 @@ msgstr ""
 "ERRORE: impossibile caricare correttamente il filtro «%s». Modificare il "
 "filtro!"
 
-#: ../gramps/gen/filters/_genericfilter.py:158
-#: ../gramps/gen/filters/_genericfilter.py:179
-#: ../gramps/gen/filters/_genericfilter.py:195
-msgid "Applying ..."
-msgstr "Applicazione ..."
-
-#: ../gramps/gen/filters/_genericfilter.py:158
-#: ../gramps/gen/filters/_genericfilter.py:179
-#: ../gramps/gen/filters/_genericfilter.py:195
-#: ../gramps/gui/editors/filtereditor.py:1225
-#: ../gramps/plugins/drawreport/calendarreport.py:600
-#: ../gramps/plugins/drawreport/statisticschart.py:1125
-#: ../gramps/plugins/drawreport/timeline.py:428
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1169
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1185
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1201
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1217
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1233
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1265
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1297
-#: ../gramps/plugins/graph/gvrelgraph.py:881
-#: ../gramps/plugins/quickview/quickview.gpr.py:143
-#: ../gramps/plugins/textreport/birthdayreport.py:561
-#: ../gramps/plugins/textreport/familygroup.py:722
-#: ../gramps/plugins/textreport/indivcomplete.py:1101
-#: ../gramps/plugins/textreport/recordsreport.py:236
-#: ../gramps/plugins/tool/sortevents.py:177
-#: ../gramps/plugins/webreport/narrativeweb.py:2130
-#: ../gramps/plugins/webreport/webcal.py:1851
-msgid "Filter"
-msgstr "Filtro"
-
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
 #: ../gramps/gen/filters/rules/_hasattributebase.py:60
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:59
-#: ../gramps/gen/filters/rules/_hasgrampsid.py:59
+#: ../gramps/gen/filters/rules/_hasgrampsid.py:60
 #: ../gramps/gen/filters/rules/_hasldsbase.py:62
 #: ../gramps/gen/filters/rules/_hasnotebase.py:60
 #: ../gramps/gen/filters/rules/_hasnoteregexbase.py:60
@@ -3907,7 +3873,7 @@ msgstr "Il valore deve essere:"
 msgid "Number of instances:"
 msgstr "Numero istanze:"
 
-#: ../gramps/gen/filters/rules/_hasgrampsid.py:56
+#: ../gramps/gen/filters/rules/_hasgrampsid.py:57
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:63
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:63
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
@@ -4140,11 +4106,11 @@ msgstr "Citazioni con <totale> oggetti multimediali"
 msgid "Matches citations with a certain number of items in the gallery"
 msgstr "Estrae le citazioni con certo numero di elementi nella galleria"
 
-#: ../gramps/gen/filters/rules/citation/_hasidof.py:47
+#: ../gramps/gen/filters/rules/citation/_hasidof.py:48
 msgid "Citation with <Id>"
 msgstr "Citazioni con <Id>"
 
-#: ../gramps/gen/filters/rules/citation/_hasidof.py:48
+#: ../gramps/gen/filters/rules/citation/_hasidof.py:49
 msgid "Matches a citation with a specified Gramps ID"
 msgstr "Estrae le citazioni con un ID Gramps specifico"
 
@@ -4504,11 +4470,11 @@ msgstr "Eventi con <totale> oggetti multimediali"
 msgid "Matches events with a certain number of items in the gallery"
 msgstr "Estrae gli eventi con un certo numero di elementi nella galleria"
 
-#: ../gramps/gen/filters/rules/event/_hasidof.py:46
+#: ../gramps/gen/filters/rules/event/_hasidof.py:47
 msgid "Event with <Id>"
 msgstr "Evento con <Id>"
 
-#: ../gramps/gen/filters/rules/event/_hasidof.py:47
+#: ../gramps/gen/filters/rules/event/_hasidof.py:48
 msgid "Matches an event with a specified Gramps ID"
 msgstr "Estrae l'evento con un ID Gramps specifico"
 
@@ -4794,11 +4760,11 @@ msgstr "Famiglie con <totale> oggetti multimediali"
 msgid "Matches families with a certain number of items in the gallery"
 msgstr "Estrae le famiglie con certo numero di elementi nella galleria"
 
-#: ../gramps/gen/filters/rules/family/_hasidof.py:46
+#: ../gramps/gen/filters/rules/family/_hasidof.py:47
 msgid "Family with <Id>"
 msgstr "Famiglia con <Id>"
 
-#: ../gramps/gen/filters/rules/family/_hasidof.py:47
+#: ../gramps/gen/filters/rules/family/_hasidof.py:48
 msgid "Matches a family with a specified Gramps ID"
 msgstr "Estrae la famiglia con un ID Gramps specifico"
 
@@ -5088,11 +5054,11 @@ msgid "Matches media with a citation of a particular value"
 msgstr ""
 "Estrae gli oggetti multimediali con una citazione avente uno specifico valore"
 
-#: ../gramps/gen/filters/rules/media/_hasidof.py:46
+#: ../gramps/gen/filters/rules/media/_hasidof.py:47
 msgid "Media object with <Id>"
 msgstr "Oggetto multimediale con <Id>"
 
-#: ../gramps/gen/filters/rules/media/_hasidof.py:47
+#: ../gramps/gen/filters/rules/media/_hasidof.py:48
 msgid "Matches a media object with a specified Gramps ID"
 msgstr "Estrae l'oggetto multimediale con un ID Gramps specifico"
 
@@ -5237,11 +5203,11 @@ msgstr ""
 "data/ora (aaaa-mm-gg oo:mm:ss), o in un intervallo se è indicata "
 "un'ulteriore data/ora."
 
-#: ../gramps/gen/filters/rules/note/_hasidof.py:46
+#: ../gramps/gen/filters/rules/note/_hasidof.py:47
 msgid "Note with <Id>"
 msgstr "Nota con <Id>"
 
-#: ../gramps/gen/filters/rules/note/_hasidof.py:47
+#: ../gramps/gen/filters/rules/note/_hasidof.py:48
 msgid "Matches a note with a specified Gramps ID"
 msgstr "Estrae la nota con un ID Gramps specifico"
 
@@ -5558,12 +5524,12 @@ msgstr "Persone con <totale> oggetti multimediali"
 msgid "Matches people with a certain number of items in the gallery"
 msgstr "Estrae le persone con un certo numero di elementi nella galleria"
 
-#: ../gramps/gen/filters/rules/person/_hasidof.py:46
+#: ../gramps/gen/filters/rules/person/_hasidof.py:47
 #: ../gramps/gen/filters/rules/person/_matchidof.py:56
 msgid "Person with <Id>"
 msgstr "Persone con <Id>"
 
-#: ../gramps/gen/filters/rules/person/_hasidof.py:47
+#: ../gramps/gen/filters/rules/person/_hasidof.py:48
 #: ../gramps/gen/filters/rules/person/_matchidof.py:57
 msgid "Matches person with a specified Gramps ID"
 msgstr "Estrae la persona con un ID Gramps specifico"
@@ -6314,11 +6280,11 @@ msgstr "Luoghi con <totale> oggetti multimediali"
 msgid "Matches places with a certain number of items in the gallery"
 msgstr "Estrae i luoghi con un certo numero di elementi nella galleria"
 
-#: ../gramps/gen/filters/rules/place/_hasidof.py:46
+#: ../gramps/gen/filters/rules/place/_hasidof.py:47
 msgid "Place with <Id>"
 msgstr "Luogo con <Id>"
 
-#: ../gramps/gen/filters/rules/place/_hasidof.py:47
+#: ../gramps/gen/filters/rules/place/_hasidof.py:48
 msgid "Matches a place with a specified Gramps ID"
 msgstr "Estrae il luogo con un ID Gramps specifico"
 
@@ -6594,11 +6560,11 @@ msgstr "Depositi con attributo <attributo>"
 msgid "Matches repositories with the attribute of a particular value"
 msgstr "Estrae i depositi con uno specifico valore per un certo attributo"
 
-#: ../gramps/gen/filters/rules/repository/_hasidof.py:46
+#: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Repository with <Id>"
 msgstr "Deposito con <Id>"
 
-#: ../gramps/gen/filters/rules/repository/_hasidof.py:47
+#: ../gramps/gen/filters/rules/repository/_hasidof.py:48
 msgid "Matches a repository with a specified Gramps ID"
 msgstr "Estrae il deposito con un ID Gramps specifico"
 
@@ -6737,11 +6703,11 @@ msgstr "Fonte con <totale> oggetti multimediali"
 msgid "Matches sources with a certain number of items in the gallery"
 msgstr "Estrae le fonti con un certo numero di elementi nella galleria"
 
-#: ../gramps/gen/filters/rules/source/_hasidof.py:46
+#: ../gramps/gen/filters/rules/source/_hasidof.py:47
 msgid "Source with <Id>"
 msgstr "Fonte con <Id>"
 
-#: ../gramps/gen/filters/rules/source/_hasidof.py:47
+#: ../gramps/gen/filters/rules/source/_hasidof.py:48
 msgid "Matches a source with a specified Gramps ID"
 msgstr "Estrae la fonte con un ID Gramps specifico"
 
@@ -7057,8 +7023,8 @@ msgstr "Stato (federato)"
 #: ../gramps/plugins/webreport/basepage.py:1514
 #: ../gramps/plugins/webreport/basepage.py:3430
 #: ../gramps/plugins/webreport/basepage.py:3507
-#: ../gramps/plugins/webreport/place.py:348
-#: ../gramps/plugins/webreport/place.py:360
+#: ../gramps/plugins/webreport/place.py:350
+#: ../gramps/plugins/webreport/place.py:362
 msgid "Country"
 msgstr "Nazione"
 
@@ -7436,7 +7402,7 @@ msgstr "Ultima modifica"
 #: ../gramps/plugins/webreport/event.py:581
 #: ../gramps/plugins/webreport/family.py:519
 #: ../gramps/plugins/webreport/media.py:672
-#: ../gramps/plugins/webreport/narrativeweb.py:3242
+#: ../gramps/plugins/webreport/narrativeweb.py:3243
 #: ../gramps/plugins/webreport/person.py:1979
 #: ../gramps/plugins/webreport/repository.py:287
 #: ../gramps/plugins/webreport/source.py:414
@@ -8443,7 +8409,7 @@ msgstr "Figli"
 #: ../gramps/plugins/webreport/basepage.py:2260
 #: ../gramps/plugins/webreport/event.py:267
 #: ../gramps/plugins/webreport/event.py:515
-#: ../gramps/plugins/webreport/narrativeweb.py:3236
+#: ../gramps/plugins/webreport/narrativeweb.py:3237
 #: ../gramps/plugins/webreport/person.py:2005
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
@@ -8728,7 +8694,7 @@ msgstr "Nome"
 #: ../gramps/plugins/webreport/basepage.py:2114
 #: ../gramps/plugins/webreport/basepage.py:2117
 #: ../gramps/plugins/webreport/basepage.py:2251
-#: ../gramps/plugins/webreport/narrativeweb.py:3239
+#: ../gramps/plugins/webreport/narrativeweb.py:3240
 #: ../gramps/plugins/webreport/person.py:234
 #: ../gramps/plugins/webreport/surnamelist.py:111
 #: ../gramps/plugins/webreport/surnamelist.py:184
@@ -8933,7 +8899,7 @@ msgstr "Formato"
 #: ../gramps/gui/editors/editeventref.py:102
 #: ../gramps/gui/editors/editmediaref.py:121
 #: ../gramps/gui/editors/editplaceref.py:84
-#: ../gramps/gui/editors/editreporef.py:73
+#: ../gramps/gui/editors/editreporef.py:83
 #: ../gramps/gui/glade/editeventref.glade:199
 #: ../gramps/gui/glade/editeventref.glade:615
 #: ../gramps/gui/glade/editmediaref.glade:343
@@ -9140,7 +9106,7 @@ msgstr "Associazione"
 #: ../gramps/plugins/gramplet/placedetails.py:144
 #: ../gramps/plugins/lib/libplaceview.py:92
 #: ../gramps/plugins/webreport/basepage.py:3415
-#: ../gramps/plugins/webreport/place.py:350
+#: ../gramps/plugins/webreport/place.py:352
 msgid "Longitude"
 msgstr "Longitudine"
 
@@ -9149,7 +9115,7 @@ msgstr "Longitudine"
 #: ../gramps/plugins/gramplet/placedetails.py:142
 #: ../gramps/plugins/lib/libplaceview.py:91
 #: ../gramps/plugins/webreport/basepage.py:3394
-#: ../gramps/plugins/webreport/place.py:349
+#: ../gramps/plugins/webreport/place.py:351
 msgid "Latitude"
 msgstr "Latitudine"
 
@@ -9163,8 +9129,8 @@ msgstr "Latitudine"
 #: ../gramps/plugins/webreport/basepage.py:2059
 #: ../gramps/plugins/webreport/basepage.py:2131
 #: ../gramps/plugins/webreport/basepage.py:2261
-#: ../gramps/plugins/webreport/place.py:282
-#: ../gramps/plugins/webreport/place.py:479
+#: ../gramps/plugins/webreport/place.py:284
+#: ../gramps/plugins/webreport/place.py:484
 #: ../gramps/plugins/webreport/updates.py:127
 msgid "Places"
 msgstr "Luoghi"
@@ -9720,7 +9686,7 @@ msgstr "Calcolatrice relazioni"
 
 #: ../gramps/gen/plug/_pluginreg.py:129 ../gramps/gen/plug/_pluginreg.py:517
 #: ../gramps/gui/glade/grampletpane.glade:153
-#: ../gramps/gui/widgets/grampletbar.py:700
+#: ../gramps/gui/widgets/grampletbar.py:701
 #: ../gramps/gui/widgets/grampletpane.py:246
 #: ../gramps/gui/widgets/grampletpane.py:1005
 msgid "Gramplet"
@@ -10690,7 +10656,7 @@ msgstr "Non includere"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1137
 #: ../gramps/plugins/textreport/familygroup.py:760
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
-#: ../gramps/plugins/webreport/narrativeweb.py:2592
+#: ../gramps/plugins/webreport/narrativeweb.py:2593
 msgid "Include"
 msgstr "Includere"
 
@@ -12111,7 +12077,7 @@ msgstr "_Applica"
 #: ../gramps/gui/columnorder.py:142
 #: ../gramps/plugins/drawreport/ancestortree.py:973
 #: ../gramps/plugins/drawreport/descendtree.py:1708
-#: ../gramps/plugins/webreport/narrativeweb.py:2285
+#: ../gramps/plugins/webreport/narrativeweb.py:2286
 msgid "Display"
 msgstr "Visualizzazione"
 
@@ -12149,7 +12115,7 @@ msgstr "Editor nome visualizzato"
 #: ../gramps/gui/plug/_windows.py:1716 ../gramps/gui/plug/_windows.py:1776
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
-#: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:708
+#: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:709
 #: ../gramps/gui/widgets/grampletpane.py:258
 #: ../gramps/plugins/lib/maps/placeselection.py:122
 #: ../gramps/plugins/tool/dumpgenderstats.py:86
@@ -12301,7 +12267,7 @@ msgstr "%s: "
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
-#: ../gramps/gui/widgets/grampletbar.py:712
+#: ../gramps/gui/widgets/grampletbar.py:713
 #: ../gramps/gui/widgets/grampletpane.py:264
 #: ../gramps/plugins/importer/importprogen.glade:61
 #: ../gramps/plugins/tool/changenames.glade:72
@@ -13161,7 +13127,7 @@ msgstr "Selezionare la directory degli oggetti multimediali"
 #: ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:267
-#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1261
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
 #: ../gramps/gui/widgets/progressdialog.py:441
 #: ../gramps/plugins/importer/importprogen.glade:28
@@ -14895,7 +14861,7 @@ msgstr "Editor riferimento evento"
 #: ../gramps/gui/editors/editmediaref.py:130
 #: ../gramps/gui/editors/editname.py:139
 #: ../gramps/gui/editors/editplaceref.py:91
-#: ../gramps/gui/editors/editreporef.py:80
+#: ../gramps/gui/editors/editreporef.py:90
 msgid "_General"
 msgstr "_Generale"
 
@@ -15665,29 +15631,29 @@ msgstr "Impossibile salvare il deposito. ID già esistente."
 msgid "Cannot save item. ID already exists."
 msgstr "Impossibile salvare l'elemento. ID già esistente."
 
-#: ../gramps/gui/editors/editreporef.py:61
+#: ../gramps/gui/editors/editreporef.py:71
 msgid "Repository Reference Editor"
 msgstr "Editor riferimento deposito"
 
-#: ../gramps/gui/editors/editreporef.py:213
+#: ../gramps/gui/editors/editreporef.py:226
 #, python-format
 msgid "Repository: %s"
 msgstr "Deposito: %s"
 
-#: ../gramps/gui/editors/editreporef.py:215
+#: ../gramps/gui/editors/editreporef.py:228
 #: ../gramps/gui/editors/editrepository.py:87
 msgid "New Repository"
 msgstr "Nuovo deposito"
 
-#: ../gramps/gui/editors/editreporef.py:216
+#: ../gramps/gui/editors/editreporef.py:229
 msgid "Repo Reference Editor"
 msgstr "Editor riferimento deposito"
 
-#: ../gramps/gui/editors/editreporef.py:222
+#: ../gramps/gui/editors/editreporef.py:235
 msgid "Modify Repository"
 msgstr "Modifica deposito"
 
-#: ../gramps/gui/editors/editreporef.py:227
+#: ../gramps/gui/editors/editreporef.py:240
 msgid "Add Repository"
 msgstr "Aggiunge deposito"
 
@@ -15981,6 +15947,31 @@ msgstr "Test filtro"
 msgid "Comment"
 msgstr "Commento"
 
+#: ../gramps/gui/editors/filtereditor.py:1225
+#: ../gramps/plugins/drawreport/calendarreport.py:600
+#: ../gramps/plugins/drawreport/statisticschart.py:1125
+#: ../gramps/plugins/drawreport/timeline.py:428
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1169
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1185
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1201
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1217
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1233
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1265
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1297
+#: ../gramps/plugins/graph/gvrelgraph.py:881
+#: ../gramps/plugins/quickview/quickview.gpr.py:143
+#: ../gramps/plugins/textreport/birthdayreport.py:561
+#: ../gramps/plugins/textreport/familygroup.py:722
+#: ../gramps/plugins/textreport/indivcomplete.py:1101
+#: ../gramps/plugins/textreport/recordsreport.py:236
+#: ../gramps/plugins/tool/sortevents.py:177
+#: ../gramps/plugins/webreport/narrativeweb.py:2131
+#: ../gramps/plugins/webreport/webcal.py:1851
+msgid "Filter"
+msgstr "Filtro"
+
 #: ../gramps/gui/editors/filtereditor.py:1237
 msgid "Custom Filter Editor"
 msgstr "Editor filtri personalizzati"
@@ -16160,8 +16151,8 @@ msgstr "%s non è"
 msgid "%s does not contain"
 msgstr "%s non contiene"
 
-#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1384
-#: ../gramps/gui/views/listview.py:1404 ../gramps/plugins/gramplet/leak.py:201
+#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1389
+#: ../gramps/gui/views/listview.py:1409 ../gramps/plugins/gramplet/leak.py:201
 #: ../gramps/plugins/gramplet/leak.py:208
 msgid "Updating display..."
 msgstr "Aggiornamento visualizzazione..."
@@ -16588,7 +16579,7 @@ msgstr "_Chiudere senza salvare"
 
 #: ../gramps/gui/glade/dialog.glade:935
 #: ../gramps/gui/plug/report/_bookdialog.py:649
-#: ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/views/listview.py:1261
 #: ../gramps/gui/widgets/grampletpane.py:614
 #: ../gramps/plugins/tool/eventcmp.py:410
 msgid "_Save"
@@ -18111,7 +18102,7 @@ msgid "Note 2"
 msgstr "Nota 2"
 
 #: ../gramps/gui/glade/mergenote.glade:270
-#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1261
+#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1266
 msgid "Format:"
 msgstr "Formato:"
 
@@ -18927,15 +18918,15 @@ msgstr ""
 "installazione,\n"
 "il file si trova normalmente in /usr/share/doc/gramps.\n"
 
-#: ../gramps/gui/grampsgui.py:616
+#: ../gramps/gui/grampsgui.py:621
 msgid "Error parsing arguments"
 msgstr "Errore nell'analisi degli argomenti"
 
-#: ../gramps/gui/grampsgui.py:636
+#: ../gramps/gui/grampsgui.py:641
 msgid "Gramps terminated because of no DISPLAY"
 msgstr "Gramps è terminato per la mancanza di DISPLAY"
 
-#: ../gramps/gui/grampsgui.py:666 ../gramps/gui/grampsgui.py:747
+#: ../gramps/gui/grampsgui.py:671 ../gramps/gui/grampsgui.py:752
 msgid ""
 "\n"
 "Gramps failed to start. Please report a bug about this.\n"
@@ -20329,7 +20320,7 @@ msgid "Paper Options"
 msgstr "Opzioni foglio"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:148
-#: ../gramps/plugins/webreport/narrativeweb.py:2172
+#: ../gramps/plugins/webreport/narrativeweb.py:2173
 msgid "HTML Options"
 msgstr "Opzioni HTML"
 
@@ -20397,7 +20388,7 @@ msgstr "Stile"
 #: ../gramps/plugins/textreport/summary.py:395
 #: ../gramps/plugins/textreport/tableofcontents.py:101
 #: ../gramps/plugins/textreport/tagreport.py:912
-#: ../gramps/plugins/webreport/narrativeweb.py:2107
+#: ../gramps/plugins/webreport/narrativeweb.py:2108
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Report Options"
 msgstr "Opzioni resoconto"
@@ -21093,23 +21084,23 @@ msgstr "Eliminare %s?"
 msgid "Column clicked, sorting..."
 msgstr "Clic su colonna, ordinamento in corso..."
 
-#: ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/views/listview.py:1256
 msgid "Export View as Spreadsheet"
 msgstr "Esporta vista come foglio di calcolo"
 
-#: ../gramps/gui/views/listview.py:1266
+#: ../gramps/gui/views/listview.py:1271
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1267
+#: ../gramps/gui/views/listview.py:1272
 msgid "OpenDocument Spreadsheet"
 msgstr "Foglio di calcolo OpenDocument"
 
-#: ../gramps/gui/views/listview.py:1453
+#: ../gramps/gui/views/listview.py:1458
 msgid "Columns"
 msgstr "Colonne"
 
-#: ../gramps/gui/views/listview.py:1463
+#: ../gramps/gui/views/listview.py:1468
 msgid "CSV Dialect"
 msgstr "Dialetto CSV"
 
@@ -21521,7 +21512,7 @@ msgstr "Ripeti"
 msgid "Undo"
 msgstr "Annulla"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:471
+#: ../gramps/gui/widgets/styledtexteditor.py:475
 msgid ""
 "\n"
 "Command-Click to follow link"
@@ -21529,7 +21520,7 @@ msgstr ""
 "\n"
 "Comando-Clic per seguire il collegamento"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:473
+#: ../gramps/gui/widgets/styledtexteditor.py:477
 msgid ""
 "\n"
 "Ctrl-Click to follow link"
@@ -21537,39 +21528,39 @@ msgstr ""
 "\n"
 "Ctrl-Clic per seguire il collegamento"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:530
+#: ../gramps/gui/widgets/styledtexteditor.py:534
 msgid "Spellcheck"
 msgstr "Controllo ortografico"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:535
+#: ../gramps/gui/widgets/styledtexteditor.py:539
 msgid "Search selection on web"
 msgstr "Ricercare selezione sul web"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:546
+#: ../gramps/gui/widgets/styledtexteditor.py:550
 msgid "_Send Mail To..."
 msgstr "Invia me_ssaggio di posta a..."
 
-#: ../gramps/gui/widgets/styledtexteditor.py:548
+#: ../gramps/gui/widgets/styledtexteditor.py:552
 msgid "Copy _E-mail Address"
 msgstr "Copia indirizzo di posta _elettronica"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:551
+#: ../gramps/gui/widgets/styledtexteditor.py:555
 msgid "_Open Link"
 msgstr "_Apri collegamento"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:553
+#: ../gramps/gui/widgets/styledtexteditor.py:557
 msgid "Copy _Link Address"
 msgstr "Copia indirizzo co_llegamento"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:557
+#: ../gramps/gui/widgets/styledtexteditor.py:561
 msgid "_Edit Link"
 msgstr "_Modifica collegamento"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:807
+#: ../gramps/gui/widgets/styledtexteditor.py:811
 msgid "Select font color"
 msgstr "Seleziona colore carattere"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:811
+#: ../gramps/gui/widgets/styledtexteditor.py:815
 msgid "Select background color"
 msgstr "Seleziona colore di sfondo"
 
@@ -21828,13 +21819,13 @@ msgid "of %d"
 msgstr "di %d"
 
 #: ../gramps/plugins/docgen/htmldoc.py:306
-#: ../gramps/plugins/webreport/narrativeweb.py:1958
+#: ../gramps/plugins/webreport/narrativeweb.py:1959
 #: ../gramps/plugins/webreport/webcal.py:296
 msgid "Possible destination error"
 msgstr "Probabile errore nella destinazione"
 
 #: ../gramps/plugins/docgen/htmldoc.py:308
-#: ../gramps/plugins/webreport/narrativeweb.py:1961
+#: ../gramps/plugins/webreport/narrativeweb.py:1962
 #: ../gramps/plugins/webreport/webcal.py:299
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -22505,13 +22496,13 @@ msgstr "Terza riga di testo in fondo al calendario"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:636
 #: ../gramps/plugins/textreport/birthdayreport.py:597
-#: ../gramps/plugins/webreport/narrativeweb.py:3185
+#: ../gramps/plugins/webreport/narrativeweb.py:3186
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Include only living people"
 msgstr "Includere solo persone in vita"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:637
-#: ../gramps/plugins/webreport/narrativeweb.py:3186
+#: ../gramps/plugins/webreport/narrativeweb.py:3187
 #: ../gramps/plugins/webreport/webcal.py:1914
 msgid "Include only living people in the calendar"
 msgstr "Include nel calendario solo le persone in vita"
@@ -22541,55 +22532,55 @@ msgid "Select the country to see associated holidays"
 msgstr "Selezionare la nazione per vedere le relative festività"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:664
-#: ../gramps/plugins/webreport/narrativeweb.py:3146
+#: ../gramps/plugins/webreport/narrativeweb.py:3147
 #: ../gramps/plugins/webreport/webcal.py:1970
 msgid "First day of week"
 msgstr "Primo giorno della settimana"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:670
-#: ../gramps/plugins/webreport/narrativeweb.py:3150
+#: ../gramps/plugins/webreport/narrativeweb.py:3151
 #: ../gramps/plugins/webreport/webcal.py:1973
 msgid "Select the first day of the week for the calendar"
 msgstr "Seleziona il primo giorno della settimana per il calendario"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:673
 #: ../gramps/plugins/textreport/birthdayreport.py:634
-#: ../gramps/plugins/webreport/narrativeweb.py:3154
+#: ../gramps/plugins/webreport/narrativeweb.py:3155
 #: ../gramps/plugins/webreport/webcal.py:1976
 msgid "Birthday surname"
 msgstr "Cognome di nascita"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:675
 #: ../gramps/plugins/textreport/birthdayreport.py:636
-#: ../gramps/plugins/webreport/narrativeweb.py:3157
+#: ../gramps/plugins/webreport/narrativeweb.py:3158
 #: ../gramps/plugins/webreport/webcal.py:1979
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "Le mogli usano il cognome del marito (dalla prima famiglia elencata)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:678
 #: ../gramps/plugins/textreport/birthdayreport.py:639
-#: ../gramps/plugins/webreport/narrativeweb.py:3160
+#: ../gramps/plugins/webreport/narrativeweb.py:3161
 #: ../gramps/plugins/webreport/webcal.py:1982
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "Le mogli usano il cognome del marito (dall'ultima famiglia elencata)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:680
 #: ../gramps/plugins/textreport/birthdayreport.py:641
-#: ../gramps/plugins/webreport/narrativeweb.py:3162
+#: ../gramps/plugins/webreport/narrativeweb.py:3163
 #: ../gramps/plugins/webreport/webcal.py:1984
 msgid "Wives use their own surname"
 msgstr "Le mogli usano il proprio cognome"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:681
 #: ../gramps/plugins/textreport/birthdayreport.py:642
-#: ../gramps/plugins/webreport/narrativeweb.py:3163
+#: ../gramps/plugins/webreport/narrativeweb.py:3164
 #: ../gramps/plugins/webreport/webcal.py:1985
 msgid "Select married women's displayed surname"
 msgstr "Seleziona il cognome da visualizzare per le donne sposate"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:684
 #: ../gramps/plugins/textreport/birthdayreport.py:645
-#: ../gramps/plugins/webreport/narrativeweb.py:3173
+#: ../gramps/plugins/webreport/narrativeweb.py:3174
 #: ../gramps/plugins/webreport/webcal.py:2065
 msgid "Include birthdays"
 msgstr "Includere compleanni"
@@ -22601,7 +22592,7 @@ msgstr "Indica se includere i compleanni"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:688
 #: ../gramps/plugins/textreport/birthdayreport.py:649
-#: ../gramps/plugins/webreport/narrativeweb.py:3177
+#: ../gramps/plugins/webreport/narrativeweb.py:3178
 #: ../gramps/plugins/webreport/webcal.py:2069
 msgid "Include anniversaries"
 msgstr "Includere anniversari"
@@ -22612,13 +22603,13 @@ msgid "Whether to include anniversaries"
 msgstr "Indica se includere gli anniversari"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:692
-#: ../gramps/plugins/webreport/narrativeweb.py:3181
+#: ../gramps/plugins/webreport/narrativeweb.py:3182
 #: ../gramps/plugins/webreport/webcal.py:2073
 msgid "Include death dates"
 msgstr "Includere date dei decessi"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:693
-#: ../gramps/plugins/webreport/narrativeweb.py:3182
+#: ../gramps/plugins/webreport/narrativeweb.py:3183
 #: ../gramps/plugins/webreport/webcal.py:2074
 msgid "Include death anniversaries in the calendar"
 msgstr "Include gli anniversari dei decessi nel calendario"
@@ -23224,7 +23215,7 @@ msgstr "Determina quali persone vanno incluse nel resoconto."
 #: ../gramps/plugins/textreport/indivcomplete.py:1106
 #: ../gramps/plugins/textreport/recordsreport.py:241
 #: ../gramps/plugins/tool/sortevents.py:182
-#: ../gramps/plugins/webreport/narrativeweb.py:2137
+#: ../gramps/plugins/webreport/narrativeweb.py:2138
 #: ../gramps/plugins/webreport/webcal.py:1858
 msgid "Filter Person"
 msgstr "Filtro su persona"
@@ -23372,7 +23363,7 @@ msgstr "Determina quali persone vanno incluse nel resoconto"
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/textreport/recordsreport.py:242
 #: ../gramps/plugins/tool/sortevents.py:183
-#: ../gramps/plugins/webreport/narrativeweb.py:2138
+#: ../gramps/plugins/webreport/narrativeweb.py:2139
 #: ../gramps/plugins/webreport/webcal.py:1859
 msgid "The center person for the filter"
 msgstr "La persona centrale per il filtro"
@@ -27524,7 +27515,7 @@ msgid "Old xml file"
 msgstr "Vecchio file xml"
 
 #: ../gramps/plugins/importer/importxml.py:1357
-#: ../gramps/plugins/importer/importxml.py:2926
+#: ../gramps/plugins/importer/importxml.py:2936
 #, python-format
 msgid "Witness name: %s"
 msgstr "Nome testimone: %s"
@@ -27558,18 +27549,18 @@ msgstr "Sconosciuto durante l'importazione"
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Tutti i riferimenti a una nota devono avere un attributo 'hlink'."
 
-#: ../gramps/plugins/importer/importxml.py:2741
+#: ../gramps/plugins/importer/importxml.py:2751
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr ""
 "Data non valida {date} nell'XML {xml}, l'XML viene preservato come testo"
 
-#: ../gramps/plugins/importer/importxml.py:2795
+#: ../gramps/plugins/importer/importxml.py:2805
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Commento testimone: %s"
 
-#: ../gramps/plugins/importer/importxml.py:3478
+#: ../gramps/plugins/importer/importxml.py:3488
 #, python-format
 msgctxt "father"
 msgid ""
@@ -27579,7 +27570,7 @@ msgstr ""
 "Errore: il padre «%(father)s» della famiglia «%(family)s» non ha un "
 "riferimento verso la famiglia. Riferimento aggiunto."
 
-#: ../gramps/plugins/importer/importxml.py:3500
+#: ../gramps/plugins/importer/importxml.py:3510
 #, python-format
 msgctxt "mother"
 msgid ""
@@ -27589,7 +27580,7 @@ msgstr ""
 "Errore: la madre «%(mother)s» della famiglia «%(family)s» non ha un "
 "riferimento verso la famiglia. Riferimento aggiunto."
 
-#: ../gramps/plugins/importer/importxml.py:3528
+#: ../gramps/plugins/importer/importxml.py:3538
 #, python-format
 msgctxt "child"
 msgid ""
@@ -27615,7 +27606,7 @@ msgstr "Matrimonio secondo common law"
 
 #: ../gramps/plugins/lib/libgedcom.py:740
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:327
-#: ../gramps/plugins/webreport/narrativeweb.py:2118
+#: ../gramps/plugins/webreport/narrativeweb.py:2119
 #: ../gramps/plugins/webreport/webcal.py:1840
 msgid "Destination"
 msgstr "Destinazione"
@@ -32465,7 +32456,7 @@ msgid "Open on maps.google.com"
 msgstr "Apri su maps.google.com"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:75
-#: ../gramps/plugins/webreport/narrativeweb.py:2652
+#: ../gramps/plugins/webreport/narrativeweb.py:2653
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -38579,7 +38570,7 @@ msgstr "Miniature"
 #: ../gramps/plugins/webreport/basepage.py:2075
 #: ../gramps/plugins/webreport/basepage.py:2276
 #: ../gramps/plugins/webreport/download.py:94
-#: ../gramps/plugins/webreport/narrativeweb.py:2489
+#: ../gramps/plugins/webreport/narrativeweb.py:2490
 msgid "Download"
 msgstr "Scaricamento"
 
@@ -38821,8 +38812,8 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:248
 #: ../gramps/plugins/webreport/heatmap.py:380
 #: ../gramps/plugins/webreport/heatmap.py:512
-#: ../gramps/plugins/webreport/place.py:345
-#: ../gramps/plugins/webreport/place.py:357
+#: ../gramps/plugins/webreport/place.py:347
+#: ../gramps/plugins/webreport/place.py:359
 #: ../gramps/plugins/webreport/surnamelist.py:177
 msgid "Letter"
 msgstr "Lettera"
@@ -38869,7 +38860,7 @@ msgstr "Nome"
 #: ../gramps/plugins/webreport/heatmap.py:291
 #: ../gramps/plugins/webreport/heatmap.py:425
 #: ../gramps/plugins/webreport/heatmap.py:557
-#: ../gramps/plugins/webreport/place.py:223
+#: ../gramps/plugins/webreport/place.py:225
 #, python-format
 msgid "Places beginning with letter %s"
 msgstr "Luoghi che iniziano con la lettera %s"
@@ -39045,74 +39036,74 @@ msgstr "Famiglia di %(husband)s e %(spouse)s"
 msgid "Family of %s"
 msgstr "Famiglia di %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1348
+#: ../gramps/plugins/webreport/narrativeweb.py:1349
 msgid "Creating GENDEX file"
 msgstr "Generazione file GENDEX"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1408
+#: ../gramps/plugins/webreport/narrativeweb.py:1409
 msgid "Creating surname pages"
 msgstr "Generazione pagine dei cognomi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1445
+#: ../gramps/plugins/webreport/narrativeweb.py:1446
 msgid "Creating thumbnail preview page..."
 msgstr "Generazione pagina delle miniature per anteprima..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1454
+#: ../gramps/plugins/webreport/narrativeweb.py:1455
 msgid "Creating statistics page..."
 msgstr "Generazione pagine delle statistiche..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1462
+#: ../gramps/plugins/webreport/narrativeweb.py:1463
 msgid "Creating updates page..."
 msgstr "Generazione pagina degli aggiornamenti..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1508
+#: ../gramps/plugins/webreport/narrativeweb.py:1509
 msgid "Creating address book pages ..."
 msgstr "Generazione pagine della rubrica ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1988
+#: ../gramps/plugins/webreport/narrativeweb.py:1989
 #, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "Resoconto sito web narrativo in %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1990
+#: ../gramps/plugins/webreport/narrativeweb.py:1991
 msgid "Narrative Website Report"
 msgstr "Resoconto sito web narrativo"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2110
+#: ../gramps/plugins/webreport/narrativeweb.py:2111
 msgid "Store website in .tar.gz archive"
 msgstr "Memorizzare il sito web in un archivio .tar.gz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2111
+#: ../gramps/plugins/webreport/narrativeweb.py:2112
 msgid "Whether to store the website in an archive file"
 msgstr "Indica se memorizzare il sito web in un file di archivio"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2121
+#: ../gramps/plugins/webreport/narrativeweb.py:2122
 #: ../gramps/plugins/webreport/webcal.py:1843
 msgid "The destination directory for the web files"
 msgstr "La directory di destinazione per i file web"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2126
+#: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "My Family Tree"
 msgstr "Il mio albero genealogico"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2126
+#: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "Website title"
 msgstr "Titolo del sito web"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2127
+#: ../gramps/plugins/webreport/narrativeweb.py:2128
 msgid "The title of the website"
 msgstr "Il titolo del sito web"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2132
+#: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "Select filter to restrict people that appear on the website"
 msgstr ""
 "Seleziona il filtro per restringere le persone che compaiono sul sito web"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2144
+#: ../gramps/plugins/webreport/narrativeweb.py:2145
 msgid "Show the relationship between the current person and the active person"
 msgstr "Mostra la relazione tra la persona attuale e la persona attiva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2151
+#: ../gramps/plugins/webreport/narrativeweb.py:2152
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
@@ -39120,69 +39111,69 @@ msgstr ""
 "Per ogni pagina di persona, mostra tutte le relazioni tra questa persona e "
 "la persona attiva."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2175
+#: ../gramps/plugins/webreport/narrativeweb.py:2176
 #: ../gramps/plugins/webreport/webcal.py:1865
 msgid "File extension"
 msgstr "Estensione file"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2178
+#: ../gramps/plugins/webreport/narrativeweb.py:2179
 #: ../gramps/plugins/webreport/webcal.py:1868
 msgid "The extension to be used for the web files"
 msgstr "L'estensione da usare per i file web"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2182
+#: ../gramps/plugins/webreport/narrativeweb.py:2183
 #: ../gramps/plugins/webreport/webcal.py:1871
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2185
+#: ../gramps/plugins/webreport/narrativeweb.py:2186
 #: ../gramps/plugins/webreport/webcal.py:1874
 msgid "The copyright to be used for the web files"
 msgstr "L'indicazione di copyright da usare per i file web"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2188
+#: ../gramps/plugins/webreport/narrativeweb.py:2189
 #: ../gramps/plugins/webreport/webcal.py:1884
 msgid "StyleSheet"
 msgstr "Foglio di stile"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2194
+#: ../gramps/plugins/webreport/narrativeweb.py:2195
 msgid "The default stylesheet to be used for the pages"
 msgstr "Il foglio di stile predefinito da usare per le pagine"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2199
+#: ../gramps/plugins/webreport/narrativeweb.py:2200
 msgid "Horizontal -- Default"
 msgstr "Orizzontale -- predefinito"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2200
+#: ../gramps/plugins/webreport/narrativeweb.py:2201
 msgid "Vertical   -- Left Side"
 msgstr "Verticale   -- Lato sinistro"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2201
+#: ../gramps/plugins/webreport/narrativeweb.py:2202
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "A scomparsa -- solo browser basati su WebKit"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2202
-#: ../gramps/plugins/webreport/narrativeweb.py:2218
+#: ../gramps/plugins/webreport/narrativeweb.py:2203
+#: ../gramps/plugins/webreport/narrativeweb.py:2219
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "A discesa   -- solo browser basati su WebKit"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2205
+#: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Navigation Menu Layout"
 msgstr "Aspetto del menu per la navigazione"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2210
+#: ../gramps/plugins/webreport/narrativeweb.py:2211
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Scegliere l'aspetto per i menu di navigazione."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2217
+#: ../gramps/plugins/webreport/narrativeweb.py:2218
 msgid "Normal Outline Style"
 msgstr "Stile contorno normale"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2221
+#: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Citation References Layout"
 msgstr "Aspetto riferimenti a citazioni"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2227
+#: ../gramps/plugins/webreport/narrativeweb.py:2228
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
@@ -39190,72 +39181,72 @@ msgstr ""
 "Specifica l'aspetto predefinito della sezione dei riferimenti a citazioni "
 "nella pagina della fonte"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2233
+#: ../gramps/plugins/webreport/narrativeweb.py:2234
 msgid "Include ancestor's tree"
 msgstr "Includere albero degli ascendenti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2235
+#: ../gramps/plugins/webreport/narrativeweb.py:2236
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr ""
 "Indica se includere un grafico degli ascendenti nella pagina di ogni persona"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2240
+#: ../gramps/plugins/webreport/narrativeweb.py:2241
 msgid "Add previous/next"
 msgstr "Aggiungi precedente/successivo"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2241
+#: ../gramps/plugins/webreport/narrativeweb.py:2242
 msgid "Add previous/next to the navigation bar."
 msgstr "Aggiungi precedente/successivo alla barra di navigazione."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2244
+#: ../gramps/plugins/webreport/narrativeweb.py:2245
 msgid "This is a secure site (HTTPS)"
 msgstr "Questo è un sito sicuro (HTTPS)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2245
+#: ../gramps/plugins/webreport/narrativeweb.py:2246
 msgid "Whether to use http:// or https://"
 msgstr "Indica se usare http:// o https://"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2248
+#: ../gramps/plugins/webreport/narrativeweb.py:2249
 msgid "Toggle sections"
 msgstr "Attiva/disattiva sezione"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2249
+#: ../gramps/plugins/webreport/narrativeweb.py:2250
 msgid "Check it if you want to open/close a section"
 msgstr "Selezionare se si desidera aprire/chiudere una sezione"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2252
+#: ../gramps/plugins/webreport/narrativeweb.py:2253
 msgid "Max. rows in an index"
 msgstr "Numero massimo di righe in un indice"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2254
+#: ../gramps/plugins/webreport/narrativeweb.py:2255
 msgid "The maximum number of rows to include in an index page"
 msgstr "Numero massimo di righe da includere in una pagina di indice"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2264
+#: ../gramps/plugins/webreport/narrativeweb.py:2265
 msgid "Extra Pages"
 msgstr "Pagine extra"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2267
+#: ../gramps/plugins/webreport/narrativeweb.py:2268
 msgid "Extra page name"
 msgstr "Nome pagina extra"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2269
+#: ../gramps/plugins/webreport/narrativeweb.py:2270
 msgid "Your extra page name like it is shown in the menubar"
 msgstr "Il nome della pagina extra per come mostrato nella barra dei menu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2274
+#: ../gramps/plugins/webreport/narrativeweb.py:2275
 msgid "Your extra page path"
 msgstr "Il percorso della pagina extra"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2275
+#: ../gramps/plugins/webreport/narrativeweb.py:2276
 msgid "Your extra page path without extension"
 msgstr "Il percorso della pagina extra senza estensione"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2290
+#: ../gramps/plugins/webreport/narrativeweb.py:2291
 msgid "Do we use multiple translations?"
 msgstr "Sono usate traduzioni multiple?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2293
+#: ../gramps/plugins/webreport/narrativeweb.py:2294
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
@@ -39265,45 +39256,45 @@ msgstr ""
 "Vedere la scheda di traduzione per aggiungere nuove lingue a quella "
 "predefinita definita nel campo successivo."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2307
+#: ../gramps/plugins/webreport/narrativeweb.py:2308
 msgid "Sort all children in birth order"
 msgstr "Ordinare tutti i figli secondo la data di nascita"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2309
+#: ../gramps/plugins/webreport/narrativeweb.py:2310
 msgid "Whether to display children in birth order or in entry order."
 msgstr "Indica se mostrare i figli in ordine di nascita o di inserimento."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2314
+#: ../gramps/plugins/webreport/narrativeweb.py:2315
 msgid "Do we display coordinates in the places list?"
 msgstr "Sono mostrate le coordinate nell'elenco dei luoghi?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2317
+#: ../gramps/plugins/webreport/narrativeweb.py:2318
 msgid "Whether to display latitude/longitude in the places list."
 msgstr "Indica se mostrare latitudine/longitudine nella lista dei luoghi."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2322
+#: ../gramps/plugins/webreport/narrativeweb.py:2323
 msgid "Sort places references either by date or by name"
 msgstr "Ordina i riferimenti a luoghi o per data o per nome"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2326
+#: ../gramps/plugins/webreport/narrativeweb.py:2327
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
 "Ordina i riferimenti a luoghi per data o per nome. Se non impostato sarà per "
 "data."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2332
+#: ../gramps/plugins/webreport/narrativeweb.py:2333
 msgid "Graph generations"
 msgstr "Generazioni grafico"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2334
+#: ../gramps/plugins/webreport/narrativeweb.py:2335
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Numero di generazioni da includere nel grafico ascendenti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2340
+#: ../gramps/plugins/webreport/narrativeweb.py:2341
 msgid "Include narrative notes just after name, gender"
 msgstr "Includere le note narrative subito dopo nome e genere"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2344
+#: ../gramps/plugins/webreport/narrativeweb.py:2345
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
@@ -39311,47 +39302,47 @@ msgstr ""
 "Includere le note narrative appena dopo nome, genere ed età al decesso "
 "(predefinito) o includerle appena prima degli attributi."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2357
+#: ../gramps/plugins/webreport/narrativeweb.py:2358
 msgid "Page Generation"
 msgstr "Generazione pagina"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2360
+#: ../gramps/plugins/webreport/narrativeweb.py:2361
 msgid "Home page note"
 msgstr "Nota pagina iniziale"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2361
+#: ../gramps/plugins/webreport/narrativeweb.py:2362
 msgid "A note to be used on the home page"
 msgstr "Nota da usare nella pagina iniziale"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2364
+#: ../gramps/plugins/webreport/narrativeweb.py:2365
 msgid "Home page image"
 msgstr "Immagine pagina iniziale"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2365
+#: ../gramps/plugins/webreport/narrativeweb.py:2366
 msgid "An image to be used on the home page"
 msgstr "Immagine da usare nella pagina iniziale"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2368
+#: ../gramps/plugins/webreport/narrativeweb.py:2369
 msgid "Introduction note"
 msgstr "Nota introduttiva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2369
+#: ../gramps/plugins/webreport/narrativeweb.py:2370
 msgid "A note to be used as the introduction"
 msgstr "Nota da usare come introduzione"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2372
+#: ../gramps/plugins/webreport/narrativeweb.py:2373
 msgid "Introduction image"
 msgstr "Immagine introduttiva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2373
+#: ../gramps/plugins/webreport/narrativeweb.py:2374
 msgid "An image to be used as the introduction"
 msgstr "Immagine da usare come introduzione"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2376
+#: ../gramps/plugins/webreport/narrativeweb.py:2377
 msgid "Publisher contact note"
 msgstr "Nota contatto editore"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2379
+#: ../gramps/plugins/webreport/narrativeweb.py:2380
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -39361,11 +39352,11 @@ msgstr ""
 "Se non sono state fornite informazioni sull'editore,\n"
 "la pagina dei contatti non sarà creata"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2386
+#: ../gramps/plugins/webreport/narrativeweb.py:2387
 msgid "Publisher contact image"
 msgstr "Immagine contatto editore"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2389
+#: ../gramps/plugins/webreport/narrativeweb.py:2390
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -39375,28 +39366,28 @@ msgstr ""
 "Se non sono state fornite informazioni sull'editore,\n"
 "la pagina dei contatti non sarà creata"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2396
+#: ../gramps/plugins/webreport/narrativeweb.py:2397
 msgid "HTML user header"
 msgstr "Intestazione HTML personalizzata"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2398
+#: ../gramps/plugins/webreport/narrativeweb.py:2399
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr ""
 "Una nota da usare come intestazione di pagina o un codice PHP da inserire."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2402
+#: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "HTML user footer"
 msgstr "Piè di pagina HTML personalizzato"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2403
+#: ../gramps/plugins/webreport/narrativeweb.py:2404
 msgid "A note to be used as the page footer"
 msgstr "Una nota da usare come piè di pagina"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2408
+#: ../gramps/plugins/webreport/narrativeweb.py:2409
 msgid "PHP user session"
 msgstr "Sessione utente PHP"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2411
+#: ../gramps/plugins/webreport/narrativeweb.py:2412
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
@@ -39405,39 +39396,39 @@ msgstr ""
 "Questa opzione sarà disponibile solo se viene selezionata l'estensione di "
 "file .php."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2424
+#: ../gramps/plugins/webreport/narrativeweb.py:2425
 msgid "Images Generation"
 msgstr "Generazione immagini"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2427
+#: ../gramps/plugins/webreport/narrativeweb.py:2428
 msgid "Include images and media objects"
 msgstr "Includere immagini ed oggetti multimediali"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2428
+#: ../gramps/plugins/webreport/narrativeweb.py:2429
 msgid "Whether to include a gallery of media objects"
 msgstr "Indica se includere una galleria di oggetti multimediali"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2432
+#: ../gramps/plugins/webreport/narrativeweb.py:2433
 msgid "Create the images index"
 msgstr "Crea l'indice delle immagini"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2434
+#: ../gramps/plugins/webreport/narrativeweb.py:2435
 msgid "This option allows you to create the images index"
 msgstr "Questa opzione permette di creare l'indice delle immagini"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2440
+#: ../gramps/plugins/webreport/narrativeweb.py:2441
 msgid "Include unused images and media objects"
 msgstr "Includere immagini ed oggetti multimediali non usati"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2443
+#: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "Indica se includere oggetti multimediali non usati o senza riferimenti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2448
+#: ../gramps/plugins/webreport/narrativeweb.py:2449
 msgid "Create and only use thumbnail- sized images"
 msgstr "Crea ed usa solo immagini di dimensione miniatura"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2452
+#: ../gramps/plugins/webreport/narrativeweb.py:2453
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -39448,19 +39439,19 @@ msgstr ""
 "permetterà di avere un quantitativo più piccolo di dati da inviare "
 "all'hosting del sito web."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2462
+#: ../gramps/plugins/webreport/narrativeweb.py:2463
 msgid "Create the thumbnail index"
 msgstr "Crea l'indice delle miniature"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2465
+#: ../gramps/plugins/webreport/narrativeweb.py:2466
 msgid "This option allows you to create the thumbnail index"
 msgstr "Questa opzione permette di creare l'indice delle miniature"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2471
+#: ../gramps/plugins/webreport/narrativeweb.py:2472
 msgid "Max width of initial image"
 msgstr "Larghezza massima dell'immagine iniziale"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2475
+#: ../gramps/plugins/webreport/narrativeweb.py:2476
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page."
@@ -39468,184 +39459,184 @@ msgstr ""
 "Questo consente di impostare la larghezza massima dell'immagine mostrata "
 "nella pagina degli oggetti multimediali."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2492
+#: ../gramps/plugins/webreport/narrativeweb.py:2493
 msgid "Include download page"
 msgstr "Includere pagina per lo scaricamento"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2493
+#: ../gramps/plugins/webreport/narrativeweb.py:2494
 msgid "Whether to include a database download option"
 msgstr "Indica se includere un'opzione per scaricare il database"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2498
+#: ../gramps/plugins/webreport/narrativeweb.py:2499
 msgid "How many downloads"
 msgstr "Quanti scaricamenti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2501
+#: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "The number of download files to include in the download page"
 msgstr ""
 "Il numero dei file da scaricare da includere nella pagina degli scaricamenti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2511
+#: ../gramps/plugins/webreport/narrativeweb.py:2512
 #, python-format
 msgid "Download Filename #%c"
 msgstr "Scarica nome file #%c"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2513
+#: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "File to be used for downloading of database"
 msgstr "File da usare per scaricare il database"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2518
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 msgid "Description for download"
 msgstr "Descrizione per lo scaricamento"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2518
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 #, python-format
 msgid "Family Tree #%c"
 msgstr "Albero genealogico #%c"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2520
+#: ../gramps/plugins/webreport/narrativeweb.py:2521
 msgid "Give a description for this file."
 msgstr "Fornire una descrizione per questo file."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2532
+#: ../gramps/plugins/webreport/narrativeweb.py:2533
 #: ../gramps/plugins/webreport/webcal.py:2049
 msgid "Advanced Options"
 msgstr "Opzioni avanzate"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2536
+#: ../gramps/plugins/webreport/narrativeweb.py:2537
 #: ../gramps/plugins/webreport/webcal.py:2052
 msgid "Character set encoding"
 msgstr "Codifica caratteri"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2540
+#: ../gramps/plugins/webreport/narrativeweb.py:2541
 #: ../gramps/plugins/webreport/webcal.py:2056
 msgid "The encoding to be used for the web files"
 msgstr "La codifica da usare per i file web"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2544
+#: ../gramps/plugins/webreport/narrativeweb.py:2545
 msgid "Include link to active person on every page"
 msgstr "Includere collegamenti alla persona attiva in ogni pagina"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2547
+#: ../gramps/plugins/webreport/narrativeweb.py:2548
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr ""
 "Includere un collegamento alla persona attiva (se dispone di una pagina web "
 "personale)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2552
+#: ../gramps/plugins/webreport/narrativeweb.py:2553
 msgid "Include a column for birth dates on the index pages"
 msgstr "Includere una colonna per le date di nascita nella pagina degli indici"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2554
+#: ../gramps/plugins/webreport/narrativeweb.py:2555
 msgid "Whether to include a birth column"
 msgstr "Indica se includere una colonna per le date di nascita"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2558
+#: ../gramps/plugins/webreport/narrativeweb.py:2559
 msgid "Include a column for death dates on the index pages"
 msgstr "Includere una colonna per le date di decesso nella pagina degli indici"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2560
+#: ../gramps/plugins/webreport/narrativeweb.py:2561
 msgid "Whether to include a death column"
 msgstr "Indica se includere una colonna per le date di decesso"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2564
+#: ../gramps/plugins/webreport/narrativeweb.py:2565
 msgid "Include a column for partners on the index pages"
 msgstr "Includere una colonna per i partner nella pagina degli indici"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2566
+#: ../gramps/plugins/webreport/narrativeweb.py:2567
 msgid "Whether to include a partners column"
 msgstr "Indica se includere una colonna per i partner"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2570
+#: ../gramps/plugins/webreport/narrativeweb.py:2571
 msgid "Include a column for parents on the index pages"
 msgstr "Includere una colonna per i genitori nella pagina degli indici"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2572
+#: ../gramps/plugins/webreport/narrativeweb.py:2573
 msgid "Whether to include a parents column"
 msgstr "Indica se includere una colonna per i genitori"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2576
+#: ../gramps/plugins/webreport/narrativeweb.py:2577
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr ""
 "Includere i fratelli unilaterali e i fratellastri nelle pagine personali"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2580
+#: ../gramps/plugins/webreport/narrativeweb.py:2581
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
 "Indica se includere fratelli unilaterali e fratellastri con genitori e "
 "fratelli"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2595
+#: ../gramps/plugins/webreport/narrativeweb.py:2596
 msgid "Include family pages"
 msgstr "Includere pagine familiari"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2596
+#: ../gramps/plugins/webreport/narrativeweb.py:2597
 msgid "Whether or not to include family pages."
 msgstr "Indica se includere o meno le pagine familiari."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2599
+#: ../gramps/plugins/webreport/narrativeweb.py:2600
 msgid "Include event pages"
 msgstr "Includere le pagine degli eventi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2600
+#: ../gramps/plugins/webreport/narrativeweb.py:2601
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
 "Aggiungere o meno l'elenco completo degli eventi e le pagine pertinenti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2603
+#: ../gramps/plugins/webreport/narrativeweb.py:2604
 msgid "Include other roles"
 msgstr "Includere altri ruoli"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2604
+#: ../gramps/plugins/webreport/narrativeweb.py:2605
 msgid "Include persons with other roles to an event"
 msgstr "Includere le persone con altri ruoli in un evento"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2607
+#: ../gramps/plugins/webreport/narrativeweb.py:2608
 msgid "Include place pages"
 msgstr "Includere le pagine dei luoghi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2608
+#: ../gramps/plugins/webreport/narrativeweb.py:2609
 msgid "Whether or not to include the place pages."
 msgstr "Indica se includere o meno le pagine dei luoghi."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2611
+#: ../gramps/plugins/webreport/narrativeweb.py:2612
 msgid "Include unused place pages"
 msgstr "Includere le pagine non usate dei luoghi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2612
+#: ../gramps/plugins/webreport/narrativeweb.py:2613
 msgid "Whether or not to include the unused place pages."
 msgstr "Indica se includere o meno le pagine non usate dei luoghi."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2615
+#: ../gramps/plugins/webreport/narrativeweb.py:2616
 msgid "Include source pages"
 msgstr "Includere le pagine delle fonti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2616
+#: ../gramps/plugins/webreport/narrativeweb.py:2617
 msgid "Whether or not to include the source pages."
 msgstr "Indica se includere o meno le pagine delle fonti."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2619
+#: ../gramps/plugins/webreport/narrativeweb.py:2620
 msgid "Include repository pages"
 msgstr "Includere le pagine dei depositi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2620
+#: ../gramps/plugins/webreport/narrativeweb.py:2621
 msgid "Whether or not to include the repository pages."
 msgstr "Indica se includere o meno le pagine dei depositi."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2623
+#: ../gramps/plugins/webreport/narrativeweb.py:2624
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Includere file GENDEX /gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2624
+#: ../gramps/plugins/webreport/narrativeweb.py:2625
 msgid "Whether to include a GENDEX file or not"
 msgstr "Indica se includere o meno un file GENDEX"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2627
+#: ../gramps/plugins/webreport/narrativeweb.py:2628
 msgid "Include address book pages"
 msgstr "Includere le pagine della rubrica"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2630
+#: ../gramps/plugins/webreport/narrativeweb.py:2631
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -39654,41 +39645,41 @@ msgstr ""
 "indirizzi di posta elettronica, di siti web, ed eventi personali di tipo "
 "indirizzo/residenza."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2638
+#: ../gramps/plugins/webreport/narrativeweb.py:2639
 msgid "Include the statistics page"
 msgstr "Includi la pagine delle statistiche"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2639
+#: ../gramps/plugins/webreport/narrativeweb.py:2640
 msgid "Whether or not to add statistics page"
 msgstr "Indica se includere o meno la pagina delle statistiche"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2648
+#: ../gramps/plugins/webreport/narrativeweb.py:2649
 msgid "Place Map Options"
 msgstr "Opzioni mappa dei luoghi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2653
+#: ../gramps/plugins/webreport/narrativeweb.py:2654
 msgid "Stamen Map"
 msgstr "Mappa Stamen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2654
+#: ../gramps/plugins/webreport/narrativeweb.py:2655
 msgid "Google"
 msgstr "Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2656
+#: ../gramps/plugins/webreport/narrativeweb.py:2657
 msgid "Map Service"
 msgstr "Servizio mappe"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2660
+#: ../gramps/plugins/webreport/narrativeweb.py:2661
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
 "Scegliere il servizio di mappe preferito per creare le pagine delle mappe "
 "dei luoghi."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2666
+#: ../gramps/plugins/webreport/narrativeweb.py:2667
 msgid "Include Place map on Place Pages"
 msgstr "Includere la mappa dei luoghi nelle pagine dei luoghi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2670
+#: ../gramps/plugins/webreport/narrativeweb.py:2671
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -39696,13 +39687,13 @@ msgstr ""
 "Indica se includere una mappa dei luoghi nella pagina dei luoghi se "
 "latitudine o longitudine sono disponibili."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2678
+#: ../gramps/plugins/webreport/narrativeweb.py:2679
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr ""
 "Includere pagine delle mappe familiari con tutti i luoghi mostrati sulla "
 "mappa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2682
+#: ../gramps/plugins/webreport/narrativeweb.py:2683
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -39711,23 +39702,23 @@ msgstr ""
 "luoghi in questa pagina. Questo permette di vedere come la famiglia ha "
 "viaggiato attraverso la nazione."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2692
+#: ../gramps/plugins/webreport/narrativeweb.py:2693
 msgid "Family Links"
 msgstr "Collegamenti famiglia"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2693
+#: ../gramps/plugins/webreport/narrativeweb.py:2694
 msgid "Drop"
 msgstr "Caduta"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2694
+#: ../gramps/plugins/webreport/narrativeweb.py:2695
 msgid "Markers"
 msgstr "Indicatori"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2697
+#: ../gramps/plugins/webreport/narrativeweb.py:2698
 msgid "Google/ FamilyMap Option"
 msgstr "Opzione Google/mappa familiare"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2703
+#: ../gramps/plugins/webreport/narrativeweb.py:2704
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
@@ -39735,11 +39726,11 @@ msgstr ""
 "Selezionare quali opzioni abilitare per le pagine delle mappe familiari di "
 "Google Maps..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2709
+#: ../gramps/plugins/webreport/narrativeweb.py:2710
 msgid "Google maps API key"
 msgstr "Chiave per API di Google Maps"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2712
+#: ../gramps/plugins/webreport/narrativeweb.py:2713
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
@@ -39747,12 +39738,12 @@ msgstr ""
 "La chiave per le API usata per Google maps.\n"
 "Questa chiave è obbligatoria e deve essere valida"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2724
-#: ../gramps/plugins/webreport/narrativeweb.py:2764
+#: ../gramps/plugins/webreport/narrativeweb.py:2725
+#: ../gramps/plugins/webreport/narrativeweb.py:2765
 msgid "How to get the API key"
 msgstr "Come ottenere la chiave per le API"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2727
+#: ../gramps/plugins/webreport/narrativeweb.py:2728
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
@@ -39760,34 +39751,34 @@ msgstr ""
 "Copiare e incollare questo valore nel browser.\n"
 "Il servizio Mappe di Google deve essere selezionato."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2735
+#: ../gramps/plugins/webreport/narrativeweb.py:2736
 msgid "Toner"
 msgstr "Toner"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2736
+#: ../gramps/plugins/webreport/narrativeweb.py:2737
 msgid "Terrain"
 msgstr "Terrain"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2737
+#: ../gramps/plugins/webreport/narrativeweb.py:2738
 msgid "WaterColor"
 msgstr "WaterColor"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2739
+#: ../gramps/plugins/webreport/narrativeweb.py:2740
 msgid "Stamen Option"
 msgstr "Opzione Stamen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2744
+#: ../gramps/plugins/webreport/narrativeweb.py:2745
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
 msgstr ""
 "Selezionare quale opzione abilitare per le pagine delle mappe Stamen..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2749
+#: ../gramps/plugins/webreport/narrativeweb.py:2750
 msgid "Stamen maps API key"
 msgstr "Chiave per API delle mappe di Stamen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2752
+#: ../gramps/plugins/webreport/narrativeweb.py:2753
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
@@ -39795,7 +39786,7 @@ msgstr ""
 "La chiave per le API usata per le mappe Stamen.\n"
 "Questa chiave è obbligatoria e deve essere valida"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2767
+#: ../gramps/plugins/webreport/narrativeweb.py:2768
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
@@ -39803,21 +39794,21 @@ msgstr ""
 "Copiare e incollare questo valore nel browser.\n"
 "Il servizio Mappe di Stamen deve essere selezionato."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2784
+#: ../gramps/plugins/webreport/narrativeweb.py:2785
 #, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
 msgstr "in %(inipth)s (%(val)s)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2785
+#: ../gramps/plugins/webreport/narrativeweb.py:2786
 msgid "latest"
 msgstr "ultima"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2787
+#: ../gramps/plugins/webreport/narrativeweb.py:2788
 msgid "openlayers version to use"
 msgstr "versione di openlayers da usare"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2792
+#: ../gramps/plugins/webreport/narrativeweb.py:2793
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -39831,146 +39822,146 @@ msgstr ""
 "modificare è openlayers_version.\n"
 "Consultare OLDER VERSIONS su https://openlayers.org/"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2809
+#: ../gramps/plugins/webreport/narrativeweb.py:2810
 msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "Altre inclusioni (CMS, calendario web, PHP)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2813
+#: ../gramps/plugins/webreport/narrativeweb.py:2814
 msgid "Do we include these pages in a CMS web?"
 msgstr "Includere queste pagine in un CMS web?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2820
+#: ../gramps/plugins/webreport/narrativeweb.py:2821
 msgid "URI"
 msgstr "URI"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2822
+#: ../gramps/plugins/webreport/narrativeweb.py:2823
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "Dove posizionare il sito web? Valore predefinito = /NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2830
+#: ../gramps/plugins/webreport/narrativeweb.py:2831
 msgid "Include the news and updates page"
 msgstr "Includi la pagina delle novità e degli aggiornamenti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2831
+#: ../gramps/plugins/webreport/narrativeweb.py:2832
 msgid "Whether to include a page with the last updates"
 msgstr "Indica se includere una pagina con gli ultimi aggiornamenti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2835
+#: ../gramps/plugins/webreport/narrativeweb.py:2836
 msgid "Max days for updates"
 msgstr "Giorni massimi per gli aggiornamenti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2837
+#: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "You want to see the last updates on how many days?"
 msgstr "Per quanti giorni visualizzare gli ultimi aggiornamenti?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2842
+#: ../gramps/plugins/webreport/narrativeweb.py:2843
 msgid "Max number of updates per object to show"
 msgstr "Il numero massimo di aggiornamenti da mostrare per oggetti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2844
+#: ../gramps/plugins/webreport/narrativeweb.py:2845
 msgid "How many updates do you want to see max"
 msgstr "Quanti aggiornamenti da visualizzare al massimo"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2856
+#: ../gramps/plugins/webreport/narrativeweb.py:2857
 msgid "Translations"
 msgstr "Traduzioni"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2859
+#: ../gramps/plugins/webreport/narrativeweb.py:2860
 msgid "Second language"
 msgstr "Seconda lingua"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2864
+#: ../gramps/plugins/webreport/narrativeweb.py:2865
 msgid "Site name for your second language"
 msgstr "Nome del sito per la seconda lingua"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2864
-#: ../gramps/plugins/webreport/narrativeweb.py:2873
-#: ../gramps/plugins/webreport/narrativeweb.py:2882
-#: ../gramps/plugins/webreport/narrativeweb.py:2891
-#: ../gramps/plugins/webreport/narrativeweb.py:2900
+#: ../gramps/plugins/webreport/narrativeweb.py:2865
+#: ../gramps/plugins/webreport/narrativeweb.py:2874
+#: ../gramps/plugins/webreport/narrativeweb.py:2883
+#: ../gramps/plugins/webreport/narrativeweb.py:2892
+#: ../gramps/plugins/webreport/narrativeweb.py:2901
 msgid "This site title"
 msgstr "Titolo di questo sito"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2866
-#: ../gramps/plugins/webreport/narrativeweb.py:2875
-#: ../gramps/plugins/webreport/narrativeweb.py:2884
-#: ../gramps/plugins/webreport/narrativeweb.py:2893
-#: ../gramps/plugins/webreport/narrativeweb.py:2902
+#: ../gramps/plugins/webreport/narrativeweb.py:2867
+#: ../gramps/plugins/webreport/narrativeweb.py:2876
+#: ../gramps/plugins/webreport/narrativeweb.py:2885
+#: ../gramps/plugins/webreport/narrativeweb.py:2894
+#: ../gramps/plugins/webreport/narrativeweb.py:2903
 msgid "Enter a title in the respective language"
 msgstr "Inserire un titolo nella rispettiva lingua"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2868
+#: ../gramps/plugins/webreport/narrativeweb.py:2869
 msgid "Third language"
 msgstr "Terza lingua"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2873
+#: ../gramps/plugins/webreport/narrativeweb.py:2874
 msgid "Site name for your third language"
 msgstr "Nome del sito per la terza lingua"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2877
+#: ../gramps/plugins/webreport/narrativeweb.py:2878
 msgid "Fourth language"
 msgstr "Quarta lingua"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2882
+#: ../gramps/plugins/webreport/narrativeweb.py:2883
 msgid "Site name for your fourth language"
 msgstr "Nome del sito per la quarta lingua"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2886
+#: ../gramps/plugins/webreport/narrativeweb.py:2887
 msgid "Fifth language"
 msgstr "Quinta lingua"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2891
+#: ../gramps/plugins/webreport/narrativeweb.py:2892
 msgid "Site name for your fifth language"
 msgstr "Nome del sito per la quinta lingua"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2895
+#: ../gramps/plugins/webreport/narrativeweb.py:2896
 msgid "Sixth language"
 msgstr "Sesta lingua"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2900
+#: ../gramps/plugins/webreport/narrativeweb.py:2901
 msgid "Site name for your sixth language"
 msgstr "Nome del sito per la sesta lingua"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3133
+#: ../gramps/plugins/webreport/narrativeweb.py:3134
 msgid "Calendar Options"
 msgstr "Opzioni calendario"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3139
+#: ../gramps/plugins/webreport/narrativeweb.py:3140
 msgid "Do we include the web calendar ?"
 msgstr "Includere il calendario web?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3141
+#: ../gramps/plugins/webreport/narrativeweb.py:3142
 #, python-format
 msgid "Whether to include a calendar for year %s"
 msgstr "Indica se includere un calendario per l'anno %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3168
+#: ../gramps/plugins/webreport/narrativeweb.py:3169
 #: ../gramps/plugins/webreport/webcal.py:2060
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr ""
 "Generare pagine degli eventi per i singoli giorni per il calendario annuale"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3170
+#: ../gramps/plugins/webreport/narrativeweb.py:3171
 #: ../gramps/plugins/webreport/webcal.py:2062
 msgid "Whether to create one day pages or not"
 msgstr "Indica se generare o meno pagine per i singoli giorni"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3174
+#: ../gramps/plugins/webreport/narrativeweb.py:3175
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include birthdays in the calendar"
 msgstr "Include i compleanni nel calendario"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3178
+#: ../gramps/plugins/webreport/narrativeweb.py:3179
 #: ../gramps/plugins/webreport/webcal.py:2070
 msgid "Include anniversaries in the calendar"
 msgstr "Include gli anniversari nel calendario"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3191
+#: ../gramps/plugins/webreport/narrativeweb.py:3192
 #: ../gramps/plugins/webreport/webcal.py:2085
 msgid "Show data only after year"
 msgstr "Mostra i dati solo dopo l'anno"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3198
+#: ../gramps/plugins/webreport/narrativeweb.py:3199
 #: ../gramps/plugins/webreport/webcal.py:2092
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
@@ -39980,23 +39971,23 @@ msgstr ""
 "meno il valore di «Età massima probabilmente in vita» che è definito nella "
 "scheda delle preferenze delle date."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3215
+#: ../gramps/plugins/webreport/narrativeweb.py:3216
 msgid "HeatMap Options"
 msgstr "Opzioni mappa HeatMap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3218
+#: ../gramps/plugins/webreport/narrativeweb.py:3219
 msgid "Include heatmap pages"
 msgstr "Includere le pagine HeatMap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3219
+#: ../gramps/plugins/webreport/narrativeweb.py:3220
 msgid "Whether to include heatmap pages for events"
 msgstr "Indica se includere le pagine heatmap per gli eventi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3225
+#: ../gramps/plugins/webreport/narrativeweb.py:3226
 msgid "Point size"
 msgstr "Dimensione punto"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3226
+#: ../gramps/plugins/webreport/narrativeweb.py:3227
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
@@ -40004,11 +39995,11 @@ msgstr ""
 "Decidi la grandezza dei punti della heatmap.\n"
 "Default: 8"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3229
+#: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid "Blur"
 msgstr "Sfocatura"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3230
+#: ../gramps/plugins/webreport/narrativeweb.py:3231
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
@@ -40016,7 +40007,7 @@ msgstr ""
 "Scegli la grandezza della sfocatura.\n"
 "Default: 15"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3233
+#: ../gramps/plugins/webreport/narrativeweb.py:3234
 msgid "Zoom"
 msgstr "Ingrandimento"
 
@@ -40113,7 +40104,7 @@ msgstr "Relazione con questa famiglia (se non per nascita)"
 msgid "Creating place pages"
 msgstr "Generazione pagine dei luoghi"
 
-#: ../gramps/plugins/webreport/place.py:293
+#: ../gramps/plugins/webreport/place.py:295
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
@@ -40123,18 +40114,18 @@ msgstr ""
 "base al titolo. Facendo clic sul titolo di un luogo si accede alla relativa "
 "pagina."
 
-#: ../gramps/plugins/webreport/place.py:346
-#: ../gramps/plugins/webreport/place.py:358
+#: ../gramps/plugins/webreport/place.py:348
+#: ../gramps/plugins/webreport/place.py:360
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Nome"
 
-#: ../gramps/plugins/webreport/place.py:347
-#: ../gramps/plugins/webreport/place.py:359
+#: ../gramps/plugins/webreport/place.py:349
+#: ../gramps/plugins/webreport/place.py:361
 msgid "State/Province"
 msgstr "Stato (federato)/Provincia"
 
-#: ../gramps/plugins/webreport/place.py:607
+#: ../gramps/plugins/webreport/place.py:612
 msgid "Place Map"
 msgstr "Mappa dei luoghi"
 
@@ -40482,6 +40473,9 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Nessun foglio di stile"
+
+#~ msgid "Applying ..."
+#~ msgstr "Applicazione ..."
 
 #~ msgid "Preparing ..."
 #~ msgstr "In preparazione..."
