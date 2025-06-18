@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-06-15 18:19+0000\n"
+"PO-Revision-Date: 2025-06-15 20:00+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -25247,12 +25247,12 @@ msgstr "Nächste Zu-erledigen-Notiz"
 #: ../gramps/plugins/gramplet/todo.py:71
 #: ../gramps/plugins/gramplet/todogramplet.py:71
 msgid "Edit the selected To Do note"
-msgstr "Gewählte 'noch zu erledigen' Notiz bearbeiten"
+msgstr "Gewählte Zu-erledigen-Notiz bearbeiten"
 
 #: ../gramps/plugins/gramplet/todo.py:75
 #: ../gramps/plugins/gramplet/todogramplet.py:75
 msgid "Add a new To Do note"
-msgstr "Eine neue 'zu erledigen' Notiz hinzufügen"
+msgstr "Eine neue Zu-erledigen-Notiz hinzufügen"
 
 #: ../gramps/plugins/gramplet/todo.py:207
 msgid "First select the object to which you want to attach a note"
@@ -31403,7 +31403,7 @@ msgstr "Anzahl der Eltern"
 
 #: ../gramps/plugins/lib/libpersonview.py:111
 msgid "Number of To Do Notes"
-msgstr "Anzahl 'zu erledigen' Notizen"
+msgstr "Anzahl der Zu-erledigen-Notizen"
 
 #: ../gramps/plugins/lib/libpersonview.py:114
 #: ../gramps/plugins/lib/libplaceview.py:95
@@ -38655,10 +38655,10 @@ msgid ""
 "web pages."
 msgstr ""
 "Auf dieser Seite teilt die Benutzerin/Erstellerin bzw. der Benutzer/"
-"Ersteller dieses Stammbaums bzw. dieser Erzählenden Website ein paar die "
-"Familie betreffenden Dateien mit dir. Falls  untenDateien aufgeführt werden, "
-"kannst du sie durch Anklicken herunterladen. Die Downloadseite und -dateien "
-"unterliegen demselben Copyright wie der Rest der Website."
+"Ersteller dieser Stammbaum- oder Erzählenden Website ein paar die Familie "
+"betreffenden Dateien mit dir. Falls unten Dateien aufgeführt werden, kannst "
+"du sie durch Anklicken herunterladen. Die Downloadseite und -dateien "
+"unterliegen demselben Copyright wie der Rest dieser Webseiten."
 
 #: ../gramps/plugins/webreport/download.py:128
 msgid "File Name"
