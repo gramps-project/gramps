@@ -1,3 +1,10 @@
+2025-06-18
+Version 6.0.3
+* Update translations: de_AT, en_GB, es, uk.
+* Revert "Pass an object rather than a handle to the note editor callback"
+  Fixes #13884.
+* Package Gramps 6.0.2 on macOS.
+
 2025-06-15
 Version 6.0.2
 * Update translations: bg, ca, cs, da, de, de_AT, eo, es, fi, fr, ga, he, id,
