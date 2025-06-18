@@ -58,6 +58,7 @@
   <content_rating type="oars-1.1" />
 
   <releases>
+    <release date="2025-06-18" version="6.0.3" />
     <release date="2025-06-15" version="6.0.2" />
     <release date="2025-04-18" version="6.0.1" />
     <release date="2025-03-19" version="6.0.0" />
