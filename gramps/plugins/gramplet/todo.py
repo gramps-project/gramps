@@ -242,9 +242,9 @@ class PersonToDo(ToDo):
         else:
             self.set_has_data(False)
 
-    def created(self, note):
+    def created(self, handle):
         with DbTxn("Attach Note", self.dbstate.db) as trans:
-            self.obj.add_note(note.handle)
+            self.obj.add_note(handle)
             self.dbstate.db.commit_person(self.obj, trans)
 
 
@@ -277,9 +277,9 @@ class EventToDo(ToDo):
         else:
             self.set_has_data(False)
 
-    def created(self, note):
+    def created(self, handle):
         with DbTxn("Attach Note", self.dbstate.db) as trans:
-            self.obj.add_note(note.handle)
+            self.obj.add_note(handle)
             self.dbstate.db.commit_event(self.obj, trans)
 
 
@@ -312,9 +312,9 @@ class FamilyToDo(ToDo):
         else:
             self.set_has_data(False)
 
-    def created(self, note):
+    def created(self, handle):
         with DbTxn("Attach Note", self.dbstate.db) as trans:
-            self.obj.add_note(note.handle)
+            self.obj.add_note(handle)
             self.dbstate.db.commit_family(self.obj, trans)
 
 
@@ -347,9 +347,9 @@ class PlaceToDo(ToDo):
         else:
             self.set_has_data(False)
 
-    def created(self, note):
+    def created(self, handle):
         with DbTxn("Attach Note", self.dbstate.db) as trans:
-            self.obj.add_note(note.handle)
+            self.obj.add_note(handle)
             self.dbstate.db.commit_place(self.obj, trans)
 
 
@@ -382,9 +382,9 @@ class SourceToDo(ToDo):
         else:
             self.set_has_data(False)
 
-    def created(self, note):
+    def created(self, handle):
         with DbTxn("Attach Note", self.dbstate.db) as trans:
-            self.obj.add_note(note.handle)
+            self.obj.add_note(handle)
             self.dbstate.db.commit_source(self.obj, trans)
 
 
@@ -417,9 +417,9 @@ class CitationToDo(ToDo):
         else:
             self.set_has_data(False)
 
-    def created(self, note):
+    def created(self, handle):
         with DbTxn("Attach Note", self.dbstate.db) as trans:
-            self.obj.add_note(note.handle)
+            self.obj.add_note(handle)
             self.dbstate.db.commit_citation(self.obj, trans)
 
 
@@ -452,9 +452,9 @@ class RepositoryToDo(ToDo):
         else:
             self.set_has_data(False)
 
-    def created(self, note):
+    def created(self, handle):
         with DbTxn("Attach Note", self.dbstate.db) as trans:
-            self.obj.add_note(note.handle)
+            self.obj.add_note(handle)
             self.dbstate.db.commit_repository(self.obj, trans)
 
 
@@ -487,7 +487,7 @@ class MediaToDo(ToDo):
         else:
             self.set_has_data(False)
 
-    def created(self, note):
+    def created(self, handle):
         with DbTxn("Attach Note", self.dbstate.db) as trans:
-            self.obj.add_note(note.handle)
+            self.obj.add_note(handle)
             self.dbstate.db.commit_media(self.obj, trans)
