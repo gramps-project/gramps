@@ -28,7 +28,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-06-14 20:01+0000\n"
+"PO-Revision-Date: 2025-06-18 08:01+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -37,7 +37,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.12.1\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -5804,7 +5804,7 @@ msgstr "Coincide con los ascendientes de alguien que coincide con un filtro"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:57
 msgid "Bookmarked people"
-msgstr "Personas en Favoritos"
+msgstr "Personas en Marcadores"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:59
 msgid "Matches the people on the bookmark list"
@@ -10607,7 +10607,7 @@ msgstr "Incluir los registros marcados como privados"
 
 #: ../gramps/gen/plug/report/stdoptions.py:130
 msgid "Whether to include private data"
-msgstr "Si se deben incluir datos privados"
+msgstr "Indica si se deben incluir datos privados"
 
 #: ../gramps/gen/plug/report/stdoptions.py:200
 msgid "Living People"
@@ -10648,7 +10648,8 @@ msgstr "Años tras la defunción para considerarlos vivos"
 
 #: ../gramps/gen/plug/report/stdoptions.py:230
 msgid "Whether to restrict data on recently-dead people"
-msgstr "Restringir o no datos de personas fallecidas recientemente"
+msgstr ""
+"Indica si se deben restringir o no datos de personas fallecidas recientemente"
 
 #: ../gramps/gen/plug/report/stdoptions.py:307
 msgid "Date format"
@@ -10678,7 +10679,7 @@ msgstr "Incluir"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
 msgid "Whether to include tags"
-msgstr "Si se deben incluir etiquetas"
+msgstr "Indica si se deben incluir etiquetas"
 
 #: ../gramps/gen/plug/report/stdoptions.py:397
 msgid "Share an existing line"
@@ -10694,7 +10695,7 @@ msgstr "Si se debe Incluir (y dónde) el ID de Gramps"
 
 #: ../gramps/gen/plug/report/stdoptions.py:402
 msgid "Whether to include Gramps IDs"
-msgstr "Si se debe incluir el ID de Gramps"
+msgstr "Indica si se deben incluir los ids. de Gramps"
 
 #: ../gramps/gen/plug/report/stdoptions.py:411
 msgid "Place format"
@@ -12390,11 +12391,11 @@ msgstr "Colores para personas que no son ni hombres ni mujeres"
 
 #: ../gramps/gui/configure.py:909
 msgid "Colors for Unknown persons"
-msgstr "Colores para personas Desconocidas"
+msgstr "Colores para personas desconocidas"
 
 #: ../gramps/gui/configure.py:910
 msgid "Colors for Family nodes"
-msgstr "Colores para nodos de Familia"
+msgstr "Colores para nodos de familia"
 
 #: ../gramps/gui/configure.py:911
 msgid "Other colors"
@@ -12402,19 +12403,19 @@ msgstr "Otros colores"
 
 #: ../gramps/gui/configure.py:914
 msgid "Background for Alive"
-msgstr "Color de fondo para Vivos"
+msgstr "Fondo para vivos"
 
 #: ../gramps/gui/configure.py:915
 msgid "Background for Dead"
-msgstr "Color de fondo para Muertos"
+msgstr "Fondo para muertos"
 
 #: ../gramps/gui/configure.py:916
 msgid "Border for Alive"
-msgstr "Borde para Vivos"
+msgstr "Borde para vivos"
 
 #: ../gramps/gui/configure.py:917
 msgid "Border for Dead"
-msgstr "Borde para Muertos"
+msgstr "Borde para muertos"
 
 #: ../gramps/gui/configure.py:942
 msgid "Default background"
@@ -12422,7 +12423,7 @@ msgstr "Fondo predeterminado"
 
 #: ../gramps/gui/configure.py:943
 msgid "Background for Married"
-msgstr "Fondo para Casados"
+msgstr "Fondo para casados"
 
 #: ../gramps/gui/configure.py:944
 msgid "Background for Unmarried"
@@ -19336,7 +19337,7 @@ msgstr "Seleccionar una persona diferente"
 
 #: ../gramps/gui/plug/_guioptions.py:698
 msgid "Active, bookmarked or home people"
-msgstr "Personas activas, en favoritos o inicial"
+msgstr "Personas activas, en marcadores o inicial"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -21922,7 +21923,8 @@ msgstr "Incluir hermanos de la persona central"
 msgid ""
 "Whether to only display the center person or all of his/her siblings too"
 msgstr ""
-"Si se debe mostrar sólo la persona central o también a todos sus hermanos"
+"Indica si se debe mostrar solo la persona central o también a todos sus "
+"hermanos"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:855
 #: ../gramps/plugins/drawreport/descendtree.py:1585
@@ -21961,7 +21963,7 @@ msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
 msgstr ""
-"Si se deben quitar los espacios en blanco dejados para las personas "
+"Indica si se deben quitar los espacios en blanco dejados para las personas "
 "desconocidas"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:877
@@ -22008,7 +22010,7 @@ msgstr "Incluir un borde"
 #: ../gramps/plugins/drawreport/ancestortree.py:906
 #: ../gramps/plugins/drawreport/descendtree.py:1643
 msgid "Whether to make a border around the report."
-msgstr "Si se debe poner un borde alrededor del informe."
+msgstr "Indica si se debe poner un borde alrededor del informe."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:909
 #: ../gramps/plugins/drawreport/descendtree.py:1646
@@ -22017,7 +22019,7 @@ msgstr "Incluir número de página"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:910
 msgid "Whether to print page numbers on each page."
-msgstr "Si se deben numerar las páginas."
+msgstr "Indica si se deben numerar las páginas."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:913
 #: ../gramps/plugins/drawreport/descendtree.py:1650
@@ -22043,7 +22045,8 @@ msgstr "Ajustar el árbol al tamaño de una página"
 #: ../gramps/plugins/drawreport/descendtree.py:1654
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr ""
-"Si se debe ajustar el árbol para encajar en un tamaño de papel específico"
+"Indica si se debe escalar el árbol para encajar en un tamaño de papel "
+"determinado"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:924
 #: ../gramps/plugins/drawreport/descendtree.py:1661
@@ -22075,18 +22078,18 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
-"Si se debe cambiar de tamaño la página para ajustarse al tamaño\n"
-"del árbol.  Nota:  la página tendrá un tamaño no estándar.\n"
+"Indica si se debe redimensionar la página para ajustarla al\n"
+"árbol. Nota: la página tendrá un tamaño no estándar.\n"
 "\n"
 "Con esta opción selecionada, ocurrirá lo siguiente:\n"
 "\n"
-"Con la opción 'No ajustar el árbol' la página\n"
+"Con la opción «No escalar árbol» la página\n"
 "  cambia de tamaño para ajustarse a la altura y anchura del árbol\n"
 "\n"
-"Con 'Ajustar el árbol al ancho de la página'\n"
+"Con «Escalar árbol a la anchura de la página»\n"
 "  la altura de la página se cambia a la altura del árbol\n"
 "\n"
-"Con 'Ajustar el árbol al tamaño de una página'\n"
+"Con «Escalar árbol al tamaño de una página»\n"
 "  la página se cambia de tamaño para quitar cualquier margen\n"
 "  vertical u horizontal"
 
@@ -23212,7 +23215,7 @@ msgstr "Incluir personas sin año de nacimiento conocido"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1157
 msgid "Whether to include people without known birth years."
-msgstr "Incluir personas sin año de nacimiento conocido."
+msgstr "Indica si se deben incluir personas sin año de nacimiento conocido."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1160
 msgid "Genders included"
@@ -33684,7 +33687,7 @@ msgstr "Si se debe mostrar el símbolo del género antes del nombre."
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
 msgid "Whether to list children."
-msgstr "Si se deben listar los hijos."
+msgstr "Indica si se deben enumerar los hijos."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:939
 #: ../gramps/plugins/textreport/detdescendantreport.py:1147
@@ -33694,7 +33697,7 @@ msgstr "Incluir el cónyuges de hijos"
 #: ../gramps/plugins/textreport/detancestralreport.py:940
 #: ../gramps/plugins/textreport/detdescendantreport.py:1148
 msgid "Whether to list the spouses of the children."
-msgstr "Si se deben listar los cónyuges de los hijos."
+msgstr "Indica si se deben enumerar los cónyuges de los hijos."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:943
 #: ../gramps/plugins/textreport/detdescendantreport.py:1159
@@ -34139,7 +34142,7 @@ msgstr "(magen)"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1111
 msgid "List events chronologically"
-msgstr "Listar los eventos de forma cronológica"
+msgstr "Enumerar eventos cronológicamente"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1112
 msgid "Whether to sort events into chronological order."
@@ -37233,7 +37236,7 @@ msgstr "Tamaño proporcional al número de descendientes"
 #: ../gramps/plugins/view/fanchartdescview.py:370
 #: ../gramps/plugins/view/fanchartview.py:441
 msgid "Show names on two lines"
-msgstr "Mostrar los nombres en dos líneas"
+msgstr "Mostrar nombres en dos renglones"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:380
 #: ../gramps/plugins/view/fanchartdescview.py:376
@@ -39038,7 +39041,7 @@ msgstr "Este es un sitio seguro (HTTPS)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2246
 msgid "Whether to use http:// or https://"
-msgstr "Si se debe usar http:// o https://"
+msgstr "Indica si se debe usar http:// o https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2249
 msgid "Toggle sections"
@@ -39242,7 +39245,7 @@ msgstr "Incluir imágenes y objetos audiovisuales"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2429
 msgid "Whether to include a gallery of media objects"
-msgstr "Incluir galería de y objetos audiovisuales"
+msgstr "Indica si se debe incluir una galería de objetos audiovisuales"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2433
 msgid "Create the images index"
