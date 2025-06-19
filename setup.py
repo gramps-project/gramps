@@ -164,9 +164,10 @@ def build_man(build_cmd):
 
                 if filename:
                     # Binary io, so open is OK
-                    with open(newfile, "rb") as f_in, gzip.open(
-                        man_file_gz, "wb"
-                    ) as f_out:
+                    with (
+                        open(newfile, "rb") as f_in,
+                        gzip.GzipFile(man_file_gz, "wb", mtime=0) as f_out,
+                    ):
                         f_out.writelines(f_in)
                         _LOG.info("Compiling %s >> %s", filename, man_file_gz)
 
