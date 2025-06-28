@@ -1835,9 +1835,10 @@ class BasePage:
             Html("meta", attr=_meta4, indent=False),
         )
         if self.report.options["index"]:
-            meta += (Html("meta", attr=_meta5, indent=False),
-                     Html("meta", attr=_meta6, indent=False),
-                     )
+            meta += (
+                Html("meta", attr=_meta5, indent=False),
+                Html("meta", attr=_meta6, indent=False),
+            )
 
         # Link to _NARRATIVESCREEN  stylesheet
         sub_cal = cal + 1 if cal > 0 else 1
