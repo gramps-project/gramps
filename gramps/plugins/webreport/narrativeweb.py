@@ -2255,6 +2255,10 @@ class NavWebOptions(MenuReportOptions):
         )
         addopt("splitindex", self.__splitindex)
 
+        self.__indexi = BooleanOption(_("Allow internet indexation."), False)
+        self.__indexi.set_help(_("Check it if you want google, bing... to spy on your data"))
+        addopt("index", self.__indexi)
+
     def __add_more_pages(self, menu):
         """
         Add more extra pages to the report
