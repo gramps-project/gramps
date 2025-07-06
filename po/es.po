@@ -28,7 +28,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-06-18 08:01+0000\n"
+"PO-Revision-Date: 2025-06-21 03:04+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -37,7 +37,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12.1\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1371,11 +1371,11 @@ msgstr "La base de datos está bloqueada, ¡no pudo abrirse!"
 #: ../gramps/cli/arghandler.py:635 ../gramps/cli/arghandler.py:692
 #: ../gramps/cli/arghandler.py:740
 msgid "Ignoring invalid options string."
-msgstr "Ignorando cadena de opciones inválida."
+msgstr "Se ignora la cadena de opciones no válida."
 
 #: ../gramps/cli/arghandler.py:664
 msgid "Unknown report name."
-msgstr "Nombre de reporte desconocido."
+msgstr "Nombre de informe desconocido."
 
 #: ../gramps/cli/arghandler.py:667
 #, python-format
@@ -1672,7 +1672,7 @@ msgstr "Ajuste actual de configuración de Gramps: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:383
 msgid "DEFAULT"
-msgstr "PREDEFINIDO"
+msgstr "PREDETERMINADO"
 
 #: ../gramps/cli/argparser.py:392
 #, python-format
@@ -1686,7 +1686,7 @@ msgstr "Gramps: no existe ese ajuste de configuración: '%s'"
 
 #: ../gramps/cli/argparser.py:498
 msgid "Error parsing the arguments"
-msgstr "Error analizando los argumentos"
+msgstr "Error al analizar los argumentos"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:208
@@ -2096,7 +2096,7 @@ msgstr ", "
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
-"   Utilice '%(donottranslate)s' para ver la descripción y los valores "
+"   Utilice «%(donottranslate)s» para ver la descripción y los valores "
 "aceptables"
 
 #: ../gramps/cli/plug/__init__.py:569
@@ -2111,7 +2111,7 @@ msgstr ""
 #: ../gramps/cli/plug/__init__.py:580
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr "Utilice '%(notranslate)s' para ver los valores válidos."
+msgstr "Utilice «%(notranslate)s» para ver los valores válidos."
 
 #: ../gramps/cli/plug/__init__.py:600
 #: ../gramps/gen/plug/report/stdoptions.py:334
@@ -10691,7 +10691,7 @@ msgstr "En una línea propia"
 
 #: ../gramps/gen/plug/report/stdoptions.py:399
 msgid "Whether (and where) to include Gramps IDs"
-msgstr "Si se debe Incluir (y dónde) el ID de Gramps"
+msgstr "Indica si se deben incluir (y dónde) ids. de Gramps"
 
 #: ../gramps/gen/plug/report/stdoptions.py:402
 msgid "Whether to include Gramps IDs"
@@ -17359,7 +17359,7 @@ msgstr ""
 #: ../gramps/gui/glade/editperson.glade:209
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr ""
-"Un tratamiento que se antepone al nombre de la persona como 'Dr.' o 'Rev.'"
+"Un tratamiento que se antepone al nombre de la persona como «Dr.» o «Rev.»"
 
 #: ../gramps/gui/glade/editname.glade:301
 #: ../gramps/gui/glade/editperson.glade:223
@@ -20491,7 +20491,7 @@ msgstr "No hay una descripción disponible"
 #: ../gramps/gui/plug/report/_styleeditor.py:391
 #, python-format
 msgid "(Embedded style '%s' must be edited separately)"
-msgstr "(El estilo incrustado '%s' debe editarse por separado)"
+msgstr "(El estilo incrustado «%s» debe editarse por separado)"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:446
 #, python-format
@@ -22101,7 +22101,7 @@ msgstr "Incluir páginas en blanco"
 #: ../gramps/plugins/drawreport/ancestortree.py:954
 #: ../gramps/plugins/drawreport/descendtree.py:1691
 msgid "Whether to include pages that are blank."
-msgstr "Si se deben incluir las páginas que estén en blanco."
+msgstr "Indica si se deben incluir las páginas vacías."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:960
 #: ../gramps/plugins/drawreport/calendarreport.py:625
@@ -33707,7 +33707,7 @@ msgstr "Incluir eventos"
 #: ../gramps/plugins/textreport/detancestralreport.py:944
 #: ../gramps/plugins/textreport/detdescendantreport.py:1160
 msgid "Whether to include events."
-msgstr "Si se deben incluir eventos."
+msgstr "Indica si se deben incluir eventos."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:947
 msgid "Include other events"
@@ -33739,7 +33739,7 @@ msgstr "Incluir Fotos/Imágenes de la Galería"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1168
 #: ../gramps/plugins/textreport/indivcomplete.py:1172
 msgid "Whether to include images."
-msgstr "Si se deben incluir imágenes."
+msgstr "Indica si se deben incluir imágenes."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:961
 #: ../gramps/plugins/textreport/detdescendantreport.py:1171
@@ -33756,7 +33756,7 @@ msgstr "Incluir notas"
 #: ../gramps/plugins/textreport/detancestralreport.py:964
 #: ../gramps/plugins/textreport/detdescendantreport.py:1174
 msgid "Whether to include notes."
-msgstr "Si se deben incluir notas."
+msgstr "Indica si se deben incluir notas."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:967
 #: ../gramps/plugins/textreport/detdescendantreport.py:1177
@@ -33766,7 +33766,7 @@ msgstr "Incluir fuentes"
 #: ../gramps/plugins/textreport/detancestralreport.py:968
 #: ../gramps/plugins/textreport/detdescendantreport.py:1178
 msgid "Whether to include source references."
-msgstr "Si se deben incluir referencias a las fuentes."
+msgstr "Indica si se deben incluir referencias a las fuentes."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:971
 #: ../gramps/plugins/textreport/detdescendantreport.py:1181
@@ -33794,7 +33794,7 @@ msgstr "Incluir atributos"
 #: ../gramps/plugins/textreport/familygroup.py:780
 #: ../gramps/plugins/textreport/indivcomplete.py:1186
 msgid "Whether to include attributes."
-msgstr "Si se deben incluir Atributos."
+msgstr "Indica si se deben incluir atributos."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:984
 #: ../gramps/plugins/textreport/detdescendantreport.py:1194
@@ -33814,7 +33814,7 @@ msgstr "Incluir nombres alternativos"
 #: ../gramps/plugins/textreport/detancestralreport.py:989
 #: ../gramps/plugins/textreport/detdescendantreport.py:1199
 msgid "Whether to include other names."
-msgstr "Si se deben incluir otros nombres."
+msgstr "Indica si se deben incluir otros nombres."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:995
 #: ../gramps/plugins/textreport/detdescendantreport.py:1226
@@ -33928,15 +33928,15 @@ msgstr "Si se deben incluir referencias al cónyuge."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1203
 msgid "Include sign of succession ('+') in child-list"
-msgstr "Incluir signo de sucesión ('+') en la lista de hijos"
+msgstr "Incluir signo de sucesión («+») en la lista de hijos"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1207
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
 msgstr ""
-"Si se debe incluir un signo ('+') antes del número de descendiente en la "
-"lista de hijos para indicar un hijo con sucesión."
+"Indica si se debe incluir un signo («+») antes del número de descendiente en "
+"la lista de hijos para indicar un hijo con sucesión."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1214
 msgid "Include path to start-person"
