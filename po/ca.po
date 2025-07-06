@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-06-11 00:01+0000\n"
+"PO-Revision-Date: 2025-06-27 15:35+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1708,7 +1708,7 @@ msgstr "Bloquejat?"
 #: ../gramps/cli/clidbman.py:216
 #, python-format
 msgid "Family Tree \"%s\":"
-msgstr "Arbres Genealògic \"%s\":"
+msgstr "Arbre genealògic «%s»:"
 
 #. Translators: needed for French, ignore otherwise
 #. Translators: for French, else ignore
@@ -16176,7 +16176,7 @@ msgstr "Data de naixement"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:172
 #, python-format
 msgid "example: \"%(msg1)s\" or \"%(msg2)s\""
-msgstr "exemple: \"%(msg1)s\" o \"%(msg2)s\""
+msgstr "exemple: «%(msg1)s» o «%(msg2)s»"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:168
 #: ../gramps/plugins/drawreport/statisticschart.py:405
@@ -31924,7 +31924,7 @@ msgstr "Parella amb més diferència d'edat"
 #: ../gramps/plugins/lib/librecords.py:656
 #, python-format
 msgid "\"%(callname)s\" (%(firstname)s)"
-msgstr "\"%(callname)s\" (%(firstname)s)"
+msgstr "«%(callname)s» (%(firstname)s)"
 
 #: ../gramps/plugins/lib/libtreebase.py:778
 msgid "Top Left"
@@ -35781,7 +35781,7 @@ msgstr "No_Emparentats"
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
 msgid "Not related to \"%s\""
-msgstr "Sense parentesc amb \"%s\""
+msgstr "Sense parentesc amb «%s»"
 
 #: ../gramps/plugins/tool/notrelated.py:106
 msgid "NotRelated"
