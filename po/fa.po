@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Nick Hall <nick-h@gramps-project.org>, 2023.
 # Abolfazl Mazloomi <firetooth10@gmail.com>, 2024.
+# Shahin “Shahin Ozone” Arab <shahino3ozone@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2024-08-25 18:20+0000\n"
-"Last-Translator: Abolfazl Mazloomi <firetooth10@gmail.com>\n"
+"PO-Revision-Date: 2025-07-05 16:03+0000\n"
+"Last-Translator: Shahin “Shahin Ozone” Arab <shahino3ozone@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fa/>\n"
 "Language: fa\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.7.1-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -25099,7 +25100,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1452
 msgid "REFN"
-msgstr ""
+msgstr "منبع"
 
 #: ../gramps/plugins/importer/importprogen.glade:1456
 msgid ""
