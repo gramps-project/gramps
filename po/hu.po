@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-02-16 01:18+0000\n"
+"PO-Revision-Date: 2025-06-21 03:04+0000\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hu/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -19122,10 +19122,8 @@ msgid "Select a different person"
 msgstr "Válasszon egy másik személyt"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Könyvjelzőzött emberek"
+msgstr "Aktív, könyvjelzőzött vagy kezdő emberek"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -19136,10 +19134,8 @@ msgid "Select a different family"
 msgstr "Válasszon egy másik családot"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "Könyvjelzőzött családok"
+msgstr "Aktív, vagy könyvjelzőzött családok"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
@@ -21442,10 +21438,8 @@ msgid "Closes print preview window"
 msgstr "A nyomtatási előnézet ablak bezárása"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:39
-#, fuzzy
-#| msgid "_Print..."
 msgid "_Print"
-msgstr "_Nyomtatás..."
+msgstr "_Nyomtatás"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
@@ -21453,7 +21447,7 @@ msgstr "A jelenlegi fájl nyomtatása"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:63
 msgid "_First"
-msgstr ""
+msgstr "_Első"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
@@ -21519,7 +21513,7 @@ msgstr "A következő oldal mutatása"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:108
 msgid "_Last"
-msgstr ""
+msgstr "_Utolsó"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -35110,10 +35104,8 @@ msgid "Guess"
 msgstr "Becslés"
 
 #: ../gramps/plugins/tool/eventcmp.glade:37
-#, fuzzy
-#| msgid "Save As"
 msgid "Save _As"
-msgstr "Mentés másként"
+msgstr "Mentés _másként"
 
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
