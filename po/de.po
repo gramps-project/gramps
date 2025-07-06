@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-06-08 16:42+0000\n"
+"PO-Revision-Date: 2025-07-05 16:03+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8423,7 +8423,7 @@ msgstr "Unverheiratet"
 
 #: ../gramps/gen/lib/familyreltype.py:59
 msgid "Civil Union"
-msgstr "Eingetragene Partnerschaft"
+msgstr "Lebenspartnerschaft"
 
 #: ../gramps/gen/lib/grampstype.py:268 ../gramps/gen/lib/ldsord.py:200
 #: ../gramps/gui/clipboard.py:918
@@ -12409,7 +12409,7 @@ msgstr "Hintergrund für Unverheiratete"
 
 #: ../gramps/gui/configure.py:945
 msgid "Background for Civil union"
-msgstr "Hintergrund für Eingetragene Partnerschaft"
+msgstr "Hintergrund für Lebenspartnerschaft"
 
 #: ../gramps/gui/configure.py:946
 msgid "Background for Unknown"
@@ -14122,7 +14122,7 @@ msgstr "Sortiertes Vertrauen"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:102
 msgid "_Source Citations"
-msgstr "_Quellennachweise"
+msgstr "_Quellenangaben"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:203
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:223
@@ -26243,7 +26243,7 @@ msgstr "Position der Miniaturansicht"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1019
 msgid "Include occupation"
-msgstr "Beruf einbeziehen"
+msgstr "Beruf angeben"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1020
 msgid "Do not include any occupation"
@@ -31912,7 +31912,7 @@ msgstr "Importiere Familien."
 
 #: ../gramps/plugins/lib/libprogen.py:1856
 msgid "Civil union"
-msgstr "Eingetragene Partnerschaft"
+msgstr "Lebenspartnerschaft"
 
 #: ../gramps/plugins/lib/libprogen.py:1977
 msgid "Wedding"
@@ -34690,7 +34690,7 @@ msgstr "E-Mail Adresse"
 #: ../gramps/plugins/textreport/tagreport.py:766
 #: ../gramps/plugins/view/sourceview.py:88
 msgid "Publication Information"
-msgstr "Informationen zur Veröffentlichung"
+msgstr "Veröffentlichungsinformationen"
 
 #: ../gramps/plugins/textreport/tagreport.py:927
 msgid "The tag to use for the report"
@@ -35332,8 +35332,8 @@ msgstr[1] "{quantity} ungültige Namensformatreferenzen wurden entfernt\n"
 #, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
-msgstr[0] "{quantity} ungültige Quellenfundstelle wurde korrigiert\n"
-msgstr[1] "{quantity} ungültige Quellenfundstellen wurden korrigiert\n"
+msgstr[0] "{quantity} ungültige Quellenangabe wurde korrigiert\n"
+msgstr[1] "{quantity} ungültige Quellenangaben wurden korrigiert\n"
 
 #: ../gramps/plugins/tool/check.py:3020
 #, python-brace-format
@@ -36976,7 +36976,7 @@ msgstr "Quelle: Abkürzung"
 #: ../gramps/plugins/view/citationlistview.py:111
 #: ../gramps/plugins/view/citationtreeview.py:104
 msgid "Source: Publication Information"
-msgstr "Quelle: Informationen zur Veröffentlichung"
+msgstr "Quelle: Veröffentlichungsinformationen"
 
 #: ../gramps/plugins/view/citationlistview.py:112
 msgid "Source: Private"
@@ -40096,7 +40096,7 @@ msgstr "Name"
 
 #: ../gramps/plugins/webreport/source.py:401
 msgid "Publication information"
-msgstr "Informationen zur Veröffentlichung"
+msgstr "Veröffentlichungsinformationen"
 
 #: ../gramps/plugins/webreport/statistics.py:117
 msgid "Database overview"
