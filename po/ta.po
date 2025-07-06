@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-03-02 21:10+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2025-07-01 20:01+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ta/>\n"
 "Language: ta\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Launchpad-Export-Date: 2014-07-26 03:32+0000\n"
 
 #: ../data/holidays.xml:3
@@ -961,16 +961,12 @@ msgstr ""
 "https://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/."
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b> கிராம்ப்ச் முகப்புப்பக்கம் </b> <br/> கிராம்ப்ச் முகப்புப்பக்கம் http://gramps-project."
-"org/ இல் உள்ளது."
+"<b> கிராம்ப்ச் முகப்புப்பக்கம் </b> <br/> கிராம்ப்ச் முகப்புப்பக்கம் https://gramps-"
+"project.org/ இல் உள்ளது."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1141,12 +1137,6 @@ msgstr ""
 "மற்றும் திறந்த மூல முன்முயற்சி."
 
 #: ../data/tips.xml:126
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read "
-#| "about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1154,9 +1144,9 @@ msgid ""
 "the rights and restrictions of this license."
 msgstr ""
 "<b> கிராம்ப்ச் மென்பொருள் உரிமம் </b> <br/> நீங்கள் மற்றவர்களுடன் கிராம்ப்களைப் பயன்படுத்தவும் "
-"பகிர்ந்து கொள்ளவும் இலவசம். இந்த உரிமத்தின் உரிமைகள் மற்றும் கட்டுப்பாடுகள் குறித்து படிக்க "
-"http://www.gnu.org/licenses/licenses.html#gpl ஐப் பார்க்கவும் கிராம்ப்ச் சுதந்திரமாக "
-"விநியோகிக்கப்படுகிறது."
+"பகிர்ந்து கொள்ளவும் இலவசம். இந்த உரிமத்தின் உரிமைகள் மற்றும் கட்டுப்பாடுகள்குறித்து படிக்க "
+"https://www.gnu.org/licenses/licenses.html#gpl ஐப் பார்க்கவும் கிராம்ப்ச் குனு பொது "
+"பொதுமக்கள் உரிமத்தின் கீழ் சுதந்திரமாக விநியோகிக்கப்படுகிறது."
 
 #: ../data/tips.xml:128
 msgid ""
@@ -2195,10 +2185,8 @@ msgstr "மாத நாள், ஆண்டு"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
-#, fuzzy
-#| msgid "Month Day, Year"
 msgid "Mon Day, Year"
-msgstr "மாத நாள், ஆண்டு"
+msgstr "மோன் நாள், ஆண்டு"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:88
@@ -2207,10 +2195,8 @@ msgstr "நாள் மாத ஆண்டு"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
-#, fuzzy
-#| msgid "Day Month Year"
 msgid "Day Mon Year"
-msgstr "நாள் மாத ஆண்டு"
+msgstr "நாள் மோன் ஆண்டு"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
@@ -4030,16 +4016,12 @@ msgstr ""
 "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்ட மேற்கோள்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Citations with the <tag>"
 msgid "Citations with a note of type <type>"
-msgstr "<DAG> உடன் மேற்கோள்கள்"
+msgstr "வகை <வகை> குறிப்புடன் மேற்கோள்கள்"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches a citation with a source with a specified Gramps ID"
 msgid "Matches citations with a note of the specified type"
-msgstr "ஒரு குறிப்பிட்ட கிராம்ப்ச் ஐடியுடன் ஒரு மூலத்துடன் ஒரு மேற்கோளுடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் மேற்கோள்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:50
@@ -4047,8 +4029,6 @@ msgstr "ஒரு குறிப்பிட்ட கிராம்ப்ச�
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:50
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:50
-#, fuzzy
-#| msgid "Note Filters"
 msgid "Note filters"
 msgstr "குறிப்பு வடிப்பான்கள்"
 
@@ -4341,16 +4321,12 @@ msgid "Main Participants:"
 msgstr "முக்கிய பங்கேற்பாளர்கள்:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
-#, fuzzy
-#| msgid "Notes matching parameters"
 msgid "Events matching parameters"
-msgstr "குறிப்புகள் பொருந்தும் அளவுருக்கள்"
+msgstr "நிகழ்வுகள் பொருந்தும் அளவுருக்கள்"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches events with particular parameters"
-msgstr "குறிப்பிட்ட அளவுருக்களுடன் குறிப்புகளுடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட அளவுருக்களுடன் நிகழ்வுகளுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -4395,16 +4371,12 @@ msgstr ""
 "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்ட நிகழ்வுகளுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "<dag> உடன் நிகழ்வுகள்"
+msgstr "வகை <வகை> குறிப்புடன் நிகழ்வுகள்"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "குறிப்பிட்ட வடிகட்டி பெயருடன் பொருந்தக்கூடிய நிகழ்வுகளுடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் நிகழ்வுகளுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4691,16 +4663,12 @@ msgstr ""
 "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்ட குடும்பங்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note of type <type>"
-msgstr "<பெயர்> உடன் தந்தையுடன் குடும்பங்கள்"
+msgstr "வகை <வகை> குறிப்பு கொண்ட குடும்பங்கள்"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches families matched by the specified filter name"
 msgid "Matches families with a note of the specified type"
-msgstr "குறிப்பிட்ட வடிகட்டி பெயரால் பொருந்தக்கூடிய குடும்பங்களுடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் குடும்பங்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -5527,16 +5495,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்ட நபர்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
-#, fuzzy
-#| msgid "People with the <Name type>"
 msgid "People with a note of type <type>"
-msgstr "<பெயர் வகை> உள்ளவர்கள்"
+msgstr "வகை <வகை> குறிப்பு கொண்டவர்கள்"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches people that are ancestors of a specified person"
 msgid "Matches people with a note of the specified type"
-msgstr "குறிப்பிட்ட நபரின் முன்னோர்களுக்கு பொருந்துகிறது"
+msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் மக்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:55
 msgid "People who are neither male nor female"
@@ -6189,16 +6153,12 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்ட இடங்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Places with the <tag>"
 msgid "Places with a note of type <type>"
-msgstr "<dag> உடன் இடங்கள்"
+msgstr "வகை <Type> இன் குறிப்பு கொண்ட இடங்கள்"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches places matched by the specified filter name"
 msgid "Matches places with a note of the specified type"
-msgstr "குறிப்பிட்ட வடிகட்டி பெயரால் பொருந்தக்கூடிய இடங்கள்"
+msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் இடங்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:61
 msgid "Street:"
@@ -6597,16 +6557,12 @@ msgstr ""
 "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்டிருக்கும் ஆதாரங்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Sources with the <tag>"
 msgid "Sources with a note of type <type>"
-msgstr "<dag> உடன் ஆதாரங்கள்"
+msgstr "வகை <வகை> குறிப்புடன் ஆதாரங்கள்"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches sources matched by the specified filter name"
 msgid "Matches sources with a note of the specified type"
-msgstr "குறிப்பிட்ட வடிகட்டி பெயரால் பொருந்தக்கூடிய ஆதாரங்கள்"
+msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் ஆதாரங்களை பொருத்துகிறது"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -6637,10 +6593,8 @@ msgstr ""
 " \"அழைப்பு எண்\" இல் ஒரு அடி மூலக்கூறு உள்ளது"
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
-#, fuzzy
-#| msgid "Matches Notes with particular parameters"
 msgid "Matches sources with particular parameters"
-msgstr "குறிப்பிட்ட அளவுருக்களுடன் குறிப்புகளுடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட அளவுருக்கள் கொண்ட ஆதாரங்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -7708,24 +7662,20 @@ msgid "Child"
 msgstr "சேய்"
 
 #: ../gramps/gen/lib/eventroletype.py:87
-#, fuzzy
-#| msgid "Multiple parents"
 msgid "Multiple birth"
-msgstr "பல பெற்றோர்"
+msgstr "பல பிறப்பு"
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "நண்பர்"
 
 #: ../gramps/gen/lib/eventroletype.py:89
-#, fuzzy
-#| msgid "Neighborhood"
 msgid "Neighbor"
-msgstr "அக்கம்"
+msgstr "அயலவர்"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "அலுவலர்"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -8364,16 +8314,12 @@ msgid "Type"
 msgstr "வகை"
 
 #: ../gramps/gen/lib/grampstype.py:271
-#, fuzzy
-#| msgid "Custom filter"
 msgid "Custom type"
-msgstr "தனிப்பயன் வடிகட்டி"
+msgstr "தனிப்பயன் வகை"
 
 #: ../gramps/gen/lib/grampstype.py:272
-#, fuzzy
-#| msgid "Type face"
 msgid "Type code"
-msgstr "முகத்தைத் தட்டச்சு செய்க"
+msgstr "குறியீட்டைத் தட்டச்சு செய்க"
 
 #: ../gramps/gen/lib/ldsord.py:95
 msgid "Endowment"
@@ -8701,15 +8647,11 @@ msgid "Matrilineal"
 msgstr "திருமண"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
-#, fuzzy
-#| msgid "Occupation"
 msgctxt "Surname"
 msgid "Occupation"
 msgstr "தொழில்"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
-#, fuzzy
-#| msgid "Location"
 msgctxt "Surname"
 msgid "Location"
 msgstr "இடம்"
@@ -10870,71 +10812,54 @@ msgstr "திகதி"
 
 #: ../gramps/gen/utils/alive.py:213 ../gramps/gen/utils/alive.py:244
 msgid "date fallback"
-msgstr ""
+msgstr "தேதி குறைவானது"
 
 #: ../gramps/gen/utils/alive.py:263 ../gramps/gen/utils/alive.py:441
 #, python-brace-format
 msgid ""
 "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
 msgstr ""
+"இந்த நபருக்கான நேரடி சான்றுகள் - பிறப்பு: {birth_min_src}, மரணம்: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:352
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's age"
 msgstr "தாயின் அகவை"
 
 #: ../gramps/gen/utils/alive.py:357
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's age"
 msgstr "தந்தையின் அகவை"
 
 #: ../gramps/gen/utils/alive.py:361
-#, fuzzy
-#| msgid "death date"
 msgid "from death date"
-msgstr "இறப்பு தேதி"
+msgstr "இறப்பு தேதியிலிருந்து"
 
 #: ../gramps/gen/utils/alive.py:365
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "தாயின் அகவை"
+msgstr "தாயின் இறப்பு"
 
 #: ../gramps/gen/utils/alive.py:370
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "தந்தையின் அகவை"
+msgstr "தந்தையின் இறப்பு"
 
 #: ../gramps/gen/utils/alive.py:374
-#, fuzzy
-#| msgid "%(person)s, birth"
 msgid "person's death"
-msgstr "%(person)s, பிறப்பு"
+msgstr "நபரின் இறப்பு"
 
 #: ../gramps/gen/utils/alive.py:381
-#, fuzzy
-#| msgid "Not siblings"
 msgid "oldest sibling's age"
-msgstr "உடன்பிறப்புகள் அல்ல"
+msgstr "பழமையான உடன்பிறப்பின் அகவை"
 
 #: ../gramps/gen/utils/alive.py:386
-#, fuzzy
-#| msgid "Not siblings"
 msgid "youngest sibling's age"
-msgstr "உடன்பிறப்புகள் அல்ல"
+msgstr "இளைய உடன்பிறப்பின் அகவை"
 
 #: ../gramps/gen/utils/alive.py:429
 msgid "birth date and known to be dead"
-msgstr ""
+msgstr "பிறந்த தேதி மற்றும் இறந்துவிட்டதாக அறியப்படுகிறது"
 
 #: ../gramps/gen/utils/alive.py:432
-#, fuzzy
-#| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "மூதாதையர் பிறந்த தேதி"
+msgstr "பிறந்த தேதியிலிருந்து ஈடுசெய்யவும்"
 
 #: ../gramps/gen/utils/alive.py:448
 #, python-brace-format
@@ -10942,6 +10867,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
+"பெற்றோர் மற்றும் உடன்பிறப்புகளிடமிருந்து ஊகிக்கப்படுகிறது - பிறப்பு: {birth_min_src}, "
+"மரணம்: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:455
 #, python-brace-format
@@ -10949,6 +10876,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
+"பெற்றோர் மற்றும் உடன்பிறப்புகளிடமிருந்து ஊகிக்கப்படுகிறது - பிறப்பு: {birth_min_src} "
+"(ஆரம்பம்) {birth_max_src} (சமீபத்திய), மரணம்: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:544
 msgid "a spouse's birth-related date, "
@@ -11049,7 +10978,7 @@ msgstr "குடும்பம்"
 
 #: ../gramps/gen/utils/grampslocale.py:771
 msgid "the place"
-msgstr "இடம்"
+msgstr "அந்த இடம்"
 
 #: ../gramps/gen/utils/grampslocale.py:773
 msgid "the event"
@@ -11764,6 +11693,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"கிராம்ப்களைத் தொடங்க ஆர்ச்சன் தொகுப்பு தேவை. \n"
+"\n"
+"கிராம்ப்ச் இப்போது முடிவடையும்."
 
 #: ../gramps/grampsapp.py:323 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:408 ../gramps/grampsapp.py:425
@@ -12705,27 +12637,23 @@ msgstr "கருவிப்பட்டியில் விருப்ப�
 
 #: ../gramps/gui/configure.py:2124
 msgid "Both text and icons"
-msgstr ""
+msgstr "உரை மற்றும் சின்னங்கள் இரண்டும்"
 
 #: ../gramps/gui/configure.py:2125 ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
 msgstr "உரை மட்டும்"
 
 #: ../gramps/gui/configure.py:2126
-#, fuzzy
-#| msgid "New addons only"
 msgid "Icons only"
-msgstr "புதிய துணை நிரல்கள் மட்டுமே"
+msgstr "சின்னங்கள் மட்டுமே"
 
 #: ../gramps/gui/configure.py:2131
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr ""
+msgstr "கருவிப்பட்டி பொத்தான்களில் உரை, சின்னங்கள் அல்லது இரண்டையும் காண்பி."
 
 #: ../gramps/gui/configure.py:2133
-#, fuzzy
-#| msgid "_Toolbar"
 msgid "Toolbar Style"
-msgstr "கருவிப்பட்டை"
+msgstr "கருவிப்பட்டி நடை"
 
 #: ../gramps/gui/configure.py:2141
 msgid "Show close button in gramplet bar tabs"
@@ -14158,10 +14086,8 @@ msgid "_Names"
 msgstr "_ பெயர்கள்"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Set as Preferred name"
-msgstr "விருப்பமான பெயர்"
+msgstr "விருப்பமான பெயராக அமைக்கவும்"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1273 ../gramps/gui/plug/_windows.py:946
@@ -16081,6 +16007,8 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
+"கொடுக்கப்பட்ட மதிப்புகளின் அடிப்படையில் புதிய தனிப்பயன் வடிகட்டியைச் சேர்க்க இது ஒரு "
+"உரையாடலைத் திறக்கிறது."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
 msgid "Reset"
@@ -16089,20 +16017,21 @@ msgstr "மீட்டமை"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:168
 #, python-format
 msgid "Elapsed time: %.2fs"
-msgstr ""
+msgstr "கடந்த நேரம்: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:379
 msgid "You should select a place when using the 'Within' rule"
 msgstr ""
+"'உள்ளே' விதியைப் பயன்படுத்தும் போது நீங்கள் ஒரு இடத்தைத் தேர்ந்தெடுக்க வேண்டும்"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:389
 msgid "Supply at least one value"
-msgstr ""
+msgstr "குறைந்தது ஒரு மதிப்பை வழங்கவும்"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:404
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
-msgstr ""
+msgstr "{today} இல் வடிகட்டி கிராம்ப் மூலம் உருவாக்கப்பட்டது"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -18021,10 +17950,8 @@ msgid "Metric"
 msgstr "மெட்ரிக்"
 
 #: ../gramps/gui/glade/plugins.glade:22
-#, fuzzy
-#| msgid "Wiki"
 msgid "_Wiki"
-msgstr "விக்கி"
+msgstr "_ விக்கி"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -19101,10 +19028,8 @@ msgid "Select a different person"
 msgstr "வேறு நபரைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "நூல்குறியிடப்பட்ட மக்கள்"
+msgstr "செயலில், புக்மார்க்கு அல்லது வீட்டு மக்கள்"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -19115,10 +19040,8 @@ msgid "Select a different family"
 msgstr "வேறு குடும்பத்தைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "புக்மார்க்கு குடும்பங்கள்"
+msgstr "செயலில் அல்லது புக்மார்க்கு செய்யப்பட்ட குடும்பங்கள்"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
@@ -19238,10 +19161,8 @@ msgid "All statuses"
 msgstr "அனைத்து நிலைகளும்"
 
 #: ../gramps/gui/plug/_windows.py:469
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Reset addon filters to defaults"
-msgstr "இயல்புநிலைக்கு மீட்டமைக்கவும்"
+msgstr "கூட்டு வடிப்பான்களை இயல்புநிலைக்கு மீட்டமைக்கவும்"
 
 #: ../gramps/gui/plug/_windows.py:483
 msgid "Settings"
@@ -19273,40 +19194,32 @@ msgstr "பொருந்தக்கூடிய துணை நிரல்�
 
 #: ../gramps/gui/plug/_windows.py:710
 msgid "Insert a project"
-msgstr ""
+msgstr "ஒரு திட்டத்தை செருகவும்"
 
 #: ../gramps/gui/plug/_windows.py:712
-#, fuzzy
 msgid "Remove the selected project"
-msgstr "தேர்ந்தெடுக்கப்பட்ட வாழ்கைத்துனையை நீக்கு"
+msgstr "தேர்ந்தெடுக்கப்பட்ட திட்டத்தை அகற்று"
 
 #: ../gramps/gui/plug/_windows.py:714
-#, fuzzy
-#| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
-msgstr "குழந்தைகள் பட்டியலில் குழந்தையை நகர்த்தவும்"
+msgstr "பட்டியலில் திட்டத்தை மேல்நோக்கி நகர்த்தவும்"
 
 #: ../gramps/gui/plug/_windows.py:716
-#, fuzzy
-#| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
-msgstr "குழந்தைகள் பட்டியலில் குழந்தையை நகர்த்தவும்"
+msgstr "பட்டியலில் திட்டத்தை கீழ்நோக்கி நகர்த்தவும்"
 
 #: ../gramps/gui/plug/_windows.py:718
-#, fuzzy
-#| msgid "Restore project defaults"
 msgid "Revert to the project defaults"
-msgstr "திட்ட இயல்புநிலைகளை மீட்டெடுங்கள்"
+msgstr "திட்ட இயல்புநிலைகளுக்கு திரும்பவும்"
 
 #: ../gramps/gui/plug/_windows.py:755
 msgid "Allow Gramps to install required Python modules"
 msgstr "தேவையான பைதான் தொகுதிகளை நிறுவ கிராம்ப்களை அனுமதிக்கவும்"
 
 #: ../gramps/gui/plug/_windows.py:757
-#, fuzzy
-#| msgid "Allow Gramps to install required Python modules"
 msgid "Where possible, try to install any missing prerequisite Python modules"
-msgstr "தேவையான பைதான் தொகுதிகளை நிறுவ கிராம்ப்களை அனுமதிக்கவும்"
+msgstr ""
+"சாத்தியமான இடங்களில், காணாமல் போன முன்நிபந்தனை பைதான் தொகுதிகள் நிறுவ முயற்சிக்கவும்"
 
 #: ../gramps/gui/plug/_windows.py:765
 msgid "Scheduled update checks"
@@ -21425,9 +21338,8 @@ msgid "Closes print preview window"
 msgstr "அச்சு முன்னோட்ட சாளரத்தை மூடுகிறது"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:39
-#, fuzzy
 msgid "_Print"
-msgstr "திருத்து... (_E)"
+msgstr "_Print"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
@@ -21435,7 +21347,7 @@ msgstr "தற்போதைய கோப்பை அச்சிடுகி�
 
 #: ../gramps/plugins/docgen/gtkprint.glade:63
 msgid "_First"
-msgstr ""
+msgstr "_ முதல்"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
@@ -21501,7 +21413,7 @@ msgstr "அடுத்த பக்கத்தைக் காட்டுக�
 
 #: ../gramps/plugins/docgen/gtkprint.glade:108
 msgid "_Last"
-msgstr ""
+msgstr "_ லாச்ட்"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -23645,35 +23557,29 @@ msgstr ""
 "பாதுகாப்பாக உருவாக்குவது?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update "
 "Gramps every time an update is released?%(html_end)s\n"
-msgstr ""
-"  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update "
-"Gramps every time an update is released?%(html_end)s\n"
+msgstr "  5.\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:124
 msgid "Data Entry"
 msgstr "தரவு உள்ளீடு"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:134
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
-msgstr ""
-"  6. %(gramps_manual_html_start)s%(section)sHow should information about "
-"marriages be entered?%(html_end)s\n"
+msgstr "  6\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:148
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  7. %(gramps_FAQ_html_start)s%(faq_section)sWhat's the difference between a "
 "residence and an address?%(html_end)s\n"
-msgstr ""
-"  7. %(gramps_FAQ_html_start)s%(faq_section)sWhat's the difference between a "
-"residence and an address?%(html_end)s\n"
+msgstr "  7.\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:155
 msgid "Media Files"
@@ -23698,13 +23604,11 @@ msgstr ""
 "objects?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:183
-#, fuzzy, python-format
+#, python-format
 msgid ""
 " 10. %(gramps_FAQ_html_start)s%(faq_section)sHow can I make a website with "
 "Gramps and my tree?%(html_end)s\n"
-msgstr ""
-" 10. %(gramps_FAQ_html_start)s%(faq_section)sHow can I make a website with "
-"Gramps and my tree?%(html_end)s\n"
+msgstr " 10.\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:197
 #, python-format
@@ -23714,45 +23618,37 @@ msgstr ""
 "%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:206
-#, fuzzy, python-format
+#, python-format
 msgid ""
 " 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a "
 "bug?%(html_end)s\n"
-msgstr ""
-" 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a "
-"bug?%(html_end)s\n"
+msgstr " 12.\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:215
-#, fuzzy, python-format
+#, python-format
 msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
-msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
-"%(html_end)s\n"
+msgstr " 13\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:224
-#, fuzzy, python-format
+#, python-format
 msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
-msgstr ""
-" 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
-"%(html_end)s\n"
+msgstr " 14\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:233
-#, fuzzy, python-format
+#, python-format
 msgid " 15. %(gramps_wiki_html_start)s%(section)sHow do I ...?%(html_end)s\n"
-msgstr " 15. %(gramps_wiki_html_start)s%(section)sHow do I ...?%(html_end)s\n"
+msgstr " 15\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:242
-#, fuzzy, python-format
+#, python-format
 msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
-msgstr ""
-" 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
-"%(html_end)s\n"
+msgstr " 16\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:56
 msgid "Double-click given name for details"
@@ -23785,16 +23681,12 @@ msgid "Total people"
 msgstr "மொத்த மக்கள்"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_5.2_wiki_manual _ -_ கிராம்ப்ச்#கிராம்பிள்_லச்ட்"
+msgstr "Gramps_6.0_wiki_manual _ -_ கிராம்பிள்கள்#கிராம்ப்_லிச்ட்"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
-#, fuzzy
-#| msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_5.2_wiki_manual _ -_ கருவிகள்#பிழைத்திருத்தம்"
+msgstr "Gramps_6.0_wiki_manual _ -_ கருவிகள்#பிழைத்திருத்தம்"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -26074,20 +25966,16 @@ msgid "call"
 msgstr "அழைப்பு"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
-#| msgid "nickname"
 msgid "nick"
-msgstr "புனைப்பெயர்"
+msgstr "நிக்"
 
 #: ../gramps/plugins/importer/importcsv.py:226
 msgid "Nick"
 msgstr "நிக்"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
-#| msgid "nickname"
 msgid "nick_name"
-msgstr "புனைப்பெயர்"
+msgstr "நிக்_பேம்"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -29479,7 +29367,7 @@ msgstr "அவள் %(modified_date)s %(endnotes)s என்று பெயர
 #: ../gramps/plugins/lib/libnarrate.py:961
 #, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%."
 
 #: ../gramps/plugins/lib/libnarrate.py:962
 #, python-format
@@ -29552,7 +29440,7 @@ msgstr "அவள்%(endnotes)s என்று பெயரிடப்பட�
 #: ../gramps/plugins/lib/libnarrate.py:995
 #, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
-msgstr ""
+msgstr "%."
 
 #: ../gramps/plugins/lib/libnarrate.py:996
 #, python-format
@@ -33112,13 +33000,11 @@ msgstr "பயன்படுத்தப்பட வேண்டிய எண�
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr ""
+msgstr "பெயருக்கு முன்னால் பாலின சின்னத்தைக் காட்டு"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show gender symbol in front of name in the report."
-msgstr "அறிக்கையில் மணமுறிவு தகவல்களைக் காட்ட வேண்டுமா."
+msgstr "அறிக்கையில் பெயருக்கு முன்னால் பாலின சின்னத்தைக் காட்ட வேண்டுமா."
 
 #: ../gramps/plugins/textreport/descendreport.py:605
 msgid "Show marriage info"
@@ -33319,10 +33205,8 @@ msgstr "அழைப்பு பெயரை முதல் பெயராக
 
 #: ../gramps/plugins/textreport/detancestralreport.py:932
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
-#, fuzzy
-#| msgid "Whether to use the call name as the first name."
 msgid "Whether to show gender symbol in front of name."
-msgstr "அழைப்பு பெயரை முதல் பெயராகப் பயன்படுத்த வேண்டுமா."
+msgstr "பெயருக்கு முன்னால் பாலின சின்னத்தைக் காட்ட வேண்டுமா."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
@@ -33874,16 +33758,12 @@ msgid "The maximum number of ancestor generations"
 msgstr "மூதாதையர் தலைமுறைகளின் அதிகபட்ச எண்ணிக்கை"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
-#, fuzzy
-#| msgid "Show gramps id"
 msgid "Show Gramps ID"
 msgstr "கிராம்ப்ச் ஐடியைக் காட்டு"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
-#, fuzzy
-#| msgid "Whether to include Gramps IDs"
 msgid "Whether to show Gramps ID"
-msgstr "கிராம்ப்ச் ஐடிகளை சேர்க்க வேண்டுமா"
+msgstr "கிராம்ப்ச் ஐடியைக் காட்ட வேண்டுமா"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:390
 msgid "Whether to include spouses"
@@ -34989,10 +34869,8 @@ msgid "Guess"
 msgstr "யூகிக்க"
 
 #: ../gramps/plugins/tool/eventcmp.glade:37
-#, fuzzy
-#| msgid "Save As"
 msgid "Save _As"
-msgstr "இப்படி சேமி"
+msgstr "_As ஐ சேமிக்கவும்"
 
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
@@ -37944,10 +37822,9 @@ msgstr "கதை"
 
 #: ../gramps/plugins/webreport/basepage.py:904
 #: ../gramps/plugins/webreport/basepage.py:974
-#, fuzzy, python-format
-#| msgid "%(str1)s: %(str2)s"
+#, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr "( %(str1) s) %(str2) கள்"
 
 #: ../gramps/plugins/webreport/basepage.py:1511
 #: ../gramps/plugins/webreport/basepage.py:3427
@@ -38002,7 +37879,7 @@ msgstr "வீடு"
 #: ../gramps/plugins/webreport/basepage.py:2060
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
-msgstr ""
+msgstr "வெப்ப வரைபடங்கள்"
 
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/basepage.py:2270
@@ -38032,7 +37909,7 @@ msgstr "வலை காலண்டர்"
 
 #: ../gramps/plugins/webreport/basepage.py:2134
 msgid "Heatmap"
-msgstr ""
+msgstr "வெப்ப வரைபடம்"
 
 #: ../gramps/plugins/webreport/basepage.py:2223
 #: ../gramps/plugins/webreport/media.py:440
@@ -38285,19 +38162,16 @@ msgid "Family Map for %s"
 msgstr "%s க்கான குடும்ப வரைபடம்"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
-#, fuzzy
-#| msgid "Creating event pages"
 msgid "Creating heatmap pages for events"
-msgstr "நிகழ்வு பக்கங்களை உருவாக்குதல்"
+msgstr "நிகழ்வுகளுக்கு ஈட்மேப் பக்கங்களை உருவாக்குதல்"
 
 #: ../gramps/plugins/webreport/heatmap.py:207
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
 msgstr ""
+"அடுத்த பகுதியில் ஈட்மேப் வரைபடத்திற்கான அனைத்து நிகழ்வுகளின் குறியீடும் உள்ளது."
 
 #: ../gramps/plugins/webreport/heatmap.py:249
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "பெயர்"
@@ -38321,10 +38195,9 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட வடிப�
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
 msgstr ""
+"அடுத்த பகுதியில் ஈட்மேப் வரைபடத்திற்கான அனைத்து குடும்பப் பெயர்களின் குறியீடும் உள்ளது."
 
 #: ../gramps/plugins/webreport/heatmap.py:381
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Name"
 msgid "Surname"
 msgstr "குடும்பப்பெயர்"
@@ -38332,6 +38205,7 @@ msgstr "குடும்பப்பெயர்"
 #: ../gramps/plugins/webreport/heatmap.py:463
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr ""
+"அடுத்த பகுதியில் ஈட்மேப் வரைபடத்திற்கான அனைத்து குறிச்சொற்களின் குறியீடும் உள்ளது."
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #, python-brace-format
@@ -38339,6 +38213,8 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
+"இந்த பிரிவில் நிகழ்வைக் கொண்ட அனைத்து நபர்களுக்கும் வரைபடம் உள்ளது: {event_type} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:620
 #: ../gramps/plugins/webreport/heatmap.py:633
@@ -38352,6 +38228,7 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
+"இந்த பிரிவில் அனைத்து நிகழ்வுகளின் வரைபடமும் உள்ளது: {surname} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:640
 #, python-brace-format
@@ -38359,6 +38236,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
+"இந்த பிரிவில் எல்லா மக்களுக்கும் வரைபடம், குறிச்சொல்லுடன் நிகழ்வுகள்: {tag} "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -38417,7 +38296,7 @@ msgstr "கோப்பு நகர்த்தப்பட்டது அல�
 #: ../gramps/plugins/webreport/media.py:458
 #: ../gramps/plugins/webreport/thumbnail.py:174
 msgid "This is a remote media"
-msgstr ""
+msgstr "இது தொலைநிலை ஊடகம்"
 
 #: ../gramps/plugins/webreport/media.py:639
 msgid "File Type"
@@ -38605,20 +38484,15 @@ msgid "Normal Outline Style"
 msgstr "சாதாரண அவுட்லைன் பாணி"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2222
-#, fuzzy
-#| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "மேற்கோள் குறிப்புகள் தளவமைப்பு"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2228
-#, fuzzy
-#| msgid ""
-#| "Determine the default layout for the Source Page's Citation Referents "
-#| "section"
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
-msgstr "மூல பக்க மேற்கோள் குறிப்பு பிரிவுக்கான இயல்புநிலை தளவமைப்பை தீர்மானிக்கவும்"
+msgstr ""
+"மூல பக்கத்தில் மேற்கோள் குறிப்புகள் பிரிவுக்கான இயல்புநிலை தளவமைப்பைக் குறிப்பிடவும்"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2234
 msgid "Include ancestor's tree"
@@ -38654,7 +38528,7 @@ msgstr "நீங்கள் ஒரு பகுதியைத் திறக
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2253
 msgid "Max. rows in an index"
-msgstr ""
+msgstr "அதிகபட்சம். ஒரு குறியீட்டில் வரிசைகள்"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2255
 msgid "The maximum number of rows to include in an index page"
@@ -39014,16 +38888,12 @@ msgid "Add a complete events list and relevant pages or not"
 msgstr "ஒரு முழுமையான நிகழ்வுகள் பட்டியல் மற்றும் தொடர்புடைய பக்கங்களைச் சேர்க்கவும் இல்லையா"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2604
-#, fuzzy
-#| msgid "Include other events"
 msgid "Include other roles"
-msgstr "பிற நிகழ்வுகளைச் சேர்க்கவும்"
+msgstr "பிற பாத்திரங்களைச் சேர்க்கவும்"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2605
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
-msgstr "ஒரு நிகழ்விற்கான குறிப்புகளைக் காட்டும் கிராம்பட்"
+msgstr "ஒரு நிகழ்வுக்கு பிற பாத்திரங்களைக் கொண்ட நபர்களைச் சேர்க்கவும்"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2608
 msgid "Include place pages"
@@ -39398,26 +39268,20 @@ msgstr ""
 "விருப்பத்தேர்வு தாவலில் வரையறுக்கப்பட்ட 'அதிகபட்ச அகவை உயிருடன் இருக்கலாம்'."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3216
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "வரைபட விருப்பங்களை வைக்கவும்"
+msgstr "ஈட்மேப் விருப்பங்கள்"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
-#, fuzzy
-#| msgid "Include event pages"
 msgid "Include heatmap pages"
-msgstr "நிகழ்வு பக்கங்களைச் சேர்க்கவும்"
+msgstr "ஈட்மேப் பக்கங்களைச் சேர்க்கவும்"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3220
 msgid "Whether to include heatmap pages for events"
 msgstr "நிகழ்வுகளுக்கு வெப்ப வரைபட பக்கங்களைச் சேர்க்க வேண்டுமா"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3226
-#, fuzzy
-#| msgid "Font size"
 msgid "Point size"
-msgstr "எழுத்துரு அளவு"
+msgstr "புள்ளி அளவு"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3227
 msgid ""
@@ -39429,17 +39293,19 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid "Blur"
-msgstr ""
+msgstr "மங்கலானது"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3231
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
+"மங்கலான அளவை அமைக்கவும். \n"
+"இயல்புநிலை: 15"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3234
 msgid "Zoom"
-msgstr ""
+msgstr "பெரிதாக்கு"
 
 #: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
