@@ -11,21 +11,22 @@
 # Doctorredits_here <182783629+doctorreditshere@users.noreply.github.com>, 2025.
 # Erik Faderik <erikfaderik@gmail.com>, 2025.
 # Satria Manggala Jati <satriamanggalajati@ymail.com>, 2025.
+# Arshad Aulia <auliarshad@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-05-21 17:01+0000\n"
-"Last-Translator: Satria Manggala Jati <satriamanggalajati@ymail.com>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/id/>\n"
+"PO-Revision-Date: 2025-06-24 16:01+0000\n"
+"Last-Translator: Arshad Aulia <auliarshad@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -93,7 +94,7 @@ msgstr "Paskah Yahudi ke-2"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr "Paskah Yahudi ke-3"
+msgstr "3 dari Paskah"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
@@ -495,12 +496,6 @@ msgstr ""
 "unit keluarga biasa sebagai dua orang tua dan anak-anak mereka."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -508,7 +503,7 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>Mengubah Orang Aktif</b><br/>Mengubah Orang Aktif dalam tampilan itu "
-"mudah. Dalam tampilan Hubungan, cukup klik siapa saja. Di Tampilan Leluhur, "
+"mudah. Dalam tampilan Hubungan, cukup klik siapa saja. Di Tampilan Silsilah, "
 "klik dua kali pada orang tersebut atau klik kanan untuk memilih pasangan, "
 "saudara, anak, atau orang tua mereka."
 
@@ -571,13 +566,6 @@ msgstr ""
 "keluarga pada basis data Anda, tambahkan SoundEx Gramplet."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\""
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -588,7 +576,7 @@ msgstr ""
 "memungkinkan Anda mengubah sejumlah pengaturan, seperti path ke berkas media "
 "Anda, dan memungkinkan Anda menyesuaikan banyak aspek presentasi Gramps "
 "untuk kebutuhan Anda. Setiap tampilan terpisah juga dapat dikonfigurasi di "
-"bawah \"Tampilan &gt; Konfigurasi Tampilan...\""
+"bawah \"Tampilan &gt; Konfigurasi Tampilan...\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -682,7 +670,6 @@ msgstr ""
 "alat di pojok kanan atas atau di bawah menu \"Tampilan\"."
 
 #: ../data/tips.xml:48
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -692,7 +679,7 @@ msgstr ""
 "<b>Menavigasi Maju dan Mundur</b><br/>Gramps mempertahankan daftar dari "
 "objek aktif sebelumnya seperti Orang dan kejadian. Anda bisa Maju dan Mundur "
 "dari daftar yang ada menggunakan \"Panah kanan > untuk maju\" dan Panah kiri "
-"untuk mundur\""
+"untuk mundur\"."
 
 #: ../data/tips.xml:50
 #, fuzzy
@@ -737,6 +724,10 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
+"<b>Mengedit Hubungan Orang Tua dan Anak</b><br/> Anda dapat mengedit "
+"hubungan seorang anak dengan orang tuanya dengan mengklik dua kali anak "
+"tersebut di Family Editor. Hubungan dapat berupa: Anak Angkat, Anak Kandung, "
+"Anak Asuh, Tidak Ada, Diasuh, Anak Tiri, dan Tidak Diketahui."
 
 #: ../data/tips.xml:58
 msgid ""
@@ -746,6 +737,12 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
+"<b>Tampilkan Semua Tombol Centang </b><br/>Saat menambahkan orang yang sudah "
+"ada sebagai pasangan, daftar orang yang ditampilkan disaring untuk hanya "
+"menampilkan orang-orang yang secara realistis cocok dengan peran tersebut ("
+"berdasarkan tanggal dalam basis data). Jika Gramps salah dalam membuat "
+"penyaringan ini, Anda dapat menonaktifkan filter tersebut dengan mencentang "
+"tombol centang Tampilkan Semua."
 
 #: ../data/tips.xml:60
 msgid ""
@@ -755,6 +752,12 @@ msgid ""
 "org/bugs/ and creating a Feature Request. Filing a Feature Request is "
 "preferred but it can be good to discuss your ideas on the email lists."
 msgstr ""
+"<b>Meningkatkan Gramps</b><br/>Pengguna didorong untuk mengajukan permintaan "
+"peningkatan fitur Gramps. Permintaan peningkatan dapat dilakukan melalui "
+"milis gramps-users atau gramps-devel, atau dengan mengunjungi https://gramps-"
+"project.org/bugs/ dan membuat Permintaan Fitur. Mengajukan Permintaan Fitur "
+"lebih disarankan, tetapi mendiskusikan ide Anda melalui milis juga sangat "
+"membantu."
 
 #: ../data/tips.xml:62
 msgid ""
@@ -764,6 +767,11 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
+"<b>Milis Gramps</b><br/>Ingin jawaban atas pertanyaan Anda tentang Gramps? "
+"Lihat milis gramps-users. Banyak orang yang siap membantu di milis tersebut, "
+"jadi kemungkinan besar Anda akan mendapatkan jawaban dengan cepat. Jika Anda "
+"memiliki pertanyaan terkait pengembangan Gramps, cobalah milis gramps-devel. "
+"Anda dapat melihat daftar milis dengan memilih \"Bantuan > Milis Gramps\"."
 
 #: ../data/tips.xml:64
 msgid ""
@@ -775,6 +783,13 @@ msgid ""
 "and introducing yourself. Subscription information can be found at \"Help > "
 "Gramps Mailing Lists\"."
 msgstr ""
+"<b>Berkontribusi pada Gramps</b><br/>Ingin membantu Gramps tetapi tidak bisa "
+"menulis program? Tidak masalah! Proyek sebesar Gramps membutuhkan orang-"
+"orang dengan berbagai macam keterampilan. Kontribusi dapat berupa apa saja "
+"mulai dari menulis dokumentasi hingga menguji versi pengembangan dan "
+"membantu situs web. Mulailah dengan berlangganan milis pengembang Gramps, "
+"gramps-devel, dan perkenalkan diri Anda. Informasi langganan dapat ditemukan "
+"di \"Bantuan > Milis Gramps\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -801,16 +816,13 @@ msgid ""
 "Person then go to \"Bookmarks > Add Bookmark\" or press Ctrl+D. You can also "
 "bookmark most of the other objects."
 msgstr ""
+"<b>Menandai Individu</b><br/>Menu Penanda adalah tempat yang nyaman untuk "
+"menyimpan nama individu yang sering digunakan. Memilih penanda akan "
+"menjadikan orang tersebut sebagai Individu Aktif. Untuk menandai seseorang, "
+"jadikan dia sebagai Individu Aktif lalu buka \"Penanda > Tambah Penanda\" "
+"atau tekan Ctrl+D. Anda juga dapat menandai sebagian besar objek lainnya."
 
 #: ../data/tips.xml:70
-#, fuzzy
-#| msgid ""
-#| "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-#| "invalid format. Incorrect date formats will show up in Gramps with a "
-#| "either a reddish background or a red dot on the right edge of the field. "
-#| "You can fix the date using the Date Selection dialog which can be opened "
-#| "by clicking on the date button. The format of the date is set under "
-#| "\"Edit &gt; Preferences &gt; Display\"."
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -824,15 +836,9 @@ msgstr ""
 "dengan latar belakang kemerahan atau titik merah di tepi kanan ruas. Anda "
 "dapat memperbaiki tanggal menggunakan dialog Pemilihan Tanggal yang dapat "
 "dibuka dengan mengklik tombol tanggal. Format tanggal diatur di bawah "
-"\"Sunting &gt; Preferensi &gt; Tampilan\"."
+"\"Sunting > Preferensi > Data\"."
 
 #: ../data/tips.xml:72
-#, fuzzy
-#| msgid ""
-#| "<b>Listing Events</b><br/>Events are added using the editor opened with "
-#| "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
-#| "event types. You can add your own event types by typing in the text "
-#| "field, they will be added to the available events, but not translated."
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person > Edit Person > Events\". There is a long list of preset event "
@@ -840,9 +846,9 @@ msgid ""
 "will be added to the available events, but not translated."
 msgstr ""
 "<b>Mencantumkan Acara</b><br/>Acara ditambahkan menggunakan penyunting yang "
-"dibuka dengan \"Orang &gt; Sunting Orang &gt; Acara\". Ada daftar panjang "
-"jenis acara yang sudah tertata. Anda dapat menambahkan jenis acara Anda "
-"sendiri dengan mengetik di ruas teks, mereka akan ditambahkan ke acara yang "
+"dibuka dengan \"Orang > Sunting Orang > Acara\". Ada daftar panjang jenis "
+"acara yang sudah tertata. Anda dapat menambahkan jenis acara Anda sendiri "
+"dengan mengetik di ruas teks, mereka akan ditambahkan ke acara yang "
 "tersedia, tetapi tidak diterjemahkan."
 
 #: ../data/tips.xml:74
