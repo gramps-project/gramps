@@ -23787,7 +23787,7 @@ msgstr "Średnia"
 
 #: ../gramps/plugins/gramplet/agestats.py:265
 msgid "Median"
-msgstr "Median"
+msgstr "Mediana"
 
 #: ../gramps/plugins/gramplet/agestats.py:266
 msgid "Maximum"
