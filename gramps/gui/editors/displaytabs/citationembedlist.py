@@ -74,6 +74,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         "share": _("Add an existing citation or source"),
         "up": _("Move the selected citation upwards"),
         "down": _("Move the selected citation downwards"),
+        "sort": _("Sort citations by date"),
     }
 
     # index = column in model. Value =
@@ -104,6 +105,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             config_key,
             share_button=True,
             move_buttons=True,
+            sort_button=True,
         )
         DbGUIElement.__init__(self, dbstate.db)
         self.callman.register_handles({"citation": self.data})
@@ -163,6 +165,27 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             )
         except WindowActiveError:
             pass
+
+    def sort_button_clicked(self, obj):
+        dlist = self.get_data()
+        templist = list()
+        old_sv = 0
+        #import pdb; pdb.set_trace()
+        for ref in dlist :
+            obj = self.dbstate.db.get_citation_from_handle(ref)
+            sv = obj.date.sortval
+            if sv == 0 :
+                sv = old_sv
+            old_sv = sv
+            templist.append((ref,sv))
+        from operator import itemgetter
+        templist.sort(key=itemgetter(1))
+        cnt=0
+        for x in templist :
+          dlist[cnt]=x[0]
+          cnt +=1
+        self.changed = True
+        self.rebuild()
 
     def add_callback(self, value):
         """

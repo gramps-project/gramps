@@ -60,6 +60,7 @@ class PersonEventEmbedList(EventEmbedList):
         "share": _("Share an existing event"),
         "up": _("Move the selected event upwards or change family order"),
         "down": _("Move the selected event downwards or change family order"),
+        "sort": _("Sort events by date"),
     }
 
     def __init__(
@@ -75,6 +76,7 @@ class PersonEventEmbedList(EventEmbedList):
         self.dbstate = dbstate
         EventEmbedList.__init__(
             self, dbstate, uistate, track, obj, config_key, build_model, **kwargs
+            ,sort_button=True
         )
 
     def get_data(self):

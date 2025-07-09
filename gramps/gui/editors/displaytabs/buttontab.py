@@ -77,6 +77,7 @@ class ButtonTab(GrampsTab):
         "down": _("Move Down"),
         "left": _("Move Left"),
         "right": _("Move right"),
+        "sort": _("Sort"),
     }
     L_R = 2  # indicator for left/right move buttons
 
@@ -89,6 +90,7 @@ class ButtonTab(GrampsTab):
         share_button=False,
         move_buttons=False,
         jump_button=False,
+        sort_button=False,
         top_label=None,
     ):
         """
@@ -113,14 +115,16 @@ class ButtonTab(GrampsTab):
         @type name: bool
         @param jump_button: Add a goto button
         @type name: bool
+        @param sort_button: Add a sort button
+        @type name: bool
         @param top_label: Add a label in front of the buttons if given
         @type top_label: string or None for no label
         """
         self.dirty_selection = False
         GrampsTab.__init__(self, dbstate, uistate, track, name)
-        self._create_buttons(share_button, move_buttons, jump_button, top_label)
+        self._create_buttons(share_button, move_buttons, jump_button, sort_button, top_label)
 
-    def _create_buttons(self, share_button, move_buttons, jump_button, top_label):
+    def _create_buttons(self, share_button, move_buttons, jump_button, sort_button, top_label):
         """
         Create a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete.
@@ -177,6 +181,13 @@ class ButtonTab(GrampsTab):
         else:
             self.jump_btn = None
 
+        if sort_button:
+            self.sort_btn = SimpleButton("gtk-sort-ascending", self.sort_button_clicked)
+            self.track_ref_for_deletion("sort_btn")
+            self.sort_btn.set_tooltip_text(self._MSG["sort"])
+        else:
+            self.sort_btn = None
+
         hbox = Gtk.Box()
         hbox.set_spacing(6)
         if top_label:
@@ -192,6 +203,8 @@ class ButtonTab(GrampsTab):
 
         if self.jump_btn:
             hbox.pack_start(self.jump_btn, False, True, 0)
+        if self.sort_btn:
+            hbox.pack_start(self.sort_btn, False, True, 0)
         hbox.show_all()
         self.pack_start(hbox, False, True, 0)
 
@@ -275,6 +288,13 @@ class ButtonTab(GrampsTab):
         should be overridden by the derived class.
         """
         print("Uncaught Jump clicked")
+
+    def sort_button_clicked(self, obj):
+        """
+        Function called with the Jump button is clicked. This function
+        should be overridden by the derived class.
+        """
+        print("Uncaught sort clicked")
 
     def del_button_clicked(self, obj):
         """

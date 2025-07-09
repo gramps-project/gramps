@@ -130,6 +130,7 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         "share": _("Add an existing person as a child of the family"),
         "up": _("Move the child up in the children list"),
         "down": _("Move the child down in the children list"),
+        "sort": _("Sort children by birth date"),
     }
 
     # (name, column in model, width, markup/text, font weight)
@@ -167,6 +168,7 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
             config_key,
             share_button=True,
             move_buttons=True,
+            sort_button=True,
         )
 
     def _connect_db_signals(self):
@@ -270,6 +272,31 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         person.set_primary_name(name)
 
         EditPerson(self.dbstate, self.uistate, self.track, person, self.new_child_added)
+
+    def sort_button_clicked(self, obj):
+        dlist = self.get_data()
+        templist = list()
+        old_sv = 0
+        for ref in dlist :
+            obj = self.dbstate.db.get_person_from_handle(ref.ref)
+            b_ref = obj.get_birth_ref()
+            sv = 0
+            if b_ref :
+                event = self.dbstate.db.get_event_from_handle(b_ref.ref)
+                if event :
+                    sv = event.date.sortval
+            if sv == 0 :
+                sv = old_sv
+            old_sv = sv
+            templist.append((ref,sv))
+        from operator import itemgetter
+        templist.sort(key=itemgetter(1))
+        cnt=0
+        for x in templist :
+          dlist[cnt]=x[0]
+          cnt +=1
+        self.changed = True
+        self.rebuild()
 
     def handle_extra_type(self, objtype, obj):
         """

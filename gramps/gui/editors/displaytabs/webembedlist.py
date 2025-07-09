@@ -81,6 +81,7 @@ class WebEmbedList(EmbeddedList):
             config_key,
             move_buttons=True,
             jump_button=True,
+            sort_button=False,
         )
 
     def get_icon_name(self):

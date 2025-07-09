@@ -118,6 +118,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         obj,
         config_key,
         build_model=EventRefModel,
+        sort_button=False,
         **kwargs
     ):
         self.obj = obj
@@ -134,6 +135,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             config_key,
             share_button=True,
             move_buttons=True,
+            sort_button=sort_button,
             **kwargs,
         )
 
@@ -283,6 +285,27 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             )
         except WindowActiveError:
             pass
+
+    def sort_button_clicked(self, obj):
+        dlist = self.get_data()[self._WORKGROUP]
+        templist = list()
+        old_sv = 0
+        for er in dlist :
+            event = self.dbstate.db.get_event_from_handle(er.ref)
+            sv = event.date.sortval
+            if sv == 0 :
+                sv = old_sv
+            old_sv = sv
+            templist.append((er,sv))
+        from operator import itemgetter
+        templist.sort(key=itemgetter(1))
+        cnt=0
+        for x in templist :
+          dlist[cnt]=x[0]
+          cnt +=1
+        self.changed = True
+        self.rebuild()
+
 
     def __blocked_text(self):
         """

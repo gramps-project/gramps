@@ -72,6 +72,7 @@ class GroupEmbeddedList(EmbeddedList):
         share_button=False,
         move_buttons=False,
         jump_button=False,
+        sort_button=False,
         **kwargs,
     ):
         """
@@ -89,6 +90,7 @@ class GroupEmbeddedList(EmbeddedList):
             share_button,
             move_buttons,
             jump_button,
+            sort_button,
         )
         # connect click on the first column
         self.columns[0].connect("clicked", self.groupcol_click)

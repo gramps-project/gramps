@@ -89,6 +89,7 @@ class EmbeddedList(ButtonTab):
         share_button=False,
         move_buttons=False,
         jump_button=False,
+        sort_button=False,
         top_label=None,
     ):
         """
@@ -105,6 +106,7 @@ class EmbeddedList(ButtonTab):
             share_button,
             move_buttons,
             jump_button,
+            sort_button,
             top_label,
         )
 
