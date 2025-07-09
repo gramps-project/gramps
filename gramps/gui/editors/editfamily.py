@@ -277,24 +277,25 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         dlist = self.get_data()
         templist = list()
         old_sv = 0
-        for ref in dlist :
+        for ref in dlist:
             obj = self.dbstate.db.get_person_from_handle(ref.ref)
             b_ref = obj.get_birth_ref()
             sv = 0
-            if b_ref :
+            if b_ref:
                 event = self.dbstate.db.get_event_from_handle(b_ref.ref)
-                if event :
+                if event:
                     sv = event.date.sortval
-            if sv == 0 :
+            if sv == 0:
                 sv = old_sv
             old_sv = sv
-            templist.append((ref,sv))
+            templist.append((ref, sv))
         from operator import itemgetter
+
         templist.sort(key=itemgetter(1))
-        cnt=0
-        for x in templist :
-          dlist[cnt]=x[0]
-          cnt +=1
+        cnt = 0
+        for x in templist:
+            dlist[cnt] = x[0]
+            cnt += 1
         self.changed = True
         self.rebuild()
 

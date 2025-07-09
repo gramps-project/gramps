@@ -170,20 +170,20 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         dlist = self.get_data()
         templist = list()
         old_sv = 0
-        #import pdb; pdb.set_trace()
-        for ref in dlist :
+        for ref in dlist:
             obj = self.dbstate.db.get_citation_from_handle(ref)
             sv = obj.date.sortval
-            if sv == 0 :
+            if sv == 0:
                 sv = old_sv
             old_sv = sv
-            templist.append((ref,sv))
+            templist.append((ref, sv))
         from operator import itemgetter
+
         templist.sort(key=itemgetter(1))
-        cnt=0
-        for x in templist :
-          dlist[cnt]=x[0]
-          cnt +=1
+        cnt = 0
+        for x in templist:
+            dlist[cnt] = x[0]
+            cnt += 1
         self.changed = True
         self.rebuild()
 

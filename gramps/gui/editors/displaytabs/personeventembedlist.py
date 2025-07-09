@@ -75,8 +75,15 @@ class PersonEventEmbedList(EventEmbedList):
     ):
         self.dbstate = dbstate
         EventEmbedList.__init__(
-            self, dbstate, uistate, track, obj, config_key, build_model, **kwargs
-            ,sort_button=True
+            self,
+            dbstate,
+            uistate,
+            track,
+            obj,
+            config_key,
+            build_model,
+            **kwarg,
+            sort_button=True
         )
 
     def get_data(self):
