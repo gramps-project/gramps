@@ -69,13 +69,13 @@ class BaseTest(unittest.TestCase):
         """
         cls.db = import_as_dict(EXAMPLE, User())
 
-    def filter_with_rule(self, rule):
+    def filter_with_rule(self, rule, tree=False):
         """
         Apply a filter with the given rule.
         """
         filter_ = GenericPlaceFilter()
         filter_.add_rule(rule)
-        results = filter_.apply(self.db)
+        results = filter_.apply(self.db, tree=tree)
         return set(results)
 
     def test_allplaces(self):
@@ -85,6 +85,15 @@ class BaseTest(unittest.TestCase):
         rule = AllPlaces([])
         self.assertEqual(
             len(self.filter_with_rule(rule)), self.db.get_number_of_places()
+        )
+
+    def test_hascitation_with_tree(self):
+        """
+        Test AllPlaces rule.
+        """
+        rule = HasCitation(["page 23", "", ""])
+        self.assertEqual(
+            self.filter_with_rule(rule, tree=True), set(["YNUJQC8YM5EGRG868J"])
         )
 
     def test_hascitation(self):
