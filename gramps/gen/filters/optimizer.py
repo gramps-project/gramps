@@ -52,7 +52,9 @@ class Optimizer:
         handles_out = None
         for rule in filter.flist:
             if filter.logical_op == "and" or len(filter.flist) == 1:
-                rule_in, rule_out = self.compute_potential_handles_for_rule(rule)
+                rule_in, rule_out = self.compute_potential_handles_for_rule(
+                    filter, rule
+                )
                 if rule_in is not None:
                     if handles_in is None:
                         handles_in = rule_in
@@ -71,13 +73,14 @@ class Optimizer:
 
     def compute_potential_handles_for_rule(
         self,
+        parent_filter: GenericFilter,
         rule: Rule,
     ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
         """ """
         if hasattr(rule, "selected_handles"):
             return (rule.selected_handles, None)
         if hasattr(rule, "find_filter"):
-            filter = rule.find_filter()
-            if filter:
-                return self.compute_potential_handles_for_filter(filter)
+            child_filter = rule.find_filter()
+            if child_filter and child_filter.__class__ == parent_filter.__class__:
+                return self.compute_potential_handles_for_filter(child_filter)
         return (None, None)
