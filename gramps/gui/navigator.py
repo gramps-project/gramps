@@ -36,6 +36,7 @@ from gi.repository import GObject
 #
 # -------------------------------------------------------------------------
 from gramps.gen.plug import START, END
+from gramps.gen.config import config
 from .pluginmanager import GuiPluginManager
 from .uimanager import ActionGroup
 
@@ -90,6 +91,11 @@ class Navigator:
         self.ui_category = {}
         self.cat_view_group = None
         self.merge_ids = []
+
+        self.config_name = "interface.favorite-menu"
+        if not config.is_set(self.config_name):
+            config.register(self.config_name, "")
+        self.conf_ft = True
 
         self.top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.top.show()
@@ -197,6 +203,9 @@ class Navigator:
             sidebar_class = getattr(module, pdata.sidebarclass)
             sidebar_page = sidebar_class(dbstate, uistate, categories, views)
             self.add(pdata.menu_label, sidebar_page, pdata.order)
+        self.fav_menu = config.get(self.config_name)
+        if self.fav_menu != "":
+            self.stack.set_visible_child_name(self.fav_menu)
 
     def get_top(self):
         """
@@ -279,3 +288,7 @@ class Navigator:
         if self.active_view is not None:
             self.pages[title].view_changed(self.active_cat, self.active_view)
         self._active_page = title
+        if self.conf_ft:
+            self.conf_ft = False
+        else:
+            config.set(self.config_name, self.stack.get_visible_child_name())
