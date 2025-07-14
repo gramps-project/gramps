@@ -75,3 +75,19 @@ register(
     menu_label=_("Expander"),
     order=END,
 )
+
+register(
+    SIDEBAR,
+    id="favoritessidebar",
+    name=_("Favorites Sidebar"),
+    description=_("Selection of views from a views selector"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="favoritessidebar.py",
+    authors=["Serge Noiraud"],
+    authors_email=["serge.noiraud@free.fr"],
+    sidebarclass="FavoritesSidebar",
+    menu_label=_("Favorites"),
+    order=END,
+)
