@@ -185,11 +185,6 @@ class FavoritesSidebar(BaseSidebar):
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add(vbox)
         use_text = config.get("interface.sidebar-text")
-        button = self.__make_sidebar_button(
-            use_text, 99, 0, _("Choose your favorite views"), "gramps-preferences"
-        )
-        button.set_margin_top(10)
-        vbox.pack_start(button, False, False, 0)
         for cat_num, cat_name, cat_icon in categories:
             catbox = Gtk.Box()
             image = Gtk.Image()
@@ -213,6 +208,11 @@ class FavoritesSidebar(BaseSidebar):
                     viewbox.pack_start(button, False, False, 0)
             vbox.pack_start(viewbox, False, False, 0)
 
+        button = self.__make_sidebar_button(
+            use_text, 99, 0, _("Choose your favorite views"), "gramps-config"
+        )
+        button.set_margin_top(10)
+        vbox.pack_start(button, False, False, 0)
         vbox.show_all()
 
     def get_top(self):
