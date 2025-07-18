@@ -43,13 +43,16 @@ from gi.repository import Gtk
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE
+from gramps.gen.const import GRAMPS_LOCALE, URL_MANUAL_PAGE
 from gramps.gen.config import config
 from gramps.gui.basesidebar import BaseSidebar
 from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.display import display_help
 
 _ = GRAMPS_LOCALE.translation.sgettext
 
+WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Main_Window"
+WIKI_HELP_SEC = _("Switching_Navigator_modes")
 CLEAR = 1
 SETALL = 2
 
@@ -81,6 +84,10 @@ class FavoriteViews(ManagedWindow):
             None,
         )
         self.setup_configs("interface.favorites", 400, 300)
+        help_btn = self.window.add_button(_("Help"), Gtk.ResponseType.HELP)
+        help_btn.connect(
+            "clicked", lambda x: display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
+        )
         self.window.add_button(_("Select All"), SETALL)
         self.window.add_button(_("Clear All"), CLEAR)
         self.window.add_button(_("_Close"), Gtk.ResponseType.CLOSE)
@@ -128,6 +135,8 @@ class FavoriteViews(ManagedWindow):
     def on_response(self, dialog, response):
         if response == Gtk.ResponseType.CLOSE:
             dialog.destroy()
+        if response == Gtk.ResponseType.HELP:
+            display_help()
         elif response == SETALL:
             # set all views active
             self.set_views(setall=True)
