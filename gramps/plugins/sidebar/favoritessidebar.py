@@ -134,7 +134,7 @@ class FavoriteViews(ManagedWindow):
 
     def on_response(self, dialog, response):
         if response == Gtk.ResponseType.CLOSE:
-            self.dialog._dialog_count(0)
+            self.dialog.select.set_sensitive(True)
             dialog.destroy()
         if response == Gtk.ResponseType.HELP:
             display_help()
@@ -182,7 +182,6 @@ class FavoritesSidebar(BaseSidebar):
         self.lookup = {}
         self.uistate = uistate
         self.dbstate = dbstate
-        self.dialog_count = 0
 
         self.window = Gtk.ScrolledWindow()
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -219,11 +218,11 @@ class FavoritesSidebar(BaseSidebar):
                     viewbox.pack_start(button, False, False, 0)
             vbox.pack_start(viewbox, False, False, 0)
 
-        button = self.__make_sidebar_button(
+        self.select = self.__make_sidebar_button(
             use_text, 99, 0, _("Choose your favorite views"), "gramps-config"
         )
-        button.set_margin_top(10)
-        vbox.pack_start(button, False, False, 0)
+        self.select.set_margin_top(10)
+        vbox.pack_start(self.select, False, False, 0)
         vbox.show_all()
 
     def get_top(self):
@@ -283,17 +282,16 @@ class FavoritesSidebar(BaseSidebar):
         """
         if cat_num == 99:
             # We configure the favorite bar
-            self.dialog_count += 1
-            if self.dialog_count < 2:
-                self.favorites = config.get(self.config_name)
-                FavoriteViews(
-                    self,
-                    self.uistate,
-                    self.dbstate,
-                    self.views,
-                    self.categories,
-                    self.favorites,
-                )
+            self.select.set_sensitive(False)
+            self.favorites = config.get(self.config_name)
+            FavoriteViews(
+                self,
+                self.uistate,
+                self.dbstate,
+                self.views,
+                self.categories,
+                self.favorites,
+            )
         else:
             self.viewmanager.goto_page(cat_num, view_num)
 
@@ -351,8 +349,3 @@ class FavoritesSidebar(BaseSidebar):
         top.pack_start(button, False, True, 0)
 
         return top
-
-    def _dialog_count(self, val):
-        if val == 0:
-            self.dialog_count = 0
-        return self.dialog_count
