@@ -134,6 +134,7 @@ class FavoriteViews(ManagedWindow):
 
     def on_response(self, dialog, response):
         if response == Gtk.ResponseType.CLOSE:
+            self.dialog._dialog_count(0)
             dialog.destroy()
         if response == Gtk.ResponseType.HELP:
             display_help()
@@ -181,6 +182,7 @@ class FavoritesSidebar(BaseSidebar):
         self.lookup = {}
         self.uistate = uistate
         self.dbstate = dbstate
+        self.dialog_count = 0
 
         self.window = Gtk.ScrolledWindow()
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -281,15 +283,17 @@ class FavoritesSidebar(BaseSidebar):
         """
         if cat_num == 99:
             # We configure the favorite bar
-            self.favorites = config.get(self.config_name)
-            FavoriteViews(
-                self,
-                self.uistate,
-                self.dbstate,
-                self.views,
-                self.categories,
-                self.favorites,
-            )
+            self.dialog_count += 1
+            if self.dialog_count < 2:
+                self.favorites = config.get(self.config_name)
+                FavoriteViews(
+                    self,
+                    self.uistate,
+                    self.dbstate,
+                    self.views,
+                    self.categories,
+                    self.favorites,
+                )
         else:
             self.viewmanager.goto_page(cat_num, view_num)
 
@@ -347,3 +351,8 @@ class FavoritesSidebar(BaseSidebar):
         top.pack_start(button, False, True, 0)
 
         return top
+
+    def _dialog_count(self, val):
+        if val == 0:
+            self.dialog_count = 0
+        return self.dialog_count
