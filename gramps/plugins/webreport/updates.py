@@ -254,7 +254,7 @@ class UpdatesPage(BasePage):
                                             show = True
                                 elif obj_t == "Citation":
                                     if r_handle in srbkref[Citation]:
-                                        cit = srbd.get_event_from_handle(r_handle)
+                                        cit = srbd.get_citation_from_handle(r_handle)
                                         citsrc = cit.source_handle
                                         evtn = self._("Citation")
                                         name = self.source_link(citsrc, evtn)
