@@ -592,9 +592,10 @@ class FamilyPages(BasePage):
                         toggle += mapdetail
 
             # source references
-            srcrefs = self.display_ind_sources(family)
-            if srcrefs:
-                relationshipdetail += srcrefs
+            if report.options["inc_sources"]:
+                srcrefs = self.display_ind_sources(family)
+                if srcrefs:
+                    relationshipdetail += srcrefs
 
         # add clearline for proper styling
         # add footer section

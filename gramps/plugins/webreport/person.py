@@ -758,9 +758,10 @@ class PersonPages(BasePage):
                     individualdetail += sect14
 
             # display source references
-            sect14 = self.display_ind_sources(person)
-            if sect14 is not None:
-                individualdetail += sect14
+            if report.options["inc_sources"]:
+                sect14 = self.display_ind_sources(person)
+                if sect14 is not None:
+                    individualdetail += sect14
 
         # add clearline for proper styling
         # create footer section
