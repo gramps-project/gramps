@@ -634,7 +634,10 @@ class PlacePages(BasePage):
                     tooltip += Html("div", id="tooltip-content")
 
             # source references
-            if not self.report.options["inc_uplaces"]:
+            if (
+                not self.report.options["inc_uplaces"]
+                and self.report.options["inc_sources"]
+            ):
                 # We can't display source reference when we display
                 # unused places. These info are not in the collected objects.
                 # This is to avoid "page not found" errors.
