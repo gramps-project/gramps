@@ -598,9 +598,10 @@ class EventPages(BasePage):
                 eventdetail += attrsection
 
             # event source references
-            srcrefs = self.display_ind_sources(event)
-            if srcrefs is not None:
-                eventdetail += srcrefs
+            if report.options["inc_sources"]:
+                srcrefs = self.display_ind_sources(event)
+                if srcrefs is not None:
+                    eventdetail += srcrefs
 
             # display additional images as gallery
             if self.create_media:
