@@ -83,7 +83,7 @@ class MatchesPersonFilter(MatchesFilterBase):
         filt = self.find_filter()
         if filt:
             for classname, handle in db.find_backlink_handles(event.handle, ["Person"]):
-                person = db.method("get_%_from_handle", classname)(handle)
+                person = db.method("get_%s_from_handle", classname)(handle)
                 if filt.apply_to_one(db, person):
                     return True
             if self.MPF_famevents:
