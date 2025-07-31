@@ -215,7 +215,7 @@ primary data for the merged person.</property>
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="name_btn1">
-                            <property name="label" translatable="yes">Name:</property>
+                            <property name="label" translatable="yes" context="person">Name:</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -230,7 +230,7 @@ primary data for the merged person.</property>
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="name_btn2">
-                            <property name="label" translatable="yes">Name:</property>
+                            <property name="label" translatable="yes" context="person">Name:</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>

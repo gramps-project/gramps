@@ -231,7 +231,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="label" translatable="yes">Name:</property>
+                        <property name="label" translatable="yes" context="place">Name:</property>
                         <property name="use-underline">True</property>
                         <property name="justify">center</property>
                       </object>
