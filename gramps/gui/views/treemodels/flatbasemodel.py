@@ -581,37 +581,81 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             return srt_keys
 
     def _rebuild_search(self, ignore=None):
-        """function called when view must be build, given a search text
-        in the top search bar
         """
-        self.clear_cache()
-        self._in_build = True
-        if (self.db is not None) and self.db.is_open():
-            allkeys = self.node_map.full_srtkey_hndl_map()
-            if not allkeys:
-                allkeys = self.sort_keys()
-            if self.search and self.search.text:
-                dlist = [
-                    h
-                    for h in allkeys
-                    if self.search.match(h[1], self.db)
-                    and h[1] not in self.skip
-                    and h[1] != ignore
-                ]
-                ident = False
-            elif ignore is None and not self.skip:
-                # nothing to remove from the keys present
-                ident = True
-                dlist = allkeys
+        Rebuild the data map where a search is applied.
+        """
+        self.clear_map()
+        self.__total = 0
+        self.__displayed = 0
+
+        if not self.search:
+            return
+
+        pmon = progressdlg.ProgressMonitor(
+            progressdlg.StatusProgress,
+            (self.uistate,),
+            popup_time=2,
+            title=_("Loading items..."),
+        )
+        status = progressdlg.LongOpStatus(
+            total_steps=self.number_items(), interval=self.number_items() // 20
+        )
+        pmon.add_op(status)
+
+        # Use optimized bulk operations if available
+        if hasattr(self.db, "bulk_get_persons") and hasattr(
+            self.db, "bulk_get_families"
+        ):
+            # Collect handles first
+            handles = []
+            with self.gen_cursor() as cursor:
+                for handle, data in cursor:
+                    status.heartbeat()
+                    self.__total += 1
+                    if not (
+                        handle in self.skip
+                        or (self.search and not self.search.match(handle, self.db))
+                    ):
+                        handles.append(handle)
+
+            # Use bulk retrieval for large datasets
+            if len(handles) > 100:
+                if hasattr(self.db, "bulk_get_persons"):
+                    objects = self.db.bulk_get_persons(handles)
+                    for obj in objects:
+                        self.__displayed += 1
+                        self.add_row(obj.handle, obj)
+                else:
+                    # Fall back to individual retrieval
+                    for handle in handles:
+                        self.__displayed += 1
+                        self.add_row(handle, None)
             else:
-                ident = False
-                dlist = [h for h in allkeys if h[1] not in self.skip and h[1] != ignore]
-            self.node_map.set_path_map(
-                dlist, allkeys, identical=ident, reverse=self._reverse
-            )
+                # For small datasets, use individual retrieval
+                with self.gen_cursor() as cursor:
+                    for handle, data in cursor:
+                        status.heartbeat()
+                        self.__total += 1
+                        if not (
+                            handle in self.skip
+                            or (self.search and not self.search.match(handle, self.db))
+                        ):
+                            self.__displayed += 1
+                            self.add_row(handle, data)
         else:
-            self.node_map.clear_map()
-        self._in_build = False
+            # Original implementation for other object types
+            with self.gen_cursor() as cursor:
+                for handle, data in cursor:
+                    status.heartbeat()
+                    self.__total += 1
+                    if not (
+                        handle in self.skip
+                        or (self.search and not self.search.match(handle, self.db))
+                    ):
+                        self.__displayed += 1
+                        self.add_row(handle, data)
+
+        status.end()
 
     def _rebuild_filter(self, ignore=None):
         """function called when view must be build, given filter options

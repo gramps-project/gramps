@@ -563,16 +563,61 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         )
         status = progressdlg.LongOpStatus(total_steps=items, interval=items // 20)
         pmon.add_op(status)
-        with gen_cursor() as cursor:
-            for handle, data in cursor:
-                status.heartbeat()
-                self.__total += 1
-                if not (
-                    handle in skip or (dfilter and not dfilter.match(handle, self.db))
-                ):
-                    _LOG.debug("    add %s %s" % (handle, data))
-                    self.__displayed += 1
-                    add_func(handle, data)
+
+        # Use optimized bulk operations if available
+        if hasattr(self.db, "bulk_get_persons") and hasattr(
+            self.db, "bulk_get_families"
+        ):
+            # For person and family queries, use bulk operations
+            handles = []
+            with gen_cursor() as cursor:
+                for handle, data in cursor:
+                    status.heartbeat()
+                    self.__total += 1
+                    if not (
+                        handle in skip
+                        or (dfilter and not dfilter.match(handle, self.db))
+                    ):
+                        handles.append(handle)
+
+            # Bulk retrieve objects if we have a significant number
+            if len(handles) > 100:
+                if hasattr(self.db, "bulk_get_persons"):
+                    objects = self.db.bulk_get_persons(handles)
+                    for obj in objects:
+                        self.__displayed += 1
+                        add_func(obj.handle, obj)
+                else:
+                    # Fall back to individual retrieval
+                    for handle in handles:
+                        self.__displayed += 1
+                        add_func(handle, None)
+            else:
+                # For small numbers, use individual retrieval
+                with gen_cursor() as cursor:
+                    for handle, data in cursor:
+                        status.heartbeat()
+                        self.__total += 1
+                        if not (
+                            handle in skip
+                            or (dfilter and not dfilter.match(handle, self.db))
+                        ):
+                            _LOG.debug("    add %s %s" % (handle, data))
+                            self.__displayed += 1
+                            add_func(handle, data)
+        else:
+            # Original implementation for other object types
+            with gen_cursor() as cursor:
+                for handle, data in cursor:
+                    status.heartbeat()
+                    self.__total += 1
+                    if not (
+                        handle in skip
+                        or (dfilter and not dfilter.match(handle, self.db))
+                    ):
+                        _LOG.debug("    add %s %s" % (handle, data))
+                        self.__displayed += 1
+                        add_func(handle, data)
         status.end()
 
     def _rebuild_filter(self, dfilter, dfilter2, skip):

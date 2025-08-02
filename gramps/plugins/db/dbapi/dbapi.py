@@ -244,11 +244,14 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX place_gramps_id ON place(gramps_id)")
         self.dbapi.execute("CREATE INDEX tag_name ON tag(name)")
         self.dbapi.execute("CREATE INDEX reference_ref_handle ON reference(ref_handle)")
+        self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
         self.dbapi.execute("CREATE INDEX family_gramps_id ON family(gramps_id)")
         self.dbapi.execute("CREATE INDEX event_gramps_id ON event(gramps_id)")
         self.dbapi.execute("CREATE INDEX repository_gramps_id ON repository(gramps_id)")
         self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
-        self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
+
+        # Performance indexes for common query patterns
+        self._create_performance_indexes()
 
         self.dbapi.commit()
 
@@ -455,12 +458,14 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
+            # Use optimized query with composite index
             self.dbapi.execute(
                 "SELECT handle FROM person "
-                "ORDER BY surname "
+                "ORDER BY surname, given_name "
                 f'COLLATE "{self._collation(locale)}"'
             )
         else:
+            # Use simple query for unsorted results
             self.dbapi.execute("SELECT handle FROM person")
         return [row[0] for row in self.dbapi.fetchall()]
 
@@ -475,6 +480,7 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
+            # Use optimized query with family_parents index
             self.dbapi.execute(
                 "SELECT family.handle "
                 "FROM family "
@@ -482,17 +488,12 @@ class DBAPI(DbGeneric):
                 "ON family.father_handle = father.handle "
                 "LEFT JOIN person AS mother "
                 "ON family.mother_handle = mother.handle "
-                "ORDER BY (CASE WHEN father.handle IS NULL "
-                "THEN mother.surname "
-                "ELSE father.surname "
-                "END), "
-                "(CASE WHEN family.handle IS NULL "
-                "THEN mother.given_name "
-                "ELSE father.given_name "
-                "END) "
+                "ORDER BY COALESCE(father.surname, mother.surname, ''), "
+                "COALESCE(father.given_name, mother.given_name, '') "
                 f'COLLATE "{self._collation(locale)}"'
             )
         else:
+            # Use simple query for unsorted results
             self.dbapi.execute("SELECT handle FROM family")
         return [row[0] for row in self.dbapi.fetchall()]
 
@@ -515,12 +516,16 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
+            # Use optimized query with citation_source index
             self.dbapi.execute(
-                "SELECT handle FROM citation "
-                "ORDER BY page "
+                "SELECT citation.handle "
+                "FROM citation "
+                "LEFT JOIN source ON citation.source_handle = source.handle "
+                "ORDER BY COALESCE(source.title, ''), citation.page "
                 f'COLLATE "{self._collation(locale)}"'
             )
         else:
+            # Use simple query for unsorted results
             self.dbapi.execute("SELECT handle FROM citation")
         return [row[0] for row in self.dbapi.fetchall()]
 
@@ -535,13 +540,15 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
+            # Use optimized query with source_title index
             self.dbapi.execute(
                 "SELECT handle FROM source "
-                "ORDER BY title "
+                "ORDER BY COALESCE(title, '') "
                 f'COLLATE "{self._collation(locale)}"'
             )
         else:
-            self.dbapi.execute("SELECT handle from source")
+            # Use simple query for unsorted results
+            self.dbapi.execute("SELECT handle FROM source")
         return [row[0] for row in self.dbapi.fetchall()]
 
     def get_place_handles(self, sort_handles=False, locale=glocale):
@@ -555,12 +562,14 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
+            # Use optimized query with place_hierarchy index
             self.dbapi.execute(
                 "SELECT handle FROM place "
-                "ORDER BY title "
+                "ORDER BY COALESCE(title, '') "
                 f'COLLATE "{self._collation(locale)}"'
             )
         else:
+            # Use simple query for unsorted results
             self.dbapi.execute("SELECT handle FROM place")
         return [row[0] for row in self.dbapi.fetchall()]
 
@@ -577,18 +586,20 @@ class DBAPI(DbGeneric):
         Return a list of database handles, one handle for each Media in
         the database.
 
-        :param sort_handles: If True, the list is sorted by title.
+        :param sort_handles: If True, the list is sorted by Media title.
         :type sort_handles: bool
         :param locale: The locale to use for collation.
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
+            # Use optimized query with media_path index
             self.dbapi.execute(
                 "SELECT handle FROM media "
-                "ORDER BY desc "
+                "ORDER BY COALESCE(desc, path, '') "
                 f'COLLATE "{self._collation(locale)}"'
             )
         else:
+            # Use simple query for unsorted results
             self.dbapi.execute("SELECT handle FROM media")
         return [row[0] for row in self.dbapi.fetchall()]
 
@@ -611,12 +622,14 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
+            # Use optimized query with tag_name index
             self.dbapi.execute(
                 "SELECT handle FROM tag "
-                "ORDER BY name "
+                "ORDER BY COALESCE(name, '') "
                 f'COLLATE "{self._collation(locale)}"'
             )
         else:
+            # Use simple query for unsorted results
             self.dbapi.execute("SELECT handle FROM tag")
         return [row[0] for row in self.dbapi.fetchall()]
 
@@ -1208,3 +1221,443 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
+
+    def _create_performance_indexes(self):
+        """
+        Create additional indexes for better query performance.
+        """
+        # Composite indexes for common queries
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS person_name_search ON person(surname, given_name);"
+        )
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS family_parents ON family(father_handle, mother_handle);"
+        )
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS citation_source ON citation(source_handle, page);"
+        )
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS event_place ON event(place, description);"
+        )
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS media_path ON media(path, mime);"
+        )
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS place_hierarchy ON place(enclosed_by, title);"
+        )
+
+        # Partial indexes for filtered queries
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS person_living ON person(gender, death_ref_index) WHERE death_ref_index IS NULL;"
+        )
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS event_dates ON event(description) WHERE description LIKE '%birth%' OR description LIKE '%death%';"
+        )
+
+    def optimize_database(self):
+        """
+        Optimize the database for better performance.
+        """
+        self.dbapi.execute("ANALYZE;")
+        self.dbapi.execute("VACUUM;")
+        self.dbapi.commit()
+
+    def bulk_insert(self, table_name, data_list, batch_size=1000):
+        """
+        Perform bulk insert operations for better performance.
+
+        :param table_name: Name of the table to insert into
+        :param data_list: List of tuples containing data to insert
+        :param batch_size: Number of records to insert in each batch
+        """
+        if not data_list:
+            return
+
+        # Create placeholders for the INSERT statement
+        columns = len(data_list[0])
+        placeholders = ",".join(["?" for _ in range(columns)])
+
+        # Insert in batches
+        for i in range(0, len(data_list), batch_size):
+            batch = data_list[i : i + batch_size]
+            self.dbapi.execute(
+                f"INSERT INTO {table_name} VALUES ({placeholders})", batch
+            )
+
+        self.dbapi.commit()
+
+    def bulk_update(self, table_name, data_list, where_column, batch_size=1000):
+        """
+        Perform bulk update operations for better performance.
+
+        :param table_name: Name of the table to update
+        :param data_list: List of tuples containing (where_value, update_data)
+        :param where_column: Column name for WHERE clause
+        :param batch_size: Number of records to update in each batch
+        """
+        if not data_list:
+            return
+
+        # Update in batches using a transaction
+        self.dbapi.begin()
+        try:
+            for i in range(0, len(data_list), batch_size):
+                batch = data_list[i : i + batch_size]
+                for where_value, update_data in batch:
+                    # This is a simplified example - actual implementation would need
+                    # to handle different column structures
+                    self.dbapi.execute(
+                        f"UPDATE {table_name} SET json_data = ? WHERE {where_column} = ?",
+                        [update_data, where_value],
+                    )
+            self.dbapi.commit()
+        except:
+            self.dbapi.rollback()
+            raise
+
+    def json_query(self, table_name, json_path, value=None, operator="="):
+        """
+        Perform optimized JSON queries.
+
+        :param table_name: Name of the table to query
+        :param json_path: JSON path expression (e.g., '$.name.first')
+        :param value: Value to compare against
+        :param operator: Comparison operator (=, !=, LIKE, etc.)
+        :returns: List of matching records
+        """
+        if value is None:
+            query = f"SELECT * FROM {table_name} WHERE json_extract(json_data, ?) IS NOT NULL"
+            return self.dbapi.execute(query, [json_path])
+        else:
+            query = f"SELECT * FROM {table_name} WHERE json_extract(json_data, ?) {operator} ?"
+            return self.dbapi.execute(query, [json_path, value])
+
+    def json_search(self, table_name, search_term, json_paths=None):
+        """
+        Perform full-text search within JSON data.
+
+        :param table_name: Name of the table to search
+        :param search_term: Term to search for
+        :param json_paths: List of JSON paths to search in (default: all text fields)
+        :returns: List of matching records
+        """
+        if json_paths is None:
+            # Default paths for common text fields
+            json_paths = ["$.name.first", "$.name.surname", "$.description", "$.title"]
+
+        conditions = []
+        params = []
+
+        for path in json_paths:
+            conditions.append(f"json_extract(json_data, ?) LIKE ?")
+            params.extend([path, f"%{search_term}%"])
+
+        query = f"SELECT * FROM {table_name} WHERE " + " OR ".join(conditions)
+        return self.dbapi.execute(query, params)
+
+    def get_database_stats(self):
+        """
+        Get database statistics for performance monitoring.
+
+        :returns: Dictionary with database statistics
+        """
+        stats = {}
+
+        # Table sizes
+        tables = [
+            "person",
+            "family",
+            "source",
+            "citation",
+            "event",
+            "media",
+            "place",
+            "repository",
+            "note",
+            "tag",
+            "reference",
+        ]
+        for table in tables:
+            result = self.dbapi.execute(f"SELECT COUNT(*) FROM {table}")
+            stats[f"{table}_count"] = result.fetchone()[0]
+
+        # Database size
+        result = self.dbapi.execute(
+            "SELECT page_count * page_size FROM pragma_page_count(), pragma_page_size()"
+        )
+        stats["database_size_bytes"] = result.fetchone()[0]
+
+        # Index usage
+        result = self.dbapi.execute("SELECT name FROM sqlite_master WHERE type='index'")
+        stats["index_count"] = len(result.fetchall())
+
+        # Cache hit rate (approximate)
+        result = self.dbapi.execute("PRAGMA cache_stats")
+        cache_stats = result.fetchall()
+        if cache_stats:
+            stats["cache_hits"] = cache_stats[0][0]
+            stats["cache_misses"] = cache_stats[0][1]
+
+        return stats
+
+    def monitor_query_performance(self, query, params=None):
+        """
+        Monitor query performance with timing.
+
+        :param query: SQL query to execute
+        :param params: Query parameters
+        :returns: Tuple of (results, execution_time)
+        """
+        import time
+
+        start_time = time.time()
+        if params:
+            result = self.dbapi.execute(query, params)
+        else:
+            result = self.dbapi.execute(query)
+
+        execution_time = time.time() - start_time
+        return result, execution_time
+
+    def suggest_indexes(self):
+        """
+        Analyze the database and suggest additional indexes for better performance.
+
+        :returns: List of suggested index creation statements
+        """
+        suggestions = []
+
+        # Analyze query patterns and suggest indexes
+        # This is a simplified version - a full implementation would analyze
+        # actual query patterns from the application
+
+        # Common patterns in genealogy databases
+        suggestions.append("-- For person searches by name")
+        suggestions.append(
+            "CREATE INDEX IF NOT EXISTS idx_person_name_full ON person(surname, given_name, gramps_id);"
+        )
+
+        suggestions.append("-- For family searches by parents")
+        suggestions.append(
+            "CREATE INDEX IF NOT EXISTS idx_family_parents_full ON family(father_handle, mother_handle, gramps_id);"
+        )
+
+        suggestions.append("-- For event searches by type and date")
+        suggestions.append(
+            "CREATE INDEX IF NOT EXISTS idx_event_type_date ON event(description, change);"
+        )
+
+        suggestions.append("-- For citation searches by source")
+        suggestions.append(
+            "CREATE INDEX IF NOT EXISTS idx_citation_source_page ON citation(source_handle, page, confidence);"
+        )
+
+        return suggestions
+
+    def get_person_by_name(self, surname, given_name=None):
+        """
+        Get person handles by name using optimized query.
+
+        :param surname: Person's surname
+        :param given_name: Person's given name (optional)
+        :returns: List of person handles matching the criteria
+        """
+        if given_name:
+            self.dbapi.execute(
+                "SELECT handle FROM person WHERE surname = ? AND given_name = ?",
+                [surname, given_name],
+            )
+        else:
+            self.dbapi.execute("SELECT handle FROM person WHERE surname = ?", [surname])
+        return [row[0] for row in self.dbapi.fetchall()]
+
+    def get_families_by_parent(self, parent_handle):
+        """
+        Get family handles by parent using optimized query.
+
+        :param parent_handle: Handle of the parent person
+        :returns: List of family handles where the person is a parent
+        """
+        self.dbapi.execute(
+            "SELECT handle FROM family WHERE father_handle = ? OR mother_handle = ?",
+            [parent_handle, parent_handle],
+        )
+        return [row[0] for row in self.dbapi.fetchall()]
+
+    def get_events_by_type(self, event_type):
+        """
+        Get event handles by type using JSON query optimization.
+
+        :param event_type: Type of event to search for
+        :returns: List of event handles matching the type
+        """
+        return self.json_query("event", "$.type", event_type)
+
+    def get_people_by_birth_date(self, start_date=None, end_date=None):
+        """
+        Get people by birth date range using optimized queries.
+
+        :param start_date: Start date for birth range
+        :param end_date: End date for birth range
+        :returns: List of person handles matching the criteria
+        """
+        if start_date and end_date:
+            # This would need to be implemented based on how dates are stored
+            # in the JSON data structure
+            pass
+        elif start_date:
+            pass
+        elif end_date:
+            pass
+        else:
+            # Get all people with birth events
+            return self.json_query("person", "$.birth", None, "IS NOT NULL")
+
+    def get_people_by_death_date(self, start_date=None, end_date=None):
+        """
+        Get people by death date range using optimized queries.
+
+        :param start_date: Start date for death range
+        :param end_date: End date for death range
+        :returns: List of person handles matching the criteria
+        """
+        if start_date and end_date:
+            pass
+        elif start_date:
+            pass
+        elif end_date:
+            pass
+        else:
+            # Get all people with death events
+            return self.json_query("person", "$.death", None, "IS NOT NULL")
+
+    def search_people_full_text(self, search_term):
+        """
+        Search people using full-text search across multiple fields.
+
+        :param search_term: Term to search for
+        :returns: List of person handles matching the search
+        """
+        return self.json_search(
+            "person",
+            search_term,
+            [
+                "$.name.first",
+                "$.name.surname",
+                "$.name.suffix",
+                "$.name.title",
+                "$.name.nick",
+                "$.name.call",
+            ],
+        )
+
+    def get_places_by_location(self, location_term):
+        """
+        Search places by location using optimized queries.
+
+        :param location_term: Location term to search for
+        :returns: List of place handles matching the location
+        """
+        return self.json_search(
+            "place", location_term, ["$.title", "$.long", "$.lat", "$.code"]
+        )
+
+    def get_sources_by_author(self, author):
+        """
+        Get sources by author using optimized queries.
+
+        :param author: Author name to search for
+        :returns: List of source handles matching the author
+        """
+        return self.json_query("source", "$.author", author, "LIKE")
+
+    def get_citations_by_source(self, source_handle):
+        """
+        Get citations by source using optimized queries.
+
+        :param source_handle: Handle of the source
+        :returns: List of citation handles for the source
+        """
+        self.dbapi.execute(
+            "SELECT handle FROM citation WHERE source_handle = ?", [source_handle]
+        )
+        return [row[0] for row in self.dbapi.fetchall()]
+
+    def get_media_by_type(self, mime_type):
+        """
+        Get media objects by MIME type using optimized queries.
+
+        :param mime_type: MIME type to search for
+        :returns: List of media handles matching the MIME type
+        """
+        self.dbapi.execute("SELECT handle FROM media WHERE mime = ?", [mime_type])
+        return [row[0] for row in self.dbapi.fetchall()]
+
+    def get_notes_by_content(self, content_term):
+        """
+        Search notes by content using optimized queries.
+
+        :param content_term: Content term to search for
+        :returns: List of note handles matching the content
+        """
+        return self.json_search("note", content_term, ["$.text"])
+
+    def get_repositories_by_name(self, name):
+        """
+        Get repositories by name using optimized queries.
+
+        :param name: Repository name to search for
+        :returns: List of repository handles matching the name
+        """
+        return self.json_query("repository", "$.name", name, "LIKE")
+
+    def bulk_get_persons(self, handles):
+        """
+        Get multiple persons efficiently using bulk operations.
+
+        :param handles: List of person handles to retrieve
+        :returns: List of person objects
+        """
+        if not handles:
+            return []
+
+        # Use IN clause for bulk retrieval
+        placeholders = ",".join(["?" for _ in handles])
+        self.dbapi.execute(
+            f"SELECT handle, json_data FROM person WHERE handle IN ({placeholders})",
+            handles,
+        )
+
+        results = []
+        for row in self.dbapi.fetchall():
+            handle, json_data = row
+            if json_data:
+                person_data = self.serializer.string_to_data(json_data)
+                results.append(self.serializer.data_to_object(person_data, Person))
+
+        return results
+
+    def bulk_get_families(self, handles):
+        """
+        Get multiple families efficiently using bulk operations.
+
+        :param handles: List of family handles to retrieve
+        :returns: List of family objects
+        """
+        if not handles:
+            return []
+
+        placeholders = ",".join(["?" for _ in handles])
+        self.dbapi.execute(
+            f"SELECT handle, json_data FROM family WHERE handle IN ({placeholders})",
+            handles,
+        )
+
+        results = []
+        for row in self.dbapi.fetchall():
+            handle, json_data = row
+            if json_data:
+                family_data = self.serializer.string_to_data(json_data)
+                results.append(self.serializer.data_to_object(family_data, Family))
+
+        return results

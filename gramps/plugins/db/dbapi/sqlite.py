@@ -32,6 +32,8 @@ import logging
 import os
 import re
 import sqlite3
+import threading
+import time
 
 # -------------------------------------------------------------------------
 #
@@ -45,6 +47,68 @@ from gramps.plugins.db.dbapi.dbapi import DBAPI
 _ = glocale.translation.gettext
 
 sqlite3.paramstyle = "qmark"
+
+
+# -------------------------------------------------------------------------
+#
+# Connection Pool class
+#
+# -------------------------------------------------------------------------
+class ConnectionPool:
+    """
+    A simple connection pool for SQLite connections.
+    """
+
+    def __init__(self, db_path, max_connections=5):
+        self.db_path = db_path
+        self.max_connections = max_connections
+        self.connections = []
+        self.in_use = set()
+        self.lock = threading.Lock()
+
+    def get_connection(self):
+        """
+        Get a connection from the pool.
+        """
+        with self.lock:
+            # Return an available connection if any
+            for conn in self.connections:
+                if conn not in self.in_use:
+                    self.in_use.add(conn)
+                    return conn
+
+            # Create a new connection if under limit
+            if len(self.connections) < self.max_connections:
+                conn = Connection(self.db_path)
+                self.connections.append(conn)
+                self.in_use.add(conn)
+                return conn
+
+            # Wait for a connection to become available
+            while True:
+                for conn in self.connections:
+                    if conn not in self.in_use:
+                        self.in_use.add(conn)
+                        return conn
+                time.sleep(0.01)  # Small delay before retrying
+
+    def return_connection(self, connection):
+        """
+        Return a connection to the pool.
+        """
+        with self.lock:
+            if connection in self.in_use:
+                self.in_use.remove(connection)
+
+    def close_all(self):
+        """
+        Close all connections in the pool.
+        """
+        with self.lock:
+            for conn in self.connections:
+                conn.close()
+            self.connections.clear()
+            self.in_use.clear()
 
 
 # -------------------------------------------------------------------------
@@ -105,10 +169,25 @@ class Connection:
         self.log = logging.getLogger(".sqlite")
         self.__connection = sqlite3.connect(*args, **kwargs)
         self.__cursor = self.__connection.cursor()
+
+        # Performance optimizations
+        self.__connection.execute("PRAGMA journal_mode = WAL;")
+        self.__connection.execute("PRAGMA synchronous = NORMAL;")
+        self.__connection.execute("PRAGMA cache_size = -64000;")  # 64MB cache
+        self.__connection.execute("PRAGMA temp_store = MEMORY;")
+        self.__connection.execute("PRAGMA mmap_size = 268435456;")  # 256MB mmap
+        self.__connection.execute("PRAGMA page_size = 4096;")
+        self.__connection.execute("PRAGMA auto_vacuum = INCREMENTAL;")
+        self.__connection.execute("PRAGMA incremental_vacuum = 1000;")
+
         self.__connection.create_function("regexp", 2, regexp)
         self.__collations = []
         self.__tmap = str.maketrans("-.@=;", "_____")
         self.check_collation(glocale)
+
+        # Prepare common statements for better performance
+        self.__prepared_statements = {}
+        self._prepare_common_statements()
 
     def check_collation(self, locale):
         """
@@ -125,6 +204,58 @@ class Connection:
             self.__connection.create_collation(collation, locale.strcoll)
             self.__collations.append(collation)
         return collation
+
+    def _prepare_common_statements(self):
+        """
+        Prepare commonly used SQL statements for better performance.
+        """
+        # Person queries
+        self.__prepared_statements["get_person_by_handle"] = self.__connection.prepare(
+            "SELECT * FROM person WHERE handle = ?"
+        )
+        self.__prepared_statements["get_person_by_gramps_id"] = (
+            self.__connection.prepare("SELECT * FROM person WHERE gramps_id = ?")
+        )
+        self.__prepared_statements["get_persons_by_surname"] = (
+            self.__connection.prepare(
+                "SELECT * FROM person WHERE surname = ? ORDER BY given_name"
+            )
+        )
+
+        # Family queries
+        self.__prepared_statements["get_family_by_handle"] = self.__connection.prepare(
+            "SELECT * FROM family WHERE handle = ?"
+        )
+        self.__prepared_statements["get_families_by_parent"] = (
+            self.__connection.prepare(
+                "SELECT * FROM family WHERE father_handle = ? OR mother_handle = ?"
+            )
+        )
+
+        # Reference queries
+        self.__prepared_statements["get_references_by_handle"] = (
+            self.__connection.prepare("SELECT * FROM reference WHERE obj_handle = ?")
+        )
+        self.__prepared_statements["get_references_by_ref_handle"] = (
+            self.__connection.prepare("SELECT * FROM reference WHERE ref_handle = ?")
+        )
+
+    def execute_prepared(self, statement_name, params=None):
+        """
+        Execute a prepared statement.
+
+        :param statement_name: Name of the prepared statement
+        :param params: Parameters for the statement
+        :returns: Cursor with results
+        """
+        if statement_name not in self.__prepared_statements:
+            raise ValueError(f"Prepared statement '{statement_name}' not found")
+
+        stmt = self.__prepared_statements[statement_name]
+        if params:
+            return stmt.execute(params)
+        else:
+            return stmt.execute()
 
     def execute(self, *args, **kwargs):
         """
