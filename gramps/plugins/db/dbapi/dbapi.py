@@ -79,7 +79,18 @@ class DBAPI(DbGeneric):
     """
 
     def _initialize(self, directory, username, password):
-        raise NotImplementedError
+        """
+        Initialize the database connection.
+
+        :param directory: Directory containing the database
+        :param username: Username (not used for SQLite)
+        :param password: Password (not used for SQLite)
+        """
+        from .sqlite import SQLite
+
+        sqlite_db = SQLite()
+        sqlite_db._initialize(directory, username, password)
+        self.dbapi = sqlite_db.dbapi
 
     def use_json_data(self):
         """
@@ -1321,16 +1332,21 @@ class DBAPI(DbGeneric):
 
         :param table_name: Name of the table to query
         :param json_path: JSON path expression (e.g., '$.name.first')
-        :param value: Value to compare against
-        :param operator: Comparison operator (=, !=, LIKE, etc.)
-        :returns: List of matching records
+        :param value: Value to search for
+        :param operator: SQL operator (e.g., '=', 'LIKE', '>', etc.)
+        :returns: List of handles matching the criteria
         """
         if value is None:
-            query = f"SELECT * FROM {table_name} WHERE json_extract(json_data, ?) IS NOT NULL"
-            return self.dbapi.execute(query, [json_path])
+            query = f"SELECT handle FROM {table_name} WHERE json_extract(json_data, ?) IS NOT NULL"
+            result = self.dbapi.execute(query, [json_path])
         else:
-            query = f"SELECT * FROM {table_name} WHERE json_extract(json_data, ?) {operator} ?"
-            return self.dbapi.execute(query, [json_path, value])
+            query = f"SELECT handle FROM {table_name} WHERE json_extract(json_data, ?) {operator} ?"
+            result = self.dbapi.execute(query, [json_path, value])
+
+        if result:
+            return [row[0] for row in result.fetchall()]
+        else:
+            return []
 
     def json_search(self, table_name, search_term, json_paths=None):
         """
@@ -1338,8 +1354,8 @@ class DBAPI(DbGeneric):
 
         :param table_name: Name of the table to search
         :param search_term: Term to search for
-        :param json_paths: List of JSON paths to search in (default: all text fields)
-        :returns: List of matching records
+        :param json_paths: List of JSON paths to search in
+        :returns: List of handles matching the search
         """
         if json_paths is None:
             # Default paths for common text fields
@@ -1352,8 +1368,13 @@ class DBAPI(DbGeneric):
             conditions.append(f"json_extract(json_data, ?) LIKE ?")
             params.extend([path, f"%{search_term}%"])
 
-        query = f"SELECT * FROM {table_name} WHERE " + " OR ".join(conditions)
-        return self.dbapi.execute(query, params)
+        query = f"SELECT handle FROM {table_name} WHERE " + " OR ".join(conditions)
+        result = self.dbapi.execute(query, params)
+
+        if result:
+            return [row[0] for row in result.fetchall()]
+        else:
+            return []
 
     def get_database_stats(self):
         """
@@ -1379,24 +1400,40 @@ class DBAPI(DbGeneric):
         ]
         for table in tables:
             result = self.dbapi.execute(f"SELECT COUNT(*) FROM {table}")
-            stats[f"{table}_count"] = result.fetchone()[0]
+            if result:
+                stats[f"{table}_count"] = result.fetchone()[0]
+            else:
+                stats[f"{table}_count"] = 0
 
         # Database size
         result = self.dbapi.execute(
             "SELECT page_count * page_size FROM pragma_page_count(), pragma_page_size()"
         )
-        stats["database_size_bytes"] = result.fetchone()[0]
+        if result:
+            stats["database_size_bytes"] = result.fetchone()[0]
+        else:
+            stats["database_size_bytes"] = 0
 
         # Index usage
         result = self.dbapi.execute("SELECT name FROM sqlite_master WHERE type='index'")
-        stats["index_count"] = len(result.fetchall())
+        if result:
+            stats["index_count"] = len(result.fetchall())
+        else:
+            stats["index_count"] = 0
 
         # Cache hit rate (approximate)
         result = self.dbapi.execute("PRAGMA cache_stats")
-        cache_stats = result.fetchall()
-        if cache_stats:
-            stats["cache_hits"] = cache_stats[0][0]
-            stats["cache_misses"] = cache_stats[0][1]
+        if result:
+            cache_stats = result.fetchall()
+            if cache_stats:
+                stats["cache_hits"] = cache_stats[0][0]
+                stats["cache_misses"] = cache_stats[0][1]
+            else:
+                stats["cache_hits"] = 0
+                stats["cache_misses"] = 0
+        else:
+            stats["cache_hits"] = 0
+            stats["cache_misses"] = 0
 
         return stats
 

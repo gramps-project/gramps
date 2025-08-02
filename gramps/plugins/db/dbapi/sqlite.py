@@ -209,35 +209,31 @@ class Connection:
         """
         Prepare commonly used SQL statements for better performance.
         """
-        # Person queries
-        self.__prepared_statements["get_person_by_handle"] = self.__connection.prepare(
+        # Person queries - store the SQL strings for later use
+        self.__prepared_statements["get_person_by_handle"] = (
             "SELECT * FROM person WHERE handle = ?"
         )
         self.__prepared_statements["get_person_by_gramps_id"] = (
-            self.__connection.prepare("SELECT * FROM person WHERE gramps_id = ?")
+            "SELECT * FROM person WHERE gramps_id = ?"
         )
         self.__prepared_statements["get_persons_by_surname"] = (
-            self.__connection.prepare(
-                "SELECT * FROM person WHERE surname = ? ORDER BY given_name"
-            )
+            "SELECT * FROM person WHERE surname = ? ORDER BY given_name"
         )
 
         # Family queries
-        self.__prepared_statements["get_family_by_handle"] = self.__connection.prepare(
+        self.__prepared_statements["get_family_by_handle"] = (
             "SELECT * FROM family WHERE handle = ?"
         )
         self.__prepared_statements["get_families_by_parent"] = (
-            self.__connection.prepare(
-                "SELECT * FROM family WHERE father_handle = ? OR mother_handle = ?"
-            )
+            "SELECT * FROM family WHERE father_handle = ? OR mother_handle = ?"
         )
 
         # Reference queries
         self.__prepared_statements["get_references_by_handle"] = (
-            self.__connection.prepare("SELECT * FROM reference WHERE obj_handle = ?")
+            "SELECT * FROM reference WHERE obj_handle = ?"
         )
         self.__prepared_statements["get_references_by_ref_handle"] = (
-            self.__connection.prepare("SELECT * FROM reference WHERE ref_handle = ?")
+            "SELECT * FROM reference WHERE ref_handle = ?"
         )
 
     def execute_prepared(self, statement_name, params=None):
@@ -251,11 +247,11 @@ class Connection:
         if statement_name not in self.__prepared_statements:
             raise ValueError(f"Prepared statement '{statement_name}' not found")
 
-        stmt = self.__prepared_statements[statement_name]
+        sql = self.__prepared_statements[statement_name]
         if params:
-            return stmt.execute(params)
+            return self.execute(sql, params)
         else:
-            return stmt.execute()
+            return self.execute(sql)
 
     def execute(self, *args, **kwargs):
         """
