@@ -1310,7 +1310,8 @@ class DBAPI(DbGeneric):
             return
 
         # Update in batches using a transaction
-        self.dbapi.begin()
+        if hasattr(self.dbapi, "begin"):
+            self.dbapi.begin()
         try:
             for i in range(0, len(data_list), batch_size):
                 batch = data_list[i : i + batch_size]
