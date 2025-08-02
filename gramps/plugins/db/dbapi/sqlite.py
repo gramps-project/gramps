@@ -176,7 +176,18 @@ class Connection:
         self.__connection.execute("PRAGMA cache_size = -64000;")  # 64MB cache
         self.__connection.execute("PRAGMA temp_store = MEMORY;")
         self.__connection.execute("PRAGMA mmap_size = 268435456;")  # 256MB mmap
-        self.__connection.execute("PRAGMA page_size = 4096;")
+        # PRAGMA page_size only affects new databases. For existing databases, this has no effect.
+        # See https://www.sqlite.org/pragma.html#pragma_page_size
+        db_path = None
+        if args and isinstance(args[0], str) and args[0] != ":memory:":
+            db_path = args[0]
+        if db_path and not os.path.exists(db_path):
+            self.__connection.execute("PRAGMA page_size = 4096;")
+        else:
+            self.log.warning(
+                "PRAGMA page_size has no effect on existing databases. "
+                "To change the page size, you must VACUUM the database after setting the PRAGMA."
+            )
         self.__connection.execute("PRAGMA auto_vacuum = INCREMENTAL;")
         self.__connection.execute("PRAGMA incremental_vacuum = 1000;")
 

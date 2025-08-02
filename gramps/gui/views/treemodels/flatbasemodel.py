@@ -582,7 +582,22 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
 
     def _rebuild_search(self, ignore=None):
         """
-        Rebuild the data map where a search is applied.
+        Rebuilds the data map to reflect the current search filter.
+
+        This method clears the existing data map and repopulates it with items
+        from the database that match the current search filter (`self.search`).
+        It updates internal counters for the total and displayed items.
+
+        Parameters
+        ----------
+        ignore : optional
+            This parameter is currently unused. It is present for API compatibility.
+
+        Side Effects
+        ------------
+        - Clears and rebuilds the internal data map.
+        - Updates `self.__total` and `self.__displayed` counters.
+        - May update the UI progress monitor if applicable.
         """
         self.clear_map()
         self.__total = 0
