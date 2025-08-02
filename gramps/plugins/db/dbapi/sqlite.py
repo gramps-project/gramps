@@ -65,6 +65,7 @@ class ConnectionPool:
         self.connections = []
         self.in_use = set()
         self.lock = threading.Lock()
+        self.condition = threading.Condition(self.lock)
 
     def get_connection(self):
         """
@@ -90,7 +91,8 @@ class ConnectionPool:
                     if conn not in self.in_use:
                         self.in_use.add(conn)
                         return conn
-                time.sleep(0.01)  # Small delay before retrying
+                # Wait for a connection to be returned to the pool
+                self.condition.wait()
 
     def return_connection(self, connection):
         """
@@ -99,6 +101,8 @@ class ConnectionPool:
         with self.lock:
             if connection in self.in_use:
                 self.in_use.remove(connection)
+                # Notify waiting threads that a connection is available
+                self.condition.notify()
 
     def close_all(self):
         """
