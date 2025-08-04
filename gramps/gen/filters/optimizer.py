@@ -42,6 +42,9 @@ LOG = logging.getLogger(".filter.optimizer")
 
 
 class Optimizer:
+    def __init__(self, top_level_filter):
+        self.top_level_filter = top_level_filter
+
     def compute_potential_handles_for_filter(
         self, filter: GenericFilter
     ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
@@ -73,11 +76,29 @@ class Optimizer:
         self,
         rule: Rule,
     ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
-        """ """
+        """
+        Find the the handles for a particular rule.
+        """
+        # Has to be of the appropriate type
         if hasattr(rule, "selected_handles"):
             return (rule.selected_handles, None)
         if hasattr(rule, "find_filter"):
             filter = rule.find_filter()
-            if filter:
+            if filter and self.is_same_namespace(filter):
                 return self.compute_potential_handles_for_filter(filter)
         return (None, None)
+
+    def is_same_namespace(self, filter):
+        """
+        Determine if the given filter is in the 'same namespace' as the top-level filter.
+
+        In this context, 'same namespace' means that both filters are instances of the same class,
+        as determined by comparing their class names.
+
+        Parameters:
+            filter: The filter object to compare against the top-level filter.
+
+        Returns:
+            True if both filters have the object type, False otherwise.
+        """
+        return type(self.top_level_filter.make_obj()) == type(filter.make_obj())

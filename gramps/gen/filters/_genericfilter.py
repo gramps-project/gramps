@@ -172,7 +172,7 @@ class GenericFilter:
         )
 
         # use the Optimizer to refine the set of possible_handles
-        optimizer = Optimizer()
+        optimizer = Optimizer(self)
         handles_in, handles_out = optimizer.compute_potential_handles_for_filter(self)
 
         # LOG.debug(
