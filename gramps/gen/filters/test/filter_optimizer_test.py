@@ -207,6 +207,23 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
         <arg value="Person I1041"/>
       </rule>
     </filter>
+    <filter name="Home Person" function="and">
+      <rule class="IsDefaultPerson" use_regex="False" use_case="False">
+      </rule>
+    </filter>
+    <filter name="Person of Events of Home Person" function="and">
+      <rule class="MatchesEventFilter" use_regex="False" use_case="False">
+        <arg value="Events of Home Person"/>
+      </rule>
+    </filter>    
+  </object>
+  <object type="Event">
+    <filter name="Events of Home Person" function="and">
+      <rule class="MatchesPersonFilter" use_regex="False" use_case="False">
+        <arg value="Home Person"/>
+        <arg value="0"/>
+      </rule>
+    </filter>
   </object>
 </filters>
 """
@@ -226,10 +243,10 @@ class OptimizerTest(unittest.TestCase):
         fl.loadString(custom_filters_xml)
 
         filters.set_custom_filters(fl)
-        cls.the_custom_filters = filters.CustomFilters.get_filters_dict("Person")
+        # Person:
         cls.filters = fl.get_filters_dict("Person")
-        for filter_name in cls.filters:
-            cls.the_custom_filters[filter_name] = cls.filters[filter_name]
+        # Event:
+        cls.event_filters = fl.get_filters_dict("Event")
 
     @classmethod
     def tearDownClass(self):
@@ -425,3 +442,20 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["not Parents of Person I1041"]
         results = filter.apply(self.db)
         self.assertEqual(len(results), 2128 - 2)
+
+    def test_home_person(self):
+        filter = self.filters["Home Person"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0], "GNUJQCL9MD64AM56OH")
+
+    def test_events_of_home_person(self):
+        filter = self.event_filters["Events of Home Person"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 3)
+
+    def test_person_of_events_of_home_person(self):
+        filter = self.filters["Person of Events of Home Person"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0], "GNUJQCL9MD64AM56OH")
