@@ -479,6 +479,34 @@ class DBAPI(DbGeneric):
             # Use simple query for unsorted results
             self.dbapi.execute("SELECT handle FROM person")
         return [row[0] for row in self.dbapi.fetchall()]
+    
+    def get_person_cursor(self, sort_handles=False, locale=glocale):
+        """
+        Return a cursor that iterates over person handles without loading
+        all into memory at once.
+        
+        :param sort_handles: If True, the cursor is sorted by surnames.
+        :type sort_handles: bool
+        :param locale: The locale to use for collation.
+        :type locale: A GrampsLocale object.
+        :returns: Iterator over person handles
+        """
+        if hasattr(self.dbapi, 'cursor'):
+            # Use real database cursor for backends that support it
+            cursor = self.dbapi.cursor()
+            if sort_handles:
+                cursor.execute(
+                    "SELECT handle FROM person "
+                    "ORDER BY surname, given_name "
+                    f'COLLATE "{self._collation(locale)}"'
+                )
+            else:
+                cursor.execute("SELECT handle FROM person")
+            # Return iterator that yields handles one at a time
+            return (row[0] for row in cursor)
+        else:
+            # Fallback to regular list for backends without cursor support
+            return iter(self.get_person_handles(sort_handles, locale))
 
     def get_family_handles(self, sort_handles=False, locale=glocale):
         """
@@ -1268,10 +1296,15 @@ class DBAPI(DbGeneric):
     def optimize_database(self):
         """
         Optimize the database for better performance.
+        Backend-specific optimizations should be implemented in subclasses.
         """
-        self.dbapi.execute("ANALYZE;")
-        self.dbapi.execute("VACUUM;")
-        self.dbapi.commit()
+        # ANALYZE is generally supported across databases
+        try:
+            self.dbapi.execute("ANALYZE;")
+            self.dbapi.commit()
+        except:
+            # Some backends may not support ANALYZE
+            pass
 
     def bulk_insert(self, table_name, data_list, batch_size=1000):
         """
@@ -1699,3 +1732,126 @@ class DBAPI(DbGeneric):
                 results.append(self.serializer.data_to_object(family_data, Family))
 
         return results
+    
+    # -------------------------------------------------------------------------
+    # Enhanced DBAPI Methods - Real Cursors, Lazy Loading, Prepared Statements
+    # -------------------------------------------------------------------------
+    
+    def prepare(self, name, query):
+        """
+        Prepare a statement for execution. Backend-agnostic implementation
+        that works with any database driver.
+        
+        :param name: Name identifier for the prepared statement
+        :param query: SQL query to prepare
+        :returns: Prepared statement object or query string
+        """
+        if not hasattr(self, '_prepared_statements'):
+            self._prepared_statements = {}
+            
+        if name not in self._prepared_statements:
+            if hasattr(self.dbapi, 'prepare'):
+                # For PostgreSQL, MySQL, etc. that support real prepared statements
+                self._prepared_statements[name] = self.dbapi.prepare(query)
+            else:
+                # For SQLite and others - just cache the query string
+                self._prepared_statements[name] = query
+        
+        return self._prepared_statements[name]
+    
+    def execute_prepared(self, name, params=None):
+        """
+        Execute a prepared statement by name.
+        
+        :param name: Name of the prepared statement
+        :param params: Parameters for the statement
+        :returns: Cursor with results
+        """
+        if not hasattr(self, '_prepared_statements'):
+            raise ValueError(f"No prepared statement '{name}' found")
+            
+        stmt = self._prepared_statements.get(name)
+        if stmt is None:
+            raise ValueError(f"Prepared statement '{name}' not found")
+        
+        if hasattr(stmt, 'execute'):
+            # Real prepared statement object
+            return stmt.execute(params or [])
+        else:
+            # Cached query string
+            return self.dbapi.execute(stmt, params or [])
+    
+    def get_person_from_handle_lazy(self, handle):
+        """
+        Get a person object with lazy loading of related data.
+        
+        :param handle: Person handle
+        :returns: LazyPerson object that loads data on access
+        """
+        # Check if person exists first
+        self.dbapi.execute("SELECT 1 FROM person WHERE handle = ?", [handle])
+        if not self.dbapi.fetchone():
+            return None
+        
+        class LazyPerson:
+            """Proxy object that loads person data on first access."""
+            def __init__(self, handle, db):
+                self._handle = handle
+                self._db = db
+                self._loaded = False
+                self._person = None
+            
+            def _load(self):
+                if not self._loaded:
+                    self._person = self._db.get_person_from_handle(self._handle)
+                    self._loaded = True
+            
+            def __getattr__(self, name):
+                self._load()
+                return getattr(self._person, name)
+            
+            def __setattr__(self, name, value):
+                if name.startswith('_'):
+                    object.__setattr__(self, name, value)
+                else:
+                    self._load()
+                    setattr(self._person, name, value)
+        
+        return LazyPerson(handle, self)
+    
+    def batch_commit_persons(self, persons, trans):
+        """
+        Commit multiple persons efficiently using batch operations.
+        
+        :param persons: List of Person objects to commit
+        :param trans: Transaction object
+        """
+        if not persons:
+            return
+            
+        # Use executemany if available
+        if hasattr(self.dbapi, 'executemany'):
+            data = []
+            for person in persons:
+                handle = person.handle
+                json_data = self.serializer.object_to_string(person)
+                # Prepare data for batch insert
+                data.append((handle, json_data, person.gramps_id, 
+                           person.gender, person.primary_name.first_name,
+                           person.primary_name.surname))
+            
+            # Batch insert/update
+            self.dbapi.executemany(
+                "INSERT OR REPLACE INTO person "
+                "(handle, json_data, gramps_id, gender, given_name, surname) "
+                "VALUES (?, ?, ?, ?, ?, ?)",
+                data
+            )
+            
+            # Emit signals for GUI updates
+            for person in persons:
+                self.emit('person-add', ([person.handle],))
+        else:
+            # Fallback to individual commits
+            for person in persons:
+                self.commit_person(person, trans)
