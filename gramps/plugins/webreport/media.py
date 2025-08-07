@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -53,8 +52,11 @@ import logging
 # Gramps module
 # ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import Date, Media
+from gramps.gen.lib import Date, Media, Note, NoteType, Name
+from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.plug.report import Bibliography
+from gramps.gen.utils.db import get_referents
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.thumbnails import run_thumbnailer
 from gramps.gen.utils.image import image_size
@@ -676,6 +678,121 @@ class MediaPages(BasePage):
                             Html("td", tags, class_="ColumnValue", inline=True),
                         )
                         table += trow
+
+            def show_referent(mref, header):
+                for mlist in mref.get_media_list():
+                    note_list = mlist.get_note_list()
+                    with Html("div", class_="subsection narrative") as section:
+                        section += Html("h5", header, inline=True)
+                        with Html("ol") as listn:
+                            section += listn
+                            for notehandle in note_list:
+                                note = self.r_db.get_note_from_handle(notehandle)
+                                note_text = self.get_note_format(note, True)
+                                note_text = note.text
+                                listn += Html("li", note_text)
+                return section
+
+            # get media reference notes
+            note = Note()
+            note.set_type(NoteType.MEDIAREF)
+            mediaref = self._(note.get_type().xml_str())
+
+            # add section title
+            mediadetail += Html("h4", mediaref, inline=True)
+
+            idx = 0
+            for referents in "Person", "Family", "Event", "Place", "Source", "Citation":
+                refs = get_referents(media.handle, self.r_db, (referents,))
+                message = ""
+                if referents == "Person":
+                    for ref in refs[0]:
+                        idx += 1
+                        mref = self.r_db.get_person_from_handle(refs[0][0])
+                        name_format = self.report.options["name_format"]
+                        primary_name = mref.get_primary_name()
+                        nname = Name(primary_name)
+                        nname.set_display_as(name_format)
+                        surname = _nd.display_name(nname)
+                        message = self._(
+                            "%(idx)s - for people: %(people)s"
+                            % {"people": surname, "idx": str(idx)}
+                        )
+                        result = show_referent(mref, message)
+                        if result:
+                            mediadetail += result
+                elif referents == "Family":
+                    for ref in refs[0]:
+                        idx += 1
+                        mref = self.r_db.get_family_from_handle(ref)
+                        family = self.report.get_family_name(mref)
+                        message = self._(
+                            "%(idx)s - for family: %(family)s"
+                            % {"family": family, "idx": str(idx)}
+                        )
+                        result = show_referent(mref, message)
+                        if result:
+                            mediadetail += result
+                elif referents == "Event":
+                    for ref in refs[0]:
+                        idx += 1
+                        mref = self.r_db.get_event_from_handle(ref)
+                        event = self._(mref.get_type().xml_str())
+                        ref_name = ""
+                        for reference in self.r_db.find_backlink_handles(ref):
+                            ref_class, ref_handle = reference
+                            if ref_class == "Person":
+                                person = self.r_db.get_person_from_handle(ref_handle)
+                                ref_name = self.report.get_person_name(person)
+                            elif ref_class == "Family":
+                                family = self.r_db.get_family_from_handle(ref_handle)
+                                ref_name = self.report.get_family_name(family)
+                        message = self._(
+                            "%(idx)s - for event: %(event)s: %(name)s"
+                            % {"event": event, "name": ref_name, "idx": str(idx)}
+                        )
+                        result = show_referent(mref, message)
+                        if result:
+                            mediadetail += result
+                elif referents == "Place":
+                    for ref in refs[0]:
+                        idx += 1
+                        mref = self.r_db.get_place_from_handle(ref)
+                        p_name = _pd.display(self.r_db, mref, fmt=0)
+                        message = self._(
+                            "%(idx)s - for place: %(place)s"
+                            % {"place": p_name, "idx": str(idx)}
+                        )
+                        result = show_referent(mref, message)
+                        if result:
+                            mediadetail += result
+                elif referents == "Source":
+                    for ref in refs[0]:
+                        idx += 1
+                        mref = self.r_db.get_source_from_handle(ref)
+                        s_name = mref.get_title()
+                        message = self._(
+                            "%(idx)s - for source: %(source)s"
+                            % {"source": s_name, "idx": str(idx)}
+                        )
+                        result = show_referent(mref, message)
+                        if result:
+                            mediadetail += result
+                else:
+                    for ref in refs[0]:
+                        idx += 1
+                        mref = self.r_db.get_citation_from_handle(ref)
+                        c_name = mref.get_page()
+                        s_handle = mref.get_reference_handle()
+                        srce = self.r_db.get_source_from_handle(s_handle)
+                        s_name = srce.get_title()
+                        message = self._(
+                            "%(idx)s - for citation: %(citation)s from %(source)s"
+                            % {"citation": c_name, "source": s_name, "idx": str(idx)}
+                        )
+                        result = show_referent(mref, message)
+                        if result:
+                            mediadetail += result
 
             # get media notes
             notelist = self.display_note_list(media.get_note_list(), Media)
