@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-07-05 16:03+0000\n"
+"PO-Revision-Date: 2025-08-05 10:02+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -602,11 +602,11 @@ msgid ""
 "a website for your family tree then there's a report for that as well."
 msgstr ""
 "<b>Gramps-Berichte</b><br/> Gramps bietet eine große Vielfalt an Berichten. "
-"Die grafischen Berichte und Grafiken können komplexe "
-"Verwandtschaftsverhältnisse einfach darstellen und die schriftlichen "
-"Berichte sind besonders nützlich, wenn du die Ergebnisse deines Stammbaum "
-"via E-Mail an Familienmitglieder senden willst. Wenn du eine Website für "
-"deinen Stammbaum erstellen willst, gibt es auch hierfür einen Bericht."
+"Die grafischen Berichte und Diagramme können komplexe Beziehungen auf "
+"einfache Weise darstellen, und die Textberichte sind besonders nützlich, "
+"wenn du die Ergebnisse deines Stammbaums per E-Mail an Familienmitglieder "
+"senden möchtest. Wenn du bereit bist, eine Website für deinen Stammbaum zu "
+"erstellen, gibt es auch dafür einen Bericht."
 
 #: ../data/tips.xml:36
 msgid ""
@@ -8100,7 +8100,7 @@ msgstr "Ehevertrag"
 
 #: ../gramps/gen/lib/eventtype.py:236
 msgid "Marriage License"
-msgstr "Heiratsurkunde"
+msgstr "Eheerlaubnis"
 
 #: ../gramps/gen/lib/eventtype.py:237
 msgid "Marriage Contract"
@@ -8409,7 +8409,7 @@ msgstr "Ereignisse"
 
 #: ../gramps/gen/lib/family.py:200 ../gramps/gen/lib/person.py:250
 msgid "LDS ordinances"
-msgstr "HLT Ordinationen"
+msgstr "HLT Verordnung"
 
 #: ../gramps/gen/lib/familyreltype.py:57
 #: ../gramps/plugins/webreport/calendar.py:1453
@@ -8567,7 +8567,7 @@ msgstr "Nicht freigegeben"
 #: ../gramps/plugins/textreport/indivcomplete.py:734
 #: ../gramps/plugins/webreport/basepage.py:588
 msgid "LDS Ordinance"
-msgstr "HLT Ordination"
+msgstr "HLT Verordnung"
 
 #: ../gramps/gen/lib/ldsord.py:203
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:55
@@ -10473,7 +10473,7 @@ msgstr "Bücher"
 
 #: ../gramps/gen/plug/report/_constants.py:58
 msgid "Graphs"
-msgstr "Schaubilder"
+msgstr "Diagramme"
 
 #: ../gramps/gen/plug/report/_constants.py:59
 msgid "Trees"
@@ -14272,23 +14272,23 @@ msgstr "Medienobjekt ziehen"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:52
 msgid "Create and add a new LDS ordinance"
-msgstr "Einen neuen HLT-Ritus erstellen und hinzufügen"
+msgstr "Einen neuen HLT-Verordnung erstellen und hinzufügen"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:53
 msgid "Remove the existing LDS ordinance"
-msgstr "Bestehenden HLT Ritus entfernen"
+msgstr "Bestehenden HLT Verordnung entfernen"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:54
 msgid "Edit the selected LDS ordinance"
-msgstr "Den ausgewählten HLT Ritus bearbeiten"
+msgstr "Den ausgewählten HLT Verordnung bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:55
 msgid "Move the selected LDS ordinance upwards"
-msgstr "Den ausgewählten HLT-Ritus nach oben verschieben"
+msgstr "Den ausgewählten HLT-Verordnung nach oben verschieben"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:56
 msgid "Move the selected LDS ordinance downwards"
-msgstr "Den ausgewählten HLT-Ritus nach unten verschieben"
+msgstr "Den ausgewählten HLT-Verordnung nach unten verschieben"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:78
 msgid "_LDS"
@@ -15136,14 +15136,14 @@ msgstr "Familie hinzufügen"
 #: ../gramps/gui/editors/editldsord.py:67
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
-msgstr "HLT_Ordinantionseditor"
+msgstr "HLT-Verordnungseditor"
 
 #: ../gramps/gui/editors/editldsord.py:157
 #: ../gramps/gui/editors/editldsord.py:338
 #: ../gramps/gui/editors/editldsord.py:375
 #: ../gramps/gui/editors/editldsord.py:486
 msgid "LDS Ordinance Editor"
-msgstr "HLT Ordinationseditor"
+msgstr "HLT-Verordnungseditor"
 
 #: ../gramps/gui/editors/editldsord.py:311
 #, python-format
@@ -17104,7 +17104,7 @@ msgstr "Etikettenliste bearbeiten"
 
 #: ../gramps/gui/glade/editldsord.glade:177
 msgid "Ordinance:"
-msgstr "Ordination:"
+msgstr "Verordnung:"
 
 #: ../gramps/gui/glade/editldsord.glade:189
 msgid "LDS _Temple:"
@@ -25821,8 +25821,8 @@ msgid ""
 "graphs will result in longer lines and larger graphs."
 msgstr ""
 "Untergraphen können Graphviz helfen, Ehepartner zusammen zu positionieren, "
-"aber bei nicht-trivialen Graphen führen sie zu längeren Linien und größeren "
-"Graphen."
+"aber bei nicht-trivialen Diagrammen führen sie zu längeren Linien und "
+"größeren Diagrammen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:228
 msgid "People of Interest"
@@ -27653,7 +27653,7 @@ msgstr "Namensgeber"
 
 #: ../gramps/plugins/lib/libgedcom.py:752
 msgid "Ordinance"
-msgstr "Ritus"
+msgstr "Verordnung"
 
 #: ../gramps/plugins/lib/libgedcom.py:754
 msgid "Separation"
@@ -28005,7 +28005,7 @@ msgstr "Einreichung: Generationen von Nachkommen"
 
 #: ../gramps/plugins/lib/libgedcom.py:8213
 msgid "Submission: Ordinance process flag"
-msgstr "Einreichung: Ordinance process flag"
+msgstr "Einreichung: Flag für Verordnungsprozess"
 
 #: ../gramps/plugins/lib/libgedcom.py:8474
 msgid "Invalid temple code"
@@ -38534,7 +38534,7 @@ msgstr " [Klickee zum Fortfahren]"
 
 #: ../gramps/plugins/webreport/basepage.py:2973
 msgid "Latter-Day Saints/ LDS Ordinance"
-msgstr "Heilige der letzten Tage/ HLT Ritus"
+msgstr "Heilige der letzten Tage/ HLT Verordnung"
 
 #: ../gramps/plugins/webreport/basepage.py:3140
 #: ../gramps/plugins/webreport/basepage.py:3142
