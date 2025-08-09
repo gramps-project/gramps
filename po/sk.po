@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-07-19 13:03+0000\n"
-"Last-Translator: Jozef Gaal <preklady@mayday.sk>\n"
+"PO-Revision-Date: 2025-08-07 20:02+0000\n"
+"Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -8865,7 +8865,7 @@ msgstr "Poznámka odkazu dieťaťa"
 #: ../gramps/plugins/textreport/indivcomplete.py:957
 #: ../gramps/plugins/webreport/person.py:1895
 msgid "Gender"
-msgstr "Pohlavie"
+msgstr "Rod"
 
 #: ../gramps/gen/lib/person.py:202
 msgid "Alternate names"
@@ -26057,7 +26057,7 @@ msgstr "meno"
 
 #: ../gramps/plugins/importer/importcsv.py:234
 msgid "gender"
-msgstr "pohlavie"
+msgstr "rod"
 
 #: ../gramps/plugins/importer/importcsv.py:235
 msgid "source"
