@@ -14,13 +14,14 @@
 # Jorma-Juhani Könönen <jorma@tuta.io>, 2025.
 # Ossi Viljakainen <arjunanda@gmail.com>, 2025.
 # Juha Mäkeläinen <juha.makelainen@iki.fi>, 2025.
+# Niila Magga <niila@runbox.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-06-27 15:35+0000\n"
-"Last-Translator: Juha Mäkeläinen <juha.makelainen@iki.fi>\n"
+"PO-Revision-Date: 2025-07-26 13:05+0000\n"
+"Last-Translator: Niila Magga <niila@runbox.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -6606,7 +6607,7 @@ msgstr "Poimii lähteet, joiden ominaisuudet vastaavat annettuja arvoja"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:47
 msgid "Sources with <count> media"
-msgstr "Lähteet, joilla mediatiedostoja on <lukumäärä>"
+msgstr "Lähteet, joilla on mediatiedostoja <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:48
 msgid "Matches sources with a certain number of items in the gallery"
@@ -6622,7 +6623,7 @@ msgstr "Poimii lähteet, joille on annettu Gramps ID"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:47
 msgid "Sources having <count> notes"
-msgstr "Lähteet, joilla lisätietoja on <lukumäärä>"
+msgstr "Lähteet, joilla on lisätietoja <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:48
 msgid "Matches sources having a certain number of notes"
@@ -6664,7 +6665,7 @@ msgstr "Poimii lisätiedot, joilla on tietty määrä viitteitä"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:59
 msgid "Sources with <count> Repository references"
-msgstr "Lähteet, joilla arkistoviitteitä on <lukumäärä>"
+msgstr "Lähteet, joilla on arkistoviitteitä <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:60
 msgid "Matches sources with a certain number of repository references"
@@ -25067,7 +25068,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:125
 msgid "Home Page"
-msgstr "Gramps-projektin kotisivu"
+msgstr "Kotisivu"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:128
 msgid "Who makes Gramps?"
