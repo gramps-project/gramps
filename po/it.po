@@ -68,7 +68,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-04-01 12:39+0000\n"
+"PO-Revision-Date: 2025-07-23 14:05+0000\n"
 "Last-Translator: Fabio Restante <frestante@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
@@ -77,7 +77,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -19368,10 +19368,8 @@ msgid "Select a different person"
 msgstr "Seleziona una persona differente"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Persone nei segnalibri"
+msgstr "Persona attiva, salvata nei segnalibri o persona principale"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -19382,10 +19380,8 @@ msgid "Select a different family"
 msgstr "Seleziona una famiglia differente"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "Famiglie nei segnalibri"
+msgstr "Famiglie attive o salvate nei segnalibri"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
