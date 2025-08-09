@@ -98,7 +98,15 @@ class GenericFilter:
         Return True or False depending on whether the handle matches the filter.
         """
         obj = self.get_object(db, handle)
-        return self.apply_to_one(db, obj)
+        for rule in self.flist:
+            rule.requestprepare(db, user=None)
+
+        results = self.apply_to_one(db, obj)
+
+        for rule in self.flist:
+            rule.requestreset()
+
+        return results
 
     def is_empty(self):
         return (len(self.flist) == 0) or (

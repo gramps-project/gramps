@@ -215,7 +215,12 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
       <rule class="MatchesEventFilter" use_regex="False" use_case="False">
         <arg value="Events of Home Person"/>
       </rule>
-    </filter>    
+    </filter>
+    <filter name="Regex Test" function="and">
+      <rule class="RegExpName" use_regex="True" use_case="False">
+        <arg value="Edwards|Daniels"/>
+      </rule>
+    </filter>
   </object>
   <object type="Event">
     <filter name="Events of Home Person" function="and">
@@ -459,3 +464,15 @@ class OptimizerTest(unittest.TestCase):
         results = filter.apply(self.db)
         self.assertEqual(len(results), 1)
         self.assertEqual(results[0], "GNUJQCL9MD64AM56OH")
+
+    def test_regex_person_name(self):
+        filter = self.filters["Regex Test"]
+        results = filter.apply(self.db)
+        self.assertEqual(len(results), 3)
+
+    def test_regex_person_name_match(self):
+        filter = self.filters["Regex Test"]
+        self.assertTrue(filter.match("W2DKQCV4H3EZUJ35DX", self.db))
+        self.assertTrue(filter.match("XZLKQCRQA9EHPBNZPT", self.db))
+        self.assertFalse(filter.match("GNUJQCL9MD64AM56OH", self.db))
+        self.assertTrue(filter.match("44WJQCLCQIPZUB0UH", self.db))
