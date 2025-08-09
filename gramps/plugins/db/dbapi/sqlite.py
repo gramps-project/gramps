@@ -124,14 +124,14 @@ class SQLite(DBAPI):
     """
     SQLite interface.
     """
-    
+
     def optimize_database(self):
         """
         SQLite-specific database optimization including VACUUM.
         """
         # Call parent class optimization first
         super().optimize_database()
-        
+
         # SQLite-specific optimizations
         try:
             self.dbapi.execute("VACUUM;")
