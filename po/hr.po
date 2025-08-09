@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-03-02 21:10+0000\n"
+"PO-Revision-Date: 2025-08-07 20:02+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -1731,7 +1731,7 @@ msgstr ""
 "GREŠKA: Pogrešna staza do baze podataka u postavkama „Uredi > Postavke”.\n"
 "Otvori postavke i postavi ispravnu stazu do baze podataka.\n"
 "\n"
-"Detalji: Ne mogu stvoriti stazu do baze podataka:\n"
+"Detalji: Nije bilo moguće stvoriti mapu baze podataka:\n"
 "    %s\n"
 "\n"
 
@@ -2071,7 +2071,7 @@ msgstr "Neuspjelo pisanje izvještaja. "
 #: ../gramps/cli/plug/__init__.py:905
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr "Greška prilikom izrade izvještaja „%s”."
+msgstr "Neuspjelo stvaranje izvještaja „%s”."
 
 #: ../gramps/cli/user.py:241 ../gramps/gui/dialog.py:298
 msgid "Error detected in database"
@@ -3919,7 +3919,7 @@ msgstr "Pronalazi citate koji su označeni kao privatni"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 msgid "Citation attribute:"
-msgstr "Svojstva citata:"
+msgstr "Svojstvo citata:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
@@ -9100,7 +9100,7 @@ msgstr "Knjižara"
 
 #: ../gramps/gen/lib/repotype.py:71
 msgid "Collection"
-msgstr "Kolekcija"
+msgstr "Zbirka"
 
 #: ../gramps/gen/lib/repotype.py:72
 msgid "Safe"
@@ -10972,7 +10972,7 @@ msgid ""
 "%(file)s\n"
 "because %(error)s -- recreating it\n"
 msgstr ""
-"UPOZORENJE: nemoguće obraditi datoteku:\n"
+"UPOZORENJE: nije bilo moguće obraditi datoteku:\n"
 "%(file)s\n"
 "zbog %(error)s -- ponovno stvaranje datoteke\n"
 
@@ -11753,10 +11753,10 @@ msgid ""
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"Definicija MIME-vrste %s nije pronađena \n"
+"Definicija vrste medija %s nije pronađena \n"
 "\n"
-" Vjerojatno nije dovršena instalacija programa Gramps u cijelosti. Provjeri, "
-"jesu li programi za baratanje vrstama medija za Gramps pravilno instalirani."
+" Instalacija programa Gramps možda nije bila potpuna. Provjeri, jesu li "
+"programi za baratanje vrstama medija za Gramps pravilno instalirani."
 
 #: ../gramps/gui/aboutdialog.py:129
 msgid ""
@@ -11861,7 +11861,7 @@ msgstr "Postavi %s kao aktivni objekt"
 #, python-format
 msgctxt "the object"
 msgid "Create Filter from %s selected..."
-msgstr "Izradi filtar od odabranog %s ..."
+msgstr "Stvori filtar od odabranog %s ..."
 
 #: ../gramps/gui/columnorder.py:94
 #, python-format
@@ -12138,9 +12138,9 @@ msgid ""
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
 "Standardni formati Gramps ID oznaka sadrže slovo kao prefiks nakon kojeg "
-"slijedi numerički niz. „I%04d” izrađuje ID oznake od I0000 do I9999. Velike "
-"baze podataka možda zahtijevaju veće ID oznake. „I%06d” izrađuje ID oznake "
-"od I000000 do I999999.\n"
+"slijedi numerički niz. „I%04d” stvara ID oznake od I0000 do I9999. Velike "
+"baze podataka možda zahtijevaju veće ID oznake. „I%06d” stvara ID oznake od "
+"I000000 do I999999.\n"
 
 #: ../gramps/gui/configure.py:878
 msgid "Colors used for boxes in the graphical views"
@@ -13490,7 +13490,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Pokušaj stvaranja arhive nije uspjeo. Poruka glasi:\n"
+"Pokušaj stvaranja arhive nije uspio. Poruka glasi:\n"
 "\n"
 "%s"
 
@@ -13650,7 +13650,7 @@ msgstr ""
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr "Odaberi_medij"
+msgstr "Odaberi_selektor_medija"
 
 #: ../gramps/gui/editors/addmedia.py:105
 msgid "Select a media object"
@@ -13662,11 +13662,11 @@ msgstr "Odaberi medijski objekt"
 
 #: ../gramps/gui/editors/addmedia.py:160
 msgid "Import failed"
-msgstr "Uvoz neuspješan"
+msgstr "Uvoz nije uspio"
 
 #: ../gramps/gui/editors/addmedia.py:161
 msgid "The filename supplied could not be found."
-msgstr "Datoteka nije pronađena."
+msgstr "Navedeno ime datoteke nije pronađeno."
 
 #: ../gramps/gui/editors/addmedia.py:171
 #, python-format
@@ -13876,7 +13876,7 @@ msgstr "Pomakni desno"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:71
 msgid "Create and add a new citation and new source"
-msgstr "Stvori i dodaj novi citat i izvor"
+msgstr "Stvori i dodaj novi citat i novi izvor"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:72
 msgid "Remove the existing citation"
@@ -16129,11 +16129,11 @@ msgstr "Spremi trenutačni skup podešenih odabira"
 
 #: ../gramps/gui/glade/book.glade:263
 msgid "Open previously created book"
-msgstr "Otvori prethodno izrađenu knjigu"
+msgstr "Otvori prethodno stvorenu knjigu"
 
 #: ../gramps/gui/glade/book.glade:285
 msgid "Manage previously created books"
-msgstr "Uredi prethodno izrađene knjige"
+msgstr "Uredi prethodno stvorene knjige"
 
 #: ../gramps/gui/glade/book.glade:487
 msgid "Add an item to the book"
@@ -18834,7 +18834,7 @@ msgstr "Filtriraj %s iz međuspremnika"
 #: ../gramps/gui/makefilter.py:53
 #, python-format
 msgid "Created on %(year)4d/%(month)02d/%(day)02d"
-msgstr "Izrađeno %(year)4d/%(month)02d/%(day)02d"
+msgstr "Stvoreno %(day)02d. %(month)02d. %(year)4d."
 
 #: ../gramps/gui/merge/mergecitation.py:47
 msgctxt "manual"
@@ -18994,11 +18994,11 @@ msgstr "Odabir izvještaja"
 
 #: ../gramps/gui/plug/_dialogs.py:322
 msgid "_Generate"
-msgstr "_Izradi"
+msgstr "_Generiraj"
 
 #: ../gramps/gui/plug/_dialogs.py:323
 msgid "Generate selected report"
-msgstr "Izradi odabrani izvještaj"
+msgstr "Generiraj odabrani izvještaj"
 
 #: ../gramps/gui/plug/_dialogs.py:354
 msgid "Tool Selection"
@@ -19038,10 +19038,8 @@ msgid "Select a different person"
 msgstr "Odaberi jednu drugu osobu"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Osobe u knjižnim oznakama"
+msgstr "Aktivne odosbe, osobe u knjižnim oznakama ili početne osobe"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -19052,10 +19050,8 @@ msgid "Select a different family"
 msgstr "Odaberi jednu drugu obitelj"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "Obitelji u knjižnim oznakama"
+msgstr "Aktivne obitelji ili obitelji u knjižnim oznakama"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
@@ -19586,9 +19582,9 @@ msgid ""
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
-"Odabrana datoteka i mapa za spremanje se ne mogu izraditi ili pronaći.\n"
+"Odabrana datoteka i mapa za spremanje se ne mogu stvoriti ili pronaći.\n"
 "\n"
-"Pritisni gumb „Natrag” i odaberi ispravnu datoteku."
+"Pritisni gumb „Natrag” i odaberi ispravno ime datoteke."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:527
 msgid "Your data has been saved"
@@ -19806,7 +19802,7 @@ msgstr "Uključi sve odabrane podatke"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:800
 msgid "Do not include records not linked to a selected person"
-msgstr "Ne uključuj podatke, koji nisu povezani s odabranom osobom"
+msgstr "Ne uključuj podatke koji nisu povezani s odabranom osobom"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:825
 msgid "Use Compression"
@@ -19814,7 +19810,7 @@ msgstr "Koristi komprimiranje"
 
 #: ../gramps/gui/plug/quick/_quickreports.py:113
 msgid "Web Connection"
-msgstr "Mrežna veza"
+msgstr "Web veza"
 
 #: ../gramps/gui/plug/quick/_quickreports.py:165
 #: ../gramps/gui/plug/quick/_textbufdoc.py:84
@@ -19837,7 +19833,7 @@ msgstr "Pogledaj podatke koji nisu u filtru"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:94
 msgid "Generate_Book_dialog"
-msgstr "Izradi_knjigu_dijalog"
+msgstr "Dijalog_za_generiranje_knjige"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:175
 msgid "Available Books"
@@ -19862,7 +19858,7 @@ msgstr "Ime knjige. OBAVEZNO"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:343
 msgid "Manage Books"
-msgstr "Uredi knjige"
+msgstr "Upravljaj knjigama"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:386
 msgid "New Book"
@@ -19903,7 +19899,7 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"Ova je knjiga izrađena s referencama na bazu podataka %s.\n"
+"Ova je knjiga stvorena s referencama na bazu podataka %s.\n"
 "\n"
 "Time su reference na središnju osobu, koje su spremljene u ovoj knjizi, "
 "neispravne.\n"
@@ -19913,11 +19909,11 @@ msgstr ""
 
 #: ../gramps/gui/plug/report/_bookdialog.py:577
 msgid "No selected book item"
-msgstr "Stavka nije odabrana"
+msgstr "Nijedan odabrani element knjige"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:578
 msgid "Please select a book item to configure."
-msgstr "Odaberi jednu stavku za podešavanje."
+msgstr "Odaberi jedan element knjige za konfiguriranje."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:643
 #: ../gramps/gui/views/bookmarks.py:310 ../gramps/gui/views/tags.py:493
@@ -19931,17 +19927,17 @@ msgstr "_Dolje"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:645
 msgid "Setup"
-msgstr "Podesi"
+msgstr "Konfiguracija"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:738
 #: ../gramps/gui/plug/report/_bookdialog.py:749
 msgid "No items"
-msgstr "Nema stavaka"
+msgstr "Nema elemenata"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:738
 #: ../gramps/gui/plug/report/_bookdialog.py:749
 msgid "This book has no items."
-msgstr "Ova knjiga nema stavaka."
+msgstr "Ova knjiga nema nijedan element."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:755
 msgid "No book name"
@@ -19967,7 +19963,7 @@ msgstr "Pokušavaš spremiti knjigu pod imenom koje već postoji."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:965
 msgid "Generate Book"
-msgstr "Izradi knjigu"
+msgstr "Generiraj knjigu"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:1014
 msgid "Gramps Book"
@@ -20100,7 +20096,7 @@ msgid ""
 msgstr ""
 "Nemaš korisnička prava za stvaranje %s\n"
 "\n"
-"Odaberi drugi direktorij ili promijeni korisnička prava."
+"Odaberi jedan drugi direktorij ili promijeni korisnička prava."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:562
 #: ../gramps/plugins/export/exportxml.py:162
@@ -20117,7 +20113,7 @@ msgid ""
 msgstr ""
 "Nema direktorija %s.\n"
 "\n"
-"Odaberi neki drugi direktorij ili ga stvori."
+"Odaberi jedan drugi direktorij ili ga stvori."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:714
 #: ../gramps/gui/plug/tool.py:157 ../gramps/plugins/tool/relcalc.py:161
@@ -21272,7 +21268,7 @@ msgstr "Obični tekst"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:36
 msgid "Generates documents in plain text format (.txt)."
-msgstr "Izrađuje dokumente u jednostavnom tekstualnom formatu (.txt)."
+msgstr "Generira dokumente u jednostavnom tekstualnom formatu (.txt)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:56
 #: ../gramps/plugins/view/fanchartview.py:165
@@ -21293,7 +21289,7 @@ msgstr "Ispis ..."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:57
 msgid "Generates documents and prints them directly."
-msgstr "Izrađuje dokumente i izravno ih ispisuje."
+msgstr "Generira dokumente i izravno ih ispisuje."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:77
 msgid "HTML"
@@ -21301,7 +21297,7 @@ msgstr "HTML"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:78
 msgid "Generates documents in HTML format."
-msgstr "Izrađuje dokumente u HTML formatu."
+msgstr "Generira dokumente u HTML formatu."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:98
 msgid "LaTeX"
@@ -21309,7 +21305,7 @@ msgstr "LaTeX"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:99
 msgid "Generates documents in LaTeX format."
-msgstr "Izrađuje dokumente u LaTeX formatu."
+msgstr "Generira dokumente u LaTeX formatu."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:119
 msgid "OpenDocument Text"
@@ -21317,7 +21313,7 @@ msgstr "OpenDocument tekst"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:120
 msgid "Generates documents in OpenDocument Text format (.odt)."
-msgstr "Izrađuje dokumente u OpenDocument tekstualnom formatu (.odt)."
+msgstr "Generira dokumente u OpenDocument tekstualnom formatu (.odt)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:140
 msgid "PDF document"
@@ -21325,11 +21321,11 @@ msgstr "PDF dokument"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:141
 msgid "Generates documents in PDF format (.pdf)."
-msgstr "Izrađuje dokumente u PDF formatu (.pdf)."
+msgstr "Generira dokumente u PDF formatu (.pdf)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:162
 msgid "Generates documents in PostScript format (.ps)."
-msgstr "Izrađuje dokumente u PostScript formatu (.ps)."
+msgstr "Generira dokumente u PostScript formatu (.ps)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:182
 msgid "RTF document"
@@ -21337,7 +21333,7 @@ msgstr "RTF dokument"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:183
 msgid "Generates documents in Rich Text format (.rtf)."
-msgstr "Izrađuje dokumente u Rich Text formatu (.rtf)."
+msgstr "Generira dokumente u Rich Text formatu (.rtf)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:203
 msgid "SVG document"
@@ -21345,21 +21341,19 @@ msgstr "SVG dokument"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:204
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr "Izrađuje dokumente u Scalable Vector Graphics formatu (.svg)."
+msgstr "Generira dokumente u Scalable Vector Graphics formatu (.svg)."
 
 #: ../gramps/plugins/docgen/gtkprint.glade:7
 msgid "Print Preview"
-msgstr "Ispiši pregled"
+msgstr "Pregled ispisa"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:29
 msgid "Closes print preview window"
-msgstr "Zatvara prozor s pregledom ispisa"
+msgstr "Zatvara prozor pregleda ispisa"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:39
-#, fuzzy
-#| msgid "Print..."
 msgid "_Print"
-msgstr "Ispis ..."
+msgstr "_Ispis"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:43
 msgid "Prints the current file"
@@ -21367,7 +21361,7 @@ msgstr "Ispisuje trenutačnu datoteku"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:63
 msgid "_First"
-msgstr ""
+msgstr "_Prva"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
@@ -21429,11 +21423,11 @@ msgstr "Prikazuje prethodnu stranicu"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:98
 msgid "Shows the next page"
-msgstr "Prikazuje slijedeću stranicu"
+msgstr "Prikazuje sljedeću stranicu"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:108
 msgid "_Last"
-msgstr ""
+msgstr "_Zadnja"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -21476,13 +21470,14 @@ msgid ""
 "pages."
 msgstr ""
 "Kao odredišni direktorij je postavljen direktorij koji služi za spremanje "
-"podataka, što može dovesti do problema u upravljanju datotekama. Preporučuje "
-"se odabir nekog drugog direktorija, za spremanje izrađenih web stranica."
+"podataka. To može prouzročiti probleme pri upravljanju datotekama. Za "
+"spremanje generiranih web stranica se preporučuje odabir jednog drugog "
+"direktorija."
 
 #: ../gramps/plugins/docgen/htmldoc.py:616
 #, python-format
 msgid "Could not create jpeg version of image %(name)s"
-msgstr "Nije bilo moguće stvaranje jpeg formata slike %(name)s"
+msgstr "Nije bilo moguće stvoriti jpeg verziju od slike %(name)s"
 
 #: ../gramps/plugins/docgen/latexdoc.py:1412
 msgid "PIL (Python Imaging Library) not loaded."
@@ -23288,7 +23283,7 @@ msgstr "Zapisivanje medija"
 
 #: ../gramps/plugins/export/exportgedcom.py:1665
 msgid "GEDCOM Export failed"
-msgstr "GEDCOM izvoz neuspješan"
+msgstr "Neuspio GEDCOM izvoz"
 
 #: ../gramps/plugins/export/exportgeneweb.py:99
 msgid "No families matched by selected filter"
@@ -24991,14 +24986,14 @@ msgid ""
 "\n"
 msgstr ""
 "Kad se Gramps prvi put pokrene svi su prikazi prazni. Postoji vrlo malo "
-"opcija u izborniku. Za bilo koju vrstu aktivnosti potreban je jedan "
-"rodoslov.\n"
+"opcija u izborniku. Za bilo koju vrstu aktivnosti potreban je jedan rodoslov."
 "\n"
-"Za izradu novog rodoslova (koji se ponekad zove i „baza podataka”) odaberi "
-"„Rodoslovi” u izborniku, odaberi „Uredi rodoslove”, pritisni „Novi” i imenuj "
-"rodoslov. Pritisni gumb „Učitaj rodoslov” za aktiviranje rodoslova i "
-"prihvaćanje podataka unosom prve obitelji ili uvozom rodoslova. Za detaljne "
-"informacije, koristi doljnje poveznice.\n"
+"\n"
+"Za stvaranje novog rodoslova (koji se ponekad zove i „baza podataka”) "
+"odaberi „Rodoslovi” u izborniku, odaberi „Uredi rodoslove”, pritisni „Novi” "
+"i imenuj rodoslov. Pritisni gumb „Učitaj rodoslov” za aktiviranje rodoslova "
+"i prihvaćanje podataka unosom prve obitelji ili uvozom rodoslova. Za "
+"detaljne informacije, koristi doljnje poveznice.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:171
@@ -25079,7 +25074,7 @@ msgstr ""
 "Za uvoz rodoslova iz jednog drugog programa, najprije stvori GEDCOM datoteku "
 "(ili druge podatke) iz prethodnog programa.\n"
 "\n"
-"Nakon izrade nove Gramps datoteke baze podataka, koristi opciju „Uvezi” u "
+"Nakon stvaranja nove Gramps datoteke baze podataka, koristi opciju „Uvezi” u "
 "izborniku „Rodoslovi” za uvoz GEDCOM podataka.\n"
 "\n"
 
@@ -25730,7 +25725,7 @@ msgstr "Prikaži genealoške simbole za događaje rođenja, braka i smrti."
 #: ../gramps/plugins/textreport/notelinkreport.py:112
 #: ../gramps/plugins/textreport/placereport.py:169
 msgid "Generating report"
-msgstr "Izrada izvještaja"
+msgstr "Generiranje izvještaja"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:882
 msgid "Determines what people are included in the graph"
@@ -25805,9 +25800,9 @@ msgid ""
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
-"Uključi URL u sva čvorišta dijagrama, za stvaranje PDF i imagemap datoteka s "
-"aktivnim poveznicama na stranice, stvorene izvještajem „Narativna web "
-"stranica”."
+"Uključi URL u svako čvorište dijagrama, za generiranje PDF i imagemap "
+"datoteka s aktivnim poveznicama na stranice koje su generirane izvještajem „"
+"Narativna web stranica”."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:995
 #: ../gramps/plugins/textreport/birthdayreport.py:657
@@ -26445,7 +26440,7 @@ msgstr "Neispravan datum {date} u {gw_snippet}, datum je očuvan kao tekst."
 #: ../gramps/plugins/importer/importgpkg.py:76
 #, python-format
 msgid "Could not create media directory %s"
-msgstr "Nije bilo moguće stvaranje medijskog direktorija: %s"
+msgstr "Nije bilo moguće stvoriti direktorij medija: %s"
 
 #: ../gramps/plugins/importer/importgpkg.py:79
 #, python-format
@@ -26457,7 +26452,7 @@ msgstr "Zabranjeno je pisati u mapu medija %s"
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
-"Medijski direktorij %s već postoji. Najprije ga izbriši, a zatim ponovi "
+"Direktorij medija %s već postoji. Najprije ga izbriši, a zatim ponovi "
 "postupak uvoza"
 
 #: ../gramps/plugins/importer/importgpkg.py:98
@@ -27448,7 +27443,7 @@ msgstr "Odobrena indentifikacija sustava"
 
 #: ../gramps/plugins/lib/libgedcom.py:7731
 msgid "Generated By"
-msgstr "Izrađeno s"
+msgstr "Generirano sa"
 
 #: ../gramps/plugins/lib/libgedcom.py:7747
 msgid "Name of software product"
@@ -31313,11 +31308,11 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:582
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr "Spajanje ovih mjesta bi prouzročilo petlju u redosljedu mjesta."
+msgstr "Spajanje ovih mjesta bi stvorilo petlju u hijerarhiji mjesta."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:37
 msgid "Provides a library for using Cairo to generate documents."
-msgstr "Omogućuje upotrebu Cairo biblioteka za izradu dokumenata."
+msgstr "Omogućuje upotrebu Cairo biblioteka za generiranje dokumenata."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:56
 msgid "Provides GEDCOM processing functionality"
@@ -31595,10 +31590,10 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
-"Mapa pločice više ne postoji:\n"
+"Mapa pločica više ne postoji:\n"
 "%s\n"
 "Pokušaj stvaranja nove mape nije uspio.\n"
-"Konfiguriraj prikaz za stazu pločice i ponovo pokreni Gramps."
+"Konfiguriraj prikaz za stazu pločica i ponovo pokreni Gramps."
 
 #: ../gramps/plugins/lib/maps/geography.py:400
 msgid "Remove cross hair"
@@ -31757,7 +31752,7 @@ msgstr ""
 #: ../gramps/plugins/lib/maps/osmgps.py:143
 #, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "Nije moguće stvoriti direktorij odsječaka karata %s"
+msgstr "Nije moguće stvoriti direktorij %s za predmemoriju odsječaka karata"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
 #, python-format
@@ -31792,7 +31787,8 @@ msgstr ""
 #: ../gramps/plugins/lib/maps/osmgps.py:261
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Nije moguće stvoriti memorijski direktorij odsječaka karata za „%s”."
+msgstr ""
+"Nije moguće stvoriti direktorij za predmemoriju odsječaka karata za „%s”."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:120
 #: ../gramps/plugins/lib/maps/placeselection.py:123
@@ -33603,7 +33599,7 @@ msgstr "Rekurzivno (prema dolje)"
 
 #: ../gramps/plugins/textreport/familygroup.py:734
 msgid "Create reports for all descendants of this family."
-msgstr "Izradi izvještaje o svim potomcima ove obitelji."
+msgstr "Stvori izvještaje za sve potomke ove obitelji."
 
 #: ../gramps/plugins/textreport/familygroup.py:763
 msgid "Parent Marriage"
@@ -34929,7 +34925,7 @@ msgid ""
 "you really want to run this test?"
 msgstr ""
 "Ova će provjera stvoriti mnogobrojne osobe i događaje u trenutačnoj bazi "
-"podataka. Želiš li doista pokrenuti ovu provjeru?"
+"podataka. Stvarno želiš pokrenuti ovu provjeru?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:75
 msgid "Run test"
@@ -34942,7 +34938,7 @@ msgstr "Pokretanje provjere datuma"
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:87
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:257
 msgid "Generating dates"
-msgstr "Izrada datuma"
+msgstr "Generiranje datuma"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:255
 msgid "Date Test Plugin"
@@ -34963,10 +34959,8 @@ msgid "Guess"
 msgstr "Pogođanje"
 
 #: ../gramps/plugins/tool/eventcmp.glade:37
-#, fuzzy
-#| msgid "Save As"
 msgid "Save _As"
-msgstr "Spremi kao"
+msgstr "Spremi _kao"
 
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
@@ -35928,32 +35922,32 @@ msgstr "Svrstaj obiteljske događaje osobe"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:128
 msgid "Generate_Testcases_for_Persons_and_Families"
-msgstr "Izradi_ispitni_slučaj_za_osobe_i_obitelji"
+msgstr "Generiraj_testne_primjere_za_osobe_i_obitelji"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:334
 #: ../gramps/plugins/tool/testcasegenerator.py:341
 msgid "Generate testcases"
-msgstr "Izradi primjere za provjeravanje"
+msgstr "Generiraj testne primjere"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:348
 msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
-"Izradi greške baze podataka na nižoj razini\n"
+"Generiraj greške baze podataka na nižoj razini\n"
 "Ispravljanje zahtijeva ponovno pokretanje baze podataka"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:355
 msgid "Generate database errors"
-msgstr "Izradi greške baze podataka"
+msgstr "Generiraj greške baze podataka"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:359
 msgid "Generate dummy data"
-msgstr "Izradi fiktivne podatke"
+msgstr "Generiraj fiktivne podatke"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:364
 msgid "Generate long names"
-msgstr "Izradi dugačka imena"
+msgstr "Generiraj dugačka imena"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:368
 msgid "Add special characters"
@@ -35977,21 +35971,21 @@ msgstr ""
 
 #: ../gramps/plugins/tool/testcasegenerator.py:436
 msgid "Generating low level database errors"
-msgstr "Izrada grešaka baze podataka na nižoj razini"
+msgstr "Generiranje grešaka baze podataka na nižoj razini"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:436
 #: ../gramps/plugins/tool/testcasegenerator.py:446
 #: ../gramps/plugins/tool/testcasegenerator.py:452
 msgid "Generating testcases"
-msgstr "Izrada ispitnog slučaja"
+msgstr "Generiranje testnih primjera"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:446
 msgid "Generating database errors"
-msgstr "Izrada greške baze podataka"
+msgstr "Generiranje grešaka u bazi podataka"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:453
 msgid "Generating families"
-msgstr "Izrada obitelji"
+msgstr "Generiranje obitelji"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:459
 #: ../gramps/plugins/tool/testcasegenerator.py:534
@@ -36024,7 +36018,7 @@ msgstr "Izrada obitelji"
 #: ../gramps/plugins/tool/testcasegenerator.py:1783
 #, python-format
 msgid "Testcase generator step %d"
-msgstr "Korak generatora ispitnog slučaja: %d"
+msgstr "Korak generatora testnog primjera %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:41
 msgid "Fix Capitalization of Family Names"
@@ -37926,7 +37920,9 @@ msgstr "Država/Pokrajina"
 #: ../gramps/plugins/webreport/basepage.py:1698
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
-msgstr "Izrađeno s %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
+msgstr ""
+"Generirano s programom %(gramps_home_html_start)sGramps%(html_end)s "
+"%(version)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1710
 #, python-format
@@ -37942,7 +37938,7 @@ msgstr " %(date)s"
 #: ../gramps/plugins/webreport/basepage.py:1744
 #, python-format
 msgid "%(http_break)sCreated for %(subject_url)s"
-msgstr "%(http_break)sIzrađeno za %(subject_url)s"
+msgstr "%(http_break)sStvoreno za %(subject_url)s"
 
 #: ../gramps/plugins/webreport/basepage.py:2001
 #: ../gramps/plugins/webstuff/webstuff.py:68
@@ -38408,7 +38404,7 @@ msgstr "%(current)s i %(parent)s nisu direktoriji"
 #: ../gramps/plugins/webreport/narrativeweb.py:401
 #, python-format
 msgid "Could not create the directory: %s"
-msgstr "Nije bilo moguće kreirati direktorij: %s"
+msgstr "Nije bilo moguće stvoriti direktorij: %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:410
 msgid "Invalid file name"
@@ -38572,11 +38568,11 @@ msgstr "Odaberi raspored za izbornike navigacije."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2218
 msgid "Normal Outline Style"
-msgstr "Normalni obrubni stil"
+msgstr "Normalni stil strukture"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Citation References Layout"
-msgstr "Raspored referenci citata"
+msgstr "Raspored referenca citata"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2228
 msgid ""
@@ -38751,8 +38747,8 @@ msgid ""
 "no contact page will be created"
 msgstr ""
 "Zabilješka za kontaktiranje izdavača.\n"
-"Ako nema informacija o izdavaču,\n"
-"kontaktna stranica neće biti stvorena"
+"Ako se podaci o izdavaču ne navedu,\n"
+"stranica kontakta se neće stvoriti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2387
 msgid "Publisher contact image"
@@ -38765,8 +38761,8 @@ msgid ""
 "no contact page will be created"
 msgstr ""
 "Slika za kontaktiranje izdavača.\n"
-"Ako nema informacija o izdavaču,\n"
-"kontaktna stranica neće biti stvorena"
+"Ako se podaci o izdavaču ne navedu,\n"
+"stranica kontakta se neće stvoriti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2397
 msgid "HTML user header"
@@ -38826,7 +38822,7 @@ msgstr "Da li uključiti neupotrebljene ili nereferencirane medijske objekte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2449
 msgid "Create and only use thumbnail- sized images"
-msgstr "Izradi sličice i koristi samo njih"
+msgstr "Stvori sličice i koristi samo njih"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2453
 msgid ""
@@ -38834,9 +38830,9 @@ msgid ""
 "sized images on the Media Page. This will allow you to have a much smaller "
 "total upload size to your web hosting site."
 msgstr ""
-"Ova opcija omogućuje izradu sličica na stranici s medijima (umjesto "
-"korištenja slika u punoj veličini). Na taj se način smanjuje cjelokupna "
-"količina podataka za prijenos na tvoju web lokaciju."
+"Ova opcija omogućuje stvaranje samo sličica na stranici medija (umjesto "
+"slika u punoj veličini). Na taj se način smanjuje cjelokupna količina "
+"podataka za prijenos na tvoju web-stranicu."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2463
 msgid "Create the thumbnail index"
@@ -39327,12 +39323,12 @@ msgstr "Da li uključiti kalendar za %s. godinu"
 #: ../gramps/plugins/webreport/narrativeweb.py:3169
 #: ../gramps/plugins/webreport/webcal.py:2060
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Izradi jednodnevne stranice s događajima za cjelogodišnji kalendar"
+msgstr "Stvori jednodnevne stranice s događajima za cjelogodišnji kalendar"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3171
 #: ../gramps/plugins/webreport/webcal.py:2062
 msgid "Whether to create one day pages or not"
-msgstr "Da li izraditi jednodnevne stranice"
+msgstr "Da li stvoriti jednodnevne stranice ili ne"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3175
 #: ../gramps/plugins/webreport/webcal.py:2066
@@ -39651,11 +39647,11 @@ msgstr "Opcije za sadržaj"
 
 #: ../gramps/plugins/webreport/webcal.py:1929
 msgid "Create multiple year calendars"
-msgstr "Izradi višegodišnje kalendare"
+msgstr "Stvori višegodišnje kalendare"
 
 #: ../gramps/plugins/webreport/webcal.py:1931
 msgid "Whether to create Multiple year calendars or not."
-msgstr "Da li izraditi višegodišnje kalendare."
+msgstr "Da li stvoriti višegodišnje kalendare ili ne."
 
 #: ../gramps/plugins/webreport/webcal.py:1937
 msgid "Start Year for the Calendar(s)"
