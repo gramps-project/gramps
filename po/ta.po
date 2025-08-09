@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-07-01 20:01+0000\n"
-"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"PO-Revision-Date: 2025-08-09 21:35+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ta/>\n"
 "Language: ta\n"
@@ -23573,7 +23573,9 @@ msgstr ""
 msgid ""
 "  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update "
 "Gramps every time an update is released?%(html_end)s\n"
-msgstr "  5.\n"
+msgstr ""
+"  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update "
+"Gramps every time an update is released?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:124
 msgid "Data Entry"
@@ -23584,14 +23586,18 @@ msgstr "தரவு உள்ளீடு"
 msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
-msgstr "  6\n"
+msgstr ""
+"  6. %(gramps_manual_html_start)s%(section)sHow should information about "
+"marriages be entered?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:148
 #, python-format
 msgid ""
 "  7. %(gramps_FAQ_html_start)s%(faq_section)sWhat's the difference between a "
 "residence and an address?%(html_end)s\n"
-msgstr "  7.\n"
+msgstr ""
+"  7. %(gramps_FAQ_html_start)s%(faq_section)sWhat's the difference between a "
+"residence and an address?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:155
 msgid "Media Files"
@@ -23620,7 +23626,9 @@ msgstr ""
 msgid ""
 " 10. %(gramps_FAQ_html_start)s%(faq_section)sHow can I make a website with "
 "Gramps and my tree?%(html_end)s\n"
-msgstr " 10.\n"
+msgstr ""
+" 10. %(gramps_FAQ_html_start)s%(faq_section)sHow can I make a website with "
+"Gramps and my tree?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:197
 #, python-format
@@ -23634,33 +23642,41 @@ msgstr ""
 msgid ""
 " 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a "
 "bug?%(html_end)s\n"
-msgstr " 12.\n"
+msgstr ""
+" 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a "
+"bug?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:215
 #, python-format
 msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
-msgstr " 13\n"
+msgstr ""
+" 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for "
+"Gramps?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:224
 #, python-format
 msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
-msgstr " 14\n"
+msgstr ""
+" 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials "
+"available?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:233
 #, python-format
 msgid " 15. %(gramps_wiki_html_start)s%(section)sHow do I ...?%(html_end)s\n"
-msgstr " 15\n"
+msgstr " 15. %(gramps_wiki_html_start)s%(section)sHow do I ...?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:242
 #, python-format
 msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
-msgstr " 16\n"
+msgstr ""
+" 16. %(gramps_wiki_html_start)s%(section)sHow can I help with "
+"Gramps?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:56
 msgid "Double-click given name for details"
@@ -29379,7 +29395,7 @@ msgstr "அவள் %(modified_date)s %(endnotes)s என்று பெயர
 #: ../gramps/plugins/lib/libnarrate.py:961
 #, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%."
+msgstr "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:962
 #, python-format
@@ -29452,7 +29468,7 @@ msgstr "அவள்%(endnotes)s என்று பெயரிடப்பட�
 #: ../gramps/plugins/lib/libnarrate.py:995
 #, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
-msgstr "%."
+msgstr "%(unknown_gender_name)s was christened%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:996
 #, python-format
@@ -37836,7 +37852,7 @@ msgstr "கதை"
 #: ../gramps/plugins/webreport/basepage.py:974
 #, python-format
 msgid "(%(str1)s) %(str2)s"
-msgstr "( %(str1) s) %(str2) கள்"
+msgstr "( %(str1)s) %(str2)s கள்"
 
 #: ../gramps/plugins/webreport/basepage.py:1513
 #: ../gramps/plugins/webreport/basepage.py:3429
