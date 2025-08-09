@@ -12,13 +12,14 @@
 # Erik Faderik <erikfaderik@gmail.com>, 2025.
 # Satria Manggala Jati <satriamanggalajati@ymail.com>, 2025.
 # Arshad Aulia <auliarshad@gmail.com>, 2025.
+# Ismail Amirkulal <amirkhalilzain@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 19:05+0100\n"
-"PO-Revision-Date: 2025-06-24 16:01+0000\n"
-"Last-Translator: Arshad Aulia <auliarshad@gmail.com>\n"
+"PO-Revision-Date: 2025-07-28 21:19+0000\n"
+"Last-Translator: Ismail Amirkulal <amirkhalilzain@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/id/>\n"
 "Language: id\n"
@@ -682,15 +683,14 @@ msgstr ""
 "untuk mundur\"."
 
 #: ../data/tips.xml:50
-#, fuzzy
 msgid ""
 "<b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the "
 "keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. "
 "If one exists for a function it is displayed on the right side of the menu."
 msgstr ""
-"<b>Pintas Keyboard</b><br/>Lelah berpindah tangan dari keyboard untuk "
-"menggunakan mouse? Banyak fungsi pada Gramps yang memiliki pintasan "
-"keyboard. Jika ada untuk suatu fungsi, itu akan ditampilkan di sisi kanan "
+"<b>Pintasan Keyboard</b><br/>Lelah harus melepas tangan dari keyboard hanya "
+"untuk menggunakan mouse? Banyak fungsi di Gramps memiliki pintasan keyboard. "
+"Jika sebuah fungsi memiliki pintasan, maka akan ditampilkan di sisi kanan "
 "menu."
 
 #: ../data/tips.xml:52
@@ -870,6 +870,11 @@ msgid ""
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
+"<b>Tampilan Silsilah</b><br/>Tampilan Silsilah menampilkan bagan silsilah "
+"tradisional. Arahkan kursor ke seorang individu untuk melihat informasi "
+"lebih lanjut tentangnya, atau klik kanan pada individu tersebut untuk "
+"mengakses anggota keluarga lain dan pengaturan. Coba eksplorasi "
+"pengaturannya untuk melihat berbagai opsi yang tersedia."
 
 #: ../data/tips.xml:78
 msgid ""
@@ -878,17 +883,20 @@ msgid ""
 "see which individuals reference each source. You can use filters to group "
 "your sources."
 msgstr ""
+"<b>Mengelola Sumber</b><br/>Menampilkan daftar semua sumber dalam satu "
+"jendela. Dari sini, Anda dapat mengedit sumber, menggabungkan duplikat, dan "
+"melihat individu mana yang merujuk setiap sumber. Anda dapat menggunakan "
+"filter untuk mengelompokkan sumber."
 
 #: ../data/tips.xml:80
-#, fuzzy
 msgid ""
 "<b>Managing Places</b><br/>The Places View shows a list of all places in the "
 "database. The list can be sorted by a number of different criteria, such as "
 "City, County or State."
 msgstr ""
-"<b>Mengatur Tempat</b><br/>Tampilan tempat menunjukkan daftar dari "
-"keseluruhan tempat yang di entri pada basis data. Daftar ini dapat di sortir "
-"berdasarkan berbagai macam kriteria, seperti Kota, Negara."
+"<b>Mengelola Tempat</b><br/>Tampilan Tempat menampilkan daftar semua tempat "
+"yang tercatat di basis data. Daftar ini dapat diurutkan berdasarkan berbagai "
+"kriteria, seperti Kota, Kabupaten, atau Provinsi."
 
 #: ../data/tips.xml:82
 msgid ""
@@ -896,6 +904,9 @@ msgid ""
 "the database. These can be graphic images, videos, sound clips, "
 "spreadsheets, documents, and more."
 msgstr ""
+"<b>Tampilan Media</b><br/>Tampilan Media menampilkan daftar semua media yang "
+"dimasukkan ke dalam basis data. Media ini dapat berupa gambar, video, klip "
+"suara, spreadsheet, dokumen, dan lainnya."
 
 #: ../data/tips.xml:84
 #, fuzzy
@@ -37736,7 +37747,7 @@ msgstr "Nebraska"
 
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
-msgstr "Tidak ada style sheet"
+msgstr "Tidak ada gaya lembaran"
 
 #, fuzzy
 #~ msgid "Preparing ..."
