@@ -42,7 +42,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-07 20:02+0000\n"
+"PO-Revision-Date: 2025-08-10 15:45+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -16748,11 +16748,9 @@ msgstr "Zrušit změny a zavřít okno"
 
 #: ../gramps/gui/glade/editfamily.glade:116
 #: ../gramps/gui/glade/editfamily.glade:379
-#, fuzzy
-#| msgid "Name:"
 msgctxt "family"
 msgid "Name:"
-msgstr "Jméno:"
+msgstr "Příjmení:"
 
 #: ../gramps/gui/glade/editfamily.glade:129
 #: ../gramps/gui/glade/editfamily.glade:392
@@ -17794,8 +17792,6 @@ msgstr "Osoba 2"
 
 #: ../gramps/gui/glade/mergeperson.glade:218
 #: ../gramps/gui/glade/mergeperson.glade:233
-#, fuzzy
-#| msgid "Name:"
 msgctxt "person"
 msgid "Name:"
 msgstr "Jméno:"
@@ -17803,7 +17799,7 @@ msgstr "Jméno:"
 #: ../gramps/gui/glade/mergeperson.glade:249
 #: ../gramps/gui/glade/mergeperson.glade:264
 msgid "Gender:"
-msgstr "Pohlaví:"
+msgstr "Rod:"
 
 #: ../gramps/gui/glade/mergeperson.glade:399
 msgid ""

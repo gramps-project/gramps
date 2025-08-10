@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-07 20:02+0000\n"
+"PO-Revision-Date: 2025-08-10 15:45+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -16786,11 +16786,9 @@ msgstr "Opustiť zmeny a zatvoriť okno"
 
 #: ../gramps/gui/glade/editfamily.glade:116
 #: ../gramps/gui/glade/editfamily.glade:379
-#, fuzzy
-#| msgid "Name:"
 msgctxt "family"
 msgid "Name:"
-msgstr "Meno:"
+msgstr "Priezvisko:"
 
 #: ../gramps/gui/glade/editfamily.glade:129
 #: ../gramps/gui/glade/editfamily.glade:392
@@ -17846,8 +17844,6 @@ msgstr "Osoba 2"
 
 #: ../gramps/gui/glade/mergeperson.glade:218
 #: ../gramps/gui/glade/mergeperson.glade:233
-#, fuzzy
-#| msgid "Name:"
 msgctxt "person"
 msgid "Name:"
 msgstr "Meno:"
@@ -17855,7 +17851,7 @@ msgstr "Meno:"
 #: ../gramps/gui/glade/mergeperson.glade:249
 #: ../gramps/gui/glade/mergeperson.glade:264
 msgid "Gender:"
-msgstr "Pohlavie:"
+msgstr "Rod:"
 
 #: ../gramps/gui/glade/mergeperson.glade:399
 msgid ""
@@ -19490,7 +19486,7 @@ msgstr "Autori"
 #: ../gramps/gui/plug/_windows.py:1652
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
-msgstr "Názov súboru"
+msgstr "Súborový názov"
 
 #: ../gramps/gui/plug/_windows.py:1655
 msgid "Detailed Info"
