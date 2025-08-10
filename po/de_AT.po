@@ -31,16 +31,16 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-06-18 08:01+0000\n"
+"PO-Revision-Date: 2025-08-10 15:45+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12.1\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -17031,8 +17031,6 @@ msgstr "Änderungen verwerfen und Fenster schließen"
 
 #: ../gramps/gui/glade/editfamily.glade:116
 #: ../gramps/gui/glade/editfamily.glade:379
-#, fuzzy
-#| msgid "Name:"
 msgctxt "family"
 msgid "Name:"
 msgstr "Name:"
@@ -18117,8 +18115,6 @@ msgstr "Person 2"
 
 #: ../gramps/gui/glade/mergeperson.glade:218
 #: ../gramps/gui/glade/mergeperson.glade:233
-#, fuzzy
-#| msgid "Name:"
 msgctxt "person"
 msgid "Name:"
 msgstr "Name:"
@@ -33523,7 +33519,7 @@ msgstr "Das Nummerierungssystem, das verwendet wird"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Show gender symbol in front of name"
-msgstr "Zeige Symbol für Geschlecht vor dem Namen"
+msgstr "Zeige Geschlechtssymbol vor dem Namen"
 
 #: ../gramps/plugins/textreport/descendreport.py:601
 msgid "Whether to show gender symbol in front of name in the report."
