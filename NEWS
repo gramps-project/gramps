@@ -1,3 +1,21 @@
+2025-08-10
+Version 6.0.4
+* Update translations: ca, cs, da, de, de_AT, es, fa, fi, fr, he, hr, hu, id,
+  it, nl, pl, pt_PT, sk, ta, uk.
+* Added Weblate translation for Bashkir.
+* Fix regex matches in filter match method.
+* Fix the problem of mixed filter types.
+* Add context to translatable "Name:" labels in Glade files. Fixes #12527.
+* Fix format character in the `MatchesPersonFilter` event rule.
+  Fixes #13909, #13923.
+* Fix file not found when we don't want sources in narrated web report.
+  Fixes #13875.
+* Fix note attached to citation in narrated web report. Fixes #13852.
+* Apply event place filters to the place not the event. Fixes #13797.
+* Added new fieldtype 48 to support Pro-Gen version 3.5.
+* Normalize gzip mtime for reproducible builds.
+* Fix regression in relationship path between people filter.
+
 2025-06-18
 Version 6.0.3
 * Update translations: de_AT, en_GB, es, uk.
