@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-06-27 15:35+0000\n"
+"PO-Revision-Date: 2025-08-10 16:29+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
@@ -240,7 +240,7 @@ msgstr "Gramps"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:3
 msgid "Genealogy System"
-msgstr "Sistema Genealògic"
+msgstr "Sistema genealògic"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:5
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
@@ -280,7 +280,7 @@ msgstr ""
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
 msgid "Gramps Development Team"
-msgstr "Equip de Desenvolupament de Gramps"
+msgstr "Equip de desenvolupament del Gramps"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:227
@@ -359,19 +359,19 @@ msgstr "Persona"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
-msgstr "Base de dades Gramps"
+msgstr "Base de dades del Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:10
 msgid "Gramps package"
-msgstr "Paquet Gramps"
+msgstr "Paquet del Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
 msgid "Gramps XML database"
-msgstr "Base de dades XML de Gramps"
+msgstr "Base de dades XML del Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
-msgstr "Arxiu GeneWeb"
+msgstr "Fitxer font del GeneWeb"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -380,11 +380,11 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Treballar amb Dates</b><br/>Es pot donar un rang de dates fent servir el "
-"format \"entre 4 de gener de 2000 i 20 de març de 2003\". També pot indicar "
-"el nivell de confiança en una data i fins i tot triar entre set calendaris "
-"diferents. Provi el botó del costat del camp de data a l'Editor "
-"d'Esdeveniments."
+"<b>Treball amb dates</b><br/>Es pot donar un interval de dates fent servir "
+"el format «entre 4 de gener de 2000 i 20 de març de 2003». També podeu "
+"indicar el nivell de confiança en una data i fins i tot triar entre set "
+"calendaris diferents. Proveu el botó del costat del camp de data a l'editor "
+"d'esdeveniments."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -528,12 +528,12 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Eines de Gramps</b><br/>Gramps ve amb un conjunt d'eines molt complet. "
-"Permeten dur a terme operacions com ara comprovar els errors i la "
+"<b>Eines del Gramps</b><br/>El Gramps ve amb un conjunt d'eines molt "
+"complet. Permeten dur a terme operacions com ara comprovar els errors i la "
 "consistència de la base de dades. Hi ha eines de recerca i anàlisi com ara "
 "la comparació d'esdeveniments, localització de persones duplicades, "
 "navegador de descendents interactiu, i molts d'altres. Totes les eines es "
-"poden trobar sota el menú d'\"Eines\"."
+"poden trobar sota el menú «Eines»."
 
 #: ../data/tips.xml:28
 msgid ""
@@ -999,10 +999,10 @@ msgid ""
 "private can be excluded from reports and data exports. Look for the padlock "
 "which toggles records between private and public."
 msgstr ""
-"<b>Privacitat a Gramps</b><br/>Gramps l'ajuda a mantenir segura la seva "
-"informació personal permetent-li de marcar informació com a privada. Les "
-"dades marcades com a privades poden excloure's dels informes i les "
-"exportacions de dades. Busqui el candau que commuta els registres entre "
+"<b>Privadesa al Gramps</b><br/>El Gramps us ajuda a mantenir segura la "
+"vostra informació personal permetent-us de marcar informació com a privada. "
+"Les dades marcades com a privades poden excloure's dels informes i les "
+"exportacions de dades. Cerqueu el cadenat que commuta els registres entre "
 "privats i públics."
 
 #: ../data/tips.xml:100
@@ -1112,10 +1112,10 @@ msgid ""
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
-"<b>Traductors de Gramps</b><br/>Gramps ha estat dissenyat perquè s'hi puguin "
-"afegir fàcilment traduccions noves amb poc esforç de desenvolupament. Si "
-"està interessat en participar-hi, enviï si us plau un email a gramps-"
-"devel@lists.sf.net."
+"<b>Traductors del Gramps</b><br/>El Gramps ha estat dissenyat perquè s'hi "
+"puguin afegir fàcilment traduccions noves amb poc esforç de desenvolupament. "
+"Si esteu interessat en participar-hi, envieu un missatge (en anglès) a "
+"gramps-devel@lists.sf.net."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -1197,8 +1197,8 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"Error: l'arbre genealògic '%s' ja existeix.\n"
-"L'opció '-C' no es pot fer servir."
+"Error: l'arbre genealògic «%s» ja existeix.\n"
+"L'opció «-C» no es pot fer servir."
 
 #: ../gramps/cli/arghandler.py:248
 #, python-format
@@ -1261,7 +1261,7 @@ msgstr "ERROR: Format no reconegut per fitxer d'exportació %s"
 #: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:374
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr "Error: no es pot obrir '%s'"
+msgstr "Error: no es pot obrir «%s»"
 
 #: ../gramps/cli/arghandler.py:422
 msgid "List of known Family Trees in your database path\n"
@@ -1274,7 +1274,7 @@ msgstr "%(full_DB_path)s amb nom \"%(f_t_name)s\""
 
 #: ../gramps/cli/arghandler.py:452 ../gramps/cli/clidbman.py:197
 msgid "Gramps Family Trees:"
-msgstr "Arbres Genealògics Gramps:"
+msgstr "Arbres genealògics del Gramps:"
 
 #: ../gramps/cli/arghandler.py:458 ../gramps/cli/arghandler.py:460
 #: ../gramps/cli/arghandler.py:464 ../gramps/cli/arghandler.py:466
@@ -1316,11 +1316,11 @@ msgstr "S'ha creat amb èxit un Arbre Genealògic buit"
 
 #: ../gramps/cli/arghandler.py:536 ../gramps/cli/arghandler.py:563
 msgid "Error opening the file."
-msgstr "Error obrint el fitxer."
+msgstr "S'ha produït un error en obrir el fitxer."
 
 #: ../gramps/cli/arghandler.py:537 ../gramps/cli/arghandler.py:564
 msgid "Exiting..."
-msgstr "Sortint..."
+msgstr "S'està sortint…"
 
 #: ../gramps/cli/arghandler.py:541
 #, python-format
@@ -1361,7 +1361,7 @@ msgstr "Nom d'informe desconegut."
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
-"No s'ha donat el nom d'informe. Si us plau utilitzeu algun de "
+"No s'ha donat el nom d'informe. Utilitzeu algun de "
 "%(donottranslate)s=nominforme"
 
 #: ../gramps/cli/arghandler.py:671 ../gramps/cli/arghandler.py:723
@@ -1382,7 +1382,7 @@ msgstr "Nom d'eina desconegut."
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
-"No s'ha donat el nom d'eina. Si us plau utilitzeu algun de "
+"No s'ha donat el nom de l'eina. Utilitzeu algun de "
 "%(donottranslate)s=nomeina."
 
 #: ../gramps/cli/arghandler.py:753
@@ -1393,7 +1393,7 @@ msgstr "Nom de llibre desconegut."
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
-"No s'ha donat el nom de llibre. Si us plau utilitzeu algun de "
+"No s'ha donat el nom del llibre. Utilitzeu algun de "
 "%(donottranslate)s=nomllibre."
 
 #: ../gramps/cli/arghandler.py:765
@@ -1661,7 +1661,7 @@ msgstr "    Nova opció de configuració de Gramps: %(name)s:%(value)s"
 #: ../gramps/cli/argparser.py:405
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
-msgstr "Gramps: no existeix aquesta opció de configuració: '%s'"
+msgstr "Gramps: no existeix aquesta opció de configuració: «%s»"
 
 #: ../gramps/cli/argparser.py:498
 msgid "Error parsing the arguments"
@@ -1749,7 +1749,7 @@ msgstr "S'estan important dades..."
 
 #: ../gramps/cli/clidbman.py:466
 msgid "Remove family tree warning"
-msgstr "Esborra l'alerta de l'arbre genealògic"
+msgstr "Elimina l'avís de l'arbre genealògic"
 
 #: ../gramps/cli/clidbman.py:467
 #, python-format
@@ -1757,12 +1757,12 @@ msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
 msgstr ""
-"Segur que voleu treure l'Arbre Genealògic anomenat\n"
-"\"%s\"?"
+"Segur que voleu treure l'arbre genealògic anomenat\n"
+"«%s»?"
 
 #: ../gramps/cli/clidbman.py:479 ../gramps/gui/dbman.py:791
 msgid "Could not delete Family Tree"
-msgstr "No s'ha pogut esborrar l'Arbre Genealògic"
+msgstr "No s'ha pogut suprimir l'arbre genealògic"
 
 #: ../gramps/cli/clidbman.py:492
 msgid "Could not rename Family Tree"
@@ -1959,11 +1959,11 @@ msgstr "Trobat error en la interpretació dels arguments: %s"
 
 #: ../gramps/cli/plug/__init__.py:198
 msgid "ERROR: Please specify a person"
-msgstr "ERROR: si us plau, especifiqueu una persona"
+msgstr "ERROR: especifiqueu una persona"
 
 #: ../gramps/cli/plug/__init__.py:222
 msgid "ERROR: Please specify a family"
-msgstr "ERROR: si us plau, especifiqueu una família"
+msgstr "ERROR: especifiqueu una família"
 
 #: ../gramps/cli/plug/__init__.py:323
 msgid "=filename"
@@ -2075,7 +2075,7 @@ msgstr ", "
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
-"   Utilitzeu '%(donottranslate)s' per veure'n la descripció i els valors "
+"   Utilitzeu «%(donottranslate)s» per veure'n la descripció i els valors "
 "acceptables"
 
 #: ../gramps/cli/plug/__init__.py:569
@@ -2090,7 +2090,7 @@ msgstr ""
 #: ../gramps/cli/plug/__init__.py:580
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr "Utilitzeu '%(notranslate)s' per veure els valors vàlids."
+msgstr "Utilitzeu «%(notranslate)s» per a veure els valors vàlids."
 
 #: ../gramps/cli/plug/__init__.py:600
 #: ../gramps/gen/plug/report/stdoptions.py:334
@@ -2116,7 +2116,7 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
-"l'opció '%(optionname)s' no és vàlida. Utilitzeu '%(donottranslate)s' per "
+"l'opció «%(optionname)s» no és vàlida. Utilitzeu «%(donottranslate)s» per a "
 "veure totes les opcions vàlides."
 
 #: ../gramps/cli/plug/__init__.py:730
@@ -2126,7 +2126,7 @@ msgstr "No s'ha pogut escriure l'informe. "
 #: ../gramps/cli/plug/__init__.py:905
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr "No s'ha pogut generar l'informe '%s'."
+msgstr "No s'ha pogut generar l'informe «%s»."
 
 #: ../gramps/cli/user.py:241 ../gramps/gui/dialog.py:298
 msgid "Error detected in database"
@@ -3154,7 +3154,7 @@ msgstr "Esborra un fill de la família"
 
 #: ../gramps/gen/db/base.py:1922 ../gramps/gen/db/base.py:1926
 msgid "Remove Family"
-msgstr "Esborra Família"
+msgstr "Elimina la família"
 
 #: ../gramps/gen/db/base.py:1965
 msgid "Remove father from family"
@@ -3254,7 +3254,7 @@ msgstr ""
 "La connexió amb la base de dades ha fallat.\n"
 "\n"
 "%(message)s\n"
-"Si us plau verifica el teu arxiu de configuració de la connexió:\n"
+"Comproveu el vostre fitxer de paràmetres de la connexió:\n"
 "%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:213
@@ -3325,13 +3325,13 @@ msgstr "Nombre de fonts"
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
-msgstr "Nombre de cites"
+msgstr "Nombre de citacions"
 
 #: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
-msgstr "Nombre de esdeveniments"
+msgstr "Nombre d'esdeveniments"
 
 #: ../gramps/gen/db/generic.py:2709
 msgid "Number of media"
@@ -3347,7 +3347,7 @@ msgstr "Nombre de llocs"
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
-msgstr "Nombre de repositoris"
+msgstr "Nombre de dipòsits"
 
 #: ../gramps/gen/db/generic.py:2712
 msgid "Number of notes"
@@ -3402,7 +3402,7 @@ msgstr ""
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Repositoris   actualitzats amb %(n2)6d cites en %(n3)6d segons\n"
+"%(n1)6d  Dipòsits   actualitzats amb %(n2)6d citacions en %(n3)6d segons\n"
 
 #: ../gramps/gen/db/upgrade.py:696
 #, python-format
@@ -3772,7 +3772,7 @@ msgstr "Concorda amb cites que tinguin paràmetres concrets"
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:49
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:49
 msgid "Citation/source filters"
-msgstr "Filtres de cita/font"
+msgstr "Filtres de citació/font"
 
 #: ../gramps/gen/filters/rules/_haseventbase.py:62
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:57
@@ -3941,7 +3941,7 @@ msgstr "Una regla en referencia una altra que acaba referenciant la primera."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 msgid "Every citation"
-msgstr "Totes les cites"
+msgstr "Totes les citacions"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:48
 msgid "Matches every citation in the database"
@@ -3994,7 +3994,7 @@ msgstr "Concorda amb cites que s'indiquen com a privades"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 msgid "Citation attribute:"
-msgstr "Atribut de Cita:"
+msgstr "Atribut de citació:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
@@ -4227,23 +4227,23 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:54
 #: ../gramps/gui/editors/filtereditor.py:574
 msgid "Repository filter name:"
-msgstr "Nom del filtre de repositori:"
+msgstr "Nom del filtre de dipòsit:"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:59
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Cites que tinguin una font amb referència a repositori que concordi amb el "
-"<filtre de repositori>"
+"Cites que tinguin una font amb referència a dipòsit que concordi amb el "
+"<filtre de dipòsit>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:63
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Concorda amb cites que tinguin fonts amb una referència a repositori que "
-"concordi amb un cert filtre de repositoris"
+"Concorda amb cites que tinguin fonts amb una referència a dipòsit que "
+"concordi amb un cert filtre de dipòsits"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:60
 msgid "Citations with source matching the <source filter>"
@@ -6495,16 +6495,16 @@ msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
-"El lloc que ha seleccionat conté coordenades errònies. Si us plau, executeu "
-"l'eina 'netejar dades d'entrada'"
+"El lloc que heu seleccionat conté coordenades errònies. Executeu l'eina «"
+"Neteja les dades d'entrada»"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:46
 msgid "Every repository"
-msgstr "Tots els repositoris"
+msgstr "Tots els dipòsits"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:47
 msgid "Matches every repository in the database"
-msgstr "Concorda amb tots els repositoris de la base de dades"
+msgstr "Concorda amb tots els dipòsits de la base de dades"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:49
 msgid "Repositories changed after <date time>"
@@ -6515,60 +6515,60 @@ msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
-"Concorda amb registres de repositori modificats després d'una data-hora "
+"Concorda amb registres de dipòsit modificats després d'una data-hora "
 "especificades (aaaa-mm-dd hh:mm:ss) o dins d'un rang, si es dóna una segona "
 "data-hora."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repository attribute:"
-msgstr "Atribut de repositori:"
+msgstr "Atribut de dipòsit:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
 msgid "Repositories with the attribute <attribute>"
-msgstr "Repositoris amb l'atribut <atribut>"
+msgstr "Dipòsits amb l'atribut <atribut>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:49
 msgid "Matches repositories with the attribute of a particular value"
 msgstr ""
-"Concorda amb els repositoris que tenen l'atribut donat amb un valor en "
+"Concorda amb els dipòsits que tenen l'atribut donat amb un valor en "
 "particular"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Repository with <Id>"
-msgstr "Repositori amb <Id>"
+msgstr "Dipòsit amb <Id>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:48
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Concorda amb un repositori que tingui un Id Gramps especificat"
+msgstr "Concorda amb un dipòsit que tingui un Id Gramps especificat"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:44
 msgid "Repositories having notes containing <substring>"
-msgstr "Repositoris amb notes que continguin <subcadena>"
+msgstr "Dipòsits amb notes que continguin <subcadena>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:46
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Concorda amb repositoris les notes dels quals tinguin text que contingui una "
+"Concorda amb dipòsits les notes dels quals tinguin text que contingui una "
 "subcadena"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
 msgid "Repositories having notes containing <text>"
-msgstr "Repositoris amb notes que continguin <text>"
+msgstr "Dipòsits amb notes que continguin <text>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:44
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Concorda amb repositoris les notes dels quals continguin text que compleixi "
-"una expressió regular"
+"Concorda amb dipòsits les notes dels quals continguin text que compleixi una "
+"expressió regular"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Repositories with a reference count of <count>"
-msgstr "Repositoris amb un nombre de referències de <nombre>"
+msgstr "Dipòsits amb un recompte de referències de <nombre>"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:45
 msgid "Matches repositories with a certain reference count"
-msgstr "Concorda amb repositoris que tinguin un cert nombre de referències"
+msgstr "Concorda amb dipòsits que tinguin un cert nombre de referències"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:57
 #: ../gramps/gui/glade/mergerepository.glade:208
@@ -6592,15 +6592,15 @@ msgstr "Repositoris que concordin amb paràmetres"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:63
 msgid "Matches Repositories with particular parameters"
-msgstr "Concorda amb repositoris que tinguin paràmetres concrets"
+msgstr "Concorda amb dipòsits que tinguin paràmetres concrets"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Repositories with the <tag>"
-msgstr "Repositoris amb l'<etiqueta>"
+msgstr "Dipòsits amb l'<etiqueta>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:53
 msgid "Matches repositories with the particular tag"
-msgstr "Concorda amb repositoris que tinguin una etiqueta en particular"
+msgstr "Concorda amb dipòsits que tinguin una etiqueta en particular"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
@@ -6608,8 +6608,7 @@ msgstr "Repositoris que compleixin el <filtre>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:47
 msgid "Matches repositories matched by the specified filter name"
-msgstr ""
-"Concorda amb repositoris que concordin amb el nom de filtre especificat"
+msgstr "Concorda amb dipòsits que concordin amb el nom de filtre especificat"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:54
 msgid "Repositories with name containing <text>"
@@ -6617,8 +6616,7 @@ msgstr "Repositoris amb nom que contingui <text>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:55
 msgid "Matches repositories whose name contains a certain substring"
-msgstr ""
-"Concorda amb repositoris el nom dels quals contingui una certa subcadena"
+msgstr "Concorda amb dipòsits el nom dels quals contingui una certa subcadena"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
 msgid "Repositories with Id containing <text>"
@@ -6626,16 +6624,15 @@ msgstr "Repositoris amb Id que contingui <text>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:51
 msgid "Matches repositories whose Gramps ID matches the regular expression"
-msgstr ""
-"Concorda amb repositoris l'Id Gramps del qual compleix l'expressió regular"
+msgstr "Concorda amb dipòsits l'Id Gramps del qual compleix l'expressió regular"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:44
 msgid "Repositories marked private"
-msgstr "Repositoris marcats com a privats"
+msgstr "Dipòsits marcats com a privats"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:45
 msgid "Matches repositories that are indicated as private"
-msgstr "Concorda amb repositoris que s'indiqui que són privats"
+msgstr "Concorda amb dipòsits que s'indiqui que són privats"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:46
 msgid "Every source"
@@ -6734,26 +6731,25 @@ msgstr "Concorda amb fonts que tinguin un cert nombre de referències"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:59
 msgid "Sources with <count> Repository references"
-msgstr "Fonts amb <nombre> referències a repositori"
+msgstr "Fonts amb <nombre> referències a dipòsit"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:60
 msgid "Matches sources with a certain number of repository references"
-msgstr ""
-"Concorda amb fonts que tinguin un cert nombre de referències a repositori"
+msgstr "Concorda amb fonts que tinguin un cert nombre de referències a dipòsit"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:55
 msgid "Sources with repository reference containing <text> in \"Call Number\""
 msgstr ""
-"Fonts amb referència a repositori que contingui <text> a \"Número de "
-"Referència\""
+"Fonts amb referència a un dipòsit que contingui <text> a «Número de "
+"referència»"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:57
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"Concorda amb les fonts que tingui una referència a repositori\n"
-"que contingui una subcadena a \"Número de Referència\""
+"Concorda amb les fonts que tinguin una referència a un dipòsit\n"
+"que contingui una subcadena a «Número de referència»"
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
 msgid "Matches sources with particular parameters"
@@ -6777,16 +6773,15 @@ msgstr "Concorda amb fonts que compleixen el nom de filtre especificat"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:55
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr ""
-"Fonts amb referència a repositori que concordin amb el <filtre de repositori>"
+msgstr "Fonts amb referència a dipòsit que concordin amb el <filtre de dipòsit>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:57
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"Concorda amb fonts que tinguin una referència a repositori que concordi\n"
-"amb un cert filtre de repositoris"
+"Concorda amb fonts que tinguin una referència a dipòsit que concordi\n"
+"amb un cert filtre de dipòsits"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:54
 msgid "Sources with title containing <text>"
@@ -6901,7 +6896,7 @@ msgstr "Privat"
 #: ../gramps/plugins/view/view.gpr.py:301
 #: ../gramps/plugins/view/view.gpr.py:309
 msgid "Citations"
-msgstr "Cites"
+msgstr "Citacions"
 
 #: ../gramps/gen/lib/address.py:117 ../gramps/gen/lib/attribute.py:255
 #: ../gramps/gen/lib/childref.py:118 ../gramps/gen/lib/citation.py:132
@@ -7229,7 +7224,7 @@ msgstr "Acollit"
 #: ../gramps/plugins/tool/reorderids.glade:824
 #: ../gramps/plugins/webreport/updates.py:259
 msgid "Citation"
-msgstr "Cita"
+msgstr "Citació"
 
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/event.py:184
 #: ../gramps/gen/lib/family.py:165 ../gramps/gen/lib/media.py:151
@@ -8981,7 +8976,7 @@ msgstr "Nota de Lloc"
 
 #: ../gramps/gen/lib/notetype.py:111
 msgid "Repository Note"
-msgstr "Nota de Repositori"
+msgstr "Nota del dipòsit"
 
 #: ../gramps/gen/lib/notetype.py:112
 msgid "Repository Reference Note"
@@ -9217,20 +9212,20 @@ msgstr "Número"
 #: ../gramps/plugins/quickview/filterbyname.py:347
 #: ../gramps/plugins/tool/reorderids.glade:836
 msgid "Repository"
-msgstr "Repositori"
+msgstr "Dipòsit"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:531
 msgid "Repository ref"
-msgstr "Referència de repositori"
+msgstr "Referència de dipòsit"
 
 #: ../gramps/gen/lib/reporef.py:112
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:69
 msgid "Call Number"
-msgstr "Número de Referència"
+msgstr "Número de referència"
 
 #: ../gramps/gen/lib/repotype.py:64
 msgid "Library"
-msgstr "Llibreria"
+msgstr "Biblioteca"
 
 #: ../gramps/gen/lib/repotype.py:65
 msgid "Cemetery"
@@ -9250,7 +9245,7 @@ msgstr "Àlbum"
 
 #: ../gramps/gen/lib/repotype.py:69
 msgid "Web site"
-msgstr "Lloc Web"
+msgstr "Lloc web"
 
 #: ../gramps/gen/lib/repotype.py:70
 msgid "Bookstore"
@@ -9306,7 +9301,7 @@ msgstr "Abreviació"
 #: ../gramps/plugins/webreport/repository.py:243
 #: ../gramps/plugins/webreport/updates.py:141
 msgid "Repositories"
-msgstr "Repositoris"
+msgstr "Dipòsits"
 
 #: ../gramps/gen/lib/srcmediatype.py:68
 msgid "Audio"
@@ -9522,11 +9517,11 @@ msgstr "S'està buscant..."
 
 #: ../gramps/gen/merge/mergecitationquery.py:73
 msgid "Merge Citation"
-msgstr "Combina Cita"
+msgstr "Fusiona la citació"
 
 #: ../gramps/gen/merge/mergeeventquery.py:62
 msgid "Merge Event Objects"
-msgstr "Combina Objectes d'Esdeveniment"
+msgstr "Fusiona els objectes de l'esdeveniment"
 
 #: ../gramps/gen/merge/mergefamilyquery.py:94
 msgid "A parent should be a father or mother."
@@ -9547,42 +9542,42 @@ msgstr ""
 
 #: ../gramps/gen/merge/mergefamilyquery.py:150
 msgid "Merge Family"
-msgstr "Combina Família"
+msgstr "Fusiona la família"
 
 #: ../gramps/gen/merge/mergemediaquery.py:62
 #: ../gramps/gui/merge/mergemedia.py:70
 msgid "Merge Media Objects"
-msgstr "Combina els Objectes Audiovisuals"
+msgstr "Fusiona els objectes audiovisuals"
 
 #: ../gramps/gen/merge/mergenotequery.py:70 ../gramps/gui/merge/mergenote.py:68
 msgid "Merge Notes"
-msgstr "Combina Notes"
+msgstr "Fusiona les notes"
 
 #: ../gramps/gen/merge/mergepersonquery.py:56
 msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
 msgstr ""
-"Els cònjuges no es poden combinar. Per combinar aquestes persones, primer "
+"Els cònjuges no es poden fusionar. Per a fusionar aquestes persones, primer "
 "cal trencar la relació entre ells."
 
 #: ../gramps/gen/merge/mergepersonquery.py:136
 msgid "Merge Person"
-msgstr "Combina Persona"
+msgstr "Fusiona la persona"
 
 #: ../gramps/gen/merge/mergeplacequery.py:63
 #: ../gramps/gui/merge/mergeplace.py:79
 msgid "Merge Places"
-msgstr "Combina els Llocs"
+msgstr "Fusiona els llocs"
 
 #: ../gramps/gen/merge/mergerepositoryquery.py:62
 #: ../gramps/gui/merge/mergerepository.py:71
 msgid "Merge Repositories"
-msgstr "Combina els Repositoris"
+msgstr "Fusiona els dipòsits"
 
 #: ../gramps/gen/merge/mergesourcequery.py:64
 msgid "Merge Source"
-msgstr "Combina la Font"
+msgstr "Fusiona la font"
 
 #: ../gramps/gen/plug/_gramplet.py:352
 #, python-format
@@ -10421,7 +10416,7 @@ msgstr "Fitxer gràfic per a genealogytree"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:867
 msgid "LaTeX File"
-msgstr "Arxiu LaTeX"
+msgstr "Fitxer LaTeX"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:148
 #, python-format
@@ -10757,64 +10752,62 @@ msgstr "Noves"
 #: ../gramps/gen/plug/utils.py:349 ../gramps/gen/plug/utils.py:356
 #, python-format
 msgid "Unable to open '%s'"
-msgstr "No es pot obrir '%s'"
+msgstr "No s'ha pogut obrir «%s»"
 
 #: ../gramps/gen/plug/utils.py:363
 #, python-format
 msgid "Error in reading '%s'"
-msgstr "Error llegint '%s'"
+msgstr "S'ha produït un error en llegir «%s»"
 
 #: ../gramps/gen/plug/utils.py:378
 #, python-format
 msgid "Error: unknown file type: '%s'"
-msgstr "Error: tipus de fitxer desconegut: '%s'"
+msgstr "Error: es desconeix el tipus de fitxer: «%s»"
 
 #: ../gramps/gen/plug/utils.py:384
 #, python-format
 msgid "Examining '%s'..."
-msgstr "S'està xaminant '%s'..."
+msgstr "S'està examinant «%s»…"
 
 #: ../gramps/gen/plug/utils.py:413
 #, python-format
 msgid "'%s' is for this version of Gramps."
-msgstr "'%s' és per aquesta versió de Gramps."
+msgstr "«%s» és per a aquesta versió del Gramps."
 
 #: ../gramps/gen/plug/utils.py:421
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
-msgstr "'%s' NO és per aquesta versió de Gramps."
+msgstr "«%s» NO és per a aquesta versió del Gramps."
 
 #: ../gramps/gen/plug/utils.py:427
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
-msgstr "És per la versió %(v1)d.%(v2)d"
+msgstr "És per a la versió %(v1)d.%(v2)d"
 
 #: ../gramps/gen/plug/utils.py:441
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
-msgstr "Error: falta gramps_target_version a '%s'..."
+msgstr "Error: falta gramps_target_version a «%s»…"
 
 #: ../gramps/gen/plug/utils.py:457
 #, python-format
 msgid "Installing '%s'..."
-msgstr "S'està instal·lant '%s'..."
+msgstr "S'està instal·lant «%s»…"
 
 #: ../gramps/gen/plug/utils.py:463
 #, python-format
 msgid "Registered '%s'"
-msgstr "Registrat '%s'"
+msgstr "S'ha registrat «%s»"
 
 #: ../gramps/gen/recentfiles.py:191
 #, python-brace-format
 msgid "Unable to save list of recent DBs file {fname}: {error}"
-msgstr ""
-"No s'ha pogut desar la llista de BDs recents a l'arxiu {fname}: {error}"
+msgstr "No s'ha pogut desar la llista de BD recents al fitxer {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:250
 #, python-brace-format
 msgid "Unable to open list of recent DBs file {fname}: {error}"
-msgstr ""
-"No s'ha pogut obrir la llista de BDs recents de l'arxiu {fname}: {error}"
+msgstr "No s'ha pogut obrir la llista de BD recents del fitxer {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:257
 #, python-brace-format
@@ -10824,10 +10817,11 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
-"Error analitzant la llista de BDs recents de l'arxiu {fname}: {error}.\n"
-"Això pot indicar que els seus arxius estan malmesos.\n"
-"Si està segur que no hi cap problema amb altres arxius, borri'l, i reiniciï "
-"Gramps."
+"S'ha produït un error en analitzar la llista de BD recents del fitxer "
+"{fname}: {error}.\n"
+"Això pot indicar un dany als vostres fitxers.\n"
+"Si esteu segur que no hi ha cap problema amb altres fitxers, suprimiu-lo i "
+"reinicieu el Gramps."
 
 #: ../gramps/gen/relationship.py:1416
 #: ../gramps/plugins/view/pedigreeview.py:1728
@@ -11165,7 +11159,7 @@ msgstr "l'esdeveniment"
 
 #: ../gramps/gen/utils/grampslocale.py:775
 msgid "the repository"
-msgstr "el repositori"
+msgstr "el dipòsit"
 
 #: ../gramps/gen/utils/grampslocale.py:777
 msgid "the note"
@@ -11185,7 +11179,7 @@ msgstr "el filtre"
 
 #: ../gramps/gen/utils/grampslocale.py:785
 msgid "the citation"
-msgstr "la cita"
+msgstr "la citació"
 
 #: ../gramps/gen/utils/grampslocale.py:787
 msgid "See details"
@@ -12945,7 +12939,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2307
 msgid "Backup path"
-msgstr "Ruta de la còpia de seguretat"
+msgstr "Camí de la còpia de seguretat"
 
 #: ../gramps/gui/configure.py:2317
 msgid "Backup on exit"
@@ -12954,8 +12948,8 @@ msgstr "Fer còpia de seguretat en sortir"
 #: ../gramps/gui/configure.py:2322
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
-"En sortir , fer còpia de seguretat del vostre arbre genealògic a la ruta de "
-"còpia de seguretat especificada més amunt."
+"En sortir, fes una còpia de seguretat del vostre arbre genealògic al camí de "
+"còpia de seguretat especificat més amunt."
 
 #: ../gramps/gui/configure.py:2330
 msgid "Every 15 minutes"
@@ -13146,7 +13140,7 @@ msgstr "Seleccionar símbol de mort predeterminat"
 
 #: ../gramps/gui/configure.py:2688
 msgid "Genealogical Symbols"
-msgstr "Símbols Genealògics"
+msgstr "Símbols genealògics"
 
 #: ../gramps/gui/configure.py:2719 ../gramps/gui/glade/editfamily.glade:142
 #: ../gramps/gui/glade/editfamily.glade:405
@@ -13231,7 +13225,7 @@ msgstr "_Aturar"
 
 #: ../gramps/gui/dbloader.py:220
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "Segur que voleu actualitzar aquest Arbre Genealògic?"
+msgstr "Segur que voleu actualitzar aquest arbre genealògic?"
 
 #: ../gramps/gui/dbloader.py:223
 msgid ""
@@ -13464,16 +13458,16 @@ msgstr "L'Arbre Genealògic ja existeix, triï un nom únic."
 
 #: ../gramps/gui/dbman.py:723
 msgid "Extracting archive..."
-msgstr "Extraient arxiu..."
+msgstr "S'està extraient l'arxiu…"
 
 #: ../gramps/gui/dbman.py:728
 msgid "Importing archive..."
-msgstr "S'està important arxiu..."
+msgstr "S'està important l'arxiu…"
 
 #: ../gramps/gui/dbman.py:744
 #, python-format
 msgid "Remove the '%s' Family Tree?"
-msgstr "Esborra l'Arbre Genealògic '%s'?"
+msgstr "Voleu eliminar l'arbre genealògic «%s»?"
 
 #: ../gramps/gui/dbman.py:745
 msgid "Removing this Family Tree will permanently destroy the data."
@@ -13636,7 +13630,7 @@ msgstr "Error recuperant les dades de còpia de seguretat"
 
 #: ../gramps/gui/dbman.py:1062
 msgid "Could not create Family Tree"
-msgstr "No s'ha pogut crear l'Arbre Genealògic"
+msgstr "No s'ha pogut crear l'arbre genealògic"
 
 #: ../gramps/gui/dbman.py:1186
 msgid "Retrieve failed"
@@ -13767,7 +13761,7 @@ msgstr "No hi ha cita activa"
 
 #: ../gramps/gui/displaystate.py:456
 msgid "No active repository"
-msgstr "No hi ha repositori actiu"
+msgstr "No hi ha dipòsit actiu"
 
 #: ../gramps/gui/displaystate.py:457
 msgid "No active media"
@@ -13875,23 +13869,23 @@ msgstr "Crea i afegeix una nova adreça"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:64
 msgid "Remove the existing address"
-msgstr "Esborra l'adreça existent"
+msgstr "Elimina l'adreça existent"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:65
 msgid "Edit the selected address"
-msgstr "Editar l'adreça seleccionada"
+msgstr "Edita l'adreça seleccionada"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:66
 msgid "Move the selected address upwards"
-msgstr "Moure amunt l'adreça seleccionada"
+msgstr "Mou l'adreça seleccionada cap amunt"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:67
 msgid "Move the selected address downwards"
-msgstr "Moure avall l'adreça seleccionada"
+msgstr "Mou l'adreça seleccionada cap avall"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
 msgid "Postal"
-msgstr "Codi Postal"
+msgstr "Codi postal"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:92
 msgid "_Addresses"
@@ -13905,22 +13899,22 @@ msgstr "Crea i afegeix un atribut nou"
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:54
 msgid "Remove the existing attribute"
-msgstr "Esborra l'atribut existent"
+msgstr "Elimina l'atribut existent"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:55
 msgid "Edit the selected attribute"
-msgstr "Editar l'atribut seleccionat"
+msgstr "Edita l'atribut seleccionat"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:56
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:56
 msgid "Move the selected attribute upwards"
-msgstr "Moure amunt l'atribut seleccionat"
+msgstr "Mou l'atribut seleccionat cap amunt"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:57
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:57
 msgid "Move the selected attribute downwards"
-msgstr "Moure avall l'atribut seleccionat"
+msgstr "Mou l'atribut seleccionat cap avall"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:82
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:81
@@ -13984,7 +13978,7 @@ msgstr "_Referències"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:121
 msgid "Edit reference"
-msgstr "Editar referència"
+msgstr "Edita la referència"
 
 #: ../gramps/gui/editors/displaytabs/backrefmodel.py:51
 #, python-format
@@ -14018,59 +14012,59 @@ msgstr "Afegeix"
 #: ../gramps/gui/glade/styleeditor.glade:1956
 #: ../gramps/gui/glade/styleeditor.glade:1963
 msgid "Remove"
-msgstr "Esborra"
+msgstr "Elimina"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:172
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:144
 #: ../gramps/plugins/view/relview.py:498
 msgid "Share"
-msgstr "Compartir"
+msgstr "Comparteix"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:75
 msgid "Jump To"
-msgstr "Saltar a"
+msgstr "Salta a"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:76
 msgid "Move Up"
-msgstr "Moure Amunt"
+msgstr "Mou cap amunt"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:77
 msgid "Move Down"
-msgstr "Moure Avall"
+msgstr "Mou cap avall"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:78
 msgid "Move Left"
-msgstr "Moure Esquerra"
+msgstr "Mou cap a l'esquerra"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:79
 msgid "Move right"
-msgstr "Moure dreta"
+msgstr "Mou cap a la dreta"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:71
 msgid "Create and add a new citation and new source"
-msgstr "Crea i afegeix una nova cita i una nova font"
+msgstr "Crea i afegeix una citació i una font noves"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:72
 msgid "Remove the existing citation"
-msgstr "Esborra la cita existent"
+msgstr "Elimina la citació existent"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
 #: ../gramps/plugins/view/citationlistview.py:145
 msgid "Edit the selected citation"
-msgstr "Editar la cita seleccionada"
+msgstr "Edita la citació seleccionada"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Add an existing citation or source"
-msgstr "Afegeix una cita o font existent"
+msgstr "Afegeix una citació o font existent"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:75
 msgid "Move the selected citation upwards"
-msgstr "Moure la cita seleccionada cap amunt"
+msgstr "Mou la citació seleccionada cap amunt"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:76
 msgid "Move the selected citation downwards"
-msgstr "Moure la cita seleccionada cap avall"
+msgstr "Mou la citació seleccionada cap avall"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:85
 #: ../gramps/plugins/gramplet/citations.py:107
@@ -14087,7 +14081,7 @@ msgstr "Confiança ordenada"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:102
 msgid "_Source Citations"
-msgstr "Cites de _Font"
+msgstr "Citacions de la _font"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:203
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:223
@@ -14468,28 +14462,28 @@ msgstr "El lloc que estàs afegint ja està contingut per aquest lloc"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Create and add a new repository"
-msgstr "Crea i afegeix un repositori nou"
+msgstr "Crea i afegeix un dipòsit nou"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:57
 msgid "Remove the existing repository"
-msgstr "Esborra el repositori existent"
+msgstr "Elimina el dipòsit existent"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
 #: ../gramps/plugins/view/repoview.py:140
 msgid "Edit the selected repository"
-msgstr "Editar el repositori seleccionat"
+msgstr "Edita el dipòsit seleccionat"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Add an existing repository"
-msgstr "Afegeix un repositori existent"
+msgstr "Afegeix un dipòsit existent"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:60
 msgid "Move the selected repository upwards"
-msgstr "Moure el repositori seleccionat cap amunt"
+msgstr "Mou el dipòsit seleccionat cap amunt"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:61
 msgid "Move the selected repository downwards"
-msgstr "Moure el repositori seleccionat cap avall"
+msgstr "Mou el dipòsit seleccionat cap avall"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:81
 msgid "_Repositories"
@@ -14503,12 +14497,11 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
-"Aquesta referència a un repositori no es pot editar en aquest moment. Pot "
-"ser que ja s'estigui editant el repositori associat o que una altra "
-"referència de repositori que estigui associada amb el mateix repositori "
-"s'estigui editant.\n"
+"Aquesta referència a un dipòsit no es pot editar en aquest moment. Pot ser "
+"que ja s'estigui editant el dipòsit associat o que una altra referència de "
+"dipòsit que estigui associada amb el mateix dipòsit s'estigui editant.\n"
 "\n"
-"Per editar aquesta referència a un repositori, cal tancar el repositori."
+"Per editar aquesta referència a un dipòsit, cal tancar el dipòsit."
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:69
 msgid "Create and add a new surname"
@@ -14628,11 +14621,11 @@ msgstr "Dialeg_Noves_Cites"
 #: ../gramps/gui/editors/editcitation.py:142
 #: ../gramps/gui/editors/editcitation.py:147
 msgid "New Citation"
-msgstr "Cita Nova"
+msgstr "Citació nova"
 
 #: ../gramps/gui/editors/editcitation.py:348
 msgid "Edit Citation"
-msgstr "Editar Cita"
+msgstr "Edita la citació"
 
 #: ../gramps/gui/editors/editcitation.py:357
 msgid "No source selected"
@@ -15086,7 +15079,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:1276
 msgid "Add Family"
-msgstr "Afegeix Família"
+msgstr "Afegeix una família"
 
 #: ../gramps/gui/editors/editldsord.py:67
 msgctxt "manual"
@@ -15122,7 +15115,7 @@ msgstr "Editor_Enllaços"
 
 #: ../gramps/gui/editors/editlink.py:89 ../gramps/gui/editors/editlink.py:252
 msgid "Link Editor"
-msgstr "Editor d'Enllaços"
+msgstr "Editor d'enllaços"
 
 #: ../gramps/gui/editors/editlink.py:95
 msgid "Internet Address"
@@ -15130,7 +15123,7 @@ msgstr "Adreça d'Internet"
 
 #: ../gramps/gui/editors/editlocation.py:47
 msgid "Location Editor"
-msgstr "Editor d'Ubicacions"
+msgstr "Editor d'ubicacions"
 
 #: ../gramps/gui/editors/editmedia.py:73
 msgctxt "manual"
@@ -15265,11 +15258,11 @@ msgstr ""
 
 #: ../gramps/gui/editors/editname.py:453
 msgid "Group all"
-msgstr "Agrupar-los tots"
+msgstr "Agrupa'ls tots"
 
 #: ../gramps/gui/editors/editname.py:454
 msgid "Group this name only"
-msgstr "Agrupar només aquest nom"
+msgstr "Agrupa només aquest nom"
 
 #: ../gramps/gui/editors/editnote.py:74
 msgctxt "manual"
@@ -15293,11 +15286,11 @@ msgstr "Nota: %s"
 #: ../gramps/gui/editors/editnote.py:183
 #, python-format
 msgid "New Note - %(context)s"
-msgstr "Nota Nova - %(context)s"
+msgstr "Nota nova - %(context)s"
 
 #: ../gramps/gui/editors/editnote.py:185
 msgid "New Note"
-msgstr "Nota Nova"
+msgstr "Nota nova"
 
 #: ../gramps/gui/editors/editnote.py:211
 msgid "_Note"
@@ -15324,7 +15317,7 @@ msgstr "No es pot desar la nota. L'Id ja existeix."
 
 #: ../gramps/gui/editors/editnote.py:373
 msgid "Add Note"
-msgstr "Afegeix Nota"
+msgstr "Afegeix una nota"
 
 #: ../gramps/gui/editors/editperson.py:176
 #, python-format
@@ -15352,7 +15345,7 @@ msgstr "Edita Persona"
 
 #: ../gramps/gui/editors/editperson.py:739
 msgid "Edit Object Properties"
-msgstr "Editar Propietats de l'Objecte"
+msgstr "Edita les propietats de l'objecte"
 
 #: ../gramps/gui/editors/editperson.py:788
 msgid "Make Active Person"
@@ -15391,7 +15384,7 @@ msgstr "No es pot desar la persona. L'Id ja existeix."
 #: ../gramps/gui/editors/editperson.py:973
 #, python-format
 msgid "Add Person (%s)"
-msgstr "Afegeix Persona (%s)"
+msgstr "Afegeix una persona (%s)"
 
 #: ../gramps/gui/editors/editperson.py:979
 #: ../gramps/plugins/view/relview.py:729 ../gramps/plugins/view/relview.py:1220
@@ -15400,7 +15393,7 @@ msgstr "Afegeix Persona (%s)"
 #: ../gramps/plugins/view/relview.py:1518
 #, python-format
 msgid "Edit Person (%s)"
-msgstr "Editar Persona (%s)"
+msgstr "Edita la persona (%s)"
 
 #: ../gramps/gui/editors/editperson.py:1228
 msgid "Unknown gender specified"
@@ -15438,11 +15431,11 @@ msgstr "Editor_Referencies_Persones"
 #: ../gramps/gui/editors/editpersonref.py:94
 #: ../gramps/gui/editors/editpersonref.py:184
 msgid "Person Reference Editor"
-msgstr "Editor de Referències a Persones"
+msgstr "Editor de referències a persones"
 
 #: ../gramps/gui/editors/editpersonref.py:184
 msgid "Person Reference"
-msgstr "Referència a Persona"
+msgstr "Referència a persona"
 
 #: ../gramps/gui/editors/editpersonref.py:201
 msgid "No person selected"
@@ -15466,7 +15459,7 @@ msgstr "Lloc: %s"
 #: ../gramps/gui/editors/editplace.py:113
 #: ../gramps/gui/editors/editplaceref.py:116
 msgid "New Place"
-msgstr "Nou Lloc"
+msgstr "Lloc nou"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:242
@@ -15491,7 +15484,7 @@ msgstr ""
 #: ../gramps/plugins/view/geoplaces.py:512
 #: ../gramps/plugins/view/geoplaces.py:535
 msgid "Edit Place"
-msgstr "Edita Lloc"
+msgstr "Edita el lloc"
 
 #: ../gramps/gui/editors/editplace.py:408
 #: ../gramps/gui/editors/editplaceref.py:384
@@ -15510,16 +15503,16 @@ msgstr "No es pot desar el lloc. L'Id ja existeix."
 #: ../gramps/gui/editors/editplace.py:431
 #, python-format
 msgid "Add Place (%s)"
-msgstr "Afegeix Lloc (%s)"
+msgstr "Afegeix un lloc (%s)"
 
 #: ../gramps/gui/editors/editplace.py:435
 #, python-format
 msgid "Edit Place (%s)"
-msgstr "Edita Lloc (%s)"
+msgstr "Edita el lloc (%s)"
 
 #: ../gramps/gui/editors/editplaceformat.py:51
 msgid "Place Format Editor"
-msgstr "Editor de Formats de Lloc"
+msgstr "Editor de formats de lloc"
 
 #: ../gramps/gui/editors/editplaceformat.py:139
 msgid "New"
@@ -15537,7 +15530,7 @@ msgstr "Editor de noms de lloc"
 
 #: ../gramps/gui/editors/editplacename.py:126
 msgid "Invalid ISO code"
-msgstr "Codi ISO invàlid"
+msgstr "El codi ISO no és vàlid"
 
 #: ../gramps/gui/editors/editplacename.py:141
 msgid "Cannot save place name"
@@ -15550,7 +15543,7 @@ msgstr "El nom del lloc no pot ser buit"
 #: ../gramps/gui/editors/editplaceref.py:71
 #: ../gramps/gui/editors/editplaceref.py:117
 msgid "Place Reference Editor"
-msgstr "Editor de Referències de Llocs"
+msgstr "Editor de referències de llocs"
 
 #: ../gramps/gui/editors/editplaceref.py:393
 msgid "Modify Place"
@@ -15558,50 +15551,50 @@ msgstr "Modifica el lloc"
 
 #: ../gramps/gui/editors/editplaceref.py:398
 msgid "Add Place"
-msgstr "Afegeix lloc"
+msgstr "Afegeix un lloc"
 
 #: ../gramps/gui/editors/editprimary.py:250
 msgid "Save Changes?"
-msgstr "Desar els canvis?"
+msgstr "Voleu desar els canvis?"
 
 #: ../gramps/gui/editors/editprimary.py:252
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "Si tanca sense desar, els canvis que ha fet es perdran"
+msgstr "Si tanqueu sense desar, els canvis que heu fet es perdran"
 
 #: ../gramps/gui/editors/editreference.py:295
 #: ../gramps/gui/editors/editrepository.py:220
 msgid "Cannot save repository. ID already exists."
-msgstr "No es pot desar el repositori. L'Id ja existeix."
+msgstr "No es pot desar el dipòsit. L'id. ja existeix."
 
 #: ../gramps/gui/editors/editreference.py:298
 msgid "Cannot save item. ID already exists."
-msgstr "No es pot desar l'element. L'ID ja existeix."
+msgstr "No s'ha pogut desar l'element. L'id. ja existeix."
 
 #: ../gramps/gui/editors/editreporef.py:71
 msgid "Repository Reference Editor"
-msgstr "Editor de Referències a Repositori"
+msgstr "Editor de referències a dipòsit"
 
 #: ../gramps/gui/editors/editreporef.py:226
 #, python-format
 msgid "Repository: %s"
-msgstr "Repositori: %s"
+msgstr "Dipòsit: %s"
 
 #: ../gramps/gui/editors/editreporef.py:228
 #: ../gramps/gui/editors/editrepository.py:87
 msgid "New Repository"
-msgstr "Nou Repositori"
+msgstr "Dipòsit nou"
 
 #: ../gramps/gui/editors/editreporef.py:229
 msgid "Repo Reference Editor"
-msgstr "Editor de Referències a Repositori"
+msgstr "Editor de referències a dipòsit"
 
 #: ../gramps/gui/editors/editreporef.py:235
 msgid "Modify Repository"
-msgstr "Modificar Repositori"
+msgstr "Modifica el dipòsit"
 
 #: ../gramps/gui/editors/editreporef.py:240
 msgid "Add Repository"
-msgstr "Afegeix Repositori"
+msgstr "Afegeix un dipòsit"
 
 #: ../gramps/gui/editors/editrepository.py:60
 msgctxt "manual"
@@ -15614,14 +15607,13 @@ msgstr "Editar Repositori"
 
 #: ../gramps/gui/editors/editrepository.py:206
 msgid "Cannot save repository"
-msgstr "No es pot desar el repositori"
+msgstr "No es pot desar el dipòsit"
 
 #: ../gramps/gui/editors/editrepository.py:208
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"No hi ha dades per aquest repositori. Si us plau, introdueixi'n o cancel·li "
-"l'edició."
+"No hi ha dades per a aquest dipòsit. Introduïu'n dades o cancel·leu l'edició."
 
 #: ../gramps/gui/editors/editrepository.py:233
 #, python-format
@@ -15738,7 +15730,7 @@ msgstr "Filtres de Nota"
 
 #: ../gramps/gui/editors/filtereditor.py:107
 msgid "Citation Filters"
-msgstr "Filtres de cita"
+msgstr "Filtres de citació"
 
 #: ../gramps/gui/editors/filtereditor.py:266
 msgid "equal to"
@@ -15921,7 +15913,7 @@ msgstr "Editor de Filtres Personalitzats"
 
 #: ../gramps/gui/editors/filtereditor.py:1336
 msgid "Delete Filter?"
-msgstr "Esborrar Filtre?"
+msgstr "Voleu suprimir el filtre?"
 
 #: ../gramps/gui/editors/filtereditor.py:1338
 msgid ""
@@ -16119,7 +16111,7 @@ msgstr "Publicació"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:120
 msgid "Citation:"
-msgstr "Cita:"
+msgstr "Citació:"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:122
 #: ../gramps/plugins/gramplet/citations.py:104
@@ -16131,7 +16123,7 @@ msgstr "Volum/Pàgina"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:125
 msgctxt "Citation: Minimum Confidence"
 msgid "Min. Conf."
-msgstr "Cita: Conf. Mín."
+msgstr "Conf. mín."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:129
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:120
@@ -16409,7 +16401,7 @@ msgstr "_Tanca la Finestra"
 
 #: ../gramps/gui/glade/dbman.glade:148
 msgid "_Load Family Tree"
-msgstr "_Carregar Arbre Genealògic"
+msgstr "_Carrega un arbre genealògic"
 
 #: ../gramps/gui/glade/dbman.glade:239 ../gramps/gui/glade/editlink.glade:205
 msgid "_New"
@@ -16538,11 +16530,11 @@ msgstr "_Desa"
 
 #: ../gramps/gui/glade/dialog.glade:1009
 msgid "Do not ask again"
-msgstr "No tornar a preguntar"
+msgstr "No tornis a preguntar-m'ho"
 
 #: ../gramps/gui/glade/displaystate.glade:7
 msgid "Gramps Warnings"
-msgstr "Avisos de Gramps"
+msgstr "Avisos del Gramps"
 
 #: ../gramps/gui/glade/editaddress.glade:44
 #: ../gramps/gui/glade/editchildref.glade:45
@@ -16592,7 +16584,7 @@ msgstr "_Estat/Comarca:"
 #: ../gramps/gui/glade/editaddress.glade:167
 #: ../gramps/gui/glade/editlocation.glade:246
 msgid "_ZIP/Postal code:"
-msgstr "Codi _Postal:"
+msgstr "Codi _postal:"
 
 #: ../gramps/gui/glade/editaddress.glade:181
 msgid "Postal code"
@@ -16660,7 +16652,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:160
 #: ../gramps/plugins/importer/importprogen.glade:283
 msgid "Privacy"
-msgstr "Privacitat"
+msgstr "Privadesa"
 
 #: ../gramps/gui/glade/editaddress.glade:314
 #: ../gramps/gui/glade/editcitation.glade:107
@@ -16850,8 +16842,7 @@ msgstr "An_y nou comença:  "
 
 #: ../gramps/gui/glade/editdate.glade:227
 msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
-msgstr ""
-"Mes-Dia del primer dia de l'any nou (p.ex., \"1-1\", \"3-1\", \"3-25\")"
+msgstr "Mes-dia del primer dia de l'any nou (p. ex., «1-1», «3-1», «3-25»)"
 
 #: ../gramps/gui/glade/editdate.glade:258
 msgid "Q_uality"
@@ -16989,8 +16980,6 @@ msgstr "Oblidar els canvis i tancar la finestra"
 
 #: ../gramps/gui/glade/editfamily.glade:116
 #: ../gramps/gui/glade/editfamily.glade:379
-#, fuzzy
-#| msgid "Name:"
 msgctxt "family"
 msgid "Name:"
 msgstr "Nom:"
@@ -17324,7 +17313,7 @@ msgstr "Un títol utilitzat per referir-se a la persona, com ara 'Dr.' o 'Mn.'"
 #: ../gramps/gui/glade/editname.glade:301
 #: ../gramps/gui/glade/editperson.glade:223
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Un sufix opcional per al nom, com ara \"Jr.\" o \"III\""
+msgstr "Un sufix opcional per al nom, com ara «Jr.» o «III»"
 
 #: ../gramps/gui/glade/editname.glade:314
 #: ../gramps/gui/glade/editperson.glade:257
@@ -17488,7 +17477,7 @@ msgid ""
 "\"de\" or \"van\"."
 msgstr ""
 "Un prefix opcional per a la família que no es fa servir a l'ordenació, com "
-"ara \"de\" o \"van\"."
+"ara «de» o «van»."
 
 #: ../gramps/gui/glade/editperson.glade:481
 msgid ""
@@ -17703,21 +17692,21 @@ msgstr ""
 
 #: ../gramps/gui/glade/editreporef.glade:126
 msgid "_Media Type:"
-msgstr "_Tipus d'Audiovisual:"
+msgstr "_Tipus d'audiovisual:"
 
 #: ../gramps/gui/glade/editreporef.glade:141
 msgid "Call n_umber:"
-msgstr "Nú_mero de Referència:"
+msgstr "Nú_mero de referència:"
 
 #: ../gramps/gui/glade/editreporef.glade:155
 msgid "On what type of media this source is available in the repository."
 msgstr ""
 "En quin tipus de medi audiovisual està disponible aquesta font dins del "
-"repositori."
+"dipòsit."
 
 #: ../gramps/gui/glade/editreporef.glade:207
 msgid "Id number of the source in the repository."
-msgstr "Número Id de la font dins el repositori."
+msgstr "Número Id de la font dins el dipòsit."
 
 #: ../gramps/gui/glade/editreporef.glade:272
 #: ../gramps/gui/glade/editrepository.glade:98
@@ -17729,7 +17718,7 @@ msgstr "_Nom:"
 #: ../gramps/gui/glade/editreporef.glade:301
 #: ../gramps/gui/glade/editrepository.glade:127
 msgid "Name of the repository (where sources are stored)."
-msgstr "Nom del repositori (on estan emmagatzemades les fonts)."
+msgstr "Nom del dipòsit (on estan emmagatzemades les fonts)."
 
 #: ../gramps/gui/glade/editreporef.glade:337
 msgid ""
@@ -17737,19 +17726,19 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>Nota:</b> Qualssevol canvis a la informació del repositori compartit es "
-"reflectiran al propi repositori, per a tots els objectes que hi facin "
+"<b>Nota:</b> Qualssevol canvis a la informació del dipòsit compartit es "
+"reflectiran al propi dipòsit, per a tots els objectes que hi facin "
 "referència."
 
 #: ../gramps/gui/glade/editreporef.glade:378
 #: ../gramps/gui/glade/editrepository.glade:180
 msgid "A unique ID to identify the repository."
-msgstr "Un Id únic per identificar el repositori."
+msgstr "Un Id únic per identificar el dipòsit."
 
 #: ../gramps/gui/glade/editreporef.glade:431
 #: ../gramps/gui/glade/editrepository.glade:145
 msgid "Type of repository, eg., 'Library', 'Album', ..."
-msgstr "Tipus de repositori, p.ex., 'Biblioteca', 'Àlbum', ..."
+msgstr "Tipus de dipòsit, p. ex., «Biblioteca», «Àlbum», …"
 
 #: ../gramps/gui/glade/editsource.glade:113
 msgid "_Author:"
@@ -17907,11 +17896,11 @@ msgstr "Selecció Detallada"
 
 #: ../gramps/gui/glade/mergedata.glade:41
 msgid "Merge and _edit"
-msgstr "Combina i _edita"
+msgstr "Fusiona i _edita"
 
 #: ../gramps/gui/glade/mergedata.glade:58
 msgid "_Merge and close"
-msgstr "_Combina i tanca"
+msgstr "_Fusiona i tanca"
 
 #: ../gramps/gui/glade/mergedata.glade:170
 #: ../gramps/gui/glade/mergedata.glade:185 ../gramps/gui/plug/_windows.py:2133
@@ -18065,8 +18054,6 @@ msgstr "Persona 2"
 
 #: ../gramps/gui/glade/mergeperson.glade:218
 #: ../gramps/gui/glade/mergeperson.glade:233
-#, fuzzy
-#| msgid "Name:"
 msgctxt "person"
 msgid "Name:"
 msgstr "Nom:"
@@ -18109,8 +18096,8 @@ msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
 msgstr ""
-"Selecciona el repositori que proporcionarà\n"
-"les dades primàries per al repositori combinat."
+"Selecciona el dipòsit que proporcionarà\n"
+"les dades primàries per al dipòsit combinat."
 
 #: ../gramps/gui/glade/mergerepository.glade:182
 msgid "Repository 1"
@@ -18122,7 +18109,7 @@ msgstr "Repositori 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:388
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr "Es combinaran les adreces, urls i notes de tots dos repositoris."
+msgstr "Es combinaran les adreces, urls i notes de tots dos dipòsits."
 
 #: ../gramps/gui/glade/mergesource.glade:94
 msgid ""
@@ -18138,7 +18125,7 @@ msgid ""
 "will be combined."
 msgstr ""
 "Es combinaran les notes, objectes audiovisuals, elements de dades i "
-"referències a repositori de totes dues fonts."
+"referències a dipòsit de totes dues fonts."
 
 #: ../gramps/gui/glade/papermenu.glade:8
 msgid "Paper Settings"
@@ -18269,7 +18256,7 @@ msgstr "Afegeix un filtre nou"
 
 #: ../gramps/gui/glade/rule.glade:142
 msgid "Edit the selected filter"
-msgstr "Editar el filtre seleccionat"
+msgstr "Edita el filtre seleccionat"
 
 #: ../gramps/gui/glade/rule.glade:165
 msgid "Clone the selected filter"
@@ -18281,7 +18268,7 @@ msgstr "Prova el filtre seleccionat"
 
 #: ../gramps/gui/glade/rule.glade:209
 msgid "Delete the selected filter"
-msgstr "Esborrar el filtre seleccionat"
+msgstr "Suprimeix el filtre seleccionat"
 
 #: ../gramps/gui/glade/rule.glade:249
 msgid "Note: changes take effect only after this window is closed"
@@ -18306,11 +18293,11 @@ msgstr "Afegeix una altra regla al filtre"
 
 #: ../gramps/gui/glade/rule.glade:436
 msgid "Edit the selected rule"
-msgstr "Editar la regla seleccionada"
+msgstr "Edita la regla seleccionada"
 
 #: ../gramps/gui/glade/rule.glade:469
 msgid "Delete the selected rule"
-msgstr "Esborrar la regla seleccionada"
+msgstr "Suprimeix la regla seleccionada"
 
 #: ../gramps/gui/glade/rule.glade:509 ../gramps/gui/glade/styleeditor.glade:416
 #: ../gramps/plugins/tool/finddupes.glade:130
@@ -18337,15 +18324,15 @@ msgstr "Valors de re_torn que no concorden amb les regles del filtre"
 
 #: ../gramps/gui/glade/rule.glade:879
 msgid "Selected Rule"
-msgstr "Regla Seleccionada"
+msgstr "Regla seleccionada"
 
 #: ../gramps/gui/glade/styleeditor.glade:172
 msgid "Style sheet n_ame:"
-msgstr "N_om de la fulla d'estil:"
+msgstr "N_om del full d'estils:"
 
 #: ../gramps/gui/glade/styleeditor.glade:191
 msgid "Style name"
-msgstr "Nom d'estil"
+msgstr "Nom de l'estil"
 
 #: ../gramps/gui/glade/styleeditor.glade:301
 msgid "Type face"
@@ -18550,7 +18537,7 @@ msgstr "Editar l'estil seleccionat"
 
 #: ../gramps/gui/glade/styleeditor.glade:1947
 msgid "Delete the selected style"
-msgstr "Esborrar l'estil seleccionat"
+msgstr "Suprimeix l'estil seleccionat"
 
 #: ../gramps/gui/glade/tipofday.glade:26
 msgid "_Display on startup"
@@ -18950,9 +18937,9 @@ msgid ""
 "wrong or remove anything that you would rather not have included in the bug "
 "report."
 msgstr ""
-"Si us plau, comprovi la informació de sota i corregeixi qualsevol cosa que "
-"sàpiga que és incorrecta o tregui qualsevol cosa que prefereixi no incloure "
-"a l'informe d'error."
+"Comproveu la informació de sota i corregiu qualsevol cosa que sapigueu que "
+"és incorrecta o elimineu qualsevol cosa que preferiu no incloure a l'informe "
+"d'error."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:463
 #: ../gramps/gui/logger/_errorreportassistant.py:493
@@ -19109,7 +19096,7 @@ msgstr "Combina_Cites"
 #: ../gramps/gui/merge/mergecitation.py:72
 #: ../gramps/plugins/tool/tools.gpr.py:491
 msgid "Merge Citations"
-msgstr "Combina Cites"
+msgstr "Fusiona les citacions"
 
 #: ../gramps/gui/merge/mergeevent.py:46
 msgctxt "manual"
@@ -19118,7 +19105,7 @@ msgstr "Combina_Esdeveniments"
 
 #: ../gramps/gui/merge/mergeevent.py:69
 msgid "Merge Events"
-msgstr "Combinar Esdeveniments"
+msgstr "Fusiona els esdeveniments"
 
 #: ../gramps/gui/merge/mergefamily.py:47
 msgctxt "manual"
@@ -19127,13 +19114,13 @@ msgstr "Combina_famílies"
 
 #: ../gramps/gui/merge/mergefamily.py:72
 msgid "Merge Families"
-msgstr "Combinar famílies"
+msgstr "Fusiona famílies"
 
 #: ../gramps/gui/merge/mergefamily.py:226
 #: ../gramps/gui/merge/mergeperson.py:386
 #: ../gramps/plugins/lib/libpersonview.py:527
 msgid "Cannot merge people"
-msgstr "No es poden combinar persones"
+msgstr "No s'han pogut fusionar les persones"
 
 #: ../gramps/gui/merge/mergemedia.py:45
 msgctxt "manual"
@@ -19572,8 +19559,8 @@ msgstr "Ha fallat la comprovació de Complements"
 #: ../gramps/gui/plug/_windows.py:971
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
-"Sembla que no està disponible el repositori de complements. Si us plau, "
-"proveu-ho més tard."
+"Sembla que no està disponible el dipòsit de complements. Si us plau, proveu-"
+"ho més tard."
 
 #: ../gramps/gui/plug/_windows.py:986
 msgid "There are no available addons of this type"
@@ -19923,12 +19910,12 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:629
 msgid "Error exporting your Family Tree"
-msgstr "Error exportant l'Arbre Genealògic"
+msgstr "S'ha produït un error en exportar l'arbre genealògic"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:637
 #: ../gramps/gui/plug/export/_exportassistant.py:673
 msgid "Please wait while your data is selected and exported"
-msgstr "Esperi si us plau mentre se seleccionen i exporten les dades"
+msgstr "Espereu mentre se seleccionen i exporten les dades"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:76
 msgid "Selecting Preview Data"
@@ -19941,7 +19928,7 @@ msgstr "S'està seleccionant..."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:176
 msgid "Unfiltered Family Tree:"
-msgstr "Arbre Genealògic no Filtrat:"
+msgstr "Arbre genealògic no filtrat:"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:182
 #: ../gramps/gui/plug/export/_exportoptions.py:293
@@ -19949,8 +19936,8 @@ msgstr "Arbre Genealògic no Filtrat:"
 #, python-brace-format
 msgid "{number_of} Person"
 msgid_plural "{number_of} People"
-msgstr[0] "{number_of} Persona"
-msgstr[1] "{number_of} Persones"
+msgstr[0] "{number_of} persona"
+msgstr[1] "{number_of} persones"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:185
 msgid "Click to see preview of unfiltered data"
@@ -19987,7 +19974,7 @@ msgstr "Clica per veure la vista prèvia després del filtre de nota"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:347
 msgid "Privacy Filter"
-msgstr "Filtre de Privacitat"
+msgstr "Filtre de privadesa"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:355
 msgid "Click to see preview after privacy filter"
@@ -20039,7 +20026,7 @@ msgstr "No es pot editar un filtre de sistema"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:729
 msgid "Please select a different filter to edit"
-msgstr "Seleccioneu si us plau un filtre diferent per editar"
+msgstr "Seleccioneu un filtre diferent per a editar"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:762
 #: ../gramps/gui/plug/export/_exportoptions.py:787
@@ -20178,7 +20165,7 @@ msgstr "No s'ha seleccionat element de llibre"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:578
 msgid "Please select a book item to configure."
-msgstr "Seleccioneu si us plau un element de llibre diferent per configurar."
+msgstr "Seleccioneu un element de llibre per a configurar."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:643
 #: ../gramps/gui/views/bookmarks.py:310 ../gramps/gui/views/tags.py:493
@@ -20216,7 +20203,7 @@ msgid ""
 msgstr ""
 "Esteu a punt de desar un llibre sense nom.\n"
 "\n"
-"Si us plau, doneu-li un nom abans de desar-lo."
+"Doneu-li un nom abans de desar-lo."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:765
 msgid "Book name already exists"
@@ -20684,7 +20671,7 @@ msgstr "Cancel·lant..."
 
 #: ../gramps/gui/utils.py:403
 msgid "Please do not force closing this important dialog."
-msgstr "Si us plau no forci el tancament d'aquest diàleg important."
+msgstr "No forceu el tancament d'aquest diàleg important."
 
 #: ../gramps/gui/utils.py:472
 msgid "The external program failed to launch or experienced an error"
@@ -20785,7 +20772,7 @@ msgstr "Voleu executar l'eina de Comprovar i Reparar?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
 msgid "Please wait for backup to complete."
-msgstr "Si us plau espereu que la còpia de seguretat acabi."
+msgstr "Espereu que la còpia de seguretat acabi."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -20883,7 +20870,7 @@ msgstr "El fitxer ja existeix! Hi escrivim a sobre?"
 #: ../gramps/gui/viewmanager.py:1889
 #, python-format
 msgid "The file '%s' exists."
-msgstr "El fitxer '%s' existeix."
+msgstr "El fitxer «%s» existeix."
 
 #: ../gramps/gui/viewmanager.py:1890
 msgid "Proceed and overwrite"
@@ -20991,7 +20978,7 @@ msgstr ""
 #: ../gramps/plugins/view/familyview.py:412
 #, python-format
 msgid "Delete %s?"
-msgstr "Esborrar %s?"
+msgstr "Voleu suprimir %s?"
 
 #: ../gramps/gui/views/listview.py:768
 msgid "Column clicked, sorting..."
@@ -21108,12 +21095,12 @@ msgstr "Diàleg_Nova_Etiqueta"
 #: ../gramps/gui/views/tags.py:257
 #, python-format
 msgid "Add tag '%s'"
-msgstr "Afegeix Etiqueta '%s'"
+msgstr "Afegeix l'etiqueta «%s»"
 
 #: ../gramps/gui/views/tags.py:265
 #, python-format
 msgid "Remove tag '%s'"
-msgstr "Esborra l'etiqueta '%s'"
+msgstr "Elimina l'etiqueta «%s»"
 
 #: ../gramps/gui/views/tags.py:328
 msgid "Adding Tags"
@@ -21140,7 +21127,7 @@ msgstr "Modificar la Prioritat de l'Etiqueta"
 #: ../gramps/gui/views/tags.py:565
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Esborra l'etiqueta '%s'?"
+msgstr "Voleu eliminar l'etiqueta «%s»?"
 
 #: ../gramps/gui/views/tags.py:567
 msgid ""
@@ -21476,7 +21463,7 @@ msgstr "Selecciona un color de fons"
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1156
 #, python-format
 msgid "'%s' is not a valid value for this field"
-msgstr "'%s' no és un valor vàlid per aquest camp"
+msgstr "«%s» no és un valor vàlid per a aquest camp"
 
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1196
 msgid "This field is mandatory"
@@ -22933,7 +22920,7 @@ msgstr "Excloure el títol per deixar més espai per a la gràfica"
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
 msgid "The style used for the text display of generation \"%d\""
-msgstr "L'estil que es fa servir per mostrar el text de la generació \"%d\""
+msgstr "L'estil que es fa servir per a mostrar el text de la generació «%d»"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:330
 msgid "Item count"
@@ -23278,7 +23265,7 @@ msgstr "La persona central del filtre"
 #: ../gramps/plugins/drawreport/timeline.py:438
 #: ../gramps/plugins/tool/sortevents.py:189
 msgid "Sort by"
-msgstr "Ordenar per"
+msgstr "Ordena per"
 
 #: ../gramps/plugins/drawreport/timeline.py:443
 #: ../gramps/plugins/tool/sortevents.py:194
@@ -23309,9 +23296,9 @@ msgid ""
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
-"CSV és un format habitual de fulla de càlcul.\n"
-"Pots canviar aquest comportament a 'Configura vista activa' de qualsevol "
-"vista basada en llistes"
+"CSV és un format habitual de full de càlcul.\n"
+"Podeu canviar aquest comportament a «Configura la visualització activa» de "
+"qualsevol visualització basada en llistes"
 
 #: ../gramps/plugins/export/export.gpr.py:49
 msgid "CSV spreadsheet options"
@@ -23319,11 +23306,11 @@ msgstr "Opcions de full de càlcul CSV"
 
 #: ../gramps/plugins/export/export.gpr.py:60
 msgid "Web Family Tree"
-msgstr "Arbre Genealògic Web"
+msgstr "Arbre genealògic web"
 
 #: ../gramps/plugins/export/export.gpr.py:61
 msgid "_Web Family Tree"
-msgstr "Arbre Genealògic _Web"
+msgstr "Arbre genealògic _web"
 
 #: ../gramps/plugins/export/export.gpr.py:62
 msgid "Web Family Tree format"
@@ -23366,7 +23353,7 @@ msgstr "_GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:107
 msgid "GeneWeb is a web based genealogy program."
-msgstr "Geneweb és un programa de genealogia sobre web."
+msgstr "El GeneWeb és un programa de genealogia sobre web."
 
 #: ../gramps/plugins/export/export.gpr.py:115
 msgid "GeneWeb export options"
@@ -23394,11 +23381,11 @@ msgstr "Opcions d'exportació de paquet Gramps"
 
 #: ../gramps/plugins/export/export.gpr.py:150
 msgid "Gramps XML (family tree)"
-msgstr "Gramps XML (arbre genealògic)"
+msgstr "XML del Gramps (arbre genealògic)"
 
 #: ../gramps/plugins/export/export.gpr.py:151
 msgid "Gramps _XML (family tree)"
-msgstr "Gramps _XML (arbre genealògic)"
+msgstr "_XML del Gramps (arbre genealògic)"
 
 #: ../gramps/plugins/export/export.gpr.py:153
 msgid ""
@@ -23554,7 +23541,7 @@ msgstr "Escrivint notes"
 
 #: ../gramps/plugins/export/exportgedcom.py:1127
 msgid "Writing repositories"
-msgstr "Escrivint repositoris"
+msgstr "Escrivint dipòsits"
 
 #: ../gramps/plugins/export/exportgedcom.py:1253
 #: ../gramps/plugins/lib/libgedcom.py:6399
@@ -23984,7 +23971,7 @@ msgstr "Fer doble clic al nom per detalls"
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:65
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
-msgstr "No s'ha carregat cap Arbre Genealògic."
+msgstr "No s'ha carregat cap arbre genealògic."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:156
 msgid "Total unique given names"
@@ -24213,7 +24200,7 @@ msgstr "Detalls de Repositori"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:414
 msgid "Gramplet showing details of a repository"
-msgstr "Gramplet que mostra els detalls d'un repositori"
+msgstr "Gramplet que mostra els detalls d'un dipòsit"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:429
 msgid "Place Details"
@@ -24330,7 +24317,7 @@ msgstr "Gramplet que mostra els objectes audiovisuals per una font"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:649
 msgid "Citation Gallery"
-msgstr "Galeria de Cites"
+msgstr "Galeria de citacions"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:650
 msgid "Gramplet showing media objects for a citation"
@@ -24374,7 +24361,7 @@ msgstr "Gramplet que mostra els atributs d'un objecte de font"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:745
 msgid "Citation Attributes"
-msgstr "Atributs de Cita"
+msgstr "Atributs de citació"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:746
 msgid "Gramplet showing the attributes of a citation object"
@@ -24423,7 +24410,7 @@ msgstr "Gramplet que mostra les notes per una font"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:841
 msgid "Citation Notes"
-msgstr "Notes de Cita"
+msgstr "Notes de citació"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:842
 msgid "Gramplet showing the notes for a citation"
@@ -24435,7 +24422,7 @@ msgstr "Notes de Repositori"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:858
 msgid "Gramplet showing the notes for a repository"
-msgstr "Gramplet que mostra les notes per un repositori"
+msgstr "Gramplet que mostra les notes per un dipòsit"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:873
 msgid "Media Notes"
@@ -24451,7 +24438,7 @@ msgstr "Gramplet que mostra la nota seleccionada"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:905
 msgid "Person Citations"
-msgstr "Cites de Persona"
+msgstr "Citacions de la persona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:906
 msgid "Gramplet showing the citations for a person"
@@ -24459,7 +24446,7 @@ msgstr "Gramplet que mostra les cites d'una persona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:921
 msgid "Event Citations"
-msgstr "Cites d'Esdeveniment"
+msgstr "Citacions de l'esdeveniment"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:922
 msgid "Gramplet showing the citations for an event"
@@ -24467,7 +24454,7 @@ msgstr "Gramplet que mostra les cites d'un esdeveniment"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:937
 msgid "Family Citations"
-msgstr "Cites de Família"
+msgstr "Citacions de la família"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:938
 msgid "Gramplet showing the citations for a family"
@@ -24475,7 +24462,7 @@ msgstr "Gramplet que mostra les cites d'una família"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:953
 msgid "Place Citations"
-msgstr "Cites de Lloc"
+msgstr "Citacions del lloc"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:954
 msgid "Gramplet showing the citations for a place"
@@ -24565,7 +24552,7 @@ msgstr "Gramplet que mostra les referències dels retroenllaços d'una font"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1097
 msgid "Citation References"
-msgstr "Referències de Cita"
+msgstr "Referències de citació"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1098
 msgid "Gramplet showing the backlink references for a citation"
@@ -24578,7 +24565,7 @@ msgstr "Referències a Repositori"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1114
 msgid "Gramplet showing the backlink references for a repository"
-msgstr "Gramplet que mostra les referències dels retroenllaços d'un repositori"
+msgstr "Gramplet que mostra les referències dels retroenllaços d'un dipòsit"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1129
 msgid "Media References"
@@ -24632,7 +24619,7 @@ msgstr "Gramplet que proporciona un filtre de font"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1225
 msgid "Citation Filter"
-msgstr "Filtre de Cita"
+msgstr "Filtre de citació"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1226
 msgid "Gramplet providing a citation filter"
@@ -24660,7 +24647,7 @@ msgstr "Filtre de Repositori"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1274
 msgid "Gramplet providing a repository filter"
-msgstr "Gramplet que proporciona un filtre de repositori"
+msgstr "Gramplet que proporciona un filtre de dipòsit"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1289
 msgid "Note Filter"
@@ -24735,7 +24722,7 @@ msgstr "Repositori Per Fer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1420
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Gramplet que mostra les notes Per Fer per un repositori"
+msgstr "Gramplet que mostra les notes Per Fer per un dipòsit"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1435
 msgid "Media To Do"
@@ -25366,7 +25353,7 @@ msgstr "Introducció i edició de dades (breu)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:209
 msgid "Importing a Family Tree"
-msgstr "Importar un Arbre Genealògic"
+msgstr "Importació d'un arbre genealògic"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:212
 msgid ""
@@ -25586,11 +25573,11 @@ msgstr ": %s\n"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:38
 msgid "Family Lines Graph"
-msgstr "Graf de Línies Familiars"
+msgstr "Graf de línies familiars"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:39
 msgid "Produces family line graphs using Graphviz."
-msgstr "Crea grafs de línies familiars fent servir Graphviz."
+msgstr "Crea grafs de línies familiars fent servir el Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:62
 msgid "Hourglass Graph"
@@ -25598,12 +25585,12 @@ msgstr "Informe en Rellotge de Sorra"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:63
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Crea un graf en forma de rellotge de sorra amb Graphviz."
+msgstr "Crea un graf en forma de rellotge de sorra amb el Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:85
 #: ../gramps/plugins/graph/gvrelgraph.py:225
 msgid "Relationship Graph"
-msgstr "Graf de Relacions"
+msgstr "Graf de relacions"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:86
 msgid "Produces relationship graphs using Graphviz."
@@ -25630,22 +25617,22 @@ msgstr "Omplir de color"
 #: ../gramps/plugins/graph/gvfamilylines.py:89
 #: ../gramps/plugins/graph/gvrelgraph.py:89
 msgid "Descendants <- Ancestors"
-msgstr "Descendents <- Avantpassats"
+msgstr "Descendents ← avantpassats"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:90
 #: ../gramps/plugins/graph/gvrelgraph.py:90
 msgid "Descendants -> Ancestors"
-msgstr "Descendents -> Avantpassats"
+msgstr "Descendents → avantpassats"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:91
 #: ../gramps/plugins/graph/gvrelgraph.py:91
 msgid "Descendants <-> Ancestors"
-msgstr "Descendents <-> Avantpassats"
+msgstr "Descendents ↔ avantpassats"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:92
 #: ../gramps/plugins/graph/gvrelgraph.py:92
 msgid "Descendants - Ancestors"
-msgstr "Descendents - Avantpassats"
+msgstr "Descendents - avantpassats"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:99
 msgid "Both"
@@ -25653,7 +25640,7 @@ msgstr "Tots dos"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:141
 msgid "Follow parents to determine \"family lines\""
-msgstr "Segueix els progenitors per determinar les \"línies familiars\""
+msgstr "Segueix els progenitors per a determinar les «línies familiars»"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:145
 msgid ""
@@ -25661,15 +25648,15 @@ msgid ""
 "lines\"."
 msgstr ""
 "Els pares i els seus avantpassats es tindran en consideració en determinar "
-"les \"línies famliars\"."
+"les «línies famliars»."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:152
 msgid "Follow children to determine \"family lines\""
-msgstr "Seguir fills per determinar les \"línies familiars\""
+msgstr "Segueix fills per a determinar les «línies familiars»"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:155
 msgid "Children will be considered when determining \"family lines\"."
-msgstr "Es consideraran els fills per determinar les \"línies familiars\"."
+msgstr "Es consideraran els fills en determinar les «línies familiars»."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:160
 msgid "Try to remove extra people and families"
@@ -25681,7 +25668,7 @@ msgid ""
 "removed when determining \"family lines\"."
 msgstr ""
 "Les persones i famílies que no estiguin emparentades directament amb les "
-"persones d'interès s'eliminaran en determinar les \"línies familiars\"."
+"persones d'interès s'eliminaran en determinar les «línies familiars»."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:172
 #: ../gramps/plugins/graph/gvhourglass.py:458
@@ -25746,8 +25733,8 @@ msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
-"Les persones d'interès es fan servir com a punt de partida per determinar "
-"\"línies familiars\"."
+"Les persones d'interès es fan servir com a punt de partida en determinar «"
+"línies familiars»."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:240
 msgid "Limit the number of ancestors"
@@ -26241,7 +26228,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/import.gpr.py:115
 msgid "Gramps XML Family Tree"
-msgstr "Arbre Genealògic Gramps XML"
+msgstr "Arbre genealògic XML del Gramps"
 
 #: ../gramps/plugins/importer/import.gpr.py:117
 msgid ""
@@ -27435,8 +27422,8 @@ msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"El seu Arbre Genealògic ajunta el nom \"%(key)s\" amb \"%(parent)s\", no "
-"s'ha canviat aquesta agrupació a \"%(value)s\"."
+"El vostre arbre genealògic ajunta el nom «%(key)s» amb «%(parent)s»; no s'ha "
+"canviat aquesta agrupació a «%(value)s»."
 
 #: ../gramps/plugins/importer/importxml.py:1933
 msgid "Gramps ignored a name grouping"
@@ -27761,7 +27748,7 @@ msgstr "OBJE (objecte audiovisual) Id Gramps %s"
 #: ../gramps/plugins/lib/libgedcom.py:7453
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
-msgstr "REPO (repositori) Id Gramps %s"
+msgstr "REPO (dipòsit) Id Gramps %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7514
 #: ../gramps/plugins/lib/libgedcom.py:8536
@@ -31345,7 +31332,7 @@ msgstr "Esborra la persona seleccionada"
 
 #: ../gramps/plugins/lib/libpersonview.py:147
 msgid "Merge the selected persons"
-msgstr "Combinar les persones seleccionades"
+msgstr "Fusiona les persones seleccionades"
 
 #: ../gramps/plugins/lib/libpersonview.py:213
 #: ../gramps/plugins/lib/libplaceview.py:298
@@ -31463,7 +31450,7 @@ msgstr "_Afegeix..."
 #: ../gramps/plugins/view/sourceview.py:247
 #: ../gramps/plugins/view/sourceview.py:300
 msgid "_Merge..."
-msgstr "_Combinar..."
+msgstr "_Fusiona…"
 
 #: ../gramps/plugins/lib/libpersonview.py:274
 #: ../gramps/plugins/lib/libpersonview.py:434
@@ -31589,7 +31576,7 @@ msgstr "Esborrar la persona traurà la persona de la base de dades."
 #: ../gramps/plugins/lib/libpersonview.py:492
 #, python-format
 msgid "Delete Person (%s)"
-msgstr "Esborrar Persona (%s)"
+msgstr "Suprimeix la persona (%s)"
 
 #: ../gramps/plugins/lib/libpersonview.py:529
 msgid ""
@@ -31607,11 +31594,11 @@ msgstr "Editar el lloc seleccionat"
 
 #: ../gramps/plugins/lib/libplaceview.py:119
 msgid "Delete the selected place"
-msgstr "Esborrar el lloc seleccionat"
+msgstr "Suprimeix el lloc seleccionat"
 
 #: ../gramps/plugins/lib/libplaceview.py:120
 msgid "Merge the selected places"
-msgstr "Combinar els llocs seleccionats"
+msgstr "Fusiona els llocs seleccionats"
 
 #: ../gramps/plugins/lib/libplaceview.py:256
 msgid "No map service is available."
@@ -31655,7 +31642,7 @@ msgstr "Selecciona un Servei de Mapes"
 
 #: ../gramps/plugins/lib/libplaceview.py:544
 msgid "Cannot delete place."
-msgstr "No es pot esborrar el lloc."
+msgstr "No s'ha pogut suprimir el lloc."
 
 #: ../gramps/plugins/lib/libplaceview.py:546
 msgid ""
@@ -31668,7 +31655,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libplaceview.py:569
 #: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Cannot merge places."
-msgstr "No es poden combinar llocs."
+msgstr "No s'han pogut fusionar els llocs."
 
 #: ../gramps/plugins/lib/libplaceview.py:571
 msgid ""
@@ -31755,7 +31742,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libprogen.py:442
 #, python-format
 msgid "Field '%(fldname)s' not found"
-msgstr "Camp '%(fldname)s' no trobat"
+msgstr "No s'ha trobat el camp «%(fldname)s»"
 
 #: ../gramps/plugins/lib/libprogen.py:565
 #, python-format
@@ -31790,7 +31777,7 @@ msgstr "Importació Pro-Gen"
 #: ../gramps/plugins/lib/libprogen.py:1239
 #, python-format
 msgid "Date did not match: '%(text)s' (%(msg)s)"
-msgstr "La data no coincideix: '%(text)s' (%(msg)s)"
+msgstr "La data no coincideix: «%(text)s» (%(msg)s)"
 
 #: ../gramps/plugins/lib/libprogen.py:1255
 #, python-format
@@ -32208,7 +32195,7 @@ msgstr "has introduït una latitud incorrecta per:"
 #: ../gramps/plugins/lib/maps/placeselection.py:318
 #: ../gramps/plugins/lib/maps/placeselection.py:328
 msgid "Please, correct this before linking"
-msgstr "Si us plau, corregeix abans d'enllaçar"
+msgstr "Corregiu-ho abans d'enllaçar"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:326
 msgid "you have a wrong longitude for:"
@@ -32498,7 +32485,7 @@ msgstr "totes les fonts"
 #: ../gramps/plugins/quickview/filterbyname.py:57
 msgctxt "Filtering_on"
 msgid "all repositories"
-msgstr "tots els repositoris"
+msgstr "tots els dipòsits"
 
 #: ../gramps/plugins/quickview/filterbyname.py:58
 msgctxt "Filtering_on"
@@ -32877,8 +32864,7 @@ msgstr "Mostra les referències d'enllaç per una nota"
 msgid ""
 "Display the repository reference for sources related to the active repository"
 msgstr ""
-"Mostrar la referència al repositori per fonts relacionades amb el repositori "
-"actiu"
+"Mostrar la referència al dipòsit per fonts relacionades amb el dipòsit actiu"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:301
 msgid "Same Surnames"
@@ -34197,7 +34183,7 @@ msgstr "El nombre màxim de generacions ascendents"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:385
 msgid "Show Gramps ID"
-msgstr "Mostra l'ID de Gramps"
+msgstr "Mostra l'id. del Gramps"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:386
 msgid "Whether to show Gramps ID"
@@ -34518,12 +34504,12 @@ msgstr "Nombre de cites: %d"
 
 #: ../gramps/plugins/textreport/summary.py:303
 msgid "Repository Information"
-msgstr "Informació del repositori"
+msgstr "Informació del dipòsit"
 
 #: ../gramps/plugins/textreport/summary.py:308
 #, python-format
 msgid "Number of repositories: %d"
-msgstr "Nombre de repositoris: %d"
+msgstr "Nombre de dipòsits: %d"
 
 #: ../gramps/plugins/textreport/summary.py:342
 #, python-format
@@ -34937,7 +34923,7 @@ msgstr "Buscant registres de media buits"
 
 #: ../gramps/plugins/tool/check.py:1011
 msgid "Looking for empty repository records"
-msgstr "Buscant registres de repositori buits"
+msgstr "Buscant registres de dipòsit buits"
 
 #: ../gramps/plugins/tool/check.py:1020
 msgid "Looking for empty note records"
@@ -34970,7 +34956,7 @@ msgstr "Buscant problemes de referències a famílies"
 
 #: ../gramps/plugins/tool/check.py:1515
 msgid "Looking for repository reference problems"
-msgstr "Buscant problemes de referències a repositoris"
+msgstr "Buscant problemes de referències a dipòsits"
 
 #: ../gramps/plugins/tool/check.py:1555
 msgid "Looking for place reference problems"
@@ -35114,8 +35100,8 @@ msgstr[1] "S'han corregit {quantity} dates\n"
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "{quantity} repositori estava referenciat, però no s'ha trobat\n"
-msgstr[1] "{quantity} repositoris estaven referenciats, però no s'han trobat\n"
+msgstr[0] "{quantity} dipòsit estava referenciat, però no s'ha trobat\n"
+msgstr[1] "{quantity} dipòsits estaven referenciats, però no s'han trobat\n"
 
 #: ../gramps/plugins/tool/check.py:2860 ../gramps/plugins/tool/check.py:2960
 #, python-brace-format
@@ -35254,7 +35240,7 @@ msgstr ""
 "   %(source)d objectes font\n"
 "   %(media)d objectes audiovisuals\n"
 "   %(place)d objectes lloc\n"
-"   %(repo)d objectes repositori\n"
+"   %(repo)d objectes dipòsit\n"
 "   %(note)d objectes nota\n"
 
 #: ../gramps/plugins/tool/check.py:3054
@@ -35275,11 +35261,11 @@ msgstr "S'han arreglat %d enllaços de Nota dolents;\n"
 
 #: ../gramps/plugins/tool/check.py:3090
 msgid "Integrity Check Results"
-msgstr "Resultats de la Prova d'Integritat"
+msgstr "Resultats de la prova d'integritat"
 
 #: ../gramps/plugins/tool/check.py:3097
 msgid "Check and Repair"
-msgstr "Comprovar i Reparar"
+msgstr "Comprova i repara"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:69
 msgid "Start date test?"
@@ -35326,7 +35312,7 @@ msgstr "Endevinar"
 
 #: ../gramps/plugins/tool/eventcmp.glade:37
 msgid "Save _As"
-msgstr "Des_a com"
+msgstr "_Anomena i desa"
 
 #: ../gramps/plugins/tool/eventcmp.glade:242
 msgid "_Filter:"
@@ -35499,11 +35485,11 @@ msgstr "Segona Persona"
 
 #: ../gramps/plugins/tool/finddupes.py:588
 msgid "Merge candidates"
-msgstr "Combinar candidats"
+msgstr "Fusiona els candidats"
 
 #: ../gramps/plugins/tool/finddupes.py:588
 msgid "Merge persons"
-msgstr "Combina les persones"
+msgstr "Fusiona les persones"
 
 #: ../gramps/plugins/tool/findloop.py:59
 msgctxt "manual"
@@ -35729,7 +35715,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.glade:142
 msgid "Don't merge if citation has notes"
-msgstr "No combinar si la cita té notes"
+msgstr "No fusionis si la citació té notes"
 
 #: ../gramps/plugins/tool/mergecitations.py:77
 msgid "Match on Page/Volume, Date and Confidence"
@@ -35779,8 +35765,8 @@ msgstr "Nombre de combinacions fetes"
 #, python-brace-format
 msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
-msgstr[0] "{number_of} cita combinada"
-msgstr[1] "{number_of} cites combinades"
+msgstr[0] "S'ha fusionat {number_of} citació"
+msgstr[1] "S'han fusionat {number_of} citacions"
 
 #: ../gramps/plugins/tool/notrelated.glade:159
 msgid "_Tag"
@@ -36124,7 +36110,7 @@ msgstr "Busca audiovisuals"
 
 #: ../gramps/plugins/tool/removeunused.glade:169
 msgid "Search for repositories"
-msgstr "Busca repositoris"
+msgstr "Busca dipòsits"
 
 #: ../gramps/plugins/tool/removeunused.glade:185
 msgid "Search for notes"
@@ -36882,7 +36868,7 @@ msgstr "Afegeix una nova cita a una font existent"
 
 #: ../gramps/plugins/view/citationlistview.py:146
 msgid "Delete the selected citation"
-msgstr "Esborrar la cita seleccionada"
+msgstr "Suprimeix la citació seleccionada"
 
 #: ../gramps/plugins/view/citationlistview.py:147
 msgid "Merge the selected citations"
@@ -37024,7 +37010,7 @@ msgstr "Esborrar l'esdeveniment seleccionat"
 
 #: ../gramps/plugins/view/eventview.py:116
 msgid "Merge the selected events"
-msgstr "Combinar els esdeveniments seleccionats"
+msgstr "Fusiona els esdeveniments seleccionats"
 
 #: ../gramps/plugins/view/eventview.py:254
 msgid "Event Filter Editor"
@@ -37058,7 +37044,7 @@ msgstr "Editar la família seleccionada"
 
 #: ../gramps/plugins/view/familyview.py:112
 msgid "Delete the selected family"
-msgstr "Esborrar la família seleccionada"
+msgstr "Suprimeix la família seleccionada"
 
 #: ../gramps/plugins/view/familyview.py:113
 msgid "Merge the selected families"
@@ -37247,7 +37233,7 @@ msgstr "Quadrant"
 #: ../gramps/plugins/view/fanchartdescview.py:383
 #: ../gramps/plugins/view/fanchartview.py:459
 msgid "Show gramps id"
-msgstr "Mostra l'ID Gramps"
+msgstr "Mostra l'id. del Gramps"
 
 #: ../gramps/plugins/view/fanchartview.py:229
 msgid "Print or save the Fan Chart View"
@@ -37682,9 +37668,9 @@ msgid ""
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
-"Clic dret al mapa i selecciona 'mostra tots els llocs' per mostrar tots els "
-"llocs coneguts amb coordenades. Pots canviar el color dels marcadors "
-"depenent del tipus de lloc. Pots utilitzar el filtrat."
+"Feu clic dret al mapa i seleccioneu «Mostra tots els llocs» per a mostrar "
+"tots els llocs coneguts amb coordenades. Pdeu canviar el color dels "
+"marcadors depenent del tipus de lloc. Podeu utilitzar el filtratge."
 
 #: ../gramps/plugins/view/geoplaces.py:459
 msgid ""
@@ -37712,7 +37698,7 @@ msgstr "Falta informació."
 
 #: ../gramps/plugins/view/geoplaces.py:487
 msgid "Please, use filtering to reduce this number."
-msgstr "Si us plau, utilitzeu filtres per reduir aquest nombre."
+msgstr "Utilitzeu filtres per a reduir aquest nombre."
 
 #: ../gramps/plugins/view/geoplaces.py:490
 msgid "You can modify this value in the geography option."
@@ -37742,27 +37728,27 @@ msgstr "El color del marcador de llocs"
 
 #: ../gramps/plugins/view/mediaview.py:129
 msgid "Edit the selected media object"
-msgstr "Editar l'objecte audiovisual seleccionat"
+msgstr "Edita l'objecte audiovisual seleccionat"
 
 #: ../gramps/plugins/view/mediaview.py:130
 msgid "Delete the selected media object"
-msgstr "Esborrar l'objecte audiovisual seleccionat"
+msgstr "Suprimeix l'objecte audiovisual seleccionat"
 
 #: ../gramps/plugins/view/mediaview.py:131
 msgid "Merge the selected media objects"
-msgstr "Combinar els objectes audiovisuals seleccionats"
+msgstr "Fusiona els objectes audiovisuals seleccionats"
 
 #: ../gramps/plugins/view/mediaview.py:318
 msgid "Media Filter Editor"
-msgstr "Editor de Filtres d'Audiovisuals"
+msgstr "Editor de filtres d'audiovisuals"
 
 #: ../gramps/plugins/view/mediaview.py:410
 msgid "View in the default viewer"
-msgstr "Veure a l'aplicació predeterminada"
+msgstr "Mostra al visor per defecte"
 
 #: ../gramps/plugins/view/mediaview.py:512
 msgid "Cannot merge media objects."
-msgstr "No es poden combinar medis audiovisuals."
+msgstr "No s'han pogut fusionar els audiovisuals."
 
 #: ../gramps/plugins/view/mediaview.py:514
 msgid ""
@@ -37776,27 +37762,27 @@ msgstr ""
 
 #: ../gramps/plugins/view/noteview.py:98
 msgid "Delete the selected note"
-msgstr "Esborrar la nota seleccionada"
+msgstr "Suprimeix la nota seleccionada"
 
 #: ../gramps/plugins/view/noteview.py:99
 msgid "Merge the selected notes"
-msgstr "Combinar les notes seleccionades"
+msgstr "Fusiona les notes seleccionades"
 
 #: ../gramps/plugins/view/noteview.py:199
 msgid "Note Filter Editor"
-msgstr "Editor de Filtres de Nota"
+msgstr "Editor de filtres de nota"
 
 #: ../gramps/plugins/view/noteview.py:367
 msgid "Cannot merge notes."
-msgstr "No es poden combinar notes."
+msgstr "No s'han pogut fusionar les notes."
 
 #: ../gramps/plugins/view/noteview.py:369
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
 msgstr ""
-"Cal seleccionar exactament dues notes per dur a terme una combinació. Es pot "
-"seleccionar una segona nota prement la tecla de control mentre es clica la "
+"Cal seleccionar exactament dues notes per dur a terme una fusió. Es pot "
+"seleccionar una segona nota prement la tecla Control mentre es fa clic a la "
 "nota desitjada."
 
 #: ../gramps/plugins/view/pedigreeview.py:87
@@ -38074,7 +38060,7 @@ msgstr "Detectada família incoherent"
 
 #: ../gramps/plugins/view/relview.py:1610
 msgid "Please run the Check and Repair Database tool"
-msgstr "Si us plau, executi l'eina de Comprovar i Reparar la Base de Dades"
+msgstr "Executeu l'eina Comprova i repara la base de dades"
 
 #: ../gramps/plugins/view/relview.py:1635
 #: ../gramps/plugins/view/relview.py:1682
@@ -38119,15 +38105,15 @@ msgstr "URL de Cerca"
 
 #: ../gramps/plugins/view/repoview.py:139
 msgid "Add a new repository"
-msgstr "Afegeix un repositori nou"
+msgstr "Afegeix un dipòsit nou"
 
 #: ../gramps/plugins/view/repoview.py:141
 msgid "Delete the selected repository"
-msgstr "Esborra el repositori seleccionat"
+msgstr "Esborra el dipòsit seleccionat"
 
 #: ../gramps/plugins/view/repoview.py:142
 msgid "Merge the selected repositories"
-msgstr "Combina els repositoris seleccionats"
+msgstr "Combina els dipòsits seleccionats"
 
 #: ../gramps/plugins/view/repoview.py:236
 msgid "Repository Filter Editor"
@@ -38135,7 +38121,7 @@ msgstr "Editor de Filtres de Repositori"
 
 #: ../gramps/plugins/view/repoview.py:397
 msgid "Cannot merge repositories."
-msgstr "No es poden combinar repositoris."
+msgstr "No es poden combinar dipòsits."
 
 #: ../gramps/plugins/view/repoview.py:399
 msgid ""
@@ -38143,9 +38129,9 @@ msgid ""
 "repository can be selected by holding down the control key while clicking on "
 "the desired repository."
 msgstr ""
-"Cal seleccionar exactament dos repositoris per dur a terme una combinació. "
-"Es pot seleccionar un segon repositori prement la tecla de control mentre es "
-"clica el repositori desitjat."
+"Cal seleccionar exactament dos dipòsits per dur a terme una combinació. Es "
+"pot seleccionar un segon dipòsit prement la tecla de control mentre es clica "
+"el dipòsit desitjat."
 
 #: ../gramps/plugins/view/sourceview.py:112
 msgid "Edit the selected source"
@@ -38257,7 +38243,7 @@ msgstr "Una vista que mostra els llocs en format d'arbre."
 
 #: ../gramps/plugins/view/view.gpr.py:269
 msgid "The view showing all the repositories"
-msgstr "La vista que mostra tots els repositoris"
+msgstr "La vista que mostra tots els dipòsits"
 
 #: ../gramps/plugins/view/view.gpr.py:285
 msgid "The view showing all the sources"
@@ -38265,11 +38251,11 @@ msgstr "La vista que mostra totes les fonts"
 
 #: ../gramps/plugins/view/view.gpr.py:302
 msgid "The view showing all the citations"
-msgstr "La vista que mostra totes les cites"
+msgstr "La visualització que mostra totes les citacions"
 
 #: ../gramps/plugins/view/view.gpr.py:317
 msgid "Citation Tree"
-msgstr "Arbre de Cites"
+msgstr "Arbre de citacions"
 
 #: ../gramps/plugins/view/view.gpr.py:318
 msgid "A view displaying citations and sources in a tree format."
@@ -38887,7 +38873,7 @@ msgstr "El directori destí per als fitxers web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "My Family Tree"
-msgstr "El Meu Arbre Genealògic"
+msgstr "El meu arbre genealògic"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "Website title"
@@ -38937,7 +38923,7 @@ msgstr "El copyright que s'ha de fer servir per als fitxers web"
 #: ../gramps/plugins/webreport/narrativeweb.py:2189
 #: ../gramps/plugins/webreport/webcal.py:1884
 msgid "StyleSheet"
-msgstr "Full d'Estil"
+msgstr "Full d'estils"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2195
 msgid "The default stylesheet to be used for the pages"
@@ -38974,7 +38960,7 @@ msgstr "Estil Normal de Contorn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Citation References Layout"
-msgstr "Disposició de referències de cites"
+msgstr "Disposició de referències de citacions"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2228
 msgid ""
@@ -39417,11 +39403,11 @@ msgstr "Si s'han d'incloure les pàgines de font o no."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2620
 msgid "Include repository pages"
-msgstr "Incloure pàgines de repositori"
+msgstr "Incloure pàgines de dipòsit"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2621
 msgid "Whether or not to include the repository pages."
-msgstr "Si s'han d'incloure les pàgines de repositori o no."
+msgstr "Si s'han d'incloure les pàgines de dipòsit o no."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2624
 msgid "Include GENDEX file (/gendex.txt)"
@@ -39611,11 +39597,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
-"Només hauries d'utilitzar aquesta opció si no pots veure els mapes "
-"d'OpenStreetMap o Stamen maps a la teva web.\n"
-"Pots canviar aquest valor a l'arxiu especificat. El nom de l'opció a "
+"Només hauríeu d'utilitzar aquesta opció si no podeu veure els mapes de "
+"l'OpenStreetMap o Stamen al vostre lloc web.\n"
+"Podeu canviar aquest valor al fitxer especificat. El nom de l'opció a "
 "modificar es openlayers_version.\n"
-"Veure OLDER VERSIONS a https://openlayers.org/"
+"Vegeu VERSIONS MÉS ANTIGUES a https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2810
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -39926,7 +39912,7 @@ msgstr "Mapa de Llocs"
 
 #: ../gramps/plugins/webreport/repository.py:107
 msgid "Creating repository pages"
-msgstr "S'estan creant les pàgines de repositori"
+msgstr "S'estan creant les pàgines de dipòsit"
 
 #: ../gramps/plugins/webreport/repository.py:155
 msgid ""
@@ -39934,9 +39920,9 @@ msgid ""
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
-"Aquesta pàgina conté un índex de tots els repositoris de la base de dades, "
-"ordenats per títol. Si es clica al títol d'un repositori, s'anirà a la "
-"pàgina d'aquest repositori."
+"Aquesta pàgina conté un índex de tots els dipòsits de la base de dades, "
+"ordenats per títol. Si es clica al títol d'un dipòsit, s'anirà a la pàgina "
+"d'aquest dipòsit."
 
 #: ../gramps/plugins/webreport/repository.py:177
 msgctxt "Repository"
