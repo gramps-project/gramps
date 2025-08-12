@@ -480,7 +480,7 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("SELECT handle FROM person")
         return [row[0] for row in self.dbapi.fetchall()]
 
-    def get_person_cursor(self, sort_handles=False, locale=glocale):
+    def get_person_handles_cursor(self, sort_handles=False, locale=glocale):
         """
         Return a cursor that iterates over person handles without loading
         all into memory at once.
@@ -489,7 +489,8 @@ class DBAPI(DbGeneric):
         :type sort_handles: bool
         :param locale: The locale to use for collation.
         :type locale: A GrampsLocale object.
-        :returns: Iterator over person handles
+        :returns: Returns a cursor, where supported, or iterator otherwise, over person handles
+        :rtype: iterator
         """
         if hasattr(self.dbapi, "cursor"):
             # Use real database cursor for backends that support it
@@ -1733,9 +1734,73 @@ class DBAPI(DbGeneric):
 
         return results
 
-    # -------------------------------------------------------------------------
-    # Enhanced DBAPI Methods - Real Cursors, Lazy Loading, Prepared Statements
-    # -------------------------------------------------------------------------
+    def _update_person_auxiliary_data(self, person, old_person=None, trans=None):
+        """
+        Update auxiliary data structures for a person object.
+        
+        This method handles all the secondary updates needed when a person
+        is committed, including gender statistics, surname lists, and
+        custom type registries.
+        
+        :param person: The Person object being committed
+        :type person: Person
+        :param old_person: The previous version of the person (for updates)
+        :type old_person: Person or None
+        :param trans: The transaction object
+        :type trans: DbTxn or None
+        """
+        # Update gender statistics
+        if old_person:
+            # Update gender statistics if necessary
+            if (old_person.gender != person.gender or 
+                old_person.primary_name.first_name != person.primary_name.first_name):
+                self.genderStats.uncount_person(old_person)
+                self.genderStats.count_person(person)
+            
+            # Update surname list if necessary
+            if self._order_by_person_key(person) != self._order_by_person_key(old_person):
+                self.remove_from_surname_list(old_person)
+                self.add_to_surname_list(person, trans.batch if trans else False)
+        else:
+            # New person - add to auxiliary structures
+            self.genderStats.count_person(person)
+            self.add_to_surname_list(person, trans.batch if trans else False)
+        
+        # Type registry updates
+        self.individual_attributes.update(
+            [str(attr.type) for attr in person.attribute_list 
+             if attr.type.is_custom() and str(attr.type)]
+        )
+        
+        self.event_role_names.update(
+            [str(eref.role) for eref in person.event_ref_list 
+             if eref.role.is_custom()]
+        )
+        
+        self.name_types.update(
+            [str(name.type) for name in ([person.primary_name] + person.alternate_names)
+             if name.type.is_custom()]
+        )
+        
+        all_surn = []
+        all_surn += person.primary_name.get_surname_list()
+        for asurname in person.alternate_names:
+            all_surn += asurname.get_surname_list()
+        self.origin_types.update(
+            [str(surn.origintype) for surn in all_surn 
+             if surn.origintype.is_custom()]
+        )
+        
+        self.url_types.update(
+            [str(url.type) for url in person.urls 
+             if url.type.is_custom()]
+        )
+        
+        attr_list = []
+        for mref in person.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list 
+                         if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
 
     def prepare(self, name, query):
         """
@@ -1825,20 +1890,38 @@ class DBAPI(DbGeneric):
         Commit multiple persons efficiently while maintaining data integrity.
         
         Uses executemany for database operations and ensures all auxiliary
-        updates are properly applied. Structured to benefit from future 
-        batch optimizations automatically.
+        updates are properly applied. Transactions are atomic - either all
+        persons are committed or none are.
         
         :param persons: List of Person objects to commit
-        :param trans: Transaction object
+        :type persons: list[Person]
+        :param trans: Transaction object (required)
+        :type trans: DbTxn
+        :raises ValueError: If trans is None or duplicate handles are detected
         """
         if not persons:
             return
         
+        # Validate transaction
+        if trans is None:
+            raise ValueError("Transaction required for batch operations")
+        
+        # Check for duplicate handles
+        seen_handles = set()
+        for person in persons:
+            if person.handle in seen_handles:
+                raise ValueError(f"Duplicate person handle in batch: {person.handle}")
+            seen_handles.add(person.handle)
+        
+        # Import Person class for deserialization
+        from gramps.gen.lib import Person
+        
         # Batch fetch existing data for update detection
         handles = [p.handle for p in persons]
         old_data_map = {}
+        old_person_map = {}
         
-        if handles and hasattr(self.dbapi, 'execute'):
+        if handles:
             placeholders = ','.join('?' * len(handles))
             cursor = self.dbapi.execute(
                 f'SELECT handle, json_data FROM person WHERE handle IN ({placeholders})',
@@ -1846,6 +1929,9 @@ class DBAPI(DbGeneric):
             )
             for row in cursor.fetchall():
                 old_data_map[row[0]] = row[1]
+                # Pre-deserialize old persons for efficiency
+                if row[1]:
+                    old_person_map[row[0]] = self.serializer.string_to_object(row[1], Person)
         
         # Batch database operations
         if hasattr(self.dbapi, "executemany"):
@@ -1876,67 +1962,18 @@ class DBAPI(DbGeneric):
             # Fallback to individual commits
             for person in persons:
                 self._commit_person(person, trans)
-                
-        # Apply auxiliary updates (COMPLETING THE IMPLEMENTATION)
-        from gramps.gen.lib import Person
+                # Individual commits already handle auxiliary updates
+                # so we can return early
+            return
         
+        # Apply auxiliary updates for all persons
         for person in persons:
-            old_data = old_data_map.get(person.handle)
-            
-            if old_data:
-                # Deserialize old person for comparison
-                old_person = self.serializer.string_to_object(old_data, Person)
-                
-                # Update gender statistics if necessary
-                if (old_person.gender != person.gender or 
-                    old_person.primary_name.first_name != person.primary_name.first_name):
-                    self.genderStats.uncount_person(old_person)
-                    self.genderStats.count_person(person)
-                    
-                # Update surname list if necessary
-                if self._order_by_person_key(person) != self._order_by_person_key(old_person):
-                    self.remove_from_surname_list(old_person)
-                    self.add_to_surname_list(person, trans.batch)
+            old_person = old_person_map.get(person.handle)
+            self._update_person_auxiliary_data(person, old_person, trans)
+        
+        # Emit signals AFTER all data is consistent
+        for person in persons:
+            if person.handle in old_data_map:
+                self.emit('person-update', ([person.handle],))
             else:
-                # New person - add to auxiliary structures
-                self.genderStats.count_person(person)
-                self.add_to_surname_list(person, trans.batch)
-            
-            # Type registry updates (same as commit_person)
-            self.individual_attributes.update(
-                [str(attr.type) for attr in person.attribute_list 
-                 if attr.type.is_custom() and str(attr.type)]
-            )
-            
-            self.event_role_names.update(
-                [str(eref.role) for eref in person.event_ref_list 
-                 if eref.role.is_custom()]
-            )
-            
-            self.name_types.update(
-                [str(name.type) for name in ([person.primary_name] + person.alternate_names)
-                 if name.type.is_custom()]
-            )
-            
-            all_surn = []
-            all_surn += person.primary_name.get_surname_list()
-            for asurname in person.alternate_names:
-                all_surn += asurname.get_surname_list()
-            self.origin_types.update(
-                [str(surn.origintype) for surn in all_surn 
-                 if surn.origintype.is_custom()]
-            )
-            
-            self.url_types.update(
-                [str(url.type) for url in person.urls 
-                 if url.type.is_custom()]
-            )
-            
-            attr_list = []
-            for mref in person.media_list:
-                attr_list += [str(attr.type) for attr in mref.attribute_list 
-                             if attr.type.is_custom() and str(attr.type)]
-            self.media_attributes.update(attr_list)
-            
-            # Emit signal for GUI updates
-            self.emit('person-add', ([person.handle],))
+                self.emit('person-add', ([person.handle],))
