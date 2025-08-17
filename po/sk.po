@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-10 15:45+0000\n"
+"PO-Revision-Date: 2025-08-16 18:06+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7936,7 +7936,7 @@ msgstr "Manželstvo"
 
 #: ../gramps/gen/lib/eventtype.py:235
 msgid "Marriage Settlement"
-msgstr "Manželské vyrovnanie"
+msgstr "Predmanželská zmluva"
 
 #: ../gramps/gen/lib/eventtype.py:236
 msgid "Marriage License"
@@ -8169,7 +8169,7 @@ msgstr "posl.v."
 #: ../gramps/gen/lib/eventtype.py:285
 msgctxt "Marriage Settlement abbreviation"
 msgid "m.set."
-msgstr "manž.vyr."
+msgstr "predmanž.zml."
 
 #: ../gramps/gen/lib/eventtype.py:286
 msgctxt "Marriage License abbreviation"
@@ -9012,7 +9012,7 @@ msgstr "Provincia"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/view/geoplaces.py:622
 msgid "Department"
-msgstr "Úrad"
+msgstr "Oddelenie"
 
 #: ../gramps/gen/lib/placetype.py:85 ../gramps/plugins/view/geoplaces.py:604
 msgid "Neighborhood"
@@ -21392,7 +21392,7 @@ msgstr "Tlačí aktuálny súbor"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:63
 msgid "_First"
-msgstr "_Prvé"
+msgstr "_Prvá"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
@@ -21458,7 +21458,7 @@ msgstr "Zobrazí nasledujúcu stranu"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:108
 msgid "_Last"
-msgstr "_Posledné"
+msgstr "_Posledná"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -21478,7 +21478,7 @@ msgstr "Priblíži stranu"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:230
 msgid "Zooms the page out"
-msgstr "Zmenší stranu"
+msgstr "Oddiali stranu"
 
 #: ../gramps/plugins/docgen/gtkprint.py:475
 #, python-format
