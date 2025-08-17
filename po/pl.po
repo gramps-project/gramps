@@ -5,7 +5,7 @@
 # Piotr Czubaszek <pioterus(at)gmail(dot)com>, 2007.
 # Piotr Czubaszek <piotrek@gmail.com>, 2007.
 # Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>, 2008,2009.
-# Krystian Safjan <ksafjan@gmail.com>, 2020.
+# Krystian Safjan <ksafjan@gmail.com>, 2020, 2025.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2025.
 # WaldiS <sto@tutanota.de>, 2021, 2022, 2023, 2024, 2025.
 # Michał Stojek <stojex@gmail.com>, 2022, 2023, 2025.
@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-09 21:35+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2025-08-12 15:44+0000\n"
+"Last-Translator: Krystian Safjan <ksafjan@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -266,8 +266,9 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"Gramps jest programem genealogicznym, który jest intuicyjny dla hobbistów "
-"oraz jest bogaty w funkcjonalności dla profesjonalistów."
+"Gramps to program genealogiczny, który jest intuicyjny dla pasjonatów i "
+"jednocześnie oferuje pełen zestaw funkcji potrzebnych profesjonalnym "
+"genealogom."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -2446,7 +2447,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:500
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr "od"
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2455,7 +2456,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:505
 msgctxt "to-date"
 msgid ""
-msgstr ""
+msgstr "do"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:424
 #, python-brace-format
@@ -2491,7 +2492,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:490
 msgctxt "before-date"
 msgid ""
-msgstr ""
+msgstr "przed"
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2499,7 +2500,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:495
 msgctxt "after-date"
 msgid ""
-msgstr ""
+msgstr "po"
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2507,7 +2508,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:510
 msgctxt "about-date"
 msgid ""
-msgstr ""
+msgstr "około"
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
@@ -2515,7 +2516,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:515
 msgctxt "estimated-date"
 msgid ""
-msgstr ""
+msgstr "szacowany"
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
@@ -2523,7 +2524,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:520
 msgctxt "calculated-date"
 msgid ""
-msgstr ""
+msgstr "obliczony"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:540
 #, python-brace-format
@@ -3562,7 +3563,7 @@ msgstr "surowenazwisko"
 #: ../gramps/gen/display/name.py:720 ../gramps/gen/display/name.py:842
 #: ../gramps/plugins/importer/importcsv.py:220
 msgid "nickname"
-msgstr "przydomek"
+msgstr "pseudonim"
 
 #: ../gramps/gen/display/name.py:721 ../gramps/gen/display/name.py:843
 msgid "familynick"
@@ -3913,7 +3914,7 @@ msgstr "Nie można znaleźć filtra %s w zdefiniowanych własnych filtrach"
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:50
 #: ../gramps/gui/editors/filtereditor.py:572
 msgid "Source filter name:"
-msgstr "Nazwa filtru źródeł:"
+msgstr "Nazwa filtra źródeł:"
 
 #: ../gramps/gen/filters/rules/_rule.py:68
 msgid "Miscellaneous filters"
@@ -4492,7 +4493,7 @@ msgstr "Dołącz zdarzenia rodzin:"
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:61
 #: ../gramps/gui/editors/filtereditor.py:566
 msgid "Person filter name:"
-msgstr "Nazwa filtru osób:"
+msgstr "Nazwa filtra osób:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:62
 msgid "Events of persons matching the <person filter>"
@@ -4506,7 +4507,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:60
 #: ../gramps/gui/editors/filtereditor.py:576
 msgid "Place filter name:"
-msgstr "Nazwa filtru miejsc:"
+msgstr "Nazwa filtra miejsc:"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:61
 msgid "Events of places matching the <place filter>"
@@ -5463,7 +5464,7 @@ msgstr "Imię:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:59
 msgid "Full Family name:"
-msgstr "Pełne imię rodzinne:"
+msgstr "Pełne nazwisko rodowe:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:60
 msgctxt "person"
@@ -5476,11 +5477,11 @@ msgstr "Przyrostek:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:62
 msgid "Call Name:"
-msgstr "Używane imię:"
+msgstr "Imię używane na co dzień:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:63
 msgid "Nick Name:"
-msgstr "Przezwisko:"
+msgstr "Pseudonim:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:64
 msgid "Prefix:"
@@ -5502,7 +5503,7 @@ msgstr "Drugie imię:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:68
 msgid "Family Nick Name:"
-msgstr "Rodzinne przezwisko:"
+msgstr "Przydomek rodzinny:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:70
 msgid "People with the <name>"
@@ -5543,11 +5544,11 @@ msgstr "Dopasowuje osób z tym samym typem nazwiska"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:56
 msgid "People with a nickname"
-msgstr "Osoby z przydomkiem"
+msgstr "Osoby z pseudonimem"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:57
 msgid "Matches people with a nickname"
-msgstr "Dopasowuje ludzi z przydomkiem"
+msgstr "Dopasowuje ludzi z pseudonimem"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:47
 msgid "People having <count> notes"
@@ -5635,8 +5636,8 @@ msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"Dopasowanie Soundex osób z określonym nazwiskiem. Imię, nazwisko, używane "
-"imię i pseudonim są wyszukiwane wśród podstawowych i alternatywnych nazw."
+"Dopasowanie Soundex osób z określoną nazwą. Imię, nazwisko, imię używane na "
+"co dzień i pseudonim są wyszukiwane wśród podstawowych i alternatywnych nazw."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:47
 msgid "People with <count> sources"
@@ -6152,7 +6153,7 @@ msgstr "Dopasowuje miejsca z cytatami o określonej wartości"
 #: ../gramps/plugins/tool/removespaces.py:241
 msgctxt "place"
 msgid "Name:"
-msgstr "Nazwa miejsca:"
+msgstr "Nazwa:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:59
 #: ../gramps/gui/editors/filtereditor.py:122
@@ -7044,7 +7045,7 @@ msgstr "Numer ubezpieczenia społecznego"
 #: ../gramps/plugins/importer/importcsv.py:222
 #: ../gramps/plugins/tool/patchnames.py:488
 msgid "Nickname"
-msgstr "Przydomek"
+msgstr "Pseudonim"
 
 #: ../gramps/gen/lib/attrtype.py:83
 msgid "Cause"
@@ -8668,11 +8669,11 @@ msgstr "Używane imię"
 
 #: ../gramps/gen/lib/name.py:194
 msgid "Nick name"
-msgstr "Przezwisko"
+msgstr "Pseudonim"
 
 #: ../gramps/gen/lib/name.py:195
 msgid "Family nick name"
-msgstr "Rodzinne przezwisko"
+msgstr "Przydomek rodzinny"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:500 ../gramps/gen/lib/name.py:517
@@ -10095,19 +10096,19 @@ msgstr "Krótki"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Given Nickname Surname"
-msgstr "Pseudonim Nazwisko"
+msgstr "Imię Pseudonim Nazwisko"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
 msgid "Surname Given Nickname"
-msgstr "Nazwisko Nadany pseudonim"
+msgstr "Nazwisko Imię Pseudonim"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
 msgid "Surname, Given Nickname"
-msgstr "Nazwisko, nadany pseudonim"
+msgstr "Nazwisko, Imię Pseudonim"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:75
 msgid "GivenNicknameSurname"
-msgstr "NazwiskoNadanyPseudonim"
+msgstr "ImięPseudonimNazwisko"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Auto"
@@ -11269,7 +11270,7 @@ msgstr "PREFIKS"
 
 #: ../gramps/gen/utils/keyword.py:74
 msgid "NICKNAME"
-msgstr "PRZYDOMEK"
+msgstr "PSEUDONIM"
 
 #: ../gramps/gen/utils/keyword.py:75
 msgid "FAMILYNICK"
@@ -12034,7 +12035,6 @@ msgid "_Close"
 msgstr "_Zamknij"
 
 #: ../gramps/gui/configure.py:131
-#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -12065,38 +12065,38 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Następujące słowa kluczowe będą zamienione z nazwą :\n"
-"<tt>  \n"
-"  <b>Given</b>      - nadane imię (pierwsze imię)   <b>Surname</b>    - "
-"nazwisko (z prefiksami i złączeniami)\n"
-"  <b>Title</b>      - tytuł (Dr., Panna.)           <b>Suffix</b>     - "
-"suffiks (Jr., Sr.)\n"
-"  <b>Call</b>       - imię używane, albo nick       <b>Nickname</b>        - "
-"nick\n"
-"  <b>Initials</b>   - pierwsza litera danego imienia    <b>Common</b>     - "
-"używane imię, albo pierwsze imię z nadanych\n"
-"  <b>Primary, Primary[pre] lub [sur] lub [con]</b>    - pełne podstawowe "
-"(główne) nazwisko,prefiks, tylko nazwisko, łącznik\n"
-"  <b>Patronymic, lub [pre] lub [sur] lub [con]</b>     - pełne nazwisko "
-"pa(ma)tronimiczne (imię ojca),prefiks, tylko nazwisko, łącznik\n"
-"  <b>Familynick</b> - rodzinny nick           <b>Prefix</b>         - "
-"prefiks (von, de, de la)\n"
-"  <b>Rest</b>    - nie podstawowe nazwiska    <b>Nonpatronymic</b>  - "
-"wszystkie nazwiska poza pa(ma)tronimicznym &amp; podstawowe\n"
-"  <b>Rawsurnames</b>    - wszystkie nazwiska bez prefiksów i łączników\n"
+"Następujące słowa kluczowe są zastępowane odpowiednimi częściami imienia i "
+"nazwiska:<tt>\n"
+"  <b>Given</b>   – imię (pierwsze imię)          <b>Surname</b>  – nazwiska ("
+"z przedrostkiem i łącznikami)\n"
+"  <b>Title</b>   – tytuł (Dr, Pani)              <b>Suffix</b>   – "
+"przyrostek (Jr., Sr.)\n"
+"  <b>Call</b>    – imię używane na codzień                  <b>Nickname</b> –"
+" pseudonim\n"
+"  <b>Initials</b>– pierwsze litery imion         <b>Common</b>   – "
+"pseudonim, imię używane na codzień lub pierwsze imię\n"
+"  <b>Prefix</b>  – wszystkie przedrostki (von, de)\n"
+"Nazwiska:\n"
+"  <b>Rest</b>      – nazwiska niegłówne          <b>Notpatronymic</b> – "
+"wszystkie nazwiska, z wyjątkiem odojcowskich/matronimicznych i głównego\n"
+"  <b>Familynick</b>– przydomek rodzinny          <b>Rawsurnames</b>   – "
+"nazwiska (bez przedrostków i łączników)\n"
+"  <b>Primary, Primary[pre] lub [sur] lub [con]</b> – pełne nazwisko główne, "
+"tylko przedrostek, tylko nazwisko lub tylko łącznik\n"
+"  <b>Patronymic, lub [pre] lub [sur] lub [con]</b> – pełne nazwisko "
+"odojcowskie/matronimiczne, tylko przedrostek, tylko nazwisko lub tylko "
+"łącznik\n"
 "</tt>\n"
-"Użyj tym samych słów kluczowych napisanych DUŻYMI literami, aby wymusić "
-"tekst pisany dużymi literami. Nawiasy i przecinki\n"
-"będą usunięte wokół pustych pól. Inne teksty pojawią się tak jak zostały "
-"wpisane (literalnie).\n"
+"Słowo kluczowe pisane WIELKIMI LITERAMI wymusza zapis wielkimi literami. "
+"Dodatkowe nawiasy i przecinki są usuwane. Pozostały tekst pojawia się "
+"dosłownie.\n"
 "\n"
-"<b>Przykład<b/>:'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") "
-"- Underhills'\n"
-"    Tutaj <i>Edwin Jose</i> jest nadanymi imionami,  <i>von der</i> jest "
-"prefiksem,  <i>Smith</i> oraz <i>Weston</i> nazwiskami,\n"
-"    <i>and</i> łącznikiem, <i>Wilson</i> nazwiskiem patronimicznym, <i>Dr.</"
-"i> tytułem, <i>Sr</i> przyrostkiem, <i>Ed</i> nickiem\n"
-"        <i>Underhills</i> rodzinnym nickiem,<i>Jose</i> nazwą wołaną.\n"
+"<b>Przykład</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") –"
+" Underhills\n"
+"     <i>Edwin Jose</i>: Given, <i>von der</i>: Prefix, <i>Smith</i> i "
+"<i>Weston</i>: Primary, <i>and</i>: [con], <i>Wilson</i>: Patronymic,\n"
+"     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
+"<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
@@ -16916,11 +16916,9 @@ msgstr "Porzuć zmiany i zamknij okno dialogowe"
 
 #: ../gramps/gui/glade/editfamily.glade:116
 #: ../gramps/gui/glade/editfamily.glade:379
-#, fuzzy
-#| msgid "Name:"
 msgctxt "family"
 msgid "Name:"
-msgstr "Imię i nazwisko:"
+msgstr "Nazwa:"
 
 #: ../gramps/gui/glade/editfamily.glade:129
 #: ../gramps/gui/glade/editfamily.glade:392
@@ -17218,7 +17216,7 @@ msgstr "Przyrostek:"
 
 #: ../gramps/gui/glade/editname.glade:232
 msgid "C_all Name:"
-msgstr "Imię używane:"
+msgstr "Imię używane na c_o dzień:"
 
 #: ../gramps/gui/glade/editname.glade:247
 #: ../gramps/gui/glade/editperson.glade:148
@@ -17227,7 +17225,7 @@ msgstr "Imiona nadane osobie"
 
 #: ../gramps/gui/glade/editname.glade:262
 msgid "_Nick Name:"
-msgstr "_Przezwisko:"
+msgstr "_Pseudonim:"
 
 #: ../gramps/gui/glade/editname.glade:275
 #: ../gramps/gui/glade/editperson.glade:177
@@ -17264,7 +17262,7 @@ msgstr "Imię (Imiona)"
 
 #: ../gramps/gui/glade/editname.glade:400
 msgid "_Family Nick Name:"
-msgstr "_Rodzinne przezwisko:"
+msgstr "_Przydomek rodzinny:"
 
 #: ../gramps/gui/glade/editname.glade:414
 msgid ""
@@ -17984,11 +17982,9 @@ msgstr "Osoba 2"
 
 #: ../gramps/gui/glade/mergeperson.glade:218
 #: ../gramps/gui/glade/mergeperson.glade:233
-#, fuzzy
-#| msgid "Name:"
 msgctxt "person"
 msgid "Name:"
-msgstr "Imię i nazwisko:"
+msgstr "Nazwa:"
 
 #: ../gramps/gui/glade/mergeperson.glade:249
 #: ../gramps/gui/glade/mergeperson.glade:264
@@ -18000,7 +17996,7 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"Zdarzenia, obiekty medialne, adresy, atrybuty, adresy url, notatki, źródła i "
+"Zdarzenia, obiekty medialne, adresy, atrybuty, adresy URL, notatki, źródła i "
 "tagi obu osób będą połączone."
 
 #: ../gramps/gui/glade/mergeperson.glade:490
@@ -18013,15 +18009,15 @@ msgid ""
 "primary data for the merged place."
 msgstr ""
 "Zaznacz miejsce, które będzie zapewniać\n"
-"podstawowe dane dla łączonych miejsce."
+"podstawowe dane dla łączonych miejsc."
 
 #: ../gramps/gui/glade/mergeplace.glade:620
 msgid ""
 "Alternative names, sources, urls, media objects and notes of both places "
 "will be combined."
 msgstr ""
-"Alternatywne lokalizacje, źródła, adresy URL, obiekty medialne, notatki obu "
-"miejsc będą połączone."
+"Alternatywne nazwy, źródła, adresy URL, obiekty medialne, notatki obu miejsc "
+"będą połączone."
 
 #: ../gramps/gui/glade/mergerepository.glade:94
 msgid ""
@@ -18049,7 +18045,7 @@ msgid ""
 "primary data for the merged source."
 msgstr ""
 "Zaznacz źródło, które będzie zapewniać\n"
-"podstawowe dane dla łączonego źródła."
+"podstawowe dane dla łączonych źródeł."
 
 #: ../gramps/gui/glade/mergesource.glade:498
 msgid ""
@@ -18966,7 +18962,7 @@ msgid ""
 "Gramps is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
 msgstr ""
-"Gramps jest projektem Open Source. Jego sukces zależy od użytkowników. Ich "
+"Gramps jest projektem Open Source. Jego sukces zależy od użytkowników. Wasze "
 "wsparcie jest ważne. Dziękujemy za poświęcenie czasu na wysłanie raportu o "
 "błędzie."
 
@@ -26209,7 +26205,7 @@ msgstr "Przydomek"
 
 #: ../gramps/plugins/importer/importcsv.py:228
 msgid "nick_name"
-msgstr "przezwisko_ksywka"
+msgstr "pseudo_nim"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -35724,17 +35720,19 @@ msgid ""
 "Run this tool several times to correct names that have multiple information "
 "that can be extracted."
 msgstr ""
-"Poniżej znajduje się lista nicków, tytułów, przedrostków i nazwiska związek, "
-"który może Gramps wyciągnąć z drzewa rodzinnego.\n"
-"Jeśli akceptujesz zmiany, Gramps zmieni wpisów, które zostały wybrane.\n"
+"Poniżej znajduje się lista przydomków, tytułów, przedrostków i nazwisk "
+"złożonych, które Gramps może wyodrębnić z drzewa genealogicznego.\n"
+"Jeśli zaakceptujesz zmiany, Gramps zmodyfikuje wpisy, które zostały "
+"zaznaczone.\n"
 "\n"
-"Związek nazwiska są wyświetlane w postaci listy [prefix, nazwisko, złącze].\n"
-"Na przykład z zobowiązań, o nazwie \"de Mascarenhas da Silva e Lencastre \" "
-"pokazuje się jako: \n"
-"       [de, Mascarenhas] - [da Silva, e] - [, Lencastre]\n"
+"Nazwiska złożone są przedstawiane jako listy w formacie "
+"[przedrostek, nazwisko, łącznik].\n"
+"Na przykład, przy ustawieniach domyślnych, nazwisko „de Mascarenhas da Silva "
+"e Lencastre” zostanie pokazane jako:\n"
+"       [de, Mascarenhas]-[da, Silva, e]-[, Lencastre]\n"
 "\n"
-"Uruchom narzędzie to kilka razy poprawne nazwy, które posiadają wiele "
-"informacji, które mogą być eksploatowane."
+"Uruchom to narzędzie kilkakrotnie, aby poprawić nazwiska zawierające wiele "
+"informacji, które można wyodrębnić."
 
 #: ../gramps/plugins/tool/patchnames.py:64
 msgctxt "manual"
@@ -39594,7 +39592,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid "Blur"
-msgstr ""
+msgstr "Rozmycie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3231
 msgid ""
@@ -39667,7 +39665,7 @@ msgstr "Używane imię"
 
 #: ../gramps/plugins/webreport/person.py:1871
 msgid "Nick Name"
-msgstr "Przezwisko"
+msgstr "Pseudonim"
 
 #: ../gramps/plugins/webreport/person.py:1928
 msgid "Age at Death"
