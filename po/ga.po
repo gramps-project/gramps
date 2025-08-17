@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-05-01 14:11+0000\n"
+"PO-Revision-Date: 2025-08-13 19:02+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -283,7 +283,7 @@ msgstr "Foireann Forbartha Gramps"
 #: ../gramps/plugins/view/view.gpr.py:135
 #: ../gramps/plugins/webreport/person.py:1746
 msgid "Pedigree"
-msgstr "Pedigree"
+msgstr "Ginealach"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
@@ -476,13 +476,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Ag Aimsiú Daoine</b> <br/> Sa Amharc Daoine Grúpáilte, ní liostaítear "
-"gach sloinne ach uair amháin. Trí chliceáil ar an saighead ar thaobh clé "
-"d'ainm, leathnóidh an liosta chun gach duine a bhfuil an t-ainm deireanach "
-"sin acu a thaispeáint. Chun aon Ainm Teaghlaigh a aimsiú ó liosta fada, "
-"roghnaigh Ainm Teaghlaigh (ní duine) agus tosú ag clóscríobh. Léimfidh an "
-"radharc go dtí an chéad Ainm Teaghlaigh a mheaitseálann na litreacha a "
-"iontráil"
+"<b>Aimsiú Daoine</b><br/>Sa Radharc Daoine Grúpáilte, níl gach sloinne "
+"liostaithe ach uair amháin. Trí chliceáil ar an tsaighead ar chlé d'ainm, "
+"leathnóidh an liosta chun gach duine a bhfuil an sloinne sin acu a "
+"thaispeáint. Chun aon Sloinne a aimsiú ó liosta fada, roghnaigh Sloinne (ní "
+"duine) agus tosaigh ag clóscríobh. Léimfidh an radharc go dtí an chéad "
+"Sloinne a mheaitseálann na litreacha a chuireann tú isteach."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -570,11 +569,11 @@ msgid ""
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"Li@@ <b>geann tú do chuid</b> Roghanna <br/> “Eagar > Roghanna...” duit "
-"roinnt socruithe a mhodhnú, mar shampla an cosán chuig do chomhaid meán, "
-"agus tugann sé deis duit go leor gnéithe den chur i láthair Gramps a "
-"choigeartú do do riachtanais. Is féidir gach radharc ar leithligh a chumrú "
-"freisin faoi “Amharc > Cumraigh Amharc...”."
+"<b>Do Roghanna a Shocrú</b><br/>Ligeann \"Cuir in Eagar > Roghanna...\" duit "
+"roinnt socruithe a mhodhnú, amhail an cosán chuig do chomhaid meán, agus "
+"ligeann sé duit go leor gnéithe de chur i láthair Gramps a choigeartú de "
+"réir do riachtanas. Is féidir gach radharc ar leith a chumrú faoi "
+"\"Radharc > Cumraigh Radharc...\" freisin."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -584,12 +583,12 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
-"Tuar@@ <b>ascálacha Gramps Cu</b> <br/> ireann Gramps réimse leathan "
-"tuarascálacha ar fáil. Is féidir leis na Tuarascálacha Grafacha agus na "
-"Graif caidrimh chasta a chur i láthair go héasca agus tá na Tuarascálacha "
-"Téacs an-úsáideach más mian leat torthaí do chrann teaghlaigh a sheoladh "
-"chuig baill an teaghlach trí ríomhphost. Má tá tú réidh chun suíomh Gréasáin "
-"a dhéanamh do do chrann teaghlaigh ansin tá tuarascáil ann dó sin freisin."
+"<b>Tuarascálacha Gramps</b><br/>Cuireann Gramps réimse leathan tuarascálacha "
+"ar fáil. Is féidir leis na Tuarascálacha Grafacha agus na Graif caidrimh "
+"chasta a chur i láthair go héasca agus tá na Tuarascálacha Téacs thar a "
+"bheith úsáideach más mian leat torthaí do chrann teaghlaigh a sheoladh chuig "
+"baill den teaghlach trí ríomhphost. Má tá tú réidh le suíomh Gréasáin a "
+"chruthú do do chrann teaghlaigh, tá tuarascáil ann chuige sin freisin."
 
 #: ../data/tips.xml:36
 msgid ""
@@ -634,10 +633,10 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"Iontrál@@ <b>acha <br/> D</b> úblacha Ligeann an uirlis “Uirlis> Próiseáil "
-"Crann Teaghlaigh > Faigh Daoine Dúblacha Féideartha...” duit iontrálacha an "
-"duine céanna a iontráiltear níos mó ná uair sa bhunachar sonraí a aimsiú "
-"(agus a chumasc"
+"<b>Iontrálacha Dúblacha</b><br/>Ligeann an uirlis \"Uirlisí > Próiseáil "
+"Crann Teaghlaigh > Aimsigh Daoine Dúblacha Féideartha...\" duit iontrálacha "
+"an duine chéanna atá curtha isteach níos mó ná uair amháin sa bhunachar "
+"sonraí a aimsiú (agus a chumasc)."
 
 #: ../data/tips.xml:44
 msgid ""
@@ -663,10 +662,10 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
-"<b>Eagrú na Tuai</b> <br/> rimí Is féidir le go leor de na tuairimí do chuid "
-"sonraí a chur i láthair mar chrann ordlathach nó mar liosta simplí. Is "
-"féidir gach radharc a chumrú freisin ar an mbealach is maith leat. Féach ar "
-"dheis den uirlisí uirlisí barr nó faoin roghchlár “Amharc”."
+"<b>Eagrú na nAmharc</b><br/>Is féidir le go leor de na hamharc do shonraí a "
+"chur i láthair mar chrann ordlathach nó mar liosta simplí. Is féidir gach "
+"radharc a chumrú freisin ar an mbealach is mian leat. Féach ar dheis an "
+"bharra uirlisí barr nó faoin roghchlár \"Amharc\"."
 
 #: ../data/tips.xml:48
 msgid ""
@@ -686,10 +685,10 @@ msgid ""
 "keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. "
 "If one exists for a function it is displayed on the right side of the menu."
 msgstr ""
-"<b>Aicearraí Mé</b> <br/> archláir Tuirseach as do lámh a thógáil as an "
-"méarchlár chun an luch a úsáid? Tá aicearraí méarchláir ag go leor "
-"feidhmeanna i Gramps. Má tá ceann ann ann le haghaidh feidhm taispeántar é "
-"ar thaobh na láimhe deise den roghchlár."
+"<b>Eagrú na nAmharc</b><br/>Is féidir go leor de na hamharcanna do bhunachar "
+"sonraí a chur i láthair mar chrann ordlathach nó mar liosta simplí. Is "
+"féidir gach radharc a chumrú freisin ar an mbealach is mian leat. Féach ar "
+"an mbarr uirlisí barr nó faoin roghchlár \"Amharc\"."
 
 #: ../data/tips.xml:52
 msgid ""
@@ -725,11 +724,11 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>An Caidreamh Tuismitheoir-Leana</b> í a chur in eagar Féadfaidh tú "
-"caidreamh linbh lena thuismitheoirí a chur in eagar trí chliceáil dúbail <br/"
-"> te ar an leanbh san Eagarthóir Teagh Is féidir le caidrimh a bheith ar aon "
-"cheann de Uchtáilte, Breith, Athrú, Níl aon, Urraithe, Leaspháiste agus "
-"Anaith"
+"<b>Ag Eagarthóireacht ar an nGaol Tuismitheora-Leanbh</b><br/> Is féidir "
+"leat caidreamh linbh lena thuismitheoirí a chur in eagar trí chliceáil faoi "
+"dhó ar an leanbh san Eagarthóir Teaghlaigh. Is féidir leis na caidrimh a "
+"bheith ina n-aon cheann de na caidrimh seo a leanas: Uchtáil, Breith, "
+"Altrama, Gan aon duine, Urraithe, Leasleanbh agus Anaithnid."
 
 #: ../data/tips.xml:58
 msgid ""
@@ -861,11 +860,11 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
-"<b>Ainmneacha</b> a <br/> bhainistiú Is furasta daoine a bhfuil roinnt "
-"ainmneacha acu i Gramps a bhainistiú. Sa Eagarthóir Duine roghnaigh an "
+"<b>Ainmneacha a Bhainistiú</b><br/>Is furasta daoine a bhfuil roinnt "
+"ainmneacha orthu a bhainistiú i Gramps. Sa Eagarthóir Pearsanta roghnaigh an "
 "cluaisín Ainmneacha. Is féidir leat ainmneacha de chineálacha éagsúla a chur "
-"leis agus an t-ainm is fearr leat a shocrú trí é a tharraingt chuig an "
-"rannán Ainm"
+"leis agus an t-ainm is fearr leat a shocrú trína tharraingt go dtí an rannán "
+"Ainm is Fearr leat."
 
 #: ../data/tips.xml:76
 msgid ""
@@ -935,12 +934,12 @@ msgid ""
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
-"<b>Ligeann <br/> Gramps Formáid Comhad GEDCOM duit iompórtáil ón bhformá</b> "
-"id GEDCOM agus a onnmhairiú chuig an bhformáid GEDCOM. Tá tacaíocht "
-"fhairsing ann don leagan GEDCOM 5.5 caighdeánach tionscail, ionas gur féidir "
-"leat faisnéis Gramps a mhalartú chuig agus ó úsáideoirí an chuid is mó de "
-"chláir ghinealais eile. Tá scagairí ann a fhágann go bhfuil comhaid GEDCOM "
-"allmhairiú agus onnmhairi"
+"<b>Formáid Chomhaid GEDCOM</b><br/>Ligeann Gramps duit comhaid GEDCOM a "
+"allmhairiú agus a onnmhairiú chuici. Tá tacaíocht fhairsing ann don "
+"chaighdeán tionscail GEDCOM leagan 5.5, ionas gur féidir leat faisnéis "
+"Gramps a mhalartú le húsáideoirí fhormhór na gclár ginealaigh eile agus "
+"uathu. Tá scagairí ann a fhágann go bhfuil sé éasca comhaid GEDCOM a "
+"allmhairiú agus a onnmhairiú."
 
 #: ../data/tips.xml:88
 msgid ""
@@ -951,13 +950,14 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>An Pacáiste Gramps XML Is féidir <br/> leat do</b> Chrann Teaghlaigh a "
-"onnmhairiú mar Phacáiste Gramps XML. Is comhad comhbhrúite é seo ina bhfuil "
-"sonraí do chrann teaghlaigh agus na comhaid meán go léir atá ceangailte leis "
-"an mbunachar sonraí (íomhánna mar shampla). Tá an comhad seo iniompartha go "
-"hiomlán agus mar sin tá sé úsáideach le haghaidh cúltacaí nó a roinnt le "
-"húsáideoirí Gramps eile. Tá an príomhbhuntáiste ag an bhformáid seo thar "
-"GEDCOM nach gcailltear aon fhaisnéis riamh agus tú ag onnmhairiú agus ag allm"
+"<b>Pacáiste XML Gramps</b><br/>Is féidir leat do Chrann Teaghlaigh a "
+"easpórtáil mar Phacáiste XML Gramps. Is comhad comhbhrúite é seo ina bhfuil "
+"sonraí do chrainn teaghlaigh agus na comhaid meán go léir atá ceangailte "
+"leis an mbunachar sonraí (íomhánna mar shampla). Tá an comhad seo "
+"iniompartha go hiomlán agus mar sin tá sé úsáideach le haghaidh cúltacaí nó "
+"le haghaidh comhroinnte le húsáideoirí Gramps eile. Tá an buntáiste is mó ag "
+"an bhformáid seo thar GEDCOM nach gcailltear aon fhaisnéis riamh agus í á "
+"heaspórtáil agus á hiompórtáil."
 
 #: ../data/tips.xml:90
 msgid ""
@@ -977,10 +977,11 @@ msgid ""
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web."
 msgstr ""
-"<b>Suíomh Gréasáin Ginealais a dhéanamh Is féidir <br/> leat</b> do chrann "
-"teaghlaigh a onnmhairiú go leathanach gréasáin go héasca. Roghnaigh an "
+"<b>Suíomh Gréasáin Ginealaigh a Chruthú</b><br/>Is féidir leat do chrann "
+"teaghlaigh a easpórtáil go héasca chuig leathanach gréasáin. Roghnaigh an "
 "bunachar sonraí iomlán, línte teaghlaigh nó daoine aonair roghnaithe chuig "
-"bailiúchán leathanaigh ghréasáin atá réidh le huaslódáil chuig an nGréasán"
+"bailiúchán leathanach gréasáin atá réidh le huaslódáil chuig an nGréasán "
+"Domhanda."
 
 #: ../data/tips.xml:94
 msgid ""
@@ -1047,10 +1048,10 @@ msgid ""
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Tuarascálacha</b> <br/> Leabhar Ligeann tuarascáil Leabhar faoi "
-"“Tuarascálacha > Leabhair...” duit tuarascálacha éagsúla a bhailiú i "
-"ndoiciméad amháin. Tá sé níos éasca an tuarascáil aonair seo a dháileadh ná "
-"tuarascálacha iolracha, go háirithe"
+"<b>Tuarascálacha Leabhar</b><br/>Ligeann an tuarascáil Leabhar faoi "
+"\"Tuarascálacha > Leabhair...\" duit réimse tuarascálacha a bhailiú i "
+"ndoiciméad amháin. Is fusa an tuarascáil aonair seo a dháileadh ná il-"
+"thuarascálacha, go háirithe nuair a bhíonn sí clóite."
 
 #: ../data/tips.xml:106
 msgid ""
@@ -1166,13 +1167,14 @@ msgid ""
 "tool. For more about Open Source software lookup the Free Software "
 "Foundation and the Open Source Initiative."
 msgstr ""
-"<b>Bogearraí <br/> Foin</b> se Oscailte Ciallaíonn samhail forbartha "
-"Bogearraí Saor/Libre agus Foinse Oscailte (FLOSS) gur féidir le haon "
-"ríomhchláraitheoir Gramps a leathnú ós rud é go bhfuil an cód foinse go léir "
-"ar fáil saor faoina cheadúnas Mar sin ní bhaineann sé ach le beoir saor in "
-"aisce, baineann sé freisin le saoirse staidéar a dhéanamh agus an uirlis a "
-"athrú. Le haghaidh tuilleadh faoi bhogearraí Foinse Oscailte cuardaigh an "
-"Fondúireacht Bogearraí Saor agus an Tionscnamh Foin"
+"<b>Bogearraí Foinse Oscailte</b><br/>Ciallaíonn an tsamhail forbartha "
+"Bogearraí Saor in Aisce/Saor in Aisce agus Foinse Oscailte (FLOSS) gur "
+"féidir le haon ríomhchláraitheoir Gramps a leathnú ós rud é go bhfuil an cód "
+"foinse go léir ar fáil saor in aisce faoina cheadúnas. Mar sin ní hamháin go "
+"bhfuil sé faoi dheoch saor in aisce, ach faoi shaoirse freisin an uirlis a "
+"scrúdú agus a athrú. Le haghaidh tuilleadh eolais faoi bhogearraí Foinse "
+"Oscailte, féach ar an bhFondúireacht Bogearraí Saor in Aisce agus an "
+"Tionscnamh Foinse Oscailte."
 
 #: ../data/tips.xml:126
 msgid ""
@@ -1322,7 +1324,7 @@ msgstr "Cruthaigh Crann Teaghlaigh folamh go rath"
 
 #: ../gramps/cli/arghandler.py:536 ../gramps/cli/arghandler.py:563
 msgid "Error opening the file."
-msgstr "Tharla botún ag oscailt comhad"
+msgstr "Earráid ag oscailt an chomhaid."
 
 #: ../gramps/cli/arghandler.py:537 ../gramps/cli/arghandler.py:564
 msgid "Exiting..."
@@ -1348,7 +1350,7 @@ msgstr "Tá bunachar sonraí faoi ghlas, ní féidir é a oscailt!"
 
 #: ../gramps/cli/arghandler.py:581
 msgid "Database needs recovery, cannot open it!"
-msgstr "Teastaíonn aisghabháil ar an mbunachar sonraí, ní féidir é"
+msgstr "Ní féidir an bunachar sonraí a oscailt, ach ní féidir é a aisghabháil!"
 
 #: ../gramps/cli/arghandler.py:584
 msgid "Database backend unavailable, cannot open it!"
@@ -1357,7 +1359,7 @@ msgstr "Cúlcheann bunachar sonraí ar fáil, ní féidir é a oscailt!"
 #: ../gramps/cli/arghandler.py:635 ../gramps/cli/arghandler.py:692
 #: ../gramps/cli/arghandler.py:740
 msgid "Ignoring invalid options string."
-msgstr "Neamhaird a dhéanamh le teaghrán roghanna"
+msgstr "Ag neamhaird a dhéanamh de theaghrán roghanna neamhbhailí."
 
 #: ../gramps/cli/arghandler.py:664
 msgid "Unknown report name."
@@ -1747,7 +1749,7 @@ msgstr "Tosaigh Iompórtáil, %s"
 
 #: ../gramps/cli/clidbman.py:321
 msgid "Import finished..."
-msgstr "Allmhairiú críochnaithe"
+msgstr "Iompórtáil críochnaithe..."
 
 #: ../gramps/cli/clidbman.py:406 ../gramps/plugins/importer/importcsv.py:537
 msgid "Importing data..."
@@ -2003,11 +2005,11 @@ msgstr "Ainm méid páipéir."
 #: ../gramps/cli/plug/__init__.py:329 ../gramps/cli/plug/__init__.py:330
 #: ../gramps/cli/plug/__init__.py:331
 msgid "=number"
-msgstr "Uimhir:"
+msgstr "=uimhir"
 
 #: ../gramps/cli/plug/__init__.py:327
 msgid "Paper orientation number."
-msgstr "Uimhir treoshuíomh páipéir"
+msgstr "Uimhir threoshuímh an pháipéir."
 
 #: ../gramps/cli/plug/__init__.py:328
 msgid "Left paper margin"
@@ -3230,21 +3232,22 @@ msgid ""
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
 "Tá an Crann Teaghlaigh atá tú ag iarraidh a luchtú i bhformáid leagan scéime "
-"%(oldschema)s. Úsáideann an leagan seo de Gramps leagan scéime %(newschema)s "
-"Dá bhrí sin ní féidir leat an Crann Teaghlaigh seo a luchtú gan leagan "
-"scéime den Chrann Teaghlaigh a uasghrádú.\n"
+"%(oldschema)s. Úsáideann an leagan seo de Gramps leagan scéime %(newschema)"
+"s. Dá bhrí sin, ní féidir leat an Crann Teaghlaigh seo a luchtú gan leagan "
+"scéime an Chrann Teaghlaigh a uasghrádú.\n"
 "\n"
-"Má dhéanann tú uasghrádú ansin ní bheidh tú in ann an leagan roimhe seo de "
-"Gramps a úsáid, fiú má tá do Chrann Teaghlaigh uasghrádaithe "
-"%(wiki_manual_backup_html_start)s cúltaca %(html_end)s nó "
-"%(wiki_manual_export_html_start)s export %(html_end)s ina dhiaidh sin.\n"
+"Má dhéanann tú uasghrádú ní bheidh tú in ann an leagan roimhe seo de Gramps "
+"a úsáid, fiú má dhéanann tú "
+"%(wiki_manual_backup_html_start)sbackup%(html_end)s nó "
+"%(wiki_manual_export_html_start)sexport%(html_end)s do Chrann Teaghlaigh "
+"uasghrádaithe ina dhiaidh sin.\n"
 "\n"
-"Is tasc deacair é uasghrádú a d'fhéadfadh do Chrann Teaghlaigh a thailleadh "
-"gan aisghabháil má chuirtear isteach air nó má theipeann air.\n"
+"Is tasc deacair é uasghrádú a d'fhéadfadh do Chrann Teaghlaigh a thruailliú "
+"go dosheachanta má chuirtear isteach air nó má theipeann air.\n"
 "\n"
-"Mura bhfuil cúltaca déanta agat cheana féin de do Chrann Teaghlaigh, ansin "
-"ba chóir duit do leagan %(bold_start)s  solta %(bold_end)s de Gramps agus "
-"%(wiki_backup_html_start)s a thosú cúltac %(html_end)s de do Chrann "
+"Mura bhfuil cúltaca de do Chrann Clainne déanta agat cheana féin, ba cheart "
+"duit do leagan %(bold_start)s a dhíol %(bold_end)s de Gramps a thosú agus "
+"%(wiki_backup_html_start)s bain úsáid as cúltaca %(html_end)s de do Chrann "
 "Teaghlaigh."
 
 #: ../gramps/gen/db/exceptions.py:195
@@ -3357,7 +3360,7 @@ msgstr "Líon na nótaí"
 
 #: ../gramps/gen/db/generic.py:2713
 msgid "Number of tags"
-msgstr "Uimhir:"
+msgstr "Líon na gclibeanna"
 
 #: ../gramps/gen/db/generic.py:2714
 msgid "Schema version"
@@ -3545,7 +3548,7 @@ msgstr "patronymic [con]"
 
 #: ../gramps/gen/display/name.py:703 ../gramps/gen/display/name.py:829
 msgid "notpatronymic"
-msgstr "notpatronymic"
+msgstr "neamh-phatronaimiceach"
 
 #: ../gramps/gen/display/name.py:708 ../gramps/gen/display/name.py:834
 msgctxt "Remaining names"
@@ -3830,7 +3833,7 @@ msgstr "Líon na gcásanna:"
 #: ../gramps/gui/editors/filtereditor.py:557
 #: ../gramps/gui/glade/editplaceref.glade:264
 msgid "ID:"
-msgstr "CA"
+msgstr "Aitheantas:"
 
 #: ../gramps/gen/filters/rules/_hasnoteregexbase.py:54
 #: ../gramps/gen/filters/rules/_regexpidbase.py:59
@@ -3845,7 +3848,7 @@ msgstr "CA"
 #: ../gramps/gui/glade/mergenote.glade:208
 #: ../gramps/gui/glade/mergenote.glade:223
 msgid "Text:"
-msgstr "Téacs"
+msgstr "Téacs:"
 
 #: ../gramps/gen/filters/rules/_hasnotesubstrbase.py:53
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:54
@@ -3995,7 +3998,7 @@ msgstr "Meaitseálann luachanna atá léirithe mar phríobháideach"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 msgid "Citation attribute:"
-msgstr "Tagairtí"
+msgstr "Aitreabúid lua:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
@@ -5507,7 +5510,7 @@ msgstr "Meaitseálann daoine a bhfuil bunús sloinne acu"
 #: ../gramps/gui/editors/filtereditor.py:120
 #: ../gramps/gui/editors/filtereditor.py:598
 msgid "Name type:"
-msgstr "Ainm:"
+msgstr "Cineál ainm:"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:57
 msgid "People with the <Name type>"
@@ -5641,7 +5644,7 @@ msgstr "Meaitseálann daoine leis an gclib áirithe"
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:66
 #: ../gramps/gui/editors/filtereditor.py:609
 msgid "Case sensitive:"
-msgstr "Cásíogair"
+msgstr "Íogair do chásanna:"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:67
 msgid "People with records containing <substring>"
@@ -6133,7 +6136,7 @@ msgstr "Ainm:"
 #: ../gramps/gui/editors/filtereditor.py:122
 #: ../gramps/gui/editors/filtereditor.py:602
 msgid "Place type:"
-msgstr "Ainm:"
+msgstr "Cineál áit:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:60
 #: ../gramps/gui/glade/editplace.glade:281
@@ -6309,7 +6312,7 @@ msgstr "Airde dronuilleog:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:64
 msgid "Rectangle width:"
-msgstr "Leithead dronuilleog"
+msgstr "Leithead dronuilleog:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:66
 msgid "Places in neighborhood of given position"
@@ -6426,7 +6429,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repository attribute:"
-msgstr "Tagairtí"
+msgstr "Tréith an stórais:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
 msgid "Repositories with the attribute <attribute>"
@@ -6558,7 +6561,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Source attribute:"
-msgstr "Nótaí"
+msgstr "Tréith foinse:"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:48
 msgid "Sources with the attribute <attribute>"
@@ -6894,7 +6897,7 @@ msgstr "Stát"
 #: ../gramps/plugins/webreport/place.py:350
 #: ../gramps/plugins/webreport/place.py:362
 msgid "Country"
-msgstr "Tír:"
+msgstr "Tír"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:98
 #: ../gramps/plugins/webreport/basepage.py:1515
@@ -7343,7 +7346,7 @@ msgstr "níos mó ná thart ar"
 #, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
-msgstr[0] "{number_of} year"
+msgstr[0] "{number_of} bliana"
 msgstr[1] "{number_of} blianta"
 msgstr[2] "{number_of} blianta"
 
@@ -7436,7 +7439,7 @@ msgstr "0 lá"
 #: ../gramps/plugins/webreport/media.py:653
 #: ../gramps/plugins/webreport/person.py:1115
 msgid "Date"
-msgstr "Dáta:"
+msgstr "Date"
 
 #: ../gramps/gen/lib/date.py:789
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:79
@@ -16868,8 +16871,6 @@ msgstr "Tréig athruithe agus dún an fhuinne"
 
 #: ../gramps/gui/glade/editfamily.glade:116
 #: ../gramps/gui/glade/editfamily.glade:379
-#, fuzzy
-#| msgid "Name:"
 msgctxt "family"
 msgid "Name:"
 msgstr "Ainm:"
@@ -17936,8 +17937,6 @@ msgstr "Peirsis"
 
 #: ../gramps/gui/glade/mergeperson.glade:218
 #: ../gramps/gui/glade/mergeperson.glade:233
-#, fuzzy
-#| msgid "Name:"
 msgctxt "person"
 msgid "Name:"
 msgstr "Ainm:"
@@ -33131,7 +33130,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/birthdayreport.py:611
 msgid "Show event year"
-msgstr "Ainm:"
+msgstr "Taispeáin bliain an imeachta"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:612
 msgid "Prints the year the event took place in the report"
@@ -34621,7 +34620,7 @@ msgstr "Cineál teagmhais bhunaidh:"
 
 #: ../gramps/plugins/tool/changetypes.glade:122
 msgid "New event type:"
-msgstr "Ainm:"
+msgstr "Cineál imeachta nua:"
 
 #: ../gramps/plugins/tool/changetypes.py:66
 msgid "Change Event Types"
@@ -36383,7 +36382,7 @@ msgstr "Athordaíonn na IDanna Gramps de réir rialacha réamhshocraithe Gramps.
 #: ../gramps/plugins/tool/tools.gpr.py:443
 #: ../gramps/plugins/tool/tools.gpr.py:444
 msgid "Sort events"
-msgstr "Ainm:"
+msgstr "Sórtáil imeachtaí"
 
 #: ../gramps/plugins/tool/tools.gpr.py:467
 msgid "Verify the Data"
