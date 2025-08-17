@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-10 15:45+0000\n"
+"PO-Revision-Date: 2025-08-13 19:02+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -22906,11 +22906,11 @@ msgstr ""
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:233
 #: ../gramps/plugins/drawreport/timeline.py:285
 msgid "Timeline Chart"
-msgstr "Zeitachsendiagramm"
+msgstr "Zeitleistendiagramm"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:234
 msgid "Produces a timeline chart."
-msgstr "Erzeugt ein Zeitachsendiagramm."
+msgstr "Erzeugt ein Zeitleistendiagramm."
 
 #: ../gramps/plugins/drawreport/fanchart.py:267
 #, python-format
@@ -32100,7 +32100,7 @@ msgstr "Ort verknüpfen"
 
 #: ../gramps/plugins/lib/maps/geography.py:423
 msgid "Add place from kml"
-msgstr "Ort aus kml hinzufügen"
+msgstr "Ort aus KML hinzufügen"
 
 #: ../gramps/plugins/lib/maps/geography.py:427
 msgid "Center here"
@@ -32138,7 +32138,7 @@ msgstr "Auf diesen Ort zentrieren"
 
 #: ../gramps/plugins/lib/maps/geography.py:1111
 msgid "Select a kml file used to add places"
-msgstr "Wähle eine kml-Datei, um Orte hinzuzufügen"
+msgstr "Wähle eine KML-Datei, um Orte hinzuzufügen"
 
 #: ../gramps/plugins/lib/maps/geography.py:1149
 msgid "You will need to edit each place manually to add place type, ...\n"
@@ -32153,7 +32153,7 @@ msgstr[1] "Du hast {places_nb} Orte zu bearbeiten."
 
 #: ../gramps/plugins/lib/maps/geography.py:1158
 msgid "You have more than 5 places in this kml file."
-msgstr "Du hast mehr als 5 Orte in dieser kml-Datei."
+msgstr "Du hast mehr als 5 Orte in dieser KML-Datei."
 
 #: ../gramps/plugins/lib/maps/geography.py:1227
 msgid "You have at least two places with the same title."
