@@ -28,7 +28,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-10 16:29+0000\n"
+"PO-Revision-Date: 2025-08-12 15:44+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -2953,12 +2953,12 @@ msgstr "Safar"
 #: ../gramps/gen/datehandler/_datestrings.py:207
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr "Rabi' al-Awwal"
+msgstr "Rabi‘ al-Awwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:208
 msgctxt "Islamic month lexeme"
 msgid "Rabi`ath-Thani"
-msgstr "Rabi' al-Thani"
+msgstr "Rabi‘ ath-Thani"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgctxt "Islamic month lexeme"
@@ -2978,7 +2978,7 @@ msgstr "Rajab"
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Islamic month lexeme"
 msgid "Sha`ban"
-msgstr "Sha'ban"
+msgstr "Sha‘bán"
 
 #: ../gramps/gen/datehandler/_datestrings.py:213
 msgctxt "Islamic month lexeme"
@@ -10842,7 +10842,7 @@ msgstr "Instalando «%s»…"
 #: ../gramps/gen/plug/utils.py:463
 #, python-format
 msgid "Registered '%s'"
-msgstr "Registrados '%s'"
+msgstr "Se registró «%s»"
 
 #: ../gramps/gen/recentfiles.py:191
 #, python-brace-format
@@ -10918,16 +10918,16 @@ msgstr "cónyuge"
 
 #: ../gramps/gen/relationship.py:2468
 msgid "ex-husband"
-msgstr "ex-esposo"
+msgstr "exesposo"
 
 #: ../gramps/gen/relationship.py:2470
 msgid "ex-wife"
-msgstr "ex-esposa"
+msgstr "exesposa"
 
 #: ../gramps/gen/relationship.py:2472
 msgctxt "gender unknown"
 msgid "ex-spouse"
-msgstr "ex-cónyuge"
+msgstr "excónyuge"
 
 #: ../gramps/gen/relationship.py:2475
 msgctxt "male,unmarried"
@@ -18781,7 +18781,7 @@ msgstr "_Navegador"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Plugin Manager"
-msgstr "Administrador de com_plementos"
+msgstr "Gestor de com_plementos"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Preferences..."
@@ -19589,15 +19589,15 @@ msgstr "Buscar actualizaciones de extensiones ahora"
 
 #: ../gramps/gui/plug/_windows.py:836
 msgid "New Project"
-msgstr "Nuevo Proyecto"
+msgstr "Proyecto nuevo"
 
 #: ../gramps/gui/plug/_windows.py:838
 msgid "Edit Project"
-msgstr "Editar Proyecto"
+msgstr "Editar proyecto"
 
 #: ../gramps/gui/plug/_windows.py:846
 msgid "Project name"
-msgstr "Nombre del Proyecto"
+msgstr "Nombre del proyecto"
 
 #: ../gramps/gui/plug/_windows.py:944
 msgid "Restore project defaults"
@@ -19649,7 +19649,7 @@ msgstr "Visible"
 
 #: ../gramps/gui/plug/_windows.py:1034
 msgid "Plugin Manager"
-msgstr "Administrador de complementos"
+msgstr "Gestor de complementos"
 
 #: ../gramps/gui/plug/_windows.py:1086 ../gramps/gui/plug/_windows.py:1144
 msgid "Info"
@@ -19657,7 +19657,7 @@ msgstr "Información"
 
 #: ../gramps/gui/plug/_windows.py:1089 ../gramps/gui/plug/_windows.py:1147
 msgid "Hide/Unhide"
-msgstr "Ocultar/Mostrar"
+msgstr "Ocultar/mostrar"
 
 #: ../gramps/gui/plug/_windows.py:1098 ../gramps/gui/plug/_windows.py:1157
 msgid "Load"
@@ -19728,7 +19728,7 @@ msgstr "URL de ayuda desconocida"
 
 #: ../gramps/gui/plug/_windows.py:1307
 msgid "Unknown URL"
-msgstr "URL desconocida"
+msgstr "URL desconocido"
 
 #: ../gramps/gui/plug/_windows.py:1367
 msgid "Install all Addons"
@@ -19808,7 +19808,7 @@ msgstr "Terminadas la descarga e instalación de extensiones"
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "Se instaló {number_of} extensión."
-msgstr[1] "Se insaló {number_of} extensiones."
+msgstr[1] "Se instalaron {number_of} extensiones."
 
 #: ../gramps/gui/plug/_windows.py:2277
 msgid "If you have installed a 'View', you will need to restart Gramps."
@@ -21811,8 +21811,8 @@ msgid ""
 "pillow or python3-pillow"
 msgstr ""
 "No estará disponible la producción de imágenes jpg a partir de imágenes en "
-"otros formatos en documentos de LaTex. Utilice su administrador de paquetes "
-"para instalar python-imaging o python-pillow o python3-pillow"
+"otros formatos en documentos de LaTeX. Utilice su gestor de paquetes para "
+"instalar python-imaging, python-pillow o python3-pillow"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1220
 #, python-format
@@ -24727,7 +24727,7 @@ msgstr "Gramplete que proporciona un filtro de notas"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1316
 #: ../gramps/plugins/textreport/recordsreport.py:140
 msgid "Records"
-msgstr "Récords"
+msgstr "Registros"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1306
 #: ../gramps/plugins/textreport/textplugins.gpr.py:437
@@ -24736,7 +24736,7 @@ msgstr "Muestra algunos récords interesantes de personas y familias"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1323
 msgid "Person To Do"
-msgstr "Pendiente para la persona"
+msgstr "Pendientes de personas"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1324
 msgid "Gramplet showing the To Do notes for a person"
@@ -24744,7 +24744,7 @@ msgstr "Gramplete que muestra las tareas pendientes para una persona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1339
 msgid "Event To Do"
-msgstr "Pendiente para el evento"
+msgstr "Pendientes de eventos"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1340
 msgid "Gramplet showing the To Do notes for an event"
@@ -24752,7 +24752,7 @@ msgstr "Gramplete que muestra las tareas pendientes para un evento"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1355
 msgid "Family To Do"
-msgstr "Pendiente para la familia"
+msgstr "Pendientes de familias"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1356
 msgid "Gramplet showing the To Do notes for a family"
@@ -24760,7 +24760,7 @@ msgstr "Gramplete que muestra las tareas pendientes para una familia"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1371
 msgid "Place To Do"
-msgstr "Pendiente para el lugar"
+msgstr "Pendientes de lugares"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1372
 msgid "Gramplet showing the To Do notes for a place"
@@ -24768,7 +24768,7 @@ msgstr "Gramplete que muestra las tareas pendientes para un lugar"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1387
 msgid "Source To Do"
-msgstr "Pendiente para la fuente"
+msgstr "Pendientes de fuentes"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1388
 msgid "Gramplet showing the To Do notes for a source"
@@ -24776,7 +24776,7 @@ msgstr "Gramplete que muestra las tareas pendientes para una fuente"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1403
 msgid "Citation To Do"
-msgstr "Pendiente para la cita"
+msgstr "Pendientes de citas"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1404
 msgid "Gramplet showing the To Do notes for a citation"
@@ -24784,7 +24784,7 @@ msgstr "Gramplete que muestra las tareas pendientes para una cita"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1419
 msgid "Repository To Do"
-msgstr "Pendiente para el repositorio"
+msgstr "Pendientes de repositorios"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1420
 msgid "Gramplet showing the To Do notes for a repository"
@@ -24792,7 +24792,7 @@ msgstr "Gramplete que muestra las tareas pendientes para un repositorio"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1435
 msgid "Media To Do"
-msgstr "Pendiente para objetos audiovisuales"
+msgstr "Pendientes de objetos audiovisuales"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1436
 msgid "Gramplet showing the To Do notes for a media object"
@@ -31799,7 +31799,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libprogen.py:442
 #, python-format
 msgid "Field '%(fldname)s' not found"
-msgstr "No se encontró el campo '%(fldname)s'"
+msgstr "No se encontró el campo «%(fldname)s»"
 
 #: ../gramps/plugins/lib/libprogen.py:565
 #, python-format
@@ -35592,7 +35592,7 @@ msgstr "Administrador_de_objetos_audiovisuales"
 #: ../gramps/plugins/tool/mediamanager.py:122
 #: ../gramps/plugins/tool/tools.gpr.py:199
 msgid "Media Manager"
-msgstr "Administrador de objetos audiovisuales"
+msgstr "Gestor de objetos audiovisuales"
 
 #: ../gramps/plugins/tool/mediamanager.py:95
 #: ../gramps/plugins/tool/verify.glade:110
