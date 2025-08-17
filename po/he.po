@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-10 15:45+0000\n"
+"PO-Revision-Date: 2025-08-15 06:01+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -377,10 +377,10 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"‎‏‏‏‏<b>עבודה עם תאריכים</b><br/>ניתן לקבוע לאירוע טווח תאריכים תוך שימוש בתסדיר "
+"‎‏‏‏‏<b/>עבודה עם תאריכים<b><br/>ניתן לקבוע טווח תאריכים לאירוע תוך שימוש בתסדיר "
 "&lsquo;בין 4 בינואר 2000 ל־20 במרץ 2003&rsquo;. ניתן גם לציין רמת ודאות "
-"לתאריך, ולבחור בין שבעה לוחות־שנה שונים. כל זאת נעשה באמצעות הלחצן שלצד שדה "
-"התאריך בעורך האירועים."
+"לתאריך, ולבחור אחד מבין שבעה לוחות־שנה שונים. כל זאת נעשה באמצעות הלחצן שלצד "
+"שדה התאריך בעורך האירועים."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -422,10 +422,11 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
-"‌<b>שוחחו עם קרובי המשפחה לפני שיהיה מאוחר מדי<br/></b>קרובי המשפחה המבוגרים "
-"ביותר יכולים להוות מקור למידע חשוב. הם בדרך כלל יודעים דברים שלא נכתבו על "
-"המשפחה. הם יכולים לספר נקודות על אנשים שיום אחד עשויים לשמש נושא למחקר. "
-"במקרה הגרוע ביותר, תוכלו לשמוע כמה סיפורים טובים. לא לשכוח להקליט את השיחות!"
+"‌<b>כדאי לשוחח עם קרובי המשפחה לפני שיהיה מאוחר מדי<br/></b>קרובי המשפחה "
+"המבוגרים ביותר יכולים להוות מקור למידע חשוב. הם בדרך כלל יודעים דברים שלא "
+"נכתבו על המשפחה. הם יכולים להציף נקודות על אנשים שיום אחד עשויים לשמש נושא "
+"למחקר. במקרה הגרוע ביותר, אפשר יהיה לשמוע כמה סיפורים טובים. לא לשכוח להקליט "
+"את השיחות!"
 
 #: ../data/tips.xml:14
 msgid ""
@@ -1162,7 +1163,7 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:313
 msgid "OK to overwrite?"
-msgstr "האם לכתוב על הקיים?"
+msgstr "האם בסדר לכתוב על הקיים?"
 
 #: ../gramps/cli/arghandler.py:315 ../gramps/cli/arghandler.py:317
 #: ../gramps/cli/clidbman.py:469
@@ -7426,7 +7427,7 @@ msgstr "איש דת"
 
 #: ../gramps/gen/lib/eventroletype.py:75
 msgid "Celebrant"
-msgstr "מנהל הטקס"
+msgstr "מנהל טקס"
 
 #: ../gramps/gen/lib/eventroletype.py:76
 msgid "Aide"
@@ -7530,10 +7531,7 @@ msgstr "שכן"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
-"מנחה טקס הוא אדם שמנהל טקס. הוא יכול להיות נציג דתי או פקיד חילוני. תקן "
-"GEDCOM מתאר \"איש דת\" (Clergy) כאיש דת שמשתתף באירוע, ומשתמע מכך שהוא עורך "
-"הטקס."
+msgstr "מנחה טקס"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -7745,7 +7743,7 @@ msgstr "הסמכה"
 
 #: ../gramps/gen/lib/eventtype.py:228
 msgid "Probate"
-msgstr "אישור צוואה"
+msgstr "קיום צוואה"
 
 #: ../gramps/gen/lib/eventtype.py:229
 msgid "Property"
@@ -13031,7 +13029,7 @@ msgstr "מידע מסד־נתונים"
 #: ../gramps/plugins/tool/reorderids.glade:197
 #: ../gramps/plugins/tool/testcasegenerator.py:395
 msgid "_OK"
-msgstr "אי_שור"
+msgstr "_בסדר"
 
 #: ../gramps/gui/dbman.py:126
 msgid "Setting"
@@ -16092,7 +16090,7 @@ msgstr "תוית"
 
 #: ../gramps/gui/glade/dialog.glade:903
 msgid "Close _without saving"
-msgstr "_סגירת בלי לשמור"
+msgstr "_סגירה ללא שמירה"
 
 #: ../gramps/gui/glade/dialog.glade:935
 #: ../gramps/gui/plug/report/_bookdialog.py:649
@@ -16451,7 +16449,7 @@ msgstr "הע_רת מלל:"
 
 #: ../gramps/gui/glade/editevent.glade:29
 msgid "Close window without changes"
-msgstr "סגירת חלון בלי שינויים"
+msgstr "סגירת חלון ללא שינויים"
 
 #: ../gramps/gui/glade/editevent.glade:97
 #: ../gramps/gui/glade/editeventref.glade:241
@@ -16991,7 +16989,7 @@ msgstr "_חיבה:"
 
 #: ../gramps/gui/glade/editperson.glade:333
 msgid "Click on a table cell to edit."
-msgstr "לעריכה, נא להקיש על תא בטבלה."
+msgstr "הקשה על תא בטבלה לעריכה."
 
 #: ../gramps/gui/glade/editperson.glade:352
 msgid ""
@@ -17332,7 +17330,7 @@ msgstr "כיתוב תיאורי של אתר המרשתת לאחסון."
 
 #: ../gramps/gui/glade/grampletpane.glade:62
 msgid "Drag to move; click to detach"
-msgstr "נא לגרור להעברה; הקשה לניתוק"
+msgstr "גרירה להעברה; הקשה לניתוק"
 
 #: ../gramps/gui/glade/grampletpane.glade:70
 msgid "Config"
@@ -17348,7 +17346,7 @@ msgstr "הקשה להרחבה/כווץ"
 
 #: ../gramps/gui/glade/grampletpane.glade:126
 msgid "Click to delete gramplet from view"
-msgstr "נא להקיש למחיקת גרמפלט ממצג"
+msgstr "הקשה למחיקת גרמפלט ממצג"
 
 #: ../gramps/gui/glade/grampletpane.glade:141
 #: ../gramps/gui/views/listview.py:647
@@ -18234,7 +18232,7 @@ msgstr "_ניווט"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Plugin Manager"
-msgstr "_מנהל התוספים"
+msgstr "_מנהל המתקעים"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Preferences..."
@@ -18377,7 +18375,7 @@ msgid ""
 msgstr ""
 "\n"
 "גרמפס לא הצליח לאתחל. נא לדווח על תקל.\n"
-"יתכן כי נגרם כתוצה משגיאת אתחול מצג (צד ג׳).\n"
+"יתכן כי נגרם כתוצה משגיאת אתחול מצג (צד־שלישי).\n"
 "על מנת להשתמש במצג אחר, נא לא לטעון אילן־יוחסין, לשנות תצוגה ורק אז לטעון את "
 "אילן־היוחסין הרצוי.\n"
 "ניתן גם לשנות באופן ידני את מצג האתחול בקובץ gramps.ini\n"
@@ -19183,7 +19181,7 @@ msgstr "בסדר"
 
 #: ../gramps/gui/plug/_windows.py:1647
 msgid "Plugin name"
-msgstr "שם מתקעים"
+msgstr "שם מתקע"
 
 #: ../gramps/gui/plug/_windows.py:1650
 msgid "Authors"
@@ -26188,7 +26186,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:44
 msgid "_Ok"
-msgstr "_אוקיי"
+msgstr "_בסדר"
 
 #: ../gramps/plugins/importer/importprogen.glade:113
 #: ../gramps/plugins/importer/importprogen.glade:132
@@ -31879,7 +31877,7 @@ msgstr "בדיקת קישור"
 #: ../gramps/plugins/quickview/linkreferences.py:55
 #: ../gramps/plugins/textreport/notelinkreport.py:124
 msgid "Ok"
-msgstr "אוקיי"
+msgstr "בסדר"
 
 #: ../gramps/plugins/quickview/linkreferences.py:58
 msgid "Failed: missing object"
