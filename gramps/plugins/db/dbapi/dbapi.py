@@ -98,6 +98,23 @@ class DBAPI(DbGeneric):
         if not self.dbapi.column_exists(table_name, "json_data"):
             self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name)
 
+    def json_extract_expression(self, json_column, json_path):
+        """
+        Abstract method to generate database-specific JSON extraction expressions.
+        This allows different database engines to implement their own JSON syntax.
+        
+        :param json_column: The name of the JSON column (e.g., 'json_data')
+        :param json_path: The JSON path to extract (e.g., '$.type', '$.date.sort')
+        :return: A database-specific SQL expression for JSON extraction
+        
+        Example implementations:
+        - SQLite: json_extract(json_data, '$.type')
+        - PostgreSQL: json_data->>'type' or json_data->'date'->>'sort'
+        - MySQL: JSON_EXTRACT(json_data, '$.type')
+        """
+        # Default SQLite implementation
+        return f"json_extract({json_column}, '{json_path}')"
+
     def _schema_exists(self):
         """
         Check to see if the schema exists.
@@ -230,25 +247,61 @@ class DBAPI(DbGeneric):
         self._create_secondary_columns()
 
         ## Indices:
-        self.dbapi.execute("CREATE INDEX person_gramps_id ON person(gramps_id)")
-        self.dbapi.execute("CREATE INDEX person_surname ON person(surname)")
-        self.dbapi.execute("CREATE INDEX person_given_name ON person(given_name)")
-        self.dbapi.execute("CREATE INDEX source_title ON source(title)")
-        self.dbapi.execute("CREATE INDEX source_gramps_id ON source(gramps_id)")
-        self.dbapi.execute("CREATE INDEX citation_page ON citation(page)")
         self.dbapi.execute("CREATE INDEX citation_gramps_id ON citation(gramps_id)")
+        self.dbapi.execute("CREATE INDEX citation_page ON citation(page)")
+
+        self.dbapi.execute("CREATE INDEX event_gramps_id ON event(gramps_id)")
+        self.dbapi.execute(f"CREATE INDEX event_type ON event({self.json_extract_expression('json_data', '$.type')})")
+        self.dbapi.execute(f"CREATE INDEX event_date ON event({self.json_extract_expression('json_data', '$.date.sort')})")
+        self.dbapi.execute(f"CREATE INDEX event_place ON event({self.json_extract_expression('json_data', '$.place')})")
+        self.dbapi.execute(f"CREATE INDEX event_private ON event({self.json_extract_expression('json_data', '$.private')})")
+        self.dbapi.execute(f"CREATE INDEX event_change ON event({self.json_extract_expression('json_data', '$.change')})")
+
+        self.dbapi.execute("CREATE INDEX family_gramps_id ON family(gramps_id)")
+        self.dbapi.execute(f"CREATE INDEX family_father_handle ON family({self.json_extract_expression('json_data', '$.father_handle')})")
+        self.dbapi.execute(f"CREATE INDEX family_mother_handle ON family({self.json_extract_expression('json_data', '$.mother_handle')})")
+        self.dbapi.execute(f"CREATE INDEX family_parents ON family({self.json_extract_expression('json_data', '$.father_handle')}, {self.json_extract_expression('json_data', '$.mother_handle')})")
+        self.dbapi.execute(f"CREATE INDEX family_private ON family({self.json_extract_expression('json_data', '$.private')})")
+        self.dbapi.execute(f"CREATE INDEX family_change ON family({self.json_extract_expression('json_data', '$.change')})")
+
         self.dbapi.execute("CREATE INDEX media_desc ON media(desc)")
         self.dbapi.execute("CREATE INDEX media_gramps_id ON media(gramps_id)")
-        self.dbapi.execute("CREATE INDEX place_title ON place(title)")
+        self.dbapi.execute(f"CREATE INDEX media_mime ON media({self.json_extract_expression('json_data', '$.mime')})")
+        self.dbapi.execute(f"CREATE INDEX media_path ON media({self.json_extract_expression('json_data', '$.path')})")
+        self.dbapi.execute(f"CREATE INDEX media_private ON media({self.json_extract_expression('json_data', '$.private')})")
+
+        self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
+        self.dbapi.execute(f"CREATE INDEX note_type ON note({self.json_extract_expression('json_data', '$.type')})")
+        self.dbapi.execute(f"CREATE INDEX note_private ON note({self.json_extract_expression('json_data', '$.private')})")
+
+        self.dbapi.execute("CREATE INDEX person_given_name ON person(given_name)")
+        self.dbapi.execute("CREATE INDEX person_gramps_id ON person(gramps_id)")
+        self.dbapi.execute("CREATE INDEX person_surname ON person(surname)")
+        self.dbapi.execute("CREATE INDEX person_name_composite ON person(surname, given_name)")
+        self.dbapi.execute(f"CREATE INDEX person_gender ON person({self.json_extract_expression('json_data', '$.gender')})")
+        self.dbapi.execute(f"CREATE INDEX person_birth_ref_index ON person({self.json_extract_expression('json_data', '$.birth_ref_index')})")
+        self.dbapi.execute(f"CREATE INDEX person_death_ref_index ON person({self.json_extract_expression('json_data', '$.death_ref_index')})")
+        self.dbapi.execute(f"CREATE INDEX person_private ON person({self.json_extract_expression('json_data', '$.private')})")
+        self.dbapi.execute(f"CREATE INDEX person_change ON person({self.json_extract_expression('json_data', '$.change')})")
+
         self.dbapi.execute("CREATE INDEX place_enclosed_by ON place(enclosed_by)")
         self.dbapi.execute("CREATE INDEX place_gramps_id ON place(gramps_id)")
-        self.dbapi.execute("CREATE INDEX tag_name ON tag(name)")
-        self.dbapi.execute("CREATE INDEX reference_ref_handle ON reference(ref_handle)")
-        self.dbapi.execute("CREATE INDEX family_gramps_id ON family(gramps_id)")
-        self.dbapi.execute("CREATE INDEX event_gramps_id ON event(gramps_id)")
-        self.dbapi.execute("CREATE INDEX repository_gramps_id ON repository(gramps_id)")
-        self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
+        self.dbapi.execute("CREATE INDEX place_title ON place(title)")
+        self.dbapi.execute(f"CREATE INDEX place_private ON place({self.json_extract_expression('json_data', '$.private')})")
+
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
+        self.dbapi.execute("CREATE INDEX reference_ref_handle ON reference(ref_handle)")
+
+        self.dbapi.execute("CREATE INDEX repository_gramps_id ON repository(gramps_id)")
+        self.dbapi.execute(f"CREATE INDEX repository_private ON repository({self.json_extract_expression('json_data', '$.private')})")
+
+        self.dbapi.execute("CREATE INDEX source_gramps_id ON source(gramps_id)")
+        self.dbapi.execute("CREATE INDEX source_title ON source(title)")
+        self.dbapi.execute(f"CREATE INDEX source_author ON source({self.json_extract_expression('json_data', '$.author')})")
+        self.dbapi.execute(f"CREATE INDEX source_pubinfo ON source({self.json_extract_expression('json_data', '$.pubinfo')})")
+        self.dbapi.execute(f"CREATE INDEX source_private ON source({self.json_extract_expression('json_data', '$.private')})")
+
+        self.dbapi.execute("CREATE INDEX tag_name ON tag(name)")
 
         self.dbapi.commit()
 

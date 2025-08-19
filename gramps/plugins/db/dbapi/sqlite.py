@@ -32,6 +32,7 @@ import logging
 import os
 import re
 import sqlite3
+import json
 
 # -------------------------------------------------------------------------
 #
@@ -43,8 +44,20 @@ from gramps.gen.db.dbconst import ARRAYSIZE
 from gramps.plugins.db.dbapi.dbapi import DBAPI
 
 _ = glocale.translation.gettext
-
 sqlite3.paramstyle = "qmark"
+DEFAULT_DATABASE_CONFIG = {
+    "pragma": {
+        "journal_mode": "WAL",
+        "synchronous": "NORMAL",
+        "cache_size": "-131072",
+        "temp_store": "MEMORY",
+        "page_size": "16384",
+        "mmap_size": "-1",
+        "foreign_keys": "ON",
+        "auto_vacuum": "NONE",
+        "journal_size_limit": "67108864",
+    }
+}
 
 
 # -------------------------------------------------------------------------
@@ -71,11 +84,28 @@ class SQLite(DBAPI):
         return summary
 
     def _initialize(self, directory, username, password):
+        self.database_config = self._get_database_config(directory)
         if directory == ":memory:":
             path_to_db = ":memory:"
         else:
             path_to_db = os.path.join(directory, "sqlite.db")
-        self.dbapi = Connection(path_to_db)
+        self.dbapi = Connection(path_to_db, database_config=self.database_config)
+
+    def _get_database_config(self, directory):
+        """
+        Get the default database config dictionary.
+        """
+        if directory == ":memory:":
+            return DEFAULT_DATABASE_CONFIG
+        else:
+            database_json_path = os.path.join(directory, "config.json")
+            if os.path.exists(database_json_path):
+                with open(database_json_path) as fp:
+                    return json.load(fp)
+            else:
+                with open(database_json_path, "w") as fp:
+                    json.dump(DEFAULT_DATABASE_CONFIG, fp)
+                return DEFAULT_DATABASE_CONFIG
 
 
 # -------------------------------------------------------------------------
@@ -89,7 +119,7 @@ class Connection:
     backend for the DBAPI interface and the sqlite3 python module.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, database_config=None, **kwargs):
         """
         Create a new Sqlite instance.
 
@@ -104,6 +134,13 @@ class Connection:
         """
         self.log = logging.getLogger(".sqlite")
         self.__connection = sqlite3.connect(*args, **kwargs)
+
+        if database_config is not None and database_config.get("pragma"):
+            for key, value in database_config["pragma"].items():
+                self.__connection.execute(f"PRAGMA {key} = {value};")
+            self.__connection.execute("VACUUM;")
+            self.__connection.execute("PRAGMA optimize;")
+
         self.__cursor = self.__connection.cursor()
         self.__connection.create_function("regexp", 2, regexp)
         self.__collations = []
