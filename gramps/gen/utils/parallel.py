@@ -51,26 +51,28 @@ _ = glocale.translation.gettext
 LOG = logging.getLogger(".parallel")
 
 # Type variables for generic typing
-T = TypeVar('T')
-R = TypeVar('R')
+T = TypeVar("T")
+R = TypeVar("R")
 
 
 class ParallelProcessor(Generic[T, R]):
     """
     A configurable parallel processor for batch operations.
-    
+
     This class provides a thread-safe way to process collections of items
     in parallel, with configurable thread counts and automatic fallback
     to sequential processing for small workloads.
     """
-    
-    def __init__(self, 
-                 max_threads: int = 4,
-                 min_items_for_parallel: int = 4,
-                 chunk_size: Optional[int] = None):
+
+    def __init__(
+        self,
+        max_threads: int = 4,
+        min_items_for_parallel: int = 4,
+        chunk_size: Optional[int] = None,
+    ):
         """
         Initialize the parallel processor.
-        
+
         Args:
             max_threads: Maximum number of threads to use (default: 4)
             min_items_for_parallel: Minimum items needed to use parallel processing (default: 4)
@@ -80,14 +82,16 @@ class ParallelProcessor(Generic[T, R]):
         self.min_items_for_parallel = max(1, min_items_for_parallel)
         self.chunk_size = chunk_size
         self._lock = threading.Lock()
-        
-    def process_items(self, 
-                     items: List[T], 
-                     processor_func: Callable[[List[T], List[R]], None],
-                     results_list: List[R]) -> None:
+
+    def process_items(
+        self,
+        items: List[T],
+        processor_func: Callable[[List[T], List[R]], None],
+        results_list: List[R],
+    ) -> None:
         """
         Process a list of items using parallel or sequential processing.
-        
+
         Args:
             items: List of items to process
             processor_func: Function to process a chunk of items
@@ -99,43 +103,45 @@ class ParallelProcessor(Generic[T, R]):
             LOG.debug(f"Using sequential processing for {len(items)} items")
             processor_func(items, results_list)
             return
-            
+
         # Calculate optimal chunk size
         if self.chunk_size is None:
             chunk_size = max(1, len(items) // self.max_threads)
         else:
             chunk_size = self.chunk_size
-            
+
         # Split items into chunks
-        chunks = [items[i:i + chunk_size] 
-                 for i in range(0, len(items), chunk_size)]
-        
+        chunks = [items[i : i + chunk_size] for i in range(0, len(items), chunk_size)]
+
         if len(chunks) == 1:
             # Only one chunk, use sequential processing
-            LOG.debug(f"Using sequential processing for single chunk of {len(items)} items")
+            LOG.debug(
+                f"Using sequential processing for single chunk of {len(items)} items"
+            )
             processor_func(items, results_list)
             return
-            
-        LOG.debug(f"Using parallel processing: {len(items)} items in {len(chunks)} chunks")
-        
+
+        LOG.debug(
+            f"Using parallel processing: {len(items)} items in {len(chunks)} chunks"
+        )
+
         # Process chunks in parallel
         threads = []
         thread_results = []
-        
+
         for chunk in chunks:
             chunk_results = []
             thread = threading.Thread(
-                target=processor_func,
-                args=(chunk, chunk_results)
+                target=processor_func, args=(chunk, chunk_results)
             )
             threads.append(thread)
             thread_results.append(chunk_results)
             thread.start()
-            
+
         # Wait for all threads to complete
         for thread in threads:
             thread.join()
-            
+
         # Combine results thread-safely
         with self._lock:
             for chunk_results in thread_results:
@@ -145,19 +151,21 @@ class ParallelProcessor(Generic[T, R]):
 class FamilyTreeProcessor:
     """
     Specialized parallel processor for family tree operations.
-    
+
     This class provides optimized parallel processing for common family tree
     operations like descendant traversal, with built-in caching and thread safety.
     """
-    
-    def __init__(self, 
-                 max_threads: int = 4,
-                 min_families_for_parallel: int = 5,
-                 enable_caching: bool = True,
-                 cache_size: int = 1000):
+
+    def __init__(
+        self,
+        max_threads: int = 4,
+        min_families_for_parallel: int = 5,
+        enable_caching: bool = True,
+        cache_size: int = 1000,
+    ):
         """
         Initialize the family tree processor.
-        
+
         Args:
             max_threads: Maximum number of threads to use
             min_families_for_parallel: Minimum families needed for parallel processing
@@ -165,13 +173,12 @@ class FamilyTreeProcessor:
             cache_size: Size of LRU caches (if enabled)
         """
         self.processor = ParallelProcessor(
-            max_threads=max_threads,
-            min_items_for_parallel=min_families_for_parallel
+            max_threads=max_threads, min_items_for_parallel=min_families_for_parallel
         )
         self.enable_caching = enable_caching
         self.cache_size = cache_size
         self._lock = threading.Lock()
-        
+
         # Initialize caches if enabled
         if self.enable_caching:
             self._person_cache = LRU(cache_size)
@@ -179,21 +186,21 @@ class FamilyTreeProcessor:
         else:
             self._person_cache = None
             self._family_cache = None
-    
+
     def get_person_cached(self, db, handle: str):
         """
         Get person from cache or database with thread-safe caching.
-        
+
         Args:
             db: Database instance
             handle: Person handle
-            
+
         Returns:
             Person object or None
         """
         if not self.enable_caching:
             return db.get_person_from_handle(handle)
-            
+
         with self._lock:
             if handle not in self._person_cache:
                 person = db.get_person_from_handle(handle)
@@ -201,21 +208,21 @@ class FamilyTreeProcessor:
                     self._person_cache[handle] = person
                 return person
             return self._person_cache[handle]
-    
+
     def get_family_cached(self, db, handle: str):
         """
         Get family from cache or database with thread-safe caching.
-        
+
         Args:
             db: Database instance
             handle: Family handle
-            
+
         Returns:
             Family object or None
         """
         if not self.enable_caching:
             return db.get_family_from_handle(handle)
-            
+
         with self._lock:
             if handle not in self._family_cache:
                 family = db.get_family_from_handle(handle)
@@ -223,22 +230,24 @@ class FamilyTreeProcessor:
                     self._family_cache[handle] = family
                 return family
             return self._family_cache[handle]
-    
+
     def clear_caches(self):
         """Clear all caches."""
         if self.enable_caching:
             with self._lock:
                 self._person_cache.clear()
                 self._family_cache.clear()
-    
-    def process_person_families(self, 
-                              db,
-                              family_handles: List[str], 
-                              processor_func: Callable[[str, List[str]], None],
-                              results: List[str]) -> None:
+
+    def process_person_families(
+        self,
+        db,
+        family_handles: List[str],
+        processor_func: Callable[[str, List[str]], None],
+        results: List[str],
+    ) -> None:
         """
         Process person families in parallel.
-        
+
         Args:
             db: Database instance
             family_handles: List of family handles to process
@@ -246,6 +255,7 @@ class FamilyTreeProcessor:
                           Should have signature: func(family_handle: str, child_handles: List[str]) -> None
             results: List to collect child handles
         """
+
         def chunk_processor(chunk: List[str], chunk_results: List[str]):
             """Process a chunk of family handles."""
             for family_handle in chunk:
@@ -253,21 +263,21 @@ class FamilyTreeProcessor:
                 if family:
                     for child_ref in family.child_ref_list:
                         chunk_results.append(child_ref.ref)
-        
+
         self.processor.process_items(family_handles, chunk_processor, results)
-    
-    def process_child_families(self, 
-                             db,
-                             child_handles: List[str], 
-                             results: List[str]) -> None:
+
+    def process_child_families(
+        self, db, child_handles: List[str], results: List[str]
+    ) -> None:
         """
         Process children to get their family handles in parallel.
-        
+
         Args:
             db: Database instance
             child_handles: List of child handles to process
             results: List to collect family handles
         """
+
         def chunk_processor(chunk: List[str], chunk_results: List[str]):
             """Process a chunk of child handles."""
             for child_handle in chunk:
@@ -275,7 +285,7 @@ class FamilyTreeProcessor:
                 if child:
                     for family_handle in child.family_list:
                         chunk_results.append(family_handle)
-        
+
         self.processor.process_items(child_handles, chunk_processor, results)
 
 
@@ -283,29 +293,31 @@ class FamilyTreeProcessor:
 def create_family_tree_processor(**kwargs) -> FamilyTreeProcessor:
     """
     Create a FamilyTreeProcessor with sensible defaults.
-    
+
     Args:
         **kwargs: Arguments to pass to FamilyTreeProcessor constructor
-        
+
     Returns:
         Configured FamilyTreeProcessor instance
     """
     return FamilyTreeProcessor(**kwargs)
 
 
-def process_in_parallel(items: List[T], 
-                       processor_func: Callable[[List[T], List[R]], None],
-                       max_threads: int = 4,
-                       min_items_for_parallel: int = 4) -> List[R]:
+def process_in_parallel(
+    items: List[T],
+    processor_func: Callable[[List[T], List[R]], None],
+    max_threads: int = 4,
+    min_items_for_parallel: int = 4,
+) -> List[R]:
     """
     Convenience function to process items in parallel.
-    
+
     Args:
         items: Items to process
         processor_func: Processing function
         max_threads: Maximum threads to use
         min_items_for_parallel: Minimum items for parallel processing
-        
+
     Returns:
         List of results
     """
