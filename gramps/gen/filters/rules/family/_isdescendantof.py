@@ -28,6 +28,8 @@ Rule that checks for a family that is a descendant of a specified family.
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+from collections import deque
+from typing import Set
 
 # -------------------------------------------------------------------------
 #
@@ -36,13 +38,13 @@ from __future__ import annotations
 # -------------------------------------------------------------------------
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
+from ....utils.parallel import FamilyTreeProcessor
 
 # -------------------------------------------------------------------------
 #
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Family
 from ....db import Database
 
@@ -65,30 +67,72 @@ class IsDescendantOf(Rule):
     category = _("General filters")
     description = _("Matches descendant families of the specified family")
 
+    def __init__(self, list):
+        super().__init__(list)
+        # Initialize parallel processor with configurable settings
+        self._parallel_processor = FamilyTreeProcessor(
+            max_threads=4,
+            min_families_for_parallel=3,  # Lower threshold for family processing
+            enable_caching=True,
+            cache_size=1000,
+        )
+
     def prepare(self, db: Database, user):
+        self.db = db
         self.selected_handles: Set[str] = set()
-        first = False if int(self.list[1]) else True
-        root_family = db.get_family_from_gramps_id(self.list[0])
-        self.init_list(db, root_family, first)
+        try:
+            first = False if int(self.list[1]) else True
+        except IndexError:
+            first = True
+        try:
+            root_family = db.get_family_from_gramps_id(self.list[0])
+            if root_family:
+                self.init_list(db, root_family, first)
+        except:
+            pass
 
     def reset(self):
         self.selected_handles.clear()
+        self._parallel_processor.clear_caches()
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
 
-    def init_list(self, db: Database, family: Family | None, first: bool) -> None:
+    def init_list(self, db: Database, root_family: Family, first: bool) -> None:
         """
-        Initialise family handle list.
+        Optimized descendant family traversal using breadth-first search with caching
+        and optional parallel processing for large family trees.
         """
-        if not family:
+        if not root_family:
             return
-        if not first:
-            self.selected_handles.add(family.handle)
 
-        for child_ref in family.child_ref_list:
-            child = db.get_person_from_handle(child_ref.ref)
-            if child:
-                for family_handle in child.family_list:
-                    child_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, child_family, False)
+        # Use BFS queue instead of recursion
+        queue = deque([(root_family, first)])
+        visited = set()
+
+        while queue:
+            family, is_first = queue.popleft()
+
+            if not family or family.handle in visited:
+                continue
+
+            visited.add(family.handle)
+
+            if not is_first:
+                self.selected_handles.add(family.handle)
+
+            # Process children and their families
+            child_handles = [child_ref.ref for child_ref in family.child_ref_list]
+            family_handles = []
+            self._parallel_processor.process_child_families(
+                db, child_handles, family_handles
+            )
+
+            # Add child families to queue
+            for family_handle in family_handles:
+                if family_handle not in visited:
+                    child_family = self._parallel_processor.get_family_cached(
+                        db, family_handle
+                    )
+                    if child_family:
+                        queue.append((child_family, False))

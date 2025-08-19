@@ -24,6 +24,8 @@
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+from collections import deque
+from typing import Set
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -34,6 +36,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.parallel import FamilyTreeProcessor
 
 
 # -------------------------------------------------------------------------
@@ -41,7 +44,6 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
 
@@ -60,6 +62,16 @@ class IsDescendantOf(Rule):
     category = _("Descendant filters")
     description = _("Matches all descendants for the specified person")
 
+    def __init__(self, list):
+        super().__init__(list)
+        # Initialize parallel processor with configurable settings
+        self._parallel_processor = FamilyTreeProcessor(
+            max_threads=4,
+            min_families_for_parallel=5,
+            enable_caching=True,
+            cache_size=1000,
+        )
+
     def prepare(self, db: Database, user):
         self.db = db
         self.selected_handles: Set[str] = set()
@@ -69,25 +81,53 @@ class IsDescendantOf(Rule):
             first = True
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
-            self.init_list(root_person, first)
+            if root_person:
+                self.init_list(root_person, first)
         except:
             pass
 
     def reset(self):
         self.selected_handles.clear()
+        self._parallel_processor.clear_caches()
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_list(self, person: Person | None, first: bool) -> None:
-        if not person or person.handle in self.selected_handles:
-            # if we have been here before, skip
+    def init_list(self, root_person: Person, first: bool) -> None:
+        """
+        Optimized descendant traversal using breadth-first search with caching
+        and optional parallel processing for large family trees.
+        """
+        if not root_person:
             return
-        if not first:
-            self.selected_handles.add(person.handle)
 
-        for fam_id in person.family_list:
-            fam = self.db.get_family_from_handle(fam_id)
-            if fam:
-                for child_ref in fam.child_ref_list:
-                    self.init_list(self.db.get_person_from_handle(child_ref.ref), False)
+        # Use BFS queue instead of recursion
+        queue = deque([(root_person, first)])
+        visited = set()
+
+        while queue:
+            person, is_first = queue.popleft()
+
+            if not person or person.handle in visited:
+                continue
+
+            visited.add(person.handle)
+
+            if not is_first:
+                self.selected_handles.add(person.handle)
+
+            # Batch process family references
+            family_handles = list(person.family_list)
+            child_handles = []
+            self._parallel_processor.process_person_families(
+                self.db, family_handles, None, child_handles
+            )
+
+            # Add children to queue
+            for child_handle in child_handles:
+                if child_handle not in visited:
+                    child = self._parallel_processor.get_person_cached(
+                        self.db, child_handle
+                    )
+                    if child:
+                        queue.append((child, False))
