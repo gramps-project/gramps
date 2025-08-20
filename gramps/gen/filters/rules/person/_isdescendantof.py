@@ -25,7 +25,7 @@
 # -------------------------------------------------------------------------
 from __future__ import annotations
 from collections import deque
-from typing import Set
+from typing import Set, List
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -103,7 +103,7 @@ class IsDescendantOf(Rule):
 
         # Use BFS queue instead of recursion
         queue = deque([(root_person, first)])
-        visited = set()
+        visited: Set[str] = set()
 
         while queue:
             person, is_first = queue.popleft()
@@ -118,7 +118,7 @@ class IsDescendantOf(Rule):
 
             # Batch process family references
             family_handles = list(person.family_list)
-            child_handles = []
+            child_handles: List[str] = []
             self._parallel_processor.process_person_families(
                 self.db, family_handles, None, child_handles
             )

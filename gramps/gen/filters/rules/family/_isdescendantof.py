@@ -29,7 +29,7 @@ Rule that checks for a family that is a descendant of a specified family.
 # -------------------------------------------------------------------------
 from __future__ import annotations
 from collections import deque
-from typing import Set
+from typing import Set, List
 
 # -------------------------------------------------------------------------
 #
@@ -123,7 +123,7 @@ class IsDescendantOf(Rule):
 
             # Process children and their families
             child_handles = [child_ref.ref for child_ref in family.child_ref_list]
-            family_handles = []
+            family_handles: List[str] = []
             self._parallel_processor.process_child_families(
                 db, child_handles, family_handles
             )

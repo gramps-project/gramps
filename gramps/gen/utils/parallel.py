@@ -44,6 +44,7 @@ import logging
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 from .lru import LRU
+from .gen.lib import Person, Family
 
 _ = glocale.translation.gettext
 
@@ -111,7 +112,9 @@ class ParallelProcessor(Generic[T, R]):
             chunk_size = self.chunk_size
 
         # Split items into chunks
-        chunks = [items[i : i + chunk_size] for i in range(0, len(items), chunk_size)]
+        chunks: List[List[T]] = [
+            items[i : i + chunk_size] for i in range(0, len(items), chunk_size)
+        ]
 
         if len(chunks) == 1:
             # Only one chunk, use sequential processing
@@ -126,11 +129,11 @@ class ParallelProcessor(Generic[T, R]):
         )
 
         # Process chunks in parallel
-        threads = []
-        thread_results = []
+        threads: List[threading.Thread] = []
+        thread_results: List[Iterable[R]] = []
 
         for chunk in chunks:
-            chunk_results = []
+            chunk_results: Iterable[R] = []
             thread = threading.Thread(
                 target=processor_func, args=(chunk, chunk_results)
             )
@@ -160,7 +163,6 @@ class FamilyTreeProcessor:
         self,
         max_threads: int = 4,
         min_families_for_parallel: int = 5,
-        enable_caching: bool = True,
         cache_size: int = 1000,
     ):
         """
@@ -169,25 +171,18 @@ class FamilyTreeProcessor:
         Args:
             max_threads: Maximum number of threads to use
             min_families_for_parallel: Minimum families needed for parallel processing
-            enable_caching: Whether to enable LRU caching
             cache_size: Size of LRU caches (if enabled)
         """
-        self.processor = ParallelProcessor(
+        self.processor: ParallelProcessor = ParallelProcessor(
             max_threads=max_threads, min_items_for_parallel=min_families_for_parallel
         )
-        self.enable_caching = enable_caching
         self.cache_size = cache_size
         self._lock = threading.Lock()
 
-        # Initialize caches if enabled
-        if self.enable_caching:
-            self._person_cache = LRU(cache_size)
-            self._family_cache = LRU(cache_size)
-        else:
-            self._person_cache = None
-            self._family_cache = None
+        self._person_cache = LRU(cache_size)
+        self._family_cache = LRU(cache_size)
 
-    def get_person_cached(self, db, handle: str):
+    def get_person_cached(self, db, handle: str) -> Optional[Person]:
         """
         Get person from cache or database with thread-safe caching.
 
@@ -198,9 +193,6 @@ class FamilyTreeProcessor:
         Returns:
             Person object or None
         """
-        if not self.enable_caching:
-            return db.get_person_from_handle(handle)
-
         with self._lock:
             if handle not in self._person_cache:
                 person = db.get_person_from_handle(handle)
@@ -209,7 +201,7 @@ class FamilyTreeProcessor:
                 return person
             return self._person_cache[handle]
 
-    def get_family_cached(self, db, handle: str):
+    def get_family_cached(self, db, handle: str) -> Optional[Family]:
         """
         Get family from cache or database with thread-safe caching.
 
@@ -220,9 +212,6 @@ class FamilyTreeProcessor:
         Returns:
             Family object or None
         """
-        if not self.enable_caching:
-            return db.get_family_from_handle(handle)
-
         with self._lock:
             if handle not in self._family_cache:
                 family = db.get_family_from_handle(handle)
@@ -231,12 +220,11 @@ class FamilyTreeProcessor:
                 return family
             return self._family_cache[handle]
 
-    def clear_caches(self):
+    def clear_caches(self) -> None:
         """Clear all caches."""
-        if self.enable_caching:
-            with self._lock:
-                self._person_cache.clear()
-                self._family_cache.clear()
+        with self._lock:
+            self._person_cache.clear()
+            self._family_cache.clear()
 
     def process_person_families(
         self,
@@ -321,7 +309,9 @@ def process_in_parallel(
     Returns:
         List of results
     """
-    processor = ParallelProcessor(max_threads, min_items_for_parallel)
-    results = []
+    processor: ParallelProcessor = ParallelProcessor(
+        max_threads, min_items_for_parallel
+    )
+    results: List[R] = []
     processor.process_items(items, processor_func, results)
     return results
