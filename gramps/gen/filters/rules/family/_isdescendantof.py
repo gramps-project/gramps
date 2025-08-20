@@ -62,7 +62,7 @@ class IsDescendantOf(Rule):
     Rule that checks for a family that is a descendant of a specified family.
     """
 
-    labels = [_("ID:"), _("Inclusive:")]
+    labels = [_("ID:"), _("Inclusive:"), _("Max Depth:")]
     name = _("Descendant families of <family>")
     category = _("General filters")
     description = _("Matches descendant families of the specified family")
@@ -72,7 +72,6 @@ class IsDescendantOf(Rule):
         # Initialize parallel processor with configurable settings
         self._parallel_processor = FamilyTreeProcessor(
             max_threads=4,
-            min_families_for_parallel=3,  # Lower threshold for family processing
             enable_caching=True,
             cache_size=1000,
         )
@@ -85,9 +84,15 @@ class IsDescendantOf(Rule):
         except IndexError:
             first = True
         try:
+            max_depth = (
+                int(self.list[2]) if len(self.list) > 2 and self.list[2] else None
+            )
+        except (IndexError, ValueError):
+            max_depth = None
+        try:
             root_family = db.get_family_from_gramps_id(self.list[0])
             if root_family:
-                self.init_list(db, root_family, first)
+                self.init_list(db, root_family, first, max_depth)
         except:
             pass
 
@@ -98,41 +103,68 @@ class IsDescendantOf(Rule):
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
 
-    def init_list(self, db: Database, root_family: Family, first: bool) -> None:
+    def init_list(
+        self, db: Database, root_family: Family, first: bool, max_depth: int | None
+    ) -> None:
         """
-        Optimized descendant family traversal using breadth-first search with caching
-        and optional parallel processing for large family trees.
+        Optimized descendant family traversal using parallel breadth-first search
+        with caching and parallel queue processing.
         """
         if not root_family:
             return
 
-        # Use BFS queue instead of recursion
-        queue = deque([(root_family, first)])
-        visited = set()
+        # Use parallel descendant traversal for better performance
+        if not first:
+            # Get all descendant families using parallel traversal with max_depth
+            descendant_handles = self._parallel_processor.get_family_descendants(
+                db=db,
+                families=[root_family],
+                max_depth=max_depth,
+            )
+            self.selected_handles.update(descendant_handles)
+        else:
+            # For inclusive mode, we need to process the root family's children
+            # and then get their families in parallel
+            child_handles = [child_ref.ref for child_ref in root_family.child_ref_list]
+            if child_handles:
+                # Get family handles for all children in parallel
+                family_handles = self._parallel_processor.process_child_families(
+                    db, child_handles
+                )
 
-        while queue:
-            family, is_first = queue.popleft()
+                # Use parallel traversal for descendant families with max_depth
+                family_objects = [
+                    self._parallel_processor.get_family_cached(db, handle)
+                    for handle in family_handles
+                    if handle
+                ]
+                descendant_handles = self._parallel_processor.get_family_descendants(
+                    db=db,
+                    families=family_objects,
+                    max_depth=max_depth,
+                )
+                self.selected_handles.update(descendant_handles)
 
-            if not family or family.handle in visited:
-                continue
+    def _get_family_children(self, family: Family) -> List[str]:
+        """
+        Get child handles from a family for parallel traversal.
 
-            visited.add(family.handle)
+        Args:
+            family: Family object
 
-            if not is_first:
-                self.selected_handles.add(family.handle)
+        Returns:
+            List of child handles
+        """
+        if not family:
+            return []
 
-            # Process children and their families
-            child_handles = [child_ref.ref for child_ref in family.child_ref_list]
-            family_handles: List[str] = []
-            self._parallel_processor.process_child_families(
-                db, child_handles, family_handles
+        # Get child handles
+        child_handles = [child_ref.ref for child_ref in family.child_ref_list]
+
+        # Get family handles for these children in parallel
+        if child_handles:
+            return self._parallel_processor.process_child_families(
+                self.db, child_handles
             )
 
-            # Add child families to queue
-            for family_handle in family_handles:
-                if family_handle not in visited:
-                    child_family = self._parallel_processor.get_family_cached(
-                        db, family_handle
-                    )
-                    if child_family:
-                        queue.append((child_family, False))
+        return []

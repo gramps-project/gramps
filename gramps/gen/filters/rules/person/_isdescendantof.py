@@ -57,7 +57,7 @@ class IsDescendantOf(Rule):
     """Rule that checks for a person that is a descendant
     of a specified person"""
 
-    labels = [_("ID:"), _("Inclusive:")]
+    labels = [_("ID:"), _("Inclusive:"), _("Max Depth:")]
     name = _("Descendants of <person>")
     category = _("Descendant filters")
     description = _("Matches all descendants for the specified person")
@@ -67,7 +67,6 @@ class IsDescendantOf(Rule):
         # Initialize parallel processor with configurable settings
         self._parallel_processor = FamilyTreeProcessor(
             max_threads=4,
-            min_families_for_parallel=5,
             enable_caching=True,
             cache_size=1000,
         )
@@ -80,9 +79,15 @@ class IsDescendantOf(Rule):
         except IndexError:
             first = True
         try:
+            max_depth = (
+                int(self.list[2]) if len(self.list) > 2 and self.list[2] else None
+            )
+        except (IndexError, ValueError):
+            max_depth = None
+        try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             if root_person:
-                self.init_list(root_person, first)
+                self.init_list(root_person, first, max_depth)
         except:
             pass
 
@@ -93,41 +98,63 @@ class IsDescendantOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_list(self, root_person: Person, first: bool) -> None:
+    def init_list(
+        self, root_person: Person, first: bool, max_depth: int | None = None
+    ) -> None:
         """
-        Optimized descendant traversal using breadth-first search with caching
-        and optional parallel processing for large family trees.
+        Optimized descendant traversal using parallel breadth-first search
+        with caching and parallel queue processing.
         """
         if not root_person:
             return
 
-        # Use BFS queue instead of recursion
-        queue = deque([(root_person, first)])
-        visited: Set[str] = set()
+        # Use parallel descendant traversal for better performance
+        if not first:
+            # Get all descendants using parallel traversal with max_depth
+            descendant_handles = self._parallel_processor.get_person_descendants(
+                db=self.db,
+                persons=[root_person],
+                max_depth=max_depth,
+            )
+            self.selected_handles.update(descendant_handles)
+        else:
+            # For inclusive mode, we need to process the root person's children
+            # and then get their descendants in parallel
+            child_handles = self._get_person_children(root_person)
+            if child_handles:
+                # Use parallel traversal for descendant persons with max_depth
+                child_persons = [
+                    self._parallel_processor.get_person_cached(self.db, handle)
+                    for handle in child_handles
+                    if handle
+                ]
+                descendant_handles = self._parallel_processor.get_person_descendants(
+                    db=self.db,
+                    persons=child_persons,
+                    max_depth=max_depth,
+                )
+                self.selected_handles.update(descendant_handles)
 
-        while queue:
-            person, is_first = queue.popleft()
+    def _get_person_children(self, person: Person) -> List[str]:
+        """
+        Get child handles from a person for parallel traversal.
 
-            if not person or person.handle in visited:
-                continue
+        Args:
+            person: Person object
 
-            visited.add(person.handle)
+        Returns:
+            List of child handles
+        """
+        if not person:
+            return []
 
-            if not is_first:
-                self.selected_handles.add(person.handle)
+        # Get family handles for this person
+        family_handles = list(person.family_list)
 
-            # Batch process family references
-            family_handles = list(person.family_list)
-            child_handles: List[str] = []
-            self._parallel_processor.process_person_families(
-                self.db, family_handles, None, child_handles
+        # Get child handles from all families in parallel
+        if family_handles:
+            return self._parallel_processor.process_person_families(
+                self.db, family_handles
             )
 
-            # Add children to queue
-            for child_handle in child_handles:
-                if child_handle not in visited:
-                    child = self._parallel_processor.get_person_cached(
-                        self.db, child_handle
-                    )
-                    if child:
-                        queue.append((child, False))
+        return []

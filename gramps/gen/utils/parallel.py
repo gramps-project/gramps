@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2024 Gramps Development Team
+# Copyright (C) 2025 Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,9 +33,11 @@ data processing, and filtering operations.
 # -------------------------------------------------------------------------
 from __future__ import annotations
 import threading
-from typing import Any, Callable, List, Optional, TypeVar, Generic
+from typing import Any, Callable, List, Optional, TypeVar, Generic, Set
 from collections.abc import Iterable
+from collections import deque
 import logging
+import queue
 
 # -------------------------------------------------------------------------
 #
@@ -43,8 +45,9 @@ import logging
 #
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from ..lib import Person, Family
 from .lru import LRU
-from .gen.lib import Person, Family
+
 
 _ = glocale.translation.gettext
 
@@ -61,14 +64,12 @@ class ParallelProcessor(Generic[T, R]):
     A configurable parallel processor for batch operations.
 
     This class provides a thread-safe way to process collections of items
-    in parallel, with configurable thread counts and automatic fallback
-    to sequential processing for small workloads.
+    in parallel, with configurable thread counts.
     """
 
     def __init__(
         self,
         max_threads: int = 4,
-        min_items_for_parallel: int = 4,
         chunk_size: Optional[int] = None,
     ):
         """
@@ -76,35 +77,28 @@ class ParallelProcessor(Generic[T, R]):
 
         Args:
             max_threads: Maximum number of threads to use (default: 4)
-            min_items_for_parallel: Minimum items needed to use parallel processing (default: 4)
             chunk_size: Size of chunks to process per thread (default: auto-calculate)
         """
         self.max_threads = max(1, max_threads)
-        self.min_items_for_parallel = max(1, min_items_for_parallel)
         self.chunk_size = chunk_size
         self._lock = threading.Lock()
 
     def process_items(
         self,
         items: List[T],
-        processor_func: Callable[[List[T], List[R]], None],
-        results_list: List[R],
-    ) -> None:
+        processor_func: Callable[[List[T]], List[R]],
+    ) -> List[R]:
         """
-        Process a list of items using parallel or sequential processing.
+        Process a list of items using parallel processing.
 
         Args:
             items: List of items to process
             processor_func: Function to process a chunk of items
-                          Should have signature: func(chunk: List[T], results: List[R]) -> None
-            results_list: List to collect results (will be modified in-place)
-        """
-        if len(items) < self.min_items_for_parallel:
-            # Use sequential processing for small workloads
-            LOG.debug(f"Using sequential processing for {len(items)} items")
-            processor_func(items, results_list)
-            return
+                          Should have signature: func(chunk: List[T]) -> List[R]
 
+        Returns:
+            List of results
+        """
         # Calculate optimal chunk size
         if self.chunk_size is None:
             chunk_size = max(1, len(items) // self.max_threads)
@@ -116,39 +110,39 @@ class ParallelProcessor(Generic[T, R]):
             items[i : i + chunk_size] for i in range(0, len(items), chunk_size)
         ]
 
-        if len(chunks) == 1:
-            # Only one chunk, use sequential processing
-            LOG.debug(
-                f"Using sequential processing for single chunk of {len(items)} items"
-            )
-            processor_func(items, results_list)
-            return
-
         LOG.debug(
             f"Using parallel processing: {len(items)} items in {len(chunks)} chunks"
         )
 
         # Process chunks in parallel
         threads: List[threading.Thread] = []
-        thread_results: List[Iterable[R]] = []
+        results_queue = queue.Queue()
+
+        def worker(chunk: List[T]):
+            """Worker function for processing chunks."""
+            try:
+                chunk_results = processor_func(chunk)
+                results_queue.put(chunk_results)
+            except Exception as e:
+                LOG.error(f"Error in parallel processing: {e}")
+                results_queue.put([])
 
         for chunk in chunks:
-            chunk_results: Iterable[R] = []
-            thread = threading.Thread(
-                target=processor_func, args=(chunk, chunk_results)
-            )
+            thread = threading.Thread(target=worker, args=(chunk,))
             threads.append(thread)
-            thread_results.append(chunk_results)
             thread.start()
 
         # Wait for all threads to complete
         for thread in threads:
             thread.join()
 
-        # Combine results thread-safely
-        with self._lock:
-            for chunk_results in thread_results:
-                results_list.extend(chunk_results)
+        # Combine results
+        all_results: List[R] = []
+        while not results_queue.empty():
+            chunk_results = results_queue.get()
+            all_results.extend(chunk_results)
+
+        return all_results
 
 
 class FamilyTreeProcessor:
@@ -162,29 +156,37 @@ class FamilyTreeProcessor:
     def __init__(
         self,
         max_threads: int = 4,
-        min_families_for_parallel: int = 5,
         cache_size: int = 1000,
+        enable_caching: bool = True,
     ):
         """
         Initialize the family tree processor.
 
         Args:
             max_threads: Maximum number of threads to use
-            min_families_for_parallel: Minimum families needed for parallel processing
             cache_size: Size of LRU caches (if enabled)
+            enable_caching: Whether to enable caching
         """
-        self.processor: ParallelProcessor = ParallelProcessor(
-            max_threads=max_threads, min_items_for_parallel=min_families_for_parallel
-        )
+        self.processor: ParallelProcessor = ParallelProcessor(max_threads=max_threads)
         self.cache_size = cache_size
+        self.enable_caching = enable_caching
         self._lock = threading.Lock()
+        self._thread_local = (
+            threading.local()
+        )  # Thread-local storage for database connections and caches
 
-        self._person_cache = LRU(cache_size)
-        self._family_cache = LRU(cache_size)
+        if enable_caching:
+            # Initialize thread-local caches
+            self._thread_local.person_cache = LRU(cache_size)
+            self._thread_local.family_cache = LRU(cache_size)
+        else:
+            self._thread_local.person_cache = None
+            self._thread_local.family_cache = None
 
     def get_person_cached(self, db, handle: str) -> Optional[Person]:
         """
-        Get person from cache or database with thread-safe caching.
+        Get person from cache or database with thread-local caching.
+        Optimized for concurrent reads (SQLite WAL mode supports this).
 
         Args:
             db: Database instance
@@ -193,17 +195,66 @@ class FamilyTreeProcessor:
         Returns:
             Person object or None
         """
-        with self._lock:
-            if handle not in self._person_cache:
-                person = db.get_person_from_handle(handle)
-                if person:
-                    self._person_cache[handle] = person
-                return person
-            return self._person_cache[handle]
+        if not self.enable_caching:
+            return db.get_person_from_handle(handle)
+
+        # Initialize thread-local cache if needed
+        if (
+            not hasattr(self._thread_local, "person_cache")
+            or self._thread_local.person_cache is None
+        ):
+            self._thread_local.person_cache = LRU(self.cache_size)
+
+        # Check cache first (thread-local, no lock needed)
+        if handle in self._thread_local.person_cache:
+            return self._thread_local.person_cache[handle]
+
+        # Cache miss - need to fetch from database and update cache
+        person = db.get_person_from_handle(handle)
+        if person:
+            # Thread-local cache, no lock needed
+            self._thread_local.person_cache[handle] = person
+
+        return person
+
+    def get_person_raw_data(self, db, handle: str) -> Optional[dict]:
+        """
+        Get raw person data from cache or database with thread-local caching.
+        Returns raw data without database connection references.
+
+        Args:
+            db: Database instance
+            handle: Person handle
+
+        Returns:
+            Raw person data dictionary or None
+        """
+        if not self.enable_caching:
+            return db.get_raw_person_data(handle)
+
+        # Initialize thread-local cache if needed
+        if (
+            not hasattr(self._thread_local, "person_raw_cache")
+            or self._thread_local.person_raw_cache is None
+        ):
+            self._thread_local.person_raw_cache = LRU(self.cache_size)
+
+        # Check cache first (thread-local, no lock needed)
+        if handle in self._thread_local.person_raw_cache:
+            return self._thread_local.person_raw_cache[handle]
+
+        # Cache miss - need to fetch from database and update cache
+        raw_data = db.get_raw_person_data(handle)
+        if raw_data:
+            # Thread-local cache, no lock needed
+            self._thread_local.person_raw_cache[handle] = raw_data
+
+        return raw_data
 
     def get_family_cached(self, db, handle: str) -> Optional[Family]:
         """
-        Get family from cache or database with thread-safe caching.
+        Get family from cache or database with thread-local caching.
+        Optimized for concurrent reads (SQLite WAL mode supports this).
 
         Args:
             db: Database instance
@@ -212,90 +263,658 @@ class FamilyTreeProcessor:
         Returns:
             Family object or None
         """
-        with self._lock:
-            if handle not in self._family_cache:
-                family = db.get_family_from_handle(handle)
-                if family:
-                    self._family_cache[handle] = family
-                return family
-            return self._family_cache[handle]
+        if not self.enable_caching:
+            return db.get_family_from_handle(handle)
+
+        # Initialize thread-local cache if needed
+        if (
+            not hasattr(self._thread_local, "family_cache")
+            or self._thread_local.family_cache is None
+        ):
+            self._thread_local.family_cache = LRU(self.cache_size)
+
+        # Check cache first (thread-local, no lock needed)
+        if handle in self._thread_local.family_cache:
+            return self._thread_local.family_cache[handle]
+
+        # Cache miss - need to fetch from database and update cache
+        family = db.get_family_from_handle(handle)
+        if family:
+            # Thread-local cache, no lock needed
+            self._thread_local.family_cache[handle] = family
+
+        return family
+
+    def get_family_raw_data(self, db, handle: str) -> Optional[dict]:
+        """
+        Get raw family data from cache or database with thread-local caching.
+        Returns raw data without database connection references.
+
+        Args:
+            db: Database instance
+            handle: Family handle
+
+        Returns:
+            Raw family data dictionary or None
+        """
+        if not self.enable_caching:
+            return db.get_raw_family_data(handle)
+
+        # Initialize thread-local cache if needed
+        if (
+            not hasattr(self._thread_local, "family_raw_cache")
+            or self._thread_local.family_raw_cache is None
+        ):
+            self._thread_local.family_raw_cache = LRU(self.cache_size)
+
+        # Check cache first (thread-local, no lock needed)
+        if handle in self._thread_local.family_raw_cache:
+            return self._thread_local.family_raw_cache[handle]
+
+        # Cache miss - need to fetch from database and update cache
+        raw_data = db.get_raw_family_data(handle)
+        if raw_data:
+            # Thread-local cache, no lock needed
+            self._thread_local.family_raw_cache[handle] = raw_data
+
+        return raw_data
 
     def clear_caches(self) -> None:
         """Clear all caches."""
-        with self._lock:
-            self._person_cache.clear()
-            self._family_cache.clear()
+        if not self.enable_caching:
+            return
+
+        # Clear thread-local caches
+        if (
+            hasattr(self._thread_local, "person_cache")
+            and self._thread_local.person_cache
+        ):
+            self._thread_local.person_cache.clear()
+        if (
+            hasattr(self._thread_local, "family_cache")
+            and self._thread_local.family_cache
+        ):
+            self._thread_local.family_cache.clear()
+        if (
+            hasattr(self._thread_local, "person_raw_cache")
+            and self._thread_local.person_raw_cache
+        ):
+            self._thread_local.person_raw_cache.clear()
+        if (
+            hasattr(self._thread_local, "family_raw_cache")
+            and self._thread_local.family_raw_cache
+        ):
+            self._thread_local.family_raw_cache.clear()
 
     def process_person_families(
         self,
         db,
         family_handles: List[str],
-        processor_func: Callable[[str, List[str]], None],
-        results: List[str],
-    ) -> None:
+    ) -> List[str]:
         """
-        Process person families in parallel.
+        Process person families to get child handles with optimized batching.
+        Uses parallel database access when supported, otherwise sequential.
 
         Args:
             db: Database instance
             family_handles: List of family handles to process
-            processor_func: Function to process each family handle
-                          Should have signature: func(family_handle: str, child_handles: List[str]) -> None
-            results: List to collect child handles
-        """
 
-        def chunk_processor(chunk: List[str], chunk_results: List[str]):
-            """Process a chunk of family handles."""
-            for family_handle in chunk:
+        Returns:
+            List of child handles
+        """
+        if not family_handles:
+            return []
+
+        # Create database wrapper for thread-local connections
+        db_wrapper = db.create_thread_safe_wrapper()
+        if db_wrapper is None:
+            # Fall back to sequential processing if no thread-safe wrapper available
+            families = []
+            for family_handle in family_handles:
                 family = self.get_family_cached(db, family_handle)
                 if family:
+                    families.append(family)
+
+            # Parallel processing for extracting child handles from families
+            def extract_children(family_batch: List[Family]) -> List[str]:
+                """Extract child handles from a batch of families."""
+                child_handles = []
+                for family in family_batch:
                     for child_ref in family.child_ref_list:
-                        chunk_results.append(child_ref.ref)
+                        child_handles.append(child_ref.ref)
+                return child_handles
 
-        self.processor.process_items(family_handles, chunk_processor, results)
+            # Use parallel processing for the data extraction
+            return self.processor.process_items(families, extract_children)
 
-    def process_child_families(
-        self, db, child_handles: List[str], results: List[str]
-    ) -> None:
+        # Check if database supports parallel reads
+        if db_wrapper.supports_parallel_reads():
+            # Use parallel processing with connection swapping
+            def parallel_family_processor(chunk: List[str]) -> List[str]:
+                """Process a chunk of family handles using thread-local connections."""
+                child_handles = []
+
+                # Use context manager to swap connection for this thread
+                with db_wrapper as thread_safe_db:
+                    for family_handle in chunk:
+                        # Now all database methods use thread-local connection automatically!
+                        raw_family = thread_safe_db.get_raw_family_data(family_handle)
+                        if raw_family and "child_ref_list" in raw_family:
+                            for child_ref in raw_family["child_ref_list"]:
+                                if "ref" in child_ref:
+                                    child_handles.append(child_ref["ref"])
+
+                return child_handles
+
+            return self.processor.process_items(
+                family_handles, parallel_family_processor
+            )
+        else:
+            # Fall back to sequential processing with batching
+            families = []
+            for family_handle in family_handles:
+                family = self.get_family_cached(db, family_handle)
+                if family:
+                    families.append(family)
+
+            # Parallel processing for extracting child handles from families
+            def extract_children(family_batch: List[Family]) -> List[str]:
+                """Extract child handles from a batch of families."""
+                child_handles = []
+                for family in family_batch:
+                    for child_ref in family.child_ref_list:
+                        child_handles.append(child_ref.ref)
+                return child_handles
+
+            # Use parallel processing for the data extraction
+            return self.processor.process_items(families, extract_children)
+
+    def process_child_families(self, db, child_handles: List[str]) -> List[str]:
         """
-        Process children to get their family handles in parallel.
+        Process children to get their family handles with optimized batching.
+        Uses parallel database access when supported, otherwise sequential.
 
         Args:
             db: Database instance
             child_handles: List of child handles to process
-            results: List to collect family handles
+
+        Returns:
+            List of family handles
+        """
+        if not child_handles:
+            return []
+
+        # Create database wrapper for thread-local connections
+        db_wrapper = db.create_thread_safe_wrapper()
+        if db_wrapper is None:
+            # Fall back to sequential processing if no thread-safe wrapper available
+            persons = []
+            for child_handle in child_handles:
+                person = self.get_person_cached(db, child_handle)
+                if person:
+                    persons.append(person)
+
+            # Parallel processing for extracting family handles from persons
+            def extract_families(person_batch: List[Person]) -> List[str]:
+                """Extract family handles from a batch of persons."""
+                family_handles = []
+                for person in person_batch:
+                    for family_handle in person.family_list:
+                        family_handles.append(family_handle)
+                return family_handles
+
+            # Use parallel processing for the data extraction
+            return self.processor.process_items(persons, extract_families)
+
+        # Check if database supports parallel reads
+        if db_wrapper.supports_parallel_reads():
+            # Use parallel processing with connection swapping
+            def parallel_person_processor(chunk: List[str]) -> List[str]:
+                """Process a chunk of person handles using thread-local connections."""
+                family_handles = []
+
+                # Use context manager to swap connection for this thread
+                with db_wrapper as thread_safe_db:
+                    for person_handle in chunk:
+                        # Now all database methods use thread-local connection automatically!
+                        raw_person = thread_safe_db.get_raw_person_data(person_handle)
+                        if raw_person and "family_list" in raw_person:
+                            for family_handle in raw_person["family_list"]:
+                                family_handles.append(family_handle)
+
+                return family_handles
+
+            return self.processor.process_items(
+                child_handles, parallel_person_processor
+            )
+        else:
+            # Fall back to sequential processing with batching
+            persons = []
+            for child_handle in child_handles:
+                person = self.get_person_cached(db, child_handle)
+                if person:
+                    persons.append(person)
+
+            # Parallel processing for extracting family handles from persons
+            def extract_families(person_batch: List[Person]) -> List[str]:
+                """Extract family handles from a batch of persons."""
+                family_handles = []
+                for person in person_batch:
+                    for family_handle in person.family_list:
+                        family_handles.append(family_handle)
+                return family_handles
+
+            # Use parallel processing for the data extraction
+            return self.processor.process_items(persons, extract_families)
+
+    def parallel_descendant_traversal(
+        self,
+        db,
+        root_items: List[Any],
+        get_children_func: Callable[[Any], List[str]],
+        get_item_func: Callable[[str], Optional[Any]],
+        max_depth: Optional[int] = None,
+    ) -> Set[str]:
+        """
+        Perform optimized descendant traversal starting from multiple root items.
+        Uses sequential database access with parallel processing for data manipulation.
+
+        Args:
+            db: Database instance
+            root_items: List of root items to start traversal from
+            get_children_func: Function to get children of an item
+            get_item_func: Function to get item by handle
+            max_depth: Maximum depth to traverse (None for unlimited)
+
+        Returns:
+            Set of descendant handles
+        """
+        if not root_items:
+            return set()
+
+        descendant_handles: Set[str] = set()
+        visited: Set[str] = set()
+
+        # Extract handles from root items
+        root_handles = []
+        for item in root_items:
+            item_handle = getattr(item, "handle", None)
+            if item_handle:
+                root_handles.append(item_handle)
+
+        if not root_handles:
+            return set()
+
+        # Use BFS with optimized batching
+        work_queue = deque()
+        for handle in root_handles:
+            work_queue.append((handle, 0))  # (handle, depth)
+
+        while work_queue:
+            # Process current level in batches for better performance
+            current_level = []
+            current_depth = work_queue[0][1] if work_queue else 0
+
+            # Collect all items at the current depth level
+            while work_queue and work_queue[0][1] == current_depth:
+                handle, depth = work_queue.popleft()
+
+                if max_depth is not None and depth > max_depth:
+                    continue
+
+                if not handle or handle in visited:
+                    continue
+
+                visited.add(handle)
+                current_level.append((handle, depth))
+
+            if not current_level:
+                continue
+
+            # Process current level items
+            level_results = []
+            next_level_handles = []
+
+            for handle, depth in current_level:
+                # Add to results if not root
+                if depth > 0:
+                    descendant_handles.add(handle)
+
+                # Get the item and its children
+                item = get_item_func(handle)
+                if item:
+                    child_handles = get_children_func(item)
+                    if child_handles:
+                        for child_handle in child_handles:
+                            if child_handle not in visited:
+                                next_level_handles.append((child_handle, depth + 1))
+
+            # Add next level to queue
+            for item in next_level_handles:
+                work_queue.append(item)
+
+        return descendant_handles
+
+    def parallel_ancestor_traversal(
+        self,
+        db,
+        root_items: List[Any],
+        get_parents_func: Callable[[Any], List[str]],
+        get_item_func: Callable[[str], Optional[Any]],
+        max_depth: Optional[int] = None,
+    ) -> Set[str]:
+        """
+        Perform optimized ancestor traversal starting from multiple root items.
+        Uses sequential database access with parallel processing for data manipulation.
+
+        Args:
+            db: Database instance
+            root_items: List of root items to start traversal from
+            get_parents_func: Function to get parents of an item
+            get_item_func: Function to get item by handle
+            max_depth: Maximum depth to traverse (None for unlimited)
+
+        Returns:
+            Set of ancestor handles
+        """
+        if not root_items:
+            return set()
+
+        ancestor_handles: Set[str] = set()
+        visited: Set[str] = set()
+
+        # Extract handles from root items
+        root_handles = []
+        for item in root_items:
+            item_handle = getattr(item, "handle", None)
+            if item_handle:
+                root_handles.append(item_handle)
+
+        if not root_handles:
+            return set()
+
+        # Use BFS with optimized batching
+        work_queue = deque()
+        for handle in root_handles:
+            work_queue.append((handle, 0))  # (handle, depth)
+
+        while work_queue:
+            # Process current level in batches for better performance
+            current_level = []
+            current_depth = work_queue[0][1] if work_queue else 0
+
+            # Collect all items at the current depth level
+            while work_queue and work_queue[0][1] == current_depth:
+                handle, depth = work_queue.popleft()
+
+                if max_depth is not None and depth > max_depth:
+                    continue
+
+                if not handle or handle in visited:
+                    continue
+
+                visited.add(handle)
+                current_level.append((handle, depth))
+
+            if not current_level:
+                continue
+
+            # Process current level items
+            level_results = []
+            next_level_handles = []
+
+            for handle, depth in current_level:
+                # Add to results if not root
+                if depth > 0:
+                    ancestor_handles.add(handle)
+
+                # Get the item and its parents
+                item = get_item_func(handle)
+                if item:
+                    parent_handles = get_parents_func(item)
+                    if parent_handles:
+                        for parent_handle in parent_handles:
+                            if parent_handle not in visited:
+                                next_level_handles.append((parent_handle, depth + 1))
+
+            # Add next level to queue
+            for item in next_level_handles:
+                work_queue.append(item)
+
+        return ancestor_handles
+
+    def get_person_parents(self, db, person: Person) -> List[str]:
+        """
+        Get parent handles for a person by traversing their families.
+        Uses optimized database access with caching.
+
+        Args:
+            db: Database instance
+            person: Person object
+
+        Returns:
+            List of parent handles
+        """
+        parent_handles = []
+
+        # Get families where this person is a child
+        for family_handle in person.parent_family_list:
+            family = self.get_family_cached(db, family_handle)
+            if family:
+                # Add father and mother handles
+                if family.father_handle:
+                    parent_handles.append(family.father_handle)
+                if family.mother_handle:
+                    parent_handles.append(family.mother_handle)
+
+        return parent_handles
+
+    def get_person_ancestors(
+        self,
+        db,
+        persons: List[Person],
+        max_depth: Optional[int] = None,
+    ) -> Set[str]:
+        """
+        Get all ancestors of the given persons up to the specified depth.
+        This is a convenience method that combines ancestor traversal with person-specific logic.
+
+        Args:
+            db: Database instance
+            persons: List of persons to find ancestors for
+            max_depth: Maximum depth to traverse (None for unlimited)
+
+        Returns:
+            Set of ancestor handles
         """
 
-        def chunk_processor(chunk: List[str], chunk_results: List[str]):
-            """Process a chunk of child handles."""
-            for child_handle in chunk:
-                child = self.get_person_cached(db, child_handle)
-                if child:
-                    for family_handle in child.family_list:
-                        chunk_results.append(family_handle)
+        def get_parents_func(person: Person) -> List[str]:
+            return self.get_person_parents(db, person)
 
-        self.processor.process_items(child_handles, chunk_processor, results)
+        def get_item_func(handle: str) -> Optional[Person]:
+            return self.get_person_cached(db, handle)
+
+        return self.parallel_ancestor_traversal(
+            db=db,
+            root_items=persons,
+            get_parents_func=get_parents_func,
+            get_item_func=get_item_func,
+            max_depth=max_depth,
+        )
+
+    def get_person_descendants(
+        self,
+        db,
+        persons: List[Person],
+        max_depth: Optional[int] = None,
+    ) -> Set[str]:
+        """
+        Get all descendants of the given persons up to the specified depth.
+        This is a convenience method that combines descendant traversal with person-specific logic.
+
+        Args:
+            db: Database instance
+            persons: List of persons to find descendants for
+            max_depth: Maximum depth to traverse (None for unlimited)
+
+        Returns:
+            Set of descendant handles
+        """
+
+        def get_children_func(person: Person) -> List[str]:
+            return self.get_person_children(db, person)
+
+        def get_item_func(handle: str) -> Optional[Person]:
+            return self.get_person_cached(db, handle)
+
+        return self.parallel_descendant_traversal(
+            db=db,
+            root_items=persons,
+            get_children_func=get_children_func,
+            get_item_func=get_item_func,
+            max_depth=max_depth,
+        )
+
+    def get_family_descendants(
+        self,
+        db,
+        families: List[Family],
+        max_depth: Optional[int] = None,
+    ) -> Set[str]:
+        """
+        Get all descendant families of the given families up to the specified depth.
+        This is a convenience method that combines descendant traversal with family-specific logic.
+
+        Args:
+            db: Database instance
+            families: List of families to find descendants for
+            max_depth: Maximum depth to traverse (None for unlimited)
+
+        Returns:
+            Set of descendant family handles
+        """
+
+        def get_children_func(family: Family) -> List[str]:
+            return self.get_family_children(db, family)
+
+        def get_item_func(handle: str) -> Optional[Family]:
+            return self.get_family_cached(db, handle)
+
+        return self.parallel_descendant_traversal(
+            db=db,
+            root_items=families,
+            get_children_func=get_children_func,
+            get_item_func=get_item_func,
+            max_depth=max_depth,
+        )
+
+    def get_family_children(self, db, family: Family) -> List[str]:
+        """
+        Get child family handles for a family by traversing their children's families.
+        Uses optimized database access with caching.
+
+        Args:
+            db: Database instance
+            family: Family object
+
+        Returns:
+            List of child family handles
+        """
+        if not family:
+            return []
+
+        # Get child handles from this family
+        child_handles = [child_ref.ref for child_ref in family.child_ref_list]
+
+        # Get family handles for all children in parallel
+        if child_handles:
+            return self.process_child_families(db, child_handles)
+
+        return []
+
+    def get_person_children(self, db, person: Person) -> List[str]:
+        """
+        Get child handles for a person by traversing their families.
+        Uses optimized database access with caching.
+
+        Args:
+            db: Database instance
+            person: Person object
+
+        Returns:
+            List of child handles
+        """
+        if not person:
+            return []
+
+        # Get family handles for this person
+        family_handles = list(person.family_list)
+
+        # Get child handles from all families in parallel
+        if family_handles:
+            return self.process_person_families(db, family_handles)
+
+        return []
+
+    def is_ancestor_of(
+        self,
+        db,
+        potential_ancestor: Person,
+        potential_descendant: Person,
+        max_depth: Optional[int] = None,
+    ) -> bool:
+        """
+        Check if one person is an ancestor of another.
+        Uses optimized ancestor traversal to determine the relationship.
+
+        Args:
+            db: Database instance
+            potential_ancestor: Person to check if they are an ancestor
+            potential_descendant: Person to check if they are a descendant
+            max_depth: Maximum depth to search (None for unlimited)
+
+        Returns:
+            True if potential_ancestor is an ancestor of potential_descendant
+        """
+        # Get all ancestors of the potential descendant
+        ancestors = self.get_person_ancestors(
+            db=db,
+            persons=[potential_descendant],
+            max_depth=max_depth,
+        )
+
+        # Check if the potential ancestor is in the ancestor set
+        return potential_ancestor.handle in ancestors
 
 
 # Convenience functions for common use cases
-def create_family_tree_processor(**kwargs) -> FamilyTreeProcessor:
+def create_family_tree_processor(
+    max_threads: int = 4,
+    enable_caching: bool = True,
+    cache_size: int = 1000,
+) -> FamilyTreeProcessor:
     """
     Create a FamilyTreeProcessor with sensible defaults.
 
     Args:
-        **kwargs: Arguments to pass to FamilyTreeProcessor constructor
+        max_threads: Maximum number of worker threads for parallel processing
+        enable_caching: Whether to enable thread-local caching
+        cache_size: Size of the LRU cache for each thread
 
     Returns:
         Configured FamilyTreeProcessor instance
     """
-    return FamilyTreeProcessor(**kwargs)
+    return FamilyTreeProcessor(
+        max_threads=max_threads,
+        enable_caching=enable_caching,
+        cache_size=cache_size,
+    )
 
 
 def process_in_parallel(
     items: List[T],
-    processor_func: Callable[[List[T], List[R]], None],
+    processor_func: Callable[[List[T]], List[R]],
     max_threads: int = 4,
-    min_items_for_parallel: int = 4,
 ) -> List[R]:
     """
     Convenience function to process items in parallel.
@@ -304,14 +923,120 @@ def process_in_parallel(
         items: Items to process
         processor_func: Processing function
         max_threads: Maximum threads to use
-        min_items_for_parallel: Minimum items for parallel processing
 
     Returns:
         List of results
     """
-    processor: ParallelProcessor = ParallelProcessor(
-        max_threads, min_items_for_parallel
+    processor: ParallelProcessor = ParallelProcessor(max_threads)
+    return processor.process_items(items, processor_func)
+
+
+def is_ancestor_of(
+    db,
+    potential_ancestor: Person,
+    potential_descendant: Person,
+    max_depth: Optional[int] = None,
+    max_threads: int = 4,
+) -> bool:
+    """
+    Convenience function to check if one person is an ancestor of another.
+    Creates a FamilyTreeProcessor and uses its is_ancestor_of method.
+
+    Args:
+        db: Database instance
+        potential_ancestor: Person to check if they are an ancestor
+        potential_descendant: Person to check if they are a descendant
+        max_depth: Maximum depth to search (None for unlimited)
+        max_threads: Maximum number of threads to use for processing
+
+    Returns:
+        True if potential_ancestor is an ancestor of potential_descendant
+    """
+    processor = create_family_tree_processor(max_threads=max_threads)
+    return processor.is_ancestor_of(
+        db=db,
+        potential_ancestor=potential_ancestor,
+        potential_descendant=potential_descendant,
+        max_depth=max_depth,
     )
-    results: List[R] = []
-    processor.process_items(items, processor_func, results)
-    return results
+
+
+def get_person_ancestors(
+    db,
+    persons: List[Person],
+    max_depth: Optional[int] = None,
+    max_threads: int = 4,
+) -> Set[str]:
+    """
+    Convenience function to get all ancestors of the given persons.
+    Creates a FamilyTreeProcessor and uses its get_person_ancestors method.
+
+    Args:
+        db: Database instance
+        persons: List of persons to find ancestors for
+        max_depth: Maximum depth to traverse (None for unlimited)
+        max_threads: Maximum number of threads to use for processing
+
+    Returns:
+        Set of ancestor handles
+    """
+    processor = create_family_tree_processor(max_threads=max_threads)
+    return processor.get_person_ancestors(
+        db=db,
+        persons=persons,
+        max_depth=max_depth,
+    )
+
+
+def get_person_descendants(
+    db,
+    persons: List[Person],
+    max_depth: Optional[int] = None,
+    max_threads: int = 4,
+) -> Set[str]:
+    """
+    Convenience function to get all descendants of the given persons.
+    Creates a FamilyTreeProcessor and uses its get_person_descendants method.
+
+    Args:
+        db: Database instance
+        persons: List of persons to find descendants for
+        max_depth: Maximum depth to traverse (None for unlimited)
+        max_threads: Maximum number of threads to use for processing
+
+    Returns:
+        Set of descendant handles
+    """
+    processor = create_family_tree_processor(max_threads=max_threads)
+    return processor.get_person_descendants(
+        db=db,
+        persons=persons,
+        max_depth=max_depth,
+    )
+
+
+def get_family_descendants(
+    db,
+    families: List[Family],
+    max_depth: Optional[int] = None,
+    max_threads: int = 4,
+) -> Set[str]:
+    """
+    Convenience function to get all descendants of the given families.
+    Creates a FamilyTreeProcessor and uses its get_family_descendants method.
+
+    Args:
+        db: Database instance
+        families: List of families to find descendants for
+        max_depth: Maximum depth to traverse (None for unlimited)
+        max_threads: Maximum number of threads to use for processing
+
+    Returns:
+        Set of descendant family handles
+    """
+    processor = create_family_tree_processor(max_threads=max_threads)
+    return processor.get_family_descendants(
+        db=db,
+        families=families,
+        max_depth=max_depth,
+    )

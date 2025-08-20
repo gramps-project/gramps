@@ -34,6 +34,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.parallel import get_person_ancestors
 
 
 # -------------------------------------------------------------------------
@@ -64,13 +65,20 @@ class IsAncestorOf(Rule):
         self.db = db
         self.selected_handles: Set[str] = set()
         try:
-            first = False if int(self.list[1]) else True
+            inclusive = False if int(self.list[1]) else True
         except IndexError:
-            first = True
+            inclusive = True
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
-            self.init_ancestor_list(db, root_person, first)
-        except:
+            if root_person:
+                # Use parallel ancestor functionality for better performance
+                ancestors = get_person_ancestors(db, [root_person])
+                self.selected_handles.update(ancestors)
+
+                # Add the root person if inclusive mode
+                if inclusive:
+                    self.selected_handles.add(root_person.handle)
+        except Exception:
             pass
 
     def reset(self):
@@ -78,26 +86,3 @@ class IsAncestorOf(Rule):
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
-
-    def init_ancestor_list(
-        self, db: Database, person: Person | None, first: bool
-    ) -> None:
-        if not person:
-            return
-        if person.handle in self.selected_handles:
-            return
-        if not first:
-            self.selected_handles.add(person.handle)
-        fam_id = (
-            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
-        )
-        if fam_id:
-            fam = db.get_family_from_handle(fam_id)
-            if fam:
-                f_id = fam.father_handle
-                m_id = fam.mother_handle
-
-                if f_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(f_id), False)
-                if m_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(m_id), False)

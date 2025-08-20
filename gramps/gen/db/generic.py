@@ -2822,5 +2822,43 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         elif serializer_name == "json":
             self.serializer = JSONSerializer
 
+    def supports_parallel_reads(self):
+        """
+        Check if this database backend supports parallel read operations.
+
+        Returns:
+            True if parallel reads are supported
+        """
+        return False
+
+    def get_thread_connection(self):
+        """
+        Get a thread-local database connection for parallel operations.
+
+        This method should be implemented by database backends that support
+        parallel reads. It returns a thread-local connection that can be used
+        for concurrent operations.
+
+        Returns:
+            Thread-local connection object or None if not available
+        """
+        return None
+
+    def create_thread_safe_wrapper(self):
+        """
+        Create a thread-safe wrapper for this database.
+
+        This method creates a wrapper that can be used as a context manager
+        to temporarily swap the database connection with a thread-local one.
+
+        Returns:
+            Thread-safe database wrapper or None if not supported
+        """
+        if self.supports_parallel_reads():
+            from ..utils.parallel import ThreadLocalDatabaseWrapper
+
+            return ThreadLocalDatabaseWrapper(self)
+        return None
+
 
 Database = DbGeneric

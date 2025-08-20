@@ -36,6 +36,7 @@ from __future__ import annotations
 # -------------------------------------------------------------------------
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
+from ....utils.parallel import get_person_ancestors
 
 # -------------------------------------------------------------------------
 #
@@ -67,35 +68,45 @@ class IsAncestorOf(Rule):
 
     def prepare(self, db: Database, user):
         self.selected_handles: Set[str] = set()
-        first = False if int(self.list[1]) else True
+        try:
+            inclusive = False if int(self.list[1]) else True
+        except IndexError:
+            inclusive = True
+
         root_family = db.get_family_from_gramps_id(self.list[0])
-        self.init_list(db, root_family, first)
+        if root_family:
+            # Get the parents of the root family
+            parents = []
+            if root_family.father_handle:
+                father = db.get_person_from_handle(root_family.father_handle)
+                if father:
+                    parents.append(father)
+            if root_family.mother_handle:
+                mother = db.get_person_from_handle(root_family.mother_handle)
+                if mother:
+                    parents.append(mother)
+
+            if parents:
+                # Use parallel ancestor functionality to get all ancestor persons
+                ancestor_person_handles = get_person_ancestors(db, parents)
+
+                # Convert ancestor persons to their parent families
+                ancestor_families = set()
+                for person_handle in ancestor_person_handles:
+                    person = db.get_person_from_handle(person_handle)
+                    if person and person.parent_family_list:
+                        # Add the family where this person is a child
+                        family_handle = person.parent_family_list[0]
+                        ancestor_families.add(family_handle)
+
+                self.selected_handles.update(ancestor_families)
+
+                # Add the root family if inclusive mode
+                if inclusive:
+                    self.selected_handles.add(root_family.handle)
 
     def reset(self):
         self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
-
-    def init_list(self, db: Database, family: Family | None, first: bool) -> None:
-        """
-        Initialise family handle list.
-        """
-        if not family:
-            return
-        if family.handle in self.selected_handles:
-            return
-        if not first:
-            self.selected_handles.add(family.handle)
-
-        for parent_handle in [family.father_handle, family.mother_handle]:
-            if parent_handle:
-                parent = db.get_person_from_handle(parent_handle)
-                family_handle = (
-                    parent.parent_family_list[0]
-                    if len(parent.parent_family_list) > 0
-                    else None
-                )
-                if family_handle:
-                    parent_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, parent_family, False)

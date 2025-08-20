@@ -72,6 +72,8 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
                 first = True
         except IndexError:
             first = True
+        # For backward compatibility, max_depth is optional and defaults to None
+        max_depth = None
 
         self.filt = MatchesFilter(self.list[0:1])
         self.filt.requestprepare(db, user)
@@ -85,7 +87,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
             if user:
                 user.step_progress()
             if self.filt.apply_to_one(db, person):
-                self.init_list(person, first)
+                self.init_list(person, first, max_depth)
         if user:
             user.end_progress()
 
