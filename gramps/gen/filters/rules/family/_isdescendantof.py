@@ -72,8 +72,6 @@ class IsDescendantOf(Rule):
         # Initialize parallel processor with configurable settings
         self._parallel_processor = FamilyTreeProcessor(
             max_threads=4,
-            enable_caching=True,
-            cache_size=1000,
         )
 
     def prepare(self, db: Database, user):
@@ -98,7 +96,6 @@ class IsDescendantOf(Rule):
 
     def reset(self):
         self.selected_handles.clear()
-        self._parallel_processor.clear_caches()
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
@@ -134,7 +131,7 @@ class IsDescendantOf(Rule):
 
                 # Use parallel traversal for descendant families with max_depth
                 family_objects = [
-                    self._parallel_processor.get_family_cached(db, handle)
+                    self.db.get_family_from_handle(handle)
                     for handle in family_handles
                     if handle
                 ]

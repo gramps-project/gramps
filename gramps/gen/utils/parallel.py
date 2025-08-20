@@ -46,7 +46,6 @@ import queue
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 from ..lib import Person, Family
-from .lru import LRU
 
 
 _ = glocale.translation.gettext
@@ -150,201 +149,21 @@ class FamilyTreeProcessor:
     Specialized parallel processor for family tree operations.
 
     This class provides optimized parallel processing for common family tree
-    operations like descendant traversal, with built-in caching and thread safety.
+    operations like descendant traversal, with thread safety.
     """
 
     def __init__(
         self,
         max_threads: int = 4,
-        cache_size: int = 1000,
-        enable_caching: bool = True,
     ):
         """
         Initialize the family tree processor.
 
         Args:
             max_threads: Maximum number of threads to use
-            cache_size: Size of LRU caches (if enabled)
-            enable_caching: Whether to enable caching
         """
         self.processor: ParallelProcessor = ParallelProcessor(max_threads=max_threads)
-        self.cache_size = cache_size
-        self.enable_caching = enable_caching
         self._lock = threading.Lock()
-        self._thread_local = (
-            threading.local()
-        )  # Thread-local storage for database connections and caches
-
-        if enable_caching:
-            # Initialize thread-local caches
-            self._thread_local.person_cache = LRU(cache_size)
-            self._thread_local.family_cache = LRU(cache_size)
-        else:
-            self._thread_local.person_cache = None
-            self._thread_local.family_cache = None
-
-    def get_person_cached(self, db, handle: str) -> Optional[Person]:
-        """
-        Get person from cache or database with thread-local caching.
-        Optimized for concurrent reads (SQLite WAL mode supports this).
-
-        Args:
-            db: Database instance
-            handle: Person handle
-
-        Returns:
-            Person object or None
-        """
-        if not self.enable_caching:
-            return db.get_person_from_handle(handle)
-
-        # Initialize thread-local cache if needed
-        if (
-            not hasattr(self._thread_local, "person_cache")
-            or self._thread_local.person_cache is None
-        ):
-            self._thread_local.person_cache = LRU(self.cache_size)
-
-        # Check cache first (thread-local, no lock needed)
-        if handle in self._thread_local.person_cache:
-            return self._thread_local.person_cache[handle]
-
-        # Cache miss - need to fetch from database and update cache
-        person = db.get_person_from_handle(handle)
-        if person:
-            # Thread-local cache, no lock needed
-            self._thread_local.person_cache[handle] = person
-
-        return person
-
-    def get_person_raw_data(self, db, handle: str) -> Optional[dict]:
-        """
-        Get raw person data from cache or database with thread-local caching.
-        Returns raw data without database connection references.
-
-        Args:
-            db: Database instance
-            handle: Person handle
-
-        Returns:
-            Raw person data dictionary or None
-        """
-        if not self.enable_caching:
-            return db.get_raw_person_data(handle)
-
-        # Initialize thread-local cache if needed
-        if (
-            not hasattr(self._thread_local, "person_raw_cache")
-            or self._thread_local.person_raw_cache is None
-        ):
-            self._thread_local.person_raw_cache = LRU(self.cache_size)
-
-        # Check cache first (thread-local, no lock needed)
-        if handle in self._thread_local.person_raw_cache:
-            return self._thread_local.person_raw_cache[handle]
-
-        # Cache miss - need to fetch from database and update cache
-        raw_data = db.get_raw_person_data(handle)
-        if raw_data:
-            # Thread-local cache, no lock needed
-            self._thread_local.person_raw_cache[handle] = raw_data
-
-        return raw_data
-
-    def get_family_cached(self, db, handle: str) -> Optional[Family]:
-        """
-        Get family from cache or database with thread-local caching.
-        Optimized for concurrent reads (SQLite WAL mode supports this).
-
-        Args:
-            db: Database instance
-            handle: Family handle
-
-        Returns:
-            Family object or None
-        """
-        if not self.enable_caching:
-            return db.get_family_from_handle(handle)
-
-        # Initialize thread-local cache if needed
-        if (
-            not hasattr(self._thread_local, "family_cache")
-            or self._thread_local.family_cache is None
-        ):
-            self._thread_local.family_cache = LRU(self.cache_size)
-
-        # Check cache first (thread-local, no lock needed)
-        if handle in self._thread_local.family_cache:
-            return self._thread_local.family_cache[handle]
-
-        # Cache miss - need to fetch from database and update cache
-        family = db.get_family_from_handle(handle)
-        if family:
-            # Thread-local cache, no lock needed
-            self._thread_local.family_cache[handle] = family
-
-        return family
-
-    def get_family_raw_data(self, db, handle: str) -> Optional[dict]:
-        """
-        Get raw family data from cache or database with thread-local caching.
-        Returns raw data without database connection references.
-
-        Args:
-            db: Database instance
-            handle: Family handle
-
-        Returns:
-            Raw family data dictionary or None
-        """
-        if not self.enable_caching:
-            return db.get_raw_family_data(handle)
-
-        # Initialize thread-local cache if needed
-        if (
-            not hasattr(self._thread_local, "family_raw_cache")
-            or self._thread_local.family_raw_cache is None
-        ):
-            self._thread_local.family_raw_cache = LRU(self.cache_size)
-
-        # Check cache first (thread-local, no lock needed)
-        if handle in self._thread_local.family_raw_cache:
-            return self._thread_local.family_raw_cache[handle]
-
-        # Cache miss - need to fetch from database and update cache
-        raw_data = db.get_raw_family_data(handle)
-        if raw_data:
-            # Thread-local cache, no lock needed
-            self._thread_local.family_raw_cache[handle] = raw_data
-
-        return raw_data
-
-    def clear_caches(self) -> None:
-        """Clear all caches."""
-        if not self.enable_caching:
-            return
-
-        # Clear thread-local caches
-        if (
-            hasattr(self._thread_local, "person_cache")
-            and self._thread_local.person_cache
-        ):
-            self._thread_local.person_cache.clear()
-        if (
-            hasattr(self._thread_local, "family_cache")
-            and self._thread_local.family_cache
-        ):
-            self._thread_local.family_cache.clear()
-        if (
-            hasattr(self._thread_local, "person_raw_cache")
-            and self._thread_local.person_raw_cache
-        ):
-            self._thread_local.person_raw_cache.clear()
-        if (
-            hasattr(self._thread_local, "family_raw_cache")
-            and self._thread_local.family_raw_cache
-        ):
-            self._thread_local.family_raw_cache.clear()
 
     def process_person_families(
         self,
@@ -371,7 +190,7 @@ class FamilyTreeProcessor:
             # Fall back to sequential processing if no thread-safe wrapper available
             families = []
             for family_handle in family_handles:
-                family = self.get_family_cached(db, family_handle)
+                family = db.get_family_from_handle(family_handle)
                 if family:
                     families.append(family)
 
@@ -413,7 +232,7 @@ class FamilyTreeProcessor:
             # Fall back to sequential processing with batching
             families = []
             for family_handle in family_handles:
-                family = self.get_family_cached(db, family_handle)
+                family = db.get_family_from_handle(family_handle)
                 if family:
                     families.append(family)
 
@@ -450,7 +269,7 @@ class FamilyTreeProcessor:
             # Fall back to sequential processing if no thread-safe wrapper available
             persons = []
             for child_handle in child_handles:
-                person = self.get_person_cached(db, child_handle)
+                person = db.get_person_from_handle(child_handle)
                 if person:
                     persons.append(person)
 
@@ -491,7 +310,7 @@ class FamilyTreeProcessor:
             # Fall back to sequential processing with batching
             persons = []
             for child_handle in child_handles:
-                person = self.get_person_cached(db, child_handle)
+                person = db.get_person_from_handle(child_handle)
                 if person:
                     persons.append(person)
 
@@ -686,7 +505,7 @@ class FamilyTreeProcessor:
     def get_person_parents(self, db, person: Person) -> List[str]:
         """
         Get parent handles for a person by traversing their families.
-        Uses optimized database access with caching.
+        Uses optimized database access.
 
         Args:
             db: Database instance
@@ -699,7 +518,7 @@ class FamilyTreeProcessor:
 
         # Get families where this person is a child
         for family_handle in person.parent_family_list:
-            family = self.get_family_cached(db, family_handle)
+            family = db.get_family_from_handle(family_handle)
             if family:
                 # Add father and mother handles
                 if family.father_handle:
@@ -732,7 +551,7 @@ class FamilyTreeProcessor:
             return self.get_person_parents(db, person)
 
         def get_item_func(handle: str) -> Optional[Person]:
-            return self.get_person_cached(db, handle)
+            return db.get_person_from_handle(handle)
 
         return self.parallel_ancestor_traversal(
             db=db,
@@ -765,7 +584,7 @@ class FamilyTreeProcessor:
             return self.get_person_children(db, person)
 
         def get_item_func(handle: str) -> Optional[Person]:
-            return self.get_person_cached(db, handle)
+            return db.get_person_from_handle(handle)
 
         return self.parallel_descendant_traversal(
             db=db,
@@ -798,7 +617,7 @@ class FamilyTreeProcessor:
             return self.get_family_children(db, family)
 
         def get_item_func(handle: str) -> Optional[Family]:
-            return self.get_family_cached(db, handle)
+            return db.get_family_from_handle(handle)
 
         return self.parallel_descendant_traversal(
             db=db,
@@ -811,7 +630,7 @@ class FamilyTreeProcessor:
     def get_family_children(self, db, family: Family) -> List[str]:
         """
         Get child family handles for a family by traversing their children's families.
-        Uses optimized database access with caching.
+        Uses optimized database access.
 
         Args:
             db: Database instance
@@ -835,7 +654,7 @@ class FamilyTreeProcessor:
     def get_person_children(self, db, person: Person) -> List[str]:
         """
         Get child handles for a person by traversing their families.
-        Uses optimized database access with caching.
+        Uses optimized database access.
 
         Args:
             db: Database instance
@@ -890,24 +709,18 @@ class FamilyTreeProcessor:
 # Convenience functions for common use cases
 def create_family_tree_processor(
     max_threads: int = 4,
-    enable_caching: bool = True,
-    cache_size: int = 1000,
 ) -> FamilyTreeProcessor:
     """
     Create a FamilyTreeProcessor with sensible defaults.
 
     Args:
         max_threads: Maximum number of worker threads for parallel processing
-        enable_caching: Whether to enable thread-local caching
-        cache_size: Size of the LRU cache for each thread
 
     Returns:
         Configured FamilyTreeProcessor instance
     """
     return FamilyTreeProcessor(
         max_threads=max_threads,
-        enable_caching=enable_caching,
-        cache_size=cache_size,
     )
 
 
