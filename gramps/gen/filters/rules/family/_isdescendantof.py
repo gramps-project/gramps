@@ -28,6 +28,8 @@ Rule that checks for a family that is a descendant of a specified family.
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+from collections import deque
+from typing import Set, List
 
 # -------------------------------------------------------------------------
 #
@@ -36,13 +38,13 @@ from __future__ import annotations
 # -------------------------------------------------------------------------
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
+from ....utils.parallel import FamilyTreeProcessor
 
 # -------------------------------------------------------------------------
 #
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Family
 from ....db import Database
 
@@ -60,16 +62,37 @@ class IsDescendantOf(Rule):
     Rule that checks for a family that is a descendant of a specified family.
     """
 
-    labels = [_("ID:"), _("Inclusive:")]
+    labels = [_("ID:"), _("Inclusive:"), _("Max Depth:")]
     name = _("Descendant families of <family>")
     category = _("General filters")
     description = _("Matches descendant families of the specified family")
 
+    def __init__(self, list):
+        super().__init__(list)
+        # Initialize parallel processor with configurable settings
+        self._parallel_processor = FamilyTreeProcessor(
+            max_threads=4,
+        )
+
     def prepare(self, db: Database, user):
+        self.db = db
         self.selected_handles: Set[str] = set()
-        first = False if int(self.list[1]) else True
-        root_family = db.get_family_from_gramps_id(self.list[0])
-        self.init_list(db, root_family, first)
+        try:
+            first = False if int(self.list[1]) else True
+        except IndexError:
+            first = True
+        try:
+            max_depth = (
+                int(self.list[2]) if len(self.list) > 2 and self.list[2] else None
+            )
+        except (IndexError, ValueError):
+            max_depth = None
+        try:
+            root_family = db.get_family_from_gramps_id(self.list[0])
+            if root_family:
+                self.init_list(db, root_family, first, max_depth)
+        except:
+            pass
 
     def reset(self):
         self.selected_handles.clear()
@@ -77,18 +100,68 @@ class IsDescendantOf(Rule):
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
 
-    def init_list(self, db: Database, family: Family | None, first: bool) -> None:
+    def init_list(
+        self, db: Database, root_family: Family, first: bool, max_depth: int | None
+    ) -> None:
         """
-        Initialise family handle list.
+        Optimized descendant family traversal using parallel breadth-first search
+        with caching and parallel queue processing.
+        """
+        if not root_family:
+            return
+
+        # Use parallel descendant traversal for better performance
+        if not first:
+            # Get all descendant families using parallel traversal with max_depth
+            descendant_handles = self._parallel_processor.get_family_descendants(
+                db=db,
+                families=[root_family],
+                max_depth=max_depth,
+            )
+            self.selected_handles.update(descendant_handles)
+        else:
+            # For inclusive mode, we need to process the root family's children
+            # and then get their families in parallel
+            child_handles = [child_ref.ref for child_ref in root_family.child_ref_list]
+            if child_handles:
+                # Get family handles for all children in parallel
+                family_handles = self._parallel_processor.process_child_families(
+                    db, child_handles
+                )
+
+                # Use parallel traversal for descendant families with max_depth
+                family_objects = [
+                    self.db.get_family_from_handle(handle)
+                    for handle in family_handles
+                    if handle
+                ]
+                descendant_handles = self._parallel_processor.get_family_descendants(
+                    db=db,
+                    families=family_objects,
+                    max_depth=max_depth,
+                )
+                self.selected_handles.update(descendant_handles)
+
+    def _get_family_children(self, family: Family) -> List[str]:
+        """
+        Get child handles from a family for parallel traversal.
+
+        Args:
+            family: Family object
+
+        Returns:
+            List of child handles
         """
         if not family:
-            return
-        if not first:
-            self.selected_handles.add(family.handle)
+            return []
 
-        for child_ref in family.child_ref_list:
-            child = db.get_person_from_handle(child_ref.ref)
-            if child:
-                for family_handle in child.family_list:
-                    child_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, child_family, False)
+        # Get child handles
+        child_handles = [child_ref.ref for child_ref in family.child_ref_list]
+
+        # Get family handles for these children in parallel
+        if child_handles:
+            return self._parallel_processor.process_child_families(
+                self.db, child_handles
+            )
+
+        return []

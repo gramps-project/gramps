@@ -33,6 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.parallel import create_family_tree_processor
 
 
 # -------------------------------------------------------------------------
@@ -68,29 +69,62 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         self.selected_handles: Set[PersonHandle] = set()
         person = db.get_person_from_gramps_id(self.list[0])
         if person:
-            root_handle = person.handle
-            if root_handle:
-                self.init_ancestor_list(root_handle)
+            try:
+                min_generations = int(self.list[1])
+                # Use parallel ancestor functionality with unlimited depth,
+                # then filter by generation
+                processor = create_family_tree_processor()
+                all_ancestors = processor.get_person_ancestors(db, [person])
 
-    def init_ancestor_list(self, root_handle: PersonHandle):
-        queue = [(root_handle, 1)]  # generation 1 is root
+                # Filter ancestors by generation using BFS to determine depth
+                self._filter_ancestors_by_generation(
+                    db, person, all_ancestors, min_generations
+                )
+            except (ValueError, IndexError):
+                pass
+
+    def _filter_ancestors_by_generation(
+        self,
+        db: Database,
+        root_person: Person,
+        all_ancestors: Set[str],
+        min_generations: int,
+    ):
+        """Filter ancestors to only include those at least min_generations away."""
+        # Use BFS to determine generation depth for each ancestor
+        visited = set()
+        queue = [(root_person.handle, 1)]  # generation 1 is root
+        generation_map = {}
+
         while queue:
             handle, gen = queue.pop(0)  # pop off front of queue
-            if gen > int(self.list[1]):
+            if handle in visited:
+                continue
+            visited.add(handle)
+            generation_map[handle] = gen
+
+            # Only add to results if it's an ancestor and meets generation requirement
+            if handle in all_ancestors and gen > min_generations:
                 self.selected_handles.add(handle)
-            gen += 1
-            p = self.db.get_person_from_handle(handle)
-            fam_id = p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
-            if fam_id:
-                fam = self.db.get_family_from_handle(fam_id)
-                if fam:
-                    f_id = fam.father_handle
-                    m_id = fam.mother_handle
-                    # append to back of queue:
-                    if f_id:
-                        queue.append((f_id, gen))
-                    if m_id:
-                        queue.append((m_id, gen))
+
+            # Continue BFS to next generation
+            person = db.get_person_from_handle(handle)
+            if person:
+                fam_id = (
+                    person.parent_family_list[0]
+                    if len(person.parent_family_list) > 0
+                    else None
+                )
+                if fam_id:
+                    fam = db.get_family_from_handle(fam_id)
+                    if fam:
+                        f_id = fam.father_handle
+                        m_id = fam.mother_handle
+                        # append to back of queue:
+                        if f_id and f_id not in visited:
+                            queue.append((f_id, gen + 1))
+                        if m_id and m_id not in visited:
+                            queue.append((m_id, gen + 1))
 
     def reset(self):
         self.selected_handles.clear()

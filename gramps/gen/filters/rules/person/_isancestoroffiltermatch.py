@@ -34,6 +34,7 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from ._isancestorof import IsAncestorOf
 from ._matchesfilter import MatchesFilter
+from ....utils.parallel import get_person_ancestors
 
 
 # -------------------------------------------------------------------------
@@ -67,11 +68,11 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         self.selected_handles: Set[str] = set()
         try:
             if int(self.list[1]):
-                first = False
+                inclusive = False
             else:
-                first = True
+                inclusive = True
         except IndexError:
-            first = True
+            inclusive = True
 
         self.filt = MatchesFilter(self.list[0:1])
         self.filt.requestprepare(db, user)
@@ -81,13 +82,38 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
+
+        # Collect all matching persons first
+        matching_persons = []
         for person in db.iter_people():
             if user:
                 user.step_progress()
             if self.filt.apply_to_one(db, person):
-                self.init_ancestor_list(db, person, first)
+                matching_persons.append(person)
+
         if user:
             user.end_progress()
+
+        # Use parallel ancestor functionality for better performance
+        if matching_persons:
+            if user:
+                user.begin_progress(
+                    self.category,
+                    _("Finding ancestors"),
+                    len(matching_persons),
+                )
+
+            # Get ancestors for all matching persons at once
+            ancestors = get_person_ancestors(db, matching_persons)
+            self.selected_handles.update(ancestors)
+
+            # Add the matching persons themselves if inclusive mode
+            if inclusive:
+                for person in matching_persons:
+                    self.selected_handles.add(person.handle)
+
+            if user:
+                user.end_progress()
 
     def reset(self):
         self.filt.requestreset()
