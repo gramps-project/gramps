@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VIETNAMESE 4.2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-18 20:48+0100\n"
+"POT-Creation-Date: 2025-08-09 22:14+0100\n"
 "PO-Revision-Date: 2022-03-01 00:39+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/gramps-"
@@ -289,7 +289,7 @@ msgstr "Hệ thống gia phả Gramps "
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:233
 #: ../gramps/plugins/view/pedigreeview.py:565
 #: ../gramps/plugins/view/view.gpr.py:135
-#: ../gramps/plugins/webreport/person.py:1745
+#: ../gramps/plugins/webreport/person.py:1746
 msgid "Pedigree"
 msgstr "Tộc hệ "
 
@@ -355,7 +355,7 @@ msgstr "Quan hệ "
 #: ../gramps/plugins/tool/reorderids.glade:762
 #: ../gramps/plugins/webreport/event.py:330
 #: ../gramps/plugins/webreport/family.py:314
-#: ../gramps/plugins/webreport/person.py:1638
+#: ../gramps/plugins/webreport/person.py:1639
 msgid "Person"
 msgstr "Cá nhân "
 
@@ -1809,9 +1809,9 @@ msgstr "Cây gia đình  \"%s\":"
 #: ../gramps/plugins/textreport/indivcomplete.py:989
 #: ../gramps/plugins/textreport/indivcomplete.py:1064
 #: ../gramps/plugins/textreport/placereport.py:193
-#: ../gramps/plugins/webreport/basepage.py:1082
-#: ../gramps/plugins/webreport/basepage.py:3058
-#: ../gramps/plugins/webreport/basepage.py:3112
+#: ../gramps/plugins/webreport/basepage.py:1084
+#: ../gramps/plugins/webreport/basepage.py:3060
+#: ../gramps/plugins/webreport/basepage.py:3114
 #, python-format
 msgid "%(str1)s: %(str2)s"
 msgstr "%(str1)s: %(str2)s"
@@ -1949,12 +1949,12 @@ msgstr "Khóa bởi: %s "
 #: ../gramps/plugins/view/geoplaces.py:597
 #: ../gramps/plugins/view/relview.py:617 ../gramps/plugins/view/relview.py:1225
 #: ../gramps/plugins/view/relview.py:1282
-#: ../gramps/plugins/webreport/basepage.py:2468
-#: ../gramps/plugins/webreport/basepage.py:2499
-#: ../gramps/plugins/webreport/basepage.py:2504
-#: ../gramps/plugins/webreport/basepage.py:2510
-#: ../gramps/plugins/webreport/basepage.py:3045
-#: ../gramps/plugins/webreport/basepage.py:3236
+#: ../gramps/plugins/webreport/basepage.py:2470
+#: ../gramps/plugins/webreport/basepage.py:2501
+#: ../gramps/plugins/webreport/basepage.py:2506
+#: ../gramps/plugins/webreport/basepage.py:2512
+#: ../gramps/plugins/webreport/basepage.py:3047
+#: ../gramps/plugins/webreport/basepage.py:3238
 msgid "Unknown"
 msgstr "Không biết "
 
@@ -2273,13 +2273,13 @@ msgstr "không có"
 
 #: ../gramps/gen/const.py:304 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:235
-#: ../gramps/plugins/webreport/basepage.py:3382
-#: ../gramps/plugins/webreport/basepage.py:3403
+#: ../gramps/plugins/webreport/basepage.py:3384
+#: ../gramps/plugins/webreport/basepage.py:3405
 #: ../gramps/plugins/webreport/family.py:519
 #: ../gramps/plugins/webreport/heatmap.py:1029
 #: ../gramps/plugins/webreport/heatmap.py:1031
-#: ../gramps/plugins/webreport/person.py:861
-#: ../gramps/plugins/webreport/person.py:863
+#: ../gramps/plugins/webreport/person.py:862
+#: ../gramps/plugins/webreport/person.py:864
 msgid ":"
 msgstr ":"
 
@@ -3684,45 +3684,11 @@ msgstr ""
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr "Lỗi: Lọc %s không thể tải đúng được. Hãy chỉnh lại lọc! "
 
-#: ../gramps/gen/filters/_genericfilter.py:158
-#: ../gramps/gen/filters/_genericfilter.py:179
-#: ../gramps/gen/filters/_genericfilter.py:195
-msgid "Applying ..."
-msgstr "Áp dụng..."
-
-#: ../gramps/gen/filters/_genericfilter.py:158
-#: ../gramps/gen/filters/_genericfilter.py:179
-#: ../gramps/gen/filters/_genericfilter.py:195
-#: ../gramps/gui/editors/filtereditor.py:1225
-#: ../gramps/plugins/drawreport/calendarreport.py:600
-#: ../gramps/plugins/drawreport/statisticschart.py:1125
-#: ../gramps/plugins/drawreport/timeline.py:428
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1169
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1185
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1201
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1217
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1233
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1265
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1297
-#: ../gramps/plugins/graph/gvrelgraph.py:881
-#: ../gramps/plugins/quickview/quickview.gpr.py:143
-#: ../gramps/plugins/textreport/birthdayreport.py:561
-#: ../gramps/plugins/textreport/familygroup.py:722
-#: ../gramps/plugins/textreport/indivcomplete.py:1101
-#: ../gramps/plugins/textreport/recordsreport.py:236
-#: ../gramps/plugins/tool/sortevents.py:177
-#: ../gramps/plugins/webreport/narrativeweb.py:2130
-#: ../gramps/plugins/webreport/webcal.py:1851
-msgid "Filter"
-msgstr "Bộ lọc "
-
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
 #: ../gramps/gen/filters/rules/_hasattributebase.py:60
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:59
-#: ../gramps/gen/filters/rules/_hasgrampsid.py:59
+#: ../gramps/gen/filters/rules/_hasgrampsid.py:60
 #: ../gramps/gen/filters/rules/_hasldsbase.py:62
 #: ../gramps/gen/filters/rules/_hasnotebase.py:60
 #: ../gramps/gen/filters/rules/_hasnoteregexbase.py:60
@@ -3913,7 +3879,7 @@ msgstr "Số phải là: "
 msgid "Number of instances:"
 msgstr "Số sự kiện: "
 
-#: ../gramps/gen/filters/rules/_hasgrampsid.py:56
+#: ../gramps/gen/filters/rules/_hasgrampsid.py:57
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:63
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:63
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
@@ -4148,11 +4114,11 @@ msgstr "Các trích dẫn với <count> đa phương tiện "
 msgid "Matches citations with a certain number of items in the gallery"
 msgstr "Khớp các trích dẫn với một số mục cụ thể nào đó trong kho hình ảnh"
 
-#: ../gramps/gen/filters/rules/citation/_hasidof.py:47
+#: ../gramps/gen/filters/rules/citation/_hasidof.py:48
 msgid "Citation with <Id>"
 msgstr "Trích dẫn với <ID> "
 
-#: ../gramps/gen/filters/rules/citation/_hasidof.py:48
+#: ../gramps/gen/filters/rules/citation/_hasidof.py:49
 msgid "Matches a citation with a specified Gramps ID"
 msgstr "Khớp các trích dẫn với ID Gramps cụ thể "
 
@@ -4511,11 +4477,11 @@ msgstr "Sự kiện với <count> tài liệu đa phương tiện"
 msgid "Matches events with a certain number of items in the gallery"
 msgstr "So sự kiện với số nào đó các mục của gallery "
 
-#: ../gramps/gen/filters/rules/event/_hasidof.py:46
+#: ../gramps/gen/filters/rules/event/_hasidof.py:47
 msgid "Event with <Id>"
 msgstr "Sự kiện với <Id>"
 
-#: ../gramps/gen/filters/rules/event/_hasidof.py:47
+#: ../gramps/gen/filters/rules/event/_hasidof.py:48
 msgid "Matches an event with a specified Gramps ID"
 msgstr "So với một sự kiện với số ID Gramps cụ thể "
 
@@ -4789,11 +4755,11 @@ msgstr "Gia đình với <count> đa phương tiện "
 msgid "Matches families with a certain number of items in the gallery"
 msgstr "So gian đình với một số mục cụ thể nào đó trong g"
 
-#: ../gramps/gen/filters/rules/family/_hasidof.py:46
+#: ../gramps/gen/filters/rules/family/_hasidof.py:47
 msgid "Family with <Id>"
 msgstr "Gia đình với <ID> "
 
-#: ../gramps/gen/filters/rules/family/_hasidof.py:47
+#: ../gramps/gen/filters/rules/family/_hasidof.py:48
 msgid "Matches a family with a specified Gramps ID"
 msgstr "So gia đình với ID Gramps cụ thể "
 
@@ -5069,11 +5035,11 @@ msgstr "ĐPT với <citation>"
 msgid "Matches media with a citation of a particular value"
 msgstr "Các trùng khớp ĐPT với trích dẫn một giá trị cụ thể nào đó"
 
-#: ../gramps/gen/filters/rules/media/_hasidof.py:46
+#: ../gramps/gen/filters/rules/media/_hasidof.py:47
 msgid "Media object with <Id>"
 msgstr "Đối tượng đa phương tiện với <Id> "
 
-#: ../gramps/gen/filters/rules/media/_hasidof.py:47
+#: ../gramps/gen/filters/rules/media/_hasidof.py:48
 msgid "Matches a media object with a specified Gramps ID"
 msgstr "So đối tượng đa phương tiện với ID Gramps cụ thể "
 
@@ -5212,11 +5178,11 @@ msgstr ""
 "So bản ghi ghi chú thay đổi sau thời gian cụ thể <yyyy-mm-dd hh:mm:ss) hay "
 "khoảng thời gian nếu có thời gian thứ hai được cung cấp "
 
-#: ../gramps/gen/filters/rules/note/_hasidof.py:46
+#: ../gramps/gen/filters/rules/note/_hasidof.py:47
 msgid "Note with <Id>"
 msgstr "Ghi chú với <Id> "
 
-#: ../gramps/gen/filters/rules/note/_hasidof.py:47
+#: ../gramps/gen/filters/rules/note/_hasidof.py:48
 msgid "Matches a note with a specified Gramps ID"
 msgstr "So sánh một ghi chú với ID Gramp cụ thể "
 
@@ -5516,12 +5482,12 @@ msgstr "Người với đa phương tiện <count> "
 msgid "Matches people with a certain number of items in the gallery"
 msgstr "Thỏa người với số điểm nào đó trong gallery "
 
-#: ../gramps/gen/filters/rules/person/_hasidof.py:46
+#: ../gramps/gen/filters/rules/person/_hasidof.py:47
 #: ../gramps/gen/filters/rules/person/_matchidof.py:56
 msgid "Person with <Id>"
 msgstr "Người với <ID> "
 
-#: ../gramps/gen/filters/rules/person/_hasidof.py:47
+#: ../gramps/gen/filters/rules/person/_hasidof.py:48
 #: ../gramps/gen/filters/rules/person/_matchidof.py:57
 msgid "Matches person with a specified Gramps ID"
 msgstr "Thỏa người với ID Gramps cụ thể nào đó "
@@ -5704,15 +5670,6 @@ msgid "Family filters"
 msgstr "Lọc gia đình "
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:57
-#: ../gramps/gui/glade/editfamily.glade:116
-#: ../gramps/gui/glade/editfamily.glade:379
-#: ../gramps/gui/glade/editplaceformat.glade:201
-#: ../gramps/gui/glade/editplacename.glade:184
-#: ../gramps/gui/glade/editplaceref.glade:234
-#: ../gramps/gui/glade/mergeperson.glade:218
-#: ../gramps/gui/glade/mergeperson.glade:233
-#: ../gramps/gui/glade/mergeplace.glade:426
-#: ../gramps/gui/glade/mergeplace.glade:443
 #: ../gramps/plugins/gramplet/soundgen.py:68
 msgid "Name:"
 msgstr "Tên:"
@@ -6218,7 +6175,13 @@ msgstr "Các trùng khớp với một trích dẫn của một giá trị cụ 
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:58
 #: ../gramps/gui/editors/editplace.py:106
-#: ../gramps/gui/glade/editplace.glade:356 ../gramps/gui/merge/mergeplace.py:56
+#: ../gramps/gui/glade/editplace.glade:356
+#: ../gramps/gui/glade/editplaceformat.glade:201
+#: ../gramps/gui/glade/editplacename.glade:184
+#: ../gramps/gui/glade/editplaceref.glade:234
+#: ../gramps/gui/glade/mergeplace.glade:426
+#: ../gramps/gui/glade/mergeplace.glade:443
+#: ../gramps/gui/merge/mergeplace.py:56
 #: ../gramps/plugins/tool/removespaces.py:241
 msgctxt "place"
 msgid "Name:"
@@ -6256,11 +6219,11 @@ msgstr "Nơi với <count> tập tin đa phương tiện "
 msgid "Matches places with a certain number of items in the gallery"
 msgstr "So địa điểm với một số mục trong gallery "
 
-#: ../gramps/gen/filters/rules/place/_hasidof.py:46
+#: ../gramps/gen/filters/rules/place/_hasidof.py:47
 msgid "Place with <Id>"
 msgstr "Địa điểm có <Id> "
 
-#: ../gramps/gen/filters/rules/place/_hasidof.py:47
+#: ../gramps/gen/filters/rules/place/_hasidof.py:48
 msgid "Matches a place with a specified Gramps ID"
 msgstr "So một địa điểm với ID Gramp cụ thể "
 
@@ -6533,11 +6496,11 @@ msgstr "Sự kiện với thông số <attribute> "
 msgid "Matches repositories with the attribute of a particular value"
 msgstr "So đối tượng đa phương tiện có thông số là giá trị cụ thể nào đó "
 
-#: ../gramps/gen/filters/rules/repository/_hasidof.py:46
+#: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Repository with <Id>"
 msgstr "Kho với <Id> "
 
-#: ../gramps/gen/filters/rules/repository/_hasidof.py:47
+#: ../gramps/gen/filters/rules/repository/_hasidof.py:48
 msgid "Matches a repository with a specified Gramps ID"
 msgstr "So với một kho có số ID Gramps cụ thể "
 
@@ -6673,11 +6636,11 @@ msgstr "Nguồn với <count> tập tin đa phương tiện "
 msgid "Matches sources with a certain number of items in the gallery"
 msgstr "So nguồn với một số đối tượng trong gallery"
 
-#: ../gramps/gen/filters/rules/source/_hasidof.py:46
+#: ../gramps/gen/filters/rules/source/_hasidof.py:47
 msgid "Source with <Id>"
 msgstr "Nguồn với <Id> "
 
-#: ../gramps/gen/filters/rules/source/_hasidof.py:47
+#: ../gramps/gen/filters/rules/source/_hasidof.py:48
 msgid "Matches a source with a specified Gramps ID"
 msgstr "So  một nguồn với một ID Gramps cụ thể"
 
@@ -6917,9 +6880,9 @@ msgstr "Trích"
 #: ../gramps/plugins/view/noteview.py:113
 #: ../gramps/plugins/view/view.gpr.py:103
 #: ../gramps/plugins/view/view.gpr.py:111
-#: ../gramps/plugins/webreport/basepage.py:1659
-#: ../gramps/plugins/webreport/basepage.py:2828
-#: ../gramps/plugins/webreport/person.py:1640
+#: ../gramps/plugins/webreport/basepage.py:1661
+#: ../gramps/plugins/webreport/basepage.py:2830
+#: ../gramps/plugins/webreport/person.py:1641
 #: ../gramps/plugins/webreport/updates.py:158
 msgid "Notes"
 msgstr "Ghi chú "
@@ -6930,9 +6893,9 @@ msgstr "Ghi chú "
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
 #: ../gramps/plugins/view/geoplaces.py:602
 #: ../gramps/plugins/view/repoview.py:90
-#: ../gramps/plugins/webreport/basepage.py:1508
-#: ../gramps/plugins/webreport/basepage.py:3422
-#: ../gramps/plugins/webreport/basepage.py:3500
+#: ../gramps/plugins/webreport/basepage.py:1510
+#: ../gramps/plugins/webreport/basepage.py:3424
+#: ../gramps/plugins/webreport/basepage.py:3502
 msgid "Street"
 msgstr "Đường "
 
@@ -6942,9 +6905,9 @@ msgstr "Đường "
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
 #: ../gramps/plugins/view/geoplaces.py:600
 #: ../gramps/plugins/view/repoview.py:91
-#: ../gramps/plugins/webreport/basepage.py:1509
-#: ../gramps/plugins/webreport/basepage.py:3423
-#: ../gramps/plugins/webreport/basepage.py:3501
+#: ../gramps/plugins/webreport/basepage.py:1511
+#: ../gramps/plugins/webreport/basepage.py:3425
+#: ../gramps/plugins/webreport/basepage.py:3503
 msgid "Locality"
 msgstr "Địa điểm "
 
@@ -6954,9 +6917,9 @@ msgstr "Địa điểm "
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
 #: ../gramps/plugins/view/geoplaces.py:628
 #: ../gramps/plugins/view/repoview.py:92
-#: ../gramps/plugins/webreport/basepage.py:1510
-#: ../gramps/plugins/webreport/basepage.py:3424
-#: ../gramps/plugins/webreport/basepage.py:3502
+#: ../gramps/plugins/webreport/basepage.py:1512
+#: ../gramps/plugins/webreport/basepage.py:3426
+#: ../gramps/plugins/webreport/basepage.py:3504
 msgid "City"
 msgstr "Thành phố "
 
@@ -6966,9 +6929,9 @@ msgstr "Thành phố "
 #: ../gramps/gui/views/treemodels/placemodel.py:350
 #: ../gramps/plugins/lib/maps/placeselection.py:162
 #: ../gramps/plugins/view/geoplaces.py:616
-#: ../gramps/plugins/webreport/basepage.py:1512
-#: ../gramps/plugins/webreport/basepage.py:3426
-#: ../gramps/plugins/webreport/basepage.py:3504
+#: ../gramps/plugins/webreport/basepage.py:1514
+#: ../gramps/plugins/webreport/basepage.py:3428
+#: ../gramps/plugins/webreport/basepage.py:3506
 msgid "County"
 msgstr "Quận "
 
@@ -6989,18 +6952,18 @@ msgstr "Tiểu bang "
 #: ../gramps/plugins/lib/maps/placeselection.py:160
 #: ../gramps/plugins/view/geoplaces.py:614
 #: ../gramps/plugins/view/repoview.py:94
-#: ../gramps/plugins/webreport/basepage.py:1514
-#: ../gramps/plugins/webreport/basepage.py:3430
-#: ../gramps/plugins/webreport/basepage.py:3507
-#: ../gramps/plugins/webreport/place.py:348
-#: ../gramps/plugins/webreport/place.py:360
+#: ../gramps/plugins/webreport/basepage.py:1516
+#: ../gramps/plugins/webreport/basepage.py:3432
+#: ../gramps/plugins/webreport/basepage.py:3509
+#: ../gramps/plugins/webreport/place.py:350
+#: ../gramps/plugins/webreport/place.py:362
 msgid "Country"
 msgstr "Nước "
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:98
-#: ../gramps/plugins/webreport/basepage.py:1513
-#: ../gramps/plugins/webreport/basepage.py:3428
-#: ../gramps/plugins/webreport/basepage.py:3506
+#: ../gramps/plugins/webreport/basepage.py:1515
+#: ../gramps/plugins/webreport/basepage.py:3430
+#: ../gramps/plugins/webreport/basepage.py:3508
 msgid "Postal Code"
 msgstr "Mã bưu điện "
 
@@ -7012,7 +6975,7 @@ msgstr "Mã bưu điện "
 #: ../gramps/plugins/gramplet/repositorydetails.py:131
 #: ../gramps/plugins/lib/libgedcom.py:4585
 #: ../gramps/plugins/lib/libgedcom.py:6375
-#: ../gramps/plugins/webreport/basepage.py:1515
+#: ../gramps/plugins/webreport/basepage.py:1517
 msgid "Phone"
 msgstr "Điện thoại "
 
@@ -7031,8 +6994,8 @@ msgstr "Thông số "
 #: ../gramps/plugins/gramplet/attributes.py:61
 #: ../gramps/plugins/lib/libmetadata.py:231
 #: ../gramps/plugins/tool/patchnames.py:463
-#: ../gramps/plugins/webreport/basepage.py:1398
-#: ../gramps/plugins/webreport/basepage.py:1658
+#: ../gramps/plugins/webreport/basepage.py:1400
+#: ../gramps/plugins/webreport/basepage.py:1660
 msgid "Value"
 msgstr "Giá trị "
 
@@ -7072,9 +7035,9 @@ msgstr "Caste"
 #: ../gramps/plugins/tool/sortevents.py:63
 #: ../gramps/plugins/view/eventview.py:81
 #: ../gramps/plugins/webreport/basepage.py:863
-#: ../gramps/plugins/webreport/basepage.py:1279
-#: ../gramps/plugins/webreport/basepage.py:2915
-#: ../gramps/plugins/webreport/basepage.py:3707
+#: ../gramps/plugins/webreport/basepage.py:1281
+#: ../gramps/plugins/webreport/basepage.py:2917
+#: ../gramps/plugins/webreport/basepage.py:3709
 #: ../gramps/plugins/webreport/download.py:129
 #: ../gramps/plugins/webreport/heatmap.py:250
 #: ../gramps/plugins/webreport/heatmap.py:382
@@ -7247,11 +7210,11 @@ msgstr "Trích "
 #: ../gramps/plugins/quickview/filterbyname.py:359
 #: ../gramps/plugins/tool/findloop.py:116
 #: ../gramps/plugins/tool/findloop.py:118
-#: ../gramps/plugins/webreport/basepage.py:3372
+#: ../gramps/plugins/webreport/basepage.py:3374
 #: ../gramps/plugins/webreport/event.py:329
 #: ../gramps/plugins/webreport/event.py:554
 #: ../gramps/plugins/webreport/media.py:626
-#: ../gramps/plugins/webreport/person.py:1884
+#: ../gramps/plugins/webreport/person.py:1885
 #: ../gramps/plugins/webreport/repository.py:264
 #: ../gramps/plugins/webreport/source.py:398
 msgid "Gramps ID"
@@ -7260,7 +7223,7 @@ msgstr "ID Gramps "
 #: ../gramps/gen/lib/citation.py:117
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:87
 #: ../gramps/plugins/importer/importprogen.glade:336
-#: ../gramps/plugins/webreport/basepage.py:3052
+#: ../gramps/plugins/webreport/basepage.py:3054
 msgid "Page"
 msgstr "Trang "
 
@@ -7269,7 +7232,7 @@ msgstr "Trang "
 #: ../gramps/plugins/importer/importprogen.glade:305
 #: ../gramps/plugins/view/citationlistview.py:103
 #: ../gramps/plugins/view/citationtreeview.py:98
-#: ../gramps/plugins/webreport/basepage.py:3053
+#: ../gramps/plugins/webreport/basepage.py:3055
 msgid "Confidence"
 msgstr "Mật "
 
@@ -7323,11 +7286,11 @@ msgstr "Nguồn "
 #: ../gramps/plugins/tool/reorderids.glade:849
 #: ../gramps/plugins/view/mediaview.py:145
 #: ../gramps/plugins/view/view.gpr.py:87 ../gramps/plugins/view/view.gpr.py:95
-#: ../gramps/plugins/webreport/basepage.py:2065
-#: ../gramps/plugins/webreport/basepage.py:2140
-#: ../gramps/plugins/webreport/basepage.py:2269
-#: ../gramps/plugins/webreport/basepage.py:2314
-#: ../gramps/plugins/webreport/basepage.py:2630
+#: ../gramps/plugins/webreport/basepage.py:2067
+#: ../gramps/plugins/webreport/basepage.py:2142
+#: ../gramps/plugins/webreport/basepage.py:2271
+#: ../gramps/plugins/webreport/basepage.py:2316
+#: ../gramps/plugins/webreport/basepage.py:2632
 #: ../gramps/plugins/webreport/media.py:212
 #: ../gramps/plugins/webreport/media.py:418
 #: ../gramps/plugins/webreport/updates.py:152
@@ -7371,12 +7334,12 @@ msgstr "Thay đổi lần cuối"
 #: ../gramps/plugins/view/mediaview.py:106
 #: ../gramps/plugins/view/noteview.py:86 ../gramps/plugins/view/repoview.py:99
 #: ../gramps/plugins/view/sourceview.py:90
-#: ../gramps/plugins/webreport/basepage.py:3521
+#: ../gramps/plugins/webreport/basepage.py:3523
 #: ../gramps/plugins/webreport/event.py:581
 #: ../gramps/plugins/webreport/family.py:519
 #: ../gramps/plugins/webreport/media.py:672
-#: ../gramps/plugins/webreport/narrativeweb.py:3242
-#: ../gramps/plugins/webreport/person.py:1979
+#: ../gramps/plugins/webreport/narrativeweb.py:3243
+#: ../gramps/plugins/webreport/person.py:1980
 #: ../gramps/plugins/webreport/repository.py:287
 #: ../gramps/plugins/webreport/source.py:414
 msgid "Tags"
@@ -7423,7 +7386,7 @@ msgid "about"
 msgstr "khoảng "
 
 #: ../gramps/gen/lib/date.py:323 ../gramps/gen/lib/date.py:370
-#: ../gramps/gen/lib/date.py:392 ../gramps/plugins/webreport/basepage.py:3783
+#: ../gramps/gen/lib/date.py:392 ../gramps/plugins/webreport/basepage.py:3785
 msgid "between"
 msgstr "giữa"
 
@@ -7431,7 +7394,7 @@ msgstr "giữa"
 #: ../gramps/gen/lib/date.py:396 ../gramps/gui/merge/mergefamily.py:157
 #: ../gramps/plugins/quickview/all_relations.py:339
 #: ../gramps/plugins/view/relview.py:1209
-#: ../gramps/plugins/webreport/basepage.py:3784
+#: ../gramps/plugins/webreport/basepage.py:3786
 msgid "and"
 msgstr "và "
 
@@ -7525,14 +7488,14 @@ msgstr "0 ngày "
 #: ../gramps/plugins/view/eventview.py:84
 #: ../gramps/plugins/view/mediaview.py:104
 #: ../gramps/plugins/webreport/basepage.py:861
-#: ../gramps/plugins/webreport/basepage.py:1274
-#: ../gramps/plugins/webreport/basepage.py:1318
-#: ../gramps/plugins/webreport/basepage.py:1507
-#: ../gramps/plugins/webreport/basepage.py:3051
+#: ../gramps/plugins/webreport/basepage.py:1276
+#: ../gramps/plugins/webreport/basepage.py:1320
+#: ../gramps/plugins/webreport/basepage.py:1509
+#: ../gramps/plugins/webreport/basepage.py:3053
 #: ../gramps/plugins/webreport/event.py:328
 #: ../gramps/plugins/webreport/media.py:249
 #: ../gramps/plugins/webreport/media.py:653
-#: ../gramps/plugins/webreport/person.py:1114
+#: ../gramps/plugins/webreport/person.py:1115
 msgid "Date"
 msgstr "Ngày "
 
@@ -7597,18 +7560,18 @@ msgid "none"
 msgstr "không có"
 
 #: ../gramps/gen/lib/date.py:2002 ../gramps/plugins/lib/libsubstkeyword.py:319
-#: ../gramps/plugins/webreport/basepage.py:3790
+#: ../gramps/plugins/webreport/basepage.py:3792
 msgid "before"
 msgstr "trước "
 
 #: ../gramps/gen/lib/date.py:2003 ../gramps/plugins/lib/libprogen.py:2029
 #: ../gramps/plugins/lib/libsubstkeyword.py:320
-#: ../gramps/plugins/webreport/basepage.py:3788
+#: ../gramps/plugins/webreport/basepage.py:3790
 msgid "after"
 msgstr "sau "
 
 #: ../gramps/gen/lib/date.py:2004 ../gramps/plugins/lib/libsubstkeyword.py:321
-#: ../gramps/plugins/webreport/basepage.py:3792
+#: ../gramps/plugins/webreport/basepage.py:3794
 msgid "about"
 msgstr "chứng "
 
@@ -7689,8 +7652,8 @@ msgstr "Sự kiện "
 #: ../gramps/plugins/tool/sortevents.py:64
 #: ../gramps/plugins/view/eventview.py:85
 #: ../gramps/plugins/webreport/basepage.py:862
-#: ../gramps/plugins/webreport/basepage.py:1278
-#: ../gramps/plugins/webreport/basepage.py:1320
+#: ../gramps/plugins/webreport/basepage.py:1280
+#: ../gramps/plugins/webreport/basepage.py:1322
 msgid "Place"
 msgstr "Nơi "
 
@@ -7706,9 +7669,9 @@ msgstr "Nơi "
 #: ../gramps/plugins/textreport/indivcomplete.py:496
 #: ../gramps/plugins/textreport/indivcomplete.py:722
 #: ../gramps/plugins/webreport/basepage.py:603
-#: ../gramps/plugins/webreport/basepage.py:1382
-#: ../gramps/plugins/webreport/basepage.py:1632
-#: ../gramps/plugins/webreport/basepage.py:1641
+#: ../gramps/plugins/webreport/basepage.py:1384
+#: ../gramps/plugins/webreport/basepage.py:1634
+#: ../gramps/plugins/webreport/basepage.py:1643
 msgid "Attributes"
 msgstr "Các thông số "
 
@@ -7774,7 +7737,7 @@ msgstr "cha mẹ2"
 #: ../gramps/plugins/textreport/tagreport.py:261
 #: ../gramps/plugins/view/familyview.py:83
 #: ../gramps/plugins/view/relview.py:1107
-#: ../gramps/plugins/webreport/person.py:2118
+#: ../gramps/plugins/webreport/person.py:2119
 msgid "Father"
 msgstr "Cha "
 
@@ -7796,7 +7759,7 @@ msgstr "Cha "
 #: ../gramps/plugins/textreport/tagreport.py:267
 #: ../gramps/plugins/view/familyview.py:84
 #: ../gramps/plugins/view/relview.py:1108
-#: ../gramps/plugins/webreport/person.py:2131
+#: ../gramps/plugins/webreport/person.py:2132
 msgid "Mother"
 msgstr "Mẹ "
 
@@ -7897,7 +7860,7 @@ msgstr "Pháp lý"
 #: ../gramps/plugins/lib/libprogen.py:2017
 #: ../gramps/plugins/lib/libprogen.py:2019
 #: ../gramps/plugins/webreport/addressbooklist.py:119
-#: ../gramps/plugins/webreport/basepage.py:3682
+#: ../gramps/plugins/webreport/basepage.py:3684
 msgid "Residence"
 msgstr "Cư dân "
 
@@ -8387,13 +8350,13 @@ msgstr "Con cái "
 #: ../gramps/plugins/textreport/tagreport.py:333
 #: ../gramps/plugins/view/eventview.py:140
 #: ../gramps/plugins/view/view.gpr.py:39 ../gramps/plugins/view/view.gpr.py:47
-#: ../gramps/plugins/webreport/basepage.py:2058
-#: ../gramps/plugins/webreport/basepage.py:2137
-#: ../gramps/plugins/webreport/basepage.py:2260
+#: ../gramps/plugins/webreport/basepage.py:2060
+#: ../gramps/plugins/webreport/basepage.py:2139
+#: ../gramps/plugins/webreport/basepage.py:2262
 #: ../gramps/plugins/webreport/event.py:267
 #: ../gramps/plugins/webreport/event.py:515
-#: ../gramps/plugins/webreport/narrativeweb.py:3236
-#: ../gramps/plugins/webreport/person.py:2005
+#: ../gramps/plugins/webreport/narrativeweb.py:3237
+#: ../gramps/plugins/webreport/person.py:2006
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
 msgstr "Sự kiện"
@@ -8470,10 +8433,10 @@ msgstr "Kết hôn dân sự "
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/mediaview.py:102
 #: ../gramps/plugins/view/noteview.py:84 ../gramps/plugins/view/repoview.py:88
-#: ../gramps/plugins/webreport/basepage.py:1317
-#: ../gramps/plugins/webreport/basepage.py:1657
-#: ../gramps/plugins/webreport/basepage.py:2914
-#: ../gramps/plugins/webreport/basepage.py:3637
+#: ../gramps/plugins/webreport/basepage.py:1319
+#: ../gramps/plugins/webreport/basepage.py:1659
+#: ../gramps/plugins/webreport/basepage.py:2916
+#: ../gramps/plugins/webreport/basepage.py:3639
 #: ../gramps/plugins/webreport/event.py:327
 #: ../gramps/plugins/webreport/repository.py:174
 #: ../gramps/plugins/webreport/repository.py:273
@@ -8569,7 +8532,7 @@ msgstr "Lệnh LDS "
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
 #: ../gramps/plugins/textreport/indivcomplete.py:533
 #: ../gramps/plugins/textreport/indivcomplete.py:738
-#: ../gramps/plugins/webreport/basepage.py:1319
+#: ../gramps/plugins/webreport/basepage.py:1321
 msgid "Temple"
 msgstr "Nhà thờ "
 
@@ -8582,7 +8545,7 @@ msgstr "Nhà thờ "
 #: ../gramps/plugins/textreport/indivcomplete.py:532
 #: ../gramps/plugins/textreport/indivcomplete.py:737
 #: ../gramps/plugins/textreport/notelinkreport.py:103
-#: ../gramps/plugins/webreport/basepage.py:1321
+#: ../gramps/plugins/webreport/basepage.py:1323
 msgid "Status"
 msgstr "Tình trạng "
 
@@ -8668,7 +8631,7 @@ msgstr "Vùng"
 #: ../gramps/plugins/tool/verify.py:823 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:546
 #: ../gramps/plugins/webreport/person.py:423
-#: ../gramps/plugins/webreport/person.py:2348
+#: ../gramps/plugins/webreport/person.py:2349
 #: ../gramps/plugins/webreport/surname.py:148
 msgid "Name"
 msgstr "Tên "
@@ -8677,11 +8640,11 @@ msgstr "Tên "
 msgid "Given name"
 msgstr "Tên "
 
-#: ../gramps/gen/lib/name.py:185 ../gramps/plugins/webreport/basepage.py:2056
-#: ../gramps/plugins/webreport/basepage.py:2114
-#: ../gramps/plugins/webreport/basepage.py:2117
-#: ../gramps/plugins/webreport/basepage.py:2251
-#: ../gramps/plugins/webreport/narrativeweb.py:3239
+#: ../gramps/gen/lib/name.py:185 ../gramps/plugins/webreport/basepage.py:2058
+#: ../gramps/plugins/webreport/basepage.py:2116
+#: ../gramps/plugins/webreport/basepage.py:2119
+#: ../gramps/plugins/webreport/basepage.py:2253
+#: ../gramps/plugins/webreport/narrativeweb.py:3240
 #: ../gramps/plugins/webreport/person.py:234
 #: ../gramps/plugins/webreport/surnamelist.py:111
 #: ../gramps/plugins/webreport/surnamelist.py:184
@@ -8720,7 +8683,7 @@ msgstr "Hậu tố "
 #: ../gramps/plugins/textreport/tagreport.py:754
 #: ../gramps/plugins/view/mediaview.py:100
 #: ../gramps/plugins/view/sourceview.py:84
-#: ../gramps/plugins/webreport/basepage.py:3636
+#: ../gramps/plugins/webreport/basepage.py:3638
 msgid "Title"
 msgstr "Chức danh "
 
@@ -8876,7 +8839,7 @@ msgstr "Tên kết hôn "
 #: ../gramps/plugins/textreport/familygroup.py:440
 #: ../gramps/plugins/tool/reorderids.glade:861
 #: ../gramps/plugins/webreport/basepage.py:838
-#: ../gramps/plugins/webreport/basepage.py:2862
+#: ../gramps/plugins/webreport/basepage.py:2864
 msgid "Note"
 msgstr "Ghi chú "
 
@@ -8890,7 +8853,7 @@ msgstr "Mẫu thức "
 #: ../gramps/gui/editors/editeventref.py:102
 #: ../gramps/gui/editors/editmediaref.py:121
 #: ../gramps/gui/editors/editplaceref.py:84
-#: ../gramps/gui/editors/editreporef.py:73
+#: ../gramps/gui/editors/editreporef.py:83
 #: ../gramps/gui/glade/editeventref.glade:199
 #: ../gramps/gui/glade/editeventref.glade:615
 #: ../gramps/gui/glade/editmediaref.glade:343
@@ -9021,7 +8984,7 @@ msgstr "Chi chú tham chiếu con cái "
 #: ../gramps/plugins/lib/libpersonview.py:102
 #: ../gramps/plugins/quickview/siblings.py:50
 #: ../gramps/plugins/textreport/indivcomplete.py:957
-#: ../gramps/plugins/webreport/person.py:1895
+#: ../gramps/plugins/webreport/person.py:1896
 msgid "Gender"
 msgstr "Giới tính "
 
@@ -9054,9 +9017,9 @@ msgstr "tham chiếu sự kiện"
 #: ../gramps/plugins/view/view.gpr.py:55 ../gramps/plugins/view/view.gpr.py:63
 #: ../gramps/plugins/webreport/basepage.py:402
 #: ../gramps/plugins/webreport/basepage.py:462
-#: ../gramps/plugins/webreport/basepage.py:2057
-#: ../gramps/plugins/webreport/basepage.py:2122
-#: ../gramps/plugins/webreport/basepage.py:2252
+#: ../gramps/plugins/webreport/basepage.py:2059
+#: ../gramps/plugins/webreport/basepage.py:2124
+#: ../gramps/plugins/webreport/basepage.py:2254
 #: ../gramps/plugins/webreport/family.py:251
 #: ../gramps/plugins/webreport/updates.py:113
 msgid "Families"
@@ -9069,7 +9032,7 @@ msgstr "Các gia đình phía cha mẹ"
 #: ../gramps/gen/lib/person.py:235 ../gramps/gen/lib/repo.py:114
 #: ../gramps/gui/merge/mergeperson.py:292
 #: ../gramps/plugins/textreport/indivcomplete.py:444
-#: ../gramps/plugins/webreport/basepage.py:1461
+#: ../gramps/plugins/webreport/basepage.py:1463
 msgid "Addresses"
 msgstr "Địa chỉ "
 
@@ -9098,8 +9061,8 @@ msgstr "Hiệp hội "
 #: ../gramps/plugins/gramplet/coordinates.py:106
 #: ../gramps/plugins/gramplet/placedetails.py:144
 #: ../gramps/plugins/lib/libplaceview.py:92
-#: ../gramps/plugins/webreport/basepage.py:3415
-#: ../gramps/plugins/webreport/place.py:350
+#: ../gramps/plugins/webreport/basepage.py:3417
+#: ../gramps/plugins/webreport/place.py:352
 msgid "Longitude"
 msgstr "Kinh độ "
 
@@ -9107,8 +9070,8 @@ msgstr "Kinh độ "
 #: ../gramps/plugins/gramplet/coordinates.py:105
 #: ../gramps/plugins/gramplet/placedetails.py:142
 #: ../gramps/plugins/lib/libplaceview.py:91
-#: ../gramps/plugins/webreport/basepage.py:3394
-#: ../gramps/plugins/webreport/place.py:349
+#: ../gramps/plugins/webreport/basepage.py:3396
+#: ../gramps/plugins/webreport/place.py:351
 msgid "Latitude"
 msgstr "Vĩ độ "
 
@@ -9119,18 +9082,18 @@ msgstr "Vĩ độ "
 #: ../gramps/plugins/view/view.gpr.py:235
 #: ../gramps/plugins/view/view.gpr.py:243
 #: ../gramps/plugins/view/view.gpr.py:259
-#: ../gramps/plugins/webreport/basepage.py:2059
-#: ../gramps/plugins/webreport/basepage.py:2131
-#: ../gramps/plugins/webreport/basepage.py:2261
-#: ../gramps/plugins/webreport/place.py:282
-#: ../gramps/plugins/webreport/place.py:479
+#: ../gramps/plugins/webreport/basepage.py:2061
+#: ../gramps/plugins/webreport/basepage.py:2133
+#: ../gramps/plugins/webreport/basepage.py:2263
+#: ../gramps/plugins/webreport/place.py:284
+#: ../gramps/plugins/webreport/place.py:484
 #: ../gramps/plugins/webreport/updates.py:127
 msgid "Places"
 msgstr "Địa điểm "
 
 #: ../gramps/gen/lib/place.py:175 ../gramps/gui/merge/mergeperson.py:218
 #: ../gramps/plugins/textreport/indivcomplete.py:416
-#: ../gramps/plugins/webreport/basepage.py:3461
+#: ../gramps/plugins/webreport/basepage.py:3463
 msgid "Alternate Names"
 msgstr "Tên thay thế "
 
@@ -9142,7 +9105,7 @@ msgstr "Tên thay thế "
 msgid "Code"
 msgstr "Mã"
 
-#: ../gramps/gen/lib/place.py:182 ../gramps/plugins/webreport/basepage.py:3491
+#: ../gramps/gen/lib/place.py:182 ../gramps/plugins/webreport/basepage.py:3493
 msgid "Alternate Locations"
 msgstr "Nơi thay thế "
 
@@ -9157,8 +9120,8 @@ msgstr "Tên địa điểm "
 
 #: ../gramps/gen/lib/placename.py:100
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:66
-#: ../gramps/plugins/webreport/basepage.py:2175
-#: ../gramps/plugins/webreport/basepage.py:3468
+#: ../gramps/plugins/webreport/basepage.py:2177
+#: ../gramps/plugins/webreport/basepage.py:3470
 msgid "Language"
 msgstr "Ngôn nữa"
 
@@ -9167,7 +9130,7 @@ msgid "Place ref"
 msgstr "Thao chiếu địa điểm"
 
 #: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:618
-#: ../gramps/plugins/webreport/basepage.py:3429
+#: ../gramps/plugins/webreport/basepage.py:3431
 msgid "Province"
 msgstr "Tỉnh "
 
@@ -9213,7 +9176,7 @@ msgstr "Tòa nhà"
 
 #: ../gramps/gen/lib/placetype.py:94 ../gramps/plugins/gramplet/leak.py:98
 #: ../gramps/plugins/view/geoplaces.py:613
-#: ../gramps/plugins/webreport/basepage.py:3635
+#: ../gramps/plugins/webreport/basepage.py:3637
 #: ../gramps/plugins/webreport/source.py:206
 msgid "Number"
 msgstr "Số "
@@ -9310,10 +9273,10 @@ msgstr "Viết tắt "
 #: ../gramps/plugins/view/repoview.py:156
 #: ../gramps/plugins/view/view.gpr.py:268
 #: ../gramps/plugins/view/view.gpr.py:276
-#: ../gramps/plugins/webreport/basepage.py:2062
-#: ../gramps/plugins/webreport/basepage.py:2128
-#: ../gramps/plugins/webreport/basepage.py:2263
-#: ../gramps/plugins/webreport/basepage.py:3626
+#: ../gramps/plugins/webreport/basepage.py:2064
+#: ../gramps/plugins/webreport/basepage.py:2130
+#: ../gramps/plugins/webreport/basepage.py:2265
+#: ../gramps/plugins/webreport/basepage.py:3628
 #: ../gramps/plugins/webreport/repository.py:146
 #: ../gramps/plugins/webreport/repository.py:243
 #: ../gramps/plugins/webreport/updates.py:141
@@ -9689,7 +9652,7 @@ msgstr "Tính toán mối quan hệ "
 
 #: ../gramps/gen/plug/_pluginreg.py:129 ../gramps/gen/plug/_pluginreg.py:517
 #: ../gramps/gui/glade/grampletpane.glade:153
-#: ../gramps/gui/widgets/grampletbar.py:700
+#: ../gramps/gui/widgets/grampletbar.py:701
 #: ../gramps/gui/widgets/grampletpane.py:246
 #: ../gramps/gui/widgets/grampletpane.py:1005
 msgid "Gramplet"
@@ -9719,7 +9682,7 @@ msgstr "Thông tin ấn hành"
 #: ../gramps/gen/plug/_pluginreg.py:645
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
 #: ../gramps/plugins/importer/importprogen.glade:1256
-#: ../gramps/plugins/webreport/basepage.py:2317
+#: ../gramps/plugins/webreport/basepage.py:2319
 #: ../gramps/plugins/webreport/statistics.py:184
 #: ../gramps/plugins/webreport/statistics.py:264
 msgid "Miscellaneous"
@@ -10678,7 +10641,7 @@ msgstr "Đừng đưa vào "
 #: ../gramps/plugins/textreport/detdescendantreport.py:1137
 #: ../gramps/plugins/textreport/familygroup.py:760
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
-#: ../gramps/plugins/webreport/narrativeweb.py:2592
+#: ../gramps/plugins/webreport/narrativeweb.py:2593
 msgid "Include"
 msgstr "Bao gồm "
 
@@ -10733,11 +10696,11 @@ msgstr "Không có tập tin "
 #: ../gramps/gen/plug/report/utils.py:186
 #: ../gramps/plugins/textreport/indivcomplete.py:944
 #: ../gramps/plugins/textreport/simplebooktitle.py:114
-#: ../gramps/plugins/webreport/basepage.py:2430
-#: ../gramps/plugins/webreport/basepage.py:2667
-#: ../gramps/plugins/webreport/basepage.py:2677
-#: ../gramps/plugins/webreport/basepage.py:2708
-#: ../gramps/plugins/webreport/basepage.py:2767
+#: ../gramps/plugins/webreport/basepage.py:2432
+#: ../gramps/plugins/webreport/basepage.py:2669
+#: ../gramps/plugins/webreport/basepage.py:2679
+#: ../gramps/plugins/webreport/basepage.py:2710
+#: ../gramps/plugins/webreport/basepage.py:2769
 msgid "Could not add photo to page"
 msgstr "Không thể thêm hình cho trang "
 
@@ -12156,7 +12119,7 @@ msgstr "_Áp dụng "
 #: ../gramps/gui/columnorder.py:142
 #: ../gramps/plugins/drawreport/ancestortree.py:973
 #: ../gramps/plugins/drawreport/descendtree.py:1708
-#: ../gramps/plugins/webreport/narrativeweb.py:2285
+#: ../gramps/plugins/webreport/narrativeweb.py:2286
 msgid "Display"
 msgstr "Hiển thị "
 
@@ -12194,7 +12157,7 @@ msgstr "Hiển thị trình soạn thảo tên "
 #: ../gramps/gui/plug/_windows.py:1716 ../gramps/gui/plug/_windows.py:1776
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
-#: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:708
+#: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:709
 #: ../gramps/gui/widgets/grampletpane.py:258
 #: ../gramps/plugins/lib/maps/placeselection.py:122
 #: ../gramps/plugins/tool/dumpgenderstats.py:86
@@ -12345,7 +12308,7 @@ msgstr "%s:"
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
-#: ../gramps/gui/widgets/grampletbar.py:712
+#: ../gramps/gui/widgets/grampletbar.py:713
 #: ../gramps/gui/widgets/grampletpane.py:264
 #: ../gramps/plugins/importer/importprogen.glade:61
 #: ../gramps/plugins/tool/changenames.glade:72
@@ -13252,7 +13215,7 @@ msgstr "Chọn thư mục chứa tập tin đa phương tiện "
 #: ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:267
-#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1261
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
 #: ../gramps/gui/widgets/progressdialog.py:441
 #: ../gramps/plugins/importer/importprogen.glade:28
@@ -13315,8 +13278,8 @@ msgstr "Chết: "
 #: ../gramps/gui/configure.py:2803
 #: ../gramps/plugins/quickview/all_relations.py:345
 #: ../gramps/plugins/view/relview.py:498
-#: ../gramps/plugins/webreport/basepage.py:3168
 #: ../gramps/plugins/webreport/basepage.py:3170
+#: ../gramps/plugins/webreport/basepage.py:3172
 #: ../gramps/plugins/webreport/person.py:437
 #: ../gramps/plugins/webreport/surname.py:162
 msgid "Partner"
@@ -14520,7 +14483,7 @@ msgid "_Notes"
 msgstr "_Ghi chú "
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:51
-#: ../gramps/plugins/webreport/basepage.py:2301
+#: ../gramps/plugins/webreport/basepage.py:2303
 msgid "Personal"
 msgstr "Cá nhân"
 
@@ -14613,7 +14576,7 @@ msgstr "Tên thay thế"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:76
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:120
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1504
-#: ../gramps/plugins/webreport/basepage.py:3529
+#: ../gramps/plugins/webreport/basepage.py:3531
 msgid "Enclosed By"
 msgstr "Được bao gồm bởi"
 
@@ -14970,7 +14933,7 @@ msgstr "Bộ sửa tham chiếu sự kiện "
 #: ../gramps/gui/editors/editmediaref.py:130
 #: ../gramps/gui/editors/editname.py:139
 #: ../gramps/gui/editors/editplaceref.py:91
-#: ../gramps/gui/editors/editreporef.py:80
+#: ../gramps/gui/editors/editreporef.py:90
 msgid "_General"
 msgstr "_Tổng quát "
 
@@ -15439,8 +15402,8 @@ msgstr "Chú ý: %(id)s - %(context)s"
 #: ../gramps/gui/editors/editnote.py:180
 #: ../gramps/plugins/webreport/basepage.py:829
 #: ../gramps/plugins/webreport/basepage.py:832
-#: ../gramps/plugins/webreport/basepage.py:2853
-#: ../gramps/plugins/webreport/basepage.py:2856
+#: ../gramps/plugins/webreport/basepage.py:2855
+#: ../gramps/plugins/webreport/basepage.py:2858
 #, python-format
 msgid "Note: %s"
 msgstr "Chú ý: %s"
@@ -15742,29 +15705,29 @@ msgstr "Không thể lưu kho. ID đã tồn tại. "
 msgid "Cannot save item. ID already exists."
 msgstr "Không thể lưu mục này. ID này đã tồn tại."
 
-#: ../gramps/gui/editors/editreporef.py:61
+#: ../gramps/gui/editors/editreporef.py:71
 msgid "Repository Reference Editor"
 msgstr "Bộ sửa tham chiếu kho "
 
-#: ../gramps/gui/editors/editreporef.py:213
+#: ../gramps/gui/editors/editreporef.py:226
 #, python-format
 msgid "Repository: %s"
 msgstr "Kho: %s "
 
-#: ../gramps/gui/editors/editreporef.py:215
+#: ../gramps/gui/editors/editreporef.py:228
 #: ../gramps/gui/editors/editrepository.py:87
 msgid "New Repository"
 msgstr "Kho mới "
 
-#: ../gramps/gui/editors/editreporef.py:216
+#: ../gramps/gui/editors/editreporef.py:229
 msgid "Repo Reference Editor"
 msgstr "Bộ sửa tham chiếu kho "
 
-#: ../gramps/gui/editors/editreporef.py:222
+#: ../gramps/gui/editors/editreporef.py:235
 msgid "Modify Repository"
 msgstr "Chỉnh sửa kho "
 
-#: ../gramps/gui/editors/editreporef.py:227
+#: ../gramps/gui/editors/editreporef.py:240
 msgid "Add Repository"
 msgstr "Thêm kho  "
 
@@ -16060,6 +16023,31 @@ msgstr "Thử bộc lọc "
 msgid "Comment"
 msgstr "Ý kiến "
 
+#: ../gramps/gui/editors/filtereditor.py:1225
+#: ../gramps/plugins/drawreport/calendarreport.py:600
+#: ../gramps/plugins/drawreport/statisticschart.py:1125
+#: ../gramps/plugins/drawreport/timeline.py:428
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1169
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1185
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1201
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1217
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1233
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1265
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1297
+#: ../gramps/plugins/graph/gvrelgraph.py:881
+#: ../gramps/plugins/quickview/quickview.gpr.py:143
+#: ../gramps/plugins/textreport/birthdayreport.py:561
+#: ../gramps/plugins/textreport/familygroup.py:722
+#: ../gramps/plugins/textreport/indivcomplete.py:1101
+#: ../gramps/plugins/textreport/recordsreport.py:236
+#: ../gramps/plugins/tool/sortevents.py:177
+#: ../gramps/plugins/webreport/narrativeweb.py:2131
+#: ../gramps/plugins/webreport/webcal.py:1851
+msgid "Filter"
+msgstr "Bộ lọc "
+
 #: ../gramps/gui/editors/filtereditor.py:1237
 msgid "Custom Filter Editor"
 msgstr "Trình soạn thảo bộ lọc theo ý riêng "
@@ -16249,8 +16237,8 @@ msgstr "%s không là "
 msgid "%s does not contain"
 msgstr "%s không chứa "
 
-#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1384
-#: ../gramps/gui/views/listview.py:1404 ../gramps/plugins/gramplet/leak.py:201
+#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1389
+#: ../gramps/gui/views/listview.py:1409 ../gramps/plugins/gramplet/leak.py:201
 #: ../gramps/plugins/gramplet/leak.py:208
 msgid "Updating display..."
 msgstr "Cập nhật hiển thị..."
@@ -16302,7 +16290,7 @@ msgstr "Người tham gia"
 #: ../gramps/gui/widgets/reorderfam.py:105
 #: ../gramps/plugins/textreport/tagreport.py:273
 #: ../gramps/plugins/view/familyview.py:85
-#: ../gramps/plugins/webreport/person.py:1639
+#: ../gramps/plugins/webreport/person.py:1640
 msgid "Relationship"
 msgstr "Quan hệ "
 
@@ -16312,8 +16300,8 @@ msgstr "bất kỳ "
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:164
 #: ../gramps/plugins/export/exportcsv.py:428
-#: ../gramps/plugins/webreport/person.py:1955
-#: ../gramps/plugins/webreport/person.py:2349
+#: ../gramps/plugins/webreport/person.py:1956
+#: ../gramps/plugins/webreport/person.py:2350
 msgid "Birth date"
 msgstr "Ngày sinh "
 
@@ -16332,8 +16320,8 @@ msgstr "Nơi sinh "
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:170
 #: ../gramps/plugins/export/exportcsv.py:434
-#: ../gramps/plugins/webreport/person.py:1966
-#: ../gramps/plugins/webreport/person.py:2350
+#: ../gramps/plugins/webreport/person.py:1967
+#: ../gramps/plugins/webreport/person.py:2351
 msgid "Death date"
 msgstr "Ngày tháng chết "
 
@@ -16673,7 +16661,7 @@ msgstr "Đóng_mà không lưu "
 
 #: ../gramps/gui/glade/dialog.glade:935
 #: ../gramps/gui/plug/report/_bookdialog.py:649
-#: ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/views/listview.py:1261
 #: ../gramps/gui/widgets/grampletpane.py:614
 #: ../gramps/plugins/tool/eventcmp.py:410
 msgid "_Save"
@@ -17125,6 +17113,14 @@ msgstr "Thông tin chia xẻ"
 #: ../gramps/gui/glade/editsource.glade:28
 msgid "Abandon changes and close window"
 msgstr "Bỏ thay đổi và đóng cửa sổ "
+
+#: ../gramps/gui/glade/editfamily.glade:116
+#: ../gramps/gui/glade/editfamily.glade:379
+#, fuzzy
+#| msgid "Name:"
+msgctxt "family"
+msgid "Name:"
+msgstr "Tên:"
 
 #: ../gramps/gui/glade/editfamily.glade:129
 #: ../gramps/gui/glade/editfamily.glade:392
@@ -17809,7 +17805,7 @@ msgid "Street Number"
 msgstr "Đường "
 
 #: ../gramps/gui/glade/editplacename.glade:157
-#: ../gramps/plugins/webreport/basepage.py:3457
+#: ../gramps/plugins/webreport/basepage.py:3459
 msgid "Date range in which the name is valid."
 msgstr "Ngày tháng  địa điểm này hiệu lực"
 
@@ -18162,7 +18158,7 @@ msgid "Note 2"
 msgstr "Ghi chú 2"
 
 #: ../gramps/gui/glade/mergenote.glade:270
-#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1261
+#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1266
 msgid "Format:"
 msgstr "Mẫu: "
 
@@ -18183,6 +18179,14 @@ msgstr "Cá nhân 1"
 #: ../gramps/plugins/textreport/recordsreport.py:291
 msgid "Person 2"
 msgstr "Cá nhân 2"
+
+#: ../gramps/gui/glade/mergeperson.glade:218
+#: ../gramps/gui/glade/mergeperson.glade:233
+#, fuzzy
+#| msgid "Name:"
+msgctxt "person"
+msgid "Name:"
+msgstr "Tên:"
 
 #: ../gramps/gui/glade/mergeperson.glade:249
 #: ../gramps/gui/glade/mergeperson.glade:264
@@ -18981,15 +18985,15 @@ msgstr ""
 "Xem tài liệu README để cài các trình cần thiết tiền quyết,\n"
 "cụ thể tại /usr/share/doc/gramps.\n"
 
-#: ../gramps/gui/grampsgui.py:616
+#: ../gramps/gui/grampsgui.py:621
 msgid "Error parsing arguments"
 msgstr "Lỗi phân tích thông số "
 
-#: ../gramps/gui/grampsgui.py:636
+#: ../gramps/gui/grampsgui.py:641
 msgid "Gramps terminated because of no DISPLAY"
 msgstr "Gramps kết thúc vì không có HIỂN THỊ"
 
-#: ../gramps/gui/grampsgui.py:666 ../gramps/gui/grampsgui.py:747
+#: ../gramps/gui/grampsgui.py:671 ../gramps/gui/grampsgui.py:752
 msgid ""
 "\n"
 "Gramps failed to start. Please report a bug about this.\n"
@@ -19291,7 +19295,7 @@ msgstr "Hòa người "
 #: ../gramps/plugins/view/relview.py:689 ../gramps/plugins/view/relview.py:1068
 #: ../gramps/plugins/view/relview.py:1106
 #: ../gramps/plugins/webreport/person.py:442
-#: ../gramps/plugins/webreport/person.py:2326
+#: ../gramps/plugins/webreport/person.py:2327
 #: ../gramps/plugins/webreport/surname.py:167
 msgid "Parents"
 msgstr "Cha mẹ "
@@ -19555,8 +19559,8 @@ msgid "Installed"
 msgstr "Không ổn định "
 
 #: ../gramps/gui/plug/_windows.py:434 ../gramps/gui/plug/_windows.py:645
-#: ../gramps/plugins/webreport/basepage.py:2078
-#: ../gramps/plugins/webreport/basepage.py:2146
+#: ../gramps/plugins/webreport/basepage.py:2080
+#: ../gramps/plugins/webreport/basepage.py:2148
 #, fuzzy
 msgid "Updates"
 msgstr "Được cập nhật"
@@ -20423,7 +20427,7 @@ msgid "Paper Options"
 msgstr "Chọn lựa giấy "
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:148
-#: ../gramps/plugins/webreport/narrativeweb.py:2172
+#: ../gramps/plugins/webreport/narrativeweb.py:2173
 msgid "HTML Options"
 msgstr "Chọn lựa HTML "
 
@@ -20491,7 +20495,7 @@ msgstr "Kiểu thức "
 #: ../gramps/plugins/textreport/summary.py:395
 #: ../gramps/plugins/textreport/tableofcontents.py:101
 #: ../gramps/plugins/textreport/tagreport.py:912
-#: ../gramps/plugins/webreport/narrativeweb.py:2107
+#: ../gramps/plugins/webreport/narrativeweb.py:2108
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Report Options"
 msgstr "Các tuỳ chọn cho báo cáo "
@@ -21190,23 +21194,23 @@ msgstr "Xóa bỏ %s? "
 msgid "Column clicked, sorting..."
 msgstr "Cột được nhấp, đang sắp xếp..."
 
-#: ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/views/listview.py:1256
 msgid "Export View as Spreadsheet"
 msgstr "Xuất Hiển thị dạng bảng tính "
 
-#: ../gramps/gui/views/listview.py:1266
+#: ../gramps/gui/views/listview.py:1271
 msgid "CSV"
 msgstr "CVS "
 
-#: ../gramps/gui/views/listview.py:1267
+#: ../gramps/gui/views/listview.py:1272
 msgid "OpenDocument Spreadsheet"
 msgstr "Bảng tính OpenDocument "
 
-#: ../gramps/gui/views/listview.py:1453
+#: ../gramps/gui/views/listview.py:1458
 msgid "Columns"
 msgstr "Cột "
 
-#: ../gramps/gui/views/listview.py:1463
+#: ../gramps/gui/views/listview.py:1468
 msgid "CSV Dialect"
 msgstr ""
 
@@ -21613,51 +21617,51 @@ msgstr "Làm lại "
 msgid "Undo"
 msgstr "Phục hồi "
 
-#: ../gramps/gui/widgets/styledtexteditor.py:471
+#: ../gramps/gui/widgets/styledtexteditor.py:475
 msgid ""
 "\n"
 "Command-Click to follow link"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:473
+#: ../gramps/gui/widgets/styledtexteditor.py:477
 msgid ""
 "\n"
 "Ctrl-Click to follow link"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:530
+#: ../gramps/gui/widgets/styledtexteditor.py:534
 msgid "Spellcheck"
 msgstr "Kiểm tra chính tả"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:535
+#: ../gramps/gui/widgets/styledtexteditor.py:539
 msgid "Search selection on web"
 msgstr "Chọn lựa tìm trên web "
 
-#: ../gramps/gui/widgets/styledtexteditor.py:546
+#: ../gramps/gui/widgets/styledtexteditor.py:550
 msgid "_Send Mail To..."
 msgstr "_Gửi mail đến... "
 
-#: ../gramps/gui/widgets/styledtexteditor.py:548
+#: ../gramps/gui/widgets/styledtexteditor.py:552
 msgid "Copy _E-mail Address"
 msgstr "Sao _Địa chỉ E-mail "
 
-#: ../gramps/gui/widgets/styledtexteditor.py:551
+#: ../gramps/gui/widgets/styledtexteditor.py:555
 msgid "_Open Link"
 msgstr "_Mở liên kết "
 
-#: ../gramps/gui/widgets/styledtexteditor.py:553
+#: ../gramps/gui/widgets/styledtexteditor.py:557
 msgid "Copy _Link Address"
 msgstr "Sao _Địa chỉ liên kết "
 
-#: ../gramps/gui/widgets/styledtexteditor.py:557
+#: ../gramps/gui/widgets/styledtexteditor.py:561
 msgid "_Edit Link"
 msgstr "_Sửa Liên kết "
 
-#: ../gramps/gui/widgets/styledtexteditor.py:807
+#: ../gramps/gui/widgets/styledtexteditor.py:811
 msgid "Select font color"
 msgstr "Chọn màu font "
 
-#: ../gramps/gui/widgets/styledtexteditor.py:811
+#: ../gramps/gui/widgets/styledtexteditor.py:815
 msgid "Select background color"
 msgstr "Chọn màu nên "
 
@@ -21922,13 +21926,13 @@ msgid "of %d"
 msgstr "của %d"
 
 #: ../gramps/plugins/docgen/htmldoc.py:306
-#: ../gramps/plugins/webreport/narrativeweb.py:1958
+#: ../gramps/plugins/webreport/narrativeweb.py:1959
 #: ../gramps/plugins/webreport/webcal.py:296
 msgid "Possible destination error"
 msgstr "Có thể lỗi ở đích đến "
 
 #: ../gramps/plugins/docgen/htmldoc.py:308
-#: ../gramps/plugins/webreport/narrativeweb.py:1961
+#: ../gramps/plugins/webreport/narrativeweb.py:1962
 #: ../gramps/plugins/webreport/webcal.py:299
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -22603,13 +22607,13 @@ msgstr "Dòng văn bản thứ ba ở dưới lịch "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:636
 #: ../gramps/plugins/textreport/birthdayreport.py:597
-#: ../gramps/plugins/webreport/narrativeweb.py:3185
+#: ../gramps/plugins/webreport/narrativeweb.py:3186
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Include only living people"
 msgstr "Gồm cả người còn sống "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:637
-#: ../gramps/plugins/webreport/narrativeweb.py:3186
+#: ../gramps/plugins/webreport/narrativeweb.py:3187
 #: ../gramps/plugins/webreport/webcal.py:1914
 msgid "Include only living people in the calendar"
 msgstr "Đưa những người sống vào lịch "
@@ -22639,55 +22643,55 @@ msgid "Select the country to see associated holidays"
 msgstr "Chọn nước để biết các ngày lễ liên quan "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:664
-#: ../gramps/plugins/webreport/narrativeweb.py:3146
+#: ../gramps/plugins/webreport/narrativeweb.py:3147
 #: ../gramps/plugins/webreport/webcal.py:1970
 msgid "First day of week"
 msgstr "Ngày đầu tiên của tuần "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:670
-#: ../gramps/plugins/webreport/narrativeweb.py:3150
+#: ../gramps/plugins/webreport/narrativeweb.py:3151
 #: ../gramps/plugins/webreport/webcal.py:1973
 msgid "Select the first day of the week for the calendar"
 msgstr "Chọn ngày đầu tiên của tuần cho lịch "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:673
 #: ../gramps/plugins/textreport/birthdayreport.py:634
-#: ../gramps/plugins/webreport/narrativeweb.py:3154
+#: ../gramps/plugins/webreport/narrativeweb.py:3155
 #: ../gramps/plugins/webreport/webcal.py:1976
 msgid "Birthday surname"
 msgstr "Họ ngày sinh nhật "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:675
 #: ../gramps/plugins/textreport/birthdayreport.py:636
-#: ../gramps/plugins/webreport/narrativeweb.py:3157
+#: ../gramps/plugins/webreport/narrativeweb.py:3158
 #: ../gramps/plugins/webreport/webcal.py:1979
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "Vợ dùng họ chồng (từ gia đình đầu tiên được nêu) "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:678
 #: ../gramps/plugins/textreport/birthdayreport.py:639
-#: ../gramps/plugins/webreport/narrativeweb.py:3160
+#: ../gramps/plugins/webreport/narrativeweb.py:3161
 #: ../gramps/plugins/webreport/webcal.py:1982
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "Vợ dùng họ chồng (từ gia đình cuối được nêu) "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:680
 #: ../gramps/plugins/textreport/birthdayreport.py:641
-#: ../gramps/plugins/webreport/narrativeweb.py:3162
+#: ../gramps/plugins/webreport/narrativeweb.py:3163
 #: ../gramps/plugins/webreport/webcal.py:1984
 msgid "Wives use their own surname"
 msgstr "Vợ dùng họ riêng của mình "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:681
 #: ../gramps/plugins/textreport/birthdayreport.py:642
-#: ../gramps/plugins/webreport/narrativeweb.py:3163
+#: ../gramps/plugins/webreport/narrativeweb.py:3164
 #: ../gramps/plugins/webreport/webcal.py:1985
 msgid "Select married women's displayed surname"
 msgstr "Chọn họ thể hiện của phụ nữa có chồng "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:684
 #: ../gramps/plugins/textreport/birthdayreport.py:645
-#: ../gramps/plugins/webreport/narrativeweb.py:3173
+#: ../gramps/plugins/webreport/narrativeweb.py:3174
 #: ../gramps/plugins/webreport/webcal.py:2065
 msgid "Include birthdays"
 msgstr "Gồm cả ngày sinh "
@@ -22699,7 +22703,7 @@ msgstr "Có đưa ngày sinh vào không"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:688
 #: ../gramps/plugins/textreport/birthdayreport.py:649
-#: ../gramps/plugins/webreport/narrativeweb.py:3177
+#: ../gramps/plugins/webreport/narrativeweb.py:3178
 #: ../gramps/plugins/webreport/webcal.py:2069
 msgid "Include anniversaries"
 msgstr "Gồm cả ngày kỷ niệm "
@@ -22710,14 +22714,14 @@ msgid "Whether to include anniversaries"
 msgstr "Có đưa ngày giỗ vaò không "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:692
-#: ../gramps/plugins/webreport/narrativeweb.py:3181
+#: ../gramps/plugins/webreport/narrativeweb.py:3182
 #: ../gramps/plugins/webreport/webcal.py:2073
 #, fuzzy
 msgid "Include death dates"
 msgstr "Đưa ngày tháng vào "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:693
-#: ../gramps/plugins/webreport/narrativeweb.py:3182
+#: ../gramps/plugins/webreport/narrativeweb.py:3183
 #: ../gramps/plugins/webreport/webcal.py:2074
 #, fuzzy
 msgid "Include death anniversaries in the calendar"
@@ -23328,7 +23332,7 @@ msgstr "Quyết định người nào được đưa vào báo cáo. "
 #: ../gramps/plugins/textreport/indivcomplete.py:1106
 #: ../gramps/plugins/textreport/recordsreport.py:241
 #: ../gramps/plugins/tool/sortevents.py:182
-#: ../gramps/plugins/webreport/narrativeweb.py:2137
+#: ../gramps/plugins/webreport/narrativeweb.py:2138
 #: ../gramps/plugins/webreport/webcal.py:1858
 msgid "Filter Person"
 msgstr "Lọc người "
@@ -23476,7 +23480,7 @@ msgstr "Quyết định người nào để đưa vào báo cáo "
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/textreport/recordsreport.py:242
 #: ../gramps/plugins/tool/sortevents.py:183
-#: ../gramps/plugins/webreport/narrativeweb.py:2138
+#: ../gramps/plugins/webreport/narrativeweb.py:2139
 #: ../gramps/plugins/webreport/webcal.py:1859
 msgid "The center person for the filter"
 msgstr "Người trung tâm cho bộ lọc "
@@ -23713,13 +23717,13 @@ msgstr "Nguồn về an táng "
 
 #: ../gramps/plugins/export/exportcsv.py:582
 #: ../gramps/plugins/importer/importcsv.py:378
-#: ../gramps/plugins/webreport/basepage.py:3166
+#: ../gramps/plugins/webreport/basepage.py:3168
 msgid "Husband"
 msgstr "Chồng "
 
 #: ../gramps/plugins/export/exportcsv.py:583
 #: ../gramps/plugins/importer/importcsv.py:368
-#: ../gramps/plugins/webreport/basepage.py:3164
+#: ../gramps/plugins/webreport/basepage.py:3166
 msgid "Wife"
 msgstr "Vợ "
 
@@ -23861,8 +23865,8 @@ msgstr "Mẹ- Phân bố khác biệt tuổi con "
 #: ../gramps/plugins/gramplet/agestats.py:255
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:298
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:305
-#: ../gramps/plugins/webreport/basepage.py:2079
-#: ../gramps/plugins/webreport/basepage.py:2149
+#: ../gramps/plugins/webreport/basepage.py:2081
+#: ../gramps/plugins/webreport/basepage.py:2151
 #: ../gramps/plugins/webreport/statistics.py:88
 msgid "Statistics"
 msgstr "Thống kê "
@@ -23914,7 +23918,7 @@ msgstr ""
 "cho. "
 
 #: ../gramps/plugins/gramplet/attributes.py:61
-#: ../gramps/plugins/webreport/basepage.py:1397
+#: ../gramps/plugins/webreport/basepage.py:1399
 msgid "Key"
 msgstr "Khóa "
 
@@ -24248,7 +24252,7 @@ msgstr "Gramplet hiển thị con cháu của người đang hoạt hóa "
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:118
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:125
-#: ../gramps/plugins/webreport/person.py:1560
+#: ../gramps/plugins/webreport/person.py:1561
 msgid "Ancestors"
 msgstr "Tổ tiên "
 
@@ -24724,8 +24728,8 @@ msgstr "Gramplet hiển thị tham chiếu ngược cho một người"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1137
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1153
-#: ../gramps/plugins/webreport/basepage.py:3881
-#: ../gramps/plugins/webreport/person.py:1100
+#: ../gramps/plugins/webreport/basepage.py:3883
+#: ../gramps/plugins/webreport/person.py:1101
 #: ../gramps/plugins/webreport/thumbnail.py:188
 msgid "References"
 msgstr "Tham chiếu "
@@ -24755,7 +24759,7 @@ msgid "Gramplet showing the backlink references for a place"
 msgstr "Gramplet hiển thị tham chiếu ngược cho địa điểm "
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1081
-#: ../gramps/plugins/webreport/basepage.py:3012
+#: ../gramps/plugins/webreport/basepage.py:3014
 msgid "Source References"
 msgstr "Tham chiếu nguồn "
 
@@ -24962,7 +24966,7 @@ msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Gramplet hiển thị địa điểm bao quanh bởi địa điểm đang nói đến"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1512
-#: ../gramps/plugins/webreport/basepage.py:3567
+#: ../gramps/plugins/webreport/basepage.py:3569
 msgid "Place Encloses"
 msgstr "Địa điểm bao bọc"
 
@@ -25260,9 +25264,9 @@ msgstr "Ít hơn 1 "
 #: ../gramps/plugins/gramplet/statsgramplet.py:145
 #: ../gramps/plugins/graph/gvfamilylines.py:336
 #: ../gramps/plugins/textreport/summary.py:128
-#: ../gramps/plugins/webreport/basepage.py:2055
-#: ../gramps/plugins/webreport/basepage.py:2119
-#: ../gramps/plugins/webreport/basepage.py:2250
+#: ../gramps/plugins/webreport/basepage.py:2057
+#: ../gramps/plugins/webreport/basepage.py:2121
+#: ../gramps/plugins/webreport/basepage.py:2252
 #: ../gramps/plugins/webreport/person.py:362
 #: ../gramps/plugins/webreport/statistics.py:120
 #: ../gramps/plugins/webreport/statistics.py:230
@@ -27452,13 +27456,13 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:292
 #: ../gramps/plugins/view/view.gpr.py:325
 #: ../gramps/plugins/webreport/basepage.py:864
-#: ../gramps/plugins/webreport/basepage.py:1322
-#: ../gramps/plugins/webreport/basepage.py:1520
-#: ../gramps/plugins/webreport/basepage.py:1660
-#: ../gramps/plugins/webreport/basepage.py:2061
-#: ../gramps/plugins/webreport/basepage.py:2125
-#: ../gramps/plugins/webreport/basepage.py:2262
-#: ../gramps/plugins/webreport/person.py:1641
+#: ../gramps/plugins/webreport/basepage.py:1324
+#: ../gramps/plugins/webreport/basepage.py:1522
+#: ../gramps/plugins/webreport/basepage.py:1662
+#: ../gramps/plugins/webreport/basepage.py:2063
+#: ../gramps/plugins/webreport/basepage.py:2127
+#: ../gramps/plugins/webreport/basepage.py:2264
+#: ../gramps/plugins/webreport/person.py:1642
 #: ../gramps/plugins/webreport/source.py:151
 #: ../gramps/plugins/webreport/source.py:354
 #: ../gramps/plugins/webreport/updates.py:134
@@ -27643,7 +27647,7 @@ msgid "Old xml file"
 msgstr "Bản xml cũ "
 
 #: ../gramps/plugins/importer/importxml.py:1357
-#: ../gramps/plugins/importer/importxml.py:2926
+#: ../gramps/plugins/importer/importxml.py:2936
 #, python-format
 msgid "Witness name: %s"
 msgstr "Tên chứng kiến: %s "
@@ -27677,17 +27681,17 @@ msgstr "Không biết khi nhập"
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Bất ky 2tham chiếu ghi chú nào phải có thông số 'hlink'."
 
-#: ../gramps/plugins/importer/importxml.py:2741
+#: ../gramps/plugins/importer/importxml.py:2751
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr "Ngày không đúng {date} ở XML {xml}, giữ XML như văn bản"
 
-#: ../gramps/plugins/importer/importxml.py:2795
+#: ../gramps/plugins/importer/importxml.py:2805
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Ý kiến chứng kiến: %s "
 
-#: ../gramps/plugins/importer/importxml.py:3478
+#: ../gramps/plugins/importer/importxml.py:3488
 #, fuzzy, python-format
 msgctxt "father"
 msgid ""
@@ -27697,7 +27701,7 @@ msgstr ""
 "Lỗi: gia đình '%(family)s' cha '%(father)s' không tham chiếu ngược lại gia "
 "đình. Tham chiếu được thêm."
 
-#: ../gramps/plugins/importer/importxml.py:3500
+#: ../gramps/plugins/importer/importxml.py:3510
 #, fuzzy, python-format
 msgctxt "mother"
 msgid ""
@@ -27707,7 +27711,7 @@ msgstr ""
 "Lỗi: gia đình '%(family)s' mẹ '%(mother)s' không tham chiếu lại gia đình. "
 "Thêm tham chiếu."
 
-#: ../gramps/plugins/importer/importxml.py:3528
+#: ../gramps/plugins/importer/importxml.py:3538
 #, fuzzy, python-format
 msgctxt "child"
 msgid ""
@@ -27732,7 +27736,7 @@ msgstr "Hôn nhân theo luật chung"
 
 #: ../gramps/plugins/lib/libgedcom.py:740
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:327
-#: ../gramps/plugins/webreport/narrativeweb.py:2118
+#: ../gramps/plugins/webreport/narrativeweb.py:2119
 #: ../gramps/plugins/webreport/webcal.py:1840
 msgid "Destination"
 msgstr "Đích "
@@ -32481,7 +32485,7 @@ msgid "Open on maps.google.com"
 msgstr "Mở bản đồ ở maps.google.com "
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:75
-#: ../gramps/plugins/webreport/narrativeweb.py:2652
+#: ../gramps/plugins/webreport/narrativeweb.py:2653
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap "
 
@@ -32540,7 +32544,7 @@ msgstr "Nơi sự kiện "
 #: ../gramps/plugins/quickview/all_events.py:62
 #: ../gramps/plugins/quickview/all_events.py:114
 #: ../gramps/plugins/quickview/all_events.py:131
-#: ../gramps/plugins/webreport/person.py:1116
+#: ../gramps/plugins/webreport/person.py:1117
 msgid "Event Type"
 msgstr "Kiểu sự kiện "
 
@@ -33132,7 +33136,7 @@ msgid "No references for this %s"
 msgstr "Không có tham chiếu cho %s "
 
 #: ../gramps/plugins/quickview/reporef.py:64
-#: ../gramps/plugins/webreport/basepage.py:3638
+#: ../gramps/plugins/webreport/basepage.py:3640
 msgid "Call number"
 msgstr "Số gọi"
 
@@ -34300,7 +34304,7 @@ msgid "Alternate Parents"
 msgstr "Cha mẹ thay thế "
 
 #: ../gramps/plugins/textreport/indivcomplete.py:469
-#: ../gramps/plugins/webreport/person.py:1620
+#: ../gramps/plugins/webreport/person.py:1621
 msgid "Associations"
 msgstr "Các người liênquan "
 
@@ -35749,8 +35753,8 @@ msgid "Help"
 msgstr "_Trợ giúp "
 
 #: ../gramps/plugins/tool/mediamanager.py:105
-#: ../gramps/plugins/webreport/basepage.py:2053
-#: ../gramps/plugins/webreport/basepage.py:2249
+#: ../gramps/plugins/webreport/basepage.py:2055
+#: ../gramps/plugins/webreport/basepage.py:2251
 #: ../gramps/plugins/webreport/introduction.py:81
 msgid "Introduction"
 msgstr "Giới thiệu "
@@ -38484,9 +38488,9 @@ msgstr "Hiển thị cho thấy trích dẫn và nguồn ở dạng cây."
 
 #: ../gramps/plugins/webreport/addressbook.py:92
 #: ../gramps/plugins/webreport/addressbooklist.py:84
-#: ../gramps/plugins/webreport/basepage.py:2076
-#: ../gramps/plugins/webreport/basepage.py:2143
-#: ../gramps/plugins/webreport/basepage.py:2277
+#: ../gramps/plugins/webreport/basepage.py:2078
+#: ../gramps/plugins/webreport/basepage.py:2145
+#: ../gramps/plugins/webreport/basepage.py:2279
 msgid "Address Book"
 msgstr "Sổ địa chỉ "
 
@@ -38506,7 +38510,7 @@ msgid "Full Name"
 msgstr "Tên đầy đủ"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:120
-#: ../gramps/plugins/webreport/basepage.py:2894
+#: ../gramps/plugins/webreport/basepage.py:2896
 msgid "Web Links"
 msgstr "Liên kết web "
 
@@ -38521,121 +38525,121 @@ msgstr "Tường thuật "
 msgid "(%(str1)s) %(str2)s"
 msgstr "%(str1)s: %(str2)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1511
-#: ../gramps/plugins/webreport/basepage.py:3427
-#: ../gramps/plugins/webreport/basepage.py:3505
+#: ../gramps/plugins/webreport/basepage.py:1513
+#: ../gramps/plugins/webreport/basepage.py:3429
+#: ../gramps/plugins/webreport/basepage.py:3507
 msgid "State/ Province"
 msgstr "Bang/ Tình "
 
-#: ../gramps/plugins/webreport/basepage.py:1698
+#: ../gramps/plugins/webreport/basepage.py:1700
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 msgstr "Tạo ra bởi %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1710
+#: ../gramps/plugins/webreport/basepage.py:1712
 #, python-format
 msgid "Last change was the %(date)s"
 msgstr "Thay đổi lần cuối vào %(date)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1712
+#: ../gramps/plugins/webreport/basepage.py:1714
 #, python-format
 msgid " on %(date)s"
 msgstr "vào %(date)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1739
-#: ../gramps/plugins/webreport/basepage.py:1744
+#: ../gramps/plugins/webreport/basepage.py:1741
+#: ../gramps/plugins/webreport/basepage.py:1746
 #, python-format
 msgid "%(http_break)sCreated for %(subject_url)s"
 msgstr "%(http_break)sTạo cho %(subject_url)s"
 
-#: ../gramps/plugins/webreport/basepage.py:2001
+#: ../gramps/plugins/webreport/basepage.py:2003
 #: ../gramps/plugins/webstuff/webstuff.py:68
 msgid "Basic-Blue"
 msgstr "Màu xanh cơ bản "
 
-#: ../gramps/plugins/webreport/basepage.py:2002
+#: ../gramps/plugins/webreport/basepage.py:2004
 #: ../gramps/plugins/webstuff/webstuff.py:135
 msgid "Visually Impaired"
 msgstr "Khiếm thị "
 
-#: ../gramps/plugins/webreport/basepage.py:2017
+#: ../gramps/plugins/webreport/basepage.py:2019
 #, fuzzy
 msgid "Go to top"
 msgstr "Đi đến người mặc định "
 
-#: ../gramps/plugins/webreport/basepage.py:2052
-#: ../gramps/plugins/webreport/basepage.py:2111
-#: ../gramps/plugins/webreport/basepage.py:2295
+#: ../gramps/plugins/webreport/basepage.py:2054
+#: ../gramps/plugins/webreport/basepage.py:2113
+#: ../gramps/plugins/webreport/basepage.py:2297
 msgctxt "Html"
 msgid "Home"
 msgstr "Trang chủ "
 
-#: ../gramps/plugins/webreport/basepage.py:2060
+#: ../gramps/plugins/webreport/basepage.py:2062
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:2072
-#: ../gramps/plugins/webreport/basepage.py:2270
+#: ../gramps/plugins/webreport/basepage.py:2074
+#: ../gramps/plugins/webreport/basepage.py:2272
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid "Thumbnails"
 msgstr "Hình thu nhỏ"
 
-#: ../gramps/plugins/webreport/basepage.py:2075
-#: ../gramps/plugins/webreport/basepage.py:2276
+#: ../gramps/plugins/webreport/basepage.py:2077
+#: ../gramps/plugins/webreport/basepage.py:2278
 #: ../gramps/plugins/webreport/download.py:94
-#: ../gramps/plugins/webreport/narrativeweb.py:2489
+#: ../gramps/plugins/webreport/narrativeweb.py:2490
 msgid "Download"
 msgstr "Tải xuống "
 
-#: ../gramps/plugins/webreport/basepage.py:2077
-#: ../gramps/plugins/webreport/basepage.py:2282
-#: ../gramps/plugins/webreport/basepage.py:2320
+#: ../gramps/plugins/webreport/basepage.py:2079
+#: ../gramps/plugins/webreport/basepage.py:2284
+#: ../gramps/plugins/webreport/basepage.py:2322
 #: ../gramps/plugins/webreport/contact.py:81
 msgid "Contact"
 msgstr "Liên hệ "
 
-#: ../gramps/plugins/webreport/basepage.py:2080
-#: ../gramps/plugins/webreport/basepage.py:2152
+#: ../gramps/plugins/webreport/basepage.py:2082
+#: ../gramps/plugins/webreport/basepage.py:2154
 #: ../gramps/plugins/webreport/webplugins.gpr.py:61
 msgid "Web Calendar"
 msgstr "Lịch web "
 
-#: ../gramps/plugins/webreport/basepage.py:2134
+#: ../gramps/plugins/webreport/basepage.py:2136
 msgid "Heatmap"
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:2223
+#: ../gramps/plugins/webreport/basepage.py:2225
 #: ../gramps/plugins/webreport/media.py:440
 msgid "Previous"
 msgstr "Trước "
 
-#: ../gramps/plugins/webreport/basepage.py:2225
+#: ../gramps/plugins/webreport/basepage.py:2227
 #: ../gramps/plugins/webreport/media.py:453
 msgid "Next"
 msgstr "Kế "
 
-#: ../gramps/plugins/webreport/basepage.py:2775
+#: ../gramps/plugins/webreport/basepage.py:2777
 msgid "Other media: videos, pdfs..."
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:2947
+#: ../gramps/plugins/webreport/basepage.py:2949
 msgid " [Click to Go]"
 msgstr " [Nhấp để đi]"
 
-#: ../gramps/plugins/webreport/basepage.py:2973
+#: ../gramps/plugins/webreport/basepage.py:2975
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Latter-Day Saints/ LDS Ordinance"
 
-#: ../gramps/plugins/webreport/basepage.py:3140
 #: ../gramps/plugins/webreport/basepage.py:3142
+#: ../gramps/plugins/webreport/basepage.py:3144
 #: ../gramps/plugins/webreport/family.py:562
-#: ../gramps/plugins/webreport/person.py:878
-#: ../gramps/plugins/webreport/person.py:1282
+#: ../gramps/plugins/webreport/person.py:879
+#: ../gramps/plugins/webreport/person.py:1283
 msgid "Family Map"
 msgstr "Bản đồ gia đình "
 
-#: ../gramps/plugins/webreport/basepage.py:3387
+#: ../gramps/plugins/webreport/basepage.py:3389
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
@@ -38643,7 +38647,7 @@ msgstr ""
 "Kinh tuyến sai\n"
 "(cú pháp: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 
-#: ../gramps/plugins/webreport/basepage.py:3408
+#: ../gramps/plugins/webreport/basepage.py:3410
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
@@ -38651,20 +38655,20 @@ msgstr ""
 "Vĩ tuyến sai\n"
 "(cú pháp: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 
-#: ../gramps/plugins/webreport/basepage.py:3425
-#: ../gramps/plugins/webreport/basepage.py:3503
+#: ../gramps/plugins/webreport/basepage.py:3427
+#: ../gramps/plugins/webreport/basepage.py:3505
 msgid "Church Parish"
 msgstr "Nhà thờ "
 
-#: ../gramps/plugins/webreport/basepage.py:3447
+#: ../gramps/plugins/webreport/basepage.py:3449
 msgid "Locations"
 msgstr "Địa điểm"
 
-#: ../gramps/plugins/webreport/basepage.py:3794
+#: ../gramps/plugins/webreport/basepage.py:3796
 msgid "circa"
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:3796
+#: ../gramps/plugins/webreport/basepage.py:3798
 #, fuzzy
 msgid "around"
 msgstr "Màu nền"
@@ -38826,8 +38830,8 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:248
 #: ../gramps/plugins/webreport/heatmap.py:380
 #: ../gramps/plugins/webreport/heatmap.py:512
-#: ../gramps/plugins/webreport/place.py:345
-#: ../gramps/plugins/webreport/place.py:357
+#: ../gramps/plugins/webreport/place.py:347
+#: ../gramps/plugins/webreport/place.py:359
 #: ../gramps/plugins/webreport/surnamelist.py:177
 msgid "Letter"
 msgstr "Thư "
@@ -38850,7 +38854,7 @@ msgstr ""
 "tên/ họ của gia đình. Nhấp vào một người, vào tên sẽ dẫn bạn đến trang web "
 "địa điểm. "
 
-#: ../gramps/plugins/webreport/family.py:616
+#: ../gramps/plugins/webreport/family.py:617
 #, fuzzy, python-format
 msgid "Family Map for %s"
 msgstr "Địa điểm gia đình cho %s"
@@ -38876,7 +38880,7 @@ msgstr "Tên "
 #: ../gramps/plugins/webreport/heatmap.py:291
 #: ../gramps/plugins/webreport/heatmap.py:425
 #: ../gramps/plugins/webreport/heatmap.py:557
-#: ../gramps/plugins/webreport/place.py:223
+#: ../gramps/plugins/webreport/place.py:225
 #, python-format
 msgid "Places beginning with letter %s"
 msgstr "Địa điểm bắt đầu bằng chữ %s"
@@ -39047,158 +39051,158 @@ msgstr "Gia đình của %(husband)s và %(spouse)s"
 msgid "Family of %s"
 msgstr "Gia đình của %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1348
+#: ../gramps/plugins/webreport/narrativeweb.py:1349
 msgid "Creating GENDEX file"
 msgstr "Tạo tập tin GENDEX "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1408
+#: ../gramps/plugins/webreport/narrativeweb.py:1409
 msgid "Creating surname pages"
 msgstr "Tạo trang họ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1445
+#: ../gramps/plugins/webreport/narrativeweb.py:1446
 msgid "Creating thumbnail preview page..."
 msgstr "Tạo trang xem trước hình thu nhỏ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1454
+#: ../gramps/plugins/webreport/narrativeweb.py:1455
 msgid "Creating statistics page..."
 msgstr "Tạo trang thống kê..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1462
+#: ../gramps/plugins/webreport/narrativeweb.py:1463
 #, fuzzy
 msgid "Creating updates page..."
 msgstr "Tạo trang thống kê..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1508
+#: ../gramps/plugins/webreport/narrativeweb.py:1509
 msgid "Creating address book pages ..."
 msgstr "Tạo trang sổ địa chỉ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1988
+#: ../gramps/plugins/webreport/narrativeweb.py:1989
 #, fuzzy, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "Báo cáo tường thuật web site "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1990
+#: ../gramps/plugins/webreport/narrativeweb.py:1991
 #, fuzzy
 msgid "Narrative Website Report"
 msgstr "Báo cáo tường thuật web site "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2110
+#: ../gramps/plugins/webreport/narrativeweb.py:2111
 #, fuzzy
 #| msgid "Store web pages in .tar.gz archive"
 msgid "Store website in .tar.gz archive"
 msgstr "Chứa trang web dạng lưu trữ .tar.gz "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2111
+#: ../gramps/plugins/webreport/narrativeweb.py:2112
 #, fuzzy
 #| msgid "Whether to store the web pages in an archive file"
 msgid "Whether to store the website in an archive file"
 msgstr "Có lưu trữ trang web dạng tập tin lưu trữ không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2121
+#: ../gramps/plugins/webreport/narrativeweb.py:2122
 #: ../gramps/plugins/webreport/webcal.py:1843
 msgid "The destination directory for the web files"
 msgstr "Thư mục đích dùng cho tập tin web "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2126
+#: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "My Family Tree"
 msgstr "Cây gia đình của tôi "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2126
+#: ../gramps/plugins/webreport/narrativeweb.py:2127
 #, fuzzy
 #| msgid "Web site title"
 msgid "Website title"
 msgstr "Tiêu đề site "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2127
+#: ../gramps/plugins/webreport/narrativeweb.py:2128
 #, fuzzy
 #| msgid "The title of the web site"
 msgid "The title of the website"
 msgstr "Tiêu đề của web site mới "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2132
+#: ../gramps/plugins/webreport/narrativeweb.py:2133
 #, fuzzy
 #| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
 msgstr "Chọn bộ lọc để hạn chế người xuât hiện ở web site "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2144
+#: ../gramps/plugins/webreport/narrativeweb.py:2145
 #, fuzzy
 msgid "Show the relationship between the current person and the active person"
 msgstr "Hiển thị mọi quan hệ giữa người và người chính. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2151
+#: ../gramps/plugins/webreport/narrativeweb.py:2152
 #, fuzzy
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
 msgstr "Hiển thị mọi quan hệ giữa người và người chính. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2175
+#: ../gramps/plugins/webreport/narrativeweb.py:2176
 #: ../gramps/plugins/webreport/webcal.py:1865
 msgid "File extension"
 msgstr "Mở rộng của site "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2178
+#: ../gramps/plugins/webreport/narrativeweb.py:2179
 #: ../gramps/plugins/webreport/webcal.py:1868
 msgid "The extension to be used for the web files"
 msgstr "Mở rộng phải dùng cho tập tin web "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2182
+#: ../gramps/plugins/webreport/narrativeweb.py:2183
 #: ../gramps/plugins/webreport/webcal.py:1871
 msgid "Copyright"
 msgstr "Bản quyền "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2185
+#: ../gramps/plugins/webreport/narrativeweb.py:2186
 #: ../gramps/plugins/webreport/webcal.py:1874
 msgid "The copyright to be used for the web files"
 msgstr "Bản quyền dùng cho tập tin web "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2188
+#: ../gramps/plugins/webreport/narrativeweb.py:2189
 #: ../gramps/plugins/webreport/webcal.py:1884
 msgid "StyleSheet"
 msgstr "StyleSheet"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2194
+#: ../gramps/plugins/webreport/narrativeweb.py:2195
 #, fuzzy
 msgid "The default stylesheet to be used for the pages"
 msgstr "Stylesheet sẽ dùng cho trang web"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2199
+#: ../gramps/plugins/webreport/narrativeweb.py:2200
 msgid "Horizontal -- Default"
 msgstr "Ngang- mặc định "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2200
+#: ../gramps/plugins/webreport/narrativeweb.py:2201
 msgid "Vertical   -- Left Side"
 msgstr "Chiều đứng- phía trái "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2201
+#: ../gramps/plugins/webreport/narrativeweb.py:2202
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Mờ dần- Chỉ cho webkit trình duyệt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2202
-#: ../gramps/plugins/webreport/narrativeweb.py:2218
+#: ../gramps/plugins/webreport/narrativeweb.py:2203
+#: ../gramps/plugins/webreport/narrativeweb.py:2219
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Xổ xuống- chỉ cho webkit trình duyệt web "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2205
+#: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Navigation Menu Layout"
 msgstr "Trình bày menu dịch chuyển "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2210
+#: ../gramps/plugins/webreport/narrativeweb.py:2211
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Chọn kiểu trình bày cho menu di chuyển "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2217
+#: ../gramps/plugins/webreport/narrativeweb.py:2218
 msgid "Normal Outline Style"
 msgstr "Kiểu dàn bài bình thường"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2221
+#: ../gramps/plugins/webreport/narrativeweb.py:2222
 #, fuzzy
 #| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "Trình bày tham chiếu trích dẫn"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2227
+#: ../gramps/plugins/webreport/narrativeweb.py:2228
 #, fuzzy
 #| msgid ""
 #| "Determine the default layout for the Source Page's Citation Referents "
@@ -39208,171 +39212,171 @@ msgid ""
 "page"
 msgstr "Xác định xem dạng mặc định cho mục tham chiếu trích dẫn trang nguồn"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2233
+#: ../gramps/plugins/webreport/narrativeweb.py:2234
 msgid "Include ancestor's tree"
 msgstr "Gồm cả cây tổ tiên "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2235
+#: ../gramps/plugins/webreport/narrativeweb.py:2236
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Có đưa biểu đồ tổ tiên cho từng trang cá nhân không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2240
+#: ../gramps/plugins/webreport/narrativeweb.py:2241
 #, fuzzy
 msgid "Add previous/next"
 msgstr "Thêm bạn đời "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2241
+#: ../gramps/plugins/webreport/narrativeweb.py:2242
 msgid "Add previous/next to the navigation bar."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2244
+#: ../gramps/plugins/webreport/narrativeweb.py:2245
 #, fuzzy
 #| msgid "This is a secure site (https)"
 msgid "This is a secure site (HTTPS)"
 msgstr "Đây là site có bảo mật (https)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2245
+#: ../gramps/plugins/webreport/narrativeweb.py:2246
 msgid "Whether to use http:// or https://"
 msgstr "Dùng http:// hay https://"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2248
+#: ../gramps/plugins/webreport/narrativeweb.py:2249
 #, fuzzy
 msgid "Toggle sections"
 msgstr "Chọn tiêu đề"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2249
+#: ../gramps/plugins/webreport/narrativeweb.py:2250
 msgid "Check it if you want to open/close a section"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2252
+#: ../gramps/plugins/webreport/narrativeweb.py:2253
 msgid "Max. rows in an index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2254
+#: ../gramps/plugins/webreport/narrativeweb.py:2255
 #, fuzzy
 #| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
 msgstr "Số tổ tiên tối đa đưa vào. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2264
+#: ../gramps/plugins/webreport/narrativeweb.py:2265
 #, fuzzy
 msgid "Extra Pages"
 msgstr "Trang thêm"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2267
+#: ../gramps/plugins/webreport/narrativeweb.py:2268
 msgid "Extra page name"
 msgstr "Tên trang thêm"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2269
+#: ../gramps/plugins/webreport/narrativeweb.py:2270
 msgid "Your extra page name like it is shown in the menubar"
 msgstr "Trang thêm của bạn có vẻ đanh hiện ở thanh menu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2274
+#: ../gramps/plugins/webreport/narrativeweb.py:2275
 msgid "Your extra page path"
 msgstr "Đường dẫn trang dư của bạn"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2275
+#: ../gramps/plugins/webreport/narrativeweb.py:2276
 msgid "Your extra page path without extension"
 msgstr "Trang dư của bạn không có mở rộng"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2290
+#: ../gramps/plugins/webreport/narrativeweb.py:2291
 msgid "Do we use multiple translations?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2293
+#: ../gramps/plugins/webreport/narrativeweb.py:2294
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2307
+#: ../gramps/plugins/webreport/narrativeweb.py:2308
 msgid "Sort all children in birth order"
 msgstr "Sắp xếp con theo thứ tự sinh "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2309
+#: ../gramps/plugins/webreport/narrativeweb.py:2310
 #, fuzzy
 #| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
 msgstr "Có hiện con cái theo thứ tự sinh hay thứ tự nhập? "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2314
+#: ../gramps/plugins/webreport/narrativeweb.py:2315
 msgid "Do we display coordinates in the places list?"
 msgstr "Chúng tôi có hiện tọa độ trong danh sách địa diểm không?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2317
+#: ../gramps/plugins/webreport/narrativeweb.py:2318
 #, fuzzy
 #| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
 msgstr "Có hiện kinh độ/vĩ độ cho các địa điểm trong danh sách không? "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2322
+#: ../gramps/plugins/webreport/narrativeweb.py:2323
 msgid "Sort places references either by date or by name"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2326
+#: ../gramps/plugins/webreport/narrativeweb.py:2327
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2332
+#: ../gramps/plugins/webreport/narrativeweb.py:2333
 msgid "Graph generations"
 msgstr "Tạo biểu đồ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2334
+#: ../gramps/plugins/webreport/narrativeweb.py:2335
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Số thế hệ đưa vào biểu đồ tổ tiên "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2340
+#: ../gramps/plugins/webreport/narrativeweb.py:2341
 msgid "Include narrative notes just after name, gender"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2344
+#: ../gramps/plugins/webreport/narrativeweb.py:2345
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2357
+#: ../gramps/plugins/webreport/narrativeweb.py:2358
 msgid "Page Generation"
 msgstr "Tạo trang "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2360
+#: ../gramps/plugins/webreport/narrativeweb.py:2361
 msgid "Home page note"
 msgstr "Ghi chú trang chủ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2361
+#: ../gramps/plugins/webreport/narrativeweb.py:2362
 msgid "A note to be used on the home page"
 msgstr "Ghi chú được dùng cho trang chủ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2364
+#: ../gramps/plugins/webreport/narrativeweb.py:2365
 msgid "Home page image"
 msgstr "Hình ảnh cho trang chủ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2365
+#: ../gramps/plugins/webreport/narrativeweb.py:2366
 msgid "An image to be used on the home page"
 msgstr "Một hình dùng cho trang chủ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2368
+#: ../gramps/plugins/webreport/narrativeweb.py:2369
 msgid "Introduction note"
 msgstr "Ghi chú giới thiệu "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2369
+#: ../gramps/plugins/webreport/narrativeweb.py:2370
 msgid "A note to be used as the introduction"
 msgstr "Một ghi chú dùng cho giới thiệu "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2372
+#: ../gramps/plugins/webreport/narrativeweb.py:2373
 msgid "Introduction image"
 msgstr "Hình giới thiệu "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2373
+#: ../gramps/plugins/webreport/narrativeweb.py:2374
 msgid "An image to be used as the introduction"
 msgstr "Một hình dùng làm giới thiệu "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2376
+#: ../gramps/plugins/webreport/narrativeweb.py:2377
 msgid "Publisher contact note"
 msgstr "Ấn hành ghi chú liên hệ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2379
+#: ../gramps/plugins/webreport/narrativeweb.py:2380
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -39382,11 +39386,11 @@ msgstr ""
 "Nếu không có người ấn hành đưa ra, \n"
 "trang liên hệ sẽ không được tạo. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2386
+#: ../gramps/plugins/webreport/narrativeweb.py:2387
 msgid "Publisher contact image"
 msgstr "Ảnh cho liên hệ người ấn hành "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2389
+#: ../gramps/plugins/webreport/narrativeweb.py:2390
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -39396,68 +39400,68 @@ msgstr ""
 "Nếu không có thông tin người ấn hành,\n"
 "thì trang liên hệ sẽ không được tạo. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2396
+#: ../gramps/plugins/webreport/narrativeweb.py:2397
 msgid "HTML user header"
 msgstr "Đầu trang người dùng HTML "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2398
+#: ../gramps/plugins/webreport/narrativeweb.py:2399
 #, fuzzy
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr "Ghi chú dùng làm đầu trang "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2402
+#: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "HTML user footer"
 msgstr "Chân trang HTML người dùng"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2403
+#: ../gramps/plugins/webreport/narrativeweb.py:2404
 msgid "A note to be used as the page footer"
 msgstr "Ghi chú dùng làm chân trang "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2408
+#: ../gramps/plugins/webreport/narrativeweb.py:2409
 msgid "PHP user session"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2411
+#: ../gramps/plugins/webreport/narrativeweb.py:2412
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2424
+#: ../gramps/plugins/webreport/narrativeweb.py:2425
 msgid "Images Generation"
 msgstr "Tạo ảnh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2427
+#: ../gramps/plugins/webreport/narrativeweb.py:2428
 msgid "Include images and media objects"
 msgstr "Gồm hình ảnh và đối tượng đa phương tiện "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2428
+#: ../gramps/plugins/webreport/narrativeweb.py:2429
 msgid "Whether to include a gallery of media objects"
 msgstr "Có đưa tập ảnh các đối tượng đa phương tiện vào không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2432
+#: ../gramps/plugins/webreport/narrativeweb.py:2433
 msgid "Create the images index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2434
+#: ../gramps/plugins/webreport/narrativeweb.py:2435
 msgid "This option allows you to create the images index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2440
+#: ../gramps/plugins/webreport/narrativeweb.py:2441
 msgid "Include unused images and media objects"
 msgstr "Đưa đối tượng đa phương tiện và hình ảnh không dùng vào"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2443
+#: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Whether to include unused or unreferenced media objects"
 msgstr ""
 "Có đưa các đối tượng đa phương tiện không dùng hay không được tham chiếu vào "
 "không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2448
+#: ../gramps/plugins/webreport/narrativeweb.py:2449
 msgid "Create and only use thumbnail- sized images"
 msgstr "Tạo và chỉ dùng hình ảnh thu nhỏ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2452
+#: ../gramps/plugins/webreport/narrativeweb.py:2453
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -39467,20 +39471,20 @@ msgstr ""
 "Đa phương tiện, mà chỉ tạo ảnh nhỏ. Việc này giúp bạn có kích cỡ tải lên nhỏ "
 "hơn cho nơi lưu trữ website của bạn. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2462
+#: ../gramps/plugins/webreport/narrativeweb.py:2463
 #, fuzzy
 msgid "Create the thumbnail index"
 msgstr "Tạo và chỉ dùng hình ảnh thu nhỏ"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2465
+#: ../gramps/plugins/webreport/narrativeweb.py:2466
 msgid "This option allows you to create the thumbnail index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2471
+#: ../gramps/plugins/webreport/narrativeweb.py:2472
 msgid "Max width of initial image"
 msgstr "Chiều rộng tối đa của hình "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2475
+#: ../gramps/plugins/webreport/narrativeweb.py:2476
 #, fuzzy
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
@@ -39489,107 +39493,107 @@ msgstr ""
 "Nó cho phép bạn ấn định chiều ngang tối đa hiện trên trang đa phương tiện. "
 "Đặt là 0 sẽ không giới hạn. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2492
+#: ../gramps/plugins/webreport/narrativeweb.py:2493
 msgid "Include download page"
 msgstr "Gồm cả trang tải về "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2493
+#: ../gramps/plugins/webreport/narrativeweb.py:2494
 msgid "Whether to include a database download option"
 msgstr "Có đưa tùy chọn tải về của CSDL không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2498
+#: ../gramps/plugins/webreport/narrativeweb.py:2499
 msgid "How many downloads"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2501
+#: ../gramps/plugins/webreport/narrativeweb.py:2502
 #, fuzzy
 msgid "The number of download files to include in the download page"
 msgstr "Số thế hệ được đưa vào cây "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2511
+#: ../gramps/plugins/webreport/narrativeweb.py:2512
 #, fuzzy, python-format
 msgid "Download Filename #%c"
 msgstr "Tên tập tin tải về "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2513
+#: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "File to be used for downloading of database"
 msgstr "Tập tin được dùng để tải về CSDL "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2518
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 msgid "Description for download"
 msgstr "Mô tả cho bản tải về "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2518
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 #, fuzzy, python-format
 msgid "Family Tree #%c"
 msgstr "Cây gia đình "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2520
+#: ../gramps/plugins/webreport/narrativeweb.py:2521
 msgid "Give a description for this file."
 msgstr "Mô tả tập tin này. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2532
+#: ../gramps/plugins/webreport/narrativeweb.py:2533
 #: ../gramps/plugins/webreport/webcal.py:2049
 msgid "Advanced Options"
 msgstr "Tùy chọn nâng cao "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2536
+#: ../gramps/plugins/webreport/narrativeweb.py:2537
 #: ../gramps/plugins/webreport/webcal.py:2052
 msgid "Character set encoding"
 msgstr "Mã hóa bộ ký tự"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2540
+#: ../gramps/plugins/webreport/narrativeweb.py:2541
 #: ../gramps/plugins/webreport/webcal.py:2056
 msgid "The encoding to be used for the web files"
 msgstr "Bộ mã hóa dùng cho tập tin web "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2544
+#: ../gramps/plugins/webreport/narrativeweb.py:2545
 msgid "Include link to active person on every page"
 msgstr "Gồm liên kết của người chính ở mọi trang"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2547
+#: ../gramps/plugins/webreport/narrativeweb.py:2548
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Gồm đường liên kết đến người chính (nếu họ có trang web) "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2552
+#: ../gramps/plugins/webreport/narrativeweb.py:2553
 msgid "Include a column for birth dates on the index pages"
 msgstr "Gồm cột cho ngày sinh ở trang chỉ mục "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2554
+#: ../gramps/plugins/webreport/narrativeweb.py:2555
 msgid "Whether to include a birth column"
 msgstr "Có đưa cột ngày sinh vào không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2558
+#: ../gramps/plugins/webreport/narrativeweb.py:2559
 msgid "Include a column for death dates on the index pages"
 msgstr "Gồm cột ngày chết trên trang chỉ mục "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2560
+#: ../gramps/plugins/webreport/narrativeweb.py:2561
 msgid "Whether to include a death column"
 msgstr "Có đưa cột ngày chết vào không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2564
+#: ../gramps/plugins/webreport/narrativeweb.py:2565
 msgid "Include a column for partners on the index pages"
 msgstr "Gồm cột cho bạn đời ở trang chỉ mục "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2566
+#: ../gramps/plugins/webreport/narrativeweb.py:2567
 msgid "Whether to include a partners column"
 msgstr "Có đưa cột bạn đời vào không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2570
+#: ../gramps/plugins/webreport/narrativeweb.py:2571
 msgid "Include a column for parents on the index pages"
 msgstr "Gồm cột cha mẹ ở trang chỉ mục "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2572
+#: ../gramps/plugins/webreport/narrativeweb.py:2573
 msgid "Whether to include a parents column"
 msgstr "Có đưa cột cha mẹ vào không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2576
+#: ../gramps/plugins/webreport/narrativeweb.py:2577
 #, fuzzy
 #| msgid "Include half and/ or step-siblings on the individual pages"
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr "Đựa anh chị em cùng cha  hay cùng mẹ vào trang cá nhân "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2580
+#: ../gramps/plugins/webreport/narrativeweb.py:2581
 #, fuzzy
 #| msgid ""
 #| "Whether to include half and/ or step-siblings with the parents and "
@@ -39598,91 +39602,91 @@ msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr "Có đưa anh chị em cùng mẹ hoặc cha hay anh chị em kế vào không"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2595
+#: ../gramps/plugins/webreport/narrativeweb.py:2596
 msgid "Include family pages"
 msgstr "Gồm các trang gia đình "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2596
+#: ../gramps/plugins/webreport/narrativeweb.py:2597
 msgid "Whether or not to include family pages."
 msgstr "Có thêm trang gia đình không."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2599
+#: ../gramps/plugins/webreport/narrativeweb.py:2600
 msgid "Include event pages"
 msgstr "Gồm trang sự kiện "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2600
+#: ../gramps/plugins/webreport/narrativeweb.py:2601
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Thêm danh sách sự kiện hoàn chỉnh và trang liên quan vào hay không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2603
+#: ../gramps/plugins/webreport/narrativeweb.py:2604
 #, fuzzy
 #| msgid "Include other events"
 msgid "Include other roles"
 msgstr "Gồm các sự kiện khác"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2604
+#: ../gramps/plugins/webreport/narrativeweb.py:2605
 #, fuzzy
 #| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
 msgstr "Gramplet hiển thị ghi chú sự kiện "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2607
+#: ../gramps/plugins/webreport/narrativeweb.py:2608
 #, fuzzy
 msgid "Include place pages"
 msgstr "Đưa trang nguồn vào"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2608
+#: ../gramps/plugins/webreport/narrativeweb.py:2609
 #, fuzzy
 #| msgid "Whether or not to include the places Pages."
 msgid "Whether or not to include the place pages."
 msgstr "Có đưa trang trang địa điểm vào không."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2611
+#: ../gramps/plugins/webreport/narrativeweb.py:2612
 #, fuzzy
 msgid "Include unused place pages"
 msgstr "Đưa trang nguồn vào"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2612
+#: ../gramps/plugins/webreport/narrativeweb.py:2613
 #, fuzzy
 #| msgid "Whether or not to include the places Pages."
 msgid "Whether or not to include the unused place pages."
 msgstr "Có đưa trang trang địa điểm vào không."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2615
+#: ../gramps/plugins/webreport/narrativeweb.py:2616
 #, fuzzy
 #| msgid "Include sources pages"
 msgid "Include source pages"
 msgstr "Đưa trang nguồn vào"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2616
+#: ../gramps/plugins/webreport/narrativeweb.py:2617
 #, fuzzy
 #| msgid "Whether or not to include the sources Pages."
 msgid "Whether or not to include the source pages."
 msgstr "Có đưa trang trang nguồn vào không."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2619
+#: ../gramps/plugins/webreport/narrativeweb.py:2620
 msgid "Include repository pages"
 msgstr "Đưa trang kho vào "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2620
+#: ../gramps/plugins/webreport/narrativeweb.py:2621
 #, fuzzy
 #| msgid "Whether or not to include the Repository Pages."
 msgid "Whether or not to include the repository pages."
 msgstr "Có đưa trang trang kho tư liệu vào không."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2623
+#: ../gramps/plugins/webreport/narrativeweb.py:2624
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Gồm tập tin GENDEX (/dendex.txt) "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2624
+#: ../gramps/plugins/webreport/narrativeweb.py:2625
 msgid "Whether to include a GENDEX file or not"
 msgstr "Có đưa tập tin GENDEX vào không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2627
+#: ../gramps/plugins/webreport/narrativeweb.py:2628
 msgid "Include address book pages"
 msgstr "Gồm trang sách địa chỉ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2630
+#: ../gramps/plugins/webreport/narrativeweb.py:2631
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -39690,52 +39694,52 @@ msgstr ""
 "Có đưa trang Sách địa chỉ vào không để có thể bao gồm cả địa chỉ email và "
 "địa chỉ website và địa chỉ / nơi cư trú cá nhân."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2638
+#: ../gramps/plugins/webreport/narrativeweb.py:2639
 #, fuzzy
 msgid "Include the statistics page"
 msgstr "Đưa trang địa điểm"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2639
+#: ../gramps/plugins/webreport/narrativeweb.py:2640
 #, fuzzy
 msgid "Whether or not to add statistics page"
 msgstr "Có thêm trang gia đình không."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2648
+#: ../gramps/plugins/webreport/narrativeweb.py:2649
 msgid "Place Map Options"
 msgstr "Tuỳ chọn của bản đồ vị trí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2653
+#: ../gramps/plugins/webreport/narrativeweb.py:2654
 #, fuzzy
 msgid "Stamen Map"
 msgstr "Tùy chọn nội dung "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2654
+#: ../gramps/plugins/webreport/narrativeweb.py:2655
 msgid "Google"
 msgstr "Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2656
+#: ../gramps/plugins/webreport/narrativeweb.py:2657
 msgid "Map Service"
 msgstr "Dịch vụ bản đồ"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2660
+#: ../gramps/plugins/webreport/narrativeweb.py:2661
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr "Chọn một lựa chọn dịch vụ bản đồ của bạn để tạo trang Bản đồ vị trí. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2666
+#: ../gramps/plugins/webreport/narrativeweb.py:2667
 msgid "Include Place map on Place Pages"
 msgstr "Đưa bản đồ địa chỉ vào trang địa chỉ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2670
+#: ../gramps/plugins/webreport/narrativeweb.py:2671
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
 msgstr "Có đưa bản đồ địa chỉ vào trang địa chỉ, là nơi có vĩ độ và kinh độ. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2678
+#: ../gramps/plugins/webreport/narrativeweb.py:2679
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Gồm trang bản đồ gia đình với mọi địa điểm hiện trên bản đồ"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2682
+#: ../gramps/plugins/webreport/narrativeweb.py:2683
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -39743,23 +39747,23 @@ msgstr ""
 "Có hay không thêm bản đồ trang cá nhân vào hiển thị tất cả địa điểm của "
 "trang này. Điều này cho phép bạn thấy gia đình đã đi ở nước mình thế nào "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2692
+#: ../gramps/plugins/webreport/narrativeweb.py:2693
 msgid "Family Links"
 msgstr "Liên kết gia đình"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2693
+#: ../gramps/plugins/webreport/narrativeweb.py:2694
 msgid "Drop"
 msgstr "Bỏ "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2694
+#: ../gramps/plugins/webreport/narrativeweb.py:2695
 msgid "Markers"
 msgstr "Đánh dấu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2697
+#: ../gramps/plugins/webreport/narrativeweb.py:2698
 msgid "Google/ FamilyMap Option"
 msgstr "Tuỳ chọn bản đồ Google/ gia đình "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2703
+#: ../gramps/plugins/webreport/narrativeweb.py:2704
 #, fuzzy
 #| msgid ""
 #| "Select which option that you would like to have for the Google Maps "
@@ -39771,11 +39775,11 @@ msgstr ""
 "Chọn tuỳ chọn nào bạn muốn có cho trang bản đồ gia đình trên bản đồ "
 "Google ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2709
+#: ../gramps/plugins/webreport/narrativeweb.py:2710
 msgid "Google maps API key"
 msgstr "Khóa API bản đồ Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2712
+#: ../gramps/plugins/webreport/narrativeweb.py:2713
 #, fuzzy
 #| msgid "The API key used for the Google maps"
 msgid ""
@@ -39783,38 +39787,38 @@ msgid ""
 "This key is mandatory and must be valid"
 msgstr "Khóa API được dùng cho bản đồ G"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2724
-#: ../gramps/plugins/webreport/narrativeweb.py:2764
+#: ../gramps/plugins/webreport/narrativeweb.py:2725
+#: ../gramps/plugins/webreport/narrativeweb.py:2765
 #, fuzzy
 #| msgid "Google maps API key"
 msgid "How to get the API key"
 msgstr "Khóa API bản đồ Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2727
+#: ../gramps/plugins/webreport/narrativeweb.py:2728
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2735
+#: ../gramps/plugins/webreport/narrativeweb.py:2736
 msgid "Toner"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2736
+#: ../gramps/plugins/webreport/narrativeweb.py:2737
 msgid "Terrain"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2737
+#: ../gramps/plugins/webreport/narrativeweb.py:2738
 #, fuzzy
 msgid "WaterColor"
 msgstr "Màu "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2739
+#: ../gramps/plugins/webreport/narrativeweb.py:2740
 #, fuzzy
 msgid "Stamen Option"
 msgstr "Tùy chọn nội dung "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2744
+#: ../gramps/plugins/webreport/narrativeweb.py:2745
 #, fuzzy
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
@@ -39823,13 +39827,13 @@ msgstr ""
 "Chọn tuỳ chọn nào bạn muốn có cho trang bản đồ gia đình trên bản đồ "
 "Google ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2749
+#: ../gramps/plugins/webreport/narrativeweb.py:2750
 #, fuzzy
 #| msgid "Google maps API key"
 msgid "Stamen maps API key"
 msgstr "Khóa API bản đồ Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2752
+#: ../gramps/plugins/webreport/narrativeweb.py:2753
 #, fuzzy
 #| msgid "The API key used for the Google maps"
 msgid ""
@@ -39837,30 +39841,30 @@ msgid ""
 "This key is mandatory and must be valid"
 msgstr "Khóa API được dùng cho bản đồ G"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2767
+#: ../gramps/plugins/webreport/narrativeweb.py:2768
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2784
+#: ../gramps/plugins/webreport/narrativeweb.py:2785
 #, fuzzy, python-format
 #| msgid "Died %(month_year)s (%(age)s)."
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
 msgstr "Chết vào %(month_year)s. (%(age)s tuổi)."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2785
+#: ../gramps/plugins/webreport/narrativeweb.py:2786
 #, fuzzy
 #| msgid "Dates"
 msgid "latest"
 msgstr "Ngày "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2787
+#: ../gramps/plugins/webreport/narrativeweb.py:2788
 msgid "openlayers version to use"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2792
+#: ../gramps/plugins/webreport/narrativeweb.py:2793
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -39869,194 +39873,194 @@ msgid ""
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2809
+#: ../gramps/plugins/webreport/narrativeweb.py:2810
 #, fuzzy
 #| msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "Đưa vào các site dạng khác (CMS, Web Calendar, Php)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2813
+#: ../gramps/plugins/webreport/narrativeweb.py:2814
 #, fuzzy
 #| msgid "Do we include these pages in a cms web ?"
 msgid "Do we include these pages in a CMS web?"
 msgstr "Bạn có đưa các trang này vào một site dùng CMS?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2820
+#: ../gramps/plugins/webreport/narrativeweb.py:2821
 msgid "URI"
 msgstr "URI"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2822
+#: ../gramps/plugins/webreport/narrativeweb.py:2823
 #, fuzzy
 #| msgid "Where do you place your web site ? default = /NAVWEB"
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "Bạn sẽ đặt web site của bạn ở đâu? Mặc định là = /NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2830
+#: ../gramps/plugins/webreport/narrativeweb.py:2831
 #, fuzzy
 msgid "Include the news and updates page"
 msgstr "Đưa trang địa điểm"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2831
+#: ../gramps/plugins/webreport/narrativeweb.py:2832
 #, fuzzy
 msgid "Whether to include a page with the last updates"
 msgstr "Có đưa nghề nghiệp cuối cùng vào không"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2835
+#: ../gramps/plugins/webreport/narrativeweb.py:2836
 #, fuzzy
 msgid "Max days for updates"
 msgstr "Số mục tối đa cho biểu đồ hình bánh "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2837
+#: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "You want to see the last updates on how many days?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2842
+#: ../gramps/plugins/webreport/narrativeweb.py:2843
 #, fuzzy
 msgid "Max number of updates per object to show"
 msgstr "Số địa điểm tối đa hiển thị"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2844
+#: ../gramps/plugins/webreport/narrativeweb.py:2845
 msgid "How many updates do you want to see max"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2856
+#: ../gramps/plugins/webreport/narrativeweb.py:2857
 #, fuzzy
 msgid "Translations"
 msgstr "Dịch "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2859
+#: ../gramps/plugins/webreport/narrativeweb.py:2860
 #, fuzzy
 msgid "Second language"
 msgstr "Ngày thứ hai"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2864
+#: ../gramps/plugins/webreport/narrativeweb.py:2865
 msgid "Site name for your second language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2864
-#: ../gramps/plugins/webreport/narrativeweb.py:2873
-#: ../gramps/plugins/webreport/narrativeweb.py:2882
-#: ../gramps/plugins/webreport/narrativeweb.py:2891
-#: ../gramps/plugins/webreport/narrativeweb.py:2900
+#: ../gramps/plugins/webreport/narrativeweb.py:2865
+#: ../gramps/plugins/webreport/narrativeweb.py:2874
+#: ../gramps/plugins/webreport/narrativeweb.py:2883
+#: ../gramps/plugins/webreport/narrativeweb.py:2892
+#: ../gramps/plugins/webreport/narrativeweb.py:2901
 #, fuzzy
 msgid "This site title"
 msgstr "Tiêu đề site "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2866
-#: ../gramps/plugins/webreport/narrativeweb.py:2875
-#: ../gramps/plugins/webreport/narrativeweb.py:2884
-#: ../gramps/plugins/webreport/narrativeweb.py:2893
-#: ../gramps/plugins/webreport/narrativeweb.py:2902
+#: ../gramps/plugins/webreport/narrativeweb.py:2867
+#: ../gramps/plugins/webreport/narrativeweb.py:2876
+#: ../gramps/plugins/webreport/narrativeweb.py:2885
+#: ../gramps/plugins/webreport/narrativeweb.py:2894
+#: ../gramps/plugins/webreport/narrativeweb.py:2903
 msgid "Enter a title in the respective language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2868
+#: ../gramps/plugins/webreport/narrativeweb.py:2869
 #, fuzzy
 msgid "Third language"
 msgstr "Ngôn nữa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2873
+#: ../gramps/plugins/webreport/narrativeweb.py:2874
 msgid "Site name for your third language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2877
+#: ../gramps/plugins/webreport/narrativeweb.py:2878
 #, fuzzy
 msgid "Fourth language"
 msgstr "Ngôn nữa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2882
+#: ../gramps/plugins/webreport/narrativeweb.py:2883
 msgid "Site name for your fourth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2886
+#: ../gramps/plugins/webreport/narrativeweb.py:2887
 #, fuzzy
 msgid "Fifth language"
 msgstr "Ngôn nữa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2891
+#: ../gramps/plugins/webreport/narrativeweb.py:2892
 msgid "Site name for your fifth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2895
+#: ../gramps/plugins/webreport/narrativeweb.py:2896
 #, fuzzy
 msgid "Sixth language"
 msgstr "Ngôn nữa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2900
+#: ../gramps/plugins/webreport/narrativeweb.py:2901
 msgid "Site name for your sixth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3133
+#: ../gramps/plugins/webreport/narrativeweb.py:3134
 #, fuzzy
 msgid "Calendar Options"
 msgstr "Chọn lựa giấy "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3139
+#: ../gramps/plugins/webreport/narrativeweb.py:3140
 msgid "Do we include the web calendar ?"
 msgstr "Có đưa lịch web vào không?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3141
+#: ../gramps/plugins/webreport/narrativeweb.py:3142
 #, fuzzy, python-format
 msgid "Whether to include a calendar for year %s"
 msgstr "Có đưa tập ảnh các đối tượng đa phương tiện vào không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3168
+#: ../gramps/plugins/webreport/narrativeweb.py:3169
 #: ../gramps/plugins/webreport/webcal.py:2060
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "Tạo trang sự kiện 1 ng2y cho lịch 1 năn ngắn gọn "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3170
+#: ../gramps/plugins/webreport/narrativeweb.py:3171
 #: ../gramps/plugins/webreport/webcal.py:2062
 msgid "Whether to create one day pages or not"
 msgstr "Có tạo trang một ngày hay không "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3174
+#: ../gramps/plugins/webreport/narrativeweb.py:3175
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include birthdays in the calendar"
 msgstr "Gồm cả ngày sinh vào lịch "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3178
+#: ../gramps/plugins/webreport/narrativeweb.py:3179
 #: ../gramps/plugins/webreport/webcal.py:2070
 msgid "Include anniversaries in the calendar"
 msgstr "Gồm cả ngày kỷ niệm trên lịch "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3191
+#: ../gramps/plugins/webreport/narrativeweb.py:3192
 #: ../gramps/plugins/webreport/webcal.py:2085
 msgid "Show data only after year"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3198
+#: ../gramps/plugins/webreport/narrativeweb.py:3199
 #: ../gramps/plugins/webreport/webcal.py:2092
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3215
+#: ../gramps/plugins/webreport/narrativeweb.py:3216
 #, fuzzy
 #| msgid "Place Map Options"
 msgid "HeatMap Options"
 msgstr "Tuỳ chọn của bản đồ vị trí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3218
+#: ../gramps/plugins/webreport/narrativeweb.py:3219
 #, fuzzy
 #| msgid "Include event pages"
 msgid "Include heatmap pages"
 msgstr "Gồm trang sự kiện "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3219
+#: ../gramps/plugins/webreport/narrativeweb.py:3220
 #, fuzzy
 #| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
 msgstr "Có đưa tên khác của cha mẹ không. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3225
+#: ../gramps/plugins/webreport/narrativeweb.py:3226
 #, fuzzy
 #| msgid "Font size"
 msgid "Point size"
 msgstr "Cỡ font "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3226
+#: ../gramps/plugins/webreport/narrativeweb.py:3227
 #, fuzzy
 #| msgid "The size of note text, in points."
 msgid ""
@@ -40064,17 +40068,17 @@ msgid ""
 "Default: 8"
 msgstr "Kích thước của văn bản chú thích, tính bằng point."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3229
+#: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid "Blur"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3230
+#: ../gramps/plugins/webreport/narrativeweb.py:3231
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3233
+#: ../gramps/plugins/webreport/narrativeweb.py:3234
 #, fuzzy
 #| msgid "Zoom In"
 msgid "Zoom"
@@ -40105,12 +40109,12 @@ msgstr ""
 msgid "<absent>"
 msgstr "<absent>"
 
-#: ../gramps/plugins/webreport/person.py:1057
+#: ../gramps/plugins/webreport/person.py:1058
 #, python-format
 msgid "Tracking %s"
 msgstr "Theo dõi %s"
 
-#: ../gramps/plugins/webreport/person.py:1063
+#: ../gramps/plugins/webreport/person.py:1064
 #, fuzzy
 #| msgid ""
 #| "This map page represents that person and any descendants with all of "
@@ -40131,47 +40135,47 @@ msgstr ""
 "tự ngày tháng (nếu có). Nhấp vào tên của một địa điểm ở mục Tham khảo sẽ dẫn "
 "bạn đến trang địa điểm đó. "
 
-#: ../gramps/plugins/webreport/person.py:1115
+#: ../gramps/plugins/webreport/person.py:1116
 msgid "Place Title"
 msgstr "Tiêu đề địa điểm "
 
-#: ../gramps/plugins/webreport/person.py:1250
+#: ../gramps/plugins/webreport/person.py:1251
 msgid "Drop Markers"
 msgstr "Bỏ dấu đánh "
 
-#: ../gramps/plugins/webreport/person.py:1849
+#: ../gramps/plugins/webreport/person.py:1850
 msgid "Call Name"
 msgstr "Tên gọi "
 
-#: ../gramps/plugins/webreport/person.py:1870
+#: ../gramps/plugins/webreport/person.py:1871
 msgid "Nick Name"
 msgstr "Tên tục "
 
-#: ../gramps/plugins/webreport/person.py:1927
+#: ../gramps/plugins/webreport/person.py:1928
 msgid "Age at Death"
 msgstr "Tuổi chết "
 
-#: ../gramps/plugins/webreport/person.py:2121
+#: ../gramps/plugins/webreport/person.py:2122
 msgid "Stepfather"
 msgstr "Cha kế"
 
-#: ../gramps/plugins/webreport/person.py:2134
+#: ../gramps/plugins/webreport/person.py:2135
 msgid "Stepmother"
 msgstr "Mẹ kế"
 
-#: ../gramps/plugins/webreport/person.py:2161
+#: ../gramps/plugins/webreport/person.py:2162
 msgid "Not siblings"
 msgstr "Không phải anh em"
 
-#: ../gramps/plugins/webreport/person.py:2302
+#: ../gramps/plugins/webreport/person.py:2303
 msgid "Relation to the center person"
 msgstr "Quan hệ với nhân vật trung tâm"
 
-#: ../gramps/plugins/webreport/person.py:2347
+#: ../gramps/plugins/webreport/person.py:2348
 msgid "Relation to main person"
 msgstr "Quan hệ với người chính"
 
-#: ../gramps/plugins/webreport/person.py:2352
+#: ../gramps/plugins/webreport/person.py:2353
 msgid "Relation within this family (if not by birth)"
 msgstr "Quan hệ với gia đình này (nếu không phải do sinh đẻ)"
 
@@ -40179,7 +40183,7 @@ msgstr "Quan hệ với gia đình này (nếu không phải do sinh đẻ)"
 msgid "Creating place pages"
 msgstr "Tạo trang địa điểm "
 
-#: ../gramps/plugins/webreport/place.py:293
+#: ../gramps/plugins/webreport/place.py:295
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
@@ -40188,22 +40192,22 @@ msgstr ""
 "Trang này chứa chỉ mục tất cả các nơi trong CSDL, xếp theo tiêu đề. Nhấp vào "
 "tiêu đề địa điểm sẽ dẫn bạn đến trang web địa điểm. "
 
-#: ../gramps/plugins/webreport/place.py:346
-#: ../gramps/plugins/webreport/place.py:358
+#: ../gramps/plugins/webreport/place.py:348
+#: ../gramps/plugins/webreport/place.py:360
 #, fuzzy
 #| msgid "Name"
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Tên "
 
-#: ../gramps/plugins/webreport/place.py:347
-#: ../gramps/plugins/webreport/place.py:359
+#: ../gramps/plugins/webreport/place.py:349
+#: ../gramps/plugins/webreport/place.py:361
 #, fuzzy
 #| msgid "State/Province:"
 msgid "State/Province"
 msgstr "Tiểu bang/ Tỉnh: "
 
-#: ../gramps/plugins/webreport/place.py:607
+#: ../gramps/plugins/webreport/place.py:612
 msgid "Place Map"
 msgstr "Bản đồ địa điểm "
 
@@ -40551,6 +40555,9 @@ msgstr "Nebraska "
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Không có style sheet "
+
+#~ msgid "Applying ..."
+#~ msgstr "Áp dụng..."
 
 #, fuzzy
 #~| msgid "Reading data..."

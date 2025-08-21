@@ -41,7 +41,7 @@ import logging
 # Gramps imports
 #
 # ---------------------------------------------------------------
-from .const import USER_CONFIG, USER_DATA, USER_HOME, VERSION_DIR
+from .const import USER_CONFIG, USER_DATA, USER_HOME, VERSION_DIR, VERSION_DIR_NAME
 from .utils.configmanager import ConfigManager
 from .const import GRAMPS_LOCALE as glocale
 
@@ -177,14 +177,14 @@ register("behavior.welcome", 100)
 register("behavior.web-search-url", "https://google.com/search?q=%(text)s")
 register(
     "behavior.addons-url",
-    "https://raw.githubusercontent.com/gramps-project/addons/master/gramps60",
+    f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}",
 )
 register(
     "behavior.addons-projects",
     [
         [
             "Gramps",
-            "https://raw.githubusercontent.com/gramps-project/addons/master/gramps60",
+            f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}",
             True,
         ]
     ],
@@ -454,3 +454,15 @@ CONFIGMAN.load()
 config = CONFIGMAN
 if config.get("database.backend") == "bsddb":
     config.set("database.backend", "sqlite")
+# if copying a config from an older version, the addons location is likely wrong, so fix it.
+config.set(
+    "behavior.addons-url",
+    f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}",
+)
+projects = config.get("behavior.addons-projects")
+for proj in projects:
+    if "raw.githubusercontent.com/gramps-project/addons/master" in proj[1]:
+        proj[1] = (
+            f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}"
+        )
+config.set("behavior.addons-projects", projects)

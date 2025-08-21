@@ -32,9 +32,9 @@
     </dependencies>
   </pip>
  <pip id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v6.0.0.tar.gz"
-	    repo="github-tarball" version="6.0.1"
-            checkoutdir="gramps-gramps-6.0.1" />
+    <branch module="gramps-project/gramps/archive/v6.0.2.tar.gz"
+	    repo="github-tarball" version="6.0.2"
+            checkoutdir="gramps-gramps-6.0.2" />
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
@@ -58,11 +58,17 @@
     </dependencies>
   </meson>
 
+  <pip id="lmxl">
+    <branch module="2b/b4/bbccb250adbee490553b6a52712c46c20ea1ba533a643f1424b27ffc6845/lxml-5.1.0.tar.gz"
+            version="5.1.0"
+            hash="sha256:3eea6ed6e6c918e468e693c41ef07f3c3acc310b70ddd9cc72d9ef84bc9564ca"
+            repo="pymodules" />
+  </pip>
+
   <pip id="orjson">
     <branch module="ae/f9/5dea21763eeff8c1590076918a446ea3d6140743e0e36f58f369928ed0f4/orjson-3.10.15.tar.gz"
             version="3.10.15"
-            repo="pymodules"
-            />
+            repo="pymodules" />
   </pip>
 
   <meson id="geocode-glib" mesonargs="-Denable-gtk-doc=false">
@@ -180,6 +186,7 @@
       <dep package="hunspell"/>
       <dep package="iso-codes"/>
       <dep package="librsvg"/>
+      <dep package="lmxl"/>
       <dep package="meta-gtk-osx-gtk3"/>
       <dep package="orjson"/>
       <dep package="osmgpsmap"/>

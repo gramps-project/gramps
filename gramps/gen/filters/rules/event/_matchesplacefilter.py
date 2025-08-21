@@ -70,6 +70,8 @@ class MatchesPlaceFilter(MatchesFilterBase):
     def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
-            if event and filt.apply_to_one(db, event):
-                return True
+            if event and event.place:
+                place = db.get_place_from_handle(event.place)
+                if filt.apply_to_one(db, place):
+                    return True
         return False

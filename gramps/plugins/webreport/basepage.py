@@ -1065,6 +1065,8 @@ class BasePage:
             )
             or "&nbsp;"
         )
+        if not self.report.options["inc_sources"]:
+            srcrefs = "&nbsp;"
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
 
         # get event notes

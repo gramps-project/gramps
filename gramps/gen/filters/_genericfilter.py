@@ -4,6 +4,7 @@
 # Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2012,2024  Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2025       Steve Youngs <steve@youngs.cc>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,6 +25,12 @@
 Package providing filtering framework for Gramps.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
 import logging
 import time
 
@@ -46,6 +53,15 @@ from ..const import GRAMPS_LOCALE as glocale
 from .rules import Rule
 from .optimizer import Optimizer
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import cast, Dict, List, Literal, Set, Tuple
+from ..db import Database
+from ..types import PrimaryObjectHandle
+
 _ = glocale.translation.gettext
 LOG = logging.getLogger(".filter.results")
 
@@ -56,9 +72,10 @@ LOG = logging.getLogger(".filter.results")
 #
 # -------------------------------------------------------------------------
 class GenericFilter:
-    """Filter class that consists of several rules."""
+    """Filter class that consists of zero, one or more rules."""
 
     logical_functions = ["and", "or", "one"]
+    logical_op: Literal["and", "or", "one"]
 
     def __init__(self, source=None):
         if source:
@@ -81,7 +98,15 @@ class GenericFilter:
         Return True or False depending on whether the handle matches the filter.
         """
         obj = self.get_object(db, handle)
-        return self.apply_to_one(db, obj)
+        for rule in self.flist:
+            rule.requestprepare(db, user=None)
+
+        results = self.apply_to_one(db, obj)
+
+        for rule in self.flist:
+            rule.requestreset()
+
+        return results
 
     def is_empty(self):
         return (len(self.flist) == 0) or (
@@ -124,6 +149,9 @@ class GenericFilter:
     def get_rules(self):
         return self.flist
 
+    def get_all_handles(self, db):
+        return db.get_person_handles()
+
     def get_cursor(self, db):
         return db.get_person_cursor()
 
@@ -140,78 +168,44 @@ class GenericFilter:
         return db.get_number_of_people()
 
     def apply_logical_op_to_all(
-        self, db, id_list, apply_logical_op, user=None, tupleind=None, tree=False
+        self,
+        db,
+        possible_handles: Set[PrimaryObjectHandle],
+        apply_logical_op,
+        user=None,
     ):
-        final_list = []
-
-        optimizer = Optimizer(self)
-        handles_in, handles_out = optimizer.get_handles()
-
         LOG.debug(
-            "Optimizer handles_in: %s",
-            len(handles_in) if handles_in is not None else None,
+            "Starting possible_handles: %s",
+            len(possible_handles),
         )
-        LOG.debug("Optimizer handles_out: %s", len(handles_out))
-        if id_list is None:
-            if handles_in is not None:
-                if user:
-                    user.begin_progress(_("Filter"), _("Applying ..."), len(handles_in))
 
-                # Use these rather than going through entire database
-                for handle in handles_in:
-                    if user:
-                        user.step_progress()
+        # use the Optimizer to refine the set of possible_handles
+        optimizer = Optimizer(self)
+        handles_in, handles_out = optimizer.compute_potential_handles_for_filter(self)
 
-                    if handle is None:
-                        continue
+        # LOG.debug(
+        #    "Optimizer possible_handles: %s",
+        #    len(possible_handles),
+        # )
 
-                    obj = self.get_object(db, handle)
+        # if user:
+        #    user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
 
-                    if apply_logical_op(db, obj, self.flist) != self.invert:
-                        final_list.append(obj.handle)
+        # test each value in possible_handles to compute the final_list
+        final_list = []
+        for handle in possible_handles:
+            if handles_in is not None and handle not in handles_in:
+                continue
+            if handles_out is not None and handle in handles_out:
+                continue
 
-            else:
-                with (
-                    self.get_tree_cursor(db) if tree else self.get_cursor(db)
-                ) as cursor:
-                    if user:
-                        user.begin_progress(
-                            _("Filter"), _("Applying ..."), self.get_number(db)
-                        )
-
-                    for handle, obj in cursor:
-                        if user:
-                            user.step_progress()
-
-                        if handle in handles_out:
-                            continue
-
-                        if apply_logical_op(db, obj, self.flist) != self.invert:
-                            final_list.append(handle)
-
-        else:
-            id_list = list(id_list)
             if user:
-                user.begin_progress(_("Filter"), _("Applying ..."), len(id_list))
-            for handle_data in id_list:
-                if user:
-                    user.step_progress()
+                user.step_progress()
 
-                if tupleind is None:
-                    handle = handle_data
-                else:
-                    handle = handle_data[tupleind]
+            obj = self.get_object(db, handle)
 
-                if handles_in is not None:
-                    if handle not in handles_in:
-                        continue
-                elif handle in handles_out:
-                    continue
-
-                obj = self.get_object(db, handle)
-
-                if apply_logical_op(db, obj, self.flist) != self.invert:
-                    final_list.append(handle_data)
+            if apply_logical_op(db, obj, self.flist) != self.invert:
+                final_list.append(obj.handle)
 
         if user:
             user.end_progress()
@@ -250,15 +244,32 @@ class GenericFilter:
             raise Exception("invalid operator: %r" % self.logical_op)
         return res != self.invert
 
-    def apply(self, db, id_list=None, tupleind=None, user=None, tree=False):
+    def apply(
+        self,
+        db,
+        id_list: List[PrimaryObjectHandle | Tuple] | None = None,
+        tupleind: int | None = None,
+        user=None,
+        tree: bool = False,
+    ) -> List[PrimaryObjectHandle | Tuple]:
         """
         Apply the filter using db.
-        If id_list given, the handles in id_list are used. If not given
-        a database cursor will be used over all entries.
 
-        If tupleind is given, id_list is supposed to consist of a list of
-        tuples, with the handle being index tupleind. So
-        handle_0 = id_list[0][tupleind]
+        If id_list and tupleind given, id_list is a list of tuples. tupleind is the
+        index of the object handle. So handle_0 = id_list[0][tupleind]. The input
+        order in maintained in the output. If multiple tuples have the same handle,
+        it is undefined which tuple is returned.
+
+        If id_list given and tupleind is None, id_list if the list of handles to use
+
+        If id_list is None and tree is False, all handles in the database are searched.
+        The order of handles in the result is not guaranteed
+
+        If id_list is None and tree is True, all handles in the database are searched.
+        The order of handles in the result matches the order of traversal
+        by get_tree_cursor
+
+        id_list takes precendence over tree
 
         user is optional. If present it must be an instance of a User class.
 
@@ -282,9 +293,39 @@ class GenericFilter:
             raise Exception("invalid operator: %r" % self.logical_op)
 
         start_time = time.time()
-        res = self.apply_logical_op_to_all(
-            db, id_list, apply_logical_op, user, tupleind, tree
-        )
+
+        # build the starting set of possible_handles to be filtered
+        possible_handles: Set[PrimaryObjectHandle]
+        if id_list is not None:
+            if tupleind is not None:
+                # construct a dict from handle to corresponding tuple
+                # this is used to efficiently transform final_list from a list of
+                # handles to a list of tuples
+                handle_tuple: Dict[PrimaryObjectHandle, Tuple] = {
+                    data[tupleind]: data for data in cast(List[Tuple], id_list)
+                }
+                possible_handles = set(handle_tuple.keys())
+            else:
+                possible_handles = set(cast(List[PrimaryObjectHandle], id_list))
+        elif tree:
+            tree_handles = [handle for handle, obj in self.get_tree_cursor(db)]
+            possible_handles = set(tree_handles)
+        else:
+            possible_handles = set(self.get_all_handles(db))
+
+        res = self.apply_logical_op_to_all(db, possible_handles, apply_logical_op, user)
+
+        # convert the filtered set of handles to the correct result type
+        if id_list is not None and tupleind is not None:
+            # convert the final_list of handles back to the corresponding final_list of tuples
+            res = sorted(
+                [handle_tuple[handle] for handle in res],
+                key=lambda x: id_list.index(x),
+            )
+        elif tree:
+            # sort final_list into the same order as traversed by get_tree_cursor
+            res = sorted(res, key=lambda x: tree_handles.index(x))
+
         LOG.debug("Apply time: %s seconds", time.time() - start_time)
 
         for rule in self.flist:
@@ -299,6 +340,9 @@ class GenericFilter:
 class GenericFamilyFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
+
+    def get_all_handles(self, db):
+        return db.get_family_handles()
 
     def get_cursor(self, db):
         return db.get_family_cursor()
@@ -320,6 +364,9 @@ class GenericEventFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
+    def get_all_handles(self, db):
+        return db.get_event_handles()
+
     def get_cursor(self, db):
         return db.get_event_cursor()
 
@@ -340,6 +387,9 @@ class GenericSourceFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
+    def get_all_handles(self, db):
+        return db.get_source_handles()
+
     def get_cursor(self, db):
         return db.get_source_cursor()
 
@@ -359,6 +409,9 @@ class GenericSourceFilter(GenericFilter):
 class GenericCitationFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
+
+    def get_all_handles(self, db):
+        return db.get_citation_handles()
 
     def get_cursor(self, db):
         return db.get_citation_cursor()
@@ -383,6 +436,9 @@ class GenericPlaceFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
+    def get_all_handles(self, db):
+        return db.get_place_handles()
+
     def get_cursor(self, db):
         return db.get_place_cursor()
 
@@ -406,6 +462,9 @@ class GenericMediaFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
+    def get_all_handles(self, db):
+        return db.get_media_handles()
+
     def get_cursor(self, db):
         return db.get_media_cursor()
 
@@ -426,6 +485,9 @@ class GenericRepoFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
+    def get_all_handles(self, db):
+        return db.get_repository_handles()
+
     def get_cursor(self, db):
         return db.get_repository_cursor()
 
@@ -445,6 +507,9 @@ class GenericRepoFilter(GenericFilter):
 class GenericNoteFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
+
+    def get_all_handles(self, db):
+        return db.get_note_handles()
 
     def get_cursor(self, db):
         return db.get_note_cursor()

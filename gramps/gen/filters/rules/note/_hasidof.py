@@ -24,6 +24,7 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+from ....db import Database
 
 _ = glocale.translation.gettext
 
@@ -45,3 +46,10 @@ class HasIdOf(HasGrampsId):
 
     name = _("Note with <Id>")
     description = _("Matches a note with a specified Gramps ID")
+
+    def prepare(self, db: Database, user):
+        data = db._get_raw_note_from_id_data(self.list[0])
+        if data:
+            self.selected_handles = set([data.handle])
+        else:
+            self.selected_handles = set([])

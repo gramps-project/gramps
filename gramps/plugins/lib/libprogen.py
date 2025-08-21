@@ -386,7 +386,7 @@ class PG30DefTable(object):
                 fmt += "i"
             elif fldtyp == 31:
                 pass
-            elif fldtyp == 32 or fldtyp == 44 or fldtyp == 45:
+            elif fldtyp == 32 or fldtyp == 44 or fldtyp == 45 or fldtyp == 48:
                 fmt += "%ds" % fld.size
             elif fldtyp == 41:
                 fmt += "h"

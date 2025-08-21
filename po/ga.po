@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-18 19:38+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"PO-Revision-Date: 2025-08-13 19:02+0000\n"
+"Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
 "Language: ga\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -281,9 +281,9 @@ msgstr "Foireann Forbartha Gramps"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:233
 #: ../gramps/plugins/view/pedigreeview.py:565
 #: ../gramps/plugins/view/view.gpr.py:135
-#: ../gramps/plugins/webreport/person.py:1745
+#: ../gramps/plugins/webreport/person.py:1746
 msgid "Pedigree"
-msgstr "Pedigree"
+msgstr "Ginealach"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
@@ -347,7 +347,7 @@ msgstr "Caidrimh"
 #: ../gramps/plugins/tool/reorderids.glade:762
 #: ../gramps/plugins/webreport/event.py:330
 #: ../gramps/plugins/webreport/family.py:314
-#: ../gramps/plugins/webreport/person.py:1638
+#: ../gramps/plugins/webreport/person.py:1639
 msgid "Person"
 msgstr "Duine"
 
@@ -476,13 +476,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Ag Aimsiú Daoine</b> <br/> Sa Amharc Daoine Grúpáilte, ní liostaítear "
-"gach sloinne ach uair amháin. Trí chliceáil ar an saighead ar thaobh clé "
-"d'ainm, leathnóidh an liosta chun gach duine a bhfuil an t-ainm deireanach "
-"sin acu a thaispeáint. Chun aon Ainm Teaghlaigh a aimsiú ó liosta fada, "
-"roghnaigh Ainm Teaghlaigh (ní duine) agus tosú ag clóscríobh. Léimfidh an "
-"radharc go dtí an chéad Ainm Teaghlaigh a mheaitseálann na litreacha a "
-"iontráil"
+"<b>Aimsiú Daoine</b><br/>Sa Radharc Daoine Grúpáilte, níl gach sloinne "
+"liostaithe ach uair amháin. Trí chliceáil ar an tsaighead ar chlé d'ainm, "
+"leathnóidh an liosta chun gach duine a bhfuil an sloinne sin acu a "
+"thaispeáint. Chun aon Sloinne a aimsiú ó liosta fada, roghnaigh Sloinne (ní "
+"duine) agus tosaigh ag clóscríobh. Léimfidh an radharc go dtí an chéad "
+"Sloinne a mheaitseálann na litreacha a chuireann tú isteach."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -570,11 +569,11 @@ msgid ""
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"Li@@ <b>geann tú do chuid</b> Roghanna <br/> “Eagar > Roghanna...” duit "
-"roinnt socruithe a mhodhnú, mar shampla an cosán chuig do chomhaid meán, "
-"agus tugann sé deis duit go leor gnéithe den chur i láthair Gramps a "
-"choigeartú do do riachtanais. Is féidir gach radharc ar leithligh a chumrú "
-"freisin faoi “Amharc > Cumraigh Amharc...”."
+"<b>Do Roghanna a Shocrú</b><br/>Ligeann \"Cuir in Eagar > Roghanna...\" duit "
+"roinnt socruithe a mhodhnú, amhail an cosán chuig do chomhaid meán, agus "
+"ligeann sé duit go leor gnéithe de chur i láthair Gramps a choigeartú de "
+"réir do riachtanas. Is féidir gach radharc ar leith a chumrú faoi "
+"\"Radharc > Cumraigh Radharc...\" freisin."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -584,12 +583,12 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
-"Tuar@@ <b>ascálacha Gramps Cu</b> <br/> ireann Gramps réimse leathan "
-"tuarascálacha ar fáil. Is féidir leis na Tuarascálacha Grafacha agus na "
-"Graif caidrimh chasta a chur i láthair go héasca agus tá na Tuarascálacha "
-"Téacs an-úsáideach más mian leat torthaí do chrann teaghlaigh a sheoladh "
-"chuig baill an teaghlach trí ríomhphost. Má tá tú réidh chun suíomh Gréasáin "
-"a dhéanamh do do chrann teaghlaigh ansin tá tuarascáil ann dó sin freisin."
+"<b>Tuarascálacha Gramps</b><br/>Cuireann Gramps réimse leathan tuarascálacha "
+"ar fáil. Is féidir leis na Tuarascálacha Grafacha agus na Graif caidrimh "
+"chasta a chur i láthair go héasca agus tá na Tuarascálacha Téacs thar a "
+"bheith úsáideach más mian leat torthaí do chrann teaghlaigh a sheoladh chuig "
+"baill den teaghlach trí ríomhphost. Má tá tú réidh le suíomh Gréasáin a "
+"chruthú do do chrann teaghlaigh, tá tuarascáil ann chuige sin freisin."
 
 #: ../data/tips.xml:36
 msgid ""
@@ -634,10 +633,10 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"Iontrál@@ <b>acha <br/> D</b> úblacha Ligeann an uirlis “Uirlis> Próiseáil "
-"Crann Teaghlaigh > Faigh Daoine Dúblacha Féideartha...” duit iontrálacha an "
-"duine céanna a iontráiltear níos mó ná uair sa bhunachar sonraí a aimsiú "
-"(agus a chumasc"
+"<b>Iontrálacha Dúblacha</b><br/>Ligeann an uirlis \"Uirlisí > Próiseáil "
+"Crann Teaghlaigh > Aimsigh Daoine Dúblacha Féideartha...\" duit iontrálacha "
+"an duine chéanna atá curtha isteach níos mó ná uair amháin sa bhunachar "
+"sonraí a aimsiú (agus a chumasc)."
 
 #: ../data/tips.xml:44
 msgid ""
@@ -663,10 +662,10 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
-"<b>Eagrú na Tuai</b> <br/> rimí Is féidir le go leor de na tuairimí do chuid "
-"sonraí a chur i láthair mar chrann ordlathach nó mar liosta simplí. Is "
-"féidir gach radharc a chumrú freisin ar an mbealach is maith leat. Féach ar "
-"dheis den uirlisí uirlisí barr nó faoin roghchlár “Amharc”."
+"<b>Eagrú na nAmharc</b><br/>Is féidir le go leor de na hamharc do shonraí a "
+"chur i láthair mar chrann ordlathach nó mar liosta simplí. Is féidir gach "
+"radharc a chumrú freisin ar an mbealach is mian leat. Féach ar dheis an "
+"bharra uirlisí barr nó faoin roghchlár \"Amharc\"."
 
 #: ../data/tips.xml:48
 msgid ""
@@ -686,10 +685,10 @@ msgid ""
 "keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. "
 "If one exists for a function it is displayed on the right side of the menu."
 msgstr ""
-"<b>Aicearraí Mé</b> <br/> archláir Tuirseach as do lámh a thógáil as an "
-"méarchlár chun an luch a úsáid? Tá aicearraí méarchláir ag go leor "
-"feidhmeanna i Gramps. Má tá ceann ann ann le haghaidh feidhm taispeántar é "
-"ar thaobh na láimhe deise den roghchlár."
+"<b>Eagrú na nAmharc</b><br/>Is féidir go leor de na hamharcanna do bhunachar "
+"sonraí a chur i láthair mar chrann ordlathach nó mar liosta simplí. Is "
+"féidir gach radharc a chumrú freisin ar an mbealach is mian leat. Féach ar "
+"an mbarr uirlisí barr nó faoin roghchlár \"Amharc\"."
 
 #: ../data/tips.xml:52
 msgid ""
@@ -725,11 +724,11 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>An Caidreamh Tuismitheoir-Leana</b> í a chur in eagar Féadfaidh tú "
-"caidreamh linbh lena thuismitheoirí a chur in eagar trí chliceáil dúbail <br/"
-"> te ar an leanbh san Eagarthóir Teagh Is féidir le caidrimh a bheith ar aon "
-"cheann de Uchtáilte, Breith, Athrú, Níl aon, Urraithe, Leaspháiste agus "
-"Anaith"
+"<b>Ag Eagarthóireacht ar an nGaol Tuismitheora-Leanbh</b><br/> Is féidir "
+"leat caidreamh linbh lena thuismitheoirí a chur in eagar trí chliceáil faoi "
+"dhó ar an leanbh san Eagarthóir Teaghlaigh. Is féidir leis na caidrimh a "
+"bheith ina n-aon cheann de na caidrimh seo a leanas: Uchtáil, Breith, "
+"Altrama, Gan aon duine, Urraithe, Leasleanbh agus Anaithnid."
 
 #: ../data/tips.xml:58
 msgid ""
@@ -861,11 +860,11 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
-"<b>Ainmneacha</b> a <br/> bhainistiú Is furasta daoine a bhfuil roinnt "
-"ainmneacha acu i Gramps a bhainistiú. Sa Eagarthóir Duine roghnaigh an "
+"<b>Ainmneacha a Bhainistiú</b><br/>Is furasta daoine a bhfuil roinnt "
+"ainmneacha orthu a bhainistiú i Gramps. Sa Eagarthóir Pearsanta roghnaigh an "
 "cluaisín Ainmneacha. Is féidir leat ainmneacha de chineálacha éagsúla a chur "
-"leis agus an t-ainm is fearr leat a shocrú trí é a tharraingt chuig an "
-"rannán Ainm"
+"leis agus an t-ainm is fearr leat a shocrú trína tharraingt go dtí an rannán "
+"Ainm is Fearr leat."
 
 #: ../data/tips.xml:76
 msgid ""
@@ -935,12 +934,12 @@ msgid ""
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
-"<b>Ligeann <br/> Gramps Formáid Comhad GEDCOM duit iompórtáil ón bhformá</b> "
-"id GEDCOM agus a onnmhairiú chuig an bhformáid GEDCOM. Tá tacaíocht "
-"fhairsing ann don leagan GEDCOM 5.5 caighdeánach tionscail, ionas gur féidir "
-"leat faisnéis Gramps a mhalartú chuig agus ó úsáideoirí an chuid is mó de "
-"chláir ghinealais eile. Tá scagairí ann a fhágann go bhfuil comhaid GEDCOM "
-"allmhairiú agus onnmhairi"
+"<b>Formáid Chomhaid GEDCOM</b><br/>Ligeann Gramps duit comhaid GEDCOM a "
+"allmhairiú agus a onnmhairiú chuici. Tá tacaíocht fhairsing ann don "
+"chaighdeán tionscail GEDCOM leagan 5.5, ionas gur féidir leat faisnéis "
+"Gramps a mhalartú le húsáideoirí fhormhór na gclár ginealaigh eile agus "
+"uathu. Tá scagairí ann a fhágann go bhfuil sé éasca comhaid GEDCOM a "
+"allmhairiú agus a onnmhairiú."
 
 #: ../data/tips.xml:88
 msgid ""
@@ -951,13 +950,14 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>An Pacáiste Gramps XML Is féidir <br/> leat do</b> Chrann Teaghlaigh a "
-"onnmhairiú mar Phacáiste Gramps XML. Is comhad comhbhrúite é seo ina bhfuil "
-"sonraí do chrann teaghlaigh agus na comhaid meán go léir atá ceangailte leis "
-"an mbunachar sonraí (íomhánna mar shampla). Tá an comhad seo iniompartha go "
-"hiomlán agus mar sin tá sé úsáideach le haghaidh cúltacaí nó a roinnt le "
-"húsáideoirí Gramps eile. Tá an príomhbhuntáiste ag an bhformáid seo thar "
-"GEDCOM nach gcailltear aon fhaisnéis riamh agus tú ag onnmhairiú agus ag allm"
+"<b>Pacáiste XML Gramps</b><br/>Is féidir leat do Chrann Teaghlaigh a "
+"easpórtáil mar Phacáiste XML Gramps. Is comhad comhbhrúite é seo ina bhfuil "
+"sonraí do chrainn teaghlaigh agus na comhaid meán go léir atá ceangailte "
+"leis an mbunachar sonraí (íomhánna mar shampla). Tá an comhad seo "
+"iniompartha go hiomlán agus mar sin tá sé úsáideach le haghaidh cúltacaí nó "
+"le haghaidh comhroinnte le húsáideoirí Gramps eile. Tá an buntáiste is mó ag "
+"an bhformáid seo thar GEDCOM nach gcailltear aon fhaisnéis riamh agus í á "
+"heaspórtáil agus á hiompórtáil."
 
 #: ../data/tips.xml:90
 msgid ""
@@ -977,10 +977,11 @@ msgid ""
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web."
 msgstr ""
-"<b>Suíomh Gréasáin Ginealais a dhéanamh Is féidir <br/> leat</b> do chrann "
-"teaghlaigh a onnmhairiú go leathanach gréasáin go héasca. Roghnaigh an "
+"<b>Suíomh Gréasáin Ginealaigh a Chruthú</b><br/>Is féidir leat do chrann "
+"teaghlaigh a easpórtáil go héasca chuig leathanach gréasáin. Roghnaigh an "
 "bunachar sonraí iomlán, línte teaghlaigh nó daoine aonair roghnaithe chuig "
-"bailiúchán leathanaigh ghréasáin atá réidh le huaslódáil chuig an nGréasán"
+"bailiúchán leathanach gréasáin atá réidh le huaslódáil chuig an nGréasán "
+"Domhanda."
 
 #: ../data/tips.xml:94
 msgid ""
@@ -1047,10 +1048,10 @@ msgid ""
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Tuarascálacha</b> <br/> Leabhar Ligeann tuarascáil Leabhar faoi "
-"“Tuarascálacha > Leabhair...” duit tuarascálacha éagsúla a bhailiú i "
-"ndoiciméad amháin. Tá sé níos éasca an tuarascáil aonair seo a dháileadh ná "
-"tuarascálacha iolracha, go háirithe"
+"<b>Tuarascálacha Leabhar</b><br/>Ligeann an tuarascáil Leabhar faoi "
+"\"Tuarascálacha > Leabhair...\" duit réimse tuarascálacha a bhailiú i "
+"ndoiciméad amháin. Is fusa an tuarascáil aonair seo a dháileadh ná il-"
+"thuarascálacha, go háirithe nuair a bhíonn sí clóite."
 
 #: ../data/tips.xml:106
 msgid ""
@@ -1166,13 +1167,14 @@ msgid ""
 "tool. For more about Open Source software lookup the Free Software "
 "Foundation and the Open Source Initiative."
 msgstr ""
-"<b>Bogearraí <br/> Foin</b> se Oscailte Ciallaíonn samhail forbartha "
-"Bogearraí Saor/Libre agus Foinse Oscailte (FLOSS) gur féidir le haon "
-"ríomhchláraitheoir Gramps a leathnú ós rud é go bhfuil an cód foinse go léir "
-"ar fáil saor faoina cheadúnas Mar sin ní bhaineann sé ach le beoir saor in "
-"aisce, baineann sé freisin le saoirse staidéar a dhéanamh agus an uirlis a "
-"athrú. Le haghaidh tuilleadh faoi bhogearraí Foinse Oscailte cuardaigh an "
-"Fondúireacht Bogearraí Saor agus an Tionscnamh Foin"
+"<b>Bogearraí Foinse Oscailte</b><br/>Ciallaíonn an tsamhail forbartha "
+"Bogearraí Saor in Aisce/Saor in Aisce agus Foinse Oscailte (FLOSS) gur "
+"féidir le haon ríomhchláraitheoir Gramps a leathnú ós rud é go bhfuil an cód "
+"foinse go léir ar fáil saor in aisce faoina cheadúnas. Mar sin ní hamháin go "
+"bhfuil sé faoi dheoch saor in aisce, ach faoi shaoirse freisin an uirlis a "
+"scrúdú agus a athrú. Le haghaidh tuilleadh eolais faoi bhogearraí Foinse "
+"Oscailte, féach ar an bhFondúireacht Bogearraí Saor in Aisce agus an "
+"Tionscnamh Foinse Oscailte."
 
 #: ../data/tips.xml:126
 msgid ""
@@ -1322,7 +1324,7 @@ msgstr "Cruthaigh Crann Teaghlaigh folamh go rath"
 
 #: ../gramps/cli/arghandler.py:536 ../gramps/cli/arghandler.py:563
 msgid "Error opening the file."
-msgstr "Tharla botún ag oscailt comhad"
+msgstr "Earráid ag oscailt an chomhaid."
 
 #: ../gramps/cli/arghandler.py:537 ../gramps/cli/arghandler.py:564
 msgid "Exiting..."
@@ -1348,7 +1350,7 @@ msgstr "Tá bunachar sonraí faoi ghlas, ní féidir é a oscailt!"
 
 #: ../gramps/cli/arghandler.py:581
 msgid "Database needs recovery, cannot open it!"
-msgstr "Teastaíonn aisghabháil ar an mbunachar sonraí, ní féidir é"
+msgstr "Ní féidir an bunachar sonraí a oscailt, ach ní féidir é a aisghabháil!"
 
 #: ../gramps/cli/arghandler.py:584
 msgid "Database backend unavailable, cannot open it!"
@@ -1357,7 +1359,7 @@ msgstr "Cúlcheann bunachar sonraí ar fáil, ní féidir é a oscailt!"
 #: ../gramps/cli/arghandler.py:635 ../gramps/cli/arghandler.py:692
 #: ../gramps/cli/arghandler.py:740
 msgid "Ignoring invalid options string."
-msgstr "Neamhaird a dhéanamh le teaghrán roghanna"
+msgstr "Ag neamhaird a dhéanamh de theaghrán roghanna neamhbhailí."
 
 #: ../gramps/cli/arghandler.py:664
 msgid "Unknown report name."
@@ -1733,9 +1735,9 @@ msgstr "Crann Teaghlaigh “%s”:"
 #: ../gramps/plugins/textreport/indivcomplete.py:989
 #: ../gramps/plugins/textreport/indivcomplete.py:1064
 #: ../gramps/plugins/textreport/placereport.py:193
-#: ../gramps/plugins/webreport/basepage.py:1082
-#: ../gramps/plugins/webreport/basepage.py:3058
-#: ../gramps/plugins/webreport/basepage.py:3112
+#: ../gramps/plugins/webreport/basepage.py:1084
+#: ../gramps/plugins/webreport/basepage.py:3060
+#: ../gramps/plugins/webreport/basepage.py:3114
 #, python-format
 msgid "%(str1)s: %(str2)s"
 msgstr "%(str1)s: %(str2)s"
@@ -1747,7 +1749,7 @@ msgstr "Tosaigh Iompórtáil, %s"
 
 #: ../gramps/cli/clidbman.py:321
 msgid "Import finished..."
-msgstr "Allmhairiú críochnaithe"
+msgstr "Iompórtáil críochnaithe..."
 
 #: ../gramps/cli/clidbman.py:406 ../gramps/plugins/importer/importcsv.py:537
 msgid "Importing data..."
@@ -1755,7 +1757,7 @@ msgstr "Sonraí a iompórtáil..."
 
 #: ../gramps/cli/clidbman.py:466
 msgid "Remove family tree warning"
-msgstr ""
+msgstr "Bain an rabhadh crann teaghlaigh"
 
 #: ../gramps/cli/clidbman.py:467
 #, python-format
@@ -1873,12 +1875,12 @@ msgstr "Glas ag %s"
 #: ../gramps/plugins/view/geoplaces.py:597
 #: ../gramps/plugins/view/relview.py:617 ../gramps/plugins/view/relview.py:1225
 #: ../gramps/plugins/view/relview.py:1282
-#: ../gramps/plugins/webreport/basepage.py:2468
-#: ../gramps/plugins/webreport/basepage.py:2499
-#: ../gramps/plugins/webreport/basepage.py:2504
-#: ../gramps/plugins/webreport/basepage.py:2510
-#: ../gramps/plugins/webreport/basepage.py:3045
-#: ../gramps/plugins/webreport/basepage.py:3236
+#: ../gramps/plugins/webreport/basepage.py:2470
+#: ../gramps/plugins/webreport/basepage.py:2501
+#: ../gramps/plugins/webreport/basepage.py:2506
+#: ../gramps/plugins/webreport/basepage.py:2512
+#: ../gramps/plugins/webreport/basepage.py:3047
+#: ../gramps/plugins/webreport/basepage.py:3238
 msgid "Unknown"
 msgstr "Anaithnid"
 
@@ -2003,11 +2005,11 @@ msgstr "Ainm méid páipéir."
 #: ../gramps/cli/plug/__init__.py:329 ../gramps/cli/plug/__init__.py:330
 #: ../gramps/cli/plug/__init__.py:331
 msgid "=number"
-msgstr "Uimhir:"
+msgstr "=uimhir"
 
 #: ../gramps/cli/plug/__init__.py:327
 msgid "Paper orientation number."
-msgstr "Uimhir treoshuíomh páipéir"
+msgstr "Uimhir threoshuímh an pháipéir."
 
 #: ../gramps/cli/plug/__init__.py:328
 msgid "Left paper margin"
@@ -2200,13 +2202,13 @@ msgstr "níl aon cheann"
 
 #: ../gramps/gen/const.py:304 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:235
-#: ../gramps/plugins/webreport/basepage.py:3382
-#: ../gramps/plugins/webreport/basepage.py:3403
+#: ../gramps/plugins/webreport/basepage.py:3384
+#: ../gramps/plugins/webreport/basepage.py:3405
 #: ../gramps/plugins/webreport/family.py:519
 #: ../gramps/plugins/webreport/heatmap.py:1029
 #: ../gramps/plugins/webreport/heatmap.py:1031
-#: ../gramps/plugins/webreport/person.py:861
-#: ../gramps/plugins/webreport/person.py:863
+#: ../gramps/plugins/webreport/person.py:862
+#: ../gramps/plugins/webreport/person.py:864
 msgid ":"
 msgstr ":"
 
@@ -2451,7 +2453,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:500
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr "ó"
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2473,7 +2475,7 @@ msgstr "{date_quality} ó {date_start} go {date_stop} {nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:445
 msgctxt "between-date"
 msgid ""
-msgstr ""
+msgstr "idir"
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2496,7 +2498,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:490
 msgctxt "before-date"
 msgid ""
-msgstr ""
+msgstr "roimhe"
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2689,62 +2691,62 @@ msgstr "Nollaig"
 #: ../gramps/gen/datehandler/_datestrings.py:131
 msgctxt "alternative month names for January"
 msgid ""
-msgstr ""
+msgstr "Mí Eanáir"
 
 #: ../gramps/gen/datehandler/_datestrings.py:132
 msgctxt "alternative month names for February"
 msgid ""
-msgstr ""
+msgstr "Mí Feabhra"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133
 msgctxt "alternative month names for March"
 msgid ""
-msgstr ""
+msgstr "Mí Márta"
 
 #: ../gramps/gen/datehandler/_datestrings.py:134
 msgctxt "alternative month names for April"
 msgid ""
-msgstr ""
+msgstr "Mí Aibreán"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135
 msgctxt "alternative month names for May"
 msgid ""
-msgstr ""
+msgstr "Mí Bealtaine"
 
 #: ../gramps/gen/datehandler/_datestrings.py:136
 msgctxt "alternative month names for June"
 msgid ""
-msgstr ""
+msgstr "Mí Meitheamh"
 
 #: ../gramps/gen/datehandler/_datestrings.py:137
 msgctxt "alternative month names for July"
 msgid ""
-msgstr ""
+msgstr "Mí Iúil"
 
 #: ../gramps/gen/datehandler/_datestrings.py:138
 msgctxt "alternative month names for August"
 msgid ""
-msgstr ""
+msgstr "Mí Lúnasa"
 
 #: ../gramps/gen/datehandler/_datestrings.py:139
 msgctxt "alternative month names for September"
 msgid ""
-msgstr ""
+msgstr "Mí Meán Fómhair"
 
 #: ../gramps/gen/datehandler/_datestrings.py:140
 msgctxt "alternative month names for October"
 msgid ""
-msgstr ""
+msgstr "Mí Deireadh Fómhair"
 
 #: ../gramps/gen/datehandler/_datestrings.py:141
 msgctxt "alternative month names for November"
 msgid ""
-msgstr ""
+msgstr "Mí Samhain"
 
 #: ../gramps/gen/datehandler/_datestrings.py:142
 msgctxt "alternative month names for December"
 msgid ""
-msgstr ""
+msgstr "Mí Nollaig"
 
 #: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:657
 msgctxt "calendar"
@@ -3230,21 +3232,22 @@ msgid ""
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
 "Tá an Crann Teaghlaigh atá tú ag iarraidh a luchtú i bhformáid leagan scéime "
-"%(oldschema)s. Úsáideann an leagan seo de Gramps leagan scéime %(newschema)s "
-"Dá bhrí sin ní féidir leat an Crann Teaghlaigh seo a luchtú gan leagan "
-"scéime den Chrann Teaghlaigh a uasghrádú.\n"
+"%(oldschema)s. Úsáideann an leagan seo de Gramps leagan scéime %(newschema)"
+"s. Dá bhrí sin, ní féidir leat an Crann Teaghlaigh seo a luchtú gan leagan "
+"scéime an Chrann Teaghlaigh a uasghrádú.\n"
 "\n"
-"Má dhéanann tú uasghrádú ansin ní bheidh tú in ann an leagan roimhe seo de "
-"Gramps a úsáid, fiú má tá do Chrann Teaghlaigh uasghrádaithe "
-"%(wiki_manual_backup_html_start)s cúltaca %(html_end)s nó "
-"%(wiki_manual_export_html_start)s export %(html_end)s ina dhiaidh sin.\n"
+"Má dhéanann tú uasghrádú ní bheidh tú in ann an leagan roimhe seo de Gramps "
+"a úsáid, fiú má dhéanann tú "
+"%(wiki_manual_backup_html_start)sbackup%(html_end)s nó "
+"%(wiki_manual_export_html_start)sexport%(html_end)s do Chrann Teaghlaigh "
+"uasghrádaithe ina dhiaidh sin.\n"
 "\n"
-"Is tasc deacair é uasghrádú a d'fhéadfadh do Chrann Teaghlaigh a thailleadh "
-"gan aisghabháil má chuirtear isteach air nó má theipeann air.\n"
+"Is tasc deacair é uasghrádú a d'fhéadfadh do Chrann Teaghlaigh a thruailliú "
+"go dosheachanta má chuirtear isteach air nó má theipeann air.\n"
 "\n"
-"Mura bhfuil cúltaca déanta agat cheana féin de do Chrann Teaghlaigh, ansin "
-"ba chóir duit do leagan %(bold_start)s  solta %(bold_end)s de Gramps agus "
-"%(wiki_backup_html_start)s a thosú cúltac %(html_end)s de do Chrann "
+"Mura bhfuil cúltaca de do Chrann Clainne déanta agat cheana féin, ba cheart "
+"duit do leagan %(bold_start)s a dhíol %(bold_end)s de Gramps a thosú agus "
+"%(wiki_backup_html_start)s bain úsáid as cúltaca %(html_end)s de do Chrann "
 "Teaghlaigh."
 
 #: ../gramps/gen/db/exceptions.py:195
@@ -3357,7 +3360,7 @@ msgstr "Líon na nótaí"
 
 #: ../gramps/gen/db/generic.py:2713
 msgid "Number of tags"
-msgstr "Uimhir:"
+msgstr "Líon na gclibeanna"
 
 #: ../gramps/gen/db/generic.py:2714
 msgid "Schema version"
@@ -3545,7 +3548,7 @@ msgstr "patronymic [con]"
 
 #: ../gramps/gen/display/name.py:703 ../gramps/gen/display/name.py:829
 msgid "notpatronymic"
-msgstr "notpatronymic"
+msgstr "neamh-phatronaimiceach"
 
 #: ../gramps/gen/display/name.py:708 ../gramps/gen/display/name.py:834
 msgctxt "Remaining names"
@@ -3614,45 +3617,11 @@ msgstr ""
 "EARRÁID: ní fhéadfaí scagaire %s a luchtú i gceart. Cuir an scagaire in "
 "eagar!"
 
-#: ../gramps/gen/filters/_genericfilter.py:158
-#: ../gramps/gen/filters/_genericfilter.py:179
-#: ../gramps/gen/filters/_genericfilter.py:195
-msgid "Applying ..."
-msgstr "Déan iarratas a dhéanamh..."
-
-#: ../gramps/gen/filters/_genericfilter.py:158
-#: ../gramps/gen/filters/_genericfilter.py:179
-#: ../gramps/gen/filters/_genericfilter.py:195
-#: ../gramps/gui/editors/filtereditor.py:1225
-#: ../gramps/plugins/drawreport/calendarreport.py:600
-#: ../gramps/plugins/drawreport/statisticschart.py:1125
-#: ../gramps/plugins/drawreport/timeline.py:428
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1169
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1185
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1201
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1217
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1233
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1265
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1297
-#: ../gramps/plugins/graph/gvrelgraph.py:881
-#: ../gramps/plugins/quickview/quickview.gpr.py:143
-#: ../gramps/plugins/textreport/birthdayreport.py:561
-#: ../gramps/plugins/textreport/familygroup.py:722
-#: ../gramps/plugins/textreport/indivcomplete.py:1101
-#: ../gramps/plugins/textreport/recordsreport.py:236
-#: ../gramps/plugins/tool/sortevents.py:177
-#: ../gramps/plugins/webreport/narrativeweb.py:2130
-#: ../gramps/plugins/webreport/webcal.py:1851
-msgid "Filter"
-msgstr "Scagaire"
-
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
 #: ../gramps/gen/filters/rules/_hasattributebase.py:60
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:59
-#: ../gramps/gen/filters/rules/_hasgrampsid.py:59
+#: ../gramps/gen/filters/rules/_hasgrampsid.py:60
 #: ../gramps/gen/filters/rules/_hasldsbase.py:62
 #: ../gramps/gen/filters/rules/_hasnotebase.py:60
 #: ../gramps/gen/filters/rules/_hasnoteregexbase.py:60
@@ -3843,7 +3812,7 @@ msgstr "Caithfidh an uimhir a bheith:"
 msgid "Number of instances:"
 msgstr "Líon na gcásanna:"
 
-#: ../gramps/gen/filters/rules/_hasgrampsid.py:56
+#: ../gramps/gen/filters/rules/_hasgrampsid.py:57
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:63
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:63
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
@@ -3864,7 +3833,7 @@ msgstr "Líon na gcásanna:"
 #: ../gramps/gui/editors/filtereditor.py:557
 #: ../gramps/gui/glade/editplaceref.glade:264
 msgid "ID:"
-msgstr "CA"
+msgstr "Aitheantas:"
 
 #: ../gramps/gen/filters/rules/_hasnoteregexbase.py:54
 #: ../gramps/gen/filters/rules/_regexpidbase.py:59
@@ -3879,7 +3848,7 @@ msgstr "CA"
 #: ../gramps/gui/glade/mergenote.glade:208
 #: ../gramps/gui/glade/mergenote.glade:223
 msgid "Text:"
-msgstr "Téacs"
+msgstr "Téacs:"
 
 #: ../gramps/gen/filters/rules/_hasnotesubstrbase.py:53
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:54
@@ -4029,7 +3998,7 @@ msgstr "Meaitseálann luachanna atá léirithe mar phríobháideach"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 msgid "Citation attribute:"
-msgstr "Tagairtí"
+msgstr "Aitreabúid lua:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
@@ -4074,11 +4043,11 @@ msgstr "<count>Luanna leis na meáin"
 msgid "Matches citations with a certain number of items in the gallery"
 msgstr "Meaitseálann luanna le líon áirithe earraí sa ghailearaí"
 
-#: ../gramps/gen/filters/rules/citation/_hasidof.py:47
+#: ../gramps/gen/filters/rules/citation/_hasidof.py:48
 msgid "Citation with <Id>"
 msgstr "Luan le <Id>"
 
-#: ../gramps/gen/filters/rules/citation/_hasidof.py:48
+#: ../gramps/gen/filters/rules/citation/_hasidof.py:49
 msgid "Matches a citation with a specified Gramps ID"
 msgstr "Meaitseálann lua le ID sonraithe Gramps"
 
@@ -4431,11 +4400,11 @@ msgstr "Imeachtaí leis na <count>meáin"
 msgid "Matches events with a certain number of items in the gallery"
 msgstr "Meaitseálann imeachtaí le líon áirithe earraí sa ghailearaí"
 
-#: ../gramps/gen/filters/rules/event/_hasidof.py:46
+#: ../gramps/gen/filters/rules/event/_hasidof.py:47
 msgid "Event with <Id>"
 msgstr "Imeacht le <Id>"
 
-#: ../gramps/gen/filters/rules/event/_hasidof.py:47
+#: ../gramps/gen/filters/rules/event/_hasidof.py:48
 msgid "Matches an event with a specified Gramps ID"
 msgstr "Meaitseálann ócáid le ID sonraithe Gramps"
 
@@ -4713,11 +4682,11 @@ msgstr "Teaghlaigh le <count>meáin"
 msgid "Matches families with a certain number of items in the gallery"
 msgstr "Meaitseálann teaghlaigh le líon áirithe earraí sa ghailearaí"
 
-#: ../gramps/gen/filters/rules/family/_hasidof.py:46
+#: ../gramps/gen/filters/rules/family/_hasidof.py:47
 msgid "Family with <Id>"
 msgstr "Teaghlach le <Id>"
 
-#: ../gramps/gen/filters/rules/family/_hasidof.py:47
+#: ../gramps/gen/filters/rules/family/_hasidof.py:48
 msgid "Matches a family with a specified Gramps ID"
 msgstr "Meaitseálann teaghlach a bhfuil aitheantas Gramps sonraithe aige"
 
@@ -4999,11 +4968,11 @@ msgstr "Meáin leis an <citation>"
 msgid "Matches media with a citation of a particular value"
 msgstr "Meaitseálann na meáin le luach áirithe"
 
-#: ../gramps/gen/filters/rules/media/_hasidof.py:46
+#: ../gramps/gen/filters/rules/media/_hasidof.py:47
 msgid "Media object with <Id>"
 msgstr "Réad meán le <Id>"
 
-#: ../gramps/gen/filters/rules/media/_hasidof.py:47
+#: ../gramps/gen/filters/rules/media/_hasidof.py:48
 msgid "Matches a media object with a specified Gramps ID"
 msgstr "Meaitseálann réad meán le ID sonraithe Gramps"
 
@@ -5141,11 +5110,11 @@ msgstr ""
 "Athraíodh taifid nótaí cluichí tar éis dáta-am sonraithe (yyyy-mm-dd hh:mm: "
 "ss) nó sa raon, má thugtar an dara dáta-am."
 
-#: ../gramps/gen/filters/rules/note/_hasidof.py:46
+#: ../gramps/gen/filters/rules/note/_hasidof.py:47
 msgid "Note with <Id>"
 msgstr "Tabhair faoi deara le <Id>"
 
-#: ../gramps/gen/filters/rules/note/_hasidof.py:47
+#: ../gramps/gen/filters/rules/note/_hasidof.py:48
 msgid "Matches a note with a specified Gramps ID"
 msgstr "Meaitseálann nóta le ID sonraithe Gramps"
 
@@ -5449,12 +5418,12 @@ msgstr "Daoine le me <count>áin"
 msgid "Matches people with a certain number of items in the gallery"
 msgstr "Meaitseálann daoine le líon áirithe earraí sa ghailearaí"
 
-#: ../gramps/gen/filters/rules/person/_hasidof.py:46
+#: ../gramps/gen/filters/rules/person/_hasidof.py:47
 #: ../gramps/gen/filters/rules/person/_matchidof.py:56
 msgid "Person with <Id>"
 msgstr "Duine le <Id>"
 
-#: ../gramps/gen/filters/rules/person/_hasidof.py:47
+#: ../gramps/gen/filters/rules/person/_hasidof.py:48
 #: ../gramps/gen/filters/rules/person/_matchidof.py:57
 msgid "Matches person with a specified Gramps ID"
 msgstr "Meaitseálann duine a bhfuil aitheantas Gramps sonraithe aige"
@@ -5541,7 +5510,7 @@ msgstr "Meaitseálann daoine a bhfuil bunús sloinne acu"
 #: ../gramps/gui/editors/filtereditor.py:120
 #: ../gramps/gui/editors/filtereditor.py:598
 msgid "Name type:"
-msgstr "Ainm:"
+msgstr "Cineál ainm:"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:57
 msgid "People with the <Name type>"
@@ -5631,15 +5600,6 @@ msgid "Family filters"
 msgstr "Scagairí teaghlach"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:57
-#: ../gramps/gui/glade/editfamily.glade:116
-#: ../gramps/gui/glade/editfamily.glade:379
-#: ../gramps/gui/glade/editplaceformat.glade:201
-#: ../gramps/gui/glade/editplacename.glade:184
-#: ../gramps/gui/glade/editplaceref.glade:234
-#: ../gramps/gui/glade/mergeperson.glade:218
-#: ../gramps/gui/glade/mergeperson.glade:233
-#: ../gramps/gui/glade/mergeplace.glade:426
-#: ../gramps/gui/glade/mergeplace.glade:443
 #: ../gramps/plugins/gramplet/soundgen.py:68
 msgid "Name:"
 msgstr "Ainm:"
@@ -5684,7 +5644,7 @@ msgstr "Meaitseálann daoine leis an gclib áirithe"
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:66
 #: ../gramps/gui/editors/filtereditor.py:609
 msgid "Case sensitive:"
-msgstr "Cásíogair"
+msgstr "Íogair do chásanna:"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:67
 msgid "People with records containing <substring>"
@@ -6160,7 +6120,13 @@ msgstr "Meaitseálann áiteanna le luach áirithe"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:58
 #: ../gramps/gui/editors/editplace.py:106
-#: ../gramps/gui/glade/editplace.glade:356 ../gramps/gui/merge/mergeplace.py:56
+#: ../gramps/gui/glade/editplace.glade:356
+#: ../gramps/gui/glade/editplaceformat.glade:201
+#: ../gramps/gui/glade/editplacename.glade:184
+#: ../gramps/gui/glade/editplaceref.glade:234
+#: ../gramps/gui/glade/mergeplace.glade:426
+#: ../gramps/gui/glade/mergeplace.glade:443
+#: ../gramps/gui/merge/mergeplace.py:56
 #: ../gramps/plugins/tool/removespaces.py:241
 msgctxt "place"
 msgid "Name:"
@@ -6170,7 +6136,7 @@ msgstr "Ainm:"
 #: ../gramps/gui/editors/filtereditor.py:122
 #: ../gramps/gui/editors/filtereditor.py:602
 msgid "Place type:"
-msgstr "Ainm:"
+msgstr "Cineál áit:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:60
 #: ../gramps/gui/glade/editplace.glade:281
@@ -6198,11 +6164,11 @@ msgstr "Áiteanna le <count>meáin"
 msgid "Matches places with a certain number of items in the gallery"
 msgstr "Meaitseálann áiteanna le líon áirithe earraí sa ghailearaí"
 
-#: ../gramps/gen/filters/rules/place/_hasidof.py:46
+#: ../gramps/gen/filters/rules/place/_hasidof.py:47
 msgid "Place with <Id>"
 msgstr "Áit le <Id>"
 
-#: ../gramps/gen/filters/rules/place/_hasidof.py:47
+#: ../gramps/gen/filters/rules/place/_hasidof.py:48
 msgid "Matches a place with a specified Gramps ID"
 msgstr "Meaitseálann áit le ID sonraithe Gramps"
 
@@ -6346,7 +6312,7 @@ msgstr "Airde dronuilleog:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:64
 msgid "Rectangle width:"
-msgstr "Leithead dronuilleog"
+msgstr "Leithead dronuilleog:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:66
 msgid "Places in neighborhood of given position"
@@ -6463,7 +6429,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repository attribute:"
-msgstr "Tagairtí"
+msgstr "Tréith an stórais:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
 msgid "Repositories with the attribute <attribute>"
@@ -6473,11 +6439,11 @@ msgstr "Stórálaí leis an tréith <attribute>"
 msgid "Matches repositories with the attribute of a particular value"
 msgstr "Meaitseálann stórais le tréith luach áirithe"
 
-#: ../gramps/gen/filters/rules/repository/_hasidof.py:46
+#: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Repository with <Id>"
 msgstr "Stóráil le <Id>"
 
-#: ../gramps/gen/filters/rules/repository/_hasidof.py:47
+#: ../gramps/gen/filters/rules/repository/_hasidof.py:48
 msgid "Matches a repository with a specified Gramps ID"
 msgstr "Meaitseálann stór le ID sonraithe Gramps"
 
@@ -6595,7 +6561,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Source attribute:"
-msgstr "Nótaí"
+msgstr "Tréith foinse:"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:48
 msgid "Sources with the attribute <attribute>"
@@ -6613,11 +6579,11 @@ msgstr "Foinsí le <count>meáin"
 msgid "Matches sources with a certain number of items in the gallery"
 msgstr "Meaitseálann foinsí le líon áirithe earraí sa ghailearaí"
 
-#: ../gramps/gen/filters/rules/source/_hasidof.py:46
+#: ../gramps/gen/filters/rules/source/_hasidof.py:47
 msgid "Source with <Id>"
 msgstr "Foinse le <Id>"
 
-#: ../gramps/gen/filters/rules/source/_hasidof.py:47
+#: ../gramps/gen/filters/rules/source/_hasidof.py:48
 msgid "Matches a source with a specified Gramps ID"
 msgstr "Meaitseálann foinse le ID sonraithe Gramps"
 
@@ -6853,9 +6819,9 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/view/noteview.py:113
 #: ../gramps/plugins/view/view.gpr.py:103
 #: ../gramps/plugins/view/view.gpr.py:111
-#: ../gramps/plugins/webreport/basepage.py:1659
-#: ../gramps/plugins/webreport/basepage.py:2828
-#: ../gramps/plugins/webreport/person.py:1640
+#: ../gramps/plugins/webreport/basepage.py:1661
+#: ../gramps/plugins/webreport/basepage.py:2830
+#: ../gramps/plugins/webreport/person.py:1641
 #: ../gramps/plugins/webreport/updates.py:158
 msgid "Notes"
 msgstr "Nótaí"
@@ -6866,9 +6832,9 @@ msgstr "Nótaí"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
 #: ../gramps/plugins/view/geoplaces.py:602
 #: ../gramps/plugins/view/repoview.py:90
-#: ../gramps/plugins/webreport/basepage.py:1508
-#: ../gramps/plugins/webreport/basepage.py:3422
-#: ../gramps/plugins/webreport/basepage.py:3500
+#: ../gramps/plugins/webreport/basepage.py:1510
+#: ../gramps/plugins/webreport/basepage.py:3424
+#: ../gramps/plugins/webreport/basepage.py:3502
 msgid "Street"
 msgstr "Sráid"
 
@@ -6878,9 +6844,9 @@ msgstr "Sráid"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
 #: ../gramps/plugins/view/geoplaces.py:600
 #: ../gramps/plugins/view/repoview.py:91
-#: ../gramps/plugins/webreport/basepage.py:1509
-#: ../gramps/plugins/webreport/basepage.py:3423
-#: ../gramps/plugins/webreport/basepage.py:3501
+#: ../gramps/plugins/webreport/basepage.py:1511
+#: ../gramps/plugins/webreport/basepage.py:3425
+#: ../gramps/plugins/webreport/basepage.py:3503
 msgid "Locality"
 msgstr "Ceantar"
 
@@ -6890,9 +6856,9 @@ msgstr "Ceantar"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
 #: ../gramps/plugins/view/geoplaces.py:628
 #: ../gramps/plugins/view/repoview.py:92
-#: ../gramps/plugins/webreport/basepage.py:1510
-#: ../gramps/plugins/webreport/basepage.py:3424
-#: ../gramps/plugins/webreport/basepage.py:3502
+#: ../gramps/plugins/webreport/basepage.py:1512
+#: ../gramps/plugins/webreport/basepage.py:3426
+#: ../gramps/plugins/webreport/basepage.py:3504
 msgid "City"
 msgstr "Cathair"
 
@@ -6902,9 +6868,9 @@ msgstr "Cathair"
 #: ../gramps/gui/views/treemodels/placemodel.py:350
 #: ../gramps/plugins/lib/maps/placeselection.py:162
 #: ../gramps/plugins/view/geoplaces.py:616
-#: ../gramps/plugins/webreport/basepage.py:1512
-#: ../gramps/plugins/webreport/basepage.py:3426
-#: ../gramps/plugins/webreport/basepage.py:3504
+#: ../gramps/plugins/webreport/basepage.py:1514
+#: ../gramps/plugins/webreport/basepage.py:3428
+#: ../gramps/plugins/webreport/basepage.py:3506
 msgid "County"
 msgstr "Contae"
 
@@ -6925,18 +6891,18 @@ msgstr "Stát"
 #: ../gramps/plugins/lib/maps/placeselection.py:160
 #: ../gramps/plugins/view/geoplaces.py:614
 #: ../gramps/plugins/view/repoview.py:94
-#: ../gramps/plugins/webreport/basepage.py:1514
-#: ../gramps/plugins/webreport/basepage.py:3430
-#: ../gramps/plugins/webreport/basepage.py:3507
-#: ../gramps/plugins/webreport/place.py:348
-#: ../gramps/plugins/webreport/place.py:360
+#: ../gramps/plugins/webreport/basepage.py:1516
+#: ../gramps/plugins/webreport/basepage.py:3432
+#: ../gramps/plugins/webreport/basepage.py:3509
+#: ../gramps/plugins/webreport/place.py:350
+#: ../gramps/plugins/webreport/place.py:362
 msgid "Country"
-msgstr "Tír:"
+msgstr "Tír"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:98
-#: ../gramps/plugins/webreport/basepage.py:1513
-#: ../gramps/plugins/webreport/basepage.py:3428
-#: ../gramps/plugins/webreport/basepage.py:3506
+#: ../gramps/plugins/webreport/basepage.py:1515
+#: ../gramps/plugins/webreport/basepage.py:3430
+#: ../gramps/plugins/webreport/basepage.py:3508
 msgid "Postal Code"
 msgstr "Cód Poist"
 
@@ -6948,7 +6914,7 @@ msgstr "Cód Poist"
 #: ../gramps/plugins/gramplet/repositorydetails.py:131
 #: ../gramps/plugins/lib/libgedcom.py:4585
 #: ../gramps/plugins/lib/libgedcom.py:6375
-#: ../gramps/plugins/webreport/basepage.py:1515
+#: ../gramps/plugins/webreport/basepage.py:1517
 msgid "Phone"
 msgstr "Fón"
 
@@ -6967,8 +6933,8 @@ msgstr "tréith"
 #: ../gramps/plugins/gramplet/attributes.py:61
 #: ../gramps/plugins/lib/libmetadata.py:231
 #: ../gramps/plugins/tool/patchnames.py:463
-#: ../gramps/plugins/webreport/basepage.py:1398
-#: ../gramps/plugins/webreport/basepage.py:1658
+#: ../gramps/plugins/webreport/basepage.py:1400
+#: ../gramps/plugins/webreport/basepage.py:1660
 msgid "Value"
 msgstr "Luach"
 
@@ -7008,9 +6974,9 @@ msgstr "Cás"
 #: ../gramps/plugins/tool/sortevents.py:63
 #: ../gramps/plugins/view/eventview.py:81
 #: ../gramps/plugins/webreport/basepage.py:863
-#: ../gramps/plugins/webreport/basepage.py:1279
-#: ../gramps/plugins/webreport/basepage.py:2915
-#: ../gramps/plugins/webreport/basepage.py:3707
+#: ../gramps/plugins/webreport/basepage.py:1281
+#: ../gramps/plugins/webreport/basepage.py:2917
+#: ../gramps/plugins/webreport/basepage.py:3709
 #: ../gramps/plugins/webreport/download.py:129
 #: ../gramps/plugins/webreport/heatmap.py:250
 #: ../gramps/plugins/webreport/heatmap.py:382
@@ -7179,11 +7145,11 @@ msgstr "Luan"
 #: ../gramps/plugins/quickview/filterbyname.py:359
 #: ../gramps/plugins/tool/findloop.py:116
 #: ../gramps/plugins/tool/findloop.py:118
-#: ../gramps/plugins/webreport/basepage.py:3372
+#: ../gramps/plugins/webreport/basepage.py:3374
 #: ../gramps/plugins/webreport/event.py:329
 #: ../gramps/plugins/webreport/event.py:554
 #: ../gramps/plugins/webreport/media.py:626
-#: ../gramps/plugins/webreport/person.py:1884
+#: ../gramps/plugins/webreport/person.py:1885
 #: ../gramps/plugins/webreport/repository.py:264
 #: ../gramps/plugins/webreport/source.py:398
 msgid "Gramps ID"
@@ -7192,7 +7158,7 @@ msgstr "Aitheantas Gramps"
 #: ../gramps/gen/lib/citation.py:117
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:87
 #: ../gramps/plugins/importer/importprogen.glade:336
-#: ../gramps/plugins/webreport/basepage.py:3052
+#: ../gramps/plugins/webreport/basepage.py:3054
 msgid "Page"
 msgstr "Leathanach"
 
@@ -7201,7 +7167,7 @@ msgstr "Leathanach"
 #: ../gramps/plugins/importer/importprogen.glade:305
 #: ../gramps/plugins/view/citationlistview.py:103
 #: ../gramps/plugins/view/citationtreeview.py:98
-#: ../gramps/plugins/webreport/basepage.py:3053
+#: ../gramps/plugins/webreport/basepage.py:3055
 msgid "Confidence"
 msgstr "Muinín"
 
@@ -7255,11 +7221,11 @@ msgstr "Foinse"
 #: ../gramps/plugins/tool/reorderids.glade:849
 #: ../gramps/plugins/view/mediaview.py:145
 #: ../gramps/plugins/view/view.gpr.py:87 ../gramps/plugins/view/view.gpr.py:95
-#: ../gramps/plugins/webreport/basepage.py:2065
-#: ../gramps/plugins/webreport/basepage.py:2140
-#: ../gramps/plugins/webreport/basepage.py:2269
-#: ../gramps/plugins/webreport/basepage.py:2314
-#: ../gramps/plugins/webreport/basepage.py:2630
+#: ../gramps/plugins/webreport/basepage.py:2067
+#: ../gramps/plugins/webreport/basepage.py:2142
+#: ../gramps/plugins/webreport/basepage.py:2271
+#: ../gramps/plugins/webreport/basepage.py:2316
+#: ../gramps/plugins/webreport/basepage.py:2632
 #: ../gramps/plugins/webreport/media.py:212
 #: ../gramps/plugins/webreport/media.py:418
 #: ../gramps/plugins/webreport/updates.py:152
@@ -7303,12 +7269,12 @@ msgstr "Athraigh go deireanach"
 #: ../gramps/plugins/view/mediaview.py:106
 #: ../gramps/plugins/view/noteview.py:86 ../gramps/plugins/view/repoview.py:99
 #: ../gramps/plugins/view/sourceview.py:90
-#: ../gramps/plugins/webreport/basepage.py:3521
+#: ../gramps/plugins/webreport/basepage.py:3523
 #: ../gramps/plugins/webreport/event.py:581
 #: ../gramps/plugins/webreport/family.py:519
 #: ../gramps/plugins/webreport/media.py:672
-#: ../gramps/plugins/webreport/narrativeweb.py:3242
-#: ../gramps/plugins/webreport/person.py:1979
+#: ../gramps/plugins/webreport/narrativeweb.py:3243
+#: ../gramps/plugins/webreport/person.py:1980
 #: ../gramps/plugins/webreport/repository.py:287
 #: ../gramps/plugins/webreport/source.py:414
 msgid "Tags"
@@ -7356,7 +7322,7 @@ msgid "about"
 msgstr "faoi"
 
 #: ../gramps/gen/lib/date.py:323 ../gramps/gen/lib/date.py:370
-#: ../gramps/gen/lib/date.py:392 ../gramps/plugins/webreport/basepage.py:3783
+#: ../gramps/gen/lib/date.py:392 ../gramps/plugins/webreport/basepage.py:3785
 msgid "between"
 msgstr "idir"
 
@@ -7364,7 +7330,7 @@ msgstr "idir"
 #: ../gramps/gen/lib/date.py:396 ../gramps/gui/merge/mergefamily.py:157
 #: ../gramps/plugins/quickview/all_relations.py:339
 #: ../gramps/plugins/view/relview.py:1209
-#: ../gramps/plugins/webreport/basepage.py:3784
+#: ../gramps/plugins/webreport/basepage.py:3786
 msgid "and"
 msgstr "agus"
 
@@ -7380,7 +7346,7 @@ msgstr "níos mó ná thart ar"
 #, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
-msgstr[0] "{number_of} year"
+msgstr[0] "{number_of} bliana"
 msgstr[1] "{number_of} blianta"
 msgstr[2] "{number_of} blianta"
 
@@ -7464,16 +7430,16 @@ msgstr "0 lá"
 #: ../gramps/plugins/view/eventview.py:84
 #: ../gramps/plugins/view/mediaview.py:104
 #: ../gramps/plugins/webreport/basepage.py:861
-#: ../gramps/plugins/webreport/basepage.py:1274
-#: ../gramps/plugins/webreport/basepage.py:1318
-#: ../gramps/plugins/webreport/basepage.py:1507
-#: ../gramps/plugins/webreport/basepage.py:3051
+#: ../gramps/plugins/webreport/basepage.py:1276
+#: ../gramps/plugins/webreport/basepage.py:1320
+#: ../gramps/plugins/webreport/basepage.py:1509
+#: ../gramps/plugins/webreport/basepage.py:3053
 #: ../gramps/plugins/webreport/event.py:328
 #: ../gramps/plugins/webreport/media.py:249
 #: ../gramps/plugins/webreport/media.py:653
-#: ../gramps/plugins/webreport/person.py:1114
+#: ../gramps/plugins/webreport/person.py:1115
 msgid "Date"
-msgstr "Dáta:"
+msgstr "Date"
 
 #: ../gramps/gen/lib/date.py:789
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:79
@@ -7536,18 +7502,18 @@ msgid "none"
 msgstr "aon cheann"
 
 #: ../gramps/gen/lib/date.py:2002 ../gramps/plugins/lib/libsubstkeyword.py:319
-#: ../gramps/plugins/webreport/basepage.py:3790
+#: ../gramps/plugins/webreport/basepage.py:3792
 msgid "before"
 msgstr "roimh"
 
 #: ../gramps/gen/lib/date.py:2003 ../gramps/plugins/lib/libprogen.py:2029
 #: ../gramps/plugins/lib/libsubstkeyword.py:320
-#: ../gramps/plugins/webreport/basepage.py:3788
+#: ../gramps/plugins/webreport/basepage.py:3790
 msgid "after"
 msgstr "tar éis"
 
 #: ../gramps/gen/lib/date.py:2004 ../gramps/plugins/lib/libsubstkeyword.py:321
-#: ../gramps/plugins/webreport/basepage.py:3792
+#: ../gramps/plugins/webreport/basepage.py:3794
 msgid "about"
 msgstr "faoi"
 
@@ -7626,8 +7592,8 @@ msgstr "Imeacht"
 #: ../gramps/plugins/tool/sortevents.py:64
 #: ../gramps/plugins/view/eventview.py:85
 #: ../gramps/plugins/webreport/basepage.py:862
-#: ../gramps/plugins/webreport/basepage.py:1278
-#: ../gramps/plugins/webreport/basepage.py:1320
+#: ../gramps/plugins/webreport/basepage.py:1280
+#: ../gramps/plugins/webreport/basepage.py:1322
 msgid "Place"
 msgstr "Áit"
 
@@ -7643,9 +7609,9 @@ msgstr "Áit"
 #: ../gramps/plugins/textreport/indivcomplete.py:496
 #: ../gramps/plugins/textreport/indivcomplete.py:722
 #: ../gramps/plugins/webreport/basepage.py:603
-#: ../gramps/plugins/webreport/basepage.py:1382
-#: ../gramps/plugins/webreport/basepage.py:1632
-#: ../gramps/plugins/webreport/basepage.py:1641
+#: ../gramps/plugins/webreport/basepage.py:1384
+#: ../gramps/plugins/webreport/basepage.py:1634
+#: ../gramps/plugins/webreport/basepage.py:1643
 msgid "Attributes"
 msgstr "tréithe"
 
@@ -7709,7 +7675,7 @@ msgstr "Tuismitheoir"
 #: ../gramps/plugins/textreport/tagreport.py:261
 #: ../gramps/plugins/view/familyview.py:83
 #: ../gramps/plugins/view/relview.py:1107
-#: ../gramps/plugins/webreport/person.py:2118
+#: ../gramps/plugins/webreport/person.py:2119
 msgid "Father"
 msgstr "Athair"
 
@@ -7731,7 +7697,7 @@ msgstr "Athair"
 #: ../gramps/plugins/textreport/tagreport.py:267
 #: ../gramps/plugins/view/familyview.py:84
 #: ../gramps/plugins/view/relview.py:1108
-#: ../gramps/plugins/webreport/person.py:2131
+#: ../gramps/plugins/webreport/person.py:2132
 msgid "Mother"
 msgstr "Máthair"
 
@@ -7828,7 +7794,7 @@ msgstr "Dlíthiúil"
 #: ../gramps/plugins/lib/libprogen.py:2017
 #: ../gramps/plugins/lib/libprogen.py:2019
 #: ../gramps/plugins/webreport/addressbooklist.py:119
-#: ../gramps/plugins/webreport/basepage.py:3682
+#: ../gramps/plugins/webreport/basepage.py:3684
 msgid "Residence"
 msgstr "Cónaithe"
 
@@ -8313,13 +8279,13 @@ msgstr "Leanaí"
 #: ../gramps/plugins/textreport/tagreport.py:333
 #: ../gramps/plugins/view/eventview.py:140
 #: ../gramps/plugins/view/view.gpr.py:39 ../gramps/plugins/view/view.gpr.py:47
-#: ../gramps/plugins/webreport/basepage.py:2058
-#: ../gramps/plugins/webreport/basepage.py:2137
-#: ../gramps/plugins/webreport/basepage.py:2260
+#: ../gramps/plugins/webreport/basepage.py:2060
+#: ../gramps/plugins/webreport/basepage.py:2139
+#: ../gramps/plugins/webreport/basepage.py:2262
 #: ../gramps/plugins/webreport/event.py:267
 #: ../gramps/plugins/webreport/event.py:515
-#: ../gramps/plugins/webreport/narrativeweb.py:3236
-#: ../gramps/plugins/webreport/person.py:2005
+#: ../gramps/plugins/webreport/narrativeweb.py:3237
+#: ../gramps/plugins/webreport/person.py:2006
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
 msgstr "Imeachtaí"
@@ -8396,10 +8362,10 @@ msgstr "Aontas Sibhialta"
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/mediaview.py:102
 #: ../gramps/plugins/view/noteview.py:84 ../gramps/plugins/view/repoview.py:88
-#: ../gramps/plugins/webreport/basepage.py:1317
-#: ../gramps/plugins/webreport/basepage.py:1657
-#: ../gramps/plugins/webreport/basepage.py:2914
-#: ../gramps/plugins/webreport/basepage.py:3637
+#: ../gramps/plugins/webreport/basepage.py:1319
+#: ../gramps/plugins/webreport/basepage.py:1659
+#: ../gramps/plugins/webreport/basepage.py:2916
+#: ../gramps/plugins/webreport/basepage.py:3639
 #: ../gramps/plugins/webreport/event.py:327
 #: ../gramps/plugins/webreport/repository.py:174
 #: ../gramps/plugins/webreport/repository.py:273
@@ -8491,7 +8457,7 @@ msgstr "Ordanáis LDS"
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
 #: ../gramps/plugins/textreport/indivcomplete.py:533
 #: ../gramps/plugins/textreport/indivcomplete.py:738
-#: ../gramps/plugins/webreport/basepage.py:1319
+#: ../gramps/plugins/webreport/basepage.py:1321
 msgid "Temple"
 msgstr "Teampall"
 
@@ -8504,7 +8470,7 @@ msgstr "Teampall"
 #: ../gramps/plugins/textreport/indivcomplete.py:532
 #: ../gramps/plugins/textreport/indivcomplete.py:737
 #: ../gramps/plugins/textreport/notelinkreport.py:103
-#: ../gramps/plugins/webreport/basepage.py:1321
+#: ../gramps/plugins/webreport/basepage.py:1323
 msgid "Status"
 msgstr "Stádas"
 
@@ -8590,7 +8556,7 @@ msgstr "Réigiún"
 #: ../gramps/plugins/tool/verify.py:823 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:546
 #: ../gramps/plugins/webreport/person.py:423
-#: ../gramps/plugins/webreport/person.py:2348
+#: ../gramps/plugins/webreport/person.py:2349
 #: ../gramps/plugins/webreport/surname.py:148
 msgid "Name"
 msgstr "Ainm"
@@ -8599,11 +8565,11 @@ msgstr "Ainm"
 msgid "Given name"
 msgstr "Ainm tugtha"
 
-#: ../gramps/gen/lib/name.py:185 ../gramps/plugins/webreport/basepage.py:2056
-#: ../gramps/plugins/webreport/basepage.py:2114
-#: ../gramps/plugins/webreport/basepage.py:2117
-#: ../gramps/plugins/webreport/basepage.py:2251
-#: ../gramps/plugins/webreport/narrativeweb.py:3239
+#: ../gramps/gen/lib/name.py:185 ../gramps/plugins/webreport/basepage.py:2058
+#: ../gramps/plugins/webreport/basepage.py:2116
+#: ../gramps/plugins/webreport/basepage.py:2119
+#: ../gramps/plugins/webreport/basepage.py:2253
+#: ../gramps/plugins/webreport/narrativeweb.py:3240
 #: ../gramps/plugins/webreport/person.py:234
 #: ../gramps/plugins/webreport/surnamelist.py:111
 #: ../gramps/plugins/webreport/surnamelist.py:184
@@ -8642,7 +8608,7 @@ msgstr "Iarmhír"
 #: ../gramps/plugins/textreport/tagreport.py:754
 #: ../gramps/plugins/view/mediaview.py:100
 #: ../gramps/plugins/view/sourceview.py:84
-#: ../gramps/plugins/webreport/basepage.py:3636
+#: ../gramps/plugins/webreport/basepage.py:3638
 msgid "Title"
 msgstr "Teideal"
 
@@ -8668,7 +8634,7 @@ msgstr "Ainm Nick"
 
 #: ../gramps/gen/lib/name.py:195
 msgid "Family nick name"
-msgstr ""
+msgstr "Leasainm teaghlaigh"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:500 ../gramps/gen/lib/name.py:517
@@ -8794,7 +8760,7 @@ msgstr "Ainm Pósta"
 #: ../gramps/plugins/textreport/familygroup.py:440
 #: ../gramps/plugins/tool/reorderids.glade:861
 #: ../gramps/plugins/webreport/basepage.py:838
-#: ../gramps/plugins/webreport/basepage.py:2862
+#: ../gramps/plugins/webreport/basepage.py:2864
 msgid "Note"
 msgstr "Nóta"
 
@@ -8808,7 +8774,7 @@ msgstr "Formáid"
 #: ../gramps/gui/editors/editeventref.py:102
 #: ../gramps/gui/editors/editmediaref.py:121
 #: ../gramps/gui/editors/editplaceref.py:84
-#: ../gramps/gui/editors/editreporef.py:73
+#: ../gramps/gui/editors/editreporef.py:83
 #: ../gramps/gui/glade/editeventref.glade:199
 #: ../gramps/gui/glade/editeventref.glade:615
 #: ../gramps/gui/glade/editmediaref.glade:343
@@ -8937,7 +8903,7 @@ msgstr "Nóta Tagartha do Leanaí"
 #: ../gramps/plugins/lib/libpersonview.py:102
 #: ../gramps/plugins/quickview/siblings.py:50
 #: ../gramps/plugins/textreport/indivcomplete.py:957
-#: ../gramps/plugins/webreport/person.py:1895
+#: ../gramps/plugins/webreport/person.py:1896
 msgid "Gender"
 msgstr "Inscne"
 
@@ -8970,9 +8936,9 @@ msgstr "Sainroghanna"
 #: ../gramps/plugins/view/view.gpr.py:55 ../gramps/plugins/view/view.gpr.py:63
 #: ../gramps/plugins/webreport/basepage.py:402
 #: ../gramps/plugins/webreport/basepage.py:462
-#: ../gramps/plugins/webreport/basepage.py:2057
-#: ../gramps/plugins/webreport/basepage.py:2122
-#: ../gramps/plugins/webreport/basepage.py:2252
+#: ../gramps/plugins/webreport/basepage.py:2059
+#: ../gramps/plugins/webreport/basepage.py:2124
+#: ../gramps/plugins/webreport/basepage.py:2254
 #: ../gramps/plugins/webreport/family.py:251
 #: ../gramps/plugins/webreport/updates.py:113
 msgid "Families"
@@ -8985,7 +8951,7 @@ msgstr "Tuismitheoirí teagh"
 #: ../gramps/gen/lib/person.py:235 ../gramps/gen/lib/repo.py:114
 #: ../gramps/gui/merge/mergeperson.py:292
 #: ../gramps/plugins/textreport/indivcomplete.py:444
-#: ../gramps/plugins/webreport/basepage.py:1461
+#: ../gramps/plugins/webreport/basepage.py:1463
 msgid "Addresses"
 msgstr "Seoltaí"
 
@@ -9014,8 +8980,8 @@ msgstr "Cumann"
 #: ../gramps/plugins/gramplet/coordinates.py:106
 #: ../gramps/plugins/gramplet/placedetails.py:144
 #: ../gramps/plugins/lib/libplaceview.py:92
-#: ../gramps/plugins/webreport/basepage.py:3415
-#: ../gramps/plugins/webreport/place.py:350
+#: ../gramps/plugins/webreport/basepage.py:3417
+#: ../gramps/plugins/webreport/place.py:352
 msgid "Longitude"
 msgstr "Longitud"
 
@@ -9023,8 +8989,8 @@ msgstr "Longitud"
 #: ../gramps/plugins/gramplet/coordinates.py:105
 #: ../gramps/plugins/gramplet/placedetails.py:142
 #: ../gramps/plugins/lib/libplaceview.py:91
-#: ../gramps/plugins/webreport/basepage.py:3394
-#: ../gramps/plugins/webreport/place.py:349
+#: ../gramps/plugins/webreport/basepage.py:3396
+#: ../gramps/plugins/webreport/place.py:351
 msgid "Latitude"
 msgstr "domhanleithead"
 
@@ -9035,18 +9001,18 @@ msgstr "domhanleithead"
 #: ../gramps/plugins/view/view.gpr.py:235
 #: ../gramps/plugins/view/view.gpr.py:243
 #: ../gramps/plugins/view/view.gpr.py:259
-#: ../gramps/plugins/webreport/basepage.py:2059
-#: ../gramps/plugins/webreport/basepage.py:2131
-#: ../gramps/plugins/webreport/basepage.py:2261
-#: ../gramps/plugins/webreport/place.py:282
-#: ../gramps/plugins/webreport/place.py:479
+#: ../gramps/plugins/webreport/basepage.py:2061
+#: ../gramps/plugins/webreport/basepage.py:2133
+#: ../gramps/plugins/webreport/basepage.py:2263
+#: ../gramps/plugins/webreport/place.py:284
+#: ../gramps/plugins/webreport/place.py:484
 #: ../gramps/plugins/webreport/updates.py:127
 msgid "Places"
 msgstr "Áiteanna"
 
 #: ../gramps/gen/lib/place.py:175 ../gramps/gui/merge/mergeperson.py:218
 #: ../gramps/plugins/textreport/indivcomplete.py:416
-#: ../gramps/plugins/webreport/basepage.py:3461
+#: ../gramps/plugins/webreport/basepage.py:3463
 msgid "Alternate Names"
 msgstr "Ainmneacha Malartacha"
 
@@ -9058,7 +9024,7 @@ msgstr "Ainmneacha Malartacha"
 msgid "Code"
 msgstr "Cód"
 
-#: ../gramps/gen/lib/place.py:182 ../gramps/plugins/webreport/basepage.py:3491
+#: ../gramps/gen/lib/place.py:182 ../gramps/plugins/webreport/basepage.py:3493
 msgid "Alternate Locations"
 msgstr "Suíomhanna Malartacha"
 
@@ -9073,8 +9039,8 @@ msgstr "Ainm Áit"
 
 #: ../gramps/gen/lib/placename.py:100
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:66
-#: ../gramps/plugins/webreport/basepage.py:2175
-#: ../gramps/plugins/webreport/basepage.py:3468
+#: ../gramps/plugins/webreport/basepage.py:2177
+#: ../gramps/plugins/webreport/basepage.py:3470
 msgid "Language"
 msgstr "Teanga"
 
@@ -9083,7 +9049,7 @@ msgid "Place ref"
 msgstr "Nótaí"
 
 #: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:618
-#: ../gramps/plugins/webreport/basepage.py:3429
+#: ../gramps/plugins/webreport/basepage.py:3431
 msgid "Province"
 msgstr "Stát / Cúige:"
 
@@ -9129,7 +9095,7 @@ msgstr "Foirgneamh"
 
 #: ../gramps/gen/lib/placetype.py:94 ../gramps/plugins/gramplet/leak.py:98
 #: ../gramps/plugins/view/geoplaces.py:613
-#: ../gramps/plugins/webreport/basepage.py:3635
+#: ../gramps/plugins/webreport/basepage.py:3637
 #: ../gramps/plugins/webreport/source.py:206
 msgid "Number"
 msgstr "Uimhir:"
@@ -9226,10 +9192,10 @@ msgstr "Giorrúchán"
 #: ../gramps/plugins/view/repoview.py:156
 #: ../gramps/plugins/view/view.gpr.py:268
 #: ../gramps/plugins/view/view.gpr.py:276
-#: ../gramps/plugins/webreport/basepage.py:2062
-#: ../gramps/plugins/webreport/basepage.py:2128
-#: ../gramps/plugins/webreport/basepage.py:2263
-#: ../gramps/plugins/webreport/basepage.py:3626
+#: ../gramps/plugins/webreport/basepage.py:2064
+#: ../gramps/plugins/webreport/basepage.py:2130
+#: ../gramps/plugins/webreport/basepage.py:2265
+#: ../gramps/plugins/webreport/basepage.py:3628
 #: ../gramps/plugins/webreport/repository.py:146
 #: ../gramps/plugins/webreport/repository.py:243
 #: ../gramps/plugins/webreport/updates.py:141
@@ -9595,7 +9561,7 @@ msgstr "Dearbhú"
 
 #: ../gramps/gen/plug/_pluginreg.py:129 ../gramps/gen/plug/_pluginreg.py:517
 #: ../gramps/gui/glade/grampletpane.glade:153
-#: ../gramps/gui/widgets/grampletbar.py:700
+#: ../gramps/gui/widgets/grampletbar.py:701
 #: ../gramps/gui/widgets/grampletpane.py:246
 #: ../gramps/gui/widgets/grampletpane.py:1005
 msgid "Gramplet"
@@ -9620,7 +9586,7 @@ msgstr "Dearbhú"
 #: ../gramps/gen/plug/_pluginreg.py:645
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
 #: ../gramps/plugins/importer/importprogen.glade:1256
-#: ../gramps/plugins/webreport/basepage.py:2317
+#: ../gramps/plugins/webreport/basepage.py:2319
 #: ../gramps/plugins/webreport/statistics.py:184
 #: ../gramps/plugins/webreport/statistics.py:264
 msgid "Miscellaneous"
@@ -10556,7 +10522,7 @@ msgstr "Ná cuir san áireamh"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1137
 #: ../gramps/plugins/textreport/familygroup.py:760
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
-#: ../gramps/plugins/webreport/narrativeweb.py:2592
+#: ../gramps/plugins/webreport/narrativeweb.py:2593
 msgid "Include"
 msgstr "Áireamh"
 
@@ -10604,11 +10570,11 @@ msgstr "Níl an comhad ann"
 #: ../gramps/gen/plug/report/utils.py:186
 #: ../gramps/plugins/textreport/indivcomplete.py:944
 #: ../gramps/plugins/textreport/simplebooktitle.py:114
-#: ../gramps/plugins/webreport/basepage.py:2430
-#: ../gramps/plugins/webreport/basepage.py:2667
-#: ../gramps/plugins/webreport/basepage.py:2677
-#: ../gramps/plugins/webreport/basepage.py:2708
-#: ../gramps/plugins/webreport/basepage.py:2767
+#: ../gramps/plugins/webreport/basepage.py:2432
+#: ../gramps/plugins/webreport/basepage.py:2669
+#: ../gramps/plugins/webreport/basepage.py:2679
+#: ../gramps/plugins/webreport/basepage.py:2710
+#: ../gramps/plugins/webreport/basepage.py:2769
 msgid "Could not add photo to page"
 msgstr "Ní fhéadfaí grianghraf a chur leis an leathanach"
 
@@ -10669,7 +10635,7 @@ msgstr "TEAGHLACH"
 #: ../gramps/gen/plug/report/utils.py:422
 #, python-format
 msgid "Ancestor Families of %s"
-msgstr ""
+msgstr "Teaghlaigh Shinsear %s"
 
 #: ../gramps/gen/plug/utils.py:307
 msgid "Updated"
@@ -11875,7 +11841,7 @@ msgstr "creidmheasanna aistritheora"
 #: ../gramps/gui/aboutdialog.py:164
 #, python-format
 msgid "Distribution: %s"
-msgstr ""
+msgstr "Dáileadh: %s"
 
 #: ../gramps/gui/aboutdialog.py:180
 #, python-format
@@ -11970,7 +11936,7 @@ msgstr "_Cuir iarratas"
 #: ../gramps/gui/columnorder.py:142
 #: ../gramps/plugins/drawreport/ancestortree.py:973
 #: ../gramps/plugins/drawreport/descendtree.py:1708
-#: ../gramps/plugins/webreport/narrativeweb.py:2285
+#: ../gramps/plugins/webreport/narrativeweb.py:2286
 msgid "Display"
 msgstr "Taispeáin"
 
@@ -12008,7 +11974,7 @@ msgstr "Eagarthóir Ainm Taispeáin"
 #: ../gramps/gui/plug/_windows.py:1716 ../gramps/gui/plug/_windows.py:1776
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
-#: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:708
+#: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:709
 #: ../gramps/gui/widgets/grampletpane.py:258
 #: ../gramps/plugins/lib/maps/placeselection.py:122
 #: ../gramps/plugins/tool/dumpgenderstats.py:86
@@ -12157,7 +12123,7 @@ msgstr "%s: "
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
-#: ../gramps/gui/widgets/grampletbar.py:712
+#: ../gramps/gui/widgets/grampletbar.py:713
 #: ../gramps/gui/widgets/grampletpane.py:264
 #: ../gramps/plugins/importer/importprogen.glade:61
 #: ../gramps/plugins/tool/changenames.glade:72
@@ -12317,7 +12283,7 @@ msgstr "teorainn réamhshocraithe"
 
 #: ../gramps/gui/configure.py:949
 msgid "Border for Divorced"
-msgstr ""
+msgstr "Teorainn do Cholscartha"
 
 #: ../gramps/gui/configure.py:951
 msgid "Background for Home Person"
@@ -12326,7 +12292,7 @@ msgstr "Peirsis"
 #: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2814
 #, python-format
 msgid "<b>%s</b>"
-msgstr ""
+msgstr "<b>%s</b>"
 
 #: ../gramps/gui/configure.py:983
 msgid "Colors"
@@ -12655,7 +12621,7 @@ msgstr "Taispeáin faisnéis úsáideach faoi Gramps a úsáid ar thosú."
 
 #: ../gramps/gui/configure.py:1991
 msgid "Remember last Family Tree"
-msgstr ""
+msgstr "Cuimhnigh ar an gCrann Teaghlaigh deireanach"
 
 #: ../gramps/gui/configure.py:1997
 msgid ""
@@ -12897,6 +12863,8 @@ msgid ""
 "\n"
 "Family Tree's Media path"
 msgstr ""
+"\n"
+"Cosán Meán an Chraobh Ghinealaigh"
 
 #: ../gramps/gui/configure.py:2360
 msgid "Base media path"
@@ -12997,7 +12965,7 @@ msgstr "Roghnaigh eolaire meán"
 #: ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:267
-#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1261
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
 #: ../gramps/gui/widgets/progressdialog.py:441
 #: ../gramps/plugins/importer/importprogen.glade:28
@@ -13065,8 +13033,8 @@ msgstr "Bás:"
 #: ../gramps/gui/configure.py:2803
 #: ../gramps/plugins/quickview/all_relations.py:345
 #: ../gramps/plugins/view/relview.py:498
-#: ../gramps/plugins/webreport/basepage.py:3168
 #: ../gramps/plugins/webreport/basepage.py:3170
+#: ../gramps/plugins/webreport/basepage.py:3172
 #: ../gramps/plugins/webreport/person.py:437
 #: ../gramps/plugins/webreport/surname.py:162
 msgid "Partner"
@@ -13186,7 +13154,7 @@ msgstr "Pasfhocal: "
 
 #: ../gramps/gui/dbloader.py:387
 msgid "Import Family Tree"
-msgstr ""
+msgstr "Iompórtáil Crann Teaghlaigh"
 
 #: ../gramps/gui/dbloader.py:408
 msgid "All supported files"
@@ -13238,11 +13206,11 @@ msgstr ""
 #: ../gramps/gui/dbman.py:99
 #, python-format
 msgid "%s_-_Manage_Family_Trees"
-msgstr ""
+msgstr "%s_-_Bainistigh_Crainn_Teaghlaigh"
 
 #: ../gramps/gui/dbman.py:100
 msgid "Family_Trees_manager_window"
-msgstr ""
+msgstr "Fuinneog_bainisteoir_Crann_Teaghlaigh"
 
 #: ../gramps/gui/dbman.py:114 ../gramps/gui/glade/dbman.glade:344
 msgid "_Archive"
@@ -13318,11 +13286,11 @@ msgstr "Socrú"
 
 #: ../gramps/gui/dbman.py:224
 msgid "Family Trees"
-msgstr ""
+msgstr "Crainn Ghinealaigh"
 
 #: ../gramps/gui/dbman.py:407
 msgid "Family Tree name"
-msgstr ""
+msgstr "Ainm an Chraobh Ghinealaigh"
 
 #: ../gramps/gui/dbman.py:426
 msgid "Database Type"
@@ -13393,7 +13361,7 @@ msgstr "Scriosfaidh an Crann Teaghlaigh seo na sonraí go buan a bhaint."
 
 #: ../gramps/gui/dbman.py:746
 msgid "Remove Family Tree"
-msgstr ""
+msgstr "Bain an Crann Teaghlaigh"
 
 #: ../gramps/gui/dbman.py:754
 #, python-format
@@ -13476,7 +13444,7 @@ msgstr "Theip ar iarracht iompórtáil isteach sa bhunachar sonraí."
 
 #: ../gramps/gui/dbman.py:961
 msgid "Repair Family Tree?"
-msgstr ""
+msgstr "Crann Teaghlaigh a dheisiú?"
 
 #: ../gramps/gui/dbman.py:963
 #, python-format
@@ -14273,7 +14241,7 @@ msgid "_Notes"
 msgstr "Nótaí"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:51
-#: ../gramps/plugins/webreport/basepage.py:2301
+#: ../gramps/plugins/webreport/basepage.py:2303
 msgid "Personal"
 msgstr "Peirsis"
 
@@ -14366,7 +14334,7 @@ msgstr "Ainmneacha Malartacha"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:76
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:120
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1504
-#: ../gramps/plugins/webreport/basepage.py:3529
+#: ../gramps/plugins/webreport/basepage.py:3531
 msgid "Enclosed By"
 msgstr "Faoi láthair ag"
 
@@ -14723,7 +14691,7 @@ msgstr "Eagarthóir Tagartha imeachta"
 #: ../gramps/gui/editors/editmediaref.py:130
 #: ../gramps/gui/editors/editname.py:139
 #: ../gramps/gui/editors/editplaceref.py:91
-#: ../gramps/gui/editors/editreporef.py:80
+#: ../gramps/gui/editors/editreporef.py:90
 msgid "_General"
 msgstr "<b>Ginearálta</b>"
 
@@ -15196,8 +15164,8 @@ msgstr "Nóta: %(id)s - %(context)s"
 #: ../gramps/gui/editors/editnote.py:180
 #: ../gramps/plugins/webreport/basepage.py:829
 #: ../gramps/plugins/webreport/basepage.py:832
-#: ../gramps/plugins/webreport/basepage.py:2853
-#: ../gramps/plugins/webreport/basepage.py:2856
+#: ../gramps/plugins/webreport/basepage.py:2855
+#: ../gramps/plugins/webreport/basepage.py:2858
 #, python-format
 msgid "Note: %s"
 msgstr "Nóta: %s"
@@ -15489,29 +15457,29 @@ msgstr "Ní féidir stór a shábháil. Tá ID ann cheana féin."
 msgid "Cannot save item. ID already exists."
 msgstr "Ní féidir earra a shábháil. Tá ID ann cheana féin."
 
-#: ../gramps/gui/editors/editreporef.py:61
+#: ../gramps/gui/editors/editreporef.py:71
 msgid "Repository Reference Editor"
 msgstr "Eagarthóir Tagartha Stórais"
 
-#: ../gramps/gui/editors/editreporef.py:213
+#: ../gramps/gui/editors/editreporef.py:226
 #, python-format
 msgid "Repository: %s"
 msgstr "Stóráil: %s"
 
-#: ../gramps/gui/editors/editreporef.py:215
+#: ../gramps/gui/editors/editreporef.py:228
 #: ../gramps/gui/editors/editrepository.py:87
 msgid "New Repository"
 msgstr "Stóráil Nua"
 
-#: ../gramps/gui/editors/editreporef.py:216
+#: ../gramps/gui/editors/editreporef.py:229
 msgid "Repo Reference Editor"
 msgstr "Eagarthóir Tagartha Repo"
 
-#: ../gramps/gui/editors/editreporef.py:222
+#: ../gramps/gui/editors/editreporef.py:235
 msgid "Modify Repository"
 msgstr "Athraigh Stóráil"
 
-#: ../gramps/gui/editors/editreporef.py:227
+#: ../gramps/gui/editors/editreporef.py:240
 msgid "Add Repository"
 msgstr "Cuir Stóráil leis"
 
@@ -15681,7 +15649,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:568
 msgid "Family filter name:"
-msgstr ""
+msgstr "Ainm scagaire teaghlaigh:"
 
 #: ../gramps/gui/editors/filtereditor.py:608
 msgid "Include selected Gramps ID"
@@ -15801,6 +15769,31 @@ msgstr "Tástáil Scagaire"
 #: ../gramps/gui/editors/filtereditor.py:1225
 msgid "Comment"
 msgstr "Nóta"
+
+#: ../gramps/gui/editors/filtereditor.py:1225
+#: ../gramps/plugins/drawreport/calendarreport.py:600
+#: ../gramps/plugins/drawreport/statisticschart.py:1125
+#: ../gramps/plugins/drawreport/timeline.py:428
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1169
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1185
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1201
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1217
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1233
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1265
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1297
+#: ../gramps/plugins/graph/gvrelgraph.py:881
+#: ../gramps/plugins/quickview/quickview.gpr.py:143
+#: ../gramps/plugins/textreport/birthdayreport.py:561
+#: ../gramps/plugins/textreport/familygroup.py:722
+#: ../gramps/plugins/textreport/indivcomplete.py:1101
+#: ../gramps/plugins/textreport/recordsreport.py:236
+#: ../gramps/plugins/tool/sortevents.py:177
+#: ../gramps/plugins/webreport/narrativeweb.py:2131
+#: ../gramps/plugins/webreport/webcal.py:1851
+msgid "Filter"
+msgstr "Scagaire"
 
 #: ../gramps/gui/editors/filtereditor.py:1237
 msgid "Custom Filter Editor"
@@ -15991,8 +15984,8 @@ msgstr "Níl %s"
 msgid "%s does not contain"
 msgstr "Ní chuimsíonn %s"
 
-#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1384
-#: ../gramps/gui/views/listview.py:1404 ../gramps/plugins/gramplet/leak.py:201
+#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1389
+#: ../gramps/gui/views/listview.py:1409 ../gramps/plugins/gramplet/leak.py:201
 #: ../gramps/plugins/gramplet/leak.py:208
 msgid "Updating display..."
 msgstr "Taispeáin a nuashonrú..."
@@ -16044,7 +16037,7 @@ msgstr "Rannpháirtithe"
 #: ../gramps/gui/widgets/reorderfam.py:105
 #: ../gramps/plugins/textreport/tagreport.py:273
 #: ../gramps/plugins/view/familyview.py:85
-#: ../gramps/plugins/webreport/person.py:1639
+#: ../gramps/plugins/webreport/person.py:1640
 msgid "Relationship"
 msgstr "Caidreamh"
 
@@ -16054,8 +16047,8 @@ msgstr "aon"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:164
 #: ../gramps/plugins/export/exportcsv.py:428
-#: ../gramps/plugins/webreport/person.py:1955
-#: ../gramps/plugins/webreport/person.py:2349
+#: ../gramps/plugins/webreport/person.py:1956
+#: ../gramps/plugins/webreport/person.py:2350
 msgid "Birth date"
 msgstr "Dáta Breithe"
 
@@ -16074,8 +16067,8 @@ msgstr "Áit bhreithe"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:170
 #: ../gramps/plugins/export/exportcsv.py:434
-#: ../gramps/plugins/webreport/person.py:1966
-#: ../gramps/plugins/webreport/person.py:2350
+#: ../gramps/plugins/webreport/person.py:1967
+#: ../gramps/plugins/webreport/person.py:2351
 msgid "Death date"
 msgstr "Dáta báis"
 
@@ -16420,7 +16413,7 @@ msgstr "Dún _gan sábháil"
 
 #: ../gramps/gui/glade/dialog.glade:935
 #: ../gramps/gui/plug/report/_bookdialog.py:649
-#: ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/views/listview.py:1261
 #: ../gramps/gui/widgets/grampletpane.py:614
 #: ../gramps/plugins/tool/eventcmp.py:410
 msgid "_Save"
@@ -16876,6 +16869,12 @@ msgstr "Dearbhú"
 msgid "Abandon changes and close window"
 msgstr "Tréig athruithe agus dún an fhuinne"
 
+#: ../gramps/gui/glade/editfamily.glade:116
+#: ../gramps/gui/glade/editfamily.glade:379
+msgctxt "family"
+msgid "Name:"
+msgstr "Ainm:"
+
 #: ../gramps/gui/glade/editfamily.glade:129
 #: ../gramps/gui/glade/editfamily.glade:392
 msgid "Birth:"
@@ -16946,7 +16945,7 @@ msgstr "LDS _Teampall:"
 
 #: ../gramps/gui/glade/editldsord.glade:220
 msgid "_Family:"
-msgstr ""
+msgstr "_Teaghlach:"
 
 #: ../gramps/gui/glade/editldsord.glade:244
 #: ../gramps/gui/selectors/selectfamily.py:60
@@ -17231,7 +17230,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:440
 msgid "Family Names "
-msgstr ""
+msgstr "Ainmneacha Teaghlaigh "
 
 #: ../gramps/gui/glade/editname.glade:479
 msgid "G_roup as:"
@@ -17558,7 +17557,7 @@ msgid "Street Number"
 msgstr "Uimhir:"
 
 #: ../gramps/gui/glade/editplacename.glade:157
-#: ../gramps/plugins/webreport/basepage.py:3457
+#: ../gramps/plugins/webreport/basepage.py:3459
 msgid "Date range in which the name is valid."
 msgstr "Raon dáta ina bhfuil an t-ainm bailí."
 
@@ -17863,11 +17862,11 @@ msgstr "Caidreamh:"
 
 #: ../gramps/gui/glade/mergefamily.glade:405
 msgid "Family 1"
-msgstr ""
+msgstr "Teaghlach 1"
 
 #: ../gramps/gui/glade/mergefamily.glade:419
 msgid "Family 2"
-msgstr ""
+msgstr "Teaghlach 2"
 
 #: ../gramps/gui/glade/mergefamily.glade:446
 msgid ""
@@ -17914,7 +17913,7 @@ msgid "Note 2"
 msgstr "Nótaí"
 
 #: ../gramps/gui/glade/mergenote.glade:270
-#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1261
+#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1266
 msgid "Format:"
 msgstr "Formáid:"
 
@@ -17935,6 +17934,12 @@ msgstr "Peirsis"
 #: ../gramps/plugins/textreport/recordsreport.py:291
 msgid "Person 2"
 msgstr "Peirsis"
+
+#: ../gramps/gui/glade/mergeperson.glade:218
+#: ../gramps/gui/glade/mergeperson.glade:233
+msgctxt "person"
+msgid "Name:"
+msgstr "Ainm:"
 
 #: ../gramps/gui/glade/mergeperson.glade:249
 #: ../gramps/gui/glade/mergeperson.glade:264
@@ -18578,7 +18583,7 @@ msgstr "_COITIANTA"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Family Trees"
-msgstr ""
+msgstr "_Crann Teaghlaigh"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Go"
@@ -18594,7 +18599,7 @@ msgstr "_Ceangail Eochair"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Manage Family Trees..."
-msgstr ""
+msgstr "_Bainistigh Crainn Ghinealaigh..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Navigator"
@@ -18727,15 +18732,15 @@ msgstr ""
 "Féach doiciméadú Gramps README le haghaidh réamhriachtanais suiteála,\n"
 "lonnaithe de ghnáth in /usr/share/doc/gramps.\n"
 
-#: ../gramps/gui/grampsgui.py:616
+#: ../gramps/gui/grampsgui.py:621
 msgid "Error parsing arguments"
 msgstr "Earráid ag paráil argóintí"
 
-#: ../gramps/gui/grampsgui.py:636
+#: ../gramps/gui/grampsgui.py:641
 msgid "Gramps terminated because of no DISPLAY"
 msgstr "Chuir Gramps deireadh leis mar gheall nach raibh aon TAISPEÁINT"
 
-#: ../gramps/gui/grampsgui.py:666 ../gramps/gui/grampsgui.py:747
+#: ../gramps/gui/grampsgui.py:671 ../gramps/gui/grampsgui.py:752
 msgid ""
 "\n"
 "Gramps failed to start. Please report a bug about this.\n"
@@ -19046,7 +19051,7 @@ msgstr "Cumaisc Daoine"
 #: ../gramps/plugins/view/relview.py:689 ../gramps/plugins/view/relview.py:1068
 #: ../gramps/plugins/view/relview.py:1106
 #: ../gramps/plugins/webreport/person.py:442
-#: ../gramps/plugins/webreport/person.py:2326
+#: ../gramps/plugins/webreport/person.py:2327
 #: ../gramps/plugins/webreport/surname.py:167
 msgid "Parents"
 msgstr "Tuismitheoirí"
@@ -19167,10 +19172,8 @@ msgid "Select a different person"
 msgstr "Roghnaigh duine difriúil"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Daoine leabharmharcáilte"
+msgstr "Daoine gníomhacha, leabharmharcáilte nó baile"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -19181,10 +19184,8 @@ msgid "Select a different family"
 msgstr "Roghnaigh teaghlach difriúil"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "Teaghlaigh leabharmharcála"
+msgstr "Teaghlaigh ghníomhacha nó leabharmharcáilte"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
@@ -19286,8 +19287,8 @@ msgid "Installed"
 msgstr "Peirsis"
 
 #: ../gramps/gui/plug/_windows.py:434 ../gramps/gui/plug/_windows.py:645
-#: ../gramps/plugins/webreport/basepage.py:2078
-#: ../gramps/plugins/webreport/basepage.py:2146
+#: ../gramps/plugins/webreport/basepage.py:2080
+#: ../gramps/plugins/webreport/basepage.py:2148
 msgid "Updates"
 msgstr "Dáta:"
 
@@ -20113,7 +20114,7 @@ msgid "Paper Options"
 msgstr "Roghanna Páipéar"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:148
-#: ../gramps/plugins/webreport/narrativeweb.py:2172
+#: ../gramps/plugins/webreport/narrativeweb.py:2173
 msgid "HTML Options"
 msgstr "Roghanna HTML"
 
@@ -20181,7 +20182,7 @@ msgstr "Stíl"
 #: ../gramps/plugins/textreport/summary.py:395
 #: ../gramps/plugins/textreport/tableofcontents.py:101
 #: ../gramps/plugins/textreport/tagreport.py:912
-#: ../gramps/plugins/webreport/narrativeweb.py:2107
+#: ../gramps/plugins/webreport/narrativeweb.py:2108
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Report Options"
 msgstr "Roghanna Tuarascála"
@@ -20600,7 +20601,7 @@ msgstr "Ní féidir eagarthóir lua nua a oscailt"
 
 #: ../gramps/gui/viewmanager.py:382 ../gramps/gui/viewmanager.py:1168
 msgid "No Family Tree"
-msgstr ""
+msgstr "Gan Crann Teaghlaigh"
 
 #: ../gramps/gui/viewmanager.py:612
 msgid "Registering plugins..."
@@ -20874,23 +20875,23 @@ msgstr "Scrios %s ?"
 msgid "Column clicked, sorting..."
 msgstr "Cliceáil ar an gcolún, sórtáil..."
 
-#: ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/views/listview.py:1256
 msgid "Export View as Spreadsheet"
 msgstr "Amharc Easpórtála mar Scairbhil"
 
-#: ../gramps/gui/views/listview.py:1266
+#: ../gramps/gui/views/listview.py:1271
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1267
+#: ../gramps/gui/views/listview.py:1272
 msgid "OpenDocument Spreadsheet"
 msgstr "Scarbhileog OpenDocument"
 
-#: ../gramps/gui/views/listview.py:1453
+#: ../gramps/gui/views/listview.py:1458
 msgid "Columns"
 msgstr "Colúin"
 
-#: ../gramps/gui/views/listview.py:1463
+#: ../gramps/gui/views/listview.py:1468
 msgid "CSV Dialect"
 msgstr "Canúint CSV"
 
@@ -21297,7 +21298,7 @@ msgstr "Athchóirigh"
 msgid "Undo"
 msgstr "Cealaigh"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:471
+#: ../gramps/gui/widgets/styledtexteditor.py:475
 msgid ""
 "\n"
 "Command-Click to follow link"
@@ -21305,7 +21306,7 @@ msgstr ""
 "\n"
 "Ordu-Cliceáil chun an nasc a leanúint"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:473
+#: ../gramps/gui/widgets/styledtexteditor.py:477
 msgid ""
 "\n"
 "Ctrl-Click to follow link"
@@ -21313,39 +21314,39 @@ msgstr ""
 "\n"
 "Ctrl-Cliceáil chun an nasc a leanúint"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:530
+#: ../gramps/gui/widgets/styledtexteditor.py:534
 msgid "Spellcheck"
 msgstr "Seiceáil litrithe"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:535
+#: ../gramps/gui/widgets/styledtexteditor.py:539
 msgid "Search selection on web"
 msgstr "Cuardaigh rogha ar an ngréasán"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:546
+#: ../gramps/gui/widgets/styledtexteditor.py:550
 msgid "_Send Mail To..."
 msgstr "_Seol Ríomhphost chuig..."
 
-#: ../gramps/gui/widgets/styledtexteditor.py:548
+#: ../gramps/gui/widgets/styledtexteditor.py:552
 msgid "Copy _E-mail Address"
 msgstr "Cóipeáil Seoladh R-phoist"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:551
+#: ../gramps/gui/widgets/styledtexteditor.py:555
 msgid "_Open Link"
 msgstr "_Oscail Nasc"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:553
+#: ../gramps/gui/widgets/styledtexteditor.py:557
 msgid "Copy _Link Address"
 msgstr "Cóipeáil Seoladh _Nasc"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:557
+#: ../gramps/gui/widgets/styledtexteditor.py:561
 msgid "_Edit Link"
 msgstr "_Athraigh Nasc"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:807
+#: ../gramps/gui/widgets/styledtexteditor.py:811
 msgid "Select font color"
 msgstr "Roghnaigh dath cló"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:811
+#: ../gramps/gui/widgets/styledtexteditor.py:815
 msgid "Select background color"
 msgstr "Roghnaigh dath cúlra"
 
@@ -21605,13 +21606,13 @@ msgid "of %d"
 msgstr "de %d"
 
 #: ../gramps/plugins/docgen/htmldoc.py:306
-#: ../gramps/plugins/webreport/narrativeweb.py:1958
+#: ../gramps/plugins/webreport/narrativeweb.py:1959
 #: ../gramps/plugins/webreport/webcal.py:296
 msgid "Possible destination error"
 msgstr "Earráid ceann scríbe a"
 
 #: ../gramps/plugins/docgen/htmldoc.py:308
-#: ../gramps/plugins/webreport/narrativeweb.py:1961
+#: ../gramps/plugins/webreport/narrativeweb.py:1962
 #: ../gramps/plugins/webreport/webcal.py:299
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -22278,13 +22279,13 @@ msgstr "An tríú líne téacs ag bun an fhéilire"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:636
 #: ../gramps/plugins/textreport/birthdayreport.py:597
-#: ../gramps/plugins/webreport/narrativeweb.py:3185
+#: ../gramps/plugins/webreport/narrativeweb.py:3186
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Include only living people"
 msgstr "Ní chuir ach daoine beo san áireamh"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:637
-#: ../gramps/plugins/webreport/narrativeweb.py:3186
+#: ../gramps/plugins/webreport/narrativeweb.py:3187
 #: ../gramps/plugins/webreport/webcal.py:1914
 msgid "Include only living people in the calendar"
 msgstr "Ní chuir ach daoine beo san áireamh sa fhéilire"
@@ -22314,27 +22315,27 @@ msgid "Select the country to see associated holidays"
 msgstr "Roghnaigh an tír chun saoire gaolmhara a fheiceáil"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:664
-#: ../gramps/plugins/webreport/narrativeweb.py:3146
+#: ../gramps/plugins/webreport/narrativeweb.py:3147
 #: ../gramps/plugins/webreport/webcal.py:1970
 msgid "First day of week"
 msgstr "An chéad lá den tseachtain"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:670
-#: ../gramps/plugins/webreport/narrativeweb.py:3150
+#: ../gramps/plugins/webreport/narrativeweb.py:3151
 #: ../gramps/plugins/webreport/webcal.py:1973
 msgid "Select the first day of the week for the calendar"
 msgstr "Roghnaigh an chéad lá den tseachtain don fhéilire"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:673
 #: ../gramps/plugins/textreport/birthdayreport.py:634
-#: ../gramps/plugins/webreport/narrativeweb.py:3154
+#: ../gramps/plugins/webreport/narrativeweb.py:3155
 #: ../gramps/plugins/webreport/webcal.py:1976
 msgid "Birthday surname"
 msgstr "Sloinne lá breithe"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:675
 #: ../gramps/plugins/textreport/birthdayreport.py:636
-#: ../gramps/plugins/webreport/narrativeweb.py:3157
+#: ../gramps/plugins/webreport/narrativeweb.py:3158
 #: ../gramps/plugins/webreport/webcal.py:1979
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
@@ -22342,7 +22343,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:678
 #: ../gramps/plugins/textreport/birthdayreport.py:639
-#: ../gramps/plugins/webreport/narrativeweb.py:3160
+#: ../gramps/plugins/webreport/narrativeweb.py:3161
 #: ../gramps/plugins/webreport/webcal.py:1982
 msgid "Wives use husband's surname (from last family listed)"
 msgstr ""
@@ -22351,21 +22352,21 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:680
 #: ../gramps/plugins/textreport/birthdayreport.py:641
-#: ../gramps/plugins/webreport/narrativeweb.py:3162
+#: ../gramps/plugins/webreport/narrativeweb.py:3163
 #: ../gramps/plugins/webreport/webcal.py:1984
 msgid "Wives use their own surname"
 msgstr "Úsáideann mná a sloinne féin"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:681
 #: ../gramps/plugins/textreport/birthdayreport.py:642
-#: ../gramps/plugins/webreport/narrativeweb.py:3163
+#: ../gramps/plugins/webreport/narrativeweb.py:3164
 #: ../gramps/plugins/webreport/webcal.py:1985
 msgid "Select married women's displayed surname"
 msgstr "Roghnaigh sloinne mná pósta a thaispeán"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:684
 #: ../gramps/plugins/textreport/birthdayreport.py:645
-#: ../gramps/plugins/webreport/narrativeweb.py:3173
+#: ../gramps/plugins/webreport/narrativeweb.py:3174
 #: ../gramps/plugins/webreport/webcal.py:2065
 msgid "Include birthdays"
 msgstr "Cuir breithlá san áireamh"
@@ -22377,7 +22378,7 @@ msgstr "Cibé acu breithlaethanta a áireamh"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:688
 #: ../gramps/plugins/textreport/birthdayreport.py:649
-#: ../gramps/plugins/webreport/narrativeweb.py:3177
+#: ../gramps/plugins/webreport/narrativeweb.py:3178
 #: ../gramps/plugins/webreport/webcal.py:2069
 msgid "Include anniversaries"
 msgstr "Cuimsíonn comóradh"
@@ -22388,13 +22389,13 @@ msgid "Whether to include anniversaries"
 msgstr "Cibé acu comóradh a chur san áireamh"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:692
-#: ../gramps/plugins/webreport/narrativeweb.py:3181
+#: ../gramps/plugins/webreport/narrativeweb.py:3182
 #: ../gramps/plugins/webreport/webcal.py:2073
 msgid "Include death dates"
 msgstr "Nótaí"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:693
-#: ../gramps/plugins/webreport/narrativeweb.py:3182
+#: ../gramps/plugins/webreport/narrativeweb.py:3183
 #: ../gramps/plugins/webreport/webcal.py:2074
 msgid "Include death anniversaries in the calendar"
 msgstr "Cuir comóradh báis san áireamh sa fhéilire"
@@ -23001,7 +23002,7 @@ msgstr "Cinneann sé cad iad na daoine atá san áireamh sa tuarascáil."
 #: ../gramps/plugins/textreport/indivcomplete.py:1106
 #: ../gramps/plugins/textreport/recordsreport.py:241
 #: ../gramps/plugins/tool/sortevents.py:182
-#: ../gramps/plugins/webreport/narrativeweb.py:2137
+#: ../gramps/plugins/webreport/narrativeweb.py:2138
 #: ../gramps/plugins/webreport/webcal.py:1858
 msgid "Filter Person"
 msgstr "Duine Scagaire"
@@ -23148,7 +23149,7 @@ msgstr "Cinneann sé cad iad na daoine atá san áireamh sa tuarascáil"
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/textreport/recordsreport.py:242
 #: ../gramps/plugins/tool/sortevents.py:183
-#: ../gramps/plugins/webreport/narrativeweb.py:2138
+#: ../gramps/plugins/webreport/narrativeweb.py:2139
 #: ../gramps/plugins/webreport/webcal.py:1859
 msgid "The center person for the filter"
 msgstr "An duine lárnach don scagaire"
@@ -23197,15 +23198,15 @@ msgstr "Roghanna scarbhileog CSV"
 
 #: ../gramps/plugins/export/export.gpr.py:60
 msgid "Web Family Tree"
-msgstr ""
+msgstr "Crann Teaghlaigh Gréasáin"
 
 #: ../gramps/plugins/export/export.gpr.py:61
 msgid "_Web Family Tree"
-msgstr ""
+msgstr "_Crann Teaghlaigh Gréasáin"
 
 #: ../gramps/plugins/export/export.gpr.py:62
 msgid "Web Family Tree format"
-msgstr ""
+msgstr "Formáid Crann Teaghlaigh Gréasáin"
 
 #: ../gramps/plugins/export/export.gpr.py:70
 msgid "Web Family Tree export options"
@@ -23390,13 +23391,13 @@ msgstr "Foinse adhlacháin"
 
 #: ../gramps/plugins/export/exportcsv.py:582
 #: ../gramps/plugins/importer/importcsv.py:378
-#: ../gramps/plugins/webreport/basepage.py:3166
+#: ../gramps/plugins/webreport/basepage.py:3168
 msgid "Husband"
 msgstr "fear céile"
 
 #: ../gramps/plugins/export/exportcsv.py:583
 #: ../gramps/plugins/importer/importcsv.py:368
-#: ../gramps/plugins/webreport/basepage.py:3164
+#: ../gramps/plugins/webreport/basepage.py:3166
 msgid "Wife"
 msgstr "Bean chéile"
 
@@ -23533,8 +23534,8 @@ msgstr "Dáileadh Difríocht Aois Máthair - Leanaí"
 #: ../gramps/plugins/gramplet/agestats.py:255
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:298
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:305
-#: ../gramps/plugins/webreport/basepage.py:2079
-#: ../gramps/plugins/webreport/basepage.py:2149
+#: ../gramps/plugins/webreport/basepage.py:2081
+#: ../gramps/plugins/webreport/basepage.py:2151
 #: ../gramps/plugins/webreport/statistics.py:88
 msgid "Statistics"
 msgstr "Staitisticí"
@@ -23568,12 +23569,12 @@ msgstr "Cliceáil faoi dhó chun %d daoine a fheiceáil"
 #: ../gramps/plugins/gramplet/ancestor.py:195
 #: ../gramps/plugins/gramplet/descendant.py:180
 #: ../gramps/plugins/gramplet/descendant.py:189
-#, fuzzy, python-format
+#, python-format
 msgid "%(abbr)s %(date)s"
 msgstr "%(abbr)s %(date)s"
 
 #: ../gramps/plugins/gramplet/ancestor.py:202
-#, fuzzy, python-format
+#, python-format
 msgid "%(depth)s. %(name)s"
 msgstr "%(depth)s. %(name)s"
 
@@ -23586,7 +23587,7 @@ msgstr ""
 "gach duine leis an tréith roghnaithe."
 
 #: ../gramps/plugins/gramplet/attributes.py:61
-#: ../gramps/plugins/webreport/basepage.py:1397
+#: ../gramps/plugins/webreport/basepage.py:1399
 msgid "Key"
 msgstr "Eochair"
 
@@ -23923,7 +23924,7 @@ msgstr "Gramplet a thaispeánann sliocht duine gníomhach"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:118
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:125
-#: ../gramps/plugins/webreport/person.py:1560
+#: ../gramps/plugins/webreport/person.py:1561
 msgid "Ancestors"
 msgstr "Sinsear"
 
@@ -24399,8 +24400,8 @@ msgstr "Gramplet a thaispeánann na tagairtí backlink do dhuine"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1137
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1153
-#: ../gramps/plugins/webreport/basepage.py:3881
-#: ../gramps/plugins/webreport/person.py:1100
+#: ../gramps/plugins/webreport/basepage.py:3883
+#: ../gramps/plugins/webreport/person.py:1101
 #: ../gramps/plugins/webreport/thumbnail.py:188
 msgid "References"
 msgstr "Tagairtí"
@@ -24430,7 +24431,7 @@ msgid "Gramplet showing the backlink references for a place"
 msgstr "Gramplet a thaispeánann na tagairtí backlink d'áit"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1081
-#: ../gramps/plugins/webreport/basepage.py:3012
+#: ../gramps/plugins/webreport/basepage.py:3014
 msgid "Source References"
 msgstr "Tagairtí Foinse"
 
@@ -24572,7 +24573,7 @@ msgstr "Gramplet ag taispeáint na nótaí To Do d'imeacht"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1355
 msgid "Family To Do"
-msgstr ""
+msgstr "Le Déanamh ag an Teaghlach"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1356
 msgid "Gramplet showing the To Do notes for a family"
@@ -24636,7 +24637,7 @@ msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Gramplet ag taispeáint na háiteanna atá faoi iúl ag an áit ghníomhach"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1512
-#: ../gramps/plugins/webreport/basepage.py:3567
+#: ../gramps/plugins/webreport/basepage.py:3569
 msgid "Place Encloses"
 msgstr "Nótaí"
 
@@ -24940,9 +24941,9 @@ msgstr "níos lú ná 1"
 #: ../gramps/plugins/gramplet/statsgramplet.py:145
 #: ../gramps/plugins/graph/gvfamilylines.py:336
 #: ../gramps/plugins/textreport/summary.py:128
-#: ../gramps/plugins/webreport/basepage.py:2055
-#: ../gramps/plugins/webreport/basepage.py:2119
-#: ../gramps/plugins/webreport/basepage.py:2250
+#: ../gramps/plugins/webreport/basepage.py:2057
+#: ../gramps/plugins/webreport/basepage.py:2121
+#: ../gramps/plugins/webreport/basepage.py:2252
 #: ../gramps/plugins/webreport/person.py:362
 #: ../gramps/plugins/webreport/statistics.py:120
 #: ../gramps/plugins/webreport/statistics.py:230
@@ -25247,7 +25248,7 @@ msgstr "Sonraí a iontráil agus a chur in eagar (gairid)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:209
 msgid "Importing a Family Tree"
-msgstr ""
+msgstr "Crann Teaghlaigh á Iompórtáil"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:212
 msgid ""
@@ -26204,7 +26205,7 @@ msgstr "Nick"
 
 #: ../gramps/plugins/importer/importcsv.py:228
 msgid "nick_name"
-msgstr ""
+msgstr "leas_ainm"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "tag"
@@ -26587,7 +26588,7 @@ msgstr "Dífhoirmiú"
 
 #: ../gramps/plugins/importer/importgeneweb.py:125
 msgid "LDS Family Link"
-msgstr ""
+msgstr "Nasc Teaghlaigh LDS"
 
 #: ../gramps/plugins/importer/importgeneweb.py:126
 #: ../gramps/plugins/lib/libgedcom.py:746
@@ -26795,7 +26796,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:397
 msgid "Import Text"
-msgstr ""
+msgstr "Iompórtáil Téacs"
 
 #: ../gramps/plugins/importer/importprogen.glade:450
 msgid ""
@@ -26807,7 +26808,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:478
 msgid "Import Filename."
-msgstr ""
+msgstr "Ainm Comhaid Iompórtála."
 
 #: ../gramps/plugins/importer/importprogen.glade:526
 msgid "Default (System-)Date."
@@ -26978,7 +26979,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1542
 msgid "Female surname"
-msgstr ""
+msgstr "Sloinne baineann"
 
 #: ../gramps/plugins/importer/importprogen.glade:1546
 msgid ""
@@ -27126,13 +27127,13 @@ msgstr "  {obj} {id1} le {id2}"
 #: ../gramps/plugins/view/view.gpr.py:292
 #: ../gramps/plugins/view/view.gpr.py:325
 #: ../gramps/plugins/webreport/basepage.py:864
-#: ../gramps/plugins/webreport/basepage.py:1322
-#: ../gramps/plugins/webreport/basepage.py:1520
-#: ../gramps/plugins/webreport/basepage.py:1660
-#: ../gramps/plugins/webreport/basepage.py:2061
-#: ../gramps/plugins/webreport/basepage.py:2125
-#: ../gramps/plugins/webreport/basepage.py:2262
-#: ../gramps/plugins/webreport/person.py:1641
+#: ../gramps/plugins/webreport/basepage.py:1324
+#: ../gramps/plugins/webreport/basepage.py:1522
+#: ../gramps/plugins/webreport/basepage.py:1662
+#: ../gramps/plugins/webreport/basepage.py:2063
+#: ../gramps/plugins/webreport/basepage.py:2127
+#: ../gramps/plugins/webreport/basepage.py:2264
+#: ../gramps/plugins/webreport/person.py:1642
 #: ../gramps/plugins/webreport/source.py:151
 #: ../gramps/plugins/webreport/source.py:354
 #: ../gramps/plugins/webreport/updates.py:134
@@ -27297,7 +27298,7 @@ msgid "Old xml file"
 msgstr "Sean comhad xml"
 
 #: ../gramps/plugins/importer/importxml.py:1357
-#: ../gramps/plugins/importer/importxml.py:2926
+#: ../gramps/plugins/importer/importxml.py:2936
 #, python-format
 msgid "Witness name: %s"
 msgstr "Ainm finné: %s"
@@ -27331,17 +27332,17 @@ msgstr "Ní anaithnid nuair a all"
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Caithfidh tréith 'hlink' a bheith ag aon tagairt nótaí."
 
-#: ../gramps/plugins/importer/importxml.py:2741
+#: ../gramps/plugins/importer/importxml.py:2751
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr "Dáta neamhbhailí {date} i XML {xml}, ag caomhnú XML mar théacs"
 
-#: ../gramps/plugins/importer/importxml.py:2795
+#: ../gramps/plugins/importer/importxml.py:2805
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Trácht finné: %s"
 
-#: ../gramps/plugins/importer/importxml.py:3478
+#: ../gramps/plugins/importer/importxml.py:3488
 #, python-format
 msgctxt "father"
 msgid ""
@@ -27351,7 +27352,7 @@ msgstr ""
 "Earráid: ní thagraíonn athair '%(family)s' '%(father)s' don teaghlach. "
 "Tagairt curtha leis."
 
-#: ../gramps/plugins/importer/importxml.py:3500
+#: ../gramps/plugins/importer/importxml.py:3510
 #, python-format
 msgctxt "mother"
 msgid ""
@@ -27361,7 +27362,7 @@ msgstr ""
 "Earráid: ní thagraíonn máthair teaghlaigh '%(family)s' '%(mother)s' ar ais "
 "don teaghlach. Tagairt curtha leis."
 
-#: ../gramps/plugins/importer/importxml.py:3528
+#: ../gramps/plugins/importer/importxml.py:3538
 #, python-format
 msgctxt "child"
 msgid ""
@@ -27386,7 +27387,7 @@ msgstr "Pósadh Dlí Coiteann"
 
 #: ../gramps/plugins/lib/libgedcom.py:740
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:327
-#: ../gramps/plugins/webreport/narrativeweb.py:2118
+#: ../gramps/plugins/webreport/narrativeweb.py:2119
 #: ../gramps/plugins/webreport/webcal.py:1840
 msgid "Destination"
 msgstr "Ceann Scríbe"
@@ -27848,7 +27849,7 @@ msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
 #: ../gramps/plugins/lib/libmetadata.py:87
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
@@ -31626,7 +31627,7 @@ msgstr "Ionadaigh"
 
 #: ../gramps/plugins/lib/libprogen.py:1734
 msgid "Importing families."
-msgstr ""
+msgstr "Teaghlaigh a allmhairiú."
 
 #: ../gramps/plugins/lib/libprogen.py:1856
 msgid "Civil union"
@@ -32087,7 +32088,7 @@ msgid "Open on maps.google.com"
 msgstr "Oscail ar maps.google.com"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:75
-#: ../gramps/plugins/webreport/narrativeweb.py:2652
+#: ../gramps/plugins/webreport/narrativeweb.py:2653
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -32146,7 +32147,7 @@ msgstr "Áit na hImeachta"
 #: ../gramps/plugins/quickview/all_events.py:62
 #: ../gramps/plugins/quickview/all_events.py:114
 #: ../gramps/plugins/quickview/all_events.py:131
-#: ../gramps/plugins/webreport/person.py:1116
+#: ../gramps/plugins/webreport/person.py:1117
 msgid "Event Type"
 msgstr "Cineál Teagmhais"
 
@@ -32738,7 +32739,7 @@ msgid "No references for this %s"
 msgstr "Níl aon tagairtí don %s seo"
 
 #: ../gramps/plugins/quickview/reporef.py:64
-#: ../gramps/plugins/webreport/basepage.py:3638
+#: ../gramps/plugins/webreport/basepage.py:3640
 msgid "Call number"
 msgstr "Uimhir ghlao"
 
@@ -33129,7 +33130,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/birthdayreport.py:611
 msgid "Show event year"
-msgstr "Ainm:"
+msgstr "Taispeáin bliain an imeachta"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:612
 msgid "Prints the year the event took place in the report"
@@ -33754,7 +33755,7 @@ msgstr "An stíl a úsáidtear don fhotheideal."
 #: ../gramps/plugins/textreport/familygroup.py:415
 #, python-format
 msgid "Relationship: %s"
-msgstr ""
+msgstr "Gaol: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:516
 msgctxt "acronym for male"
@@ -33907,7 +33908,7 @@ msgid "Alternate Parents"
 msgstr "Tuismitheoirí Malartacha"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:469
-#: ../gramps/plugins/webreport/person.py:1620
+#: ../gramps/plugins/webreport/person.py:1621
 msgid "Associations"
 msgstr "Comhlachais"
 
@@ -34116,7 +34117,7 @@ msgstr "Aitheantas Gramps: %s "
 #, python-format
 msgctxt "places"
 msgid "All Names: %s"
-msgstr ""
+msgstr "Gach Ainm: %s"
 
 #: ../gramps/plugins/textreport/placereport.py:236
 msgid "Events that happened at this place"
@@ -34318,7 +34319,7 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/textreport/summary.py:252
 #, python-format
 msgid "Number of events: %d"
-msgstr ""
+msgstr "Líon na n-imeachtaí: %d"
 
 #: ../gramps/plugins/textreport/summary.py:261
 msgid "Place Information"
@@ -34327,7 +34328,7 @@ msgstr "Ionadaigh"
 #: ../gramps/plugins/textreport/summary.py:266
 #, python-format
 msgid "Number of places: %d"
-msgstr ""
+msgstr "Líon na n-áiteanna: %d"
 
 #: ../gramps/plugins/textreport/summary.py:275
 msgid "Source Information"
@@ -34336,7 +34337,7 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/textreport/summary.py:280
 #, python-format
 msgid "Number of sources: %d"
-msgstr ""
+msgstr "Líon na bhfoinsí: %d"
 
 #: ../gramps/plugins/textreport/summary.py:289
 msgid "Citation Information"
@@ -34345,7 +34346,7 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/textreport/summary.py:294
 #, python-format
 msgid "Number of citations: %d"
-msgstr ""
+msgstr "Líon na luanna: %d"
 
 #: ../gramps/plugins/textreport/summary.py:303
 msgid "Repository Information"
@@ -34354,7 +34355,7 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/textreport/summary.py:308
 #, python-format
 msgid "Number of repositories: %d"
-msgstr ""
+msgstr "Líon na stórtha: %d"
 
 #: ../gramps/plugins/textreport/summary.py:342
 #, python-format
@@ -34373,7 +34374,7 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/textreport/summary.py:369
 #, python-format
 msgid "Number of notes: %d"
-msgstr ""
+msgstr "Líon na nótaí: %d"
 
 #: ../gramps/plugins/textreport/summary.py:399
 msgid "Whether to count private data"
@@ -34619,7 +34620,7 @@ msgstr "Cineál teagmhais bhunaidh:"
 
 #: ../gramps/plugins/tool/changetypes.glade:122
 msgid "New event type:"
-msgstr "Ainm:"
+msgstr "Cineál imeachta nua:"
 
 #: ../gramps/plugins/tool/changetypes.py:66
 msgid "Change Event Types"
@@ -35394,8 +35395,8 @@ msgid "Help"
 msgstr "Cab_hair"
 
 #: ../gramps/plugins/tool/mediamanager.py:105
-#: ../gramps/plugins/webreport/basepage.py:2053
-#: ../gramps/plugins/webreport/basepage.py:2249
+#: ../gramps/plugins/webreport/basepage.py:2055
+#: ../gramps/plugins/webreport/basepage.py:2251
 #: ../gramps/plugins/webreport/introduction.py:81
 msgid "Introduction"
 msgstr "Réamhrá"
@@ -35929,7 +35930,7 @@ msgstr "Vítneaimis"
 
 #: ../gramps/plugins/tool/removespaces.py:153
 msgid "alternate name"
-msgstr ""
+msgstr "ainm malartach"
 
 #: ../gramps/plugins/tool/removespaces.py:157
 msgid "group as"
@@ -36097,7 +36098,7 @@ msgstr "Atheagrú IDanna Gramps"
 #: ../gramps/plugins/tool/reorderids.py:605
 #, python-format
 msgid "Reorder %s IDs ..."
-msgstr ""
+msgstr "Athordaigh %s IDanna ..."
 
 #: ../gramps/plugins/tool/reorderids.py:703
 #, python-format
@@ -36381,7 +36382,7 @@ msgstr "Athordaíonn na IDanna Gramps de réir rialacha réamhshocraithe Gramps.
 #: ../gramps/plugins/tool/tools.gpr.py:443
 #: ../gramps/plugins/tool/tools.gpr.py:444
 msgid "Sort events"
-msgstr "Ainm:"
+msgstr "Sórtáil imeachtaí"
 
 #: ../gramps/plugins/tool/tools.gpr.py:467
 msgid "Verify the Data"
@@ -36927,7 +36928,7 @@ msgstr "Cumaisc na teaghlaigh roghnaithe"
 
 #: ../gramps/plugins/view/familyview.py:211
 msgid "Family Filter Editor"
-msgstr ""
+msgstr "Eagarthóir Scagaire Teaghlaigh"
 
 #: ../gramps/plugins/view/familyview.py:303
 msgid "Make Father Active Person"
@@ -37907,7 +37908,7 @@ msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
 #: ../gramps/plugins/view/relview.py:1475
 #: ../gramps/plugins/view/relview.py:1477
-#, fuzzy, python-format
+#, python-format
 msgid "%(event)s %(date)s"
 msgstr "%(event)s %(date)s"
 
@@ -37917,17 +37918,17 @@ msgid "Relationship type: %s"
 msgstr "Cineál caidrimh: %s"
 
 #: ../gramps/plugins/view/relview.py:1587
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr "%(event_type)s %(date)s in %(place)s"
+msgstr "%(event_type)s %(date)s i %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1594
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s"
 msgstr "%(event_type)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1598
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(place)s"
 msgstr "%(event_type)s %(place)s"
 
@@ -38137,9 +38138,9 @@ msgstr "Amharc a thaispeánann lua agus foinsí i bhformáid chrainn."
 
 #: ../gramps/plugins/webreport/addressbook.py:92
 #: ../gramps/plugins/webreport/addressbooklist.py:84
-#: ../gramps/plugins/webreport/basepage.py:2076
-#: ../gramps/plugins/webreport/basepage.py:2143
-#: ../gramps/plugins/webreport/basepage.py:2277
+#: ../gramps/plugins/webreport/basepage.py:2078
+#: ../gramps/plugins/webreport/basepage.py:2145
+#: ../gramps/plugins/webreport/basepage.py:2279
 msgid "Address Book"
 msgstr "Leabhar Seoltaí"
 
@@ -38160,7 +38161,7 @@ msgid "Full Name"
 msgstr "<b>Ainm</b>"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:120
-#: ../gramps/plugins/webreport/basepage.py:2894
+#: ../gramps/plugins/webreport/basepage.py:2896
 msgid "Web Links"
 msgstr "Naisc Ghréasáin"
 
@@ -38174,120 +38175,120 @@ msgstr "Scéal"
 msgid "(%(str1)s) %(str2)s"
 msgstr "(%(str1)s) %(str2)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1511
-#: ../gramps/plugins/webreport/basepage.py:3427
-#: ../gramps/plugins/webreport/basepage.py:3505
+#: ../gramps/plugins/webreport/basepage.py:1513
+#: ../gramps/plugins/webreport/basepage.py:3429
+#: ../gramps/plugins/webreport/basepage.py:3507
 msgid "State/ Province"
 msgstr "Stát/ Cúige"
 
-#: ../gramps/plugins/webreport/basepage.py:1698
+#: ../gramps/plugins/webreport/basepage.py:1700
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 msgstr "Ginte ag %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1710
+#: ../gramps/plugins/webreport/basepage.py:1712
 #, python-format
 msgid "Last change was the %(date)s"
 msgstr "Ba é an t-athrú deireanach an %(date)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1712
+#: ../gramps/plugins/webreport/basepage.py:1714
 #, python-format
 msgid " on %(date)s"
 msgstr " %(date)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1739
-#: ../gramps/plugins/webreport/basepage.py:1744
+#: ../gramps/plugins/webreport/basepage.py:1741
+#: ../gramps/plugins/webreport/basepage.py:1746
 #, python-format
 msgid "%(http_break)sCreated for %(subject_url)s"
 msgstr "%(http_break)sCruthaithe le haghaidh %(subject_url)s"
 
-#: ../gramps/plugins/webreport/basepage.py:2001
+#: ../gramps/plugins/webreport/basepage.py:2003
 #: ../gramps/plugins/webstuff/webstuff.py:68
 msgid "Basic-Blue"
 msgstr "Bunúsach-Gorm"
 
-#: ../gramps/plugins/webreport/basepage.py:2002
+#: ../gramps/plugins/webreport/basepage.py:2004
 #: ../gramps/plugins/webstuff/webstuff.py:135
 msgid "Visually Impaired"
 msgstr "Lagamhairc"
 
-#: ../gramps/plugins/webreport/basepage.py:2017
+#: ../gramps/plugins/webreport/basepage.py:2019
 msgid "Go to top"
 msgstr "Téigh go dtí an barr"
 
-#: ../gramps/plugins/webreport/basepage.py:2052
-#: ../gramps/plugins/webreport/basepage.py:2111
-#: ../gramps/plugins/webreport/basepage.py:2295
+#: ../gramps/plugins/webreport/basepage.py:2054
+#: ../gramps/plugins/webreport/basepage.py:2113
+#: ../gramps/plugins/webreport/basepage.py:2297
 msgctxt "Html"
 msgid "Home"
 msgstr "Baile"
 
-#: ../gramps/plugins/webreport/basepage.py:2060
+#: ../gramps/plugins/webreport/basepage.py:2062
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
 msgstr "Léarscáileanna teasa"
 
-#: ../gramps/plugins/webreport/basepage.py:2072
-#: ../gramps/plugins/webreport/basepage.py:2270
+#: ../gramps/plugins/webreport/basepage.py:2074
+#: ../gramps/plugins/webreport/basepage.py:2272
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid "Thumbnails"
 msgstr "Mionsamhlacha"
 
-#: ../gramps/plugins/webreport/basepage.py:2075
-#: ../gramps/plugins/webreport/basepage.py:2276
+#: ../gramps/plugins/webreport/basepage.py:2077
+#: ../gramps/plugins/webreport/basepage.py:2278
 #: ../gramps/plugins/webreport/download.py:94
-#: ../gramps/plugins/webreport/narrativeweb.py:2489
+#: ../gramps/plugins/webreport/narrativeweb.py:2490
 msgid "Download"
 msgstr "Íosluchtú"
 
-#: ../gramps/plugins/webreport/basepage.py:2077
-#: ../gramps/plugins/webreport/basepage.py:2282
-#: ../gramps/plugins/webreport/basepage.py:2320
+#: ../gramps/plugins/webreport/basepage.py:2079
+#: ../gramps/plugins/webreport/basepage.py:2284
+#: ../gramps/plugins/webreport/basepage.py:2322
 #: ../gramps/plugins/webreport/contact.py:81
 msgid "Contact"
 msgstr "Teagmháil"
 
-#: ../gramps/plugins/webreport/basepage.py:2080
-#: ../gramps/plugins/webreport/basepage.py:2152
+#: ../gramps/plugins/webreport/basepage.py:2082
+#: ../gramps/plugins/webreport/basepage.py:2154
 #: ../gramps/plugins/webreport/webplugins.gpr.py:61
 msgid "Web Calendar"
 msgstr "Féilire Gréasáin"
 
-#: ../gramps/plugins/webreport/basepage.py:2134
+#: ../gramps/plugins/webreport/basepage.py:2136
 msgid "Heatmap"
 msgstr "Léarscáil teasa"
 
-#: ../gramps/plugins/webreport/basepage.py:2223
+#: ../gramps/plugins/webreport/basepage.py:2225
 #: ../gramps/plugins/webreport/media.py:440
 msgid "Previous"
 msgstr "< Roimhe"
 
-#: ../gramps/plugins/webreport/basepage.py:2225
+#: ../gramps/plugins/webreport/basepage.py:2227
 #: ../gramps/plugins/webreport/media.py:453
 msgid "Next"
 msgstr "An Chéad Ceann Eile >"
 
-#: ../gramps/plugins/webreport/basepage.py:2775
+#: ../gramps/plugins/webreport/basepage.py:2777
 msgid "Other media: videos, pdfs..."
 msgstr "Meáin eile: físeáin, pdfanna..."
 
-#: ../gramps/plugins/webreport/basepage.py:2947
+#: ../gramps/plugins/webreport/basepage.py:2949
 msgid " [Click to Go]"
 msgstr " [Cliceáil le dul]"
 
-#: ../gramps/plugins/webreport/basepage.py:2973
+#: ../gramps/plugins/webreport/basepage.py:2975
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Ordanáis na Naomh Laethanta Deireanacha / LDS"
 
-#: ../gramps/plugins/webreport/basepage.py:3140
 #: ../gramps/plugins/webreport/basepage.py:3142
+#: ../gramps/plugins/webreport/basepage.py:3144
 #: ../gramps/plugins/webreport/family.py:562
-#: ../gramps/plugins/webreport/person.py:878
-#: ../gramps/plugins/webreport/person.py:1282
+#: ../gramps/plugins/webreport/person.py:879
+#: ../gramps/plugins/webreport/person.py:1283
 msgid "Family Map"
 msgstr "Léarscáil Teaghlaigh"
 
-#: ../gramps/plugins/webreport/basepage.py:3387
+#: ../gramps/plugins/webreport/basepage.py:3389
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
@@ -38295,7 +38296,7 @@ msgstr ""
 "Domhanleithead neamhbhailí\n"
 "(comhréir: 18\\u00b09'48.21\"S, -18.2412 nó -18:9:48.21)"
 
-#: ../gramps/plugins/webreport/basepage.py:3408
+#: ../gramps/plugins/webreport/basepage.py:3410
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
@@ -38303,20 +38304,20 @@ msgstr ""
 "Domhanfhad neamhbhailí\n"
 "(comhréir: 18\\u00b09'48.21\"E, -18.2412 nó -18:9:48.21)"
 
-#: ../gramps/plugins/webreport/basepage.py:3425
-#: ../gramps/plugins/webreport/basepage.py:3503
+#: ../gramps/plugins/webreport/basepage.py:3427
+#: ../gramps/plugins/webreport/basepage.py:3505
 msgid "Church Parish"
 msgstr "Paróiste na hEaglaise"
 
-#: ../gramps/plugins/webreport/basepage.py:3447
+#: ../gramps/plugins/webreport/basepage.py:3449
 msgid "Locations"
 msgstr "Dearbhú"
 
-#: ../gramps/plugins/webreport/basepage.py:3794
+#: ../gramps/plugins/webreport/basepage.py:3796
 msgid "circa"
 msgstr "thart ar"
 
-#: ../gramps/plugins/webreport/basepage.py:3796
+#: ../gramps/plugins/webreport/basepage.py:3798
 msgid "around"
 msgstr "timpeall"
 
@@ -38481,8 +38482,8 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:248
 #: ../gramps/plugins/webreport/heatmap.py:380
 #: ../gramps/plugins/webreport/heatmap.py:512
-#: ../gramps/plugins/webreport/place.py:345
-#: ../gramps/plugins/webreport/place.py:357
+#: ../gramps/plugins/webreport/place.py:347
+#: ../gramps/plugins/webreport/place.py:359
 #: ../gramps/plugins/webreport/surnamelist.py:177
 msgid "Letter"
 msgstr "Litir"
@@ -38506,10 +38507,10 @@ msgstr ""
 "chliceálann tú ar ainm duine, tógfaidh tú chuig leathanach a dteaghlaigh / "
 "caidrimh."
 
-#: ../gramps/plugins/webreport/family.py:616
+#: ../gramps/plugins/webreport/family.py:617
 #, python-format
 msgid "Family Map for %s"
-msgstr ""
+msgstr "Léarscáil Teaghlaigh do %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:183
 msgid "Creating heatmap pages for events"
@@ -38530,7 +38531,7 @@ msgstr "<b>Ainm</b>"
 #: ../gramps/plugins/webreport/heatmap.py:291
 #: ../gramps/plugins/webreport/heatmap.py:425
 #: ../gramps/plugins/webreport/heatmap.py:557
-#: ../gramps/plugins/webreport/place.py:223
+#: ../gramps/plugins/webreport/place.py:225
 #, python-format
 msgid "Places beginning with letter %s"
 msgstr "Áiteanna ag tosú le litir %s"
@@ -38702,77 +38703,77 @@ msgstr "Teaghlach de %(husband)s agus %(spouse)s"
 #: ../gramps/plugins/webreport/narrativeweb.py:965
 #, python-format
 msgid "Family of %s"
-msgstr ""
+msgstr "Teaghlach %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1348
+#: ../gramps/plugins/webreport/narrativeweb.py:1349
 msgid "Creating GENDEX file"
 msgstr "Comhad GENDEX á chruthú"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1408
+#: ../gramps/plugins/webreport/narrativeweb.py:1409
 msgid "Creating surname pages"
 msgstr "Leathanaigh sloinne á chruthú"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1445
+#: ../gramps/plugins/webreport/narrativeweb.py:1446
 msgid "Creating thumbnail preview page..."
 msgstr "Leathanaigh réamhamharc mionsamhlacha á chruthú..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1454
+#: ../gramps/plugins/webreport/narrativeweb.py:1455
 msgid "Creating statistics page..."
 msgstr "Leathanach staitisticí á chruthú..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1462
+#: ../gramps/plugins/webreport/narrativeweb.py:1463
 msgid "Creating updates page..."
 msgstr "Gineréal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1508
+#: ../gramps/plugins/webreport/narrativeweb.py:1509
 msgid "Creating address book pages ..."
 msgstr "Leathanaigh leabhar seoltaí á gcruthú ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1988
+#: ../gramps/plugins/webreport/narrativeweb.py:1989
 #, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "Tuairisc ar Shuíomh Gréasáin Insinte don teanga %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1990
+#: ../gramps/plugins/webreport/narrativeweb.py:1991
 msgid "Narrative Website Report"
 msgstr "Tuairisc ar Shuíomh Gréasáin Narrative"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2110
+#: ../gramps/plugins/webreport/narrativeweb.py:2111
 msgid "Store website in .tar.gz archive"
 msgstr "Siopa suíomh gréasáin i gcartlann .tar.gz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2111
+#: ../gramps/plugins/webreport/narrativeweb.py:2112
 msgid "Whether to store the website in an archive file"
 msgstr "Cé acu a stórálfar an suíomh gréasáin i gcomhad cartlainne"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2121
+#: ../gramps/plugins/webreport/narrativeweb.py:2122
 #: ../gramps/plugins/webreport/webcal.py:1843
 msgid "The destination directory for the web files"
 msgstr "An comhadlann scríbe do na comhaid ghréasáin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2126
+#: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "My Family Tree"
 msgstr "Mo Chrann Teaghlaigh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2126
+#: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "Website title"
 msgstr "Teideal an láithreáin ghréasáin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2127
+#: ../gramps/plugins/webreport/narrativeweb.py:2128
 msgid "The title of the website"
 msgstr "Teideal an tsuímh ghréasáin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2132
+#: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "Select filter to restrict people that appear on the website"
 msgstr ""
 "Roghnaigh scagaire chun srian a chur le daoine atá le feiceáil ar an suíomh "
 "gréasáin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2144
+#: ../gramps/plugins/webreport/narrativeweb.py:2145
 msgid "Show the relationship between the current person and the active person"
 msgstr "Taispeáin an gaol idir an duine reatha agus an duine gníomhach"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2151
+#: ../gramps/plugins/webreport/narrativeweb.py:2152
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
@@ -38780,69 +38781,69 @@ msgstr ""
 "I gcás gach leathanach duine, taispeáin an caidreamh idir an duine seo agus "
 "an duine gníomhach."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2175
+#: ../gramps/plugins/webreport/narrativeweb.py:2176
 #: ../gramps/plugins/webreport/webcal.py:1865
 msgid "File extension"
 msgstr "Síneadh comhaid"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2178
+#: ../gramps/plugins/webreport/narrativeweb.py:2179
 #: ../gramps/plugins/webreport/webcal.py:1868
 msgid "The extension to be used for the web files"
 msgstr "An síneadh atá le húsáid do na comhaid ghréasáin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2182
+#: ../gramps/plugins/webreport/narrativeweb.py:2183
 #: ../gramps/plugins/webreport/webcal.py:1871
 msgid "Copyright"
 msgstr "Cóipcheart"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2185
+#: ../gramps/plugins/webreport/narrativeweb.py:2186
 #: ../gramps/plugins/webreport/webcal.py:1874
 msgid "The copyright to be used for the web files"
 msgstr "An cóipcheart atá le húsáid do na comhaid ghréasáin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2188
+#: ../gramps/plugins/webreport/narrativeweb.py:2189
 #: ../gramps/plugins/webreport/webcal.py:1884
 msgid "StyleSheet"
 msgstr "Stílbhileog"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2194
+#: ../gramps/plugins/webreport/narrativeweb.py:2195
 msgid "The default stylesheet to be used for the pages"
 msgstr "An stílbhileog réamhshocraithe le húsáid do na leathanaigh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2199
+#: ../gramps/plugins/webreport/narrativeweb.py:2200
 msgid "Horizontal -- Default"
 msgstr "Cothrománach -- Réamhshocrú"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2200
+#: ../gramps/plugins/webreport/narrativeweb.py:2201
 msgid "Vertical   -- Left Side"
 msgstr "Ingearach -- An Taobh Clé"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2201
+#: ../gramps/plugins/webreport/narrativeweb.py:2202
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Fade -- Brabhsálaithe WebKit amháin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2202
-#: ../gramps/plugins/webreport/narrativeweb.py:2218
+#: ../gramps/plugins/webreport/narrativeweb.py:2203
+#: ../gramps/plugins/webreport/narrativeweb.py:2219
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Drop-Down -- Brabhsálaithe WebKit Amháin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2205
+#: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Navigation Menu Layout"
 msgstr "Leagan Amach an Roghchláir Nascleanúna"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2210
+#: ../gramps/plugins/webreport/narrativeweb.py:2211
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Roghnaigh cén leagan amach do na Biachláir Nascaireachta."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2217
+#: ../gramps/plugins/webreport/narrativeweb.py:2218
 msgid "Normal Outline Style"
 msgstr "Gnáthstíl Imlíne"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2221
+#: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Citation References Layout"
 msgstr "Tagairtí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2227
+#: ../gramps/plugins/webreport/narrativeweb.py:2228
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
@@ -38850,72 +38851,72 @@ msgstr ""
 "Sonraigh an leagan amach réamhshocraithe don rannóg Tagairtí Luaite ar an "
 "leathanach foinse"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2233
+#: ../gramps/plugins/webreport/narrativeweb.py:2234
 msgid "Include ancestor's tree"
 msgstr "Cuir crann sinsear san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2235
+#: ../gramps/plugins/webreport/narrativeweb.py:2236
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr ""
 "Cé acu a chuirfear graf sinsear san áireamh ar gach leathanach ar leith"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2240
+#: ../gramps/plugins/webreport/narrativeweb.py:2241
 msgid "Add previous/next"
 msgstr "Cuir roimhe Seo / Ar Aghaidh leis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2241
+#: ../gramps/plugins/webreport/narrativeweb.py:2242
 msgid "Add previous/next to the navigation bar."
 msgstr "Cuir roimhe seo/in aice leis an mbarra nascleanúna."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2244
+#: ../gramps/plugins/webreport/narrativeweb.py:2245
 msgid "This is a secure site (HTTPS)"
 msgstr "Is suíomh slán é seo (HTTPS)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2245
+#: ../gramps/plugins/webreport/narrativeweb.py:2246
 msgid "Whether to use http:// or https://"
 msgstr "Cé acu a úsáidfear http:// nó https://"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2248
+#: ../gramps/plugins/webreport/narrativeweb.py:2249
 msgid "Toggle sections"
 msgstr "Dearbhú"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2249
+#: ../gramps/plugins/webreport/narrativeweb.py:2250
 msgid "Check it if you want to open/close a section"
 msgstr "Seiceáil é más mian leat rannóg a oscailt/a dhúnadh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2252
+#: ../gramps/plugins/webreport/narrativeweb.py:2253
 msgid "Max. rows in an index"
 msgstr "Uasmhéid sraitheanna in innéacs"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2254
+#: ../gramps/plugins/webreport/narrativeweb.py:2255
 msgid "The maximum number of rows to include in an index page"
 msgstr "Peirsis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2264
+#: ../gramps/plugins/webreport/narrativeweb.py:2265
 msgid "Extra Pages"
 msgstr "<b>Ainm</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2267
+#: ../gramps/plugins/webreport/narrativeweb.py:2268
 msgid "Extra page name"
 msgstr "<b>Ainm</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2269
+#: ../gramps/plugins/webreport/narrativeweb.py:2270
 msgid "Your extra page name like it is shown in the menubar"
 msgstr "Tá d'ainm leathanaigh bhreise le feiceáil sa bharra roghchláir"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2274
+#: ../gramps/plugins/webreport/narrativeweb.py:2275
 msgid "Your extra page path"
 msgstr "Conair do leathanaigh bhreise"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2275
+#: ../gramps/plugins/webreport/narrativeweb.py:2276
 msgid "Your extra page path without extension"
 msgstr "Cosán do leathanaigh bhreise gan síneadh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2290
+#: ../gramps/plugins/webreport/narrativeweb.py:2291
 msgid "Do we use multiple translations?"
 msgstr "An n-úsáidimid aistriúcháin iolracha?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2293
+#: ../gramps/plugins/webreport/narrativeweb.py:2294
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
@@ -38925,45 +38926,45 @@ msgstr ""
 "Féach an cluaisín aistriúcháin chun teangacha nua a chur leis an gceann "
 "réamhshocraithe atá sainithe sa chéad réimse eile."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2307
+#: ../gramps/plugins/webreport/narrativeweb.py:2308
 msgid "Sort all children in birth order"
 msgstr "Sórtáil gach leanbh in ord breithe"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2309
+#: ../gramps/plugins/webreport/narrativeweb.py:2310
 msgid "Whether to display children in birth order or in entry order."
 msgstr "Cé acu a thaispeánfar leanaí in ord breithe nó in ord iontrála."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2314
+#: ../gramps/plugins/webreport/narrativeweb.py:2315
 msgid "Do we display coordinates in the places list?"
 msgstr "An dtaispeánann muid comhordanáidí sa liosta áiteanna?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2317
+#: ../gramps/plugins/webreport/narrativeweb.py:2318
 msgid "Whether to display latitude/longitude in the places list."
 msgstr "Peirsis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2322
+#: ../gramps/plugins/webreport/narrativeweb.py:2323
 msgid "Sort places references either by date or by name"
 msgstr "Tagairtí áiteanna a shórtáil de réir dáta nó de réir ainm"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2326
+#: ../gramps/plugins/webreport/narrativeweb.py:2327
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
 "Sórtáil na tagairtí áiteanna de réir dáta nó de réir ainm. Gan socrú meán de "
 "réir dáta."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2332
+#: ../gramps/plugins/webreport/narrativeweb.py:2333
 msgid "Graph generations"
 msgstr "Glúnta graf"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2334
+#: ../gramps/plugins/webreport/narrativeweb.py:2335
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Líon na nglúin atá le cur san áireamh sa ghraf sinsear"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2340
+#: ../gramps/plugins/webreport/narrativeweb.py:2341
 msgid "Include narrative notes just after name, gender"
 msgstr "Cuir nótaí insinte san áireamh díreach i ndiaidh ainm, inscne"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2344
+#: ../gramps/plugins/webreport/narrativeweb.py:2345
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
@@ -38971,47 +38972,47 @@ msgstr ""
 "Cuir nótaí insinte san áireamh díreach tar éis ainm, inscne agus aois ag an "
 "mbás (réamhshocrú) nó cuir san áireamh iad díreach roimh thréithe."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2357
+#: ../gramps/plugins/webreport/narrativeweb.py:2358
 msgid "Page Generation"
 msgstr "Giniúint Leathanaigh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2360
+#: ../gramps/plugins/webreport/narrativeweb.py:2361
 msgid "Home page note"
 msgstr "Nóta an leathanaigh bhaile"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2361
+#: ../gramps/plugins/webreport/narrativeweb.py:2362
 msgid "A note to be used on the home page"
 msgstr "Nóta le húsáid ar an leathanach baile"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2364
+#: ../gramps/plugins/webreport/narrativeweb.py:2365
 msgid "Home page image"
 msgstr "Íomhá an leathanaigh bhaile"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2365
+#: ../gramps/plugins/webreport/narrativeweb.py:2366
 msgid "An image to be used on the home page"
 msgstr "Íomhá le húsáid ar an leathanach baile"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2368
+#: ../gramps/plugins/webreport/narrativeweb.py:2369
 msgid "Introduction note"
 msgstr "Nóta réamhrá"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2369
+#: ../gramps/plugins/webreport/narrativeweb.py:2370
 msgid "A note to be used as the introduction"
 msgstr "Nóta le húsáid mar réamhrá"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2372
+#: ../gramps/plugins/webreport/narrativeweb.py:2373
 msgid "Introduction image"
 msgstr "Íomhá réamhrá"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2373
+#: ../gramps/plugins/webreport/narrativeweb.py:2374
 msgid "An image to be used as the introduction"
 msgstr "Íomhá le húsáid mar réamhrá"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2376
+#: ../gramps/plugins/webreport/narrativeweb.py:2377
 msgid "Publisher contact note"
 msgstr "Nóta teagmhála an fhoilsitheora"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2379
+#: ../gramps/plugins/webreport/narrativeweb.py:2380
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -39021,11 +39022,11 @@ msgstr ""
 "Mura dtugtar aon fhaisnéis don fhoilsitheoir,\n"
 "Ní chruthófar aon leathanach teagmhála"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2386
+#: ../gramps/plugins/webreport/narrativeweb.py:2387
 msgid "Publisher contact image"
 msgstr "Íomhá teagmhála an fhoilsitheora"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2389
+#: ../gramps/plugins/webreport/narrativeweb.py:2390
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -39035,27 +39036,27 @@ msgstr ""
 "Mura dtugtar aon fhaisnéis don fhoilsitheoir,\n"
 "Ní chruthófar aon leathanach teagmhála"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2396
+#: ../gramps/plugins/webreport/narrativeweb.py:2397
 msgid "HTML user header"
 msgstr "Ceanntásc úsáideora HTML"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2398
+#: ../gramps/plugins/webreport/narrativeweb.py:2399
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr "Nóta le húsáid mar cheanntásc leathanaigh nó cód PHP le cur isteach."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2402
+#: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "HTML user footer"
 msgstr "Buntásc úsáideora HTML"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2403
+#: ../gramps/plugins/webreport/narrativeweb.py:2404
 msgid "A note to be used as the page footer"
 msgstr "Nóta le húsáid mar bhuntásc leathanaigh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2408
+#: ../gramps/plugins/webreport/narrativeweb.py:2409
 msgid "PHP user session"
 msgstr "Seisiún úsáideora PHP"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2411
+#: ../gramps/plugins/webreport/narrativeweb.py:2412
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
@@ -39064,40 +39065,40 @@ msgstr ""
 "Ní bheidh an rogha seo ar fáil ach amháin má roghnaítear an síneadh comhaid ."
 "php."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2424
+#: ../gramps/plugins/webreport/narrativeweb.py:2425
 msgid "Images Generation"
 msgstr "Giniúint Íomhánna"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2427
+#: ../gramps/plugins/webreport/narrativeweb.py:2428
 msgid "Include images and media objects"
 msgstr "Cuir íomhánna agus rudaí meán san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2428
+#: ../gramps/plugins/webreport/narrativeweb.py:2429
 msgid "Whether to include a gallery of media objects"
 msgstr "Cé acu a chuirfear gailearaí réada meán san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2432
+#: ../gramps/plugins/webreport/narrativeweb.py:2433
 msgid "Create the images index"
 msgstr "Cruthaigh an t-innéacs íomhánna"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2434
+#: ../gramps/plugins/webreport/narrativeweb.py:2435
 msgid "This option allows you to create the images index"
 msgstr "Ligeann an rogha seo duit an t-innéacs íomhánna a chruthú"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2440
+#: ../gramps/plugins/webreport/narrativeweb.py:2441
 msgid "Include unused images and media objects"
 msgstr "Cuir íomhánna agus réada meán neamhúsáidte san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2443
+#: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Whether to include unused or unreferenced media objects"
 msgstr ""
 "Cé acu a chuirfear réada meán neamhúsáidte nó neamhthagairtí san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2448
+#: ../gramps/plugins/webreport/narrativeweb.py:2449
 msgid "Create and only use thumbnail- sized images"
 msgstr "Cruthaigh agus húsáid íomhánna mionsamhlacha agus húsáid ach amháin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2452
+#: ../gramps/plugins/webreport/narrativeweb.py:2453
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -39107,19 +39108,19 @@ msgstr ""
 "íomhánna lánmhéide ar an Leathanach Meáin. Ligfidh sé seo duit méid "
 "uaslódáil iomlán i bhfad níos lú a bheith agat ar do shuíomh óstála gréasáin."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2462
+#: ../gramps/plugins/webreport/narrativeweb.py:2463
 msgid "Create the thumbnail index"
 msgstr "Cruthaigh an t-innéacs mionsamhlacha"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2465
+#: ../gramps/plugins/webreport/narrativeweb.py:2466
 msgid "This option allows you to create the thumbnail index"
 msgstr "Ligeann an rogha seo duit an t-innéacs mionsamhlacha a chruthú"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2471
+#: ../gramps/plugins/webreport/narrativeweb.py:2472
 msgid "Max width of initial image"
 msgstr "Uasleithead na híomhá tosaigh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2475
+#: ../gramps/plugins/webreport/narrativeweb.py:2476
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page."
@@ -39127,181 +39128,181 @@ msgstr ""
 "Ligeann sé seo duit leithead uasta na híomhá a thaispeántar ar leathanach na "
 "meán a shocrú."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2492
+#: ../gramps/plugins/webreport/narrativeweb.py:2493
 msgid "Include download page"
 msgstr "Cuir leathanach íoslódála san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2493
+#: ../gramps/plugins/webreport/narrativeweb.py:2494
 msgid "Whether to include a database download option"
 msgstr "Cé acu a chuirfear rogha íoslódála bunachar sonraí san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2498
+#: ../gramps/plugins/webreport/narrativeweb.py:2499
 msgid "How many downloads"
 msgstr "Cé mhéad íoslódálacha"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2501
+#: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "The number of download files to include in the download page"
 msgstr "Peirsis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2511
+#: ../gramps/plugins/webreport/narrativeweb.py:2512
 #, python-format
 msgid "Download Filename #%c"
 msgstr "Íosluchtaigh Ainm Comhaid #%c"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2513
+#: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "File to be used for downloading of database"
 msgstr "Comhad le húsáid chun bunachar sonraí a íoslódáil"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2518
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 msgid "Description for download"
 msgstr "Cur síos le híoslódáil"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2518
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 #, python-format
 msgid "Family Tree #%c"
-msgstr ""
+msgstr "Crann Teaghlaigh #%c"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2520
+#: ../gramps/plugins/webreport/narrativeweb.py:2521
 msgid "Give a description for this file."
 msgstr "Tabhair cur síos ar an gcomhad seo."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2532
+#: ../gramps/plugins/webreport/narrativeweb.py:2533
 #: ../gramps/plugins/webreport/webcal.py:2049
 msgid "Advanced Options"
 msgstr "Roghanna Ardleibhéil"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2536
+#: ../gramps/plugins/webreport/narrativeweb.py:2537
 #: ../gramps/plugins/webreport/webcal.py:2052
 msgid "Character set encoding"
 msgstr "Ionchódú tacar carachtar"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2540
+#: ../gramps/plugins/webreport/narrativeweb.py:2541
 #: ../gramps/plugins/webreport/webcal.py:2056
 msgid "The encoding to be used for the web files"
 msgstr "An t-ionchódú atá le húsáid do na comhaid ghréasáin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2544
+#: ../gramps/plugins/webreport/narrativeweb.py:2545
 msgid "Include link to active person on every page"
 msgstr "Cuir nasc chuig duine gníomhach san áireamh ar gach leathanach"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2547
+#: ../gramps/plugins/webreport/narrativeweb.py:2548
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr ""
 "Cuir nasc chuig an duine gníomhach san áireamh (má tá leathanach gréasáin "
 "acu)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2552
+#: ../gramps/plugins/webreport/narrativeweb.py:2553
 msgid "Include a column for birth dates on the index pages"
 msgstr ""
 "Cuir colún le haghaidh dátaí breithe san áireamh ar na leathanaigh innéacs"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2554
+#: ../gramps/plugins/webreport/narrativeweb.py:2555
 msgid "Whether to include a birth column"
 msgstr "Cé acu a chuirfear colún breithe san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2558
+#: ../gramps/plugins/webreport/narrativeweb.py:2559
 msgid "Include a column for death dates on the index pages"
 msgstr "Cuir colún le haghaidh dátaí báis ar na leathanaigh innéacs"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2560
+#: ../gramps/plugins/webreport/narrativeweb.py:2561
 msgid "Whether to include a death column"
 msgstr "Cé acu a chuirfear colún báis san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2564
+#: ../gramps/plugins/webreport/narrativeweb.py:2565
 msgid "Include a column for partners on the index pages"
 msgstr "Cuir colún do chomhpháirtithe san áireamh ar na leathanaigh innéacs"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2566
+#: ../gramps/plugins/webreport/narrativeweb.py:2567
 msgid "Whether to include a partners column"
 msgstr "Cé acu a chuirfear colún comhpháirtithe san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2570
+#: ../gramps/plugins/webreport/narrativeweb.py:2571
 msgid "Include a column for parents on the index pages"
 msgstr "Cuir colún do thuismitheoirí ar na leathanaigh innéacs"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2572
+#: ../gramps/plugins/webreport/narrativeweb.py:2573
 msgid "Whether to include a parents column"
 msgstr "Cé acu a chuirfear colún tuismitheoirí san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2576
+#: ../gramps/plugins/webreport/narrativeweb.py:2577
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr "Cuir leath agus/nó leas-siblíní san áireamh ar na leathanaigh aonair"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2580
+#: ../gramps/plugins/webreport/narrativeweb.py:2581
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr "Peirsis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2595
+#: ../gramps/plugins/webreport/narrativeweb.py:2596
 msgid "Include family pages"
 msgstr "Cuir leathanaigh teaghlaigh san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2596
+#: ../gramps/plugins/webreport/narrativeweb.py:2597
 msgid "Whether or not to include family pages."
 msgstr "Cé acu leathanaigh teaghlaigh a chur san áireamh nó nach bhfuil."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2599
+#: ../gramps/plugins/webreport/narrativeweb.py:2600
 msgid "Include event pages"
 msgstr "Cuir leathanaigh imeachta san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2600
+#: ../gramps/plugins/webreport/narrativeweb.py:2601
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
 "Cuir liosta iomlán imeachtaí agus leathanaigh ábhartha leis nó ná bíodh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2603
+#: ../gramps/plugins/webreport/narrativeweb.py:2604
 msgid "Include other roles"
 msgstr "Nótaí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2604
+#: ../gramps/plugins/webreport/narrativeweb.py:2605
 msgid "Include persons with other roles to an event"
 msgstr "Daoine a bhfuil róil eile acu san áireamh le hócáid"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2607
+#: ../gramps/plugins/webreport/narrativeweb.py:2608
 msgid "Include place pages"
 msgstr "Nótaí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2608
+#: ../gramps/plugins/webreport/narrativeweb.py:2609
 msgid "Whether or not to include the place pages."
 msgstr "Peirsis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2611
+#: ../gramps/plugins/webreport/narrativeweb.py:2612
 msgid "Include unused place pages"
 msgstr "Nótaí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2612
+#: ../gramps/plugins/webreport/narrativeweb.py:2613
 msgid "Whether or not to include the unused place pages."
 msgstr "Peirsis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2615
+#: ../gramps/plugins/webreport/narrativeweb.py:2616
 msgid "Include source pages"
 msgstr "Nótaí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2616
+#: ../gramps/plugins/webreport/narrativeweb.py:2617
 msgid "Whether or not to include the source pages."
 msgstr "Peirsis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2619
+#: ../gramps/plugins/webreport/narrativeweb.py:2620
 msgid "Include repository pages"
 msgstr "Cuir leathanaigh stór san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2620
+#: ../gramps/plugins/webreport/narrativeweb.py:2621
 msgid "Whether or not to include the repository pages."
 msgstr "Peirsis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2623
+#: ../gramps/plugins/webreport/narrativeweb.py:2624
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Cuir comhad GENDEX san áireamh (/gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2624
+#: ../gramps/plugins/webreport/narrativeweb.py:2625
 msgid "Whether to include a GENDEX file or not"
 msgstr "Cé acu a chuirfear comhad GENDEX san áireamh nó nach bhfuil"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2627
+#: ../gramps/plugins/webreport/narrativeweb.py:2628
 msgid "Include address book pages"
 msgstr "Cuir leathanaigh leabhar seoltaí san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2630
+#: ../gramps/plugins/webreport/narrativeweb.py:2631
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -39310,41 +39311,41 @@ msgstr ""
 "féidir leo seoltaí ríomhphoist agus láithreán gréasáin agus seoltaí "
 "pearsanta / imeachtaí cónaithe a chur san áireamh."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2638
+#: ../gramps/plugins/webreport/narrativeweb.py:2639
 msgid "Include the statistics page"
 msgstr "Cuir an leathanach staitisticí san áireamh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2639
+#: ../gramps/plugins/webreport/narrativeweb.py:2640
 msgid "Whether or not to add statistics page"
 msgstr "Cibé an gcuirfear leathanach staitisticí leis nó nach gcuirfear"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2648
+#: ../gramps/plugins/webreport/narrativeweb.py:2649
 msgid "Place Map Options"
 msgstr "Roghanna Léarscáile Áitigh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2653
+#: ../gramps/plugins/webreport/narrativeweb.py:2654
 msgid "Stamen Map"
 msgstr "Dearbhú"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2654
+#: ../gramps/plugins/webreport/narrativeweb.py:2655
 msgid "Google"
 msgstr "Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2656
+#: ../gramps/plugins/webreport/narrativeweb.py:2657
 msgid "Map Service"
 msgstr "Seirbhís Léarscáileanna"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2660
+#: ../gramps/plugins/webreport/narrativeweb.py:2661
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
 "Roghnaigh do rogha seirbhíse léarscáileanna chun na Leathanaigh "
 "Léarscáileanna Áit a chruthú."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2666
+#: ../gramps/plugins/webreport/narrativeweb.py:2667
 msgid "Include Place map on Place Pages"
 msgstr "Cuir léarscáil Áite san áireamh ar Leathanaigh Áite"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2670
+#: ../gramps/plugins/webreport/narrativeweb.py:2671
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -39352,13 +39353,13 @@ msgstr ""
 "Cé acu ar chóir léarscáil áite a chur san áireamh ar na Leathanaigh "
 "Áiteanna, áit a bhfuil Domhanleithead/ Domhanfhad ar fáil."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2678
+#: ../gramps/plugins/webreport/narrativeweb.py:2679
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr ""
 "Cuir Leathanaigh Léarscáileanna Teaghlaigh san áireamh leis na háiteanna go "
 "léir a thaispeántar ar an léarscáil"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2682
+#: ../gramps/plugins/webreport/narrativeweb.py:2683
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -39367,23 +39368,23 @@ msgstr ""
 "háiteanna go léir ar an leathanach seo nó nach bhfuil. Ligfidh sé seo duit a "
 "fheiceáil conas a thaistil do theaghlach timpeall na tíre."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2692
+#: ../gramps/plugins/webreport/narrativeweb.py:2693
 msgid "Family Links"
 msgstr "Naisc Teaghlaigh"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2693
+#: ../gramps/plugins/webreport/narrativeweb.py:2694
 msgid "Drop"
 msgstr "Buail"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2694
+#: ../gramps/plugins/webreport/narrativeweb.py:2695
 msgid "Markers"
 msgstr "Marcóirí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2697
+#: ../gramps/plugins/webreport/narrativeweb.py:2698
 msgid "Google/ FamilyMap Option"
 msgstr "Rogha Google/ FamilyMap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2703
+#: ../gramps/plugins/webreport/narrativeweb.py:2704
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
@@ -39391,11 +39392,11 @@ msgstr ""
 "Roghnaigh cén rogha ba mhaith leat a bheith agat do leathanaigh "
 "léarscáileanna teaghlaigh Google Maps..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2709
+#: ../gramps/plugins/webreport/narrativeweb.py:2710
 msgid "Google maps API key"
 msgstr "Eochair API léarscáileanna Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2712
+#: ../gramps/plugins/webreport/narrativeweb.py:2713
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
@@ -39403,12 +39404,12 @@ msgstr ""
 "An eochair API a úsáidtear do na léarscáileanna Google.\n"
 "Tá an eochair seo éigeantach agus caithfidh sí a bheith bailí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2724
-#: ../gramps/plugins/webreport/narrativeweb.py:2764
+#: ../gramps/plugins/webreport/narrativeweb.py:2725
+#: ../gramps/plugins/webreport/narrativeweb.py:2765
 msgid "How to get the API key"
 msgstr "Conas an eochair API a fháil"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2727
+#: ../gramps/plugins/webreport/narrativeweb.py:2728
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
@@ -39416,23 +39417,23 @@ msgstr ""
 "Cóipeáil agus greamaigh an luach seo i do bhrabhsálaí.\n"
 "Ní mór an tseirbhís Google Maps a roghnú."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2735
+#: ../gramps/plugins/webreport/narrativeweb.py:2736
 msgid "Toner"
 msgstr "Tonóir"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2736
+#: ../gramps/plugins/webreport/narrativeweb.py:2737
 msgid "Terrain"
 msgstr "Tír-raon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2737
+#: ../gramps/plugins/webreport/narrativeweb.py:2738
 msgid "WaterColor"
 msgstr "Uiscedhath"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2739
+#: ../gramps/plugins/webreport/narrativeweb.py:2740
 msgid "Stamen Option"
 msgstr "Dearbhú"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2744
+#: ../gramps/plugins/webreport/narrativeweb.py:2745
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
@@ -39440,11 +39441,11 @@ msgstr ""
 "Roghnaigh cén rogha ba mhaith leat a bheith agat do leathanaigh léarscáile "
 "State..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2749
+#: ../gramps/plugins/webreport/narrativeweb.py:2750
 msgid "Stamen maps API key"
 msgstr "Dearbhú"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2752
+#: ../gramps/plugins/webreport/narrativeweb.py:2753
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
@@ -39452,7 +39453,7 @@ msgstr ""
 "An eochair API a úsáidtear le haghaidh léarscáileanna Stame.\n"
 "Tá an eochair seo éigeantach agus caithfidh sí a bheith bailí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2767
+#: ../gramps/plugins/webreport/narrativeweb.py:2768
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
@@ -39460,21 +39461,21 @@ msgstr ""
 "Cóipeáil agus greamaigh an luach seo i do bhrabhsálaí.\n"
 "Ní mór seirbhís léarscáileanna Stamen a roghnú."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2784
-#, fuzzy, python-format
+#: ../gramps/plugins/webreport/narrativeweb.py:2785
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "in %(inipth)s (%(val)s)"
+msgstr "i %(inipth)s (%(val)s)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2785
+#: ../gramps/plugins/webreport/narrativeweb.py:2786
 msgid "latest"
 msgstr "Dáta:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2787
+#: ../gramps/plugins/webreport/narrativeweb.py:2788
 msgid "openlayers version to use"
 msgstr "leagan openlayers le húsáid"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2792
+#: ../gramps/plugins/webreport/narrativeweb.py:2793
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -39489,147 +39490,147 @@ msgstr ""
 "atá le modhnú ná openlayers_version.\n"
 "Féach OLDER VERSIONS in https://openlayers.org/"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2809
+#: ../gramps/plugins/webreport/narrativeweb.py:2810
 msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "Cuimsiú eile (CMS, féilire gréasáin, PHP)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2813
+#: ../gramps/plugins/webreport/narrativeweb.py:2814
 msgid "Do we include these pages in a CMS web?"
 msgstr "An gcuirimid na leathanaigh seo san áireamh i ngréasán CMS?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2820
+#: ../gramps/plugins/webreport/narrativeweb.py:2821
 msgid "URI"
 msgstr "URICity name (optional, probably does not"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2822
+#: ../gramps/plugins/webreport/narrativeweb.py:2823
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "Cá gcuireann tú do shuíomh Gréasáin? réamhshocrú = /NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2830
+#: ../gramps/plugins/webreport/narrativeweb.py:2831
 msgid "Include the news and updates page"
 msgstr "Nótaí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2831
+#: ../gramps/plugins/webreport/narrativeweb.py:2832
 msgid "Whether to include a page with the last updates"
 msgstr "Peirsis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2835
+#: ../gramps/plugins/webreport/narrativeweb.py:2836
 msgid "Max days for updates"
 msgstr "Uasmhéid laethanta le haghaidh nuashonruithe"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2837
+#: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "You want to see the last updates on how many days?"
 msgstr ""
 "Ba mhaith leat na nuashonruithe deireanacha a fheiceáil maidir le cé mhéad "
 "lá?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2842
+#: ../gramps/plugins/webreport/narrativeweb.py:2843
 msgid "Max number of updates per object to show"
 msgstr "Uaslíon na nuashonruithe in aghaidh an réada le taispeáint"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2844
+#: ../gramps/plugins/webreport/narrativeweb.py:2845
 msgid "How many updates do you want to see max"
 msgstr "Cé mhéad nuashonrú is mian leat uasmhéid a fheiceáil"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2856
+#: ../gramps/plugins/webreport/narrativeweb.py:2857
 msgid "Translations"
 msgstr "Aistriúchán"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2859
+#: ../gramps/plugins/webreport/narrativeweb.py:2860
 msgid "Second language"
 msgstr "An dara teanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2864
+#: ../gramps/plugins/webreport/narrativeweb.py:2865
 msgid "Site name for your second language"
 msgstr "Ainm an tsuímh do do dhara teanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2864
-#: ../gramps/plugins/webreport/narrativeweb.py:2873
-#: ../gramps/plugins/webreport/narrativeweb.py:2882
-#: ../gramps/plugins/webreport/narrativeweb.py:2891
-#: ../gramps/plugins/webreport/narrativeweb.py:2900
+#: ../gramps/plugins/webreport/narrativeweb.py:2865
+#: ../gramps/plugins/webreport/narrativeweb.py:2874
+#: ../gramps/plugins/webreport/narrativeweb.py:2883
+#: ../gramps/plugins/webreport/narrativeweb.py:2892
+#: ../gramps/plugins/webreport/narrativeweb.py:2901
 msgid "This site title"
 msgstr "Teideal an tsuímh seo"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2866
-#: ../gramps/plugins/webreport/narrativeweb.py:2875
-#: ../gramps/plugins/webreport/narrativeweb.py:2884
-#: ../gramps/plugins/webreport/narrativeweb.py:2893
-#: ../gramps/plugins/webreport/narrativeweb.py:2902
+#: ../gramps/plugins/webreport/narrativeweb.py:2867
+#: ../gramps/plugins/webreport/narrativeweb.py:2876
+#: ../gramps/plugins/webreport/narrativeweb.py:2885
+#: ../gramps/plugins/webreport/narrativeweb.py:2894
+#: ../gramps/plugins/webreport/narrativeweb.py:2903
 msgid "Enter a title in the respective language"
 msgstr "Iontráil teideal sa teanga faoi seach"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2868
+#: ../gramps/plugins/webreport/narrativeweb.py:2869
 msgid "Third language"
 msgstr "An tríú teanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2873
+#: ../gramps/plugins/webreport/narrativeweb.py:2874
 msgid "Site name for your third language"
 msgstr "Ainm an tsuímh do do thríú teanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2877
+#: ../gramps/plugins/webreport/narrativeweb.py:2878
 msgid "Fourth language"
 msgstr "Ceathrú teanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2882
+#: ../gramps/plugins/webreport/narrativeweb.py:2883
 msgid "Site name for your fourth language"
 msgstr "Ainm an tsuímh do do cheathrú teanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2886
+#: ../gramps/plugins/webreport/narrativeweb.py:2887
 msgid "Fifth language"
 msgstr "An cúigiú teanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2891
+#: ../gramps/plugins/webreport/narrativeweb.py:2892
 msgid "Site name for your fifth language"
 msgstr "Ainm an tsuímh do do chúigiú teanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2895
+#: ../gramps/plugins/webreport/narrativeweb.py:2896
 msgid "Sixth language"
 msgstr "An séú teanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2900
+#: ../gramps/plugins/webreport/narrativeweb.py:2901
 msgid "Site name for your sixth language"
 msgstr "Ainm an tsuímh do do séú teanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3133
+#: ../gramps/plugins/webreport/narrativeweb.py:3134
 msgid "Calendar Options"
 msgstr "Dearbhú"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3139
+#: ../gramps/plugins/webreport/narrativeweb.py:3140
 msgid "Do we include the web calendar ?"
 msgstr "An gcuirimid an féilire gréasáin san áireamh?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3141
+#: ../gramps/plugins/webreport/narrativeweb.py:3142
 #, python-format
 msgid "Whether to include a calendar for year %s"
-msgstr ""
+msgstr "Ar cheart féilire a chur san áireamh don bhliain %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3168
+#: ../gramps/plugins/webreport/narrativeweb.py:3169
 #: ../gramps/plugins/webreport/webcal.py:2060
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "Cruthaigh leathanaigh imeachtaí aon lae d'fhéilire Year At A Glance"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3170
+#: ../gramps/plugins/webreport/narrativeweb.py:3171
 #: ../gramps/plugins/webreport/webcal.py:2062
 msgid "Whether to create one day pages or not"
 msgstr "Cé acu a chruthófar leathanaigh lae amháin nó nach bhfuil"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3174
+#: ../gramps/plugins/webreport/narrativeweb.py:3175
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include birthdays in the calendar"
 msgstr "Cuir breithlaethanta san áireamh san fhéilire"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3178
+#: ../gramps/plugins/webreport/narrativeweb.py:3179
 #: ../gramps/plugins/webreport/webcal.py:2070
 msgid "Include anniversaries in the calendar"
 msgstr "Cuir comóradh san áireamh san fhéilire"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3191
+#: ../gramps/plugins/webreport/narrativeweb.py:3192
 #: ../gramps/plugins/webreport/webcal.py:2085
 msgid "Show data only after year"
 msgstr "Taispeáin sonraí ach tar éis na bliana"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3198
+#: ../gramps/plugins/webreport/narrativeweb.py:3199
 #: ../gramps/plugins/webreport/webcal.py:2092
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
@@ -39638,23 +39639,23 @@ msgstr ""
 "Taispeáin sonraí ach tar éis na bliana seo. Is é an réamhshocrú an bhliain "
 "reatha - 'aois uasta is dócha beo' a shainmhínítear sa chluaisín rogha dátaí."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3215
+#: ../gramps/plugins/webreport/narrativeweb.py:3216
 msgid "HeatMap Options"
 msgstr "Dearbhú"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3218
+#: ../gramps/plugins/webreport/narrativeweb.py:3219
 msgid "Include heatmap pages"
 msgstr "Nótaí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3219
+#: ../gramps/plugins/webreport/narrativeweb.py:3220
 msgid "Whether to include heatmap pages for events"
 msgstr "Peirsis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3225
+#: ../gramps/plugins/webreport/narrativeweb.py:3226
 msgid "Point size"
 msgstr "Nótaí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3226
+#: ../gramps/plugins/webreport/narrativeweb.py:3227
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
@@ -39662,11 +39663,11 @@ msgstr ""
 "Socraigh méid na bpointí léarscáile teasa.\n"
 "Réamhshocrú: 8"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3229
+#: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid "Blur"
 msgstr "Doiléir"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3230
+#: ../gramps/plugins/webreport/narrativeweb.py:3231
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
@@ -39674,7 +39675,7 @@ msgstr ""
 "Socraigh an méid doiléir.\n"
 "Réamhshocrú: 15"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3233
+#: ../gramps/plugins/webreport/narrativeweb.py:3234
 msgid "Zoom"
 msgstr "Súmáil"
 
@@ -39704,12 +39705,12 @@ msgstr ""
 msgid "<absent>"
 msgstr "<absent>"
 
-#: ../gramps/plugins/webreport/person.py:1057
+#: ../gramps/plugins/webreport/person.py:1058
 #, python-format
 msgid "Tracking %s"
 msgstr "%s á rianú"
 
-#: ../gramps/plugins/webreport/person.py:1063
+#: ../gramps/plugins/webreport/person.py:1064
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -39723,47 +39724,47 @@ msgstr ""
 "shórtáil in ord dáta (más ann?). Má chliceálann tú ar ainm áite sa rannán "
 "Tagartha, téarfaidh tú chuig leathanach na háite sin."
 
-#: ../gramps/plugins/webreport/person.py:1115
+#: ../gramps/plugins/webreport/person.py:1116
 msgid "Place Title"
 msgstr "Teideal na hÁite"
 
-#: ../gramps/plugins/webreport/person.py:1250
+#: ../gramps/plugins/webreport/person.py:1251
 msgid "Drop Markers"
 msgstr "Buail Marcóirí"
 
-#: ../gramps/plugins/webreport/person.py:1849
+#: ../gramps/plugins/webreport/person.py:1850
 msgid "Call Name"
 msgstr "Ainm Glaoigh"
 
-#: ../gramps/plugins/webreport/person.py:1870
+#: ../gramps/plugins/webreport/person.py:1871
 msgid "Nick Name"
 msgstr "Leasainm"
 
-#: ../gramps/plugins/webreport/person.py:1927
+#: ../gramps/plugins/webreport/person.py:1928
 msgid "Age at Death"
 msgstr "Aois ag an mbás"
 
-#: ../gramps/plugins/webreport/person.py:2121
+#: ../gramps/plugins/webreport/person.py:2122
 msgid "Stepfather"
 msgstr "Leasathair"
 
-#: ../gramps/plugins/webreport/person.py:2134
+#: ../gramps/plugins/webreport/person.py:2135
 msgid "Stepmother"
 msgstr "Leasmháthair"
 
-#: ../gramps/plugins/webreport/person.py:2161
+#: ../gramps/plugins/webreport/person.py:2162
 msgid "Not siblings"
 msgstr "Ní siblíní"
 
-#: ../gramps/plugins/webreport/person.py:2302
+#: ../gramps/plugins/webreport/person.py:2303
 msgid "Relation to the center person"
 msgstr "Gaol leis an duine lárnach"
 
-#: ../gramps/plugins/webreport/person.py:2347
+#: ../gramps/plugins/webreport/person.py:2348
 msgid "Relation to main person"
 msgstr "Gaol leis an bpríomhdhuine"
 
-#: ../gramps/plugins/webreport/person.py:2352
+#: ../gramps/plugins/webreport/person.py:2353
 msgid "Relation within this family (if not by birth)"
 msgstr "Gaol laistigh den teaghlach seo (mura bhfuil sé de réir breithe)"
 
@@ -39771,7 +39772,7 @@ msgstr "Gaol laistigh den teaghlach seo (mura bhfuil sé de réir breithe)"
 msgid "Creating place pages"
 msgstr "Leathanaigh áite á gcruthú"
 
-#: ../gramps/plugins/webreport/place.py:293
+#: ../gramps/plugins/webreport/place.py:295
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
@@ -39781,18 +39782,18 @@ msgstr ""
 "sórtáilte de réir a dteidil. Má chliceálann tú ar theideal áite, tabharfaidh "
 "tú chuig leathanach na háite sin."
 
-#: ../gramps/plugins/webreport/place.py:346
-#: ../gramps/plugins/webreport/place.py:358
+#: ../gramps/plugins/webreport/place.py:348
+#: ../gramps/plugins/webreport/place.py:360
 msgctxt "Place Name"
 msgid "Name"
 msgstr "<b>Ainm</b>"
 
-#: ../gramps/plugins/webreport/place.py:347
-#: ../gramps/plugins/webreport/place.py:359
+#: ../gramps/plugins/webreport/place.py:349
+#: ../gramps/plugins/webreport/place.py:361
 msgid "State/Province"
 msgstr "Stát / Cúige:"
 
-#: ../gramps/plugins/webreport/place.py:607
+#: ../gramps/plugins/webreport/place.py:612
 msgid "Place Map"
 msgstr "Léarscáil Áite"
 
@@ -40164,6 +40165,9 @@ msgstr "NebraskaCity name (optional, probably does not need a translation"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Gan stílbhileog"
+
+#~ msgid "Applying ..."
+#~ msgstr "Déan iarratas a dhéanamh..."
 
 #~ msgid "Preparing ..."
 #~ msgstr "Ag ullmhú..."

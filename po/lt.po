@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-18 20:48+0100\n"
-"PO-Revision-Date: 2025-04-27 12:18+0000\n"
+"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"PO-Revision-Date: 2025-04-28 14:07+0000\n"
 "Last-Translator: Vykintas Vyšniauskas <vykintasv@gmail.com>\n"
-"Language-Team: Lithuanian <https://hosted.weblate.org/projects/"
-"gramps-project/gramps/lt/>\n"
+"Language-Team: Lithuanian <https://hosted.weblate.org/projects/gramps-"
+"project/gramps/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && ("
-"n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.12-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
@@ -283,7 +283,7 @@ msgstr "Gramps genealogijos sistema"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:233
 #: ../gramps/plugins/view/pedigreeview.py:565
 #: ../gramps/plugins/view/view.gpr.py:135
-#: ../gramps/plugins/webreport/person.py:1745
+#: ../gramps/plugins/webreport/person.py:1746
 msgid "Pedigree"
 msgstr "Kilmė"
 
@@ -349,7 +349,7 @@ msgstr "Ryšiai"
 #: ../gramps/plugins/tool/reorderids.glade:762
 #: ../gramps/plugins/webreport/event.py:330
 #: ../gramps/plugins/webreport/family.py:314
-#: ../gramps/plugins/webreport/person.py:1638
+#: ../gramps/plugins/webreport/person.py:1639
 msgid "Person"
 msgstr "Asmuo"
 
@@ -1797,9 +1797,9 @@ msgstr "Giminės medis pavadinimu „%s“:"
 #: ../gramps/plugins/textreport/indivcomplete.py:989
 #: ../gramps/plugins/textreport/indivcomplete.py:1064
 #: ../gramps/plugins/textreport/placereport.py:193
-#: ../gramps/plugins/webreport/basepage.py:1082
-#: ../gramps/plugins/webreport/basepage.py:3058
-#: ../gramps/plugins/webreport/basepage.py:3112
+#: ../gramps/plugins/webreport/basepage.py:1084
+#: ../gramps/plugins/webreport/basepage.py:3060
+#: ../gramps/plugins/webreport/basepage.py:3114
 #, python-format
 msgid "%(str1)s: %(str2)s"
 msgstr "%(str1)s: %(str2)s"
@@ -1937,12 +1937,12 @@ msgstr "Užrakino %s"
 #: ../gramps/plugins/view/geoplaces.py:597
 #: ../gramps/plugins/view/relview.py:617 ../gramps/plugins/view/relview.py:1225
 #: ../gramps/plugins/view/relview.py:1282
-#: ../gramps/plugins/webreport/basepage.py:2468
-#: ../gramps/plugins/webreport/basepage.py:2499
-#: ../gramps/plugins/webreport/basepage.py:2504
-#: ../gramps/plugins/webreport/basepage.py:2510
-#: ../gramps/plugins/webreport/basepage.py:3045
-#: ../gramps/plugins/webreport/basepage.py:3236
+#: ../gramps/plugins/webreport/basepage.py:2470
+#: ../gramps/plugins/webreport/basepage.py:2501
+#: ../gramps/plugins/webreport/basepage.py:2506
+#: ../gramps/plugins/webreport/basepage.py:2512
+#: ../gramps/plugins/webreport/basepage.py:3047
+#: ../gramps/plugins/webreport/basepage.py:3238
 msgid "Unknown"
 msgstr "Nežinomas"
 
@@ -2264,13 +2264,13 @@ msgstr "nėra"
 
 #: ../gramps/gen/const.py:304 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:235
-#: ../gramps/plugins/webreport/basepage.py:3382
-#: ../gramps/plugins/webreport/basepage.py:3403
+#: ../gramps/plugins/webreport/basepage.py:3384
+#: ../gramps/plugins/webreport/basepage.py:3405
 #: ../gramps/plugins/webreport/family.py:519
 #: ../gramps/plugins/webreport/heatmap.py:1029
 #: ../gramps/plugins/webreport/heatmap.py:1031
-#: ../gramps/plugins/webreport/person.py:861
-#: ../gramps/plugins/webreport/person.py:863
+#: ../gramps/plugins/webreport/person.py:862
+#: ../gramps/plugins/webreport/person.py:864
 msgid ":"
 msgstr ":"
 
@@ -3674,45 +3674,11 @@ msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr ""
 "KLAIDA: filtras %s negali būti taisyklingai įkeltas. Koreguokite filtrą!"
 
-#: ../gramps/gen/filters/_genericfilter.py:158
-#: ../gramps/gen/filters/_genericfilter.py:179
-#: ../gramps/gen/filters/_genericfilter.py:195
-msgid "Applying ..."
-msgstr "Pritaikoma..."
-
-#: ../gramps/gen/filters/_genericfilter.py:158
-#: ../gramps/gen/filters/_genericfilter.py:179
-#: ../gramps/gen/filters/_genericfilter.py:195
-#: ../gramps/gui/editors/filtereditor.py:1225
-#: ../gramps/plugins/drawreport/calendarreport.py:600
-#: ../gramps/plugins/drawreport/statisticschart.py:1125
-#: ../gramps/plugins/drawreport/timeline.py:428
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1169
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1185
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1201
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1217
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1233
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1265
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1297
-#: ../gramps/plugins/graph/gvrelgraph.py:881
-#: ../gramps/plugins/quickview/quickview.gpr.py:143
-#: ../gramps/plugins/textreport/birthdayreport.py:561
-#: ../gramps/plugins/textreport/familygroup.py:722
-#: ../gramps/plugins/textreport/indivcomplete.py:1101
-#: ../gramps/plugins/textreport/recordsreport.py:236
-#: ../gramps/plugins/tool/sortevents.py:177
-#: ../gramps/plugins/webreport/narrativeweb.py:2130
-#: ../gramps/plugins/webreport/webcal.py:1851
-msgid "Filter"
-msgstr "Filtras"
-
 #: ../gramps/gen/filters/rules/_changedsincebase.py:69
 #: ../gramps/gen/filters/rules/_everything.py:56
 #: ../gramps/gen/filters/rules/_hasattributebase.py:60
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:59
-#: ../gramps/gen/filters/rules/_hasgrampsid.py:59
+#: ../gramps/gen/filters/rules/_hasgrampsid.py:60
 #: ../gramps/gen/filters/rules/_hasldsbase.py:62
 #: ../gramps/gen/filters/rules/_hasnotebase.py:60
 #: ../gramps/gen/filters/rules/_hasnoteregexbase.py:60
@@ -3903,7 +3869,7 @@ msgstr "Skaičius turi būti:"
 msgid "Number of instances:"
 msgstr "Pasikartojimų skaičius:"
 
-#: ../gramps/gen/filters/rules/_hasgrampsid.py:56
+#: ../gramps/gen/filters/rules/_hasgrampsid.py:57
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:63
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:63
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
@@ -4138,11 +4104,11 @@ msgstr "Citatos su <count> garso/vaizdo objektų"
 msgid "Matches citations with a certain number of items in the gallery"
 msgstr "Atitinka citatas, kurios turi nurodytą elementų kiekį galerijoje"
 
-#: ../gramps/gen/filters/rules/citation/_hasidof.py:47
+#: ../gramps/gen/filters/rules/citation/_hasidof.py:48
 msgid "Citation with <Id>"
 msgstr "Citatos su <Id>"
 
-#: ../gramps/gen/filters/rules/citation/_hasidof.py:48
+#: ../gramps/gen/filters/rules/citation/_hasidof.py:49
 msgid "Matches a citation with a specified Gramps ID"
 msgstr "Tai citata su nurodytu Gramps ID"
 
@@ -4505,11 +4471,11 @@ msgstr "Įvykiai, turintys tam tikrą <kiekį> garso/vaizdo objektų"
 msgid "Matches events with a certain number of items in the gallery"
 msgstr "Tai įvykiai, kurie turi konkretų skaičių įrašų galerijoje"
 
-#: ../gramps/gen/filters/rules/event/_hasidof.py:46
+#: ../gramps/gen/filters/rules/event/_hasidof.py:47
 msgid "Event with <Id>"
 msgstr "Įvykis su <Id>"
 
-#: ../gramps/gen/filters/rules/event/_hasidof.py:47
+#: ../gramps/gen/filters/rules/event/_hasidof.py:48
 msgid "Matches an event with a specified Gramps ID"
 msgstr "Tai įvykis su nurodytu Gramps ID"
 
@@ -4792,11 +4758,11 @@ msgstr "Šeimos su tam tikru <kiekiu> garso/vaizdo objektų"
 msgid "Matches families with a certain number of items in the gallery"
 msgstr "Tai šeimų objektai, kurie turi nurodytą skaičių nuotraukų galerijoje"
 
-#: ../gramps/gen/filters/rules/family/_hasidof.py:46
+#: ../gramps/gen/filters/rules/family/_hasidof.py:47
 msgid "Family with <Id>"
 msgstr "Šeima su <Id>"
 
-#: ../gramps/gen/filters/rules/family/_hasidof.py:47
+#: ../gramps/gen/filters/rules/family/_hasidof.py:48
 msgid "Matches a family with a specified Gramps ID"
 msgstr "Tai šeima su nurodytu Gramps ID"
 
@@ -5079,11 +5045,11 @@ msgstr "Kūriniai su <citavimu>"
 msgid "Matches media with a citation of a particular value"
 msgstr "Atitinka kūrinius, kurių citavimas turi nurodytą reikšmę"
 
-#: ../gramps/gen/filters/rules/media/_hasidof.py:46
+#: ../gramps/gen/filters/rules/media/_hasidof.py:47
 msgid "Media object with <Id>"
 msgstr "Garso/vaizdo objekto <Id>"
 
-#: ../gramps/gen/filters/rules/media/_hasidof.py:47
+#: ../gramps/gen/filters/rules/media/_hasidof.py:48
 msgid "Matches a media object with a specified Gramps ID"
 msgstr "Tai garso/vaizdo objektas su nurodytu Gramps ID"
 
@@ -5224,11 +5190,11 @@ msgstr ""
 "Tai pastabų įrašai, kurie pasikeitė po nurodytos datos-laiko (MMMM-mm-dd vv:"
 "mm:ss) arba, jei duota antra data, tai esanti tame tarpe."
 
-#: ../gramps/gen/filters/rules/note/_hasidof.py:46
+#: ../gramps/gen/filters/rules/note/_hasidof.py:47
 msgid "Note with <Id>"
 msgstr "Pastabos, kurių <Id>"
 
-#: ../gramps/gen/filters/rules/note/_hasidof.py:47
+#: ../gramps/gen/filters/rules/note/_hasidof.py:48
 msgid "Matches a note with a specified Gramps ID"
 msgstr "Tai pastaba su nurodytu Gramps identifikatoriumi"
 
@@ -5532,12 +5498,12 @@ msgstr "Asmenys, turintys tam tikrą <kiekį> kūrinių"
 msgid "Matches people with a certain number of items in the gallery"
 msgstr "Tai asmenys, kurie turi  galerijoje konkretų skaičių galerijos objektų"
 
-#: ../gramps/gen/filters/rules/person/_hasidof.py:46
+#: ../gramps/gen/filters/rules/person/_hasidof.py:47
 #: ../gramps/gen/filters/rules/person/_matchidof.py:56
 msgid "Person with <Id>"
 msgstr "Asmenys, kurių <Id>"
 
-#: ../gramps/gen/filters/rules/person/_hasidof.py:47
+#: ../gramps/gen/filters/rules/person/_hasidof.py:48
 #: ../gramps/gen/filters/rules/person/_matchidof.py:57
 msgid "Matches person with a specified Gramps ID"
 msgstr "Tai asmuo su nurodytu Gramps identifikatoriumi"
@@ -5721,15 +5687,6 @@ msgid "Family filters"
 msgstr "Šeimų filtrai"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:57
-#: ../gramps/gui/glade/editfamily.glade:116
-#: ../gramps/gui/glade/editfamily.glade:379
-#: ../gramps/gui/glade/editplaceformat.glade:201
-#: ../gramps/gui/glade/editplacename.glade:184
-#: ../gramps/gui/glade/editplaceref.glade:234
-#: ../gramps/gui/glade/mergeperson.glade:218
-#: ../gramps/gui/glade/mergeperson.glade:233
-#: ../gramps/gui/glade/mergeplace.glade:426
-#: ../gramps/gui/glade/mergeplace.glade:443
 #: ../gramps/plugins/gramplet/soundgen.py:68
 msgid "Name:"
 msgstr "Vardas:"
@@ -6251,7 +6208,13 @@ msgstr "Vietovės, kurių citavimas turi nurodytą reikšmę"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:58
 #: ../gramps/gui/editors/editplace.py:106
-#: ../gramps/gui/glade/editplace.glade:356 ../gramps/gui/merge/mergeplace.py:56
+#: ../gramps/gui/glade/editplace.glade:356
+#: ../gramps/gui/glade/editplaceformat.glade:201
+#: ../gramps/gui/glade/editplacename.glade:184
+#: ../gramps/gui/glade/editplaceref.glade:234
+#: ../gramps/gui/glade/mergeplace.glade:426
+#: ../gramps/gui/glade/mergeplace.glade:443
+#: ../gramps/gui/merge/mergeplace.py:56
 #: ../gramps/plugins/tool/removespaces.py:241
 msgctxt "place"
 msgid "Name:"
@@ -6289,11 +6252,11 @@ msgstr "Vietovės, turintys tam tikrą <kiekį> kūrinių"
 msgid "Matches places with a certain number of items in the gallery"
 msgstr "Vietovės, kurios turi konkretų skaičių galerijos objektų"
 
-#: ../gramps/gen/filters/rules/place/_hasidof.py:46
+#: ../gramps/gen/filters/rules/place/_hasidof.py:47
 msgid "Place with <Id>"
 msgstr "Vietovė, kurios <Id>"
 
-#: ../gramps/gen/filters/rules/place/_hasidof.py:47
+#: ../gramps/gen/filters/rules/place/_hasidof.py:48
 msgid "Matches a place with a specified Gramps ID"
 msgstr "Vietovė su nurodytu Gramps identifikatoriumi"
 
@@ -6568,11 +6531,11 @@ msgstr "Įvykiai su požymiu <požymis>"
 msgid "Matches repositories with the attribute of a particular value"
 msgstr "Tai garso/vaizdo objektai, kurių požymis yra atitinkamos reikšmės"
 
-#: ../gramps/gen/filters/rules/repository/_hasidof.py:46
+#: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Repository with <Id>"
 msgstr "Saugykla, kurios <Id>"
 
-#: ../gramps/gen/filters/rules/repository/_hasidof.py:47
+#: ../gramps/gen/filters/rules/repository/_hasidof.py:48
 msgid "Matches a repository with a specified Gramps ID"
 msgstr "Tai saugykla su nurodytu Gramps identifikatoriumi"
 
@@ -6711,11 +6674,11 @@ msgstr "Šaltiniai, turintys tam tikrą <kiekį> kūrinių"
 msgid "Matches sources with a certain number of items in the gallery"
 msgstr "Šaltiniai, kurie turi galerijoje konkretų skaičių objektų"
 
-#: ../gramps/gen/filters/rules/source/_hasidof.py:46
+#: ../gramps/gen/filters/rules/source/_hasidof.py:47
 msgid "Source with <Id>"
 msgstr "Šaltiniai, kurių <Id>"
 
-#: ../gramps/gen/filters/rules/source/_hasidof.py:47
+#: ../gramps/gen/filters/rules/source/_hasidof.py:48
 msgid "Matches a source with a specified Gramps ID"
 msgstr "Šaltiniai su nurodytu Gramps identifikatoriumi"
 
@@ -6955,9 +6918,9 @@ msgstr "Citatos"
 #: ../gramps/plugins/view/noteview.py:113
 #: ../gramps/plugins/view/view.gpr.py:103
 #: ../gramps/plugins/view/view.gpr.py:111
-#: ../gramps/plugins/webreport/basepage.py:1659
-#: ../gramps/plugins/webreport/basepage.py:2828
-#: ../gramps/plugins/webreport/person.py:1640
+#: ../gramps/plugins/webreport/basepage.py:1661
+#: ../gramps/plugins/webreport/basepage.py:2830
+#: ../gramps/plugins/webreport/person.py:1641
 #: ../gramps/plugins/webreport/updates.py:158
 msgid "Notes"
 msgstr "Pastabos"
@@ -6968,9 +6931,9 @@ msgstr "Pastabos"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
 #: ../gramps/plugins/view/geoplaces.py:602
 #: ../gramps/plugins/view/repoview.py:90
-#: ../gramps/plugins/webreport/basepage.py:1508
-#: ../gramps/plugins/webreport/basepage.py:3422
-#: ../gramps/plugins/webreport/basepage.py:3500
+#: ../gramps/plugins/webreport/basepage.py:1510
+#: ../gramps/plugins/webreport/basepage.py:3424
+#: ../gramps/plugins/webreport/basepage.py:3502
 msgid "Street"
 msgstr "Gatvė"
 
@@ -6980,9 +6943,9 @@ msgstr "Gatvė"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
 #: ../gramps/plugins/view/geoplaces.py:600
 #: ../gramps/plugins/view/repoview.py:91
-#: ../gramps/plugins/webreport/basepage.py:1509
-#: ../gramps/plugins/webreport/basepage.py:3423
-#: ../gramps/plugins/webreport/basepage.py:3501
+#: ../gramps/plugins/webreport/basepage.py:1511
+#: ../gramps/plugins/webreport/basepage.py:3425
+#: ../gramps/plugins/webreport/basepage.py:3503
 msgid "Locality"
 msgstr "Vietovė"
 
@@ -6992,9 +6955,9 @@ msgstr "Vietovė"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
 #: ../gramps/plugins/view/geoplaces.py:628
 #: ../gramps/plugins/view/repoview.py:92
-#: ../gramps/plugins/webreport/basepage.py:1510
-#: ../gramps/plugins/webreport/basepage.py:3424
-#: ../gramps/plugins/webreport/basepage.py:3502
+#: ../gramps/plugins/webreport/basepage.py:1512
+#: ../gramps/plugins/webreport/basepage.py:3426
+#: ../gramps/plugins/webreport/basepage.py:3504
 msgid "City"
 msgstr "Miestas"
 
@@ -7004,9 +6967,9 @@ msgstr "Miestas"
 #: ../gramps/gui/views/treemodels/placemodel.py:350
 #: ../gramps/plugins/lib/maps/placeselection.py:162
 #: ../gramps/plugins/view/geoplaces.py:616
-#: ../gramps/plugins/webreport/basepage.py:1512
-#: ../gramps/plugins/webreport/basepage.py:3426
-#: ../gramps/plugins/webreport/basepage.py:3504
+#: ../gramps/plugins/webreport/basepage.py:1514
+#: ../gramps/plugins/webreport/basepage.py:3428
+#: ../gramps/plugins/webreport/basepage.py:3506
 msgid "County"
 msgstr "Apygarda"
 
@@ -7027,18 +6990,18 @@ msgstr "Valstija"
 #: ../gramps/plugins/lib/maps/placeselection.py:160
 #: ../gramps/plugins/view/geoplaces.py:614
 #: ../gramps/plugins/view/repoview.py:94
-#: ../gramps/plugins/webreport/basepage.py:1514
-#: ../gramps/plugins/webreport/basepage.py:3430
-#: ../gramps/plugins/webreport/basepage.py:3507
-#: ../gramps/plugins/webreport/place.py:348
-#: ../gramps/plugins/webreport/place.py:360
+#: ../gramps/plugins/webreport/basepage.py:1516
+#: ../gramps/plugins/webreport/basepage.py:3432
+#: ../gramps/plugins/webreport/basepage.py:3509
+#: ../gramps/plugins/webreport/place.py:350
+#: ../gramps/plugins/webreport/place.py:362
 msgid "Country"
 msgstr "Šalis"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:98
-#: ../gramps/plugins/webreport/basepage.py:1513
-#: ../gramps/plugins/webreport/basepage.py:3428
-#: ../gramps/plugins/webreport/basepage.py:3506
+#: ../gramps/plugins/webreport/basepage.py:1515
+#: ../gramps/plugins/webreport/basepage.py:3430
+#: ../gramps/plugins/webreport/basepage.py:3508
 msgid "Postal Code"
 msgstr "Pašto kodas"
 
@@ -7050,7 +7013,7 @@ msgstr "Pašto kodas"
 #: ../gramps/plugins/gramplet/repositorydetails.py:131
 #: ../gramps/plugins/lib/libgedcom.py:4585
 #: ../gramps/plugins/lib/libgedcom.py:6375
-#: ../gramps/plugins/webreport/basepage.py:1515
+#: ../gramps/plugins/webreport/basepage.py:1517
 msgid "Phone"
 msgstr "Telefonas"
 
@@ -7069,8 +7032,8 @@ msgstr "Požymis"
 #: ../gramps/plugins/gramplet/attributes.py:61
 #: ../gramps/plugins/lib/libmetadata.py:231
 #: ../gramps/plugins/tool/patchnames.py:463
-#: ../gramps/plugins/webreport/basepage.py:1398
-#: ../gramps/plugins/webreport/basepage.py:1658
+#: ../gramps/plugins/webreport/basepage.py:1400
+#: ../gramps/plugins/webreport/basepage.py:1660
 msgid "Value"
 msgstr "Reikšmė"
 
@@ -7110,9 +7073,9 @@ msgstr "Luomas"
 #: ../gramps/plugins/tool/sortevents.py:63
 #: ../gramps/plugins/view/eventview.py:81
 #: ../gramps/plugins/webreport/basepage.py:863
-#: ../gramps/plugins/webreport/basepage.py:1279
-#: ../gramps/plugins/webreport/basepage.py:2915
-#: ../gramps/plugins/webreport/basepage.py:3707
+#: ../gramps/plugins/webreport/basepage.py:1281
+#: ../gramps/plugins/webreport/basepage.py:2917
+#: ../gramps/plugins/webreport/basepage.py:3709
 #: ../gramps/plugins/webreport/download.py:129
 #: ../gramps/plugins/webreport/heatmap.py:250
 #: ../gramps/plugins/webreport/heatmap.py:382
@@ -7285,11 +7248,11 @@ msgstr "Citata"
 #: ../gramps/plugins/quickview/filterbyname.py:359
 #: ../gramps/plugins/tool/findloop.py:116
 #: ../gramps/plugins/tool/findloop.py:118
-#: ../gramps/plugins/webreport/basepage.py:3372
+#: ../gramps/plugins/webreport/basepage.py:3374
 #: ../gramps/plugins/webreport/event.py:329
 #: ../gramps/plugins/webreport/event.py:554
 #: ../gramps/plugins/webreport/media.py:626
-#: ../gramps/plugins/webreport/person.py:1884
+#: ../gramps/plugins/webreport/person.py:1885
 #: ../gramps/plugins/webreport/repository.py:264
 #: ../gramps/plugins/webreport/source.py:398
 msgid "Gramps ID"
@@ -7298,7 +7261,7 @@ msgstr "Gramps ID"
 #: ../gramps/gen/lib/citation.py:117
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:87
 #: ../gramps/plugins/importer/importprogen.glade:336
-#: ../gramps/plugins/webreport/basepage.py:3052
+#: ../gramps/plugins/webreport/basepage.py:3054
 msgid "Page"
 msgstr "Puslapis"
 
@@ -7307,7 +7270,7 @@ msgstr "Puslapis"
 #: ../gramps/plugins/importer/importprogen.glade:305
 #: ../gramps/plugins/view/citationlistview.py:103
 #: ../gramps/plugins/view/citationtreeview.py:98
-#: ../gramps/plugins/webreport/basepage.py:3053
+#: ../gramps/plugins/webreport/basepage.py:3055
 msgid "Confidence"
 msgstr "Patikimumas"
 
@@ -7361,11 +7324,11 @@ msgstr "Šaltinis"
 #: ../gramps/plugins/tool/reorderids.glade:849
 #: ../gramps/plugins/view/mediaview.py:145
 #: ../gramps/plugins/view/view.gpr.py:87 ../gramps/plugins/view/view.gpr.py:95
-#: ../gramps/plugins/webreport/basepage.py:2065
-#: ../gramps/plugins/webreport/basepage.py:2140
-#: ../gramps/plugins/webreport/basepage.py:2269
-#: ../gramps/plugins/webreport/basepage.py:2314
-#: ../gramps/plugins/webreport/basepage.py:2630
+#: ../gramps/plugins/webreport/basepage.py:2067
+#: ../gramps/plugins/webreport/basepage.py:2142
+#: ../gramps/plugins/webreport/basepage.py:2271
+#: ../gramps/plugins/webreport/basepage.py:2316
+#: ../gramps/plugins/webreport/basepage.py:2632
 #: ../gramps/plugins/webreport/media.py:212
 #: ../gramps/plugins/webreport/media.py:418
 #: ../gramps/plugins/webreport/updates.py:152
@@ -7409,12 +7372,12 @@ msgstr "Paskutinis keitimas"
 #: ../gramps/plugins/view/mediaview.py:106
 #: ../gramps/plugins/view/noteview.py:86 ../gramps/plugins/view/repoview.py:99
 #: ../gramps/plugins/view/sourceview.py:90
-#: ../gramps/plugins/webreport/basepage.py:3521
+#: ../gramps/plugins/webreport/basepage.py:3523
 #: ../gramps/plugins/webreport/event.py:581
 #: ../gramps/plugins/webreport/family.py:519
 #: ../gramps/plugins/webreport/media.py:672
-#: ../gramps/plugins/webreport/narrativeweb.py:3242
-#: ../gramps/plugins/webreport/person.py:1979
+#: ../gramps/plugins/webreport/narrativeweb.py:3243
+#: ../gramps/plugins/webreport/person.py:1980
 #: ../gramps/plugins/webreport/repository.py:287
 #: ../gramps/plugins/webreport/source.py:414
 msgid "Tags"
@@ -7463,7 +7426,7 @@ msgid "about"
 msgstr "apie"
 
 #: ../gramps/gen/lib/date.py:323 ../gramps/gen/lib/date.py:370
-#: ../gramps/gen/lib/date.py:392 ../gramps/plugins/webreport/basepage.py:3783
+#: ../gramps/gen/lib/date.py:392 ../gramps/plugins/webreport/basepage.py:3785
 msgid "between"
 msgstr "tarp"
 
@@ -7471,7 +7434,7 @@ msgstr "tarp"
 #: ../gramps/gen/lib/date.py:396 ../gramps/gui/merge/mergefamily.py:157
 #: ../gramps/plugins/quickview/all_relations.py:339
 #: ../gramps/plugins/view/relview.py:1209
-#: ../gramps/plugins/webreport/basepage.py:3784
+#: ../gramps/plugins/webreport/basepage.py:3786
 msgid "and"
 msgstr "ir"
 
@@ -7571,14 +7534,14 @@ msgstr "0 dienų"
 #: ../gramps/plugins/view/eventview.py:84
 #: ../gramps/plugins/view/mediaview.py:104
 #: ../gramps/plugins/webreport/basepage.py:861
-#: ../gramps/plugins/webreport/basepage.py:1274
-#: ../gramps/plugins/webreport/basepage.py:1318
-#: ../gramps/plugins/webreport/basepage.py:1507
-#: ../gramps/plugins/webreport/basepage.py:3051
+#: ../gramps/plugins/webreport/basepage.py:1276
+#: ../gramps/plugins/webreport/basepage.py:1320
+#: ../gramps/plugins/webreport/basepage.py:1509
+#: ../gramps/plugins/webreport/basepage.py:3053
 #: ../gramps/plugins/webreport/event.py:328
 #: ../gramps/plugins/webreport/media.py:249
 #: ../gramps/plugins/webreport/media.py:653
-#: ../gramps/plugins/webreport/person.py:1114
+#: ../gramps/plugins/webreport/person.py:1115
 msgid "Date"
 msgstr "Data"
 
@@ -7647,18 +7610,18 @@ msgid "none"
 msgstr "prieš "
 
 #: ../gramps/gen/lib/date.py:2002 ../gramps/plugins/lib/libsubstkeyword.py:319
-#: ../gramps/plugins/webreport/basepage.py:3790
+#: ../gramps/plugins/webreport/basepage.py:3792
 msgid "before"
 msgstr "prieš"
 
 #: ../gramps/gen/lib/date.py:2003 ../gramps/plugins/lib/libprogen.py:2029
 #: ../gramps/plugins/lib/libsubstkeyword.py:320
-#: ../gramps/plugins/webreport/basepage.py:3788
+#: ../gramps/plugins/webreport/basepage.py:3790
 msgid "after"
 msgstr "po"
 
 #: ../gramps/gen/lib/date.py:2004 ../gramps/plugins/lib/libsubstkeyword.py:321
-#: ../gramps/plugins/webreport/basepage.py:3792
+#: ../gramps/plugins/webreport/basepage.py:3794
 msgid "about"
 msgstr "apie"
 
@@ -7739,8 +7702,8 @@ msgstr "Įvykis"
 #: ../gramps/plugins/tool/sortevents.py:64
 #: ../gramps/plugins/view/eventview.py:85
 #: ../gramps/plugins/webreport/basepage.py:862
-#: ../gramps/plugins/webreport/basepage.py:1278
-#: ../gramps/plugins/webreport/basepage.py:1320
+#: ../gramps/plugins/webreport/basepage.py:1280
+#: ../gramps/plugins/webreport/basepage.py:1322
 msgid "Place"
 msgstr "Vieta"
 
@@ -7756,9 +7719,9 @@ msgstr "Vieta"
 #: ../gramps/plugins/textreport/indivcomplete.py:496
 #: ../gramps/plugins/textreport/indivcomplete.py:722
 #: ../gramps/plugins/webreport/basepage.py:603
-#: ../gramps/plugins/webreport/basepage.py:1382
-#: ../gramps/plugins/webreport/basepage.py:1632
-#: ../gramps/plugins/webreport/basepage.py:1641
+#: ../gramps/plugins/webreport/basepage.py:1384
+#: ../gramps/plugins/webreport/basepage.py:1634
+#: ../gramps/plugins/webreport/basepage.py:1643
 msgid "Attributes"
 msgstr "Požymiai"
 
@@ -7824,7 +7787,7 @@ msgstr "tėvai2"
 #: ../gramps/plugins/textreport/tagreport.py:261
 #: ../gramps/plugins/view/familyview.py:83
 #: ../gramps/plugins/view/relview.py:1107
-#: ../gramps/plugins/webreport/person.py:2118
+#: ../gramps/plugins/webreport/person.py:2119
 msgid "Father"
 msgstr "Tėvas"
 
@@ -7846,7 +7809,7 @@ msgstr "Tėvas"
 #: ../gramps/plugins/textreport/tagreport.py:267
 #: ../gramps/plugins/view/familyview.py:84
 #: ../gramps/plugins/view/relview.py:1108
-#: ../gramps/plugins/webreport/person.py:2131
+#: ../gramps/plugins/webreport/person.py:2132
 msgid "Mother"
 msgstr "Motina"
 
@@ -7947,7 +7910,7 @@ msgstr "Įteisinimas"
 #: ../gramps/plugins/lib/libprogen.py:2017
 #: ../gramps/plugins/lib/libprogen.py:2019
 #: ../gramps/plugins/webreport/addressbooklist.py:119
-#: ../gramps/plugins/webreport/basepage.py:3682
+#: ../gramps/plugins/webreport/basepage.py:3684
 msgid "Residence"
 msgstr "Gyvenamoji vieta"
 
@@ -8437,13 +8400,13 @@ msgstr "Vaikai"
 #: ../gramps/plugins/textreport/tagreport.py:333
 #: ../gramps/plugins/view/eventview.py:140
 #: ../gramps/plugins/view/view.gpr.py:39 ../gramps/plugins/view/view.gpr.py:47
-#: ../gramps/plugins/webreport/basepage.py:2058
-#: ../gramps/plugins/webreport/basepage.py:2137
-#: ../gramps/plugins/webreport/basepage.py:2260
+#: ../gramps/plugins/webreport/basepage.py:2060
+#: ../gramps/plugins/webreport/basepage.py:2139
+#: ../gramps/plugins/webreport/basepage.py:2262
 #: ../gramps/plugins/webreport/event.py:267
 #: ../gramps/plugins/webreport/event.py:515
-#: ../gramps/plugins/webreport/narrativeweb.py:3236
-#: ../gramps/plugins/webreport/person.py:2005
+#: ../gramps/plugins/webreport/narrativeweb.py:3237
+#: ../gramps/plugins/webreport/person.py:2006
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
 msgstr "Įvykiai"
@@ -8520,10 +8483,10 @@ msgstr "Civilinis surašymas"
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/mediaview.py:102
 #: ../gramps/plugins/view/noteview.py:84 ../gramps/plugins/view/repoview.py:88
-#: ../gramps/plugins/webreport/basepage.py:1317
-#: ../gramps/plugins/webreport/basepage.py:1657
-#: ../gramps/plugins/webreport/basepage.py:2914
-#: ../gramps/plugins/webreport/basepage.py:3637
+#: ../gramps/plugins/webreport/basepage.py:1319
+#: ../gramps/plugins/webreport/basepage.py:1659
+#: ../gramps/plugins/webreport/basepage.py:2916
+#: ../gramps/plugins/webreport/basepage.py:3639
 #: ../gramps/plugins/webreport/event.py:327
 #: ../gramps/plugins/webreport/repository.py:174
 #: ../gramps/plugins/webreport/repository.py:273
@@ -8619,7 +8582,7 @@ msgstr "PDŠ (mormonų) ceremonijos"
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
 #: ../gramps/plugins/textreport/indivcomplete.py:533
 #: ../gramps/plugins/textreport/indivcomplete.py:738
-#: ../gramps/plugins/webreport/basepage.py:1319
+#: ../gramps/plugins/webreport/basepage.py:1321
 msgid "Temple"
 msgstr "Šventykla"
 
@@ -8632,7 +8595,7 @@ msgstr "Šventykla"
 #: ../gramps/plugins/textreport/indivcomplete.py:532
 #: ../gramps/plugins/textreport/indivcomplete.py:737
 #: ../gramps/plugins/textreport/notelinkreport.py:103
-#: ../gramps/plugins/webreport/basepage.py:1321
+#: ../gramps/plugins/webreport/basepage.py:1323
 msgid "Status"
 msgstr "Būsena"
 
@@ -8718,7 +8681,7 @@ msgstr "Regionas"
 #: ../gramps/plugins/tool/verify.py:823 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:546
 #: ../gramps/plugins/webreport/person.py:423
-#: ../gramps/plugins/webreport/person.py:2348
+#: ../gramps/plugins/webreport/person.py:2349
 #: ../gramps/plugins/webreport/surname.py:148
 msgid "Name"
 msgstr "Pavadinimas"
@@ -8727,11 +8690,11 @@ msgstr "Pavadinimas"
 msgid "Given name"
 msgstr "Duotas vardas"
 
-#: ../gramps/gen/lib/name.py:185 ../gramps/plugins/webreport/basepage.py:2056
-#: ../gramps/plugins/webreport/basepage.py:2114
-#: ../gramps/plugins/webreport/basepage.py:2117
-#: ../gramps/plugins/webreport/basepage.py:2251
-#: ../gramps/plugins/webreport/narrativeweb.py:3239
+#: ../gramps/gen/lib/name.py:185 ../gramps/plugins/webreport/basepage.py:2058
+#: ../gramps/plugins/webreport/basepage.py:2116
+#: ../gramps/plugins/webreport/basepage.py:2119
+#: ../gramps/plugins/webreport/basepage.py:2253
+#: ../gramps/plugins/webreport/narrativeweb.py:3240
 #: ../gramps/plugins/webreport/person.py:234
 #: ../gramps/plugins/webreport/surnamelist.py:111
 #: ../gramps/plugins/webreport/surnamelist.py:184
@@ -8770,7 +8733,7 @@ msgstr "Priesaga"
 #: ../gramps/plugins/textreport/tagreport.py:754
 #: ../gramps/plugins/view/mediaview.py:100
 #: ../gramps/plugins/view/sourceview.py:84
-#: ../gramps/plugins/webreport/basepage.py:3636
+#: ../gramps/plugins/webreport/basepage.py:3638
 msgid "Title"
 msgstr "Antraštė"
 
@@ -8926,7 +8889,7 @@ msgstr "Pavardė po santuokos"
 #: ../gramps/plugins/textreport/familygroup.py:440
 #: ../gramps/plugins/tool/reorderids.glade:861
 #: ../gramps/plugins/webreport/basepage.py:838
-#: ../gramps/plugins/webreport/basepage.py:2862
+#: ../gramps/plugins/webreport/basepage.py:2864
 msgid "Note"
 msgstr "Pastaba"
 
@@ -8940,7 +8903,7 @@ msgstr "Formatas"
 #: ../gramps/gui/editors/editeventref.py:102
 #: ../gramps/gui/editors/editmediaref.py:121
 #: ../gramps/gui/editors/editplaceref.py:84
-#: ../gramps/gui/editors/editreporef.py:73
+#: ../gramps/gui/editors/editreporef.py:83
 #: ../gramps/gui/glade/editeventref.glade:199
 #: ../gramps/gui/glade/editeventref.glade:615
 #: ../gramps/gui/glade/editmediaref.glade:343
@@ -9071,7 +9034,7 @@ msgstr "Vaiko nuorodų pastaba"
 #: ../gramps/plugins/lib/libpersonview.py:102
 #: ../gramps/plugins/quickview/siblings.py:50
 #: ../gramps/plugins/textreport/indivcomplete.py:957
-#: ../gramps/plugins/webreport/person.py:1895
+#: ../gramps/plugins/webreport/person.py:1896
 msgid "Gender"
 msgstr "Lytis"
 
@@ -9104,9 +9067,9 @@ msgstr "Įvykio nuorodos"
 #: ../gramps/plugins/view/view.gpr.py:55 ../gramps/plugins/view/view.gpr.py:63
 #: ../gramps/plugins/webreport/basepage.py:402
 #: ../gramps/plugins/webreport/basepage.py:462
-#: ../gramps/plugins/webreport/basepage.py:2057
-#: ../gramps/plugins/webreport/basepage.py:2122
-#: ../gramps/plugins/webreport/basepage.py:2252
+#: ../gramps/plugins/webreport/basepage.py:2059
+#: ../gramps/plugins/webreport/basepage.py:2124
+#: ../gramps/plugins/webreport/basepage.py:2254
 #: ../gramps/plugins/webreport/family.py:251
 #: ../gramps/plugins/webreport/updates.py:113
 msgid "Families"
@@ -9119,7 +9082,7 @@ msgstr "Tėvų šeimos"
 #: ../gramps/gen/lib/person.py:235 ../gramps/gen/lib/repo.py:114
 #: ../gramps/gui/merge/mergeperson.py:292
 #: ../gramps/plugins/textreport/indivcomplete.py:444
-#: ../gramps/plugins/webreport/basepage.py:1461
+#: ../gramps/plugins/webreport/basepage.py:1463
 msgid "Addresses"
 msgstr "Adresai"
 
@@ -9148,8 +9111,8 @@ msgstr "Ryšys"
 #: ../gramps/plugins/gramplet/coordinates.py:106
 #: ../gramps/plugins/gramplet/placedetails.py:144
 #: ../gramps/plugins/lib/libplaceview.py:92
-#: ../gramps/plugins/webreport/basepage.py:3415
-#: ../gramps/plugins/webreport/place.py:350
+#: ../gramps/plugins/webreport/basepage.py:3417
+#: ../gramps/plugins/webreport/place.py:352
 msgid "Longitude"
 msgstr "Ilguma"
 
@@ -9157,8 +9120,8 @@ msgstr "Ilguma"
 #: ../gramps/plugins/gramplet/coordinates.py:105
 #: ../gramps/plugins/gramplet/placedetails.py:142
 #: ../gramps/plugins/lib/libplaceview.py:91
-#: ../gramps/plugins/webreport/basepage.py:3394
-#: ../gramps/plugins/webreport/place.py:349
+#: ../gramps/plugins/webreport/basepage.py:3396
+#: ../gramps/plugins/webreport/place.py:351
 msgid "Latitude"
 msgstr "Platuma"
 
@@ -9169,18 +9132,18 @@ msgstr "Platuma"
 #: ../gramps/plugins/view/view.gpr.py:235
 #: ../gramps/plugins/view/view.gpr.py:243
 #: ../gramps/plugins/view/view.gpr.py:259
-#: ../gramps/plugins/webreport/basepage.py:2059
-#: ../gramps/plugins/webreport/basepage.py:2131
-#: ../gramps/plugins/webreport/basepage.py:2261
-#: ../gramps/plugins/webreport/place.py:282
-#: ../gramps/plugins/webreport/place.py:479
+#: ../gramps/plugins/webreport/basepage.py:2061
+#: ../gramps/plugins/webreport/basepage.py:2133
+#: ../gramps/plugins/webreport/basepage.py:2263
+#: ../gramps/plugins/webreport/place.py:284
+#: ../gramps/plugins/webreport/place.py:484
 #: ../gramps/plugins/webreport/updates.py:127
 msgid "Places"
 msgstr "Vietovės"
 
 #: ../gramps/gen/lib/place.py:175 ../gramps/gui/merge/mergeperson.py:218
 #: ../gramps/plugins/textreport/indivcomplete.py:416
-#: ../gramps/plugins/webreport/basepage.py:3461
+#: ../gramps/plugins/webreport/basepage.py:3463
 msgid "Alternate Names"
 msgstr "Kiti vardai"
 
@@ -9192,7 +9155,7 @@ msgstr "Kiti vardai"
 msgid "Code"
 msgstr "Kodas"
 
-#: ../gramps/gen/lib/place.py:182 ../gramps/plugins/webreport/basepage.py:3491
+#: ../gramps/gen/lib/place.py:182 ../gramps/plugins/webreport/basepage.py:3493
 msgid "Alternate Locations"
 msgstr "Kitos vietos"
 
@@ -9207,8 +9170,8 @@ msgstr "Vietovės pavadinimas"
 
 #: ../gramps/gen/lib/placename.py:100
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:66
-#: ../gramps/plugins/webreport/basepage.py:2175
-#: ../gramps/plugins/webreport/basepage.py:3468
+#: ../gramps/plugins/webreport/basepage.py:2177
+#: ../gramps/plugins/webreport/basepage.py:3470
 msgid "Language"
 msgstr "Kalba"
 
@@ -9217,7 +9180,7 @@ msgid "Place ref"
 msgstr "Vietovės nuoroda"
 
 #: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:618
-#: ../gramps/plugins/webreport/basepage.py:3429
+#: ../gramps/plugins/webreport/basepage.py:3431
 msgid "Province"
 msgstr "Provincija"
 
@@ -9263,7 +9226,7 @@ msgstr "Pastatas"
 
 #: ../gramps/gen/lib/placetype.py:94 ../gramps/plugins/gramplet/leak.py:98
 #: ../gramps/plugins/view/geoplaces.py:613
-#: ../gramps/plugins/webreport/basepage.py:3635
+#: ../gramps/plugins/webreport/basepage.py:3637
 #: ../gramps/plugins/webreport/source.py:206
 msgid "Number"
 msgstr "Skaičius"
@@ -9360,10 +9323,10 @@ msgstr "Sutrumpinimas"
 #: ../gramps/plugins/view/repoview.py:156
 #: ../gramps/plugins/view/view.gpr.py:268
 #: ../gramps/plugins/view/view.gpr.py:276
-#: ../gramps/plugins/webreport/basepage.py:2062
-#: ../gramps/plugins/webreport/basepage.py:2128
-#: ../gramps/plugins/webreport/basepage.py:2263
-#: ../gramps/plugins/webreport/basepage.py:3626
+#: ../gramps/plugins/webreport/basepage.py:2064
+#: ../gramps/plugins/webreport/basepage.py:2130
+#: ../gramps/plugins/webreport/basepage.py:2265
+#: ../gramps/plugins/webreport/basepage.py:3628
 #: ../gramps/plugins/webreport/repository.py:146
 #: ../gramps/plugins/webreport/repository.py:243
 #: ../gramps/plugins/webreport/updates.py:141
@@ -9740,7 +9703,7 @@ msgstr "Ryšių skaičiuotuvas"
 
 #: ../gramps/gen/plug/_pluginreg.py:129 ../gramps/gen/plug/_pluginreg.py:517
 #: ../gramps/gui/glade/grampletpane.glade:153
-#: ../gramps/gui/widgets/grampletbar.py:700
+#: ../gramps/gui/widgets/grampletbar.py:701
 #: ../gramps/gui/widgets/grampletpane.py:246
 #: ../gramps/gui/widgets/grampletpane.py:1005
 msgid "Gramplet"
@@ -9770,7 +9733,7 @@ msgstr "Leidinio informacija"
 #: ../gramps/gen/plug/_pluginreg.py:645
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
 #: ../gramps/plugins/importer/importprogen.glade:1256
-#: ../gramps/plugins/webreport/basepage.py:2317
+#: ../gramps/plugins/webreport/basepage.py:2319
 #: ../gramps/plugins/webreport/statistics.py:184
 #: ../gramps/plugins/webreport/statistics.py:264
 msgid "Miscellaneous"
@@ -10732,7 +10695,7 @@ msgstr "Neįtraukti"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1137
 #: ../gramps/plugins/textreport/familygroup.py:760
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
-#: ../gramps/plugins/webreport/narrativeweb.py:2592
+#: ../gramps/plugins/webreport/narrativeweb.py:2593
 msgid "Include"
 msgstr "Intarpas"
 
@@ -10786,11 +10749,11 @@ msgstr "Tokios rinkmenos nėra"
 #: ../gramps/gen/plug/report/utils.py:186
 #: ../gramps/plugins/textreport/indivcomplete.py:944
 #: ../gramps/plugins/textreport/simplebooktitle.py:114
-#: ../gramps/plugins/webreport/basepage.py:2430
-#: ../gramps/plugins/webreport/basepage.py:2667
-#: ../gramps/plugins/webreport/basepage.py:2677
-#: ../gramps/plugins/webreport/basepage.py:2708
-#: ../gramps/plugins/webreport/basepage.py:2767
+#: ../gramps/plugins/webreport/basepage.py:2432
+#: ../gramps/plugins/webreport/basepage.py:2669
+#: ../gramps/plugins/webreport/basepage.py:2679
+#: ../gramps/plugins/webreport/basepage.py:2710
+#: ../gramps/plugins/webreport/basepage.py:2769
 msgid "Could not add photo to page"
 msgstr "Nuotraukos pridėti negalima į šį puslapį"
 
@@ -12225,7 +12188,7 @@ msgstr "_Pritaikyti"
 #: ../gramps/gui/columnorder.py:142
 #: ../gramps/plugins/drawreport/ancestortree.py:973
 #: ../gramps/plugins/drawreport/descendtree.py:1708
-#: ../gramps/plugins/webreport/narrativeweb.py:2285
+#: ../gramps/plugins/webreport/narrativeweb.py:2286
 msgid "Display"
 msgstr "Atvaizduoti"
 
@@ -12263,7 +12226,7 @@ msgstr "Vardų redaktorius"
 #: ../gramps/gui/plug/_windows.py:1716 ../gramps/gui/plug/_windows.py:1776
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
-#: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:708
+#: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:709
 #: ../gramps/gui/widgets/grampletpane.py:258
 #: ../gramps/plugins/lib/maps/placeselection.py:122
 #: ../gramps/plugins/tool/dumpgenderstats.py:86
@@ -12418,7 +12381,7 @@ msgstr "%s: "
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
-#: ../gramps/gui/widgets/grampletbar.py:712
+#: ../gramps/gui/widgets/grampletbar.py:713
 #: ../gramps/gui/widgets/grampletpane.py:264
 #: ../gramps/plugins/importer/importprogen.glade:61
 #: ../gramps/plugins/tool/changenames.glade:72
@@ -13326,7 +13289,7 @@ msgstr "Pasirinkite vaizdo/garso aplanką"
 #: ../gramps/gui/plug/_windows.py:1427
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:267
-#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1261
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
 #: ../gramps/gui/widgets/progressdialog.py:441
 #: ../gramps/plugins/importer/importprogen.glade:28
@@ -13389,8 +13352,8 @@ msgstr "Mirė:"
 #: ../gramps/gui/configure.py:2803
 #: ../gramps/plugins/quickview/all_relations.py:345
 #: ../gramps/plugins/view/relview.py:498
-#: ../gramps/plugins/webreport/basepage.py:3168
 #: ../gramps/plugins/webreport/basepage.py:3170
+#: ../gramps/plugins/webreport/basepage.py:3172
 #: ../gramps/plugins/webreport/person.py:437
 #: ../gramps/plugins/webreport/surname.py:162
 msgid "Partner"
@@ -14605,7 +14568,7 @@ msgid "_Notes"
 msgstr "_Pastabos"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:51
-#: ../gramps/plugins/webreport/basepage.py:2301
+#: ../gramps/plugins/webreport/basepage.py:2303
 msgid "Personal"
 msgstr "Asmeninis"
 
@@ -14698,7 +14661,7 @@ msgstr "Alternatyvūs vardai"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:76
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:120
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1504
-#: ../gramps/plugins/webreport/basepage.py:3529
+#: ../gramps/plugins/webreport/basepage.py:3531
 msgid "Enclosed By"
 msgstr "Pridėjo"
 
@@ -15052,7 +15015,7 @@ msgstr "Įvykio nuorodų redaktorius"
 #: ../gramps/gui/editors/editmediaref.py:130
 #: ../gramps/gui/editors/editname.py:139
 #: ../gramps/gui/editors/editplaceref.py:91
-#: ../gramps/gui/editors/editreporef.py:80
+#: ../gramps/gui/editors/editreporef.py:90
 msgid "_General"
 msgstr "_Paprastas"
 
@@ -15521,8 +15484,8 @@ msgstr "Pastaba: %(id)s - %(context)s"
 #: ../gramps/gui/editors/editnote.py:180
 #: ../gramps/plugins/webreport/basepage.py:829
 #: ../gramps/plugins/webreport/basepage.py:832
-#: ../gramps/plugins/webreport/basepage.py:2853
-#: ../gramps/plugins/webreport/basepage.py:2856
+#: ../gramps/plugins/webreport/basepage.py:2855
+#: ../gramps/plugins/webreport/basepage.py:2858
 #, python-format
 msgid "Note: %s"
 msgstr "Pastaba: %s"
@@ -15811,29 +15774,29 @@ msgstr "Nepavyksta išsaugoti saugyklos. Toks ID jau egzistuoja."
 msgid "Cannot save item. ID already exists."
 msgstr "Negalima išsaugoti įrašo. Toks ID jau yra."
 
-#: ../gramps/gui/editors/editreporef.py:61
+#: ../gramps/gui/editors/editreporef.py:71
 msgid "Repository Reference Editor"
 msgstr "Talpyklos nuorodos redaktorius"
 
-#: ../gramps/gui/editors/editreporef.py:213
+#: ../gramps/gui/editors/editreporef.py:226
 #, python-format
 msgid "Repository: %s"
 msgstr "Talpykla: %s"
 
-#: ../gramps/gui/editors/editreporef.py:215
+#: ../gramps/gui/editors/editreporef.py:228
 #: ../gramps/gui/editors/editrepository.py:87
 msgid "New Repository"
 msgstr "Nauja talpykla"
 
-#: ../gramps/gui/editors/editreporef.py:216
+#: ../gramps/gui/editors/editreporef.py:229
 msgid "Repo Reference Editor"
 msgstr "Talpyklos nuorodos redaktorius"
 
-#: ../gramps/gui/editors/editreporef.py:222
+#: ../gramps/gui/editors/editreporef.py:235
 msgid "Modify Repository"
 msgstr "Taisyti talpyklą"
 
-#: ../gramps/gui/editors/editreporef.py:227
+#: ../gramps/gui/editors/editreporef.py:240
 msgid "Add Repository"
 msgstr "Pridėti talpyklą"
 
@@ -16132,6 +16095,31 @@ msgstr "Filtro testas"
 msgid "Comment"
 msgstr "Komentaras"
 
+#: ../gramps/gui/editors/filtereditor.py:1225
+#: ../gramps/plugins/drawreport/calendarreport.py:600
+#: ../gramps/plugins/drawreport/statisticschart.py:1125
+#: ../gramps/plugins/drawreport/timeline.py:428
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1169
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1185
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1201
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1217
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1233
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1265
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1297
+#: ../gramps/plugins/graph/gvrelgraph.py:881
+#: ../gramps/plugins/quickview/quickview.gpr.py:143
+#: ../gramps/plugins/textreport/birthdayreport.py:561
+#: ../gramps/plugins/textreport/familygroup.py:722
+#: ../gramps/plugins/textreport/indivcomplete.py:1101
+#: ../gramps/plugins/textreport/recordsreport.py:236
+#: ../gramps/plugins/tool/sortevents.py:177
+#: ../gramps/plugins/webreport/narrativeweb.py:2131
+#: ../gramps/plugins/webreport/webcal.py:1851
+msgid "Filter"
+msgstr "Filtras"
+
 #: ../gramps/gui/editors/filtereditor.py:1237
 msgid "Custom Filter Editor"
 msgstr "Papildomų filtrų redaktorius"
@@ -16321,8 +16309,8 @@ msgstr "%s nėra"
 msgid "%s does not contain"
 msgstr "%s savyje neturi"
 
-#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1384
-#: ../gramps/gui/views/listview.py:1404 ../gramps/plugins/gramplet/leak.py:201
+#: ../gramps/gui/filters/_searchbar.py:184 ../gramps/gui/views/listview.py:1389
+#: ../gramps/gui/views/listview.py:1409 ../gramps/plugins/gramplet/leak.py:201
 #: ../gramps/plugins/gramplet/leak.py:208
 msgid "Updating display..."
 msgstr "Atnaujinamas vaizdas..."
@@ -16374,7 +16362,7 @@ msgstr "Dalyviai"
 #: ../gramps/gui/widgets/reorderfam.py:105
 #: ../gramps/plugins/textreport/tagreport.py:273
 #: ../gramps/plugins/view/familyview.py:85
-#: ../gramps/plugins/webreport/person.py:1639
+#: ../gramps/plugins/webreport/person.py:1640
 msgid "Relationship"
 msgstr "Ryšiai"
 
@@ -16384,8 +16372,8 @@ msgstr "bet kurį"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:164
 #: ../gramps/plugins/export/exportcsv.py:428
-#: ../gramps/plugins/webreport/person.py:1955
-#: ../gramps/plugins/webreport/person.py:2349
+#: ../gramps/plugins/webreport/person.py:1956
+#: ../gramps/plugins/webreport/person.py:2350
 msgid "Birth date"
 msgstr "Gimimo data"
 
@@ -16404,8 +16392,8 @@ msgstr "Gimimo vieta"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:170
 #: ../gramps/plugins/export/exportcsv.py:434
-#: ../gramps/plugins/webreport/person.py:1966
-#: ../gramps/plugins/webreport/person.py:2350
+#: ../gramps/plugins/webreport/person.py:1967
+#: ../gramps/plugins/webreport/person.py:2351
 msgid "Death date"
 msgstr "Mirties data"
 
@@ -16745,7 +16733,7 @@ msgstr "Išeiti _neišsaugojus pakeitimų"
 
 #: ../gramps/gui/glade/dialog.glade:935
 #: ../gramps/gui/plug/report/_bookdialog.py:649
-#: ../gramps/gui/views/listview.py:1256
+#: ../gramps/gui/views/listview.py:1261
 #: ../gramps/gui/widgets/grampletpane.py:614
 #: ../gramps/plugins/tool/eventcmp.py:410
 msgid "_Save"
@@ -17198,6 +17186,14 @@ msgstr "Dalijama informacija"
 #: ../gramps/gui/glade/editsource.glade:28
 msgid "Abandon changes and close window"
 msgstr "Atmesti pakeitimus ir uždaryti langą"
+
+#: ../gramps/gui/glade/editfamily.glade:116
+#: ../gramps/gui/glade/editfamily.glade:379
+#, fuzzy
+#| msgid "Name:"
+msgctxt "family"
+msgid "Name:"
+msgstr "Vardas:"
 
 #: ../gramps/gui/glade/editfamily.glade:129
 #: ../gramps/gui/glade/editfamily.glade:392
@@ -17895,7 +17891,7 @@ msgid "Street Number"
 msgstr "Gatvė"
 
 #: ../gramps/gui/glade/editplacename.glade:157
-#: ../gramps/plugins/webreport/basepage.py:3457
+#: ../gramps/plugins/webreport/basepage.py:3459
 msgid "Date range in which the name is valid."
 msgstr "Datos intervalas, nuo kurios vardas yra galiojintis."
 
@@ -18254,7 +18250,7 @@ msgid "Note 2"
 msgstr "Pastaba 2"
 
 #: ../gramps/gui/glade/mergenote.glade:270
-#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1261
+#: ../gramps/gui/glade/mergenote.glade:285 ../gramps/gui/views/listview.py:1266
 msgid "Format:"
 msgstr "Formatas:"
 
@@ -18275,6 +18271,14 @@ msgstr "Asmuo 1"
 #: ../gramps/plugins/textreport/recordsreport.py:291
 msgid "Person 2"
 msgstr "Asmuo 2"
+
+#: ../gramps/gui/glade/mergeperson.glade:218
+#: ../gramps/gui/glade/mergeperson.glade:233
+#, fuzzy
+#| msgid "Name:"
+msgctxt "person"
+msgid "Name:"
+msgstr "Vardas:"
 
 #: ../gramps/gui/glade/mergeperson.glade:249
 #: ../gramps/gui/glade/mergeperson.glade:264
@@ -19074,15 +19078,15 @@ msgstr ""
 "Skaitykite Gramps README dokumentaciją apie diegimui būtinas sąlygas,\n"
 "kurios paprastai patalpintos aplanke /usr/share/doc/gramps.\n"
 
-#: ../gramps/gui/grampsgui.py:616
+#: ../gramps/gui/grampsgui.py:621
 msgid "Error parsing arguments"
 msgstr "Klaida apdorojant argumentus"
 
-#: ../gramps/gui/grampsgui.py:636
+#: ../gramps/gui/grampsgui.py:641
 msgid "Gramps terminated because of no DISPLAY"
 msgstr "Gramps baigė darbą, nes nėra VAIZDUOKLIO."
 
-#: ../gramps/gui/grampsgui.py:666 ../gramps/gui/grampsgui.py:747
+#: ../gramps/gui/grampsgui.py:671 ../gramps/gui/grampsgui.py:752
 msgid ""
 "\n"
 "Gramps failed to start. Please report a bug about this.\n"
@@ -19389,7 +19393,7 @@ msgstr "Apjungti asmenis"
 #: ../gramps/plugins/view/relview.py:689 ../gramps/plugins/view/relview.py:1068
 #: ../gramps/plugins/view/relview.py:1106
 #: ../gramps/plugins/webreport/person.py:442
-#: ../gramps/plugins/webreport/person.py:2326
+#: ../gramps/plugins/webreport/person.py:2327
 #: ../gramps/plugins/webreport/surname.py:167
 msgid "Parents"
 msgstr "Tėvai"
@@ -19653,8 +19657,8 @@ msgid "Installed"
 msgstr "Nestabilus"
 
 #: ../gramps/gui/plug/_windows.py:434 ../gramps/gui/plug/_windows.py:645
-#: ../gramps/plugins/webreport/basepage.py:2078
-#: ../gramps/plugins/webreport/basepage.py:2146
+#: ../gramps/plugins/webreport/basepage.py:2080
+#: ../gramps/plugins/webreport/basepage.py:2148
 #, fuzzy
 msgid "Updates"
 msgstr "Atnaujintas"
@@ -20527,7 +20531,7 @@ msgid "Paper Options"
 msgstr "Popieriaus parinktys"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:148
-#: ../gramps/plugins/webreport/narrativeweb.py:2172
+#: ../gramps/plugins/webreport/narrativeweb.py:2173
 msgid "HTML Options"
 msgstr "HTML parinktys"
 
@@ -20595,7 +20599,7 @@ msgstr "Stilius"
 #: ../gramps/plugins/textreport/summary.py:395
 #: ../gramps/plugins/textreport/tableofcontents.py:101
 #: ../gramps/plugins/textreport/tagreport.py:912
-#: ../gramps/plugins/webreport/narrativeweb.py:2107
+#: ../gramps/plugins/webreport/narrativeweb.py:2108
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Report Options"
 msgstr "Ataskaitos nuostatos"
@@ -21293,23 +21297,23 @@ msgstr "Ištrinti %s?"
 msgid "Column clicked, sorting..."
 msgstr "Stulpelis pasirinktas, rūšiuoju..."
 
-#: ../gramps/gui/views/listview.py:1251
+#: ../gramps/gui/views/listview.py:1256
 msgid "Export View as Spreadsheet"
 msgstr "Išsaugoti Vaizdą Skaičiuoklės Dokumentu"
 
-#: ../gramps/gui/views/listview.py:1266
+#: ../gramps/gui/views/listview.py:1271
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1267
+#: ../gramps/gui/views/listview.py:1272
 msgid "OpenDocument Spreadsheet"
 msgstr "„OpenDocument“ skaičialentė"
 
-#: ../gramps/gui/views/listview.py:1453
+#: ../gramps/gui/views/listview.py:1458
 msgid "Columns"
 msgstr "Stulpeliai"
 
-#: ../gramps/gui/views/listview.py:1463
+#: ../gramps/gui/views/listview.py:1468
 msgid "CSV Dialect"
 msgstr ""
 
@@ -21722,51 +21726,51 @@ msgstr "Grąžinti"
 msgid "Undo"
 msgstr "Atšaukti"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:471
+#: ../gramps/gui/widgets/styledtexteditor.py:475
 msgid ""
 "\n"
 "Command-Click to follow link"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:473
+#: ../gramps/gui/widgets/styledtexteditor.py:477
 msgid ""
 "\n"
 "Ctrl-Click to follow link"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:530
+#: ../gramps/gui/widgets/styledtexteditor.py:534
 msgid "Spellcheck"
 msgstr "Rašybos tikrinimas"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:535
+#: ../gramps/gui/widgets/styledtexteditor.py:539
 msgid "Search selection on web"
 msgstr "Išrankos ieškoti internete"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:546
+#: ../gramps/gui/widgets/styledtexteditor.py:550
 msgid "_Send Mail To..."
 msgstr "_Siųsti laišką..."
 
-#: ../gramps/gui/widgets/styledtexteditor.py:548
+#: ../gramps/gui/widgets/styledtexteditor.py:552
 msgid "Copy _E-mail Address"
 msgstr "Kopijuoti _El. pašto adresą"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:551
+#: ../gramps/gui/widgets/styledtexteditor.py:555
 msgid "_Open Link"
 msgstr "_Atverti Nuorodą"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:553
+#: ../gramps/gui/widgets/styledtexteditor.py:557
 msgid "Copy _Link Address"
 msgstr "Kopijuoti _Nuorodos Adresą"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:557
+#: ../gramps/gui/widgets/styledtexteditor.py:561
 msgid "_Edit Link"
 msgstr "_Taisyti nuorodą"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:807
+#: ../gramps/gui/widgets/styledtexteditor.py:811
 msgid "Select font color"
 msgstr "Pasirinkite šrifto spalvą"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:811
+#: ../gramps/gui/widgets/styledtexteditor.py:815
 msgid "Select background color"
 msgstr "Pasirinkite fono spalvą"
 
@@ -22036,13 +22040,13 @@ msgid "of %d"
 msgstr "iš %d"
 
 #: ../gramps/plugins/docgen/htmldoc.py:306
-#: ../gramps/plugins/webreport/narrativeweb.py:1958
+#: ../gramps/plugins/webreport/narrativeweb.py:1959
 #: ../gramps/plugins/webreport/webcal.py:296
 msgid "Possible destination error"
 msgstr "Galima paskyrimo vietos klaida"
 
 #: ../gramps/plugins/docgen/htmldoc.py:308
-#: ../gramps/plugins/webreport/narrativeweb.py:1961
+#: ../gramps/plugins/webreport/narrativeweb.py:1962
 #: ../gramps/plugins/webreport/webcal.py:299
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -22727,13 +22731,13 @@ msgstr "Trečia teksto eilutė kalendoriaus apačioje"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:636
 #: ../gramps/plugins/textreport/birthdayreport.py:597
-#: ../gramps/plugins/webreport/narrativeweb.py:3185
+#: ../gramps/plugins/webreport/narrativeweb.py:3186
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Include only living people"
 msgstr "Įtraukti tik gyvus žmonės"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:637
-#: ../gramps/plugins/webreport/narrativeweb.py:3186
+#: ../gramps/plugins/webreport/narrativeweb.py:3187
 #: ../gramps/plugins/webreport/webcal.py:1914
 msgid "Include only living people in the calendar"
 msgstr "Į kalendorių įtraukti tik gyvenančius žmones"
@@ -22763,55 +22767,55 @@ msgid "Select the country to see associated holidays"
 msgstr "Norėdami matyti priskirtas valstybines šventes, išsirinkite valstybę"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:664
-#: ../gramps/plugins/webreport/narrativeweb.py:3146
+#: ../gramps/plugins/webreport/narrativeweb.py:3147
 #: ../gramps/plugins/webreport/webcal.py:1970
 msgid "First day of week"
 msgstr "Pirma savaitės diena"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:670
-#: ../gramps/plugins/webreport/narrativeweb.py:3150
+#: ../gramps/plugins/webreport/narrativeweb.py:3151
 #: ../gramps/plugins/webreport/webcal.py:1973
 msgid "Select the first day of the week for the calendar"
 msgstr "Pasirinkite šios kalendoriaus  pirmą savatės dieną"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:673
 #: ../gramps/plugins/textreport/birthdayreport.py:634
-#: ../gramps/plugins/webreport/narrativeweb.py:3154
+#: ../gramps/plugins/webreport/narrativeweb.py:3155
 #: ../gramps/plugins/webreport/webcal.py:1976
 msgid "Birthday surname"
 msgstr "Rodoma pavardė"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:675
 #: ../gramps/plugins/textreport/birthdayreport.py:636
-#: ../gramps/plugins/webreport/narrativeweb.py:3157
+#: ../gramps/plugins/webreport/narrativeweb.py:3158
 #: ../gramps/plugins/webreport/webcal.py:1979
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "Žmonos naudoja vyrų pavardes(iš pirmos santuokos sąraše)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:678
 #: ../gramps/plugins/textreport/birthdayreport.py:639
-#: ../gramps/plugins/webreport/narrativeweb.py:3160
+#: ../gramps/plugins/webreport/narrativeweb.py:3161
 #: ../gramps/plugins/webreport/webcal.py:1982
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "Žmonos naudoja vyrų pavardes(iš paskutinės santuokos sąraše)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:680
 #: ../gramps/plugins/textreport/birthdayreport.py:641
-#: ../gramps/plugins/webreport/narrativeweb.py:3162
+#: ../gramps/plugins/webreport/narrativeweb.py:3163
 #: ../gramps/plugins/webreport/webcal.py:1984
 msgid "Wives use their own surname"
 msgstr "Žmonos naudoja savo pavardes"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:681
 #: ../gramps/plugins/textreport/birthdayreport.py:642
-#: ../gramps/plugins/webreport/narrativeweb.py:3163
+#: ../gramps/plugins/webreport/narrativeweb.py:3164
 #: ../gramps/plugins/webreport/webcal.py:1985
 msgid "Select married women's displayed surname"
 msgstr "Pasirinkite vedusios moters rodomą pavardę"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:684
 #: ../gramps/plugins/textreport/birthdayreport.py:645
-#: ../gramps/plugins/webreport/narrativeweb.py:3173
+#: ../gramps/plugins/webreport/narrativeweb.py:3174
 #: ../gramps/plugins/webreport/webcal.py:2065
 msgid "Include birthdays"
 msgstr "Įtraukti gimtadienius"
@@ -22823,7 +22827,7 @@ msgstr "Ar įtraukti gimtadienius."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:688
 #: ../gramps/plugins/textreport/birthdayreport.py:649
-#: ../gramps/plugins/webreport/narrativeweb.py:3177
+#: ../gramps/plugins/webreport/narrativeweb.py:3178
 #: ../gramps/plugins/webreport/webcal.py:2069
 msgid "Include anniversaries"
 msgstr "Įtraukti jubiliejus"
@@ -22834,14 +22838,14 @@ msgid "Whether to include anniversaries"
 msgstr "Ar įtraukti jubiliejus."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:692
-#: ../gramps/plugins/webreport/narrativeweb.py:3181
+#: ../gramps/plugins/webreport/narrativeweb.py:3182
 #: ../gramps/plugins/webreport/webcal.py:2073
 #, fuzzy
 msgid "Include death dates"
 msgstr "Įtraukti datas"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:693
-#: ../gramps/plugins/webreport/narrativeweb.py:3182
+#: ../gramps/plugins/webreport/narrativeweb.py:3183
 #: ../gramps/plugins/webreport/webcal.py:2074
 #, fuzzy
 msgid "Include death anniversaries in the calendar"
@@ -23456,7 +23460,7 @@ msgstr "Nustato kurie asmenys įtraukiami į ataskaitą."
 #: ../gramps/plugins/textreport/indivcomplete.py:1106
 #: ../gramps/plugins/textreport/recordsreport.py:241
 #: ../gramps/plugins/tool/sortevents.py:182
-#: ../gramps/plugins/webreport/narrativeweb.py:2137
+#: ../gramps/plugins/webreport/narrativeweb.py:2138
 #: ../gramps/plugins/webreport/webcal.py:1858
 msgid "Filter Person"
 msgstr "Filtruoti asmenį"
@@ -23604,7 +23608,7 @@ msgstr "Nustato kurie asmenys įtraukiami į ataskaitą"
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/textreport/recordsreport.py:242
 #: ../gramps/plugins/tool/sortevents.py:183
-#: ../gramps/plugins/webreport/narrativeweb.py:2138
+#: ../gramps/plugins/webreport/narrativeweb.py:2139
 #: ../gramps/plugins/webreport/webcal.py:1859
 msgid "The center person for the filter"
 msgstr "Centrinis filtro asmuo"
@@ -23845,13 +23849,13 @@ msgstr "Palaidojimo šaltinis"
 
 #: ../gramps/plugins/export/exportcsv.py:582
 #: ../gramps/plugins/importer/importcsv.py:378
-#: ../gramps/plugins/webreport/basepage.py:3166
+#: ../gramps/plugins/webreport/basepage.py:3168
 msgid "Husband"
 msgstr "Vyras"
 
 #: ../gramps/plugins/export/exportcsv.py:583
 #: ../gramps/plugins/importer/importcsv.py:368
-#: ../gramps/plugins/webreport/basepage.py:3164
+#: ../gramps/plugins/webreport/basepage.py:3166
 msgid "Wife"
 msgstr "Žmona"
 
@@ -23995,8 +23999,8 @@ msgstr "Motinos - Vaiko Amžiaus Skirtumų Pasiskirstymas"
 #: ../gramps/plugins/gramplet/agestats.py:255
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:298
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:305
-#: ../gramps/plugins/webreport/basepage.py:2079
-#: ../gramps/plugins/webreport/basepage.py:2149
+#: ../gramps/plugins/webreport/basepage.py:2081
+#: ../gramps/plugins/webreport/basepage.py:2151
 #: ../gramps/plugins/webreport/statistics.py:88
 msgid "Statistics"
 msgstr "Statistika"
@@ -24048,7 +24052,7 @@ msgstr ""
 "kurioje pateikimi žmonės su pasirinktais požymiais."
 
 #: ../gramps/plugins/gramplet/attributes.py:61
-#: ../gramps/plugins/webreport/basepage.py:1397
+#: ../gramps/plugins/webreport/basepage.py:1399
 msgid "Key"
 msgstr "Raktas"
 
@@ -24381,7 +24385,7 @@ msgstr "Rodo aktyvaus asmens palikuonys"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:118
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:125
-#: ../gramps/plugins/webreport/person.py:1560
+#: ../gramps/plugins/webreport/person.py:1561
 msgid "Ancestors"
 msgstr "Protėviai"
 
@@ -24856,8 +24860,8 @@ msgstr "Grampletas rodo atgalines asmens nuorodas"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1137
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1153
-#: ../gramps/plugins/webreport/basepage.py:3881
-#: ../gramps/plugins/webreport/person.py:1100
+#: ../gramps/plugins/webreport/basepage.py:3883
+#: ../gramps/plugins/webreport/person.py:1101
 #: ../gramps/plugins/webreport/thumbnail.py:188
 msgid "References"
 msgstr "Nuorodos"
@@ -24887,7 +24891,7 @@ msgid "Gramplet showing the backlink references for a place"
 msgstr "Grampletas rodo vietovės atgalines nuorodas"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1081
-#: ../gramps/plugins/webreport/basepage.py:3012
+#: ../gramps/plugins/webreport/basepage.py:3014
 msgid "Source References"
 msgstr "Šaltinių nuorodos"
 
@@ -25093,7 +25097,7 @@ msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Grampletas rodo vietas apsuptas aktyviojoje vietovėje"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1512
-#: ../gramps/plugins/webreport/basepage.py:3567
+#: ../gramps/plugins/webreport/basepage.py:3569
 msgid "Place Encloses"
 msgstr "Supanti vietovė"
 
@@ -25403,9 +25407,9 @@ msgstr "mažiau nei 1"
 #: ../gramps/plugins/gramplet/statsgramplet.py:145
 #: ../gramps/plugins/graph/gvfamilylines.py:336
 #: ../gramps/plugins/textreport/summary.py:128
-#: ../gramps/plugins/webreport/basepage.py:2055
-#: ../gramps/plugins/webreport/basepage.py:2119
-#: ../gramps/plugins/webreport/basepage.py:2250
+#: ../gramps/plugins/webreport/basepage.py:2057
+#: ../gramps/plugins/webreport/basepage.py:2121
+#: ../gramps/plugins/webreport/basepage.py:2252
 #: ../gramps/plugins/webreport/person.py:362
 #: ../gramps/plugins/webreport/statistics.py:120
 #: ../gramps/plugins/webreport/statistics.py:230
@@ -27575,13 +27579,13 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:292
 #: ../gramps/plugins/view/view.gpr.py:325
 #: ../gramps/plugins/webreport/basepage.py:864
-#: ../gramps/plugins/webreport/basepage.py:1322
-#: ../gramps/plugins/webreport/basepage.py:1520
-#: ../gramps/plugins/webreport/basepage.py:1660
-#: ../gramps/plugins/webreport/basepage.py:2061
-#: ../gramps/plugins/webreport/basepage.py:2125
-#: ../gramps/plugins/webreport/basepage.py:2262
-#: ../gramps/plugins/webreport/person.py:1641
+#: ../gramps/plugins/webreport/basepage.py:1324
+#: ../gramps/plugins/webreport/basepage.py:1522
+#: ../gramps/plugins/webreport/basepage.py:1662
+#: ../gramps/plugins/webreport/basepage.py:2063
+#: ../gramps/plugins/webreport/basepage.py:2127
+#: ../gramps/plugins/webreport/basepage.py:2264
+#: ../gramps/plugins/webreport/person.py:1642
 #: ../gramps/plugins/webreport/source.py:151
 #: ../gramps/plugins/webreport/source.py:354
 #: ../gramps/plugins/webreport/updates.py:134
@@ -27768,7 +27772,7 @@ msgid "Old xml file"
 msgstr "Sena xml rinkmena"
 
 #: ../gramps/plugins/importer/importxml.py:1357
-#: ../gramps/plugins/importer/importxml.py:2926
+#: ../gramps/plugins/importer/importxml.py:2936
 #, python-format
 msgid "Witness name: %s"
 msgstr "Liudininko vardas: %s"
@@ -27802,17 +27806,17 @@ msgstr "Nežinoma, kada buvo importuota"
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Bet kuri pastabos nuoroda privalo turėti \"hlink\" požymį."
 
-#: ../gramps/plugins/importer/importxml.py:2741
+#: ../gramps/plugins/importer/importxml.py:2751
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr "Negalimą datą {date}, esančią {xml}, išsaugojo XML kaip tekstą."
 
-#: ../gramps/plugins/importer/importxml.py:2795
+#: ../gramps/plugins/importer/importxml.py:2805
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Liudininko komentaras: %s"
 
-#: ../gramps/plugins/importer/importxml.py:3478
+#: ../gramps/plugins/importer/importxml.py:3488
 #, fuzzy, python-format
 msgctxt "father"
 msgid ""
@@ -27822,7 +27826,7 @@ msgstr ""
 "Klaida: šeimos '%(family)s' tėvas '%(father)s' neturi grįžti į šeimą. "
 "Nuoroda pridėta."
 
-#: ../gramps/plugins/importer/importxml.py:3500
+#: ../gramps/plugins/importer/importxml.py:3510
 #, fuzzy, python-format
 msgctxt "mother"
 msgid ""
@@ -27832,7 +27836,7 @@ msgstr ""
 "Klaida: šeimos '%(family)s' motina '%(mother)s' neturi grįžti į šeimą. "
 "Nuoroda pridėta."
 
-#: ../gramps/plugins/importer/importxml.py:3528
+#: ../gramps/plugins/importer/importxml.py:3538
 #, fuzzy, python-format
 msgctxt "child"
 msgid ""
@@ -27857,7 +27861,7 @@ msgstr "Bendrojo įstatymo santuoka"
 
 #: ../gramps/plugins/lib/libgedcom.py:740
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:327
-#: ../gramps/plugins/webreport/narrativeweb.py:2118
+#: ../gramps/plugins/webreport/narrativeweb.py:2119
 #: ../gramps/plugins/webreport/webcal.py:1840
 msgid "Destination"
 msgstr "Paskirties vieta"
@@ -32692,7 +32696,7 @@ msgid "Open on maps.google.com"
 msgstr "Atverti maps.google.com"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:75
-#: ../gramps/plugins/webreport/narrativeweb.py:2652
+#: ../gramps/plugins/webreport/narrativeweb.py:2653
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -32751,7 +32755,7 @@ msgstr "Įvykio vietovė"
 #: ../gramps/plugins/quickview/all_events.py:62
 #: ../gramps/plugins/quickview/all_events.py:114
 #: ../gramps/plugins/quickview/all_events.py:131
-#: ../gramps/plugins/webreport/person.py:1116
+#: ../gramps/plugins/webreport/person.py:1117
 msgid "Event Type"
 msgstr "Įvykio tipas"
 
@@ -33347,7 +33351,7 @@ msgid "No references for this %s"
 msgstr "%s: nuorodų nėra"
 
 #: ../gramps/plugins/quickview/reporef.py:64
-#: ../gramps/plugins/webreport/basepage.py:3638
+#: ../gramps/plugins/webreport/basepage.py:3640
 msgid "Call number"
 msgstr "Įrašo numeris"
 
@@ -34535,7 +34539,7 @@ msgid "Alternate Parents"
 msgstr "Alternatyvus tėvai"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:469
-#: ../gramps/plugins/webreport/person.py:1620
+#: ../gramps/plugins/webreport/person.py:1621
 msgid "Associations"
 msgstr "Ryšiai"
 
@@ -36041,8 +36045,8 @@ msgid "Help"
 msgstr "_Pagalba"
 
 #: ../gramps/plugins/tool/mediamanager.py:105
-#: ../gramps/plugins/webreport/basepage.py:2053
-#: ../gramps/plugins/webreport/basepage.py:2249
+#: ../gramps/plugins/webreport/basepage.py:2055
+#: ../gramps/plugins/webreport/basepage.py:2251
 #: ../gramps/plugins/webreport/introduction.py:81
 msgid "Introduction"
 msgstr "Įžanga"
@@ -38795,9 +38799,9 @@ msgstr "Rodinys, kuriame citatos ir šaltiniai pateikiami medžio pavidale"
 
 #: ../gramps/plugins/webreport/addressbook.py:92
 #: ../gramps/plugins/webreport/addressbooklist.py:84
-#: ../gramps/plugins/webreport/basepage.py:2076
-#: ../gramps/plugins/webreport/basepage.py:2143
-#: ../gramps/plugins/webreport/basepage.py:2277
+#: ../gramps/plugins/webreport/basepage.py:2078
+#: ../gramps/plugins/webreport/basepage.py:2145
+#: ../gramps/plugins/webreport/basepage.py:2279
 msgid "Address Book"
 msgstr "Adresų knyga"
 
@@ -38818,7 +38822,7 @@ msgid "Full Name"
 msgstr "Pilnas vardas"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:120
-#: ../gramps/plugins/webreport/basepage.py:2894
+#: ../gramps/plugins/webreport/basepage.py:2896
 msgid "Web Links"
 msgstr "Internetinės nuorodos"
 
@@ -38833,148 +38837,148 @@ msgstr "Pasakojamasis"
 msgid "(%(str1)s) %(str2)s"
 msgstr "%(str1)s: %(str2)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1511
-#: ../gramps/plugins/webreport/basepage.py:3427
-#: ../gramps/plugins/webreport/basepage.py:3505
+#: ../gramps/plugins/webreport/basepage.py:1513
+#: ../gramps/plugins/webreport/basepage.py:3429
+#: ../gramps/plugins/webreport/basepage.py:3507
 msgid "State/ Province"
 msgstr "Valstija / provincija"
 
-#: ../gramps/plugins/webreport/basepage.py:1698
+#: ../gramps/plugins/webreport/basepage.py:1700
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 msgstr "Sukūrė %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1710
+#: ../gramps/plugins/webreport/basepage.py:1712
 #, python-format
 msgid "Last change was the %(date)s"
 msgstr "Paskutinis pakeitimas %(date)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1712
+#: ../gramps/plugins/webreport/basepage.py:1714
 #, python-format
 msgid " on %(date)s"
 msgstr " %(date)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1739
-#: ../gramps/plugins/webreport/basepage.py:1744
+#: ../gramps/plugins/webreport/basepage.py:1741
+#: ../gramps/plugins/webreport/basepage.py:1746
 #, python-format
 msgid "%(http_break)sCreated for %(subject_url)s"
 msgstr "%(http_break)sSukurta %(subject_url)s"
 
-#: ../gramps/plugins/webreport/basepage.py:2001
+#: ../gramps/plugins/webreport/basepage.py:2003
 #: ../gramps/plugins/webstuff/webstuff.py:68
 msgid "Basic-Blue"
 msgstr "Pagrindinė-mėlyna"
 
-#: ../gramps/plugins/webreport/basepage.py:2002
+#: ../gramps/plugins/webreport/basepage.py:2004
 #: ../gramps/plugins/webstuff/webstuff.py:135
 msgid "Visually Impaired"
 msgstr "Su sutrikimais"
 
-#: ../gramps/plugins/webreport/basepage.py:2017
+#: ../gramps/plugins/webreport/basepage.py:2019
 #, fuzzy
 msgid "Go to top"
 msgstr "Nueiti iki asmens pagal nutylėjimą"
 
-#: ../gramps/plugins/webreport/basepage.py:2052
-#: ../gramps/plugins/webreport/basepage.py:2111
-#: ../gramps/plugins/webreport/basepage.py:2295
+#: ../gramps/plugins/webreport/basepage.py:2054
+#: ../gramps/plugins/webreport/basepage.py:2113
+#: ../gramps/plugins/webreport/basepage.py:2297
 msgctxt "Html"
 msgid "Home"
 msgstr "Pradinis puslapis"
 
-#: ../gramps/plugins/webreport/basepage.py:2060
+#: ../gramps/plugins/webreport/basepage.py:2062
 #: ../gramps/plugins/webreport/heatmap.py:198
 msgid "Heatmaps"
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:2072
-#: ../gramps/plugins/webreport/basepage.py:2270
+#: ../gramps/plugins/webreport/basepage.py:2074
+#: ../gramps/plugins/webreport/basepage.py:2272
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid "Thumbnails"
 msgstr "Miniatiūros"
 
-#: ../gramps/plugins/webreport/basepage.py:2075
-#: ../gramps/plugins/webreport/basepage.py:2276
+#: ../gramps/plugins/webreport/basepage.py:2077
+#: ../gramps/plugins/webreport/basepage.py:2278
 #: ../gramps/plugins/webreport/download.py:94
-#: ../gramps/plugins/webreport/narrativeweb.py:2489
+#: ../gramps/plugins/webreport/narrativeweb.py:2490
 msgid "Download"
 msgstr "Atsisiųsti"
 
-#: ../gramps/plugins/webreport/basepage.py:2077
-#: ../gramps/plugins/webreport/basepage.py:2282
-#: ../gramps/plugins/webreport/basepage.py:2320
+#: ../gramps/plugins/webreport/basepage.py:2079
+#: ../gramps/plugins/webreport/basepage.py:2284
+#: ../gramps/plugins/webreport/basepage.py:2322
 #: ../gramps/plugins/webreport/contact.py:81
 msgid "Contact"
 msgstr "Susisiekti"
 
-#: ../gramps/plugins/webreport/basepage.py:2080
-#: ../gramps/plugins/webreport/basepage.py:2152
+#: ../gramps/plugins/webreport/basepage.py:2082
+#: ../gramps/plugins/webreport/basepage.py:2154
 #: ../gramps/plugins/webreport/webplugins.gpr.py:61
 msgid "Web Calendar"
 msgstr "Internetinis kalendorius"
 
-#: ../gramps/plugins/webreport/basepage.py:2134
+#: ../gramps/plugins/webreport/basepage.py:2136
 msgid "Heatmap"
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:2223
+#: ../gramps/plugins/webreport/basepage.py:2225
 #: ../gramps/plugins/webreport/media.py:440
 msgid "Previous"
 msgstr "Ankstesnis"
 
-#: ../gramps/plugins/webreport/basepage.py:2225
+#: ../gramps/plugins/webreport/basepage.py:2227
 #: ../gramps/plugins/webreport/media.py:453
 msgid "Next"
 msgstr "Sekantis"
 
-#: ../gramps/plugins/webreport/basepage.py:2775
+#: ../gramps/plugins/webreport/basepage.py:2777
 msgid "Other media: videos, pdfs..."
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:2947
+#: ../gramps/plugins/webreport/basepage.py:2949
 msgid " [Click to Go]"
 msgstr " [Spragtelėkite]"
 
-#: ../gramps/plugins/webreport/basepage.py:2973
+#: ../gramps/plugins/webreport/basepage.py:2975
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "PDŠ (mormonų) ceremonijos"
 
-#: ../gramps/plugins/webreport/basepage.py:3140
 #: ../gramps/plugins/webreport/basepage.py:3142
+#: ../gramps/plugins/webreport/basepage.py:3144
 #: ../gramps/plugins/webreport/family.py:562
-#: ../gramps/plugins/webreport/person.py:878
-#: ../gramps/plugins/webreport/person.py:1282
+#: ../gramps/plugins/webreport/person.py:879
+#: ../gramps/plugins/webreport/person.py:1283
 msgid "Family Map"
 msgstr "Šeimos žemėlapis"
 
-#: ../gramps/plugins/webreport/basepage.py:3387
+#: ../gramps/plugins/webreport/basepage.py:3389
 #, fuzzy
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "Bloga platuma (sintaksė: 18\\u00b09'"
 
-#: ../gramps/plugins/webreport/basepage.py:3408
+#: ../gramps/plugins/webreport/basepage.py:3410
 #, fuzzy
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "Bloga ilguma (sintaksė: 18\\u00b09'"
 
-#: ../gramps/plugins/webreport/basepage.py:3425
-#: ../gramps/plugins/webreport/basepage.py:3503
+#: ../gramps/plugins/webreport/basepage.py:3427
+#: ../gramps/plugins/webreport/basepage.py:3505
 msgid "Church Parish"
 msgstr "Bažnyčios parapija:"
 
-#: ../gramps/plugins/webreport/basepage.py:3447
+#: ../gramps/plugins/webreport/basepage.py:3449
 msgid "Locations"
 msgstr "Vietos"
 
-#: ../gramps/plugins/webreport/basepage.py:3794
+#: ../gramps/plugins/webreport/basepage.py:3796
 msgid "circa"
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:3796
+#: ../gramps/plugins/webreport/basepage.py:3798
 #, fuzzy
 msgid "around"
 msgstr "Fonas"
@@ -39140,8 +39144,8 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:248
 #: ../gramps/plugins/webreport/heatmap.py:380
 #: ../gramps/plugins/webreport/heatmap.py:512
-#: ../gramps/plugins/webreport/place.py:345
-#: ../gramps/plugins/webreport/place.py:357
+#: ../gramps/plugins/webreport/place.py:347
+#: ../gramps/plugins/webreport/place.py:359
 #: ../gramps/plugins/webreport/surnamelist.py:177
 msgid "Letter"
 msgstr "Raidė"
@@ -39164,7 +39168,7 @@ msgstr ""
 "pagal šeimų pavardes. Spustelėję ant asmens vardo, būsite nukreipti į jų "
 "šeimos/ryšių puslapį."
 
-#: ../gramps/plugins/webreport/family.py:616
+#: ../gramps/plugins/webreport/family.py:617
 #, fuzzy, python-format
 msgid "Family Map for %s"
 msgstr "%s – šeimų žemėlapis"
@@ -39190,7 +39194,7 @@ msgstr "Pavadinimas"
 #: ../gramps/plugins/webreport/heatmap.py:291
 #: ../gramps/plugins/webreport/heatmap.py:425
 #: ../gramps/plugins/webreport/heatmap.py:557
-#: ../gramps/plugins/webreport/place.py:223
+#: ../gramps/plugins/webreport/place.py:225
 #, python-format
 msgid "Places beginning with letter %s"
 msgstr "Vietovės, kurių pavadinimai prasideda raide %s"
@@ -39361,158 +39365,158 @@ msgstr "Šeimos %(husband)s ir %(spouse)s"
 msgid "Family of %s"
 msgstr "%s – šeima"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1348
+#: ../gramps/plugins/webreport/narrativeweb.py:1349
 msgid "Creating GENDEX file"
 msgstr "Kuriama GENDEX rinkmena"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1408
+#: ../gramps/plugins/webreport/narrativeweb.py:1409
 msgid "Creating surname pages"
 msgstr "Kuriami pavardžių puslapiai"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1445
+#: ../gramps/plugins/webreport/narrativeweb.py:1446
 msgid "Creating thumbnail preview page..."
 msgstr "Kuriamas miniatiūrų peržiūros puslapis..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1454
+#: ../gramps/plugins/webreport/narrativeweb.py:1455
 msgid "Creating statistics page..."
 msgstr "Kuriamas statistikos puslapis..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1462
+#: ../gramps/plugins/webreport/narrativeweb.py:1463
 #, fuzzy
 msgid "Creating updates page..."
 msgstr "Kuriamas statistikos puslapis..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1508
+#: ../gramps/plugins/webreport/narrativeweb.py:1509
 msgid "Creating address book pages ..."
 msgstr "Kuriami adresų knygelės puslapiai..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1988
+#: ../gramps/plugins/webreport/narrativeweb.py:1989
 #, fuzzy, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "Pasakojamasis Interneto Puslapis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1990
+#: ../gramps/plugins/webreport/narrativeweb.py:1991
 #, fuzzy
 msgid "Narrative Website Report"
 msgstr "Pasakojamasis Interneto Puslapis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2110
+#: ../gramps/plugins/webreport/narrativeweb.py:2111
 #, fuzzy
 #| msgid "Store web pages in .tar.gz archive"
 msgid "Store website in .tar.gz archive"
 msgstr "Išsaugoti interneto puslapius suspaustus .tar.gz archyve"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2111
+#: ../gramps/plugins/webreport/narrativeweb.py:2112
 #, fuzzy
 #| msgid "Whether to store the web pages in an archive file"
 msgid "Whether to store the website in an archive file"
 msgstr "Išsaugoti interneto puslapius suspaustus  archyve"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2121
+#: ../gramps/plugins/webreport/narrativeweb.py:2122
 #: ../gramps/plugins/webreport/webcal.py:1843
 msgid "The destination directory for the web files"
 msgstr "Paskirties vietos aplankas internetinėms rinkmenoms"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2126
+#: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "My Family Tree"
 msgstr "Mano giminės medis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2126
+#: ../gramps/plugins/webreport/narrativeweb.py:2127
 #, fuzzy
 #| msgid "Web site title"
 msgid "Website title"
 msgstr "Pagrindinio puslapio antraštė"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2127
+#: ../gramps/plugins/webreport/narrativeweb.py:2128
 #, fuzzy
 #| msgid "The title of the web site"
 msgid "The title of the website"
 msgstr "Pagrindinio internetinio puslapio antraštė"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2132
+#: ../gramps/plugins/webreport/narrativeweb.py:2133
 #, fuzzy
 #| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
 msgstr "Norėdami apriboti asmenis internetiniame puslapyje, pasirinkite filtrą"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2144
+#: ../gramps/plugins/webreport/narrativeweb.py:2145
 #, fuzzy
 msgid "Show the relationship between the current person and the active person"
 msgstr "Pavaizduoti visus ryšius tarp šio asmens ir pagrindinio asmens."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2151
+#: ../gramps/plugins/webreport/narrativeweb.py:2152
 #, fuzzy
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
 msgstr "Pavaizduoti visus ryšius tarp šio asmens ir pagrindinio asmens."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2175
+#: ../gramps/plugins/webreport/narrativeweb.py:2176
 #: ../gramps/plugins/webreport/webcal.py:1865
 msgid "File extension"
 msgstr "Rinkmenosos plėtinys"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2178
+#: ../gramps/plugins/webreport/narrativeweb.py:2179
 #: ../gramps/plugins/webreport/webcal.py:1868
 msgid "The extension to be used for the web files"
 msgstr "Plėtiniai naudojami tinklapio rinkmenoms"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2182
+#: ../gramps/plugins/webreport/narrativeweb.py:2183
 #: ../gramps/plugins/webreport/webcal.py:1871
 msgid "Copyright"
 msgstr "Autoriaus teisės"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2185
+#: ../gramps/plugins/webreport/narrativeweb.py:2186
 #: ../gramps/plugins/webreport/webcal.py:1874
 msgid "The copyright to be used for the web files"
 msgstr "Internetinių rinkmenų naudojama autorinių teisių apsauga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2188
+#: ../gramps/plugins/webreport/narrativeweb.py:2189
 #: ../gramps/plugins/webreport/webcal.py:1884
 msgid "StyleSheet"
 msgstr "Stilius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2194
+#: ../gramps/plugins/webreport/narrativeweb.py:2195
 #, fuzzy
 msgid "The default stylesheet to be used for the pages"
 msgstr "Internetiniam puslapiui naudojamas stilius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2199
+#: ../gramps/plugins/webreport/narrativeweb.py:2200
 msgid "Horizontal -- Default"
 msgstr "Horizontalus -- numatytasis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2200
+#: ../gramps/plugins/webreport/narrativeweb.py:2201
 msgid "Vertical   -- Left Side"
 msgstr "Vertikalus   -- kairysis kraštas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2201
+#: ../gramps/plugins/webreport/narrativeweb.py:2202
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Stelbiantis   -- tik  WebKit naršyklės"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2202
-#: ../gramps/plugins/webreport/narrativeweb.py:2218
+#: ../gramps/plugins/webreport/narrativeweb.py:2203
+#: ../gramps/plugins/webreport/narrativeweb.py:2219
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Išskleidžiamas  -- tik WebKit naršyklės"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2205
+#: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Navigation Menu Layout"
 msgstr "Naršymo meniu planas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2210
+#: ../gramps/plugins/webreport/narrativeweb.py:2211
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Pasirinkite būdą, kuriuo išdėstyti naršymui skirtą meniu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2217
+#: ../gramps/plugins/webreport/narrativeweb.py:2218
 msgid "Normal Outline Style"
 msgstr "Normalus kontūro stilius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2221
+#: ../gramps/plugins/webreport/narrativeweb.py:2222
 #, fuzzy
 #| msgid "Citation Referents Layout"
 msgid "Citation References Layout"
 msgstr "Citavimo nuorodų išdėstymas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2227
+#: ../gramps/plugins/webreport/narrativeweb.py:2228
 #, fuzzy
 #| msgid ""
 #| "Determine the default layout for the Source Page's Citation Referents "
@@ -39523,171 +39527,171 @@ msgid ""
 msgstr ""
 "Nustatyti numatytąjį išdėstymą šalinio puslapio citavimo nuorodų skyriuje"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2233
+#: ../gramps/plugins/webreport/narrativeweb.py:2234
 msgid "Include ancestor's tree"
 msgstr "Įtraukti protėvių medį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2235
+#: ../gramps/plugins/webreport/narrativeweb.py:2236
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Ar kiekvieno asmenis puslapyje įdėti protėvių diagramą"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2240
+#: ../gramps/plugins/webreport/narrativeweb.py:2241
 #, fuzzy
 msgid "Add previous/next"
 msgstr "Pridėti sutuoktinį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2241
+#: ../gramps/plugins/webreport/narrativeweb.py:2242
 msgid "Add previous/next to the navigation bar."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2244
+#: ../gramps/plugins/webreport/narrativeweb.py:2245
 #, fuzzy
 #| msgid "This is a secure site (https)"
 msgid "This is a secure site (HTTPS)"
 msgstr "Tai yra saugus tinklapis (https)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2245
+#: ../gramps/plugins/webreport/narrativeweb.py:2246
 msgid "Whether to use http:// or https://"
 msgstr "Ar naudoti http:// ar https://"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2248
+#: ../gramps/plugins/webreport/narrativeweb.py:2249
 #, fuzzy
 msgid "Toggle sections"
 msgstr "Antraštės pasirinkimas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2249
+#: ../gramps/plugins/webreport/narrativeweb.py:2250
 msgid "Check it if you want to open/close a section"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2252
+#: ../gramps/plugins/webreport/narrativeweb.py:2253
 msgid "Max. rows in an index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2254
+#: ../gramps/plugins/webreport/narrativeweb.py:2255
 #, fuzzy
 #| msgid "The maximum number of ancestors to include."
 msgid "The maximum number of rows to include in an index page"
 msgstr "Didžiausias įtraukiamų protėvių skaičius."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2264
+#: ../gramps/plugins/webreport/narrativeweb.py:2265
 #, fuzzy
 msgid "Extra Pages"
 msgstr "Ištraukti vietovės duomenis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2267
+#: ../gramps/plugins/webreport/narrativeweb.py:2268
 #, fuzzy
 msgid "Extra page name"
 msgstr "Ištraukti vietovės duomenis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2269
+#: ../gramps/plugins/webreport/narrativeweb.py:2270
 msgid "Your extra page name like it is shown in the menubar"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2274
+#: ../gramps/plugins/webreport/narrativeweb.py:2275
 msgid "Your extra page path"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2275
+#: ../gramps/plugins/webreport/narrativeweb.py:2276
 msgid "Your extra page path without extension"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2290
+#: ../gramps/plugins/webreport/narrativeweb.py:2291
 msgid "Do we use multiple translations?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2293
+#: ../gramps/plugins/webreport/narrativeweb.py:2294
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2307
+#: ../gramps/plugins/webreport/narrativeweb.py:2308
 msgid "Sort all children in birth order"
 msgstr "Rodyti vaikus pagal gimimo datą"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2309
+#: ../gramps/plugins/webreport/narrativeweb.py:2310
 #, fuzzy
 #| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
 msgstr "Ar vaizduoti vaikus pagal gimimo ar įvedimo eiliškumą?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2314
+#: ../gramps/plugins/webreport/narrativeweb.py:2315
 msgid "Do we display coordinates in the places list?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2317
+#: ../gramps/plugins/webreport/narrativeweb.py:2318
 #, fuzzy
 msgid "Whether to display latitude/longitude in the places list."
 msgstr "Ar įtraukti saugyklų puslapius ar ne?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2322
+#: ../gramps/plugins/webreport/narrativeweb.py:2323
 msgid "Sort places references either by date or by name"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2326
+#: ../gramps/plugins/webreport/narrativeweb.py:2327
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2332
+#: ../gramps/plugins/webreport/narrativeweb.py:2333
 msgid "Graph generations"
 msgstr "Kartų skaičius diagramoje"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2334
+#: ../gramps/plugins/webreport/narrativeweb.py:2335
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Į protėvių diagramą įtraukiamų kartų skaičius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2340
+#: ../gramps/plugins/webreport/narrativeweb.py:2341
 msgid "Include narrative notes just after name, gender"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2344
+#: ../gramps/plugins/webreport/narrativeweb.py:2345
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2357
+#: ../gramps/plugins/webreport/narrativeweb.py:2358
 msgid "Page Generation"
 msgstr "Puslapio kūrimas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2360
+#: ../gramps/plugins/webreport/narrativeweb.py:2361
 msgid "Home page note"
 msgstr "Namų puslapio pastaba"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2361
+#: ../gramps/plugins/webreport/narrativeweb.py:2362
 msgid "A note to be used on the home page"
 msgstr "Pastaba, naudojama pagrindiniame puslapyje"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2364
+#: ../gramps/plugins/webreport/narrativeweb.py:2365
 msgid "Home page image"
 msgstr "Namų puslapio paveikslas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2365
+#: ../gramps/plugins/webreport/narrativeweb.py:2366
 msgid "An image to be used on the home page"
 msgstr "Paveikslėlis, kuris bus naudojamas namų puslapyje"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2368
+#: ../gramps/plugins/webreport/narrativeweb.py:2369
 msgid "Introduction note"
 msgstr "Įžangos pastaba"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2369
+#: ../gramps/plugins/webreport/narrativeweb.py:2370
 msgid "A note to be used as the introduction"
 msgstr "Pastaba, kuris bus naudojama kaip įžanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2372
+#: ../gramps/plugins/webreport/narrativeweb.py:2373
 msgid "Introduction image"
 msgstr "Įžangos vaizdas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2373
+#: ../gramps/plugins/webreport/narrativeweb.py:2374
 msgid "An image to be used as the introduction"
 msgstr "Paveikslėlis, kuris bus naudojamas kaip įžanga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2376
+#: ../gramps/plugins/webreport/narrativeweb.py:2377
 msgid "Publisher contact note"
 msgstr "Autoriaus pastaba"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2379
+#: ../gramps/plugins/webreport/narrativeweb.py:2380
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -39697,11 +39701,11 @@ msgstr ""
 "Jei nepateikta leidėjo informacija,\n"
 "tai nebus sukurtas kontakto puslapis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2386
+#: ../gramps/plugins/webreport/narrativeweb.py:2387
 msgid "Publisher contact image"
 msgstr "Autoriaus nuotrauka"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2389
+#: ../gramps/plugins/webreport/narrativeweb.py:2390
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -39711,66 +39715,66 @@ msgstr ""
 "Jei nepateikta leidėjo informacija,\n"
 "tai nebus sukurtas kontakto puslapis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2396
+#: ../gramps/plugins/webreport/narrativeweb.py:2397
 msgid "HTML user header"
 msgstr "HTML puslapio antraštė"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2398
+#: ../gramps/plugins/webreport/narrativeweb.py:2399
 #, fuzzy
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr "Pastaba, kuri naudojama puslapio antraštei"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2402
+#: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "HTML user footer"
 msgstr "HTML puslapio poraštė"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2403
+#: ../gramps/plugins/webreport/narrativeweb.py:2404
 msgid "A note to be used as the page footer"
 msgstr "Pastaba, kuri naudojama puslapio poraštei"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2408
+#: ../gramps/plugins/webreport/narrativeweb.py:2409
 msgid "PHP user session"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2411
+#: ../gramps/plugins/webreport/narrativeweb.py:2412
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2424
+#: ../gramps/plugins/webreport/narrativeweb.py:2425
 msgid "Images Generation"
 msgstr "Vaizdų kūrimas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2427
+#: ../gramps/plugins/webreport/narrativeweb.py:2428
 msgid "Include images and media objects"
 msgstr "Įtraukti paveikslus ir garso/vaizdo objektus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2428
+#: ../gramps/plugins/webreport/narrativeweb.py:2429
 msgid "Whether to include a gallery of media objects"
 msgstr "Ar įtraukti garso/vaizdo objektų galeriją"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2432
+#: ../gramps/plugins/webreport/narrativeweb.py:2433
 msgid "Create the images index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2434
+#: ../gramps/plugins/webreport/narrativeweb.py:2435
 msgid "This option allows you to create the images index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2440
+#: ../gramps/plugins/webreport/narrativeweb.py:2441
 msgid "Include unused images and media objects"
 msgstr "Įtraukti nenaudojamus vaizdus ir garso/vaizdo objektus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2443
+#: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "Ar įtraukti nenaudojamus arba nesusietus garso/vaizdo objektus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2448
+#: ../gramps/plugins/webreport/narrativeweb.py:2449
 msgid "Create and only use thumbnail- sized images"
 msgstr "Sukurti ir naudoti tik miniatiūrinius atvaizdus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2452
+#: ../gramps/plugins/webreport/narrativeweb.py:2453
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -39780,20 +39784,20 @@ msgstr ""
 "atvaizdų medijos puslapyje. Taip jus sunaudosite daug mažiau išsiuntimo "
 "duomenų savo interneto tinklapyje."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2462
+#: ../gramps/plugins/webreport/narrativeweb.py:2463
 #, fuzzy
 msgid "Create the thumbnail index"
 msgstr "Miniatiūros paveikslo dydis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2465
+#: ../gramps/plugins/webreport/narrativeweb.py:2466
 msgid "This option allows you to create the thumbnail index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2471
+#: ../gramps/plugins/webreport/narrativeweb.py:2472
 msgid "Max width of initial image"
 msgstr "Maksimalus pradinio paveikslo plotis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2475
+#: ../gramps/plugins/webreport/narrativeweb.py:2476
 #, fuzzy
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
@@ -39802,200 +39806,194 @@ msgstr ""
 "Įgalina nustatyti paveikslo, kuris rodomas garso/vaizdo puslapyje maksimalų "
 "plotį. Be limito - įrašyti 0."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2492
+#: ../gramps/plugins/webreport/narrativeweb.py:2493
 msgid "Include download page"
 msgstr "Įtraukti parsisiuntimo puslapį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2493
+#: ../gramps/plugins/webreport/narrativeweb.py:2494
 msgid "Whether to include a database download option"
 msgstr "Ar įtraukti duombazės parsisiuntimo galimybę"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2498
+#: ../gramps/plugins/webreport/narrativeweb.py:2499
 msgid "How many downloads"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2501
+#: ../gramps/plugins/webreport/narrativeweb.py:2502
 #, fuzzy
 msgid "The number of download files to include in the download page"
 msgstr "Į medį įtraukiamų kartų skaičius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2511
+#: ../gramps/plugins/webreport/narrativeweb.py:2512
 #, fuzzy, python-format
 msgid "Download Filename #%c"
 msgstr "Atsisiųsti rinkmeną"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2513
+#: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "File to be used for downloading of database"
 msgstr "Rinkmenaa, kuri bus naudojama parsiunčiant duombazę"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2518
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 msgid "Description for download"
 msgstr "Atsisiuntimo aprašymas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2518
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 #, fuzzy, python-format
 msgid "Family Tree #%c"
 msgstr "Giminės medis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2520
+#: ../gramps/plugins/webreport/narrativeweb.py:2521
 msgid "Give a description for this file."
 msgstr "Nurodykite rinkmenos aprašymą."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2532
+#: ../gramps/plugins/webreport/narrativeweb.py:2533
 #: ../gramps/plugins/webreport/webcal.py:2049
 msgid "Advanced Options"
 msgstr "Pažangios nuostatos"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2536
+#: ../gramps/plugins/webreport/narrativeweb.py:2537
 #: ../gramps/plugins/webreport/webcal.py:2052
 msgid "Character set encoding"
 msgstr "Simbolių koduotė"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2540
+#: ../gramps/plugins/webreport/narrativeweb.py:2541
 #: ../gramps/plugins/webreport/webcal.py:2056
 msgid "The encoding to be used for the web files"
 msgstr "Internetinių rinkmenų naudojama koduotė"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2544
+#: ../gramps/plugins/webreport/narrativeweb.py:2545
 msgid "Include link to active person on every page"
 msgstr "Kiekviename puslapyje įdėti nuorodą į pagrindinį asmenį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2547
+#: ../gramps/plugins/webreport/narrativeweb.py:2548
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Įdėti nuorodą į pagrindinį asmenį (jei turi internetinį puslapį)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2552
+#: ../gramps/plugins/webreport/narrativeweb.py:2553
 msgid "Include a column for birth dates on the index pages"
 msgstr "Rodyklės puslapyje įdėti gimimo datos stulpelį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2554
+#: ../gramps/plugins/webreport/narrativeweb.py:2555
 msgid "Whether to include a birth column"
 msgstr "Ar įtraukti gimimo stulpelį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2558
+#: ../gramps/plugins/webreport/narrativeweb.py:2559
 msgid "Include a column for death dates on the index pages"
 msgstr "Rodyklės puslapyje įdėti mirimo datos stulpelį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2560
+#: ../gramps/plugins/webreport/narrativeweb.py:2561
 msgid "Whether to include a death column"
 msgstr "Ar įtraukti mirties stulpelį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2564
+#: ../gramps/plugins/webreport/narrativeweb.py:2565
 msgid "Include a column for partners on the index pages"
 msgstr "Rodyklės puslapyje įdėti partnerių stulpelį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2566
+#: ../gramps/plugins/webreport/narrativeweb.py:2567
 msgid "Whether to include a partners column"
 msgstr "Ar įtraukti partnerių stulpelį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2570
+#: ../gramps/plugins/webreport/narrativeweb.py:2571
 msgid "Include a column for parents on the index pages"
 msgstr "Rodyklės puslapyje įdėti tėvų stulpelį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2572
+#: ../gramps/plugins/webreport/narrativeweb.py:2573
 msgid "Whether to include a parents column"
 msgstr "Ar įtraukti tėvų stulpelį"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2576
-#, fuzzy
-#| msgid "Include half and/ or step-siblings on the individual pages"
+#: ../gramps/plugins/webreport/narrativeweb.py:2577
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr ""
-"Įtraukti į įvaikaičius ir/arba netikrus brolius/seseris į asmeninius "
+"Įtraukti netikrus brolius/seseris ir/arba įbrolius/įseseres į asmeninius "
 "puslapius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2580
-#, fuzzy
-#| msgid ""
-#| "Whether to include half and/ or step-siblings with the parents and "
-#| "siblings"
+#: ../gramps/plugins/webreport/narrativeweb.py:2581
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
-"Ar įtraukti įvaikaičius ir/arba netikrus brolius/seseris su tėvais ir "
+"Ar įtraukti netikrus brolius/seseris ir/arba įbrolius/įseseres su tėvais ir "
 "broliais/seserimis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2595
+#: ../gramps/plugins/webreport/narrativeweb.py:2596
 msgid "Include family pages"
 msgstr "Įtraukti šeimos puslapius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2596
+#: ../gramps/plugins/webreport/narrativeweb.py:2597
 msgid "Whether or not to include family pages."
 msgstr "Ar įtraukti šeimos puslapius."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2599
+#: ../gramps/plugins/webreport/narrativeweb.py:2600
 msgid "Include event pages"
 msgstr "Įtraukti įvykių puslapius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2600
+#: ../gramps/plugins/webreport/narrativeweb.py:2601
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Ar įtraukti visą įvykių sąrašą ir susijusius puslapius, ar ne"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2603
+#: ../gramps/plugins/webreport/narrativeweb.py:2604
 #, fuzzy
 #| msgid "Include other events"
 msgid "Include other roles"
 msgstr "Įtraukti kitus įvykius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2604
+#: ../gramps/plugins/webreport/narrativeweb.py:2605
 #, fuzzy
 #| msgid "Gramplet showing the notes for an event"
 msgid "Include persons with other roles to an event"
 msgstr "Grampletas rodo įvykio pastabas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2607
+#: ../gramps/plugins/webreport/narrativeweb.py:2608
 #, fuzzy
 msgid "Include place pages"
 msgstr "Įtraukti šaltinius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2608
+#: ../gramps/plugins/webreport/narrativeweb.py:2609
 #, fuzzy
 msgid "Whether or not to include the place pages."
 msgstr "Ar įtraukti saugyklų puslapius ar ne?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2611
+#: ../gramps/plugins/webreport/narrativeweb.py:2612
 #, fuzzy
 msgid "Include unused place pages"
 msgstr "Įtraukti šaltinius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2612
+#: ../gramps/plugins/webreport/narrativeweb.py:2613
 #, fuzzy
 msgid "Whether or not to include the unused place pages."
 msgstr "Ar įtraukti saugyklų puslapius ar ne?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2615
+#: ../gramps/plugins/webreport/narrativeweb.py:2616
 #, fuzzy
 msgid "Include source pages"
 msgstr "Įtraukti šaltinių pastabas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2616
+#: ../gramps/plugins/webreport/narrativeweb.py:2617
 #, fuzzy
 msgid "Whether or not to include the source pages."
 msgstr "Ar įtraukti saugyklų puslapius ar ne?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2619
+#: ../gramps/plugins/webreport/narrativeweb.py:2620
 msgid "Include repository pages"
 msgstr "Įtraukti saugyklų puslapius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2620
+#: ../gramps/plugins/webreport/narrativeweb.py:2621
 #, fuzzy
 #| msgid "Whether or not to include the Repository Pages."
 msgid "Whether or not to include the repository pages."
 msgstr "Ar įtraukti saugyklų puslapius ar ne?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2623
+#: ../gramps/plugins/webreport/narrativeweb.py:2624
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Įtraukti GENDEX rinkmeną (/gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2624
+#: ../gramps/plugins/webreport/narrativeweb.py:2625
 msgid "Whether to include a GENDEX file or not"
 msgstr "Ar įtraukti GENDEX rinkmeną ar ne"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2627
+#: ../gramps/plugins/webreport/narrativeweb.py:2628
 msgid "Include address book pages"
 msgstr "Įtraukti adresų knygutės puslapius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2630
+#: ../gramps/plugins/webreport/narrativeweb.py:2631
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -40004,43 +40002,43 @@ msgstr ""
 "adresai, internetiniai puslapiai ir asmeninių adresų/gyvenamosios vietos "
 "įvykių."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2638
+#: ../gramps/plugins/webreport/narrativeweb.py:2639
 #, fuzzy
 msgid "Include the statistics page"
 msgstr "Kuriamas statistikos puslapis..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2639
+#: ../gramps/plugins/webreport/narrativeweb.py:2640
 #, fuzzy
 msgid "Whether or not to add statistics page"
 msgstr "Ar įtraukti šeimos puslapius."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2648
+#: ../gramps/plugins/webreport/narrativeweb.py:2649
 msgid "Place Map Options"
 msgstr "Vietovės žemėlapio parinktys"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2653
+#: ../gramps/plugins/webreport/narrativeweb.py:2654
 #, fuzzy
 msgid "Stamen Map"
 msgstr "Turinio nustatymai"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2654
+#: ../gramps/plugins/webreport/narrativeweb.py:2655
 msgid "Google"
 msgstr "Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2656
+#: ../gramps/plugins/webreport/narrativeweb.py:2657
 msgid "Map Service"
 msgstr "Žemėlapių paslauga"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2660
+#: ../gramps/plugins/webreport/narrativeweb.py:2661
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
 "Pasirinkite savo žemėlapių paslaugas kuriant vietovės žemėlapio puslapius."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2666
+#: ../gramps/plugins/webreport/narrativeweb.py:2667
 msgid "Include Place map on Place Pages"
 msgstr "Įtraukti vietovės žemėlapį į vietovės puslapius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2670
+#: ../gramps/plugins/webreport/narrativeweb.py:2671
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -40048,13 +40046,13 @@ msgstr ""
 "Ar įtraukti vietovės žemėlapį vietovės puslapyje, kur pateikta platuma/"
 "ilguma."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2678
+#: ../gramps/plugins/webreport/narrativeweb.py:2679
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr ""
 "Įtraukti šeimos žemėlapio puslapius su visomis vietovėmis, parodytomis ant "
 "žemėlapio."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2682
+#: ../gramps/plugins/webreport/narrativeweb.py:2683
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -40062,23 +40060,23 @@ msgstr ""
 "Ar tikrai pridėti atskirą puslapio žemėlapį, rodant visas vietoves šiame "
 "puslapyje. Tai leis matyti, kaip jūsų šeima keliavo po šalį."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2692
+#: ../gramps/plugins/webreport/narrativeweb.py:2693
 msgid "Family Links"
 msgstr "Šeimos nuorodos"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2693
+#: ../gramps/plugins/webreport/narrativeweb.py:2694
 msgid "Drop"
 msgstr "Išmesti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2694
+#: ../gramps/plugins/webreport/narrativeweb.py:2695
 msgid "Markers"
 msgstr "Žymekliai"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2697
+#: ../gramps/plugins/webreport/narrativeweb.py:2698
 msgid "Google/ FamilyMap Option"
 msgstr "Google / Šeimos žemėlapio parinktys"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2703
+#: ../gramps/plugins/webreport/narrativeweb.py:2704
 #, fuzzy
 #| msgid ""
 #| "Select which option that you would like to have for the Google Maps "
@@ -40090,11 +40088,11 @@ msgstr ""
 "Pasirinkite, kurias parinktis norėtumėte turėti Google žemėlapio ir šeimos "
 "žemėlapio puslapiuose..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2709
+#: ../gramps/plugins/webreport/narrativeweb.py:2710
 msgid "Google maps API key"
 msgstr "Google žemėlapio API raktas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2712
+#: ../gramps/plugins/webreport/narrativeweb.py:2713
 #, fuzzy
 #| msgid "The API key used for the Google maps"
 msgid ""
@@ -40102,38 +40100,38 @@ msgid ""
 "This key is mandatory and must be valid"
 msgstr "API raktas naudojamas Google žemėlapiuose."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2724
-#: ../gramps/plugins/webreport/narrativeweb.py:2764
+#: ../gramps/plugins/webreport/narrativeweb.py:2725
+#: ../gramps/plugins/webreport/narrativeweb.py:2765
 #, fuzzy
 #| msgid "Google maps API key"
 msgid "How to get the API key"
 msgstr "Google žemėlapio API raktas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2727
+#: ../gramps/plugins/webreport/narrativeweb.py:2728
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2735
+#: ../gramps/plugins/webreport/narrativeweb.py:2736
 msgid "Toner"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2736
+#: ../gramps/plugins/webreport/narrativeweb.py:2737
 msgid "Terrain"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2737
+#: ../gramps/plugins/webreport/narrativeweb.py:2738
 #, fuzzy
 msgid "WaterColor"
 msgstr "Spalva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2739
+#: ../gramps/plugins/webreport/narrativeweb.py:2740
 #, fuzzy
 msgid "Stamen Option"
 msgstr "Turinio nustatymai"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2744
+#: ../gramps/plugins/webreport/narrativeweb.py:2745
 #, fuzzy
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
@@ -40142,13 +40140,13 @@ msgstr ""
 "Pasirinkite, kurias parinktis norėtumėte turėti Google žemėlapio ir šeimos "
 "žemėlapio puslapiuose..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2749
+#: ../gramps/plugins/webreport/narrativeweb.py:2750
 #, fuzzy
 #| msgid "Google maps API key"
 msgid "Stamen maps API key"
 msgstr "Google žemėlapio API raktas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2752
+#: ../gramps/plugins/webreport/narrativeweb.py:2753
 #, fuzzy
 #| msgid "The API key used for the Google maps"
 msgid ""
@@ -40156,30 +40154,30 @@ msgid ""
 "This key is mandatory and must be valid"
 msgstr "API raktas naudojamas Google žemėlapiuose."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2767
+#: ../gramps/plugins/webreport/narrativeweb.py:2768
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2784
+#: ../gramps/plugins/webreport/narrativeweb.py:2785
 #, fuzzy, python-format
 #| msgid "Died %(month_year)s (%(age)s)."
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
 msgstr "Mirė %(month_year)s (amžius – %(age)s)."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2785
+#: ../gramps/plugins/webreport/narrativeweb.py:2786
 #, fuzzy
 #| msgid "Dates"
 msgid "latest"
 msgstr "Datos"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2787
+#: ../gramps/plugins/webreport/narrativeweb.py:2788
 msgid "openlayers version to use"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2792
+#: ../gramps/plugins/webreport/narrativeweb.py:2793
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -40188,194 +40186,194 @@ msgid ""
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2809
+#: ../gramps/plugins/webreport/narrativeweb.py:2810
 #, fuzzy
 #| msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "Kitos įtrauktys (CMS, tinklapinis kalendorius, Php)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2813
+#: ../gramps/plugins/webreport/narrativeweb.py:2814
 #, fuzzy
 #| msgid "Do we include these pages in a cms web ?"
 msgid "Do we include these pages in a CMS web?"
 msgstr "Ar įtraukti šiuos puslapius į cms tinklapį?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2820
+#: ../gramps/plugins/webreport/narrativeweb.py:2821
 msgid "URI"
 msgstr "URL"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2822
+#: ../gramps/plugins/webreport/narrativeweb.py:2823
 #, fuzzy
 #| msgid "Where do you place your web site ? default = /NAVWEB"
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "Kur patalpinsite savo tinklapį? numatyta = /NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2830
+#: ../gramps/plugins/webreport/narrativeweb.py:2831
 #, fuzzy
 msgid "Include the news and updates page"
 msgstr "Kuriamas statistikos puslapis..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2831
+#: ../gramps/plugins/webreport/narrativeweb.py:2832
 #, fuzzy
 msgid "Whether to include a page with the last updates"
 msgstr "Ar įtraukti paskutinį užsiėmimą"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2835
+#: ../gramps/plugins/webreport/narrativeweb.py:2836
 #, fuzzy
 msgid "Max days for updates"
 msgstr "Didžiausias elementų skaičius skritulinėj diagramoj"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2837
+#: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "You want to see the last updates on how many days?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2842
+#: ../gramps/plugins/webreport/narrativeweb.py:2843
 #, fuzzy
 msgid "Max number of updates per object to show"
 msgstr "Didžiausias rodomų vietovių skaičius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2844
+#: ../gramps/plugins/webreport/narrativeweb.py:2845
 msgid "How many updates do you want to see max"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2856
+#: ../gramps/plugins/webreport/narrativeweb.py:2857
 #, fuzzy
 msgid "Translations"
 msgstr "Vertimas"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2859
+#: ../gramps/plugins/webreport/narrativeweb.py:2860
 #, fuzzy
 msgid "Second language"
 msgstr "Antroji data"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2864
+#: ../gramps/plugins/webreport/narrativeweb.py:2865
 msgid "Site name for your second language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2864
-#: ../gramps/plugins/webreport/narrativeweb.py:2873
-#: ../gramps/plugins/webreport/narrativeweb.py:2882
-#: ../gramps/plugins/webreport/narrativeweb.py:2891
-#: ../gramps/plugins/webreport/narrativeweb.py:2900
+#: ../gramps/plugins/webreport/narrativeweb.py:2865
+#: ../gramps/plugins/webreport/narrativeweb.py:2874
+#: ../gramps/plugins/webreport/narrativeweb.py:2883
+#: ../gramps/plugins/webreport/narrativeweb.py:2892
+#: ../gramps/plugins/webreport/narrativeweb.py:2901
 #, fuzzy
 msgid "This site title"
 msgstr "Pagrindinio puslapio antraštė"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2866
-#: ../gramps/plugins/webreport/narrativeweb.py:2875
-#: ../gramps/plugins/webreport/narrativeweb.py:2884
-#: ../gramps/plugins/webreport/narrativeweb.py:2893
-#: ../gramps/plugins/webreport/narrativeweb.py:2902
+#: ../gramps/plugins/webreport/narrativeweb.py:2867
+#: ../gramps/plugins/webreport/narrativeweb.py:2876
+#: ../gramps/plugins/webreport/narrativeweb.py:2885
+#: ../gramps/plugins/webreport/narrativeweb.py:2894
+#: ../gramps/plugins/webreport/narrativeweb.py:2903
 msgid "Enter a title in the respective language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2868
+#: ../gramps/plugins/webreport/narrativeweb.py:2869
 #, fuzzy
 msgid "Third language"
 msgstr "Kalba"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2873
+#: ../gramps/plugins/webreport/narrativeweb.py:2874
 msgid "Site name for your third language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2877
+#: ../gramps/plugins/webreport/narrativeweb.py:2878
 #, fuzzy
 msgid "Fourth language"
 msgstr "Kalba"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2882
+#: ../gramps/plugins/webreport/narrativeweb.py:2883
 msgid "Site name for your fourth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2886
+#: ../gramps/plugins/webreport/narrativeweb.py:2887
 #, fuzzy
 msgid "Fifth language"
 msgstr "Kalba"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2891
+#: ../gramps/plugins/webreport/narrativeweb.py:2892
 msgid "Site name for your fifth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2895
+#: ../gramps/plugins/webreport/narrativeweb.py:2896
 #, fuzzy
 msgid "Sixth language"
 msgstr "Kalba"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2900
+#: ../gramps/plugins/webreport/narrativeweb.py:2901
 msgid "Site name for your sixth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3133
+#: ../gramps/plugins/webreport/narrativeweb.py:3134
 #, fuzzy
 msgid "Calendar Options"
 msgstr "Popieriaus parinktys"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3139
+#: ../gramps/plugins/webreport/narrativeweb.py:3140
 msgid "Do we include the web calendar ?"
 msgstr "Ar įtraukti internetinį kalendorių?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3141
+#: ../gramps/plugins/webreport/narrativeweb.py:3142
 #, fuzzy, python-format
 msgid "Whether to include a calendar for year %s"
 msgstr "Ar įtraukti garso/vaizdo objektų galeriją"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3168
+#: ../gramps/plugins/webreport/narrativeweb.py:3169
 #: ../gramps/plugins/webreport/webcal.py:2060
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "Sukuria vienos dienos įvykių puslapius Metų Peržiūros kalendoriuje"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3170
+#: ../gramps/plugins/webreport/narrativeweb.py:3171
 #: ../gramps/plugins/webreport/webcal.py:2062
 msgid "Whether to create one day pages or not"
 msgstr "Ar kurti kiekvienos dienos puslapius ar ne"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3174
+#: ../gramps/plugins/webreport/narrativeweb.py:3175
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include birthdays in the calendar"
 msgstr "Į kalendorių įtraukti gimtadienius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3178
+#: ../gramps/plugins/webreport/narrativeweb.py:3179
 #: ../gramps/plugins/webreport/webcal.py:2070
 msgid "Include anniversaries in the calendar"
 msgstr "Į kalendorių įtraukti jubiliejus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3191
+#: ../gramps/plugins/webreport/narrativeweb.py:3192
 #: ../gramps/plugins/webreport/webcal.py:2085
 msgid "Show data only after year"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3198
+#: ../gramps/plugins/webreport/narrativeweb.py:3199
 #: ../gramps/plugins/webreport/webcal.py:2092
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3215
+#: ../gramps/plugins/webreport/narrativeweb.py:3216
 #, fuzzy
 #| msgid "Place Map Options"
 msgid "HeatMap Options"
 msgstr "Vietovės žemėlapio parinktys"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3218
+#: ../gramps/plugins/webreport/narrativeweb.py:3219
 #, fuzzy
 #| msgid "Include event pages"
 msgid "Include heatmap pages"
 msgstr "Įtraukti įvykių puslapius"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3219
+#: ../gramps/plugins/webreport/narrativeweb.py:3220
 #, fuzzy
 #| msgid "Whether to include alternate names for parents."
 msgid "Whether to include heatmap pages for events"
 msgstr "Ar įtraukti kitus tėvų vardus."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3225
+#: ../gramps/plugins/webreport/narrativeweb.py:3226
 #, fuzzy
 #| msgid "Font size"
 msgid "Point size"
 msgstr "Šrifto dydis"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3226
+#: ../gramps/plugins/webreport/narrativeweb.py:3227
 #, fuzzy
 #| msgid "The size of note text, in points."
 msgid ""
@@ -40383,17 +40381,17 @@ msgid ""
 "Default: 8"
 msgstr "Pastabos teksto dydis taškais."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3229
+#: ../gramps/plugins/webreport/narrativeweb.py:3230
 msgid "Blur"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3230
+#: ../gramps/plugins/webreport/narrativeweb.py:3231
 msgid ""
 "Set the blur size.\n"
 "Default: 15"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3233
+#: ../gramps/plugins/webreport/narrativeweb.py:3234
 msgid "Zoom"
 msgstr "Mastelis"
 
@@ -40422,12 +40420,12 @@ msgstr ""
 msgid "<absent>"
 msgstr "<nėra>"
 
-#: ../gramps/plugins/webreport/person.py:1057
+#: ../gramps/plugins/webreport/person.py:1058
 #, python-format
 msgid "Tracking %s"
 msgstr "Sekimas: %s"
 
-#: ../gramps/plugins/webreport/person.py:1063
+#: ../gramps/plugins/webreport/person.py:1064
 #, fuzzy
 #| msgid ""
 #| "This map page represents that person and any descendants with all of "
@@ -40448,47 +40446,47 @@ msgstr ""
 "surūšiuoti pagal datą. Paspaudus ant vietovės pavadinimo nuorodų skyriuje "
 "pateiks jums vietovės puslapį."
 
-#: ../gramps/plugins/webreport/person.py:1115
+#: ../gramps/plugins/webreport/person.py:1116
 msgid "Place Title"
 msgstr "Vietovės antraštė"
 
-#: ../gramps/plugins/webreport/person.py:1250
+#: ../gramps/plugins/webreport/person.py:1251
 msgid "Drop Markers"
 msgstr "Išmesti žymekliai"
 
-#: ../gramps/plugins/webreport/person.py:1849
+#: ../gramps/plugins/webreport/person.py:1850
 msgid "Call Name"
 msgstr "Kreipinys"
 
-#: ../gramps/plugins/webreport/person.py:1870
+#: ../gramps/plugins/webreport/person.py:1871
 msgid "Nick Name"
 msgstr "Slapyvardis"
 
-#: ../gramps/plugins/webreport/person.py:1927
+#: ../gramps/plugins/webreport/person.py:1928
 msgid "Age at Death"
 msgstr "Mirties amžius"
 
-#: ../gramps/plugins/webreport/person.py:2121
+#: ../gramps/plugins/webreport/person.py:2122
 msgid "Stepfather"
 msgstr "Patėvis"
 
-#: ../gramps/plugins/webreport/person.py:2134
+#: ../gramps/plugins/webreport/person.py:2135
 msgid "Stepmother"
 msgstr "Pamotė"
 
-#: ../gramps/plugins/webreport/person.py:2161
+#: ../gramps/plugins/webreport/person.py:2162
 msgid "Not siblings"
 msgstr "Ne brolis/sesuo"
 
-#: ../gramps/plugins/webreport/person.py:2302
+#: ../gramps/plugins/webreport/person.py:2303
 msgid "Relation to the center person"
 msgstr "Ryšys su centriniu asmeniu"
 
-#: ../gramps/plugins/webreport/person.py:2347
+#: ../gramps/plugins/webreport/person.py:2348
 msgid "Relation to main person"
 msgstr "Ryšys su pagrindiniu asmeniu"
 
-#: ../gramps/plugins/webreport/person.py:2352
+#: ../gramps/plugins/webreport/person.py:2353
 msgid "Relation within this family (if not by birth)"
 msgstr "Ryšys su šia šeima (išskyrus gimimo)"
 
@@ -40496,7 +40494,7 @@ msgstr "Ryšys su šia šeima (išskyrus gimimo)"
 msgid "Creating place pages"
 msgstr "Kuriami vietovės puslapiai"
 
-#: ../gramps/plugins/webreport/place.py:293
+#: ../gramps/plugins/webreport/place.py:295
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
@@ -40505,22 +40503,22 @@ msgstr ""
 "Šiame puslapyje yra visų duombazėje esančių vietovių rodyklė, išrūšiuota "
 "pagal antraštę. Pasirinkus antraštę, būsite nukreipti į tos vietovės puslapį."
 
-#: ../gramps/plugins/webreport/place.py:346
-#: ../gramps/plugins/webreport/place.py:358
+#: ../gramps/plugins/webreport/place.py:348
+#: ../gramps/plugins/webreport/place.py:360
 #, fuzzy
 #| msgid "Name"
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Pavadinimas"
 
-#: ../gramps/plugins/webreport/place.py:347
-#: ../gramps/plugins/webreport/place.py:359
+#: ../gramps/plugins/webreport/place.py:349
+#: ../gramps/plugins/webreport/place.py:361
 #, fuzzy
 #| msgid "State/ Province"
 msgid "State/Province"
 msgstr "Valstija / provincija"
 
-#: ../gramps/plugins/webreport/place.py:607
+#: ../gramps/plugins/webreport/place.py:612
 msgid "Place Map"
 msgstr "Vietų žemėlapis"
 
@@ -40872,6 +40870,9 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Jokio stiliaus"
+
+#~ msgid "Applying ..."
+#~ msgstr "Pritaikoma..."
 
 #, fuzzy
 #~| msgid "Reading data..."

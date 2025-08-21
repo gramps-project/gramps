@@ -2547,11 +2547,16 @@ class GrampsParser(UpdateCallback):
         elif self.place_name:
             date_value = self.place_name.get_date_object()
 
-        start = attrs["start"].split("-")
-        stop = attrs["stop"].split("-")
+        start = attrs["start"]
+        stop = attrs["stop"]
 
+        bce = 1
+        if start[0] == "-":
+            bce = -1
+            start = start[1:]
+        start = start.split("-")
         try:
-            year = int(start[0])
+            year = int(start[0]) * bce
         except ValueError:
             year = 0
 
@@ -2565,8 +2570,13 @@ class GrampsParser(UpdateCallback):
         except:
             day = 0
 
+        bce = 1
+        if stop[0] == "-":
+            bce = -1
+            stop = stop[1:]
+        stop = stop.split("-")
         try:
-            rng_year = int(stop[0])
+            rng_year = int(stop[0]) * bce
         except:
             rng_year = 0
 

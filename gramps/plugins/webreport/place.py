@@ -152,7 +152,9 @@ class PlacePages(BasePage):
                             plc_dict = (p_fname, place_name, place.gramps_id, None)
                             self.report.obj_dict[Place][place_ref] = plc_dict
                             p_name = _pd.display(self.r_db, place, fmt=0)
-                            cplace_name = p_name.split()[-1]
+                            cplace_name = ""
+                            if p_name:
+                                cplace_name = p_name.split()[-1]
                             if len(place_name.split()) > 1:
                                 splace_name = place_name.split()[-2]
                             else:
@@ -165,20 +167,20 @@ class PlacePages(BasePage):
                                 place.gramps_id,
                                 None,
                             )
-                            self.report.obj_dict[PlaceName][p_name] = plc_dict
+                            plc_name = p_name + ":" + place.get_gramps_id()
+                            self.report.obj_dict[PlaceName][plc_name] = plc_dict
 
         with self.r_user.progress(
             progress_title, message, len(self.report.obj_dict[Place]) + 1
         ) as step:
             index = 1
             for place_name in self.report.obj_dict[PlaceName].keys():
+                pname = place_name.split(":")[0]
                 step()
                 p_handle = self.report.obj_dict[PlaceName][place_name]
                 index += 1
                 if isinstance(p_handle, tuple):
-                    self.placepage(
-                        self.report, the_lang, the_title, p_handle[0], place_name
-                    )
+                    self.placepage(self.report, the_lang, the_title, p_handle[0], pname)
             step()
         self.placelistpage(self.report, the_lang, the_title)
 
@@ -363,7 +365,8 @@ class PlacePages(BasePage):
 
                 # begin table body
                 for place_handle, pname in places_handle_list:
-                    val = self.report.obj_dict[PlaceName][pname]
+                    gid = self.report.obj_dict[Place][place_handle][2]
+                    val = self.report.obj_dict[PlaceName][pname + ":" + gid]
                     nbelem = len(val)
                     if val and nbelem > 3:
                         if isinstance(place_handle, tuple):
@@ -416,7 +419,9 @@ class PlacePages(BasePage):
         # self.report.obj_dict[PlaceName] is a dict with key place_name and
         # values (place_fname, place_name, place.gramps_id, event)
         for place_name, value in self.report.obj_dict[PlaceName].items():
-            index.addRecord(place_name, [(value[0], value[1])])
+            gid = self.report.obj_dict[Place][value[0]][2]
+            p_name = place_name + ":" + gid
+            index.addRecord(p_name, [(value[0], value[1])])
 
         # Extract the buckets from the index
         index_list = []
@@ -629,7 +634,10 @@ class PlacePages(BasePage):
                     tooltip += Html("div", id="tooltip-content")
 
             # source references
-            if not self.report.options["inc_uplaces"]:
+            if (
+                not self.report.options["inc_uplaces"]
+                and self.report.options["inc_sources"]
+            ):
                 # We can't display source reference when we display
                 # unused places. These info are not in the collected objects.
                 # This is to avoid "page not found" errors.

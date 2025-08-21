@@ -113,7 +113,7 @@
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="margin-start">6</property>
-                                <property name="label" translatable="yes">Name:</property>
+                                <property name="label" translatable="yes" context="family">Name:</property>
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
@@ -376,7 +376,7 @@
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="margin-start">6</property>
-                                <property name="label" translatable="yes">Name:</property>
+                                <property name="label" translatable="yes" context="family">Name:</property>
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>

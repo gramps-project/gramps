@@ -114,7 +114,8 @@ class IsDescendantFamilyOf(Rule):
                         spouse_handle = family.mother_handle
                     else:
                         spouse_handle = family.father_handle
-                    self.selected_handles.add(spouse_handle)
+                    if spouse_handle:
+                        self.selected_handles.add(spouse_handle)
 
     def exclude(self):
         # This removes root person and his/her spouses from the matches set
