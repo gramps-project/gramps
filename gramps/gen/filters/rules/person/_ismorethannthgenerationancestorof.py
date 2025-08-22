@@ -33,7 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
-from ....utils.parallel import create_family_tree_processor
+from ....utils.family_tree_traversal import create_family_tree_traversal
 
 
 # -------------------------------------------------------------------------
@@ -71,10 +71,10 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         if person:
             try:
                 min_generations = int(self.list[1])
-                # Use parallel ancestor functionality with unlimited depth,
+                # Use family tree traversal functionality with unlimited depth,
                 # then filter by generation
-                processor = create_family_tree_processor()
-                all_ancestors = processor.get_person_ancestors(db, [person])
+                traversal = create_family_tree_traversal()
+                all_ancestors = traversal.get_person_ancestors(db, [person])
 
                 # Filter ancestors by generation using BFS to determine depth
                 self._filter_ancestors_by_generation(

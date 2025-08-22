@@ -34,7 +34,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
-from ....utils.parallel import get_person_ancestors
+from ....utils.family_tree_traversal import get_person_ancestors
 
 
 # -------------------------------------------------------------------------
@@ -71,10 +71,12 @@ class IsAncestorOf(Rule):
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             if root_person:
-                # Use parallel ancestor functionality for better performance
-                # Include root person if in inclusive mode
+                # Use family tree traversal functionality for better performance
+                # The original logic: first=True (inclusive) means DON'T include root person
+                # first=False (exclusive) means DO include root person
+                # So we need to invert the inclusive parameter
                 ancestors = get_person_ancestors(
-                    db, [root_person], include_root=inclusive
+                    db, [root_person], include_root=not inclusive
                 )
                 self.selected_handles.update(ancestors)
         except Exception:

@@ -38,7 +38,7 @@ from typing import Set, List
 # -------------------------------------------------------------------------
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
-from ....utils.parallel import FamilyTreeProcessor
+from ....utils.family_tree_traversal import FamilyTreeTraversal
 
 # -------------------------------------------------------------------------
 #
@@ -69,8 +69,8 @@ class IsDescendantOf(Rule):
 
     def __init__(self, list):
         super().__init__(list)
-        # Initialize parallel processor with configurable settings
-        self._parallel_processor = FamilyTreeProcessor(
+        # Initialize family tree traversal with configurable settings
+        self._traversal = FamilyTreeTraversal(
             max_threads=4,
         )
 
@@ -113,7 +113,7 @@ class IsDescendantOf(Rule):
         # Use parallel descendant traversal for better performance
         if not first:
             # Inclusive mode: include root family and all descendants
-            descendant_handles = self._parallel_processor.get_family_descendants(
+            descendant_handles = self._traversal.get_family_descendants(
                 db=db,
                 families=[root_family],
                 max_depth=max_depth,
@@ -123,7 +123,7 @@ class IsDescendantOf(Rule):
         else:
             # Exclusive mode: exclude root family, include only descendants
             # Start from root family's children and get all their descendants
-            descendant_handles = self._parallel_processor.get_family_descendants(
+            descendant_handles = self._traversal.get_family_descendants(
                 db=db,
                 families=[root_family],
                 max_depth=max_depth,

@@ -1,0 +1,644 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2025 Doug Blank <doug.blank@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+
+"""
+Family tree traversal utilities for Gramps operations.
+
+This module provides both sequential and parallel implementations for family tree
+traversal operations, with automatic fallback to sequential processing when
+parallel processing is not available or not beneficial.
+"""
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+from collections import deque
+from typing import Any, Callable, List, Optional, Set, Tuple
+import logging
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+from ..lib import Person, Family
+from ..types import PersonHandle
+from .parallel import ParallelProcessor, process_in_parallel
+
+_ = glocale.translation.gettext
+
+# Set up logging
+LOG = logging.getLogger(".family_tree_traversal")
+
+
+class FamilyTreeTraversal:
+    """
+    Family tree traversal utilities with support for both sequential and parallel processing.
+
+    This class provides methods for traversing family trees to find ancestors and descendants,
+    with automatic fallback to sequential processing when parallel processing is not available.
+    """
+
+    def __init__(self, use_parallel: bool = True, max_threads: int = 4):
+        """
+        Initialize the family tree traversal utility.
+
+        Args:
+            use_parallel: Whether to attempt parallel processing
+            max_threads: Maximum number of threads for parallel processing
+        """
+        self.max_threads = max_threads
+        self._parallel_processor = None
+
+        if use_parallel:
+            try:
+                self._parallel_processor = ParallelProcessor(max_threads=max_threads)
+            except Exception as e:
+                LOG.warning(f"Parallel processing not available: {e}")
+
+    def get_person_ancestors(
+        self,
+        db,
+        persons: List[Person],
+        max_depth: Optional[int] = None,
+        include_root: bool = False,
+    ) -> Set[str]:
+        """
+        Get all ancestors of the given persons up to the specified depth.
+
+        Args:
+            db: Database instance
+            persons: List of persons to find ancestors for
+            max_depth: Maximum depth to traverse (None for unlimited)
+            include_root: Whether to include root persons in the result
+
+        Returns:
+            Set of ancestor handles
+        """
+        if not persons:
+            return set()
+
+        def get_parents_func(person: Person) -> List[str]:
+            return self._get_person_parents(db, person)
+
+        def get_item_func(handle: str) -> Optional[Person]:
+            return db.get_person_from_handle(handle)
+
+        return self._ancestor_traversal(
+            db=db,
+            root_items=persons,
+            get_parents_func=get_parents_func,
+            get_item_func=get_item_func,
+            max_depth=max_depth,
+            include_root=include_root,
+        )
+
+    def get_person_descendants(
+        self,
+        db,
+        persons: List[Person],
+        max_depth: Optional[int] = None,
+        include_root: bool = False,
+    ) -> Set[str]:
+        """
+        Get all descendants of the given persons up to the specified depth.
+
+        Args:
+            db: Database instance
+            persons: List of persons to find descendants for
+            max_depth: Maximum depth to traverse (None for unlimited)
+            include_root: Whether to include root persons in the result
+
+        Returns:
+            Set of descendant handles
+        """
+        if not persons:
+            return set()
+
+        def get_children_func(person: Person) -> List[str]:
+            return self._get_person_children(db, person)
+
+        def get_item_func(handle: str) -> Optional[Person]:
+            return db.get_person_from_handle(handle)
+
+        return self._descendant_traversal(
+            db=db,
+            root_items=persons,
+            get_children_func=get_children_func,
+            get_item_func=get_item_func,
+            max_depth=max_depth,
+            include_root=include_root,
+        )
+
+    def is_ancestor_of(
+        self,
+        db,
+        potential_ancestor: Person,
+        potential_descendant: Person,
+        max_depth: Optional[int] = None,
+    ) -> bool:
+        """
+        Check if one person is an ancestor of another.
+
+        Args:
+            db: Database instance
+            potential_ancestor: Person to check if they are an ancestor
+            potential_descendant: Person to check if they are a descendant
+            max_depth: Maximum depth to search (None for unlimited)
+
+        Returns:
+            True if potential_ancestor is an ancestor of potential_descendant
+        """
+        # Get all ancestors of the potential descendant
+        ancestors = self.get_person_ancestors(
+            db=db,
+            persons=[potential_descendant],
+            max_depth=max_depth,
+        )
+
+        # Check if the potential ancestor is in the ancestor set
+        return potential_ancestor.handle in ancestors
+
+    def get_family_descendants(
+        self,
+        db,
+        families: List[Family],
+        max_depth: Optional[int] = None,
+        include_root: bool = False,
+    ) -> Set[str]:
+        """
+        Get all descendant families of the given families up to the specified depth.
+
+        Args:
+            db: Database instance
+            families: List of families to find descendants for
+            max_depth: Maximum depth to traverse (None for unlimited)
+            include_root: Whether to include root families in the result
+
+        Returns:
+            Set of descendant family handles
+        """
+        if not families:
+            return set()
+
+        descendant_families = set()
+        visited_families = set()
+
+        # Use BFS to traverse family descendants
+        work_queue = deque()
+        for family in families:
+            work_queue.append((family.handle, 0))  # (family_handle, depth)
+
+        while work_queue:
+            family_handle, depth = work_queue.popleft()
+
+            if max_depth is not None and depth > max_depth:
+                continue
+
+            if not family_handle or family_handle in visited_families:
+                continue
+
+            visited_families.add(family_handle)
+
+            # Add to results if not root (or if include_root is True and depth is 0)
+            if depth > 0 or (include_root and depth == 0):
+                descendant_families.add(family_handle)
+
+            # Get the family and find its children
+            family = db.get_family_from_handle(family_handle)
+            if family:
+                # Get all children in this family
+                for child_ref in family.child_ref_list:
+                    child_handle = child_ref.ref
+                    if child_handle:
+                        child = db.get_person_from_handle(child_handle)
+                        if child:
+                            # Find families where this child is a parent
+                            for child_family_handle in child.family_list:
+                                if child_family_handle not in visited_families:
+                                    work_queue.append((child_family_handle, depth + 1))
+
+        return descendant_families
+
+    def _get_family_children(self, db, family: Family) -> List[str]:
+        """
+        Get child handles for a family.
+
+        Args:
+            db: Database instance
+            family: Family object
+
+        Returns:
+            List of child handles
+        """
+        if not family:
+            return []
+
+        child_handles = []
+        for child_ref in family.child_ref_list:
+            child_handles.append(child_ref.ref)
+
+        return child_handles
+
+    def _ancestor_traversal(
+        self,
+        db,
+        root_items: List[Any],
+        get_parents_func: Callable[[Any], List[str]],
+        get_item_func: Callable[[str], Optional[Any]],
+        max_depth: Optional[int] = None,
+        include_root: bool = False,
+    ) -> Set[str]:
+        """
+        Perform ancestor traversal starting from multiple root items.
+
+        Args:
+            db: Database instance
+            root_items: List of root items to start traversal from
+            get_parents_func: Function to get parents of an item
+            get_item_func: Function to get item by handle
+            max_depth: Maximum depth to traverse (None for unlimited)
+            include_root: Whether to include root items in the result
+
+        Returns:
+            Set of ancestor handles
+        """
+        if not root_items:
+            return set()
+
+        ancestor_handles: Set[str] = set()
+        visited: Set[str] = set()
+
+        # Extract handles from root items
+        root_handles = []
+        for item in root_items:
+            item_handle = getattr(item, "handle", None)
+            if item_handle:
+                root_handles.append(item_handle)
+
+        if not root_handles:
+            return set()
+
+        # BFS traversal
+        work_queue: deque[Tuple[str, int]] = deque()
+        for handle in root_handles:
+            work_queue.append((handle, 0))  # (handle, depth)
+
+        while work_queue:
+            handle, depth = work_queue.popleft()
+
+            if max_depth is not None and depth > max_depth:
+                continue
+
+            if not handle or handle in visited:
+                continue
+
+            visited.add(handle)
+
+            # Add to results if not root (or if include_root is True and depth is 0)
+            if depth > 0 or (include_root and depth == 0):
+                ancestor_handles.add(handle)
+
+            # Get the item and its parents
+            item = get_item_func(handle)
+            if item:
+                parent_handles = get_parents_func(item)
+                if parent_handles:
+                    for parent_handle in parent_handles:
+                        if parent_handle not in visited:
+                            work_queue.append((parent_handle, depth + 1))
+
+        return ancestor_handles
+
+    def _descendant_traversal(
+        self,
+        db,
+        root_items: List[Any],
+        get_children_func: Callable[[Any], List[str]],
+        get_item_func: Callable[[str], Optional[Any]],
+        max_depth: Optional[int] = None,
+        include_root: bool = False,
+    ) -> Set[str]:
+        """
+        Perform descendant traversal starting from multiple root items.
+
+        Args:
+            db: Database instance
+            root_items: List of root items to start traversal from
+            get_children_func: Function to get children of an item
+            get_item_func: Function to get item by handle
+            max_depth: Maximum depth to traverse (None for unlimited)
+            include_root: Whether to include root items in the result
+
+        Returns:
+            Set of descendant handles
+        """
+        if not root_items:
+            return set()
+
+        descendant_handles: Set[str] = set()
+        visited: Set[str] = set()
+
+        # Extract handles from root items
+        root_handles = []
+        for item in root_items:
+            item_handle = getattr(item, "handle", None)
+            if item_handle:
+                root_handles.append(item_handle)
+
+        if not root_handles:
+            return set()
+
+        # BFS traversal
+        work_queue: deque[Tuple[str, int]] = deque()
+        for handle in root_handles:
+            work_queue.append((handle, 0))  # (handle, depth)
+
+        while work_queue:
+            handle, depth = work_queue.popleft()
+
+            if max_depth is not None and depth > max_depth:
+                continue
+
+            if not handle or handle in visited:
+                continue
+
+            visited.add(handle)
+
+            # Add to results if not root (or if include_root is True and depth is 0)
+            if depth > 0 or (include_root and depth == 0):
+                descendant_handles.add(handle)
+
+            # Get the item and its children
+            item = get_item_func(handle)
+            if item:
+                child_handles = get_children_func(item)
+                if child_handles:
+                    for child_handle in child_handles:
+                        if child_handle not in visited:
+                            work_queue.append((child_handle, depth + 1))
+
+        return descendant_handles
+
+    def _get_person_parents(self, db, person: Person) -> List[str]:
+        """
+        Get parent handles for a person by traversing their families.
+
+        Args:
+            db: Database instance
+            person: Person object
+
+        Returns:
+            List of parent handles
+        """
+        parent_handles = []
+
+        # Get families where this person is a child
+        for family_handle in person.parent_family_list:
+            family = db.get_family_from_handle(family_handle)
+            if family:
+                # Add father and mother handles
+                if family.father_handle:
+                    parent_handles.append(family.father_handle)
+                if family.mother_handle:
+                    parent_handles.append(family.mother_handle)
+
+        return parent_handles
+
+    def _get_person_children(self, db, person: Person) -> List[str]:
+        """
+        Get child handles for a person by traversing their families.
+
+        Args:
+            db: Database instance
+            person: Person object
+
+        Returns:
+            List of child handles
+        """
+        if not person:
+            return []
+
+        # Get family handles for this person
+        family_handles = list(person.family_list)
+
+        # Get child handles from all families
+        if family_handles:
+            # Check if parallel processing is available and database supports parallel reads
+            if self._parallel_processor:
+                return self._process_person_families_parallel(db, family_handles)
+            else:
+                return self._process_person_families_sequential(db, family_handles)
+
+        return []
+
+    def _process_person_families_sequential(
+        self, db, family_handles: List[str]
+    ) -> List[str]:
+        """
+        Process person families to get child handles using sequential processing.
+
+        Args:
+            db: Database instance
+            family_handles: List of family handles to process
+
+        Returns:
+            List of child handles
+        """
+        child_handles = []
+        for family_handle in family_handles:
+            family = db.get_family_from_handle(family_handle)
+            if family:
+                for child_ref in family.child_ref_list:
+                    child_handles.append(child_ref.ref)
+        return child_handles
+
+    def _process_person_families_parallel(
+        self, db, family_handles: List[str]
+    ) -> List[str]:
+        """
+        Process person families to get child handles using parallel processing.
+
+        Args:
+            db: Database instance
+            family_handles: List of family handles to process
+
+        Returns:
+            List of child handles
+        """
+        # Get families first
+        families = []
+        for family_handle in family_handles:
+            family = db.get_family_from_handle(family_handle)
+            if family:
+                families.append(family)
+
+        # Use parallel processing for extracting child handles from families
+        def extract_children(family_batch: List[Family]) -> List[str]:
+            """Extract child handles from a batch of families."""
+            child_handles = []
+            for family in family_batch:
+                for child_ref in family.child_ref_list:
+                    child_handles.append(child_ref.ref)
+            return child_handles
+
+        return self._parallel_processor.process_items(families, extract_children)
+
+
+# Convenience functions
+def create_family_tree_traversal(
+    use_parallel: bool = True,
+    max_threads: int = 4,
+    db=None,
+) -> FamilyTreeTraversal:
+    """
+    Create a FamilyTreeTraversal with sensible defaults.
+
+    Args:
+        use_parallel: Whether to attempt parallel processing
+        max_threads: Maximum number of threads for parallel processing
+        db: Optional database instance to check for parallel support
+
+    Returns:
+        Configured FamilyTreeTraversal instance
+    """
+    # If database is provided and doesn't support parallel reads, disable parallel processing
+    if db and use_parallel:
+        if not (
+            hasattr(db, "supports_parallel_reads") and db.supports_parallel_reads()
+        ):
+            use_parallel = False
+            LOG.debug(
+                "Database does not support parallel reads, falling back to sequential processing"
+            )
+
+    return FamilyTreeTraversal(
+        use_parallel=use_parallel,
+        max_threads=max_threads,
+    )
+
+
+def get_person_ancestors(
+    db,
+    persons: List[Person],
+    max_depth: Optional[int] = None,
+    include_root: bool = False,
+    use_parallel: bool = True,
+    max_threads: int = 4,
+) -> Set[str]:
+    """
+    Convenience function to get all ancestors of the given persons.
+
+    Args:
+        db: Database instance
+        persons: List of persons to find ancestors for
+        max_depth: Maximum depth to traverse (None for unlimited)
+        include_root: Whether to include root persons in the result
+        use_parallel: Whether to attempt parallel processing
+        max_threads: Maximum number of threads for parallel processing
+
+    Returns:
+        Set of ancestor handles
+    """
+    traversal = create_family_tree_traversal(
+        use_parallel=use_parallel,
+        max_threads=max_threads,
+        db=db,
+    )
+    return traversal.get_person_ancestors(
+        db=db,
+        persons=persons,
+        max_depth=max_depth,
+        include_root=include_root,
+    )
+
+
+def get_person_descendants(
+    db,
+    persons: List[Person],
+    max_depth: Optional[int] = None,
+    include_root: bool = False,
+    use_parallel: bool = True,
+    max_threads: int = 4,
+) -> Set[str]:
+    """
+    Convenience function to get all descendants of the given persons.
+
+    Args:
+        db: Database instance
+        persons: List of persons to find descendants for
+        max_depth: Maximum depth to traverse (None for unlimited)
+        include_root: Whether to include root persons in the result
+        use_parallel: Whether to attempt parallel processing
+        max_threads: Maximum number of threads for parallel processing
+
+    Returns:
+        Set of descendant handles
+    """
+    traversal = create_family_tree_traversal(
+        use_parallel=use_parallel,
+        max_threads=max_threads,
+        db=db,
+    )
+    return traversal.get_person_descendants(
+        db=db,
+        persons=persons,
+        max_depth=max_depth,
+        include_root=include_root,
+    )
+
+
+def is_ancestor_of(
+    db,
+    potential_ancestor: Person,
+    potential_descendant: Person,
+    max_depth: Optional[int] = None,
+    use_parallel: bool = True,
+    max_threads: int = 4,
+) -> bool:
+    """
+    Convenience function to check if one person is an ancestor of another.
+
+    Args:
+        db: Database instance
+        potential_ancestor: Person to check if they are an ancestor
+        potential_descendant: Person to check if they are a descendant
+        max_depth: Maximum depth to search (None for unlimited)
+        use_parallel: Whether to attempt parallel processing
+        max_threads: Maximum number of threads for parallel processing
+
+    Returns:
+        True if potential_ancestor is an ancestor of potential_descendant
+    """
+    traversal = create_family_tree_traversal(
+        use_parallel=use_parallel,
+        max_threads=max_threads,
+        db=db,
+    )
+    return traversal.is_ancestor_of(
+        db=db,
+        potential_ancestor=potential_ancestor,
+        potential_descendant=potential_descendant,
+        max_depth=max_depth,
+    )

@@ -36,7 +36,7 @@ from __future__ import annotations
 # -------------------------------------------------------------------------
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
-from ....utils.parallel import get_person_ancestors
+
 
 # -------------------------------------------------------------------------
 #

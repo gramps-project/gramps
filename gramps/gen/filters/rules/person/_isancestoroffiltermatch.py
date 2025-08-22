@@ -34,7 +34,7 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from ._isancestorof import IsAncestorOf
 from ._matchesfilter import MatchesFilter
-from ....utils.parallel import get_person_ancestors
+from ....utils.family_tree_traversal import get_person_ancestors
 
 
 # -------------------------------------------------------------------------

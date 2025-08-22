@@ -36,7 +36,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
-from ....utils.parallel import FamilyTreeProcessor
+from ....utils.family_tree_traversal import FamilyTreeTraversal
 from ....types import PersonHandle
 
 
@@ -65,8 +65,9 @@ class IsDescendantOf(Rule):
 
     def __init__(self, list):
         super().__init__(list)
-        # Initialize parallel processor with configurable settings
-        self._parallel_processor = FamilyTreeProcessor(
+        # Initialize family tree traversal with configurable settings
+        self._traversal = FamilyTreeTraversal(
+            use_parallel=True,
             max_threads=4,
         )
 
@@ -100,16 +101,16 @@ class IsDescendantOf(Rule):
         self, root_person: Person, first: bool, max_depth: int | None = None
     ) -> None:
         """
-        Optimized descendant traversal using parallel breadth-first search
-        with caching and parallel queue processing.
+        Optimized descendant traversal using family tree traversal
+        with automatic fallback to sequential processing.
         """
         if not root_person:
             return
 
-        # Use parallel descendant traversal for better performance
+        # Use family tree traversal for better performance
         if not first:
             # Inclusive mode: include root person and all descendants
-            descendant_handles = self._parallel_processor.get_person_descendants(
+            descendant_handles = self._traversal.get_person_descendants(
                 db=self.db,
                 persons=[root_person],
                 max_depth=max_depth,
@@ -119,34 +120,10 @@ class IsDescendantOf(Rule):
         else:
             # Exclusive mode: exclude root person, include only descendants
             # Start from root person's children and get all their descendants
-            descendant_handles = self._parallel_processor.get_person_descendants(
+            descendant_handles = self._traversal.get_person_descendants(
                 db=self.db,
                 persons=[root_person],
                 max_depth=max_depth,
                 include_root=False,
             )
             self.selected_handles.update(descendant_handles)
-
-    def _get_person_children(self, person: Person) -> List[str]:
-        """
-        Get child handles from a person for parallel traversal.
-
-        Args:
-            person: Person object
-
-        Returns:
-            List of child handles
-        """
-        if not person:
-            return []
-
-        # Get family handles for this person
-        family_handles = list(person.family_list)
-
-        # Get child handles from all families in parallel
-        if family_handles:
-            return self._parallel_processor.process_person_families(
-                self.db, family_handles
-            )
-
-        return []
