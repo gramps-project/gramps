@@ -33,7 +33,7 @@ data processing, and filtering operations.
 # -------------------------------------------------------------------------
 from __future__ import annotations
 import threading
-from typing import Any, Callable, List, Optional, TypeVar, Generic, Set
+from typing import Any, Callable, List, Optional, TypeVar, Generic, Set, Tuple
 from collections.abc import Iterable
 from collections import deque
 import logging
@@ -46,6 +46,7 @@ import queue
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 from ..lib import Person, Family
+from ..types import PersonHandle
 
 
 _ = glocale.translation.gettext
@@ -115,7 +116,7 @@ class ParallelProcessor(Generic[T, R]):
 
         # Process chunks in parallel
         threads: List[threading.Thread] = []
-        results_queue = queue.Queue()
+        results_queue: queue.Queue[List[R]] = queue.Queue()
 
         def worker(chunk: List[T]):
             """Worker function for processing chunks."""
@@ -365,7 +366,7 @@ class FamilyTreeProcessor:
             return set()
 
         # Use BFS with optimized batching
-        work_queue = deque()
+        work_queue: deque[Tuple[str, int]] = deque()
         for handle in root_handles:
             work_queue.append((handle, 0))  # (handle, depth)
 
@@ -391,7 +392,7 @@ class FamilyTreeProcessor:
                 continue
 
             # Process current level items
-            level_results = []
+            level_results: List[Tuple[str, int]] = []
             next_level_handles = []
 
             for handle, depth in current_level:
@@ -453,7 +454,7 @@ class FamilyTreeProcessor:
             return set()
 
         # Use BFS with optimized batching
-        work_queue = deque()
+        work_queue: deque[Tuple[str, int]] = deque()
         for handle in root_handles:
             work_queue.append((handle, 0))  # (handle, depth)
 
@@ -479,7 +480,7 @@ class FamilyTreeProcessor:
                 continue
 
             # Process current level items
-            level_results = []
+            level_results: List[Tuple[str, int]] = []
             next_level_handles = []
 
             for handle, depth in current_level:
