@@ -37,6 +37,7 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .. import Rule
 from ....utils.parallel import FamilyTreeProcessor
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -71,7 +72,7 @@ class IsDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: Set[PersonHandle] = set()
         try:
             first = False if int(self.list[1]) else True
         except IndexError:
@@ -121,7 +122,7 @@ class IsDescendantOf(Rule):
             if child_handles:
                 # Use parallel traversal for descendant persons with max_depth
                 child_persons = [
-                    self.db.get_person_from_handle(handle)
+                    self.db.get_person_from_handle(PersonHandle(handle))
                     for handle in child_handles
                     if handle
                 ]

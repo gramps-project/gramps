@@ -46,6 +46,7 @@ from ....utils.parallel import get_person_ancestors
 from typing import Set
 from ....lib import Family
 from ....db import Database
+from ....types import PersonHandle
 
 
 _ = glocale.translation.gettext
@@ -67,7 +68,7 @@ class IsAncestorOf(Rule):
     description = _("Matches ancestor families of the specified family")
 
     def prepare(self, db: Database, user):
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: Set[PersonHandle] = set()
         try:
             inclusive = False if int(self.list[1]) else True
         except IndexError:
@@ -93,7 +94,7 @@ class IsAncestorOf(Rule):
                 # Convert ancestor persons to their parent families
                 ancestor_families = set()
                 for person_handle in ancestor_person_handles:
-                    person = db.get_person_from_handle(person_handle)
+                    person = db.get_person_from_handle(PersonHandle(person_handle))
                     if person and person.parent_family_list:
                         # Add the family where this person is a child
                         family_handle = person.parent_family_list[0]

@@ -34,6 +34,7 @@ import re
 import sqlite3
 import json
 import threading
+from typing import Optional
 
 # -------------------------------------------------------------------------
 #
@@ -74,7 +75,7 @@ class ThreadSafeConnectionManager:
     for concurrent read operations in SQLite WAL mode.
     """
 
-    def __init__(self, db_path: str, database_config: dict = None):
+    def __init__(self, db_path: str, database_config: Optional[dict] = None):
         """
         Initialize the connection manager.
 
