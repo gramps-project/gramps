@@ -40,6 +40,7 @@ from gramps.gen.utils.family_tree_traversal import (
     get_person_ancestors,
     get_person_descendants,
     is_ancestor_of,
+    get_family_ancestors,
 )
 
 
@@ -445,6 +446,93 @@ class TestFamilyTreeTraversal(unittest.TestCase):
         # Depth 1 should be subset of depth 2, which should be subset of unlimited
         self.assertTrue(descendants_depth_1.issubset(descendants_depth_2))
         self.assertTrue(descendants_depth_2.issubset(descendants_unlimited))
+
+    def test_get_family_ancestors(self):
+        """Test family ancestor traversal functionality."""
+        # Test with parallel processing
+        traversal_parallel = FamilyTreeTraversal(use_parallel=True, max_threads=2)
+
+        # Test with sequential processing
+        traversal_sequential = FamilyTreeTraversal(use_parallel=False)
+
+        # Test with the family containing person_3a (should find ancestors)
+        family_3a = self.db.get_family_from_handle(
+            self.person_3a.get_main_parents_family_handle()
+        )
+
+        # Get ancestor families using parallel processing
+        ancestor_families_parallel = traversal_parallel.get_family_ancestors(
+            self.db, [family_3a], max_depth=None, include_root=False
+        )
+
+        # Get ancestor families using sequential processing
+        ancestor_families_sequential = traversal_sequential.get_family_ancestors(
+            self.db, [family_3a], max_depth=None, include_root=False
+        )
+
+        # Both should produce the same results
+        self.assertEqual(ancestor_families_parallel, ancestor_families_sequential)
+
+        # Should find ancestor families (families where the parents of person_3a are children)
+        self.assertIsInstance(ancestor_families_parallel, set)
+        self.assertGreater(len(ancestor_families_parallel), 0)
+
+        # Test with include_root=True
+        ancestor_families_with_root_parallel = traversal_parallel.get_family_ancestors(
+            self.db, [family_3a], max_depth=None, include_root=True
+        )
+
+        ancestor_families_with_root_sequential = (
+            traversal_sequential.get_family_ancestors(
+                self.db, [family_3a], max_depth=None, include_root=True
+            )
+        )
+
+        # Both should produce the same results
+        self.assertEqual(
+            ancestor_families_with_root_parallel, ancestor_families_with_root_sequential
+        )
+
+        # Should include the root family
+        self.assertIsInstance(ancestor_families_with_root_parallel, set)
+        self.assertGreaterEqual(
+            len(ancestor_families_with_root_parallel), len(ancestor_families_parallel)
+        )
+
+        # Test depth limiting
+        ancestor_families_depth_1_parallel = traversal_parallel.get_family_ancestors(
+            self.db, [family_3a], max_depth=1, include_root=False
+        )
+
+        ancestor_families_depth_1_sequential = (
+            traversal_sequential.get_family_ancestors(
+                self.db, [family_3a], max_depth=1, include_root=False
+            )
+        )
+
+        # Both should produce the same results
+        self.assertEqual(
+            ancestor_families_depth_1_parallel, ancestor_families_depth_1_sequential
+        )
+
+        # Depth 1 should be subset of unlimited
+        self.assertTrue(
+            ancestor_families_depth_1_parallel.issubset(ancestor_families_parallel)
+        )
+
+        # Test convenience function
+        convenience_ancestors = get_family_ancestors(
+            self.db, [family_3a], use_parallel=True, max_threads=2
+        )
+        self.assertIsInstance(convenience_ancestors, set)
+
+        # Test with empty input
+        empty_ancestors_parallel = traversal_parallel.get_family_ancestors(self.db, [])
+        empty_ancestors_sequential = traversal_sequential.get_family_ancestors(
+            self.db, []
+        )
+        self.assertEqual(empty_ancestors_parallel, set())
+        self.assertEqual(empty_ancestors_sequential, set())
 
     def test_database_parallel_support_detection(self):
         """Test that the system correctly detects database parallel support."""
