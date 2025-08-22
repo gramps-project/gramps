@@ -44,6 +44,7 @@ from ._matchesfilter import MatchesFilter
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -64,7 +65,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: Set[PersonHandle] = set()
         try:
             if int(self.list[1]):
                 first = False
@@ -96,4 +97,4 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.selected_handles
+        return PersonHandle(person.handle) in self.selected_handles
