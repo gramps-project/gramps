@@ -72,7 +72,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
             else:
                 inclusive = True
         except IndexError:
-            inclusive = True
+            inclusive = False
 
         self.filt = MatchesFilter(self.list[0:1])
         self.filt.requestprepare(db, user)
@@ -104,7 +104,8 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
                 )
 
             # Get ancestors for all matching persons at once
-            ancestors = get_person_ancestors(db, matching_persons)
+            # Include matching persons if in inclusive mode
+            ancestors = get_person_ancestors(db, matching_persons, include_root=False)
             self.selected_handles.update(ancestors)
 
             # Add the matching persons themselves if inclusive mode

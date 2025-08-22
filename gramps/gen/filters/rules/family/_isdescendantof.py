@@ -112,35 +112,24 @@ class IsDescendantOf(Rule):
 
         # Use parallel descendant traversal for better performance
         if not first:
-            # Get all descendant families using parallel traversal with max_depth
+            # Inclusive mode: include root family and all descendants
             descendant_handles = self._parallel_processor.get_family_descendants(
                 db=db,
                 families=[root_family],
                 max_depth=max_depth,
+                include_root=True,
             )
             self.selected_handles.update(descendant_handles)
         else:
-            # For inclusive mode, we need to process the root family's children
-            # and then get their families in parallel
-            child_handles = [child_ref.ref for child_ref in root_family.child_ref_list]
-            if child_handles:
-                # Get family handles for all children in parallel
-                family_handles = self._parallel_processor.process_child_families(
-                    db, child_handles
-                )
-
-                # Use parallel traversal for descendant families with max_depth
-                family_objects = [
-                    self.db.get_family_from_handle(handle)
-                    for handle in family_handles
-                    if handle
-                ]
-                descendant_handles = self._parallel_processor.get_family_descendants(
-                    db=db,
-                    families=family_objects,
-                    max_depth=max_depth,
-                )
-                self.selected_handles.update(descendant_handles)
+            # Exclusive mode: exclude root family, include only descendants
+            # Start from root family's children and get all their descendants
+            descendant_handles = self._parallel_processor.get_family_descendants(
+                db=db,
+                families=[root_family],
+                max_depth=max_depth,
+                include_root=False,
+            )
+            self.selected_handles.update(descendant_handles)
 
     def _get_family_children(self, family: Family) -> List[str]:
         """

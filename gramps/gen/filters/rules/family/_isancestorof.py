@@ -76,38 +76,31 @@ class IsAncestorOf(Rule):
 
         root_family = db.get_family_from_gramps_id(self.list[0])
         if root_family:
-            # Get the parents of the root family
-            parents = []
-            if root_family.father_handle:
-                father = db.get_person_from_handle(root_family.father_handle)
-                if father:
-                    parents.append(father)
-            if root_family.mother_handle:
-                mother = db.get_person_from_handle(root_family.mother_handle)
-                if mother:
-                    parents.append(mother)
-
-            if parents:
-                # Use parallel ancestor functionality to get all ancestor persons
-                ancestor_person_handles = get_person_ancestors(db, parents)
-
-                # Convert ancestor persons to their parent families
-                ancestor_families = set()
-                for person_handle in ancestor_person_handles:
-                    person = db.get_person_from_handle(PersonHandle(person_handle))
-                    if person and person.parent_family_list:
-                        # Add the family where this person is a child
-                        family_handle = person.parent_family_list[0]
-                        ancestor_families.add(family_handle)
-
-                self.selected_handles.update(ancestor_families)
-
-                # Add the root family if inclusive mode
-                if inclusive:
-                    self.selected_handles.add(root_family.handle)
+            self.init_list(db, root_family, inclusive)
 
     def reset(self):
         self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
+
+    def init_list(self, db: Database, family: Family, first: bool) -> None:
+        """
+        Initialize the list of ancestor families using the original recursive algorithm.
+        This closely matches the original algorithm from commit 9bd507d62.
+        """
+        if not family:
+            return
+        if family.handle in self.selected_handles:
+            return
+        if not first:
+            self.selected_handles.add(family.handle)
+
+        for parent_handle in [family.get_father_handle(), family.get_mother_handle()]:
+            if parent_handle:
+                parent = db.get_person_from_handle(parent_handle)
+                if parent:
+                    family_handle = parent.get_main_parents_family_handle()
+                    if family_handle:
+                        parent_family = db.get_family_from_handle(family_handle)
+                        self.init_list(db, parent_family, False)

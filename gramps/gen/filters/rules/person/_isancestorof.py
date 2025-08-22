@@ -72,12 +72,11 @@ class IsAncestorOf(Rule):
             root_person = db.get_person_from_gramps_id(self.list[0])
             if root_person:
                 # Use parallel ancestor functionality for better performance
-                ancestors = get_person_ancestors(db, [root_person])
+                # Include root person if in inclusive mode
+                ancestors = get_person_ancestors(
+                    db, [root_person], include_root=inclusive
+                )
                 self.selected_handles.update(ancestors)
-
-                # Add the root person if inclusive mode
-                if inclusive:
-                    self.selected_handles.add(root_person.handle)
         except Exception:
             pass
 

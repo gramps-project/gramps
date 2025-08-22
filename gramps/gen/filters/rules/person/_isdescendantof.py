@@ -108,30 +108,24 @@ class IsDescendantOf(Rule):
 
         # Use parallel descendant traversal for better performance
         if not first:
-            # Get all descendants using parallel traversal with max_depth
+            # Inclusive mode: include root person and all descendants
             descendant_handles = self._parallel_processor.get_person_descendants(
                 db=self.db,
                 persons=[root_person],
                 max_depth=max_depth,
+                include_root=True,
             )
             self.selected_handles.update(descendant_handles)
         else:
-            # For inclusive mode, we need to process the root person's children
-            # and then get their descendants in parallel
-            child_handles = self._get_person_children(root_person)
-            if child_handles:
-                # Use parallel traversal for descendant persons with max_depth
-                child_persons = [
-                    self.db.get_person_from_handle(PersonHandle(handle))
-                    for handle in child_handles
-                    if handle
-                ]
-                descendant_handles = self._parallel_processor.get_person_descendants(
-                    db=self.db,
-                    persons=child_persons,
-                    max_depth=max_depth,
-                )
-                self.selected_handles.update(descendant_handles)
+            # Exclusive mode: exclude root person, include only descendants
+            # Start from root person's children and get all their descendants
+            descendant_handles = self._parallel_processor.get_person_descendants(
+                db=self.db,
+                persons=[root_person],
+                max_depth=max_depth,
+                include_root=False,
+            )
+            self.selected_handles.update(descendant_handles)
 
     def _get_person_children(self, person: Person) -> List[str]:
         """

@@ -334,6 +334,7 @@ class FamilyTreeProcessor:
         get_children_func: Callable[[Any], List[str]],
         get_item_func: Callable[[str], Optional[Any]],
         max_depth: Optional[int] = None,
+        include_root: bool = False,
     ) -> Set[str]:
         """
         Perform optimized descendant traversal starting from multiple root items.
@@ -345,6 +346,7 @@ class FamilyTreeProcessor:
             get_children_func: Function to get children of an item
             get_item_func: Function to get item by handle
             max_depth: Maximum depth to traverse (None for unlimited)
+            include_root: Whether to include root items in the result
 
         Returns:
             Set of descendant handles
@@ -365,53 +367,34 @@ class FamilyTreeProcessor:
         if not root_handles:
             return set()
 
-        # Use BFS with optimized batching
+        # Simple BFS traversal without complex batching
         work_queue: deque[Tuple[str, int]] = deque()
         for handle in root_handles:
             work_queue.append((handle, 0))  # (handle, depth)
 
         while work_queue:
-            # Process current level in batches for better performance
-            current_level = []
-            current_depth = work_queue[0][1] if work_queue else 0
+            handle, depth = work_queue.popleft()
 
-            # Collect all items at the current depth level
-            while work_queue and work_queue[0][1] == current_depth:
-                handle, depth = work_queue.popleft()
-
-                if max_depth is not None and depth > max_depth:
-                    continue
-
-                if not handle or handle in visited:
-                    continue
-
-                visited.add(handle)
-                current_level.append((handle, depth))
-
-            if not current_level:
+            if max_depth is not None and depth > max_depth:
                 continue
 
-            # Process current level items
-            level_results: List[Tuple[str, int]] = []
-            next_level_handles = []
+            if not handle or handle in visited:
+                continue
 
-            for handle, depth in current_level:
-                # Add to results if not root
-                if depth > 0:
-                    descendant_handles.add(handle)
+            visited.add(handle)
 
-                # Get the item and its children
-                item = get_item_func(handle)
-                if item:
-                    child_handles = get_children_func(item)
-                    if child_handles:
-                        for child_handle in child_handles:
-                            if child_handle not in visited:
-                                next_level_handles.append((child_handle, depth + 1))
+            # Add to results if not root (or if include_root is True and depth is 0)
+            if depth > 0 or (include_root and depth == 0):
+                descendant_handles.add(handle)
 
-            # Add next level to queue
-            for item in next_level_handles:
-                work_queue.append(item)
+            # Get the item and its children
+            item = get_item_func(handle)
+            if item:
+                child_handles = get_children_func(item)
+                if child_handles:
+                    for child_handle in child_handles:
+                        if child_handle not in visited:
+                            work_queue.append((child_handle, depth + 1))
 
         return descendant_handles
 
@@ -422,6 +405,7 @@ class FamilyTreeProcessor:
         get_parents_func: Callable[[Any], List[str]],
         get_item_func: Callable[[str], Optional[Any]],
         max_depth: Optional[int] = None,
+        include_root: bool = False,
     ) -> Set[str]:
         """
         Perform optimized ancestor traversal starting from multiple root items.
@@ -433,6 +417,7 @@ class FamilyTreeProcessor:
             get_parents_func: Function to get parents of an item
             get_item_func: Function to get item by handle
             max_depth: Maximum depth to traverse (None for unlimited)
+            include_root: Whether to include root items in the result
 
         Returns:
             Set of ancestor handles
@@ -453,53 +438,34 @@ class FamilyTreeProcessor:
         if not root_handles:
             return set()
 
-        # Use BFS with optimized batching
+        # Simple BFS traversal without complex batching
         work_queue: deque[Tuple[str, int]] = deque()
         for handle in root_handles:
             work_queue.append((handle, 0))  # (handle, depth)
 
         while work_queue:
-            # Process current level in batches for better performance
-            current_level = []
-            current_depth = work_queue[0][1] if work_queue else 0
+            handle, depth = work_queue.popleft()
 
-            # Collect all items at the current depth level
-            while work_queue and work_queue[0][1] == current_depth:
-                handle, depth = work_queue.popleft()
-
-                if max_depth is not None and depth > max_depth:
-                    continue
-
-                if not handle or handle in visited:
-                    continue
-
-                visited.add(handle)
-                current_level.append((handle, depth))
-
-            if not current_level:
+            if max_depth is not None and depth > max_depth:
                 continue
 
-            # Process current level items
-            level_results: List[Tuple[str, int]] = []
-            next_level_handles = []
+            if not handle or handle in visited:
+                continue
 
-            for handle, depth in current_level:
-                # Add to results if not root
-                if depth > 0:
-                    ancestor_handles.add(handle)
+            visited.add(handle)
 
-                # Get the item and its parents
-                item = get_item_func(handle)
-                if item:
-                    parent_handles = get_parents_func(item)
-                    if parent_handles:
-                        for parent_handle in parent_handles:
-                            if parent_handle not in visited:
-                                next_level_handles.append((parent_handle, depth + 1))
+            # Add to results if not root (or if include_root is True and depth is 0)
+            if depth > 0 or (include_root and depth == 0):
+                ancestor_handles.add(handle)
 
-            # Add next level to queue
-            for item in next_level_handles:
-                work_queue.append(item)
+            # Get the item and its parents
+            item = get_item_func(handle)
+            if item:
+                parent_handles = get_parents_func(item)
+                if parent_handles:
+                    for parent_handle in parent_handles:
+                        if parent_handle not in visited:
+                            work_queue.append((parent_handle, depth + 1))
 
         return ancestor_handles
 
@@ -534,6 +500,7 @@ class FamilyTreeProcessor:
         db,
         persons: List[Person],
         max_depth: Optional[int] = None,
+        include_root: bool = False,
     ) -> Set[str]:
         """
         Get all ancestors of the given persons up to the specified depth.
@@ -543,6 +510,7 @@ class FamilyTreeProcessor:
             db: Database instance
             persons: List of persons to find ancestors for
             max_depth: Maximum depth to traverse (None for unlimited)
+            include_root: Whether to include root persons in the result
 
         Returns:
             Set of ancestor handles
@@ -560,6 +528,7 @@ class FamilyTreeProcessor:
             get_parents_func=get_parents_func,
             get_item_func=get_item_func,
             max_depth=max_depth,
+            include_root=include_root,
         )
 
     def get_person_descendants(
@@ -567,6 +536,7 @@ class FamilyTreeProcessor:
         db,
         persons: List[Person],
         max_depth: Optional[int] = None,
+        include_root: bool = False,
     ) -> Set[str]:
         """
         Get all descendants of the given persons up to the specified depth.
@@ -576,6 +546,7 @@ class FamilyTreeProcessor:
             db: Database instance
             persons: List of persons to find descendants for
             max_depth: Maximum depth to traverse (None for unlimited)
+            include_root: Whether to include root persons in the result
 
         Returns:
             Set of descendant handles
@@ -593,6 +564,7 @@ class FamilyTreeProcessor:
             get_children_func=get_children_func,
             get_item_func=get_item_func,
             max_depth=max_depth,
+            include_root=include_root,
         )
 
     def get_family_descendants(
@@ -600,6 +572,7 @@ class FamilyTreeProcessor:
         db,
         families: List[Family],
         max_depth: Optional[int] = None,
+        include_root: bool = False,
     ) -> Set[str]:
         """
         Get all descendant families of the given families up to the specified depth.
@@ -609,6 +582,7 @@ class FamilyTreeProcessor:
             db: Database instance
             families: List of families to find descendants for
             max_depth: Maximum depth to traverse (None for unlimited)
+            include_root: Whether to include root families in the result
 
         Returns:
             Set of descendant family handles
@@ -626,6 +600,7 @@ class FamilyTreeProcessor:
             get_children_func=get_children_func,
             get_item_func=get_item_func,
             max_depth=max_depth,
+            include_root=include_root,
         )
 
     def get_family_children(self, db, family: Family) -> List[str]:
@@ -780,6 +755,7 @@ def get_person_ancestors(
     persons: List[Person],
     max_depth: Optional[int] = None,
     max_threads: int = 4,
+    include_root: bool = False,
 ) -> Set[str]:
     """
     Convenience function to get all ancestors of the given persons.
@@ -790,6 +766,7 @@ def get_person_ancestors(
         persons: List of persons to find ancestors for
         max_depth: Maximum depth to traverse (None for unlimited)
         max_threads: Maximum number of threads to use for processing
+        include_root: Whether to include root persons in the result
 
     Returns:
         Set of ancestor handles
@@ -799,6 +776,7 @@ def get_person_ancestors(
         db=db,
         persons=persons,
         max_depth=max_depth,
+        include_root=include_root,
     )
 
 
@@ -807,6 +785,7 @@ def get_person_descendants(
     persons: List[Person],
     max_depth: Optional[int] = None,
     max_threads: int = 4,
+    include_root: bool = False,
 ) -> Set[str]:
     """
     Convenience function to get all descendants of the given persons.
@@ -817,6 +796,7 @@ def get_person_descendants(
         persons: List of persons to find descendants for
         max_depth: Maximum depth to traverse (None for unlimited)
         max_threads: Maximum number of threads to use for processing
+        include_root: Whether to include root persons in the result
 
     Returns:
         Set of descendant handles
@@ -826,6 +806,7 @@ def get_person_descendants(
         db=db,
         persons=persons,
         max_depth=max_depth,
+        include_root=include_root,
     )
 
 
@@ -834,6 +815,7 @@ def get_family_descendants(
     families: List[Family],
     max_depth: Optional[int] = None,
     max_threads: int = 4,
+    include_root: bool = False,
 ) -> Set[str]:
     """
     Convenience function to get all descendants of the given families.
@@ -844,6 +826,7 @@ def get_family_descendants(
         families: List of families to find descendants for
         max_depth: Maximum depth to traverse (None for unlimited)
         max_threads: Maximum number of threads to use for processing
+        include_root: Whether to include root families in the result
 
     Returns:
         Set of descendant family handles
@@ -853,4 +836,5 @@ def get_family_descendants(
         db=db,
         families=families,
         max_depth=max_depth,
+        include_root=include_root,
     )
