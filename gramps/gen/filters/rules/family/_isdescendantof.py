@@ -130,27 +130,3 @@ class IsDescendantOf(Rule):
                 include_root=False,
             )
             self.selected_handles.update(descendant_handles)
-
-    def _get_family_children(self, family: Family) -> List[str]:
-        """
-        Get child handles from a family for parallel traversal.
-
-        Args:
-            family: Family object
-
-        Returns:
-            List of child handles
-        """
-        if not family:
-            return []
-
-        # Get child handles
-        child_handles = [child_ref.ref for child_ref in family.child_ref_list]
-
-        # Get family handles for these children in parallel
-        if child_handles:
-            return self._parallel_processor.process_child_families(
-                self.db, child_handles
-            )
-
-        return []

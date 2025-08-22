@@ -206,7 +206,7 @@ class FamilyTreeTraversal:
         visited_families = set()
 
         # Use BFS to traverse family descendants
-        work_queue = deque()
+        work_queue: deque[Tuple[str, int]] = deque()
         for family in families:
             work_queue.append((family.handle, 0))  # (family_handle, depth)
 
@@ -503,7 +503,11 @@ class FamilyTreeTraversal:
                     child_handles.append(child_ref.ref)
             return child_handles
 
-        return self._parallel_processor.process_items(families, extract_children)
+        if self._parallel_processor is not None:
+            return self._parallel_processor.process_items(families, extract_children)
+        else:
+            # Fallback to sequential processing if parallel processor is not available
+            return self._process_person_families_sequential(db, family_handles)
 
 
 # Convenience functions

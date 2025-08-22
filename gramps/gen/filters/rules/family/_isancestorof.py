@@ -11,7 +11,7 @@
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR ANY PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
@@ -43,10 +43,10 @@ from ....const import GRAMPS_LOCALE as glocale
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
-from ....lib import Family
+from typing import Set, Tuple
+from ....lib import Family, Person
 from ....db import Database
-from ....types import PersonHandle
+from ....types import PersonHandle, FamilyHandle
 
 
 _ = glocale.translation.gettext
@@ -68,9 +68,9 @@ class IsAncestorOf(Rule):
     description = _("Matches ancestor families of the specified family")
 
     def prepare(self, db: Database, user):
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: Set[FamilyHandle] = set()
         try:
-            inclusive = False if int(self.list[1]) else True
+            inclusive = bool(int(self.list[1]))
         except IndexError:
             inclusive = True
 
@@ -84,23 +84,76 @@ class IsAncestorOf(Rule):
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
 
-    def init_list(self, db: Database, family: Family, first: bool) -> None:
+    def init_list(self, db: Database, family: Family, inclusive: bool) -> None:
         """
-        Initialize the list of ancestor families using the original recursive algorithm.
-        This closely matches the original algorithm from commit 9bd507d62.
+        Initialize the list of ancestor families using the new family tree traversal.
+
+        This method follows the original recursive logic:
+        1. Start with the root family
+        2. For each parent in the family, get their main parents' family
+        3. Recursively traverse up the family tree
         """
         if not family:
             return
-        if family.handle in self.selected_handles:
-            return
-        if not first:
-            self.selected_handles.add(family.handle)
 
-        for parent_handle in [family.get_father_handle(), family.get_mother_handle()]:
-            if parent_handle:
-                parent = db.get_person_from_handle(parent_handle)
-                if parent:
-                    family_handle = parent.get_main_parents_family_handle()
-                    if family_handle:
-                        parent_family = db.get_family_from_handle(family_handle)
-                        self.init_list(db, parent_family, False)
+        # Use a breadth-first search approach similar to the original recursive logic
+        from collections import deque
+
+        # Queue of (family_handle, depth) tuples
+        work_queue: deque[Tuple[FamilyHandle, int]] = deque()
+
+        # Track visited families to avoid cycles
+        visited_families = set()
+
+        # If inclusive is True, start from the root family
+        # If inclusive is False, start from the parent families
+        if inclusive:
+            work_queue.append((family.handle, 0))  # Start with root family at depth 0
+        else:
+            # Start from parent families at depth 1
+            current_family = db.get_family_from_handle(family.handle)
+            if current_family:
+                for parent_handle in [
+                    current_family.get_father_handle(),
+                    current_family.get_mother_handle(),
+                ]:
+                    if parent_handle:
+                        parent = db.get_person_from_handle(parent_handle)
+                        if parent:
+                            parent_family_handle = (
+                                parent.get_main_parents_family_handle()
+                            )
+                            if parent_family_handle:
+                                work_queue.append((parent_family_handle, 1))
+
+        while work_queue:
+            family_handle, depth = work_queue.popleft()
+
+            if family_handle in visited_families:
+                continue
+
+            visited_families.add(family_handle)
+
+            # Add to results (all families in queue are ancestors)
+            self.selected_handles.add(family_handle)
+
+            # Get the family and find its parents
+            current_family = db.get_family_from_handle(family_handle)
+            if current_family:
+                # For each parent in the family, get their main parents' family
+                for parent_handle in [
+                    current_family.get_father_handle(),
+                    current_family.get_mother_handle(),
+                ]:
+                    if parent_handle:
+                        parent = db.get_person_from_handle(parent_handle)
+                        if parent:
+                            # Get the parent's main parents' family (where they are a child)
+                            parent_family_handle = (
+                                parent.get_main_parents_family_handle()
+                            )
+                            if (
+                                parent_family_handle
+                                and parent_family_handle not in visited_families
+                            ):
+                                work_queue.append((parent_family_handle, depth + 1))
