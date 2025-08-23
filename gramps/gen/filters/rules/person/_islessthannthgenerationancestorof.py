@@ -33,6 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.family_tree_traversal import get_person_ancestors
 
 
 # -------------------------------------------------------------------------
@@ -40,7 +41,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, Tuple
+from typing import Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -68,36 +69,22 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         self.selected_handles: Set[str] = set()
         person = db.get_person_from_gramps_id(self.list[0])
         if person:
-            root_handle = person.handle
-            if root_handle:
-                self.init_ancestor_list(root_handle)
-
-    def init_ancestor_list(self, root_handle: PersonHandle):
-        queue: List[Tuple[PersonHandle, int]] = [
-            (root_handle, 1)
-        ]  # generation 1 is root
-        while queue:
-            handle, gen = queue.pop(0)
-            if handle in self.selected_handles:
-                # if we have been here before, skip
-                continue
-            self.selected_handles.add(handle)
-            gen += 1
-            if gen <= int(self.list[1]):
-                p = self.db.get_person_from_handle(handle)
-                fam_id = (
-                    p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
+            try:
+                max_generations = int(self.list[1])
+                # Use family tree traversal with depth limiting
+                # Note: max_depth in family tree traversal corresponds to generations
+                # We want ancestors not more than N generations away, so max_depth = max_generations
+                ancestors = get_person_ancestors(
+                    db=db,
+                    persons=[person],
+                    max_depth=max_generations,
+                    include_root=False,  # Don't include the root person
+                    use_parallel=True,
+                    max_threads=4,
                 )
-                if fam_id:
-                    fam = self.db.get_family_from_handle(fam_id)
-                    if fam:
-                        f_id = fam.father_handle
-                        m_id = fam.mother_handle
-                        # append to back of queue:
-                        if f_id:
-                            queue.append((f_id, gen))
-                        if m_id:
-                            queue.append((m_id, gen))
+                self.selected_handles.update(ancestors)
+            except (ValueError, IndexError):
+                pass
 
     def reset(self):
         self.selected_handles.clear()

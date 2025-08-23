@@ -34,6 +34,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.family_tree_traversal import get_person_descendants
 
 
 # -------------------------------------------------------------------------
@@ -68,8 +69,21 @@ class IsLessThanNthGenerationDescendantOf(Rule):
         self.selected_handles: Set[str] = set()
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
-            self.init_list(root_person, 0)
-        except:
+            if root_person:
+                max_generations = int(self.list[1])
+                # Use family tree traversal with depth limiting
+                # Note: max_depth in family tree traversal corresponds to generations
+                # We want descendants not more than N generations away, so max_depth = max_generations
+                descendants = get_person_descendants(
+                    db=db,
+                    persons=[root_person],
+                    max_depth=max_generations,
+                    include_root=False,  # Don't include the root person
+                    use_parallel=True,
+                    max_threads=4,
+                )
+                self.selected_handles.update(descendants)
+        except (ValueError, IndexError):
             pass
 
     def reset(self):
@@ -77,20 +91,3 @@ class IsLessThanNthGenerationDescendantOf(Rule):
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
-
-    def init_list(self, person: Person | None, gen: int):
-        if not person or person.handle in self.selected_handles:
-            # if we have been here before, skip
-            return
-        if gen:
-            self.selected_handles.add(person.handle)
-            if gen >= int(self.list[1]):
-                return
-
-        for fam_id in person.family_list:
-            fam = self.db.get_family_from_handle(fam_id)
-            if fam:
-                for child_ref in fam.child_ref_list:
-                    self.init_list(
-                        self.db.get_person_from_handle(child_ref.ref), gen + 1
-                    )

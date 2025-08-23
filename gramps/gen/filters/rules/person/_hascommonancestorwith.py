@@ -32,8 +32,8 @@ _ = glocale.translation.gettext
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from ....utils.db import for_each_ancestor
 from .. import Rule
+from ....utils.family_tree_traversal import get_person_ancestors
 
 
 # -------------------------------------------------------------------------
@@ -77,31 +77,16 @@ class HasCommonAncestorWith(Rule):
 
     def add_ancs(self, db: Database, person: Person):
         if person and person.handle not in self.ancestor_cache:
-            self.ancestor_cache[person.handle] = set()
-            # We are going to compare ancestors of one person with that of
-            # another person; if that other person is an ancestor and itself
-            # has no ancestors is must be included, this is achieved by the
-            # little trick of making a person his own ancestor.
-            self.ancestor_cache[person.handle].add(person.handle)
-        else:
-            return
-
-        for fam_handle in person.parent_family_list:
-            parentless_fam = True
-            fam = db.get_family_from_handle(fam_handle)
-            if fam:
-                for par_handle in (fam.father_handle, fam.mother_handle):
-                    if par_handle:
-                        parentless_fam = False
-                        par = db.get_person_from_handle(par_handle)
-                        if par and par.handle not in self.ancestor_cache:
-                            self.add_ancs(db, par)
-                        if par:
-                            self.ancestor_cache[person.handle] |= self.ancestor_cache[
-                                par.handle
-                            ]
-                if parentless_fam:
-                    self.ancestor_cache[person.handle].add(fam_handle)
+            # Use family tree traversal to get all ancestors
+            ancestors = get_person_ancestors(
+                db=db,
+                persons=[person],
+                max_depth=None,  # Get all ancestors
+                include_root=True,  # Include the person themselves
+                use_parallel=True,
+                max_threads=4,
+            )
+            self.ancestor_cache[person.handle] = ancestors
 
     def reset(self):
         self.ancestor_cache = {}

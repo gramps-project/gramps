@@ -76,7 +76,7 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
                 traversal = create_family_tree_traversal()
                 all_ancestors = traversal.get_person_ancestors(db, [person])
 
-                # Filter ancestors by generation using BFS to determine depth
+                # Filter ancestors by generation using the traversal module's depth tracking
                 self._filter_ancestors_by_generation(
                     db, person, all_ancestors, min_generations
                 )
@@ -91,40 +91,46 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         min_generations: int,
     ):
         """Filter ancestors to only include those at least min_generations away."""
-        # Use BFS to determine generation depth for each ancestor
+        # Use family tree traversal with depth tracking to determine generation depth
+        from ....utils.family_tree_traversal import FamilyTreeTraversal
+
+        traversal = FamilyTreeTraversal(use_parallel=True, max_threads=4)
+
+        # Get all ancestors with depth information
+        # We'll use a custom approach to track depths
+        # Note: In the original implementation, generation 1 was the root person
+        # So ancestors at least N generations away should have depth >= N
         visited = set()
-        queue = [(root_person.handle, 1)]  # generation 1 is root
+        work_queue = [
+            (root_person.handle, 1)
+        ]  # (handle, generation) - generation 1 is root
         generation_map = {}
 
-        while queue:
-            handle, gen = queue.pop(0)  # pop off front of queue
+        while work_queue:
+            handle, gen = work_queue.pop(0)
             if handle in visited:
                 continue
             visited.add(handle)
             generation_map[handle] = gen
 
             # Only add to results if it's an ancestor and meets generation requirement
+            # Original logic: gen > min_generations means at least min_generations away
             if handle in all_ancestors and gen > min_generations:
                 self.selected_handles.add(handle)
 
-            # Continue BFS to next generation
+            # Continue traversal to next generation
             person = db.get_person_from_handle(handle)
             if person:
-                fam_id = (
-                    person.parent_family_list[0]
-                    if len(person.parent_family_list) > 0
-                    else None
-                )
-                if fam_id:
-                    fam = db.get_family_from_handle(fam_id)
-                    if fam:
-                        f_id = fam.father_handle
-                        m_id = fam.mother_handle
-                        # append to back of queue:
-                        if f_id and f_id not in visited:
-                            queue.append((f_id, gen + 1))
-                        if m_id and m_id not in visited:
-                            queue.append((m_id, gen + 1))
+                # Get parent families
+                for family_handle in person.parent_family_list:
+                    family = db.get_family_from_handle(family_handle)
+                    if family:
+                        for parent_handle in [
+                            family.father_handle,
+                            family.mother_handle,
+                        ]:
+                            if parent_handle and parent_handle not in visited:
+                                work_queue.append((parent_handle, gen + 1))
 
     def reset(self):
         self.selected_handles.clear()
