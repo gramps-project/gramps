@@ -420,7 +420,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     __signals__["person-groupname-rebuild"] = (str, str)
 
     __callback_map = {}
-    __database_config: Dict[str, Dict[str, Any]] = {}
+    _database_config: Dict[str, Dict[str, Any]] = {}
 
     VERSION = (21, 0, 0)
 
@@ -2837,9 +2837,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Get a config value from the database configuration.
         """
         if name is None:
-            return self.__database_config.get(section, None)
+            return self._database_config.get(section, None)
         else:
-            self.__database_config.get(section, {}).get(name, None)
+            return self._database_config.get(section, {}).get(name, None)
 
 
 Database = DbGeneric
