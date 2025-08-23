@@ -76,7 +76,11 @@ class IsAncestorOf(Rule):
                 # first=False (exclusive) means DO include root person
                 # So we need to invert the inclusive parameter
                 ancestors = get_person_ancestors(
-                    db, [root_person], include_root=not inclusive
+                    db,
+                    use_parallel=db.supports_parallel_reads(),
+                    max_threads=db.get_database_config("parallel", "max_threads"),
+                    persons=[root_person],
+                    include_root=not inclusive
                 )
                 self.selected_handles.update(ancestors)
         except Exception:

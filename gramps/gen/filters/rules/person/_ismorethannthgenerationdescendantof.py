@@ -44,7 +44,7 @@ from ....utils.family_tree_traversal import get_person_descendants_with_min_dept
 from typing import Set
 from ....lib import Person
 from ....db import Database
-
+from ....types import PersonHandle
 
 # -------------------------------------------------------------------------
 #
@@ -65,7 +65,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: Set[PersonHandle] = set()
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             if root_person:

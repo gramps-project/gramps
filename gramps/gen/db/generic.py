@@ -39,7 +39,7 @@ import random
 import re
 import time
 from pathlib import Path
-from typing import Any, Generator, Type
+from typing import Any, Generator, Type, Dict, Optional
 
 # ------------------------------------------------------------------------
 #
@@ -420,7 +420,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     __signals__["person-groupname-rebuild"] = (str, str)
 
     __callback_map = {}
-    __database_config = {}
+    __database_config: Dict[str, Dict[str, Any]] = {}
 
     VERSION = (21, 0, 0)
 

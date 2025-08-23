@@ -44,7 +44,7 @@ from ....utils.family_tree_traversal import get_person_ancestors
 from typing import Dict, Set
 from ....lib import Person
 from ....db import Database
-
+from ....types import PersonHandle
 
 # -------------------------------------------------------------------------
 #
@@ -67,7 +67,7 @@ class HasCommonAncestorWith(Rule):
         # are, in a set(). So we only have to compute a person's
         # ancestor list once.
         # Start with filling the cache for root person (gramps_id in self.list[0])
-        self.ancestor_cache: Dict[str, Set[str]] = {}
+        self.ancestor_cache: Dict[PersonHandle, Set[PersonHandle]] = {}
         root_person = db.get_person_from_gramps_id(self.list[0])
         if root_person:
             self.add_ancs(db, root_person)
