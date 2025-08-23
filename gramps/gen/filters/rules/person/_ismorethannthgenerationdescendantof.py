@@ -46,6 +46,7 @@ from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
 
+
 # -------------------------------------------------------------------------
 #
 # IsMoreThanNthGenerationDescendantOf

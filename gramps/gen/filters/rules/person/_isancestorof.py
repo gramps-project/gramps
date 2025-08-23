@@ -80,7 +80,7 @@ class IsAncestorOf(Rule):
                     use_parallel=db.supports_parallel_reads(),
                     max_threads=db.get_database_config("parallel", "max_threads"),
                     persons=[root_person],
-                    include_root=not inclusive
+                    include_root=not inclusive,
                 )
                 self.selected_handles.update(ancestors)
         except Exception:
