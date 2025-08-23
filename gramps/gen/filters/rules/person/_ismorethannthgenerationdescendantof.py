@@ -33,7 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
-from ....utils.family_tree_traversal import get_person_descendants
+from ....utils.family_tree_traversal import get_person_descendants_with_min_depth
 
 
 # -------------------------------------------------------------------------
@@ -70,57 +70,18 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
             root_person = db.get_person_from_gramps_id(self.list[0])
             if root_person:
                 min_generations = int(self.list[1])
-                # Use family tree traversal to get all descendants
-                # Then filter to only include those at least min_generations away
-                all_descendants = get_person_descendants(
-                    db=db,
+                # Use standardized family tree traversal to find descendants
+                # beyond the specified generation depth
+                self.selected_handles = get_person_descendants_with_min_depth(
+                    db=self.db,
                     persons=[root_person],
-                    max_depth=None,  # Get all descendants
+                    min_depth=min_generations
+                    + 1,  # +1 because we want descendants MORE than N generations away
+                    max_depth=None,  # No maximum depth limit
                     include_root=False,  # Don't include the root person
-                    use_parallel=True,
-                    max_threads=4,
-                )
-
-                # Filter descendants by generation using depth tracking
-                self._filter_descendants_by_generation(
-                    db, root_person, all_descendants, min_generations
                 )
         except (ValueError, IndexError):
             pass
-
-    def _filter_descendants_by_generation(
-        self,
-        db: Database,
-        root_person: Person,
-        all_descendants: Set[str],
-        min_generations: int,
-    ):
-        """Filter descendants to only include those at least min_generations away."""
-        # Use BFS to determine generation depth for each descendant
-        visited = set()
-        work_queue = [(root_person.handle, 0)]  # (handle, depth)
-
-        while work_queue:
-            handle, depth = work_queue.pop(0)
-            if handle in visited:
-                continue
-            visited.add(handle)
-
-            # Only add to results if it's a descendant and meets generation requirement
-            if handle in all_descendants and depth >= min_generations:
-                self.selected_handles.add(handle)
-
-            # Continue traversal to next generation
-            person = db.get_person_from_handle(handle)
-            if person:
-                # Get child families
-                for family_handle in person.family_list:
-                    family = db.get_family_from_handle(family_handle)
-                    if family:
-                        for child_ref in family.child_ref_list:
-                            child_handle = child_ref.ref
-                            if child_handle and child_handle not in visited:
-                                work_queue.append((child_handle, depth + 1))
 
     def reset(self):
         self.selected_handles.clear()

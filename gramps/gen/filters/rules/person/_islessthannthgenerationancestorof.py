@@ -72,14 +72,16 @@ class IsLessThanNthGenerationAncestorOf(Rule):
             try:
                 max_generations = int(self.list[1])
                 # Use family tree traversal with depth limiting
-                # Note: max_depth in family tree traversal corresponds to generations
-                # We want ancestors not more than N generations away, so max_depth = max_generations
+                # Note: family tree traversal uses depth 0 for root, but original generation counting
+                # uses generation 1 for root. So we need to subtract 1 from max_generations.
+                # We want ancestors not more than N generations away, so max_depth = max_generations - 1
                 ancestors = get_person_ancestors(
                     db=db,
                     persons=[person],
-                    max_depth=max_generations,
+                    max_depth=max_generations
+                    - 1,  # Adjust for depth vs generation counting difference
                     include_root=False,  # Don't include the root person
-                    use_parallel=True,
+                    use_parallel=db.supports_parallel_reads(),
                     max_threads=4,
                 )
                 self.selected_handles.update(ancestors)

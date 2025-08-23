@@ -104,7 +104,7 @@ class IsAncestorOf(Rule):
             families=[family],
             max_depth=None,  # No depth limit for this filter
             include_root=inclusive,
-            use_parallel=True,  # Enable parallel processing when available
+            use_parallel=db.supports_parallel_reads(),
             max_threads=4,
         )
 

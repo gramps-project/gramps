@@ -65,15 +65,19 @@ class IsDescendantOf(Rule):
 
     def __init__(self, list):
         super().__init__(list)
-        # Initialize family tree traversal with configurable settings
-        self._traversal = FamilyTreeTraversal(
-            use_parallel=True,
-            max_threads=4,
-        )
+        # Initialize traversal in prepare method where we have access to database
+        self._traversal = None
 
     def prepare(self, db: Database, user):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
+
+        # Initialize family tree traversal with database-aware parallel settings
+        self._traversal = FamilyTreeTraversal(
+            use_parallel=db.supports_parallel_reads(),
+            max_threads=4,
+        )
+
         try:
             first = False if int(self.list[1]) else True
         except IndexError:
@@ -82,7 +86,7 @@ class IsDescendantOf(Rule):
             max_depth = (
                 int(self.list[2]) if len(self.list) > 2 and self.list[2] else None
             )
-        except (IndexError, ValueError):
+        except (ValueError, IndexError):
             max_depth = None
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
@@ -93,6 +97,7 @@ class IsDescendantOf(Rule):
 
     def reset(self):
         self.selected_handles.clear()
+        self._traversal = None
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
@@ -104,7 +109,7 @@ class IsDescendantOf(Rule):
         Optimized descendant traversal using family tree traversal
         with automatic fallback to sequential processing.
         """
-        if not root_person:
+        if not root_person or not self._traversal:
             return
 
         # Use family tree traversal for better performance

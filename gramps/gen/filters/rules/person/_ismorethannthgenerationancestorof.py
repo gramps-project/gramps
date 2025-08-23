@@ -33,7 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
-from ....utils.family_tree_traversal import create_family_tree_traversal
+from ....utils.family_tree_traversal import get_person_ancestors_with_min_depth
 
 
 # -------------------------------------------------------------------------
@@ -71,66 +71,18 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         if person:
             try:
                 min_generations = int(self.list[1])
-                # Use family tree traversal functionality with unlimited depth,
-                # then filter by generation
-                traversal = create_family_tree_traversal()
-                all_ancestors = traversal.get_person_ancestors(db, [person])
-
-                # Filter ancestors by generation using the traversal module's depth tracking
-                self._filter_ancestors_by_generation(
-                    db, person, all_ancestors, min_generations
+                # Use standardized family tree traversal to find ancestors
+                # beyond the specified generation depth
+                self.selected_handles = get_person_ancestors_with_min_depth(
+                    db=self.db,
+                    persons=[person],
+                    min_depth=min_generations
+                    + 1,  # +1 because we want ancestors MORE than N generations away
+                    max_depth=None,  # No maximum depth limit
+                    include_root=False,  # Don't include the root person
                 )
             except (ValueError, IndexError):
                 pass
-
-    def _filter_ancestors_by_generation(
-        self,
-        db: Database,
-        root_person: Person,
-        all_ancestors: Set[str],
-        min_generations: int,
-    ):
-        """Filter ancestors to only include those at least min_generations away."""
-        # Use family tree traversal with depth tracking to determine generation depth
-        from ....utils.family_tree_traversal import FamilyTreeTraversal
-
-        traversal = FamilyTreeTraversal(use_parallel=True, max_threads=4)
-
-        # Get all ancestors with depth information
-        # We'll use a custom approach to track depths
-        # Note: In the original implementation, generation 1 was the root person
-        # So ancestors at least N generations away should have depth >= N
-        visited = set()
-        work_queue = [
-            (root_person.handle, 1)
-        ]  # (handle, generation) - generation 1 is root
-        generation_map = {}
-
-        while work_queue:
-            handle, gen = work_queue.pop(0)
-            if handle in visited:
-                continue
-            visited.add(handle)
-            generation_map[handle] = gen
-
-            # Only add to results if it's an ancestor and meets generation requirement
-            # Original logic: gen > min_generations means at least min_generations away
-            if handle in all_ancestors and gen > min_generations:
-                self.selected_handles.add(handle)
-
-            # Continue traversal to next generation
-            person = db.get_person_from_handle(handle)
-            if person:
-                # Get parent families
-                for family_handle in person.parent_family_list:
-                    family = db.get_family_from_handle(family_handle)
-                    if family:
-                        for parent_handle in [
-                            family.father_handle,
-                            family.mother_handle,
-                        ]:
-                            if parent_handle and parent_handle not in visited:
-                                work_queue.append((parent_handle, gen + 1))
 
     def reset(self):
         self.selected_handles.clear()

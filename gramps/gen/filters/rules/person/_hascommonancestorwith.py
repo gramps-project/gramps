@@ -83,7 +83,7 @@ class HasCommonAncestorWith(Rule):
                 persons=[person],
                 max_depth=None,  # Get all ancestors
                 include_root=True,  # Include the person themselves
-                use_parallel=True,
+                use_parallel=db.supports_parallel_reads(),
                 max_threads=4,
             )
             self.ancestor_cache[person.handle] = ancestors

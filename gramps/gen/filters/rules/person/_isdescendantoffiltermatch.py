@@ -66,6 +66,16 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     def prepare(self, db: Database, user):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
+
+        # Initialize family tree traversal with database-aware parallel settings
+        # This is needed before calling init_list
+        from ....utils.family_tree_traversal import FamilyTreeTraversal
+
+        self._traversal = FamilyTreeTraversal(
+            use_parallel=db.supports_parallel_reads(),
+            max_threads=4,
+        )
+
         try:
             if int(self.list[1]):
                 first = False
@@ -95,6 +105,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     def reset(self):
         self.filt.requestreset()
         self.selected_handles.clear()
+        self._traversal = None
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return PersonHandle(person.handle) in self.selected_handles
