@@ -72,13 +72,17 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
                 min_generations = int(self.list[1])
                 # Use standardized family tree traversal to find descendants
                 # beyond the specified generation depth
+                # Note: family tree traversal uses depth 0 for root, but original generation counting
+                # uses generation 1 for root. So we need to adjust for this difference.
+                # We want descendants MORE than N generations away, so min_depth = min_generations
                 self.selected_handles = get_person_descendants_with_min_depth(
                     db=self.db,
                     persons=[root_person],
-                    min_depth=min_generations
-                    + 1,  # +1 because we want descendants MORE than N generations away
+                    min_depth=min_generations,  # No +1 needed, just use min_generations directly
                     max_depth=None,  # No maximum depth limit
                     include_root=False,  # Don't include the root person
+                    use_parallel=db.supports_parallel_reads(),
+                    max_threads=db.get_database_config("parallel", "max_threads"),
                 )
         except (ValueError, IndexError):
             pass

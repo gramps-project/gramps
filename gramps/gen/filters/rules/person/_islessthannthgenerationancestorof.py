@@ -82,7 +82,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
                     - 1,  # Adjust for depth vs generation counting difference
                     include_root=False,  # Don't include the root person
                     use_parallel=db.supports_parallel_reads(),
-                    max_threads=4,
+                    max_threads=db.get_database_config("parallel", "max_threads"),
                 )
                 self.selected_handles.update(ancestors)
             except (ValueError, IndexError):

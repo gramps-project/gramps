@@ -60,7 +60,7 @@ class FamilyTreeTraversal:
     with automatic fallback to sequential processing when parallel processing is not available.
     """
 
-    def __init__(self, use_parallel: bool = True, max_threads: int = 4):
+    def __init__(self, use_parallel: bool, max_threads: int):
         """
         Initialize the family tree traversal utility.
 
@@ -1125,43 +1125,13 @@ class FamilyTreeTraversal:
 
 
 # Convenience functions
-def create_family_tree_traversal(
-    use_parallel: bool = True,
-    max_threads: int = 4,
-    db=None,
-) -> FamilyTreeTraversal:
-    """
-    Create a FamilyTreeTraversal with sensible defaults.
-
-    Args:
-        use_parallel: Whether to attempt parallel processing
-        max_threads: Maximum number of threads for parallel processing
-        db: Optional database instance to check for parallel support
-
-    Returns:
-        Configured FamilyTreeTraversal instance
-    """
-    # If database is provided and doesn't support parallel reads, disable parallel processing
-    if use_parallel:
-        if not db.supports_parallel_reads():
-            use_parallel = False
-            LOG.debug(
-                "Database does not support parallel reads, falling back to sequential processing"
-            )
-
-    return FamilyTreeTraversal(
-        use_parallel=use_parallel,
-        max_threads=max_threads,
-    )
-
-
 def get_person_ancestors(
     db,
+    use_parallel: bool,
+    max_threads: int,
     persons: List[Person],
     max_depth: Optional[int] = None,
     include_root: bool = False,
-    use_parallel: bool = True,
-    max_threads: int = 4,
 ) -> Set[PersonHandle]:
     """
     Convenience function to get all ancestors of the given persons.
@@ -1177,10 +1147,9 @@ def get_person_ancestors(
     Returns:
         Set of ancestor handles
     """
-    traversal = create_family_tree_traversal(
+    traversal = FamilyTreeTraversal(
         use_parallel=use_parallel,
         max_threads=max_threads,
-        db=db,
     )
     return traversal.get_person_ancestors(
         db=db,
@@ -1192,12 +1161,12 @@ def get_person_ancestors(
 
 def get_person_ancestors_with_min_depth(
     db,
+    use_parallel: bool,
+    max_threads: int,
     persons: List[Person],
     min_depth: int,
     max_depth: Optional[int] = None,
     include_root: bool = False,
-    use_parallel: bool = True,
-    max_threads: int = 4,
 ) -> Set[PersonHandle]:
     """
     Convenience function to get all ancestors of the given persons at least min_depth generations away.
@@ -1214,10 +1183,9 @@ def get_person_ancestors_with_min_depth(
     Returns:
         Set of ancestor handles
     """
-    traversal = create_family_tree_traversal(
+    traversal = FamilyTreeTraversal(
         use_parallel=use_parallel,
         max_threads=max_threads,
-        db=db,
     )
     return traversal.get_person_ancestors_with_min_depth(
         db=db,
@@ -1230,11 +1198,11 @@ def get_person_ancestors_with_min_depth(
 
 def get_person_descendants(
     db,
+    use_parallel: bool,
+    max_threads: int,
     persons: List[Person],
     max_depth: Optional[int] = None,
     include_root: bool = False,
-    use_parallel: bool = True,
-    max_threads: int = 4,
 ) -> Set[PersonHandle]:
     """
     Convenience function to get all descendants of the given persons.
@@ -1250,10 +1218,9 @@ def get_person_descendants(
     Returns:
         Set of descendant handles
     """
-    traversal = create_family_tree_traversal(
+    traversal = FamilyTreeTraversal(
         use_parallel=use_parallel,
         max_threads=max_threads,
-        db=db,
     )
     return traversal.get_person_descendants(
         db=db,
@@ -1265,12 +1232,12 @@ def get_person_descendants(
 
 def get_person_descendants_with_min_depth(
     db,
+    use_parallel: bool,
+    max_threads: int,
     persons: List[Person],
     min_depth: int,
     max_depth: Optional[int] = None,
     include_root: bool = False,
-    use_parallel: bool = True,
-    max_threads: int = 4,
 ) -> Set[PersonHandle]:
     """
     Convenience function to get all descendants of the given persons at least min_depth generations away.
@@ -1287,10 +1254,9 @@ def get_person_descendants_with_min_depth(
     Returns:
         Set of descendant handles
     """
-    traversal = create_family_tree_traversal(
+    traversal = FamilyTreeTraversal(
         use_parallel=use_parallel,
         max_threads=max_threads,
-        db=db,
     )
     return traversal.get_person_descendants_with_min_depth(
         db=db,
@@ -1303,11 +1269,11 @@ def get_person_descendants_with_min_depth(
 
 def is_ancestor_of(
     db,
+    use_parallel: bool,
+    max_threads: int,
     potential_ancestor: Person,
     potential_descendant: Person,
     max_depth: Optional[int] = None,
-    use_parallel: bool = True,
-    max_threads: int = 4,
 ) -> bool:
     """
     Convenience function to check if one person is an ancestor of another.
@@ -1323,10 +1289,9 @@ def is_ancestor_of(
     Returns:
         True if potential_ancestor is an ancestor of potential_descendant
     """
-    traversal = create_family_tree_traversal(
+    traversal = FamilyTreeTraversal(
         use_parallel=use_parallel,
         max_threads=max_threads,
-        db=db,
     )
     return traversal.is_ancestor_of(
         db=db,
@@ -1338,11 +1303,11 @@ def is_ancestor_of(
 
 def get_family_ancestors(
     db,
+    use_parallel: bool,
+    max_threads: int,
     families: List[Family],
     max_depth: Optional[int] = None,
     include_root: bool = False,
-    use_parallel: bool = True,
-    max_threads: int = 4,
 ) -> Set[FamilyHandle]:
     """
     Convenience function to get all ancestor families of the given families.
@@ -1358,10 +1323,9 @@ def get_family_ancestors(
     Returns:
         Set of ancestor family handles
     """
-    traversal = create_family_tree_traversal(
+    traversal = FamilyTreeTraversal(
         use_parallel=use_parallel,
         max_threads=max_threads,
-        db=db,
     )
     return traversal.get_family_ancestors(
         db=db,

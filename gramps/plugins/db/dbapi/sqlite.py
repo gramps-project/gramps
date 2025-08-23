@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
-# Copyright (C) 2016-2017 Nick Hall
+# Copyright (C) 2015-2016, 2025 Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2016-2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ from gramps.plugins.db.dbapi.dbapi import DBAPI
 _ = glocale.translation.gettext
 sqlite3.paramstyle = "qmark"
 DEFAULT_DATABASE_CONFIG = {
-    "pragma": {
+    "pragmas": {
         "journal_mode": "WAL",
         "synchronous": "NORMAL",
         "cache_size": "-131072",
@@ -58,65 +58,11 @@ DEFAULT_DATABASE_CONFIG = {
         "foreign_keys": "ON",
         "auto_vacuum": "NONE",
         "journal_size_limit": "67108864",
-    }
+    },
+    "parallel": {
+        "max_threads": 4,
+    },
 }
-
-
-# -------------------------------------------------------------------------
-#
-# ThreadSafeConnectionManager class
-#
-# -------------------------------------------------------------------------
-class ThreadSafeConnectionManager:
-    """
-    Thread-safe connection manager for SQLite databases.
-
-    This class provides thread-local database connections that can be used
-    for concurrent read operations in SQLite WAL mode.
-    """
-
-    def __init__(self, db_path: str, database_config: Optional[dict] = None):
-        """
-        Initialize the connection manager.
-
-        Args:
-            db_path: Path to the SQLite database file
-            database_config: Database configuration dictionary
-        """
-        self.db_path = db_path
-        self.database_config = database_config or {}
-        self._thread_local = threading.local()
-        self._lock = threading.Lock()
-
-    def get_connection(self) -> sqlite3.Connection:
-        """
-        Get a thread-local database connection.
-
-        Returns:
-            SQLite connection for the current thread
-        """
-        if not hasattr(self._thread_local, "connection"):
-            # Create new connection for this thread
-            connection = sqlite3.connect(self.db_path)
-
-            # Apply database configuration
-            if self.database_config.get("pragma"):
-                for key, value in self.database_config["pragma"].items():
-                    connection.execute(f"PRAGMA {key} = {value};")
-
-            # Store connection in thread-local storage
-            self._thread_local.connection = connection
-
-        return self._thread_local.connection
-
-    def close_all_connections(self):
-        """Close all thread-local connections."""
-        if hasattr(self._thread_local, "connection"):
-            try:
-                self._thread_local.connection.close()
-                delattr(self._thread_local, "connection")
-            except:
-                pass
 
 
 # -------------------------------------------------------------------------
@@ -143,22 +89,14 @@ class SQLite(DBAPI):
         return summary
 
     def _initialize(self, directory, username, password):
-        self.database_config = self._get_database_config(directory)
+        self.__database_config = self._get_database_config(directory)
         if directory == ":memory:":
             path_to_db = ":memory:"
         else:
             path_to_db = os.path.join(directory, "sqlite.db")
 
         # Create the main connection for the primary thread
-        self.dbapi = Connection(path_to_db, database_config=self.database_config)
-
-        # Create thread-safe connection manager for parallel operations
-        if directory != ":memory:":
-            self.thread_connection_manager = ThreadSafeConnectionManager(
-                path_to_db, self.database_config
-            )
-        else:
-            self.thread_connection_manager = None
+        self.dbapi = Connection(path_to_db, pragmas=self.get_database_config("pragmas"))
 
     def _get_database_config(self, directory):
         """
@@ -176,22 +114,6 @@ class SQLite(DBAPI):
                     json.dump(DEFAULT_DATABASE_CONFIG, fp)
                 return DEFAULT_DATABASE_CONFIG
 
-    def get_thread_connection(self):
-        """
-        Get a thread-local database connection for parallel operations.
-
-        Returns:
-            Thread-local SQLite connection or None if not available
-        """
-        if self.thread_connection_manager:
-            return self.thread_connection_manager.get_connection()
-        return None
-
-    def close_thread_connections(self):
-        """Close all thread-local connections."""
-        if self.thread_connection_manager:
-            self.thread_connection_manager.close_all_connections()
-
     def supports_parallel_reads(self):
         """
         Check if this database backend supports parallel read operations.
@@ -199,27 +121,7 @@ class SQLite(DBAPI):
         Returns:
             True if parallel reads are supported
         """
-        return self.thread_connection_manager is not None
-
-    def create_connection_wrapper(self, original_connection, thread_connection):
-        """
-        Create a thread-safe connection wrapper for this database backend.
-
-        Args:
-            original_connection: The original database connection
-            thread_connection: Thread-local connection to use
-
-        Returns:
-            Thread-safe connection wrapper
-        """
-        return SQLiteConnectionWrapper(original_connection, thread_connection)
-
-    def _close(self):
-        """Close the database and all thread connections."""
-        # Close thread connections first
-        self.close_thread_connections()
-        # Close the main connection
-        super()._close()
+        return self.get_database_config("pragmas", "journal_mode") == "WAL"
 
 
 # -------------------------------------------------------------------------
@@ -233,7 +135,7 @@ class Connection:
     backend for the DBAPI interface and the sqlite3 python module.
     """
 
-    def __init__(self, *args, database_config=None, **kwargs):
+    def __init__(self, *args, pragmas=None, **kwargs):
         """
         Create a new Sqlite instance.
 
@@ -249,8 +151,8 @@ class Connection:
         self.log = logging.getLogger(".sqlite")
         self.__connection = sqlite3.connect(*args, **kwargs)
 
-        if database_config is not None and database_config.get("pragma"):
-            for key, value in database_config["pragma"].items():
+        if pragmas is not None:
+            for key, value in pragmas.items():
                 self.__connection.execute(f"PRAGMA {key} = {value};")
             self.__connection.execute("VACUUM;")
             self.__connection.execute("PRAGMA optimize;")
@@ -377,132 +279,6 @@ class Connection:
         Return a new cursor.
         """
         return Cursor(self.__connection)
-
-
-# -------------------------------------------------------------------------
-#
-# SQLite-specific thread-safe wrappers
-#
-# -------------------------------------------------------------------------
-class SQLiteConnectionWrapper:
-    """
-    A wrapper for SQLite database connections that can be used with thread-local connections.
-
-    This class mimics the interface of the original database connection but uses
-    thread-local connections when available, providing transparent thread-safe
-    database access without changing any database access methods.
-    """
-
-    def __init__(self, original_connection, thread_connection):
-        """
-        Initialize the wrapper.
-
-        Args:
-            original_connection: The original database connection (Connection object)
-            thread_connection: Thread-local SQLite connection to use instead
-        """
-        self.original_connection = original_connection
-        self.thread_connection = thread_connection
-        # Create a cursor from the thread-local connection for execute/fetch operations
-        self._thread_cursor = thread_connection.cursor()
-
-    def execute(self, *args, **kwargs):
-        """Execute SQL using thread-local connection."""
-        return self._thread_cursor.execute(*args, **kwargs)
-
-    def fetchone(self):
-        """Fetch one row using thread-local connection."""
-        return self._thread_cursor.fetchone()
-
-    def fetchall(self):
-        """Fetch all rows using thread-local connection."""
-        return self._thread_cursor.fetchall()
-
-    def fetchmany(self, size=None):
-        """Fetch many rows using thread-local connection."""
-        if size is None:
-            return self._thread_cursor.fetchmany()
-        else:
-            return self._thread_cursor.fetchmany(size)
-
-    def cursor(self):
-        """Return a cursor using thread-local connection."""
-        return SQLiteCursorWrapper(
-            self.original_connection.cursor(), self.thread_connection
-        )
-
-    def __getattr__(self, name):
-        """Delegate any other attributes to the original connection."""
-        return getattr(self.original_connection, name)
-
-
-class SQLiteCursorWrapper:
-    """
-    A wrapper for SQLite database cursors that uses thread-local connections.
-    """
-
-    def __init__(self, original_cursor, thread_connection):
-        """
-        Initialize the cursor wrapper.
-
-        Args:
-            original_cursor: The original cursor
-            thread_connection: Thread-local connection to use
-        """
-        self.original_cursor = original_cursor
-        self.thread_connection = thread_connection
-        self._thread_cursor = None
-
-    def __enter__(self):
-        """Create thread-local cursor for context manager."""
-        self._thread_cursor = self.thread_connection.cursor()
-        return self
-
-    def __exit__(self, *args, **kwargs):
-        """Close thread-local cursor."""
-        if self._thread_cursor:
-            self._thread_cursor.close()
-            self._thread_cursor = None
-
-    def execute(self, *args, **kwargs):
-        """Execute SQL using thread-local cursor."""
-        if self._thread_cursor:
-            return self._thread_cursor.execute(*args, **kwargs)
-        else:
-            # Create a temporary cursor if not in context manager
-            cursor = self.thread_connection.cursor()
-            try:
-                return cursor.execute(*args, **kwargs)
-            finally:
-                cursor.close()
-
-    def fetchone(self):
-        """Fetch one row using thread-local cursor."""
-        if self._thread_cursor:
-            return self._thread_cursor.fetchone()
-        else:
-            return None
-
-    def fetchall(self):
-        """Fetch all rows using thread-local cursor."""
-        if self._thread_cursor:
-            return self._thread_cursor.fetchall()
-        else:
-            return []
-
-    def fetchmany(self, size=None):
-        """Fetch many rows using thread-local cursor."""
-        if self._thread_cursor:
-            if size is None:
-                return self._thread_cursor.fetchmany()
-            else:
-                return self._thread_cursor.fetchmany(size)
-        else:
-            return []
-
-    def __getattr__(self, name):
-        """Delegate any other attributes to the original cursor."""
-        return getattr(self.original_cursor, name)
 
 
 # -------------------------------------------------------------------------

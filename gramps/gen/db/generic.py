@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2015-2016 Gramps Development Team
 # Copyright (C) 2016      Nick Hall
-# Copyright (C) 2024      Doug Blank
+# Copyright (C) 2024-2025 Doug Blank
 # Copyright (C) 2024,2025 Steve Youngs <steve@youngs.cc>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -420,6 +420,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     __signals__["person-groupname-rebuild"] = (str, str)
 
     __callback_map = {}
+    __database_config = {}
 
     VERSION = (21, 0, 0)
 
@@ -2831,34 +2832,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         return False
 
-    def get_thread_connection(self):
+    def get_database_config(self, section: str, name: Optional[str] = None) -> Any:
         """
-        Get a thread-local database connection for parallel operations.
-
-        This method should be implemented by database backends that support
-        parallel reads. It returns a thread-local connection that can be used
-        for concurrent operations.
-
-        Returns:
-            Thread-local connection object or None if not available
+        Get a config value from the database configuration.
         """
-        return None
-
-    def create_thread_safe_wrapper(self):
-        """
-        Create a thread-safe wrapper for this database.
-
-        This method creates a wrapper that can be used as a context manager
-        to temporarily swap the database connection with a thread-local one.
-
-        Returns:
-            Thread-safe database wrapper or None if not supported
-        """
-        if self.supports_parallel_reads():
-            from ..utils.parallel import ThreadLocalDatabaseWrapper
-
-            return ThreadLocalDatabaseWrapper(self)
-        return None
+        if name is None:
+            return self.__database_config.get(section, None)
+        else:
+            self.__database_config.get(section, {}).get(name, None)
 
 
 Database = DbGeneric

@@ -34,7 +34,6 @@ from __future__ import annotations
 import threading
 from typing import Any, Callable, List, Optional, TypeVar, Generic
 import logging
-import queue
 
 # -------------------------------------------------------------------------
 #
@@ -63,14 +62,14 @@ class ParallelProcessor(Generic[T, R]):
 
     def __init__(
         self,
-        max_threads: int = 4,
+        max_threads: int,
         chunk_size: Optional[int] = None,
     ):
         """
         Initialize the parallel processor.
 
         Args:
-            max_threads: Maximum number of threads to use (default: 4)
+            max_threads: Maximum number of threads to use
             chunk_size: Size of chunks to process per thread (default: auto-calculate)
         """
         self.max_threads = max(1, max_threads)
@@ -113,19 +112,19 @@ class ParallelProcessor(Generic[T, R]):
 
         # Process chunks in parallel
         threads: List[threading.Thread] = []
-        results_queue: queue.Queue[List[R]] = queue.Queue()
+        results: List[List[R]] = [[] for _ in chunks]  # Pre-allocate results list
 
-        def worker(chunk: List[T]):
+        def worker(chunk: List[T], chunk_index: int):
             """Worker function for processing chunks."""
             try:
                 chunk_results = processor_func(chunk)
-                results_queue.put(chunk_results)
+                results[chunk_index] = chunk_results
             except Exception as e:
                 LOG.error(f"Error in parallel processing: {e}")
-                results_queue.put([])
+                results[chunk_index] = []
 
-        for chunk in chunks:
-            thread = threading.Thread(target=worker, args=(chunk,))
+        for i, chunk in enumerate(chunks):
+            thread = threading.Thread(target=worker, args=(chunk, i))
             threads.append(thread)
             thread.start()
 
@@ -133,10 +132,9 @@ class ParallelProcessor(Generic[T, R]):
         for thread in threads:
             thread.join()
 
-        # Combine results
+        # Combine results in order
         all_results: List[R] = []
-        while not results_queue.empty():
-            chunk_results = results_queue.get()
+        for chunk_results in results:
             all_results.extend(chunk_results)
 
         return all_results
@@ -144,7 +142,7 @@ class ParallelProcessor(Generic[T, R]):
 
 # Convenience functions for common use cases
 def create_parallel_processor(
-    max_threads: int = 4,
+    max_threads: int,
     chunk_size: Optional[int] = None,
 ) -> ParallelProcessor:
     """
@@ -166,7 +164,7 @@ def create_parallel_processor(
 def process_in_parallel(
     items: List[T],
     processor_func: Callable[[List[T]], List[R]],
-    max_threads: int = 4,
+    max_threads: int,
     chunk_size: Optional[int] = None,
 ) -> List[R]:
     """

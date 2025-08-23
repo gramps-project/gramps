@@ -224,7 +224,9 @@ class TestFamilyTreeTraversal(unittest.TestCase):
 
         for root_person, max_depth, include_root in test_cases:
             # Sequential version
-            sequential_traversal = FamilyTreeTraversal(use_parallel=False)
+            sequential_traversal = FamilyTreeTraversal(
+                use_parallel=False, max_threads=None
+            )
             sequential_result = sequential_traversal.get_person_ancestors(
                 self.db, [root_person], max_depth=max_depth, include_root=include_root
             )
@@ -259,7 +261,9 @@ class TestFamilyTreeTraversal(unittest.TestCase):
 
         for root_person, max_depth, include_root in test_cases:
             # Sequential version
-            sequential_traversal = FamilyTreeTraversal(use_parallel=False)
+            sequential_traversal = FamilyTreeTraversal(
+                use_parallel=False, max_threads=None
+            )
             sequential_result = sequential_traversal.get_person_descendants(
                 self.db, [root_person], max_depth=max_depth, include_root=include_root
             )
@@ -317,7 +321,9 @@ class TestFamilyTreeTraversal(unittest.TestCase):
 
         for potential_ancestor, potential_descendant, max_depth in test_cases:
             # Sequential version
-            sequential_traversal = FamilyTreeTraversal(use_parallel=False)
+            sequential_traversal = FamilyTreeTraversal(
+                use_parallel=False, max_threads=None
+            )
             sequential_result = sequential_traversal.is_ancestor_of(
                 self.db, potential_ancestor, potential_descendant, max_depth=max_depth
             )
@@ -453,7 +459,7 @@ class TestFamilyTreeTraversal(unittest.TestCase):
         traversal_parallel = FamilyTreeTraversal(use_parallel=True, max_threads=2)
 
         # Test with sequential processing
-        traversal_sequential = FamilyTreeTraversal(use_parallel=False)
+        traversal_sequential = FamilyTreeTraversal(use_parallel=False, max_threads=None)
 
         # Test with the family containing person_3a (should find ancestors)
         family_3a = self.db.get_family_from_handle(

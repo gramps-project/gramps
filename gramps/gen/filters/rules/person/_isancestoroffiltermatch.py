@@ -105,7 +105,13 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
 
             # Get ancestors for all matching persons at once
             # Include matching persons if in inclusive mode
-            ancestors = get_person_ancestors(db, matching_persons, include_root=False)
+            ancestors = get_person_ancestors(
+                db=db,
+                persons=matching_persons,
+                include_root=False,
+                use_parallel=db.supports_parallel_reads(),
+                max_threads=db.get_database_config("parallel", "max_threads"),
+            )
             self.selected_handles.update(ancestors)
 
             # Add the matching persons themselves if inclusive mode

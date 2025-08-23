@@ -105,7 +105,7 @@ class IsAncestorOf(Rule):
             max_depth=None,  # No depth limit for this filter
             include_root=inclusive,
             use_parallel=db.supports_parallel_reads(),
-            max_threads=4,
+            max_threads=db.get_database_config("parallel", "max_threads"),
         )
 
         # Convert the set of handles to our selected_handles set

@@ -69,14 +69,18 @@ class IsDescendantOf(Rule):
 
     def __init__(self, list):
         super().__init__(list)
-        # Initialize family tree traversal with configurable settings
-        self._traversal = FamilyTreeTraversal(
-            max_threads=4,
-        )
+        # Initialize traversal in prepare method where we have access to database
+        self._traversal = None
 
     def prepare(self, db: Database, user):
         self.db = db
         self.selected_handles: Set[str] = set()
+
+        # Initialize family tree traversal with database-aware parallel settings
+        self._traversal = FamilyTreeTraversal(
+            use_parallel=db.supports_parallel_reads(),
+            max_threads=db.get_database_config("parallel", "max_threads"),
+        )
         try:
             first = False if int(self.list[1]) else True
         except IndexError:
@@ -96,6 +100,7 @@ class IsDescendantOf(Rule):
 
     def reset(self):
         self.selected_handles.clear()
+        self._traversal = None
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles

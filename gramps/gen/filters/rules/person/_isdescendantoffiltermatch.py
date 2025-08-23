@@ -73,7 +73,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
 
         self._traversal = FamilyTreeTraversal(
             use_parallel=db.supports_parallel_reads(),
-            max_threads=4,
+            max_threads=db.get_database_config("parallel", "max_threads"),
         )
 
         try:
