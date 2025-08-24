@@ -45,6 +45,7 @@ from ....utils.graph import find_descendants
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -63,7 +64,7 @@ class IsDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: Set[PersonHandle] = set()
         try:
             inclusive = False if int(self.list[1]) else True
         except IndexError:

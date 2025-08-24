@@ -45,6 +45,7 @@ from ....utils.graph import find_descendants
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -66,7 +67,7 @@ class IsLessThanNthGenerationDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: Set[PersonHandle] = set()
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             max_generations = int(self.list[1])

@@ -45,6 +45,7 @@ from ....utils.graph import find_ancestors
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -63,7 +64,7 @@ class IsAncestorOf(Rule):
     def prepare(self, db: Database, user):
         """Use the unified find_ancestors function"""
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: Set[PersonHandle] = set()
         try:
             inclusive = False if int(self.list[1]) else True
         except IndexError:
