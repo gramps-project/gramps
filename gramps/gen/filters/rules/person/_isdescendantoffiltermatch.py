@@ -34,6 +34,7 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from ._isdescendantof import IsDescendantOf
 from ._matchesfilter import MatchesFilter
+from ....utils.graph import find_descendants
 
 
 # -------------------------------------------------------------------------
@@ -44,6 +45,7 @@ from ._matchesfilter import MatchesFilter
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -64,7 +66,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: Set[PersonHandle] = set()
         try:
             if int(self.list[1]):
                 first = False
@@ -95,3 +97,16 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
+
+    def init_list(self, person: Person, first: bool):
+        """Initialize the list of descendants for a given person."""
+        if not person:
+            return
+        try:
+            inclusive = not first
+            descendants = find_descendants(
+                self.db, [person.handle], inclusive=inclusive
+            )
+            self.selected_handles.update(descendants)
+        except:
+            pass

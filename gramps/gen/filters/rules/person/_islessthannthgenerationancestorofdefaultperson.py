@@ -33,6 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.graph import find_ancestors
 
 
 # -------------------------------------------------------------------------
@@ -64,34 +65,19 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
     )
 
     def prepare(self, db: Database, user):
+        """Use the unified find_ancestors function"""
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
         p: Person = db.get_default_person()
         if p:
-            self.init_ancestor_list(p.handle, 1)
-
-    def init_ancestor_list(self, handle: PersonHandle, gen: int):
-        if not handle or handle in self.selected_handles:
-            # if we have been here before, skip
-            return
-        if gen:
-            self.selected_handles.add(handle)
-            if gen >= int(self.list[0]):
-                return
-
-        p = self.db.get_person_from_handle(handle)
-        fam_id = p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
-        if not fam_id:
-            return
-        fam = self.db.get_family_from_handle(fam_id)
-        if fam:
-            f_id = fam.father_handle
-            m_id = fam.mother_handle
-
-            if f_id:
-                self.init_ancestor_list(f_id, gen + 1)
-            if m_id:
-                self.init_ancestor_list(m_id, gen + 1)
+            # Original uses base-1: gen 1=root, 2=parents, 3=grandparents
+            # Our function uses base-0: gen 0=root, 1=parents, 2=grandparents
+            # Original logic: includes starting person and ancestors up to gen N
+            # So we need to subtract 1 to convert and use inclusive=True
+            max_generation = int(self.list[0]) - 1
+            self.selected_handles = find_ancestors(
+                db, [p.handle], max_generation=max_generation, inclusive=True
+            )
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
