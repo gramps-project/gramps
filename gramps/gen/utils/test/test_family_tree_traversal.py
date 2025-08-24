@@ -231,7 +231,7 @@ class TestFamilyTreeTraversal(unittest.TestCase):
                 self.db, [root_person], max_depth=max_depth, include_root=include_root
             )
 
-            # Parallel version
+            # Parallel version (now enabled with thread safety fixes)
             parallel_traversal = FamilyTreeTraversal(use_parallel=True, max_threads=2)
             parallel_result = parallel_traversal.get_person_ancestors(
                 self.db, [root_person], max_depth=max_depth, include_root=include_root
@@ -268,7 +268,7 @@ class TestFamilyTreeTraversal(unittest.TestCase):
                 self.db, [root_person], max_depth=max_depth, include_root=include_root
             )
 
-            # Parallel version
+            # Parallel version (now enabled with thread safety fixes)
             parallel_traversal = FamilyTreeTraversal(use_parallel=True, max_threads=2)
             parallel_result = parallel_traversal.get_person_descendants(
                 self.db, [root_person], max_depth=max_depth, include_root=include_root
@@ -328,7 +328,7 @@ class TestFamilyTreeTraversal(unittest.TestCase):
                 self.db, potential_ancestor, potential_descendant, max_depth=max_depth
             )
 
-            # Parallel version
+            # Parallel version (now enabled with thread safety fixes)
             parallel_traversal = FamilyTreeTraversal(use_parallel=True, max_threads=2)
             parallel_result = parallel_traversal.is_ancestor_of(
                 self.db, potential_ancestor, potential_descendant, max_depth=max_depth
@@ -347,7 +347,7 @@ class TestFamilyTreeTraversal(unittest.TestCase):
         """Test that convenience functions work with both sequential and parallel processing."""
         # Test get_person_ancestors convenience function
         sequential_ancestors = get_person_ancestors(
-            self.db, [self.person_3a], use_parallel=False
+            self.db, [self.person_3a], use_parallel=False, max_threads=None
         )
         parallel_ancestors = get_person_ancestors(
             self.db, [self.person_3a], use_parallel=True, max_threads=2
@@ -360,7 +360,7 @@ class TestFamilyTreeTraversal(unittest.TestCase):
 
         # Test get_person_descendants convenience function
         sequential_descendants = get_person_descendants(
-            self.db, [self.person_0], use_parallel=False
+            self.db, [self.person_0], use_parallel=False, max_threads=None
         )
         parallel_descendants = get_person_descendants(
             self.db, [self.person_0], use_parallel=True, max_threads=2
@@ -373,7 +373,7 @@ class TestFamilyTreeTraversal(unittest.TestCase):
 
         # Test is_ancestor_of convenience function
         sequential_is_ancestor = is_ancestor_of(
-            self.db, self.person_0, self.person_3a, use_parallel=False
+            self.db, self.person_0, self.person_3a, use_parallel=False, max_threads=None
         )
         parallel_is_ancestor = is_ancestor_of(
             self.db, self.person_0, self.person_3a, use_parallel=True, max_threads=2
@@ -455,7 +455,7 @@ class TestFamilyTreeTraversal(unittest.TestCase):
 
     def test_get_family_ancestors(self):
         """Test family ancestor traversal functionality."""
-        # Test with parallel processing
+        # Test with parallel processing (now enabled with thread safety fixes)
         traversal_parallel = FamilyTreeTraversal(use_parallel=True, max_threads=2)
 
         # Test with sequential processing

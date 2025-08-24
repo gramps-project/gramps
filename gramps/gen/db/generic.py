@@ -2832,6 +2832,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         return False
 
+    def create_thread_safe_wrapper(self):
+        """
+        Create a thread-safe wrapper for this database.
+
+        This method creates a wrapper that can be used as a context manager
+        to temporarily swap the database connection with a thread-local one.
+
+        Returns:
+            Thread-safe database wrapper or None if not supported
+        """
+        return None
+
     def get_database_config(self, section: str, name: Optional[str] = None) -> Any:
         """
         Get a config value from the database configuration.
