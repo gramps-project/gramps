@@ -227,6 +227,46 @@ class SQLite(DBAPI):
                 return ThreadLocalDatabaseWrapper(self, self._thread_connection_manager)
         return None
 
+    def create_thread_safe_database_instance(self, thread_connection_manager):
+        """
+        Create a new database instance that uses a thread-local connection.
+
+        This method creates a new SQLite database instance that uses the
+        provided thread-local connection manager for database operations.
+
+        Args:
+            thread_connection_manager: Thread-local connection manager
+
+        Returns:
+            New database instance with thread-local connection or None if not supported
+        """
+        # Check if the database supports parallel reads
+        if not self.supports_parallel_reads():
+            # If this database doesn't support parallel reads, return None
+            # This will cause the parallel processor to fall back to sequential processing
+            return None
+
+        # Import here to avoid circular imports
+        from gramps.gen.utils.parallel import ThreadLocalConnectionWrapper
+
+        # Create a thread-local dbapi wrapper
+        thread_local_dbapi = ThreadLocalConnectionWrapper(
+            thread_connection_manager, self.dbapi
+        )
+
+        # Create a new database instance
+        from gramps.gen.db.utils import make_database
+
+        thread_db = make_database("sqlite")
+        thread_db.dbapi = thread_local_dbapi
+        thread_db.serializer = self.serializer
+
+        # Copy the thread-safe infrastructure from the original database
+        thread_db._thread_connection_manager = thread_connection_manager
+        thread_db._database_config = getattr(self, "_database_config", {})
+
+        return thread_db
+
     def _close(self):
         """Close the database and all thread connections."""
         # Close thread connections first

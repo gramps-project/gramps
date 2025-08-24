@@ -42,7 +42,6 @@ import logging
 # -------------------------------------------------------------------------
 import sqlite3
 from ..const import GRAMPS_LOCALE as glocale
-from gramps.plugins.db.dbapi.sqlite import SQLiteConnectionWrapper
 
 
 class ThreadLocalConnectionWrapper:
@@ -381,25 +380,33 @@ class DatabaseMethodWrapper:
             )
 
             if current_thread.name != "MainThread":
-                # In worker threads, temporarily swap the dbapi to use thread-local connection
-                original_dbapi = self._database.dbapi
-                thread_local_dbapi = ThreadLocalConnectionWrapper(
-                    self._thread_connection_manager, original_dbapi
+                # In worker threads, create a thread-safe database instance
+                thread_db = self._database.create_thread_safe_database_instance(
+                    self._thread_connection_manager
                 )
-                print(f"DEBUG: Temporarily swapping dbapi for method {method.__name__}")
+
+                if thread_db is None:
+                    # Fallback to original method if thread-safe database creation fails
+                    return method(*args, **kwargs)
+
+                print(
+                    f"DEBUG: Creating thread-local database for method {method.__name__}"
+                )
+
+                # Bind the method to the thread-local database
+                bound_method = method.__get__(thread_db, type(thread_db))
 
                 try:
-                    # Swap the dbapi attribute
-                    self._database.dbapi = thread_local_dbapi
-                    # Call the original method with the thread-local connection
-                    result = method(*args, **kwargs)
+                    # Call the method on the thread-local database
+                    result = bound_method(*args, **kwargs)
                     print(f"DEBUG: Method {method.__name__} completed successfully")
                     return result
                 finally:
-                    # Always restore the original dbapi
-                    self._database.dbapi = original_dbapi
+                    # Clean up the thread-local database
+                    if hasattr(thread_db, "_close"):
+                        thread_db._close()
                     print(
-                        f"DEBUG: Restored original dbapi after method {method.__name__}"
+                        f"DEBUG: Cleaned up thread-local database after method {method.__name__}"
                     )
             else:
                 # In main thread, just call the original method

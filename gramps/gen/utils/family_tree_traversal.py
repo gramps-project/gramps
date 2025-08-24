@@ -79,6 +79,26 @@ class FamilyTreeTraversal:
         if use_parallel:
             self._parallel_processor = ParallelProcessor(max_threads=max_threads)
 
+    def _check_parallel_support(self, db) -> bool:
+        """
+        Check if the database supports parallel processing.
+
+        Args:
+            db: Database instance
+
+        Returns:
+            True if parallel processing is supported
+        """
+        if not self.use_parallel or self._parallel_processor is None:
+            return False
+
+        # Check if the database supports parallel reads
+        if hasattr(db, "supports_parallel_reads"):
+            return db.supports_parallel_reads()
+
+        # If the database doesn't have the method, assume it doesn't support parallel processing
+        return False
+
     def get_person_ancestors(
         self,
         db,
@@ -102,7 +122,7 @@ class FamilyTreeTraversal:
             return cast(Set[PersonHandle], set())
 
         # Check if parallel processing is available and database supports parallel reads
-        if self._parallel_processor:
+        if self._check_parallel_support(db):
             return self._get_person_ancestors_parallel(
                 db, persons, max_depth, include_root
             )
@@ -136,7 +156,7 @@ class FamilyTreeTraversal:
             return cast(Set[PersonHandle], set())
 
         # Check if parallel processing is available and database supports parallel reads
-        if self._parallel_processor:
+        if self._check_parallel_support(db):
             return self._get_person_ancestors_with_min_depth_parallel(
                 db, persons, min_depth, max_depth, include_root
             )
@@ -168,7 +188,7 @@ class FamilyTreeTraversal:
             return cast(Set[PersonHandle], set())
 
         # Check if parallel processing is available and database supports parallel reads
-        if self._parallel_processor:
+        if self._check_parallel_support(db):
             return self._get_person_descendants_parallel(
                 db, persons, max_depth, include_root
             )
@@ -202,7 +222,7 @@ class FamilyTreeTraversal:
             return cast(Set[PersonHandle], set())
 
         # Check if parallel processing is available and database supports parallel reads
-        if self._parallel_processor:
+        if self._check_parallel_support(db):
             return self._get_person_descendants_with_min_depth_parallel(
                 db, persons, min_depth, max_depth, include_root
             )
@@ -231,7 +251,7 @@ class FamilyTreeTraversal:
             True if potential_ancestor is an ancestor of potential_descendant
         """
         # Check if parallel processing is available and database supports parallel reads
-        if self._parallel_processor:
+        if self._check_parallel_support(db):
             return self._is_ancestor_of_parallel(
                 db, potential_ancestor, potential_descendant, max_depth
             )
@@ -263,7 +283,7 @@ class FamilyTreeTraversal:
             return cast(Set[FamilyHandle], set())
 
         # Check if parallel processing is available and database supports parallel reads
-        if self._parallel_processor:
+        if self._check_parallel_support(db):
             return self._get_family_descendants_parallel(
                 db, families, max_depth, include_root
             )
@@ -295,7 +315,7 @@ class FamilyTreeTraversal:
             return cast(Set[FamilyHandle], set())
 
         # Check if parallel processing is available and database supports parallel reads
-        if self._parallel_processor:
+        if self._check_parallel_support(db):
             return self._get_family_ancestors_parallel(
                 db, families, max_depth, include_root
             )
@@ -420,7 +440,7 @@ class FamilyTreeTraversal:
         while current_level:
             # Process current level in parallel
             def process_family_level(
-                family_batch: List[Tuple[str, int]],
+                family_batch: List[Tuple[str, int]], thread_db: Any
             ) -> Tuple[List[Tuple[str, int]], Set[str], Set[str]]:
                 """Process a batch of families to find their parent families."""
                 next_level = []
@@ -441,7 +461,7 @@ class FamilyTreeTraversal:
                         local_results.add(family_handle)
 
                     # Get the family and find its parents
-                    family = db.get_family_from_handle(family_handle)
+                    family = thread_db.get_family_from_handle(family_handle)
                     if family:
                         # For each parent in the family, get their main parents' family
                         for parent_handle in [
@@ -449,7 +469,7 @@ class FamilyTreeTraversal:
                             family.get_mother_handle(),
                         ]:
                             if parent_handle:
-                                parent = db.get_person_from_handle(parent_handle)
+                                parent = thread_db.get_person_from_handle(parent_handle)
                                 if parent:
                                     # Get the parent's main parents' family (where they are a child)
                                     parent_family_handle = (
@@ -466,7 +486,7 @@ class FamilyTreeTraversal:
                 return next_level, local_visited, local_results
 
             results = self._parallel_processor.process_items(
-                current_level, process_family_level
+                current_level, process_family_level, db
             )
             # Flatten the results and update shared state
             current_level = []
@@ -918,37 +938,29 @@ class FamilyTreeTraversal:
                         local_results.add(person_handle)
 
                     # Get the person and their parents using thread-safe database
-                    db_wrapper = thread_db.create_thread_safe_wrapper()
-                    with db_wrapper as thread_safe_db:
-                        # Get raw person data using thread-safe database
-                        raw_person_data = thread_safe_db.get_raw_person_data(
-                            person_handle
+                    # thread_db is already a thread-safe database wrapper
+                    # Get raw person data using thread-safe database
+                    raw_person_data = thread_db.get_raw_person_data(person_handle)
+                    if raw_person_data:
+                        # Extract parent family list from raw data
+                        parent_family_list = raw_person_data.get(
+                            "parent_family_list", []
                         )
-                        if raw_person_data:
-                            # Extract parent family list from raw data
-                            parent_family_list = raw_person_data.get(
-                                "parent_family_list", []
+                        for family_handle in parent_family_list:
+                            # Get raw family data
+                            raw_family_data = thread_db.get_raw_family_data(
+                                family_handle
                             )
-                            for family_handle in parent_family_list:
-                                # Get raw family data
-                                raw_family_data = thread_safe_db.get_raw_family_data(
-                                    family_handle
-                                )
-                                if raw_family_data:
-                                    # Extract parent handles from raw data
-                                    father_handle = raw_family_data.get("father_handle")
-                                    mother_handle = raw_family_data.get("mother_handle")
-                                    for parent_handle in [
-                                        father_handle,
-                                        mother_handle,
-                                    ]:
-                                        if (
-                                            parent_handle
-                                            and parent_handle not in visited
-                                        ):
-                                            next_level.append(
-                                                (parent_handle, depth + 1)
-                                            )
+                            if raw_family_data:
+                                # Extract parent handles from raw data
+                                father_handle = raw_family_data.get("father_handle")
+                                mother_handle = raw_family_data.get("mother_handle")
+                                for parent_handle in [
+                                    father_handle,
+                                    mother_handle,
+                                ]:
+                                    if parent_handle and parent_handle not in visited:
+                                        next_level.append((parent_handle, depth + 1))
 
                 return next_level, local_visited, local_results
 
@@ -1190,7 +1202,7 @@ class FamilyTreeTraversal:
         # Get child handles from all families
         if family_handles:
             # Check if parallel processing is available and database supports parallel reads
-            if self._parallel_processor:
+            if self._check_parallel_support(db):
                 return self._process_person_families_parallel(db, family_handles)
             else:
                 return self._process_person_families_sequential(db, family_handles)
@@ -1247,7 +1259,7 @@ class FamilyTreeTraversal:
                     child_handles.append(child_ref.ref)
             return child_handles
 
-        if self._parallel_processor is not None:
+        if self._check_parallel_support(db):
             return self._parallel_processor.process_items(families, extract_children)
         else:
             # Fallback to sequential processing if parallel processor is not available
@@ -1343,41 +1355,33 @@ class FamilyTreeTraversal:
                         local_results.add(person_handle)
 
                     # Get the person and their parents using thread-safe database
-                    db_wrapper = thread_db.create_thread_safe_wrapper()
-                    with db_wrapper as thread_safe_db:
-                        # Get raw person data using thread-safe database
-                        raw_person_data = thread_safe_db.get_raw_person_data(
-                            person_handle
+                    # thread_db is already a thread-safe database wrapper
+                    # Get raw person data using thread-safe database
+                    raw_person_data = thread_db.get_raw_person_data(person_handle)
+                    if raw_person_data:
+                        # Extract parent family list from raw data
+                        parent_family_list = raw_person_data.get(
+                            "parent_family_list", []
                         )
-                        if raw_person_data:
-                            # Extract parent family list from raw data
-                            parent_family_list = raw_person_data.get(
-                                "parent_family_list", []
+                        for family_handle in parent_family_list:
+                            # Get raw family data
+                            raw_family_data = thread_db.get_raw_family_data(
+                                family_handle
                             )
-                            for family_handle in parent_family_list:
-                                # Get raw family data
-                                raw_family_data = thread_safe_db.get_raw_family_data(
-                                    family_handle
-                                )
-                                if raw_family_data:
-                                    # Extract parent handles from raw data
-                                    father_handle = raw_family_data.get("father_handle")
-                                    mother_handle = raw_family_data.get("mother_handle")
-                                    for parent_handle in [
-                                        father_handle,
-                                        mother_handle,
-                                    ]:
-                                        if (
-                                            parent_handle
-                                            and parent_handle not in visited
-                                        ):
-                                            next_level.append(
-                                                (parent_handle, depth + 1)
-                                            )
+                            if raw_family_data:
+                                # Extract parent handles from raw data
+                                father_handle = raw_family_data.get("father_handle")
+                                mother_handle = raw_family_data.get("mother_handle")
+                                for parent_handle in [
+                                    father_handle,
+                                    mother_handle,
+                                ]:
+                                    if parent_handle and parent_handle not in visited:
+                                        next_level.append((parent_handle, depth + 1))
 
                 return next_level, local_visited, local_results
 
-            if self._parallel_processor is not None:
+            if self._check_parallel_support(db):
                 results = self._parallel_processor.process_items(
                     current_level, process_person_level, db
                 )
@@ -1518,7 +1522,7 @@ class FamilyTreeTraversal:
                                             child_handle = child_ref.get("ref")
                                             if (
                                                 child_handle
-                                                and child_handle not in visited
+                                                and child_handle not in local_visited
                                             ):
                                                 next_level.append(
                                                     (child_handle, depth + 1)
@@ -1530,7 +1534,7 @@ class FamilyTreeTraversal:
                         LOG.error(
                             f"Error processing person {person_handle} in parallel: {e}"
                         )
-                        # Fallback: don't process this person in parallel to avoid thread safety issues
+                        # If there's an error, we have to skip this person
                         pass
 
                 return next_level, local_visited, local_results
@@ -1694,7 +1698,7 @@ class FamilyTreeTraversal:
         while current_level:
             # Process current level in parallel
             def process_family_level(
-                family_batch: List[Tuple[str, int]],
+                family_batch: List[Tuple[str, int]], thread_db: Any
             ) -> Tuple[List[Tuple[str, int]], Set[str], Set[str]]:
                 """Process a batch of families to find their descendant families."""
                 next_level = []
@@ -1715,13 +1719,13 @@ class FamilyTreeTraversal:
                         local_results.add(family_handle)
 
                     # Get the family and find its children
-                    family = db.get_family_from_handle(family_handle)
+                    family = thread_db.get_family_from_handle(family_handle)
                     if family:
                         # Get all children in this family
                         for child_ref in family.child_ref_list:
                             child_handle = child_ref.ref
                             if child_handle:
-                                child = db.get_person_from_handle(child_handle)
+                                child = thread_db.get_person_from_handle(child_handle)
                                 if child:
                                     # Find families where this child is a parent
                                     for child_family_handle in child.family_list:
@@ -1733,7 +1737,7 @@ class FamilyTreeTraversal:
                 return next_level, local_visited, local_results
 
             results = self._parallel_processor.process_items(
-                current_level, process_family_level
+                current_level, process_family_level, db
             )
             # Flatten the results and update shared state
             current_level = []

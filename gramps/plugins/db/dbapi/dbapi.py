@@ -1238,3 +1238,19 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
+
+    def create_thread_safe_database_instance(self, thread_connection_manager):
+        """
+        Create a new database instance that uses a thread-local connection.
+
+        This method should be implemented by database backends that support
+        parallel processing. The returned database instance should be safe
+        to use in worker threads.
+
+        Args:
+            thread_connection_manager: Thread-local connection manager
+
+        Returns:
+            New database instance with thread-local connection or None if not supported
+        """
+        return None
