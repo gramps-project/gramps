@@ -29,9 +29,11 @@ Backend for SQLite database.
 #
 # -------------------------------------------------------------------------
 import logging
+import json
 import os
 import re
 import sqlite3
+from typing import Dict, Any, Optional, List
 
 # -------------------------------------------------------------------------
 #
@@ -45,6 +47,21 @@ from gramps.plugins.db.dbapi.dbapi import DBAPI
 _ = glocale.translation.gettext
 
 sqlite3.paramstyle = "qmark"
+
+# TODO: put into a place that user can edit
+DEFAULT_DATABASE_CONFIG = {
+    "pragmas": {
+        "journal_mode": "WAL",
+        "synchronous": "NORMAL",
+        "cache_size": "-131072",
+        "temp_store": "MEMORY",
+        "page_size": "16384",
+        "mmap_size": "-1",
+        "foreign_keys": "ON",
+        "auto_vacuum": "NONE",
+        "journal_size_limit": "67108864",
+    },
+}
 
 
 # -------------------------------------------------------------------------
@@ -71,11 +88,28 @@ class SQLite(DBAPI):
         return summary
 
     def _initialize(self, directory, username, password):
+        self._database_config = self._init_database_config(directory)
         if directory == ":memory:":
             path_to_db = ":memory:"
         else:
             path_to_db = os.path.join(directory, "sqlite.db")
-        self.dbapi = Connection(path_to_db)
+        self.dbapi = Connection(path_to_db, pragmas=self.get_database_config("pragmas"))
+
+    def _init_database_config(self, directory: str) -> Dict[str, Dict[str, Any]]:
+        """
+        Get the default database config dictionary.
+        """
+        if directory == ":memory:":
+            return DEFAULT_DATABASE_CONFIG
+        else:
+            database_json_path = os.path.join(directory, "config.json")
+            if os.path.exists(database_json_path):
+                with open(database_json_path) as fp:
+                    return json.load(fp)
+            else:
+                with open(database_json_path, "w") as fp:
+                    json.dump(DEFAULT_DATABASE_CONFIG, fp)
+                return DEFAULT_DATABASE_CONFIG
 
 
 # -------------------------------------------------------------------------
@@ -89,7 +123,7 @@ class Connection:
     backend for the DBAPI interface and the sqlite3 python module.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, pragmas: Optional[Dict[str, str]] = None, **kwargs):
         """
         Create a new Sqlite instance.
 
@@ -104,9 +138,16 @@ class Connection:
         """
         self.log = logging.getLogger(".sqlite")
         self.__connection = sqlite3.connect(*args, **kwargs)
+
+        if pragmas is not None:
+            for key, value in pragmas.items():
+                self.__connection.execute(f"PRAGMA {key} = {value};")
+            self.__connection.execute("VACUUM;")
+            self.__connection.execute("PRAGMA optimize;")
+
         self.__cursor = self.__connection.cursor()
         self.__connection.create_function("regexp", 2, regexp)
-        self.__collations = []
+        self.__collations: List[str] = []
         self.__tmap = str.maketrans("-.@=;", "_____")
         self.check_collation(glocale)
 
