@@ -22,7 +22,7 @@ import tempfile
 import os
 import unittest
 
-from ...const import DATA_DIR
+from ...const import TEST_DIR
 from ...db.utils import import_as_dict
 from ...user import User
 from ...filters import reload_custom_filters, FilterList, set_custom_filters
@@ -232,7 +232,7 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
   </object>
 </filters>
 """
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
+
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 
