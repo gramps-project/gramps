@@ -33,6 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.graph import find_descendants
 
 
 # -------------------------------------------------------------------------
@@ -67,7 +68,15 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         self.selected_handles: Set[str] = set()
         try:
             root_person = db._get_raw_person_from_id_data(self.list[0])
-            self.init_list(root_person, 0)
+            min_generations = int(self.list[1])
+            if root_person:
+                # Use the new find_descendants function with min_generation
+                self.selected_handles = find_descendants(
+                    db,
+                    [root_person.handle],
+                    min_generation=min_generations,
+                    inclusive=False,
+                )
         except:
             pass
 
@@ -76,17 +85,3 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
-
-    def init_list(self, person: Person, gen: int) -> None:
-        if not person:
-            return
-        if gen >= int(self.list[1]):
-            self.selected_handles.add(person.handle)
-
-        for fam_id in person.family_list:
-            fam = self.db.get_family_from_handle(fam_id)
-            if fam:
-                for child_ref in fam.child_ref_list:
-                    self.init_list(
-                        self.db.get_person_from_handle(child_ref.ref), gen + 1
-                    )

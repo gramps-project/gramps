@@ -190,3 +190,149 @@ def find_ancestors_iterative(
                 queue.append((family.father_handle, generation + 1))
             if family.mother_handle:
                 queue.append((family.mother_handle, generation + 1))
+
+
+def find_descendants(
+    db: Database,
+    person_handles: List[PersonHandle],
+    min_generation: int = 1,
+    max_generation: Optional[int] = None,
+    inclusive: bool = False,
+    include_all_families: bool = False,
+) -> Set[PersonHandle]:
+    """
+    Find descendants of one or more people using BFS traversal.
+
+    This function combines the functionality of various descendant finding
+    algorithms used throughout the Gramps codebase into a single, efficient
+    implementation. It's optimized to handle multiple starting people by
+    sharing the visited set across all searches.
+
+    Args:
+        db: The Gramps database
+        person_handles: List of person handles to find descendants for
+        min_generation: Minimum generation to include (1 = children, 2 = grandchildren, etc.)
+        max_generation: Maximum generation to include (None = no limit)
+        inclusive: Whether to include the starting people in results
+        include_all_families: Whether to traverse all families
+                             (False = only first family)
+
+    Returns:
+        Set of person handles representing the descendants
+
+    Examples:
+        # Find all descendants of a single person
+        descendants = find_descendants(db, [person_handle], inclusive=False)
+
+        # Find descendants up to 3 generations
+        descendants = find_descendants(db, [person_handle], max_generation=3, inclusive=False)
+
+        # Find descendants at least 2 generations away
+        descendants = find_descendants(db, [person_handle], min_generation=2, inclusive=False)
+
+        # Find descendants including the starting person
+        descendants = find_descendants(db, [person_handle], inclusive=True)
+
+        # Find descendants of multiple people
+        descendants = find_descendants(db, [person1_handle, person2_handle], inclusive=False)
+    """
+    # Use the iterative function internally to avoid code duplication
+    descendants: Set[PersonHandle] = set()
+
+    for handle, _ in find_descendants_iterative(
+        db,
+        person_handles,
+        min_generation,
+        max_generation,
+        inclusive,
+        include_all_families,
+    ):
+        descendants.add(handle)
+
+    return descendants
+
+
+def find_descendants_iterative(
+    db: Database,
+    person_handles: List[PersonHandle],
+    min_generation: int = 1,
+    max_generation: Optional[int] = None,
+    inclusive: bool = False,
+    include_all_families: bool = False,
+) -> Iterator[Tuple[PersonHandle, int]]:
+    """
+    Find descendants of one or more people using BFS traversal, yielding results as they're found.
+
+    This is useful for processing large descendant trees without storing all results
+    in memory at once. It's optimized to handle multiple starting people by
+    sharing the visited set across all searches.
+
+    Args:
+        db: The Gramps database
+        person_handles: List of person handles to find descendants for
+        min_generation: Minimum generation to include (1 = children, 2 = grandchildren, etc.)
+        max_generation: Maximum generation to include (None = no limit)
+        inclusive: Whether to include the starting people in results
+        include_all_families: Whether to traverse all families
+                             (False = only first family)
+
+    Yields:
+        Tuples of (person_handle, generation) for each descendant found
+    """
+    if not person_handles:
+        return
+
+    # BFS queue: (person_handle, generation)
+    queue: deque[Tuple[PersonHandle, int]] = deque()
+
+    # Track visited nodes to avoid cycles (shared across all searches)
+    visited: Set[PersonHandle] = set()
+
+    # Add all starting people to the queue
+    for person_handle in person_handles:
+        if person_handle:
+            queue.append((person_handle, 0))
+
+    while queue:
+        current_handle, generation = queue.popleft()
+
+        # Skip if already visited
+        if current_handle in visited:
+            continue
+
+        visited.add(current_handle)
+
+        # Yield if within generation range
+        if (generation >= min_generation or (inclusive and generation == 0)) and (
+            max_generation is None or generation <= max_generation
+        ):
+            yield current_handle, generation
+
+        # Stop if we've reached max_generation
+        if max_generation is not None and generation >= max_generation:
+            continue
+
+        # Get person and their families
+        try:
+            person = db.get_person_from_handle(current_handle)
+            if not person:
+                continue
+        except:
+            # Handle non-existent handles gracefully
+            continue
+
+        # Determine which families to process
+        families = person.family_list
+        if not include_all_families and families:
+            families = [families[0]]  # Only first family
+
+        # Process each family
+        for family_handle in families:
+            family = db.get_family_from_handle(family_handle)
+            if not family:
+                continue
+
+            # Add children to queue
+            for child_ref in family.child_ref_list:
+                if child_ref.ref:
+                    queue.append((child_ref.ref, generation + 1))
