@@ -95,9 +95,9 @@ class SQLite(DBAPI):
             path_to_db = os.path.join(directory, "sqlite.db")
         self.dbapi = Connection(path_to_db, pragmas=self.get_database_config("pragmas"))
 
-    def _init_database_config(self, directory: str) -> Dict[str, Dict[str, Any]]:
-        """
-        Get the default database config dictionary.
+        Load the database configuration from a config file in the given directory.
+        If the config file does not exist, create it with default values.
+        Returns the loaded configuration or the default configuration if not present.
         """
         if directory == ":memory:":
             return DEFAULT_DATABASE_CONFIG
