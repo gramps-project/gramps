@@ -112,8 +112,12 @@ class SQLite(DBAPI):
                         )
                         return DEFAULT_DATABASE_CONFIG
             else:
-                with open(database_json_path, "w") as fp:
-                    json.dump(DEFAULT_DATABASE_CONFIG, fp)
+                try:
+                    with open(database_json_path, "w") as fp:
+                        json.dump(DEFAULT_DATABASE_CONFIG, fp)
+                except OSError as e:
+                    logging.error(f"Failed to write default database config to {database_json_path}: {e}")
+                    raise
                 return DEFAULT_DATABASE_CONFIG
 
 
