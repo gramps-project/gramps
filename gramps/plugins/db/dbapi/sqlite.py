@@ -103,9 +103,14 @@ class SQLite(DBAPI):
             return DEFAULT_DATABASE_CONFIG
         else:
             database_json_path = os.path.join(directory, "config.json")
-            if os.path.exists(database_json_path):
-                with open(database_json_path) as fp:
-                    return json.load(fp)
+                    try:
+                        return json.load(fp)
+                    except (json.JSONDecodeError, ValueError) as e:
+                        logging.error(
+                            "Failed to load database config from '%s': %s. Falling back to default config.",
+                            database_json_path, e
+                        )
+                        return DEFAULT_DATABASE_CONFIG
             else:
                 with open(database_json_path, "w") as fp:
                     json.dump(DEFAULT_DATABASE_CONFIG, fp)
