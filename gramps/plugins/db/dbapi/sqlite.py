@@ -62,7 +62,17 @@ DEFAULT_DATABASE_CONFIG = {
         "journal_size_limit": "67108864",
     },
 }
-
+ALLOWED_PRAGMAS = {
+    "journal_mode": {"DELETE", "TRUNCATE", "PERSIST", "MEMORY", "WAL", "OFF"},
+    "synchronous": {"OFF", "NORMAL", "FULL", "EXTRA", "0", "1", "2", "3"},
+    "cache_size": re.compile(r"^-?\d+$"),
+    "temp_store": {"DEFAULT", "FILE", "MEMORY", "0", "1", "2"},
+    "page_size": re.compile(r"^\d+$"),
+    "mmap_size": re.compile(r"^-?\d+$"),
+    "foreign_keys": {"ON", "OFF", "1", "0"},
+    "auto_vacuum": {"NONE", "FULL", "INCREMENTAL", "0", "1", "2"},
+    "journal_size_limit": re.compile(r"^\d+$"),
+}
 
 # -------------------------------------------------------------------------
 #
@@ -95,6 +105,8 @@ class SQLite(DBAPI):
             path_to_db = os.path.join(directory, "sqlite.db")
         self.dbapi = Connection(path_to_db, pragmas=self.get_database_config("pragmas"))
 
+    def _init_database_config(self, directory):
+        """
         Load the database configuration from a config file in the given directory.
         If the config file does not exist, create it with default values.
         Returns the loaded configuration or the default configuration if not present.
@@ -103,6 +115,8 @@ class SQLite(DBAPI):
             return DEFAULT_DATABASE_CONFIG
         else:
             database_json_path = os.path.join(directory, "config.json")
+            if os.path.exists(database_json_path):
+                with open(database_json_path) as fp:
                     try:
                         return json.load(fp)
                     except (json.JSONDecodeError, ValueError) as e:
@@ -116,8 +130,7 @@ class SQLite(DBAPI):
                     with open(database_json_path, "w") as fp:
                         json.dump(DEFAULT_DATABASE_CONFIG, fp)
                 except OSError as e:
-                    logging.error(f"Failed to write default database config to {database_json_path}: {e}")
-                    raise
+                    logging.error(f"Failed to write default database config to {database_json_path}: {e}.")
                 return DEFAULT_DATABASE_CONFIG
 
 
@@ -150,7 +163,10 @@ class Connection:
 
         if pragmas is not None:
             for key, value in pragmas.items():
-                self.__connection.execute(f"PRAGMA {key} = {value};")
+                if self._is_valid_pragma(key, value):
+                    self.__connection.execute(f"PRAGMA {key} = {value};")
+                else:
+                    self.log.warning(f"Skipped unsafe or invalid PRAGMA: {key} = {value}")
             self.__connection.execute("VACUUM;")
             self.__connection.execute("PRAGMA optimize;")
 
@@ -159,6 +175,20 @@ class Connection:
         self.__collations: List[str] = []
         self.__tmap = str.maketrans("-.@=;", "_____")
         self.check_collation(glocale)
+
+    def _is_valid_pragma(self, key: str, value: str) -> bool:
+        """
+        Check to see if the key and value are valid.
+        """
+        if key not in ALLOWED_PRAGMAS:
+            return False
+
+        allowed = ALLOWED_PRAGMAS[key]
+        if isinstance(allowed, set):
+            return str(value).upper() in allowed
+        elif isinstance(allowed, re.Pattern):
+            return allowed.match(str(value)) is not None
+        return False
 
     def check_collation(self, locale):
         """
