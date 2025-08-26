@@ -74,6 +74,7 @@ ALLOWED_PRAGMAS = {
     "journal_size_limit": re.compile(r"^\d+$"),
 }
 
+
 # -------------------------------------------------------------------------
 #
 # SQLite class
@@ -122,7 +123,8 @@ class SQLite(DBAPI):
                     except (json.JSONDecodeError, ValueError) as e:
                         logging.error(
                             "Failed to load database config from '%s': %s. Falling back to default config.",
-                            database_json_path, e
+                            database_json_path,
+                            e,
                         )
                         return DEFAULT_DATABASE_CONFIG
             else:
@@ -130,7 +132,9 @@ class SQLite(DBAPI):
                     with open(database_json_path, "w") as fp:
                         json.dump(DEFAULT_DATABASE_CONFIG, fp)
                 except OSError as e:
-                    logging.error(f"Failed to write default database config to {database_json_path}: {e}.")
+                    logging.error(
+                        f"Failed to write default database config to {database_json_path}: {e}."
+                    )
                 return DEFAULT_DATABASE_CONFIG
 
 
@@ -166,7 +170,9 @@ class Connection:
                 if self._is_valid_pragma(key, value):
                     self.__connection.execute(f"PRAGMA {key} = {value};")
                 else:
-                    self.log.warning(f"Skipped unsafe or invalid PRAGMA: {key} = {value}")
+                    self.log.warning(
+                        f"Skipped unsafe or invalid PRAGMA: {key} = {value}"
+                    )
             self.__connection.execute("VACUUM;")
             self.__connection.execute("PRAGMA optimize;")
 
