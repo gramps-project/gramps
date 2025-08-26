@@ -135,8 +135,8 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         self.set_artists(artists.split("\n"))
 
         try:
-            with open(LICENSE_FILE, "r") as ifile:
-                self.set_license(ifile.read().replace("\x0c", ""))
+            with open(LICENSE_FILE, "r", encoding="utf-8") as ifile:
+                self.set_license(ifile.read())
         except IOError:
             self.set_license("License file is missing")
 
