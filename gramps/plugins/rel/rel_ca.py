@@ -818,111 +818,107 @@ def _get_nephews(level, inlaw=""):
         return "els nebots i les nebodes %dens%s" % ((level - 1), inlaw)
 
 
-def _get_oncle_valencia(levela, levelb, inlaw="", step=""):
+def _get_distant_uncle(level, inlaw="", step=""):
     """
-    removed cousins, older generations
+    Removed cousin, older generation, gender = male
     """
-    if levela <= levelb:
-        return "error a _get_oncle_valencia"
-    val_level = levela - levelb
-    amplada = levelb - 1
-    retorn = _get_uncle(val_level + 1, "", step)
-    if amplada == 1:
-        stramplada = ""
+    if step == "":
+        taula = _BROTHER_LEVEL
+        nom = "oncle"
     else:
-        stramplada = _LEVEL_NAME[amplada]
-    return retorn + " valencià " + stramplada + inlaw
+        taula = _BROTHER_LEVEL_STP
+        nom = "onclastre"
+
+    if level < len(_LEVEL_NAME):
+        # limitation gen = 30
+        return "l'%s %s%s" % (nom, _LEVEL_NAME[level], inlaw)
+    else:
+        # use numerical generation
+        return "l'%s %dè%s" % (nom, level, inlaw)
 
 
-def _get_oncles_valencians(levela, levelb, inlaw=""):
+def _get_distant_aunt(level, inlaw="", step=""):
     """
-    removed cousins, older generations for kinship report
+    Removed cousin, older generation, gender = female
+    """
+    if step == "":
+        taula = _SISTER_LEVEL
+        nom = "tia"
+    else:
+        taula = _SISTER_LEVEL_STP
+        nom = "tiastra"
+
+    if inlaw != "":
+        inlaw += "a"
+    if level < len(_LEVEL_NAME_F):
+        return "la %s %s%s" % (nom, _LEVEL_NAME_F[level], inlaw)
+    else:
+        # use numerical generation
+        return "la %s %dena%s" % (nom, level, inlaw)
+
+
+def _get_distant_nephew(level, inlaw="", step=""):
+    """
+    Removed cousin, younger generation, gender = male
+    """
+    if step == "":
+        taula = _NEPHEW_LEVEL
+        nom = "nebot"
+    else:
+        taula = _NEPHEW_LEVEL_STP
+        nom = "nebodastre"
+
+    if level < len(_LEVEL_NAME):
+        return "el %s %s%s" % (nom, _LEVEL_NAME[level], inlaw)
+    else:
+        # use numerical generation
+        return "el %s %dè%s" % (nom, level, inlaw)
+
+
+def _get_distant_uncles(level, inlaw=""):
+    """
+    Removed cousins, older generations for kinship report
     """
     if inlaw != "":
         inlaw += "s"
-    if levela <= levelb:
-        return "error a _get_oncles_valencians"
-    val_level = levela - levelb
-    amplada = levelb - 1
-    retorn = _get_uncles(val_level + 1, "")
-    if amplada == 1:
-        stramplada = ""
+    if level < len(_LEVEL_NAME_P):
+        return "els oncles i les ties %s%s" % (_LEVEL_NAME_P[level], inlaw)
     else:
-        stramplada = _LEVEL_NAME_P[amplada]
-    return retorn + " valencians " + stramplada + inlaw
+        # use numerical generation
+        return "els oncles i les ties %dens%s" % (level, inlaw)
 
 
-def _get_nebot_valencia(levela, levelb, inlaw="", step=""):
+def _get_distant_niece(level, inlaw="", step=""):
     """
-    removed cousins, younger generations
+    Removed cousin, younger generation, gender = female
     """
-    if levelb <= levela:
-        return "error a _get_nebot_valencia"
-    val_level = levelb - levela
-    amplada = levela - 1
-    retorn = _get_nephew(val_level, "", step)
-    if amplada == 1:
-        stramplada = ""
+    if inlaw != "":
+        inlaw += "a"
+    if step == "":
+        taula = _NIECE_LEVEL
+        nom = "neboda"
     else:
-        stramplada = _LEVEL_NAME[amplada]
-    return retorn + " valencià " + stramplada + inlaw
+        taula = _NIECE_LEVEL_STP
+        nom = "nebodastra"
+
+    if level < len(_LEVEL_NAME_F):
+        return "la %s %s%s" % (nom, _LEVEL_NAME_F[level], inlaw)
+    else:
+        # use numerical generation
+        return "la %s %dena%s" % (nom, level, inlaw)
 
 
-def _get_nebots_valencians(levela, levelb, inlaw=""):
+def _get_distant_nephews(level, inlaw=""):
     """
-    removed cousins, younger generations, for kinship report
-    gender = male
+    Removed cousins, younger generations, for kinship report
     """
     if inlaw != "":
         inlaw += "s"
-    if levelb <= levela:
-        return "error a _get_nebots_valencians"
-    val_level = levelb - levela
-    amplada = levela - 1
-    retorn = _get_nephews(val_level + 1, "")
-    if amplada == 1:
-        stramplada = ""
+    if level < len(_LEVEL_NAME_P):
+        return "els nebots i les nebodes %s%s" % (_LEVEL_NAME_P[level], inlaw)
     else:
-        stramplada = _LEVEL_NAME_P[amplada]
-    return retorn + " valencians " + stramplada + inlaw
-
-
-def _get_tia_valenciana(levela, levelb, inlaw="", step=""):
-    """
-    removed cousins, older generations
-    gender = female
-    """
-    if inlaw != "":
-        inlaw += "a"
-    if levela <= levelb:
-        return "error a _get_tia_valenciana"
-    val_level = levela - levelb
-    amplada = levelb - 1
-    retorn = _get_aunt(val_level + 1, "", step)
-    if amplada == 1:
-        stramplada = ""
-    else:
-        stramplada = _LEVEL_NAME_F[amplada]
-    return retorn + " valenciana " + stramplada + inlaw
-
-
-def _get_neboda_valenciana(levela, levelb, inlaw="", step=""):
-    """
-    removed cousins, younger generations
-    gender = female
-    """
-    if inlaw != "":
-        inlaw += "a"
-    if levelb <= levela:
-        return "error a _get_neboda_valenciana"
-    val_level = levelb - levela
-    amplada = levela - 1
-    retorn = _get_niece(val_level, "", step)
-    if amplada == 1:
-        stramplada = ""
-    else:
-        stramplada = _LEVEL_NAME_F[amplada]
-    return retorn + " valenciana " + stramplada + inlaw
+        # use numerical generation
+        return "els nebots i les nebodes %dens%s" % (level, inlaw)
 
 
 class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
@@ -995,14 +991,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 # person being in a higher generation from the common ancestor
                 # than the first person.
 
-                rel_str = _get_oncles_valencians(Ga, Gb, inlaw)
+                rel_str = _get_distant_uncles(Gb, inlaw)
 
             elif Gb > Ga:
                 # These are cousins in different generations with the second
                 # person being in a higher generation from the common ancestor
                 # than the first person.
 
-                rel_str = _get_nebots_valencians(Ga, Gb, inlaw)
+                rel_str = _get_distant_nephews(Ga, inlaw)
 
         else:
             rel_str = "Error in get_plural_relationship_string()"
@@ -1126,21 +1122,21 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             # first person.
 
             if gender_b == Person.MALE:
-                rel_str = _get_oncle_valencia(Ga, Gb, inlaw, step)
+                rel_str = _get_distant_uncle(Gb, inlaw, step)
             elif gender_b == Person.FEMALE:
-                rel_str = _get_tia_valenciana(Ga, Gb, inlaw, step)
+                rel_str = _get_distant_aunt(Gb, inlaw, step)
             else:
-                rel_str = _get_oncle_valencia(Ga, Gb, inlaw, step)
+                rel_str = _get_distant_uncle(Gb, inlaw, step)
         elif Gb > 1 and Gb > Ga:
             # These are cousins in different generations with the second person
             # being in a lower generation from the common ancestor than the
             # first person.
             if gender_b == Person.MALE:
-                rel_str = _get_nebot_valencia(Ga, Gb, inlaw, step)
+                rel_str = _get_distant_nephew(Ga, inlaw, step)
             elif gender_b == Person.FEMALE:
-                rel_str = _get_neboda_valenciana(Ga, Gb, inlaw, step)
+                rel_str = _get_distant_niece(Ga, inlaw, step)
             else:
-                rel_str = _get_nebot_valencia(Ga, Gb, inlaw, step)
+                rel_str = _get_distant_nephew(Ga, inlaw, step)
 
         return rel_str
 
