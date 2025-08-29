@@ -257,8 +257,8 @@ class WelcomeGramplet(Gramplet):
             boldst(_("Example Database"))
             + "\n\n"
             + _(
-                "Want to see Gramps in use. Create and Import the Example database.\n\n"
-                "Create a new Family Tree as described above. Suggest that you name"
+                "Want to see Gramps in use? Create and Import the Example database.\n\n"
+                "Create a new Family Tree as described above. We suggest that you name"
                 " the Family Tree “EXAMPLE”.\n\n"
                 "Import the Gramps file example.gramps.\n\n"
                 "Follow the instructions for the location of the file stored with"
