@@ -30,6 +30,7 @@
 # -------------------------------------------------------------------------
 import os
 import tarfile
+from contextlib import suppress
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -141,6 +142,7 @@ def impData(database, name, user):
         )
 
     # Remove xml file extracted to media dir we imported from
-    os.remove(imp_db_name)
+    with suppress(FileNotFoundError):
+        os.remove(imp_db_name)
 
     return info
