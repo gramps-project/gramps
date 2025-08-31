@@ -40,7 +40,7 @@ class NameGuesser(gramps.gen.nameguesser.NameGuesser):
     The name guesser guesses the names of a person based on their relationships.
     """
 
-    def fathers_surname_from_child(self, db, family):
+    def fathers_name_from_child(self, db, family):
         """
         If family is not unmarried, get the surname from a child. Else, return empty name.
         """
@@ -57,7 +57,7 @@ class NameGuesser(gramps.gen.nameguesser.NameGuesser):
                     return name
         return name
 
-    def mothers_surname_from_child(self, db, family):
+    def mothers_name_from_child(self, db, family):
         """
         If family is unmarried, get the surname from a child. Else, return empty name.
         """
@@ -72,4 +72,25 @@ class NameGuesser(gramps.gen.nameguesser.NameGuesser):
                 if child:
                     preset_name(child, name)
                     return name
+        return name
+
+    def childs_name(self, db, family):
+        """
+        If family is unmarried, child inherits name from mother. Otherwise, child inherits name from father.
+        """
+        name = Name()
+        name.add_surname(Surname())
+        name.set_primary_surname(0)
+
+        if family.get_relationship() == FamilyRelType.UNMARRIED:
+            mother_handle = family.get_mother_handle()
+            if mother_handle:
+                mother = db.get_person_from_handle(mother_handle)
+                preset_name(mother, name)
+        else:
+            father_handle = family.get_father_handle()
+            if father_handle:
+                father = db.get_person_from_handle(father_handle)
+                preset_name(father, name)
+
         return name

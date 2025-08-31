@@ -51,7 +51,7 @@ class NameGuesser:
     The name guesser guesses the names of a person based on their family members' names.
     """
 
-    def fathers_surname_from_child(self, db, family):
+    def fathers_name_from_child(self, db, family):
         """
         Find a child and return their name for the father.
         """
@@ -68,7 +68,7 @@ class NameGuesser:
 
         return name
 
-    def mothers_surname_from_child(self, db, family):
+    def mothers_name_from_child(self, db, family):
         """
         Mother's surname cannot be guessed in the default locale, return empty name.
         """
@@ -79,7 +79,7 @@ class NameGuesser:
 
         return name
 
-    def childs_surname(self, db, family):
+    def childs_name(self, db, family):
         """
         Child inherits name from father.
         """
