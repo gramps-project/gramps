@@ -21,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
 "PO-Revision-Date: 2025-08-31 06:05+0000\n"
-"Last-Translator: Hugo Vidal <69076992+hugoovf@users.noreply.github.com>\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
 "Language: ca\n"
@@ -20392,12 +20392,12 @@ msgstr "No s'ha pogut crear l'informe"
 #: ../gramps/gui/plug/report/_styleeditor.py:210
 #: ../gramps/plugins/importer/importgedcom.glade:12
 msgid "default"
-msgstr "predeterminat"
+msgstr "per defecte"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:108
 #: ../gramps/gui/plug/report/_styleeditor.py:143
 msgid "Document Styles"
-msgstr "Estils de Document"
+msgstr "Estils del document"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:122
 msgctxt "manual"
@@ -20406,11 +20406,11 @@ msgstr "Dialeg_d'Estils_de_Document"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:165
 msgid "New Style"
-msgstr "Nou estil"
+msgstr "Estil nou"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:175
 msgid "Error saving stylesheet"
-msgstr "Error desant document d'estil"
+msgstr "S'ha produït un error en desar el full d'estils"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:191
 #: ../gramps/gui/plug/report/_styleeditor.py:206
@@ -21051,12 +21051,12 @@ msgstr "_Barra de sota"
 
 #: ../gramps/gui/views/pageview.py:109
 msgid "_Sidebar"
-msgstr "Barra _Lateral"
+msgstr "Barra _lateral"
 
 #: ../gramps/gui/views/pageview.py:611
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
-msgstr "Configurar %(cat)s - %(view)s"
+msgstr "Configura %(cat)s - %(view)s"
 
 #: ../gramps/gui/views/pageview.py:633
 #, python-format
@@ -21075,11 +21075,11 @@ msgstr "Vista %(name)s: %(msg)s"
 
 #: ../gramps/gui/views/tags.py:73
 msgid "Tag selected rows"
-msgstr "Etiquetar files seleccionades"
+msgstr "Etiqueta les files seleccionades"
 
 #: ../gramps/gui/views/tags.py:96
 msgid "New Tag..."
-msgstr "Nova etiqueta..."
+msgstr "Etiqueta nova..."
 
 #: ../gramps/gui/views/tags.py:96
 msgid "Organize Tags..."
@@ -21112,11 +21112,11 @@ msgstr "Afegint etiquetes"
 #: ../gramps/gui/views/tags.py:334 ../gramps/gui/views/tags.py:361
 #, python-format
 msgid "Tag Selection (%s)"
-msgstr "Selecció d'Etiqueta (%s)"
+msgstr "Selecció d'etiqueta (%s)"
 
 #: ../gramps/gui/views/tags.py:355 ../gramps/gui/views/tags.py:600
 msgid "Removing Tags"
-msgstr "S'estan esborrant Etiquetes"
+msgstr "S'estan eliminant les etiquetes"
 
 #: ../gramps/gui/views/tags.py:394 ../gramps/gui/views/tags.py:404
 #: ../gramps/gui/views/tags.py:470
@@ -21125,7 +21125,7 @@ msgstr "Endreçar Etiquetes"
 
 #: ../gramps/gui/views/tags.py:422
 msgid "Change Tag Priority"
-msgstr "Modificar la Prioritat de l'Etiqueta"
+msgstr "Modifica la prioritat de l'etiqueta"
 
 #: ../gramps/gui/views/tags.py:565
 #, python-format
@@ -21152,7 +21152,7 @@ msgstr "Etiqueta: %s"
 
 #: ../gramps/gui/views/tags.py:635
 msgid "New Tag"
-msgstr "Nova etiqueta"
+msgstr "Etiqueta nova"
 
 #: ../gramps/gui/views/tags.py:684
 msgid "Cannot save tag"
@@ -21165,16 +21165,16 @@ msgstr "El nom d'etiqueta no pot ser buit"
 #: ../gramps/gui/views/tags.py:691
 #, python-format
 msgid "Add Tag (%s)"
-msgstr "Afegeix Etiqueta (%s)"
+msgstr "Afegeix una etiqueta (%s)"
 
 #: ../gramps/gui/views/tags.py:697
 #, python-format
 msgid "Edit Tag (%s)"
-msgstr "Editar Etiqueta (%s)"
+msgstr "Edita l'etiqueta (%s)"
 
 #: ../gramps/gui/views/tags.py:712
 msgid "Tag Name:"
-msgstr "Nom d'Etiqueta:"
+msgstr "Nom de l'etiqueta:"
 
 #: ../gramps/gui/views/tags.py:719
 #, python-format
@@ -34725,15 +34725,15 @@ msgstr "Arregla_Majúscules_Noms_Famílies"
 #: ../gramps/plugins/tool/changenames.py:99
 #: ../gramps/plugins/tool/changenames.py:266
 msgid "Capitalization changes"
-msgstr "Canvis de majúscules/minúscules"
+msgstr "Canvis de majusculació"
 
 #: ../gramps/plugins/tool/changenames.py:110
 msgid "Checking Family Names"
-msgstr "Comprovant Noms de Família"
+msgstr "S'estan comprovant els noms de família"
 
 #: ../gramps/plugins/tool/changenames.py:113
 msgid "Searching family names"
-msgstr "S'estan buscant noms de família"
+msgstr "S'estan cercant noms de família"
 
 #: ../gramps/plugins/tool/changenames.py:171
 #: ../gramps/plugins/tool/eventnames.py:128
@@ -34747,11 +34747,11 @@ msgstr "No s'han detectat canvis de majúscules a minúscules."
 
 #: ../gramps/plugins/tool/changenames.py:229
 msgid "Original Name"
-msgstr "Nom Original"
+msgstr "Nom original"
 
 #: ../gramps/plugins/tool/changenames.py:233
 msgid "Capitalization Change"
-msgstr "Canvi de majúscules/minúscules"
+msgstr "Canvi de majusculació"
 
 #: ../gramps/plugins/tool/changenames.py:240
 #: ../gramps/plugins/tool/eventcmp.py:311
@@ -34773,11 +34773,11 @@ msgstr "Tipus d'esdeveniment original:"
 
 #: ../gramps/plugins/tool/changetypes.glade:122
 msgid "New event type:"
-msgstr "Nou tipus d'esdeveniment:"
+msgstr "Tipus d'esdeveniment nou:"
 
 #: ../gramps/plugins/tool/changetypes.py:66
 msgid "Change Event Types"
-msgstr "Canviar Tipus d'Esdeveniments"
+msgstr "Canvia els tipus d'esdeveniments"
 
 #: ../gramps/plugins/tool/changetypes.py:121
 #: ../gramps/plugins/tool/changetypes.py:146
@@ -34786,7 +34786,7 @@ msgstr "Canviar tipus"
 
 #: ../gramps/plugins/tool/changetypes.py:124
 msgid "Analyzing Events"
-msgstr "Analitzant Esdeveniments"
+msgstr "S'estan analitzant els esdeveniments"
 
 #: ../gramps/plugins/tool/changetypes.py:137
 msgid "No event record was modified."
@@ -34801,11 +34801,11 @@ msgstr[1] "S'han modificat {number_of} registres d'esdeveniment."
 
 #: ../gramps/plugins/tool/check.py:136 ../gramps/plugins/tool/check.py:315
 msgid "Checking Database"
-msgstr "Comprovant la Base de Dades"
+msgstr "S'està comprovant la base de dades"
 
 #: ../gramps/plugins/tool/check.py:137
 msgid "Looking for cross table duplicates"
-msgstr "Buscant duplicats entre taules"
+msgstr "S'estan cercant duplicats entre taules"
 
 #: ../gramps/plugins/tool/check.py:198
 msgid ""
@@ -34815,22 +34815,22 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
-"El teu arbre genealògic conté manejadors duplicats de taula creuada.\n"
-"Això és un error i es pot solucionar fent una còpia de seguretat del teu\n"
-"arbre genealògic i important aquesta còpia de seguretat en un arbre "
-"genealògic buit.\n"
-"La resta de les comprovacions se saltaran, i l’eina de Comprovació i\n"
-"Reparació hauria de tornar a executar-se en aquest nou arbre genealògic."
+"El vostre arbre genealògic conté manejadors duplicats de taula creuada.\n"
+"Això és un error i es pot solucionar fent una còpia de seguretat de l'arbre\n"
+"genealògic i important aquesta còpia de seguretat en un arbre genealògic "
+"buit.\n"
+"La resta de les comprovacions se saltaran, i l'eina de comprovació i\n"
+"reparació hauria de tornar a executar-se en aquest nou arbre genealògic."
 
 #: ../gramps/plugins/tool/check.py:210
 msgid "Check Integrity"
-msgstr "Comprovar la Integritat"
+msgstr "Comprova la integritat"
 
 #: ../gramps/plugins/tool/check.py:256
 #: ../gramps/plugins/tool/rebuildrefmap.py:79
 #: ../gramps/plugins/tool/rebuildrefmap.py:82
 msgid "Rebuilding reference maps..."
-msgstr "Reconstruint mapes de referències..."
+msgstr "S'estan reconstruint els mapes de referències..."
 
 #: ../gramps/plugins/tool/check.py:319
 #, python-format
@@ -37857,12 +37857,12 @@ msgstr "Esquerra <-> Dreta"
 
 #: ../gramps/plugins/view/pedigreeview.py:1829
 msgid "About Pedigree View"
-msgstr "Sobre la Vista d'Avantpassats"
+msgstr "Quant a la visualització d'avantpassats"
 
 #: ../gramps/plugins/view/pedigreeview.py:2043
 #: ../gramps/plugins/view/relview.py:411
 msgid "Add New Parents..."
-msgstr "Afegir nous progenitors..."
+msgstr "Afegeix progenitors nous..."
 
 #: ../gramps/plugins/view/pedigreeview.py:2242
 msgid "Show images"
@@ -37878,7 +37878,7 @@ msgstr "Mostra persones desconegudes"
 
 #: ../gramps/plugins/view/pedigreeview.py:2251
 msgid "Show tags"
-msgstr "Mostra Etiquetes"
+msgstr "Mostra les etiquetes"
 
 #: ../gramps/plugins/view/pedigreeview.py:2255
 msgid "Tree style"
@@ -37902,31 +37902,31 @@ msgstr "Direcció de l'arbre"
 
 #: ../gramps/plugins/view/pedigreeview.py:2274
 msgid "Tree size"
-msgstr "Mida d'arbre"
+msgstr "Mida de l'arbre"
 
 #: ../gramps/plugins/view/personlistview.py:61
 msgid "Person View"
-msgstr "Vista de Persona"
+msgstr "Visualització de persona"
 
 #: ../gramps/plugins/view/persontreeview.py:73
 msgid "People Tree View"
-msgstr "Vista en Arbre de Persones"
+msgstr "Visualització de persones en arbre"
 
 #: ../gramps/plugins/view/placelistview.py:54
 msgid "Place View"
-msgstr "Vista de Llocs"
+msgstr "Visualització de llocs"
 
 #: ../gramps/plugins/view/placetreeview.py:62
 msgid "Place Tree View"
-msgstr "Vista en Arbre de Llocs"
+msgstr "Visualització de llocs en arbre"
 
 #: ../gramps/plugins/view/placetreeview.py:86
 msgid "Collapse this Entire Group"
-msgstr "Col·lapsa aquest Grup Sencer"
+msgstr "Col·lapsa aquest grup sencer"
 
 #: ../gramps/plugins/view/placetreeview.py:86
 msgid "Expand this Entire Group"
-msgstr "Expandir aquest Grup Sencer"
+msgstr "Expandeix aquest grup sencer"
 
 #: ../gramps/plugins/view/relview.py:390
 msgid "Organize Bookmarks..."
@@ -37934,7 +37934,7 @@ msgstr "Endreçar Punts d'interès..."
 
 #: ../gramps/plugins/view/relview.py:411
 msgid "Add Existing Parents..."
-msgstr "Afegeix a Pares Existents..."
+msgstr "Afegeix a progenitors existents..."
 
 #: ../gramps/plugins/view/relview.py:411
 msgid "Add Partner..."
@@ -39295,7 +39295,7 @@ msgstr "Donar una descripció per aquest fitxer."
 #: ../gramps/plugins/webreport/narrativeweb.py:2533
 #: ../gramps/plugins/webreport/webcal.py:2049
 msgid "Advanced Options"
-msgstr "Opcions Avançades"
+msgstr "Opcions avançades"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2537
 #: ../gramps/plugins/webreport/webcal.py:2052
@@ -39443,7 +39443,7 @@ msgstr "Si s'ha d'incloure o no la pàgina d'estadístiques"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2649
 msgid "Place Map Options"
-msgstr "Opcions de Mapa de Llocs"
+msgstr "Opcions del mapa de llocs"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2654
 msgid "Stamen Map"
@@ -39532,8 +39532,8 @@ msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
-"Còpia i enganxa aquest valor al teu navegador.\n"
-"El servei de Google maps ha d'estar seleccionat."
+"Copieu i enganxeu aquest valor al navegador.\n"
+"El servei de Google Maps ha d'estar seleccionat."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2736
 msgid "Toner"
@@ -39576,8 +39576,8 @@ msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
-"Còpia i enganxa aquest valor al teu navegador.\n"
-"El servei de Stamen maps ha d'estar seleccionat."
+"Copieu i enganxeu aquest valor al navegador.\n"
+"El servei de mapes Stamen ha d'estar seleccionat."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2785
 #, python-format
@@ -39908,11 +39908,11 @@ msgstr "Nom"
 #: ../gramps/plugins/webreport/place.py:349
 #: ../gramps/plugins/webreport/place.py:361
 msgid "State/Province"
-msgstr "Estat/Província"
+msgstr "Estat/província"
 
 #: ../gramps/plugins/webreport/place.py:612
 msgid "Place Map"
-msgstr "Mapa de Llocs"
+msgstr "Mapa de llocs"
 
 #: ../gramps/plugins/webreport/repository.py:107
 msgid "Creating repository pages"
@@ -39950,7 +39950,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/source.py:208
 msgctxt "Source Name"
 msgid "Name"
-msgstr "Nom de Font"
+msgstr "Nom"
 
 #: ../gramps/plugins/webreport/source.py:401
 msgid "Publication information"
@@ -39991,7 +39991,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/surnamelist.py:192
 msgid "Number of People"
-msgstr "Nombre de Persones"
+msgstr "Nombre de persones"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
 #, python-brace-format
