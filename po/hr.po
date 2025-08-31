@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-13 19:02+0000\n"
+"PO-Revision-Date: 2025-08-25 12:03+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -14281,7 +14281,7 @@ msgstr "Obuhvaćeno"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:215
 msgid "Place cycle detected"
-msgstr "Petlja u mjestima"
+msgstr "Otkrivena je petlja u mjestima"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:216
 msgid "The place you are adding is already enclosed by this place"
@@ -18666,7 +18666,7 @@ msgid ""
 "review exactly what information you want to include."
 msgstr ""
 "Ovo je pomoćnik za prijavu greške. Pomoći će ti u stvaranju što detaljnijeg "
-"izvještaja o grešci, za prijavu razvijateljima Grampsa.\n"
+"izvještaja o grešci, za prijavu programere Grampsa.\n"
 "\n"
 "Postaviti će ti nekoliko pitanja i sakupiti podatke o nastaloj grešci te "
 "operacijskom okruženju. Na kraju ćemo te zamoliti, da prijaviš grešku na "
@@ -18754,8 +18754,9 @@ msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
 msgstr ""
-"Ovo je cjeloviti izvještaj o greškama. Sljedeća stranica će vam pomoći "
-"prijaviti grešku na web stranici Grampsovog sustava za praćenje grešaka."
+"Ovo je cjeloviti izvještaj o greškama. Sljedeća stranica pomoćnika će ti "
+"pomoći prijaviti grešku na web stranici Grampsovog sustava za praćenje "
+"grešaka."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:659
 msgid ""
@@ -27170,8 +27171,8 @@ msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
 " Writing to %(filename)s in format %(impliedext)s."
 msgstr ""
-"Neslaganje između odabranog dodatka %(ext)s i stvarnog formata.\n"
-"Zapisivanje %(filename)s u formatu %(impliedext)s."
+"Neslaganje između odabranog sufiksa %(ext)s i stvarnog formata.\n"
+"Zapisusje se u %(filename)s u formatu %(impliedext)s."
 
 #: ../gramps/plugins/lib/libgedcom.py:739
 msgid "Common Law Marriage"
@@ -27262,7 +27263,7 @@ msgstr "Izvještaj GEDCOM uvoza: Nisu otkrivene greške"
 #: ../gramps/plugins/lib/libgedcom.py:3135
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr "Izvještaj GEDCOM uvoza: broj otkrivenih grešaka: %s"
+msgstr "Izvještaj GEDCOM uvoza: Broj otkrivenih grešaka: %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:3461
 #: ../gramps/plugins/lib/libgedcom.py:3485
@@ -34385,7 +34386,7 @@ msgstr "Nisu učinjene promjene"
 
 #: ../gramps/plugins/tool/changenames.py:172
 msgid "No capitalization changes were detected."
-msgstr "Nisu ustanovljene promjene u pisanju početnih slova prezimena."
+msgstr "Nisu otkrivene promjene u velikim početnim slovima."
 
 #: ../gramps/plugins/tool/changenames.py:229
 msgid "Original Name"
@@ -34393,7 +34394,7 @@ msgstr "Izvorno ime"
 
 #: ../gramps/plugins/tool/changenames.py:233
 msgid "Capitalization Change"
-msgstr "Promjena u pisanju početnih slova prezimena"
+msgstr "Promjena u velikim početnim slovima"
 
 #: ../gramps/plugins/tool/changenames.py:240
 #: ../gramps/plugins/tool/eventcmp.py:311
@@ -37685,7 +37686,7 @@ msgstr "%(event_type)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1609
 msgid "Broken family detected"
-msgstr "Otkrivena pokvarena obitelj"
+msgstr "Otkrivena je pokvarena obitelj"
 
 #: ../gramps/plugins/view/relview.py:1610
 msgid "Please run the Check and Repair Database tool"
@@ -38529,7 +38530,7 @@ msgstr "Datotečni sufiks"
 #: ../gramps/plugins/webreport/narrativeweb.py:2179
 #: ../gramps/plugins/webreport/webcal.py:1868
 msgid "The extension to be used for the web files"
-msgstr "Sufiks korišten za imena web datoteka"
+msgstr "Sufiks koji se koristi za web datoteke"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2183
 #: ../gramps/plugins/webreport/webcal.py:1871
@@ -38647,7 +38648,7 @@ msgstr "Staza tvoje dodatne stranice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2276
 msgid "Your extra page path without extension"
-msgstr "Staza tvoje dodatne stranice bez datotečnog nastavka"
+msgstr "Staza tvoje dodatne stranice bez sufiksa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2291
 msgid "Do we use multiple translations?"
@@ -38799,7 +38800,7 @@ msgid ""
 "This option will be available only if the .php file extension is selected."
 msgstr ""
 "Zabilješka koja će se koristiti za pokretanje php sesije.\n"
-"Ova će mogućnost biti dostupna samo ako je odabran datotečni nastavak .php."
+"Ova će mogućnost biti dostupna samo ako je odabran sufiks .php."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2425
 msgid "Images Generation"
