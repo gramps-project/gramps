@@ -44,13 +44,14 @@
 # Emmanuel Vallois <emmanuel@vallois.name>, 2024, 2025.
 # n4n5 <email.n4n5@gmail.com>, 2024.
 # Frédéric Schwartz <frederic@online404.com>, 2025.
+# lolly76 <thelolly76@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-07-26 13:05+0000\n"
-"Last-Translator: jmichault <jmt.2000@free.fr>\n"
+"PO-Revision-Date: 2025-08-28 20:50+0000\n"
+"Last-Translator: lolly76 <thelolly76@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -58,7 +59,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -15502,7 +15503,7 @@ msgstr "Le type d'attribut ne peut pas être vide"
 #: ../gramps/gui/editors/editchildref.py:67
 msgctxt "manual"
 msgid "Child_Reference_Editor"
-msgstr ""
+msgstr "Child_Reference_Editor"
 
 #: ../gramps/gui/editors/editchildref.py:100
 #: ../gramps/gui/editors/editchildref.py:202
@@ -15995,7 +15996,7 @@ msgstr "Ajouter une famille"
 #: ../gramps/gui/editors/editldsord.py:67
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
-msgstr ""
+msgstr "LDS_Ordinance_Editor"
 
 #: ../gramps/gui/editors/editldsord.py:157
 #: ../gramps/gui/editors/editldsord.py:338
@@ -17995,8 +17996,6 @@ msgstr "Abandonner les modifications et fermer la fenêtre"
 
 #: ../gramps/gui/glade/editfamily.glade:116
 #: ../gramps/gui/glade/editfamily.glade:379
-#, fuzzy
-#| msgid "Name:"
 msgctxt "family"
 msgid "Name:"
 msgstr "Nom :"
@@ -19168,8 +19167,6 @@ msgstr "Individu 2"
 
 #: ../gramps/gui/glade/mergeperson.glade:218
 #: ../gramps/gui/glade/mergeperson.glade:233
-#, fuzzy
-#| msgid "Name:"
 msgctxt "person"
 msgid "Name:"
 msgstr "Nom :"
@@ -20505,10 +20502,8 @@ msgid "Select a different person"
 msgstr "Sélectionner un individu différent"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Individus marqués (signet)"
+msgstr "Personnes actives, en signet ou à domicile"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -20519,10 +20514,8 @@ msgid "Select a different family"
 msgstr "Sélectionner une famille différente"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "Familles marquées (signet)"
+msgstr "Familles actives ou en signet"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
