@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-16 18:06+0000\n"
+"PO-Revision-Date: 2025-08-19 13:02+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -38006,7 +38006,7 @@ msgstr "Webový kalendár"
 
 #: ../gramps/plugins/webreport/basepage.py:2136
 msgid "Heatmap"
-msgstr "Heatmapa"
+msgstr "Teplotná mapa"
 
 #: ../gramps/plugins/webreport/basepage.py:2225
 #: ../gramps/plugins/webreport/media.py:440
@@ -38287,7 +38287,7 @@ msgstr "Miesta začínajúce písmenom %s"
 #: ../gramps/plugins/webreport/heatmap.py:575
 #, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Heatmapa pre %s v rámci vybraného filtra"
+msgstr "Teplotná mapa pre %s v rámci vybraného filtra"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""
