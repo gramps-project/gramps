@@ -14,13 +14,14 @@
 # leo-jmateo <jmateo.sanchez@tinet.cat>, 2025.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2025.
 # Hugo Vidal <hugo@lovi.casa>, 2025.
+# Hugo Vidal <69076992+hugoovf@users.noreply.github.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-28 20:50+0000\n"
-"Last-Translator: Hugo Vidal <hugo@lovi.casa>\n"
+"PO-Revision-Date: 2025-08-31 06:05+0000\n"
+"Last-Translator: Hugo Vidal <69076992+hugoovf@users.noreply.github.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
 "Language: ca\n"
@@ -296,7 +297,7 @@ msgstr "Avantpassats"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
 msgid "Descendant Fan"
-msgstr "Ventall de Descendents"
+msgstr "Ventall de descendents"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:350
@@ -1696,11 +1697,11 @@ msgstr "Camí"
 
 #: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:131
 msgid "Database"
-msgstr "Base de Dades"
+msgstr "Base de dades"
 
 #: ../gramps/cli/clidbman.py:180 ../gramps/gui/dbman.py:434
 msgid "Last accessed"
-msgstr "Accedit per última vegada"
+msgstr "Darrer accés"
 
 #: ../gramps/cli/clidbman.py:181
 msgid "Locked?"
@@ -1890,7 +1891,7 @@ msgstr "ERROR: %s"
 #: ../gramps/cli/grampscli.py:107 ../gramps/cli/user.py:219
 #: ../gramps/gui/dialog.py:317
 msgid "Low level database corruption detected"
-msgstr "Detectada corrupció de la base de dades a nivell baix"
+msgstr "S'ha detectat corrupció a la base de dades de baix nivell"
 
 #: ../gramps/cli/grampscli.py:110 ../gramps/cli/user.py:221
 #: ../gramps/gui/dialog.py:319
@@ -2156,15 +2157,15 @@ msgstr "S'ha importat %Y/%m/%d %H:%M:%S"
 
 #: ../gramps/gen/config.py:314
 msgid "Missing Given Name"
-msgstr "Falta el Nom de Pila"
+msgstr "Falta el nom de pila"
 
 #: ../gramps/gen/config.py:315
 msgid "Missing Record"
-msgstr "Falta Registre"
+msgstr "Falta el registre"
 
 #: ../gramps/gen/config.py:316
 msgid "Missing Surname"
-msgstr "Falta el Cognom"
+msgstr "Falta el cognom"
 
 #: ../gramps/gen/config.py:323 ../gramps/gen/config.py:325
 msgid "[Living]"
@@ -2172,7 +2173,7 @@ msgstr "[Viu]"
 
 #: ../gramps/gen/config.py:324
 msgid "Private Record"
-msgstr "Registre Privat"
+msgstr "Registre privat"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -5503,7 +5504,7 @@ msgstr "Nom de pila:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:59
 msgid "Full Family name:"
-msgstr "Nom de Família Complet:"
+msgstr "Nom complet de la família:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:60
 msgctxt "person"
@@ -9495,7 +9496,7 @@ msgstr "URL"
 
 #: ../gramps/gen/lib/urltype.py:59
 msgid "E-mail"
-msgstr "E-mail"
+msgstr "Correu electrònic"
 
 #: ../gramps/gen/lib/urltype.py:60
 msgid "Web Home"
@@ -13270,7 +13271,7 @@ msgstr "Contrasenya: "
 
 #: ../gramps/gui/dbloader.py:387
 msgid "Import Family Tree"
-msgstr "Importa Arbre Genealògic"
+msgstr "Importa arbre genealògic"
 
 #: ../gramps/gui/dbloader.py:408
 msgid "All supported files"
@@ -13896,7 +13897,7 @@ msgstr "_Adreces"
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:53
 msgid "Create and add a new attribute"
-msgstr "Crea i afegeix un atribut nou"
+msgstr "Crea i afegeix un nou atribut"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:54
@@ -14058,7 +14059,7 @@ msgstr "Edita la citació seleccionada"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Add an existing citation or source"
-msgstr "Afegeix una citació o font existent"
+msgstr "Afegir una citació o font existent"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:75
 msgid "Move the selected citation upwards"
@@ -14113,15 +14114,15 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:65
 msgid "Add a new family event"
-msgstr "Afegeix un nou esdeveniment de família"
+msgstr "Afegir un nou esdeveniment familiar"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:66
 msgid "Remove the selected family event"
-msgstr "Esborra l'esdeveniment de família seleccionat"
+msgstr "Esborra l'esdeveniment familiar seleccionat"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 msgid "Edit the selected family event or edit person"
-msgstr "Editar l'esdeveniment de família seleccionat o editar la persona"
+msgstr "Edita l'esdeveniment familiar seleccionat o edita la persona"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:60
@@ -14258,7 +14259,7 @@ msgstr "_Ubicacions Alternatives"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:64
 msgid "Create and add a new name"
-msgstr "Crea i afegeix un nom nou"
+msgstr "Crea i afegeix un nou nom"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:65
 msgid "Remove the existing name"
@@ -14317,7 +14318,7 @@ msgstr "Noms alternatius"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:68
 msgid "Create and add a new note"
-msgstr "Crea i afegeix una nota nova"
+msgstr "Crea i afegeix una nova nota"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:69
 msgid "Remove the existing note"
@@ -14365,7 +14366,7 @@ msgstr "<Desconegut>"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:57
 msgid "Add a new personal event"
-msgstr "Afegeix un nou esdeveniment personal"
+msgstr "Afegir un nou esdeveniment personal"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Remove the selected personal event"
@@ -14395,7 +14396,7 @@ msgstr "No es poden modificar esdeveniments de Família a l'Editor de Persones"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:56
 msgid "Create and add a new association"
-msgstr "Crea i afegeix una associació nova"
+msgstr "Crea i afegeix una nova associació"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:57
 msgid "Remove the existing association"
@@ -14424,7 +14425,7 @@ msgstr "Padrí"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:54
 msgid "Create and add a new place name"
-msgstr "Crea i afegeix un nom de lloc nou"
+msgstr "Crea i afegeix un nou nom de lloc"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:55
 msgid "Remove the existing place name"
@@ -14464,7 +14465,7 @@ msgstr "El lloc que estàs afegint ja està contingut per aquest lloc"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Create and add a new repository"
-msgstr "Crea i afegeix un dipòsit nou"
+msgstr "Crea i afegeix un nou dipòsit"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:57
 msgid "Remove the existing repository"
@@ -14507,7 +14508,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:69
 msgid "Create and add a new surname"
-msgstr "Crea i afegeix un cognom nou"
+msgstr "Crea i afegeix un nou cognom"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:70
 msgid "Remove the selected surname"
@@ -14595,7 +14596,7 @@ msgstr "Editor d'atributs"
 #: ../gramps/gui/editors/editattribute.py:135
 #: ../gramps/gui/editors/editattribute.py:139
 msgid "New Attribute"
-msgstr "Atribut nou"
+msgstr "Nou atribut"
 
 #: ../gramps/gui/editors/editattribute.py:154
 msgid "Cannot save attribute"
@@ -14623,7 +14624,7 @@ msgstr "Dialeg_Noves_Cites"
 #: ../gramps/gui/editors/editcitation.py:142
 #: ../gramps/gui/editors/editcitation.py:147
 msgid "New Citation"
-msgstr "Citació nova"
+msgstr "Nova citació"
 
 #: ../gramps/gui/editors/editcitation.py:348
 msgid "Edit Citation"
@@ -14748,7 +14749,7 @@ msgstr "Esdeveniment: %s"
 #: ../gramps/gui/editors/editevent.py:117
 #: ../gramps/gui/editors/editeventref.py:317
 msgid "New Event"
-msgstr "Esdeveniment Nou"
+msgstr "Nou esdeveniment"
 
 #: ../gramps/gui/editors/editevent.py:276
 #: ../gramps/plugins/view/geoclose.py:681
@@ -14826,7 +14827,7 @@ msgstr "Dialeg_editor_families"
 
 #: ../gramps/gui/editors/editfamily.py:127
 msgid "Create a new person and add the child to the family"
-msgstr "Crea una persona nova i afegeix el fill a la família"
+msgstr "Crea una nova persona i afegeix el fill a la família"
 
 #: ../gramps/gui/editors/editfamily.py:128
 msgid "Remove the child from the family"
@@ -14973,7 +14974,7 @@ msgstr "família"
 #: ../gramps/gui/editors/editfamily.py:603
 #: ../gramps/gui/editors/editfamily.py:606
 msgid "New Family"
-msgstr "Família Nova"
+msgstr "Nova família"
 
 #: ../gramps/gui/editors/editfamily.py:610
 #: ../gramps/gui/editors/editfamily.py:1300
@@ -14987,7 +14988,7 @@ msgstr "Selecciona una persona com a mare"
 
 #: ../gramps/gui/editors/editfamily.py:642
 msgid "Add a new person as the mother"
-msgstr "Afegeix una persona nova com a mare"
+msgstr "Afegir una nova persona com a mare"
 
 #: ../gramps/gui/editors/editfamily.py:643
 msgid "Remove the person as the mother"
@@ -14999,7 +15000,7 @@ msgstr "Selecciona una persona com a pare"
 
 #: ../gramps/gui/editors/editfamily.py:657
 msgid "Add a new person as the father"
-msgstr "Afegeix una persona nova com a pare"
+msgstr "Afegir una nova persona com a pare"
 
 #: ../gramps/gui/editors/editfamily.py:658
 msgid "Remove the person as the father"
@@ -15222,7 +15223,7 @@ msgstr "El nom habitual ha de ser el nom de pila que es fa servir normalment."
 
 #: ../gramps/gui/editors/editname.py:343
 msgid "New Name"
-msgstr "Nom Nou"
+msgstr "Nou nom"
 
 #: ../gramps/gui/editors/editname.py:412
 msgid "Break global name grouping?"
@@ -15288,11 +15289,11 @@ msgstr "Nota: %s"
 #: ../gramps/gui/editors/editnote.py:183
 #, python-format
 msgid "New Note - %(context)s"
-msgstr "Nota nova - %(context)s"
+msgstr "Nova nota - %(context)s"
 
 #: ../gramps/gui/editors/editnote.py:185
 msgid "New Note"
-msgstr "Nota nova"
+msgstr "Nova nota"
 
 #: ../gramps/gui/editors/editnote.py:211
 msgid "_Note"
@@ -15329,11 +15330,11 @@ msgstr "Persona: %(name)s"
 #: ../gramps/gui/editors/editperson.py:180
 #, python-format
 msgid "New Person: %(name)s"
-msgstr "Persona Nova: %(name)s"
+msgstr "Nova persona: %(name)s"
 
 #: ../gramps/gui/editors/editperson.py:182
 msgid "New Person"
-msgstr "Persona Nova"
+msgstr "Nova Persona"
 
 #: ../gramps/gui/editors/editperson.py:262
 msgctxt "manual"
@@ -15461,7 +15462,7 @@ msgstr "Lloc: %s"
 #: ../gramps/gui/editors/editplace.py:113
 #: ../gramps/gui/editors/editplaceref.py:116
 msgid "New Place"
-msgstr "Lloc nou"
+msgstr "Nou lloc"
 
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:242
@@ -15584,7 +15585,7 @@ msgstr "Dipòsit: %s"
 #: ../gramps/gui/editors/editreporef.py:228
 #: ../gramps/gui/editors/editrepository.py:87
 msgid "New Repository"
-msgstr "Dipòsit nou"
+msgstr "Nou dipòsit"
 
 #: ../gramps/gui/editors/editreporef.py:229
 msgid "Repo Reference Editor"
@@ -15634,7 +15635,7 @@ msgstr "Dialeg_nova_font"
 
 #: ../gramps/gui/editors/editsource.py:101
 msgid "New Source"
-msgstr "Nova Font"
+msgstr "Nova font"
 
 #: ../gramps/gui/editors/editsource.py:237
 msgid "Edit Source"
@@ -15950,7 +15951,7 @@ msgstr "Selecciona una persona existent"
 #: ../gramps/gui/editors/objectentries.py:311
 #: ../gramps/plugins/lib/libpersonview.py:144
 msgid "Add a new person"
-msgstr "Afegeix una persona nova"
+msgstr "Afegir una nova persona"
 
 #: ../gramps/gui/editors/objectentries.py:312
 msgid "Remove person"
@@ -15977,7 +15978,7 @@ msgstr "Selecciona un lloc existent"
 #: ../gramps/gui/editors/objectentries.py:380
 #: ../gramps/plugins/lib/libplaceview.py:117
 msgid "Add a new place"
-msgstr "Afegeix un nou lloc"
+msgstr "Afegir un nou lloc"
 
 #: ../gramps/gui/editors/objectentries.py:381
 msgid "Remove place"
@@ -16005,7 +16006,7 @@ msgstr "Selecciona una font existent"
 #: ../gramps/plugins/view/citationtreeview.py:135
 #: ../gramps/plugins/view/sourceview.py:111
 msgid "Add a new source"
-msgstr "Afegeix una nova font"
+msgstr "Afegir una nova font"
 
 #: ../gramps/gui/editors/objectentries.py:453
 msgid "Remove source"
@@ -16034,7 +16035,7 @@ msgstr "Selecciona un objecte audiovisual ja existent"
 #: ../gramps/gui/editors/objectentries.py:521
 #: ../gramps/plugins/view/mediaview.py:128
 msgid "Add a new media object"
-msgstr "Afegeix un nou objecte audiovisual"
+msgstr "Afegir un nou objecte audiovisual"
 
 #: ../gramps/gui/editors/objectentries.py:522
 msgid "Remove media object"
@@ -16058,7 +16059,7 @@ msgstr "Selecciona una nota existent"
 #: ../gramps/gui/editors/objectentries.py:591
 #: ../gramps/plugins/view/noteview.py:96
 msgid "Add a new note"
-msgstr "Afegeix una nota nova"
+msgstr "Afegir una nota nova"
 
 #: ../gramps/gui/editors/objectentries.py:592
 msgid "Remove note"
@@ -16214,7 +16215,7 @@ msgstr ""
 msgid ""
 "This opens a dialog to add a new custom filter based on the values given."
 msgstr ""
-"Això obre un diàleg per afegir un filtre personalitzat nou basat en els "
+"Això obre un diàleg per afegir un nou filtre personalitzat basat en els "
 "valors donats."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:121
@@ -17792,7 +17793,7 @@ msgstr "_Descripció:"
 
 #: ../gramps/gui/glade/editurl.glade:167
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
-msgstr "Tipus d'adreça internet, p.ex. E-mail, Pàgina Web, ..."
+msgstr "Tipus d'adreça internet, p.ex. correu electrònic, pàgina web, ..."
 
 #: ../gramps/gui/glade/editurl.glade:186
 msgid ""
@@ -17833,7 +17834,7 @@ msgstr "Clica per esborrar el gramplet de la vista"
 #: ../gramps/gui/glade/grampletpane.glade:141
 #: ../gramps/gui/views/listview.py:647
 msgid "Delete"
-msgstr "Esborra"
+msgstr "Suprimir"
 
 #: ../gramps/gui/glade/mergecitation.glade:94
 msgid ""
@@ -18254,7 +18255,7 @@ msgstr "Moure família cap abaix"
 
 #: ../gramps/gui/glade/rule.glade:119
 msgid "Add a new filter"
-msgstr "Afegeix un filtre nou"
+msgstr "Afegir un nou filtre"
 
 #: ../gramps/gui/glade/rule.glade:142
 msgid "Edit the selected filter"
@@ -18531,7 +18532,7 @@ msgstr "Opcions de dibuixat"
 
 #: ../gramps/gui/glade/styleeditor.glade:1885
 msgid "Add a new style"
-msgstr "Afegeix un estil nou"
+msgstr "Afegir un nou estil"
 
 #: ../gramps/gui/glade/styleeditor.glade:1916
 msgid "Edit the selected style"
@@ -19174,7 +19175,7 @@ msgstr "Fusiona persones"
 #: ../gramps/plugins/webreport/person.py:2327
 #: ../gramps/plugins/webreport/surname.py:167
 msgid "Parents"
-msgstr "Pares"
+msgstr "Progenitors"
 
 #: ../gramps/gui/merge/mergeperson.py:245
 #: ../gramps/gui/merge/mergeperson.py:263
@@ -19516,7 +19517,7 @@ msgstr "Només els complements actualitzats"
 
 #: ../gramps/gui/plug/_windows.py:798
 msgid "New addons only"
-msgstr "Només els complements nous"
+msgstr "Només els nous complements"
 
 #: ../gramps/gui/plug/_windows.py:799
 msgid "New and updated addons"
@@ -19536,7 +19537,7 @@ msgstr "Comprova ara si hi ha actualitzacions dels complements"
 
 #: ../gramps/gui/plug/_windows.py:836
 msgid "New Project"
-msgstr "Projecte nou"
+msgstr "Nou projecte"
 
 #: ../gramps/gui/plug/_windows.py:838
 msgid "Edit Project"
@@ -20117,7 +20118,7 @@ msgstr "Gestionar Llibres"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:386
 msgid "New Book"
-msgstr "Llibre Nou"
+msgstr "Nou llibre"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:389
 msgid "_Available items"
@@ -20405,7 +20406,7 @@ msgstr "Dialeg_d'Estils_de_Document"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:165
 msgid "New Style"
-msgstr "Nou Estil"
+msgstr "Nou estil"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:175
 msgid "Error saving stylesheet"
@@ -21078,7 +21079,7 @@ msgstr "Etiquetar files seleccionades"
 
 #: ../gramps/gui/views/tags.py:96
 msgid "New Tag..."
-msgstr "Etiqueta Nova..."
+msgstr "Nova etiqueta..."
 
 #: ../gramps/gui/views/tags.py:96
 msgid "Organize Tags..."
@@ -21151,7 +21152,7 @@ msgstr "Etiqueta: %s"
 
 #: ../gramps/gui/views/tags.py:635
 msgid "New Tag"
-msgstr "Etiqueta Nova"
+msgstr "Nova etiqueta"
 
 #: ../gramps/gui/views/tags.py:684
 msgid "Cannot save tag"
@@ -25186,7 +25187,7 @@ msgstr "Editar la nota Per Fer seleccionada"
 #: ../gramps/plugins/gramplet/todo.py:75
 #: ../gramps/plugins/gramplet/todogramplet.py:75
 msgid "Add a new To Do note"
-msgstr "Afegeix una nova nota Per Fer"
+msgstr "Afegir una nova nota Per Fer"
 
 #: ../gramps/plugins/gramplet/todo.py:207
 msgid "First select the object to which you want to attach a note"
@@ -25369,7 +25370,7 @@ msgstr ""
 "Per a importar un arbre genealògic d'un altre programa, primer creeu un "
 "fitxer GEDCOM (o altres dades) del programa anterior.\n"
 "\n"
-"Un cop hàgiu creat un fitxer de base de dades de Gramps nou, utilitzeu "
+"Un cop hàgiu creat un nou fitxer de base de dades de Gramps, utilitzeu "
 "l'opció «Importa» al menú «Arbres genealògics» per a importar les dades de "
 "GEDCOM.\n"
 "\n"
@@ -25445,7 +25446,7 @@ msgid ""
 msgstr ""
 "Voleu veure Gramps en ús. Creeu i importeu la base de dades Exemple.\n"
 "\n"
-"Creeu un arbre genealògic nou tal com s'ha descrit anteriorment. Suggeriu "
+"Creeu un nou arbre genealògic tal com s'ha descrit anteriorment. Suggeriu "
 "que anomeneu l'arbre genealògic «EXEMPLE».\n"
 "\n"
 "Importeu el fitxer Gramps example.gramps.\n"
@@ -27245,7 +27246,7 @@ msgstr "Fonts"
 
 #: ../gramps/plugins/importer/importxml.py:361
 msgid "Number of new objects imported:"
-msgstr "Nombre d'objectes nous importats:"
+msgstr "Nombre de nous objectes importats:"
 
 #: ../gramps/plugins/importer/importxml.py:376
 #, python-format
@@ -34772,7 +34773,7 @@ msgstr "Tipus d'esdeveniment original:"
 
 #: ../gramps/plugins/tool/changetypes.glade:122
 msgid "New event type:"
-msgstr "Tipus d'esdeveniment nou:"
+msgstr "Nou tipus d'esdeveniment:"
 
 #: ../gramps/plugins/tool/changetypes.py:66
 msgid "Change Event Types"
@@ -36394,11 +36395,12 @@ msgstr "Reanomena Tipus d'Esdeveniment"
 #: ../gramps/plugins/tool/tools.gpr.py:70
 msgid "Allows all the events of a certain name to be renamed to a new name."
 msgstr ""
-"Permet canviar de nom tots els esdeveniments que tinguin un nom concret."
+"Permet que tots els esdeveniments d'un nom determinat es reanomenin a un nou "
+"nom."
 
 #: ../gramps/plugins/tool/tools.gpr.py:94
 msgid "Check and Repair Database"
-msgstr "Comprovar i Reparar la Base de Dades"
+msgstr "Comprova i repara la base de dades"
 
 #: ../gramps/plugins/tool/tools.gpr.py:96
 msgid ""
@@ -36861,12 +36863,12 @@ msgstr "Font: Última Modificació"
 #: ../gramps/plugins/view/citationlistview.py:142
 #: ../gramps/plugins/view/citationtreeview.py:134
 msgid "Add a new citation and a new source"
-msgstr "Afegeix una nova cita i una nova font"
+msgstr "Afegir una nova cita i una nova font"
 
 #: ../gramps/plugins/view/citationlistview.py:144
 #: ../gramps/plugins/view/citationtreeview.py:136
 msgid "Add a new citation to an existing source"
-msgstr "Afegeix una nova cita a una font existent"
+msgstr "Afegir una nova cita a una font existent"
 
 #: ../gramps/plugins/view/citationlistview.py:146
 msgid "Delete the selected citation"
@@ -37000,7 +37002,7 @@ msgstr "Panell de Control"
 
 #: ../gramps/plugins/view/eventview.py:113
 msgid "Add a new event"
-msgstr "Afegeix esdeveniment nou"
+msgstr "Afegir un nou esdeveniment"
 
 #: ../gramps/plugins/view/eventview.py:114
 msgid "Edit the selected event"
@@ -37038,7 +37040,7 @@ msgstr "Data de Casament"
 
 #: ../gramps/plugins/view/familyview.py:110
 msgid "Add a new family"
-msgstr "Afegeix una família nova"
+msgstr "Afegir una nova família"
 
 #: ../gramps/plugins/view/familyview.py:111
 msgid "Edit the selected family"
@@ -37313,7 +37315,7 @@ msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:702
 msgid "Choose and bookmark the new reference person"
-msgstr "Tria i marca com a punt d'interès la persona de referència"
+msgstr "Tria i marca com a punt d'interès la nova persona de referència"
 
 #: ../gramps/plugins/view/geoclose.py:725
 msgid ""
@@ -37860,7 +37862,7 @@ msgstr "Sobre la Vista d'Avantpassats"
 #: ../gramps/plugins/view/pedigreeview.py:2043
 #: ../gramps/plugins/view/relview.py:411
 msgid "Add New Parents..."
-msgstr "Afegeix Pares Nous..."
+msgstr "Afegir nous progenitors..."
 
 #: ../gramps/plugins/view/pedigreeview.py:2242
 msgid "Show images"
@@ -37944,11 +37946,11 @@ msgstr "_Reordena"
 
 #: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1018
 msgid "Add a new family with person as parent"
-msgstr "Afegeix una família nova amb la persona com a progenitor"
+msgstr "Afegir una nova família amb la persona com a progenitor"
 
 #: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1012
 msgid "Add a new set of parents"
-msgstr "Afegeix una nova parella de pares"
+msgstr "Afegir una nova parella de progenitors"
 
 #: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1013
 msgid "Add person as child to an existing family"
@@ -38018,7 +38020,7 @@ msgstr " (fill únic)"
 #: ../gramps/plugins/view/relview.py:1169
 #: ../gramps/plugins/view/relview.py:1699
 msgid "Add new child to family"
-msgstr "Afegeix nou fill a família"
+msgstr "Afegir nou fill a la família"
 
 #: ../gramps/plugins/view/relview.py:1173
 #: ../gramps/plugins/view/relview.py:1703
@@ -38107,7 +38109,7 @@ msgstr "URL de Cerca"
 
 #: ../gramps/plugins/view/repoview.py:139
 msgid "Add a new repository"
-msgstr "Afegeix un dipòsit nou"
+msgstr "Afegir un nou dipòsit"
 
 #: ../gramps/plugins/view/repoview.py:141
 msgid "Delete the selected repository"
@@ -38285,7 +38287,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/addressbooklist.py:117
 msgid "Full Name"
-msgstr "Nom Sencer"
+msgstr "Nom complet"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:120
 #: ../gramps/plugins/webreport/basepage.py:2896
@@ -40010,7 +40012,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/updates.py:88
 msgid "New and updated objects"
-msgstr "Els objectes nous i els actualitzats"
+msgstr "Objectes nous i actualitzats"
 
 #: ../gramps/plugins/webreport/updates.py:99
 #, python-format
