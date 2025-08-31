@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-13 19:02+0000\n"
+"PO-Revision-Date: 2025-08-27 16:02+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -885,10 +885,10 @@ msgid ""
 "see which individuals reference each source. You can use filters to group "
 "your sources."
 msgstr ""
-"<b>Gestió de Fonts</b><br/>La Vista de Fonts mostra una llista de totes les "
-"fonts en una sola finestra. Des d'allà pot editar les fonts, combinar les "
-"duplicades i veure quins individus hi fan referència. Pot fer servir filtres "
-"per agrupar les fonts."
+"<b>Gestió de fonts</b><br/>La visualització de fonts mostra una llista de "
+"totes les fonts en una sola finestra. Des d'allà podeu editar les fonts, "
+"fusionar les duplicades i veure quins individus hi fan referència. Podeu fer "
+"servir filtres per a agrupar les fonts."
 
 #: ../data/tips.xml:80
 msgid ""
@@ -1928,7 +1928,7 @@ msgstr "No s'ha pogut carregar un arbre genealògic recent."
 
 #: ../gramps/cli/grampscli.py:261
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "L'arbre genealògic no existeix, ja que ha estat esborrat."
+msgstr "L'arbre genealògic no existeix, ja que s'ha suprimit."
 
 #: ../gramps/cli/grampscli.py:267
 msgid "The database is locked."
@@ -3195,13 +3195,14 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different Python versions."
 msgstr ""
-"La versió de Python no està suportada per aquesta versió de Gramps.\n"
+"Aquesta versió del Gramps no admet la versió de Python.\n"
 "\n"
-"Aquest Arbre Genealògic té la versió de Python %(tree_vers)s, i aquesta "
-"versió de Gramps suporta les versions entre la %(min_vers)s i %(max_vers)s\n"
+"Aquest arbre genealògic té la versió de Python %(tree_vers)s, i aquesta "
+"versió del Gramps admet les versions entre la %(min_vers)s i la %(max_vers)"
+"s\n"
 "\n"
-"Si us plau actualitzi a la versió corresponent, o faci servir XML per portar "
-"les dades entre versions de Python diferents."
+"Actualitzeu a la versió corresponent, o feu servir XML per a portar les "
+"dades entre versions de Python diferents."
 
 #: ../gramps/gen/db/exceptions.py:154
 #, python-format
@@ -3442,7 +3443,7 @@ msgstr ","
 
 #: ../gramps/gen/display/name.py:396
 msgid "Default format (defined by Gramps preferences)"
-msgstr "Format predeterminat (definit per les preferències de Gramps)"
+msgstr "Format per defecte (definit per les preferències del Gramps)"
 
 #: ../gramps/gen/display/name.py:397
 msgid "Surname, Given Suffix"
@@ -4499,7 +4500,7 @@ msgstr "Concorda amb esdeveniments que compleixin el nom de filtre especificat"
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:61
 #: ../gramps/gui/editors/filtereditor.py:613
 msgid "Include Family events:"
-msgstr "Incloure esdeveniments familiars:"
+msgstr "Inclou esdeveniments familiars:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:61
 #: ../gramps/gui/editors/filtereditor.py:566
@@ -9537,7 +9538,7 @@ msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
 msgstr ""
-"Un pare i un fill no es poden combinar. Per combinar aquestes persones, "
+"Un pare i un fill no es poden fusionar. Per a fusionar aquestes persones, "
 "primer cal trencar la relació entre ells."
 
 #: ../gramps/gen/merge/mergefamilyquery.py:150
@@ -9903,7 +9904,7 @@ msgstr "Ortogonal"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:156
 msgid "Graphviz Layout"
-msgstr "Disposició de GraphViz"
+msgstr "Disposició del GraphViz"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:158
 #: ../gramps/gui/widgets/styledtexteditor.py:84
@@ -9938,7 +9939,7 @@ msgstr "Si el graf va de dalt a baix o de dreta a esquerra."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:183
 msgid "Number of Horizontal Pages"
-msgstr "Nombre de Pàgines en Horitzontal"
+msgstr "Nombre de pàgines horitzontals"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:186
 msgid ""
@@ -9952,7 +9953,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:195
 msgid "Number of Vertical Pages"
-msgstr "Nombre de Pàgines en Vertical"
+msgstr "Nombre de pàgines verticals"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:198
 msgid ""
@@ -9966,7 +9967,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:207
 msgid "Paging Direction"
-msgstr "Direcció de Paginació"
+msgstr "Direcció de paginació"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:212
 msgid ""
@@ -9994,11 +9995,11 @@ msgstr "Si les línies es lliguen als nodes de forma diferent"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:242
 msgid "Graphviz Options"
-msgstr "Opcions de Graphviz"
+msgstr "Opcions del Graphviz"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:245
 msgid "Aspect ratio"
-msgstr "Ràtio d'aspecte"
+msgstr "Relació d'aspecte"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:249
 msgid ""
@@ -10115,11 +10116,11 @@ msgstr "PostScript"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1190
 msgid "Structured Vector Graphics (SVG)"
-msgstr "Gràfics Vectorials Estructurats (SVG)"
+msgstr "Gràfics vectorials estructurats (SVG)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1200
 msgid "Compressed Structured Vector Graphs (SVGZ)"
-msgstr "Gràfics Vectorials Estructurats Comprimits (SVGZ)"
+msgstr "Gràfics vectorials estructurats comprimits (SVGZ)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1210
 msgid "JPEG image"
@@ -10135,7 +10136,7 @@ msgstr "Imatge PNG"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1240
 msgid "Graphviz File"
-msgstr "Fitxer de Graphviz"
+msgstr "Fitxer del Graphviz"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
 msgctxt "paper size"
@@ -10149,7 +10150,7 @@ msgstr "Legal"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:86
 msgid "Custom Size"
-msgstr "Mida Personalitzada"
+msgstr "Mida personalitzada"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:67
 #: ../gramps/plugins/tool/finddupes.py:62
@@ -10178,15 +10179,15 @@ msgstr "SobrenomDonatCognom"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Auto"
-msgstr "Auto"
+msgstr "Automàtic"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
 msgid "Call Name Only"
-msgstr "Només Nom Habitual"
+msgstr "Només nom habitual"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Whole Given Name"
-msgstr "Nom de Pila Complet"
+msgstr "Nom de pila complet"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:86
 msgid "Above"
@@ -10297,18 +10298,18 @@ msgstr "Detall de la informació mostrada al node."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:204
 msgid "Name Format"
-msgstr "Format de Nom"
+msgstr "Format del nom"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:207
 #: ../gramps/gen/plug/report/stdoptions.py:99
 #: ../gramps/plugins/webreport/webcal.py:1908
 msgid "Select the format to display names"
-msgstr "Selecciona el format per mostrar els noms"
+msgstr "Seleccioneu el format per a mostrar noms"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:210
 #: ../gramps/gui/glade/editperson.glade:702
 msgid "Preferred Name"
-msgstr "Nom Preferit"
+msgstr "Nom preferit"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:215
 msgid ""
@@ -10355,7 +10356,7 @@ msgstr "Color del node."
 #: ../gramps/plugins/drawreport/ancestortree.py:840
 #: ../gramps/plugins/drawreport/descendtree.py:1574
 msgid "Tree Options"
-msgstr "Opcions d'Arbre"
+msgstr "Opcions de l'arbre"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:263
 msgid "Timeflow"
@@ -10421,7 +10422,7 @@ msgstr "Fitxer LaTeX"
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:148
 #, python-format
 msgid "Value '%(val)s' not found for option '%(opt)s'"
-msgstr "Valor '%(val)s' no trobat per a l'opció '%(opt)s'"
+msgstr "No s'ha trobat el valor «%(val)s» per a l'opció «%(opt)s»"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:151
 #: ../gramps/gen/plug/report/stdoptions.py:335
@@ -10431,23 +10432,23 @@ msgstr "Valors vàlids: "
 #: ../gramps/gen/plug/report/_book.py:73 ../gramps/gui/plug/_dialogs.py:61
 #: ../gramps/gui/plug/report/_bookdialog.py:88 ../gramps/gui/viewmanager.py:143
 msgid "Unsupported"
-msgstr "No suportat"
+msgstr "No admès"
 
 #: ../gramps/gen/plug/report/_constants.py:53
 msgid "Text Reports"
-msgstr "Informes de Text"
+msgstr "Informes de text"
 
 #: ../gramps/gen/plug/report/_constants.py:54
 msgid "Graphical Reports"
-msgstr "Informes Gràfics"
+msgstr "Informes gràfics"
 
 #: ../gramps/gen/plug/report/_constants.py:55
 msgid "Code Generators"
-msgstr "Generadors de Codi"
+msgstr "Generadors de codi"
 
 #: ../gramps/gen/plug/report/_constants.py:56
 msgid "Web Pages"
-msgstr "Pàgines Web"
+msgstr "Pàgines web"
 
 #: ../gramps/gen/plug/report/_constants.py:57
 #: ../gramps/gui/plug/report/_bookdialog.py:93
@@ -10556,7 +10557,7 @@ msgstr "Format de nom"
 
 #: ../gramps/gen/plug/report/stdoptions.py:129
 msgid "Include data marked private"
-msgstr "Incloure dades marcades com a privades"
+msgstr "Inclou dades marcades com a privades"
 
 #: ../gramps/gen/plug/report/stdoptions.py:130
 msgid "Whether to include private data"
@@ -10564,7 +10565,7 @@ msgstr "Si s'han d'incloure dades privades"
 
 #: ../gramps/gen/plug/report/stdoptions.py:200
 msgid "Living People"
-msgstr "Persones Vives"
+msgstr "Persones vives"
 
 #: ../gramps/gen/plug/report/stdoptions.py:204
 msgctxt "'living people'"
@@ -10627,7 +10628,7 @@ msgstr "No incloguis"
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
 #: ../gramps/plugins/webreport/narrativeweb.py:2593
 msgid "Include"
-msgstr "Incloure"
+msgstr "Inclou"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
 msgid "Whether to include tags"
@@ -12903,7 +12904,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2246
 msgid "Database Setting"
-msgstr "Configuració de base de dades"
+msgstr "Paràmetre de la base de dades"
 
 #: ../gramps/gui/configure.py:2251
 msgid "Database backend"
@@ -13510,7 +13511,7 @@ msgstr ""
 #: ../gramps/gui/dbman.py:839
 #, python-format
 msgid "Convert the '%s' database?"
-msgstr "Voleu convertir la base de dades '%s'?"
+msgstr "Voleu convertir la base de dades «%s»?"
 
 #: ../gramps/gui/dbman.py:841
 #, python-format
@@ -13527,7 +13528,7 @@ msgstr "Converteix"
 #: ../gramps/gui/dbman.py:858
 #, python-format
 msgid "Opening the '%s' database"
-msgstr "Obrint la base de dades '%s'"
+msgstr "S'està obrint la base de dades «%s»"
 
 #: ../gramps/gui/dbman.py:860
 msgid "An attempt to convert the database failed. Perhaps it needs updating."
@@ -13538,7 +13539,7 @@ msgstr ""
 #: ../gramps/gui/dbman.py:875 ../gramps/gui/dbman.py:902
 #, python-format
 msgid "Converting the '%s' database"
-msgstr "Convertint la base de dades '%s'"
+msgstr "S'està convertint la base de dades «%s»"
 
 #: ../gramps/gui/dbman.py:876
 msgid "An attempt to export the database failed."
@@ -13782,7 +13783,7 @@ msgstr "Atenció: Això és codi inestable!"
 #: ../gramps/gui/displaystate.py:775
 #, python-format
 msgid "This Gramps ('%s') is a development release.\n"
-msgstr "Aquest Granps ('%s') és una versió de desenvolupament.\n"
+msgstr "Aquest Gramps («%s») és una versió de desenvolupament.\n"
 
 #: ../gramps/gui/displaystate.py:777
 #, python-format
@@ -14260,7 +14261,7 @@ msgstr "Crea i afegeix un nom nou"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:65
 msgid "Remove the existing name"
-msgstr "Esborra el nom existent"
+msgstr "Elimina el nom existent"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:66
 msgid "Edit the selected name"
@@ -14319,7 +14320,7 @@ msgstr "Crea i afegeix una nota nova"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:69
 msgid "Remove the existing note"
-msgstr "Esborra la nota existent"
+msgstr "Elimina la nota existent"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:70
 #: ../gramps/plugins/view/noteview.py:97
@@ -14367,7 +14368,7 @@ msgstr "Afegeix un nou esdeveniment personal"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Remove the selected personal event"
-msgstr "Esborra l'esdeveniment personal seleccionat"
+msgstr "Elimina l'esdeveniment personal seleccionat"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
 msgid "Edit the selected personal event or edit family"
@@ -14397,7 +14398,7 @@ msgstr "Crea i afegeix una associació nova"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:57
 msgid "Remove the existing association"
-msgstr "Esborra l'associació existent"
+msgstr "Elimina l'associació existent"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:58
 msgid "Edit the selected association"
@@ -14487,7 +14488,7 @@ msgstr "Mou el dipòsit seleccionat cap avall"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:81
 msgid "_Repositories"
-msgstr "_Repositoris"
+msgstr "_Dipòsits"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:184
 msgid ""
@@ -14509,19 +14510,19 @@ msgstr "Crea i afegeix un cognom nou"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:70
 msgid "Remove the selected surname"
-msgstr "Esborra el cognom seleccionat"
+msgstr "Elimina el cognom seleccionat"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:71
 msgid "Edit the selected surname"
-msgstr "Editar el cognom seleccionat"
+msgstr "Edita el cognom seleccionat"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:72
 msgid "Move the selected surname upwards"
-msgstr "Moure el cognom seleccionat cap amunt"
+msgstr "Mou el cognom seleccionat cap amunt"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:73
 msgid "Move the selected surname downwards"
-msgstr "Moure el cognom seleccionat cap avall"
+msgstr "Mou el cognom seleccionat cap avall"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:83
 #: ../gramps/plugins/lib/libgedcom.py:753
@@ -14530,7 +14531,7 @@ msgstr "Origen"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:94
 msgid "Multiple Surnames"
-msgstr "Múltiples Cognoms"
+msgstr "Cognoms múltiples"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:108
 msgid "Family Surnames"
@@ -14578,7 +14579,7 @@ msgstr "Dialeg_Editor_Adreces"
 #: ../gramps/gui/editors/editaddress.py:92
 #: ../gramps/gui/editors/editaddress.py:200
 msgid "Address Editor"
-msgstr "Editor d'Adreces"
+msgstr "Editor d'adreces"
 
 #: ../gramps/gui/editors/editattribute.py:63
 msgctxt "manual"
@@ -14588,12 +14589,12 @@ msgstr "Dialeg_Editor_Atributs"
 #: ../gramps/gui/editors/editattribute.py:95
 #: ../gramps/gui/editors/editattribute.py:141
 msgid "Attribute Editor"
-msgstr "Editor d'Atributs"
+msgstr "Editor d'atributs"
 
 #: ../gramps/gui/editors/editattribute.py:135
 #: ../gramps/gui/editors/editattribute.py:139
 msgid "New Attribute"
-msgstr "Atribut Nou"
+msgstr "Atribut nou"
 
 #: ../gramps/gui/editors/editattribute.py:154
 msgid "Cannot save attribute"
@@ -14828,7 +14829,7 @@ msgstr "Crea una persona nova i afegeix el fill a la família"
 
 #: ../gramps/gui/editors/editfamily.py:128
 msgid "Remove the child from the family"
-msgstr "Esborra el fill de la família"
+msgstr "Elimina el fill de la família"
 
 #: ../gramps/gui/editors/editfamily.py:129
 msgid "Edit the child reference"
@@ -14989,7 +14990,7 @@ msgstr "Afegeix una persona nova com a mare"
 
 #: ../gramps/gui/editors/editfamily.py:643
 msgid "Remove the person as the mother"
-msgstr "Esborra la persona com a mare"
+msgstr "Elimina la persona com a mare"
 
 #: ../gramps/gui/editors/editfamily.py:656
 msgid "Select a person as the father"
@@ -15001,7 +15002,7 @@ msgstr "Afegeix una persona nova com a pare"
 
 #: ../gramps/gui/editors/editfamily.py:658
 msgid "Remove the person as the father"
-msgstr "Esborra la persona com a pare"
+msgstr "Elimina la persona com a pare"
 
 #: ../gramps/gui/editors/editfamily.py:986
 #: ../gramps/gui/selectors/selectperson.py:73
@@ -15925,7 +15926,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:1343
 msgid "Delete Filter"
-msgstr "Esborra Filtre"
+msgstr "Suprimeix el filtre"
 
 #: ../gramps/gui/editors/objectentries.py:306
 msgid "To select a person, use drag-and-drop or use the buttons"
@@ -15979,7 +15980,7 @@ msgstr "Afegeix un nou lloc"
 
 #: ../gramps/gui/editors/objectentries.py:381
 msgid "Remove place"
-msgstr "Esborra lloc"
+msgstr "Elimina el lloc"
 
 #: ../gramps/gui/editors/objectentries.py:447
 msgid "To select a source, use drag-and-drop or use the buttons"
@@ -16007,7 +16008,7 @@ msgstr "Afegeix una nova font"
 
 #: ../gramps/gui/editors/objectentries.py:453
 msgid "Remove source"
-msgstr "Esborra una font"
+msgstr "Elimina la font"
 
 #: ../gramps/gui/editors/objectentries.py:516
 msgid "To select a media object, use drag-and-drop or use the buttons"
@@ -16300,7 +16301,7 @@ msgstr "Carregant elements..."
 #: ../gramps/plugins/view/sourceview.py:247
 #: ../gramps/plugins/view/sourceview.py:300
 msgid "_Delete"
-msgstr "_Esborra"
+msgstr "_Suprimeix"
 
 #: ../gramps/gui/glade/book.glade:179
 msgid "Book _name:"
@@ -18073,15 +18074,15 @@ msgstr ""
 
 #: ../gramps/gui/glade/mergeperson.glade:490
 msgid "Context Information"
-msgstr "Informació de Context"
+msgstr "Informació contextual"
 
 #: ../gramps/gui/glade/mergeplace.glade:94
 msgid ""
 "Select the place that will provide the\n"
 "primary data for the merged place."
 msgstr ""
-"Selecciona el lloc que proporcionarà\n"
-"les dades primàries per al lloc combinat."
+"Seleccioneu el lloc que proporcionarà\n"
+"les dades primàries per al lloc fusionat."
 
 #: ../gramps/gui/glade/mergeplace.glade:620
 msgid ""
@@ -18096,8 +18097,8 @@ msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
 msgstr ""
-"Selecciona el dipòsit que proporcionarà\n"
-"les dades primàries per al dipòsit combinat."
+"Seleccioneu el dipòsit que proporcionarà\n"
+"les dades primàries per al dipòsit fusionat."
 
 #: ../gramps/gui/glade/mergerepository.glade:182
 msgid "Repository 1"
@@ -18116,8 +18117,8 @@ msgid ""
 "Select the source that will provide the\n"
 "primary data for the merged source."
 msgstr ""
-"Selecciona la font que proporcionarà\n"
-"les dades primàries per a la font combinada."
+"Seleccioneu la font que proporcionarà\n"
+"les dades primàries per a la font fusionada."
 
 #: ../gramps/gui/glade/mergesource.glade:498
 msgid ""
@@ -18129,7 +18130,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/papermenu.glade:8
 msgid "Paper Settings"
-msgstr "Configuració de Paper"
+msgstr "Paràmetres de paper"
 
 #: ../gramps/gui/glade/papermenu.glade:25
 msgid "Paper format"
@@ -18141,11 +18142,11 @@ msgstr "Mida:"
 
 #: ../gramps/gui/glade/papermenu.glade:59
 msgid "_Width:"
-msgstr "Amplada (_W):"
+msgstr "A_mplada:"
 
 #: ../gramps/gui/glade/papermenu.glade:73
 msgid "_Height:"
-msgstr "Alçada (_H):"
+msgstr "A_lçada:"
 
 #: ../gramps/gui/glade/papermenu.glade:87
 msgid "Orientation:"
@@ -18216,7 +18217,7 @@ msgstr "Estat:"
 
 #: ../gramps/gui/glade/plugins.glade:222
 msgid "Author's email:"
-msgstr "Email de l'autor:"
+msgstr "Adreça electrònica de l'autor:"
 
 #: ../gramps/gui/glade/reorder.glade:84
 msgid "Parent relationships"
@@ -19216,10 +19217,10 @@ msgid ""
 "handle.  We recommend that you go to Relationships view and see if "
 "additional manual merging of families is necessary."
 msgstr ""
-"Les persones han estat combinades.\n"
-"De totes maneres, per aquesta combinació, les famílies eren massa complexes "
-"per gestionar-les automàticament. Recomanem anar a la vista de Relacions i "
-"veure si és necessari combinar altres famílies."
+"Les persones han estat fusionades.\n"
+"De totes maneres, per aquesta fusió, les famílies eren massa complexes per a "
+"gestionar-les automàticament. Recomanem anar a la vista Relacions i veure si "
+"és necessari fusionar altres famílies."
 
 #: ../gramps/gui/merge/mergeplace.py:54
 msgctxt "manual"
@@ -19308,7 +19309,7 @@ msgstr "Famílies actives o marcades com a favorites"
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
 msgid "Also include %s?"
-msgstr "Incloure també %s?"
+msgstr "Inclou també %s?"
 
 #: ../gramps/gui/plug/_guioptions.py:1269
 #: ../gramps/gui/selectors/selectperson.py:99
@@ -19382,7 +19383,7 @@ msgstr "Requeriments"
 
 #: ../gramps/gui/plug/_windows.py:386
 msgid "Addon Manager"
-msgstr "Gestor de Complements"
+msgstr "Gestor de complements"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
@@ -19428,7 +19429,7 @@ msgstr "Restableix els filtres de complements als valors predeterminats"
 
 #: ../gramps/gui/plug/_windows.py:483
 msgid "Settings"
-msgstr "Configuració"
+msgstr "Paràmetres"
 
 #: ../gramps/gui/plug/_windows.py:486
 msgid "Projects"
@@ -19448,7 +19449,7 @@ msgstr "El registre del complement ha fallat"
 
 #: ../gramps/gui/plug/_windows.py:571
 msgid "The addon will be unavailable in your current configuration."
-msgstr "El complement no estarà disponible a la teva configuració actual."
+msgstr "El complement no estarà disponible a la vostra configuració actual."
 
 #: ../gramps/gui/plug/_windows.py:596
 msgid "No matching addons found."
@@ -19593,7 +19594,7 @@ msgstr "Visible"
 
 #: ../gramps/gui/plug/_windows.py:1034
 msgid "Plugin Manager"
-msgstr "Gestor de Connectors"
+msgstr "Gestor de connectors"
 
 #: ../gramps/gui/plug/_windows.py:1086 ../gramps/gui/plug/_windows.py:1144
 msgid "Info"
@@ -19945,7 +19946,7 @@ msgstr "Clica per veure la vista prèvia de dades sense filtrar"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:197
 msgid "_Do not include records marked private"
-msgstr "N_o incloure registres marcats com a privats"
+msgstr "N_o incloguis registres marcats com a privats"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:213
 #: ../gramps/gui/plug/export/_exportoptions.py:423
@@ -20031,11 +20032,11 @@ msgstr "Seleccioneu un filtre diferent per a editar"
 #: ../gramps/gui/plug/export/_exportoptions.py:762
 #: ../gramps/gui/plug/export/_exportoptions.py:787
 msgid "Include all selected people"
-msgstr "Incloure totes les persones seleccionades"
+msgstr "Inclou totes les persones seleccionades"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:776
 msgid "Include all selected notes"
-msgstr "Incloure totes les notes seleccionades"
+msgstr "Inclou totes les notes seleccionades"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:788
 msgid "Replace given names of living people"
@@ -20047,11 +20048,11 @@ msgstr "Substitueix noms complets de persones vives"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:790
 msgid "Do not include living people"
-msgstr "No incloure persones vives"
+msgstr "No incloguis persones vives"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:799
 msgid "Include all selected records"
-msgstr "Incloure tots els registres seleccionats"
+msgstr "Inclou tots els registres seleccionats"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:800
 msgid "Do not include records not linked to a selected person"
@@ -20441,7 +20442,7 @@ msgstr "Sense descripció"
 #: ../gramps/gui/plug/report/_styleeditor.py:391
 #, python-format
 msgid "(Embedded style '%s' must be edited separately)"
-msgstr "(L'estil incrustat '%s' ha de ser editat separadament)"
+msgstr "(L'estil incrustat «%s» s'ha d'editar separadament)"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:446
 #, python-format
@@ -20647,11 +20648,11 @@ msgstr "Acció"
 
 #: ../gramps/gui/undohistory.py:196
 msgid "Delete confirmation"
-msgstr "Confirmació d'esborrat"
+msgstr "Confirmació de la supressió"
 
 #: ../gramps/gui/undohistory.py:197
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "Segur que vol esborrar l'historial de canvis?"
+msgstr "Segur que voleu netejar l'historial d'accions per a desfer?"
 
 #: ../gramps/gui/undohistory.py:198 ../gramps/plugins/gramplet/eval.py:83
 msgid "Clear"
@@ -20756,11 +20757,11 @@ msgstr "La vista no s'ha pogut carregar. Comproveu la sortida d'errors."
 #: ../gramps/gui/viewmanager.py:1050
 #: ../gramps/plugins/importer/importprogen.py:217
 msgid "Import Statistics"
-msgstr "Importa Estadístiques"
+msgstr "Importa estadístiques"
 
 #: ../gramps/gui/viewmanager.py:1126
 msgid "Read Only"
-msgstr "Només Lectura"
+msgstr "Només lectura"
 
 #: ../gramps/gui/viewmanager.py:1132
 msgid "Gramps had a problem the last time it was run."
@@ -20887,7 +20888,7 @@ msgstr "Fent còpia de seguretat..."
 #: ../gramps/gui/viewmanager.py:1928
 #, python-format
 msgid "Backup saved to '%s'"
-msgstr "Còpia de seguretat desada a '%s'"
+msgstr "S'ha desat la còpia de seguretat a «%s»"
 
 #: ../gramps/gui/viewmanager.py:1932
 msgid "Backup aborted"
@@ -20946,7 +20947,7 @@ msgstr ""
 #: ../gramps/gui/views/listview.py:632 ../gramps/plugins/view/eventview.py:414
 #, python-brace-format
 msgid "Delete {type} [{gid}]?"
-msgstr "Esborrar {type} [{gid}]?"
+msgstr "Voleu suprimir {type} [{gid}]?"
 
 #: ../gramps/gui/views/listview.py:640 ../gramps/gui/views/listview.py:726
 msgid "Deleting item will remove it from the database."
@@ -21140,7 +21141,7 @@ msgstr ""
 #: ../gramps/gui/views/tags.py:606
 #, python-format
 msgid "Delete Tag (%s)"
-msgstr "Esborrar Etiqueta (%s)"
+msgstr "Suprimeix l'etiqueta (%s)"
 
 #: ../gramps/gui/views/tags.py:633
 #, python-format
@@ -21472,7 +21473,7 @@ msgstr "Aquest camp és obligatori"
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1249
 #, python-format
 msgid "'%s' is not a valid date value"
-msgstr "'%s' no és un valor de data vàlid"
+msgstr "«%s» no és un valor de data vàlid"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
 msgid "Legacy"
@@ -21938,11 +21939,11 @@ msgstr "Títol de l'Informe"
 #: ../gramps/plugins/drawreport/descendtree.py:1632
 #: ../gramps/plugins/drawreport/descendtree.py:1804
 msgid "Do not include a title"
-msgstr "No incloure un títol"
+msgstr "No incloguis un títol"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:901
 msgid "Include Report Title"
-msgstr "Incloure el Títol de l'Informe"
+msgstr "Inclou el títol de l'informe"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:902
 #: ../gramps/plugins/drawreport/descendtree.py:1638
@@ -21952,7 +21953,7 @@ msgstr "Tria un títol per a l'informe"
 #: ../gramps/plugins/drawreport/ancestortree.py:905
 #: ../gramps/plugins/drawreport/descendtree.py:1642
 msgid "Include a border"
-msgstr "Incloure una vora"
+msgstr "Inclou una vora"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:906
 #: ../gramps/plugins/drawreport/descendtree.py:1643
@@ -21962,7 +21963,7 @@ msgstr "Si s'ha de fer una vora al voltant de l'informe."
 #: ../gramps/plugins/drawreport/ancestortree.py:909
 #: ../gramps/plugins/drawreport/descendtree.py:1646
 msgid "Include Page Numbers"
-msgstr "Incloure Números de Pàgina"
+msgstr "Inclou números de pàgina"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:910
 msgid "Whether to print page numbers on each page."
@@ -22040,7 +22041,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:953
 #: ../gramps/plugins/drawreport/descendtree.py:1690
 msgid "Include Blank Pages"
-msgstr "Incloure Pàgines en Blanc"
+msgstr "Inclou pàgines en blanc"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:954
 #: ../gramps/plugins/drawreport/descendtree.py:1691
@@ -22117,7 +22118,7 @@ msgstr "El format a mostrar per a la persona central"
 #: ../gramps/plugins/drawreport/ancestortree.py:1002
 #: ../gramps/plugins/drawreport/descendtree.py:1729
 msgid "Include Marriage box"
-msgstr "Incloure caixa de Matrimoni"
+msgstr "Inclou caixa de matrimoni"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1004
 #: ../gramps/plugins/drawreport/descendtree.py:1731
@@ -22164,7 +22165,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:1031
 #: ../gramps/plugins/drawreport/descendtree.py:1750
 msgid "Include a note"
-msgstr "Incloure una nota"
+msgstr "Inclou una nota"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1032
 #: ../gramps/plugins/drawreport/descendtree.py:1751
@@ -22389,7 +22390,7 @@ msgstr "Tercera línia de text a sota del calendari"
 #: ../gramps/plugins/webreport/narrativeweb.py:3186
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Include only living people"
-msgstr "Incloure només persones vives"
+msgstr "Inclou només persones vives"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:637
 #: ../gramps/plugins/webreport/narrativeweb.py:3187
@@ -22477,7 +22478,7 @@ msgstr "Selecciona el cognom que es mostra de les dones casades"
 #: ../gramps/plugins/webreport/narrativeweb.py:3174
 #: ../gramps/plugins/webreport/webcal.py:2065
 msgid "Include birthdays"
-msgstr "Incloure aniversaris de naixement"
+msgstr "Inclou aniversaris de naixement"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:685
 #: ../gramps/plugins/textreport/birthdayreport.py:646
@@ -22489,7 +22490,7 @@ msgstr "Si s'han d'incloure els aniversaris de naixement"
 #: ../gramps/plugins/webreport/narrativeweb.py:3178
 #: ../gramps/plugins/webreport/webcal.py:2069
 msgid "Include anniversaries"
-msgstr "Incloure aniversaris"
+msgstr "Inclou aniversaris"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:689
 #: ../gramps/plugins/textreport/birthdayreport.py:650
@@ -22500,7 +22501,7 @@ msgstr "Si s'han d'incloure els aniversaris"
 #: ../gramps/plugins/webreport/narrativeweb.py:3182
 #: ../gramps/plugins/webreport/webcal.py:2073
 msgid "Include death dates"
-msgstr "Incloure dates de defunció´"
+msgstr "Inclou dates de defunció´"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:693
 #: ../gramps/plugins/webreport/narrativeweb.py:3183
@@ -23153,7 +23154,7 @@ msgstr "Any de naixement fins al qual s'han d'incloure les persones"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1156
 msgid "Include people without known birth years"
-msgstr "Incloure persones sense any de naixement conegut"
+msgstr "Inclou persones sense any de naixement conegut"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1157
 msgid "Whether to include people without known birth years."
@@ -23181,7 +23182,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1176
 msgid "Include counts of missing information"
-msgstr "Incloure recomptes de la informació que falti"
+msgstr "Inclou recomptes de la informació que falti"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1180
 msgid ""
@@ -23205,7 +23206,7 @@ msgstr "Gràfiques 1"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1221
 msgid "Include charts with indicated data."
-msgstr "Incloure gràfiques amb les dades indicades."
+msgstr "Inclou gràfiques amb les dades indicades."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1263
 #: ../gramps/plugins/textreport/placereport.py:635
@@ -23438,22 +23439,22 @@ msgstr "Opcions d'exportació de vCard"
 
 #: ../gramps/plugins/export/exportcsv.py:147
 msgid "Include people"
-msgstr "Incloure persones"
+msgstr "Inclou persones"
 
 #: ../gramps/plugins/export/exportcsv.py:148
 msgid "Include marriages"
-msgstr "Incloure casaments"
+msgstr "Inclou casaments"
 
 #: ../gramps/plugins/export/exportcsv.py:149
 #: ../gramps/plugins/textreport/detancestralreport.py:935
 #: ../gramps/plugins/textreport/detdescendantreport.py:1143
 msgid "Include children"
-msgstr "Incloure fills"
+msgstr "Inclou fills"
 
 #: ../gramps/plugins/export/exportcsv.py:150
 #: ../gramps/plugins/graph/gvfamilylines.py:286
 msgid "Include places"
-msgstr "Incloure llocs"
+msgstr "Inclou llocs"
 
 #: ../gramps/plugins/export/exportcsv.py:151
 msgid "Translate headers"
@@ -25762,7 +25763,7 @@ msgstr "El nombre màxim de descendents a incloure."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:269
 msgid "Include dates"
-msgstr "Incloure dates"
+msgstr "Inclou dates"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:271
 msgid "Whether to include dates for people and families."
@@ -25786,7 +25787,7 @@ msgstr "Si s'han d'incloure noms de lloc per persones i famílies."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:293
 msgid "Include the number of children"
-msgstr "Incloure el nombre de fills"
+msgstr "Inclou el nombre de fills"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:297
 msgid ""
@@ -25799,7 +25800,7 @@ msgstr ""
 #: ../gramps/plugins/graph/gvfamilylines.py:305
 #: ../gramps/plugins/graph/gvrelgraph.py:1004
 msgid "Include thumbnail images of people"
-msgstr "Incloure imatges en miniatura de les persones"
+msgstr "Inclou imatges en miniatura de les persones"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:308
 msgid "Whether to include thumbnail images of people."
@@ -26099,7 +26100,7 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:982
 msgid "Include URLs"
-msgstr "Incloure URLs"
+msgstr "Inclou URL"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:985
 msgid ""
@@ -26115,7 +26116,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/birthdayreport.py:657
 #: ../gramps/plugins/textreport/indivcomplete.py:1194
 msgid "Include relationship to center person"
-msgstr "Incloure parentesc amb la persona central"
+msgstr "Inclou el parentesc amb la persona central"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:998
 msgid "Whether to show every person's relationship to the center person"
@@ -26131,11 +26132,11 @@ msgstr "Ubicació de les imatges miniatura"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1019
 msgid "Include occupation"
-msgstr "Incloure la feina"
+msgstr "Inclou la feina"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1020
 msgid "Do not include any occupation"
-msgstr "No incloure cap feina"
+msgstr "No incloguis cap feina"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1021
 msgid "Include description of most recent occupation"
@@ -26151,7 +26152,7 @@ msgstr "Si s'ha d'incloure la darrera feina"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1030
 msgid "Include relationship debugging numbers also"
-msgstr "Incloure també números de depuració del parentesc"
+msgstr "Inclou també números de depuració del parentesc"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1034
 msgid ""
@@ -26847,7 +26848,7 @@ msgid ""
 "(out of Settings)"
 msgstr ""
 "Referència de la font\n"
-"(fora de Configuració)"
+"(fora de Paràmetres)"
 
 #: ../gramps/plugins/importer/importprogen.glade:181
 msgid ""
@@ -26903,8 +26904,8 @@ msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
-"Text de l'etiqueta predeterminat\n"
-"(fora de Configuració)."
+"Text de l'etiqueta per defecte\n"
+"(fora de Paràmetres)."
 
 #: ../gramps/plugins/importer/importprogen.glade:478
 msgid "Import Filename."
@@ -27284,7 +27285,7 @@ msgid ""
 "Objects that are candidates to be merged:"
 msgstr ""
 "\n"
-"Objectes que són candidats a ser combinats:"
+"Objectes que són candidats a fusionar-se:"
 
 #: ../gramps/plugins/importer/importxml.py:907
 #: ../gramps/plugins/importer/importxml.py:1444
@@ -31994,7 +31995,7 @@ msgstr "Centra aquí"
 #: ../gramps/plugins/lib/maps/geography.py:437
 #, python-format
 msgid "Replace '%(map)s' by =>"
-msgstr "Substitueix '%(map)s' per =>"
+msgstr "Substitueix «%(map)s» per =>"
 
 #: ../gramps/plugins/lib/maps/geography.py:450
 #, python-format
@@ -32405,7 +32406,7 @@ msgstr "S'han trobat els següents problemes:"
 #: ../gramps/plugins/quickview/attributematch.py:34
 #, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "Persones que tenen l'Atribut '%s'"
+msgstr "Persones que tenen l'atribut «%s»"
 
 #: ../gramps/plugins/quickview/attributematch.py:48
 #, python-format
@@ -32945,7 +32946,7 @@ msgstr "Concorda amb persones sense el nom"
 #: ../gramps/plugins/quickview/samesurnames.py:127
 #, python-format
 msgid "People sharing the surname '%s'"
-msgstr "Persones que comparteixen el cognom '%s'"
+msgstr "Persones que comparteixen el cognom «%s»"
 
 #: ../gramps/plugins/quickview/samesurnames.py:152
 #: ../gramps/plugins/quickview/samesurnames.py:202
@@ -32963,7 +32964,7 @@ msgstr[1] ""
 #: ../gramps/plugins/quickview/samesurnames.py:177
 #, python-format
 msgid "People with the given name '%s'"
-msgstr "Persones amb el nom de pila '%s'"
+msgstr "Persones amb el nom de pila «%s»"
 
 #: ../gramps/plugins/quickview/siblings.py:48
 #, python-format
@@ -33299,7 +33300,7 @@ msgstr "Any de l'informe"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:653
 msgid "Include death anniversaries"
-msgstr "Incloure aniversaris de mort"
+msgstr "Inclou aniversaris de mort"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:654
 msgid "Whether to include anniversaries of death"
@@ -33635,7 +33636,7 @@ msgstr "Si s'han de llistar els fills."
 #: ../gramps/plugins/textreport/detancestralreport.py:939
 #: ../gramps/plugins/textreport/detdescendantreport.py:1147
 msgid "Include spouses of children"
-msgstr "Incloure els cònjugues dels fills"
+msgstr "Inclou els cònjugues dels fills"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:940
 #: ../gramps/plugins/textreport/detdescendantreport.py:1148
@@ -33645,7 +33646,7 @@ msgstr "Si s'han de llistar els cònjugues dels fills."
 #: ../gramps/plugins/textreport/detancestralreport.py:943
 #: ../gramps/plugins/textreport/detdescendantreport.py:1159
 msgid "Include events"
-msgstr "Incloure esdeveniments"
+msgstr "Inclou esdeveniments"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:944
 #: ../gramps/plugins/textreport/detdescendantreport.py:1160
@@ -33654,7 +33655,7 @@ msgstr "Si s'han d'incloure esdeveniments."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:947
 msgid "Include other events"
-msgstr "Incloure altres esdeveniments"
+msgstr "Inclou altres esdeveniments"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:949
 msgid "Whether to include other events people participated in."
@@ -33674,7 +33675,7 @@ msgstr "Si s'han d'afegir referències al descendent a la llista de fills."
 #: ../gramps/plugins/textreport/detdescendantreport.py:1167
 #: ../gramps/plugins/textreport/indivcomplete.py:1171
 msgid "Include Photo/Images from Gallery"
-msgstr "Incloure Fotos/Imatges de la Galeria"
+msgstr "Inclou fotos/imatges de la galeria"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:958
 #: ../gramps/plugins/textreport/detdescendantreport.py:1168
@@ -33687,12 +33688,12 @@ msgstr "Si s'han d'incloure imatges."
 #: ../gramps/plugins/textreport/familygroup.py:788
 #: ../gramps/plugins/textreport/indivcomplete.py:1176
 msgid "Include (2)"
-msgstr "Incloure (2)"
+msgstr "Inclou (2)"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:963
 #: ../gramps/plugins/textreport/detdescendantreport.py:1173
 msgid "Include notes"
-msgstr "Incloure notes"
+msgstr "Inclou notes"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:964
 #: ../gramps/plugins/textreport/detdescendantreport.py:1174
@@ -33702,7 +33703,7 @@ msgstr "Si s'han d'incloure notes."
 #: ../gramps/plugins/textreport/detancestralreport.py:967
 #: ../gramps/plugins/textreport/detdescendantreport.py:1177
 msgid "Include sources"
-msgstr "Incloure fonts"
+msgstr "Inclou fonts"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:968
 #: ../gramps/plugins/textreport/detdescendantreport.py:1178
@@ -33713,7 +33714,7 @@ msgstr "Si s'han d'incloure referències a les fonts."
 #: ../gramps/plugins/textreport/detdescendantreport.py:1181
 #: ../gramps/plugins/textreport/indivcomplete.py:1160
 msgid "Include sources notes"
-msgstr "Incloure notes de fonts"
+msgstr "Inclou notes de fonts"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:974
 #: ../gramps/plugins/textreport/detdescendantreport.py:1184
@@ -33728,7 +33729,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:980
 #: ../gramps/plugins/textreport/detdescendantreport.py:1190
 msgid "Include attributes"
-msgstr "Incloure atributs"
+msgstr "Inclou atributs"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:981
 #: ../gramps/plugins/textreport/detdescendantreport.py:1191
@@ -33740,7 +33741,7 @@ msgstr "Si s'han d'incloure atributs."
 #: ../gramps/plugins/textreport/detancestralreport.py:984
 #: ../gramps/plugins/textreport/detdescendantreport.py:1194
 msgid "Include addresses"
-msgstr "Incloure adreces"
+msgstr "Inclou adreces"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:985
 #: ../gramps/plugins/textreport/detdescendantreport.py:1195
@@ -33750,7 +33751,7 @@ msgstr "Si s'han d'incloure adreces."
 #: ../gramps/plugins/textreport/detancestralreport.py:988
 #: ../gramps/plugins/textreport/detdescendantreport.py:1198
 msgid "Include alternative names"
-msgstr "Incloure noms alternatius"
+msgstr "Inclou noms alternatius"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:989
 #: ../gramps/plugins/textreport/detdescendantreport.py:1199
@@ -33852,7 +33853,7 @@ msgstr "Com estan organitzades les persones a l'informe"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1151
 #: ../gramps/plugins/textreport/kinshipreport.py:389
 msgid "Include spouses"
-msgstr "Incloure cònjuges"
+msgstr "Inclou cònjuges"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1152
 msgid "Whether to include detailed spouse information."
@@ -33860,7 +33861,7 @@ msgstr "Si s'ha d'incloure informació detallada dels cònjugues."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1155
 msgid "Include spouse reference"
-msgstr "Incloure referència a cònjuge"
+msgstr "Inclou la referència a cònjuge"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1156
 msgid "Whether to include reference to spouse."
@@ -34103,7 +34104,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1151
 msgid "Include Notes"
-msgstr "Incloure Notes"
+msgstr "Inclou notes"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1152
 msgid "Whether to include Person and Family Notes."
@@ -34111,7 +34112,7 @@ msgstr "Si s'ha d'incloure la Persona i les Notes de la família."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1155
 msgid "Include Source Information"
-msgstr "Incloure Informació de Font"
+msgstr "Inclou informació de font"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1156
 msgid "Whether to cite sources."
@@ -34119,7 +34120,7 @@ msgstr "Si s'han de citar les fonts."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1181
 msgid "Include Tags"
-msgstr "Incloure Etiquetes"
+msgstr "Inclou etiquetes"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1182
 msgid "Whether to include tags."
@@ -34127,11 +34128,11 @@ msgstr "Si s'han d'incloure les etiquetes."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1185
 msgid "Include Attributes"
-msgstr "Incloure Atributs"
+msgstr "Inclou atributs"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1189
 msgid "Include Census Events"
-msgstr "Incloure esdeveniments del cens"
+msgstr "Inclou esdeveniments del cens"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
 msgid "Whether to include Census Events."
@@ -34195,7 +34196,7 @@ msgstr "Si s'han d'incloure cònjuges"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:393
 msgid "Include cousins"
-msgstr "Incloure cosins"
+msgstr "Inclou cosins"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:394
 msgid "Whether to include cousins"
@@ -34203,7 +34204,7 @@ msgstr "Si s'han d'incloure cosins"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:397
 msgid "Include aunts/uncles/nephews/nieces"
-msgstr "Incloure ties/oncles/nebots/nebodes"
+msgstr "Inclou ties/oncles/nebots/nebodes"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:398
 msgid "Whether to include aunts/uncles/nephews/nieces"
@@ -35308,7 +35309,7 @@ msgstr "Eina d'estadístiques de gènere"
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:102
 msgid "Guess"
-msgstr "Endevinar"
+msgstr "Endevina"
 
 #: ../gramps/plugins/tool/eventcmp.glade:37
 msgid "Save _As"
@@ -35461,7 +35462,7 @@ msgstr "Buscant persones duplicades"
 
 #: ../gramps/plugins/tool/finddupes.py:210
 msgid "Pass 1: Building preliminary lists"
-msgstr "Pas 1: Construint llistes preliminars"
+msgstr "Pas 1: construcció de llistes preliminars"
 
 #: ../gramps/plugins/tool/finddupes.py:227
 msgid "Pass 2: Calculating potential matches"
@@ -35759,7 +35760,7 @@ msgstr "Buscant camps de cita"
 
 #: ../gramps/plugins/tool/mergecitations.py:246
 msgid "Number of merges done"
-msgstr "Nombre de combinacions fetes"
+msgstr "Nombre de fusions fetes"
 
 #: ../gramps/plugins/tool/mergecitations.py:249
 #, python-brace-format
@@ -35908,7 +35909,7 @@ msgstr "Eina d'extracció de noms i títols"
 
 #: ../gramps/plugins/tool/patchnames.py:147
 msgid "Default prefix and connector settings"
-msgstr "Prefix predeterminat i configuració de connectors"
+msgstr "Prefix per defecte i paràmetres de connectors"
 
 #: ../gramps/plugins/tool/patchnames.py:155
 msgid "Prefixes to search for:"
@@ -36119,12 +36120,12 @@ msgstr "Busca notes"
 #: ../gramps/plugins/tool/removeunused.glade:272
 #: ../gramps/plugins/tool/verify.glade:978
 msgid "_Mark all"
-msgstr "_Marcar-ho tot"
+msgstr "_Marca-ho tot"
 
 #: ../gramps/plugins/tool/removeunused.glade:287
 #: ../gramps/plugins/tool/verify.glade:993
 msgid "_Unmark all"
-msgstr "_Desmarcar-ho tot"
+msgstr "_Desmarca-ho tot"
 
 #: ../gramps/plugins/tool/removeunused.glade:302
 #: ../gramps/plugins/tool/verify.glade:1008
@@ -36147,7 +36148,7 @@ msgstr "Marcar"
 
 #: ../gramps/plugins/tool/removeunused.py:329
 msgid "Remove unused objects"
-msgstr "Esborra objectes no utilitzats"
+msgstr "Elimina els objectes no utilitzats"
 
 #: ../gramps/plugins/tool/reorderids.glade:1388
 msgid "Enable ID reordering."
@@ -36268,7 +36269,7 @@ msgstr "Fixa el tipus d'ordenació"
 
 #: ../gramps/plugins/tool/sortevents.py:201
 msgid "Include family events"
-msgstr "Incloure esdeveniments familiars"
+msgstr "Inclou esdeveniments familiars"
 
 #: ../gramps/plugins/tool/sortevents.py:202
 msgid "Sort family events of the person"
@@ -36495,7 +36496,7 @@ msgstr "Calcula el parentesc entre dues persones"
 
 #: ../gramps/plugins/tool/tools.gpr.py:395
 msgid "Remove Unused Objects"
-msgstr "Esborra Objectes No Utilitzats"
+msgstr "Elimina els objectes no utilitzats"
 
 #: ../gramps/plugins/tool/tools.gpr.py:396
 msgid "Removes unused objects from the database"
@@ -36872,7 +36873,7 @@ msgstr "Suprimeix la citació seleccionada"
 
 #: ../gramps/plugins/view/citationlistview.py:147
 msgid "Merge the selected citations"
-msgstr "Combinar les cites seleccionades"
+msgstr "Fusiona les citacions seleccionades"
 
 #: ../gramps/plugins/view/citationlistview.py:161
 msgid "Citation View"
@@ -36902,7 +36903,7 @@ msgstr ""
 #: ../gramps/plugins/view/citationtreeview.py:684
 #: ../gramps/plugins/view/citationtreeview.py:701
 msgid "Cannot merge citations."
-msgstr "No es poden combinar cites."
+msgstr "No es poden fusionar les citacions."
 
 #: ../gramps/plugins/view/citationlistview.py:435
 #: ../gramps/plugins/view/citationtreeview.py:686
@@ -36935,7 +36936,7 @@ msgstr "Suprimeix la citació o la font seleccionada"
 
 #: ../gramps/plugins/view/citationtreeview.py:139
 msgid "Merge the selected citations or selected sources"
-msgstr "Combinar les cites o les fonts seleccionades"
+msgstr "Fusiona les citacions o les fonts seleccionades"
 
 #: ../gramps/plugins/view/citationtreeview.py:157
 msgid "Citation Tree View"
@@ -36980,7 +36981,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/citationtreeview.py:714
 msgid "Cannot perform merge."
-msgstr "No es pot dur a terme la combinació."
+msgstr "No es pot dur a terme la fusió."
 
 #: ../gramps/plugins/view/citationtreeview.py:716
 msgid ""
@@ -37006,7 +37007,7 @@ msgstr "Editar l'esdeveniment seleccionat"
 
 #: ../gramps/plugins/view/eventview.py:115
 msgid "Delete the selected event"
-msgstr "Esborrar l'esdeveniment seleccionat"
+msgstr "Suprimeix l'esdeveniment seleccionat"
 
 #: ../gramps/plugins/view/eventview.py:116
 msgid "Merge the selected events"
@@ -37018,7 +37019,7 @@ msgstr "Editor de Filtres d'Esdeveniments"
 
 #: ../gramps/plugins/view/eventview.py:433
 msgid "Cannot merge event objects."
-msgstr "No es poden combinar objectes d'esdeveniment."
+msgstr "No es poden fusionar els objectes d'esdeveniment."
 
 #: ../gramps/plugins/view/eventview.py:435
 msgid ""
@@ -37048,7 +37049,7 @@ msgstr "Suprimeix la família seleccionada"
 
 #: ../gramps/plugins/view/familyview.py:113
 msgid "Merge the selected families"
-msgstr "Combinar les famílies seleccionades"
+msgstr "Fusiona les famílies seleccionades"
 
 #: ../gramps/plugins/view/familyview.py:211
 msgid "Family Filter Editor"
@@ -37064,7 +37065,7 @@ msgstr "Fer que la Mare sigui la Persona Activa"
 
 #: ../gramps/plugins/view/familyview.py:438
 msgid "Cannot merge families."
-msgstr "No es poden combinar famílies."
+msgstr "No es poden fusionar les famílies."
 
 #: ../gramps/plugins/view/familyview.py:440
 msgid ""
@@ -37194,7 +37195,7 @@ msgstr "Dóna la volta al nom a l'esquerra del ventall"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:387
 msgid "Show the gramps id"
-msgstr "Mostra l'ID Gramps"
+msgstr "Mostra l'id. del Gramps"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:390
 #: ../gramps/plugins/view/fanchartdescview.py:386
@@ -38109,11 +38110,11 @@ msgstr "Afegeix un dipòsit nou"
 
 #: ../gramps/plugins/view/repoview.py:141
 msgid "Delete the selected repository"
-msgstr "Esborra el dipòsit seleccionat"
+msgstr "Suprimeix el dipòsit seleccionat"
 
 #: ../gramps/plugins/view/repoview.py:142
 msgid "Merge the selected repositories"
-msgstr "Combina els dipòsits seleccionats"
+msgstr "Fusiona els dipòsits seleccionats"
 
 #: ../gramps/plugins/view/repoview.py:236
 msgid "Repository Filter Editor"
@@ -38121,7 +38122,7 @@ msgstr "Editor de filtres de dipòsit"
 
 #: ../gramps/plugins/view/repoview.py:397
 msgid "Cannot merge repositories."
-msgstr "No es poden combinar dipòsits."
+msgstr "No es poden fusionar els dipòsits."
 
 #: ../gramps/plugins/view/repoview.py:399
 msgid ""
@@ -38139,11 +38140,11 @@ msgstr "Edita la font seleccionada"
 
 #: ../gramps/plugins/view/sourceview.py:113
 msgid "Delete the selected source"
-msgstr "Esborra la font seleccionada"
+msgstr "Suprimeix la font seleccionada"
 
 #: ../gramps/plugins/view/sourceview.py:114
 msgid "Merge the selected sources"
-msgstr "Combina les fonts seleccionades"
+msgstr "Fusiona les fonts seleccionades"
 
 #: ../gramps/plugins/view/sourceview.py:208
 msgid "Source Filter Editor"
@@ -38151,7 +38152,7 @@ msgstr "Editor de Filtres de Font"
 
 #: ../gramps/plugins/view/sourceview.py:361
 msgid "Cannot merge sources."
-msgstr "No es poden combinar fonts."
+msgstr "No es poden fusionar les fonts."
 
 #: ../gramps/plugins/view/sourceview.py:363
 msgid ""
@@ -38765,7 +38766,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/media.py:456
 msgid "The file has been moved or deleted."
-msgstr "El fitxer s'ha mogut o esborrat."
+msgstr "El fitxer s'ha mogut o suprimit."
 
 #: ../gramps/plugins/webreport/media.py:458
 #: ../gramps/plugins/webreport/thumbnail.py:174
@@ -38939,7 +38940,7 @@ msgstr "Vertical   -- Banda esquerra"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
 msgid "Fade       -- WebKit Browsers Only"
-msgstr "Difuminar     -- Només Navegadors amb Webkit"
+msgstr "Difumina     -- Només navegadors amb WebKit"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2203
 #: ../gramps/plugins/webreport/narrativeweb.py:2219
@@ -38972,7 +38973,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2234
 msgid "Include ancestor's tree"
-msgstr "Incloure arbre d'avantpassats"
+msgstr "Inclou l'arbre d'avantpassats"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2236
 msgid "Whether to include an ancestor graph on each individual page"
@@ -39192,7 +39193,7 @@ msgstr "Generació d'imatges"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2428
 msgid "Include images and media objects"
-msgstr "Incloure imatges i objectes audiovisuals"
+msgstr "Inclou imatges i objectes audiovisuals"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2429
 msgid "Whether to include a gallery of media objects"
@@ -39251,7 +39252,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2493
 msgid "Include download page"
-msgstr "Incloure pàgina de baixada"
+msgstr "Inclou la pàgina de baixada"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2494
 msgid "Whether to include a database download option"
@@ -39354,7 +39355,7 @@ msgstr "Si s'han d'incloure els germanastres amb els pares i els germans"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2596
 msgid "Include family pages"
-msgstr "Incloure pàgines de família"
+msgstr "Inclou pàgines de família"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2597
 msgid "Whether or not to include family pages."
@@ -39362,7 +39363,7 @@ msgstr "Si s'han d'incloure o no pàgines de família."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2600
 msgid "Include event pages"
-msgstr "Incloure pàgines d'esdeveniments"
+msgstr "Inclou pàgines d'esdeveniments"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2601
 msgid "Add a complete events list and relevant pages or not"
@@ -39371,7 +39372,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2604
 msgid "Include other roles"
-msgstr "Incloure altres rols"
+msgstr "Inclou altres rols"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2605
 msgid "Include persons with other roles to an event"
@@ -39379,7 +39380,7 @@ msgstr "Incloure persones amb altres rols a un esdeveniment"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2608
 msgid "Include place pages"
-msgstr "Incloure pàgines de lloc"
+msgstr "Inclou pàgines de lloc"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2609
 msgid "Whether or not to include the place pages."
@@ -39387,7 +39388,7 @@ msgstr "Si s'han d'incloure les pàgines de lloc o no."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2612
 msgid "Include unused place pages"
-msgstr "Incloure pàgines de llocs no utilitzats"
+msgstr "Inclou pàgines de llocs no utilitzats"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2613
 msgid "Whether or not to include the unused place pages."
@@ -39395,7 +39396,7 @@ msgstr "Si s'han d'incloure o no les pàgines de llocs no utilitzats."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2616
 msgid "Include source pages"
-msgstr "Incloure pàgines de font"
+msgstr "Inclou pàgines de font"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2617
 msgid "Whether or not to include the source pages."
@@ -39403,7 +39404,7 @@ msgstr "Si s'han d'incloure les pàgines de font o no."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2620
 msgid "Include repository pages"
-msgstr "Incloure pàgines de dipòsit"
+msgstr "Inclou pàgines de dipòsit"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2621
 msgid "Whether or not to include the repository pages."
@@ -39411,7 +39412,7 @@ msgstr "Si s'han d'incloure les pàgines de dipòsit o no."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2624
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr "Incloure fitxer GENDEX (/gendex.txt)"
+msgstr "Inclou el fitxer GENDEX (/gendex.txt)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2625
 msgid "Whether to include a GENDEX file or not"
@@ -39419,7 +39420,7 @@ msgstr "Si s'ha d'incloure un fitxer GENDEX o no"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2628
 msgid "Include address book pages"
-msgstr "Incloure pàgines d'agenda"
+msgstr "Inclou pàgines d'agenda"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2631
 msgid ""
@@ -39431,7 +39432,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2639
 msgid "Include the statistics page"
-msgstr "Incloure la pàgina d'estadístiques"
+msgstr "Inclou la pàgina d'estadístiques"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2640
 msgid "Whether or not to add statistics page"
@@ -39451,7 +39452,7 @@ msgstr "Google"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2657
 msgid "Map Service"
-msgstr "Servei de Mapes"
+msgstr "Servei de mapes"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2661
 msgid "Choose your choice of map service for creating the Place Map Pages."
@@ -39484,7 +39485,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2693
 msgid "Family Links"
-msgstr "Enllaços de Família"
+msgstr "Enllaços familiars"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2694
 msgid "Drop"
@@ -39496,7 +39497,7 @@ msgstr "Marcadors"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2698
 msgid "Google/ FamilyMap Option"
-msgstr "Opció per Mapa de Família amb Google"
+msgstr "Opció Google/FamilyMap"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2704
 msgid ""
@@ -39508,14 +39509,14 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2710
 msgid "Google maps API key"
-msgstr "Clau API Google maps"
+msgstr "Clau de l'API del Google Maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2713
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"La clau API utilitzada per al Google maps.\n"
+"La clau de l'API que s'usa per als mapes de Google.\n"
 "Aquesta clau és obligatoria i ha de ser vàlida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2725
@@ -39617,11 +39618,11 @@ msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2823
 msgid "Where do you place your website? default = /NAVWEB"
-msgstr "On vols hostatjar el teu lloc web? predeterminat = /NAVWEB"
+msgstr "On voleu hostatjar el vostre lloc web? per defecte = /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2831
 msgid "Include the news and updates page"
-msgstr "Incloure la pàgina de notícies i actualitzacions"
+msgstr "Inclou la pàgina de notícies i actualitzacions"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2832
 msgid "Whether to include a page with the last updates"
@@ -39709,7 +39710,7 @@ msgstr "Opcions de Calendari"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3140
 msgid "Do we include the web calendar ?"
-msgstr "Voleu incloure el calendari web ?"
+msgstr "Voleu incloure el calendari web?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3142
 #, python-format
@@ -39730,12 +39731,12 @@ msgstr "Si s'han de crear pàgines d'un dia o no"
 #: ../gramps/plugins/webreport/narrativeweb.py:3175
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include birthdays in the calendar"
-msgstr "Incloure aniversaris de naixement al calendari"
+msgstr "Inclou aniversaris de naixement al calendari"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3179
 #: ../gramps/plugins/webreport/webcal.py:2070
 msgid "Include anniversaries in the calendar"
-msgstr "Incloure aniversaris al calendari"
+msgstr "Inclou aniversaris al calendari"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3192
 #: ../gramps/plugins/webreport/webcal.py:2085
