@@ -12,13 +12,14 @@
 # 109247019824 <109247019824@users.noreply.hosted.weblate.org>, 2025.
 # Ivan Kostov <jiveq1@gmail.com>, 2025.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2025.
+# Apostol Penkov <apostol.penkov@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-06-11 00:01+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2025-08-22 10:02+0000\n"
+"Last-Translator: Apostol Penkov <apostol.penkov@gmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/bg/>\n"
 "Language: bg\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13\n"
 "X-Poedit-Language: Bulgarian\n"
 "X-Poedit-Country: BULGARIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -299,9 +300,8 @@ msgstr "Родословно дърво"
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
-#, fuzzy
 msgid "Descendant Fan"
-msgstr "Потомци"
+msgstr "Потомък Фен"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:350
@@ -443,7 +443,6 @@ msgstr ""
 "запишете разговорите!"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -456,7 +455,7 @@ msgid ""
 msgstr ""
 "<b>Филтриране на хора</b><br/>В Изгледа Хора можете да „филтрирате“ "
 "личностите на основата на много критерии. За да дефинирате нов филтър "
-"отидете на  &quot;Редактиране &gt; Редактор на филтъра за лицата&quot;. Тук "
+"отидете на &quot;Редактиране &gt; Редактор на филтъра за лицата&quot;. Тук "
 "можете да дадете име на филтъра си и да добавите и комбинирате правила "
 "използвайки множеството съществуващи правила. Например може да дефинирате "
 "филтър за търсене на осиновени лица в родословното дърво. Хора на които не е "
@@ -466,30 +465,18 @@ msgstr ""
 "филтрите не е видима, изберете Изглед &gt; Странична лента с филтри."
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
 "instance, by inverting the 'People with children' filter you can select all "
 "people without children."
 msgstr ""
-"<b>Обърнато филтриране</b>: Действието на филтрите може лесно да бъде "
-"обърнато чрез опцията „обръщане“. За илюстрация, ако се обърне филтъра „Лица "
-"имащи деца“ ще бъдат избрани само лицата без деца."
+"<b>Инвертирано филтриране</b><br/>Филтрите могат лесно да бъдат обърнати, "
+"като се използва опцията „инвертиране“ „Връщане на стойности, които не "
+"съответстват на правилата за филтриране“. Например, чрез инвертиране на "
+"филтъра „Хора с деца“ можете да изберете всички хора без деца."
 
 #: ../data/tips.xml:18
-#, fuzzy
-#| msgid ""
-#| "<b>Locating People</b><br/>By default, each surname in the People View is "
-#| "listed only once. By clicking on the arrow to the left of a name, the "
-#| "list will expand to show all individuals with that last name. To locate "
-#| "any Family Name from a long list, select a Family Name (not a person) and "
-#| "start typing. The view will jump to the first Family Name matching the "
-#| "letters you enter."
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -498,11 +485,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Откриване на хора</b>: По подразбиране всички фамилни имена в изгледа "
-"Хора са показани по веднъж. Чрез натискане на стрелката в ляво от името, ще "
-"се покажат всички лица с тази фамилия. За да откриете дадено фамилно име от "
-"един дълъг списък изберете едно фамилно име (не лице) и започнете да пишете. "
-"Изгледа ще прескочи до фамилното име съдържащо буквите които сте въвели."
+"<b>Намиране на хора</b><br/>В изгледа „Групирани хора“ всяко фамилно име е "
+"посочено само веднъж. Като щракнете върху стрелката вляво от името, списъкът "
+"ще се разшири, за да покаже всички лица с тази фамилия. За да намерите "
+"фамилно име от дълъг списък, изберете фамилно име (не човек) и започнете да "
+"пишете. Изгледът ще прескочи до първото фамилно име, съответстващо на "
+"въведените от вас букви."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -513,12 +501,6 @@ msgstr ""
 "като обединение на двама родители и техните децата."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -531,21 +513,19 @@ msgstr ""
 "някои от неговите съпрузи/ги, братя, сестри, деца или родители."
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools > Analysis and exploration > "
 "Compare Individual Events...\" you can compare the data of individuals in "
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>Кой кога е роден?</b><br/>Инструментът „Сравняване по отделни събития“ "
-"позволява да се правят сравнения за всички (или само някои) лица от базата "
-"от данни. Това е полезно, да речем, ако искате да направите списък с датите "
-"на раждане на всеки от базата данни. Може да използвате собствен филтър за "
+"<b>Кой е роден кога?</b><br/>В „Инструменти > Анализ и проучване > Сравнение "
+"на отделни събития...“ можете да сравните данните на лицата във вашата база "
+"данни. Това е полезно, например, ако искате да изброите датите на раждане на "
+"всички във вашата база данни. Можете да използвате персонализиран филтър, за "
 "да стесните резултатите."
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -553,25 +533,24 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Инструменти на Gramps</b><br/>Gramps идва с богат набор от инструменти. "
-"Те ви позволяват да извършвате операции например по проверка на базата данни "
-"за грешки и съгласуваност. Има инструмент за изследване и анализ, като "
-"сравняване на събития, откриване на дублиращи се хора,интерактивен търсач на "
-"наследниции много други. Всички инструменти са в менюто &quot;"
-"Инструменти&quot;."
+"<b>Инструменти на Gramps</b><br/>Gramps се предлага с богат набор от "
+"инструменти. Те ви позволяват да извършвате операции като проверка на базата "
+"данни за грешки и последователност. Има инструменти за изследване и анализ, "
+"като например сравнение на събития, намиране на дублирани хора, интерактивен "
+"браузър на наследници и много други. Достъпът до всички инструменти е чрез "
+"менюто „Инструменти“."
 
 #: ../data/tips.xml:28
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools > Utilities "
 "> Relationship Calculator...\". The exact relationship as well as all common "
 "ancestors are reported."
 msgstr ""
-"<b>Изчисление на роднинските връзки</b>: Този инструмент, намиращ се в "
-"<b>Инструменти &gt; Полезни инструменти &gt; Калкулатор на роднински връзки</"
-"b>, ви позволява да проверите дали двама души са свързвани (по кръвен път, "
-"не чрез брак). Докладват се точни връзки, както и общи прародители."
+"<b>Изчисляване на роднински връзки</b><br/>За да проверите дали двама души в "
+"базата данни са роднини (по кръв, а не по брак), опитайте инструмента в „"
+"Инструменти > Помощни програми > Калкулатор на роднински връзки...“. "
+"Посочват се точната роднинска връзка, както и всички общи предци."
 
 #: ../data/tips.xml:30
 #, fuzzy
@@ -596,19 +575,17 @@ msgstr ""
 "SoundEx...&quot;."
 
 #: ../data/tips.xml:32
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit > Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"<b>Установяване на предпочитанията</b><br/>&quot;Редактиране &gt; "
-"Предпочитания...&quot; позволява да променяте множество настройки, като пътя "
-"към медия файловете, а също да настроите много от начините по които Gramps "
-"представя данните ви така, че да отговаря на вашите нужди. Всеки отдерен "
-"изглед може също да бъде настроен от &quot;Изглед &gt; Настройки на "
-"изгледа...&quot;"
+"<b>Настройка на предпочитанията</b><br/>„Редактиране > Предпочитания...“ ви "
+"позволява да променяте редица настройки, като например пътя до вашите "
+"медийни файлове, и ви позволява да коригирате много аспекти на презентацията "
+"на Gramps според вашите нужди. Всеки отделен изглед може да бъде "
+"конфигуриран и в „Изглед > Конфигуриране на изглед...“."
 
 #: ../data/tips.xml:34
 msgid ""
