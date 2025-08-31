@@ -13,13 +13,14 @@
 # Arnau Llovet Vidal <arnaullv@gmail.com>, 2022, 2023, 2025.
 # leo-jmateo <jmateo.sanchez@tinet.cat>, 2025.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2025.
+# Hugo Vidal <hugo@lovi.casa>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-27 16:02+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2025-08-28 20:50+0000\n"
+"Last-Translator: Hugo Vidal <hugo@lovi.casa>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
 "Language: ca\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1133,10 +1134,10 @@ msgid ""
 "is the person who is selected when the database is opened or when the home "
 "button is pressed."
 msgstr ""
-"<b>La Persona Base</b><br/>Es pot triar qualsevol com a Persona Base dins de "
-"Gramps. Faci \"Edita > Fixa Persona Base\" a la Vista de Persones. La "
-"persona base és la persona que se selecciona quan s'obre la base de dades o "
-"quan es prem el botó de 'la casa'."
+"<b>La persona inicial</b><br/>Es pot triar qualsevol com a Persona Inicial "
+"dins de Gramps. Faci \"Edita > Fixa Persona Inicial\" a la Vista de "
+"Persones. La persona base és la persona que se selecciona quan s'obre la "
+"base de dades o quan es prem el botó de 'la casa'."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -5788,11 +5789,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:56
 msgid "Home Person"
-msgstr "Persona predeterminada"
+msgstr "Persona inicial"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:58
 msgid "Matches the Home Person"
-msgstr "Concorda amb la persona predeterminada"
+msgstr "Concorda amb la persona inicial"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:64
 msgid "Descendant family members of <person>"
@@ -5906,13 +5907,13 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:60
 msgid "Ancestors of the Home Person not more than <N> generations away"
-msgstr "Avantpassats de la persona predeterminada a no més de <N> generacions"
+msgstr "Avantpassats de la persona inicial a no més de <N> generacions"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:63
 msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
-"Concorda amb avantpassats de la persona predeterminada que no estiguin a més "
-"de N generacions"
+"Concorda amb avantpassats de la persona inicial que no estiguin a més de N "
+"generacions"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:59
 msgid "Descendants of <person> not more than <N> generations away"
@@ -7757,7 +7758,7 @@ msgstr "Informador"
 
 #: ../gramps/gen/lib/eventroletype.py:82
 msgid "Godparent"
-msgstr "pare2"
+msgstr "Padrí o padrina"
 
 #: ../gramps/gen/lib/eventroletype.py:83 ../gramps/gen/lib/family.py:169
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
@@ -12607,7 +12608,7 @@ msgstr "Nom i Id de la persona activa"
 #: ../gramps/gui/configure.py:1647
 #: ../gramps/plugins/textreport/indivcomplete.py:395
 msgid "Relationship to home person"
-msgstr "Relació amb la persona base"
+msgstr "Relació amb la persona inicial"
 
 #: ../gramps/gui/configure.py:1658
 msgid "Status bar"
@@ -15342,7 +15343,7 @@ msgstr "Editant_informacio_sobre_persones"
 #: ../gramps/gui/editors/editperson.py:690
 #: ../gramps/plugins/view/geofamily.py:499
 msgid "Edit Person"
-msgstr "Edita Persona"
+msgstr "Edita persona"
 
 #: ../gramps/gui/editors/editperson.py:739
 msgid "Edit Object Properties"
@@ -15354,7 +15355,7 @@ msgstr "Fes Persona Activa"
 
 #: ../gramps/gui/editors/editperson.py:788
 msgid "Make Home Person"
-msgstr "Fer Persona Base"
+msgstr "Fer persona inicial"
 
 #: ../gramps/gui/editors/editperson.py:909
 msgid "Problem changing the gender"
@@ -18680,7 +18681,7 @@ msgstr "_Gestor de Connectors..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
-msgstr "_Punts d'Interès"
+msgstr "_Punts d'interès"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Configure..."
@@ -18945,7 +18946,7 @@ msgstr ""
 #: ../gramps/gui/logger/_errorreportassistant.py:463
 #: ../gramps/gui/logger/_errorreportassistant.py:493
 msgid "System Information"
-msgstr "Informació del Sistema"
+msgstr "Informació del sistema"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:470
 msgid ""
@@ -21021,7 +21022,7 @@ msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid "No Home Person"
-msgstr "Persona base no fixada"
+msgstr "Persona inicial no fixada"
 
 #: ../gramps/gui/views/navigationview.py:326
 msgid ""
@@ -21029,9 +21030,9 @@ msgid ""
 "person you want as 'Home Person', then confirm your choice via the menu Edit "
 "-> Set Home Person."
 msgstr ""
-"Heu de fixar una 'persona predeterminada' on anar. Seleccioneu la Vista de "
-"Persones, seleccioneu la persona que voleu com a 'Persona Base', i llavors "
-"confirmeu l'elecció amb el menú Edita -> Fixar Persona Base."
+"Heu de fixar una 'persona inicial' on anar. Seleccioneu la Vista de "
+"Persones, seleccioneu la persona que voleu com a 'Persona inicial', i "
+"llavors confirmeu l'elecció amb el menú Edita -> Fixar persona inicial."
 
 #: ../gramps/gui/views/navigationview.py:339
 #: ../gramps/gui/views/navigationview.py:344
@@ -22752,7 +22753,7 @@ msgstr "Produeix un diagrama de descendents gràfic"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:119
 msgid "Descendant Tree"
-msgstr "Arbre de Descendents"
+msgstr "Arbre de descendents"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:120
 msgid "Produces a graphical descendant tree"
@@ -22768,7 +22769,7 @@ msgstr "Produeix un diagrama de descendents gràfic al voltant d'una família"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:160
 msgid "Family Descendant Tree"
-msgstr "Arbre de Descendents de Família"
+msgstr "Arbre de descendents de la família"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:161
 msgid "Produces a graphical descendant tree around a family"
@@ -22780,7 +22781,7 @@ msgstr "Produeix un arbre gràfic de descendents al voltant d'una família"
 #: ../gramps/plugins/view/fanchartview.py:77
 #: ../gramps/plugins/view/view.gpr.py:152
 msgid "Fan Chart"
-msgstr "Gràfica en Ventall"
+msgstr "Gràfica en ventall"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:185
 msgid "Produces fan charts"
@@ -25108,7 +25109,7 @@ msgstr "Cognoms únics"
 #: ../gramps/plugins/textreport/summary.py:322
 #: ../gramps/plugins/webreport/statistics.py:157
 msgid "Media Objects"
-msgstr "Objectes Audiovisuals"
+msgstr "Objectes audiovisuals"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:197
 msgid "Individuals with media objects"
@@ -25479,7 +25480,7 @@ msgstr "Etiqueta per indicar que s'ha d'ignorar una persona o família"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:163
 msgid "No Home Person set."
-msgstr "Persona base no fixada."
+msgstr "Persona inicial no fixada."
 
 #: ../gramps/plugins/gramplet/whatsnext.py:346
 msgid "first name unknown"
@@ -25582,7 +25583,7 @@ msgstr "Crea grafs de línies familiars fent servir el Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:62
 msgid "Hourglass Graph"
-msgstr "Informe en Rellotge de Sorra"
+msgstr "Gràfica en rellotge de sorra"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:63
 msgid "Produces an hourglass graph using Graphviz."
@@ -25591,7 +25592,7 @@ msgstr "Crea un graf en forma de rellotge de sorra amb el Graphviz."
 #: ../gramps/plugins/graph/graphplugins.gpr.py:85
 #: ../gramps/plugins/graph/gvrelgraph.py:225
 msgid "Relationship Graph"
-msgstr "Graf de relacions"
+msgstr "Gràfica de relacions"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:86
 msgid "Produces relationship graphs using Graphviz."
@@ -31385,7 +31386,7 @@ msgstr "_Afegeix Punt d'Interès"
 #: ../gramps/plugins/view/pedigreeview.py:1773
 #: ../gramps/plugins/view/relview.py:390 ../gramps/plugins/view/relview.py:455
 msgid "_Home"
-msgstr "_Base"
+msgstr "_Inicial"
 
 #: ../gramps/plugins/lib/libpersonview.py:254
 #: ../gramps/plugins/lib/libpersonview.py:332
@@ -31487,7 +31488,7 @@ msgstr "Editor de Filtres de Persones"
 #: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/view/pedigreeview.py:1783
 msgid "Set _Home Person"
-msgstr "Fixa Persona _Base"
+msgstr "Fixa Persona _Inicial"
 
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/view/fanchartview.py:186
@@ -31498,7 +31499,7 @@ msgstr "Fixa Persona _Base"
 #: ../gramps/plugins/view/pedigreeview.py:733
 #: ../gramps/plugins/view/relview.py:455
 msgid "Go to the home person"
-msgstr "Anar a la persona predeterminada"
+msgstr "Anar a la persona inicial"
 
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libplaceview.py:363
@@ -32318,7 +32319,7 @@ msgstr "Lloc d'Esdeveniment"
 #: ../gramps/plugins/quickview/all_events.py:131
 #: ../gramps/plugins/webreport/person.py:1117
 msgid "Event Type"
-msgstr "Tipus d'Esdeveniment"
+msgstr "Tipus d'esdeveniment"
 
 #: ../gramps/plugins/quickview/all_events.py:70
 #: ../gramps/plugins/quickview/all_events.py:127
@@ -34281,7 +34282,7 @@ msgstr "Esdeveniments que han ocorregut en aquest lloc"
 #: ../gramps/plugins/textreport/placereport.py:242
 #: ../gramps/plugins/textreport/placereport.py:328
 msgid "Type of Event"
-msgstr "Tipus d'Esdeveniment"
+msgstr "Tipus d'esdeveniment"
 
 #: ../gramps/plugins/textreport/placereport.py:290
 #, python-format
@@ -35785,7 +35786,7 @@ msgstr "Sense parentesc amb «%s»"
 
 #: ../gramps/plugins/tool/notrelated.py:106
 msgid "NotRelated"
-msgstr "No Emparentats"
+msgstr "No emparentats"
 
 #: ../gramps/plugins/tool/notrelated.py:177
 #, python-format
@@ -36437,7 +36438,7 @@ msgstr "Gestiona operacions en batch sobre fitxers de medis audiovisuals"
 
 #: ../gramps/plugins/tool/tools.gpr.py:223
 msgid "Not Related"
-msgstr "No Emparentats"
+msgstr "No emparentats"
 
 #: ../gramps/plugins/tool/tools.gpr.py:225
 msgid "Find people who are not in any way related to the selected person"
@@ -37238,7 +37239,7 @@ msgstr "Mostra l'id. del Gramps"
 
 #: ../gramps/plugins/view/fanchartview.py:229
 msgid "Print or save the Fan Chart View"
-msgstr "Imprimir o desar la Vista de Gràfica en Ventall"
+msgstr "Imprimir o desar la vista de gràfica en ventall"
 
 #: ../gramps/plugins/view/fanchartview.py:454
 msgid "Show children ring"
