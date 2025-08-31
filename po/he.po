@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-17 13:42+0000\n"
+"PO-Revision-Date: 2025-08-27 16:02+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -555,7 +555,7 @@ msgid ""
 msgstr ""
 "<b>הגדרת העדפות<br/></b> מתפריט 'עריכה > העדפות...' מאפשר שינוי מספר הגדרות "
 "כמו, הנתיב לקובצי המדיה, וכן, התאמת היבטים רבים נוספים של גרמפס. ניתן גם "
-"להגדיר כל מצג בנפרד מתפריט 'מצג > תצור מצג...'."
+"להגדיר כל מצג בנפרד מתפריט 'מצג > תיצור מצג...'."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -1569,7 +1569,7 @@ msgstr "    הגדרת תצורת גרמפס חדשה: %(name)s:%(value)s"
 #: ../gramps/cli/argparser.py:405
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
-msgstr "גרמפס: אין הגדרות תצור כאלו: '%s'"
+msgstr "גרמפס: אין הגדרות תיצור כאלו: '%s'"
 
 #: ../gramps/cli/argparser.py:498
 msgid "Error parsing the arguments"
@@ -17243,7 +17243,7 @@ msgstr "_שם:"
 #: ../gramps/gui/glade/editreporef.glade:301
 #: ../gramps/gui/glade/editrepository.glade:127
 msgid "Name of the repository (where sources are stored)."
-msgstr "אף אחד מהמאגרים (היכן שאוחסנו המקורות)."
+msgstr "שם המאגר (מקום אחסון המקורות)."
 
 #: ../gramps/gui/glade/editreporef.glade:337
 msgid ""
@@ -17332,7 +17332,7 @@ msgstr "גרירה להעברה; הקשה לניתוק"
 
 #: ../gramps/gui/glade/grampletpane.glade:70
 msgid "Config"
-msgstr "תצור"
+msgstr "תיצור"
 
 #: ../gramps/gui/glade/grampletpane.glade:77
 msgid "Detach"
@@ -18131,7 +18131,7 @@ msgstr "ספרים…"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Configure the active view"
-msgstr "תצור המצג הפעיל"
+msgstr "תיצור המצג הפעיל"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Connect to a recent database"
@@ -18188,7 +18188,7 @@ msgstr "_סימניות"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Configure..."
-msgstr "_תצור..."
+msgstr "_תיצור..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Export..."
@@ -19634,7 +19634,7 @@ msgstr "לא נבחר פריט ספר"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:578
 msgid "Please select a book item to configure."
-msgstr "נא לבחור בפריט ספר לתצור."
+msgstr "נא לבחור בפריט ספר לתיצור."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:643
 #: ../gramps/gui/views/bookmarks.py:310 ../gramps/gui/views/tags.py:493
@@ -20520,7 +20520,7 @@ msgstr "%(cat)s - %(view)s"
 #: ../gramps/gui/views/pageview.py:670
 #, python-format
 msgid "Configure %s View"
-msgstr "תצור מצג %s"
+msgstr "תיצור מצג %s"
 
 #: ../gramps/gui/views/pageview.py:688
 #, python-format
@@ -22720,7 +22720,7 @@ msgid ""
 "based view"
 msgstr ""
 "CSV הוא תסדיר גליון נפוץ.\n"
-"ניתן לשנות התנהגות זו מתפריט 'תצור מצג פעיל' מכל מצג מבוסס רשימה"
+"ניתן לשנות התנהגות זו מתפריט 'תיצור מצג פעיל' מכל מצג מבוסס רשימה"
 
 #: ../gramps/plugins/export/export.gpr.py:49
 msgid "CSV spreadsheet options"
@@ -25246,7 +25246,7 @@ msgstr "הצבע למצג משפחות."
 #: ../gramps/plugins/textreport/familygroup.py:690
 #: ../gramps/plugins/textreport/indivcomplete.py:857
 msgid "You did not specify anybody"
-msgstr "לא הוגדר אף אחד"
+msgstr "לא צויין אף אחד"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:531
 msgid "Number of people in database:"
