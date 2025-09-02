@@ -92,15 +92,15 @@ class MatchesPersonFilter(MatchesFilterBase):
                     event.handle, ["Family"]
                 ):
                     family = db.get_family_from_handle(handle)
-                    father = (
-                        db.get_person_from_handle(family.father_handle)
-                        if family
-                        else None
-                    )
-                    if father and filt.apply_to_one(db, father):
-                        return True
-                    mother = db.get_person_from_handle(family.mother_handle)
-                    if family.mother_handle and filt.apply_to_one(db, mother):
-                        return True
+                    if family:
+                        if family.father_handle:
+                            father = db.get_person_from_handle(family.father_handle)
+                            if father and filt.apply_to_one(db, father):
+                                return True
+
+                        if family.mother_handle:
+                            mother = db.get_person_from_handle(family.mother_handle)
+                            if mother and filt.apply_to_one(db, mother):
+                                return True
 
         return False
