@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-25 12:03+0000\n"
+"PO-Revision-Date: 2025-09-03 12:02+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -11339,8 +11339,8 @@ msgid ""
 "The data can only be recovered by Undo operation or by quitting with "
 "abandoning changes."
 msgstr ""
-"Podaci mogu biti vraćeni samo poništavanjem prethodnih koraka ili izlazom, s "
-"odustajanjem od promjena."
+"Podaci se mogu obnoviti samo poništavanjem prethodnih koraka ili zatvaranjem "
+"Grampsa I odacivanjem promjena."
 
 #: ../gramps/gen/utils/symbols.py:84 ../gramps/gui/editors/editfamily.py:987
 #: ../gramps/plugins/graph/gvfamilylines.py:97
@@ -16777,7 +16777,7 @@ msgstr "Dijeljene informacije"
 #: ../gramps/gui/glade/editrepository.glade:29
 #: ../gramps/gui/glade/editsource.glade:28
 msgid "Abandon changes and close window"
-msgstr "Odustani od promjena i zatvori prozor"
+msgstr "Odbaci promjene i zatvori prozor"
 
 #: ../gramps/gui/glade/editfamily.glade:116
 #: ../gramps/gui/glade/editfamily.glade:379
@@ -18437,7 +18437,7 @@ msgstr "Kronologija obrade"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Abandon Changes and Quit"
-msgstr "_Odustani od promjena i zatvori Gramps"
+msgstr "_Odbaci promjene i zatvori Gramps"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_About"
@@ -20478,7 +20478,7 @@ msgstr "Spremno"
 
 #: ../gramps/gui/viewmanager.py:673
 msgid "Abort changes?"
-msgstr "Odustati od promjena?"
+msgstr "Prekinuti promjene?"
 
 #: ../gramps/gui/viewmanager.py:675
 msgid ""
@@ -20490,19 +20490,19 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:678
 msgid "Abort changes"
-msgstr "Odustani od promjena"
+msgstr "Prekini promjene"
 
 #: ../gramps/gui/viewmanager.py:690
 msgid "Cannot abandon session's changes"
-msgstr "Nije moguće odustati od promjena u ovoj sesiji"
+msgstr "Nije moguće odbaciti promjene ove sesije"
 
 #: ../gramps/gui/viewmanager.py:692
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
-"Napravljene promjene ne mogu biti poništene, zbog toga što je broj promjena "
-"u ovoj sesiji prešao zadanu granicu."
+"Napravljene promjene se ne mogu potpuno odbaciti jer je broj promjena u ovoj "
+"sesiji prešao zadanu granicu."
 
 #: ../gramps/gui/viewmanager.py:893
 msgid "View failed to load. Check error output."
@@ -35243,8 +35243,8 @@ msgstr "Dotična staza"
 msgid ""
 "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
-"Pritisni gumb „U redu” za nastavak, „Odustani” za prekid ili „Natrag” za "
-"mijenjanje opcija."
+"Pritisni gumb „Primijeni” za nastavljanje, „Odustani” za prekid ili „Natrag” "
+"za mijenjanje opcija."
 
 #: ../gramps/plugins/tool/mediamanager.py:408
 msgid "Operation successfully finished"
