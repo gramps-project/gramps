@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-27 16:02+0000\n"
+"PO-Revision-Date: 2025-09-06 06:01+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.13.1-rc\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -13866,7 +13866,7 @@ msgstr "_מורמונים"
 
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:70
 msgid "Alternate _Locations"
-msgstr "מיקומים _חליפיים"
+msgstr "מיקומים _חלופיים"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:64
 msgid "Create and add a new name"
@@ -32099,8 +32099,8 @@ msgstr "אנשים שחולקים את שם המשפחה '%s'"
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
-msgstr[0] "קיים אדם {number_of} עם שם תואם, או שם חליפי.\n"
-msgstr[1] "קיימים {number_of} אנשים עם שם תואם, או שם חליפי.\n"
+msgstr[0] "קיים אדם {number_of} עם שם תואם, או שם חלופי.\n"
+msgstr[1] "קיימים {number_of} אנשים עם שם תואם, או שם חלופי.\n"
 
 #: ../gramps/plugins/quickview/samesurnames.py:177
 #, python-format
@@ -33198,7 +33198,7 @@ msgstr "%(parent-name)s, קשרי־קרבה: %(rel-type)s"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:328
 msgid "Alternate Parents"
-msgstr "הורים חליפיים"
+msgstr "הורים חלויפיים"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:469
 #: ../gramps/plugins/webreport/person.py:1621
