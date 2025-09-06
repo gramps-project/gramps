@@ -16,13 +16,14 @@
 # Yurii Liubymyi <jurchello@gmail.com>, 2025.
 # Максим Горпиніч <gorpinicmaksim5@gmail.com>, 2025.
 # Максим Горпиніч <gorpinicmaksim0@gmail.com>, 2025.
+# Ivan <ivan47044704@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-10 15:45+0000\n"
-"Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
+"PO-Revision-Date: 2025-09-01 16:02+0000\n"
+"Last-Translator: Ivan <ivan47044704@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
 "Language: uk\n"
@@ -31,7 +32,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -217,7 +218,7 @@ msgstr "Сербія"
 
 #: ../data/holidays.xml:449
 msgid "Serbia (Latin)"
-msgstr "Сербія (латинь)"
+msgstr "Сербія (латиниця)"
 
 #: ../data/holidays.xml:464
 msgid "Slovakia"
@@ -283,8 +284,8 @@ msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
-"Всі ваші дослідження зберігатися організовано, з можливістю пошуку, та "
-"настільки точно, як вам це потрібно."
+"Усі ваші дослідження зберігаються організовано, з можливістю пошуку, та "
+"настільки точно, наскільки вам це потрібно."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
 msgid "Gramps Development Team"
@@ -379,7 +380,7 @@ msgstr "XML-база даних Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
-msgstr "Файл з кодом GeneWeb"
+msgstr "Вихідний файл GeneWeb"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -388,10 +389,10 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Робота з Датами</b><br/>Діапазон дат може бути заданий у форматі \"між 4 "
-"січня 2000 та 20 березня 2003\". Також Ви можете встановити рівень точності "
-"дати та навіть маєте можливість обирати з поміж семи календарів. Спробуйте "
-"кнопку поруч з полем дати в Редакторі подій."
+"<b>Робота з датами</b><br/>Діапазон дат може бути заданий у форматі "
+"\"між 4 січня 2000 та 20 березня 2003\". Також Ви можете встановити рівень "
+"точності дати та навіть обирати з-поміж семи календарів. Спробуйте натиснути "
+"кнопку поруч із полем дати в редакторі подій."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -400,10 +401,10 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
-"<b>Редагування об'єктів</b><br/>В більшості випадків, подвійний клік на "
-"імені, джерелі, місці, чи медіа елементі викличе вікно для редагування "
+"<b>Редагування об'єктів</b><br/>У більшості випадків подвійний клік на "
+"імені, джерелі, місці чи медіаелементі створить вікно для редагування "
 "об'єкта. Зауважте, що результат буде залежати від контексту. Наприклад, у "
-"Вигляді Родини клік на батьках, чи дітях викличе редактор відносин."
+"поданні родини клік на батьках чи дітях відкриє редактор відносин."
 
 #: ../data/tips.xml:8
 msgid ""
@@ -412,9 +413,9 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
-"<b>Додавання зображень</b><br/>Зображення може бути додане до будь якої "
-"галереї, шляхом перетягування із файлового менеджера, або веб-браузера. До "
-"речі, Ви можете так додавати файли будь якого типу, це корисно для "
+"<b>Додавання зображень</b><br/>Зображення можна додати до будь-якої галереї "
+"або подання медіа, перетягнувши його з файлового менеджера або веббраузера. "
+"До речі, Ви можете так додавати файли будь-якого типу, що корисно для "
 "сканованих документів та інших цифрових джерел."
 
 #: ../data/tips.xml:10
@@ -423,7 +424,7 @@ msgid ""
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
-"<b>Упорядкування дітей в сім’ї</b><br/>Порядок народження дітей в сім’ї "
+"<b>Упорядкування дітей у сім’ї</b><br/>Порядок народження дітей в сім’ї "
 "можна змінити шляхом перетягування. Цей порядок збережеться навіть тоді, "
 "коли дата народження відсутня."
 
@@ -436,12 +437,12 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
-"<b>Поговоріть з рідними поки не стало надто пізно </b><br/>Ваші діди, бабусі "
-"є Вашим найважливішим джерелом відомостей. Вони зазвичай знають багато "
-"цікавих речей про сім'ю, які раніше не були записані. Вони можуть розповісти "
-"Вам про осіб та речі, які можуть, в один прекрасний день, стати новим "
-"предметом дослідження. Принаймні, Ви матимете змогу почути захопливі "
-"історії. Не забувайте записувати розмови!"
+"<b>Поговоріть із рідними, поки не пізно </b><br/>Ваші найстарші родичі є "
+"Вашим найважливішим джерелом інформації. Вони зазвичай знають багато цікавих "
+"речей про сім'ю, які раніше не були записані. Вони можуть розповісти Вам про "
+"осіб та речі, які можуть, в один прекрасний день, стати новим предметом "
+"дослідження. Принаймні, Ви матимете змогу почути захопливі історії. Не "
+"забувайте записувати розмови!"
 
 #: ../data/tips.xml:14
 msgid ""
@@ -454,15 +455,15 @@ msgid ""
 "the Filter field on Sidebar, then click Find button. If the Sidebar is not "
 "visible, select View > Sidebar."
 msgstr ""
-"<b>Фільтрування Осіб</b><br/>У Вигляді Осіб Ви можете 'фільтрувати' осіб на "
-"основі багатьох критеріїв. Щоб налаштувати новий фільтр, перейдіть до "
-"\"Редагування > Редактор Фільтрів Осіб\". Там Ви зможете дати назву "
-"фільтрові й додати до нього правила фільтрування. Наприклад, Ви можете "
-"створити фільтр для знаходження всіх прийомних осіб у Родинному дереві. "
-"Особи, в яких не зазначена дата народження також можуть бути відфільтровані. "
-"Щоб отримати результати, збережіть свій фільтр. Потім виберіть цей фільтр у "
-"полі «Фільтр» на бічній панелі та натисніть кнопку «Знайти». Якщо бічна "
-"панель не відображається, виберіть Перегляд > Бічна панель."
+"<b>Фільтрування осіб</b><br/>У поданні осіб Ви можете 'фільтрувати' осіб на "
+"основі багатьох критеріїв. Щоб створити новий фільтр, перейдіть до "
+"\"Редагування > Редактор фільтра осіб\". Там Ви зможете дати назву фільтрові "
+"й додати до нього правила фільтрування, використовуючи готові правила. "
+"Наприклад, Ви можете створити фільтр, який знаходить усіх прийомних осіб у "
+"сімейному дереві. Осіб без зазначеної дати народження також можна "
+"фільтрувати. Щоб отримати результати, збережіть свій фільтр. Потім виберіть "
+"цей фільтр у полі «Фільтр» на бічній панелі та натисніть кнопку «Знайти». "
+"Якщо бічна панель не показується, виберіть Перегляд > Бічна панель."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -485,19 +486,19 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Як знайти потрібну особу?</b><br/>Зазвичай подання «Особи (з "
-"групуванням)» показує кожне прізвище лише раз. Якщо клацнути на стрілці "
-"ліворуч від прізвища, відкриється список усіх осіб із таким прізвищем. Щоб "
-"знайти прізвище у довгому списку, виберіть потрібне прізвище (не особу) і "
-"почніть друкувати. Курсор перестрибне на особу з відповідним прізвищем."
+"<b>Як знайти потрібну особу?</b><br/>Зазвичай подання «Особи (з групуванням)»"
+" показує кожне прізвище лише раз. Якщо натиснути на стрілку ліворуч від "
+"прізвища, відкриється список усіх осіб із таким прізвищем. Щоб знайти "
+"прізвище в довгому списку, виберіть потрібне прізвище (не особу) і почніть "
+"друкувати. Подання перестрибне до першої особи з відповідним прізвищем."
 
 #: ../data/tips.xml:20
 msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
 msgstr ""
-"<b>Перегляд Сім'ї</b><br/>Цей вигляд використовується для показу звичайного "
-"сімейного блоку, як двоє батьків та діти."
+"<b>Подання сім'ї</b><br/>Це подання використовується для показу звичайного "
+"сімейного блоку: двоє батьків та їхні діти."
 
 #: ../data/tips.xml:22
 msgid ""
@@ -1197,17 +1198,18 @@ msgid ""
 msgstr ""
 "Помилка: Вхідне сімейне дерево \"%s\" не існує.\n"
 "Якщо відкриваєте GEDCOM, Gramps-xml або grdb, використовуйте опцію -i для "
-"імпорту сімейного дерева."
+"імпорту до сімейного дерева."
 
 #: ../gramps/cli/arghandler.py:264
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr "Помилка: файл імпорту %s не знайдено."
+msgstr "Помилка: Файл імпорту %s не знайдено."
 
 #: ../gramps/cli/arghandler.py:284
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
-msgstr "Помилка: Тип не розпізнано: \"%(format)s\" для файлу: %(filename)s"
+msgstr ""
+"Помилка: Нерозпізнаний тип: \"%(format)s\" для файлу імпорту: %(filename)s"
 
 #: ../gramps/cli/arghandler.py:307
 #, python-format
@@ -1222,7 +1224,7 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:313
 msgid "OK to overwrite?"
-msgstr "ТАК щоб перезаписати?"
+msgstr "Дозволити перезапис?"
 
 #: ../gramps/cli/arghandler.py:315 ../gramps/cli/arghandler.py:317
 #: ../gramps/cli/clidbman.py:469
@@ -1280,7 +1282,7 @@ msgstr "\"%s\""
 #: ../gramps/cli/arghandler.py:478
 #, python-format
 msgid "Performing action: %s."
-msgstr "Виконується обрана дія: %s."
+msgstr "Виконується дія: %s."
 
 #: ../gramps/cli/arghandler.py:480 ../gramps/gen/plug/report/stdoptions.py:338
 #, python-format
@@ -1298,7 +1300,7 @@ msgstr "Очищення."
 
 #: ../gramps/cli/arghandler.py:533
 msgid "Created empty Family Tree successfully"
-msgstr "Пусте сімейне дерево створено успішно"
+msgstr "Порожнє сімейне дерево створено успішно"
 
 #: ../gramps/cli/arghandler.py:536 ../gramps/cli/arghandler.py:563
 msgid "Error opening the file."
@@ -1324,15 +1326,15 @@ msgstr "  Інформація: %s"
 
 #: ../gramps/cli/arghandler.py:576
 msgid "Database is locked, cannot open it!"
-msgstr "Базу даних заблоковано, не можу відкрити!"
+msgstr "Базу даних заблоковано, не вдається її відкрити!"
 
 #: ../gramps/cli/arghandler.py:581
 msgid "Database needs recovery, cannot open it!"
-msgstr "База даних потребує відновлення, не можу відкрити!"
+msgstr "База даних потребує відновлення, не вдається її відкрити!"
 
 #: ../gramps/cli/arghandler.py:584
 msgid "Database backend unavailable, cannot open it!"
-msgstr "База даних не доступна, не можу відкрити!"
+msgstr "База даних недоступна, не вдається її відкрити!"
 
 #: ../gramps/cli/arghandler.py:635 ../gramps/cli/arghandler.py:692
 #: ../gramps/cli/arghandler.py:740
@@ -1348,7 +1350,7 @@ msgstr "Невідома назва звіту."
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 "Назву звіту не вказано. Будь ласка, використайте одну з "
-"%(donottranslate)s=назвазвіту"
+"%(donottranslate)s=reportname"
 
 #: ../gramps/cli/arghandler.py:671 ../gramps/cli/arghandler.py:723
 #: ../gramps/cli/arghandler.py:760
@@ -1362,13 +1364,13 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:716
 msgid "Unknown tool name."
-msgstr "Невідома назва інструменту."
+msgstr "Невідома назва інструмента."
 
 #: ../gramps/cli/arghandler.py:719
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
-"Не вказано назву інструменту. Будь ласка, використовуйте "
+"Не вказано назву інструмента. Будь ласка, використовуйте "
 "%(donottranslate)s=toolname."
 
 #: ../gramps/cli/arghandler.py:753
@@ -1380,7 +1382,7 @@ msgstr "Невідома назва книги."
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
 "Не вказано назву книги. Будь ласка, використовуйте "
-"%(donottranslate)s=назвакниги."
+"%(donottranslate)s=bookname."
 
 #: ../gramps/cli/arghandler.py:765
 #, python-format
@@ -1437,7 +1439,7 @@ msgstr ""
 "Використання: gramps [OPTION...]\n"
 "  --load-modules=MODULE1,MODULE2,...     Динамічні модулі для завантаження\n"
 "\n"
-"Параметри допомоги\n"
+"Опції допомоги\n"
 "  -?, --help                             Показати цю допомогу\n"
 "  --usage                                Показати коротку довідку з "
 "використання\n"
@@ -1451,9 +1453,9 @@ msgstr ""
 "  -e, --export=FILENAME                  Експортувати файл\n"
 "  -r, --remove=FAMILY_TREE_PATTERN       Вилучити відповідне сімейне "
 "дерево(ва) (використовує регулярний вираз)\n"
-"  -f, --format=FORMAT                    Вказати формат сімейного дерева\n"
-"  -a, --action=ACTION                    Вказати дію\n"
-"  -p, --options=OPTIONS_STRING           Вказати параметри\n"
+"  -f, --format=FORMAT                    Указати формат сімейного дерева\n"
+"  -a, --action=ACTION                    Указати дію\n"
+"  -p, --options=OPTIONS_STRING           Указати параметри\n"
 "  -d, --debug=LOGGER_NAME                Увімкнути журналювання\n"
 "  -l [FAMILY_TREE_PATTERN...]            Список родинних дерев\n"
 "  -L [FAMILY_TREE_PATTERN...]            Детальний список родинних дерев\n"
@@ -1462,25 +1464,24 @@ msgstr ""
 "  -u, --force-unlock                     Примусово розблокувати сімейне "
 "дерево\n"
 "  -s, --show                             Показати налаштування\n"
-"  -c, --config=[config.setting[:value]]  Встановити параметр(и) конфігурації "
+"  -c, --config=[config.setting[:value]]  Установити параметр(и) конфігурації "
 "та запустити Gramps\n"
-"  -y, --yes                              Не запитувати підтвердження в "
-"небезпечних випадках (лише режим без GUI)\n"
-"  -q, --quiet                            Не виводити індикацію прогресу "
-"(лише режим без GUI)\n"
+"  -y, --yes                              Не запитувати підтвердження "
+"небезпечних дій (лише режим без GUI)\n"
+"  -q, --quiet                            Не виводити індикацію прогресу ("
+"лише режим без GUI)\n"
 "  -v, --version                          Показати версію\n"
-"  -S, --safe                             Запустити Gramps у \"безпечному "
-"режимі\"\n"
+"  -S, --safe                             Запустити Gramps у "
+"\"безпечному режимі\"\n"
 "                                         (тимчасово використовувати типові "
 "налаштування)\n"
-"  -D, --default=[APXFE]                  Скинути налаштування до "
-"стандартних;\n"
+"  -D, --default=[APXFE]                  Скинути налаштування до стандартних;"
+"\n"
 "                 A - Очистити додатки\n"
 "                 P - Очистити налаштування\n"
-"                 X - Очистити книги, звіти та типові  налаштування "
-"інструментів\n"
+"                 X - Очистити книги, звіти та налаштування інструментів\n"
 "                 F - Очистити фільтри\n"
-"                 E - Встановити все типовим або очистити\n"
+"                 E - Скинути все до стандартного або очистити\n"
 
 #: ../gramps/cli/argparser.py:108
 msgid ""
