@@ -1,3 +1,16 @@
+2025-09-06
+Version 6.0.5
+* Update translations: bg, ca, cs, da, de, es, fi, fr, ga, he, hr, hu, it, lt,
+  pl, pt_PT, ru, sk, sv, uk.
+* Added Weblate translations for Georgian and Latvian.
+* Add Irish (ga) to the list of supported languages.
+* Update Catalan relationship calculator.
+* Fix MatchesPersonFilter. Fixes #13947.
+* Suppress file not found error if not available at end of gpkg import.
+  Fixes #12311.
+* Fix typos in the Welcome gramplet.
+* Bump version for macOS.
+
 2025-08-10
 Version 6.0.4
 * Update translations: ca, cs, da, de, de_AT, es, fa, fi, fr, he, hr, hu, id,
