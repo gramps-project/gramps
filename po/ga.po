@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: 2025-08-13 19:02+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
@@ -572,8 +572,8 @@ msgstr ""
 "<b>Do Roghanna a Shocrú</b><br/>Ligeann \"Cuir in Eagar > Roghanna...\" duit "
 "roinnt socruithe a mhodhnú, amhail an cosán chuig do chomhaid meán, agus "
 "ligeann sé duit go leor gnéithe de chur i láthair Gramps a choigeartú de "
-"réir do riachtanas. Is féidir gach radharc ar leith a chumrú faoi "
-"\"Radharc > Cumraigh Radharc...\" freisin."
+"réir do riachtanas. Is féidir gach radharc ar leith a chumrú faoi \"Radharc "
+"> Cumraigh Radharc...\" freisin."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -3232,9 +3232,9 @@ msgid ""
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
 "Tá an Crann Teaghlaigh atá tú ag iarraidh a luchtú i bhformáid leagan scéime "
-"%(oldschema)s. Úsáideann an leagan seo de Gramps leagan scéime %(newschema)"
-"s. Dá bhrí sin, ní féidir leat an Crann Teaghlaigh seo a luchtú gan leagan "
-"scéime an Chrann Teaghlaigh a uasghrádú.\n"
+"%(oldschema)s. Úsáideann an leagan seo de Gramps leagan scéime "
+"%(newschema)s. Dá bhrí sin, ní féidir leat an Crann Teaghlaigh seo a luchtú "
+"gan leagan scéime an Chrann Teaghlaigh a uasghrádú.\n"
 "\n"
 "Má dhéanann tú uasghrádú ní bheidh tú in ann an leagan roimhe seo de Gramps "
 "a úsáid, fiú má dhéanann tú "
@@ -25323,10 +25323,22 @@ msgid "Example Database"
 msgstr "<b>Sampla</b>"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
+#, fuzzy
+#| msgid ""
+#| "Want to see Gramps in use. Create and Import the Example database.\n"
+#| "\n"
+#| "Create a new Family Tree as described above. Suggest that you name the "
+#| "Family Tree “EXAMPLE”.\n"
+#| "\n"
+#| "Import the Gramps file example.gramps.\n"
+#| "\n"
+#| "Follow the instructions for the location of the file stored with the "
+#| "Gramps program.\n"
+#| "\n"
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -26644,17 +26656,17 @@ msgstr "Allmhairiú GeneWeb"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "Dáta neamhbhailí {date} i {gw_snippet}, ag caomhnú an dáta mar théacs."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Ní fhéadfaí eolaire meán %s a chruthú"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "Ní féidir eolaire meán %s a scríobh"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
@@ -26662,16 +26674,16 @@ msgstr ""
 "Tá eolaire meán %s ann. Scrios é ar dtús, ansin atosaigh an próiseas "
 "allmhairí"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Earráid ag eastóscadh isteach i %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Conair bonn do shraith meán coibhneasta"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26685,11 +26697,11 @@ msgstr ""
 "bainisteora meán á úsáid, an rogha 'Athsholáthair fotheagán sa bhealach' "
 "chun cosáin cheart a shocrú i do réada meán."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "Ní féidir cosán meán bonn a shocrú"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

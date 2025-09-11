@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: 2025-08-09 21:35+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
@@ -23652,8 +23652,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for "
-"Gramps?%(html_end)s\n"
+" 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:224
 #, python-format
@@ -23661,8 +23661,8 @@ msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
 msgstr ""
-" 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials "
-"available?%(html_end)s\n"
+" 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:233
 #, python-format
@@ -23675,8 +23675,8 @@ msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 16. %(gramps_wiki_html_start)s%(section)sHow can I help with "
-"Gramps?%(html_end)s\n"
+" 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:56
 msgid "Double-click given name for details"
@@ -25135,10 +25135,22 @@ msgid "Example Database"
 msgstr "எடுத்துக்காட்டு தரவுத்தளம்"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
+#, fuzzy
+#| msgid ""
+#| "Want to see Gramps in use. Create and Import the Example database.\n"
+#| "\n"
+#| "Create a new Family Tree as described above. Suggest that you name the "
+#| "Family Tree “EXAMPLE”.\n"
+#| "\n"
+#| "Import the Gramps file example.gramps.\n"
+#| "\n"
+#| "Follow the instructions for the location of the file stored with the "
+#| "Gramps program.\n"
+#| "\n"
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -26441,17 +26453,17 @@ msgstr "செனீவெப் இறக்குமதி"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "{gw_snippet} இல் தவறான தேதி {date}, தேதியை உரையாகப் பாதுகாத்தல்."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "மீடியா டைரக்டரி %s உருவாக்க முடியவில்லை"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "மீடியா டைரக்டரி %s எழுத முடியாதவை அல்ல"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
@@ -26459,16 +26471,16 @@ msgstr ""
 "மீடியா டைரக்டரி %s உள்ளன. முதலில் அதை நீக்கவும், பின்னர் இறக்குமதி செயல்முறையை "
 "மறுதொடக்கம் செய்யவும்"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "%s ஆக பிரித்தெடுப்பதில் பிழை"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "உறவினர் ஊடக தொகுப்பிற்கான அடிப்படை பாதை"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26482,11 +26494,11 @@ msgstr ""
 "'பாதையில் அடி மூலக்கூறுகளை மாற்றவும்' என்ற விருப்பங்களைப் பயன்படுத்தும்போது இதை "
 "விருப்பங்களில் மாற்றலாம்."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "அடிப்படை ஊடக பாதையை அமைக்க முடியாது"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "
