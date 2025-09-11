@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-08-13 19:02+0000\n"
+"PO-Revision-Date: 2025-09-08 23:02+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7638,7 +7638,7 @@ msgstr "Cúnamh"
 
 #: ../gramps/gen/lib/eventroletype.py:77
 msgid "Bride"
-msgstr "Bride"
+msgstr "Brídeog"
 
 #: ../gramps/gen/lib/eventroletype.py:78
 msgid "Groom"
@@ -7857,11 +7857,11 @@ msgstr "Baisteadh"
 
 #: ../gramps/gen/lib/eventtype.py:205
 msgid "Bar Mitzvah"
-msgstr "Bar Mitzvah"
+msgstr "Searmanas teacht in aois Giúdach (Bar Mitzvah)"
 
 #: ../gramps/gen/lib/eventtype.py:206
 msgid "Bat Mitzvah"
-msgstr "Bat Mitzvah"
+msgstr "Searmanas teacht in aois Giúdach (Bat Mitzvah)"
 
 #: ../gramps/gen/lib/eventtype.py:207
 msgid "Blessing"
@@ -8042,7 +8042,7 @@ msgstr "m."
 #: ../gramps/gen/lib/eventtype.py:251
 msgctxt "Unknown abbreviation"
 msgid "unkn."
-msgstr "unkn."
+msgstr "anaithnid"
 
 #: ../gramps/gen/lib/eventtype.py:252
 msgctxt "Custom abbreviation"
@@ -25323,18 +25323,6 @@ msgid "Example Database"
 msgstr "<b>Sampla</b>"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
-#, fuzzy
-#| msgid ""
-#| "Want to see Gramps in use. Create and Import the Example database.\n"
-#| "\n"
-#| "Create a new Family Tree as described above. Suggest that you name the "
-#| "Family Tree “EXAMPLE”.\n"
-#| "\n"
-#| "Import the Gramps file example.gramps.\n"
-#| "\n"
-#| "Follow the instructions for the location of the file stored with the "
-#| "Gramps program.\n"
-#| "\n"
 msgid ""
 "Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
@@ -25347,13 +25335,13 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
-"Ag iarraidh Gramps a fheiceáil in úsáid. Cruthaigh agus iompórtáil an "
+"Ar mhaith leat Gramps a fheiceáil in úsáid? Cruthaigh agus iompórtáil an "
 "bunachar sonraí Sampla.\n"
 "\n"
-"Cruthaigh Crann Teaghlaigh nua mar a thuairiscítear thuas. Moltar go n-"
-"ainmníonn tú an Crann Teaghlaigh “SAMPLA”.\n"
+"Cruthaigh Crann Teaghlaigh nua mar a thuairiscítear thuas. Molaimid duit "
+"“SAMPLA” a thabhairt ar an gCrann Teaghlaigh.\n"
 "\n"
-"Iompórtáil an chomhad Gramps sampla.gramps.\n"
+"Iompórtáil an comhad Gramps example.gramps.\n"
 "\n"
 "Lean na treoracha maidir le suíomh an chomhaid atá stóráilte leis an gclár "
 "Gramps.\n"
