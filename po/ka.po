@@ -2,43 +2,46 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Nick Hall <nick-h@gramps-project.org>, 2025.
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-09-11 12:16+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
-msgstr ""
+msgstr "ბულგარეთი"
 
 #: ../data/holidays.xml:52
 msgid "Canada"
-msgstr ""
+msgstr "კანადა"
 
 #: ../data/holidays.xml:84
 msgid "Catalonia"
-msgstr ""
+msgstr "კატალონია"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
-msgstr ""
+msgstr "ჩილე"
 
 #: ../data/holidays.xml:124
 msgid "China"
-msgstr ""
+msgstr "ჩინეთი"
 
 #: ../data/holidays.xml:127
 msgid "Croatia"
-msgstr ""
+msgstr "ხორვატია"
 
 #: ../data/holidays.xml:143
 msgid "Czech Republic"
@@ -46,23 +49,23 @@ msgstr ""
 
 #: ../data/holidays.xml:158
 msgid "England"
-msgstr ""
+msgstr "ინგლისი"
 
 #: ../data/holidays.xml:188
 msgid "Finland"
-msgstr ""
+msgstr "ფინეთი"
 
 #: ../data/holidays.xml:282
 msgid "France"
-msgstr ""
+msgstr "საფრანგეთი"
 
 #: ../data/holidays.xml:318
 msgid "Germany"
-msgstr ""
+msgstr "გერმანია"
 
 #: ../data/holidays.xml:335
 msgid "Japan"
-msgstr ""
+msgstr "იაპონია"
 
 #: ../data/holidays.xml:358
 msgid "Jewish Holidays"
@@ -70,11 +73,11 @@ msgstr ""
 
 #: ../data/holidays.xml:359
 msgid "Purim"
-msgstr ""
+msgstr "პურიმი"
 
 #: ../data/holidays.xml:360
 msgid "Passover"
-msgstr ""
+msgstr "პასექი"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
@@ -102,7 +105,7 @@ msgstr ""
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
-msgstr ""
+msgstr "შავუოთი"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
@@ -118,7 +121,7 @@ msgstr ""
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
-msgstr ""
+msgstr "სუკოტი"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
@@ -150,7 +153,7 @@ msgstr ""
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
-msgstr ""
+msgstr "ჰანუკა"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
@@ -182,7 +185,7 @@ msgstr ""
 
 #: ../data/holidays.xml:388
 msgid "Italy"
-msgstr ""
+msgstr "იტალია"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -190,11 +193,11 @@ msgstr ""
 
 #: ../data/holidays.xml:418
 msgid "Russia"
-msgstr ""
+msgstr "რუსეთი"
 
 #: ../data/holidays.xml:434
 msgid "Serbia"
-msgstr ""
+msgstr "სერბეთი"
 
 #: ../data/holidays.xml:449
 msgid "Serbia (Latin)"
@@ -202,19 +205,19 @@ msgstr ""
 
 #: ../data/holidays.xml:464
 msgid "Slovakia"
-msgstr ""
+msgstr "სლოვაკეთი"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:49
 msgid "Sweden"
-msgstr ""
+msgstr "შვედეთი"
 
 #: ../data/holidays.xml:508
 msgid "Turkey"
-msgstr ""
+msgstr "თურქეთი"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
-msgstr ""
+msgstr "უკრაინა"
 
 #: ../data/holidays.xml:563
 msgid "United States of America"
@@ -223,7 +226,7 @@ msgstr ""
 #: ../data/org.gramps_project.Gramps.desktop.in:2
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
-msgstr ""
+msgstr "Gramps"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:3
 msgid "Genealogy System"
@@ -270,7 +273,7 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:135
 #: ../gramps/plugins/webreport/person.py:1746
 msgid "Pedigree"
-msgstr ""
+msgstr "გენეალოგია"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
@@ -288,13 +291,13 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:227
 #: ../gramps/plugins/webreport/updates.py:106
 msgid "People"
-msgstr ""
+msgstr "ხალხი"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:42
 #: ../gramps/plugins/view/relview.py:148 ../gramps/plugins/view/view.gpr.py:119
 #: ../gramps/plugins/view/view.gpr.py:127
 msgid "Relationships"
-msgstr ""
+msgstr "ურთიერთობები"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
 #: ../gramps/gen/lib/person.py:187 ../gramps/gui/clipboard.py:730
@@ -336,7 +339,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/family.py:314
 #: ../gramps/plugins/webreport/person.py:1639
 msgid "Person"
-msgstr ""
+msgstr "პიროვნება"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -915,12 +918,12 @@ msgstr ""
 #: ../gramps/cli/arghandler.py:315 ../gramps/cli/arghandler.py:317
 #: ../gramps/cli/clidbman.py:469
 msgid "yes"
-msgstr ""
+msgstr "დიახ"
 
 #: ../gramps/cli/arghandler.py:316 ../gramps/cli/clidbman.py:470
 #: ../gramps/cli/clidbman.py:471
 msgid "no"
-msgstr ""
+msgstr "არა"
 
 #: ../gramps/cli/arghandler.py:320
 #, python-format
@@ -963,7 +966,7 @@ msgstr ""
 #: ../gramps/plugins/cite/legacy.py:91
 #, python-format
 msgid "\"%s\""
-msgstr ""
+msgstr "\"%s\""
 
 #: ../gramps/cli/arghandler.py:478
 #, python-format
@@ -994,7 +997,7 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:537 ../gramps/cli/arghandler.py:564
 msgid "Exiting..."
-msgstr ""
+msgstr "გასვლა..."
 
 #: ../gramps/cli/arghandler.py:541
 #, python-format
@@ -1206,7 +1209,7 @@ msgstr ""
 
 #: ../gramps/cli/argparser.py:383
 msgid "DEFAULT"
-msgstr ""
+msgstr "ნაგულისხმევი"
 
 #: ../gramps/cli/argparser.py:392
 #, python-format
@@ -1226,7 +1229,7 @@ msgstr ""
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:208
 #: ../gramps/gui/clipboard.py:209 ../gramps/gui/plug/_windows.py:1505
 msgid "Unavailable"
-msgstr ""
+msgstr "ხელმოუწვდომელია"
 
 #: ../gramps/cli/clidbman.py:86
 #, python-format
@@ -1244,11 +1247,11 @@ msgstr ""
 #: ../gramps/gui/selectors/selectobject.py:84
 #: ../gramps/plugins/view/mediaview.py:103
 msgid "Path"
-msgstr ""
+msgstr "ბილიკი"
 
 #: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:131
 msgid "Database"
-msgstr ""
+msgstr "მონაცემთა ბაზა"
 
 #: ../gramps/cli/clidbman.py:180 ../gramps/gui/dbman.py:434
 msgid "Last accessed"
@@ -1256,7 +1259,7 @@ msgstr ""
 
 #: ../gramps/cli/clidbman.py:181
 msgid "Locked?"
-msgstr ""
+msgstr "ჩაკეტილია?"
 
 #: ../gramps/cli/clidbman.py:216
 #, python-format
@@ -1334,7 +1337,7 @@ msgstr ""
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2329
 #: ../gramps/gui/plug/_windows.py:780
 msgid "Never"
-msgstr ""
+msgstr "არასდროს"
 
 #: ../gramps/cli/clidbman.py:602
 #, python-format
@@ -1418,7 +1421,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3047
 #: ../gramps/plugins/webreport/basepage.py:3238
 msgid "Unknown"
-msgstr ""
+msgstr "უცნობი"
 
 #: ../gramps/cli/grampscli.py:86
 #, python-format
@@ -1506,7 +1509,7 @@ msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:323
 msgid "=filename"
-msgstr ""
+msgstr "=ფაილის სახელი"
 
 #: ../gramps/cli/plug/__init__.py:323
 msgid "Output file name. MANDATORY"
@@ -1514,7 +1517,7 @@ msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:324
 msgid "=format"
-msgstr ""
+msgstr "=ფორმატი"
 
 #: ../gramps/cli/plug/__init__.py:324
 msgid "Output file format."
@@ -1522,7 +1525,7 @@ msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:325 ../gramps/cli/plug/__init__.py:326
 msgid "=name"
-msgstr ""
+msgstr "=სახელი"
 
 #: ../gramps/cli/plug/__init__.py:325
 msgid "Style name."
@@ -1536,7 +1539,7 @@ msgstr ""
 #: ../gramps/cli/plug/__init__.py:329 ../gramps/cli/plug/__init__.py:330
 #: ../gramps/cli/plug/__init__.py:331
 msgid "=number"
-msgstr ""
+msgstr "=ნომერი"
 
 #: ../gramps/cli/plug/__init__.py:327
 msgid "Paper orientation number."
@@ -1607,7 +1610,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/descendreport.py:314
 #: ../gramps/plugins/textreport/placereport.py:203
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: ../gramps/cli/plug/__init__.py:503 ../gramps/cli/plug/__init__.py:608
 #: ../gramps/cli/plug/__init__.py:691
@@ -1694,7 +1697,7 @@ msgstr ""
 
 #: ../gramps/gen/config.py:323 ../gramps/gen/config.py:325
 msgid "[Living]"
-msgstr ""
+msgstr "[ცოცხალია]"
 
 #: ../gramps/gen/config.py:324
 msgid "Private Record"
@@ -1707,17 +1710,17 @@ msgstr ""
 #: ../gramps/gen/config.py:392 ../gramps/gen/datehandler/_datestrings.py:90
 msgctxt "localized lexeme inflections"
 msgid "January"
-msgstr ""
+msgstr "იანვარი"
 
 #: ../gramps/gen/const.py:299
 msgctxt "surname"
 msgid "none"
-msgstr ""
+msgstr "არცერთი"
 
 #: ../gramps/gen/const.py:300
 msgctxt "given-name"
 msgid "none"
-msgstr ""
+msgstr "არცერთი"
 
 #: ../gramps/gen/const.py:304 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:235
@@ -1729,7 +1732,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:862
 #: ../gramps/plugins/webreport/person.py:864
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: ../gramps/gen/datehandler/__init__.py:95
 #, python-format
@@ -1751,7 +1754,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:82
 msgctxt "date format"
 msgid "Numerical"
-msgstr ""
+msgstr "რიცხვითი"
 
 #. Translators: Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:84
@@ -1970,7 +1973,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:500
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr "from"
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -1979,7 +1982,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:505
 msgctxt "to-date"
 msgid ""
-msgstr ""
+msgstr "to"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:424
 #, python-brace-format
@@ -1992,7 +1995,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:445
 msgctxt "between-date"
 msgid ""
-msgstr ""
+msgstr "between"
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2000,7 +2003,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:452
 msgctxt "and-date"
 msgid ""
-msgstr ""
+msgstr "and"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:455
 #, python-brace-format
@@ -2014,7 +2017,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:490
 msgctxt "before-date"
 msgid ""
-msgstr ""
+msgstr "before"
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2022,7 +2025,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:495
 msgctxt "after-date"
 msgid ""
-msgstr ""
+msgstr "after"
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2030,7 +2033,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:510
 msgctxt "about-date"
 msgid ""
-msgstr ""
+msgstr "about"
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
@@ -2038,7 +2041,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:515
 msgctxt "estimated-date"
 msgid ""
-msgstr ""
+msgstr "estimated"
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
@@ -2046,12 +2049,12 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:520
 msgctxt "calculated-date"
 msgid ""
-msgstr ""
+msgstr "calculated"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:540
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:676
@@ -2079,62 +2082,62 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_dateparser.py:509
 msgid "today"
-msgstr ""
+msgstr "დღეს"
 
 #: ../gramps/gen/datehandler/_datestrings.py:91
 msgctxt "localized lexeme inflections"
 msgid "February"
-msgstr ""
+msgstr "თებერვალი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:92
 msgctxt "localized lexeme inflections"
 msgid "March"
-msgstr ""
+msgstr "მარტი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:93
 msgctxt "localized lexeme inflections"
 msgid "April"
-msgstr ""
+msgstr "აპრილი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:94
 msgctxt "localized lexeme inflections"
 msgid "May"
-msgstr ""
+msgstr "მაისი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:95
 msgctxt "localized lexeme inflections"
 msgid "June"
-msgstr ""
+msgstr "ივნისი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:96
 msgctxt "localized lexeme inflections"
 msgid "July"
-msgstr ""
+msgstr "ივლისი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgctxt "localized lexeme inflections"
 msgid "August"
-msgstr ""
+msgstr "აგვისტო"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgctxt "localized lexeme inflections"
 msgid "September"
-msgstr ""
+msgstr "სექტემბერი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgctxt "localized lexeme inflections"
 msgid "October"
-msgstr ""
+msgstr "ოქტომბერი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgctxt "localized lexeme inflections"
 msgid "November"
-msgstr ""
+msgstr "ნოემბერი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgctxt "localized lexeme inflections"
 msgid "December"
-msgstr ""
+msgstr "დეკემბერი"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2143,62 +2146,62 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:110
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jan"
-msgstr ""
+msgstr "იან"
 
 #: ../gramps/gen/datehandler/_datestrings.py:111
 msgctxt "localized lexeme inflections - short month form"
 msgid "Feb"
-msgstr ""
+msgstr "თებ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
 msgctxt "localized lexeme inflections - short month form"
 msgid "Mar"
-msgstr ""
+msgstr "მარ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:113
 msgctxt "localized lexeme inflections - short month form"
 msgid "Apr"
-msgstr ""
+msgstr "აპრ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:114
 msgctxt "localized lexeme inflections - short month form"
 msgid "May"
-msgstr ""
+msgstr "მაი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:115
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jun"
-msgstr ""
+msgstr "ივნ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jul"
-msgstr ""
+msgstr "ივლ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "localized lexeme inflections - short month form"
 msgid "Aug"
-msgstr ""
+msgstr "აგვ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "localized lexeme inflections - short month form"
 msgid "Sep"
-msgstr ""
+msgstr "სექ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "localized lexeme inflections - short month form"
 msgid "Oct"
-msgstr ""
+msgstr "ოქტ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "localized lexeme inflections - short month form"
 msgid "Nov"
-msgstr ""
+msgstr "ნოე"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgctxt "localized lexeme inflections - short month form"
 msgid "Dec"
-msgstr ""
+msgstr "დეკ"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2207,77 +2210,77 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:131
 msgctxt "alternative month names for January"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:132
 msgctxt "alternative month names for February"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133
 msgctxt "alternative month names for March"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:134
 msgctxt "alternative month names for April"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135
 msgctxt "alternative month names for May"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:136
 msgctxt "alternative month names for June"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:137
 msgctxt "alternative month names for July"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:138
 msgctxt "alternative month names for August"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:139
 msgctxt "alternative month names for September"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:140
 msgctxt "alternative month names for October"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:141
 msgctxt "alternative month names for November"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:142
 msgctxt "alternative month names for December"
 msgid ""
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:657
 msgctxt "calendar"
 msgid "Gregorian"
-msgstr ""
+msgstr "გრეგორიანული"
 
 #: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:658
 msgctxt "calendar"
 msgid "Julian"
-msgstr ""
+msgstr "იულიუსის"
 
 #: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:659
 msgctxt "calendar"
 msgid "Hebrew"
-msgstr ""
+msgstr "ებრაული"
 
 #: ../gramps/gen/datehandler/_datestrings.py:150 ../gramps/gen/lib/date.py:660
 msgctxt "calendar"
@@ -2287,17 +2290,17 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:661
 msgctxt "calendar"
 msgid "Persian"
-msgstr ""
+msgstr "სპარსული"
 
 #: ../gramps/gen/datehandler/_datestrings.py:152 ../gramps/gen/lib/date.py:662
 msgctxt "calendar"
 msgid "Islamic"
-msgstr ""
+msgstr "ისლამური"
 
 #: ../gramps/gen/datehandler/_datestrings.py:153 ../gramps/gen/lib/date.py:663
 msgctxt "calendar"
 msgid "Swedish"
-msgstr ""
+msgstr "შვედური"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2306,67 +2309,67 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr ""
+msgstr "ტიშრეი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgctxt "Hebrew month lexeme"
 msgid "Heshvan"
-msgstr ""
+msgstr "ჰეშვანი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:165
 msgctxt "Hebrew month lexeme"
 msgid "Kislev"
-msgstr ""
+msgstr "კისლევი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:166
 msgctxt "Hebrew month lexeme"
 msgid "Tevet"
-msgstr ""
+msgstr "ტევეტი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:167
 msgctxt "Hebrew month lexeme"
 msgid "Shevat"
-msgstr ""
+msgstr "შევატი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
 msgctxt "Hebrew month lexeme"
 msgid "AdarI"
-msgstr ""
+msgstr "ადარლი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:169
 msgctxt "Hebrew month lexeme"
 msgid "AdarII"
-msgstr ""
+msgstr "ადარ II"
 
 #: ../gramps/gen/datehandler/_datestrings.py:170
 msgctxt "Hebrew month lexeme"
 msgid "Nisan"
-msgstr ""
+msgstr "ნისანი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:171
 msgctxt "Hebrew month lexeme"
 msgid "Iyyar"
-msgstr ""
+msgstr "ლიიარი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
 msgctxt "Hebrew month lexeme"
 msgid "Sivan"
-msgstr ""
+msgstr "სივანი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:173
 msgctxt "Hebrew month lexeme"
 msgid "Tammuz"
-msgstr ""
+msgstr "თამუზი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:174
 msgctxt "Hebrew month lexeme"
 msgid "Av"
-msgstr ""
+msgstr "ავი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:175
 msgctxt "Hebrew month lexeme"
 msgid "Elul"
-msgstr ""
+msgstr "ელული"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2375,67 +2378,67 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:184
 msgctxt "French month lexeme"
 msgid "Vendémiaire"
-msgstr ""
+msgstr "ვენდემერი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:185
 msgctxt "French month lexeme"
 msgid "Brumaire"
-msgstr ""
+msgstr "ბრიუმერი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:186
 msgctxt "French month lexeme"
 msgid "Frimaire"
-msgstr ""
+msgstr "ფრიმერი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:187
 msgctxt "French month lexeme"
 msgid "Nivôse"
-msgstr ""
+msgstr "ნივოზი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "French month lexeme"
 msgid "Pluviôse"
-msgstr ""
+msgstr "პლიუვიოზი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "French month lexeme"
 msgid "Ventôse"
-msgstr ""
+msgstr "ვანტოზი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "French month lexeme"
 msgid "Germinal"
-msgstr ""
+msgstr "ჟერმინალი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "French month lexeme"
 msgid "Floréal"
-msgstr ""
+msgstr "ფლორეალი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "French month lexeme"
 msgid "Prairial"
-msgstr ""
+msgstr "პრერიალი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "French month lexeme"
 msgid "Messidor"
-msgstr ""
+msgstr "მესიდორი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "French month lexeme"
 msgid "Thermidor"
-msgstr ""
+msgstr "ტერმიდორი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "French month lexeme"
 msgid "Fructidor"
-msgstr ""
+msgstr "ფრიუქტიდორი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgctxt "French month lexeme"
 msgid "Extra"
-msgstr ""
+msgstr "დამატებითი"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2444,22 +2447,22 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:205
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr ""
+msgstr "მუჰარამი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:206
 msgctxt "Islamic month lexeme"
 msgid "Safar"
-msgstr ""
+msgstr "საფარი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:207
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr ""
+msgstr "რაბი'ალ-ავალი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:208
 msgctxt "Islamic month lexeme"
 msgid "Rabi`ath-Thani"
-msgstr ""
+msgstr "რაბი'ათ-თანი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgctxt "Islamic month lexeme"
@@ -2474,22 +2477,22 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr ""
+msgstr "რაჯაბი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Islamic month lexeme"
 msgid "Sha`ban"
-msgstr ""
+msgstr "შაბანი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:213
 msgctxt "Islamic month lexeme"
 msgid "Ramadan"
-msgstr ""
+msgstr "რამადანი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:214
 msgctxt "Islamic month lexeme"
 msgid "Shawwal"
-msgstr ""
+msgstr "შაუალი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgctxt "Islamic month lexeme"
@@ -2508,163 +2511,163 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "Persian month lexeme"
 msgid "Farvardin"
-msgstr ""
+msgstr "ფარვარდინი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:226
 msgctxt "Persian month lexeme"
 msgid "Ordibehesht"
-msgstr ""
+msgstr "ურდიბერჰაშტი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:227
 msgctxt "Persian month lexeme"
 msgid "Khordad"
-msgstr ""
+msgstr "ხორდადი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgctxt "Persian month lexeme"
 msgid "Tir"
-msgstr ""
+msgstr "ტირი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:229
 msgctxt "Persian month lexeme"
 msgid "Mordad"
-msgstr ""
+msgstr "მურდადი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:230
 msgctxt "Persian month lexeme"
 msgid "Shahrivar"
-msgstr ""
+msgstr "შაჰრივარი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:231
 msgctxt "Persian month lexeme"
 msgid "Mehr"
-msgstr ""
+msgstr "მეჰრი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:232
 msgctxt "Persian month lexeme"
 msgid "Aban"
-msgstr ""
+msgstr "აბანი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:233
 msgctxt "Persian month lexeme"
 msgid "Azar"
-msgstr ""
+msgstr "აზარი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:234
 msgctxt "Persian month lexeme"
 msgid "Dey"
-msgstr ""
+msgstr "დეი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:235
 msgctxt "Persian month lexeme"
 msgid "Bahman"
-msgstr ""
+msgstr "ბაჰმანი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:236
 msgctxt "Persian month lexeme"
 msgid "Esfand"
-msgstr ""
+msgstr "ესფანდი"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:243
 msgctxt "date modifier"
 msgid "before "
-msgstr ""
+msgstr " -მდე"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:246
 msgctxt "date modifier"
 msgid "after "
-msgstr ""
+msgstr " -ის შემდეგ"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:249
 msgctxt "date modifier"
 msgid "about "
-msgstr ""
+msgstr "დაახლ "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "-დან "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "-მდე "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
 msgid "estimated "
-msgstr ""
+msgstr "დაახლოებით "
 
 #: ../gramps/gen/datehandler/_datestrings.py:264
 msgctxt "date quality"
 msgid "calculated "
-msgstr ""
+msgstr "გამოთვლილი "
 
 #: ../gramps/gen/datehandler/_datestrings.py:271
 msgid "Sunday"
-msgstr ""
+msgstr "კვირა"
 
 #: ../gramps/gen/datehandler/_datestrings.py:272
 msgid "Monday"
-msgstr ""
+msgstr "ორშაბაათი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:273
 msgid "Tuesday"
-msgstr ""
+msgstr "სამშაბათი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:274
 msgid "Wednesday"
-msgstr ""
+msgstr "ოთხშაბათი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:275
 msgid "Thursday"
-msgstr ""
+msgstr "ხუთშაბათი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:276
 msgid "Friday"
-msgstr ""
+msgstr "პარასკევი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:277
 msgid "Saturday"
-msgstr ""
+msgstr "შაბათი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:282
 msgid "Sun"
-msgstr ""
+msgstr "კვი"
 
 #: ../gramps/gen/datehandler/_datestrings.py:283
 msgid "Mon"
-msgstr ""
+msgstr "ორშ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:284
 msgid "Tue"
-msgstr ""
+msgstr "სამშ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:285
 msgid "Wed"
-msgstr ""
+msgstr "ოთხშ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:286
 msgid "Thu"
-msgstr ""
+msgstr "ხუთშ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:287
 msgid "Fri"
-msgstr ""
+msgstr "პარ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:288
 msgid "Sat"
-msgstr ""
+msgstr "შაბ"
 
 #: ../gramps/gen/db/base.py:1824 ../gramps/gui/widgets/fanchart.py:2311
 msgid "Add child to family"
@@ -2891,7 +2894,7 @@ msgstr ""
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:393 ../gramps/plugins/lib/libtreebase.py:725
 msgid ","
-msgstr ""
+msgstr ","
 
 #: ../gramps/gen/display/name.py:396
 msgid "Default format (defined by Gramps preferences)"
@@ -2912,7 +2915,7 @@ msgstr ""
 #: ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:206
 msgid "Given"
-msgstr ""
+msgstr "სახელი"
 
 #: ../gramps/gen/display/name.py:399
 msgid "Given Surname Suffix"
@@ -2929,71 +2932,71 @@ msgstr ""
 #: ../gramps/gen/display/name.py:640 ../gramps/gen/display/name.py:771
 msgctxt "Person"
 msgid "title"
-msgstr ""
+msgstr "ტიტული"
 
 #: ../gramps/gen/display/name.py:641 ../gramps/gen/display/name.py:772
 #: ../gramps/plugins/importer/importcsv.py:205
 msgid "given"
-msgstr ""
+msgstr "სახელი"
 
 #: ../gramps/gen/display/name.py:645 ../gramps/gen/display/name.py:773
 #: ../gramps/plugins/importer/importcsv.py:197
 #: ../gramps/plugins/tool/removespaces.py:149
 msgid "surname"
-msgstr ""
+msgstr "გვარი"
 
 #: ../gramps/gen/display/name.py:647 ../gramps/gen/display/name.py:774
 #: ../gramps/gui/editors/editperson.py:408
 #: ../gramps/plugins/importer/importcsv.py:233
 msgid "suffix"
-msgstr ""
+msgstr "სუფიქსი"
 
 #: ../gramps/gen/display/name.py:648 ../gramps/gen/display/name.py:775
 msgctxt "Name"
 msgid "call"
-msgstr ""
+msgstr "მეტსახელი"
 
 #: ../gramps/gen/display/name.py:652 ../gramps/gen/display/name.py:779
 msgctxt "Name"
 msgid "common"
-msgstr ""
+msgstr "სალაპარაკო"
 
 #: ../gramps/gen/display/name.py:658 ../gramps/gen/display/name.py:784
 msgid "initials"
-msgstr ""
+msgstr "ინიციალები"
 
 #: ../gramps/gen/display/name.py:663 ../gramps/gen/display/name.py:789
 msgctxt "Name"
 msgid "primary"
-msgstr ""
+msgstr "ძირითადი"
 
 #: ../gramps/gen/display/name.py:668 ../gramps/gen/display/name.py:794
 msgid "primary[pre]"
-msgstr ""
+msgstr "ძირითადი[ძირ]"
 
 #: ../gramps/gen/display/name.py:673 ../gramps/gen/display/name.py:799
 msgid "primary[sur]"
-msgstr ""
+msgstr "ძირითადი[გვარ]"
 
 #: ../gramps/gen/display/name.py:678 ../gramps/gen/display/name.py:804
 msgid "primary[con]"
-msgstr ""
+msgstr "ძირითადი[კავშ]"
 
 #: ../gramps/gen/display/name.py:683 ../gramps/gen/display/name.py:809
 msgid "patronymic"
-msgstr ""
+msgstr "მამის სახელი"
 
 #: ../gramps/gen/display/name.py:688 ../gramps/gen/display/name.py:814
 msgid "patronymic[pre]"
-msgstr ""
+msgstr "მამის სახელი[პრე]"
 
 #: ../gramps/gen/display/name.py:693 ../gramps/gen/display/name.py:819
 msgid "patronymic[sur]"
-msgstr ""
+msgstr "მამის სახელი[გვარ]"
 
 #: ../gramps/gen/display/name.py:698 ../gramps/gen/display/name.py:824
 msgid "patronymic[con]"
-msgstr ""
+msgstr "მამის სახელი[კავშ]"
 
 #: ../gramps/gen/display/name.py:703 ../gramps/gen/display/name.py:829
 msgid "notpatronymic"
