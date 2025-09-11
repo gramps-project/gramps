@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: 2025-08-31 06:05+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
@@ -3200,8 +3200,8 @@ msgstr ""
 "Aquesta versió del Gramps no admet la versió de Python.\n"
 "\n"
 "Aquest arbre genealògic té la versió de Python %(tree_vers)s, i aquesta "
-"versió del Gramps admet les versions entre la %(min_vers)s i la %(max_vers)"
-"s\n"
+"versió del Gramps admet les versions entre la %(min_vers)s i la "
+"%(max_vers)s\n"
 "\n"
 "Actualitzeu a la versió corresponent, o feu servir XML per a portar les "
 "dades entre versions de Python diferents."
@@ -6498,8 +6498,8 @@ msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
-"El lloc que heu seleccionat conté coordenades errònies. Executeu l'eina «"
-"Neteja les dades d'entrada»"
+"El lloc que heu seleccionat conté coordenades errònies. Executeu l'eina "
+"«Neteja les dades d'entrada»"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:46
 msgid "Every repository"
@@ -6627,7 +6627,8 @@ msgstr "Dipòsits amb id. que contingui <text>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:51
 msgid "Matches repositories whose Gramps ID matches the regular expression"
-msgstr "Concorda amb dipòsits l'Id Gramps del qual compleix l'expressió regular"
+msgstr ""
+"Concorda amb dipòsits l'Id Gramps del qual compleix l'expressió regular"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:44
 msgid "Repositories marked private"
@@ -6776,7 +6777,8 @@ msgstr "Concorda amb fonts que compleixen el nom de filtre especificat"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:55
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "Fonts amb referència a dipòsit que concordin amb el <filtre de dipòsit>"
+msgstr ""
+"Fonts amb referència a dipòsit que concordin amb el <filtre de dipòsit>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:57
 msgid ""
@@ -10810,7 +10812,8 @@ msgstr "No s'ha pogut desar la llista de BD recents al fitxer {fname}: {error}"
 #: ../gramps/gen/recentfiles.py:250
 #, python-brace-format
 msgid "Unable to open list of recent DBs file {fname}: {error}"
-msgstr "No s'ha pogut obrir la llista de BD recents del fitxer {fname}: {error}"
+msgstr ""
+"No s'ha pogut obrir la llista de BD recents del fitxer {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:257
 #, python-brace-format
@@ -19025,8 +19028,8 @@ msgid ""
 "submit report"
 msgstr ""
 "Amb aquest botó, copieu l'informe d'error al porta-retalls. Llavors aneu al "
-"web de seguiment d'errors amb el botó de sota, enganxeu l'informe i cliqueu «"
-"Submit report» («Envia l'informe»)"
+"web de seguiment d'errors amb el botó de sota, enganxeu l'informe i cliqueu "
+"«Submit report» («Envia l'informe»)"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:735
 #: ../gramps/gui/logger/_errorreportassistant.py:766
@@ -25432,10 +25435,22 @@ msgid "Example Database"
 msgstr "Base de dades d'exemple"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
+#, fuzzy
+#| msgid ""
+#| "Want to see Gramps in use. Create and Import the Example database.\n"
+#| "\n"
+#| "Create a new Family Tree as described above. Suggest that you name the "
+#| "Family Tree “EXAMPLE”.\n"
+#| "\n"
+#| "Import the Gramps file example.gramps.\n"
+#| "\n"
+#| "Follow the instructions for the location of the file stored with the "
+#| "Gramps program.\n"
+#| "\n"
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -25736,8 +25751,8 @@ msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
-"Les persones d'interès es fan servir com a punt de partida en determinar «"
-"línies familiars»."
+"Les persones d'interès es fan servir com a punt de partida en determinar "
+"«línies familiars»."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:240
 msgid "Limit the number of ancestors"
@@ -26749,17 +26764,17 @@ msgstr "Importació GeneWeb"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "Data invàlida {date} a {gw_snippet}, es conservarà la data com a text."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "No s'ha pogut crear la carpeta de medis audiovisuals %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "No es pot escriure a la carpeta de medis audiovisuals %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
@@ -26767,16 +26782,16 @@ msgstr ""
 "La carpeta de medis audiovisuals %s ja existeix. Esborri-la primer, i "
 "després torni a començar el procés d'importació"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Error extraient cap a %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Camí base per al conjunt de medis audiovisuals"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26790,11 +26805,11 @@ msgstr ""
 "Gestor de Medis, amb l'opció 'Substituir subcadenes dins el camí' per fixar "
 "camins correctes cap als medis audiovisuals."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "No es pot fixar el camí base de medis audiovisuals"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

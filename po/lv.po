@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -594,9 +594,9 @@ msgstr ""
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by going to https://gramps-"
-"project.org/bugs/ and creating a Feature Request. Filing a Feature Request "
-"is preferred but it can be good to discuss your ideas on the email lists."
+"users or gramps-devel mailing lists, or by going to https://gramps-project."
+"org/bugs/ and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
 msgstr ""
 
 #: ../data/tips.xml:62
@@ -1147,8 +1147,8 @@ msgid ""
 "6. To open a database and, based on that data, generate timeline report in "
 "PDF format\n"
 "putting the output into the my_timeline.pdf file:\n"
-"gramps -O 'Family Tree 1' -a report -p "
-"name=timeline,off=pdf,of=my_timeline.pdf\n"
+"gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=my_timeline."
+"pdf\n"
 "\n"
 "7. To generate a summary of a database:\n"
 "gramps -O 'Family Tree 1' -a report -p name=summary\n"
@@ -3423,8 +3423,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:50
 msgid ""
-"Matches citation records changed after a specified date-time (yyyy-mm-dd "
-"hh:mm:ss) or in the range, if a second date-time is given."
+"Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
+"mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:45
@@ -3716,8 +3716,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:51
 msgid ""
-"Matches event records changed after a specified date/time (yyyy-mm-dd "
-"hh:mm:ss) or in the range, if a second date/time is given."
+"Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
+"ss) or in the range, if a second date/time is given."
 msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:44
@@ -3978,8 +3978,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:51
 msgid ""
-"Matches family records changed after a specified date-time (yyyy-mm-dd "
-"hh:mm:ss) or in the range, if a second date-time is given."
+"Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
+"ss) or in the range, if a second date-time is given."
 msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:55
@@ -4344,8 +4344,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_changedsince.py:49
 msgid ""
-"Matches media objects changed after a specified date:time (yyyy-mm-dd "
-"hh:mm:ss) or in the range, if a second date:time is given."
+"Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
+"ss) or in the range, if a second date:time is given."
 msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
@@ -4503,8 +4503,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:51
 msgid ""
-"Matches note records changed after a specified date-time (yyyy-mm-dd "
-"hh:mm:ss) or in the range, if a second date-time is given."
+"Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
+"ss) or in the range, if a second date-time is given."
 msgstr ""
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:47
@@ -4589,8 +4589,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:51
 msgid ""
-"Matches person records changed after a specified date-time (yyyy-mm-dd "
-"hh:mm:ss) or in the range, if a second date-time is given."
+"Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
+"ss) or in the range, if a second date-time is given."
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:150
@@ -5459,8 +5459,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:51
 msgid ""
-"Matches place records changed after a specified date-time (yyyy-mm-dd "
-"hh:mm:ss) or in the range, if a second date-time is given."
+"Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
+"ss) or in the range, if a second date-time is given."
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
@@ -5892,8 +5892,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:51
 msgid ""
-"Matches source records changed after a specified date-time (yyyy-mm-dd "
-"hh:mm:ss) or in the range, if a second date-time is given."
+"Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
+"ss) or in the range, if a second date-time is given."
 msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
@@ -16294,8 +16294,8 @@ msgstr ""
 #: ../gramps/gui/glade/editplace.glade:214
 #: ../gramps/gui/glade/editplaceref.glade:370
 msgid ""
-"or use copy/paste from your favorite map provider (format : "
-"latitude,longitude) in the following field:"
+"or use copy/paste from your favorite map provider (format : latitude,"
+"longitude) in the following field:"
 msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:239
@@ -16469,8 +16469,8 @@ msgstr ""
 
 #: ../gramps/gui/glade/editurl.glade:186
 msgid ""
-"The internet address as needed to navigate to it, eg. http://gramps-"
-"project.org"
+"The internet address as needed to navigate to it, eg. http://gramps-project."
+"org"
 msgstr ""
 
 #: ../gramps/gui/glade/editurl.glade:201
@@ -23612,9 +23612,9 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -24867,32 +24867,32 @@ msgstr ""
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -24901,11 +24901,11 @@ msgid ""
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

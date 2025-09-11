@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: 2024-08-03 08:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -25471,9 +25471,9 @@ msgstr "整個資料庫"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -26855,32 +26855,32 @@ msgstr "GeneWeb 匯入"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "無法建立媒體目錄 %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "媒體目錄 %s 不可寫入"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr "媒體目錄 %s 已經存在。請先刪除該目錄，然後重啟匯入程序"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "解壓縮至 %s 時出錯"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "相對媒體設定基本路徑"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26892,11 +26892,11 @@ msgstr ""
 "「首選項」中修改此設定，並把您的媒體檔案到新的位置，再使用媒體管理工具的「取"
 "代路徑名」選項來為您的媒體物件設定正確路徑。"
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "無法設定基礎媒體路徑"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, fuzzy, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "
