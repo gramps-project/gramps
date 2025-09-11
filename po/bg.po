@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: 2025-08-22 10:02+0000\n"
 "Last-Translator: Apostol Penkov <apostol.penkov@gmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/gramps-project/"
@@ -548,8 +548,8 @@ msgid ""
 "ancestors are reported."
 msgstr ""
 "<b>Изчисляване на роднински връзки</b><br/>За да проверите дали двама души в "
-"базата данни са роднини (по кръв, а не по брак), опитайте инструмента в „"
-"Инструменти > Помощни програми > Калкулатор на роднински връзки...“. "
+"базата данни са роднини (по кръв, а не по брак), опитайте инструмента в "
+"„Инструменти > Помощни програми > Калкулатор на роднински връзки...“. "
 "Посочват се точната роднинска връзка, както и всички общи предци."
 
 #: ../data/tips.xml:30
@@ -26033,9 +26033,9 @@ msgstr "Цялата база от данни"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -27450,17 +27450,17 @@ msgstr "Внасяне на GeneWeb"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Медийната папка %s не може да бъде създадена"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "В медийната папка %s не може да се записва"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
@@ -27468,16 +27468,16 @@ msgstr ""
 "Медийната папка %s съществува. Първо я изтрийте, а след това рестартирайте "
 "процесът на внасяне"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Грешка при извличане в %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Основен път за множеството от медийни обекти"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, fuzzy, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -27491,11 +27491,11 @@ msgstr ""
 "медийни обекти, опция 'замести низ в пътя' за да установите правилни пътища "
 "до тях."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "Не може да се зададе основен път за медиите"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, fuzzy, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: 2025-09-01 16:02+0000\n"
 "Last-Translator: Ivan <ivan47044704@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
@@ -389,10 +389,10 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Робота з датами</b><br/>Діапазон дат може бути заданий у форматі "
-"\"між 4 січня 2000 та 20 березня 2003\". Також Ви можете встановити рівень "
-"точності дати та навіть обирати з-поміж семи календарів. Спробуйте натиснути "
-"кнопку поруч із полем дати в редакторі подій."
+"<b>Робота з датами</b><br/>Діапазон дат може бути заданий у форматі \"між 4 "
+"січня 2000 та 20 березня 2003\". Також Ви можете встановити рівень точності "
+"дати та навіть обирати з-поміж семи календарів. Спробуйте натиснути кнопку "
+"поруч із полем дати в редакторі подій."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -486,11 +486,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Як знайти потрібну особу?</b><br/>Зазвичай подання «Особи (з групуванням)»"
-" показує кожне прізвище лише раз. Якщо натиснути на стрілку ліворуч від "
-"прізвища, відкриється список усіх осіб із таким прізвищем. Щоб знайти "
-"прізвище в довгому списку, виберіть потрібне прізвище (не особу) і почніть "
-"друкувати. Подання перестрибне до першої особи з відповідним прізвищем."
+"<b>Як знайти потрібну особу?</b><br/>Зазвичай подання «Особи (з "
+"групуванням)» показує кожне прізвище лише раз. Якщо натиснути на стрілку "
+"ліворуч від прізвища, відкриється список усіх осіб із таким прізвищем. Щоб "
+"знайти прізвище в довгому списку, виберіть потрібне прізвище (не особу) і "
+"почніть друкувати. Подання перестрибне до першої особи з відповідним "
+"прізвищем."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -1468,15 +1469,15 @@ msgstr ""
 "та запустити Gramps\n"
 "  -y, --yes                              Не запитувати підтвердження "
 "небезпечних дій (лише режим без GUI)\n"
-"  -q, --quiet                            Не виводити індикацію прогресу ("
-"лише режим без GUI)\n"
+"  -q, --quiet                            Не виводити індикацію прогресу "
+"(лише режим без GUI)\n"
 "  -v, --version                          Показати версію\n"
-"  -S, --safe                             Запустити Gramps у "
-"\"безпечному режимі\"\n"
+"  -S, --safe                             Запустити Gramps у \"безпечному "
+"режимі\"\n"
 "                                         (тимчасово використовувати типові "
 "налаштування)\n"
-"  -D, --default=[APXFE]                  Скинути налаштування до стандартних;"
-"\n"
+"  -D, --default=[APXFE]                  Скинути налаштування до "
+"стандартних;\n"
 "                 A - Очистити додатки\n"
 "                 P - Очистити налаштування\n"
 "                 X - Очистити книги, звіти та налаштування інструментів\n"
@@ -25156,10 +25157,22 @@ msgid "Example Database"
 msgstr "Приклад бази даних"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
+#, fuzzy
+#| msgid ""
+#| "Want to see Gramps in use. Create and Import the Example database.\n"
+#| "\n"
+#| "Create a new Family Tree as described above. Suggest that you name the "
+#| "Family Tree “EXAMPLE”.\n"
+#| "\n"
+#| "Import the Gramps file example.gramps.\n"
+#| "\n"
+#| "Follow the instructions for the location of the file stored with the "
+#| "Gramps program.\n"
+#| "\n"
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -26462,17 +26475,17 @@ msgstr "Імпорт GeneWeb"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "Хибна дата {date} в {gw_snippet}, збереження дати у вигляді тексту."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Не можу створити каталог для медіа %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "Медіа каталог %s не доступний для запису"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
@@ -26480,16 +26493,16 @@ msgstr ""
 "Медіа каталог %s вже існує. Видаліть його спочатку, та перезапустіть процес "
 "імпорту"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Помилка розпаковування до %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Базовий шлях для медіа встановлено"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26503,11 +26516,11 @@ msgstr ""
 "медіа, виконати операцію 'Замінити підрядок в шляху', щоб вказати вірний "
 "шлях до Ваших медіа об’єктів."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "Не можу встановити базовий каталог для медіа"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

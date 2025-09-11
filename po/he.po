@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: 2025-09-06 06:01+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
@@ -24809,10 +24809,22 @@ msgid "Example Database"
 msgstr "מסד נתונים לדוגמה"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
+#, fuzzy
+#| msgid ""
+#| "Want to see Gramps in use. Create and Import the Example database.\n"
+#| "\n"
+#| "Create a new Family Tree as described above. Suggest that you name the "
+#| "Family Tree “EXAMPLE”.\n"
+#| "\n"
+#| "Import the Gramps file example.gramps.\n"
+#| "\n"
+#| "Follow the instructions for the location of the file stored with the "
+#| "Gramps program.\n"
+#| "\n"
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -26096,32 +26108,32 @@ msgstr "ייבוא מקובץ GeneWeb"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "תאריך שגוי {date} ב־{gw_snippet}, שמירת תאריך כמלל."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "לא ניתן ליצור מחיצת מדיה %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "מחיצת מדיה %s לא ניתנת לכתיבה"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr "קיימת מחיצת מדיה %s. נא למחוק אותה ואז להתחיל את תהליך היבוא מחדש"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "שגיאה בחילוץ לתוך %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "נתיב הבסיס לנתיבים יחסיים לערכת מדיה"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26134,11 +26146,11 @@ msgstr ""
 "בכלי מנהל המדיה, אפשרות 'החלפת מחרוזת משנה בנתיב' כדי לעדכן נתיבים בעצמי "
 "המדיה."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "לא ניתן להגדיר נתיב בסיס למדיה"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

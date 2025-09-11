@@ -30,11 +30,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: 2025-08-10 15:45+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
-"gramps-project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
+"project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25499,10 +25499,22 @@ msgid "Example Database"
 msgstr "Beispieldatenbank"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
+#, fuzzy
+#| msgid ""
+#| "Want to see Gramps in use. Create and Import the Example database.\n"
+#| "\n"
+#| "Create a new Family Tree as described above. Suggest that you name the "
+#| "Family Tree “EXAMPLE”.\n"
+#| "\n"
+#| "Import the Gramps file example.gramps.\n"
+#| "\n"
+#| "Follow the instructions for the location of the file stored with the "
+#| "Gramps program.\n"
+#| "\n"
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -26830,17 +26842,17 @@ msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
 "Ungültiges Datum {date} in {gw_snippet}, Datum wird als Text beibehalten."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Konnte Medienverzeichnis %s nicht erstellen"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "In Medienverzeichnis %s kann nicht geschrieben werden"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
@@ -26848,16 +26860,16 @@ msgstr ""
 "Medienverzeichnis %s existiert. Lösche es erst und wiederhole danach den "
 "Importvorgang"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Fehler beim Entpacken nach %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Basispfad für relativen Mediensatz"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26871,11 +26883,11 @@ msgstr ""
 "Medienverwaltungswerkzeug mit der Option 'Teilzeichenfolge im Pfad "
 "ersetzen', um die korrekten Pfade in deinen Medienobjekten zu setzen."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "Kann Medienbasispfad nicht setzen"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

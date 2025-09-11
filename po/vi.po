@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VIETNAMESE 4.2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: 2022-03-01 00:39+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/gramps-"
@@ -25625,9 +25625,9 @@ msgstr "Toàn bộ CSDL "
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -26959,17 +26959,17 @@ msgstr "Nhập GeneWeb "
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "Ngày không đúng {date} ở {gw_snippet}, giữ ngày tháng dạng văn b"
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Không thể tạo ra thư mục tập tin đa phương tiện %s "
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "Thư mục tập tin đa phương tiện %s không ghi được "
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
@@ -26977,16 +26977,16 @@ msgstr ""
 "Thư mục đa phương tiện %s không có. Xóa bỏ nó trước, rồi khởi động lại quá "
 "trình nhập."
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Lỗi khi xuất vào %s "
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Đường dẫn cơ bản cho các tập tin đa phương tiện liên quan "
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -27000,11 +27000,11 @@ msgstr ""
 "dùng công cụ quản lý ĐPT, mục chọn 'Thay cú pháp phụ trong đường dẫn' để đặt "
 "đúng đường dẫn cho đối tượng đa phương tiện của bạn. "
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "Không thể đặt đường dẫn tập tin đa phương tiện cơ bản "
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

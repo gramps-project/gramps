@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: 2025-04-14 07:21+0000\n"
 "Last-Translator: Vlad-Mihai Chirculete <mihai.chirculete@tutanota.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/gramps-project/"
@@ -26102,9 +26102,9 @@ msgstr "Întreaga Bază de Date"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -27558,33 +27558,33 @@ msgstr "Generează rapoarte"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, fuzzy, python-format
 msgid "Could not create media directory %s"
 msgstr "Nu am putut crea directorul: %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, fuzzy, python-format
 msgid "Error extracting into %s"
 msgstr "Eroare de citire în %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 #, fuzzy
 msgid "Base path for relative media set"
 msgstr "Converteşte la copia locală"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -27593,12 +27593,12 @@ msgid ""
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 #, fuzzy
 msgid "Cannot set base media path"
 msgstr "Uneşte Persoane"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "
