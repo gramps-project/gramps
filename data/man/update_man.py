@@ -52,7 +52,7 @@ SPHINXBUILD = "sphinx-build"
 if sys.platform == "win32":
     pythonCmd = os.path.join(sys.prefix, "bin", "python.exe")
     sphinxCmd = os.path.join(sys.prefix, "bin", "sphinx-build.exe")
-elif sys.platform in ["linux2", "darwin", "cygwin"]:
+elif sys.platform in ["linux", "linux2", "darwin", "cygwin"]:
     pythonCmd = os.path.join(sys.prefix, "bin", "python")
     sphinxCmd = SPHINXBUILD
 else:
@@ -74,7 +74,7 @@ def tests():
 
     try:
         print("\n=================='Sphinx-build'=============================\n")
-        os.system("""%(program)s""" % {"program": sphinxCmd})
+        os.system("""%(program)s --version""" % {"program": sphinxCmd})
     except:
         print("Please, install sphinx")
 
@@ -193,11 +193,11 @@ def man():
     from docutils.writers import manpage
     """
 
-    os.system("""rst2man en.rst gramps.1""")
+    os.system("""rst2man en.rst gramps.1.in""")
 
     for lang in LANGUAGES:
         os.system(
-            """rst2man %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.1"""
+            """rst2man %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.1.in"""
             % {"lang": lang}
         )
 
