@@ -44,7 +44,7 @@ from gramps.plugins.db.dbapi.dbapi import DBAPI
 
 _ = glocale.translation.gettext
 
-sqlite3.paramstyle = "qmark"
+sqlite3.paramstyle = "qmark"  # type: ignore[misc]
 
 
 # -------------------------------------------------------------------------
