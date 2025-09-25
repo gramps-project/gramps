@@ -2,266 +2,336 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Nick Hall <nick-h@gramps-project.org>, 2025.
+# Ilsur Irnazarov <temyas@yandex.ru>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-09-15 19:02+0000\n"
+"Last-Translator: Ilsur Irnazarov <temyas@yandex.ru>\n"
+"Language-Team: Bashkir <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/ba/>\n"
 "Language: ba\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: ../data/holidays.xml:3
+#, fuzzy
 msgid "Bulgaria"
-msgstr ""
+msgstr "Болгария"
 
 #: ../data/holidays.xml:52
+#, fuzzy
 msgid "Canada"
-msgstr ""
+msgstr "Канада"
 
 #: ../data/holidays.xml:84
+#, fuzzy
 msgid "Catalonia"
-msgstr ""
+msgstr "Каталония"
 
 #: ../data/holidays.xml:101
+#, fuzzy
 msgid "Chile"
-msgstr ""
+msgstr "Чили"
 
 #: ../data/holidays.xml:124
+#, fuzzy
 msgid "China"
-msgstr ""
+msgstr "Ҡытай"
 
 #: ../data/holidays.xml:127
+#, fuzzy
 msgid "Croatia"
-msgstr ""
+msgstr "Хорватия"
 
 #: ../data/holidays.xml:143
+#, fuzzy
 msgid "Czech Republic"
-msgstr ""
+msgstr "Чехия Республикаһы"
 
 #: ../data/holidays.xml:158
+#, fuzzy
 msgid "England"
-msgstr ""
+msgstr "Англия"
 
 #: ../data/holidays.xml:188
+#, fuzzy
 msgid "Finland"
-msgstr ""
+msgstr "Финляндия"
 
 #: ../data/holidays.xml:282
+#, fuzzy
 msgid "France"
-msgstr ""
+msgstr "Франция"
 
 #: ../data/holidays.xml:318
+#, fuzzy
 msgid "Germany"
-msgstr ""
+msgstr "Германия"
 
 #: ../data/holidays.xml:335
+#, fuzzy
 msgid "Japan"
-msgstr ""
+msgstr "Япония"
 
 #: ../data/holidays.xml:358
+#, fuzzy
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "Яһүд байрамдары"
 
 #: ../data/holidays.xml:359
+#, fuzzy
 msgid "Purim"
-msgstr ""
+msgstr "Пурим"
 
 #: ../data/holidays.xml:360
+#, fuzzy
 msgid "Passover"
-msgstr ""
+msgstr "Песах"
 
 #: ../data/holidays.xml:361
+#, fuzzy
 msgid "2 of Passover"
-msgstr ""
+msgstr "Песах 2-се көнө"
 
 #: ../data/holidays.xml:362
+#, fuzzy
 msgid "3 of Passover"
-msgstr ""
+msgstr "Песах 3-сө көнө"
 
 #: ../data/holidays.xml:363
+#, fuzzy
 msgid "4 of Passover"
-msgstr ""
+msgstr "Песах 4-се көнө"
 
 #: ../data/holidays.xml:364
+#, fuzzy
 msgid "5 of Passover"
-msgstr ""
+msgstr "Песах 5-се көнө"
 
 #: ../data/holidays.xml:365
+#, fuzzy
 msgid "6 of Passover"
-msgstr ""
+msgstr "Песах 6-сы көнө"
 
 #: ../data/holidays.xml:366
+#, fuzzy
 msgid "7 of Passover"
-msgstr ""
+msgstr "Песах 7-се көнө"
 
 #: ../data/holidays.xml:367
+#, fuzzy
 msgid "Shavuot"
-msgstr ""
+msgstr "Шавуот"
 
 #: ../data/holidays.xml:368
+#, fuzzy
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "Рош Ха-Шана"
 
 #: ../data/holidays.xml:369
+#, fuzzy
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "Рош Ха-Шана 2"
 
 #: ../data/holidays.xml:370
+#, fuzzy
 msgid "Yom Kippur"
-msgstr ""
+msgstr "Йом Кипур"
 
 #: ../data/holidays.xml:371
+#, fuzzy
 msgid "Sukot"
-msgstr ""
+msgstr "Суккот"
 
 #: ../data/holidays.xml:372
+#, fuzzy
 msgid "2 of Sukot"
-msgstr ""
+msgstr "Суккот 2-се көнө"
 
 #: ../data/holidays.xml:373
+#, fuzzy
 msgid "3 of Sukot"
-msgstr ""
+msgstr "Суккот 3-сө көнө"
 
 #: ../data/holidays.xml:374
+#, fuzzy
 msgid "4 of Sukot"
-msgstr ""
+msgstr "Суккот 4-се көнө"
 
 #: ../data/holidays.xml:375
+#, fuzzy
 msgid "5 of Sukot"
-msgstr ""
+msgstr "Суккот 5-се көнө"
 
 #: ../data/holidays.xml:376
+#, fuzzy
 msgid "6 of Sukot"
-msgstr ""
+msgstr "Суккот 6-сы көнө"
 
 #: ../data/holidays.xml:377
+#, fuzzy
 msgid "7 of Sukot"
-msgstr ""
+msgstr "Суккот 7-се көнө"
 
 #: ../data/holidays.xml:378
+#, fuzzy
 msgid "Simhat Tora"
-msgstr ""
+msgstr "Симхат Тора"
 
 #: ../data/holidays.xml:379
+#, fuzzy
 msgid "Hanuka"
-msgstr ""
+msgstr "Ханука"
 
 #: ../data/holidays.xml:380
+#, fuzzy
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "Ханука 2-се көнө"
 
 #: ../data/holidays.xml:381
+#, fuzzy
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "Ханука 3-сө көнө"
 
 #: ../data/holidays.xml:382
+#, fuzzy
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "Ханука 4-се көнө"
 
 #: ../data/holidays.xml:383
+#, fuzzy
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "Ханука 5-се көнө"
 
 #: ../data/holidays.xml:384
+#, fuzzy
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "Ханука 6-сы көнө"
 
 #: ../data/holidays.xml:385
+#, fuzzy
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "Ханука 7-се көнө"
 
 #: ../data/holidays.xml:386
+#, fuzzy
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "Ханука 8-се көнө"
 
 #: ../data/holidays.xml:388
+#, fuzzy
 msgid "Italy"
-msgstr ""
+msgstr "Италия"
 
 #: ../data/holidays.xml:402
+#, fuzzy
 msgid "New Zealand"
-msgstr ""
+msgstr "Яңы Зеландия"
 
 #: ../data/holidays.xml:418
+#, fuzzy
 msgid "Russia"
-msgstr ""
+msgstr "Рәсәй"
 
 #: ../data/holidays.xml:434
+#, fuzzy
 msgid "Serbia"
-msgstr ""
+msgstr "Сербия"
 
 #: ../data/holidays.xml:449
+#, fuzzy
 msgid "Serbia (Latin)"
-msgstr ""
+msgstr "Сербия (Латин)"
 
 #: ../data/holidays.xml:464
+#, fuzzy
 msgid "Slovakia"
-msgstr ""
+msgstr "Словакия"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:49
+#, fuzzy
 msgid "Sweden"
-msgstr ""
+msgstr "Швеция"
 
 #: ../data/holidays.xml:508
+#, fuzzy
 msgid "Turkey"
-msgstr ""
+msgstr "Төркиә"
 
 #: ../data/holidays.xml:536
+#, fuzzy
 msgid "Ukraine"
-msgstr ""
+msgstr "Украина"
 
 #: ../data/holidays.xml:563
+#, fuzzy
 msgid "United States of America"
-msgstr ""
+msgstr "Америка Ҡушма Штаттары"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:2
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
+#, fuzzy
 msgid "Gramps"
-msgstr ""
+msgstr "Gramps"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:3
+#, fuzzy
 msgid "Genealogy System"
-msgstr ""
+msgstr "Шәжәрә системаһы"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:5
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
+#, fuzzy
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
+"Генеалогик мәғлүмәттәрҙе системаға һалығыҙ, генеалогик тикшеренеүҙәр һәм "
+"анализ менән шөғөлләнегеҙ"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:11
+#, fuzzy
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr ""
+msgstr "Шәжәрә; Ғаилә тарихы; Тикшеренеүҙәр; Ғаилә ағасы; GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
 #: ../gramps/gen/const.py:265
+#, fuzzy
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
+"Gramps - һәүәҫкәрҙәр өсөн генеалогик программа, әммә профессионалдарға "
+"кәрәкле функционал да бар."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
+#, fuzzy
 msgid ""
 "It gives you the ability to record the many details of the life of an "
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
+"Ул һеҙгә тормоштоң күп деталдәрен айырым йәки төрлө кешеләр, урындар һәм "
+"ваҡиғалар араһындағы мөнәсәбәттәр комплексында яҙыу мөмкинлеген бирә."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
+#, fuzzy
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
+"Бөтә тикшеренеүҙәрегеҙ ҙә эҙләү мөмкинлеге булған ойошҡан рәүештә һаҡлана "
+"һәм кәрәкле кимәлдә теүәлдәр."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
+#, fuzzy
 msgid "Gramps Development Team"
-msgstr ""
+msgstr "Gramps төҙөүселәре командаһы"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:227
@@ -269,14 +339,16 @@ msgstr ""
 #: ../gramps/plugins/view/pedigreeview.py:565
 #: ../gramps/plugins/view/view.gpr.py:135
 #: ../gramps/plugins/webreport/person.py:1746
+#, fuzzy
 msgid "Pedigree"
-msgstr ""
+msgstr "Шәжәрә"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
+#, fuzzy
 msgid "Descendant Fan"
-msgstr ""
+msgstr "Киләсәк быуындарҙың елкәнле картаһы"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:350
@@ -287,14 +359,16 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:219
 #: ../gramps/plugins/view/view.gpr.py:227
 #: ../gramps/plugins/webreport/updates.py:106
+#, fuzzy
 msgid "People"
-msgstr ""
+msgstr "Кешеләр"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:42
 #: ../gramps/plugins/view/relview.py:148 ../gramps/plugins/view/view.gpr.py:119
 #: ../gramps/plugins/view/view.gpr.py:127
+#, fuzzy
 msgid "Relationships"
-msgstr ""
+msgstr "Мөнәсәбәт"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
 #: ../gramps/gen/lib/person.py:187 ../gramps/gui/clipboard.py:730
@@ -335,24 +409,29 @@ msgstr ""
 #: ../gramps/plugins/webreport/event.py:330
 #: ../gramps/plugins/webreport/family.py:314
 #: ../gramps/plugins/webreport/person.py:1639
+#, fuzzy
 msgid "Person"
-msgstr ""
+msgstr "Кеше"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
+#, fuzzy
 msgid "Gramps database"
-msgstr ""
+msgstr "Gramps мәғлүмәт базаһы"
 
 #: ../data/org.gramps_project.Gramps.xml.in:10
+#, fuzzy
 msgid "Gramps package"
-msgstr ""
+msgstr "Gramps пакеты"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
+#, fuzzy
 msgid "Gramps XML database"
-msgstr ""
+msgstr "Gramps XML мәғлүмәт базаһы"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
+#, fuzzy
 msgid "GeneWeb source file"
-msgstr ""
+msgstr "GeneWeb файлы"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -7615,8 +7694,9 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:3237
 #: ../gramps/plugins/webreport/person.py:2006
 #: ../gramps/plugins/webreport/updates.py:120
+#, fuzzy
 msgid "Events"
-msgstr ""
+msgstr "Сара"
 
 #: ../gramps/gen/lib/family.py:200 ../gramps/gen/lib/person.py:250
 msgid "LDS ordinances"
@@ -8886,8 +8966,9 @@ msgstr ""
 #: ../gramps/gui/widgets/grampletbar.py:701
 #: ../gramps/gui/widgets/grampletpane.py:246
 #: ../gramps/gui/widgets/grampletpane.py:1005
+#, fuzzy
 msgid "Gramplet"
-msgstr ""
+msgstr "Грамплет"
 
 #: ../gramps/gen/plug/_pluginreg.py:130
 msgid "Sidebar"
@@ -9014,8 +9095,9 @@ msgstr ""
 #: ../gramps/gen/plug/report/stdoptions.py:412
 #: ../gramps/plugins/importer/importprogen.glade:415
 #: ../gramps/plugins/webreport/webcal.py:531
+#, fuzzy
 msgid "Default"
-msgstr ""
+msgstr "Ҡалып буйынса"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 msgid "PostScript / Helvetica"
@@ -24652,8 +24734,9 @@ msgid "marriage"
 msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:384
+#, fuzzy
 msgid "place"
-msgstr ""
+msgstr "урын"
 
 #: ../gramps/plugins/importer/importcsv.py:385
 msgid "place id"
