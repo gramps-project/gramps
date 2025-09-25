@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-10 23:02+0000\n"
+"PO-Revision-Date: 2025-09-25 16:56+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -1511,16 +1511,16 @@ msgstr ""
 "\n"
 "Primjer korištenja Grampsovog sučelja linijskih naredbi.\n"
 "\n"
-"1. Za uvoz četiriju baza podataka (sufiks datoteke određuje njihove "
-"formate)\n"
+"1. Za uvoz četiriju baza podataka (sufiks datoteke određuje njihove formate)"
+"\n"
 "i naknadnu provjeru rezultirajućih baza podataka, može se pisati:\n"
 "gramps -i datoteka1.ged -i datoteka2.gpkg -i ~/db3.gramps -i datoteka4.wft -"
 "a tool -p name=check.\n"
 "\n"
 "2. Za izričito određivanje formata u gornjem primjeru, pridodaj imena "
 "datoteka odgovarujućom -f opcijom:\n"
-"gramps -i datoteka1.ged -f gedcom -i datoteka2.gpkg -f gramps-pkg -i ~/db3."
-"gramps -f gramps -i datoteka4.wft -f wft -a tool -p name=check.\n"
+"gramps -i datoteka1.ged -f gedcom -i datoteka2.gpkg -f gramps-pkg -i ~/"
+"db3.gramps -f gramps -i datoteka4.wft -f wft -a tool -p name=check.\n"
 "\n"
 "3. Za zapis baze podataka dobivene svim uvozima, pridodaj -e opciju\n"
 "(koristi -f ako ime datoteke ne dozvoljava Grampsu pogađanje formata):\n"
@@ -1537,16 +1537,17 @@ msgstr ""
 "\n"
 "6. Za otvaranje baze podataka i, na osnovi tih podataka, izradu izvještaja s "
 "vremenskom\n"
-"crtom u PDF formatu, te spremanje ispisa u datoteku „moja_kronologija.pdf”:\n"
-"gramps -O 'Rodoslov 1' -a report -p name=timeline,off=pdf,"
-"of=moja_kronologija.pdf\n"
+"crtom u PDF formatu, te spremanje ispisa u datoteku „moja_vremenska "
+"crta.pdf”:\n"
+"gramps -O 'Rodoslov 1' -a report -p name=timeline,off=pdf,of=moja_vremenska "
+"crta.pdf\n"
 "\n"
 "7. Za stvaranje sažetka baze podataka:\n"
 "gramps -O 'Rodoslov 1' -a report -p name=summary\n"
 "\n"
 "8. Popis opcija izvještaja\n"
-"Koristi name=timeline,show=all, za prikaz svih dostupnih opcija za "
-"kronološki izvještaj.\n"
+"Koristi name=timeline,show=all, za prikaz svih dostupnih opcija za izvještaj "
+"s vremenskom crtom.\n"
 "Za prikaz detalja određene opcije, koristi show=option_name, npr. "
 "name=timeline,show=off.\n"
 "Za prikaz dostupnih imena izvještaja, koristi name=show.\n"
@@ -6259,11 +6260,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:59
 msgid "Places enclosed by another place"
-msgstr "Mjesta, obuhvaćena nekim drugim mjestom"
+msgstr "Mjesta koja su obuhvaćena nekim drugim mjestom"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:60
 msgid "Matches a place enclosed by a particular place"
-msgstr "Pronalazi mjesto, obuhvaćeno određenim mjestom"
+msgstr "Odgovara mjestu koje je obuhvaćeno određenim mjestom"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:61
 msgid "Places of events matching the <event filter>"
@@ -14285,7 +14286,7 @@ msgstr "Otkrivena je petlja u mjestima"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:216
 msgid "The place you are adding is already enclosed by this place"
-msgstr "Mjesto koje dodaješ, već je obuhvaćeno ovim mjestom"
+msgstr "Mjesto koje dodaješ je već obuhvaćeno ovim mjestom"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Create and add a new repository"
@@ -22545,11 +22546,11 @@ msgstr "Izrađuje stupčane i kružne dijagrame za osobe u bazi podataka"
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:233
 #: ../gramps/plugins/drawreport/timeline.py:285
 msgid "Timeline Chart"
-msgstr "Kronološki dijagram"
+msgstr "Dijagram vremenske crte"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:234
 msgid "Produces a timeline chart."
-msgstr "Izrađuje kronološki dijagram."
+msgstr "Izrađuje dijagram vremenske crte."
 
 #: ../gramps/plugins/drawreport/fanchart.py:267
 #, python-format
@@ -22969,11 +22970,11 @@ msgstr "Svrstavanje datuma ..."
 #: ../gramps/plugins/drawreport/timeline.py:181
 #: ../gramps/plugins/drawreport/timeline.py:351
 msgid "Timeline"
-msgstr "Kronologija"
+msgstr "Vremenska crta"
 
 #: ../gramps/plugins/drawreport/timeline.py:181
 msgid "Calculating timeline..."
-msgstr "Izračunavanje kronologije ..."
+msgstr "Izračunavanje vremenske crte ..."
 
 #: ../gramps/plugins/drawreport/timeline.py:287
 #, python-format
@@ -24461,11 +24462,11 @@ msgstr "Gramplet za izradu SoundEx kodova"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1496
 msgid "Place Enclosed By"
-msgstr "Obuhvaćeno mjestom"
+msgstr "Mjesto obuhvaćeno"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1497
 msgid "Gramplet showing the places enclosed by the active place"
-msgstr "Gramplet prikazuje mjesta, obuhvaćena aktivnim mjestom"
+msgstr "Gramplet prikazuje mjesta koja su obuhvaćena aktivnim mjestom"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1512
 #: ../gramps/plugins/webreport/basepage.py:3569
