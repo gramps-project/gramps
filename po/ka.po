@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-11 12:16+0000\n"
+"PO-Revision-Date: 2025-09-14 10:02+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ka/>\n"
@@ -2915,7 +2915,7 @@ msgstr ""
 #: ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:206
 msgid "Given"
-msgstr "სახელი"
+msgstr "დარქმეული სახელი"
 
 #: ../gramps/gen/display/name.py:399
 msgid "Given Surname Suffix"
@@ -2937,7 +2937,7 @@ msgstr "ტიტული"
 #: ../gramps/gen/display/name.py:641 ../gramps/gen/display/name.py:772
 #: ../gramps/plugins/importer/importcsv.py:205
 msgid "given"
-msgstr "სახელი"
+msgstr "დარქმეული სახელი"
 
 #: ../gramps/gen/display/name.py:645 ../gramps/gen/display/name.py:773
 #: ../gramps/plugins/importer/importcsv.py:197
@@ -2954,7 +2954,7 @@ msgstr "სუფიქსი"
 #: ../gramps/gen/display/name.py:648 ../gramps/gen/display/name.py:775
 msgctxt "Name"
 msgid "call"
-msgstr "მეტსახელი"
+msgstr "საძახისი"
 
 #: ../gramps/gen/display/name.py:652 ../gramps/gen/display/name.py:779
 msgctxt "Name"
@@ -3000,31 +3000,31 @@ msgstr "მამის სახელი[კავშ]"
 
 #: ../gramps/gen/display/name.py:703 ../gramps/gen/display/name.py:829
 msgid "notpatronymic"
-msgstr ""
+msgstr "მამის სახელის გარეშე"
 
 #: ../gramps/gen/display/name.py:708 ../gramps/gen/display/name.py:834
 msgctxt "Remaining names"
 msgid "rest"
-msgstr ""
+msgstr "დანარჩენი"
 
 #: ../gramps/gen/display/name.py:713 ../gramps/gen/display/name.py:836
 #: ../gramps/gui/editors/editperson.py:432
 #: ../gramps/plugins/importer/importcsv.py:232
 msgid "prefix"
-msgstr ""
+msgstr "პრეფიქსი"
 
 #: ../gramps/gen/display/name.py:718 ../gramps/gen/display/name.py:840
 msgid "rawsurnames"
-msgstr ""
+msgstr "დაუმუშავებელიგვარები"
 
 #: ../gramps/gen/display/name.py:720 ../gramps/gen/display/name.py:842
 #: ../gramps/plugins/importer/importcsv.py:220
 msgid "nickname"
-msgstr ""
+msgstr "მეტსახელი"
 
 #: ../gramps/gen/display/name.py:721 ../gramps/gen/display/name.py:843
 msgid "familynick"
-msgstr ""
+msgstr "საოჯახო მეტსახელი"
 
 #: ../gramps/gen/display/name.py:1277
 #, python-format
@@ -3042,7 +3042,7 @@ msgstr ""
 
 #: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:66
 msgid "Full"
-msgstr ""
+msgstr "სრული"
 
 #: ../gramps/gen/filters/_filterparser.py:132
 #, python-format
@@ -3160,7 +3160,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergecitation.glade:270
 #: ../gramps/gui/glade/mergecitation.glade:285
 msgid "Confidence:"
-msgstr ""
+msgstr "სანდოობა:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:61
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:59
@@ -3185,7 +3185,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergemedia.glade:270
 #: ../gramps/gui/glade/mergemedia.glade:285
 msgid "Date:"
-msgstr ""
+msgstr "თარიღი:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:61
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:59
@@ -3197,7 +3197,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergecitation.glade:208
 #: ../gramps/gui/glade/mergecitation.glade:223
 msgid "Volume/Page:"
-msgstr ""
+msgstr "ტომი/გვერდი:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:62
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:60
@@ -3277,7 +3277,7 @@ msgstr ""
 #: ../gramps/gui/editors/filtereditor.py:557
 #: ../gramps/gui/glade/editplaceref.glade:264
 msgid "ID:"
-msgstr ""
+msgstr "ID:"
 
 #: ../gramps/gen/filters/rules/_hasnoteregexbase.py:54
 #: ../gramps/gen/filters/rules/_regexpidbase.py:59
@@ -3292,7 +3292,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergenote.glade:208
 #: ../gramps/gui/glade/mergenote.glade:223
 msgid "Text:"
-msgstr ""
+msgstr "ტექსტი:"
 
 #: ../gramps/gen/filters/rules/_hasnotesubstrbase.py:53
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:54
@@ -3301,7 +3301,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/samesurnames.py:56
 #: ../gramps/plugins/quickview/samesurnames.py:72
 msgid "Substring:"
-msgstr ""
+msgstr "ქვესტრიქონი:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:55
 #: ../gramps/gen/filters/rules/note/_hasnote.py:58
@@ -3451,7 +3451,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Value:"
-msgstr ""
+msgstr "მნიშვნელობა:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
 msgid "Citations with the attribute <attribute>"
@@ -3549,7 +3549,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:270
 #: ../gramps/gui/glade/mergesource.glade:285
 msgid "Abbreviation:"
-msgstr ""
+msgstr "აბრევიატურები:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:59
 #: ../gramps/gen/filters/rules/source/_hassource.py:49
@@ -3560,7 +3560,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:254
 #: ../gramps/gui/glade/plugins.glade:206
 msgid "Author:"
-msgstr ""
+msgstr "ავტორი:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:59
 #: ../gramps/gen/filters/rules/source/_hassource.py:49
@@ -3569,7 +3569,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:301
 #: ../gramps/gui/glade/mergesource.glade:316
 msgid "Publication:"
-msgstr ""
+msgstr "გამოცემა:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:59
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:57
@@ -3586,7 +3586,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:208
 #: ../gramps/gui/glade/mergesource.glade:223
 msgid "Title:"
-msgstr ""
+msgstr "სახელწოდება:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:60
 #: ../gramps/gen/filters/rules/source/_hassource.py:50
@@ -3633,7 +3633,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hastag.py:51
 #: ../gramps/gui/editors/filtereditor.py:617
 msgid "Tag:"
-msgstr ""
+msgstr "ჭდე:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Citations with the <tag>"
@@ -3762,7 +3762,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeevent.glade:301
 #: ../gramps/gui/glade/mergeevent.glade:316
 msgid "Description:"
-msgstr ""
+msgstr "აღწერა:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:58
 #: ../gramps/gen/filters/rules/event/_hasevent.py:50
@@ -3784,7 +3784,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeevent.glade:270
 #: ../gramps/gui/glade/mergeevent.glade:285
 msgid "Place:"
-msgstr ""
+msgstr "ადგილი:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:59
 msgid "Events with <data>"
@@ -4211,7 +4211,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:58
 #: ../gramps/gui/editors/filtereditor.py:607
 msgid "Inclusive:"
-msgstr ""
+msgstr "შემცველი:"
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:64
 msgid "Ancestor families of <family>"
@@ -4394,13 +4394,13 @@ msgstr ""
 #: ../gramps/gui/glade/mergerepository.glade:239
 #: ../gramps/gui/glade/mergerepository.glade:254
 msgid "Type:"
-msgstr ""
+msgstr "ტიპი:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:59
 #: ../gramps/gui/glade/mergemedia.glade:239
 #: ../gramps/gui/glade/mergemedia.glade:254 ../gramps/gui/viewmanager.py:1805
 msgid "Path:"
-msgstr ""
+msgstr "ბილიკი:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:62
 msgid "Media objects matching parameters"
@@ -4648,7 +4648,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_everyone.py:55
 #: ../gramps/gen/plug/_pluginreg.py:80
 msgid "Everyone"
-msgstr ""
+msgstr "ყველა"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:57
 msgid "Matches everyone in the database"
@@ -4833,11 +4833,11 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:60
 msgctxt "person"
 msgid "Title:"
-msgstr ""
+msgstr "ტიტული:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:61
 msgid "Suffix:"
-msgstr ""
+msgstr "სუფიქსი:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:62
 msgid "Call Name:"
@@ -4849,7 +4849,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:64
 msgid "Prefix:"
-msgstr ""
+msgstr "პრეფიქსი:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:65
 msgid "Single Surname:"
@@ -4859,11 +4859,11 @@ msgstr ""
 #: ../gramps/gen/lib/surname.py:120
 #: ../gramps/gui/editors/displaytabs/surnametab.py:81
 msgid "Connector"
-msgstr ""
+msgstr "დამაკავშირებელი"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:67
 msgid "Patronymic:"
-msgstr ""
+msgstr "მამის სახელი:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:68
 msgid "Family Nick Name:"
@@ -4986,7 +4986,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:57
 #: ../gramps/plugins/gramplet/soundgen.py:68
 msgid "Name:"
-msgstr ""
+msgstr "სახელი:"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:58
 msgid "Soundex match of People with the <name>"
@@ -5168,7 +5168,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/statistics.py:130
 #: ../gramps/plugins/webreport/statistics.py:240
 msgid "Females"
-msgstr ""
+msgstr "მდედრები"
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:57
 msgid "Matches all females"
@@ -5230,7 +5230,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/statistics.py:128
 #: ../gramps/plugins/webreport/statistics.py:238
 msgid "Males"
-msgstr ""
+msgstr "მამრები"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:57
 msgid "Matches all males"
@@ -5290,7 +5290,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:58
 msgid "Witnesses"
-msgstr ""
+msgstr "მოწმეები"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:59
 msgid "Matches people who are witnesses in any event"
@@ -5485,7 +5485,7 @@ msgstr ""
 #: ../gramps/plugins/tool/removespaces.py:241
 msgctxt "place"
 msgid "Name:"
-msgstr ""
+msgstr "სახელი:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:59
 #: ../gramps/gui/editors/filtereditor.py:122
@@ -5499,7 +5499,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeplace.glade:546
 #: ../gramps/gui/glade/mergeplace.glade:563
 msgid "Code:"
-msgstr ""
+msgstr "კოდი:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:62
 #: ../gramps/gen/filters/rules/place/_hasplace.py:70
@@ -5575,27 +5575,27 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:61
 msgid "Street:"
-msgstr ""
+msgstr "ქუჩა:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:62
 msgid "Locality:"
-msgstr ""
+msgstr "ადგილმდებარეობა:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:63
 msgid "City:"
-msgstr ""
+msgstr "ქალაქი:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:64
 msgid "County:"
-msgstr ""
+msgstr "საფრაფო:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:65
 msgid "State:"
-msgstr ""
+msgstr "ქვეყანა/შტატი:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:66
 msgid "Country:"
-msgstr ""
+msgstr "ქვეყანა:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:67
 msgid "ZIP/Postal Code:"
@@ -5651,7 +5651,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeplace.glade:252
 #: ../gramps/plugins/tool/removespaces.py:248
 msgid "Latitude:"
-msgstr ""
+msgstr "განედი:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:62
 #: ../gramps/gui/glade/editplaceref.glade:351
@@ -5659,7 +5659,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeplace.glade:283
 #: ../gramps/plugins/tool/removespaces.py:258
 msgid "Longitude:"
-msgstr ""
+msgstr "გრძედი:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:63
 msgid "Rectangle height:"
@@ -5733,7 +5733,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_withinarea.py:70
 #: ../gramps/gui/editors/filtereditor.py:634
 msgid "Units:"
-msgstr ""
+msgstr "ერთეული:"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:71
 msgid "Places within an area"
@@ -5822,15 +5822,15 @@ msgstr ""
 #: ../gramps/gui/merge/mergerepository.py:47
 msgctxt "repo"
 msgid "Name:"
-msgstr ""
+msgstr "სახელი:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:59
 msgid "Address:"
-msgstr ""
+msgstr "მისამართი:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:60
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:62
 msgid "Repositories matching parameters"
@@ -6047,7 +6047,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/familygroup.py:360
 #: ../gramps/plugins/webreport/addressbooklist.py:118
 msgid "Address"
-msgstr ""
+msgstr "მისამართი"
 
 #: ../gramps/gen/lib/address.py:109 ../gramps/gen/lib/attribute.py:246
 #: ../gramps/gen/lib/childref.py:109 ../gramps/gen/lib/citation.py:150
@@ -6107,7 +6107,7 @@ msgstr ""
 #: ../gramps/plugins/view/noteview.py:85 ../gramps/plugins/view/repoview.py:98
 #: ../gramps/plugins/view/sourceview.py:89
 msgid "Private"
-msgstr ""
+msgstr "პირადი"
 
 #: ../gramps/gen/lib/address.py:112 ../gramps/gen/lib/attribute.py:249
 #: ../gramps/gen/lib/childref.py:113 ../gramps/gen/lib/event.py:196
@@ -6126,7 +6126,7 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:301
 #: ../gramps/plugins/view/view.gpr.py:309
 msgid "Citations"
-msgstr ""
+msgstr "ციტატები"
 
 #: ../gramps/gen/lib/address.py:117 ../gramps/gen/lib/attribute.py:255
 #: ../gramps/gen/lib/childref.py:118 ../gramps/gen/lib/citation.py:132
@@ -6159,7 +6159,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:1641
 #: ../gramps/plugins/webreport/updates.py:158
 msgid "Notes"
-msgstr ""
+msgstr "შენიშვნები"
 
 #: ../gramps/gen/lib/address.py:121 ../gramps/gen/lib/location.py:92
 #: ../gramps/gen/lib/placetype.py:81
@@ -6171,7 +6171,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3424
 #: ../gramps/plugins/webreport/basepage.py:3502
 msgid "Street"
-msgstr ""
+msgstr "ქუჩა"
 
 #: ../gramps/gen/lib/address.py:122 ../gramps/gen/lib/location.py:93
 #: ../gramps/gen/lib/placetype.py:80 ../gramps/gui/configure.py:712
@@ -6183,7 +6183,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3425
 #: ../gramps/plugins/webreport/basepage.py:3503
 msgid "Locality"
-msgstr ""
+msgstr "ადგილმდებარეობა"
 
 #: ../gramps/gen/lib/address.py:123 ../gramps/gen/lib/location.py:94
 #: ../gramps/gen/lib/placetype.py:78 ../gramps/gui/configure.py:715
@@ -6195,7 +6195,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3426
 #: ../gramps/plugins/webreport/basepage.py:3504
 msgid "City"
-msgstr ""
+msgstr "ქალაქი"
 
 #: ../gramps/gen/lib/address.py:124 ../gramps/gen/lib/location.py:95
 #: ../gramps/gen/lib/placetype.py:77
@@ -6207,7 +6207,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3428
 #: ../gramps/plugins/webreport/basepage.py:3506
 msgid "County"
-msgstr ""
+msgstr "საგრაფო"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:96
 #: ../gramps/gen/lib/placetype.py:76
@@ -6216,7 +6216,7 @@ msgstr ""
 #: ../gramps/plugins/lib/maps/placeselection.py:161
 #: ../gramps/plugins/view/geoplaces.py:615
 msgid "State"
-msgstr ""
+msgstr "ქვეყანა"
 
 #: ../gramps/gen/lib/address.py:126 ../gramps/gen/lib/location.py:97
 #: ../gramps/gen/lib/placetype.py:75 ../gramps/gui/configure.py:722
@@ -6232,7 +6232,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:350
 #: ../gramps/plugins/webreport/place.py:362
 msgid "Country"
-msgstr ""
+msgstr "ქვეყანა"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:98
 #: ../gramps/plugins/webreport/basepage.py:1515
@@ -6251,14 +6251,14 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:6375
 #: ../gramps/plugins/webreport/basepage.py:1517
 msgid "Phone"
-msgstr ""
+msgstr "ტელეფონი"
 
 #: ../gramps/gen/lib/attribute.py:243 ../gramps/gen/lib/srcattribute.py:72
 #: ../gramps/gui/clipboard.py:451 ../gramps/gui/editors/editattribute.py:140
 #: ../gramps/plugins/importer/importprogen.glade:209
 #: ../gramps/plugins/importer/importprogen.glade:363
 msgid "Attribute"
-msgstr ""
+msgstr "ატრიბუტი"
 
 #: ../gramps/gen/lib/attribute.py:258 ../gramps/gen/lib/srcattribute.py:77
 #: ../gramps/gen/lib/styledtexttag.py:121 ../gramps/gui/clipboard.py:924
@@ -6271,7 +6271,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:1400
 #: ../gramps/plugins/webreport/basepage.py:1660
 msgid "Value"
-msgstr ""
+msgstr "მნიშვნელობა"
 
 #: ../gramps/gen/lib/attrtype.py:75 ../gramps/gen/lib/childreftype.py:81
 #: ../gramps/gen/lib/eventroletype.py:72 ../gramps/gen/lib/eventtype.py:199
@@ -6287,11 +6287,11 @@ msgstr ""
 #: ../gramps/plugins/textreport/indivcomplete.py:88
 #: ../gramps/plugins/view/geoplaces.py:598
 msgid "Custom"
-msgstr ""
+msgstr "ხელით"
 
 #: ../gramps/gen/lib/attrtype.py:76
 msgid "Caste"
-msgstr ""
+msgstr "კასტა"
 
 #: ../gramps/gen/lib/attrtype.py:77 ../gramps/gen/lib/event.py:187
 #: ../gramps/gen/lib/media.py:154 ../gramps/gen/lib/url.py:95
@@ -6317,7 +6317,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:382
 #: ../gramps/plugins/webreport/heatmap.py:514
 msgid "Description"
-msgstr ""
+msgstr "აღწერა"
 
 #: ../gramps/gen/lib/attrtype.py:78
 msgid "Identification Number"
@@ -6342,15 +6342,15 @@ msgstr ""
 #: ../gramps/plugins/importer/importcsv.py:222
 #: ../gramps/plugins/tool/patchnames.py:488
 msgid "Nickname"
-msgstr ""
+msgstr "მეტსახელი"
 
 #: ../gramps/gen/lib/attrtype.py:83
 msgid "Cause"
-msgstr ""
+msgstr "მიზეზი"
 
 #: ../gramps/gen/lib/attrtype.py:84
 msgid "Agency"
-msgstr ""
+msgstr "სააგენტო"
 
 #: ../gramps/gen/lib/attrtype.py:85
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:100
@@ -6359,7 +6359,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/events.py:106
 #: ../gramps/plugins/quickview/ageondate.py:54
 msgid "Age"
-msgstr ""
+msgstr "ასაკი"
 
 #: ../gramps/gen/lib/attrtype.py:86
 msgid "Father's Age"
@@ -6371,17 +6371,17 @@ msgstr ""
 
 #: ../gramps/gen/lib/attrtype.py:88 ../gramps/gen/lib/eventroletype.py:79
 msgid "Witness"
-msgstr ""
+msgstr "მოწმე"
 
 #: ../gramps/gen/lib/attrtype.py:89
 msgid "Time"
-msgstr ""
+msgstr "დრო"
 
 #: ../gramps/gen/lib/attrtype.py:90 ../gramps/gen/lib/eventtype.py:226
 #: ../gramps/gen/plug/docgen/treedoc.py:589
 #: ../gramps/plugins/gramplet/persondetails.py:171
 msgid "Occupation"
-msgstr ""
+msgstr "საქმიანობა"
 
 #: ../gramps/gen/lib/childref.py:106 ../gramps/gui/editors/editchildref.py:202
 msgid "Child Reference"
@@ -6396,7 +6396,7 @@ msgstr ""
 #: ../gramps/gen/lib/reporef.py:109 ../gramps/gen/lib/src.py:111
 #: ../gramps/gen/lib/tag.py:153
 msgid "Handle"
-msgstr ""
+msgstr "მაჩვენებელი"
 
 #: ../gramps/gen/lib/childreftype.py:74 ../gramps/gen/plug/docgen/treedoc.py:92
 #: ../gramps/gui/configure.py:93
@@ -6413,29 +6413,29 @@ msgstr ""
 #: ../gramps/plugins/graph/gvfamilylines.py:96
 #: ../gramps/plugins/tool/check.py:2773
 msgid "None"
-msgstr ""
+msgstr "არცერთი"
 
 #: ../gramps/gen/lib/childreftype.py:75
 msgctxt "relationship"
 msgid "Birth"
-msgstr ""
+msgstr "დაბადება"
 
 #: ../gramps/gen/lib/childreftype.py:76
 msgctxt "relationship"
 msgid "Adopted"
-msgstr ""
+msgstr "აყვანილი"
 
 #: ../gramps/gen/lib/childreftype.py:77
 msgid "Stepchild"
-msgstr ""
+msgstr "გერი"
 
 #: ../gramps/gen/lib/childreftype.py:78
 msgid "Sponsored"
-msgstr ""
+msgstr "დასპონსორებული"
 
 #: ../gramps/gen/lib/childreftype.py:79
 msgid "Foster"
-msgstr ""
+msgstr "სხვისი აღზრდილი"
 
 #: ../gramps/gen/lib/citation.py:107 ../gramps/gen/lib/notetype.py:91
 #: ../gramps/gui/clipboard.py:482 ../gramps/gui/configure.py:810
@@ -6454,7 +6454,7 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.glade:824
 #: ../gramps/plugins/webreport/updates.py:259
 msgid "Citation"
-msgstr ""
+msgstr "ციტატა"
 
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/event.py:184
 #: ../gramps/gen/lib/family.py:165 ../gramps/gen/lib/media.py:151
@@ -6495,7 +6495,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:336
 #: ../gramps/plugins/webreport/basepage.py:3054
 msgid "Page"
-msgstr ""
+msgstr "გვერდი"
 
 #: ../gramps/gen/lib/citation.py:122
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:86
@@ -6504,7 +6504,7 @@ msgstr ""
 #: ../gramps/plugins/view/citationtreeview.py:98
 #: ../gramps/plugins/webreport/basepage.py:3055
 msgid "Confidence"
-msgstr ""
+msgstr "სანდოობა"
 
 #: ../gramps/gen/lib/citation.py:127 ../gramps/gen/lib/src.py:105
 #: ../gramps/gui/clipboard.py:771 ../gramps/gui/configure.py:801
@@ -6536,7 +6536,7 @@ msgstr ""
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:277
 #: ../gramps/plugins/tool/reorderids.glade:812
 msgid "Source"
-msgstr ""
+msgstr "წყარო"
 
 #: ../gramps/gen/lib/citation.py:137 ../gramps/gen/lib/event.py:206
 #: ../gramps/gen/lib/family.py:190 ../gramps/gen/lib/media.py:143
@@ -6565,7 +6565,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:418
 #: ../gramps/plugins/webreport/updates.py:152
 msgid "Media"
-msgstr ""
+msgstr "მედია"
 
 #: ../gramps/gen/lib/citation.py:142 ../gramps/gen/lib/src.py:132
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:729
@@ -6613,7 +6613,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/repository.py:287
 #: ../gramps/plugins/webreport/source.py:414
 msgid "Tags"
-msgstr ""
+msgstr "ჭდეები"
 
 #: ../gramps/gen/lib/date.py:296 ../gramps/gen/lib/date.py:459
 #: ../gramps/gen/mime/_pythonmime.py:53 ../gramps/gen/mime/_pythonmime.py:64
@@ -6627,7 +6627,7 @@ msgstr ""
 #: ../gramps/plugins/view/relview.py:815
 #: ../gramps/plugins/webreport/person.py:588
 msgid "unknown"
-msgstr ""
+msgstr "უცნობი"
 
 #: ../gramps/gen/lib/date.py:305
 #, python-brace-format
@@ -6653,12 +6653,12 @@ msgstr ""
 #: ../gramps/gen/lib/date.py:383
 msgctxt "age"
 msgid "about"
-msgstr ""
+msgstr "შესახებ"
 
 #: ../gramps/gen/lib/date.py:323 ../gramps/gen/lib/date.py:370
 #: ../gramps/gen/lib/date.py:392 ../gramps/plugins/webreport/basepage.py:3785
 msgid "between"
-msgstr ""
+msgstr "შორის"
 
 #: ../gramps/gen/lib/date.py:327 ../gramps/gen/lib/date.py:374
 #: ../gramps/gen/lib/date.py:396 ../gramps/gui/merge/mergefamily.py:157
@@ -6666,7 +6666,7 @@ msgstr ""
 #: ../gramps/plugins/view/relview.py:1209
 #: ../gramps/plugins/webreport/basepage.py:3786
 msgid "and"
-msgstr ""
+msgstr "და"
 
 #: ../gramps/gen/lib/date.py:339 ../gramps/gen/lib/date.py:359
 msgid "less than about"
@@ -6770,7 +6770,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:653
 #: ../gramps/plugins/webreport/person.py:1115
 msgid "Date"
-msgstr ""
+msgstr "თარიღი"
 
 #: ../gramps/gen/lib/date.py:789
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:79
@@ -6779,20 +6779,20 @@ msgstr ""
 #: ../gramps/plugins/webreport/calendar.py:130
 #: ../gramps/plugins/webreport/calendar.py:175
 msgid "Calendar"
-msgstr ""
+msgstr "კალენდარი"
 
 #: ../gramps/gen/lib/date.py:790
 msgid "Modifier"
-msgstr ""
+msgstr "მოდიფიკატორი"
 
 #: ../gramps/gen/lib/date.py:791
 msgid "Quality"
-msgstr ""
+msgstr "ხარისხი"
 
 #: ../gramps/gen/lib/date.py:794 ../gramps/gui/editors/filtereditor.py:913
 #: ../gramps/gui/glade/rule.glade:949
 msgid "Values"
-msgstr ""
+msgstr "მნიშვნელობები"
 
 #: ../gramps/gen/lib/date.py:797 ../gramps/gen/lib/placename.py:98
 #: ../gramps/gen/lib/styledtext.py:343
@@ -6804,7 +6804,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/custombooktext.py:138
 #: ../gramps/plugins/textreport/tagreport.py:519
 msgid "Text"
-msgstr ""
+msgstr "ტექსტი"
 
 #: ../gramps/gen/lib/date.py:798
 msgid "Sort value"
@@ -6817,56 +6817,56 @@ msgstr ""
 #: ../gramps/gen/lib/date.py:1975
 msgctxt "date-quality"
 msgid "none"
-msgstr ""
+msgstr "არცერთი"
 
 #: ../gramps/gen/lib/date.py:1976
 msgid "estimated"
-msgstr ""
+msgstr "დაახლოებით"
 
 #: ../gramps/gen/lib/date.py:1977
 msgid "calculated"
-msgstr ""
+msgstr "გამოთვლილი"
 
 #: ../gramps/gen/lib/date.py:2001
 msgctxt "date-modifier"
 msgid "none"
-msgstr ""
+msgstr "არცერთი"
 
 #: ../gramps/gen/lib/date.py:2002 ../gramps/plugins/lib/libsubstkeyword.py:319
 #: ../gramps/plugins/webreport/basepage.py:3792
 msgid "before"
-msgstr ""
+msgstr "მანამდე"
 
 #: ../gramps/gen/lib/date.py:2003 ../gramps/plugins/lib/libprogen.py:2029
 #: ../gramps/plugins/lib/libsubstkeyword.py:320
 #: ../gramps/plugins/webreport/basepage.py:3790
 msgid "after"
-msgstr ""
+msgstr "შემდეგ"
 
 #: ../gramps/gen/lib/date.py:2004 ../gramps/plugins/lib/libsubstkeyword.py:321
 #: ../gramps/plugins/webreport/basepage.py:3794
 msgid "about"
-msgstr ""
+msgstr "მახლობლად"
 
 #: ../gramps/gen/lib/date.py:2005
 msgid "range"
-msgstr ""
+msgstr "შუალედი"
 
 #: ../gramps/gen/lib/date.py:2006
 msgid "from"
-msgstr ""
+msgstr "საიდან"
 
 #: ../gramps/gen/lib/date.py:2007
 msgid "to"
-msgstr ""
+msgstr "სადამდე"
 
 #: ../gramps/gen/lib/date.py:2008
 msgid "span"
-msgstr ""
+msgstr "ინტერვალი"
 
 #: ../gramps/gen/lib/date.py:2009
 msgid "textonly"
-msgstr ""
+msgstr "მხოლოდ ტექსტი"
 
 #: ../gramps/gen/lib/event.py:176 ../gramps/gen/lib/eventref.py:141
 #: ../gramps/gui/clipboard.py:356 ../gramps/gui/configure.py:828
@@ -6885,7 +6885,7 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.glade:788
 #: ../gramps/plugins/webreport/basepage.py:860
 msgid "Event"
-msgstr ""
+msgstr "მოვლენა"
 
 #: ../gramps/gen/lib/event.py:191 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gen/lib/place.py:154 ../gramps/gui/clipboard.py:375
@@ -6926,7 +6926,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:1280
 #: ../gramps/plugins/webreport/basepage.py:1322
 msgid "Place"
-msgstr ""
+msgstr "ადგილი"
 
 #: ../gramps/gen/lib/event.py:211 ../gramps/gen/lib/eventref.py:139
 #: ../gramps/gen/lib/family.py:195 ../gramps/gen/lib/media.py:159
@@ -6944,7 +6944,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:1634
 #: ../gramps/plugins/webreport/basepage.py:1643
 msgid "Attributes"
-msgstr ""
+msgstr "ატრიბუტები"
 
 #: ../gramps/gen/lib/eventref.py:122
 msgid "Event reference"
@@ -6953,40 +6953,40 @@ msgstr ""
 #: ../gramps/gen/lib/eventroletype.py:73
 msgctxt "Role"
 msgid "Primary"
-msgstr ""
+msgstr "ძირითადი"
 
 #: ../gramps/gen/lib/eventroletype.py:74
 msgid "Clergy"
-msgstr ""
+msgstr "სამღვდელოება"
 
 #: ../gramps/gen/lib/eventroletype.py:75
 msgid "Celebrant"
-msgstr ""
+msgstr "სასულიერო პირი"
 
 #: ../gramps/gen/lib/eventroletype.py:76
 msgid "Aide"
-msgstr ""
+msgstr "თანაშემწე"
 
 #: ../gramps/gen/lib/eventroletype.py:77
 msgid "Bride"
-msgstr ""
+msgstr "პატარძალი"
 
 #: ../gramps/gen/lib/eventroletype.py:78
 msgid "Groom"
-msgstr ""
+msgstr "სიძე"
 
 #: ../gramps/gen/lib/eventroletype.py:80
 msgctxt "Role"
 msgid "Family"
-msgstr ""
+msgstr "ოჯახი"
 
 #: ../gramps/gen/lib/eventroletype.py:81
 msgid "Informant"
-msgstr ""
+msgstr "ინფორმატორი"
 
 #: ../gramps/gen/lib/eventroletype.py:82
 msgid "Godparent"
-msgstr ""
+msgstr "ნათლია"
 
 #: ../gramps/gen/lib/eventroletype.py:83 ../gramps/gen/lib/family.py:169
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
@@ -7008,7 +7008,7 @@ msgstr ""
 #: ../gramps/plugins/view/relview.py:1107
 #: ../gramps/plugins/webreport/person.py:2119
 msgid "Father"
-msgstr ""
+msgstr "მამა"
 
 #: ../gramps/gen/lib/eventroletype.py:84 ../gramps/gen/lib/family.py:174
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:62
@@ -7030,13 +7030,13 @@ msgstr ""
 #: ../gramps/plugins/view/relview.py:1108
 #: ../gramps/plugins/webreport/person.py:2132
 msgid "Mother"
-msgstr ""
+msgstr "დედა"
 
 #: ../gramps/gen/lib/eventroletype.py:85
 #: ../gramps/plugins/quickview/all_relations.py:324
 #: ../gramps/plugins/tool/findloop.py:117
 msgid "Parent"
-msgstr ""
+msgstr "მშობელი"
 
 #: ../gramps/gen/lib/eventroletype.py:86 ../gramps/gen/lib/ldsord.py:105
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:136
@@ -7049,7 +7049,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:1209
 #: ../gramps/plugins/tool/findloop.py:119
 msgid "Child"
-msgstr ""
+msgstr "შვილი"
 
 #: ../gramps/gen/lib/eventroletype.py:87
 msgid "Multiple birth"
@@ -7057,15 +7057,15 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventroletype.py:88
 msgid "Friend"
-msgstr ""
+msgstr "მეგობარი"
 
 #: ../gramps/gen/lib/eventroletype.py:89
 msgid "Neighbor"
-msgstr ""
+msgstr "მეზობელი"
 
 #: ../gramps/gen/lib/eventroletype.py:90
 msgid "Officiator"
-msgstr ""
+msgstr "ოფიციალური ტიპი"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Life Events"
@@ -7098,27 +7098,27 @@ msgstr ""
 #: ../gramps/plugins/webreport/family.py:315
 #: ../gramps/plugins/webreport/updates.py:228
 msgid "Family"
-msgstr ""
+msgstr "ოჯახი"
 
 #: ../gramps/gen/lib/eventtype.py:171
 msgid "Religious"
-msgstr ""
+msgstr "რელიგიური"
 
 #: ../gramps/gen/lib/eventtype.py:184
 msgid "Vocational"
-msgstr ""
+msgstr "პროფესიული"
 
 #: ../gramps/gen/lib/eventtype.py:187
 msgid "Academic"
-msgstr ""
+msgstr "აკადემიური"
 
 #: ../gramps/gen/lib/eventtype.py:188
 msgid "Travel"
-msgstr ""
+msgstr "მოგზაურობა"
 
 #: ../gramps/gen/lib/eventtype.py:189
 msgid "Legal"
-msgstr ""
+msgstr "იურიდიული"
 
 #: ../gramps/gen/lib/eventtype.py:190 ../gramps/gen/lib/eventtype.py:231
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:529
@@ -7127,7 +7127,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/addressbooklist.py:119
 #: ../gramps/plugins/webreport/basepage.py:3684
 msgid "Residence"
-msgstr ""
+msgstr "საცხოვრებელი ადგილი"
 
 #: ../gramps/gen/lib/eventtype.py:191 ../gramps/gui/glade/mergedata.glade:542
 #: ../gramps/gui/glade/mergedata.glade:627
@@ -7141,11 +7141,11 @@ msgstr ""
 #: ../gramps/plugins/lib/maps/placeselection.py:219
 #: ../gramps/plugins/textreport/indivcomplete.py:969
 msgid "Other"
-msgstr ""
+msgstr "სხვა"
 
 #: ../gramps/gen/lib/eventtype.py:200
 msgid "Adopted"
-msgstr ""
+msgstr "აყვანილი"
 
 #: ../gramps/gen/lib/eventtype.py:201 ../gramps/gen/utils/symbols.py:94
 #: ../gramps/gui/configure.py:2799 ../gramps/gui/merge/mergeperson.py:206
@@ -7162,7 +7162,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:427
 #: ../gramps/plugins/webreport/surname.py:152
 msgid "Birth"
-msgstr ""
+msgstr "დაბადება"
 
 #: ../gramps/gen/lib/eventtype.py:202 ../gramps/gui/configure.py:2805
 #: ../gramps/gui/merge/mergeperson.py:213
@@ -7175,7 +7175,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:432
 #: ../gramps/plugins/webreport/surname.py:157
 msgid "Death"
-msgstr ""
+msgstr "სიკვდილი"
 
 #: ../gramps/gen/lib/eventtype.py:203
 msgid "Adult Christening"
@@ -7184,7 +7184,7 @@ msgstr ""
 #: ../gramps/gen/lib/eventtype.py:204 ../gramps/gen/lib/ldsord.py:94
 #: ../gramps/gui/configure.py:2800
 msgid "Baptism"
-msgstr ""
+msgstr "ნათლობა"
 
 #: ../gramps/gen/lib/eventtype.py:205
 msgid "Bar Mitzvah"
@@ -7196,11 +7196,11 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:207
 msgid "Blessing"
-msgstr ""
+msgstr "დალოცვა"
 
 #: ../gramps/gen/lib/eventtype.py:208
 msgid "Burial"
-msgstr ""
+msgstr "დასაფლავება"
 
 #: ../gramps/gen/lib/eventtype.py:209
 msgid "Cause Of Death"
@@ -7208,35 +7208,35 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:210
 msgid "Census"
-msgstr ""
+msgstr "მოსახლეობის აღწერა"
 
 #: ../gramps/gen/lib/eventtype.py:211
 msgid "Christening"
-msgstr ""
+msgstr "მონათვლა"
 
 #: ../gramps/gen/lib/eventtype.py:212 ../gramps/gen/lib/ldsord.py:96
 msgid "Confirmation"
-msgstr ""
+msgstr "კონფირმაცია"
 
 #: ../gramps/gen/lib/eventtype.py:213
 msgid "Cremation"
-msgstr ""
+msgstr "კრემაცია"
 
 #: ../gramps/gen/lib/eventtype.py:214
 msgid "Degree"
-msgstr ""
+msgstr "სამეცნიერო ხარისხი"
 
 #: ../gramps/gen/lib/eventtype.py:215
 msgid "Education"
-msgstr ""
+msgstr "განათლება"
 
 #: ../gramps/gen/lib/eventtype.py:216
 msgid "Elected"
-msgstr ""
+msgstr "არჩეული"
 
 #: ../gramps/gen/lib/eventtype.py:217
 msgid "Emigration"
-msgstr ""
+msgstr "ემიგრაცია"
 
 #: ../gramps/gen/lib/eventtype.py:218
 msgid "First Communion"
@@ -7244,11 +7244,11 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:219
 msgid "Immigration"
-msgstr ""
+msgstr "იმიგრაცია"
 
 #: ../gramps/gen/lib/eventtype.py:220
 msgid "Graduation"
-msgstr ""
+msgstr "სწავლის დამთავრება"
 
 #: ../gramps/gen/lib/eventtype.py:221
 msgid "Medical Information"
@@ -7260,7 +7260,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:223
 msgid "Naturalization"
-msgstr ""
+msgstr "ნატურალიზაცია"
 
 #: ../gramps/gen/lib/eventtype.py:224
 msgid "Nobility Title"
@@ -7273,28 +7273,28 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:227
 msgid "Ordination"
-msgstr ""
+msgstr "კურთხევა"
 
 #: ../gramps/gen/lib/eventtype.py:228
 msgid "Probate"
-msgstr ""
+msgstr "ანდერძის დამტკიცება"
 
 #: ../gramps/gen/lib/eventtype.py:229
 msgid "Property"
-msgstr ""
+msgstr "ქონება"
 
 #: ../gramps/gen/lib/eventtype.py:230
 #: ../gramps/plugins/gramplet/persondetails.py:173
 msgid "Religion"
-msgstr ""
+msgstr "რელიგია"
 
 #: ../gramps/gen/lib/eventtype.py:232
 msgid "Retirement"
-msgstr ""
+msgstr "პენსიაზე"
 
 #: ../gramps/gen/lib/eventtype.py:233
 msgid "Will"
-msgstr ""
+msgstr "ანდერძი"
 
 #: ../gramps/gen/lib/eventtype.py:234 ../gramps/gen/plug/docgen/treedoc.py:223
 #: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2802
@@ -7306,7 +7306,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/familygroup.py:617
 #: ../gramps/plugins/webreport/family.py:316
 msgid "Marriage"
-msgstr ""
+msgstr "ქორწინება"
 
 #: ../gramps/gen/lib/eventtype.py:235
 msgid "Marriage Settlement"
@@ -7326,12 +7326,12 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:239
 msgid "Engagement"
-msgstr ""
+msgstr "ნიშნობა"
 
 #: ../gramps/gen/lib/eventtype.py:240 ../gramps/gen/utils/symbols.py:98
 #: ../gramps/gui/configure.py:2804 ../gramps/plugins/webreport/family.py:317
 msgid "Divorce"
-msgstr ""
+msgstr "გაყრა"
 
 #: ../gramps/gen/lib/eventtype.py:241
 msgid "Divorce Filing"
@@ -7339,7 +7339,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:242
 msgid "Annulment"
-msgstr ""
+msgstr "ანულირება"
 
 #: ../gramps/gen/lib/eventtype.py:243
 msgid "Alternate Marriage"
@@ -7347,248 +7347,248 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:244
 msgid "Stillbirth"
-msgstr ""
+msgstr "მკვდრადშობადობა"
 
 #: ../gramps/gen/lib/eventtype.py:248
 #: ../gramps/plugins/drawreport/ancestortree.py:74
 #: ../gramps/plugins/drawreport/descendtree.py:72
 msgctxt "birth abbreviation"
 msgid "b."
-msgstr ""
+msgstr "დაბ,"
 
 #: ../gramps/gen/lib/eventtype.py:249
 #: ../gramps/plugins/drawreport/ancestortree.py:75
 #: ../gramps/plugins/drawreport/descendtree.py:73
 msgctxt "death abbreviation"
 msgid "d."
-msgstr ""
+msgstr "სიკვ."
 
 #: ../gramps/gen/lib/eventtype.py:250
 #: ../gramps/plugins/drawreport/ancestortree.py:76
 #: ../gramps/plugins/drawreport/descendtree.py:74
 msgctxt "marriage abbreviation"
 msgid "m."
-msgstr ""
+msgstr "ქორწ."
 
 #: ../gramps/gen/lib/eventtype.py:251
 msgctxt "Unknown abbreviation"
 msgid "unkn."
-msgstr ""
+msgstr "უცნ."
 
 #: ../gramps/gen/lib/eventtype.py:252
 msgctxt "Custom abbreviation"
 msgid "cust."
-msgstr ""
+msgstr "ხელ."
 
 #: ../gramps/gen/lib/eventtype.py:253
 msgctxt "Adopted abbreviation"
 msgid "adop."
-msgstr ""
+msgstr "აყვ."
 
 #: ../gramps/gen/lib/eventtype.py:254
 msgctxt "Adult Christening abbreviation"
 msgid "a.chr."
-msgstr ""
+msgstr "უფრ.მონ."
 
 #: ../gramps/gen/lib/eventtype.py:255
 msgctxt "Baptism abbreviation"
 msgid "bap."
-msgstr ""
+msgstr "ნათლ."
 
 #: ../gramps/gen/lib/eventtype.py:256
 msgctxt "Bar Mitzvah abbreviation"
 msgid "bar."
-msgstr ""
+msgstr "ებრ.13."
 
 #: ../gramps/gen/lib/eventtype.py:257
 msgctxt "Bat Mitzvah abbreviation"
 msgid "bat."
-msgstr ""
+msgstr "ებრ.12."
 
 #: ../gramps/gen/lib/eventtype.py:258
 msgctxt "Blessing abbreviation"
 msgid "bles."
-msgstr ""
+msgstr "დალ."
 
 #: ../gramps/gen/lib/eventtype.py:259
 msgctxt "Burial abbreviation"
 msgid "bur."
-msgstr ""
+msgstr "საფლ."
 
 #: ../gramps/gen/lib/eventtype.py:260
 msgctxt "Cause Of Death abbreviation"
 msgid "d.cau."
-msgstr ""
+msgstr "სიკვ.მიზ."
 
 #: ../gramps/gen/lib/eventtype.py:261
 msgctxt "Census abbreviation"
 msgid "cens."
-msgstr ""
+msgstr "მოს.აღწ."
 
 #: ../gramps/gen/lib/eventtype.py:262
 msgctxt "Christening abbreviation"
 msgid "chr."
-msgstr ""
+msgstr "მონ."
 
 #: ../gramps/gen/lib/eventtype.py:263
 msgctxt "Confirmation abbreviation"
 msgid "conf."
-msgstr ""
+msgstr "კონფ."
 
 #: ../gramps/gen/lib/eventtype.py:264
 msgctxt "Cremation abbreviation"
 msgid "crem."
-msgstr ""
+msgstr "კრემ."
 
 #: ../gramps/gen/lib/eventtype.py:265
 msgctxt "Degree abbreviation"
 msgid "deg."
-msgstr ""
+msgstr "ხარ."
 
 #: ../gramps/gen/lib/eventtype.py:266
 msgctxt "Education abbreviation"
 msgid "edu."
-msgstr ""
+msgstr "გან."
 
 #: ../gramps/gen/lib/eventtype.py:267
 msgctxt "Elected abbreviation"
 msgid "elec."
-msgstr ""
+msgstr "არჩ."
 
 #: ../gramps/gen/lib/eventtype.py:268
 msgctxt "Emigration abbreviation"
 msgid "em."
-msgstr ""
+msgstr "ემ."
 
 #: ../gramps/gen/lib/eventtype.py:269
 msgctxt "First Communion abbreviation"
 msgid "f.comm."
-msgstr ""
+msgstr "პირვ.ზიარ."
 
 #: ../gramps/gen/lib/eventtype.py:270
 msgctxt "Immigration abbreviation"
 msgid "im."
-msgstr ""
+msgstr "იმ."
 
 #: ../gramps/gen/lib/eventtype.py:271
 msgctxt "Graduation abbreviation"
 msgid "grad."
-msgstr ""
+msgstr "სწ.დამთ."
 
 #: ../gramps/gen/lib/eventtype.py:272
 msgctxt "Medical Information abbreviation"
 msgid "medinf."
-msgstr ""
+msgstr "სამედ.ინფ."
 
 #: ../gramps/gen/lib/eventtype.py:273
 msgctxt "Military Service abbreviation"
 msgid "milser."
-msgstr ""
+msgstr "სამხ."
 
 #: ../gramps/gen/lib/eventtype.py:274
 msgctxt "Naturalization abbreviation"
 msgid "nat."
-msgstr ""
+msgstr "ნატ."
 
 #: ../gramps/gen/lib/eventtype.py:275
 msgctxt "Nobility Title abbreviation"
 msgid "nob."
-msgstr ""
+msgstr "თავ."
 
 #: ../gramps/gen/lib/eventtype.py:276
 msgctxt "Number of Marriages abbreviation"
 msgid "n.o.mar."
-msgstr ""
+msgstr "ქორწ.რაოდ."
 
 #: ../gramps/gen/lib/eventtype.py:277
 msgctxt "Occupation abbreviation"
 msgid "occ."
-msgstr ""
+msgstr "საქმ."
 
 #: ../gramps/gen/lib/eventtype.py:278
 msgctxt "Ordination abbreviation"
 msgid "ord."
-msgstr ""
+msgstr "კუთხ."
 
 #: ../gramps/gen/lib/eventtype.py:279
 msgctxt "Probate abbreviation"
 msgid "prob."
-msgstr ""
+msgstr "ანდ."
 
 #: ../gramps/gen/lib/eventtype.py:280
 msgctxt "Property abbreviation"
 msgid "prop."
-msgstr ""
+msgstr "ქონ."
 
 #: ../gramps/gen/lib/eventtype.py:281
 msgctxt "Religion abbreviation"
 msgid "rel."
-msgstr ""
+msgstr "რელ."
 
 #: ../gramps/gen/lib/eventtype.py:282
 msgctxt "Residence abbreviation"
 msgid "res."
-msgstr ""
+msgstr "საცხ."
 
 #: ../gramps/gen/lib/eventtype.py:283
 msgctxt "Retirement abbreviation"
 msgid "ret."
-msgstr ""
+msgstr "პენს."
 
 #: ../gramps/gen/lib/eventtype.py:284
 msgctxt "Will abbreviation"
 msgid "will."
-msgstr ""
+msgstr "ანდერ."
 
 #: ../gramps/gen/lib/eventtype.py:285
 msgctxt "Marriage Settlement abbreviation"
 msgid "m.set."
-msgstr ""
+msgstr "საქორწ.კონტრ."
 
 #: ../gramps/gen/lib/eventtype.py:286
 msgctxt "Marriage License abbreviation"
 msgid "m.lic."
-msgstr ""
+msgstr "ქორწ.ლიც."
 
 #: ../gramps/gen/lib/eventtype.py:287
 msgctxt "Marriage Contract abbreviation"
 msgid "m.con."
-msgstr ""
+msgstr "ქორწ.კონტრ."
 
 #: ../gramps/gen/lib/eventtype.py:288
 msgctxt "Marriage Banns abbreviation"
 msgid "m.ban."
-msgstr ""
+msgstr "სახ.გამოცხ."
 
 #: ../gramps/gen/lib/eventtype.py:289
 msgctxt "Alternate Marriage abbreviation"
 msgid "alt.mar."
-msgstr ""
+msgstr "ალტ.ქორწ."
 
 #: ../gramps/gen/lib/eventtype.py:290
 msgctxt "Engagement abbreviation"
 msgid "engd."
-msgstr ""
+msgstr "ნიშნ."
 
 #: ../gramps/gen/lib/eventtype.py:291
 msgctxt "Divorce abbreviation"
 msgid "div."
-msgstr ""
+msgstr "გაყრ."
 
 #: ../gramps/gen/lib/eventtype.py:292
 msgctxt "Divorce Filing abbreviation"
 msgid "div.f."
-msgstr ""
+msgstr "გაყრ.განცხ."
 
 #: ../gramps/gen/lib/eventtype.py:293
 msgctxt "Annulment abbreviation"
 msgid "annul."
-msgstr ""
+msgstr "ანულ."
 
 #: ../gramps/gen/lib/eventtype.py:294
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr ""
+msgstr "მკვდ.დაბ."
 
 #: ../gramps/gen/lib/family.py:179 ../gramps/gui/widgets/fanchart.py:2192
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:993
@@ -7599,7 +7599,7 @@ msgstr ""
 #: ../gramps/plugins/view/relview.py:1666
 #: ../gramps/plugins/webreport/basepage.py:531
 msgid "Children"
-msgstr ""
+msgstr "შვილები"
 
 #: ../gramps/gen/lib/family.py:185 ../gramps/gui/merge/mergeperson.py:224
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:545
@@ -7619,7 +7619,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:2006
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
-msgstr ""
+msgstr "მოვლენები"
 
 #: ../gramps/gen/lib/family.py:200 ../gramps/gen/lib/person.py:250
 msgid "LDS ordinances"
@@ -7629,11 +7629,11 @@ msgstr ""
 #: ../gramps/plugins/webreport/calendar.py:1453
 #: ../gramps/plugins/webreport/webcal.py:2343
 msgid "Married"
-msgstr ""
+msgstr "დაქორწინებული"
 
 #: ../gramps/gen/lib/familyreltype.py:58
 msgid "Unmarried"
-msgstr ""
+msgstr "დაუქორწინებელი"
 
 #: ../gramps/gen/lib/familyreltype.py:59
 msgid "Civil Union"
@@ -7701,7 +7701,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/repository.py:174
 #: ../gramps/plugins/webreport/repository.py:273
 msgid "Type"
-msgstr ""
+msgstr "ტიპი"
 
 #: ../gramps/gen/lib/grampstype.py:271
 msgid "Custom type"
@@ -7713,7 +7713,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/ldsord.py:95
 msgid "Endowment"
-msgstr ""
+msgstr "დაქვრივება"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Sealed to Parents"
@@ -7733,15 +7733,15 @@ msgstr ""
 
 #: ../gramps/gen/lib/ldsord.py:104
 msgid "Canceled"
-msgstr ""
+msgstr "გაუქმებულია"
 
 #: ../gramps/gen/lib/ldsord.py:106
 msgid "Cleared"
-msgstr ""
+msgstr "გასუფთავებულია"
 
 #: ../gramps/gen/lib/ldsord.py:107
 msgid "Completed"
-msgstr ""
+msgstr "დასრულებულია"
 
 #: ../gramps/gen/lib/ldsord.py:108
 msgid "Do not seal"
@@ -7749,15 +7749,15 @@ msgstr ""
 
 #: ../gramps/gen/lib/ldsord.py:109
 msgid "Infant"
-msgstr ""
+msgstr "ჩვილი"
 
 #: ../gramps/gen/lib/ldsord.py:110
 msgid "Pre-1970"
-msgstr ""
+msgstr "1970-მდე"
 
 #: ../gramps/gen/lib/ldsord.py:111
 msgid "Qualified"
-msgstr ""
+msgstr "კვალიფიკაციის მქონე"
 
 #: ../gramps/gen/lib/ldsord.py:112
 msgid "Do not seal/Cancel"
@@ -7765,15 +7765,15 @@ msgstr ""
 
 #: ../gramps/gen/lib/ldsord.py:113
 msgid "Stillborn"
-msgstr ""
+msgstr "მკვდრადშობილი"
 
 #: ../gramps/gen/lib/ldsord.py:114
 msgid "Submitted"
-msgstr ""
+msgstr "გადაცემულია"
 
 #: ../gramps/gen/lib/ldsord.py:115
 msgid "Uncleared"
-msgstr ""
+msgstr "გამოთხოვილია"
 
 #: ../gramps/gen/lib/ldsord.py:186 ../gramps/gui/editors/editldsord.py:337
 #: ../gramps/gui/editors/editldsord.py:485
@@ -7790,7 +7790,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/indivcomplete.py:738
 #: ../gramps/plugins/webreport/basepage.py:1321
 msgid "Temple"
-msgstr ""
+msgstr "ტაძარი"
 
 #: ../gramps/gen/lib/ldsord.py:204 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
@@ -7803,34 +7803,34 @@ msgstr ""
 #: ../gramps/plugins/textreport/notelinkreport.py:103
 #: ../gramps/plugins/webreport/basepage.py:1323
 msgid "Status"
-msgstr ""
+msgstr "სტატუსი"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gui/clipboard.py:338
 #: ../gramps/gui/plug/_windows.py:1653
 msgid "Location"
-msgstr ""
+msgstr "მდებარეობა"
 
 #: ../gramps/gen/lib/location.py:100 ../gramps/gen/lib/placetype.py:79
 #: ../gramps/plugins/view/geoplaces.py:627
 msgid "Parish"
-msgstr ""
+msgstr "მრევლი"
 
 #: ../gramps/gen/lib/markertype.py:60
 #: ../gramps/gui/logger/_errorreportassistant.py:792
 msgid "Complete"
-msgstr ""
+msgstr "დასრულებული"
 
 #: ../gramps/gen/lib/markertype.py:61 ../gramps/plugins/tool/notrelated.py:105
 msgid "ToDo"
-msgstr ""
+msgstr "გეგმა"
 
 #: ../gramps/gen/lib/media.py:153
 msgid "MIME"
-msgstr ""
+msgstr "MIME"
 
 #: ../gramps/gen/lib/media.py:155
 msgid "Checksum"
-msgstr ""
+msgstr "საკონტროლო ჯამი"
 
 #: ../gramps/gen/lib/mediaref.py:96 ../gramps/gui/clipboard.py:674
 msgid "Media ref"
@@ -7839,7 +7839,7 @@ msgstr ""
 #: ../gramps/gen/lib/mediaref.py:130 ../gramps/gen/lib/placetype.py:83
 #: ../gramps/plugins/view/geoplaces.py:620
 msgid "Region"
-msgstr ""
+msgstr "რეგიონი"
 
 #: ../gramps/gen/lib/name.py:166 ../gramps/gen/lib/repo.py:105
 #: ../gramps/gen/lib/tag.py:155 ../gramps/gui/clipboard.py:585
@@ -7890,7 +7890,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:2349
 #: ../gramps/plugins/webreport/surname.py:148
 msgid "Name"
-msgstr ""
+msgstr "სახელი"
 
 #: ../gramps/gen/lib/name.py:181 ../gramps/plugins/importer/importcsv.py:207
 msgid "Given name"
@@ -7905,7 +7905,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/surnamelist.py:111
 #: ../gramps/plugins/webreport/surnamelist.py:184
 msgid "Surnames"
-msgstr ""
+msgstr "გვარები"
 
 #: ../gramps/gen/lib/name.py:187 ../gramps/gen/utils/keyword.py:62
 #: ../gramps/gui/configure.py:1087 ../gramps/gui/configure.py:1088
@@ -7916,7 +7916,7 @@ msgstr ""
 #: ../gramps/plugins/export/exportcsv.py:424
 #: ../gramps/plugins/importer/importcsv.py:233
 msgid "Suffix"
-msgstr ""
+msgstr "სუფიქსი"
 
 #: ../gramps/gen/lib/name.py:188 ../gramps/gen/lib/place.py:163
 #: ../gramps/gen/lib/src.py:114 ../gramps/gui/clipboard.py:921
@@ -7941,7 +7941,7 @@ msgstr ""
 #: ../gramps/plugins/view/sourceview.py:84
 #: ../gramps/plugins/webreport/basepage.py:3638
 msgid "Title"
-msgstr ""
+msgstr "დასახელება"
 
 #: ../gramps/gen/lib/name.py:190 ../gramps/plugins/webreport/person.py:421
 msgid "Group as"
@@ -7998,53 +7998,53 @@ msgstr ""
 #: ../gramps/gen/lib/nameorigintype.py:83
 msgctxt "Surname"
 msgid "Inherited"
-msgstr ""
+msgstr "მემკვიდრეობით"
 
 #: ../gramps/gen/lib/nameorigintype.py:84
 msgctxt "Surname"
 msgid "Given"
-msgstr ""
+msgstr "მიცემული გვარი"
 
 #: ../gramps/gen/lib/nameorigintype.py:85
 msgctxt "Surname"
 msgid "Taken"
-msgstr ""
+msgstr "აღებული გვარი"
 
 #: ../gramps/gen/lib/nameorigintype.py:86 ../gramps/gen/utils/keyword.py:67
 #: ../gramps/gui/configure.py:1097
 msgid "Patronymic"
-msgstr ""
+msgstr "მამის სახელი"
 
 #: ../gramps/gen/lib/nameorigintype.py:87
 msgid "Matronymic"
-msgstr ""
+msgstr "დედის გვარი"
 
 #: ../gramps/gen/lib/nameorigintype.py:88
 msgctxt "Surname"
 msgid "Feudal"
-msgstr ""
+msgstr "ფეოდალური"
 
 #: ../gramps/gen/lib/nameorigintype.py:89
 msgid "Pseudonym"
-msgstr ""
+msgstr "ფსევდონიმი"
 
 #: ../gramps/gen/lib/nameorigintype.py:90
 msgid "Patrilineal"
-msgstr ""
+msgstr "წარმოშობა მამის მხრიდან"
 
 #: ../gramps/gen/lib/nameorigintype.py:91
 msgid "Matrilineal"
-msgstr ""
+msgstr "წარმოშობა დედის მხრიდან"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
 msgctxt "Surname"
 msgid "Occupation"
-msgstr ""
+msgstr "პროფესია"
 
 #: ../gramps/gen/lib/nameorigintype.py:93
 msgctxt "Surname"
 msgid "Location"
-msgstr ""
+msgstr "მდებარეობა"
 
 #: ../gramps/gen/lib/nametype.py:58
 msgid "Also Known As"
@@ -8093,13 +8093,13 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:838
 #: ../gramps/plugins/webreport/basepage.py:2864
 msgid "Note"
-msgstr ""
+msgstr "შენიშვნა"
 
 #: ../gramps/gen/lib/note.py:115 ../gramps/gui/configure.py:1255
 #: ../gramps/gui/editors/editplaceformat.py:74
 #: ../gramps/plugins/tool/reorderids.glade:1428
 msgid "Format"
-msgstr ""
+msgstr "ფორმატი"
 
 #: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/configure.py:2205
 #: ../gramps/gui/editors/editeventref.py:102
@@ -8118,19 +8118,19 @@ msgstr ""
 #: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:741
 #: ../gramps/plugins/tool/verify.glade:426
 msgid "General"
-msgstr ""
+msgstr "ზოგადი"
 
 #: ../gramps/gen/lib/notetype.py:87
 msgid "Research"
-msgstr ""
+msgstr "კვლევა"
 
 #: ../gramps/gen/lib/notetype.py:88
 msgid "Analysis"
-msgstr ""
+msgstr "ანალიზი"
 
 #: ../gramps/gen/lib/notetype.py:89
 msgid "Transcript"
-msgstr ""
+msgstr "წერილობითი ასლი"
 
 #: ../gramps/gen/lib/notetype.py:90
 msgid "Source text"
@@ -8139,7 +8139,7 @@ msgstr ""
 #: ../gramps/gen/lib/notetype.py:92 ../gramps/gen/plug/_pluginreg.py:119
 #: ../gramps/gui/logger/_errorview.py:189
 msgid "Report"
-msgstr ""
+msgstr "მოხსენება"
 
 #: ../gramps/gen/lib/notetype.py:93
 msgid "Html code"
@@ -8153,7 +8153,7 @@ msgstr ""
 #: ../gramps/gen/lib/notetype.py:95
 msgctxt "notetype"
 msgid "Link"
-msgstr ""
+msgstr "ბმული"
 
 #: ../gramps/gen/lib/notetype.py:99
 msgid "Person Note"
@@ -8236,7 +8236,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/indivcomplete.py:957
 #: ../gramps/plugins/webreport/person.py:1896
 msgid "Gender"
-msgstr ""
+msgstr "სქესი"
 
 #: ../gramps/gen/lib/person.py:202
 msgid "Alternate names"
@@ -8273,7 +8273,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/family.py:251
 #: ../gramps/plugins/webreport/updates.py:113
 msgid "Families"
-msgstr ""
+msgstr "ოჯახები"
 
 #: ../gramps/gen/lib/person.py:225
 msgid "Parent families"
@@ -8284,11 +8284,11 @@ msgstr ""
 #: ../gramps/plugins/textreport/indivcomplete.py:444
 #: ../gramps/plugins/webreport/basepage.py:1463
 msgid "Addresses"
-msgstr ""
+msgstr "მისამართები"
 
 #: ../gramps/gen/lib/person.py:245
 msgid "Urls"
-msgstr ""
+msgstr "ბმულები"
 
 #: ../gramps/gen/lib/person.py:272
 msgid "Person references"
@@ -8305,7 +8305,7 @@ msgstr ""
 #: ../gramps/gen/lib/personref.py:121
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:68
 msgid "Association"
-msgstr ""
+msgstr "ასოციაცია"
 
 #: ../gramps/gen/lib/place.py:164 ../gramps/plugins/export/exportcsv.py:312
 #: ../gramps/plugins/gramplet/coordinates.py:106
@@ -8314,7 +8314,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3417
 #: ../gramps/plugins/webreport/place.py:352
 msgid "Longitude"
-msgstr ""
+msgstr "გრძედი"
 
 #: ../gramps/gen/lib/place.py:165 ../gramps/plugins/export/exportcsv.py:311
 #: ../gramps/plugins/gramplet/coordinates.py:105
@@ -8323,7 +8323,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3396
 #: ../gramps/plugins/webreport/place.py:351
 msgid "Latitude"
-msgstr ""
+msgstr "განედი"
 
 #: ../gramps/gen/lib/place.py:169 ../gramps/plugins/importer/importxml.py:355
 #: ../gramps/plugins/quickview/filterbyname.py:120
@@ -8339,7 +8339,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:484
 #: ../gramps/plugins/webreport/updates.py:127
 msgid "Places"
-msgstr ""
+msgstr "ადგილები"
 
 #: ../gramps/gen/lib/place.py:175 ../gramps/gui/merge/mergeperson.py:218
 #: ../gramps/plugins/textreport/indivcomplete.py:416
@@ -8353,7 +8353,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importcsv.py:390
 #: ../gramps/plugins/lib/libplaceview.py:90
 msgid "Code"
-msgstr ""
+msgstr "კოდი"
 
 #: ../gramps/gen/lib/place.py:182 ../gramps/plugins/webreport/basepage.py:3493
 msgid "Alternate Locations"
@@ -8361,7 +8361,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/place.py:187 ../gramps/gen/lib/repo.py:119
 msgid "URLs"
-msgstr ""
+msgstr "URL-ები"
 
 #: ../gramps/gen/lib/placename.py:95 ../gramps/gui/clipboard.py:601
 #: ../gramps/gui/editors/editplacename.py:136
@@ -8373,7 +8373,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:2177
 #: ../gramps/plugins/webreport/basepage.py:3470
 msgid "Language"
-msgstr ""
+msgstr "ენა"
 
 #: ../gramps/gen/lib/placeref.py:88 ../gramps/gui/clipboard.py:567
 msgid "Place ref"
@@ -8382,54 +8382,54 @@ msgstr ""
 #: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:618
 #: ../gramps/plugins/webreport/basepage.py:3431
 msgid "Province"
-msgstr ""
+msgstr "პროვინცია"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/view/geoplaces.py:622
 msgid "Department"
-msgstr ""
+msgstr "დეპარტამენტი"
 
 #: ../gramps/gen/lib/placetype.py:85 ../gramps/plugins/view/geoplaces.py:604
 msgid "Neighborhood"
-msgstr ""
+msgstr "სამეზობლო"
 
 #: ../gramps/gen/lib/placetype.py:86 ../gramps/plugins/view/geoplaces.py:625
 msgid "District"
-msgstr ""
+msgstr "ოლქი"
 
 #: ../gramps/gen/lib/placetype.py:87 ../gramps/plugins/view/geoplaces.py:606
 msgid "Borough"
-msgstr ""
+msgstr "დაბა"
 
 #: ../gramps/gen/lib/placetype.py:88 ../gramps/plugins/view/geoplaces.py:631
 msgid "Municipality"
-msgstr ""
+msgstr "მუნიციპალიტეტი"
 
 #: ../gramps/gen/lib/placetype.py:89 ../gramps/plugins/view/geoplaces.py:629
 msgid "Town"
-msgstr ""
+msgstr "ქალაქი (პატარა)"
 
 #: ../gramps/gen/lib/placetype.py:90 ../gramps/plugins/view/geoplaces.py:607
 msgid "Village"
-msgstr ""
+msgstr "სოფელი"
 
 #: ../gramps/gen/lib/placetype.py:91 ../gramps/plugins/view/geoplaces.py:608
 msgid "Hamlet"
-msgstr ""
+msgstr "პატარა სოფელი"
 
 #: ../gramps/gen/lib/placetype.py:92 ../gramps/plugins/view/geoplaces.py:609
 msgid "Farm"
-msgstr ""
+msgstr "ფერმა"
 
 #: ../gramps/gen/lib/placetype.py:93 ../gramps/plugins/view/geoplaces.py:611
 msgid "Building"
-msgstr ""
+msgstr "შენობა"
 
 #: ../gramps/gen/lib/placetype.py:94 ../gramps/plugins/gramplet/leak.py:98
 #: ../gramps/plugins/view/geoplaces.py:613
 #: ../gramps/plugins/webreport/basepage.py:3637
 #: ../gramps/plugins/webreport/source.py:206
 msgid "Number"
-msgstr ""
+msgstr "ნომერი"
 
 #: ../gramps/gen/lib/repo.py:95 ../gramps/gui/clipboard.py:790
 #: ../gramps/gui/configure.py:837 ../gramps/gui/editors/editlink.py:102
@@ -8442,7 +8442,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:347
 #: ../gramps/plugins/tool/reorderids.glade:836
 msgid "Repository"
-msgstr ""
+msgstr "საცავი"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:531
 msgid "Repository ref"
@@ -8455,23 +8455,23 @@ msgstr ""
 
 #: ../gramps/gen/lib/repotype.py:64
 msgid "Library"
-msgstr ""
+msgstr "ბიბლიოთეკა"
 
 #: ../gramps/gen/lib/repotype.py:65
 msgid "Cemetery"
-msgstr ""
+msgstr "სასაფლაო"
 
 #: ../gramps/gen/lib/repotype.py:66
 msgid "Church"
-msgstr ""
+msgstr "ეკლესია"
 
 #: ../gramps/gen/lib/repotype.py:67
 msgid "Archive"
-msgstr ""
+msgstr "არქივი"
 
 #: ../gramps/gen/lib/repotype.py:68
 msgid "Album"
-msgstr ""
+msgstr "ალბომი"
 
 #: ../gramps/gen/lib/repotype.py:69
 msgid "Web site"
@@ -8479,15 +8479,15 @@ msgstr ""
 
 #: ../gramps/gen/lib/repotype.py:70
 msgid "Bookstore"
-msgstr ""
+msgstr "წიგნების მაღაზია"
 
 #: ../gramps/gen/lib/repotype.py:71
 msgid "Collection"
-msgstr ""
+msgstr "კოლექცია"
 
 #: ../gramps/gen/lib/repotype.py:72
 msgid "Safe"
-msgstr ""
+msgstr "სეიფი"
 
 #: ../gramps/gen/lib/src.py:115
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:83
@@ -8500,7 +8500,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/source.py:207
 #: ../gramps/plugins/webreport/source.py:399
 msgid "Author"
-msgstr ""
+msgstr "ავტორი"
 
 #: ../gramps/gen/lib/src.py:116
 msgid "Publication info"
@@ -8514,7 +8514,7 @@ msgstr ""
 #: ../gramps/plugins/view/sourceview.py:87
 #: ../gramps/plugins/webreport/source.py:400
 msgid "Abbreviation"
-msgstr ""
+msgstr "აბრევიატურა"
 
 #: ../gramps/gen/lib/src.py:137 ../gramps/plugins/importer/importxml.py:356
 #: ../gramps/plugins/quickview/filterbyname.py:136
@@ -8531,59 +8531,59 @@ msgstr ""
 #: ../gramps/plugins/webreport/repository.py:243
 #: ../gramps/plugins/webreport/updates.py:141
 msgid "Repositories"
-msgstr ""
+msgstr "საცავები"
 
 #: ../gramps/gen/lib/srcmediatype.py:68
 msgid "Audio"
-msgstr ""
+msgstr "აუდიო"
 
 #: ../gramps/gen/lib/srcmediatype.py:69 ../gramps/gui/glade/book.glade:135
 msgid "Book"
-msgstr ""
+msgstr "წიგნი"
 
 #: ../gramps/gen/lib/srcmediatype.py:70
 msgid "Card"
-msgstr ""
+msgstr "ბარათი"
 
 #: ../gramps/gen/lib/srcmediatype.py:71
 msgid "Electronic"
-msgstr ""
+msgstr "ელექტრონული"
 
 #: ../gramps/gen/lib/srcmediatype.py:72
 msgid "Fiche"
-msgstr ""
+msgstr "მიკროლენტა"
 
 #: ../gramps/gen/lib/srcmediatype.py:73
 msgid "Film"
-msgstr ""
+msgstr "ლენტა"
 
 #: ../gramps/gen/lib/srcmediatype.py:74
 msgid "Magazine"
-msgstr ""
+msgstr "ჟურნალი"
 
 #: ../gramps/gen/lib/srcmediatype.py:75
 msgid "Manuscript"
-msgstr ""
+msgstr "ხელნაწერი"
 
 #: ../gramps/gen/lib/srcmediatype.py:76
 msgid "Map"
-msgstr ""
+msgstr "რუკა"
 
 #: ../gramps/gen/lib/srcmediatype.py:77
 msgid "Newspaper"
-msgstr ""
+msgstr "გაზეთი"
 
 #: ../gramps/gen/lib/srcmediatype.py:78
 msgid "Photo"
-msgstr ""
+msgstr "ფოტო"
 
 #: ../gramps/gen/lib/srcmediatype.py:79
 msgid "Tombstone"
-msgstr ""
+msgstr "საფლავის ქვა"
 
 #: ../gramps/gen/lib/srcmediatype.py:80
 msgid "Video"
-msgstr ""
+msgstr "ვიდეო"
 
 #: ../gramps/gen/lib/styledtext.py:340
 msgid "Styled Text"
@@ -8611,47 +8611,47 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:513
 #: ../gramps/plugins/webreport/multiselect.py:300
 msgid "Tag"
-msgstr ""
+msgstr "ჭდე"
 
 #: ../gramps/gen/lib/styledtexttag.py:131
 msgid "Ranges"
-msgstr ""
+msgstr "დიაპაზონები"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:66
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Bold"
-msgstr ""
+msgstr "სქელი"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:67
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Italic"
-msgstr ""
+msgstr "კურსივი"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:68
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Underline"
-msgstr ""
+msgstr "ხაზგასმული"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:69
 msgid "Fontface"
-msgstr ""
+msgstr "ფონტი"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:70
 msgid "Fontsize"
-msgstr ""
+msgstr "ფონტის ზომა"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:71
 msgid "Fontcolor"
-msgstr ""
+msgstr "ფონტის ფერი"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:72
 msgid "Highlight"
-msgstr ""
+msgstr "გამოკვეთა"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Superscript"
-msgstr ""
+msgstr "სუპერსკრიპტი"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:74
 #: ../gramps/gui/glade/editlink.glade:168
@@ -8659,17 +8659,17 @@ msgstr ""
 #: ../gramps/gui/widgets/styledtextbuffer.py:651
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Link"
-msgstr ""
+msgstr "ბმული"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:75
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Strikethrough"
-msgstr ""
+msgstr "ხაზგადასმული"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:76
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Subscript"
-msgstr ""
+msgstr "სუბსკრიპტი"
 
 #: ../gramps/gen/lib/surname.py:113 ../gramps/gen/lib/surname.py:116
 #: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/clipboard.py:617
@@ -8686,7 +8686,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/surname.py:105
 #: ../gramps/plugins/webreport/surnamelist.py:184
 msgid "Surname"
-msgstr ""
+msgstr "გვარი"
 
 #: ../gramps/gen/lib/surname.py:117 ../gramps/gen/utils/keyword.py:73
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
@@ -8694,11 +8694,11 @@ msgstr ""
 #: ../gramps/plugins/export/exportcsv.py:425
 #: ../gramps/plugins/importer/importcsv.py:232
 msgid "Prefix"
-msgstr ""
+msgstr "პრეფიქსი"
 
 #: ../gramps/gen/lib/surname.py:118
 msgid "Primary"
-msgstr ""
+msgstr "ძირითადი"
 
 #: ../gramps/gen/lib/surnamebase.py:189 ../gramps/gen/lib/surnamebase.py:197
 #: ../gramps/gen/lib/surnamebase.py:202 ../gramps/gen/lib/surnamebase.py:215
@@ -8711,19 +8711,19 @@ msgstr ""
 #: ../gramps/gui/glade/styleeditor.glade:1482
 #: ../gramps/gui/plug/_guioptions.py:1526 ../gramps/gui/views/tags.py:481
 msgid "Color"
-msgstr ""
+msgstr "ფერი"
 
 #: ../gramps/gen/lib/tag.py:164
 msgid "Priority"
-msgstr ""
+msgstr "პრიორიტეტი"
 
 #: ../gramps/gen/lib/url.py:90 ../gramps/gui/clipboard.py:435
 msgid "Url"
-msgstr ""
+msgstr "URL"
 
 #: ../gramps/gen/lib/urltype.py:59
 msgid "E-mail"
-msgstr ""
+msgstr "ელფოსტა"
 
 #: ../gramps/gen/lib/urltype.py:60
 msgid "Web Home"
@@ -8735,7 +8735,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/urltype.py:62
 msgid "FTP"
-msgstr ""
+msgstr "FTP"
 
 #: ../gramps/gen/merge/diff.py:104
 msgid "Family Tree Differences"
@@ -8743,7 +8743,7 @@ msgstr ""
 
 #: ../gramps/gen/merge/diff.py:104
 msgid "Searching..."
-msgstr ""
+msgstr "იძებნება..."
 
 #: ../gramps/gen/merge/mergecitationquery.py:73
 msgid "Merge Citation"
@@ -8824,27 +8824,27 @@ msgstr ""
 
 #: ../gramps/gen/plug/_pluginreg.py:69
 msgid "Unstable"
-msgstr ""
+msgstr "არასტაბილური"
 
 #: ../gramps/gen/plug/_pluginreg.py:70
 msgid "Experimental"
-msgstr ""
+msgstr "ექსპერიმენტული"
 
 #: ../gramps/gen/plug/_pluginreg.py:71
 msgid "Beta"
-msgstr ""
+msgstr "ბეტა"
 
 #: ../gramps/gen/plug/_pluginreg.py:72
 msgid "Stable"
-msgstr ""
+msgstr "სტაბილური"
 
 #: ../gramps/gen/plug/_pluginreg.py:80
 msgid "Developer"
-msgstr ""
+msgstr "დეველოპერი"
 
 #: ../gramps/gen/plug/_pluginreg.py:80
 msgid "Expert"
-msgstr ""
+msgstr "ექსპერტი"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
 msgid "Quick view"
@@ -8852,15 +8852,15 @@ msgstr ""
 
 #: ../gramps/gen/plug/_pluginreg.py:121
 msgid "Tool"
-msgstr ""
+msgstr "ხელსაწყო"
 
 #: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Importer"
-msgstr ""
+msgstr "შემომტანი"
 
 #: ../gramps/gen/plug/_pluginreg.py:123
 msgid "Exporter"
-msgstr ""
+msgstr "გამტანი"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
 msgid "Document creator"
@@ -8878,7 +8878,7 @@ msgstr ""
 #: ../gramps/plugins/view/mediaview.py:410
 #: ../gramps/plugins/view/mediaview.py:426
 msgid "View"
-msgstr ""
+msgstr "ხედი"
 
 #: ../gramps/gen/plug/_pluginreg.py:128
 msgid "Relationship calculator"
@@ -8890,19 +8890,19 @@ msgstr ""
 #: ../gramps/gui/widgets/grampletpane.py:246
 #: ../gramps/gui/widgets/grampletpane.py:1005
 msgid "Gramplet"
-msgstr ""
+msgstr "გრამპლეტი"
 
 #: ../gramps/gen/plug/_pluginreg.py:130
 msgid "Sidebar"
-msgstr ""
+msgstr "გვერდითი პანელი"
 
 #: ../gramps/gen/plug/_pluginreg.py:132
 msgid "Rule"
-msgstr ""
+msgstr "წესი"
 
 #: ../gramps/gen/plug/_pluginreg.py:133
 msgid "Thumbnailer"
-msgstr ""
+msgstr "მინიატურების შექმნა"
 
 #: ../gramps/gen/plug/_pluginreg.py:134 ../gramps/gui/configure.py:1663
 msgid "Citation formatter"
@@ -8915,7 +8915,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/statistics.py:184
 #: ../gramps/plugins/webreport/statistics.py:264
 msgid "Miscellaneous"
-msgstr ""
+msgstr "სხვადასხვა"
 
 #: ../gramps/gen/plug/_pluginreg.py:1407 ../gramps/gen/plug/_pluginreg.py:1442
 #: ../gramps/gen/plug/_pluginreg.py:1449
@@ -9018,7 +9018,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:415
 #: ../gramps/plugins/webreport/webcal.py:531
 msgid "Default"
-msgstr ""
+msgstr "ნაგულისხმევი"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 msgid "PostScript / Helvetica"
@@ -9096,25 +9096,25 @@ msgstr ""
 #: ../gramps/gen/plug/docgen/treedoc.py:117
 #: ../gramps/gui/glade/styleeditor.glade:1406
 msgid "Bottom"
-msgstr ""
+msgstr "ქვემოთ"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:101
 #: ../gramps/gen/plug/docgen/treedoc.py:117
 #: ../gramps/gui/glade/styleeditor.glade:1391
 msgid "Top"
-msgstr ""
+msgstr "ზედა"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:104
 msgid "Straight"
-msgstr ""
+msgstr "პირდაპირ"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:106
 msgid "Curved"
-msgstr ""
+msgstr "მოხრილი"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:109
 msgid "Orthogonal"
-msgstr ""
+msgstr "ორთოგონალური"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:156
 msgid "Graphviz Layout"
@@ -9223,7 +9223,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:266
 msgid "DPI"
-msgstr ""
+msgstr "DPI"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:269
 msgid ""
@@ -9292,7 +9292,7 @@ msgstr ""
 #: ../gramps/gen/plug/docgen/graphdoc.py:1180
 #: ../gramps/plugins/docgen/docgen.gpr.py:161
 msgid "PostScript"
-msgstr ""
+msgstr "PostScript"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1190
 msgid "Structured Vector Graphics (SVG)"
@@ -9321,12 +9321,12 @@ msgstr ""
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
 msgctxt "paper size"
 msgid "Letter"
-msgstr ""
+msgstr "წერილი"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:84
 msgctxt "paper size"
 msgid "Legal"
-msgstr ""
+msgstr "იურიდიული საკითხები"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:86
 msgid "Custom Size"
@@ -9335,11 +9335,11 @@ msgstr ""
 #: ../gramps/gen/plug/docgen/treedoc.py:67
 #: ../gramps/plugins/tool/finddupes.py:62
 msgid "Medium"
-msgstr ""
+msgstr "საშუალო"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Short"
-msgstr ""
+msgstr "მოკლე"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Given Nickname Surname"
@@ -9355,11 +9355,11 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:75
 msgid "GivenNicknameSurname"
-msgstr ""
+msgstr "დარქმეულიმეტსახელიგვარი"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Auto"
-msgstr ""
+msgstr "ავტო"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
 msgid "Call Name Only"
@@ -9371,11 +9371,11 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:86
 msgid "Above"
-msgstr ""
+msgstr "ზემოდან"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:87
 msgid "Below"
-msgstr ""
+msgstr "ქვემოდან"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:88
 msgid "Not shown"
@@ -9385,7 +9385,7 @@ msgstr ""
 #: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2639
 #: ../gramps/gui/displaystate.py:430 ../gramps/gui/views/pageview.py:652
 msgid "Preferences"
-msgstr ""
+msgstr "მორგება"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Down (↓)"
@@ -9405,35 +9405,35 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:105
 msgid "Perpendicular"
-msgstr ""
+msgstr "პერპერნდიკულარული"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:107
 msgid "Rounded"
-msgstr ""
+msgstr "მომრგვალებული"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:111
 msgid "Swing"
-msgstr ""
+msgstr "გაქანება"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:114
 msgid "Mesh"
-msgstr ""
+msgstr "ბადე"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:120
 msgid "Tiny"
-msgstr ""
+msgstr "მცირე"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:121
 msgid "Script"
-msgstr ""
+msgstr "სკრიპტი"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:122
 msgid "Footnote"
-msgstr ""
+msgstr "სქოლიო"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:123
 msgid "Small"
-msgstr ""
+msgstr "პატარა"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:124 ../gramps/gen/utils/string.py:64
 #: ../gramps/gui/editors/editcitation.py:240
@@ -9441,12 +9441,12 @@ msgstr ""
 #: ../gramps/plugins/graph/gvrelgraph.py:1082
 #: ../gramps/plugins/importer/importprogen.py:516
 msgid "Normal"
-msgstr ""
+msgstr "ნორმალური"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:125
 #: ../gramps/plugins/graph/gvfamilylines.py:323
 msgid "Large"
-msgstr ""
+msgstr "დიდი"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:126
 msgid "Very large"
@@ -9458,7 +9458,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:128
 msgid "Huge"
-msgstr ""
+msgstr "უზარმაზარი"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:129
 msgid "Extra huge"
@@ -9533,7 +9533,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:263
 msgid "Timeflow"
-msgstr ""
+msgstr "დროის დინება"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:266
 msgid "Direction that the graph will grow over time."
@@ -9579,7 +9579,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:848
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:858
 msgid "Graph File for genealogytree"
@@ -9602,7 +9602,7 @@ msgstr ""
 #: ../gramps/gen/plug/report/_book.py:73 ../gramps/gui/plug/_dialogs.py:61
 #: ../gramps/gui/plug/report/_bookdialog.py:88 ../gramps/gui/viewmanager.py:143
 msgid "Unsupported"
-msgstr ""
+msgstr "მხარდაუჭერელია"
 
 #: ../gramps/gen/plug/report/_constants.py:53
 msgid "Text Reports"
@@ -9623,19 +9623,19 @@ msgstr ""
 #: ../gramps/gen/plug/report/_constants.py:57
 #: ../gramps/gui/plug/report/_bookdialog.py:93
 msgid "Books"
-msgstr ""
+msgstr "წიგნები"
 
 #: ../gramps/gen/plug/report/_constants.py:58
 msgid "Graphs"
-msgstr ""
+msgstr "გრაფიკები"
 
 #: ../gramps/gen/plug/report/_constants.py:59
 msgid "Trees"
-msgstr ""
+msgstr "ხეები"
 
 #: ../gramps/gen/plug/report/_constants.py:63
 msgid "Graphics"
-msgstr ""
+msgstr "გამოსახულებები"
 
 #: ../gramps/gen/plug/report/endnotes.py:65
 #: ../gramps/plugins/textreport/ancestorreport.py:388
@@ -9663,7 +9663,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/report/endnotes.py:163
 msgid "Endnotes"
-msgstr ""
+msgstr "შენიშვნები და დამატებითი განმარტებები"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gen/plug/report/endnotes.py:181
@@ -9704,11 +9704,11 @@ msgstr ""
 #: ../gramps/plugins/view/relview.py:1649
 #, python-format
 msgid "%s:"
-msgstr ""
+msgstr "%s:"
 
 #: ../gramps/gen/plug/report/stdoptions.py:63
 msgid "Translation"
-msgstr ""
+msgstr "თარგმანი"
 
 #: ../gramps/gen/plug/report/stdoptions.py:68
 msgid "The translation to be used for the report."
@@ -9796,7 +9796,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
 #: ../gramps/plugins/webreport/narrativeweb.py:2593
 msgid "Include"
-msgstr ""
+msgstr "ჩასმა"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
 msgid "Whether to include tags"
@@ -9852,7 +9852,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/report/utils.py:320
 msgid "PERSON"
-msgstr ""
+msgstr "პიროვნება"
 
 #: ../gramps/gen/plug/report/utils.py:328
 #: ../gramps/plugins/textreport/notelinkreport.py:174
@@ -9902,7 +9902,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/report/utils.py:405
 msgid "FAMILY"
-msgstr ""
+msgstr "ოჯახი"
 
 #: ../gramps/gen/plug/report/utils.py:422
 #, python-format
@@ -9911,12 +9911,12 @@ msgstr ""
 
 #: ../gramps/gen/plug/utils.py:307
 msgid "Updated"
-msgstr ""
+msgstr "განახლებულია"
 
 #: ../gramps/gen/plug/utils.py:325
 msgctxt "updates"
 msgid "New"
-msgstr ""
+msgstr "ახალი"
 
 #: ../gramps/gen/plug/utils.py:349 ../gramps/gen/plug/utils.py:356
 #, python-format
@@ -10010,80 +10010,80 @@ msgstr ""
 
 #: ../gramps/gen/relationship.py:1905
 msgid "undefined"
-msgstr ""
+msgstr "აღწერილი არაა"
 
 #: ../gramps/gen/relationship.py:2461
 #: ../gramps/plugins/importer/importcsv.py:377
 msgid "husband"
-msgstr ""
+msgstr "ქმარი"
 
 #: ../gramps/gen/relationship.py:2463
 #: ../gramps/plugins/importer/importcsv.py:367
 msgid "wife"
-msgstr ""
+msgstr "ცოლი"
 
 #: ../gramps/gen/relationship.py:2465
 msgctxt "gender unknown"
 msgid "spouse"
-msgstr ""
+msgstr "მეუღლე"
 
 #: ../gramps/gen/relationship.py:2468
 msgid "ex-husband"
-msgstr ""
+msgstr "ყოფილი ქმარი"
 
 #: ../gramps/gen/relationship.py:2470
 msgid "ex-wife"
-msgstr ""
+msgstr "ყოფილი ცოლი"
 
 #: ../gramps/gen/relationship.py:2472
 msgctxt "gender unknown"
 msgid "ex-spouse"
-msgstr ""
+msgstr "ყოფილი მეუღლე"
 
 #: ../gramps/gen/relationship.py:2475
 msgctxt "male,unmarried"
 msgid "partner"
-msgstr ""
+msgstr "პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2477
 msgctxt "female,unmarried"
 msgid "partner"
-msgstr ""
+msgstr "პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2479
 msgctxt "gender unknown,unmarried"
 msgid "partner"
-msgstr ""
+msgstr "პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2482
 msgctxt "male,unmarried"
 msgid "ex-partner"
-msgstr ""
+msgstr "ექს-პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2484
 msgctxt "female,unmarried"
 msgid "ex-partner"
-msgstr ""
+msgstr "ექს-პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2486
 msgctxt "gender unknown,unmarried"
 msgid "ex-partner"
-msgstr ""
+msgstr "ექს-პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2489
 msgctxt "male,civil union"
 msgid "partner"
-msgstr ""
+msgstr "პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2491
 msgctxt "female,civil union"
 msgid "partner"
-msgstr ""
+msgstr "პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2493
 msgctxt "gender unknown,civil union"
 msgid "partner"
-msgstr ""
+msgstr "პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2496
 msgctxt "male,civil union"
@@ -10103,17 +10103,17 @@ msgstr ""
 #: ../gramps/gen/relationship.py:2503
 msgctxt "male,unknown relation"
 msgid "partner"
-msgstr ""
+msgstr "პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2505
 msgctxt "female,unknown relation"
 msgid "partner"
-msgstr ""
+msgstr "პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2507
 msgctxt "gender unknown,unknown relation"
 msgid "partner"
-msgstr ""
+msgstr "პარტნიორი"
 
 #: ../gramps/gen/relationship.py:2512
 msgctxt "male,unknown relation"
@@ -10140,7 +10140,7 @@ msgstr ""
 #: ../gramps/gen/utils/alive.py:194 ../gramps/gen/utils/alive.py:230
 #: ../gramps/plugins/importer/importcsv.py:383
 msgid "date"
-msgstr ""
+msgstr "თარიღი"
 
 #: ../gramps/gen/utils/alive.py:213 ../gramps/gen/utils/alive.py:244
 msgid "date fallback"
@@ -10247,7 +10247,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/alive.py:873 ../gramps/gen/utils/alive.py:904
 msgid "ancestor "
-msgstr ""
+msgstr "წინაპარი "
 
 #: ../gramps/gen/utils/alive.py:879
 msgid "mother death "
@@ -10268,11 +10268,11 @@ msgstr ""
 
 #: ../gramps/gen/utils/cast.py:49
 msgid "True"
-msgstr ""
+msgstr "ჭეშმარიტი"
 
 #: ../gramps/gen/utils/cast.py:49
 msgid "true"
-msgstr ""
+msgstr "ჭეშმარიტი"
 
 #: ../gramps/gen/utils/configmanager.py:280
 #, python-format
@@ -10345,39 +10345,39 @@ msgstr ""
 #: ../gramps/gen/utils/keyword.py:56
 msgctxt "Person"
 msgid "TITLE"
-msgstr ""
+msgstr "ტიტული"
 
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/plugins/export/exportcsv.py:426
 #: ../gramps/plugins/tool/patchnames.py:498
 msgctxt "Person"
 msgid "Title"
-msgstr ""
+msgstr "ტიტული"
 
 #: ../gramps/gen/utils/keyword.py:57
 msgid "GIVEN"
-msgstr ""
+msgstr "დარქმეული სახელი"
 
 #: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:1092
 #: ../gramps/gui/configure.py:1099 ../gramps/gui/configure.py:1100
 #: ../gramps/gui/configure.py:1101 ../gramps/gui/configure.py:1102
 #: ../gramps/gui/configure.py:1103 ../gramps/gui/configure.py:1104
 msgid "SURNAME"
-msgstr ""
+msgstr "გვარი"
 
 #: ../gramps/gen/utils/keyword.py:59
 msgctxt "Name"
 msgid "CALL"
-msgstr ""
+msgstr "საძახისი"
 
 #: ../gramps/gen/utils/keyword.py:59
 msgctxt "Name"
 msgid "Call"
-msgstr ""
+msgstr "საძახისი"
 
 #: ../gramps/gen/utils/keyword.py:60
 msgctxt "Name"
 msgid "COMMON"
-msgstr ""
+msgstr "სალააპარაკო"
 
 #: ../gramps/gen/utils/keyword.py:60 ../gramps/gui/configure.py:1087
 #: ../gramps/gui/configure.py:1090 ../gramps/gui/configure.py:1091
@@ -10385,113 +10385,113 @@ msgstr ""
 #: ../gramps/gui/configure.py:1099 ../gramps/gui/configure.py:1100
 msgctxt "Name"
 msgid "Common"
-msgstr ""
+msgstr "სალაპაარაკო"
 
 #: ../gramps/gen/utils/keyword.py:61
 msgid "INITIALS"
-msgstr ""
+msgstr "ინიციალები"
 
 #: ../gramps/gen/utils/keyword.py:61
 msgid "Initials"
-msgstr ""
+msgstr "ინიციალები"
 
 #: ../gramps/gen/utils/keyword.py:62
 msgid "SUFFIX"
-msgstr ""
+msgstr "სუფიქსი"
 
 #: ../gramps/gen/utils/keyword.py:63
 msgid "PRIMARY"
-msgstr ""
+msgstr "ძირითადი"
 
 #: ../gramps/gen/utils/keyword.py:63
 #: ../gramps/gui/editors/displaytabs/surnametab.py:84
 msgctxt "Name"
 msgid "Primary"
-msgstr ""
+msgstr "ძირითადი"
 
 #: ../gramps/gen/utils/keyword.py:64
 msgid "PRIMARY[PRE]"
-msgstr ""
+msgstr "ძირითადი[ძირ]"
 
 #: ../gramps/gen/utils/keyword.py:64
 msgid "Primary[pre]"
-msgstr ""
+msgstr "ძირითადი[ძირ]"
 
 #: ../gramps/gen/utils/keyword.py:65
 msgid "PRIMARY[SUR]"
-msgstr ""
+msgstr "ძირითადი[გვარ]"
 
 #: ../gramps/gen/utils/keyword.py:65
 msgid "Primary[sur]"
-msgstr ""
+msgstr "ძირითადი[გვარ]"
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "PRIMARY[CON]"
-msgstr ""
+msgstr "ძირითადი[კავშ]"
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "Primary[con]"
-msgstr ""
+msgstr "ძირითადი[კავშ]"
 
 #: ../gramps/gen/utils/keyword.py:67
 msgid "PATRONYMIC"
-msgstr ""
+msgstr "მამის სახელი"
 
 #: ../gramps/gen/utils/keyword.py:68
 msgid "PATRONYMIC[PRE]"
-msgstr ""
+msgstr "მამის სახელი[პრე]"
 
 #: ../gramps/gen/utils/keyword.py:68
 msgid "Patronymic[pre]"
-msgstr ""
+msgstr "მამის სახელი[პრე]"
 
 #: ../gramps/gen/utils/keyword.py:69
 msgid "PATRONYMIC[SUR]"
-msgstr ""
+msgstr "მამის სახელი[გვარ]"
 
 #: ../gramps/gen/utils/keyword.py:69
 msgid "Patronymic[sur]"
-msgstr ""
+msgstr "მამის სახელი[გვარ]"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "PATRONYMIC[CON]"
-msgstr ""
+msgstr "მამის სახელი[კავშ]"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "Patronymic[con]"
-msgstr ""
+msgstr "მამის სახელი[კავშ]"
 
 #: ../gramps/gen/utils/keyword.py:71
 msgid "RAWSURNAMES"
-msgstr ""
+msgstr "დაუმუშავებელიგვარები"
 
 #: ../gramps/gen/utils/keyword.py:71 ../gramps/gui/configure.py:1105
 msgid "Rawsurnames"
-msgstr ""
+msgstr "დაუმუშავებელიგვარები"
 
 #: ../gramps/gen/utils/keyword.py:72
 msgid "NOTPATRONYMIC"
-msgstr ""
+msgstr "მამის სახელის გარეშე"
 
 #: ../gramps/gen/utils/keyword.py:72
 msgid "Notpatronymic"
-msgstr ""
+msgstr "მამის სახელის გარეშე"
 
 #: ../gramps/gen/utils/keyword.py:73
 msgid "PREFIX"
-msgstr ""
+msgstr "პრეფიქსი"
 
 #: ../gramps/gen/utils/keyword.py:74
 msgid "NICKNAME"
-msgstr ""
+msgstr "მეტსახელი"
 
 #: ../gramps/gen/utils/keyword.py:75
 msgid "FAMILYNICK"
-msgstr ""
+msgstr "საოჯახო მეტსახელი"
 
 #: ../gramps/gen/utils/keyword.py:75
 msgid "Familynick"
-msgstr ""
+msgstr "საოჯახო მეტსახელი"
 
 #: ../gramps/gen/utils/place.py:51
 #, python-format
@@ -10515,23 +10515,23 @@ msgstr ""
 
 #: ../gramps/gen/utils/place.py:84
 msgid "DEG"
-msgstr ""
+msgstr "გრდ"
 
 #: ../gramps/gen/utils/place.py:86
 msgid "DEG-:"
-msgstr ""
+msgstr "გრდ-:"
 
 #: ../gramps/gen/utils/place.py:88
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:90
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:92
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:100
 msgid "Degree, minutes, seconds notation"
@@ -10563,7 +10563,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/requirements.py:172
 msgid "Executables"
-msgstr ""
+msgstr "გამშვები ფაილები"
 
 #: ../gramps/gen/utils/string.py:50 ../gramps/gui/editors/editperson.py:364
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:112
@@ -10572,7 +10572,7 @@ msgstr ""
 #: ../gramps/plugins/tool/dumpgenderstats.py:47
 #: ../gramps/plugins/webreport/person.py:585
 msgid "male"
-msgstr ""
+msgstr "მამრი"
 
 #: ../gramps/gen/utils/string.py:51 ../gramps/gui/editors/editperson.py:363
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:113
@@ -10581,23 +10581,23 @@ msgstr ""
 #: ../gramps/plugins/tool/dumpgenderstats.py:47
 #: ../gramps/plugins/webreport/person.py:586
 msgid "female"
-msgstr ""
+msgstr "მდედრი"
 
 #: ../gramps/gen/utils/string.py:52 ../gramps/gui/editors/editperson.py:365
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:115
 msgctxt "gender"
 msgid "unknown"
-msgstr ""
+msgstr "უცნობი"
 
 #: ../gramps/gen/utils/string.py:53 ../gramps/gui/editors/editperson.py:366
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:114
 msgctxt "gender"
 msgid "other"
-msgstr ""
+msgstr "სხვა"
 
 #: ../gramps/gen/utils/string.py:58
 msgid "Invalid"
-msgstr ""
+msgstr "არასწორი"
 
 #: ../gramps/gen/utils/string.py:62 ../gramps/gui/editors/editcitation.py:242
 #: ../gramps/plugins/importer/importprogen.py:518
@@ -10608,13 +10608,13 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.py:517
 #: ../gramps/plugins/tool/finddupes.py:63
 msgid "High"
-msgstr ""
+msgstr "მაღალი"
 
 #: ../gramps/gen/utils/string.py:65 ../gramps/gui/editors/editcitation.py:239
 #: ../gramps/plugins/importer/importprogen.py:515
 #: ../gramps/plugins/tool/finddupes.py:61
 msgid "Low"
-msgstr ""
+msgstr "დაბალი"
 
 #: ../gramps/gen/utils/string.py:66 ../gramps/gui/editors/editcitation.py:238
 #: ../gramps/plugins/importer/importprogen.py:514
@@ -10654,7 +10654,7 @@ msgstr ""
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:102
 msgid "Female"
-msgstr ""
+msgstr "მდედრი"
 
 #: ../gramps/gen/utils/symbols.py:85 ../gramps/gui/editors/editfamily.py:1036
 #: ../gramps/plugins/graph/gvfamilylines.py:98
@@ -10663,7 +10663,7 @@ msgstr ""
 #: ../gramps/plugins/tool/dumpgenderstats.py:96
 #: ../gramps/plugins/tool/dumpgenderstats.py:102
 msgid "Male"
-msgstr ""
+msgstr "მამრი"
 
 #: ../gramps/gen/utils/symbols.py:86
 msgid "Asexuality, sexless, genderless"
@@ -10675,7 +10675,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/symbols.py:88
 msgid "Lesbianism"
-msgstr ""
+msgstr "დედათმავლობა"
 
 #: ../gramps/gen/utils/symbols.py:89
 msgid "Male homosexuality"
@@ -10683,27 +10683,27 @@ msgstr ""
 
 #: ../gramps/gen/utils/symbols.py:90
 msgid "Heterosexuality"
-msgstr ""
+msgstr "ჰეტეროსექსუალობა"
 
 #: ../gramps/gen/utils/symbols.py:91
 msgid "Transgender"
-msgstr ""
+msgstr "ტრანსგენდერი"
 
 #: ../gramps/gen/utils/symbols.py:92
 msgid "Neuter"
-msgstr ""
+msgstr "კასტრირებული"
 
 #: ../gramps/gen/utils/symbols.py:93
 msgid "Illegitimate"
-msgstr ""
+msgstr "უკანონო"
 
 #: ../gramps/gen/utils/symbols.py:95
 msgid "Baptism/Christening"
-msgstr ""
+msgstr "მონათვლა/აღსარება"
 
 #: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2801
 msgid "Engaged"
-msgstr ""
+msgstr "დანიშნული"
 
 #: ../gramps/gen/utils/symbols.py:99
 msgid "Unmarried partnership"
@@ -10711,7 +10711,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2807
 msgid "Buried"
-msgstr ""
+msgstr "დასაფლავებული"
 
 #: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2808
 msgid "Cremated/Funeral urn"
@@ -10723,11 +10723,11 @@ msgstr ""
 
 #: ../gramps/gen/utils/symbols.py:103
 msgid "Extinct"
-msgstr ""
+msgstr "ამომწყდარი"
 
 #: ../gramps/gen/utils/symbols.py:109
 msgid "Nothing"
-msgstr ""
+msgstr "არაფერი"
 
 #: ../gramps/gen/utils/symbols.py:111
 msgid "Skull and crossbones"
@@ -10735,7 +10735,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/symbols.py:112
 msgid "Ankh"
-msgstr ""
+msgstr "ანკი"
 
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Orthodox cross"
@@ -10787,7 +10787,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/symbols.py:125
 msgid "Dead"
-msgstr ""
+msgstr "მკვდარი"
 
 #: ../gramps/gen/utils/unknown.py:154
 msgid "Unknown, created to replace a missing note object."
@@ -10805,31 +10805,31 @@ msgstr ""
 
 #: ../gramps/gen/utils/win32locale.py:44
 msgid "Arabic"
-msgstr ""
+msgstr "არაბული"
 
 #: ../gramps/gen/utils/win32locale.py:45
 msgid "Bulgarian"
-msgstr ""
+msgstr "ბულგარული"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Breton"
-msgstr ""
+msgstr "ბრეტონული"
 
 #: ../gramps/gen/utils/win32locale.py:48
 msgid "Catalan"
-msgstr ""
+msgstr "კატალანური"
 
 #: ../gramps/gen/utils/win32locale.py:49
 msgid "Czech"
-msgstr ""
+msgstr "ჩეხური"
 
 #: ../gramps/gen/utils/win32locale.py:50
 msgid "Danish"
-msgstr ""
+msgstr "დანიური"
 
 #: ../gramps/gen/utils/win32locale.py:51
 msgid "German"
-msgstr ""
+msgstr "გერმანული"
 
 #: ../gramps/gen/utils/win32locale.py:52
 msgid "German (Austria)"
@@ -10837,7 +10837,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/win32locale.py:53
 msgid "Greek"
-msgstr ""
+msgstr "ბერძნული"
 
 #: ../gramps/gen/utils/win32locale.py:54
 msgid "English (USA)"
@@ -10845,75 +10845,75 @@ msgstr ""
 
 #: ../gramps/gen/utils/win32locale.py:55
 msgid "English"
-msgstr ""
+msgstr "ინგლისური"
 
 #: ../gramps/gen/utils/win32locale.py:57
 msgid "Esperanto"
-msgstr ""
+msgstr "ესპერანტო"
 
 #: ../gramps/gen/utils/win32locale.py:58
 msgid "Spanish"
-msgstr ""
+msgstr "ესპანური"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "სპარსული"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
-msgstr ""
+msgstr "ფინური"
 
 #: ../gramps/gen/utils/win32locale.py:61
 msgid "French"
-msgstr ""
+msgstr "ფრანგული"
 
 #: ../gramps/gen/utils/win32locale.py:63
 msgid "Gaelic"
-msgstr ""
+msgstr "გელური"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr ""
+msgstr "გალიციური"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
-msgstr ""
+msgstr "ებრაული"
 
 #: ../gramps/gen/utils/win32locale.py:66
 msgid "Croatian"
-msgstr ""
+msgstr "ხორვატული"
 
 #: ../gramps/gen/utils/win32locale.py:67
 msgid "Hungarian"
-msgstr ""
+msgstr "უნგრული"
 
 #: ../gramps/gen/utils/win32locale.py:68
 msgid "Indonesian"
-msgstr ""
+msgstr "ინდონეზიური"
 
 #: ../gramps/gen/utils/win32locale.py:69
 msgid "Icelandic"
-msgstr ""
+msgstr "ისლანდიური"
 
 #: ../gramps/gen/utils/win32locale.py:70
 msgid "Italian"
-msgstr ""
+msgstr "იტალიური"
 
 #: ../gramps/gen/utils/win32locale.py:71
 msgid "Japanese"
-msgstr ""
+msgstr "იაპონური"
 
 #: ../gramps/gen/utils/win32locale.py:72
 msgid "Korean"
-msgstr ""
+msgstr "კორეული"
 
 #: ../gramps/gen/utils/win32locale.py:73
 msgid "Lithuanian"
-msgstr ""
+msgstr "ლიეტუვური"
 
 #: ../gramps/gen/utils/win32locale.py:75
 msgid "Macedonian"
-msgstr ""
+msgstr "მაკედონიური"
 
 #: ../gramps/gen/utils/win32locale.py:76
 msgid "Norwegian Bokmal"
@@ -10921,7 +10921,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/win32locale.py:77
 msgid "Dutch"
-msgstr ""
+msgstr "ჰოლანდიური"
 
 #: ../gramps/gen/utils/win32locale.py:78
 msgid "Norwegian Nynorsk"
@@ -10929,7 +10929,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/win32locale.py:79
 msgid "Polish"
-msgstr ""
+msgstr "პოლონური"
 
 #: ../gramps/gen/utils/win32locale.py:80
 msgid "Portuguese (Brazil)"
@@ -10941,47 +10941,47 @@ msgstr ""
 
 #: ../gramps/gen/utils/win32locale.py:82
 msgid "Romanian"
-msgstr ""
+msgstr "რუმინული"
 
 #: ../gramps/gen/utils/win32locale.py:83
 msgid "Russian"
-msgstr ""
+msgstr "რუსული"
 
 #: ../gramps/gen/utils/win32locale.py:84
 msgid "Slovak"
-msgstr ""
+msgstr "სლოვაკური"
 
 #: ../gramps/gen/utils/win32locale.py:85
 msgid "Slovenian"
-msgstr ""
+msgstr "სლოვენიური"
 
 #: ../gramps/gen/utils/win32locale.py:86
 msgid "Albanian"
-msgstr ""
+msgstr "ალბანური"
 
 #: ../gramps/gen/utils/win32locale.py:87
 msgid "Serbian"
-msgstr ""
+msgstr "სერბული"
 
 #: ../gramps/gen/utils/win32locale.py:88
 msgid "Swedish"
-msgstr ""
+msgstr "შვედური"
 
 #: ../gramps/gen/utils/win32locale.py:90
 msgid "Tamil"
-msgstr ""
+msgstr "თამილური"
 
 #: ../gramps/gen/utils/win32locale.py:91
 msgid "Turkish"
-msgstr ""
+msgstr "თურქული"
 
 #: ../gramps/gen/utils/win32locale.py:92
 msgid "Ukrainian"
-msgstr ""
+msgstr "უკრაინული"
 
 #: ../gramps/gen/utils/win32locale.py:93
 msgid "Vietnamese"
-msgstr ""
+msgstr "ვიეტნამური"
 
 #: ../gramps/gen/utils/win32locale.py:94
 msgid "Chinese (Simplified)"
@@ -11028,7 +11028,7 @@ msgstr ""
 
 #: ../gramps/grampsapp.py:444
 msgid "installed"
-msgstr ""
+msgstr "დაყენებულია"
 
 #: ../gramps/grampsapp.py:625 ../gramps/grampsapp.py:634
 #: ../gramps/grampsapp.py:684
@@ -11068,7 +11068,7 @@ msgstr ""
 #. Translators: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:153
 msgid "translator-credits"
-msgstr ""
+msgstr "თემური დოღონაძე"
 
 #: ../gramps/gui/aboutdialog.py:164
 #, python-format
@@ -11083,7 +11083,7 @@ msgstr ""
 #: ../gramps/gui/clipboard.py:73
 msgctxt "manual"
 msgid "Using_the_Clipboard"
-msgstr ""
+msgstr "ბუფერის_გამოყენებით"
 
 #: ../gramps/gui/clipboard.py:419
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:138
@@ -11097,7 +11097,7 @@ msgstr ""
 #: ../gramps/gui/clipboard.py:502
 msgctxt "not available"
 msgid "NA"
-msgstr ""
+msgstr "N/A"
 
 #: ../gramps/gui/clipboard.py:511
 #, python-format
@@ -11121,7 +11121,7 @@ msgstr ""
 #: ../gramps/gui/clipboard.py:1435 ../gramps/gui/clipboard.py:1482
 #: ../gramps/gui/glade/clipboard.glade:8
 msgid "Clipboard"
-msgstr ""
+msgstr "ბუფერი"
 
 #: ../gramps/gui/clipboard.py:1387 ../gramps/gui/configure.py:219
 #: ../gramps/gui/editors/filtereditor.py:1233 ../gramps/gui/views/tags.py:397
@@ -11163,14 +11163,14 @@ msgstr ""
 #: ../gramps/plugins/tool/eventcmp.glade:189
 #: ../gramps/plugins/tool/notrelated.glade:141
 msgid "_Apply"
-msgstr ""
+msgstr "გ_ადატარება"
 
 #: ../gramps/gui/columnorder.py:142
 #: ../gramps/plugins/drawreport/ancestortree.py:973
 #: ../gramps/plugins/drawreport/descendtree.py:1708
 #: ../gramps/plugins/webreport/narrativeweb.py:2286
 msgid "Display"
-msgstr ""
+msgstr "ჩვენება"
 
 #: ../gramps/gui/columnorder.py:146
 msgid "Column Name"
@@ -11220,7 +11220,7 @@ msgstr ""
 #: ../gramps/plugins/tool/verify.glade:126
 #: ../gramps/plugins/tool/verify.glade:850
 msgid "_Close"
-msgstr ""
+msgstr "და_ხურვა"
 
 #: ../gramps/gui/configure.py:131
 msgid ""
@@ -11281,7 +11281,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:111
 #, python-format
 msgid "%s: "
-msgstr ""
+msgstr "%s: "
 
 #: ../gramps/gui/configure.py:674 ../gramps/gui/editors/edittaglist.py:121
 #: ../gramps/gui/glade/addmedia.glade:53
@@ -11346,17 +11346,17 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.glade:213
 #: ../gramps/plugins/tool/testcasegenerator.py:396
 msgid "_Help"
-msgstr ""
+msgstr "_დახმარება"
 
 #: ../gramps/gui/configure.py:700 ../gramps/gui/configure.py:755
 msgid "Researcher"
-msgstr ""
+msgstr "მკვლევარი"
 
 #: ../gramps/gui/configure.py:718
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
 #: ../gramps/plugins/view/repoview.py:93
 msgid "State/County"
-msgstr ""
+msgstr "შტატი/ქვეყანა"
 
 #: ../gramps/gui/configure.py:727 ../gramps/plugins/view/repoview.py:95
 msgid "ZIP/Postal Code"
@@ -11365,7 +11365,7 @@ msgstr ""
 #: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1651
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
-msgstr ""
+msgstr "ელფოსტა"
 
 #: ../gramps/gui/configure.py:745
 msgid ""
@@ -11492,11 +11492,11 @@ msgstr ""
 #: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2814
 #, python-format
 msgid "<b>%s</b>"
-msgstr ""
+msgstr "<b>%s</b>"
 
 #: ../gramps/gui/configure.py:983
 msgid "Colors"
-msgstr ""
+msgstr "ფერები"
 
 #: ../gramps/gui/configure.py:1004
 msgid "Warnings and Error dialogs"
@@ -11524,16 +11524,16 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1054
 msgid "Warnings"
-msgstr ""
+msgstr "გაფრთხილებები"
 
 #: ../gramps/gui/configure.py:1092 ../gramps/plugins/export/exportcsv.py:422
 #: ../gramps/plugins/importer/importcsv.py:215
 msgid "Call"
-msgstr ""
+msgstr "საძახისი"
 
 #: ../gramps/gui/configure.py:1097
 msgid "NotPatronymic"
-msgstr ""
+msgstr "მამის სახელის გარეშე"
 
 #: ../gramps/gui/configure.py:1170
 msgid "Enter to save, Esc to cancel editing"
@@ -11545,7 +11545,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1264
 msgid "Example"
-msgstr ""
+msgstr "მაგალითი"
 
 #: ../gramps/gui/configure.py:1282
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:171
@@ -11561,7 +11561,7 @@ msgstr ""
 #: ../gramps/gui/widgets/fanchart.py:2304
 #: ../gramps/plugins/view/pedigreeview.py:1841
 msgid "_Add"
-msgstr ""
+msgstr "დ_ამატება"
 
 #: ../gramps/gui/configure.py:1285
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:173
@@ -11578,7 +11578,7 @@ msgstr ""
 #: ../gramps/plugins/view/pedigreeview.py:1875
 #: ../gramps/plugins/view/pedigreeview.py:2107
 msgid "_Edit"
-msgstr ""
+msgstr "ჩასწორ_ება"
 
 #: ../gramps/gui/configure.py:1289
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:174
@@ -11590,7 +11590,7 @@ msgstr ""
 #: ../gramps/gui/plug/report/_bookdialog.py:646
 #: ../gramps/gui/views/bookmarks.py:312 ../gramps/gui/views/tags.py:497
 msgid "_Remove"
-msgstr ""
+msgstr "_წაშლა"
 
 #: ../gramps/gui/configure.py:1415
 msgid "Display Options"
@@ -11607,7 +11607,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
-msgstr ""
+msgstr "ჩასწორება"
 
 #: ../gramps/gui/configure.py:1435
 msgid "Automate Place format"
@@ -11631,7 +11631,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1557
 msgid "Years"
-msgstr ""
+msgstr "წლები"
 
 #: ../gramps/gui/configure.py:1557
 msgid "Years, Months"
@@ -11720,7 +11720,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1724
 msgid "Data"
-msgstr ""
+msgstr "მონაცემები"
 
 #: ../gramps/gui/configure.py:1742
 msgid "Conditional Text Replacements"
@@ -11798,7 +11798,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1956
 msgid "Limits"
-msgstr ""
+msgstr "ლიმიტები"
 
 #: ../gramps/gui/configure.py:1969
 msgid "Environment Settings"
@@ -11971,11 +11971,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2270
 msgid "Host"
-msgstr ""
+msgstr "ჰოსტი"
 
 #: ../gramps/gui/configure.py:2274
 msgid "Port"
-msgstr ""
+msgstr "პორტი"
 
 #: ../gramps/gui/configure.py:2283
 msgid "Database path"
@@ -12021,7 +12021,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2340
 msgid "Autobackup"
-msgstr ""
+msgstr "ავტომარქაფი"
 
 #: ../gramps/gui/configure.py:2347
 msgid ""
@@ -12066,7 +12066,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2450 ../gramps/gui/dbloader.py:400
 msgid "Import"
-msgstr ""
+msgstr "შემოტანა"
 
 #: ../gramps/gui/configure.py:2519
 msgid "Select media directory"
@@ -12138,7 +12138,7 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.glade:181
 #: ../gramps/plugins/tool/testcasegenerator.py:394
 msgid "_Cancel"
-msgstr ""
+msgstr "გა_უქმება"
 
 #: ../gramps/gui/configure.py:2548
 msgid "Select database directory"
@@ -12177,7 +12177,7 @@ msgstr ""
 #: ../gramps/gui/configure.py:2719 ../gramps/gui/glade/editfamily.glade:142
 #: ../gramps/gui/glade/editfamily.glade:405
 msgid "Death:"
-msgstr ""
+msgstr "სიკვდილი:"
 
 #: ../gramps/gui/configure.py:2803
 #: ../gramps/plugins/quickview/all_relations.py:345
@@ -12187,11 +12187,11 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:437
 #: ../gramps/plugins/webreport/surname.py:162
 msgid "Partner"
-msgstr ""
+msgstr "პარტნიორი"
 
 #: ../gramps/gui/configure.py:2806
 msgid "Killed"
-msgstr ""
+msgstr "მოკლულია"
 
 #: ../gramps/gui/configure.py:2810
 msgid "Default genealogy symbols replacement"
@@ -12207,7 +12207,7 @@ msgstr ""
 #: ../gramps/gui/csvdialect.py:63
 msgctxt "character"
 msgid "Tab"
-msgstr ""
+msgstr "ტაბულაცია"
 
 #: ../gramps/gui/csvdialect.py:82
 msgid "Choose your dialect"
@@ -12221,7 +12221,7 @@ msgstr ""
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
-msgstr ""
+msgstr "გამყოფი:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:124
 msgid "Undo history warning"
@@ -12243,7 +12243,7 @@ msgstr ""
 
 #: ../gramps/gui/dbloader.py:125 ../gramps/gui/plug/tool.py:134
 msgid "_Stop"
-msgstr ""
+msgstr "გა_ჩერება"
 
 #: ../gramps/gui/dbloader.py:220
 msgid "Are you sure you want to upgrade this Family Tree?"
@@ -12260,7 +12260,7 @@ msgstr ""
 #: ../gramps/gui/plug/report/_bookdialog.py:771
 #: ../gramps/gui/viewmanager.py:679
 msgid "Cancel"
-msgstr ""
+msgstr "გაუქმება"
 
 #: ../gramps/gui/dbloader.py:269
 msgid "All files"
@@ -12276,15 +12276,15 @@ msgstr ""
 
 #: ../gramps/gui/dbloader.py:341 ../gramps/gui/dbloader.py:363
 msgid "Login"
-msgstr ""
+msgstr "შესვლა"
 
 #: ../gramps/gui/dbloader.py:349
 msgid "Username: "
-msgstr ""
+msgstr "მომხმარებლის სახელი: "
 
 #: ../gramps/gui/dbloader.py:354
 msgid "Password: "
-msgstr ""
+msgstr "პაროლი: "
 
 #: ../gramps/gui/dbloader.py:387
 msgid "Import Family Tree"
@@ -12334,19 +12334,19 @@ msgstr ""
 #: ../gramps/gui/dbman.py:99
 #, python-format
 msgid "%s_-_Manage_Family_Trees"
-msgstr ""
+msgstr "%s_-_გენეალოგიური_ხეების_მართვა"
 
 #: ../gramps/gui/dbman.py:100
 msgid "Family_Trees_manager_window"
-msgstr ""
+msgstr "გენეალოგიური_ხეების_მმართველის_ფანჯარა"
 
 #: ../gramps/gui/dbman.py:114 ../gramps/gui/glade/dbman.glade:344
 msgid "_Archive"
-msgstr ""
+msgstr "და_არქივება"
 
 #: ../gramps/gui/dbman.py:114
 msgid "_Extract"
-msgstr ""
+msgstr "ამოღ_ება"
 
 #: ../gramps/gui/dbman.py:121 ../gramps/gui/dbman.py:145
 msgid "Database Information"
@@ -12406,11 +12406,11 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.glade:197
 #: ../gramps/plugins/tool/testcasegenerator.py:395
 msgid "_OK"
-msgstr ""
+msgstr "დ_იახ"
 
 #: ../gramps/gui/dbman.py:126
 msgid "Setting"
-msgstr ""
+msgstr "პარამეტრი"
 
 #: ../gramps/gui/dbman.py:224
 msgid "Family Trees"
@@ -12521,7 +12521,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:845
 msgid "Convert"
-msgstr ""
+msgstr "გადაყვანა"
 
 #: ../gramps/gui/dbman.py:858
 #, python-format
@@ -12591,7 +12591,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:998
 msgid "Stop"
-msgstr ""
+msgstr "გაჩერება"
 
 #: ../gramps/gui/dbman.py:1018
 msgid "Rebuilding database from backup files"
@@ -12666,7 +12666,7 @@ msgstr ""
 
 #: ../gramps/gui/displaystate.py:411 ../gramps/gui/grampsgui.py:58
 msgid "Clip_board"
-msgstr ""
+msgstr "_ბუფერი"
 
 #: ../gramps/gui/displaystate.py:416
 msgid "Open the reports dialog"
@@ -12674,7 +12674,7 @@ msgstr ""
 
 #: ../gramps/gui/displaystate.py:417
 msgid "Reports"
-msgstr ""
+msgstr "მოხსენებები"
 
 #: ../gramps/gui/displaystate.py:419
 msgid "Open the tools dialog"
@@ -12682,7 +12682,7 @@ msgstr ""
 
 #: ../gramps/gui/displaystate.py:419
 msgid "Tools"
-msgstr ""
+msgstr "ხელსაწყოები"
 
 #: ../gramps/gui/displaystate.py:423
 msgid "Open Addon Manager"
@@ -12690,7 +12690,7 @@ msgstr ""
 
 #: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:480
 msgid "Addons"
-msgstr ""
+msgstr "დამატებები"
 
 #: ../gramps/gui/displaystate.py:429
 msgid "Open Preferences"
@@ -12766,7 +12766,7 @@ msgstr ""
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr ""
+msgstr "აირჩოეთ_მედიის_ამრჩევი"
 
 #: ../gramps/gui/editors/addmedia.py:105
 msgid "Select a media object"
@@ -12829,11 +12829,11 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
 msgid "Postal"
-msgstr ""
+msgstr "საფოსტო კოდი"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:92
 msgid "_Addresses"
-msgstr ""
+msgstr "მის_ამართები"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:53
@@ -12863,7 +12863,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:82
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:81
 msgid "_Attributes"
-msgstr ""
+msgstr "_ატრიბუტები"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:61
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:88
@@ -12914,11 +12914,11 @@ msgstr ""
 #: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/view/sourceview.py:85
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:70
 msgid "_References"
-msgstr ""
+msgstr "მიმა_რთვები"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:121
 msgid "Edit reference"
@@ -12942,7 +12942,7 @@ msgstr ""
 #: ../gramps/gui/glade/styleeditor.glade:1901
 #: ../gramps/plugins/view/relview.py:498
 msgid "Add"
-msgstr ""
+msgstr "დამატება"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:72
 #: ../gramps/gui/glade/editfamily.glade:243
@@ -12956,14 +12956,14 @@ msgstr ""
 #: ../gramps/gui/glade/styleeditor.glade:1956
 #: ../gramps/gui/glade/styleeditor.glade:1963
 msgid "Remove"
-msgstr ""
+msgstr "წაშლა"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:172
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:144
 #: ../gramps/plugins/view/relview.py:498
 msgid "Share"
-msgstr ""
+msgstr "გაზიარება"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:75
 msgid "Jump To"
@@ -13013,7 +13013,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:85
 #: ../gramps/plugins/gramplet/citations.py:107
 msgid "Publisher"
-msgstr ""
+msgstr "გამომცემელი"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:90
 msgid "Sorted date"
@@ -13076,11 +13076,11 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:95
 #: ../gramps/plugins/gramplet/events.py:110
 msgid "Role"
-msgstr ""
+msgstr "როლი"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:132
 msgid "_Events"
-msgstr ""
+msgstr "მოვლ_ენები"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:292
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:420
@@ -13117,13 +13117,13 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:96
 msgid "_Gallery"
-msgstr ""
+msgstr "_გალერეა"
 
 #. Translators: _View means "to look at this"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:156
 msgctxt "verb:look at this"
 msgid "_View"
-msgstr ""
+msgstr "ნახ_ვა"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:161
 #: ../gramps/plugins/view/mediaview.py:426
@@ -13176,7 +13176,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:78
 msgid "_LDS"
-msgstr ""
+msgstr "_LDS"
 
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:70
 msgid "Alternate _Locations"
@@ -13213,7 +13213,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:96
 msgid "_Names"
-msgstr ""
+msgstr "სა_ხელები"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:133
 msgid "Set as Preferred name"
@@ -13224,14 +13224,14 @@ msgstr ""
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
-msgstr ""
+msgstr "დიახ"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
 #: ../gramps/gui/plug/_guioptions.py:1271 ../gramps/gui/plug/_windows.py:947
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
-msgstr ""
+msgstr "არა"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:65
 msgid "Preferred name"
@@ -13274,20 +13274,20 @@ msgstr ""
 #: ../gramps/gui/selectors/selectnote.py:71
 #: ../gramps/plugins/view/noteview.py:82
 msgid "Preview"
-msgstr ""
+msgstr "წინასწარი გადახედვა"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:102
 msgid "_Notes"
-msgstr ""
+msgstr "შე_ნიშვნები"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:51
 #: ../gramps/plugins/webreport/basepage.py:2303
 msgid "Personal"
-msgstr ""
+msgstr "პერსონალური"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:54
 msgid "<Unknown>"
-msgstr ""
+msgstr "<უცნობი>"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:57
 msgid "Add a new personal event"
@@ -13339,12 +13339,12 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:81
 msgid "_Associations"
-msgstr ""
+msgstr "მი_ნიჭებები"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:149
 #: ../gramps/plugins/lib/libprogen.py:1602
 msgid "Godfather"
-msgstr ""
+msgstr "ნათლია"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:54
 msgid "Create and add a new place name"
@@ -13413,7 +13413,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:81
 msgid "_Repositories"
-msgstr ""
+msgstr "საცა_ვები"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:184
 msgid ""
@@ -13447,7 +13447,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/surnametab.py:83
 #: ../gramps/plugins/lib/libgedcom.py:753
 msgid "Origin"
-msgstr ""
+msgstr "წარმოშობა"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:94
 msgid "Multiple Surnames"
@@ -13483,7 +13483,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:79
 msgid "_Internet"
-msgstr ""
+msgstr "_ინტერნეტი"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:130
 #: ../gramps/gui/glade/editurl.glade:197
@@ -13494,7 +13494,7 @@ msgstr ""
 #: ../gramps/gui/editors/editaddress.py:67
 msgctxt "manual"
 msgid "Address_Editor_dialog"
-msgstr ""
+msgstr "მისამართის_რედაქტორის_დიალოგი"
 
 #: ../gramps/gui/editors/editaddress.py:92
 #: ../gramps/gui/editors/editaddress.py:200
@@ -13504,7 +13504,7 @@ msgstr ""
 #: ../gramps/gui/editors/editattribute.py:63
 msgctxt "manual"
 msgid "Attribute_Editor_dialog"
-msgstr ""
+msgstr "ატრიბუტების_რედაქტორის_დიალოგი"
 
 #: ../gramps/gui/editors/editattribute.py:95
 #: ../gramps/gui/editors/editattribute.py:141
@@ -13527,7 +13527,7 @@ msgstr ""
 #: ../gramps/gui/editors/editchildref.py:67
 msgctxt "manual"
 msgid "Child_Reference_Editor"
-msgstr ""
+msgstr "შვილის_მიმართვის_რედაქტორი"
 
 #: ../gramps/gui/editors/editchildref.py:100
 #: ../gramps/gui/editors/editchildref.py:202
@@ -13537,7 +13537,7 @@ msgstr ""
 #: ../gramps/gui/editors/editcitation.py:75
 msgctxt "manual"
 msgid "New_Citation_dialog"
-msgstr ""
+msgstr "ახალი_ციტირების_დიალოგი"
 
 #: ../gramps/gui/editors/editcitation.py:142
 #: ../gramps/gui/editors/editcitation.py:147
@@ -13592,48 +13592,48 @@ msgstr ""
 
 #: ../gramps/gui/editors/editdate.py:77 ../gramps/gui/editors/editdate.py:89
 msgid "Regular"
-msgstr ""
+msgstr "ჩვეულებრივი"
 
 #: ../gramps/gui/editors/editdate.py:78
 msgid "Before"
-msgstr ""
+msgstr "მანამდე"
 
 #: ../gramps/gui/editors/editdate.py:79
 msgid "After"
-msgstr ""
+msgstr "შემდეგ"
 
 #: ../gramps/gui/editors/editdate.py:80
 msgid "About"
-msgstr ""
+msgstr "შესახებ"
 
 #: ../gramps/gui/editors/editdate.py:81
 msgid "Range"
-msgstr ""
+msgstr "შუალედი"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "საიდან"
 
 #: ../gramps/gui/editors/editdate.py:83
 msgid "To"
-msgstr ""
+msgstr "სადამდე"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
-msgstr ""
+msgstr "ინტერვალი"
 
 #: ../gramps/gui/editors/editdate.py:90
 msgid "Estimated"
-msgstr ""
+msgstr "დაახლოებით"
 
 #: ../gramps/gui/editors/editdate.py:91
 msgid "Calculated"
-msgstr ""
+msgstr "გამოთვლილი"
 
 #: ../gramps/gui/editors/editdate.py:105
 msgctxt "manual"
 msgid "Editing_dates"
-msgstr ""
+msgstr "თარიღების_ჩასწორება"
 
 #: ../gramps/gui/editors/editdate.py:131 ../gramps/gui/editors/editdate.py:299
 msgid "Date selection"
@@ -13647,7 +13647,7 @@ msgstr ""
 #: ../gramps/gui/editors/editevent.py:75
 msgctxt "manual"
 msgid "New_Event_dialog"
-msgstr ""
+msgstr "ახალი_მოვლენის_დიალოგი"
 
 #: ../gramps/gui/editors/editevent.py:115
 #: ../gramps/gui/editors/editeventref.py:315
@@ -13704,7 +13704,7 @@ msgstr ""
 #: ../gramps/gui/editors/editeventref.py:69
 msgctxt "manual"
 msgid "Event_Reference_Editor_dialog"
-msgstr ""
+msgstr "მოვლენის_მიმართვის_რედაქტორის_დიალოგი"
 
 #: ../gramps/gui/editors/editeventref.py:88
 #: ../gramps/gui/editors/editeventref.py:318
@@ -13717,7 +13717,7 @@ msgstr ""
 #: ../gramps/gui/editors/editplaceref.py:91
 #: ../gramps/gui/editors/editreporef.py:90
 msgid "_General"
-msgstr ""
+msgstr "_ზოგადი"
 
 #: ../gramps/gui/editors/editeventref.py:324
 msgid "Modify Event"
@@ -13730,7 +13730,7 @@ msgstr ""
 #: ../gramps/gui/editors/editfamily.py:106
 msgctxt "manual"
 msgid "Family_Editor_dialog"
-msgstr ""
+msgstr "ოჯახის_რედაქტორის_დიალოგი"
 
 #: ../gramps/gui/editors/editfamily.py:127
 msgid "Create a new person and add the child to the family"
@@ -13758,15 +13758,15 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:137
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: ../gramps/gui/editors/editfamily.py:141
 msgid "Paternal"
-msgstr ""
+msgstr "მამის მხარე"
 
 #: ../gramps/gui/editors/editfamily.py:142
 msgid "Maternal"
-msgstr ""
+msgstr "დედის მხარე"
 
 #: ../gramps/gui/editors/editfamily.py:143
 #: ../gramps/gui/selectors/selectperson.py:109
@@ -13815,7 +13815,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:165
 msgid "Chil_dren"
-msgstr ""
+msgstr "შ_ვილები"
 
 #: ../gramps/gui/editors/editfamily.py:220
 msgid "Edit child"
@@ -13866,7 +13866,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importcsv.py:360
 #: ../gramps/plugins/view/familyview.py:412
 msgid "family"
-msgstr ""
+msgstr "ოჯახი"
 
 #: ../gramps/gui/editors/editfamily.py:603
 #: ../gramps/gui/editors/editfamily.py:606
@@ -13976,7 +13976,7 @@ msgstr ""
 #: ../gramps/gui/editors/editldsord.py:67
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
-msgstr ""
+msgstr "LDS-ის_პროცედურების_რედაქტორი"
 
 #: ../gramps/gui/editors/editldsord.py:157
 #: ../gramps/gui/editors/editldsord.py:338
@@ -14003,7 +14003,7 @@ msgstr ""
 #: ../gramps/gui/editors/editlink.py:50
 msgctxt "manual"
 msgid "Link_Editor"
-msgstr ""
+msgstr "ბმულის_რედაქტორი"
 
 #: ../gramps/gui/editors/editlink.py:89 ../gramps/gui/editors/editlink.py:252
 msgid "Link Editor"
@@ -14020,7 +14020,7 @@ msgstr ""
 #: ../gramps/gui/editors/editmedia.py:73
 msgctxt "manual"
 msgid "New_Media_dialog"
-msgstr ""
+msgstr "ახალი_მედიის_რედაქტორი"
 
 #: ../gramps/gui/editors/editmedia.py:109
 #: ../gramps/gui/editors/editmediaref.py:438
@@ -14077,7 +14077,7 @@ msgstr ""
 #: ../gramps/gui/editors/editmediaref.py:84
 msgctxt "manual"
 msgid "Media_Reference_Editor_dialog"
-msgstr ""
+msgstr "მედიის_მიმართვის_რედაქტორის_დიალოგი"
 
 #: ../gramps/gui/editors/editmediaref.py:106
 #: ../gramps/gui/editors/editmediaref.py:441
@@ -14090,7 +14090,7 @@ msgstr ""
 #: ../gramps/gui/glade/editmediaref.glade:258
 msgctxt "Y coordinate"
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
 #: ../gramps/gui/editors/editname.py:123 ../gramps/gui/editors/editname.py:344
 msgid "Name Editor"
@@ -14099,7 +14099,7 @@ msgstr ""
 #: ../gramps/gui/editors/editname.py:170
 msgctxt "manual"
 msgid "Name_Editor"
-msgstr ""
+msgstr "სახელის_რედაქტორი"
 
 #: ../gramps/gui/editors/editname.py:184
 #: ../gramps/gui/editors/editperson.py:342
@@ -14123,7 +14123,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editname.py:418
 msgid "Continue"
-msgstr ""
+msgstr "გაგრძელება"
 
 #: ../gramps/gui/editors/editname.py:419
 msgid "Return to Name Editor"
@@ -24656,7 +24656,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:384
 msgid "place"
-msgstr ""
+msgstr "ადგილი"
 
 #: ../gramps/plugins/importer/importcsv.py:385
 msgid "place id"
@@ -25108,7 +25108,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1452
 msgid "REFN"
-msgstr ""
+msgstr "REFN"
 
 #: ../gramps/plugins/importer/importprogen.glade:1456
 msgid ""
