@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-06 17:57+0000\n"
+"PO-Revision-Date: 2025-09-22 15:02+0000\n"
 "Last-Translator: Tadas Masiulionis <tadzikaz@gmail.com>\n"
-"Language-Team: Lithuanian <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/lt/>\n"
+"Language-Team: Lithuanian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && ("
+"n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.14-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
@@ -78,7 +78,7 @@ msgstr "Žydų atostogos"
 
 #: ../data/holidays.xml:359
 msgid "Purim"
-msgstr "Purim"
+msgstr "Purimas"
 
 #: ../data/holidays.xml:360
 msgid "Passover"
@@ -821,7 +821,6 @@ msgstr ""
 "naudotojai tvarko genealoginė informaciją, kurioje yra tūkstančiai žmonių."
 
 #: ../data/tips.xml:68
-#, fuzzy
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -829,12 +828,12 @@ msgid ""
 "Person then go to \"Bookmarks > Add Bookmark\" or press Ctrl+D. You can also "
 "bookmark most of the other objects."
 msgstr ""
-"<b>Žymelių uždėjimas asmenims</b><br/>: Žymelių meniu lango viršutinėje "
-"dalyje yra patogi vieta išsaugoti dažnai naudojamų asmenų vardus.  "
-"Pasirinkus pažymėtą asmenį - jis pasidarys aktyvus asmuo. Norėdami uždėti  "
-"žymelę asmeniui, padarykite tą asmenį aktyviu asmeniu, nueikite į &quot; "
-"Žymelės &gt; Pridėti Žymelę &quot; arba su nuoroda Ctrl+D. Žymeles galima "
-"uždėti ant daugelio kitų objektų."
+"<b>Žymių uždėjimas asmenims</b><br/>: Žymių meniu lango viršutinėje dalyje "
+"yra patogi vieta išsaugoti dažnai naudojamų asmenų vardus.  Pasirinkus "
+"pažymėtą asmenį - jis pasidarys aktyvus asmuo. Norėdami uždėti  žymę "
+"asmeniui, padarykite tą asmenį aktyviu asmeniu, nueikite į &quot; Žymės &gt; "
+"Pridėti žymę &quot; arba su nuoroda Ctrl+D. Žymes galima uždėti ant daugelio "
+"kitų objektų."
 
 #: ../data/tips.xml:70
 #, fuzzy
@@ -1349,7 +1348,7 @@ msgstr "Įkėlimas: rinkmena %(filename)s, formatas %(format)s."
 
 #: ../gramps/cli/arghandler.py:561
 msgid "Opened successfully!"
-msgstr "Atverta sėkmingai."
+msgstr "Atverta sėkmingai!"
 
 #: ../gramps/cli/arghandler.py:576
 #, python-format
@@ -3379,7 +3378,7 @@ msgstr "Šaltinių skaičius"
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
-msgstr "Citavimo skaičius"
+msgstr "Citatų skaičius"
 
 #: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:187
@@ -3632,7 +3631,7 @@ msgstr "KLAIDA. Taisyti vardo formatą parinktyse"
 #: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:398
 #, python-format
 msgid "Error in '%s' file: cannot load."
-msgstr " Klaida rinkmenoje ' %s': negalima įkelti."
+msgstr "Klaida rinkmenoje '%s': neįmanoma įkelti."
 
 #: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:66
 msgid "Full"
@@ -3808,7 +3807,7 @@ msgstr "Citatos, atitinkančios parametrus"
 #: ../gramps/gen/filters/rules/_hascitationbase.py:63
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:62
 msgid "Matches citations with particular parameters"
-msgstr "Atitinka citatas  su konkrečiais parametrais"
+msgstr "Atitinka citatas su konkrečiais parametrais"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:64
 #: ../gramps/gen/filters/rules/_hassourcebase.py:59
@@ -4346,7 +4345,7 @@ msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
 msgstr ""
-"Tai įvykių įrašai, kurie pasikeitė po  nurodytos datos ir laiko (MMMM-mm-dd "
+"Tai įvykių įrašai, kurie pasikeitė po nurodytos datos ir laiko (MMMM-mm-dd "
 "hh:mm:ss) arba, jei duota antra data, tai esanti tame tarpe."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:44
@@ -4365,7 +4364,7 @@ msgstr "Įvykio atributai:"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:47
 msgid "Events with the attribute <attribute>"
-msgstr "Įvykiai su požymiu <požymis>"
+msgstr "Įvykiai su požymiu <attribute>"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:48
 msgid "Matches events with the event attribute of a particular value"
@@ -4489,24 +4488,19 @@ msgstr "Įvykiai, turintys pastabas, kurias sudaro <text>"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr ""
-"Tai įvykiai, kurių pastabose dalis teksto  tenkina reguliarųjį reiškinį"
+msgstr "Tai įvykiai, kurių pastabose dalis teksto atitinka reguliarųjį reiškinį"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
-#, fuzzy
-#| msgid "Events with the <tag>"
 msgid "Events with a note of type <type>"
-msgstr "Įvykiai su <tag>"
+msgstr "Įvykiai su pastabos rūšimi <tag>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:49
-#, fuzzy
-#| msgid "Matches events matched by the specified filter name"
 msgid "Matches events with a note of the specified type"
-msgstr "Atitinka įvykius, kurie atitinka nurodytą filtrą"
+msgstr "Atitinka įvykius su nurodytos rūšies pastaba"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
-msgstr "Įvykiai, kurių nuorodų yra <skaičius>"
+msgstr "Įvykiai su nuorodomis yra <count>"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:45
 msgid "Matches events with a certain reference count"
@@ -4514,7 +4508,7 @@ msgstr "Tai įvykiai su konkrečiu nuorodų kiekiu"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:46
 msgid "Events with <count> sources"
-msgstr "Įvykiai, kurie turi tam tikrą <kiekį> šaltinių"
+msgstr "Įvykiai su <count> šaltinių"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:47
 msgid "Matches events with a certain number of sources connected to it"
@@ -4824,7 +4818,7 @@ msgstr "Tai šeimos, kurių ryšių tipas yra nurodytos reikšmės"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:47
 msgid "Families with <count> sources"
-msgstr "Šeimos su tam tikru šaltinių <kiekiu>"
+msgstr "Šeimos su šaltiniais <count>"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:48
 msgid "Matches families with a certain number of sources connected to it"
@@ -7975,7 +7969,7 @@ msgstr "Krikštas"
 
 #: ../gramps/gen/lib/eventtype.py:212 ../gramps/gen/lib/ldsord.py:96
 msgid "Confirmation"
-msgstr "Galutinis užsaugojimo patvirtinimas"
+msgstr "Patvirtinimas"
 
 #: ../gramps/gen/lib/eventtype.py:213
 msgid "Cremation"
@@ -8890,7 +8884,7 @@ msgstr "Formatas"
 #: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:741
 #: ../gramps/plugins/tool/verify.glade:426
 msgid "General"
-msgstr "Paprastas"
+msgstr "Bendras"
 
 #: ../gramps/gen/lib/notetype.py:87
 msgid "Research"
@@ -9014,7 +9008,7 @@ msgstr "Lytis"
 
 #: ../gramps/gen/lib/person.py:202
 msgid "Alternate names"
-msgstr "Alternatyvūs vardai"
+msgstr "Kiti pavadinimai"
 
 #: ../gramps/gen/lib/person.py:206
 msgid "Death reference index"
@@ -9203,7 +9197,7 @@ msgstr "Pastatas"
 #: ../gramps/plugins/webreport/basepage.py:3637
 #: ../gramps/plugins/webreport/source.py:206
 msgid "Number"
-msgstr "Skaičius"
+msgstr "Numeris"
 
 #: ../gramps/gen/lib/repo.py:95 ../gramps/gui/clipboard.py:790
 #: ../gramps/gui/configure.py:837 ../gramps/gui/editors/editlink.py:102
@@ -10612,7 +10606,7 @@ msgstr "Gyvenantys žmonės"
 #: ../gramps/gen/plug/report/stdoptions.py:204
 msgctxt "'living people'"
 msgid "Included, and all data"
-msgstr "Įtraugta su visais duomenimis"
+msgstr "Įtraukta su visais duomenimis"
 
 #: ../gramps/gen/plug/report/stdoptions.py:211
 msgctxt "'living people'"
@@ -10670,12 +10664,11 @@ msgstr "Neįtraukti"
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
 #: ../gramps/plugins/webreport/narrativeweb.py:2593
 msgid "Include"
-msgstr "Intarpas"
+msgstr "Įtraukti"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
-#, fuzzy
 msgid "Whether to include tags"
-msgstr "Ar įtraukti gaires."
+msgstr "Ar įtraukti gaires"
 
 #: ../gramps/gen/plug/report/stdoptions.py:397
 msgid "Share an existing line"
@@ -14113,7 +14106,7 @@ msgstr "Pašalinti"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:144
 #: ../gramps/plugins/view/relview.py:498
 msgid "Share"
-msgstr "Dalintis"
+msgstr "Išsirinkti"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:75
 msgid "Jump To"
@@ -14128,14 +14121,12 @@ msgid "Move Down"
 msgstr "Perkelti žemyn"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:78
-#, fuzzy
 msgid "Move Left"
-msgstr "Viršuje kairėje"
+msgstr "Perkelti į kairę"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:79
-#, fuzzy
 msgid "Move right"
-msgstr "Autoriaus teisės"
+msgstr "Perkelti į dešinę"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:71
 msgid "Create and add a new citation and new source"
@@ -15117,7 +15108,7 @@ msgid ""
 "will create a duplicate family. It is recommended that you cancel the "
 "editing of this window, and select the existing family"
 msgstr ""
-"Šeima su šiais tėvais jau yra duombazėje. Jei užsaugosite, tai sukursite "
+"Šeima su šiais tėvais jau yra duombazėje. Jei išsaugosite, tai sukursite "
 "sudvejintą įrašą. Rekomenduojama baigti taisymą šiame lange ir pasirinkti "
 "esamą šeimą"
 
@@ -15649,7 +15640,7 @@ msgstr "Išsaugoti pakeitimus?"
 
 #: ../gramps/gui/editors/editprimary.py:252
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "Jei uždarysite neužsaugoję, visi pakeitimai bus prarasti"
+msgstr "Jei uždarysite neišsaugoję, visi pakeitimai bus prarasti"
 
 #: ../gramps/gui/editors/editreference.py:295
 #: ../gramps/gui/editors/editrepository.py:220
@@ -16342,7 +16333,7 @@ msgstr "Sukūrė „Filtrų grampletas“ {today}"
 #: ../gramps/gui/glade/editperson.glade:298
 #: ../gramps/plugins/textreport/simplebooktitle.py:163
 msgid "Image"
-msgstr "Paveiksliukas"
+msgstr "Paveikslas"
 
 #: ../gramps/gui/glade/addmedia.glade:187
 #: ../gramps/gui/glade/editmedia.glade:109
@@ -19697,7 +19688,7 @@ msgstr "Panašu, kad papildinių saugykla neprieinama. Bandykite vėliau."
 
 #: ../gramps/gui/plug/_windows.py:986
 msgid "There are no available addons of this type"
-msgstr "Šio tipo papildiniai neprieinami"
+msgstr "Šio rūšies priedai neprieinami"
 
 #: ../gramps/gui/plug/_windows.py:987
 msgid "' and '"
@@ -19764,23 +19755,23 @@ msgstr "Įkelti įskiepiai"
 
 #: ../gramps/gui/plug/_windows.py:1185
 msgid "Addon Name"
-msgstr "Papildinio pavadinimas"
+msgstr "Priedo pavadinimas"
 
 #: ../gramps/gui/plug/_windows.py:1197
 msgid "Path to Addon:"
-msgstr "Kelias iki papildinio:"
+msgstr "Kelias iki priedo:"
 
 #: ../gramps/gui/plug/_windows.py:1217
 msgid "Install Addon"
-msgstr "Įdiegti papildinį"
+msgstr "Įdiegti priedą"
 
 #: ../gramps/gui/plug/_windows.py:1220
 msgid "Install All Addons"
-msgstr "Įdiegti visus papildinius"
+msgstr "Įdiegti visus priedus"
 
 #: ../gramps/gui/plug/_windows.py:1223
 msgid "Refresh Addon List"
-msgstr "Atnaujinti papildinių sąrašą"
+msgstr "Atnaujinti priedų sąrašą"
 
 #: ../gramps/gui/plug/_windows.py:1236
 msgid "Reload"
@@ -19788,7 +19779,7 @@ msgstr "Įkelti iš naujo"
 
 #: ../gramps/gui/plug/_windows.py:1264
 msgid "Refreshing Addon List"
-msgstr "Atnaujinamas papildinių sąrašas"
+msgstr "Atnaujinamas priedų sąrašas"
 
 #: ../gramps/gui/plug/_windows.py:1265 ../gramps/gui/plug/_windows.py:1270
 #: ../gramps/gui/plug/_windows.py:1403
@@ -19797,7 +19788,7 @@ msgstr "Skaitomas gramps-project.org..."
 
 #: ../gramps/gui/plug/_windows.py:1288
 msgid "Checking addon..."
-msgstr "Papildinio tikrinimas..."
+msgstr "Tikrinamas priedas..."
 
 #: ../gramps/gui/plug/_windows.py:1296
 msgid "Unknown Help URL"
@@ -19809,7 +19800,7 @@ msgstr "Nežinomas URL"
 
 #: ../gramps/gui/plug/_windows.py:1367
 msgid "Install all Addons"
-msgstr "Įdiegti visus papildinius"
+msgstr "Įdiegti visus Priedus"
 
 #: ../gramps/gui/plug/_windows.py:1368
 msgid "Installing..."
@@ -19817,11 +19808,11 @@ msgstr "Diegiama..."
 
 #: ../gramps/gui/plug/_windows.py:1401
 msgid "Installing Addon"
-msgstr "Papildinio diegimas"
+msgstr "Diegiamas priedas"
 
 #: ../gramps/gui/plug/_windows.py:1424
 msgid "Load Addon"
-msgstr "Įkelti papildinį"
+msgstr "Įkelti priedą"
 
 #: ../gramps/gui/plug/_windows.py:1516
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
@@ -19866,7 +19857,7 @@ msgstr "Pagrindinis puslapis"
 
 #: ../gramps/gui/plug/_windows.py:2215
 msgid "Downloading and installing selected addons..."
-msgstr "Parsiunčiami ir įdiegiami pasirinkti papildiniai..."
+msgstr "Atsiunčiami ir diegiami pasirinkti priedai..."
 
 #: ../gramps/gui/plug/_windows.py:2258
 msgid "Installation Errors"
@@ -19878,15 +19869,15 @@ msgstr "Šie priedai turi klaidų: "
 
 #: ../gramps/gui/plug/_windows.py:2267 ../gramps/gui/plug/_windows.py:2284
 msgid "Done downloading and installing addons"
-msgstr "Papildiniai atsiųsti ir įdiegti"
+msgstr "Priedai atsiųsti ir įdiegti"
 
 #: ../gramps/gui/plug/_windows.py:2272
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] "įdiegtas {number_of} papildinys"
-msgstr[1] "įdiegti {number_of} papildiniai"
-msgstr[2] "įdiegta {number_of} papildinių"
+msgstr[0] "įdiegtas {number_of} priedas."
+msgstr[1] "įdiegti {number_of} priedai."
+msgstr[2] "įdiegta {number_of} priedų."
 
 #: ../gramps/gui/plug/_windows.py:2277
 #, fuzzy
@@ -19897,7 +19888,7 @@ msgstr "Jei įdiegėte 'Gramps View', įkelkite Gramps iš naujo."
 
 #: ../gramps/gui/plug/_windows.py:2285
 msgid "No addons were installed."
-msgstr "Papildiniai nebuvo įdiegti."
+msgstr "Priedai nebuvo įdiegti."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:126
 msgid "Export Assistant"
@@ -19922,7 +19913,7 @@ msgstr "Pasirinkite rinkmeną išsaugojimui"
 #: ../gramps/gui/plug/export/_exportassistant.py:370
 #: ../gramps/plugins/tool/mediamanager.py:112
 msgid "Final confirmation"
-msgstr "Galutinis užsaugojimo patvirtinimas"
+msgstr "Galutinis patvirtinimas"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:395
 msgid "Summary"
@@ -20027,7 +20018,7 @@ msgstr "Rinkmenos pavadinimas: %s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:542
 msgid "Saving failed"
-msgstr "Užsaugojimas neįvyko"
+msgstr "Išsaugoti nepavyko"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:544
 msgid ""
@@ -20056,7 +20047,7 @@ msgid ""
 "button at any time and your present database will still be intact."
 msgstr ""
 "Gramps normaliomis aplinkybėmis nereikalauja išsaugoti pakeitimų rankiniu "
-"būdu. Visi pakeitimai yra automatiškai užsaugomi duombazėje.\n"
+"būdu. Visi pakeitimai yra automatiškai išsaugomi duombazėje.\n"
 "\n"
 "Šis procesas Jums padės išsaugoti duomenis bet kuriuo iš pasirinktų Gramps "
 "palaikomų formatų. Tai gali būti daroma norint padaryti duomenų kopiją, "
@@ -20064,7 +20055,7 @@ msgstr ""
 "programą.\n"
 "\n"
 "Jei apsigalvosite proceso metu galite drąsiai nuspausti Atšaukti mygtuką, ir "
-"Jūsų duombazė liks neliesta."
+"Jūsų duombazė liks nepaliesta."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:629
 msgid "Error exporting your Family Tree"
@@ -20096,7 +20087,7 @@ msgid "{number_of} Person"
 msgid_plural "{number_of} People"
 msgstr[0] "{number_of} asmuo"
 msgstr[1] "{number_of} asmenys"
-msgstr[2] "{number_of} asmen7"
+msgstr[2] "{number_of} asmenų"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:185
 msgid "Click to see preview of unfiltered data"
@@ -20218,7 +20209,7 @@ msgstr "Neįtraukti įrašų, pažymėtų asmeniniais"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:825
 msgid "Use Compression"
-msgstr "Naudoti spaudimą"
+msgstr "Naudoti glaudinimą"
 
 #: ../gramps/gui/plug/quick/_quickreports.py:113
 msgid "Web Connection"
@@ -20353,7 +20344,7 @@ msgstr "Šioje knygoje nėra jokių dalių."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:755
 msgid "No book name"
-msgstr "Bevardė knyga"
+msgstr "Knyga be pavadinimo"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:757
 msgid ""
@@ -20557,10 +20548,9 @@ msgid "Document Styles"
 msgstr "Dokumento stiliai"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:122
-#, fuzzy
 msgctxt "manual"
 msgid "Document_Styles_dialog"
-msgstr "Filtro apibrėžimo langas"
+msgstr "Dokumento stiliaus langas"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:165
 msgid "New Style"
@@ -20585,20 +20575,19 @@ msgstr "Pasirinkti stilių"
 #: ../gramps/gui/plug/report/_styleeditor.py:264
 #: ../gramps/gui/plug/report/_styleeditor.py:344
 msgid "Style editor"
-msgstr "Stilių redaktorius"
+msgstr "Stiliaus rengyklė"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:274
-#, fuzzy
 msgctxt "manual"
 msgid "Style_editor_dialog"
-msgstr "Vietovės redaktoriaus langas"
+msgstr "Vietovės rengyklės langas"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:388
 #: ../gramps/gui/plug/report/_styleeditor.py:417
 #: ../gramps/gui/plug/report/_styleeditor.py:436
 #: ../gramps/gui/plug/report/_styleeditor.py:470
 msgid "No description available"
-msgstr "Nėra aprašymo"
+msgstr "Nėra aprašo"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:391
 #, python-format
@@ -20748,7 +20737,7 @@ msgstr "Vietovės parinkiklis"
 
 #: ../gramps/gui/selectors/selectrepository.py:60
 msgid "Select Repository"
-msgstr "Pasirinkite talpyklą"
+msgstr "Pasirinkite saugyklą"
 
 #: ../gramps/gui/selectors/selectrepository.py:79
 #, fuzzy
@@ -20983,7 +20972,7 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1701
 msgid "Failed Loading Plugin"
-msgstr "Nepavyko įkelti papildinio"
+msgstr "Nepavyko įkelti įskiepio"
 
 #: ../gramps/gui/viewmanager.py:1703
 #, python-format
@@ -21090,11 +21079,11 @@ msgstr "Žymelės"
 #: ../gramps/plugins/view/relview.py:454 ../gramps/plugins/view/repoview.py:200
 #: ../gramps/plugins/view/sourceview.py:172
 msgid "Organize Bookmarks"
-msgstr "Tvarkyti žymeles"
+msgstr "Tvarkyti žymes"
 
 #: ../gramps/gui/views/bookmarks.py:513
 msgid "Cannot bookmark this reference"
-msgstr "Šia nuoroda negalima pažymėti"
+msgstr "Šios nuorodos negalima pažymėti"
 
 #: ../gramps/gui/views/listview.py:488
 msgid "Active object not visible"
@@ -21106,11 +21095,11 @@ msgstr "Aktyvus objektas nematomas"
 #: ../gramps/plugins/lib/maps/geography.py:254
 #: ../gramps/plugins/view/familyview.py:378
 msgid "Could Not Set a Bookmark"
-msgstr "Nepavyko pridėti žymelės"
+msgstr "Nepavyko pridėti žymės"
 
 #: ../gramps/gui/views/listview.py:501
 msgid "A bookmark could not be set because nothing was selected."
-msgstr "Žymė negali būti uždėta, nes nieko nėra pažymėta."
+msgstr "Žymė negali būti pridėta, nes niekas nepasirinkta."
 
 #: ../gramps/gui/views/listview.py:632 ../gramps/plugins/view/eventview.py:414
 #, python-brace-format
@@ -21176,14 +21165,14 @@ msgstr "CSV tarmė"
 #: ../gramps/gui/views/navigationview.py:247
 #, python-format
 msgid "%s has been bookmarked"
-msgstr "Prie %s buvo uždėta žymelė"
+msgstr "Prie %s buvo pridėta žymė"
 
 #: ../gramps/gui/views/navigationview.py:253
 #: ../gramps/plugins/lib/maps/geography.py:237
 #: ../gramps/plugins/lib/maps/geography.py:255
 #: ../gramps/plugins/view/familyview.py:379
 msgid "A bookmark could not be set because no one was selected."
-msgstr "Žymė negali būti uždėta, nes nieko nėra pažymėta."
+msgstr "Žymė negali būti pridėta, nes niekas nepasirinkta."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid "No Home Person"
@@ -22634,7 +22623,7 @@ msgstr "Pirma savaitės diena"
 #: ../gramps/plugins/webreport/narrativeweb.py:3151
 #: ../gramps/plugins/webreport/webcal.py:1973
 msgid "Select the first day of the week for the calendar"
-msgstr "Pasirinkite šios kalendoriaus  pirmą savatės dieną"
+msgstr "Pasirinkite pirmąją savaitės dieną kalendoriuje"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:673
 #: ../gramps/plugins/textreport/birthdayreport.py:634
@@ -22681,7 +22670,7 @@ msgstr "Įtraukti gimtadienius"
 #: ../gramps/plugins/drawreport/calendarreport.py:685
 #: ../gramps/plugins/textreport/birthdayreport.py:646
 msgid "Whether to include birthdays"
-msgstr "Ar įtraukti gimtadienius."
+msgstr "Ar įtraukti gimtadienius"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:688
 #: ../gramps/plugins/textreport/birthdayreport.py:649
@@ -22693,21 +22682,19 @@ msgstr "Įtraukti jubiliejus"
 #: ../gramps/plugins/drawreport/calendarreport.py:689
 #: ../gramps/plugins/textreport/birthdayreport.py:650
 msgid "Whether to include anniversaries"
-msgstr "Ar įtraukti jubiliejus."
+msgstr "Ar įtraukti jubiliejus"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:692
 #: ../gramps/plugins/webreport/narrativeweb.py:3182
 #: ../gramps/plugins/webreport/webcal.py:2073
-#, fuzzy
 msgid "Include death dates"
-msgstr "Įtraukti datas"
+msgstr "Įtraukti mirties datas"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:693
 #: ../gramps/plugins/webreport/narrativeweb.py:3183
 #: ../gramps/plugins/webreport/webcal.py:2074
-#, fuzzy
 msgid "Include death anniversaries in the calendar"
-msgstr "Į kalendorių įtraukti jubiliejus"
+msgstr "Į kalendorių įtraukite mirties metines"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:776
 msgid "Title text and background color"
@@ -22832,7 +22819,7 @@ msgstr "Ar perkelti žmones aukštyn, kur įmanoma, kad mažėtų medis"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1615
 msgid "Bold direct descendants"
-msgstr "Tiesioginius palikuonius išskirti pusjuodžiu šriftu "
+msgstr "Tiesioginius palikuonius išskirti pusjuodžiu šriftu"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1618
 msgid ""
@@ -23056,13 +23043,12 @@ msgid "quarter circle"
 msgstr "ketvirtis apskritimo"
 
 #: ../gramps/plugins/drawreport/fanchart.py:812
-#, fuzzy
-#| msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgid ""
 "The form of the graph: full circle, half circle, half circle with overhang "
 "or quarter circle."
 msgstr ""
-"Diagramos forma: pilnas apskritimas, pusė apskritimo ar ketvirtis apskritimo."
+"Diagramos forma: visas apskritimas, pusė apskritimo, pusė apskritimo su "
+"iškyša ar ketvirtis apskritimo."
 
 #: ../gramps/plugins/drawreport/fanchart.py:820
 msgid "generation dependent"
@@ -23200,17 +23186,17 @@ msgstr "Vaikų skaičius"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:447
 msgid "Age at marriage"
-msgstr "Amžius, kai susituokė"
+msgstr "Amžius santuokos metu"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:453
 msgid "Age at death"
-msgstr "Amžius, kai mirė"
+msgstr "Amžius mirties metu"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:460
 #: ../gramps/plugins/webreport/multiselect.py:159
 #: ../gramps/plugins/webreport/multiselect.py:218
 msgid "Event type"
-msgstr "Įvykio tipas"
+msgstr "Įvykio rūšis"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:476
 msgid "(Preferred) title missing"
@@ -23223,7 +23209,7 @@ msgstr "Trūksta vardo (svarbiausio)"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:495
 msgid "(Preferred) surname missing"
-msgstr "Trūksta pavardės  (svarbiausios)"
+msgstr "Trūksta pavardės (svarbiausios)"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:507
 msgid "Gender unknown"
@@ -24063,8 +24049,8 @@ msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
 msgstr ""
-"  4. %(gramps_FAQ_html_start)s%(faq_section)sKaip saugiai padaryti "
-"atsargines kopijas?%(html_end)s\n"
+"  4. %(gramps_FAQ_html_start)s%(faq_section)sKaip saugiai sukurti atsargines "
+"kopijas?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
 #, python-format
@@ -24072,8 +24058,8 @@ msgid ""
 "  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update "
 "Gramps every time an update is released?%(html_end)s\n"
 msgstr ""
-"  5. %(gramps_FAQ_html_start)s%(faq_section)s Ar būtina Gramps kiekvieną "
-"kartą atnaujinti, kai tik išleidžiamai atnaujinimai?%(html_end)s\n"
+"  5. %(gramps_FAQ_html_start)s%(faq_section)s Ar būtina kiekvieną kartą "
+"atnaujinti Gramps, kai išleidžiami atnaujinimai?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:124
 msgid "Data Entry"
@@ -36575,7 +36561,7 @@ msgstr "Žingsnis"
 
 #: ../gramps/plugins/tool/reorderids.glade:1485
 msgid "Reorder ID step width."
-msgstr "Pertvarkyti ID žingsnio plotį"
+msgstr "Pertvarkyti ID žingsnio plotį."
 
 #: ../gramps/plugins/tool/reorderids.glade:1497
 msgid "Keep"
@@ -36693,7 +36679,7 @@ msgstr "Pridėti specialius simbolius"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:372
 msgid "Add serial number"
-msgstr "Pridėti serijinį numerį"
+msgstr "Pridėti serijos numerį"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:376
 msgid "Add line break"
@@ -36883,8 +36869,6 @@ msgstr "Perrūšiuoti Gramps ID pagal Gramps numatytąsias taisykles."
 
 #: ../gramps/plugins/tool/tools.gpr.py:443
 #: ../gramps/plugins/tool/tools.gpr.py:444
-#, fuzzy
-#| msgid "Sorts events"
 msgid "Sort events"
 msgstr "Rūšiuoja įvykius"
 
@@ -37131,11 +37115,11 @@ msgstr "Mirusi motina"
 
 #: ../gramps/plugins/tool/verify.py:2166
 msgid "Large year span for all children"
-msgstr "Didelis metų tarpsnis tarp  visų vaikų"
+msgstr "Didelis metų tarpsnis tarp visų vaikų"
 
 #: ../gramps/plugins/tool/verify.py:2197
 msgid "Large age differences between children"
-msgstr "Didelis amžiaus skirtumas  tarp vaikų"
+msgstr "Didelis amžiaus skirtumas tarp vaikų"
 
 #: ../gramps/plugins/tool/verify.py:2216
 msgid "Disconnected individual"
@@ -37158,63 +37142,48 @@ msgid "Old age but no death"
 msgstr "Senas, bet gyvas"
 
 #: ../gramps/plugins/tool/verify.py:2332
-#, fuzzy
 msgid "Birth date equals death date"
-msgstr "Gimimo data"
+msgstr "Gimimo data sutampa mirties data"
 
 #: ../gramps/plugins/tool/verify.py:2353
-#, fuzzy
 msgid "Birth date equals marriage date"
-msgstr "Trumpiausiai trukusi santuota"
+msgstr "Gimimo data sutampa su santuokos data"
 
 #: ../gramps/plugins/tool/verify.py:2374
-#, fuzzy
 msgid "Death date equals marriage date"
-msgstr "Vėlyva santuoka"
+msgstr "Mirties data sutampa su santuokos data"
 
 #: ../gramps/plugins/tool/verify.py:2435
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Krikštas per vėlai pagal šeimos tradiciją"
 
 #: ../gramps/plugins/tool/verify.py:2460
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Palaidojimo data"
+msgstr "Palaidojimas per vėlyvas"
 
 #: ../gramps/plugins/tool/verify.py:2497
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Ar įvykius surikiuoti pagal datą (chronologine tvarka)."
+msgstr "Vaikai nėra išdėstyti chronologine tvarka"
 
 #: ../gramps/plugins/tool/verify.py:2561
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Ar įvykius surikiuoti pagal datą (chronologine tvarka)."
+msgstr "Šeimos nėra išdėstytos chronologine tvarka"
 
 #: ../gramps/plugins/tool/verify.py:2574
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "Šeimoje yra įvykių, kurių vaidmuo yra Nežinomas"
 
 #: ../gramps/plugins/tool/verify.py:2587
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Vaikų asmeniniai įvykiai"
+msgstr "Asmuo turi įvykių, kurių vaidmuo yra Nežinomas"
 
 #: ../gramps/plugins/tool/verify.py:2600
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Ar įvykius surikiuoti pagal datą (chronologine tvarka)."
+msgstr "Šeimos įvykiai nėra išdėstyti chronologine tvarka"
 
 #: ../gramps/plugins/tool/verify.py:2613
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Ar įvykius surikiuoti pagal datą (chronologine tvarka)."
+msgstr "Asmens įvykiai nėra išdėstyti chronologine tvarka"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
@@ -37241,7 +37210,7 @@ msgstr "Šaltinis: leidinio informacija"
 
 #: ../gramps/plugins/view/citationlistview.py:112
 msgid "Source: Private"
-msgstr "Šaltinis: privatus"
+msgstr "Šaltinis: asmeninis"
 
 #: ../gramps/plugins/view/citationlistview.py:113
 msgid "Source: Last Changed"
@@ -38310,9 +38279,8 @@ msgid "Expand this Entire Group"
 msgstr "Išplėsti visą šią grupę"
 
 #: ../gramps/plugins/view/relview.py:390
-#, fuzzy
 msgid "Organize Bookmarks..."
-msgstr "Tvarkyti žymeles"
+msgstr "Tvarkyti žymes..."
 
 #: ../gramps/plugins/view/relview.py:411
 msgid "Add Existing Parents..."
