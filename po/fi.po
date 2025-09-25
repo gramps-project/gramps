@@ -21,8 +21,8 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-08 23:02+0000\n"
-"Last-Translator: Matti Niemelä <matti.u.niemela@gmail.com>\n"
+"PO-Revision-Date: 2025-09-20 14:02+0000\n"
+"Last-Translator: Juha Mäkeläinen <juha.makelainen@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -5967,7 +5967,7 @@ msgstr "Henkilöt, jotka <suodin> hyväksyy"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:47
 msgid "Matches people matched by the specified filter name"
-msgstr "Poimii suodatetut henkilöt henkilöt"
+msgstr "Poimii suodatetut henkilöt"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:46
 msgid "Persons with at least one direct source >= <confidence level>"
