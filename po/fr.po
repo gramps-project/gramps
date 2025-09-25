@@ -50,7 +50,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-08 23:02+0000\n"
+"PO-Revision-Date: 2025-09-21 11:04+0000\n"
 "Last-Translator: jmichault <jmt.2000@free.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
@@ -16182,7 +16182,7 @@ msgstr "Grouper ce nom seulement"
 #: ../gramps/gui/editors/editnote.py:74
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "Édition de l'information sur les notes"
+msgstr "Édition_de_l'information_sur_les_notes"
 
 #: ../gramps/gui/editors/editnote.py:175
 #, python-format
@@ -16252,7 +16252,7 @@ msgstr "Nouvel individu"
 #: ../gramps/gui/editors/editperson.py:262
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "Édition de l'information sur les individus"
+msgstr "Édition_de_l'information_sur_les_individus"
 
 #: ../gramps/gui/editors/editperson.py:690
 #: ../gramps/plugins/view/geofamily.py:499
@@ -16345,7 +16345,7 @@ msgstr "_Inconnu"
 #: ../gramps/gui/editors/editpersonref.py:68
 msgctxt "manual"
 msgid "Person_Reference_Editor"
-msgstr "Éditeur de la référence à un individu"
+msgstr "Éditeur_de_la_référence_à_un_individu"
 
 #: ../gramps/gui/editors/editpersonref.py:94
 #: ../gramps/gui/editors/editpersonref.py:184
@@ -16368,7 +16368,7 @@ msgstr "Vous devriez plutôt sélectionner un individu ou annuler l'édition"
 #: ../gramps/gui/editors/editplace.py:77
 msgctxt "manual"
 msgid "Place_Editor_dialog"
-msgstr "Éditeur de lieu"
+msgstr "Éditeur_de_lieu"
 
 #: ../gramps/gui/editors/editplace.py:111
 #: ../gramps/gui/editors/editplaceref.py:114
@@ -16445,7 +16445,7 @@ msgstr "Nouveau"
 #: ../gramps/gui/editors/editplacename.py:72
 msgctxt "manual"
 msgid "Place_Name_Editor_dialog"
-msgstr "Éditeur de nom du lieu"
+msgstr "Éditeur_de_nom_du_lieu"
 
 # trunk
 #: ../gramps/gui/editors/editplacename.py:94
@@ -16560,7 +16560,7 @@ msgstr "Éditeur de dépôt (%s)"
 #: ../gramps/gui/editors/editsource.py:71
 msgctxt "manual"
 msgid "New_Source_dialog"
-msgstr "Nouvelle source"
+msgstr "Nouvelle_source"
 
 #: ../gramps/gui/editors/editsource.py:101
 msgid "New Source"
@@ -16599,7 +16599,7 @@ msgstr "Éditer la source (%s)"
 #: ../gramps/gui/editors/edittaglist.py:49
 msgctxt "manual"
 msgid "Tag_selection_dialog"
-msgstr "Sélection d'étiquettes"
+msgstr "Sélection_d'étiquettes"
 
 #: ../gramps/gui/editors/edittaglist.py:72
 #: ../gramps/gui/editors/edittaglist.py:130
@@ -16610,7 +16610,7 @@ msgstr "Sélection de l'étiquette"
 #: ../gramps/gui/editors/editurl.py:48
 msgctxt "manual"
 msgid "Internet_Address_Editor"
-msgstr "Éditeur d'adresse Internet"
+msgstr "Éditeur_d'adresse_Internet"
 
 #: ../gramps/gui/editors/editurl.py:67 ../gramps/gui/editors/editurl.py:114
 msgid "Internet Address Editor"
@@ -16621,13 +16621,13 @@ msgstr "Adresse Internet"
 #: ../gramps/gui/editors/filtereditor.py:93
 msgctxt "manual"
 msgid "Add_Rule_dialog"
-msgstr "Ajout d'une règle"
+msgstr "Ajout_d'une_règle"
 
 # manuel wiki
 #: ../gramps/gui/editors/filtereditor.py:94
 msgctxt "manual"
 msgid "Define_Filter_dialog"
-msgstr "Le dialogue de filtre"
+msgstr "Le_dialogue_de_filtre"
 
 # Traduction courte pour _placesidebarfilter.py et _citationsidebarfilter
 #: ../gramps/gui/editors/filtereditor.py:95
