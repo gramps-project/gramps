@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-07 22:02+0000\n"
+"PO-Revision-Date: 2025-09-13 09:49+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -14940,7 +14940,7 @@ msgstr "Geboorteplaats"
 #: ../gramps/gui/selectors/selectperson.py:112
 #: ../gramps/plugins/lib/libpersonview.py:106
 msgid "Death Place"
-msgstr "Overlijdenslocatie"
+msgstr "Sterfteplaats"
 
 #: ../gramps/gui/editors/editfamily.py:165
 msgid "Chil_dren"
@@ -15404,8 +15404,8 @@ msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
-"Het wijzigen van het geslacht veroorzaakte problemen met "
-"huwelijksinformatie.\n"
+"Het wijzigen van het geslacht veroorzaakte problemen met huwelijksinformatie."
+"\n"
 "Controleer de huwelijken van de persoon."
 
 #: ../gramps/gui/editors/editperson.py:924
@@ -26103,7 +26103,7 @@ msgstr "Gebruik zeshoeken"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:919
 msgid "Use hexagons to differentiate those of unknown gender."
-msgstr "Gebruik zeshoeken om degenen met onbekend geslacht te onderscheiden."
+msgstr "Gebruik zeshoeken om personen met onbekend geslacht te onderscheiden."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:947
 msgid "Dates and/or Places"
@@ -28109,7 +28109,7 @@ msgstr "Geboren %(birth_date)s in %(birth_place)s."
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr ""
-"%(unknown_gender_name)s is %(modified_date)s in %(birth_place)s geboren."
+"%(unknown_gender_name)s is op %(modified_date)s in %(birth_place)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:131
 #, python-format
@@ -28181,7 +28181,7 @@ msgstr "Geboren %(birth_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:160
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
-msgstr "%(unknown_gender_name)s is %(modified_date)s geboren."
+msgstr "%(unknown_gender_name)s is op %(modified_date)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:161
 #, python-format
@@ -28331,8 +28331,8 @@ msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s is op %(death_date)s in %(death_place)s op de "
-"leeftijd van %(age)s overleden."
+"%(unknown_gender_name)s is %(death_date)s in %(death_place)s op de leeftijd "
+"van %(age)s overleden."
 
 #: ../gramps/plugins/lib/libnarrate.py:232
 #, python-format
@@ -28412,8 +28412,7 @@ msgstr "Overleed %(death_date)s in %(death_place)s (%(age)s)."
 #: ../gramps/plugins/lib/libnarrate.py:269
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
-msgstr ""
-"%(unknown_gender_name)s is %(death_date)s in %(death_place)s overleden."
+msgstr "%(unknown_gender_name)s is %(death_date)s in %(death_place)s overleden."
 
 #: ../gramps/plugins/lib/libnarrate.py:271
 #, python-format
