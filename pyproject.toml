@@ -30,7 +30,7 @@ dynamic = ["version"]
 description = "Gramps (Genealogical Research and Analysis Management Programming System)"
 readme = "README.md"
 license = "GPL-2.0-or-later"
-license-files = ["LICENSE"]
+license-files = ["COPYING"]
 keywords = ["Genealogy", "Family Tree"]
 authors = [
     {name = "Donald N. Allingham", email = "don@gramps-project.org"},
@@ -52,7 +52,6 @@ classifiers = [
     "Intended Audience :: End Users/Desktop",
     "Intended Audience :: Other Audience",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     "Natural Language :: Arabic",
     "Natural Language :: Bulgarian",
     "Natural Language :: Catalan",
