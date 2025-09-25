@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-10 23:02+0000\n"
+"PO-Revision-Date: 2025-09-13 09:49+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -8286,7 +8286,7 @@ msgstr "Anz. verh."
 #: ../gramps/gen/lib/eventtype.py:277
 msgctxt "Occupation abbreviation"
 msgid "occ."
-msgstr "Beruf"
+msgstr "Ber."
 
 #: ../gramps/gen/lib/eventtype.py:278
 msgctxt "Ordination abbreviation"
@@ -8311,7 +8311,7 @@ msgstr "rel."
 #: ../gramps/gen/lib/eventtype.py:282
 msgctxt "Residence abbreviation"
 msgid "res."
-msgstr "Wohnort"
+msgstr "WO."
 
 #: ../gramps/gen/lib/eventtype.py:283
 msgctxt "Retirement abbreviation"
