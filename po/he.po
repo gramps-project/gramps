@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-17 13:42+0000\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
+"PO-Revision-Date: 2025-09-25 16:56+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.14-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -555,7 +555,7 @@ msgid ""
 msgstr ""
 "<b>הגדרת העדפות<br/></b> מתפריט 'עריכה > העדפות...' מאפשר שינוי מספר הגדרות "
 "כמו, הנתיב לקובצי המדיה, וכן, התאמת היבטים רבים נוספים של גרמפס. ניתן גם "
-"להגדיר כל מצג בנפרד מתפריט 'מצג > תצור מצג...'."
+"להגדיר כל מצג בנפרד מתפריט 'מצג > תיצור מצג...'."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -588,7 +588,7 @@ msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
 msgstr ""
-"<b>למה זה משמש?<br/></b>לא ברור למה משמש כל לחצן? נא להחזיק את העכבר מעל "
+"<b>למה זה משמש?<br/></b>לא ברור למה משמש כל לחצן? נא למקם את סמן העכבר על "
 "לחצן כלשהו ובועת המידע תופיע."
 
 #: ../data/tips.xml:40
@@ -827,9 +827,10 @@ msgid ""
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>מצג שושלת<br/></b>מצג שושלת מציג תרשים אילן מסורתי. להצגת מידע נוסף על "
-"אדם, יש להחזיק את סמן העכבר מעל שמו, או להקיש על המקש הימני בעכבר להצגת בני "
-"משפחה אחרים והגדרות. לבחינת האפשרויות השונות, נא לעבור על ההגדרות."
+"<b>מצג יוחסין<br/></b>מצג יוחסין מציג תרשים אילן־יוחסין מסורתי. להצגת מידע "
+"נוסף על אדם, יש למקם את סמן העכבר מעל שמו, או להקיש על המקש העכבר הימני "
+"להצגת בני משפחה אחרים ואפשרויות הגדרוה. לבחינת האפשרויות השונות, נא לעבור על "
+"ההגדרות."
 
 #: ../data/tips.xml:78
 msgid ""
@@ -1569,7 +1570,7 @@ msgstr "    הגדרת תצורת גרמפס חדשה: %(name)s:%(value)s"
 #: ../gramps/cli/argparser.py:405
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
-msgstr "גרמפס: אין הגדרות תצור כאלו: '%s'"
+msgstr "גרמפס: אין הגדרות תיצור כאלו: '%s'"
 
 #: ../gramps/cli/argparser.py:498
 msgid "Error parsing the arguments"
@@ -13866,7 +13867,7 @@ msgstr "_מורמונים"
 
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:70
 msgid "Alternate _Locations"
-msgstr "מיקומים _חליפיים"
+msgstr "מיקומים _חלופיים"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:64
 msgid "Create and add a new name"
@@ -17243,7 +17244,7 @@ msgstr "_שם:"
 #: ../gramps/gui/glade/editreporef.glade:301
 #: ../gramps/gui/glade/editrepository.glade:127
 msgid "Name of the repository (where sources are stored)."
-msgstr "אף אחד מהמאגרים (היכן שאוחסנו המקורות)."
+msgstr "שם המאגר (מקום אחסון המקורות)."
 
 #: ../gramps/gui/glade/editreporef.glade:337
 msgid ""
@@ -17332,7 +17333,7 @@ msgstr "גרירה להעברה; הקשה לניתוק"
 
 #: ../gramps/gui/glade/grampletpane.glade:70
 msgid "Config"
-msgstr "תצור"
+msgstr "תיצור"
 
 #: ../gramps/gui/glade/grampletpane.glade:77
 msgid "Detach"
@@ -18131,7 +18132,7 @@ msgstr "ספרים…"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Configure the active view"
-msgstr "תצור המצג הפעיל"
+msgstr "תיצור המצג הפעיל"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Connect to a recent database"
@@ -18188,7 +18189,7 @@ msgstr "_סימניות"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Configure..."
-msgstr "_תצור..."
+msgstr "_תיצור..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Export..."
@@ -19634,7 +19635,7 @@ msgstr "לא נבחר פריט ספר"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:578
 msgid "Please select a book item to configure."
-msgstr "נא לבחור בפריט ספר לתצור."
+msgstr "נא לבחור בפריט ספר לתיצור."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:643
 #: ../gramps/gui/views/bookmarks.py:310 ../gramps/gui/views/tags.py:493
@@ -20520,7 +20521,7 @@ msgstr "%(cat)s - %(view)s"
 #: ../gramps/gui/views/pageview.py:670
 #, python-format
 msgid "Configure %s View"
-msgstr "תצור מצג %s"
+msgstr "תיצור מצג %s"
 
 #: ../gramps/gui/views/pageview.py:688
 #, python-format
@@ -22720,7 +22721,7 @@ msgid ""
 "based view"
 msgstr ""
 "CSV הוא תסדיר גליון נפוץ.\n"
-"ניתן לשנות התנהגות זו מתפריט 'תצור מצג פעיל' מכל מצג מבוסס רשימה"
+"ניתן לשנות התנהגות זו מתפריט 'תיצור מצג פעיל' מכל מצג מבוסס רשימה"
 
 #: ../gramps/plugins/export/export.gpr.py:49
 msgid "CSV spreadsheet options"
@@ -24713,9 +24714,9 @@ msgstr ""
 "כעת ניתן להתחיל להזין את נתוני ה'משפחה הראשונה', זה נעשה על ידי הזנת נתוני "
 "ה'אדם' הראשון.\n"
 "\n"
-"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל "
-"ה־[+]) תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר "
-"את נקודת המוצא לאילן־היוחסין. להרחבת הנתונים יש לבחור ברשומת 'אדם' זה ומעבר "
+"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל ה־[+])"
+" תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר את "
+"נקודת המוצא לאילן־היוחסין. להרחבת הנתונים יש לבחור ברשומת 'אדם' זה ומעבר "
 "למצג קשרי־קרבה.\n"
 "\n"
 "עם הקמת רשומת אדם ראשונה זו, כל אפשרויות התפריט ותפקודי הסמלים יהפכו "
@@ -24723,7 +24724,7 @@ msgstr ""
 "עובר מעל סמל, תופיע הודעה שמתארת את תפקודי הסמל. האמור יהיה נכון לכול אחד "
 "מחלונות העריכה. העברת סמן העכבר מעל פריט כלשהו, יחשפו את תפקודו.\n"
 "\n"
-"כעת ניתן ליצור משפחות על ידי הוספת: הורים, בני זוג, אחאיים וצאצאים. בשלב זה, "
+" ניתן ליצור משפחות על ידי הוספת: הורים, בני זוג, אחאיים וצאצאים. בשלב זה, "
 "ניתן להוסיף אירועים לאנשים ולמשפחות, לציין מקורות ומובאות שיהוו סימוכין "
 "ותיעוד עבור הערכים שהוזנו.\n"
 "\n"
@@ -24809,10 +24810,22 @@ msgid "Example Database"
 msgstr "מסד נתונים לדוגמה"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
+#, fuzzy
+#| msgid ""
+#| "Want to see Gramps in use. Create and Import the Example database.\n"
+#| "\n"
+#| "Create a new Family Tree as described above. Suggest that you name the "
+#| "Family Tree “EXAMPLE”.\n"
+#| "\n"
+#| "Import the Gramps file example.gramps.\n"
+#| "\n"
+#| "Follow the instructions for the location of the file stored with the "
+#| "Gramps program.\n"
+#| "\n"
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -25246,7 +25259,7 @@ msgstr "הצבע למצג משפחות."
 #: ../gramps/plugins/textreport/familygroup.py:690
 #: ../gramps/plugins/textreport/indivcomplete.py:857
 msgid "You did not specify anybody"
-msgstr "לא הוגדר אף אחד"
+msgstr "לא צויין אף אחד"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:531
 msgid "Number of people in database:"
@@ -26096,32 +26109,32 @@ msgstr "ייבוא מקובץ GeneWeb"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "תאריך שגוי {date} ב־{gw_snippet}, שמירת תאריך כמלל."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "לא ניתן ליצור מחיצת מדיה %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "מחיצת מדיה %s לא ניתנת לכתיבה"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr "קיימת מחיצת מדיה %s. נא למחוק אותה ואז להתחיל את תהליך היבוא מחדש"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "שגיאה בחילוץ לתוך %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "נתיב הבסיס לנתיבים יחסיים לערכת מדיה"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26134,11 +26147,11 @@ msgstr ""
 "בכלי מנהל המדיה, אפשרות 'החלפת מחרוזת משנה בנתיב' כדי לעדכן נתיבים בעצמי "
 "המדיה."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "לא ניתן להגדיר נתיב בסיס למדיה"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "
@@ -32099,8 +32112,8 @@ msgstr "אנשים שחולקים את שם המשפחה '%s'"
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
-msgstr[0] "קיים אדם {number_of} עם שם תואם, או שם חליפי.\n"
-msgstr[1] "קיימים {number_of} אנשים עם שם תואם, או שם חליפי.\n"
+msgstr[0] "קיים אדם {number_of} עם שם תואם, או שם חלופי.\n"
+msgstr[1] "קיימים {number_of} אנשים עם שם תואם, או שם חלופי.\n"
 
 #: ../gramps/plugins/quickview/samesurnames.py:177
 #, python-format
@@ -33198,7 +33211,7 @@ msgstr "%(parent-name)s, קשרי־קרבה: %(rel-type)s"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:328
 msgid "Alternate Parents"
-msgstr "הורים חליפיים"
+msgstr "הורים חלויפיים"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:469
 #: ../gramps/plugins/webreport/person.py:1621
@@ -38834,7 +38847,7 @@ msgid ""
 "you to that place&#8217;s page."
 msgstr ""
 "עמוד המפה מייצג את ה'אדם' וכל צאצאיו, לרבות כל האירועים/המקומות. בעת מיקום "
-"סמן־העכבר מעל הסימון על המפה, יוצג שם המקום. רשימת האזכורים והסמנים, ממוינים "
+"סמן העכבר מעל הסימון על המפה, יוצג שם המקום. רשימת האזכורים והסמנים, ממוינים "
 "על־פי סדר התאריכים (ככל שקיימים כאלה). הקשה על שם מקום במקטע האזכור יפתח את "
 "עמוד המקום."
 

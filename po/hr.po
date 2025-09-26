@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-13 19:02+0000\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
+"PO-Revision-Date: 2025-09-25 16:56+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -1511,16 +1511,16 @@ msgstr ""
 "\n"
 "Primjer korištenja Grampsovog sučelja linijskih naredbi.\n"
 "\n"
-"1. Za uvoz četiriju baza podataka (sufiks datoteke određuje njihove "
-"formate)\n"
+"1. Za uvoz četiriju baza podataka (sufiks datoteke određuje njihove formate)"
+"\n"
 "i naknadnu provjeru rezultirajućih baza podataka, može se pisati:\n"
 "gramps -i datoteka1.ged -i datoteka2.gpkg -i ~/db3.gramps -i datoteka4.wft -"
 "a tool -p name=check.\n"
 "\n"
 "2. Za izričito određivanje formata u gornjem primjeru, pridodaj imena "
 "datoteka odgovarujućom -f opcijom:\n"
-"gramps -i datoteka1.ged -f gedcom -i datoteka2.gpkg -f gramps-pkg -i ~/db3."
-"gramps -f gramps -i datoteka4.wft -f wft -a tool -p name=check.\n"
+"gramps -i datoteka1.ged -f gedcom -i datoteka2.gpkg -f gramps-pkg -i ~/"
+"db3.gramps -f gramps -i datoteka4.wft -f wft -a tool -p name=check.\n"
 "\n"
 "3. Za zapis baze podataka dobivene svim uvozima, pridodaj -e opciju\n"
 "(koristi -f ako ime datoteke ne dozvoljava Grampsu pogađanje formata):\n"
@@ -1537,16 +1537,17 @@ msgstr ""
 "\n"
 "6. Za otvaranje baze podataka i, na osnovi tih podataka, izradu izvještaja s "
 "vremenskom\n"
-"crtom u PDF formatu, te spremanje ispisa u datoteku „moja_kronologija.pdf”:\n"
-"gramps -O 'Rodoslov 1' -a report -p name=timeline,off=pdf,"
-"of=moja_kronologija.pdf\n"
+"crtom u PDF formatu, te spremanje ispisa u datoteku „moja_vremenska "
+"crta.pdf”:\n"
+"gramps -O 'Rodoslov 1' -a report -p name=timeline,off=pdf,of=moja_vremenska "
+"crta.pdf\n"
 "\n"
 "7. Za stvaranje sažetka baze podataka:\n"
 "gramps -O 'Rodoslov 1' -a report -p name=summary\n"
 "\n"
 "8. Popis opcija izvještaja\n"
-"Koristi name=timeline,show=all, za prikaz svih dostupnih opcija za "
-"kronološki izvještaj.\n"
+"Koristi name=timeline,show=all, za prikaz svih dostupnih opcija za izvještaj "
+"s vremenskom crtom.\n"
 "Za prikaz detalja određene opcije, koristi show=option_name, npr. "
 "name=timeline,show=off.\n"
 "Za prikaz dostupnih imena izvještaja, koristi name=show.\n"
@@ -6259,11 +6260,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:59
 msgid "Places enclosed by another place"
-msgstr "Mjesta, obuhvaćena nekim drugim mjestom"
+msgstr "Mjesta koja su obuhvaćena nekim drugim mjestom"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:60
 msgid "Matches a place enclosed by a particular place"
-msgstr "Pronalazi mjesto, obuhvaćeno određenim mjestom"
+msgstr "Odgovara mjestu koje je obuhvaćeno određenim mjestom"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:61
 msgid "Places of events matching the <event filter>"
@@ -11339,8 +11340,8 @@ msgid ""
 "The data can only be recovered by Undo operation or by quitting with "
 "abandoning changes."
 msgstr ""
-"Podaci mogu biti vraćeni samo poništavanjem prethodnih koraka ili izlazom, s "
-"odustajanjem od promjena."
+"Podaci se mogu obnoviti samo poništavanjem prethodnih koraka ili zatvaranjem "
+"Grampsa I odacivanjem promjena."
 
 #: ../gramps/gen/utils/symbols.py:84 ../gramps/gui/editors/editfamily.py:987
 #: ../gramps/plugins/graph/gvfamilylines.py:97
@@ -14281,11 +14282,11 @@ msgstr "Obuhvaćeno"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:215
 msgid "Place cycle detected"
-msgstr "Petlja u mjestima"
+msgstr "Otkrivena je petlja u mjestima"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:216
 msgid "The place you are adding is already enclosed by this place"
-msgstr "Mjesto koje dodaješ, već je obuhvaćeno ovim mjestom"
+msgstr "Mjesto koje dodaješ je već obuhvaćeno ovim mjestom"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Create and add a new repository"
@@ -16777,7 +16778,7 @@ msgstr "Dijeljene informacije"
 #: ../gramps/gui/glade/editrepository.glade:29
 #: ../gramps/gui/glade/editsource.glade:28
 msgid "Abandon changes and close window"
-msgstr "Odustani od promjena i zatvori prozor"
+msgstr "Odbaci promjene i zatvori prozor"
 
 #: ../gramps/gui/glade/editfamily.glade:116
 #: ../gramps/gui/glade/editfamily.glade:379
@@ -18437,7 +18438,7 @@ msgstr "Kronologija obrade"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Abandon Changes and Quit"
-msgstr "_Odustani od promjena i zatvori Gramps"
+msgstr "_Odbaci promjene i zatvori Gramps"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_About"
@@ -18666,7 +18667,7 @@ msgid ""
 "review exactly what information you want to include."
 msgstr ""
 "Ovo je pomoćnik za prijavu greške. Pomoći će ti u stvaranju što detaljnijeg "
-"izvještaja o grešci, za prijavu razvijateljima Grampsa.\n"
+"izvještaja o grešci, za prijavu programere Grampsa.\n"
 "\n"
 "Postaviti će ti nekoliko pitanja i sakupiti podatke o nastaloj grešci te "
 "operacijskom okruženju. Na kraju ćemo te zamoliti, da prijaviš grešku na "
@@ -18754,8 +18755,9 @@ msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
 msgstr ""
-"Ovo je cjeloviti izvještaj o greškama. Sljedeća stranica će vam pomoći "
-"prijaviti grešku na web stranici Grampsovog sustava za praćenje grešaka."
+"Ovo je cjeloviti izvještaj o greškama. Sljedeća stranica pomoćnika će ti "
+"pomoći prijaviti grešku na web stranici Grampsovog sustava za praćenje "
+"grešaka."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:659
 msgid ""
@@ -20477,7 +20479,7 @@ msgstr "Spremno"
 
 #: ../gramps/gui/viewmanager.py:673
 msgid "Abort changes?"
-msgstr "Odustati od promjena?"
+msgstr "Prekinuti promjene?"
 
 #: ../gramps/gui/viewmanager.py:675
 msgid ""
@@ -20489,19 +20491,19 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:678
 msgid "Abort changes"
-msgstr "Odustani od promjena"
+msgstr "Prekini promjene"
 
 #: ../gramps/gui/viewmanager.py:690
 msgid "Cannot abandon session's changes"
-msgstr "Nije moguće odustati od promjena u ovoj sesiji"
+msgstr "Nije moguće odbaciti promjene ove sesije"
 
 #: ../gramps/gui/viewmanager.py:692
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
-"Napravljene promjene ne mogu biti poništene, zbog toga što je broj promjena "
-"u ovoj sesiji prešao zadanu granicu."
+"Napravljene promjene se ne mogu potpuno odbaciti jer je broj promjena u ovoj "
+"sesiji prešao zadanu granicu."
 
 #: ../gramps/gui/viewmanager.py:893
 msgid "View failed to load. Check error output."
@@ -22544,11 +22546,11 @@ msgstr "Izrađuje stupčane i kružne dijagrame za osobe u bazi podataka"
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:233
 #: ../gramps/plugins/drawreport/timeline.py:285
 msgid "Timeline Chart"
-msgstr "Kronološki dijagram"
+msgstr "Dijagram vremenske crte"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:234
 msgid "Produces a timeline chart."
-msgstr "Izrađuje kronološki dijagram."
+msgstr "Izrađuje dijagram vremenske crte."
 
 #: ../gramps/plugins/drawreport/fanchart.py:267
 #, python-format
@@ -22968,11 +22970,11 @@ msgstr "Svrstavanje datuma ..."
 #: ../gramps/plugins/drawreport/timeline.py:181
 #: ../gramps/plugins/drawreport/timeline.py:351
 msgid "Timeline"
-msgstr "Kronologija"
+msgstr "Vremenska crta"
 
 #: ../gramps/plugins/drawreport/timeline.py:181
 msgid "Calculating timeline..."
-msgstr "Izračunavanje kronologije ..."
+msgstr "Izračunavanje vremenske crte ..."
 
 #: ../gramps/plugins/drawreport/timeline.py:287
 #, python-format
@@ -24460,11 +24462,11 @@ msgstr "Gramplet za izradu SoundEx kodova"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1496
 msgid "Place Enclosed By"
-msgstr "Obuhvaćeno mjestom"
+msgstr "Mjesto obuhvaćeno"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1497
 msgid "Gramplet showing the places enclosed by the active place"
-msgstr "Gramplet prikazuje mjesta, obuhvaćena aktivnim mjestom"
+msgstr "Gramplet prikazuje mjesta koja su obuhvaćena aktivnim mjestom"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1512
 #: ../gramps/plugins/webreport/basepage.py:3569
@@ -25143,9 +25145,9 @@ msgstr "Primjer baze podataka"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -25161,7 +25163,7 @@ msgstr ""
 "\n"
 "Uvezi Gramps datoteku primjer.gramps.\n"
 "\n"
-"Slijedi upute za lociranje datoteke spremljene u programu Gramps.\n"
+"Slijedi upute za mjesto spremljene datoteke s programom Gramps.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
@@ -26446,17 +26448,17 @@ msgstr "GeneWeb uvoz"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "Neispravan datum {date} u {gw_snippet}, datum je očuvan kao tekst."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Nije bilo moguće stvoriti direktorij medija: %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "Zabranjeno je pisati u mapu medija %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
@@ -26464,16 +26466,16 @@ msgstr ""
 "Direktorij medija %s već postoji. Najprije ga izbriši, a zatim ponovi "
 "postupak uvoza"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Greška prilikom otpakiravanja u %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Postavke relativna staze medija"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26487,11 +26489,11 @@ msgstr ""
 "koristi opciju „Zamijeni podniz znakova u stazi”, te postavi točnu stazu do "
 "tvojih medijskih objekata."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "Nije moguće postaviti osnovnu stazu medija"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "
@@ -27170,8 +27172,8 @@ msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
 " Writing to %(filename)s in format %(impliedext)s."
 msgstr ""
-"Neslaganje između odabranog dodatka %(ext)s i stvarnog formata.\n"
-"Zapisivanje %(filename)s u formatu %(impliedext)s."
+"Neslaganje između odabranog sufiksa %(ext)s i stvarnog formata.\n"
+"Zapisusje se u %(filename)s u formatu %(impliedext)s."
 
 #: ../gramps/plugins/lib/libgedcom.py:739
 msgid "Common Law Marriage"
@@ -27262,7 +27264,7 @@ msgstr "Izvještaj GEDCOM uvoza: Nisu otkrivene greške"
 #: ../gramps/plugins/lib/libgedcom.py:3135
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr "Izvještaj GEDCOM uvoza: broj otkrivenih grešaka: %s"
+msgstr "Izvještaj GEDCOM uvoza: Broj otkrivenih grešaka: %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:3461
 #: ../gramps/plugins/lib/libgedcom.py:3485
@@ -34385,7 +34387,7 @@ msgstr "Nisu učinjene promjene"
 
 #: ../gramps/plugins/tool/changenames.py:172
 msgid "No capitalization changes were detected."
-msgstr "Nisu ustanovljene promjene u pisanju početnih slova prezimena."
+msgstr "Nisu otkrivene promjene u velikim početnim slovima."
 
 #: ../gramps/plugins/tool/changenames.py:229
 msgid "Original Name"
@@ -34393,7 +34395,7 @@ msgstr "Izvorno ime"
 
 #: ../gramps/plugins/tool/changenames.py:233
 msgid "Capitalization Change"
-msgstr "Promjena u pisanju početnih slova prezimena"
+msgstr "Promjena u velikim početnim slovima"
 
 #: ../gramps/plugins/tool/changenames.py:240
 #: ../gramps/plugins/tool/eventcmp.py:311
@@ -35242,8 +35244,8 @@ msgstr "Dotična staza"
 msgid ""
 "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
-"Pritisni gumb „U redu” za nastavak, „Odustani” za prekid ili „Natrag” za "
-"mijenjanje opcija."
+"Pritisni gumb „Primijeni” za nastavljanje, „Odustani” za prekid ili „Natrag” "
+"za mijenjanje opcija."
 
 #: ../gramps/plugins/tool/mediamanager.py:408
 msgid "Operation successfully finished"
@@ -37685,7 +37687,7 @@ msgstr "%(event_type)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1609
 msgid "Broken family detected"
-msgstr "Otkrivena pokvarena obitelj"
+msgstr "Otkrivena je pokvarena obitelj"
 
 #: ../gramps/plugins/view/relview.py:1610
 msgid "Please run the Check and Repair Database tool"
@@ -38529,7 +38531,7 @@ msgstr "Datotečni sufiks"
 #: ../gramps/plugins/webreport/narrativeweb.py:2179
 #: ../gramps/plugins/webreport/webcal.py:1868
 msgid "The extension to be used for the web files"
-msgstr "Sufiks korišten za imena web datoteka"
+msgstr "Sufiks koji se koristi za web datoteke"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2183
 #: ../gramps/plugins/webreport/webcal.py:1871
@@ -38647,7 +38649,7 @@ msgstr "Staza tvoje dodatne stranice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2276
 msgid "Your extra page path without extension"
-msgstr "Staza tvoje dodatne stranice bez datotečnog nastavka"
+msgstr "Staza tvoje dodatne stranice bez sufiksa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2291
 msgid "Do we use multiple translations?"
@@ -38799,7 +38801,7 @@ msgid ""
 "This option will be available only if the .php file extension is selected."
 msgstr ""
 "Zabilješka koja će se koristiti za pokretanje php sesije.\n"
-"Ova će mogućnost biti dostupna samo ako je odabran datotečni nastavak .php."
+"Ova će mogućnost biti dostupna samo ako je odabran sufiks .php."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2425
 msgid "Images Generation"

@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-16 18:06+0000\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
+"PO-Revision-Date: 2025-09-07 22:02+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -12114,7 +12114,7 @@ msgstr "PSČ/poštové smerovacie číslo"
 #: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1651
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
-msgstr "E-mail"
+msgstr "Email"
 
 #: ../gramps/gui/configure.py:745
 msgid ""
@@ -25181,9 +25181,9 @@ msgstr "Príklad databázy"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -25192,16 +25192,16 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
-"Chcete vidieť, ako sa používa Gramps. Vytvorte a importujte databázu "
-"Príklad.\n"
+"Chcete vidieť, ako sa používa Gramps? Vytvorte a importujte vzorovú databázu."
 "\n"
-"Vytvorte nový rodinný strom, ako je popísané vyššie. Navrhujeme, aby ste "
-"Rodinný strom pomenovali \"PRÍKLAD\".\n"
+"\n"
+"Vytvorte nový rodinný strom, ako je popísané vyššie. Odporúčame vám nazvať "
+"rodinný strom “VZOR”...\n"
 "\n"
 "Importujte súbor Gramps example.gramps.\n"
 "\n"
-"Postupujte podľa pokynov na umiestnenie súboru uloženého s programom "
-"Gramps.\n"
+"Postupujte podľa pokynov na umiestnenie súboru uloženého s programom Gramps."
+"\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
@@ -26487,17 +26487,17 @@ msgstr "Import GeneWeb"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "Neplatný dátum {date} v {gw_snippet}, dátum zachovaný ako text."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Nepodarilo sa vytvoriť adresár médií %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "Adresár médií %s nie je zapisovateľný"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
@@ -26505,16 +26505,16 @@ msgstr ""
 "Adresár médií %s existuje. Najprv ho vymažte a potom znovu spustite proces "
 "importu"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Chyba extrakcie do %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Základná cesta pre relatívnu sadu médií"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26528,11 +26528,11 @@ msgstr ""
 "voľby 'Nahradiť podreťazec v ceste' nastaviť správne cesty v mediálnych "
 "objektoch."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "Nie je možné nastaviť základnú cestu k médiám"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "
@@ -38006,7 +38006,7 @@ msgstr "Webový kalendár"
 
 #: ../gramps/plugins/webreport/basepage.py:2136
 msgid "Heatmap"
-msgstr "Heatmapa"
+msgstr "Teplotná mapa"
 
 #: ../gramps/plugins/webreport/basepage.py:2225
 #: ../gramps/plugins/webreport/media.py:440
@@ -38287,7 +38287,7 @@ msgstr "Miesta začínajúce písmenom %s"
 #: ../gramps/plugins/webreport/heatmap.py:575
 #, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "Heatmapa pre %s v rámci vybraného filtra"
+msgstr "Teplotná mapa pre %s v rámci vybraného filtra"
 
 #: ../gramps/plugins/webreport/heatmap.py:329
 msgid ""

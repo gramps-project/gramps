@@ -44,12 +44,13 @@
 # Emmanuel Vallois <emmanuel@vallois.name>, 2024, 2025.
 # n4n5 <email.n4n5@gmail.com>, 2024.
 # Frédéric Schwartz <frederic@online404.com>, 2025.
+# lolly76 <thelolly76@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-07-26 13:05+0000\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
+"PO-Revision-Date: 2025-09-21 11:04+0000\n"
 "Last-Translator: jmichault <jmt.2000@free.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
@@ -58,7 +59,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1509,12 +1510,12 @@ msgid ""
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
 "\n"
-"Utilisation : gramps.py [OPTION...]\n"
+"Utilisation : gramps [OPTION...]\n"
 "  --load-modules=MODULE1,MODULE2...      Modules dynamiques à charger\n"
 "\n"
 "Options d’aide\n"
 "  -?, --help                             Affiche ce message d’aide\n"
-"  --usage                                Affiche une aide à l’utilisation\n"
+"  --usage                                Affiche un résumé d’utilisation\n"
 "\n"
 "Options de l’application\n"
 "  -O, --open=ARBRE_FAMILIAL              Ouvre l’arbre familial\n"
@@ -1525,9 +1526,8 @@ msgstr ""
 "familial\n"
 "  -i, --import=FICHIER                   Importe un fichier\n"
 "  -e, --export=FICHIER                   Exporte un fichier\n"
-"  -r, --remove=MODÈLE_ARBRE              Enlève les arbres correspondants\n"
-"                                         (utilise les expressions "
-"rationnelles)\n"
+"  -r, --remove=MODÈLE_ARBRE              Enlève les arbres correspondants ("
+"utilise les expressions rationnelles)\n"
 "  -f, --format=FORMAT                    Spécifie le format de l’arbre\n"
 "  -a, --action=ACTION                    Spécifie l’action\n"
 "  -p, --options=CHAÎNE_D’OPTIONS         Spécifie les options\n"
@@ -1544,23 +1544,21 @@ msgstr ""
 "  -c, --config=[config.param[:valeur]]   Définit un(des) paramètre(s) de "
 "configuration et lance Gramps\n"
 "  -y, --yes                              Ne pas demander de confirmation "
-"pour les actions dangereuses\n"
-"                                         (hors interface graphique)\n"
+"pour les actions dangereuses (hors interface graphique)\n"
 "  -q, --quiet                            Supprimer l’indication de "
-"progression pour la sortie\n"
-"                                         (hors interface graphique)\n"
+"progression pour la sortie (hors interface graphique)\n"
 "  -v, --version                          Affiche les versions des "
 "bibliothèques\n"
-"  -S, --safe                             Lance Gramps en « Mode sans "
-"échec »\n"
+"  -S, --safe                             Lance Gramps en « Mode sans échec »"
+"\n"
 "                                         (utilise temporairement les "
 "paramètres par défaut)\n"
 "  -D, --default=[APXFE]                  Réinitialise les paramètres à leurs "
 "valeurs par défaut ;\n"
 "                 A - les extensions sont effacées\n"
 "                 P - les Préférences reprennent leurs valeurs par défaut\n"
-"                 X - les livres sont effacés, les paramètres des rapports\n"
-"                     et des outils reprennent leurs valeurs par défaut\n"
+"                 X - les livres sont effacés, les paramètres des rapports et "
+"des outils reprennent leurs valeurs par défaut\n"
 "                 F - les filtres sont effacés\n"
 "                 E - Tout est effacé ou reprend sa valeur par défaut\n"
 
@@ -15502,7 +15500,7 @@ msgstr "Le type d'attribut ne peut pas être vide"
 #: ../gramps/gui/editors/editchildref.py:67
 msgctxt "manual"
 msgid "Child_Reference_Editor"
-msgstr ""
+msgstr "Child_Reference_Editor"
 
 #: ../gramps/gui/editors/editchildref.py:100
 #: ../gramps/gui/editors/editchildref.py:202
@@ -15995,7 +15993,7 @@ msgstr "Ajouter une famille"
 #: ../gramps/gui/editors/editldsord.py:67
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
-msgstr ""
+msgstr "LDS_Ordinance_Editor"
 
 #: ../gramps/gui/editors/editldsord.py:157
 #: ../gramps/gui/editors/editldsord.py:338
@@ -16184,7 +16182,7 @@ msgstr "Grouper ce nom seulement"
 #: ../gramps/gui/editors/editnote.py:74
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "Édition de l'information sur les notes"
+msgstr "Édition_de_l'information_sur_les_notes"
 
 #: ../gramps/gui/editors/editnote.py:175
 #, python-format
@@ -16254,7 +16252,7 @@ msgstr "Nouvel individu"
 #: ../gramps/gui/editors/editperson.py:262
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "Édition de l'information sur les individus"
+msgstr "Édition_de_l'information_sur_les_individus"
 
 #: ../gramps/gui/editors/editperson.py:690
 #: ../gramps/plugins/view/geofamily.py:499
@@ -16347,7 +16345,7 @@ msgstr "_Inconnu"
 #: ../gramps/gui/editors/editpersonref.py:68
 msgctxt "manual"
 msgid "Person_Reference_Editor"
-msgstr "Éditeur de la référence à un individu"
+msgstr "Éditeur_de_la_référence_à_un_individu"
 
 #: ../gramps/gui/editors/editpersonref.py:94
 #: ../gramps/gui/editors/editpersonref.py:184
@@ -16370,7 +16368,7 @@ msgstr "Vous devriez plutôt sélectionner un individu ou annuler l'édition"
 #: ../gramps/gui/editors/editplace.py:77
 msgctxt "manual"
 msgid "Place_Editor_dialog"
-msgstr "Éditeur de lieu"
+msgstr "Éditeur_de_lieu"
 
 #: ../gramps/gui/editors/editplace.py:111
 #: ../gramps/gui/editors/editplaceref.py:114
@@ -16447,7 +16445,7 @@ msgstr "Nouveau"
 #: ../gramps/gui/editors/editplacename.py:72
 msgctxt "manual"
 msgid "Place_Name_Editor_dialog"
-msgstr "Éditeur de nom du lieu"
+msgstr "Éditeur_de_nom_du_lieu"
 
 # trunk
 #: ../gramps/gui/editors/editplacename.py:94
@@ -16562,7 +16560,7 @@ msgstr "Éditeur de dépôt (%s)"
 #: ../gramps/gui/editors/editsource.py:71
 msgctxt "manual"
 msgid "New_Source_dialog"
-msgstr "Nouvelle source"
+msgstr "Nouvelle_source"
 
 #: ../gramps/gui/editors/editsource.py:101
 msgid "New Source"
@@ -16601,7 +16599,7 @@ msgstr "Éditer la source (%s)"
 #: ../gramps/gui/editors/edittaglist.py:49
 msgctxt "manual"
 msgid "Tag_selection_dialog"
-msgstr "Sélection d'étiquettes"
+msgstr "Sélection_d'étiquettes"
 
 #: ../gramps/gui/editors/edittaglist.py:72
 #: ../gramps/gui/editors/edittaglist.py:130
@@ -16612,7 +16610,7 @@ msgstr "Sélection de l'étiquette"
 #: ../gramps/gui/editors/editurl.py:48
 msgctxt "manual"
 msgid "Internet_Address_Editor"
-msgstr "Éditeur d'adresse Internet"
+msgstr "Éditeur_d'adresse_Internet"
 
 #: ../gramps/gui/editors/editurl.py:67 ../gramps/gui/editors/editurl.py:114
 msgid "Internet Address Editor"
@@ -16623,13 +16621,13 @@ msgstr "Adresse Internet"
 #: ../gramps/gui/editors/filtereditor.py:93
 msgctxt "manual"
 msgid "Add_Rule_dialog"
-msgstr "Ajout d'une règle"
+msgstr "Ajout_d'une_règle"
 
 # manuel wiki
 #: ../gramps/gui/editors/filtereditor.py:94
 msgctxt "manual"
 msgid "Define_Filter_dialog"
-msgstr "Le dialogue de filtre"
+msgstr "Le_dialogue_de_filtre"
 
 # Traduction courte pour _placesidebarfilter.py et _citationsidebarfilter
 #: ../gramps/gui/editors/filtereditor.py:95
@@ -17995,8 +17993,6 @@ msgstr "Abandonner les modifications et fermer la fenêtre"
 
 #: ../gramps/gui/glade/editfamily.glade:116
 #: ../gramps/gui/glade/editfamily.glade:379
-#, fuzzy
-#| msgid "Name:"
 msgctxt "family"
 msgid "Name:"
 msgstr "Nom :"
@@ -19168,8 +19164,6 @@ msgstr "Individu 2"
 
 #: ../gramps/gui/glade/mergeperson.glade:218
 #: ../gramps/gui/glade/mergeperson.glade:233
-#, fuzzy
-#| msgid "Name:"
 msgctxt "person"
 msgid "Name:"
 msgstr "Nom :"
@@ -20505,10 +20499,8 @@ msgid "Select a different person"
 msgstr "Sélectionner un individu différent"
 
 #: ../gramps/gui/plug/_guioptions.py:698
-#, fuzzy
-#| msgid "Bookmarked people"
 msgid "Active, bookmarked or home people"
-msgstr "Individus marqués (signet)"
+msgstr "Personnes actives, en signet ou à domicile"
 
 #: ../gramps/gui/plug/_guioptions.py:721
 msgid "Select a person for the report"
@@ -20519,10 +20511,8 @@ msgid "Select a different family"
 msgstr "Sélectionner une famille différente"
 
 #: ../gramps/gui/plug/_guioptions.py:856
-#, fuzzy
-#| msgid "Bookmarked families"
 msgid "Active or bookmarked families"
-msgstr "Familles marquées (signet)"
+msgstr "Familles actives ou en signet"
 
 #: ../gramps/gui/plug/_guioptions.py:1266
 #, python-format
@@ -26936,9 +26926,9 @@ msgstr "Base de données d'exemple"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -28348,17 +28338,17 @@ msgstr ""
 "Date invalide {date} pour {gw_snippet}, conservation du contenu comme du "
 "texte."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Impossible de créer le répertoire media %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "Le répertoire media %s n'est pas accessible en écriture"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
@@ -28366,16 +28356,16 @@ msgstr ""
 "Le répertoire media %s existe. Supprimez le, puis redémarrez le processus "
 "d'importation."
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Erreur d'extraction vers %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Base pour le chemin relatif des media défini"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -28389,11 +28379,11 @@ msgstr ""
 "utilisez le gestionnaire de media, l'option « Remplacer une partie du chemin "
 "» pour définir les chemins corrects de vos objets media."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "Impossible de définir le chemin media"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

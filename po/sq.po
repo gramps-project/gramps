@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
 "PO-Revision-Date: 2025-03-05 02:54+0000\n"
 "Last-Translator: Usergnv Gnvuser <gnvuser131@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/gramps-project/"
@@ -26142,9 +26142,9 @@ msgstr "E gjith Baza e të dhënave"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -27591,33 +27591,33 @@ msgstr "GeneUeb import"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Mund të krijojë media direktoriumë %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, fuzzy, python-format
 msgid "Media directory %s is not writable"
 msgstr "Nuk mund të shkruhet në direktoriumin e përkohshëm %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
 "Media direktoriumi %s ekziston. Së pari hiq, pastaj rinis procesin e importit"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Ekstraktimi i gabimit në %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Shtegu bazë për grupën relative të medias"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, fuzzy, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -27631,11 +27631,11 @@ msgstr ""
 "për media menaxhim, opcionin 'Zëvendëso nënlidhjen në shteg' për të vendosur "
 "shtigje të sakta në media objektet tuaja."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "Nuk mund të vendos media shteg bazë"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, fuzzy, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 
 # ------------------------------------------------------------------------
 #
@@ -257,8 +256,8 @@ class WelcomeGramplet(Gramplet):
             boldst(_("Example Database"))
             + "\n\n"
             + _(
-                "Want to see Gramps in use. Create and Import the Example database.\n\n"
-                "Create a new Family Tree as described above. Suggest that you name"
+                "Want to see Gramps in use? Create and Import the Example database.\n\n"
+                "Create a new Family Tree as described above. We suggest that you name"
                 " the Family Tree “EXAMPLE”.\n\n"
                 "Import the Gramps file example.gramps.\n\n"
                 "Follow the instructions for the location of the file stored with"

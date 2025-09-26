@@ -2,13 +2,14 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) YEAR ORGANIZATION
 # Vlad-Mihai Chirculete <mihai.chirculete@tutanota.com>, 2025.
+# mircea s <mircea.salajan@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-04-14 07:21+0000\n"
-"Last-Translator: Vlad-Mihai Chirculete <mihai.chirculete@tutanota.com>\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
+"PO-Revision-Date: 2025-09-17 18:02+0000\n"
+"Last-Translator: mircea s <mircea.salajan@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ro/>\n"
 "Language: ro\n"
@@ -17,50 +18,44 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
-#, fuzzy
 msgid "Bulgaria"
-msgstr "Iulian"
+msgstr "Bulgaria"
 
 #: ../data/holidays.xml:52
-#, fuzzy
 msgid "Canada"
-msgstr "Calendare"
+msgstr "Canada"
 
 #: ../data/holidays.xml:84
 msgid "Catalonia"
-msgstr ""
+msgstr "Catalonia"
 
 #: ../data/holidays.xml:101
-#, fuzzy
 msgid "Chile"
-msgstr "Copii"
+msgstr "Chile"
 
 #: ../data/holidays.xml:124
-#, fuzzy
 msgid "China"
-msgstr "Fişier"
+msgstr "China"
 
 #: ../data/holidays.xml:127
-#, fuzzy
 msgid "Croatia"
-msgstr "Cremare"
+msgstr "Croatia"
 
 #: ../data/holidays.xml:143
-#, fuzzy
 msgid "Czech Republic"
-msgstr "Francez Republican"
+msgstr "Cehia"
 
 #: ../data/holidays.xml:158
 msgid "England"
-msgstr ""
+msgstr "Anglia"
 
 #: ../data/holidays.xml:188
 msgid "Finland"
-msgstr ""
+msgstr "Finalnda"
 
 #: ../data/holidays.xml:282
 #, fuzzy
@@ -68,13 +63,12 @@ msgid "France"
 msgstr "Franceză"
 
 #: ../data/holidays.xml:318
-#, fuzzy
 msgid "Germany"
-msgstr "Gregorian"
+msgstr "Germania"
 
 #: ../data/holidays.xml:335
 msgid "Japan"
-msgstr ""
+msgstr "Japonia"
 
 #: ../data/holidays.xml:358
 msgid "Jewish Holidays"
@@ -194,49 +188,44 @@ msgid "8 of Hanuka"
 msgstr ""
 
 #: ../data/holidays.xml:388
-#, fuzzy
 msgid "Italy"
-msgstr "Cursiv"
+msgstr "Italia"
 
 #: ../data/holidays.xml:402
-#, fuzzy
 msgid "New Zealand"
-msgstr "Eveniment"
+msgstr "Noua Zeelanda"
 
 #: ../data/holidays.xml:418
 msgid "Russia"
 msgstr "Rusia"
 
 #: ../data/holidays.xml:434
-#, fuzzy
 msgid "Serbia"
-msgstr "Persic"
+msgstr "Serbia"
 
 #: ../data/holidays.xml:449
-#, fuzzy
 msgid "Serbia (Latin)"
-msgstr "Persic"
+msgstr "Serbia"
 
 #: ../data/holidays.xml:464
 msgid "Slovakia"
-msgstr ""
+msgstr "Slovacia"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:49
-#, fuzzy
 msgid "Sweden"
-msgstr "A Şaptea"
+msgstr "Suedia"
 
 #: ../data/holidays.xml:508
 msgid "Turkey"
-msgstr ""
+msgstr "Turcia"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
-msgstr ""
+msgstr "Ucraina"
 
 #: ../data/holidays.xml:563
 msgid "United States of America"
-msgstr ""
+msgstr "Statele Unite ale Americii"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:2
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
@@ -26102,9 +26091,9 @@ msgstr "Întreaga Bază de Date"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -27558,33 +27547,33 @@ msgstr "Generează rapoarte"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, fuzzy, python-format
 msgid "Could not create media directory %s"
 msgstr "Nu am putut crea directorul: %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, fuzzy, python-format
 msgid "Error extracting into %s"
 msgstr "Eroare de citire în %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 #, fuzzy
 msgid "Base path for relative media set"
 msgstr "Converteşte la copia locală"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -27593,12 +27582,12 @@ msgid ""
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 #, fuzzy
 msgid "Cannot set base media path"
 msgstr "Uneşte Persoane"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

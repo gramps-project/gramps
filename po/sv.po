@@ -30,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-12 00:02+0000\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
+"PO-Revision-Date: 2025-09-07 22:02+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -25167,9 +25167,9 @@ msgstr "Exempel-databas"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -25178,10 +25178,10 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
-"Vill du se Gramps i bruk. Skapa och importera exempeldatabasen.\n"
+"Vill du se Gramps i bruk? Skapa och importera exempeldatabasen.\n"
 "\n"
-"Skapa ett nytt släktträd enligt beskrivningen ovan. Föreslå att du namnger "
-"släktträdet \"EXEMPEL\".\n"
+"Skapa ett nytt släktträd enligt beskrivningen ovan. Vi föreslår att du "
+"namnger släktträdet \"EXEMPEL\".\n"
 "\n"
 "Importera Gramps-filen example.gramps.\n"
 "\n"
@@ -26470,32 +26470,32 @@ msgstr "GeneWeb-import"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "Ogiltigt datum {date} i {gw_snippet}, behåller datum som text."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Kunde inte skapa mediamappen %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "Mediamappen %s är inte skrivbar"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr "Mediamappen %s finns. Radera den först och starta sedan om importen"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Fel vid extrahering till %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Relativ grundsökväg för media är angiven"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26509,11 +26509,11 @@ msgstr ""
 "mediahanteringshjälpmedlets alternativ 'Byt ut delsträng i sökvägen' för att "
 "ställa in riktiga sökvägar för dina mediaobjekt."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "Kan inte ställa in mediasökväg"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "

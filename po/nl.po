@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 22:14+0100\n"
-"PO-Revision-Date: 2025-08-10 15:45+0000\n"
+"POT-Creation-Date: 2025-09-06 21:09+0100\n"
+"PO-Revision-Date: 2025-09-13 09:49+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -14940,7 +14940,7 @@ msgstr "Geboorteplaats"
 #: ../gramps/gui/selectors/selectperson.py:112
 #: ../gramps/plugins/lib/libpersonview.py:106
 msgid "Death Place"
-msgstr "Overlijdenslocatie"
+msgstr "Sterfteplaats"
 
 #: ../gramps/gui/editors/editfamily.py:165
 msgid "Chil_dren"
@@ -15404,8 +15404,8 @@ msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
-"Het wijzigen van het geslacht veroorzaakte problemen met "
-"huwelijksinformatie.\n"
+"Het wijzigen van het geslacht veroorzaakte problemen met huwelijksinformatie."
+"\n"
 "Controleer de huwelijken van de persoon."
 
 #: ../gramps/gui/editors/editperson.py:924
@@ -25484,9 +25484,9 @@ msgstr "Voorbeelddatabase"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
-"Want to see Gramps in use. Create and Import the Example database.\n"
+"Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
-"Create a new Family Tree as described above. Suggest that you name the "
+"Create a new Family Tree as described above. We suggest that you name the "
 "Family Tree “EXAMPLE”.\n"
 "\n"
 "Import the Gramps file example.gramps.\n"
@@ -25495,12 +25495,12 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
-"Wilt u Gramps in gebruik zien. Maak en importeer de voorbeelddatabase.\n"
+"Wilt u zien hoe Gramps werkt? Importeer de voorbeelddatabase.\n"
 "\n"
-"Maak een nieuwe stamboom zoals hierboven beschreven. Noem uw stamboom "
-"bijvoorbeeld \"VOORBEELD\".\n"
+"Maak een nieuwe stamboom aan zoals hierboven beschreven en noem deze bv. "
+"\"VOORBEELD\".\n"
 "\n"
-"Importeer het Gramps-bestand voorbeeld.gramps.\n"
+"Importeer het Gramps-bestand example.gramps.\n"
 "\n"
 "Volg de instructies voor de locatie van het bestand dat is opgeslagen met "
 "het Gramps-programma.\n"
@@ -26103,7 +26103,7 @@ msgstr "Gebruik zeshoeken"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:919
 msgid "Use hexagons to differentiate those of unknown gender."
-msgstr "Gebruik zeshoeken om degenen met onbekend geslacht te onderscheiden."
+msgstr "Gebruik zeshoeken om personen met onbekend geslacht te onderscheiden."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:947
 msgid "Dates and/or Places"
@@ -26814,33 +26814,33 @@ msgstr "GeneWeb importeren"
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "Ongeldige datum {date} in {gw_snippet}, datum behouden als tekst."
 
-#: ../gramps/plugins/importer/importgpkg.py:76
+#: ../gramps/plugins/importer/importgpkg.py:77
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Kan mediamap %s niet maken"
 
-#: ../gramps/plugins/importer/importgpkg.py:79
+#: ../gramps/plugins/importer/importgpkg.py:80
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "Mediamap %s is niet beschrijfbaar"
 
-#: ../gramps/plugins/importer/importgpkg.py:86
+#: ../gramps/plugins/importer/importgpkg.py:87
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
 "Mediamap %s bestaat. Verwijder het eerst en start het importproces opnieuw"
 
-#: ../gramps/plugins/importer/importgpkg.py:98
+#: ../gramps/plugins/importer/importgpkg.py:99
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Fout bij het uitpakken in %s"
 
-#: ../gramps/plugins/importer/importgpkg.py:115
+#: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Base path for relative media set"
 msgstr "Basispad voor relatieve media ingesteld"
 
-#: ../gramps/plugins/importer/importgpkg.py:117
+#: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
@@ -26854,11 +26854,11 @@ msgstr ""
 "Mediabeheer optie 'Vervang substring in het pad' om de juiste paden in uw "
 "media-objecten in te stellen."
 
-#: ../gramps/plugins/importer/importgpkg.py:128
+#: ../gramps/plugins/importer/importgpkg.py:129
 msgid "Cannot set base media path"
 msgstr "Het basispad voor media kan niet ingesteld worden"
 
-#: ../gramps/plugins/importer/importgpkg.py:130
+#: ../gramps/plugins/importer/importgpkg.py:131
 #, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "
@@ -28109,7 +28109,7 @@ msgstr "Geboren %(birth_date)s in %(birth_place)s."
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr ""
-"%(unknown_gender_name)s is %(modified_date)s in %(birth_place)s geboren."
+"%(unknown_gender_name)s is op %(modified_date)s in %(birth_place)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:131
 #, python-format
@@ -28181,7 +28181,7 @@ msgstr "Geboren %(birth_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:160
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
-msgstr "%(unknown_gender_name)s is %(modified_date)s geboren."
+msgstr "%(unknown_gender_name)s is op %(modified_date)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:161
 #, python-format
@@ -28331,8 +28331,8 @@ msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s is op %(death_date)s in %(death_place)s op de "
-"leeftijd van %(age)s overleden."
+"%(unknown_gender_name)s is %(death_date)s in %(death_place)s op de leeftijd "
+"van %(age)s overleden."
 
 #: ../gramps/plugins/lib/libnarrate.py:232
 #, python-format
@@ -28412,8 +28412,7 @@ msgstr "Overleed %(death_date)s in %(death_place)s (%(age)s)."
 #: ../gramps/plugins/lib/libnarrate.py:269
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
-msgstr ""
-"%(unknown_gender_name)s is %(death_date)s in %(death_place)s overleden."
+msgstr "%(unknown_gender_name)s is %(death_date)s in %(death_place)s overleden."
 
 #: ../gramps/plugins/lib/libnarrate.py:271
 #, python-format
