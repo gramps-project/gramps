@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-25 16:56+0000\n"
+"PO-Revision-Date: 2025-09-27 00:02+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -9387,16 +9387,16 @@ msgstr ""
 
 #: ../gramps/gen/merge/mergefamilyquery.py:150
 msgid "Merge Family"
-msgstr "Spajanje obitelji"
+msgstr "Spoji obitelj"
 
 #: ../gramps/gen/merge/mergemediaquery.py:62
 #: ../gramps/gui/merge/mergemedia.py:70
 msgid "Merge Media Objects"
-msgstr "Spajanje medijskih objekata"
+msgstr "Spoji medijske objekte"
 
 #: ../gramps/gen/merge/mergenotequery.py:70 ../gramps/gui/merge/mergenote.py:68
 msgid "Merge Notes"
-msgstr "Spajanje zabilješki"
+msgstr "Spoji zabilješke"
 
 #: ../gramps/gen/merge/mergepersonquery.py:56
 msgid ""
@@ -9404,25 +9404,25 @@ msgid ""
 "relationship between them."
 msgstr ""
 "Supružnici se ne mogu spojiti. Za spajanje ovih osoba moraš najprije "
-"raskinuti njihovo srodstvo."
+"raskinuti njihovu vezu."
 
 #: ../gramps/gen/merge/mergepersonquery.py:136
 msgid "Merge Person"
-msgstr "Spajanje osobe"
+msgstr "Spoji osobu"
 
 #: ../gramps/gen/merge/mergeplacequery.py:63
 #: ../gramps/gui/merge/mergeplace.py:79
 msgid "Merge Places"
-msgstr "Spajanje mjesta"
+msgstr "Spoji mjesta"
 
 #: ../gramps/gen/merge/mergerepositoryquery.py:62
 #: ../gramps/gui/merge/mergerepository.py:71
 msgid "Merge Repositories"
-msgstr "Spajanje spremišta"
+msgstr "Spoji spremišta"
 
 #: ../gramps/gen/merge/mergesourcequery.py:64
 msgid "Merge Source"
-msgstr "Spajanje izvora"
+msgstr "Spoji izvor"
 
 #: ../gramps/gen/plug/_gramplet.py:352
 #, python-format
@@ -14677,11 +14677,11 @@ msgstr "#"
 
 #: ../gramps/gui/editors/editfamily.py:141
 msgid "Paternal"
-msgstr "Po ocu"
+msgstr "Očevo"
 
 #: ../gramps/gui/editors/editfamily.py:142
 msgid "Maternal"
-msgstr "Po majci"
+msgstr "Majčino"
 
 #: ../gramps/gui/editors/editfamily.py:143
 #: ../gramps/gui/selectors/selectperson.py:109
@@ -32323,7 +32323,7 @@ msgstr "Ime oca"
 #: ../gramps/plugins/quickview/lineage.py:100
 #: ../gramps/plugins/quickview/lineage.py:194
 msgid "Remark"
-msgstr "Napomena"
+msgstr "Primjedba"
 
 #: ../gramps/plugins/quickview/lineage.py:73
 msgid "Direct line male descendants"
@@ -37367,7 +37367,7 @@ msgstr "Izbriši odabrani medijski objekt"
 
 #: ../gramps/plugins/view/mediaview.py:131
 msgid "Merge the selected media objects"
-msgstr "Spoji medijske objekte"
+msgstr "Spoji odabrane medijske objekte"
 
 #: ../gramps/plugins/view/mediaview.py:318
 msgid "Media Filter Editor"
