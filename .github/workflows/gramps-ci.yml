@@ -53,6 +53,7 @@ jobs:
         sudo apt-get install libxml2-utils
         sudo apt-get install python3-lxml
         sudo apt-get install python3-libxml2
+        sudo apt-get install python3-typing-extensions
         sudo apt-get install zlib1g-dev
         sudo apt-get install python3-build
         python3 -m pip install orjson
