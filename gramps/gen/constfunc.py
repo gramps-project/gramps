@@ -174,3 +174,36 @@ def get_curr_dir():
     native GetCurrentDirectory function to return a unicode cwd.
     """
     return os.getcwd()
+
+
+# -------------------------------------------------------------------------
+#
+# Functions that return base directories as described in the XDG base directory
+# specification.
+#
+# -------------------------------------------------------------------------
+def get_user_data_dir():
+    """
+    Returns a base directory in which to store user-specific application data.
+    """
+    if "XDG_DATA_HOME" in os.environ:
+        return get_env_var("XDG_DATA_HOME")
+    return os.path.join(get_env_var("HOME"), ".local", "share")
+
+
+def get_user_config_dir():
+    """
+    Returns a base directory in which to store user-specific configuration settings.
+    """
+    if "XDG_CONFIG_HOME" in os.environ:
+        return get_env_var("XDG_CONFIG_HOME")
+    return os.path.join(get_env_var("HOME"), ".config")
+
+
+def get_user_cache_dir():
+    """
+    Returns a base directory in which to store temporary cached data.
+    """
+    if "XDG_CACHE_HOME" in os.environ:
+        return get_env_var("XDG_CACHE_HOME")
+    return os.path.join(get_env_var("HOME"), ".cache")
