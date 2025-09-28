@@ -1190,6 +1190,9 @@ class RelationshipCalculator:
                 for ref in family.get_child_ref_list()
                 if ref.ref == person.handle
             ]
+            # Add this check
+            if not childrel:
+                continue  # Skip to the next family if childrel is empty
             if not birthmother and childrel[0][0] == ChildRefType.BIRTH:
                 birthmother = family.get_mother_handle()
             if not birthfather and childrel[0][1] == ChildRefType.BIRTH:
@@ -1612,6 +1615,9 @@ class RelationshipCalculator:
                     for ref in family.get_child_ref_list()
                     if ref.ref == person.handle
                 ]
+                # Add this check
+                if not childrel:
+                    continue  # Skip to the next family if childrel is empty
                 fhandle = family.father_handle
                 mhandle = family.mother_handle
                 for data in [
