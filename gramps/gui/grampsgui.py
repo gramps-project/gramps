@@ -470,6 +470,15 @@ except ImportError:
     )
     sys.exit(1)
 
+if glocale.no_gettext_support:
+    print(
+        _(
+            "Python compiled without gettext support in the locale module.\n\n"
+            "Gramps will terminate now."
+        )
+    )
+    sys.exit(1)
+
 # -------------------------------------------------------------------------
 #
 # Functions
