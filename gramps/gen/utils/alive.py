@@ -66,12 +66,14 @@ try:
     _MAX_SIB_AGE_DIFF = config.get("behavior.max-sib-age-diff")
     _AVG_GENERATION_GAP = config.get("behavior.avg-generation-gap")
     _MIN_GENERATION_YEARS = config.get("behavior.min-generation-years")
+    _MAX_GEN_ESTIMATE = config.get("behavior.max-gen-estimate")
 except ImportError:
     # Utils used as module not part of GRAMPS
     _MAX_AGE_PROB_ALIVE = 110
     _MAX_SIB_AGE_DIFF = 20
     _AVG_GENERATION_GAP = 20
     _MIN_GENERATION_YEARS = 13
+    _MAX_GEN_ESTIMATE = 4
 
 
 # -------------------------------------------------------------------------
@@ -620,6 +622,13 @@ class ProbablyAlive:
                     person.get_gramps_id(),
                 )
                 return no_valid_descendant
+            if generation > _MAX_GEN_ESTIMATE:
+                LOG.debug(
+                    "....... person %s skipped - already done %d generations",
+                    person.get_gramps_id(),
+                    _MAX_GEN_ESTIMATE,
+                )
+                return no_valid_descendant
             if DEBUGLEVEL > 2:
                 LOG.debug(
                     "     %s recursing into person [%s] %s, gen %s",
@@ -823,6 +832,13 @@ class ProbablyAlive:
                 LOG.debug(
                     "....... person %s skipped - already seen in ancestor test",
                     person.get_gramps_id(),
+                )
+                return range_not_found
+            if generation > _MAX_GEN_ESTIMATE:
+                LOG.debug(
+                    "....... person %s skipped - already done %d generations",
+                    person.get_gramps_id(),
+                    _MAX_GEN_ESTIMATE,
                 )
                 return range_not_found
             self.pset.add(person.handle)
@@ -1106,7 +1122,9 @@ def update_constants():
 
     global _MAX_AGE_PROB_ALIVE, _MAX_SIB_AGE_DIFF
     global _AVG_GENERATION_GAP, _MIN_GENERATION_YEARS
+    global _MAX_GEN_ESTIMATE
     _MAX_AGE_PROB_ALIVE = config.get("behavior.max-age-prob-alive")
     _MAX_SIB_AGE_DIFF = config.get("behavior.max-sib-age-diff")
     _AVG_GENERATION_GAP = config.get("behavior.avg-generation-gap")
     _MIN_GENERATION_YEARS = config.get("behavior.min-generation-years")
+    _MAX_GEN_ESTIMATE = config.get("behavior.max-gen-estimate")

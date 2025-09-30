@@ -614,7 +614,15 @@ class ConfigureDialog(ManagedWindow):
         return slider
 
     def add_spinner(
-        self, grid, label, index, constant, range, callback=None, config=None
+        self,
+        grid,
+        label,
+        index,
+        constant,
+        range,
+        callback=None,
+        config=None,
+        tooltip=None,
     ):
         """
         Spinner allowing the selection of an integer within a specified range.
@@ -635,6 +643,9 @@ class ConfigureDialog(ManagedWindow):
         )
         spinner = Gtk.SpinButton(adjustment=adj, climb_rate=0.0, digits=0)
         spinner.connect("value-changed", callback, constant)
+        if tooltip:
+            lwidget.set_tooltip_text(tooltip)
+            spinner.set_tooltip_text(tooltip)
         spinner.set_hexpand(True)
         grid.attach(lwidget, 1, index, 1, 1)
         grid.attach(spinner, 2, index, 1, 1)
@@ -1920,6 +1931,18 @@ class GrampsPreferences(ConfigureDialog):
             row,
             "behavior.max-age-prob-alive",
             (80, 140),
+        )
+        row += 1
+        self.add_spinner(
+            grid,
+            _("Maximum generations to estimate age"),
+            row,
+            "behavior.max-gen-estimate",
+            (1, 10),
+            tooltip=_(
+                "Limits ancestor/descendant estimation depth. Increase if "
+                "estimates are missing when dates are only in distant generations."
+            ),
         )
         row += 1
         self.add_spinner(
