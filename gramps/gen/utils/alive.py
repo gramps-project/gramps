@@ -638,6 +638,8 @@ class ProbablyAlive:
                     # can happen with LivingProxyDb(PrivateProxyDb(db))
                     continue
                 for child_ref in family.get_child_ref_list():
+                    if generation > 4:
+                        break
                     child_handle = child_ref.ref
                     bdate, ddate, dfound, expb, expd = get_person_bd(child_handle)
                     cd = dict(
