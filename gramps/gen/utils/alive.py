@@ -613,6 +613,12 @@ class ProbablyAlive:
             """
 
             no_valid_descendant = (None, None, None, None, None, None)
+            if generation > 4:
+                LOG.debug(
+                    "....... person %s skipped - already done 4 generations",
+                    person.get_gramps_id(),
+                )
+                return no_valid_descendant
             if person.handle in self.pset:
                 LOG.debug(
                     "....... person %s skipped - already seen in descendants test",
@@ -818,6 +824,12 @@ class ProbablyAlive:
             generation parameter is current depth of recursion.
             """
             range_not_found = (None, None, "", None, None)
+            if generation > 4:
+                LOG.debug(
+                    "....... person %s skipped - already done 4 generations",
+                    person.get_gramps_id(),
+                )
+                return range_not_found
             if person.handle in self.pset:
                 LOG.debug(
                     "....... person %s skipped - already seen in ancestor test",
