@@ -3,13 +3,14 @@
 # Copyright (C) YEAR ORGANIZATION
 # Vlad-Mihai Chirculete <mihai.chirculete@tutanota.com>, 2025.
 # mircea s <mircea.salajan@gmail.com>, 2025.
+# Stefan Zaharia <stefanzah2011@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-17 18:02+0000\n"
-"Last-Translator: mircea s <mircea.salajan@gmail.com>\n"
+"PO-Revision-Date: 2025-09-28 12:02+0000\n"
+"Last-Translator: Stefan Zaharia <stefanzah2011@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ro/>\n"
 "Language: ro\n"
@@ -58,9 +59,8 @@ msgid "Finland"
 msgstr "Finalnda"
 
 #: ../data/holidays.xml:282
-#, fuzzy
 msgid "France"
-msgstr "Franceză"
+msgstr "Franța"
 
 #: ../data/holidays.xml:318
 msgid "Germany"
