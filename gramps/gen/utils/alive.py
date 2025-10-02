@@ -824,6 +824,12 @@ class ProbablyAlive:
             generation parameter is current depth of recursion.
             """
             range_not_found = (None, None, "", None, None)
+            if generation > 4:
+                LOG.debug(
+                    "....... person %s skipped - already done 4 generations",
+                    person.get_gramps_id(),
+                )
+                return range_not_found
             if person.handle in self.pset:
                 LOG.debug(
                     "....... person %s skipped - already seen in ancestor test",
@@ -916,7 +922,7 @@ class ProbablyAlive:
                 # but we choose the shortest number of generations from the responses
                 # not very efficient, but...
                 gen_m = gen_f = None
-                if mother_handle is not None and generation < 5:
+                if mother_handle is not None:
                     date1_m, date2_m, explan_m, other_m, gen_m = (
                         estimate_bd_range_from_ancestors(
                             self.db.get_person_from_handle(mother_handle),
@@ -925,7 +931,7 @@ class ProbablyAlive:
                         )
                     )
                 # now try the father's line
-                if father_handle is not None and generation < 5:
+                if father_handle is not None:
                     date1_f, date2_f, explan_f, other_f, gen_f = (
                         estimate_bd_range_from_ancestors(
                             self.db.get_person_from_handle(father_handle),
