@@ -613,6 +613,12 @@ class ProbablyAlive:
             """
 
             no_valid_descendant = (None, None, None, None, None, None)
+            if generation > 4:
+                LOG.debug(
+                    "....... person %s skipped - already done 4 generations",
+                    person.get_gramps_id(),
+                )
+                return no_valid_descendant
             if person.handle in self.pset:
                 LOG.debug(
                     "....... person %s skipped - already seen in descendants test",
@@ -638,8 +644,6 @@ class ProbablyAlive:
                     # can happen with LivingProxyDb(PrivateProxyDb(db))
                     continue
                 for child_ref in family.get_child_ref_list():
-                    if generation > 4:
-                        break
                     child_handle = child_ref.ref
                     bdate, ddate, dfound, expb, expd = get_person_bd(child_handle)
                     cd = dict(
