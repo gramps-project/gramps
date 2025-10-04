@@ -32,6 +32,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.graph import find_ancestors
 
 
 # -------------------------------------------------------------------------
@@ -63,33 +64,20 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
     )
 
     def prepare(self, db: Database, user):
+        """Use the unified find_ancestors function"""
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
         person = db.get_person_from_gramps_id(self.list[0])
         if person:
-            root_handle = person.handle
-            if root_handle:
-                self.init_ancestor_list(root_handle)
-
-    def init_ancestor_list(self, root_handle: PersonHandle):
-        queue = [(root_handle, 1)]  # generation 1 is root
-        while queue:
-            handle, gen = queue.pop(0)  # pop off front of queue
-            if gen > int(self.list[1]):
-                self.selected_handles.add(handle)
-            gen += 1
-            p = self.db.get_person_from_handle(handle)
-            fam_id = p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
-            if fam_id:
-                fam = self.db.get_family_from_handle(fam_id)
-                if fam:
-                    f_id = fam.father_handle
-                    m_id = fam.mother_handle
-                    # append to back of queue:
-                    if f_id:
-                        queue.append((f_id, gen))
-                    if m_id:
-                        queue.append((m_id, gen))
+            # Original uses base-1: gen 1=root, 2=parents, 3=grandparents
+            # Our function uses base-0: gen 0=root, 1=parents, 2=grandparents
+            # Original logic: if gen > N, include the ancestor
+            # So we want ancestors at generation N+1 and beyond in base-1
+            # Convert to base-0: (N+1) - 1 = N
+            min_generation = int(self.list[1])
+            self.selected_handles = find_ancestors(
+                db, [person.handle], min_generation=min_generation, inclusive=False
+            )
 
     def reset(self):
         self.selected_handles.clear()
