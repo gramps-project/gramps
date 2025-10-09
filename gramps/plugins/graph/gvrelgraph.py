@@ -162,6 +162,7 @@ class RelGraphReport(Report):
         self.show_family_leaves = get_value("show_family_leaves")
         self.use_subgraphs = get_value("usesubgraphs")
         self.event_choice = get_value("event_choice")
+        self.valid_date = get_value("valid")
         self.occupation = get_value("occupation")
         self.use_html_output = False
 
@@ -823,7 +824,7 @@ class RelGraphReport(Report):
         """
         if event and event.get_date_object() is not None:
             event_date = event.get_date_object()
-            if event_date.get_year_valid():
+            if event_date:
                 if self.event_choice in [4, 5]:
                     return self.get_date(Date(event_date.get_year()))  # localized year
                 elif self.event_choice in [1, 2, 3, 7]:
@@ -846,7 +847,13 @@ class RelGraphReport(Report):
 
     def get_date(self, date):
         """return a formatted date"""
-        return html.escape(self._get_date(date))
+        if self.valid_date:
+            if date.get_year_valid():
+                return html.escape(self._get_date(date))
+            else:
+                return ""
+        else:
+            return self._get_date(date)
 
 
 # ------------------------------------------------------------------------
@@ -977,6 +984,9 @@ class RelGraphOptions(MenuReportOptions):
             )
         )
         add_option("show_family_leaves", show_family_leaves)
+
+        valid = BooleanOption(_("Only valid dates"), True)
+        add_option("valid", valid)
 
         url = BooleanOption(_("Include URLs"), False)
         url.set_help(
