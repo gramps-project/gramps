@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-08 23:02+0000\n"
+"PO-Revision-Date: 2025-10-06 07:01+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -13544,18 +13544,18 @@ msgstr ""
 #: ../gramps/gui/dbman.py:839
 #, python-format
 msgid "Convert the '%s' database?"
-msgstr "Die Datenbank '%s' konvertieren?"
+msgstr "Die Datenbank '%s' umwandeln?"
 
 #: ../gramps/gui/dbman.py:841
 #, python-format
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
 msgstr ""
-"Willst du diesen Stammbaum in eine %(database_type)s Datenbank umwandeln?"
+"Möchtest du diesen Stammbaum in eine %(database_type)s-Datenbank umwandeln?"
 
 #: ../gramps/gui/dbman.py:845
 msgid "Convert"
-msgstr "Konvertieren"
+msgstr "Umwandeln"
 
 #: ../gramps/gui/dbman.py:858
 #, python-format
@@ -13565,13 +13565,13 @@ msgstr "Öffnen der Datenbank '%s'"
 #: ../gramps/gui/dbman.py:860
 msgid "An attempt to convert the database failed. Perhaps it needs updating."
 msgstr ""
-"Der Versuch, die Datenbank zu konvertieren ist fehlgeschlagen. Vielleicht "
-"muss sie eine aktualisiert werden."
+"Der Versuch, die Datenbank zu umzuwandeln ist fehlgeschlagen. Vielleicht "
+"muss sie aktualisiert werden."
 
 #: ../gramps/gui/dbman.py:875 ../gramps/gui/dbman.py:902
 #, python-format
 msgid "Converting the '%s' database"
-msgstr "Konvertieren der Datenbank '%s'"
+msgstr "Umwandeln der Datenbank '%s'"
 
 #: ../gramps/gui/dbman.py:876
 msgid "An attempt to export the database failed."
@@ -13579,12 +13579,12 @@ msgstr "Ein Versuch die Datenbank zu exportieren ist fehlgeschlagen."
 
 #: ../gramps/gui/dbman.py:881
 msgid "Converting data..."
-msgstr "Daten konvertieren..."
+msgstr "Daten umwandeln..."
 
 #: ../gramps/gui/dbman.py:886 ../gramps/gui/dbman.py:889
 #, python-format
 msgid "(Converted #%d)"
-msgstr "(Konvertiert #%d)"
+msgstr "(Umgewandelt #%d)"
 
 #: ../gramps/gui/dbman.py:903
 msgid "An attempt to import into the database failed."
@@ -13624,7 +13624,7 @@ msgstr ""
 "versuchen, deinen Stammbaum aus dem letzten guten Backup wiederherzustellen. "
 "Es gibt mehrere Möglichkeiten, wie dies zu unerwünschten Effekten führen "
 "kann, also %(bold_start)ssichere%(bold_end)s zuerst den Stammbaum.\n"
-"Der von die ausgewählte Stammbaum wird in %(dirname)s gespeichert.\n"
+"Der von dir ausgewählte Stammbaum wird in %(dirname)s gespeichert.\n"
 "\n"
 "Stelle vor einer Reparatur sicher, dass der Stammbaum wirklich nicht mehr "
 "geöffnet werden kann, da das Datenbank-Backend einige Fehler automatisch "
@@ -13647,7 +13647,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:997
 msgid "Proceed, I have taken a backup"
-msgstr "Fahre fort, ich habe ein Backup erstellt"
+msgstr "Fortfahren, ich habe ein Backup erstellt"
 
 #: ../gramps/gui/dbman.py:998
 msgid "Stop"
@@ -13663,7 +13663,7 @@ msgstr "Fehler beim Wiederherstellen aus dem Backup"
 
 #: ../gramps/gui/dbman.py:1062
 msgid "Could not create Family Tree"
-msgstr "Der Stammbaum konnte nicht erstellt werden"
+msgstr "Stammbaum konnte nicht erstellt werden"
 
 #: ../gramps/gui/dbman.py:1186
 msgid "Retrieve failed"
@@ -13676,7 +13676,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Der Versuch, die Daten abzurufen, schlug mit der folgenden Meldung fehl:\n"
+"Ein Versuch, die Daten abzurufen, schlug mit folgender Meldung fehl:\n"
 "\n"
 "%s"
 
@@ -13691,8 +13691,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Der Versuch, das Archiv zu erstellen, schlug mit der folgenden Meldung "
-"fehl:\n"
+"Ein Versuch, das Archiv zu erstellen, schlug mit folgender Meldung fehl:\n"
 "\n"
 "%s"
 
@@ -13711,7 +13710,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Der Versuch, die Daten zu archivieren, ist mit der folgenden Meldung "
+"Ein Versuch, die Daten zu archivieren, ist mit folgender Meldung "
 "fehlgeschlagen:\n"
 "\n"
 "%s"
@@ -13726,8 +13725,8 @@ msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
 msgstr ""
-"Bitte versuche nicht, diesen wichtigen Dialog zu übergehen.\n"
-"Wähle stattdessen eine der angebotenen Optionen"
+"Bitte erzwinge nicht das Schließen dieses wichtigen Dialogs.\n"
+"Wähle stattdessen eine der verfügbaren Optionen"
 
 #: ../gramps/gui/displaystate.py:287
 msgid "Cannot load database"
@@ -13735,7 +13734,7 @@ msgstr "Datenbank kann nicht geladen werden"
 
 #: ../gramps/gui/displaystate.py:410
 msgid "Open the Clipboard dialog"
-msgstr "Dialogfeld Zwischenablage öffnen"
+msgstr "Zwischenablagedialog öffnen"
 
 #: ../gramps/gui/displaystate.py:411 ../gramps/gui/grampsgui.py:58
 msgid "Clip_board"
@@ -32083,7 +32082,7 @@ msgstr "Ort verknüpfen"
 
 #: ../gramps/plugins/lib/maps/geography.py:423
 msgid "Add place from kml"
-msgstr "Ort aus kml hinzufügen"
+msgstr "Ort aus KML hinzufügen"
 
 #: ../gramps/plugins/lib/maps/geography.py:427
 msgid "Center here"
@@ -32102,7 +32101,7 @@ msgstr "Lade alle sichtbaren Kacheln für '%(map)s' neu."
 #: ../gramps/plugins/lib/maps/geography.py:456
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr "Leert den Kachel-Cache von '%(map)s'."
+msgstr "Den Kachel-Cache von '%(map)s' löschen."
 
 #: ../gramps/plugins/lib/maps/geography.py:998
 #: ../gramps/plugins/view/geoclose.py:687
@@ -32121,7 +32120,7 @@ msgstr "Auf diesen Ort zentrieren"
 
 #: ../gramps/plugins/lib/maps/geography.py:1111
 msgid "Select a kml file used to add places"
-msgstr "Wähle eine kml-Datei, um einen Ort hinzuzufügen"
+msgstr "Wähle eine KML-Datei, um Orte hinzuzufügen"
 
 #: ../gramps/plugins/lib/maps/geography.py:1149
 msgid "You will need to edit each place manually to add place type, ...\n"
@@ -32136,7 +32135,7 @@ msgstr[1] "Du hast {places_nb} Orte zum Bearbeiten."
 
 #: ../gramps/plugins/lib/maps/geography.py:1158
 msgid "You have more than 5 places in this kml file."
-msgstr "Es gibt mehr als fünf Orte in dieser kml-Datei."
+msgstr "Es gibt mehr als fünf Orte in dieser KML-Datei."
 
 #: ../gramps/plugins/lib/maps/geography.py:1227
 msgid "You have at least two places with the same title."
@@ -32157,7 +32156,7 @@ msgstr ""
 "Die folgenden Orte sind ähnlich: %(gid)s\n"
 "Du solltest entweder die Orte umbenennen oder sie zusammenführen.\n"
 "\n"
-"%(bold_start)s Ich kann deiner Anfrage nicht nachkommen%(bold_end)s.\n"
+"%(bold_start)sIch kann deiner Anfrage nicht nachkommen%(bold_end)s.\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1402
 msgid "Nothing for this view."
@@ -32761,7 +32760,8 @@ msgid ""
 "Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
 "Dieser Bericht zeigt die väterliche Abstammungslinie, auch patrilineare oder "
-"Y-Linie genannt. Personen in dieser Linie haben alle das gleiche Y-Chromosom."
+"Y-Linie genannt. Personen in dieser Linie haben alle die gleichen "
+"Y-Chromosomen."
 
 #: ../gramps/plugins/quickview/lineage.py:65
 msgid "Name Father"
@@ -32919,7 +32919,7 @@ msgstr "Väterliche Abstammungslinie"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:166
 msgid "Display father lineage"
-msgstr "Zeigt väterliche Abstammungslinie"
+msgstr "Väterliche Abstammungslinie anzeigen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:181
 msgid "Mother lineage"
@@ -32927,7 +32927,7 @@ msgstr "Mütterliche Abstammungslinie"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:182
 msgid "Display mother lineage"
-msgstr "Zeigt mütterliche Abstammungslinie"
+msgstr "Mütterliche Abstammungslinie anzeigen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:203
 msgid "On This Day"
@@ -33948,7 +33948,7 @@ msgstr "zeige Personen nach Generationen an"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1080
 msgid "show people by lineage"
-msgstr "zeige Personen nach Abstammungslinie an"
+msgstr "zeige Personen nach Abstammungslinie"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1083
 msgid "How people are organized in the report"
