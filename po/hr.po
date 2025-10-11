@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-25 16:56+0000\n"
+"PO-Revision-Date: 2025-09-28 12:02+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -1419,8 +1419,8 @@ msgstr ""
 "otvaranja\n"
 "  -i, --import=DATOTEKA                  Uvoz datoteke\n"
 "  -e, --export=DATOTEKA                  Izvoz datoteke\n"
-"  -r, --remove=RODOSLOV_MODEL            Ukloni poklapajuće rodoslove "
-"(koristi regularne pojmove)\n"
+"  -r, --remove=RODOSLOV_MODEL            Ukloni poklapajuće rodoslove ("
+"koristi regularne pojmove)\n"
 "  -f, --format=FORMAT                    Odaberi format rodoslova\n"
 "  -a, --action=RADNJA                    Odaberi radnju\n"
 "  -p, --options=ZNAKOVNI_NIZ_OPCIJA       Odaberi opcije\n"
@@ -1433,22 +1433,22 @@ msgstr ""
 "  -s, --show                             Prikaži postavke konfiguracije\n"
 "  -c, --config=[config.setting[:value]]  Postavi postavke konfiguracije i "
 "pokreni Gramps\n"
-"  -y, --yes                              Ne pitaj za potvrde opasnih akcija "
-"(samo u radu bez grafičkog sučelja)\n"
+"  -y, --yes                              Ne pitaj za potvrde opasnih akcija ("
+"samo u radu bez grafičkog sučelja)\n"
 "  -q, --quiet                            Ne prikazuj napredak (samo u radu "
 "bez grafičkog sučelja)\n"
 "  -v, --version                          Prikaži verziju\n"
 "  -S, --safe                             Pokreni Gramps u 'sigurnom stanju'\n"
-"                                          (privremeno koristi standardne "
+"                                          (privremeno koristi zadane "
 "postavke)\n"
-"  -D, --default=[APXFE]                  Vraćanje postavki na standardne "
+"  -D, --default=[APXFE]                  Vraćanje postavki na zadane "
 "vrijednosti;\n"
 "                 A - dodatci se brišu\n"
-"                 P - postavke na standardne vrijednosti\n"
-"                 X - knjige se brišu, postavke izvještaja i alata na "
-"standardne vrijednosti\n"
+"                 P - postavke na zadane vrijednosti\n"
+"                 X - knjige se brišu, postavke izvještaja i alata na zadane "
+"vrijednosti\n"
 "                 F - filtri se brišu\n"
-"                 E - sve se postavlja na standardne vrijednosti ili briše\n"
+"                 E - sve se postavlja na zadane vrijednosti ili briše\n"
 
 #: ../gramps/cli/argparser.py:108
 msgid ""
@@ -1600,7 +1600,7 @@ msgstr "Trenutačna Grampsova konfiguracijska postavka: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:383
 msgid "DEFAULT"
-msgstr "ZADANA VRIJEDNOST"
+msgstr "ZADANO"
 
 #: ../gramps/cli/argparser.py:392
 #, python-format
@@ -9387,16 +9387,16 @@ msgstr ""
 
 #: ../gramps/gen/merge/mergefamilyquery.py:150
 msgid "Merge Family"
-msgstr "Spajanje obitelji"
+msgstr "Spoji obitelj"
 
 #: ../gramps/gen/merge/mergemediaquery.py:62
 #: ../gramps/gui/merge/mergemedia.py:70
 msgid "Merge Media Objects"
-msgstr "Spajanje medijskih objekata"
+msgstr "Spoji medijske objekte"
 
 #: ../gramps/gen/merge/mergenotequery.py:70 ../gramps/gui/merge/mergenote.py:68
 msgid "Merge Notes"
-msgstr "Spajanje zabilješki"
+msgstr "Spoji zabilješke"
 
 #: ../gramps/gen/merge/mergepersonquery.py:56
 msgid ""
@@ -9404,25 +9404,25 @@ msgid ""
 "relationship between them."
 msgstr ""
 "Supružnici se ne mogu spojiti. Za spajanje ovih osoba moraš najprije "
-"raskinuti njihovo srodstvo."
+"raskinuti njihovu vezu."
 
 #: ../gramps/gen/merge/mergepersonquery.py:136
 msgid "Merge Person"
-msgstr "Spajanje osobe"
+msgstr "Spoji osobu"
 
 #: ../gramps/gen/merge/mergeplacequery.py:63
 #: ../gramps/gui/merge/mergeplace.py:79
 msgid "Merge Places"
-msgstr "Spajanje mjesta"
+msgstr "Spoji mjesta"
 
 #: ../gramps/gen/merge/mergerepositoryquery.py:62
 #: ../gramps/gui/merge/mergerepository.py:71
 msgid "Merge Repositories"
-msgstr "Spajanje spremišta"
+msgstr "Spoji spremišta"
 
 #: ../gramps/gen/merge/mergesourcequery.py:64
 msgid "Merge Source"
-msgstr "Spajanje izvora"
+msgstr "Spoji izvor"
 
 #: ../gramps/gen/plug/_gramplet.py:352
 #, python-format
@@ -12135,9 +12135,9 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
-"Standardni formati Gramps ID oznaka sadrže slovo kao prefiks nakon kojeg "
-"slijedi numerički niz. „I%04d” stvara ID oznake od I0000 do I9999. Velike "
-"baze podataka možda zahtijevaju veće ID oznake. „I%06d” stvara ID oznake od "
+"Zadani formati Gramps ID oznaka sadrže slovo kao prefiks nakon kojeg slijedi "
+"numerički niz. „I%04d” stvara ID oznake od I0000 do I9999. Velike baze "
+"podataka možda zahtijevaju veće ID oznake. „I%06d” stvara ID oznake od "
 "I000000 do I999999.\n"
 
 #: ../gramps/gui/configure.py:878
@@ -12158,11 +12158,11 @@ msgstr "Shema boja"
 
 #: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2817
 msgid "Restore to defaults"
-msgstr "Vrati na zadane vrijednosti"
+msgstr "Obnovi na zadane vrijednosti"
 
 #: ../gramps/gui/configure.py:899
 msgid "Restore colors for current theme to default."
-msgstr "Vrati boje trenutačne teme na zadane vrijednosti."
+msgstr "Obnovi boje trenutačne teme na zadane vrijednosti."
 
 #: ../gramps/gui/configure.py:906
 msgid "Colors for Male persons"
@@ -12973,7 +12973,7 @@ msgstr "Koristi simbole"
 
 #: ../gramps/gui/configure.py:2678
 msgid "Select default death symbol"
-msgstr "Postavi standardni simbol za smrt"
+msgstr "Odaberi zadani simbol za smrt"
 
 #: ../gramps/gui/configure.py:2688
 msgid "Genealogical Symbols"
@@ -13000,7 +13000,7 @@ msgstr "Ubijen/a"
 
 #: ../gramps/gui/configure.py:2810
 msgid "Default genealogy symbols replacement"
-msgstr "Zamjena standardnih genealoških simbola"
+msgstr "Zamjena zadanih genealoških simbola"
 
 #: ../gramps/gui/configure.py:2823
 msgid ""
@@ -14677,11 +14677,11 @@ msgstr "#"
 
 #: ../gramps/gui/editors/editfamily.py:141
 msgid "Paternal"
-msgstr "Po ocu"
+msgstr "Očevo"
 
 #: ../gramps/gui/editors/editfamily.py:142
 msgid "Maternal"
-msgstr "Po majci"
+msgstr "Majčino"
 
 #: ../gramps/gui/editors/editfamily.py:143
 #: ../gramps/gui/selectors/selectperson.py:109
@@ -16016,7 +16016,7 @@ msgid ""
 "be used to actually update the view to its defaults."
 msgstr ""
 "Ovo postavlja parametre filtra u prazno stanje. Gumb „Pronađi” trebao bi se "
-"koristiti za aktualiziranje prikaza na standardne vrijednosti."
+"koristiti za aktualiziranje prikaza na zadane vrijednosti."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:93
 msgid ""
@@ -21043,15 +21043,15 @@ msgstr "O Grampletima"
 
 #: ../gramps/gui/widgets/grampletbar.py:595
 msgid "Restore to defaults?"
-msgstr "Vrati na zadane vrijednosti?"
+msgstr "Obnoviti na zadane vrijednosti?"
 
 #: ../gramps/gui/widgets/grampletbar.py:597
 msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
-"Gramplet traka će biti obnovljena, tako da sadrži gramplete zadane osnovnom "
-"postavkom. Ova akcija je nepovratna."
+"Gramplet traka će se obnoviti, tako da sadrži svoje zadane gramplete. Ovo je "
+"nepovratna radnja."
 
 #: ../gramps/gui/widgets/grampletpane.py:837
 msgid "Drag Properties Button to move and click it for setup"
@@ -21771,7 +21771,7 @@ msgid ""
 "  is resized to remove any gap in either height or width"
 msgstr ""
 "Da li prilagoditi veličinu stranice veličini stabla. \n"
-"Napomena: stranica neće biti standardne veličine.\n"
+"Napomena: stranica neće imati standardne veličine.\n"
 "\n"
 "Odabirom ove opcije, desit će se sljedeće:\n"
 "\n"
@@ -26604,7 +26604,7 @@ msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
-"Standardni označeni tekst\n"
+"Zadani tekst oznaka\n"
 "(izvan postavki)."
 
 #: ../gramps/plugins/importer/importprogen.glade:478
@@ -26613,7 +26613,7 @@ msgstr "Uvezi datoteku."
 
 #: ../gramps/plugins/importer/importprogen.glade:526
 msgid "Default (System-)Date."
-msgstr "Standardni (sustavom određeni) datum."
+msgstr "Zadani (sustavom određen) datum."
 
 #: ../gramps/plugins/importer/importprogen.glade:766
 #: ../gramps/plugins/importer/importprogen.glade:779
@@ -26623,31 +26623,31 @@ msgstr "Standardni (sustavom određeni) datum."
 #: ../gramps/plugins/importer/importprogen.glade:831
 #: ../gramps/plugins/importer/importprogen.glade:844
 msgid "Combined default text + filename + date."
-msgstr "Sjedinjeni standardni tekst + datoteka + datum."
+msgstr "Kombiniran zadani tekst + datoteka + datum."
 
 #: ../gramps/plugins/importer/importprogen.glade:1055
 msgid ""
 "Copy Default Text\n"
 "to all Tag Text'."
 msgstr ""
-"Kopiraj standardni tekst\n"
-"u sav označeni tekst."
+"Kopiraj zadani tekst\n"
+"u sav tekst oznake."
 
 #: ../gramps/plugins/importer/importprogen.glade:1072
 msgid ""
 "Copy Default Filename\n"
 "to all sensitive Tag Text'."
 msgstr ""
-"Kopiraj standardno ime datoteke\n"
-"u sav osjetljiv označeni tekst."
+"Kopiraj zadano ime datoteke\n"
+"u sav osjetljiv tekst oznake."
 
 #: ../gramps/plugins/importer/importprogen.glade:1089
 msgid ""
 "Copy Default Date\n"
 "to all sensitive Tag Text'."
 msgstr ""
-"Kopiraj standardni datum\n"
-"u sav osjetljiv označeni tekst."
+"Kopiraj zadani datum\n"
+"u sav osjetljiv tekst oznake."
 
 #: ../gramps/plugins/importer/importprogen.glade:1102
 msgid "  Objects"
@@ -31756,9 +31756,7 @@ msgstr "Karta"
 
 #: ../gramps/plugins/lib/maps/geography.py:1533
 msgid "Select tile cache directory for offline mode"
-msgstr ""
-"Odaberi direktorij za spremanje odsječaka karata, za bezmrežnu upotrebu."
-"podnev"
+msgstr "Odaberi direktorij za spremanje odsječaka karata za offline modus"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
 #, python-format
@@ -32323,7 +32321,7 @@ msgstr "Ime oca"
 #: ../gramps/plugins/quickview/lineage.py:100
 #: ../gramps/plugins/quickview/lineage.py:194
 msgid "Remark"
-msgstr "Napomena"
+msgstr "Primjedba"
 
 #: ../gramps/plugins/quickview/lineage.py:73
 msgid "Direct line male descendants"
@@ -32623,7 +32621,7 @@ msgstr "Brat/Sestra"
 
 #: ../gramps/plugins/quickview/siblings.py:66
 msgid "self"
-msgstr "ista osoba"
+msgstr "ova osoba"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:35
 msgid "Catalan Relationship Calculator"
@@ -34688,7 +34686,7 @@ msgstr "Nepostojeća osoba"
 #: ../gramps/plugins/tool/check.py:2750 ../gramps/plugins/tool/check.py:2778
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
-msgstr "%(person)s je vraćen/a u obitelj %(family)s\n"
+msgstr "%(person)s je obnovljen/a u obitelj od %(family)s\n"
 
 #: ../gramps/plugins/tool/check.py:2758
 #, python-brace-format
@@ -37367,7 +37365,7 @@ msgstr "Izbriši odabrani medijski objekt"
 
 #: ../gramps/plugins/view/mediaview.py:131
 msgid "Merge the selected media objects"
-msgstr "Spoji medijske objekte"
+msgstr "Spoji odabrane medijske objekte"
 
 #: ../gramps/plugins/view/mediaview.py:318
 msgid "Media Filter Editor"
@@ -38550,7 +38548,7 @@ msgstr "Stilski predložak"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2195
 msgid "The default stylesheet to be used for the pages"
-msgstr "Standardni stilski predložak za stranice"
+msgstr "Zadani stilski predložak za stranice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
 msgid "Horizontal -- Default"
@@ -38662,8 +38660,8 @@ msgid ""
 "the next field."
 msgstr ""
 "Da li prikazati narativne web stranice na više jezika.\n"
-"Pogledaj karticu prijevoda za dodavanje novih jezika standardnom jeziku koji "
-"je određen u sljedećem polju."
+"Pogledaj karticu prijevoda za dodavanje novih jezika zadanom jeziku koji je "
+"određen u sljedećem polju."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2308
 msgid "Sort all children in birth order"
@@ -38708,8 +38706,8 @@ msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
-"Uključi narativne zabilješke iza imena, spola i starosti pri smrti "
-"(standardni način) ili ih uključi ispred svojstva."
+"Uključi narativne zabilješke iza imena, spola i starosti pri smrti (zadano) "
+"ili ih uključi ispred svojstva."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2358
 msgid "Page Generation"
@@ -39232,7 +39230,7 @@ msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2823
 msgid "Where do you place your website? default = /NAVWEB"
-msgstr "Gdje smještaš svoju web stranicu? standardno = /NAVWEB"
+msgstr "Gdje smještaš svoju web stranicu? zadano = /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2831
 msgid "Include the news and updates page"
@@ -39362,7 +39360,7 @@ msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
-"Prikaži podatke samo nakon godine. Standardno je to tekuća godina, minus "
+"Prikaži podatke samo nakon godine. Zadano je to tekuća godina, minus "
 "vrijednost za „Maksimalna starost vjerojatno žive osobe”, definirana u "
 "postavkama na kartici za datum."
 
