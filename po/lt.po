@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-22 15:02+0000\n"
+"PO-Revision-Date: 2025-10-02 22:02+0000\n"
 "Last-Translator: Tadas Masiulionis <tadzikaz@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/lt/>\n"
@@ -8071,7 +8071,7 @@ msgstr "Santuokos liudijimas"
 
 #: ../gramps/gen/lib/eventtype.py:237
 msgid "Marriage Contract"
-msgstr "Santuokos kontraktas"
+msgstr "Vedybinė sutartis"
 
 #: ../gramps/gen/lib/eventtype.py:238
 msgid "Marriage Banns"
@@ -10206,10 +10206,8 @@ msgid "Call Name Only"
 msgstr "Kreipinys"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:81
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "Duotas vardas"
+msgstr "Suteiktas vardas"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:86
 msgid "Above"
@@ -10248,7 +10246,7 @@ msgstr "Kairėn (←)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:105
 msgid "Perpendicular"
-msgstr ""
+msgstr "Statmenas"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:107
 msgid "Rounded"
@@ -10340,7 +10338,7 @@ msgstr "Pasirinkite vardų atvaizdavimo formatą"
 #: ../gramps/gen/plug/docgen/treedoc.py:210
 #: ../gramps/gui/glade/editperson.glade:702
 msgid "Preferred Name"
-msgstr "Pageidaujamas vardas"
+msgstr "Pagrindinis vardas"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:215
 msgid ""
@@ -10409,25 +10407,22 @@ msgid "Level distance"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:280
-#, fuzzy
 msgid ""
 "The minimum amount of free space, in mm, between levels.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"Mažiausiai laisvos vietos coliais tarp greta esančių objektų . Vertikalioms "
-"diagramoms tai atitinka tarpas tarp eilučių, horizontalioms diagramoms - "
+"Mažiausiai laisvos vietos coliais tarp greta esančių objektų. Vertikalioms "
+"diagramoms tai atitinka tarpas tarp eilučių, horizontalioms diagramoms – "
 "tarpui tarp stulpeliu."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:294
-#, fuzzy
 msgid "Note to add to the tree"
-msgstr "I diagrama įdedama pastaba"
+msgstr "Į diagramą įdedama pastaba"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:295
-#, fuzzy
 msgid "This text will be added to the tree."
-msgstr "Šis tekstas bus įtrauktas i diagramą."
+msgstr "Šis tekstas bus įtrauktas į diagramą."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:310
 #, fuzzy
@@ -10451,9 +10446,8 @@ msgid "Graph File for genealogytree"
 msgstr "Grampletas bendrosioms pastaboms"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:867
-#, fuzzy
 msgid "LaTeX File"
-msgstr "LaTeX"
+msgstr "LaTeX rinkmena"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:148
 #, python-format
