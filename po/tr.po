@@ -14,13 +14,14 @@
 # Oğuz Ersen <oguz@ersen.moe>, 2024.
 # mahmutozcan <mahmutozcan@protonmail.com>, 2025.
 # Serhat <serhat@10lineweb.com>, 2025.
+# Bai <bai@baturax.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-05-09 07:16+0000\n"
-"Last-Translator: Serhat <serhat@10lineweb.com>\n"
+"PO-Revision-Date: 2025-09-27 00:02+0000\n"
+"Last-Translator: Bai <bai@baturax.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -28,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -16774,8 +16775,6 @@ msgstr "Değişiklikleri yoksay ve pencereyi kapat"
 
 #: ../gramps/gui/glade/editfamily.glade:116
 #: ../gramps/gui/glade/editfamily.glade:379
-#, fuzzy
-#| msgid "Name:"
 msgctxt "family"
 msgid "Name:"
 msgstr "Ad:"
@@ -17834,8 +17833,6 @@ msgstr "Kişi 2"
 
 #: ../gramps/gui/glade/mergeperson.glade:218
 #: ../gramps/gui/glade/mergeperson.glade:233
-#, fuzzy
-#| msgid "Name:"
 msgctxt "person"
 msgid "Name:"
 msgstr "Ad:"
@@ -25159,18 +25156,6 @@ msgid "Example Database"
 msgstr "Örnek Veri Tabanı"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
-#, fuzzy
-#| msgid ""
-#| "Want to see Gramps in use. Create and Import the Example database.\n"
-#| "\n"
-#| "Create a new Family Tree as described above. Suggest that you name the "
-#| "Family Tree “EXAMPLE”.\n"
-#| "\n"
-#| "Import the Gramps file example.gramps.\n"
-#| "\n"
-#| "Follow the instructions for the location of the file stored with the "
-#| "Gramps program.\n"
-#| "\n"
 msgid ""
 "Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
@@ -25183,11 +25168,11 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
-"Gramps'ı kullanımını görmek istiyorum. Örnek veri tabanını oluşturun ve içe "
-"aktarın.\n"
+"Gramps'ı kullanımını görmek istiyor musun? Örnek veri tabanını oluşturun ve "
+"içe aktarın.\n"
 "\n"
-"Yukarıda açıklandığı gibi yeni bir Aile Ağacı oluşturun. Aile Ağacına "
-"“ÖRNEK” adını vermenizi önerin.\n"
+"Yukarıda açıklandığı gibi yeni bir Aile Ağacı oluşturun. Aile Ağacına “ÖRNEK”"
+" adını vermenizi öneririz.\n"
 "\n"
 "Gramps örnek.gramps dosyasını içe aktarın.\n"
 "\n"
