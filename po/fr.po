@@ -45,13 +45,14 @@
 # n4n5 <email.n4n5@gmail.com>, 2024.
 # Frédéric Schwartz <frederic@online404.com>, 2025.
 # lolly76 <thelolly76@gmail.com>, 2025.
+# Ohne Sonne <ohne_sonne_1312@protonmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-21 11:04+0000\n"
-"Last-Translator: jmichault <jmt.2000@free.fr>\n"
+"PO-Revision-Date: 2025-09-28 12:02+0000\n"
+"Last-Translator: Ohne Sonne <ohne_sonne_1312@protonmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -16633,7 +16634,7 @@ msgstr "Le_dialogue_de_filtre"
 #: ../gramps/gui/editors/filtereditor.py:95
 msgctxt "manual"
 msgid "Custom_Filters"
-msgstr "Filtres personnalisés"
+msgstr "Filtres_personnalisés"
 
 #: ../gramps/gui/editors/filtereditor.py:99
 msgid "Person Filters"
@@ -20243,7 +20244,7 @@ msgstr ""
 #: ../gramps/gui/logger/_errorview.py:48
 msgctxt "manual"
 msgid "Error_Report"
-msgstr "Rapport d'erreur"
+msgstr "Rapport_d_erreur"
 
 #: ../gramps/gui/logger/_errorview.py:117
 msgid "Error Report"
@@ -20345,7 +20346,7 @@ msgstr "préformatée"
 #: ../gramps/gui/merge/mergeperson.py:59
 msgctxt "manual"
 msgid "Merge_People"
-msgstr "Fusion des individus"
+msgstr "Fusionner_des_personnes"
 
 # master
 #. Translators: needed for French, ignore otherwise
@@ -20429,19 +20430,19 @@ msgstr ""
 #: ../gramps/gui/merge/mergeplace.py:54
 msgctxt "manual"
 msgid "Merge_Places"
-msgstr "Fusion des lieux"
+msgstr "Fusionner_des_lieux"
 
 # manuel wiki
 #: ../gramps/gui/merge/mergerepository.py:45
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "Fusion des dépôts"
+msgstr "Fusionner_des_dépôts"
 
 # manuel wiki
 #: ../gramps/gui/merge/mergesource.py:46
 msgctxt "manual"
 msgid "Merge_Sources"
-msgstr "Fusion des sources"
+msgstr "Fusionner_des_sources"
 
 #: ../gramps/gui/merge/mergesource.py:69
 msgid "Merge Sources"
@@ -21797,7 +21798,7 @@ msgstr "Dernière modification"
 #: ../gramps/gui/selectors/selectcitation.py:91
 msgctxt "manual"
 msgid "Select_Source_or_Citation_selector"
-msgstr "Sélectionner la source ou la citation"
+msgstr "Choisir_source_ou_sélecteur_de_citations"
 
 #: ../gramps/gui/selectors/selectevent.py:60
 msgid "Select Event"
@@ -21807,13 +21808,13 @@ msgstr "Sélectionner l'évènement"
 #: ../gramps/gui/selectors/selectevent.py:83
 msgctxt "manual"
 msgid "Select_Event_selector"
-msgstr "Sélectionner un évènement"
+msgstr "Choisir_sélecteur_d_évènements"
 
 # manuel wiki
 #: ../gramps/gui/selectors/selectfamily.py:80
 msgctxt "manual"
 msgid "Select_Family_selector"
-msgstr "Sélectionner une famille"
+msgstr "Choisir_sélecteur_de_familles"
 
 #: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
@@ -21823,7 +21824,7 @@ msgstr "Sélectionner la note"
 #: ../gramps/gui/selectors/selectnote.py:85
 msgctxt "manual"
 msgid "Select_Note_selector"
-msgstr "Sélectionner une note"
+msgstr "Choisir_sélecteur_de_notes"
 
 #: ../gramps/gui/selectors/selectobject.py:70
 msgid "Select Media Object"
