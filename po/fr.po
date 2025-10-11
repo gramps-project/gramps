@@ -51,8 +51,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-28 12:02+0000\n"
-"Last-Translator: Ohne Sonne <ohne_sonne_1312@protonmail.com>\n"
+"PO-Revision-Date: 2025-10-01 09:02+0000\n"
+"Last-Translator: jmichault <jmt.2000@free.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -21834,25 +21834,25 @@ msgstr "Sélectionner un objet medium"
 #: ../gramps/gui/selectors/selectobject.py:143
 msgctxt "manual"
 msgid "Select_Media_Object_selector"
-msgstr "Sélectionner un objet medium"
+msgstr "Sélectionner_un_objet_medium"
 
 # manuel wiki
 #: ../gramps/gui/selectors/selectperson.py:72
 msgctxt "manual"
 msgid "Select_Father_selector"
-msgstr "Sélectionner un père"
+msgstr "Sélectionner_un_père"
 
 # manuel wiki
 #: ../gramps/gui/selectors/selectperson.py:74
 msgctxt "manual"
 msgid "Select_Mother_selector"
-msgstr "Sélectionner une mère"
+msgstr "Sélectionner_une_mère"
 
 # manuel wiki
 #: ../gramps/gui/selectors/selectperson.py:76
 msgctxt "manual"
 msgid "Select_Child_selector"
-msgstr "Sélectionner un enfant"
+msgstr "Sélectionner_un_enfant"
 
 # manuel wiki
 #: ../gramps/gui/selectors/selectperson.py:78
@@ -21868,7 +21868,7 @@ msgstr "Sélectionner le lieu"
 #: ../gramps/gui/selectors/selectplace.py:94
 msgctxt "manual"
 msgid "Select_Place_selector"
-msgstr "Sélectionner un lieu"
+msgstr "Sélectionner_un_lieu"
 
 #: ../gramps/gui/selectors/selectrepository.py:60
 msgid "Select Repository"
