@@ -126,7 +126,7 @@ MISSING_DLL = [
     "fc-match.exe",
     "gspawn-win64-helper-console.exe",
     "gspawn-win64-helper.exe",
-    "libgeocode-glib-0.dll",
+    "libgeocode-glib-2-0.dll",
     "gdbus.exe",
 ]
 BIN_EXCLUDES = ["Qt5Core.dll", "gdiplus.dll", "gdiplus"]
