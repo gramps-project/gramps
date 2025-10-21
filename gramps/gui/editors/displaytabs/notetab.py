@@ -19,6 +19,13 @@
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
 # Python classes
 #
 # -------------------------------------------------------------------------
@@ -165,13 +172,13 @@ class NoteTab(EmbeddedList, DbGUIElement):
         except WindowActiveError:
             pass
 
-    def add_callback(self, name):
+    def add_callback(self, note: Note) -> None:
         """
         Called to update the screen when a new note is added
         """
         data = self.get_data()
-        data.append(name)
-        self.callman.register_handles({"note": [name]})
+        data.append(note.handle)
+        self.callman.register_handles({"note": [note.handle]})
         self.changed = True
         self.rebuild()
         GLib.idle_add(self.tree.scroll_to_cell, len(data) - 1)
@@ -208,7 +215,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         sel = SelectNote(self.dbstate, self.uistate, self.track)
         note = sel.run()
         if note:
-            self.add_callback(note.handle)
+            self.add_callback(note)
 
     def get_icon_name(self):
         """
