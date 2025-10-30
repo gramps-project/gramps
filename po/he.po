@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-10-07 10:02+0000\n"
+"PO-Revision-Date: 2025-10-29 10:07+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -15271,7 +15271,7 @@ msgstr "עורך כתובת מרשתת"
 #: ../gramps/gui/editors/filtereditor.py:93
 msgctxt "manual"
 msgid "Add_Rule_dialog"
-msgstr "הוספת_דו־שיח_כלל"
+msgstr "הוספת_דו־שיח_כללים"
 
 #: ../gramps/gui/editors/filtereditor.py:94
 msgctxt "manual"
@@ -15438,7 +15438,7 @@ msgstr "תלוי רישיות"
 
 #: ../gramps/gui/editors/filtereditor.py:688
 msgid "Rule Name"
-msgstr "שם הכלל"
+msgstr "שם כלל"
 
 #: ../gramps/gui/editors/filtereditor.py:833
 #: ../gramps/gui/editors/filtereditor.py:837 ../gramps/gui/glade/rule.glade:898
@@ -15452,11 +15452,11 @@ msgstr "הגדר מסנן"
 
 #: ../gramps/gui/editors/filtereditor.py:1021
 msgid "Add Rule"
-msgstr "הוספת חוק"
+msgstr "הוספת כלל"
 
 #: ../gramps/gui/editors/filtereditor.py:1041
 msgid "Edit Rule"
-msgstr "עריכת חוק"
+msgstr "עריכת כלל"
 
 #: ../gramps/gui/editors/filtereditor.py:1079
 msgid "Filter Test"
@@ -15802,7 +15802,7 @@ msgstr "זמן שחלף: %.2fs"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:379
 msgid "You should select a place when using the 'Within' rule"
-msgstr "נדשר לבחור מקום בעת שימוש בכלל 'בתוך'"
+msgstr "נדשר לבחור מקום בעת שימוש בכלל 'מוכל'"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:389
 msgid "Supply at least one value"
@@ -17793,7 +17793,7 @@ msgstr "לפחות כלל אחד חייב לחול"
 
 #: ../gramps/gui/glade/rule.glade:287
 msgid "Exactly one rule must apply"
-msgstr "בדיוק כלל אחד צריך לחול"
+msgstr "בדיוק כלל אחד חייב לחול"
 
 #: ../gramps/gui/glade/rule.glade:403
 msgid "Add another rule to the filter"
@@ -17828,7 +17828,7 @@ msgstr "ה_ערה:"
 
 #: ../gramps/gui/glade/rule.glade:591
 msgid "Return values that do no_t match the filter rules"
-msgstr "אחזור ערכים שאינ_ם תואמים לכללי המסנן"
+msgstr "אחזור ערכים של_א תואמים לכללי המסנן"
 
 #: ../gramps/gui/glade/rule.glade:879
 msgid "Selected Rule"
@@ -21723,7 +21723,7 @@ msgstr "הסגנון שישמש לכותרת."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:96
 msgid "My Calendar"
-msgstr "לוח-השנה שלי"
+msgstr "לוח־השנה שלי"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:97
 #: ../gramps/plugins/textreport/birthdayreport.py:84
@@ -21787,7 +21787,7 @@ msgstr[1] ""
 #: ../gramps/plugins/drawreport/calendarreport.py:602
 #: ../gramps/plugins/webreport/webcal.py:1853
 msgid "Select filter to restrict people that appear on calendar"
-msgstr "נא לבחור מסנן להגבלת האנשים שיופיעו בלוח-השנה"
+msgstr "נא לבחור מסנן להגבלת האנשים שיופיעו בלוח־השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:608
 #: ../gramps/plugins/drawreport/fanchart.py:798
@@ -21809,7 +21809,7 @@ msgstr "אזור מלל 1"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:613
 msgid "First line of text at bottom of calendar"
-msgstr "שורת מלל ראשונה בתחתית לוח-השנה"
+msgstr "שורת מלל ראשונה בתחתית לוח־השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:616
 #: ../gramps/plugins/textreport/birthdayreport.py:579
@@ -21818,7 +21818,7 @@ msgstr "אזור מלל 2"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:617
 msgid "Second line of text at bottom of calendar"
-msgstr "שורת מלל שניה בתחתית לוח-השנה"
+msgstr "שורת מלל שניה בתחתית לוח־השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:620
 #: ../gramps/plugins/textreport/birthdayreport.py:584
@@ -21827,7 +21827,7 @@ msgstr "אזור מלל 3"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:621
 msgid "Third line of text at bottom of calendar"
-msgstr "שורת מלל שלישית בתחתית לוח-השנה"
+msgstr "שורת מלל שלישית בתחתית לוח־השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:636
 #: ../gramps/plugins/textreport/birthdayreport.py:597
@@ -21840,7 +21840,7 @@ msgstr "לכלול רק אנשים חיים"
 #: ../gramps/plugins/webreport/narrativeweb.py:3187
 #: ../gramps/plugins/webreport/webcal.py:1914
 msgid "Include only living people in the calendar"
-msgstr "לכלול אנשים חיים בלבד בלוח-השנה"
+msgstr "לכלול אנשים חיים בלבד בלוח־השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:643
 #: ../gramps/plugins/textreport/birthdayreport.py:615
@@ -21853,7 +21853,7 @@ msgstr "תוכן"
 #: ../gramps/plugins/drawreport/calendarreport.py:647
 #: ../gramps/plugins/drawreport/calendarreport.py:648
 msgid "Year of calendar"
-msgstr "שנת לוח-השנה"
+msgstr "שנת לוח־השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:651
 #: ../gramps/plugins/textreport/birthdayreport.py:621
@@ -21876,7 +21876,7 @@ msgstr "יום ראשון בשבוע"
 #: ../gramps/plugins/webreport/narrativeweb.py:3151
 #: ../gramps/plugins/webreport/webcal.py:1973
 msgid "Select the first day of the week for the calendar"
-msgstr "נא לבחור את היום הראשון בשבוע בלוח-השנה"
+msgstr "נא לבחור את היום הראשון בשבוע בלוח־השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:673
 #: ../gramps/plugins/textreport/birthdayreport.py:634
@@ -21947,7 +21947,7 @@ msgstr "לכלול תאריכי פטירה"
 #: ../gramps/plugins/webreport/narrativeweb.py:3183
 #: ../gramps/plugins/webreport/webcal.py:2074
 msgid "Include death anniversaries in the calendar"
-msgstr "לכלול ימי שנה לפטירה בלוח-השנה"
+msgstr "לכלול ימי שנה לפטירה בלוח־השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:776
 msgid "Title text and background color"
@@ -21955,7 +21955,7 @@ msgstr "צבע כותרת והרקע שלה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:783
 msgid "Calendar day numbers"
-msgstr "מספרי ימים בלוח-השנה"
+msgstr "מספרי ימים בלוח־השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:785
 msgid "Daily text display"
@@ -26719,7 +26719,7 @@ msgid ""
 "for more info."
 msgstr ""
 "קובץ ה־‎.gramps המיועד לייבוא נוצר בגרסה %(oldgramps)s של גרמפס, בעוד שהגרסה "
-"שלך עדכנית יותר %(newgramps)s.\n"
+"המותקנת עדכנית יותר %(newgramps)s.\n"
 "\n"
 "נא לוודא שלאחר הייבוא הכול יובא כראוי. אם צצות תקלות, נא לדווח על תקל "
 "ולהשתמש בגרסה ישנה יותר של גרמפס לבינתיים כדי לייבא את הקובץ הזה שהוא בתסדיר "
@@ -27227,7 +27227,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:8576
 msgid "Your GEDCOM file is empty."
-msgstr "קובץ ה־GEDCOM שלך ריק."
+msgstr "קובץ ה־GEDCOM ריק."
 
 #: ../gramps/plugins/lib/libhtmlconst.py:52
 msgid "Unicode UTF-8 (recommended)"
@@ -38735,12 +38735,12 @@ msgstr "האם ליצור עמודי אירוע לכל יום"
 #: ../gramps/plugins/webreport/narrativeweb.py:3175
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include birthdays in the calendar"
-msgstr "לכלול ימי הולדת בלוח-השנה"
+msgstr "לכלול ימי הולדת בלוח־השנה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3179
 #: ../gramps/plugins/webreport/webcal.py:2070
 msgid "Include anniversaries in the calendar"
-msgstr "לכלול ימי שנה בלוח-השנה"
+msgstr "לכלול ימי שנה בלוח־השנה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3192
 #: ../gramps/plugins/webreport/webcal.py:2085
@@ -39036,7 +39036,7 @@ msgstr "לוח־שנה 'המשפחה שלי'"
 
 #: ../gramps/plugins/webreport/webcal.py:1848
 msgid "The title of the calendar"
-msgstr "כותרת לוח-השנה"
+msgstr "כותרת לוח־השנה"
 
 #: ../gramps/plugins/webreport/webcal.py:1887
 msgid "The stylesheet to be used for the web pages"
@@ -39056,19 +39056,19 @@ msgstr "האם ליצור לוחות־שנה למספר שנים."
 
 #: ../gramps/plugins/webreport/webcal.py:1937
 msgid "Start Year for the Calendar(s)"
-msgstr "שנת התחלה בלוח-השנה"
+msgstr "שנת התחלה בלוח־השנה"
 
 #: ../gramps/plugins/webreport/webcal.py:1940
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr "נא להזין בלוח-השנה, שנת ההתחלה בין 1900 - 3000"
+msgstr "נא להזין בלוח־השנה, שנת ההתחלה בין 1900 - 3000"
 
 #: ../gramps/plugins/webreport/webcal.py:1945
 msgid "End Year for the Calendar(s)"
-msgstr "שנת סיום בלוח-השנה"
+msgstr "שנת סיום בלוח־השנה"
 
 #: ../gramps/plugins/webreport/webcal.py:1948
 msgid "Enter the ending year for the calendars between 1900 - 3000."
-msgstr "נא להזין בלוח-השנה,שנת סיום בין 1900 - 3000."
+msgstr "נא להזין בלוח־השנה,שנת סיום בין 1900 - 3000."
 
 #: ../gramps/plugins/webreport/webcal.py:1966
 msgid "Holidays will be included for the selected country"
