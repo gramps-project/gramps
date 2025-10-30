@@ -13,21 +13,22 @@
 # Satria Manggala Jati <satriamanggalajati@ymail.com>, 2025.
 # Arshad Aulia <auliarshad@gmail.com>, 2025.
 # Ismail Amirkulal <amirkhalilzain@gmail.com>, 2025.
+# feri andy <feri.andy.nurdhin@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-07-28 21:19+0000\n"
-"Last-Translator: Ismail Amirkulal <amirkhalilzain@gmail.com>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/id/>\n"
+"PO-Revision-Date: 2025-10-30 15:02+0000\n"
+"Last-Translator: feri andy <feri.andy.nurdhin@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -934,6 +935,11 @@ msgid ""
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
+"<b>Format Berkas GEDCOM</b><br/>Gramps memungkinkan Anda mengimpor dan "
+"mengekspor dari, dan ke format GEDCOM. Tersedia dukungan ekstensif untuk "
+"standar industri GEDCOM versi 5.5, sehingga Anda dapat bertukar informasi "
+"Gramps dengan dan dari pengguna sebagian besar program silsilah lainnya. "
+"Tersedia filter yang memudahkan proses impor dan ekspor berkas GEDCOM."
 
 #: ../data/tips.xml:88
 msgid ""
@@ -944,6 +950,13 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
+"<b>Paket XML Gramps</b><br/>Anda dapat mengekspor Silsilah Keluarga Anda "
+"sebagai Paket XML Gramps. Ini adalah sebuah berkas terkompresi yang berisi "
+"data silsilah keluarga Anda dan semua berkas media yang terhubung ke basis "
+"data (misalnya gambar). Berkas ini sepenuhnya portabel sehingga berguna "
+"untuk pencadangan atau berbagi dengan pengguna Gramps lainnya. Format ini "
+"memiliki keunggulan utama dibandingkan GEDCOM karena tidak ada informasi "
+"yang hilang saat mengekspor dan mengimpor."
 
 #: ../data/tips.xml:90
 msgid ""
@@ -951,6 +964,9 @@ msgid ""
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
+"<b>Format Web Pohon Keluarga</b><br/>Gramps dapat mengekspor data ke format "
+"WebPohon Keluarga (WFT). Format ini memungkinkan pohon keluarga ditampilkan "
+"daring menggunakan satu berkas, alih-alih banyak berkas HTML."
 
 #: ../data/tips.xml:92
 msgid ""
@@ -959,6 +975,10 @@ msgid ""
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web."
 msgstr ""
+"<b>Membuat Situs Web Silsilah</b><br/>Anda dapat dengan mudah mengekspor "
+"silsilah keluarga Anda ke halaman web. Pilih seluruh basis data, garis "
+"keturunan, atau individu tertentu ke dalam kumpulan halaman web yang siap "
+"diunggah ke World Wide Web."
 
 #: ../data/tips.xml:94
 #, fuzzy
@@ -971,13 +991,12 @@ msgstr ""
 "gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
 "project.org/."
 msgstr ""
-"<b>Beranda Gramps</b><br/>Beranda Gramps bisa di akses melalui  https://"
-"gramps-project.org/."
+"<b>Beranda Gramps</b><br/>Beranda Gramps bisa di akses melalui https"
+"://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -986,6 +1005,10 @@ msgid ""
 "private can be excluded from reports and data exports. Look for the padlock "
 "which toggles records between private and public."
 msgstr ""
+"<b>Privasi di Gramps</b><br/>Gramps membantu Anda menjaga keamanan informasi "
+"pribadi dengan memungkinkan Anda menandai informasi sebagai pribadi. Data "
+"yang ditandai sebagai pribadi dapat dikecualikan dari laporan dan ekspor "
+"data. Cari ikon gembok yang mengubah data antara pribadi dan publik."
 
 #: ../data/tips.xml:100
 msgid ""
@@ -996,6 +1019,12 @@ msgid ""
 "confirm the accurate transcription of what appears to be an error in a "
 "source."
 msgstr ""
+"<b>Menyimpan Catatan yang Baik</b><br/>Bersikaplah akurat saat mencatat "
+"informasi silsilah. Jangan berasumsi saat mencatat informasi utama; tulislah "
+"persis seperti yang Anda lihat. Gunakan keterangan dalam tanda kurung untuk "
+"menunjukkan penambahan, penghapusan, atau komentar Anda. Penggunaan huruf "
+"Latin 'sic' disarankan untuk memastikan keakuratan transkripsi dari apa yang "
+"tampaknya merupakan kesalahan dalam suatu sumber."
 
 #: ../data/tips.xml:102
 msgid ""
@@ -1004,6 +1033,10 @@ msgid ""
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
+"<b>Laporan dan Alat Tambahan</b><br/>Laporan dan alat tambahan dapat "
+"ditambahkan ke Gramps dengan sistem \"Addon\". Lihat di bagian "
+"\"Bantuan > Laporan/Alat Tambahan\". Ini adalah cara terbaik bagi pengguna "
+"tingkat lanjut untuk bereksperimen dan menciptakan fungsionalitas baru."
 
 #: ../data/tips.xml:104
 msgid ""
@@ -1012,6 +1045,10 @@ msgid ""
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
+"<b>Laporan Buku</b><br/>Laporan Buku di bawah \"Laporan > Buku...\" "
+"memungkinkan Anda mengumpulkan berbagai laporan ke dalam satu dokumen. "
+"Laporan tunggal ini lebih mudah didistribusikan daripada beberapa laporan, "
+"terutama jika dicetak."
 
 #: ../data/tips.xml:106
 msgid ""
@@ -1019,6 +1056,9 @@ msgid ""
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help > Gramps Mailing Lists\"."
 msgstr ""
+"<b>Pengumuman Gramps</b><br/>Tertarik mendapatkan notifikasi saat versi baru "
+"Gramps dirilis? Bergabunglah dengan milis Gramps-announce di "
+"\"Bantuan > Milis Gramps\"."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1027,6 +1067,10 @@ msgid ""
 "all the details of where the information came from. Whenever possible get a "
 "copy of original documents."
 msgstr ""
+"<b>Catat Sumber Anda</b><br/>Informasi yang dikumpulkan tentang keluarga "
+"Anda hanya sebaik sumbernya. Luangkan waktu dan usahakan untuk mencatat "
+"semua detail dari mana informasi tersebut berasal. Sebisa mungkin, dapatkan "
+"salinan dokumen aslinya."
 
 #: ../data/tips.xml:110
 msgid ""
@@ -1036,6 +1080,11 @@ msgid ""
 "time looking through thousands of records hoping for a trail when you have "
 "other unexplored leads."
 msgstr ""
+"<b>Mengarahkan Riset Anda</b><br/>Beralihlah dari apa yang Anda ketahui ke "
+"apa yang tidak Anda ketahui. Selalu catat semua yang diketahui sebelum "
+"membuat dugaan. Seringkali fakta yang ada menunjukkan banyak arah untuk "
+"riset lebih lanjut. Jangan buang waktu menelusuri ribuan catatan berharap "
+"menemukan jejak padahal Anda memiliki petunjuk lain yang belum dieksplorasi."
 
 #: ../data/tips.xml:112
 msgid ""
@@ -1044,6 +1093,11 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
+"<b>\"Bagaimana dan Mengapa\" Silsilah Anda</b><br/> Silsilah bukan hanya "
+"tentang tanggal dan nama. Silsilah juga tentang orang-orang. Buatlah "
+"deskriptif. Sertakan mengapa sesuatu terjadi, dan bagaimana keturunan "
+"mungkin dibentuk oleh peristiwa yang mereka alami. Narasi sangat penting "
+"dalam menghidupkan sejarah keluarga Anda."
 
 #: ../data/tips.xml:114
 msgid ""
@@ -1052,9 +1106,10 @@ msgid ""
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
-"<b>Tidak bisa berbahasa Inggris?</b><br/>Relawan telah menterjemahkan ke "
-"lebih dari 40 bahasa. Jika Gramps mendukung bahasamu dan tidak ditampilkan, "
-"atur bahasa bawaan Anda pada pada sistem operasi komputer dan restart Gramps."
+"<b>Tidak bisa berbahasa Inggris?</b><br/>Para relawan telah menerjemahkan "
+"Gramps ke lebih dari 40 bahasa. Jika Gramps mendukung bahasa Anda dan tidak "
+"ditampilkan, atur bahasa default di sistem operasi Anda dan mulai ulang "
+"Gramps."
 
 #: ../data/tips.xml:116
 msgid ""
@@ -1062,12 +1117,19 @@ msgid ""
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
+"<b>Gramps Translators</b><br/>Gramps dirancang agar terjemahan baru dapat "
+"ditambahkan dengan mudah tanpa perlu banyak upaya pengembangan. Jika Anda "
+"tertarik untuk berpartisipasi, silakan kirim email ke gramps-"
+"devel@lists.sf.net."
 
 #: ../data/tips.xml:118
 msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
+"<b>Halo, привет atau 喂</b><br/>Apa pun skrip yang Anda gunakan, Gramps "
+"menawarkan dukungan Unicode penuh. Karakter untuk semua bahasa ditampilkan "
+"dengan benar."
 
 #: ../data/tips.xml:120
 msgid ""
@@ -1076,6 +1138,10 @@ msgid ""
 "is the person who is selected when the database is opened or when the home "
 "button is pressed."
 msgstr ""
+"<b>Orang di Rumah</b><br/>Siapa pun dapat dipilih sebagai Orang di Rumah di "
+"Gramps. Gunakan \"Edit > Atur Orang di Rumah\" di Tampilan Orang. Orang di "
+"rumah adalah orang yang dipilih saat basis data dibuka atau saat tombol "
+"beranda ditekan."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1084,6 +1150,10 @@ msgid ""
 "is supported on any computer system where these programs have been ported. "
 "Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
 msgstr ""
+"<b>Kode Gramps</b><br/>Gramps ditulis dalam bahasa komputer bernama Python "
+"menggunakan pustaka GTK dan GNOME untuk antarmuka grafisnya. Gramps didukung "
+"di semua sistem komputer tempat program-program ini di-porting. Gramps "
+"diketahui dapat dijalankan di Linux, BSD, Solaris, Windows, dan Mac OS X."
 
 #: ../data/tips.xml:124
 msgid ""
@@ -1094,6 +1164,13 @@ msgid ""
 "tool. For more about Open Source software lookup the Free Software "
 "Foundation and the Open Source Initiative."
 msgstr ""
+"<b>Perangkat Lunak Sumber Terbuka</b><br/>Model pengembangan Perangkat Lunak "
+"Bebas/Libre dan Sumber Terbuka (FLOSS) berarti Gramps dapat dikembangkan "
+"oleh programmer mana pun karena semua kode sumbernya tersedia secara bebas "
+"di bawah lisensinya. Jadi, ini bukan hanya tentang bir gratis, tetapi juga "
+"tentang kebebasan untuk mempelajari dan memodifikasi perangkat lunak. Untuk "
+"informasi lebih lanjut tentang perangkat lunak Sumber Terbuka, kunjungi Free "
+"Software Foundation dan Open Source Initiative."
 
 #: ../data/tips.xml:126
 msgid ""
@@ -1102,6 +1179,10 @@ msgid ""
 "License, see https://www.gnu.org/licenses/licenses.html#GPL to read about "
 "the rights and restrictions of this license."
 msgstr ""
+"<b>Lisensi Perangkat Lunak Gramps</b><br/>Anda bebas menggunakan dan berbagi "
+"Gramps dengan orang lain. Gramps dapat didistribusikan secara bebas di bawah "
+"Lisensi Publik Umum GNU. Kunjungi https://www.gnu.org/licenses/licenses.html#"
+"GPL untuk membaca tentang hak dan batasan lisensi ini."
 
 #: ../data/tips.xml:128
 msgid ""
@@ -1109,6 +1190,9 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
+"<b>Gramps untuk Gnome atau KDE?</b><br/>Untuk pengguna Linux, Gramps dapat "
+"digunakan di lingkungan desktop apa pun yang Anda inginkan. Selama pustaka "
+"GTK yang diperlukan terpasang, Gramps akan berfungsi dengan baik."
 
 #: ../gramps/cli/arghandler.py:233
 #, python-format
@@ -1116,6 +1200,8 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
+"Kesalahan: Pohon Keluarga '%s' sudah ada.\n"
+"Opsi '-C' tidak dapat digunakan."
 
 #: ../gramps/cli/arghandler.py:248
 #, python-format
@@ -1124,16 +1210,21 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
+"Kesalahan: Input Silsilah Keluarga \"%s\" tidak ada.\n"
+"Jika menggunakan GEDCOM, Gramps-xml, atau grdb, gunakan opsi -i untuk "
+"mengimpor ke dalam Silsilah Keluarga."
 
 #: ../gramps/cli/arghandler.py:264
-#, fuzzy, python-format
+#, python-format
 msgid "Error: Import file %s not found."
-msgstr "Error: Import file %s not found."
+msgstr "Kesalahan: Berkas impor %s tidak ditemukan."
 
 #: ../gramps/cli/arghandler.py:284
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr ""
+"Kesalahan: Jenis tidak dikenal: \"%(format)s\" untuk berkas impor: %"
+"(filename)s"
 
 #: ../gramps/cli/arghandler.py:307
 #, python-format
@@ -1142,10 +1233,13 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
+"PERINGATAN: Berkas keluaran sudah ada!\n"
+"PERINGATAN: Akan ditimpa:\n"
+"…%s"
 
 #: ../gramps/cli/arghandler.py:313
 msgid "OK to overwrite?"
-msgstr "OK untuk menimpa?"
+msgstr "Oke untuk ditimpa?"
 
 #: ../gramps/cli/arghandler.py:315 ../gramps/cli/arghandler.py:317
 #: ../gramps/cli/clidbman.py:469
@@ -1160,26 +1254,26 @@ msgstr "tidak"
 #: ../gramps/cli/arghandler.py:320
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr ""
+msgstr "Akan menimpa file yang ada: %s"
 
 #: ../gramps/cli/arghandler.py:339
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr ""
+msgstr "KESALAHAN: Format tidak dikenal untuk file ekspor %s"
 
 #: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:374
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr ""
+msgstr "Kesalahan: tidak dapat membuka '%s'"
 
 #: ../gramps/cli/arghandler.py:422
 msgid "List of known Family Trees in your database path\n"
-msgstr "Daftar Pohon Keluarga yang dikenal di path basis data Anda\n"
+msgstr "Daftar Pohon Keluarga yang diketahui di jalur basis data Anda\n"
 
 #: ../gramps/cli/arghandler.py:434
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr ""
+msgstr "%(full_DB_path)s dengan nama \"%(f_t_name)s\""
 
 #: ../gramps/cli/arghandler.py:452 ../gramps/cli/clidbman.py:197
 msgid "Gramps Family Trees:"
@@ -1311,6 +1405,7 @@ msgid "Unknown action: %s."
 msgstr "Tindakan tidak diketahui: %s."
 
 #: ../gramps/cli/argparser.py:67
+#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps [OPTION...]\n"
@@ -1356,8 +1451,50 @@ msgid ""
 "                 F - filters are cleared\n"
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
+"\n"
+"Penggunaan: gramps [OPSI...]\n"
+"--load-modules=MODULE1,MODULE2,... \tModul dinamis untuk dimuat\n"
+"\n"
+"Opsi bantuan\n"
+"-?, --help \t\t\t\tMenampilkan pesan bantuan ini\n"
+"--usage \t\t\t\tMenampilkan pesan penggunaan singkat\n"
+"\n"
+"Opsi aplikasi\n"
+"-O, --open=FAMILY_TREE \t\t\tMembuka Pohon Keluarga\n"
+"-U, --username=USERNAME \t\tNama pengguna basis data\n"
+"-P, --password=PASSWORD \t\tKata sandi basis data\n"
+"-C, --create=FAMILY_TREE \t\tMembuat saat dibuka jika Pohon Keluarga baru\n"
+"-i, --import=NAMAFILE \t\t\tMengimpor berkas\n"
+"-e, --export=NAMAFILE \t\t\tMengekspor berkas\n"
+"-r, --remove=FAMILY_TREE_PATTERN \tMenghapus Pohon Keluarga yang cocok "
+"(gunakan ekspresi reguler)\n"
+"-f, --format=FORMAT \t\t\tMenentukan format Pohon Keluarga\n"
+"-a, --action=TINDAKAN \t\t\tMenentukan tindakan\n"
+"-p, --options=OPTIONS_STRING \t\tMenentukan opsi\n"
+"-d, --debug=LOGGER_NAME \t\tMengaktifkan log debug\n"
+"-l [FAMILY_TREE_PATTERN...] \t\tDaftar Pohon Keluarga\n"
+"-L [FAMILY_TREE_PATTERN...] \t\tDaftar Pohon Keluarga secara Detail\n"
+"-t [FAMILY_TREE_PATTERN...] \t\tDaftar Pohon Keluarga, dibatasi tab\n"
+"-u, --force-unlock \t\t\tMemaksa buka kunci Pohon Keluarga\n"
+"-s, --show \t\t\t\tMenampilkan pengaturan konfigurasi\n"
+"-c, --config=[config.setting[:value]] \tMengatur pengaturan konfigurasi dan "
+"memulai Gramps\n"
+"-y, --yes \t\t\t\tJangan meminta konfirmasi tindakan berbahaya "
+"(hanya mode non-GUI)\n"
+"-q, --quiet \t\t\t\tMenyembunyikan keluaran indikasi progres "
+"(hanya mode non-GUI)\n"
+"-v, --version \t\t\t\tMenampilkan versi\n"
+"-S, --safe \t\t\t\tMemulai Gramps dalam 'Mode Aman'\n"
+"\t\t\t\t\t(sementara menggunakan pengaturan default)\n"
+"-D, --default=[APXFE] \t\t\tMengatur ulang pengaturan ke default; A - Add-on "
+"dihapus\n"
+"\t\tP - Preferensi ke default\n"
+"\t\tX - Buku dihapus, laporan dan pengaturan alat ke default\n"
+"\t\tF - Filter dihapus\n"
+"\t\tE - Semuanya diatur ke default atau dihapus\n"
 
 #: ../gramps/cli/argparser.py:108
+#, fuzzy
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -1415,6 +1552,61 @@ msgid ""
 "Note: These examples are for bash shell.\n"
 "Syntax may be different for other shells and for Windows.\n"
 msgstr ""
+"\n"
+"Contoh penggunaan antarmuka baris perintah Gramps\n"
+"\n"
+"1. Untuk mengimpor empat basis data "
+"(yang formatnya dapat ditentukan dari namanya)\n"
+"lalu memeriksa kesalahan pada basis data yang dihasilkan, ketik:\n"
+"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
+"name=check.\n"
+"\n"
+"2. Untuk menentukan format secara eksplisit pada contoh di atas, tambahkan "
+"nama berkas dengan opsi -f yang sesuai:\n"
+"gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
+"gramps -i file4.wft -f wft -a tool -p name=check.\n"
+"\n"
+"3. Untuk merekam basis data hasil dari semua impor, berikan tanda -e\n"
+"(gunakan -f jika nama berkas tidak memungkinkan Gramps menebak formatnya):\n"
+"gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
+"\n"
+"4. Untuk menyimpan pesan kesalahan dari contoh di atas ke dalam berkas "
+"outfile dan errfile, jalankan:\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
+"\n"
+"5. Untuk mengimpor tiga basis data dan memulai sesi Gramps interaktif dengan "
+"hasilnya:\n"
+"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
+"\n"
+"6. Untuk membuka basis data dan, berdasarkan data tersebut, buat laporan "
+"linimasa dalam format PDF\n"
+"dengan memasukkan output ke dalam berkas my_timeline.pdf:\n"
+"gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=my_timeline."
+"pdf\n"
+"\n"
+"7. Untuk membuat ringkasan basis data:\n"
+"gramps -O 'Family Tree 1' -a report -p name=summary\n"
+"\n"
+"8. Menampilkan opsi laporan\n"
+"Gunakan name=timeline,show=all untuk mengetahui semua opsi yang tersedia "
+"untuk laporan linimasa.\n"
+"Untuk mengetahui detail opsi tertentu, gunakan show=option_name, misalnya "
+"name=timeline,show=off string.\n"
+"Untuk mengetahui nama-nama laporan yang tersedia, gunakan name=show string.\n"
+"\n"
+"9. Untuk mengonversi Family Tree secara langsung ke berkas XML .gramps:\n"
+"gramps -O 'Family Tree 1' -e output.gramps -f gramps\n"
+"\n"
+"10. Untuk membuat situs web ke lokal lain (dalam bahasa Jerman):\n"
+"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
+"name=navwebpage,target=/../de\n"
+"\n"
+"11. Terakhir, untuk memulai sesi interaktif normal, ketik:\n"
+"gramps\n"
+"\n"
+"Catatan: Contoh-contoh ini untuk bash shell.\n"
+"Sintaksnya mungkin berbeda untuk shell lain dan untuk Windows.\n"
 
 #: ../gramps/cli/argparser.py:281
 #, python-format
@@ -1474,11 +1666,13 @@ msgid "Unavailable"
 msgstr "Tidak tersedia"
 
 #: ../gramps/cli/clidbman.py:86
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "ERROR: %(title)s \n"
 "       %(message)s"
 msgstr ""
+"KESALAHAN: %(title)s \n"
+"       %(message)s"
 
 #: ../gramps/cli/clidbman.py:178 ../gramps/gen/lib/media.py:152
 #: ../gramps/gen/lib/url.py:94
@@ -1489,7 +1683,7 @@ msgstr ""
 #: ../gramps/gui/selectors/selectobject.py:84
 #: ../gramps/plugins/view/mediaview.py:103
 msgid "Path"
-msgstr ""
+msgstr "Jalur"
 
 #: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:131
 msgid "Database"
@@ -1497,7 +1691,7 @@ msgstr "Basis data"
 
 #: ../gramps/cli/clidbman.py:180 ../gramps/gui/dbman.py:434
 msgid "Last accessed"
-msgstr ""
+msgstr "Terakhir diakses"
 
 #: ../gramps/cli/clidbman.py:181
 msgid "Locked?"
@@ -1506,7 +1700,7 @@ msgstr "Terkunci?"
 #: ../gramps/cli/clidbman.py:216
 #, python-format
 msgid "Family Tree \"%s\":"
-msgstr ""
+msgstr "Pohon Keluarga \"%s\":"
 
 #. Translators: needed for French, ignore otherwise
 #. Translators: for French, else ignore
@@ -1535,7 +1729,7 @@ msgstr ""
 #: ../gramps/cli/clidbman.py:315
 #, python-format
 msgid "Starting Import, %s"
-msgstr ""
+msgstr "Memulai Impor, %s"
 
 #: ../gramps/cli/clidbman.py:321
 msgid "Import finished..."
@@ -1556,6 +1750,8 @@ msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
 msgstr ""
+"Apakah Anda yakin ingin menghapus silsilah keluarga bernama\n"
+"\"%s\"?"
 
 #: ../gramps/cli/clidbman.py:479 ../gramps/gui/dbman.py:791
 msgid "Could not delete Family Tree"
@@ -1576,6 +1772,13 @@ msgid ""
 "    %s\n"
 "\n"
 msgstr ""
+"\n"
+"KESALAHAN: Jalur basis data salah di Menu Edit->Preferensi.\n"
+"Buka preferensi dan atur jalur basis data yang benar.\n"
+"\n"
+"Detail: Tidak dapat membuat direktori basis data:\n"
+"%s\n"
+"\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2329
 #: ../gramps/gui/plug/_windows.py:780
@@ -1585,7 +1788,7 @@ msgstr "Tidak pernah"
 #: ../gramps/cli/clidbman.py:602
 #, python-format
 msgid "Locked by %s"
-msgstr ""
+msgstr "Dikunci oleh %s"
 
 #: ../gramps/cli/clidbman.py:604 ../gramps/gen/lib/attrtype.py:74
 #: ../gramps/gen/lib/childreftype.py:80 ../gramps/gen/lib/eventroletype.py:71
@@ -1669,12 +1872,12 @@ msgstr "Tidak diketahui"
 #: ../gramps/cli/grampscli.py:86
 #, python-format
 msgid "WARNING: %s"
-msgstr ""
+msgstr "PERINGATAN: %s"
 
 #: ../gramps/cli/grampscli.py:93 ../gramps/cli/grampscli.py:247
 #, python-format
 msgid "ERROR: %s"
-msgstr ""
+msgstr "KESALAHAN: %s"
 
 #: ../gramps/cli/grampscli.py:107 ../gramps/cli/user.py:219
 #: ../gramps/gui/dialog.py:317
@@ -1694,7 +1897,7 @@ msgstr ""
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
-msgstr ""
+msgstr "Basis data hanya baca"
 
 #: ../gramps/cli/grampscli.py:160 ../gramps/gui/dbloader.py:166
 #: ../gramps/gui/dbloader.py:510
@@ -1710,7 +1913,7 @@ msgstr "Tidak dapat membuka basis data"
 #: ../gramps/gui/dbloader.py:461
 #, python-format
 msgid "Could not open file: %s"
-msgstr ""
+msgstr "Tidak dapat membuka berkas: %s"
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Could not load a recent Family Tree."
@@ -1734,63 +1937,63 @@ msgstr ""
 #: ../gramps/cli/grampscli.py:348
 #, python-format
 msgid "Error encountered: %s"
-msgstr ""
+msgstr "Kesalahan ditemukan: %s"
 
 #: ../gramps/cli/grampscli.py:350 ../gramps/cli/grampscli.py:357
 #, python-format
 msgid "  Details: %s"
-msgstr ""
+msgstr "  …Detail: %s"
 
 #: ../gramps/cli/grampscli.py:355
 #, python-format
 msgid "Error encountered in argument parsing: %s"
-msgstr ""
+msgstr "Terjadi kesalahan saat mengurai argumen: %s"
 
 #: ../gramps/cli/plug/__init__.py:198
 msgid "ERROR: Please specify a person"
-msgstr ""
+msgstr "ERROR: Harap tentukan orangnya"
 
 #: ../gramps/cli/plug/__init__.py:222
 msgid "ERROR: Please specify a family"
-msgstr ""
+msgstr "ERROR: Harap tentukan keluarga"
 
 #: ../gramps/cli/plug/__init__.py:323
 msgid "=filename"
-msgstr ""
+msgstr "=nama berkas"
 
 #: ../gramps/cli/plug/__init__.py:323
 msgid "Output file name. MANDATORY"
-msgstr ""
+msgstr "Nama berkas keluaran. WAJIB"
 
 #: ../gramps/cli/plug/__init__.py:324
 msgid "=format"
-msgstr ""
+msgstr "=format"
 
 #: ../gramps/cli/plug/__init__.py:324
 msgid "Output file format."
-msgstr ""
+msgstr "Format berkas keluaran."
 
 #: ../gramps/cli/plug/__init__.py:325 ../gramps/cli/plug/__init__.py:326
 msgid "=name"
-msgstr ""
+msgstr "=nama"
 
 #: ../gramps/cli/plug/__init__.py:325
 msgid "Style name."
-msgstr ""
+msgstr "Nama gaya."
 
 #: ../gramps/cli/plug/__init__.py:326
 msgid "Paper size name."
-msgstr ""
+msgstr "Nama ukuran kertas."
 
 #: ../gramps/cli/plug/__init__.py:327 ../gramps/cli/plug/__init__.py:328
 #: ../gramps/cli/plug/__init__.py:329 ../gramps/cli/plug/__init__.py:330
 #: ../gramps/cli/plug/__init__.py:331
 msgid "=number"
-msgstr ""
+msgstr "=angka"
 
 #: ../gramps/cli/plug/__init__.py:327
 msgid "Paper orientation number."
-msgstr ""
+msgstr "Nomor orientasi kertas."
 
 #: ../gramps/cli/plug/__init__.py:328
 msgid "Left paper margin"
@@ -1906,6 +2109,8 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
+"opsi '%(optionname)s' tidak valid. Gunakan '%(donottranslate)s' untuk "
+"melihat semua opsi yang valid."
 
 #: ../gramps/cli/plug/__init__.py:730
 msgid "Failed to write report. "
@@ -1930,10 +2135,16 @@ msgid ""
 "bug report at %(gramps_bugtracker_url)s\n"
 "\n"
 msgstr ""
+"Gramps telah mendeteksi kesalahan dalam basis data. Masalah ini biasanya "
+"dapat diatasi dengan menjalankan alat \"Periksa dan Perbaiki Basis Data\".\n"
+"\n"
+"Jika masalah ini masih berlanjut setelah menjalankan alat ini, silakan "
+"laporkan bug ke %(gramps_bugtracker_url)s\n"
+"\n"
 
 #: ../gramps/gen/config.py:302
 msgid "Imported %Y/%m/%d %H:%M:%S"
-msgstr ""
+msgstr "Mengimpor %Y/%m/%d %H:%M:%S"
 
 #: ../gramps/gen/config.py:314
 msgid "Missing Given Name"
@@ -1941,7 +2152,7 @@ msgstr "Nama Depan Tidak Ada"
 
 #: ../gramps/gen/config.py:315
 msgid "Missing Record"
-msgstr ""
+msgstr "Rekaman yang Hilang"
 
 #: ../gramps/gen/config.py:316
 msgid "Missing Surname"
@@ -1949,11 +2160,11 @@ msgstr "Nama Belakang"
 
 #: ../gramps/gen/config.py:323 ../gramps/gen/config.py:325
 msgid "[Living]"
-msgstr ""
+msgstr "[Hidup]"
 
 #: ../gramps/gen/config.py:324
 msgid "Private Record"
-msgstr ""
+msgstr "Catatan Pribadi"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1962,17 +2173,17 @@ msgstr ""
 #: ../gramps/gen/config.py:392 ../gramps/gen/datehandler/_datestrings.py:90
 msgctxt "localized lexeme inflections"
 msgid "January"
-msgstr ""
+msgstr "Januari"
 
 #: ../gramps/gen/const.py:299
 msgctxt "surname"
 msgid "none"
-msgstr ""
+msgstr "tidak ada"
 
 #: ../gramps/gen/const.py:300
 msgctxt "given-name"
 msgid "none"
-msgstr ""
+msgstr "tidak ada"
 
 #: ../gramps/gen/const.py:304 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:235
@@ -1984,17 +2195,17 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:862
 #: ../gramps/plugins/webreport/person.py:864
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: ../gramps/gen/datehandler/__init__.py:95
-#, python-format
+#, fuzzy, python-format
 msgid "Date parser for '%s' not available, using default"
-msgstr ""
+msgstr "Parser tanggal untuk '%s' tidak tersedia, menggunakan default"
 
 #: ../gramps/gen/datehandler/__init__.py:112
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
-msgstr ""
+msgstr "Penampil tanggal untuk '%s' tidak tersedia, menggunakan default"
 
 #. Translators: Numeric year, month, day
 #: ../gramps/gen/datehandler/_datedisplay.py:75
@@ -2006,27 +2217,27 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:82
 msgctxt "date format"
 msgid "Numerical"
-msgstr ""
+msgstr "Numerik"
 
 #. Translators: Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:84
 msgid "Month Day, Year"
-msgstr ""
+msgstr "Bulan Hari, Tahun"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
 msgid "Mon Day, Year"
-msgstr ""
+msgstr "Bln Hari, Tahun"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:88
 msgid "Day Month Year"
-msgstr ""
+msgstr "Hari Bulan Tahun"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:90
 msgid "Day Mon Year"
-msgstr ""
+msgstr "Hari Bln Tahun"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
@@ -2240,6 +2451,7 @@ msgstr ""
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
+"{date_quality}dari {date_start} sampai {date_stop}{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
@@ -2339,57 +2551,57 @@ msgstr "hari ini"
 #: ../gramps/gen/datehandler/_datestrings.py:91
 msgctxt "localized lexeme inflections"
 msgid "February"
-msgstr ""
+msgstr "Februari"
 
 #: ../gramps/gen/datehandler/_datestrings.py:92
 msgctxt "localized lexeme inflections"
 msgid "March"
-msgstr ""
+msgstr "Maret"
 
 #: ../gramps/gen/datehandler/_datestrings.py:93
 msgctxt "localized lexeme inflections"
 msgid "April"
-msgstr ""
+msgstr "April"
 
 #: ../gramps/gen/datehandler/_datestrings.py:94
 msgctxt "localized lexeme inflections"
 msgid "May"
-msgstr ""
+msgstr "Mei"
 
 #: ../gramps/gen/datehandler/_datestrings.py:95
 msgctxt "localized lexeme inflections"
 msgid "June"
-msgstr ""
+msgstr "Juni"
 
 #: ../gramps/gen/datehandler/_datestrings.py:96
 msgctxt "localized lexeme inflections"
 msgid "July"
-msgstr ""
+msgstr "Juli"
 
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgctxt "localized lexeme inflections"
 msgid "August"
-msgstr ""
+msgstr "Agustus"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgctxt "localized lexeme inflections"
 msgid "September"
-msgstr ""
+msgstr "September"
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgctxt "localized lexeme inflections"
 msgid "October"
-msgstr ""
+msgstr "Oktober"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgctxt "localized lexeme inflections"
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgctxt "localized lexeme inflections"
 msgid "December"
-msgstr ""
+msgstr "Desember"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2398,22 +2610,22 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:110
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:111
 msgctxt "localized lexeme inflections - short month form"
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
 msgctxt "localized lexeme inflections - short month form"
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:113
 msgctxt "localized lexeme inflections - short month form"
 msgid "Apr"
-msgstr ""
+msgstr "Apr"
 
 #: ../gramps/gen/datehandler/_datestrings.py:114
 msgctxt "localized lexeme inflections - short month form"
@@ -2423,37 +2635,37 @@ msgstr "Mei"
 #: ../gramps/gen/datehandler/_datestrings.py:115
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jul"
-msgstr ""
+msgstr "Jul"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "localized lexeme inflections - short month form"
 msgid "Aug"
-msgstr ""
+msgstr "Ags"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "localized lexeme inflections - short month form"
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "localized lexeme inflections - short month form"
 msgid "Oct"
-msgstr ""
+msgstr "Okt"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "localized lexeme inflections - short month form"
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgctxt "localized lexeme inflections - short month form"
 msgid "Dec"
-msgstr ""
+msgstr "Des"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2839,7 +3051,7 @@ msgstr "sesudah "
 #: ../gramps/gen/datehandler/_datestrings.py:249
 msgctxt "date modifier"
 msgid "about "
-msgstr ""
+msgstr "tentang"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
