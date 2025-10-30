@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-10-11 19:07+0000\n"
+"PO-Revision-Date: 2025-10-26 23:02+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -5508,7 +5508,7 @@ msgstr "Passt auf Personen mit einer bestimmten Anzahl von HLT-Ereignissen"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:58
 msgid "Given name:"
-msgstr "Vornamen:"
+msgstr "Vorname:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:59
 msgid "Full Family name:"
