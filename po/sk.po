@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-07 22:02+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2025-10-29 10:07+0000\n"
+"Last-Translator: Jozef Gaal <preklady@mayday.sk>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8862,7 +8862,7 @@ msgstr "Poznámka odkazu dieťaťa"
 #: ../gramps/plugins/textreport/indivcomplete.py:957
 #: ../gramps/plugins/webreport/person.py:1896
 msgid "Gender"
-msgstr "Rod"
+msgstr "Pohlavie"
 
 #: ../gramps/gen/lib/person.py:202
 msgid "Alternate names"
