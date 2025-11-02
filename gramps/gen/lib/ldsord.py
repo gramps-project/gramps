@@ -92,9 +92,9 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
 
     _TYPE_MAP = [
         (BAPTISM, _("Baptism"), "baptism"),
-        (ENDOWMENT, _("Endowment"), "endowment"),
         (CONFIRMATION, _("Confirmation"), "confirmation"),
         (INITIATORY, _("Initiatory"), "initiatory"),
+        (ENDOWMENT, _("Endowment"), "endowment"),
         (SEAL_TO_PARENTS, _("Sealed to Parents"), "sealed_to_parents"),
         (SEAL_TO_SPOUSE, _("Sealed to Spouse"), "sealed_to_spouse"),
     ]
