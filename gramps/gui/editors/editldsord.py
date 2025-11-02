@@ -183,9 +183,9 @@ class EditLdsOrd(EditSecondary):
     def _get_types(self):
         return (
             LdsOrd.BAPTISM,
-            LdsOrd.ENDOWMENT,
             LdsOrd.CONFIRMATION,
             LdsOrd.INITIATORY,
+            LdsOrd.ENDOWMENT,
             LdsOrd.SEAL_TO_PARENTS,
         )
 
