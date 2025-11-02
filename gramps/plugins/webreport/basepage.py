@@ -2971,7 +2971,7 @@ class BasePage:
         with Html("div", class_="subsection", id="LDSOrdinance") as section:
             with self.create_toggle("lds") as h4_head:
                 section += h4_head
-                h4_head += self._("Latter-Day Saints/ LDS Ordinance")
+                h4_head += self._("Latter-day Saints/ LDS Ordinance")
 
             # dump individual LDS ordinance list
             section += self.dump_ordinance(db_obj_, "Person")

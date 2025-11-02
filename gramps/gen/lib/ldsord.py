@@ -60,7 +60,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
 
     LDS ordinances are similar to events, but have very specific additional
     information related to data collected by the Church of Jesus Christ
-    of Latter Day Saints (Mormon church). The LDS church is the largest
+    of Latter-day Saints (Mormon church). The LDS church is the largest
     source of genealogical information in the United States.
     """
 
