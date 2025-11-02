@@ -69,6 +69,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
     SEAL_TO_PARENTS = 2
     SEAL_TO_SPOUSE = 3
     CONFIRMATION = 4
+    INITIATORY = 5
 
     DEFAULT_TYPE = BAPTISM
 
@@ -93,6 +94,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
         (BAPTISM, _("Baptism"), "baptism"),
         (ENDOWMENT, _("Endowment"), "endowment"),
         (CONFIRMATION, _("Confirmation"), "confirmation"),
+        (INITIATORY, _("Initiatory"), "initiatory"),
         (SEAL_TO_PARENTS, _("Sealed to Parents"), "sealed_to_parents"),
         (SEAL_TO_SPOUSE, _("Sealed to Spouse"), "sealed_to_spouse"),
     ]
