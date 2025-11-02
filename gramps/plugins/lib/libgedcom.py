@@ -313,6 +313,7 @@ TOKEN__TEXT = 136
 TOKEN__DATE = 137
 TOKEN__APID = 138
 TOKEN__CALLNAME = 139
+TOKEN_INIL = 140
 
 TOKENS = {
     "_ADPN": TOKEN__ADPN,
@@ -450,6 +451,7 @@ TOKENS = {
     "HUSBAND": TOKEN_HUSB,
     "INDI": TOKEN_INDI,
     "INDIVIDUAL": TOKEN_INDI,
+    "INIL": TOKEN_INIL,
     "LABEL": TOKEN_LABL,
     "LABL": TOKEN_LABL,
     "LANG": TOKEN_LANG,
@@ -2393,6 +2395,7 @@ class GedcomParser(UpdateCallback):
             # +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
             TOKEN_BAPL: self.__person_bapl,
             TOKEN_CONL: self.__person_conl,
+            TOKEN_INIL: self.__person_inil,
             TOKEN_ENDL: self.__person_endl,
             TOKEN_SLGC: self.__person_slgc,
             # +1 <<CHILD_TO_FAMILY_LINK>> {0:M}
@@ -5008,6 +5011,17 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.build_lds_ord(state, LdsOrd.CONFIRMATION)
+
+    def __person_inil(self, line, state):
+        """
+        Parses an INIL TOKEN, producing a Gramps LdsOrd instance
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.build_lds_ord(state, LdsOrd.INITIATORY)
 
     def __person_endl(self, line, state):
         """
