@@ -90,6 +90,18 @@ _DATA_MAP = {
         LdsOrd.STATUS_SUBMITTED,
         LdsOrd.STATUS_UNCLEARED,
     ],
+    LdsOrd.INITIATORY: [
+        LdsOrd.STATUS_NONE,
+        LdsOrd.STATUS_CHILD,
+        LdsOrd.STATUS_CLEARED,
+        LdsOrd.STATUS_COMPLETED,
+        LdsOrd.STATUS_INFANT,
+        LdsOrd.STATUS_PRE_1970,
+        LdsOrd.STATUS_QUALIFIED,
+        LdsOrd.STATUS_STILLBORN,
+        LdsOrd.STATUS_SUBMITTED,
+        LdsOrd.STATUS_UNCLEARED,
+    ],
     LdsOrd.ENDOWMENT: [
         LdsOrd.STATUS_NONE,
         LdsOrd.STATUS_CHILD,
@@ -171,8 +183,9 @@ class EditLdsOrd(EditSecondary):
     def _get_types(self):
         return (
             LdsOrd.BAPTISM,
-            LdsOrd.ENDOWMENT,
             LdsOrd.CONFIRMATION,
+            LdsOrd.INITIATORY,
+            LdsOrd.ENDOWMENT,
             LdsOrd.SEAL_TO_PARENTS,
         )
 
