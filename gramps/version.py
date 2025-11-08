@@ -17,8 +17,8 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-DEV_VERSION = True
-VERSION_TUPLE = (6, 0, 5)
+DEV_VERSION = False
+VERSION_TUPLE = (6, 0, 6)
 VERSION_QUALIFIER = ""
 VERSION = ".".join(map(str, VERSION_TUPLE)) + VERSION_QUALIFIER
 major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
