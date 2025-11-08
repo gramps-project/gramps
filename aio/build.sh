@@ -56,10 +56,12 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-python-lxml \
     mingw-w64-x86_64-python-networkx \
     mingw-w64-x86_64-python-nose \
+    mingw-w64-x86_64-python-numpy \
     mingw-w64-x86_64-python-packaging \
     mingw-w64-x86_64-python-pillow \
     mingw-w64-x86_64-python-pip \
     mingw-w64-x86_64-python-psycopg2 \
+    mingw-w64-x86_64-python-pyopengl \
     mingw-w64-x86_64-python-requests \
     mingw-w64-x86_64-python-setuptools \
     mingw-w64-x86_64-python-wheel \
@@ -80,7 +82,7 @@ source $pythonvenv/bin/activate
 
 ## prerequisites in pip packages
 python -m pip install --upgrade pip
-pip install --upgrade asyncio orjson pydot pydotplus pygraphviz requests selenium
+pip install --upgrade asyncio orjson pydot pydotplus pygraphviz requests selenium litellm
 
 ## download dictionaries
 mkdir -p /mingw64/share/enchant/hunspell
@@ -99,6 +101,7 @@ dicts=(
     eo:eo
     es:es_ES
     fr:fr_FR
+    ga:ga_IE
     he:he_IL
     hr:hr_HR
     hu:hu_HU
