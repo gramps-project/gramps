@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-06 21:09+0100\n"
-"PO-Revision-Date: 2025-09-13 09:49+0000\n"
+"PO-Revision-Date: 2025-11-08 16:15+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8969,7 +8969,7 @@ msgstr "Adresnotitie"
 
 #: ../gramps/gen/lib/notetype.py:103
 msgid "Association Note"
-msgstr "Associatienotitie"
+msgstr "Connectienotitie"
 
 #: ../gramps/gen/lib/notetype.py:104
 msgid "LDS Note"
@@ -9101,7 +9101,7 @@ msgstr "Persoon verw"
 #: ../gramps/gen/lib/personref.py:121
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:68
 msgid "Association"
-msgstr "Associatie"
+msgstr "Connectie"
 
 #: ../gramps/gen/lib/place.py:164 ../gramps/plugins/export/exportcsv.py:312
 #: ../gramps/plugins/gramplet/coordinates.py:106
@@ -14432,27 +14432,27 @@ msgstr "U kunt gezinsgebeurtenissen niet wijzigen in de persoons-bewerker"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:56
 msgid "Create and add a new association"
-msgstr "Maak een nieuwe associatie en voeg deze toe"
+msgstr "Een nieuwe connectie aanmaken en toevoegen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:57
 msgid "Remove the existing association"
-msgstr "Verwijder de bestaande associatie"
+msgstr "De bestaande connectie verwijderen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:58
 msgid "Edit the selected association"
-msgstr "Pas de bestaande associatie aan"
+msgstr "De bestaande connectie aanpassen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:59
 msgid "Move the selected association upwards"
-msgstr "Verplaats de geselecteerde associatie naar boven"
+msgstr "De geselecteerde connectie omhoog verplaatsen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:60
 msgid "Move the selected association downwards"
-msgstr "Verplaats de geselecteerde associatie naar beneden"
+msgstr "De geselecteerde connectie omlaag verplaatsen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:81
 msgid "_Associations"
-msgstr "A_ssociaties"
+msgstr "_Connecties"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:149
 #: ../gramps/plugins/lib/libprogen.py:1602
@@ -14818,7 +14818,7 @@ msgstr "Kan gebeurtenis niet opslaan. ID bestaat al."
 
 #: ../gramps/gui/editors/editevent.py:315
 msgid "The event type cannot be empty"
-msgstr "Het gebeurtenistype mag niet leeg zijn"
+msgstr "Het type gebeurtenis mag niet leeg zijn"
 
 #: ../gramps/gui/editors/editevent.py:323
 #, python-format
@@ -17568,7 +17568,7 @@ msgstr "_Persoon:"
 
 #: ../gramps/gui/glade/editpersonref.glade:109
 msgid "_Association:"
-msgstr "A_ssociatie:"
+msgstr "_Connectie:"
 
 #: ../gramps/gui/glade/editpersonref.glade:123
 msgid ""
@@ -17578,7 +17578,7 @@ msgid ""
 "occasions. Events can be shared between people, each indicating their role "
 "in the event."
 msgstr ""
-"Beschrijving van de associatie, bijv. peetvader, vriend, …\n"
+"Beschrijving van de connectie, bijv. peetvader, vriend, …\n"
 "\n"
 "Let op: gebruik in plaats hiervan 'Gebeurtenissen' voor relaties die verband "
 "houden met specifieke tijdframes of gelegenheden. Gebeurtenissen kunnen "
@@ -17589,14 +17589,13 @@ msgid ""
 "Use the select button to choose a person that has an association to the "
 "edited person."
 msgstr ""
-"Gebruik de selectieknop om een persoon te kiezen die een associatie heeft "
-"met de aangepaste persoon."
+"Gebruik de selectieknop om een persoon te kiezen die een connectie heeft met "
+"de bewerkte persoon."
 
 #: ../gramps/gui/glade/editpersonref.glade:159
 #: ../gramps/gui/glade/editpersonref.glade:223
 msgid "Select a person that has an association to the edited person."
-msgstr ""
-"Selecteer een persoon die een associatie heeft met de aangepaste persoon."
+msgstr "Selecteer een persoon die een connectie heeft met de bewerkte persoon."
 
 #: ../gramps/gui/glade/editplace.glade:108
 #: ../gramps/gui/glade/editplaceref.glade:249
@@ -34137,7 +34136,7 @@ msgstr "Plaatsvervangende ouders"
 #: ../gramps/plugins/textreport/indivcomplete.py:469
 #: ../gramps/plugins/webreport/person.py:1621
 msgid "Associations"
-msgstr "Associaties"
+msgstr "Correcties"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:614
 msgid "Images"
@@ -36450,7 +36449,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:68
 msgid "Rename Event Types"
-msgstr "Gebeurtenistypen aanpassen"
+msgstr "Gebeurtenistypen hernoemen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:70
 msgid "Allows all the events of a certain name to be renamed to a new name."
