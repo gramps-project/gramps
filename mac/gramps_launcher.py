@@ -14,8 +14,9 @@ bundle_bin = join(bundle_res, "bin")
 bundle_data = join(bundle_res, "share")
 bundle_etc = join(bundle_res, "etc")
 
+environ["APPDATA"] = join(environ["HOME"], "Library", "Application Support")
 environ["XDG_DATA_DIRS"] = bundle_data
-environ["DYLD_LIBRARY_PATH"] = bundle_lib
+environ["DYLD_FALLBACK_LIBRARY_PATH"] = bundle_lib + ":" + join(environ['APPDATA'], 'gramps', 'lib')
 environ["LD_LIBRARY_PATH"] = bundle_lib
 environ["GTK_DATA_PREFIX"] = bundle_res
 environ["GTK_EXE_PREFIX"] = bundle_res
@@ -39,7 +40,6 @@ environ["GRAMPSDIR"] = join(bundle_lib, PYVER, "site-packages", "gramps")
 environ["GRAMPSI18N"] = join(bundle_data, "locale")
 environ["GRAMPS_RESOURCES"] = bundle_data
 environ["USERPROFILE"] = environ["HOME"]
-environ["APPDATA"] = join(environ["HOME"], "Library", "Application Support")
 environ["PATH"] = join(bundle_contents, "MacOS") + ":" + environ["PATH"]
 
 if __name__ == "__main__":
