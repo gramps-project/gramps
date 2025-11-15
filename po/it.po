@@ -69,8 +69,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-11-08 17:08+0000\n"
-"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"PO-Revision-Date: 2025-11-11 03:51+0000\n"
+"Last-Translator: Fabio Restante <frestante@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -2316,7 +2316,7 @@ msgstr "Giorno mese anno"
 #: ../gramps/gen/datehandler/_datedisplay.py:182
 #, python-brace-format
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -8504,10 +8504,8 @@ msgid "Type code"
 msgstr "Codice del tipo"
 
 #: ../gramps/gen/lib/ldsord.py:96
-#, fuzzy
-#| msgid "Initiatory (LDS)"
 msgid "Initiatory"
-msgstr "Iniziatorie (LDS)"
+msgstr "Iniziatorie"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -38627,8 +38625,6 @@ msgid " [Click to Go]"
 msgstr " [Clic per andare]"
 
 #: ../gramps/plugins/webreport/basepage.py:2974
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
 msgstr "Ordinanza Santi degli Ultimi Giorni/LDS"
 
