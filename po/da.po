@@ -49,7 +49,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-09-23 12:46+0000\n"
+"PO-Revision-Date: 2025-11-13 15:51+0000\n"
 "Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
@@ -58,7 +58,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -301,7 +301,7 @@ msgid ""
 msgstr ""
 "Programmet gør det muligt at notere de mange detaljer om den enkeltes liv, "
 "såvel som de komplekse forbindelser mellem forskellige mennesker, steder og "
-"hændelser."
+"begivenheder."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
 msgid ""
@@ -416,7 +416,7 @@ msgstr ""
 "formatet \"mellem 2010-02-01 og 2012-04-03\". Du kan også indikere "
 "troværdighedsniveauet i en dato og endda vælge mellem syv forskellige "
 "kalendere. Prøv knappen ved siden af datofeltet i "
-"hændelsesredigeringdialogen."
+"begivenhedsredigeringdialogen."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -549,7 +549,7 @@ msgid ""
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
 "<b>Hvem blev født hvornår</b><br/>Under menupunktet \"Værktøjer > Analyse og "
-"udforskning > Sammenlign individuelle hændelser ...\" kan du sammenligne "
+"udforskning > Sammenlign individuelle begivenheder ...\" kan du sammenligne "
 "data for personer i din database. Dette er nyttigt hvis du f.eks. ønsker at "
 "opliste fødselsdatoerne på alle personer i din database. Du kan bruge et "
 "tilpasset filter for at indsnævre resultaterne."
@@ -564,7 +564,7 @@ msgid ""
 msgstr ""
 "<b>Gramps værktøjer</b><br/>Med Gramps følger en rigt udbud af værktøjer som "
 "lader dig udføre operationer som f.eks. at kontrollere databasen for fejl og "
-"integritet, finde dublerede personer, sammenligne hændelser, interaktivt "
+"integritet, finde dublerede personer, sammenligne begivenheder, interaktivt "
 "gennemsyn af efterkommere m.v. Alle værktøjer kan findes under menupunktet "
 "\"Værktøjer\"."
 
@@ -657,11 +657,12 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
-"<b>Usikker på en dato?</b><br/>Hvis du er usikker på datoen for en hændelse "
-"(f.eks. fødsel eller død), lader Gramps dig angive en række forskellige "
-"datoformater, baseret på et gæt eller vurdering. F.eks. er \"ca. 1908\" en "
-"gyldig angivelse af en fødselsdato i Gramps. Klik på datoknappen ved siden "
-"af datofeltet og læs brugerhåndbogen til Gramps for at lære mere."
+"<b>Usikker på en dato?</b><br/>Hvis du er usikker på datoen for en "
+"begivenhed (f.eks. fødsel eller død), lader Gramps dig angive en række "
+"forskellige datoformater, baseret på et gæt eller vurdering. F.eks. er "
+"\"ca. 1908\" en gyldig angivelse af en fødselsdato i Gramps. Klik på "
+"datoknappen ved siden af datofeltet og læs brugerhåndbogen til Gramps for at "
+"lære mere."
 
 #: ../data/tips.xml:42
 msgid ""
@@ -710,9 +711,9 @@ msgid ""
 "buttons."
 msgstr ""
 "<b>Navigere frem og tilbage</b><br/>Gramps har en liste over tidligere "
-"aktive objekter såsom personer og hændelser. Du kan bevæge dig frem og "
-"tilbage i listen ved at bruge \"Gå > Frem&quot; og &quot;Gå > Tilbage\", "
-"eller ved at bruge piletasterne."
+"aktive objekter såsom personer og begivenheder. Du kan bevæge dig frem og "
+"tilbage i listen ved at bruge \"Gå > Frem\" og \"Gå > Tilbage\", eller ved "
+"at bruge piletasterne."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -878,11 +879,12 @@ msgid ""
 "types. You can add your own event types by typing in the text field, they "
 "will be added to the available events, but not translated."
 msgstr ""
-"<b>Opliste hændelser</b><br/>Hændelser tilføjes ved at bruge "
-"redigeringsværktøjet under oversigten \"Person > Redigér person > "
-"Hændelser\". Der er en lang liste af forvalgte hændelsestyper. Du kan "
-"tilføje dine egne hændelsestyper ved at indtaste dem i tekstfeltet. De vil "
-"blive føjet til de tilgængelige hændelsestyper, men ikke oversat."
+"<b>Opliste begivenheder</b><br/>Begivenhederr tilføjes ved at bruge "
+"redigeringsværktøjet under oversigten "
+"\"Person > Redigér person > Begivenheder\". Der er en lang liste af "
+"forvalgte begivenhedstyper. Du kan tilføje dine egne begivenhedstyper ved at "
+"indtaste dem i tekstfeltet. De vil blive føjet til de tilgængelige "
+"begivenhedstyper, men ikke oversat."
 
 #: ../data/tips.xml:74
 msgid ""
@@ -3336,7 +3338,7 @@ msgstr "Antal kildehenvisninger"
 #: ../gramps/plugins/webreport/statistics.py:186
 #: ../gramps/plugins/webreport/statistics.py:266
 msgid "Number of events"
-msgstr "Antal hændelser"
+msgstr "Antal begivenheder"
 
 #: ../gramps/gen/db/generic.py:2708
 msgid "Number of media"
@@ -3387,8 +3389,8 @@ msgstr ""
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Hændelser     opgraderet med %(n2)6d kildehenvisninger på %(n3)6d "
-"sekunder\n"
+"%(n1)6d  Begivenheder     opgraderet med %(n2)6d kildehenvisninger på %(n3)"
+"6d sekunder\n"
 
 #: ../gramps/gen/db/upgrade.py:683
 #, python-format
@@ -3795,7 +3797,7 @@ msgstr "Kildehenvisnings/kilde-filtre"
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:57
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:54
 msgid "Event filters"
-msgstr "Hændelsesfiltre"
+msgstr "Begivenhedsfiltre"
 
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:55
 #: ../gramps/gen/filters/rules/_hasldsbase.py:58
@@ -4290,54 +4292,54 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:45
 msgid "Every event"
-msgstr "Alle hændelser"
+msgstr "Alle begivenheder"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:46
 msgid "Matches every event in the database"
-msgstr "Matcher alle hændelser i databasen"
+msgstr "Matcher alle begivenheder i databasen"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:48
 msgid "Events changed after <date time>"
-msgstr "Hændelser der er ændret efter <dato tidspunkt>"
+msgstr "Begivenheder der er ændret efter <dato tidspunkt>"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:50
 msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
-"Matcher hændelsesoptegnelser som er ændret efter et angivet dato/tidspunkt "
+"Matcher begivenhedsoptegnelser som er ændret efter et angivet dato/tidspunkt "
 "(åååå-mm-dd tt:mm:ss), eller indenfor et tidsinterval hvis endnu en dato/"
 "tidspunkt er angivet."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:43
 msgid "Events marked private"
-msgstr "Hændelser der er markeret private"
+msgstr "Begivenheder der er markeret private"
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:44
 msgid "Matches events that are indicated as private"
-msgstr "Matcher hændelser der er markeret private"
+msgstr "Matcher begivenheder der er markeret private"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:115
 #: ../gramps/gui/editors/filtereditor.py:589
 msgid "Event attribute:"
-msgstr "Hændelsesattribut:"
+msgstr "Begivenhedsattribut:"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
 msgid "Events with the attribute <attribute>"
-msgstr "Hændelser med attributten <attribut>"
+msgstr "Begivenheder med attributten <attribut>"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:47
 msgid "Matches events with the event attribute of a particular value"
-msgstr "Matcher hændelser med en hændelsesattribut af en bestemt værdi"
+msgstr "Matcher begivenheder med en begivenhedsattribut af en bestemt værdi"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
 msgid "Events with the <citation>"
-msgstr "Hændelse med <kildehenvisning>"
+msgstr "Begivenhed med <kildehenvisning>"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 msgid "Matches events with a citation of a particular value"
-msgstr "Matcher hændelser med en kildehenvisning der har bestemt værdi"
+msgstr "Matcher begivenheder med en kildehenvisning der har bestemt værdi"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:57
 #: ../gramps/gen/filters/rules/event/_hasevent.py:52
@@ -4358,7 +4360,7 @@ msgstr "Beskrivelse:"
 #: ../gramps/gui/editors/filtereditor.py:112
 #: ../gramps/gui/editors/filtereditor.py:580
 msgid "Event type:"
-msgstr "Hændelsestype:"
+msgstr "Begivenhedstype:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:57
 #: ../gramps/gen/filters/rules/event/_hasevent.py:51
@@ -4375,11 +4377,11 @@ msgstr "Sted:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:58
 msgid "Events with <data>"
-msgstr "Hændelser med <data>"
+msgstr "Begivenheder med <data>"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:59
 msgid "Matches events with data of a particular value"
-msgstr "Matcher hændelser der indeholder data med en bestemt værdi"
+msgstr "Matcher begivenheder der indeholder data med en bestemt værdi"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:48
 #: ../gramps/gui/editors/filtereditor.py:629
@@ -4388,11 +4390,11 @@ msgstr "Ugedag:"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:49
 msgid "Events occurring on a particular day of the week"
-msgstr "Hændelser der sker på en bestemt ugedag"
+msgstr "Begivenheder der sker på en bestemt ugedag"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:50
 msgid "Matches events occurring on a particular day of the week"
-msgstr "Matcher hændelser der sker på en bestemt ugedag"
+msgstr "Matcher begivenheder der sker på en bestemt ugedag"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:53
 #: ../gramps/gen/filters/rules/person/_hasevent.py:60
@@ -4409,96 +4411,96 @@ msgstr "Matcher begivenheder med bestemte parametre"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:46
 msgid "Events with <count> media"
-msgstr "Hændelser med <antal> medieobjekter"
+msgstr "Begivenheder med <antal> medieobjekter"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Matches events with a certain number of items in the gallery"
-msgstr "Matcher hændelser med et bestemt antal elementer i galleriet"
+msgstr "Matcher begivenheder med et bestemt antal elementer i galleriet"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:46
 msgid "Event with <Id>"
-msgstr "Hændelse med <id>"
+msgstr "Begivenhed med <id>"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:47
 msgid "Matches an event with a specified Gramps ID"
-msgstr "Matcher en hændelse med en angivet Gramps-id"
+msgstr "Matcher en begivenhed med et angivet Gramps-id"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:46
 msgid "Events having <count> notes"
-msgstr "Hændelser med <antal> noter"
+msgstr "Begivenheder med <antal> noter"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:47
 msgid "Matches events having a certain number of notes"
-msgstr "Matcher hændelser med et bestemt antal noter"
+msgstr "Matcher begivenheder med et bestemt antal noter"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:43
 msgid "Events having notes containing <substring>"
-msgstr "Hændelser med noter der matcher <delstreng>"
+msgstr "Begivenheder med noter der matcher <delstreng>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:44
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "Matcher hændelser med noter der indeholder en delstreng"
+msgstr "Matcher begivenheder med noter der indeholder en delstreng"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:41
 msgid "Events having notes containing <text>"
-msgstr "Hændelser med noter der matcher <tekst>"
+msgstr "Begivenheder med noter der matcher <tekst>"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr "Matcher hændelser med noter der indeholder regulært udtryk"
+msgstr "Matcher begivenheder med noter der indeholder regulært udtryk"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
-msgstr "Hændelser med en note af typen <type>"
+msgstr "Begivenheder med en note af typen <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
 msgid "Matches events with a note of the specified type"
-msgstr "Matcher hændelser med en note af den angivne type"
+msgstr "Matcher begivenheder med en note af den angivne type"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:43
 msgid "Events with a reference count of <count>"
-msgstr "Hændelser med at antal henvisninger på <antal>"
+msgstr "Begivenheder med at antal henvisninger på <antal>"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Matches events with a certain reference count"
-msgstr "Matcher hændelser med et bestemt antal henvisninger"
+msgstr "Matcher begivenheder med et bestemt antal henvisninger"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:45
 msgid "Events with <count> sources"
-msgstr "Hændelser med <antal> kilder"
+msgstr "Begivenheder med <antal> kilder"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:46
 msgid "Matches events with a certain number of sources connected to it"
-msgstr "Matcher hændelser med et bestemt antal tilknyttede kilder"
+msgstr "Matcher begivenheder med et bestemt antal tilknyttede kilder"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:51
 msgid "Events with the <tag>"
-msgstr "Hændelser med <mærkatet>"
+msgstr "Begivenheder med <mærkatet>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Matches events with the particular tag"
-msgstr "Matcher hændelser med et bestemt mærkat"
+msgstr "Matcher begivenheder med et bestemt mærkat"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:56
 msgid "Events with the particular type"
-msgstr "Hændelser af den bestemte type"
+msgstr "Begivenheder af den bestemte type"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:57
 msgid "Matches events with the particular type "
-msgstr "Matcher hændelser af en bestemt type "
+msgstr "Matcher begivenheder af en bestemt type "
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:45
 msgid "Events matching the <filter>"
-msgstr "Hændelser der matcher <filteret>"
+msgstr "Begivenheder der matcher <filteret>"
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:46
 msgid "Matches events matched by the specified filter name"
-msgstr "Matcher hændelser som passer med det angivne filternavn"
+msgstr "Matcher begivenheder som passer med det angivne filternavn"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:60
 #: ../gramps/gui/editors/filtereditor.py:612
 msgid "Include Family events:"
-msgstr "Medtag familiehændelser:"
+msgstr "Medtag familiebegivenheder:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:60
 #: ../gramps/gui/editors/filtereditor.py:565
@@ -4507,11 +4509,11 @@ msgstr "Navn til personfilter:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:61
 msgid "Events of persons matching the <person filter>"
-msgstr "Hændelser for personer der matcher <personfilter>"
+msgstr "Begivenheder for personer der matcher <personfilter>"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:63
 msgid "Matches events of persons matched by the specified person filter name"
-msgstr "Matcher en persons hændelser som matcher et angivet personfilternavn"
+msgstr "Matcher en persons begivenheder som matcher et angivet personfilternavn"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:59
 #: ../gramps/gui/editors/filtereditor.py:575
@@ -4520,41 +4522,42 @@ msgstr "Stedfilters navn:"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:60
 msgid "Events of places matching the <place filter>"
-msgstr "Hændelser for steder der matcher <stedfilter>"
+msgstr "Begivenheder for steder der matcher <stedfilter>"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:62
 msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
 msgstr ""
-"Matcher hændelser der skete på steder som matcher det angivne stedfilter"
+"Matcher begivenheder der skete på steder som matcher det angivne stedfilter"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:46
 msgid "Events with at least one direct source >= <confidence level>"
-msgstr "Hændelser med mindst en direkte kilde >= <troværdighedsniveau>"
+msgstr "Begivenheder med mindst en direkte kilde >= <troværdighedsniveau>"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:48
 msgid "Matches events with at least one direct source with confidence level(s)"
 msgstr ""
-"Matcher hændelser der har mindst en direkte kilde med troværdighedsniveau(er)"
+"Matcher begivenheder der har mindst en direkte kilde med troværdighedsniveau"
+"(er)"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:50
 msgid "Events with source matching the <source filter>"
-msgstr "Hændelser med en kilde der matcher <kildefilter>"
+msgstr "Begivenheder med en kilde der matcher <kildefilter>"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:52
 msgid "Matches events with sources that match the specified source filter name"
 msgstr ""
-"Matcher hændelser der har kilder som passer med det angivne navn på "
+"Matcher begivenheder der har kilder som passer med det angivne navn på "
 "kildefilter"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Events with Id containing <text>"
-msgstr "Hændelser med Id der indeholder <tekst>"
+msgstr "Begivenheder med Id der indeholder <tekst>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:49
 msgid "Matches events whose Gramps ID matches the regular expression"
-msgstr "Matcher hændelser hvis Gramps-id matcher det regulære udtryk"
+msgstr "Matcher begivenheder hvis Gramps-id matcher det regulære udtryk"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:45
 #: ../gramps/gen/plug/report/utils.py:413
@@ -4668,7 +4671,7 @@ msgstr "Matcher familier med en kildehenvisning af en bestemt værdi"
 #: ../gramps/gui/editors/filtereditor.py:111
 #: ../gramps/gui/editors/filtereditor.py:582
 msgid "Family event:"
-msgstr "Familiehændelse:"
+msgstr "Familiebegivenhed:"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:62
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:95
@@ -4680,11 +4683,11 @@ msgstr "Primære deltagere"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:64
 msgid "Families with the <event>"
-msgstr "Familier med <hændelsen>"
+msgstr "Familier med <begivenhed>"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:65
 msgid "Matches families with an event of a particular value"
-msgstr "Matcher familier med en bestemt hændelse"
+msgstr "Matcher familier med en bestemt begivenhed"
 
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:46
 msgid "Families with <count> media"
@@ -4704,11 +4707,11 @@ msgstr "Matcher en familie med en angivet Gramps-id"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:49
 msgid "Families with <count> LDS events"
-msgstr "Familier med <antal> SDH-hændelser"
+msgstr "Familier med <antal> SDH-begivenheder"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:50
 msgid "Matches families with a certain number of LDS events"
-msgstr "Matcher familier med et bestemt antal SDH-hændelser"
+msgstr "Matcher familier med et bestemt antal SDH-begivenheder"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:46
 msgid "Families having <count> notes"
@@ -5274,11 +5277,11 @@ msgstr "Matcher alle i databasen"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:52
 msgid "Families with incomplete events"
-msgstr "Familier med ufuldstændige hændelser"
+msgstr "Familier med ufuldstændige begivenheder"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:54
 msgid "Matches people with missing date or place in an event of the family"
-msgstr "Matcher personer med manglende dato eller sted for en familiehændelse"
+msgstr "Matcher personer med manglende dato eller sted for en familiebegivenhed"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:59
 msgid "People with <count> addresses"
@@ -5384,7 +5387,7 @@ msgstr "Matcher personer med en bestemt slags dødsdata"
 #: ../gramps/gui/editors/filtereditor.py:110
 #: ../gramps/gui/editors/filtereditor.py:581
 msgid "Personal event:"
-msgstr "Personhændelse:"
+msgstr "Personbegivenhed:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:61
 #: ../gramps/gui/editors/filtereditor.py:614
@@ -5393,11 +5396,11 @@ msgstr "Primær Rolle:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:63
 msgid "People with the personal <event>"
-msgstr "Personer med <hændelsen>"
+msgstr "Personer med <begivenheden>"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:64
 msgid "Matches people with a personal event of a particular value"
-msgstr "Matcher en person med en personlig hændelse af særlig værdi"
+msgstr "Matcher en person med en personlig begivenhed af særlig værdi"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:55
 msgid "People with the family <attribute>"
@@ -5409,11 +5412,11 @@ msgstr "Matcher personer med en bestemt attribut"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:58
 msgid "People with the family <event>"
-msgstr "Personer med <familiehændelsen>"
+msgstr "Personer med familie<begivenheden>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:59
 msgid "Matches people with a family event of a particular value"
-msgstr "Matcher personer med en bestemt familiehændelse"
+msgstr "Matcher personer med en bestemt familiebegivenhed"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:43
 msgid "People with <count> media"
@@ -5435,11 +5438,11 @@ msgstr "Matcher en person med en angivet Gramps-id"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "People with <count> LDS events"
-msgstr "Personer med <antal> SDH-hændelser"
+msgstr "Personer med <antal> SDH-begivenheder"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:50
 msgid "Matches people with a certain number of LDS events"
-msgstr "Matcher personer med et bestemt antal SDH-hændelser"
+msgstr "Matcher personer med et bestemt antal SDH-begivenheder"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:57
 msgid "Given name:"
@@ -5921,21 +5924,22 @@ msgstr "Vidner"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:58
 msgid "Matches people who are witnesses in any event"
-msgstr "Matcher personer der er vidner til en hændelse"
+msgstr "Matcher personer der er vidner til en begivenhed"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:52
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:59
 #: ../gramps/gui/editors/filtereditor.py:569
 msgid "Event filter name:"
-msgstr "Navn til hændelsesfilter:"
+msgstr "Navn til begivenhedsfilter:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 msgid "Persons with events matching the <event filter>"
-msgstr "Personer med hændelser der matcher <hændelsesfiltret>"
+msgstr "Personer med begivenheder der matcher <begivenhedsfiltret>"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:55
 msgid "Matches persons who have events that match a certain event filter"
-msgstr "Matcher personer med hændelser der matcher et bestemt hændelsesfilter"
+msgstr ""
+"Matcher personer med begivenheder der matcher et bestemt begivenhedsfilter"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:45
 msgid "People matching the <filter>"
@@ -6017,11 +6021,11 @@ msgstr "Matcher personer der ikke er markeret som private"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:52
 msgid "People with incomplete events"
-msgstr "Personer med ufuldstændige hændelser"
+msgstr "Personer med ufuldstændige begivenheder"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:53
 msgid "Matches people with missing date or place in an event"
-msgstr "Matcher personer med manglende dato eller sted for en hændelse"
+msgstr "Matcher personer med manglende dato eller sted for en begivenhed"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:54
 msgid "On date:"
@@ -6332,15 +6336,15 @@ msgstr "Matcher et sted omsluttet af et bestemt sted"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:60
 msgid "Places of events matching the <event filter>"
-msgstr "Steder for hændelser der matcher <hændelsesfilter>"
+msgstr "Steder for begivenheder der matcher <begivenhedsfilter>"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:62
 msgid ""
 "Matches places where events happened that match the specified event filter "
 "name"
 msgstr ""
-"Matcher steder hvor der skete hændelser som passer med det angivne "
-"filternavn for hændelser"
+"Matcher steder hvor der skete begivenheder som passer med det angivne "
+"filternavn for begivenheder"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:45
 msgid "Places matching the <filter>"
@@ -7544,7 +7548,7 @@ msgstr "kun tekst"
 #: ../gramps/plugins/tool/reorderids.glade:788
 #: ../gramps/plugins/webreport/basepage.py:859
 msgid "Event"
-msgstr "Hændelse"
+msgstr "Begivenhed"
 
 #: ../gramps/gen/lib/event.py:190 ../gramps/gen/lib/ldsord.py:202
 #: ../gramps/gen/lib/place.py:153 ../gramps/gui/clipboard.py:374
@@ -7607,7 +7611,7 @@ msgstr "Attributter"
 
 #: ../gramps/gen/lib/eventref.py:121
 msgid "Event reference"
-msgstr "Hændelseshenvisning"
+msgstr "Begivenhedshenvisning"
 
 #: ../gramps/gen/lib/eventroletype.py:72
 msgctxt "Role"
@@ -7728,7 +7732,7 @@ msgstr "Tjenestemand"
 
 #: ../gramps/gen/lib/eventtype.py:151
 msgid "Life Events"
-msgstr "Livs Hændelser"
+msgstr "Livs Begivenheder"
 
 #: ../gramps/gen/lib/eventtype.py:155 ../gramps/gen/lib/family.py:160
 #: ../gramps/gen/lib/ldsord.py:203 ../gramps/gui/clipboard.py:748
@@ -8385,10 +8389,8 @@ msgid "Type code"
 msgstr "Typekode"
 
 #: ../gramps/gen/lib/ldsord.py:96
-#, fuzzy
-#| msgid "Initiatory (LDS)"
 msgid "Initiatory"
-msgstr "Initiatory (SDH)"
+msgstr "Initiering"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -8866,11 +8868,11 @@ msgstr "Familie"
 
 #: ../gramps/gen/lib/notetype.py:105
 msgid "Event Note"
-msgstr "Hændelse"
+msgstr "Begivenhedsnote"
 
 #: ../gramps/gen/lib/notetype.py:106
 msgid "Event Reference Note"
-msgstr "Hændelsesreference"
+msgstr "Begivenhedshenvisningsnote"
 
 #: ../gramps/gen/lib/notetype.py:107
 msgid "Source Note"
@@ -8932,7 +8934,7 @@ msgstr "Fødselshenvisnings indeks"
 
 #: ../gramps/gen/lib/person.py:214
 msgid "Event references"
-msgstr "Hændelses henvisning"
+msgstr "Begivenheds henvisning"
 
 #: ../gramps/gen/lib/person.py:219 ../gramps/plugins/graph/gvfamilylines.py:356
 #: ../gramps/plugins/graph/gvhourglass.py:519
@@ -9432,7 +9434,7 @@ msgstr "Sammenflet kildehenvisning"
 
 #: ../gramps/gen/merge/mergeeventquery.py:61
 msgid "Merge Event Objects"
-msgstr "Sammenflet hændelsesobjekter"
+msgstr "Sammenflet Begivenhedsobjekter"
 
 #: ../gramps/gen/merge/mergefamilyquery.py:93
 msgid "A parent should be a father or mother."
@@ -10964,7 +10966,7 @@ msgstr "en ægtefælles dødsrelaterede dato, "
 
 #: ../gramps/gen/utils/alive.py:586
 msgid "event with spouse"
-msgstr "hændelse med ægtefælle"
+msgstr "begivenhed med ægtefælle"
 
 #: ../gramps/gen/utils/alive.py:764
 #, python-brace-format
@@ -11057,7 +11059,7 @@ msgstr "stedet"
 
 #: ../gramps/gen/utils/grampslocale.py:772
 msgid "the event"
-msgstr "hændelsen"
+msgstr "begivenheden"
 
 #: ../gramps/gen/utils/grampslocale.py:774
 msgid "the repository"
@@ -11864,7 +11866,7 @@ msgstr "Brug_af_udklipsholderen"
 #: ../gramps/gui/clipboard.py:418
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:137
 msgid "Family Event"
-msgstr "Familiehændelse"
+msgstr "Familiebegivenhed"
 
 #: ../gramps/gui/clipboard.py:465
 msgid "Family Attribute"
@@ -11882,7 +11884,7 @@ msgstr "Bind/side: %(pag)s -- %(sourcetext)s"
 
 #: ../gramps/gui/clipboard.py:548
 msgid "Event ref"
-msgstr "Hændelsehenv."
+msgstr "Begivenhedshenv."
 
 #: ../gramps/gui/clipboard.py:709
 msgid "Child ref"
@@ -12467,7 +12469,7 @@ msgstr "Hele året"
 
 #: ../gramps/gui/configure.py:1589
 msgid "Display ages for events after death *"
-msgstr "Vis alder for hændelser efter døden *"
+msgstr "Vis alder for begivenheder efter døden *"
 
 #: ../gramps/gui/configure.py:1605
 msgid "Calendar on reports"
@@ -12679,49 +12681,49 @@ msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
 msgstr ""
-"Vis eller skjul tekstetiket ved siden af knapper (Person, slægtsforhold, "
-"Hændelser ......)\n"
+"Vis eller skjul tekstetiket ved siden af knapper "
+"(Person, slægtsforhold, Begivenheder ......)\n"
 "Genstart er påkrævet."
 
 #: ../gramps/gui/configure.py:2058
 msgid "Show Clipboard icon on toolbar"
-msgstr "Vis udklipsikonet i værktøjsbjælken"
+msgstr "Vis udklipsikonet i værktøjslinjen"
 
 #: ../gramps/gui/configure.py:2063
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr "Vis eller skjul udklipsholderikonet i værktøjsbjælken."
+msgstr "Vis eller skjul udklipsholderikonet i værktøjslinjen."
 
 #: ../gramps/gui/configure.py:2071
 msgid "Show Reports icon on toolbar"
-msgstr "Vis rapportikonet i værktøjsbjælken"
+msgstr "Vis rapportikonet i værktøjslinjen"
 
 #: ../gramps/gui/configure.py:2076
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr "Vis eller skjul rapportikonet i værkstøjsbjælken."
+msgstr "Vis eller skjul rapportikonet i værkstøjslinjen."
 
 #: ../gramps/gui/configure.py:2084
 msgid "Show Tools icon on toolbar"
-msgstr "Vis værktøsikonet i værktøjsbjælken"
+msgstr "Vis værktøsikonet i værktøjslinjen"
 
 #: ../gramps/gui/configure.py:2089
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr "Vis eller skjul værktøjsikonet i værktøjsbjælken."
+msgstr "Vis eller skjul værktøjsikonet i værktøjslinjen."
 
 #: ../gramps/gui/configure.py:2097
 msgid "Show Addons icon on toolbar"
-msgstr "Vis tillægsikonet i værktøjsbjælken"
+msgstr "Vis tillægsikonet i værktøjslinjen"
 
 #: ../gramps/gui/configure.py:2102
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Vis eller skjul tillægsikonet i værktøjsbjælken."
+msgstr "Vis eller skjul tillægsikonet i værktøjslinjen."
 
 #: ../gramps/gui/configure.py:2110
 msgid "Show Preferences icon on toolbar"
-msgstr "Hvis ikonet for indstillinger i værktøjsbjælken"
+msgstr "Hvis ikonet for indstillinger i værktøjslinjen"
 
 #: ../gramps/gui/configure.py:2115
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr "Vis eller skjul ikonet for indstillinger i værktøjsbjælken."
+msgstr "Vis eller skjul ikonet for indstillinger i værktøjslinjen."
 
 #: ../gramps/gui/configure.py:2123
 msgid "Both text and icons"
@@ -12737,15 +12739,15 @@ msgstr "Udelukkende ikoner"
 
 #: ../gramps/gui/configure.py:2130
 msgid "Display text, icons or both on the toolbar buttons."
-msgstr "Vis tekst, ikoner eller begge dele i værktøjsbjælken."
+msgstr "Vis tekst, ikoner eller begge dele i værktøjslinjen."
 
 #: ../gramps/gui/configure.py:2132
 msgid "Toolbar Style"
-msgstr "Værktøjsbjælke stil"
+msgstr "Værktøjslinje stil"
 
 #: ../gramps/gui/configure.py:2140
 msgid "Show close button in gramplet bar tabs"
-msgstr "Vis luk-knappen i gramplet fanebladsbjælken"
+msgstr "Vis luk-knappen i gramplet fanebladslinjen"
 
 #: ../gramps/gui/configure.py:2146
 msgid "Show close button to simplify removing gramplets from bars."
@@ -13638,7 +13640,7 @@ msgstr "Ingen familie er aktiv"
 
 #: ../gramps/gui/displaystate.py:451
 msgid "No active event"
-msgstr "Ingen hændelse er aktiv"
+msgstr "Ingen begivenhed er aktiv"
 
 #: ../gramps/gui/displaystate.py:452
 msgid "No active place"
@@ -14003,28 +14005,28 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:64
 msgid "Add a new family event"
-msgstr "Tilføj en ny familiehændelse"
+msgstr "Tilføj en ny familiebegivenhed"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:65
 msgid "Remove the selected family event"
-msgstr "Fjern den valgte familiehændelse"
+msgstr "Fjern den valgte familiebegivenhed"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:66
 msgid "Edit the selected family event or edit person"
-msgstr "Redigér den valgte familiehændelse eller redigér person"
+msgstr "Redigér den valgte familiebegivenhed eller redigér person"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
 msgid "Share an existing event"
-msgstr "Del en eksisterende hændelse"
+msgstr "Del en eksisterende begivenhed"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 msgid "Move the selected event upwards"
-msgstr "Ryk den valgte hændelse op"
+msgstr "Ryk den valgte begivenhed op"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:69
 msgid "Move the selected event downwards"
-msgstr "Ryk den valgte hændelse ned"
+msgstr "Ryk den valgte begivenhed ned"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:94
 #: ../gramps/plugins/gramplet/events.py:109
@@ -14033,7 +14035,7 @@ msgstr "Rolle"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:131
 msgid "_Events"
-msgstr "_Hændelser"
+msgstr "_Begivenheder"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:291
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:419
@@ -14044,11 +14046,11 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
-"Denne hændelseshenvisning kan ikke redigeres nu. Den tilknyttede hændelse er "
-"enten allerede under redigering, eller også er en anden hændelseshenvisning "
-"der er knyttet til samme hændelse under redigering.\n"
+"Denne begivenhedshenvisning kan ikke redigeres nu. Den tilknyttede "
+"begivenhed er enten allerede under redigering, eller også er en anden "
+"begivenhedshenvisning der er knyttet til samme begivenhed under redigering.\n"
 "\n"
-"For at redigere denne hændelseshenvisning, skal du lukke hændelsen."
+"For at redigere denne begivenhedshenvisning, skal du lukke begivenheden."
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:341
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:417
@@ -14065,7 +14067,7 @@ msgstr "Kan ikke ændre person"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:386
 msgid "You cannot change Person events in the Family Editor"
-msgstr "Du kan ikke ændre en persons hændelser under familieredigering"
+msgstr "Du kan ikke ændre en persons begivenheder under familieredigering"
 
 #: ../gramps/gui/editors/displaytabs/eventrefmodel.py:75
 #: ../gramps/gui/editors/displaytabs/namemodel.py:68
@@ -14108,7 +14110,7 @@ msgid ""
 msgstr ""
 "Denne mediehenvisning kan ikke redigeres nu. Det tilknyttede medieobjekt er "
 "enten allerede under redigering, eller også er en anden mediehenvisning der "
-"er knyttet til samme hændelse under redigering.\n"
+"er knyttet til samme begivenhed under redigering.\n"
 "\n"
 "For at redigere denne mediehenvisning, skal du lukke medieobjektet."
 
@@ -14254,23 +14256,23 @@ msgstr "<Ukendt>"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:56
 msgid "Add a new personal event"
-msgstr "Tilføj en ny personlig hændelse"
+msgstr "Tilføj en ny personlig begivenhed"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:57
 msgid "Remove the selected personal event"
-msgstr "Fjern den valgte personlige hændelse"
+msgstr "Fjern den valgte personlige begivenhed"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Edit the selected personal event or edit family"
-msgstr "Redigér den valgte personlige hændelse eller redigér familie"
+msgstr "Redigér den valgte personlige begivenhed eller redigér familie"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:60
 msgid "Move the selected event upwards or change family order"
-msgstr "Ryk den valgte hændelse op eller ret familierækkefølge"
+msgstr "Ryk den valgte begivenhed op eller ret familierækkefølge"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:61
 msgid "Move the selected event downwards or change family order"
-msgstr "Ryk den valgte hændelse ned eller ret familierækkefølge"
+msgstr "Ryk den valgte begivenhed ned eller ret familierækkefølge"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:144
 msgid "Cannot change Family"
@@ -14278,7 +14280,7 @@ msgstr "Kan ikke ændre familie"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:145
 msgid "You cannot change Family events in the Person Editor"
-msgstr "Du kan ikke ændre familiehændelser under personredigering"
+msgstr "Du kan ikke ændre familiebegivenhed under personredigering"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:55
 msgid "Create and add a new association"
@@ -14599,7 +14601,7 @@ msgstr "Tidsrum"
 
 #: ../gramps/gui/editors/editdate.py:89
 msgid "Estimated"
-msgstr "Estimeret"
+msgstr "Anslået"
 
 #: ../gramps/gui/editors/editdate.py:90
 msgid "Calculated"
@@ -14628,12 +14630,12 @@ msgstr "New_Event_dialog"
 #: ../gramps/gui/editors/editeventref.py:314
 #, python-format
 msgid "Event: %s"
-msgstr "Hændelse: %s"
+msgstr "Begivenhed: %s"
 
 #: ../gramps/gui/editors/editevent.py:116
 #: ../gramps/gui/editors/editeventref.py:316
 msgid "New Event"
-msgstr "Ny Hændelse"
+msgstr "Ny begivenhed"
 
 #: ../gramps/gui/editors/editevent.py:275
 #: ../gramps/plugins/view/geoclose.py:680
@@ -14646,37 +14648,37 @@ msgstr "Ny Hændelse"
 #: ../gramps/plugins/view/geoperson.py:565
 #: ../gramps/plugins/view/geoperson.py:607
 msgid "Edit Event"
-msgstr "Redigér hændelse"
+msgstr "Redigér begivenhed"
 
 #: ../gramps/gui/editors/editevent.py:285
 #: ../gramps/gui/editors/editevent.py:313
 msgid "Cannot save event"
-msgstr "Kan ikke gemme hændelse"
+msgstr "Kan ikke gemme begivenhed"
 
 #: ../gramps/gui/editors/editevent.py:287
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr ""
-"Der findes ingen data til denne hændelse. Indtast data eller afbryd "
+"Der findes ingen data til denne begivenhed. Indtast data eller afbryd "
 "redigering."
 
 #: ../gramps/gui/editors/editevent.py:299
 #: ../gramps/gui/editors/editreference.py:288
 msgid "Cannot save event. ID already exists."
-msgstr "Kan ikke gemme hændelse. Id'en findes allerede."
+msgstr "Kan ikke gemme begivenhed. Id'et findes allerede."
 
 #: ../gramps/gui/editors/editevent.py:314
 msgid "The event type cannot be empty"
-msgstr "Hændelsestypen kan ikke være tom"
+msgstr "Begivenhedstypen kan ikke være tom"
 
 #: ../gramps/gui/editors/editevent.py:322
 #, python-format
 msgid "Add Event (%s)"
-msgstr "Tilføj hændelse (%s)"
+msgstr "Tilføj begivenhed (%s)"
 
 #: ../gramps/gui/editors/editevent.py:328
 #, python-format
 msgid "Edit Event (%s)"
-msgstr "Redigér hændelse (%s)"
+msgstr "Redigér begivenhed (%s)"
 
 #: ../gramps/gui/editors/editeventref.py:68
 msgctxt "manual"
@@ -14686,7 +14688,7 @@ msgstr "Event_Reference_Editor_dialog"
 #: ../gramps/gui/editors/editeventref.py:87
 #: ../gramps/gui/editors/editeventref.py:317
 msgid "Event Reference Editor"
-msgstr "Redigering af hændelseshenvisninger"
+msgstr "Redigering af begivenhedshenvisninger"
 
 #: ../gramps/gui/editors/editeventref.py:108
 #: ../gramps/gui/editors/editmediaref.py:129
@@ -14698,11 +14700,11 @@ msgstr "_Generelt"
 
 #: ../gramps/gui/editors/editeventref.py:323
 msgid "Modify Event"
-msgstr "Redigér hændelse"
+msgstr "Ret begivenhed"
 
 #: ../gramps/gui/editors/editeventref.py:328
 msgid "Add Event"
-msgstr "Tilføj hændelse"
+msgstr "Tilføj begivenhed"
 
 #: ../gramps/gui/editors/editfamily.py:105
 msgctxt "manual"
@@ -15590,7 +15592,7 @@ msgstr "Familiefiltre"
 
 #: ../gramps/gui/editors/filtereditor.py:100
 msgid "Event Filters"
-msgstr "Hændelsesfiltre"
+msgstr "Begivenhedsfiltre"
 
 #: ../gramps/gui/editors/filtereditor.py:101
 msgid "Place Filters"
@@ -15664,7 +15666,7 @@ msgstr "Anvend regulært udtryk"
 
 #: ../gramps/gui/editors/filtereditor.py:613
 msgid "Also family events where person is spouse"
-msgstr "Også familiehændelser hvor personen er ægtefælle"
+msgstr "Også familiebegivenheder hvor personen er ægtefælle"
 
 #: ../gramps/gui/editors/filtereditor.py:615
 msgid "Only include primary participants"
@@ -16494,7 +16496,7 @@ msgid ""
 msgstr ""
 "Postadresse. \n"
 "\n"
-"NB: Brug bopælshændelse til genealogisk adressedata."
+"NB: Brug bopælsbegivenhed til genealogisk adressedata."
 
 #: ../gramps/gui/glade/editaddress.glade:291
 #: ../gramps/gui/glade/editattribute.glade:143
@@ -16575,10 +16577,10 @@ msgid ""
 "standard."
 msgstr ""
 "Navnet på en attribut som du ønsker at bruge. F.eks.: højde (for en person), "
-"vejret på denne dag (for en hændelse), ... \n"
+"vejret på denne dag (for en begivenhed), ... \n"
 "Brug dette for at gemme bidder af information som du ønsker at indsamle for "
 "at linke dem korrekt til kilderne. Attributter kan bruges til personer, "
-"familier, hændelser og medier.\n"
+"familier, begivenheder og medier.\n"
 "\n"
 "NB: adskillige prædefinerede attributter henviser til værdier som findes i "
 "GEDCOM-standarden."
@@ -16663,9 +16665,9 @@ msgstr ""
 "mundtligt gengivne slægtsoplysninger eller mulighed for partiskhed som "
 "f.eks. i en biografi)\n"
 "Høj =sekundær evidens, dvs. data der er protokolleret forholdsvis kort tid "
-"efter hændelsen\n"
-"Meget høj =direkte og primær evidens anvendt, eller som følger af hændelsens "
-"selve natur."
+"efter begivenheden\n"
+"Meget høj =direkte og primær evidens anvendt, eller som følger af "
+"begivenhedens selve natur."
 
 #: ../gramps/gui/glade/editcitation.glade:227
 #: ../gramps/gui/glade/editevent.glade:313
@@ -16684,7 +16686,7 @@ msgstr "_Id:"
 
 #: ../gramps/gui/glade/editcitation.glade:241
 msgid "A unique ID to identify the citation"
-msgstr "Et entydigt id til at identificere hændelsen"
+msgstr "Et entydigt id til at identificere kildehenvisningen"
 
 #: ../gramps/gui/glade/editcitation.glade:361
 #: ../gramps/gui/glade/editevent.glade:391
@@ -16779,8 +16781,8 @@ msgid ""
 "Description of the event. Leave empty if you want to autogenerate this with "
 "the tool 'Extract Event Description'."
 msgstr ""
-"Beskrivelse af hændelsen. Lad være tom hvis du ønsker at autogenerere den "
-"med værktøjet \"Udtræk hændelsesbeskrivelse\"."
+"Beskrivelse af begivenheden. Lad være tom hvis du ønsker at autogenerere den "
+"med værktøjet \"Udtræk begivenhedsbeskrivelse\"."
 
 #: ../gramps/gui/glade/editevent.glade:195
 #: ../gramps/gui/glade/editeventref.glade:288
@@ -16801,20 +16803,20 @@ msgstr "Vælger"
 #: ../gramps/gui/glade/editevent.glade:293
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
 msgstr ""
-"Hvilken type hændelse dette er. F.eks. \"begravelse\", \"dimmision\", ... ."
+"Hvilken type begivenhed dette er. F.eks. \"begravelse\", \"dimmision\", ... ."
 
 #: ../gramps/gui/glade/editevent.glade:327
 msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"Dato for hændelsen. Dette kan være en nøjagtig dato, et interval (fra ... "
-"til, mellem, ...) eller en upræcis dato (omkring, ...)."
+"Dato for begivenheden. Dette kan være en nøjagtig dato, et interval "
+"(fra ... til, mellem, ...) eller en upræcis dato (omkring, ...)."
 
 #: ../gramps/gui/glade/editevent.glade:376
 #: ../gramps/gui/glade/editeventref.glade:465
 msgid "A unique ID to identify the event"
-msgstr "En entydig id til at identificere hændelsen"
+msgstr "En entydig id til at identificere begivenheden"
 
 #: ../gramps/gui/glade/editeventref.glade:82
 #: ../gramps/gui/glade/editplaceref.glade:83
@@ -16831,8 +16833,8 @@ msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
 msgstr ""
-"<b>NB:</b> Alle ændringer i oplysningerne om delte hændelser vil afspejles i "
-"selve hændelsen og gælde for alle deltagere i hændelsen."
+"<b>NB:</b> Alle ændringer i oplysningerne om delte begivenheder vil "
+"afspejles i selve begivenheden og gælde for alle deltagere i begivenheden."
 
 #: ../gramps/gui/glade/editeventref.glade:638
 #: ../gramps/gui/glade/editplaceref.glade:719
@@ -16899,8 +16901,8 @@ msgid ""
 "The relationship type, eg 'Married' or 'Unmarried'. Use Events for more "
 "details."
 msgstr ""
-"Type af slægtskab, f.eks. \"gift\" eller \"ugift\". Brug \"Hændelser\" for "
-"flere detaljer."
+"Type af slægtskab, f.eks. \"gift\" eller \"ugift\". Brug \"Begivenheder\" "
+"for flere detaljer."
 
 #: ../gramps/gui/glade/editfamily.glade:748
 #: ../gramps/gui/glade/editmedia.glade:355
@@ -17396,9 +17398,9 @@ msgid ""
 msgstr ""
 "Beskrivelse af forbindelsen, f.eks. gudfader, ven, ...\n"
 "\n"
-"NB: Brug \"Hændelser\" i stedet til forbindelser der er knyttet til bestemte "
-"tidsrumr eller begivenheder. Hændelser kan deles mellem personer, hvor hver "
-"enkelts rolle i hændelsen kan anføres."
+"NB: Brug \"Begivenheder\" i stedet til forbindelser der er knyttet til "
+"bestemte tidsrum eller begivenheder. Begivenheder kan deles mellem personer, "
+"hvor hver enkelts rolle i begivenheden kan anføres."
 
 #: ../gramps/gui/glade/editpersonref.glade:143
 msgid ""
@@ -17801,22 +17803,22 @@ msgid ""
 "Select the event that will provide the\n"
 "primary data for the merged event."
 msgstr ""
-"Vælg den person, der vil levere de\n"
-"primære data for den sammenflettede hændelse."
+"Vælg den begivenhed, der vil levere de\n"
+"primære data for den sammenflettede begivenhed."
 
 #: ../gramps/gui/glade/mergeevent.glade:182
 msgid "Event 1"
-msgstr "Hændelse 1"
+msgstr "Begivenhed 1"
 
 #: ../gramps/gui/glade/mergeevent.glade:196
 msgid "Event 2"
-msgstr "Hændelse 2"
+msgstr "Begivenhed 2"
 
 #: ../gramps/gui/glade/mergeevent.glade:498
 msgid ""
 "Attributes, notes, sources and media objects of both events will be combined."
 msgstr ""
-"Attributter, noter, kilder og medieobjekter for begge hændelser vil blive "
+"Attributter, noter, kilder og medieobjekter for begge begivenheder vil blive "
 "kombineret."
 
 #: ../gramps/gui/glade/mergefamily.glade:95
@@ -17855,7 +17857,7 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Hændelser, sdh_ord, medieobjekter, attributter, noter, kilder og mærkater "
+"Begivenheder, sdh_ord, medieobjekter, attributter, noter, kilder og mærkater "
 "for begge familier vil blive kombineret."
 
 #: ../gramps/gui/glade/mergemedia.glade:94
@@ -17935,8 +17937,8 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"Hændelser, medieobjekter, adresser, attributter, webadresser, noter, kilder "
-"og mærkater for begge personer vil blive kombineret."
+"Begivenheder, medieobjekter, adresser, attributter, webadresser, noter, "
+"kilder og mærkater for begge personer vil blive kombineret."
 
 #: ../gramps/gui/glade/mergeperson.glade:490
 msgid "Context Information"
@@ -18961,11 +18963,11 @@ msgstr "Sammenflet kildehenvisninger"
 #: ../gramps/gui/merge/mergeevent.py:45
 msgctxt "manual"
 msgid "Merge_Events"
-msgstr "Sammenflet_hændelser"
+msgstr "Sammenflet_begivenheder"
 
 #: ../gramps/gui/merge/mergeevent.py:68
 msgid "Merge Events"
-msgstr "Sammenflet hændelser"
+msgstr "Sammenflet begivenheder"
 
 #: ../gramps/gui/merge/mergefamily.py:46
 msgctxt "manual"
@@ -20385,7 +20387,7 @@ msgstr "Select_Source_or_Citation_selector"
 
 #: ../gramps/gui/selectors/selectevent.py:59
 msgid "Select Event"
-msgstr "Vælg hændelse"
+msgstr "Vælg begivenhed"
 
 #: ../gramps/gui/selectors/selectevent.py:82
 msgctxt "manual"
@@ -22850,7 +22852,7 @@ msgstr "Alder ved død"
 #: ../gramps/plugins/webreport/multiselect.py:158
 #: ../gramps/plugins/webreport/multiselect.py:217
 msgid "Event type"
-msgstr "Hændelsestype"
+msgstr "Begivenhedstype"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:475
 msgid "(Preferred) title missing"
@@ -22892,7 +22894,7 @@ msgstr "Stadig i live"
 #: ../gramps/plugins/drawreport/statisticschart.py:583
 #: ../gramps/plugins/drawreport/statisticschart.py:595
 msgid "Events missing"
-msgstr "Hændelser mangler"
+msgstr "Begivenheder mangler"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:603
 #: ../gramps/plugins/drawreport/statisticschart.py:611
@@ -23594,7 +23596,7 @@ msgstr "Id"
 
 #: ../gramps/plugins/gramplet/coordinates.py:154
 msgid "Edit the event"
-msgstr "Redigér hændelsen"
+msgstr "Redigér begivenheden"
 
 #: ../gramps/plugins/gramplet/coordinates.py:159
 msgid "Edit the place"
@@ -23619,7 +23621,7 @@ msgstr "Anvend"
 #: ../gramps/plugins/gramplet/events.py:92
 #: ../gramps/plugins/gramplet/personresidence.py:58
 msgid "Double-click on a row to edit the selected event."
-msgstr "Dobbeltklik på en række for at redigere den valgte hændelse."
+msgstr "Dobbeltklik på en række for at redigere den valgte begivenhed."
 
 #: ../gramps/plugins/gramplet/fanchart2waygramplet.py:81
 #: ../gramps/plugins/gramplet/fanchartdescgramplet.py:69
@@ -23730,7 +23732,7 @@ msgid ""
 "person/source/event?%(html_end)s\n"
 msgstr ""
 "  8. %(gramps_FAQ_html_start)s%(faq_section)sHvordan tilføjes et fotografi "
-"af en person/kilde/hændelse?%(html_end)s\n"
+"af en person/kilde/begivenhed?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:168
 #, python-format
@@ -23859,7 +23861,7 @@ msgstr "Gramplet der viser grafer af forskellige aldre"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:84
 msgid "Gramplet showing calendar and events on specific dates in history"
 msgstr ""
-"Gramplet der viser kalender og hændelser på bestemte datoer i historien"
+"Gramplet der viser kalender og begivenheder på bestemte datoer i historien"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:98
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:105
@@ -24085,24 +24087,24 @@ msgstr "Persons bopæl"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:521
 msgid "Gramplet showing residence events for a person"
-msgstr "Gramplet der viser bopælshændelser for en person"
+msgstr "Gramplet der viser bopælsbegivenheder for en person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:536
 msgid "Person Events"
-msgstr "Persons hændelser"
+msgstr "Persons begivenheder"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:537
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1528
 msgid "Gramplet showing the events for a person"
-msgstr "Gramplet der viser hændelser for en person"
+msgstr "Gramplet der viser begivenheder for en person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:552
 msgid "Family Events"
-msgstr "Familiehændelser"
+msgstr "Familiebegivenheder"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:553
 msgid "Gramplet showing the events for a family"
-msgstr "Gramplet der viser hændelser for en familie"
+msgstr "Gramplet der viser begivenheder for en familie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:568
 msgid "Person Gallery"
@@ -24131,11 +24133,11 @@ msgstr "Gramplet der viser medieobjekter for en familie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:600
 msgid "Event Gallery"
-msgstr "Hændelsesgalleri"
+msgstr "Begivenhedsgalleri"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:601
 msgid "Gramplet showing media objects for an event"
-msgstr "Gramplet der viser medieobjekter for en hændelse"
+msgstr "Gramplet der viser medieobjekter for en begivenhed"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:616
 msgid "Place Gallery"
@@ -24171,11 +24173,11 @@ msgstr "Gramplet der viser en persons attributter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:680
 msgid "Event Attributes"
-msgstr "Hændelsesattributter"
+msgstr "Begivenhedsattributter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:681
 msgid "Gramplet showing the attributes of an event"
-msgstr "Gramplet der viser en hændelses attributter"
+msgstr "Gramplet der viser en begivenheds attributter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:696
 msgid "Family Attributes"
@@ -24215,11 +24217,11 @@ msgstr "Gramplet der viser en persons noter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:776
 msgid "Event Notes"
-msgstr "Hændelsesnoter"
+msgstr "Begivenhedsnoter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:777
 msgid "Gramplet showing the notes for an event"
-msgstr "Gramplet der viser en hændelses noter"
+msgstr "Gramplet der viser en begivenheds noter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:792
 #: ../gramps/plugins/textreport/familygroup.py:793
@@ -24284,11 +24286,11 @@ msgstr "Gramplet der viser en persons kildehenvisninger"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:920
 msgid "Event Citations"
-msgstr "Hændelseskildehenvisninger"
+msgstr "Begivenhedskildehenvisninger"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:921
 msgid "Gramplet showing the citations for an event"
-msgstr "Gramplet der viser kildehenvisninger for en hændelse"
+msgstr "Gramplet der viser kildehenvisninger for en begivenhed"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:936
 msgid "Family Citations"
@@ -24355,11 +24357,11 @@ msgstr "Henvisninger"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1032
 msgid "Event References"
-msgstr "Hændelsesreference"
+msgstr "Begivenhedshenvisning"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1033
 msgid "Gramplet showing the backlink references for an event"
-msgstr "Gramplet der viser henvisninger for en hændelse"
+msgstr "Gramplet der viser henvisninger for en begivenhed"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1048
 msgid "Family References"
@@ -24437,11 +24439,11 @@ msgstr "Gramplet der leverer et familiefilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1192
 msgid "Event Filter"
-msgstr "Hændelsesfilter"
+msgstr "Begivenhedsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1193
 msgid "Gramplet providing an event filter"
-msgstr "Gramplet der leverer et hændelsesfilter"
+msgstr "Gramplet der leverer et begivenhedsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1208
 msgid "Source Filter"
@@ -24512,11 +24514,11 @@ msgstr "Gramplet der viser en persons huskeliste"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1338
 msgid "Event To Do"
-msgstr "Hændelseshuskeliste"
+msgstr "Begivenhedshuskeliste"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1339
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Gramplet der viser huskeliste noter for en hændelse"
+msgstr "Gramplet der viser huskeliste noter for en begivenhed"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1354
 msgid "Family To Do"
@@ -24598,20 +24600,20 @@ msgstr "Omslutter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1527
 msgid "Geography coordinates for Person Events"
-msgstr "Geografiske koordinater for person hændelser"
+msgstr "Geografiske koordinater for personbegivenheder"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1535
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1551
 msgid "Events Coordinates"
-msgstr "Hændelseskoordinater"
+msgstr "Begivenhedskoordinater"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1543
 msgid "Geography coordinates for Family Events"
-msgstr "Geografiske koordinater for familiehændelser"
+msgstr "Geografiske koordinater for familiebegivenheder"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1544
 msgid "Gramplet showing the events for all the family"
-msgstr "Gramplet der viser hændelser for hele familien"
+msgstr "Gramplet der viser begivenheder for hele familien"
 
 #: ../gramps/plugins/gramplet/leak.py:101
 msgid "Referrer"
@@ -25156,8 +25158,8 @@ msgid ""
 "in Gramps. The flexibility allows you to choose which fits your work style.\n"
 "\n"
 msgstr ""
-"Du kan nu indtaste din første familie, og det begynder med den første "
-"person.\n"
+"Du kan nu indtaste din første familie, og det begynder med den første person."
+"\n"
 "\n"
 "Skift til \"Personer\" visning og klik på \"Tilføj\" derefter \"Person\" "
 "(eller benyt [+] ikonet), dette vil åbne vinduet hvor en person kan "
@@ -25171,7 +25173,7 @@ msgstr ""
 "du se hvad det benyttes til.\n"
 "\n"
 "Du kan nu danne familier ved at tillægge forældre, ægtefælle og børn. Når du "
-"er igang, kan du angive hændelser til personer og familier. Du kan angive "
+"er igang, kan du angive begivenheder til personer og familier. Du kan angive "
 "kilder og kildehenvisninger for at dokumentere dine poster.\n"
 "\n"
 "Når du begynder at arbejde i Gramps, finder du ud af, at informationer kan "
@@ -25330,7 +25332,7 @@ msgstr "(personer med ukendt navn)"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:365
 msgid "birth event missing"
-msgstr "fødselshændelse mangler"
+msgstr "fødselsbegivenhed mangler"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:370
 #: ../gramps/plugins/gramplet/whatsnext.py:393
@@ -25359,7 +25361,7 @@ msgstr "%(name1)s og %(name2)s"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:433
 msgid "marriage event missing"
-msgstr "vielseshændelse mangler"
+msgstr "vielsesbegivenhed mangler"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:435
 msgid "relation type unknown"
@@ -25841,7 +25843,7 @@ msgstr "Vis Sosa- / Sosa-Stradonitz / Ahnentafel-nummer."
 
 #: ../gramps/plugins/graph/gvhourglass.py:539
 msgid "Show symbols for events"
-msgstr "Vis symboler for hændelser"
+msgstr "Vis symboler for begivenheder"
 
 #: ../gramps/plugins/graph/gvhourglass.py:541
 msgid "Show genealogical symbols for birth, marriage and death events."
@@ -26838,7 +26840,7 @@ msgstr "Navneændring"
 
 #: ../gramps/plugins/importer/importprogen.glade:1395
 msgid "Event date"
-msgstr "Hændelsesdato"
+msgstr "Begivenhedsdato"
 
 #: ../gramps/plugins/importer/importprogen.glade:1409
 msgid ""
@@ -26846,7 +26848,7 @@ msgid ""
 "event description."
 msgstr ""
 "Gem fødselsdatoen i\n"
-"hændelsesbeskrivelsen."
+"begivenhedsbeskrivelsen."
 
 #: ../gramps/plugins/importer/importprogen.glade:1426
 msgid ""
@@ -26854,7 +26856,7 @@ msgid ""
 "event description."
 msgstr ""
 "Gem dødsdatoen i\n"
-"hændelsesbeskrivelsen."
+"begivenhedsbeskrivelsen."
 
 #: ../gramps/plugins/importer/importprogen.glade:1443
 msgid "Diverse"
@@ -26870,7 +26872,7 @@ msgid ""
 "in event description."
 msgstr ""
 "Gem REFN tallet\n"
-"i hændelsesbeskrivelsen."
+"i begivenhedsbeskrivelsen."
 
 #: ../gramps/plugins/importer/importprogen.glade:1471
 #: ../gramps/plugins/importer/importprogen.glade:1511
@@ -26879,7 +26881,7 @@ msgid ""
 "as cause of death event."
 msgstr ""
 "Benyt dødsinformationen\n"
-"som hændelse for dødsårsag."
+"som begivenhed for dødsårsag."
 
 #: ../gramps/plugins/importer/importprogen.glade:1514
 msgid "(-cause)"
@@ -27227,7 +27229,7 @@ msgstr "Vidnes navn: %s"
 
 #: ../gramps/plugins/importer/importxml.py:1444
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "Alle henvisninger til hændelser skal have attributten \"hlink\"."
+msgstr "Alle henvisninger til begivenhed skal have attributten \"hlink\"."
 
 #: ../gramps/plugins/importer/importxml.py:1737
 msgid "Any person reference must have a 'hlink' attribute."
@@ -27633,7 +27635,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:7939
 msgid "Look for nameless events."
-msgstr "Led efter hændelser uden navn."
+msgstr "Led efter begivenheder uden navn."
 
 #: ../gramps/plugins/lib/libgedcom.py:7963
 msgid "Character set"
@@ -27789,7 +27791,7 @@ msgstr "Personmærkater"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
 msgid "Event Tags"
-msgstr "Hændelsesmærkater"
+msgstr "Begivenhedsmærkater"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
 msgid "Image Tags"
@@ -32078,26 +32080,26 @@ msgstr ""
 #: ../gramps/plugins/quickview/all_events.py:58
 #, python-format
 msgid "Sorted events of %s"
-msgstr "Sorterede hændelser af %s"
+msgstr "Sorterede begivenheder af %s"
 
 #: ../gramps/plugins/quickview/all_events.py:61
 #: ../gramps/plugins/quickview/all_events.py:113
 #: ../gramps/plugins/quickview/all_events.py:130
 msgid "Event Date"
-msgstr "Hændelsesdato"
+msgstr "Begivenhedsdato"
 
 #: ../gramps/plugins/quickview/all_events.py:61
 #: ../gramps/plugins/quickview/all_events.py:113
 #: ../gramps/plugins/quickview/all_events.py:130
 msgid "Event Place"
-msgstr "Hændelsessted"
+msgstr "Begivenhedssted"
 
 #: ../gramps/plugins/quickview/all_events.py:61
 #: ../gramps/plugins/quickview/all_events.py:113
 #: ../gramps/plugins/quickview/all_events.py:130
 #: ../gramps/plugins/webreport/person.py:1116
 msgid "Event Type"
-msgstr "Hændelsestype"
+msgstr "Begivenhedstype"
 
 #: ../gramps/plugins/quickview/all_events.py:69
 #: ../gramps/plugins/quickview/all_events.py:126
@@ -32114,7 +32116,7 @@ msgid ""
 "Sorted events of family\n"
 " %(father)s - %(mother)s"
 msgstr ""
-"Sorterede hændelser for familien\n"
+"Sorterede begivenheder for familien\n"
 " %(father)s - %(mother)s"
 
 #: ../gramps/plugins/quickview/all_events.py:113
@@ -32124,7 +32126,7 @@ msgstr "Familiemedlem"
 
 #: ../gramps/plugins/quickview/all_events.py:129
 msgid "Personal events of the children"
-msgstr "Personlige hændelser for børnene"
+msgstr "Personlige begivenheder for børnene"
 
 #: ../gramps/plugins/quickview/all_relations.py:72
 msgid "Home person not set."
@@ -32210,7 +32212,7 @@ msgstr "Ikke-valgt familie"
 #: ../gramps/plugins/quickview/filterbyname.py:45
 msgctxt "Filtering_on"
 msgid "Inverse Event"
-msgstr "Ikke-valgt hændelse"
+msgstr "Ikke-valgt begivenhed"
 
 #: ../gramps/plugins/quickview/filterbyname.py:46
 msgctxt "Filtering_on"
@@ -32250,7 +32252,7 @@ msgstr "alle familier"
 #: ../gramps/plugins/quickview/filterbyname.py:53
 msgctxt "Filtering_on"
 msgid "all events"
-msgstr "alle hændelser"
+msgstr "alle begivenheder"
 
 #: ../gramps/plugins/quickview/filterbyname.py:54
 msgctxt "Filtering_on"
@@ -32384,11 +32386,11 @@ msgstr "Navnetype"
 
 #: ../gramps/plugins/quickview/filterbyname.py:443
 msgid "birth event but no date"
-msgstr "fødselshændelse, men ingen dato"
+msgstr "fødselsbegivenhed, men ingen dato"
 
 #: ../gramps/plugins/quickview/filterbyname.py:446
 msgid "missing birth event"
-msgstr "manglende fødselshændelse"
+msgstr "manglende fødselsbegivenhed"
 
 #: ../gramps/plugins/quickview/filterbyname.py:481
 msgid "Media count"
@@ -32520,33 +32522,33 @@ msgstr "Ingen link-henvisninger til denne note"
 #: ../gramps/plugins/quickview/onthisday.py:79
 #, python-format
 msgid "Events of %(date)s"
-msgstr "Hændelser på %(date)s"
+msgstr "Begivenheder på %(date)s"
 
 #: ../gramps/plugins/quickview/onthisday.py:114
 msgid "Events on this exact date"
-msgstr "Hændelser på præcis denne dato"
+msgstr "Begivenheder på præcis denne dato"
 
 #: ../gramps/plugins/quickview/onthisday.py:117
 msgid "No events on this exact date"
-msgstr "Ingen hændelser på præcis denne dato"
+msgstr "Ingen begivenheder på præcis denne dato"
 
 #: ../gramps/plugins/quickview/onthisday.py:123
 msgid "Other events on this month/day in history"
-msgstr "Andre hændelser på denne måned/dag i historien"
+msgstr "Andre begivenheder på denne måned/dag i historien"
 
 #: ../gramps/plugins/quickview/onthisday.py:126
 msgid "No other events on this month/day in history"
-msgstr "Ingen andre hændelser på denne måned/dag i historien"
+msgstr "Ingen andre begivenheder på denne måned/dag i historien"
 
 #: ../gramps/plugins/quickview/onthisday.py:132
 #, python-format
 msgid "Other events in %(year)d"
-msgstr "Andre hændelser i %(year)d"
+msgstr "Andre begivenheder i %(year)d"
 
 #: ../gramps/plugins/quickview/onthisday.py:136
 #, python-format
 msgid "No other events in %(year)d"
-msgstr "Ingen andre hændelser i %(year)d"
+msgstr "Ingen andre begivenheder i %(year)d"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:38
 msgid "Display people and ages on a particular date"
@@ -32563,19 +32565,19 @@ msgstr "Vis personer med samme attribut."
 #: ../gramps/plugins/quickview/quickview.gpr.py:81
 #: ../gramps/plugins/webreport/heatmap.py:782
 msgid "All Events"
-msgstr "Alle hændelser"
+msgstr "Alle begivenheder"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:82
 msgid "Display a person's events, both personal and family."
-msgstr "Vis en persons hændelser, såvel personlige som familiemæssige."
+msgstr "Vis en persons begivenheder, såvel personlige som familiemæssige."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:98
 msgid "All Family Events"
-msgstr "Alle familiehændelser"
+msgstr "Alle familiebegivenheder"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:99
 msgid "Display the family and family members events."
-msgstr "Vis familien og hændelser for familiens medlemmer."
+msgstr "Vis familien og begivenheder for familiens medlemmer."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:120
 msgid "Relation to Home Person"
@@ -32611,7 +32613,7 @@ msgstr "På denne dag"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:203
 msgid "Display events on a particular day"
-msgstr "Vis hændelser på en bestemt dag"
+msgstr "Vis begivenheder på en bestemt dag"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:230
 #: ../gramps/plugins/quickview/references.py:94
@@ -33061,11 +33063,11 @@ msgstr "Dette vil vises efter navnet, som tegn på at personen er død"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:610
 msgid "Show event year"
-msgstr "Vis hændelsesår"
+msgstr "Vis begivenhedsår"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:611
 msgid "Prints the year the event took place in the report"
-msgstr "Udskriver året, hvor hændelsen skete, i rapporten"
+msgstr "Udskriver året, hvor begivenheden skete, i rapporten"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:616
 #: ../gramps/plugins/textreport/birthdayreport.py:617
@@ -33420,20 +33422,20 @@ msgstr "Hvorvidt ægtefæller til børn skal vises."
 #: ../gramps/plugins/textreport/detancestralreport.py:942
 #: ../gramps/plugins/textreport/detdescendantreport.py:1158
 msgid "Include events"
-msgstr "Medtag hændelser"
+msgstr "Medtag begivenheder"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:943
 #: ../gramps/plugins/textreport/detdescendantreport.py:1159
 msgid "Whether to include events."
-msgstr "Vælg om hændelser skal medtages."
+msgstr "Vælg om begivenheder skal medtages."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:946
 msgid "Include other events"
-msgstr "Medtag andres hændelser"
+msgstr "Medtag andres begivenheder"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:948
 msgid "Whether to include other events people participated in."
-msgstr "Hvorvidt andre hændelser som personer deltog i skal medtages."
+msgstr "Hvorvidt andre begivenheder som personer deltog i skal medtages."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:952
 #: ../gramps/plugins/textreport/detdescendantreport.py:1162
@@ -33746,11 +33748,11 @@ msgstr "Vælg om der skal medtages oplysninger om ægteskab for forældre."
 
 #: ../gramps/plugins/textreport/familygroup.py:766
 msgid "Parent Events"
-msgstr "Forældre-hændelser"
+msgstr "Forældre-begivenheder"
 
 #: ../gramps/plugins/textreport/familygroup.py:767
 msgid "Whether to include events for parents."
-msgstr "Vælg om hændelser for forældre skal medtages."
+msgstr "Vælg om begivenheder for forældre skal medtages."
 
 #: ../gramps/plugins/textreport/familygroup.py:770
 msgid "Parent Addresses"
@@ -33856,11 +33858,11 @@ msgstr "(billede)"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1110
 msgid "List events chronologically"
-msgstr "Oplist hændelser kronologisk"
+msgstr "Oplist begivenheder kronologisk"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1111
 msgid "Whether to sort events into chronological order."
-msgstr "Vælg om hændelser skal sorteres i kronologisk rækkefølge."
+msgstr "Vælg om begivenheder skal sorteres i kronologisk rækkefølge."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1118
 msgid "Use name of person as title"
@@ -33903,11 +33905,11 @@ msgstr "Medtag attributter"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1188
 msgid "Include Census Events"
-msgstr "Medtag folketællingshændelser"
+msgstr "Medtag folketællingsbegivenheder"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1189
 msgid "Whether to include Census Events."
-msgstr "Hvorvidt folketællingshændelser skal medtages."
+msgstr "Hvorvidt folketællingsbegivenheder skal medtages."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1201
 msgid "Sections"
@@ -33915,7 +33917,7 @@ msgstr "Sektioner"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1204
 msgid "Event groups"
-msgstr "Hændelsesgrupper"
+msgstr "Begivenhedsgrupper"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1205
 msgid "Check if a separate section is required."
@@ -34047,12 +34049,12 @@ msgstr "Alle Navne: %s"
 
 #: ../gramps/plugins/textreport/placereport.py:235
 msgid "Events that happened at this place"
-msgstr "Hændelser som skete på dette sted"
+msgstr "Begivenheder som skete på dette sted"
 
 #: ../gramps/plugins/textreport/placereport.py:241
 #: ../gramps/plugins/textreport/placereport.py:327
 msgid "Type of Event"
-msgstr "Type af hændelse"
+msgstr "Type af begivenhed"
 
 #: ../gramps/plugins/textreport/placereport.py:289
 #, python-format
@@ -34090,7 +34092,7 @@ msgstr "Fokusér på"
 
 #: ../gramps/plugins/textreport/placereport.py:491
 msgid "If report is event or person centered"
-msgstr "Om rapporten er hændelses- eller personcentreret"
+msgstr "Om rapporten er begivenheds- eller personcentreret"
 
 #: ../gramps/plugins/textreport/recordsreport.py:194
 #, python-format
@@ -34238,12 +34240,12 @@ msgstr "Antal familier: %d"
 
 #: ../gramps/plugins/textreport/summary.py:246
 msgid "Event Information"
-msgstr "Hændelsesinformation"
+msgstr "Begivenhedsinformation"
 
 #: ../gramps/plugins/textreport/summary.py:251
 #, python-format
 msgid "Number of events: %d"
-msgstr "Antal hændelser: %d"
+msgstr "Antal begivenheder: %d"
 
 #: ../gramps/plugins/textreport/summary.py:260
 msgid "Place Information"
@@ -34531,21 +34533,21 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"Dette redskab vil omdøbe alle hændelser af en type til en anden type. Når "
+"Dette redskab vil omdøbe alle begivenheder af en type til en anden type. Når "
 "omdøbningen er afsluttet kan den ikke omgøres ved at bruge den sædvanlige "
 "Fortryd-funktion."
 
 #: ../gramps/plugins/tool/changetypes.glade:110
 msgid "Original event type:"
-msgstr "Oprindelig hændelsestype:"
+msgstr "Oprindelig begivenhedstype:"
 
 #: ../gramps/plugins/tool/changetypes.glade:122
 msgid "New event type:"
-msgstr "Ny hændelsestype:"
+msgstr "Ny begivenhedstype:"
 
 #: ../gramps/plugins/tool/changetypes.py:65
 msgid "Change Event Types"
-msgstr "Ret hændelsestyper"
+msgstr "Ret begivenhedstyper"
 
 #: ../gramps/plugins/tool/changetypes.py:120
 #: ../gramps/plugins/tool/changetypes.py:145
@@ -34554,18 +34556,18 @@ msgstr "Ret typer"
 
 #: ../gramps/plugins/tool/changetypes.py:123
 msgid "Analyzing Events"
-msgstr "Analyserer hændelser"
+msgstr "Analyserer begivenheder"
 
 #: ../gramps/plugins/tool/changetypes.py:136
 msgid "No event record was modified."
-msgstr "Ingen hændelsesoptegnelse blev ændret."
+msgstr "Ingen begivenhedsoptegnelse blev ændret."
 
 #: ../gramps/plugins/tool/changetypes.py:140
 #, python-brace-format
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
-msgstr[0] "{number_of} hændelsespost blev ændret."
-msgstr[1] "{number_of} hændelsesposter blev ændret."
+msgstr[0] "{number_of} begivenhedspost blev ændret."
+msgstr[1] "{number_of} begivenhedsposter blev ændret."
 
 #: ../gramps/plugins/tool/check.py:135 ../gramps/plugins/tool/check.py:314
 msgid "Checking Database"
@@ -34671,7 +34673,7 @@ msgstr "Leder efter tomme familieoptegnelser"
 
 #: ../gramps/plugins/tool/check.py:965
 msgid "Looking for empty event records"
-msgstr "Leder efter tomme hændelsesoptegnelser"
+msgstr "Leder efter tomme begivenhedsoptegnelser"
 
 #: ../gramps/plugins/tool/check.py:974
 msgid "Looking for empty source records"
@@ -34707,7 +34709,7 @@ msgstr "Leder efter ufuldstændige forældreforbindelser"
 
 #: ../gramps/plugins/tool/check.py:1150
 msgid "Looking for event problems"
-msgstr "Leder efter hændelsesproblemer"
+msgstr "Leder efter begivenhedsproblemer"
 
 #: ../gramps/plugins/tool/check.py:1355 ../gramps/plugins/tool/check.py:1384
 #: ../gramps/plugins/tool/check.py:1412
@@ -34900,22 +34902,22 @@ msgstr[1] "{quantity} manglende medieobjekter blev fjernet\n"
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
-msgstr[0] "Der blev henvist til {quantity} hændelse som ikke kunne findes\n"
-msgstr[1] "Der blev henvist til {quantity} hændelser som ikke kunne findes\n"
+msgstr[0] "Der blev henvist til {quantity} begivenhed som ikke kunne findes\n"
+msgstr[1] "Der blev henvist til {quantity} begivenheder som ikke kunne findes\n"
 
 #: ../gramps/plugins/tool/check.py:2909
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
-msgstr[0] "{quantity} ugyldigt navn på fødselshændelse blev rettet\n"
-msgstr[1] "{quantity} ugyldige navne på fødselshændelser blev rettet\n"
+msgstr[0] "{quantity} ugyldigt navn på fødselsbegivenhed blev rettet\n"
+msgstr[1] "{quantity} ugyldige navne på fødselsbegivenhed blev rettet\n"
 
 #: ../gramps/plugins/tool/check.py:2919
 #, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
-msgstr[0] "{quantity} ugyldigt navn på dødshændelse blev rettet\n"
-msgstr[1] "{quantity} ugyldige navne blev rettet\n"
+msgstr[0] "{quantity} ugyldigt navn på dødsbegivenhed blev rettet\n"
+msgstr[1] "{quantity} ugyldige navne på dødsbegivenhed blev rettet\n"
 
 #: ../gramps/plugins/tool/check.py:2929
 #, python-brace-format
@@ -34975,8 +34977,8 @@ msgstr[1] "{quantity} ugyldige navne på kildehenvisninger blev rettet\n"
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
-msgstr[0] "{quantity} Dublerede Gramps ID rettet\n"
-msgstr[1] "{quantity} ugyldige navne på dødshændelser blev rettet\n"
+msgstr[0] "{quantity} Dubleret Gramps ID rettet\n"
+msgstr[1] "{quantity} Dublerede Gramps ID blev rettet\n"
 
 #: ../gramps/plugins/tool/check.py:3028
 #, python-format
@@ -34994,7 +34996,7 @@ msgstr ""
 "%(empty_obj)d fjernede tomme objekter:\n"
 "   %(person)d personobjekter\n"
 "   %(family)d familieobjekter\n"
-"   %(event)d hændelsesobjekt\n"
+"   %(event)d på begivenhedsobjekt\n"
 "   %(source)d kildeobjekter\n"
 "   %(media)d medieobjekter\n"
 "   %(place)d stedobjekter\n"
@@ -35034,8 +35036,8 @@ msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
 msgstr ""
-"Denne test vil danne mange personer og hændelser i den aktive database. Er "
-"du sikker på at du vil udføre testen?"
+"Denne test vil danne mange personer og begivenheder i den aktive database. "
+"Er du sikker på at du vil udføre testen?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:74
 msgid "Run test"
@@ -35081,8 +35083,8 @@ msgid ""
 "The event comparison utility uses the filters defined in the Custom Filter "
 "Editor."
 msgstr ""
-"Redskabet til sammenligning af hændelser anvender filtrene som er definerede "
-"i Tilpasset Filter Editor."
+"Redskabet til sammenligning af begivenheder anvender filtrene som er "
+"definerede i Tilpasset Filter Editor."
 
 #: ../gramps/plugins/tool/eventcmp.glade:266
 msgid "Custom filter _editor"
@@ -35095,11 +35097,11 @@ msgstr "Compare_Individual_Events"
 
 #: ../gramps/plugins/tool/eventcmp.py:143
 msgid "Event comparison filter selection"
-msgstr "Filtervalg til hændelsessammenligning"
+msgstr "Filtervalg til begivenhedssammenligning"
 
 #: ../gramps/plugins/tool/eventcmp.py:172
 msgid "Event Comparison tool"
-msgstr "Værktøj til hændelsessammenligning"
+msgstr "Værktøj til begivenhedssammenligning"
 
 #: ../gramps/plugins/tool/eventcmp.py:172
 msgid "Filter selection"
@@ -35107,7 +35109,7 @@ msgstr "Valg af filter"
 
 #: ../gramps/plugins/tool/eventcmp.py:183
 msgid "Comparing events"
-msgstr "Sammenligner hændelser"
+msgstr "Sammenligner begivenheder"
 
 #: ../gramps/plugins/tool/eventcmp.py:184
 msgid "Selecting people"
@@ -35120,7 +35122,7 @@ msgstr "Ingen passer"
 #: ../gramps/plugins/tool/eventcmp.py:249
 #: ../gramps/plugins/tool/eventcmp.py:284
 msgid "Event Comparison Results"
-msgstr "Resultater af hændelsessammenligning"
+msgstr "Resultater af begivenhedssammenligning"
 
 #: ../gramps/plugins/tool/eventcmp.py:262
 #, python-format
@@ -35134,7 +35136,7 @@ msgstr "%(event_name)s Sted"
 
 #: ../gramps/plugins/tool/eventcmp.py:318
 msgid "Comparing Events"
-msgstr "Sammenligner hændelser"
+msgstr "Sammenligner begivenheder"
 
 #: ../gramps/plugins/tool/eventcmp.py:320
 msgid "Building data"
@@ -35146,19 +35148,19 @@ msgstr "Vælg filnavn"
 
 #: ../gramps/plugins/tool/eventnames.py:80
 msgid "Event name changes"
-msgstr "Ændringer i navne på hændelser"
+msgstr "Ændringer i navne på begivenheder"
 
 #: ../gramps/plugins/tool/eventnames.py:85
 #: ../gramps/plugins/tool/tools.gpr.py:147
 msgid "Extract Event Description"
-msgstr "Udtræk hændelsesbeskrivelse"
+msgstr "Udtræk begivenhedsbeskrivelse"
 
 #: ../gramps/plugins/tool/eventnames.py:120
 #, python-brace-format
 msgid "{quantity} event description has been added"
 msgid_plural "{quantity} event descriptions have been added"
-msgstr[0] "{quantity} hændelsesbeskrivelse er blevet tilføjet"
-msgstr[1] "{quantity} hændelsesbeskrivelser er blevet tilføjet"
+msgstr[0] "{quantity} begivenhedsbeskrivelse er blevet tilføjet"
+msgstr[1] "{quantity} begivenhedsbeskrivelser er blevet tilføjet"
 
 #: ../gramps/plugins/tool/eventnames.py:124
 msgid "Modifications made"
@@ -35166,7 +35168,7 @@ msgstr "Udførte rettelser"
 
 #: ../gramps/plugins/tool/eventnames.py:128
 msgid "No event description has been added."
-msgstr "Ingen hændelsesbeskrivelse er blev tilføjet."
+msgstr "Ingen begivenhedsbeskrivelse er blev tilføjet."
 
 #: ../gramps/plugins/tool/finddupes.glade:115
 #: ../gramps/plugins/tool/mergecitations.glade:115
@@ -35844,7 +35846,7 @@ msgstr "ugyldigt tegn istedet for '-'"
 
 #: ../gramps/plugins/tool/removeunused.glade:90
 msgid "Search for events"
-msgstr "Søg efter hændelser"
+msgstr "Søg efter begivenheder"
 
 #: ../gramps/plugins/tool/removeunused.glade:106
 msgid "Search for sources"
@@ -35991,19 +35993,19 @@ msgstr "Finder og tildeler ubrugte id'er."
 
 #: ../gramps/plugins/tool/sortevents.py:83
 msgid "Sort Events"
-msgstr "Sortér hændelser"
+msgstr "Sortér begivenheder"
 
 #: ../gramps/plugins/tool/sortevents.py:105
 msgid "Sort event changes"
-msgstr "Sortér hændelsesændringer"
+msgstr "Sortér begivenhedsændringer"
 
 #: ../gramps/plugins/tool/sortevents.py:121
 msgid "Sorting personal events..."
-msgstr "Sorterer personlige hændelser ..."
+msgstr "Sorterer personlige begivenheder ..."
 
 #: ../gramps/plugins/tool/sortevents.py:143
 msgid "Sorting family events..."
-msgstr "Sorterer familiehændelser ..."
+msgstr "Sorterer familiebegivenheder ..."
 
 #: ../gramps/plugins/tool/sortevents.py:174
 msgid "Tool Options"
@@ -36023,11 +36025,11 @@ msgstr "Angiv sorteringsrækkefølgen"
 
 #: ../gramps/plugins/tool/sortevents.py:200
 msgid "Include family events"
-msgstr "Medtag familiehændelser"
+msgstr "Medtag familiebegivenheder"
 
 #: ../gramps/plugins/tool/sortevents.py:201
 msgid "Sort family events of the person"
-msgstr "Sortér familiehændelser for denne person"
+msgstr "Sortér familiebegivenheder for denne person"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:127
 msgid "Generate_Testcases_for_Persons_and_Families"
@@ -36143,11 +36145,11 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:67
 msgid "Rename Event Types"
-msgstr "Omdøb hændelsestyper"
+msgstr "Omdøb begivenhedstyper"
 
 #: ../gramps/plugins/tool/tools.gpr.py:69
 msgid "Allows all the events of a certain name to be renamed to a new name."
-msgstr "Tillader alle hændelser med et bestemt navn at få et nyt navn."
+msgstr "Tillader alle begivenheder med et bestemt navn at få et nyt navn."
 
 #: ../gramps/plugins/tool/tools.gpr.py:93
 msgid "Check and Repair Database"
@@ -36160,7 +36162,7 @@ msgstr "Undersøger databasen for integritetsproblemer og retter det den kan"
 
 #: ../gramps/plugins/tool/tools.gpr.py:119
 msgid "Compare Individual Events"
-msgstr "Sammenlign individuelle hændelser"
+msgstr "Sammenlign individuelle begivenheder"
 
 #: ../gramps/plugins/tool/tools.gpr.py:121
 msgid ""
@@ -36168,11 +36170,11 @@ msgid ""
 "that can be applied to the database to find similar events"
 msgstr ""
 "Hjælper ved analyse af data ved at tillade udviklingen af egne filtre, der "
-"kan bruges på databasen til at finde lignende hændelser"
+"kan bruges på databasen til at finde lignende begivenheder"
 
 #: ../gramps/plugins/tool/tools.gpr.py:148
 msgid "Extracts event descriptions from the event data"
-msgstr "Udtrækker hændelsesbeskrivelser fra hændelsesdata"
+msgstr "Udtrækker begivenhedsbeskrivelser fra begivenhedsdata"
 
 #: ../gramps/plugins/tool/tools.gpr.py:173
 msgid ""
@@ -36258,11 +36260,11 @@ msgstr "Omorganiserer gramps id'erne efter Gramps' standardregler."
 #: ../gramps/plugins/tool/tools.gpr.py:442
 #: ../gramps/plugins/tool/tools.gpr.py:443
 msgid "Sort events"
-msgstr "Sorter hændelser"
+msgstr "Sorter begivenheder"
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Verify the Data"
-msgstr "Verificér data"
+msgstr "Kontrolér data"
 
 #: ../gramps/plugins/tool/tools.gpr.py:467
 msgid "Verifies the data against user-defined tests"
@@ -36558,19 +36560,19 @@ msgstr "Familier er ikke i kronologisk rækkefølge"
 
 #: ../gramps/plugins/tool/verify.py:2573
 msgid "Family has events with role Unknown"
-msgstr "Familier har hændelse med rollen Ukendt"
+msgstr "Familier har begivenhed med rollen Ukendt"
 
 #: ../gramps/plugins/tool/verify.py:2586
 msgid "Person has events with role Unknown"
-msgstr "Person har hændelse med rolle Ukendt"
+msgstr "Person har begivenhed med rolle Ukendt"
 
 #: ../gramps/plugins/tool/verify.py:2599
 msgid "Family events are not in chronological order"
-msgstr "Familiehændelser er ikke i kronologisk rækkefølge"
+msgstr "Familiebegivenheder er ikke i kronologisk rækkefølge"
 
 #: ../gramps/plugins/tool/verify.py:2612
 msgid "Person events are not in chronological order"
-msgstr "Personhændelser er ikke i kronologisk rækkefølge"
+msgstr "Personbegivenheder er ikke i kronologisk rækkefølge"
 
 #: ../gramps/plugins/view/citationlistview.py:106
 msgid "Source: Title"
@@ -36745,27 +36747,27 @@ msgstr "Kontrolpanel"
 
 #: ../gramps/plugins/view/eventview.py:112
 msgid "Add a new event"
-msgstr "Tilføj en ny hændelse"
+msgstr "Tilføj en ny begivenhed"
 
 #: ../gramps/plugins/view/eventview.py:113
 msgid "Edit the selected event"
-msgstr "Redigér den valgte hændelse"
+msgstr "Redigér den valgte begivenhed"
 
 #: ../gramps/plugins/view/eventview.py:114
 msgid "Delete the selected event"
-msgstr "Slet den valgte hændelse"
+msgstr "Slet den valgte begivenhed"
 
 #: ../gramps/plugins/view/eventview.py:115
 msgid "Merge the selected events"
-msgstr "Sammenflet de valgte hændelser"
+msgstr "Sammenflet de valgte begivenheder"
 
 #: ../gramps/plugins/view/eventview.py:253
 msgid "Event Filter Editor"
-msgstr "Redigering af hændelsesfilter"
+msgstr "Redigering af begivenhedsfilter"
 
 #: ../gramps/plugins/view/eventview.py:432
 msgid "Cannot merge event objects."
-msgstr "Kan ikke sammenflette hændelseobjekter."
+msgstr "Kan ikke sammenflette begivenhedsobjekter."
 
 #: ../gramps/plugins/view/eventview.py:434
 msgid ""
@@ -36773,9 +36775,9 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "event."
 msgstr ""
-"Præcis to hændelser skal vælges for at sammenflette dem. Et andet objekt kan "
-"vælges ved at holde Ctrl-tasten nede og samtidig klikke på den ønskede "
-"hændelse."
+"Præcis to begivenheder skal vælges for at sammenflette dem. Et andet objekt "
+"kan vælges ved at holde Ctrl-tasten nede og samtidig klikke på den ønskede "
+"begivenhed."
 
 #: ../gramps/plugins/view/familyview.py:85
 msgid "Marriage Date"
@@ -37083,20 +37085,20 @@ msgstr "Valgparametre"
 
 #: ../gramps/plugins/view/geoevents.py:167
 msgid "Events places map"
-msgstr "Kort over hændelsessteder"
+msgstr "Kort over begivenhedssteder"
 
 #: ../gramps/plugins/view/geoevents.py:191
 msgid "GeoEvents"
-msgstr "GeoHændelse"
+msgstr "GeoBegivenheder"
 
 #: ../gramps/plugins/view/geoevents.py:321
 msgid "incomplete or unreferenced event ?"
-msgstr "Hændelse ufuldstændig eller mangler henvisning?"
+msgstr "Begivenhed ufuldstændig eller mangler henvisning?"
 
 #: ../gramps/plugins/view/geoevents.py:365
 #: ../gramps/plugins/view/geoevents.py:378
 msgid "Selecting all events"
-msgstr "Vælg alle hændelser"
+msgstr "Vælg alle begivenheder"
 
 #: ../gramps/plugins/view/geoevents.py:390
 msgid ""
@@ -37104,18 +37106,18 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
-"Højreklik på kortet, og vælg 'Vis alle hændelser' for at vise alle kendte "
-"hændelser med koordinater. Du kan bruge historie til at bevæge dig på "
+"Højreklik på kortet, og vælg 'Vis alle begivenheder' for at vise alle kendte "
+"begivenheder med koordinater. Du kan bruge historie til at bevæge dig på "
 "kortet. Du kan benytte filtre."
 
 #: ../gramps/plugins/view/geoevents.py:426
 #: ../gramps/plugins/view/geoevents.py:458
 msgid "Bookmark this event"
-msgstr "Marker denne hændelse"
+msgstr "Marker denne begivenhed"
 
 #: ../gramps/plugins/view/geoevents.py:470
 msgid "Show all events"
-msgstr "Vis alle hændelser"
+msgstr "Vis alle begivenheder"
 
 #: ../gramps/plugins/view/geoevents.py:473
 #: ../gramps/plugins/view/geoplaces.py:560
@@ -37317,11 +37319,11 @@ msgstr "En oversigt over alle stednavne i databasen."
 
 #: ../gramps/plugins/view/geography.gpr.py:215
 msgid "All places related to Events"
-msgstr "Alle steder som har forbindelse til Hændelser"
+msgstr "Alle steder som har forbindelse til Begivenheder"
 
 #: ../gramps/plugins/view/geography.gpr.py:216
 msgid "A view showing all the event places of the database."
-msgstr "En oversigt over alle steder for hændelser i databasen."
+msgstr "En oversigt over alle steder for begivenheder i databasen."
 
 #: ../gramps/plugins/view/geomoves.py:209
 msgid "Descendants of the active person."
@@ -37425,7 +37427,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geoplaces.py:475
 msgid "The place name in the status bar is disabled."
-msgstr "Stednavn i statusbjælken er slået fra."
+msgstr "Stednavn i statuslinjen er slået fra."
 
 #: ../gramps/plugins/view/geoplaces.py:481
 #, python-format
@@ -37901,7 +37903,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/view.gpr.py:39
 msgid "The view showing all the events"
-msgstr "Oversigten der viser alle hændelser"
+msgstr "Oversigten der viser alle begivenheder"
 
 #: ../gramps/plugins/view/view.gpr.py:55
 msgid "The view showing all families"
@@ -38132,8 +38134,6 @@ msgid " [Click to Go]"
 msgstr " [Klik for at besøge]"
 
 #: ../gramps/plugins/webreport/basepage.py:2974
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
 msgstr "Sidste Dages Hellige/ SDH-Ordination"
 
@@ -38234,7 +38234,7 @@ msgid ""
 msgstr ""
 "Denne kalender bruges til at give dig adgang til alle dine data i "
 "oversigtsform, sammenpresset på en enkelt side. Ved at klikke på en dato, "
-"vil du få vist en side med alle hændelser på denne dato - hvis der er "
+"vil du få vist en side med alle begivenheder på denne dato - hvis der er "
 "nogen.\n"
 
 #: ../gramps/plugins/webreport/calendar.py:844
@@ -38316,12 +38316,12 @@ msgstr "Ingen fil til at hente"
 
 #: ../gramps/plugins/webreport/event.py:122
 msgid "Creating event pages"
-msgstr "Opretter sider med hændelser"
+msgstr "Opretter sider med begivenheder"
 
 #: ../gramps/plugins/webreport/event.py:200
 #, python-format
 msgid "Event types beginning with letter %s"
-msgstr "Hændelsestyper der begynder med bogstavet %s"
+msgstr "Begivenhedstyper der begynder med bogstavet %s"
 
 #: ../gramps/plugins/webreport/event.py:275
 msgid ""
@@ -38329,9 +38329,9 @@ msgid ""
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
 "ID will open a page for that event."
 msgstr ""
-"Denne side indeholder et indeks over alle hændelserne i databasen, sorteret "
-"efter deres type og dato (hvis en sådan findes). Ved at klikke på en "
-"hændelses Gramps-id, vil siden for denne hændelse blive åbnet."
+"Denne side indeholder et indeks over alle begivenhederne i databasen, "
+"sorteret efter deres type og dato (hvis en sådan findes). Ved at klikke på "
+"en begivenheds Gramps-id, vil siden for denne begivenhed blive åbnet."
 
 #: ../gramps/plugins/webreport/event.py:325
 #: ../gramps/plugins/webreport/family.py:312
@@ -38369,13 +38369,13 @@ msgstr "Familiekort for %s"
 
 #: ../gramps/plugins/webreport/heatmap.py:182
 msgid "Creating heatmap pages for events"
-msgstr "Danner farvediagramsider for hændelser"
+msgstr "Danner farvediagramsider for begivenheder"
 
 #: ../gramps/plugins/webreport/heatmap.py:206
 msgid ""
 "The next section contains an index of all the events for an Heatmap map."
 msgstr ""
-"Den næste sektion indeholder et indeks over alle hændelser for et "
+"Den næste sektion indeholder et indeks over alle begivenheder for et "
 "Farvediagram."
 
 #: ../gramps/plugins/webreport/heatmap.py:248
@@ -38420,14 +38420,14 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
-"Denne afdeling indeholder grafen for alle personer med hændelsen: "
+"Denne afdeling indeholder grafen for alle personer med begivenheden: "
 "{event_type} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:619
 #: ../gramps/plugins/webreport/heatmap.py:632
 #: ../gramps/plugins/webreport/heatmap.py:642
 msgid " which has no event for the selected filter."
-msgstr " som ikke har hændelser for det valgte filter."
+msgstr " som ikke har begivenheder for det valgte filter."
 
 #: ../gramps/plugins/webreport/heatmap.py:629
 #, python-brace-format
@@ -38435,7 +38435,7 @@ msgid ""
 "This section contains the map of all events for: {surname} "
 "({selected_filter})"
 msgstr ""
-"Denne afdeling indeholder grafen over alle hændelser for:{surname} "
+"Denne afdeling indeholder grafen over alle begivenheder for:{surname} "
 "({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:639
@@ -38717,7 +38717,7 @@ msgstr "Læg forrige/næste til"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2241
 msgid "Add previous/next to the navigation bar."
-msgstr "Læg forrige/næste til i navigeringsbjælken."
+msgstr "Læg forrige/næste til i navigeringslinjen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2244
 msgid "This is a secure site (HTTPS)"
@@ -38753,7 +38753,7 @@ msgstr "Ekstra sidenavn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2269
 msgid "Your extra page name like it is shown in the menubar"
-msgstr "Din ekstra side, som den er vist i menubjælken"
+msgstr "Din ekstra side, som den er vist i menulinjen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2274
 msgid "Your extra page path"
@@ -39094,12 +39094,12 @@ msgstr "Hvorvidt familiesider skal medtages."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2599
 msgid "Include event pages"
-msgstr "Medtag en side med hændelser"
+msgstr "Medtag en side med begivenheder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2600
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
-"Vælg om en liste over hændelser med deres relevante sider skal medtages"
+"Vælg om en liste over begivenheder med deres relevante sider skal medtages"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2603
 msgid "Include other roles"
@@ -39159,7 +39159,7 @@ msgid ""
 "website addresses and personal address/ residence events."
 msgstr ""
 "Hvorvidt sider til adressekartotek, som kan indeholde e-post- og "
-"webadresser, personlige adresser og hændelser knyttet til bopæl, skal "
+"webadresser, personlige adresser og begivenheder knyttet til bopæl, skal "
 "tilføjes."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2638
@@ -39205,7 +39205,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2678
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr "Medtag kort der viser alle steder for familiemedlemmers hændelser"
+msgstr "Medtag kort der viser alle steder for familiemedlemmers begivenheder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2682
 msgid ""
@@ -39230,7 +39230,7 @@ msgstr "Markører"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2697
 msgid "Google/ FamilyMap Option"
-msgstr "Google Maps-kort over familiehændelser"
+msgstr "Google Maps-kort over familiebegivenheder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2703
 msgid ""
@@ -39450,8 +39450,8 @@ msgstr "Hvorvidt der skal medtages en kalender for %s"
 #: ../gramps/plugins/webreport/webcal.py:2059
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr ""
-"Opret sider der viser hændelser på enkelte dage i en \"året i oversigtsform-"
-"kalender\""
+"Opret sider der viser begivenheder på enkelte dage i en "
+"\"året i oversigtsform-kalender\""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3170
 #: ../gramps/plugins/webreport/webcal.py:2061
@@ -39492,7 +39492,7 @@ msgstr "Medtag farvegrafsider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3219
 msgid "Whether to include heatmap pages for events"
-msgstr "Vælg om farvegrafsider for hændelser skal medtages"
+msgstr "Vælg om farvegrafsider for begivenheder skal medtages"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3225
 msgid "Point size"
@@ -39562,7 +39562,7 @@ msgid ""
 "you to that place&#8217;s page."
 msgstr ""
 "Denne kort-side viser personen og dennes efterkommere med alle deres "
-"hændelser/steder. Hvis du placerer musen over markøren så vil den vise "
+"begivenheder/steder. Hvis du placerer musen over markøren så vil den vise "
 "stednavnet. Markørerne og referencelisten er (hvis muligt) sorteret "
 "kronologisk. Et klik på et stednavn i referencesektionen vil bringe dig til "
 "det steds side."
