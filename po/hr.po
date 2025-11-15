@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-09-28 12:02+0000\n"
+"PO-Revision-Date: 2025-11-15 17:37+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -17,9 +17,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"Plural-Forms: nplurals=3; plural="
+"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
+"1 : 2);\n"
+"X-Generator: Weblate 5.15-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -638,8 +639,9 @@ msgstr ""
 "<b>Spajanje zapisa</b><br/>Funkcija „Uredi > Spoji …” omogućuje spajanje "
 "podataka više osoba u jednu osobu. Prilikom odabira drugog unosa drži "
 "pritisnutu tipku CTRL. Ovo je korisno za spajanje dviju baza podataka s "
-"poklapajućim osobama ili za spajanje greškom upisanih imenima iste osobe. "
-"Spajanje je dostupno u svim prikazima popisa za sve vrste primarnih objekata."
+"poklapajućim osobama ili za spajanje pogrešno upisanih različitih imena za "
+"jednu osobu. Spajanje je dostupno u svim prikazima popisa za sve vrste "
+"primarnih objekata."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -795,12 +797,12 @@ msgid ""
 "Person then go to \"Bookmarks > Add Bookmark\" or press Ctrl+D. You can also "
 "bookmark most of the other objects."
 msgstr ""
-"<b>Knjižne oznake za osobe</b><br/>Izbornik „Knjižne oznake” je praktično "
-"mjesto za spremanje imena često korištenih osoba. Odabirom knjižne oznake, "
-"određuješ tu osobu kao aktivnu osobu. Za dodavanje osobe u knjižne oznake, "
-"postavi je kao aktivnu osobu, a zatim koristi izbornik „Knjižne oznake > "
-"Dodaj knjižnu oznaku” ili pritisni tipke Ctrl+D. Knjižne oznake možeš "
-"koristiti i za većinu drugih objekata."
+"<b>Postavljanje osoba u knjižne oznake</b><br/>Izbornik „Knjižne oznake” je "
+"praktično mjesto za spremanje imena često korištenih osoba. Odabirom knjižne "
+"oznake, određuješ tu osobu kao aktivnu osobu. Za dodavanje osobe u knjižne "
+"oznake, postavi je kao aktivnu osobu, a zatim koristi izbornik „Knjižne "
+"oznake > Dodaj knjižnu oznaku” ili pritisni tipke Ctrl+D. Knjižne oznake "
+"možeš koristiti i za većinu drugih objekata."
 
 #: ../data/tips.xml:70
 msgid ""
@@ -2163,7 +2165,7 @@ msgstr "Prikazivač datuma za „%s” nije dostupan, koristi se zadani"
 #. Translators: Numeric year, month, day
 #: ../gramps/gen/datehandler/_datedisplay.py:74
 msgid "YYYY-MM-DD (ISO)"
-msgstr "GGGG-MM-DD (ISO)"
+msgstr "YYYY-MM-DD (ISO)"
 
 #. Translators: You may translate this as "Numerical",
 #. "System preferred", or similar.
@@ -3630,8 +3632,8 @@ msgid ""
 "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"Dozvoljen je samo ISO format za datum i vrijeme u obliku gggg-mm-dd "
-"hh:mm:ss, pri čemu vrijeme nije nužno zadati. %s ne odgovara formatu."
+"Dozvoljen je samo ISO format za datum i vrijeme u obliku yyyy-mm-dd hh:mm:"
+"ss, pri čemu vrijeme nije nužno zadati. %s ne odgovara formatu."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:60
 #: ../gramps/gui/glade/mergecitation.glade:270
@@ -3908,7 +3910,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 "Pronalazi podatke citata koji su promijenjeni nakon određenog datuma/vremena "
-"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"(yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:44
 msgid "Citations marked private"
@@ -4213,7 +4215,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
 "Pronalazi podatke događaja koji su promijenjeni nakon određenog datuma/"
-"vremena (gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
+"vremena (yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
 "vrijeme."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:43
@@ -4486,7 +4488,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 "Pronalazi podatke obitelji koji su promijenjeni nakon određenog datuma/"
-"vremena (gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
+"vremena (yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
 "vrijeme."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:54
@@ -4866,7 +4868,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date:time is given."
 msgstr ""
 "Pronalazi medijske objekte koji su promijenjeni nakon određenog datuma/"
-"vremena (gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
+"vremena (yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
 "vrijeme."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:45
@@ -5035,7 +5037,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 "Pronalazi podatke zabilježaka koji su promijenjeni nakon određenog datuma/"
-"vremena (gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
+"vremena (yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
 "vrijeme."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
@@ -5128,7 +5130,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 "Pronalazi podatke osoba koji su promijenjeni nakon određenog datuma/vremena "
-"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"(yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
 msgid "Relationship path between <person> and people matching <filter>"
@@ -6035,7 +6037,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 "Pronalazi podatke mjesta koji su promijenjeni nakon određenog datuma/vremena "
-"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"(yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
 msgid "Place with the <citation>"
@@ -6071,7 +6073,7 @@ msgstr "Vrsta mjesta:"
 #: ../gramps/gui/glade/mergeplace.glade:546
 #: ../gramps/gui/glade/mergeplace.glade:563
 msgid "Code:"
-msgstr "Kodna oznaka:"
+msgstr "Kod:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:61
 #: ../gramps/gen/filters/rules/place/_hasplace.py:69
@@ -6355,7 +6357,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
 "Uspoređuje zapise spremišta koji su promijenjeni nakon određenog datuma/"
-"vremena (gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je zadan jedan drugi "
+"vremena (yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je zadan jedan drugi "
 "datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
@@ -6491,7 +6493,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 "Pronalazi podatke izvora koji su promijenjeni nakon određenog datuma/vremena "
-"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"(yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
 msgid "Source attribute:"
@@ -8327,10 +8329,8 @@ msgid "Type code"
 msgstr "Kȏd vrste"
 
 #: ../gramps/gen/lib/ldsord.py:96
-#, fuzzy
-#| msgid "Initiatory (LDS)"
 msgid "Initiatory"
-msgstr "Inicijator (CIK)"
+msgstr "Inicijacija"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -9749,7 +9749,7 @@ msgstr "Krivuljasto"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:108
 msgid "Orthogonal"
-msgstr "Pravokutno"
+msgstr "Ortogonalno"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:155
 msgid "Graphviz Layout"
@@ -11975,10 +11975,10 @@ msgid ""
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
 "Sljedeće ključne riječi se zamijenjuju odgovarajućim dijelovima imena:<tt>\n"
-"  <b>Ime</b>       – ime                    <b>Prezime</b>    – prezime (s "
-"prefiksima i veznicima)\n"
-"  <b>Titula</b>    – titula (Dr., Mrs.)     <b>Sufiks</b>     – sufiks (Ml., "
-"St.)\n"
+"  <b>Ime</b>       – ime                    <b>Prezime</b>    – prezime "
+"(s prefiksima i veznicima)\n"
+"  <b>Titula</b>    – titula (Dr., Mrs.)     <b>Sufiks</b>     – sufiks "
+"(Ml., St.)\n"
 "  <b>Upotrebno</b> – upotrebno ime          <b>Nadimak</b>    – nadimak\n"
 "  <b>Inicijali</b> – početna slova imena    <b>Uobičajeno</b> – nadimak, "
 "upotrebno ime ili prvo ime od cjelokupnog imena\n"
@@ -11988,10 +11988,10 @@ msgstr ""
 "sva prezimena, osim pa/matronima i primarnoga\n"
 "  <b>Obiteljski nadimak</b> – obiteljski nadimak       <b>Prezimena</b>  – "
 "prezimena (bez prefiksa i veznika)\n"
-"  <b>Primarno, Primarno[prf] ili [pre] ili [vez]</b> – potpuno primarno "
+"  <b>Primarno, Primarno[prf] ili [pre] ili [vez]</b> – cjelovito primarno "
 "prezime, prefiks, samo prezime, veznik\n"
-"  <b>Patronim, ili [prf] ili [pre] ili [vez]</b>     – potpuno patronim/"
-"matronim prezime, prefiks, samo prezime, veznik\n"
+"  <b>Patronim, ili [prf] ili [pre] ili [vez]</b>     – cjelovito pa/matronim "
+"prezime, prefiks, samo prezime, veznik\n"
 "</tt>\n"
 "Upisom ključnih riječi VELIKIM SLOVIMA, određuje se korištenje velikih slova "
 "u ispisu. Dodatne zagrade i zarezi se uklanjaju. Ostali tekst se prikazuje "
@@ -13163,11 +13163,11 @@ msgstr ""
 #: ../gramps/gui/dbman.py:98
 #, python-format
 msgid "%s_-_Manage_Family_Trees"
-msgstr "%s_–_Uredi_rodoslove"
+msgstr "%s_–_Upravljaj_rodoslovima"
 
 #: ../gramps/gui/dbman.py:99
 msgid "Family_Trees_manager_window"
-msgstr "Prozor_uređivača_rodoslova"
+msgstr "Prozor_za_upravljanje_rodoslovima"
 
 #: ../gramps/gui/dbman.py:113 ../gramps/gui/glade/dbman.glade:344
 msgid "_Archive"
@@ -14474,7 +14474,7 @@ msgid ""
 "Page' field."
 msgstr ""
 "Izvor je sve (osobne izjave, video snimke, fotografije, članci iz novina, "
-"nadgrobni spomenik ...) iz čega se mogu izvesti informacije. Za stvaranje "
+"nadgrobna ploča ...) iz čega se mogu izvesti informacije. Za stvaranje "
 "citata, najprije odaberi potreban izvor, a zatim upiši mjesto referencirane "
 "informacije unutar izvora u polju „Svezak/Stranica”."
 
@@ -17253,9 +17253,9 @@ msgid ""
 msgstr ""
 "Koristi više od jednog prezimena\n"
 "Označuje, da je prezime sastavljeno od više dijelova. Svako prezime ima svoj "
-"vlastiti prefiks i mogući veznik sa slijedećim prezimenom. Npr., prezime "
-"„Ramón y Cajal” može biti upisano kao „Ramón”, koje je naslijeđeno od oca, "
-"veznika „y”, te „Cajal”, koje je naslijeđeno od majke."
+"vlastiti prefiks i mogući poveznik sa slijedećim prezimenom. Npr., prezime „"
+"Ramón y Cajal” može biti upisano kao „Ramón”, koje je naslijeđeno od oca, "
+"poveznika „y”, te „Cajal”, koje je naslijeđeno od majke."
 
 #: ../gramps/gui/glade/editperson.glade:395
 msgid "Set person as private data"
@@ -18492,7 +18492,7 @@ msgstr "Tip_kovni prečaci"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Manage Family Trees..."
-msgstr "_Uredi rodoslove ..."
+msgstr "_Upravljaj rodoslovima …"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Navigator"
@@ -23342,28 +23342,28 @@ msgid ""
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"Upiši ispravan datum (u obliku GGGG-MM-DD) u polje i pritisni gumb "
-"„Pokreni”. To će izračunati starost svih osoba u rodoslovu na taj datum. "
-"Nakon toga možeš svrstati podatke po starosti. Za prikaz ili uređivanje "
-"pritisni dvaput na redak."
+"Upiši ispravan datum (u obliku YYYY-MM-DD) u polje i pritisni gumb „Pokreni”"
+". To će izračunati starost svih osoba u rodoslovu na taj datum. Nakon toga "
+"možeš svrstati podatke po starosti. Za prikaz ili uređivanje pritisni dvaput "
+"na redak."
 
 #: ../gramps/plugins/gramplet/agestats.py:83
 #: ../gramps/plugins/gramplet/agestats.py:96
 #: ../gramps/plugins/gramplet/agestats.py:111
 msgid "Max age"
-msgstr "Najviša dob"
+msgstr "Maksimalna starost"
 
 #: ../gramps/plugins/gramplet/agestats.py:86
 #: ../gramps/plugins/gramplet/agestats.py:98
 #: ../gramps/plugins/gramplet/agestats.py:113
 msgid "Max age of Mother at birth"
-msgstr "Najviša dob majke pri rođenju"
+msgstr "Maksimalna starost majke pri rođenju"
 
 #: ../gramps/plugins/gramplet/agestats.py:91
 #: ../gramps/plugins/gramplet/agestats.py:101
 #: ../gramps/plugins/gramplet/agestats.py:116
 msgid "Max age of Father at birth"
-msgstr "Najviša dob oca pri rođenju"
+msgstr "Maksimalna starost oca pri rođenju"
 
 #: ../gramps/plugins/gramplet/agestats.py:169
 msgid "Lifespan Age Distribution"
@@ -24943,7 +24943,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:124
 msgid "Home Page"
-msgstr "Naslovnica"
+msgstr "Početna stranica"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:127
 msgid "Who makes Gramps?"
@@ -25003,14 +25003,14 @@ msgid ""
 "\n"
 msgstr ""
 "Kad se Gramps prvi put pokrene svi su prikazi prazni. Postoji vrlo malo "
-"opcija u izborniku. Za bilo koju vrstu aktivnosti potreban je jedan "
-"rodoslov.\n"
+"opcija u izborniku. Za bilo koju vrstu aktivnosti potreban je jedan rodoslov."
+"\n"
 "\n"
 "Za stvaranje novog rodoslova (koji se ponekad zove i „baza podataka”) "
-"odaberi „Rodoslovi” u izborniku, odaberi „Uredi rodoslove”, pritisni „Novi” "
-"i imenuj rodoslov. Pritisni gumb „Učitaj rodoslov” za aktiviranje rodoslova "
-"i prihvaćanje podataka unosom prve obitelji ili uvozom rodoslova. Za "
-"detaljne informacije, koristi doljnje poveznice.\n"
+"odaberi „Rodoslovi” u izborniku, odaberi „Upravljaj rodoslovima”, pritisni "
+"„Novi” i imenuj rodoslov. Pritisni gumb „Učitaj rodoslov” za aktiviranje "
+"rodoslova i prihvaćanje podataka unosom prve obitelji ili uvozom rodoslova. "
+"Za detaljne informacije, koristi doljnje poveznice.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:170
@@ -26887,7 +26887,7 @@ msgid ""
 "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date "
 "as text."
 msgstr ""
-"Datum {vcard_snippet} ne odgovara formatu gggg-mm-dd, datum je očuvan kao "
+"Datum {vcard_snippet} ne odgovara formatu yyyy-mm-dd, datum je očuvan kao "
 "tekst."
 
 #: ../gramps/plugins/importer/importxml.py:150
@@ -27214,7 +27214,7 @@ msgstr "Visina"
 
 #: ../gramps/plugins/lib/libgedcom.py:749
 msgid "Initiatory (LDS)"
-msgstr "Inicijator (CIK)"
+msgstr "Inicijacija (CIK)"
 
 #: ../gramps/plugins/lib/libgedcom.py:750
 msgid "Military ID"
@@ -31597,7 +31597,7 @@ msgstr "Dolje desno"
 
 #: ../gramps/plugins/lib/maps/geography.py:164
 msgid "Tile path"
-msgstr "Staza pločica"
+msgstr "Staza isječaka"
 
 #: ../gramps/plugins/lib/maps/geography.py:166
 #, python-format
@@ -31607,10 +31607,10 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
-"Mapa pločica više ne postoji:\n"
+"Direktorij isječaka više ne postoji:\n"
 "%s\n"
 "Pokušaj stvaranja nove mape nije uspio.\n"
-"Konfiguriraj prikaz za stazu pločica i ponovo pokreni Gramps."
+"Konfiguriraj prikaz za stazu isječaka i ponovo pokreni Gramps."
 
 #: ../gramps/plugins/lib/maps/geography.py:399
 msgid "Remove cross hair"
@@ -31652,12 +31652,12 @@ msgstr "Zamijeni „%(map)s” sa =>"
 #: ../gramps/plugins/lib/maps/geography.py:449
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
-msgstr "Osvježi sve vidljive odsječke karte za „%(map)s”."
+msgstr "Ponovo učitaj sve vidljive isječke za „%(map)s”."
 
 #: ../gramps/plugins/lib/maps/geography.py:455
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr "Ukloni privremenu memoriju s odsječcima karte „%(map)s”."
+msgstr "Izbriši privremenu memoriju s isječcima karte „%(map)s”."
 
 #: ../gramps/plugins/lib/maps/geography.py:997
 #: ../gramps/plugins/view/geoclose.py:686
@@ -31726,7 +31726,7 @@ msgstr "Određeni parametri"
 
 #: ../gramps/plugins/lib/maps/geography.py:1423
 msgid "Where to save the tiles for offline mode."
-msgstr "Gdje spremiti odsječke karata za bezmrežnu upotrebu."
+msgstr "Gdje spremiti isječke za offline modus."
 
 #: ../gramps/plugins/lib/maps/geography.py:1433
 msgid ""
@@ -31734,8 +31734,8 @@ msgid ""
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Ukoliko nemaš dovoljno mjesta na tvom sustavu, možeš ukloniti sve odsječke "
-"karata koji se nalaze u gore navedenoj stazi.\n"
+"Ukoliko nemaš dovoljno memorije na tvom sustavu, možeš ukloniti sve isječke "
+"koji se nalaze u gore navedenoj stazi.\n"
 "Pazi! Ako nemaš internetsku vezu, karta se ne može prikazati."
 
 #: ../gramps/plugins/lib/maps/geography.py:1443
@@ -31762,12 +31762,12 @@ msgstr "Karta"
 
 #: ../gramps/plugins/lib/maps/geography.py:1532
 msgid "Select tile cache directory for offline mode"
-msgstr "Odaberi direktorij za spremanje odsječaka karata za offline modus"
+msgstr "Odaberi direktorij predmemorije isječaka za offline modus"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:142
 #, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "Nije moguće stvoriti direktorij %s za predmemoriju odsječaka karata"
+msgstr "Nije moguće stvoriti direktorij %s za predmemoriju isječaka"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:148
 #, python-format
@@ -31785,7 +31785,7 @@ msgid ""
 "\n"
 "The following errors are expected"
 msgstr ""
-"Moraš provjeriti i promijeniti predmemoriju pločica\n"
+"Moraš provjeriti i promijeniti predmemoriju isječaka\n"
 "...\n"
 "[geography]\n"
 "...\n"
@@ -31802,8 +31802,7 @@ msgstr ""
 #: ../gramps/plugins/lib/maps/osmgps.py:260
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr ""
-"Nije moguće stvoriti direktorij za predmemoriju odsječaka karata za „%s”."
+msgstr "Nije moguće stvoriti direktorij za predmemoriju isječaka za „%s”."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:119
 #: ../gramps/plugins/lib/maps/placeselection.py:122
@@ -38030,10 +38029,8 @@ msgid " [Click to Go]"
 msgstr " [Pritisni za „Idi”]"
 
 #: ../gramps/plugins/webreport/basepage.py:2974
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
-msgstr "Mormonska crkva/ CIK obred"
+msgstr "Crkva Isusa Krista svetaca posljednjih dana/ CIK obred"
 
 #: ../gramps/plugins/webreport/basepage.py:3141
 #: ../gramps/plugins/webreport/basepage.py:3143
