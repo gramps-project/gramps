@@ -16,7 +16,9 @@ bundle_etc = join(bundle_res, "etc")
 
 environ["APPDATA"] = join(environ["HOME"], "Library", "Application Support")
 environ["XDG_DATA_DIRS"] = bundle_data
-environ["DYLD_FALLBACK_LIBRARY_PATH"] = bundle_lib + ":" + join(environ['APPDATA'], 'gramps', 'lib')
+environ["DYLD_FALLBACK_LIBRARY_PATH"] = (
+    bundle_lib + ":" + join(environ["APPDATA"], "gramps", "lib")
+)
 environ["LD_LIBRARY_PATH"] = bundle_lib
 environ["GTK_DATA_PREFIX"] = bundle_res
 environ["GTK_EXE_PREFIX"] = bundle_res
