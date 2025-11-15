@@ -11,13 +11,14 @@
 # Luam Souza <luamsilva10@gmail.com>, 2022.
 # Nick Hall <nick-h@gramps-project.org>, 2023.
 # Gabriel Silva <santosdasilvag750@gmail.com>, 2025.
+# Isaki23 <isaquefonseca230706@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
 "PO-Revision-Date: 2025-11-11 03:51+0000\n"
-"Last-Translator: Gabriel Silva <santosdasilvag750@gmail.com>\n"
+"Last-Translator: Isaki23 <isaquefonseca230706@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -464,11 +465,6 @@ msgstr ""
 "selecione Exibir &gt; Filtro."
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
@@ -476,8 +472,10 @@ msgid ""
 "people without children."
 msgstr ""
 "<b>Filtragem inversa</b><br/>Os filtros podem ser facilmente invertidos com "
-"o uso da opção 'inverter'. Por exemplo, ao se inverter o filtro 'Pessoas com "
-"filhos', você pode selecionar todas as pessoas que não tenham filhos."
+"o uso da opção 'inverter'."
+"\"Retorna valores que não combinam com as regras de filtros\". Por exemplo, "
+"ao se inverter o filtro 'Pessoas com filhos', você pode selecionar todas as "
+"pessoas que não tenham filhos."
 
 #: ../data/tips.xml:18
 #, fuzzy
@@ -27081,7 +27079,7 @@ msgstr "casamento"
 
 #: ../gramps/plugins/importer/importcsv.py:383
 msgid "place"
-msgstr "lugar"
+msgstr "local"
 
 #: ../gramps/plugins/importer/importcsv.py:384
 msgid "place id"
@@ -37224,7 +37222,7 @@ msgstr "Ordenar os eventos"
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Verify the Data"
-msgstr "Verificar os dados"
+msgstr "Verifique os dados"
 
 #: ../gramps/plugins/tool/tools.gpr.py:467
 msgid "Verifies the data against user-defined tests"
