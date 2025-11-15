@@ -31,16 +31,16 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-10-06 07:01+0000\n"
+"PO-Revision-Date: 2025-11-11 03:51+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -283,8 +283,8 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
-"Es gibt dir die Möglichkeit, die vielen Details des Lebens einzutragen sowie "
-"die komplexen Beziehungen zwischen verschiedenen Personen, Orten und "
+"Es bietet dir die Möglichkeit, die vielen Details des Lebens einzutragen "
+"sowie die komplexen Beziehungen zwischen verschiedenen Personen, Orten und "
 "Ereignissen."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
@@ -436,9 +436,9 @@ msgid ""
 "they do not have birth dates."
 msgstr ""
 "<b>Kinder in der Familie ordnen</b><br/>Die Reihenfolge der Kinder in einer "
-"Familie kann durch Drag &amp; Drop (Ziehen und Fallenlassen) bestimmt "
-"werden. Diese Anordnung bleibt erhalten, selbst wenn sie kein Geburtsdatum "
-"haben."
+"Familie kann durch Drag &amp; Drop (Ziehen und Fallenlassen) festgelegt "
+"werden. Diese Reihenfolge bleibt auch dann erhalten, wenn sie kein "
+"Geburtsdatum haben."
 
 #: ../data/tips.xml:12
 msgid ""
@@ -2023,7 +2023,7 @@ msgstr "Name des Stils."
 
 #: ../gramps/cli/plug/__init__.py:325
 msgid "Paper size name."
-msgstr "Name des Seitenformats."
+msgstr "Name des Papierformats."
 
 #: ../gramps/cli/plug/__init__.py:326 ../gramps/cli/plug/__init__.py:327
 #: ../gramps/cli/plug/__init__.py:328 ../gramps/cli/plug/__init__.py:329
@@ -2033,7 +2033,7 @@ msgstr "=Nummer"
 
 #: ../gramps/cli/plug/__init__.py:326
 msgid "Paper orientation number."
-msgstr "Seitenausrichtungsnummer."
+msgstr "Papierausrichtungsnummer."
 
 #: ../gramps/cli/plug/__init__.py:327
 msgid "Left paper margin"
@@ -8412,7 +8412,7 @@ msgstr "Ereignisse"
 
 #: ../gramps/gen/lib/family.py:199 ../gramps/gen/lib/person.py:249
 msgid "LDS ordinances"
-msgstr "HLT-Ordinationen"
+msgstr "HLT-Verordnungen"
 
 #: ../gramps/gen/lib/familyreltype.py:56
 #: ../gramps/plugins/webreport/calendar.py:1452
@@ -8501,10 +8501,8 @@ msgid "Type code"
 msgstr "Art-Code"
 
 #: ../gramps/gen/lib/ldsord.py:96
-#, fuzzy
-#| msgid "Initiatory (LDS)"
 msgid "Initiatory"
-msgstr "Initiation (LDS)"
+msgstr "Initiation"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -8576,7 +8574,7 @@ msgstr "Nicht freigegeben"
 #: ../gramps/plugins/textreport/indivcomplete.py:733
 #: ../gramps/plugins/webreport/basepage.py:587
 msgid "LDS Ordinance"
-msgstr "HLT-Ordination"
+msgstr "HLT-Verordnung"
 
 #: ../gramps/gen/lib/ldsord.py:204
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
@@ -14270,23 +14268,23 @@ msgstr "Medienobjekt ziehen"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:51
 msgid "Create and add a new LDS ordinance"
-msgstr "Neuen HLT-Ritus erstellen und hinzufügen"
+msgstr "Neue HLT-Verordnung erstellen und hinzufügen"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:52
 msgid "Remove the existing LDS ordinance"
-msgstr "Bestehenden HLT-Ritus entfernen"
+msgstr "Bestehende HLT-Verordnung entfernen"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:53
 msgid "Edit the selected LDS ordinance"
-msgstr "Ausgewählten HLT-Ritus bearbeiten"
+msgstr "Ausgewählte HLT-Verordnung bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:54
 msgid "Move the selected LDS ordinance upwards"
-msgstr "Ausgewählten HLT-Ritus hinauf schieben"
+msgstr "Ausgewählte HLT-Verordnung hinaufbewegen"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:55
 msgid "Move the selected LDS ordinance downwards"
-msgstr "Ausgewählten HLT-Ritus hinab schieben"
+msgstr "Ausgewählte HLT-Verordnung hinabbewegen"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:77
 msgid "_LDS"
@@ -15131,14 +15129,14 @@ msgstr "Familie hinzufügen"
 #: ../gramps/gui/editors/editldsord.py:66
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
-msgstr "HLT_Ordinantionseditor"
+msgstr "HLT-Verordnungseditor"
 
 #: ../gramps/gui/editors/editldsord.py:168
 #: ../gramps/gui/editors/editldsord.py:350
 #: ../gramps/gui/editors/editldsord.py:387
 #: ../gramps/gui/editors/editldsord.py:498
 msgid "LDS Ordinance Editor"
-msgstr "HLT-Ordinationseditor"
+msgstr "HLT-Verordnungseditor"
 
 #: ../gramps/gui/editors/editldsord.py:323
 #, python-format
@@ -17106,7 +17104,7 @@ msgstr "Ordination:"
 
 #: ../gramps/gui/glade/editldsord.glade:189
 msgid "LDS _Temple:"
-msgstr "HLT-Tempel:"
+msgstr "HLT-_Tempel:"
 
 #: ../gramps/gui/glade/editldsord.glade:220
 msgid "_Family:"
@@ -18054,8 +18052,8 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Ereignisse, HLT-_Ord, Medienobjekte, Attribute, Notizen, Quellen und "
-"Kennzeichen von beiden Familien werden kombiniert."
+"Ereignisse, HLT-_Verordnungen, Medienobjekte, Attribute, Notizen, Quellen "
+"und Kennzeichen von beiden Familien werden kombiniert."
 
 #: ../gramps/gui/glade/mergemedia.glade:94
 msgid ""
@@ -27604,7 +27602,7 @@ msgstr "Höhe"
 
 #: ../gramps/plugins/lib/libgedcom.py:749
 msgid "Initiatory (LDS)"
-msgstr "Initiation (LDS)"
+msgstr "Initiation (HLT)"
 
 #: ../gramps/plugins/lib/libgedcom.py:750
 msgid "Military ID"
@@ -34936,7 +34934,7 @@ msgstr "Integrität überprüfen"
 #: ../gramps/plugins/tool/rebuildrefmap.py:78
 #: ../gramps/plugins/tool/rebuildrefmap.py:81
 msgid "Rebuilding reference maps..."
-msgstr "Interne Referenzen werden neu erstellt…"
+msgstr "Referenzkarten neu aufbauen..."
 
 #: ../gramps/plugins/tool/check.py:318
 #, python-format
@@ -35858,7 +35856,7 @@ msgstr "Prüfe Quellen"
 
 #: ../gramps/plugins/tool/mergecitations.py:192
 msgid "Looking for citation fields"
-msgstr "Suche nach Fundstellenfelder"
+msgstr "Suche nach Fundstellenfeldern"
 
 #: ../gramps/plugins/tool/mergecitations.py:245
 msgid "Number of merges done"
@@ -36055,7 +36053,7 @@ msgstr "Daten aus Namen extrahieren"
 
 #: ../gramps/plugins/tool/rebuild.py:77
 msgid "Rebuilding secondary indexes..."
-msgstr "Untergeordnete Register neu erstellen..."
+msgstr "Untergeordnete Register neu aufbauen..."
 
 #: ../gramps/plugins/tool/rebuild.py:84
 msgid "Secondary indexes rebuilt"
@@ -36068,8 +36066,8 @@ msgstr "Alle untergeordneten Register wurden neu erstellt."
 #: ../gramps/plugins/tool/rebuildgenderstat.py:82
 msgid "Rebuilding gender statistics for name gender guessing..."
 msgstr ""
-"Neuerstellen der Geschlechterstatistik für das Raten des Geschlechts anhand "
-"des Namens…"
+"Geschlechterstatistik für das Raten des Geschlechts anhand des Namens neu "
+"aufbauen…"
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:97
 msgid "Gender statistics rebuilt"
@@ -36568,29 +36566,29 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:298
 msgid "Rebuild Secondary Indexes"
-msgstr "Untergeordnete Register neu erstellen"
+msgstr "Untergeordnete Register neu aufbauen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:299
 msgid "Rebuilds secondary indexes"
-msgstr "Erstellt untergeordnete Register neu"
+msgstr "Baut untergeordnete Register neu auf"
 
 #: ../gramps/plugins/tool/tools.gpr.py:322
 msgid "Rebuild Reference Maps"
-msgstr "Interne Referenzen neu erstellen"
+msgstr "Referenzkarten neu aufbauen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:323
 msgid "Rebuilds reference maps"
-msgstr "Erstellt interne Referenzen neu"
+msgstr "Baut Referenzkarten neu auf"
 
 #: ../gramps/plugins/tool/tools.gpr.py:346
 msgid "Rebuild Gender Statistics"
-msgstr "Geschlechterstatistik neu erstellen"
+msgstr "Geschlechterstatistik neu aufbauen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:347
 msgid "Rebuilds gender statistics for name gender guessing..."
 msgstr ""
-"Erstellt Geschlechterstatistik für das Vermuten des Geschlechts anhand des "
-"Namens neu…"
+"Baut Geschlechterstatistik für das Vermuten des Geschlechts anhand des "
+"Namens neu auf..."
 
 #: ../gramps/plugins/tool/tools.gpr.py:371
 msgid "Calculates the relationship between two people"
@@ -38504,10 +38502,8 @@ msgid " [Click to Go]"
 msgstr " [Klicken zum Fortfahren]"
 
 #: ../gramps/plugins/webreport/basepage.py:2974
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
-msgstr "Heilige der letzten Tage/ HLT Ordination"
+msgstr "Heilige der Letzten Tage/ HLT-Verordnung"
 
 #: ../gramps/plugins/webreport/basepage.py:3141
 #: ../gramps/plugins/webreport/basepage.py:3143
