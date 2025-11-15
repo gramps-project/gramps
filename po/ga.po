@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-09-08 23:02+0000\n"
+"PO-Revision-Date: 2025-11-09 23:51+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8381,10 +8381,8 @@ msgid "Type code"
 msgstr "Cód cineál"
 
 #: ../gramps/gen/lib/ldsord.py:96
-#, fuzzy
-#| msgid "Initiatory (LDS)"
 msgid "Initiatory"
-msgstr "Tionscnaíoch (LDS)"
+msgstr "Tionscnóir"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -38283,10 +38281,8 @@ msgid " [Click to Go]"
 msgstr " [Cliceáil le dul]"
 
 #: ../gramps/plugins/webreport/basepage.py:2974
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
-msgstr "Ordanáis na Naomh Laethanta Deireanacha / LDS"
+msgstr "Naoimh na Laethanta Deiridh/Ordanáis LDS"
 
 #: ../gramps/plugins/webreport/basepage.py:3141
 #: ../gramps/plugins/webreport/basepage.py:3143
