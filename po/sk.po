@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-10-29 10:07+0000\n"
+"PO-Revision-Date: 2025-11-09 23:51+0000\n"
 "Last-Translator: Jozef Gaal <preklady@mayday.sk>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8338,10 +8338,8 @@ msgid "Type code"
 msgstr "Typový kód"
 
 #: ../gramps/gen/lib/ldsord.py:96
-#, fuzzy
-#| msgid "Initiatory (LDS)"
 msgid "Initiatory"
-msgstr "Iniciácia (SND)"
+msgstr "Iniciácia"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -38033,10 +38031,8 @@ msgid " [Click to Go]"
 msgstr " [kliknúť na Ísť]"
 
 #: ../gramps/plugins/webreport/basepage.py:2974
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
-msgstr "Cirkev J. K. Svätých neskorších dní/ Obrad SND"
+msgstr "Cirkev J. K. Svätých neskorších dní/ Obrad"
 
 #: ../gramps/plugins/webreport/basepage.py:3141
 #: ../gramps/plugins/webreport/basepage.py:3143
