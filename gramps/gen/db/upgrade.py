@@ -4,6 +4,7 @@
 # Copyright (C) 2020-2016 Gramps Development Team
 # Copyright (C) 2020      Paul Culley
 # Copyright (C) 2024      Doug Blank
+# Copyright (C) 2025      Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +37,8 @@ import logging
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
 from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
-from gramps.gen.lib import EventType, NameOriginType, Tag, MarkerType
+from gramps.gen.lib import EventRoleType, EventType, NameOriginType, Tag, MarkerType
+from gramps.gen.lib.json_utils import data_to_object, object_to_data
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
 from gramps.gui.dialog import InfoDialog
@@ -58,6 +60,52 @@ from .conversion_tools import convert_21
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(".upgrade")
+
+
+def gramps_upgrade_22(self):
+    """
+    Coalesce custom event role types in to built-in role types
+    """
+    self._txn_begin()
+
+    # ----------------------------------------
+    # Upgrade Person EventRefs
+    # ----------------------------------------
+    #
+    for person_handle in self.get_person_handles():
+        person = self.get_raw_person_data(person_handle)
+        if person.event_ref_list:
+            person['event_ref_list'] = upgrade_event_ref_role_22(person.event_ref_list)
+            self._commit_raw(person, PERSON_KEY)
+        self.update()
+
+    # ----------------------------------------
+    # Upgrade Family EventRefs
+    # ----------------------------------------
+    #
+    for family_handle in self.get_family_handles():
+        family = self.get_raw_family_data(family_handle)
+        if family.event_ref_list:
+            family['event_ref_list'] = upgrade_event_ref_role_22(family.event_ref_list)
+            self._commit_raw(family, FAMILY_KEY)
+        self.update()
+
+    self._set_metadata("version", 22, use_txn=False)
+    self._txn_commit()
+
+
+def upgrade_event_ref_role_22(event_ref_list):
+    """
+    Coalesce custom event role types in to built-in role types
+    """
+    new_event_ref_list = []
+    for event_ref in event_ref_list:
+        if event_ref.role.value == EventRoleType.CUSTOM:
+            event_role_type = data_to_object(event_ref.role)
+            event_role_type.string = event_role_type.string
+            event_ref['role'] = object_to_data(event_role_type)
+        new_event_ref_list.append((event_ref))
+    return new_event_ref_list
 
 
 def gramps_upgrade_21(self):

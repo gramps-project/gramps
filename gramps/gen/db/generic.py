@@ -420,7 +420,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     __callback_map = {}
 
-    VERSION = (21, 0, 0)
+    VERSION = (22, 0, 0)
 
     def __init__(self, directory=None):
         DbReadBase.__init__(self)
@@ -2777,6 +2777,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_19,
             gramps_upgrade_20,
             gramps_upgrade_21,
+            gramps_upgrade_22,
         )
 
         if version < 14:
@@ -2795,6 +2796,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_20(self)
         if version < 21:
             gramps_upgrade_21(self)
+        if version < 22:
+            gramps_upgrade_22(self)
 
         self.rebuild_secondary(callback)
         self.reindex_reference_map(callback)
