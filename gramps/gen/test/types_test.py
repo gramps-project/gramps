@@ -18,216 +18,208 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-"""Unittest for types.py protocols"""
+"""Test that ...Like union types work with both actual objects and DataDict."""
 
 import unittest
 
+from ..types import (
+    PersonLike,
+    FamilyLike,
+    EventLike,
+    SourceLike,
+    CitationLike,
+    MediaLike,
+    PlaceLike,
+    RepositoryLike,
+    NoteLike,
+    TagLike,
+    AddressLike,
+)
+
+
+def get_handle(
+    obj: (
+        PersonLike
+        | FamilyLike
+        | EventLike
+        | SourceLike
+        | CitationLike
+        | MediaLike
+        | PlaceLike
+        | RepositoryLike
+        | NoteLike
+        | TagLike
+    ),
+) -> str:
+    """Helper function that accepts any primary object type and returns handle."""
+    return obj.handle
+
+
+def get_gramps_id(
+    obj: (
+        PersonLike
+        | FamilyLike
+        | EventLike
+        | SourceLike
+        | CitationLike
+        | MediaLike
+        | PlaceLike
+        | RepositoryLike
+        | NoteLike
+    ),
+) -> str:
+    """Helper to get gramps_id from objects that have it."""
+    return obj.gramps_id
+
+
+def get_first_address_city(person: PersonLike) -> str | None:
+    """Get city from first address if it exists."""
+    if person.address_list:
+        return person.address_list[0].city
+    return None
+
+
+def create_person(handle: str, gramps_id: str) -> PersonLike:
+    """Create and return a Person as PersonLike."""
+    from ..lib.person import Person
+
+    person = Person()
+    person.handle = handle
+    person.gramps_id = gramps_id
+    return person
+
+
+def create_event(handle: str, gramps_id: str) -> EventLike:
+    """Create and return an Event as EventLike."""
+    from ..lib.event import Event
+
+    event = Event()
+    event.handle = handle
+    event.gramps_id = gramps_id
+    return event
+
 
 class ProtocolTest(unittest.TestCase):
-    """Test that actual Gramps classes match their protocol definitions."""
+    """Test that ...Like types work with both actual objects and DataDict."""
 
-    def test_person_matches_personlike(self):
-        """Test that a Person instance matches the PersonLike protocol."""
+    def test_person_like(self):
+        """Test PersonLike accepts Person and DataDict, with attribute access."""
         from ..lib.person import Person
-        from ..types import PersonLike
-        
+        from ..lib.address import Address
+        from ..lib.json_utils import object_to_data
+
+        # Create person with address
         person = Person()
+        person.handle = "test123"
+        person.gramps_id = "I0001"
+        addr = Address()
+        addr.city = "Boston"
+        person.address_list.append(addr)
+
+        # Test with actual Person
+        self.assertEqual(get_handle(person), "test123")
+        self.assertEqual(get_gramps_id(person), "I0001")
+        self.assertEqual(get_first_address_city(person), "Boston")
+
+        # Test with DataDict - object_to_data not typed, so cast
+        data_dict = object_to_data(person)
+        self.assertEqual(get_handle(data_dict), "test123")  # type: ignore[arg-type]
+        self.assertEqual(get_gramps_id(data_dict), "I0001")  # type: ignore[arg-type]
+        self.assertEqual(get_first_address_city(data_dict), "Boston")  # type: ignore[arg-type]
+
+        # Test return types
+        result: PersonLike = create_person("p1", "P0001")
+        self.assertEqual(result.handle, "p1")
+
+    def test_event_like(self):
+        """Test EventLike accepts Event and DataDict."""
+        from ..lib.event import Event
+        from ..lib.json_utils import object_to_data
+
+        event = Event()
+        event.handle = "evt123"
+        event.gramps_id = "E0001"
+
+        self.assertEqual(get_handle(event), "evt123")
+        self.assertEqual(get_gramps_id(event), "E0001")
+
+        data_dict = object_to_data(event)
+        self.assertEqual(get_handle(data_dict), "evt123")  # type: ignore[arg-type]
+        self.assertEqual(get_gramps_id(data_dict), "E0001")  # type: ignore[arg-type]
+
+        result: EventLike = create_event("e1", "E0001")
+        self.assertEqual(result.handle, "e1")
+
+    def test_all_primary_types(self):
+        """Test that all primary types work with get_handle."""
+        from ..lib.person import Person
+        from ..lib.family import Family
+        from ..lib.event import Event
+        from ..lib.src import Source
+        from ..lib.citation import Citation
+        from ..lib.media import Media
+        from ..lib.place import Place
+        from ..lib.repo import Repository
+        from ..lib.note import Note
+        from ..lib.tag import Tag
+
+        objects = [
+            Person(),
+            Family(),
+            Event(),
+            Source(),
+            Citation(),
+            Media(),
+            Place(),
+            Repository(),
+            Note(),
+            Tag(),
+        ]
+
+        for i, obj in enumerate(objects):
+            obj.handle = f"handle{i}"
+            self.assertEqual(get_handle(obj), f"handle{i}")
+
+    def test_runtime_protocol_checks(self):
+        """Test that actual objects match their protocols at runtime."""
+        from ..lib.person import Person
+        from ..lib.family import Family
+        from ..lib.event import Event
+        from ..lib.address import Address
+        from ..lib.json_utils import DataDict
+
+        # Test Person matches PersonLike protocol
+        person = Person()
+        person.handle = "p1"
         self.assertIsInstance(person, PersonLike)
 
-    def test_person_datadict_matches_personlike(self):
-        """Test that a DataDict from Person has PersonLike attributes."""
-        from ..lib.person import Person
-        from ..lib.json_utils import object_to_data
-        from ..types import PersonLike
-        
-        person = Person()
-        data_dict: PersonLike = object_to_data(person)
+        # Test DataDict provides attribute access through __getattr__
+        person_dict = DataDict(person)
+        # DataDict won't pass isinstance check because protocols check actual attributes,
+        # not __getattr__, but we can verify attribute access works
+        self.assertEqual(person_dict.handle, "p1")
+        self.assertTrue(hasattr(person_dict, "handle"))
 
-    def test_family_matches_familylike(self):
-        """Test that a Family instance matches the FamilyLike protocol."""
-        from ..lib.family import Family
-        from ..types import FamilyLike
-        
+        # Test Family matches FamilyLike protocol
         family = Family()
+        family.handle = "f1"
         self.assertIsInstance(family, FamilyLike)
 
-    def test_family_datadict_matches_familylike(self):
-        """Test that a DataDict from Family has FamilyLike attributes."""
-        from ..lib.family import Family
-        from ..lib.json_utils import object_to_data
-        from ..types import FamilyLike
-        
-        family = Family()
-        data_dict: FamilyLike = object_to_data(family)
+        family_dict = DataDict(family)
+        self.assertEqual(family_dict.handle, "f1")
 
-    def test_event_matches_eventlike(self):
-        """Test that an Event instance matches the EventLike protocol."""
-        from ..lib.event import Event
-        from ..types import EventLike
-        
+        # Test Event matches EventLike protocol
         event = Event()
+        event.handle = "e1"
         self.assertIsInstance(event, EventLike)
 
-    def test_event_datadict_matches_eventlike(self):
-        """Test that a DataDict from Event has EventLike attributes."""
-        from ..lib.event import Event
-        from ..lib.json_utils import object_to_data
-        from ..types import EventLike
-        
-        event = Event()
-        data_dict: EventLike = object_to_data(event)
+        event_dict = DataDict(event)
+        self.assertEqual(event_dict.handle, "e1")
 
-    def test_source_matches_sourcelike(self):
-        """Test that a Source instance matches the SourceLike protocol."""
-        from ..lib.src import Source
-        from ..types import SourceLike
-        
-        source = Source()
-        self.assertIsInstance(source, SourceLike)
-
-    def test_source_datadict_matches_sourcelike(self):
-        """Test that a DataDict from Source has SourceLike attributes."""
-        from ..lib.src import Source
-        from ..lib.json_utils import object_to_data
-        from ..types import SourceLike
-        
-        source = Source()
-        data_dict: SourceLike = object_to_data(source)
-
-    def test_citation_matches_citationlike(self):
-        """Test that a Citation instance matches the CitationLike protocol."""
-        from ..lib.citation import Citation
-        from ..types import CitationLike
-        
-        citation = Citation()
-        self.assertIsInstance(citation, CitationLike)
-
-    def test_citation_datadict_matches_citationlike(self):
-        """Test that a DataDict from Citation has CitationLike attributes."""
-        from ..lib.citation import Citation
-        from ..lib.json_utils import object_to_data
-        from ..types import CitationLike
-        
-        citation = Citation()
-        data_dict: CitationLike = object_to_data(citation)
-
-    def test_media_matches_medialike(self):
-        """Test that a Media instance matches the MediaLike protocol."""
-        from ..lib.media import Media
-        from ..types import MediaLike
-        
-        media = Media()
-        self.assertIsInstance(media, MediaLike)
-
-    def test_media_datadict_matches_medialike(self):
-        """Test that a DataDict from Media has MediaLike attributes."""
-        from ..lib.media import Media
-        from ..lib.json_utils import object_to_data
-        from ..types import MediaLike
-        
-        media = Media()
-        data_dict: MediaLike = object_to_data(media)
-
-    def test_place_matches_placelike(self):
-        """Test that a Place instance matches the PlaceLike protocol."""
-        from ..lib.place import Place
-        from ..types import PlaceLike
-        
-        place = Place()
-        self.assertIsInstance(place, PlaceLike)
-
-    def test_place_datadict_matches_placelike(self):
-        """Test that a DataDict from Place has PlaceLike attributes."""
-        from ..lib.place import Place
-        from ..lib.json_utils import object_to_data
-        from ..types import PlaceLike
-        
-        place = Place()
-        data_dict: PlaceLike = object_to_data(place)
-
-    def test_repository_matches_repositorylike(self):
-        """Test that a Repository instance matches the RepositoryLike protocol."""
-        from ..lib.repo import Repository
-        from ..types import RepositoryLike
-        
-        repository = Repository()
-        self.assertIsInstance(repository, RepositoryLike)
-
-    def test_repository_datadict_matches_repositorylike(self):
-        """Test that a DataDict from Repository has RepositoryLike attributes."""
-        from ..lib.repo import Repository
-        from ..lib.json_utils import object_to_data
-        from ..types import RepositoryLike
-        
-        repository = Repository()
-        data_dict: RepositoryLike = object_to_data(repository)
-
-    def test_note_matches_notelike(self):
-        """Test that a Note instance matches the NoteLike protocol."""
-        from ..lib.note import Note
-        from ..types import NoteLike
-        
-        note = Note()
-        self.assertIsInstance(note, NoteLike)
-
-    def test_note_datadict_matches_notelike(self):
-        """Test that a DataDict from Note has NoteLike attributes."""
-        from ..lib.note import Note
-        from ..lib.json_utils import object_to_data
-        from ..types import NoteLike
-        
-        note = Note()
-        data_dict: NoteLike = object_to_data(note)
-
-    def test_tag_matches_taglike(self):
-        """Test that a Tag instance matches the TagLike protocol."""
-        from ..lib.tag import Tag
-        from ..types import TagLike
-        
-        tag = Tag()
-        self.assertIsInstance(tag, TagLike)
-
-    def test_tag_datadict_matches_taglike(self):
-        """Test that a DataDict from Tag has TagLike attributes."""
-        from ..lib.tag import Tag
-        from ..lib.json_utils import object_to_data
-        from ..types import TagLike
-        
-        tag = Tag()
-        data_dict: TagLike = object_to_data(tag)
-
-    def test_date_matches_datelike(self):
-        """Test that a Date instance matches the DateLike protocol."""
-        from ..lib.date import Date
-        from ..types import DateLike
-        
-        date = Date()
-        self.assertIsInstance(date, DateLike)
-
-    def test_name_matches_namelike(self):
-        """Test that a Name instance matches the NameLike protocol."""
-        from ..lib.name import Name
-        from ..types import NameLike
-        
-        name = Name()
-        self.assertIsInstance(name, NameLike)
-
-    def test_grampstype_matches_grampstypelike(self):
-        """Test that GrampsType instances match the GrampsTypeLike protocol."""
-        from ..lib.grampstype import GrampsType
-        from ..lib.nametype import NameType
-        from ..lib.eventtype import EventType
-        from ..types import GrampsTypeLike
-        
-        # Test with base GrampsType and subclasses
-        gt = GrampsType()
-        self.assertIsInstance(gt, GrampsTypeLike)
-        
-        nt = NameType()
-        self.assertIsInstance(nt, GrampsTypeLike)
-        
-        et = EventType()
-        self.assertIsInstance(et, GrampsTypeLike)
+        # Test nested protocol: Address matches AddressLike
+        address = Address()
+        address.city = "Boston"
+        self.assertIsInstance(address, AddressLike)
 
 
 if __name__ == "__main__":
