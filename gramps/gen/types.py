@@ -25,7 +25,6 @@ from typing import (
     TYPE_CHECKING,
     NewType,
     Protocol,
-    Sequence,
     Type,
     TypeVar,
     Union,
@@ -167,11 +166,11 @@ class NameLike(Protocol):
     """Protocol for Name-like objects."""
 
     private: bool
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
+    citation_list: list[str]
+    note_list: list[str]
     date: DateLike
     first_name: str
-    surname_list: Sequence[SurnameLike]
+    surname_list: list[SurnameLike]
     suffix: str
     title: str
     type: GrampsTypeLike  # NameType
@@ -188,9 +187,9 @@ class EventRefLike(Protocol):
     """Protocol for EventRef-like objects."""
 
     private: bool
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
-    attribute_list: Sequence[AttributeLike]
+    citation_list: list[str]
+    note_list: list[str]
+    attribute_list: list[AttributeLike]
     ref: str  # Event handle
     role: GrampsTypeLike  # EventRoleType
 
@@ -200,11 +199,11 @@ class MediaRefLike(Protocol):
     """Protocol for MediaRef-like objects."""
 
     private: bool
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
-    attribute_list: Sequence[AttributeLike]
+    citation_list: list[str]
+    note_list: list[str]
+    attribute_list: list[AttributeLike]
     ref: str  # Media handle
-    rect: Sequence[int] | None  # Region coordinates [x, y, width, height]
+    rect: list[int] | None  # Region coordinates [x, y, width, height]
 
 
 @runtime_checkable
@@ -212,8 +211,8 @@ class AddressLike(Protocol):
     """Protocol for Address-like objects."""
 
     private: bool
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
+    citation_list: list[str]
+    note_list: list[str]
     date: DateLike
     street: str
     locality: str
@@ -230,8 +229,8 @@ class AttributeLike(Protocol):
     """Protocol for Attribute-like objects."""
 
     private: bool
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
+    citation_list: list[str]
+    note_list: list[str]
     type: GrampsTypeLike  # AttributeType
     value: str
 
@@ -250,8 +249,8 @@ class UrlLike(Protocol):
 class LdsOrdLike(Protocol):
     """Protocol for LdsOrd-like objects."""
 
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
+    citation_list: list[str]
+    note_list: list[str]
     date: DateLike
     type: int  # LDS ordinance type
     place: str
@@ -266,8 +265,8 @@ class PersonRefLike(Protocol):
     """Protocol for PersonRef-like objects."""
 
     private: bool
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
+    citation_list: list[str]
+    note_list: list[str]
     ref: str  # Person handle
     rel: str  # Association/relationship
 
@@ -277,8 +276,8 @@ class ChildRefLike(Protocol):
     """Protocol for ChildRef-like objects."""
 
     private: bool
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
+    citation_list: list[str]
+    note_list: list[str]
     ref: str  # Child handle
     frel: GrampsTypeLike  # ChildRefType - Father relationship
     mrel: GrampsTypeLike  # ChildRefType - Mother relationship
@@ -297,7 +296,7 @@ class RepoRefLike(Protocol):
     """Protocol for RepoRef-like objects."""
 
     private: bool
-    note_list: Sequence[str]
+    note_list: list[str]
     ref: str  # Repository handle
     call_number: str
     media_type: GrampsTypeLike  # SourceMediaType
@@ -318,7 +317,7 @@ class StyledTextTagLike(Protocol):
 
     name: GrampsTypeLike  # StyledTextTagType
     value: str | int | None
-    ranges: Sequence[tuple[int, int]]
+    ranges: list[tuple[int, int]]
 
 
 @runtime_checkable
@@ -326,7 +325,7 @@ class StyledTextLike(Protocol):
     """Protocol for StyledText-like objects."""
 
     string: str
-    tags: Sequence[StyledTextTagLike]
+    tags: list[StyledTextTagLike]
 
 
 @runtime_checkable
@@ -361,23 +360,23 @@ class PersonLike(Protocol):
     gramps_id: str
     gender: int
     primary_name: NameLike
-    alternate_names: Sequence[NameLike]
+    alternate_names: list[NameLike]
     death_ref_index: int
     birth_ref_index: int
-    event_ref_list: Sequence[EventRefLike]
-    family_list: Sequence[str]
-    parent_family_list: Sequence[str]
-    media_list: Sequence[MediaRefLike]
-    address_list: Sequence[AddressLike]
-    attribute_list: Sequence[AttributeLike]
-    urls: Sequence[UrlLike]
-    lds_ord_list: Sequence[LdsOrdLike]
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
+    event_ref_list: list[EventRefLike]
+    family_list: list[str]
+    parent_family_list: list[str]
+    media_list: list[MediaRefLike]
+    address_list: list[AddressLike]
+    attribute_list: list[AttributeLike]
+    urls: list[UrlLike]
+    lds_ord_list: list[LdsOrdLike]
+    citation_list: list[str]
+    note_list: list[str]
     change: int
-    tag_list: Sequence[str]
+    tag_list: list[str]
     private: bool
-    person_ref_list: Sequence[PersonRefLike]
+    person_ref_list: list[PersonRefLike]
 
 
 @runtime_checkable
@@ -388,16 +387,16 @@ class FamilyLike(Protocol):
     gramps_id: str
     father_handle: str | None
     mother_handle: str | None
-    child_ref_list: Sequence[ChildRefLike]
+    child_ref_list: list[ChildRefLike]
     type: GrampsTypeLike  # FamilyRelType
-    event_ref_list: Sequence[EventRefLike]
-    media_list: Sequence[MediaRefLike]
-    attribute_list: Sequence[AttributeLike]
-    lds_ord_list: Sequence[LdsOrdLike]
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
+    event_ref_list: list[EventRefLike]
+    media_list: list[MediaRefLike]
+    attribute_list: list[AttributeLike]
+    lds_ord_list: list[LdsOrdLike]
+    citation_list: list[str]
+    note_list: list[str]
     change: int
-    tag_list: Sequence[str]
+    tag_list: list[str]
     private: bool
 
 
@@ -411,12 +410,12 @@ class EventLike(Protocol):
     date: DateLike
     description: str
     place: str | None
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
-    media_list: Sequence[MediaRefLike]
-    attribute_list: Sequence[AttributeLike]
+    citation_list: list[str]
+    note_list: list[str]
+    media_list: list[MediaRefLike]
+    attribute_list: list[AttributeLike]
     change: int
-    tag_list: Sequence[str]
+    tag_list: list[str]
     private: bool
 
 
@@ -430,12 +429,12 @@ class MediaLike(Protocol):
     mime: str
     desc: str
     checksum: str
-    attribute_list: Sequence[AttributeLike]
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
+    attribute_list: list[AttributeLike]
+    citation_list: list[str]
+    note_list: list[str]
     change: int
     date: DateLike
-    tag_list: Sequence[str]
+    tag_list: list[str]
     private: bool
 
 
@@ -448,18 +447,18 @@ class PlaceLike(Protocol):
     title: str
     long: str
     lat: str
-    placeref_list: Sequence[PlaceRefLike]
+    placeref_list: list[PlaceRefLike]
     name: PlaceNameLike
-    alt_names: Sequence[PlaceNameLike]
+    alt_names: list[PlaceNameLike]
     place_type: GrampsTypeLike  # PlaceType
     code: str
-    alt_loc: Sequence[LocationLike]
-    urls: Sequence[UrlLike]
-    media_list: Sequence[MediaRefLike]
-    citation_list: Sequence[str]
-    note_list: Sequence[str]
+    alt_loc: list[LocationLike]
+    urls: list[UrlLike]
+    media_list: list[MediaRefLike]
+    citation_list: list[str]
+    note_list: list[str]
     change: int
-    tag_list: Sequence[str]
+    tag_list: list[str]
     private: bool
 
 
@@ -472,13 +471,13 @@ class SourceLike(Protocol):
     title: str
     author: str
     pubinfo: str
-    note_list: Sequence[str]
-    media_list: Sequence[MediaRefLike]
+    note_list: list[str]
+    media_list: list[MediaRefLike]
     abbrev: str
     change: int
-    attribute_list: Sequence[SrcAttributeLike]
-    reporef_list: Sequence[RepoRefLike]
-    tag_list: Sequence[str]
+    attribute_list: list[SrcAttributeLike]
+    reporef_list: list[RepoRefLike]
+    tag_list: list[str]
     private: bool
 
 
@@ -492,11 +491,11 @@ class CitationLike(Protocol):
     page: str
     confidence: int
     source_handle: str
-    note_list: Sequence[str]
-    media_list: Sequence[MediaRefLike]
-    attribute_list: Sequence[SrcAttributeLike]
+    note_list: list[str]
+    media_list: list[MediaRefLike]
+    attribute_list: list[SrcAttributeLike]
     change: int
-    tag_list: Sequence[str]
+    tag_list: list[str]
     private: bool
 
 
@@ -508,11 +507,11 @@ class RepositoryLike(Protocol):
     gramps_id: str
     type: GrampsTypeLike  # RepositoryType
     name: str
-    note_list: Sequence[str]
-    address_list: Sequence[AddressLike]
-    urls: Sequence[UrlLike]
+    note_list: list[str]
+    address_list: list[AddressLike]
+    urls: list[UrlLike]
     change: int
-    tag_list: Sequence[str]
+    tag_list: list[str]
     private: bool
 
 
@@ -526,7 +525,7 @@ class NoteLike(Protocol):
     format: int
     type: GrampsTypeLike  # NoteType
     change: int
-    tag_list: Sequence[str]
+    tag_list: list[str]
     private: bool
 
 
@@ -539,52 +538,3 @@ class TagLike(Protocol):
     color: str
     priority: int
     change: int
-
-
-if TYPE_CHECKING:
-    # Verify that actual classes implement their corresponding protocols
-    _gramps_type: Type[GrampsTypeLike] = GrampsType
-    _name_type: Type[GrampsTypeLike] = NameType
-    _attribute_type: Type[GrampsTypeLike] = AttributeType
-    _url_type: Type[GrampsTypeLike] = UrlType
-    _event_role_type: Type[GrampsTypeLike] = EventRoleType
-    _name_origin_type: Type[GrampsTypeLike] = NameOriginType
-    _event_type: Type[GrampsTypeLike] = EventType
-    _family_rel_type: Type[GrampsTypeLike] = FamilyRelType
-    _child_ref_type: Type[GrampsTypeLike] = ChildRefType
-    _place_type: Type[GrampsTypeLike] = PlaceType
-    _repository_type: Type[GrampsTypeLike] = RepositoryType
-    _src_attribute_type: Type[GrampsTypeLike] = SrcAttributeType
-    _source_media_type: Type[GrampsTypeLike] = SourceMediaType
-    _styled_text_tag_type: Type[GrampsTypeLike] = StyledTextTagType
-    _note_type: Type[GrampsTypeLike] = NoteType
-
-    _date: Type[DateLike] = Date
-    _surname: Type[SurnameLike] = Surname
-    _name: Type[NameLike] = Name
-    _event_ref: Type[EventRefLike] = EventRef
-    _media_ref: Type[MediaRefLike] = MediaRef
-    _address: Type[AddressLike] = Address
-    _attribute: Type[AttributeLike] = Attribute
-    _url: Type[UrlLike] = Url
-    _lds_ord: Type[LdsOrdLike] = LdsOrd
-    _person_ref: Type[PersonRefLike] = PersonRef
-    _child_ref: Type[ChildRefLike] = ChildRef
-    _place_ref: Type[PlaceRefLike] = PlaceRef
-    _repo_ref: Type[RepoRefLike] = RepoRef
-    _src_attribute: Type[SrcAttributeLike] = SrcAttribute
-    _styled_text_tag: Type[StyledTextTagLike] = StyledTextTag
-    _styled_text: Type[StyledTextLike] = StyledText
-    _place_name: Type[PlaceNameLike] = PlaceName
-    _location: Type[LocationLike] = Location
-
-    _person: Type[PersonLike] = Person
-    _family: Type[FamilyLike] = Family
-    _event: Type[EventLike] = Event
-    _media: Type[MediaLike] = Media
-    _place: Type[PlaceLike] = Place
-    _source: Type[SourceLike] = Source
-    _citation: Type[CitationLike] = Citation
-    _repository: Type[RepositoryLike] = Repository
-    _note: Type[NoteLike] = Note
-    _tag: Type[TagLike] = Tag
