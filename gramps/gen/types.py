@@ -22,7 +22,6 @@
 from __future__ import annotations
 
 from typing import (
-    TYPE_CHECKING,
     NewType,
     Protocol,
     Type,
@@ -45,41 +44,6 @@ from .lib import (
     Tag,
 )
 from .lib.tableobj import TableObject
-
-if TYPE_CHECKING:
-    from .lib.address import Address
-    from .lib.attribute import Attribute
-    from .lib.attrtype import AttributeType
-    from .lib.childref import ChildRef
-    from .lib.childreftype import ChildRefType
-    from .lib.date import Date
-    from .lib.eventref import EventRef
-    from .lib.eventroletype import EventRoleType
-    from .lib.eventtype import EventType
-    from .lib.familyreltype import FamilyRelType
-    from .lib.grampstype import GrampsType
-    from .lib.ldsord import LdsOrd
-    from .lib.location import Location
-    from .lib.mediaref import MediaRef
-    from .lib.name import Name
-    from .lib.nameorigintype import NameOriginType
-    from .lib.nametype import NameType
-    from .lib.notetype import NoteType
-    from .lib.personref import PersonRef
-    from .lib.placename import PlaceName
-    from .lib.placeref import PlaceRef
-    from .lib.placetype import PlaceType
-    from .lib.reporef import RepoRef
-    from .lib.repotype import RepositoryType
-    from .lib.srcattribute import SrcAttribute
-    from .lib.srcattrtype import SrcAttributeType
-    from .lib.srcmediatype import SourceMediaType
-    from .lib.styledtext import StyledText
-    from .lib.styledtexttag import StyledTextTag
-    from .lib.styledtexttagtype import StyledTextTagType
-    from .lib.surname import Surname
-    from .lib.url import Url
-    from .lib.urltype import UrlType
 
 PersonHandle = NewType("PersonHandle", str)
 FamilyHandle = NewType("FamilyHandle", str)
