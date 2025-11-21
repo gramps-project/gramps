@@ -1328,10 +1328,16 @@ class NavWebReport(Report):
         # Anything css-specific:
         imgs += CSS[self.css]["images"]
 
-        # copy all to images subdir:
+        # copy all specific files: images, css subdirectories
         for from_path in imgs:
-            dummy_fdir, fname = os.path.split(from_path)
-            self.copy_file(from_path, fname, "images")
+            subdir = from_path.split("css/")
+            if len(subdir) == 2 and "/" in subdir[1]:
+                cssdir = subdir[1].split("/")
+                newdir = os.path.join("css", cssdir[0])
+                self.copy_file(from_path, cssdir[1], newdir)
+            else:
+                dummy_fdir, fname = os.path.split(from_path)
+                self.copy_file(from_path, fname, "images")
 
         # copy Gramps marker icon for openstreetmap
         fname = CSS["marker"]["filename"]
