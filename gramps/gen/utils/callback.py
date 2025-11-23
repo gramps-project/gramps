@@ -32,11 +32,18 @@ from the gobject framework. It enables the database code to use signals
 to communicate events to any callback methods in either the database code
 or the UI code.
 """
-import sys
+# -------------------------------------------------------------------------
+#
+# Standard python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
 import types
 import traceback
 import inspect
 import copy
+import sys
+from collections.abc import Callable
 
 log = sys.stderr.write
 
@@ -264,7 +271,7 @@ class Callback:
             )
         )
 
-    def connect(self, signal_name, callback):
+    def connect(self, signal_name: str, callback: Callable) -> int | None:
         """
         Connect a callable to a signal_name. The callable will be called
         with the signal is emitted. The callable must accept the argument
@@ -277,7 +284,7 @@ class Callback:
             self._log(
                 "Warning: attempt to connect to unknown signal: %s\n" % str(signal_name)
             )
-            return
+            return None
 
         # Add callable to callback_map
         if signal_name not in self.__callback_map:
@@ -292,7 +299,7 @@ class Callback:
 
         return self._current_key
 
-    def disconnect(self, key):
+    def disconnect(self, key: int):
         """
         Disconnect a callback.
         """

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
 #               2009       Gary Burton
+#               2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +18,13 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
+
+# -------------------------------------------------------------------------
+#
+# Standard python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
@@ -66,15 +74,16 @@ class SelectPerson(BaseSelector):
         # instead of the default defined for get_window_title()
         if title is not None:
             self.title = title
-        self.WIKI_HELP_PAGE = URL_MANUAL_SECT1
-        if title == _("Select Father"):
-            self.WIKI_HELP_SEC = _("Select_Father_selector", "manual")
-        elif title == _("Select Mother"):
-            self.WIKI_HELP_SEC = _("Select_Mother_selector", "manual")
-        elif title == _("Select Child"):
-            self.WIKI_HELP_SEC = _("Select_Child_selector", "manual")
-        else:
-            self.WIKI_HELP_SEC = _("Select_Person_selector", "manual")
+        if not hasattr(self, "WIKI_HELP_PAGE"):  # allow derived class to define
+            self.WIKI_HELP_PAGE = URL_MANUAL_SECT1
+            if title == _("Select Father"):
+                self.WIKI_HELP_SEC = _("Select_Father_selector", "manual")
+            elif title == _("Select Mother"):
+                self.WIKI_HELP_SEC = _("Select_Mother_selector", "manual")
+            elif title == _("Select Child"):
+                self.WIKI_HELP_SEC = _("Select_Child_selector", "manual")
+            else:
+                self.WIKI_HELP_SEC = _("Select_Person_selector", "manual")
 
         BaseSelector.__init__(
             self,
@@ -87,6 +96,17 @@ class SelectPerson(BaseSelector):
             default,
         )
 
+    def _connect_db_signals(self):
+        self.db_connections.append(
+            self.db.connect("person-add", self._object_add_callback)
+        )
+        self.db_connections.append(
+            self.db.connect("person-delete", self._object_delete_callback)
+        )
+        self.db_connections.append(
+            self.db.connect("person-update", self._object_update_callback)
+        )
+
     def _local_init(self):
         """
         Perform local initialisation for this class
@@ -94,7 +114,7 @@ class SelectPerson(BaseSelector):
         self.setup_configs("interface.person-sel", 600, 450)
         self.tree.connect("key-press-event", self._key_press)
 
-    def get_window_title(self):
+    def get_window_title(self) -> str:
         return _("Select Person")
 
     def get_model_class(self):
@@ -116,7 +136,7 @@ class SelectPerson(BaseSelector):
     def get_from_handle_func(self):
         return self.db.get_person_from_handle
 
-    def exact_search(self):
+    def exact_search(self) -> tuple[int]:
         """
         Returns a tuple indicating columns requiring an exact search
         """
