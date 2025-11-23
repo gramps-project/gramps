@@ -1102,9 +1102,33 @@ class RelationshipView(NavigationView):
             )
             self.row += 1  # now advance it
         else:
-            self.write_label(_("%s:") % _("Parents"), family, True, person)
-            self.write_person(_("Father"), family.get_father_handle())
-            self.write_person(_("Mother"), family.get_mother_handle())
+            if family:
+                father = mother = None
+                hd21 = family.get_father_handle()
+                if hd21:
+                    father = self.dbstate.db.get_person_from_handle(hd21).gender
+                hd22 = family.get_mother_handle()
+                if hd22:
+                    mother = self.dbstate.db.get_person_from_handle(hd22).gender
+
+                parent1 = parent2 = ""
+                if father == Person.MALE:
+                    parent1 = _("Father")
+                elif father == Person.FEMALE:
+                    parent1 = _("Mother")
+                else:
+                    parent1 = _("Parent")
+
+                if mother == Person.FEMALE:
+                    parent2 = _("Mother")
+                elif mother == Person.MALE:
+                    parent2 = _("Father")
+                else:
+                    parent2 = _("Parent")
+
+                self.write_label(_("%s:") % _("Parents"), family, True, person)
+                self.write_person(parent1, family.get_father_handle())
+                self.write_person(parent2, family.get_mother_handle())
 
             if self.show_siblings:
                 active = self.get_active()
@@ -1613,10 +1637,20 @@ class RelationshipView(NavigationView):
 
         father_handle = family.get_father_handle()
         mother_handle = family.get_mother_handle()
+        spouse = spouse1 = spouse2 = None
+        hd21 = family.get_father_handle()
+        if hd21:
+            spouse1 = self.dbstate.db.get_person_from_handle(hd21).gender
+        hd22 = family.get_mother_handle()
+        if hd22:
+            spouse2 = self.dbstate.db.get_person_from_handle(hd22).gender
+
         if self.get_active() == father_handle:
             handle = mother_handle
+            spouse = spouse2
         else:
             handle = father_handle
+            spouse = spouse1
 
         # collapse button
         if self.check_collapsed(person.handle, family_handle):
@@ -1646,11 +1680,25 @@ class RelationshipView(NavigationView):
         else:
             # show "V Family: ..." and the rest
             self.write_label(_("%s:") % _("Family"), family, False, person)
-            if handle or family.get_relationship() != FamilyRelType.UNKNOWN:
-                box = self.write_person(_("Spouse"), handle)
+            if family.get_relationship() == FamilyRelType.MARRIED:
+                if spouse == Person.MALE:
+                    box = self.write_person(_("Husband"), handle)
+                elif spouse == Person.FEMALE:
+                    box = self.write_person(_("Wife"), handle)
+                else:
+                    box = self.write_person(_("Spouse"), handle)
+            elif family.get_relationship() == FamilyRelType.CIVIL_UNION:
+                if spouse == Person.MALE:
+                    box = self.write_person(_("Husband"), handle)
+                elif spouse == Person.FEMALE:
+                    box = self.write_person(_("Wife"), handle)
+                else:
+                    box = self.write_person(_("Spouse"), handle)
+            else:
+                box = self.write_person(_("Partner"), handle)
 
-                if not self.write_relationship_events(box, family):
-                    self.write_relationship(box, family)
+            if not self.write_relationship_events(box, family):
+                self.write_relationship(box, family)
 
             hbox = Gtk.Box()
             if self.check_collapsed(family.handle, "CHILDREN"):
