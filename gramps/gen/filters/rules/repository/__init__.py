@@ -27,6 +27,7 @@ from ._regexpidof import RegExpIdOf
 from ._hasattribute import HasAttribute
 from ._hasnoteregexp import HasNoteRegexp
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from ._hasnotetag import HasNoteTag
 from ._hasreferencecountof import HasReferenceCountOf
 from ._repoprivate import RepoPrivate
 from ._matchesfilter import MatchesFilter
@@ -41,6 +42,7 @@ editor_rule_list = [
     HasIdOf,
     RegExpIdOf,
     HasNoteRegexp,
+    HasNoteTag,
     HasReferenceCountOf,
     RepoPrivate,
     MatchesFilter,
