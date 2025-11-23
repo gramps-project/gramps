@@ -30,6 +30,8 @@ Family object for Gramps.
 #
 # -------------------------------------------------------------------------
 import logging
+from collections.abc import Collection
+from typing_extensions import override
 
 # -------------------------------------------------------------------------
 #
@@ -253,19 +255,8 @@ class Family(
         TagBase.unserialize(self, tag_list)
         return self
 
-    def _has_handle_reference(self, classname, handle):
-        """
-        Return True if the object has reference to a given handle of given
-        primary object type.
-
-        :param classname: The name of the primary object class.
-        :type classname: str
-        :param handle: The handle to be checked.
-        :type handle: str
-        :returns: Returns whether the object has reference to this handle of
-                  this object type.
-        :rtype: bool
-        """
+    @override
+    def _has_handle_reference(self, classname: str, handle: str) -> bool:
         if classname == "Event":
             return self._has_event_reference(handle)
         if classname == "Person":
@@ -277,15 +268,10 @@ class Family(
             return handle in [x.place for x in self.lds_ord_list]
         return False
 
-    def _remove_handle_references(self, classname, handle_list):
-        """
-        Remove all references in this object to object handles in the list.
-
-        :param classname: The name of the primary object class.
-        :type classname: str
-        :param handle_list: The list of handles to be removed.
-        :type handle_list: str
-        """
+    @override
+    def _remove_handle_references(
+        self, classname: str, handle_list: Collection[str]
+    ) -> None:
         if classname == "Event":
             self._remove_event_references(handle_list)
         elif classname == "Person":
@@ -302,17 +288,10 @@ class Family(
                 if lds_ord.place in handle_list:
                     lds_ord.place = None
 
-    def _replace_handle_reference(self, classname, old_handle, new_handle):
-        """
-        Replace all references to old handle with those to the new handle.
-
-        :param classname: The name of the primary object class.
-        :type classname: str
-        :param old_handle: The handle to be replaced.
-        :type old_handle: str
-        :param new_handle: The handle to replace the old one with.
-        :type new_handle: str
-        """
+    @override
+    def _replace_handle_reference(
+        self, classname: str, old_handle: str, new_handle: str
+    ) -> None:
         if classname == "Event":
             self._replace_event_references(old_handle, new_handle)
         elif classname == "Person":
