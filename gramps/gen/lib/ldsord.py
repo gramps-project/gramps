@@ -60,7 +60,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
 
     LDS ordinances are similar to events, but have very specific additional
     information related to data collected by the Church of Jesus Christ
-    of Latter Day Saints (Mormon church). The LDS church is the largest
+    of Latter-day Saints (Mormon church). The LDS church is the largest
     source of genealogical information in the United States.
     """
 
@@ -69,6 +69,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
     SEAL_TO_PARENTS = 2
     SEAL_TO_SPOUSE = 3
     CONFIRMATION = 4
+    INITIATORY = 5
 
     DEFAULT_TYPE = BAPTISM
 
@@ -91,8 +92,9 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
 
     _TYPE_MAP = [
         (BAPTISM, _("Baptism"), "baptism"),
-        (ENDOWMENT, _("Endowment"), "endowment"),
         (CONFIRMATION, _("Confirmation"), "confirmation"),
+        (INITIATORY, _("Initiatory"), "initiatory"),
+        (ENDOWMENT, _("Endowment"), "endowment"),
         (SEAL_TO_PARENTS, _("Sealed to Parents"), "sealed_to_parents"),
         (SEAL_TO_SPOUSE, _("Sealed to Spouse"), "sealed_to_spouse"),
     ]

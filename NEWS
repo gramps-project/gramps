@@ -1,3 +1,23 @@
+2025-11-08
+Version 6.0.6
+* Update translations: ba, cs, da, de, de_AT, en_GB, es, fi, fr, ga, he, hr, id,
+  it, ka, lt, nl, pl, pt_PT, ro, ru, sk, sv, ta, tr, uk.
+* Added Weblate translation for Nepali.
+* Relationship Calculator:
+  * Re-written for Russian language. Fixes #12743, #14019.
+  * Fixed incorrect handling of return value of `get_birth_parents()` method.
+  * Add tests to improve coverage of step, in-law and plural cases.
+  * Fix error. Fixes #13996.
+* Fix order of LDS ordinances. Fixes #11651.
+* Fix "Latter-day Saints" name. Issue #11651.
+* Add missing "Initiatory" LDS ordinance. Fixes #4949.
+* Preserve order in `find_children`.
+* Update geocode-glib DLL reference in `setup.py` script. MSYS2 now provides a
+  libsoup3-based geocode-glib binary. Fixes #14018.
+* Update GPL2+ license text.
+* Update COPYING to the latest text.
+* Ignore mypy error when setting `sqlite3.paramstyle`.
+
 2025-09-06
 Version 6.0.5
 * Update translations: bg, ca, cs, da, de, es, fi, fr, ga, he, hr, hu, it, lt,

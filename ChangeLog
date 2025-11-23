@@ -1,243 +1,1335 @@
-2025-09-06  Nick Hall <nick-h@gramps-project.org>
+2025-11-08  Nick Hall <nick-h@gramps-project.org>
 
 	* po/gramps.pot: Update translation template for new release
 
-2025-09-06  Avi Markovitz <avi.markovitz@gmail.com>
+2025-11-08  Petr Fedorov <petr.e.fedorov@yandex.ru>
 
-	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+	* gramps/gen/relationship.py, gramps/plugins/rel/rel_ru.py: 
+	Re-written relationship calculator for Russian language For rel_ru.py: * `get_single_relationship_string` now properly handles step and
+	  in-law relationships.  * `get_sibling_relationship_string` is
+	implemented.  * `get_plural_relationship_string` uses correct terms
+	  and properly handles in-law relationships.  For gramps.gen.relationship.RelationshipCalculator: * Fixed incorrect handling of return value of `get_birth_parents()`
+	  method in base `RelationshipCalculator`.  * Adds tests to base `RelationshipCalculator` module to improve
+	  coverage of step, in-law and plural cases (some of existing
+	  rel_xx.py now fail on new tests) * Fix handling of '0 - all tests' option in the first test menu (all
+	  tests are now run automatically) Fixes #12743, #14019.
 
-2025-09-06  Tadas Masiulionis <tadzikaz@gmail.com>
+2025-11-08  Luigi Toscano <luigi.toscano@tiscali.it>
 
-	* po/lt.po: Translated using Weblate (Lithuanian) Currently translated at 91.1% (6572 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/lt/ Translated using Weblate (Lithuanian) Currently translated at 91.1% (6572 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/lt/
+	* po/it.po: Translated using Weblate (Italian) Currently translated at 98.9% (7136 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/ Translated using Weblate (Italian) Currently translated at 98.9% (7138 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/
 
-2025-09-06  Milo Ivir <mail@milotype.de>
+2025-11-08  Stephan Paternotte <stephan@paternottes.net>
 
-	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
 
-2025-09-06  Matti Niemelä <matti.u.niemela@gmail.com>
+2025-11-08  Marco Ciampa <ciampix@posteo.net>
 
-	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
+	* po/it.po: Translated using Weblate (Italian) Currently translated at 99.0% (7139 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/
 
-2025-09-06  Ivan <ivan47044704@gmail.com>
-
-	* po/uk.po: Translated using Weblate (Ukrainian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/uk/
-
-2025-09-06  Pedro Albuquerque <pmra@protonmail.com>
-
-	* po/pt_PT.po: Translated using Weblate (Portuguese (Portugal)) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/
-
-2025-09-06  John Ralls <jralls@ceridwen.us>
-
-	* mac/Info.plist, mac/gramps.modules: Bump version for macOS.
-
-2025-09-04  Nick Hall <nick-h@gramps-project.org>
-
-	* po/LINGUAS: Add Irish (ga) to the list of supported languages Irish is now 100% translated in Weblate.
-
-2025-09-02  Doug Blank <doug.blank@gmail.com>
-
-	* gramps/gen/filters/rules/event/_matchespersonfilter.py: Fix
-	MatchesPersonFilter Fixes #13947.
-
-2025-08-30  Himanshu Gohel <1551217+hgohel@users.noreply.github.com>
-
-	* gramps/plugins/importer/importgpkg.py: Suppress file not found
-	error if not available at end of gpkg import It's not clear why data.gramps file isn't available in certain
-	situations as reported by users. In examining the code however,
-	there were no errors opening or importing the data, and exception is
-	thrown after the data has already been imported. Given that we have
-	the data it is inconsequential that the file isn't found when
-	removing it, so the exception can be suppressed. If there is a
-	different exception that occurs, that will still be shown to the
-	user which we can investigate if/when reported.  Fixes #12311.
-
-2025-08-29  Eli <88557639+lishaduck@users.noreply.github.com>
-
-	* gramps/plugins/gramplet/welcomegramplet.py: Fix typos in the
-	Welcome gramplet
-
-2025-08-28  hugoovf <69076992+hugoovf@users.noreply.github.com>
-
-	* gramps/plugins/rel/rel_ca.py: Update Catalan relationship
-	calculator This commit replaces the concept of "valencià" relationships in
-	Catalan with more linguistically appropriate terminology. The
-	'valencia' terms are not recognized kinship terms in Catalan, so
-	they have been replaced with standard relationship descriptors
-	(distant uncle, distant aunt, etc.) similar to how Spanish
-	(rel_es.py) handles these relationships.  The following changes were made: - Removed functions with 'valencia' or 'valencià' in their names - Added new functions for distant relationships (uncles, aunts,
-	nephews, nieces) - Updated all references to the removed functions
-
-2025-08-31  Adolfo Jayme Barrientos <fitojb@ubuntu.com>
-
-	* po/ca.po: Translated using Weblate (Catalan) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ca/
-
-2025-08-31  Hugo Vidal <69076992+hugoovf@users.noreply.github.com>
-
-	* po/ca.po, po/es.po: Translated using Weblate (Spanish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/es/ Translated using Weblate (Catalan) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ca/
-
-2025-08-31  Nick Hall <nick-h@gramps-project.org>
-
-	* po/ka.po, po/lv.po: Added translation using Weblate (Latvian) Added translation using Weblate (Georgian)
-
-2025-08-31  lolly76 <thelolly76@gmail.com>
+2025-11-08  jmichault <jmt.2000@free.fr>
 
 	* po/fr.po: Translated using Weblate (French) Currently translated at 99.8% (7202 of 7211 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
 
-2025-08-31  Juha Mäkeläinen <juha.makelainen@iki.fi>
+2025-11-02  Nick Hall <nick-h@gramps-project.org>
 
-	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 99.9% (7208 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
+	* gramps/gen/lib/ldsord.py, gramps/gui/editors/editldsord.py: Fix
+	order of LDS ordinances Fixes #11651.
 
-2025-08-31  Hugo Vidal <hugo@lovi.casa>
+2025-11-02  Nick Hall <nick-h@gramps-project.org>
 
-	* po/ca.po: Translated using Weblate (Catalan) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ca/
+	* gramps/gen/lib/ldsord.py, gramps/plugins/webreport/basepage.py: 
+	Fix "Latter-day Saints" name Issue #11651.
 
-2025-08-31  Luigi Toscano <luigi.toscano@tiscali.it>
+2025-11-02  Nick Hall <nick-h@gramps-project.org>
 
-	* po/it.po: Translated using Weblate (Italian) Currently translated at 98.9% (7136 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/it/
+	* gramps/gen/lib/ldsord.py, gramps/gui/editors/editldsord.py,
+	gramps/plugins/export/exportgedcom.py,
+	gramps/plugins/lib/libgedcom.py: Add missing "Initiatory" LDS
+	ordinance Fixes #4949.
 
-2025-08-31  Adolfo Jayme Barrientos <fitojb@ubuntu.com>
+2025-09-28  romjeromealt <romejerome@orange.fr>
 
-	* po/ca.po, po/es.po: Translated using Weblate (Spanish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/es/ Translated using Weblate (Catalan) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ca/
+	* gramps/gen/relationship.py: Fix error in relationship calculator
+	https://gramps.discourse.group/t/possible-issues-on-relationship-module/8603/3Fixes #13996.
 
-2025-08-31  Tadas Masiulionis <tadzikaz@gmail.com>
+2025-09-27  David Straub <straub@protonmail.com>
 
-	* po/lt.po: Translated using Weblate (Lithuanian) Currently translated at 91.1% (6570 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/lt/ Translated using Weblate (Lithuanian) Currently translated at 90.4% (6522 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/lt/ Translated using Weblate (Lithuanian) Currently translated at 88.4% (6377 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/lt/ Translated using Weblate (Lithuanian) Currently translated at 88.3% (6368 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	* gramps/gen/utils/db.py: Preserve order in find_children
+
+2025-10-18  Himanshu Gohel <1551217+hgohel@users.noreply.github.com>
+
+	* aio/setup.py: Update geocode-glib DLL reference in setup.py MSYS2 now provides a libsoup3-based geocode-glib binary. This
+	version is labeled as API 2.0 by geocode-glib and the name of the
+	DLL was changed to libgeocode-glib-2-0.dll. This change reflects
+	that change in the AIO packaging step.  Fixes #14018.
+
+2025-10-30  Timofei Sablin <tsablin@gmail.com>
+
+	* po/ru.po: Translated using Weblate (Russian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
+
+2025-10-30  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+	* po/cs.po: Translated using Weblate (Czech) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/
+
+2025-10-30  feri andy <feri.andy.nurdhin@gmail.com>
+
+	* po/id.po: Translated using Weblate (Indonesian) Currently translated at 5.2% (378 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/id/ Translated using Weblate (Indonesian) Currently translated at 4.0% (289 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/id/
+
+2025-10-30  Jozef Gaal <preklady@mayday.sk>
+
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2025-10-30  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2025-10-30  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+
+2025-10-30  தமிழ்நேரம் <tamilneram247@gmail.com>
+
+	* po/ta.po: Translated using Weblate (Tamil) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ta/
+
+2025-10-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+
+2025-10-11  Nick Hall <nick-h@gramps-project.org>
+
+	* po/ne.po: Added translation using Weblate (Nepali)
+
+2025-10-11  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2025-10-11  Christoph Eder <christoph.eder@phsalzburg.at>
+
+	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
+
+2025-10-11  தமிழ்நேரம் <tamilneram247@gmail.com>
+
+	* po/ta.po: Translated using Weblate (Tamil) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ta/
+
+2025-10-11  jmichault <jmt.2000@free.fr>
+
+	* po/fr.po: Translated using Weblate (French) Currently translated at 99.8% (7202 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
+
+2025-10-11  Stefan Zaharia <stefanzah2011@gmail.com>
+
+	* po/ro.po: Translated using Weblate (Romanian) Currently translated at 4.2% (304 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ro/
+
+2025-10-11  Ohne Sonne <ohne_sonne_1312@protonmail.com>
+
+	* po/fr.po: Translated using Weblate (French) Currently translated at 99.8% (7202 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
+
+2025-10-11  Bai <bai@baturax.com>
+
+	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
+
+2025-10-11  Tadas Masiulionis <tadzikaz@gmail.com>
+
+	* po/lt.po: Translated using Weblate (Lithuanian) Currently translated at 91.5% (6602 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/lt/ Translated using Weblate (Lithuanian) Currently translated at 91.5% (6602 of 7211 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/lt/
 
-2025-08-31  Milo Ivir <mail@milotype.de>
+2025-10-11  Milo Ivir <mail@milotype.de>
 
 	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/hr/ Translated using Weblate (Croatian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
 
-2025-08-31  Avi Markovitz <avi.markovitz@gmail.com>
+2025-09-25  Nick Hall <nick-h@gramps-project.org>
 
-	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	* .github/workflows/build_deb.yml, .github/workflows/gramps-ci.yml,
+	.github/workflows/windows-aio.yml, Gramps.py, aio/build.sh,
+	data/css/Web_Basic-Blue.css, data/css/Web_Citations-Outline.css,
+	data/css/Web_DropDown-Menus.css, data/css/Web_Fade-Menus.css,
+	data/css/Web_Horizontal-Menus.css, data/css/Web_Vertical-Menus.css,
+	data/css/Web_Visually.css, data/css/ancestortree.css,
+	data/css/behaviour.css, data/css/lightbox.css,
+	data/css/lightbox.js, data/css/narrative-maps.css,
+	data/grampsxml.dtd, data/grampsxml.rng, data/man/update_man.py,
+	docs/update_doc.py, gramps/__init__.py, gramps/__main__.py,
+	gramps/cli/__init__.py, gramps/cli/arghandler.py,
+	gramps/cli/argparser.py, gramps/cli/clidbman.py,
+	gramps/cli/grampscli.py, gramps/cli/plug/__init__.py,
+	gramps/cli/test/argparser_test.py, gramps/cli/test/cli_test.py,
+	gramps/cli/test/user_test.py, gramps/cli/user.py,
+	gramps/gen/__init__.py, gramps/gen/config.py, gramps/gen/const.py,
+	gramps/gen/constfunc.py, gramps/gen/datehandler/__init__.py,
+	gramps/gen/datehandler/_date_ar.py,
+	gramps/gen/datehandler/_date_bg.py,
+	gramps/gen/datehandler/_date_ca.py,
+	gramps/gen/datehandler/_date_cs.py,
+	gramps/gen/datehandler/_date_da.py,
+	gramps/gen/datehandler/_date_de.py,
+	gramps/gen/datehandler/_date_el.py,
+	gramps/gen/datehandler/_date_es.py,
+	gramps/gen/datehandler/_date_fi.py,
+	gramps/gen/datehandler/_date_fr.py,
+	gramps/gen/datehandler/_date_he.py,
+	gramps/gen/datehandler/_date_hr.py,
+	gramps/gen/datehandler/_date_hu.py,
+	gramps/gen/datehandler/_date_is.py,
+	gramps/gen/datehandler/_date_it.py,
+	gramps/gen/datehandler/_date_ja.py,
+	gramps/gen/datehandler/_date_lt.py,
+	gramps/gen/datehandler/_date_nb.py,
+	gramps/gen/datehandler/_date_nl.py,
+	gramps/gen/datehandler/_date_pl.py,
+	gramps/gen/datehandler/_date_pt.py,
+	gramps/gen/datehandler/_date_ru.py,
+	gramps/gen/datehandler/_date_sk.py,
+	gramps/gen/datehandler/_date_sl.py,
+	gramps/gen/datehandler/_date_sr.py,
+	gramps/gen/datehandler/_date_sv.py,
+	gramps/gen/datehandler/_date_uk.py,
+	gramps/gen/datehandler/_date_zh_CN.py,
+	gramps/gen/datehandler/_date_zh_TW.py,
+	gramps/gen/datehandler/_datedisplay.py,
+	gramps/gen/datehandler/_datehandler.py,
+	gramps/gen/datehandler/_dateparser.py,
+	gramps/gen/datehandler/_datestrings.py,
+	gramps/gen/datehandler/_dateutils.py,
+	gramps/gen/datehandler/_grampslocale.py,
+	gramps/gen/datehandler/test/datedisplay_test.py,
+	gramps/gen/datehandler/test/datehandler_test.py,
+	gramps/gen/datehandler/test/dateparser_test.py,
+	gramps/gen/datehandler/test/datestrings_test.py,
+	gramps/gen/db/__init__.py, gramps/gen/db/base.py,
+	gramps/gen/db/bookmarks.py,
+	gramps/gen/db/conversion_tools/__init__.py,
+	gramps/gen/db/conversion_tools/conversion_21.py,
+	gramps/gen/db/dbconst.py, gramps/gen/db/dummydb.py,
+	gramps/gen/db/exceptions.py, gramps/gen/db/generic.py,
+	gramps/gen/db/txn.py, gramps/gen/db/undoredo.py,
+	gramps/gen/db/upgrade.py, gramps/gen/db/utils.py,
+	gramps/gen/dbstate.py, gramps/gen/display/__init__.py,
+	gramps/gen/display/name.py, gramps/gen/display/place.py,
+	gramps/gen/display/test/name_test.py, gramps/gen/errors.py,
+	gramps/gen/filters/__init__.py, gramps/gen/filters/_filterlist.py,
+	gramps/gen/filters/_filterparser.py,
+	gramps/gen/filters/_genericfilter.py,
+	gramps/gen/filters/_paramfilter.py,
+	gramps/gen/filters/_searchfilter.py,
+	gramps/gen/filters/optimizer.py,
+	gramps/gen/filters/rules/__init__.py,
+	gramps/gen/filters/rules/_changedsincebase.py,
+	gramps/gen/filters/rules/_everything.py,
+	gramps/gen/filters/rules/_hasattributebase.py,
+	gramps/gen/filters/rules/_hascitationbase.py,
+	gramps/gen/filters/rules/_haseventbase.py,
+	gramps/gen/filters/rules/_hasgallerybase.py,
+	gramps/gen/filters/rules/_hasgrampsid.py,
+	gramps/gen/filters/rules/_hasldsbase.py,
+	gramps/gen/filters/rules/_hasnotebase.py,
+	gramps/gen/filters/rules/_hasnoteregexbase.py,
+	gramps/gen/filters/rules/_hasnotesubstrbase.py,
+	gramps/gen/filters/rules/_hasnotetypebase.py,
+	gramps/gen/filters/rules/_hasreferencecountbase.py,
+	gramps/gen/filters/rules/_hassourcebase.py,
+	gramps/gen/filters/rules/_hassourcecountbase.py,
+	gramps/gen/filters/rules/_hassourceofbase.py,
+	gramps/gen/filters/rules/_hastagbase.py,
+	gramps/gen/filters/rules/_hastextmatchingregexpof.py,
+	gramps/gen/filters/rules/_hastextmatchingsubstringof.py,
+	gramps/gen/filters/rules/_isprivate.py,
+	gramps/gen/filters/rules/_ispublic.py,
+	gramps/gen/filters/rules/_matcheseventfilterbase.py,
+	gramps/gen/filters/rules/_matchesfilterbase.py,
+	gramps/gen/filters/rules/_matchessourceconfidencebase.py,
+	gramps/gen/filters/rules/_matchessourcefilterbase.py,
+	gramps/gen/filters/rules/_regexpidbase.py,
+	gramps/gen/filters/rules/_rule.py,
+	gramps/gen/filters/rules/citation/__init__.py,
+	gramps/gen/filters/rules/citation/_allcitations.py,
+	gramps/gen/filters/rules/citation/_changedsince.py,
+	gramps/gen/filters/rules/citation/_citationprivate.py,
+	gramps/gen/filters/rules/citation/_hasattribute.py,
+	gramps/gen/filters/rules/citation/_hascitation.py,
+	gramps/gen/filters/rules/citation/_hasgallery.py,
+	gramps/gen/filters/rules/citation/_hasidof.py,
+	gramps/gen/filters/rules/citation/_hasnote.py,
+	gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py,
+	gramps/gen/filters/rules/citation/_hasnoteregexp.py,
+	gramps/gen/filters/rules/citation/_hasnotetype.py,
+	gramps/gen/filters/rules/citation/_hasreferencecountof.py,
+	gramps/gen/filters/rules/citation/_hassource.py,
+	gramps/gen/filters/rules/citation/_hassourceidof.py,
+	gramps/gen/filters/rules/citation/_hassourcenoteregexp.py,
+	gramps/gen/filters/rules/citation/_hastag.py,
+	gramps/gen/filters/rules/citation/_matchesfilter.py,
+	gramps/gen/filters/rules/citation/_matchespagesubstringof.py,
+	gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py,
+	gramps/gen/filters/rules/citation/_matchessourcefilter.py,
+	gramps/gen/filters/rules/citation/_regexpidof.py,
+	gramps/gen/filters/rules/citation/_regexpsourceidof.py,
+	gramps/gen/filters/rules/event/__init__.py,
+	gramps/gen/filters/rules/event/_allevents.py,
+	gramps/gen/filters/rules/event/_changedsince.py,
+	gramps/gen/filters/rules/event/_eventprivate.py,
+	gramps/gen/filters/rules/event/_hasattribute.py,
+	gramps/gen/filters/rules/event/_hascitation.py,
+	gramps/gen/filters/rules/event/_hasdata.py,
+	gramps/gen/filters/rules/event/_hasdayofweek.py,
+	gramps/gen/filters/rules/event/_hasevent.py,
+	gramps/gen/filters/rules/event/_hasgallery.py,
+	gramps/gen/filters/rules/event/_hasidof.py,
+	gramps/gen/filters/rules/event/_hasnote.py,
+	gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py,
+	gramps/gen/filters/rules/event/_hasnoteregexp.py,
+	gramps/gen/filters/rules/event/_hasnotetype.py,
+	gramps/gen/filters/rules/event/_hasreferencecountof.py,
+	gramps/gen/filters/rules/event/_hassourcecount.py,
+	gramps/gen/filters/rules/event/_hastag.py,
+	gramps/gen/filters/rules/event/_hastype.py,
+	gramps/gen/filters/rules/event/_matchesfilter.py,
+	gramps/gen/filters/rules/event/_matchespersonfilter.py,
+	gramps/gen/filters/rules/event/_matchesplacefilter.py,
+	gramps/gen/filters/rules/event/_matchessourceconfidence.py,
+	gramps/gen/filters/rules/event/_matchessourcefilter.py,
+	gramps/gen/filters/rules/event/_regexpidof.py,
+	gramps/gen/filters/rules/family/__init__.py,
+	gramps/gen/filters/rules/family/_allfamilies.py,
+	gramps/gen/filters/rules/family/_changedsince.py,
+	gramps/gen/filters/rules/family/_childhasidof.py,
+	gramps/gen/filters/rules/family/_childhasnameof.py,
+	gramps/gen/filters/rules/family/_familyprivate.py,
+	gramps/gen/filters/rules/family/_fatherhasidof.py,
+	gramps/gen/filters/rules/family/_fatherhasnameof.py,
+	gramps/gen/filters/rules/family/_hasattribute.py,
+	gramps/gen/filters/rules/family/_hascitation.py,
+	gramps/gen/filters/rules/family/_hasevent.py,
+	gramps/gen/filters/rules/family/_hasgallery.py,
+	gramps/gen/filters/rules/family/_hasidof.py,
+	gramps/gen/filters/rules/family/_haslds.py,
+	gramps/gen/filters/rules/family/_hasnote.py,
+	gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py,
+	gramps/gen/filters/rules/family/_hasnoteregexp.py,
+	gramps/gen/filters/rules/family/_hasnotetype.py,
+	gramps/gen/filters/rules/family/_hasreferencecountof.py,
+	gramps/gen/filters/rules/family/_hasreltype.py,
+	gramps/gen/filters/rules/family/_hassourcecount.py,
+	gramps/gen/filters/rules/family/_hassourceof.py,
+	gramps/gen/filters/rules/family/_hastag.py,
+	gramps/gen/filters/rules/family/_hastwins.py,
+	gramps/gen/filters/rules/family/_isancestorof.py,
+	gramps/gen/filters/rules/family/_isbookmarked.py,
+	gramps/gen/filters/rules/family/_isdescendantof.py,
+	gramps/gen/filters/rules/family/_matchesfilter.py,
+	gramps/gen/filters/rules/family/_matchessourceconfidence.py,
+	gramps/gen/filters/rules/family/_motherhasidof.py,
+	gramps/gen/filters/rules/family/_motherhasnameof.py,
+	gramps/gen/filters/rules/family/_regexpchildname.py,
+	gramps/gen/filters/rules/family/_regexpfathername.py,
+	gramps/gen/filters/rules/family/_regexpidof.py,
+	gramps/gen/filters/rules/family/_regexpmothername.py,
+	gramps/gen/filters/rules/family/_searchchildname.py,
+	gramps/gen/filters/rules/family/_searchfathername.py,
+	gramps/gen/filters/rules/family/_searchmothername.py,
+	gramps/gen/filters/rules/media/__init__.py,
+	gramps/gen/filters/rules/media/_allmedia.py,
+	gramps/gen/filters/rules/media/_changedsince.py,
+	gramps/gen/filters/rules/media/_hasattribute.py,
+	gramps/gen/filters/rules/media/_hascitation.py,
+	gramps/gen/filters/rules/media/_hasidof.py,
+	gramps/gen/filters/rules/media/_hasmedia.py,
+	gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py,
+	gramps/gen/filters/rules/media/_hasnoteregexp.py,
+	gramps/gen/filters/rules/media/_hasreferencecountof.py,
+	gramps/gen/filters/rules/media/_hassourcecount.py,
+	gramps/gen/filters/rules/media/_hassourceof.py,
+	gramps/gen/filters/rules/media/_hastag.py,
+	gramps/gen/filters/rules/media/_matchesfilter.py,
+	gramps/gen/filters/rules/media/_matchessourceconfidence.py,
+	gramps/gen/filters/rules/media/_mediaprivate.py,
+	gramps/gen/filters/rules/media/_regexpidof.py,
+	gramps/gen/filters/rules/note/__init__.py,
+	gramps/gen/filters/rules/note/_allnotes.py,
+	gramps/gen/filters/rules/note/_changedsince.py,
+	gramps/gen/filters/rules/note/_hasidof.py,
+	gramps/gen/filters/rules/note/_hasnote.py,
+	gramps/gen/filters/rules/note/_hasreferencecountof.py,
+	gramps/gen/filters/rules/note/_hastag.py,
+	gramps/gen/filters/rules/note/_hastype.py,
+	gramps/gen/filters/rules/note/_matchesfilter.py,
+	gramps/gen/filters/rules/note/_matchesregexpof.py,
+	gramps/gen/filters/rules/note/_matchessubstringof.py,
+	gramps/gen/filters/rules/note/_noteprivate.py,
+	gramps/gen/filters/rules/note/_regexpidof.py,
+	gramps/gen/filters/rules/person/__init__.py,
+	gramps/gen/filters/rules/person/_changedsince.py,
+	gramps/gen/filters/rules/person/_deeprelationshippathbetween.py,
+	gramps/gen/filters/rules/person/_disconnected.py,
+	gramps/gen/filters/rules/person/_everyone.py,
+	gramps/gen/filters/rules/person/_familywithincompleteevent.py,
+	gramps/gen/filters/rules/person/_hasaddress.py,
+	gramps/gen/filters/rules/person/_hasaddresstext.py,
+	gramps/gen/filters/rules/person/_hasalternatename.py,
+	gramps/gen/filters/rules/person/_hasassociation.py,
+	gramps/gen/filters/rules/person/_hasattribute.py,
+	gramps/gen/filters/rules/person/_hasbirth.py,
+	gramps/gen/filters/rules/person/_hascitation.py,
+	gramps/gen/filters/rules/person/_hascommonancestorwith.py,
+	gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.p
+	y, gramps/gen/filters/rules/person/_hasdeath.py,
+	gramps/gen/filters/rules/person/_hasevent.py,
+	gramps/gen/filters/rules/person/_hasfamilyattribute.py,
+	gramps/gen/filters/rules/person/_hasfamilyevent.py,
+	gramps/gen/filters/rules/person/_hasgallery.py,
+	gramps/gen/filters/rules/person/_hasidof.py,
+	gramps/gen/filters/rules/person/_haslds.py,
+	gramps/gen/filters/rules/person/_hasnameof.py,
+	gramps/gen/filters/rules/person/_hasnameorigintype.py,
+	gramps/gen/filters/rules/person/_hasnametype.py,
+	gramps/gen/filters/rules/person/_hasnickname.py,
+	gramps/gen/filters/rules/person/_hasnote.py,
+	gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py,
+	gramps/gen/filters/rules/person/_hasnoteregexp.py,
+	gramps/gen/filters/rules/person/_hasnotetype.py,
+	gramps/gen/filters/rules/person/_hasothergender.py,
+	gramps/gen/filters/rules/person/_hasrelationship.py,
+	gramps/gen/filters/rules/person/_hassoundexname.py,
+	gramps/gen/filters/rules/person/_hassourcecount.py,
+	gramps/gen/filters/rules/person/_hassourceof.py,
+	gramps/gen/filters/rules/person/_hastag.py,
+	gramps/gen/filters/rules/person/_hastextmatchingregexpof.py,
+	gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py,
+	gramps/gen/filters/rules/person/_hasunknowngender.py,
+	gramps/gen/filters/rules/person/_havealtfamilies.py,
+	gramps/gen/filters/rules/person/_havechildren.py,
+	gramps/gen/filters/rules/person/_incompletenames.py,
+	gramps/gen/filters/rules/person/_isancestorof.py,
+	gramps/gen/filters/rules/person/_isancestoroffiltermatch.py,
+	gramps/gen/filters/rules/person/_isbookmarked.py,
+	gramps/gen/filters/rules/person/_ischildoffiltermatch.py,
+	gramps/gen/filters/rules/person/_isdefaultperson.py,
+	gramps/gen/filters/rules/person/_isdescendantfamilyof.py,
+	gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py
+	, gramps/gen/filters/rules/person/_isdescendantof.py,
+	gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py,
+	gramps/gen/filters/rules/person/_isduplicatedancestorof.py,
+	gramps/gen/filters/rules/person/_isfemale.py,
+	gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.
+	py,
+	gramps/gen/filters/rules/person/_islessthannthgenerationancestorofb
+	ookmarked.py,
+	gramps/gen/filters/rules/person/_islessthannthgenerationancestorofd
+	efaultperson.py,
+	gramps/gen/filters/rules/person/_islessthannthgenerationdescendanto
+	f.py, gramps/gen/filters/rules/person/_ismale.py,
+	gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.
+	py,
+	gramps/gen/filters/rules/person/_ismorethannthgenerationdescendanto
+	f.py, gramps/gen/filters/rules/person/_isparentoffiltermatch.py,
+	gramps/gen/filters/rules/person/_isrelatedwith.py,
+	gramps/gen/filters/rules/person/_issiblingoffiltermatch.py,
+	gramps/gen/filters/rules/person/_isspouseoffiltermatch.py,
+	gramps/gen/filters/rules/person/_iswitness.py,
+	gramps/gen/filters/rules/person/_matcheseventfilter.py,
+	gramps/gen/filters/rules/person/_matchesfilter.py,
+	gramps/gen/filters/rules/person/_matchessourceconfidence.py,
+	gramps/gen/filters/rules/person/_matchidof.py,
+	gramps/gen/filters/rules/person/_missingparent.py,
+	gramps/gen/filters/rules/person/_multiplemarriages.py,
+	gramps/gen/filters/rules/person/_nevermarried.py,
+	gramps/gen/filters/rules/person/_nobirthdate.py,
+	gramps/gen/filters/rules/person/_nodeathdate.py,
+	gramps/gen/filters/rules/person/_peopleprivate.py,
+	gramps/gen/filters/rules/person/_peoplepublic.py,
+	gramps/gen/filters/rules/person/_personwithincompleteevent.py,
+	gramps/gen/filters/rules/person/_probablyalive.py,
+	gramps/gen/filters/rules/person/_regexpidof.py,
+	gramps/gen/filters/rules/person/_regexpname.py,
+	gramps/gen/filters/rules/person/_relationshippathbetween.py,
+	gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.p
+	y, gramps/gen/filters/rules/person/_searchname.py,
+	gramps/gen/filters/rules/place/__init__.py,
+	gramps/gen/filters/rules/place/_allplaces.py,
+	gramps/gen/filters/rules/place/_changedsince.py,
+	gramps/gen/filters/rules/place/_hascitation.py,
+	gramps/gen/filters/rules/place/_hasdata.py,
+	gramps/gen/filters/rules/place/_hasgallery.py,
+	gramps/gen/filters/rules/place/_hasidof.py,
+	gramps/gen/filters/rules/place/_hasnolatorlon.py,
+	gramps/gen/filters/rules/place/_hasnote.py,
+	gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py,
+	gramps/gen/filters/rules/place/_hasnoteregexp.py,
+	gramps/gen/filters/rules/place/_hasnotetype.py,
+	gramps/gen/filters/rules/place/_hasplace.py,
+	gramps/gen/filters/rules/place/_hasreferencecountof.py,
+	gramps/gen/filters/rules/place/_hassourcecount.py,
+	gramps/gen/filters/rules/place/_hassourceof.py,
+	gramps/gen/filters/rules/place/_hastag.py,
+	gramps/gen/filters/rules/place/_hastitle.py,
+	gramps/gen/filters/rules/place/_inlatlonneighborhood.py,
+	gramps/gen/filters/rules/place/_isenclosedby.py,
+	gramps/gen/filters/rules/place/_matcheseventfilter.py,
+	gramps/gen/filters/rules/place/_matchesfilter.py,
+	gramps/gen/filters/rules/place/_matchessourceconfidence.py,
+	gramps/gen/filters/rules/place/_placeprivate.py,
+	gramps/gen/filters/rules/place/_regexpidof.py,
+	gramps/gen/filters/rules/place/_withinarea.py,
+	gramps/gen/filters/rules/repository/__init__.py,
+	gramps/gen/filters/rules/repository/_allrepos.py,
+	gramps/gen/filters/rules/repository/_changedsince.py,
+	gramps/gen/filters/rules/repository/_hasattribute.py,
+	gramps/gen/filters/rules/repository/_hasidof.py,
+	gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py,
+	gramps/gen/filters/rules/repository/_hasnoteregexp.py,
+	gramps/gen/filters/rules/repository/_hasreferencecountof.py,
+	gramps/gen/filters/rules/repository/_hasrepo.py,
+	gramps/gen/filters/rules/repository/_hastag.py,
+	gramps/gen/filters/rules/repository/_matchesfilter.py,
+	gramps/gen/filters/rules/repository/_matchesnamesubstringof.py,
+	gramps/gen/filters/rules/repository/_regexpidof.py,
+	gramps/gen/filters/rules/repository/_repoprivate.py,
+	gramps/gen/filters/rules/source/__init__.py,
+	gramps/gen/filters/rules/source/_allsources.py,
+	gramps/gen/filters/rules/source/_changedsince.py,
+	gramps/gen/filters/rules/source/_hasattribute.py,
+	gramps/gen/filters/rules/source/_hasgallery.py,
+	gramps/gen/filters/rules/source/_hasidof.py,
+	gramps/gen/filters/rules/source/_hasnote.py,
+	gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py,
+	gramps/gen/filters/rules/source/_hasnoteregexp.py,
+	gramps/gen/filters/rules/source/_hasnotetype.py,
+	gramps/gen/filters/rules/source/_hasreferencecountof.py,
+	gramps/gen/filters/rules/source/_hasrepository.py,
+	gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py,
+	gramps/gen/filters/rules/source/_hassource.py,
+	gramps/gen/filters/rules/source/_hastag.py,
+	gramps/gen/filters/rules/source/_matchesfilter.py,
+	gramps/gen/filters/rules/source/_matchesrepositoryfilter.py,
+	gramps/gen/filters/rules/source/_matchestitlesubstringof.py,
+	gramps/gen/filters/rules/source/_regexpidof.py,
+	gramps/gen/filters/rules/source/_sourceprivate.py,
+	gramps/gen/filters/rules/test/event_rules_test.py,
+	gramps/gen/filters/rules/test/family_rules_test.py,
+	gramps/gen/filters/rules/test/media_rules_test.py,
+	gramps/gen/filters/rules/test/note_rules_test.py,
+	gramps/gen/filters/rules/test/person_rules_test.py,
+	gramps/gen/filters/rules/test/place_rules_test.py,
+	gramps/gen/filters/rules/test/repository_rules_test.py,
+	gramps/gen/filters/test/filter_optimizer_test.py,
+	gramps/gen/git_revision.py, gramps/gen/lib/__init__.py,
+	gramps/gen/lib/address.py, gramps/gen/lib/addressbase.py,
+	gramps/gen/lib/attrbase.py, gramps/gen/lib/attribute.py,
+	gramps/gen/lib/attrtype.py, gramps/gen/lib/baseobj.py,
+	gramps/gen/lib/childref.py, gramps/gen/lib/childreftype.py,
+	gramps/gen/lib/citation.py, gramps/gen/lib/citationbase.py,
+	gramps/gen/lib/const.py, gramps/gen/lib/date.py,
+	gramps/gen/lib/datebase.py, gramps/gen/lib/event.py,
+	gramps/gen/lib/eventbase.py, gramps/gen/lib/eventref.py,
+	gramps/gen/lib/eventroletype.py, gramps/gen/lib/eventtype.py,
+	gramps/gen/lib/family.py, gramps/gen/lib/familyreltype.py,
+	gramps/gen/lib/gcalendar.py, gramps/gen/lib/genderstats.py,
+	gramps/gen/lib/grampstype.py, gramps/gen/lib/json_utils.py,
+	gramps/gen/lib/ldsord.py, gramps/gen/lib/ldsordbase.py,
+	gramps/gen/lib/location.py, gramps/gen/lib/locationbase.py,
+	gramps/gen/lib/markertype.py, gramps/gen/lib/media.py,
+	gramps/gen/lib/mediabase.py, gramps/gen/lib/mediaref.py,
+	gramps/gen/lib/name.py, gramps/gen/lib/nameorigintype.py,
+	gramps/gen/lib/nametype.py, gramps/gen/lib/note.py,
+	gramps/gen/lib/notebase.py, gramps/gen/lib/notetype.py,
+	gramps/gen/lib/person.py, gramps/gen/lib/personref.py,
+	gramps/gen/lib/place.py, gramps/gen/lib/placebase.py,
+	gramps/gen/lib/placename.py, gramps/gen/lib/placeref.py,
+	gramps/gen/lib/placetype.py, gramps/gen/lib/primaryobj.py,
+	gramps/gen/lib/privacybase.py, gramps/gen/lib/refbase.py,
+	gramps/gen/lib/repo.py, gramps/gen/lib/reporef.py,
+	gramps/gen/lib/repotype.py, gramps/gen/lib/researcher.py,
+	gramps/gen/lib/secondaryobj.py, gramps/gen/lib/serialize.py,
+	gramps/gen/lib/src.py, gramps/gen/lib/srcattribute.py,
+	gramps/gen/lib/srcattrtype.py, gramps/gen/lib/srcmediatype.py,
+	gramps/gen/lib/styledtext.py, gramps/gen/lib/styledtexttag.py,
+	gramps/gen/lib/styledtexttagtype.py, gramps/gen/lib/surname.py,
+	gramps/gen/lib/surnamebase.py, gramps/gen/lib/tableobj.py,
+	gramps/gen/lib/tag.py, gramps/gen/lib/tagbase.py,
+	gramps/gen/lib/test/datadict_test.py,
+	gramps/gen/lib/test/date_test.py,
+	gramps/gen/lib/test/grampstype_test.py,
+	gramps/gen/lib/test/merge_test.py,
+	gramps/gen/lib/test/schema_test.py,
+	gramps/gen/lib/test/serialize_test.py,
+	gramps/gen/lib/test/styledtext_test.py, gramps/gen/lib/url.py,
+	gramps/gen/lib/urlbase.py, gramps/gen/lib/urltype.py,
+	gramps/gen/merge/__init__.py, gramps/gen/merge/diff.py,
+	gramps/gen/merge/mergecitationquery.py,
+	gramps/gen/merge/mergeeventquery.py,
+	gramps/gen/merge/mergefamilyquery.py,
+	gramps/gen/merge/mergemediaquery.py,
+	gramps/gen/merge/mergenotequery.py,
+	gramps/gen/merge/mergepersonquery.py,
+	gramps/gen/merge/mergeplacequery.py,
+	gramps/gen/merge/mergerepositoryquery.py,
+	gramps/gen/merge/mergesourcequery.py,
+	gramps/gen/merge/test/merge_ref_test.py,
+	gramps/gen/mime/__init__.py, gramps/gen/mime/_pythonmime.py,
+	gramps/gen/mime/_winmime.py, gramps/gen/plug/__init__.py,
+	gramps/gen/plug/_docgenplugin.py, gramps/gen/plug/_export.py,
+	gramps/gen/plug/_gramplet.py, gramps/gen/plug/_import.py,
+	gramps/gen/plug/_manager.py, gramps/gen/plug/_options.py,
+	gramps/gen/plug/_plugin.py, gramps/gen/plug/_pluginreg.py,
+	gramps/gen/plug/_thumbnailer.py,
+	gramps/gen/plug/docbackend/__init__.py,
+	gramps/gen/plug/docbackend/cairobackend.py,
+	gramps/gen/plug/docbackend/docbackend.py,
+	gramps/gen/plug/docgen/__init__.py,
+	gramps/gen/plug/docgen/basedoc.py,
+	gramps/gen/plug/docgen/drawdoc.py,
+	gramps/gen/plug/docgen/fontscale.py,
+	gramps/gen/plug/docgen/fontstyle.py,
+	gramps/gen/plug/docgen/graphdoc.py,
+	gramps/gen/plug/docgen/graphicstyle.py,
+	gramps/gen/plug/docgen/paperstyle.py,
+	gramps/gen/plug/docgen/paragraphstyle.py,
+	gramps/gen/plug/docgen/stylesheet.py,
+	gramps/gen/plug/docgen/tablestyle.py,
+	gramps/gen/plug/docgen/textdoc.py,
+	gramps/gen/plug/docgen/treedoc.py,
+	gramps/gen/plug/menu/__init__.py, gramps/gen/plug/menu/_boolean.py,
+	gramps/gen/plug/menu/_booleanlist.py,
+	gramps/gen/plug/menu/_color.py,
+	gramps/gen/plug/menu/_destination.py,
+	gramps/gen/plug/menu/_enumeratedlist.py,
+	gramps/gen/plug/menu/_family.py, gramps/gen/plug/menu/_filter.py,
+	gramps/gen/plug/menu/_media.py, gramps/gen/plug/menu/_menu.py,
+	gramps/gen/plug/menu/_note.py, gramps/gen/plug/menu/_number.py,
+	gramps/gen/plug/menu/_option.py, gramps/gen/plug/menu/_person.py,
+	gramps/gen/plug/menu/_personlist.py,
+	gramps/gen/plug/menu/_placelist.py,
+	gramps/gen/plug/menu/_string.py, gramps/gen/plug/menu/_style.py,
+	gramps/gen/plug/menu/_surnamecolor.py,
+	gramps/gen/plug/menu/_text.py, gramps/gen/plug/report/__init__.py,
+	gramps/gen/plug/report/_bibliography.py,
+	gramps/gen/plug/report/_book.py,
+	gramps/gen/plug/report/_constants.py,
+	gramps/gen/plug/report/_options.py,
+	gramps/gen/plug/report/_paper.py,
+	gramps/gen/plug/report/_reportbase.py,
+	gramps/gen/plug/report/endnotes.py,
+	gramps/gen/plug/report/stdoptions.py,
+	gramps/gen/plug/report/utils.py, gramps/gen/plug/utils.py,
+	gramps/gen/proxy/__init__.py, gramps/gen/proxy/cache.py,
+	gramps/gen/proxy/filter.py, gramps/gen/proxy/living.py,
+	gramps/gen/proxy/private.py, gramps/gen/proxy/proxybase.py,
+	gramps/gen/proxy/referencedbyselection.py,
+	gramps/gen/proxy/test/proxies_test.py, gramps/gen/recentfiles.py,
+	gramps/gen/relationship.py, gramps/gen/simple/__init__.py,
+	gramps/gen/simple/_simpleaccess.py,
+	gramps/gen/simple/_simpledoc.py, gramps/gen/simple/_simpletable.py,
+	gramps/gen/sort.py, gramps/gen/soundex.py,
+	gramps/gen/test/config_test.py, gramps/gen/test/constfunc_test.py,
+	gramps/gen/types.py, gramps/gen/updatecallback.py,
+	gramps/gen/user.py, gramps/gen/utils/__init__.py,
+	gramps/gen/utils/alive.py, gramps/gen/utils/callback.py,
+	gramps/gen/utils/callman.py, gramps/gen/utils/cast.py,
+	gramps/gen/utils/config.py, gramps/gen/utils/configmanager.py,
+	gramps/gen/utils/db.py, gramps/gen/utils/debug.py,
+	gramps/gen/utils/docgen/__init__.py,
+	gramps/gen/utils/docgen/csvtab.py,
+	gramps/gen/utils/docgen/odstab.py,
+	gramps/gen/utils/docgen/tabbeddoc.py, gramps/gen/utils/file.py,
+	gramps/gen/utils/grampslocale.py,
+	gramps/gen/utils/grampstranslation.py, gramps/gen/utils/id.py,
+	gramps/gen/utils/image.py, gramps/gen/utils/keyword.py,
+	gramps/gen/utils/lds.py, gramps/gen/utils/libformatting.py,
+	gramps/gen/utils/location.py, gramps/gen/utils/lru.py,
+	gramps/gen/utils/maclocale.py, gramps/gen/utils/place.py,
+	gramps/gen/utils/requirements.py, gramps/gen/utils/resourcepath.py,
+	gramps/gen/utils/string.py, gramps/gen/utils/symbols.py,
+	gramps/gen/utils/test/callback_test.py,
+	gramps/gen/utils/test/file_test.py,
+	gramps/gen/utils/test/grampslocale_test.py,
+	gramps/gen/utils/test/keyword_test.py,
+	gramps/gen/utils/test/place_test.py,
+	gramps/gen/utils/thumbnails.py, gramps/gen/utils/unittest.py,
+	gramps/gen/utils/unknown.py, gramps/gen/utils/win32locale.py,
+	gramps/grampsapp.py, gramps/gui/__init__.py,
+	gramps/gui/aboutdialog.py, gramps/gui/autocomp.py,
+	gramps/gui/basesidebar.py, gramps/gui/clipboard.py,
+	gramps/gui/columnorder.py, gramps/gui/configure.py,
+	gramps/gui/csvdialect.py, gramps/gui/dbguielement.py,
+	gramps/gui/dbloader.py, gramps/gui/dbman.py,
+	gramps/gui/ddtargets.py, gramps/gui/dialog.py,
+	gramps/gui/display.py, gramps/gui/displaystate.py,
+	gramps/gui/editors/__init__.py, gramps/gui/editors/addmedia.py,
+	gramps/gui/editors/displaytabs/__init__.py,
+	gramps/gui/editors/displaytabs/addrembedlist.py,
+	gramps/gui/editors/displaytabs/addressmodel.py,
+	gramps/gui/editors/displaytabs/attrembedlist.py,
+	gramps/gui/editors/displaytabs/attrmodel.py,
+	gramps/gui/editors/displaytabs/backreflist.py,
+	gramps/gui/editors/displaytabs/backrefmodel.py,
+	gramps/gui/editors/displaytabs/buttontab.py,
+	gramps/gui/editors/displaytabs/childmodel.py,
+	gramps/gui/editors/displaytabs/citationbackreflist.py,
+	gramps/gui/editors/displaytabs/citationembedlist.py,
+	gramps/gui/editors/displaytabs/citationrefmodel.py,
+	gramps/gui/editors/displaytabs/embeddedlist.py,
+	gramps/gui/editors/displaytabs/eventattrembedlist.py,
+	gramps/gui/editors/displaytabs/eventbackreflist.py,
+	gramps/gui/editors/displaytabs/eventembedlist.py,
+	gramps/gui/editors/displaytabs/eventrefmodel.py,
+	gramps/gui/editors/displaytabs/familyattrembedlist.py,
+	gramps/gui/editors/displaytabs/familyldsembedlist.py,
+	gramps/gui/editors/displaytabs/gallerytab.py,
+	gramps/gui/editors/displaytabs/grampstab.py,
+	gramps/gui/editors/displaytabs/groupembeddedlist.py,
+	gramps/gui/editors/displaytabs/ldsembedlist.py,
+	gramps/gui/editors/displaytabs/ldsmodel.py,
+	gramps/gui/editors/displaytabs/locationembedlist.py,
+	gramps/gui/editors/displaytabs/locationmodel.py,
+	gramps/gui/editors/displaytabs/mediaattrembedlist.py,
+	gramps/gui/editors/displaytabs/mediabackreflist.py,
+	gramps/gui/editors/displaytabs/nameembedlist.py,
+	gramps/gui/editors/displaytabs/namemodel.py,
+	gramps/gui/editors/displaytabs/notebackreflist.py,
+	gramps/gui/editors/displaytabs/notemodel.py,
+	gramps/gui/editors/displaytabs/notetab.py,
+	gramps/gui/editors/displaytabs/personbackreflist.py,
+	gramps/gui/editors/displaytabs/personeventembedlist.py,
+	gramps/gui/editors/displaytabs/personrefembedlist.py,
+	gramps/gui/editors/displaytabs/personrefmodel.py,
+	gramps/gui/editors/displaytabs/placebackreflist.py,
+	gramps/gui/editors/displaytabs/placenameembedlist.py,
+	gramps/gui/editors/displaytabs/placenamemodel.py,
+	gramps/gui/editors/displaytabs/placerefembedlist.py,
+	gramps/gui/editors/displaytabs/placerefmodel.py,
+	gramps/gui/editors/displaytabs/repoembedlist.py,
+	gramps/gui/editors/displaytabs/reporefmodel.py,
+	gramps/gui/editors/displaytabs/sourcebackreflist.py,
+	gramps/gui/editors/displaytabs/srcattrembedlist.py,
+	gramps/gui/editors/displaytabs/srcattrmodel.py,
+	gramps/gui/editors/displaytabs/surnamemodel.py,
+	gramps/gui/editors/displaytabs/surnametab.py,
+	gramps/gui/editors/displaytabs/webembedlist.py,
+	gramps/gui/editors/displaytabs/webmodel.py,
+	gramps/gui/editors/editaddress.py,
+	gramps/gui/editors/editattribute.py,
+	gramps/gui/editors/editchildref.py,
+	gramps/gui/editors/editcitation.py, gramps/gui/editors/editdate.py,
+	gramps/gui/editors/editevent.py,
+	gramps/gui/editors/editeventref.py,
+	gramps/gui/editors/editfamily.py, gramps/gui/editors/editldsord.py,
+	gramps/gui/editors/editlink.py, gramps/gui/editors/editlocation.py,
+	gramps/gui/editors/editmedia.py,
+	gramps/gui/editors/editmediaref.py, gramps/gui/editors/editname.py,
+	gramps/gui/editors/editnote.py, gramps/gui/editors/editperson.py,
+	gramps/gui/editors/editpersonref.py,
+	gramps/gui/editors/editplace.py,
+	gramps/gui/editors/editplaceformat.py,
+	gramps/gui/editors/editplacename.py,
+	gramps/gui/editors/editplaceref.py,
+	gramps/gui/editors/editprimary.py,
+	gramps/gui/editors/editreference.py,
+	gramps/gui/editors/editreporef.py,
+	gramps/gui/editors/editrepository.py,
+	gramps/gui/editors/editsecondary.py,
+	gramps/gui/editors/editsource.py,
+	gramps/gui/editors/edittaglist.py, gramps/gui/editors/editurl.py,
+	gramps/gui/editors/filtereditor.py,
+	gramps/gui/editors/objectentries.py,
+	gramps/gui/editors/test/editreference_test.py,
+	gramps/gui/filters/__init__.py,
+	gramps/gui/filters/_filtercombobox.py,
+	gramps/gui/filters/_filtermenu.py,
+	gramps/gui/filters/_filterstore.py,
+	gramps/gui/filters/_searchbar.py,
+	gramps/gui/filters/sidebar/__init__.py,
+	gramps/gui/filters/sidebar/_citationsidebarfilter.py,
+	gramps/gui/filters/sidebar/_eventsidebarfilter.py,
+	gramps/gui/filters/sidebar/_familysidebarfilter.py,
+	gramps/gui/filters/sidebar/_mediasidebarfilter.py,
+	gramps/gui/filters/sidebar/_notesidebarfilter.py,
+	gramps/gui/filters/sidebar/_personsidebarfilter.py,
+	gramps/gui/filters/sidebar/_placesidebarfilter.py,
+	gramps/gui/filters/sidebar/_reposidebarfilter.py,
+	gramps/gui/filters/sidebar/_sidebarfilter.py,
+	gramps/gui/filters/sidebar/_sourcesidebarfilter.py,
+	gramps/gui/glade.py, gramps/gui/glade/catalog/grampswidgets.py,
+	gramps/gui/grampsgui.py, gramps/gui/listmodel.py,
+	gramps/gui/logger/__init__.py,
+	gramps/gui/logger/_errorreportassistant.py,
+	gramps/gui/logger/_errorview.py, gramps/gui/logger/_gtkhandler.py,
+	gramps/gui/logger/_rotatehandler.py,
+	gramps/gui/logger/test/rotate_handler_test.py,
+	gramps/gui/makefilter.py, gramps/gui/managedwindow.py,
+	gramps/gui/merge/__init__.py, gramps/gui/merge/mergecitation.py,
+	gramps/gui/merge/mergeevent.py, gramps/gui/merge/mergefamily.py,
+	gramps/gui/merge/mergemedia.py, gramps/gui/merge/mergenote.py,
+	gramps/gui/merge/mergeperson.py, gramps/gui/merge/mergeplace.py,
+	gramps/gui/merge/mergerepository.py,
+	gramps/gui/merge/mergesource.py, gramps/gui/navigator.py,
+	gramps/gui/plug/__init__.py, gramps/gui/plug/_dialogs.py,
+	gramps/gui/plug/_guioptions.py, gramps/gui/plug/_windows.py,
+	gramps/gui/plug/export/__init__.py,
+	gramps/gui/plug/export/_exportassistant.py,
+	gramps/gui/plug/export/_exportoptions.py,
+	gramps/gui/plug/quick/__init__.py,
+	gramps/gui/plug/quick/_quickreports.py,
+	gramps/gui/plug/quick/_quicktable.py,
+	gramps/gui/plug/quick/_textbufdoc.py,
+	gramps/gui/plug/report/__init__.py,
+	gramps/gui/plug/report/_bookdialog.py,
+	gramps/gui/plug/report/_docreportdialog.py,
+	gramps/gui/plug/report/_drawreportdialog.py,
+	gramps/gui/plug/report/_fileentry.py,
+	gramps/gui/plug/report/_graphreportdialog.py,
+	gramps/gui/plug/report/_graphvizreportdialog.py,
+	gramps/gui/plug/report/_papermenu.py,
+	gramps/gui/plug/report/_reportdialog.py,
+	gramps/gui/plug/report/_stylecombobox.py,
+	gramps/gui/plug/report/_styleeditor.py,
+	gramps/gui/plug/report/_textreportdialog.py,
+	gramps/gui/plug/report/_treereportdialog.py,
+	gramps/gui/plug/report/_webreportdialog.py,
+	gramps/gui/plug/tool.py, gramps/gui/pluginmanager.py,
+	gramps/gui/selectors/__init__.py,
+	gramps/gui/selectors/baseselector.py,
+	gramps/gui/selectors/selectcitation.py,
+	gramps/gui/selectors/selectevent.py,
+	gramps/gui/selectors/selectfamily.py,
+	gramps/gui/selectors/selectnote.py,
+	gramps/gui/selectors/selectobject.py,
+	gramps/gui/selectors/selectorexceptions.py,
+	gramps/gui/selectors/selectorfactory.py,
+	gramps/gui/selectors/selectperson.py,
+	gramps/gui/selectors/selectplace.py,
+	gramps/gui/selectors/selectrepository.py,
+	gramps/gui/selectors/selectsource.py, gramps/gui/spell.py,
+	gramps/gui/test/user_test.py, gramps/gui/tipofday.py,
+	gramps/gui/uimanager.py, gramps/gui/undohistory.py,
+	gramps/gui/user.py, gramps/gui/utils.py, gramps/gui/utilscairo.py,
+	gramps/gui/viewmanager.py, gramps/gui/views/__init__.py,
+	gramps/gui/views/bookmarks.py, gramps/gui/views/listview.py,
+	gramps/gui/views/navigationview.py, gramps/gui/views/pageview.py,
+	gramps/gui/views/tags.py, gramps/gui/views/treemodels/__init__.py,
+	gramps/gui/views/treemodels/basemodel.py,
+	gramps/gui/views/treemodels/citationbasemodel.py,
+	gramps/gui/views/treemodels/citationlistmodel.py,
+	gramps/gui/views/treemodels/citationtreemodel.py,
+	gramps/gui/views/treemodels/eventmodel.py,
+	gramps/gui/views/treemodels/familymodel.py,
+	gramps/gui/views/treemodels/flatbasemodel.py,
+	gramps/gui/views/treemodels/mediamodel.py,
+	gramps/gui/views/treemodels/notemodel.py,
+	gramps/gui/views/treemodels/peoplemodel.py,
+	gramps/gui/views/treemodels/placemodel.py,
+	gramps/gui/views/treemodels/repomodel.py,
+	gramps/gui/views/treemodels/sourcemodel.py,
+	gramps/gui/views/treemodels/test/node_test.py,
+	gramps/gui/views/treemodels/treebasemodel.py,
+	gramps/gui/widgets/__init__.py, gramps/gui/widgets/basicentry.py,
+	gramps/gui/widgets/buttons.py,
+	gramps/gui/widgets/cellrenderertextedit.py,
+	gramps/gui/widgets/dateentry.py,
+	gramps/gui/widgets/expandcollapsearrow.py,
+	gramps/gui/widgets/fanchart.py, gramps/gui/widgets/fanchart2way.py,
+	gramps/gui/widgets/fanchartdesc.py, gramps/gui/widgets/grabbers.py,
+	gramps/gui/widgets/grampletbar.py,
+	gramps/gui/widgets/grampletpane.py,
+	gramps/gui/widgets/histogram.py,
+	gramps/gui/widgets/interactivesearchbox.py,
+	gramps/gui/widgets/labels.py, gramps/gui/widgets/linkbox.py,
+	gramps/gui/widgets/menuitem.py,
+	gramps/gui/widgets/monitoredwidgets.py,
+	gramps/gui/widgets/multitreeview.py,
+	gramps/gui/widgets/persistenttreeview.py,
+	gramps/gui/widgets/photo.py, gramps/gui/widgets/placeentry.py,
+	gramps/gui/widgets/placewithin.py,
+	gramps/gui/widgets/progressdialog.py,
+	gramps/gui/widgets/reorderfam.py,
+	gramps/gui/widgets/selectionwidget.py,
+	gramps/gui/widgets/shadebox.py,
+	gramps/gui/widgets/shortlistcomboentry.py,
+	gramps/gui/widgets/statusbar.py,
+	gramps/gui/widgets/styledtextbuffer.py,
+	gramps/gui/widgets/styledtexteditor.py,
+	gramps/gui/widgets/undoablebuffer.py,
+	gramps/gui/widgets/undoableentry.py,
+	gramps/gui/widgets/undoablestyledbuffer.py,
+	gramps/gui/widgets/validatedcomboentry.py,
+	gramps/gui/widgets/validatedmaskedentry.py,
+	gramps/plugins/cite/cite.gpr.py, gramps/plugins/cite/legacy.py,
+	gramps/plugins/db/bsddb/__init__.py,
+	gramps/plugins/db/bsddb/bsddb.gpr.py,
+	gramps/plugins/db/bsddb/bsddb.py,
+	gramps/plugins/db/dbapi/__init__.py,
+	gramps/plugins/db/dbapi/dbapi.py,
+	gramps/plugins/db/dbapi/sqlite.gpr.py,
+	gramps/plugins/db/dbapi/sqlite.py,
+	gramps/plugins/db/dbapi/test/db_test.py,
+	gramps/plugins/docgen/asciidoc.py,
+	gramps/plugins/docgen/cairodoc.py,
+	gramps/plugins/docgen/docgen.gpr.py,
+	gramps/plugins/docgen/gtkprint.py,
+	gramps/plugins/docgen/htmldoc.py,
+	gramps/plugins/docgen/latexdoc.py, gramps/plugins/docgen/odfdoc.py,
+	gramps/plugins/docgen/rtfdoc.py,
+	gramps/plugins/docgen/svgdrawdoc.py,
+	gramps/plugins/drawreport/ancestortree.py,
+	gramps/plugins/drawreport/calendarreport.py,
+	gramps/plugins/drawreport/descendtree.py,
+	gramps/plugins/drawreport/drawplugins.gpr.py,
+	gramps/plugins/drawreport/fanchart.py,
+	gramps/plugins/drawreport/statisticschart.py,
+	gramps/plugins/drawreport/timeline.py,
+	gramps/plugins/export/export.gpr.py,
+	gramps/plugins/export/exportcsv.py,
+	gramps/plugins/export/exportftree.py,
+	gramps/plugins/export/exportgedcom.py,
+	gramps/plugins/export/exportgeneweb.py,
+	gramps/plugins/export/exportpkg.py,
+	gramps/plugins/export/exportvcalendar.py,
+	gramps/plugins/export/exportvcard.py,
+	gramps/plugins/export/exportxml.py,
+	gramps/plugins/export/test/exportvcard_test.py,
+	gramps/plugins/gramplet/ageondategramplet.py,
+	gramps/plugins/gramplet/agestats.py,
+	gramps/plugins/gramplet/ancestor.py,
+	gramps/plugins/gramplet/attributes.py,
+	gramps/plugins/gramplet/backlinks.py,
+	gramps/plugins/gramplet/calendargramplet.py,
+	gramps/plugins/gramplet/children.py,
+	gramps/plugins/gramplet/citations.py,
+	gramps/plugins/gramplet/coordinates.py,
+	gramps/plugins/gramplet/descendant.py,
+	gramps/plugins/gramplet/eval.py, gramps/plugins/gramplet/events.py,
+	gramps/plugins/gramplet/fanchart2waygramplet.py,
+	gramps/plugins/gramplet/fanchartdescgramplet.py,
+	gramps/plugins/gramplet/fanchartgramplet.py,
+	gramps/plugins/gramplet/faqgramplet.py,
+	gramps/plugins/gramplet/filter.py,
+	gramps/plugins/gramplet/gallery.py,
+	gramps/plugins/gramplet/givennamegramplet.py,
+	gramps/plugins/gramplet/gramplet.gpr.py,
+	gramps/plugins/gramplet/leak.py,
+	gramps/plugins/gramplet/locations.py,
+	gramps/plugins/gramplet/mediapreview.py,
+	gramps/plugins/gramplet/metadataviewer.py,
+	gramps/plugins/gramplet/notes.py,
+	gramps/plugins/gramplet/pedigreegramplet.py,
+	gramps/plugins/gramplet/persondetails.py,
+	gramps/plugins/gramplet/personresidence.py,
+	gramps/plugins/gramplet/placedetails.py,
+	gramps/plugins/gramplet/quickviewgramplet.py,
+	gramps/plugins/gramplet/recordsgramplet.py,
+	gramps/plugins/gramplet/relativegramplet.py,
+	gramps/plugins/gramplet/repositorydetails.py,
+	gramps/plugins/gramplet/sessionloggramplet.py,
+	gramps/plugins/gramplet/soundgen.py,
+	gramps/plugins/gramplet/statsgramplet.py,
+	gramps/plugins/gramplet/surnamecloudgramplet.py,
+	gramps/plugins/gramplet/todo.py,
+	gramps/plugins/gramplet/todogramplet.py,
+	gramps/plugins/gramplet/topsurnamesgramplet.py,
+	gramps/plugins/gramplet/welcomegramplet.py,
+	gramps/plugins/gramplet/whatsnext.py,
+	gramps/plugins/graph/graphplugins.gpr.py,
+	gramps/plugins/graph/gvfamilylines.py,
+	gramps/plugins/graph/gvhourglass.py,
+	gramps/plugins/graph/gvrelgraph.py,
+	gramps/plugins/importer/import.gpr.py,
+	gramps/plugins/importer/importcsv.py,
+	gramps/plugins/importer/importgedcom.py,
+	gramps/plugins/importer/importgeneweb.py,
+	gramps/plugins/importer/importgpkg.py,
+	gramps/plugins/importer/importgrdb.py,
+	gramps/plugins/importer/importprogen.py,
+	gramps/plugins/importer/importvcard.py,
+	gramps/plugins/importer/importxml.py,
+	gramps/plugins/importer/test/importgeneweb_test.py,
+	gramps/plugins/importer/test/importvcard_test.py,
+	gramps/plugins/lib/libcairodoc.py, gramps/plugins/lib/libgedcom.py,
+	gramps/plugins/lib/libgrampsxml.py,
+	gramps/plugins/lib/libholiday.py, gramps/plugins/lib/libhtml.py,
+	gramps/plugins/lib/libhtmlbackend.py,
+	gramps/plugins/lib/libhtmlconst.py,
+	gramps/plugins/lib/libmapservice.py,
+	gramps/plugins/lib/libmetadata.py, gramps/plugins/lib/libmixin.py,
+	gramps/plugins/lib/libnarrate.py,
+	gramps/plugins/lib/libodfbackend.py,
+	gramps/plugins/lib/libpersonview.py,
+	gramps/plugins/lib/libplaceimport.py,
+	gramps/plugins/lib/libplaceview.py,
+	gramps/plugins/lib/libplugins.gpr.py,
+	gramps/plugins/lib/libprogen.py, gramps/plugins/lib/librecords.py,
+	gramps/plugins/lib/librecurse.py,
+	gramps/plugins/lib/libsourceview.py,
+	gramps/plugins/lib/libsubstkeyword.py,
+	gramps/plugins/lib/libtreebase.py,
+	gramps/plugins/lib/maps/__init__.py,
+	gramps/plugins/lib/maps/cairoprint.py,
+	gramps/plugins/lib/maps/constants.py,
+	gramps/plugins/lib/maps/datelayer.py,
+	gramps/plugins/lib/maps/dummylayer.py,
+	gramps/plugins/lib/maps/dummynogps.py,
+	gramps/plugins/lib/maps/geography.py,
+	gramps/plugins/lib/maps/kmllayer.py,
+	gramps/plugins/lib/maps/libkml.py,
+	gramps/plugins/lib/maps/lifewaylayer.py,
+	gramps/plugins/lib/maps/markerlayer.py,
+	gramps/plugins/lib/maps/messagelayer.py,
+	gramps/plugins/lib/maps/osmgps.py,
+	gramps/plugins/lib/maps/placeselection.py,
+	gramps/plugins/lib/maps/selectionlayer.py,
+	gramps/plugins/mapservices/eniroswedenmap.py,
+	gramps/plugins/mapservices/googlemap.py,
+	gramps/plugins/mapservices/mapservice.gpr.py,
+	gramps/plugins/mapservices/openstreetmap.py,
+	gramps/plugins/quickview/ageondate.py,
+	gramps/plugins/quickview/all_events.py,
+	gramps/plugins/quickview/all_relations.py,
+	gramps/plugins/quickview/attributematch.py,
+	gramps/plugins/quickview/filterbyname.py,
+	gramps/plugins/quickview/lineage.py,
+	gramps/plugins/quickview/linkreferences.py,
+	gramps/plugins/quickview/onthisday.py,
+	gramps/plugins/quickview/quickview.gpr.py,
+	gramps/plugins/quickview/references.py,
+	gramps/plugins/quickview/reporef.py,
+	gramps/plugins/quickview/samesurnames.py,
+	gramps/plugins/quickview/siblings.py, gramps/plugins/rel/rel_ca.py,
+	gramps/plugins/rel/rel_cs.py, gramps/plugins/rel/rel_da.py,
+	gramps/plugins/rel/rel_de.py, gramps/plugins/rel/rel_de_AT.py,
+	gramps/plugins/rel/rel_es.py, gramps/plugins/rel/rel_fi.py,
+	gramps/plugins/rel/rel_fr.py, gramps/plugins/rel/rel_he.py,
+	gramps/plugins/rel/rel_hr.py, gramps/plugins/rel/rel_hu.py,
+	gramps/plugins/rel/rel_is.py, gramps/plugins/rel/rel_it.py,
+	gramps/plugins/rel/rel_nl.py, gramps/plugins/rel/rel_no.py,
+	gramps/plugins/rel/rel_pl.py, gramps/plugins/rel/rel_pt.py,
+	gramps/plugins/rel/rel_ru.py, gramps/plugins/rel/rel_sk.py,
+	gramps/plugins/rel/rel_sl.py, gramps/plugins/rel/rel_sv.py,
+	gramps/plugins/rel/rel_tr.py, gramps/plugins/rel/rel_uk.py,
+	gramps/plugins/rel/relplugins.gpr.py,
+	gramps/plugins/sidebar/categorysidebar.py,
+	gramps/plugins/sidebar/dropdownsidebar.py,
+	gramps/plugins/sidebar/expandersidebar.py,
+	gramps/plugins/sidebar/sidebar.gpr.py,
+	gramps/plugins/test/imports_test.py,
+	gramps/plugins/test/reports_test.py,
+	gramps/plugins/textreport/alphabeticalindex.py,
+	gramps/plugins/textreport/ancestorreport.py,
+	gramps/plugins/textreport/birthdayreport.py,
+	gramps/plugins/textreport/custombooktext.py,
+	gramps/plugins/textreport/descendreport.py,
+	gramps/plugins/textreport/detancestralreport.py,
+	gramps/plugins/textreport/detdescendantreport.py,
+	gramps/plugins/textreport/endoflinereport.py,
+	gramps/plugins/textreport/familygroup.py,
+	gramps/plugins/textreport/indivcomplete.py,
+	gramps/plugins/textreport/kinshipreport.py,
+	gramps/plugins/textreport/notelinkreport.py,
+	gramps/plugins/textreport/numberofancestorsreport.py,
+	gramps/plugins/textreport/placereport.py,
+	gramps/plugins/textreport/recordsreport.py,
+	gramps/plugins/textreport/simplebooktitle.py,
+	gramps/plugins/textreport/summary.py,
+	gramps/plugins/textreport/tableofcontents.py,
+	gramps/plugins/textreport/tagreport.py,
+	gramps/plugins/textreport/textplugins.gpr.py,
+	gramps/plugins/thumbnailer/gnomethumb.py,
+	gramps/plugins/thumbnailer/imagethumb.py,
+	gramps/plugins/thumbnailer/thumb.gpr.py,
+	gramps/plugins/tool/changenames.py,
+	gramps/plugins/tool/changetypes.py, gramps/plugins/tool/check.py,
+	gramps/plugins/tool/dateparserdisplaytest.py,
+	gramps/plugins/tool/dumpgenderstats.py,
+	gramps/plugins/tool/eventcmp.py, gramps/plugins/tool/eventnames.py,
+	gramps/plugins/tool/finddupes.py, gramps/plugins/tool/findloop.py,
+	gramps/plugins/tool/mediamanager.py,
+	gramps/plugins/tool/mergecitations.py,
+	gramps/plugins/tool/notrelated.py,
+	gramps/plugins/tool/ownereditor.py,
+	gramps/plugins/tool/patchnames.py,
+	gramps/plugins/tool/populatesources.py,
+	gramps/plugins/tool/rebuild.py,
+	gramps/plugins/tool/rebuildgenderstat.py,
+	gramps/plugins/tool/rebuildrefmap.py,
+	gramps/plugins/tool/relcalc.py,
+	gramps/plugins/tool/removespaces.py,
+	gramps/plugins/tool/removeunused.py,
+	gramps/plugins/tool/reorderids.py,
+	gramps/plugins/tool/sortevents.py,
+	gramps/plugins/tool/testcasegenerator.py,
+	gramps/plugins/tool/tools.gpr.py,
+	gramps/plugins/tool/toolsdebug.gpr.py,
+	gramps/plugins/tool/verify.py,
+	gramps/plugins/view/citationlistview.py,
+	gramps/plugins/view/citationtreeview.py,
+	gramps/plugins/view/dashboardview.py,
+	gramps/plugins/view/eventview.py,
+	gramps/plugins/view/familyview.py,
+	gramps/plugins/view/fanchart2wayview.py,
+	gramps/plugins/view/fanchartdescview.py,
+	gramps/plugins/view/fanchartview.py,
+	gramps/plugins/view/geoclose.py, gramps/plugins/view/geoevents.py,
+	gramps/plugins/view/geofamclose.py,
+	gramps/plugins/view/geofamily.py,
+	gramps/plugins/view/geography.gpr.py,
+	gramps/plugins/view/geomoves.py, gramps/plugins/view/geoperson.py,
+	gramps/plugins/view/geoplaces.py, gramps/plugins/view/mediaview.py,
+	gramps/plugins/view/noteview.py,
+	gramps/plugins/view/pedigreeview.py,
+	gramps/plugins/view/personlistview.py,
+	gramps/plugins/view/persontreeview.py,
+	gramps/plugins/view/placelistview.py,
+	gramps/plugins/view/placetreeview.py,
+	gramps/plugins/view/relview.py, gramps/plugins/view/repoview.py,
+	gramps/plugins/view/sourceview.py, gramps/plugins/view/view.gpr.py,
+	gramps/plugins/webreport/addressbook.py,
+	gramps/plugins/webreport/addressbooklist.py,
+	gramps/plugins/webreport/alphabeticindex.py,
+	gramps/plugins/webreport/basepage.py,
+	gramps/plugins/webreport/buchheim.py,
+	gramps/plugins/webreport/calendar.py,
+	gramps/plugins/webreport/citation.py,
+	gramps/plugins/webreport/common.py,
+	gramps/plugins/webreport/contact.py,
+	gramps/plugins/webreport/download.py,
+	gramps/plugins/webreport/event.py,
+	gramps/plugins/webreport/family.py,
+	gramps/plugins/webreport/heatmap.py,
+	gramps/plugins/webreport/home.py,
+	gramps/plugins/webreport/introduction.py,
+	gramps/plugins/webreport/layout.py,
+	gramps/plugins/webreport/media.py,
+	gramps/plugins/webreport/multilang.py,
+	gramps/plugins/webreport/multiselect.py,
+	gramps/plugins/webreport/narrativeweb.py,
+	gramps/plugins/webreport/person.py,
+	gramps/plugins/webreport/place.py,
+	gramps/plugins/webreport/repository.py,
+	gramps/plugins/webreport/source.py,
+	gramps/plugins/webreport/statistics.py,
+	gramps/plugins/webreport/surname.py,
+	gramps/plugins/webreport/surnamelist.py,
+	gramps/plugins/webreport/thumbnail.py,
+	gramps/plugins/webreport/updates.py,
+	gramps/plugins/webreport/webcal.py,
+	gramps/plugins/webreport/webplugins.gpr.py,
+	gramps/plugins/webstuff/webstuff.gpr.py,
+	gramps/plugins/webstuff/webstuff.py, gramps/test/__init__.py,
+	gramps/test/regrtest.py, gramps/test/test/test_util_test.py,
+	gramps/test/test_util.py, gramps/version.py, po/check_po,
+	po/test/po_test.py, po/update_po.py, setup.py,
+	test/GrampsLogger/ErrorReportAssistant_Test.py,
+	test/GrampsLogger/GtkHandler_Test.py, test/LosHawlos_bsddb_test.py,
+	test/LosHawlos_db_test.py, test/RunAllTests.py: Update GPL2+ license
+	text
+
+2025-08-26  Chris Mayo <aklhfex@gmail.com>
+
+	* COPYING, gramps/gui/aboutdialog.py: Update COPYING to the latest
+	text This makes replacing 0x0c characters unnecessary.  https://www.gnu.org/licenses/old-licenses/old-licenses.html#GPL
+
+2025-09-25  Milo Ivir <mail@milotype.de>
+
+	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
+
+2025-09-25  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 99.9% (7210 of 7211 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2025-08-31  Apostol Penkov <apostol.penkov@gmail.com>
+2025-09-25  Alejandro Moctezuma <moctezumaalejandro25@gmail.com>
 
-	* po/bg.po: Translated using Weblate (Bulgarian) Currently translated at 52.1% (3758 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/bg/
+	* po/es.po: Translated using Weblate (Spanish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/es/
 
-2025-08-31  Krystian Safjan <ksafjan@gmail.com>
+2025-09-25  Andi Chandler <andi@gowling.com>
 
-	* po/pl.po: Translated using Weblate (Polish) Currently translated at 99.7% (7196 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/pl/
+	* po/en_GB.po: Translated using Weblate (English (United Kingdom)) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/en_GB/
 
-2025-08-31  Jozef Gaal <preklady@mayday.sk>
-
-	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
-
-2025-08-31  Milan <mobrcian@hotmail.com>
-
-	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
-
-2025-08-17  Nick Hall <nick-h@gramps-project.org>
-
-	* po/ru.po: Translated using Weblate (Russian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
-
-2025-08-17  Avi Markovitz <avi.markovitz@gmail.com>
-
-	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 99.9% (7209 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/he/
-
-2025-08-17  vanapro1 <law820314@gmail.com>
-
-	* po/ru.po: Translated using Weblate (Russian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
-
-2025-08-17  Yaron Shahrabani <sh.yaron@gmail.com>
-
-	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 99.9% (7209 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/he/
-
-2025-08-17  Milan <mobrcian@hotmail.com>
-
-	* po/cs.po, po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
-
-2025-08-17  Lajos Nemeséri <nemeseril@gmail.com>
-
-	* po/hu.po: Translated using Weblate (Hungarian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hu/
-
-2025-08-17  Aindriú Mac Giolla Eoin <aindriu80@gmail.com>
-
-	* po/ga.po: Translated using Weblate (Irish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ga/
-
-2025-08-17  Kaj Arne Mikkelsen <kmi@vgdata.dk>
+2025-09-25  Kaj Arne Mikkelsen <kmi@vgdata.dk>
 
 	* po/da.po: Translated using Weblate (Danish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/da/
 
-2025-08-17  Krystian Safjan <ksafjan@gmail.com>
+2025-09-25  தமிழ்நேரம் <tamilneram247@gmail.com>
 
-	* po/pl.po: Translated using Weblate (Polish) Currently translated at 99.7% (7190 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	* po/ta.po: Translated using Weblate (Tamil) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ta/
+
+2025-09-25  vanapro1 <law820314@gmail.com>
+
+	* po/ru.po: Translated using Weblate (Russian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
+
+2025-09-25  jmichault <jmt.2000@free.fr>
+
+	* po/fr.po: Translated using Weblate (French) Currently translated at 99.8% (7202 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/ Translated using Weblate (French) Currently translated at 99.8% (7202 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
+
+2025-09-25  Juha Mäkeläinen <juha.makelainen@iki.fi>
+
+	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
+
+2025-09-25  mircea s <mircea.salajan@gmail.com>
+
+	* po/ro.po: Translated using Weblate (Romanian) Currently translated at 4.2% (303 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ro/
+
+2025-09-25  Ilsur Irnazarov <temyas@yandex.ru>
+
+	* po/ba.po: Translated using Weblate (Bashkir) Currently translated at 0.0% (0 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ba/ Translated using Weblate (Bashkir) Currently translated at 0.0% (0 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ba/
+
+2025-09-25  Stephan Paternotte <stephan@paternottes.net>
+
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+
+2025-09-25  Tadas Masiulionis <tadzikaz@gmail.com>
+
+	* po/lt.po: Translated using Weblate (Lithuanian) Currently translated at 91.4% (6596 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/lt/ Translated using Weblate (Lithuanian) Currently translated at 91.4% (6596 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/lt/ Translated using Weblate (Lithuanian) Currently translated at 91.3% (6589 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/lt/ Translated using Weblate (Lithuanian) Currently translated at 91.3% (6585 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/lt/ Translated using Weblate (Lithuanian) Currently translated at 91.1% (6573 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/lt/
+
+2025-09-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+
+2025-09-25  Temuri Doghonadze <temuri.doghonadze@gmail.com>
+
+	* po/ka.po: Translated using Weblate (Georgian) Currently translated at 11.1% (805 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ka/ Translated using Weblate (Georgian) Currently translated at 11.1% (802 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ka/ Translated using Weblate (Georgian) Currently translated at 5.6% (407 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ka/
+
+2025-09-24  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/plugins/db/dbapi/sqlite.py: Ignore mypy error when setting
+	`sqlite3.paramstyle` This is a constant that is hard-coded to "qmark". See: https://docs.python.org/3/library/sqlite3.html#sqlite3.paramstyle
+
+2025-09-11  Fabio Restante <frestante@gmail.com>
+
+	* po/it.po: Translated using Weblate (Italian) Currently translated at 98.9% (7136 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/
+
+2025-09-11  Temuri Doghonadze <temuri.doghonadze@gmail.com>
+
+	* po/ka.po: Translated using Weblate (Georgian) Currently translated at 2.5% (186 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ka/ Translated using Weblate (Georgian) Currently translated at 0.3% (26 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ka/
+
+2025-09-11  Krystian Safjan <ksafjan@gmail.com>
+
+	* po/pl.po: Translated using Weblate (Polish) Currently translated at 99.8% (7199 of 7211 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/pl/
 
-2025-08-17  Adolfo Jayme Barrientos <fitojb@ubuntu.com>
+2025-09-11  Milo Ivir <mail@milotype.de>
 
-	* po/ca.po, po/es.po: Translated using Weblate (Catalan) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ca/ Translated using Weblate (Spanish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/es/ Translated using Weblate (Catalan) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ca/
+	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
 
-2025-08-17  Pär Ekholm <github1@m.pekholm.org>
+2025-09-11  Christoph Eder <christoph.eder@phsalzburg.at>
+
+	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
+
+2025-09-11  Aindriú Mac Giolla Eoin <aindriu80@gmail.com>
+
+	* po/ga.po: Translated using Weblate (Irish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ga/
+
+2025-09-11  Matti Niemelä <matti.u.niemela@gmail.com>
+
+	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
+
+2025-09-11  Максим Горпиніч <gorpinicmaksim0@gmail.com>
+
+	* po/uk.po: Translated using Weblate (Ukrainian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/uk/
+
+2025-09-11  Pär Ekholm <github1@m.pekholm.org>
 
 	* po/sv.po: Translated using Weblate (Swedish) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/sv/
 
-2025-08-17  Milo Ivir <mail@milotype.de>
+2025-09-11  Milan <mobrcian@hotmail.com>
 
-	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/ Translated using Weblate (Croatian) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
+	* po/cs.po, po/sk.po: Translated using Weblate (Czech) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
 
-2025-08-17  Avi Markovitz <avi.markovitz@gmail.com>
+2025-09-11  Jozef Gaal <preklady@mayday.sk>
 
-	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 99.9% (7209 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 99.9% (7209 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 99.9% (7209 of 7211 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
 
-2025-08-17  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2025-09-11  Pedro Albuquerque <pmra@protonmail.com>
+
+	* po/pt_PT.po: Translated using Weblate (Portuguese (Portugal)) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/
+
+2025-09-11  Stephan Paternotte <stephan@paternottes.net>
+
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+
+2025-09-11  jmichault <jmt.2000@free.fr>
+
+	* po/fr.po: Translated using Weblate (French) Currently translated at 99.8% (7202 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/ Translated using Weblate (French) Currently translated at 99.8% (7202 of 7211 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
+
+2025-09-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
 	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/de/ Translated using Weblate (German) Currently translated at 100.0% (7211 of 7211 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/de/
 
-2025-08-10  Nick Hall <nick-h@gramps-project.org>
+2025-09-11  Hosted Weblate <hosted@weblate.org>
+
+	* po/ar.po, po/az.po, po/ba.po, po/bg.po, po/br.po, po/ca.po,
+	po/cs.po, po/da.po, po/de.po, po/de_AT.po, po/el.po, po/en_GB.po,
+	po/eo.po, po/es.po, po/fa.po, po/fi.po, po/fr.po, po/ga.po,
+	po/gl.po, po/he.po, po/hr.po, po/hu.po, po/id.po, po/is.po,
+	po/it.po, po/ja.po, po/ka.po, po/ko.po, po/lt.po, po/lv.po,
+	po/mk.po, po/nb.po, po/nl.po, po/nn.po, po/pl.po, po/pt_BR.po,
+	po/pt_PT.po, po/ro.po, po/ru.po, po/sk.po, po/sl.po, po/sq.po,
+	po/sr.po, po/sr_Latn.po, po/sv.po, po/ta.po, po/tr.po, po/uk.po,
+	po/vi.po, po/zh_CN.po, po/zh_HK.po, po/zh_TW.po: Update translation
+	files Updated by "Update PO files to match POT (msgmerge)" hook in
+	Weblate.  Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/
+
+2025-09-06  Nick Hall <nick-h@gramps-project.org>
 
 	* Set to development version
 

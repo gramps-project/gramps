@@ -97,6 +97,7 @@ LDS_ORD_NAME = {
     LdsOrd.SEAL_TO_PARENTS: "SLGC",
     LdsOrd.SEAL_TO_SPOUSE: "SLGS",
     LdsOrd.CONFIRMATION: "CONL",
+    LdsOrd.INITIATORY: "INIL",
 }
 
 LDS_STATUS = {

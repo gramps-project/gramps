@@ -1128,8 +1128,8 @@ class RelationshipCalculator:
         get_sibling_relationship_string.
         Only call this method if known that orig and other are siblings
         """
-        fatherorig, motherorig = self.get_birth_parents(db, orig)
-        fatherother, motherother = self.get_birth_parents(db, other)
+        motherorig, fatherorig = self.get_birth_parents(db, orig)
+        motherother, fatherother = self.get_birth_parents(db, other)
         if fatherorig and motherorig and fatherother and motherother:
             if fatherother == fatherorig and motherother == motherorig:
                 return self.NORM_SIB
@@ -1190,6 +1190,9 @@ class RelationshipCalculator:
                 for ref in family.get_child_ref_list()
                 if ref.ref == person.handle
             ]
+            # Add this check
+            if not childrel:
+                continue  # Skip to the next family if childrel is empty
             if not birthmother and childrel[0][0] == ChildRefType.BIRTH:
                 birthmother = family.get_mother_handle()
             if not birthfather and childrel[0][1] == ChildRefType.BIRTH:
@@ -1612,6 +1615,9 @@ class RelationshipCalculator:
                     for ref in family.get_child_ref_list()
                     if ref.ref == person.handle
                 ]
+                # Add this check
+                if not childrel:
+                    continue  # Skip to the next family if childrel is empty
                 fhandle = family.father_handle
                 mhandle = family.mother_handle
                 for data in [
@@ -2646,20 +2652,31 @@ def _test(rcalc, onlybirth, inlawa, inlawb, printrelstr, test_num=None):
 
     random.seed()
 
-    def _rand_f_m():
-        if random.randint(0, 1) == 0:
-            return "f"
-        else:
-            return "m"
-
     def _rand_relstr(length, endstr):
         if length == 0:
             return ""
         else:
             relstr = ""
             for i in range(length - 1):
-                relstr += _rand_f_m()
-            return relstr + endstr
+                relstr += "fm"[random.randint(0, 1)]
+
+            # if onlybirth is False then there must be some
+            # non-birth relation somewhere ....
+            if not onlybirth:
+                # sometimes we'll add non-birth in the end, somewhere in the
+                # middle and may be both
+                if length == 1 or random.randint(0, 1):
+                    endstr = endstr.upper()
+
+                relstr = relstr + endstr
+
+                if length > 1:
+                    u = random.randint(0, length - 1)
+                    relstr = relstr[:u] + relstr[u].upper() + relstr[u + 1 :]
+            else:
+                relstr = relstr + endstr
+
+            return relstr
 
     if test_num is None:
         print(
@@ -2695,304 +2712,421 @@ Please enter a test number and press Enter for continue:
         # sys.stdin.readline()
         for i in range(MAX):
             relstr = _rand_relstr(i, "f")
-            rel = FMT % rcalc.get_single_relationship_string(
-                0,
-                i,
-                MALE,
-                MALE,
-                "",
-                relstr,
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [MALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    0,
+                    i,
+                    gender,
+                    MALE,
+                    "",
+                    relstr,
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstr, gender)
+                    else:
+                        print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 2:
         print("\ntesting daughters\n")
         # sys.stdin.readline()
         for i in range(MAX):
             relstr = _rand_relstr(i, "m")
-            rel = FMT % rcalc.get_single_relationship_string(
-                0,
-                i,
-                MALE,
-                FEMALE,
-                "",
-                relstr,
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [MALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    0,
+                    i,
+                    gender,
+                    FEMALE,
+                    "",
+                    relstr,
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstr, gender)
+                    else:
+                        print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 3:
         print("\ntesting unknown children\n")
         # sys.stdin.readline()
         for i in range(MAX):
             relstr = _rand_relstr(i, "f")
-            rel = FMT % rcalc.get_single_relationship_string(
-                0,
-                i,
-                MALE,
-                UNKNOWN,
-                "",
-                relstr,
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [MALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    0,
+                    i,
+                    gender,
+                    UNKNOWN,
+                    "",
+                    relstr,
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstr, gender)
+                    else:
+                        print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 4:
         print("\ntesting grandfathers\n")
         # sys.stdin.readline()
         for i in range(MAX):
             relstr = _rand_relstr(i, "f")
-            rel = FMT % rcalc.get_single_relationship_string(
-                i,
-                0,
-                FEMALE,
-                MALE,
-                relstr,
-                "",
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [FEMALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    i,
+                    0,
+                    gender,
+                    MALE,
+                    relstr,
+                    "",
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstr, gender)
+                    else:
+                        print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 5:
         print("\ntesting grandmothers\n")
         # sys.stdin.readline()
         for i in range(MAX):
             relstr = _rand_relstr(i, "m")
-            rel = FMT % rcalc.get_single_relationship_string(
-                i,
-                0,
-                FEMALE,
-                FEMALE,
-                relstr,
-                "",
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [FEMALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    i,
+                    0,
+                    gender,
+                    FEMALE,
+                    relstr,
+                    "",
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstr, gender)
+                    else:
+                        print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 6:
         print("\ntesting unknown parents\n")
         # sys.stdin.readline()
         for i in range(MAX):
             relstr = _rand_relstr(i, "f")
-            rel = FMT % rcalc.get_single_relationship_string(
-                i,
-                0,
-                FEMALE,
-                UNKNOWN,
-                relstr,
-                "",
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [FEMALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    i,
+                    0,
+                    gender,
+                    UNKNOWN,
+                    relstr,
+                    "",
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstr, gender)
+                    else:
+                        print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 7:
         print("\ntesting nieces\n")
         # sys.stdin.readline()
         for i in range(1, MAX):
             relstr = _rand_relstr(i, "m")
-            rel = FMT % rcalc.get_single_relationship_string(
-                1,
-                i,
-                FEMALE,
-                FEMALE,
-                "m",
-                relstr,
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [FEMALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    1,
+                    i,
+                    gender,
+                    FEMALE,
+                    "m",
+                    relstr,
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstr, gender)
+                    else:
+                        print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 8:
         print("\ntesting nephews\n")
         # sys.stdin.readline()
         for i in range(1, MAX):
             relstr = _rand_relstr(i, "f")
-            rel = FMT % rcalc.get_single_relationship_string(
-                1,
-                i,
-                FEMALE,
-                MALE,
-                "f",
-                relstr,
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [FEMALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    1,
+                    i,
+                    gender,
+                    MALE,
+                    "f",
+                    relstr,
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstr, gender)
+                    else:
+                        print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 9:
         print("\ntesting unknown nephews/nieces\n")
         # sys.stdin.readline()
         for i in range(1, MAX):
             relstr = _rand_relstr(i, "f")
-            rel = FMT % rcalc.get_single_relationship_string(
-                1,
-                i,
-                FEMALE,
-                UNKNOWN,
-                "f",
-                relstr,
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [FEMALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    1,
+                    i,
+                    gender,
+                    UNKNOWN,
+                    "f",
+                    relstr,
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstr, gender)
+                    else:
+                        print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 10:
         print("\ntesting uncles\n")
         # sys.stdin.readline()
         for i in range(1, MAX):
             relstr = _rand_relstr(i, "f")
-            rel = FMT % rcalc.get_single_relationship_string(
-                i,
-                1,
-                FEMALE,
-                MALE,
-                relstr,
-                "f",
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [FEMALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    i,
+                    1,
+                    gender,
+                    MALE,
+                    relstr,
+                    "f",
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstr, gender)
+                    else:
+                        print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 11:
         print("\ntesting aunts\n")
         # sys.stdin.readline()
         for i in range(1, MAX):
             relstr = _rand_relstr(i, "f")
-            rel = FMT % rcalc.get_single_relationship_string(
-                i,
-                1,
-                MALE,
-                FEMALE,
-                relstr,
-                "f",
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [FEMALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    i,
+                    1,
+                    gender,
+                    FEMALE,
+                    relstr,
+                    "f",
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstr, gender)
+                    else:
+                        print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 12:
         print("\ntesting unknown uncles/aunts\n")
         # sys.stdin.readline()
         for i in range(1, MAX):
             relstr = _rand_relstr(i, "m")
-            rel = FMT % rcalc.get_single_relationship_string(
-                i,
-                1,
-                MALE,
-                UNKNOWN,
-                relstr,
-                "m",
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstr)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [MALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    i,
+                    1,
+                    gender,
+                    UNKNOWN,
+                    relstr,
+                    "m",
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    print(rel + " |info:", relstr)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 13:
         print("\ntesting male cousins same generation\n")
         # sys.stdin.readline()
         for i in range(1, MAX):
             relstra = _rand_relstr(i, "f")
             relstrb = _rand_relstr(i, "f")
-            rel = FMT % rcalc.get_single_relationship_string(
-                i,
-                i,
-                MALE,
-                MALE,
-                relstra,
-                relstrb,
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstra, relstrb)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [MALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    i,
+                    i,
+                    gender,
+                    MALE,
+                    relstra,
+                    relstrb,
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstra, relstrb, gender)
+                    else:
+                        print(rel + " |info:", relstra, relstrb)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 14:
         print("\ntesting female cousins same generation\n")
         # sys.stdin.readline()
         for i in range(1, MAX):
             relstra = _rand_relstr(i, "m")
             relstrb = _rand_relstr(i, "m")
-            rel = FMT % rcalc.get_single_relationship_string(
-                i,
-                i,
-                MALE,
-                FEMALE,
-                relstra,
-                relstrb,
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstra, relstrb)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [MALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    i,
+                    i,
+                    gender,
+                    FEMALE,
+                    relstra,
+                    relstrb,
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstra, relstrb, gender)
+                    else:
+                        print(rel + " |info:", relstra, relstrb)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 15:
         print("\ntesting unknown cousins same generation\n")
         # sys.stdin.readline()
         for i in range(1, MAX):
             relstra = _rand_relstr(i, "m")
             relstrb = _rand_relstr(i, "m")
-            rel = FMT % rcalc.get_single_relationship_string(
-                i,
-                i,
-                MALE,
-                UNKNOWN,
-                relstra,
-                relstrb,
-                only_birth=onlybirth,
-                in_law_a=inlawa,
-                in_law_b=inlawb,
-            )
-            if printrelstr:
-                print(rel + " |info:", relstra, relstrb)
+            if inlawa or inlawb:
+                genders = [MALE, FEMALE]
             else:
-                print(rel)
+                genders = [MALE]
+            for gender in genders:
+                rel = FMT % rcalc.get_single_relationship_string(
+                    i,
+                    i,
+                    gender,
+                    UNKNOWN,
+                    relstra,
+                    relstrb,
+                    only_birth=onlybirth,
+                    in_law_a=inlawa,
+                    in_law_b=inlawb,
+                )
+                if printrelstr:
+                    if inlawa or inlawb:
+                        print(rel + " |info:", relstra, relstrb, gender)
+                    else:
+                        print(rel + " |info:", relstra, relstrb)
+                else:
+                    print(rel)
     if test_num == 0 or test_num == 16:
         print("\ntesting some cousins up\n")
         # sys.stdin.readline()
@@ -3004,45 +3138,61 @@ Please enter a test number and press Enter for continue:
                     relstra = _rand_relstr(j, "f")
                     relstrb = _rand_relstr(i, "f")
                     if rnd < 5:
-                        rel = (FMT + " |info: female, Ga=%2d, Gb=%2d") % (
-                            rcalc.get_single_relationship_string(
+                        if inlawa or inlawb:
+                            genders = [MALE, FEMALE]
+                        else:
+                            genders = [MALE]
+                        for gender in genders:
+                            rel = (FMT + " |info: female, Ga=%2d, Gb=%2d") % (
+                                rcalc.get_single_relationship_string(
+                                    j,
+                                    i,
+                                    gender,
+                                    FEMALE,
+                                    relstra,
+                                    relstrb,
+                                    only_birth=onlybirth,
+                                    in_law_a=inlawa,
+                                    in_law_b=inlawb,
+                                ),
                                 j,
                                 i,
-                                MALE,
-                                FEMALE,
-                                relstra,
-                                relstrb,
-                                only_birth=onlybirth,
-                                in_law_a=inlawa,
-                                in_law_b=inlawb,
-                            ),
-                            j,
-                            i,
-                        )
-                        if printrelstr:
-                            print(rel + " |info:", relstra, relstrb)
-                        else:
-                            print(rel)
+                            )
+                            if printrelstr:
+                                if inlawa or inlawb:
+                                    print(rel + " |info:", relstra, relstrb, gender)
+                                else:
+                                    print(rel + " |info:", relstra, relstrb)
+                            else:
+                                print(rel)
                     else:
-                        rel = (FMT + " |info:   male, Ga=%2d, Gb=%2d") % (
-                            rcalc.get_single_relationship_string(
+                        if inlawa or inlawb:
+                            genders = [MALE, FEMALE]
+                        else:
+                            genders = [MALE]
+                        for gender in genders:
+                            rel = (FMT + " |info:   male, Ga=%2d, Gb=%2d") % (
+                                rcalc.get_single_relationship_string(
+                                    j,
+                                    i,
+                                    gender,
+                                    MALE,
+                                    relstra,
+                                    relstrb,
+                                    only_birth=onlybirth,
+                                    in_law_a=inlawa,
+                                    in_law_b=inlawb,
+                                ),
                                 j,
                                 i,
-                                MALE,
-                                MALE,
-                                relstra,
-                                relstrb,
-                                only_birth=onlybirth,
-                                in_law_a=inlawa,
-                                in_law_b=inlawb,
-                            ),
-                            j,
-                            i,
-                        )
-                        if printrelstr:
-                            print(rel + " |info:", relstra, relstrb)
-                        else:
-                            print(rel)
+                            )
+                            if printrelstr:
+                                if inlawa or inlawb:
+                                    print(rel + " |info:", relstra, relstrb, gender)
+                                else:
+                                    print(rel + " |info:", relstra, relstrb)
+                            else:
+                                print(rel)
     if test_num == 0 or test_num == 17:
         print("\ntesting some cousins down\n")
         # sys.stdin.readline()
@@ -3053,45 +3203,61 @@ Please enter a test number and press Enter for continue:
                     relstra = _rand_relstr(i, "f")
                     relstrb = _rand_relstr(j, "f")
                     if rnd < 5:
-                        rel = (FMT + " |info: female, Ga=%2d, Gb=%2d") % (
-                            rcalc.get_single_relationship_string(
+                        if inlawa or inlawb:
+                            genders = [MALE, FEMALE]
+                        else:
+                            genders = [MALE]
+                        for gender in genders:
+                            rel = (FMT + " |info: female, Ga=%2d, Gb=%2d") % (
+                                rcalc.get_single_relationship_string(
+                                    i,
+                                    j,
+                                    gender,
+                                    FEMALE,
+                                    relstra,
+                                    relstrb,
+                                    only_birth=onlybirth,
+                                    in_law_a=inlawa,
+                                    in_law_b=inlawb,
+                                ),
                                 i,
                                 j,
-                                MALE,
-                                FEMALE,
-                                relstra,
-                                relstrb,
-                                only_birth=onlybirth,
-                                in_law_a=inlawa,
-                                in_law_b=inlawb,
-                            ),
-                            i,
-                            j,
-                        )
-                        if printrelstr:
-                            print(rel + " |info:", relstra, relstrb)
-                        else:
-                            print(rel)
+                            )
+                            if printrelstr:
+                                if inlawa or inlawb:
+                                    print(rel + " |info:", relstra, relstrb, gender)
+                                else:
+                                    print(rel + " |info:", relstra, relstrb)
+                            else:
+                                print(rel)
                     else:
-                        rel = (FMT + " |info:   male, Ga=%2d, Gb=%2d") % (
-                            rcalc.get_single_relationship_string(
+                        if inlawa or inlawb:
+                            genders = [MALE, FEMALE]
+                        else:
+                            genders = [MALE]
+                        for gender in genders:
+                            rel = (FMT + " |info:   male, Ga=%2d, Gb=%2d") % (
+                                rcalc.get_single_relationship_string(
+                                    i,
+                                    j,
+                                    gender,
+                                    MALE,
+                                    relstra,
+                                    relstrb,
+                                    only_birth=onlybirth,
+                                    in_law_a=inlawa,
+                                    in_law_b=inlawb,
+                                ),
                                 i,
                                 j,
-                                MALE,
-                                MALE,
-                                relstra,
-                                relstrb,
-                                only_birth=onlybirth,
-                                in_law_a=inlawa,
-                                in_law_b=inlawb,
-                            ),
-                            i,
-                            j,
-                        )
-                        if printrelstr:
-                            print(rel + " |info:", relstra, relstrb)
-                        else:
-                            print(rel)
+                            )
+                            if printrelstr:
+                                if inlawa or inlawb:
+                                    print(rel + " |info:", relstra, relstrb, gender)
+                                else:
+                                    print(rel + " |info:", relstra, relstrb)
+                            else:
+                                print(rel)
 
 
 def _testsibling(rcalc):
@@ -3139,6 +3305,88 @@ def _test_spouse(rcalc):
             )
 
 
+def _test_plural(rcalc, in_law_b, test_num=None):  # noqa: C901
+
+    from sys import stdin
+
+    if test_num is None:
+        print(
+            """
+Select a test:
+  0 - all tests
+  1 - testing ancestors
+  5 - testing descendants
+  16 - testing cousins up
+  17 - testing cousins down
+
+Please enter a test number and press Enter for continue:
+    """
+        )
+        test_num = stdin.readline().strip()
+        test_num = int(test_num)
+
+    if test_num == 0 or test_num == 1:
+        print("\ntesting ancestors")
+        for i in range(1, MAX):
+            rel = (FMT + " |info: Ga=%2d, Gb=%2d") % (
+                rcalc.get_plural_relationship_string(
+                    i,
+                    0,
+                    in_law_a=False,
+                    in_law_b=in_law_b,
+                ),
+                i,
+                0,
+            )
+            print(rel)
+
+    if test_num == 0 or test_num == 5:
+        print("\ntesting descendants")
+        for j in range(1, MAX):
+            rel = (FMT + " |info: Ga=%2d, Gb=%2d") % (
+                rcalc.get_plural_relationship_string(
+                    0,
+                    j,
+                    in_law_a=False,
+                    in_law_b=in_law_b,
+                ),
+                0,
+                j,
+            )
+            print(rel)
+
+    if test_num == 0 or test_num == 16:
+        print("\ntesting cousins up")
+        for i in range(1, MAX):
+            for j in range(i, 0, -1):
+                rel = (FMT + " |info: Ga=%2d, Gb=%2d") % (
+                    rcalc.get_plural_relationship_string(
+                        i,
+                        j,
+                        in_law_a=False,
+                        in_law_b=in_law_b,
+                    ),
+                    i,
+                    j,
+                )
+                print(rel)
+    if test_num == 0 or test_num == 17:
+        print("\ntesting cousins down")
+        for i in range(1, MAX - 1):
+            for j in range(i + 1, MAX):
+                rel = (FMT + " |info: Ga=%2d, Gb=%2d") % (
+                    rcalc.get_plural_relationship_string(
+                        i,
+                        j,
+                        in_law_a=False,
+                        in_law_b=in_law_b,
+                    ),
+                    i,
+                    j,
+                )
+                print(rel)
+
+
 def test(rcalc, printrelstr):
     """
     This is a generic test suite for the singular relationship
@@ -3163,9 +3411,15 @@ Select a test:
   1 - Test normal relations
   2 - Test step relations
   3 - Test in-law relations (first pers)
-  4 - Test step and in-law relations
+  4 - Test step and in-law relations (first pers)
   5 - Test sibling types
   6 - Test partner types
+  7 - Test in-law relations (second pers)
+  8 - Test in-law relations (both pers)
+  9 - Test step and in-law relations (second pers)
+  10 - Test step and in-law relations (both pers)
+  11 - Test plural relations
+  12 - Test plural relations (spouses)
 
 Letter 'f' means Father, 'm' means Mother
 
@@ -3174,6 +3428,8 @@ Please enter a test number and press Enter for continue:
         )
         test_num = sys.stdin.readline().strip()
         test_num = int(test_num)
+        if test_num == 0:
+            args.s = 0
 
     if test_num == 0 or test_num == 1:
         print("\n\n=== Test normal relations ===")
@@ -3188,7 +3444,7 @@ Please enter a test number and press Enter for continue:
         _test(rcalc, True, True, False, printrelstr, args.s)
 
     if test_num == 0 or test_num == 4:
-        print("\n\n=== Test step and in-law relations ===")
+        print("\n\n=== Test step and in-law relations (first pers) ===")
         _test(rcalc, False, True, False, printrelstr, args.s)
 
     if test_num == 0 or test_num == 5:
@@ -3198,6 +3454,30 @@ Please enter a test number and press Enter for continue:
     if test_num == 0 or test_num == 6:
         print("\n\n=== Test partner types ===")
         _test_spouse(rcalc)
+
+    if test_num == 0 or test_num == 7:
+        print("\n\n=== Test in-law relations (second pers) ===")
+        _test(rcalc, True, False, True, printrelstr, args.s)
+
+    if test_num == 0 or test_num == 8:
+        print("\n\n=== Test in-law relations (both pers) ===")
+        _test(rcalc, True, True, True, printrelstr, args.s)
+
+    if test_num == 0 or test_num == 9:
+        print("\n\n=== Test step and in-law relations (second pers) ===")
+        _test(rcalc, False, False, True, printrelstr, args.s)
+
+    if test_num == 0 or test_num == 10:
+        print("\n\n=== Test step and in-law relations (both pers) ===")
+        _test(rcalc, False, True, True, printrelstr, args.s)
+
+    if test_num == 0 or test_num == 11:
+        print("\n\n=== Test plural relations  ===")
+        _test_plural(rcalc, False, args.s)
+
+    if test_num == 0 or test_num == 12:
+        print("\n\n=== Test plural relations (spouses)  ===")
+        _test_plural(rcalc, True, args.s)
 
 
 if __name__ == "__main__":
