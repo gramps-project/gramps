@@ -163,7 +163,7 @@ cp /mingw64/share/icons/hicolor/scalable/places/*.svg /mingw64/share/icons/gnome
 
 # build gramps
 rm -rf dist aio/dist
-python setup.py bdist_wheel
+python -m build --wheel
 if `grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py`; then
     # <branch_name>-<short_commit_id>
     appbuild="$(git rev-parse --abbrev-ref HEAD)-$(git rev-parse --short HEAD)"
