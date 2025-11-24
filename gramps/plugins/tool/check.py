@@ -7,6 +7,7 @@
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2012       Michiel D. Nauta
 # Copyright (C) 2024       Doug Blank
+# Copyright (C) 2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,6 +63,7 @@ ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.lib import (
     Citation,
     Event,
+    EventRoleType,
     EventType,
     Family,
     Media,
@@ -248,6 +250,7 @@ class Check(tool.BatchTool):
             checker.check_media_sourceref()
             checker.check_note_links()
             checker.check_backlinks()
+            checker.fix_duplicated_event_role_names()
 
         # rebuilding reference maps needs to be done outside of a transaction
         # to avoid nesting transactions.
@@ -308,6 +311,7 @@ class CheckIntegrity:
         self.duplicated_gramps_ids = 0
         self.bad_backlinks = 0
         self.bad_note_links = 0
+        self.duplicated_event_role_names = 0
         self.text = StringIO()
         self.last_img_dir = config.get("behavior.addmedia-image-dir")
         self.progress = ProgressMeter(
@@ -2540,6 +2544,73 @@ class CheckIntegrity:
                 text.set_tags(new_tags)
                 self.db.commit_note(note, self.trans)
 
+    def fix_duplicated_event_role_names(self):
+        """
+        This searches for duplicated event role names and coalesces any duplicates found
+        """
+        # get the custom event roles in the db
+        custom_roles = set(self.db.get_event_roles())
+        standard_roles = set(EventRoleType().get_standard_names())
+        duplicate_roles = standard_roles.intersection(custom_roles)
+        logging.info("Standard event roles: %s", standard_roles)
+        logging.info("Custom event roles: %s", custom_roles)
+        logging.info("Duplicate event roles: %s", duplicate_roles)
+        self.duplicated_event_role_names = len(duplicate_roles)
+        if self.duplicated_event_role_names:
+            logging.info(
+                "Fixing %d custom event role names which duplicate standard role names.",
+                self.duplicated_event_role_names,
+            )
+
+            # there are some custom roles which duplicate standard roles.
+            # it is not guaranteed that the duplicate custom roles are actually used by any EventRefs
+
+            # loop over all people and coalesce duplicate custom event role names
+            self.progress.set_pass(
+                _("Coalescing duplicate roles in events referenced by people"),
+                self.db.get_number_of_people(),
+            )
+            for person in self.db.iter_people():
+                self.progress.step()
+                updated = False
+                for event_ref in person.get_event_ref_list():
+                    event_role = event_ref.get_role()
+                    # only update custom event roles which have the same name as one of the duplicate event role names
+                    if (event_role.value == EventRoleType.CUSTOM) and (
+                        event_role.string in duplicate_roles
+                    ):
+                        # reassigning the string will cause the standard value to be used
+                        event_role.string = event_role.string
+                        updated = True
+                if updated:
+                    self.db.commit_person(person, self.trans)
+
+            # loop over all families and coalesce duplicate custom event role names
+            self.progress.set_pass(
+                _("Coalescing duplicate roles in events referenced by families"),
+                self.db.get_number_of_families(),
+            )
+            for family in self.db.iter_families():
+                self.progress.step()
+                updated = False
+                for event_ref in family.get_event_ref_list():
+                    event_role = event_ref.get_role()
+                    # only update custom event roles which have the same name as one of the duplicate event role names
+                    if (event_role.value == EventRoleType.CUSTOM) and (
+                        event_role.string in duplicate_roles
+                    ):
+                        # reassigning the string will cause the standard value to be used
+                        event_role.string = event_role.string
+                        updated = True
+                if updated:
+                    self.db.commit_family(family, self.trans)
+
+            # finally delete the duplicate custom values
+            event_role_names = getattr(self.db, "event_role_names", None)
+            for role_name in duplicate_roles:
+                logging.info("Removing custom event role name: %", str(role_name))
+                event_role_names.remove(role_name)
+
     def class_person(self, handle):
         person = Person()
         person.set_handle(handle)
@@ -2676,6 +2747,7 @@ class CheckIntegrity:
             + dup_gramps_ids
             + self.bad_backlinks
             + self.bad_note_links
+            + self.duplicated_event_role_names
         )
 
         if errors == 0:
@@ -3057,6 +3129,12 @@ class CheckIntegrity:
 
         if self.bad_note_links:
             self.text.write(_("%d bad Note Links were fixed;\n") % self.bad_note_links)
+
+        if self.duplicated_event_role_names:
+            self.text.write(
+                _("%d duplicate event role names coalesced\n")
+                % self.duplicated_event_role_names
+            )
 
         return errors
 
