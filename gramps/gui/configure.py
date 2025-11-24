@@ -1921,6 +1921,14 @@ class GrampsPreferences(ConfigureDialog):
         row += 1
         self.add_spinner(
             grid,
+            _("Maximum generations to estimate age"),
+            row,
+            "behavior.max-gen-estimate",
+            (0, 10),
+        )
+        row += 1
+        self.add_spinner(
+            grid,
             _("Maximum sibling age difference"),
             row,
             "behavior.max-sib-age-diff",
