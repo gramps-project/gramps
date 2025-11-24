@@ -93,6 +93,7 @@ from gramps.gen.utils.db import (
 )
 from gramps.gui.ddtargets import DdTargets
 from gramps.gen.utils.symbols import Symbols
+from gramps.gen.nameguesser import get_nameguesser
 
 _NAME_START = 0
 _LABEL_START = 0
@@ -173,6 +174,7 @@ class RelationshipView(NavigationView):
         self.toolbar_visible = config.get("interface.toolbar-on")
         self.age_precision = config.get("preferences.age-display-precision")
         self.reload_symbols()
+        self.nameguesser_class = get_nameguesser(clocale=glocale)
 
     def get_handle_from_gramps_id(self, gid):
         """
@@ -1786,16 +1788,9 @@ class RelationshipView(NavigationView):
         if button_activated(event, _LEFT_BUTTON):
             callback = lambda x: self.callback_add_child(x, handle)
             person = Person()
-            name = Name()
-            # the editor requires a surname
-            name.add_surname(Surname())
-            name.set_primary_surname(0)
             family = self.dbstate.db.get_family_from_handle(handle)
-            father_h = family.get_father_handle()
-            if father_h:
-                father = self.dbstate.db.get_person_from_handle(father_h)
-                if father:
-                    preset_name(father, name)
+
+            name = self.nameguesser_class.childs_name(self.dbstate.db, family)
             person.set_primary_name(name)
             try:
                 EditPerson(self.dbstate, self.uistate, [], person, callback=callback)
