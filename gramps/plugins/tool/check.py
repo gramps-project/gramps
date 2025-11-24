@@ -2552,6 +2552,9 @@ class CheckIntegrity:
         custom_roles = set(self.db.get_event_roles())
         standard_roles = set(EventRoleType().get_standard_names())
         duplicate_roles = standard_roles.intersection(custom_roles)
+        logging.info("Standard event roles: %s", standard_roles)
+        logging.info("Custom event roles: %s", custom_roles)
+        logging.info("Duplicate event roles: %s", duplicate_roles)
         self.duplicated_event_role_names = len(duplicate_roles)
         if self.duplicated_event_role_names:
             logging.info(
@@ -2605,6 +2608,7 @@ class CheckIntegrity:
             # finally delete the duplicate custom values
             event_role_names = getattr(self.db, "event_role_names", None)
             for role_name in duplicate_roles:
+                logging.info("Removing custom event role name: %", str(role_name))
                 event_role_names.remove(role_name)
 
     def class_person(self, handle):
