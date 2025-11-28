@@ -26,13 +26,14 @@
 # Hugo Vidal <69076992+hugoovf@users.noreply.github.com>, 2025.
 # Alejandro Moctezuma <moctezumaalejandro25@gmail.com>, 2025.
 # Andrés Eloy Bracho Sarcos <andresbracho@gmail.com>, 2025.
+# Sofia <sofimanci2112@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-11-13 15:51+0000\n"
-"Last-Translator: Andrés Eloy Bracho Sarcos <andresbracho@gmail.com>\n"
+"PO-Revision-Date: 2025-11-26 04:51+0000\n"
+"Last-Translator: Sofia <sofimanci2112@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -38473,8 +38474,6 @@ msgid " [Click to Go]"
 msgstr " [Haga clic para continuar]"
 
 #: ../gramps/plugins/webreport/basepage.py:2974
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
 msgstr "Santos de los Últimos Días/ Ordenanza SUD"
 
