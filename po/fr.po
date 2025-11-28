@@ -51,7 +51,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-11-06 17:51+0000\n"
+"PO-Revision-Date: 2025-11-28 05:02+0000\n"
 "Last-Translator: jmichault <jmt.2000@free.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
@@ -36771,7 +36771,7 @@ msgstr "_Accepter les modifications et fermer la fenêtre"
 #: ../gramps/plugins/tool/changenames.py:87
 msgctxt "manual"
 msgid "Fix_Capitalization_of_Family_Names"
-msgstr "Réparer la casse des noms de famille"
+msgstr "Réparer_la_casse_des_noms_de_famille"
 
 #: ../gramps/plugins/tool/changenames.py:98
 #: ../gramps/plugins/tool/changenames.py:265
@@ -37663,7 +37663,7 @@ msgstr "Recherche d'une éventuelle boucle pour chaque individu"
 #: ../gramps/plugins/tool/mediamanager.py:71
 msgctxt "manual"
 msgid "Media_Manager"
-msgstr "Gestionnaire de media"
+msgstr "Gestionnaire_de_media"
 
 #: ../gramps/plugins/tool/mediamanager.py:91
 #: ../gramps/plugins/tool/mediamanager.py:121
@@ -37941,7 +37941,7 @@ msgstr "Étique_tte"
 #: ../gramps/plugins/tool/notrelated.py:60
 msgctxt "manual"
 msgid "Not_Related"
-msgstr "Non lié"
+msgstr "Non_lié"
 
 #: ../gramps/plugins/tool/notrelated.py:79
 #, python-format
@@ -38886,7 +38886,7 @@ msgstr "_Masquer les cochés"
 #: ../gramps/plugins/tool/verify.py:92
 msgctxt "manual"
 msgid "Verify_the_Data"
-msgstr "Vérifier les données..."
+msgstr "Vérifier_les_données..."
 
 # trunk
 #: ../gramps/plugins/tool/verify.py:418
