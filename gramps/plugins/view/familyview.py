@@ -517,5 +517,6 @@ class FamilyView(ListView):
                 "Family Notes",
                 "Family Attributes",
                 "Family Backlinks",
+                "Family Calendar",
             ),
         )
