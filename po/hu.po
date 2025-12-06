@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-08-13 19:02+0000\n"
+"PO-Revision-Date: 2025-11-20 19:51+0000\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hu/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8381,10 +8381,8 @@ msgid "Type code"
 msgstr "Típus kód"
 
 #: ../gramps/gen/lib/ldsord.py:96
-#, fuzzy
-#| msgid "Initiatory (LDS)"
 msgid "Initiatory"
-msgstr "Beavatás (mormon egyház)"
+msgstr "Beavatás"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -25232,18 +25230,6 @@ msgid "Example Database"
 msgstr "Példa adatbázis"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:259
-#, fuzzy
-#| msgid ""
-#| "Want to see Gramps in use. Create and Import the Example database.\n"
-#| "\n"
-#| "Create a new Family Tree as described above. Suggest that you name the "
-#| "Family Tree “EXAMPLE”.\n"
-#| "\n"
-#| "Import the Gramps file example.gramps.\n"
-#| "\n"
-#| "Follow the instructions for the location of the file stored with the "
-#| "Gramps program.\n"
-#| "\n"
 msgid ""
 "Want to see Gramps in use? Create and Import the Example database.\n"
 "\n"
@@ -25256,7 +25242,7 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
-"Látni szeretné a GRAMPS-ot használat közben. Példa adatbázis létrehozása és "
+"Látni szeretné a GRAMPS-ot használat közben? Példa adatbázis létrehozása és "
 "importálása.\n"
 "\n"
 "Hozzon létre egy Családfát a fent leírtak szerint. Javasoljuk a Családfát "
@@ -25264,8 +25250,7 @@ msgstr ""
 "\n"
 "Importálja a example.gramps GRAMPS-fájlt.\n"
 "\n"
-"Kövesse a GRAMPS programmal együtt tárolt fájl helyére vonatkozó "
-"utasításokat .\n"
+"Kövesse a GRAMPS programmal tárolt fájl helyére vonatkozó utasításokat .\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:56
@@ -38199,10 +38184,8 @@ msgid " [Click to Go]"
 msgstr " [Kattintson az induláshoz]"
 
 #: ../gramps/plugins/webreport/basepage.py:2974
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
-msgstr "Utolsó Napok Szentjei/Mormon rend"
+msgstr "Utolsó-napok Szentjei/Mormon rend"
 
 #: ../gramps/plugins/webreport/basepage.py:3141
 #: ../gramps/plugins/webreport/basepage.py:3143
