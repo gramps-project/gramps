@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-10-29 10:07+0000\n"
+"PO-Revision-Date: 2025-11-28 05:02+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -8179,10 +8179,8 @@ msgid "Type code"
 msgstr "סוג קןד"
 
 #: ../gramps/gen/lib/ldsord.py:96
-#, fuzzy
-#| msgid "Initiatory (LDS)"
 msgid "Initiatory"
-msgstr "יזום (מורמוני)"
+msgstr "יזום"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -37451,8 +37449,6 @@ msgid " [Click to Go]"
 msgstr " [הקשה לדפדוף]"
 
 #: ../gramps/plugins/webreport/basepage.py:2974
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
 msgstr "תקנות קדושי אחרית הימים/ מורמונים"
 
