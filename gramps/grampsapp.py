@@ -75,6 +75,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 
+_encoding: str
 try:
     # On Darwin sys.getdefaultencoding() is correct, on Win32 it's
     # sys.stdout.encoding, and on Linux they're both right.
