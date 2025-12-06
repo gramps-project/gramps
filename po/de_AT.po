@@ -31,10 +31,10 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-11-11 03:51+0000\n"
+"PO-Revision-Date: 2025-12-01 22:00+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
-"gramps-project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
+"project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17619,7 +17619,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:121
 msgid "L_atitude:"
-msgstr "_Breitengrad:"
+msgstr "Breitengr_ad:"
 
 #: ../gramps/gui/glade/editplace.glade:136
 msgid "_Longitude:"
@@ -17641,9 +17641,9 @@ msgid ""
 msgstr ""
 "Breitengrad (Position über dem Äquator) des Ortes in Dezimal- oder Grad-"
 "Schreibweise.\n"
-"Z.B. gültige Werte sind 12.0154, 50°52'21.92\"N, N50°52'21.92\" oder "
+"Gültige Werte sind z.B. 12.0154, 50°52'21.92\"N, N50°52'21.92\" oder "
 "50:52:21.92\n"
-"Du kannst diesen Wert über die Kartenansicht durch Suchen des Ortes oder "
+"Du kannst diese Werte über die Kartenansicht durch Suchen des Ortes oder "
 "über einen Kartendienst in der Orteansicht setzen."
 
 #: ../gramps/gui/glade/editplace.glade:193
@@ -17658,9 +17658,9 @@ msgid ""
 msgstr ""
 "Längengrad (Position relativ zum Nullmeridian bei Greenwich) des Ortes in "
 "Dezimal- oder Grad-Schreibweise.\n"
-"Z.B. gültige Werte sind -124.3647, 124°52'21.92\"O, O124°52'21.92\" oder "
+"Gültige Werte sind z.B. -124.3647, 124°52'21.92\"O, O124°52'21.92\" oder "
 "124:52:21.92\n"
-"Du kannst diesen Wert über die Kartenansicht durch Suchen des Ortes oder "
+"Du kannst diese Werte über die Kartenansicht durch Suchen des Ortes oder "
 "über einen Kartendienst in der Orteansicht setzen."
 
 #: ../gramps/gui/glade/editplace.glade:214
@@ -17669,8 +17669,8 @@ msgid ""
 "or use copy/paste from your favorite map provider (format : "
 "latitude,longitude) in the following field:"
 msgstr ""
-"oder verwende copy/paste von deinem bevorzugten Kartenanbieter (Format: "
-"Breitengrad, Längengrad) im folgenden Feld:"
+"oder verwende Kopieren/Einfügen von deinem bevorzugten Kartenanbieter "
+"(Format: Breitengrad, Längengrad) im folgenden Feld:"
 
 #: ../gramps/gui/glade/editplace.glade:239
 #: ../gramps/gui/glade/editplaceref.glade:395
@@ -21338,7 +21338,7 @@ msgid ""
 "Select the down arrow on the right corner for adding, removing or restoring "
 "gramplets."
 msgstr ""
-"Wähle den herab zeigenden Pfeil in der rechten Ecke zum Hinzufügen, "
+"Wähle den abwärts zeigenden Pfeil in der rechten Ecke zum Hinzufügen, "
 "Entfernen oder Wiederherstellen von Gramplets."
 
 #: ../gramps/gui/widgets/grampletbar.py:543
@@ -32339,7 +32339,7 @@ msgid ""
 "Latitude and longitude,\n"
 "or street and city needed"
 msgstr ""
-"Breitengrad und Längengrad\n"
+"Breiten- und Längengrad\n"
 "oder Straße und Stadt benötigt"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:34
@@ -36613,7 +36613,7 @@ msgstr "Ereignisse sortieren"
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Verify the Data"
-msgstr "Daten überprüfen"
+msgstr "Die Daten überprüfen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:467
 msgid "Verifies the data against user-defined tests"
@@ -37745,9 +37745,9 @@ msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
 msgstr ""
-"Der kleinste Längengrad/Breitengrad, um große räumliche Bewegungen "
-"auszuwählen.\n"
-"Wert in zehntel Grad Schritten."
+"Der minimale Breiten-/Längengrad für die Auswahl der großräumigen "
+"Wanderung.\n"
+"Der Wert wird in Zehntelgraden angegeben."
 
 #: ../gramps/plugins/view/geoperson.py:668
 msgid "The animation parameters"
@@ -37772,8 +37772,8 @@ msgid ""
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
-"Mit Rechtsklick auf die Karte und Auswahl von \"Alle Orte anzeigen\" werden "
-"alle bekannten Orte mit Koordinaten angezeigt. Du kannst die Farbe der "
+"Klicke rechts auf die Karte und wähle 'Alle Orte anzeigen' aus um alle "
+"bekannten Orte mit Koordinaten anzuzeigen. Du kannst die Farbe der "
 "Markierungen je nach Ortsart ändern. Du kannst Filter verwenden."
 
 #: ../gramps/plugins/view/geoplaces.py:458
@@ -37782,10 +37782,10 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
-"Mit Rechtsklick auf die Karte und Auswahl von \"Alle Orte anzeigen\" werden "
-"alle bekannten Orte mit Koordinaten angezeigt. Du kannst den Verlauf "
-"verwenden, um auf der Karte zu navigieren. Du kannst die Farbe der "
-"Markierungen je nach Ortsart ändern. Du kannst Filter verwenden."
+"Klicke rechts auf die Karte und wähle 'Alle Orte anzeigen' aus um alle "
+"bekannten Orte mit Koordinaten anzuzeigen. Du kannst den Verlauf verwenden, "
+"um auf der Karte zu navigieren. Du kannst die Farbe der Markierungen je nach "
+"Ortsart ändern. Du kannst Filter verwenden."
 
 #: ../gramps/plugins/view/geoplaces.py:475
 msgid "The place name in the status bar is disabled."
