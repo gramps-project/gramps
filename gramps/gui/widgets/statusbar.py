@@ -64,11 +64,9 @@ class Statusbar(Gtk.Box):
         self.__warnbtn = WarnButton()
 
         self.__fs_offline = Gtk.Image.new_from_icon_name(
-            "user-offline", Gtk.IconSize.BUTTON
+            "FS-BLA-16", Gtk.IconSize.BUTTON
         )
-        self.__fs_online = Gtk.Image.new_from_icon_name(
-            "user-available", Gtk.IconSize.BUTTON
-        )
+        self.__fs_online = Gtk.Image.new_from_icon_name("FS-G-16", Gtk.IconSize.BUTTON)
         self.__fs_status = Gtk.Button()
         self.__fs_status.set_relief(Gtk.ReliefStyle.NONE)
         self.__fs_status.set_image(self.__fs_offline)
