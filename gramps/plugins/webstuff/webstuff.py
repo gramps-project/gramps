@@ -23,6 +23,7 @@
 # ------------------------------------------------
 import os
 import re
+import pyparsing
 from gramps.gen.const import USER_DATA_VERSION, IMAGE_DIR, DATA_DIR, USER_CSS
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -284,12 +285,18 @@ def looking_for_urls_in_user_css(css_file):
     images = []
     cssfile = os.path.join(USER_CSS, css_file)
     with open(cssfile) as css:
-        data = css.readlines()
+        cssd = css.read()
+        comments = pyparsing.nestedExpr("/*", "*/").suppress()
+        without_comments = comments.transformString(cssd)
+        data = without_comments.splitlines()
         for line in data:
             if "url" in line:
                 url = re.match(r".*url\((.*)\)", line)
                 if url.group(1)[0:3] != "http":
                     img = url.group(1).replace("../images/", "")
+                    img = img.replace("'", "")
+                    img = img.replace('"', "")
+                    img = img.replace("/css/", "")
                     img = os.path.join(USER_CSS, img)
                     if img not in images:
                         images.append("%s" % img)
