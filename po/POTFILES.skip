@@ -380,6 +380,10 @@ gramps/gui/filters/_filtermenu.py
 #
 gramps/gui/filters/sidebar/__init__.py
 #
+# gui.fs package
+#
+gramps/gui/fs/session.py
+#
 # gui.glade.catalog package
 #
 gramps/gui/glade/catalog/grampswidgets.py
