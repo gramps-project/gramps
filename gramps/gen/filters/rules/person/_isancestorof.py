@@ -33,6 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.graph import find_ancestors
 
 
 # -------------------------------------------------------------------------
@@ -43,6 +44,7 @@ from .. import Rule
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -59,16 +61,19 @@ class IsAncestorOf(Rule):
     description = _("Matches people that are ancestors of a specified person")
 
     def prepare(self, db: Database, user):
-        """Assume that if 'Inclusive' not defined, assume inclusive"""
+        """Use the unified find_ancestors function"""
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: Set[PersonHandle] = set()
         try:
-            first = False if int(self.list[1]) else True
+            inclusive = False if int(self.list[1]) else True
         except IndexError:
-            first = True
+            inclusive = True
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
-            self.init_ancestor_list(db, root_person, first)
+            if root_person:
+                self.selected_handles = find_ancestors(
+                    db, [root_person.handle], inclusive=inclusive
+                )
         except:
             pass
 
@@ -77,26 +82,3 @@ class IsAncestorOf(Rule):
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
-
-    def init_ancestor_list(
-        self, db: Database, person: Person | None, first: bool
-    ) -> None:
-        if not person:
-            return
-        if person.handle in self.selected_handles:
-            return
-        if not first:
-            self.selected_handles.add(person.handle)
-        fam_id = (
-            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
-        )
-        if fam_id:
-            fam = db.get_family_from_handle(fam_id)
-            if fam:
-                f_id = fam.father_handle
-                m_id = fam.mother_handle
-
-                if f_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(f_id), False)
-                if m_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(m_id), False)

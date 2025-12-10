@@ -35,8 +35,10 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from ._isdescendantfamilyof import IsDescendantFamilyOf
 from ._matchesfilter import MatchesFilter
+from ....utils.graph import find_descendants
 from ....types import PersonHandle
 from ....db.generic import Database
+from ....lib import Person
 
 
 # -------------------------------------------------------------------------
@@ -81,3 +83,39 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
     def reset(self):
         self.matchfilt.requestreset()
         self.selected_handles.clear()
+
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles
+
+    def add_matches(self, person: Person):
+        """Add the person and their descendants to the selected handles."""
+        if not person:
+            return
+        try:
+            # Add the person themselves
+            self.selected_handles.add(person.handle)
+
+            # Add all descendants
+            descendants = find_descendants(self.db, [person.handle], inclusive=False)
+            self.selected_handles.update(descendants)
+
+            # Add spouses of descendants
+            self.add_spouses_of_descendants(descendants)
+        except:
+            pass
+
+    def add_spouses_of_descendants(self, descendants: Set[PersonHandle]):
+        """Add spouses of all descendants to the selected handles."""
+        for person_handle in descendants:
+            person = self.db.get_person_from_handle(person_handle)
+            if person:
+                for family_handle in person.family_list:
+                    family = self.db.get_family_from_handle(family_handle)
+                    if family:
+                        # Add spouse
+                        if person.handle == family.father_handle:
+                            spouse_handle = family.mother_handle
+                        else:
+                            spouse_handle = family.father_handle
+                        if spouse_handle:
+                            self.selected_handles.add(spouse_handle)

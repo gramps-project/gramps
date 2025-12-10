@@ -34,6 +34,7 @@ from __future__ import annotations
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.graph import find_descendants
 from ....const import GRAMPS_LOCALE as glocale
 
 # -------------------------------------------------------------------------
@@ -66,28 +67,34 @@ class IsDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.selected_handles: Set[str] = set()
-        first = False if int(self.list[1]) else True
+        try:
+            inclusive = False if int(self.list[1]) else True
+        except IndexError:
+            inclusive = True
         root_family = db.get_family_from_gramps_id(self.list[0])
-        self.init_list(db, root_family, first)
+        if root_family:
+            # Get all family members (parents and children)
+            family_members = []
+            if root_family.father_handle:
+                family_members.append(root_family.father_handle)
+            if root_family.mother_handle:
+                family_members.append(root_family.mother_handle)
+            for child_ref in root_family.child_ref_list:
+                if child_ref.ref:
+                    family_members.append(child_ref.ref)
+
+            # Find descendants of all family members
+            descendants = find_descendants(db, family_members, inclusive=inclusive)
+
+            # Get all families that contain any of these descendants
+            for person_handle in descendants:
+                person = db.get_person_from_handle(person_handle)
+                if person:
+                    for family_handle in person.family_list:
+                        self.selected_handles.add(family_handle)
 
     def reset(self):
         self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
-
-    def init_list(self, db: Database, family: Family | None, first: bool) -> None:
-        """
-        Initialise family handle list.
-        """
-        if not family:
-            return
-        if not first:
-            self.selected_handles.add(family.handle)
-
-        for child_ref in family.child_ref_list:
-            child = db.get_person_from_handle(child_ref.ref)
-            if child:
-                for family_handle in child.family_list:
-                    child_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, child_family, False)

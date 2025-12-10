@@ -32,6 +32,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.graph import find_ancestors
 
 
 # -------------------------------------------------------------------------
@@ -39,7 +40,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, Tuple
+from typing import Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -63,40 +64,18 @@ class IsLessThanNthGenerationAncestorOf(Rule):
     )
 
     def prepare(self, db: Database, user):
+        """Use the unified find_ancestors function"""
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: Set[PersonHandle] = set()
         person = db.get_person_from_gramps_id(self.list[0])
         if person:
-            root_handle = person.handle
-            if root_handle:
-                self.init_ancestor_list(root_handle)
-
-    def init_ancestor_list(self, root_handle: PersonHandle):
-        queue: List[Tuple[PersonHandle, int]] = [
-            (root_handle, 1)
-        ]  # generation 1 is root
-        while queue:
-            handle, gen = queue.pop(0)
-            if handle in self.selected_handles:
-                # if we have been here before, skip
-                continue
-            self.selected_handles.add(handle)
-            gen += 1
-            if gen <= int(self.list[1]):
-                p = self.db.get_person_from_handle(handle)
-                fam_id = (
-                    p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
-                )
-                if fam_id:
-                    fam = self.db.get_family_from_handle(fam_id)
-                    if fam:
-                        f_id = fam.father_handle
-                        m_id = fam.mother_handle
-                        # append to back of queue:
-                        if f_id:
-                            queue.append((f_id, gen))
-                        if m_id:
-                            queue.append((m_id, gen))
+            # Original uses base-1: gen 1=root, 2=parents, 3=grandparents
+            # Our function uses base-0: gen 0=root, 1=parents, 2=grandparents
+            # So we need to subtract 1 to convert
+            max_generation = int(self.list[1]) - 1
+            self.selected_handles = find_ancestors(
+                db, [person.handle], max_generation=max_generation, inclusive=False
+            )
 
     def reset(self):
         self.selected_handles.clear()
