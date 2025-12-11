@@ -2025,24 +2025,58 @@ class DbWriteBase(DbReadBase):
     def set_birth_death_index(self, person):
         """
         Set the birth and death indices for a person.
+
+        This method iterates through the person's event references and
+        identifies which events are birth and death events based on their
+        type and the role of the person in the event.
+
+        Note: On some storage backends (e.g., NAS with host-mounted volumes),
+        reading events during a write transaction may fail. In such cases,
+        we preserve the existing indices if they appear valid.
         """
         birth_ref_index = -1
         death_ref_index = -1
         event_ref_list = person.get_event_ref_list()
+
+        # Store original indices to use as fallback
+        original_birth_index = person.birth_ref_index
+        original_death_index = person.death_ref_index
+
         for index, ref in enumerate(event_ref_list):
-            event = self.get_event_from_handle(ref.ref)
-            if (
-                event.type.is_birth()
-                and ref.role.is_primary()
-                and (birth_ref_index == -1)
-            ):
-                birth_ref_index = index
-            elif (
-                event.type.is_death()
-                and ref.role.is_primary()
-                and (death_ref_index == -1)
-            ):
-                death_ref_index = index
+            try:
+                event = self.get_event_from_handle(ref.ref)
+                # If event cannot be loaded (can happen with file system issues),
+                # preserve existing indices if they point to this index
+                if event is None:
+                    if original_birth_index == index:
+                        birth_ref_index = index
+                    if original_death_index == index:
+                        death_ref_index = index
+                    continue
+
+                # Check if this is a birth event with primary role
+                if (
+                    event.type.is_birth()
+                    and ref.role.is_primary()
+                    and (birth_ref_index == -1)
+                ):
+                    birth_ref_index = index
+                # Check if this is a death event with primary role
+                elif (
+                    event.type.is_death()
+                    and ref.role.is_primary()
+                    and (death_ref_index == -1)
+                ):
+                    death_ref_index = index
+            except Exception:
+                # If any error occurs reading the event, preserve existing
+                # indices if they point to this index. This can happen on
+                # storage backends with file locking or transaction issues.
+                if original_birth_index == index:
+                    birth_ref_index = index
+                if original_death_index == index:
+                    death_ref_index = index
+                continue
 
         person.birth_ref_index = birth_ref_index
         person.death_ref_index = death_ref_index
