@@ -37,26 +37,36 @@ from gramps.gen.lib import (
 
 def _function_to_expr_string(func):
     """
-    Extract return expression from function or lambda as string (Python 3.9+).
+    Extract return expression from function as string (Python 3.9+).
 
-    Supports both regular functions and lambda expressions.
+    Supports regular function definitions with a single return statement.
 
     Limitations:
-    - Only works for functions/lambdas defined in source files (not dynamically created)
+    - Only works for functions defined in source files (not dynamically created)
     - Function must have a single return statement with an expression
     - Functions created with exec()/eval() or in REPL may not work
     - Only the first return statement is used if multiple exist
+    - Lambda expressions are not supported; use regular functions instead
 
     Raises:
         OSError: If function source cannot be retrieved (e.g., dynamically created)
-        ValueError: If function doesn't have a return statement or returns None
+        ValueError: If function doesn't have a return statement or returns None,
+                    or if a lambda expression is provided
     """
+    # Check if this is a lambda (lambdas have __name__ == '<lambda>')
+    if getattr(func, "__name__", None) == "<lambda>":
+        raise ValueError(
+            "Lambda expressions are not supported. "
+            "Please use a regular function instead. "
+            "Example: def where_func(person): return person.handle == 'value'"
+        )
+
     try:
         source = inspect.getsource(func)
     except OSError as e:
         raise OSError(
-            f"Cannot get source for {getattr(func, '__name__', 'lambda')}. "
-            "Functions/lambdas must be defined in source files, not dynamically created "
+            f"Cannot get source for {getattr(func, '__name__', 'function')}. "
+            "Functions must be defined in source files, not dynamically created "
             "with exec()/eval() or in REPL."
         ) from e
 
@@ -70,15 +80,7 @@ def _function_to_expr_string(func):
 
     node = tree.body[0]
 
-    # Handle lambda expressions (e.g., "l = lambda x: x + 1")
-    if isinstance(node, ast.Assign):
-        # Lambda assigned to variable
-        if len(node.targets) == 1 and isinstance(node.value, ast.Lambda):
-            return ast.unparse(node.value.body)
-    elif isinstance(node, ast.Expr) and isinstance(node.value, ast.Lambda):
-        # Standalone lambda expression
-        return ast.unparse(node.value.body)
-    elif isinstance(node, ast.FunctionDef):
+    if isinstance(node, ast.FunctionDef):
         # Regular function definition
         func_node = node
         # Find the first return statement
@@ -96,7 +98,8 @@ def _function_to_expr_string(func):
         )
 
     raise ValueError(
-        f"Expected function or lambda definition, got: {type(node).__name__}"
+        f"Expected function definition, got: {type(node).__name__}. "
+        "Lambda expressions are not supported; use regular functions instead."
     )
 
 
@@ -105,7 +108,8 @@ def _expr_to_string(expr):
     Convert expression to string if it's a callable, otherwise return as-is.
 
     Args:
-        expr: String expression or callable (function/lambda) that returns an expression.
+        expr: String expression or callable (function) that returns an expression.
+              Lambda expressions are not supported; use regular functions instead.
 
     Returns:
         String expression ready for eval() or SQL conversion.
@@ -135,6 +139,12 @@ def select_from_table(db, table_name, what, where, order_by, env):
         yield from _select_from_table(db, table_name, what=what, where=where, env=env)
         return
     else:
+        # Handle single function or string as order_by (convert to list)
+        if callable(order_by) and not isinstance(order_by, type):
+            order_by = [order_by]
+        elif isinstance(order_by, str):
+            order_by = [order_by]
+
         data = []
 
         for row in _select_from_table(db, table_name, what=what, where=where, env=env):

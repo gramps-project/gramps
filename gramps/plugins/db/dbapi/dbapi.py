@@ -1281,6 +1281,11 @@ class DBAPI(DbGeneric):
         if order_by is None:
             order_by_expr = ""
         else:
+            # Handle single lambda/function or string as order_by (convert to list)
+            if callable(order_by) and not isinstance(order_by, type):
+                order_by = [order_by]
+            elif isinstance(order_by, str):
+                order_by = [order_by]
             order_by_expr = evaluator.get_order_by(order_by)
 
         query = f"SELECT {what_expr} from {table_name}{where_expr}{order_by_expr};"

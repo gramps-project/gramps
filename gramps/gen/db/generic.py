@@ -2837,8 +2837,40 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         This method should be overridden in suclasses for speed, but
         used as a fallback when on a proxy database.
 
+        Note: The preferred way to use this method is with functions
+        rather than string expressions. Functions are type-safe and
+        provide better IDE support. String expressions are also supported for
+        dynamic use cases, such as when expressions come from web queries or
+        other dynamic sources.
+
         Examples:
 
+        # Preferred: using functions
+        def where_func(person):
+            return person.handle == 'A6E74B3D65D23F'
+        db.select_from_person(where=where_func)
+
+        def what_func(person):
+            return person.handle
+        def where_func(person):
+            return person.handle == 'A6E74B3D65D23F'
+        db.select_from_person(what=what_func, where=where_func)
+
+        def what_func(person):
+            return [person.handle, person.gramps_id]
+        def where_func(person):
+            return person.handle == 'A6E74B3D65D23F'
+        def order_func1(person):
+            return -person.gramps_id
+        def order_func2(person):
+            return person.gender
+        db.select_from_person(
+            what=what_func,
+            where=where_func,
+            order_by=[order_func1, order_func2]
+        )
+
+        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_person(where="person.handle == 'A6E74B3D65D23F'")
         db.select_from_person("person.handle", where="person.handle == 'A6E74B3D65D23F'")
         db.select_from_person("_.handle", where="_.handle == 'A6E74B3D65D23F'")
@@ -2856,8 +2888,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Select items from citation where python-string is True,
         optionally with a list of python-string items to order on.
 
-        Example:
+        Note: The preferred way to use this method is with lambda expressions
+        rather than string expressions. Lambda expressions are type-safe and
+        provide better IDE support. String expressions are also supported for
+        dynamic use cases, such as when expressions come from web queries or
+        other dynamic sources.
 
+        Examples:
+
+        # Preferred: using lambda expressions
+        db.select_from_citation(where=lambda citation: citation.handle == 'A6E74B3D65D23F')
+
+        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_citation(where="citation.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
@@ -2869,8 +2911,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Select items from event where python-string is True,
         optionally with a list of python-string items to order on.
 
-        Example:
+        Note: The preferred way to use this method is with lambda expressions
+        rather than string expressions. Lambda expressions are type-safe and
+        provide better IDE support. String expressions are also supported for
+        dynamic use cases, such as when expressions come from web queries or
+        other dynamic sources.
 
+        Examples:
+
+        # Preferred: using lambda expressions
+        db.select_from_event(where=lambda event: event.handle == 'A6E74B3D65D23F')
+
+        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_event(where="event.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
@@ -2882,8 +2934,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Select items from family where python-string is True,
         optionally with a list of python-string items to order on.
 
-        Example:
+        Note: The preferred way to use this method is with lambda expressions
+        rather than string expressions. Lambda expressions are type-safe and
+        provide better IDE support. String expressions are also supported for
+        dynamic use cases, such as when expressions come from web queries or
+        other dynamic sources.
 
+        Examples:
+
+        # Preferred: using lambda expressions
+        db.select_from_family(where=lambda family: family.handle == 'A6E74B3D65D23F')
+
+        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_family(where="family.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
@@ -2895,8 +2957,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Select items from media where python-string is True,
         optionally with a list of python-string items to order on.
 
-        Example:
+        Note: The preferred way to use this method is with lambda expressions
+        rather than string expressions. Lambda expressions are type-safe and
+        provide better IDE support. String expressions are also supported for
+        dynamic use cases, such as when expressions come from web queries or
+        other dynamic sources.
 
+        Examples:
+
+        # Preferred: using lambda expressions
+        db.select_from_media(where=lambda media: media.handle == 'A6E74B3D65D23F')
+
+        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_media(where="media.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
@@ -2908,8 +2980,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Select items from note where python-string is True,
         optionally with a list of python-string items to order on.
 
-        Example:
+        Note: The preferred way to use this method is with lambda expressions
+        rather than string expressions. Lambda expressions are type-safe and
+        provide better IDE support. String expressions are also supported for
+        dynamic use cases, such as when expressions come from web queries or
+        other dynamic sources.
 
+        Examples:
+
+        # Preferred: using lambda expressions
+        db.select_from_note(where=lambda note: note.handle == 'A6E74B3D65D23F')
+
+        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_note(where="note.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
@@ -2921,8 +3003,38 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Select items from person where python-string is True,
         optionally with a list of python-string items to order on.
 
+        Note: The preferred way to use this method is with functions
+        rather than string expressions. Functions are type-safe and
+        provide better IDE support. String expressions are also supported for
+        dynamic use cases, such as when expressions come from web queries or
+        other dynamic sources.
+
         Examples:
 
+        # Preferred: using functions
+        def where_func(person):
+            return person.handle == 'A6E74B3D65D23F'
+        db.select_from_person(where=where_func)
+
+        def what_func(person):
+            return person.handle
+        def where_func(person):
+            return person.handle == 'A6E74B3D65D23F'
+        db.select_from_person(what=what_func, where=where_func)
+
+        def what_func(person):
+            return [person.handle, person.gramps_id]
+        def where_func(person):
+            return person.handle == 'A6E74B3D65D23F'
+        def order_func(person):
+            return -person.gramps_id
+        db.select_from_person(
+            what=what_func,
+            where=where_func,
+            order_by=[order_func]
+        )
+
+        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_person(where="person.handle == 'A6E74B3D65D23F'")
         db.select_from_person("person.handle", where="person.handle == 'A6E74B3D65D23F'")
         db.select_from_person(
@@ -2941,8 +3053,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Select items from place where python-string is True,
         optionally with a list of python-string items to order on.
 
+        Note: The preferred way to use this method is with lambda expressions
+        rather than string expressions. Lambda expressions are type-safe and
+        provide better IDE support. String expressions are also supported for
+        dynamic use cases, such as when expressions come from web queries or
+        other dynamic sources.
+
         Examples:
 
+        # Preferred: using lambda expressions
+        db.select_from_place(where=lambda place: place.handle == 'A6E74B3D65D23F')
+
+        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_place(where="place.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
@@ -2954,8 +3076,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Select items from repository where python-string is True,
         optionally with a list of python-string items to order on.
 
+        Note: The preferred way to use this method is with lambda expressions
+        rather than string expressions. Lambda expressions are type-safe and
+        provide better IDE support. String expressions are also supported for
+        dynamic use cases, such as when expressions come from web queries or
+        other dynamic sources.
+
         Examples:
 
+        # Preferred: using lambda expressions
+        db.select_from_repository(where=lambda repository: repository.handle == 'A6E74B3D65D23F')
+
+        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_repository(where="repository.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
@@ -2967,8 +3099,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Select items from source where python-string is True,
         optionally with a list of python-string items to order on.
 
-        Example:
+        Note: The preferred way to use this method is with lambda expressions
+        rather than string expressions. Lambda expressions are type-safe and
+        provide better IDE support. String expressions are also supported for
+        dynamic use cases, such as when expressions come from web queries or
+        other dynamic sources.
 
+        Examples:
+
+        # Preferred: using lambda expressions
+        db.select_from_source(where=lambda source: source.handle == 'A6E74B3D65D23F')
+
+        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_source(where="source.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
@@ -2980,8 +3122,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Select items from tag where python-string is True,
         optionally with a list of python-string items to order on.
 
-        Example:
+        Note: The preferred way to use this method is with lambda expressions
+        rather than string expressions. Lambda expressions are type-safe and
+        provide better IDE support. String expressions are also supported for
+        dynamic use cases, such as when expressions come from web queries or
+        other dynamic sources.
 
+        Examples:
+
+        # Preferred: using lambda expressions
+        db.select_from_tag(where=lambda tag: tag.handle == 'A6E74B3D65D23F')
+
+        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_tag(where="tag.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
