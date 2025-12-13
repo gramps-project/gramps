@@ -63,6 +63,8 @@ from gramps.gen.lib import (
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
+from .select import Evaluator
+
 LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
 
@@ -1207,3 +1209,92 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
+
+    def _sql_value_or_object(self, value):
+        """
+        Return a value (int, string, etc) or a Gramps object.
+        """
+        if isinstance(value, str):
+            if value.startswith("{") or value.startswith("["):
+                try:
+                    return self.serializer.string_to_data(value)
+                except Exception:
+                    # Must be an value
+                    pass
+        return value
+
+    def _select_from_table(
+        self,
+        table_name,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        allow_use_on_proxy=False,
+    ):
+        # DB-API implementation
+        # NOTE: evaluator takes patterns in case your DB-API
+        #       varies in syntax for JSON access
+
+        if self.is_proxy():
+            if allow_use_on_proxy:
+                yield from super().select_from_table(
+                    table_name,
+                    what=what,
+                    where=where,
+                    order_by=order_by,
+                    env=env,
+                )
+                return
+            else:
+                raise Exception(
+                    "to use db.select methods on a proxy, "
+                    + "pass `allow_to_use_proxy=True`, or use on db.basedb"
+                )
+
+        evaluator = Evaluator(
+            table_name,
+            "json_extract(json_data, '$.{attr}')",
+            "json_array_length(json_extract(json_data, '$.{attr}'))",
+            env if env is not None else globals(),
+        )
+
+        if what is None:
+            what_expr = "json_data"
+        elif isinstance(what, str):
+            if what in ["_", "person"]:
+                what = "json_data"
+            what_expr = str(evaluator.convert(what))
+        else:
+            what_list = []
+            for w in what:
+                if w in ["_", "person"]:
+                    w = "json_data"
+                what_list.append(str(evaluator.convert(w)))
+            what_expr = ", ".join(what_list)
+
+        if where is None:
+            where_expr = ""
+        else:
+            where_expr = " WHERE %s" % evaluator.convert(where)
+
+        if order_by is None:
+            order_by_expr = ""
+        else:
+            order_by_expr = evaluator.get_order_by(order_by)
+
+        query = f"SELECT {what_expr} from {table_name}{where_expr}{order_by_expr};"
+        try:
+            self.dbapi.execute(query)
+        except Exception as exc:
+            raise Exception(query) from None
+
+        row = self.dbapi.fetchone()
+        while row:
+            if what_expr == "json_data":
+                yield self._sql_value_or_object(row[0])
+            elif isinstance(what, str):
+                yield self._sql_value_or_object(row[0])
+            else:
+                yield [self._sql_value_or_object(value) for value in row]
+            row = self.dbapi.fetchone()
