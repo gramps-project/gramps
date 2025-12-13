@@ -19,7 +19,8 @@
 #
 
 import ast
-import inspect
+
+from gramps.gen.db.select import _function_to_expr_string
 
 
 class AttributeNode:
@@ -253,86 +254,22 @@ class Evaluator:
 
         raise TypeError(node)
 
-    def _function_to_expr_string(self, func):
-        """
-        Extract return expression from function or lambda as string (Python 3.9+).
-        
-        Supports both regular functions and lambda expressions.
-        
-        Limitations:
-        - Only works for functions/lambdas defined in source files (not dynamically created)
-        - Function must have a single return statement with an expression
-        - Functions created with exec()/eval() or in REPL may not work
-        - Only the first return statement is used if multiple exist
-        
-        Raises:
-            OSError: If function source cannot be retrieved (e.g., dynamically created)
-            ValueError: If function doesn't have a return statement or returns None
-        """
-        try:
-            source = inspect.getsource(func)
-        except OSError as e:
-            raise OSError(
-                f"Cannot get source for {getattr(func, '__name__', 'lambda')}. "
-                "Functions/lambdas must be defined in source files, not dynamically created "
-                "with exec()/eval() or in REPL."
-            ) from e
-
-        try:
-            tree = ast.parse(source)
-        except SyntaxError as e:
-            raise ValueError(f"Failed to parse source: {e}") from e
-
-        if not tree.body:
-            raise ValueError(f"Empty source for {func}")
-
-        node = tree.body[0]
-
-        # Handle lambda expressions (e.g., "l = lambda x: x + 1")
-        if isinstance(node, ast.Assign):
-            # Lambda assigned to variable
-            if len(node.targets) == 1 and isinstance(node.value, ast.Lambda):
-                return ast.unparse(node.value.body)
-        elif isinstance(node, ast.Expr) and isinstance(node.value, ast.Lambda):
-            # Standalone lambda expression
-            return ast.unparse(node.value.body)
-        elif isinstance(node, ast.FunctionDef):
-            # Regular function definition
-            func_node = node
-            # Find the first return statement
-            for stmt in func_node.body:
-                if isinstance(stmt, ast.Return):
-                    if stmt.value is None:
-                        raise ValueError(
-                            "Function must return an expression, not just 'return'"
-                        )
-                    # Python 3.9+ has built-in unparse
-                    return ast.unparse(stmt.value)
-
-            raise ValueError(
-                f"Function {func_node.name} must have a return statement with an expression"
-            )
-
-        raise ValueError(
-            f"Expected function or lambda definition, got: {type(node).__name__}"
-        )
-
     def convert(self, python_expr):
         """
         Convert Python expression (string or function) to SQL expression.
-        
+
         Args:
             python_expr: String expression or function that returns an expression.
                         Functions must be defined in source files and have a
                         single return statement with an expression.
-        
+
         Returns:
             SQL expression string
         """
         # If it's a callable, extract the expression string
         if callable(python_expr) and not isinstance(python_expr, type):
             try:
-                python_expr = self._function_to_expr_string(python_expr)
+                python_expr = _function_to_expr_string(python_expr)
             except (OSError, ValueError) as e:
                 raise ValueError(
                     f"Cannot convert function {getattr(python_expr, '__name__', 'unknown')} "
