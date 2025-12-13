@@ -22,6 +22,7 @@
 import unittest
 from unittest.mock import Mock, patch
 import os
+import shutil
 
 from gramps.gen.lib import (
     Person,
@@ -57,6 +58,13 @@ class MockEditReference(EditReference):
 
 
 class TestEditReference(unittest.TestCase):
+    @classmethod
+    def tearDownClass(cls):
+        # Remove the test db directory
+        path = "/tmp/edit_ref_test"
+        if os.path.exists(path):
+            shutil.rmtree(path, ignore_errors=True)
+
     def test_editreference(self):
         dbstate = DbState()
         db = make_database("sqlite")
@@ -77,6 +85,7 @@ class TestEditReference(unittest.TestCase):
         with patch("gramps.gui.editors.editreference.ErrorDialog") as MockED:
             editor.check_for_duplicate_id("Place")
             self.assertTrue(MockED.called)
+        db.close()
 
 
 if __name__ == "__main__":
