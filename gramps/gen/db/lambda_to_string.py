@@ -75,7 +75,6 @@ def ast_to_string(node):
     elif isinstance(node, ast.Expression):
         return ast_to_string(node.body)
 
-
     elif isinstance(node, ast.Constant):
         return repr(node.value)
 
@@ -154,7 +153,6 @@ def ast_to_string(node):
         if len(node.elts) == 1:
             return f"({elts_str},)"
         return f"({elts_str})"
-
 
     else:
         # For unhandled node types, try to get a basic representation
