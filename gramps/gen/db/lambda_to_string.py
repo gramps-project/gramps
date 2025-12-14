@@ -21,7 +21,19 @@
 import ast
 import dis
 import marshal
+import sys
 import types
+
+# Python version detection for bytecode differences
+# TODO: Remove version-specific code as minimum Python version increases
+# - Python 3.10: Uses JUMP_IF_FALSE_OR_POP, JUMP_IF_TRUE_OR_POP, specific binary ops
+# - Python 3.11: Uses POP_JUMP_FORWARD_IF_FALSE, BINARY_OP, CALL
+# - Python 3.12+: Uses COPY + POP_JUMP_IF_FALSE + POP_TOP pattern
+# - Python 3.13+: Adds TO_BOOL instruction
+PYTHON_VERSION = sys.version_info[:2]  # (major, minor)
+PYTHON_310 = PYTHON_VERSION == (3, 10)
+PYTHON_311 = PYTHON_VERSION == (3, 11)
+PYTHON_312_PLUS = PYTHON_VERSION >= (3, 12)
 
 
 def ast_to_string(node):
@@ -356,6 +368,323 @@ def _decompile_lambda(lambda_func):
         return f"lambda: {body_str}"
 
 
+def _resolve_jump_target(instr_or_target, instructions, offset_map):
+    """
+    Resolve a jump target to an instruction index.
+
+    Args:
+        instr_or_target: Either a jump instruction object, or a jump target offset (int)
+        instructions: List of all instructions
+        offset_map: Map from instruction offsets to indices
+
+    Returns:
+        The index of the target instruction, or len(instructions) if not found
+    """
+    # Get jump target - handle both instruction objects and direct offsets
+    if isinstance(instr_or_target, int):
+        jump_target = instr_or_target
+    elif hasattr(instr_or_target, "argval") and instr_or_target.argval is not None:
+        jump_target = instr_or_target.argval
+    else:
+        # For relative jumps, calculate absolute offset
+        jump_target = instr_or_target.offset + instr_or_target.arg
+
+    # Look up the target in the offset map
+    target_idx = offset_map.get(jump_target)
+    if target_idx is not None:
+        return target_idx
+
+    # If not found in offset_map, search for the instruction with that offset
+    for j, check_instr in enumerate(instructions):
+        if check_instr.offset == jump_target:
+            return j
+
+    # Still not found - try to find the closest instruction with offset >= jump_target
+    for j, check_instr in enumerate(instructions):
+        if check_instr.offset >= jump_target:
+            return j
+
+    # Last resort: use end of instructions
+    return len(instructions)
+
+
+def _check_python_312_copy_pattern(instructions, i):
+    """
+    Check if the instruction at index i is part of a Python 3.12+ COPY pattern.
+
+    Pattern: COPY, [TO_BOOL], POP_JUMP_IF_FALSE/POP_JUMP_IF_TRUE, POP_TOP
+
+    Args:
+        instructions: List of all instructions
+        i: Index of the POP_JUMP instruction
+
+    Returns:
+        True if this is a Python 3.12+ COPY pattern, False otherwise
+    """
+    if not PYTHON_312_PLUS:
+        return False
+
+    # Check if previous instruction was COPY or TO_BOOL
+    if i > 0 and instructions[i - 1].opname in ("COPY", "TO_BOOL"):
+        # Look further back for COPY
+        check_idx = i - 1
+        if instructions[check_idx].opname == "TO_BOOL" and check_idx > 0:
+            check_idx = check_idx - 1
+        if check_idx >= 0 and instructions[check_idx].opname == "COPY":
+            return True
+
+    return False
+
+
+def _find_and_end_idx(instructions, start_idx, end_idx):
+    """
+    Find where an 'and' operation ends when there's an 'or' operation after it.
+
+    Args:
+        instructions: List of all instructions
+        start_idx: Start index to search from
+        end_idx: End index to search up to
+
+    Returns:
+        The index where the 'and' ends (where 'or' starts), or end_idx if no 'or' found
+    """
+    # In Python 3.12+, 'or' starts with COPY followed by [TO_BOOL] and POP_JUMP_IF_TRUE
+    # In Python 3.10/3.11, 'or' uses JUMP_IF_TRUE_OR_POP or POP_JUMP_IF_TRUE
+    for j in range(start_idx, min(end_idx, len(instructions))):
+        opname = instructions[j].opname
+        if opname in ("JUMP_IF_TRUE_OR_POP", "POP_JUMP_IF_TRUE"):
+            return j  # The 'and' ends here
+        # In Python 3.12+, look for COPY followed by [TO_BOOL] and POP_JUMP_IF_TRUE
+        if PYTHON_312_PLUS and opname == "COPY":
+            check_idx = j + 1
+            # Skip TO_BOOL if present (Python 3.13+)
+            if (
+                check_idx < len(instructions)
+                and instructions[check_idx].opname == "TO_BOOL"
+            ):
+                check_idx += 1
+            # Check if next instruction is POP_JUMP_IF_TRUE
+            if (
+                check_idx < len(instructions)
+                and instructions[check_idx].opname == "POP_JUMP_IF_TRUE"
+            ):
+                return j  # The 'and' ends at the COPY (start of 'or')
+    return end_idx
+
+
+def _handle_binary_operation(stack, opname, op_symbol):
+    """
+    Handle a binary operation by popping two operands and pushing the result.
+
+    Args:
+        stack: The evaluation stack
+        opname: Name of the operation (for error messages)
+        op_symbol: Symbol to use in the expression (e.g., "+", "-")
+    """
+    right = stack.pop()
+    left = stack.pop()
+    stack.append(f"({left} {op_symbol} {right})")
+
+
+def _find_return_value(instructions, start_idx):
+    """
+    Find the RETURN_VALUE instruction after start_idx.
+
+    Args:
+        instructions: List of all instructions
+        start_idx: Start index to search from
+
+    Returns:
+        The index of RETURN_VALUE, or len(instructions) if not found
+    """
+    for j in range(start_idx, len(instructions)):
+        if instructions[j].opname == "RETURN_VALUE":
+            return j
+    return len(instructions)
+
+
+def _handle_pop_jump_if_false_python_312_plus(instructions, i, stack, offset_map, code):
+    """
+    Handle POP_JUMP_IF_FALSE for Python 3.12+ with COPY pattern.
+
+    Pattern: COPY, [TO_BOOL], POP_JUMP_IF_FALSE, POP_TOP, <right side>, RETURN_VALUE
+
+    Returns:
+        (new_i, should_continue) - new instruction index and whether to continue loop
+    """
+    instr = instructions[i]
+    next_idx = i + 1
+
+    # Pop left operand (COPY duplicated it, so we have [x, x])
+    if len(stack) >= 2:
+        left = stack.pop()  # Pop the duplicate for left side
+    else:
+        left = stack.pop()
+
+    # Resolve jump target
+    target_idx = _resolve_jump_target(instr, instructions, offset_map)
+
+    # Skip TO_BOOL and POP_TOP if present
+    if next_idx < len(instructions) and instructions[next_idx].opname == "TO_BOOL":
+        next_idx += 1
+    if next_idx < len(instructions) and instructions[next_idx].opname == "POP_TOP":
+        next_idx += 1
+
+    # Check if target_idx itself is a COPY that starts an 'or' operation (Python 3.12+)
+    # In 'x and y or z', the 'and' jumps to the COPY that starts the 'or'
+    # In 'A and (B or C)', the 'and' jumps to RETURN_VALUE, and 'or' is nested before that
+    is_or_at_target = False
+    or_jump_target = None
+    and_end_idx = None
+    if target_idx < len(instructions) and instructions[target_idx].opname == "COPY":
+        # Check if this COPY starts an 'or' operation
+        check_idx = target_idx + 1
+        if (
+            check_idx < len(instructions)
+            and instructions[check_idx].opname == "TO_BOOL"
+        ):
+            check_idx += 1
+        if (
+            check_idx < len(instructions)
+            and instructions[check_idx].opname == "POP_JUMP_IF_TRUE"
+        ):
+            is_or_at_target = True
+            and_end_idx = target_idx
+            # Get the 'or' operation's jump target
+            or_instr = instructions[check_idx]
+            or_jump_target = _resolve_jump_target(or_instr, instructions, offset_map)
+
+    if not is_or_at_target:
+        # Check if there's an 'or' operation after the 'and' (not at target)
+        and_end_idx = _find_and_end_idx(instructions, next_idx, target_idx + 1)
+        if and_end_idx < target_idx and and_end_idx + 1 < len(instructions):
+            # Get the 'or' operation's jump target
+            or_instr = instructions[and_end_idx]
+            if or_instr.opname == "COPY" and and_end_idx + 1 < len(instructions):
+                # Skip TO_BOOL if present
+                check_or_idx = and_end_idx + 1
+                if (
+                    check_or_idx < len(instructions)
+                    and instructions[check_or_idx].opname == "TO_BOOL"
+                ):
+                    check_or_idx += 1
+                if check_or_idx < len(instructions):
+                    or_instr = instructions[check_or_idx]
+            if or_instr.opname in ("POP_JUMP_IF_TRUE", "JUMP_IF_TRUE_OR_POP"):
+                or_jump_target = _resolve_jump_target(
+                    or_instr, instructions, offset_map
+                )
+
+    # Determine if 'or' is nested or sequential:
+    # - In 'A and (B or C)': 'and' jumps to RETURN_VALUE, 'or' jumps to RETURN_VALUE -> nested
+    # - In 'A and B or C': 'and' jumps to COPY (start of 'or'), 'or' jumps to RETURN_VALUE -> sequential
+    return_value_idx = _find_return_value(instructions, target_idx)
+
+    # Check if 'or' is nested: both 'and' and 'or' must jump to the same RETURN_VALUE
+    is_nested = False
+    if or_jump_target is not None:
+        # If both jump to RETURN_VALUE, it's nested; otherwise sequential
+        is_nested = (
+            target_idx == return_value_idx and or_jump_target == return_value_idx
+        )
+
+    if is_nested:
+        # 'or' is nested - process it as part of 'and' right side
+        actual_end = _find_return_value(instructions, next_idx)
+        if actual_end <= next_idx:
+            actual_end = _find_return_value(instructions, next_idx + 1)
+            if actual_end <= next_idx:
+                actual_end = min(next_idx + 1, len(instructions))
+        if next_idx < actual_end:
+            right, _ = _process_instructions(
+                instructions, next_idx, actual_end, offset_map, code
+            )
+            stack.append(f"({left} and {right})")
+            return (actual_end - 1, True)
+    elif is_or_at_target or (and_end_idx is not None and and_end_idx < target_idx):
+        # There's an 'or' operation after the 'and' (not nested)
+        right, _ = _process_instructions(
+            instructions, next_idx, and_end_idx, offset_map, code
+        )
+        stack.append(f"({left} and {right})")
+        return (and_end_idx - 1, True)  # Will process 'or' next
+
+    # No 'or' operation - process up to RETURN_VALUE
+    actual_end = _find_return_value(instructions, next_idx)
+
+    # Ensure we process at least one instruction
+    if actual_end <= next_idx:
+        # Search from next_idx + 1
+        actual_end = _find_return_value(instructions, next_idx + 1)
+        if actual_end <= next_idx:
+            actual_end = min(next_idx + 1, len(instructions))
+
+    # Process the right side
+    if next_idx < actual_end:
+        right, _ = _process_instructions(
+            instructions, next_idx, actual_end, offset_map, code
+        )
+        stack.append(f"({left} and {right})")
+        return (actual_end - 1, True)
+    else:
+        # Edge case: process one instruction manually
+        if next_idx < len(instructions):
+            right, _ = _process_instructions(
+                instructions, next_idx, next_idx + 1, offset_map, code
+            )
+            stack.append(f"({left} and {right})")
+            return (next_idx, True)
+        else:
+            stack.append(left)
+            return (target_idx - 1, True)
+
+
+def _handle_pop_jump_if_false_python_310_311(instructions, i, stack, offset_map, code):
+    """
+    Handle POP_JUMP_IF_FALSE for Python 3.10/3.11.
+
+    Returns:
+        (new_i, should_continue) - new instruction index and whether to continue loop
+    """
+    instr = instructions[i]
+    next_idx = i + 1
+
+    # Pop left operand
+    left = stack.pop()
+
+    # Resolve jump target
+    target_idx = _resolve_jump_target(instr, instructions, offset_map)
+
+    # Check if there's an 'or' operation after the 'and'
+    and_end_idx = _find_and_end_idx(instructions, next_idx, target_idx)
+
+    if and_end_idx < target_idx:
+        # There's an 'or' operation after the 'and'
+        right, _ = _process_instructions(
+            instructions, next_idx, and_end_idx, offset_map, code
+        )
+        stack.append(f"({left} and {right})")
+        return (and_end_idx - 1, True)  # Will process 'or' next
+    elif next_idx < target_idx:
+        # Normal case: process up to target_idx
+        right, _ = _process_instructions(
+            instructions, next_idx, target_idx, offset_map, code
+        )
+        stack.append(f"({left} and {right})")
+        return (target_idx - 1, True)
+    else:
+        # Edge case: next_idx >= target_idx
+        if next_idx < len(instructions):
+            right, _ = _process_instructions(
+                instructions, next_idx, len(instructions), offset_map, code
+            )
+            stack.append(f"({left} and {right})")
+            return (len(instructions) - 1, True)
+        else:
+            stack.append(left)
+            return (target_idx - 1, True)
+
+
 def _bytecode_to_expression(instructions, code):
     """
     Convert bytecode instructions to a Python expression string.
@@ -367,8 +696,12 @@ def _bytecode_to_expression(instructions, code):
     # Filter out RESUME instruction (Python 3.11+)
     instructions = [instr for instr in instructions if instr.opname != "RESUME"]
 
-    # Build offset map for jumps
+    # Build offset map for jumps - map instruction offsets to their indices
+    # This is used to resolve jump targets
     offset_map = {instr.offset: i for i, instr in enumerate(instructions)}
+
+    # Also build a reverse map for debugging (index to offset)
+    # This helps ensure we can always find targets
 
     # Process recursively starting from the beginning
     result, _ = _process_instructions(
@@ -390,6 +723,7 @@ def _process_instructions(instructions, start_idx, end_idx, offset_map, code):
     names = code.co_names
 
     i = start_idx
+    # Process instructions up to (but not including) end_idx
     while i < end_idx:
         instr = instructions[i]
         opname = instr.opname
@@ -415,15 +749,6 @@ def _process_instructions(instructions, start_idx, end_idx, offset_map, code):
             else:
                 attr_name = f"<attr{arg}>"
             stack.append(f"{obj}.{attr_name}")
-        elif opname == "LOAD_METHOD":
-            obj = stack.pop()
-            if hasattr(instr, "argval") and instr.argval is not None:
-                method_name = str(instr.argval)
-            elif arg < len(names):
-                method_name = names[arg]
-            else:
-                method_name = f"<method{arg}>"
-            stack.append(f"{obj}.{method_name}")
         elif opname == "COMPARE_OP":
             right = stack.pop()
             left = stack.pop()
@@ -465,71 +790,165 @@ def _process_instructions(instructions, start_idx, end_idx, offset_map, code):
             else:
                 stack.append(f"{left} is {right}")
         elif opname == "BINARY_OP":
+            # Python 3.11+ uses BINARY_OP with opcode
             right = stack.pop()
             left = stack.pop()
-            # For Python 3.10+, argval is a number representing the operation
-            # Use argval if available, otherwise use arg
             op_code = (
                 instr.argval
                 if hasattr(instr, "argval") and instr.argval is not None
                 else arg
             )
+            # Only arithmetic operations, not bitwise
+            # Opcode mapping from Python 3.11+ dis module
             binary_ops = {
-                0: "+",
-                1: "-",
-                2: "//",
-                3: "/",
-                4: "%",
-                5: "*",
-                6: "%",
-                7: ">>",
-                8: "**",
-                9: "^",
-                10: "-",
-                11: "/",
-                12: "@",
-                13: "<<",
-                14: "&",
-                15: "|",
+                0: "+",  # Addition
+                2: "//",  # Floor division
+                5: "*",  # Multiplication
+                6: "%",  # Modulo
+                8: "**",  # Exponentiation
+                10: "-",  # Subtraction
+                11: "/",  # True division
             }
             op = binary_ops.get(op_code, "?")
             stack.append(f"({left} {op} {right})")
+        elif opname == "BINARY_ADD":
+            _handle_binary_operation(stack, opname, "+")
+        elif opname == "BINARY_SUBTRACT":
+            _handle_binary_operation(stack, opname, "-")
+        elif opname == "BINARY_MULTIPLY":
+            _handle_binary_operation(stack, opname, "*")
+        elif opname == "BINARY_DIVIDE":
+            _handle_binary_operation(stack, opname, "/")
+        elif opname == "BINARY_FLOOR_DIVIDE":
+            _handle_binary_operation(stack, opname, "//")
+        elif opname == "BINARY_TRUE_DIVIDE":
+            _handle_binary_operation(stack, opname, "/")
+        elif opname == "BINARY_MODULO":
+            _handle_binary_operation(stack, opname, "%")
+        elif opname == "BINARY_POWER":
+            _handle_binary_operation(stack, opname, "**")
         elif opname == "COPY":
             # Duplicate top of stack (used before POP_JUMP for logical ops)
+            # Python 3.12+: COPY, POP_JUMP_IF_FALSE, POP_TOP
+            # Python 3.13+: COPY, TO_BOOL, POP_JUMP_IF_FALSE, POP_TOP
             if stack:
                 stack.append(stack[-1])
+        elif opname == "TO_BOOL":
+            # Python 3.13+: Convert value to boolean (used in logical operations)
+            # This doesn't change the stack structure for our purposes
+            # Just continue - the value remains on the stack
+            pass
         elif opname == "POP_JUMP_IF_FALSE":
-            # Pattern for 'and': COPY, POP_JUMP_IF_FALSE <target>, POP_TOP, <right>
-            # The left side is already on the stack (duplicated by COPY)
-            left = stack.pop()  # Remove duplicate
-            jump_target = instr.argval if hasattr(instr, "argval") else arg
-            target_idx = offset_map.get(jump_target, end_idx)
+            # Pattern for 'and': POP_JUMP_IF_FALSE <target>
+            # Python 3.10: Pops the value, if false jumps to target, else continues
+            # Python 3.12+: COPY, POP_JUMP_IF_FALSE, POP_TOP pattern
+            # Python 3.13+: COPY, TO_BOOL, POP_JUMP_IF_FALSE, POP_TOP pattern
+            is_python_312_plus_copy = _check_python_312_copy_pattern(instructions, i)
 
-            # Skip POP_TOP
-            if i + 1 < len(instructions) and instructions[i + 1].opname == "POP_TOP":
-                i += 1
+            if is_python_312_plus_copy:
+                i, _ = _handle_pop_jump_if_false_python_312_plus(
+                    instructions, i, stack, offset_map, code
+                )
+            else:
+                i, _ = _handle_pop_jump_if_false_python_310_311(
+                    instructions, i, stack, offset_map, code
+                )
+        elif opname == "POP_JUMP_IF_TRUE":
+            # Pattern for 'or': POP_JUMP_IF_TRUE <target>
+            # Python 3.12+: COPY, POP_JUMP_IF_TRUE, POP_TOP pattern
+            # Check if previous instruction was COPY (Python 3.12+ pattern)
+            if i > 0 and instructions[i - 1].opname == "COPY":
+                # Python 3.12+ pattern: COPY duplicated the value, now we pop the duplicate
+                left = stack.pop()  # Remove duplicate, keep original
+            else:
+                # Shouldn't happen in Python 3.12+, but handle it
+                left = stack.pop()
 
-            # Recursively process the right side (from next instruction to jump target)
+            target_idx = _resolve_jump_target(instr, instructions, offset_map)
+
+            # Skip POP_TOP if present (Python 3.12+)
+            next_idx = i + 1
+            if (
+                next_idx < len(instructions)
+                and instructions[next_idx].opname == "POP_TOP"
+            ):
+                next_idx += 1
+
+            # Recursively process the right side
+            right, _ = _process_instructions(
+                instructions, next_idx, target_idx, offset_map, code
+            )
+            stack.append(f"({left} or {right})")
+
+            # Skip to the target
+            i = target_idx - 1
+        elif opname == "POP_JUMP_FORWARD_IF_FALSE":
+            # Python 3.11 pattern for 'and': POP_JUMP_FORWARD_IF_FALSE <delta>
+            # Jumps forward by delta if false, otherwise continues
+            left = stack.pop()
+            # Calculate target offset (current offset + delta)
+            current_offset = instr.offset
+            jump_delta = (
+                instr.argval
+                if (hasattr(instr, "argval") and instr.argval is not None)
+                else arg
+            )
+            target_offset = current_offset + jump_delta
+            target_idx = _resolve_jump_target(target_offset, instructions, offset_map)
+
+            next_idx = i + 1
+
+            # Check if there's a JUMP_IF_TRUE_OR_POP in the range (part of an 'or' operation)
+            and_end_idx = _find_and_end_idx(instructions, next_idx, target_idx)
+
+            if and_end_idx < target_idx:
+                # There's an 'or' operation after the 'and'
+                right, _ = _process_instructions(
+                    instructions, next_idx, and_end_idx, offset_map, code
+                )
+                stack.append(f"({left} and {right})")
+                i = and_end_idx - 1  # Will process 'or' next
+            else:
+                # Normal case: process the right side up to the jump target
+                right, _ = _process_instructions(
+                    instructions, next_idx, target_idx, offset_map, code
+                )
+                stack.append(f"({left} and {right})")
+                i = target_idx - 1
+        elif opname == "JUMP_IF_FALSE_OR_POP":
+            # Python 3.10 pattern for 'and': JUMP_IF_FALSE_OR_POP <target>
+            # If false, jump to target (short-circuit), otherwise pop and continue
+            left = stack.pop()
+            jump_target = (
+                instr.argval
+                if (hasattr(instr, "argval") and instr.argval is not None)
+                else instr.offset + instr.arg
+            )
+            target_idx = _resolve_jump_target(jump_target, instructions, offset_map)
+
+            # Process the right side (from next instruction to jump target)
             right, _ = _process_instructions(
                 instructions, i + 1, target_idx, offset_map, code
             )
             stack.append(f"({left} and {right})")
 
             # Skip to the target (right side has been processed)
-            i = target_idx - 1  # Will be incremented at end of loop
-        elif opname == "POP_JUMP_IF_TRUE":
-            # Pattern for 'or': COPY, POP_JUMP_IF_TRUE <target>, POP_TOP, <right>
-            left = stack.pop()  # Remove duplicate
-            jump_target = instr.argval if hasattr(instr, "argval") else arg
-            target_idx = offset_map.get(jump_target, end_idx)
+            i = target_idx - 1
+        elif opname == "JUMP_IF_TRUE_OR_POP":
+            # Python 3.10 pattern for 'or': JUMP_IF_TRUE_OR_POP <target>
+            # If true, jump to target (short-circuit), otherwise pop and continue
+            left = stack.pop()
+            jump_target = (
+                instr.argval
+                if (hasattr(instr, "argval") and instr.argval is not None)
+                else instr.offset + instr.arg
+            )
+            target_idx = _resolve_jump_target(jump_target, instructions, offset_map)
 
-            # Skip POP_TOP
-            if i + 1 < len(instructions) and instructions[i + 1].opname == "POP_TOP":
-                i += 1
-
-            # Recursively process the right side
+            # Process the right side (from next instruction to target)
+            next_idx = i + 1
             right, _ = _process_instructions(
-                instructions, i + 1, target_idx, offset_map, code
+                instructions, next_idx, target_idx, offset_map, code
             )
             stack.append(f"({left} or {right})")
 
@@ -546,6 +965,15 @@ def _process_instructions(instructions, start_idx, end_idx, offset_map, code):
         elif opname == "UNARY_POSITIVE":
             stack.append(f"+{stack.pop()}")
         elif opname == "CALL":
+            # Python 3.11+ uses CALL
+            nargs = arg
+            args = []
+            for _ in range(nargs):
+                args.insert(0, stack.pop())
+            func = stack.pop()
+            stack.append(f"{func}({', '.join(args)})")
+        elif opname == "CALL_FUNCTION":
+            # Python 3.10 uses CALL_FUNCTION
             nargs = arg
             args = []
             for _ in range(nargs):

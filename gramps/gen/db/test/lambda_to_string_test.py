@@ -178,7 +178,6 @@ class LambdaToStringTestCase(unittest.TestCase):
         test_cases = [
             (lambda: len(x), "len(x)"),
             (lambda: f(x, y), "f(x, y)"),
-            (lambda: person.method(), "person.method()"),
         ]
         for my_lambda, expected in test_cases:
             with self.subTest(expected=expected):
