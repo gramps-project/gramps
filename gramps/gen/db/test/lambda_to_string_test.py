@@ -271,25 +271,65 @@ class LambdaToStringTestCase(unittest.TestCase):
         result1 = lambda_to_string(test1)
         self.assertEqual(result1, "(x + 1)")
 
-        test2 = lambda: x * y
+        test2 = lambda: x - y
         result2 = lambda_to_string(test2)
-        self.assertEqual(result2, "(x * y)")
+        self.assertEqual(result2, "(x - y)")
 
-        test3 = lambda: x / y
+        test3 = lambda: x * y
         result3 = lambda_to_string(test3)
-        self.assertEqual(result3, "(x / y)")
+        self.assertEqual(result3, "(x * y)")
 
-        test4 = lambda: x % y
+        test4 = lambda: x / y
         result4 = lambda_to_string(test4)
-        self.assertEqual(result4, "(x % y)")
+        self.assertEqual(result4, "(x / y)")
 
-        test5 = lambda: x**y
+        test5 = lambda: x % y
         result5 = lambda_to_string(test5)
-        self.assertEqual(result5, "(x ** y)")
+        self.assertEqual(result5, "(x % y)")
 
-        test6 = lambda: x // y
+        test6 = lambda: x**y
         result6 = lambda_to_string(test6)
-        self.assertEqual(result6, "(x // y)")
+        self.assertEqual(result6, "(x ** y)")
+
+        test7 = lambda: x // y
+        result7 = lambda_to_string(test7)
+        self.assertEqual(result7, "(x // y)")
+
+    def test_conditional_expression(self):
+        """Test conditional expressions (ternary operator)
+
+        Note: Ternary operators are not currently supported by lambda_to_string's
+        bytecode decompiler as they involve control flow. The AST parser supports
+        them, but lambda_to_string only handles simple expressions without control flow.
+        This test documents the limitation.
+        """
+        # Skip test - ternary operators not supported by bytecode decompiler
+        # The AST parser in plugins/db/dbapi/select.py supports ternary operators,
+        # but lambda_to_string uses bytecode decompilation which doesn't handle
+        # control flow constructs like if/else expressions.
+        self.skipTest(
+            "Ternary operators not supported by lambda_to_string bytecode decompiler"
+        )
+
+    def test_string_startswith(self):
+        """Test string .startswith() method"""
+        test1 = lambda: person.gramps_id.startswith("I00")
+        result1 = lambda_to_string(test1)
+        self.assertEqual(result1, "person.gramps_id.startswith('I00')")
+
+        test2 = lambda: x.startswith("ABC")
+        result2 = lambda_to_string(test2)
+        self.assertEqual(result2, "x.startswith('ABC')")
+
+    def test_string_endswith(self):
+        """Test string .endswith() method"""
+        test1 = lambda: person.gramps_id.endswith("44")
+        result1 = lambda_to_string(test1)
+        self.assertEqual(result1, "person.gramps_id.endswith('44')")
+
+        test2 = lambda: x.endswith("ABC")
+        result2 = lambda_to_string(test2)
+        self.assertEqual(result2, "x.endswith('ABC')")
 
 
 if __name__ == "__main__":

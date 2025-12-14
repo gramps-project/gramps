@@ -210,7 +210,6 @@ class Evaluator:
                     [
                         function_name.attr.endswith(x)
                         for x in [
-                            ".contains",
                             ".endswith",
                             ".startswith",
                         ]
@@ -227,13 +226,7 @@ class Evaluator:
                             "%r function requires a string" % function_name.attr
                         )
 
-                    if function_name.attr.endswith(".contains"):
-                        function_name.remove_attribute()
-                        return "like('%s', %s)" % (
-                            "%" + args[0][1:-1] + "%",
-                            function_name,
-                        )
-                    elif function_name.attr.endswith(".endswith"):
+                    if function_name.attr.endswith(".endswith"):
                         function_name.remove_attribute()
                         return "like('%s', %s)" % ("%" + args[0][1:-1], function_name)
                     elif function_name.attr.endswith(".startswith"):

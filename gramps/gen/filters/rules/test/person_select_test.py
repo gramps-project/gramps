@@ -664,6 +664,249 @@ class BaseTest(unittest.TestCase):
         # too many to list out to test explicitly
         self.assertEqual(len(res), 2127)
 
+    def test_binary_operations(self):
+        """
+        Test binary operations (+, -, *, /, %, **, //).
+        """
+        # Addition
+        res = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="len(person.media_list) + len(person.note_list) > 0",
+            )
+        )
+        # Should include people with either media or notes
+        self.assertGreater(len(res), 0)
+
+        # Subtraction
+        res = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="len(person.family_list) - len(person.parent_family_list) > 0",
+            )
+        )
+        # Should include people with more families than parent families
+        self.assertGreater(len(res), 0)
+
+        # Multiplication
+        res = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="len(person.media_list) * 2 > 0",
+            )
+        )
+        # Should include people with media
+        self.assertGreater(len(res), 0)
+
+        # Division
+        res = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="len(person.family_list) / 1.0 > 1",
+            )
+        )
+        # Should include people with more than 1 family
+        self.assertGreater(len(res), 0)
+
+        # Modulo
+        res = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="len(person.family_list) % 2 == 0",
+            )
+        )
+        # Should include people with even number of families
+        self.assertGreater(len(res), 0)
+
+        # Power
+        res = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="len(person.media_list) ** 2 >= 0",
+            )
+        )
+        # Should include all people (squared length is always >= 0)
+        self.assertGreater(len(res), 0)
+
+        # Floor Division
+        res = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="len(person.family_list) // 1 >= 1",
+            )
+        )
+        # Should include people with at least 1 family
+        self.assertGreater(len(res), 0)
+
+    def test_unary_minus(self):
+        """
+        Test unary minus operation.
+        """
+        # Unary minus in comparison
+        res = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="-len(person.family_list) < 0",
+            )
+        )
+        # Should include people with at least 1 family
+        self.assertGreater(len(res), 0)
+
+    def test_conditional_expression(self):
+        """
+        Test conditional expressions (ternary operator).
+        """
+        # Ternary in what clause
+        res = list(
+            self.db.select_from_person(
+                what="person.gramps_id if person.gramps_id else 'UNKNOWN'",
+                where="len(person.family_list) > 0",
+            )
+        )
+        # Should return gramps_id or 'UNKNOWN'
+        self.assertGreater(len(res), 0)
+        # All results should be strings
+        for item in res:
+            self.assertIsInstance(item, str)
+
+        # Ternary in where clause
+        res = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="(len(person.family_list) if len(person.family_list) > 0 else 0) > 0",
+            )
+        )
+        # Should include people with families
+        self.assertGreater(len(res), 0)
+
+    def test_string_endswith(self):
+        """
+        Test string .endswith() method.
+        """
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gramps_id.endswith('44')",
+                )
+            )
+        )
+        # Should include people with gramps_id ending in '44'
+        self.assertGreater(len(res), 0)
+        # Verify specific known result
+        res_specific = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gramps_id == 'I0044'",
+                )
+            )
+        )
+        # endswith('44') should include exact match 'I0044'
+        self.assertTrue(res_specific.issubset(res))
+
+    def test_string_in_pattern(self):
+        """
+        Test special "string IN X" pattern that converts to LIKE.
+        """
+        # Test the special pattern: '<string> IN attribute'
+        # This should convert to: attribute LIKE '%<string>%'
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="'I00' in person.gramps_id",
+                )
+            )
+        )
+        # Should include people with 'I00' in their gramps_id
+        self.assertGreater(len(res), 0)
+        # Should include all startswith results (since 'I00' in gramps_id includes those starting with 'I00')
+        res_startswith = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gramps_id.startswith('I00')",
+                )
+            )
+        )
+        # The 'in' pattern should include all startswith results
+        self.assertTrue(res_startswith.issubset(res))
+
+    def test_binary_operations_generic(self):
+        """
+        Test binary operations using generic _select_from_table.
+        """
+        res = list(
+            DbGeneric._select_from_table(
+                self.db,
+                "person",
+                what="person.handle",
+                where="len(person.media_list) + len(person.note_list) > 0",
+            )
+        )
+        self.assertGreater(len(res), 0)
+
+    def test_unary_minus_generic(self):
+        """
+        Test unary minus using generic _select_from_table.
+        """
+        res = list(
+            DbGeneric._select_from_table(
+                self.db,
+                "person",
+                what="person.handle",
+                where="-len(person.family_list) < 0",
+            )
+        )
+        self.assertGreater(len(res), 0)
+
+    def test_conditional_expression_generic(self):
+        """
+        Test conditional expressions using generic _select_from_table.
+        """
+        res = list(
+            DbGeneric._select_from_table(
+                self.db,
+                "person",
+                what="person.gramps_id if person.gramps_id else 'UNKNOWN'",
+                where="len(person.family_list) > 0",
+            )
+        )
+        self.assertGreater(len(res), 0)
+
+    def test_string_endswith_generic(self):
+        """
+        Test string .endswith() using generic _select_from_table.
+        """
+        res = set(
+            list(
+                DbGeneric._select_from_table(
+                    self.db,
+                    "person",
+                    what="person.handle",
+                    where="person.gramps_id.endswith('44')",
+                )
+            )
+        )
+        self.assertGreater(len(res), 0)
+
+    def test_string_in_pattern_generic(self):
+        """
+        Test special "string IN X" pattern using generic _select_from_table.
+        """
+        res = set(
+            list(
+                DbGeneric._select_from_table(
+                    self.db,
+                    "person",
+                    what="person.handle",
+                    where="'I00' in person.gramps_id",
+                )
+            )
+        )
+        self.assertGreater(len(res), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

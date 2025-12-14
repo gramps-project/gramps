@@ -756,6 +756,22 @@ def _process_instructions(instructions, start_idx, end_idx, offset_map, code):
             else:
                 attr_name = f"<attr{arg}>"
             stack.append(f"{obj}.{attr_name}")
+        elif opname == "LOAD_METHOD":
+            # Python 3.10-3.11: Load a method from an object
+            # Similar to LOAD_ATTR but for methods
+            obj = stack.pop()
+            if hasattr(instr, "argval") and instr.argval is not None:
+                method_name = str(instr.argval)
+            elif arg < len(names):
+                method_name = names[arg]
+            else:
+                method_name = f"<method{arg}>"
+            # Store as method callable (will be called with CALL_METHOD or CALL)
+            stack.append(f"{obj}.{method_name}")
+        elif opname == "PRECALL":
+            # Python 3.11+: Preparation instruction before CALL
+            # Just continue - doesn't change the stack
+            pass
         elif opname == "COMPARE_OP":
             right = stack.pop()
             left = stack.pop()
@@ -992,6 +1008,15 @@ def _process_instructions(instructions, start_idx, end_idx, offset_map, code):
                 args.insert(0, stack.pop())
             func = stack.pop()
             stack.append(f"{func}({', '.join(args)})")
+        elif opname == "CALL_METHOD":
+            # Python 3.10: Call a method loaded with LOAD_METHOD
+            nargs = arg
+            args = []
+            for _ in range(nargs):
+                args.insert(0, stack.pop())
+            method = stack.pop()
+            # method is already in the form "obj.method_name" from LOAD_METHOD
+            stack.append(f"{method}({', '.join(args)})")
         elif opname == "BINARY_SUBSCR":
             index = stack.pop()
             obj = stack.pop()
