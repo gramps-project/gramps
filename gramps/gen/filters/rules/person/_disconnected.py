@@ -58,5 +58,21 @@ class Disconnected(Rule):
         "to any other person in the database"
     )
 
+    def prepare(self, db: Database, user):
+        if db.uses_fast_selects():
+            self.selected_handles: Set[str] = set()
+
+            self.selected_handles.update(
+                list(
+                    db.select_from_person(
+                        what="person.handle",
+                        where="len(person.parent_family_list) == 0 and len(person.family_list) == 0",
+                    )
+                )
+            )
+
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        return not (person.parent_family_list or person.family_list)
+        if db.uses_fast_selects():
+            return person.handle in self.selected_handles
+        else:
+            return not (person.parent_family_list or person.family_list)

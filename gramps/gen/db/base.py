@@ -77,6 +77,12 @@ class DbReadBase:
         """
         return self != self.basedb
 
+    def uses_fast_selects(self):
+        """
+        This base implementation does not use fast selects.
+        """
+        return False
+
     def get_feature(self, feature):
         """
         Databases can implement certain features or not. The default is
