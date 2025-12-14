@@ -30,6 +30,7 @@ import types
 # - Python 3.11: Uses POP_JUMP_FORWARD_IF_FALSE, BINARY_OP, CALL
 # - Python 3.12+: Uses COPY + POP_JUMP_IF_FALSE + POP_TOP pattern
 # - Python 3.13+: Adds TO_BOOL instruction
+# - Python 3.14+: Adds LOAD_SMALL_INT, uses BINARY_OP for subscripts (opcode 26), adds NOT_TAKEN
 PYTHON_VERSION = sys.version_info[:2]  # (major, minor)
 PYTHON_310 = PYTHON_VERSION == (3, 10)
 PYTHON_311 = PYTHON_VERSION == (3, 11)
@@ -731,6 +732,12 @@ def _process_instructions(instructions, start_idx, end_idx, offset_map, code):
 
         if opname == "LOAD_CONST":
             stack.append(repr(constants[arg]))
+        elif opname == "LOAD_SMALL_INT":
+            # Python 3.14+: Load small integers directly (optimization)
+            if hasattr(instr, "argval") and instr.argval is not None:
+                stack.append(repr(instr.argval))
+            else:
+                stack.append(repr(arg))
         elif opname == "LOAD_FAST":
             stack.append(locals_map[arg])
         elif opname == "LOAD_GLOBAL":
@@ -800,17 +807,22 @@ def _process_instructions(instructions, start_idx, end_idx, offset_map, code):
             )
             # Only arithmetic operations, not bitwise
             # Opcode mapping from Python 3.11+ dis module
-            binary_ops = {
-                0: "+",  # Addition
-                2: "//",  # Floor division
-                5: "*",  # Multiplication
-                6: "%",  # Modulo
-                8: "**",  # Exponentiation
-                10: "-",  # Subtraction
-                11: "/",  # True division
-            }
-            op = binary_ops.get(op_code, "?")
-            stack.append(f"({left} {op} {right})")
+            # Python 3.14+ also uses BINARY_OP for subscripts (opcode 26)
+            if op_code == 26:
+                # Subscript operation: x[y]
+                stack.append(f"{left}[{right}]")
+            else:
+                binary_ops = {
+                    0: "+",  # Addition
+                    2: "//",  # Floor division
+                    5: "*",  # Multiplication
+                    6: "%",  # Modulo
+                    8: "**",  # Exponentiation
+                    10: "-",  # Subtraction
+                    11: "/",  # True division
+                }
+                op = binary_ops.get(op_code, "?")
+                stack.append(f"({left} {op} {right})")
         elif opname == "BINARY_ADD":
             _handle_binary_operation(stack, opname, "+")
         elif opname == "BINARY_SUBTRACT":
@@ -997,6 +1009,9 @@ def _process_instructions(instructions, start_idx, end_idx, offset_map, code):
             break
         elif opname == "EXTENDED_ARG":
             # Extended argument - just continue
+            pass
+        elif opname == "NOT_TAKEN":
+            # Python 3.14+: Branch prediction hint - no-op for decompilation
             pass
         else:
             # Unknown instruction - skip it
