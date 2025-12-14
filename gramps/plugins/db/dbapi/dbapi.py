@@ -64,6 +64,8 @@ from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
 from .select import Evaluator
+from gramps.gen.db.lambda_to_string import lambda_to_string
+import types
 
 LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
@@ -1226,6 +1228,7 @@ class DBAPI(DbGeneric):
     def _select_from_table(
         self,
         table_name,
+        *,
         what=None,
         where=None,
         order_by=None,
@@ -1238,7 +1241,7 @@ class DBAPI(DbGeneric):
 
         if self.is_proxy():
             if allow_use_on_proxy:
-                yield from super().select_from_table(
+                yield from super()._select_from_table(
                     table_name,
                     what=what,
                     where=where,
@@ -1259,16 +1262,26 @@ class DBAPI(DbGeneric):
             env if env is not None else globals(),
         )
 
+        # Convert lambda functions to strings for what, where, and order_by
         if what is None:
             what_expr = "json_data"
+        elif isinstance(what, types.LambdaType):
+            # Convert lambda to string
+            what_str = lambda_to_string(what)
+            if what_str in ["obj", "person"]:
+                what_str = "json_data"
+            what_expr = str(evaluator.convert(what_str))
         elif isinstance(what, str):
-            if what in ["_", "person"]:
+            if what in ["obj", "person"]:
                 what = "json_data"
             what_expr = str(evaluator.convert(what))
         else:
             what_list = []
             for w in what:
-                if w in ["_", "person"]:
+                if isinstance(w, types.LambdaType):
+                    # Convert lambda to string
+                    w = lambda_to_string(w)
+                if w in ["obj", "person"]:
                     w = "json_data"
                 what_list.append(str(evaluator.convert(w)))
             what_expr = ", ".join(what_list)
@@ -1276,17 +1289,33 @@ class DBAPI(DbGeneric):
         if where is None:
             where_expr = ""
         else:
+            # Convert lambda to string if needed
+            if isinstance(where, types.LambdaType):
+                where = lambda_to_string(where)
             where_expr = " WHERE %s" % evaluator.convert(where)
 
         if order_by is None:
             order_by_expr = ""
         else:
             # Handle single lambda/function or string as order_by (convert to list)
-            if callable(order_by) and not isinstance(order_by, type):
+            if isinstance(order_by, types.LambdaType):
+                # Convert lambda to string
+                order_by = [lambda_to_string(order_by)]
+            elif callable(order_by) and not isinstance(order_by, type):
+                # Other callable (not lambda) - convert to list
                 order_by = [order_by]
             elif isinstance(order_by, str):
                 order_by = [order_by]
-            order_by_expr = evaluator.get_order_by(order_by)
+            # If order_by is already a list, it will be processed in the loop below
+
+            # Convert any lambdas in the list to strings
+            converted_order_by = []
+            for expr in order_by:
+                if isinstance(expr, types.LambdaType):
+                    converted_order_by.append(lambda_to_string(expr))
+                else:
+                    converted_order_by.append(expr)
+            order_by_expr = evaluator.get_order_by(converted_order_by)
 
         query = f"SELECT {what_expr} from {table_name}{where_expr}{order_by_expr};"
         try:

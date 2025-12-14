@@ -2825,6 +2825,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def _select_from_table(
         self,
         table_name,
+        *,
         what=None,
         where=None,
         order_by=None,
@@ -2872,18 +2873,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_person(where="person.handle == 'A6E74B3D65D23F'")
-        db.select_from_person("person.handle", where="person.handle == 'A6E74B3D65D23F'")
-        db.select_from_person("_.handle", where="_.handle == 'A6E74B3D65D23F'")
+        db.select_from_person(what="person.handle", where="person.handle == 'A6E74B3D65D23F'")
+        db.select_from_person(what="obj.handle", where="obj.handle == 'A6E74B3D65D23F'")
         db.select_from_person(
             what=["person.handle", "person.gramps_id"],
-            where="person.handle == 'A6E74B3D65D23F'"
-            order_by=["-person.gramps_id", "person.gender"]
+            where="person.handle == 'A6E74B3D65D23F'",
+            order_by=["-person.gramps_id", "person.gender"],
             env={"Person": Person}
         )
         """
-        yield from select_from_table(self, table_name, what, where, order_by, env)
+        yield from select_from_table(
+            self, table_name, what=what, where=where, order_by=order_by, env=env
+        )
 
-    def select_from_citation(self, what=None, where=None, order_by=None, env=None):
+    def select_from_citation(self, *, what=None, where=None, order_by=None, env=None):
         """
         Select items from citation where python-string is True,
         optionally with a list of python-string items to order on.
@@ -2906,7 +2909,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "citation", what=what, where=where, order_by=order_by, env=env
         )
 
-    def select_from_event(self, what=None, where=None, order_by=None, env=None):
+    def select_from_event(self, *, what=None, where=None, order_by=None, env=None):
         """
         Select items from event where python-string is True,
         optionally with a list of python-string items to order on.
@@ -2929,7 +2932,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "event", what=what, where=where, order_by=order_by, env=env
         )
 
-    def select_from_family(self, what=None, where=None, order_by=None, env=None):
+    def select_from_family(self, *, what=None, where=None, order_by=None, env=None):
         """
         Select items from family where python-string is True,
         optionally with a list of python-string items to order on.
@@ -2952,7 +2955,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "family", what=what, where=where, order_by=order_by, env=env
         )
 
-    def select_from_media(self, what=None, where=None, order_by=None, env=None):
+    def select_from_media(self, *, what=None, where=None, order_by=None, env=None):
         """
         Select items from media where python-string is True,
         optionally with a list of python-string items to order on.
@@ -2975,7 +2978,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "media", what=what, where=where, order_by=order_by, env=env
         )
 
-    def select_from_note(self, what=None, where=None, order_by=None, env=None):
+    def select_from_note(self, *, what=None, where=None, order_by=None, env=None):
         """
         Select items from note where python-string is True,
         optionally with a list of python-string items to order on.
@@ -2998,7 +3001,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "note", what=what, where=where, order_by=order_by, env=env
         )
 
-    def select_from_person(self, what=None, where=None, order_by=None, env=None):
+    def select_from_person(self, *, what=None, where=None, order_by=None, env=None):
         """
         Select items from person where python-string is True,
         optionally with a list of python-string items to order on.
@@ -3036,11 +3039,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_person(where="person.handle == 'A6E74B3D65D23F'")
-        db.select_from_person("person.handle", where="person.handle == 'A6E74B3D65D23F'")
+        db.select_from_person(what="person.handle", where="person.handle == 'A6E74B3D65D23F'")
         db.select_from_person(
             what=["person.handle", "person.gramps_id"],
-            where="person.handle == 'A6E74B3D65D23F'"
-            order_by=[("person.gramps_id", "DESC")]
+            where="person.handle == 'A6E74B3D65D23F'",
+            order_by=[("person.gramps_id", "DESC")],
             env={"Person": Person}
         )
         """
@@ -3048,7 +3051,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "person", what=what, where=where, order_by=order_by, env=env
         )
 
-    def select_from_place(self, what=None, where=None, order_by=None, env=None):
+    def select_from_place(self, *, what=None, where=None, order_by=None, env=None):
         """
         Select items from place where python-string is True,
         optionally with a list of python-string items to order on.
@@ -3071,7 +3074,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "place", what=what, where=where, order_by=order_by, env=env
         )
 
-    def select_from_repository(self, what=None, where=None, order_by=None, env=None):
+    def select_from_repository(self, *, what=None, where=None, order_by=None, env=None):
         """
         Select items from repository where python-string is True,
         optionally with a list of python-string items to order on.
@@ -3094,7 +3097,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "repository", what=what, where=where, order_by=order_by, env=env
         )
 
-    def select_from_source(self, what=None, where=None, order_by=None, env=None):
+    def select_from_source(self, *, what=None, where=None, order_by=None, env=None):
         """
         Select items from source where python-string is True,
         optionally with a list of python-string items to order on.
@@ -3117,7 +3120,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "source", what=what, where=where, order_by=order_by, env=env
         )
 
-    def select_from_tag(self, what=None, where=None, order_by=None, env=None):
+    def select_from_tag(self, *, what=None, where=None, order_by=None, env=None):
         """
         Select items from tag where python-string is True,
         optionally with a list of python-string items to order on.

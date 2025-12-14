@@ -183,7 +183,7 @@ class Evaluator:
         elif isinstance(node, ast.Attribute):
             obj = self.convert_to_sql(node.value)
             attr = node.attr
-            if obj in [self.table_name, "_"]:
+            if obj in [self.table_name, "obj"]:
                 return AttributeNode(
                     self.json_extract, self.json_array_length, self.table_name, attr
                 )
@@ -274,7 +274,7 @@ class Evaluator:
             if isinstance(expr, str) and expr.startswith("-"):
                 order_by_exprs.append("%s %s" % (self.convert(expr[1:]), "DESC"))
             else:
-                # Handle string expression
+                # Handle string expression (lambdas should already be converted to strings)
                 order_by_exprs.append(str(self.convert(expr)))
 
         if order_by_exprs:

@@ -27,12 +27,11 @@ import os
 import sqlite3
 
 from ....db.utils import import_as_dict
-from ....const import DATA_DIR
+from ....const import TEST_DIR
 from ....user import User
 from gramps.gen.db import DbGeneric
 
 
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 DISCONNECTED_HANDLES = set(
@@ -129,7 +128,7 @@ class BaseTest(unittest.TestCase):
     def test_order_by_1(self):
         res = list(
             self.db.select_from_person(
-                ["person.primary_name.surname_list[0].surname", "person.gender"],
+                what=["person.primary_name.surname_list[0].surname", "person.gender"],
                 where="len(person.media_list) > 0",
                 order_by=[
                     "-person.primary_name.surname_list[0].surname",
@@ -148,7 +147,7 @@ class BaseTest(unittest.TestCase):
     def test_order_by_2(self):
         res = list(
             self.db.select_from_person(
-                ["person.primary_name.surname_list[0].surname", "person.gender"],
+                what=["person.primary_name.surname_list[0].surname", "person.gender"],
                 where="len(person.media_list) > 0",
                 order_by=[
                     "person.primary_name.surname_list[0].surname",
@@ -169,7 +168,7 @@ class BaseTest(unittest.TestCase):
             DbGeneric._select_from_table(
                 self.db,
                 "person",
-                ["person.primary_name.surname_list[0].surname", "person.gender"],
+                what=["person.primary_name.surname_list[0].surname", "person.gender"],
                 where="len(person.media_list) > 0",
                 order_by=[
                     "-person.primary_name.surname_list[0].surname",
@@ -190,7 +189,7 @@ class BaseTest(unittest.TestCase):
             DbGeneric._select_from_table(
                 self.db,
                 "person",
-                ["person.primary_name.surname_list[0].surname", "person.gender"],
+                what=["person.primary_name.surname_list[0].surname", "person.gender"],
                 where="len(person.media_list) > 0",
                 order_by=[
                     "person.primary_name.surname_list[0].surname",
@@ -208,7 +207,9 @@ class BaseTest(unittest.TestCase):
 
     def test_HavePhotos(self):
         res = list(
-            self.db.select_from_person("_.handle", where="len(person.media_list) > 0")
+            self.db.select_from_person(
+                what="obj.handle", where="len(person.media_list) > 0"
+            )
         )
         self.assertEqual(len(res), 5)
 
@@ -223,8 +224,8 @@ class BaseTest(unittest.TestCase):
     def test_HasLDS(self):
         res = list(
             self.db.select_from_person(
-                "_.handle",
-                "len(_.lds_ord_list) > 0",
+                what="obj.handle",
+                where="len(obj.lds_ord_list) > 0",
             )
         )
         self.assertEqual(len(res), 1)
@@ -234,8 +235,8 @@ class BaseTest(unittest.TestCase):
             DbGeneric._select_from_table(
                 self.db,
                 "person",
-                "_.handle",
-                "len(_.lds_ord_list) > 0",
+                what="obj.handle",
+                where="len(obj.lds_ord_list) > 0",
             )
         )
         self.assertEqual(len(res), 1)
@@ -280,7 +281,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="len(person.family_list) == 0 and len(person.parent_family_list) == 0",
                 )
             )
@@ -296,7 +297,7 @@ class BaseTest(unittest.TestCase):
                 DbGeneric._select_from_table(
                     self.db,
                     "person",
-                    "person.handle",
+                    what="person.handle",
                     where="len(person.family_list) == 0 and len(person.parent_family_list) == 0",
                 )
             )
@@ -327,7 +328,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "_.handle", where="len(person.alternate_names) > 0"
+                    what="obj.handle", where="len(person.alternate_names) > 0"
                 )
             )
         )
@@ -350,7 +351,7 @@ class BaseTest(unittest.TestCase):
                 DbGeneric._select_from_table(
                     self.db,
                     "person",
-                    "_.handle",
+                    what="obj.handle",
                     where="len(person.alternate_names) > 0",
                 )
             )
@@ -372,7 +373,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="person.gender == Person.UNKNOWN",
                 )
             )
@@ -415,7 +416,7 @@ class BaseTest(unittest.TestCase):
                 DbGeneric._select_from_table(
                     self.db,
                     "person",
-                    "person.handle",
+                    what="person.handle",
                     where="person.gender == Person.UNKNOWN",
                 )
             )
@@ -456,7 +457,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="person.gramps_id == ''",
                 )
             )
@@ -470,7 +471,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="person.gramps_id != 'I0000'",
                 )
             )
@@ -484,7 +485,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="person.gramps_id == 'ABCDEFG'",
                 )
             )
@@ -498,7 +499,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="person.gramps_id == 'I0044'",
                 )
             )
@@ -512,7 +513,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="person.gramps_id.startswith('I00')",
                 )
             )
@@ -526,7 +527,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="person.gender == Person.FEMALE",
                 )
             )
@@ -541,7 +542,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="person.gender == Person.MALE",
                 )
             )
@@ -556,7 +557,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="len(person.family_list) > 1",
                 )
             )
@@ -626,7 +627,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="len(person.family_list) == 0",
                 )
             )
@@ -641,7 +642,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="person.private",
                 )
             )
@@ -655,7 +656,7 @@ class BaseTest(unittest.TestCase):
         res = set(
             list(
                 self.db.select_from_person(
-                    "person.handle",
+                    what="person.handle",
                     where="not person.private",
                 )
             )
