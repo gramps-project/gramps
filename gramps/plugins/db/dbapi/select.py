@@ -236,7 +236,6 @@ class Evaluator:
                     elif function_name.attr.endswith(".endswith"):
                         function_name.remove_attribute()
                         return "like('%s', %s)" % ("%" + args[0][1:-1], function_name)
-                        pass
                     elif function_name.attr.endswith(".startswith"):
                         function_name.remove_attribute()
                         return "like('%s', %s)" % (args[0][1:-1] + "%", function_name)

@@ -1221,7 +1221,7 @@ class DBAPI(DbGeneric):
                 try:
                     return self.serializer.string_to_data(value)
                 except Exception:
-                    # Must be an value
+                    # Must be a value
                     pass
         return value
 
@@ -1252,7 +1252,7 @@ class DBAPI(DbGeneric):
             else:
                 raise Exception(
                     "to use db.select methods on a proxy, "
-                    + "pass `allow_to_use_proxy=True`, or use on db.basedb"
+                    + "pass `allow_use_on_proxy=True`, or use on db.basedb"
                 )
 
         evaluator = Evaluator(
