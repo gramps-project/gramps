@@ -71,8 +71,12 @@ class Evaluator:
         }
 
     def convert_to_sql(self, node):
-        if isinstance(node, ast.Num):
-            return str(node.n)
+        # ast.Constant handles Num, Str, NameConstant, Bytes, and Ellipsis (Python 3.8+)
+        if isinstance(node, ast.Constant):
+            if node.value is None:
+                return "null"
+            else:
+                return repr(node.value)
         elif isinstance(node, ast.BinOp):
             template = self.operators[type(node.op)]
             args = {
@@ -86,11 +90,6 @@ class Evaluator:
                 "operand": self.convert_to_sql(node.operand),
             }
             return template.format(**args)
-        elif isinstance(node, (ast.Constant, ast.NameConstant)):
-            if node.value is None:
-                return "null"
-            else:
-                return repr(node.value)
         elif isinstance(node, ast.IfExp):
             args = {
                 "result_1": self.convert_to_sql(node.body),
@@ -167,9 +166,6 @@ class Evaluator:
             return " IN "
         elif isinstance(node, ast.NotIn):
             return " NOT IN "
-        elif isinstance(node, ast.Str):
-            ## Python 3.7
-            return repr(node.s)
         elif isinstance(node, ast.Index):
             return self.convert_to_sql(node.value)
         elif isinstance(node, ast.Subscript):

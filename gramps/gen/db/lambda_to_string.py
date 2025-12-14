@@ -50,6 +50,7 @@ def ast_to_string(node):
         # Returns: "person.handle == 'A6E74B3D65D23F'"
 
     Limitations (Python 3.10+):
+        - Comprehensions (list, set, dict comprehensions): Not supported
         - Match/case statements: Not supported (not relevant for lambda expressions)
         - Type annotations with union syntax (X | Y): Not fully supported
           (type hints are preserved but union syntax may not roundtrip perfectly)
@@ -61,8 +62,6 @@ def ast_to_string(node):
           meaning, which may differ from minimal parenthesization
         - Comments and formatting: All comments and original formatting are lost
           (AST doesn't preserve these)
-        - Some edge cases with complex nested comprehensions or generator
-          expressions may not roundtrip perfectly
     """
     if isinstance(node, ast.Lambda):
         args_str = _args_to_string(node.args)
@@ -76,8 +75,6 @@ def ast_to_string(node):
     elif isinstance(node, ast.Expression):
         return ast_to_string(node.body)
 
-    elif isinstance(node, ast.Module):
-        return "\n".join(ast_to_string(stmt) for stmt in node.body)
 
     elif isinstance(node, ast.Constant):
         return repr(node.value)
@@ -158,54 +155,6 @@ def ast_to_string(node):
             return f"({elts_str},)"
         return f"({elts_str})"
 
-    elif isinstance(node, ast.Dict):
-        items = []
-        for key, value in zip(node.keys, node.values):
-            if key is None:  # **kwargs
-                items.append(f"**{ast_to_string(value)}")
-            else:
-                items.append(f"{ast_to_string(key)}: {ast_to_string(value)}")
-        return "{" + ", ".join(items) + "}"
-
-    elif isinstance(node, ast.Set):
-        elts_str = ", ".join(ast_to_string(elt) for elt in node.elts)
-        return "{" + elts_str + "}"
-
-    elif isinstance(node, ast.ListComp):
-        elt_str = ast_to_string(node.elt)
-        generators_str = ", ".join(
-            _comprehension_to_string(gen) for gen in node.generators
-        )
-        return f"[{elt_str} for {generators_str}]"
-
-    elif isinstance(node, ast.SetComp):
-        elt_str = ast_to_string(node.elt)
-        generators_str = ", ".join(
-            _comprehension_to_string(gen) for gen in node.generators
-        )
-        return f"{{{elt_str} for {generators_str}}}"
-
-    elif isinstance(node, ast.DictComp):
-        key_str = ast_to_string(node.key)
-        value_str = ast_to_string(node.value)
-        generators_str = ", ".join(
-            _comprehension_to_string(gen) for gen in node.generators
-        )
-        return f"{{{key_str}: {value_str} for {generators_str}}}"
-
-    elif isinstance(node, ast.Return):
-        if node.value:
-            return f"return {ast_to_string(node.value)}"
-        return "return"
-
-    elif isinstance(node, ast.Expr):
-        return ast_to_string(node.value)
-
-    elif isinstance(node, ast.Starred):
-        return f"*{ast_to_string(node.value)}"
-
-    elif isinstance(node, ast.Ellipsis):
-        return "..."
 
     else:
         # For unhandled node types, try to get a basic representation
@@ -319,17 +268,6 @@ def _slice_to_string(slice_node):
         return ast_to_string(slice_node)
 
 
-def _comprehension_to_string(comp):
-    """Convert a comprehension AST node to string representation."""
-    target_str = ast_to_string(comp.target)
-    iter_str = ast_to_string(comp.iter)
-    result = f"{target_str} in {iter_str}"
-    if comp.ifs:
-        for if_expr in comp.ifs:
-            result += f" if {ast_to_string(if_expr)}"
-    return result
-
-
 def lambda_to_string(lambda_func):
     """
     Convert a lambda function object to its string representation using bytecode decompilation.
@@ -359,8 +297,9 @@ def lambda_to_string(lambda_func):
         # Returns: "person.handle == 'A6E74B3D65D23F'"
 
     Note:
-        This function only handles simple expressions. Complex constructs like
-        comprehensions, generators, and control flow are not supported.
+        This function only handles simple expressions needed for database select
+        operations. Complex constructs like comprehensions, generators, dict/set
+        literals, and control flow are not supported.
     """
     if not isinstance(lambda_func, types.LambdaType):
         raise TypeError(f"Expected lambda function, got {type(lambda_func)}")
