@@ -20,8 +20,6 @@
 
 import ast
 
-from gramps.gen.db.select import _function_to_expr_string
-
 
 class AttributeNode:
     def __init__(self, json_extract, json_array_length, obj, attr):
@@ -256,27 +254,15 @@ class Evaluator:
 
     def convert(self, python_expr):
         """
-        Convert Python expression (string or function) to SQL expression.
+        Convert Python expression (string) to SQL expression.
 
         Args:
-            python_expr: String expression or function that returns an expression.
-                        Functions must be defined in source files and have a
-                        single return statement with an expression.
+            python_expr: String expression.
 
         Returns:
             SQL expression string
         """
-        # If it's a callable, extract the expression string
-        if callable(python_expr) and not isinstance(python_expr, type):
-            try:
-                python_expr = _function_to_expr_string(python_expr)
-            except (OSError, ValueError) as e:
-                raise ValueError(
-                    f"Cannot convert function {getattr(python_expr, '__name__', 'unknown')} "
-                    f"to expression: {e}. Use a string expression instead."
-                ) from e
-
-        # Now parse as before
+        # Parse and convert to SQL
         node = ast.parse(python_expr, mode="eval").body
         sql_expr = self.convert_to_sql(node)
         return sql_expr
@@ -288,7 +274,7 @@ class Evaluator:
             if isinstance(expr, str) and expr.startswith("-"):
                 order_by_exprs.append("%s %s" % (self.convert(expr[1:]), "DESC"))
             else:
-                # Handle function or string expression
+                # Handle string expression
                 order_by_exprs.append(str(self.convert(expr)))
 
         if order_by_exprs:
