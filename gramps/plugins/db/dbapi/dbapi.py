@@ -28,7 +28,6 @@ Database API interface
 #
 # -------------------------------------------------------------------------
 import logging
-import json
 import time
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -1325,17 +1324,20 @@ class DBAPI(DbGeneric):
             order_by_expr = evaluator.get_order_by(converted_order_by)
 
         query = f"SELECT {what_expr} from {table_name}{where_expr}{order_by_expr};"
-        try:
-            self.dbapi.execute(query)
-        except Exception as exc:
-            raise Exception(query) from None
+        # Use a separate cursor to avoid invalidation when other queries
+        # are executed during iteration (e.g., db.get_family_from_handle())
+        with self.dbapi.cursor() as cursor:
+            try:
+                cursor.execute(query)
+            except Exception as exc:
+                raise Exception(query) from None
 
-        row = self.dbapi.fetchone()
-        while row:
-            if what_expr == "json_data":
-                yield self._sql_value_or_object(row[0])
-            elif isinstance(what, str):
-                yield self._sql_value_or_object(row[0])
-            else:
-                yield [self._sql_value_or_object(value) for value in row]
-            row = self.dbapi.fetchone()
+            row = cursor.fetchone()
+            while row:
+                if what_expr == "json_data":
+                    yield self._sql_value_or_object(row[0])
+                elif isinstance(what, str):
+                    yield self._sql_value_or_object(row[0])
+                else:
+                    yield [self._sql_value_or_object(value) for value in row]
+                row = cursor.fetchone()
