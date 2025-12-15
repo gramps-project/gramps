@@ -2271,7 +2271,7 @@ class MarriedRelation(FamilyRule):
         """return boolean indicating whether this rule is violated"""
         marr_date = self.obj.get_marriage_date()
         marr_date_ok = marr_date > 0
-        married = self.obj.get_relationship() == FamilyRelType.MARRIED
+        married = self.obj.get_relationship() in (FamilyRelType.MARRIED, FamilyRelType.CIVIL_UNION)
         if not married and marr_date_ok:
             return self.get_message
         return False
