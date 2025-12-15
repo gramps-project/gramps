@@ -77,7 +77,7 @@ class DbReadBase:
         """
         return self != self.basedb
 
-    def uses_fast_selects(self):
+    def can_use_fast_selects(self):
         """
         This base implementation does not use fast selects.
         """

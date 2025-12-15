@@ -57,7 +57,7 @@ class HaveChildren(Rule):
     category = _("Family filters")
 
     def prepare(self, db: Database, user):
-        if db.uses_fast_selects():
+        if db.can_use_fast_selects():
             self.selected_handles: Set[str] = set()
 
             for person in db.select_from_person(
@@ -69,7 +69,7 @@ class HaveChildren(Rule):
                         self.selected_handles.add(person.handle)
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        if db.uses_fast_selects():
+        if db.can_use_fast_selects():
             return person.handle in self.selected_handles
         else:
             for family_handle in person.family_list:

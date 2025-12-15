@@ -83,7 +83,7 @@ class DBAPI(DbGeneric):
     def _initialize(self, directory, username, password):
         raise NotImplementedError
 
-    def uses_fast_selects(self):
+    def can_use_fast_selects(self):
         """
         If this DB-API instance is not using a proxy,
         then yes, it uses fast selects.
