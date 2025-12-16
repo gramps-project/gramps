@@ -1239,15 +1239,25 @@ class DBAPI(DbGeneric):
         where=None,
         order_by=None,
         env=None,
-        allow_use_on_proxy=False,
+        apply_to=None,
     ):
         # DB-API implementation
         # NOTE: evaluator takes patterns in case your DB-API
         #       varies in syntax for JSON access
 
         if self.is_proxy():
-            if allow_use_on_proxy:
+            if apply_to == "proxy":
                 yield from super()._select_from_table(
+                    table_name,
+                    what=what,
+                    where=where,
+                    order_by=order_by,
+                    env=env,
+                )
+                return
+            elif apply_to == "db":
+                # Allow to work on low-level backend
+                yield from self.basedb._select_from_table(
                     table_name,
                     what=what,
                     where=where,
@@ -1258,7 +1268,7 @@ class DBAPI(DbGeneric):
             else:
                 raise Exception(
                     "to use db.select methods on a proxy, "
-                    + "pass `allow_use_on_proxy=True`, or use on db.basedb"
+                    + "you must pass `apply_to` set to 'proxy', or 'db'"
                 )
 
         evaluator = Evaluator(
