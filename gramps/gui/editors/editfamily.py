@@ -62,6 +62,7 @@ from gramps.gen.lib import ChildRef, Family, Name, NoteType, Person, Surname
 from gramps.gen.db import DbTxn
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.datehandler import displayer
+from gramps.gen.nameguesser import get_nameguesser
 from ..glade import Glade
 
 from .editprimary import EditPrimary
@@ -167,6 +168,8 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
             share_button=True,
             move_buttons=True,
         )
+        
+        self.nameguesser_class = get_nameguesser(clocale=glocale)
 
     def _connect_db_signals(self):
         """
@@ -255,17 +258,9 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
 
     def add_button_clicked(self, obj=None):
         person = Person()
-        autoname = config.get("behavior.surname-guessing")
-        # _("Father's surname"),
-        # _("None"),
-        # _("Combination of mother's and father's surname"),
-        # _("Icelandic style"),
-        if autoname == 0:
-            name = self.north_american()
-        elif autoname == 2:
-            name = self.latin_american()
-        else:
-            name = self.no_name()
+        
+        name = self.nameguesser_class.childs_name(self.dbstate.db, self.family)
+            
         person.set_primary_name(name)
 
         EditPerson(self.dbstate, self.uistate, self.track, person, self.new_child_added)
@@ -460,6 +455,8 @@ class EditFamily(EditPrimary):
                 )
         else:
             self.add_parent = False
+            
+        self.nameguesser_class = get_nameguesser(clocale=glocale)
 
     def _cleanup_on_exit(self):
         """Unset all things that can block garbage collection.
@@ -922,15 +919,8 @@ class EditFamily(EditPrimary):
     def add_mother_clicked(self, obj):
         person = Person()
         person.set_gender(Person.FEMALE)
-        autoname = config.get("behavior.surname-guessing")
-        # _("Father's surname"),
-        # _("None"),
-        # _("Combination of mother's and father's surname"),
-        # _("Icelandic style"),
-        if autoname == 2:
-            name = self.latin_american_child("mother")
-        else:
-            name = self.no_name()
+        
+        name = self.nameguesser_class.mothers_name_from_child(self.db, self.obj)
         person.set_primary_name(name)
         EditPerson(
             self.dbstate, self.uistate, self.track, person, self.new_mother_added
@@ -939,17 +929,7 @@ class EditFamily(EditPrimary):
     def add_father_clicked(self, obj):
         person = Person()
         person.set_gender(Person.MALE)
-        autoname = config.get("behavior.surname-guessing")
-        # _("Father's surname"),
-        # _("None"),
-        # _("Combination of mother's and father's surname"),
-        # _("Icelandic style"),
-        if autoname == 0:
-            name = self.north_american_child()
-        elif autoname == 2:
-            name = self.latin_american_child("father")
-        else:
-            name = self.no_name()
+        name = self.nameguesser_class.fathers_name_from_child(self.db, self.obj)
         person.set_primary_name(name)
         EditPerson(
             self.dbstate, self.uistate, self.track, person, self.new_father_added
