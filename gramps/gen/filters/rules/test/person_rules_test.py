@@ -37,8 +37,10 @@ from ....filters import GenericFilter, CustomFilters
 from ....const import TEST_DIR
 from ....user import User
 from ....utils.unittest import localize_date
+from ....proxy import PrivateProxyDb
 
 from ..person import (
+    DeepRelationshipPathBetween,
     Disconnected,
     Everyone,
     FamilyWithIncompleteEvent,
@@ -1552,6 +1554,140 @@ class BaseTest(unittest.TestCase):
             # This test documents the behavior
             self.assertIsInstance(results1, set)
             self.assertIsInstance(results2, set)
+
+
+class FilterMatchMissingFilterTest(unittest.TestCase):
+    """
+    Tests that all filtermatch rules handle find_filter() returning None
+    gracefully (i.e. return an empty result rather than raising AttributeError).
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.db = import_as_dict(EXAMPLE, User())
+
+    def _apply_rule(self, rule):
+        """Apply a filter with the given rule directly, no base filter registered."""
+        filter_ = GenericFilter()
+        filter_.add_rule(rule)
+        return set(filter_.apply(self.db))
+
+    def test_IsDescendantOfFilterMatch_missing_filter(self):
+        rule = IsDescendantOfFilterMatch(["_no_such_filter_"])
+        self.assertEqual(self._apply_rule(rule), set())
+
+    def test_IsDescendantFamilyOfFilterMatch_missing_filter(self):
+        rule = IsDescendantFamilyOfFilterMatch(["_no_such_filter_"])
+        self.assertEqual(self._apply_rule(rule), set())
+
+    def test_IsParentOfFilterMatch_missing_filter(self):
+        rule = IsParentOfFilterMatch(["_no_such_filter_"])
+        self.assertEqual(self._apply_rule(rule), set())
+
+    def test_IsSiblingOfFilterMatch_missing_filter(self):
+        rule = IsSiblingOfFilterMatch(["_no_such_filter_"])
+        self.assertEqual(self._apply_rule(rule), set())
+
+    def test_IsAncestorOfFilterMatch_missing_filter(self):
+        rule = IsAncestorOfFilterMatch(["_no_such_filter_"])
+        self.assertEqual(self._apply_rule(rule), set())
+
+    def test_IsChildOfFilterMatch_missing_filter(self):
+        rule = IsChildOfFilterMatch(["_no_such_filter_"])
+        self.assertEqual(self._apply_rule(rule), set())
+
+    def test_HasCommonAncestorWithFilterMatch_missing_filter(self):
+        rule = HasCommonAncestorWithFilterMatch(["_no_such_filter_"])
+        self.assertEqual(self._apply_rule(rule), set())
+
+    def test_DeepRelationshipPathBetween_missing_filter(self):
+        rule = DeepRelationshipPathBetween(["I0005", "_no_such_filter_"])
+        self.assertEqual(self._apply_rule(rule), set())
+
+
+class FilterMatchProxyDbTest(unittest.TestCase):
+    """
+    Tests that filtermatch rules correctly respect proxy databases.
+
+    The example database contains one private person (I0988) who is a parent
+    of I0092. When using PrivateProxyDb, I0988 must not appear in sub-filter
+    seed results, so relationships through that person should not be found.
+    """
+
+    # I0988 is the one private person in example.gramps; I0092 is their child.
+    PRIVATE_PERSON_ID = "I0988"
+    CHILD_OF_PRIVATE_ID = "I0092"
+
+    @classmethod
+    def setUpClass(cls):
+        raw_db = import_as_dict(EXAMPLE, User())
+        cls.db = raw_db
+        cls.proxy_db = PrivateProxyDb(raw_db)
+
+        # Confirm setup assumptions
+        private_person = raw_db.get_person_from_gramps_id(cls.PRIVATE_PERSON_ID)
+        assert (
+            private_person is not None and private_person.private
+        ), "Test setup: I0988 must be private in example.gramps"
+        assert (
+            cls.proxy_db.get_person_from_handle(private_person.handle) is None
+        ), "Test setup: PrivateProxyDb must hide private people"
+
+    def _apply_rule_on(self, rule, db, baserule, base_name="Base"):
+        """Register base filter and apply the outer rule against db."""
+        base_filter = GenericFilter()
+        if isinstance(baserule, list):
+            base_filter.set_rules(baserule)
+        else:
+            base_filter.add_rule(baserule)
+        base_filter.set_name(base_name)
+        CustomFilters.get_filters_dict("Person")[base_name] = base_filter
+
+        outer = GenericFilter()
+        outer.add_rule(rule)
+        return set(outer.apply(db))
+
+    def test_IsChildOfFilterMatch_proxy_excludes_private_seed(self):
+        """
+        When the seed filter contains only the private person I0988,
+        IsChildOfFilterMatch must return empty on PrivateProxyDb because
+        I0988 is excluded from the seed, so their children are not populated.
+        """
+        seed = HasIdOf([self.PRIVATE_PERSON_ID])
+        rule = IsChildOfFilterMatch(["Base"])
+
+        # Normal db: I0988 is the seed, so I0092 (their child) is found.
+        full_result = self._apply_rule_on(rule, self.db, seed)
+        self.assertIn(
+            self.db.get_person_from_gramps_id(self.CHILD_OF_PRIVATE_ID).handle,
+            full_result,
+        )
+
+        # Proxy db: I0988 is hidden, so no seed is found and result is empty.
+        proxy_result = self._apply_rule_on(rule, self.proxy_db, seed)
+        self.assertEqual(proxy_result, set())
+
+    def test_IsParentOfFilterMatch_proxy_excludes_private_from_result(self):
+        """
+        When the seed filter contains I0092 (child of private I0988),
+        IsParentOfFilterMatch should not return I0988 on PrivateProxyDb
+        because the outer filter itself iterates through the proxy.
+        """
+        seed = HasIdOf([self.CHILD_OF_PRIVATE_ID])
+        rule = IsParentOfFilterMatch(["Base"])
+
+        private_handle = self.db.get_person_from_gramps_id(
+            self.PRIVATE_PERSON_ID
+        ).handle
+
+        # Normal db: I0988 is a parent of I0092, so they appear in results.
+        full_result = self._apply_rule_on(rule, self.db, seed)
+        self.assertIn(private_handle, full_result)
+
+        # Proxy db: I0988 is hidden from the outer iteration, so they must
+        # not appear in results even though they are in selected_handles.
+        proxy_result = self._apply_rule_on(rule, self.proxy_db, seed)
+        self.assertNotIn(private_handle, proxy_result)
 
 
 if __name__ == "__main__":
