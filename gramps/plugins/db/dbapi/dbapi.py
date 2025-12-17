@@ -29,6 +29,7 @@ Database API interface
 # -------------------------------------------------------------------------
 import logging
 import time
+import json
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -1223,12 +1224,7 @@ class DBAPI(DbGeneric):
         Return a value (int, string, etc) or a Gramps object.
         """
         if isinstance(value, str):
-            if value.startswith("{") or value.startswith("["):
-                try:
-                    return self.serializer.string_to_data(value)
-                except Exception:
-                    # Must be a value
-                    pass
+            value = self.serializer.string_to_data(value)
         return value
 
     def _select_from_table(
@@ -1272,7 +1268,7 @@ class DBAPI(DbGeneric):
                 )
 
         evaluator = Evaluator(
-            table_name,
+            table_name,  # TODO: move these to db class:
             "json_extract(json_data, '$.{attr}')",
             "json_array_length(json_extract(json_data, '$.{attr}'))",
             env if env is not None else globals(),
@@ -1284,11 +1280,11 @@ class DBAPI(DbGeneric):
         elif isinstance(what, types.LambdaType):
             # Convert lambda to string
             what_str = lambda_to_string(what)
-            if what_str in ["obj", "person"]:
+            if what_str in ["obj", "person"]:  # TODO: add table names
                 what_str = "json_data"
             what_expr = str(evaluator.convert(what_str))
         elif isinstance(what, str):
-            if what in ["obj", "person"]:
+            if what in ["obj", "person"]:  # TODO: add table names
                 what = "json_data"
             what_expr = str(evaluator.convert(what))
         else:
@@ -1297,7 +1293,7 @@ class DBAPI(DbGeneric):
                 if isinstance(w, types.LambdaType):
                     # Convert lambda to string
                     w = lambda_to_string(w)
-                if w in ["obj", "person"]:
+                if w in ["obj", "person"]:  # TODO: add table names
                     w = "json_data"
                 what_list.append(str(evaluator.convert(w)))
             what_expr = ", ".join(what_list)

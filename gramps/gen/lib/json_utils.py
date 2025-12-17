@@ -150,7 +150,20 @@ def string_to_data(string: str | bytes) -> DataDict:
     """
     Convert a JSON string into its data representation.
     """
-    return DataDict(orjson.loads(string))
+    try:
+        raw_data = orjson.loads(string)
+    except Exception:
+        return string
+
+    if isinstance(raw_data, dict):
+        return DataDict(raw_data)
+    elif isinstance(raw_data, list):
+        return [
+            DataDict(v) if isinstance(v, dict) and "_class" in v else v
+            for v in raw_data
+        ]
+    else:
+        return raw_data
 
 
 def string_to_dict(string: str | bytes) -> dict:

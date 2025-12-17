@@ -60,7 +60,7 @@ class Disconnected(Rule):
 
     def prepare(self, db: Database, user):
         if db.can_use_fast_selects():
-            self.selected_handles: set(
+            self.selected_handles = set(
                 list(
                     db.select_from_person(
                         what="person.handle",
@@ -68,7 +68,8 @@ class Disconnected(Rule):
                     )
                 )
             )
-
+        else:
+            self.selected_handles = None
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         if db.can_use_fast_selects():

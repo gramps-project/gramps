@@ -43,3 +43,4 @@ class PeoplePrivate(IsPrivate):
     name = _("People marked private")
     description = _("Matches people that are indicated as private")
     category = _("General filters")
+    table = "person"
