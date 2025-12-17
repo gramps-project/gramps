@@ -66,23 +66,13 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
         self.with_people = []
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
-        if user:
-            user.begin_progress(
-                self.category,
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-            )
-        for person in db.iter_people():
-            if user:
-                user.step_progress()
-            if person and self.filt.apply_to_one(db, person):
-                # store all people in the filter so as to compare later
-                self.with_people.append(person.handle)
-                # fill list of ancestor of person if not present yet
-                if person.handle not in self.ancestor_cache:
-                    self.add_ancs(db, person)
-        if user:
-            user.end_progress()
+
+        for handle in self.filt.find_filter().apply(db):
+            self.with_people.append(handle)
+            # fill list of ancestor of person if not present yet
+            if handle not in self.ancestor_cache:
+                person = db.get_raw_person_data(handle)
+                self.add_ancs(db, person)
 
     def reset(self):
         self.filt.requestreset()

@@ -166,28 +166,19 @@ class DeepRelationshipPathBetween(Rule):
         self.filt = MatchesFilter([filter_name])
         self.filt.requestprepare(db, user)
 
+        target_people = self.filt.find_filter().apply(db)
+
         if user:
-            user.begin_progress(
-                _("Finding relationship paths"),
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-            )
-        target_people = []
-        for person in db.iter_people():
-            if self.filt.apply_to_one(db, person):
-                target_people.append(person.handle)
-            if user:
-                user.step_progress()
-        if user:
-            user.end_progress()
             user.begin_progress(
                 _("Finding relationship paths"),
                 _("Evaluating people"),
-                db.get_number_of_people(),
+                len(target_people),
             )
+
         self.selected_handles: Set[str] = find_deep_relations(
             db, user, root_person, target_people
         )
+
         if user:
             user.end_progress()
 

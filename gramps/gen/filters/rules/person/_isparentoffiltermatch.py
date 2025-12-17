@@ -64,19 +64,10 @@ class IsParentOfFilterMatch(Rule):
         self.selected_handles: Set[str] = set()
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
-        if user:
-            user.begin_progress(
-                self.category,
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-            )
-        for person in db.iter_people():
-            if user:
-                user.step_progress()
-            if self.filt.apply_to_one(db, person):
-                self.init_list(person)
-        if user:
-            user.end_progress()
+
+        for handle in self.filt.find_filter().apply(db):
+            person = db.get_raw_person_data(handle)
+            self.init_list(person)
 
     def reset(self):
         self.filt.requestreset()
@@ -87,7 +78,7 @@ class IsParentOfFilterMatch(Rule):
 
     def init_list(self, person: Person):
         for fam_id in person.parent_family_list:
-            fam = self.db.get_family_from_handle(fam_id)
+            fam = self.db.get_raw_family_data(fam_id)
             if fam:
                 self.selected_handles.update(
                     parent_id
