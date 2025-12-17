@@ -42,3 +42,4 @@ class NotePrivate(IsPrivate):
 
     name = _("Notes marked private")
     description = _("Matches notes that are indicated as private")
+    table = "note"

@@ -42,3 +42,4 @@ class FamilyPrivate(IsPrivate):
 
     name = _("Families marked private")
     description = _("Matches families that are indicated as private")
+    table = "family"

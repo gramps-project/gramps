@@ -42,3 +42,4 @@ class RepoPrivate(IsPrivate):
 
     name = _("Repositories marked private")
     description = _("Matches repositories that are indicated as private")
+    table = "repository"
