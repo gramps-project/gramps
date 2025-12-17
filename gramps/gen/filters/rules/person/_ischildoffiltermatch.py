@@ -64,19 +64,10 @@ class IsChildOfFilterMatch(Rule):
         self.selected_handles: Set[str] = set()
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
-        if user:
-            user.begin_progress(
-                self.category,
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-            )
-        for person in db.iter_people():
-            if user:
-                user.step_progress()
-            if self.filt.apply_to_one(db, person):
-                self.init_list(person)
-        if user:
-            user.end_progress()
+
+        for handle in self.filt.find_filter().apply(db):
+            person = db.get_raw_person_data(handle)
+            self.init_list(person)
 
     def reset(self):
         self.filt.requestreset()

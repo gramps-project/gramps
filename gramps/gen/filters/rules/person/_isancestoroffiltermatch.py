@@ -74,19 +74,10 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
 
         self.filt = MatchesFilter(self.list[0:1])
         self.filt.requestprepare(db, user)
-        if user:
-            user.begin_progress(
-                self.category,
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-            )
-        for person in db.iter_people():
-            if user:
-                user.step_progress()
-            if self.filt.apply_to_one(db, person):
-                self.init_ancestor_list(db, person, first)
-        if user:
-            user.end_progress()
+
+        for handle in self.filt.find_filter().apply(db):
+            person = db.get_raw_person_data(handle)
+            self.init_ancestor_list(db, person, first)
 
     def reset(self):
         self.filt.requestreset()

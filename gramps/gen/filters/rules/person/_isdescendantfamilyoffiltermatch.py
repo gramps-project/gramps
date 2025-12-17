@@ -62,21 +62,10 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
         self.matchfilt = MatchesFilter(self.list[0:1])
         self.matchfilt.requestprepare(db, user)
-        if user:
-            user.begin_progress(
-                self.category,
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-            )
-        # Must use db.iter_people() rather that db._iter_raw_person_data()
-        # because of proxies:
-        for person in db.iter_people():
-            if user:
-                user.step_progress()
-            if self.matchfilt.apply_to_one(db, person):
-                self.add_matches(person)
-        if user:
-            user.end_progress()
+
+        for handle in self.matchfilt.find_filter().apply(db):
+            person = db.get_raw_person_data(handle)
+            self.add_matches(person)
 
     def reset(self):
         self.matchfilt.requestreset()
