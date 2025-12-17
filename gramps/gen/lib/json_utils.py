@@ -146,7 +146,9 @@ def convert_object_to_state(obj):
     return obj.get_object_state()
 
 
-def string_to_data(string: str | bytes) -> DataDict:
+def string_to_data(
+    string: str | bytes,
+) -> DataDict | str | bytes | list[DataDict | object]:
     """
     Convert a JSON string into its data representation.
     """

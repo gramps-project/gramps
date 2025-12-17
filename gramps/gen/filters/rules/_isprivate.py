@@ -50,6 +50,7 @@ class IsPrivate(Rule):
     name = "Objects marked private"
     description = "Matches objects that are indicated as private"
     category = _("General filters")
+    table: str  # Set by subclasses
 
     def prepare(self, db: Database, user):
         self.selected_handles = set(
