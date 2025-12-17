@@ -168,11 +168,12 @@ class DeepRelationshipPathBetween(Rule):
 
         target_people = self.filt.find_filter().apply(db)
 
-        user.begin_progress(
-            _("Finding relationship paths"),
-            _("Evaluating people"),
-            len(target_people),
-        )
+        if user:
+            user.begin_progress(
+                _("Finding relationship paths"),
+                _("Evaluating people"),
+                len(target_people),
+            )
 
         self.selected_handles: Set[str] = find_deep_relations(
             db, user, root_person, target_people
