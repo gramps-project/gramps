@@ -20,6 +20,17 @@
 
 import ast
 
+from gramps.gen.lib import (
+    Person,
+    Family,
+    Event,
+    Place,
+    Source,
+    Citation,
+    Repository,
+    EventRoleType,
+)
+
 
 class AttributeNode:
     def __init__(self, json_extract, json_array_length, obj, attr):
@@ -65,7 +76,18 @@ class Evaluator:
         self.json_extract = json_extract
         self.json_array_length = json_array_length
         self.table_name = table_name
-        self.env = env
+        self.env = {
+            "Person": Person,
+            "Family": Family,
+            "Event": Event,
+            "Place": Place,
+            "Source": Source,
+            "Citation": Citation,
+            "Repository": Repository,
+            "EventRoleType": EventRoleType,
+        }
+        if env:
+            self.env.update(env)
         self.item_var = (
             item_var  # Variable name for array iteration (e.g., "item", "event_ref")
         )
@@ -245,6 +267,70 @@ class Evaluator:
             pass
 
         return False
+
+    def split_or_expression_with_array_expansion(
+        self, where_expr, item_var, array_path
+    ):
+        """
+        Split an OR expression into parts with and without array expansion.
+
+        For an expression like "(A and B) or (item in person.array) or (C and D)",
+        this splits it into:
+        - left_parts: Parts without array expansion (e.g., ["(A and B)", "(C and D)"])
+        - right_parts: Parts with array expansion (e.g., ["(item in person.array)"])
+
+        Args:
+            where_expr: Where clause as string
+            item_var: Variable name for array expansion (e.g., "item")
+            array_path: Array path for array expansion (e.g., "event_ref_list")
+
+        Returns:
+            tuple: (left_parts, right_parts, has_array_expansion)
+            - left_parts: List of AST nodes without array expansion
+            - right_parts: List of AST nodes with array expansion
+            - has_array_expansion: Boolean indicating if any right parts exist
+        """
+        if (
+            not where_expr
+            or not isinstance(where_expr, str)
+            or not item_var
+            or not array_path
+        ):
+            return None, None, False
+
+        try:
+            tree = ast.parse(where_expr, mode="eval")
+            node = tree.body
+
+            # Check if it's a BoolOp with OR at the top level
+            if isinstance(node, ast.BoolOp) and isinstance(node.op, ast.Or):
+                left_parts = []
+                right_parts = []
+
+                # Split each value in the OR expression
+                for value in node.values:
+                    # Check if this part contains the array expansion
+                    result = self._extract_array_expansion_from_node(value)
+                    if result[0] == item_var and result[1] == array_path:
+                        # This part has array expansion - goes to right
+                        right_parts.append(value)
+                    else:
+                        # This part doesn't have array expansion - goes to left
+                        left_parts.append(value)
+
+                has_array_expansion = len(right_parts) > 0
+
+                # If we have both left and right parts, return them
+                if has_array_expansion and len(left_parts) > 0:
+                    return left_parts, right_parts, True
+                else:
+                    # Not a valid split case (all parts on one side)
+                    return None, None, False
+
+        except (SyntaxError, AttributeError):
+            pass
+
+        return None, None, False
 
     def _extract_any_from_node(self, node):
         """
@@ -700,7 +786,37 @@ class Evaluator:
                     value, exclude_array_expansion
                 )
                 if value_sql is not None:  # Only include non-excluded values
-                    converted_values.append(f"({value_sql})")
+                    value_sql_str = str(value_sql)
+                    # Check if this value is itself a BoolOp (nested boolean expression)
+                    # If so, we need to ensure it's wrapped as a single unit
+                    is_nested_boolop = isinstance(value, ast.BoolOp)
+
+                    # Only wrap if not already wrapped in parentheses
+                    # Check if it starts with ( and ends with ) and has balanced parentheses
+                    if value_sql_str.startswith("(") and value_sql_str.endswith(")"):
+                        # Check if parentheses are balanced (simple check)
+                        if value_sql_str.count("(") == value_sql_str.count(")"):
+                            # If it's a nested BoolOp, we may need to wrap it anyway
+                            # to ensure proper precedence when combined with different operators
+                            if is_nested_boolop:
+                                # Check if the nested operator is different from current operator
+                                # If different, we need to wrap to preserve precedence
+                                nested_op = self._ast_operator_to_string(
+                                    value.op
+                                ).upper()
+                                if nested_op != op_str:
+                                    # Different operators - wrap to preserve precedence
+                                    converted_values.append(f"({value_sql_str})")
+                                else:
+                                    # Same operator - no need to wrap
+                                    converted_values.append(value_sql_str)
+                            else:
+                                converted_values.append(value_sql_str)
+                        else:
+                            converted_values.append(f"({value_sql_str})")
+                    else:
+                        # Not wrapped - always wrap
+                        converted_values.append(f"({value_sql_str})")
 
             if not converted_values:
                 return None  # All values were excluded

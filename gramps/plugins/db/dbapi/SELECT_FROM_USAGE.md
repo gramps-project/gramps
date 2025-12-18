@@ -344,42 +344,31 @@ primary_event_refs = list(
    - Deeply nested structures: `(A and (B or C)) and D`
    - `any()` with any boolean structure: `(A and B) or any([...])` or `(A or any([...])) and B`
    - Array expansion with AND: `(A and B) and (item in person.array)` ✅
-   - Array expansion with OR: `(A and B) or (item in person.array)` ⚠️ (see limitation below)
+   - Array expansion with OR: `(A and B) or (item in person.array)` ✅
    
-   **Limitation with Array Expansion in OR Expressions:**
+   **Array Expansion in OR Expressions:**
    
-   When array expansion is used in an OR expression, there is a known limitation:
+   When array expansion is used in an OR expression, the query uses a UNION to combine results:
    
    ```python
-   # This works, but has a limitation:
+   # This works correctly, including persons with empty arrays:
    db.select_from_person(
        what="person.handle",
        where="(person.gender == Person.MALE and len(person.family_list) > 0) or (item in person.event_ref_list)"
    )
    ```
    
-   **What works:**
-   - Returns all persons who have array elements (right side of OR)
-   - Returns persons matching the left side AND who have array elements
-   - Boolean structure is preserved correctly
-   
-   **What doesn't work:**
-   - Persons matching the left side but with **empty arrays** are not included
-   - This is because `json_each()` on an empty array returns no rows
-   - Example: A person who is male with families but has no `event_ref_list` items will not appear in results
-   
-   **Workaround:**
-   If you need to include persons with empty arrays, use `any()` instead of array expansion:
+   **Note:** If you need one row per person (not per array element), use `any()` instead:
    
    ```python
-   # This works correctly for all cases:
+   # Returns one row per person (not per array element):
    db.select_from_person(
        what="person.handle",
        where="(person.gender == Person.MALE and len(person.family_list) > 0) or any([item for item in person.event_ref_list])"
    )
    ```
    
-   Note: `any()` returns one row per person (not per array element), while array expansion returns one row per array element.
+   The difference: `any()` returns one row per person, while array expansion returns one row per array element.
    
 
 4. **Single Condition in List Comprehensions**: List comprehensions support only one `if` condition. Multiple conditions should be combined with `and`:

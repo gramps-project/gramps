@@ -27,6 +27,7 @@ Database API interface
 # Python modules
 #
 # -------------------------------------------------------------------------
+import ast
 import logging
 import time
 import json
@@ -1292,6 +1293,262 @@ class DBAPI(DbGeneric):
             is_array_expansion_in_or = evaluator.is_array_expansion_in_or(
                 where_str, item_var, array_path
             )
+
+        # Handle UNION query for array expansion in OR expressions
+        if is_array_expansion_in_or:
+            # Split the OR expression into left (no array expansion) and right (with array expansion) parts
+            left_parts, right_parts, has_array_expansion = (
+                evaluator.split_or_expression_with_array_expansion(
+                    where_str, item_var, array_path
+                )
+            )
+
+            if has_array_expansion and left_parts and right_parts:
+                # Generate UNION query: (left_query) UNION (right_query)
+
+                # Prepare what clause (same for both queries)
+                # Check for list comprehension in what clause first
+                what_str = what
+                if isinstance(what, types.LambdaType):
+                    what_str = lambda_to_string(what)
+                elif (
+                    isinstance(what, list)
+                    and len(what) == 1
+                    and isinstance(what[0], str)
+                ):
+                    what_str = what[0]
+                elif not isinstance(what, str):
+                    what_str = None
+
+                (
+                    what_item_var,
+                    what_array_path,
+                    what_expression_node,
+                    what_condition_node,
+                ) = evaluator.detect_list_comprehension_in_what(what_str)
+
+                # Build what_expr (same for both queries)
+                # Note: If what_item_var is set, both queries will need json_each for what clause
+                # Left query: json_each for what clause only
+                # Right query: json_each for both what and where clauses
+                if what_item_var and what_array_path:
+                    # List comprehension in what clause - both queries need json_each for what
+                    what_evaluator = Evaluator(
+                        table_name,
+                        "json_extract(json_each.value, '$.{attr}')",
+                        "json_array_length(json_extract(json_each.value, '$.{attr}'))",
+                        env if env is not None else globals(),
+                        item_var=what_item_var,
+                        array_path=what_array_path,
+                    )
+                    what_expr = str(what_evaluator.convert_to_sql(what_expression_node))
+                    # Extract array path for json_each in what clause
+                    array_sql_evaluator = Evaluator(
+                        table_name,
+                        "json_extract(json_data, '$.{attr}')",
+                        "json_array_length(json_extract(json_data, '$.{attr}'))",
+                        env if env is not None else globals(),
+                    )
+                    what_array_sql = array_sql_evaluator.convert(
+                        f"{table_name}.{what_array_path}"
+                    )
+                    what_json_each_expr = f"json_each({what_array_sql}, '$')"
+                elif what is None:
+                    what_expr = "json_data"
+                elif isinstance(what, types.LambdaType):
+                    what_str = lambda_to_string(what)
+                    if what_str in ["obj", "person"]:
+                        what_str = "json_data"
+                    what_expr = str(evaluator.convert(what_str))
+                elif isinstance(what, str):
+                    if what in ["obj", "person"]:
+                        what = "json_data"
+                    # Check if what references item_var (for right query)
+                    if what.startswith(f"{item_var}.") or what == item_var:
+                        array_expansion_evaluator = Evaluator(
+                            table_name,
+                            "json_extract(json_each.value, '$.{attr}')",
+                            "json_array_length(json_extract(json_each.value, '$.{attr}'))",
+                            env if env is not None else globals(),
+                            item_var=item_var,
+                            array_path=array_path,
+                        )
+                        what_expr = str(array_expansion_evaluator.convert(what))
+                    else:
+                        what_expr = str(evaluator.convert(what))
+                else:
+                    what_list = []
+                    for w in what:
+                        if isinstance(w, types.LambdaType):
+                            w = lambda_to_string(w)
+                        if w in ["obj", "person"]:
+                            w = "json_data"
+                        if w.startswith(f"{item_var}.") or w == item_var:
+                            array_expansion_evaluator = Evaluator(
+                                table_name,
+                                "json_extract(json_each.value, '$.{attr}')",
+                                "json_array_length(json_extract(json_each.value, '$.{attr}'))",
+                                env if env is not None else globals(),
+                                item_var=item_var,
+                                array_path=array_path,
+                            )
+                            what_list.append(str(array_expansion_evaluator.convert(w)))
+                        else:
+                            what_list.append(str(evaluator.convert(w)))
+                    what_expr = ", ".join(what_list)
+
+                # Build left query (no array expansion)
+                # Combine left_parts with AND
+                if len(left_parts) == 1:
+                    left_where_node = left_parts[0]
+                else:
+                    # Create a BoolOp with AND to combine left parts
+                    left_where_node = ast.BoolOp(op=ast.And(), values=left_parts)
+
+                # Convert the left node to SQL
+                left_where_sql = evaluator._convert_node_with_replacements(
+                    left_where_node, exclude_array_expansion=False
+                )
+                left_where_sql = (
+                    str(left_where_sql)
+                    if not isinstance(left_where_sql, str)
+                    else left_where_sql
+                )
+
+                # Add what_condition to left query if present
+                if what_item_var and what_array_path and what_condition_node:
+                    what_condition_sql = what_evaluator.convert_to_sql(
+                        what_condition_node
+                    )
+                    if left_where_sql:
+                        left_where_expr = (
+                            f" WHERE ({left_where_sql}) AND ({what_condition_sql})"
+                        )
+                    else:
+                        left_where_expr = f" WHERE {what_condition_sql}"
+                elif left_where_sql:
+                    left_where_expr = f" WHERE {left_where_sql}"
+                else:
+                    left_where_expr = ""
+
+                # Left query FROM clause: add json_each if what clause uses array expansion
+                if what_item_var and what_array_path:
+                    left_from_clause = f"{table_name}, {what_json_each_expr}"
+                else:
+                    left_from_clause = table_name
+                left_query = (
+                    f"SELECT {what_expr} FROM {left_from_clause}{left_where_expr}"
+                )
+
+                # Build right query (with array expansion)
+                # Combine right_parts with AND
+                if len(right_parts) == 1:
+                    right_where_node = right_parts[0]
+                else:
+                    # Create a BoolOp with AND to combine right parts
+                    right_where_node = ast.BoolOp(op=ast.And(), values=right_parts)
+
+                # For right query, exclude array expansion from WHERE (it's in FROM)
+                right_evaluator = Evaluator(
+                    table_name,
+                    "json_extract(json_each.value, '$.{attr}')",
+                    "json_array_length(json_extract(json_each.value, '$.{attr}'))",
+                    env if env is not None else globals(),
+                    item_var=item_var,
+                    array_path=array_path,
+                )
+                right_where_sql = right_evaluator._convert_node_with_replacements(
+                    right_where_node, exclude_array_expansion=True
+                )
+                right_where_sql = (
+                    str(right_where_sql)
+                    if not isinstance(right_where_sql, str)
+                    else right_where_sql
+                )
+
+                # Add what_condition to right query if present
+                if what_item_var and what_array_path and what_condition_node:
+                    what_condition_sql = what_evaluator.convert_to_sql(
+                        what_condition_node
+                    )
+                    if right_where_sql:
+                        right_where_expr = (
+                            f" WHERE ({right_where_sql}) AND ({what_condition_sql})"
+                        )
+                    else:
+                        right_where_expr = f" WHERE {what_condition_sql}"
+                elif right_where_sql:
+                    right_where_expr = f" WHERE {right_where_sql}"
+                else:
+                    right_where_expr = ""
+
+                # Build json_each for right query
+                # Right query needs json_each for where clause array expansion
+                array_sql = evaluator.convert(f"{table_name}.{array_path}")
+                json_each_expr = f"json_each({array_sql}, '$')"
+
+                # Right query FROM clause: combine json_each for what (if any) and where
+                if what_item_var and what_array_path:
+                    # Both what and where use array expansion - need both json_each
+                    # Use the where clause json_each (they might be the same array)
+                    if what_array_path == array_path:
+                        # Same array - only need one json_each
+                        right_from_clause = f"{table_name}, {json_each_expr}"
+                    else:
+                        # Different arrays - need both
+                        right_from_clause = (
+                            f"{table_name}, {what_json_each_expr}, {json_each_expr}"
+                        )
+                else:
+                    # Only where clause uses array expansion
+                    right_from_clause = f"{table_name}, {json_each_expr}"
+
+                right_query = (
+                    f"SELECT {what_expr} FROM {right_from_clause}{right_where_expr}"
+                )
+
+                # Combine with UNION
+                # Handle ORDER BY after UNION
+                if order_by is None:
+                    order_by_expr = ""
+                else:
+                    # Handle single lambda/function or string as order_by (convert to list)
+                    if isinstance(order_by, types.LambdaType):
+                        order_by = [lambda_to_string(order_by)]
+                    elif callable(order_by) and not isinstance(order_by, type):
+                        order_by = [order_by]
+                    elif isinstance(order_by, str):
+                        order_by = [order_by]
+
+                    # Convert any lambdas in the list to strings
+                    converted_order_by = []
+                    for expr in order_by:
+                        if isinstance(expr, types.LambdaType):
+                            converted_order_by.append(lambda_to_string(expr))
+                        else:
+                            converted_order_by.append(expr)
+                    order_by_expr = evaluator.get_order_by(converted_order_by)
+
+                query = f"{left_query} UNION {right_query}{order_by_expr};"
+
+                # Execute UNION query
+                with self.dbapi.cursor() as cursor:
+                    try:
+                        cursor.execute(query)
+                    except Exception as exc:
+                        raise Exception(f"{exc}\nQuery: {query}") from exc
+
+                    row = cursor.fetchone()
+                    while row:
+                        if what_expr == "json_data":
+                            yield self._sql_value_or_object(row[0])
+                        elif isinstance(what, str):
+                            yield self._sql_value_or_object(row[0])
+                        else:
+                            yield [self._sql_value_or_object(value) for value in row]
+                        row = cursor.fetchone()
+
+                return
 
         # Check for list comprehension in what clause (array expansion with filtering)
         what_str = what

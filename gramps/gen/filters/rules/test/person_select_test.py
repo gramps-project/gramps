@@ -931,12 +931,12 @@ class BaseTest(unittest.TestCase):
         """
         Test list comprehension in what clause with condition.
         """
-        # Extract role.value from event_refs where role.value == 1 (PRIMARY)
-        from gramps.gen.lib.eventroletype import EventRoleType
+        from gramps.gen.lib import EventRoleType
 
+        # Extract role.value from event_refs where role.value == 1 (PRIMARY)
         res = list(
             self.db.select_from_person(
-                what=f"[eref.role.value for eref in person.event_ref_list if eref.role.value == {EventRoleType.PRIMARY}]"
+                what="[eref.role.value for eref in person.event_ref_list if eref.role.value == EventRoleType.PRIMARY]"
             )
         )
         # Should return one row per matching event_ref
@@ -1003,13 +1003,11 @@ class BaseTest(unittest.TestCase):
         Test any() with list comprehension in where clause with condition.
         """
         # Find persons that have any event_ref with role.value == 1 (PRIMARY)
-        from gramps.gen.lib.eventroletype import EventRoleType
-
         res = set(
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"any([eref for eref in person.event_ref_list if eref.role.value == {EventRoleType.PRIMARY}])",
+                    where="any([eref for eref in person.event_ref_list if eref.role.value == EventRoleType.PRIMARY])",
                 )
             )
         )
@@ -1024,13 +1022,11 @@ class BaseTest(unittest.TestCase):
         Test any() with list comprehension combined with person-level filtering.
         """
         # Find persons with specific gender AND any event_ref
-        from gramps.gen.lib import Person
-
         res = set(
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"person.gender == {Person.MALE} and any([eref for eref in person.event_ref_list])",
+                    where="person.gender == Person.MALE and any([eref for eref in person.event_ref_list])",
                 )
             )
         )
@@ -1062,13 +1058,13 @@ class BaseTest(unittest.TestCase):
         """
         Test combining list comprehension in what with any() in where, both with conditions.
         """
-        # Filter persons with any PRIMARY event_ref, then extract role.value from PRIMARY event_refs
-        from gramps.gen.lib.eventroletype import EventRoleType
+        from gramps.gen.lib import EventRoleType
 
+        # Filter persons with any PRIMARY event_ref, then extract role.value from PRIMARY event_refs
         res = list(
             self.db.select_from_person(
-                what=f"[eref.role.value for eref in person.event_ref_list if eref.role.value == {EventRoleType.PRIMARY}]",
-                where=f"any([eref for eref in person.event_ref_list if eref.role.value == {EventRoleType.PRIMARY}])",
+                what="[eref.role.value for eref in person.event_ref_list if eref.role.value == EventRoleType.PRIMARY]",
+                where="any([eref for eref in person.event_ref_list if eref.role.value == EventRoleType.PRIMARY])",
             )
         )
         # Should return one row per PRIMARY event_ref from persons that have at least one PRIMARY event_ref
@@ -1081,12 +1077,12 @@ class BaseTest(unittest.TestCase):
         """
         Test combining list comprehension in what with any() in where with different conditions.
         """
-        # Filter persons with any event_ref, then extract role.value from PRIMARY event_refs only
-        from gramps.gen.lib.eventroletype import EventRoleType
+        from gramps.gen.lib import EventRoleType
 
+        # Filter persons with any event_ref, then extract role.value from PRIMARY event_refs only
         res = list(
             self.db.select_from_person(
-                what=f"[eref.role.value for eref in person.event_ref_list if eref.role.value == {EventRoleType.PRIMARY}]",
+                what="[eref.role.value for eref in person.event_ref_list if eref.role.value == EventRoleType.PRIMARY]",
                 where="any([eref for eref in person.event_ref_list])",
             )
         )
@@ -1100,14 +1096,13 @@ class BaseTest(unittest.TestCase):
         """
         Test combining list comprehension in what with any() in where plus person-level filter.
         """
-        # Filter persons with specific gender AND any PRIMARY event_ref, then extract role.value
-        from gramps.gen.lib import Person
-        from gramps.gen.lib.eventroletype import EventRoleType
+        from gramps.gen.lib import EventRoleType
 
+        # Filter persons with specific gender AND any PRIMARY event_ref, then extract role.value
         res = list(
             self.db.select_from_person(
-                what=f"[eref.role.value for eref in person.event_ref_list if eref.role.value == {EventRoleType.PRIMARY}]",
-                where=f"person.gender == {Person.FEMALE} and any([eref for eref in person.event_ref_list if eref.role.value == {EventRoleType.PRIMARY}])",
+                what="[eref.role.value for eref in person.event_ref_list if eref.role.value == EventRoleType.PRIMARY]",
+                where="person.gender == Person.FEMALE and any([eref for eref in person.event_ref_list if eref.role.value == EventRoleType.PRIMARY])",
             )
         )
         # Should return one row per PRIMARY event_ref from female persons that have at least one PRIMARY event_ref
@@ -1140,9 +1135,9 @@ class BaseTest(unittest.TestCase):
         """
         Test array expansion pattern with additional condition.
         """
-        # Expand event_ref_list and filter by role.value
-        from gramps.gen.lib.eventroletype import EventRoleType
+        from gramps.gen.lib import EventRoleType
 
+        # Expand event_ref_list and filter by role.value
         res = list(
             self.db.select_from_person(
                 what="item.role.value",
@@ -1218,14 +1213,12 @@ class BaseTest(unittest.TestCase):
         """
         Test simple AND expression: condition1 and condition2
         """
-        from gramps.gen.lib import Person
-
         # Find persons who are male AND have families
         res = set(
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"person.gender == {Person.MALE} and len(person.family_list) > 0",
+                    where="person.gender == Person.MALE and len(person.family_list) > 0",
                 )
             )
         )
@@ -1236,7 +1229,7 @@ class BaseTest(unittest.TestCase):
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"person.gender == {Person.MALE}",
+                    where="person.gender == Person.MALE",
                 )
             )
         )
@@ -1255,14 +1248,12 @@ class BaseTest(unittest.TestCase):
         """
         Test simple OR expression: condition1 or condition2
         """
-        from gramps.gen.lib import Person
-
         # Find persons who are male OR have no families
         res = set(
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"person.gender == {Person.MALE} or len(person.family_list) == 0",
+                    where="person.gender == Person.MALE or len(person.family_list) == 0",
                 )
             )
         )
@@ -1273,7 +1264,7 @@ class BaseTest(unittest.TestCase):
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"person.gender == {Person.MALE}",
+                    where="person.gender == Person.MALE",
                 )
             )
         )
@@ -1299,7 +1290,7 @@ class BaseTest(unittest.TestCase):
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"person.gender == {Person.MALE} and len(person.family_list) > 0 and len(person.media_list) > 0",
+                    where="person.gender == Person.MALE and len(person.family_list) > 0 and len(person.media_list) > 0",
                 )
             )
         )
@@ -1316,14 +1307,12 @@ class BaseTest(unittest.TestCase):
         """
         Test multiple OR expressions: A or B or C
         """
-        from gramps.gen.lib import Person
-
         # Find persons who are male OR female OR have unknown gender
         res = set(
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"person.gender == {Person.MALE} or person.gender == {Person.FEMALE} or person.gender == {Person.UNKNOWN}",
+                    where="person.gender == Person.MALE or person.gender == Person.FEMALE or person.gender == Person.UNKNOWN",
                 )
             )
         )
@@ -1341,7 +1330,7 @@ class BaseTest(unittest.TestCase):
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"(person.gender == {Person.MALE} and len(person.family_list) > 0) or (person.gender == {Person.FEMALE} and len(person.family_list) == 0)",
+                    where="(person.gender == Person.MALE and len(person.family_list) > 0) or (person.gender == Person.FEMALE and len(person.family_list) == 0)",
                 )
             )
         )
@@ -1365,7 +1354,7 @@ class BaseTest(unittest.TestCase):
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"(person.gender == {Person.MALE} and len(person.family_list) > 0) or (person.gender == {Person.FEMALE} and len(person.media_list) > 0)",
+                    where="(person.gender == Person.MALE and len(person.family_list) > 0) or (person.gender == Person.FEMALE and len(person.media_list) > 0)",
                 )
             )
         )
@@ -1389,7 +1378,7 @@ class BaseTest(unittest.TestCase):
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"(person.gender == {Person.MALE} and (len(person.family_list) > 0 or len(person.media_list) > 0)) and len(person.note_list) > 0",
+                    where="(person.gender == Person.MALE and (len(person.family_list) > 0 or len(person.media_list) > 0)) and len(person.note_list) > 0",
                 )
             )
         )
@@ -1406,15 +1395,14 @@ class BaseTest(unittest.TestCase):
         """
         Test any() combined with AND: (A and B) or any([...])
         """
-        from gramps.gen.lib import Person
-        from gramps.gen.lib.eventroletype import EventRoleType
+        from gramps.gen.lib import Person, EventRoleType
 
         # Find persons who are (male AND have families) OR have any PRIMARY event_ref
         res = set(
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"(person.gender == {Person.MALE} and len(person.family_list) > 0) or any([eref for eref in person.event_ref_list if eref.role.value == {EventRoleType.PRIMARY}])",
+                    where="(person.gender == Person.MALE and len(person.family_list) > 0) or any([eref for eref in person.event_ref_list if eref.role.value == EventRoleType.PRIMARY])",
                 )
             )
         )
@@ -1434,15 +1422,14 @@ class BaseTest(unittest.TestCase):
         """
         Test any() combined with OR: (A or any([...])) and B
         """
-        from gramps.gen.lib import Person
-        from gramps.gen.lib.eventroletype import EventRoleType
+        from gramps.gen.lib import Person, EventRoleType
 
         # Find persons who are (male OR have any PRIMARY event_ref) AND have families
         res = set(
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"(person.gender == {Person.MALE} or any([eref for eref in person.event_ref_list if eref.role.value == {EventRoleType.PRIMARY}])) and len(person.family_list) > 0",
+                    where="(person.gender == Person.MALE or any([eref for eref in person.event_ref_list if eref.role.value == EventRoleType.PRIMARY])) and len(person.family_list) > 0",
                 )
             )
         )
@@ -1461,13 +1448,10 @@ class BaseTest(unittest.TestCase):
 
     def test_array_expansion_with_and_expression(self):
         """
-        Test array expansion combined with AND: (A and B) or (item in person.array)
+        Test array expansion combined with OR: (A and B) or (item in person.array)
         Note: When array expansion is used in an OR expression, it expands the result set.
-        This tests that the boolean structure is preserved correctly.
-
-        KNOWN LIMITATION: When array expansion is in an OR expression, persons matching
-        the left side but with empty arrays are not included (because json_each on empty
-        array returns no rows). This would require a UNION query to fix properly.
+        This tests that the boolean structure is preserved correctly and that UNION
+        queries correctly include persons matching the left side even with empty arrays.
         """
         from gramps.gen.lib import Person
 
@@ -1477,7 +1461,7 @@ class BaseTest(unittest.TestCase):
         res = list(
             self.db.select_from_person(
                 what="person.handle",
-                where=f"(person.gender == {Person.MALE} and len(person.family_list) > 0) or (item in person.event_ref_list)",
+                where="(person.gender == Person.MALE and len(person.family_list) > 0) or (item in person.event_ref_list)",
             )
         )
         # Should return rows for persons matching either condition
@@ -1495,7 +1479,7 @@ class BaseTest(unittest.TestCase):
                 f"Person {handle} should match one of the conditions",
             )
 
-        # Verify that we get at least persons with event_refs (right side)
+        # Verify that we get persons with event_refs (right side)
         # Right side: persons with any event_ref (using array expansion)
         right_side = set(
             list(
@@ -1506,25 +1490,40 @@ class BaseTest(unittest.TestCase):
             )
         )
         # The result should include all persons with event_refs
-        # (Note: persons matching left side but with no event_refs are not included due to limitation)
         self.assertTrue(
             right_side.issubset(unique_handles),
             "Result should include all persons with event_refs",
+        )
+
+        # Verify that we get persons matching left side even with empty arrays
+        # Left side: persons who are male AND have families (regardless of event_ref_list)
+        left_side = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gender == Person.MALE and len(person.family_list) > 0",
+                )
+            )
+        )
+        # The result should include all persons matching the left side
+        # This verifies that UNION correctly includes persons with empty arrays
+        self.assertTrue(
+            left_side.issubset(unique_handles),
+            "Result should include all persons matching left side, even with empty arrays",
         )
 
     def test_complex_nested_with_any(self):
         """
         Test complex nested expression with any(): (A and (B or any([...]))) and C
         """
-        from gramps.gen.lib import Person
-        from gramps.gen.lib.eventroletype import EventRoleType
+        from gramps.gen.lib import Person, EventRoleType
 
         # Find persons who are (male AND (have families OR have PRIMARY event_ref)) AND have media
         res = set(
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"(person.gender == {Person.MALE} and (len(person.family_list) > 0 or any([eref for eref in person.event_ref_list if eref.role.value == {EventRoleType.PRIMARY}]))) and len(person.media_list) > 0",
+                    where="(person.gender == Person.MALE and (len(person.family_list) > 0 or any([eref for eref in person.event_ref_list if eref.role.value == EventRoleType.PRIMARY]))) and len(person.media_list) > 0",
                 )
             )
         )
@@ -1552,7 +1551,7 @@ class BaseTest(unittest.TestCase):
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"not (person.gender == {Person.MALE} and len(person.family_list) > 0) or (person.gender == {Person.FEMALE} and len(person.family_list) == 0)",
+                    where="not (person.gender == Person.MALE and len(person.family_list) > 0) or (person.gender == Person.FEMALE and len(person.family_list) == 0)",
                 )
             )
         )
@@ -1571,8 +1570,7 @@ class BaseTest(unittest.TestCase):
         """
         Test very complex expression with multiple levels of nesting.
         """
-        from gramps.gen.lib import Person
-        from gramps.gen.lib.eventroletype import EventRoleType
+        from gramps.gen.lib import Person, EventRoleType
 
         # Find persons matching: ((A and B) or (C and D)) and (E or F)
         # Where:
@@ -1582,7 +1580,7 @@ class BaseTest(unittest.TestCase):
             list(
                 self.db.select_from_person(
                     what="person.handle",
-                    where=f"((person.gender == {Person.MALE} and len(person.family_list) > 0) or (person.gender == {Person.FEMALE} and len(person.media_list) > 0)) and (len(person.note_list) > 0 or any([eref for eref in person.event_ref_list if eref.role.value == {EventRoleType.PRIMARY}]))",
+                    where="((person.gender == Person.MALE and len(person.family_list) > 0) or (person.gender == Person.FEMALE and len(person.media_list) > 0)) and (len(person.note_list) > 0 or any([eref for eref in person.event_ref_list if eref.role.value == EventRoleType.PRIMARY]))",
                 )
             )
         )
