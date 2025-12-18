@@ -1267,6 +1267,14 @@ class DBAPI(DbGeneric):
                     + "you must pass `apply_to` set to 'proxy', or 'db'"
                 )
 
+        # Check for any() with list comprehension pattern in where clause
+        where_str = where
+        if isinstance(where, types.LambdaType):
+            where_str = lambda_to_string(where)
+        elif where is None:
+            where_str = None
+
+        # Base evaluator for normal attribute access
         evaluator = Evaluator(
             table_name,  # TODO: move these to db class:
             "json_extract(json_data, '$.{attr}')",
@@ -1274,8 +1282,78 @@ class DBAPI(DbGeneric):
             env if env is not None else globals(),
         )
 
+        # Check for array expansion pattern (affects FROM clause, not WHERE structure)
+        item_var, array_path = evaluator.detect_array_expansion(where_str)
+        is_array_expansion = item_var is not None and array_path is not None
+
+        # Check if array expansion is in an OR expression (needs UNION handling)
+        is_array_expansion_in_or = False
+        if is_array_expansion:
+            is_array_expansion_in_or = evaluator.is_array_expansion_in_or(
+                where_str, item_var, array_path
+            )
+
+        # Check for list comprehension in what clause (array expansion with filtering)
+        what_str = what
+        if isinstance(what, types.LambdaType):
+            what_str = lambda_to_string(what)
+        elif isinstance(what, list) and len(what) == 1 and isinstance(what[0], str):
+            # Single item list - check if it's a list comprehension
+            what_str = what[0]
+        elif not isinstance(what, str):
+            what_str = None
+
+        what_item_var, what_array_path, what_expression_node, what_condition_node = (
+            evaluator.detect_list_comprehension_in_what(what_str)
+        )
+
+        # Initialize what_condition_sql for potential combination with where clause
+        what_condition_sql = None
+
         # Convert lambda functions to strings for what, where, and order_by
-        if what is None:
+        if what_item_var and what_array_path:
+            # List comprehension in what clause - array expansion with filtering
+            # Pattern: [item.attr for item in person.array_path if condition]
+
+            # Create evaluator for the expression with item_var set
+            what_evaluator = Evaluator(
+                table_name,
+                "json_extract(json_each.value, '$.{attr}')",
+                "json_array_length(json_extract(json_each.value, '$.{attr}'))",
+                env if env is not None else globals(),
+                item_var=what_item_var,
+                array_path=what_array_path,
+            )
+
+            # Convert expression to SQL
+            what_expr = str(what_evaluator.convert_to_sql(what_expression_node))
+
+            # Extract the array path SQL for json_each
+            array_sql_evaluator = Evaluator(
+                table_name,
+                "json_extract(json_data, '$.{attr}')",
+                "json_array_length(json_extract(json_data, '$.{attr}'))",
+                env if env is not None else globals(),
+            )
+            array_sql = array_sql_evaluator.convert(f"{table_name}.{what_array_path}")
+
+            # Generate json_each part
+            json_each_expr = f"json_each({array_sql}, '$')"
+
+            # Build FROM clause with json_each
+            from_clause = f"{table_name}, {json_each_expr}"
+
+            # Build WHERE clause with condition if present
+            # We'll combine this with any where clause conditions below
+            if what_condition_node:
+                what_condition_sql = what_evaluator.convert_to_sql(what_condition_node)
+            else:
+                what_condition_sql = None
+
+            # Check if where clause also has array patterns to combine
+            # This will be handled in the where clause processing section below
+
+        elif what is None:
             what_expr = "json_data"
         elif isinstance(what, types.LambdaType):
             # Convert lambda to string
@@ -1286,7 +1364,25 @@ class DBAPI(DbGeneric):
         elif isinstance(what, str):
             if what in ["obj", "person"]:  # TODO: add table names
                 what = "json_data"
-            what_expr = str(evaluator.convert(what))
+            # If array expansion is detected, check if what references item_var
+            # Check if what starts with item_var followed by a dot (e.g., "item.role.value")
+            if (
+                is_array_expansion
+                and item_var
+                and (what.startswith(f"{item_var}.") or what == item_var)
+            ):
+                # Create evaluator with item_var set for array expansion
+                array_expansion_evaluator = Evaluator(
+                    table_name,
+                    "json_extract(json_each.value, '$.{attr}')",
+                    "json_array_length(json_extract(json_each.value, '$.{attr}'))",
+                    env if env is not None else globals(),
+                    item_var=item_var,
+                    array_path=array_path,
+                )
+                what_expr = str(array_expansion_evaluator.convert(what))
+            else:
+                what_expr = str(evaluator.convert(what))
         else:
             what_list = []
             for w in what:
@@ -1295,17 +1391,74 @@ class DBAPI(DbGeneric):
                     w = lambda_to_string(w)
                 if w in ["obj", "person"]:  # TODO: add table names
                     w = "json_data"
-                what_list.append(str(evaluator.convert(w)))
+                # If array expansion is detected, check if what references item_var
+                # Check if w starts with item_var followed by a dot (e.g., "item.role.value")
+                if (
+                    is_array_expansion
+                    and item_var
+                    and (w.startswith(f"{item_var}.") or w == item_var)
+                ):
+                    # Create evaluator with item_var set for array expansion
+                    array_expansion_evaluator = Evaluator(
+                        table_name,
+                        "json_extract(json_each.value, '$.{attr}')",
+                        "json_array_length(json_extract(json_each.value, '$.{attr}'))",
+                        env if env is not None else globals(),
+                        item_var=item_var,
+                        array_path=array_path,
+                    )
+                    what_list.append(str(array_expansion_evaluator.convert(w)))
+                else:
+                    what_list.append(str(evaluator.convert(w)))
             what_expr = ", ".join(what_list)
 
-        if where is None:
-            where_expr = ""
-        else:
-            # Convert lambda to string if needed
-            if isinstance(where, types.LambdaType):
-                where = lambda_to_string(where)
-            where_expr = " WHERE %s" % evaluator.convert(where)
+        # Handle where clause with structure preservation
+        # Use Evaluator method that preserves full boolean structure
+        # If array expansion is present, exclude "item in array" from WHERE (it's in FROM)
+        # But pass item_var and array_path so remaining conditions can reference item
+        where_sql = evaluator.convert_where_clause(
+            where_str,
+            exclude_array_expansion=is_array_expansion,
+            item_var=item_var if is_array_expansion else None,
+            array_path=array_path if is_array_expansion else None,
+        )
 
+        # Combine with what condition if present
+        if what_item_var and what_array_path and what_condition_sql:
+            if where_sql:
+                where_expr = f" WHERE ({where_sql}) AND ({what_condition_sql})"
+            else:
+                where_expr = f" WHERE {what_condition_sql}"
+        elif where_sql:
+            where_expr = f" WHERE {where_sql}"
+        else:
+            where_expr = ""
+
+        # Handle array expansion in where clause (affects FROM clause, not WHERE structure)
+        if is_array_expansion:
+            # Array expansion detected - generate SQL with json_each
+            # Extract the array path SQL
+            array_sql = evaluator.convert(f"{table_name}.{array_path}")
+            json_each_expr = f"json_each({array_sql}, '$')"
+
+            # Build the FROM clause with json_each (if not already set by what)
+            if not (what_item_var and what_array_path):
+                from_clause = f"{table_name}, {json_each_expr}"
+
+            # Array expansion pattern "item in person.array" is excluded from WHERE above
+            # Any additional where conditions (like "item.field == 1") are in where_sql
+
+        # Set from_clause if not already set
+        if what_item_var and what_array_path:
+            # Already set above when processing what list comprehension
+            pass
+        elif is_array_expansion:
+            # Already set above
+            pass
+        else:
+            from_clause = table_name
+
+        # Order by handling
         if order_by is None:
             order_by_expr = ""
         else:
@@ -1329,7 +1482,7 @@ class DBAPI(DbGeneric):
                     converted_order_by.append(expr)
             order_by_expr = evaluator.get_order_by(converted_order_by)
 
-        query = f"SELECT {what_expr} from {table_name}{where_expr}{order_by_expr};"
+        query = f"SELECT {what_expr} from {from_clause}{where_expr}{order_by_expr};"
         # Use a separate cursor to avoid invalidation when other queries
         # are executed during iteration (e.g., db.get_family_from_handle())
         with self.dbapi.cursor() as cursor:
