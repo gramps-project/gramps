@@ -1237,6 +1237,7 @@ class DBAPI(DbGeneric):
         order_by=None,
         env=None,
         apply_to=None,
+        explain=False,
     ):
         # DB-API implementation
         # NOTE: evaluator takes patterns in case your DB-API
@@ -1250,6 +1251,7 @@ class DBAPI(DbGeneric):
                     where=where,
                     order_by=order_by,
                     env=env,
+                    explain=explain,
                 )
                 return
             elif apply_to == "db":
@@ -1260,6 +1262,7 @@ class DBAPI(DbGeneric):
                     where=where,
                     order_by=order_by,
                     env=env,
+                    explain=explain,
                 )
                 return
             else:
@@ -1571,6 +1574,11 @@ class DBAPI(DbGeneric):
 
                 query = f"{left_query} UNION {right_query}{order_by_expr};"
 
+                # If explain is True, return the SQL query instead of executing it
+                if explain:
+                    yield query
+                    return
+
                 # Execute UNION query
                 with self.dbapi.cursor() as cursor:
                     try:
@@ -1874,6 +1882,12 @@ class DBAPI(DbGeneric):
                 )
 
         query = f"SELECT {what_expr} from {from_clause}{where_expr}{order_by_expr};"
+
+        # If explain is True, return the SQL query instead of executing it
+        if explain:
+            yield query
+            return
+
         # Use a separate cursor to avoid invalidation when other queries
         # are executed during iteration (e.g., db.get_family_from_handle())
         with self.dbapi.cursor() as cursor:

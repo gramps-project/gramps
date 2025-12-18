@@ -2830,6 +2830,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         where=None,
         order_by=None,
         env=None,
+        explain=False,
     ):
         """
         Select items from table_name where python-string is True,
@@ -2882,11 +2883,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             env={"Person": Person}
         )
         """
+        # Note: explain parameter is only meaningful for SQL-generating implementations
+        # (like dbapi). For this generic implementation, it is ignored.
         yield from select_from_table(
             self, table_name, what=what, where=where, order_by=order_by, env=env
         )
 
-    def select_from_citation(self, *, what=None, where=None, order_by=None, env=None):
+    def select_from_citation(
+        self, *, what=None, where=None, order_by=None, env=None, explain=False
+    ):
         """
         Select items from citation where python-string is True,
         optionally with a list of python-string items to order on.
@@ -2906,10 +2911,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         db.select_from_citation(where="citation.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
-            "citation", what=what, where=where, order_by=order_by, env=env
+            "citation",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            explain=explain,
         )
 
-    def select_from_event(self, *, what=None, where=None, order_by=None, env=None):
+    def select_from_event(
+        self, *, what=None, where=None, order_by=None, env=None, explain=False
+    ):
         """
         Select items from event where python-string is True,
         optionally with a list of python-string items to order on.
@@ -2929,10 +2941,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         db.select_from_event(where="event.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
-            "event", what=what, where=where, order_by=order_by, env=env
+            "event", what=what, where=where, order_by=order_by, env=env, explain=explain
         )
 
-    def select_from_family(self, *, what=None, where=None, order_by=None, env=None):
+    def select_from_family(
+        self, *, what=None, where=None, order_by=None, env=None, explain=False
+    ):
         """
         Select items from family where python-string is True,
         optionally with a list of python-string items to order on.
@@ -2952,10 +2966,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         db.select_from_family(where="family.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
-            "family", what=what, where=where, order_by=order_by, env=env
+            "family",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            explain=explain,
         )
 
-    def select_from_media(self, *, what=None, where=None, order_by=None, env=None):
+    def select_from_media(
+        self, *, what=None, where=None, order_by=None, env=None, explain=False
+    ):
         """
         Select items from media where python-string is True,
         optionally with a list of python-string items to order on.
@@ -2975,10 +2996,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         db.select_from_media(where="media.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
-            "media", what=what, where=where, order_by=order_by, env=env
+            "media", what=what, where=where, order_by=order_by, env=env, explain=explain
         )
 
-    def select_from_note(self, *, what=None, where=None, order_by=None, env=None):
+    def select_from_note(
+        self, *, what=None, where=None, order_by=None, env=None, explain=False
+    ):
         """
         Select items from note where python-string is True,
         optionally with a list of python-string items to order on.
@@ -2998,10 +3021,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         db.select_from_note(where="note.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
-            "note", what=what, where=where, order_by=order_by, env=env
+            "note", what=what, where=where, order_by=order_by, env=env, explain=explain
         )
 
-    def select_from_person(self, *, what=None, where=None, order_by=None, env=None):
+    def select_from_person(
+        self, *, what=None, where=None, order_by=None, env=None, explain=False
+    ):
         """
         Select items from person where python-string is True,
         optionally with a list of python-string items to order on.
@@ -3048,10 +3073,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         )
         """
         yield from self._select_from_table(
-            "person", what=what, where=where, order_by=order_by, env=env
+            "person",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            explain=explain,
         )
 
-    def select_from_place(self, *, what=None, where=None, order_by=None, env=None):
+    def select_from_place(
+        self, *, what=None, where=None, order_by=None, env=None, explain=False
+    ):
         """
         Select items from place where python-string is True,
         optionally with a list of python-string items to order on.
@@ -3071,10 +3103,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         db.select_from_place(where="place.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
-            "place", what=what, where=where, order_by=order_by, env=env
+            "place", what=what, where=where, order_by=order_by, env=env, explain=explain
         )
 
-    def select_from_repository(self, *, what=None, where=None, order_by=None, env=None):
+    def select_from_repository(
+        self, *, what=None, where=None, order_by=None, env=None, explain=False
+    ):
         """
         Select items from repository where python-string is True,
         optionally with a list of python-string items to order on.
@@ -3094,10 +3128,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         db.select_from_repository(where="repository.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
-            "repository", what=what, where=where, order_by=order_by, env=env
+            "repository",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            explain=explain,
         )
 
-    def select_from_source(self, *, what=None, where=None, order_by=None, env=None):
+    def select_from_source(
+        self, *, what=None, where=None, order_by=None, env=None, explain=False
+    ):
         """
         Select items from source where python-string is True,
         optionally with a list of python-string items to order on.
@@ -3117,10 +3158,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         db.select_from_source(where="source.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
-            "source", what=what, where=where, order_by=order_by, env=env
+            "source",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            explain=explain,
         )
 
-    def select_from_tag(self, *, what=None, where=None, order_by=None, env=None):
+    def select_from_tag(
+        self, *, what=None, where=None, order_by=None, env=None, explain=False
+    ):
         """
         Select items from tag where python-string is True,
         optionally with a list of python-string items to order on.
@@ -3140,7 +3188,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         db.select_from_tag(where="tag.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
-            "tag", what=what, where=where, order_by=order_by, env=env
+            "tag", what=what, where=where, order_by=order_by, env=env, explain=explain
         )
 
 
