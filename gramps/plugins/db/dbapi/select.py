@@ -109,8 +109,8 @@ class Evaluator:
         elif isinstance(op, ast.Or):
             return "or"
         else:
-            # Default to "and" for unknown operators
-            return "and"
+            # Unknown operator - raise error instead of silently defaulting
+            raise ValueError(f"Unsupported boolean operator: {type(op).__name__}")
 
     def detect_table_references(self, expr_str, base_table=None):
         """
@@ -138,8 +138,14 @@ class Evaluator:
             self._extract_table_references_from_node(
                 tree.body, referenced_tables, base_table
             )
-        except (SyntaxError, AttributeError):
-            pass
+        except SyntaxError as e:
+            raise ValueError(
+                f"Invalid expression syntax in table reference detection: {expr_str}"
+            ) from e
+        except AttributeError as e:
+            raise ValueError(
+                f"Invalid expression structure in table reference detection: {expr_str}"
+            ) from e
 
         return referenced_tables
 
@@ -248,22 +254,28 @@ class Evaluator:
 
     def determine_join_conditions(self, base_table, referenced_tables, where_str=None):
         """
-        Determine JOIN conditions between tables based on handle relationships.
+        Determine JOIN conditions between tables based on explicit handle relationships.
 
         Only handle-based joins are allowed. Handle fields include:
         - 'handle' (the primary handle)
         - Any field ending in '_handle' (e.g., 'father_handle', 'mother_handle')
 
+        Join conditions must be explicitly specified in the WHERE clause.
+        Examples:
+        - "person.handle == family.father_handle"
+        - "family.mother_handle == person.handle"
+
         Args:
             base_table: The primary table name (e.g., "person")
             referenced_tables: Set of referenced table names (e.g., {"family"})
-            where_str: Optional WHERE clause string to extract explicit join conditions
+            where_str: WHERE clause string containing explicit join conditions
 
         Returns:
             dict: Mapping of table_name -> list of JOIN conditions
                  Each condition is a tuple: (left_table, left_attr, right_table, right_attr, join_type)
                  join_type is "INNER" by default
                  All attributes must be handle fields
+                 Only includes tables with explicit join conditions found in where_str
         """
         join_conditions = {}
 
@@ -279,36 +291,11 @@ class Evaluator:
             if ref_table == base_table:
                 continue  # Skip self-references
 
-            # Check if we have an explicit join condition (takes precedence)
+            # Only use explicit join conditions - require them to be specified in WHERE clause
             if ref_table in explicit_joins:
                 join_conditions[ref_table] = explicit_joins[ref_table]
-                continue
-
-            # Fall back to known handle relationships
-            # Known handle relationships
-            # Format: (from_table, from_attr) -> (to_table, to_attr)
-            handle_relationships = {
-                # Family -> Person relationships
-                ("family", "father_handle"): ("person", "handle"),
-                ("family", "mother_handle"): ("person", "handle"),
-            }
-
-            # Check family-specific relationships
-            if base_table == "person" and ref_table == "family":
-                # Person -> Family: Default to father_handle
-                join_conditions[ref_table] = [
-                    ("person", "handle", "family", "father_handle", "INNER")
-                ]
-            elif base_table == "family" and ref_table == "person":
-                # Family -> Person: Default to father_handle
-                join_conditions[ref_table] = [
-                    ("family", "father_handle", "person", "handle", "INNER")
-                ]
-            else:
-                # Generic: assume handle == handle (may not work for all cases)
-                join_conditions[ref_table] = [
-                    (base_table, "handle", ref_table, "handle", "INNER")
-                ]
+            # If no explicit join condition found, don't add a join condition
+            # This means the query will fail if tables are referenced but not properly joined
 
         return join_conditions
 
@@ -339,8 +326,14 @@ class Evaluator:
             self._extract_joins_from_node(
                 tree.body, base_table, referenced_tables, explicit_joins
             )
-        except (SyntaxError, AttributeError):
-            pass
+        except SyntaxError as e:
+            raise ValueError(
+                f"Invalid expression syntax in join condition extraction: {where_str}"
+            ) from e
+        except AttributeError as e:
+            raise ValueError(
+                f"Invalid expression structure in join condition extraction: {where_str}"
+            ) from e
 
         return explicit_joins
 
@@ -388,12 +381,22 @@ class Evaluator:
                         left_table in referenced_tables
                         and right_table in referenced_tables
                     ):
-                        # Both are referenced tables - use the first one
+                        # Both are referenced tables - store join condition under both
+                        # to ensure it's found regardless of iteration order
+                        # The tables_joined set in join processing prevents duplicates
+                        join_cond = (
+                            left_table,
+                            left_attr,
+                            right_table,
+                            right_attr,
+                            "INNER",
+                        )
                         if left_table not in explicit_joins:
                             explicit_joins[left_table] = []
-                        explicit_joins[left_table].append(
-                            (left_table, left_attr, right_table, right_attr, "INNER")
-                        )
+                        explicit_joins[left_table].append(join_cond)
+                        if right_table not in explicit_joins:
+                            explicit_joins[right_table] = []
+                        explicit_joins[right_table].append(join_cond)
 
         # Recursively check boolean operations
         if isinstance(node, ast.BoolOp):
@@ -478,9 +481,14 @@ class Evaluator:
                 str(sql_result) if not isinstance(sql_result, str) else sql_result
             )
             return result_str if result_str and result_str.strip() else None
-        except (SyntaxError, AttributeError):
-            # If parsing fails, return original
-            return where_str
+        except SyntaxError as e:
+            raise ValueError(
+                f"Invalid expression syntax when removing join conditions from WHERE clause: {where_str}"
+            ) from e
+        except AttributeError as e:
+            raise ValueError(
+                f"Invalid expression structure when removing join conditions from WHERE clause: {where_str}"
+            ) from e
 
     def _remove_join_conditions_from_node(self, node, join_conditions):
         """
@@ -618,9 +626,14 @@ class Evaluator:
                     if item_var and array_path:
                         return item_var, array_path, expression, condition
 
-        except (SyntaxError, AttributeError):
-            # Not a valid expression or doesn't match pattern
-            pass
+        except SyntaxError as e:
+            raise ValueError(
+                f"Invalid expression syntax in list comprehension detection: {what_expr}"
+            ) from e
+        except AttributeError as e:
+            raise ValueError(
+                f"Invalid expression structure in list comprehension detection: {what_expr}"
+            ) from e
 
         return None, None, None, None
 
@@ -657,9 +670,14 @@ class Evaluator:
                     if result[0] is not None:
                         return result
 
-        except (SyntaxError, AttributeError):
-            # Not a valid expression or doesn't match pattern
-            pass
+        except SyntaxError as e:
+            raise ValueError(
+                f"Invalid expression syntax in array expansion detection: {where_expr}"
+            ) from e
+        except AttributeError as e:
+            raise ValueError(
+                f"Invalid expression structure in array expansion detection: {where_expr}"
+            ) from e
 
         return None, None
 
@@ -690,8 +708,14 @@ class Evaluator:
                     if result[0] == item_var and result[1] == array_path:
                         return True
 
-        except (SyntaxError, AttributeError):
-            pass
+        except SyntaxError as e:
+            raise ValueError(
+                f"Invalid expression syntax in array expansion OR detection: {where_expr}"
+            ) from e
+        except AttributeError as e:
+            raise ValueError(
+                f"Invalid expression structure in array expansion OR detection: {where_expr}"
+            ) from e
 
         return False
 
@@ -754,8 +778,14 @@ class Evaluator:
                     # Not a valid split case (all parts on one side)
                     return None, None, False
 
-        except (SyntaxError, AttributeError):
-            pass
+        except SyntaxError as e:
+            raise ValueError(
+                f"Invalid expression syntax in OR expression splitting: {where_expr}"
+            ) from e
+        except AttributeError as e:
+            raise ValueError(
+                f"Invalid expression structure in OR expression splitting: {where_expr}"
+            ) from e
 
         return None, None, False
 
@@ -1175,9 +1205,14 @@ class Evaluator:
         try:
             # Parse to AST
             where_ast = ast.parse(where_str, mode="eval").body
-        except (SyntaxError, AttributeError):
-            # If parsing fails, fall back to simple conversion
-            return str(self.convert(where_str))
+        except SyntaxError as e:
+            raise ValueError(
+                f"Invalid expression syntax in WHERE clause: {where_str}"
+            ) from e
+        except AttributeError as e:
+            raise ValueError(
+                f"Invalid expression structure in WHERE clause: {where_str}"
+            ) from e
 
         # If array expansion is excluded but we have item_var, create evaluator with item_var set
         # This is needed to process remaining conditions like "item.role.value == 1"

@@ -198,7 +198,7 @@ results = list(
 
 - **Table References**: When you use `family.handle`, `person.handle`, etc., the system detects these as table references
 - **Automatic JOIN Generation**: JOIN clauses are automatically added to the SQL query
-- **Join Conditions**: The system uses explicit join conditions from your WHERE clause (e.g., `person.handle == family.father_handle`) or defaults to known relationships
+- **Join Conditions**: The system requires explicit join conditions in your WHERE clause (e.g., `person.handle == family.father_handle`). Join conditions must be explicitly specified - there are no fallback defaults.
 - **Table Prefixes**: When JOINs are present, all table attributes automatically use table prefixes (e.g., `person.json_data`, `family.json_data`)
 
 ### Available Tables
