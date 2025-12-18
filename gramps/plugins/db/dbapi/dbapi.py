@@ -1283,6 +1283,46 @@ class DBAPI(DbGeneric):
             env if env is not None else globals(),
         )
 
+        # Detect table references for JOIN support (excluding base table)
+        referenced_tables = set()
+        if where_str:
+            referenced_tables.update(
+                evaluator.detect_table_references(where_str, base_table=table_name)
+            )
+
+        # Check what clause for table references
+        if isinstance(what, types.LambdaType):
+            what_str_for_join = lambda_to_string(what)
+            if what_str_for_join:
+                referenced_tables.update(
+                    evaluator.detect_table_references(
+                        what_str_for_join, base_table=table_name
+                    )
+                )
+        elif isinstance(what, str):
+            referenced_tables.update(
+                evaluator.detect_table_references(what, base_table=table_name)
+            )
+        elif isinstance(what, list):
+            # Check all items in what list
+            for w in what:
+                if isinstance(w, types.LambdaType):
+                    w = lambda_to_string(w)
+                if isinstance(w, str):
+                    referenced_tables.update(
+                        evaluator.detect_table_references(w, base_table=table_name)
+                    )
+
+        # Determine JOIN conditions (after removing base table)
+        join_conditions = {}
+        if referenced_tables:
+            join_conditions = evaluator.determine_join_conditions(
+                table_name, referenced_tables, where_str
+            )
+
+        # Check if we have JOINs
+        has_joins = bool(referenced_tables and join_conditions)
+
         # Check for array expansion pattern (affects FROM clause, not WHERE structure)
         item_var, array_path = evaluator.detect_array_expansion(where_str)
         is_array_expansion = item_var is not None and array_path is not None
@@ -1639,9 +1679,29 @@ class DBAPI(DbGeneric):
                 )
                 what_expr = str(array_expansion_evaluator.convert(what))
             else:
-                what_expr = str(evaluator.convert(what))
+                # If JOINs are present, base table attributes need table prefix
+                if has_joins:
+                    # Create evaluator with table prefix for base table
+                    join_evaluator = Evaluator(
+                        table_name,
+                        f"json_extract({table_name}.json_data, '$.{{attr}}')",
+                        f"json_array_length(json_extract({table_name}.json_data, '$.{{attr}}'))",
+                        env if env is not None else globals(),
+                    )
+                    what_expr = str(join_evaluator.convert(what))
+                else:
+                    what_expr = str(evaluator.convert(what))
         else:
             what_list = []
+            # If JOINs are present, base table attributes need table prefix
+            join_evaluator = None
+            if has_joins:
+                join_evaluator = Evaluator(
+                    table_name,
+                    f"json_extract({table_name}.json_data, '$.{{attr}}')",
+                    f"json_array_length(json_extract({table_name}.json_data, '$.{{attr}}'))",
+                    env if env is not None else globals(),
+                )
             for w in what:
                 if isinstance(w, types.LambdaType):
                     # Convert lambda to string
@@ -1666,19 +1726,40 @@ class DBAPI(DbGeneric):
                     )
                     what_list.append(str(array_expansion_evaluator.convert(w)))
                 else:
-                    what_list.append(str(evaluator.convert(w)))
+                    # Use join_evaluator if JOINs are present, otherwise use regular evaluator
+                    if join_evaluator:
+                        what_list.append(str(join_evaluator.convert(w)))
+                    else:
+                        what_list.append(str(evaluator.convert(w)))
             what_expr = ", ".join(what_list)
 
         # Handle where clause with structure preservation
         # Use Evaluator method that preserves full boolean structure
         # If array expansion is present, exclude "item in array" from WHERE (it's in FROM)
         # But pass item_var and array_path so remaining conditions can reference item
-        where_sql = evaluator.convert_where_clause(
-            where_str,
-            exclude_array_expansion=is_array_expansion,
-            item_var=item_var if is_array_expansion else None,
-            array_path=array_path if is_array_expansion else None,
-        )
+        # If JOINs are present, base table attributes in WHERE need table prefix
+        if has_joins:
+            # Create evaluator with table prefix for base table in WHERE clause
+            where_evaluator = Evaluator(
+                table_name,
+                f"json_extract({table_name}.json_data, '$.{{attr}}')",
+                f"json_array_length(json_extract({table_name}.json_data, '$.{{attr}}'))",
+                env if env is not None else globals(),
+            )
+            where_sql = where_evaluator.convert_where_clause(
+                where_str,
+                exclude_array_expansion=is_array_expansion,
+                item_var=item_var if is_array_expansion else None,
+                array_path=array_path if is_array_expansion else None,
+            )
+        else:
+            # No JOINs - use regular evaluator (no table prefix needed)
+            where_sql = evaluator.convert_where_clause(
+                where_str,
+                exclude_array_expansion=is_array_expansion,
+                item_var=item_var if is_array_expansion else None,
+                array_path=array_path if is_array_expansion else None,
+            )
 
         # Combine with what condition if present
         if what_item_var and what_array_path and what_condition_sql:
@@ -1715,6 +1796,44 @@ class DBAPI(DbGeneric):
         else:
             from_clause = table_name
 
+        # Add JOIN clauses if tables are referenced
+        if has_joins:
+            # Build JOIN clauses (one per referenced table)
+            join_clauses = []
+            tables_joined = set()  # Track which tables we've already joined
+            for ref_table in sorted(referenced_tables):  # Sort for deterministic order
+                if ref_table in join_conditions and ref_table not in tables_joined:
+                    # Use the first join condition for this table
+                    join_cond = join_conditions[ref_table][0]
+                    left_table, left_attr, right_table, right_attr, join_type = (
+                        join_cond
+                    )
+                    # Convert attribute paths to SQL
+                    left_evaluator = Evaluator(
+                        left_table,
+                        f"json_extract({left_table}.json_data, '$.{{attr}}')",
+                        f"json_array_length(json_extract({left_table}.json_data, '$.{{attr}}'))",
+                        env if env is not None else globals(),
+                    )
+                    right_evaluator = Evaluator(
+                        right_table,
+                        f"json_extract({right_table}.json_data, '$.{{attr}}')",
+                        f"json_array_length(json_extract({right_table}.json_data, '$.{{attr}}'))",
+                        env if env is not None else globals(),
+                    )
+                    left_sql = left_evaluator.convert(f"{left_table}.{left_attr}")
+                    right_sql = right_evaluator.convert(f"{right_table}.{right_attr}")
+
+                    join_clause = (
+                        f"{join_type} JOIN {ref_table} ON {left_sql} = {right_sql}"
+                    )
+                    join_clauses.append(join_clause)
+                    tables_joined.add(ref_table)
+
+            # Add JOINs to FROM clause
+            if join_clauses:
+                from_clause = f"{from_clause} " + " ".join(join_clauses)
+
         # Order by handling
         if order_by is None:
             order_by_expr = ""
@@ -1737,7 +1856,22 @@ class DBAPI(DbGeneric):
                     converted_order_by.append(lambda_to_string(expr))
                 else:
                     converted_order_by.append(expr)
-            order_by_expr = evaluator.get_order_by(converted_order_by)
+            # Use join_evaluator for ORDER BY if JOINs are present
+            if has_joins:
+                # Create evaluator with table prefix for base table in ORDER BY
+                order_by_evaluator = Evaluator(
+                    table_name,
+                    f"json_extract({table_name}.json_data, '$.{{attr}}')",
+                    f"json_array_length(json_extract({table_name}.json_data, '$.{{attr}}'))",
+                    env if env is not None else globals(),
+                )
+                order_by_expr = order_by_evaluator.get_order_by(
+                    converted_order_by, has_joins=False
+                )
+            else:
+                order_by_expr = evaluator.get_order_by(
+                    converted_order_by, has_joins=False
+                )
 
         query = f"SELECT {what_expr} from {from_clause}{where_expr}{order_by_expr};"
         # Use a separate cursor to avoid invalidation when other queries
@@ -1746,7 +1880,7 @@ class DBAPI(DbGeneric):
             try:
                 cursor.execute(query)
             except Exception as exc:
-                raise Exception(query) from None
+                raise Exception(f"{exc}\nQuery: {query}") from None
 
             row = cursor.fetchone()
             while row:

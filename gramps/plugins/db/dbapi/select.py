@@ -20,16 +20,7 @@
 
 import ast
 
-from gramps.gen.lib import (
-    Person,
-    Family,
-    Event,
-    Place,
-    Source,
-    Citation,
-    Repository,
-    EventRoleType,
-)
+import gramps.gen.lib
 
 
 class AttributeNode:
@@ -77,14 +68,10 @@ class Evaluator:
         self.json_array_length = json_array_length
         self.table_name = table_name
         self.env = {
-            "Person": Person,
-            "Family": Family,
-            "Event": Event,
-            "Place": Place,
-            "Source": Source,
-            "Citation": Citation,
-            "Repository": Repository,
-            "EventRoleType": EventRoleType,
+            key: getattr(gramps.gen.lib, key)
+            for key in [
+                x for x in dir(gramps.gen.lib) if x[0] in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            ]
         }
         if env:
             self.env.update(env)
@@ -124,6 +111,446 @@ class Evaluator:
         else:
             # Default to "and" for unknown operators
             return "and"
+
+    def detect_table_references(self, expr_str, base_table=None):
+        """
+        Detect table references in an expression string.
+
+        Looks for patterns like:
+        - "family.handle"
+        - "person.handle"
+        - "event.handle"
+
+        Args:
+            expr_str: Expression string to analyze
+            base_table: Base table name to exclude from results
+
+        Returns:
+            set: Set of table names referenced (excluding base_table)
+        """
+        if not expr_str or not isinstance(expr_str, str):
+            return set()
+
+        referenced_tables = set()
+
+        try:
+            tree = ast.parse(expr_str, mode="eval")
+            self._extract_table_references_from_node(
+                tree.body, referenced_tables, base_table
+            )
+        except (SyntaxError, AttributeError):
+            pass
+
+        return referenced_tables
+
+    def _extract_table_references_from_node(
+        self, node, referenced_tables, base_table=None
+    ):
+        """
+        Recursively extract table references from an AST node.
+
+        Args:
+            node: AST node to analyze
+            referenced_tables: set to add table names to
+            base_table: Base table name to skip (don't add to referenced_tables)
+        """
+        # Known table names (lowercase)
+        table_names = {
+            "person",
+            "family",
+            "event",
+            "place",
+            "source",
+            "citation",
+            "repository",
+            "media",
+            "note",
+            "tag",
+        }
+
+        if isinstance(node, ast.Attribute):
+            # Check if this is a table reference (e.g., "family.handle")
+            # But skip if it's a class attribute access (e.g., "Person.MALE")
+            obj = node.value
+            if isinstance(obj, ast.Name):
+                # Only treat as table reference if it's lowercase and matches table name
+                # PascalCase names like "Person" are classes from env, not table references
+                if obj.id.islower() and obj.id in table_names:
+                    # Skip if it's the base table
+                    if obj.id != base_table:
+                        referenced_tables.add(obj.id)
+            # Recursively check nested attributes (but skip class attribute chains)
+            if isinstance(obj, ast.Name) and not (
+                obj.id.islower() and obj.id in table_names
+            ):
+                # This is a class name, don't recurse into it
+                pass
+            else:
+                self._extract_table_references_from_node(
+                    obj, referenced_tables, base_table
+                )
+
+        elif isinstance(node, ast.Compare):
+            # Check both left and right sides of comparisons
+            self._extract_table_references_from_node(
+                node.left, referenced_tables, base_table
+            )
+            for comparator in node.comparators:
+                self._extract_table_references_from_node(
+                    comparator, referenced_tables, base_table
+                )
+
+        elif isinstance(node, ast.BoolOp):
+            # Check all values in boolean operations
+            for value in node.values:
+                self._extract_table_references_from_node(
+                    value, referenced_tables, base_table
+                )
+
+        elif isinstance(node, ast.BinOp):
+            # Check both operands
+            self._extract_table_references_from_node(
+                node.left, referenced_tables, base_table
+            )
+            self._extract_table_references_from_node(
+                node.right, referenced_tables, base_table
+            )
+
+        elif isinstance(node, ast.UnaryOp):
+            # Check operand
+            self._extract_table_references_from_node(
+                node.operand, referenced_tables, base_table
+            )
+
+        elif isinstance(node, ast.Call):
+            # Check function and arguments
+            self._extract_table_references_from_node(
+                node.func, referenced_tables, base_table
+            )
+            for arg in node.args:
+                self._extract_table_references_from_node(
+                    arg, referenced_tables, base_table
+                )
+
+        elif isinstance(node, ast.ListComp):
+            # Check list comprehension
+            self._extract_table_references_from_node(
+                node.elt, referenced_tables, base_table
+            )
+            for gen in node.generators:
+                self._extract_table_references_from_node(
+                    gen.iter, referenced_tables, base_table
+                )
+                for if_expr in gen.ifs:
+                    self._extract_table_references_from_node(
+                        if_expr, referenced_tables, base_table
+                    )
+
+    def determine_join_conditions(self, base_table, referenced_tables, where_str=None):
+        """
+        Determine JOIN conditions between tables based on handle relationships.
+
+        Only handle-based joins are allowed. Handle fields include:
+        - 'handle' (the primary handle)
+        - Any field ending in '_handle' (e.g., 'father_handle', 'mother_handle')
+
+        Args:
+            base_table: The primary table name (e.g., "person")
+            referenced_tables: Set of referenced table names (e.g., {"family"})
+            where_str: Optional WHERE clause string to extract explicit join conditions
+
+        Returns:
+            dict: Mapping of table_name -> list of JOIN conditions
+                 Each condition is a tuple: (left_table, left_attr, right_table, right_attr, join_type)
+                 join_type is "INNER" by default
+                 All attributes must be handle fields
+        """
+        join_conditions = {}
+
+        # Try to extract explicit join conditions from WHERE clause first
+        explicit_joins = {}
+        if where_str:
+            explicit_joins = self._extract_explicit_join_conditions(
+                where_str, base_table, referenced_tables
+            )
+
+        # For each referenced table, determine join condition
+        for ref_table in referenced_tables:
+            if ref_table == base_table:
+                continue  # Skip self-references
+
+            # Check if we have an explicit join condition (takes precedence)
+            if ref_table in explicit_joins:
+                join_conditions[ref_table] = explicit_joins[ref_table]
+                continue
+
+            # Fall back to known handle relationships
+            # Known handle relationships
+            # Format: (from_table, from_attr) -> (to_table, to_attr)
+            handle_relationships = {
+                # Family -> Person relationships
+                ("family", "father_handle"): ("person", "handle"),
+                ("family", "mother_handle"): ("person", "handle"),
+            }
+
+            # Check family-specific relationships
+            if base_table == "person" and ref_table == "family":
+                # Person -> Family: Default to father_handle
+                join_conditions[ref_table] = [
+                    ("person", "handle", "family", "father_handle", "INNER")
+                ]
+            elif base_table == "family" and ref_table == "person":
+                # Family -> Person: Default to father_handle
+                join_conditions[ref_table] = [
+                    ("family", "father_handle", "person", "handle", "INNER")
+                ]
+            else:
+                # Generic: assume handle == handle (may not work for all cases)
+                join_conditions[ref_table] = [
+                    (base_table, "handle", ref_table, "handle", "INNER")
+                ]
+
+        return join_conditions
+
+    def _extract_explicit_join_conditions(
+        self, where_str, base_table, referenced_tables
+    ):
+        """
+        Extract explicit join conditions from WHERE clause.
+
+        Only extracts join conditions where both sides are handle fields.
+        Looks for patterns like:
+        - "person.handle == family.father_handle"
+        - "family.mother_handle == person.handle"
+
+        Non-handle comparisons are ignored (e.g., "person.gender == family.type.value"
+        will not be treated as a join condition).
+
+        Returns:
+            dict: Mapping of table_name -> list of JOIN conditions
+        """
+        explicit_joins = {}
+
+        if not where_str:
+            return explicit_joins
+
+        try:
+            tree = ast.parse(where_str, mode="eval")
+            self._extract_joins_from_node(
+                tree.body, base_table, referenced_tables, explicit_joins
+            )
+        except (SyntaxError, AttributeError):
+            pass
+
+        return explicit_joins
+
+    def _extract_joins_from_node(
+        self, node, base_table, referenced_tables, explicit_joins
+    ):
+        """
+        Recursively extract join conditions from AST node.
+
+        Looks for equality comparisons between table attributes.
+        Only accepts join conditions where both sides are handle fields.
+        """
+        if isinstance(node, ast.Compare):
+            # Check for equality comparisons
+            if len(node.ops) == 1 and isinstance(node.ops[0], ast.Eq):
+                left = node.left
+                right = node.comparators[0]
+
+                # Try to extract table.attr from both sides
+                left_table, left_attr = self._extract_table_attr(left)
+                right_table, right_attr = self._extract_table_attr(right)
+
+                if left_table and right_table and left_attr and right_attr:
+                    # Only accept join conditions where both sides are handle fields
+                    if not (
+                        self._is_handle_field(left_attr)
+                        and self._is_handle_field(right_attr)
+                    ):
+                        return  # Skip non-handle join conditions
+
+                    # Found a valid handle-based join condition - determine which table is the referenced one
+                    if left_table in referenced_tables and right_table == base_table:
+                        if left_table not in explicit_joins:
+                            explicit_joins[left_table] = []
+                        explicit_joins[left_table].append(
+                            (left_table, left_attr, right_table, right_attr, "INNER")
+                        )
+                    elif right_table in referenced_tables and left_table == base_table:
+                        if right_table not in explicit_joins:
+                            explicit_joins[right_table] = []
+                        explicit_joins[right_table].append(
+                            (left_table, left_attr, right_table, right_attr, "INNER")
+                        )
+                    elif (
+                        left_table in referenced_tables
+                        and right_table in referenced_tables
+                    ):
+                        # Both are referenced tables - use the first one
+                        if left_table not in explicit_joins:
+                            explicit_joins[left_table] = []
+                        explicit_joins[left_table].append(
+                            (left_table, left_attr, right_table, right_attr, "INNER")
+                        )
+
+        # Recursively check boolean operations
+        if isinstance(node, ast.BoolOp):
+            for value in node.values:
+                self._extract_joins_from_node(
+                    value, base_table, referenced_tables, explicit_joins
+                )
+
+    def _extract_table_attr(self, node):
+        """
+        Extract table name and attribute from an AST node.
+
+        Returns:
+            tuple: (table_name, attr_path) or (None, None)
+        """
+        if isinstance(node, ast.Attribute):
+            # Build attribute path
+            attr_parts = []
+            current = node
+            while isinstance(current, ast.Attribute):
+                attr_parts.insert(0, current.attr)
+                current = current.value
+
+            if isinstance(current, ast.Name):
+                table_name = current.id.lower()
+                attr_path = ".".join(attr_parts)
+                return table_name, attr_path
+
+        return None, None
+
+    def _is_handle_field(self, attr_path):
+        """
+        Check if an attribute path represents a handle field.
+
+        Handle fields are:
+        - 'handle' (the primary handle)
+        - 'ref' (reference handle, e.g., event_ref.ref, citation_ref.ref)
+        - Any field ending in '_handle' (e.g., 'father_handle', 'mother_handle')
+
+        Args:
+            attr_path: Attribute path string (e.g., 'handle', 'ref', 'father_handle')
+
+        Returns:
+            bool: True if the attribute is a handle field
+        """
+        if not attr_path:
+            return False
+        # Check if it's exactly 'handle', 'ref', or ends with '_handle'
+        return (
+            attr_path == "handle" or attr_path == "ref" or attr_path.endswith("_handle")
+        )
+
+    def remove_join_conditions_from_where(self, where_str, join_conditions):
+        """
+        Remove join conditions from WHERE clause since they're in JOIN clauses.
+
+        Args:
+            where_str: WHERE clause string
+            join_conditions: Dict of join conditions (from determine_join_conditions)
+
+        Returns:
+            Modified WHERE clause string with join conditions removed, or None if empty
+        """
+        if not where_str or not join_conditions:
+            return where_str
+
+        try:
+            tree = ast.parse(where_str, mode="eval")
+            result = self._remove_join_conditions_from_node(tree.body, join_conditions)
+            if result is None:
+                return None
+            # Convert back to string by converting to SQL
+            # We need to use a dummy evaluator to convert the remaining AST
+            dummy_evaluator = Evaluator(
+                self.table_name,
+                self.json_extract,
+                self.json_array_length,
+                self.env,
+            )
+            sql_result = dummy_evaluator.convert_to_sql(result)
+            result_str = (
+                str(sql_result) if not isinstance(sql_result, str) else sql_result
+            )
+            return result_str if result_str and result_str.strip() else None
+        except (SyntaxError, AttributeError):
+            # If parsing fails, return original
+            return where_str
+
+    def _remove_join_conditions_from_node(self, node, join_conditions):
+        """
+        Recursively remove join conditions from AST node.
+
+        Returns:
+            Modified AST node with join conditions removed, or None if node should be removed
+        """
+        if isinstance(node, ast.Compare):
+            # Check if this is a join condition
+            if len(node.ops) == 1 and isinstance(node.ops[0], ast.Eq):
+                left = node.left
+                right = node.comparators[0]
+
+                left_table, left_attr = self._extract_table_attr(left)
+                right_table, right_attr = self._extract_table_attr(right)
+
+                if left_table and right_table and left_attr and right_attr:
+                    # Check if this matches any join condition
+                    for ref_table, conditions in join_conditions.items():
+                        for cond in conditions:
+                            (
+                                cond_left_table,
+                                cond_left_attr,
+                                cond_right_table,
+                                cond_right_attr,
+                                _,
+                            ) = cond
+                            # Check if this comparison matches the join condition
+                            if (
+                                left_table == cond_left_table
+                                and left_attr == cond_left_attr
+                                and right_table == cond_right_table
+                                and right_attr == cond_right_attr
+                            ) or (
+                                left_table == cond_right_table
+                                and left_attr == cond_right_attr
+                                and right_table == cond_left_table
+                                and right_attr == cond_left_attr
+                            ):
+                                # This is a join condition - remove it
+                                return None
+
+        # Handle boolean operations
+        if isinstance(node, ast.BoolOp):
+            new_values = []
+            for value in node.values:
+                result = self._remove_join_conditions_from_node(value, join_conditions)
+                if result is not None:
+                    new_values.append(result)
+
+            if not new_values:
+                return None
+            elif len(new_values) == 1:
+                return new_values[0]
+            else:
+                # Create new BoolOp with remaining values
+                return ast.BoolOp(op=node.op, values=new_values)
+
+        # For other nodes, recursively process children
+        if isinstance(node, ast.UnaryOp):
+            result = self._remove_join_conditions_from_node(
+                node.operand, join_conditions
+            )
+            if result is None:
+                return None
+            return ast.UnaryOp(op=node.op, operand=result)
+
+        # For all other nodes, return as-is
+        return node
 
     def detect_list_comprehension_in_what(self, what_expr):
         """
@@ -558,14 +985,61 @@ class Evaluator:
                     obj.attr += ".%s" % attr
                 return obj
             elif obj in [self.table_name, "obj"]:
+                # Base table reference (e.g., "person.handle" when table_name is "person")
                 return AttributeNode(
                     self.json_extract, self.json_array_length, self.table_name, attr
                 )
             elif isinstance(obj, AttributeNode):
                 obj.attr += ".%s" % attr
                 return obj
+            elif isinstance(obj, str):
+                # Check if obj is a table name (for JOIN support)
+                # This handles cases like "family.handle" where obj="family"
+                table_names = {
+                    "person",
+                    "family",
+                    "event",
+                    "place",
+                    "source",
+                    "citation",
+                    "repository",
+                    "media",
+                    "note",
+                    "tag",
+                }
+                obj_lower = obj.lower()
+                if obj_lower in table_names:
+                    # This is a table reference (e.g., "family.handle")
+                    # If it's the base table, use base table's json_extract pattern
+                    if obj_lower == self.table_name:
+                        return AttributeNode(
+                            self.json_extract,
+                            self.json_array_length,
+                            self.table_name,
+                            attr,
+                        )
+                    else:
+                        # Referenced table - use table-prefixed json_extract
+                        return AttributeNode(
+                            f"json_extract({obj_lower}.json_data, '$.{{attr}}')",
+                            f"json_array_length(json_extract({obj_lower}.json_data, '$.{{attr}}'))",
+                            obj_lower,
+                            attr,
+                        )
+                else:
+                    # Not a table name, try to get attribute
+                    try:
+                        return getattr(obj, attr)
+                    except AttributeError:
+                        return f"{obj}.{attr}"
             else:
-                return getattr(obj, attr)
+                # obj is from env (e.g., Person class) - get attribute value
+                try:
+                    attr_value = getattr(obj, attr)
+                    # Return the actual value (e.g., Person.MALE = 1)
+                    return attr_value
+                except AttributeError:
+                    return f"{obj}.{attr}"
         elif isinstance(node, ast.Name):
             value = node.id
             # If this is the item variable from array expansion, reference json_each.value
@@ -577,8 +1051,26 @@ class Evaluator:
                     "json_each",
                     "",
                 )
+            # Check env first (e.g., Person, Family classes)
             if value in self.env:
                 return self.env[value]
+            # Then check if this is a table name (for JOIN support)
+            # Only if it's lowercase and not in env
+            table_names = {
+                "person",
+                "family",
+                "event",
+                "place",
+                "source",
+                "citation",
+                "repository",
+                "media",
+                "note",
+                "tag",
+            }
+            if value.lower() in table_names and value.islower():
+                # Return the table name as a string (will be used in JOIN clauses)
+                return value.lower()
             else:
                 return str(value)
         elif isinstance(node, ast.List):
@@ -830,15 +1322,41 @@ class Evaluator:
         # Ensure we return a string, not an AttributeNode
         return str(sql_result) if not isinstance(sql_result, str) else sql_result
 
-    def get_order_by(self, order_by):
+    def get_order_by(self, order_by, has_joins=False):
         order_by_exprs = []
         for expr in order_by:
             # Handle string with "-" prefix for descending
             if isinstance(expr, str) and expr.startswith("-"):
-                order_by_exprs.append("%s %s" % (self.convert(expr[1:]), "DESC"))
+                converted = self.convert(expr[1:])
+                # If JOINs are present and result is json_data without table prefix, add prefix
+                if (
+                    has_joins
+                    and isinstance(converted, str)
+                    and converted.startswith("json_extract(json_data")
+                ):
+                    # Replace json_data with table_name.json_data
+                    converted = converted.replace(
+                        "json_extract(json_data",
+                        f"json_extract({self.table_name}.json_data",
+                        1,
+                    )
+                order_by_exprs.append("%s %s" % (converted, "DESC"))
             else:
                 # Handle string expression (lambdas should already be converted to strings)
-                order_by_exprs.append(str(self.convert(expr)))
+                converted = self.convert(expr)
+                # If JOINs are present and result is json_data without table prefix, add prefix
+                if (
+                    has_joins
+                    and isinstance(converted, str)
+                    and converted.startswith("json_extract(json_data")
+                ):
+                    # Replace json_data with table_name.json_data
+                    converted = converted.replace(
+                        "json_extract(json_data",
+                        f"json_extract({self.table_name}.json_data",
+                        1,
+                    )
+                order_by_exprs.append(str(converted))
 
         if order_by_exprs:
             order_expr = " ORDER BY %s" % (", ".join(order_by_exprs))

@@ -111,6 +111,131 @@ results = list(
 
 This is equivalent to the list comprehension but uses a different syntax. When you include `person.handle`, each row will show which person the array element belongs to.
 
+## JOINing Tables
+
+You can reference other tables in your queries using natural table prefixes. The system automatically detects table references and generates appropriate JOIN clauses.
+
+### Basic JOIN Syntax
+
+Simply reference other tables using their lowercase names (e.g., `family`, `person`, `event`):
+
+```python
+# Join person with family - get person and family handles where person is the father
+results = list(
+    db.select_from_person(
+        what=["person.handle", "family.handle"],
+        where="person.handle == family.father_handle"
+    )
+)
+```
+
+### JOIN with Additional Conditions
+
+You can combine JOIN conditions with other filters:
+
+```python
+# Get person and family where person is father and family type is married
+results = list(
+    db.select_from_person(
+        what=["person.handle", "family.handle", "family.type.value"],
+        where="person.handle == family.father_handle and family.type.value == FamilyRelType.MARRIED"
+    )
+)
+```
+
+### Reverse Direction (from Family to Person)
+
+You can query from any table and JOIN to others:
+
+```python
+# Get family and father's information
+results = list(
+    db.select_from_family(
+        what=["family.handle", "person.handle", "person.primary_name.first_name"],
+        where="family.father_handle == person.handle"
+    )
+)
+```
+
+### JOIN with Mother Relationship
+
+```python
+# Get person and family where person is the mother
+results = list(
+    db.select_from_person(
+        what=["person.handle", "family.handle"],
+        where="person.handle == family.mother_handle"
+    )
+)
+```
+
+### JOIN with Multiple Conditions
+
+```python
+# Get person and family with conditions on both tables
+results = list(
+    db.select_from_person(
+        what=["person.handle", "family.handle"],
+        where="person.handle == family.father_handle and person.gender == Person.MALE and family.type.value == FamilyRelType.MARRIED"
+    )
+)
+```
+
+### JOIN with ORDER BY
+
+```python
+# Join and sort results
+results = list(
+    db.select_from_person(
+        what=["person.handle", "family.handle"],
+        where="person.handle == family.father_handle",
+        order_by=["person.handle", "family.handle"]
+    )
+)
+```
+
+### How JOIN Detection Works
+
+- **Table References**: When you use `family.handle`, `person.handle`, etc., the system detects these as table references
+- **Automatic JOIN Generation**: JOIN clauses are automatically added to the SQL query
+- **Join Conditions**: The system uses explicit join conditions from your WHERE clause (e.g., `person.handle == family.father_handle`) or defaults to known relationships
+- **Table Prefixes**: When JOINs are present, all table attributes automatically use table prefixes (e.g., `person.json_data`, `family.json_data`)
+
+### Available Tables
+
+You can reference these tables in your queries:
+- `person` - Person records
+- `family` - Family records  
+- `event` - Event records
+- `place` - Place records
+- `source` - Source records
+- `citation` - Citation records
+- `repository` - Repository records
+- `media` - Media records
+- `note` - Note records
+- `tag` - Tag records
+
+### Notes on JOINs
+
+1. **Table Names**: Use lowercase table names (e.g., `family`, not `Family`) to reference tables
+2. **Class Names**: PascalCase names like `Person`, `FamilyRelType` are classes from the environment, not table references
+3. **Constants**: All Gramps constants are available (e.g., `Person.MALE`, `FamilyRelType.MARRIED`, `EventType.MARRIAGE`)
+4. **Join Type**: Currently supports INNER JOIN. The system automatically determines the join condition based on handle relationships
+5. **Multiple JOINs**: You can reference multiple tables in a single query
+6. **Handle-Only Joins**: JOINs are only allowed between handle fields. Valid handle fields include:
+   - `handle` (the primary handle, e.g., `person.handle`)
+   - `ref` (reference handle, e.g., `event_ref.ref`, `citation_ref.ref`)
+   - Any field ending in `_handle` (e.g., `family.father_handle`, `family.mother_handle`)
+   
+   Examples of valid joins:
+   - `person.handle == family.father_handle` ✓
+   - `family.mother_handle == person.handle` ✓
+   - `event_ref.ref == event.handle` ✓
+   
+   Examples of invalid joins (will be ignored):
+   - `person.gender == family.type.value` ✗ (not handle fields)
+   - `person.gramps_id == family.gramps_id` ✗ (not handle fields)
+
 ## The `where` Parameter
 
 The `where` parameter filters which records to include.
@@ -489,10 +614,33 @@ all_event_refs_with_person = list(
 ### Find People with Families
 
 ```python
-have_family =
+have_family = list(
     db.select_from_person(
         what="person.handle",
         where="len(person.family_list) > 0"
+    )
+)
+```
+
+### Find People Who Are Fathers (Using JOIN)
+
+```python
+# Using JOIN to find people who are fathers
+fathers = list(
+    db.select_from_person(
+        what=["person.handle", "family.handle"],
+        where="person.handle == family.father_handle"
+    )
+)
+```
+
+### Find Married Families with Male Fathers
+
+```python
+married_families = list(
+    db.select_from_person(
+        what=["person.handle", "family.handle"],
+        where="person.handle == family.father_handle and person.gender == Person.MALE and family.type.value == FamilyRelType.MARRIED"
     )
 )
 ```

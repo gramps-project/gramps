@@ -1598,6 +1598,297 @@ class BaseTest(unittest.TestCase):
             )
             self.assertTrue(condition1 and condition2)
 
+    # ========================================================================
+    # Tests for JOIN functionality
+    # ========================================================================
+
+    def test_join_person_family_basic(self):
+        """
+        Test basic JOIN between person and family tables.
+        Get person and family handles where person is the father.
+        """
+        res = list(
+            self.db.select_from_person(
+                what=["person.handle", "family.handle"],
+                where="person.handle == family.father_handle",
+            )
+        )
+        # Should return one row per person-family relationship where person is father
+        self.assertGreater(len(res), 0)
+        # Verify each result: person handle should match family's father_handle
+        for person_handle, family_handle in res:
+            self.assertIsInstance(person_handle, str)
+            self.assertIsInstance(family_handle, str)
+            family = self.db.get_family_from_handle(family_handle)
+            self.assertIsNotNone(family)
+            self.assertEqual(family.get_father_handle(), person_handle)
+
+    def test_join_person_family_with_condition(self):
+        """
+        Test JOIN with additional condition on family table.
+        Get person and family where person is father and family type is married.
+        """
+        from gramps.gen.lib import FamilyRelType
+
+        res = list(
+            self.db.select_from_person(
+                what=["person.handle", "family.handle", "family.type.value"],
+                where="person.handle == family.father_handle and family.type.value == FamilyRelType.MARRIED",
+            )
+        )
+        # Should return one row per married family where person is father
+        self.assertGreaterEqual(len(res), 0)
+        # Verify each result
+        for person_handle, family_handle, family_type in res:
+            self.assertIsInstance(person_handle, str)
+            self.assertIsInstance(family_handle, str)
+            self.assertEqual(family_type, FamilyRelType.MARRIED)
+            family = self.db.get_family_from_handle(family_handle)
+            self.assertIsNotNone(family)
+            self.assertEqual(family.get_father_handle(), person_handle)
+            self.assertEqual(family.get_relationship().value, FamilyRelType.MARRIED)
+
+    def test_join_family_person_reverse(self):
+        """
+        Test JOIN in reverse direction (from family to person).
+        Get family and father's handle and name.
+        """
+        res = list(
+            self.db.select_from_family(
+                what=[
+                    "family.handle",
+                    "person.handle",
+                    "person.primary_name.first_name",
+                ],
+                where="family.father_handle == person.handle",
+            )
+        )
+        # Should return one row per family with a father
+        self.assertGreater(len(res), 0)
+        # Verify each result
+        for family_handle, person_handle, first_name in res:
+            self.assertIsInstance(family_handle, str)
+            self.assertIsInstance(person_handle, str)
+            self.assertIsInstance(first_name, str)
+            family = self.db.get_family_from_handle(family_handle)
+            self.assertIsNotNone(family)
+            self.assertEqual(family.get_father_handle(), person_handle)
+            person = self.db.get_person_from_handle(person_handle)
+            self.assertIsNotNone(person)
+            self.assertEqual(person.get_primary_name().get_first_name(), first_name)
+
+    def test_join_person_family_mother(self):
+        """
+        Test JOIN with mother relationship.
+        Get person and family handles where person is the mother.
+        """
+        res = list(
+            self.db.select_from_person(
+                what=["person.handle", "family.handle"],
+                where="person.handle == family.mother_handle",
+            )
+        )
+        # Should return one row per person-family relationship where person is mother
+        self.assertGreater(len(res), 0)
+        # Verify each result
+        for person_handle, family_handle in res:
+            self.assertIsInstance(person_handle, str)
+            self.assertIsInstance(family_handle, str)
+            family = self.db.get_family_from_handle(family_handle)
+            self.assertIsNotNone(family)
+            self.assertEqual(family.get_mother_handle(), person_handle)
+
+    def test_join_person_family_with_person_filter(self):
+        """
+        Test JOIN with additional condition on person table.
+        Get person and family where person is father and has a gender condition.
+        """
+        from gramps.gen.lib import Person
+
+        res = list(
+            self.db.select_from_person(
+                what=["person.handle", "person.gender", "family.handle"],
+                where="person.handle == family.father_handle and person.gender == Person.MALE",
+            )
+        )
+        # Should return at least some results (males who are fathers)
+        self.assertGreater(len(res), 0)
+        # Verify each result
+        for person_handle, person_gender, family_handle in res:
+            self.assertEqual(person_gender, Person.MALE)
+            family = self.db.get_family_from_handle(family_handle)
+            self.assertIsNotNone(family)
+            self.assertEqual(family.get_father_handle(), person_handle)
+
+    def test_join_person_family_multiple_conditions(self):
+        """
+        Test JOIN with multiple conditions on both tables.
+        """
+        from gramps.gen.lib import Person, FamilyRelType
+
+        res = list(
+            self.db.select_from_person(
+                what=["person.handle", "family.handle"],
+                where="person.handle == family.father_handle and person.gender == Person.MALE and family.type.value == FamilyRelType.MARRIED",
+            )
+        )
+        # Should return married families with male fathers
+        self.assertGreaterEqual(len(res), 0)
+        # Verify each result
+        for person_handle, family_handle in res:
+            person = self.db.get_person_from_handle(person_handle)
+            self.assertIsNotNone(person)
+            self.assertEqual(person.get_gender(), Person.MALE)
+            family = self.db.get_family_from_handle(family_handle)
+            self.assertIsNotNone(family)
+            self.assertEqual(family.get_father_handle(), person_handle)
+            self.assertEqual(family.get_relationship().value, FamilyRelType.MARRIED)
+
+    def test_join_no_matches(self):
+        """
+        Test JOIN that should return no matches.
+        """
+        res = list(
+            self.db.select_from_person(
+                what=["person.handle", "family.handle"],
+                where="person.handle == family.father_handle and person.gramps_id == 'NONEXISTENT'",
+            )
+        )
+        # Should return empty list
+        self.assertEqual(len(res), 0)
+
+    def test_join_with_what_only_person(self):
+        """
+        Test JOIN where what clause only references person table.
+        Note: Even though what only references person, we still need JOIN
+        because family is referenced in where clause.
+        """
+        res = list(
+            self.db.select_from_person(
+                what="person.handle", where="person.handle == family.father_handle"
+            )
+        )
+        # Should return person handles for people who are fathers
+        self.assertGreater(len(res), 0)
+        # All results should be strings (handles)
+        for handle in res:
+            self.assertIsInstance(handle, str)
+
+    def test_join_with_what_only_family(self):
+        """
+        Test JOIN where what clause only references family table.
+        """
+        res = list(
+            self.db.select_from_person(
+                what="family.handle", where="person.handle == family.father_handle"
+            )
+        )
+        # Should return family handles for families with fathers
+        self.assertGreater(len(res), 0)
+        # All results should be strings (handles)
+        for handle in res:
+            self.assertIsInstance(handle, str)
+
+    def test_join_regression_existing_functionality(self):
+        """
+        Test that JOIN doesn't break existing single-table queries.
+        This is a regression test to ensure backward compatibility.
+        """
+        # Test that existing queries still work
+        res = list(
+            self.db.select_from_person(
+                what="person.handle", where="person.gender == Person.MALE"
+            )
+        )
+        # Should work exactly as before
+        self.assertGreater(len(res), 0)
+        # Compare with known result
+        res_known = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle", where="person.gender == Person.MALE"
+                )
+            )
+        )
+        self.assertEqual(len(res_known), 1168)  # From test_ismale
+
+    def test_join_regression_no_table_reference(self):
+        """
+        Test that queries without table references work as before.
+        """
+        res = list(
+            self.db.select_from_person(
+                what="person.handle", where="len(person.family_list) > 0"
+            )
+        )
+        # Should work exactly as before (no JOIN needed)
+        self.assertGreater(len(res), 0)
+
+    def test_join_family_person_mother_reverse(self):
+        """
+        Test JOIN in reverse direction for mother relationship.
+        Get family and mother's handle.
+        """
+        res = list(
+            self.db.select_from_family(
+                what=["family.handle", "person.handle"],
+                where="family.mother_handle == person.handle",
+            )
+        )
+        # Should return one row per family with a mother
+        self.assertGreater(len(res), 0)
+        # Verify each result
+        for family_handle, person_handle in res:
+            self.assertIsInstance(family_handle, str)
+            self.assertIsInstance(person_handle, str)
+            family = self.db.get_family_from_handle(family_handle)
+            self.assertIsNotNone(family)
+            self.assertEqual(family.get_mother_handle(), person_handle)
+
+    def test_join_with_order_by(self):
+        """
+        Test JOIN with ORDER BY clause.
+        """
+        res = list(
+            self.db.select_from_person(
+                what=["person.handle", "family.handle"],
+                where="person.handle == family.father_handle",
+                order_by=["person.handle", "family.handle"],
+            )
+        )
+        # Should return sorted results
+        self.assertGreater(len(res), 0)
+        # Verify sorting (person handles should be in order)
+        person_handles = [row[0] for row in res]
+        self.assertEqual(person_handles, sorted(person_handles))
+
+    def test_join_complex_expression(self):
+        """
+        Test JOIN with complex boolean expression.
+        """
+        from gramps.gen.lib import Person
+
+        res = list(
+            self.db.select_from_person(
+                what=["person.handle", "family.handle"],
+                where="(person.handle == family.father_handle or person.handle == family.mother_handle) and person.gender == Person.FEMALE",
+            )
+        )
+        # Should return families where person is the mother (female)
+        self.assertGreaterEqual(len(res), 0)
+        # Verify each result
+        for person_handle, family_handle in res:
+            person = self.db.get_person_from_handle(person_handle)
+            self.assertIsNotNone(person)
+            self.assertEqual(person.get_gender(), Person.FEMALE)
+            family = self.db.get_family_from_handle(family_handle)
+            self.assertIsNotNone(family)
+            # Person should be either father or mother
+            self.assertTrue(
+                family.get_father_handle() == person_handle
+                or family.get_mother_handle() == person_handle
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
