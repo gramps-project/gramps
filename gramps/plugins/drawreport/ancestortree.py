@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2014       Paul Franklin
 # Copyright (C) 2010-2015  Craig J. Anderson
+# Copyright (C) 2025       Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -77,6 +78,11 @@ _MARR = (_("m.", "marriage abbreviation"),)
 LVL_GEN, LVL_INDX, LVL_Y = range(3)
 
 
+_fill_box_color = True  # value set by user option selection
+_gender_color_box_names: list[str] = []
+_family_color_box_name = ""
+
+
 # ------------------------------------------------------------------------
 #
 # Box classes
@@ -96,6 +102,9 @@ class PersonBox(BoxBase):
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
+
+    def set_person_color(self, person):
+        self.boxstr = utils.get_gender_color_box_name(_gender_color_box_names, person)
 
     def display(self):
         BoxBase.display(self)
@@ -123,6 +132,9 @@ class FamilyBox(BoxBase):
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
+
+    def set_family_color(self):
+        self.boxstr = _family_color_box_name
 
 
 # ------------------------------------------------------------------------
@@ -247,6 +259,10 @@ class MakeAncestorTree(AscendPerson):
         self.inlc_marr = _gui.inc_marr()
         self.inc_sib = _gui.inc_sib()
         self.compress_tree = _gui.compress_tree()
+
+        global _fill_box_color
+        _fill_box_color = _gui.get_val("fill_box_color")
+
         self.center_family = None
         self.lines = [None] * (_gui.maxgen() + 1)
         if _gui.get_val("show_idx"):
@@ -277,10 +293,11 @@ class MakeAncestorTree(AscendPerson):
             genIdx = self.start_idx * (2 ** (index[LVL_GEN] - 1))
             genOff = index[LVL_INDX] - (2 ** (index[LVL_GEN] - 1))
             myself.idx = genIdx + genOff
+
+        person = None
         if indi_handle is not None:  # None is legal for an empty box
-            myself.add_mark(
-                self.database, self.database.get_person_from_handle(indi_handle)
-            )
+            person = self.database.get_person_from_handle(indi_handle)
+            myself.add_mark(self.database, person)
 
         self.canvas.add_box(myself)
 
@@ -295,6 +312,9 @@ class MakeAncestorTree(AscendPerson):
             else:
                 line = self.lines[indx - 1].line_to
             line.add_to(myself)
+
+        if _fill_box_color and person:
+            myself.set_person_color(person)
 
         return myself
 
@@ -313,6 +333,9 @@ class MakeAncestorTree(AscendPerson):
         myself.text = self.calc_items.calc_marriage(indi_handle, fams_handle)
 
         self.canvas.add_box(myself)
+
+        if _fill_box_color:
+            myself.set_family_color()
 
     def y_index(self, x_level, index):
         """Calculate the column or generation that this person is in.
@@ -882,6 +905,17 @@ class AncestorTreeOptions(MenuReportOptions):
         self.start_idx.set_help(_("The start index"))
         menu.add_option(category_name, "start_idx", self.start_idx)
 
+        fill_box_color = BooleanOption(
+            _("Fill color in the person and marriage boxes"), True
+        )
+        fill_box_color.set_help(
+            _(
+                "Whether to Fill color in the person and marriage boxes."
+                "  You may change the color scheme by creating a new style."
+            )
+        )
+        menu.add_option(category_name, "fill_box_color", fill_box_color)
+
         # better to 'Show siblings of\nthe center person
         # Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
         #                                     "person"), 0)
@@ -1142,12 +1176,20 @@ class AncestorTreeOptions(MenuReportOptions):
         graph_style.set_shadow(1, box_shadow)  # shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-box", graph_style)
+        global _gender_color_box_names
+        _gender_color_box_names = utils.generate_gender_color_styles(
+            default_style, "AC2-box", graph_style
+        )
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("AC2-Normal")
         # graph_style.set_shadow(0, PT2CM(9))  # shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-fam-box", graph_style)
+        global _family_color_box_name
+        _family_color_box_name = utils.generate_family_color_style(
+            default_style, "AC2-fam-box", graph_style
+        )
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("AC2-Note")
