@@ -1411,9 +1411,10 @@ class QueryBuilder:
         # Set json_extract and json_array_length based on dialect if not provided
         if json_extract is None or json_array_length is None:
             if self.dialect == "sqlite":
-                json_extract = json_extract or "json_data -> '$.{attr}'"
+                # Use older json_extract() format for compatibility with older SQLite versions
+                json_extract = json_extract or "json_extract(json_data, '$.{attr}')"
                 json_array_length = (
-                    json_array_length or "JSON_ARRAY_LENGTH(json_data -> '$.{attr}')"
+                    json_array_length or "json_array_length(json_extract(json_data, '$.{attr}'))"
                 )
             elif self.dialect == "postgres":
                 # PostgreSQL uses JSON_EXTRACT_PATH and removes $ prefix from path
@@ -1450,9 +1451,10 @@ class QueryBuilder:
             ExpressionBuilder instance configured for array expansion
         """
         if self.dialect == "sqlite":
-            json_extract_pattern = "json_each.value -> '$.{attr}'"
+            # Use older json_extract() format for compatibility with older SQLite versions
+            json_extract_pattern = "json_extract(json_each.value, '$.{attr}')"
             json_array_length_pattern = (
-                "JSON_ARRAY_LENGTH(json_each.value -> '$.{attr}')"
+                "json_array_length(json_extract(json_each.value, '$.{attr}'))"
             )
         elif self.dialect == "postgres":
             json_extract_pattern = "JSON_EXTRACT_PATH(json_each.value, '{attr}')"
@@ -1486,9 +1488,10 @@ class QueryBuilder:
             ExpressionBuilder instance configured for the specified table
         """
         if self.dialect == "sqlite":
-            json_extract_pattern = f"{table_name}.json_data -> '$.{{attr}}'"
+            # Use older json_extract() format for compatibility with older SQLite versions
+            json_extract_pattern = f"json_extract({table_name}.json_data, '$.{{attr}}')"
             json_array_length_pattern = (
-                f"JSON_ARRAY_LENGTH({table_name}.json_data -> '$.{{attr}}')"
+                f"json_array_length(json_extract({table_name}.json_data, '$.{{attr}}'))"
             )
         elif self.dialect == "postgres":
             json_extract_pattern = (
