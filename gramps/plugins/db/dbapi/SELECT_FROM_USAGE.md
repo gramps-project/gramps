@@ -450,6 +450,42 @@ primary_event_refs = list(
 )
 ```
 
+### Variable-Index Array Access
+
+You can access array elements using a variable index (like `person.birth_ref_index`):
+
+```python
+# Get the birth event reference using birth_ref_index
+birth_refs = list(
+    db.select_from_person(
+        what="person.event_ref_list[person.birth_ref_index]"
+    )
+)
+
+# Get the role value from the birth event reference
+birth_roles = list(
+    db.select_from_person(
+        what="person.event_ref_list[person.birth_ref_index].role.value"
+    )
+)
+
+# Filter persons who have a valid birth event reference
+persons_with_birth = list(
+    db.select_from_person(
+        what="person.handle",
+        where="person.event_ref_list[person.birth_ref_index]"
+    )
+)
+
+# Filter persons whose birth event reference has PRIMARY role
+persons_with_primary_birth = list(
+    db.select_from_person(
+        what="person.handle",
+        where="person.event_ref_list[person.birth_ref_index].role.value == EventRoleType.PRIMARY"
+    )
+)
+```
+
 ## Limitations
 
 1. **List Comprehensions in `what`**: When using list comprehensions in `what`, you get one row per matching array element. If a person has 5 matching event_refs, you'll get 5 rows.

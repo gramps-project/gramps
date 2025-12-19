@@ -397,6 +397,58 @@ class QueryBuilderTestMixin:
         # Validate SQL with sqlglot
         self._validate_sql(sql)
 
+    def test_variable_index_array_access_in_what(self):
+        """
+        Test variable-index array access in what clause.
+        Example: person.event_ref_list[person.birth_ref_index]
+        """
+        what = "person.event_ref_list[person.birth_ref_index]"
+        where = None
+        order_by = None
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
+    def test_variable_index_array_access_with_attributes(self):
+        """
+        Test variable-index array access with subsequent attribute access.
+        Example: person.event_ref_list[person.birth_ref_index].role.value
+        """
+        what = "person.event_ref_list[person.birth_ref_index].role.value"
+        where = None
+        order_by = None
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
+    def test_variable_index_array_access_in_where(self):
+        """
+        Test variable-index array access in where clause (truthiness check).
+        Example: person.event_ref_list[person.birth_ref_index]
+        """
+        what = "person.handle"
+        where = "person.event_ref_list[person.birth_ref_index]"
+        order_by = None
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
+    def test_variable_index_array_access_with_attributes_in_where(self):
+        """
+        Test variable-index array access with attributes in where clause.
+        Example: person.event_ref_list[person.birth_ref_index].role.value == 5
+        """
+        what = "person.handle"
+        where = "person.event_ref_list[person.birth_ref_index].role.value == 5"
+        order_by = None
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
 
 class QueryBuilderSQLiteTest(QueryBuilderTestMixin, unittest.TestCase):
     """

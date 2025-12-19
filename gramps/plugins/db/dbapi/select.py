@@ -65,6 +65,111 @@ class AttributeNode:
         )
 
 
+class VariableIndexArrayAccess:
+    """
+    Represents a variable-index array access that can have subsequent attribute access.
+    This allows us to build the full JSON path inside the subquery.
+
+    Example: person.event_ref_list[person.birth_ref_index].role.value
+    """
+
+    def __init__(
+        self,
+        array_expr,
+        index_sql,
+        dialect,
+        base_expr,
+        array_path,
+        json_extract_template,
+    ):
+        self.array_expr = array_expr  # The array JSON extract expression
+        self.index_sql = index_sql  # The index SQL expression
+        self.dialect = dialect  # SQL dialect
+        self.base_expr = base_expr  # Base JSON expression (e.g., "json_data")
+        self.array_path = array_path  # Array path (e.g., "event_ref_list")
+        self.attr_path = ""  # Subsequent attribute path (e.g., "role.value")
+        self.json_extract_template = (
+            json_extract_template  # Template for JSON extraction
+        )
+
+    def add_attribute(self, attr):
+        """Add an attribute to the path (e.g., .role, .value)"""
+        if self.attr_path:
+            self.attr_path += f".{attr}"
+        else:
+            self.attr_path = attr
+
+    def _format_json_extract(self, base_expr, attr_path):
+        """
+        Format JSON extract using the same pattern as QueryBuilder.
+
+        Args:
+            base_expr: Base expression (e.g., "json_each.value")
+            attr_path: Attribute path (e.g., "role.value" or "")
+
+        Returns:
+            Formatted JSON extract expression
+        """
+        if self.dialect == "sqlite":
+            if attr_path:
+                return f"json_extract({base_expr}, '$.{attr_path}')"
+            else:
+                return base_expr  # No extraction needed, return the value directly
+        elif self.dialect == "postgres":
+            if attr_path:
+                return f"JSON_EXTRACT_PATH({base_expr}, '{attr_path}')"
+            else:
+                return base_expr  # No extraction needed, return the value directly
+        else:
+            # Default to SQLite
+            if attr_path:
+                return f"json_extract({base_expr}, '$.{attr_path}')"
+            else:
+                return base_expr
+
+    def _format_json_each(self, array_expr):
+        """
+        Format json_each expression using the same pattern as QueryBuilder.
+
+        Args:
+            array_expr: Array expression to iterate over
+
+        Returns:
+            Formatted json_each expression
+        """
+        if self.dialect == "sqlite":
+            return f"json_each({array_expr}, '$')"
+        elif self.dialect == "postgres":
+            # PostgreSQL: WITH ORDINALITY creates both value and ordinality columns
+            return f"LATERAL json_array_elements({array_expr}) WITH ORDINALITY AS json_each(value, ordinality)"
+        else:
+            # Default to SQLite
+            return f"json_each({array_expr}, '$')"
+
+    def __str__(self):
+        """Generate the SQL subquery with the full attribute path"""
+        # Format json_each expression
+        json_each_expr = self._format_json_each(self.array_expr)
+
+        # Format the value extraction (with attribute path if present)
+        if self.attr_path:
+            value_expr = self._format_json_extract("json_each.value", self.attr_path)
+        else:
+            value_expr = "json_each.value"
+
+        # Generate the subquery based on dialect
+        if self.dialect == "sqlite":
+            return f"(SELECT {value_expr} FROM {json_each_expr} WHERE CAST(json_each.key AS INTEGER) = CAST({self.index_sql} AS INTEGER) LIMIT 1)"
+        elif self.dialect == "postgres":
+            return f"(SELECT {value_expr} FROM {json_each_expr} WHERE json_each.ordinality - 1 = CAST({self.index_sql} AS INTEGER) LIMIT 1)"
+        else:
+            # Default to SQLite
+            return f"(SELECT {value_expr} FROM {json_each_expr} WHERE CAST(json_each.key AS INTEGER) = CAST({self.index_sql} AS INTEGER) LIMIT 1)"
+
+    def __repr__(self):
+        return f"VariableIndexArrayAccess({self.array_path}[{self.index_sql}].{self.attr_path})"
+
+
 class ExpressionBuilder:
     """
     Python expression to SQL expression converter.
@@ -107,6 +212,151 @@ class ExpressionBuilder:
             ast.FloorDiv: "(CAST (({leftOperand} / {rightOperand}) AS INT))",
             ast.USub: "-{operand}",
         }
+
+    def _is_constant_index(self, index):
+        """
+        Check if an index is a constant (numeric/string literal) or variable.
+
+        Args:
+            index: The converted index value (could be int, str, AttributeNode, etc.)
+
+        Returns:
+            True if constant (can be used in JSON path), False if variable (needs subquery)
+        """
+        if isinstance(index, (int, float)):
+            return True
+        if isinstance(index, str):
+            # Check if it's a numeric string (constant)
+            try:
+                int(index)
+                return True
+            except ValueError:
+                # Check if it contains SQL expressions (variable)
+                if "json_extract" in index or "(" in index or "CAST" in index:
+                    return False
+                # Could be a quoted string literal
+                if (index.startswith('"') and index.endswith('"')) or (
+                    index.startswith("'") and index.endswith("'")
+                ):
+                    return True
+                return False
+        if isinstance(index, AttributeNode):
+            return False
+        # Default: assume variable if we can't determine
+        return False
+
+    def _get_base_json_expr(self, attr_node):
+        """
+        Get the base JSON expression from an AttributeNode.
+
+        Args:
+            attr_node: AttributeNode instance
+
+        Returns:
+            Base expression string (e.g., "json_data" or "person.json_data")
+        """
+        if attr_node.obj == self.table_name or attr_node.obj == "json_each":
+            return (
+                "json_data" if attr_node.obj == self.table_name else "json_each.value"
+            )
+        else:
+            # Referenced table
+            return f"{attr_node.obj}.json_data"
+
+    def _get_dialect(self):
+        """
+        Infer SQL dialect from json_extract pattern.
+
+        Returns:
+            "sqlite" or "postgres"
+        """
+        if "JSON_EXTRACT_PATH" in self.json_extract:
+            return "postgres"
+        else:
+            return "sqlite"
+
+    def _is_boolean_expression(self, node):
+        """
+        Check if an AST node represents a boolean expression.
+
+        Boolean expressions include:
+        - Comparisons (==, !=, <, >, <=, >=, in, not in, is, is not)
+        - Boolean operations (and, or, not)
+        - Function calls (like any(), startswith(), endswith())
+        - Already wrapped in IS NOT NULL or similar
+
+        Args:
+            node: AST node to check
+
+        Returns:
+            True if the expression is already boolean, False if it's a value expression
+        """
+        # Comparisons are boolean
+        if isinstance(node, ast.Compare):
+            return True
+
+        # Boolean operations are boolean
+        if isinstance(node, ast.BoolOp):
+            return True
+
+        # Unary operations (like 'not') are boolean
+        if isinstance(node, ast.UnaryOp):
+            # Check if it's a 'not' operation
+            if isinstance(node.op, ast.Not):
+                # Check if the operand is a boolean expression
+                return self._is_boolean_expression(node.operand)
+            return False
+
+        # Function calls might be boolean (like any(), startswith(), endswith())
+        if isinstance(node, ast.Call):
+            # Check if it's a known boolean function
+            if isinstance(node.func, ast.Name):
+                func_name = node.func.id
+                if func_name in ["any", "all"]:
+                    return True
+            # Check if it's a method call that returns boolean (like .startswith(), .endswith())
+            elif isinstance(node.func, ast.Attribute):
+                # Check if the method name indicates it returns a boolean
+                if node.func.attr in ["startswith", "endswith", "contains"]:
+                    return True
+            return False
+
+        # If expressions (ternary) are boolean in context
+        if isinstance(node, ast.IfExp):
+            return True
+
+        # Everything else (attributes, subscripts, names, constants) are value expressions
+        return False
+
+    def _is_boolean_attribute(self, node):
+        """
+        Check if an AST node represents a boolean attribute (like person.private).
+
+        Boolean attributes in Gramps include:
+        - person.private
+        - family.private
+        - event.private
+        - etc.
+
+        Args:
+            node: AST node to check
+
+        Returns:
+            True if the node is a boolean attribute, False otherwise
+        """
+        # Check if it's a simple attribute access
+        if isinstance(node, ast.Attribute):
+            # Check if the attribute name is 'private'
+            if node.attr == "private":
+                return True
+
+        # Check if it's wrapped in 'not'
+        if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
+            if isinstance(node.operand, ast.Attribute):
+                if node.operand.attr == "private":
+                    return True
+
+        return False
 
     @staticmethod
     def _ast_operator_to_string(op):
@@ -1083,15 +1333,60 @@ class ExpressionBuilder:
             obj = self.convert_to_sql(node.value)
             index = self.convert_to_sql(node.slice)
             if isinstance(obj, AttributeNode):
-                obj.attr += "[%s]" % index
-                return obj
+                # Check if index is constant or variable
+                if self._is_constant_index(index):
+                    # Constant index: use JSON path syntax (current behavior)
+                    obj.attr += "[%s]" % index
+                    return obj
+                else:
+                    # Variable index: use scalar subquery with json_each
+                    # Extract the array path (everything before any existing [index])
+                    array_path = obj.attr.split("[")[0]
+
+                    # Get the base JSON expression
+                    base_expr = self._get_base_json_expr(obj)
+
+                    # Get dialect
+                    dialect = self._get_dialect()
+
+                    # Build array expression
+                    if dialect == "sqlite":
+                        array_expr = f"json_extract({base_expr}, '$.{array_path}')"
+                    elif dialect == "postgres":
+                        array_expr = f"JSON_EXTRACT_PATH({base_expr}, '{array_path}')"
+                    else:
+                        array_expr = f"json_extract({base_expr}, '$.{array_path}')"
+
+                    # Convert index to SQL string if needed
+                    if isinstance(index, AttributeNode):
+                        index_sql = str(
+                            index
+                        )  # This will generate the JSON extract expression
+                    elif isinstance(index, str):
+                        index_sql = index
+                    else:
+                        index_sql = str(index)
+
+                    # Return VariableIndexArrayAccess object to handle subsequent attribute access
+                    return VariableIndexArrayAccess(
+                        array_expr,
+                        index_sql,
+                        dialect,
+                        base_expr,
+                        array_path,
+                        self.json_extract,
+                    )
             else:
                 raise Exception("Attempt to take index of a non-attribute")
         elif isinstance(node, ast.Attribute):
             obj = self.convert_to_sql(node.value)
             attr = node.attr
+            # Handle VariableIndexArrayAccess - add attribute to the path
+            if isinstance(obj, VariableIndexArrayAccess):
+                obj.add_attribute(attr)
+                return obj
             # Handle item variable from array expansion
-            if isinstance(obj, AttributeNode) and obj.obj == "json_each":
+            elif isinstance(obj, AttributeNode) and obj.obj == "json_each":
                 # This is item.attr or item.attr1.attr2 - build path from json_each.value
                 if obj.attr == "":
                     obj.attr = attr
@@ -1310,7 +1605,22 @@ class ExpressionBuilder:
         if result is None:
             return None
         result_str = str(result) if not isinstance(result, str) else result
-        return result_str if result_str and result_str.strip() else None
+        if not result_str or not result_str.strip():
+            return None
+
+        # Check if the expression is already a boolean expression
+        # If not, wrap it in a truthiness check
+        if not self._is_boolean_expression(where_ast):
+            # Check if it's a boolean attribute (like person.private)
+            # Boolean attributes should be compared to 1 (true), not checked for NULL
+            if self._is_boolean_attribute(where_ast):
+                # Convert to boolean comparison: attribute = 1
+                result_str = f"({result_str}) = 1"
+            else:
+                # For other values, use IS NOT NULL
+                result_str = f"({result_str}) IS NOT NULL"
+
+        return result_str
 
     def _convert_node_with_replacements(self, node, exclude_array_expansion=False):
         """

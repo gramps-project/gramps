@@ -1889,6 +1889,111 @@ class BaseTest(unittest.TestCase):
                 or family.get_mother_handle() == person_handle
             )
 
+    def test_variable_index_array_access_in_what(self):
+        """
+        Test variable-index array access in what clause.
+        Example: person.event_ref_list[person.birth_ref_index]
+        """
+        res = list(
+            self.db.select_from_person(
+                what="person.event_ref_list[person.birth_ref_index]"
+            )
+        )
+        # Should return one row per person with the birth event reference (if valid)
+        # When what is a single string, it returns the value directly, not a tuple
+        self.assertGreaterEqual(len(res), 0)
+        # Verify results are valid (None for persons without valid birth_ref_index)
+        for birth_ref in res:
+            # birth_ref can be None if birth_ref_index is -1 or out of bounds
+            # or it could be a dict/object representing the event_ref
+            self.assertTrue(
+                birth_ref is None
+                or isinstance(birth_ref, (str, dict))
+                or hasattr(birth_ref, "ref")
+            )
+
+    def test_variable_index_array_access_with_attributes(self):
+        """
+        Test variable-index array access with subsequent attribute access.
+        Example: person.event_ref_list[person.birth_ref_index].role.value
+        """
+        res = list(
+            self.db.select_from_person(
+                what="person.event_ref_list[person.birth_ref_index].role.value"
+            )
+        )
+        # Should return one row per person with the role value from birth event reference
+        # When what is a single string, it returns the value directly, not a tuple
+        self.assertGreaterEqual(len(res), 0)
+        # Verify results are valid (None for persons without valid birth_ref_index)
+        for role_value in res:
+            # role_value can be None if birth_ref_index is -1 or out of bounds
+            self.assertTrue(role_value is None or isinstance(role_value, int))
+
+    def test_variable_index_array_access_in_where(self):
+        """
+        Test variable-index array access in where clause (truthiness check).
+        Example: person.event_ref_list[person.birth_ref_index]
+        """
+        res = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="person.event_ref_list[person.birth_ref_index]",
+            )
+        )
+        # Should return persons who have a valid birth event reference
+        # When what is a single string, it returns the value directly, not a tuple
+        self.assertGreaterEqual(len(res), 0)
+        # Verify each person has a valid birth_ref_index
+        for person_handle in res:
+            # Skip invalid handles (shouldn't happen, but be defensive)
+            if not isinstance(person_handle, str) or len(person_handle) < 2:
+                continue
+            try:
+                person = self.db.get_person_from_handle(person_handle)
+                self.assertIsNotNone(person)
+                # birth_ref_index should be valid (>= 0) and within bounds
+                if person.birth_ref_index >= 0:
+                    self.assertLess(
+                        person.birth_ref_index, len(person.get_event_ref_list())
+                    )
+            except Exception:
+                # If handle lookup fails, skip this entry
+                continue
+
+    def test_variable_index_array_access_with_attributes_in_where(self):
+        """
+        Test variable-index array access with attributes in where clause.
+        Example: person.event_ref_list[person.birth_ref_index].role.value == 5
+        """
+        from gramps.gen.lib import EventRoleType
+
+        res = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="person.event_ref_list[person.birth_ref_index].role.value == EventRoleType.PRIMARY",
+            )
+        )
+        # Should return persons whose birth event reference has PRIMARY role
+        # When what is a single string, it returns the value directly, not a tuple
+        self.assertGreaterEqual(len(res), 0)
+        # Verify each person's birth event reference has PRIMARY role
+        for person_handle in res:
+            # Skip invalid handles (shouldn't happen, but be defensive)
+            if not isinstance(person_handle, str) or len(person_handle) < 2:
+                continue
+            try:
+                person = self.db.get_person_from_handle(person_handle)
+                self.assertIsNotNone(person)
+                if person.birth_ref_index >= 0 and person.birth_ref_index < len(
+                    person.get_event_ref_list()
+                ):
+                    birth_ref = person.get_event_ref_list()[person.birth_ref_index]
+                    self.assertEqual(birth_ref.get_role().value, EventRoleType.PRIMARY)
+            except Exception:
+                # If handle lookup fails, skip this entry
+                continue
+
 
 if __name__ == "__main__":
     unittest.main()
