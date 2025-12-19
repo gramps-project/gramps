@@ -82,6 +82,8 @@ class DBAPI(DbGeneric):
     Database backends class for DB-API 2.0 databases
     """
 
+    dialect = "sqlite"
+
     def _initialize(self, directory, username, password):
         raise NotImplementedError
 
@@ -1271,9 +1273,8 @@ class DBAPI(DbGeneric):
         # Create QueryBuilder instance
         query_builder = QueryBuilder(
             table_name,
-            "json_extract(json_data, '$.{attr}')",
-            "json_array_length(json_extract(json_data, '$.{attr}'))",
-            env if env is not None else globals(),
+            env=env if env is not None else globals(),
+            dialect=self.dialect,
         )
 
         # Generate SQL query

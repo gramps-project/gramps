@@ -1384,20 +1384,55 @@ class QueryBuilder:
     Consolidates all SQL generation logic for select_from_table.
     """
 
-    def __init__(self, table_name, json_extract, json_array_length, env):
+    def __init__(
+        self,
+        table_name,
+        json_extract=None,
+        json_array_length=None,
+        env=None,
+        dialect="sqlite",
+    ):
         """
         Initialize QueryBuilder with table configuration.
 
         Args:
             table_name: Base table name (e.g., "person")
             json_extract: JSON extract pattern (e.g., "json_extract(json_data, '$.{attr}')")
+                          If None, will be set based on dialect
             json_array_length: JSON array length pattern
+                              If None, will be set based on dialect
             env: Environment dictionary for expression evaluation
+            dialect: SQL dialect ("sqlite" or "postgres"). Defaults to "sqlite"
         """
         self.table_name = table_name
+        self.dialect = dialect.lower()
+        self.env = env if env is not None else {}
+
+        # Set json_extract and json_array_length based on dialect if not provided
+        if json_extract is None or json_array_length is None:
+            if self.dialect == "sqlite":
+                json_extract = json_extract or "json_data -> '$.{attr}'"
+                json_array_length = (
+                    json_array_length or "JSON_ARRAY_LENGTH(json_data -> '$.{attr}')"
+                )
+            elif self.dialect == "postgres":
+                # PostgreSQL uses JSON_EXTRACT_PATH and removes $ prefix from path
+                json_extract = json_extract or "JSON_EXTRACT_PATH(json_data, '{attr}')"
+                json_array_length = (
+                    json_array_length
+                    or "JSON_ARRAY_LENGTH(JSON_EXTRACT_PATH(json_data, '{attr}'))"
+                )
+            else:
+                # Default to SQLite format for backward compatibility
+                json_extract = json_extract or "json_extract(json_data, '$.{attr}')"
+                json_array_length = (
+                    json_array_length
+                    or "json_array_length(json_extract(json_data, '$.{attr}'))"
+                )
+
         self.json_extract = json_extract
         self.json_array_length = json_array_length
-        self.env = env if env is not None else {}
+
         # Create single ExpressionBuilder instance for primary conversions
         self.expression = ExpressionBuilder(
             table_name, json_extract, json_array_length, self.env
@@ -1414,10 +1449,27 @@ class QueryBuilder:
         Returns:
             ExpressionBuilder instance configured for array expansion
         """
+        if self.dialect == "sqlite":
+            json_extract_pattern = "json_each.value -> '$.{attr}'"
+            json_array_length_pattern = (
+                "JSON_ARRAY_LENGTH(json_each.value -> '$.{attr}')"
+            )
+        elif self.dialect == "postgres":
+            json_extract_pattern = "JSON_EXTRACT_PATH(json_each.value, '{attr}')"
+            json_array_length_pattern = (
+                "JSON_ARRAY_LENGTH(JSON_EXTRACT_PATH(json_each.value, '{attr}'))"
+            )
+        else:
+            # Default to SQLite format
+            json_extract_pattern = "json_extract(json_each.value, '$.{attr}')"
+            json_array_length_pattern = (
+                "json_array_length(json_extract(json_each.value, '$.{attr}'))"
+            )
+
         return ExpressionBuilder(
             self.table_name,
-            "json_extract(json_each.value, '$.{attr}')",
-            "json_array_length(json_extract(json_each.value, '$.{attr}'))",
+            json_extract_pattern,
+            json_array_length_pattern,
             self.env,
             item_var=item_var,
             array_path=array_path,
@@ -1433,10 +1485,27 @@ class QueryBuilder:
         Returns:
             ExpressionBuilder instance configured for the specified table
         """
+        if self.dialect == "sqlite":
+            json_extract_pattern = f"{table_name}.json_data -> '$.{{attr}}'"
+            json_array_length_pattern = (
+                f"JSON_ARRAY_LENGTH({table_name}.json_data -> '$.{{attr}}')"
+            )
+        elif self.dialect == "postgres":
+            json_extract_pattern = (
+                f"JSON_EXTRACT_PATH({table_name}.json_data, '{{attr}}')"
+            )
+            json_array_length_pattern = f"JSON_ARRAY_LENGTH(JSON_EXTRACT_PATH({table_name}.json_data, '{{attr}}'))"
+        else:
+            # Default to SQLite format
+            json_extract_pattern = f"json_extract({table_name}.json_data, '$.{{attr}}')"
+            json_array_length_pattern = (
+                f"json_array_length(json_extract({table_name}.json_data, '$.{{attr}}'))"
+            )
+
         return ExpressionBuilder(
             table_name,
-            f"json_extract({table_name}.json_data, '$.{{attr}}')",
-            f"json_array_length(json_extract({table_name}.json_data, '$.{{attr}}'))",
+            json_extract_pattern,
+            json_array_length_pattern,
             self.env,
         )
 
@@ -1558,8 +1627,8 @@ class QueryBuilder:
             what_expr = str(what_expression.convert_to_sql(what_expression_node))
             array_sql_expression = ExpressionBuilder(
                 self.table_name,
-                "json_extract(json_data, '$.{attr}')",
-                "json_array_length(json_extract(json_data, '$.{attr}'))",
+                self.json_extract,
+                self.json_array_length,
                 self.env,
             )
             array_sql = array_sql_expression.convert(
@@ -1775,8 +1844,8 @@ class QueryBuilder:
             what_expr = str(what_expression.convert_to_sql(what_expression_node))
             array_sql_expression = ExpressionBuilder(
                 self.table_name,
-                "json_extract(json_data, '$.{attr}')",
-                "json_array_length(json_extract(json_data, '$.{attr}'))",
+                self.json_extract,
+                self.json_array_length,
                 self.env,
             )
             what_array_sql = array_sql_expression.convert(
