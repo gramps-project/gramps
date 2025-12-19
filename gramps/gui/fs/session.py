@@ -149,7 +149,7 @@ class Session(requests.Session):
         headers = {"accept": "text/html"}
         response = self.get(url, headers=headers, params=payload)
 
-        if "realm_permission" in response.url:
+        if "127.0.0.1:57938" not in response.url:
             raise FSPermission(response.url)
 
         auth_code = ""
