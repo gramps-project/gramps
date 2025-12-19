@@ -1409,27 +1409,10 @@ class QueryBuilder:
         self.env = env if env is not None else {}
 
         # Set json_extract and json_array_length based on dialect if not provided
-        if json_extract is None or json_array_length is None:
-            if self.dialect == "sqlite":
-                # Use older json_extract() format for compatibility with older SQLite versions
-                json_extract = json_extract or "json_extract(json_data, '$.{attr}')"
-                json_array_length = (
-                    json_array_length or "json_array_length(json_extract(json_data, '$.{attr}'))"
-                )
-            elif self.dialect == "postgres":
-                # PostgreSQL uses JSON_EXTRACT_PATH and removes $ prefix from path
-                json_extract = json_extract or "JSON_EXTRACT_PATH(json_data, '{attr}')"
-                json_array_length = (
-                    json_array_length
-                    or "JSON_ARRAY_LENGTH(JSON_EXTRACT_PATH(json_data, '{attr}'))"
-                )
-            else:
-                # Default to SQLite format for backward compatibility
-                json_extract = json_extract or "json_extract(json_data, '$.{attr}')"
-                json_array_length = (
-                    json_array_length
-                    or "json_array_length(json_extract(json_data, '$.{attr}'))"
-                )
+        if json_extract is None:
+            json_extract = self.format_json_extract("json_data")
+        if json_array_length is None:
+            json_array_length = self.format_json_array_length("json_data")
 
         self.json_extract = json_extract
         self.json_array_length = json_array_length
@@ -1438,6 +1421,46 @@ class QueryBuilder:
         self.expression = ExpressionBuilder(
             table_name, json_extract, json_array_length, self.env
         )
+
+    def format_json_extract(self, base_expr):
+        """
+        Format JSON extract expression based on dialect.
+
+        Args:
+            base_expr: Base expression (e.g., "json_data", "json_each.value", "table.json_data")
+
+        Returns:
+            Formatted JSON extract pattern with {attr} placeholder
+        """
+        if self.dialect == "sqlite":
+            # Use older json_extract() format for compatibility with older SQLite versions
+            return f"json_extract({base_expr}, '$.{{attr}}')"
+        elif self.dialect == "postgres":
+            # PostgreSQL uses JSON_EXTRACT_PATH and removes $ prefix from path
+            return f"JSON_EXTRACT_PATH({base_expr}, '{{attr}}')"
+        else:
+            # Default to SQLite format for backward compatibility
+            return f"json_extract({base_expr}, '$.{{attr}}')"
+
+    def format_json_array_length(self, base_expr):
+        """
+        Format JSON array length expression based on dialect.
+
+        Args:
+            base_expr: Base expression (e.g., "json_data", "json_each.value", "table.json_data")
+
+        Returns:
+            Formatted JSON array length pattern with {attr} placeholder
+        """
+        if self.dialect == "sqlite":
+            # Use older json_extract() format for compatibility with older SQLite versions
+            return f"json_array_length(json_extract({base_expr}, '$.{{attr}}'))"
+        elif self.dialect == "postgres":
+            # PostgreSQL uses JSON_EXTRACT_PATH and removes $ prefix from path
+            return f"JSON_ARRAY_LENGTH(JSON_EXTRACT_PATH({base_expr}, '{{attr}}'))"
+        else:
+            # Default to SQLite format for backward compatibility
+            return f"json_array_length(json_extract({base_expr}, '$.{{attr}}'))"
 
     def _create_array_evaluator(self, item_var, array_path):
         """
@@ -1450,23 +1473,8 @@ class QueryBuilder:
         Returns:
             ExpressionBuilder instance configured for array expansion
         """
-        if self.dialect == "sqlite":
-            # Use older json_extract() format for compatibility with older SQLite versions
-            json_extract_pattern = "json_extract(json_each.value, '$.{attr}')"
-            json_array_length_pattern = (
-                "json_array_length(json_extract(json_each.value, '$.{attr}'))"
-            )
-        elif self.dialect == "postgres":
-            json_extract_pattern = "JSON_EXTRACT_PATH(json_each.value, '{attr}')"
-            json_array_length_pattern = (
-                "JSON_ARRAY_LENGTH(JSON_EXTRACT_PATH(json_each.value, '{attr}'))"
-            )
-        else:
-            # Default to SQLite format
-            json_extract_pattern = "json_extract(json_each.value, '$.{attr}')"
-            json_array_length_pattern = (
-                "json_array_length(json_extract(json_each.value, '$.{attr}'))"
-            )
+        json_extract_pattern = self.format_json_extract("json_each.value")
+        json_array_length_pattern = self.format_json_array_length("json_each.value")
 
         return ExpressionBuilder(
             self.table_name,
@@ -1487,23 +1495,10 @@ class QueryBuilder:
         Returns:
             ExpressionBuilder instance configured for the specified table
         """
-        if self.dialect == "sqlite":
-            # Use older json_extract() format for compatibility with older SQLite versions
-            json_extract_pattern = f"json_extract({table_name}.json_data, '$.{{attr}}')"
-            json_array_length_pattern = (
-                f"json_array_length(json_extract({table_name}.json_data, '$.{{attr}}'))"
-            )
-        elif self.dialect == "postgres":
-            json_extract_pattern = (
-                f"JSON_EXTRACT_PATH({table_name}.json_data, '{{attr}}')"
-            )
-            json_array_length_pattern = f"JSON_ARRAY_LENGTH(JSON_EXTRACT_PATH({table_name}.json_data, '{{attr}}'))"
-        else:
-            # Default to SQLite format
-            json_extract_pattern = f"json_extract({table_name}.json_data, '$.{{attr}}')"
-            json_array_length_pattern = (
-                f"json_array_length(json_extract({table_name}.json_data, '$.{{attr}}'))"
-            )
+        json_extract_pattern = self.format_json_extract(f"{table_name}.json_data")
+        json_array_length_pattern = self.format_json_array_length(
+            f"{table_name}.json_data"
+        )
 
         return ExpressionBuilder(
             table_name,
