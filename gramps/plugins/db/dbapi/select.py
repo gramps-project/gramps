@@ -906,10 +906,55 @@ class ExpressionBuilder:
             else:
                 return repr(node.value)
         elif isinstance(node, ast.BinOp):
+            # Convert operands first
+            left_operand = self.convert_to_sql(node.left)
+            right_operand = self.convert_to_sql(node.right)
+
+            # Check if this is array concatenation: Add operator
+            if isinstance(node.op, ast.Add):
+                # Check if left is a list literal (e.g., [person.primary_name])
+                left_is_list = isinstance(node.left, ast.List)
+                # Check if right is a list literal
+                right_is_list = isinstance(node.right, ast.List)
+                # Check if left is an AttributeNode (e.g., person.alternate_names)
+                left_is_attribute = isinstance(left_operand, AttributeNode)
+                # Check if right is an AttributeNode
+                right_is_attribute = isinstance(right_operand, AttributeNode)
+
+                # Case 1: [something] + [something]
+                if left_is_list and right_is_list:
+                    # Both operands are list literals, both should be json_array(...) from ast.List handler
+                    left_sql = str(left_operand)
+                    right_sql = str(right_operand)
+                    # Concatenate arrays using json_group_array with json_each
+                    return f"(SELECT json_group_array(value) FROM (SELECT value FROM json_each({left_sql}) UNION ALL SELECT value FROM json_each({right_sql})))"
+
+                # Case 2: [something] + array_attribute
+                if left_is_list and right_is_attribute:
+                    # left_operand should already be json_array(...) from ast.List handler
+                    # right_operand is an AttributeNode representing an array
+                    left_sql = str(left_operand)
+                    right_sql = str(right_operand)
+                    # Concatenate arrays using json_group_array with json_each
+                    return f"(SELECT json_group_array(value) FROM (SELECT value FROM json_each({left_sql}) UNION ALL SELECT value FROM json_each({right_sql})))"
+
+                # Case 3: array_attribute + [something]
+                if left_is_attribute and right_is_list:
+                    left_sql = str(left_operand)
+                    right_sql = str(right_operand)
+                    return f"(SELECT json_group_array(value) FROM (SELECT value FROM json_each({left_sql}) UNION ALL SELECT value FROM json_each({right_sql})))"
+
+                # Case 4: array_attribute + array_attribute
+                if left_is_attribute and right_is_attribute:
+                    left_sql = str(left_operand)
+                    right_sql = str(right_operand)
+                    return f"(SELECT json_group_array(value) FROM (SELECT value FROM json_each({left_sql}) UNION ALL SELECT value FROM json_each({right_sql})))"
+
+            # Default behavior for other operations
             template = self.operators[type(node.op)]
             args = {
-                "leftOperand": self.convert_to_sql(node.left),
-                "rightOperand": self.convert_to_sql(node.right),
+                "leftOperand": left_operand,
+                "rightOperand": right_operand,
             }
             return template.format(**args)
         elif isinstance(node, ast.UnaryOp):
@@ -1083,7 +1128,17 @@ class ExpressionBuilder:
         elif isinstance(node, ast.List):
             args = [self.convert_to_sql(arg) for arg in node.elts]
             if len(args) == 0:
-                return "null"
+                return "json_array()"
+            # If all elements are AttributeNodes (JSON extracts), create json_array
+            # This handles cases like [person.primary_name]
+            if len(args) == 1 and isinstance(args[0], AttributeNode):
+                # Single AttributeNode: wrap it in json_array
+                return f"json_array({args[0]})"
+            elif all(isinstance(arg, AttributeNode) for arg in args):
+                # Multiple AttributeNodes: create json_array with all of them
+                arg_strs = [str(arg) for arg in args]
+                return f"json_array({', '.join(arg_strs)})"
+            # Default: return as tuple-like format for other cases
             return "(" + (", ".join([str(arg) for arg in args])) + ")"
         elif isinstance(node, ast.Call):
             function_name = self.convert_to_sql(node.func)

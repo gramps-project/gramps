@@ -151,19 +151,25 @@ def string_to_data(
 ) -> DataDict | str | bytes | list[DataDict | object]:
     """
     Convert a JSON string into its data representation.
+    Recursively processes lists to handle JSON strings within arrays.
     """
-    try:
-        raw_data = orjson.loads(string)
-    except Exception:
-        return string
+    raw_data = orjson.loads(string)
 
     if isinstance(raw_data, dict):
         return DataDict(raw_data)
     elif isinstance(raw_data, list):
-        return [
-            DataDict(v) if isinstance(v, dict) and "_class" in v else v
-            for v in raw_data
-        ]
+        # Recursively process list items
+        result = []
+        for item in raw_data:
+            if isinstance(item, str):
+                # Recursively parse JSON strings (e.g., from json_group_array)
+                result.append(string_to_data(item))
+            elif isinstance(item, dict) and "_class" in item:
+                # Convert dicts with _class to DataDict
+                result.append(DataDict(item))
+            else:
+                result.append(item)
+        return result
     else:
         return raw_data
 

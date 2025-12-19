@@ -48,6 +48,7 @@ from gramps.gen.db.dbconst import (
     TXNDEL,
     TXNUPD,
 )
+from gramps.gen.lib.json_utils import DataDict
 from gramps.gen.db.generic import DbGeneric
 from gramps.gen.lib import (
     Citation,
@@ -1222,14 +1223,6 @@ class DBAPI(DbGeneric):
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
 
-    def _sql_value_or_object(self, value):
-        """
-        Return a value (int, string, etc) or a Gramps object.
-        """
-        if isinstance(value, str):
-            value = self.serializer.string_to_data(value)
-        return value
-
     def _select_from_table(
         self,
         table_name,
@@ -1290,8 +1283,22 @@ class DBAPI(DbGeneric):
             row = cursor.fetchone()
             while row:
                 if isinstance(what, (list, tuple)):
-                    yield [self._sql_value_or_object(value) for value in row]
+                    yield [
+                        (
+                            self.serializer.string_to_data(value)
+                            if isinstance(value, str)
+                            and (value.startswith("{") or value.startswith("["))
+                            else value
+                        )
+                        for value in row
+                    ]
                 else:
-                    yield self._sql_value_or_object(row[0])
+                    value = row[0]
+                    yield (
+                        self.serializer.string_to_data(value)
+                        if isinstance(value, str)
+                        and (value.startswith("{") or value.startswith("["))
+                        else value
+                    )
 
                 row = cursor.fetchone()
