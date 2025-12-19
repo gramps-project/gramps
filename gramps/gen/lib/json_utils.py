@@ -27,6 +27,7 @@
 from __future__ import annotations
 import json
 import orjson
+from typing import Any
 
 # ------------------------------------------------------------------------
 #
@@ -148,7 +149,7 @@ def convert_object_to_state(obj):
 
 def string_to_data(
     string: str | bytes,
-) -> DataDict | str | bytes | list[DataDict | object]:
+) -> DataDict | str | bytes | list[Any]:
     """
     Convert a JSON string into its data representation.
     Recursively processes lists to handle JSON strings within arrays.
