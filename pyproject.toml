@@ -112,7 +112,7 @@ all = ["Pillow",
        "pycairo",
        "pycountry",
 ]
-testing = ["jsonschema", "mock", "lxml"]
+testing = ["jsonschema", "mock", "lxml", "sqlglot"]
 
 [project.urls]
 Homepage = "https://gramps-project.org"
