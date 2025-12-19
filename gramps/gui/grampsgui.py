@@ -78,6 +78,12 @@ UIDEFAULT = (
       </section>
       <section groups='RO RW'>
         <item groups='RW'>
+          <attribute name="action">win.Login</attribute>
+          <attribute name="label" translatable="yes">_Login...</attribute>
+        </item>
+      </section>
+      <section groups='RO RW'>
+        <item groups='RW'>
           <attribute name="action">win.Import</attribute>
           <attribute name="label" translatable="yes">_Import...</attribute>
         </item>

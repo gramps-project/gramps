@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2013       Nick Hall
+# Copyright (C) 2013,2025  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -63,6 +63,15 @@ class Statusbar(Gtk.Box):
 
         self.__warnbtn = WarnButton()
 
+        self.__fs_offline = Gtk.Image.new_from_icon_name(
+            "FS-BLA-16", Gtk.IconSize.BUTTON
+        )
+        self.__fs_online = Gtk.Image.new_from_icon_name("FS-G-16", Gtk.IconSize.BUTTON)
+        self.__fs_status = Gtk.Button()
+        self.__fs_status.set_relief(Gtk.ReliefStyle.NONE)
+        self.__fs_status.set_image(self.__fs_offline)
+        self.__fs_status.show()
+
         self.__version = Gtk.Button()
         self.__version.set_relief(Gtk.ReliefStyle.NONE)
         self.__version.get_style_context().add_class("destructive-action")
@@ -75,6 +84,7 @@ class Statusbar(Gtk.Box):
         self.__filter.show()
 
         self.pack_start(self.__warnbtn, False, True, 4)
+        self.pack_start(self.__fs_status, False, True, 4)
         self.pack_start(self.__progress, False, True, 4)
         self.pack_start(self.__status, True, True, 4)
         self.pack_end(self.__filter, False, True, 4)
@@ -83,6 +93,17 @@ class Statusbar(Gtk.Box):
     def get_warning_button(self):
         """Return the warning button widget."""
         return self.__warnbtn
+
+    def get_fs_status_button(self):
+        """Return the FamilySearch status button widget."""
+        return self.__fs_status
+
+    def set_fs_online(self, status):
+        """Set the FamilySearch online status."""
+        if status:
+            self.__fs_status.set_image(self.__fs_online)
+        else:
+            self.__fs_status.set_image(self.__fs_offline)
 
     def get_progress_bar(self):
         """Return the progress bar widget."""

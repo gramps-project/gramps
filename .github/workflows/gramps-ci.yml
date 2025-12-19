@@ -53,6 +53,7 @@ jobs:
         sudo apt-get install libxml2-utils
         sudo apt-get install python3-lxml
         sudo apt-get install python3-libxml2
+        sudo apt-get install python3-requests
         sudo apt-get install zlib1g-dev
         sudo apt-get install python3-build
         python3 -m pip install orjson
@@ -69,7 +70,7 @@ jobs:
         python3 -m build --wheel
     - name: Run mypy static type checker
       run: |
-        python3 -m pip install mypy
+        python3 -m pip install mypy types-requests
         mypy
     - name: Run unit test suite
       run: |

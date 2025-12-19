@@ -4,7 +4,7 @@
 # Copyright (C) 2005-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010,2025  Nick Hall
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Gary Burton
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
@@ -39,6 +39,7 @@ import datetime
 from io import StringIO
 import gc
 import html
+import webbrowser
 
 # -------------------------------------------------------------------------
 #
@@ -132,6 +133,8 @@ from gramps.gui.editors import (
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.gen.filters import reload_custom_filters
 from .managedwindow import ManagedWindow
+from .dbloader import GrampsLoginDialog
+from .fs.session import Session, FSException, FSPermission
 
 # -------------------------------------------------------------------------
 #
@@ -435,6 +438,7 @@ class ViewManager(CLIManager):
 
         self._readonly_action_list = [
             ("Close", self.close_database, "<control>w"),
+            ("Login", self.login, "<control>l"),
             ("Export", self.export_data, "<PRIMARY>e"),
             ("Backup", self.quick_backup),
             ("Abandon", self.abort),
@@ -502,6 +506,58 @@ class ViewManager(CLIManager):
         self._redo_action_list = [
             ("Redo", self.redo, "<shift><PRIMARY>z"),
         ]
+
+    def login(self, *action):
+        """
+        Login to FamilySearch.
+        """
+        session = Session(
+            config.get("familysearch.server"),
+            config.get("familysearch.app-key"),
+            "http://127.0.0.1:57938/familysearch-auth",
+        )
+
+        login = GrampsLoginDialog(self.uistate)
+        credentials = login.run()
+        if credentials is None:
+            return
+        username, password = credentials
+
+        try:
+            session.login(username, password)
+        except FSException:
+            ErrorDialog(_("FamilySearch"), _("Login error"), parent=self.uistate.window)
+            self.statusbar.set_fs_online(False)
+            return
+
+        self.uistate.set_busy_cursor(True)
+        try:
+            auth_code = session.authorize(username)
+        except FSPermission as exc:
+            webbrowser.open(str(exc), new=1, autoraise=True)
+            try:
+                auth_code = session.listen()
+            except FSException:
+                # ErrorDialog(_("FamilySearch"),
+                # _("User consent declined"),
+                # parent=self.uistate.window)
+                self.uistate.set_busy_cursor(False)
+                self.statusbar.set_fs_online(False)
+                return
+
+        except FSException:
+            ErrorDialog(
+                _("FamilySearch"), _("Authorization error"), parent=self.uistate.window
+            )
+            self.uistate.set_busy_cursor(False)
+            self.statusbar.set_fs_online(False)
+            return
+
+        if auth_code:
+            session.get_token(auth_code)
+
+        self.uistate.set_busy_cursor(False)
+        self.statusbar.set_fs_online(True)
 
     def run_book(self, *action):
         """
