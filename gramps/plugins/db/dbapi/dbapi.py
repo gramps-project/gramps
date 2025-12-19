@@ -1282,7 +1282,18 @@ class DBAPI(DbGeneric):
 
             row = cursor.fetchone()
             while row:
-                if isinstance(what, (list, tuple)):
+                # Always yield all columns from the row
+                if len(row) == 1:
+                    # Single column - yield the value directly
+                    value = row[0]
+                    yield (
+                        self.serializer.string_to_data(value)
+                        if isinstance(value, str)
+                        and (value.startswith("{") or value.startswith("["))
+                        else value
+                    )
+                else:
+                    # Multiple columns - yield as a list
                     yield [
                         (
                             self.serializer.string_to_data(value)
@@ -1292,13 +1303,5 @@ class DBAPI(DbGeneric):
                         )
                         for value in row
                     ]
-                else:
-                    value = row[0]
-                    yield (
-                        self.serializer.string_to_data(value)
-                        if isinstance(value, str)
-                        and (value.startswith("{") or value.startswith("["))
-                        else value
-                    )
 
                 row = cursor.fetchone()

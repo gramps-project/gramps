@@ -316,6 +316,35 @@ class QueryBuilderTestMixin:
         # Validate SQL with sqlglot
         self._validate_sql(sql)
 
+    def test_list_comprehension_in_what_basic_with_multiple_returns(self):
+        """
+        Test list comprehension in what clause.
+        Uses same parameters as test_list_comprehension_in_what_basic in person_select_test.py
+        """
+        what = "[(eref.role.value, eref.ref) for eref in person.event_ref_list]"
+        where = None
+        order_by = None
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
+    def test_list_comprehension_concatenated_arrays(self):
+        """
+        Test list comprehension with concatenated arrays.
+        Tests the pattern: [name.first_name for name in [person.primary_name] + person.alternate_names]
+        """
+        what = "[name.first_name for name in [person.primary_name] + person.alternate_names]"
+        where = None
+        order_by = None
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
+        # Verify the SQL contains UNION ALL for concatenated arrays
+        self.assertIn("UNION ALL", sql.upper())
+
     def test_any_list_comprehension_in_where_basic(self):
         """
         Test any() with list comprehension in where clause.

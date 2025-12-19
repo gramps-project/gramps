@@ -567,11 +567,14 @@ class ExpressionBuilder:
 
         Looks for patterns like:
         - "[event_ref.role.value for event_ref in person.event_ref_list if event_ref.role.value == 5]"
+        - "[name.first_name for name in [person.primary_name] + person.alternate_names]"
 
         Returns:
-            tuple: (item_var, array_path, expression_node, condition_node) if pattern detected, (None, None, None, None) otherwise
-            item_var: name of the iteration variable (e.g., "event_ref")
-            array_path: path to the array attribute (e.g., "event_ref_list")
+            tuple: (item_var, array_info, expression_node, condition_node) if pattern detected, (None, None, None, None) otherwise
+            item_var: name of the iteration variable (e.g., "event_ref", "name")
+            array_info: dict with 'type' ('single' or 'concatenated') and path information
+                - For 'single': {'type': 'single', 'path': 'event_ref_list'}
+                - For 'concatenated': {'type': 'concatenated', 'left': left_node, 'right_path': 'alternate_names'}
             expression_node: AST node for the expression to extract (e.g., event_ref.role.value)
             condition_node: AST node for the condition (e.g., event_ref.role.value == 5), or None if no condition
         """
@@ -598,9 +601,43 @@ class ExpressionBuilder:
 
                     # Extract array path from iter
                     iter_node = gen.iter
-                    array_path = None
+                    array_info = None
 
-                    if isinstance(iter_node, ast.Attribute):
+                    # Check for concatenated arrays: [something] + array_path
+                    if isinstance(iter_node, ast.BinOp) and isinstance(
+                        iter_node.op, ast.Add
+                    ):
+                        left = iter_node.left
+                        right = iter_node.right
+
+                        # Check if left is a list with one element and right is an attribute
+                        if isinstance(left, ast.List) and len(left.elts) == 1:
+                            left_item = left.elts[0]
+                            # Check if left item is an attribute (e.g., person.primary_name)
+                            if isinstance(left_item, ast.Attribute):
+                                # Check if right is an attribute path (e.g., person.alternate_names)
+                                if isinstance(right, ast.Attribute):
+                                    # Verify right path starts with table name
+                                    path_parts = []
+                                    current = right
+                                    while isinstance(current, ast.Attribute):
+                                        path_parts.insert(0, current.attr)
+                                        current = current.value
+
+                                    if isinstance(current, ast.Name) and current.id in [
+                                        self.table_name,
+                                        "obj",
+                                        "person",
+                                    ]:
+                                        right_path = ".".join(path_parts)
+                                        array_info = {
+                                            "type": "concatenated",
+                                            "left": left_item,
+                                            "right_path": right_path,
+                                        }
+
+                    # Check for simple array path: person.array_path
+                    elif isinstance(iter_node, ast.Attribute):
                         # Build the full path
                         path_parts = []
                         current = iter_node
@@ -614,6 +651,7 @@ class ExpressionBuilder:
                             "person",
                         ]:
                             array_path = ".".join(path_parts)
+                            array_info = {"type": "single", "path": array_path}
 
                     # Extract expression (what to return)
                     expression = listcomp.elt
@@ -624,8 +662,8 @@ class ExpressionBuilder:
                         # Take the first condition
                         condition = gen.ifs[0]
 
-                    if item_var and array_path:
-                        return item_var, array_path, expression, condition
+                    if item_var and array_info:
+                        return item_var, array_info, expression, condition
 
         except SyntaxError as e:
             raise ValueError(
@@ -1477,6 +1515,15 @@ class QueryBuilder:
             table_name, json_extract, json_array_length, self.env
         )
 
+    def _get_array_path_from_info(self, array_info):
+        """
+        Helper method to extract array path from array_info.
+        Returns the path string for single arrays, or None for concatenated arrays.
+        """
+        if array_info and array_info.get("type") == "single":
+            return array_info.get("path")
+        return None
+
     def format_json_extract(self, base_expr):
         """
         Format JSON extract expression based on dialect.
@@ -1516,6 +1563,59 @@ class QueryBuilder:
         else:
             # Default to SQLite format for backward compatibility
             return f"json_array_length(json_extract({base_expr}, '$.{{attr}}'))"
+
+    def format_json_each(self, array_expr, path="$"):
+        """
+        Format json_each expression based on dialect.
+
+        Args:
+            array_expr: Array expression to iterate over
+            path: JSON path (default '$' for SQLite, ignored for PostgreSQL)
+
+        Returns:
+            Formatted json_each expression that can be aliased and referenced as json_each.value
+            For SQLite: returns "json_each(expr, '$')"
+            For PostgreSQL: returns "LATERAL json_array_elements(expr) AS json_each(value)"
+        """
+        if self.dialect == "sqlite":
+            return f"json_each({array_expr}, '{path}')"
+        elif self.dialect == "postgres":
+            # PostgreSQL uses json_array_elements with LATERAL join
+            # LATERAL allows us to reference columns from the left side
+            # AS json_each(value) creates table alias 'json_each' with column 'value'
+            return f"LATERAL json_array_elements({array_expr}) AS json_each(value)"
+        else:
+            # Default to SQLite format for backward compatibility
+            return f"json_each({array_expr}, '{path}')"
+
+    def format_json_array(self, *args):
+        """
+        Format json_array expression based on dialect.
+
+        Args:
+            *args: Arguments to json_array function
+
+        Returns:
+            Formatted json_array expression
+        """
+        if self.dialect == "sqlite":
+            if len(args) == 0:
+                return "json_array()"
+            args_str = ", ".join(str(arg) for arg in args)
+            return f"json_array({args_str})"
+        elif self.dialect == "postgres":
+            # PostgreSQL uses json_build_array or jsonb_build_array
+            # For now, use json_build_array
+            if len(args) == 0:
+                return "json_build_array()"
+            args_str = ", ".join(str(arg) for arg in args)
+            return f"json_build_array({args_str})"
+        else:
+            # Default to SQLite format for backward compatibility
+            if len(args) == 0:
+                return "json_array()"
+            args_str = ", ".join(str(arg) for arg in args)
+            return f"json_array({args_str})"
 
     def _create_array_evaluator(self, item_var, array_path):
         """
@@ -1561,6 +1661,28 @@ class QueryBuilder:
             json_array_length_pattern,
             self.env,
         )
+
+    def _convert_listcomp_expression(self, expression, expression_node):
+        """
+        Convert a list comprehension expression node to SQL.
+        Handles tuples specially by converting each element to a separate column.
+
+        Args:
+            expression: ExpressionBuilder instance for conversion
+            expression_node: AST node for the expression (can be Tuple, Attribute, etc.)
+
+        Returns:
+            String with SQL expression(s). For tuples, returns comma-separated columns.
+        """
+        if isinstance(expression_node, ast.Tuple):
+            # Convert each element separately and join with commas (multiple columns)
+            column_exprs = [
+                str(expression.convert_to_sql(elt)) for elt in expression_node.elts
+            ]
+            return ", ".join(column_exprs)
+        else:
+            # Single expression - convert normally
+            return str(expression.convert_to_sql(expression_node))
 
     def get_sql_query(self, what, where, order_by):
         """
@@ -1658,39 +1780,222 @@ class QueryBuilder:
             )
 
         # Check for list comprehension in what clause
+        # Handle both string and list cases
         what_str = what
+        what_is_list = isinstance(what, list) and len(what) > 0
+        what_list_comprehension_idx = None
+        what_other_fields = []
+
         if isinstance(what, types.LambdaType):
             what_str = lambda_to_string(what)
-        elif isinstance(what, list) and len(what) == 1 and isinstance(what[0], str):
-            what_str = what[0]
+        elif what_is_list:
+            # Check each element for list comprehension
+            for idx, item in enumerate(what):
+                if isinstance(item, str):
+                    item_var, array_info, expr_node, cond_node = (
+                        self.expression.detect_list_comprehension_in_what(item)
+                    )
+                    if item_var and array_info:
+                        # Found list comprehension
+                        what_list_comprehension_idx = idx
+                        what_str = item
+                        break
+                    else:
+                        what_other_fields.append(item)
+                elif isinstance(item, types.LambdaType):
+                    what_other_fields.append(lambda_to_string(item))
+                else:
+                    what_other_fields.append(item)
+
+            # If no list comprehension found, treat as single string if only one item
+            if (
+                what_list_comprehension_idx is None
+                and len(what) == 1
+                and isinstance(what[0], str)
+            ):
+                what_str = what[0]
+            elif what_list_comprehension_idx is None:
+                what_str = None
         elif not isinstance(what, str):
             what_str = None
 
-        what_item_var, what_array_path, what_expression_node, what_condition_node = (
+        what_item_var, what_array_info, what_expression_node, what_condition_node = (
             self.expression.detect_list_comprehension_in_what(what_str)
         )
 
         # Build what expression
         what_condition_sql = None
-        if what_item_var and what_array_path:
+        if what_item_var and what_array_info:
             # List comprehension in what clause
-            what_expression = self._create_array_evaluator(
-                what_item_var, what_array_path
-            )
-            what_expr = str(what_expression.convert_to_sql(what_expression_node))
-            array_sql_expression = ExpressionBuilder(
-                self.table_name,
-                self.json_extract,
-                self.json_array_length,
-                self.env,
-            )
-            array_sql = array_sql_expression.convert(
-                f"{self.table_name}.{what_array_path}"
-            )
-            json_each_expr = f"json_each({array_sql}, '$')"
-            from_clause = f"{self.table_name}, {json_each_expr}"
-            if what_condition_node:
-                what_condition_sql = what_expression.convert_to_sql(what_condition_node)
+            # Handle both single array and concatenated arrays
+            if what_array_info["type"] == "single":
+                array_path = what_array_info["path"]
+                what_expression = self._create_array_evaluator(
+                    what_item_var, array_path
+                )
+                listcomp_expr = self._convert_listcomp_expression(
+                    what_expression, what_expression_node
+                )
+
+                # Add other fields if what is a list
+                if what_other_fields:
+                    other_fields_sql = []
+                    for field in what_other_fields:
+                        if isinstance(field, str):
+                            if field in ["obj", "person"]:
+                                field = "json_data"
+                            other_fields_sql.append(str(self.expression.convert(field)))
+                        else:
+                            other_fields_sql.append(str(self.expression.convert(field)))
+                    what_expr = ", ".join(other_fields_sql + [listcomp_expr])
+                else:
+                    what_expr = listcomp_expr
+
+                array_sql_expression = ExpressionBuilder(
+                    self.table_name,
+                    self.json_extract,
+                    self.json_array_length,
+                    self.env,
+                )
+                array_sql = array_sql_expression.convert(
+                    f"{self.table_name}.{array_path}"
+                )
+                json_each_expr = f"json_each({array_sql}, '$')"
+                from_clause = f"{self.table_name}, {json_each_expr}"
+                if what_condition_node:
+                    what_condition_sql = what_expression.convert_to_sql(
+                        what_condition_node
+                    )
+            elif what_array_info["type"] == "concatenated":
+                # Handle concatenated arrays: [person.primary_name] + person.alternate_names
+                # For SQLite, we need to use UNION query because subqueries can't see outer table
+                # For PostgreSQL, we can use LATERAL joins
+                left_node = what_array_info["left"]
+                right_path = what_array_info["right_path"]
+
+                # Create evaluator for the concatenated array
+                what_expression = self._create_array_evaluator(
+                    what_item_var, right_path  # Use right_path as base for evaluator
+                )
+                listcomp_expr = self._convert_listcomp_expression(
+                    what_expression, what_expression_node
+                )
+
+                # Add other fields if what is a list
+                if what_other_fields:
+                    other_fields_sql = []
+                    for field in what_other_fields:
+                        if isinstance(field, str):
+                            if field in ["obj", "person"]:
+                                field = "json_data"
+                            other_fields_sql.append(str(self.expression.convert(field)))
+                        else:
+                            other_fields_sql.append(str(self.expression.convert(field)))
+                    what_expr = ", ".join(other_fields_sql + [listcomp_expr])
+                else:
+                    what_expr = listcomp_expr
+
+                # Convert left side (person.primary_name) to SQL
+                array_sql_expression = ExpressionBuilder(
+                    self.table_name,
+                    self.json_extract,
+                    self.json_array_length,
+                    self.env,
+                )
+                left_sql = str(array_sql_expression.convert_to_sql(left_node))
+                # Wrap in json_array/json_build_array since it's a single item
+                left_array_sql = self.format_json_array(left_sql)
+
+                # Convert right side (person.alternate_names) to SQL
+                right_sql = str(
+                    array_sql_expression.convert(f"{self.table_name}.{right_path}")
+                )
+
+                if self.dialect == "postgres":
+                    # PostgreSQL: use LATERAL joins which can reference outer table
+                    left_json_each = f"LATERAL json_array_elements({left_array_sql}) AS left_each(value)"
+                    right_json_each = (
+                        f"LATERAL json_array_elements({right_sql}) AS right_each(value)"
+                    )
+                    json_each_expr = f"(SELECT value FROM {left_json_each} UNION ALL SELECT value FROM {right_json_each}) AS json_each"
+                    from_clause = f"{self.table_name}, {json_each_expr}"
+                else:
+                    # SQLite: use UNION query - two separate SELECTs combined with UNION ALL
+                    # This avoids subquery issues with table references
+                    # json_each can reference outer table when used directly in FROM clause
+
+                    # Convert condition if present
+                    what_condition_sql = None
+                    if what_condition_node:
+                        what_condition_sql = what_expression.convert_to_sql(
+                            what_condition_node
+                        )
+
+                    # Handle WHERE clause if present
+                    where_sql = None
+                    if where_str:
+                        where_sql = self.expression.convert_where_clause(where_str)
+
+                    # Build WHERE expressions for both queries
+                    left_where_parts = []
+                    right_where_parts = []
+                    if where_sql:
+                        left_where_parts.append(where_sql)
+                        right_where_parts.append(where_sql)
+                    if what_condition_sql:
+                        left_where_parts.append(what_condition_sql)
+                        right_where_parts.append(what_condition_sql)
+
+                    left_where_expr = (
+                        f" WHERE {' AND '.join(left_where_parts)}"
+                        if left_where_parts
+                        else ""
+                    )
+                    right_where_expr = (
+                        f" WHERE {' AND '.join(right_where_parts)}"
+                        if right_where_parts
+                        else ""
+                    )
+
+                    # Build left query (from primary_name array)
+                    left_from = (
+                        f"{self.table_name}, {self.format_json_each(left_array_sql)}"
+                    )
+                    left_query = f"SELECT {what_expr} FROM {left_from}{left_where_expr}"
+
+                    # Build right query (from alternate_names)
+                    right_from = (
+                        f"{self.table_name}, {self.format_json_each(right_sql)}"
+                    )
+                    right_query = (
+                        f"SELECT {what_expr} FROM {right_from}{right_where_expr}"
+                    )
+
+                    # Handle ORDER BY
+                    order_by_expr = ""
+                    if order_by is not None:
+                        if isinstance(order_by, types.LambdaType):
+                            order_by = [lambda_to_string(order_by)]
+                        elif callable(order_by) and not isinstance(order_by, type):
+                            order_by = [order_by]
+                        elif isinstance(order_by, str):
+                            order_by = [order_by]
+                        converted_order_by = []
+                        for expr in order_by:
+                            if isinstance(expr, types.LambdaType):
+                                converted_order_by.append(lambda_to_string(expr))
+                            else:
+                                converted_order_by.append(expr)
+                        order_by_expr = self.expression.get_order_by(converted_order_by)
+
+                    # Return the UNION query directly
+                    return f"{left_query} UNION ALL {right_query}{order_by_expr};"
+
+                # For PostgreSQL, set what_condition_sql if needed
+                if what_condition_node:
+                    what_condition_sql = what_expression.convert_to_sql(
+                        what_condition_node
+                    )
         elif what is None:
             what_expr = "json_data"
         elif isinstance(what, types.LambdaType):
@@ -1760,7 +2065,7 @@ class QueryBuilder:
             )
 
         # Combine with what condition if present
-        if what_item_var and what_array_path and what_condition_sql:
+        if what_item_var and what_array_info and what_condition_sql:
             if where_sql:
                 where_expr = f" WHERE ({where_sql}) AND ({what_condition_sql})"
             else:
@@ -1774,11 +2079,11 @@ class QueryBuilder:
         if is_array_expansion:
             array_sql = self.expression.convert(f"{self.table_name}.{array_path}")
             json_each_expr = f"json_each({array_sql}, '$')"
-            if not (what_item_var and what_array_path):
+            if not (what_item_var and what_array_info):
                 from_clause = f"{self.table_name}, {json_each_expr}"
 
         # Set from_clause if not already set
-        if what_item_var and what_array_path:
+        if what_item_var and what_array_info:
             pass  # Already set above
         elif is_array_expansion:
             pass  # Already set above
@@ -1884,27 +2189,38 @@ class QueryBuilder:
 
         (
             what_item_var,
-            what_array_path,
+            what_array_info,
             what_expression_node,
             what_condition_node,
         ) = self.expression.detect_list_comprehension_in_what(what_str)
 
         # Build what_expr (same for both queries)
-        if what_item_var and what_array_path:
-            what_expression = self._create_array_evaluator(
-                what_item_var, what_array_path
-            )
-            what_expr = str(what_expression.convert_to_sql(what_expression_node))
-            array_sql_expression = ExpressionBuilder(
-                self.table_name,
-                self.json_extract,
-                self.json_array_length,
-                self.env,
-            )
-            what_array_sql = array_sql_expression.convert(
-                f"{self.table_name}.{what_array_path}"
-            )
-            what_json_each_expr = f"json_each({what_array_sql}, '$')"
+        if what_item_var and what_array_info:
+            what_array_path = self._get_array_path_from_info(what_array_info)
+            if what_array_path:
+                # Single array
+                what_expression = self._create_array_evaluator(
+                    what_item_var, what_array_path
+                )
+                what_expr = self._convert_listcomp_expression(
+                    what_expression, what_expression_node
+                )
+                array_sql_expression = ExpressionBuilder(
+                    self.table_name,
+                    self.json_extract,
+                    self.json_array_length,
+                    self.env,
+                )
+                what_array_sql = array_sql_expression.convert(
+                    f"{self.table_name}.{what_array_path}"
+                )
+                what_json_each_expr = f"json_each({what_array_sql}, '$')"
+            else:
+                # Concatenated arrays - not supported in UNION queries yet
+                # For now, raise an error or handle gracefully
+                raise ValueError(
+                    "Concatenated arrays in list comprehensions are not supported in UNION queries"
+                )
         elif what is None:
             what_expr = "json_data"
         elif isinstance(what, types.LambdaType):
@@ -1953,7 +2269,7 @@ class QueryBuilder:
             else left_where_sql
         )
 
-        if what_item_var and what_array_path and what_condition_node:
+        if what_item_var and what_array_info and what_condition_node:
             what_condition_sql = what_expression.convert_to_sql(what_condition_node)
             if left_where_sql:
                 left_where_expr = (
@@ -1966,7 +2282,7 @@ class QueryBuilder:
         else:
             left_where_expr = ""
 
-        if what_item_var and what_array_path:
+        if what_item_var and what_array_info:
             left_from_clause = f"{self.table_name}, {what_json_each_expr}"
         else:
             left_from_clause = self.table_name
@@ -1988,7 +2304,7 @@ class QueryBuilder:
             else right_where_sql
         )
 
-        if what_item_var and what_array_path and what_condition_node:
+        if what_item_var and what_array_info and what_condition_node:
             what_condition_sql = what_expression.convert_to_sql(what_condition_node)
             if right_where_sql:
                 right_where_expr = (
@@ -2004,13 +2320,17 @@ class QueryBuilder:
         array_sql = self.expression.convert(f"{self.table_name}.{array_path}")
         json_each_expr = f"json_each({array_sql}, '$')"
 
-        if what_item_var and what_array_path:
-            if what_array_path == array_path:
+        if what_item_var and what_array_info:
+            what_array_path = self._get_array_path_from_info(what_array_info)
+            if what_array_path and what_array_path == array_path:
                 right_from_clause = f"{self.table_name}, {json_each_expr}"
-            else:
+            elif what_array_path:
                 right_from_clause = (
                     f"{self.table_name}, {what_json_each_expr}, {json_each_expr}"
                 )
+            else:
+                # Concatenated arrays - not supported in UNION queries
+                right_from_clause = f"{self.table_name}, {json_each_expr}"
         else:
             right_from_clause = f"{self.table_name}, {json_each_expr}"
 
