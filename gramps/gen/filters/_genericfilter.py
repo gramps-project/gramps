@@ -345,12 +345,17 @@ class GenericFilter:
         # convert the filtered set of handles to the correct result type
         if id_list is not None and tupleind is not None:
             # convert the final_list of handles back to the corresponding final_list of tuples
-            # Create a dictionary mapping tuples to their indices for O(1) lookup
-            tuple_to_index = {tuple_item: idx for idx, tuple_item in enumerate(id_list)}
+            # Create a dictionary mapping handles to their indices for O(1) lookup
+            # (handles are hashable, unlike tuples which may contain unhashable objects)
+            handle_to_index = {
+                cast(List[Tuple], id_list)[i][tupleind]: i for i in range(len(id_list))
+            }
             res = sorted(
-                [handle_tuple[handle] for handle in res],
-                key=lambda x: tuple_to_index[x],
+                res,
+                key=lambda handle: handle_to_index[handle],
             )
+            # Convert handles to tuples after sorting
+            res = [handle_tuple[handle] for handle in res]
         elif tree:
             # sort final_list into the same order as traversed by get_tree_cursor
             # Create a dictionary mapping handles to their indices for O(1) lookup
