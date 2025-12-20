@@ -194,6 +194,41 @@ results = list(
 )
 ```
 
+### JOIN with Variable-Index Array Access
+
+You can join tables using variable-index array access, which is useful for joining through array references:
+
+```python
+# Join person to event through the birth event reference
+# This uses person.birth_ref_index to find the birth event in event_ref_list
+results = list(
+    db.select_from_person(
+        what=["person.handle", "event.handle"],
+        where="person.event_ref_list[person.birth_ref_index].ref == event.handle"
+    )
+)
+```
+
+This is particularly useful for joining to related records through indexed array references. The system automatically handles the variable index (like `person.birth_ref_index`) and generates the appropriate SQL subquery.
+
+### JOIN with Variable-Index Array Access and Additional Conditions
+
+You can combine variable-index array access joins with additional filters:
+
+```python
+from gramps.gen.lib import EventType
+
+# Join person to event via birth, and filter by event type
+results = list(
+    db.select_from_person(
+        what=["person.handle", "event.handle", "event.type.value"],
+        where="person.event_ref_list[person.birth_ref_index].ref == event.handle and event.type.value == EventType.BIRTH"
+    )
+)
+```
+
+This finds all persons with birth events that are actually marked as BIRTH type events.
+
 ### How JOIN Detection Works
 
 - **Table References**: When you use `family.handle`, `person.handle`, etc., the system detects these as table references
@@ -231,6 +266,8 @@ You can reference these tables in your queries:
    - `person.handle == family.father_handle` ✓
    - `family.mother_handle == person.handle` ✓
    - `event_ref.ref == event.handle` ✓
+   - `person.event_ref_list[person.birth_ref_index].ref == event.handle` ✓ (variable-index array access)
+   - `person.event_ref_list[0].ref == event.handle` ✓ (constant-index array access)
    
    Examples of invalid joins (will be ignored):
    - `person.gender == family.type.value` ✗ (not handle fields)

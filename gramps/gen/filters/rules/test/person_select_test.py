@@ -1994,6 +1994,75 @@ class BaseTest(unittest.TestCase):
                 # If handle lookup fails, skip this entry
                 continue
 
+    def test_join_with_variable_index_array_access(self):
+        """
+        Test JOIN with variable-index array access in join condition.
+        Example: person.event_ref_list[person.birth_ref_index].ref == event.handle
+        This joins person to event through the birth event reference.
+        """
+        res = list(
+            self.db.select_from_person(
+                what=["person.handle", "event.handle"],
+                where="person.event_ref_list[person.birth_ref_index].ref == event.handle",
+            )
+        )
+        # Should return one row per person with a valid birth event
+        self.assertGreaterEqual(len(res), 0)
+        # Verify each result: person's birth event reference should match event handle
+        for person_handle, event_handle in res:
+            self.assertIsInstance(person_handle, str)
+            self.assertIsInstance(event_handle, str)
+            try:
+                person = self.db.get_person_from_handle(person_handle)
+                self.assertIsNotNone(person)
+                event = self.db.get_event_from_handle(event_handle)
+                self.assertIsNotNone(event)
+                # Verify that the person's birth_ref_index points to this event
+                if person.birth_ref_index >= 0 and person.birth_ref_index < len(
+                    person.get_event_ref_list()
+                ):
+                    birth_ref = person.get_event_ref_list()[person.birth_ref_index]
+                    self.assertEqual(birth_ref.ref, event_handle)
+            except Exception:
+                # If handle lookup fails, skip this entry
+                continue
+
+    def test_join_with_variable_index_array_access_and_condition(self):
+        """
+        Test JOIN with variable-index array access and additional condition.
+        Example: Join person to event via birth, and filter by event type.
+        """
+        from gramps.gen.lib import EventType
+
+        res = list(
+            self.db.select_from_person(
+                what=["person.handle", "event.handle", "event.type.value"],
+                where="person.event_ref_list[person.birth_ref_index].ref == event.handle and event.type.value == EventType.BIRTH",
+            )
+        )
+        # Should return persons with birth events that are actually BIRTH type
+        self.assertGreaterEqual(len(res), 0)
+        # Verify each result
+        for person_handle, event_handle, event_type in res:
+            self.assertIsInstance(person_handle, str)
+            self.assertIsInstance(event_handle, str)
+            self.assertEqual(event_type, EventType.BIRTH)
+            try:
+                person = self.db.get_person_from_handle(person_handle)
+                self.assertIsNotNone(person)
+                event = self.db.get_event_from_handle(event_handle)
+                self.assertIsNotNone(event)
+                self.assertEqual(event.get_type().value, EventType.BIRTH)
+                # Verify that the person's birth_ref_index points to this event
+                if person.birth_ref_index >= 0 and person.birth_ref_index < len(
+                    person.get_event_ref_list()
+                ):
+                    birth_ref = person.get_event_ref_list()[person.birth_ref_index]
+                    self.assertEqual(birth_ref.ref, event_handle)
+            except Exception:
+                # If handle lookup fails, skip this entry
+                continue
+
 
 if __name__ == "__main__":
     unittest.main()

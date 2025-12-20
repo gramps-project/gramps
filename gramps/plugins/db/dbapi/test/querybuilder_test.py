@@ -303,6 +303,42 @@ class QueryBuilderTestMixin:
         # Validate SQL with sqlglot
         self._validate_sql(sql)
 
+    def test_join_with_variable_index_array_access(self):
+        """
+        Test JOIN with variable-index array access in join condition.
+        Example: person.event_ref_list[person.birth_ref_index].ref == event.handle
+        """
+        what = ["person.handle", "event.handle"]
+        where = "person.event_ref_list[person.birth_ref_index].ref == event.handle"
+        order_by = None
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
+        # Verify that the join condition is present in the SQL
+        self.assertIn("JOIN", sql.upper())
+        self.assertIn("event", sql.lower())
+
+    def test_join_with_variable_index_array_access_and_condition(self):
+        """
+        Test JOIN with variable-index array access and additional condition.
+        Example: person.event_ref_list[person.birth_ref_index].ref == event.handle and event.type.value == 1
+        """
+        from gramps.gen.lib import EventType
+
+        what = ["person.handle", "event.handle", "event.type.value"]
+        where = "person.event_ref_list[person.birth_ref_index].ref == event.handle and event.type.value == EventType.BIRTH"
+        order_by = None
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
+        # Verify that the join condition is present in the SQL
+        self.assertIn("JOIN", sql.upper())
+        self.assertIn("event", sql.lower())
+
     def test_list_comprehension_in_what_basic(self):
         """
         Test list comprehension in what clause.

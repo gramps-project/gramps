@@ -253,12 +253,15 @@ class ExpressionBuilder:
             attr_node: AttributeNode instance
 
         Returns:
-            Base expression string (e.g., "json_data" or "person.json_data")
+            Base expression string (e.g., "person.json_data" or "json_each.value")
+            Always returns table-prefixed expressions to avoid ambiguity in JOINs
         """
         if attr_node.obj == self.table_name or attr_node.obj == "json_each":
-            return (
-                "json_data" if attr_node.obj == self.table_name else "json_each.value"
-            )
+            if attr_node.obj == "json_each":
+                return "json_each.value"
+            else:
+                # Always use table prefix to avoid ambiguity in JOINs
+                return f"{self.table_name}.json_data"
         else:
             # Referenced table
             return f"{attr_node.obj}.json_data"
@@ -658,25 +661,94 @@ class ExpressionBuilder:
 
     def _extract_table_attr(self, node):
         """
-        Extract table name and attribute from an AST node.
+        Extract table name and full expression path from an AST node.
+
+        Handles:
+        - Simple attributes: person.handle -> ("person", "handle")
+        - Array indexing: person.event_ref_list[0].ref -> ("person", "event_ref_list[0].ref")
+        - Variable index: person.event_ref_list[person.birth_ref_index].ref -> ("person", "event_ref_list[person.birth_ref_index].ref")
 
         Returns:
-            tuple: (table_name, attr_path) or (None, None)
+            tuple: (table_name, full_expr) or (None, None)
+                  full_expr is the complete path from table (e.g., "event_ref_list[person.birth_ref_index].ref")
         """
-        if isinstance(node, ast.Attribute):
-            # Build attribute path
-            attr_parts = []
-            current = node
-            while isinstance(current, ast.Attribute):
-                attr_parts.insert(0, current.attr)
-                current = current.value
 
-            if isinstance(current, ast.Name):
-                table_name = current.id.lower()
-                attr_path = ".".join(attr_parts)
-                return table_name, attr_path
+        def _build_expr_string(node):
+            """Recursively build expression string from AST node."""
+            if isinstance(node, ast.Attribute):
+                # Build attribute path
+                attr_parts = []
+                current = node
+                while isinstance(current, ast.Attribute):
+                    attr_parts.insert(0, current.attr)
+                    current = current.value
 
-        return None, None
+                # Check if base is a table name
+                if isinstance(current, ast.Name):
+                    table_name = current.id.lower()
+                    if table_name in TABLE_NAMES:
+                        attr_path = ".".join(attr_parts)
+                        return table_name, attr_path
+                # Check if base is a Subscript (array access)
+                elif isinstance(current, ast.Subscript):
+                    table_name, base_expr = _build_expr_string(current)
+                    if table_name:
+                        attr_path = ".".join(attr_parts)
+                        return table_name, (
+                            f"{base_expr}.{attr_path}" if base_expr else attr_path
+                        )
+
+            elif isinstance(node, ast.Subscript):
+                # Handle array indexing: person.event_ref_list[index]
+                value_expr = _build_expr_string(node.value)
+                if value_expr:
+                    table_name, base_expr = value_expr
+                    # Build index expression
+                    if isinstance(node.slice, ast.Index):
+                        # Python < 3.9 uses ast.Index
+                        index_node = node.slice.value
+                    else:
+                        # Python 3.9+ uses slice directly
+                        index_node = node.slice
+
+                    # Convert index to string
+                    if isinstance(index_node, ast.Constant):
+                        index_str = str(index_node.value)
+                    elif isinstance(index_node, ast.Num):  # Python < 3.8
+                        index_str = str(index_node.n)
+                    elif isinstance(index_node, ast.Attribute):
+                        # Variable index like person.birth_ref_index
+                        index_parts = []
+                        current = index_node
+                        while isinstance(current, ast.Attribute):
+                            index_parts.insert(0, current.attr)
+                            current = current.value
+                        if isinstance(current, ast.Name):
+                            index_str = f"{current.id}.{'.'.join(index_parts)}"
+                        else:
+                            return None, None
+                    elif isinstance(index_node, ast.Name):
+                        # Simple variable index
+                        index_str = index_node.id
+                    else:
+                        # Complex index expression - try to reconstruct
+                        # For now, return None to indicate we can't handle it
+                        return None, None
+
+                    full_expr = (
+                        f"{base_expr}[{index_str}]" if base_expr else f"[{index_str}]"
+                    )
+                    return table_name, full_expr
+
+            elif isinstance(node, ast.Name):
+                # Check if it's a table name
+                if node.id.lower() in TABLE_NAMES:
+                    return node.id.lower(), ""
+
+            return None, None
+
+        result = _build_expr_string(node)
+        return result if result else (None, None)
 
     def _is_handle_field(self, attr_path):
         """
@@ -687,8 +759,13 @@ class ExpressionBuilder:
         - 'ref' (reference handle, e.g., event_ref.ref, citation_ref.ref)
         - Any field ending in '_handle' (e.g., 'father_handle', 'mother_handle')
 
+        Handles paths with array indexing:
+        - 'event_ref_list[person.birth_ref_index].ref' -> True (ends with '.ref')
+        - 'event_ref_list[0].ref' -> True (ends with '.ref')
+
         Args:
-            attr_path: Attribute path string (e.g., 'handle', 'ref', 'father_handle')
+            attr_path: Attribute path string (e.g., 'handle', 'ref', 'father_handle',
+                      'event_ref_list[person.birth_ref_index].ref')
 
         Returns:
             bool: True if the attribute is a handle field
@@ -696,8 +773,12 @@ class ExpressionBuilder:
         if not attr_path:
             return False
         # Check if it's exactly 'handle', 'ref', or ends with '_handle'
+        # Also check if it ends with '.ref' (for array-indexed paths)
         return (
-            attr_path == "handle" or attr_path == "ref" or attr_path.endswith("_handle")
+            attr_path == "handle"
+            or attr_path == "ref"
+            or attr_path.endswith("_handle")
+            or attr_path.endswith(".ref")
         )
 
     def remove_join_conditions_from_where(self, where_str, join_conditions):
@@ -2412,8 +2493,19 @@ class QueryBuilder:
                     )
                     left_expression = self._create_join_evaluator(left_table)
                     right_expression = self._create_join_evaluator(right_table)
-                    left_sql = left_expression.convert(f"{left_table}.{left_attr}")
-                    right_sql = right_expression.convert(f"{right_table}.{right_attr}")
+                    # Build full expression paths - left_attr and right_attr may contain
+                    # complex paths like "event_ref_list[person.birth_ref_index].ref"
+                    # or simple paths like "handle"
+                    left_expr = (
+                        f"{left_table}.{left_attr}" if left_attr else f"{left_table}"
+                    )
+                    right_expr = (
+                        f"{right_table}.{right_attr}"
+                        if right_attr
+                        else f"{right_table}"
+                    )
+                    left_sql = left_expression.convert(left_expr)
+                    right_sql = right_expression.convert(right_expr)
                     join_clause = (
                         f"{join_type} JOIN {ref_table} ON {left_sql} = {right_sql}"
                     )
