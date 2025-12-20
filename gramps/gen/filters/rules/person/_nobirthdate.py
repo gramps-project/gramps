@@ -65,11 +65,11 @@ class NoBirthdate(Rule):
             )
 
             for person_handle, event_sortval in db.select_from_person(
-               what=["person.handle", "event.date.sortval"],
-               where="person.event_ref_list[person.birth_ref_index].ref == event.handle",
+                what=["person.handle", "event.date.sortval"],
+                where="person.event_ref_list[person.birth_ref_index].ref == event.handle",
             ):
-               if event_sortval == 0:
-                   self.selected_handles.add(person_handle)
+                if event_sortval == 0:
+                    self.selected_handles.add(person_handle)
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         if db.can_use_fast_selects():
