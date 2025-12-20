@@ -68,4 +68,4 @@ class IsMale(Rule):
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         # If you are here, then you can just:
-        return person.gender == Person.Male
+        return person.gender == Person.MALE
