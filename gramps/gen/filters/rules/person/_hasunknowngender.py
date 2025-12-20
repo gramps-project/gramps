@@ -55,5 +55,12 @@ class HasUnknownGender(Rule):
     category = _("General filters")
     description = _("Matches all people with unknown gender")
 
+    def prepare(self, db, user):
+        if db.can_use_fast_selects():
+            self.selected_handles = set(list(db.select_from_person(
+                what="person.handle",
+                where="person.gender == Person.UNKNOWN",
+            )))
+
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.gender == Person.UNKNOWN
