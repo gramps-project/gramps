@@ -21,8 +21,11 @@
 import ast
 import types
 
+import orjson
+
 import gramps.gen.lib
 from gramps.gen.db.lambda_to_string import lambda_to_string
+from gramps.gen.lib.json_utils import DataDict
 
 TABLE_NAMES = {
     "person",
@@ -2755,3 +2758,49 @@ class QueryBuilder:
             order_by_expr = self.expression.get_order_by(converted_order_by)
 
         return f"{left_query} UNION {right_query}{order_by_expr};"
+
+
+def parse_query_result_value(value):
+    """
+    Parse a query result value that may be a JSON string.
+
+    This function handles values returned from SQL queries that may be JSON strings
+    (starting with '{' or '[') but might not be valid JSON. If the value is a string
+    that looks like JSON but fails to parse, it returns the original string.
+
+    Args:
+        value: The value from the query result (may be str, bytes, or other types)
+
+    Returns:
+        Parsed JSON data (DataDict, list, or original value if not JSON)
+    """
+    # Only attempt to parse strings that look like JSON
+    if isinstance(value, str) and (value.startswith("{") or value.startswith("[")):
+        try:
+            raw_data = orjson.loads(value)
+
+            if isinstance(raw_data, dict):
+                return DataDict(raw_data)
+            elif isinstance(raw_data, list):
+                # Recursively process list items
+                result = []
+                for item in raw_data:
+                    if isinstance(item, str):
+                        # Recursively parse JSON strings (e.g., from json_group_array)
+                        result.append(parse_query_result_value(item))
+                    elif isinstance(item, dict) and "_class" in item:
+                        # Convert dicts with _class to DataDict
+                        result.append(DataDict(item))
+                    else:
+                        result.append(item)
+                return result
+            else:
+                return raw_data
+        except (orjson.JSONDecodeError, ValueError, TypeError):
+            # If the string is not valid JSON, return it as-is
+            # This can happen when a value looks like JSON (starts with { or [)
+            # but is actually just a regular string
+            return value
+
+    # For non-string values or strings that don't look like JSON, return as-is
+    return value

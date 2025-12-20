@@ -65,7 +65,7 @@ from gramps.gen.lib import (
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
-from .select import QueryBuilder
+from .select import QueryBuilder, parse_query_result_value
 from gramps.gen.db.lambda_to_string import lambda_to_string
 import types
 
@@ -289,41 +289,61 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX person_surname ON person(surname)")
         self.dbapi.execute("CREATE INDEX person_given_name ON person(given_name)")
         if json_data:
-            self.dbapi.execute(f"CREATE INDEX person_gramps_id ON person({self._format_json_extract_index('gramps_id')})")
+            self.dbapi.execute(
+                f"CREATE INDEX person_gramps_id ON person({self._format_json_extract_index('gramps_id')})"
+            )
         else:
             self.dbapi.execute("CREATE INDEX person_gramps_id ON person(gramps_id)")
         # Source table: only handle column exists, title and gramps_id are in JSON
         if json_data:
-            self.dbapi.execute(f"CREATE INDEX source_title ON source({self._format_json_extract_index('title')})")
-            self.dbapi.execute(f"CREATE INDEX source_gramps_id ON source({self._format_json_extract_index('gramps_id')})")
+            self.dbapi.execute(
+                f"CREATE INDEX source_title ON source({self._format_json_extract_index('title')})"
+            )
+            self.dbapi.execute(
+                f"CREATE INDEX source_gramps_id ON source({self._format_json_extract_index('gramps_id')})"
+            )
         else:
             self.dbapi.execute("CREATE INDEX source_title ON source(title)")
             self.dbapi.execute("CREATE INDEX source_gramps_id ON source(gramps_id)")
         # Citation table: only handle column exists, page and gramps_id are in JSON
         if json_data:
-            self.dbapi.execute(f"CREATE INDEX citation_page ON citation({self._format_json_extract_index('page')})")
-            self.dbapi.execute(f"CREATE INDEX citation_gramps_id ON citation({self._format_json_extract_index('gramps_id')})")
+            self.dbapi.execute(
+                f"CREATE INDEX citation_page ON citation({self._format_json_extract_index('page')})"
+            )
+            self.dbapi.execute(
+                f"CREATE INDEX citation_gramps_id ON citation({self._format_json_extract_index('gramps_id')})"
+            )
         else:
             self.dbapi.execute("CREATE INDEX citation_page ON citation(page)")
             self.dbapi.execute("CREATE INDEX citation_gramps_id ON citation(gramps_id)")
         # Media table: only handle column exists, desc and gramps_id are in JSON
         if json_data:
-            self.dbapi.execute(f"CREATE INDEX media_desc ON media({self._format_json_extract_index('desc')})")
-            self.dbapi.execute(f"CREATE INDEX media_gramps_id ON media({self._format_json_extract_index('gramps_id')})")
+            self.dbapi.execute(
+                f"CREATE INDEX media_desc ON media({self._format_json_extract_index('desc')})"
+            )
+            self.dbapi.execute(
+                f"CREATE INDEX media_gramps_id ON media({self._format_json_extract_index('gramps_id')})"
+            )
         else:
             self.dbapi.execute("CREATE INDEX media_desc ON media(desc)")
             self.dbapi.execute("CREATE INDEX media_gramps_id ON media(gramps_id)")
         # Place table: handle and enclosed_by are actual columns, title and gramps_id are in JSON
         self.dbapi.execute("CREATE INDEX place_enclosed_by ON place(enclosed_by)")
         if json_data:
-            self.dbapi.execute(f"CREATE INDEX place_title ON place({self._format_json_extract_index('title')})")
-            self.dbapi.execute(f"CREATE INDEX place_gramps_id ON place({self._format_json_extract_index('gramps_id')})")
+            self.dbapi.execute(
+                f"CREATE INDEX place_title ON place({self._format_json_extract_index('title')})"
+            )
+            self.dbapi.execute(
+                f"CREATE INDEX place_gramps_id ON place({self._format_json_extract_index('gramps_id')})"
+            )
         else:
             self.dbapi.execute("CREATE INDEX place_title ON place(title)")
             self.dbapi.execute("CREATE INDEX place_gramps_id ON place(gramps_id)")
         # Tag table: only handle column exists, name is in JSON
         if json_data:
-            self.dbapi.execute(f"CREATE INDEX tag_name ON tag({self._format_json_extract_index('name')})")
+            self.dbapi.execute(
+                f"CREATE INDEX tag_name ON tag({self._format_json_extract_index('name')})"
+            )
         else:
             self.dbapi.execute("CREATE INDEX tag_name ON tag(name)")
         # Reference table: obj_handle and ref_handle are actual columns
@@ -331,22 +351,32 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
         # Family table: only handle column exists, gramps_id is in JSON
         if json_data:
-            self.dbapi.execute(f"CREATE INDEX family_gramps_id ON family({self._format_json_extract_index('gramps_id')})")
+            self.dbapi.execute(
+                f"CREATE INDEX family_gramps_id ON family({self._format_json_extract_index('gramps_id')})"
+            )
         else:
             self.dbapi.execute("CREATE INDEX family_gramps_id ON family(gramps_id)")
         # Event table: only handle column exists, gramps_id is in JSON
         if json_data:
-            self.dbapi.execute(f"CREATE INDEX event_gramps_id ON event({self._format_json_extract_index('gramps_id')})")
+            self.dbapi.execute(
+                f"CREATE INDEX event_gramps_id ON event({self._format_json_extract_index('gramps_id')})"
+            )
         else:
             self.dbapi.execute("CREATE INDEX event_gramps_id ON event(gramps_id)")
         # Repository table: only handle column exists, gramps_id is in JSON
         if json_data:
-            self.dbapi.execute(f"CREATE INDEX repository_gramps_id ON repository({self._format_json_extract_index('gramps_id')})")
+            self.dbapi.execute(
+                f"CREATE INDEX repository_gramps_id ON repository({self._format_json_extract_index('gramps_id')})"
+            )
         else:
-            self.dbapi.execute("CREATE INDEX repository_gramps_id ON repository(gramps_id)")
+            self.dbapi.execute(
+                "CREATE INDEX repository_gramps_id ON repository(gramps_id)"
+            )
         # Note table: only handle column exists, gramps_id is in JSON
         if json_data:
-            self.dbapi.execute(f"CREATE INDEX note_gramps_id ON note({self._format_json_extract_index('gramps_id')})")
+            self.dbapi.execute(
+                f"CREATE INDEX note_gramps_id ON note({self._format_json_extract_index('gramps_id')})"
+            )
         else:
             self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
 
@@ -1397,22 +1427,9 @@ class DBAPI(DbGeneric):
                 if len(row) == 1:
                     # Single column - yield the value directly
                     value = row[0]
-                    yield (
-                        self.serializer.string_to_data(value)
-                        if isinstance(value, str)
-                        and (value.startswith("{") or value.startswith("["))
-                        else value
-                    )
+                    yield parse_query_result_value(value)
                 else:
                     # Multiple columns - yield as a list
-                    yield [
-                        (
-                            self.serializer.string_to_data(value)
-                            if isinstance(value, str)
-                            and (value.startswith("{") or value.startswith("["))
-                            else value
-                        )
-                        for value in row
-                    ]
+                    yield [parse_query_result_value(value) for value in row]
 
                 row = cursor.fetchone()
