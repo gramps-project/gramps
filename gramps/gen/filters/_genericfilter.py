@@ -200,19 +200,36 @@ class GenericFilter:
 
         # test each value in possible_handles to compute the final_list
         final_list = []
-        for handle in possible_handles:
-            if handles_in is not None and handle not in handles_in:
-                continue
-            if handles_out is not None and handle in handles_out:
-                continue
 
-            if user:
-                user.step_progress()
+        selected_handles = None
+        if handles_in is not None:
+            selected_handles = handles_in
+            if handles_out is not None:
+                selected_handles = selected_handles - handles_out
+            final_list = list(selected_handles)
+            LOG.debug(
+                "Fast select, final_list: %s",
+                len(final_list),
+            )
+        else:
+            LOG.debug(
+                "Slow select, possible_handles: %s",
+                len(possible_handles),
+            )
+            slow_time = time.time()
+            for handle in possible_handles:
+                if handles_out is not None:
+                    if handle in handles_out:
+                        continue
 
-            obj = self.get_object(db, handle)
+                if user:
+                    user.step_progress()
 
-            if apply_logical_op(db, obj, self.flist) != self.invert:
-                final_list.append(obj.handle)
+                obj = self.get_object(db, handle)
+
+                if apply_logical_op(db, obj, self.flist) != self.invert:
+                    final_list.append(obj.handle)
+            LOG.debug("Slow select time: %s seconds", time.time() - slow_time)
 
         if user:
             user.end_progress()
@@ -299,8 +316,7 @@ class GenericFilter:
         else:
             raise Exception("invalid operator: %r" % self.logical_op)
 
-        start_time = time.time()
-
+        pre_process_time = time.time()
         # build the starting set of possible_handles to be filtered
         possible_handles: Set[PrimaryObjectHandle]
         if id_list is not None:
@@ -319,21 +335,28 @@ class GenericFilter:
             possible_handles = set(tree_handles)
         else:
             possible_handles = set(self.get_all_handles(db))
+        LOG.debug("Pre process time: %s seconds", time.time() - pre_process_time)
 
+        start_time = time.time()
         res = self.apply_logical_op_to_all(db, possible_handles, apply_logical_op, user)
+        LOG.debug("Apply time: %s seconds", time.time() - start_time)
 
+        post_process_time = time.time()
         # convert the filtered set of handles to the correct result type
         if id_list is not None and tupleind is not None:
             # convert the final_list of handles back to the corresponding final_list of tuples
+            # Create a dictionary mapping tuples to their indices for O(1) lookup
+            tuple_to_index = {tuple_item: idx for idx, tuple_item in enumerate(id_list)}
             res = sorted(
                 [handle_tuple[handle] for handle in res],
-                key=lambda x: id_list.index(x),
+                key=lambda x: tuple_to_index[x],
             )
         elif tree:
             # sort final_list into the same order as traversed by get_tree_cursor
-            res = sorted(res, key=lambda x: tree_handles.index(x))
-
-        LOG.debug("Apply time: %s seconds", time.time() - start_time)
+            # Create a dictionary mapping handles to their indices for O(1) lookup
+            handle_to_index = {handle: idx for idx, handle in enumerate(tree_handles)}
+            res = sorted(res, key=lambda x: handle_to_index[x])
+        LOG.debug("Post process time: %s seconds", time.time() - post_process_time)
 
         for rule in self.flist:
             rule.requestreset()
