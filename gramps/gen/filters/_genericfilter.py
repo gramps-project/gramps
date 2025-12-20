@@ -182,6 +182,14 @@ class GenericFilter:
         optimizer = Optimizer(self)
         handles_in, handles_out = optimizer.compute_potential_handles_for_filter(self)
 
+        # Intersect optimizer results with possible_handles to ensure we only
+        # consider handles in the subset being filtered (important when id_list
+        # is provided and rules computed selected_handles from all handles)
+        if handles_in is not None:
+            handles_in = handles_in.intersection(possible_handles)
+        if handles_out is not None:
+            handles_out = handles_out.intersection(possible_handles)
+
         # LOG.debug(
         #    "Optimizer possible_handles: %s",
         #    len(possible_handles),
