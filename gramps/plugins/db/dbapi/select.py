@@ -714,8 +714,6 @@ class ExpressionBuilder:
                     # Convert index to string
                     if isinstance(index_node, ast.Constant):
                         index_str = str(index_node.value)
-                    elif isinstance(index_node, ast.Num):  # Python < 3.8
-                        index_str = str(index_node.n)
                     elif isinstance(index_node, ast.Attribute):
                         # Variable index like person.birth_ref_index
                         index_parts = []
