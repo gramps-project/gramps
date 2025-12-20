@@ -27,7 +27,6 @@
 from __future__ import annotations
 import json
 import orjson
-from typing import Any
 
 # ------------------------------------------------------------------------
 #
@@ -147,32 +146,11 @@ def convert_object_to_state(obj):
     return obj.get_object_state()
 
 
-def string_to_data(
-    string: str | bytes,
-) -> DataDict | str | bytes | list[Any]:
+def string_to_data(string: str | bytes) -> DataDict:
     """
     Convert a JSON string into its data representation.
-    Recursively processes lists to handle JSON strings within arrays.
     """
-    raw_data = orjson.loads(string)
-
-    if isinstance(raw_data, dict):
-        return DataDict(raw_data)
-    elif isinstance(raw_data, list):
-        # Recursively process list items
-        result = []
-        for item in raw_data:
-            if isinstance(item, str):
-                # Recursively parse JSON strings (e.g., from json_group_array)
-                result.append(string_to_data(item))
-            elif isinstance(item, dict) and "_class" in item:
-                # Convert dicts with _class to DataDict
-                result.append(DataDict(item))
-            else:
-                result.append(item)
-        return result
-    else:
-        return raw_data
+    return DataDict(orjson.loads(string))
 
 
 def string_to_dict(string: str | bytes) -> dict:
