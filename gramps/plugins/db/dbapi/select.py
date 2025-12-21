@@ -24,7 +24,6 @@ import types
 import orjson
 
 import gramps.gen.lib
-from gramps.gen.db.lambda_to_string import lambda_to_string
 from gramps.gen.lib.json_utils import DataDict
 
 TABLE_NAMES = {
@@ -2081,7 +2080,6 @@ class QueryBuilder:
         Generate complete SQL query from what, where, and order_by parameters.
 
         Handles all complex cases:
-        - Lambda to string conversion
         - Table reference detection and JOINs
         - Array expansion in WHERE clause
         - Array expansion in OR expressions (UNION queries)
@@ -2089,17 +2087,19 @@ class QueryBuilder:
         - ORDER BY conversion
 
         Args:
-            what: What clause (None, str, lambda, or list)
-            where: Where clause (None, str, or lambda)
-            order_by: Order by clause (None, str, lambda, or list)
+            what: What clause (None, str, or list of strings)
+            where: Where clause (None or str)
+            order_by: Order by clause (None, str, or list of strings)
 
         Returns:
             Complete SQL query string
         """
         # Convert where to string if needed
         where_str = where
-        if isinstance(where, types.LambdaType):
-            where_str = lambda_to_string(where)
+        if callable(where) or isinstance(where, types.LambdaType):
+            raise ValueError(
+                "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+            )
         elif where is None:
             where_str = None
 
@@ -2113,14 +2113,10 @@ class QueryBuilder:
             )
 
         # Check what clause for table references
-        if isinstance(what, types.LambdaType):
-            what_str_for_join = lambda_to_string(what)
-            if what_str_for_join:
-                referenced_tables.update(
-                    self.expression.detect_table_references(
-                        what_str_for_join, base_table=self.table_name
-                    )
-                )
+        if callable(what) or isinstance(what, types.LambdaType):
+            raise ValueError(
+                "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+            )
         elif isinstance(what, str):
             referenced_tables.update(
                 self.expression.detect_table_references(
@@ -2129,8 +2125,10 @@ class QueryBuilder:
             )
         elif isinstance(what, list):
             for w in what:
-                if isinstance(w, types.LambdaType):
-                    w = lambda_to_string(w)
+                if callable(w) or isinstance(w, types.LambdaType):
+                    raise ValueError(
+                        "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+                    )
                 if isinstance(w, str):
                     referenced_tables.update(
                         self.expression.detect_table_references(
@@ -2178,8 +2176,10 @@ class QueryBuilder:
         what_list_comprehension_idx = None
         what_other_fields = []
 
-        if isinstance(what, types.LambdaType):
-            what_str = lambda_to_string(what)
+        if callable(what) or isinstance(what, types.LambdaType):
+            raise ValueError(
+                "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+            )
         elif what_is_list:
             # Check each element for list comprehension
             for idx, item in enumerate(what):
@@ -2194,8 +2194,10 @@ class QueryBuilder:
                         break
                     else:
                         what_other_fields.append(item)
-                elif isinstance(item, types.LambdaType):
-                    what_other_fields.append(lambda_to_string(item))
+                elif callable(item) or isinstance(item, types.LambdaType):
+                    raise ValueError(
+                        "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+                    )
                 else:
                     what_other_fields.append(item)
 
@@ -2366,16 +2368,22 @@ class QueryBuilder:
                     # Handle ORDER BY
                     order_by_expr = ""
                     if order_by is not None:
-                        if isinstance(order_by, types.LambdaType):
-                            order_by = [lambda_to_string(order_by)]
+                        if callable(order_by) or isinstance(order_by, types.LambdaType):
+                            raise ValueError(
+                                "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+                            )
                         elif callable(order_by) and not isinstance(order_by, type):
-                            order_by = [order_by]
+                            raise ValueError(
+                                "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+                            )
                         elif isinstance(order_by, str):
                             order_by = [order_by]
                         converted_order_by = []
                         for expr in order_by:
-                            if isinstance(expr, types.LambdaType):
-                                converted_order_by.append(lambda_to_string(expr))
+                            if callable(expr) or isinstance(expr, types.LambdaType):
+                                raise ValueError(
+                                    "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+                                )
                             else:
                                 converted_order_by.append(expr)
                         order_by_expr = self.expression.get_order_by(converted_order_by)
@@ -2391,9 +2399,9 @@ class QueryBuilder:
         elif what is None:
             what_expr = "json_data"
         elif isinstance(what, types.LambdaType):
-            what_str = lambda_to_string(what)
-            if what_str in ["obj", "person"]:
-                what_str = "json_data"
+            raise ValueError(
+                "Lambda functions are not supported for SQL generation. Please use string expressions instead."
+            )
             what_expr = str(self.expression.convert(what_str))
         elif isinstance(what, str):
             if what in ["obj", "person"]:
@@ -2419,8 +2427,10 @@ class QueryBuilder:
             if has_joins:
                 join_expression = self._create_join_evaluator(self.table_name)
             for w in what:
-                if isinstance(w, types.LambdaType):
-                    w = lambda_to_string(w)
+                if callable(w) or isinstance(w, types.LambdaType):
+                    raise ValueError(
+                        "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+                    )
                 if w in ["obj", "person"]:
                     w = "json_data"
                 if (
@@ -2519,16 +2529,22 @@ class QueryBuilder:
         if order_by is None:
             order_by_expr = ""
         else:
-            if isinstance(order_by, types.LambdaType):
-                order_by = [lambda_to_string(order_by)]
+            if callable(order_by) or isinstance(order_by, types.LambdaType):
+                raise ValueError(
+                    "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+                )
             elif callable(order_by) and not isinstance(order_by, type):
-                order_by = [order_by]
+                raise ValueError(
+                    "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+                )
             elif isinstance(order_by, str):
                 order_by = [order_by]
             converted_order_by = []
             for expr in order_by:
                 if isinstance(expr, types.LambdaType):
-                    converted_order_by.append(lambda_to_string(expr))
+                    raise ValueError(
+                        "Lambda functions are not supported for SQL generation. Please use string expressions instead."
+                    )
                 else:
                     converted_order_by.append(expr)
             if has_joins:
@@ -2583,8 +2599,10 @@ class QueryBuilder:
 
         # Prepare what clause
         what_str = what
-        if isinstance(what, types.LambdaType):
-            what_str = lambda_to_string(what)
+        if callable(what) or isinstance(what, types.LambdaType):
+            raise ValueError(
+                "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+            )
         elif isinstance(what, list) and len(what) == 1 and isinstance(what[0], str):
             what_str = what[0]
         elif not isinstance(what, str):
@@ -2627,9 +2645,9 @@ class QueryBuilder:
         elif what is None:
             what_expr = "json_data"
         elif isinstance(what, types.LambdaType):
-            what_str = lambda_to_string(what)
-            if what_str in ["obj", "person"]:
-                what_str = "json_data"
+            raise ValueError(
+                "Lambda functions are not supported for SQL generation. Please use string expressions instead."
+            )
             what_expr = str(self.expression.convert(what_str))
         elif isinstance(what, str):
             if what in ["obj", "person"]:
@@ -2644,8 +2662,10 @@ class QueryBuilder:
         else:
             what_list = []
             for w in what:
-                if isinstance(w, types.LambdaType):
-                    w = lambda_to_string(w)
+                if callable(w) or isinstance(w, types.LambdaType):
+                    raise ValueError(
+                        "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+                    )
                 if w in ["obj", "person"]:
                     w = "json_data"
                 if w.startswith(f"{item_var}.") or w == item_var:
@@ -2743,16 +2763,22 @@ class QueryBuilder:
         if order_by is None:
             order_by_expr = ""
         else:
-            if isinstance(order_by, types.LambdaType):
-                order_by = [lambda_to_string(order_by)]
+            if callable(order_by) or isinstance(order_by, types.LambdaType):
+                raise ValueError(
+                    "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+                )
             elif callable(order_by) and not isinstance(order_by, type):
-                order_by = [order_by]
+                raise ValueError(
+                    "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
+                )
             elif isinstance(order_by, str):
                 order_by = [order_by]
             converted_order_by = []
             for expr in order_by:
                 if isinstance(expr, types.LambdaType):
-                    converted_order_by.append(lambda_to_string(expr))
+                    raise ValueError(
+                        "Lambda functions are not supported for SQL generation. Please use string expressions instead."
+                    )
                 else:
                     converted_order_by.append(expr)
             order_by_expr = self.expression.get_order_by(converted_order_by)

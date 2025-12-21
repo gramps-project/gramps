@@ -66,7 +66,6 @@ from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
 from .select import QueryBuilder, parse_query_result_value
-from gramps.gen.db.lambda_to_string import lambda_to_string
 import types
 
 LOG = logging.getLogger(".dbapi")

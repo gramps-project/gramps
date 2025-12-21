@@ -590,7 +590,7 @@ persons_with_primary_birth = list(
      - The code does not support `json_each` within `json_each` (nested array iteration)
    - Arrays within nested objects: `person.some_object.array_field` where `some_object` itself contains arrays
 
-6. **Lambda Functions**: You can pass lambda functions instead of strings, but they will be converted to strings internally. Using strings directly is recommended for clarity.
+6. **Lambda Functions**: Lambda functions (callables) are **not supported**. All arguments (`what`, `where`, `order_by`) must be strings or lists of strings.
 
 ## Hints and Best Practices
 
