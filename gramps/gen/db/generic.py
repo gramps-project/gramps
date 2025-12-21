@@ -2852,22 +2852,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self, *, what=None, where=None, order_by=None, env=None, override=False
     ):
         """
-        Select items from citation where python-string is True,
-        optionally with a list of python-string items to order on.
+        Select items from citation using Python string expressions.
 
-        Note: The preferred way to use this method is with lambda expressions
-        rather than string expressions. Lambda expressions are type-safe and
-        provide better IDE support. String expressions are also supported for
-        dynamic use cases, such as when expressions come from web queries or
-        other dynamic sources.
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire citation object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
 
         Examples:
 
-        # Preferred: using lambda expressions
-        db.select_from_citation(where=lambda citation: citation.handle == 'A6E74B3D65D23F')
-
-        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_citation(where="citation.handle == 'A6E74B3D65D23F'")
+        db.select_from_citation(what="citation.handle", where="citation.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
             "citation",
@@ -2882,22 +2882,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self, *, what=None, where=None, order_by=None, env=None, override=False
     ):
         """
-        Select items from event where python-string is True,
-        optionally with a list of python-string items to order on.
+        Select items from event using Python string expressions.
 
-        Note: The preferred way to use this method is with lambda expressions
-        rather than string expressions. Lambda expressions are type-safe and
-        provide better IDE support. String expressions are also supported for
-        dynamic use cases, such as when expressions come from web queries or
-        other dynamic sources.
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire event object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
 
         Examples:
 
-        # Preferred: using lambda expressions
-        db.select_from_event(where=lambda event: event.handle == 'A6E74B3D65D23F')
-
-        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_event(where="event.handle == 'A6E74B3D65D23F'")
+        db.select_from_event(what="event.handle", where="event.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
             "event",
@@ -2912,22 +2912,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self, *, what=None, where=None, order_by=None, env=None, override=False
     ):
         """
-        Select items from family where python-string is True,
-        optionally with a list of python-string items to order on.
+        Select items from family using Python string expressions.
 
-        Note: The preferred way to use this method is with lambda expressions
-        rather than string expressions. Lambda expressions are type-safe and
-        provide better IDE support. String expressions are also supported for
-        dynamic use cases, such as when expressions come from web queries or
-        other dynamic sources.
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire family object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
 
         Examples:
 
-        # Preferred: using lambda expressions
-        db.select_from_family(where=lambda family: family.handle == 'A6E74B3D65D23F')
-
-        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_family(where="family.handle == 'A6E74B3D65D23F'")
+        db.select_from_family(what="family.handle", where="family.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
             "family",
@@ -2942,22 +2942,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self, *, what=None, where=None, order_by=None, env=None, override=False
     ):
         """
-        Select items from media where python-string is True,
-        optionally with a list of python-string items to order on.
+        Select items from media using Python string expressions.
 
-        Note: The preferred way to use this method is with lambda expressions
-        rather than string expressions. Lambda expressions are type-safe and
-        provide better IDE support. String expressions are also supported for
-        dynamic use cases, such as when expressions come from web queries or
-        other dynamic sources.
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire media object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
 
         Examples:
 
-        # Preferred: using lambda expressions
-        db.select_from_media(where=lambda media: media.handle == 'A6E74B3D65D23F')
-
-        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_media(where="media.handle == 'A6E74B3D65D23F'")
+        db.select_from_media(what="media.handle", where="media.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
             "media",
@@ -2972,22 +2972,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self, *, what=None, where=None, order_by=None, env=None, override=False
     ):
         """
-        Select items from note where python-string is True,
-        optionally with a list of python-string items to order on.
+        Select items from note using Python string expressions.
 
-        Note: The preferred way to use this method is with lambda expressions
-        rather than string expressions. Lambda expressions are type-safe and
-        provide better IDE support. String expressions are also supported for
-        dynamic use cases, such as when expressions come from web queries or
-        other dynamic sources.
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire note object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
 
         Examples:
 
-        # Preferred: using lambda expressions
-        db.select_from_note(where=lambda note: note.handle == 'A6E74B3D65D23F')
-
-        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_note(where="note.handle == 'A6E74B3D65D23F'")
+        db.select_from_note(what="note.handle", where="note.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
             "note",
@@ -3002,49 +3002,30 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self, *, what=None, where=None, order_by=None, env=None, override=False
     ):
         """
-        Select items from person where python-string is True,
-        optionally with a list of python-string items to order on.
+        Select items from person using Python string expressions.
 
-        Note: The preferred way to use this method is with functions
-        rather than string expressions. Functions are type-safe and
-        provide better IDE support. String expressions are also supported for
-        dynamic use cases, such as when expressions come from web queries or
-        other dynamic sources.
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire person object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
 
         Examples:
 
-        # Preferred: using functions
-        def where_func(person):
-            return person.handle == 'A6E74B3D65D23F'
-        db.select_from_person(where=where_func)
-
-        def what_func(person):
-            return person.handle
-        def where_func(person):
-            return person.handle == 'A6E74B3D65D23F'
-        db.select_from_person(what=what_func, where=where_func)
-
-        def what_func(person):
-            return [person.handle, person.gramps_id]
-        def where_func(person):
-            return person.handle == 'A6E74B3D65D23F'
-        def order_func(person):
-            return -person.gramps_id
-        db.select_from_person(
-            what=what_func,
-            where=where_func,
-            order_by=[order_func]
-        )
-
-        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_person(where="person.handle == 'A6E74B3D65D23F'")
         db.select_from_person(what="person.handle", where="person.handle == 'A6E74B3D65D23F'")
         db.select_from_person(
             what=["person.handle", "person.gramps_id"],
             where="person.handle == 'A6E74B3D65D23F'",
-            order_by=["-person.gramps_id"],
-            env={"Person": Person}
+            order_by=["-person.gramps_id"]
         )
+        # With joins: db.select_from_person(what=["person.handle", "family.handle"],
+        #                                   where="person.handle == family.father_handle")
+        # With arrays: db.select_from_person(what="[eref.ref for eref in person.event_ref_list]")
         """
         yield from self._select_from_table(
             "person",
@@ -3059,22 +3040,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self, *, what=None, where=None, order_by=None, env=None, override=False
     ):
         """
-        Select items from place where python-string is True,
-        optionally with a list of python-string items to order on.
+        Select items from place using Python string expressions.
 
-        Note: The preferred way to use this method is with lambda expressions
-        rather than string expressions. Lambda expressions are type-safe and
-        provide better IDE support. String expressions are also supported for
-        dynamic use cases, such as when expressions come from web queries or
-        other dynamic sources.
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire place object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
 
         Examples:
 
-        # Preferred: using lambda expressions
-        db.select_from_place(where=lambda place: place.handle == 'A6E74B3D65D23F')
-
-        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_place(where="place.handle == 'A6E74B3D65D23F'")
+        db.select_from_place(what="place.handle", where="place.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
             "place",
@@ -3089,22 +3070,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self, *, what=None, where=None, order_by=None, env=None, override=False
     ):
         """
-        Select items from repository where python-string is True,
-        optionally with a list of python-string items to order on.
+        Select items from repository using Python string expressions.
 
-        Note: The preferred way to use this method is with lambda expressions
-        rather than string expressions. Lambda expressions are type-safe and
-        provide better IDE support. String expressions are also supported for
-        dynamic use cases, such as when expressions come from web queries or
-        other dynamic sources.
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire repository object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
 
         Examples:
 
-        # Preferred: using lambda expressions
-        db.select_from_repository(where=lambda repository: repository.handle == 'A6E74B3D65D23F')
-
-        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_repository(where="repository.handle == 'A6E74B3D65D23F'")
+        db.select_from_repository(what="repository.handle", where="repository.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
             "repository",
@@ -3119,22 +3100,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self, *, what=None, where=None, order_by=None, env=None, override=False
     ):
         """
-        Select items from source where python-string is True,
-        optionally with a list of python-string items to order on.
+        Select items from source using Python string expressions.
 
-        Note: The preferred way to use this method is with lambda expressions
-        rather than string expressions. Lambda expressions are type-safe and
-        provide better IDE support. String expressions are also supported for
-        dynamic use cases, such as when expressions come from web queries or
-        other dynamic sources.
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire source object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
 
         Examples:
 
-        # Preferred: using lambda expressions
-        db.select_from_source(where=lambda source: source.handle == 'A6E74B3D65D23F')
-
-        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_source(where="source.handle == 'A6E74B3D65D23F'")
+        db.select_from_source(what="source.handle", where="source.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
             "source",
@@ -3149,22 +3130,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self, *, what=None, where=None, order_by=None, env=None, override=False
     ):
         """
-        Select items from tag where python-string is True,
-        optionally with a list of python-string items to order on.
+        Select items from tag using Python string expressions.
 
-        Note: The preferred way to use this method is with lambda expressions
-        rather than string expressions. Lambda expressions are type-safe and
-        provide better IDE support. String expressions are also supported for
-        dynamic use cases, such as when expressions come from web queries or
-        other dynamic sources.
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire tag object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
 
         Examples:
 
-        # Preferred: using lambda expressions
-        db.select_from_tag(where=lambda tag: tag.handle == 'A6E74B3D65D23F')
-
-        # String expressions: useful for dynamic use cases (e.g., web queries)
         db.select_from_tag(where="tag.handle == 'A6E74B3D65D23F'")
+        db.select_from_tag(what="tag.handle", where="tag.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
             "tag", what=what, where=where, order_by=order_by, env=env, override=override
