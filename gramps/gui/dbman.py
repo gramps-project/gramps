@@ -234,6 +234,27 @@ class DbManager(CLIDbManager, ManagedWindow):
             self.selection.select_path(tree_path)
             self.dblist.scroll_to_cell(tree_path, None, 1, 0.5, 0)
 
+    def _select_next_after_deletion(self, next_item_name):
+        """
+        Select the item that would have been next after deletion.
+        
+        Args:
+            next_item_name: The name of the item that should be selected
+        """
+        if self.model is None or not next_item_name:
+            return
+            
+        # Find the item with the matching name in the rebuilt model
+        iter = self.model.get_iter_first()
+        while iter:
+            name = self.model.get_value(iter, NAME_COL)
+            if name == next_item_name:
+                path = self.model.get_path(iter)
+                self.selection.select_path(path)
+                self.dblist.scroll_to_cell(path, None, 1, 0.5, 0)
+                break
+            iter = self.model.iter_next(iter)
+
     def __connect_signals(self):
         """
         Connects the signals to the buttons on the interface.
@@ -787,6 +808,18 @@ class DbManager(CLIDbManager, ManagedWindow):
         path = store.get_path(node)
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
+        
+        # Remember what should be selected next (the item after the deleted one)
+        next_iter = self.model.iter_next(node)
+        next_item_name = None
+        if next_iter is not None:
+            next_item_name = self.model.get_value(next_iter, NAME_COL)
+        else:
+            # If no next item, try previous item
+            prev_iter = store.iter_previous(node)
+            if prev_iter is not None:
+                next_item_name = self.model.get_value(prev_iter, NAME_COL)
+        
         try:
             with open(filename, "r", encoding="utf-8") as name_file:
                 file_name_to_delete = name_file.read()
@@ -800,7 +833,7 @@ class DbManager(CLIDbManager, ManagedWindow):
             ErrorDialog(_("Could not delete Family Tree"), str(msg), parent=self.top)
         # rebuild the display
         self.__populate()
-        self._select_default()
+        self._select_next_after_deletion(next_item_name)
 
     def __really_delete_version(self):
         """
