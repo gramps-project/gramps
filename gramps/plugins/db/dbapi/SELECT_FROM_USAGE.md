@@ -240,7 +240,7 @@ This finds all persons with birth events that are actually marked as BIRTH type 
 
 You can reference these tables in your queries:
 - `person` - Person records
-- `family` - Family records  
+- `family` - Family records
 - `event` - Event records
 - `place` - Place records
 - `source` - Source records
@@ -261,14 +261,14 @@ You can reference these tables in your queries:
    - `handle` (the primary handle, e.g., `person.handle`)
    - `ref` (reference handle, e.g., `event_ref.ref`, `citation_ref.ref`)
    - Any field ending in `_handle` (e.g., `family.father_handle`, `family.mother_handle`)
-   
+
    Examples of valid joins:
    - `person.handle == family.father_handle` ✓
    - `family.mother_handle == person.handle` ✓
    - `event_ref.ref == event.handle` ✓
    - `person.event_ref_list[person.birth_ref_index].ref == event.handle` ✓ (variable-index array access)
    - `person.event_ref_list[0].ref == event.handle` ✓ (constant-index array access)
-   
+
    Examples of invalid joins (will be ignored):
    - `person.gender == family.type.value` ✗ (not handle fields)
    - `person.gramps_id == family.gramps_id` ✗ (not handle fields)
@@ -527,13 +527,13 @@ persons_with_primary_birth = list(
 
 1. **List Comprehensions in `what`**: When using list comprehensions in `what`, you get one row per matching array element. If a person has 5 matching event_refs, you'll get 5 rows.
 
-2. **Array Expansion vs List Comprehension**: 
+2. **Array Expansion vs List Comprehension**:
    - Array expansion (`item in person.array_path`) works in `where` and expands the result set
    - List comprehensions in `what` extract values from arrays
    - You cannot combine array expansion in `where` with list comprehensions in `what` effectively
 
 3. **Complex Boolean Logic**: You can use `and` and `or` in `where` clauses with full structure preservation. Most combinations are supported:
-   
+
    **All cases work correctly:**
    - Simple combinations: `condition1 and condition2` or `condition1 or condition2`
    - Same operator throughout: `A and B and C` or `A or B or C`
@@ -543,11 +543,11 @@ persons_with_primary_birth = list(
    - `any()` with any boolean structure: `(A and B) or any([...])` or `(A or any([...])) and B`
    - Array expansion with AND: `(A and B) and (item in person.array)` ✅
    - Array expansion with OR: `(A and B) or (item in person.array)` ✅
-   
+
    **Array Expansion in OR Expressions:**
-   
+
    When array expansion is used in an OR expression, the query uses a UNION to combine results:
-   
+
    ```python
    # This works correctly, including persons with empty arrays:
    db.select_from_person(
@@ -555,9 +555,9 @@ persons_with_primary_birth = list(
        where="(person.gender == Person.MALE and len(person.family_list) > 0) or (item in person.event_ref_list)"
    )
    ```
-   
+
    **Note:** If you need one row per person (not per array element), use `any()` instead:
-   
+
    ```python
    # Returns one row per person (not per array element):
    db.select_from_person(
@@ -565,25 +565,25 @@ persons_with_primary_birth = list(
        where="(person.gender == Person.MALE and len(person.family_list) > 0) or any([item for item in person.event_ref_list])"
    )
    ```
-   
+
    The difference: `any()` returns one row per person, while array expansion returns one row per array element.
-   
+
 
 4. **Single Condition in List Comprehensions**: List comprehensions support only one `if` condition. Multiple conditions should be combined with `and`:
    ```python
    # This works:
    what="[item.field for item in person.array if item.field1 == 1 and item.field2 == 2]"
-   
+
    # Multiple if clauses are not supported:
    # what="[item.field for item in person.array if item.field1 == 1 if item.field2 == 2]"  # Not supported
    ```
 
-5. **Nested Arrays**: Nested array access (arrays within arrays) is **not supported**. 
-   
+5. **Nested Arrays**: Nested array access (arrays within arrays) is **not supported**.
+
    **What works:**
    - Single-level arrays: `person.event_ref_list`, `person.citation_list`
    - Accessing attributes of array elements: `item.role.value` where `item` is from `person.event_ref_list`
-   
+
    **What doesn't work:**
    - Nested arrays: Accessing arrays that are properties of array elements
      - Example: If an event_ref had a `sub_items` array, `item.sub_items` would not work
@@ -600,7 +600,7 @@ persons_with_primary_birth = list(
     # Good:
    where="eref.role.value == EventRoleType.PRIMARY"
    where="person.gender == Person.MALE"
-   
+
    # Avoid:
    where="eref.role.value == 1"  # What does 1 mean?
    ```
@@ -612,7 +612,7 @@ persons_with_primary_birth = list(
    where="not any([eref for eref in person.event_ref_list])"
    ```
 
-3. **Performance**: 
+3. **Performance**:
    - List comprehensions in `what` can return many rows if arrays are large
    - `any()` in `where` is efficient for filtering
    - Consider filtering in `where` before extracting in `what` to reduce result set size
@@ -623,7 +623,7 @@ persons_with_primary_birth = list(
    where="any([eref for eref in person.event_ref_list])"
    ```
 
-5. **Extracting Multiple Fields**: 
+5. **Extracting Multiple Fields**:
    - For array expansion, you can include both person-level and array element fields:
      ```python
      # Get person.handle along with array element fields
@@ -634,14 +634,18 @@ persons_with_primary_birth = list(
          )
      )
      ```
-   - For list comprehensions, you extract one expression at a time, but you can combine with person fields if needed:
+   - For list comprehensions, you can extract multiple fields using tuples:
      ```python
-     # Extract one field at a time from list comprehensions
+     # Extract multiple fields at once using tuples
+     refs_and_roles = list(db.select_from_person(what="[(eref.ref, eref.role.value) for eref in person.event_ref_list]"))
+     # Returns list of tuples: [(ref1, role1), (ref2, role2), ...]
+
+     # You can also extract one field at a time if needed
      refs = list(db.select_from_person(what="[eref.ref for eref in person.event_ref_list]"))
      roles = list(db.select_from_person(what="[eref.role.value for eref in person.event_ref_list]"))
      ```
 
-6. **Order of Operations**: 
+6. **Order of Operations**:
    - `where` filters which records (persons) to include
    - `what` determines what data to extract from those records
    - When both use list comprehensions, `where` filters persons first, then `what` extracts from matching array elements
