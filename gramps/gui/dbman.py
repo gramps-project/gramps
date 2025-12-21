@@ -446,6 +446,11 @@ class DbManager(CLIDbManager, ManagedWindow):
         """
         Builds the display model.
         """
+        # Store current sort order before rebuilding model
+        current_sort_column, current_sort_order = None, None
+        if self.model is not None:
+            current_sort_column, current_sort_order = self.model.get_sort_column_id()
+        
         self.model = Gtk.TreeStore(str, str, str, str, int, bool, str, str)
 
         # use current names to set up the model
@@ -476,7 +481,12 @@ class DbManager(CLIDbManager, ManagedWindow):
                 self.model.append(node, data)
         if self._current_node is None:
             self._current_node = last_accessed_node
-        self.model.set_sort_column_id(NAME_COL, Gtk.SortType.ASCENDING)
+        
+        # Restore the previous sort order, or default to NAME_COL ascending if no previous sort
+        if current_sort_column is not None and current_sort_order is not None:
+            self.model.set_sort_column_id(current_sort_column, current_sort_order)
+        else:
+            self.model.set_sort_column_id(NAME_COL, Gtk.SortType.ASCENDING)
         self.dblist.set_model(self.model)
 
     def existing_name(self, name, skippath=None):
