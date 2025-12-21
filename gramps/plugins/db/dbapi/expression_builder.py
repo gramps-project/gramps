@@ -1342,35 +1342,53 @@ class ExpressionBuilder:
             ops = [self.convert_to_sql(arg) for arg in node.ops]
             left = self.convert_to_sql(node.left)
 
-            if ops[0] in [" IN ", " NOT IN "]:
-                # FIXME: this just checks the first
-                # should pre-process, and leave for
-                # zip below
-                if (
-                    isinstance(comparators[0], str)
-                    and comparators[0][0] == "("
-                    or comparators[0] == "null"
-                ):
-                    # item in (1, 2, 3)
-                    if comparators[0] == "null":
-                        comparators[0] = "()"
-                    if ops[0] == " IN ":
-                        return "%s IN %s" % (left, comparators[0])
-                    elif ops[0] == " NOT IN ":
-                        return "%s NOT IN %s" % (left, comparators[0])
-                else:
-                    # "<string> IN X":
-                    if ops[0] == " IN ":
-                        return "%s LIKE '%%%s%%'" % (comparators[0], left[1:-1])
-                    elif ops[0] == " NOT IN ":
-                        return "%s NOT LIKE '%%%s%%'" % (comparators[0], left[1:-1])
-
-            retval = ""
+            # Pre-process all IN/NOT IN operators and convert them to SQL strings
+            # This allows the zip loop below to handle all operators uniformly
+            processed_comparisons = []
+            current_left = left
             for op, right in zip(ops, comparators):
+                if op in [" IN ", " NOT IN "]:
+                    # Check if this is a tuple/list (normal IN) or string literal (LIKE pattern)
+                    if (
+                        isinstance(right, str)
+                        and right[0] == "("
+                        or right == "null"
+                    ):
+                        # item in (1, 2, 3) - normal IN/NOT IN
+                        if right == "null":
+                            right = "()"
+                        if op == " IN ":
+                            processed_comparisons.append(f"{current_left} IN {right}")
+                        elif op == " NOT IN ":
+                            processed_comparisons.append(f"{current_left} NOT IN {right}")
+                    else:
+                        # "<string> IN X" - convert to LIKE pattern
+                        if op == " IN ":
+                            processed_comparisons.append(f"{right} LIKE '%%{current_left[1:-1]}%%'")
+                        elif op == " NOT IN ":
+                            processed_comparisons.append(f"{right} NOT LIKE '%%{current_left[1:-1]}%%'")
+                else:
+                    # Non-IN operator - keep as None to be handled by zip loop below
+                    processed_comparisons.append(None)
+                current_left = right
+
+            # If all operators were IN/NOT IN, we can return early
+            if all(p is not None for p in processed_comparisons):
+                return " AND ".join([f"({p})" for p in processed_comparisons])
+
+            # Handle mixed operators (some IN/NOT IN, some not)
+            retval = ""
+            current_left = left
+            for i, (op, right) in enumerate(zip(ops, comparators)):
                 if retval:
                     retval += " and "
-                retval += "({left} {op} {right})".format(left=left, op=op, right=right)
-                left = right
+                if processed_comparisons[i] is not None:
+                    # This was an IN/NOT IN operator, use the pre-processed result
+                    retval += f"({processed_comparisons[i]})"
+                else:
+                    # Regular operator - use standard format
+                    retval += "({left} {op} {right})".format(left=current_left, op=op, right=right)
+                current_left = right
             return retval
 
         elif isinstance(node, ast.Lt):
