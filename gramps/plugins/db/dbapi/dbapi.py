@@ -1356,23 +1356,17 @@ class DBAPI(DbGeneric):
         where=None,
         order_by=None,
         env=None,
-        apply_to=None,
+        override=False,
     ):
-        # DB-API implementation
-        # NOTE: QueryBuilder takes patterns in case your DB-API
-        #       varies in syntax for JSON access
+        """
+        The actual selection method.
 
+        Args:
+            override: if True, and using a proxy, apply
+                the select on the low-level database instead.
+        """
         if self.is_proxy():
-            if apply_to == "proxy":
-                yield from super()._select_from_table(
-                    table_name,
-                    what=what,
-                    where=where,
-                    order_by=order_by,
-                    env=env,
-                )
-                return
-            elif apply_to == "db":
+            if override:
                 # Allow to work on low-level backend
                 yield from self.basedb._select_from_table(
                     table_name,
@@ -1385,7 +1379,7 @@ class DBAPI(DbGeneric):
             else:
                 raise Exception(
                     "to use db.select methods on a proxy, "
-                    + "you must pass `apply_to` set to 'proxy', or 'db'"
+                    + "you must pass `override=True` to query the underlying database"
                 )
 
         # Create QueryBuilder instance
