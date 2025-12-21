@@ -1349,24 +1349,26 @@ class ExpressionBuilder:
             for op, right in zip(ops, comparators):
                 if op in [" IN ", " NOT IN "]:
                     # Check if this is a tuple/list (normal IN) or string literal (LIKE pattern)
-                    if (
-                        isinstance(right, str)
-                        and right[0] == "("
-                        or right == "null"
-                    ):
+                    if isinstance(right, str) and right[0] == "(" or right == "null":
                         # item in (1, 2, 3) - normal IN/NOT IN
                         if right == "null":
                             right = "()"
                         if op == " IN ":
                             processed_comparisons.append(f"{current_left} IN {right}")
                         elif op == " NOT IN ":
-                            processed_comparisons.append(f"{current_left} NOT IN {right}")
+                            processed_comparisons.append(
+                                f"{current_left} NOT IN {right}"
+                            )
                     else:
                         # "<string> IN X" - convert to LIKE pattern
                         if op == " IN ":
-                            processed_comparisons.append(f"{right} LIKE '%%{current_left[1:-1]}%%'")
+                            processed_comparisons.append(
+                                f"{right} LIKE '%%{current_left[1:-1]}%%'"
+                            )
                         elif op == " NOT IN ":
-                            processed_comparisons.append(f"{right} NOT LIKE '%%{current_left[1:-1]}%%'")
+                            processed_comparisons.append(
+                                f"{right} NOT LIKE '%%{current_left[1:-1]}%%'"
+                            )
                 else:
                     # Non-IN operator - keep as None to be handled by zip loop below
                     processed_comparisons.append(None)
@@ -1387,7 +1389,9 @@ class ExpressionBuilder:
                     retval += f"({processed_comparisons[i]})"
                 else:
                     # Regular operator - use standard format
-                    retval += "({left} {op} {right})".format(left=current_left, op=op, right=right)
+                    retval += "({left} {op} {right})".format(
+                        left=current_left, op=op, right=right
+                    )
                 current_left = right
             return retval
 
