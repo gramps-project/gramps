@@ -285,16 +285,16 @@ class DBAPI(DbGeneric):
         )
 
         ## Indices:
-        # Person table: given_name and surname are actual columns, gramps_id is in JSON
+        # Person table: given_name and surname are actual columns, gramps_id is in JSON/blob_data
         self.dbapi.execute("CREATE INDEX person_surname ON person(surname)")
         self.dbapi.execute("CREATE INDEX person_given_name ON person(given_name)")
         if json_data:
+            # When using JSON, gramps_id can be indexed via json_extract
             self.dbapi.execute(
                 f"CREATE INDEX person_gramps_id ON person({self._format_json_extract_index('gramps_id')})"
             )
-        else:
-            self.dbapi.execute("CREATE INDEX person_gramps_id ON person(gramps_id)")
-        # Source table: only handle column exists, title and gramps_id are in JSON
+        # When using blob_data, gramps_id is inside the BLOB and cannot be indexed
+        # Source table: only handle column exists, title and gramps_id are in JSON/blob_data
         if json_data:
             self.dbapi.execute(
                 f"CREATE INDEX source_title ON source({self._format_json_extract_index('title')})"
@@ -302,10 +302,8 @@ class DBAPI(DbGeneric):
             self.dbapi.execute(
                 f"CREATE INDEX source_gramps_id ON source({self._format_json_extract_index('gramps_id')})"
             )
-        else:
-            self.dbapi.execute("CREATE INDEX source_title ON source(title)")
-            self.dbapi.execute("CREATE INDEX source_gramps_id ON source(gramps_id)")
-        # Citation table: only handle column exists, page and gramps_id are in JSON
+        # When using blob_data, title and gramps_id are inside the BLOB and cannot be indexed
+        # Citation table: only handle column exists, page and gramps_id are in JSON/blob_data
         if json_data:
             self.dbapi.execute(
                 f"CREATE INDEX citation_page ON citation({self._format_json_extract_index('page')})"
@@ -313,10 +311,8 @@ class DBAPI(DbGeneric):
             self.dbapi.execute(
                 f"CREATE INDEX citation_gramps_id ON citation({self._format_json_extract_index('gramps_id')})"
             )
-        else:
-            self.dbapi.execute("CREATE INDEX citation_page ON citation(page)")
-            self.dbapi.execute("CREATE INDEX citation_gramps_id ON citation(gramps_id)")
-        # Media table: only handle column exists, desc and gramps_id are in JSON
+        # When using blob_data, page and gramps_id are inside the BLOB and cannot be indexed
+        # Media table: only handle column exists, desc and gramps_id are in JSON/blob_data
         if json_data:
             self.dbapi.execute(
                 f"CREATE INDEX media_desc ON media({self._format_json_extract_index('desc')})"
@@ -324,10 +320,8 @@ class DBAPI(DbGeneric):
             self.dbapi.execute(
                 f"CREATE INDEX media_gramps_id ON media({self._format_json_extract_index('gramps_id')})"
             )
-        else:
-            self.dbapi.execute("CREATE INDEX media_desc ON media(desc)")
-            self.dbapi.execute("CREATE INDEX media_gramps_id ON media(gramps_id)")
-        # Place table: handle and enclosed_by are actual columns, title and gramps_id are in JSON
+        # When using blob_data, desc and gramps_id are inside the BLOB and cannot be indexed
+        # Place table: handle and enclosed_by are actual columns, title and gramps_id are in JSON/blob_data
         self.dbapi.execute("CREATE INDEX place_enclosed_by ON place(enclosed_by)")
         if json_data:
             self.dbapi.execute(
@@ -336,49 +330,40 @@ class DBAPI(DbGeneric):
             self.dbapi.execute(
                 f"CREATE INDEX place_gramps_id ON place({self._format_json_extract_index('gramps_id')})"
             )
-        else:
-            self.dbapi.execute("CREATE INDEX place_title ON place(title)")
-            self.dbapi.execute("CREATE INDEX place_gramps_id ON place(gramps_id)")
-        # Tag table: only handle column exists, name is in JSON
+        # When using blob_data, title and gramps_id are inside the BLOB and cannot be indexed
+        # Tag table: only handle column exists, name is in JSON/blob_data
         if json_data:
             self.dbapi.execute(
                 f"CREATE INDEX tag_name ON tag({self._format_json_extract_index('name')})"
             )
-        else:
-            self.dbapi.execute("CREATE INDEX tag_name ON tag(name)")
+        # When using blob_data, name is inside the BLOB and cannot be indexed
         # Reference table: obj_handle and ref_handle are actual columns
         self.dbapi.execute("CREATE INDEX reference_ref_handle ON reference(ref_handle)")
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
-        # Family table: only handle column exists, gramps_id is in JSON
+        # Family table: only handle column exists, gramps_id is in JSON/blob_data
         if json_data:
             self.dbapi.execute(
                 f"CREATE INDEX family_gramps_id ON family({self._format_json_extract_index('gramps_id')})"
             )
-        else:
-            self.dbapi.execute("CREATE INDEX family_gramps_id ON family(gramps_id)")
-        # Event table: only handle column exists, gramps_id is in JSON
+        # When using blob_data, gramps_id is inside the BLOB and cannot be indexed
+        # Event table: only handle column exists, gramps_id is in JSON/blob_data
         if json_data:
             self.dbapi.execute(
                 f"CREATE INDEX event_gramps_id ON event({self._format_json_extract_index('gramps_id')})"
             )
-        else:
-            self.dbapi.execute("CREATE INDEX event_gramps_id ON event(gramps_id)")
-        # Repository table: only handle column exists, gramps_id is in JSON
+        # When using blob_data, gramps_id is inside the BLOB and cannot be indexed
+        # Repository table: only handle column exists, gramps_id is in JSON/blob_data
         if json_data:
             self.dbapi.execute(
                 f"CREATE INDEX repository_gramps_id ON repository({self._format_json_extract_index('gramps_id')})"
             )
-        else:
-            self.dbapi.execute(
-                "CREATE INDEX repository_gramps_id ON repository(gramps_id)"
-            )
-        # Note table: only handle column exists, gramps_id is in JSON
+        # When using blob_data, gramps_id is inside the BLOB and cannot be indexed
+        # Note table: only handle column exists, gramps_id is in JSON/blob_data
         if json_data:
             self.dbapi.execute(
                 f"CREATE INDEX note_gramps_id ON note({self._format_json_extract_index('gramps_id')})"
             )
-        else:
-            self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
+        # When using blob_data, gramps_id is inside the BLOB and cannot be indexed
 
         self._create_secondary_columns()
 
