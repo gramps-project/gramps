@@ -2036,6 +2036,173 @@ class BaseTest(unittest.TestCase):
                 # If handle lookup fails, skip this entry
                 continue
 
+    def test_pagination_basic(self):
+        """
+        Test basic pagination - get first page of results.
+        """
+        # Get first page with 10 items
+        page1 = list(
+            self.db.select_from_person(
+                what="person.handle",
+                order_by="person.handle",
+                page=1,
+                page_size=10,
+            )
+        )
+        # Should return exactly 10 items
+        self.assertEqual(len(page1), 10)
+        # All should be handles (strings)
+        for handle in page1:
+            self.assertIsInstance(handle, str)
+
+    def test_pagination_second_page(self):
+        """
+        Test pagination - get second page of results.
+        """
+        # Get first page
+        page1 = list(
+            self.db.select_from_person(
+                what="person.handle",
+                order_by="person.handle",
+                page=1,
+                page_size=10,
+            )
+        )
+        # Get second page
+        page2 = list(
+            self.db.select_from_person(
+                what="person.handle",
+                order_by="person.handle",
+                page=2,
+                page_size=10,
+            )
+        )
+        # Should return exactly 10 items
+        self.assertEqual(len(page2), 10)
+        # Pages should not overlap
+        self.assertEqual(len(set(page1) & set(page2)), 0)
+        # Second page should come after first page
+        self.assertGreater(min(page2), max(page1))
+
+    def test_pagination_with_where(self):
+        """
+        Test pagination with WHERE clause filtering.
+        """
+        from gramps.gen.lib import Person
+
+        # Get first page of males
+        page1 = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="person.gender == Person.MALE",
+                order_by="person.handle",
+                page=1,
+                page_size=20,
+            )
+        )
+        # Should return at most 20 items
+        self.assertLessEqual(len(page1), 20)
+        # Verify all are males
+        for handle in page1:
+            person = self.db.get_person_from_handle(handle)
+            self.assertEqual(person.get_gender(), Person.MALE)
+
+    def test_pagination_with_order_by(self):
+        """
+        Test pagination with ORDER BY clause.
+        """
+        # Get first page sorted by surname
+        page1 = list(
+            self.db.select_from_person(
+                what=["person.primary_name.surname_list[0].surname", "person.gender"],
+                where="len(person.media_list) > 0",
+                order_by=[
+                    "-person.primary_name.surname_list[0].surname",
+                    "person.gender",
+                ],
+                page=1,
+                page_size=5,
+            )
+        )
+        # Should return at most 5 items
+        self.assertLessEqual(len(page1), 5)
+        # Verify sorting (descending surname)
+        surnames = [row[0] for row in page1 if row[0]]
+        if len(surnames) > 1:
+            self.assertEqual(surnames, sorted(surnames, reverse=True))
+
+    def test_pagination_with_join(self):
+        """
+        Test pagination with JOIN queries.
+        """
+        # Get first page of person-family joins
+        page1 = list(
+            self.db.select_from_person(
+                what=["person.handle", "family.handle"],
+                where="person.handle == family.father_handle",
+                order_by=["person.handle", "family.handle"],
+                page=1,
+                page_size=15,
+            )
+        )
+        # Should return at most 15 items
+        self.assertLessEqual(len(page1), 15)
+        # Verify each result
+        for person_handle, family_handle in page1:
+            self.assertIsInstance(person_handle, str)
+            self.assertIsInstance(family_handle, str)
+            family = self.db.get_family_from_handle(family_handle)
+            self.assertIsNotNone(family)
+            self.assertEqual(family.get_father_handle(), person_handle)
+
+    def test_pagination_empty_result(self):
+        """
+        Test pagination when result set is empty.
+        """
+        # Query that returns no results
+        page1 = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="person.gramps_id == 'NONEXISTENT'",
+                page=1,
+                page_size=10,
+            )
+        )
+        # Should return empty list
+        self.assertEqual(len(page1), 0)
+
+    def test_pagination_last_page_partial(self):
+        """
+        Test pagination when last page has fewer items than page_size.
+        """
+        # Get total count
+        all_handles = list(
+            self.db.select_from_person(
+                what="person.handle",
+                order_by="person.handle",
+            )
+        )
+        total = len(all_handles)
+
+        # Calculate last page number
+        page_size = 100
+        last_page = (total + page_size - 1) // page_size  # Ceiling division
+
+        # Get last page
+        last_page_results = list(
+            self.db.select_from_person(
+                what="person.handle",
+                order_by="person.handle",
+                page=last_page,
+                page_size=page_size,
+            )
+        )
+        # Should return remaining items (less than or equal to page_size)
+        self.assertLessEqual(len(last_page_results), page_size)
+        # Should match the last items from full query
+        expected_last = all_handles[(last_page - 1) * page_size :]
+        self.assertEqual(last_page_results, expected_last)
+
 
 if __name__ == "__main__":
     unittest.main()

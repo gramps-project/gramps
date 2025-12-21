@@ -237,7 +237,7 @@ class QueryBuilder:
             # Single expression - convert normally
             return str(expression.convert_to_sql(expression_node))
 
-    def get_sql_query(self, what, where, order_by):
+    def get_sql_query(self, what, where, order_by, page=None, page_size=None):
         """
         Generate complete SQL query from what, where, and order_by parameters.
 
@@ -247,15 +247,33 @@ class QueryBuilder:
         - Array expansion in OR expressions (UNION queries)
         - List comprehensions in WHAT clause
         - ORDER BY conversion
+        - Pagination with LIMIT/OFFSET
 
         Args:
             what: What clause (None, str, or list of strings)
             where: Where clause (None or str)
             order_by: Order by clause (None, str, or list of strings)
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Returns:
             Complete SQL query string
         """
+        # Validate pagination parameters
+        if (page is not None) != (page_size is not None):
+            raise ValueError(
+                "Both page and page_size must be provided together, or neither"
+            )
+
+        # Calculate offset if pagination is requested
+        limit_offset = ""
+        if page is not None and page_size is not None:
+            if page < 1:
+                raise ValueError("page must be >= 1")
+            if page_size < 1:
+                raise ValueError("page_size must be >= 1")
+            offset = (page - 1) * page_size
+            limit_offset = f" LIMIT {page_size} OFFSET {offset}"
         # Convert where to string if needed
         where_str = where
         if callable(where) or isinstance(where, types.LambdaType):
@@ -329,6 +347,8 @@ class QueryBuilder:
                 array_path,
                 join_conditions,
                 has_joins,
+                page=page,
+                page_size=page_size,
             )
 
         # Check for list comprehension in what clause
@@ -551,7 +571,7 @@ class QueryBuilder:
                         order_by_expr = self.expression.get_order_by(converted_order_by)
 
                     # Return the UNION query directly
-                    return f"{left_query} UNION ALL {right_query}{order_by_expr};"
+                    return f"{left_query} UNION ALL {right_query}{order_by_expr}{limit_offset};"
 
                 # For PostgreSQL, set what_condition_sql if needed
                 if what_condition_node:
@@ -719,7 +739,7 @@ class QueryBuilder:
                     converted_order_by, has_joins=False
                 )
 
-        return f"SELECT {what_expr} from {from_clause}{where_expr}{order_by_expr};"
+        return f"SELECT {what_expr} from {from_clause}{where_expr}{order_by_expr}{limit_offset};"
 
     def _build_union_query(
         self,
@@ -730,6 +750,8 @@ class QueryBuilder:
         array_path,
         join_conditions,
         has_joins,
+        page=None,
+        page_size=None,
     ):
         """
         Build UNION query for array expansion in OR expressions.
@@ -742,10 +764,21 @@ class QueryBuilder:
             array_path: Array path
             join_conditions: JOIN conditions dict
             has_joins: Whether JOINs are present
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Returns:
             Complete UNION SQL query string
         """
+        # Calculate offset if pagination is requested
+        limit_offset = ""
+        if page is not None and page_size is not None:
+            if page < 1:
+                raise ValueError("page must be >= 1")
+            if page_size < 1:
+                raise ValueError("page_size must be >= 1")
+            offset = (page - 1) * page_size
+            limit_offset = f" LIMIT {page_size} OFFSET {offset}"
         # Split the OR expression
         left_parts, right_parts, has_array_expansion = (
             self.expression.split_or_expression_with_array_expansion(
@@ -945,4 +978,4 @@ class QueryBuilder:
                     converted_order_by.append(expr)
             order_by_expr = self.expression.get_order_by(converted_order_by)
 
-        return f"{left_query} UNION {right_query}{order_by_expr};"
+        return f"{left_query} UNION {right_query}{order_by_expr}{limit_offset};"

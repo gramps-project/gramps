@@ -1358,6 +1358,8 @@ class DBAPI(DbGeneric):
         order_by=None,
         env=None,
         override=False,
+        page=None,
+        page_size=None,
     ):
         """
         The actual selection method.
@@ -1365,6 +1367,8 @@ class DBAPI(DbGeneric):
         Args:
             override: if True, and using a proxy, apply
                 the select on the low-level database instead.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
         """
         if self.is_proxy():
             if override:
@@ -1375,6 +1379,8 @@ class DBAPI(DbGeneric):
                     where=where,
                     order_by=order_by,
                     env=env,
+                    page=page,
+                    page_size=page_size,
                 )
                 return
             else:
@@ -1391,7 +1397,9 @@ class DBAPI(DbGeneric):
         )
 
         # Generate SQL query
-        query = query_builder.get_sql_query(what, where, order_by)
+        query = query_builder.get_sql_query(
+            what, where, order_by, page=page, page_size=page_size
+        )
 
         # Execute query and yield results
         with self.dbapi.cursor() as cursor:

@@ -2830,6 +2830,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         order_by=None,
         env=None,
         override=False,
+        page=None,
+        page_size=None,
     ):
         """
         Select items from table_name where python-string is True,
@@ -2840,6 +2842,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Args:
             override: if True, and using a proxy, apply
                 the select on the low-level database instead.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Raises:
             NotImplementedError: This method must be implemented by subclasses.
@@ -2849,7 +2853,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         )
 
     def select_from_citation(
-        self, *, what=None, where=None, order_by=None, env=None, override=False
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
     ):
         """
         Select items from citation using Python string expressions.
@@ -2863,6 +2875,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by: Python string expression or list of expressions for sorting.
                 Use "-" prefix for descending order.
             override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Examples:
 
@@ -2876,10 +2890,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by=order_by,
             env=env,
             override=override,
+            page=page,
+            page_size=page_size,
         )
 
     def select_from_event(
-        self, *, what=None, where=None, order_by=None, env=None, override=False
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
     ):
         """
         Select items from event using Python string expressions.
@@ -2893,6 +2917,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by: Python string expression or list of expressions for sorting.
                 Use "-" prefix for descending order.
             override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Examples:
 
@@ -2906,10 +2932,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by=order_by,
             env=env,
             override=override,
+            page=page,
+            page_size=page_size,
         )
 
     def select_from_family(
-        self, *, what=None, where=None, order_by=None, env=None, override=False
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
     ):
         """
         Select items from family using Python string expressions.
@@ -2923,6 +2959,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by: Python string expression or list of expressions for sorting.
                 Use "-" prefix for descending order.
             override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Examples:
 
@@ -2936,10 +2974,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by=order_by,
             env=env,
             override=override,
+            page=page,
+            page_size=page_size,
         )
 
     def select_from_media(
-        self, *, what=None, where=None, order_by=None, env=None, override=False
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
     ):
         """
         Select items from media using Python string expressions.
@@ -2953,6 +3001,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by: Python string expression or list of expressions for sorting.
                 Use "-" prefix for descending order.
             override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Examples:
 
@@ -2966,10 +3016,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by=order_by,
             env=env,
             override=override,
+            page=page,
+            page_size=page_size,
         )
 
     def select_from_note(
-        self, *, what=None, where=None, order_by=None, env=None, override=False
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
     ):
         """
         Select items from note using Python string expressions.
@@ -2983,6 +3043,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by: Python string expression or list of expressions for sorting.
                 Use "-" prefix for descending order.
             override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Examples:
 
@@ -2996,10 +3058,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by=order_by,
             env=env,
             override=override,
+            page=page,
+            page_size=page_size,
         )
 
     def select_from_person(
-        self, *, what=None, where=None, order_by=None, env=None, override=False
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
     ):
         """
         Select items from person using Python string expressions.
@@ -3013,6 +3085,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by: Python string expression or list of expressions for sorting.
                 Use "-" prefix for descending order.
             override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Examples:
 
@@ -3034,10 +3108,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by=order_by,
             env=env,
             override=override,
+            page=page,
+            page_size=page_size,
         )
 
     def select_from_place(
-        self, *, what=None, where=None, order_by=None, env=None, override=False
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
     ):
         """
         Select items from place using Python string expressions.
@@ -3051,6 +3135,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by: Python string expression or list of expressions for sorting.
                 Use "-" prefix for descending order.
             override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Examples:
 
@@ -3064,10 +3150,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by=order_by,
             env=env,
             override=override,
+            page=page,
+            page_size=page_size,
         )
 
     def select_from_repository(
-        self, *, what=None, where=None, order_by=None, env=None, override=False
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
     ):
         """
         Select items from repository using Python string expressions.
@@ -3081,6 +3177,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by: Python string expression or list of expressions for sorting.
                 Use "-" prefix for descending order.
             override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Examples:
 
@@ -3094,10 +3192,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by=order_by,
             env=env,
             override=override,
+            page=page,
+            page_size=page_size,
         )
 
     def select_from_source(
-        self, *, what=None, where=None, order_by=None, env=None, override=False
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
     ):
         """
         Select items from source using Python string expressions.
@@ -3111,6 +3219,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by: Python string expression or list of expressions for sorting.
                 Use "-" prefix for descending order.
             override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Examples:
 
@@ -3124,10 +3234,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by=order_by,
             env=env,
             override=override,
+            page=page,
+            page_size=page_size,
         )
 
     def select_from_tag(
-        self, *, what=None, where=None, order_by=None, env=None, override=False
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
     ):
         """
         Select items from tag using Python string expressions.
@@ -3141,6 +3261,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by: Python string expression or list of expressions for sorting.
                 Use "-" prefix for descending order.
             override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
 
         Examples:
 
@@ -3148,7 +3270,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         db.select_from_tag(what="tag.handle", where="tag.handle == 'A6E74B3D65D23F'")
         """
         yield from self._select_from_table(
-            "tag", what=what, where=where, order_by=order_by, env=env, override=override
+            "tag",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            override=override,
+            page=page,
+            page_size=page_size,
         )
 
 

@@ -485,6 +485,98 @@ class QueryBuilderTestMixin:
         # Validate SQL with sqlglot
         self._validate_sql(sql)
 
+    def test_pagination_basic(self):
+        """
+        Test basic pagination with LIMIT and OFFSET.
+        """
+        what = "person.handle"
+        where = None
+        order_by = "person.handle"
+        sql = self.query_builder.get_sql_query(
+            what, where, order_by, page=1, page_size=10
+        )
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+        # Verify LIMIT and OFFSET are present
+        self.assertIn("LIMIT", sql.upper())
+        self.assertIn("OFFSET", sql.upper())
+        self.assertIn("10", sql)
+        self.assertIn("0", sql)  # OFFSET for page 1 should be 0
+
+    def test_pagination_second_page(self):
+        """
+        Test pagination for second page.
+        """
+        what = "person.handle"
+        where = None
+        order_by = "person.handle"
+        sql = self.query_builder.get_sql_query(
+            what, where, order_by, page=2, page_size=20
+        )
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+        # Verify LIMIT and OFFSET are present
+        self.assertIn("LIMIT", sql.upper())
+        self.assertIn("OFFSET", sql.upper())
+        self.assertIn("20", sql)
+        self.assertIn("20", sql)  # OFFSET for page 2 with page_size 20 should be 20
+
+    def test_pagination_with_where(self):
+        """
+        Test pagination with WHERE clause.
+        """
+        what = "person.handle"
+        where = "person.gender == Person.MALE"
+        order_by = "person.handle"
+        sql = self.query_builder.get_sql_query(
+            what, where, order_by, page=1, page_size=15
+        )
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+        # Verify LIMIT and OFFSET are present
+        self.assertIn("LIMIT", sql.upper())
+        self.assertIn("OFFSET", sql.upper())
+
+    def test_pagination_with_order_by(self):
+        """
+        Test pagination with ORDER BY clause.
+        """
+        what = ["person.primary_name.surname_list[0].surname", "person.gender"]
+        where = "len(person.media_list) > 0"
+        order_by = [
+            "-person.primary_name.surname_list[0].surname",
+            "person.gender",
+        ]
+        sql = self.query_builder.get_sql_query(
+            what, where, order_by, page=1, page_size=5
+        )
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+        # Verify LIMIT and OFFSET are present after ORDER BY
+        self.assertIn("LIMIT", sql.upper())
+        self.assertIn("OFFSET", sql.upper())
+
+    def test_pagination_with_join(self):
+        """
+        Test pagination with JOIN queries.
+        """
+        what = ["person.handle", "family.handle"]
+        where = "person.handle == family.father_handle"
+        order_by = None
+        sql = self.query_builder.get_sql_query(
+            what, where, order_by, page=1, page_size=25
+        )
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+        # Verify LIMIT and OFFSET are present
+        self.assertIn("LIMIT", sql.upper())
+        self.assertIn("OFFSET", sql.upper())
+
 
 class QueryBuilderSQLiteTest(QueryBuilderTestMixin, unittest.TestCase):
     """

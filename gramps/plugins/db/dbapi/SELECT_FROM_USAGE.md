@@ -423,6 +423,138 @@ sorted_persons = list(
 )
 ```
 
+## Pagination with `page` and `page_size`
+
+You can paginate results using the `page` and `page_size` parameters. Both must be provided together, or neither.
+
+### Basic Pagination
+
+```python
+# Get first page with 10 items
+page1 = list(
+    db.select_from_person(
+        what="person.handle",
+        order_by="person.handle",
+        page=1,
+        page_size=10
+    )
+)
+
+# Get second page with 20 items
+page2 = list(
+    db.select_from_person(
+        what="person.handle",
+        order_by="person.handle",
+        page=2,
+        page_size=20
+    )
+)
+```
+
+**Important Notes:**
+- `page` is 1-based (first page is page 1, not page 0)
+- Both `page` and `page_size` must be provided together, or both omitted
+- `page_size` must be >= 1
+- `page` must be >= 1
+- When pagination is used, results are limited to the specified page size
+- The offset is automatically calculated: `offset = (page - 1) * page_size`
+
+### Pagination with Filtering
+
+```python
+# Get first page of males
+males_page1 = list(
+    db.select_from_person(
+        what="person.handle",
+        where="person.gender == Person.MALE",
+        order_by="person.handle",
+        page=1,
+        page_size=25
+    )
+)
+```
+
+### Pagination with ORDER BY
+
+Pagination works seamlessly with `order_by`:
+
+```python
+# Get first page sorted by surname
+sorted_page1 = list(
+    db.select_from_person(
+        what="person.handle",
+        order_by="person.primary_name.surname_list[0].surname",
+        page=1,
+        page_size=15
+    )
+)
+```
+
+### Pagination with JOINs
+
+Pagination also works with JOIN queries:
+
+```python
+# Get first page of person-family joins
+results = list(
+    db.select_from_person(
+        what=["person.handle", "family.handle"],
+        where="person.handle == family.father_handle",
+        order_by=["person.handle", "family.handle"],
+        page=1,
+        page_size=30
+    )
+)
+```
+
+### Pagination Best Practices
+
+1. **Always use ORDER BY with pagination**: Without `order_by`, the order of results is undefined, making pagination unreliable.
+
+2. **Consistent ordering**: Use the same `order_by` for all pages to ensure consistent results.
+
+3. **Handling empty pages**: If a page number exceeds available results, an empty list is returned.
+
+4. **Last page may be partial**: The last page may contain fewer items than `page_size`.
+
+```python
+# Example: Iterate through all pages
+page_size = 50
+page = 1
+all_results = []
+
+while True:
+    page_results = list(
+        db.select_from_person(
+            what="person.handle",
+            order_by="person.handle",
+            page=page,
+            page_size=page_size
+        )
+    )
+    
+    if not page_results:
+        break  # No more results
+    
+    all_results.extend(page_results)
+    page += 1
+```
+
+### Error Handling
+
+If only one of `page` or `page_size` is provided, a `ValueError` is raised:
+
+```python
+# This will raise ValueError
+try:
+    db.select_from_person(
+        what="person.handle",
+        page=1  # Missing page_size
+    )
+except ValueError as e:
+    print(f"Error: {e}")  # "Both page and page_size must be provided together, or neither"
+```
+
 ## Common Patterns
 
 ### Getting All Handles
