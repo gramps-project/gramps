@@ -170,9 +170,9 @@ class QueryBuilder:
             args_str = ", ".join(str(arg) for arg in args)
             return f"json_array({args_str})"
 
-    def _create_array_evaluator(self, item_var, array_path):
+    def _create_array_expression(self, item_var, array_path):
         """
-        Create a specialized evaluator for array expansion contexts.
+        Create a specialized expression for array expansion contexts.
 
         Args:
             item_var: Variable name for array iteration (e.g., "item")
@@ -193,12 +193,12 @@ class QueryBuilder:
             array_path=array_path,
         )
 
-    def _create_join_evaluator(self, table_name):
+    def _create_join_expression(self, table_name):
         """
-        Create a specialized evaluator for JOIN attribute conversion.
+        Create a specialized expression for JOIN attribute conversion.
 
         Args:
-            table_name: Table name for the evaluator
+            table_name: Table name for the expression
 
         Returns:
             ExpressionBuilder instance configured for the specified table
@@ -386,7 +386,7 @@ class QueryBuilder:
             # Handle both single array and concatenated arrays
             if what_array_info["type"] == "single":
                 array_path = what_array_info["path"]
-                what_expression = self._create_array_evaluator(
+                what_expression = self._create_array_expression(
                     what_item_var, array_path
                 )
                 listcomp_expr = self._convert_listcomp_expression(
@@ -416,7 +416,7 @@ class QueryBuilder:
                 array_sql = array_sql_expression.convert(
                     f"{self.table_name}.{array_path}"
                 )
-                json_each_expr = f"json_each({array_sql}, '$')"
+                json_each_expr = self.format_json_each(array_sql)
                 from_clause = f"{self.table_name}, {json_each_expr}"
                 if what_condition_node:
                     what_condition_sql = what_expression.convert_to_sql(
@@ -429,9 +429,9 @@ class QueryBuilder:
                 left_node = what_array_info["left"]
                 right_path = what_array_info["right_path"]
 
-                # Create evaluator for the concatenated array
-                what_expression = self._create_array_evaluator(
-                    what_item_var, right_path  # Use right_path as base for evaluator
+                # Create expression for the concatenated array
+                what_expression = self._create_array_expression(
+                    what_item_var, right_path  # Use right_path as base for expression
                 )
                 listcomp_expr = self._convert_listcomp_expression(
                     what_expression, what_expression_node
@@ -573,13 +573,13 @@ class QueryBuilder:
                 and item_var
                 and (what.startswith(f"{item_var}.") or what == item_var)
             ):
-                array_expansion_expression = self._create_array_evaluator(
+                array_expansion_expression = self._create_array_expression(
                     item_var, array_path
                 )
                 what_expr = str(array_expansion_expression.convert(what))
             else:
                 if has_joins:
-                    join_expression = self._create_join_evaluator(self.table_name)
+                    join_expression = self._create_join_expression(self.table_name)
                     what_expr = str(join_expression.convert(what))
                 else:
                     what_expr = str(self.expression.convert(what))
@@ -587,7 +587,7 @@ class QueryBuilder:
             what_list = []
             join_expression = None
             if has_joins:
-                join_expression = self._create_join_evaluator(self.table_name)
+                join_expression = self._create_join_expression(self.table_name)
             for w in what:
                 if callable(w) or isinstance(w, types.LambdaType):
                     raise ValueError(
@@ -600,7 +600,7 @@ class QueryBuilder:
                     and item_var
                     and (w.startswith(f"{item_var}.") or w == item_var)
                 ):
-                    array_expansion_expression = self._create_array_evaluator(
+                    array_expansion_expression = self._create_array_expression(
                         item_var, array_path
                     )
                     what_list.append(str(array_expansion_expression.convert(w)))
@@ -613,7 +613,7 @@ class QueryBuilder:
 
         # Build WHERE clause
         if has_joins:
-            where_expression = self._create_join_evaluator(self.table_name)
+            where_expression = self._create_join_expression(self.table_name)
             where_sql = where_expression.convert_where_clause(
                 where_str,
                 exclude_array_expansion=is_array_expansion,
@@ -642,7 +642,7 @@ class QueryBuilder:
         # Handle array expansion in where clause
         if is_array_expansion:
             array_sql = self.expression.convert(f"{self.table_name}.{array_path}")
-            json_each_expr = f"json_each({array_sql}, '$')"
+            json_each_expr = self.format_json_each(array_sql)
             if not (what_item_var and what_array_info):
                 from_clause = f"{self.table_name}, {json_each_expr}"
 
@@ -664,8 +664,8 @@ class QueryBuilder:
                     left_table, left_attr, right_table, right_attr, join_type = (
                         join_cond
                     )
-                    left_expression = self._create_join_evaluator(left_table)
-                    right_expression = self._create_join_evaluator(right_table)
+                    left_expression = self._create_join_expression(left_table)
+                    right_expression = self._create_join_expression(right_table)
                     # Build full expression paths - left_attr and right_attr may contain
                     # complex paths like "event_ref_list[person.birth_ref_index].ref"
                     # or simple paths like "handle"
@@ -710,7 +710,7 @@ class QueryBuilder:
                 else:
                     converted_order_by.append(expr)
             if has_joins:
-                order_by_expression = self._create_join_evaluator(self.table_name)
+                order_by_expression = self._create_join_expression(self.table_name)
                 order_by_expr = order_by_expression.get_order_by(
                     converted_order_by, has_joins=False
                 )
@@ -782,7 +782,7 @@ class QueryBuilder:
             what_array_path = self._get_array_path_from_info(what_array_info)
             if what_array_path:
                 # Single array
-                what_expression = self._create_array_evaluator(
+                what_expression = self._create_array_expression(
                     what_item_var, what_array_path
                 )
                 what_expr = self._convert_listcomp_expression(
@@ -797,7 +797,7 @@ class QueryBuilder:
                 what_array_sql = array_sql_expression.convert(
                     f"{self.table_name}.{what_array_path}"
                 )
-                what_json_each_expr = f"json_each({what_array_sql}, '$')"
+                what_json_each_expr = self.format_json_each(what_array_sql)
             else:
                 # Concatenated arrays - not supported in UNION queries yet
                 # For now, raise an error or handle gracefully
@@ -815,7 +815,7 @@ class QueryBuilder:
             if what in ["obj", "person"]:
                 what = "json_data"
             if what.startswith(f"{item_var}.") or what == item_var:
-                array_expansion_expression = self._create_array_evaluator(
+                array_expansion_expression = self._create_array_expression(
                     item_var, array_path
                 )
                 what_expr = str(array_expansion_expression.convert(what))
@@ -831,7 +831,7 @@ class QueryBuilder:
                 if w in ["obj", "person"]:
                     w = "json_data"
                 if w.startswith(f"{item_var}.") or w == item_var:
-                    array_expansion_expression = self._create_array_evaluator(
+                    array_expansion_expression = self._create_array_expression(
                         item_var, array_path
                     )
                     what_list.append(str(array_expansion_expression.convert(w)))
@@ -879,7 +879,7 @@ class QueryBuilder:
         else:
             right_where_node = ast.BoolOp(op=ast.And(), values=right_parts)
 
-        right_expression = self._create_array_evaluator(item_var, array_path)
+        right_expression = self._create_array_expression(item_var, array_path)
         right_where_sql = right_expression._convert_node_with_replacements(
             right_where_node, exclude_array_expansion=True
         )
@@ -903,7 +903,7 @@ class QueryBuilder:
             right_where_expr = ""
 
         array_sql = self.expression.convert(f"{self.table_name}.{array_path}")
-        json_each_expr = f"json_each({array_sql}, '$')"
+        json_each_expr = self.format_json_each(array_sql)
 
         if what_item_var and what_array_info:
             what_array_path = self._get_array_path_from_info(what_array_info)

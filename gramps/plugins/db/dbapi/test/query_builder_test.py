@@ -63,12 +63,12 @@ class QueryBuilderTestMixin:
         Raises:
             AssertionError: If SQL cannot be parsed or roundtrip fails
         """
-        # Parse the original SQL
-        tree = sqlglot.parse_one(sql)
+        # Parse the original SQL with the dialect to catch dialect-specific issues
+        tree = sqlglot.parse_one(sql, dialect=self.dialect)
 
         # Test roundtrip for the dialect - verify it can be parsed and regenerated
         roundtrip = tree.sql(dialect=self.dialect)
-        tree_roundtrip = sqlglot.parse_one(roundtrip)
+        tree_roundtrip = sqlglot.parse_one(roundtrip, dialect=self.dialect)
         roundtrip2 = tree_roundtrip.sql(dialect=self.dialect)
         # Compare SQL strings after roundtrip (trees may differ but SQL should be equivalent)
         assert roundtrip == roundtrip2, (
