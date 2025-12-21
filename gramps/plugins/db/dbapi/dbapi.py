@@ -65,7 +65,8 @@ from gramps.gen.lib import (
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
-from .select import QueryBuilder, parse_query_result_value
+from .query_builder import QueryBuilder
+from .select_utils import parse_query_result_value
 import types
 
 LOG = logging.getLogger(".dbapi")
@@ -1385,7 +1386,7 @@ class DBAPI(DbGeneric):
         # Create QueryBuilder instance
         query_builder = QueryBuilder(
             table_name,
-            env=env if env is not None else globals(),
+            env=env if env is not None else {},
             dialect=self.dialect,
         )
 

@@ -27,7 +27,7 @@ import unittest
 import sqlglot
 
 from gramps.gen.lib import Person, EventRoleType, FamilyRelType
-from gramps.plugins.db.dbapi.select import QueryBuilder
+from gramps.plugins.db.dbapi.query_builder import QueryBuilder
 
 
 class QueryBuilderTestMixin:
