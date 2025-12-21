@@ -29,7 +29,6 @@ import sqlite3
 from ....db.utils import import_as_dict
 from ....const import TEST_DIR
 from ....user import User
-from gramps.gen.db import DbGeneric
 
 
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
@@ -165,9 +164,7 @@ class BaseTest(unittest.TestCase):
 
     def test_order_by_1_generic(self):
         res = list(
-            DbGeneric._select_from_table(
-                self.db,
-                "person",
+            self.db.select_from_person(
                 what=["person.primary_name.surname_list[0].surname", "person.gender"],
                 where="len(person.media_list) > 0",
                 order_by=[
@@ -186,9 +183,7 @@ class BaseTest(unittest.TestCase):
 
     def test_order_by_2_generic(self):
         res = list(
-            DbGeneric._select_from_table(
-                self.db,
-                "person",
+            self.db.select_from_person(
                 what=["person.primary_name.surname_list[0].surname", "person.gender"],
                 where="len(person.media_list) > 0",
                 order_by=[
@@ -214,11 +209,7 @@ class BaseTest(unittest.TestCase):
         self.assertEqual(len(res), 5)
 
     def test_HavePhotos_generic(self):
-        res = list(
-            DbGeneric._select_from_table(
-                self.db, "person", where="len(person.media_list) > 0"
-            )
-        )
+        res = list(self.db.select_from_person(where="len(person.media_list) > 0"))
         self.assertEqual(len(res), 5)
 
     def test_HasLDS(self):
@@ -232,9 +223,7 @@ class BaseTest(unittest.TestCase):
 
     def test_HasLDS_generic(self):
         res = list(
-            DbGeneric._select_from_table(
-                self.db,
-                "person",
+            self.db.select_from_person(
                 what="obj.handle",
                 where="len(obj.lds_ord_list) > 0",
             )
@@ -294,9 +283,7 @@ class BaseTest(unittest.TestCase):
     def test_disconnected_generic(self):
         res = set(
             list(
-                DbGeneric._select_from_table(
-                    self.db,
-                    "person",
+                self.db.select_from_person(
                     what="person.handle",
                     where="len(person.family_list) == 0 and len(person.parent_family_list) == 0",
                 )
@@ -318,7 +305,7 @@ class BaseTest(unittest.TestCase):
         """
         Test Everyone rule.
         """
-        res = list(DbGeneric._select_from_table(self.db, "person"))
+        res = list(self.db.select_from_person())
         self.assertEqual(len(res), self.db.get_number_of_people())
 
     def test_hasalternatename(self):
@@ -348,9 +335,7 @@ class BaseTest(unittest.TestCase):
         """
         res = set(
             list(
-                DbGeneric._select_from_table(
-                    self.db,
-                    "person",
+                self.db.select_from_person(
                     what="obj.handle",
                     where="len(person.alternate_names) > 0",
                 )
@@ -413,9 +398,7 @@ class BaseTest(unittest.TestCase):
         """
         res = set(
             list(
-                DbGeneric._select_from_table(
-                    self.db,
-                    "person",
+                self.db.select_from_person(
                     what="person.handle",
                     where="person.gender == Person.UNKNOWN",
                 )
@@ -835,12 +818,10 @@ class BaseTest(unittest.TestCase):
 
     def test_binary_operations_generic(self):
         """
-        Test binary operations using generic _select_from_table.
+        Test binary operations.
         """
         res = list(
-            DbGeneric._select_from_table(
-                self.db,
-                "person",
+            self.db.select_from_person(
                 what="person.handle",
                 where="len(person.media_list) + len(person.note_list) > 0",
             )
@@ -849,12 +830,10 @@ class BaseTest(unittest.TestCase):
 
     def test_unary_minus_generic(self):
         """
-        Test unary minus using generic _select_from_table.
+        Test unary minus.
         """
         res = list(
-            DbGeneric._select_from_table(
-                self.db,
-                "person",
+            self.db.select_from_person(
                 what="person.handle",
                 where="-len(person.family_list) < 0",
             )
@@ -863,12 +842,10 @@ class BaseTest(unittest.TestCase):
 
     def test_conditional_expression_generic(self):
         """
-        Test conditional expressions using generic _select_from_table.
+        Test conditional expressions.
         """
         res = list(
-            DbGeneric._select_from_table(
-                self.db,
-                "person",
+            self.db.select_from_person(
                 what="person.gramps_id if person.gramps_id else 'UNKNOWN'",
                 where="len(person.family_list) > 0",
             )
@@ -877,13 +854,11 @@ class BaseTest(unittest.TestCase):
 
     def test_string_endswith_generic(self):
         """
-        Test string .endswith() using generic _select_from_table.
+        Test string .endswith().
         """
         res = set(
             list(
-                DbGeneric._select_from_table(
-                    self.db,
-                    "person",
+                self.db.select_from_person(
                     what="person.handle",
                     where="person.gramps_id.endswith('44')",
                 )
@@ -893,13 +868,11 @@ class BaseTest(unittest.TestCase):
 
     def test_string_in_pattern_generic(self):
         """
-        Test special "string IN X" pattern using generic _select_from_table.
+        Test special "string IN X" pattern.
         """
         res = set(
             list(
-                DbGeneric._select_from_table(
-                    self.db,
-                    "person",
+                self.db.select_from_person(
                     what="person.handle",
                     where="'I00' in person.gramps_id",
                 )
