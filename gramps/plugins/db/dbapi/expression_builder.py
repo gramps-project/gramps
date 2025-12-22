@@ -201,7 +201,7 @@ class ExpressionBuilder:
             array_path  # Array path for json_each (e.g., "event_ref_list")
         )
         # Database columns (not JSON fields) for this table
-        self.database_columns = set(database_columns) if database_columns else set()
+        self.database_columns = set(secondary_columns) if secondary_columns else set()
         # Store reference to DATABASE_COLUMNS dict if available (passed from QueryBuilder)
         self._database_columns_dict = None
         self.operators = {

@@ -20,12 +20,13 @@
 
 import ast
 import types
+from typing import Dict, List
 
 from .expression_builder import ExpressionBuilder
 
 # Database columns (not in JSON) that can be queried directly
 # These are computed/stored fields that exist as actual database columns
-DATABASE_COLUMNS = {
+DATABASE_COLUMNS: Dict[str, List[str]] = {
     "Person": [
         # "probably_alive_birth_start_sortval",
         # "probably_alive_death_stop_sortval",
@@ -83,7 +84,7 @@ class QueryBuilder:
             json_extract,
             json_array_length,
             self.env,
-            database_columns=database_columns,
+            secondary_columns=database_columns,
         )
         # Pass DATABASE_COLUMNS dict for checking other tables in JOINs
         self.expression.set_database_columns_dict(DATABASE_COLUMNS)
