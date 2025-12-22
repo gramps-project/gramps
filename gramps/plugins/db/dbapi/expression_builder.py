@@ -272,21 +272,17 @@ class ExpressionBuilder:
         if table_name == self.table_name:
             return attr_name in self.database_columns
 
-        # For other tables (JOIN cases), check DATABASE_COLUMNS dictionary if available
+        # For other tables (JOIN cases), only check DATABASE_COLUMNS dictionary
+        # We don't check get_secondary_fields() because those might be JSON fields,
+        # not actual database columns
         if self._database_columns_dict:
             class_name = table_name.capitalize()
             known_columns = self._database_columns_dict.get(class_name, [])
             if attr_name in known_columns:
                 return True
 
-        # Also check get_secondary_fields() for schema-defined database columns
-        class_name = table_name.capitalize()
-        try:
-            cls = getattr(gramps.gen.lib, class_name)
-            secondary_fields = [field[0] for field in cls.get_secondary_fields()]
-            return attr_name in secondary_fields
-        except (AttributeError, TypeError):
-            return False
+        # Not found in DATABASE_COLUMNS, so it's a JSON field
+        return False
 
     def _get_base_json_expr(self, attr_node):
         """
