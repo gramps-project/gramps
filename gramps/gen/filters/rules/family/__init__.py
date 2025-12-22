@@ -61,6 +61,7 @@ from ._hastag import HasTag
 from ._hastwins import HasTwins
 from ._isancestorof import IsAncestorOf
 from ._isdescendantof import IsDescendantOf
+from ._familywhere import FamilyWhere
 
 editor_rule_list = [
     AllFamilies,
@@ -93,4 +94,5 @@ editor_rule_list = [
     HasTwins,
     IsAncestorOf,
     IsDescendantOf,
+    FamilyWhere,
 ]

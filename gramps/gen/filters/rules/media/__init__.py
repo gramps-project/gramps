@@ -37,6 +37,7 @@ from ._hasmedia import HasMedia
 from ._hasattribute import HasAttribute
 from ._changedsince import ChangedSince
 from ._hastag import HasTag
+from ._mediawhere import MediaWhere
 
 editor_rule_list = [
     AllMedia,
@@ -54,4 +55,5 @@ editor_rule_list = [
     HasAttribute,
     ChangedSince,
     HasTag,
+    MediaWhere,
 ]

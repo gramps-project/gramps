@@ -110,6 +110,7 @@ from ._regexpidof import RegExpIdOf
 from ._changedsince import ChangedSince
 from ._isrelatedwith import IsRelatedWith
 from ._hassoundexname import HasSoundexName
+from ._selectwhere import PersonWhere
 
 # -------------------------------------------------------------------------
 #
@@ -195,4 +196,5 @@ editor_rule_list = [
     ChangedSince,
     IsRelatedWith,
     HasSoundexName,
+    PersonWhere,
 ]

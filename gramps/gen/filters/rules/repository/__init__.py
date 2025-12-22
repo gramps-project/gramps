@@ -34,6 +34,7 @@ from ._hasrepo import HasRepo
 from ._changedsince import ChangedSince
 from ._matchesnamesubstringof import MatchesNameSubstringOf
 from ._hastag import HasTag
+from ._repositorywhere import RepositoryWhere
 
 editor_rule_list = [
     AllRepos,
@@ -48,4 +49,5 @@ editor_rule_list = [
     MatchesNameSubstringOf,
     HasTag,
     HasRepo,
+    RepositoryWhere,
 ]
