@@ -23,6 +23,18 @@ import types
 
 from .expression_builder import ExpressionBuilder
 
+# Database columns (not in JSON) that can be queried directly
+# These are computed/stored fields that exist as actual database columns
+DATABASE_COLUMNS = {
+    "Person": [
+        # "probably_alive_birth_start_sortval",
+        # "probably_alive_death_stop_sortval",
+        # "given_name",  # Derived from primary_name
+        # "surname",  # Derived from primary_name
+    ],
+    # Add other tables' database columns here as needed
+}
+
 
 class QueryBuilder:
     """
@@ -64,9 +76,17 @@ class QueryBuilder:
         self.json_array_length = json_array_length
 
         # Create single ExpressionBuilder instance for primary conversions
+        # Pass database columns information
+        database_columns = DATABASE_COLUMNS.get(table_name.capitalize(), [])
         self.expression = ExpressionBuilder(
-            table_name, json_extract, json_array_length, self.env
+            table_name,
+            json_extract,
+            json_array_length,
+            self.env,
+            database_columns=database_columns,
         )
+        # Pass DATABASE_COLUMNS dict for checking other tables in JOINs
+        self.expression.set_database_columns_dict(DATABASE_COLUMNS)
 
     def _get_array_path_from_info(self, array_info):
         """

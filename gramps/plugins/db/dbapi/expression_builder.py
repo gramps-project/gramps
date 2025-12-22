@@ -181,6 +181,7 @@ class ExpressionBuilder:
         env,
         item_var=None,
         array_path=None,
+        secondary_columns=None,
     ):
         self.json_extract = json_extract
         self.json_array_length = json_array_length
@@ -199,6 +200,10 @@ class ExpressionBuilder:
         self.array_path = (
             array_path  # Array path for json_each (e.g., "event_ref_list")
         )
+        # Database columns (not JSON fields) for this table
+        self.database_columns = set(database_columns) if database_columns else set()
+        # Store reference to DATABASE_COLUMNS dict if available (passed from QueryBuilder)
+        self._database_columns_dict = None
         self.operators = {
             ast.Mod: "({leftOperand} % {rightOperand})",
             ast.Add: "({leftOperand} + {rightOperand})",
@@ -242,6 +247,46 @@ class ExpressionBuilder:
             return False
         # Default: assume variable if we can't determine
         return False
+
+    def set_database_columns_dict(self, database_columns_dict):
+        """
+        Set the DATABASE_COLUMNS dictionary for checking other tables in JOINs.
+
+        Args:
+            database_columns_dict: Dictionary mapping table class names to lists of column names
+        """
+        self._database_columns_dict = database_columns_dict
+
+    def _is_database_column(self, table_name, attr_name):
+        """
+        Check if an attribute is a database column (not a JSON field) for a table.
+
+        Args:
+            table_name: Table name (e.g., "person")
+            attr_name: Attribute name (e.g., "probably_alive_birth_start_sortval")
+
+        Returns:
+            True if the attribute is a database column, False otherwise
+        """
+        # Check if this is the current table and the attribute is in database_columns
+        if table_name == self.table_name:
+            return attr_name in self.database_columns
+
+        # For other tables (JOIN cases), check DATABASE_COLUMNS dictionary if available
+        if self._database_columns_dict:
+            class_name = table_name.capitalize()
+            known_columns = self._database_columns_dict.get(class_name, [])
+            if attr_name in known_columns:
+                return True
+
+        # Also check get_secondary_fields() for schema-defined database columns
+        class_name = table_name.capitalize()
+        try:
+            cls = getattr(gramps.gen.lib, class_name)
+            secondary_fields = [field[0] for field in cls.get_secondary_fields()]
+            return attr_name in secondary_fields
+        except (AttributeError, TypeError):
+            return False
 
     def _get_base_json_expr(self, attr_node):
         """
@@ -1494,6 +1539,10 @@ class ExpressionBuilder:
                 return obj
             elif obj in [self.table_name, "obj"]:
                 # Base table reference (e.g., "person.handle" when table_name is "person")
+                # Check if this is a database column (not a JSON field)
+                if self._is_database_column(self.table_name, attr):
+                    # Return direct column reference instead of JSON extract
+                    return f"{self.table_name}.{attr}"
                 return AttributeNode(
                     self.json_extract, self.json_array_length, self.table_name, attr
                 )
@@ -1506,6 +1555,10 @@ class ExpressionBuilder:
                 obj_lower = obj.lower()
                 if obj_lower in TABLE_NAMES:
                     # This is a table reference (e.g., "family.handle")
+                    # Check if this is a database column (not a JSON field)
+                    if self._is_database_column(obj_lower, attr):
+                        # Return direct column reference instead of JSON extract
+                        return f"{obj_lower}.{attr}"
                     # If it's the base table, use base table's json_extract pattern
                     if obj_lower == self.table_name:
                         return AttributeNode(
