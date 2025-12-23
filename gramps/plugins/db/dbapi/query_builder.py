@@ -20,9 +20,22 @@
 
 import ast
 import types
-from typing import Dict, List
+from typing import Dict, List, Optional, Tuple
 
-from .expression_builder import ExpressionBuilder
+from .query_model import (
+    SelectQuery,
+    SelectExpression,
+    OrderBy,
+    ArrayExpansion,
+    Join,
+    Expression,
+    ListComprehensionExpression,
+    AnyExpression,
+    BoolOpExpression,
+    CompareExpression,
+)
+from .query_parser import QueryParser
+from .sql_generator import SQLGenerator
 
 # Database columns (not in JSON) that can be queried directly
 # These are computed/stored fields that exist as actual database columns
@@ -39,8 +52,8 @@ DATABASE_COLUMNS: Dict[str, List[str]] = {
 
 class QueryBuilder:
     """
-    SQL query builder that uses a single ExpressionBuilder instance.
-    Consolidates all SQL generation logic for select_from_table.
+    SQL query builder using intermediate query model objects.
+    Orchestrates parsing and SQL generation.
     """
 
     def __init__(
@@ -56,219 +69,28 @@ class QueryBuilder:
 
         Args:
             table_name: Base table name (e.g., "person")
-            json_extract: JSON extract pattern (e.g., "json_extract(json_data, '$.{attr}')")
-                          If None, will be set based on dialect
-            json_array_length: JSON array length pattern
-                              If None, will be set based on dialect
+            json_extract: JSON extract pattern (deprecated, kept for compatibility)
+            json_array_length: JSON array length pattern (deprecated, kept for compatibility)
             env: Environment dictionary for expression evaluation
             dialect: SQL dialect ("sqlite" or "postgres"). Defaults to "sqlite"
         """
         self.table_name = table_name
         self.dialect = dialect.lower()
         self.env = env if env is not None else {}
+        database_columns = set(DATABASE_COLUMNS.get(table_name.capitalize(), []))
 
-        # Set json_extract and json_array_length based on dialect if not provided
-        if json_extract is None:
-            json_extract = self.format_json_extract("json_data")
-        if json_array_length is None:
-            json_array_length = self.format_json_array_length("json_data")
-
-        self.json_extract = json_extract
-        self.json_array_length = json_array_length
-
-        # Create single ExpressionBuilder instance for primary conversions
-        # Pass database columns information
-        database_columns = DATABASE_COLUMNS.get(table_name.capitalize(), [])
-        self.expression = ExpressionBuilder(
-            table_name,
-            json_extract,
-            json_array_length,
-            self.env,
-            secondary_columns=database_columns,
+        # Create parser and generator
+        self.parser = QueryParser(
+            table_name=table_name,
+            env=self.env,
+            database_columns=database_columns,
+            database_columns_dict=DATABASE_COLUMNS,
         )
-        # Pass DATABASE_COLUMNS dict for checking other tables in JOINs
-        self.expression.set_database_columns_dict(DATABASE_COLUMNS)
-
-    def _get_array_path_from_info(self, array_info):
-        """
-        Helper method to extract array path from array_info.
-        Returns the path string for single arrays, or None for concatenated arrays.
-        """
-        if array_info and array_info.get("type") == "single":
-            return array_info.get("path")
-        return None
-
-    def format_json_extract(self, base_expr):
-        """
-        Format JSON extract expression based on dialect.
-
-        Args:
-            base_expr: Base expression (e.g., "json_data", "json_each.value", "table.json_data")
-
-        Returns:
-            Formatted JSON extract pattern with {attr} placeholder
-        """
-        if self.dialect == "sqlite":
-            # Use older json_extract() format for compatibility with older SQLite versions
-            return f"json_extract({base_expr}, '$.{{attr}}')"
-        elif self.dialect == "postgres":
-            # PostgreSQL uses JSON_EXTRACT_PATH and removes $ prefix from path
-            return f"JSON_EXTRACT_PATH({base_expr}, '{{attr}}')"
-        else:
-            # Default to SQLite format for backward compatibility
-            return f"json_extract({base_expr}, '$.{{attr}}')"
-
-    def format_json_array_length(self, base_expr):
-        """
-        Format JSON array length expression based on dialect.
-
-        Args:
-            base_expr: Base expression (e.g., "json_data", "json_each.value", "table.json_data")
-
-        Returns:
-            Formatted JSON array length pattern with {attr} placeholder
-        """
-        if self.dialect == "sqlite":
-            # Use older json_extract() format for compatibility with older SQLite versions
-            return f"json_array_length(json_extract({base_expr}, '$.{{attr}}'))"
-        elif self.dialect == "postgres":
-            # PostgreSQL uses JSON_EXTRACT_PATH and removes $ prefix from path
-            return f"JSON_ARRAY_LENGTH(JSON_EXTRACT_PATH({base_expr}, '{{attr}}'))"
-        else:
-            # Default to SQLite format for backward compatibility
-            return f"json_array_length(json_extract({base_expr}, '$.{{attr}}'))"
-
-    def format_json_each(self, array_expr, path="$"):
-        """
-        Format json_each expression based on dialect.
-
-        Args:
-            array_expr: Array expression to iterate over
-            path: JSON path (default '$' for SQLite, ignored for PostgreSQL)
-
-        Returns:
-            Formatted json_each expression that can be aliased and referenced as json_each.value
-            For SQLite: returns "json_each(expr, '$')"
-            For PostgreSQL: returns "LATERAL json_array_elements(expr) AS json_each(value)"
-        """
-        if self.dialect == "sqlite":
-            return f"json_each({array_expr}, '{path}')"
-        elif self.dialect == "postgres":
-            # PostgreSQL uses json_array_elements with LATERAL join
-            # LATERAL allows us to reference columns from the left side
-            # AS json_each(value) creates table alias 'json_each' with column 'value'
-            return f"LATERAL json_array_elements({array_expr}) AS json_each(value)"
-        else:
-            # Default to SQLite format for backward compatibility
-            return f"json_each({array_expr}, '{path}')"
-
-    def format_json_array(self, *args):
-        """
-        Format json_array expression based on dialect.
-
-        Args:
-            *args: Arguments to json_array function
-
-        Returns:
-            Formatted json_array expression
-        """
-        if self.dialect == "sqlite":
-            if len(args) == 0:
-                return "json_array()"
-            args_str = ", ".join(str(arg) for arg in args)
-            return f"json_array({args_str})"
-        elif self.dialect == "postgres":
-            # PostgreSQL uses json_build_array or jsonb_build_array
-            # For now, use json_build_array
-            if len(args) == 0:
-                return "json_build_array()"
-            args_str = ", ".join(str(arg) for arg in args)
-            return f"json_build_array({args_str})"
-        else:
-            # Default to SQLite format for backward compatibility
-            if len(args) == 0:
-                return "json_array()"
-            args_str = ", ".join(str(arg) for arg in args)
-            return f"json_array({args_str})"
-
-    def _create_array_expression(self, item_var, array_path):
-        """
-        Create a specialized expression for array expansion contexts.
-
-        Args:
-            item_var: Variable name for array iteration (e.g., "item")
-            array_path: Array path for json_each (e.g., "event_ref_list")
-
-        Returns:
-            ExpressionBuilder instance configured for array expansion
-        """
-        json_extract_pattern = self.format_json_extract("json_each.value")
-        json_array_length_pattern = self.format_json_array_length("json_each.value")
-
-        return ExpressionBuilder(
-            self.table_name,
-            json_extract_pattern,
-            json_array_length_pattern,
-            self.env,
-            item_var=item_var,
-            array_path=array_path,
-        )
-
-    def _create_join_expression(self, table_name):
-        """
-        Create a specialized expression for JOIN attribute conversion.
-
-        Args:
-            table_name: Table name for the expression
-
-        Returns:
-            ExpressionBuilder instance configured for the specified table
-        """
-        json_extract_pattern = self.format_json_extract(f"{table_name}.json_data")
-        json_array_length_pattern = self.format_json_array_length(
-            f"{table_name}.json_data"
-        )
-
-        return ExpressionBuilder(
-            table_name,
-            json_extract_pattern,
-            json_array_length_pattern,
-            self.env,
-        )
-
-    def _convert_listcomp_expression(self, expression, expression_node):
-        """
-        Convert a list comprehension expression node to SQL.
-        Handles tuples specially by converting each element to a separate column.
-
-        Args:
-            expression: ExpressionBuilder instance for conversion
-            expression_node: AST node for the expression (can be Tuple, Attribute, etc.)
-
-        Returns:
-            String with SQL expression(s). For tuples, returns comma-separated columns.
-        """
-        if isinstance(expression_node, ast.Tuple):
-            # Convert each element separately and join with commas (multiple columns)
-            column_exprs = [
-                str(expression.convert_to_sql(elt)) for elt in expression_node.elts
-            ]
-            return ", ".join(column_exprs)
-        else:
-            # Single expression - convert normally
-            return str(expression.convert_to_sql(expression_node))
+        self.generator = SQLGenerator(dialect=self.dialect)
 
     def get_sql_query(self, what, where, order_by, page=None, page_size=None):
         """
         Generate complete SQL query from what, where, and order_by parameters.
-
-        Handles all complex cases:
-        - Table reference detection and JOINs
-        - Array expansion in WHERE clause
-        - Array expansion in OR expressions (UNION queries)
-        - List comprehensions in WHAT clause
-        - ORDER BY conversion
-        - Pagination with LIMIT/OFFSET
 
         Args:
             what: What clause (None, str, or list of strings)
@@ -286,717 +108,652 @@ class QueryBuilder:
                 "Both page and page_size must be provided together, or neither"
             )
 
-        # Calculate offset if pagination is requested
-        limit_offset = ""
         if page is not None and page_size is not None:
             if page < 1:
                 raise ValueError("page must be >= 1")
             if page_size < 1:
                 raise ValueError("page_size must be >= 1")
-            offset = (page - 1) * page_size
-            limit_offset = f" LIMIT {page_size} OFFSET {offset}"
-        # Convert where to string if needed
-        where_str = where
+
+        # Validate input types
         if callable(where) or isinstance(where, types.LambdaType):
             raise ValueError(
                 "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
             )
-        elif where is None:
-            where_str = None
-
-        # Detect table references for JOIN support
-        referenced_tables = set()
-        if where_str:
-            referenced_tables.update(
-                self.expression.detect_table_references(
-                    where_str, base_table=self.table_name
-                )
-            )
-
-        # Check what clause for table references
         if callable(what) or isinstance(what, types.LambdaType):
             raise ValueError(
                 "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
             )
-        elif isinstance(what, str):
-            referenced_tables.update(
-                self.expression.detect_table_references(
-                    what, base_table=self.table_name
-                )
-            )
-        elif isinstance(what, list):
+        if isinstance(what, list):
             for w in what:
                 if callable(w) or isinstance(w, types.LambdaType):
                     raise ValueError(
                         "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
                     )
-                if isinstance(w, str):
-                    referenced_tables.update(
-                        self.expression.detect_table_references(
-                            w, base_table=self.table_name
-                        )
-                    )
 
-        # Determine JOIN conditions
-        join_conditions = {}
-        if referenced_tables:
-            join_conditions = self.expression.determine_join_conditions(
-                self.table_name, referenced_tables, where_str
-            )
+        # Parse what clause
+        select_expressions = self._parse_what(what)
 
-        # Check if we have JOINs
-        has_joins = bool(referenced_tables and join_conditions)
+        # Parse where clause
+        where_condition = None
+        if where:
+            where_condition = self.parser.parse_expression(where)
 
-        # Check for array expansion pattern
-        item_var, array_path = self.expression.detect_array_expansion(where_str)
-        is_array_expansion = item_var is not None and array_path is not None
+        # Parse order_by clause
+        order_by_list = self._parse_order_by(order_by)
 
-        # Check if array expansion is in an OR expression (needs UNION handling)
+        # Detect table references and JOINs
+        referenced_tables = set()
+        if where:
+            referenced_tables.update(self.parser.detect_table_references(where))
+        if what:
+            if isinstance(what, str):
+                referenced_tables.update(self.parser.detect_table_references(what))
+            elif isinstance(what, list):
+                for w in what:
+                    if isinstance(w, str):
+                        referenced_tables.update(self.parser.detect_table_references(w))
+
+        # Extract JOIN conditions
+        joins = []
+        if referenced_tables and where:
+            joins = self.parser.detect_joins(where)
+            # Deduplicate JOINs to the same table by combining conditions with OR
+            joins = self._deduplicate_joins(joins)
+
+        # Extract array expansion from WHERE condition if present
+        # Array expansion is now represented as ArrayExpansionExpression in the parsed tree
+        array_expansion = None
         is_array_expansion_in_or = False
-        if is_array_expansion:
-            is_array_expansion_in_or = self.expression.is_array_expansion_in_or(
-                where_str, item_var, array_path
+        if where_condition:
+            array_expansion, is_array_expansion_in_or = (
+                self._extract_array_expansion_from_condition(where_condition)
             )
+
+            # If array expansion is found, update parser context for item_var
+            # This allows "item.attr" in what clause to be parsed correctly
+            if array_expansion:
+                self.parser.item_var = array_expansion.item_var
+                self.parser.array_path = array_expansion.array_path
+
+                # Re-parse what clause with item_var context if needed
+                # Check if what clause references the item variable
+                if what:
+                    if isinstance(what, str) and array_expansion.item_var in what:
+                        # Re-parse with item_var context
+                        select_expressions = self._parse_what(what)
+                    elif isinstance(what, list):
+                        # Check if any item references the item variable
+                        needs_reparse = any(
+                            isinstance(w, str) and array_expansion.item_var in w
+                            for w in what
+                        )
+                        if needs_reparse:
+                            select_expressions = self._parse_what(what)
 
         # Handle UNION query for array expansion in OR expressions
         if is_array_expansion_in_or:
             return self._build_union_query(
-                what,
-                where_str,
-                order_by,
-                item_var,
-                array_path,
-                join_conditions,
-                has_joins,
-                page=page,
-                page_size=page_size,
+                select_expressions,
+                where_condition,
+                order_by_list,
+                array_expansion,
+                joins,
+                page,
+                page_size,
             )
 
-        # Check for list comprehension in what clause
-        # Handle both string and list cases
-        what_str = what
-        what_is_list = isinstance(what, list) and len(what) > 0
-        what_list_comprehension_idx = None
-        what_other_fields = []
-
-        if callable(what) or isinstance(what, types.LambdaType):
-            raise ValueError(
-                "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-            )
-        elif what_is_list:
-            # Check each element for list comprehension
-            for idx, item in enumerate(what):
-                if isinstance(item, str):
-                    item_var, array_info, expr_node, cond_node = (
-                        self.expression.detect_list_comprehension_in_what(item)
-                    )
-                    if item_var and array_info:
-                        # Found list comprehension
-                        what_list_comprehension_idx = idx
-                        what_str = item
-                        break
-                    else:
-                        what_other_fields.append(item)
-                elif callable(item) or isinstance(item, types.LambdaType):
-                    raise ValueError(
-                        "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-                    )
-                else:
-                    what_other_fields.append(item)
-
-            # If no list comprehension found, treat as single string if only one item
-            if (
-                what_list_comprehension_idx is None
-                and len(what) == 1
-                and isinstance(what[0], str)
-            ):
-                what_str = what[0]
-            elif what_list_comprehension_idx is None:
-                what_str = None
-        elif not isinstance(what, str):
-            what_str = None
-
-        what_item_var, what_array_info, what_expression_node, what_condition_node = (
-            self.expression.detect_list_comprehension_in_what(what_str)
+        # Build SelectQuery object
+        query = SelectQuery(
+            base_table=self.table_name,
+            select_expressions=select_expressions,
+            where_condition=where_condition,
+            joins=joins,
+            order_by=order_by_list,
+            array_expansion=array_expansion,
+            limit=page_size if page_size is not None else None,
+            offset=(
+                (page - 1) * page_size
+                if page is not None and page_size is not None
+                else None
+            ),
         )
 
-        # Build what expression
-        what_condition_sql = None
-        if what_item_var and what_array_info:
-            # List comprehension in what clause
-            # Handle both single array and concatenated arrays
-            if what_array_info["type"] == "single":
-                array_path = what_array_info["path"]
-                what_expression = self._create_array_expression(
-                    what_item_var, array_path
-                )
-                listcomp_expr = self._convert_listcomp_expression(
-                    what_expression, what_expression_node
-                )
+        # Handle list comprehensions in what clause
+        query = self._handle_list_comprehensions(query, what)
 
-                # Add other fields if what is a list
-                if what_other_fields:
-                    other_fields_sql = []
-                    for field in what_other_fields:
-                        if isinstance(field, str):
-                            if field in ["obj", "person"]:
-                                field = "json_data"
-                            other_fields_sql.append(str(self.expression.convert(field)))
-                        else:
-                            other_fields_sql.append(str(self.expression.convert(field)))
-                    what_expr = ", ".join(other_fields_sql + [listcomp_expr])
-                else:
-                    what_expr = listcomp_expr
+        # Generate SQL
+        return self.generator.generate(query)
 
-                array_sql_expression = ExpressionBuilder(
-                    self.table_name,
-                    self.json_extract,
-                    self.json_array_length,
-                    self.env,
-                )
-                array_sql = array_sql_expression.convert(
-                    f"{self.table_name}.{array_path}"
-                )
-                json_each_expr = self.format_json_each(array_sql)
-                from_clause = f"{self.table_name}, {json_each_expr}"
-                if what_condition_node:
-                    what_condition_sql = what_expression.convert_to_sql(
-                        what_condition_node
-                    )
-            elif what_array_info["type"] == "concatenated":
-                # Handle concatenated arrays: [person.primary_name] + person.alternate_names
-                # For SQLite, we need to use UNION query because subqueries can't see outer table
-                # For PostgreSQL, we can use LATERAL joins
-                left_node = what_array_info["left"]
-                right_path = what_array_info["right_path"]
+    def _parse_what(self, what) -> List[SelectExpression]:
+        """Parse what clause into SelectExpression objects."""
+        if what is None:
+            # Default: select json_data
+            from .query_model import AttributeExpression
 
-                # Create expression for the concatenated array
-                what_expression = self._create_array_expression(
-                    what_item_var, right_path  # Use right_path as base for expression
-                )
-                listcomp_expr = self._convert_listcomp_expression(
-                    what_expression, what_expression_node
-                )
-
-                # Add other fields if what is a list
-                if what_other_fields:
-                    other_fields_sql = []
-                    for field in what_other_fields:
-                        if isinstance(field, str):
-                            if field in ["obj", "person"]:
-                                field = "json_data"
-                            other_fields_sql.append(str(self.expression.convert(field)))
-                        else:
-                            other_fields_sql.append(str(self.expression.convert(field)))
-                    what_expr = ", ".join(other_fields_sql + [listcomp_expr])
-                else:
-                    what_expr = listcomp_expr
-
-                # Convert left side (person.primary_name) to SQL
-                array_sql_expression = ExpressionBuilder(
-                    self.table_name,
-                    self.json_extract,
-                    self.json_array_length,
-                    self.env,
-                )
-                left_sql = str(array_sql_expression.convert_to_sql(left_node))
-                # Wrap in json_array/json_build_array since it's a single item
-                left_array_sql = self.format_json_array(left_sql)
-
-                # Convert right side (person.alternate_names) to SQL
-                right_sql = str(
-                    array_sql_expression.convert(f"{self.table_name}.{right_path}")
-                )
-
-                if self.dialect == "postgres":
-                    # PostgreSQL: use LATERAL joins which can reference outer table
-                    left_json_each = f"LATERAL json_array_elements({left_array_sql}) AS left_each(value)"
-                    right_json_each = (
-                        f"LATERAL json_array_elements({right_sql}) AS right_each(value)"
-                    )
-                    json_each_expr = f"(SELECT value FROM {left_json_each} UNION ALL SELECT value FROM {right_json_each}) AS json_each"
-                    from_clause = f"{self.table_name}, {json_each_expr}"
-                else:
-                    # SQLite: use UNION query - two separate SELECTs combined with UNION ALL
-                    # This avoids subquery issues with table references
-                    # json_each can reference outer table when used directly in FROM clause
-
-                    # Convert condition if present
-                    what_condition_sql = None
-                    if what_condition_node:
-                        what_condition_sql = what_expression.convert_to_sql(
-                            what_condition_node
-                        )
-
-                    # Handle WHERE clause if present
-                    where_sql = None
-                    if where_str:
-                        where_sql = self.expression.convert_where_clause(where_str)
-
-                    # Build WHERE expressions for both queries
-                    left_where_parts = []
-                    right_where_parts = []
-                    if where_sql:
-                        left_where_parts.append(where_sql)
-                        right_where_parts.append(where_sql)
-                    if what_condition_sql:
-                        left_where_parts.append(what_condition_sql)
-                        right_where_parts.append(what_condition_sql)
-
-                    left_where_expr = (
-                        f" WHERE {' AND '.join(left_where_parts)}"
-                        if left_where_parts
-                        else ""
-                    )
-                    right_where_expr = (
-                        f" WHERE {' AND '.join(right_where_parts)}"
-                        if right_where_parts
-                        else ""
-                    )
-
-                    # Build left query (from primary_name array)
-                    left_from = (
-                        f"{self.table_name}, {self.format_json_each(left_array_sql)}"
-                    )
-                    left_query = f"SELECT {what_expr} FROM {left_from}{left_where_expr}"
-
-                    # Build right query (from alternate_names)
-                    right_from = (
-                        f"{self.table_name}, {self.format_json_each(right_sql)}"
-                    )
-                    right_query = (
-                        f"SELECT {what_expr} FROM {right_from}{right_where_expr}"
-                    )
-
-                    # Handle ORDER BY
-                    order_by_expr = ""
-                    if order_by is not None:
-                        if callable(order_by) or isinstance(order_by, types.LambdaType):
-                            raise ValueError(
-                                "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-                            )
-                        elif callable(order_by) and not isinstance(order_by, type):
-                            raise ValueError(
-                                "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-                            )
-                        elif isinstance(order_by, str):
-                            order_by = [order_by]
-                        converted_order_by = []
-                        for expr in order_by:
-                            if callable(expr) or isinstance(expr, types.LambdaType):
-                                raise ValueError(
-                                    "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-                                )
-                            else:
-                                converted_order_by.append(expr)
-                        order_by_expr = self.expression.get_order_by(converted_order_by)
-
-                    # Return the UNION query directly
-                    return f"{left_query} UNION ALL {right_query}{order_by_expr}{limit_offset};"
-
-                # For PostgreSQL, set what_condition_sql if needed
-                if what_condition_node:
-                    what_condition_sql = what_expression.convert_to_sql(
-                        what_condition_node
-                    )
-        elif what is None:
-            what_expr = "json_data"
-        elif isinstance(what, types.LambdaType):
-            raise ValueError(
-                "Lambda functions are not supported for SQL generation. Please use string expressions instead."
+            attr_expr = AttributeExpression(
+                table_name=self.table_name,
+                attribute_path="",
+                is_database_column=False,
             )
-            what_expr = str(self.expression.convert(what_str))
-        elif isinstance(what, str):
+            return [SelectExpression(expression=attr_expr)]
+
+        if isinstance(what, str):
+            # Handle special cases
             if what in ["obj", "person"]:
-                what = "json_data"
-            if (
-                is_array_expansion
-                and item_var
-                and (what.startswith(f"{item_var}.") or what == item_var)
-            ):
-                array_expansion_expression = self._create_array_expression(
-                    item_var, array_path
+                from .query_model import AttributeExpression
+
+                attr_expr = AttributeExpression(
+                    table_name=self.table_name,
+                    attribute_path="",
+                    is_database_column=False,
                 )
-                what_expr = str(array_expansion_expression.convert(what))
-            else:
-                if has_joins:
-                    join_expression = self._create_join_expression(self.table_name)
-                    what_expr = str(join_expression.convert(what))
-                else:
-                    what_expr = str(self.expression.convert(what))
-        else:
-            what_list = []
-            join_expression = None
-            if has_joins:
-                join_expression = self._create_join_expression(self.table_name)
+                return [SelectExpression(expression=attr_expr)]
+
+            # Parse as expression
+            expr = self.parser.parse_expression(what)
+            return [SelectExpression(expression=expr)]
+
+        elif isinstance(what, list):
+            select_exprs = []
             for w in what:
-                if callable(w) or isinstance(w, types.LambdaType):
-                    raise ValueError(
-                        "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-                    )
-                if w in ["obj", "person"]:
-                    w = "json_data"
-                if (
-                    is_array_expansion
-                    and item_var
-                    and (w.startswith(f"{item_var}.") or w == item_var)
-                ):
-                    array_expansion_expression = self._create_array_expression(
-                        item_var, array_path
-                    )
-                    what_list.append(str(array_expansion_expression.convert(w)))
-                else:
-                    if join_expression:
-                        what_list.append(str(join_expression.convert(w)))
+                if isinstance(w, str):
+                    if w in ["obj", "person"]:
+                        from .query_model import AttributeExpression
+
+                        attr_expr = AttributeExpression(
+                            table_name=self.table_name,
+                            attribute_path="",
+                            is_database_column=False,
+                        )
+                        select_exprs.append(SelectExpression(expression=attr_expr))
                     else:
-                        what_list.append(str(self.expression.convert(w)))
-            what_expr = ", ".join(what_list)
-
-        # Build WHERE clause
-        if has_joins:
-            where_expression = self._create_join_expression(self.table_name)
-            where_sql = where_expression.convert_where_clause(
-                where_str,
-                exclude_array_expansion=is_array_expansion,
-                item_var=item_var if is_array_expansion else None,
-                array_path=array_path if is_array_expansion else None,
-            )
-        else:
-            where_sql = self.expression.convert_where_clause(
-                where_str,
-                exclude_array_expansion=is_array_expansion,
-                item_var=item_var if is_array_expansion else None,
-                array_path=array_path if is_array_expansion else None,
-            )
-
-        # Combine with what condition if present
-        if what_item_var and what_array_info and what_condition_sql:
-            if where_sql:
-                where_expr = f" WHERE ({where_sql}) AND ({what_condition_sql})"
-            else:
-                where_expr = f" WHERE {what_condition_sql}"
-        elif where_sql:
-            where_expr = f" WHERE {where_sql}"
-        else:
-            where_expr = ""
-
-        # Handle array expansion in where clause
-        if is_array_expansion:
-            array_sql = self.expression.convert(f"{self.table_name}.{array_path}")
-            json_each_expr = self.format_json_each(array_sql)
-            if not (what_item_var and what_array_info):
-                from_clause = f"{self.table_name}, {json_each_expr}"
-
-        # Set from_clause if not already set
-        if what_item_var and what_array_info:
-            pass  # Already set above
-        elif is_array_expansion:
-            pass  # Already set above
-        else:
-            from_clause = self.table_name
-
-        # Add JOIN clauses if tables are referenced
-        if has_joins:
-            join_clauses = []
-            tables_joined = set()
-            for ref_table in sorted(referenced_tables):
-                if ref_table in join_conditions and ref_table not in tables_joined:
-                    join_cond = join_conditions[ref_table][0]
-                    left_table, left_attr, right_table, right_attr, join_type = (
-                        join_cond
-                    )
-                    left_expression = self._create_join_expression(left_table)
-                    right_expression = self._create_join_expression(right_table)
-                    # Build full expression paths - left_attr and right_attr may contain
-                    # complex paths like "event_ref_list[person.birth_ref_index].ref"
-                    # or simple paths like "handle"
-                    left_expr = (
-                        f"{left_table}.{left_attr}" if left_attr else f"{left_table}"
-                    )
-                    right_expr = (
-                        f"{right_table}.{right_attr}"
-                        if right_attr
-                        else f"{right_table}"
-                    )
-                    left_sql = left_expression.convert(left_expr)
-                    right_sql = right_expression.convert(right_expr)
-                    join_clause = (
-                        f"{join_type} JOIN {ref_table} ON {left_sql} = {right_sql}"
-                    )
-                    join_clauses.append(join_clause)
-                    tables_joined.add(ref_table)
-            if join_clauses:
-                from_clause = f"{from_clause} " + " ".join(join_clauses)
-
-        # Build ORDER BY
-        if order_by is None:
-            order_by_expr = ""
-        else:
-            if callable(order_by) or isinstance(order_by, types.LambdaType):
-                raise ValueError(
-                    "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-                )
-            elif callable(order_by) and not isinstance(order_by, type):
-                raise ValueError(
-                    "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-                )
-            elif isinstance(order_by, str):
-                order_by = [order_by]
-            converted_order_by = []
-            for expr in order_by:
-                if isinstance(expr, types.LambdaType):
-                    raise ValueError(
-                        "Lambda functions are not supported for SQL generation. Please use string expressions instead."
-                    )
+                        expr = self.parser.parse_expression(w)
+                        select_exprs.append(SelectExpression(expression=expr))
                 else:
-                    converted_order_by.append(expr)
-            if has_joins:
-                order_by_expression = self._create_join_expression(self.table_name)
-                order_by_expr = order_by_expression.get_order_by(
-                    converted_order_by, has_joins=False
-                )
-            else:
-                order_by_expr = self.expression.get_order_by(
-                    converted_order_by, has_joins=False
+                    # Non-string - treat as expression (shouldn't happen normally)
+                    expr = self.parser.parse_expression(str(w))
+                    select_exprs.append(SelectExpression(expression=expr))
+            return select_exprs
+
+        else:
+            # Fallback
+            expr = self.parser.parse_expression(str(what))
+            return [SelectExpression(expression=expr)]
+
+    def _parse_order_by(self, order_by) -> List[OrderBy]:
+        """Parse order_by clause into OrderBy objects."""
+        if order_by is None:
+            return []
+
+        if isinstance(order_by, str):
+            order_by = [order_by]
+
+        order_by_list = []
+        for expr in order_by:
+            if isinstance(expr, types.LambdaType):
+                raise ValueError(
+                    "Lambda functions are not supported for SQL generation. Please use string expressions instead."
                 )
 
-        return f"SELECT {what_expr} from {from_clause}{where_expr}{order_by_expr}{limit_offset};"
+            # Check for descending (starts with "-")
+            if isinstance(expr, str) and expr.startswith("-"):
+                direction = "DESC"
+                expr_str = expr[1:]
+            else:
+                direction = "ASC"
+                expr_str = str(expr)
+
+            order_expr = self.parser.parse_expression(expr_str)
+            order_by_list.append(OrderBy(expression=order_expr, direction=direction))
+
+        return order_by_list
+
+    def _extract_array_expansion_from_condition(
+        self, condition: Expression
+    ) -> Tuple[Optional[ArrayExpansion], bool]:
+        """Extract array expansion from WHERE condition expression.
+
+        This method traverses the expression tree to find ArrayExpansionExpression
+        and determine if it's part of an OR expression (which requires UNION).
+
+        Returns:
+            Tuple of (ArrayExpansion object if found, whether it's in an OR expression)
+        """
+        from .query_model import (
+            ArrayExpansionExpression,
+            BoolOpExpression,
+            ArrayExpansion,
+        )
+
+        array_expansion = None
+        is_in_or = False
+
+        def find_array_expansion(
+            expr: Expression,
+        ) -> Optional[ArrayExpansionExpression]:
+            """Recursively find ArrayExpansionExpression in expression tree."""
+            if isinstance(expr, ArrayExpansionExpression):
+                return expr
+            if isinstance(expr, BoolOpExpression):
+                for value in expr.values:
+                    found = find_array_expansion(value)
+                    if found:
+                        return found
+            return None
+
+        def check_if_in_or(expr: Expression, target: ArrayExpansionExpression) -> bool:
+            """Check if target expression is part of an OR expression."""
+            if isinstance(expr, BoolOpExpression):
+                if expr.operator == "or":
+                    # Check if target is in any of the OR values
+                    for value in expr.values:
+                        if find_array_expansion(value) == target:
+                            return True
+                # Recursively check nested expressions
+                for value in expr.values:
+                    if check_if_in_or(value, target):
+                        return True
+            return False
+
+        # Find array expansion expression
+        array_expansion_expr = find_array_expansion(condition)
+        if array_expansion_expr:
+            # Convert to ArrayExpansion object for use in query
+            array_expansion = ArrayExpansion(
+                item_var=array_expansion_expr.item_var,
+                array_path=array_expansion_expr.array_path,
+                array_expression=array_expansion_expr.array_expression,
+            )
+
+            # Check if it's in an OR expression
+            is_in_or = check_if_in_or(condition, array_expansion_expr)
+
+        return array_expansion, is_in_or
+
+    def _deduplicate_joins(self, joins: List[Join]) -> List[Join]:
+        """Deduplicate JOINs to the same table by combining conditions with OR.
+
+        If multiple JOINs exist to the same table, combine their conditions
+        into a single JOIN with an OR condition.
+        """
+        # Group joins by table name
+        joins_by_table: Dict[str, List[Join]] = {}
+        for join in joins:
+            if join.table_name not in joins_by_table:
+                joins_by_table[join.table_name] = []
+            joins_by_table[join.table_name].append(join)
+
+        # Combine joins to the same table
+        deduplicated = []
+        for table_name, table_joins in joins_by_table.items():
+            if len(table_joins) == 1:
+                # Single join - keep as-is
+                deduplicated.append(table_joins[0])
+            else:
+                # Multiple joins to same table - combine conditions with OR
+                # Use the first join as the base
+                base_join = table_joins[0]
+                conditions = [base_join.condition]
+                for join in table_joins[1:]:
+                    conditions.append(join.condition)
+
+                # Combine all conditions with OR
+                combined_condition = BoolOpExpression(
+                    operator="or",
+                    values=conditions,
+                )
+
+                # Create a single JOIN with combined condition
+                deduplicated.append(
+                    Join(
+                        table_name=table_name,
+                        join_type=base_join.join_type,
+                        condition=combined_condition,
+                    )
+                )
+
+        return deduplicated
+
+    def _remove_array_expansion_condition(
+        self, condition: Expression, array_expansion: ArrayExpansion
+    ) -> Optional[Expression]:
+        """Remove array expansion condition from WHERE clause expression.
+
+        Returns the expression with array expansion conditions removed.
+        Returns None if the entire expression was just the array expansion.
+        """
+        from .query_model import (
+            CompareExpression,
+            BoolOpExpression,
+            AttributeExpression,
+            ConstantExpression,
+        )
+
+        # Check if this is the array expansion condition itself
+        # Pattern: item in person.array_path
+        # Left side: item (parsed as AttributeExpression with table_name="json_each" when item_var is set,
+        #            or as ConstantExpression with value="item" when not in array expansion context)
+        # Right side: person.array_path (parsed as AttributeExpression)
+        if isinstance(condition, CompareExpression):
+            if len(condition.operators) == 1 and condition.operators[0] == "in":
+                # Check if left is the item variable (could be AttributeExpression or ConstantExpression)
+                left_is_item = False
+                if isinstance(condition.left, AttributeExpression):
+                    left_is_item = (
+                        condition.left.table_name == "json_each"
+                        and condition.left.attribute_path == ""
+                    )
+                elif isinstance(condition.left, ConstantExpression):
+                    left_is_item = condition.left.value == array_expansion.item_var
+
+                # Check if right matches the array path
+                if (
+                    left_is_item
+                    and isinstance(condition.comparators[0], AttributeExpression)
+                    and condition.comparators[0].attribute_path
+                    == array_expansion.array_path
+                ):
+                    # This is the array expansion condition - remove it
+                    return None
+
+        # Check inside BoolOp expressions
+        if isinstance(condition, BoolOpExpression):
+            # Recursively remove from all values
+            filtered_values = []
+            for value in condition.values:
+                filtered = self._remove_array_expansion_condition(
+                    value, array_expansion
+                )
+                if filtered is not None:
+                    filtered_values.append(filtered)
+
+            if not filtered_values:
+                # All conditions were array expansion - return None
+                return None
+            elif len(filtered_values) == 1:
+                # Only one condition left - return it directly
+                return filtered_values[0]
+            else:
+                # Multiple conditions left - return BoolOp with filtered values
+                return BoolOpExpression(
+                    operator=condition.operator,
+                    values=filtered_values,
+                )
+
+        # Not an array expansion condition - return as-is
+        return condition
+
+    def _is_array_expansion_in_or(
+        self, where_condition: Expression, array_expansion: ArrayExpansion
+    ) -> bool:
+        """Check if array expansion is part of an OR expression."""
+        if not isinstance(where_condition, BoolOpExpression):
+            return False
+
+        if where_condition.operator != "or":
+            return False
+
+        # Check if any value contains the array expansion
+        for value in where_condition.values:
+            if self._contains_array_expansion(value, array_expansion):
+                return True
+
+        return False
+
+    def _contains_array_expansion(
+        self, expr: Expression, array_expansion: ArrayExpansion
+    ) -> bool:
+        """Check if expression contains array expansion."""
+        from .query_model import ArrayExpansionExpression, BoolOpExpression
+
+        if isinstance(expr, ArrayExpansionExpression):
+            return (
+                expr.item_var == array_expansion.item_var
+                and expr.array_path == array_expansion.array_path
+            )
+
+        if isinstance(expr, BoolOpExpression):
+            for value in expr.values:
+                if self._contains_array_expansion(value, array_expansion):
+                    return True
+
+        return False
 
     def _build_union_query(
         self,
-        what,
-        where_str,
-        order_by,
-        item_var,
-        array_path,
-        join_conditions,
-        has_joins,
-        page=None,
-        page_size=None,
-    ):
-        """
-        Build UNION query for array expansion in OR expressions.
+        select_expressions: List[SelectExpression],
+        where_condition: Optional[Expression],
+        order_by_list: List[OrderBy],
+        array_expansion: ArrayExpansion,
+        joins: List[Join],
+        page: Optional[int],
+        page_size: Optional[int],
+    ) -> str:
+        """Build UNION query for array expansion in OR expressions."""
+        if not isinstance(where_condition, BoolOpExpression):
+            # Shouldn't happen if we got here
+            raise ValueError("Expected BoolOpExpression for UNION query")
 
-        Args:
-            what: What clause
-            where_str: Where clause as string
-            order_by: Order by clause
-            item_var: Array iteration variable
-            array_path: Array path
-            join_conditions: JOIN conditions dict
-            has_joins: Whether JOINs are present
-            page: 1-based page number for pagination. Must be provided together with page_size.
-            page_size: Number of items per page. Must be provided together with page.
+        # Split OR expression into parts with and without array expansion
+        left_parts = []
+        right_parts = []
 
-        Returns:
-            Complete UNION SQL query string
-        """
-        # Calculate offset if pagination is requested
-        limit_offset = ""
-        if page is not None and page_size is not None:
-            if page < 1:
-                raise ValueError("page must be >= 1")
-            if page_size < 1:
-                raise ValueError("page_size must be >= 1")
-            offset = (page - 1) * page_size
-            limit_offset = f" LIMIT {page_size} OFFSET {offset}"
-        # Split the OR expression
-        left_parts, right_parts, has_array_expansion = (
-            self.expression.split_or_expression_with_array_expansion(
-                where_str, item_var, array_path
-            )
-        )
-
-        if not (has_array_expansion and left_parts and right_parts):
-            # Split failed - this shouldn't happen, but handle gracefully
-            # Return empty query or raise error - for now, return empty
-            # In practice, this condition should never be true if we reach _build_union_query
-            return ""
-
-        # Prepare what clause
-        what_str = what
-        if callable(what) or isinstance(what, types.LambdaType):
-            raise ValueError(
-                "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-            )
-        elif isinstance(what, list) and len(what) == 1 and isinstance(what[0], str):
-            what_str = what[0]
-        elif not isinstance(what, str):
-            what_str = None
-
-        (
-            what_item_var,
-            what_array_info,
-            what_expression_node,
-            what_condition_node,
-        ) = self.expression.detect_list_comprehension_in_what(what_str)
-
-        # Build what_expr (same for both queries)
-        if what_item_var and what_array_info:
-            what_array_path = self._get_array_path_from_info(what_array_info)
-            if what_array_path:
-                # Single array
-                what_expression = self._create_array_expression(
-                    what_item_var, what_array_path
-                )
-                what_expr = self._convert_listcomp_expression(
-                    what_expression, what_expression_node
-                )
-                array_sql_expression = ExpressionBuilder(
-                    self.table_name,
-                    self.json_extract,
-                    self.json_array_length,
-                    self.env,
-                )
-                what_array_sql = array_sql_expression.convert(
-                    f"{self.table_name}.{what_array_path}"
-                )
-                what_json_each_expr = self.format_json_each(what_array_sql)
+        for value in where_condition.values:
+            if self._contains_array_expansion(value, array_expansion):
+                right_parts.append(value)
             else:
-                # Concatenated arrays - not supported in UNION queries yet
-                # For now, raise an error or handle gracefully
-                raise ValueError(
-                    "Concatenated arrays in list comprehensions are not supported in UNION queries"
-                )
-        elif what is None:
-            what_expr = "json_data"
-        elif isinstance(what, types.LambdaType):
-            raise ValueError(
-                "Lambda functions are not supported for SQL generation. Please use string expressions instead."
+                left_parts.append(value)
+
+        if not left_parts or not right_parts:
+            # Can't split - fall back to regular query
+            query = SelectQuery(
+                base_table=self.table_name,
+                select_expressions=select_expressions,
+                where_condition=where_condition,
+                joins=joins,
+                order_by=order_by_list,
+                array_expansion=array_expansion,
+                limit=page_size if page_size is not None else None,
+                offset=(
+                    (page - 1) * page_size
+                    if page is not None and page_size is not None
+                    else None
+                ),
             )
-            what_expr = str(self.expression.convert(what_str))
-        elif isinstance(what, str):
-            if what in ["obj", "person"]:
-                what = "json_data"
-            if what.startswith(f"{item_var}.") or what == item_var:
-                array_expansion_expression = self._create_array_expression(
-                    item_var, array_path
-                )
-                what_expr = str(array_expansion_expression.convert(what))
-            else:
-                what_expr = str(self.expression.convert(what))
-        else:
-            what_list = []
-            for w in what:
-                if callable(w) or isinstance(w, types.LambdaType):
-                    raise ValueError(
-                        "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-                    )
-                if w in ["obj", "person"]:
-                    w = "json_data"
-                if w.startswith(f"{item_var}.") or w == item_var:
-                    array_expansion_expression = self._create_array_expression(
-                        item_var, array_path
-                    )
-                    what_list.append(str(array_expansion_expression.convert(w)))
-                else:
-                    what_list.append(str(self.expression.convert(w)))
-            what_expr = ", ".join(what_list)
+            return self.generator.generate(query)
 
         # Build left query (no array expansion)
         if len(left_parts) == 1:
-            left_where_node = left_parts[0]
+            left_where = left_parts[0]
         else:
-            left_where_node = ast.BoolOp(op=ast.And(), values=left_parts)
+            left_where = BoolOpExpression(operator="and", values=left_parts)
 
-        left_where_sql = self.expression._convert_node_with_replacements(
-            left_where_node, exclude_array_expansion=False
+        left_query = SelectQuery(
+            base_table=self.table_name,
+            select_expressions=select_expressions,
+            where_condition=left_where,
+            joins=joins,
+            order_by=order_by_list,
+            array_expansion=None,
+            limit=page_size if page_size is not None else None,
+            offset=(
+                (page - 1) * page_size
+                if page is not None and page_size is not None
+                else None
+            ),
         )
-        left_where_sql = (
-            str(left_where_sql)
-            if not isinstance(left_where_sql, str)
-            else left_where_sql
-        )
-
-        if what_item_var and what_array_info and what_condition_node:
-            what_condition_sql = what_expression.convert_to_sql(what_condition_node)
-            if left_where_sql:
-                left_where_expr = (
-                    f" WHERE ({left_where_sql}) AND ({what_condition_sql})"
-                )
-            else:
-                left_where_expr = f" WHERE {what_condition_sql}"
-        elif left_where_sql:
-            left_where_expr = f" WHERE {left_where_sql}"
-        else:
-            left_where_expr = ""
-
-        if what_item_var and what_array_info:
-            left_from_clause = f"{self.table_name}, {what_json_each_expr}"
-        else:
-            left_from_clause = self.table_name
-        left_query = f"SELECT {what_expr} FROM {left_from_clause}{left_where_expr}"
 
         # Build right query (with array expansion)
         if len(right_parts) == 1:
-            right_where_node = right_parts[0]
+            right_where = right_parts[0]
         else:
-            right_where_node = ast.BoolOp(op=ast.And(), values=right_parts)
+            right_where = BoolOpExpression(operator="and", values=right_parts)
 
-        right_expression = self._create_array_expression(item_var, array_path)
-        right_where_sql = right_expression._convert_node_with_replacements(
-            right_where_node, exclude_array_expansion=True
+        right_query = SelectQuery(
+            base_table=self.table_name,
+            select_expressions=select_expressions,
+            where_condition=right_where,
+            joins=joins,
+            order_by=order_by_list,
+            array_expansion=array_expansion,
+            limit=page_size if page_size is not None else None,
+            offset=(
+                (page - 1) * page_size
+                if page is not None and page_size is not None
+                else None
+            ),
         )
-        right_where_sql = (
-            str(right_where_sql)
-            if not isinstance(right_where_sql, str)
-            else right_where_sql
+
+        # Generate SQL for both queries
+        left_sql = self.generator._generate_select(left_query).rstrip(";")
+        right_sql = self.generator._generate_select(right_query).rstrip(";")
+
+        return f"{left_sql} UNION {right_sql};"
+
+    def _handle_list_comprehensions(self, query: SelectQuery, what) -> SelectQuery:
+        """Handle list comprehensions in what clause."""
+        # Check if any select expression is a list comprehension with concatenated arrays
+        for sel_expr in query.select_expressions:
+            if isinstance(sel_expr.expression, ListComprehensionExpression):
+                listcomp = sel_expr.expression
+                if listcomp.array_info.get("type") == "concatenated":
+                    # Need to generate UNION query for concatenated arrays
+                    # This is handled in the generator, but we need to mark it
+                    # For SQLite, we'll create union queries
+                    if self.dialect == "sqlite":
+                        # Create two separate queries and combine with UNION ALL
+                        left_query, right_query = (
+                            self._build_concatenated_array_queries(query, listcomp)
+                        )
+                        # Set union_queries on left_query, then return left_query
+                        left_query.union_queries = [right_query]
+                        return left_query
+                    elif self.dialect == "postgres":
+                        # For PostgreSQL, use LATERAL joins with UNION ALL in subquery
+                        # This is handled in the SQL generator
+                        # For now, use the same UNION approach as SQLite
+                        left_query, right_query = (
+                            self._build_concatenated_array_queries(query, listcomp)
+                        )
+                        left_query.union_queries = [right_query]
+                        return left_query
+
+        return query
+
+    def _build_concatenated_array_queries(
+        self, query: SelectQuery, listcomp: ListComprehensionExpression
+    ) -> tuple:
+        """Build left and right queries for concatenated arrays."""
+        from .query_model import (
+            AttributeExpression,
+            ArrayExpansion,
+            BinaryOpExpression,
+            ConstantExpression,
+            CallExpression,
         )
 
-        if what_item_var and what_array_info and what_condition_node:
-            what_condition_sql = what_expression.convert_to_sql(what_condition_node)
-            if right_where_sql:
-                right_where_expr = (
-                    f" WHERE ({right_where_sql}) AND ({what_condition_sql})"
-                )
-            else:
-                right_where_expr = f" WHERE {what_condition_sql}"
-        elif right_where_sql:
-            right_where_expr = f" WHERE {right_where_sql}"
+        # Left query: from [person.primary_name]
+        # The left side needs to be wrapped in json_array() since it's a single item
+        left_array_attr = AttributeExpression(
+            table_name=self.table_name,
+            attribute_path="primary_name",
+            is_database_column=False,
+        )
+        # Create a special expression that represents json_array(left_array_attr)
+        # This will be used in the FROM clause
+        left_array_wrapped = CallExpression(
+            function=ConstantExpression(value="json_array"),
+            arguments=[left_array_attr],
+        )
+        left_array_expansion = ArrayExpansion(
+            item_var=listcomp.item_var,
+            array_path="primary_name",
+            array_expression=left_array_wrapped,
+        )
+
+        left_select_expr = SelectExpression(expression=listcomp.expression)
+
+        left_query = SelectQuery(
+            base_table=self.table_name,
+            select_expressions=[left_select_expr],
+            where_condition=query.where_condition,
+            joins=query.joins,
+            order_by=query.order_by,
+            array_expansion=left_array_expansion,
+            limit=query.limit,
+            offset=query.offset,
+        )
+
+        # Right query: from person.alternate_names
+        right_path = listcomp.array_info["right_path"]
+        right_array_attr = AttributeExpression(
+            table_name=self.table_name,
+            attribute_path=right_path,
+            is_database_column=False,
+        )
+        right_array_expansion = ArrayExpansion(
+            item_var=listcomp.item_var,
+            array_path=right_path,
+            array_expression=right_array_attr,
+        )
+
+        right_select_expr = SelectExpression(expression=listcomp.expression)
+
+        right_query = SelectQuery(
+            base_table=self.table_name,
+            select_expressions=[right_select_expr],
+            where_condition=query.where_condition,
+            joins=query.joins,
+            order_by=query.order_by,
+            array_expansion=right_array_expansion,
+            limit=query.limit,
+            offset=query.offset,
+        )
+
+        return left_query, right_query
+
+    # Compatibility methods (kept for backward compatibility)
+    def format_json_extract(self, base_expr):
+        """Format JSON extract expression based on dialect."""
+        if self.dialect == "sqlite":
+            return f"json_extract({base_expr}, '$.{{attr}}')"
+        elif self.dialect == "postgres":
+            return f"JSON_EXTRACT_PATH({base_expr}, '{{attr}}')"
         else:
-            right_where_expr = ""
+            return f"json_extract({base_expr}, '$.{{attr}}')"
 
-        array_sql = self.expression.convert(f"{self.table_name}.{array_path}")
-        json_each_expr = self.format_json_each(array_sql)
-
-        if what_item_var and what_array_info:
-            what_array_path = self._get_array_path_from_info(what_array_info)
-            if what_array_path and what_array_path == array_path:
-                right_from_clause = f"{self.table_name}, {json_each_expr}"
-            elif what_array_path:
-                right_from_clause = (
-                    f"{self.table_name}, {what_json_each_expr}, {json_each_expr}"
-                )
-            else:
-                # Concatenated arrays - not supported in UNION queries
-                right_from_clause = f"{self.table_name}, {json_each_expr}"
+    def format_json_array_length(self, base_expr):
+        """Format JSON array length expression based on dialect."""
+        if self.dialect == "sqlite":
+            return f"json_array_length(json_extract({base_expr}, '$.{{attr}}'))"
+        elif self.dialect == "postgres":
+            return f"JSON_ARRAY_LENGTH(JSON_EXTRACT_PATH({base_expr}, '{{attr}}'))"
         else:
-            right_from_clause = f"{self.table_name}, {json_each_expr}"
+            return f"json_array_length(json_extract({base_expr}, '$.{{attr}}'))"
 
-        right_query = f"SELECT {what_expr} FROM {right_from_clause}{right_where_expr}"
-
-        # Handle ORDER BY after UNION
-        if order_by is None:
-            order_by_expr = ""
+    def format_json_each(self, array_expr, path="$"):
+        """Format json_each expression based on dialect."""
+        if self.dialect == "sqlite":
+            return f"json_each({array_expr}, '{path}')"
+        elif self.dialect == "postgres":
+            return f"LATERAL json_array_elements({array_expr}) AS json_each(value)"
         else:
-            if callable(order_by) or isinstance(order_by, types.LambdaType):
-                raise ValueError(
-                    "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-                )
-            elif callable(order_by) and not isinstance(order_by, type):
-                raise ValueError(
-                    "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
-                )
-            elif isinstance(order_by, str):
-                order_by = [order_by]
-            converted_order_by = []
-            for expr in order_by:
-                if isinstance(expr, types.LambdaType):
-                    raise ValueError(
-                        "Lambda functions are not supported for SQL generation. Please use string expressions instead."
-                    )
-                else:
-                    converted_order_by.append(expr)
-            order_by_expr = self.expression.get_order_by(converted_order_by)
+            return f"json_each({array_expr}, '{path}')"
 
-        return f"{left_query} UNION {right_query}{order_by_expr}{limit_offset};"
+    def format_json_array(self, *args):
+        """Format json_array expression based on dialect."""
+        if self.dialect == "sqlite":
+            if len(args) == 0:
+                return "json_array()"
+            args_str = ", ".join(str(arg) for arg in args)
+            return f"json_array({args_str})"
+        elif self.dialect == "postgres":
+            if len(args) == 0:
+                return "json_build_array()"
+            args_str = ", ".join(str(arg) for arg in args)
+            return f"json_build_array({args_str})"
+        else:
+            if len(args) == 0:
+                return "json_array()"
+            args_str = ", ".join(str(arg) for arg in args)
+            return f"json_array({args_str})"
