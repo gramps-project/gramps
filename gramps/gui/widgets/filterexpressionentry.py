@@ -67,7 +67,7 @@ from gramps.gen.lib.grampstype import GrampsType
 
 # Try to import Jedi - it's optional
 try:
-    import jedi
+    import jedi  # type: ignore[import-untyped]
 
     JEDI_AVAILABLE = True
 except ImportError:
