@@ -61,7 +61,7 @@ from ..lib import (
     ChildRefType,
 )
 from .id import create_id
-from ..const import IMAGE_DIR
+from ..const import IMAGE_DIR, ARABIC_COMMA
 from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
@@ -151,14 +151,25 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction, *
     elif isinstance(obj, Note):
         obj.set_type(NoteType.UNKNOWN)
         text = _("Unknown, created to replace a missing note object.")
-        link_start = text.index(",") + 2
-        link_end = len(text) - 1
-        tag = StyledTextTag(
-            StyledTextTagType.LINK,
-            "gramps://Note/handle/%s" % explanation,
-            [(link_start, link_end)],
-        )
-        obj.set_styledtext(StyledText(text, [tag]))
+        # Find the comma position, Arabic OK
+        comma_pos = text.find(",")
+        if comma_pos == -1:
+            comma_pos = text.find(ARABIC_COMMA)
+        if comma_pos != -1:
+            link_start = comma_pos + 2
+            link_end = len(text) - 1
+        else:
+            # No comma found, link the entire text
+            link_start = 0
+            link_end = max(0, len(text))
+        # Only create a link if we have valid text
+        if text and link_end > link_start:
+            tag = StyledTextTag(
+                StyledTextTagType.LINK,
+                "gramps://Note/handle/%s" % explanation,
+                [(link_start, link_end)],
+            )
+            obj.set_styledtext(StyledText(text, [tag]))
     elif isinstance(obj, Tag):
         if not hasattr(make_unknown, "count"):
             make_unknown.count = 1  # primitive static variable
