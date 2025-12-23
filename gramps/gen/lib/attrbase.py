@@ -22,11 +22,15 @@
 AttributeRootBase class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from typing import List
+
 from .attribute import Attribute, AttributeRoot
 from .const import EQUAL, IDENTICAL
 from .srcattribute import SrcAttribute
@@ -43,6 +47,7 @@ class AttributeRootBase:
     """
 
     _CLASS = AttributeRoot
+    attribute_list: List[Attribute]
 
     def __init__(self, source=None):
         """

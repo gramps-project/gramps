@@ -25,6 +25,8 @@
 Event Reference class for Gramps
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
@@ -57,6 +59,9 @@ class EventRef(
     This class is for keeping information about how the person relates
     to the referenced event.
     """
+
+    # Type hint for role property (accessed via property, stored as __role)
+    # Note: role is a property that wraps __role, which is an EventRoleType
 
     def __init__(self, source=None):
         """

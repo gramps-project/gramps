@@ -45,6 +45,7 @@ from .query_model import (
 )
 from .query_parser import QueryParser
 from .sql_generator import SQLGenerator
+from .type_inference import TypeInferenceVisitor
 
 # Database columns (not in JSON) that can be queried directly
 # These are computed/stored fields that exist as actual database columns
@@ -609,6 +610,52 @@ class ExpressionValidationVisitor(ExpressionVisitor):
         return super().visit_IfExpression(expr)
 
 
+class TypeValidationVisitor(ExpressionVisitor):
+    """
+    Visitor to validate expression types using type hints.
+    """
+
+    def __init__(self, type_inference: TypeInferenceVisitor):
+        """
+        Initialize type validation visitor.
+
+        Args:
+            type_inference: Type inference visitor to use for type checking
+        """
+        self.type_inference = type_inference
+
+    def visit_AttributeExpression(
+        self, expr: AttributeExpression
+    ) -> Optional[Expression]:
+        """Validate attribute path exists using type hints."""
+        # Get the class for the table
+        from .type_inference import TABLE_TO_CLASS
+
+        table_class = TABLE_TO_CLASS.get(expr.table_name)
+        if table_class is None:
+            # Unknown table - skip validation
+            return super().visit_AttributeExpression(expr)
+
+        # If base is provided, validate from base type
+        if expr.base is not None:
+            base_type = self.type_inference.visit(expr.base)
+            if base_type is not None:
+                is_valid, error_msg = self.type_inference.validate_attribute_path(
+                    base_type, expr.attribute_path
+                )
+                if not is_valid:
+                    raise ValueError(error_msg)
+        else:
+            # Validate from table class
+            is_valid, error_msg = self.type_inference.validate_attribute_path(
+                table_class, expr.attribute_path
+            )
+            if not is_valid:
+                raise ValueError(error_msg)
+
+        return super().visit_AttributeExpression(expr)
+
+
 class QueryBuilder:
     """
     SQL query builder using intermediate query model objects.
@@ -622,6 +669,7 @@ class QueryBuilder:
         json_array_length=None,
         env=None,
         dialect="sqlite",
+        enable_type_validation=False,
     ):
         """
         Initialize QueryBuilder with table configuration.
@@ -632,20 +680,26 @@ class QueryBuilder:
             json_array_length: JSON array length pattern (deprecated, kept for compatibility)
             env: Environment dictionary for expression evaluation
             dialect: SQL dialect ("sqlite" or "postgres"). Defaults to "sqlite"
+            enable_type_validation: If True, validate attribute paths using type hints
         """
         self.table_name = table_name
         self.dialect = dialect.lower()
         self.env = env if env is not None else {}
+        self.enable_type_validation = enable_type_validation
         database_columns = set(DATABASE_COLUMNS.get(table_name.capitalize(), []))
 
         # Create parser and generator
+        # Type inference is always enabled to improve SQL generation
         self.parser = QueryParser(
             table_name=table_name,
             env=self.env,
             database_columns=database_columns,
             database_columns_dict=DATABASE_COLUMNS,
         )
-        self.generator = SQLGenerator(dialect=self.dialect)
+        self.generator = SQLGenerator(dialect=self.dialect, type_inference=None)
+        self.type_inference = TypeInferenceVisitor(env=self.env)
+        # Pass type inference to generator for type-aware SQL generation
+        self.generator.type_inference = self.type_inference
 
     def get_sql_query(self, what, where, order_by, page=None, page_size=None):
         """
@@ -696,6 +750,10 @@ class QueryBuilder:
         where_condition = None
         if where:
             where_condition = self.parser.parse_expression(where)
+            # Always validate types to catch errors early
+            if self.enable_type_validation:
+                validator = TypeValidationVisitor(self.type_inference)
+                validator.visit(where_condition)
 
         # Parse order_by clause
         order_by_list = self._parse_order_by(order_by)
@@ -1277,6 +1335,28 @@ class QueryBuilder:
             return True
         except ValueError:
             return False
+
+    def validate_types(self, expr: Expression) -> Tuple[bool, Optional[str]]:
+        """
+        Validate expression types using type hints.
+
+        Args:
+            expr: Expression to validate
+
+        Returns:
+            Tuple of (is_valid, error_message)
+            - is_valid: True if types are valid, False otherwise
+            - error_message: Error message if invalid, None if valid
+        """
+        if not self.enable_type_validation or not self.type_inference:
+            return True, None
+
+        validator = TypeValidationVisitor(self.type_inference)
+        try:
+            validator.visit(expr)
+            return True, None
+        except ValueError as e:
+            return False, str(e)
 
     # Compatibility methods (kept for backward compatibility)
     def format_json_extract(self, base_expr):

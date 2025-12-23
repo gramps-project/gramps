@@ -23,11 +23,15 @@
 EventBase class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from typing import List
+
 from .eventref import EventRef
 from .eventroletype import EventRoleType
 from .const import EQUAL, DIFFERENT
@@ -42,6 +46,8 @@ class EventBase:
     """
     Base class for storing event references.
     """
+
+    event_ref_list: List[EventRef]
 
     def __init__(self, source=None):
         """

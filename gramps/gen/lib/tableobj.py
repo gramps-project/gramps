@@ -27,8 +27,11 @@ Table Object class for Gramps.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
+
 import time
 from abc import abstractmethod
+from typing import Optional
 
 # -------------------------------------------------------------------------
 #
@@ -56,6 +59,9 @@ class TableObject(BaseObject):
 
     It is the base class for the BasicPrimaryObject class and Tag class.
     """
+
+    handle: Optional[str]
+    change: int
 
     def __init__(self, source=None):
         """

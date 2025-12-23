@@ -53,14 +53,16 @@ from .query_model import (
 class SQLGenerator:
     """Converts query model objects to SQL strings."""
 
-    def __init__(self, dialect: str = "sqlite"):
+    def __init__(self, dialect: str = "sqlite", type_inference=None):
         """
         Initialize the SQL generator.
 
         Args:
             dialect: SQL dialect ("sqlite" or "postgres")
+            type_inference: Optional TypeInferenceVisitor for type-aware SQL generation
         """
         self.dialect = dialect.lower()
+        self.type_inference = type_inference
 
     def generate(self, query: SelectQuery) -> str:
         """
@@ -334,8 +336,23 @@ class SQLGenerator:
             # Generate SQL for the base expression (e.g., array access subquery)
             base_sql = self.generate_expression(expr.base)
 
-            # Now extract the attribute from the base result
+            # Now extract the attribute from the base result with type awareness
             if expr.attribute_path:
+                if expr.inferred_type is not None and self.type_inference:
+                    if expr.inferred_type is str:
+                        if self.dialect == "sqlite":
+                            return (
+                                f"json_extract({base_sql}, '$.{expr.attribute_path}')"
+                            )
+                        elif self.dialect == "postgres":
+                            return f"JSON_EXTRACT_PATH_TEXT({base_sql}, '{expr.attribute_path}')"
+                    elif expr.inferred_type in (int, float):
+                        if self.dialect == "sqlite":
+                            return f"CAST(json_extract({base_sql}, '$.{expr.attribute_path}') AS REAL)"
+                        elif self.dialect == "postgres":
+                            return f"CAST(JSON_EXTRACT_PATH({base_sql}, '{expr.attribute_path}') AS NUMERIC)"
+
+                # Default JSON extraction
                 if self.dialect == "sqlite":
                     return f"json_extract({base_sql}, '$.{expr.attribute_path}')"
                 elif self.dialect == "postgres":
@@ -361,7 +378,30 @@ class SQLGenerator:
             else:
                 return f"{expr.table_name}.json_data"
 
-        # Build JSON extract
+        # Build JSON extract with type awareness
+        if expr.inferred_type is not None and self.type_inference:
+            if expr.inferred_type is str:
+                # String type - use text extraction for PostgreSQL
+                if self.dialect == "sqlite":
+                    return f"json_extract({base_expr}, '$.{expr.attribute_path}')"
+                elif self.dialect == "postgres":
+                    return (
+                        f"JSON_EXTRACT_PATH_TEXT({base_expr}, '{expr.attribute_path}')"
+                    )
+            elif expr.inferred_type in (int, float):
+                # Numeric type - cast appropriately
+                if self.dialect == "sqlite":
+                    return f"CAST(json_extract({base_expr}, '$.{expr.attribute_path}') AS REAL)"
+                elif self.dialect == "postgres":
+                    return f"CAST(JSON_EXTRACT_PATH({base_expr}, '{expr.attribute_path}') AS NUMERIC)"
+            elif expr.inferred_type is bool:
+                # Boolean type - ensure proper boolean handling
+                if self.dialect == "sqlite":
+                    return f"CAST(json_extract({base_expr}, '$.{expr.attribute_path}') AS INTEGER)"
+                elif self.dialect == "postgres":
+                    return f"CAST(JSON_EXTRACT_PATH({base_expr}, '{expr.attribute_path}') AS BOOLEAN)"
+
+        # Default JSON extraction
         if self.dialect == "sqlite":
             return f"json_extract({base_expr}, '$.{expr.attribute_path}')"
         elif self.dialect == "postgres":
@@ -465,76 +505,128 @@ class SQLGenerator:
         if expr.operator == "-":
             return f"-{operand_sql}"
         elif expr.operator == "not":
-            # For JSON fields, "not field" should check for NULL, empty string, empty array, etc.
-            # Check if operand is a JSON field (AttributeExpression that's not a database column)
+            # Type-aware handling for "not" operator
             from .query_model import AttributeExpression
+
+            operand_type = None
+            if self.type_inference:
+                operand_type = self.type_inference.visit(expr.operand)
 
             if (
                 isinstance(expr.operand, AttributeExpression)
                 and not expr.operand.is_database_column
             ):
-                # This is a JSON field - check for falsy values
-                # In Python, "not value" means value is falsy
-                # For JSON: NULL, empty string, empty array, empty object, 0, false
-                empty_obj = "'{}'"
-                if self.dialect == "sqlite":
-                    return f"({operand_sql} IS NULL OR {operand_sql} = '' OR {operand_sql} = '[]' OR {operand_sql} = {empty_obj} OR {operand_sql} = 0 OR {operand_sql} = false)"
-                elif self.dialect == "postgres":
-                    return f"({operand_sql} IS NULL OR {operand_sql} = '' OR {operand_sql} = '[]' OR {operand_sql} = {empty_obj} OR {operand_sql} = 0 OR {operand_sql} = false)"
+                # This is a JSON field - use type-aware falsy checking
+                if operand_type is bool:
+                    # Boolean - simple negation
+                    if self.dialect == "sqlite":
+                        return f"NOT CAST({operand_sql} AS INTEGER)"
+                    elif self.dialect == "postgres":
+                        return f"NOT CAST({operand_sql} AS BOOLEAN)"
+                    else:
+                        # Default to SQLite format
+                        return f"NOT CAST({operand_sql} AS INTEGER)"
+                elif operand_type is str:
+                    # String - check for empty string and NULL
+                    if self.dialect == "sqlite":
+                        return f"({operand_sql} IS NULL OR {operand_sql} = '')"
+                    elif self.dialect == "postgres":
+                        return f"({operand_sql} IS NULL OR {operand_sql} = '')"
+                    else:
+                        # Default to SQLite format
+                        return f"({operand_sql} IS NULL OR {operand_sql} = '')"
+                elif operand_type in (int, float):
+                    # Number - check for 0 and NULL
+                    if self.dialect == "sqlite":
+                        return f"({operand_sql} IS NULL OR CAST({operand_sql} AS REAL) = 0)"
+                    elif self.dialect == "postgres":
+                        return f"({operand_sql} IS NULL OR CAST({operand_sql} AS NUMERIC) = 0)"
+                    else:
+                        # Default to SQLite format
+                        return f"({operand_sql} IS NULL OR CAST({operand_sql} AS REAL) = 0)"
                 else:
-                    return f"({operand_sql} IS NULL OR {operand_sql} = '' OR {operand_sql} = '[]' OR {operand_sql} = {empty_obj} OR {operand_sql} = 0 OR {operand_sql} = false)"
+                    # Generic JSON falsy check
+                    empty_obj = "'{}'"
+                    if self.dialect == "sqlite":
+                        return f"({operand_sql} IS NULL OR {operand_sql} = '' OR {operand_sql} = '[]' OR {operand_sql} = {empty_obj} OR {operand_sql} = 0 OR {operand_sql} = false)"
+                    elif self.dialect == "postgres":
+                        return f"({operand_sql} IS NULL OR {operand_sql} = '' OR {operand_sql} = '[]' OR {operand_sql} = {empty_obj} OR {operand_sql} = 0 OR {operand_sql} = false)"
+                    else:
+                        return f"({operand_sql} IS NULL OR {operand_sql} = '' OR {operand_sql} = '[]' OR {operand_sql} = {empty_obj} OR {operand_sql} = 0 OR {operand_sql} = false)"
             else:
                 # For non-JSON fields or database columns, use standard NOT
                 return f"NOT ({operand_sql})"
         else:
+            # Other unary operators (shouldn't happen in practice, but handle gracefully)
             return f"{expr.operator} {operand_sql}"
 
     def _generate_compare(self, expr: CompareExpression) -> str:
-        """Generate SQL for comparison."""
+        """Generate SQL for comparison with type-aware handling."""
         left_sql = self.generate_expression(expr.left)
         parts = []
+
+        # Infer types for better SQL generation
+        left_type = None
+        if self.type_inference:
+            left_type = self.type_inference.visit(expr.left)
 
         current_left = left_sql
         for op, right in zip(expr.operators, expr.comparators):
             right_sql = self.generate_expression(right)
+            right_type = None
+            if self.type_inference:
+                right_type = self.type_inference.visit(right)
 
-            # Handle special cases for IN/NOT IN
+            # Handle special cases for IN/NOT IN with type awareness
             if op == "in":
-                # Check if right is a tuple/list (normal IN) or string (LIKE pattern)
-                if isinstance(right, TupleExpression) or (
-                    isinstance(right, ConstantExpression)
-                    and isinstance(right.value, str)
-                    and right.value.startswith("(")
-                ):
-                    # Normal IN
+                # Use type information to determine if it's a list/tuple or string pattern
+                if isinstance(right, TupleExpression):
+                    # Explicit tuple - use IN
                     parts.append(f"{current_left} IN {right_sql}")
-                else:
-                    # String IN pattern - convert to LIKE
-                    # Extract string value from left
-                    if isinstance(expr.left, ConstantExpression) and isinstance(
-                        expr.left.value, str
-                    ):
-                        str_val = expr.left.value
-                        parts.append(f"{right_sql} LIKE '%{str_val}%'")
-                    else:
-                        parts.append(f"{current_left} IN {right_sql}")
-            elif op == "not in":
-                if isinstance(right, TupleExpression) or (
-                    isinstance(right, ConstantExpression)
-                    and isinstance(right.value, str)
-                    and right.value.startswith("(")
+                elif right_type is list or right_type is tuple:
+                    # Type hint says it's a list/tuple - use IN
+                    parts.append(f"{current_left} IN {right_sql}")
+                elif isinstance(expr.left, ConstantExpression) and isinstance(
+                    expr.left.value, str
                 ):
-                    parts.append(f"{current_left} NOT IN {right_sql}")
+                    # String constant on left - check if right is attribute for LIKE pattern
+                    # Pattern: 'string' in attribute -> attribute LIKE '%string%'
+                    if left_type is str:
+                        # String IN attribute - convert to LIKE pattern
+                        # left is the pattern string, right is the attribute
+                        pattern_val = (
+                            expr.left.value
+                        )  # Extract the string value (without quotes)
+                        attribute_sql = right_sql  # The attribute (right side)
+                        parts.append(f"{attribute_sql} LIKE '%{pattern_val}%'")
+                    else:
+                        # String in non-string - use IN (might be a list of strings)
+                        parts.append(f"{current_left} IN {right_sql}")
                 else:
-                    if isinstance(expr.left, ConstantExpression) and isinstance(
-                        expr.left.value, str
-                    ):
-                        str_val = expr.left.value
-                        parts.append(f"{right_sql} NOT LIKE '%{str_val}%'")
+                    # Default to IN
+                    parts.append(f"{current_left} IN {right_sql}")
+            elif op == "not in":
+                if isinstance(right, TupleExpression):
+                    parts.append(f"{current_left} NOT IN {right_sql}")
+                elif right_type is list or right_type is tuple:
+                    parts.append(f"{current_left} NOT IN {right_sql}")
+                elif isinstance(expr.left, ConstantExpression) and isinstance(
+                    expr.left.value, str
+                ):
+                    # String constant on left - check if right is attribute for LIKE pattern
+                    # Pattern: 'string' not in attribute -> attribute NOT LIKE '%string%'
+                    if left_type is str:
+                        pattern_val = (
+                            expr.left.value
+                        )  # Extract the string value (without quotes)
+                        attribute_sql = right_sql  # The attribute (right side)
+                        parts.append(f"{attribute_sql} NOT LIKE '%{pattern_val}%'")
                     else:
                         parts.append(f"{current_left} NOT IN {right_sql}")
+                else:
+                    parts.append(f"{current_left} NOT IN {right_sql}")
             else:
-                # Standard comparison operator
+                # Standard comparison operator with type-aware casting
                 op_map = {
                     "==": "=",
                     "!=": "!=",
@@ -546,6 +638,24 @@ class SQLGenerator:
                     "is not": "IS NOT",
                 }
                 sql_op = op_map.get(op, op)
+
+                # Add type casting if types don't match (e.g., string vs number)
+                if left_type is not None and right_type is not None:
+                    if left_type != right_type and op not in ("is", "is not"):
+                        # Need type casting - determine which side to cast
+                        if left_type is str and right_type in (int, float):
+                            # Cast right to text for comparison
+                            if self.dialect == "sqlite":
+                                current_left = f"CAST({current_left} AS TEXT)"
+                            elif self.dialect == "postgres":
+                                current_left = f"CAST({current_left} AS TEXT)"
+                        elif left_type in (int, float) and right_type is str:
+                            # Cast left to numeric
+                            if self.dialect == "sqlite":
+                                right_sql = f"CAST({right_sql} AS REAL)"
+                            elif self.dialect == "postgres":
+                                right_sql = f"CAST({right_sql} AS NUMERIC)"
+
                 parts.append(f"({current_left} {sql_op} {right_sql})")
 
             current_left = right_sql

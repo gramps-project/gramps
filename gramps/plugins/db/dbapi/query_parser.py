@@ -51,6 +51,7 @@ from .query_model import (
     ArrayExpansion,
     SelectQuery,
 )
+from .type_inference import TypeInferenceVisitor
 
 TABLE_NAMES = {
     "person",
@@ -77,6 +78,7 @@ class QueryParser:
         array_path: Optional[str] = None,
         database_columns: Optional[Set[str]] = None,
         database_columns_dict: Optional[Dict[str, List[str]]] = None,
+        enable_type_inference: bool = False,
     ):
         """
         Initialize the parser.
@@ -88,6 +90,7 @@ class QueryParser:
             array_path: Array path for array iteration (e.g., "event_ref_list")
             database_columns: Set of database column names for this table
             database_columns_dict: Dict mapping table names to their database columns
+            enable_type_inference: If True, infer types from type hints during parsing
         """
         self.table_name = table_name
         self.env = {}
@@ -101,6 +104,8 @@ class QueryParser:
         self.array_path = array_path
         self.database_columns = database_columns or set()
         self.database_columns_dict = database_columns_dict or {}
+        # Type inference is always enabled to improve SQL generation
+        self.type_inference = TypeInferenceVisitor(env=self.env)
 
     def parse_expression(self, expr_str: str) -> Expression:
         """
@@ -344,11 +349,15 @@ class QueryParser:
                 attribute_path = ".".join(path_parts)
                 # Check if it's a database column
                 is_db_column = self._is_database_column(table_name, attribute_path)
-                return AttributeExpression(
+                attr_expr = AttributeExpression(
                     table_name=table_name,
                     attribute_path=attribute_path,
                     is_database_column=is_db_column,
                 )
+                # Always infer type to improve SQL generation
+                inferred_type = self.type_inference.visit(attr_expr)
+                attr_expr.inferred_type = inferred_type
+                return attr_expr
             else:
                 # Unknown name - treat as table reference if lowercase
                 if name.islower() and name in TABLE_NAMES:
@@ -373,11 +382,15 @@ class QueryParser:
                             base.index, base.is_constant_index
                         )
                         extended_path = f"{base.base.attribute_path}[{index_str}].{'.'.join(path_parts)}"
-                        return AttributeExpression(
+                        attr_expr = AttributeExpression(
                             table_name=base.base.table_name,
                             attribute_path=extended_path,
                             is_database_column=base.base.is_database_column,
                         )
+                        # Always infer type to improve SQL generation
+                        inferred_type = self.type_inference.visit(attr_expr)
+                        attr_expr.inferred_type = inferred_type
+                        return attr_expr
                     else:
                         # For variable indices, create an AttributeExpression with the array access as base
                         # This allows the SQL generator to handle it recursively
@@ -408,11 +421,15 @@ class QueryParser:
         if path_parts:
             attribute_path = ".".join(path_parts)
             is_db_column = self._is_database_column(self.table_name, attribute_path)
-            return AttributeExpression(
+            attr_expr = AttributeExpression(
                 table_name=self.table_name,
                 attribute_path=attribute_path,
                 is_database_column=is_db_column,
             )
+            # Always infer type to improve SQL generation
+            inferred_type = self.type_inference.visit(attr_expr)
+            attr_expr.inferred_type = inferred_type
+            return attr_expr
 
         raise ValueError(f"Could not parse attribute: {node}")
 

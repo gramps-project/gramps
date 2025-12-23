@@ -21,12 +21,15 @@
 Base Reference class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Python modules
 #
 # -------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
+from typing import Optional
 
 
 # -------------------------------------------------------------------------
@@ -40,6 +43,8 @@ class RefBase(metaclass=ABCMeta):
 
     Any *Ref* classes should derive from this class.
     """
+
+    ref: Optional[str]
 
     def __init__(self, source=None):
         if source:

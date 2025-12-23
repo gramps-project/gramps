@@ -25,7 +25,7 @@ Intermediate representation of SQL queries as objects, similar to an ORM.
 This separates parsing from SQL generation, eliminating edge cases.
 """
 
-from typing import List, Optional, Union
+from typing import List, Optional, Type, Union
 from dataclasses import dataclass, field
 
 
@@ -65,6 +65,7 @@ class AttributeExpression(Expression):
     base: Optional[Expression] = (
         None  # Optional base expression (e.g., ArrayAccessExpression)
     )
+    inferred_type: Optional[Type] = None  # Inferred type from type hints (if available)
     # When base is provided, table_name is used for context but base expression is evaluated first
 
     def __repr__(self):

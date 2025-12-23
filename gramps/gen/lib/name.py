@@ -25,11 +25,15 @@
 Name class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from typing import List
+
 from ..const import GRAMPS_LOCALE as glocale
 from .citationbase import CitationBase
 from .const import DIFFERENT, EQUAL, IDENTICAL
@@ -56,6 +60,17 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
     A person may have more that one name throughout his or her life. The Name
     object stores one of them
     """
+
+    # Type hints for Name-specific attributes
+    first_name: str
+    suffix: str
+    title: str
+    group_as: str
+    sort_as: int
+    display_as: int
+    call: str
+    nick: str
+    famnick: str
 
     DEF = 0  # Default format (determined by gramps-wide prefs)
     LNFN = 1  # last name first name

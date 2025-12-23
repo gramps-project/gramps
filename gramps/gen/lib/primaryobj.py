@@ -27,7 +27,10 @@ Basic Primary Object class for Gramps.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
+
 from abc import abstractmethod
+from typing import Optional
 
 # -------------------------------------------------------------------------
 #
@@ -59,6 +62,8 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
     handle is used as the record number for the database, and the Gramps
     ID is the user visible version.
     """
+
+    gramps_id: Optional[str]
 
     def __init__(self, source=None):
         """

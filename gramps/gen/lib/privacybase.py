@@ -22,6 +22,8 @@
 PrivacyBase Object class for Gramps.
 """
 
+from __future__ import annotations
+
 
 # -------------------------------------------------------------------------
 #
@@ -32,6 +34,8 @@ class PrivacyBase:
     """
     Base class for privacy-aware objects.
     """
+
+    private: bool
 
     def __init__(self, source=None):
         """
