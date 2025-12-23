@@ -21,6 +21,17 @@
 """
 Unittest that tests QueryBuilder.get_sql_query() with the same parameters
 used in person_select_test.py
+
+Note: These tests validate SQL syntax and structure using sqlglot, but do NOT
+validate query semantics by executing queries against a real database. For semantic
+validation, see person_select_test.py which runs queries against an actual database
+and verifies the results.
+
+To add semantic tests:
+1. Use a test database fixture (see person_select_test.py for examples)
+2. Execute the generated SQL or use db.select_from_* methods
+3. Verify the results match expected values
+4. Consider edge cases like NULL handling, empty values, and JSON field semantics
 """
 import unittest
 
@@ -406,6 +417,49 @@ class QueryBuilderTestMixin:
 
         # Validate SQL with sqlglot
         self._validate_sql(sql)
+
+    def test_array_expansion_with_join_to_event(self):
+        """
+        Test array expansion with join to event table.
+        Tests the pattern: item in person.event_ref_list and item.ref == event.handle
+        with additional conditions on the joined event table.
+        """
+        what = "person.handle"
+        where = "item in person.event_ref_list and item.ref == event.handle and (not event.place or not event.date)"
+        order_by = None
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
+        # Verify that the join condition is present in the SQL
+        self.assertIn("JOIN", sql.upper())
+        self.assertIn("event", sql.lower())
+        # Verify that json_each is present for array expansion
+        self.assertIn("json_each", sql.lower())
+        # Verify that "not" for JSON fields generates IS NULL checks
+        # (not just NOT json_extract(...))
+        self.assertIn("IS NULL", sql.upper())
+
+    def test_not_operator_for_json_fields(self):
+        """
+        Test that "not" operator for JSON fields generates correct SQL.
+        For JSON fields, "not field" should check for NULL, empty string, empty array, etc.
+        """
+        what = "person.handle"
+        where = "not event.place"
+        order_by = None
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
+        # Verify that "not" for JSON fields uses IS NULL check, not just NOT
+        # This is important because NOT json_extract(...) doesn't work correctly
+        # for JSON null/empty values in SQLite
+        self.assertIn("IS NULL", sql.upper())
+        # Should also check for empty values
+        self.assertIn("= ''", sql)
 
     def test_simple_and_expression(self):
         """

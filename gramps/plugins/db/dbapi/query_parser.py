@@ -692,7 +692,49 @@ class QueryParser:
                 left_table, left_attr = self._extract_table_attr(left)
                 right_table, right_attr = self._extract_table_attr(right)
 
+                # Check if one side is from array expansion (json_each) and the other is a table
+                # This handles cases like item.ref == event.handle
                 if (
+                    left_table == "json_each"
+                    and right_table
+                    and right_table in TABLE_NAMES
+                    and left_attr
+                    and right_attr
+                    and self._is_handle_field(left_attr)
+                    and self._is_handle_field(right_attr)
+                ):
+                    # Found a join from array expansion item to a table
+                    ref_table = right_table
+                    if ref_table != self.table_name:
+                        join_condition = self._parse_node(node)
+                        joins.append(
+                            Join(
+                                table_name=ref_table,
+                                join_type="INNER",
+                                condition=join_condition,
+                            )
+                        )
+                elif (
+                    right_table == "json_each"
+                    and left_table
+                    and left_table in TABLE_NAMES
+                    and left_attr
+                    and right_attr
+                    and self._is_handle_field(left_attr)
+                    and self._is_handle_field(right_attr)
+                ):
+                    # Found a join from a table to array expansion item
+                    ref_table = left_table
+                    if ref_table != self.table_name:
+                        join_condition = self._parse_node(node)
+                        joins.append(
+                            Join(
+                                table_name=ref_table,
+                                join_type="INNER",
+                                condition=join_condition,
+                            )
+                        )
+                elif (
                     left_table
                     and right_table
                     and left_attr
@@ -700,7 +742,7 @@ class QueryParser:
                     and self._is_handle_field(left_attr)
                     and self._is_handle_field(right_attr)
                 ):
-                    # Found a valid handle-based join condition
+                    # Found a valid handle-based join condition between tables
                     if left_table in [self.table_name] or right_table in [
                         self.table_name
                     ]:
@@ -742,6 +784,13 @@ class QueryParser:
                     current = current.value
 
                 if isinstance(current, ast.Name):
+                    # Check if it's the item variable from array expansion
+                    if self.item_var and current.id == self.item_var:
+                        # This is item.attr from array expansion
+                        # Return "json_each" as the table name to indicate it's from array expansion
+                        attr_path = ".".join(path_parts)
+                        return "json_each", attr_path
+
                     table_name = current.id.lower()
                     if table_name in TABLE_NAMES:
                         attr_path = ".".join(path_parts)

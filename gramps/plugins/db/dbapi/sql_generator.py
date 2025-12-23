@@ -465,7 +465,27 @@ class SQLGenerator:
         if expr.operator == "-":
             return f"-{operand_sql}"
         elif expr.operator == "not":
-            return f"NOT ({operand_sql})"
+            # For JSON fields, "not field" should check for NULL, empty string, empty array, etc.
+            # Check if operand is a JSON field (AttributeExpression that's not a database column)
+            from .query_model import AttributeExpression
+
+            if (
+                isinstance(expr.operand, AttributeExpression)
+                and not expr.operand.is_database_column
+            ):
+                # This is a JSON field - check for falsy values
+                # In Python, "not value" means value is falsy
+                # For JSON: NULL, empty string, empty array, empty object, 0, false
+                empty_obj = "'{}'"
+                if self.dialect == "sqlite":
+                    return f"({operand_sql} IS NULL OR {operand_sql} = '' OR {operand_sql} = '[]' OR {operand_sql} = {empty_obj} OR {operand_sql} = 0 OR {operand_sql} = false)"
+                elif self.dialect == "postgres":
+                    return f"({operand_sql} IS NULL OR {operand_sql} = '' OR {operand_sql} = '[]' OR {operand_sql} = {empty_obj} OR {operand_sql} = 0 OR {operand_sql} = false)"
+                else:
+                    return f"({operand_sql} IS NULL OR {operand_sql} = '' OR {operand_sql} = '[]' OR {operand_sql} = {empty_obj} OR {operand_sql} = 0 OR {operand_sql} = false)"
+            else:
+                # For non-JSON fields or database columns, use standard NOT
+                return f"NOT ({operand_sql})"
         else:
             return f"{expr.operator} {operand_sql}"
 

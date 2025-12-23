@@ -141,7 +141,28 @@ class QueryBuilder:
         # Parse order_by clause
         order_by_list = self._parse_order_by(order_by)
 
+        # Extract array expansion from WHERE condition FIRST
+        # This needs to happen before join detection so that item_var is set
+        # Array expansion is now represented as ArrayExpansionExpression in the parsed tree
+        array_expansion = None
+        is_array_expansion_in_or = False
+        if where_condition:
+            array_expansion, is_array_expansion_in_or = (
+                self._extract_array_expansion_from_condition(where_condition)
+            )
+
+            # If array expansion is found, update parser context for item_var
+            # This allows "item.attr" in join detection and what clause to be parsed correctly
+            if array_expansion:
+                self.parser.item_var = array_expansion.item_var
+                self.parser.array_path = array_expansion.array_path
+
+                # Re-parse WHERE clause with item_var context so that item.ref is correctly
+                # parsed as json_each.ref instead of person.ref
+                where_condition = self.parser.parse_expression(where)
+
         # Detect table references and JOINs
+        # Do this AFTER setting item_var so that item.attr can be recognized
         referenced_tables = set()
         if where:
             referenced_tables.update(self.parser.detect_table_references(where))
@@ -160,35 +181,31 @@ class QueryBuilder:
             # Deduplicate JOINs to the same table by combining conditions with OR
             joins = self._deduplicate_joins(joins)
 
-        # Extract array expansion from WHERE condition if present
-        # Array expansion is now represented as ArrayExpansionExpression in the parsed tree
-        array_expansion = None
-        is_array_expansion_in_or = False
-        if where_condition:
-            array_expansion, is_array_expansion_in_or = (
-                self._extract_array_expansion_from_condition(where_condition)
-            )
+            # Remove join conditions from WHERE clause (they're now in JOIN ON clauses)
+            if joins and where_condition:
+                for join in joins:
+                    where_condition = self._remove_join_condition(
+                        where_condition, join.condition
+                    )
+                    if where_condition is None:
+                        # All conditions were join conditions - break
+                        break
 
-            # If array expansion is found, update parser context for item_var
-            # This allows "item.attr" in what clause to be parsed correctly
-            if array_expansion:
-                self.parser.item_var = array_expansion.item_var
-                self.parser.array_path = array_expansion.array_path
-
-                # Re-parse what clause with item_var context if needed
-                # Check if what clause references the item variable
-                if what:
-                    if isinstance(what, str) and array_expansion.item_var in what:
-                        # Re-parse with item_var context
+        # If array expansion was found, re-parse what clause with item_var context if needed
+        if array_expansion:
+            # Check if what clause references the item variable
+            if what:
+                if isinstance(what, str) and array_expansion.item_var in what:
+                    # Re-parse with item_var context
+                    select_expressions = self._parse_what(what)
+                elif isinstance(what, list):
+                    # Check if any item references the item variable
+                    needs_reparse = any(
+                        isinstance(w, str) and array_expansion.item_var in w
+                        for w in what
+                    )
+                    if needs_reparse:
                         select_expressions = self._parse_what(what)
-                    elif isinstance(what, list):
-                        # Check if any item references the item variable
-                        needs_reparse = any(
-                            isinstance(w, str) and array_expansion.item_var in w
-                            for w in what
-                        )
-                        if needs_reparse:
-                            select_expressions = self._parse_what(what)
 
         # Handle UNION query for array expansion in OR expressions
         if is_array_expansion_in_or:
@@ -482,6 +499,109 @@ class QueryBuilder:
 
         # Not an array expansion condition - return as-is
         return condition
+
+    def _remove_join_condition(
+        self, condition: Expression, join_condition: Expression
+    ) -> Optional[Expression]:
+        """Remove join condition from WHERE clause expression.
+
+        Returns the expression with join condition removed.
+        Returns None if the entire expression was just the join condition.
+        """
+        from .query_model import (
+            CompareExpression,
+            BoolOpExpression,
+        )
+
+        # Check if this condition matches the join condition
+        if self._expressions_equal(condition, join_condition):
+            # This is the join condition - remove it
+            return None
+
+        # Check inside BoolOp expressions
+        if isinstance(condition, BoolOpExpression):
+            # Recursively remove from all values
+            filtered_values = []
+            for value in condition.values:
+                filtered = self._remove_join_condition(value, join_condition)
+                if filtered is not None:
+                    filtered_values.append(filtered)
+
+            if not filtered_values:
+                # All conditions were join conditions - return None
+                return None
+            elif len(filtered_values) == 1:
+                # Only one condition left - return it directly
+                return filtered_values[0]
+            else:
+                # Multiple conditions left - return BoolOp with filtered values
+                return BoolOpExpression(
+                    operator=condition.operator,
+                    values=filtered_values,
+                )
+
+        # Not a join condition - return as-is
+        return condition
+
+    def _expressions_equal(self, expr1: Expression, expr2: Expression) -> bool:
+        """Check if two expressions are equal (same structure and values)."""
+        from .query_model import (
+            CompareExpression,
+            AttributeExpression,
+            ConstantExpression,
+            UnaryOpExpression,
+        )
+
+        # Type must match
+        if type(expr1) != type(expr2):
+            return False
+
+        # For CompareExpression, check if left and right sides match
+        if isinstance(expr1, CompareExpression) and isinstance(
+            expr2, CompareExpression
+        ):
+            if (
+                len(expr1.operators) == len(expr2.operators)
+                and len(expr1.comparators) == len(expr2.comparators)
+                and expr1.operators == expr2.operators
+            ):
+                # Check if left sides match
+                if not self._expressions_equal(expr1.left, expr2.left):
+                    return False
+
+                # Check if comparators match
+                for c1, c2 in zip(expr1.comparators, expr2.comparators):
+                    if not self._expressions_equal(c1, c2):
+                        return False
+                return True
+            return False
+
+        # For AttributeExpression, check table_name and attribute_path
+        if isinstance(expr1, AttributeExpression) and isinstance(
+            expr2, AttributeExpression
+        ):
+            return (
+                expr1.table_name == expr2.table_name
+                and expr1.attribute_path == expr2.attribute_path
+            )
+
+        # For ConstantExpression, check value
+        if isinstance(expr1, ConstantExpression) and isinstance(
+            expr2, ConstantExpression
+        ):
+            return expr1.value == expr2.value
+
+        # For UnaryOpExpression, check operator and operand
+        if isinstance(expr1, UnaryOpExpression) and isinstance(
+            expr2, UnaryOpExpression
+        ):
+            return expr1.operator == expr2.operator and self._expressions_equal(
+                expr1.operand, expr2.operand
+            )
+
+        # For other types, use string representation as fallback
+        # This is not perfect but should work for most cases
+        return str(expr1) == str(expr2)
 
     def _is_array_expansion_in_or(
         self, where_condition: Expression, array_expansion: ArrayExpansion
