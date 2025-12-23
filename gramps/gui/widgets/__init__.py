@@ -43,3 +43,4 @@ from .validatedcomboentry import *
 from .validatedmaskedentry import *
 from .placewithin import *
 from .persistenttreeview import *
+from .filterexpressionentry import FilterExpressionEntry
