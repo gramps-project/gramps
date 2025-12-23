@@ -672,24 +672,81 @@ class SQLGenerator:
         """Generate SQL for any() pattern."""
         # Generate EXISTS subquery
         # Build array expression
-        from .query_model import AttributeExpression
+        from .query_model import AttributeExpression, CallExpression, ConstantExpression
 
-        array_attr = AttributeExpression(
-            table_name=self.base_table,
-            attribute_path=expr.array_path,
-            is_database_column=False,
-        )
-        array_sql = self.generate_expression(array_attr)
-        json_each_expr = self._format_json_each(array_sql)
+        # Check if this is a concatenated array
+        if expr.array_info and expr.array_info.get("type") == "concatenated":
+            # For concatenated arrays: [person.primary_name] + person.alternate_names
+            # Left side: wrap primary_name in json_array() since it's a single object
+            left_attr = expr.array_info["left"]
+            left_sql = self.generate_expression(left_attr)
+            # Wrap left side in json_array() to make it an array
+            left_array = CallExpression(
+                function=ConstantExpression(value="json_array"),
+                arguments=[left_attr],
+            )
+            left_array_sql = self.generate_expression(left_array)
 
-        if expr.condition:
-            # Parse condition with item_var context
-            # For now, generate placeholder - condition needs special handling
-            # The condition should reference the item variable
-            condition_sql = "1=1"  # Placeholder
-            return f"EXISTS (SELECT 1 FROM {json_each_expr} WHERE {condition_sql})"
+            # Right side: alternate_names is already an array
+            right_path = expr.array_info["right_path"]
+            right_attr = AttributeExpression(
+                table_name=self.base_table,
+                attribute_path=right_path,
+                is_database_column=False,
+            )
+            right_array_sql = self.generate_expression(right_attr)
+
+            # Combine arrays: in SQLite, we can use json_array() with multiple args
+            # or concatenate using json_each on both and UNION
+            # For simplicity, use json_array() to combine them
+            if self.dialect == "sqlite":
+                # SQLite: json_array() can take multiple arguments
+                # But we need to concatenate two arrays, not create an array of two arrays
+                # Use json_each on both arrays with UNION
+                left_json_each = self._format_json_each(left_array_sql)
+                right_json_each = self._format_json_each(right_array_sql)
+                # Use UNION to combine results from both arrays
+                if expr.condition:
+                    condition_sql = self.generate_expression(expr.condition)
+                    return f"EXISTS (SELECT 1 FROM {left_json_each} WHERE {condition_sql} UNION SELECT 1 FROM {right_json_each} WHERE {condition_sql})"
+                else:
+                    return f"EXISTS (SELECT 1 FROM {left_json_each} UNION SELECT 1 FROM {right_json_each})"
+            elif self.dialect == "postgres":
+                # PostgreSQL: similar approach
+                left_json_each = self._format_json_each(left_array_sql)
+                right_json_each = self._format_json_each(right_array_sql)
+                if expr.condition:
+                    condition_sql = self.generate_expression(expr.condition)
+                    return f"EXISTS (SELECT 1 FROM {left_json_each} WHERE {condition_sql} UNION SELECT 1 FROM {right_json_each} WHERE {condition_sql})"
+                else:
+                    return f"EXISTS (SELECT 1 FROM {left_json_each} UNION SELECT 1 FROM {right_json_each})"
+            else:
+                # Default to SQLite behavior
+                left_json_each = self._format_json_each(left_array_sql)
+                right_json_each = self._format_json_each(right_array_sql)
+                if expr.condition:
+                    condition_sql = self.generate_expression(expr.condition)
+                    return f"EXISTS (SELECT 1 FROM {left_json_each} WHERE {condition_sql} UNION SELECT 1 FROM {right_json_each} WHERE {condition_sql})"
+                else:
+                    return f"EXISTS (SELECT 1 FROM {left_json_each} UNION SELECT 1 FROM {right_json_each})"
         else:
-            return f"EXISTS (SELECT 1 FROM {json_each_expr})"
+            # Single array
+            array_attr = AttributeExpression(
+                table_name=self.base_table,
+                attribute_path=expr.array_path,
+                is_database_column=False,
+            )
+            array_sql = self.generate_expression(array_attr)
+            json_each_expr = self._format_json_each(array_sql)
+
+            if expr.condition:
+                # Generate SQL for the condition expression
+                # The condition should already have json_each table references
+                # because it was parsed in the context of the list comprehension
+                condition_sql = self.generate_expression(expr.condition)
+                return f"EXISTS (SELECT 1 FROM {json_each_expr} WHERE {condition_sql})"
+            else:
+                return f"EXISTS (SELECT 1 FROM {json_each_expr})"
 
     def _generate_array_expansion_expr(self, expr: ArrayExpansionExpression) -> str:
         """Generate SQL for array expansion expression."""

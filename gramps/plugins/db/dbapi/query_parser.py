@@ -300,6 +300,7 @@ class QueryParser:
                     return AnyExpression(
                         item_var=listcomp.item_var,
                         array_path=listcomp.array_info.get("path", ""),
+                        array_info=listcomp.array_info,
                         condition=listcomp.condition,
                     )
 

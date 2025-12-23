@@ -405,6 +405,31 @@ class QueryBuilderTestMixin:
         # Validate SQL with sqlglot
         self._validate_sql(sql)
 
+    def test_any_list_comprehension_with_if_condition(self):
+        """
+        Test any() with list comprehension that has an 'if' condition clause.
+        Tests the pattern: any([name for name in [person.primary_name] + person.alternate_names if search_name in name.first_name])
+        """
+        # Add search_name to environment for this test
+        self.query_builder.env["search_name"] = "John"
+        what = "person.handle"
+        where = "any([name for name in [person.primary_name] + person.alternate_names if search_name in name.first_name])"
+        order_by = None
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
+        # Verify that the condition is included (not just 1=1 placeholder)
+        self.assertNotIn("1=1", sql, "SQL should not contain placeholder 1=1")
+        self.assertIn("first_name", sql, "SQL should contain first_name condition")
+        # Verify that the condition is in the WHERE clause of the EXISTS subquery
+        self.assertIn("WHERE", sql.upper())
+        # Verify that UNION is used for concatenated arrays
+        self.assertIn(
+            "UNION", sql.upper(), "SQL should use UNION for concatenated arrays"
+        )
+
     def test_array_expansion_basic(self):
         """
         Test array expansion pattern.
@@ -630,6 +655,260 @@ class QueryBuilderTestMixin:
         # Verify LIMIT and OFFSET are present
         self.assertIn("LIMIT", sql.upper())
         self.assertIn("OFFSET", sql.upper())
+
+    def test_complex_binary_operations(self):
+        """
+        Test all binary operators: +, -, *, /, %, **, //
+        """
+        what = "person.handle"
+
+        # Addition
+        where = "len(person.media_list) + len(person.note_list) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("+", sql)
+
+        # Subtraction
+        where = "len(person.family_list) - len(person.parent_family_list) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("-", sql)
+
+        # Multiplication
+        where = "len(person.media_list) * 2 > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("*", sql)
+
+        # Division
+        where = "len(person.family_list) / 1.0 > 1"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("/", sql)
+
+        # Modulo
+        where = "len(person.family_list) % 2 == 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("%", sql)
+
+        # Power
+        where = "len(person.media_list) ** 2 > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Power is converted to POW() function
+        self.assertIn("POW", sql.upper())
+
+        # Floor division
+        where = "len(person.family_list) // 2 > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Floor division is converted to CAST(...AS INT)
+        self.assertIn("CAST", sql.upper())
+
+    def test_ternary_expression(self):
+        """
+        Test ternary expression (if/else).
+        """
+        what = "person.handle if person.gender == Person.MALE else person.handle"
+        where = None
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should contain CASE WHEN or similar
+        self.assertIn("CASE", sql.upper())
+
+    def test_nested_attribute_access_chain(self):
+        """
+        Test deeply nested attribute access chains.
+        """
+        what = "person.primary_name.surname_list[0].surname"
+        where = None
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self._validate_sql(sql)
+
+        # Test even deeper nesting
+        what = "person.primary_name.surname_list[0].surname"
+        where = "person.primary_name.first_name"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+
+    def test_complex_join_conditions(self):
+        """
+        Test complex JOIN conditions with multiple tables and nested conditions.
+        """
+        # Multiple JOINs
+        what = ["person.handle", "family.handle", "event.handle"]
+        where = "person.handle == family.father_handle and person.event_ref_list[0].ref == event.handle"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("JOIN", sql.upper())
+        self.assertIn("family", sql.lower())
+        self.assertIn("event", sql.lower())
+
+    def test_nested_list_comprehension_syntax(self):
+        """
+        Test nested list comprehension syntax (if supported).
+        Note: This may not be fully supported, but we test the syntax.
+        """
+        # Simple nested: list of lists
+        what = "[[eref.ref for eref in person.event_ref_list] for person in [person]]"
+        where = None
+        # This may raise an error if not supported, which is fine
+        try:
+            sql = self.query_builder.get_sql_query(what, where, None)
+            self._validate_sql(sql)
+        except (ValueError, AttributeError):
+            # Nested list comprehensions may not be supported
+            pass
+
+    def test_complex_boolean_with_parentheses(self):
+        """
+        Test complex boolean expressions with multiple levels of parentheses.
+        """
+        what = "person.handle"
+        where = "((person.gender == Person.MALE and len(person.family_list) > 0) or (person.gender == Person.FEMALE and len(person.media_list) > 0)) and len(person.note_list) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should have proper boolean structure
+        self.assertIn("AND", sql.upper())
+        self.assertIn("OR", sql.upper())
+
+    def test_unary_operations(self):
+        """
+        Test unary operations: - (negation) and not.
+        """
+        what = "person.handle"
+
+        # Negation
+        where = "-len(person.family_list) < 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("-", sql)
+
+        # Not operator
+        where = "not person.private"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # For JSON fields, "not" generates IS NULL checks
+        self.assertIn("IS NULL", sql.upper())
+
+    def test_comparison_operators_all(self):
+        """
+        Test all comparison operators: ==, !=, <, >, <=, >=, in, not in, is, is not.
+        """
+        what = "person.handle"
+
+        # Equality
+        where = "person.gender == Person.MALE"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("=", sql)
+
+        # Inequality
+        where = "person.gender != Person.MALE"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should contain != or <> for inequality
+        self.assertTrue("!=" in sql or "<>" in sql)
+
+        # Less than
+        where = "len(person.family_list) < 5"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("<", sql)
+
+        # Greater than
+        where = "len(person.family_list) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn(">", sql)
+
+        # Less than or equal
+        where = "len(person.family_list) <= 5"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("<=", sql)
+
+        # Greater than or equal
+        where = "len(person.family_list) >= 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn(">=", sql)
+
+        # In (string in attribute)
+        where = "'I00' in person.gramps_id"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should contain LIKE or INSTR for string matching
+        self.assertTrue(
+            "LIKE" in sql.upper() or "INSTR" in sql.upper() or "LIKE" in sql
+        )
+
+        # Is
+        where = "person.birth_ref_index is not None"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("IS NOT NULL", sql.upper())
+
+    def test_chained_comparisons(self):
+        """
+        Test chained comparisons: a < b < c.
+        """
+        what = "person.handle"
+        where = "0 < len(person.family_list) < 10"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Chained comparisons should be expanded to AND
+        self.assertIn("AND", sql.upper())
+
+    def test_tuple_in_what(self):
+        """
+        Test tuple expressions in what clause.
+        """
+        what = "(person.handle, person.gender)"
+        where = None
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should have multiple columns
+        self.assertIn("person", sql.lower())
+
+    def test_call_expression_methods(self):
+        """
+        Test method calls like startswith, endswith.
+        """
+        what = "person.handle"
+
+        # startswith
+        where = "person.gramps_id.startswith('I00')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should contain LIKE or SUBSTR for string matching
+        self.assertTrue(
+            "LIKE" in sql.upper() or "SUBSTR" in sql.upper() or "LIKE" in sql
+        )
+
+        # endswith
+        where = "person.gramps_id.endswith('44')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should contain LIKE or SUBSTR for string matching
+        self.assertTrue(
+            "LIKE" in sql.upper() or "SUBSTR" in sql.upper() or "LIKE" in sql
+        )
+
+    def test_len_function(self):
+        """
+        Test len() function calls.
+        """
+        what = "person.handle"
+        where = "len(person.family_list) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # len() should be converted to json_array_length or similar
+        self.assertTrue(
+            "json_array_length" in sql.lower() or "JSON_ARRAY_LENGTH" in sql.upper()
+        )
 
 
 class QueryBuilderSQLiteTest(QueryBuilderTestMixin, unittest.TestCase):

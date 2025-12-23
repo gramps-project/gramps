@@ -33,6 +33,15 @@ from .query_model import (
     AnyExpression,
     BoolOpExpression,
     CompareExpression,
+    ConstantExpression,
+    AttributeExpression,
+    ArrayAccessExpression,
+    BinaryOpExpression,
+    UnaryOpExpression,
+    CallExpression,
+    IfExpression,
+    TupleExpression,
+    ArrayExpansionExpression,
 )
 from .query_parser import QueryParser
 from .sql_generator import SQLGenerator
@@ -48,6 +57,556 @@ DATABASE_COLUMNS: Dict[str, List[str]] = {
     ],
     # Add other tables' database columns here as needed
 }
+
+
+class ExpressionVisitor:
+    """
+    Base visitor class for traversing and transforming expression trees recursively.
+
+    This provides a uniform way to traverse expression trees and perform operations
+    like equality checking, condition removal, normalization, and validation.
+    """
+
+    def visit(self, expr: Expression) -> Optional[Expression]:
+        """
+        Visit an expression node and dispatch to the appropriate visitor method.
+
+        Args:
+            expr: Expression to visit
+
+        Returns:
+            Transformed expression (default: returns as-is), or None if expression should be removed
+        """
+        method_name = f"visit_{type(expr).__name__}"
+        method = getattr(self, method_name, self.generic_visit)
+        return method(expr)
+
+    def generic_visit(self, expr: Expression) -> Optional[Expression]:
+        """
+        Default visitor method for expressions without specific handlers.
+
+        Args:
+            expr: Expression to visit
+
+        Returns:
+            Expression unchanged
+        """
+        return expr
+
+    def visit_ConstantExpression(
+        self, expr: ConstantExpression
+    ) -> Optional[Expression]:
+        """Visit a constant expression."""
+        return self.generic_visit(expr)
+
+    def visit_AttributeExpression(
+        self, expr: AttributeExpression
+    ) -> Optional[Expression]:
+        """Visit an attribute expression, recursively visiting base if present."""
+        if expr.base is not None:
+            visited_base = self.visit(expr.base)
+            if visited_base is None:
+                return None
+            expr.base = visited_base
+        return self.generic_visit(expr)
+
+    def visit_ArrayAccessExpression(
+        self, expr: ArrayAccessExpression
+    ) -> Optional[Expression]:
+        """Visit an array access expression, recursively visiting base and index."""
+        visited_base = self.visit(expr.base)
+        if visited_base is None:
+            return None
+        expr.base = visited_base
+        visited_index = self.visit(expr.index)
+        if visited_index is None:
+            return None
+        expr.index = visited_index
+        return self.generic_visit(expr)
+
+    def visit_BinaryOpExpression(
+        self, expr: BinaryOpExpression
+    ) -> Optional[Expression]:
+        """Visit a binary operation, recursively visiting left and right."""
+        visited_left = self.visit(expr.left)
+        if visited_left is None:
+            return None
+        expr.left = visited_left
+        visited_right = self.visit(expr.right)
+        if visited_right is None:
+            return None
+        expr.right = visited_right
+        return self.generic_visit(expr)
+
+    def visit_UnaryOpExpression(self, expr: UnaryOpExpression) -> Optional[Expression]:
+        """Visit a unary operation, recursively visiting operand."""
+        visited_operand = self.visit(expr.operand)
+        if visited_operand is None:
+            return None
+        expr.operand = visited_operand
+        return self.generic_visit(expr)
+
+    def visit_CompareExpression(self, expr: CompareExpression) -> Optional[Expression]:
+        """Visit a comparison, recursively visiting left and comparators."""
+        visited_left = self.visit(expr.left)
+        if visited_left is None:
+            return None
+        expr.left = visited_left
+        visited_comparators: List[Expression] = []
+        for comp in expr.comparators:
+            visited_comp = self.visit(comp)
+            if visited_comp is None:
+                return None
+            visited_comparators.append(visited_comp)
+        expr.comparators = visited_comparators
+        return self.generic_visit(expr)
+
+    def visit_BoolOpExpression(self, expr: BoolOpExpression) -> Optional[Expression]:
+        """Visit a boolean operation, recursively visiting all values."""
+        visited_values: List[Expression] = []
+        for val in expr.values:
+            visited_val = self.visit(val)
+            if visited_val is not None:
+                visited_values.append(visited_val)
+        if not visited_values:
+            return None
+        expr.values = visited_values
+        return self.generic_visit(expr)
+
+    def visit_CallExpression(self, expr: CallExpression) -> Optional[Expression]:
+        """Visit a function call, recursively visiting function and arguments."""
+        visited_function = self.visit(expr.function)
+        if visited_function is None:
+            return None
+        expr.function = visited_function
+        visited_arguments = []
+        for arg in expr.arguments:
+            visited_arg = self.visit(arg)
+            if visited_arg is None:
+                return None
+            visited_arguments.append(visited_arg)
+        expr.arguments = visited_arguments
+        return self.generic_visit(expr)
+
+    def visit_IfExpression(self, expr: IfExpression) -> Optional[Expression]:
+        """Visit a ternary expression, recursively visiting test, body, and orelse."""
+        visited_test = self.visit(expr.test)
+        if visited_test is None:
+            return None
+        expr.test = visited_test
+        visited_body = self.visit(expr.body)
+        if visited_body is None:
+            return None
+        expr.body = visited_body
+        visited_orelse = self.visit(expr.orelse)
+        if visited_orelse is None:
+            return None
+        expr.orelse = visited_orelse
+        return self.generic_visit(expr)
+
+    def visit_ListComprehensionExpression(
+        self, expr: ListComprehensionExpression
+    ) -> Optional[Expression]:
+        """Visit a list comprehension, recursively visiting expression and condition."""
+        visited_expression = self.visit(expr.expression)
+        if visited_expression is None:
+            return None
+        expr.expression = visited_expression
+        if expr.condition is not None:
+            visited_condition = self.visit(expr.condition)
+            if visited_condition is None:
+                return None
+            expr.condition = visited_condition
+        return self.generic_visit(expr)
+
+    def visit_AnyExpression(self, expr: AnyExpression) -> Optional[Expression]:
+        """Visit an any() expression, recursively visiting condition if present."""
+        if expr.condition is not None:
+            visited_condition = self.visit(expr.condition)
+            if visited_condition is None:
+                return None
+            expr.condition = visited_condition
+        return self.generic_visit(expr)
+
+    def visit_ArrayExpansionExpression(
+        self, expr: ArrayExpansionExpression
+    ) -> Optional[Expression]:
+        """Visit an array expansion, recursively visiting array expression."""
+        visited_array = self.visit(expr.array_expression)
+        if visited_array is None:
+            return None
+        expr.array_expression = visited_array
+        return self.generic_visit(expr)
+
+    def visit_TupleExpression(self, expr: TupleExpression) -> Optional[Expression]:
+        """Visit a tuple, recursively visiting all elements."""
+        visited_elements = []
+        for elem in expr.elements:
+            visited_elem = self.visit(elem)
+            if visited_elem is None:
+                return None
+            visited_elements.append(visited_elem)
+        expr.elements = visited_elements
+        return self.generic_visit(expr)
+
+
+class ExpressionEqualityVisitor:
+    """
+    Visitor to check if two expressions are equal.
+    This doesn't inherit from ExpressionVisitor because it returns bool, not Expression.
+    """
+
+    def __init__(self, target: Expression):
+        """
+        Initialize with target expression to compare against.
+
+        Args:
+            target: Expression to compare with
+        """
+        self.target = target
+
+    def visit(self, expr: Expression) -> bool:
+        """
+        Visit expression and check equality with target.
+
+        Args:
+            expr: Expression to check
+
+        Returns:
+            True if expressions are equal, False otherwise
+        """
+        # Type must match
+        if type(expr) != type(self.target):
+            return False
+
+        method_name = f"visit_{type(expr).__name__}"
+        method = getattr(self, method_name, self.generic_visit)
+        return method(expr)
+
+    def generic_visit(self, expr: Expression) -> bool:
+        """Default equality check using string representation."""
+        return str(expr) == str(self.target)
+
+    def visit_CompareExpression(self, expr: CompareExpression) -> bool:
+        """Check equality of comparison expressions."""
+        if not isinstance(self.target, CompareExpression):
+            return False
+        target = self.target
+        if (
+            len(expr.operators) == len(target.operators)
+            and len(expr.comparators) == len(target.comparators)
+            and expr.operators == target.operators
+        ):
+            # Check if left sides match
+            if not ExpressionEqualityVisitor(target.left).visit(expr.left):
+                return False
+            # Check if comparators match
+            for c1, c2 in zip(expr.comparators, target.comparators):
+                if not ExpressionEqualityVisitor(c2).visit(c1):
+                    return False
+            return True
+        return False
+
+    def visit_AttributeExpression(self, expr: AttributeExpression) -> bool:
+        """Check equality of attribute expressions."""
+        if not isinstance(self.target, AttributeExpression):
+            return False
+        target = self.target
+        if (
+            expr.table_name == target.table_name
+            and expr.attribute_path == target.attribute_path
+            and expr.is_database_column == target.is_database_column
+        ):
+            # Check base expressions if present
+            if expr.base is None and target.base is None:
+                return True
+            if expr.base is not None and target.base is not None:
+                return ExpressionEqualityVisitor(target.base).visit(expr.base)
+            return False
+        return False
+
+    def visit_ConstantExpression(self, expr: ConstantExpression) -> bool:
+        """Check equality of constant expressions."""
+        if not isinstance(self.target, ConstantExpression):
+            return False
+        return expr.value == self.target.value
+
+    def visit_UnaryOpExpression(self, expr: UnaryOpExpression) -> bool:
+        """Check equality of unary operation expressions."""
+        if not isinstance(self.target, UnaryOpExpression):
+            return False
+        target = self.target
+        if expr.operator == target.operator:
+            return ExpressionEqualityVisitor(target.operand).visit(expr.operand)
+        return False
+
+    def visit_BinaryOpExpression(self, expr: BinaryOpExpression) -> bool:
+        """Check equality of binary operation expressions."""
+        if not isinstance(self.target, BinaryOpExpression):
+            return False
+        target = self.target
+        if expr.operator == target.operator:
+            return ExpressionEqualityVisitor(target.left).visit(
+                expr.left
+            ) and ExpressionEqualityVisitor(target.right).visit(expr.right)
+        return False
+
+    def visit_BoolOpExpression(self, expr: BoolOpExpression) -> bool:
+        """Check equality of boolean operation expressions."""
+        if not isinstance(self.target, BoolOpExpression):
+            return False
+        target = self.target
+        if expr.operator == target.operator and len(expr.values) == len(target.values):
+            return all(
+                ExpressionEqualityVisitor(target_val).visit(expr_val)
+                for expr_val, target_val in zip(expr.values, target.values)
+            )
+        return False
+
+    def visit_ArrayAccessExpression(self, expr: ArrayAccessExpression) -> bool:
+        """Check equality of array access expressions."""
+        if not isinstance(self.target, ArrayAccessExpression):
+            return False
+        target = self.target
+        if expr.is_constant_index == target.is_constant_index:
+            return ExpressionEqualityVisitor(target.base).visit(
+                expr.base
+            ) and ExpressionEqualityVisitor(target.index).visit(expr.index)
+        return False
+
+    def visit_CallExpression(self, expr: CallExpression) -> bool:
+        """Check equality of function call expressions."""
+        if not isinstance(self.target, CallExpression):
+            return False
+        target = self.target
+        if len(expr.arguments) == len(target.arguments):
+            return ExpressionEqualityVisitor(target.function).visit(
+                expr.function
+            ) and all(
+                ExpressionEqualityVisitor(target_arg).visit(expr_arg)
+                for expr_arg, target_arg in zip(expr.arguments, target.arguments)
+            )
+        return False
+
+
+class ConditionRemovalVisitor(ExpressionVisitor):
+    """
+    Visitor to remove a specific condition from an expression tree.
+    """
+
+    def __init__(self, condition_to_remove: Expression, equality_checker):
+        """
+        Initialize with condition to remove and equality checker function.
+
+        Args:
+            condition_to_remove: Condition expression to remove
+            equality_checker: Function to check expression equality
+        """
+        self.condition_to_remove = condition_to_remove
+        self.equality_checker = equality_checker
+
+    def visit(self, expr: Expression) -> Optional[Expression]:
+        """
+        Visit expression and remove matching condition.
+
+        Args:
+            expr: Expression to process
+
+        Returns:
+            Expression with condition removed, or None if entire expression was removed
+        """
+        # Check if this expression matches the condition to remove
+        if self.equality_checker(expr, self.condition_to_remove):
+            return None
+
+        # Continue with normal visitor pattern
+        return super().visit(expr)
+
+    def visit_BoolOpExpression(self, expr: BoolOpExpression) -> Optional[Expression]:
+        """Recursively remove condition from boolean operation."""
+        filtered_values = []
+        for value in expr.values:
+            filtered = self.visit(value)
+            if filtered is not None:
+                filtered_values.append(filtered)
+
+        if not filtered_values:
+            # All conditions were removed
+            return None
+        elif len(filtered_values) == 1:
+            # Only one condition left - return it directly
+            return filtered_values[0]
+        else:
+            # Multiple conditions left - return BoolOp with filtered values
+            return BoolOpExpression(
+                operator=expr.operator,
+                values=filtered_values,
+            )
+
+
+class ArrayExpansionRemovalVisitor(ExpressionVisitor):
+    """
+    Visitor to remove array expansion conditions from an expression tree.
+    """
+
+    def __init__(self, array_expansion: ArrayExpansion):
+        """
+        Initialize with array expansion to remove.
+
+        Args:
+            array_expansion: ArrayExpansion object identifying the condition to remove
+        """
+        self.array_expansion = array_expansion
+
+    def visit(self, expr: Expression) -> Optional[Expression]:
+        """
+        Visit expression and remove array expansion condition.
+
+        Args:
+            expr: Expression to process
+
+        Returns:
+            Expression with array expansion removed, or None if entire expression was removed
+        """
+        # Check if this is an array expansion condition
+        if isinstance(expr, CompareExpression):
+            if len(expr.operators) == 1 and expr.operators[0] == "in":
+                # Check if left is the item variable
+                left_is_item = False
+                if isinstance(expr.left, AttributeExpression):
+                    left_is_item = (
+                        expr.left.table_name == "json_each"
+                        and expr.left.attribute_path == ""
+                    )
+                elif isinstance(expr.left, ConstantExpression):
+                    left_is_item = expr.left.value == self.array_expansion.item_var
+
+                # Check if right matches the array path
+                if (
+                    left_is_item
+                    and len(expr.comparators) > 0
+                    and isinstance(expr.comparators[0], AttributeExpression)
+                    and expr.comparators[0].attribute_path
+                    == self.array_expansion.array_path
+                ):
+                    # This is the array expansion condition - remove it
+                    return None
+
+        # Continue with normal visitor pattern
+        return super().visit(expr)
+
+    def visit_BoolOpExpression(self, expr: BoolOpExpression) -> Optional[Expression]:
+        """Recursively remove array expansion from boolean operation."""
+        filtered_values = []
+        for value in expr.values:
+            filtered = self.visit(value)
+            if filtered is not None:
+                filtered_values.append(filtered)
+
+        if not filtered_values:
+            # All conditions were array expansion - return None
+            return None
+        elif len(filtered_values) == 1:
+            # Only one condition left - return it directly
+            return filtered_values[0]
+        else:
+            # Multiple conditions left - return BoolOp with filtered values
+            return BoolOpExpression(
+                operator=expr.operator,
+                values=filtered_values,
+            )
+
+
+class ExpressionNormalizationVisitor(ExpressionVisitor):
+    """
+    Visitor to normalize expression trees by flattening nested operations.
+    """
+
+    def visit_BoolOpExpression(self, expr: BoolOpExpression) -> Optional[Expression]:
+        """Flatten nested boolean operations of the same type."""
+        # First, recursively normalize all values
+        normalized_values: List[Expression] = []
+        for value in expr.values:
+            normalized = self.visit(value)
+            if normalized is None:
+                continue
+            # If normalized value is the same operator, flatten it
+            if (
+                isinstance(normalized, BoolOpExpression)
+                and normalized.operator == expr.operator
+            ):
+                normalized_values.extend(normalized.values)
+            else:
+                normalized_values.append(normalized)
+
+        # If no values remain, return None
+        if not normalized_values:
+            return None
+        # If only one value remains, return it directly
+        if len(normalized_values) == 1:
+            return normalized_values[0]
+
+        # Return normalized BoolOp with flattened values
+        return BoolOpExpression(
+            operator=expr.operator,
+            values=normalized_values,
+        )
+
+    def visit_CompareExpression(self, expr: CompareExpression) -> Optional[Expression]:
+        """Normalize comparison expressions."""
+        # Recursively normalize left and comparators
+        normalized_left = self.visit(expr.left)
+        if normalized_left is None:
+            return None
+        normalized_comparators: List[Expression] = []
+        for comp in expr.comparators:
+            normalized_comp = self.visit(comp)
+            if normalized_comp is None:
+                return None
+            normalized_comparators.append(normalized_comp)
+
+        return CompareExpression(
+            left=normalized_left,
+            operators=expr.operators,
+            comparators=normalized_comparators,
+        )
+
+
+class ExpressionValidationVisitor(ExpressionVisitor):
+    """
+    Visitor to validate expression trees are well-formed.
+    """
+
+    def visit_CompareExpression(self, expr: CompareExpression) -> Optional[Expression]:
+        """Validate comparison expression has matching operators and comparators."""
+        if len(expr.operators) != len(expr.comparators):
+            raise ValueError(
+                f"CompareExpression has {len(expr.operators)} operators "
+                f"but {len(expr.comparators)} comparators"
+            )
+        if not expr.operators:
+            raise ValueError("CompareExpression must have at least one operator")
+        return super().visit_CompareExpression(expr)
+
+    def visit_BoolOpExpression(self, expr: BoolOpExpression) -> Optional[Expression]:
+        """Validate boolean operation has at least one value."""
+        if not expr.values:
+            raise ValueError("BoolOpExpression must have at least one value")
+        if expr.operator not in ("and", "or"):
+            raise ValueError(f"Invalid boolean operator: {expr.operator}")
+        return super().visit_BoolOpExpression(expr)
+
+    def visit_CallExpression(self, expr: CallExpression) -> Optional[Expression]:
+        """Validate function call has valid function and arguments."""
+        if expr.function is None:
+            raise ValueError("CallExpression must have a function")
+        return super().visit_CallExpression(expr)
+
+    def visit_IfExpression(self, expr: IfExpression) -> Optional[Expression]:
+        """Validate ternary expression has all required parts."""
+        if expr.test is None or expr.body is None or expr.orelse is None:
+            raise ValueError("IfExpression must have test, body, and orelse")
+        return super().visit_IfExpression(expr)
 
 
 class QueryBuilder:
@@ -439,66 +998,9 @@ class QueryBuilder:
         Returns the expression with array expansion conditions removed.
         Returns None if the entire expression was just the array expansion.
         """
-        from .query_model import (
-            CompareExpression,
-            BoolOpExpression,
-            AttributeExpression,
-            ConstantExpression,
-        )
-
-        # Check if this is the array expansion condition itself
-        # Pattern: item in person.array_path
-        # Left side: item (parsed as AttributeExpression with table_name="json_each" when item_var is set,
-        #            or as ConstantExpression with value="item" when not in array expansion context)
-        # Right side: person.array_path (parsed as AttributeExpression)
-        if isinstance(condition, CompareExpression):
-            if len(condition.operators) == 1 and condition.operators[0] == "in":
-                # Check if left is the item variable (could be AttributeExpression or ConstantExpression)
-                left_is_item = False
-                if isinstance(condition.left, AttributeExpression):
-                    left_is_item = (
-                        condition.left.table_name == "json_each"
-                        and condition.left.attribute_path == ""
-                    )
-                elif isinstance(condition.left, ConstantExpression):
-                    left_is_item = condition.left.value == array_expansion.item_var
-
-                # Check if right matches the array path
-                if (
-                    left_is_item
-                    and isinstance(condition.comparators[0], AttributeExpression)
-                    and condition.comparators[0].attribute_path
-                    == array_expansion.array_path
-                ):
-                    # This is the array expansion condition - remove it
-                    return None
-
-        # Check inside BoolOp expressions
-        if isinstance(condition, BoolOpExpression):
-            # Recursively remove from all values
-            filtered_values = []
-            for value in condition.values:
-                filtered = self._remove_array_expansion_condition(
-                    value, array_expansion
-                )
-                if filtered is not None:
-                    filtered_values.append(filtered)
-
-            if not filtered_values:
-                # All conditions were array expansion - return None
-                return None
-            elif len(filtered_values) == 1:
-                # Only one condition left - return it directly
-                return filtered_values[0]
-            else:
-                # Multiple conditions left - return BoolOp with filtered values
-                return BoolOpExpression(
-                    operator=condition.operator,
-                    values=filtered_values,
-                )
-
-        # Not an array expansion condition - return as-is
-        return condition
+        visitor = ArrayExpansionRemovalVisitor(array_expansion)
+        result = visitor.visit(condition)
+        return result
 
     def _remove_join_condition(
         self, condition: Expression, join_condition: Expression
@@ -508,100 +1010,14 @@ class QueryBuilder:
         Returns the expression with join condition removed.
         Returns None if the entire expression was just the join condition.
         """
-        from .query_model import (
-            CompareExpression,
-            BoolOpExpression,
-        )
-
-        # Check if this condition matches the join condition
-        if self._expressions_equal(condition, join_condition):
-            # This is the join condition - remove it
-            return None
-
-        # Check inside BoolOp expressions
-        if isinstance(condition, BoolOpExpression):
-            # Recursively remove from all values
-            filtered_values = []
-            for value in condition.values:
-                filtered = self._remove_join_condition(value, join_condition)
-                if filtered is not None:
-                    filtered_values.append(filtered)
-
-            if not filtered_values:
-                # All conditions were join conditions - return None
-                return None
-            elif len(filtered_values) == 1:
-                # Only one condition left - return it directly
-                return filtered_values[0]
-            else:
-                # Multiple conditions left - return BoolOp with filtered values
-                return BoolOpExpression(
-                    operator=condition.operator,
-                    values=filtered_values,
-                )
-
-        # Not a join condition - return as-is
-        return condition
+        visitor = ConditionRemovalVisitor(join_condition, self._expressions_equal)
+        result = visitor.visit(condition)
+        return result
 
     def _expressions_equal(self, expr1: Expression, expr2: Expression) -> bool:
         """Check if two expressions are equal (same structure and values)."""
-        from .query_model import (
-            CompareExpression,
-            AttributeExpression,
-            ConstantExpression,
-            UnaryOpExpression,
-        )
-
-        # Type must match
-        if type(expr1) != type(expr2):
-            return False
-
-        # For CompareExpression, check if left and right sides match
-        if isinstance(expr1, CompareExpression) and isinstance(
-            expr2, CompareExpression
-        ):
-            if (
-                len(expr1.operators) == len(expr2.operators)
-                and len(expr1.comparators) == len(expr2.comparators)
-                and expr1.operators == expr2.operators
-            ):
-                # Check if left sides match
-                if not self._expressions_equal(expr1.left, expr2.left):
-                    return False
-
-                # Check if comparators match
-                for c1, c2 in zip(expr1.comparators, expr2.comparators):
-                    if not self._expressions_equal(c1, c2):
-                        return False
-                return True
-            return False
-
-        # For AttributeExpression, check table_name and attribute_path
-        if isinstance(expr1, AttributeExpression) and isinstance(
-            expr2, AttributeExpression
-        ):
-            return (
-                expr1.table_name == expr2.table_name
-                and expr1.attribute_path == expr2.attribute_path
-            )
-
-        # For ConstantExpression, check value
-        if isinstance(expr1, ConstantExpression) and isinstance(
-            expr2, ConstantExpression
-        ):
-            return expr1.value == expr2.value
-
-        # For UnaryOpExpression, check operator and operand
-        if isinstance(expr1, UnaryOpExpression) and isinstance(
-            expr2, UnaryOpExpression
-        ):
-            return expr1.operator == expr2.operator and self._expressions_equal(
-                expr1.operand, expr2.operand
-            )
-
-        # For other types, use string representation as fallback
-        # This is not perfect but should work for most cases
-        return str(expr1) == str(expr2)
+        visitor = ExpressionEqualityVisitor(expr2)
+        return visitor.visit(expr1)
 
     def _is_array_expansion_in_or(
         self, where_condition: Expression, array_expansion: ArrayExpansion
@@ -831,6 +1247,36 @@ class QueryBuilder:
         )
 
         return left_query, right_query
+
+    def normalize_expression(self, expr: Expression) -> Optional[Expression]:
+        """
+        Normalize an expression tree by flattening nested AND/OR and optimizing comparisons.
+
+        Args:
+            expr: Expression to normalize
+
+        Returns:
+            Normalized expression, or None if expression becomes empty
+        """
+        visitor = ExpressionNormalizationVisitor()
+        return visitor.visit(expr)
+
+    def validate_expression(self, expr: Expression) -> bool:
+        """
+        Recursively validate that an expression tree is well-formed.
+
+        Args:
+            expr: Expression to validate
+
+        Returns:
+            True if expression is valid, False otherwise
+        """
+        visitor = ExpressionValidationVisitor()
+        try:
+            visitor.visit(expr)
+            return True
+        except ValueError:
+            return False
 
     # Compatibility methods (kept for backward compatibility)
     def format_json_extract(self, base_expr):

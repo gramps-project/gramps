@@ -174,6 +174,7 @@ class AnyExpression(Expression):
 
     item_var: str
     array_path: str
+    array_info: Optional[dict] = None  # Full array info for concatenated arrays
     condition: Optional[Expression] = None
 
     def __repr__(self):
