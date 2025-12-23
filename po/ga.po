@@ -6,13 +6,14 @@
 # OscarBrownbread <brian.tuffy@gmail.com>, 2024.
 # Aindriú Mac Giolla Eoin <aindriu80@gmail.com>, 2025.
 # Nick Hall <nick-h@gramps-project.org>, 2025.
+# Seán Ó Séaghdha <sean.anseo@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-11-09 23:51+0000\n"
-"Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
+"PO-Revision-Date: 2025-12-23 17:21+0000\n"
+"Last-Translator: Seán Ó Séaghdha <sean.anseo@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
 "Language: ga\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -243,7 +244,7 @@ msgstr "Bainistigh faisnéis ghinealais, déan taighde agus anailís ghinealais"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr "Genealacht; Stair an Teaghlaigh; Taighde; Crann Teaghlaigh; GEDCOM;"
+msgstr "Ginealas;Stair an Teaghlaigh;Taighde;Crann Ginealaigh;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
 #: ../gramps/gen/const.py:264
@@ -633,10 +634,10 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Iontrálacha Dúblacha</b><br/>Ligeann an uirlis \"Uirlisí > Próiseáil "
-"Crann Teaghlaigh > Aimsigh Daoine Dúblacha Féideartha...\" duit iontrálacha "
-"an duine chéanna atá curtha isteach níos mó ná uair amháin sa bhunachar "
-"sonraí a aimsiú (agus a chumasc)."
+"<b>Iontrálacha Dúblacha</b><br/>Cuireann an uirlis \"Uirlisí > Próiseáil "
+"Crann Ginealaigh > Aimsigh Daoine Dúblacha Féideartha...\" ar do chumas "
+"iontrálacha an duine chéanna atá curtha isteach sa bhunachar sonraí níos mó "
+"ná uair amháin a aimsiú (agus a chumasc)."
 
 #: ../data/tips.xml:44
 msgid ""
@@ -965,10 +966,10 @@ msgid ""
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
-"<b>Formáid Crann Te</b> aghlaigh Gréasáin Is féidir <br/> le Gramps sonraí a "
-"onnmhairiú chuig formáid Crann Teaghlaigh Gréasáin (WFT). Ligeann an "
-"fhormáid seo crann teaghlaigh a thaispeáint ar líne ag baint úsáide as "
-"comhad amháin, in ionad go leor comhaid html."
+"<b>Formáid Web Family Tree</b><br/>Is féidir le Gramps sonraí a easpórtáil "
+"chuig formáid Web Family Tree (WFT). Leis an bhformáid seo is féidir crann "
+"ginealaigh a thaispeáint ar líne le comhad aonair, in ionad lear mór comhad "
+"HTML."
 
 #: ../data/tips.xml:92
 msgid ""
@@ -1204,7 +1205,7 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"Earráid: Tá crann teaghlaigh '%s' ann cheana féin.\n"
+"Earráid: Tá an Crann Ginealaigh '%s' ann cheana féin.\n"
 "Ní féidir an rogha '-C' a úsáid."
 
 #: ../gramps/cli/arghandler.py:247
@@ -1214,9 +1215,9 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
-"Earráid: Níl Crann Teaghlaigh Ionchur “%s” ann.\n"
-"Má tá GEDCOM, Gramps-XML nó grdb, bain úsáid as an rogha -i chun allmhairiú "
-"isteach i gCrann Teaghlaigh ina ionad."
+"Earráid: Níl an Crann Ginealaigh “%s” ann.\n"
+"Más GEDCOM, Gramps-XML nó grdb atá i gceist, bain úsáid as an rogha -i chun "
+"é a iompórtáil i gCrann Ginealaigh ina ionad sin."
 
 #: ../gramps/cli/arghandler.py:263
 #, python-format
@@ -1290,7 +1291,7 @@ msgstr "Crainn Teaghlaigh Gramps:"
 #: ../gramps/cli/clidbman.py:176 ../gramps/cli/clidbman.py:215
 #: ../gramps/gui/clipboard.py:926 ../gramps/gui/configure.py:2383
 msgid "Family Tree"
-msgstr "Crann Teaghlaigh"
+msgstr "Crann Ginealaigh"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:465 ../gramps/cli/arghandler.py:469
@@ -1320,7 +1321,7 @@ msgstr "Glanadh suas."
 
 #: ../gramps/cli/arghandler.py:532
 msgid "Created empty Family Tree successfully"
-msgstr "Cruthaigh Crann Teaghlaigh folamh go rath"
+msgstr "D’éirigh le cruthú Crann Ginealaigh folamh"
 
 #: ../gramps/cli/arghandler.py:535 ../gramps/cli/arghandler.py:562
 msgid "Error opening the file."
@@ -1716,7 +1717,7 @@ msgstr "Glas?"
 #: ../gramps/cli/clidbman.py:215
 #, python-format
 msgid "Family Tree \"%s\":"
-msgstr "Crann Teaghlaigh “%s”:"
+msgstr "Crann Ginealaigh “%s”:"
 
 #. Translators: needed for French, ignore otherwise
 #. Translators: for French, else ignore
@@ -1757,7 +1758,7 @@ msgstr "Sonraí a iompórtáil..."
 
 #: ../gramps/cli/clidbman.py:465
 msgid "Remove family tree warning"
-msgstr "Bain an rabhadh crann teaghlaigh"
+msgstr "Bain an rabhadh crann ginealaigh"
 
 #: ../gramps/cli/clidbman.py:466
 #, python-format
@@ -1765,16 +1766,16 @@ msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
 msgstr ""
-"An bhfuil tú cinnte gur mhaith leat an crann teaghlaigh ainmnithe a bhaint\n"
+"An bhfuil tú cinnte gur mhaith leat an crann ginealaigh seo a bhaint\n"
 "“%s”?"
 
 #: ../gramps/cli/clidbman.py:478 ../gramps/gui/dbman.py:790
 msgid "Could not delete Family Tree"
-msgstr "Ní féidir Crann Teaghlaigh a scriosadh"
+msgstr "Theip ar scriosadh Crann Ginealaigh"
 
 #: ../gramps/cli/clidbman.py:491
 msgid "Could not rename Family Tree"
-msgstr "Ní féidir Crann Teaghlaigh a athainmniú"
+msgstr "Theip ar athainmniú Crann Ginealaigh"
 
 #: ../gramps/cli/clidbman.py:527
 #, python-format
@@ -1932,11 +1933,11 @@ msgstr "Ní féidir comhad a oscailt: %s"
 
 #: ../gramps/cli/grampscli.py:259
 msgid "Could not load a recent Family Tree."
-msgstr "Ní fhéadfaí Crann Teaghlaigh le déanaí a luchtú."
+msgstr "Theip ar lódáil Crann Ginealaigh a osclaíodh le déanaí."
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "Níl Crann Teaghlaigh ann, mar scriosadh é."
+msgstr "Níl an Crann Ginealaigh ann, mar scriosadh é."
 
 #: ../gramps/cli/grampscli.py:266
 msgid "The database is locked."
@@ -3186,11 +3187,11 @@ msgid ""
 msgstr ""
 "Ní thacaíonn an leagan seo de Gramps leis an leagan scéime.\n"
 "\n"
-"Is leagan scéime %(tree_vers)s é an Crann Teaghlaigh seo, agus tacaíonn an "
+"%(tree_vers)s an leagan scéime don Chrann Ginealaigh seo, agus tacaíonn an "
 "leagan seo de Gramps le leaganacha %(min_vers)s go %(max_vers)s\n"
 "\n"
-"Uasghrádú go dtí an leagan comhfhreagrach nó bain úsáid as XML chun sonraí a "
-"iompar idir leaganacha éagsúla scéime."
+"Uasghrádú le do thoil go dtí an leagan comhfhreagrach nó bain úsáid as XML "
+"chun sonraí a iompar idir leaganacha éagsúla scéime."
 
 #: ../gramps/gen/db/exceptions.py:126
 #, python-format
@@ -3205,11 +3206,11 @@ msgid ""
 msgstr ""
 "Ní thacaíonn an leagan seo de Gramps leis an leagan Python.\n"
 "\n"
-"Is é an Crann Teaghlaigh seo leagan Python %(tree_vers)s, agus tacaíonn an "
+"%(tree_vers)s an leagan Python don Chrann Ginealaigh seo, agus tacaíonn an "
 "leagan seo de Gramps le leaganacha %(min_vers)s go %(max_vers)s\n"
 "\n"
-"Uasghrádaigh go dtí an leagan comhfhreagrach nó bain úsáid as XML chun "
-"sonraí a iompar idir leaganacha éagsúla Python."
+"Uasghrádaigh le do thoil go dtí an leagan comhfhreagrach nó bain úsáid as "
+"XML chun sonraí a iompar idir leaganacha éagsúla Python."
 
 #: ../gramps/gen/db/exceptions.py:153
 #, python-format
@@ -3430,10 +3431,10 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"B'fhéidir gur mhaith leat rith\n"
-"Uirlisí -> Próiseáil Crann Teaghlaigh -> Cumais\n"
-"d'fhonn luaiteanna ina bhfuil comhchosúil acu a chumasc\n"
-"faisnéis"
+"B'fhéidir gur mhaith leat\n"
+"Uirlisí -> Próiseáil Crann Ginealaigh -> Cumaisc\n"
+"a rith chun luaiteanna le faisnéis atá cosúil leis seo\n"
+"a chumasc"
 
 #: ../gramps/gen/db/upgrade.py:1276
 msgid "Upgrade Statistics"
@@ -3520,7 +3521,7 @@ msgstr "bunscoile"
 
 #: ../gramps/gen/display/name.py:667 ../gramps/gen/display/name.py:793
 msgid "primary[pre]"
-msgstr "bunscoile [pre]"
+msgstr "príomhshloinne[réimír]"
 
 #: ../gramps/gen/display/name.py:672 ../gramps/gen/display/name.py:798
 msgid "primary[sur]"
@@ -3590,7 +3591,7 @@ msgstr "Earráid i gcomhad '%s': ní féidir é a luchtú."
 
 #: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/docgen/treedoc.py:65
 msgid "Full"
-msgstr "<b>Ainm</b>"
+msgstr "Iomlán"
 
 #: ../gramps/gen/filters/_filterparser.py:131
 #, python-format
@@ -7861,7 +7862,7 @@ msgstr "Searmanas teacht in aois Giúdach (Bar Mitzvah)"
 
 #: ../gramps/gen/lib/eventtype.py:205
 msgid "Bat Mitzvah"
-msgstr "Searmanas teacht in aois Giúdach (Bat Mitzvah)"
+msgstr "Bat Mitzvah"
 
 #: ../gramps/gen/lib/eventtype.py:206
 msgid "Blessing"
@@ -7901,7 +7902,7 @@ msgstr "Oideachas"
 
 #: ../gramps/gen/lib/eventtype.py:215
 msgid "Elected"
-msgstr "Toghtha"
+msgstr "Tofa"
 
 #: ../gramps/gen/lib/eventtype.py:216
 msgid "Emigration"
@@ -7925,7 +7926,7 @@ msgstr "Faisnéis Leighis"
 
 #: ../gramps/gen/lib/eventtype.py:221
 msgid "Military Service"
-msgstr "Seirbhís Míleata"
+msgstr "Seirbhís Mhíleata"
 
 #: ../gramps/gen/lib/eventtype.py:222
 msgid "Naturalization"
@@ -7995,7 +7996,7 @@ msgstr "Bainní Pósta"
 
 #: ../gramps/gen/lib/eventtype.py:238
 msgid "Engagement"
-msgstr "Rannpháirteacht"
+msgstr "Gealltanas"
 
 #: ../gramps/gen/lib/eventtype.py:239 ../gramps/gen/utils/symbols.py:97
 #: ../gramps/gui/configure.py:2803 ../gramps/plugins/webreport/family.py:316
@@ -8004,7 +8005,7 @@ msgstr "Colscaradh"
 
 #: ../gramps/gen/lib/eventtype.py:240
 msgid "Divorce Filing"
-msgstr "Comhdú Colscartha"
+msgstr "Iarratas Colscartha"
 
 #: ../gramps/gen/lib/eventtype.py:241
 msgid "Annulment"
@@ -8042,12 +8043,12 @@ msgstr "m."
 #: ../gramps/gen/lib/eventtype.py:250
 msgctxt "Unknown abbreviation"
 msgid "unkn."
-msgstr "anaithnid"
+msgstr "anaith."
 
 #: ../gramps/gen/lib/eventtype.py:251
 msgctxt "Custom abbreviation"
 msgid "cust."
-msgstr "cust."
+msgstr "sainch."
 
 #: ../gramps/gen/lib/eventtype.py:252
 msgctxt "Adopted abbreviation"
@@ -8077,12 +8078,12 @@ msgstr "bat."
 #: ../gramps/gen/lib/eventtype.py:257
 msgctxt "Blessing abbreviation"
 msgid "bles."
-msgstr "bles."
+msgstr "bnncht."
 
 #: ../gramps/gen/lib/eventtype.py:258
 msgctxt "Burial abbreviation"
 msgid "bur."
-msgstr "bur."
+msgstr "adhl."
 
 #: ../gramps/gen/lib/eventtype.py:259
 msgctxt "Cause Of Death abbreviation"
@@ -8102,7 +8103,7 @@ msgstr "baist."
 #: ../gramps/gen/lib/eventtype.py:262
 msgctxt "Confirmation abbreviation"
 msgid "conf."
-msgstr "conf."
+msgstr "dearbh."
 
 #: ../gramps/gen/lib/eventtype.py:263
 msgctxt "Cremation abbreviation"
@@ -8117,12 +8118,12 @@ msgstr "deg."
 #: ../gramps/gen/lib/eventtype.py:265
 msgctxt "Education abbreviation"
 msgid "edu."
-msgstr "edu."
+msgstr "oid."
 
 #: ../gramps/gen/lib/eventtype.py:266
 msgctxt "Elected abbreviation"
 msgid "elec."
-msgstr "elec."
+msgstr "tofa"
 
 #: ../gramps/gen/lib/eventtype.py:267
 msgctxt "Emigration abbreviation"
@@ -8147,12 +8148,12 @@ msgstr "céim."
 #: ../gramps/gen/lib/eventtype.py:271
 msgctxt "Medical Information abbreviation"
 msgid "medinf."
-msgstr "medinf."
+msgstr "f.leighis"
 
 #: ../gramps/gen/lib/eventtype.py:272
 msgctxt "Military Service abbreviation"
 msgid "milser."
-msgstr "milser."
+msgstr "s.mhíl."
 
 #: ../gramps/gen/lib/eventtype.py:273
 msgctxt "Naturalization abbreviation"
@@ -8162,7 +8163,7 @@ msgstr "nat."
 #: ../gramps/gen/lib/eventtype.py:274
 msgctxt "Nobility Title abbreviation"
 msgid "nob."
-msgstr "nob."
+msgstr "uaisl."
 
 #: ../gramps/gen/lib/eventtype.py:275
 msgctxt "Number of Marriages abbreviation"
@@ -8172,7 +8173,7 @@ msgstr "n.o.mar."
 #: ../gramps/gen/lib/eventtype.py:276
 msgctxt "Occupation abbreviation"
 msgid "occ."
-msgstr "occ."
+msgstr "gairm."
 
 #: ../gramps/gen/lib/eventtype.py:277
 msgctxt "Ordination abbreviation"
@@ -8182,17 +8183,17 @@ msgstr "focal."
 #: ../gramps/gen/lib/eventtype.py:278
 msgctxt "Probate abbreviation"
 msgid "prob."
-msgstr "prob."
+msgstr "prób."
 
 #: ../gramps/gen/lib/eventtype.py:279
 msgctxt "Property abbreviation"
 msgid "prop."
-msgstr "prop."
+msgstr "maoin"
 
 #: ../gramps/gen/lib/eventtype.py:280
 msgctxt "Religion abbreviation"
 msgid "rel."
-msgstr "rel."
+msgstr "creid."
 
 #: ../gramps/gen/lib/eventtype.py:281
 msgctxt "Residence abbreviation"
@@ -8237,17 +8238,17 @@ msgstr "alt.márta."
 #: ../gramps/gen/lib/eventtype.py:289
 msgctxt "Engagement abbreviation"
 msgid "engd."
-msgstr "engd."
+msgstr "geallta"
 
 #: ../gramps/gen/lib/eventtype.py:290
 msgctxt "Divorce abbreviation"
 msgid "div."
-msgstr "div."
+msgstr "colsc."
 
 #: ../gramps/gen/lib/eventtype.py:291
 msgctxt "Divorce Filing abbreviation"
 msgid "div.f."
-msgstr "div.f."
+msgstr "iarr.colsc."
 
 #: ../gramps/gen/lib/eventtype.py:292
 msgctxt "Annulment abbreviation"
@@ -8374,7 +8375,7 @@ msgstr "Cineál"
 
 #: ../gramps/gen/lib/grampstype.py:270
 msgid "Custom type"
-msgstr "<b>Ainm</b>"
+msgstr "Cineál Saincheaptha"
 
 #: ../gramps/gen/lib/grampstype.py:271
 msgid "Type code"
@@ -8695,7 +8696,7 @@ msgstr "Matronimic"
 #: ../gramps/gen/lib/nameorigintype.py:87
 msgctxt "Surname"
 msgid "Feudal"
-msgstr "Feudal"
+msgstr "Feodach"
 
 #: ../gramps/gen/lib/nameorigintype.py:88
 msgid "Pseudonym"
@@ -8703,21 +8704,21 @@ msgstr "Ainmneach"
 
 #: ../gramps/gen/lib/nameorigintype.py:89
 msgid "Patrilineal"
-msgstr "Patrilineal"
+msgstr "Athairlíneach"
 
 #: ../gramps/gen/lib/nameorigintype.py:90
 msgid "Matrilineal"
-msgstr "Matrilineal"
+msgstr "Máthairlíneach"
 
 #: ../gramps/gen/lib/nameorigintype.py:91
 msgctxt "Surname"
 msgid "Occupation"
-msgstr "Dearbhú"
+msgstr "Gairm Bheatha"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
 msgctxt "Surname"
 msgid "Location"
-msgstr "Dearbhú"
+msgstr "Logainm"
 
 #: ../gramps/gen/lib/nametype.py:57
 msgid "Also Known As"
@@ -8961,7 +8962,7 @@ msgstr "Seoltaí"
 
 #: ../gramps/gen/lib/person.py:244
 msgid "Urls"
-msgstr "Urls"
+msgstr "URL-anna"
 
 #: ../gramps/gen/lib/person.py:271
 msgid "Person references"
@@ -9030,7 +9031,7 @@ msgstr "Cód"
 
 #: ../gramps/gen/lib/place.py:181 ../gramps/plugins/webreport/basepage.py:3492
 msgid "Alternate Locations"
-msgstr "Suíomhanna Malartacha"
+msgstr "Suímh Mhalartacha"
 
 #: ../gramps/gen/lib/place.py:186 ../gramps/gen/lib/repo.py:118
 msgid "URLs"
@@ -9055,7 +9056,7 @@ msgstr "Nótaí"
 #: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:617
 #: ../gramps/plugins/webreport/basepage.py:3430
 msgid "Province"
-msgstr "Stát / Cúige:"
+msgstr "Cúige"
 
 #: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:621
 msgid "Department"
@@ -9087,7 +9088,7 @@ msgstr "Sráidbhail"
 
 #: ../gramps/gen/lib/placetype.py:90 ../gramps/plugins/view/geoplaces.py:607
 msgid "Hamlet"
-msgstr "Hamlet"
+msgstr "Gráig"
 
 #: ../gramps/gen/lib/placetype.py:91 ../gramps/plugins/view/geoplaces.py:608
 msgid "Farm"
@@ -9102,7 +9103,7 @@ msgstr "Foirgneamh"
 #: ../gramps/plugins/webreport/basepage.py:3636
 #: ../gramps/plugins/webreport/source.py:205
 msgid "Number"
-msgstr "Uimhir:"
+msgstr "Uimhir"
 
 #: ../gramps/gen/lib/repo.py:94 ../gramps/gui/clipboard.py:789
 #: ../gramps/gui/configure.py:836 ../gramps/gui/editors/editlink.py:101
@@ -9224,7 +9225,7 @@ msgstr "Leictreonach"
 
 #: ../gramps/gen/lib/srcmediatype.py:71
 msgid "Fiche"
-msgstr "Fiche"
+msgstr "Fís"
 
 #: ../gramps/gen/lib/srcmediatype.py:72
 msgid "Film"
@@ -9307,7 +9308,7 @@ msgstr "Leagadh béim"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:68
 msgid "Fontface"
-msgstr "Fontface"
+msgstr "Clófhoireann"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:69
 msgid "Fontsize"
@@ -9337,7 +9338,7 @@ msgstr "Nasc"
 #: ../gramps/gen/lib/styledtexttagtype.py:74
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Strikethrough"
-msgstr "Strikethrough"
+msgstr "Líne Tríd"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:75
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -9416,7 +9417,7 @@ msgstr "%s Tagairtí"
 
 #: ../gramps/gen/merge/diff.py:103
 msgid "Searching..."
-msgstr "Cealaigh"
+msgstr "Ag Cuardach..."
 
 #: ../gramps/gen/merge/mergecitationquery.py:72
 msgid "Merge Citation"
@@ -9569,7 +9570,7 @@ msgstr "Dearbhú"
 #: ../gramps/gui/widgets/grampletpane.py:245
 #: ../gramps/gui/widgets/grampletpane.py:1004
 msgid "Gramplet"
-msgstr "Gramplet"
+msgstr "Grampóg"
 
 #: ../gramps/gen/plug/_pluginreg.py:129
 msgid "Sidebar"
@@ -9771,11 +9772,11 @@ msgstr "Comhbhrúigh go méid íosta"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:96
 msgid "Fill the given area"
-msgstr "Líon an limistéar ar leith"
+msgstr "Líon an limistéar"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:97
 msgid "Expand uniformly"
-msgstr "Leathnaigh go haonfhor"
+msgstr "Leathnaigh go haonfhoirmeach"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:100
 #: ../gramps/gen/plug/docgen/treedoc.py:116
@@ -9799,7 +9800,7 @@ msgstr "Cuartha"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:108
 msgid "Orthogonal"
-msgstr "Orthogonal"
+msgstr "Ortagánach"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:155
 msgid "Graphviz Layout"
@@ -9900,7 +9901,7 @@ msgstr "Dearbhú"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:244
 msgid "Aspect ratio"
-msgstr "Cóimheas gné"
+msgstr "Cóimheas Treoíochta"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:248
 msgid ""
@@ -9918,20 +9919,20 @@ msgid ""
 "the node spacing.\n"
 "  Expand will shrink the graph uniformly to fit the print area."
 msgstr ""
-"Bíonn tionchar ag spásáil nód agus scálú an ghraif.\n"
+"Bíonn tionchar aige ar spásáil na nód agus ar scálú an ghraif.\n"
 "Má tá an graf níos lú ná an limistéar priontála:\n"
-" Ní athróidh comhbhrú an spásáil nód. \n"
-" Méadóidh an líonadh spásáil na nód chun an limistéar priontála a fheistiú "
-"ar leithead agus ar airde araon.\n"
-" Méadóidh leathnú spásáil na nód go haonfhoirmeach chun an cóimheas gné a "
-"chaomhnú.\n"
+"  Ní athróidh ‘Comhbhrúigh’ spásáil na nód. \n"
+"  Méadóidh ‘Líon’ spásáil na nód chun oiriúnú don limistéar priontála ar "
+"leithead agus ar airde araon.\n"
+"  Méadóidh ‘Leathnaigh’ spásáil na nód go haonfhoirmeach chun cóimheas "
+"treoíocht a chaomhnú.\n"
 "Má tá an graf níos mó ná an limistéar priontála:\n"
-" Laghdóidh comhbhrú an graf chun pacáil daingean a bhaint amach ar chostas "
-"na siméadrachta.\n"
-" Laghdóidh Fill an graf chun an limistéar priontála a fheistiú tar éis an "
-"spásáil nód a mhéadú ar dtús.\n"
-" Laghdóidh Extend an graf go haonfhoirmeach chun an limistéar priontála a "
-"fheistiú"
+"  Laghdóidh ‘Comhbhrúigh’ an graf chun pacáil dlúth a bhaint amach ar "
+"chostas na siméadrachta.\n"
+"  Laghdóidh ‘Líon’ an graf chun oiriúnú don limistéar priontála tar éis "
+"spásáil na nód a mhéadú ar dtús.\n"
+"  Laghdóidh ‘Leathnaigh’ an graf go haonfhoirmeach chun oiriúnú don "
+"limistéar priontála."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:265
 msgid "DPI"
@@ -9949,7 +9950,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:277
 msgid "Node spacing"
-msgstr "Spásanna nód"
+msgstr "Spásáil na Nód"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:280
 msgid ""
@@ -9986,7 +9987,7 @@ msgstr "Cuirfear an téacs seo leis an graf."
 #: ../gramps/gen/plug/docgen/graphdoc.py:309
 #: ../gramps/gen/plug/docgen/treedoc.py:299
 msgid "Note location"
-msgstr "Dearbhú"
+msgstr "Suíomh Nóta"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:312
 #: ../gramps/gen/plug/docgen/treedoc.py:302
@@ -10084,7 +10085,7 @@ msgstr "Auto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Call Name Only"
-msgstr "<b>Ainm</b>"
+msgstr "Gnáthainm Amháin"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
 msgid "Whole Given Name"
@@ -10199,7 +10200,7 @@ msgstr "Sonraí faisnéise atá le taispeáint i nód."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:203
 msgid "Name Format"
-msgstr "Ionadaigh"
+msgstr "Formáid Ainm"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:206
 #: ../gramps/gen/plug/report/stdoptions.py:98
@@ -10552,7 +10553,7 @@ msgstr "Peirsis"
 
 #: ../gramps/gen/plug/report/stdoptions.py:410
 msgid "Place format"
-msgstr "Ionadaigh"
+msgstr "Formáid Logainm"
 
 #: ../gramps/gen/plug/report/stdoptions.py:414
 msgid "Select the format to display places"
@@ -10560,7 +10561,7 @@ msgstr "Roghnaigh an fhormáid chun áiteanna a th"
 
 #: ../gramps/gen/plug/report/stdoptions.py:424 ../gramps/gui/configure.py:1461
 msgid "Coordinates format"
-msgstr "Ionadaigh"
+msgstr "Formáid na gComhordanáidí"
 
 #: ../gramps/gen/plug/report/stdoptions.py:427
 msgid "Select the format to display coordinates"
@@ -11052,7 +11053,7 @@ msgstr "an teaghlach"
 
 #: ../gramps/gen/utils/grampslocale.py:770
 msgid "the place"
-msgstr "Ionadaigh"
+msgstr "an áit"
 
 #: ../gramps/gen/utils/grampslocale.py:772
 msgid "the event"
@@ -11163,11 +11164,11 @@ msgstr "Bunscoile"
 
 #: ../gramps/gen/utils/keyword.py:63
 msgid "PRIMARY[PRE]"
-msgstr "BUNSCOILE [PRE]"
+msgstr "PRÍOMHSHLOINNE[RÉIMÍR]"
 
 #: ../gramps/gen/utils/keyword.py:63
 msgid "Primary[pre]"
-msgstr "Bunscoile [pre]"
+msgstr "Príomhshloinne[réimír]"
 
 #: ../gramps/gen/utils/keyword.py:64
 msgid "PRIMARY[SUR]"
@@ -11227,7 +11228,7 @@ msgstr "NOTPATRONYMIC"
 
 #: ../gramps/gen/utils/keyword.py:71
 msgid "Notpatronymic"
-msgstr "Notpatronymic"
+msgstr "Neamh-athartha"
 
 #: ../gramps/gen/utils/keyword.py:72
 msgid "PREFIX"
@@ -11445,7 +11446,7 @@ msgstr "Trasinscneach"
 
 #: ../gramps/gen/utils/symbols.py:91
 msgid "Neuter"
-msgstr "Neuter"
+msgstr "Neodrach"
 
 #: ../gramps/gen/utils/symbols.py:92
 msgid "Illegitimate"
@@ -11489,7 +11490,7 @@ msgstr "Cloigeann agus traschnámha"
 
 #: ../gramps/gen/utils/symbols.py:111
 msgid "Ankh"
-msgstr "Ankh"
+msgstr "Anc"
 
 #: ../gramps/gen/utils/symbols.py:112
 msgid "Orthodox cross"
@@ -11613,7 +11614,7 @@ msgstr "Spáinnis"
 
 #: ../gramps/gen/utils/win32locale.py:58
 msgid "Farsi"
-msgstr "Farsi"
+msgstr "Fairsis"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Finnish"
@@ -11796,7 +11797,7 @@ msgstr "suiteáilte"
 #: ../gramps/grampsapp.py:624 ../gramps/grampsapp.py:633
 #: ../gramps/grampsapp.py:683
 msgid "Configuration error:"
-msgstr "Cumraíocht"
+msgstr "Earráid chumraíochta:"
 
 #: ../gramps/grampsapp.py:628
 msgid "Could not read configuration"
@@ -11962,7 +11963,7 @@ msgstr "stíl Íoslainnis"
 
 #: ../gramps/gui/configure.py:120 ../gramps/gui/configure.py:122
 msgid "Display Name Editor"
-msgstr "Eagarthóir Ainm Taispeáin"
+msgstr "Eagarthóir Ainm Taispeána"
 
 #: ../gramps/gui/configure.py:125 ../gramps/gui/configure.py:211
 #: ../gramps/gui/dialog.py:276 ../gramps/gui/dialog.py:334
@@ -12025,32 +12026,36 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Cuirtear na codanna ainm cuí in ionad na heochairfhocail seo a leanas <tt>\n"
-" <b>Tugann</b> - ainm tugtha (céadainm) Slo <b>inne</b> - sloinnte (le "
-"réimír agus nascóirí)\n"
-" <b>Teideal</b> - teideal (Dr., Mrs.) <b>Iarmhír</b> - iarmhír (Jr., Sr.)\n"
-" <b>Glaoi</b> gh - ainm glaoigh <b>Leasain</b> m - ainm nigh\n"
-" <b>Ceannlitreacha</b> - chéad litreacha den Choiteann tug <b>tha - ain</b> "
-"m leasainm, glao, nó an chéad cheann de thugtar\n"
-" <b>Réim</b> ír - gach réamhfhoirm (von, de)\n"
+"Cuirtear na codanna ainm cuí in ionad na n‑eochairfhocal seo a leanas:<tt>\n"
+"  <b>Ainm</b>        - ainm breithe (céadainm)       <b>Sloinne</b>   - "
+"sloinnte (le réimír agus nascóirí)\n"
+"  <b>Teideal</b>     - teideal (Dr., Bean.)          <b>Iarmhír</b>   - "
+"iarmhír (Óg, Jnr., Mór, Snr.)\n"
+"  <b>Gnáthaimn</b>   - ainm a tugtar ar dhuine       <b>Leasainm</b>  - "
+"leasainm\n"
+"  <b>Inisealacha</b> - 1d litreacha den ainm baiste  <b>Coitianta</b> - "
+"leasainm, ainm tugtha nó chéad ainm baiste\n"
+"  <b>Réimír</b>      - gach réimír (von, de)\n"
 "Sloinnte:\n"
-" <b>Rinne sin</b> - sloinnte neamh-phríomhú <b>il Notpatronymic</b> - gach "
-"sloinne, seachas pa/matronymic & bunscoile\n"
-" <b>Familynick - ainm le</b> asainm teaghlaigh <b>Rawnames - sloinnte (gan</"
-"b> aon réamhfhoirmeacha agus nascóirí)\n"
-" <b>Bunscoile, Bunscoile [pre] nó [sur] nó [con]</b> - sloinne bunscoile "
-"iomlán, réimír, sloinne amháin, cónascaire\n"
-" <b>Pátrúnach, nó [pre] nó [sur] nó [con]</b> - sloinne pa/matronimic "
-"iomlán, réimír, sloinne amháin, cónascaire</tt>\n"
-"Cuireann eochairfhocal UPPERCASE i bhfeidhm ar an Baintear lúibíní breise, "
-"camóga. Tá téacs eile le feiceáil go litriúil.\n"
+"   <b>Fuílleach</b>    - sloinnte nach príomhshloinnte iad  <b>Neamh-"
+"athartha</b> - gach sloinne nach sloinne athartha ná príomhshloinne é\n"
+"   <b>Leas-sloinne</b> - leasainm muintire                  <b>SloinnteAmha</"
+"b>   - sloinnte (gan réimír ná nascóir)\n"
+"   <b>Príomhshloinne, Príomhshloinne[réimír] nó [sloinne] nó [nasc]</b> - "
+"príomhshloinne iomlán, réimír, sloinne amháin, nascóir\n"
+"   <b>Sloinne Athartha, nó [réimír] nó [sloinne] nó [nasc]</b>          - "
+"sloinne athartha/máthartha iomlán, réimír, sloinne amháin, nascóir\n"
+" </tt>\n"
+"Úsáid eochairfhocal i gCEANNLITREACHA más ceannlitreacha atá uait. Bainfear "
+"lúibíní agus camóga breise. Beidh gach téacs eile le feiceáil.\n"
 "\n"
-"<b>Sampla</b>: An Dr. Edwin Jose von der Smith agus Weston Wilson Sr (“Ed”) "
-"- Underhills\n"
-" <i>Edwin Jose</i>: Given, <i>von der</i>: Réimír, <i>Smith</i> agus "
-"<i>Weston</i>: Bunscoile, <i>agus</i>: [con], <i>Wilson: Pátrúnach</i>,\n"
-" <i>Dr.</i><i>: Teideal, S <i>r</i>: Iarmhír, <i>Ed: L</i> easainm, "
-"<i>Underhills</i>: Familynick, Jose: Call.</i>\n"
+"<b>Sampla</b>: An Dr. Edwin Jose von der Smith agus Weston Wilson Sr (“Ed"
+"”) - Underhills\n"
+"     <i>Edwin Jose</i>: Ainm, <i>von der</i>: Réimír, <i>Smith</i> agus <i>"
+"Weston</i>: Príomhshloinne, <i>agus</i>: [nasc], <i>Wilson</i>: Sloinne "
+"Athartha,\n"
+"     <i>Dr.</i>: Teideal, <i>Sr</i>: Iarmhír, <i>Ed</i>: Leasainm, <i>"
+"Underhills</i>: Leas-sloinne, <i>Jose</i>: Gnáthainm.\n"
 
 #: ../gramps/gui/configure.py:161
 msgid " Name Editor"
@@ -12415,7 +12420,7 @@ msgstr "Déan eagar"
 
 #: ../gramps/gui/configure.py:1434
 msgid "Automate Place format"
-msgstr "Ionadaigh"
+msgstr "Formáid Áite Uathoibríoch"
 
 #: ../gramps/gui/configure.py:1441
 msgid "Enables automatic place title generation using specified format."
@@ -12432,7 +12437,7 @@ msgstr "Smaoinigh ar pa/matronymic aonair mar sloinne"
 
 #: ../gramps/gui/configure.py:1548
 msgid "Date format *"
-msgstr "Ionadaigh"
+msgstr "Formáid Dáta *"
 
 #: ../gramps/gui/configure.py:1556
 msgid "Years"
@@ -12625,15 +12630,15 @@ msgstr "Taispeáin faisnéis úsáideach faoi Gramps a úsáid ar thosú."
 
 #: ../gramps/gui/configure.py:1990
 msgid "Remember last Family Tree"
-msgstr "Cuimhnigh ar an gCrann Teaghlaigh deireanach"
+msgstr "Cuimhnigh ar an gCrann Ginealaigh deireanach"
 
 #: ../gramps/gui/configure.py:1996
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
-"Ná oscail dialóg chun crann teaghlaigh a roghnú le luchtú ar thosú, ach "
-"luchtú a úsáidtear go deireanach"
+"Ná hoscail dialóg chun crann ginealaigh a roghnú le lódáil ag tosú an "
+"chláir, ach lódáil an ceann deireanach."
 
 #: ../gramps/gui/configure.py:2004
 msgid "Remember last view displayed"
@@ -12641,7 +12646,9 @@ msgstr "Cuimhnigh an radharc deireanach"
 
 #: ../gramps/gui/configure.py:2009
 msgid "Remember last view displayed and open it next time."
-msgstr "Cuimhnigh ar an radharc deireanach a thaispeántar agus oscail é"
+msgstr ""
+"Cuimhnigh an radharc deireanach a taispeánadh agus oscail é an chéad uair "
+"eile."
 
 #: ../gramps/gui/configure.py:2014
 msgid "Enable spell checker"
@@ -12679,7 +12686,7 @@ msgstr "Taispeáin deilbhín Gearrthaisce ar"
 
 #: ../gramps/gui/configure.py:2063
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr "Taispeáin nó folaigh an deilbhín Gearrthaisce ar an uirlisí barra"
+msgstr "Taispeáin nó folaigh deilbhín na Gearrthaisce ar an mbarra uirlisí."
 
 #: ../gramps/gui/configure.py:2071
 msgid "Show Reports icon on toolbar"
@@ -12687,7 +12694,7 @@ msgstr "Taispeáin an deilbhín Tuarascálacha ar"
 
 #: ../gramps/gui/configure.py:2076
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr "Taispeáin nó folaigh an deilbhín Tuarascálacha ar an mbarra uirlisí"
+msgstr "Taispeáin nó folaigh deilbhín na dTuarascálacha ar an mbarra uirlisí."
 
 #: ../gramps/gui/configure.py:2084
 msgid "Show Tools icon on toolbar"
@@ -12762,19 +12769,19 @@ msgid ""
 "For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "will display <u><b>Underlined bold date</b></u>.\n"
 msgstr ""
-"Is iad na marcálacha áisiúlachta:\n"
-"<b><b>trom</b></b>\n"
-"<big><big>Déanann cló réasúnta níos mó</big></big>\n"
-"<i><i>Iodálach</i></i>\n"
-"<s><s>Strikethrough</s></s>\n"
-"<sub><sub>Suibscríobh</sub></sub>\n"
-"<sup><sup>Uasscríbhinn</sup></sup>\n"
-"<small><small>Déanann cló réasúnta níos lú</small></small>\n"
-"<tt><tt>Cló Monospace</tt></tt>\n"
-"<u><u>Leagadh béim</u></u>\n"
+"Seo iad na marcálacha áisiúlachta:\n"
+"<b>&lt;b&gt;Trom&lt;/b&gt;</b>\n"
+"<big>&lt;big&gt;Méadaigh an cló&lt;/big&gt;</big>\n"
+"<i>&lt;i&gt;Iodálach&lt;/i&gt;</i>\n"
+"<s>&lt;s&gt;Líne Tríd&lt;/s&gt;</s>\n"
+"<sub>&lt;sub&gt;Foscript&lt;/sub&gt;</sub>\n"
+"<sup>&lt;sup&gt;Forscript&lt;/sup&gt;</sup>\n"
+"<small>&lt;small&gt;Laghdaigh an cló&lt;/small&gt;</small>\n"
+"<tt>&lt;tt&gt;Cló Aonleithéid&lt;/tt&gt;</tt>\n"
+"<u>&lt;u&gt;Líne Faoi&lt;/u&gt;</u>\n"
 "\n"
 "Mar shampla: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
-"taispeánfar <u><b>dáta trom a bhfuil líne fúthu</b></u>.\n"
+"taispeánfar <u><b>Dáta trom a bhfuil líne faoi</b></u>.\n"
 
 #: ../gramps/gui/configure.py:2180
 msgid "Multiple surname box height"
@@ -12803,7 +12810,7 @@ msgid ""
 "Database Location"
 msgstr ""
 "\n"
-"Dearbhú"
+"Suíomh Bunachar Sonraí"
 
 #: ../gramps/gui/configure.py:2269
 msgid "Host"
@@ -12831,12 +12838,13 @@ msgstr "Conair chúltaca"
 
 #: ../gramps/gui/configure.py:2316
 msgid "Backup on exit"
-msgstr "Cúltaca ar imeacht"
+msgstr "Cúltaca ar scor"
 
 #: ../gramps/gui/configure.py:2321
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
-"Cúltaca Do chrann teaghlaigh ar imeacht go cosán cúltaca a shonraítear thu"
+"Ar scor den chlár, déan cúltaca de do chrann ginealaigh san fhillteán "
+"sonraithe thuas."
 
 #: ../gramps/gui/configure.py:2329
 msgid "Every 15 minutes"
@@ -13115,7 +13123,7 @@ msgstr "_Stop"
 #: ../gramps/gui/dbloader.py:219
 msgid "Are you sure you want to upgrade this Family Tree?"
 msgstr ""
-"An bhfuil tú cinnte gur mhaith leat an Crann Teaghlaigh seo a uasghrádú?"
+"An bhfuil tú cinnte gur mhaith leat an Crann Ginealaigh seo a uasghrádú?"
 
 #: ../gramps/gui/dbloader.py:222
 msgid ""
@@ -13158,7 +13166,7 @@ msgstr "Pasfhocal: "
 
 #: ../gramps/gui/dbloader.py:386
 msgid "Import Family Tree"
-msgstr "Iompórtáil Crann Teaghlaigh"
+msgstr "Iompórtáil Crann Ginealaigh"
 
 #: ../gramps/gui/dbloader.py:407
 msgid "All supported files"
@@ -13214,7 +13222,7 @@ msgstr "%s_-_Bainistigh_Crainn_Teaghlaigh"
 
 #: ../gramps/gui/dbman.py:99
 msgid "Family_Trees_manager_window"
-msgstr "Fuinneog_bainisteoir_Crann_Teaghlaigh"
+msgstr "Family_Trees_manager_window"
 
 #: ../gramps/gui/dbman.py:113 ../gramps/gui/glade/dbman.glade:344
 msgid "_Archive"
@@ -13340,7 +13348,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:667
 msgid "Could not rename the Family Tree."
-msgstr "Ní fhéadfaí an Crann Teaghlaigh a athainmniú."
+msgstr "Theip ar athainmniú an Crainn Ghinealaigh."
 
 #: ../gramps/gui/dbman.py:668
 msgid "Family Tree already exists, choose a unique name."
@@ -13357,7 +13365,7 @@ msgstr "Cartlann allmhairiú..."
 #: ../gramps/gui/dbman.py:743
 #, python-format
 msgid "Remove the '%s' Family Tree?"
-msgstr "Bain an Crann Teaghlaigh '%s'?"
+msgstr "Bain an Crann Ginealaigh '%s'?"
 
 #: ../gramps/gui/dbman.py:744
 msgid "Removing this Family Tree will permanently destroy the data."
@@ -13365,7 +13373,7 @@ msgstr "Scriosfaidh an Crann Teaghlaigh seo na sonraí go buan a bhaint."
 
 #: ../gramps/gui/dbman.py:745
 msgid "Remove Family Tree"
-msgstr "Bain an Crann Teaghlaigh"
+msgstr "Bain an Crann Ginealaigh"
 
 #: ../gramps/gui/dbman.py:753
 #, python-format
@@ -13406,8 +13414,8 @@ msgstr "An bunachar sonraí '%s' a thiontú?"
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
 msgstr ""
-"Ar mhaith leat an crann teaghlaigh seo a thiontú ina mbunachar sonraí "
-"%(database_type)s?"
+"Ar mhaith leat an crann ginealaigh seo a thiontú ina mbunachar sonraí %"
+"(database_type)s?"
 
 #: ../gramps/gui/dbman.py:844
 msgid "Convert"
@@ -13448,7 +13456,7 @@ msgstr "Theip ar iarracht iompórtáil isteach sa bhunachar sonraí."
 
 #: ../gramps/gui/dbman.py:960
 msgid "Repair Family Tree?"
-msgstr "Crann Teaghlaigh a dheisiú?"
+msgstr "Deisigh Crann Ginealaigh?"
 
 #: ../gramps/gui/dbman.py:962
 #, python-format
@@ -13476,30 +13484,31 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
-"Má chliceálann tú %(bold_start)sProceed%(bold_end)s, déanfaidh Gramps "
-"iarracht do Chrann Teaghlaigh a aisghabháil ón gcúltaca maith deireanach. Tá "
-"bealaí éagsúla ann is féidir leis seo éifeachtaí nach dteastaíonn a bheith "
-"ina chúis, mar sin %(bold_start)s backup %(bold_end)s an Crann Teaghlaigh ar "
-"dtús.\n"
-"Stóráiltear an Crann Teaghlaigh atá roghnaithe agat i %(dirname)s.\n"
+"Má chliceálann tú ar %(bold_start)sLean ar aghaidh%(bold_end)s, déanfaidh "
+"Gramps iarracht do Chrann Ginealaigh a aisghabháil ón gcúltaca maith "
+"deireanach. Is féidir go mbeadh torthaí contrártha ag baint leis, mar sin %"
+"(bold_start)sdéan cúltaca%(bold_end)s den Chrann Ginealaigh ar dtús.\n"
+"Tá an Crann Ginealaigh atá roghnaithe agat le fáil sa bhfillteán %(dirname)"
+"s.\n"
 "\n"
-"Sula ndéanann tú deisiú, fíoraigh nach féidir an Crann Teaghlaigh a oscailt "
-"i ndáiríre a thuilleadh, mar is féidir le cúl-cheann an bhunachar sonraí "
-"aisghabháil ó roinnt earráidí\n"
+"Sula ndéanann tú deisiú, dearbhaigh nach féidir an Crann Ginealaigh a "
+"oscailt i ndáiríre a thuilleadh, mar is féidir le hinneall an bhunachar "
+"sonraí athshlánú uathoibríoch a dhéanamh i ndiaidh earráidí áirithe.\n"
 "\n"
-" %(bold_start)s Details: %(bold_end)s Úsáideann Crann Teaghlaigh a dheisiú "
-"an cúltaca deireanach den Chrann Teaghlaigh i ndáiríre, a stóráil Gramps ar "
-"úsáid deireanach. Má d'oibrigh tú ar feadh roinnt uaireanta/laethanta gan "
-"Gramps a dhúnadh, caillfear an fhaisnéis seo go léir! Má theipeann ar an "
-"deisiúchán, caillfear an Crann Teaghlaigh bunaidh go deo, mar sin tá cúltaca "
-"ag teastáil. Má theipeann ar an deisiú, nó má chailltear an iomarca "
-"faisnéise, is féidir leat an Crann Teaghlaigh bunaidh a shocrú de láimh. Le "
-"haghaidh sonraí, féach ar an leathanach gréasáin\n"
+" %(bold_start)sSonraí:%(bold_end)s Chun Crann Ginealaigh a dheisiú, "
+"úsáidtear an cúltaca deireanach den Chrann Ginealaigh a stóráil Gramps. Má "
+"bhí tú ag obair ar feadh roinnt uaireanta/laethanta gan Gramps a dhúnadh, "
+"caillfear an fhaisnéis seo go léir! Má theipeann ar an deisiúchán, caillfear "
+"an Crann Ginealaigh bunaidh go deo, mar sin tá cúltaca ag teastáil. Má "
+"theipeann ar an deisiúchán, nó má chailltear an iomarca faisnéise, is féidir "
+"leat an Crann Ginealaigh bunaidh a dheisiú de láimh. Le haghaidh sonraí, "
+"féach ar an leathanach gréasáin\n"
 " %(gramps_wiki_recover_url)s \n"
 "Sula ndéanann tú deisiú, déan iarracht an Crann Teaghlaigh a oscailt ar an "
-"ngnáthbhealach Is féidir roinnt earráidí a spreagann an cnaipe deisiúcháin a "
-"shocrú go huathoi Más amhlaidh atá, is féidir leat an cnaipe deisiúcháin a "
-"dhíchumasú tríd an gcomhad %(recover_file)s a bhaint san eolaire Family Tree."
+"ngnáthbhealach. Is féidir roinnt earráidí a spreagann an cnaipe deisiúcháin "
+"a dheisiú go huathoibríoch. Más amhlaidh atá, is féidir leat an cnaipe "
+"deisiúcháin a dhíchumasú tríd an gcomhad %(recover_file)s a bhaint i "
+"bhfillteán an Chrainn Ghinealaigh."
 
 #: ../gramps/gui/dbman.py:996
 msgid "Proceed, I have taken a backup"
@@ -13519,7 +13528,7 @@ msgstr "Earráid sonraí cúltaca a athsh"
 
 #: ../gramps/gui/dbman.py:1061
 msgid "Could not create Family Tree"
-msgstr "Ní féidir crann teaghlaigh a chruthú"
+msgstr "Theip ar cruthú Crann Ginealaigh"
 
 #: ../gramps/gui/dbman.py:1185
 msgid "Retrieve failed"
@@ -14144,7 +14153,7 @@ msgstr "_LDS"
 
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:69
 msgid "Alternate _Locations"
-msgstr "Suíomhanna Malartacha"
+msgstr "_Suímh Mhalartacha"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:63
 msgid "Create and add a new name"
@@ -14529,11 +14538,10 @@ msgid ""
 "location of the information referenced within the source in the 'Volume/"
 "Page' field."
 msgstr ""
-"Is foinse ná aon rud (fianaise phearsanta, fístaifeadadh, grianghraf, colún "
-"nuachtán, cloch uaiga...) as ar féidir faisnéis a dhíorthú. Chun lua a "
-"chruthú, roghnaigh an fhoinse riachtanach ar dtús, agus ansin taifeadadh "
-"suíomh na faisnéise dá dtagraítear laistigh den fhoinse sa réimse 'Imleabhar/"
-"Leathanach'."
+"Is foinse aon rud (fianaise phearsanta, fístaifeadadh, grianghraf, colún "
+"nuachtán, leac uaighe...) as ar féidir faisnéis a dhíorthú. Chun tagairt a "
+"chruthú, roghnaigh an fhoinse riachtanach ar dtús, agus ansin taifead suíomh "
+"na faisnéise san fhoinse sa réimse 'Imleabhar/Leathanach'."
 
 #: ../gramps/gui/editors/editcitation.py:375
 msgid "Cannot save citation. ID already exists."
@@ -15403,7 +15411,7 @@ msgstr "Athraigh Áit (%s)"
 
 #: ../gramps/gui/editors/editplaceformat.py:50
 msgid "Place Format Editor"
-msgstr "Ionadaigh"
+msgstr "Eagarthóir Formáid Logainm"
 
 #: ../gramps/gui/editors/editplaceformat.py:138
 msgid "New"
@@ -15442,7 +15450,7 @@ msgstr "Athraigh Áit"
 
 #: ../gramps/gui/editors/editplaceref.py:397
 msgid "Add Place"
-msgstr "Ionadaigh"
+msgstr "Cuir Áit Leis"
 
 #: ../gramps/gui/editors/editprimary.py:249
 msgid "Save Changes?"
@@ -16297,7 +16305,7 @@ msgstr "_Dún Fuinneog"
 
 #: ../gramps/gui/glade/dbman.glade:148
 msgid "_Load Family Tree"
-msgstr "_Luchtaigh Crann Teaghlaigh"
+msgstr "_Lódáil Crann Ginealaigh"
 
 #: ../gramps/gui/glade/dbman.glade:239 ../gramps/gui/glade/editlink.glade:205
 msgid "_New"
@@ -16640,15 +16648,14 @@ msgid ""
 "etc. A census record might have a line number or dwelling and family numbers "
 "in addition to the page number. "
 msgstr ""
-"Suíomh sonrach laistigh den fhaisnéis dá dtagraítear. Maidir le saothar "
-"foilsithe, d'fhéadfadh méid saothair ilimleabhar agus uimhir na leathanaigh "
-"a bheith san áireamh anseo. Maidir le tréimhsiúil, d'fhéadfadh uimhreacha "
-"toirt, eisiúint agus leathanaigh a áireamh ann. Maidir le nuachtán, "
-"d'fhéadfadh uimhir cholún agus uimhir leathanaigh a áireamh ann. Maidir le "
-"foinse neamhfhoilsithe, d'fhéadfadh sé seo a bheith ina uimhir bhileog, "
-"uimhir leathanaigh, uimhir fráma, srl. D'fhéadfadh uimhir líne nó uimhreacha "
-"cónaithe agus teaghlaigh a bheith ag taifead daonáirimh i dteannta le "
-"huimhir "
+"Suíomh sonrach laistigh den fhaisnéis tagartha. Maidir le saothar foilsithe, "
+"b’fhéidir uimhir an imleabhair i saothair il-imleabhar agus uimhir an "
+"leathanaigh. Maidir le tréimhseachán, b’fhéidir uimhreacha don imleabhar, "
+"don eagrán agus don leathanach. Maidir le nuachtán, b’fhéidir uimhir cholúin "
+"agus uimhir leathanaigh. Maidir le foinse neamhfhoilsithe, b’fhéidir uimhir "
+"bhileoga, uimhir leathanaigh, uimhir fhráma, srl. a chur isteach. I dtaifead "
+"daonáirimh, b’fhéidir go mbeadh uimhir líne nó uimhreacha don teach is don "
+"teaghlach ann in éineacht le huimhir leathanaigh. "
 
 #: ../gramps/gui/glade/editcitation.glade:153
 msgid "_Volume/Page:"
@@ -18522,7 +18529,7 @@ msgstr "Ceangail le bunachar sonraí le déanaí"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "F_ull Screen"
-msgstr "<b>Ainm</b>"
+msgstr "L_ánscáileán"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "Gramps _Home Page"
@@ -18563,7 +18570,7 @@ msgstr "&Maidir le..."
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Addon Manager..."
-msgstr "Ionadaigh"
+msgstr "_Bainisteoir na mBreiseán..."
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Bookmarks"
@@ -18587,7 +18594,7 @@ msgstr "_COITIANTA"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Family Trees"
-msgstr "_Crann Teaghlaigh"
+msgstr "_Crainn Ghinealaigh"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Go"
@@ -19714,7 +19721,7 @@ msgstr ""
 #: ../gramps/gui/plug/export/_exportassistant.py:484
 msgctxt "name"
 msgid "format"
-msgstr "Ionadaigh"
+msgstr "formáid"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:497
 msgid ""
@@ -19817,7 +19824,7 @@ msgstr "Ag roghnú..."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:175
 msgid "Unfiltered Family Tree:"
-msgstr "Crann Teaghlaigh neamhscagtha:"
+msgstr "Crann Ginealaigh gan scagadh:"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:181
 #: ../gramps/gui/plug/export/_exportoptions.py:292
@@ -20350,11 +20357,11 @@ msgstr "Anailís agus Taiscéalaíocht"
 
 #: ../gramps/gui/plug/tool.py:68
 msgid "Family Tree Processing"
-msgstr "Próiseáil Crann Teaghlaigh"
+msgstr "Próiseáil Crann Ginealaigh"
 
 #: ../gramps/gui/plug/tool.py:69
 msgid "Family Tree Repair"
-msgstr "Deisiú Crann Teaghlaigh"
+msgstr "Deisiú Crann Ginealaigh"
 
 #: ../gramps/gui/plug/tool.py:70
 msgid "Revision Control"
@@ -20605,7 +20612,7 @@ msgstr "Ní féidir eagarthóir lua nua a oscailt"
 
 #: ../gramps/gui/viewmanager.py:381 ../gramps/gui/viewmanager.py:1167
 msgid "No Family Tree"
-msgstr "Gan Crann Teaghlaigh"
+msgstr "Gan Crann Ginealaigh"
 
 #: ../gramps/gui/viewmanager.py:611
 msgid "Registering plugins..."
@@ -21406,7 +21413,7 @@ msgstr "Peirsis"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:67
 msgid "Database module location"
-msgstr "Dearbhú"
+msgstr "Suíomh modúl an bhunachair shonraí"
 
 #: ../gramps/plugins/docgen/asciidoc.py:476
 msgid "Characters per line"
@@ -22079,7 +22086,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:1040
 #: ../gramps/plugins/drawreport/descendtree.py:1759
 msgid "Note Location"
-msgstr "Tabhair faoi deara Suíomh"
+msgstr "Suíomh Nóta"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1043
 #: ../gramps/plugins/drawreport/descendtree.py:1762
@@ -22664,7 +22671,7 @@ msgstr "Táirgeann sé cairt shliocht grafach timpeall teaghlaigh"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:159
 msgid "Family Descendant Tree"
-msgstr "Crann Sliocht Teaghlaigh"
+msgstr "Crann Sleachta"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:160
 msgid "Produces a graphical descendant tree around a family"
@@ -23202,15 +23209,15 @@ msgstr "Roghanna scarbhileog CSV"
 
 #: ../gramps/plugins/export/export.gpr.py:59
 msgid "Web Family Tree"
-msgstr "Crann Teaghlaigh Gréasáin"
+msgstr "Web Family Tree"
 
 #: ../gramps/plugins/export/export.gpr.py:60
 msgid "_Web Family Tree"
-msgstr "_Crann Teaghlaigh Gréasáin"
+msgstr "_Web Family Tree"
 
 #: ../gramps/plugins/export/export.gpr.py:61
 msgid "Web Family Tree format"
-msgstr "Formáid Crann Teaghlaigh Gréasáin"
+msgstr "Formáid Web Family Tree"
 
 #: ../gramps/plugins/export/export.gpr.py:69
 msgid "Web Family Tree export options"
@@ -23257,19 +23264,19 @@ msgstr "Roghanna easpórtála GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:125
 msgid "Gramps XML Package (family tree and media)"
-msgstr "Pacáiste XML Gramps (crann teaghlaigh agus meáin)"
+msgstr "Pacáiste XML Gramps (crann ginealaigh agus meáin)"
 
 #: ../gramps/plugins/export/export.gpr.py:126
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr "Pacáiste XML Gra_MPs (crann teaghlaigh agus meáin)"
+msgstr "Pacáiste XML Gra_mps (crann ginealaigh agus meáin)"
 
 #: ../gramps/plugins/export/export.gpr.py:128
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
 msgstr ""
-"Is crann teaghlaigh XML cartlannaithe é pacáiste Gramps in éineacht leis na "
-"comhaid réad meán."
+"Is cartlann é pacáiste Gramps a bhfuil crann ginealaigh XML ann in éineacht "
+"le comhaid na n‑oibiachtaí meáin."
 
 #: ../gramps/plugins/export/export.gpr.py:138
 msgid "Gramps package export options"
@@ -23277,11 +23284,11 @@ msgstr "Roghanna easpórtála pacáiste Gramps"
 
 #: ../gramps/plugins/export/export.gpr.py:149
 msgid "Gramps XML (family tree)"
-msgstr "Gramps XML (crann teaghlaigh)"
+msgstr "Gramps XML (crann ginealaigh)"
 
 #: ../gramps/plugins/export/export.gpr.py:150
 msgid "Gramps _XML (family tree)"
-msgstr "Gramps _XML (crann teaghlaigh)"
+msgstr "Gramps _XML (crann ginealaigh)"
 
 #: ../gramps/plugins/export/export.gpr.py:152
 msgid ""
@@ -23652,7 +23659,7 @@ msgstr "Cuir an ócáid in eagar"
 
 #: ../gramps/plugins/gramplet/coordinates.py:159
 msgid "Edit the place"
-msgstr "Ionadaigh"
+msgstr "Athraigh an áit"
 
 #: ../gramps/plugins/gramplet/eval.py:74
 msgid "Evaluation"
@@ -23869,7 +23876,7 @@ msgstr "Cliceáil faoi dhó ainm tugtha le haghaidh sonraí"
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:64
 #: ../gramps/plugins/gramplet/whatsnext.py:44
 msgid "No Family Tree loaded."
-msgstr "Níl aon Crann Teaghlaigh luchtaithe"
+msgstr "Níl aon Crann Ginealaigh lódáilte."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:155
 msgid "Total unique given names"
@@ -25171,17 +25178,17 @@ msgid ""
 "more details, please read the information at the links below.\n"
 "\n"
 msgstr ""
-"An chéad uair a thosaítear Gramps tá na Views go léir bán. Is beag roghanna "
-"roghchlár atá ann. Tá Crann Teaghlaigh ag teastáil chun go dtarlóidh aon "
-"ghníomhaíocht.\n"
+"Nuair a thosaítear Gramps den chéad uair bíonn na Views go léir bán. Níl "
+"mórán roghanna ar an roghchlár. Tá Crann Ginealaigh ag teastáil chun go "
+"dtarlódh aon ghníomhaíocht.\n"
 "\n"
-"Chun Crann Teaghlaigh nua a chruthú (ar a dtugtar 'bunachar sonraí' "
-"uaireanta) roghnaigh \"Crainn Teaghlaigh\" ón roghchlár, roghnaigh "
-"\"Bainistigh Crainn Teaghlaigh\", brúigh \"Nua\" agus ainmnigh do Chrann "
-"Teaghlaigh. \"Luchtaigh Crann Teaghlaigh\" chun an crann a dhéanamh "
-"gníomhach agus réidh le glacadh le sonraí trí do chéad teaghlach a iontráil, "
-"nó crann teaghlaigh a iompórtáil. Le haghaidh tuilleadh sonraí, léigh an t-"
-"eolas ag na naisc thíos.\n"
+"Chun Crann Ginealaigh (tugtar 'bunachar sonraí' air uaireanta) nua a chruthú "
+"roghnaigh \"Crainn Ginealaigh\" ón roghchlár, roghnaigh \"Bainistigh Crainn "
+"Ghinealaigh\", brúigh \"Nua\" agus ainmnigh do Chrann Ginealaigh. \"Lódáil "
+"Crann Ginealaigh\" chun an crann a dhéanamh gníomhach agus réidh le glacadh "
+"le sonraí trí do chéad teaghlach a iontráil, nó crann teaghlaigh a "
+"iompórtáil. Le haghaidh tuilleadh sonraí, léigh an t-eolas ag na naisc "
+"thíos.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:170
@@ -25252,7 +25259,7 @@ msgstr "Sonraí a iontráil agus a chur in eagar (gairid)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:208
 msgid "Importing a Family Tree"
-msgstr "Crann Teaghlaigh á Iompórtáil"
+msgstr "Iompórtáil Crann Ginealaigh"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:211
 msgid ""
@@ -25263,11 +25270,11 @@ msgid ""
 "under the \"Family Trees\" menu to import the GEDCOM data.\n"
 "\n"
 msgstr ""
-"Chun Crann Teaghlaigh a iompórtáil ó chlár eile cruthaigh comhad GEDCOM (nó "
-"sonraí eile) ón gclár roimhe seo ar dtús.\n"
+"Chun Crann Ginealaigh a iompórtáil ó chlár eile, cruthaigh comhad GEDCOM (nó "
+"comhad sonraí eile) sa gclár sin ar dtús.\n"
 "\n"
-"Nuair a bheidh comhad bunachar sonraí Gramps nua cruthaithe agat, bain úsáid "
-"as an rogha “Iompórtáil” faoin roghchlár “Crainn Teaghlaigh” chun na sonraí "
+"Nuair atá comhad bunachar sonraí Gramps nua cruthaithe agat, bain úsáid as "
+"an rogha “Iompórtáil” faoin roghchlár “Crainn Ghinealaigh” chun na sonraí "
 "GEDCOM a iompórtáil.\n"
 "\n"
 
@@ -25340,10 +25347,10 @@ msgid ""
 "\n"
 msgstr ""
 "Ar mhaith leat Gramps a fheiceáil in úsáid? Cruthaigh agus iompórtáil an "
-"bunachar sonraí Sampla.\n"
+"bunachar sonraí Samplach.\n"
 "\n"
-"Cruthaigh Crann Teaghlaigh nua mar a thuairiscítear thuas. Molaimid duit "
-"“SAMPLA” a thabhairt ar an gCrann Teaghlaigh.\n"
+"Cruthaigh Crann Ginealaigh nua mar a mhínítear thuas. Molaimid duit “SAMPLA” "
+"a thabhairt ar an gCrann Ginealaigh.\n"
 "\n"
 "Iompórtáil an comhad Gramps example.gramps.\n"
 "\n"
@@ -26129,7 +26136,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/import.gpr.py:114
 msgid "Gramps XML Family Tree"
-msgstr "Crann Teaghlaigh Gramps XML"
+msgstr "Crann Ginealaigh XML Gramps"
 
 #: ../gramps/plugins/importer/import.gpr.py:116
 msgid ""
@@ -26242,7 +26249,7 @@ msgstr "áit bhreithe"
 
 #: ../gramps/plugins/importer/importcsv.py:247
 msgid "birth place id"
-msgstr "Ionadaigh"
+msgstr "aitheantas áit bhreithe"
 
 #: ../gramps/plugins/importer/importcsv.py:250
 msgid "birth date"
@@ -26274,7 +26281,7 @@ msgstr "áit adhlacháin"
 
 #: ../gramps/plugins/importer/importcsv.py:271
 msgid "burial place id"
-msgstr "<b>Ainm</b>"
+msgstr "aitheantas áit adhlactha"
 
 #: ../gramps/plugins/importer/importcsv.py:275
 msgid "burial date"
@@ -26290,7 +26297,7 @@ msgstr "áit bháis"
 
 #: ../gramps/plugins/importer/importcsv.py:286
 msgid "death place id"
-msgstr "Ionadaigh"
+msgstr "aitheantas áit bháis"
 
 #: ../gramps/plugins/importer/importcsv.py:290
 msgid "death date"
@@ -26370,7 +26377,7 @@ msgstr "áite_id cónaitheoireachta"
 
 #: ../gramps/plugins/importer/importcsv.py:339
 msgid "residence place id"
-msgstr "Ionadaigh"
+msgstr "aitheantas áit chónaithe"
 
 #: ../gramps/plugins/importer/importcsv.py:343
 msgid "residencesource"
@@ -26434,7 +26441,7 @@ msgstr "áit"
 
 #: ../gramps/plugins/importer/importcsv.py:384
 msgid "place id"
-msgstr "Ionadaigh"
+msgstr "aitheantas áite"
 
 #: ../gramps/plugins/importer/importcsv.py:385
 #: ../gramps/plugins/tool/removespaces.py:193
@@ -27430,7 +27437,7 @@ msgstr "Misean (LDS)"
 
 #: ../gramps/plugins/lib/libgedcom.py:752
 msgid "Namesake"
-msgstr "<b>Ainm</b>"
+msgstr "Comhainmneach"
 
 #: ../gramps/plugins/lib/libgedcom.py:753
 msgid "Ordinance"
@@ -27614,7 +27621,7 @@ msgstr "Sonraí: %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6278
 msgid "Location already populated; ADDR ignored"
-msgstr "Suíomh daonra cheana féin; neamhaird de ADDR"
+msgstr "Suíomh daonra cheana féin; neamhaird déanta de ADDR"
 
 #: ../gramps/plugins/lib/libgedcom.py:6680
 #: ../gramps/plugins/lib/libgedcom.py:7577
@@ -27879,11 +27886,11 @@ msgstr "Clibeanna Íomhá"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
 msgid "Camera Information"
-msgstr "Ionadaigh"
+msgstr "Faisnéis Cheamara"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
 msgid "Location Tags"
-msgstr "Dearbhú"
+msgstr "Clibeanna Suímh"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
 msgid "Advanced Tags"
@@ -27899,7 +27906,7 @@ msgstr "Taganna Eochairfhocal"
 
 #: ../gramps/plugins/lib/libmetadata.py:227
 msgid "Namespace"
-msgstr "<b>Ainm</b>"
+msgstr "Ainmspás"
 
 #: ../gramps/plugins/lib/libmetadata.py:228
 msgid "Label"
@@ -31450,7 +31457,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:353
 msgid "Place Filter Editor"
-msgstr "Ionadaigh"
+msgstr "Eagarthóir Scagaire Áite"
 
 #: ../gramps/plugins/lib/libplaceview.py:446
 msgid "_Look up with Map Service"
@@ -31461,7 +31468,7 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Déan iarracht suíomhanna roghnaithe a fheiceáil le Seirbhís Léarscáileanna "
+"Déan iarracht suímh roghnaithe a fheiceáil trí Sheirbhís Léarscáileanna "
 "(OpenstreetMap, Google Maps, ...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:501
@@ -31627,7 +31634,7 @@ msgstr "Seoladh:"
 
 #: ../gramps/plugins/lib/libprogen.py:1660
 msgid "Death cause"
-msgstr "Ionadaigh"
+msgstr "Cúis bháis"
 
 #: ../gramps/plugins/lib/libprogen.py:1733
 msgid "Importing families."
@@ -31807,7 +31814,7 @@ msgstr "Glasáil súmáil agus suíomh"
 
 #: ../gramps/plugins/lib/maps/geography.py:414
 msgid "Add place"
-msgstr "Ionadaigh"
+msgstr "Cuir áit leis"
 
 #: ../gramps/plugins/lib/maps/geography.py:418
 msgid "Link place"
@@ -31815,7 +31822,7 @@ msgstr "Áit nasc"
 
 #: ../gramps/plugins/lib/maps/geography.py:422
 msgid "Add place from kml"
-msgstr "Ionadaigh"
+msgstr "Cuir áit leis ó kml"
 
 #: ../gramps/plugins/lib/maps/geography.py:426
 msgid "Center here"
@@ -34327,7 +34334,7 @@ msgstr "Líon na n-imeachtaí: %d"
 
 #: ../gramps/plugins/textreport/summary.py:260
 msgid "Place Information"
-msgstr "Ionadaigh"
+msgstr "Faisnéis Áite"
 
 #: ../gramps/plugins/textreport/summary.py:265
 #, python-format
@@ -34739,12 +34746,12 @@ msgid ""
 "You may choose to either remove the reference from the database,\n"
 "keep the reference to the missing file, or select a new file."
 msgstr ""
-"An comhad:\n"
+"Tá tagairt don chomhad:\n"
 "%(file_name)s\n"
-"tagraítear dó sa bhunachar sonraí, ach níl sé ann a thuilleadh.\n"
-"B'fhéidir gur scriosadh an comhad nó gur aistríodh é go suíomh eile.\n"
-"Is féidir leat a roghnú an tagairt a bhaint den bhunachar sonraí,\n"
-"Coinnigh an tagairt don chomhad atá ar iarraidh, nó roghnaigh comhad nua."
+"sa bhunachar sonraí, ach níl sé ann a thuilleadh.\n"
+"B'fhéidir gur scriosadh an comhad nó gur bogadh é go suíomh eile.\n"
+"Is féidir an tagairt a bhaint den bhunachar sonraí,\n"
+"tagairt don chomhad ar iarraidh a choinneáil, nó comhad nua a roghnú."
 
 #: ../gramps/plugins/tool/check.py:947
 msgid "Looking for empty people records"
@@ -35429,25 +35436,25 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"Ceadaíonn an uirlis seo oibríochtaí baisc ar rudaí meán atá stóráilte i "
-"Gramps. Caithfear idirdhealú tábhachtach a dhéanamh idir réad meán Gramps "
-"agus a chomhad.\n"
+"Cuireann an uirlis seo ar do chumas oibríochtaí baisc a rith ar oibiachtaí "
+"meáin stóráilte i Gramps. Is tábhachtach idirdhealú a dhéanamh idir oibiacht "
+"meáin Gramps agus a chomhad.\n"
 "\n"
-"Is éard atá i réad meán Gramps ná bailiúchán sonraí faoin gcomhad réada "
-"meán: a ainm comhaid agus/nó a chosán, a thuairisc, a ID, nótaí, tagairtí "
-"foinse, srl. Ní chuimsíonn na sonraí seo %(bold_start)s an comhad "
-"féin%(bold_end)s.\n"
+"Is éard atá in oibiacht meáin Gramps ná bailiúchán sonraí faoin gcomhad atá "
+"gaolta leis: a ainm comhaid agus/nó a chosán, cur síos air, a ID, nótaí, "
+"tagairtí foinse, srl. %(bold_start)sNíl an comhad féin%(bold_end)s sa sonraí "
+"seo.\n"
 "\n"
-"Tá na comhaid ina bhfuil íomhá, fuaim, físeán, srl, ar leithligh ar do "
-"thiomáint crua. Ní bhainistíonn Gramps na comhaid seo agus níl siad san "
-"áireamh i mbunachar sonraí Gramps. Ní stórálann bunachar sonraí Gramps ach "
-"na cosáin agus na hainmneacha comhad.\n"
+"Tá na comhaid (íomhánna, fuaim, físeán, srl.) ann ar do thiomáint crua. Ní "
+"dhéanann Gramps aon bhainistíocht ar na comhaid seo agus níl siad stóráilte "
+"i mbunachar sonraí Gramps. Ní stórálann bunachar sonraí Gramps ach na cosáin "
+"agus na hainmneacha comhad.\n"
 "\n"
-"Ligeann an uirlis seo duit ach na taifid laistigh de do bhunachar sonraí "
-"Gramps a mhodhnú. Más mian leat na comhaid a bhogadh nó a athainmniú, "
-"caithfidh tú é a dhéanamh leat féin, taobh amuigh de Gramps. Ansin is féidir "
-"leat na cosáin a choigeartú ag baint úsáide as an uirlis seo ionas go "
-"stórálfaidh na rudaí meán na suíomhanna comhaid cearta."
+"Ní ligeann an uirlis seo duit dada a athrú ach na taifid laistigh de do "
+"bhunachar sonraí Gramps. Más mian leat na comhaid a bhogadh nó a athainmniú, "
+"caithfidh tú é a dhéanamh tú féin, taobh amuigh de Gramps. Ansin is féidir "
+"na cosáin a shocrú leis an uirlis seo ionas go stórálfaidh na hoibiachtaí "
+"meáin na suímh comhaid cearta."
 
 #: ../gramps/plugins/tool/mediamanager.py:356
 msgid "Affected path"
@@ -35512,11 +35519,11 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:520
 msgid "Replace substring settings"
-msgstr "Ionadaigh socruithe fo-teaghrán"
+msgstr "Socruithe ionadú fotheaghrán"
 
 #: ../gramps/plugins/tool/mediamanager.py:533
 msgid "_Replace:"
-msgstr "Ionadaigh"
+msgstr "_Ionadaigh:"
 
 #: ../gramps/plugins/tool/mediamanager.py:543
 msgid "_With:"
@@ -35563,11 +35570,11 @@ msgid ""
 "Preferences, or if that is not set, user's directory. A relative path allows "
 "to tie the file location to a base path that can change to your needs."
 msgstr ""
-"Ceadaíonn an uirlis seo cosáin meán absalóideacha a thiontú go cosán "
-"coibhneasta. Is é an cosán coibhneasta an cosán bonn mar a thugtar sna "
-"Sainroghanna, nó mura bhfuil sé sin socraithe, eolaire an úsáideora. "
-"Ceadaíonn cosán coibhneasta suíomh an chomhaid a cheangal le cosán bonn a "
-"d'fhéadfadh athrú ar do chuid riachtanas."
+"Cuireann an uirlis seo ar do chumas dearbhchosáin meán a thiontú go cosáin "
+"choibhneasta. Bíonn an cosán coibhneasta i gcoibhneas an bhunchosáin "
+"socraithe sna Sainroghanna, nó mura bhfuil sé sin socraithe, fillteán an "
+"úsáideora. Ligeann cosán coibhneasta duit suíomh na gcomhad a cheangal le "
+"bunchosán gur féidir a athrú de réir do chuid riachtanas."
 
 #: ../gramps/plugins/tool/mediamanager.py:675
 msgid "Add images not included in database"
@@ -35953,7 +35960,7 @@ msgstr "spásanna tosaigh agus/nó trailing"
 #: ../gramps/plugins/tool/removespaces.py:284
 #: ../gramps/plugins/tool/removespaces.py:296
 msgid "invalid format"
-msgstr "Ionadaigh"
+msgstr "formáid neamhbhailí"
 
 #: ../gramps/plugins/tool/removespaces.py:290
 #: ../gramps/plugins/tool/removespaces.py:302
@@ -36679,7 +36686,7 @@ msgstr "Baisteadh ró-dhéanach de réir thraidisiún an teaghlaigh"
 
 #: ../gramps/plugins/tool/verify.py:2459
 msgid "Burial too late"
-msgstr "<b>Ainm</b>"
+msgstr "Adhlacadh rómhall"
 
 #: ../gramps/plugins/tool/verify.py:2496
 msgid "Children are not in chronological order"
@@ -37098,7 +37105,7 @@ msgstr "Cineál cairte lucht leanúna"
 #: ../gramps/plugins/view/fanchartdescview.py:345
 #: ../gramps/plugins/view/fanchartview.py:434
 msgid "Full Circle"
-msgstr "<b>Ainm</b>"
+msgstr "Ciorcal Iomlán"
 
 #: ../gramps/plugins/view/fanchartdescview.py:346
 #: ../gramps/plugins/view/fanchartview.py:434
@@ -37531,11 +37538,11 @@ msgstr "Paraiméadair na beochana"
 
 #: ../gramps/plugins/view/geoplaces.py:207
 msgid "Places map"
-msgstr "Ionadaigh"
+msgstr "Léarscáil Áiteanna"
 
 #: ../gramps/plugins/view/geoplaces.py:235
 msgid "GeoPlaces"
-msgstr "Ionadaigh"
+msgstr "GeoPlaces"
 
 #: ../gramps/plugins/view/geoplaces.py:416
 #: ../gramps/plugins/view/geoplaces.py:429
@@ -37601,7 +37608,7 @@ msgstr "Taispeáin gach áit"
 
 #: ../gramps/plugins/view/geoplaces.py:634
 msgid "Custom places name"
-msgstr "<b>Ainm</b>"
+msgstr "Logainm Saincheaptha"
 
 #: ../gramps/plugins/view/geoplaces.py:642
 msgid "The places marker color"
@@ -37815,7 +37822,7 @@ msgstr "Cuir Tuismitheoirí Reatha Leis..."
 
 #: ../gramps/plugins/view/relview.py:410
 msgid "Add Partner..."
-msgstr "Ionadaigh"
+msgstr "Cuir Páirtí leis..."
 
 #: ../gramps/plugins/view/relview.py:410 ../gramps/plugins/view/relview.py:497
 msgid "_Reorder"
@@ -38030,7 +38037,7 @@ msgstr "Cumaisc na foinsí roghnaithe"
 
 #: ../gramps/plugins/view/sourceview.py:207
 msgid "Source Filter Editor"
-msgstr "Ionadaigh"
+msgstr "Eagarthóir Scagaire Foinsí"
 
 #: ../gramps/plugins/view/sourceview.py:360
 msgid "Cannot merge sources."
@@ -38162,7 +38169,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/addressbooklist.py:116
 msgid "Full Name"
-msgstr "<b>Ainm</b>"
+msgstr "Ainm Iomlán"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:119
 #: ../gramps/plugins/webreport/basepage.py:2895
@@ -38315,7 +38322,7 @@ msgstr "Paróiste na hEaglaise"
 
 #: ../gramps/plugins/webreport/basepage.py:3448
 msgid "Locations"
-msgstr "Dearbhú"
+msgstr "Suímh"
 
 #: ../gramps/plugins/webreport/basepage.py:3795
 msgid "circa"
@@ -38530,7 +38537,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:248
 msgctxt "Event Name"
 msgid "Name"
-msgstr "<b>Ainm</b>"
+msgstr "Ainm"
 
 #: ../gramps/plugins/webreport/heatmap.py:290
 #: ../gramps/plugins/webreport/heatmap.py:424
@@ -38898,11 +38905,11 @@ msgstr "Peirsis"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2264
 msgid "Extra Pages"
-msgstr "<b>Ainm</b>"
+msgstr "Leathanaigh Bhreise"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2267
 msgid "Extra page name"
-msgstr "<b>Ainm</b>"
+msgstr "Ainm don leathanach breise"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2269
 msgid "Your extra page name like it is shown in the menubar"
@@ -39164,7 +39171,7 @@ msgstr "Cur síos le híoslódáil"
 #: ../gramps/plugins/webreport/narrativeweb.py:2518
 #, python-format
 msgid "Family Tree #%c"
-msgstr "Crann Teaghlaigh #%c"
+msgstr "Crann Ginealaigh #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2520
 msgid "Give a description for this file."
@@ -39790,7 +39797,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:359
 msgctxt "Place Name"
 msgid "Name"
-msgstr "<b>Ainm</b>"
+msgstr "Ainm"
 
 #: ../gramps/plugins/webreport/place.py:348
 #: ../gramps/plugins/webreport/place.py:360
@@ -39818,7 +39825,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/repository.py:176
 msgctxt "Repository"
 msgid "Name"
-msgstr "<b>Ainm</b>"
+msgstr "Ainm"
 
 #: ../gramps/plugins/webreport/source.py:114
 msgid "Creating source pages"
