@@ -40,8 +40,11 @@ from ._matchesfilter import MatchesFilter
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Optional, cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import FamilyHandle, PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -64,7 +67,7 @@ class IsSpouseOfFilterMatch(Rule):
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         for family_handle in person.family_list:
-            family = db.get_family_from_handle(family_handle)
+            family = db.get_family_from_handle(cast(FamilyHandle, family_handle))
             if family:
                 for spouse_id in [
                     family.father_handle,
@@ -74,7 +77,9 @@ class IsSpouseOfFilterMatch(Rule):
                         continue
                     if spouse_id == person.handle:
                         continue
-                    if self.filt.apply_to_one(db, db.get_person_from_handle(spouse_id)):
+                    if self.filt.apply_to_one(
+                        db, db.get_person_from_handle(cast(PersonHandle, spouse_id))
+                    ):
                         return True
         return False
 

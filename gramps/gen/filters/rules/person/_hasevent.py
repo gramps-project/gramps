@@ -38,8 +38,11 @@ _ = glocale.translation.gettext
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import EventHandle
 
 
 # -------------------------------------------------------------------------
@@ -71,7 +74,9 @@ class HasEvent(HasEventBase):
             if int(self.list[5]) and event_ref.role.value != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue
-            event = db.get_event_from_handle(event_ref.ref)
+            if not event_ref.ref:
+                continue
+            event = db.get_event_from_handle(cast(EventHandle, event_ref.ref))
             if HasEventBase.apply_to_one(self, db, event):
                 return True
         return False

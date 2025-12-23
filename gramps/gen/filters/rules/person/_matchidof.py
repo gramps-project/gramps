@@ -57,4 +57,6 @@ class MatchIdOf(Rule):
     category = _("General filters")
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
+        if not person.gramps_id:
+            return False
         return person.gramps_id.find(self.list[0]) != -1

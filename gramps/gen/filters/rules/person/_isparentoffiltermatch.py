@@ -40,9 +40,11 @@ from ._matchesfilter import MatchesFilter
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
+from typing import Set, cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -87,7 +89,7 @@ class IsParentOfFilterMatch(Rule):
 
     def init_list(self, person: Person):
         for fam_id in person.parent_family_list:
-            fam = self.db.get_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(cast(FamilyHandle, fam_id))
             if fam:
                 self.selected_handles.update(
                     parent_id

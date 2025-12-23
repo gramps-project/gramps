@@ -39,8 +39,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import EventHandle
 
 
 # -------------------------------------------------------------------------
@@ -69,8 +72,8 @@ class PersonWithIncompleteEvent(Rule):
             return person.handle in self.selected_handles
         else:
             for event_ref in person.event_ref_list:
-                if event_ref:
-                    event = db.get_event_from_handle(event_ref.ref)
+                if event_ref and event_ref.ref:
+                    event = db.get_event_from_handle(cast(EventHandle, event_ref.ref))
                     if not event.place:
                         return True
                     if not event.date:

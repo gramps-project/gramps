@@ -43,8 +43,11 @@ from . import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ...lib.citationbase import CitationBase
 from ...db import Database
+from ...types import CitationHandle
 
 
 # -------------------------------------------------------------------------
@@ -64,7 +67,9 @@ class MatchesSourceConfidenceBase(Rule):
     def apply_to_one(self, db: Database, obj: CitationBase) -> bool:
         required_conf = int(self.list[0])
         for citation_handle in obj.citation_list:
-            citation = db.get_citation_from_handle(citation_handle)
+            citation = db.get_citation_from_handle(
+                cast(CitationHandle, citation_handle)
+            )
             if required_conf <= citation.confidence:
                 return True
         return False

@@ -44,10 +44,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set
+from typing import List, Set, Optional, cast
+
 from ....lib import Person
 from ....db import Database
-from ....types import PersonHandle
+from ....types import PersonHandle, FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -97,35 +98,46 @@ class IsDescendantFamilyOf(Rule):
 
         while queue:
             person = queue.pop(0)
-            if person is None or person.handle in self.selected_handles:
+            if (
+                person is None
+                or not person.handle
+                or person.handle in self.selected_handles
+            ):
                 # if we have been here before, skip
                 continue
-            self.selected_handles.add(person.handle)
+            self.selected_handles.add(cast(PersonHandle, person.handle))
             for family_handle in person.family_list:
-                family = self.db.get_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(
+                    cast(FamilyHandle, family_handle)
+                )
                 if family:
                     # Add every child recursively
                     for child_ref in family.child_ref_list:
-                        if child_ref:
-                            queue.append(self.db.get_person_from_handle(child_ref.ref))
+                        if child_ref and child_ref.ref:
+                            queue.append(
+                                self.db.get_person_from_handle(
+                                    cast(PersonHandle, child_ref.ref)
+                                )
+                            )
                     # Add spouse
                     if person.handle == family.father_handle:
                         spouse_handle = family.mother_handle
                     else:
                         spouse_handle = family.father_handle
                     if spouse_handle:
-                        self.selected_handles.add(spouse_handle)
+                        self.selected_handles.add(cast(PersonHandle, spouse_handle))
 
     def exclude(self):
         # This removes root person and his/her spouses from the matches set
-        if not self.root_person:
+        if not self.root_person or not self.root_person.handle:
             return
-        self.selected_handles.remove(self.root_person.handle)
+        self.selected_handles.remove(cast(PersonHandle, self.root_person.handle))
         for family_handle in self.root_person.family_list:
-            family = self.db.get_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(cast(FamilyHandle, family_handle))
             if family:
                 if self.root_person.handle == family.father_handle:
                     spouse_handle = family.mother_handle
                 else:
                     spouse_handle = family.father_handle
-                self.selected_handles.remove(spouse_handle)
+                if spouse_handle:
+                    self.selected_handles.remove(cast(PersonHandle, spouse_handle))

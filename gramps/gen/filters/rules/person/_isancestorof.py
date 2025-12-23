@@ -40,9 +40,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
+from typing import Set, Optional, cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle, FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -83,7 +85,7 @@ class IsAncestorOf(Rule):
     ) -> None:
         if not person:
             return
-        if person.handle in self.selected_handles:
+        if not person.handle or person.handle in self.selected_handles:
             return
         if not first:
             self.selected_handles.add(person.handle)
@@ -91,12 +93,16 @@ class IsAncestorOf(Rule):
             person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
         )
         if fam_id:
-            fam = db.get_family_from_handle(fam_id)
+            fam = db.get_family_from_handle(cast(FamilyHandle, fam_id))
             if fam:
                 f_id = fam.father_handle
                 m_id = fam.mother_handle
 
                 if f_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(f_id), False)
+                    self.init_ancestor_list(
+                        db, db.get_person_from_handle(cast(PersonHandle, f_id)), False
+                    )
                 if m_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(m_id), False)
+                    self.init_ancestor_list(
+                        db, db.get_person_from_handle(cast(PersonHandle, m_id)), False
+                    )

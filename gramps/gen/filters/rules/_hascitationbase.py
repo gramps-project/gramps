@@ -41,9 +41,12 @@ from . import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ...lib.citationbase import CitationBase
 from ...lib import Citation
 from ...db import Database
+from ...types import CitationHandle
 
 
 # -------------------------------------------------------------------------
@@ -73,7 +76,9 @@ class HasCitationBase(Rule):
 
     def apply_to_one(self, dbase: Database, object: CitationBase) -> bool:
         for citation_handle in object.citation_list:
-            citation = dbase.get_citation_from_handle(citation_handle)
+            citation = dbase.get_citation_from_handle(
+                cast(CitationHandle, citation_handle)
+            )
             if self._apply(dbase, citation):
                 return True
         return False

@@ -39,8 +39,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import EventHandle
 
 
 # -------------------------------------------------------------------------
@@ -56,9 +59,9 @@ class NoDeathdate(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         if 0 <= person.death_ref_index < len(person.event_ref_list):
             death_ref = person.event_ref_list[person.death_ref_index]
-            if not death_ref:
+            if not death_ref or not death_ref.ref:
                 return True
-            death = db.get_event_from_handle(death_ref.ref)
+            death = db.get_event_from_handle(cast(EventHandle, death_ref.ref))
             if death:
                 death_obj = death.date
                 if not death_obj:

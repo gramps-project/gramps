@@ -40,9 +40,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set
+from typing import List, Set, Optional, cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle, FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -84,12 +86,18 @@ class IsRelatedWith(Rule):
         while queue:
             person = queue.pop()
             # Add the relative to the list
-            if person is None or (person.handle in self.selected_handles):
+            if (
+                person is None
+                or not person.handle
+                or (person.handle in self.selected_handles)
+            ):
                 continue
             self.selected_handles.add(person.handle)
 
             for family_handle in person.parent_family_list:
-                family = self.db.get_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(
+                    cast(FamilyHandle, family_handle)
+                )
                 if family:
                     # Check Parents
                     for parent_handle in (
@@ -97,13 +105,24 @@ class IsRelatedWith(Rule):
                         family.mother_handle,
                     ):
                         if parent_handle:
-                            queue.append(self.db.get_person_from_handle(parent_handle))
+                            queue.append(
+                                self.db.get_person_from_handle(
+                                    cast(PersonHandle, parent_handle)
+                                )
+                            )
                     # Check Sibilings
                     for child_ref in family.child_ref_list:
-                        queue.append(self.db.get_person_from_handle(child_ref.ref))
+                        if child_ref.ref:
+                            queue.append(
+                                self.db.get_person_from_handle(
+                                    cast(PersonHandle, child_ref.ref)
+                                )
+                            )
 
             for family_handle in person.family_list:
-                family = self.db.get_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(
+                    cast(FamilyHandle, family_handle)
+                )
                 if family:
                     # Check Spouse
                     for parent_handle in (
@@ -111,9 +130,18 @@ class IsRelatedWith(Rule):
                         family.mother_handle,
                     ):
                         if parent_handle:
-                            queue.append(self.db.get_person_from_handle(parent_handle))
+                            queue.append(
+                                self.db.get_person_from_handle(
+                                    cast(PersonHandle, parent_handle)
+                                )
+                            )
                     # Check Children
                     for child_ref in family.child_ref_list:
-                        queue.append(self.db.get_person_from_handle(child_ref.ref))
+                        if child_ref.ref:
+                            queue.append(
+                                self.db.get_person_from_handle(
+                                    cast(PersonHandle, child_ref.ref)
+                                )
+                            )
 
         return

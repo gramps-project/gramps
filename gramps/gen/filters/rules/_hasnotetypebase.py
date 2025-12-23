@@ -35,8 +35,11 @@ from . import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ...lib.notebase import NoteBase
 from ...db import Database
+from ...types import NoteHandle
 
 _ = glocale.translation.gettext
 
@@ -74,7 +77,7 @@ class HasNoteTypeBase(Rule):
         """
         notelist = obj.note_list
         for notehandle in notelist:
-            note = db.get_note_from_handle(notehandle)
+            note = db.get_note_from_handle(cast(NoteHandle, notehandle))
             if note.get_type() == self.note_type:
                 return True
         return False

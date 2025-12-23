@@ -40,8 +40,11 @@ from ....lib.childreftype import ChildRefType
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -56,7 +59,7 @@ class HaveAltFamilies(Rule):
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         for fhandle in person.parent_family_list:
-            family = db.get_family_from_handle(fhandle)
+            family = db.get_family_from_handle(cast(FamilyHandle, fhandle))
             if family:
                 ref = [ref for ref in family.child_ref_list if ref.ref == person.handle]
                 if (

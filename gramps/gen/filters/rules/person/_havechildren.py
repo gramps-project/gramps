@@ -42,8 +42,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -66,7 +69,9 @@ class HaveChildren(Rule):
                 where="len(person.family_list) > 0",
             ):
                 for family_handle in person.family_list:
-                    family = db.get_family_from_handle(family_handle)
+                    family = db.get_family_from_handle(
+                        cast(FamilyHandle, family_handle)
+                    )
                     if family is not None and family.child_ref_list:
                         self.selected_handles.add(person.handle)
 
@@ -75,7 +80,7 @@ class HaveChildren(Rule):
             return person.handle in self.selected_handles
         else:
             for family_handle in person.family_list:
-                family = db.get_family_from_handle(family_handle)
+                family = db.get_family_from_handle(cast(FamilyHandle, family_handle))
                 if family is not None and family.child_ref_list:
                     return True
             return False

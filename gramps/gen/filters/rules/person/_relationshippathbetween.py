@@ -39,10 +39,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, Dict
+from typing import List, Set, Dict, Optional, cast
+
 from ....lib import Person
 from ....db import Database
-from ....types import PersonHandle
+from ....types import PersonHandle, FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -68,8 +69,10 @@ class RelationshipPathBetween(Rule):
         self.selected_handles: Set[PersonHandle] = set()
         root1 = db.get_person_from_gramps_id(self.list[0])
         root2 = db.get_person_from_gramps_id(self.list[1])
-        if root1 and root2:
-            self.init_list(root1.handle, root2.handle)
+        if root1 and root2 and root1.handle and root2.handle:
+            self.init_list(
+                cast(PersonHandle, root1.handle), cast(PersonHandle, root2.handle)
+            )
 
     def reset(self):
         self.selected_handles.clear()
@@ -80,11 +83,11 @@ class RelationshipPathBetween(Rule):
 
         p = self.db.get_person_from_handle(handle)
         for fam_id in p.family_list:
-            fam = self.db.get_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(cast(FamilyHandle, fam_id))
             if fam:
                 for child_ref in fam.child_ref_list:
                     if child_ref.ref:
-                        self.desc_list(child_ref.ref, map, False)
+                        self.desc_list(cast(PersonHandle, child_ref.ref), map, False)
 
     def apply_filter(
         self,
@@ -99,17 +102,24 @@ class RelationshipPathBetween(Rule):
         if person is None:
             return
         plist.add(handle)
-        pmap[person.handle] = rank
+        if person.handle:
+            pmap[cast(PersonHandle, person.handle)] = rank
 
         fam_id = (
             person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
         )
         if not fam_id:
             return
-        family = self.db.get_family_from_handle(fam_id)
+        family = self.db.get_family_from_handle(cast(FamilyHandle, fam_id))
         if family is not None:
-            self.apply_filter(rank + 1, family.father_handle, plist, pmap)
-            self.apply_filter(rank + 1, family.mother_handle, plist, pmap)
+            if family.father_handle:
+                self.apply_filter(
+                    rank + 1, cast(PersonHandle, family.father_handle), plist, pmap
+                )
+            if family.mother_handle:
+                self.apply_filter(
+                    rank + 1, cast(PersonHandle, family.mother_handle), plist, pmap
+                )
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles

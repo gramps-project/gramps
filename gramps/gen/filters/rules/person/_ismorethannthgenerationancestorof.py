@@ -39,10 +39,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
+from typing import Set, Optional, cast
+
 from ....lib import Person
 from ....db import Database
-from ....types import PersonHandle
+from ....types import PersonHandle, FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -66,10 +67,8 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
         person = db.get_person_from_gramps_id(self.list[0])
-        if person:
-            root_handle = person.handle
-            if root_handle:
-                self.init_ancestor_list(root_handle)
+        if person and person.handle:
+            self.init_ancestor_list(cast(PersonHandle, person.handle))
 
     def init_ancestor_list(self, root_handle: PersonHandle):
         queue = [(root_handle, 1)]  # generation 1 is root
@@ -81,15 +80,15 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
             p = self.db.get_person_from_handle(handle)
             fam_id = p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
             if fam_id:
-                fam = self.db.get_family_from_handle(fam_id)
+                fam = self.db.get_family_from_handle(cast(FamilyHandle, fam_id))
                 if fam:
                     f_id = fam.father_handle
                     m_id = fam.mother_handle
                     # append to back of queue:
                     if f_id:
-                        queue.append((f_id, gen))
+                        queue.append((cast(PersonHandle, f_id), gen))
                     if m_id:
-                        queue.append((m_id, gen))
+                        queue.append((cast(PersonHandle, m_id), gen))
 
     def reset(self):
         self.selected_handles.clear()

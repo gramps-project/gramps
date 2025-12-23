@@ -42,7 +42,8 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, Dict
+from typing import List, Set, Dict, Optional, cast
+
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle, FamilyHandle
@@ -92,7 +93,7 @@ class RelationshipPathBetweenBookmarks(Rule):
             return None
 
         if person.primary_name:
-            return person.primary_name.name
+            return person.primary_name.get_name()
         else:
             return None
 
@@ -114,7 +115,7 @@ class RelationshipPathBetweenBookmarks(Rule):
                     if len(person.parent_family_list) > 0
                     else None
                 )
-                family = self.db.get_family_from_handle(fam_id)  # type: ignore
+                family = self.db.get_family_from_handle(cast(FamilyHandle, fam_id))
                 if family is None:
                     continue
                 fhandle = family.father_handle

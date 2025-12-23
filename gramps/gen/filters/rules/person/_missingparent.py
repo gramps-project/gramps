@@ -40,8 +40,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -63,7 +66,7 @@ class MissingParent(Rule):
         if families == []:
             return True
         for family_handle in families:
-            family = db.get_family_from_handle(family_handle)
+            family = db.get_family_from_handle(cast(FamilyHandle, family_handle))
             if family:
                 father_handle = family.father_handle
                 mother_handle = family.mother_handle

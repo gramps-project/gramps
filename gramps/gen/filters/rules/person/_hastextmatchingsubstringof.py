@@ -44,7 +44,8 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
+from typing import Set, cast
+
 from ....lib import Person
 from ....db import Database
 from ....types import (
@@ -103,17 +104,26 @@ class HasTextMatchingSubstringOf(Rule):
             return True
 
         # Look for matching events
-        if any(self.search_event(event_ref.ref) for event_ref in person.event_ref_list):
+        if any(
+            self.search_event(cast(EventHandle, event_ref.ref))
+            for event_ref in person.event_ref_list
+            if event_ref and event_ref.ref
+        ):
             return True
 
         # Look for matching families
         if any(
-            self.search_family(family_handle) for family_handle in person.family_list
+            self.search_family(cast(FamilyHandle, family_handle))
+            for family_handle in person.family_list
         ):
             return True
 
         # Look for matching media objects
-        if any(self.search_media(media_ref.ref) for media_ref in person.media_list):
+        if any(
+            self.search_media(cast(MediaHandle, media_ref.ref))
+            for media_ref in person.media_list
+            if media_ref and media_ref.ref
+        ):
             return True
         return False
 
@@ -128,12 +138,15 @@ class HasTextMatchingSubstringOf(Rule):
                 match = 1
             else:
                 if any(
-                    self.search_event(event_ref.ref)
+                    self.search_event(cast(EventHandle, event_ref.ref))
                     for event_ref in family.event_ref_list
+                    if event_ref and event_ref.ref
                 ):
                     match = 1
                 if any(
-                    self.search_media(media_ref.ref) for media_ref in family.media_list
+                    self.search_media(cast(MediaHandle, media_ref.ref))
+                    for media_ref in family.media_list
+                    if media_ref and media_ref.ref
                 ):
                     return True
             if match:
@@ -154,7 +167,9 @@ class HasTextMatchingSubstringOf(Rule):
                 if place_handle and self.search_place(place_handle):
                     match = 1
                 if any(
-                    self.search_media(media_ref.ref) for media_ref in event.media_list
+                    self.search_media(cast(MediaHandle, media_ref.ref))
+                    for media_ref in event.media_list
+                    if media_ref and media_ref.ref
                 ):
                     return True
             if match:

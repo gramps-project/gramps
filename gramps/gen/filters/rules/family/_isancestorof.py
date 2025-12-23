@@ -41,9 +41,11 @@ from ....const import GRAMPS_LOCALE as glocale
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
+from typing import Set, Optional, cast
+
 from ....lib import Family
 from ....db import Database
+from ....types import PersonHandle, FamilyHandle
 
 
 _ = glocale.translation.gettext
@@ -80,7 +82,7 @@ class IsAncestorOf(Rule):
         """
         Initialise family handle list.
         """
-        if not family:
+        if not family or not family.handle:
             return
         if family.handle in self.selected_handles:
             return
@@ -89,12 +91,14 @@ class IsAncestorOf(Rule):
 
         for parent_handle in [family.father_handle, family.mother_handle]:
             if parent_handle:
-                parent = db.get_person_from_handle(parent_handle)
+                parent = db.get_person_from_handle(cast(PersonHandle, parent_handle))
                 family_handle = (
                     parent.parent_family_list[0]
                     if len(parent.parent_family_list) > 0
                     else None
                 )
                 if family_handle:
-                    parent_family = db.get_family_from_handle(family_handle)
+                    parent_family = db.get_family_from_handle(
+                        cast(FamilyHandle, family_handle)
+                    )
                     self.init_list(db, parent_family, False)

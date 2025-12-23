@@ -40,9 +40,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Dict, Set
+from typing import Dict, Set, Optional, cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle, FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -68,14 +70,14 @@ class HasCommonAncestorWith(Rule):
         # Start with filling the cache for root person (gramps_id in self.list[0])
         self.ancestor_cache: Dict[str, Set[str]] = {}
         root_person = db.get_person_from_gramps_id(self.list[0])
-        if root_person:
+        if root_person and root_person.handle:
             self.add_ancs(db, root_person)
             self.with_people = [root_person.handle]
         else:
             self.with_people = []
 
     def add_ancs(self, db: Database, person: Person):
-        if person and person.handle not in self.ancestor_cache:
+        if person and person.handle and person.handle not in self.ancestor_cache:
             self.ancestor_cache[person.handle] = set()
             # We are going to compare ancestors of one person with that of
             # another person; if that other person is an ancestor and itself
@@ -87,19 +89,19 @@ class HasCommonAncestorWith(Rule):
 
         for fam_handle in person.parent_family_list:
             parentless_fam = True
-            fam = db.get_family_from_handle(fam_handle)
+            fam = db.get_family_from_handle(cast(FamilyHandle, fam_handle))
             if fam:
                 for par_handle in (fam.father_handle, fam.mother_handle):
                     if par_handle:
                         parentless_fam = False
-                        par = db.get_person_from_handle(par_handle)
-                        if par and par.handle not in self.ancestor_cache:
+                        par = db.get_person_from_handle(cast(PersonHandle, par_handle))
+                        if par and par.handle and par.handle not in self.ancestor_cache:
                             self.add_ancs(db, par)
-                        if par:
+                        if par and par.handle and person.handle:
                             self.ancestor_cache[person.handle] |= self.ancestor_cache[
                                 par.handle
                             ]
-                if parentless_fam:
+                if parentless_fam and person.handle:
                     self.ancestor_cache[person.handle].add(fam_handle)
 
     def reset(self):
@@ -112,6 +114,7 @@ class HasCommonAncestorWith(Rule):
             )  # type: ignore
             right_and = (
                 other
+                and other.handle
                 and other.handle in self.ancestor_cache
                 and self.ancestor_cache[other.handle]
             )  # type: ignore
@@ -120,7 +123,7 @@ class HasCommonAncestorWith(Rule):
         return False
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        if person and person.handle not in self.ancestor_cache:
+        if person and person.handle and person.handle not in self.ancestor_cache:
             self.add_ancs(db, person)
 
         return self.has_common_ancestor(person)

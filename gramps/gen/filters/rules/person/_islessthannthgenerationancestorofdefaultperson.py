@@ -39,10 +39,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
+from typing import Set, Optional, cast
+
 from ....lib import Person
 from ....db import Database
-from ....types import PersonHandle
+from ....types import PersonHandle, FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -66,8 +67,8 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
         p: Person = db.get_default_person()
-        if p:
-            self.init_ancestor_list(p.handle, 1)
+        if p and p.handle:
+            self.init_ancestor_list(cast(PersonHandle, p.handle), 1)
 
     def init_ancestor_list(self, handle: PersonHandle, gen: int):
         if not handle or handle in self.selected_handles:
@@ -82,15 +83,15 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
         fam_id = p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
         if not fam_id:
             return
-        fam = self.db.get_family_from_handle(fam_id)
+        fam = self.db.get_family_from_handle(cast(FamilyHandle, fam_id))
         if fam:
             f_id = fam.father_handle
             m_id = fam.mother_handle
 
             if f_id:
-                self.init_ancestor_list(f_id, gen + 1)
+                self.init_ancestor_list(cast(PersonHandle, f_id), gen + 1)
             if m_id:
-                self.init_ancestor_list(m_id, gen + 1)
+                self.init_ancestor_list(cast(PersonHandle, m_id), gen + 1)
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles

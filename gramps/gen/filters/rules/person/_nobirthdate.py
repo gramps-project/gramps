@@ -39,8 +39,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import EventHandle
 
 
 # -------------------------------------------------------------------------
@@ -77,9 +80,9 @@ class NoBirthdate(Rule):
         else:
             if 0 <= person.birth_ref_index < len(person.event_ref_list):
                 birth_ref = person.event_ref_list[person.birth_ref_index]
-                if not birth_ref:
+                if not birth_ref or not birth_ref.ref:
                     return True
-                birth = db.get_event_from_handle(birth_ref.ref)
+                birth = db.get_event_from_handle(cast(EventHandle, birth_ref.ref))
                 if birth:
                     birth_obj = birth.date
                     if not birth_obj:
