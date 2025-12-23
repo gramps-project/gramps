@@ -100,6 +100,152 @@ class FilterExpressionEntry(Gtk.Entry):
         entry.connect('activate', on_filter_entered)
     """
 
+    # Built-in functions and classes to exclude (except any and len)
+    _EXCLUDED_BUILTINS = {
+        "float",
+        "int",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple",
+        "set",
+        "bytes",
+        "bytearray",
+        "complex",
+        "range",
+        "slice",
+        "frozenset",
+        "object",
+        "type",
+        "super",
+        "property",
+        "staticmethod",
+        "classmethod",
+        "abs",
+        "all",
+        "ascii",
+        "bin",
+        "callable",
+        "chr",
+        "compile",
+        "delattr",
+        "dir",
+        "divmod",
+        "enumerate",
+        "eval",
+        "exec",
+        "filter",
+        "format",
+        "getattr",
+        "globals",
+        "hasattr",
+        "hash",
+        "help",
+        "hex",
+        "id",
+        "input",
+        "isinstance",
+        "issubclass",
+        "iter",
+        "locals",
+        "map",
+        "max",
+        "min",
+        "next",
+        "oct",
+        "open",
+        "ord",
+        "pow",
+        "print",
+        "repr",
+        "reversed",
+        "round",
+        "setattr",
+        "sorted",
+        "sum",
+        "vars",
+        "zip",
+        "__import__",
+        "BaseException",
+        "Exception",
+        "Error",
+        "Warning",
+        "SystemExit",
+        "KeyboardInterrupt",
+        "GeneratorExit",
+        "StopIteration",
+        "StopAsyncIteration",
+        "ArithmeticError",
+        "FloatingPointError",
+        "OverflowError",
+        "ZeroDivisionError",
+        "AssertionError",
+        "AttributeError",
+        "BufferError",
+        "EOFError",
+        "ImportError",
+        "ModuleNotFoundError",
+        "LookupError",
+        "IndexError",
+        "KeyError",
+        "MemoryError",
+        "NameError",
+        "UnboundLocalError",
+        "OSError",
+        "BlockingIOError",
+        "ChildProcessError",
+        "ConnectionError",
+        "BrokenPipeError",
+        "ConnectionAbortedError",
+        "ConnectionRefusedError",
+        "ConnectionResetError",
+        "FileExistsError",
+        "FileNotFoundError",
+        "InterruptedError",
+        "IsADirectoryError",
+        "NotADirectoryError",
+        "PermissionError",
+        "ProcessLookupError",
+        "TimeoutError",
+        "ReferenceError",
+        "RuntimeError",
+        "NotImplementedError",
+        "RecursionError",
+        "SyntaxError",
+        "IndentationError",
+        "TabError",
+        "SystemError",
+        "TypeError",
+        "ValueError",
+        "UnicodeError",
+        "UnicodeDecodeError",
+        "UnicodeEncodeError",
+        "UnicodeTranslateError",
+        "Warning",
+        "DeprecationWarning",
+        "PendingDeprecationWarning",
+        "SyntaxWarning",
+        "RuntimeWarning",
+        "FutureWarning",
+        "ImportWarning",
+        "UnicodeWarning",
+        "BytesWarning",
+        "ResourceWarning",
+        "UserWarning",
+        "await",
+        "async",
+        "ellipsis",
+        "memoryview",
+        "yield",
+        "NotImplemented",
+        "WindowsError",
+        "IOError",
+        "Ellipsis",
+        "lambda",
+        "EnvironmentError",
+    }
+
     def __init__(self):
         """
         Initialize the FilterExpressionEntry widget.
@@ -130,6 +276,9 @@ class FilterExpressionEntry(Gtk.Entry):
 
         # Track last text to detect when dot is typed
         self._last_text = ""
+
+        # Cache Type class names for initial completion
+        self._type_class_names = self._get_type_class_names()
 
     def _build_environment_code(self):
         """
@@ -185,6 +334,20 @@ class FilterExpressionEntry(Gtk.Entry):
 
         return "\n".join(lines)
 
+    def _get_type_class_names(self):
+        """Get all Type class names (e.g., NameType, EventRefType)."""
+        type_class_names = []
+        for name, obj in inspect.getmembers(gen_lib):
+            if (
+                inspect.isclass(obj)
+                and name.endswith("Type")
+                and name[0].isupper()
+                and name != "GrampsType"
+                and issubclass(obj, GrampsType)
+            ):
+                type_class_names.append(name)
+        return sorted(type_class_names)
+
     def _get_completion_items(self, text, cursor_pos):
         """
         Get completions from Jedi at the current cursor position.
@@ -194,43 +357,69 @@ class FilterExpressionEntry(Gtk.Entry):
         when Jedi can't infer types (e.g., for array indexing).
         """
         if not JEDI_AVAILABLE:
-            # Fallback: return only Types, True, False, any(), len()
-            return [
-                "Person",
-                "Family",
-                "Event",
-                "Place",
-                "Source",
-                "Citation",
-                "Repository",
-                "Media",
-                "Note",
-                "Tag",
-                "True",
-                "False",
-                "any(",
-                "len(",
-            ]
+            # Fallback: return table names, Types, Type classes, True, False, None, any(), len()
+            items = (
+                [
+                    "person",
+                    "family",
+                    "event",
+                    "place",
+                    "source",
+                    "citation",
+                    "repository",
+                    "media",
+                    "note",
+                    "tag",
+                ]
+                + [
+                    "Person",
+                    "Family",
+                    "Event",
+                    "Place",
+                    "Source",
+                    "Citation",
+                    "Repository",
+                    "Media",
+                    "Note",
+                    "Tag",
+                ]
+                + self._type_class_names
+                + ["True", "False", "None", "any(", "len("]
+            )
+            return items
 
         if not text:
-            # Show only Types, True, False, any(), len() when empty
-            # No lowercase table names, no items starting with "_"
-            return [
-                "Person",
-                "Family",
-                "Event",
-                "Place",
-                "Source",
-                "Citation",
-                "Repository",
-                "Media",
-                "Note",
-                "Tag",
-                "True",
-                "False",
-                "any(",
-                "len(",
-            ]
+            # Show table names (lowercase), Types (uppercase), Type classes, True, False, None, any(), len()
+            # No items starting with "_"
+            items = (
+                [
+                    "person",
+                    "family",
+                    "event",
+                    "place",
+                    "source",
+                    "citation",
+                    "repository",
+                    "media",
+                    "note",
+                    "tag",
+                ]
+                + [
+                    "Person",
+                    "Family",
+                    "Event",
+                    "Place",
+                    "Source",
+                    "Citation",
+                    "Repository",
+                    "Media",
+                    "Note",
+                    "Tag",
+                ]
+                + self._type_class_names
+                + ["True", "False", "None", "any(", "len("]
+            )
+            return items
 
         # Check if cursor is right after a dot
         # Jedi can't parse "person." when cursor is right after the dot
@@ -289,13 +478,16 @@ class FilterExpressionEntry(Gtk.Entry):
                         # Filter out methods (functions) - only show attributes
                         if completion.type == "function":
                             continue
+                        # Filter out built-ins except any and len
+                        if name in self._EXCLUDED_BUILTINS:
+                            continue
                         # If using lowercase table name, filter out uppercase properties (constants)
                         if starts_with_lowercase and name and name[0].isupper():
                             continue
                         # Filter out private attributes and Python keywords
-                        if (
-                            not name.startswith("_") or name == "__class__"
-                        ) and name not in [
+                        # Note: None is allowed, so we don't filter it out
+                        # Filter out __class__ and other private attributes
+                        if (not name.startswith("_")) and name not in [
                             "and",
                             "or",
                             "not",
@@ -303,7 +495,6 @@ class FilterExpressionEntry(Gtk.Entry):
                             "is",
                             "True",
                             "False",
-                            "None",
                             "if",
                             "else",
                             "for",
@@ -321,9 +512,9 @@ class FilterExpressionEntry(Gtk.Entry):
                         ]:
                             completion_names.append(name)
 
-                    # If Jedi returned completions, use them
+                    # If Jedi returned completions, sort and return them
                     if completion_names:
-                        return completion_names
+                        return sorted(completion_names)
 
                     # Fallback: If Jedi returned no completions, try to infer from expression
                     # Check if expression ends with [0] or [something] - might be array indexing
@@ -379,7 +570,7 @@ class FilterExpressionEntry(Gtk.Entry):
                                         for name in props.keys()
                                         if name != "_class"
                                     ]
-                                    return attr_names
+                                    return sorted(attr_names)
                             except Exception:
                                 pass
 
@@ -432,11 +623,16 @@ class FilterExpressionEntry(Gtk.Entry):
                 # Filter out methods (functions) - only show attributes
                 if completion.type == "function":
                     continue
+                # Filter out built-ins except any and len
+                if name in self._EXCLUDED_BUILTINS:
+                    continue
                 # If using lowercase table name, filter out uppercase properties (constants)
                 if starts_with_lowercase and name and name[0].isupper():
                     continue
                 # Filter out private attributes and Python keywords
-                if (not name.startswith("_") or name == "__class__") and name not in [
+                # Note: None is allowed, so we don't filter it out
+                # Filter out __class__ and other private attributes
+                if (not name.startswith("_")) and name not in [
                     "and",
                     "or",
                     "not",
@@ -444,7 +640,6 @@ class FilterExpressionEntry(Gtk.Entry):
                     "is",
                     "True",
                     "False",
-                    "None",
                     "if",
                     "else",
                     "for",
@@ -461,7 +656,7 @@ class FilterExpressionEntry(Gtk.Entry):
                 ]:
                     completion_names.append(name)
 
-            return completion_names
+            return sorted(completion_names)
         except Exception:
             # Jedi might fail on incomplete code - that's okay
             return []
