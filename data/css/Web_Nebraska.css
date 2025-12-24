@@ -236,8 +236,8 @@ p#user_header {
     float: left;
     list-style: none;
 }
-li:not(:first-child) {
-    padding-right: 8px;
+.nav li:not(:first-child) {
+    padding-right: 0px;
     padding-left: 8px;
 }
 .rtl, .rtl li {
