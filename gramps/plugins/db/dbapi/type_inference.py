@@ -368,6 +368,18 @@ class TypeInferenceVisitor:
             # Get type hint for this attribute
             attr_type = self._get_attr_type_from_class(current_type, part)
             if attr_type is None:
+                # Fallback: check if attribute exists at runtime
+                # This handles cases where type hints aren't available
+                if hasattr(current_type, part):
+                    # Attribute exists but no type hint - can't determine type precisely
+                    # But we know it exists, so for validation purposes we can continue
+                    # Try to get a sample instance to check the type
+                    try:
+                        # For dataclasses or classes with __init__, we might be able to infer
+                        # For now, return None to indicate unknown type
+                        pass
+                    except Exception:
+                        pass
                 self._type_cache[cache_key] = None
                 return None
             current_type = attr_type
@@ -386,18 +398,15 @@ class TypeInferenceVisitor:
         Returns:
             Type of the attribute, or None if cannot be determined
         """
-        # Try to get from __annotations__
-        if hasattr(cls, "__annotations__"):
-            annotations = cls.__annotations__
-            if attr_name in annotations:
-                return self._resolve_type(annotations[attr_name])
-
         # Try to get from MRO (method resolution order) to check base classes
+        # This includes cls itself, so we check all classes in the inheritance hierarchy
         for base in cls.__mro__:
             if hasattr(base, "__annotations__"):
                 annotations = base.__annotations__
                 if attr_name in annotations:
-                    return self._resolve_type(annotations[attr_name])
+                    resolved = self._resolve_type(annotations[attr_name])
+                    if resolved is not None:
+                        return resolved
 
         # Fallback: check if attribute exists at runtime (for attributes without type hints)
         if hasattr(cls, attr_name):

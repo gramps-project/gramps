@@ -44,17 +44,20 @@ class TypeInferenceTest(unittest.TestCase):
         expr = parser.parse_expression("person.handle")
         # handle should be str or Optional[str] (Union[str, None])
         # Since handle is Optional[str], inferred_type might be Union[str, None] or str
+        self.assertIsNotNone(
+            expr.inferred_type, "person.handle should have an inferred type"
+        )
         from typing import Union
 
-        if expr.inferred_type is not None:
-            # Check if it's str, None, or Union[str, None]
-            self.assertTrue(
-                expr.inferred_type in (str, type(None))
-                or (
-                    hasattr(expr.inferred_type, "__origin__")
-                    and getattr(expr.inferred_type, "__origin__", None) is Union
-                )
-            )
+        # Check if it's str, None, or Union[str, None]
+        self.assertTrue(
+            expr.inferred_type in (str, type(None))
+            or (
+                hasattr(expr.inferred_type, "__origin__")
+                and getattr(expr.inferred_type, "__origin__", None) is Union
+            ),
+            f"person.handle inferred type should be str or Optional[str], got {expr.inferred_type}",
+        )
 
     def test_infer_person_primary_name(self):
         """Test inferring type of person.primary_name."""
@@ -72,11 +75,17 @@ class TypeInferenceTest(unittest.TestCase):
         expr = parser.parse_expression("person.primary_name.surname_list")
         # surname_list should be List[Surname] or list
         # Check if it's a list type (could be list or List[...])
+        self.assertIsNotNone(
+            expr.inferred_type,
+            "person.primary_name.surname_list should have an inferred type",
+        )
         from typing import get_origin
 
-        if expr.inferred_type is not None:
-            origin = get_origin(expr.inferred_type)
-            self.assertTrue(expr.inferred_type is list or origin is list)
+        origin = get_origin(expr.inferred_type)
+        self.assertTrue(
+            expr.inferred_type is list or origin is list,
+            f"person.primary_name.surname_list should be a list type, got {expr.inferred_type}",
+        )
 
     def test_infer_array_access(self):
         """Test inferring type of person.event_ref_list[0]."""
@@ -87,13 +96,22 @@ class TypeInferenceTest(unittest.TestCase):
 
         self.assertIsInstance(expr, ArrayAccessExpression)
         # The base should have inferred type (event_ref_list should be List[EventRef])
-        if hasattr(expr.base, "inferred_type"):
-            # The base (person.event_ref_list) should have a list type
-            from typing import get_origin
+        self.assertTrue(
+            hasattr(expr.base, "inferred_type"),
+            "ArrayAccessExpression base should have inferred_type attribute",
+        )
+        # The base (person.event_ref_list) should have a list type
+        self.assertIsNotNone(
+            expr.base.inferred_type,
+            "person.event_ref_list should have an inferred type",
+        )
+        from typing import get_origin
 
-            if expr.base.inferred_type is not None:
-                origin = get_origin(expr.base.inferred_type)
-                self.assertTrue(expr.base.inferred_type is list or origin is list)
+        origin = get_origin(expr.base.inferred_type)
+        self.assertTrue(
+            expr.base.inferred_type is list or origin is list,
+            f"person.event_ref_list should be a list type, got {expr.base.inferred_type}",
+        )
 
     def test_validate_valid_attribute(self):
         """Test validation of valid attribute path."""
