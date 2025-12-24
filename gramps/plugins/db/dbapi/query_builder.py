@@ -20,7 +20,7 @@
 
 import ast
 import types
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Type
 
 from .query_model import (
     SelectQuery,
@@ -615,14 +615,20 @@ class TypeValidationVisitor(ExpressionVisitor):
     Visitor to validate expression types using type hints.
     """
 
-    def __init__(self, type_inference: TypeInferenceVisitor):
+    def __init__(
+        self,
+        type_inference: TypeInferenceVisitor,
+        array_expansion=None,
+    ):
         """
         Initialize type validation visitor.
 
         Args:
             type_inference: Type inference visitor to use for type checking
+            array_expansion: ArrayExpansion object if array expansion is active
         """
         self.type_inference = type_inference
+        self.array_expansion = array_expansion
 
     def visit_AttributeExpression(
         self, expr: AttributeExpression
@@ -630,6 +636,23 @@ class TypeValidationVisitor(ExpressionVisitor):
         """Validate attribute path exists using type hints."""
         # Get the class for the table
         from .type_inference import TABLE_TO_CLASS
+
+        # Handle json_each (array expansion items)
+        if expr.table_name == "json_each":
+            if self.array_expansion is not None:
+                # Infer the type of the array items from the array path
+                # e.g., person.event_ref_list -> EventRef
+                array_item_type = self._infer_array_item_type(
+                    self.array_expansion.array_path
+                )
+                if array_item_type is not None:
+                    is_valid, error_msg = self.type_inference.validate_attribute_path(
+                        array_item_type, expr.attribute_path
+                    )
+                    if not is_valid:
+                        raise ValueError(error_msg)
+            # Skip validation if we don't have array expansion context
+            return super().visit_AttributeExpression(expr)
 
         table_class = TABLE_TO_CLASS.get(expr.table_name)
         if table_class is None:
@@ -641,19 +664,111 @@ class TypeValidationVisitor(ExpressionVisitor):
             base_type = self.type_inference.visit(expr.base)
             if base_type is not None:
                 is_valid, error_msg = self.type_inference.validate_attribute_path(
-                    base_type, expr.attribute_path
+                    base_type, expr.attribute_path, allow_json_fields=True
                 )
                 if not is_valid:
-                    raise ValueError(error_msg)
+                    # For database columns, always raise error
+                    if expr.is_database_column:
+                        raise ValueError(error_msg)
+                    # For JSON fields, check if it's a known JSON field pattern
+                    # (e.g., event.place exists in JSON schema but not as Python attribute)
+                    if not self._is_known_json_field(table_class, expr.attribute_path):
+                        # Unknown JSON field - raise error
+                        raise ValueError(error_msg)
         else:
             # Validate from table class
             is_valid, error_msg = self.type_inference.validate_attribute_path(
-                table_class, expr.attribute_path
+                table_class, expr.attribute_path, allow_json_fields=True
             )
             if not is_valid:
-                raise ValueError(error_msg)
+                # For database columns, always raise error
+                if expr.is_database_column:
+                    raise ValueError(error_msg)
+                # For JSON fields, check if it's a known JSON field pattern
+                # (e.g., event.place exists in JSON schema but not as Python attribute)
+                if not self._is_known_json_field(table_class, expr.attribute_path):
+                    # Unknown JSON field - raise error
+                    raise ValueError(error_msg)
 
         return super().visit_AttributeExpression(expr)
+
+    def _infer_array_item_type(self, array_path: str) -> Optional[Type]:
+        """
+        Infer the type of items in an array from the array path.
+
+        Args:
+            array_path: Path to the array (e.g., "event_ref_list")
+
+        Returns:
+            Type of array items, or None if cannot be determined
+        """
+        from .type_inference import TABLE_TO_CLASS
+
+        # Get the base table class (person, family, etc.)
+        # For now, assume person table - this could be enhanced to detect from context
+        base_class = TABLE_TO_CLASS.get("person")
+        if base_class is None:
+            return None
+
+        # Use type inference to get the array type
+        # Create a temporary attribute expression for the array path
+        from .query_model import AttributeExpression
+
+        array_attr = AttributeExpression(
+            table_name="person",
+            attribute_path=array_path,
+            is_database_column=False,
+        )
+        array_type = self.type_inference.visit(array_attr)
+
+        # Extract the item type from the array type (List[ItemType] -> ItemType)
+        if array_type is not None:
+            from typing import get_args, get_origin
+
+            origin = get_origin(array_type)
+            if origin is list or origin is List:
+                args = get_args(array_type)
+                if args:
+                    return args[0]
+
+        return None
+
+    def _is_known_json_field(self, table_class: Type, attr_path: str) -> bool:
+        """
+        Check if an attribute path is a known JSON field that exists in JSON schema
+        but might not exist as a Python attribute.
+
+        Args:
+            table_class: The table class to check
+            attr_path: The attribute path to check
+
+        Returns:
+            True if it's a known JSON field pattern, False otherwise
+        """
+        # Known JSON fields that exist in JSON schema but not as Python attributes
+        # These are fields that are stored in JSON but accessed via methods
+        known_json_fields = {
+            # Event.place - stored in JSON, accessed via get_place_handle()
+            ("event", "place"),
+            # Add other known JSON field patterns here as needed
+        }
+
+        # Check if this is a known JSON field
+        table_name = None
+        from .type_inference import TABLE_TO_CLASS
+
+        for name, cls in TABLE_TO_CLASS.items():
+            if cls == table_class:
+                table_name = name
+                break
+
+        if table_name:
+            # Check first part of path
+            first_part = attr_path.split(".")[0] if attr_path else ""
+            if (table_name, first_part) in known_json_fields:
+                return True
+
+        return False
 
 
 class QueryBuilder:
@@ -669,7 +784,7 @@ class QueryBuilder:
         json_array_length=None,
         env=None,
         dialect="sqlite",
-        enable_type_validation=False,
+        enable_type_validation=True,
     ):
         """
         Initialize QueryBuilder with table configuration.
@@ -680,7 +795,8 @@ class QueryBuilder:
             json_array_length: JSON array length pattern (deprecated, kept for compatibility)
             env: Environment dictionary for expression evaluation
             dialect: SQL dialect ("sqlite" or "postgres"). Defaults to "sqlite"
-            enable_type_validation: If True, validate attribute paths using type hints
+            enable_type_validation: If True, validate attribute paths using type hints.
+                Defaults to True for production use to catch errors early.
         """
         self.table_name = table_name
         self.dialect = dialect.lower()
@@ -755,10 +871,6 @@ class QueryBuilder:
         where_condition = None
         if where:
             where_condition = self.parser.parse_expression(where)
-            # Always validate types to catch errors early
-            if self.enable_type_validation:
-                validator = TypeValidationVisitor(self.type_inference)
-                validator.visit(where_condition)
 
         # Parse order_by clause
         order_by_list = self._parse_order_by(order_by)
@@ -782,6 +894,14 @@ class QueryBuilder:
                 # Re-parse WHERE clause with item_var context so that item.ref is correctly
                 # parsed as json_each.ref instead of person.ref
                 where_condition = self.parser.parse_expression(where)
+
+        # Validate types AFTER array expansion is extracted and re-parsed
+        # This ensures we have the correct context for json_each items
+        if self.enable_type_validation and where_condition:
+            validator = TypeValidationVisitor(
+                self.type_inference, array_expansion=array_expansion
+            )
+            validator.visit(where_condition)
 
         # Detect table references and JOINs
         # Do this AFTER setting item_var so that item.attr can be recognized

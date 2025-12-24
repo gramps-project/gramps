@@ -415,8 +415,40 @@ class TypeInferenceVisitor:
                 # If it's a class, return the class
                 if inspect.isclass(attr):
                     return attr
+                # If it's a property, return None so that validate_attribute_path
+                # can handle it specially (properties need special handling for return types)
+                if isinstance(attr, property):
+                    return None
                 # Otherwise, return the type of the attribute
                 return type(attr)
+
+        return None
+
+    def _extract_list_item_type(self, list_type: Type) -> Optional[Type]:
+        """
+        Extract the item type from a List[ItemType] or list[ItemType] type hint.
+
+        Args:
+            list_type: The list type (may be List[ItemType], list[ItemType], or just list)
+
+        Returns:
+            The item type if it can be determined, None otherwise
+        """
+        from typing import get_args, get_origin
+
+        # Handle typing.List[ItemType] or list[ItemType]
+        origin = get_origin(list_type)
+        if origin is not None:
+            # It's a generic type like List[str]
+            args = get_args(list_type)
+            if args and len(args) > 0:
+                item_type = args[0]
+                # Resolve the type if it's a string or forward reference
+                return self._resolve_type(item_type)
+
+        # If it's just 'list' without type parameters, we can't determine item type
+        if list_type is list:
+            return None
 
         return None
 
@@ -478,14 +510,16 @@ class TypeInferenceVisitor:
         return None
 
     def validate_attribute_path(
-        self, obj_type: Type, attr_path: str
+        self, obj_type: Type, attr_path: str, allow_json_fields: bool = False
     ) -> Tuple[bool, Optional[str]]:
         """
         Validate that an attribute path exists on a type.
 
         Args:
             obj_type: Class type to validate against
-            attr_path: Dot-separated attribute path
+            attr_path: Dot-separated attribute path (may include array access like "list[0].attr")
+            allow_json_fields: If True, allow attributes that don't exist as Python attributes
+                              but might be JSON fields
 
         Returns:
             Tuple of (is_valid, error_message)
@@ -495,30 +529,121 @@ class TypeInferenceVisitor:
         if not attr_path:
             return True, None
 
+        # Handle array access in paths like "surname_list[0].surname"
+        import re
+
+        array_match = re.search(r"^([^[]+)\[.*?\](.*)$", attr_path)
+        if array_match:
+            list_attr = array_match.group(1)
+            remainder = array_match.group(2).lstrip(".")
+
+            # Validate the list attribute exists
+            is_valid, error_msg = self.validate_attribute_path(
+                obj_type, list_attr, allow_json_fields
+            )
+            if not is_valid:
+                return False, error_msg
+
+            # Infer the item type from the list
+            list_type = self._get_attr_type_from_class(obj_type, list_attr)
+            if list_type is None:
+                # Can't determine list type - allow it
+                return True, None
+
+            # Extract item type from List[ItemType] or list[ItemType]
+            item_type = self._extract_list_item_type(list_type)
+            if item_type is None:
+                # Can't determine item type - allow it
+                return True, None
+
+            # Validate remainder against item type
+            if remainder:
+                return self.validate_attribute_path(
+                    item_type, remainder, allow_json_fields
+                )
+            else:
+                # Just array access, no remainder - valid
+                return True, None
+
         parts = attr_path.split(".")
         current_type = obj_type
         current_path = []
 
-        for part in parts:
+        for i, part in enumerate(parts):
             current_path.append(part)
             attr_type = self._get_attr_type_from_class(current_type, part)
             if attr_type is None:
                 # Check if attribute exists at runtime as fallback
-                if not hasattr(current_type, part):
-                    # Attribute doesn't exist - suggest similar attributes
-                    suggestions = self._suggest_attributes(current_type, part)
-                    full_path = ".".join(current_path)
-                    error_msg = (
-                        f"Attribute '{part}' not found on {current_type.__name__}"
+                # First check class attributes, then check if it might be an instance attribute
+                # (instance attributes set in __init__ don't exist on the class)
+                has_class_attr = hasattr(current_type, part)
+                # For instance attributes, check if there's a getter method or if it's set in __init__
+                has_getter = hasattr(current_type, f"get_{part}") or hasattr(
+                    current_type, f"get_{part.replace('_', '')}"
+                )
+                if not has_class_attr and not has_getter:
+                    # Check if it's a common pattern (like _handle attributes or type)
+                    # These are typically instance attributes set in __init__
+                    is_common_instance_attr = (
+                        part.endswith("_handle")
+                        or part
+                        in [
+                            "father_handle",
+                            "mother_handle",
+                            "child_ref_list",
+                            "type",
+                            "date",
+                            "place",
+                        ]
+                        or part.endswith("_ref_list")
                     )
-                    if suggestions:
-                        error_msg += f". Did you mean: {', '.join(suggestions[:3])}?"
-                    return False, error_msg
+                    if is_common_instance_attr:
+                        # Common instance attributes - allow them
+                        # If there are more parts in the path, we can't validate them
+                        # without knowing the attribute's type, so allow the entire path
+                        if i < len(parts) - 1:
+                            # There are more parts - we can't validate them without knowing the type
+                            return True, None
+                        # No more parts - attribute itself is valid
+                        return True, None
+                    else:
+                        # Attribute doesn't exist - suggest similar attributes
+                        suggestions = self._suggest_attributes(current_type, part)
+                        full_path = ".".join(current_path)
+                        error_msg = (
+                            f"Attribute '{part}' not found on {current_type.__name__}"
+                        )
+                        if suggestions:
+                            error_msg += (
+                                f". Did you mean: {', '.join(suggestions[:3])}?"
+                            )
+                        return False, error_msg
                 # Attribute exists at runtime but no type hint - use runtime type
                 attr = getattr(current_type, part, None)
                 if attr is not None:
                     if inspect.isclass(attr):
                         attr_type = attr
+                    elif isinstance(attr, property):
+                        # For properties, try to get the return type from annotations
+                        if hasattr(attr, "fget") and attr.fget is not None:
+                            if hasattr(attr.fget, "__annotations__"):
+                                return_ann = attr.fget.__annotations__.get("return")
+                                if return_ann is not None:
+                                    attr_type = self._resolve_type(return_ann)
+                                    if attr_type is not None:
+                                        current_type = attr_type
+                                        continue
+                        # Properties in Gramps classes typically don't have return type annotations
+                        # When we can't determine the return type and there are more parts in the path,
+                        # we allow the entire remaining path to pass validation since we can't validate
+                        # it statically without knowing the property's return type.
+                        # This allows patterns like Event.type.value to work even without type hints.
+                        if i < len(parts) - 1:
+                            # There are more parts after this property - we can't validate them
+                            # without knowing the property's return type, so allow the entire path
+                            return True, None
+                        # No more parts - property itself is valid
+                        return True, None
                     else:
                         attr_type = type(attr)
                 else:

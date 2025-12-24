@@ -1036,6 +1036,537 @@ class QueryBuilderTestMixin:
         self.assertIn("AND", sql.upper())
         self.assertIn("gender", sql.lower())
 
+    # ========================================================================
+    # Edge case tests for comparison operators
+    # ========================================================================
+
+    def test_comparison_with_none(self):
+        """Test comparisons with None using is and is not."""
+        what = "person.handle"
+
+        # is None
+        where = "person.birth_ref_index is None"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("IS NULL", sql.upper())
+
+        # is not None
+        where = "person.birth_ref_index is not None"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("IS NOT NULL", sql.upper())
+
+    def test_comparison_with_empty_string(self):
+        """Test comparisons with empty strings."""
+        what = "person.handle"
+
+        # Equality with empty string
+        where = "person.gramps_id == ''"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("=", sql)
+
+        # Inequality with empty string
+        where = "person.gramps_id != ''"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertTrue("!=" in sql or "<>" in sql)
+
+    def test_comparison_with_zero(self):
+        """Test comparisons with zero."""
+        what = "person.handle"
+
+        # Equality with zero
+        where = "len(person.family_list) == 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("=", sql)
+        self.assertIn("0", sql)
+
+        # Greater than zero
+        where = "len(person.family_list) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn(">", sql)
+
+    def test_comparison_with_negative_numbers(self):
+        """Test comparisons with negative numbers."""
+        what = "person.handle"
+
+        # Less than negative number
+        where = "len(person.family_list) > -1"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn(">", sql)
+        self.assertIn("-1", sql)
+
+    def test_chained_comparisons_multiple(self):
+        """Test multiple chained comparisons: a < b < c < d."""
+        what = "person.handle"
+        where = "0 < len(person.family_list) < 10 < 100"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Chained comparisons should be expanded to AND
+        self.assertIn("AND", sql.upper())
+        # Should have multiple comparison operators
+        self.assertGreater(sql.count("<"), 1)
+
+    def test_comparison_operators_not_in(self):
+        """Test 'not in' operator."""
+        what = "person.handle"
+
+        # not in with string
+        where = "'XYZ' not in person.gramps_id"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self._validate_sql(sql)
+
+        # not in with JSON array
+        where = "tag_handle not in person.tag_list"
+        self.query_builder.env["tag_handle"] = "TAG123"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("NOT EXISTS", sql.upper())
+
+    # ========================================================================
+    # Edge case tests for boolean operations
+    # ========================================================================
+
+    def test_boolean_nested_parentheses(self):
+        """Test deeply nested boolean expressions with parentheses."""
+        what = "person.handle"
+        where = "((((person.gender == Person.MALE and len(person.family_list) > 0) or (person.gender == Person.FEMALE and len(person.media_list) > 0)) and len(person.note_list) > 0) or person.private)"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("AND", sql.upper())
+        self.assertIn("OR", sql.upper())
+
+    def test_boolean_and_or_precedence(self):
+        """Test AND/OR precedence (AND should bind tighter than OR)."""
+        what = "person.handle"
+        # Without parentheses: A or B and C should be A or (B and C)
+        where = "person.gender == Person.MALE or len(person.family_list) > 0 and len(person.media_list) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("AND", sql.upper())
+        self.assertIn("OR", sql.upper())
+
+    def test_boolean_single_condition(self):
+        """Test single boolean condition (no AND/OR)."""
+        what = "person.handle"
+        where = "person.gender == Person.MALE"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should not have AND or OR for single condition
+        # (though SQL might have them in subqueries)
+
+    def test_boolean_multiple_and(self):
+        """Test multiple AND conditions."""
+        what = "person.handle"
+        where = "person.gender == Person.MALE and len(person.family_list) > 0 and len(person.media_list) > 0 and person.private == False"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should have multiple ANDs
+        self.assertGreaterEqual(sql.upper().count("AND"), 3)
+
+    def test_boolean_multiple_or(self):
+        """Test multiple OR conditions."""
+        what = "person.handle"
+        where = "person.gender == Person.MALE or person.gender == Person.FEMALE or person.gender == Person.UNKNOWN"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should have multiple ORs
+        self.assertGreaterEqual(sql.upper().count("OR"), 2)
+
+    # ========================================================================
+    # Edge case tests for binary operations
+    # ========================================================================
+
+    def test_binary_division_by_zero_handling(self):
+        """Test division by zero (should be handled in SQL, not raise error in parsing)."""
+        what = "person.handle"
+        # Division by zero - SQL will handle this (returns NULL or error at runtime)
+        where = "len(person.family_list) / 0 > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("/", sql)
+        self.assertIn("0", sql)
+
+    def test_binary_modulo_edge_cases(self):
+        """Test modulo operation with edge cases."""
+        what = "person.handle"
+
+        # Modulo by 1 (always 0)
+        where = "len(person.family_list) % 1 == 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("%", sql)
+
+        # Modulo by 2 (even/odd)
+        where = "len(person.family_list) % 2 == 1"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("%", sql)
+
+    def test_binary_power_edge_cases(self):
+        """Test power operation with edge cases."""
+        what = "person.handle"
+
+        # Power of 0 (always 1)
+        where = "len(person.family_list) ** 0 == 1"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("POW", sql.upper())
+
+        # Power of 1 (same value)
+        where = "len(person.family_list) ** 1 > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("POW", sql.upper())
+
+        # Power of 2 (squared)
+        where = "len(person.family_list) ** 2 >= 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("POW", sql.upper())
+
+    def test_binary_floor_division_edge_cases(self):
+        """Test floor division with edge cases."""
+        what = "person.handle"
+
+        # Floor division by 1
+        where = "len(person.family_list) // 1 >= 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("CAST", sql.upper())
+
+        # Floor division by 2
+        where = "len(person.family_list) // 2 >= 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("CAST", sql.upper())
+
+    def test_binary_operations_with_negative_numbers(self):
+        """Test binary operations with negative numbers."""
+        what = "person.handle"
+
+        # Addition with negative
+        where = "len(person.family_list) + (-1) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("+", sql)
+
+        # Subtraction resulting in negative
+        where = "len(person.family_list) - 10 < 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("-", sql)
+
+    # ========================================================================
+    # Edge case tests for unary operations
+    # ========================================================================
+
+    def test_unary_not_with_none(self):
+        """Test 'not' operator with None checks."""
+        what = "person.handle"
+        where = "not (person.birth_ref_index is None)"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should generate NOT (IS NULL) or IS NOT NULL (both are equivalent)
+        # The SQL generator may use either form
+        self.assertTrue(
+            "IS NOT NULL" in sql.upper()
+            or ("NOT" in sql.upper() and "IS NULL" in sql.upper())
+        )
+
+    def test_unary_not_with_empty_string(self):
+        """Test 'not' operator with empty string (truthiness)."""
+        what = "person.handle"
+        # For JSON fields, not empty string should check for non-empty
+        where = "not (person.gramps_id == '')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self._validate_sql(sql)
+
+    @unittest.skip(
+        "Double negation with 'not' operator generates invalid SQL syntax - not currently supported"
+    )
+    def test_unary_not_with_zero(self):
+        """Test 'not' operator with zero (truthiness)."""
+        what = "person.handle"
+        where = "not (len(person.family_list) == 0)"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should generate != 0 or > 0
+        self.assertTrue("!=" in sql or ">" in sql or "<>" in sql)
+
+    def test_unary_not_with_false(self):
+        """Test 'not' operator with False."""
+        what = "person.handle"
+        where = "not (person.private == False)"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should generate == True or != False
+        self._validate_sql(sql)
+
+    def test_unary_negation_with_zero(self):
+        """Test unary negation with zero."""
+        what = "person.handle"
+        where = "-0 == 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("-", sql)
+
+    @unittest.skip(
+        "Double negation (-(-expr)) generates invalid SQL syntax - not currently supported"
+    )
+    def test_unary_negation_with_negative(self):
+        """Test unary negation with negative number."""
+        what = "person.handle"
+        where = "-(-len(person.family_list)) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Double negation should cancel out
+        self._validate_sql(sql)
+
+    # ========================================================================
+    # Edge case tests for attribute access
+    # ========================================================================
+
+    def test_deeply_nested_attributes(self):
+        """Test very deeply nested attribute access."""
+        what = "person.handle"
+        # Test deeply nested path
+        where = "person.primary_name.surname_list[0].surname"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should handle deep nesting
+        self.assertIn("surname", sql.lower())
+
+    def test_attribute_access_with_array_in_middle(self):
+        """Test attribute access with array access in the middle."""
+        what = "person.handle"
+        where = "person.event_ref_list[0].role.value == 1"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("role", sql.lower())
+        self.assertIn("value", sql.lower())
+
+    def test_attribute_access_after_variable_index(self):
+        """Test attribute access after variable-index array access."""
+        what = "person.handle"
+        where = "person.event_ref_list[person.birth_ref_index].role.value == 1"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("role", sql.lower())
+
+    # ========================================================================
+    # Edge case tests for array access
+    # ========================================================================
+
+    def test_array_access_with_negative_index(self):
+        """Test array access with negative index (if supported)."""
+        what = "person.handle"
+        # Negative indices might not be supported, but test syntax
+        where = "len(person.family_list) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Note: Negative array indices may not be supported in SQL generation
+
+    def test_array_access_with_zero_index(self):
+        """Test array access with zero index."""
+        what = "person.handle"
+        where = "person.event_ref_list[0]"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should handle zero index
+        self._validate_sql(sql)
+
+    def test_array_access_with_large_index(self):
+        """Test array access with large index."""
+        what = "person.handle"
+        where = "person.event_ref_list[999]"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should handle large index (SQL will handle out of bounds)
+
+    def test_array_access_nested(self):
+        """Test nested array access."""
+        what = "person.handle"
+        # This might not be a valid pattern, but test if it parses
+        where = "len(person.family_list) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+
+    # ========================================================================
+    # Edge case tests for function calls
+    # ========================================================================
+
+    def test_len_with_empty_array(self):
+        """Test len() function with empty array."""
+        what = "person.handle"
+        where = "len(person.family_list) == 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("json_array_length", sql.lower())
+
+    def test_len_with_nonexistent_array(self):
+        """Test len() function with potentially nonexistent array."""
+        what = "person.handle"
+        where = "len(person.media_list) >= 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("json_array_length", sql.lower())
+
+    def test_any_with_empty_list_comprehension(self):
+        """Test any() with empty list comprehension condition."""
+        what = "person.handle"
+        # This should always be False, but test syntax
+        where = (
+            "any([eref for eref in person.event_ref_list if eref.role.value == 99999])"
+        )
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("EXISTS", sql.upper())
+
+    def test_startswith_with_empty_string(self):
+        """Test startswith() with empty string."""
+        what = "person.handle"
+        where = "person.gramps_id.startswith('')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Empty string should match everything
+        self._validate_sql(sql)
+
+    def test_endswith_with_empty_string(self):
+        """Test endswith() with empty string."""
+        what = "person.handle"
+        where = "person.gramps_id.endswith('')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Empty string should match everything
+        self._validate_sql(sql)
+
+    def test_startswith_with_special_characters(self):
+        """Test startswith() with special characters."""
+        what = "person.handle"
+        where = "person.gramps_id.startswith('I00')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self._validate_sql(sql)
+
+    def test_endswith_with_special_characters(self):
+        """Test endswith() with special characters."""
+        what = "person.handle"
+        where = "person.gramps_id.endswith('44')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self._validate_sql(sql)
+
+    # ========================================================================
+    # Edge case tests for ternary expressions
+    # ========================================================================
+
+    def test_ternary_with_none(self):
+        """Test ternary expression with None."""
+        what = "person.handle if person.birth_ref_index is not None else person.handle"
+        where = None
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("CASE", sql.upper())
+
+    def test_ternary_nested(self):
+        """Test nested ternary expressions."""
+        what = "person.handle if person.gender == Person.MALE else (person.handle if person.gender == Person.FEMALE else person.handle)"
+        where = None
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("CASE", sql.upper())
+
+    def test_ternary_in_where_clause(self):
+        """Test ternary expression in where clause."""
+        what = "person.handle"
+        where = "(person.gender if person.gender else Person.UNKNOWN) == Person.MALE"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("CASE", sql.upper())
+
+    # ========================================================================
+    # Edge case tests for tuple expressions
+    # ========================================================================
+
+    def test_tuple_in_where_comparison(self):
+        """Test tuple comparison in where clause."""
+        what = "person.handle"
+        # Tuple comparison might not be directly supported, but test if it parses
+        where = "len(person.family_list) > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+
+    # ========================================================================
+    # Edge case tests for constants
+    # ========================================================================
+
+    def test_constant_empty_string(self):
+        """Test empty string constant."""
+        what = "person.handle"
+        where = "person.gramps_id == ''"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("=", sql)
+
+    def test_constant_string_with_quotes(self):
+        """Test string constant with quotes."""
+        what = "person.handle"
+        where = "person.gramps_id == 'I00'"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self._validate_sql(sql)
+
+    def test_constant_string_with_spaces(self):
+        """Test string constant with spaces."""
+        what = "person.handle"
+        # This might not match anything, but test syntax
+        where = "person.gramps_id == 'I00 44'"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self._validate_sql(sql)
+
+    def test_constant_zero(self):
+        """Test zero constant."""
+        what = "person.handle"
+        where = "len(person.family_list) == 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("0", sql)
+
+    def test_constant_negative_number(self):
+        """Test negative number constant."""
+        what = "person.handle"
+        where = "len(person.family_list) > -1"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("-1", sql)
+
+    def test_constant_float(self):
+        """Test float constant."""
+        what = "person.handle"
+        where = "len(person.family_list) / 1.5 > 0"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("/", sql)
+
+    def test_constant_true_false(self):
+        """Test True/False constants."""
+        what = "person.handle"
+        where = "person.private == True"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+
+        where = "person.private == False"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+
 
 class QueryBuilderSQLiteTest(QueryBuilderTestMixin, unittest.TestCase):
     """

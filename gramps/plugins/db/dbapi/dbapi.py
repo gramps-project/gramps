@@ -1389,11 +1389,12 @@ class DBAPI(DbGeneric):
                     + "you must pass `override=True` to query the underlying database"
                 )
 
-        # Create QueryBuilder instance
+        # Create QueryBuilder instance with type validation enabled
         query_builder = QueryBuilder(
             table_name,
             env=env if env is not None else {},
             dialect=self.dialect,
+            enable_type_validation=True,
         )
 
         # Generate SQL query

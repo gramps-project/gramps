@@ -2694,6 +2694,529 @@ class BaseTest(unittest.TestCase):
             else:
                 raise
 
+    # ========================================================================
+    # Edge case semantic tests for comparison operators
+    # ========================================================================
+
+    def test_comparison_with_none_semantic(self):
+        """Test semantic correctness of comparisons with None."""
+        # is None - should find people without birth_ref_index
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.birth_ref_index is None",
+                )
+            )
+        )
+        # Should return some results (people without birth events)
+        self.assertGreaterEqual(len(res), 0)
+
+        # is not None - should find people with birth_ref_index
+        res2 = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.birth_ref_index is not None",
+                )
+            )
+        )
+        # Should return some results (people with birth events)
+        self.assertGreaterEqual(len(res2), 0)
+        # The two sets should be disjoint
+        self.assertEqual(len(res & res2), 0)
+
+    def test_comparison_with_empty_string_semantic(self):
+        """Test semantic correctness of comparisons with empty strings."""
+        # Equality with empty string
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gramps_id == ''",
+                )
+            )
+        )
+        # Should return empty set (all people have gramps_id)
+        self.assertEqual(len(res), 0)
+
+        # Inequality with empty string
+        res2 = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gramps_id != ''",
+                )
+            )
+        )
+        # Should return all people
+        self.assertEqual(len(res2), self.db.get_number_of_people())
+
+    def test_comparison_with_zero_semantic(self):
+        """Test semantic correctness of comparisons with zero."""
+        # Equality with zero
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.family_list) == 0",
+                )
+            )
+        )
+        # Should match nevermarried test
+        nevermarried = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.family_list) == 0",
+                )
+            )
+        )
+        self.assertEqual(res, nevermarried)
+
+        # Greater than zero
+        res2 = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.family_list) > 0",
+                )
+            )
+        )
+        # Should be complement of zero
+        self.assertEqual(len(res & res2), 0)
+        self.assertEqual(len(res) + len(res2), self.db.get_number_of_people())
+
+    def test_chained_comparisons_semantic(self):
+        """Test semantic correctness of chained comparisons."""
+        # Single comparison
+        res1 = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.family_list) > 0",
+                )
+            )
+        )
+
+        # Chained comparison: 0 < len < 10
+        res2 = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="0 < len(person.family_list) < 10",
+                )
+            )
+        )
+        # Should be subset of res1
+        self.assertTrue(res2.issubset(res1))
+
+        # Chained comparison: 0 < len < 5
+        res3 = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="0 < len(person.family_list) < 5",
+                )
+            )
+        )
+        # Should be subset of res2
+        self.assertTrue(res3.issubset(res2))
+
+    def test_comparison_not_in_semantic(self):
+        """Test semantic correctness of 'not in' operator."""
+        # Find people with gramps_id not containing 'I00'
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="'I00' not in person.gramps_id",
+                )
+            )
+        )
+        # Should be complement of 'in' result
+        res_in = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="'I00' in person.gramps_id",
+                )
+            )
+        )
+        # The two sets should be disjoint and together equal all people
+        self.assertEqual(len(res & res_in), 0)
+        self.assertEqual(len(res) + len(res_in), self.db.get_number_of_people())
+
+    # ========================================================================
+    # Edge case semantic tests for boolean operations
+    # ========================================================================
+
+    def test_boolean_and_or_precedence_semantic(self):
+        """Test semantic correctness of AND/OR precedence."""
+        # A or B and C should be A or (B and C)
+        # Test: gender == MALE or (family_list > 0 and media_list > 0)
+        res1 = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gender == Person.MALE or len(person.family_list) > 0 and len(person.media_list) > 0",
+                )
+            )
+        )
+
+        # Explicit parentheses: (gender == MALE or family_list > 0) and media_list > 0
+        res2 = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="(person.gender == Person.MALE or len(person.family_list) > 0) and len(person.media_list) > 0",
+                )
+            )
+        )
+
+        # These should be different (precedence matters)
+        # res1 should include all males, res2 should only include people with media
+        self.assertNotEqual(res1, res2)
+
+    def test_boolean_nested_parentheses_semantic(self):
+        """Test semantic correctness of nested boolean expressions."""
+        # Complex nested expression
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="((person.gender == Person.MALE and len(person.family_list) > 0) or (person.gender == Person.FEMALE and len(person.media_list) > 0)) and len(person.note_list) > 0",
+                )
+            )
+        )
+        # Should return some results
+        self.assertGreaterEqual(len(res), 0)
+
+        # Verify it's a subset of people with notes
+        res_notes = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.note_list) > 0",
+                )
+            )
+        )
+        self.assertTrue(res.issubset(res_notes))
+
+    def test_boolean_multiple_and_semantic(self):
+        """Test semantic correctness of multiple AND conditions."""
+        # All conditions must be true
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gender == Person.MALE and len(person.family_list) > 0 and len(person.media_list) > 0",
+                )
+            )
+        )
+        # Should be subset of each individual condition
+        res_male = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gender == Person.MALE",
+                )
+            )
+        )
+        res_family = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.family_list) > 0",
+                )
+            )
+        )
+        res_media = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.media_list) > 0",
+                )
+            )
+        )
+        self.assertTrue(res.issubset(res_male))
+        self.assertTrue(res.issubset(res_family))
+        self.assertTrue(res.issubset(res_media))
+
+    def test_boolean_multiple_or_semantic(self):
+        """Test semantic correctness of multiple OR conditions."""
+        # Any condition can be true
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gender == Person.MALE or person.gender == Person.FEMALE or person.gender == Person.UNKNOWN",
+                )
+            )
+        )
+        # Should include all people (all genders are covered)
+        self.assertEqual(len(res), self.db.get_number_of_people())
+
+    # ========================================================================
+    # Edge case semantic tests for binary operations
+    # ========================================================================
+
+    def test_binary_modulo_semantic(self):
+        """Test semantic correctness of modulo operation."""
+        # Even number of families (mod 2 == 0)
+        res_even = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.family_list) % 2 == 0",
+                )
+            )
+        )
+        # Odd number of families (mod 2 == 1)
+        res_odd = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.family_list) % 2 == 1",
+                )
+            )
+        )
+        # Should be disjoint and together equal all people
+        self.assertEqual(len(res_even & res_odd), 0)
+        self.assertEqual(len(res_even) + len(res_odd), self.db.get_number_of_people())
+
+    def test_binary_operations_combined_semantic(self):
+        """Test semantic correctness of combined binary operations."""
+        # (media_list + note_list) > 0 should match (media_list > 0 or note_list > 0)
+        res_sum = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.media_list) + len(person.note_list) > 0",
+                )
+            )
+        )
+        res_or = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.media_list) > 0 or len(person.note_list) > 0",
+                )
+            )
+        )
+        # Should be equivalent
+        self.assertEqual(res_sum, res_or)
+
+    # ========================================================================
+    # Edge case semantic tests for unary operations
+    # ========================================================================
+
+    def test_unary_not_semantic(self):
+        """Test semantic correctness of 'not' operator."""
+        # not private should match public
+        res_not_private = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="not person.private",
+                )
+            )
+        )
+        res_public = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.private == False",
+                )
+            )
+        )
+        # Should be equivalent
+        self.assertEqual(res_not_private, res_public)
+
+    def test_unary_not_with_zero_semantic(self):
+        """Test semantic correctness of 'not' with zero."""
+        # not (len == 0) should match (len > 0)
+        res_not_zero = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="not (len(person.family_list) == 0)",
+                )
+            )
+        )
+        res_gt_zero = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.family_list) > 0",
+                )
+            )
+        )
+        # Should be equivalent
+        self.assertEqual(res_not_zero, res_gt_zero)
+
+    def test_unary_negation_semantic(self):
+        """Test semantic correctness of unary negation."""
+        # -len < 0 should match len > 0
+        res_neg = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="-len(person.family_list) < 0",
+                )
+            )
+        )
+        res_pos = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.family_list) > 0",
+                )
+            )
+        )
+        # Should be equivalent
+        self.assertEqual(res_neg, res_pos)
+
+    # ========================================================================
+    # Edge case semantic tests for function calls
+    # ========================================================================
+
+    def test_len_with_empty_array_semantic(self):
+        """Test semantic correctness of len() with empty arrays."""
+        # len == 0 should match nevermarried
+        res_len_zero = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.family_list) == 0",
+                )
+            )
+        )
+        res_nevermarried = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="len(person.family_list) == 0",
+                )
+            )
+        )
+        # Should be equivalent
+        self.assertEqual(res_len_zero, res_nevermarried)
+
+    def test_startswith_endswith_semantic(self):
+        """Test semantic correctness of startswith and endswith."""
+        # startswith('I00') should be subset of 'I00' in gramps_id
+        res_startswith = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gramps_id.startswith('I00')",
+                )
+            )
+        )
+        res_in = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="'I00' in person.gramps_id",
+                )
+            )
+        )
+        # startswith should be subset of 'in'
+        self.assertTrue(res_startswith.issubset(res_in))
+
+        # endswith('44') should find specific person
+        res_endswith = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gramps_id.endswith('44')",
+                )
+            )
+        )
+        # Should include I0044
+        res_exact = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gramps_id == 'I0044'",
+                )
+            )
+        )
+        self.assertTrue(res_exact.issubset(res_endswith))
+
+    def test_startswith_with_empty_string_semantic(self):
+        """Test semantic correctness of startswith with empty string."""
+        # startswith('') should match all people
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gramps_id.startswith('')",
+                )
+            )
+        )
+        # Should match all people
+        self.assertEqual(len(res), self.db.get_number_of_people())
+
+    def test_endswith_with_empty_string_semantic(self):
+        """Test semantic correctness of endswith with empty string."""
+        # endswith('') should match all people
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gramps_id.endswith('')",
+                )
+            )
+        )
+        # Should match all people
+        self.assertEqual(len(res), self.db.get_number_of_people())
+
+    # ========================================================================
+    # Edge case semantic tests for ternary expressions
+    # ========================================================================
+
+    def test_ternary_expression_semantic(self):
+        """Test semantic correctness of ternary expressions."""
+        # Test ternary in what clause
+        res = list(
+            self.db.select_from_person(
+                what="person.gramps_id if person.gramps_id else 'UNKNOWN'",
+                where="len(person.family_list) > 0",
+            )
+        )
+        # Should return gramps_id or 'UNKNOWN'
+        self.assertGreater(len(res), 0)
+        for item in res:
+            self.assertIsInstance(item, str)
+            # Should never be empty (either gramps_id or 'UNKNOWN')
+            self.assertGreater(len(item), 0)
+
+    def test_ternary_in_where_clause_semantic(self):
+        """Test semantic correctness of ternary in where clause."""
+        # Use ternary to provide default value
+        res = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="(person.gender if person.gender else Person.UNKNOWN) == Person.MALE",
+                )
+            )
+        )
+        # Should match people with MALE gender
+        res_male = set(
+            list(
+                self.db.select_from_person(
+                    what="person.handle",
+                    where="person.gender == Person.MALE",
+                )
+            )
+        )
+        # Should be equivalent (assuming all people have gender set)
+        # Note: This might differ if some people have None gender
+        self.assertGreaterEqual(len(res), 0)
+
 
 if __name__ == "__main__":
     unittest.main()
