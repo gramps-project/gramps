@@ -26,6 +26,7 @@ import os
 from time import perf_counter
 import inspect
 from contextlib import contextmanager
+from unittest.mock import patch
 
 from ....filters import reload_custom_filters
 
@@ -1122,31 +1123,79 @@ class BaseTest(unittest.TestCase):
 
     def test_isdefaultperson_optimized(self):
         """
-        Test IsDefaultPerson rule.
+        Test IsDefaultPerson rule with optimizer verification.
         """
         with count_method_calls(IsDefaultPerson, "apply_to_one") as get_call_count:
             rule = IsDefaultPerson([])
+
+            # Verify selected_handles is set correctly after prepare
+            rule.requestprepare(self.db, None)
+            self.assertTrue(hasattr(rule, "selected_handles"))
+            self.assertEqual(len(rule.selected_handles), 1)
+            self.assertIn("GNUJQCL9MD64AM56OH", rule.selected_handles)
+
+            # Verify filter results are correct
+            results = self.filter_with_rule(rule)
             self.assertEqual(
-                self.filter_with_rule(rule),
+                results,
                 set(
                     [
                         "GNUJQCL9MD64AM56OH",
                     ]
                 ),
             )
-            # This used the optimizer, so it didn't loop through DB
-            self.assertEqual(get_call_count(), 1)
 
-    def test_isfemale_not_optimized(self):
+            # Verify optimizer was used (apply_to_one not called)
+            self.assertEqual(get_call_count(), 0)
+
+            # Verify results match selected_handles
+            self.assertEqual(results, rule.selected_handles)
+
+    def test_isfemale_optimized(self):
         """
-        Test IsFemale rule. Same as below, but tests optimizer.
+        Test IsFemale rule with optimizer verification (fast selects enabled).
         """
         with count_method_calls(IsFemale, "apply_to_one") as get_call_count:
             rule = IsFemale([])
-            # too many to list out to test explicitly
-            self.assertEqual(len(self.filter_with_rule(rule)), 940)
-            # This did not use the optimizer, so it did loop through DB
-            self.assertEqual(get_call_count(), self.db.get_number_of_people())
+
+            # Verify selected_handles is set correctly after prepare (if fast selects available)
+            rule.requestprepare(self.db, None)
+            if self.db.can_use_fast_selects():
+                self.assertTrue(hasattr(rule, "selected_handles"))
+                self.assertGreater(len(rule.selected_handles), 0)
+
+            # Verify filter results are correct
+            results = self.filter_with_rule(rule)
+            self.assertEqual(len(results), 940)
+
+            # Verify optimizer was used (apply_to_one not called when fast selects available)
+            if self.db.can_use_fast_selects():
+                self.assertEqual(get_call_count(), 0)
+                # Verify results match selected_handles
+                self.assertEqual(results, rule.selected_handles)
+            else:
+                # If fast selects not available, apply_to_one should be called
+                self.assertGreater(get_call_count(), 0)
+
+    def test_isfemale_not_optimized(self):
+        """
+        Test IsFemale rule without optimizer (fast selects disabled).
+        Verifies that apply_to_one is called for each person when optimization is not available.
+        """
+        with patch.object(self.db, "can_use_fast_selects", return_value=False):
+            with count_method_calls(IsFemale, "apply_to_one") as get_call_count:
+                rule = IsFemale([])
+
+                # Verify selected_handles is NOT set when fast selects disabled
+                rule.requestprepare(self.db, None)
+                self.assertFalse(hasattr(rule, "selected_handles"))
+
+                # Verify filter results are correct
+                results = self.filter_with_rule(rule)
+                self.assertEqual(len(results), 940)
+
+                # Verify apply_to_one was called for each person (non-optimized path)
+                self.assertEqual(get_call_count(), self.db.get_number_of_people())
 
     def test_isfemale(self):
         """

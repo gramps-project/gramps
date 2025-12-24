@@ -40,8 +40,11 @@ _ = glocale.translation.gettext
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Family
 from ....db import Database
+from ....types import PersonHandle, EventHandle
 
 
 # -------------------------------------------------------------------------
@@ -60,15 +63,18 @@ class HasTwins(Rule):
         date_list = []
         for childref in family.child_ref_list:
             if int(childref.mrel.value) == ChildRefType.BIRTH:
-                child = db.get_person_from_handle(childref.ref)
-                if 0 <= child.birth_ref_index < len(child.event_ref_list):
-                    birthref = child.event_ref_list[child.birth_ref_index]
-                    if birthref:
-                        birth = db.get_event_from_handle(birthref.ref)
-                        sortval = birth.date.sortval
-                        if sortval != 0:
-                            if sortval in date_list:
-                                return True
-                            else:
-                                date_list.append(sortval)
+                if childref.ref:
+                    child = db.get_person_from_handle(cast(PersonHandle, childref.ref))
+                    if child and 0 <= child.birth_ref_index < len(child.event_ref_list):
+                        birthref = child.event_ref_list[child.birth_ref_index]
+                        if birthref and birthref.ref:
+                            birth = db.get_event_from_handle(
+                                cast(EventHandle, birthref.ref)
+                            )
+                            sortval = birth.date.sortval
+                            if sortval != 0:
+                                if sortval in date_list:
+                                    return True
+                                else:
+                                    date_list.append(sortval)
         return False

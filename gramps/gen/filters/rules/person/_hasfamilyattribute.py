@@ -39,8 +39,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -61,7 +64,7 @@ class HasFamilyAttribute(Rule):
         if not self.list[0]:
             return False
         for f_id in person.family_list:
-            f = db.get_family_from_handle(f_id)
+            f = db.get_family_from_handle(cast(FamilyHandle, f_id))
             if not f:
                 continue
             for attr in f.attribute_list:

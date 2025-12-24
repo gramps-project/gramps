@@ -27,9 +27,10 @@ Database API interface
 # Python modules
 #
 # -------------------------------------------------------------------------
+import ast
 import logging
-import json
 import time
+import json
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -47,6 +48,7 @@ from gramps.gen.db.dbconst import (
     TXNDEL,
     TXNUPD,
 )
+from gramps.gen.lib.json_utils import DataDict
 from gramps.gen.db.generic import DbGeneric
 from gramps.gen.lib import (
     Citation,
@@ -63,6 +65,10 @@ from gramps.gen.lib import (
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
+from .query_builder import QueryBuilder
+from .select_utils import parse_query_result_value
+import types
+
 LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
 
@@ -77,8 +83,17 @@ class DBAPI(DbGeneric):
     Database backends class for DB-API 2.0 databases
     """
 
+    dialect = "sqlite"
+
     def _initialize(self, directory, username, password):
         raise NotImplementedError
+
+    def can_use_fast_selects(self):
+        """
+        If this DB-API instance is not using a proxy,
+        then yes, it uses fast selects.
+        """
+        return not self.is_proxy()
 
     def use_json_data(self):
         """
@@ -105,6 +120,49 @@ class DBAPI(DbGeneric):
         being new.
         """
         return self.dbapi.table_exists("person")
+
+    def _format_json_extract_for_index(self):
+        """
+        Format JSON extract expression for index creation based on dialect.
+
+        This matches the logic used in QueryBuilder.format_json_extract() to ensure
+        indexes use the same JSON extraction syntax as queries.
+
+        Returns:
+            SQL expression string for JSON handle extraction (e.g.,
+            "json_extract(json_data, '$.handle')" for SQLite or
+            "JSON_EXTRACT_PATH(json_data, 'handle')" for PostgreSQL)
+        """
+        if self.dialect == "sqlite":
+            return "json_extract(json_data, '$.handle')"
+        elif self.dialect == "postgres":
+            return "JSON_EXTRACT_PATH(json_data, 'handle')"
+        else:
+            # Default to SQLite format for backward compatibility
+            return "json_extract(json_data, '$.handle')"
+
+    def _format_json_extract_index(self, field_name):
+        """
+        Format JSON extract expression for index creation on a specific field.
+
+        This matches the logic used in QueryBuilder.format_json_extract() to ensure
+        indexes use the same JSON extraction syntax as queries.
+
+        Args:
+            field_name: The field name to extract from JSON (e.g., "gramps_id", "title")
+
+        Returns:
+            SQL expression string for JSON field extraction (e.g.,
+            "json_extract(json_data, '$.gramps_id')" for SQLite or
+            "JSON_EXTRACT_PATH(json_data, 'gramps_id')" for PostgreSQL)
+        """
+        if self.dialect == "sqlite":
+            return f"json_extract(json_data, '$.{field_name}')"
+        elif self.dialect == "postgres":
+            return f"JSON_EXTRACT_PATH(json_data, '{field_name}')"
+        else:
+            # Default to SQLite format for backward compatibility
+            return f"json_extract(json_data, '$.{field_name}')"
 
     def _create_schema(self, json_data):
         """
@@ -226,28 +284,88 @@ class DBAPI(DbGeneric):
             ")"
         )
 
-        self._create_secondary_columns()
-
         ## Indices:
-        self.dbapi.execute("CREATE INDEX person_gramps_id ON person(gramps_id)")
+        # Person table: given_name and surname are actual columns, gramps_id is in JSON/blob_data
         self.dbapi.execute("CREATE INDEX person_surname ON person(surname)")
         self.dbapi.execute("CREATE INDEX person_given_name ON person(given_name)")
-        self.dbapi.execute("CREATE INDEX source_title ON source(title)")
-        self.dbapi.execute("CREATE INDEX source_gramps_id ON source(gramps_id)")
-        self.dbapi.execute("CREATE INDEX citation_page ON citation(page)")
-        self.dbapi.execute("CREATE INDEX citation_gramps_id ON citation(gramps_id)")
-        self.dbapi.execute("CREATE INDEX media_desc ON media(desc)")
-        self.dbapi.execute("CREATE INDEX media_gramps_id ON media(gramps_id)")
-        self.dbapi.execute("CREATE INDEX place_title ON place(title)")
+        if json_data:
+            # When using JSON, gramps_id can be indexed via json_extract
+            self.dbapi.execute(
+                f"CREATE INDEX person_gramps_id ON person({self._format_json_extract_index('gramps_id')})"
+            )
+        # When using blob_data, gramps_id is inside the BLOB and cannot be indexed
+        # Source table: only handle column exists, title and gramps_id are in JSON/blob_data
+        if json_data:
+            self.dbapi.execute(
+                f"CREATE INDEX source_title ON source({self._format_json_extract_index('title')})"
+            )
+            self.dbapi.execute(
+                f"CREATE INDEX source_gramps_id ON source({self._format_json_extract_index('gramps_id')})"
+            )
+        # When using blob_data, title and gramps_id are inside the BLOB and cannot be indexed
+        # Citation table: only handle column exists, page and gramps_id are in JSON/blob_data
+        if json_data:
+            self.dbapi.execute(
+                f"CREATE INDEX citation_page ON citation({self._format_json_extract_index('page')})"
+            )
+            self.dbapi.execute(
+                f"CREATE INDEX citation_gramps_id ON citation({self._format_json_extract_index('gramps_id')})"
+            )
+        # When using blob_data, page and gramps_id are inside the BLOB and cannot be indexed
+        # Media table: only handle column exists, desc and gramps_id are in JSON/blob_data
+        if json_data:
+            self.dbapi.execute(
+                f"CREATE INDEX media_desc ON media({self._format_json_extract_index('desc')})"
+            )
+            self.dbapi.execute(
+                f"CREATE INDEX media_gramps_id ON media({self._format_json_extract_index('gramps_id')})"
+            )
+        # When using blob_data, desc and gramps_id are inside the BLOB and cannot be indexed
+        # Place table: handle and enclosed_by are actual columns, title and gramps_id are in JSON/blob_data
         self.dbapi.execute("CREATE INDEX place_enclosed_by ON place(enclosed_by)")
-        self.dbapi.execute("CREATE INDEX place_gramps_id ON place(gramps_id)")
-        self.dbapi.execute("CREATE INDEX tag_name ON tag(name)")
+        if json_data:
+            self.dbapi.execute(
+                f"CREATE INDEX place_title ON place({self._format_json_extract_index('title')})"
+            )
+            self.dbapi.execute(
+                f"CREATE INDEX place_gramps_id ON place({self._format_json_extract_index('gramps_id')})"
+            )
+        # When using blob_data, title and gramps_id are inside the BLOB and cannot be indexed
+        # Tag table: only handle column exists, name is in JSON/blob_data
+        if json_data:
+            self.dbapi.execute(
+                f"CREATE INDEX tag_name ON tag({self._format_json_extract_index('name')})"
+            )
+        # When using blob_data, name is inside the BLOB and cannot be indexed
+        # Reference table: obj_handle and ref_handle are actual columns
         self.dbapi.execute("CREATE INDEX reference_ref_handle ON reference(ref_handle)")
-        self.dbapi.execute("CREATE INDEX family_gramps_id ON family(gramps_id)")
-        self.dbapi.execute("CREATE INDEX event_gramps_id ON event(gramps_id)")
-        self.dbapi.execute("CREATE INDEX repository_gramps_id ON repository(gramps_id)")
-        self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
+        # Family table: only handle column exists, gramps_id is in JSON/blob_data
+        if json_data:
+            self.dbapi.execute(
+                f"CREATE INDEX family_gramps_id ON family({self._format_json_extract_index('gramps_id')})"
+            )
+        # When using blob_data, gramps_id is inside the BLOB and cannot be indexed
+        # Event table: only handle column exists, gramps_id is in JSON/blob_data
+        if json_data:
+            self.dbapi.execute(
+                f"CREATE INDEX event_gramps_id ON event({self._format_json_extract_index('gramps_id')})"
+            )
+        # When using blob_data, gramps_id is inside the BLOB and cannot be indexed
+        # Repository table: only handle column exists, gramps_id is in JSON/blob_data
+        if json_data:
+            self.dbapi.execute(
+                f"CREATE INDEX repository_gramps_id ON repository({self._format_json_extract_index('gramps_id')})"
+            )
+        # When using blob_data, gramps_id is inside the BLOB and cannot be indexed
+        # Note table: only handle column exists, gramps_id is in JSON/blob_data
+        if json_data:
+            self.dbapi.execute(
+                f"CREATE INDEX note_gramps_id ON note({self._format_json_extract_index('gramps_id')})"
+            )
+        # When using blob_data, gramps_id is inside the BLOB and cannot be indexed
+
+        self._create_secondary_columns()
 
         self.dbapi.commit()
 
@@ -1014,6 +1132,29 @@ class DBAPI(DbGeneric):
                 self.update()
         self._txn_commit()
 
+        # Rebuild JSON handle indices for faster JOINs
+        self._txn_begin()
+        tables = [
+            "person",
+            "source",
+            "citation",
+            "media",
+            "place",
+            "family",
+            "event",
+            "repository",
+            "note",
+        ]
+        for table in tables:
+            index_name = f"{table}_handle_json"
+            # Drop index if it exists (for rebuild)
+            self.dbapi.execute(f"DROP INDEX IF EXISTS {index_name}")
+            # Create the index
+            self.dbapi.execute(
+                f"CREATE INDEX {index_name} ON {table}({self._format_json_extract_for_index()})"
+            )
+        self._txn_commit()
+
         # Next, rebuild stats:
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
@@ -1207,3 +1348,76 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
+
+    def _select_from_table(
+        self,
+        table_name,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        The actual selection method.
+
+        Args:
+            override: if True, and using a proxy, apply
+                the select on the low-level database instead.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+        """
+        if self.is_proxy():
+            if override:
+                # Allow to work on low-level backend
+                yield from self.basedb._select_from_table(
+                    table_name,
+                    what=what,
+                    where=where,
+                    order_by=order_by,
+                    env=env,
+                    page=page,
+                    page_size=page_size,
+                )
+                return
+            else:
+                raise Exception(
+                    "to use db.select methods on a proxy, "
+                    + "you must pass `override=True` to query the underlying database"
+                )
+
+        # Create QueryBuilder instance with type validation enabled
+        query_builder = QueryBuilder(
+            table_name,
+            env=env if env is not None else {},
+            dialect=self.dialect,
+            enable_type_validation=True,
+        )
+
+        # Generate SQL query
+        query = query_builder.get_sql_query(
+            what, where, order_by, page=page, page_size=page_size
+        )
+
+        # Execute query and yield results
+        with self.dbapi.cursor() as cursor:
+            try:
+                cursor.execute(query)
+            except Exception as exc:
+                raise Exception(f"{exc}\nQuery: {query}") from None
+
+            row = cursor.fetchone()
+            while row:
+                # Always yield all columns from the row
+                if len(row) == 1:
+                    # Single column - yield the value directly
+                    value = row[0]
+                    yield parse_query_result_value(value)
+                else:
+                    # Multiple columns - yield as a list
+                    yield [parse_query_result_value(value) for value in row]
+
+                row = cursor.fetchone()

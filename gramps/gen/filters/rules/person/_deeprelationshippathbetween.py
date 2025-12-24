@@ -41,7 +41,8 @@ from ....const import GRAMPS_LOCALE as glocale
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Union, List, Set, Dict
+from typing import Union, List, Set, Dict, Optional, cast
+
 from ....lib import Person
 from ....db import Database
 from ....types import FamilyHandle, PersonHandle
@@ -80,9 +81,13 @@ def get_person_family_people(
 ) -> Set[str]:
     people: Set[str] = set()
 
-    def add_family_handle_list(fam_list: List[FamilyHandle]):
+    def add_family_handle_list(fam_list: List[str]):
         for family_handle in fam_list:
-            people.update(get_family_handle_people(db, person_handle, family_handle))
+            people.update(
+                get_family_handle_people(
+                    db, person_handle, cast(FamilyHandle, family_handle)
+                )
+            )
 
     add_family_handle_list(person.family_list)
     add_family_handle_list(person.parent_family_list)
@@ -102,11 +107,11 @@ def find_deep_relations(
     rather than using a recursive algorithm because some trees have been found
     that exceed the standard python recursive depth."""
     return_paths: Set[str] = set()  # all people in paths between targets and person
-    if person is None:
+    if person is None or not person.handle:
         return return_paths
     todo = deque([person.handle])  # list of work to do, handles, add to right,
     #                                pop from left
-    done: Dict[str, Union[str, None]] = {}  # The key records handles already examined,
+    done: Dict[str, Optional[str]] = {}  # The key records handles already examined,
     # the value is a handle of the previous person in the path, or None at
     # head of path.  This forms a linked list of handles along the path.
     done[person.handle] = None
@@ -118,7 +123,7 @@ def find_deep_relations(
             user.step_progress()
 
         if handle in target_people:  # if we found a target
-            prev_hndl = handle
+            prev_hndl: Optional[str] = handle
             # Go through linked list and save the handles in return_paths
             while prev_hndl:
                 return_paths.add(prev_hndl)
@@ -127,11 +132,11 @@ def find_deep_relations(
             if not target_people:  # Quit searching if all targets found
                 break
 
-        person = db.get_person_from_handle(handle)
+        person = db.get_person_from_handle(cast(PersonHandle, handle))
         if person is None:
             continue
 
-        people = get_person_family_people(db, person, handle)
+        people = get_person_family_people(db, person, cast(PersonHandle, handle))
         for p_hndl in people:
             if p_hndl in done:  # check if we have already been here
                 continue  # and ignore if we have
@@ -172,9 +177,9 @@ class DeepRelationshipPathBetween(Rule):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        target_people = []
+        target_people: List[str] = []
         for person in db.iter_people():
-            if self.filt.apply_to_one(db, person):
+            if self.filt.apply_to_one(db, person) and person.handle:
                 target_people.append(person.handle)
             if user:
                 user.step_progress()

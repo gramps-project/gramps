@@ -70,6 +70,19 @@ class DbReadBase:
         self.basedb = self
         self.__feature = {}  # {"feature": VALUE, ...}
 
+    def is_proxy(self):
+        """
+        Returns True if the database has a proxy, such as Living, or Private.
+        Otherwise, return False.
+        """
+        return self != self.basedb
+
+    def can_use_fast_selects(self):
+        """
+        This base implementation does not use fast selects.
+        """
+        return False
+
     def get_feature(self, feature):
         """
         Databases can implement certain features or not. The default is

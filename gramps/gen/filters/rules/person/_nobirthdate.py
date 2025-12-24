@@ -39,8 +39,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import EventHandle
 
 
 # -------------------------------------------------------------------------
@@ -53,18 +56,39 @@ class NoBirthdate(Rule):
     description = _("Matches people without a known birthdate")
     category = _("General filters")
 
+    def prepare(self, db: Database, user):
+        if db.can_use_fast_selects():
+            self.selected_handles = set(
+                list(
+                    db.select_from_person(
+                        what=["person.handle"],
+                        where="person.birth_ref_index < 0 or person.birth_ref_index >= len(person.event_ref_list)",
+                    )
+                )
+            )
+
+            for person_handle, event_sortval in db.select_from_person(
+                what=["person.handle", "event.date.sortval"],
+                where="person.event_ref_list[person.birth_ref_index].ref == event.handle",
+            ):
+                if event_sortval == 0:
+                    self.selected_handles.add(person_handle)
+
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        if 0 <= person.birth_ref_index < len(person.event_ref_list):
-            birth_ref = person.event_ref_list[person.birth_ref_index]
-            if not birth_ref:
-                return True
-            birth = db.get_event_from_handle(birth_ref.ref)
-            if birth:
-                birth_obj = birth.date
-                if not birth_obj:
-                    return True
-                if birth_obj.sortval == 0:
-                    return True
-            return False
+        if db.can_use_fast_selects():
+            return person.handle in self.selected_handles
         else:
-            return True
+            if 0 <= person.birth_ref_index < len(person.event_ref_list):
+                birth_ref = person.event_ref_list[person.birth_ref_index]
+                if not birth_ref or not birth_ref.ref:
+                    return True
+                birth = db.get_event_from_handle(cast(EventHandle, birth_ref.ref))
+                if birth:
+                    birth_obj = birth.date
+                    if not birth_obj:
+                        return True
+                    if birth_obj.sortval == 0:
+                        return True
+                return False
+            else:
+                return True

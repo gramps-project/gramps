@@ -42,3 +42,4 @@ class PlacePrivate(IsPrivate):
 
     name = _("Places marked private")
     description = _("Matches places that are indicated as private")
+    table = "place"

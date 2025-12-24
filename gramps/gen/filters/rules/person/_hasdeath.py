@@ -43,8 +43,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Optional, cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import EventHandle, PlaceHandle
 
 
 # -------------------------------------------------------------------------
@@ -74,7 +77,9 @@ class HasDeath(Rule):
             elif event_ref.role.value != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue
-            event = db.get_event_from_handle(event_ref.ref)
+            if not event_ref.ref:
+                continue
+            event = db.get_event_from_handle(cast(EventHandle, event_ref.ref))
             if event.type != EventType.DEATH:
                 # No match: wrong type
                 continue
@@ -88,7 +93,7 @@ class HasDeath(Rule):
             if self.list[1]:
                 place_id = event.place
                 if place_id:
-                    place = db.get_place_from_handle(place_id)
+                    place = db.get_place_from_handle(cast(PlaceHandle, place_id))
                     place_title = place_displayer.display(db, place)
                     if not self.match_substring(1, place_title):
                         # No match: wrong place

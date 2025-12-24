@@ -42,3 +42,4 @@ class SourcePrivate(IsPrivate):
 
     name = _("Sources marked private")
     description = _("Matches sources that are indicated as private")
+    table = "source"

@@ -22,12 +22,15 @@
 NoteBase class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Python modules
 #
 # -------------------------------------------------------------------------
 import logging
+from typing import List
 
 LOG = logging.getLogger(".note")
 
@@ -45,6 +48,8 @@ class NoteBase:
     Internally, this class maintains a list of Note handles,
     as a note_list attribute of the NoteBase object.
     """
+
+    note_list: List[str]
 
     def __init__(self, source=None):
         """

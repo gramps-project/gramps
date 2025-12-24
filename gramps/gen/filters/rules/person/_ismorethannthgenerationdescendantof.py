@@ -39,9 +39,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
+from typing import Set, Optional, cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle, FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -77,15 +79,19 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         return person.handle in self.selected_handles
 
     def init_list(self, person: Person, gen: int) -> None:
-        if not person:
+        if not person or not person.handle:
             return
         if gen >= int(self.list[1]):
             self.selected_handles.add(person.handle)
 
         for fam_id in person.family_list:
-            fam = self.db.get_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(cast(FamilyHandle, fam_id))
             if fam:
                 for child_ref in fam.child_ref_list:
-                    self.init_list(
-                        self.db.get_person_from_handle(child_ref.ref), gen + 1
-                    )
+                    if child_ref.ref:
+                        self.init_list(
+                            self.db.get_person_from_handle(
+                                cast(PersonHandle, child_ref.ref)
+                            ),
+                            gen + 1,
+                        )

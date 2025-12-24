@@ -43,3 +43,4 @@ class CitationPrivate(IsPrivate):
 
     name = _("Citations marked private")
     description = _("Matches citations that are indicated as private")
+    table = "citation"

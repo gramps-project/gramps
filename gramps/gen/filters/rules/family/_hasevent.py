@@ -42,8 +42,11 @@ from .._haseventbase import HasEventBase
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Family
 from ....db import Database
+from ....types import EventHandle
 
 
 # -------------------------------------------------------------------------
@@ -66,9 +69,9 @@ class HasEvent(HasEventBase):
 
     def apply_to_one(self, dbase: Database, family: Family) -> bool:  # type: ignore[override]
         for event_ref in family.event_ref_list:
-            if not event_ref:
+            if not event_ref or not event_ref.ref:
                 continue
-            event = dbase.get_event_from_handle(event_ref.ref)
+            event = dbase.get_event_from_handle(cast(EventHandle, event_ref.ref))
             if HasEventBase.apply_to_one(self, dbase, event):
                 return True
         return False

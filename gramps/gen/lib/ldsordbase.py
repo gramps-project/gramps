@@ -22,11 +22,15 @@
 LdsOrdBase class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from typing import List
+
 from .const import EQUAL, IDENTICAL
 from .ldsord import LdsOrd
 
@@ -40,6 +44,8 @@ class LdsOrdBase:
     """
     Base class for lds_ord-aware objects.
     """
+
+    lds_ord_list: List[LdsOrd]
 
     def __init__(self, source=None):
         """

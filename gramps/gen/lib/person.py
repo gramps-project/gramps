@@ -24,11 +24,15 @@
 Person object for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from typing import List
+
 from ..const import GRAMPS_LOCALE as glocale
 from .addressbase import AddressBase
 from .attrbase import AttributeBase
@@ -82,6 +86,15 @@ class Person(
     or the changes will be lost.
 
     """
+
+    # Type hints for Person-specific attributes
+    primary_name: Name
+    family_list: List[str]  # List of family handles
+    parent_family_list: List[str]  # List of parent family handles
+    alternate_names: List[Name]
+    person_ref_list: List[PersonRef]
+    death_ref_index: int
+    birth_ref_index: int
 
     OTHER = 3
     UNKNOWN = 2

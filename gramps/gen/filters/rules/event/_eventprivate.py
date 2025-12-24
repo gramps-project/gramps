@@ -42,3 +42,4 @@ class EventPrivate(IsPrivate):
 
     name = _("Events marked private")
     description = _("Matches events that are indicated as private")
+    table = "event"

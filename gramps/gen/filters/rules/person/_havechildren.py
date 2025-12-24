@@ -23,6 +23,8 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
+
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -40,8 +42,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -56,9 +61,26 @@ class HaveChildren(Rule):
     description = _("Matches people who have children")
     category = _("Family filters")
 
+    def prepare(self, db: Database, user):
+        if db.can_use_fast_selects():
+            self.selected_handles: Set[str] = set()
+
+            for person in db.select_from_person(
+                where="len(person.family_list) > 0",
+            ):
+                for family_handle in person.family_list:
+                    family = db.get_family_from_handle(
+                        cast(FamilyHandle, family_handle)
+                    )
+                    if family is not None and family.child_ref_list:
+                        self.selected_handles.add(person.handle)
+
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        for family_handle in person.family_list:
-            family = db.get_family_from_handle(family_handle)
-            if family is not None and family.child_ref_list:
-                return True
-        return False
+        if db.can_use_fast_selects():
+            return person.handle in self.selected_handles
+        else:
+            for family_handle in person.family_list:
+                family = db.get_family_from_handle(cast(FamilyHandle, family_handle))
+                if family is not None and family.child_ref_list:
+                    return True
+            return False

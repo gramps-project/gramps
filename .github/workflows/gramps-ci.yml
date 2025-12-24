@@ -56,6 +56,7 @@ jobs:
         sudo apt-get install zlib1g-dev
         sudo apt-get install python3-build
         python3 -m pip install orjson
+        python3 -m pip install sqlglot
         python3 -m pip install virtualenv
     - name: Install addons
       run: |

@@ -34,6 +34,7 @@ from ._hasnote import HasNote
 from ._changedsince import ChangedSince
 from ._hastag import HasTag
 from ._hastype import HasType
+from ._notewhere import NoteWhere
 
 editor_rule_list = [
     AllNotes,
@@ -47,4 +48,5 @@ editor_rule_list = [
     ChangedSince,
     HasTag,
     HasType,
+    NoteWhere,
 ]

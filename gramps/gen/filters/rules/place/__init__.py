@@ -48,6 +48,7 @@ from ._changedsince import ChangedSince
 from ._hastag import HasTag
 from ._hastitle import HasTitle
 from ._withinarea import WithinArea
+from ._placewhere import PlaceWhere
 
 editor_rule_list = [
     AllPlaces,
@@ -73,4 +74,5 @@ editor_rule_list = [
     HasTitle,
     WithinArea,
     IsEnclosedBy,
+    PlaceWhere,
 ]

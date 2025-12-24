@@ -21,11 +21,15 @@
 UrlBase class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from typing import List
+
 from .const import EQUAL, IDENTICAL
 from .url import Url
 
@@ -39,6 +43,8 @@ class UrlBase:
     """
     Base class for url-aware objects.
     """
+
+    urls: List[Url]
 
     def __init__(self, source=None):
         """

@@ -21,11 +21,15 @@
 SurnameBase class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from typing import List
+
 from ..const import GRAMPS_LOCALE as glocale
 from .const import EQUAL, IDENTICAL
 from .surname import Surname
@@ -42,6 +46,8 @@ class SurnameBase:
     """
     Base class for surname-aware objects.
     """
+
+    surname_list: List[Surname]
 
     def __init__(self, source=None):
         """

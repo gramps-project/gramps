@@ -55,5 +55,17 @@ class IsMale(Rule):
     category = _("General filters")
     description = _("Matches all males")
 
+    def prepare(self, db, user):
+        if db.can_use_fast_selects():
+            self.selected_handles = set(
+                list(
+                    db.select_from_person(
+                        what="person.handle",
+                        where="person.gender == Person.MALE",
+                    )
+                )
+            )
+
     def apply_to_one(self, db: Database, person: Person) -> bool:
+        # If you are here, then you can just:
         return person.gender == Person.MALE

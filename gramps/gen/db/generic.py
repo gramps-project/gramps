@@ -2821,5 +2821,464 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         elif serializer_name == "json":
             self.serializer = JSONSerializer
 
+    def _select_from_table(
+        self,
+        table_name,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        Select items from table_name where python-string is True,
+        optionally with a list of python-string items to order on.
+
+        This method must be overridden in subclasses.
+
+        Args:
+            override: if True, and using a proxy, apply
+                the select on the low-level database instead.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+
+        Raises:
+            NotImplementedError: This method must be implemented by subclasses.
+        """
+        raise NotImplementedError(
+            "_select_from_table() must be implemented by database subclasses"
+        )
+
+    def select_from_citation(
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        Select items from citation using Python string expressions.
+
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire citation object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+
+        Examples:
+
+        db.select_from_citation(where="citation.handle == 'A6E74B3D65D23F'")
+        db.select_from_citation(what="citation.handle", where="citation.handle == 'A6E74B3D65D23F'")
+        """
+        yield from self._select_from_table(
+            "citation",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            override=override,
+            page=page,
+            page_size=page_size,
+        )
+
+    def select_from_event(
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        Select items from event using Python string expressions.
+
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire event object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+
+        Examples:
+
+        db.select_from_event(where="event.handle == 'A6E74B3D65D23F'")
+        db.select_from_event(what="event.handle", where="event.handle == 'A6E74B3D65D23F'")
+        """
+        yield from self._select_from_table(
+            "event",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            override=override,
+            page=page,
+            page_size=page_size,
+        )
+
+    def select_from_family(
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        Select items from family using Python string expressions.
+
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire family object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+
+        Examples:
+
+        db.select_from_family(where="family.handle == 'A6E74B3D65D23F'")
+        db.select_from_family(what="family.handle", where="family.handle == 'A6E74B3D65D23F'")
+        """
+        yield from self._select_from_table(
+            "family",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            override=override,
+            page=page,
+            page_size=page_size,
+        )
+
+    def select_from_media(
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        Select items from media using Python string expressions.
+
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire media object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+
+        Examples:
+
+        db.select_from_media(where="media.handle == 'A6E74B3D65D23F'")
+        db.select_from_media(what="media.handle", where="media.handle == 'A6E74B3D65D23F'")
+        """
+        yield from self._select_from_table(
+            "media",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            override=override,
+            page=page,
+            page_size=page_size,
+        )
+
+    def select_from_note(
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        Select items from note using Python string expressions.
+
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire note object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+
+        Examples:
+
+        db.select_from_note(where="note.handle == 'A6E74B3D65D23F'")
+        db.select_from_note(what="note.handle", where="note.handle == 'A6E74B3D65D23F'")
+        """
+        yield from self._select_from_table(
+            "note",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            override=override,
+            page=page,
+            page_size=page_size,
+        )
+
+    def select_from_person(
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        Select items from person using Python string expressions.
+
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire person object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+
+        Examples:
+
+        db.select_from_person(where="person.handle == 'A6E74B3D65D23F'")
+        db.select_from_person(what="person.handle", where="person.handle == 'A6E74B3D65D23F'")
+        db.select_from_person(
+            what=["person.handle", "person.gramps_id"],
+            where="person.handle == 'A6E74B3D65D23F'",
+            order_by=["-person.gramps_id"]
+        )
+        # With joins: db.select_from_person(what=["person.handle", "family.handle"],
+        #                                   where="person.handle == family.father_handle")
+        # With arrays: db.select_from_person(what="[eref.ref for eref in person.event_ref_list]")
+        """
+        yield from self._select_from_table(
+            "person",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            override=override,
+            page=page,
+            page_size=page_size,
+        )
+
+    def select_from_place(
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        Select items from place using Python string expressions.
+
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire place object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+
+        Examples:
+
+        db.select_from_place(where="place.handle == 'A6E74B3D65D23F'")
+        db.select_from_place(what="place.handle", where="place.handle == 'A6E74B3D65D23F'")
+        """
+        yield from self._select_from_table(
+            "place",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            override=override,
+            page=page,
+            page_size=page_size,
+        )
+
+    def select_from_repository(
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        Select items from repository using Python string expressions.
+
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire repository object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+
+        Examples:
+
+        db.select_from_repository(where="repository.handle == 'A6E74B3D65D23F'")
+        db.select_from_repository(what="repository.handle", where="repository.handle == 'A6E74B3D65D23F'")
+        """
+        yield from self._select_from_table(
+            "repository",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            override=override,
+            page=page,
+            page_size=page_size,
+        )
+
+    def select_from_source(
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        Select items from source using Python string expressions.
+
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire source object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+
+        Examples:
+
+        db.select_from_source(where="source.handle == 'A6E74B3D65D23F'")
+        db.select_from_source(what="source.handle", where="source.handle == 'A6E74B3D65D23F'")
+        """
+        yield from self._select_from_table(
+            "source",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            override=override,
+            page=page,
+            page_size=page_size,
+        )
+
+    def select_from_tag(
+        self,
+        *,
+        what=None,
+        where=None,
+        order_by=None,
+        env=None,
+        override=False,
+        page=None,
+        page_size=None,
+    ):
+        """
+        Select items from tag using Python string expressions.
+
+        Args:
+            what: Python string expression or list of expressions specifying what
+                to extract. Supports attributes, list comprehensions, and arrays.
+                Defaults to the entire tag object.
+            where: Python string expression for filtering records. Supports joins
+                to other tables, array operations, and list comprehensions.
+            order_by: Python string expression or list of expressions for sorting.
+                Use "-" prefix for descending order.
+            override: If True, bypass proxy database restrictions.
+            page: 1-based page number for pagination. Must be provided together with page_size.
+            page_size: Number of items per page. Must be provided together with page.
+
+        Examples:
+
+        db.select_from_tag(where="tag.handle == 'A6E74B3D65D23F'")
+        db.select_from_tag(what="tag.handle", where="tag.handle == 'A6E74B3D65D23F'")
+        """
+        yield from self._select_from_table(
+            "tag",
+            what=what,
+            where=where,
+            order_by=order_by,
+            env=env,
+            override=override,
+            page=page,
+            page_size=page_size,
+        )
+
 
 Database = DbGeneric

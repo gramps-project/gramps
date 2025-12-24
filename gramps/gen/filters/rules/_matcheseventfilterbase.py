@@ -39,8 +39,11 @@ from . import MatchesFilterBase
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import Optional, cast
+
 from ...lib.eventbase import EventBase
 from ...db import Database
+from ...types import EventHandle
 
 
 # -------------------------------------------------------------------------
@@ -76,7 +79,8 @@ class MatchesEventFilterBase(MatchesFilterBase):
         eventlist = [x.ref for x in object.event_ref_list]
         for eventhandle in eventlist:
             # check if event in event filter
-            event = db.get_event_from_handle(eventhandle)
+            if eventhandle:
+                event = db.get_event_from_handle(cast(EventHandle, eventhandle))
             if self.MEF_filt.apply_to_one(db, event):
                 return True
         return False

@@ -22,11 +22,15 @@
 AddressBase class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from typing import List
+
 from .address import Address
 from .const import EQUAL, IDENTICAL
 
@@ -40,6 +44,8 @@ class AddressBase:
     """
     Base class for address-aware objects.
     """
+
+    address_list: List[Address]
 
     def __init__(self, source=None):
         """

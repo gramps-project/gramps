@@ -50,3 +50,4 @@ class HasTag(HasTagBase):
     labels = [_("Tag:")]
     name = _("Citations with the <tag>")
     description = _("Matches citations with the particular tag")
+    table = "citation"

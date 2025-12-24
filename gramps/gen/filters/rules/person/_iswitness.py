@@ -36,8 +36,11 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import EventHandle
 
 
 _ = glocale.translation.gettext
@@ -78,8 +81,8 @@ class IsWitness(Rule):
             if event_ref.role.value == EventRoleType.WITNESS:
                 # This is the witness.
                 # If event type was given, then check it.
-                if self.event_type:
-                    event = db.get_event_from_handle(event_ref.ref)
+                if self.event_type and event_ref.ref:
+                    event = db.get_event_from_handle(cast(EventHandle, event_ref.ref))
                     if event.type == self.event_type:
                         return True
                 else:

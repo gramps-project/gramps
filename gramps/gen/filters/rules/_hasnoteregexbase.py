@@ -40,8 +40,11 @@ from . import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ...lib.notebase import NoteBase
 from ...db import Database
+from ...types import NoteHandle
 
 
 # -------------------------------------------------------------------------
@@ -61,7 +64,7 @@ class HasNoteRegexBase(Rule):
 
     def apply_to_one(self, db: Database, obj: NoteBase) -> bool:
         for handle in obj.note_list:
-            note = db.get_note_from_handle(handle)
+            note = db.get_note_from_handle(cast(NoteHandle, handle))
             if self.match_substring(0, str(note.text)):
                 return True
         return False

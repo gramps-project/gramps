@@ -635,6 +635,13 @@ class EditRule(ManagedWindow):
                 elif isinstance(v, tuple):
                     # allow filter to create its own GUI element
                     t = v[1](self.db)
+                elif v == _("Expression:"):
+                    # Use FilterExpressionEntry for expression fields
+                    from gramps.gui.widgets.filterexpressionentry import (
+                        FilterExpressionEntry,
+                    )
+
+                    t = FilterExpressionEntry()
                 else:
                     t = MyEntry()
                 t.set_hexpand(True)

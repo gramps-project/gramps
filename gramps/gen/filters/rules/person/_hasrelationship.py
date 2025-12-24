@@ -38,8 +38,11 @@ _ = glocale.translation.gettext
 # Typing modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
+
 from ....lib import Person
 from ....db import Database
+from ....types import FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -83,7 +86,7 @@ class HasRelationship(Rule):
 
         # count children and look for a relationship type match
         for handle in obj.family_list:
-            family = db.get_family_from_handle(handle)
+            family = db.get_family_from_handle(cast(FamilyHandle, handle))
             if family:
                 total_children += len(family.child_ref_list)
                 if self.relationship_type and (self.relationship_type == family.type):

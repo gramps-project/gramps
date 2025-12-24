@@ -50,6 +50,16 @@ class IsPrivate(Rule):
     name = "Objects marked private"
     description = "Matches objects that are indicated as private"
     category = _("General filters")
+    table: str  # Set by subclasses
+
+    def prepare(self, db: Database, user):
+        self.selected_handles = set(
+            list(
+                db._select_from_table(
+                    self.table, what="obj.handle", where="obj.private"
+                )
+            )
+        )
 
     def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         return obj.private

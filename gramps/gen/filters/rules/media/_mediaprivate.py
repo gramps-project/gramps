@@ -42,3 +42,4 @@ class MediaPrivate(IsPrivate):
 
     name = _("Media objects marked private")
     description = _("Matches Media objects that are indicated as private")
+    table = "media"

@@ -45,6 +45,7 @@ from ._matchessourcefilter import MatchesSourceFilter
 from ._regexpidof import RegExpIdOf
 from ._regexpsourceidof import RegExpSourceIdOf
 from ._hastag import HasTag
+from ._citationwhere import CitationWhere
 
 editor_rule_list = [
     HasCitation,
@@ -68,4 +69,5 @@ editor_rule_list = [
     RegExpIdOf,
     RegExpSourceIdOf,
     HasTag,
+    CitationWhere,
 ]

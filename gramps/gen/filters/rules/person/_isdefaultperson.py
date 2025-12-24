@@ -40,6 +40,7 @@ from .. import Rule
 #
 # -------------------------------------------------------------------------
 from typing import Set
+
 from ....lib import Person
 from ....db import Database
 
@@ -59,7 +60,7 @@ class IsDefaultPerson(Rule):
     def prepare(self, db: Database, user):
         self.selected_handles: Set[str] = set()
         p: Person = db.get_default_person()
-        if p:
+        if p and p.handle:
             self.selected_handles.add(p.handle)
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
