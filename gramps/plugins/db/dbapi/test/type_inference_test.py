@@ -24,7 +24,6 @@ Unittest for type inference and validation in QueryBuilder.
 
 import unittest
 
-from gramps.gen.lib import Person
 from gramps.plugins.db.dbapi.query_builder import QueryBuilder
 from gramps.plugins.db.dbapi.query_parser import QueryParser
 from gramps.plugins.db.dbapi.type_inference import TypeInferenceVisitor
@@ -35,7 +34,7 @@ class TypeInferenceTest(unittest.TestCase):
 
     def setUp(self):
         """Set up test environment."""
-        self.env = {"Person": Person}
+        self.env = {}
         self.type_inference = TypeInferenceVisitor(env=self.env)
 
     def test_infer_person_handle(self):

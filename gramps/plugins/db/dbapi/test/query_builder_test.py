@@ -37,7 +37,6 @@ import unittest
 
 import sqlglot
 
-from gramps.gen.lib import Person, EventRoleType, FamilyRelType
 from gramps.plugins.db.dbapi.query_builder import QueryBuilder
 
 
@@ -51,16 +50,10 @@ class QueryBuilderTestMixin:
         """
         Set up QueryBuilder with proper environment.
         """
-        # Environment dictionary with necessary classes and constants
-        self.env = {
-            "Person": Person,
-            "EventRoleType": EventRoleType,
-            "FamilyRelType": FamilyRelType,
-        }
         # Subclasses should set self.dialect before calling super().setUp()
         self.query_builder = QueryBuilder(
             "person",
-            env=self.env,
+            env={},
             dialect=self.dialect,
         )
 

@@ -518,14 +518,14 @@ class SQLGenerator:
             ):
                 # This is a JSON field - use type-aware falsy checking
                 if operand_type is bool:
-                    # Boolean - simple negation
+                    # Boolean - check for NULL or false
                     if self.dialect == "sqlite":
-                        return f"NOT CAST({operand_sql} AS INTEGER)"
+                        return f"({operand_sql} IS NULL OR CAST({operand_sql} AS INTEGER) = 0)"
                     elif self.dialect == "postgres":
-                        return f"NOT CAST({operand_sql} AS BOOLEAN)"
+                        return f"({operand_sql} IS NULL OR CAST({operand_sql} AS BOOLEAN) = false)"
                     else:
                         # Default to SQLite format
-                        return f"NOT CAST({operand_sql} AS INTEGER)"
+                        return f"({operand_sql} IS NULL OR CAST({operand_sql} AS INTEGER) = 0)"
                 elif operand_type is str:
                     # String - check for empty string and NULL
                     if self.dialect == "sqlite":
