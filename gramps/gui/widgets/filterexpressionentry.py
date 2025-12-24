@@ -35,6 +35,7 @@ __all__ = ["FilterExpressionEntry"]
 import re
 import inspect
 import logging
+from functools import lru_cache
 
 _LOG = logging.getLogger(".widgets.filterexpressionentry")
 
@@ -348,6 +349,509 @@ class FilterExpressionEntry(Gtk.Entry):
                 type_class_names.append(name)
         return sorted(type_class_names)
 
+    def _get_comparison_suggestions(self, text, cursor_pos):
+        """
+        Detect if we're in a comparison context and suggest class constants.
+
+        When user types something like "person.gender == Per", suggest
+        Person.MALE, Person.FEMALE, Person.OTHER, Person.UNKNOWN.
+
+        Returns list of suggestions if in comparison context, None otherwise.
+        """
+        if not text or cursor_pos == 0:
+            return None
+
+        # Find the position of comparison operators (check longer ones first)
+        comparison_ops = ["==", "!=", ">=", "<=", ">", "<"]
+
+        # Find the last comparison operator before cursor
+        last_op_pos = -1
+        last_op = None
+        for op in comparison_ops:
+            # Find all occurrences of this operator
+            pos = 0
+            while True:
+                pos = text.find(op, pos)
+                if pos == -1:
+                    break
+                # Check if this operator is before cursor
+                if pos < cursor_pos:
+                    # Check if it's not part of another operator
+                    # For example, if we find "==" at position 10, make sure
+                    # there's no ">=" or "<=" that includes this position
+                    is_valid = True
+                    for other_op in comparison_ops:
+                        if other_op != op and len(other_op) > len(op):
+                            # Check if this longer operator overlaps
+                            other_pos = text.rfind(other_op, 0, pos + len(op))
+                            if other_pos != -1 and other_pos <= pos:
+                                is_valid = False
+                                break
+
+                    if is_valid and pos > last_op_pos:
+                        last_op_pos = pos
+                        last_op = op
+                pos += 1
+
+        if last_op_pos == -1:
+            return None  # Not in a comparison context
+
+        # Extract the left side of the comparison (before the operator)
+        left_side = text[:last_op_pos].strip()
+
+        # Map of attribute patterns to their class constants
+        # Format: (table_name, attribute_name) -> (class_name, constant_names)
+        # Note: For nested attributes like "person.primary_name.type", use "primary_name.type"
+        attribute_to_constants = {
+            ("person", "gender"): ("Person", ["MALE", "FEMALE", "OTHER", "UNKNOWN"]),
+            ("family", "type"): (
+                "FamilyRelType",
+                ["MARRIED", "UNMARRIED", "CIVIL_UNION", "UNKNOWN", "CUSTOM"],
+            ),
+            ("event", "type"): (
+                "EventType",
+                [
+                    "UNKNOWN",
+                    "CUSTOM",
+                    "MARRIAGE",
+                    "MARR_SETTL",
+                    "MARR_LIC",
+                    "MARR_CONTR",
+                    "MARR_BANNS",
+                    "ENGAGEMENT",
+                    "DIVORCE",
+                    "DIV_FILING",
+                    "ANNULMENT",
+                    "MARR_ALT",
+                    "ADOPT",
+                    "BIRTH",
+                    "DEATH",
+                    "ADULT_CHRISTEN",
+                    "BAPTISM",
+                    "BAR_MITZVAH",
+                    "BAS_MITZVAH",
+                    "BLESS",
+                    "BURIAL",
+                    "CAUSE_DEATH",
+                    "CENSUS",
+                    "CHRISTEN",
+                    "CONFIRMATION",
+                    "CREMATION",
+                    "DEGREE",
+                    "EDUCATION",
+                    "ELECTED",
+                    "EMIGRATION",
+                    "FIRST_COMMUN",
+                    "IMMIGRATION",
+                    "GRADUATION",
+                    "MED_INFO",
+                    "MILITARY_SERV",
+                    "NATURALIZATION",
+                    "NOB_TITLE",
+                    "NUM_MARRIAGES",
+                    "OCCUPATION",
+                    "ORDINATION",
+                    "PROBATE",
+                    "PROPERTY",
+                    "RELIGION",
+                    "RESIDENCE",
+                    "RETIREMENT",
+                    "WILL",
+                    "STILLBIRTH",
+                ],
+            ),
+        }
+
+        # Map for nested attributes (e.g., "person.primary_name.type")
+        # Format: (table_name, nested_path) -> (class_name, constant_names)
+        nested_attribute_to_constants = {
+            ("person", "primary_name.type"): (
+                "NameType",
+                ["UNKNOWN", "CUSTOM", "AKA", "BIRTH", "MARRIED"],
+            ),
+            ("person", "alternate_names[].type"): (
+                "NameType",
+                ["UNKNOWN", "CUSTOM", "AKA", "BIRTH", "MARRIED"],
+            ),
+            ("person", "event_ref_list[].role"): (
+                "EventRoleType",
+                [
+                    "UNKNOWN",
+                    "CUSTOM",
+                    "PRIMARY",
+                    "CLERGY",
+                    "CELEBRANT",
+                    "AIDE",
+                    "BRIDE",
+                    "GROOM",
+                    "WITNESS",
+                    "FAMILY",
+                    "INFORMANT",
+                    "GODPARENT",
+                    "FATHER",
+                    "MOTHER",
+                    "PARENT",
+                    "CHILD",
+                    "MULTIPLE",
+                    "FRIEND",
+                    "NEIGHBOR",
+                    "OFFICIATOR",
+                ],
+            ),
+            ("family", "event_ref_list[].role"): (
+                "EventRoleType",
+                [
+                    "UNKNOWN",
+                    "CUSTOM",
+                    "PRIMARY",
+                    "CLERGY",
+                    "CELEBRANT",
+                    "AIDE",
+                    "BRIDE",
+                    "GROOM",
+                    "WITNESS",
+                    "FAMILY",
+                    "INFORMANT",
+                    "GODPARENT",
+                    "FATHER",
+                    "MOTHER",
+                    "PARENT",
+                    "CHILD",
+                    "MULTIPLE",
+                    "FRIEND",
+                    "NEIGHBOR",
+                    "OFFICIATOR",
+                ],
+            ),
+            ("event", "event_ref_list[].role"): (
+                "EventRoleType",
+                [
+                    "UNKNOWN",
+                    "CUSTOM",
+                    "PRIMARY",
+                    "CLERGY",
+                    "CELEBRANT",
+                    "AIDE",
+                    "BRIDE",
+                    "GROOM",
+                    "WITNESS",
+                    "FAMILY",
+                    "INFORMANT",
+                    "GODPARENT",
+                    "FATHER",
+                    "MOTHER",
+                    "PARENT",
+                    "CHILD",
+                    "MULTIPLE",
+                    "FRIEND",
+                    "NEIGHBOR",
+                    "OFFICIATOR",
+                ],
+            ),
+            ("person", "attribute_list[].type"): (
+                "AttributeType",
+                [
+                    "UNKNOWN",
+                    "CUSTOM",
+                    "CASTE",
+                    "DESCRIPTION",
+                    "ID",
+                    "NATIONAL",
+                    "NUM_CHILD",
+                    "SSN",
+                    "NICKNAME",
+                    "CAUSE",
+                    "AGENCY",
+                    "AGE",
+                    "FATHER_AGE",
+                    "MOTHER_AGE",
+                    "WITNESS",
+                    "TIME",
+                    "OCCUPATION",
+                ],
+            ),
+            ("family", "attribute_list[].type"): (
+                "AttributeType",
+                [
+                    "UNKNOWN",
+                    "CUSTOM",
+                    "CASTE",
+                    "DESCRIPTION",
+                    "ID",
+                    "NATIONAL",
+                    "NUM_CHILD",
+                    "SSN",
+                    "NICKNAME",
+                    "CAUSE",
+                    "AGENCY",
+                    "AGE",
+                    "FATHER_AGE",
+                    "MOTHER_AGE",
+                    "WITNESS",
+                    "TIME",
+                    "OCCUPATION",
+                ],
+            ),
+            ("event", "attribute_list[].type"): (
+                "AttributeType",
+                [
+                    "UNKNOWN",
+                    "CUSTOM",
+                    "CASTE",
+                    "DESCRIPTION",
+                    "ID",
+                    "NATIONAL",
+                    "NUM_CHILD",
+                    "SSN",
+                    "NICKNAME",
+                    "CAUSE",
+                    "AGENCY",
+                    "AGE",
+                    "FATHER_AGE",
+                    "MOTHER_AGE",
+                    "WITNESS",
+                    "TIME",
+                    "OCCUPATION",
+                ],
+            ),
+        }
+
+        # Check nested attributes first (more specific patterns)
+        for (table_name, nested_path), (
+            class_name,
+            constant_names,
+        ) in nested_attribute_to_constants.items():
+            # Handle patterns like "person.primary_name.type" or "person.event_ref_list[0].role"
+            # Replace [] with a pattern that matches array indexing
+            nested_pattern = nested_path.replace("[]", r"\[.*?\]")
+            pattern = rf"^{re.escape(table_name)}\s*\.\s*{nested_pattern}\s*$"
+            if re.match(pattern, left_side):
+                # Get the current word being typed (after the comparison operator)
+                current_word = self._get_current_word(text, cursor_pos)
+
+                # Return suggestions with class prefix
+                suggestions = []
+
+                # Determine if we should show all constants or filter them
+                show_all_constants = False
+                if not current_word:
+                    # No word typed yet, show everything
+                    show_all_constants = True
+                elif current_word.lower() == class_name.lower():
+                    # User typed exactly the class name, show all constants
+                    show_all_constants = True
+                elif class_name.lower().startswith(current_word.lower()):
+                    # User typed partial class name (e.g., "Eve" for "EventType"), show all
+                    show_all_constants = True
+                elif current_word.lower().startswith(class_name.lower() + "."):
+                    # User typed "EventType." or "EventType.B", filter by constant name
+                    const_part = current_word[len(class_name) + 1 :]
+                    # Will filter in the loop below
+                    pass
+                else:
+                    # Check if full name matches (e.g., "EventType.B" matches "EventType.BIRTH")
+                    # Will filter in the loop below
+                    pass
+
+                # Always include the class name if it matches
+                if (
+                    show_all_constants
+                    or not current_word
+                    or class_name.lower().startswith(current_word.lower())
+                ):
+                    suggestions.append(class_name)
+
+                # Include class constants (e.g., "EventType.BIRTH")
+                for const in constant_names:
+                    full_name = f"{class_name}.{const}"
+                    if show_all_constants:
+                        suggestions.append(full_name)
+                    elif current_word.lower().startswith(class_name.lower() + "."):
+                        # User typed "EventType." or "EventType.B", check constant name
+                        const_part = current_word[len(class_name) + 1 :]
+                        if const.lower().startswith(const_part.lower()):
+                            suggestions.append(full_name)
+                    elif full_name.lower().startswith(current_word.lower()):
+                        # Full name matches (e.g., "EventType.B" matches "EventType.BIRTH")
+                        suggestions.append(full_name)
+
+                return suggestions if suggestions else None
+
+        # Check direct attributes (simpler patterns)
+        for (table_name, attr_name), (
+            class_name,
+            constant_names,
+        ) in attribute_to_constants.items():
+            # Match patterns like "person.gender" or "person. gender" (with spaces)
+            # Use word boundary to ensure we match the full attribute name
+            pattern = rf"^{re.escape(table_name)}\s*\.\s*{re.escape(attr_name)}\s*$"
+            if re.match(pattern, left_side):
+                # Get the current word being typed (after the comparison operator)
+                current_word = self._get_current_word(text, cursor_pos)
+
+                # Return suggestions with class prefix
+                suggestions = []
+
+                # Determine if we should show all constants or filter them
+                show_all_constants = False
+                if not current_word:
+                    # No word typed yet, show everything
+                    show_all_constants = True
+                elif current_word.lower() == class_name.lower():
+                    # User typed exactly the class name, show all constants
+                    show_all_constants = True
+                elif class_name.lower().startswith(current_word.lower()):
+                    # User typed partial class name (e.g., "Per" for "Person"), show all
+                    show_all_constants = True
+                elif current_word.lower().startswith(class_name.lower() + "."):
+                    # User typed "Person." or "Person.M", filter by constant name
+                    const_part = current_word[len(class_name) + 1 :]
+                    # Will filter in the loop below
+                    pass
+                else:
+                    # Check if full name matches (e.g., "Person.M" matches "Person.MALE")
+                    # Will filter in the loop below
+                    pass
+
+                # Always include the class name if it matches
+                if (
+                    show_all_constants
+                    or not current_word
+                    or class_name.lower().startswith(current_word.lower())
+                ):
+                    suggestions.append(class_name)
+
+                # Include class constants (e.g., "Person.MALE")
+                for const in constant_names:
+                    full_name = f"{class_name}.{const}"
+                    if show_all_constants:
+                        suggestions.append(full_name)
+                    elif current_word.lower().startswith(class_name.lower() + "."):
+                        # User typed "Person." or "Person.M", check constant name
+                        const_part = current_word[len(class_name) + 1 :]
+                        if const.lower().startswith(const_part.lower()):
+                            suggestions.append(full_name)
+                    elif full_name.lower().startswith(current_word.lower()):
+                        # Full name matches (e.g., "Person.M" matches "Person.MALE")
+                        suggestions.append(full_name)
+
+                return suggestions if suggestions else None
+
+        return None
+
+    def _is_inside_string(self, text, cursor_pos):
+        """
+        Check if the cursor is inside a string literal (single or double quotes).
+
+        Returns True if cursor is inside a string, False otherwise.
+        """
+        if not text or cursor_pos == 0:
+            return False
+
+        # Check text before cursor
+        text_before = text[:cursor_pos]
+
+        # Track if we're inside a string and what quote character started it
+        in_string = False
+        quote_char = None
+        i = 0
+
+        while i < len(text_before):
+            char = text_before[i]
+
+            if char == "\\" and i + 1 < len(text_before):
+                # Escaped character - skip the next character
+                i += 2
+                continue
+
+            if char in ('"', "'"):
+                if not in_string:
+                    # Starting a new string
+                    in_string = True
+                    quote_char = char
+                elif char == quote_char:
+                    # Ending the current string
+                    in_string = False
+                    quote_char = None
+
+            i += 1
+
+        return in_string
+
+    @staticmethod
+    @lru_cache(maxsize=200)
+    def _infer_string_type_cached(env_code, expr):
+        """
+        Use Jedi to infer if an expression is a string type.
+        Results are cached using LRU cache.
+
+        Args:
+            env_code: Environment code string for Jedi
+            expr: Expression to check
+
+        Returns True if the expression is inferred to be a string type, False otherwise.
+        """
+        if not expr or not JEDI_AVAILABLE:
+            return False
+
+        try:
+            # Build code to evaluate the expression
+            full_code = env_code + "\n\n# Filter expression\ntemp = " + expr
+
+            lines = full_code.split("\n")
+            line_num_for_inference = len(lines)  # Last line
+            column_num = len("temp = " + expr)
+
+            # Create a new script for inference
+            inference_script = jedi.Script(full_code, path="filter_expression.py")
+            # Get the inferred type of 'temp'
+            inferred = inference_script.infer(line_num_for_inference, column_num)
+
+            # Check if any of the inferred types is str
+            for inferred_type in inferred:
+                # Check the type name directly
+                if hasattr(inferred_type, "name") and inferred_type.name == "str":
+                    return True
+                # Also check using py__name__ method
+                if hasattr(inferred_type, "py__name__"):
+                    try:
+                        type_name = inferred_type.py__name__()
+                        if type_name == "str":
+                            return True
+                    except Exception:
+                        pass
+                # Check the string representation for str types
+                type_str = str(inferred_type)
+                # Check for str, Optional[str], or Union[str, None]
+                if type_str in ("str", "Optional[str]", "Union[str, None]"):
+                    return True
+                # Also check if it contains 'str' but is a valid string type
+                if "str" in type_str:
+                    # Make sure it's not something like 'strftime' or other non-type strings
+                    # Check if it's a type annotation format
+                    if type_str.startswith("str") or "str" in type_str.split("[")[0]:
+                        # Additional validation: check if it's actually a type
+                        if "[" in type_str or type_str == "str":
+                            return True
+        except Exception:
+            # If inference fails, return False (don't add string methods)
+            pass
+
+        return False
+
+    def _infer_string_type(self, script, expr, line_num):
+        """
+        Wrapper that calls the cached version with instance's env_code.
+
+        Args:
+            script: Jedi Script object (unused, kept for compatibility)
+            expr: Expression to check
+            line_num: Line number in the script (unused, kept for compatibility)
+
+        Returns True if the expression is inferred to be a string type, False otherwise.
+        """
+        return self._infer_string_type_cached(self._env_code, expr.strip())
+
     def _get_completion_items(self, text, cursor_pos):
         """
         Get completions from Jedi at the current cursor position.
@@ -356,6 +860,10 @@ class FilterExpressionEntry(Gtk.Entry):
         appropriate completions. Falls back to schema-based completion
         when Jedi can't infer types (e.g., for array indexing).
         """
+        # If cursor is inside a string literal, don't suggest anything
+        if self._is_inside_string(text, cursor_pos):
+            return []
+
         if not JEDI_AVAILABLE:
             # Fallback: return table names, Types, Type classes, True, False, None, any(), len()
             items = (
@@ -421,6 +929,12 @@ class FilterExpressionEntry(Gtk.Entry):
             )
             return items
 
+        # Check if we're in a comparison context (after ==, !=, >, <, >=, <=)
+        # and suggest class constants if appropriate
+        comparison_suggestions = self._get_comparison_suggestions(text, cursor_pos)
+        if comparison_suggestions:
+            return comparison_suggestions
+
         # Check if cursor is right after a dot
         # Jedi can't parse "person." when cursor is right after the dot
         # So we need to get completions by analyzing what's before the dot
@@ -473,6 +987,12 @@ class FilterExpressionEntry(Gtk.Entry):
                             break
 
                     completion_names = []
+                    # Track if the expression before the dot is a string type
+                    # Use Jedi's inference to detect string types from type hints
+                    is_string_type = self._infer_string_type(
+                        script, expr_before_dot, line_num
+                    )
+
                     for completion in jedi_completions:
                         name = completion.name
                         # Filter out methods (functions) - only show attributes
@@ -511,6 +1031,12 @@ class FilterExpressionEntry(Gtk.Entry):
                             "temp",
                         ]:
                             completion_names.append(name)
+
+                    # If the expression before the dot is a string type, add string methods
+                    if is_string_type:
+                        # Add QueryBuilder string methods
+                        string_methods = ["startswith(", "endswith("]
+                        completion_names.extend(string_methods)
 
                     # If Jedi returned completions, sort and return them
                     if completion_names:
@@ -618,6 +1144,22 @@ class FilterExpressionEntry(Gtk.Entry):
                     break
 
             completion_names = []
+            # Check if we're completing after a string attribute
+            # Extract the expression before the current word (if any)
+            current_word = self._get_current_word(text, cursor_pos)
+            expr_before_word = text[
+                : cursor_pos - len(current_word) if current_word else cursor_pos
+            ].strip()
+
+            # Use Jedi to infer if we're completing after a string type
+            is_string_type = False
+            if expr_before_word and expr_before_word.endswith("."):
+                # Remove the trailing dot
+                expr_before_dot = expr_before_word[:-1].strip()
+                is_string_type = self._infer_string_type(
+                    script, expr_before_dot, line_num
+                )
+
             for completion in jedi_completions:
                 name = completion.name
                 # Filter out methods (functions) - only show attributes
@@ -655,6 +1197,19 @@ class FilterExpressionEntry(Gtk.Entry):
                     "continue",
                 ]:
                     completion_names.append(name)
+
+            # If we're completing after a string attribute, add string methods
+            if is_string_type:
+                # Add QueryBuilder string methods
+                string_methods = ["startswith(", "endswith("]
+                # Filter to only methods that match what user is typing
+                if current_word:
+                    string_methods = [
+                        m
+                        for m in string_methods
+                        if m.lower().startswith(current_word.lower())
+                    ]
+                completion_names.extend(string_methods)
 
             return sorted(completion_names)
         except Exception:

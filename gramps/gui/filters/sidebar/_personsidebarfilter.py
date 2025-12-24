@@ -58,7 +58,9 @@ from gramps.gen.filters.rules.person import (
     HasNoteRegexp,
     MatchesFilter,
     HasOtherGender,
+    PersonWhere,
 )
+from ...widgets.filterexpressionentry import FilterExpressionEntry
 
 
 def extract_text(entry_widget):
@@ -120,6 +122,8 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_regex = Gtk.CheckButton(label=_("Use regular expressions"))
         self.sensitive_regex = Gtk.CheckButton(label=_("Case sensitive"))
 
+        self.filter_where = FilterExpressionEntry()
+
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
 
@@ -174,6 +178,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_entry(_("Event"), self.etype)
         self.add_text_entry(_("Note"), self.filter_note)
         self.add_entry(_("Tag"), self.tag)
+        self.add_text_entry(_("Where"), self.filter_where)
         self.add_filter_entry(_("Custom filter"), self.generic)
         self.add_regex_entry(self.filter_regex)
         self.add_regex_case(self.sensitive_regex)
@@ -186,6 +191,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_death.set_text("")
         self.filter_death_place.set_text("")
         self.filter_note.set_text("")
+        self.filter_where.set_text("")
         self.filter_gender.set_active(0)
         self.etype.get_child().set_text("")
         self.tag.set_active(0)
@@ -205,6 +211,7 @@ class PersonSidebarFilter(SidebarFilter):
         death = extract_text(self.filter_death)
         death_place = extract_text(self.filter_death_place)
         note = extract_text(self.filter_note)
+        where = extract_text(self.filter_where)
 
         # extract remaining data from the menus
         etype = self.filter_event.get_type().xml_str()
@@ -226,6 +233,7 @@ class PersonSidebarFilter(SidebarFilter):
             or death_place
             or etype
             or note
+            or where
             or gender
             or regex
             or tag
@@ -304,6 +312,11 @@ class PersonSidebarFilter(SidebarFilter):
                 node = self.tag.get_active_iter()
                 attr = model.get_value(node, 0)
                 rule = HasTag([attr])
+                generic_filter.add_rule(rule)
+
+            # Build Where filter if needed
+            if where:
+                rule = PersonWhere([where])
                 generic_filter.add_rule(rule)
 
         if self.generic.get_active() != 0:
