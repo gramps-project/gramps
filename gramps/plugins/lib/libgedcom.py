@@ -772,6 +772,7 @@ GED_TO_GRAMPS_EVENT = {}
 for __val, __key in PERSONALCONSTANTEVENTS.items():
     if __key != "":
         GED_TO_GRAMPS_EVENT[__key] = __val
+        GED_TO_GRAMPS_EVENT["Stillbirth"] = EventType.STILLBIRTH
 
 for __val, __key in FAMILYCONSTANTEVENTS.items():
     if __key != "":
