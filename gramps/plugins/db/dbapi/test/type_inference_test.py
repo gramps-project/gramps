@@ -24,6 +24,7 @@ Unittest for type inference and validation in QueryBuilder.
 
 import unittest
 
+from gramps.gen.lib import Person
 from gramps.plugins.db.dbapi.query_builder import QueryBuilder
 from gramps.plugins.db.dbapi.query_parser import QueryParser
 from gramps.plugins.db.dbapi.type_inference import TypeInferenceVisitor
