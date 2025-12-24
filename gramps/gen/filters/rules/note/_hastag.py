@@ -50,3 +50,4 @@ class HasTag(HasTagBase):
     labels = [_("Tag:")]
     name = _("Notes with the <tag>")
     description = _("Matches notes with the particular tag")
+    table = "note"

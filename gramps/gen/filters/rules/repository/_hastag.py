@@ -50,3 +50,4 @@ class HasTag(HasTagBase):
     labels = [_("Tag:")]
     name = _("Repositories with the <tag>")
     description = _("Matches repositories with the particular tag")
+    table = "repository"

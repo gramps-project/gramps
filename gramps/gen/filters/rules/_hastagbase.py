@@ -60,6 +60,7 @@ class HasTagBase(Rule):
     name = "Objects with the <tag>"
     description = "Matches objects with the given tag"
     category = _("General filters")
+    table: str
 
     def prepare(self, db: Database, user):
         """
@@ -70,10 +71,25 @@ class HasTagBase(Rule):
         if tag is not None:
             self.tag_handle = tag.handle
 
+        if db.can_use_fast_selects() and self.tag_handle:
+            self.selected_handles = set(
+                list(
+                    db._select_from_table(
+                        self.table,
+                        what="obj.handle",
+                        where="tag_handle in obj.tag_list",
+                        env={"tag_handle": self.tag_handle},
+                    )
+                )
+            )
+
     def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         """
         Apply the rule.  Return True for a match.
         """
         if self.tag_handle is None:
             return False
-        return self.tag_handle in obj.tag_list
+        elif db.can_use_fast_selects():
+            return obj.handle in self.selected_handles
+        else:
+            return self.tag_handle in obj.tag_list

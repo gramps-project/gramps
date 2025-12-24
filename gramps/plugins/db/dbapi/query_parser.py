@@ -217,32 +217,39 @@ class QueryParser:
             if isinstance(left, ast.Name):
                 item_var = left.id
 
-                # Check if right is an attribute path (person.array_path)
-                if isinstance(right, ast.Attribute):
-                    # Build the full path
-                    path_parts: List[str] = []
-                    current: ast.AST = right
-                    while isinstance(current, ast.Attribute):
-                        path_parts.insert(0, current.attr)
-                        current = current.value
+                # If the variable is in the environment, it's a membership check,
+                # not array expansion. Array expansion is for iteration variables
+                # that are used elsewhere in the query (like item.ref).
+                if item_var in self.env:
+                    # This is a membership check, not array expansion - fall through to regular comparison
+                    pass
+                else:
+                    # Check if right is an attribute path (person.array_path)
+                    if isinstance(right, ast.Attribute):
+                        # Build the full path
+                        path_parts: List[str] = []
+                        current: ast.AST = right
+                        while isinstance(current, ast.Attribute):
+                            path_parts.insert(0, current.attr)
+                            current = current.value
 
-                    # Check if it starts with table name
-                    if isinstance(current, ast.Name) and current.id in [
-                        self.table_name,
-                        "obj",
-                        "person",
-                    ]:
-                        array_path = ".".join(path_parts)
-                        # Parse the array expression
-                        array_expr = self.parse_expression(
-                            f"{self.table_name}.{array_path}"
-                        )
-                        # Return as ArrayExpansionExpression instead of CompareExpression
-                        return ArrayExpansionExpression(
-                            item_var=item_var,
-                            array_path=array_path,
-                            array_expression=array_expr,
-                        )
+                        # Check if it starts with table name
+                        if isinstance(current, ast.Name) and current.id in [
+                            self.table_name,
+                            "obj",
+                            "person",
+                        ]:
+                            array_path = ".".join(path_parts)
+                            # Parse the array expression
+                            array_expr = self.parse_expression(
+                                f"{self.table_name}.{array_path}"
+                            )
+                            # Return as ArrayExpansionExpression instead of CompareExpression
+                            return ArrayExpansionExpression(
+                                item_var=item_var,
+                                array_path=array_path,
+                                array_expression=array_expr,
+                            )
 
         # Regular comparison
         op_map = {
@@ -610,6 +617,13 @@ class QueryParser:
                 # Left should be a Name (the item variable)
                 if isinstance(left, ast.Name):
                     item_var = left.id
+
+                    # If the variable is in the environment, it's a membership check,
+                    # not array expansion. Array expansion is for iteration variables
+                    # that are used elsewhere in the query (like item.ref).
+                    if item_var in self.env:
+                        # This is a membership check, not array expansion
+                        return None
 
                     # Right should be an Attribute (e.g., person.event_ref_list)
                     if isinstance(right, ast.Attribute):

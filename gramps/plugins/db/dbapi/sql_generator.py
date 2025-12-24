@@ -583,6 +583,18 @@ class SQLGenerator:
                 if isinstance(right, TupleExpression):
                     # Explicit tuple - use IN
                     parts.append(f"{current_left} IN {right_sql}")
+                elif (
+                    isinstance(right, AttributeExpression)
+                    and not right.is_database_column
+                    and (right_type is list or right_type is tuple)
+                ):
+                    # JSON array attribute - use json_each with EXISTS to check membership
+                    array_sql = right_sql
+                    json_each_expr = self._format_json_each(array_sql)
+                    # Compare the left value with each element in the array
+                    parts.append(
+                        f"EXISTS (SELECT 1 FROM {json_each_expr} WHERE json_each.value = {current_left})"
+                    )
                 elif right_type is list or right_type is tuple:
                     # Type hint says it's a list/tuple - use IN
                     parts.append(f"{current_left} IN {right_sql}")
@@ -608,6 +620,18 @@ class SQLGenerator:
             elif op == "not in":
                 if isinstance(right, TupleExpression):
                     parts.append(f"{current_left} NOT IN {right_sql}")
+                elif (
+                    isinstance(right, AttributeExpression)
+                    and not right.is_database_column
+                    and (right_type is list or right_type is tuple)
+                ):
+                    # JSON array attribute - use json_each with NOT EXISTS to check non-membership
+                    array_sql = right_sql
+                    json_each_expr = self._format_json_each(array_sql)
+                    # Check that the left value does NOT exist in the array
+                    parts.append(
+                        f"NOT EXISTS (SELECT 1 FROM {json_each_expr} WHERE json_each.value = {current_left})"
+                    )
                 elif right_type is list or right_type is tuple:
                     parts.append(f"{current_left} NOT IN {right_sql}")
                 elif isinstance(expr.left, ConstantExpression) and isinstance(

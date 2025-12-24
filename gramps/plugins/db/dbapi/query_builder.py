@@ -743,6 +743,11 @@ class QueryBuilder:
                         "Callables (lambda functions) are not supported for SQL generation. Please use string expressions instead."
                     )
 
+        # Sync parser's environment with query builder's environment
+        # This ensures that variables added to env after parser creation are available
+        # Must happen before parsing so array expansion detection can check env
+        self.parser.env.update(self.env)
+
         # Parse what clause
         select_expressions = self._parse_what(what)
 

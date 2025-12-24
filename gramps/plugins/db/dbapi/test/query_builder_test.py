@@ -903,6 +903,139 @@ class QueryBuilderTestMixin:
             "json_array_length" in sql.lower() or "JSON_ARRAY_LENGTH" in sql.upper()
         )
 
+    def test_in_operator_with_json_array_tag_list(self):
+        """
+        Test 'in' operator with JSON array attribute (tag_list).
+        Tests the pattern: tag_handle in person.tag_list
+        This should generate EXISTS with json_each, not SQL IN.
+        """
+        what = "person.handle"
+        where = "tag_handle in person.tag_list"
+        # Add tag_handle to environment
+        self.query_builder.env["tag_handle"] = "10113530b5ba4cff04289eb1f6a2"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should use EXISTS with json_each, not SQL IN
+        self.assertIn("EXISTS", sql.upper())
+        self.assertIn("json_each", sql.lower())
+        self.assertNotIn(" IN ", sql.upper())  # Should not use SQL IN operator
+
+    def test_not_in_operator_with_json_array_tag_list(self):
+        """
+        Test 'not in' operator with JSON array attribute (tag_list).
+        Tests the pattern: tag_handle not in person.tag_list
+        This should generate NOT EXISTS with json_each.
+        """
+        what = "person.handle"
+        where = "tag_handle not in person.tag_list"
+        # Add tag_handle to environment
+        self.query_builder.env["tag_handle"] = "10113530b5ba4cff04289eb1f6a2"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should use NOT EXISTS with json_each
+        self.assertIn("NOT EXISTS", sql.upper())
+        self.assertIn("json_each", sql.lower())
+
+    def test_in_operator_with_json_array_citation_list(self):
+        """
+        Test 'in' operator with JSON array attribute (citation_list).
+        Tests the pattern: citation_handle in person.citation_list
+        """
+        what = "person.handle"
+        where = "citation_handle in person.citation_list"
+        # Add citation_handle to environment
+        self.query_builder.env["citation_handle"] = "CITATION123"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should use EXISTS with json_each
+        self.assertIn("EXISTS", sql.upper())
+        self.assertIn("json_each", sql.lower())
+
+    def test_in_operator_with_json_array_note_list(self):
+        """
+        Test 'in' operator with JSON array attribute (note_list).
+        Tests the pattern: note_handle in person.note_list
+        """
+        what = "person.handle"
+        where = "note_handle in person.note_list"
+        # Add note_handle to environment
+        self.query_builder.env["note_handle"] = "NOTE123"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should use EXISTS with json_each
+        self.assertIn("EXISTS", sql.upper())
+        self.assertIn("json_each", sql.lower())
+
+    def test_in_operator_with_json_array_family_list(self):
+        """
+        Test 'in' operator with JSON array attribute (family_list).
+        Tests the pattern: family_handle in person.family_list
+        """
+        what = "person.handle"
+        where = "family_handle in person.family_list"
+        # Add family_handle to environment
+        self.query_builder.env["family_handle"] = "FAMILY123"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should use EXISTS with json_each
+        self.assertIn("EXISTS", sql.upper())
+        self.assertIn("json_each", sql.lower())
+
+    def test_in_operator_with_json_array_on_family_table(self):
+        """
+        Test 'in' operator with JSON array attribute on family table.
+        Tests the pattern: tag_handle in family.tag_list
+        """
+        # Create a new query builder for family table
+        family_query_builder = QueryBuilder(
+            "family",
+            env={"tag_handle": "TAG123"},
+            dialect=self.dialect,
+        )
+        what = "family.handle"
+        where = "tag_handle in family.tag_list"
+        sql = family_query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should use EXISTS with json_each
+        self.assertIn("EXISTS", sql.upper())
+        self.assertIn("json_each", sql.lower())
+
+    def test_in_operator_with_json_array_on_citation_table(self):
+        """
+        Test 'in' operator with JSON array attribute on citation table.
+        Tests the pattern: tag_handle in citation.tag_list
+        """
+        # Create a new query builder for citation table
+        citation_query_builder = QueryBuilder(
+            "citation",
+            env={"tag_handle": "TAG123"},
+            dialect=self.dialect,
+        )
+        what = "citation.handle"
+        where = "tag_handle in citation.tag_list"
+        sql = citation_query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should use EXISTS with json_each
+        self.assertIn("EXISTS", sql.upper())
+        self.assertIn("json_each", sql.lower())
+
+    def test_in_operator_with_json_array_combined_with_other_conditions(self):
+        """
+        Test 'in' operator with JSON array combined with other WHERE conditions.
+        Tests the pattern: tag_handle in person.tag_list and person.gender == Person.MALE
+        """
+        what = "person.handle"
+        where = "tag_handle in person.tag_list and person.gender == Person.MALE"
+        # Add tag_handle to environment
+        self.query_builder.env["tag_handle"] = "TAG123"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Should use EXISTS with json_each AND have the gender condition
+        self.assertIn("EXISTS", sql.upper())
+        self.assertIn("json_each", sql.lower())
+        self.assertIn("AND", sql.upper())
+        self.assertIn("gender", sql.lower())
+
 
 class QueryBuilderSQLiteTest(QueryBuilderTestMixin, unittest.TestCase):
     """
