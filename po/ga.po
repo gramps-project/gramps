@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-12-23 17:21+0000\n"
+"PO-Revision-Date: 2025-12-27 04:00+0000\n"
 "Last-Translator: Seán Ó Séaghdha <sean.anseo@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
@@ -20,13 +20,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n>=3 && n<=6 ? 2 : "
-"n>=7 && n<=10 ? 3 : 4);\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :(n>"
+"6 && n<11) ? 3 : 4;\n"
 "X-Generator: Weblate 5.15.1\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
-msgstr "Bulgáiris"
+msgstr "An Bhulgáir"
 
 #: ../data/holidays.xml:52
 msgid "Canada"
@@ -5808,49 +5808,52 @@ msgstr "Meaitseálann gach mná"
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:56
 #: ../gramps/gui/editors/filtereditor.py:554
 msgid "Number of generations:"
-msgstr "Líon na nglúine:"
+msgstr "Líon na nglún:"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:58
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr "Sinsear <person>nach mó ná glúine <N>ar shiúl"
+msgstr "Sinsir <duine> nach mó ná <N> glúine ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:61
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
 msgstr ""
-"Meaitseálann daoine atá sinsear duine sonraithe nach mó ná N glúin ar shiúl"
+"Scagaire a meaitseálann daoine gur sinsir iad den duine sonraithe nach mó ná "
+"N glúine ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:64
 msgid "Ancestors of bookmarked people not more than <N> generations away"
-msgstr "Sinsear daoine leabharmharcáilte nach mó ná glúine ar <N>shiúl"
+msgstr "Sinsir daoine leabharmharcáilte nach mó ná <N> glúine ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:67
 msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr ""
-"Meaitseálann sinsear na ndaoine ar an liosta leabharmharcanna nach mó ná N "
-"glúin ar shiúl"
+"Scagaire a mheaitseálann sinsir na ndaoine ar an liosta leabharmharcanna "
+"nach mó ná N glúine ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:59
 msgid "Ancestors of the Home Person not more than <N> generations away"
-msgstr "Sinsear an Duine Baile nach mó ná glúine <N>ar shiúl"
+msgstr "Sinsir an Duine Baile nach mó ná glúine <N>ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:62
 msgid "Matches ancestors of the Home Person not more than N generations away"
-msgstr "Meaitseálann sinsear an Duine Baile nach mó ná N glúin ar shiúl"
+msgstr ""
+"Scagaire a mheaitseálann sinsir an Duine Baile nach mó ná N glúine ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:58
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr "Sliocht <person>nach mó ná glúine <N>ar shiúl"
+msgstr "Sliocht <duine>nach mó ná <N> glúine ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:61
 msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
 msgstr ""
-"Meaitseálann daoine is sliocht duine sonraithe nach mó ná N glúin ar shiúl"
+"Scagaire a mheaitseálann daoine gur de shliocht an duine sonraithe iad nach "
+"mó ná N glúine ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:54
 #: ../gramps/plugins/gramplet/statsgramplet.py:149
@@ -5868,25 +5871,27 @@ msgstr "Meaitseálann gach fear"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:58
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr "Sinsear glú <person>ine ar a laghad <N>ar shiúl"
+msgstr "Sinsir <duine> ar a laghad <N> glúine ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:61
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr ""
-"Meaitseálann daoine atá sinsear duine sonraithe ar a laghad N glúin ar shiúl"
+"Scagaire a mheaitseálann daoine gur sinsir duine sonraithe iad ar a laghad N "
+"glúine ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:57
 msgid "Descendants of <person> at least <N> generations away"
-msgstr "Sliocht glú <person>ine ar a laghad <N>ar shiúl"
+msgstr "Daoine de shliocht <duine> ar a laghad <N> glúine ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:60
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr ""
-"Meaitseálann daoine atá sliocht duine sonraithe ar a laghad N ghlúin ar shiúl"
+"Scagaire a mheaitseálann daoine de shliocht duine sonraithe ar a laghad N "
+"glúine ar shiúl"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:58
 msgid "Parents of <filter> match"
@@ -8290,7 +8295,7 @@ msgstr "Leanaí"
 #: ../gramps/plugins/webreport/person.py:2005
 #: ../gramps/plugins/webreport/updates.py:119
 msgid "Events"
-msgstr "Imeachtaí"
+msgstr "Ócáidí"
 
 #: ../gramps/gen/lib/family.py:199 ../gramps/gen/lib/person.py:249
 msgid "LDS ordinances"
@@ -10376,7 +10381,7 @@ msgstr "Grafaicí"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1253
 #: ../gramps/plugins/textreport/endoflinereport.py:334
 msgid "The style used for the generation header."
-msgstr "An stíl a úsáidtear le haghaidh ceanntásc na giniúna."
+msgstr "An stíl le húsáid i gceanntásc na giniúna."
 
 #: ../gramps/gen/plug/report/endnotes.py:71
 msgid "The basic style used for the endnotes source display."
@@ -10736,8 +10741,9 @@ msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"Sroicheann Family Tree siar níos mó ná an t-uasmhéid glúin %d a chuardaigh\n"
-"Is féidir gur chaill caidrimh"
+"Téann an Crann Ginealach seo siar níos faide ná an t‑uasmhéid glún "
+"cuardaithe (%d).\n"
+"Is féidir gur cailleadh gaolta áirithe"
 
 #: ../gramps/gen/relationship.py:1576
 msgid "Relationship loop detected:"
@@ -10969,9 +10975,11 @@ msgstr "ócáid le céile"
 #, python-brace-format
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
-msgstr[0] "breith sliocht: {number_of} giniúint "
-msgstr[1] "breith shliocht: {number_of} generations "
-msgstr[2] "breith shliocht: {number_of} generations "
+msgstr[0] "breith shliochtaigh: {number_of} ghlúin amháin "
+msgstr[1] "breith shliochtaigh: {number_of} ghlúin "
+msgstr[2] "breith shliochtaigh: {number_of} ghlúin "
+msgstr[3] "breith shliochtaigh: {number_of} nglúin "
+msgstr[4] "breith shliochtaigh: {number_of} glúine "
 
 #: ../gramps/gen/utils/alive.py:787
 #, python-brace-format
@@ -12425,7 +12433,7 @@ msgstr "Formáid Áite Uathoibríoch"
 
 #: ../gramps/gui/configure.py:1441
 msgid "Enables automatic place title generation using specified format."
-msgstr "Cumasaíonn sé giniúint teideal áit uathoibríoch ag baint"
+msgstr "Giniúint uathoibríoch teideal áite san fhormáid sonraithe."
 
 #: ../gramps/gui/configure.py:1518
 msgid "Custom name display options are unique to each family tree."
@@ -12434,7 +12442,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1530
 msgid "Consider single pa/matronymic as surname"
-msgstr "Smaoinigh ar pa/matronymic aonair mar sloinne"
+msgstr "Caith le ainm athartha/máthartha aonair mar sloinne"
 
 #: ../gramps/gui/configure.py:1548
 msgid "Date format *"
@@ -22216,6 +22224,8 @@ msgid_plural "{person}, {age}"
 msgstr[0] "{person}, {age}"
 msgstr[1] "{person}, {age}"
 msgstr[2] "{person}, {age}"
+msgstr[3] "{person}, {age}"
+msgstr[4] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:518
 #, python-format
@@ -22241,6 +22251,12 @@ msgstr[1] ""
 "{wife} agus\n"
 " {person}, {nyears}"
 msgstr[2] ""
+"{wife} agus\n"
+" {person}, {nyears}"
+msgstr[3] ""
+"{wife} agus\n"
+" {person}, {nyears}"
+msgstr[4] ""
 "{wife} agus\n"
 " {person}, {nyears}"
 
