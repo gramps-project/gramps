@@ -180,24 +180,37 @@ class GenericFilter:
 
         # use the Optimizer to refine the set of possible_handles
         optimizer = Optimizer(self)
-        handles_in, handles_out = optimizer.compute_potential_handles_for_filter(self)
+        handles_in, handles_out, all_optimized = (
+            optimizer.compute_potential_handles_for_filter(self)
+        )
 
-        # LOG.debug(
-        #    "Optimizer possible_handles: %s",
-        #    len(possible_handles),
-        # )
+        # Intersect optimizer results with possible_handles to ensure we only
+        # consider handles in the subset being filtered (important when id_list
+        # is provided and rules computed selected_handles from all handles)
+        if handles_in is not None:
+            possible_handles = possible_handles & handles_in
 
-        # if user:
-        #    user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
+        if handles_out is not None:
+            possible_handles = possible_handles - handles_out
 
-        # test each value in possible_handles to compute the final_list
+        LOG.debug(
+            "After optimization possible_handles: %s",
+            len(possible_handles),
+        )
+
+        # If all rules are optimized, we can skip the loop and return the optimized set directly
+        if all_optimized:
+            LOG.debug("All rules optimized, skipping loop")
+            return list(possible_handles)
+
+        # It is necessary to go through all possible handles because there
+        # may be non-optimized rules that will further reduce the set:
+        if user:
+            user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
+
         final_list = []
+        loop_time = time.perf_counter()
         for handle in possible_handles:
-            if handles_in is not None and handle not in handles_in:
-                continue
-            if handles_out is not None and handle in handles_out:
-                continue
-
             if user:
                 user.step_progress()
 
@@ -205,6 +218,8 @@ class GenericFilter:
 
             if apply_logical_op(db, obj, self.flist) != self.invert:
                 final_list.append(obj.handle)
+
+        LOG.debug("Loop select time: %s seconds", time.perf_counter() - loop_time)
 
         if user:
             user.end_progress()
