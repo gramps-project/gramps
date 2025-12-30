@@ -180,7 +180,9 @@ class GenericFilter:
 
         # use the Optimizer to refine the set of possible_handles
         optimizer = Optimizer(self)
-        handles_in, handles_out = optimizer.compute_potential_handles_for_filter(self)
+        handles_in, handles_out, all_optimized = (
+            optimizer.compute_potential_handles_for_filter(self)
+        )
 
         # Intersect optimizer results with possible_handles to ensure we only
         # consider handles in the subset being filtered (important when id_list
@@ -195,6 +197,11 @@ class GenericFilter:
             "After optimization possible_handles: %s",
             len(possible_handles),
         )
+
+        # If all rules are optimized, we can skip the loop and return the optimized set directly
+        if all_optimized:
+            LOG.debug("All rules optimized, skipping loop")
+            return list(possible_handles)
 
         # It is necessary to go through all possible handles because there
         # may be non-optimized rules that will further reduce the set:
