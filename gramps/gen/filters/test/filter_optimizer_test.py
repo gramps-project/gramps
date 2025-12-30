@@ -504,3 +504,4 @@ class OptimizerTest(unittest.TestCase):
 
         self.assertTrue(len(male_and_alive) < len(male))
         self.assertTrue(len(male_and_alive) < len(alive))
+        self.assertEqual(set(male_and_alive), set(male) & set(alive))
