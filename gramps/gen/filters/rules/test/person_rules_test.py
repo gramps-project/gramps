@@ -1135,7 +1135,8 @@ class BaseTest(unittest.TestCase):
                 ),
             )
             # This used the optimizer, so it didn't loop through DB
-            self.assertEqual(get_call_count(), 1)
+            # With full optimization, apply_to_one is never called since we use selected_handles directly
+            self.assertEqual(get_call_count(), 0)
 
     def test_isfemale_not_optimized(self):
         """
