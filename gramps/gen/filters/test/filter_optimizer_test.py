@@ -220,6 +220,22 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
         <arg value="Edwards|Daniels"/>
       </rule>
     </filter>
+    <filter name="Male and Probably Alive" function="and">
+      <rule class="IsMale" use_regex="False" use_case="False">
+      </rule>
+      <rule class="ProbablyAlive" use_regex="False" use_case="False">
+        <arg value=""/>
+      </rule>
+    </filter>
+    <filter name="Male" function="and">
+      <rule class="IsMale" use_regex="False" use_case="False">
+      </rule>
+    </filter>
+    <filter name="Probably Alive" function="and">
+      <rule class="ProbablyAlive" use_regex="False" use_case="False">
+        <arg value=""/>
+      </rule>
+    </filter>
   </object>
   <object type="Event">
     <filter name="Events of Home Person" function="and">
@@ -475,3 +491,16 @@ class OptimizerTest(unittest.TestCase):
         self.assertTrue(filter.match("XZLKQCRQA9EHPBNZPT", self.db))
         self.assertFalse(filter.match("GNUJQCL9MD64AM56OH", self.db))
         self.assertTrue(filter.match("44WJQCLCQIPZUB0UH", self.db))
+
+    def test_ismale_and_probably_alive(self):
+        filter = self.filters["Male and Probably Alive"]
+        male_and_alive = filter.apply(self.db)
+
+        filter = self.filters["Male"]
+        male = filter.apply(self.db)
+
+        filter = self.filters["Probably Alive"]
+        alive = filter.apply(self.db)
+
+        self.assertTrue(len(male_and_alive) < len(male))
+        self.assertTrue(len(male_and_alive) < len(alive))

@@ -186,50 +186,33 @@ class GenericFilter:
         # consider handles in the subset being filtered (important when id_list
         # is provided and rules computed selected_handles from all handles)
         if handles_in is not None:
-            handles_in = handles_in.intersection(possible_handles)
+            possible_handles = possible_handles & handles_in
+
         if handles_out is not None:
-            handles_out = handles_out.intersection(possible_handles)
+            possible_handles = possible_handles - handles_out
 
-        # LOG.debug(
-        #    "Optimizer possible_handles: %s",
-        #    len(possible_handles),
-        # )
+        LOG.debug(
+            "After optimization possible_handles: %s",
+            len(possible_handles),
+        )
 
-        # if user:
-        #    user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
+        # It is necessary to go through all possible handles because there
+        # may be non-optimized rules that will further reduce the set:
+        if user:
+            user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
 
-        # test each value in possible_handles to compute the final_list
         final_list = []
+        loop_time = time.time()
+        for handle in possible_handles:
+            if user:
+                user.step_progress()
 
-        selected_handles = None
-        if handles_in is not None:
-            selected_handles = handles_in
-            if handles_out is not None:
-                selected_handles = selected_handles - handles_out
-            final_list = list(selected_handles)
-            LOG.debug(
-                "Fast select, final_list: %s",
-                len(final_list),
-            )
-        else:
-            LOG.debug(
-                "Slow select, possible_handles: %s",
-                len(possible_handles),
-            )
-            slow_time = time.time()
-            for handle in possible_handles:
-                if handles_out is not None:
-                    if handle in handles_out:
-                        continue
+            obj = self.get_object(db, handle)
 
-                if user:
-                    user.step_progress()
+            if apply_logical_op(db, obj, self.flist) != self.invert:
+                final_list.append(obj.handle)
 
-                obj = self.get_object(db, handle)
-
-                if apply_logical_op(db, obj, self.flist) != self.invert:
-                    final_list.append(obj.handle)
-            LOG.debug("Slow select time: %s seconds", time.time() - slow_time)
+        LOG.debug("Loop select time: %s seconds", time.time() - loop_time)
 
         if user:
             user.end_progress()
