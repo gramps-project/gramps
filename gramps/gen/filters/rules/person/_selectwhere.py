@@ -41,9 +41,9 @@ from .._selectwherebase import SelectWhereBase
 #
 # -------------------------------------------------------------------------
 class PersonWhere(SelectWhereBase):
-    """Rule that matches persons using a Python where expression"""
+    """Rule that matches people using a Python where expression"""
 
-    name = _("Persons matching <expression>")
-    description = _("Matches persons using a filter expression")
+    name = _("People matching <expression>")
+    description = _("Matches people using a filter expression")
     category = _("General filters")
     table = "person"
