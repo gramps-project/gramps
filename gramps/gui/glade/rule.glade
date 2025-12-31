@@ -502,6 +502,21 @@
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkLabel" id="reorder_hint">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="margin-top">4</property>
+                    <property name="use-markup">True</property>
+                    <property name="label" translatable="yes">&lt;span style=&quot;italic&quot; size=&quot;small&quot;&gt;Drag and drop rules to change order&lt;/span&gt;</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">5</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkLabel" id="label16">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -513,7 +528,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">5</property>
+                    <property name="top-attach">6</property>
                   </packing>
                 </child>
                 <child>
@@ -599,7 +614,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">7</property>
+                    <property name="top-attach">8</property>
                     <property name="width">2</property>
                   </packing>
                 </child>
@@ -618,7 +633,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">6</property>
+                    <property name="top-attach">7</property>
                     <property name="width">2</property>
                   </packing>
                 </child>

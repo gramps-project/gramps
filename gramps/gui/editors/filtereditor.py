@@ -914,6 +914,22 @@ class EditFilter(ManagedWindow):
             self.on_edit_clicked,
         )
 
+        # Enable drag-and-drop reordering
+        self.rlist.set_reorderable(True)
+        # Monitor model changes to detect when drag-and-drop reordering occurs
+        # GTK reorders by deleting and reinserting rows, so we track these events
+        self.rlist.model.connect("row-inserted", self.on_model_row_inserted)
+        self.rlist.model.connect("row-deleted", self.on_model_row_deleted)
+        self._pending_reorder = False
+        self._reorder_idle_id = None
+
+        # Add visual indicators for drag-and-drop
+        # 1. Change cursor to indicate draggable rows
+        self.rule_list.connect("motion-notify-event", self.on_motion_notify)
+        self.rule_list.add_events(Gdk.EventMask.POINTER_MOTION_MASK)
+
+        # 2. Hint text is now in the Glade file (reorder_hint label)
+
         self.fname = self.get_widget("filter_name")
         self.logical = self.get_widget("rule_apply")
         self.logical_not = self.get_widget("logical_not")
@@ -1056,6 +1072,82 @@ class EditFilter(ManagedWindow):
             gfilter = self.rlist.get_object(node)
             self.filter.delete_rule(gfilter)
             self.draw_rules()
+
+    def on_model_row_inserted(self, model, path, iter):
+        """
+        Called when a row is inserted into the model.
+        Mark that a reorder might be pending and schedule an update.
+        """
+        self._pending_reorder = True
+        self._schedule_reorder_update()
+
+    def on_model_row_deleted(self, model, path):
+        """
+        Called when a row is deleted from the model.
+        Mark that a reorder might be pending and schedule an update.
+        """
+        self._pending_reorder = True
+        self._schedule_reorder_update()
+
+    def _schedule_reorder_update(self):
+        """
+        Schedule an update of the filter order after model changes complete.
+        Uses idle_add to batch multiple row insert/delete operations.
+        """
+        if self._reorder_idle_id is not None:
+            GObject.source_remove(self._reorder_idle_id)
+        self._reorder_idle_id = GObject.idle_add(self._update_filter_order_from_model)
+
+    def _update_filter_order_from_model(self):
+        """
+        Updates the filter's rule list to match the current order in the model.
+        Called after drag-and-drop operations to sync the filter with the UI.
+        """
+        if not self._pending_reorder:
+            self._reorder_idle_id = None
+            return False  # Remove from idle queue
+
+        # Get all rules in the current order from the model
+        new_rules = []
+        current_iter = self.rlist.model.get_iter_first()
+        while current_iter:
+            rule = self.rlist.model.get_value(current_iter, self.rlist.data_index)
+            new_rules.append(rule)
+            current_iter = self.rlist.model.iter_next(current_iter)
+
+        # Only update if the order has actually changed
+        current_rules = self.filter.get_rules()
+        if new_rules != current_rules:
+            # Update the filter's rule list to match the new order
+            self.filter.set_rules(new_rules)
+
+        self._pending_reorder = False
+        self._reorder_idle_id = None
+        return False  # Remove from idle queue
+
+    def on_motion_notify(self, widget, event):
+        """
+        Called when the mouse moves over the rule list.
+        Changes the cursor to indicate that rows can be dragged.
+        """
+        # Check if we're over a row
+        path_info = widget.get_path_at_pos(int(event.x), int(event.y))
+        window = widget.get_window()
+        if window and window.is_visible():
+            if path_info:
+                # We're over a row, show hand cursor to indicate draggable
+                try:
+                    cursor = Gdk.Cursor.new_for_display(
+                        window.get_display(), Gdk.CursorType.HAND2
+                    )
+                    window.set_cursor(cursor)
+                except (AttributeError, TypeError):
+                    # If cursor creation fails, just continue
+                    pass
+            else:
+                # Not over a row, use default cursor
+                window.set_cursor(None)
+        return False  # Allow other handlers to process the event
 
 
 # -------------------------------------------------------------------------
