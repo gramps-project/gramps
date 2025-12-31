@@ -938,11 +938,22 @@ class EditFilter(ManagedWindow):
         self.edit_btn = self.get_widget("definition_edit")
         self.del_btn = self.get_widget("definition_delete")
         self.add_btn = self.get_widget("definition_add")
+        self.up_btn = self.get_widget("definition_up")
+        self.down_btn = self.get_widget("definition_down")
+
+        # Initially disable up/down buttons
+        self.up_btn.set_sensitive(False)
+        self.down_btn.set_sensitive(False)
 
         self.ok_btn.connect("clicked", self.on_ok_clicked)
         self.edit_btn.connect("clicked", self.on_edit_clicked)
         self.del_btn.connect("clicked", self.on_delete_clicked)
         self.add_btn.connect("clicked", self.on_add_clicked)
+        self.up_btn.connect("clicked", self.on_up_clicked)
+        self.down_btn.connect("clicked", self.on_down_clicked)
+
+        # Add keyboard support for arrow keys
+        self.rule_list.connect("key-press-event", self.on_key_press)
 
         self.get_widget("definition_help").connect("clicked", self.on_help_clicked)
         self.get_widget("definition_cancel").connect("clicked", self.close_window)
@@ -984,14 +995,24 @@ class EditFilter(ManagedWindow):
         if node:
             self.edit_btn.set_sensitive(True)
             self.del_btn.set_sensitive(True)
+            # Enable up/down buttons based on position
+            row = self.rlist.get_selected_row()
+            self.up_btn.set_sensitive(row > 0)
+            self.down_btn.set_sensitive(
+                row >= 0 and row < len(self.filter.get_rules()) - 1
+            )
         else:
             self.edit_btn.set_sensitive(False)
             self.del_btn.set_sensitive(False)
+            self.up_btn.set_sensitive(False)
+            self.down_btn.set_sensitive(False)
 
     def draw_rules(self):
         self.rlist.clear()
         for r in self.filter.get_rules():
             self.rlist.add([r.name, r.display_values()], r)
+        # Update button states after drawing
+        self.select_row(None)
 
     def on_ok_clicked(self, obj):
         n = str(self.fname.get_text()).strip()
@@ -1072,6 +1093,60 @@ class EditFilter(ManagedWindow):
             gfilter = self.rlist.get_object(node)
             self.filter.delete_rule(gfilter)
             self.draw_rules()
+
+    def on_up_clicked(self, obj):
+        """Move the selected rule up one position."""
+        store, node = self.rlist.get_selected()
+        if node:
+            rule = self.rlist.get_object(node)
+            rules = self.filter.get_rules()
+            pos = rules.index(rule)
+            if pos > 0:
+                # Move rule up
+                del rules[pos]
+                rules.insert(pos - 1, rule)
+                self.filter.set_rules(rules)
+                self.draw_rules()
+                # Reselect the moved rule
+                self.rlist.select_row(pos - 1)
+
+    def on_down_clicked(self, obj):
+        """Move the selected rule down one position."""
+        store, node = self.rlist.get_selected()
+        if node:
+            rule = self.rlist.get_object(node)
+            rules = self.filter.get_rules()
+            pos = rules.index(rule)
+            if pos >= 0 and pos < len(rules) - 1:
+                # Move rule down
+                del rules[pos]
+                rules.insert(pos + 1, rule)
+                self.filter.set_rules(rules)
+                self.draw_rules()
+                # Reselect the moved rule
+                self.rlist.select_row(pos + 1)
+
+    def on_key_press(self, widget, event):
+        """Handle keyboard shortcuts for moving rules."""
+        if event.type == Gdk.EventType.KEY_PRESS:
+            keyval = event.keyval
+            # Check for Up/Down arrow keys with Ctrl or Alt modifier
+            # (similar to how other apps handle reordering)
+            modifiers = event.get_state()
+            if keyval == Gdk.KEY_Up and (modifiers & Gdk.ModifierType.CONTROL_MASK):
+                self.on_up_clicked(widget)
+                return True
+            elif keyval == Gdk.KEY_Down and (modifiers & Gdk.ModifierType.CONTROL_MASK):
+                self.on_down_clicked(widget)
+                return True
+            # Also support Alt+Up/Down
+            elif keyval == Gdk.KEY_Up and (modifiers & Gdk.ModifierType.MOD1_MASK):
+                self.on_up_clicked(widget)
+                return True
+            elif keyval == Gdk.KEY_Down and (modifiers & Gdk.ModifierType.MOD1_MASK):
+                self.on_down_clicked(widget)
+                return True
+        return False
 
     def on_model_row_inserted(self, model, path, iter):
         """

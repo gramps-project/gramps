@@ -493,7 +493,68 @@
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkButton" id="definition_up">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="can-default">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="tooltip-text" translatable="yes">Move the selected rule up</property>
+                        <signal name="clicked" handler="on_up_clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkImage" id="image5">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">go-up</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image5-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Move Up</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="definition_up-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Move Up</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="definition_down">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="can-default">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="tooltip-text" translatable="yes">Move the selected rule down</property>
+                        <signal name="clicked" handler="on_down_clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkImage" id="image6">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">go-down</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image6-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Move Down</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="definition_down-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Move Down</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">4</property>
+                      </packing>
                     </child>
                   </object>
                   <packing>
@@ -508,7 +569,7 @@
                     <property name="halign">center</property>
                     <property name="margin-top">4</property>
                     <property name="use-markup">True</property>
-                    <property name="label" translatable="yes">&lt;span style=&quot;italic&quot; size=&quot;small&quot;&gt;Drag and drop rules to change order&lt;/span&gt;</property>
+                    <property name="label" translatable="yes">&lt;span style=&quot;italic&quot; size=&quot;small&quot;&gt;To change rule order, use drag and drop, up/down buttons, or Ctrl+Arrow keys&lt;/span&gt;</property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
