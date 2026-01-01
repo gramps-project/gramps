@@ -3342,7 +3342,9 @@ class GrampsParser(UpdateCallback):
         self.resemail = tag
 
     def stop_mediapath(self, tag):
-        self.mediapath = tag
+        # Only use XML mediapath if ignore flag is not set
+        if not config.get("paths.ignore-xml-mediapath"):
+            self.mediapath = tag
 
     def stop_ptag(self, tag):
         self.use_p = 1
