@@ -60,6 +60,7 @@ class HaveChildren(Rule):
     name = _("People with children")
     description = _("Matches people who have children")
     category = _("Family filters")
+    table = "person"
 
     def prepare(self, db: Database, user):
         if db.can_use_fast_selects():
@@ -69,18 +70,14 @@ class HaveChildren(Rule):
                 where="len(person.family_list) > 0",
             ):
                 for family_handle in person.family_list:
-                    family = db.get_family_from_handle(
-                        cast(FamilyHandle, family_handle)
-                    )
+                    family = db.get_raw_family_data(cast(FamilyHandle, family_handle))
                     if family is not None and family.child_ref_list:
                         self.selected_handles.add(person.handle)
 
+    @Rule.apply_fast_selects
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        if db.can_use_fast_selects():
-            return person.handle in self.selected_handles
-        else:
-            for family_handle in person.family_list:
-                family = db.get_family_from_handle(cast(FamilyHandle, family_handle))
-                if family is not None and family.child_ref_list:
-                    return True
-            return False
+        for family_handle in person.family_list:
+            family = db.get_raw_family_data(cast(FamilyHandle, family_handle))
+            if family is not None and family.child_ref_list:
+                return True
+        return False

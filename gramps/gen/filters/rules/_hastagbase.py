@@ -62,34 +62,29 @@ class HasTagBase(Rule):
     category = _("General filters")
     table: str
 
-    def prepare(self, db: Database, user):
-        """
-        Prepare the rule. Things we want to do just once.
-        """
+    def init(self, db: Database, user):
         self.tag_handle = None
         tag = db.get_tag_from_name(self.list[0])
         if tag is not None:
             self.tag_handle = tag.handle
 
-        if db.can_use_fast_selects() and self.tag_handle:
-            self.selected_handles = set(
-                list(
-                    db._select_from_table(
-                        self.table,
-                        what="obj.handle",
-                        where="tag_handle in obj.tag_list",
-                        env={"tag_handle": self.tag_handle},
-                    )
-                )
-            )
+    @Rule.prepare_fast_selects(
+        where="tag_handle in obj.tag_list",
+        env=lambda self: {"tag_handle": self.tag_handle},
+        condition=lambda self: self.tag_handle is not None,
+    )
+    def prepare(self, db: Database, user):
+        """
+        Prepare the rule. Things we want to do just once.
+        """
+        self.init(db, user)
 
+    @Rule.apply_fast_selects(condition=lambda self: self.tag_handle is not None)
     def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         """
         Apply the rule.  Return True for a match.
         """
         if self.tag_handle is None:
             return False
-        elif db.can_use_fast_selects():
-            return obj.handle in self.selected_handles
-        else:
-            return self.tag_handle in obj.tag_list
+
+        return self.tag_handle in obj.tag_list

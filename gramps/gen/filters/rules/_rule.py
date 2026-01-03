@@ -115,6 +115,66 @@ class Rule:
                 ),
             )
 
+    def init(self, db: Database, user):
+        """
+        Method that prepare can call; called automatically if
+        can_use_fast_selects is True
+        """
+        pass
+
+    @staticmethod
+    def prepare_fast_selects(where, env=None, condition=None):
+        def actual_decorator(method):
+            def wrapper(self, db, user):
+                self.init(db, user)
+                condition_result = condition(self) if condition else True
+                if db.can_use_fast_selects() and condition_result:
+                    env_dict = env(self) if env else None
+                    self.selected_handles = set(
+                        list(
+                            db._select_from_table(
+                                self.table,
+                                what="obj.handle",
+                                where=where,
+                                env=env_dict,
+                            )
+                        )
+                    )
+                else:
+                    return method(self, db, user)
+
+            return wrapper
+
+        return actual_decorator
+
+    @staticmethod
+    def apply_fast_selects(*args, condition=None, **kwargs):
+        # Handle @Rule.apply_fast_selects (no parentheses) - method is passed as first positional arg
+        if args and callable(args[0]) and condition is None and not kwargs:
+            method = args[0]
+
+            # This is the direct decorator usage: @Rule.apply_fast_selects
+            def wrapper(self, db, obj):
+                if db.can_use_fast_selects():
+                    return obj.handle in self.selected_handles
+                else:
+                    return method(self, db, obj)
+
+            return wrapper
+
+        # Handle @Rule.apply_fast_selects(condition=...) - return a decorator
+        def actual_decorator(method):
+            def wrapper(self, db, obj):
+                condition_result = condition(self) if condition else True
+                if db.can_use_fast_selects() and condition_result:
+                    return obj.handle in self.selected_handles
+                else:
+                    return method(self, db, obj)
+
+            return wrapper
+
+        return actual_decorator
+
     def prepare(self, db: Database, user):
         """prepare so the rule can be executed efficiently"""
         pass

@@ -57,22 +57,14 @@ class Disconnected(Rule):
         "Matches people that have no family relationships "
         "to any other person in the database"
     )
+    table = "person"
 
+    @Rule.prepare_fast_selects(
+        where="len(person.parent_family_list) == 0 and len(person.family_list) == 0",
+    )
     def prepare(self, db: Database, user):
-        if db.can_use_fast_selects():
-            self.selected_handles: set[str] | None = set(
-                list(
-                    db.select_from_person(
-                        what="person.handle",
-                        where="len(person.parent_family_list) == 0 and len(person.family_list) == 0",
-                    )
-                )
-            )
-        else:
-            self.selected_handles = None
+        pass
 
+    @Rule.apply_fast_selects
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        if self.selected_handles is not None:
-            return person.handle in self.selected_handles
-        else:
-            return not (person.parent_family_list or person.family_list)
+        return not (person.parent_family_list or person.family_list)

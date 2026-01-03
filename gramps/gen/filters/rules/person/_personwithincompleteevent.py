@@ -55,27 +55,21 @@ class PersonWithIncompleteEvent(Rule):
     name = _("People with incomplete events")
     description = _("Matches people with missing date or place in an event")
     category = _("Event filters")
+    table = "person"
 
+    @Rule.prepare_fast_selects(
+        where="item in person.event_ref_list and item.ref == event.handle and (not event.place or not event.date)",
+    )
     def prepare(self, db: Database, user):
-        if db.can_use_fast_selects():
-            self.selected_handles = set(
-                list(
-                    db.select_from_person(
-                        what="person.handle",
-                        where="item in person.event_ref_list and item.ref == event.handle and (not event.place or not event.date)",
-                    )
-                )
-            )
+        pass
 
+    @Rule.apply_fast_selects
     def apply_to_one(self, db: Database, person: Person) -> bool:
-        if db.can_use_fast_selects():
-            return person.handle in self.selected_handles
-        else:
-            for event_ref in person.event_ref_list:
-                if event_ref and event_ref.ref:
-                    event = db.get_event_from_handle(cast(EventHandle, event_ref.ref))
-                    if not event.place:
-                        return True
-                    if not event.date:
-                        return True
-            return False
+        for event_ref in person.event_ref_list:
+            if event_ref and event_ref.ref:
+                event = db.get_event_from_handle(cast(EventHandle, event_ref.ref))
+                if not event.place:
+                    return True
+                if not event.date:
+                    return True
+        return False

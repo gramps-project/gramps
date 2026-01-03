@@ -54,17 +54,14 @@ class HasUnknownGender(Rule):
     name = _("People with unknown gender")
     category = _("General filters")
     description = _("Matches all people with unknown gender")
+    table = "person"
 
+    @Rule.prepare_fast_selects(
+        where="person.gender == Person.UNKNOWN",
+    )
     def prepare(self, db, user):
-        if db.can_use_fast_selects():
-            self.selected_handles = set(
-                list(
-                    db.select_from_person(
-                        what="person.handle",
-                        where="person.gender == Person.UNKNOWN",
-                    )
-                )
-            )
+        pass
 
+    @Rule.apply_fast_selects
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.gender == Person.UNKNOWN

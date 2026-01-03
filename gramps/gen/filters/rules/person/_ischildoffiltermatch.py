@@ -60,6 +60,7 @@ class IsChildOfFilterMatch(Rule):
     name = _("Children of <filter> match")
     category = _("Family filters")
     description = _("Matches children of anybody matched by a filter")
+    table = "person"
 
     def prepare(self, db: Database, user):
         self.db = db
