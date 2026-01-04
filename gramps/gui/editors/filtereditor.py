@@ -71,6 +71,7 @@ from gramps.gen.lib import (
     NoteType,
     PlaceType,
 )
+from gramps.gen.lib.date import Date
 from gramps.gen.filters import rules
 from ..autocomp import StandardCustomSelector, fill_entry
 from ..selectors import SelectorFactory
@@ -839,7 +840,24 @@ class EditRule(ManagedWindow):
         try:
             page = self.notebook.get_current_page()
             class_obj, vallist, tlist, use_regex, use_case = self.page[page]
-            value_list = [str(sclass.get_text()) for sclass in tlist]
+
+            # Normalize dates to locale-independent format before saving
+            value_list = []
+            for sclass in tlist:
+                if isinstance(sclass, DateEntry):
+                    # For DateEntry widgets, get the Date object and convert to English format
+                    # This ensures dates are stored in locale-independent format
+                    date_obj = sclass.date
+                    if date_obj and date_obj.get_modifier() != Date.MOD_TEXTONLY:
+                        # Use Date.__str__() which produces English keywords + ISO format
+                        normalized_date = str(date_obj)
+                        value_list.append(normalized_date)
+                    else:
+                        # If date parsing failed or is text-only, use the text as-is
+                        value_list.append(str(sclass.get_text()))
+                else:
+                    # For other widgets, use get_text() as before
+                    value_list.append(str(sclass.get_text()))
             if class_obj.allow_regex:
                 new_rule = class_obj(
                     value_list, use_regex.get_active(), use_case.get_active()

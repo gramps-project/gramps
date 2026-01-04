@@ -61,7 +61,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 from ..autocomp import StandardCustomSelector, fill_entry
-from gramps.gen.datehandler import displayer, parser
+from gramps.gen.datehandler import displayer, parser, LANG_TO_PARSER
 from gramps.gen.lib.date import Date, NextYear
 from gramps.gen.errors import ValidationError
 
@@ -648,8 +648,25 @@ class MonitoredDate:
         """
         Parse date from text entry to date object
         """
-        date = parser.parse(str(self.text_obj.get_text()))
+        text = str(self.text_obj.get_text())
+        date = parser.parse(text)
+
+        # If parsing failed (text-only), try English parser as fallback
+        # This ensures saved English-format dates can be loaded in any locale
+        if date.get_modifier() == Date.MOD_TEXTONLY and text.strip():
+            if "C" in LANG_TO_PARSER:
+                english_parser = LANG_TO_PARSER["C"]()
+                date = english_parser.parse(text)
+
         self.date_obj.copy(date)
+
+        # Update display text to locale format if parsing succeeded
+        # This ensures English-format dates display in user's locale
+        if date.get_modifier() != Date.MOD_TEXTONLY:
+            locale_text = displayer.display(self.date_obj)
+            # Only update if different to avoid unnecessary recursion
+            if locale_text != text:
+                self.text_obj.set_text(locale_text)
 
     def validate(self, widget, data):
         """
