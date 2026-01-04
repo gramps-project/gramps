@@ -198,6 +198,10 @@ def _report_details(path, diff1, diff2):
     # 'change' date is not significant for comparison
     if path.endswith(".change"):
         return ""
+    # tag colors may differ due to default color palette assignment
+    # we don't need to check for exact colors - ignore any color differences for tags
+    if ".color" in path and ("Tag" in path or path.startswith("Tag")):
+        return ""
     # the xml exporter edits the data base by converting media path
     # to unix '/' conventions, so we have to ignore these differences
     if path == "Media.path":
