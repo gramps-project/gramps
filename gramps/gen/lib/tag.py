@@ -35,6 +35,77 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Default Tag Color Palette
+#
+# -------------------------------------------------------------------------
+# Color palette designed to work well on both light and dark GTK themes.
+# These are medium-saturation colors that provide good contrast and are
+# visually distinct from each other.
+DEFAULT_TAG_COLORS = [
+    "#3584e4",  # Blue - GTK Adwaita blue
+    "#c64600",  # Orange/Red
+    "#26a269",  # Green - GTK Adwaita green
+    "#986803",  # Brown/Yellow
+    "#813d9c",  # Purple
+    "#1c71d8",  # Bright Blue
+    "#e66100",  # Orange
+    "#2ec27e",  # Teal/Green
+    "#a51d2d",  # Red
+    "#1a5fb4",  # Dark Blue
+    "#c2185b",  # Pink/Magenta
+    "#0d52bf",  # Deep Blue
+    "#ff7800",  # Bright Orange
+    "#33d17a",  # Light Green
+    "#9141ac",  # Purple
+]
+
+
+def get_default_tag_color(db=None, index=None):
+    """
+    Get a default color for a new tag that minimizes collisions.
+
+    This function provides colors that work well on both light and dark
+    GTK themes. Colors are selected from a predefined palette in a
+    rotating fashion to minimize collisions with existing tags.
+
+    :param db: Optional database to check existing tag colors
+    :type db: DbBase
+    :param index: Optional index to use for color selection (defaults to
+                  number of existing tags)
+    :type index: int
+    :returns: A hex color string in format #RRGGBB
+    :rtype: str
+    """
+    if index is None:
+        if db:
+            index = db.get_number_of_tags()
+        else:
+            index = 0
+
+    # Rotate through the color palette
+    color = DEFAULT_TAG_COLORS[index % len(DEFAULT_TAG_COLORS)]
+
+    # If database is provided, try to find a color that's not already used
+    if db:
+        existing_colors = set()
+        for tag_handle in db.get_tag_handles():
+            tag = db.get_tag_from_handle(tag_handle)
+            if tag:
+                existing_colors.add(tag.get_color())
+
+        # If the selected color is already used, try the next available one
+        if color in existing_colors:
+            for i in range(len(DEFAULT_TAG_COLORS)):
+                candidate = DEFAULT_TAG_COLORS[(index + i) % len(DEFAULT_TAG_COLORS)]
+                if candidate not in existing_colors:
+                    color = candidate
+                    break
+
+    return color
+
+
+# -------------------------------------------------------------------------
+#
 # Tag
 #
 # -------------------------------------------------------------------------
@@ -44,12 +115,14 @@ class Tag(TableObject):
     attached to a primary object.
     """
 
-    def __init__(self, source=None):
+    def __init__(self, source=None, db=None):
         """
         Create a new Tag instance, copying from the source if present.
 
         :param source: A tag used to initialize the new tag
         :type source: Tag
+        :param db: Optional database to get default color based on existing tags
+        :type db: DbBase
         """
 
         TableObject.__init__(self, source)
@@ -60,7 +133,8 @@ class Tag(TableObject):
             self.__priority = source.priority
         else:
             self.__name = ""
-            self.__color = "#000000000000"  # Black
+            # Use a default color from the palette instead of black
+            self.__color = get_default_tag_color(db)
             self.__priority = 0
 
     def serialize(self):
