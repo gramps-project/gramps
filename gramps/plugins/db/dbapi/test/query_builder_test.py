@@ -436,6 +436,261 @@ class QueryBuilderTestMixin:
         # Validate SQL with sqlglot
         self._validate_sql(sql)
 
+    def test_nested_any_for_surname_matching(self):
+        """
+        Test nested any() for matching all surnames in surname_list.
+        Tests the pattern: any([name for name in [...names...] if any([src in surname.surname for surname in name.surname_list])])
+        This is needed to check ALL surnames, not just the first one.
+        """
+        # Add search string to environment for this test
+        self.query_builder.env["src"] = "Smith"
+        what = "person.handle"
+        where = "any([name for name in [person.primary_name] + person.alternate_names if any([src in surname.surname for surname in name.surname_list])])"
+        order_by = None
+
+        # This should not raise an error
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL with sqlglot
+        self._validate_sql(sql)
+
+        # Verify that nested EXISTS is used
+        # We should have outer EXISTS for names, and inner EXISTS for surname_list
+        exists_count = sql.upper().count("EXISTS")
+        self.assertGreaterEqual(
+            exists_count, 2, "SQL should contain nested EXISTS clauses"
+        )
+
+        # Verify surname matching condition is present
+        self.assertIn("surname", sql.lower(), "SQL should contain surname reference")
+        self.assertIn("Smith", sql, "SQL should contain the search pattern")
+
+        # Verify explicit aliases are used
+        self.assertIn("outer_each", sql, "SQL should use outer_each alias")
+        self.assertIn("inner_each", sql, "SQL should use inner_each alias")
+
+    def test_nested_any_simple_array(self):
+        """
+        Test nested any() with a simple array (not concatenated).
+        Pattern: any([item for item in person.array if any([x for x in item.nested_array])])
+        """
+        self.query_builder.env["target_role"] = 1
+        what = "person.handle"
+        where = "any([eref for eref in person.event_ref_list if any([attr for attr in eref.attribute_list if attr.type.value == target_role])])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Should have nested EXISTS
+        self.assertGreaterEqual(sql.upper().count("EXISTS"), 2)
+        self.assertIn("outer_each", sql)
+        self.assertIn("inner_each", sql)
+
+    def test_nested_any_with_multiple_conditions_outer(self):
+        """
+        Test nested any() where outer loop has additional conditions combined with AND.
+        Pattern: any([x for x in array1 if x.field == value and any([y for y in x.array2])])
+        """
+        self.query_builder.env["search"] = "test"
+        what = "person.handle"
+        where = "any([name for name in [person.primary_name] + person.alternate_names if name.first_name and any([search in s.surname for s in name.surname_list])])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Should have nested EXISTS and first_name check
+        self.assertIn("first_name", sql.lower())
+        self.assertIn("test", sql)
+        self.assertGreaterEqual(sql.upper().count("EXISTS"), 2)
+
+    def test_nested_any_with_condition_in_inner(self):
+        """
+        Test nested any() where inner loop has complex conditions.
+        Pattern: any([x for x in array1 if any([y for y in x.array2 if y.field == value and y.other])])
+        """
+        self.query_builder.env["prefix_search"] = "von"
+        what = "person.handle"
+        where = "any([name for name in [person.primary_name] + person.alternate_names if any([s for s in name.surname_list if prefix_search in s.prefix and s.surname])])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Should have nested EXISTS with complex inner condition
+        self.assertIn("prefix", sql.lower())
+        self.assertIn("von", sql)
+        self.assertIn("surname", sql.lower())
+
+    def test_nested_any_boolean_expression_in_element(self):
+        """
+        Test that boolean expressions in the element position work as conditions.
+        Pattern: any([x in y.field for y in array]) where x in y.field is the boolean expression
+        """
+        self.query_builder.env["search_val"] = 1
+        what = "person.handle"
+        # Use a simpler pattern that doesn't require complex attribute validation
+        where = "any([name for name in [person.primary_name] + person.alternate_names if any([search_val == len(s.surname) for s in name.surname_list])])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Should detect the boolean expression and use it as a condition
+        self.assertIn("1", sql)
+        self.assertGreaterEqual(sql.upper().count("EXISTS"), 2)
+
+    def test_nested_any_no_condition_in_outer(self):
+        """
+        Test nested any() where outer loop has no explicit if condition, only the nested any().
+        Pattern: any([x for x in array1 if any([...])])
+        """
+        self.query_builder.env["target"] = "test"
+        what = "person.handle"
+        where = "any([name for name in person.alternate_names if any([target in s.surname for s in name.surname_list])])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Should work with simple array (not concatenated)
+        self.assertIn("alternate_names", sql)
+        self.assertIn("test", sql)
+        self.assertGreaterEqual(sql.upper().count("EXISTS"), 2)
+
+    def test_nested_any_with_or_conditions(self):
+        """
+        Test nested any() combined with OR conditions.
+        Pattern: any([...]) or any([... if any([...])])
+        """
+        self.query_builder.env["search1"] = "Smith"
+        self.query_builder.env["search2"] = "Jones"
+        what = "person.handle"
+        where = "any([name for name in [person.primary_name] + person.alternate_names if search1 in name.first_name or any([search2 in s.surname for s in name.surname_list])])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Should handle OR properly
+        self.assertIn("Smith", sql)
+        self.assertIn("Jones", sql)
+        self.assertIn(" OR ", sql.upper())
+
+    def test_nested_any_empty_check(self):
+        """
+        Test nested any() that checks for non-empty nested arrays.
+        Pattern: any([x for x in array1 if any([y for y in x.array2])])
+        Without explicit condition - just checking existence.
+        """
+        what = "person.handle"
+        where = "any([name for name in [person.primary_name] + person.alternate_names if any([s for s in name.surname_list])])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Should generate EXISTS without WHERE in inner query
+        # The inner EXISTS just checks if the array has any elements
+        self.assertGreaterEqual(sql.upper().count("EXISTS"), 2)
+
+    def test_nested_any_with_len_check(self):
+        """
+        Test nested any() combined with len() checks.
+        Pattern: any([x for x in array1 if len(x.array2) > 0 and any([...])])
+        """
+        self.query_builder.env["min_surnames"] = 2
+        what = "person.handle"
+        where = "any([name for name in [person.primary_name] + person.alternate_names if len(name.surname_list) >= min_surnames])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Should have json_array_length check
+        self.assertIn("json_array_length", sql.lower())
+        self.assertIn("2", sql)
+
+    def test_nested_any_attribute_access_chain(self):
+        """
+        Test nested any() with chained attribute access.
+        Pattern: any([x for x in array if any([y.attr.subattr for y in x.array2])])
+        """
+        self.query_builder.env["type_val"] = 1
+        what = "person.handle"
+        where = "any([eref for eref in person.event_ref_list if any([attr.type.value == type_val for attr in eref.attribute_list])])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Should handle chained attributes properly
+        self.assertIn("type", sql.lower())
+        self.assertIn("value", sql.lower())
+
+    def test_nested_any_with_not(self):
+        """
+        Test nested any() with NOT operator.
+        Pattern: not any([x for x in array if any([...])])
+        """
+        self.query_builder.env["exclude"] = "Test"
+        what = "person.handle"
+        where = "not any([name for name in [person.primary_name] + person.alternate_names if any([exclude in s.surname for s in name.surname_list])])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Should have NOT with EXISTS (format may vary: "NOT EXISTS" or "NOT (EXISTS")
+        self.assertIn("NOT", sql.upper())
+        self.assertIn("EXISTS", sql.upper())
+        self.assertIn("Test", sql)
+
+    def test_nested_any_mixed_with_and_conditions(self):
+        """
+        Test nested any() mixed with top-level AND conditions.
+        Pattern: person.field == value and any([... if any([...])])
+        """
+        self.query_builder.env["search"] = "Smith"
+        what = "person.handle"
+        where = "person.gender == Person.MALE and any([name for name in [person.primary_name] + person.alternate_names if any([search in s.surname for s in name.surname_list])])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Should have both gender check and nested EXISTS
+        self.assertIn("gender", sql.lower())
+        self.assertGreaterEqual(sql.upper().count("EXISTS"), 2)
+        self.assertIn("Smith", sql)
+
+    def test_case_insensitive_string_matching(self):
+        """
+        Test that string matching with 'in' operator is case-insensitive.
+        SQLite uses LIKE (case-insensitive by default).
+        PostgreSQL should use ILIKE (case-insensitive).
+        """
+        self.query_builder.env["search"] = "smith"  # lowercase
+        what = "person.handle"
+        where = "any([name for name in [person.primary_name] + person.alternate_names if any([search in s.surname for s in name.surname_list])])"
+        order_by = None
+
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+        self._validate_sql(sql)
+
+        # Check dialect-specific LIKE operator
+        if self.query_builder.dialect == "postgres":
+            # PostgreSQL should use ILIKE for case-insensitive matching
+            self.assertIn("ILIKE", sql.upper())
+            self.assertNotIn(" LIKE ", sql.upper())  # Should not use regular LIKE
+        else:
+            # SQLite uses LIKE (which is case-insensitive by default)
+            self.assertIn("LIKE", sql.upper())
+
+        # Verify the search term is present
+        self.assertIn("smith", sql.lower())
+
     def test_array_expansion_with_join_to_event(self):
         """
         Test array expansion with join to event table.

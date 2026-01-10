@@ -365,8 +365,9 @@ class SQLGenerator:
 
         # JSON field - use json_extract
         if expr.table_name == "json_each":
-            # Array expansion context
-            base_expr = "json_each.value"
+            # Array expansion context - use the current alias
+            json_each_alias = getattr(self, "_json_each_alias", "json_each")
+            base_expr = f"{json_each_alias}.value"
         else:
             # Regular table
             base_expr = f"{expr.table_name}.json_data"
@@ -374,7 +375,8 @@ class SQLGenerator:
         if not expr.attribute_path:
             # Just the base (e.g., person or json_each)
             if expr.table_name == "json_each":
-                return "json_each.value"
+                json_each_alias = getattr(self, "_json_each_alias", "json_each")
+                return f"{json_each_alias}.value"
             else:
                 return f"{expr.table_name}.json_data"
 
@@ -610,7 +612,8 @@ class SQLGenerator:
                             expr.left.value
                         )  # Extract the string value (without quotes)
                         attribute_sql = right_sql  # The attribute (right side)
-                        parts.append(f"{attribute_sql} LIKE '%{pattern_val}%'")
+                        like_op = self._format_like_operator(case_sensitive=False)
+                        parts.append(f"{attribute_sql} {like_op} '%{pattern_val}%'")
                     else:
                         # String in non-string - use IN (might be a list of strings)
                         parts.append(f"{current_left} IN {right_sql}")
@@ -644,7 +647,8 @@ class SQLGenerator:
                             expr.left.value
                         )  # Extract the string value (without quotes)
                         attribute_sql = right_sql  # The attribute (right side)
-                        parts.append(f"{attribute_sql} NOT LIKE '%{pattern_val}%'")
+                        like_op = self._format_like_operator(case_sensitive=False)
+                        parts.append(f"{attribute_sql} NOT {like_op} '%{pattern_val}%'")
                     else:
                         parts.append(f"{current_left} NOT IN {right_sql}")
                 else:
@@ -837,11 +841,20 @@ class SQLGenerator:
                 # SQLite: json_array() can take multiple arguments
                 # But we need to concatenate two arrays, not create an array of two arrays
                 # Use json_each on both arrays with UNION
-                left_json_each = self._format_json_each(left_array_sql)
-                right_json_each = self._format_json_each(right_array_sql)
+                # IMPORTANT: When any() can contain nested any(), we need explicit aliases
+                left_json_each = f"json_each({left_array_sql}, '$') AS outer_each"
+                right_json_each = f"json_each({right_array_sql}, '$') AS outer_each"
                 # Use UNION to combine results from both arrays
                 if expr.condition:
+                    # Save context for nested json_each
+                    old_json_each_alias = getattr(self, "_json_each_alias", "json_each")
+                    self._json_each_alias = "outer_each"
+
                     condition_sql = self.generate_expression(expr.condition)
+
+                    # Restore context
+                    self._json_each_alias = old_json_each_alias
+
                     return f"EXISTS (SELECT 1 FROM {left_json_each} WHERE {condition_sql} UNION SELECT 1 FROM {right_json_each} WHERE {condition_sql})"
                 else:
                     return f"EXISTS (SELECT 1 FROM {left_json_each} UNION SELECT 1 FROM {right_json_each})"
@@ -863,6 +876,39 @@ class SQLGenerator:
                     return f"EXISTS (SELECT 1 FROM {left_json_each} WHERE {condition_sql} UNION SELECT 1 FROM {right_json_each} WHERE {condition_sql})"
                 else:
                     return f"EXISTS (SELECT 1 FROM {left_json_each} UNION SELECT 1 FROM {right_json_each})"
+        elif expr.array_info and expr.array_info.get("type") == "nested":
+            # Nested array: iterating over an attribute of the outer item variable
+            # e.g., "for surname in name.surname_list" where "name" is the outer item_var
+            # The array is accessed via json_extract(json_each.value, '$.array_path')
+            #
+            # IMPORTANT: We need to use explicit aliases to avoid name collision
+            # between outer and inner json_each tables
+            array_path = expr.array_info["path"]
+            # Use explicit alias for the inner json_each to avoid shadowing the outer one
+            # We'll use "inner_each" as the alias name
+            nested_array_expr = f"json_extract(outer_each.value, '$.{array_path}')"
+
+            if self.dialect == "sqlite":
+                json_each_expr = f"json_each({nested_array_expr}, '$') AS inner_each"
+            elif self.dialect == "postgres":
+                json_each_expr = f"LATERAL json_array_elements({nested_array_expr}) AS inner_each(value)"
+            else:
+                json_each_expr = f"json_each({nested_array_expr}, '$') AS inner_each"
+
+            if expr.condition:
+                # Need to temporarily change json_each references to inner_each in condition
+                # Save the current table name context
+                old_json_each_alias = getattr(self, "_json_each_alias", "json_each")
+                self._json_each_alias = "inner_each"
+
+                condition_sql = self.generate_expression(expr.condition)
+
+                # Restore the old context
+                self._json_each_alias = old_json_each_alias
+
+                return f"EXISTS (SELECT 1 FROM {json_each_expr} WHERE {condition_sql})"
+            else:
+                return f"EXISTS (SELECT 1 FROM {json_each_expr})"
         else:
             # Single array
             array_attr = AttributeExpression(
@@ -903,6 +949,27 @@ class SQLGenerator:
             return f"LATERAL json_array_elements({array_expr}) AS json_each(value)"
         else:
             return f"json_each({array_expr}, '{path}')"
+
+    def _format_like_operator(self, case_sensitive: bool = False) -> str:
+        """
+        Format LIKE operator based on dialect for consistent case sensitivity.
+
+        Args:
+            case_sensitive: If True, use case-sensitive matching. Default False for case-insensitive.
+
+        Returns:
+            The appropriate LIKE operator string for the current dialect
+        """
+        if case_sensitive:
+            # Case-sensitive: Use LIKE for both
+            return "LIKE"
+        else:
+            # Case-insensitive: SQLite LIKE is already case-insensitive, PostgreSQL needs ILIKE
+            if self.dialect == "postgres":
+                return "ILIKE"
+            else:
+                # SQLite and others: LIKE is case-insensitive by default for ASCII
+                return "LIKE"
 
     def _get_base_table(self) -> str:
         """Get base table name - placeholder for now."""

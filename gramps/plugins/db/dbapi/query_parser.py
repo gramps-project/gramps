@@ -309,11 +309,21 @@ class QueryParser:
                 if isinstance(node.args[0], ast.ListComp):
                     # Parse the list comprehension
                     listcomp = self._parse_listcomp(node.args[0])
+                    # For any(), if the expression is boolean (like "x in y"), use it as the condition
+                    # Otherwise, use the condition from the if clause
+                    condition = listcomp.condition
+                    if condition is None:
+                        # Check if the expression looks like a comparison/boolean
+                        # If so, use it as the condition for EXISTS
+                        if isinstance(
+                            listcomp.expression, (CompareExpression, BoolOpExpression)
+                        ):
+                            condition = listcomp.expression
                     return AnyExpression(
                         item_var=listcomp.item_var,
                         array_path=listcomp.array_info.get("path", ""),
                         array_info=listcomp.array_info,
-                        condition=listcomp.condition,
+                        condition=condition,
                     )
 
         return CallExpression(function=func, arguments=args)
@@ -576,13 +586,22 @@ class QueryParser:
                 simple_path_parts.insert(0, simple_current.attr)
                 simple_current = simple_current.value
 
-            if isinstance(simple_current, ast.Name) and simple_current.id in [
-                self.table_name,
-                "obj",
-                "person",
-            ]:
-                array_path = ".".join(simple_path_parts)
-                return {"type": "single", "path": array_path}
+            if isinstance(simple_current, ast.Name):
+                base_name = simple_current.id
+                # Check if base is a table name
+                if base_name in [self.table_name, "obj", "person"]:
+                    array_path = ".".join(simple_path_parts)
+                    return {"type": "single", "path": array_path}
+                # Check if base is the current item variable (for nested iterations)
+                elif self.item_var and base_name == self.item_var:
+                    # This is iterating over an array attribute of the outer item variable
+                    # e.g., "for surname in name.surname_list" where "name" is the outer item_var
+                    array_path = ".".join(simple_path_parts)
+                    return {
+                        "type": "nested",
+                        "path": array_path,
+                        "outer_item_var": self.item_var,
+                    }
 
         raise ValueError(f"Could not extract array info from: {iter_node}")
 
