@@ -339,7 +339,7 @@ class SQLGenerator:
             original_order_by = q.order_by
             original_limit = q.limit
             original_offset = q.offset
-            q.order_by = None
+            q.order_by = []
             q.limit = None
             q.offset = None
 
@@ -389,7 +389,7 @@ class SQLGenerator:
                 original_offset = q.offset
                 original_select = q.select_expressions[:]
 
-                q.order_by = None
+                q.order_by = []
                 q.limit = None
                 q.offset = None
 
