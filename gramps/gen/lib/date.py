@@ -1561,7 +1561,7 @@ class Date(BaseObject):
         """
         Return true if any part of the date is valid.
         """
-        return self.modifier != Date.MOD_TEXTONLY
+        return self.modifier != Date.MOD_TEXTONLY or self.get_text() == ""
 
     def is_valid(self):
         """
