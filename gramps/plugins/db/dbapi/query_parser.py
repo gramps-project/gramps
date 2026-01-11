@@ -522,6 +522,9 @@ class QueryParser:
         # Extract array info
         array_info = self._extract_array_info(iter_node)
 
+        # Infer the item type from the array being iterated
+        item_type = self._infer_list_item_type(array_info)
+
         # Extract expression with item_var context
         # Temporarily set item_var so that the expression can reference it
         old_item_var = self.item_var
@@ -544,6 +547,7 @@ class QueryParser:
             item_var=item_var,
             array_info=array_info,
             condition=condition,
+            item_type=item_type,
         )
 
     def _extract_array_info(self, iter_node: ast.AST) -> dict:
@@ -603,7 +607,82 @@ class QueryParser:
                         "outer_item_var": self.item_var,
                     }
 
+        # Check for nested list comprehension
+        if isinstance(iter_node, ast.ListComp):
+            # Parse the inner list comprehension recursively
+            inner_listcomp = self._parse_listcomp(iter_node)
+            return {
+                "type": "nested_listcomp",
+                "inner_listcomp": inner_listcomp,
+            }
+
         raise ValueError(f"Could not extract array info from: {iter_node}")
+
+    def _infer_list_item_type(self, array_info: dict) -> Optional[type]:
+        """
+        Infer the type of items in a list comprehension from the array info.
+
+        Args:
+            array_info: Dictionary containing array information
+
+        Returns:
+            Type of items, or None if cannot be determined
+        """
+        array_type = array_info.get("type")
+
+        if array_type == "single":
+            # Simple array like person.alternate_names
+            array_path = array_info.get("path", "")
+            return self.type_inference.infer_array_item_type(
+                self.table_name, array_path
+            )
+
+        elif array_type == "concatenated":
+            # Concatenated array like [person.primary_name] + person.alternate_names
+            # Both sides should have the same item type
+            right_path = array_info.get("right_path", "")
+            return self.type_inference.infer_array_item_type(
+                self.table_name, right_path
+            )
+
+        elif array_type == "nested":
+            # Nested iteration like "for surname in name.surname_list"
+            # We need to look up the type from the outer item variable's type
+            # For now, we don't have the outer item's type stored, so return None
+            # This could be enhanced later
+            return None
+
+        elif array_type == "nested_listcomp":
+            # Nested list comprehension - the item type is the type of the inner comprehension's expression
+            # For example: [name.surname_list for name in ...] returns List[Surname]
+            # So the outer iteration "for s in [name.surname_list ...]" iterates over Surname items
+            inner_listcomp = array_info.get("inner_listcomp")
+            if (
+                inner_listcomp
+                and inner_listcomp.expression
+                and inner_listcomp.item_type
+            ):
+                # Push the inner item type onto the stack so we can infer the expression type
+                self.type_inference._listcomp_item_type_stack.append(
+                    inner_listcomp.item_type
+                )
+                try:
+                    # Infer the type of the inner expression (e.g., name.surname_list)
+                    expr_type = self.type_inference.visit(inner_listcomp.expression)
+                    if expr_type:
+                        # If the expression is a list, extract the item type
+                        item_type = self.type_inference._extract_list_item_type(
+                            expr_type
+                        )
+                        if item_type:
+                            return item_type
+                        # If it's not a list type, return the expression type itself
+                        return expr_type
+                finally:
+                    # Pop the item type from the stack
+                    self.type_inference._listcomp_item_type_stack.pop()
+
+        return None
 
     def detect_array_expansion(self, expr_str: str) -> Optional[ArrayExpansion]:
         """Detect array expansion pattern in expression."""

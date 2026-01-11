@@ -63,6 +63,57 @@ class SQLGenerator:
         """
         self.dialect = dialect.lower()
         self.type_inference = type_inference
+        self._json_each_counter = 0  # For generating unique json_each aliases
+        self._in_select_clause = (
+            False  # Track if we're generating SELECT clause expressions
+        )
+        self._json_each_alias = (
+            "json_each"  # Default json_each alias for attribute resolution
+        )
+
+    def _get_next_json_each_alias(self) -> str:
+        """
+        Generate unique alias for json_each tables.
+
+        Returns:
+            Unique alias name for json_each (e.g., "outer_each", "inner_each", "each_3")
+        """
+        self._json_each_counter += 1
+        if self._json_each_counter == 1:
+            return "outer_each"
+        elif self._json_each_counter == 2:
+            return "inner_each"
+        else:
+            return f"each_{self._json_each_counter}"
+
+    def _reset_json_each_counter(self):
+        """Reset the json_each alias counter (call at the start of each query generation)."""
+        self._json_each_counter = 0
+
+    def _is_list_or_tuple_type(self, type_hint) -> bool:
+        """
+        Check if a type hint represents a list or tuple type.
+
+        Handles both plain types (list, tuple) and parameterized generics (List[T], Tuple[T]).
+
+        Args:
+            type_hint: Type to check
+
+        Returns:
+            True if the type is list, tuple, or a parameterized version
+        """
+        if type_hint is None:
+            return False
+
+        # Check for plain list or tuple
+        if type_hint is list or type_hint is tuple:
+            return True
+
+        # Check for parameterized generics like List[str], Tuple[int, str]
+        from typing import get_origin, List, Tuple
+
+        origin = get_origin(type_hint)
+        return origin is list or origin is List or origin is tuple or origin is Tuple
 
     def generate(self, query: SelectQuery) -> str:
         """
@@ -83,23 +134,37 @@ class SQLGenerator:
 
     def _generate_select(self, query: SelectQuery) -> str:
         """Generate a SELECT statement."""
+        # Reset counter for each query
+        self._reset_json_each_counter()
+
         # Store base table for use in expressions
         self.base_table = query.base_table
 
         # SELECT clause
         select_parts = []
         for sel_expr in query.select_expressions:
-            # Handle list comprehensions specially
-            if isinstance(sel_expr.expression, ListComprehensionExpression):
-                # List comprehension needs special FROM clause handling
-                # For now, generate placeholder
-                expr_sql = self._generate_listcomp_in_select(sel_expr.expression, query)
-            else:
-                expr_sql = self.generate_expression(sel_expr.expression)
-            if sel_expr.alias:
-                select_parts.append(f"{expr_sql} AS {sel_expr.alias}")
-            else:
-                select_parts.append(expr_sql)
+            # Set SELECT context flag for all SELECT expressions
+            old_in_select = self._in_select_clause
+            self._in_select_clause = True
+
+            try:
+                # Handle list comprehensions specially
+                if isinstance(sel_expr.expression, ListComprehensionExpression):
+                    # List comprehension needs special FROM clause handling
+                    # For now, generate placeholder
+                    expr_sql = self._generate_listcomp_in_select(
+                        sel_expr.expression, query
+                    )
+                else:
+                    expr_sql = self.generate_expression(sel_expr.expression)
+                if sel_expr.alias:
+                    select_parts.append(f"{expr_sql} AS {sel_expr.alias}")
+                else:
+                    select_parts.append(expr_sql)
+            finally:
+                # Restore SELECT context flag
+                self._in_select_clause = old_in_select
+
         select_clause = ", ".join(select_parts) if select_parts else "json_data"
 
         # FROM clause
@@ -122,6 +187,13 @@ class SQLGenerator:
                     array_sql = self.generate_expression(array_attr)
                     json_each_expr = self._format_json_each(array_sql)
                     from_parts.append(json_each_expr)
+                    break  # Only add once
+                elif listcomp.array_info.get("type") == "nested_listcomp":
+                    # Nested list comprehension - add chained json_each calls
+                    json_each_chain = self._generate_nested_listcomp_from_clause(
+                        listcomp, query.base_table
+                    )
+                    from_parts.extend(json_each_chain)
                     break  # Only add once
 
         # Add array expansion if present (for WHERE clause array expansion)
@@ -166,9 +238,36 @@ class SQLGenerator:
             if isinstance(sel_expr.expression, ListComprehensionExpression):
                 listcomp = sel_expr.expression
                 if listcomp.condition:
-                    # Generate the condition SQL with item_var context
-                    # The condition references the item variable (e.g., eref.role.value)
-                    condition_sql = self.generate_expression(listcomp.condition)
+                    # Set the correct json_each alias context for nested listcomps
+                    if listcomp.array_info.get("type") == "nested_listcomp":
+                        depth = self._get_listcomp_nesting_depth(listcomp)
+                        if depth == 2:
+                            self._json_each_alias = "inner_each"
+                        elif depth == 1:
+                            self._json_each_alias = "outer_each"
+                        else:
+                            self._json_each_alias = f"each_{depth}"
+                    else:
+                        self._json_each_alias = "json_each"
+
+                    # Push list comprehension item type onto type inference stack
+                    # so that type inference can resolve json_each attributes correctly
+                    if self.type_inference:
+                        self.type_inference._listcomp_item_type_stack.append(
+                            listcomp.item_type
+                        )
+
+                    try:
+                        # Generate the condition SQL with item_var context
+                        # The condition references the item variable (e.g., eref.role.value)
+                        condition_sql = self.generate_expression(listcomp.condition)
+                    finally:
+                        # Always pop the item type when done
+                        if self.type_inference:
+                            self.type_inference._listcomp_item_type_stack.pop()
+                        # Reset to default
+                        self._json_each_alias = "json_each"
+
                     if condition_sql:
                         where_conditions.append(condition_sql)
 
@@ -588,7 +687,7 @@ class SQLGenerator:
                 elif (
                     isinstance(right, AttributeExpression)
                     and not right.is_database_column
-                    and (right_type is list or right_type is tuple)
+                    and self._is_list_or_tuple_type(right_type)
                 ):
                     # JSON array attribute - use json_each with EXISTS to check membership
                     array_sql = right_sql
@@ -597,7 +696,7 @@ class SQLGenerator:
                     parts.append(
                         f"EXISTS (SELECT 1 FROM {json_each_expr} WHERE json_each.value = {current_left})"
                     )
-                elif right_type is list or right_type is tuple:
+                elif self._is_list_or_tuple_type(right_type):
                     # Type hint says it's a list/tuple - use IN
                     parts.append(f"{current_left} IN {right_sql}")
                 elif isinstance(expr.left, ConstantExpression) and isinstance(
@@ -626,7 +725,7 @@ class SQLGenerator:
                 elif (
                     isinstance(right, AttributeExpression)
                     and not right.is_database_column
-                    and (right_type is list or right_type is tuple)
+                    and self._is_list_or_tuple_type(right_type)
                 ):
                     # JSON array attribute - use json_each with NOT EXISTS to check non-membership
                     array_sql = right_sql
@@ -635,7 +734,7 @@ class SQLGenerator:
                     parts.append(
                         f"NOT EXISTS (SELECT 1 FROM {json_each_expr} WHERE json_each.value = {current_left})"
                     )
-                elif right_type is list or right_type is tuple:
+                elif self._is_list_or_tuple_type(right_type):
                     parts.append(f"{current_left} NOT IN {right_sql}")
                 elif isinstance(expr.left, ConstantExpression) and isinstance(
                     expr.left.value, str
@@ -708,21 +807,35 @@ class SQLGenerator:
         if isinstance(func, ConstantExpression):
             func_name = func.value
             if func_name == "len" and len(args) == 1:
-                # len() - get array length
+                # len() - get array or string length
                 # The argument should be an AttributeExpression or ArrayAccessExpression
                 arg = expr.arguments[0]
                 if isinstance(arg, AttributeExpression):
+                    # Use type inference to determine if it's a string or array
+                    arg_type = None
+                    if self.type_inference:
+                        arg_type = self.type_inference.visit(arg)
+
                     base_expr = (
-                        "json_each.value"
+                        f"{self._json_each_alias}.value"
                         if arg.table_name == "json_each"
                         else f"{arg.table_name}.json_data"
                     )
-                    if self.dialect == "sqlite":
-                        return f"json_array_length(json_extract({base_expr}, '$.{arg.attribute_path}'))"
-                    elif self.dialect == "postgres":
-                        return f"JSON_ARRAY_LENGTH(JSON_EXTRACT_PATH({base_expr}, '{arg.attribute_path}'))"
+
+                    # If type inference tells us it's a string, use LENGTH
+                    if arg_type is str:
+                        json_value = (
+                            f"json_extract({base_expr}, '$.{arg.attribute_path}')"
+                        )
+                        return f"LENGTH({json_value})"
                     else:
-                        return f"json_array_length(json_extract({base_expr}, '$.{arg.attribute_path}'))"
+                        # Default to array length for arrays/lists or unknown types
+                        if self.dialect == "sqlite":
+                            return f"json_array_length(json_extract({base_expr}, '$.{arg.attribute_path}'))"
+                        elif self.dialect == "postgres":
+                            return f"JSON_ARRAY_LENGTH(JSON_EXTRACT_PATH({base_expr}, '{arg.attribute_path}'))"
+                        else:
+                            return f"json_array_length(json_extract({base_expr}, '$.{arg.attribute_path}'))"
                 else:
                     # Fallback
                     return f"LENGTH({args[0]})"
@@ -878,14 +991,141 @@ class SQLGenerator:
         self, expr: ListComprehensionExpression, query: SelectQuery
     ) -> str:
         """Generate SQL for list comprehension in SELECT clause."""
-        # Create a parser with item_var context to properly resolve item.attr references
-        # For now, we'll generate the expression - it should work if item_var is set in the query context
-        # The expression was already parsed, so we just need to generate it
+        # Note: _in_select_clause flag is already set by _generate_select()
+
+        # For nested list comprehensions, we need to set the correct json_each alias
+        # The expression should reference the innermost json_each alias
+
+        # Determine the correct alias based on nesting depth
+        if expr.array_info.get("type") == "nested_listcomp":
+            # For nested list comps, the expression references the innermost alias
+            # Count the nesting depth to determine which alias to use
+            depth = self._get_listcomp_nesting_depth(expr)
+            # The innermost alias is what we want for the expression
+            # After generating the FROM clause, we should have depth aliases
+            # We want the last one (innermost)
+            if depth == 2:
+                self._json_each_alias = "inner_each"
+            elif depth == 1:
+                self._json_each_alias = "outer_each"
+            else:
+                self._json_each_alias = f"each_{depth}"
+        else:
+            # Single level - use json_each (default)
+            self._json_each_alias = "json_each"
+
         expr_sql = self.generate_expression(expr.expression)
+
+        # Reset to default
+        self._json_each_alias = "json_each"
 
         # The FROM clause should already have json_each added
         # Return the expression SQL
         return expr_sql
+
+    def _get_listcomp_nesting_depth(self, listcomp: ListComprehensionExpression) -> int:
+        """Calculate the nesting depth of a list comprehension."""
+        depth = 1
+        current = listcomp
+        while current.array_info.get("type") == "nested_listcomp":
+            depth += 1
+            current = current.array_info["inner_listcomp"]
+        return depth
+
+    def _generate_nested_listcomp_from_clause(
+        self, listcomp: ListComprehensionExpression, base_table: str
+    ) -> List[str]:
+        """
+        Generate chained json_each calls for nested list comprehensions.
+
+        Args:
+            listcomp: The outer list comprehension with nested_listcomp type
+            base_table: The base table name
+
+        Returns:
+            List of json_each expressions to add to FROM clause
+        """
+        from .query_model import AttributeExpression, CallExpression, ConstantExpression
+
+        json_each_list = []
+        inner_listcomp = listcomp.array_info["inner_listcomp"]
+
+        # Process the inner list comprehension recursively
+        inner_array_info = inner_listcomp.array_info
+        inner_type = inner_array_info.get("type")
+
+        if inner_type == "single":
+            # Inner is a single array path
+            array_path = inner_array_info["path"]
+            array_attr = AttributeExpression(
+                table_name=base_table,
+                attribute_path=array_path,
+                is_database_column=False,
+            )
+            array_sql = self.generate_expression(array_attr)
+
+            # Check if we need to wrap in json_array (for primary_name in concatenated arrays)
+            if inner_array_info.get("wrap_in_json_array"):
+                # Wrap the single object in json_array to make it iterable
+                array_sql = f"json_array({array_sql})"
+
+            outer_alias = self._get_next_json_each_alias()
+            json_each_list.append(self._format_json_each(array_sql, "$", outer_alias))
+
+            # Now add the outer listcomp's iteration over inner items
+            # The outer listcomp iterates over the inner listcomp's expression
+            # which should be an attribute of the inner item
+            inner_expr = inner_listcomp.expression
+            if isinstance(inner_expr, AttributeExpression):
+                # Extract the attribute path from the inner expression
+                inner_path = inner_expr.attribute_path
+                # Generate json_each for extracting from the outer_each results
+                inner_alias = self._get_next_json_each_alias()
+                inner_extract = f"json_extract({outer_alias}.value, '$.{inner_path}')"
+                json_each_list.append(
+                    self._format_json_each(inner_extract, "$", inner_alias)
+                )
+            else:
+                raise ValueError(
+                    f"Unsupported inner expression type in nested list comprehension: {type(inner_expr)}"
+                )
+
+        elif inner_type == "concatenated":
+            # Inner is a concatenated array: [primary_name] + alternate_names
+            # This should have been handled by query builder to create UNION queries
+            # If we get here, something went wrong in the query builder
+            raise ValueError(
+                "Concatenated arrays in nested list comprehensions should be handled "
+                "by query builder before reaching SQL generator. This is likely a bug."
+            )
+
+        elif inner_type == "nested_listcomp":
+            # Triple+ nesting - recursive call
+            inner_json_each_chain = self._generate_nested_listcomp_from_clause(
+                inner_listcomp, base_table
+            )
+            json_each_list.extend(inner_json_each_chain)
+
+            # Add the current level's iteration
+            inner_expr = inner_listcomp.expression
+            if isinstance(inner_expr, AttributeExpression):
+                inner_path = inner_expr.attribute_path
+                # Get the last alias from the chain to reference
+                last_alias = inner_json_each_chain[-1].split(" AS ")[-1]
+                if "(" in last_alias:
+                    # PostgreSQL format: "alias(value)" -> extract "alias"
+                    last_alias = last_alias.split("(")[0]
+                inner_alias = self._get_next_json_each_alias()
+                inner_extract = f"json_extract({last_alias}.value, '$.{inner_path}')"
+                json_each_list.append(
+                    self._format_json_each(inner_extract, "$", inner_alias)
+                )
+            else:
+                raise ValueError(
+                    f"Unsupported inner expression type in nested list comprehension: {type(inner_expr)}"
+                )
+
+        return json_each_list
 
     def _generate_any(self, expr: AnyExpression) -> str:
         """Generate SQL for any() pattern."""
@@ -1016,20 +1256,55 @@ class SQLGenerator:
         return "1=1"
 
     def _generate_tuple(self, expr: TupleExpression) -> str:
-        """Generate SQL for tuple."""
+        """
+        Generate SQL for tuple.
+
+        Context-aware: In SELECT clause of list comprehensions, generates comma-separated
+        columns (no parentheses) so Python receives proper multi-column result as tuple.
+        In WHERE and other contexts, uses standard row constructor format.
+        """
         if len(expr.elements) == 0:
             return "()"
+
         element_sqls = [self.generate_expression(e) for e in expr.elements]
+
+        # In SELECT clause, generate comma-separated columns (no parentheses)
+        # This returns a proper multi-column result that Python converts to tuple
+        if self._in_select_clause:
+            return ", ".join(element_sqls)
+
+        # In WHERE/other contexts, use row constructor format
         return f"({', '.join(element_sqls)})"
 
-    def _format_json_each(self, array_expr: str, path: str = "$") -> str:
-        """Format json_each expression based on dialect."""
+    def _format_json_each(
+        self, array_expr: str, path: str = "$", alias: str = None
+    ) -> str:
+        """
+        Format json_each expression based on dialect.
+
+        Args:
+            array_expr: SQL expression that evaluates to a JSON array
+            path: JSON path (default "$", mainly used for SQLite)
+            alias: Optional alias for the json_each table (e.g., "outer_each", "inner_each")
+
+        Returns:
+            Formatted json_each expression for the current dialect
+        """
         if self.dialect == "sqlite":
-            return f"json_each({array_expr}, '{path}')"
+            if alias:
+                return f"json_each({array_expr}, '{path}') AS {alias}"
+            else:
+                return f"json_each({array_expr}, '{path}')"
         elif self.dialect == "postgres":
-            return f"LATERAL json_array_elements({array_expr}) AS json_each(value)"
+            if alias:
+                return f"LATERAL json_array_elements({array_expr}) AS {alias}(value)"
+            else:
+                return f"LATERAL json_array_elements({array_expr}) AS json_each(value)"
         else:
-            return f"json_each({array_expr}, '{path}')"
+            if alias:
+                return f"json_each({array_expr}, '{path}') AS {alias}"
+            else:
+                return f"json_each({array_expr}, '{path}')"
 
     def _format_like_operator(self, case_sensitive: bool = False) -> str:
         """

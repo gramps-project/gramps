@@ -164,6 +164,9 @@ class ListComprehensionExpression(Expression):
     item_var: str  # Iteration variable name
     array_info: dict  # {'type': 'single'/'concatenated', 'path': str, etc.}
     condition: Optional[Expression] = None  # Optional filter condition
+    item_type: Optional[type] = (
+        None  # Type of items being iterated (e.g., Name, Surname)
+    )
 
     def __repr__(self):
         return f"ListComp({self.item_var} in {self.array_info})"

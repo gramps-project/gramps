@@ -74,6 +74,8 @@ class TypeInferenceVisitor:
         """
         self.env = env or {}
         self._type_cache: Dict[str, Optional[Type]] = {}
+        # Stack to track list comprehension item types for nested comprehensions
+        self._listcomp_item_type_stack: List[Optional[Type]] = []
 
     def infer_type(self, expr: Expression) -> Optional[Type]:
         """
@@ -86,6 +88,30 @@ class TypeInferenceVisitor:
             Inferred type, or None if type cannot be determined
         """
         return self.visit(expr)
+
+    def infer_array_item_type(self, table_name: str, array_path: str) -> Optional[Type]:
+        """
+        Infer the type of items in an array from the array path and table.
+
+        Args:
+            table_name: Name of the table (e.g., "person", "family")
+            array_path: Path to the array (e.g., "alternate_names", "surname_list")
+
+        Returns:
+            Type of array items, or None if cannot be determined
+        """
+        # Get the base table class
+        base_class = TABLE_TO_CLASS.get(table_name)
+        if base_class is None:
+            return None
+
+        # Get the type of the array itself
+        array_type = self._get_attribute_type(base_class, array_path)
+        if array_type is None:
+            return None
+
+        # Extract the item type from the array type (List[ItemType] -> ItemType)
+        return self._extract_list_item_type(array_type)
 
     def visit(self, expr: Expression) -> Optional[Type]:
         """
@@ -129,6 +155,19 @@ class TypeInferenceVisitor:
             if base_type is None:
                 return None
             return self._get_attribute_type(base_type, expr.attribute_path)
+
+        # Special handling for json_each (list comprehension item variables)
+        if expr.table_name == "json_each":
+            # Get the item type from the current list comprehension context
+            if self._listcomp_item_type_stack:
+                item_type = self._listcomp_item_type_stack[
+                    -1
+                ]  # Most recent (innermost)
+                if item_type is not None:
+                    # Resolve the attribute path on the item type
+                    return self._get_attribute_type(item_type, expr.attribute_path)
+            # If no item type in context, we can't determine the type
+            return None
 
         # Get the class for the table
         table_class = TABLE_TO_CLASS.get(expr.table_name)
@@ -310,12 +349,16 @@ class TypeInferenceVisitor:
         Returns:
             List type containing the element type
         """
-        element_type = self.visit(expr.expression)
-        if element_type is not None:
-            return (
-                list  # Could be more specific with List[element_type] but list is fine
-            )
-        return list
+        # Push the item type onto the stack for nested context
+        self._listcomp_item_type_stack.append(expr.item_type)
+        try:
+            element_type = self.visit(expr.expression)
+            if element_type is not None:
+                return list  # Could be more specific with List[element_type] but list is fine
+            return list
+        finally:
+            # Always pop the item type when done
+            self._listcomp_item_type_stack.pop()
 
     def visit_AnyExpression(self, expr: AnyExpression) -> Optional[Type]:
         """
@@ -480,10 +523,13 @@ class TypeInferenceVisitor:
                     # For simplicity, return the inner type (caller can handle Optional)
                     return inner_type
             elif type_hint.startswith("List["):
-                # Extract the inner type
+                # Extract the inner type string
                 inner = type_hint[5:-1]  # Remove "List[" and "]"
                 inner_type = self._resolve_type(inner)
-                # Return list type (we'll handle element types separately)
+                if inner_type is not None:
+                    # Create a proper List[inner_type] using typing.List
+                    return List[inner_type]
+                # If we can't resolve the inner type, just return list
                 return list
             elif type_hint in ("str", "int", "float", "bool"):
                 # Built-in types

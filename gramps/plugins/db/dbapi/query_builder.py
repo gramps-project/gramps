@@ -894,6 +894,119 @@ class QueryBuilder:
         if where:
             where_condition = self.parser.parse_expression(where)
 
+            # Check for == None or != None (should use 'is' or 'is not' instead)
+            from .query_model import CompareExpression, ConstantExpression
+
+            if isinstance(where_condition, CompareExpression):
+                # Check if any comparator is None with == or !=
+                for op, comparator in zip(
+                    where_condition.operators, where_condition.comparators
+                ):
+                    if (
+                        isinstance(comparator, ConstantExpression)
+                        and comparator.value is None
+                    ):
+                        if op == "==":
+                            raise ValueError(
+                                f"Invalid WHERE clause: Cannot use '==' to check for None.\n"
+                                f"  You wrote: {where}\n"
+                                f"  Problem: In SQL, 'value = NULL' is always false (NULL = NULL is false)\n"
+                                f"  Use instead: {where.replace('== None', 'is None')}\n"
+                                f"\n"
+                                f"The 'is None' operator generates 'IS NULL' which correctly checks for NULL values."
+                            )
+                        elif op == "!=":
+                            raise ValueError(
+                                f"Invalid WHERE clause: Cannot use '!=' to check for None.\n"
+                                f"  You wrote: {where}\n"
+                                f"  Problem: In SQL, 'value != NULL' is always false (NULL != NULL is false)\n"
+                                f"  Use instead: {where.replace('!= None', 'is not None')}\n"
+                                f"\n"
+                                f"The 'is not None' operator generates 'IS NOT NULL' which correctly checks for non-NULL values."
+                            )
+                # Also check the left side
+                if (
+                    isinstance(where_condition.left, ConstantExpression)
+                    and where_condition.left.value is None
+                ):
+                    if where_condition.operators[0] == "==":
+                        raise ValueError(
+                            f"Invalid WHERE clause: Cannot use '==' to check for None.\n"
+                            f"  You wrote: {where}\n"
+                            f"  Use instead: {where.replace('None ==', 'None is')}\n"
+                            f"\n"
+                            f"In SQL, 'NULL = value' is always false. Use 'is None' instead."
+                        )
+                    elif where_condition.operators[0] == "!=":
+                        raise ValueError(
+                            f"Invalid WHERE clause: Cannot use '!=' to check for None.\n"
+                            f"  You wrote: {where}\n"
+                            f"  Use instead: {where.replace('None !=', 'None is not')}\n"
+                            f"\n"
+                            f"In SQL, 'NULL != value' is always false. Use 'is not None' instead."
+                        )
+
+            # Validate that WHERE clause is not a bare list comprehension
+            # List comprehensions evaluate to lists, not booleans
+            from .query_model import ListComprehensionExpression
+
+            if isinstance(where_condition, ListComprehensionExpression):
+                raise ValueError(
+                    f"Invalid WHERE clause: List comprehensions are not valid boolean expressions.\n"
+                    f"  You wrote: {where}\n"
+                    f"  Did you mean: any({where})\n"
+                    f"\n"
+                    f"A WHERE clause must evaluate to True/False, but a list comprehension returns a list.\n"
+                    f"Use any([...]) to check if any element matches the condition, or\n"
+                    f"use 'item in array and condition' for array expansion patterns."
+                )
+
+            # Validate that WHERE clause returns a boolean type
+            # Use type inference to check the return type
+            # Note: We only reject clear non-boolean cases (lists, strings at top level)
+            # We allow None (unknown types) and object types (can be NULL checked)
+            if self.enable_type_validation:
+                where_type = self.type_inference.visit(where_condition)
+                # Only validate if we have type information
+                # Reject lists and strings that aren't in a comparison context
+                from .query_model import AttributeExpression, ArrayAccessExpression
+                from typing import get_origin
+
+                is_simple_attribute = isinstance(
+                    where_condition, (AttributeExpression, ArrayAccessExpression)
+                )
+
+                if where_type is not None and is_simple_attribute:
+                    origin = get_origin(where_type)
+
+                    # Reject plain lists - they should use len() or any()
+                    if origin is list or where_type is list:
+                        raise TypeError(
+                            f"Invalid WHERE clause: Expression does not return a boolean.\n"
+                            f"  You wrote: {where}\n"
+                            f"  This returns: list\n"
+                            f"\n"
+                            f"A WHERE clause must evaluate to True/False (boolean), not list.\n"
+                            f"  Use len({where}) > 0 to check if the list is non-empty, or\n"
+                            f"  use any([...]) to check if any element matches a condition."
+                        )
+
+                    # Reject plain strings - they should use comparisons
+                    elif where_type is str:
+                        raise TypeError(
+                            f"Invalid WHERE clause: Expression does not return a boolean.\n"
+                            f"  You wrote: {where}\n"
+                            f"  This returns: string\n"
+                            f"\n"
+                            f"A WHERE clause must evaluate to True/False (boolean), not string.\n"
+                            f"  Use a comparison like {where} == 'value' or 'substring' in {where}."
+                        )
+
+                    # Note: We allow int, float, and object types because:
+                    # - In SQL, numbers can be used as booleans (0=false, non-zero=true)
+                    # - Object types can be NULL checked (NULL=false, non-NULL=true)
+                    # This matches SQL semantics where WHERE column is valid
+
         # Parse order_by clause
         order_by_list = self._parse_order_by(order_by)
 
@@ -1378,6 +1491,18 @@ class QueryBuilder:
                         )
                         left_query.union_queries = [right_query]
                         return left_query
+                elif listcomp.array_info.get("type") == "nested_listcomp":
+                    # Check if the inner list comprehension is concatenated
+                    inner_listcomp = listcomp.array_info["inner_listcomp"]
+                    if inner_listcomp.array_info.get("type") == "concatenated":
+                        # Need to generate UNION for nested+concatenated case
+                        left_query, right_query = (
+                            self._build_nested_concatenated_array_queries(
+                                query, listcomp, inner_listcomp
+                            )
+                        )
+                        left_query.union_queries = [right_query]
+                        return left_query
 
         return query
 
@@ -1447,6 +1572,103 @@ class QueryBuilder:
             joins=query.joins,
             order_by=query.order_by,
             array_expansion=right_array_expansion,
+            limit=query.limit,
+            offset=query.offset,
+        )
+
+        return left_query, right_query
+
+    def _build_nested_concatenated_array_queries(
+        self,
+        query: SelectQuery,
+        outer_listcomp: ListComprehensionExpression,
+        inner_listcomp: ListComprehensionExpression,
+    ) -> tuple:
+        """
+        Build left and right queries for nested list comprehensions with concatenated inner arrays.
+
+        Example: [s.surname for s in [name.surname_list for name in [primary_name] + alternate_names]]
+        - Outer: iterates over surname_list results
+        - Inner: iterates over [primary_name] + alternate_names (concatenated)
+        """
+        from .query_model import (
+            AttributeExpression,
+            CallExpression,
+            ConstantExpression,
+        )
+
+        # Create modified inner list comprehensions for left and right sides
+        # Left side: [name.surname_list for name in [primary_name]]
+        # The left side expression from the original concatenated array
+        left_array_attr = inner_listcomp.array_info["left"]
+
+        # For the left side, we need to mark that it should be wrapped in json_array()
+        # We'll use a special marker in array_info
+        left_inner_listcomp = ListComprehensionExpression(
+            expression=inner_listcomp.expression,
+            item_var=inner_listcomp.item_var,
+            array_info={
+                "type": "single",
+                "path": "primary_name",
+                "wrap_in_json_array": True,  # Signal that this needs json_array wrapping
+            },
+            condition=inner_listcomp.condition,
+        )
+
+        # Right side: [name.surname_list for name in alternate_names]
+        right_path = inner_listcomp.array_info["right_path"]
+        right_inner_listcomp = ListComprehensionExpression(
+            expression=inner_listcomp.expression,
+            item_var=inner_listcomp.item_var,
+            array_info={
+                "type": "single",
+                "path": right_path,
+            },
+            condition=inner_listcomp.condition,
+        )
+
+        # Create outer list comprehensions with modified inner ones
+        left_outer_listcomp = ListComprehensionExpression(
+            expression=outer_listcomp.expression,
+            item_var=outer_listcomp.item_var,
+            array_info={
+                "type": "nested_listcomp",
+                "inner_listcomp": left_inner_listcomp,
+            },
+            condition=outer_listcomp.condition,
+        )
+
+        right_outer_listcomp = ListComprehensionExpression(
+            expression=outer_listcomp.expression,
+            item_var=outer_listcomp.item_var,
+            array_info={
+                "type": "nested_listcomp",
+                "inner_listcomp": right_inner_listcomp,
+            },
+            condition=outer_listcomp.condition,
+        )
+
+        # Build left and right queries
+        left_select_expr = SelectExpression(expression=left_outer_listcomp)
+        left_query = SelectQuery(
+            base_table=self.table_name,
+            select_expressions=[left_select_expr],
+            where_condition=query.where_condition,
+            joins=query.joins,
+            order_by=query.order_by,
+            array_expansion=None,
+            limit=query.limit,
+            offset=query.offset,
+        )
+
+        right_select_expr = SelectExpression(expression=right_outer_listcomp)
+        right_query = SelectQuery(
+            base_table=self.table_name,
+            select_expressions=[right_select_expr],
+            where_condition=query.where_condition,
+            joins=query.joins,
+            order_by=query.order_by,
+            array_expansion=None,
             limit=query.limit,
             offset=query.offset,
         )
