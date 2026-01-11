@@ -775,6 +775,87 @@ class SQLGenerator:
                 elif pattern.startswith('"') and pattern.endswith('"'):
                     pattern = pattern[1:-1]
                 return f"LIKE('%{pattern}', {base_sql})"
+            elif attr_path.endswith(".matches"):
+                # Regex matching with optional case sensitivity
+                if len(args) < 1 or len(args) > 2:
+                    raise ValueError(
+                        "matches() requires 1 or 2 arguments: "
+                        "matches(pattern, case_sensitive=True)"
+                    )
+
+                # Get base attribute
+                base_attr = AttributeExpression(
+                    table_name=func.table_name,
+                    attribute_path=attr_path.rsplit(".", 1)[0],
+                    is_database_column=func.is_database_column,
+                )
+                base_sql = self.generate_expression(base_attr)
+
+                # Extract pattern from the first argument
+                pattern_arg = expr.arguments[0]
+                if isinstance(pattern_arg, ConstantExpression):
+                    pattern = str(pattern_arg.value)
+                else:
+                    # Generate the SQL for the pattern (shouldn't normally happen)
+                    pattern = args[0]
+                    # Remove quotes if present
+                    if pattern.startswith("'") and pattern.endswith("'"):
+                        pattern = pattern[1:-1]
+                    elif pattern.startswith('"') and pattern.endswith('"'):
+                        pattern = pattern[1:-1]
+
+                # Extract case_sensitive flag (default True)
+                case_sensitive = True
+                if len(expr.arguments) == 2:
+                    case_arg = expr.arguments[1]
+                    if isinstance(case_arg, ConstantExpression):
+                        # Handle boolean values
+                        if isinstance(case_arg.value, bool):
+                            case_sensitive = case_arg.value
+                        elif isinstance(case_arg.value, str):
+                            case_str = case_arg.value.lower()
+                            if case_str == "true":
+                                case_sensitive = True
+                            elif case_str == "false":
+                                case_sensitive = False
+                            else:
+                                raise ValueError(
+                                    f"case_sensitive must be True or False, got {case_arg.value}"
+                                )
+                        elif isinstance(case_arg.value, int):
+                            # 0 = False, anything else = True
+                            case_sensitive = bool(case_arg.value)
+                        else:
+                            raise ValueError(
+                                f"case_sensitive must be True or False, got {case_arg.value}"
+                            )
+                    else:
+                        raise ValueError(
+                            "case_sensitive must be a constant (True or False)"
+                        )
+
+                # Convert pattern and generate SQL
+                from .regex_converter import RegexConverter
+
+                converter = RegexConverter()
+
+                if self.dialect == "postgres":
+                    converted_pattern = converter.convert_python_to_postgres(pattern)
+                    # Escape single quotes in pattern for SQL
+                    converted_pattern = converted_pattern.replace("'", "''")
+                    if case_sensitive:
+                        return f"({base_sql} ~ '{converted_pattern}')"
+                    else:
+                        return f"({base_sql} ~* '{converted_pattern}')"
+                else:  # sqlite
+                    converted_pattern = converter.convert_python_to_sqlite(pattern)
+                    # Escape single quotes in pattern for SQL
+                    converted_pattern = converted_pattern.replace("'", "''")
+                    if case_sensitive:
+                        return f"REGEXP('{converted_pattern}', {base_sql})"
+                    else:
+                        # For case-insensitive, use inline flag
+                        return f"REGEXP('(?i){converted_pattern}', {base_sql})"
 
         # Generic function call
         func_sql = self.generate_expression(func)

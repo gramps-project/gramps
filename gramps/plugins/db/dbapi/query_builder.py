@@ -637,6 +637,28 @@ class TypeValidationVisitor(ExpressionVisitor):
         # Get the class for the table
         from .type_inference import TABLE_TO_CLASS
 
+        # Skip validation for method names (startswith, endswith, matches, etc.)
+        # These are handled specially in SQL generation
+        if (
+            expr.attribute_path.endswith(".startswith")
+            or expr.attribute_path.endswith(".endswith")
+            or expr.attribute_path.endswith(".matches")
+        ):
+            # Validate the base attribute path (without the method name)
+            base_path = expr.attribute_path.rsplit(".", 1)[0]
+            if base_path:
+                # Create a new expression with just the base path for validation
+                base_expr = AttributeExpression(
+                    table_name=expr.table_name,
+                    attribute_path=base_path,
+                    is_database_column=expr.is_database_column,
+                    base=expr.base,
+                )
+                # Validate the base path recursively (but don't return it)
+                self.visit_AttributeExpression(base_expr)
+            # Return the original expression unchanged
+            return super().visit_AttributeExpression(expr)
+
         # Handle json_each (array expansion items)
         if expr.table_name == "json_each":
             if self.array_expansion is not None:

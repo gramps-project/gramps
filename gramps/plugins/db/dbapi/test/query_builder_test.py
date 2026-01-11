@@ -1719,6 +1719,183 @@ class QueryBuilderTestMixin:
         self._validate_sql(sql)
 
     # ========================================================================
+    # Tests for .matches() regex method
+    # ========================================================================
+
+    def test_matches_basic_pattern(self):
+        """Test matches() with basic regex pattern."""
+        what = "person.handle"
+        where = "person.gramps_id.matches('^I[0-9]+$')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        if self.query_builder.dialect == "postgres":
+            self.assertIn("~", sql)
+        else:
+            self.assertIn("REGEXP", sql.upper())
+
+    def test_matches_case_sensitive_default(self):
+        """Test matches() is case-sensitive by default."""
+        what = "person.handle"
+        where = "person.primary_name.surname_list[0].surname.matches('Smith')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        if self.query_builder.dialect == "postgres":
+            # Should use ~ (case-sensitive), not ~*
+            self.assertIn(" ~ ", sql)
+            self.assertNotIn("~*", sql)
+        else:
+            # Should use REGEXP without (?i)
+            self.assertIn("REGEXP", sql.upper())
+            self.assertNotIn("(?i)", sql)
+
+    def test_matches_case_insensitive(self):
+        """Test matches() with case_sensitive=False."""
+        what = "person.handle"
+        where = "person.primary_name.surname_list[0].surname.matches('smith', False)"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        if self.query_builder.dialect == "postgres":
+            self.assertIn("~*", sql)  # Case-insensitive operator
+        else:
+            self.assertIn("(?i)", sql)  # Inline flag for case-insensitive
+
+    def test_matches_digit_shorthand(self):
+        """Test matches() with \\d shorthand."""
+        what = "person.handle"
+        where = r"person.gramps_id.matches(r'\d{4}')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # PostgreSQL should convert \d to [0-9]
+        if self.query_builder.dialect == "postgres":
+            self.assertIn("[0-9]", sql)
+        else:
+            # SQLite preserves \d
+            self.assertIn(r"\d", sql)
+
+    def test_matches_word_shorthand(self):
+        """Test matches() with \\w shorthand."""
+        what = "person.handle"
+        where = r"person.gramps_id.matches(r'\w+')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        if self.query_builder.dialect == "postgres":
+            self.assertIn("[[:alnum:]_]", sql)
+
+    def test_matches_whitespace_shorthand(self):
+        """Test matches() with \\s shorthand."""
+        what = "person.handle"
+        where = r"person.primary_name.surname_list[0].surname.matches(r'\s+')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        if self.query_builder.dialect == "postgres":
+            self.assertIn("[[:space:]]", sql)
+
+    def test_matches_alternation(self):
+        """Test matches() with alternation (|)."""
+        what = "person.handle"
+        where = (
+            "person.primary_name.surname_list[0].surname.matches('Smith|Jones|Brown')"
+        )
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("|", sql)
+
+    def test_matches_character_class(self):
+        """Test matches() with character classes."""
+        what = "person.handle"
+        where = "person.gramps_id.matches('[A-Z][0-9]+')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("[A-Z]", sql)
+        if self.query_builder.dialect == "postgres":
+            self.assertIn("[0-9]", sql)
+
+    def test_matches_empty_pattern(self):
+        """Test matches() with empty pattern."""
+        what = "person.handle"
+        where = "person.gramps_id.matches('')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Empty pattern should match empty string
+
+    def test_matches_complex_pattern(self):
+        """Test matches() with complex pattern."""
+        what = "person.handle"
+        where = r"person.gramps_id.matches(r'^[A-Z]\d{4,6}[a-z]?$')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("^", sql)
+        self.assertIn("$", sql)
+
+    def test_matches_with_special_sql_chars(self):
+        """Test matches() with characters that need SQL escaping."""
+        what = "person.handle"
+        where = 'person.primary_name.surname_list[0].surname.matches("O\'Brien")'
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # Single quote should be escaped in SQL
+        self.assertIn("''", sql)  # SQL escaping of single quote
+
+    def test_matches_anchors(self):
+        """Test matches() with anchors ^ and $."""
+        what = "person.handle"
+        where = "person.gramps_id.matches('^I0001$')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("^", sql)
+        self.assertIn("$", sql)
+
+    def test_matches_quantifiers(self):
+        """Test matches() with various quantifiers."""
+        what = "person.handle"
+        where = r"person.gramps_id.matches(r'I\d{2,5}')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("{2,5}", sql)
+
+    def test_matches_dot_wildcard(self):
+        """Test matches() with . wildcard."""
+        what = "person.handle"
+        where = "person.gramps_id.matches('I.+')"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn(".", sql)
+
+    def test_matches_invalid_argument_count(self):
+        """Test matches() with wrong number of arguments."""
+        what = "person.handle"
+        where = "person.gramps_id.matches()"
+        with self.assertRaises(ValueError) as context:
+            sql = self.query_builder.get_sql_query(what, where, None)
+        self.assertIn("1 or 2 arguments", str(context.exception))
+
+    def test_matches_too_many_arguments(self):
+        """Test matches() with too many arguments."""
+        what = "person.handle"
+        where = "person.gramps_id.matches('test', True, 'extra')"
+        with self.assertRaises(ValueError) as context:
+            sql = self.query_builder.get_sql_query(what, where, None)
+        self.assertIn("1 or 2 arguments", str(context.exception))
+
+    def test_matches_unsupported_lookahead(self):
+        """Test that unsupported regex features raise helpful errors."""
+        what = "person.handle"
+        where = r"person.gramps_id.matches(r'(?=future)')"
+        if self.query_builder.dialect == "postgres":
+            with self.assertRaises(ValueError) as context:
+                sql = self.query_builder.get_sql_query(what, where, None)
+            self.assertIn("lookahead", str(context.exception).lower())
+
+    def test_matches_unsupported_lookbehind(self):
+        """Test that lookbehind raises error for PostgreSQL."""
+        what = "person.handle"
+        where = r"person.gramps_id.matches(r'(?<=I)0001')"
+        if self.query_builder.dialect == "postgres":
+            with self.assertRaises(ValueError) as context:
+                sql = self.query_builder.get_sql_query(what, where, None)
+            self.assertIn("lookbehind", str(context.exception).lower())
+
+    # ========================================================================
     # Edge case tests for ternary expressions
     # ========================================================================
 
