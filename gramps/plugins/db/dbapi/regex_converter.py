@@ -179,15 +179,22 @@ class RegexConverter:
         Raises:
             ValueError: If pattern is invalid or contains problematic syntax
         """
+        # Check for null bytes first
+        if "\x00" in pattern:
+            raise ValueError("Pattern cannot contain null bytes")
+        
+        # Check for atomic groups before compiling, as they may not be
+        # supported in older Python versions (added in Python 3.11)
+        if "(?>" in pattern:
+            raise ValueError(
+                "Atomic groups (?>) are not supported in PostgreSQL POSIX regex."
+            )
+        
         # Try to compile the pattern to ensure it's valid Python regex
         try:
             re.compile(pattern)
         except re.error as e:
             raise ValueError(f"Invalid regex pattern: {e}")
-
-        # Check for null bytes
-        if "\x00" in pattern:
-            raise ValueError("Pattern cannot contain null bytes")
 
     def _check_postgres_unsupported(self, pattern: str) -> None:
         """
@@ -212,11 +219,8 @@ class RegexConverter:
                 "PostgreSQL POSIX regex. Consider rewriting without lookbehind."
             )
 
-        # Check for atomic groups
-        if "(?>" in pattern:
-            raise ValueError(
-                "Atomic groups (?>) are not supported in PostgreSQL POSIX regex."
-            )
+        # Note: Atomic groups (?>) are checked in _validate_pattern() to avoid
+        # compilation errors on Python versions that don't support them (< 3.11)
 
         # Check for possessive quantifiers
         if re.search(r"[*+?]\+", pattern):
