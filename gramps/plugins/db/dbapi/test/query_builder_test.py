@@ -385,6 +385,65 @@ class QueryBuilderTestMixin:
         # Verify the SQL contains UNION ALL for concatenated arrays
         self.assertIn("UNION ALL", sql.upper())
 
+    def test_list_comprehension_concatenated_arrays_with_order_by(self):
+        """
+        Test list comprehension with concatenated arrays and ORDER BY.
+        Regression test for: "ORDER BY clause should come after UNION ALL not before"
+
+        This tests the pattern:
+            [(person.handle, x) for x in [person.primary_name] + person.alternate_names]
+        with order_by="person.handle"
+
+        The fix ensures that:
+        1. ORDER BY is placed after UNION ALL, not within each SELECT
+        2. ORDER BY columns are added to the subquery SELECT list
+        3. The outer query only returns the original columns (not ORDER BY columns)
+        """
+        # Test with tuple results (original failing case from bug report)
+        what = "[(person.handle, x) for x in [person.primary_name] + person.alternate_names]"
+        where = "len(person.alternate_names) > 0"
+        order_by = "person.handle"
+        sql = self.query_builder.get_sql_query(what, where, order_by)
+
+        # Validate SQL
+        self._validate_sql(sql)
+
+        # Verify UNION ALL is present
+        self.assertIn("UNION ALL", sql.upper())
+
+        # Verify ORDER BY is placed after UNION ALL (not within each SELECT)
+        # Split by UNION ALL and check that ORDER BY is not in the individual SELECT statements
+        union_parts = sql.split("UNION ALL")
+        # Each individual SELECT should not have ORDER BY
+        for part in union_parts[:-1]:  # All but the last part
+            self.assertNotIn("ORDER BY", part.upper())
+
+        # The final query (after all UNION ALL) should have ORDER BY
+        self.assertIn("ORDER BY", sql.upper())
+
+        # Test with simple results
+        what2 = "[name.first_name for name in [person.primary_name] + person.alternate_names]"
+        order_by2 = "person.handle"
+        sql2 = self.query_builder.get_sql_query(what2, None, order_by2)
+
+        # Validate SQL
+        self._validate_sql(sql2)
+
+        # Verify UNION ALL and ORDER BY placement
+        self.assertIn("UNION ALL", sql2.upper())
+        self.assertIn("ORDER BY", sql2.upper())
+
+        # Test with descending order
+        what3 = "[name.first_name for name in [person.primary_name] + person.alternate_names]"
+        order_by3 = "-person.gramps_id"
+        sql3 = self.query_builder.get_sql_query(what3, None, order_by3)
+
+        # Validate SQL
+        self._validate_sql(sql3)
+
+        # Verify DESC in ORDER BY
+        self.assertIn("DESC", sql3.upper())
+
     def test_any_list_comprehension_in_where_basic(self):
         """
         Test any() with list comprehension in where clause.

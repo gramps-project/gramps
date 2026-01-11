@@ -323,14 +323,316 @@ class SQLGenerator:
         return self.generate_expression(expr)
 
     def _generate_union(self, query: SelectQuery) -> str:
-        """Generate a UNION query."""
+        """Generate a UNION query with proper ORDER BY handling."""
         queries = [query] + query.union_queries
-        query_strings = [self._generate_select(q) for q in queries]
+
+        # Save the ORDER BY, LIMIT, and OFFSET clauses from the first query
+        order_by = query.order_by
+        limit = query.limit
+        offset = query.offset
+
+        # Generate each query WITHOUT ORDER BY, LIMIT, or OFFSET
+        # (we'll add them at the end after UNION ALL)
+        query_strings = []
+        for q in queries:
+            # Temporarily remove ORDER BY, LIMIT, and OFFSET
+            original_order_by = q.order_by
+            original_limit = q.limit
+            original_offset = q.offset
+            q.order_by = None
+            q.limit = None
+            q.offset = None
+
+            query_strings.append(self._generate_select(q))
+
+            # Restore original values
+            q.order_by = original_order_by
+            q.limit = original_limit
+            q.offset = original_offset
+
         # Remove semicolons from individual queries
         query_strings = [q.rstrip(";") for q in query_strings]
+
         # Combine with UNION ALL for concatenated arrays
         union_sql = " UNION ALL ".join(query_strings)
-        return union_sql + ";"
+
+        # Check if we need to wrap in a subquery for ORDER BY
+        # When ORDER BY columns are not in the SELECT list, we need a subquery
+        needs_subquery = False
+        if order_by:
+            # Check if ORDER BY expressions reference columns not in SELECT
+            # For UNION queries with list comprehensions, we need a subquery if
+            # ORDER BY references base table columns (like person.handle)
+            for order in order_by:
+                order_sql = self.generate_expression(order.expression)
+                # If ORDER BY references the base table (not json_each), we need a subquery
+                if (
+                    f"{self.base_table}." in order_sql
+                    or f"{self.base_table}.json_data" in order_sql
+                ):
+                    needs_subquery = True
+                    break
+
+        if needs_subquery:
+            # Wrap the UNION in a subquery and add ORDER BY columns to SELECT for sorting
+            # Then in the outer query, select only the original columns
+
+            # First, determine how many SQL columns the original SELECT expressions produce
+            # (tuples expand to multiple columns)
+            num_original_cols = self._count_select_columns(query.select_expressions)
+
+            # Regenerate queries with proper column aliasing
+            query_strings_aliased = []
+            for q in queries:
+                original_order_by = q.order_by
+                original_limit = q.limit
+                original_offset = q.offset
+                original_select = q.select_expressions[:]
+
+                q.order_by = None
+                q.limit = None
+                q.offset = None
+
+                # Add ORDER BY expressions
+                for order in order_by:
+                    already_in_select = False
+                    for sel_expr in q.select_expressions:
+                        if self._expressions_equal(
+                            sel_expr.expression, order.expression
+                        ):
+                            already_in_select = True
+                            break
+
+                    if not already_in_select:
+                        q.select_expressions.append(
+                            SelectExpression(expression=order.expression)
+                        )
+
+                # Now generate the SELECT clause with manual aliases
+                select_parts_with_aliases = []
+                col_num = 1
+                for sel_expr in q.select_expressions:
+                    # Check if this is a tuple expression
+                    from .query_model import TupleExpression
+
+                    if isinstance(sel_expr.expression, TupleExpression):
+                        # Tuple - generates multiple columns
+                        old_in_select = self._in_select_clause
+                        self._in_select_clause = True
+                        try:
+                            # Generate each element separately with its own alias
+                            for element in sel_expr.expression.elements:
+                                elem_sql = self.generate_expression(element)
+                                select_parts_with_aliases.append(
+                                    f"{elem_sql} AS col{col_num}"
+                                )
+                                col_num += 1
+                        finally:
+                            self._in_select_clause = old_in_select
+                    else:
+                        # Single column
+                        old_in_select = self._in_select_clause
+                        self._in_select_clause = True
+                        try:
+                            expr_sql = self.generate_expression(sel_expr.expression)
+                            select_parts_with_aliases.append(
+                                f"{expr_sql} AS col{col_num}"
+                            )
+                            col_num += 1
+                        finally:
+                            self._in_select_clause = old_in_select
+
+                # Build the full query with custom SELECT clause
+                select_clause = ", ".join(select_parts_with_aliases)
+                full_sql = self._generate_select_with_custom_select_clause(
+                    q, select_clause
+                )
+
+                query_strings_aliased.append(full_sql.rstrip(";"))
+
+                # Restore original values
+                q.order_by = original_order_by
+                q.limit = original_limit
+                q.offset = original_offset
+                q.select_expressions = original_select
+
+            # Build the UNION
+            union_aliased = " UNION ALL ".join(query_strings_aliased)
+
+            # Build outer SELECT - only the original columns
+            outer_select_cols = ", ".join(
+                [f"col{i+1}" for i in range(num_original_cols)]
+            )
+
+            # Build ORDER BY with columns starting after the original columns
+            order_parts = []
+            for i, order in enumerate(order_by):
+                col_num = num_original_cols + i + 1
+                order_parts.append(f"col{col_num} {order.direction}")
+
+            order_by_clause = f" ORDER BY {', '.join(order_parts)}"
+
+            # Build final query
+            final_sql = f"SELECT {outer_select_cols} FROM ({union_aliased}) AS sub {order_by_clause}"
+
+            # Add LIMIT/OFFSET
+            if limit is not None:
+                final_sql += f" LIMIT {limit}"
+                if offset is not None:
+                    final_sql += f" OFFSET {offset}"
+
+            return final_sql + ";"
+        else:
+            # ORDER BY columns are in SELECT or no ORDER BY - use simple approach
+            if order_by:
+                order_parts = []
+                for order in order_by:
+                    expr_sql = self.generate_expression(order.expression)
+                    order_parts.append(f"{expr_sql} {order.direction}")
+                union_sql += f" ORDER BY {', '.join(order_parts)}"
+
+            # Add LIMIT/OFFSET clause AFTER ORDER BY (if present)
+            if limit is not None:
+                union_sql += f" LIMIT {limit}"
+                if offset is not None:
+                    union_sql += f" OFFSET {offset}"
+
+            return union_sql + ";"
+
+    def _expressions_equal(self, expr1: Expression, expr2: Expression) -> bool:
+        """Check if two expressions are equal."""
+        # Simple equality check - compare repr or use a visitor for deep comparison
+        return repr(expr1) == repr(expr2)
+
+    def _count_select_columns(self, select_expressions: list) -> int:
+        """
+        Count the number of SQL columns that will be generated by select expressions.
+        Tuples expand to multiple columns, so we need to count their elements.
+        """
+        from .query_model import TupleExpression
+
+        count = 0
+        for sel_expr in select_expressions:
+            if isinstance(sel_expr.expression, TupleExpression):
+                count += len(sel_expr.expression.elements)
+            else:
+                count += 1
+        return count
+
+    def _generate_select_with_custom_select_clause(
+        self, query: SelectQuery, select_clause: str
+    ) -> str:
+        """
+        Generate a SELECT statement with a custom SELECT clause.
+        Reuses the logic from _generate_select but with a provided SELECT clause.
+        """
+        # Reset counter for each query
+        self._reset_json_each_counter()
+
+        # Store base table for use in expressions
+        self.base_table = query.base_table
+
+        # Use the provided select_clause instead of generating one
+
+        # FROM clause
+        from_parts = [query.base_table]
+
+        # Check for list comprehensions that need array expansion
+        for sel_expr in query.select_expressions:
+            if isinstance(sel_expr.expression, ListComprehensionExpression):
+                listcomp = sel_expr.expression
+                if listcomp.array_info.get("type") == "single":
+                    # Single array - add json_each
+                    array_path = listcomp.array_info["path"]
+                    from .query_model import AttributeExpression
+
+                    array_attr = AttributeExpression(
+                        table_name=query.base_table,
+                        attribute_path=array_path,
+                        is_database_column=False,
+                    )
+                    array_sql = self.generate_expression(array_attr)
+                    json_each_expr = self._format_json_each(array_sql)
+                    from_parts.append(json_each_expr)
+                    break  # Only add once
+                elif listcomp.array_info.get("type") == "nested_listcomp":
+                    # Nested list comprehension - add chained json_each calls
+                    json_each_chain = self._generate_nested_listcomp_from_clause(
+                        listcomp, query.base_table
+                    )
+                    from_parts.extend(json_each_chain)
+                    break  # Only add once
+
+        # Add array expansion if present (for WHERE clause array expansion)
+        if query.array_expansion:
+            array_sql = self.generate_expression(query.array_expansion.array_expression)
+            # If it's a CallExpression for json_array, we need to handle it specially
+            if isinstance(query.array_expansion.array_expression, CallExpression):
+                # For concatenated arrays, the left side is wrapped in json_array()
+                # Generate the json_array call
+                array_sql = self.generate_expression(
+                    query.array_expansion.array_expression
+                )
+            json_each_expr = self._format_json_each(array_sql)
+            if json_each_expr not in from_parts:
+                from_parts.append(json_each_expr)
+
+        # Add JOINs
+        from_clause_parts = []
+        from_clause_parts.append(", ".join(from_parts))
+        for join in query.joins:
+            join_sql = self._generate_join(join)
+            from_clause_parts.append(join_sql)
+
+        from_clause = " ".join(from_clause_parts)
+
+        # WHERE clause (reuse existing logic)
+        where_conditions = []
+
+        if query.where_condition:
+            where_sql = self._generate_where_condition(query.where_condition)
+            if where_sql:
+                where_conditions.append(where_sql)
+
+        # Add list comprehension conditions from SELECT expressions
+        for sel_expr in query.select_expressions:
+            if isinstance(sel_expr.expression, ListComprehensionExpression):
+                listcomp = sel_expr.expression
+                if listcomp.condition:
+                    if listcomp.array_info.get("type") == "nested_listcomp":
+                        depth = self._get_listcomp_nesting_depth(listcomp)
+                        if depth == 2:
+                            self._json_each_alias = "inner_each"
+                        elif depth == 1:
+                            self._json_each_alias = "outer_each"
+                        else:
+                            self._json_each_alias = f"each_{depth}"
+                    else:
+                        self._json_each_alias = "json_each"
+
+                    if self.type_inference:
+                        self.type_inference._listcomp_item_type_stack.append(
+                            listcomp.item_type
+                        )
+
+                    try:
+                        condition_sql = self.generate_expression(listcomp.condition)
+                    finally:
+                        if self.type_inference:
+                            self.type_inference._listcomp_item_type_stack.pop()
+                        self._json_each_alias = "json_each"
+
+                    if condition_sql:
+                        where_conditions.append(condition_sql)
+
+        where_clause = ""
+        if where_conditions:
+            combined_where = " AND ".join(f"({cond})" for cond in where_conditions)
+            where_clause = f" WHERE {combined_where}"
+
+        # No ORDER BY or LIMIT in this version (handled by caller)
+
+        return f"SELECT {select_clause} FROM {from_clause}{where_clause};"
 
     def _generate_join(self, join: Join) -> str:
         """Generate a JOIN clause."""
