@@ -898,8 +898,90 @@ class SQLGenerator:
             return f"POW({left_sql}, {right_sql})"
         elif expr.operator == "//":
             return f"(CAST (({left_sql} / {right_sql}) AS INT))"
+        elif expr.operator == "+":
+            # Check if this is string concatenation using type inference
+            left_type = None
+            right_type = None
+            if self.type_inference:
+                left_type = self.type_inference.visit(expr.left)
+                right_type = self.type_inference.visit(expr.right)
+
+            # Determine if this should be string concatenation
+            use_concat = False
+
+            # Case 1: Both types are known and are strings
+            if left_type == str and right_type == str:
+                use_concat = True
+            # Case 2: One is a string constant, assume string concatenation
+            elif isinstance(expr.left, ConstantExpression) and isinstance(
+                expr.left.value, str
+            ):
+                use_concat = True
+            elif isinstance(expr.right, ConstantExpression) and isinstance(
+                expr.right.value, str
+            ):
+                use_concat = True
+            # Case 3: One type is known to be string, and the other is unknown (not a number)
+            elif left_type == str and right_type not in (int, float, bool):
+                use_concat = True
+            elif right_type == str and left_type not in (int, float, bool):
+                use_concat = True
+            # Case 4: One operand is itself a string concatenation (recursive case)
+            # Check if either operand is a BinOp with + operator (chained concatenation)
+            elif (
+                isinstance(expr.left, BinaryOpExpression) and expr.left.operator == "+"
+            ):
+                # Left is a + operation - if we can infer it's a string concat, this should be too
+                # Recursively check if the left expression is string concatenation
+                left_result_type = None
+                if self.type_inference:
+                    left_result_type = self.type_inference.visit(expr.left)
+                # If left side results in a string, or we can't determine but it has string operands
+                if left_result_type == str:
+                    use_concat = True
+                else:
+                    # Check if left side has any string constants
+                    if self._has_string_constant(expr.left):
+                        use_concat = True
+            elif (
+                isinstance(expr.right, BinaryOpExpression)
+                and expr.right.operator == "+"
+            ):
+                # Right is a + operation - similar check
+                right_result_type = None
+                if self.type_inference:
+                    right_result_type = self.type_inference.visit(expr.right)
+                if right_result_type == str:
+                    use_concat = True
+                else:
+                    if self._has_string_constant(expr.right):
+                        use_concat = True
+
+            if use_concat:
+                if self.dialect == "sqlite":
+                    return f"({left_sql} || {right_sql})"
+                elif self.dialect == "postgres":
+                    return f"({left_sql} || {right_sql})"
+
+            # Default to numeric addition
+            return f"({left_sql} + {right_sql})"
         else:
             return f"({left_sql} {expr.operator} {right_sql})"
+
+    def _has_string_constant(self, expr: Expression) -> bool:
+        """
+        Recursively check if an expression contains any string constants.
+        Used to detect chained string concatenations.
+        """
+        if isinstance(expr, ConstantExpression):
+            return isinstance(expr.value, str)
+        elif isinstance(expr, BinaryOpExpression):
+            # Recursively check both sides
+            return self._has_string_constant(expr.left) or self._has_string_constant(
+                expr.right
+            )
+        else:
+            return False
 
     def _generate_unaryop(self, expr: UnaryOpExpression) -> str:
         """Generate SQL for unary operation."""
@@ -1429,6 +1511,93 @@ class SQLGenerator:
 
         return json_each_list
 
+    def _build_nested_json_each_from_clauses(
+        self,
+        inner_listcomp: ListComprehensionExpression,
+        include_base_table: bool = True,
+    ) -> tuple:
+        """
+        Build FROM clauses for nested list comprehensions.
+
+        This method is shared between:
+        - _generate_nested_listcomp_from_clause() for what clauses
+        - _generate_any() for where clauses with any()
+
+        Args:
+            inner_listcomp: The inner list comprehension
+            include_base_table: Whether to include base table in FROM clause (True for SELECT, False for EXISTS)
+
+        Returns:
+            Tuple of (from_clauses, inner_path, inner_alias) where:
+            - from_clauses: List of FROM clause strings (one for concatenated left, one for right)
+            - inner_path: The attribute path being extracted (e.g., "surname_list")
+            - inner_alias: The alias to use for the innermost json_each (e.g., "inner_each")
+        """
+        from .query_model import AttributeExpression
+
+        inner_array_info = inner_listcomp.array_info
+        inner_array_type = inner_array_info.get("type") if inner_array_info else None
+
+        # Get what the inner list comprehension extracts (e.g., name.surname_list)
+        inner_expr = inner_listcomp.expression
+        if not isinstance(inner_expr, AttributeExpression):
+            raise ValueError(
+                f"Unsupported inner expression type in nested list comprehension: {type(inner_expr)}"
+            )
+        inner_path = inner_expr.attribute_path  # e.g., "surname_list"
+
+        from_clauses = []
+        inner_alias = "inner_each"
+
+        if inner_array_type == "concatenated":
+            # Inner is concatenated: [person.primary_name] + person.alternate_names
+            # Build two nested json_each structures with UNION
+            left_attr = inner_array_info["left"]
+            left_sql = self.generate_expression(left_attr)
+            left_array_sql = f"json_array({left_sql})"  # Wrap single object in array
+
+            right_path = inner_array_info["right_path"]
+            right_attr = AttributeExpression(
+                table_name=self.base_table,
+                attribute_path=right_path,
+                is_database_column=False,
+            )
+            right_array_sql = self.generate_expression(right_attr)
+
+            # Build nested FROM clauses
+            base_table_prefix = f"{self.base_table}, " if include_base_table else ""
+            left_from = f"{base_table_prefix}json_each({left_array_sql}, '$') AS outer_each, json_each(json_extract(outer_each.value, '$.{inner_path}'), '$') AS {inner_alias}"
+            right_from = f"{base_table_prefix}json_each({right_array_sql}, '$') AS outer_each, json_each(json_extract(outer_each.value, '$.{inner_path}'), '$') AS {inner_alias}"
+
+            from_clauses = [left_from, right_from]
+
+        elif inner_array_type == "single":
+            # Inner is a single array
+            array_path = inner_array_info["path"]
+            array_attr = AttributeExpression(
+                table_name=self.base_table,
+                attribute_path=array_path,
+                is_database_column=False,
+            )
+            array_sql = self.generate_expression(array_attr)
+
+            # Check if we need to wrap in json_array
+            if inner_array_info.get("wrap_in_json_array"):
+                array_sql = f"json_array({array_sql})"
+
+            # Build nested FROM clause
+            base_table_prefix = f"{self.base_table}, " if include_base_table else ""
+            from_clause = f"{base_table_prefix}json_each({array_sql}, '$') AS outer_each, json_each(json_extract(outer_each.value, '$.{inner_path}'), '$') AS {inner_alias}"
+
+            from_clauses = [from_clause]
+
+        else:
+            raise ValueError(
+                f"Unsupported nested listcomp array type: {inner_array_type}"
+            )
+
+        return from_clauses, inner_path, inner_alias
+
     def _generate_any(self, expr: AnyExpression) -> str:
         """Generate SQL for any() pattern."""
         # Generate EXISTS subquery
@@ -1532,6 +1701,54 @@ class SQLGenerator:
                 return f"EXISTS (SELECT 1 FROM {json_each_expr} WHERE {condition_sql})"
             else:
                 return f"EXISTS (SELECT 1 FROM {json_each_expr})"
+        elif expr.array_info and expr.array_info.get("type") == "nested_listcomp":
+            # Nested list comprehension: the array is itself a list comprehension
+            # e.g., any([surname for surname in [name.surname_list for name in [person.primary_name] + person.alternate_names] ...])
+            # Use the shared method to build FROM clauses
+            inner_listcomp = expr.array_info["inner_listcomp"]
+
+            from .query_model import ListComprehensionExpression
+
+            if isinstance(inner_listcomp, ListComprehensionExpression):
+                # Build FROM clauses using shared method
+                # IMPORTANT: include_base_table=False for EXISTS subqueries to avoid cross-joins
+                from_clauses, inner_path, inner_alias = (
+                    self._build_nested_json_each_from_clauses(
+                        inner_listcomp, include_base_table=False
+                    )
+                )
+
+                if expr.condition:
+                    # Save context
+                    old_json_each_alias = getattr(self, "_json_each_alias", "json_each")
+                    self._json_each_alias = inner_alias
+
+                    condition_sql = self.generate_expression(expr.condition)
+
+                    # Restore context
+                    self._json_each_alias = old_json_each_alias
+
+                    # Build EXISTS with FROM clauses
+                    if len(from_clauses) == 1:
+                        return f"EXISTS (SELECT 1 FROM {from_clauses[0]} WHERE {condition_sql})"
+                    else:
+                        # Multiple FROM clauses (concatenated arrays) - UNION them
+                        union_parts = [
+                            f"SELECT 1 FROM {fc} WHERE {condition_sql}"
+                            for fc in from_clauses
+                        ]
+                        return f"EXISTS ({' UNION ALL '.join(union_parts)})"
+                else:
+                    # No condition, just check existence
+                    if len(from_clauses) == 1:
+                        return f"EXISTS (SELECT 1 FROM {from_clauses[0]})"
+                    else:
+                        union_parts = [f"SELECT 1 FROM {fc}" for fc in from_clauses]
+                        return f"EXISTS ({' UNION ALL '.join(union_parts)})"
+            else:
+                raise ValueError(
+                    f"Unexpected inner_listcomp type: {type(inner_listcomp)}"
+                )
         else:
             # Single array
             array_attr = AttributeExpression(

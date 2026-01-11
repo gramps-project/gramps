@@ -963,13 +963,33 @@ class QueryBuilderTestMixin:
         self.assertIn("LIMIT", sql.upper())
         self.assertIn("OFFSET", sql.upper())
 
+    def test_string_concatenation(self):
+        """
+        Test that + operator correctly handles string concatenation vs numeric addition.
+        """
+        # String concatenation should use || in SQLite
+        what = "person.handle + person.handle"
+        where = None
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        # SQLite uses || for string concatenation
+        self.assertIn("||", sql)
+        # Should NOT use + for strings
+        self.assertNotIn("handle') +", sql)
+
+        # Test with gramps_id (also a string)
+        what = "person.gramps_id + person.gramps_id"
+        sql = self.query_builder.get_sql_query(what, where, None)
+        self._validate_sql(sql)
+        self.assertIn("||", sql)
+
     def test_complex_binary_operations(self):
         """
         Test all binary operators: +, -, *, /, %, **, //
         """
         what = "person.handle"
 
-        # Addition
+        # Addition (numeric)
         where = "len(person.media_list) + len(person.note_list) > 0"
         sql = self.query_builder.get_sql_query(what, where, None)
         self._validate_sql(sql)

@@ -182,14 +182,14 @@ class RegexConverter:
         # Check for null bytes first
         if "\x00" in pattern:
             raise ValueError("Pattern cannot contain null bytes")
-        
+
         # Check for atomic groups before compiling, as they may not be
         # supported in older Python versions (added in Python 3.11)
         if "(?>" in pattern:
             raise ValueError(
                 "Atomic groups (?>) are not supported in PostgreSQL POSIX regex."
             )
-        
+
         # Try to compile the pattern to ensure it's valid Python regex
         try:
             re.compile(pattern)

@@ -3217,6 +3217,119 @@ class BaseTest(unittest.TestCase):
         # Note: This might differ if some people have None gender
         self.assertGreaterEqual(len(res), 0)
 
+    # ========================================================================
+    # String concatenation tests
+    # ========================================================================
+
+    def test_string_concatenation_semantic(self):
+        """Test that + operator correctly concatenates strings."""
+        # Test concatenating handle with itself
+        res = list(
+            self.db.select_from_person(
+                what="person.handle + person.handle",
+                where="person.gramps_id == 'I0044'",
+            )
+        )
+        # Should get handle repeated twice
+        self.assertEqual(len(res), 1)
+        # Result should be handle + handle (not numeric addition)
+        handle = list(
+            self.db.select_from_person(
+                what="person.handle",
+                where="person.gramps_id == 'I0044'",
+            )
+        )[0]
+        expected = handle + handle
+        self.assertEqual(res[0], expected)
+
+    def test_string_concatenation_with_literal(self):
+        """Test string concatenation with string literals."""
+        # Test concatenating gramps_id with a suffix
+        res = list(
+            self.db.select_from_person(
+                what="person.gramps_id + '-suffix'",
+                where="person.gramps_id == 'I0044'",
+            )
+        )
+        self.assertEqual(len(res), 1)
+        self.assertEqual(res[0], "I0044-suffix")
+
+    def test_numeric_addition_still_works(self):
+        """Test that numeric + still performs addition, not concatenation."""
+        # Test numeric addition
+        res = list(
+            self.db.select_from_person(
+                what="1 + 2",
+                where="person.gramps_id == 'I0044'",
+            )
+        )
+        self.assertEqual(len(res), 1)
+        self.assertEqual(res[0], 3)
+
+    def test_string_concatenation_in_nested_listcomp_condition(self):
+        """Test string concatenation in nested list comprehension conditions."""
+        # Test that string concatenation works in complex nested contexts
+        # This should work without errors
+        res = list(
+            self.db.select_from_person(
+                what="[surname for surname in [name.surname_list for name in [person.primary_name] + person.alternate_names] if 'I' in surname.surname + 'X']",
+                where="person.gramps_id == 'I0044'",
+            )
+        )
+        # Should execute without error (string concatenation in condition works)
+        self.assertIsInstance(res, list)
+
+    def test_any_with_nested_listcomp_and_string_concat(self):
+        """Test any() with nested list comprehension and string concatenation."""
+        # This tests the fix for nested list comprehensions in any() with string
+        # concatenation in the condition.
+        # The issue was that the generated SQL was including a cross-join with
+        # the base table in the EXISTS subquery, causing all persons to match.
+
+        # First, find a person with an alternate name
+        all_persons = list(self.db.select_from_person(what="person"))
+        person_with_alt = None
+        for p in all_persons:
+            if len(p.alternate_names) > 0:
+                person_with_alt = p
+                break
+
+        if person_with_alt:
+            # Create a search string that should match only this person
+            # Use a unique substring from their primary or alternate surname
+            target_surname = None
+            for name in [
+                person_with_alt.primary_name
+            ] + person_with_alt.alternate_names:
+                for surname in name.surname_list:
+                    # Find a surname with at least 4 characters
+                    if len(surname.surname) >= 4:
+                        # Use middle 4 characters as search string
+                        target_surname = surname.surname[1:5]
+                        break
+                if target_surname:
+                    break
+
+            if target_surname:
+                # Query using any() with nested list comprehension
+                where_clause = f"any([surname for surname in [name.surname_list for name in [person.primary_name] + person.alternate_names] if '{target_surname}' in surname.surname])"
+                res = list(
+                    self.db.select_from_person(
+                        what="person.handle",
+                        where=where_clause,
+                    )
+                )
+
+                # Should match at least the person we found, but not all persons
+                self.assertGreater(len(res), 0, "Should match at least one person")
+                self.assertLess(
+                    len(res),
+                    len(all_persons) / 2,
+                    f"Should not match most persons (got {len(res)} out of {len(all_persons)})",
+                )
+                # The target person should be in the results
+                self.assertIn(person_with_alt.handle, res)
+
 
 if __name__ == "__main__":
     unittest.main()
