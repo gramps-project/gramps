@@ -526,10 +526,9 @@ class TypeInferenceVisitor:
                 # Extract the inner type string
                 inner = type_hint[5:-1]  # Remove "List[" and "]"
                 inner_type = self._resolve_type(inner)
-                if inner_type is not None:
-                    # Create a proper List[inner_type] using typing.List
-                    return List[inner_type]
-                # If we can't resolve the inner type, just return list
+                # We can't dynamically construct List[inner_type] at runtime
+                # because inner_type is a value, not a type parameter
+                # Just return list - the caller will handle element types separately
                 return list
             elif type_hint in ("str", "int", "float", "bool"):
                 # Built-in types

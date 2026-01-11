@@ -1277,7 +1277,7 @@ class SQLGenerator:
         return f"({', '.join(element_sqls)})"
 
     def _format_json_each(
-        self, array_expr: str, path: str = "$", alias: str = None
+        self, array_expr: str, path: str = "$", alias: Optional[str] = None
     ) -> str:
         """
         Format json_each expression based on dialect.
