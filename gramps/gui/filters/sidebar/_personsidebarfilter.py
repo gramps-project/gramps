@@ -59,6 +59,7 @@ from gramps.gen.filters.rules.person import (
     MatchesFilter,
     HasOtherGender,
     PersonWhere,
+    SearchName,
 )
 from ...widgets.filterexpressionentry import FilterExpressionEntry
 
@@ -82,6 +83,7 @@ def extract_text(entry_widget):
 # -------------------------------------------------------------------------
 class PersonSidebarFilter(SidebarFilter):
     def __init__(self, dbstate, uistate, clicked):
+        self.db = dbstate.db
         self.clicked_func = clicked
         self.filter_name = widgets.BasicEntry()
         self.filter_id = widgets.BasicEntry()
@@ -122,7 +124,8 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_regex = Gtk.CheckButton(label=_("Use regular expressions"))
         self.sensitive_regex = Gtk.CheckButton(label=_("Case sensitive"))
 
-        self.filter_where = FilterExpressionEntry()
+        if self.db.can_use_fast_selects():
+            self.filter_where = FilterExpressionEntry()
 
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
@@ -178,7 +181,8 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_entry(_("Event"), self.etype)
         self.add_text_entry(_("Note"), self.filter_note)
         self.add_entry(_("Tag"), self.tag)
-        self.add_text_entry(_("Where"), self.filter_where)
+        if self.db.can_use_fast_selects():
+            self.add_text_entry(_("Where"), self.filter_where)
         self.add_filter_entry(_("Custom filter"), self.generic)
         self.add_regex_entry(self.filter_regex)
         self.add_regex_case(self.sensitive_regex)
@@ -191,7 +195,8 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_death.set_text("")
         self.filter_death_place.set_text("")
         self.filter_note.set_text("")
-        self.filter_where.set_text("")
+        if self.db.can_use_fast_selects():
+            self.filter_where.set_text("")
         self.filter_gender.set_active(0)
         self.etype.get_child().set_text("")
         self.tag.set_active(0)
@@ -211,7 +216,11 @@ class PersonSidebarFilter(SidebarFilter):
         death = extract_text(self.filter_death)
         death_place = extract_text(self.filter_death_place)
         note = extract_text(self.filter_note)
-        where = extract_text(self.filter_where)
+
+        if self.db.can_use_fast_selects():
+            where = extract_text(self.filter_where)
+        else:
+            where = None
 
         # extract remaining data from the menus
         etype = self.filter_event.get_type().xml_str()
@@ -252,9 +261,12 @@ class PersonSidebarFilter(SidebarFilter):
                 if not regex:
                     name_parts = name.split(sep=" ")
                     for name_part in name_parts:
-                        rule = RegExpName(
-                            [name_part], use_regex=regex, use_case=usecase
-                        )
+                        if usecase:
+                            rule = RegExpName(
+                                [name_part], use_regex=regex, use_case=usecase
+                            )
+                        else:
+                            rule = SearchName([name_part])
                         generic_filter.add_rule(rule)
                 else:
                     rule = RegExpName([name], use_regex=regex, use_case=usecase)

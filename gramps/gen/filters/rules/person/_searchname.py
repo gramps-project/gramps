@@ -57,6 +57,49 @@ class SearchName(Rule):
     description = _("Matches people with a specified (partial) name")
     category = _("General filters")
 
+    def prepare(self, db, user):
+        src = self.list[0].upper()
+
+        if db.can_use_fast_selects():
+            if not src:
+                # Nothing:
+                self.select_handles = set()
+                return
+
+            # First, get any matches on names:
+            self.selected_handles = set(
+                list(
+                    db.select_from_person(
+                        what="person.handle",
+                        where=(
+                            "any([surname for surname in [name.surname_list for name in [person.primary_name] + person.alternate_names] "
+                            + "    if src in (surname.prefix + ' ' + surname.surname + ' ' + surname.connector)])"
+                        ),
+                        env={"src": src},
+                    )
+                )
+            )
+            # Then match any of the others:
+            self.selected_handles.update(
+                list(
+                    db.select_from_person(
+                        what="person.handle",
+                        where=(
+                            "any([name for name in [person.primary_name] + person.alternate_names if "
+                            + "src in name.first_name or "
+                            + "src in name.suffix or "
+                            + "src in name.title or "
+                            + "src in name.nick or "
+                            + "src in name.famnick or "
+                            + "src in name.call"
+                            + "])"
+                        ),
+                        env={"src": src},
+                    )
+                )
+            )
+
+    @Rule.apply_fast_selects
     def apply_to_one(self, db: Database, person: Any) -> bool:
         src = self.list[0].upper()
         if not src:
@@ -72,6 +115,6 @@ class SearchName(Rule):
                 name.famnick,
                 name.call,
             ]:
-                if src and field.upper().find(src) != -1:
+                if src in field.upper():
                     return True
         return False
