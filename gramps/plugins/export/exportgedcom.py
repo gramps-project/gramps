@@ -715,6 +715,10 @@ class GedcomWriter(UpdateCallback):
                 self._writeln(1, key, value)
                 continue
 
+            if key == "Occupation":
+                self._writeln(1, "OCCU", value)
+                continue
+
             if key == "RESN":
                 self._writeln(1, "RESN")
                 continue
