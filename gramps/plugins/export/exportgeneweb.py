@@ -442,7 +442,7 @@ class GeneWebWriter:
 
     def format_single_date(self, subdate, cal, mode):
         retval = ""
-        (day, month, year, sl) = subdate
+        day, month, year, sl = subdate
 
         cal_type = ""
         if cal == Date.CAL_HEBREW:

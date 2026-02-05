@@ -1850,7 +1850,7 @@ class Date(BaseObject):
             and self.newyear == Date.NEWYEAR_JAN1
         ):
             return
-        (year, month, day) = Date._calendar_change[calendar](self.sortval)
+        year, month, day = Date._calendar_change[calendar](self.sortval)
         if self.is_compound():
             ryear, rmonth, rday = self._zero_adjust_ymd(
                 self.dateval[Date._POS_RYR],
@@ -1858,7 +1858,7 @@ class Date(BaseObject):
                 self.dateval[Date._POS_RDAY],
             )
             sdn = Date._calendar_convert[self.calendar](ryear, rmonth, rday)
-            (nyear, nmonth, nday) = Date._calendar_change[calendar](sdn)
+            nyear, nmonth, nday = Date._calendar_change[calendar](sdn)
             self.dateval = (day, month, year, False, nday, nmonth, nyear, False)
         else:
             self.dateval = (day, month, year, False)

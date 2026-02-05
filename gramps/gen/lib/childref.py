@@ -81,7 +81,7 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list, ref, frel, mrel) = data
+        privacy, citation_list, note_list, ref, frel, mrel = data
         PrivacyBase.unserialize(self, privacy)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)

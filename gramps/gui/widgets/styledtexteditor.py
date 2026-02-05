@@ -279,7 +279,7 @@ USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
 HOST = r"([-\w.]+|\[[0-9A-F:]+\])?"
 URLPATH = "(/[" + PATHCHARS + "]*)?[^]'.:}> \t\r\n,\\\"]"
 
-(GENURL, HTTP, MAIL, LINK) = list(range(4))
+GENURL, HTTP, MAIL, LINK = list(range(4))
 
 
 def find_parent_with_attr(self, attr="dbstate"):

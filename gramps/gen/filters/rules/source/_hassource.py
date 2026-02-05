@@ -20,6 +20,7 @@
 """
 Filter rule to match sources with a particular value.
 """
+
 # -------------------------------------------------------------------------
 #
 # Standard Python modules

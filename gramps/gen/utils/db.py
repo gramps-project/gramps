@@ -657,7 +657,7 @@ def get_source_and_citation_referents(source_handle, db):
         citation_referents_list += [(citation, refs)]
     LOG.debug("citation_referents_list %s", [citation_referents_list])
 
-    (citation_list) = the_lists
+    citation_list = the_lists
     the_lists = (citation_list, citation_referents_list)
 
     LOG.debug("the_lists %s", [the_lists])

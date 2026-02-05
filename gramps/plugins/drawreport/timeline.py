@@ -146,7 +146,7 @@ class TimeLine(Report):
         )
 
         # Find the range of dates to include
-        (low, high) = self.find_year_range()
+        low, high = self.find_year_range()
 
         # Generate the actual timeline
         self.generate_timeline(low, high)
@@ -355,13 +355,13 @@ class TimeLine(Report):
                 if birth:
                     bth = birth.get_date_object()
                     bth = bth.to_calendar(self.calendar).get_year()
-                    (low, high) = min_max_year(low, high, bth)
+                    low, high = min_max_year(low, high, bth)
 
                 death = get_death_or_fallback(self.database, person)
                 if death:
                     dth = death.get_date_object()
                     dth = dth.to_calendar(self.calendar).get_year()
-                    (low, high) = min_max_year(low, high, dth)
+                    low, high = min_max_year(low, high, dth)
                 step()
 
             # round the dates to the nearest decade

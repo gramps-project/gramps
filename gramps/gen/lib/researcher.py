@@ -65,7 +65,7 @@ class Researcher(LocationBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (location, self.name, self.addr, self.email) = data
+        location, self.name, self.addr, self.email = data
         LocationBase.unserialize(self, location)
 
         return self

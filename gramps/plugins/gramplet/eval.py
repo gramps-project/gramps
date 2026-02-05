@@ -22,6 +22,7 @@
 """
 Provide a python evaluation window
 """
+
 # ------------------------------------------------------------------------
 #
 # standard python modules

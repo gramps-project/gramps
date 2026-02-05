@@ -22,6 +22,7 @@
 """
 Show uncollected objects in a window.
 """
+
 # ------------------------------------------------------------------------
 #
 # Python modules

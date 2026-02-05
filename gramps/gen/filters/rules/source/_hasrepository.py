@@ -35,7 +35,6 @@ from ....const import GRAMPS_LOCALE as glocale
 # -------------------------------------------------------------------------
 from .. import Rule
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
@@ -43,7 +42,6 @@ from .. import Rule
 # -------------------------------------------------------------------------
 from ....lib import Source
 from ....db import Database
-
 
 _ = glocale.translation.gettext
 

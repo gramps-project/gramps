@@ -22,6 +22,7 @@
 """
 Geography for one person and all his descendant
 """
+
 # -------------------------------------------------------------------------
 #
 # Python modules
@@ -105,8 +106,7 @@ _UI_DEF = [
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-    % _("Organize Bookmarks"),  # Following are the Toolbar items
+""" % _("Organize Bookmarks"),  # Following are the Toolbar items
     """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
@@ -716,7 +716,7 @@ class GeoMoves(GeoGraphyView):
                 person = self.dbstate.db.get_person_from_gramps_id(mark[1])
                 message = "(%s) %s : %s" % (date, mark[2], _nd.display(person))
             elif mark[11] == EventRoleType.FAMILY:
-                (father_name, mother_name) = self._get_father_and_mother_name(evt)
+                father_name, mother_name = self._get_father_and_mother_name(evt)
                 message = "(%s) %s : %s - %s" % (
                     date,
                     mark[2],

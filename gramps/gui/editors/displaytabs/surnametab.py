@@ -250,7 +250,7 @@ class SurnameTab(EmbeddedList):
         """
         Delete button is clicked. Remove from the model
         """
-        (_model, node) = self.selection.get_selected()
+        _model, node = self.selection.get_selected()
         if node:
             path = self.model.get_path(node).to_string()
             if path == self.curr_path:
@@ -348,7 +348,7 @@ class SurnameTab(EmbeddedList):
 
     def edit_button_clicked(self, obj):
         """Edit button clicked"""
-        (model, node) = self.selection.get_selected()
+        model, node = self.selection.get_selected()
         if node:
             path = self.model.get_path(node)
             self.tree.set_cursor_on_cell(
@@ -378,7 +378,7 @@ class SurnameTab(EmbeddedList):
         """
         Move to the next cell to edit it
         """
-        (model, node) = self.selection.get_selected()
+        model, node = self.selection.get_selected()
         if node:
             path = self.model.get_path(node).get_indices()[0]
             nccol = self.curr_col + 1
@@ -413,7 +413,7 @@ class SurnameTab(EmbeddedList):
         """
         Move to the next cell to edit it
         """
-        (model, node) = self.selection.get_selected()
+        model, node = self.selection.get_selected()
         if node:
             path = self.model.get_path(node).get_indices()[0]
             if self.curr_col > 0:

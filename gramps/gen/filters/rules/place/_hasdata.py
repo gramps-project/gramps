@@ -39,7 +39,6 @@ from .. import Rule
 from ....lib import Place
 from ....db import Database
 
-
 _ = glocale.translation.sgettext
 
 

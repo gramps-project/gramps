@@ -19,6 +19,7 @@
 """
 Library common to SourceView and CitationTreeView
 """
+
 from gramps.gen.errors import HandleError
 
 

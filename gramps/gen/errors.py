@@ -173,7 +173,7 @@ class DbError(Exception):
     def __init__(self, value):
         Exception.__init__(self)
         try:
-            (errnum, errmsg) = value
+            errnum, errmsg = value
             self.value = errmsg
         except:
             self.value = value

@@ -22,6 +22,7 @@
 """
 gtk textbuffer with undo functionality
 """
+
 __all__ = ["UndoableBuffer"]
 
 # Originally LGLP from:

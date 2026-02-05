@@ -367,7 +367,7 @@ class GedcomWriter(UpdateCallback):
 
         """
         local_time = time.localtime(time.time())
-        (year, mon, day, hour, minutes, sec) = local_time[0:6]
+        year, mon, day, hour, minutes, sec = local_time[0:6]
         date_str = "%d %s %d" % (day, libgedcom.MONTH[mon], year)
         time_str = "%02d:%02d:%02d" % (hour, minutes, sec)
         rname = self.dbase.get_researcher().get_name()
@@ -1593,7 +1593,7 @@ class GedcomWriter(UpdateCallback):
         longitude = place.get_longitude()
         latitude = place.get_latitude()
         if longitude and latitude:
-            (latitude, longitude) = conv_lat_lon(latitude, longitude, "GEDCOM")
+            latitude, longitude = conv_lat_lon(latitude, longitude, "GEDCOM")
         if longitude and latitude:
             self._writeln(level + 1, "MAP")
             self._writeln(level + 2, "LATI", latitude)

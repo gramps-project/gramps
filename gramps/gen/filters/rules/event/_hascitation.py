@@ -21,6 +21,7 @@
 """
 Filter rule to match event with a particular citation.
 """
+
 # -------------------------------------------------------------------------
 #
 # Standard Python modules

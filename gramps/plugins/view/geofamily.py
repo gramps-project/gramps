@@ -22,6 +22,7 @@
 """
 Geography for one family
 """
+
 # -------------------------------------------------------------------------
 #
 # Python modules
@@ -96,8 +97,7 @@ _UI_DEF = [
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-    % _("Organize Bookmarks"),  # Following are the Toolbar items
+""" % _("Organize Bookmarks"),  # Following are the Toolbar items
     """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
@@ -304,7 +304,7 @@ class GeoFamily(GeoGraphyView):
                                     if place:
                                         longitude = place.get_longitude()
                                         latitude = place.get_latitude()
-                                        (latitude, longitude) = conv_lat_lon(
+                                        latitude, longitude = conv_lat_lon(
                                             latitude, longitude, "D.D8"
                                         )
                                         descr = _pd.display(dbstate.db, place)
@@ -538,7 +538,7 @@ class GeoFamily(GeoGraphyView):
                 message = "(%s) %s : %s" % (date, mark[7], mark[1])
             elif mark[5] == EventRoleType.FAMILY:
                 evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
-                (father_name, mother_name) = self._get_father_and_mother_name(evt)
+                father_name, mother_name = self._get_father_and_mother_name(evt)
                 message = "(%s) %s : %s - %s" % (
                     date,
                     mark[7],

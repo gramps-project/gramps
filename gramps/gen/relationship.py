@@ -2679,8 +2679,7 @@ def _test(rcalc, onlybirth, inlawa, inlawb, printrelstr, test_num=None):
             return relstr
 
     if test_num is None:
-        print(
-            """
+        print("""
 Select a test:
   0 - all tests
   1 - testing sons
@@ -2702,8 +2701,7 @@ Select a test:
   17 - testing some cousins down
 
 Please enter a test number and press Enter for continue:
-    """
-        )
+    """)
         test_num = sys.stdin.readline().strip()
         test_num = int(test_num)
 
@@ -3310,8 +3308,7 @@ def _test_plural(rcalc, in_law_b, test_num=None):  # noqa: C901
     from sys import stdin
 
     if test_num is None:
-        print(
-            """
+        print("""
 Select a test:
   0 - all tests
   1 - testing ancestors
@@ -3320,8 +3317,7 @@ Select a test:
   17 - testing cousins down
 
 Please enter a test number and press Enter for continue:
-    """
-        )
+    """)
         test_num = stdin.readline().strip()
         test_num = int(test_num)
 
@@ -3404,8 +3400,7 @@ def test(rcalc, printrelstr):
     test_num = args.r
 
     if test_num is None:
-        print(
-            """
+        print("""
 Select a test:
   0 - all tests
   1 - Test normal relations
@@ -3424,8 +3419,7 @@ Select a test:
 Letter 'f' means Father, 'm' means Mother
 
 Please enter a test number and press Enter for continue:
-    """
-        )
+    """)
         test_num = sys.stdin.readline().strip()
         test_num = int(test_num)
         if test_num == 0:

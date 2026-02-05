@@ -24,6 +24,7 @@ able to run gramps from the source directory without setting PYTHONPATH
 
 From this position, import gramps works great
 """
+
 import gramps.grampsapp as app
 
 app.main()

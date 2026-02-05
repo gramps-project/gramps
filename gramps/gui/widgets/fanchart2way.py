@@ -306,7 +306,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         """
         Compute the current half radius of the ascendant circle
         """
-        (dummy_radiusin, radius_asc) = self.get_radiusinout_for_gen_asc(generation)
+        dummy_radiusin, radius_asc = self.get_radiusinout_for_gen_asc(generation)
         return radius_asc + BORDER_EDGE_WIDTH
 
     def maxradius_desc(self, generation):

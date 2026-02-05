@@ -21,6 +21,7 @@
 A module that provides pluggable sidebars.  These provide an interface to
 manage pages in the main Gramps window.
 """
+
 # -------------------------------------------------------------------------
 #
 # GNOME modules

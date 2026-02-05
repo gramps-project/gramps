@@ -36,6 +36,7 @@ Narrative Web Page generator.
 Classe:
     FamilyPage - Family index page and individual Family pages
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------

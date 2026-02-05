@@ -21,6 +21,7 @@
 Unittest that tests that part of the merge process that influences other
 objects than the objects merging.
 """
+
 import unittest
 import time
 import os

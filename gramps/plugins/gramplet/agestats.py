@@ -23,6 +23,7 @@ Age Stats Gramplet
 
 This Gramplet shows distributions of age breakdowns of various types.
 """
+
 # -------------------------------------------------------------------------
 #
 # Python modules

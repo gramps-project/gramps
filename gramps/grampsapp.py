@@ -195,7 +195,6 @@ sys.excepthook = exc_hook
 
 from .gen.mime import mime_type_is_defined
 
-
 # -------------------------------------------------------------------------
 #
 # Minimum version check

@@ -75,7 +75,6 @@ from .treebasemodel import TreeBaseModel
 from .basemodel import BaseModel
 from gramps.gen.config import config
 
-
 invalid_date_format = config.get("preferences.invalid-date-format")
 no_surname = config.get("preferences.no-surname-text")
 

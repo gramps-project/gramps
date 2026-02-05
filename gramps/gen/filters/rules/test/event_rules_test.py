@@ -20,6 +20,7 @@
 """
 Unittest that tests event-specific filter rules
 """
+
 import unittest
 import os
 

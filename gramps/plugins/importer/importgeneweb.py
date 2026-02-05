@@ -322,7 +322,7 @@ class GeneWebParser:
         idx = 1
 
         LOG.debug("\nHusband:")
-        (idx, husband) = self.parse_person(fields, idx, Person.MALE, None)
+        idx, husband = self.parse_person(fields, idx, Person.MALE, None)
         if husband:
             self.current_husband_handle = husband.get_handle()
             self.current_family.set_father_handle(husband.get_handle())
@@ -332,7 +332,7 @@ class GeneWebParser:
         LOG.debug("Marriage:")
         idx = self.parse_marriage(fields, idx)
         LOG.debug("Wife:")
-        (idx, wife) = self.parse_person(fields, idx, Person.FEMALE, None)
+        idx, wife = self.parse_person(fields, idx, Person.FEMALE, None)
         if wife:
             self.current_family.set_mother_handle(wife.get_handle())
             self.db.commit_family(self.current_family, self.trans)
@@ -342,7 +342,7 @@ class GeneWebParser:
 
     def read_relationship_person(self, line, fields):
         LOG.debug(r"\Relationships:")
-        (idx, person) = self.parse_person(fields, 1, Person.UNKNOWN, None)
+        idx, person = self.parse_person(fields, 1, Person.UNKNOWN, None)
         if person:
             self.current_relationship_person_handle = person.get_handle()
 
@@ -367,7 +367,7 @@ class GeneWebParser:
                 # split related person into fields
                 fields = matches.groups()[1].split(" ")
                 if fields:
-                    (idx, asso_p) = self.parse_person(fields, 0, Person.UNKNOWN, None)
+                    idx, asso_p = self.parse_person(fields, 0, Person.UNKNOWN, None)
                     pref = PersonRef()
                     pref.set_relation(matches.groups()[0])
                     LOG.warning("TODO: Handle association types properly")
@@ -394,11 +394,11 @@ class GeneWebParser:
     def read_witness_line(self, line, fields):
         LOG.debug("Witness:")
         if fields[1] == "m:":
-            (idx, wit_p) = self.parse_person(fields, 2, Person.MALE, None)
+            idx, wit_p = self.parse_person(fields, 2, Person.MALE, None)
         elif fields[1] == "f:":
-            (idx, wit_p) = self.parse_person(fields, 2, Person.FEMALE, None)
+            idx, wit_p = self.parse_person(fields, 2, Person.FEMALE, None)
         else:
-            (idx, wit_p) = self.parse_person(fields, 1, None, None)
+            idx, wit_p = self.parse_person(fields, 1, None, None)
         if wit_p:
             mev = None
             # search marriage event
@@ -440,15 +440,15 @@ class GeneWebParser:
                 LOG.debug("Child:")
                 child = None
                 if fields[1] == "h":
-                    (idx, child) = self.parse_person(
+                    idx, child = self.parse_person(
                         fields, 2, Person.MALE, father_surname
                     )
                 elif fields[1] == "f":
-                    (idx, child) = self.parse_person(
+                    idx, child = self.parse_person(
                         fields, 2, Person.FEMALE, father_surname
                     )
                 else:
-                    (idx, child) = self.parse_person(
+                    idx, child = self.parse_person(
                         fields, 1, Person.UNKNOWN, father_surname
                     )
 
@@ -525,7 +525,7 @@ class GeneWebParser:
         return None
 
     def read_person_notes_lines(self, line, fields):
-        (idx, person) = self.parse_person(fields, 1, None, None)
+        idx, person = self.parse_person(fields, 1, None, None)
         note_handle = self._read_notes_lines(fields[0])
         if note_handle:
             person.add_note(note_handle)

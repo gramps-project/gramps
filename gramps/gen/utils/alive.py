@@ -1058,9 +1058,9 @@ def probably_alive(
     # these include true if current_date is within the estimated range
     result = current_date.match(birth, ">=") and current_date.match(death, "<")
     if DEBUGLEVEL > 3:
-        (bthmin, bthmax) = birth.get_start_stop_range()
-        (dthmin, dthmax) = death.get_start_stop_range()
-        (dmin, dmax) = current_date.get_start_stop_range()
+        bthmin, bthmax = birth.get_start_stop_range()
+        dthmin, dthmax = death.get_start_stop_range()
+        dmin, dmax = current_date.get_start_stop_range()
         LOG.debug(
             "        alive=%s, btest: %s, dtest: %s (born %s-%s, dd %s-%s) vs (%s-%s)",
             result,

@@ -166,7 +166,7 @@ def import_from_filename(db, filename, user):
     """
     Import a file into a database.
     """
-    (_, ext) = os.path.splitext(os.path.basename(filename))
+    _, ext = os.path.splitext(os.path.basename(filename))
     extension = ext[1:].lower()
     pmgr = BasePluginManager.get_instance()
     import_list = pmgr.get_reg_importers()

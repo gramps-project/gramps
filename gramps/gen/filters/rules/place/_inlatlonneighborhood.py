@@ -36,7 +36,6 @@ _ = glocale.translation.gettext
 from .. import Rule
 from ....utils.place import conv_lat_lon
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

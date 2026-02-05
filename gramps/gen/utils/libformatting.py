@@ -22,6 +22,7 @@
 """Format of commonly used expressions, making use of a cache to not
 recompute
 """
+
 # -------------------------------------------------------------------------
 #
 # Python modules

@@ -355,7 +355,7 @@ class StyledText(BaseObject):
         :param data: Serialized format of instance variables.
         :type data: tuple
         """
-        (self._string, the_tags) = data
+        self._string, the_tags = data
 
         # I really wonder why this doesn't work... it does for all other types
         # self._tags = [StyledTextTag().unserialize(tag) for tag in the_tags]

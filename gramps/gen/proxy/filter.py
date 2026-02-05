@@ -23,6 +23,7 @@
 """
 Proxy class for the Gramps databases. Apply filter
 """
+
 # -------------------------------------------------------------------------
 #
 # Standard python modules

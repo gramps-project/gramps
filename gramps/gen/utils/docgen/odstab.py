@@ -65,9 +65,7 @@ xmlns:dom="http://www.w3.org/2001/xml-events"
 xmlns:xforms="http://www.w3.org/2002/xforms"
 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-""" % {
-    "urn": "urn:oasis:names:tc:opendocument:xmlns:"
-}
+""" % {"urn": "urn:oasis:names:tc:opendocument:xmlns:"}
 
 _DOC_FONTS = """\
 <office:font-face-decls>

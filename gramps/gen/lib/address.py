@@ -80,7 +80,7 @@ class Address(
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list, date, location) = data
+        privacy, citation_list, note_list, date, location = data
 
         PrivacyBase.unserialize(self, privacy)
         CitationBase.unserialize(self, citation_list)

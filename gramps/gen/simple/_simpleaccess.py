@@ -22,6 +22,7 @@
 """
 Provide a simplified database access interface to the Gramps database.
 """
+
 from ..lib import (
     Person,
     Family,

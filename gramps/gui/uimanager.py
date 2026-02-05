@@ -31,7 +31,6 @@ from gi.repository import GLib, Gio, Gtk
 from ..gen.const import GRAMPS_LOCALE as glocale
 from ..gen.config import config
 
-
 LOG = logging.getLogger("gui.uimanager")
 
 

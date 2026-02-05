@@ -38,7 +38,6 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .._hasnoteregexbase import HasNoteRegexBase
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

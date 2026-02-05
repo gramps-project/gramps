@@ -26,6 +26,7 @@
 """
 Generate an hourglass graph using the Graphviz generator.
 """
+
 # ------------------------------------------------------------------------
 #
 # python modules
@@ -340,7 +341,7 @@ class HourGlassReport(Report):
 
         label = label.replace('"', '\\"')
 
-        (shape, style, color, fill) = self.get_gender_style(person)
+        shape, style, color, fill = self.get_gender_style(person)
         self.doc.add_node(p_id, label, shape, color, style, fill)
 
         # save node with them label, father node id, mother node id and sosanumber

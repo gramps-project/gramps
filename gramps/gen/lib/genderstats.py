@@ -97,7 +97,7 @@ class GenderStats:
         self._set_stats(keyname, gender, undo)
 
     def _set_stats(self, keyname, gender, undo=0):
-        (male, female, unknown) = self.name_stats(keyname)
+        male, female, unknown = self.name_stats(keyname)
         if not undo:
             increment = 1
         else:
@@ -129,7 +129,7 @@ class GenderStats:
         if not name or name not in self.stats:
             return Person.UNKNOWN
 
-        (male, female, unknown) = self.stats[name]
+        male, female, unknown = self.stats[name]
         if unknown == 0:
             if male and not female:
                 return Person.MALE

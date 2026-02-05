@@ -21,6 +21,7 @@
 """
 Unittest that tests person-specific filter rules
 """
+
 import unittest
 import os
 from time import perf_counter

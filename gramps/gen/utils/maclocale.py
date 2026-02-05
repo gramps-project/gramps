@@ -160,7 +160,7 @@ def mac_setup_localization(glocale):
         if len(div) > 1:
             div = div[1].split(";")
             for phrase in div:
-                (name, value) = phrase.split("=")
+                name, value = phrase.split("=")
                 if name == "calendar":
                     calendar = glocale.check_available_translations(value)
 
@@ -290,7 +290,7 @@ def mac_setup_localization(glocale):
     _set_from_environment(glocale)
     if not glocale.lang:
         LOG.debug("Setting from the environment didn't work out, checking " "defaults")
-        (glocale.lang, glocale.calendar) = _mac_get_locale()
+        glocale.lang, glocale.calendar = _mac_get_locale()
 
     glocale.coll_qualifier = None
     glocale.collation = _mac_get_collation()

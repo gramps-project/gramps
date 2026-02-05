@@ -21,6 +21,7 @@
 """
 Filter rule to match family with a particular citation.
 """
+
 # -------------------------------------------------------------------------
 #
 # Standard Python modules

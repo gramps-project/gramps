@@ -372,7 +372,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
     def double_click(self, obj, event):
         if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
-            (model, node) = self.selection.get_selected()
+            model, node = self.selection.get_selected()
             if not node:
                 return
             sort_path = self.sort_model.get_path(node)
@@ -398,7 +398,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         cell.set_property("icon-name", the_icon)
 
     def add_results(self, results):
-        (the_type, handle, data) = results
+        the_type, handle, data = results
         gramps_id = data.gramps_id
 
         # if we have a function that will return to us some type

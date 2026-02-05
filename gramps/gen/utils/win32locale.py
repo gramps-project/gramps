@@ -20,6 +20,7 @@
 """
 win32locale provides l18n setup for the Microsoft Windows platform.
 """
+
 import os
 import locale
 from ctypes import cdll
@@ -115,7 +116,7 @@ def _check_mswin_locale(loc):
 
 
 def _check_mswin_locale_reverse(loc):
-    (lang, country) = loc.split("_")
+    lang, country = loc.split("_")
     # US English is the outlier, all other English locales want real English:
     if lang == "English" and country != "United States":
         return ("en_GB", "1252")
@@ -135,7 +136,7 @@ def _check_mswin_locale_reverse(loc):
 
 def _set_lang(glocale):
     if "LANG" in os.environ:
-        (lang, loc) = _check_mswin_locale(os.environ["LANG"])
+        lang, loc = _check_mswin_locale(os.environ["LANG"])
         if loc:
             locale.setlocale(locale.LC_ALL, ".".join(loc))
             glocale.lang = lang
@@ -144,14 +145,14 @@ def _set_lang(glocale):
             LOG.debug("%%LANG%% value %s not usable", os.environ["LANG"])
     if not glocale.lang:
         locale.setlocale(locale.LC_ALL, "")
-        (pylang, pyenc) = locale.getlocale()
+        pylang, pyenc = locale.getlocale()
         # Sometimes getlocale returns a Microsoft locale code
-        (lang, enc) = _check_mswin_locale_reverse(pylang)
+        lang, enc = _check_mswin_locale_reverse(pylang)
         if not lang is None:
             glocale.lang = lang
             glocale.encoding = enc
         else:  # and sometimes it returns a POSIX locale
-            (lang, enc) = _check_mswin_locale(pylang)
+            lang, enc = _check_mswin_locale(pylang)
             if not lang is None:
                 glocale.lang = lang
                 glocale.encoding = enc
@@ -198,16 +199,16 @@ def _set_collation(glocale, have_icu, icu_locales):
             else:
                 glocale.collation = glocale.lang
         else:
-            (coll, loc) = _check_mswin_locale(coll)
+            coll, loc = _check_mswin_locale(coll)
             if not loc:
-                (coll, loc) = _check_mswin_locale(glocale.lang)
+                coll, loc = _check_mswin_locale(glocale.lang)
                 glocale.collation = ".".join(loc)
                 locale.setlocale(locale.LC_COLLATE, glocale.collation)
     else:
         if have_icu:
             glocale.collation = glocale.lang
         else:
-            (coll, loc) = _check_mswin_locale(glocale.lang)
+            coll, loc = _check_mswin_locale(glocale.lang)
             if loc:
                 glocale.collation = ".".join(loc)
             else:

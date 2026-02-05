@@ -34,7 +34,6 @@ _ = glocale.translation.gettext
 from ....utils.db import for_each_ancestor
 from .. import Rule
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

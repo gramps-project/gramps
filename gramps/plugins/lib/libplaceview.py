@@ -313,8 +313,7 @@ class PlaceBaseView(ListView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-        % _("Organize Bookmarks"),
+""" % _("Organize Bookmarks"),
         """
       <placeholder id="CommonGo">
       <section>
@@ -348,8 +347,7 @@ class PlaceBaseView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-"""
-        % _("_Edit...", "action"),  # to use sgettext()
+""" % _("_Edit...", "action"),  # to use sgettext()
         """
         <placeholder id='otheredit'>
         <item>
@@ -441,8 +439,7 @@ class PlaceBaseView(ListView):
     </child>
     <placeholder id="PlaceMapUi"> </placeholder>
     </placeholder>
-"""
-        % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+""" % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
         """
     <menu id="Popup">
       <section id="PopUpTree">

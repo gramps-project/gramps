@@ -20,6 +20,7 @@
 """
 Location utility functions
 """
+
 from ..lib.date import Date, Today
 
 

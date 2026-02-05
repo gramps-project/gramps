@@ -331,7 +331,7 @@ def can_grab(rect, x, y):
     """
     Checks if (x,y) lies within one of the grabbers of rect.
     """
-    (x1, y1, x2, y2) = rect
+    x1, y1, x2, y2 = rect
     if (
         x2 - x1 >= MIN_SIDE_FOR_INSIDE_GRABBERS
         and y2 - y1 >= MIN_SIDE_FOR_INSIDE_GRABBERS

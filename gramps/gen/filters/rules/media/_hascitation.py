@@ -20,6 +20,7 @@
 """
 Filter rule to match persons with a particular citation.
 """
+
 # -------------------------------------------------------------------------
 #
 # Standard Python modules

@@ -39,7 +39,6 @@ from .. import Rule
 from ....lib import Person
 from ....db import Database
 
-
 _ = glocale.translation.gettext
 
 

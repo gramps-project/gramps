@@ -20,6 +20,7 @@
 """
 An override to allow resizable columns
 """
+
 import logging
 
 from gi.repository import Gtk

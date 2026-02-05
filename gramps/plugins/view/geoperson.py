@@ -22,6 +22,7 @@
 """
 Geography for one person
 """
+
 # -------------------------------------------------------------------------
 #
 # Python modules
@@ -104,8 +105,7 @@ _UI_DEF = [
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-    % _("Organize Bookmarks"),  # Following are the Toolbar items
+""" % _("Organize Bookmarks"),  # Following are the Toolbar items
     """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
@@ -479,7 +479,7 @@ class GeoPerson(GeoGraphyView):
                                     if place:
                                         longitude = place.get_longitude()
                                         latitude = place.get_latitude()
-                                        (latitude, longitude) = conv_lat_lon(
+                                        latitude, longitude = conv_lat_lon(
                                             latitude, longitude, "D.D8"
                                         )
                                         descr = _pd.display(dbstate.db, place)
@@ -584,7 +584,7 @@ class GeoPerson(GeoGraphyView):
             if mark[11] == EventRoleType.PRIMARY:
                 message = "(%s) %s : %s" % (date, mark[2], mark[1])
             elif mark[11] == EventRoleType.FAMILY:
-                (father_name, mother_name) = self._get_father_and_mother_name(evt)
+                father_name, mother_name = self._get_father_and_mother_name(evt)
                 message = "(%s) %s : %s - %s" % (
                     date,
                     mark[7],

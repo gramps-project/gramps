@@ -1024,7 +1024,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         cached, path = self.get_cached_path(iter.user_data)
         if cached:
-            (treepath, pathtup) = path
+            treepath, pathtup = path
             return treepath
         node = self.get_node_from_iter(iter)
         pathlist = []
@@ -1037,7 +1037,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                 # Let's see if sibling is cached:
                 cached, sib_path = self.get_cached_path(nodeid)
                 if cached:
-                    (sib_treepath, sib_pathtup) = sib_path
+                    sib_treepath, sib_pathtup = sib_path
                     # Does it have an actual path?
                     if sib_pathtup:
                         # Compute path to here from sibling:

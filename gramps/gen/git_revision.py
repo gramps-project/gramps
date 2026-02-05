@@ -33,7 +33,7 @@ def get_git_revision():
     command = ["git", "log", "-1", "--format=%h"]
     try:
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        (stdout, stderr) = proc.communicate()
+        stdout, stderr = proc.communicate()
     except OSError:
         return ""  # subprocess failed
     # subprocess worked

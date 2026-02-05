@@ -71,7 +71,7 @@ class Location(SecondaryObject, LocationBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (lbase, self.parish) = data
+        lbase, self.parish = data
         LocationBase.unserialize(self, lbase)
         return self
 

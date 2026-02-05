@@ -1094,7 +1094,7 @@ class GedLine:
         match = MOD.match(text)
         mod = ""
         if match:
-            (mod, text) = match.groups()
+            mod, text = match.groups()
             qual = QUALITY_MAP.get(mod, Date.QUAL_NONE)
             mod += " "
         else:
@@ -1106,13 +1106,13 @@ class GedLine:
         match2 = RANGE2.match(text)
         if match or match1 or match2:
             if match:
-                (cal1, data1, cal2, data2) = match.groups()
+                cal1, data1, cal2, data2 = match.groups()
             elif match1:
                 cal1 = Date.CAL_GREGORIAN
-                (data1, cal2, data2) = match1.groups()
+                data1, cal2, data2 = match1.groups()
             elif match2:
                 cal2 = Date.CAL_GREGORIAN
-                (cal1, data1, data2) = match2.groups()
+                cal1, data1, data2 = match2.groups()
             cal1 = CALENDAR_MAP_GEDCOM2XML.get(cal1, Date.CAL_GREGORIAN)
             cal2 = CALENDAR_MAP_GEDCOM2XML.get(cal2, Date.CAL_GREGORIAN)
             if cal1 != cal2:
@@ -1149,13 +1149,13 @@ class GedLine:
         match2 = SPAN2.match(text)
         if match or match1 or match2:
             if match:
-                (cal1, data1, cal2, data2) = match.groups()
+                cal1, data1, cal2, data2 = match.groups()
             elif match1:
                 cal1 = Date.CAL_GREGORIAN
-                (data1, cal2, data2) = match1.groups()
+                data1, cal2, data2 = match1.groups()
             elif match2:
                 cal2 = Date.CAL_GREGORIAN
-                (cal1, data1, data2) = match2.groups()
+                cal1, data1, data2 = match2.groups()
             cal1 = CALENDAR_MAP_GEDCOM2XML.get(cal1, Date.CAL_GREGORIAN)
             cal2 = CALENDAR_MAP_GEDCOM2XML.get(cal2, Date.CAL_GREGORIAN)
             if cal1 != cal2:
@@ -1187,7 +1187,7 @@ class GedLine:
 
         match = CAL.match(text)
         if match:
-            (abt, call, data) = match.groups()
+            abt, call, data = match.groups()
             call = CALENDAR_MAP_GEDCOM2XML.get(call, Date.CAL_GREGORIAN)
             data += CALENDAR_MAP_PARSESTRING.get(call, "")
             if abt:
@@ -3063,7 +3063,7 @@ class GedcomParser(UpdateCallback):
         cursor = dbase.get_place_cursor()
         data = next(cursor)
         while data:
-            (handle, val) = data
+            handle, val = data
             self.place_names[val.title].append(handle)
             data = next(cursor)
         cursor.close()
@@ -5888,7 +5888,7 @@ class GedcomParser(UpdateCallback):
             if sub_state.filename != "" and (
                 res.scheme == "" or len(res.scheme) == 1 or res.scheme == "file"
             ):
-                (valid, path) = self.__find_file(sub_state.filename, self.dir_path)
+                valid, path = self.__find_file(sub_state.filename, self.dir_path)
                 if not valid:
                     self.__add_msg(
                         _("Could not import %s") % sub_state.filename, line, state
@@ -7277,7 +7277,7 @@ class GedcomParser(UpdateCallback):
         if line.data != "" and (
             res.scheme == "" or len(res.scheme) == 1 or res.scheme == "file"
         ):
-            (file_ok, filename) = self.__find_file(line.data, self.dir_path)
+            file_ok, filename = self.__find_file(line.data, self.dir_path)
             if state.form != "url":
                 # Might not work if FORM doesn't precede FILE
                 if not file_ok:
@@ -8656,7 +8656,7 @@ class GedcomStageOne:
 
             try:
                 data = line.split(None, 3) + [""]
-                (level, key, value) = data[:3]
+                level, key, value = data[:3]
                 level = int(level)
                 key = key.strip()
                 value = value.strip()
@@ -8728,8 +8728,8 @@ def make_gedcom_date(subdate, calendar, mode, quality):
     Convert a Gramps date structure into a GEDCOM compatible date.
     """
     retval = ""
-    (day, mon, year) = subdate[0:3]
-    (mmap, prefix) = CALENDAR_MAP.get(calendar, (MONTH, ""))
+    day, mon, year = subdate[0:3]
+    mmap, prefix = CALENDAR_MAP.get(calendar, (MONTH, ""))
     if year < 0:
         year = -year
         bce = " B.C."

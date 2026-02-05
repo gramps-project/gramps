@@ -84,7 +84,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, the_type, self.value) = data
+        privacy, the_type, self.value = data
         PrivacyBase.unserialize(self, privacy)
         self.type.unserialize(the_type)
         return self
@@ -222,7 +222,7 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list, the_type, self.value) = data
+        privacy, citation_list, note_list, the_type, self.value = data
         PrivacyBase.unserialize(self, privacy)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)

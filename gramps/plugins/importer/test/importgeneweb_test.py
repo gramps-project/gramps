@@ -20,6 +20,7 @@
 """
 Unit test of the GeneWebParser
 """
+
 import unittest
 import logging
 from ..importgeneweb import GeneWebParser

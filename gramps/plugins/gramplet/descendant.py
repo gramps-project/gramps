@@ -95,7 +95,7 @@ class Descendant(Gramplet):
         """
         Handle double click on treeview.
         """
-        (model, iter_) = treeview.get_selection().get_selected()
+        model, iter_ = treeview.get_selection().get_selected()
         if not iter_:
             return
 
@@ -110,7 +110,7 @@ class Descendant(Gramplet):
         """
         Handle right click on treeview.
         """
-        (model, iter_) = treeview.get_selection().get_selected()
+        model, iter_ = treeview.get_selection().get_selected()
         sensitivity = 1 if iter_ else 0
         menu = Gtk.Menu()
         menu.set_reserve_toggle_size(False)

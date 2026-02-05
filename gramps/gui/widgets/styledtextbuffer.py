@@ -141,7 +141,7 @@ class GspellState:
     after Gspell replaces a misspelled word.
     """
 
-    (STATE_NONE, STATE_CLICKED, STATE_DELETED, STATE_INSERTING) = list(range(4))
+    STATE_NONE, STATE_CLICKED, STATE_DELETED, STATE_INSERTING = list(range(4))
 
     def __init__(self, textbuffer):
         if not isinstance(textbuffer, Gtk.TextBuffer):

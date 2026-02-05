@@ -21,6 +21,7 @@
 """
 Filter rule to match citation with a particular source.
 """
+
 # -------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -36,7 +37,6 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .._hassourcebase import HasSourceBase
-
 
 # -------------------------------------------------------------------------
 #
