@@ -7,13 +7,14 @@
 # Igor Kriznar <ikriznar@gmail.com>, 2022.
 # Milan <mobrcian@hotmail.com>, 2022.
 # Gregor Anželj <gregor.anzelj@gmail.com>, 2023.
+# Marko Zakrajsek <marko@zakrajsek.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2024-09-16 12:09+0000\n"
-"Last-Translator: beernarrd <beernarrd@gmail.com>\n"
+"PO-Revision-Date: 2026-02-06 10:01+0000\n"
+"Last-Translator: Marko Zakrajsek <marko@zakrajsek.org>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sl/>\n"
 "Language: sl\n"
@@ -22,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -12273,7 +12274,6 @@ msgid "_Close"
 msgstr "_Zapri"
 
 #: ../gramps/gui/configure.py:130
-#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -12304,37 +12304,35 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Naslednje ključne besede bodo zamenjane z ustreznim delom imena:\n"
-"<tt>  \n"
-"  <b>Imena</b>      - imena                 <b>Priimki</b>    - priimki (s "
-"predpono in veznimi členi)\n"
-"  <b>Naziv</b>      - naziv (Dr., Msgr.)    <b>Pripona</b>    - pripona "
-"(ml., II.)\n"
-"  <b>Klicno</b>     - klicno ime            <b>Vzdevek</b>    - vzdevek\n"
-"  <b>Začetnice</b>  - prve črke imena       <b>Običajno</b>   - vzdevek ali "
-"prvo od imen\n"
-"  <b>Primaren, Prim[pre], Prim[sam] ali Prim[vez]</b>   - polni primarni "
-"priimek, pripona, samo priimek, vez\n"
-"  <b>Patronim, Patr[pre], Patr[sam] ali Patr[vez]</b>   - polni pa-/"
-"matronimni priimek, pripona, samo priimek, vez\n"
-"  <b>Hišno</b>      - hišno, domače ime     <b>Predpona</b>   - vse predpone "
-"(von, de)\n"
-"  <b>Ostalo</b>     - preostali priimki     <b>Nepatronim</b> - vsi priimki, "
-"ki niso patronim ali primarni\n"
-"  <b>ZgoljPriimki</b>- vsa imena brez predpon in drugih členov\n"
-"\n"
+"Naslednje ključne besede se zamenjajo z ustreznimi deli imena:<tt>\n"
+"  <b>Ime</b>        – osebno ime (ime)            <b>Priimek</b>    – "
+"priimki (s predponami in vezniki)\n"
+"  <b>Naziv</b>      – naziv (Dr., ga.)            <b>Pripona</b>    – "
+"pripona (ml., st.)\n"
+"  <b>Klicno ime</b>  – klicno ime                  <b>Vzdevek</b>    – "
+"vzdevek\n"
+"  <b>Začetnice</b>  – začetnice osebnega imena   <b>Splošno</b>    – "
+"vzdevek, klicno ime ali prvo osebno ime\n"
+"  <b>Predpona</b>   – vse predpone (von, de)\n"
+"Priimki:\n"
+"  <b>Ostalo</b>        – sekundarni priimki       <b>Ne patronimični</b> – "
+"vsi priimki razen pa/matronimičnih in primarnega\n"
+"  <b>Družinski vzdevek</b> – družinski vzdevek     <b>Surovi priimki</b>  – "
+"priimki (brez predpon in veznikov)\n"
+"  <b>Primarni, Primarni[pre] ali [sur] ali [con]</b> – celoten primarni "
+"priimek, predpona, samo priimek ali veznik\n"
+"  <b>Patronimični ali [pre] ali [sur] ali [con]</b> – celoten pa/"
+"matronimični priimek, predpona, samo priimek ali veznik\n"
 "</tt>\n"
-"Uporabite isto ključno besedo v TISKANIH ČRKAH, če hočete tiskane črke. "
-"Oklepaji in vejice \n"
-"bodo pri praznih poljih odstranjeni. Ostalo besedilo bo navedeno dobesedno.\n"
+"Ključna beseda v VELIKIH ČRKAH vsili velike črke. Odvečni oklepaji in vejice "
+"se odstranijo. Drugo besedilo se prikaže dobesedno.\n"
 "\n"
-"<b>Primer</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
-"Underhills'\n"
-"    <i>Edwin Jose</i> je ime, <i>von der</i> pripona, <i>Smith</i> in "
-"<i>Weston</i> sta priimka,\n"
-"    <i>and</i> vezni člen, <i>Wilson</i> patronim, <i>Dr.</i> naziv, <i>Sr</"
-"i> pripona, <i>Ed</i> vzdevek, \n"
-"    <i>Underhills</i> hišno ime in <i>Jose</i> klicno ime.\n"
+"<b>Primer</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") – "
+"Underhills\n"
+"     <i>Edwin Jose</i>: Ime, <i>von der</i>: Predpona, <i>Smith</i> in <i>"
+"Weston</i>: Primarni, <i>and</i>: [con], <i>Wilson</i>: Patronimični,\n"
+"     <i>Dr.</i>: Naziv, <i>Sr</i>: Pripona, <i>Ed</i>: Vzdevek, <i>"
+"Underhills</i>: Družinski vzdevek, <i>Jose</i>: Klicno ime.\n"
 
 #: ../gramps/gui/configure.py:161
 msgid " Name Editor"
@@ -12814,12 +12812,12 @@ msgid "Status bar"
 msgstr "Statusna vrstica"
 
 #: ../gramps/gui/configure.py:1669
-#, fuzzy
-#| msgid "Report Options"
 msgid ""
 "\n"
 "Input Options"
-msgstr "Možnosti poročila"
+msgstr ""
+"\n"
+"Vhodne možnosti"
 
 #: ../gramps/gui/configure.py:1683
 msgid "Surname guessing"
@@ -13139,12 +13137,12 @@ msgid "Database backend"
 msgstr "Zaledje zbirke podatkov"
 
 #: ../gramps/gui/configure.py:2258
-#, fuzzy
-#| msgid "Database Information"
 msgid ""
 "\n"
 "Database Location"
-msgstr "Podatki o zbirki podatkov"
+msgstr ""
+"\n"
+"Lokacija podatkovne baze"
 
 #: ../gramps/gui/configure.py:2269
 msgid "Host"
@@ -13161,12 +13159,12 @@ msgid "Database path"
 msgstr "Vrsta zbirke podatkov"
 
 #: ../gramps/gui/configure.py:2293
-#, fuzzy
-#| msgid "Backup on exit"
 msgid ""
 "\n"
 "Backup Management"
-msgstr "Izdelaj varnostno kopijo ob izhodu"
+msgstr ""
+"\n"
+"Upravljanje varnostnih kopij"
 
 #: ../gramps/gui/configure.py:2306
 msgid "Backup path"
@@ -13205,12 +13203,12 @@ msgid "Autobackup"
 msgstr "Samodejno ustvarjaj varnostne kopije"
 
 #: ../gramps/gui/configure.py:2346
-#, fuzzy
-#| msgid "Family Tree Database path"
 msgid ""
 "\n"
 "Family Tree's Media path"
-msgstr "Pot do datotek rodovnika"
+msgstr ""
+"\n"
+"Pot do medijev družinskega drevesa"
 
 #: ../gramps/gui/configure.py:2359
 #, fuzzy
@@ -13252,12 +13250,12 @@ msgstr ""
 "Za nastavitev privzete oznake jo izbrišite."
 
 #: ../gramps/gui/configure.py:2430
-#, fuzzy
-#| msgid "GEDCOM import"
 msgid ""
 "\n"
 "Source GEDCOM import"
-msgstr "Uvoz GEDCOM"
+msgstr ""
+"\n"
+"Uvoz izvornega GEDCOM-a"
 
 #: ../gramps/gui/configure.py:2442
 msgid "Add default source on GEDCOM import"
@@ -16047,15 +16045,6 @@ msgid "Use regular expressions"
 msgstr "Uporabi regularne izraze"
 
 #: ../gramps/gui/editors/filtereditor.py:651
-#, fuzzy
-#| msgid ""
-#| "Interpret the contents of string fields as regular expressions.\n"
-#| "A decimal point will match any character. A question mark will match zero "
-#| "or one occurences of the previous character or group. An asterisk will "
-#| "match zero or more occurences. A plus sign will match one or more "
-#| "occurences. Use parentheses to group expressions. Specify alternatives "
-#| "using a vertical bar. A caret will match the start of a line. A dollar "
-#| "sign will match the end of a line."
 msgid ""
 "Interpret the contents of string fields as regular expressions:\n"
 ".\tA decimal point will match any character.\n"
@@ -16068,12 +16057,15 @@ msgid ""
 "^\tA caret will match the start of a line.\n"
 "$\tA dollar sign will match the end of a line."
 msgstr ""
-"Vsebino besedilnih polj upoštevaj kot regularni izraz.\n"
-"Pika nadomešča vsak znak. Vprašaj nadomešča nič ali eno ponovitev prejšnjega "
-"znaka ali skupine znakov. Zvezdica nadomešča nič ali več ponovitev. Plus "
-"nadomešča eno ali več ponovitev. Za združevanje izrazov uporabite oklepaje. "
-"Alternativne možnosti označite s pomočjo navpične črte. Narobe obrnjena "
-"strešica označuje začetek vrstice. Dolar označuje konec vrstice."
+"Vsebino besedilnih polj obravnavaj kot regularne izraze:\n"
+".\tDecimalna pika se ujema s katerimkoli znakom.\n"
+"?\tVprašaj se ujema z nič ali enim pojavom prejšnjega znaka ali skupine.\n"
+"*\tZvezdica se ujema z nič ali več pojavi.\n"
+"+\tPlus se ujema z enim ali več pojavi.\n"
+"()\tUporabi oklepaje za združevanje izrazov.\n"
+"|\tAlternativne možnosti določi z navpičnico.\n"
+"^\tStrešica se ujema z začetkom vrstice.\n"
+"$\tDolar se ujema s koncem vrstice."
 
 #: ../gramps/gui/editors/filtereditor.py:667
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:85
