@@ -10,7 +10,7 @@
 # Alex Roitman <shura@gramps-project.org>, 2006.
 # Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2025.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
-# Christoph Eder <christoph.eder@phsalzburg.at>, 2020, 2021, 2024, 2025.
+# Christoph Eder <christoph.eder@phsalzburg.at>, 2020, 2021, 2024, 2025, 2026.
 # cedecode <christoph.eder@phsalzburg.at>, 2021, 2022.
 # Florian Demmer <fdemmer@gmail.com>, 2022.
 # David Straub <straub@protonmail.com>, 2022.
@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-12-01 22:00+0000\n"
+"PO-Revision-Date: 2026-01-17 08:01+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -38205,7 +38205,7 @@ msgstr "Anfangs-URL"
 
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Search URL"
-msgstr "Suche URL"
+msgstr "Such-URL"
 
 #: ../gramps/plugins/view/repoview.py:138
 msgid "Add a new repository"
