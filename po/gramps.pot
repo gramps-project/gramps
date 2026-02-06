@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-08 19:02+0000\n"
+"POT-Creation-Date: 2026-02-06 16:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1346,15 +1346,15 @@ msgstr ""
 #: ../gramps/cli/clidbman.py:603 ../gramps/gen/lib/attrtype.py:73
 #: ../gramps/gen/lib/childreftype.py:79 ../gramps/gen/lib/eventroletype.py:70
 #: ../gramps/gen/lib/eventtype.py:197 ../gramps/gen/lib/familyreltype.py:59
-#: ../gramps/gen/lib/grampstype.py:44 ../gramps/gen/lib/nameorigintype.py:79
-#: ../gramps/gen/lib/nametype.py:55 ../gramps/gen/lib/notetype.py:83
-#: ../gramps/gen/lib/placetype.py:72 ../gramps/gen/lib/repotype.py:61
-#: ../gramps/gen/lib/srcattrtype.py:52 ../gramps/gen/lib/srcmediatype.py:65
-#: ../gramps/gen/lib/urltype.py:56 ../gramps/gen/utils/lds.py:81
-#: ../gramps/gen/utils/lds.py:87 ../gramps/gen/utils/unknown.py:132
-#: ../gramps/gen/utils/unknown.py:133 ../gramps/gen/utils/unknown.py:135
-#: ../gramps/gen/utils/unknown.py:139 ../gramps/gen/utils/unknown.py:145
-#: ../gramps/gen/utils/unknown.py:150 ../gramps/gui/clipboard.py:204
+#: ../gramps/gen/lib/grampstype.py:44 ../gramps/gen/lib/nametype.py:55
+#: ../gramps/gen/lib/notetype.py:83 ../gramps/gen/lib/placetype.py:72
+#: ../gramps/gen/lib/repotype.py:61 ../gramps/gen/lib/srcattrtype.py:52
+#: ../gramps/gen/lib/srcmediatype.py:65 ../gramps/gen/lib/urltype.py:56
+#: ../gramps/gen/utils/lds.py:81 ../gramps/gen/utils/lds.py:87
+#: ../gramps/gen/utils/unknown.py:132 ../gramps/gen/utils/unknown.py:133
+#: ../gramps/gen/utils/unknown.py:135 ../gramps/gen/utils/unknown.py:139
+#: ../gramps/gen/utils/unknown.py:145 ../gramps/gen/utils/unknown.py:150
+#: ../gramps/gui/clipboard.py:204
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:185
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:203
 #: ../gramps/gui/editors/editmedia.py:203
@@ -7998,6 +7998,11 @@ msgstr ""
 msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr ""
 
+#: ../gramps/gen/lib/nameorigintype.py:79
+msgctxt "Surname"
+msgid "Unknown"
+msgstr ""
+
 #: ../gramps/gen/lib/nameorigintype.py:82
 msgctxt "Surname"
 msgid "Inherited"
@@ -8680,7 +8685,6 @@ msgstr ""
 #: ../gramps/gui/configure.py:1089 ../gramps/gui/configure.py:1090
 #: ../gramps/gui/configure.py:1092 ../gramps/gui/configure.py:1093
 #: ../gramps/gui/configure.py:1094 ../gramps/gui/configure.py:1095
-#: ../gramps/gui/editors/displaytabs/surnametab.py:79
 #: ../gramps/gui/plug/_guioptions.py:91 ../gramps/gui/plug/_guioptions.py:1524
 #: ../gramps/plugins/drawreport/statisticschart.py:367
 #: ../gramps/plugins/export/exportcsv.py:419
@@ -10998,7 +11002,7 @@ msgstr ""
 msgid "Chinese (Traditional)"
 msgstr ""
 
-#: ../gramps/grampsapp.py:208
+#: ../gramps/grampsapp.py:209
 #, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least Python %(v1)d."
@@ -11007,42 +11011,42 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 
-#: ../gramps/grampsapp.py:226
+#: ../gramps/grampsapp.py:227
 msgid ""
 "The orjson package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
 
-#: ../gramps/grampsapp.py:322 ../gramps/grampsapp.py:383
-#: ../gramps/grampsapp.py:407 ../gramps/grampsapp.py:424
-#: ../gramps/grampsapp.py:435 ../gramps/grampsapp.py:457
-#: ../gramps/grampsapp.py:465
+#: ../gramps/grampsapp.py:323 ../gramps/grampsapp.py:384
+#: ../gramps/grampsapp.py:408 ../gramps/grampsapp.py:425
+#: ../gramps/grampsapp.py:436 ../gramps/grampsapp.py:458
+#: ../gramps/grampsapp.py:466
 msgid "not found"
 msgstr ""
 
-#: ../gramps/grampsapp.py:386
+#: ../gramps/grampsapp.py:387
 msgid "not found because exiv2 is not installed"
 msgstr ""
 
-#: ../gramps/grampsapp.py:422
+#: ../gramps/grampsapp.py:423
 msgid "Installed but does not supply version"
 msgstr ""
 
-#: ../gramps/grampsapp.py:443
+#: ../gramps/grampsapp.py:444
 msgid "installed"
 msgstr ""
 
-#: ../gramps/grampsapp.py:624 ../gramps/grampsapp.py:633
-#: ../gramps/grampsapp.py:683
+#: ../gramps/grampsapp.py:625 ../gramps/grampsapp.py:634
+#: ../gramps/grampsapp.py:684
 msgid "Configuration error:"
 msgstr ""
 
-#: ../gramps/grampsapp.py:628
+#: ../gramps/grampsapp.py:629
 msgid "Could not read configuration"
 msgstr ""
 
-#: ../gramps/grampsapp.py:635
+#: ../gramps/grampsapp.py:636
 #, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
@@ -13445,6 +13449,11 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:72
 msgid "Move the selected surname downwards"
+msgstr ""
+
+#: ../gramps/gui/editors/displaytabs/surnametab.py:79
+msgctxt "Multiple surnames"
+msgid "Surname"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:82
@@ -16022,6 +16031,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
+msgctxt "Given names"
 msgid "_Given:"
 msgstr ""
 
