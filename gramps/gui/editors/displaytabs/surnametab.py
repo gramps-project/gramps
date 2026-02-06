@@ -76,7 +76,7 @@ class SurnameTab(EmbeddedList):
     #  (name, sortcol in model, width, markup/text
     _column_names = [
         (_("Prefix"), 0, 150, TEXT_EDIT_COL, -1, None),
-        (_("Surname"), 1, -1, TEXT_EDIT_COL, -1, None),
+        (_("Surname", "Multiple surnames"), 1, -1, TEXT_EDIT_COL, -1, None),
         (_("Connector"), 2, 100, TEXT_EDIT_COL, -1, None),
     ]
     _column_combo = (_("Origin"), -1, 150, 3)  # name, sort, width, modelcol

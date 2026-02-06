@@ -76,7 +76,7 @@ class NameOriginType(GrampsType):
     _DEFAULT = NONE
 
     _DATAMAP = [
-        (UNKNOWN, _("Unknown"), "Unknown "),
+        (UNKNOWN, _("Unknown", "Surname"), "Unknown "),
         (CUSTOM, _("Custom"), "Custom"),
         (NONE, "", ""),
         (INHERITED, _("Inherited", "Surname"), "Inherited"),
