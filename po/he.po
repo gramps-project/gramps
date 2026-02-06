@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2009
 # First Translator: Igal Shapira <igal.shapira@gmail.com>, 2009, 2010, 2011.
-# Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021, 2022, 2023, 2024, 2025.
+# Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021, 2022, 2023, 2024, 2025, 2026.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2023, 2024.
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2021, 2022, 2023.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2023, 2024, 2025.
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-12-22 14:19+0000\n"
+"PO-Revision-Date: 2026-01-27 06:19+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.16-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -12193,7 +12193,7 @@ msgstr "אפשרויות מצג שמות מותאמות אישית, הן ייח�
 
 #: ../gramps/gui/configure.py:1530
 msgid "Consider single pa/matronymic as surname"
-msgstr "להחשיב משפחה שם שנגזר משם האב/שם שנגזר משם האם חד הורית כשם משפחה"
+msgstr "להתייחס לשם־אב/שם־אם יחיד כאל שם־משפחה"
 
 #: ../gramps/gui/configure.py:1548
 msgid "Date format *"
@@ -12217,11 +12217,11 @@ msgstr "דיוק מצג גיל *"
 
 #: ../gramps/gui/configure.py:1578
 msgid "Round the year"
-msgstr "עיגול השנה"
+msgstr "עיגול שנים בגילאים"
 
 #: ../gramps/gui/configure.py:1589
 msgid "Display ages for events after death *"
-msgstr "הצגת גילאים לאירועים לאחר הפטירה *"
+msgstr "הצגת גילאים באירועים שהתרחשו לאחר פטירה *"
 
 #: ../gramps/gui/configure.py:1605
 msgid "Calendar on reports"
