@@ -3,13 +3,13 @@
 # Copyright (C) Gramps project
 # josip <josip@pisoj.com>, 2008-2011.
 # Milo Ivir <mivir@milotype.de>, 2018., 2019.
-# Milo Ivir <mail@milotype.de>, 2021, 2022, 2023, 2024, 2025.
+# Milo Ivir <mail@milotype.de>, 2021, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-12-09 17:00+0000\n"
+"PO-Revision-Date: 2026-02-04 10:01+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.16-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -6575,7 +6575,7 @@ msgstr "Pronalazi izvore s određenim brojem referenca spremišta"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:54
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr "Izvori s referencama spremišta koja sadrže <tekst> u „Pozivnom broju”"
+msgstr "Izvori s referencama spremišta koja sadrže <tekst> u „Signaturi”"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:56
 msgid ""
@@ -6583,7 +6583,7 @@ msgid ""
 "containing a substring in \"Call Number\""
 msgstr ""
 "Pronalazi izvore čije reference spremišta\n"
-"sadrže određeni podniz znakova u „Pozivnom broju”"
+"sadrže određeni podniz znakova u „Signaturi”"
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:50
 msgid "Matches sources with particular parameters"
@@ -9071,7 +9071,7 @@ msgstr "Referenca spremišta"
 #: ../gramps/gen/lib/reporef.py:111
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 msgid "Call Number"
-msgstr "Pozivni broj"
+msgstr "Signatura"
 
 #: ../gramps/gen/lib/repotype.py:63
 msgid "Library"
@@ -27472,7 +27472,7 @@ msgstr "Verzija programa"
 #: ../gramps/plugins/lib/libgedcom.py:7792
 #, python-format
 msgid "Business that produced the product: %s"
-msgstr "Proizvođač programa: %s"
+msgstr "Tvrtka koja je proizvela proizvod: %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7813
 msgid "Name of source data"
@@ -32556,7 +32556,7 @@ msgstr "Nema reference za %s"
 #: ../gramps/plugins/quickview/reporef.py:63
 #: ../gramps/plugins/webreport/basepage.py:3639
 msgid "Call number"
-msgstr "Pozivni broj"
+msgstr "Signatura"
 
 #: ../gramps/plugins/quickview/reporef.py:63
 msgid "Type of media"
