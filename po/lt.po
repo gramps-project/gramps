@@ -6,13 +6,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Vykintas Vyšniauskas <vykintasv@gmail.com>, 2025.
 # Tadas Masiulionis <tadzikaz@gmail.com>, 2025.
+# openSUSE Lietuviškai <opensuse.lietuviu.kalba@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-10-02 22:02+0000\n"
-"Last-Translator: Tadas Masiulionis <tadzikaz@gmail.com>\n"
+"PO-Revision-Date: 2026-01-11 10:01+0000\n"
+"Last-Translator: openSUSE Lietuviškai <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/lt/>\n"
 "Language: lt\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -912,9 +913,9 @@ msgid ""
 "database. The list can be sorted by a number of different criteria, such as "
 "City, County or State."
 msgstr ""
-"<b>Vietovių Tvarkymas</b><br/>Vietovių peržiūra rodo visų duombazėje esančių "
+"<b>Vietovių tvarkymas</b><br/>Vietovių peržiūra rodo visų duombazėje esančių "
 "vietovių sąrašą. Sąrašas gali būti rūšiuojamas pagal skirtingus kriterijus, "
-"pvz: miestas, apygarda, valstija."
+"pvz: miestas, rajonas, apskritis."
 
 #: ../data/tips.xml:82
 msgid ""
@@ -6293,15 +6294,15 @@ msgstr "Vietovė:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:62
 msgid "City:"
-msgstr "Miestas:"
+msgstr "Gyvenvietė:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:63
 msgid "County:"
-msgstr "Apskritis:"
+msgstr "Savivaldybė/rajonas:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:64
 msgid "State:"
-msgstr "Valstija:"
+msgstr "Apskritis:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:65
 msgid "Country:"
@@ -6309,7 +6310,7 @@ msgstr "Šalis:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:66
 msgid "ZIP/Postal Code:"
-msgstr "ZIP/pašto kodas:"
+msgstr "Pašto kodas:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:67
 msgid "Church Parish:"
@@ -6928,7 +6929,7 @@ msgstr "Vietovė"
 #: ../gramps/plugins/webreport/basepage.py:3425
 #: ../gramps/plugins/webreport/basepage.py:3503
 msgid "City"
-msgstr "Miestas"
+msgstr "Gyvenvietė"
 
 #: ../gramps/gen/lib/address.py:123 ../gramps/gen/lib/location.py:94
 #: ../gramps/gen/lib/placetype.py:76
@@ -6940,7 +6941,7 @@ msgstr "Miestas"
 #: ../gramps/plugins/webreport/basepage.py:3427
 #: ../gramps/plugins/webreport/basepage.py:3505
 msgid "County"
-msgstr "Apygarda"
+msgstr "Savivaldybė/rajonas"
 
 #: ../gramps/gen/lib/address.py:124 ../gramps/gen/lib/location.py:95
 #: ../gramps/gen/lib/placetype.py:75
@@ -6949,7 +6950,7 @@ msgstr "Apygarda"
 #: ../gramps/plugins/lib/maps/placeselection.py:160
 #: ../gramps/plugins/view/geoplaces.py:614
 msgid "State"
-msgstr "Valstija"
+msgstr "Apskritis"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:96
 #: ../gramps/gen/lib/placetype.py:74 ../gramps/gui/configure.py:721
@@ -7551,9 +7552,8 @@ msgid "Text"
 msgstr "Tekstas"
 
 #: ../gramps/gen/lib/date.py:797
-#, fuzzy
 msgid "Sort value"
-msgstr "Rūšiuoti kaip"
+msgstr "Rikiavimo reikšmė"
 
 #: ../gramps/gen/lib/date.py:798
 #, fuzzy
@@ -8100,10 +8100,8 @@ msgid "Alternate Marriage"
 msgstr "Alternatyvi santuoka"
 
 #: ../gramps/gen/lib/eventtype.py:243
-#, fuzzy
-#| msgid "Stillborn"
 msgid "Stillbirth"
-msgstr "Gimęs negyvas"
+msgstr "Negyvagimis"
 
 #: ../gramps/gen/lib/eventtype.py:247
 #: ../gramps/plugins/drawreport/ancestortree.py:73
@@ -8659,7 +8657,7 @@ msgstr "Regionas"
 #: ../gramps/plugins/webreport/person.py:2348
 #: ../gramps/plugins/webreport/surname.py:147
 msgid "Name"
-msgstr "Pavadinimas"
+msgstr "Vardas"
 
 #: ../gramps/gen/lib/name.py:180 ../gramps/plugins/importer/importcsv.py:206
 msgid "Given name"
@@ -8718,7 +8716,7 @@ msgstr "Grupuoti kaip"
 
 #: ../gramps/gen/lib/name.py:190
 msgid "Sort as"
-msgstr "Rūšiuoti kaip"
+msgstr "Rikiavime pagal"
 
 #: ../gramps/gen/lib/name.py:191
 msgid "Display as"
@@ -10299,14 +10297,12 @@ msgid "Large"
 msgstr "Didelis"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:125
-#, fuzzy
 msgid "Very large"
 msgstr "Visos vietovės"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:126
-#, fuzzy
 msgid "Extra large"
-msgstr "Ištraukti vietovės duomenis"
+msgstr "Ypatingai didelis"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:127
 msgid "Huge"
@@ -12325,11 +12321,11 @@ msgstr "Tyrėjas"
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/plugins/view/repoview.py:92
 msgid "State/County"
-msgstr "Valstija / apskritis"
+msgstr "Apskritis / savivaldybė"
 
 #: ../gramps/gui/configure.py:726 ../gramps/plugins/view/repoview.py:94
 msgid "ZIP/Postal Code"
-msgstr "ZIP / pašto kodas"
+msgstr "Pašto kodas"
 
 #: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1650
 #: ../gramps/plugins/view/repoview.py:95
@@ -13218,9 +13214,8 @@ msgid "Use symbols"
 msgstr "Naudokite simbolius"
 
 #: ../gramps/gui/configure.py:2677
-#, fuzzy
 msgid "Select default death symbol"
-msgstr "Nustatyti kaip pagrindinį vardą"
+msgstr "Pasirinkite numatytąjį mirties simbolį"
 
 #: ../gramps/gui/configure.py:2687
 #, fuzzy
@@ -13808,13 +13803,11 @@ msgstr "Įrankiai"
 
 #: ../gramps/gui/displaystate.py:422
 msgid "Open Addon Manager"
-msgstr "Atverti įskiepių tvarkyklę"
+msgstr "Atverti papildinių tvarkytuvę"
 
 #: ../gramps/gui/displaystate.py:423 ../gramps/gui/plug/_windows.py:479
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addons"
-msgstr "Papildinio pavadinimas"
+msgstr "Papildiniai"
 
 #: ../gramps/gui/displaystate.py:428
 msgid "Open Preferences"
@@ -13970,8 +13963,6 @@ msgid "Move the selected address downwards"
 msgstr "Perkelti pažymėtą adresą žemyn"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:78
-#, fuzzy
-#| msgid "Postal Code"
 msgid "Postal"
 msgstr "Pašto kodas"
 
@@ -15437,7 +15428,7 @@ msgstr "Nustatyti aktyvų asmenį"
 
 #: ../gramps/gui/editors/editperson.py:787
 msgid "Make Home Person"
-msgstr "Nustatyti pagrindinį asmenį"
+msgstr "Nustatyti pagrindiniu asmeniu"
 
 #: ../gramps/gui/editors/editperson.py:908
 msgid "Problem changing the gender"
@@ -15531,7 +15522,7 @@ msgstr "Jums reikia arba pasirinkti asmenį, arba atšaukti taisymą"
 #: ../gramps/gui/editors/editplace.py:76
 msgctxt "manual"
 msgid "Place_Editor_dialog"
-msgstr "Vietovės redaktoriaus langas"
+msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:110
 #: ../gramps/gui/editors/editplaceref.py:113
@@ -15603,7 +15594,7 @@ msgstr "Naujas"
 #: ../gramps/gui/editors/editplacename.py:71
 msgctxt "manual"
 msgid "Place_Name_Editor_dialog"
-msgstr "Vietovės pavadinimų redaktoriaus langas"
+msgstr ""
 
 #: ../gramps/gui/editors/editplacename.py:93
 #: ../gramps/gui/editors/editplacename.py:135
@@ -16024,10 +16015,8 @@ msgid "To select a person, use drag-and-drop or use the buttons"
 msgstr "Vietovei pasirinkti naudokite mygtukus arba vilkite pele"
 
 #: ../gramps/gui/editors/objectentries.py:307
-#, fuzzy
-#| msgid "No place given, click button to select one"
 msgid "No person given, click button to select one"
-msgstr "Nenurodyta vietovė, su pele pasirinkite vieną"
+msgstr "Neparinkote asmens, spauskite mygtuką pasirinkimui"
 
 #: ../gramps/gui/editors/objectentries.py:308
 #, fuzzy
@@ -16058,7 +16047,7 @@ msgstr "Vietovei pasirinkti naudokite mygtukus arba vilkite pele"
 
 #: ../gramps/gui/editors/objectentries.py:376
 msgid "No place given, click button to select one"
-msgstr "Nenurodyta vietovė, su pele pasirinkite vieną"
+msgstr "Neparinkote vietovės, spauskite mygtuką pasirinkimui"
 
 #: ../gramps/gui/editors/objectentries.py:377
 msgid "Edit place"
@@ -16665,17 +16654,17 @@ msgstr "M_iestas:"
 
 #: ../gramps/gui/glade/editaddress.glade:138
 msgid "The town or city of the address"
-msgstr "Adresas: miestelis arba miestas"
+msgstr "Kaimas, miestelis arba miestas adrese"
 
 #: ../gramps/gui/glade/editaddress.glade:152
 #: ../gramps/plugins/tool/ownereditor.glade:155
 msgid "_State/County:"
-msgstr "_Valstija/Apygarda:"
+msgstr "_Apskritis/savivaldybė/rajonas:"
 
 #: ../gramps/gui/glade/editaddress.glade:167
 #: ../gramps/gui/glade/editlocation.glade:246
 msgid "_ZIP/Postal code:"
-msgstr "_ZIP/pašto kodas:"
+msgstr "_Pašto kodas:"
 
 #: ../gramps/gui/glade/editaddress.glade:181
 msgid "Postal code"
@@ -17190,22 +17179,24 @@ msgstr ""
 
 #: ../gramps/gui/glade/editlocation.glade:162
 msgid "Co_unty:"
-msgstr "_Apygarda/grafystė:"
+msgstr "_Savivaldybė/rajonas:"
 
 #: ../gramps/gui/glade/editlocation.glade:176
 msgid "Third level of place division. Eg., in the USA a county."
-msgstr "Trečio lygio vietos padalinys. Pvz., JAV apygarda."
+msgstr ""
+"Trečio lygio vietos padalinys. Pvz., savivaldybė Lietuvoje, JAV apygarda."
 
 #: ../gramps/gui/glade/editlocation.glade:190
 msgid "_State:"
-msgstr "_Valstija:"
+msgstr "_Apskritis:"
 
 #: ../gramps/gui/glade/editlocation.glade:204
 msgid ""
 "Second level of place division, eg., in the USA a state, in Germany a "
 "Bundesland."
 msgstr ""
-"Antro lygio vietos padalinys, pvz., JAV valstija, Vokietijos Bundesland."
+"Antro lygio vietos padalinys, pvz., apskritis Lietuvoje, JAV valstija, "
+"Vokietijos žemė."
 
 #: ../gramps/gui/glade/editlocation.glade:232
 msgid "The country where the place is."
@@ -17398,8 +17389,8 @@ msgid ""
 "some reports."
 msgstr ""
 "Vardo dalis, kuri paprastai naudojama varde. Jei fonas yra raudonas, "
-"kreipinio vardas nėra vardo dalis ir nebus spausdinama pabraukiant "
-"kaikuriose ataskaitose."
+"kreipinio vardas nėra vardo dalis ir kai kuriose ataskaitose nebus "
+"spausdinama pabrauktai."
 
 #: ../gramps/gui/glade/editname.glade:288
 #: ../gramps/gui/glade/editperson.glade:209
@@ -17446,7 +17437,7 @@ msgstr "G_rupuoti kaip:"
 
 #: ../gramps/gui/glade/editname.glade:493
 msgid "_Sort as:"
-msgstr "_Rūšiuoti kaip:"
+msgstr "_Rikiavime kaip:"
 
 #: ../gramps/gui/glade/editname.glade:507
 msgid "_Display as:"
@@ -17724,7 +17715,7 @@ msgstr "Kodas susijęs su šia vietove. Pvz., šalies kodas arba pašto kodas."
 #: ../gramps/gui/glade/editplace.glade:379
 #: ../gramps/gui/glade/editplaceref.glade:416
 msgid "What type of place this is. Eg 'Country', 'City', ..."
-msgstr "Kokios rūšies yra ši vieta. Pvz., 'Šalis', 'Miestas', ..."
+msgstr "Kokios rūšies yra ši vieta. Pvz., „Šalis“, „Gyvenvietė“, ..."
 
 #: ../gramps/gui/glade/editplace.glade:442
 #: ../gramps/gui/glade/editplaceref.glade:618
@@ -18676,7 +18667,7 @@ msgstr "_Rodyti paleidžiant"
 #: ../gramps/plugins/view/sourceview.py:172
 #: ../gramps/plugins/view/sourceview.py:216
 msgid "_Forward"
-msgstr "_Pirmyn"
+msgstr "_Toliau"
 
 #: ../gramps/gui/glade/updateaddons.glade:40
 msgid "Install Selected _Addons"
@@ -18776,10 +18767,8 @@ msgid "_About"
 msgstr "_Apie"
 
 #: ../gramps/gui/grampsgui.py:57
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "Pridėti partnerį..."
+msgstr "Papil_dinių tvarkytuvė..."
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Bookmarks"
@@ -19485,7 +19474,7 @@ msgstr "Reikalavimai"
 
 #: ../gramps/gui/plug/_windows.py:385
 msgid "Addon Manager"
-msgstr "Įskiepių tvarkyklė"
+msgstr "Papildinių tvarkytuvė"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/plugins/gramplet/leak.py:113
 msgid "Refresh"
@@ -19756,7 +19745,7 @@ msgstr "Įkelti įskiepiai"
 
 #: ../gramps/gui/plug/_windows.py:1184
 msgid "Addon Name"
-msgstr "Priedo pavadinimas"
+msgstr "Papildinio pavadinimas"
 
 #: ../gramps/gui/plug/_windows.py:1196
 msgid "Path to Addon:"
@@ -19826,7 +19815,7 @@ msgstr "Gerai"
 
 #: ../gramps/gui/plug/_windows.py:1646
 msgid "Plugin name"
-msgstr "Įskiepio pavadinimas"
+msgstr "Papildinio pavadinimas"
 
 #: ../gramps/gui/plug/_windows.py:1649
 msgid "Authors"
@@ -20581,7 +20570,7 @@ msgstr "Stiliaus rengyklė"
 #: ../gramps/gui/plug/report/_styleeditor.py:273
 msgctxt "manual"
 msgid "Style_editor_dialog"
-msgstr "Vietovės rengyklės langas"
+msgstr ""
 
 #: ../gramps/gui/plug/report/_styleeditor.py:387
 #: ../gramps/gui/plug/report/_styleeditor.py:416
@@ -20722,10 +20711,9 @@ msgid "Select_Child_selector"
 msgstr "Vaikų parinkilis"
 
 #: ../gramps/gui/selectors/selectperson.py:77
-#, fuzzy
 msgctxt "manual"
 msgid "Select_Person_selector"
-msgstr "Vietovės parinkiklis"
+msgstr ""
 
 #: ../gramps/gui/selectors/selectplace.py:60
 msgid "Select Place"
@@ -20734,7 +20722,7 @@ msgstr "Pasirinkite vietovę"
 #: ../gramps/gui/selectors/selectplace.py:93
 msgctxt "manual"
 msgid "Select_Place_selector"
-msgstr "Vietovės parinkiklis"
+msgstr ""
 
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
@@ -21185,10 +21173,10 @@ msgid ""
 "person you want as 'Home Person', then confirm your choice via the menu Edit "
 "-> Set Home Person."
 msgstr ""
-"Perėjimui reikia nustatyti \"pagrindinį asmenį\". Pasirinkite asmenų "
-"peržiūrą, pasirinkite kurį nors asmenį kaip \"Pagrindinis asmuo\", tuomet "
-"patvirtinkite savo pasirinkimą per meniu Taisa -> Nustatyti pagrindinį "
-"asmenį."
+"Perėjimui reikia nustatyti „pagrindiniu asmeniu“. Pasirinkite asmenų "
+"peržiūrą, pasirinkite kurį nors asmenį kaip „pagrindinį asmenį“, tuomet "
+"patvirtinkite savo pasirinkimą per meniu Taisa -> Nustatyti pagrindiniu "
+"asmeniu."
 
 #: ../gramps/gui/views/navigationview.py:338
 #: ../gramps/gui/views/navigationview.py:343
@@ -21371,7 +21359,7 @@ msgstr "Taisyti šeimą"
 #: ../gramps/gui/widgets/fanchart.py:2073
 #: ../gramps/plugins/view/relview.py:1020
 msgid "Reorder families"
-msgstr "Perrūšiuoti šeimas"
+msgstr "Perrikiuoti šeimas"
 
 #: ../gramps/gui/widgets/fanchart.py:2079
 #: ../gramps/plugins/view/pedigreeview.py:1879
@@ -21536,19 +21524,18 @@ msgid "Progress Information"
 msgstr "Proceso informacija"
 
 #: ../gramps/gui/widgets/reorderfam.py:64
-#, fuzzy
 msgctxt "manual"
 msgid "Reorder_Relationships_dialog"
-msgstr "Perrūšiuoti ryšius"
+msgstr ""
 
 #: ../gramps/gui/widgets/reorderfam.py:93
 msgid "Reorder Relationships"
-msgstr "Perrūšiuoti ryšius"
+msgstr "Perrikiuoti ryšius"
 
 #: ../gramps/gui/widgets/reorderfam.py:182
 #, python-format
 msgid "Reorder Relationships: %s"
-msgstr "Perrūšiuoti ryšius: %s"
+msgstr "Perrikiuoti ryšius: %s"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Background Color"
@@ -23318,7 +23305,7 @@ msgstr "Centrinis filtro asmuo."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1136
 msgid "Sort chart items by"
-msgstr "Rūšiuoti diagramos įrašus pagal"
+msgstr "Rikiuoti diagramos įrašus pagal"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1139
 msgid "Select how the statistical data is sorted."
@@ -23326,7 +23313,7 @@ msgstr "Pasirinkti kaip yra rūšiuojami statistiniai duomenys."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1142
 msgid "Sort in reverse order"
-msgstr "Rūšiuoti atvirkščia tvarka"
+msgstr "Rikiuoti atvirkščia tvarka"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1143
 msgid "Check to reverse the sorting order."
@@ -23461,7 +23448,7 @@ msgstr "Centrinis filtro asmuo"
 #: ../gramps/plugins/drawreport/timeline.py:437
 #: ../gramps/plugins/tool/sortevents.py:188
 msgid "Sort by"
-msgstr "Išrūšiuoti pagal"
+msgstr "Rikiuoti pagal"
 
 #: ../gramps/plugins/drawreport/timeline.py:442
 #: ../gramps/plugins/tool/sortevents.py:193
@@ -23793,22 +23780,16 @@ msgid "Enter a date, click Run"
 msgstr "Įveskite datą ir paspauskite Paleisti"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:65
-#, fuzzy
-#| msgid ""
-#| "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. "
-#| "This will compute the ages for everyone in your Family Tree on that date. "
-#| "You can then sort by the age column, and double-click the row to view or "
-#| "edit."
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry text box and click Run. "
 "This will compute the ages for everyone in your Family Tree on that date. "
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"Įveskite teisingą datą (pvz., YYYY-MM-DD) ir paspauskite Paleisti. Tai "
-"suskaičiuos kiekvieno asmens giminės medyje amžių duotą datą. Tada galite "
-"rūšiuoti amžiaus stulpelį, dvigubu paspaudimu eilutėje taisyti arba "
-"peržiūrėti."
+"Įveskite tinkamą datą (pvz., YYYY-MM-DD) ir paspauskite Paleisti. Tai "
+"suskaičiuos kiekvieno asmens giminės medyje amžių nurodytai dienai. Tada "
+"galėsite rikiuoti pagal amžiaus stulpelį, dvigubu paspaudimu eilutėje "
+"taisyti arba peržiūrėti."
 
 #: ../gramps/plugins/gramplet/agestats.py:83
 #: ../gramps/plugins/gramplet/agestats.py:96
@@ -24401,7 +24382,7 @@ msgstr "Grampletas rodo saugyklos detales"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:428
 msgid "Place Details"
-msgstr "Vietovės detalės"
+msgstr "Išsamiau apie vietovę"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:429
 msgid "Gramplet showing details of a place"
@@ -28200,10 +28181,8 @@ msgid "Image Tags"
 msgstr "Paveikslai"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "Place format"
 msgid "Camera Information"
-msgstr "Vietovės formatas"
+msgstr "Informacija apie fotoaparatą"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
 #, fuzzy
@@ -31656,7 +31635,7 @@ msgstr "_Pridėti žymelę"
 #: ../gramps/plugins/view/pedigreeview.py:1772
 #: ../gramps/plugins/view/relview.py:389 ../gramps/plugins/view/relview.py:454
 msgid "_Home"
-msgstr "_Namai"
+msgstr "_Pradžia"
 
 #: ../gramps/plugins/lib/libpersonview.py:253
 #: ../gramps/plugins/lib/libpersonview.py:331
@@ -31758,7 +31737,7 @@ msgstr "Asmenų filtrų redaktorius"
 #: ../gramps/plugins/lib/libpersonview.py:384
 #: ../gramps/plugins/view/pedigreeview.py:1782
 msgid "Set _Home Person"
-msgstr "Nustatyti _pagrindinį asmenį"
+msgstr "_Nustatyti pagrindiniu asmeniu"
 
 #: ../gramps/plugins/lib/libpersonview.py:288
 #: ../gramps/plugins/view/fanchartview.py:185
@@ -31838,9 +31817,8 @@ msgstr "Taisyti..."
 #: ../gramps/plugins/view/noteview.py:290
 #: ../gramps/plugins/view/repoview.py:327
 #: ../gramps/plugins/view/sourceview.py:299
-#, fuzzy
 msgid "Forward"
-msgstr "_Pirmyn"
+msgstr "Toliau"
 
 #: ../gramps/plugins/lib/libpersonview.py:485
 msgid "Deleting the person will remove the person from the database."
@@ -32486,7 +32464,7 @@ msgstr "parapija"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:92
 msgid " state"
-msgstr "valstija"
+msgstr " apskritis"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:159
 msgid "Latitude not within '54.55' to '69.05'\n"
@@ -32512,7 +32490,7 @@ msgid ""
 "or street and city needed"
 msgstr ""
 "Reikalinga platuma ir ilguma,\n"
-"arba gatvė ir miestas"
+"arba gatvė ir gyvenvietė"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:34
 msgid "EniroMaps"
@@ -32573,7 +32551,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/all_events.py:58
 #, python-format
 msgid "Sorted events of %s"
-msgstr "%s rūšiuoti įvykiai"
+msgstr "%s išrikiuoti įvykiai"
 
 #: ../gramps/plugins/quickview/all_events.py:61
 #: ../gramps/plugins/quickview/all_events.py:113
@@ -32610,7 +32588,7 @@ msgid ""
 " %(father)s - %(mother)s"
 msgstr ""
 "Šeimos %(father)s - %(mother)s\n"
-"rūšiuoti įvykiai"
+"išrikiuoti įvykiai"
 
 #: ../gramps/plugins/quickview/all_events.py:113
 #: ../gramps/plugins/quickview/all_events.py:130
@@ -33088,7 +33066,7 @@ msgstr "Rodyti šeimos ir šeimos narių įvykius."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:120
 msgid "Relation to Home Person"
-msgstr "Ryšys su 'namų' asmeniu"
+msgstr "Ryšys su pagrindiniu asmeniu"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:121
 msgid "Display all relationships between person and home person."
@@ -34793,10 +34771,8 @@ msgid "Number of events: %d"
 msgstr "Įvykių skaičius"
 
 #: ../gramps/plugins/textreport/summary.py:260
-#, fuzzy
-#| msgid "Place format"
 msgid "Place Information"
-msgstr "Vietovės formatas"
+msgstr "Informacija apie vietovę"
 
 #: ../gramps/plugins/textreport/summary.py:265
 #, fuzzy, python-format
@@ -35172,7 +35148,7 @@ msgid ""
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
 "Objektai, susieti su šia pastaba, buvo nurodyti, bet dingo, todėl tai, kodėl "
-"jie buvo sukurti, kai jūs paleidote Tinkrinimą ir Tavrkymą per %s."
+"jie buvo sukurti, kai jūs paleidote Tinkrinimą ir Tvarkymą per %s."
 
 #: ../gramps/plugins/tool/check.py:345
 msgid "Looking for invalid name format references"
@@ -36044,7 +36020,7 @@ msgstr ""
 "Šis įrankis įgalina pakeisti absoliutų garso/vaizdo rinkmenų kelią nuorodose "
 "į reliatyvų. Reliatyvus kelias susieja rinkmenų vietą su duombazės baziniu "
 "keliu nurodytu Nustatymuose, arba jei nenustatyta, tai namų aplanku. "
-"Reliatyvus kelias leidžia pririšti rinkmenų vietą prie duombazės bazinio "
+"Santykinis kelias leidžia pririšti rinkmenų vietą prie duombazės bazinio "
 "kelio ir gali būti keičiamas pagal poreikius."
 
 #: ../gramps/plugins/tool/mediamanager.py:675
@@ -36180,7 +36156,7 @@ msgstr "_Gatvė:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:141
 msgid "_City:"
-msgstr "_Miestas:"
+msgstr "_Gyvenvietė:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:169
 msgid "_Country:"
@@ -36188,7 +36164,7 @@ msgstr "_Šalis:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:183
 msgid "_ZIP/Postal Code:"
-msgstr "_Pašto/ZIP kodas:"
+msgstr "_Pašto kodas:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:197
 msgid "_Phone:"
@@ -36608,11 +36584,11 @@ msgstr " Nenaudojamu ID suradimas ir priskyrimas."
 
 #: ../gramps/plugins/tool/sortevents.py:83
 msgid "Sort Events"
-msgstr "Rūšiuoti įvykius"
+msgstr "Rikiuoti įvykius"
 
 #: ../gramps/plugins/tool/sortevents.py:105
 msgid "Sort event changes"
-msgstr "Rūšiuoti įvykių pakeitimus"
+msgstr "Rikiuoti įvykių pakeitimus"
 
 #: ../gramps/plugins/tool/sortevents.py:121
 msgid "Sorting personal events..."
@@ -36632,7 +36608,7 @@ msgstr "Pasirinkite asmenį rūšiavimui"
 
 #: ../gramps/plugins/tool/sortevents.py:196
 msgid "Sort descending"
-msgstr "Rūšiuoti mažėjančiai"
+msgstr "Rikiuoti mažėjančiai"
 
 #: ../gramps/plugins/tool/sortevents.py:197
 msgid "Set the sort order"
@@ -36867,7 +36843,7 @@ msgstr "Pašalina iš duombazės nenaudojamus objektus"
 
 #: ../gramps/plugins/tool/tools.gpr.py:419
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
-msgstr "Perrūšiuoti Gramps ID pagal Gramps numatytąsias taisykles."
+msgstr "Perrikiuoti Gramps ID pagal Gramps numatytąsias taisykles."
 
 #: ../gramps/plugins/tool/tools.gpr.py:442
 #: ../gramps/plugins/tool/tools.gpr.py:443
@@ -38073,9 +38049,8 @@ msgid "Show all places"
 msgstr "Rodyti visas vietoves"
 
 #: ../gramps/plugins/view/geoplaces.py:634
-#, fuzzy
 msgid "Custom places name"
-msgstr "Pilnas vietovės pavadinimas"
+msgstr "Savitas vietovės pavadinimas"
 
 #: ../gramps/plugins/view/geoplaces.py:642
 msgid "The places marker color"
@@ -38266,7 +38241,7 @@ msgstr "Asmenų medžio vaizdas"
 
 #: ../gramps/plugins/view/placelistview.py:53
 msgid "Place View"
-msgstr "Vietovės vaizdas"
+msgstr "Vietovės rodinys"
 
 #: ../gramps/plugins/view/placetreeview.py:61
 msgid "Place Tree View"
@@ -38294,7 +38269,7 @@ msgstr "Pridėti partnerį..."
 
 #: ../gramps/plugins/view/relview.py:410 ../gramps/plugins/view/relview.py:497
 msgid "_Reorder"
-msgstr "_Perrūšiuoti"
+msgstr "_Perrikiuoti"
 
 #: ../gramps/plugins/view/relview.py:497 ../gramps/plugins/view/relview.py:1017
 msgid "Add a new family with person as parent"
@@ -38658,7 +38633,7 @@ msgstr "%(str1)s: %(str2)s"
 #: ../gramps/plugins/webreport/basepage.py:3428
 #: ../gramps/plugins/webreport/basepage.py:3506
 msgid "State/ Province"
-msgstr "Valstija / provincija"
+msgstr "Apskritis / provincija"
 
 #: ../gramps/plugins/webreport/basepage.py:1699
 #, python-format
@@ -39003,8 +38978,6 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/webreport/heatmap.py:248
-#, fuzzy
-#| msgid "Name"
 msgctxt "Event Name"
 msgid "Name"
 msgstr "Pavadinimas"
@@ -39440,12 +39413,12 @@ msgstr "Ar rodyti platumą ir ilgumą vietų sąraše."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2322
 msgid "Sort places references either by date or by name"
-msgstr "Rūšiuoti vietų nuorodas pagal datą arba pavadinimą"
+msgstr "Rikiuoti vietų nuorodas pagal datą arba pavadinimą"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2326
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
-"Rūšiuoti vietų nuorodas pagal datą arba pavadinimą. Nenustačius, rūšiuojama "
+"Rikiuoti vietų nuorodas pagal datą arba pavadinimą. Nenustačius, rūšiuojama "
 "bus pagal datą."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2332
@@ -40157,10 +40130,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3215
-#, fuzzy
-#| msgid "Place Map Options"
 msgid "HeatMap Options"
-msgstr "Vietovės žemėlapio parinktys"
+msgstr "Tankio žemėlapio parinktys"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3218
 #, fuzzy
@@ -40235,13 +40206,6 @@ msgid "Tracking %s"
 msgstr "Sekimas: %s"
 
 #: ../gramps/plugins/webreport/person.py:1063
-#, fuzzy
-#| msgid ""
-#| "This map page represents that person and any descendants with all of "
-#| "their event/ places. If you place your mouse over the marker it will "
-#| "display the place name. The markers and the Reference list are sorted in "
-#| "date order (if any?). Clicking on a place&#8217;s name in the Reference "
-#| "section will take you to that place&#8217;s page."
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -40249,11 +40213,11 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"Šis žemėlapio puslapis pristato šį asmenį ir bet kuriuos palikuonis su "
+"Šis žemėlapio puslapis atvaizduoja šį asmenį ir bet kuriuos palikuonis su "
 "visais jų įvykiais ir vietovėmis. Jei su pele užvesite ant vietovės "
 "žymeklio, pamatysite vietovės pavadinimą. Žymekliai ir nuorodų sąrašas yra "
-"surūšiuoti pagal datą. Paspaudus ant vietovės pavadinimo nuorodų skyriuje "
-"pateiks jums vietovės puslapį."
+"išrikiuoti pagal datą, jei ji yra. Paspaudus ant vietovės pavadinimo, "
+"nuorodų skyriuje pateiks jums vietovės puslapį."
 
 #: ../gramps/plugins/webreport/person.py:1115
 msgid "Place Title"
@@ -40314,18 +40278,14 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/place.py:347
 #: ../gramps/plugins/webreport/place.py:359
-#, fuzzy
-#| msgid "Name"
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Pavadinimas"
 
 #: ../gramps/plugins/webreport/place.py:348
 #: ../gramps/plugins/webreport/place.py:360
-#, fuzzy
-#| msgid "State/ Province"
 msgid "State/Province"
-msgstr "Valstija / provincija"
+msgstr "Apskritis/provincija"
 
 #: ../gramps/plugins/webreport/place.py:611
 msgid "Place Map"
@@ -40346,8 +40306,6 @@ msgstr ""
 "puslapį."
 
 #: ../gramps/plugins/webreport/repository.py:176
-#, fuzzy
-#| msgid "Name"
 msgctxt "Repository"
 msgid "Name"
 msgstr "Pavadinimas"
