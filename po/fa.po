@@ -4,13 +4,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2023.
 # Abolfazl Mazloomi <firetooth10@gmail.com>, 2024.
 # Shahin “Shahin Ozone” Arab <shahino3ozone@gmail.com>, 2025.
+# Seyed Amir MirMohammadi <s.a.mirmohammadi@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-07-05 16:03+0000\n"
-"Last-Translator: Shahin “Shahin Ozone” Arab <shahino3ozone@gmail.com>\n"
+"PO-Revision-Date: 2026-01-06 16:45+0000\n"
+"Last-Translator: Seyed Amir MirMohammadi <s.a.mirmohammadi@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fa/>\n"
 "Language: fa\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -78,111 +79,111 @@ msgstr "پوریم"
 
 #: ../data/holidays.xml:360
 msgid "Passover"
-msgstr ""
+msgstr "عید پسح"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr ""
+msgstr "روز دوم عید پسح"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr ""
+msgstr "روز سوم عید پسح"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr ""
+msgstr "روز چهارم عید پسح"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr ""
+msgstr "روز پنجم عید پسح"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr ""
+msgstr "روز ششم عید پسح"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr ""
+msgstr "روز هفتم عید پسح"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
-msgstr ""
+msgstr "عید شاووعوت"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "روش هشانا"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "روز دوم روش هشانا"
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
-msgstr ""
+msgstr "روز کفاره"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
-msgstr ""
+msgstr "عید سوکوت"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
-msgstr ""
+msgstr "روز دوم عید سوکوت"
 
 #: ../data/holidays.xml:373
 msgid "3 of Sukot"
-msgstr ""
+msgstr "روز سوم عید سوکوت"
 
 #: ../data/holidays.xml:374
 msgid "4 of Sukot"
-msgstr ""
+msgstr "روز چهارم عید سوکوت"
 
 #: ../data/holidays.xml:375
 msgid "5 of Sukot"
-msgstr ""
+msgstr "روز پنجم عید سوکوت"
 
 #: ../data/holidays.xml:376
 msgid "6 of Sukot"
-msgstr ""
+msgstr "روز ششم عید سوکوت"
 
 #: ../data/holidays.xml:377
 msgid "7 of Sukot"
-msgstr ""
+msgstr "روز هفتم عید سوکوت"
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
-msgstr ""
+msgstr "جشن سیمحات تورا"
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
-msgstr ""
+msgstr "عید حنوکا"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "روز دوم عید حنوکا"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "روز سوم عید حنوکا"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "روز چهارم عید حنوکا"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "روز پنجم عید حنوکا"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "روز ششم عید حنوکا"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "روز هفتم عید حنوکا"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "روز هشتم عید حنوکا"
 
 #: ../data/holidays.xml:388
 msgid "Italy"
@@ -222,26 +223,26 @@ msgstr "اوکراین"
 
 #: ../data/holidays.xml:563
 msgid "United States of America"
-msgstr "ایالات متحده امریکا"
+msgstr "ایالات متحده آمریکا"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:2
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
-msgstr ""
+msgstr "Gramps"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:3
 msgid "Genealogy System"
-msgstr ""
+msgstr "سیستم تبارشناسی"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:5
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
+msgstr "مدیریت اطلاعات شجره‌نامه، انجام تحقیقات و تحلیل‌های شجره‌نامه‌ای"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr ""
+msgstr "شجره‌نامه؛ تاریخچه خانواده؛ تحقیق؛ شجره‌نامه؛ GEDCOM؛"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
 #: ../gramps/gen/const.py:264
@@ -249,6 +250,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
+"Gramps یک برنامه شجره‌نامه است که هم برای علاقه‌مندان به این کار، کاربرپسند است "
+"و هم برای متخصصان شجره‌نامه، امکانات کاملی دارد."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -256,16 +259,20 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
+"این به شما امکان می‌دهد جزییات بسیاری از زندگی یک فرد و همچنین روابط پیچیده "
+"بین افراد، مکان‌ها و رویدادهای مختلف را ثبت کنید."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
+"تمام تحقیقات شما به صورت سازماندهی شده، قابل جستجو و به همان اندازه که نیاز "
+"دارید دقیق نگهداری می‌شود."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
 msgid "Gramps Development Team"
-msgstr ""
+msgstr "تیم توسعه Gramps"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:226
@@ -274,13 +281,13 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:134
 #: ../gramps/plugins/webreport/person.py:1745
 msgid "Pedigree"
-msgstr ""
+msgstr "شجره‌نامه"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:164
 #: ../gramps/plugins/view/view.gpr.py:167
 msgid "Descendant Fan"
-msgstr ""
+msgstr "طرفدار نواده"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:349
@@ -292,13 +299,13 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:226
 #: ../gramps/plugins/webreport/updates.py:105
 msgid "People"
-msgstr ""
+msgstr "نفرات"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:42
 #: ../gramps/plugins/view/relview.py:147 ../gramps/plugins/view/view.gpr.py:118
 #: ../gramps/plugins/view/view.gpr.py:126
 msgid "Relationships"
-msgstr ""
+msgstr "روابط"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
 #: ../gramps/gen/lib/person.py:186 ../gramps/gui/clipboard.py:729
@@ -340,23 +347,23 @@ msgstr ""
 #: ../gramps/plugins/webreport/family.py:313
 #: ../gramps/plugins/webreport/person.py:1638
 msgid "Person"
-msgstr ""
+msgstr "شخص"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
-msgstr ""
+msgstr "پایگاه داده Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:10
 msgid "Gramps package"
-msgstr ""
+msgstr "بسته Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
 msgid "Gramps XML database"
-msgstr ""
+msgstr "پایگاه داده XML Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
-msgstr ""
+msgstr "فایل منبع GeneWeb"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -365,6 +372,10 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
+"<b>کار با تاریخ‌ها</b><br/> می‌توان با استفاده از قالب «بین ۴ ژانویه ۲۰۰۰ و ۲۰ "
+"مارس ۲۰۰۳» طیفی از تاریخ‌ها را ارائه داد. همچنین می‌توانید سطح اطمینان یک "
+"تاریخ را مشخص کنید و حتی بین هفت تقویم مختلف یکی را انتخاب کنید. دکمه کنار "
+"فیلد تاریخ در ویرایشگر رویدادها را امتحان کنید."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -373,6 +384,10 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
+"<b>ویرایش موضوعات</b><br/>در بیشتر موارد، دوبار کلیک کردن روی نام، منبع، "
+"مکان یا ورودی رسانه، پنجره‌ای را برای ویرایش موضوع باز می‌کند. توجه داشته "
+"باشید که نتیجه می‌تواند به زمینه بستگی داشته باشد. برای مثال، در نمای خانواده"
+"، کلیک روی والد یا فرزند، ویرایشگر روابط را باز می‌کند."
 
 #: ../data/tips.xml:8
 msgid ""
@@ -381,6 +396,10 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
+"<b>افزودن تصاویر</b><br/>یک تصویر را می‌توان با کشیدن و رها کردن از یک برنامه "
+"مدیریت فایل یا مرورگر وب به هر گالری یا نمای رسانه اضافه کرد. در واقع "
+"می‌توانید هر نوع فایلی مانند این را اضافه کنید، که برای اسکن اسناد و سایر "
+"منابع دیجیتال مفید است."
 
 #: ../data/tips.xml:10
 msgid ""
@@ -388,6 +407,9 @@ msgid ""
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
+"<b>ترتیب تولد فرزندان در یک خانواده</b><br/>ترتیب تولد فرزندان در یک خانواده "
+"را می‌توان با استفاده از کشیدن و رها کردن تنظیم کرد. این ترتیب حتی زمانی که "
+"تاریخ تولد ندارند نیز حفظ می‌شود."
 
 #: ../data/tips.xml:12
 msgid ""
@@ -398,6 +420,11 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
+"<b>قبل از اینکه خیلی دیر شود با اقوام صحبت کنید</b><br/> قدیمی‌ترین اقوام شما "
+"می‌توانند مهمترین منبع اطلاعات شما باشند. آنها معمولاً چیزهایی در مورد خانواده "
+"می‌دانند که نوشته نشده است. آنها ممکن است اطلاعاتی در مورد افراد به شما بگویند "
+"که روزی به مسیر جدیدی برای تحقیق منجر شود. حداقل، داستان‌های جالبی خواهید "
+"شنید. ضبط مکالمات را فراموش نکنید!"
 
 #: ../data/tips.xml:14
 msgid ""
@@ -410,6 +437,15 @@ msgid ""
 "the Filter field on Sidebar, then click Find button. If the Sidebar is not "
 "visible, select View > Sidebar."
 msgstr ""
+"<b>فیلتر کردن افراد</b><br/>در نمای افراد، می‌توانید افراد را بر اساس "
+"معیارهای زیادی «فیلتر» کنید. برای تعریف یک فیلتر جدید، به «Edit > Person "
+"Filter Editor» بروید. در آنجا می‌توانید فیلتر خود را نامگذاری کرده و با "
+"استفاده از قوانین از پیش تعیین‌شده، قوانین را اضافه و ترکیب کنید. به عنوان "
+"مثال، می‌توانید فیلتری تعریف کنید تا همه افراد فرزندخوانده را در شجره‌نامه "
+"پیدا کند. افرادی که تاریخ تولدشان ذکر نشده است نیز می‌توانند فیلتر شوند. برای "
+"دریافت نتایج، فیلتر خود را ذخیره کنید. سپس این فیلتر را در فیلد فیلتر در "
+"نوار کناری انتخاب کنید، سپس روی دکمه یافتن کلیک کنید. اگر نوار کناری قابل "
+"مشاهده نیست، View > Sidebar را انتخاب کنید."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -418,6 +454,10 @@ msgid ""
 "instance, by inverting the 'People with children' filter you can select all "
 "people without children."
 msgstr ""
+"<b>فیلتر کردن معکوس</b><br/>فیلترها را می‌توان به راحتی با استفاده از گزینه "
+"'invert' \"مقادیری را که با قوانین فیلتر مطابقت ندارند، برگردانید\" معکوس "
+"کرد. برای مثال، با معکوس کردن فیلتر 'افراد دارای فرزند' می‌توانید همه افراد "
+"بدون فرزند را انتخاب کنید."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -428,12 +468,20 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
+"<b>پیدا کردن افراد</b><br/>در نمای گروه‌بندی‌شده‌ی افراد، هر نام خانوادگی فقط "
+"یک بار فهرست می‌شود. با کلیک روی پیکان سمت چپ یک نام، فهرست گسترش می‌یابد تا "
+"تمام افرادی که آن نام خانوادگی را دارند نشان دهد. برای یافتن هر نام خانوادگی "
+"از یک فهرست طولانی، یک نام خانوادگی (نه یک شخص) را انتخاب کنید و شروع به تایپ "
+"کنید. نما به اولین نام خانوادگی که با حروف وارد شده شما مطابقت دارد، پرش "
+"می‌کند."
 
 #: ../data/tips.xml:20
 msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
 msgstr ""
+"<b>نمای خانواده</b><br/>نمای خانواده برای نمایش یک واحد خانواده معمولی به "
+"عنوان دو والد و فرزندانشان استفاده می‌شود."
 
 #: ../data/tips.xml:22
 msgid ""
@@ -442,6 +490,10 @@ msgid ""
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
+"<b>تغییر شخص فعال</b><br/>تغییر شخص فعال در نماها آسان است. در نمای روابط، "
+"فقط روی هر کسی کلیک کنید. در نمای شجره‌نامه، روی شخص دوبار کلیک کنید یا برای "
+"انتخاب هر یک از همسران، خواهر و برادرها، فرزندان یا والدین او، کلیک راست "
+"کنید."
 
 #: ../data/tips.xml:24
 msgid ""
@@ -450,6 +502,11 @@ msgid ""
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
+"<b>چه کسی در چه زمانی متولد شده است؟</b><br/>در بخش \"Tools > Analysis and "
+"exploration > Compare Individual Events...\" می‌توانید داده‌های افراد را در "
+"پایگاه داده خود مقایسه کنید. این کار مثلاً زمانی مفید است که می‌خواهید تاریخ "
+"تولد همه افراد موجود در پایگاه داده خود را فهرست کنید. می‌توانید از یک فیلتر "
+"سفارشی برای محدود کردن نتایج استفاده کنید."
 
 #: ../data/tips.xml:26
 msgid ""
