@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Nick Hall <nick-h@gramps-project.org>, 2025.
-# Ilsur Irnazarov <temyas@yandex.ru>, 2025.
+# Ilsur Irnazarov <temyas@yandex.ru>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-09-15 19:02+0000\n"
+"PO-Revision-Date: 2026-01-28 10:49+0000\n"
 "Last-Translator: Ilsur Irnazarov <temyas@yandex.ru>\n"
 "Language-Team: Bashkir <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ba/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 #: ../data/holidays.xml:3
 #, fuzzy
@@ -25192,7 +25192,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1452
 msgid "REFN"
-msgstr ""
+msgstr "REFN"
 
 #: ../gramps/plugins/importer/importprogen.glade:1456
 msgid ""
