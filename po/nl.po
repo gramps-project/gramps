@@ -12,7 +12,7 @@
 # Freek Olgers <freek@olgers.com>, 2022.
 # Niko Strijbol <strijbol.niko@gmail.com>, 2022, 2024.
 # Stephan Paternotte <s.paternotte@outlook.com>, 2022.
-# Stephan Paternotte <stephan@paternottes.net>, 2023, 2024, 2025.
+# Stephan Paternotte <stephan@paternottes.net>, 2023, 2024, 2025, 2026.
 # Ailean Riepsaame-Duffy <aileanr@gmail.com>, 2024.
 # Enno Borgsteede <ennoborg@gmail.com>, 2024.
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-12-21 02:00+0000\n"
+"PO-Revision-Date: 2026-01-23 13:29+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7722,7 +7722,7 @@ msgstr "Gebeurtenis"
 #: ../gramps/plugins/webreport/basepage.py:1279
 #: ../gramps/plugins/webreport/basepage.py:1321
 msgid "Place"
-msgstr "Locatie"
+msgstr "Plaats"
 
 #: ../gramps/gen/lib/event.py:210 ../gramps/gen/lib/eventref.py:138
 #: ../gramps/gen/lib/family.py:194 ../gramps/gen/lib/media.py:158
@@ -8608,7 +8608,7 @@ msgstr "Status"
 #: ../gramps/gen/lib/location.py:88 ../gramps/gui/clipboard.py:337
 #: ../gramps/gui/plug/_windows.py:1652
 msgid "Location"
-msgstr "Locatie"
+msgstr "Plaats"
 
 #: ../gramps/gen/lib/location.py:99 ../gramps/gen/lib/placetype.py:78
 #: ../gramps/plugins/view/geoplaces.py:626
@@ -11973,7 +11973,7 @@ msgstr "Bijdragen van"
 #: ../gramps/gui/aboutdialog.py:152
 msgid "translator-credits"
 msgstr ""
-"Stephan Paternotte <stephan@paternottes.net>, 2022-2025\n"
+"Stephan Paternotte <stephan@paternottes.net>, 2022-2026\n"
 "Enno Borgsteede <ennoborg@gmail.com>, 2024\n"
 "Ailean Riepsaame-Duffy <aileanr@gmail.com>, 2024\n"
 "Niko Strijbol <strijbol.niko@gmail.com>, 2022-2024\n"
@@ -34141,7 +34141,7 @@ msgstr "Plaatsvervangende ouders"
 #: ../gramps/plugins/textreport/indivcomplete.py:468
 #: ../gramps/plugins/webreport/person.py:1620
 msgid "Associations"
-msgstr "Correcties"
+msgstr "Associaties"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:613
 msgid "Images"
