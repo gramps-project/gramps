@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-04-24 09:52+0000\n"
+"PO-Revision-Date: 2025-12-28 21:14+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -11498,7 +11498,7 @@ msgstr "已故"
 
 #: ../gramps/gen/utils/unknown.py:153
 msgid "Unknown, created to replace a missing note object."
-msgstr ""
+msgstr "未知，创建用于替代缺失的笔记对象。"
 
 #: ../gramps/gen/utils/unknown.py:166
 #, python-format
@@ -21751,7 +21751,7 @@ msgstr "启动"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:882
 msgid "The start index"
-msgstr ""
+msgstr "起始索引"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:898
 #: ../gramps/plugins/drawreport/descendtree.py:1630
@@ -22997,10 +22997,11 @@ msgid "Include counts of missing information"
 msgstr "包含缺失信息的数量"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1179
+#, fuzzy
 msgid ""
 "Whether to include counts of the number of people who lack the given "
 "information."
-msgstr ""
+msgstr "是否包括缺少给定信息的人员的数目"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1214
 msgid "Charts 3"
@@ -23785,11 +23786,11 @@ msgstr "总人数"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:29
 msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr ""
+msgstr "Gramps_6.0_维基_手册_-_Gramplets#控件_列表"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
 msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
-msgstr ""
+msgstr "Gramps_6.0_维基_手册_-_工具#调试"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:50
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:58
@@ -25684,7 +25685,7 @@ msgstr "感兴趣的家庭数量："
 
 #: ../gramps/plugins/graph/gvfamilylines.py:547
 msgid "Additional people removed:"
-msgstr ""
+msgstr "移除了额外人员："
 
 #: ../gramps/plugins/graph/gvfamilylines.py:551
 msgid "Additional families removed:"
@@ -25929,7 +25930,7 @@ msgstr "是否包含上一个职业"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1029
 msgid "Include relationship debugging numbers also"
-msgstr ""
+msgstr "同时包含人员关系调试的次数"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1033
 msgid ""
@@ -26930,17 +26931,17 @@ msgstr "Gramps 不支持导入的 VCards 版本 %s。"
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
-msgstr ""
+msgstr "vCard 文件格式不正确，缺少必须的 N 属性，所以其中没有名字；跳过。"
 
 #: ../gramps/plugins/importer/importvcard.py:404
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
-msgstr ""
+msgstr "vCard 文件格式不正确，缺少必须的 FN 属性，仅从 N 属性中获得。"
 
 #: ../gramps/plugins/importer/importvcard.py:412
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr ""
+msgstr "vCard 文件格式不正确，名字部分数量不对。"
 
 #: ../gramps/plugins/importer/importvcard.py:573
 #, python-brace-format
@@ -27051,11 +27052,11 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:1736
 #: ../gramps/plugins/importer/importxml.py:2168
 msgid "The Gramps Xml you are trying to import is malformed."
-msgstr ""
+msgstr "您要导入的 Gramps Xml 文件存在问题。"
 
 #: ../gramps/plugins/importer/importxml.py:907
 msgid "Attributes that link the data together are missing."
-msgstr ""
+msgstr "缺少关联数据所需的属性。"
 
 #: ../gramps/plugins/importer/importxml.py:1052
 msgid "Gramps XML import"
@@ -27414,7 +27415,7 @@ msgstr "个人 Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:4232
 msgid "Empty Alias <NAME PERSONAL> ignored"
-msgstr ""
+msgstr "忽略空白别名 <NAME PERSONAL>"
 
 #: ../gramps/plugins/lib/libgedcom.py:5488
 #, python-format
@@ -27445,7 +27446,7 @@ msgstr "已忽略单个 OBJE 中的多个文件"
 
 #: ../gramps/plugins/lib/libgedcom.py:6124
 msgid "A second PLAC ignored"
-msgstr ""
+msgstr "忽略了第二个 PLAC"
 
 #: ../gramps/plugins/lib/libgedcom.py:6262
 msgid "Detail"
@@ -27516,7 +27517,7 @@ msgstr "软件版本号"
 #: ../gramps/plugins/lib/libgedcom.py:7792
 #, python-format
 msgid "Business that produced the product: %s"
-msgstr ""
+msgstr "生产 %s 的生意"
 
 #: ../gramps/plugins/lib/libgedcom.py:7813
 msgid "Name of source data"
@@ -31251,7 +31252,7 @@ msgstr "无法删除地点。"
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
-msgstr ""
+msgstr "此地点当前被另一地点所参照。先删除它所包括的地点。"
 
 #: ../gramps/plugins/lib/libplaceview.py:568
 #: ../gramps/plugins/lib/libplaceview.py:579
@@ -31630,7 +31631,7 @@ msgstr "您需要手动编辑每个地点以添加地点类型，...\n"
 #, python-brace-format
 msgid "You have {places_nb} place to edit."
 msgid_plural "You have {places_nb} places to edit."
-msgstr[0] ""
+msgstr[0] "您有 {places_nb} 个地点需要编辑。"
 
 #: ../gramps/plugins/lib/maps/geography.py:1157
 #, fuzzy
@@ -31677,6 +31678,8 @@ msgid ""
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
+"如果您的文件系统空间不足，您可以删掉上面路径中的所有切片文件。\n"
+"注意！如果没有互联网，地图就看不了了。"
 
 #: ../gramps/plugins/lib/maps/geography.py:1443
 msgid "Zoom used when centering"
@@ -31702,7 +31705,7 @@ msgstr "地图"
 
 #: ../gramps/plugins/lib/maps/geography.py:1532
 msgid "Select tile cache directory for offline mode"
-msgstr ""
+msgstr "选择脱机模式下的切片缓存目录"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:142
 #, fuzzy, python-format
