@@ -13,13 +13,14 @@
 # Ivan Kostov <jiveq1@gmail.com>, 2025.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2025.
 # Apostol Penkov <apostol.penkov@gmail.com>, 2025.
+# Iskren Petkov <auto-weblate@quietlyemailme.us>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-08-22 10:02+0000\n"
-"Last-Translator: Apostol Penkov <apostol.penkov@gmail.com>\n"
+"PO-Revision-Date: 2026-01-30 20:53+0000\n"
+"Last-Translator: Iskren Petkov <auto-weblate@quietlyemailme.us>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/bg/>\n"
 "Language: bg\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.16-dev\n"
 "X-Poedit-Language: Bulgarian\n"
 "X-Poedit-Country: BULGARIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -37272,7 +37273,7 @@ msgstr "Сортира събития"
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Verify the Data"
-msgstr "Проверка на данните"
+msgstr "Провери Данните"
 
 #: ../gramps/plugins/tool/tools.gpr.py:467
 msgid "Verifies the data against user-defined tests"
