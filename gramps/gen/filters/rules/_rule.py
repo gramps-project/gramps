@@ -28,6 +28,7 @@ Base class for filter rules.
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+import functools
 import re
 
 from ...errors import FilterError
@@ -56,6 +57,51 @@ from ...db import Database
 
 # -------------------------------------------------------------------------
 #
+# DB-override helpers
+#
+# -------------------------------------------------------------------------
+
+def _rule_key(cls):
+    """Return (category, rule_name) tuple for *cls*, cached on the class."""
+    cached = cls.__dict__.get("_rule_key_cache")
+    if cached is not None:
+        return cached
+    parts = cls.__module__.split(".")
+    try:
+        category = parts[parts.index("rules") + 1]
+    except (ValueError, IndexError):
+        category = None
+    key = (category, cls.__name__)
+    cls._rule_key_cache = key
+    return key
+
+
+def _wrap_prepare(method):
+    @functools.wraps(method)
+    def wrapper(self, db, user):
+        registry = getattr(db, "_rule_registry", None)
+        if registry is not None:
+            entry = registry.get(_rule_key(type(self)))
+            if entry is not None and entry["prepare"] is not None:
+                return entry["prepare"](self, db, user)
+        return method(self, db, user)
+    return wrapper
+
+
+def _wrap_apply_to_one(method):
+    @functools.wraps(method)
+    def wrapper(self, db, obj):
+        registry = getattr(db, "_rule_registry", None)
+        if registry is not None:
+            entry = registry.get(_rule_key(type(self)))
+            if entry is not None and entry["apply"] is not None:
+                return entry["apply"](self, db, obj)
+        return method(self, db, obj)
+    return wrapper
+
+
+# -------------------------------------------------------------------------
+#
 # Rule
 #
 # -------------------------------------------------------------------------
@@ -67,6 +113,14 @@ class Rule:
     category = _("Miscellaneous filters")
     description = _("No description")
     allow_regex = False
+
+    @classmethod
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        if "prepare" in cls.__dict__:
+            cls.prepare = _wrap_prepare(cls.prepare)
+        if "apply_to_one" in cls.__dict__:
+            cls.apply_to_one = _wrap_apply_to_one(cls.apply_to_one)
 
     def __init__(self, arg, use_regex=False, use_case=False):
         self.list = []
@@ -208,3 +262,9 @@ class Rule:
             return False
         else:
             return True
+
+
+# Wrap the base-class implementations so DB overrides are checked even when
+# a subclass does not define its own prepare / apply_to_one.
+Rule.prepare = _wrap_prepare(Rule.prepare)
+Rule.apply_to_one = _wrap_apply_to_one(Rule.apply_to_one)

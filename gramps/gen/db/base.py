@@ -70,6 +70,7 @@ class DbReadBase:
         """
         self.basedb = self
         self.__feature = {}  # {"feature": VALUE, ...}
+        self._rule_registry = {}   # {(category, rule_name): {"apply": fn, "prepare": fn|None}}
 
     def get_feature(self, feature):
         """
@@ -83,6 +84,29 @@ class DbReadBase:
         Databases can implement certain features.
         """
         self.__feature[feature] = value
+
+    def register_rule(self, category, rule_name, apply_method, prepare_method=None):
+        """
+        Register a database-optimised implementation for a filter rule.
+
+        Parameters
+        ----------
+        category : str
+            Rule category as it appears in the rule module path
+            (e.g. "person", "family", "event").
+        rule_name : str
+            The exact class name of the rule (e.g. "Disconnected").
+        apply_method : callable
+            Replacement for Rule.apply_to_one(self, db, obj).
+            Called as apply_method(rule, db, obj).
+        prepare_method : callable or None
+            Optional replacement for Rule.prepare(self, db, user).
+            Called as prepare_method(rule, db, user).
+        """
+        self._rule_registry[(category, rule_name)] = {
+            "apply": apply_method,
+            "prepare": prepare_method,
+        }
 
     def close(self):
         """
