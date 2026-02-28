@@ -70,7 +70,7 @@ class DbReadBase:
         """
         self.basedb = self
         self.__feature = {}  # {"feature": VALUE, ...}
-        self._rule_registry = {}   # {(category, rule_name): {"apply": fn, "prepare": fn|None}}
+        self._override_registry = {}  # {namespace: {key: {handler_name: fn}}}
 
     def get_feature(self, feature):
         """
@@ -85,32 +85,38 @@ class DbReadBase:
         """
         self.__feature[feature] = value
 
-    def register_rule(self, category, rule_name, apply_method, prepare_method=None):
+    def register_override(self, namespace, key, **handlers):
         """
-        Register a database-optimised implementation for a filter rule.
+        Register database-optimised handler callables under a namespace/key.
+
+        All handlers must accept *db* as one of their arguments; the exact
+        signature is a convention of the consuming subsystem.
 
         Parameters
         ----------
-        category : str
-            Rule category as it appears in the rule module path
-            (e.g. "person", "family", "event").
-        rule_name : str
-            The exact class name of the rule (e.g. "Disconnected").
-        apply_method : callable
-            Replacement for Rule.apply_to_one(self, db, obj).
-            Called as apply_method(rule, original, db, obj), where
-            *original* is the unbound original method and can be called
-            as original(rule, db, obj) to delegate to the default logic.
-        prepare_method : callable or None
-            Optional replacement for Rule.prepare(self, db, user).
-            Called as prepare_method(rule, original, db, user), where
-            *original* is the unbound original method and can be called
-            as original(rule, db, user) to delegate to the default logic.
+        namespace : str
+            Subsystem that will consume the override (e.g. "rule").
+        key : hashable
+            Identifies the specific target within the namespace.
+            For filter rules this is the ``(category, rule_name)`` tuple
+            returned by ``_rule_key()``.
+        **handlers : callable
+            Named callables whose names are defined by the consuming
+            subsystem.  For filter rules the recognised names are
+            ``apply`` and ``prepare``.
+
+        Examples
+        --------
+        Register a fast SQL implementation for the ``Disconnected`` rule::
+
+            db.register_override(
+                "rule",
+                ("person", "Disconnected"),
+                apply=my_apply_fn,
+                prepare=my_prepare_fn,
+            )
         """
-        self._rule_registry[(category, rule_name)] = {
-            "apply": apply_method,
-            "prepare": prepare_method,
-        }
+        self._override_registry.setdefault(namespace, {})[key] = handlers
 
     def close(self):
         """

@@ -9,13 +9,10 @@ from gramps.gen.filters.rules._rule import Rule, _rule_key
 
 class _MockDB:
     def __init__(self):
-        self._rule_registry = {}
+        self._override_registry = {}
 
-    def register_rule(self, category, rule_name, apply_method, prepare_method=None):
-        self._rule_registry[(category, rule_name)] = {
-            "apply": apply_method,
-            "prepare": prepare_method,
-        }
+    def register_override(self, namespace, key, **handlers):
+        self._override_registry.setdefault(namespace, {})[key] = handlers
 
 
 class _FakeRule(Rule):
@@ -32,12 +29,12 @@ class _FakeRule(Rule):
 
 class TestApplyToOneDbOverride(unittest.TestCase):
     def test_override_is_used_when_present(self):
-        """DB method replaces apply_to_one when register_rule was called."""
+        """DB method replaces apply_to_one when register_override was called."""
         rule = _FakeRule([])
-        category, rule_name = _rule_key(type(rule))
+        key = _rule_key(type(rule))
 
         db = _MockDB()
-        db.register_rule(category, rule_name, lambda self, orig, db, obj: True)
+        db.register_override("rule", key, apply=lambda self, orig, db, obj: True)
 
         result = rule.apply_to_one(db, None)
         self.assertTrue(result)
@@ -45,13 +42,13 @@ class TestApplyToOneDbOverride(unittest.TestCase):
     def test_original_callable_from_override(self):
         """Override can call the original apply_to_one via the passed original."""
         rule = _FakeRule([])
-        category, rule_name = _rule_key(type(rule))
+        key = _rule_key(type(rule))
 
         db = _MockDB()
-        db.register_rule(
-            category,
-            rule_name,
-            lambda self, orig, db, obj: orig(self, db, obj),
+        db.register_override(
+            "rule",
+            key,
+            apply=lambda self, orig, db, obj: orig(self, db, obj),
         )
 
         # _FakeRule.apply_to_one returns False; the override delegates to it
@@ -70,15 +67,15 @@ class TestPrepareDbOverride(unittest.TestCase):
     def test_override_is_used_when_present(self):
         """DB prepare method replaces prepare when registered."""
         rule = _FakeRule([])
-        category, rule_name = _rule_key(type(rule))
+        key = _rule_key(type(rule))
 
         called = []
         db = _MockDB()
-        db.register_rule(
-            category,
-            rule_name,
-            lambda s, orig, d, o: None,
-            prepare_method=lambda s, orig, d, u: called.append(True),
+        db.register_override(
+            "rule",
+            key,
+            apply=lambda s, orig, d, o: None,
+            prepare=lambda s, orig, d, u: called.append(True),
         )
 
         rule.prepare(db, None)
@@ -87,7 +84,7 @@ class TestPrepareDbOverride(unittest.TestCase):
     def test_fallback_when_no_override(self):
         """Original prepare is called when DB has no override."""
         rule = _FakeRule([])
-        real_db = type("DB", (), {"_rule_registry": {}})()
+        real_db = type("DB", (), {"_override_registry": {}})()
         rule.prepare(real_db, None)
         self.assertTrue(getattr(real_db, "_prepare_called_by_rule", False))
 
@@ -102,11 +99,11 @@ class TestBaseClassOverride(unittest.TestCase):
             labels = []
 
         rule = _NoOverrideRule([])
-        category, rule_name = _rule_key(type(rule))
+        key = _rule_key(type(rule))
 
         db = _MockDB()
-        db.register_rule(
-            category, rule_name, lambda rule_self, orig, d, obj: "db_result"
+        db.register_override(
+            "rule", key, apply=lambda rule_self, orig, d, obj: "db_result"
         )
 
         result = rule.apply_to_one(db, None)

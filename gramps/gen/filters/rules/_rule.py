@@ -79,11 +79,13 @@ def _rule_key(cls):
 def _wrap_prepare(method):
     @functools.wraps(method)
     def wrapper(self, db, user):
-        registry = getattr(db, "_rule_registry", None)
-        if registry is not None:
-            entry = registry.get(_rule_key(type(self)))
-            if entry is not None and entry["prepare"] is not None:
-                return entry["prepare"](self, method, db, user)
+        entry = (
+            getattr(db, "_override_registry", {})
+            .get("rule", {})
+            .get(_rule_key(type(self)))
+        )
+        if entry is not None and entry.get("prepare") is not None:
+            return entry["prepare"](self, method, db, user)
         return method(self, db, user)
     return wrapper
 
@@ -91,11 +93,13 @@ def _wrap_prepare(method):
 def _wrap_apply_to_one(method):
     @functools.wraps(method)
     def wrapper(self, db, obj):
-        registry = getattr(db, "_rule_registry", None)
-        if registry is not None:
-            entry = registry.get(_rule_key(type(self)))
-            if entry is not None and entry["apply"] is not None:
-                return entry["apply"](self, method, db, obj)
+        entry = (
+            getattr(db, "_override_registry", {})
+            .get("rule", {})
+            .get(_rule_key(type(self)))
+        )
+        if entry is not None and entry.get("apply") is not None:
+            return entry["apply"](self, method, db, obj)
         return method(self, db, obj)
     return wrapper
 
