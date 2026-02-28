@@ -72,6 +72,13 @@ class DbReadBase:
         self.__feature = {}  # {"feature": VALUE, ...}
         self._override_registry = {}  # {namespace: {key: {handler_name: fn}}}
 
+    def is_proxy(self):
+        """
+        Returns True if the database has a proxy, such as Living, or Private.
+        Otherwise, return False.
+        """
+        return self != self.basedb
+
     def get_feature(self, feature):
         """
         Databases can implement certain features or not. The default is
