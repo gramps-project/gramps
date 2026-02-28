@@ -83,7 +83,7 @@ def _wrap_prepare(method):
         if registry is not None:
             entry = registry.get(_rule_key(type(self)))
             if entry is not None and entry["prepare"] is not None:
-                return entry["prepare"](self, db, user)
+                return entry["prepare"](self, method, db, user)
         return method(self, db, user)
     return wrapper
 
@@ -95,7 +95,7 @@ def _wrap_apply_to_one(method):
         if registry is not None:
             entry = registry.get(_rule_key(type(self)))
             if entry is not None and entry["apply"] is not None:
-                return entry["apply"](self, db, obj)
+                return entry["apply"](self, method, db, obj)
         return method(self, db, obj)
     return wrapper
 

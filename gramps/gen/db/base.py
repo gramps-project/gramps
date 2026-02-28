@@ -98,10 +98,14 @@ class DbReadBase:
             The exact class name of the rule (e.g. "Disconnected").
         apply_method : callable
             Replacement for Rule.apply_to_one(self, db, obj).
-            Called as apply_method(rule, db, obj).
+            Called as apply_method(rule, original, db, obj), where
+            *original* is the unbound original method and can be called
+            as original(rule, db, obj) to delegate to the default logic.
         prepare_method : callable or None
             Optional replacement for Rule.prepare(self, db, user).
-            Called as prepare_method(rule, db, user).
+            Called as prepare_method(rule, original, db, user), where
+            *original* is the unbound original method and can be called
+            as original(rule, db, user) to delegate to the default logic.
         """
         self._rule_registry[(category, rule_name)] = {
             "apply": apply_method,

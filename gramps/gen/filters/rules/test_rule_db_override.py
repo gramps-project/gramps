@@ -37,10 +37,26 @@ class TestApplyToOneDbOverride(unittest.TestCase):
         category, rule_name = _rule_key(type(rule))
 
         db = _MockDB()
-        db.register_rule(category, rule_name, lambda self, db, obj: True)
+        db.register_rule(category, rule_name, lambda self, orig, db, obj: True)
 
         result = rule.apply_to_one(db, None)
         self.assertTrue(result)
+
+    def test_original_callable_from_override(self):
+        """Override can call the original apply_to_one via the passed original."""
+        rule = _FakeRule([])
+        category, rule_name = _rule_key(type(rule))
+
+        db = _MockDB()
+        db.register_rule(
+            category,
+            rule_name,
+            lambda self, orig, db, obj: orig(self, db, obj),
+        )
+
+        # _FakeRule.apply_to_one returns False; the override delegates to it
+        result = rule.apply_to_one(db, None)
+        self.assertFalse(result)
 
     def test_fallback_when_no_override(self):
         """Original apply_to_one is used when DB has no override."""
@@ -58,8 +74,12 @@ class TestPrepareDbOverride(unittest.TestCase):
 
         called = []
         db = _MockDB()
-        db.register_rule(category, rule_name, lambda s, d, o: None,
-                         prepare_method=lambda s, d, u: called.append(True))
+        db.register_rule(
+            category,
+            rule_name,
+            lambda s, orig, d, o: None,
+            prepare_method=lambda s, orig, d, u: called.append(True),
+        )
 
         rule.prepare(db, None)
         self.assertEqual(called, [True])
@@ -85,7 +105,9 @@ class TestBaseClassOverride(unittest.TestCase):
         category, rule_name = _rule_key(type(rule))
 
         db = _MockDB()
-        db.register_rule(category, rule_name, lambda rule_self, d, obj: "db_result")
+        db.register_rule(
+            category, rule_name, lambda rule_self, orig, d, obj: "db_result"
+        )
 
         result = rule.apply_to_one(db, None)
         self.assertEqual(result, "db_result")
