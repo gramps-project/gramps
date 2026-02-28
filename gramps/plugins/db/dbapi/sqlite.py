@@ -266,6 +266,12 @@ class Cursor:
         """
         return self.__cursor.fetchmany()
 
+    def fetchone(self):
+        """
+        Fetches the next row of a query result set, returning a single sequence,
+        or None when no more data is available.
+        """
+        return self.__cursor.fetchone()
 
 def regexp(expr, value):
     """
