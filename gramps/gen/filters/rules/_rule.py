@@ -266,5 +266,5 @@ class Rule:
 
 # Wrap the base-class implementations so DB overrides are checked even when
 # a subclass does not define its own prepare / apply_to_one.
-Rule.prepare = _wrap_prepare(Rule.prepare)
-Rule.apply_to_one = _wrap_apply_to_one(Rule.apply_to_one)
+setattr(Rule, "prepare", _wrap_prepare(Rule.prepare))
+setattr(Rule, "apply_to_one", _wrap_apply_to_one(Rule.apply_to_one))
