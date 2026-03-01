@@ -107,7 +107,7 @@ class DBAPI(DbGeneric):
 
     # The indices need to be aware of the SQL dialect.
     # Options are "sqlite" or "postgres".
-    dialect = None
+    dialect: str | None = None
 
     def _initialize(self, directory, username, password):
         raise NotImplementedError
