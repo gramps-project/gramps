@@ -1045,6 +1045,79 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.top.get_window().set_cursor(None)
         self.msg.set_label("")
 
+    def _get_available_backends(self):
+        """
+        Return a list of (plugin_id, display_name) tuples for all
+        non-deprecated database backends.
+        """
+        pmgr = BasePluginManager.get_instance()
+        plugins = pmgr.get_reg_databases()
+        return [
+            (p.id, p.name)
+            for p in sorted(plugins, key=lambda p: p.name)
+            if p.id != "bsddb"
+        ]
+
+    def _pick_backend(self):
+        """
+        Return a backend plugin id for the new family tree.
+
+        If only one backend is available, return it immediately.
+        Otherwise show a small dialog letting the user choose.
+        Returns None if the user cancels.
+        """
+        backends = self._get_available_backends()
+        if not backends:
+            return config.get("database.backend")
+        if len(backends) == 1:
+            return backends[0][0]
+
+        default = config.get("database.backend")
+
+        dialog = Gtk.Dialog(
+            title=_("Choose Database Backend"),
+            transient_for=self.top,
+            modal=True,
+        )
+        dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
+        dialog.add_button(_("OK"), Gtk.ResponseType.OK)
+        dialog.set_default_response(Gtk.ResponseType.OK)
+
+        box = dialog.get_content_area()
+        box.set_spacing(12)
+        box.set_margin_start(12)
+        box.set_margin_end(12)
+        box.set_margin_top(12)
+        box.set_margin_bottom(12)
+
+        label = Gtk.Label(label=_("Select the backend for the new family tree:"))
+        label.set_halign(Gtk.Align.START)
+        box.pack_start(label, False, False, 0)
+
+        model = Gtk.ListStore(str, str)
+        active_index = 0
+        for i, (pid, name) in enumerate(backends):
+            model.append([pid, name])
+            if pid == default:
+                active_index = i
+
+        combo = Gtk.ComboBox(model=model)
+        cell = Gtk.CellRendererText()
+        combo.pack_start(cell, True)
+        combo.add_attribute(cell, "text", 1)
+        combo.set_active(active_index)
+        box.pack_start(combo, False, False, 0)
+
+        box.show_all()
+        response = dialog.run()
+        if response == Gtk.ResponseType.OK:
+            tree_iter = combo.get_active_iter()
+            dbid = model[tree_iter][0] if tree_iter else default
+        else:
+            dbid = None
+        dialog.destroy()
+        return dbid
+
     def __new_db(self, obj):
         """
         Callback wrapper around the actual routine that creates the
@@ -1052,7 +1125,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         message.
         """
         self.new_btn.set_sensitive(False)
-        dbid = config.get("database.backend")
+        dbid = self._pick_backend()
         if dbid:
             try:
                 self._create_new_db(dbid=dbid)
