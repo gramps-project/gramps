@@ -258,6 +258,8 @@ class DBAPI(DbGeneric):
             ")"
         )
 
+        self._create_secondary_columns()
+
         ## Indices:
         self.dbapi.execute("CREATE INDEX person_gramps_id ON person(gramps_id)")
         self.dbapi.execute("CREATE INDEX person_surname ON person(surname)")
@@ -278,8 +280,6 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX repository_gramps_id ON repository(gramps_id)")
         self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
-
-        self._create_secondary_columns()
 
         self.dbapi.commit()
 
