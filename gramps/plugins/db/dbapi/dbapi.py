@@ -104,6 +104,7 @@ class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
+
     # The indices need to be aware of the SQL dialect.
     # Options are "sqlite" or "postgres".
     dialect = None

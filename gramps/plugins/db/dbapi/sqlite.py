@@ -55,6 +55,7 @@ class SQLite(DBAPI):
     """
     SQLite interface.
     """
+
     dialect = "sqlite"
 
     def get_summary(self):
