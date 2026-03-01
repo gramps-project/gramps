@@ -104,6 +104,9 @@ class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
+    # The indices need to be aware of the SQL dialect.
+    # Options are "sqlite" or "postgres".
+    dialect = None
 
     def _initialize(self, directory, username, password):
         raise NotImplementedError
@@ -254,8 +257,6 @@ class DBAPI(DbGeneric):
             ")"
         )
 
-        self._create_secondary_columns()
-
         ## Indices:
         self.dbapi.execute("CREATE INDEX person_gramps_id ON person(gramps_id)")
         self.dbapi.execute("CREATE INDEX person_surname ON person(surname)")
@@ -277,7 +278,32 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
 
+        self._create_secondary_columns()
+
         self.dbapi.commit()
+
+    def _format_json_extract_for_index(self):
+        """
+        Format JSON extract expression for index creation based on dialect.
+
+        This matches the logic used in QueryBuilder.format_json_extract() to ensure
+        indexes use the same JSON extraction syntax as queries.
+
+        Returns:
+            SQL expression string for JSON handle extraction (e.g.,
+            "json_extract(json_data, '$.handle')" for SQLite or
+            "JSON_EXTRACT_PATH(json_data, 'handle')" for PostgreSQL)
+        """
+        if self.dialect is None:
+            raise Exception("Please add 'dialect' property to your subclass")
+
+        if self.dialect == "sqlite":
+            return "json_extract(json_data, '$.handle')"
+        elif self.dialect == "postgres":
+            return "JSON_EXTRACT_PATH(json_data, 'handle')"
+        else:
+            # Default to SQLite format for backward compatibility
+            return "json_extract(json_data, '$.handle')"
 
     def _drop_column(self, table_name, column_name):
         """
@@ -1054,6 +1080,29 @@ class DBAPI(DbGeneric):
                 obj = self.method("get_%s_from_handle", obj_type)(handle)
                 self._update_secondary_values(obj)
                 self.update()
+        self._txn_commit()
+
+        # Rebuild JSON handle indices for faster JOINs
+        self._txn_begin()
+        tables = [
+            "person",
+            "source",
+            "citation",
+            "media",
+            "place",
+            "family",
+            "event",
+            "repository",
+            "note",
+        ]
+        for table in tables:
+            index_name = f"{table}_handle_json"
+            # Drop index if it exists (for rebuild)
+            self.dbapi.execute(f"DROP INDEX IF EXISTS {index_name}")
+            # Create the index
+            self.dbapi.execute(
+                f"CREATE INDEX {index_name} ON {table}({self._format_json_extract_for_index()})"
+            )
         self._txn_commit()
 
         # Next, rebuild stats:
