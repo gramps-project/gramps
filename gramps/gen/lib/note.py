@@ -67,6 +67,11 @@ class Note(BasicPrimaryObject):
 
     FLOWED, FORMATTED = list(range(2))
 
+    # Type hints for Note attributes
+    text: "StyledText"
+    format: int
+    type: "NoteType"
+
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""
         BasicPrimaryObject.__init__(self)

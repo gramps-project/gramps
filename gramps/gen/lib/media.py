@@ -62,6 +62,13 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase, PrimaryObject):
     description and privacy.
     """
 
+    # Type hints for Media attributes
+    path: str
+    mime: str
+    desc: str
+    checksum: str
+    thumb: str
+
     def __init__(self, source=None):
         """
         Initialize a Media.

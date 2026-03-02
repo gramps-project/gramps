@@ -64,6 +64,17 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
     a collection of images and URLs, a note and a source.
     """
 
+    # Type hints for Place attributes
+    long: str
+    lat: str
+    title: str
+    name: "PlaceName"
+    alt_names: list
+    placeref_list: list
+    place_type: "PlaceType"
+    code: str
+    alt_loc: list
+
     def __init__(self, source=None):
         """
         Create a new Place object, copying from the source if present.

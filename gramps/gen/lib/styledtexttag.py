@@ -53,6 +53,11 @@ class StyledTextTag(BaseObject):
 
     """
 
+    # Type hints for StyledTextTag attributes
+    name: "StyledTextTagType"
+    value: str
+    ranges: list
+
     def __init__(self, name=None, value=None, ranges=None):
         """Setup initial instance variable values.
 

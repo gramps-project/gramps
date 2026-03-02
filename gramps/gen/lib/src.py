@@ -55,6 +55,13 @@ class Source(
     A record of a source of information.
     """
 
+    # Type hints for Source attributes
+    title: str
+    author: str
+    pubinfo: str
+    abbrev: str
+    reporef_list: list
+
     def __init__(self):
         """Create a new Source instance."""
         PrimaryObject.__init__(self)

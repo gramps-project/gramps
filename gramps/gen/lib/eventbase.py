@@ -43,6 +43,9 @@ class EventBase:
     Base class for storing event references.
     """
 
+    # Type hints for EventBase attributes
+    event_ref_list: list
+
     def __init__(self, source=None):
         """
         Create a new EventBase, copying from source if not None.

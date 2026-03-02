@@ -44,6 +44,9 @@ class AttributeRootBase:
 
     _CLASS = AttributeRoot
 
+    # Type hints for AttributeRootBase attributes
+    attribute_list: list
+
     def __init__(self, source=None):
         """
         Initialize a AttributeBase.

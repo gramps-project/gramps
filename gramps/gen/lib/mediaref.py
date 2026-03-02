@@ -54,6 +54,9 @@ class MediaRef(
     Media reference class.
     """
 
+    # Type hints for MediaRef attributes
+    rect: tuple
+
     def __init__(self, source=None):
         PrivacyBase.__init__(self, source)
         CitationBase.__init__(self, source)

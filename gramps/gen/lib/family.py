@@ -86,6 +86,13 @@ class Family(
     or the changes will be lost.
     """
 
+    # Type hints for Family attributes
+    father_handle: str
+    mother_handle: str
+    child_ref_list: list
+    type: "FamilyRelType"
+    complete: int
+
     def __init__(self):
         """
         Create a new Family instance.

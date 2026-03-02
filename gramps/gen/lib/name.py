@@ -57,6 +57,18 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
     object stores one of them
     """
 
+    # Type hints for Name-specific attributes
+    first_name: str
+    suffix: str
+    title: str
+    type: "NameType"
+    group_as: str
+    sort_as: int
+    display_as: int
+    call: str
+    nick: str
+    famnick: str
+
     DEF = 0  # Default format (determined by gramps-wide prefs)
     LNFN = 1  # last name first name
     FNLN = 2  # first name last name

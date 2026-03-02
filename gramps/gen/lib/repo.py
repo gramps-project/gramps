@@ -49,6 +49,10 @@ _ = glocale.translation.gettext
 class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryObject):
     """A location where collections of Sources are found."""
 
+    # Type hints for Repository attributes
+    type: "RepositoryType"
+    name: str
+
     def __init__(self):
         """
         Create a new Repository instance.

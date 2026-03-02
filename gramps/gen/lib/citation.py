@@ -77,6 +77,11 @@ class Citation(
     CONF_LOW = 1
     CONF_VERY_LOW = 0
 
+    # Type hints for Citation attributes
+    source_handle: str
+    page: str
+    confidence: int
+
     def __init__(self):
         """Create a new Citation instance."""
         PrimaryObject.__init__(self)

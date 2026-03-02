@@ -32,6 +32,9 @@ class PlaceBase:
     Base class for place-aware objects.
     """
 
+    # Type hints for PlaceBase attributes
+    place: str
+
     def __init__(self, source=None):
         """
         Initialize a PlaceBase.

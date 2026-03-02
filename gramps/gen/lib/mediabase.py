@@ -41,6 +41,9 @@ class MediaBase:
     Base class for storing media references.
     """
 
+    # Type hints for MediaBase attributes
+    media_list: list
+
     def __init__(self, source=None):
         """
         Create a new MediaBase, copying from source if not None.

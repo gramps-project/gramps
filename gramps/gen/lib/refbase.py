@@ -41,6 +41,9 @@ class RefBase(metaclass=ABCMeta):
     Any *Ref* classes should derive from this class.
     """
 
+    # Type hints for RefBase attributes
+    ref: str
+
     def __init__(self, source=None):
         if source:
             self.ref = source.ref

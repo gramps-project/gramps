@@ -32,6 +32,9 @@ class TagBase:
     Base class for tag-aware objects.
     """
 
+    # Type hints for TagBase attributes
+    tag_list: list
+
     def __init__(self, source=None):
         """
         Initialize a TagBase.

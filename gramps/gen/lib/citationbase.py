@@ -54,6 +54,9 @@ class CitationBase:
     class. I.e. SourceRef = CitationBase + Citation
     """
 
+    # Type hints for CitationBase attributes
+    citation_list: list
+
     def __init__(self, source=None):
         """
         Create a new CitationBase, copying from source if not None.

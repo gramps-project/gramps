@@ -46,6 +46,9 @@ class NoteBase:
     as a note_list attribute of the NoteBase object.
     """
 
+    # Type hints for NoteBase attributes
+    note_list: list
+
     def __init__(self, source=None):
         """
         Create a new NoteBase, copying from source if not None.
