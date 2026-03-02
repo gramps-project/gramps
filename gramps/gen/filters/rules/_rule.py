@@ -98,8 +98,8 @@ def _wrap_apply_to_one(method):
             .get("rule", {})
             .get(_rule_key(type(self)))
         )
-        if entry is not None and entry.get("apply") is not None:
-            return entry["apply"](self, method, db, obj)
+        if entry is not None and entry.get("apply_to_one") is not None:
+            return entry["apply_to_one"](self, method, db, obj)
         return method(self, db, obj)
     return wrapper
 

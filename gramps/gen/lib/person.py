@@ -25,6 +25,8 @@
 Person object for Gramps.
 """
 
+from typing import List
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
@@ -86,6 +88,15 @@ class Person(
     or the changes will be lost.
 
     """
+
+    # Type hints for Person-specific attributes
+    primary_name: Name
+    family_list: List[str]  # List of family handles
+    parent_family_list: List[str]  # List of parent family handles
+    alternate_names: List[Name]
+    person_ref_list: List[PersonRef]
+    death_ref_index: int
+    birth_ref_index: int
 
     OTHER = 3
     UNKNOWN = 2
