@@ -38,7 +38,7 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, Dict
+from typing import List, Optional, Set, Dict
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -68,7 +68,7 @@ class RelationshipPathBetween(Rule):
         root1 = db.get_person_from_gramps_id(self.list[0])
         root2 = db.get_person_from_gramps_id(self.list[1])
         if root1 and root2:
-            self.init_list(root1.handle, root2.handle)
+            self.init_list(PersonHandle(root1.handle), PersonHandle(root2.handle))
 
     def reset(self):
         self.selected_handles.clear()
@@ -88,7 +88,7 @@ class RelationshipPathBetween(Rule):
     def apply_filter(
         self,
         rank: int,
-        handle: PersonHandle,
+        handle: Optional[PersonHandle],
         plist: Set[PersonHandle],
         pmap: Dict[PersonHandle, int],
     ):
@@ -98,7 +98,7 @@ class RelationshipPathBetween(Rule):
         if person is None:
             return
         plist.add(handle)
-        pmap[person.handle] = rank
+        pmap[PersonHandle(person.handle)] = rank
 
         fam_id = (
             person.parent_family_list[0] if len(person.parent_family_list) > 0 else None

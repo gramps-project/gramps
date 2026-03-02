@@ -22,12 +22,18 @@
 NoteBase class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Python modules
 #
 # -------------------------------------------------------------------------
 import logging
+from typing import TYPE_CHECKING, List
+
+if TYPE_CHECKING:
+    from ..types import NoteHandle
 
 LOG = logging.getLogger(".note")
 
@@ -47,7 +53,7 @@ class NoteBase:
     """
 
     # Type hints for NoteBase attributes
-    note_list: list
+    note_list: List[NoteHandle]
 
     def __init__(self, source=None):
         """

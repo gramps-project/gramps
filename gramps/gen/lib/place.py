@@ -34,6 +34,16 @@ from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
+# Python modules
+#
+# -------------------------------------------------------------------------
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ..types import PlaceHandle
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
@@ -65,6 +75,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
     """
 
     # Type hints for Place attributes
+    handle: "PlaceHandle"
     long: str
     lat: str
     title: str

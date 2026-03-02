@@ -91,7 +91,7 @@ class RelationshipPathBetweenBookmarks(Rule):
             return None
 
         if person.primary_name:
-            return person.primary_name.name
+            return person.primary_name.get_name()
         else:
             return None
 

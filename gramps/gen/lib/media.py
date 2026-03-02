@@ -29,8 +29,14 @@ Media object for Gramps.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
+
 import logging
 import os
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ..types import MediaHandle
 from urllib.parse import urlparse
 
 # -------------------------------------------------------------------------
@@ -63,6 +69,7 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase, PrimaryObject):
     """
 
     # Type hints for Media attributes
+    handle: "MediaHandle"
     path: str
     mime: str
     desc: str

@@ -24,12 +24,18 @@
 Family object for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Python modules
 #
 # -------------------------------------------------------------------------
 import logging
+from typing import TYPE_CHECKING, List, Optional
+
+if TYPE_CHECKING:
+    from ..types import FamilyHandle, PersonHandle
 
 # -------------------------------------------------------------------------
 #
@@ -87,8 +93,9 @@ class Family(
     """
 
     # Type hints for Family attributes
-    father_handle: str
-    mother_handle: str
+    handle: "FamilyHandle"
+    father_handle: Optional[PersonHandle]
+    mother_handle: Optional[PersonHandle]
     child_ref_list: list
     type: "FamilyRelType"
     complete: int

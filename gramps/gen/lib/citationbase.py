@@ -23,12 +23,18 @@
 CitationBase class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Python modules
 #
 # -------------------------------------------------------------------------
 import logging
+from typing import TYPE_CHECKING, List
+
+if TYPE_CHECKING:
+    from ..types import CitationHandle
 
 LOG = logging.getLogger(".citation")
 
@@ -55,7 +61,7 @@ class CitationBase:
     """
 
     # Type hints for CitationBase attributes
-    citation_list: list
+    citation_list: List[CitationHandle]
 
     def __init__(self, source=None):
         """

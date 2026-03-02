@@ -2,7 +2,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
-# Copyright (C) 2011-2013  Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,6 +23,7 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+from ....db import Database
 
 _ = glocale.translation.gettext
 
@@ -32,32 +32,18 @@ _ = glocale.translation.gettext
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .._hasgrampsid import HasGrampsId
-
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
-from ....lib import Citation
-from ....db import Database
+from .._selectwherebase import SelectWhereBase
 
 
 # -------------------------------------------------------------------------
 #
-# HasSourceIdOf
+# SelectWhere
 #
 # -------------------------------------------------------------------------
-class HasSourceIdOf(HasGrampsId):
-    """Rule that checks for a citation with a source which has a specific
-    Gramps ID"""
+class FamilyWhere(SelectWhereBase):
+    """Rule that matches families using a Python where expression"""
 
-    name = _("Citation with Source <Id>")
-    description = _("Matches a citation with a source with a specified Gramps " "ID")
-    category = _("Source filters")
-
-    def apply_to_one(self, dbase: Database, citation: Citation) -> bool:  # type: ignore[override]
-        if not citation.source_handle:
-            return False
-        source = dbase.get_source_from_handle(citation.source_handle)
-        return HasGrampsId.apply_to_one(self, dbase, source)  # type: ignore[override]
+    name = _("Families matching <expression>")
+    description = _("Matches families using a filter expression")
+    category = _("General filters")
+    table = "family"
