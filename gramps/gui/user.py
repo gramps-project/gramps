@@ -27,12 +27,15 @@ The User class provides basic interaction with the user.
 #
 # -------------------------------------------------------------------------
 import sys
+import time
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from gi.repository import Gtk
+
 from gramps.gen import user
 from .utils import ProgressMeter
 from .dialog import (
@@ -61,6 +64,9 @@ class User(user.UserBase):
     ):  # TODO User API: gen==cli==gui
         user.UserBase.__init__(self, callback, error, uistate, dbstate)
         self._progress = None
+        self._last_pump = 0.0
+        self._pulse_progress = False
+        self._print_func = self._gui_print
 
         if parent:
             self.parent = parent
@@ -68,6 +74,26 @@ class User(user.UserBase):
             self.parent = uistate.window
         else:
             self.parent = None
+
+    def begin_filter_progress(self):
+        """Start pulsing the status bar progress indicator during filter application."""
+        self._pulse_progress = True
+        if self.uistate is not None:
+            self.uistate.progress.show()
+
+    def end_filter_progress(self):
+        """Stop pulsing the status bar progress indicator after filter application."""
+        self._pulse_progress = False
+        if self.uistate is not None:
+            self.uistate.progress.hide()
+
+    def _gui_print(self, msg):
+        if self.uistate is not None:
+            hook = getattr(self.uistate, "filter_print_func", None)
+            if hook is not None:
+                hook(msg)
+                return
+        self._fileout.write(msg + "\n")
 
     def begin_progress(self, title, message, steps):
         """
@@ -95,6 +121,18 @@ class User(user.UserBase):
         """
         if self._progress:
             self._progress.step()
+        else:
+            now = time.monotonic()
+            if now - self._last_pump > 0.1:  # at most ~10 pumps/s
+                self._last_pump = now
+                if self._pulse_progress and self.uistate is not None:
+                    self.uistate.progress.pulse()
+                if self.uistate is not None:
+                    step_hook = getattr(self.uistate, "filter_step_func", None)
+                    if step_hook is not None:
+                        step_hook()
+                while Gtk.events_pending():
+                    Gtk.main_iteration()
 
     def end_progress(self):
         """

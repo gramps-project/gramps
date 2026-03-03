@@ -70,6 +70,7 @@ class User(user.UserBase):
         self.steps = 0
         self.current_step = 0
         self._input = input
+        self._print_func = lambda msg: self._fileout.write(msg + "\n")
 
         def yes(*args, **kwargs):
             return True
