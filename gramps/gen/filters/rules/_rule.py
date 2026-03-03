@@ -43,7 +43,7 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 import logging
 
-LOG = logging.getLogger(".")
+LOG = logging.getLogger(".rules")
 
 
 # -------------------------------------------------------------------------
@@ -79,13 +79,16 @@ def _rule_key(cls):
 def _wrap_prepare(method):
     @functools.wraps(method)
     def wrapper(self, db, user):
-        entry = (
-            getattr(db, "_override_registry", {})
-            .get("rule", {})
-            .get(_rule_key(type(self)))
-        )
-        if entry is not None and entry.get("prepare") is not None:
-            return entry["prepare"](self, method, db, user)
+        if not db.is_proxy():
+            entry = (
+                getattr(db, "_override_registry", {})
+                .get("rule", {})
+                .get(_rule_key(type(self)))
+            )
+            if entry is not None and entry.get("prepare") is not None:
+                LOG.debug("%s using optimized method", method)
+                return entry["prepare"](self, method, db, user)
+        LOG.debug("%s using non-optimized method", method)
         return method(self, db, user)
     return wrapper
 
@@ -93,13 +96,16 @@ def _wrap_prepare(method):
 def _wrap_apply_to_one(method):
     @functools.wraps(method)
     def wrapper(self, db, obj):
-        entry = (
-            getattr(db, "_override_registry", {})
-            .get("rule", {})
-            .get(_rule_key(type(self)))
-        )
-        if entry is not None and entry.get("apply_to_one") is not None:
-            return entry["apply_to_one"](self, method, db, obj)
+        if not db.is_proxy():
+            entry = (
+                getattr(db, "_override_registry", {})
+                .get("rule", {})
+                .get(_rule_key(type(self)))
+            )
+            if entry is not None and entry.get("apply_to_one") is not None:
+                LOG.debug("%s using optimized method", method)
+                return entry["apply_to_one"](self, method, db, obj)
+        LOG.debug("%s using non-optimized method", method)
         return method(self, db, obj)
     return wrapper
 
@@ -121,6 +127,15 @@ class Rule:
     @classmethod
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
+        cat = _rule_key(cls)[0]
+        # Only wrap concrete rules in category subdirectories (person/, family/,
+        # etc.).  Abstract base classes live directly under rules/ and their
+        # module component after "rules" starts with "_" (e.g. _regexpidbase).
+        # Wrapping those causes every super().apply_to_one() call to re-enter
+        # the registry dispatch with type(self) still pointing at the concrete
+        # class, triggering overrides with wrong arguments.
+        if cat is None or cat.startswith("_"):
+            return
         if "prepare" in cls.__dict__:
             cls.prepare = _wrap_prepare(cls.prepare)
         if "apply_to_one" in cls.__dict__:
@@ -268,7 +283,11 @@ class Rule:
             return True
 
 
-# Wrap the base-class implementations so DB overrides are checked even when
-# a subclass does not define its own prepare / apply_to_one.
+# Wrap the base-class implementations so DB overrides are checked for
+# concrete rules that do not define their own prepare / apply_to_one.
+# Intermediate abstract bases (RegExpIdBase etc.) are intentionally NOT
+# wrapped — their module sits directly under rules/ so __init_subclass__
+# skips them — which prevents super() calls inside a concrete rule's method
+# from re-entering the override registry with the wrong key.
 setattr(Rule, "prepare", _wrap_prepare(Rule.prepare))
 setattr(Rule, "apply_to_one", _wrap_apply_to_one(Rule.apply_to_one))
