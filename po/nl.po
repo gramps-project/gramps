@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2026-01-23 13:29+0000\n"
+"PO-Revision-Date: 2026-02-19 07:09+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -4036,7 +4036,7 @@ msgstr "Overeenkomst met citaten met een bepaald aantal items in de galerij"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:47
 msgid "Citation with <Id>"
-msgstr "Citaat met <ID>"
+msgstr "Citaat met <Id>"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:48
 msgid "Matches a citation with a specified Gramps ID"
@@ -4161,7 +4161,7 @@ msgstr "Bronfilters"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:56
 msgid "Citation with Source <Id>"
-msgstr "Citaat met bron <ID>"
+msgstr "Citaat met bron <Id>"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:57
 msgid "Matches a citation with a source with a specified Gramps ID"
@@ -4253,7 +4253,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Citations with Id containing <text>"
-msgstr "Citaten met ID die <tekst> bevatten"
+msgstr "Citaten met ID die <text> bevatten"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:51
 msgid "Matches citations whose Gramps ID matches the regular expression"
@@ -4263,7 +4263,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:58
 msgid "Citations with Source Id containing <text>"
-msgstr "Citaten met bron-ID die <tekst> bevatten"
+msgstr "Citaten met bron-ID die <text> bevatten"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:60
 msgid ""
@@ -4409,7 +4409,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:46
 msgid "Event with <Id>"
-msgstr "Gebeurtenis met <ID>"
+msgstr "Gebeurtenis met <Id>"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:47
 msgid "Matches an event with a specified Gramps ID"
@@ -4556,7 +4556,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Events with Id containing <text>"
-msgstr "Gebeurtenissen met ID met <tekst>"
+msgstr "Gebeurtenissen met ID met <text>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:49
 msgid "Matches events whose Gramps ID matches the regular expression"
@@ -4594,7 +4594,7 @@ msgstr "Persoon-ID:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:55
 msgid "Families having child with Id containing <text>"
-msgstr "Gezinnen met een kind met ID met <tekst>"
+msgstr "Gezinnen met een kind met ID met <text>"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:56
 msgid "Matches families where child has a specified Gramps ID"
@@ -4628,7 +4628,7 @@ msgstr "Overeenkomst met gezinnen die als privé zijn aangegeven"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:55
 msgid "Families having father with Id containing <text>"
-msgstr "Gezinnen met een vader met ID met <tekst>"
+msgstr "Gezinnen met een vader met ID met <text>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:56
 msgid "Matches families whose father has a specified Gramps ID"
@@ -4710,7 +4710,7 @@ msgstr "Overeenkomst met gezinnen met een bepaald aantal items in de galerij"
 
 #: ../gramps/gen/filters/rules/family/_hasidof.py:46
 msgid "Family with <Id>"
-msgstr "Gezin met <ID>"
+msgstr "Gezin met <Id>"
 
 #: ../gramps/gen/filters/rules/family/_hasidof.py:47
 msgid "Matches a family with a specified Gramps ID"
@@ -4874,7 +4874,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:55
 msgid "Families having mother with Id containing <text>"
-msgstr "Gezinnen met een moeder met ID met <tekst>"
+msgstr "Gezinnen met een moeder met ID met <text>"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:56
 msgid "Matches families whose mother has a specified Gramps ID"
@@ -4925,7 +4925,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:48
 msgid "Families with Id containing <text>"
-msgstr "Gezinnen met ID met <tekst>"
+msgstr "Gezinnen met ID met <text>"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:50
 msgid "Matches families whose Gramps ID matches the regular expression"
@@ -5009,7 +5009,7 @@ msgstr "Overeenkomst met media met een citaat van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:46
 msgid "Media object with <Id>"
-msgstr "Media-object met <ID>"
+msgstr "Media-object met <Id>"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:47
 msgid "Matches a media object with a specified Gramps ID"
@@ -5129,7 +5129,7 @@ msgstr "Overeenkomst met media-objecten die als privé zijn aangegeven"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:48
 msgid "Media objects with Id containing <text>"
-msgstr "Media-objecten met ID met <tekst>"
+msgstr "Media-objecten met ID met <text>"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:50
 msgid "Matches media objects whose Gramps ID matches the regular expression"
@@ -5160,7 +5160,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
-msgstr "Notitie met <ID>"
+msgstr "Notitie met <Id>"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:47
 msgid "Matches a note with a specified Gramps ID"
@@ -5234,7 +5234,7 @@ msgstr "Overeenkomst met notities die als privé zijn aangegeven"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:48
 msgid "Notes with Id containing <text>"
-msgstr "Notities met ID met <tekst>"
+msgstr "Notities met ID met <text>"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:49
 msgid "Matches notes whose Gramps ID matches the regular expression"
@@ -5484,7 +5484,7 @@ msgstr "Overeenkomst met personen met een bepaald aantal items in de galerij"
 #: ../gramps/gen/filters/rules/person/_hasidof.py:46
 #: ../gramps/gen/filters/rules/person/_matchidof.py:55
 msgid "Person with <Id>"
-msgstr "Persoon met <ID>"
+msgstr "Persoon met <Id>"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:47
 #: ../gramps/gen/filters/rules/person/_matchidof.py:56
@@ -6138,7 +6138,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:47
 msgid "People with Id containing <text>"
-msgstr "Personen met ID met <tekst>"
+msgstr "Personen met ID met <text>"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:48
 msgid "Matches people whose Gramps ID matches the regular expression"
@@ -6264,7 +6264,7 @@ msgstr "Overeenkomst met locaties met een bepaald aantal items in de galerij"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:46
 msgid "Place with <Id>"
-msgstr "Locatie met <ID>"
+msgstr "Locatie met <Id>"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:47
 msgid "Matches a place with a specified Gramps ID"
@@ -6480,7 +6480,7 @@ msgstr "Overeenkomst met locaties die als privé zijn aangegeven"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Places with Id containing <text>"
-msgstr "Locaties met ID met <tekst>"
+msgstr "Locaties met ID met <text>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:49
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -6550,7 +6550,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:46
 msgid "Repository with <Id>"
-msgstr "Opslagplaats met <ID>"
+msgstr "Opslagplaats met <Id>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Matches a repository with a specified Gramps ID"
@@ -6640,7 +6640,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Repositories with Id containing <text>"
-msgstr "Opslagplaatsen met ID met <tekst>"
+msgstr "Opslagplaatsen met ID met <text>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:50
 msgid "Matches repositories whose Gramps ID matches the regular expression"
@@ -6699,7 +6699,7 @@ msgstr "Overeenkomst met bronnen met een bepaald aantal items in de galerij"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:46
 msgid "Source with <Id>"
-msgstr "Bron met <ID>"
+msgstr "Bron met <Id>"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:47
 msgid "Matches a source with a specified Gramps ID"
@@ -6818,7 +6818,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:48
 msgid "Sources with Id containing <text>"
-msgstr "Bronnen met ID met <tekst>"
+msgstr "Bronnen met ID met <text>"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:49
 msgid "Matches sources whose Gramps ID matches the regular expression"
