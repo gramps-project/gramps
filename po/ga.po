@@ -6,14 +6,14 @@
 # OscarBrownbread <brian.tuffy@gmail.com>, 2024.
 # Aindriú Mac Giolla Eoin <aindriu80@gmail.com>, 2025, 2026.
 # Nick Hall <nick-h@gramps-project.org>, 2025.
-# Seán Ó Séaghdha <sean.anseo@gmail.com>, 2025.
+# Seán Ó Séaghdha <sean.anseo@gmail.com>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2026-02-21 23:09+0000\n"
-"Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
+"PO-Revision-Date: 2026-02-27 13:09+0000\n"
+"Last-Translator: Seán Ó Séaghdha <sean.anseo@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
 "Language: ga\n"
@@ -6441,11 +6441,11 @@ msgstr "Tréith an stórais:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repositories with the attribute <attribute>"
-msgstr "Stórálaí leis an tréith <attribute>"
+msgstr "Taisclanna leis an tréith <attribute>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Meaitseálann stórais le tréith luach áirithe"
+msgstr "Meaitseálann sé taisclanna le tréith luach áirithe"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:46
 msgid "Repository with <Id>"
@@ -6457,31 +6457,32 @@ msgstr "Meaitseálann stór le ID sonraithe Gramps"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr "Stórálaí a bhfuil nótaí ina bhfuil <substring>"
+msgstr "Taisclanna agus nótaí acu ina bhfuil <substring> le fáil"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:45
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Meaitseálann stórais lena gcuid nótaí téacs a mheaitseálann le fotheagán"
+"Meaitseálann sé taisclanna a bhfuil téacs ina gcuid nótaí a mheaitseálann le "
+"fotheaghrán"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:41
 msgid "Repositories having notes containing <text>"
-msgstr "Stórálaí a bhfuil nótaí ina bhfuil <text>"
+msgstr "Taisclanna le nótaí ina bhfuil <text>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:43
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Meaitseálann stórais lena gcuid nótaí téacs a mheaitseálann le labhairt "
-"rialta"
+"Meaitseálann sé taisclanna a bhfuil téacs ina gcuid nótaí a mheaitseálann le "
+"slonn rialta"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
-msgstr "Stórálaí le comhaireamh tagartha de <count>"
+msgstr "Taisclanna le comhaireamh tagairtí de <count>"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Matches repositories with a certain reference count"
-msgstr "Meaitseálann stórais le comhaireamh tagartha áirithe"
+msgstr "Meaitseálann sé taisclanna le comhaireamh tagairtí áirithe"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:56
 #: ../gramps/gui/glade/mergerepository.glade:208
@@ -6501,51 +6502,55 @@ msgstr "URL:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:61
 msgid "Repositories matching parameters"
-msgstr "Paraiméadair meaitseála stórais"
+msgstr "Taisclanna a mheaitseálann paraiméadair"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:62
 msgid "Matches Repositories with particular parameters"
-msgstr "Meaitseálann Stórálaí le paraiméadair"
+msgstr "Meaitseálann sé Taisclanna le paraiméadair áirithe"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:51
 msgid "Repositories with the <tag>"
-msgstr "Stórálaí leis an <tag>"
+msgstr "Taisclanna leis an gclib <tag>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Matches repositories with the particular tag"
-msgstr "Meaitseálann stórais leis an gclib áirithe"
+msgstr "Meaitseálann sé taisclanna leis an gclib áirithe"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:45
 msgid "Repositories matching the <filter>"
-msgstr "Stórálaí a mheaitseálann an <filter>"
+msgstr "Taisclanna a mheaitseálann an scagaire <filter>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Meaitseálann stórais a mheaitseáiltear leis an ainm scagaire"
+msgstr ""
+"Meaitseálann sé taisclanna a meaitseálann an ainm scagaire sonraithe leo"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:53
 msgid "Repositories with name containing <text>"
-msgstr "Stórálaí le hainm ina bhfuil <text>"
+msgstr "Taisclanna le hainm ina bhfuil <text>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:54
 msgid "Matches repositories whose name contains a certain substring"
-msgstr "Meaitseálann stórais a bhfuil fotheagán áirithe ar a n-ainm"
+msgstr ""
+"Meaitseálann sé taisclanna a bhfuil fotheaghrán áirithe ina n‑ainmneacha"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Repositories with Id containing <text>"
-msgstr "Stórálaí le ID ina bhfuil <text>"
+msgstr "Taisclanna le ID ina bhfuil <text>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:50
 msgid "Matches repositories whose Gramps ID matches the regular expression"
-msgstr "Meaitseálann stórais a n-oireann a n-ID Gramps leis an léiriú rialta"
+msgstr ""
+"Meaitseálann sé taisclanna a meaitseálann a n‑IDanna Gramps leis an slonn "
+"rialta"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:43
 msgid "Repositories marked private"
-msgstr "Stórais marcáilte príobháideach"
+msgstr "Taisclanna marcáilte mar phríobháideach"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:44
 msgid "Matches repositories that are indicated as private"
-msgstr "Meaitseálann stórais atá léirithe mar phríobháideach"
+msgstr "Meaitseálann sé taisclanna atá léirithe mar phríobháideach"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:45
 msgid "Every source"
@@ -9123,7 +9128,7 @@ msgstr "Uimhir"
 #: ../gramps/plugins/quickview/filterbyname.py:346
 #: ../gramps/plugins/tool/reorderids.glade:836
 msgid "Repository"
-msgstr "Stóráil"
+msgstr "Taisclann"
 
 #: ../gramps/gen/lib/reporef.py:98 ../gramps/gui/clipboard.py:530
 msgid "Repository ref"
@@ -9212,7 +9217,7 @@ msgstr "Giorrúchán"
 #: ../gramps/plugins/webreport/repository.py:242
 #: ../gramps/plugins/webreport/updates.py:140
 msgid "Repositories"
-msgstr "Stórálaí"
+msgstr "Taisclanna"
 
 #: ../gramps/gen/lib/srcmediatype.py:67
 msgid "Audio"
@@ -9484,7 +9489,7 @@ msgstr "Cumaisc Áiteanna"
 #: ../gramps/gen/merge/mergerepositoryquery.py:61
 #: ../gramps/gui/merge/mergerepository.py:70
 msgid "Merge Repositories"
-msgstr "Cumaisc Stóráin"
+msgstr "Cumaisc Taisclanna"
 
 #: ../gramps/gen/merge/mergesourcequery.py:63
 msgid "Merge Source"
@@ -14396,7 +14401,7 @@ msgstr "Bog an stór roghnaithe anuas"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:80
 msgid "_Repositories"
-msgstr "_Stórálaí"
+msgstr "_Taisclanna"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:183
 msgid ""
@@ -18013,7 +18018,7 @@ msgstr "Stóráil 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:388
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr "Déanfar seoltaí, urls agus nótaí an dá stór le chéile."
+msgstr "Déanfar seoltaí, URLanna agus nótaí an dá thaisclann a chumasc."
 
 #: ../gramps/gui/glade/mergesource.glade:94
 msgid ""
@@ -19132,7 +19137,7 @@ msgstr "Merge_Places"
 #: ../gramps/gui/merge/mergerepository.py:44
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "Merge_Repositories"
+msgstr "Cumaisc_Taisclanna"
 
 #: ../gramps/gui/merge/mergesource.py:45
 msgctxt "manual"
@@ -23458,7 +23463,7 @@ msgstr "Nótaí a scríobh"
 
 #: ../gramps/plugins/export/exportgedcom.py:1127
 msgid "Writing repositories"
-msgstr "Stóráin scríbhneoireachta"
+msgstr "Ag scríobh taisclanna"
 
 #: ../gramps/plugins/export/exportgedcom.py:1253
 #: ../gramps/plugins/lib/libgedcom.py:6412
@@ -32348,7 +32353,7 @@ msgstr "gach foinse"
 #: ../gramps/plugins/quickview/filterbyname.py:56
 msgctxt "Filtering_on"
 msgid "all repositories"
-msgstr "gach stór"
+msgstr "gach taisclann"
 
 #: ../gramps/plugins/quickview/filterbyname.py:57
 msgctxt "Filtering_on"
@@ -34384,7 +34389,7 @@ msgstr "Dearbhú"
 #: ../gramps/plugins/textreport/summary.py:307
 #, python-format
 msgid "Number of repositories: %d"
-msgstr "Líon na stórtha: %d"
+msgstr "Líon na dtaisclanna: %d"
 
 #: ../gramps/plugins/textreport/summary.py:341
 #, python-format
@@ -34990,9 +34995,11 @@ msgstr[2] "Ceartaíodh {quantity} dáta\n"
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "Rinneadh tagairt do stóras {quantity} ach níor aimsíodh é\n"
-msgstr[1] "Rinneadh tagairt do stórais {quantity}, ach níor aimsíodh iad\n"
-msgstr[2] "Rinneadh tagairt do stórais {quantity}, ach níor aimsíodh iad\n"
+msgstr[0] "Rinneadh tagairt do {quantity} taisclann amháin ach níor aimsíodh é\n"
+msgstr[1] "Rinneadh tagairt do {quantity} thaisclann, ach níor aimsíodh iad\n"
+msgstr[2] "Rinneadh tagairt do {quantity} thaisclann, ach níor aimsíodh iad\n"
+msgstr[3] "Rinneadh tagairt do {quantity} dtaisclann, ach níor aimsíodh iad\n"
+msgstr[4] "Rinneadh tagairt do {quantity} taisclanna, ach níor aimsíodh iad\n"
 
 #: ../gramps/plugins/tool/check.py:2859 ../gramps/plugins/tool/check.py:2959
 #, python-brace-format
@@ -36012,7 +36019,7 @@ msgstr "Cuardaigh meáin"
 
 #: ../gramps/plugins/tool/removeunused.glade:169
 msgid "Search for repositories"
-msgstr "Cuardaigh stórtha"
+msgstr "Cuardaigh taisclanna"
 
 #: ../gramps/plugins/tool/removeunused.glade:185
 msgid "Search for notes"
@@ -38021,7 +38028,7 @@ msgstr "Scrios an stór roghnaithe"
 
 #: ../gramps/plugins/view/repoview.py:141
 msgid "Merge the selected repositories"
-msgstr "Cumaisc na stórtha roghnaithe"
+msgstr "Cumaisc na taisclanna roghnaithe"
 
 #: ../gramps/plugins/view/repoview.py:235
 msgid "Repository Filter Editor"
@@ -38029,7 +38036,7 @@ msgstr "Tagairtí"
 
 #: ../gramps/plugins/view/repoview.py:396
 msgid "Cannot merge repositories."
-msgstr "Ní féidir stórtha a chumasc."
+msgstr "Ní féidir na taisclanna a chumasc."
 
 #: ../gramps/plugins/view/repoview.py:398
 msgid ""
@@ -38037,9 +38044,9 @@ msgid ""
 "repository can be selected by holding down the control key while clicking on "
 "the desired repository."
 msgstr ""
-"Ní mór dhá stór a roghnú chun cumasc a dhéanamh. Is féidir an dara stór a "
-"roghnú tríd an eochair rialaithe a choinneáil síos agus cliceáil ar an stór "
-"atá ag teastáil."
+"Ní mór dhá thaisclann a roghnú chun cumasc a dhéanamh. Is féidir an dara "
+"taisclann a roghnú tríd an eochair rialúcháin (Ctrl) a choinneáil síos agus "
+"tú ag cliceáil ar an taisclann atá ag teastáil."
 
 #: ../gramps/plugins/view/sourceview.py:111
 msgid "Edit the selected source"
@@ -38147,7 +38154,7 @@ msgstr "Amharc a thaispeánann áiteanna i bhformáid chrainn."
 
 #: ../gramps/plugins/view/view.gpr.py:268
 msgid "The view showing all the repositories"
-msgstr "An amharc a thaispeánann na stórtha go léir"
+msgstr "An amharc a thaispeánann na taisclanna go léir"
 
 #: ../gramps/plugins/view/view.gpr.py:284
 msgid "The view showing all the sources"
@@ -39836,9 +39843,9 @@ msgid ""
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
-"Tá innéacs ar an leathanach seo de na stórtha go léir sa bhunachar sonraí, "
-"curtha in eagar de réir a dteidil. Má chliceálann tú ar theideal stórtha, "
-"tógfar tú chuig leathanach na stórtha sin."
+"Tá innéacs ar an leathanach seo de na taisclanna go léir sa bhunachar "
+"sonraí, curtha in eagar de réir a dteidil. Má chliceálann tú ar theideal "
+"taisclainne, tógfar tú chuig leathanach na taisclainne sin."
 
 #: ../gramps/plugins/webreport/repository.py:176
 msgctxt "Repository"
