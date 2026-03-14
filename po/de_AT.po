@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2026-01-17 08:01+0000\n"
+"PO-Revision-Date: 2026-02-21 23:09+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -826,14 +826,14 @@ msgid ""
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"<b>Namen sind Schall und Rauch</b><br/>Der Name Gramps wurde dem "
-"ursprünglichen Entwickler Don Allingham von seinem Vater vorgeschlagen. Er "
-"bedeutet <i>Genealogical Research and Analysis Management Program System "
-"(auf Deutsch: Genealogisches Recherche- und Analyse-Management-Programm-"
-"System)</i>. Es ist ein umfangreiches Ahnenforschungsprogramm um "
-"genealogische Daten zu speichern, zu bearbeiten und zu durchforsten. Das "
-"Datenbank-Backend von Gramps ist so robust, dass einige Benutzerinnen und "
-"Benutzer Stammbäume mit Hunderttausenden Personen damit verwalten."
+"<b>Was sagt der Name aus?</b><br/>Der Name Gramps wurde dem ursprünglichen "
+"Entwickler Don Allingham von seinem Vater vorgeschlagen. Er bedeutet <i>"
+"Genealogical Research and Analysis Management Program System (auf Deutsch: "
+"Genealogisches Recherche- und Analyse-Management-Programm-System)</i>. Es "
+"ist ein umfangreiches Ahnenforschungsprogramm um genealogische Daten zu "
+"speichern, zu bearbeiten und zu durchforsten. Das Datenbank-Backend von "
+"Gramps ist so robust, dass einige Benutzerinnen und Benutzer Stammbäume mit "
+"Hunderttausenden Personen damit verwalten."
 
 #: ../data/tips.xml:68
 msgid ""
@@ -1292,7 +1292,7 @@ msgstr "FEHLER: Nicht erkanntes Format für die Exportdatei %s"
 #: ../gramps/cli/arghandler.py:402 ../gramps/gen/plug/utils.py:373
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr "FEHLER: Kann '%s' nicht öffnen"
+msgstr "Fehler: Kann '%s' nicht öffnen"
 
 #: ../gramps/cli/arghandler.py:421
 msgid "List of known Family Trees in your database path\n"
@@ -4295,7 +4295,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Citations with Id containing <text>"
-msgstr "Fundstellen, deren ID <Text> enthalten"
+msgstr "Fundstellen, deren ID <Text> enthält"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:51
 msgid "Matches citations whose Gramps ID matches the regular expression"
@@ -4332,7 +4332,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
 "Entspricht Ereigniseinträgen, die nach einem bestimmten Datum/Zeitpunkt "
-"(JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein "
+"(JJJJ-MM-TT HH:MM:ss) oder in einem Zeitraum geändert wurden, falls ein "
 "zweites Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:43
@@ -4614,7 +4614,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 "Entspricht Familieneinträgen, die nach einem bestimmten Datum/Zeitpunkt "
-"(JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein "
+"(JJJJ-MM-TT HH:MM:ss) oder in einem Zeitraum geändert wurden, falls ein "
 "zweites Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:54
@@ -4625,7 +4625,7 @@ msgstr "Personen-ID:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:55
 msgid "Families having child with Id containing <text>"
-msgstr "Liefert Familien mit einem Kind, dessen ID <Text> enthält"
+msgstr "Liefert Familien mit einem Kind, deren ID <Text> enthält"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:56
 msgid "Matches families where child has a specified Gramps ID"
@@ -5004,7 +5004,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date:time is given."
 msgstr ""
 "Entspricht Medienobjekten, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-"
-"MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein zweites "
+"MM-TT HH:MM:ss) oder in einem Zeitraum geändert wurden, falls ein zweites "
 "Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:45
@@ -5175,7 +5175,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 "Entspricht Notizeinträgen, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-"
-"MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein zweites "
+"MM-TT HH:MM:ss) oder in einem Zeitraum geändert wurden, falls ein zweites "
 "Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
@@ -5267,7 +5267,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 "Entspricht Personeneinträgen, die nach einem bestimmten Datum/Zeitpunkt "
-"(JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein "
+"(JJJJ-MM-TT HH:MM:ss) oder in einem Zeitraum geändert wurden, falls ein "
 "zweites Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
@@ -6207,7 +6207,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 "Entspricht Ortseinträgen, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-"
-"TT HH:MM:ss) geändert wurden oder in einem Zeitraum, falls ein zweites Datum/"
+"TT HH:MM:ss) oder in einem Zeitraum geändert wurden, falls ein zweites Datum/"
 "Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
@@ -6483,7 +6483,7 @@ msgstr "Entspricht Orten, die als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Places with Id containing <text>"
-msgstr "Orte mit einer ID, die <Text> enthält"
+msgstr "Orte mit ID, die <Text> enthält"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:49
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -6533,7 +6533,7 @@ msgid ""
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
 "Entspricht Einträgen von Aufbewahrungsorten, die nach einem bestimmten Datum/"
-"Zeitpunkt (JJJJ-MM-TT HH:MM:ss) geändert wurden oder in einem Zeitraum, "
+"Zeitpunkt (JJJJ-MM-TT HH:MM:ss) oder in einem Zeitraum geändert wurden, "
 "falls ein zweites Datum/Zeitpunkt angegeben wird."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
@@ -6813,7 +6813,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:48
 msgid "Sources with Id containing <text>"
-msgstr "Quellen mit einer ID, die <Text> enthält"
+msgstr "Quellen mit ID, die <Text> enthält"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:49
 msgid "Matches sources whose Gramps ID matches the regular expression"
@@ -8510,11 +8510,11 @@ msgstr "Begabung"
 
 #: ../gramps/gen/lib/ldsord.py:98
 msgid "Sealed to Parents"
-msgstr "Versiegelung zu Eltern (HLT)"
+msgstr "Versiegelung zu Eltern"
 
 #: ../gramps/gen/lib/ldsord.py:99
 msgid "Sealed to Spouse"
-msgstr "Versiegelung zu Ehepartner (HLT)"
+msgstr "Versiegelung zu Ehepartner"
 
 #: ../gramps/gen/lib/ldsord.py:103
 msgid "<No Status>"
@@ -8522,7 +8522,7 @@ msgstr "<Kein Status>"
 
 #: ../gramps/gen/lib/ldsord.py:104
 msgid "Born in Covenant"
-msgstr "Geboren im Bündnis (HLT)"
+msgstr "Geboren im Bündnis"
 
 #: ../gramps/gen/lib/ldsord.py:105
 msgid "Canceled"
@@ -8936,7 +8936,7 @@ msgstr "Bericht"
 
 #: ../gramps/gen/lib/notetype.py:92
 msgid "Html code"
-msgstr "HTML Code"
+msgstr "HTML-Code"
 
 #: ../gramps/gen/lib/notetype.py:93
 msgctxt "notetype"
@@ -10789,7 +10789,7 @@ msgstr "Fehler beim Lesen von \"%s\""
 #: ../gramps/gen/plug/utils.py:377
 #, python-format
 msgid "Error: unknown file type: '%s'"
-msgstr "FEHLER: unbekannter Dateityp: '%s'"
+msgstr "Fehler: unbekannter Dateityp: '%s'"
 
 #: ../gramps/gen/plug/utils.py:383
 #, python-format
@@ -12178,10 +12178,10 @@ msgstr ""
 "Nachname, Präfix, nur Nachname, Verbindung   \n"
 "  <b>Patronymikon oder [Prä] oder [Nach] oder [Verb]</b> - voller Pa/"
 "Matronymikon Nachname, Präfix, nur Nachname, Verbindung \n"
-"  <b>unbearbeitete Nachnamen</b>- Nachnamen (keine Präfixe und "
-"Verbindungen)\n"
+"  <b>unbearbeitete Nachnamen</b>- Nachnamen (keine Präfixe und Verbindungen)"
+"\n"
 "</tt>\n"
-"GROSSGESCHRIEBENE Schlüsselwörter erzwingen Großschreibung. Zusätzliche "
+"GROẞGESCHRIEBENE Schlüsselwörter erzwingen Großschreibung. Zusätzliche "
 "Klammern und Beistriche werden entfernt. Anderer Text erscheint "
 "buchstäblich.\n"
 "\n"
@@ -12190,9 +12190,8 @@ msgstr ""
 "      <i>Edwin Jose</i> ist der Vorname, <i>von der</i> ist der vorgestellte "
 "Namenszusatz (Präfix), <i>Smith</i> und <i>Weston</i> Nachnamen, <i>und</i> "
 "eine Verbindung, <i>Wilson</i> Patronymikon,\n"
-"      <i>Dr.</i> Titel, <i>Sr</i> nachgestellter Namenszusatz (Suffix), "
-"<i>Ed</i> Spitzname, <i>Underhills</i> Familienspitzname, <i>Jose</i> "
-"Rufname.\n"
+"      <i>Dr.</i> Titel, <i>Sr</i> nachgestellter Namenszusatz (Suffix), <i>"
+"Ed</i> Spitzname, <i>Underhills</i> Familienspitzname, <i>Jose</i> Rufname.\n"
 
 #: ../gramps/gui/configure.py:161
 msgid " Name Editor"
@@ -12483,7 +12482,7 @@ msgstr "Kein Patronymikon"
 
 #: ../gramps/gui/configure.py:1169
 msgid "Enter to save, Esc to cancel editing"
-msgstr "Drücke die Eingabetaste zum Speichern, ESC zum Abbrechen"
+msgstr "Eingabetaste zum Speichern, Esc zum Abbrechen der Bearbeitung"
 
 #: ../gramps/gui/configure.py:1216
 msgid "This format exists already."
@@ -16640,7 +16639,7 @@ msgstr "Postleit_zahl:"
 
 #: ../gramps/gui/glade/editaddress.glade:181
 msgid "Postal code"
-msgstr "Postleitzahl (PLZ)"
+msgstr "Postleitzahl"
 
 #: ../gramps/gui/glade/editaddress.glade:195
 #: ../gramps/gui/glade/editlocation.glade:218
@@ -21557,7 +21556,7 @@ msgstr "Alt"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
 msgid "Legacy citation formatter"
-msgstr "Veraltete Fundstellenformatierung"
+msgstr "Alter Fundstellenformatierer"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:26
 msgid "BSDDB"
@@ -26522,7 +26521,7 @@ msgstr "berufort_id"
 
 #: ../gramps/plugins/importer/importcsv.py:323
 msgid "Occupation place id"
-msgstr "Beruf Ort ID"
+msgstr "Berufsort ID"
 
 #: ../gramps/plugins/importer/importcsv.py:327
 msgid "occupationsource"
@@ -26550,7 +26549,7 @@ msgstr "Wohnort"
 
 #: ../gramps/plugins/importer/importcsv.py:338
 msgid "residenceplace_id"
-msgstr "Wohnortort_ID"
+msgstr "Wohnort-_ID"
 
 #: ../gramps/plugins/importer/importcsv.py:339
 msgid "residence place id"
@@ -27375,7 +27374,8 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:1736
 #: ../gramps/plugins/importer/importxml.py:2168
 msgid "The Gramps Xml you are trying to import is malformed."
-msgstr "Die Gramps-XML, die du versuchst zu importieren, ist missgebildet."
+msgstr ""
+"Die Gramps-XML, die du zu importieren versuchst, ist fehlerhaft geformt."
 
 #: ../gramps/plugins/importer/importxml.py:907
 msgid "Attributes that link the data together are missing."
@@ -27536,8 +27536,8 @@ msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"FEHLER: Familie '%(family)s' Vater '%(father)s' verweist nicht zurück auf "
-"die Familie. Eine Referenz wurde hinzugefügt."
+"Fehler: Familie '%(family)s' Vater '%(father)s' verweist nicht zurück auf "
+"die Familie. Referenz wurde hinzugefügt."
 
 #: ../gramps/plugins/importer/importxml.py:3509
 #, python-format
@@ -27546,8 +27546,8 @@ msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"FEHLER: Familie '%(family)s' Mutter '%(mother)s' verweist nicht zurück auf "
-"die Familie. Eine Referenz wurde hinzugefügt."
+"Fehler: Familie '%(family)s' Mutter '%(mother)s' verweist nicht zurück auf "
+"die Familie. Referenz wurde hinzugefügt."
 
 #: ../gramps/plugins/importer/importxml.py:3537
 #, python-format
@@ -27556,8 +27556,8 @@ msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"FEHLER: Familie '%(family)s' Kind '%(child)s' verweist nicht zurück auf die "
-"Familie. Eine Referenz wurde hinzugefügt."
+"Fehler: Familie '%(family)s' Kind '%(child)s' verweist nicht zurück auf die "
+"Familie. Referenz wurde hinzugefügt."
 
 #: ../gramps/plugins/lib/libcairodoc.py:1445
 #, python-format
@@ -27704,9 +27704,9 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
-"FEHLER: Familie '%(family)s' (eingelesen als @%(orig_family)s@) Person "
-"%(person)s (eingelesen als %(orig_person)s) ist kein referenziertes Mitglied "
-"der Familie. Die Familienreferenz wurde von der Person entfernt"
+"Fehler: Familie '%(family)s' (eingelesen als @%(orig_family)s@) Person %"
+"(person)s (eingelesen als %(orig_person)s) ist kein referenziertes Mitglied "
+"der Familie. Familienreferenz wurde von der Person entfernt"
 
 #: ../gramps/plugins/lib/libgedcom.py:3790
 #, python-format
@@ -35376,7 +35376,7 @@ msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
 msgstr ""
-"Dieser Test wird viele Personen und Ereignisse in der aktuellen DB "
+"Dieser Test wird viele Personen und Ereignisse in der aktuellen Datenbank "
 "erstellen. Willst du diesen Test wirklich starten?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:74
@@ -37297,7 +37297,7 @@ msgstr "Kippe Namen links im Fächer"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:386
 msgid "Show the gramps id"
-msgstr "Gramps-ID anzeigen"
+msgstr "Die Gramps-ID anzeigen"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:389
 #: ../gramps/plugins/view/fanchartdescview.py:385
@@ -39282,7 +39282,7 @@ msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
-"Eine Notiz, die beim Start PHP-Session verwendet wird.\n"
+"Eine Notiz, die beim Start der PHP-Session verwendet wird.\n"
 "Diese Option ist nur verfügbar, wenn die Dateiendung .php ausgewählt wurde."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2424
