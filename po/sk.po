@@ -11,14 +11,14 @@
 # Milan Šalka <salka.milan@googlemail.com>, 2023, 2024.
 # Martin Štefany <m.stefany89@gmail.com>, 2024.
 # Milan <admin@thedigitaltechnologist.com>, 2025.
-# Jozef Gaal <preklady@mayday.sk>, 2025.
+# Jozef Gaal <preklady@mayday.sk>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2026-01-06 16:45+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2026-02-19 07:09+0000\n"
+"Last-Translator: Jozef Gaal <preklady@mayday.sk>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1068,7 +1068,7 @@ msgid ""
 msgstr ""
 "<b>'Ako a prečo' Vašej genealógie</b><br/>Genealógia nie sú len dátumy a "
 "mená. Je o ľuďoch. Popisujte. Doplňte dôvod prečo sa veci stali, ako sa asi "
-"formovali potomkovia udalosťami, ktorými prešli. Rozprávaním prejdete dlhü "
+"formovali potomkovia udalosťami, ktorými prešli. Rozprávaním prejdete dlhú "
 "cestu pri oživení histórie Vašej rodiny."
 
 #: ../data/tips.xml:114
@@ -21523,9 +21523,9 @@ msgid ""
 "available. Use your package manager to install python-imaging or python-"
 "pillow or python3-pillow"
 msgstr ""
-"Vytvorenie obrázkov jpg z obrázkov, ktoré nie sú v JPG, v dokumentoch LaTeX "
-"nebude dostupné. Pomocou správcu balíkov nainštalujte python-imaging alebo "
-"python-pillow alebo python3-pillow"
+"Vytváranie obrázkov vo formáte jpg z obrázkov v inom formáte ako jpg v "
+"dokumentoch LaTeX nebude k dispozícii. Použite správcu balíkov na inštaláciu "
+"python-imaging alebo python-pillow alebo python3-pillow"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1219
 #, python-format
@@ -26875,7 +26875,7 @@ msgstr "Správa o importe vCARD: Neboli zistené žiadne chyby"
 #: ../gramps/plugins/importer/importvcard.py:276
 #, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "Správa o importe vCARD: %s zistené chyby\n"
+msgstr "Správa o importe vCARD: %s zistených chýb\n"
 
 #: ../gramps/plugins/importer/importvcard.py:341
 #, python-format
