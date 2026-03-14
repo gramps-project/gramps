@@ -39,7 +39,6 @@ import locale
 import logging
 import time
 
-from binascii import hexlify
 
 from .grampstranslation import GrampsTranslations, GrampsNullTranslations
 
@@ -802,10 +801,15 @@ class GrampsLocale:
         """
 
         if HAVE_ICU and self.collator:
-            # ICU can digest strings and unicode
-            # Use hexlify() as to make a consistent string, fixing bug #10077
-            key = self.collator.getCollationKey(string)
-            return hexlify(key.getByteArray()).decode()
+            # ICU can digest strings and unicode.
+            # getSortKey() returns bytes directly; Python's bytes comparison
+            # is purely lexicographic and correct for ICU sort keys.
+            # hexlify() was previously used to work around a TypeError caused
+            # by Python's sort routine mixing bytearray and str when caching
+            # intermediate values (bug #10077, fixed 2017).  Gramps now
+            # requires Python >= 3.10 where that implicit conversion no longer
+            # occurs, so we can use bytes directly and skip the hexlify step.
+            return self.collator.getSortKey(string)
 
         if isinstance(string, bytes):
             string = string.decode("utf-8", "replace")
