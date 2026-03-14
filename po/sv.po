@@ -23,7 +23,7 @@
 # Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
 # Pär Ekholm <pehlm@pekholm.org>, 2018, 2019, 2020.
 # Pär Ekholm <par.ekholm@pekholm.org>, 2021.
-# Pär Ekholm <github1@m.pekholm.org>, 2022, 2023, 2024, 2025.
+# Pär Ekholm <github1@m.pekholm.org>, 2022, 2023, 2024, 2025, 2026.
 # Luna Jernberg <droidbittin@gmail.com>, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2025.
 msgid ""
@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-11-11 03:51+0000\n"
+"PO-Revision-Date: 2026-03-12 09:09+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1250,7 +1250,7 @@ msgstr "FEL: Okänt format på exportfilen %s"
 #: ../gramps/cli/arghandler.py:402 ../gramps/gen/plug/utils.py:373
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr "FEL: Kan inte öppna '%s'"
+msgstr "Fel: Kan inte öppna '%s'"
 
 #: ../gramps/cli/arghandler.py:421
 msgid "List of known Family Trees in your database path\n"
@@ -8921,7 +8921,7 @@ msgstr "Personreferens"
 #: ../gramps/gen/lib/personref.py:120
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:67
 msgid "Association"
-msgstr "Släktskap"
+msgstr "Relation"
 
 #: ../gramps/gen/lib/place.py:163 ../gramps/plugins/export/exportcsv.py:311
 #: ../gramps/plugins/gramplet/coordinates.py:105
@@ -27171,7 +27171,7 @@ msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"FEL: familj '%(family)s' far '%(father)s' refererar ej tillbaka till "
+"Fel: familj '%(family)s' far '%(father)s' refererar ej tillbaka till "
 "familjen. Referens tillagd."
 
 #: ../gramps/plugins/importer/importxml.py:3509
@@ -27181,7 +27181,7 @@ msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"FEL: familj '%(family)s' mor '%(mother)s' refererar ej tillbaka till "
+"Fel: familj '%(family)s' mor '%(mother)s' refererar ej tillbaka till "
 "familjen. Referens tillagd."
 
 #: ../gramps/plugins/importer/importxml.py:3537
@@ -27191,7 +27191,7 @@ msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"FEL: familj '%(family)s' barn '%(child)s' refererar ej tillbaka till "
+"Fel: familj '%(family)s' barn '%(child)s' refererar ej tillbaka till "
 "familjen. Referens tillagd."
 
 #: ../gramps/plugins/lib/libcairodoc.py:1445
@@ -27337,7 +27337,7 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
-"FEL: familj '%(family)s' (indata som @%(orig_family)s@) person %(person)s "
+"Fel: familj '%(family)s' (indata som @%(orig_family)s@) person %(person)s "
 "(indata som %(orig_person)s) är inte en medlem i den refererade familjen. "
 "Familjereferens borttagen från person"
 
@@ -31347,7 +31347,7 @@ msgstr "Erbjuder önskvärd grund för vyn lista personer."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:258
 msgid "Provides common functionality for Pro-Gen import"
-msgstr "Tillhandahåller grundfunktioner för Gramps XML import/export"
+msgstr "Tillhandahåller grundfunktioner för Pro-Gen import"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:277
 msgid "Provides the Base needed for the List Place views."
@@ -37672,7 +37672,7 @@ msgstr "Hemsida"
 
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Search URL"
-msgstr "Webbadress för sökning"
+msgstr "Sök-URL"
 
 #: ../gramps/plugins/view/repoview.py:138
 msgid "Add a new repository"
