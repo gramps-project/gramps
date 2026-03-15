@@ -51,9 +51,6 @@ class Location(SecondaryObject, LocationBase):
     of cities, counties, states, and even countries can change with time.
     """
 
-    # Type hints for Location attributes
-    parish: str
-
     def __init__(self, source=None):
         """
         Create a Location object, copying from the source object if it exists.

@@ -2,6 +2,7 @@
 """
 Tests for the DB-override decorator mechanism on Rule.prepare / apply_to_one.
 """
+
 import unittest
 
 from gramps.gen.filters.rules._rule import Rule, _rule_key

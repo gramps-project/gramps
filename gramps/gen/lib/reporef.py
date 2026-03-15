@@ -50,10 +50,6 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
     Repository reference class.
     """
 
-    # Type hints for RepoRef attributes
-    call_number: str
-    media_type: "SourceMediaType"
-
     def __init__(self, source=None):
         PrivacyBase.__init__(self, source)
         NoteBase.__init__(self, source)

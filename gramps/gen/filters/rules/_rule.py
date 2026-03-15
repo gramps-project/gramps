@@ -54,12 +54,12 @@ LOG = logging.getLogger(".rules")
 from typing import Any, List
 from ...db import Database
 
-
 # -------------------------------------------------------------------------
 #
 # DB-override helpers
 #
 # -------------------------------------------------------------------------
+
 
 def _rule_key(cls):
     """Return (category, rule_name) tuple for *cls*, cached on the class."""
@@ -90,6 +90,7 @@ def _wrap_prepare(method):
                 return entry["prepare"](self, method, db, user)
         LOG.debug("%s using non-optimized method", method)
         return method(self, db, user)
+
     return wrapper
 
 
@@ -107,6 +108,7 @@ def _wrap_apply_to_one(method):
                 return entry["apply_to_one"](self, method, db, obj)
         LOG.debug("%s using non-optimized method", method)
         return method(self, db, obj)
+
     return wrapper
 
 

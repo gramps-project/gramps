@@ -42,15 +42,16 @@ from ....const import GRAMPS_LOCALE as glocale
 from .. import Rule
 from ....utils.place import conv_lat_lon
 
+
 # -------------------------------------------------------------------------
 #
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Optional, Union
+from typing import Union
 from ....lib import Place
 from ....db import Database
-from ....types import PlaceHandle
+
 
 _ = glocale.translation.sgettext
 
@@ -69,7 +70,7 @@ class WithinArea(Rule):
     name = _("Places within an area")
     description = _("Matches places within a given distance of another place")
     category = _("Position filters")
-    handle: Optional[PlaceHandle] = None
+    handle = None
     radius: float = 0.0
     latitude: Union[float, None] = None
     longitude: Union[float, None] = None
@@ -81,7 +82,7 @@ class WithinArea(Rule):
         self.longitude = None
         if ref_place:
             self.handle = ref_place.handle
-            latitude: Optional[str] = ref_place.lat
+            latitude = ref_place.lat
             if latitude == "":
                 latitude = None
                 return

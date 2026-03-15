@@ -33,6 +33,7 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .. import Rule
 
+
 # -------------------------------------------------------------------------
 #
 # Typing modules
@@ -66,7 +67,7 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
         self.selected_handles: Set[PersonHandle] = set()
         p: Person = db.get_default_person()
         if p:
-            self.init_ancestor_list(PersonHandle(p.handle), 1)
+            self.init_ancestor_list(p.handle, 1)
 
     def init_ancestor_list(self, handle: PersonHandle, gen: int):
         if not handle or handle in self.selected_handles:

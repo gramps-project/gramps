@@ -33,9 +33,6 @@ class PrivacyBase:
     Base class for privacy-aware objects.
     """
 
-    # Type hints for PrivacyBase attributes
-    private: bool
-
     def __init__(self, source=None):
         """
         Initialize a PrivacyBase.

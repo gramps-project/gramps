@@ -41,9 +41,6 @@ class LdsOrdBase:
     Base class for lds_ord-aware objects.
     """
 
-    # Type hints for LdsOrdBase attributes
-    lds_ord_list: list
-
     def __init__(self, source=None):
         """
         Initialize a LdsOrdBase.

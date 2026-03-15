@@ -38,6 +38,7 @@ LOG = logging.getLogger(".citationfilter")
 from ....utils.db import get_source_and_citation_referents
 from .. import Rule
 
+
 # -------------------------------------------------------------------------
 #
 # Typing modules

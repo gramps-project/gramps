@@ -48,13 +48,6 @@ class Surname(SecondaryObject):
     A person may have more that one surname in his name
     """
 
-    # Type hints for Surname attributes
-    surname: str
-    prefix: str
-    primary: bool
-    origintype: "NameOriginType"
-    connector: str
-
     def __init__(self, source=None, data=None):
         """
         Create a new Surname instance, copying from the source if provided.

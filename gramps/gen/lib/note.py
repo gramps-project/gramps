@@ -26,18 +26,6 @@ Note class for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
-#
-# -------------------------------------------------------------------------
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ..types import NoteHandle
-
-# -------------------------------------------------------------------------
-#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
@@ -78,12 +66,6 @@ class Note(BasicPrimaryObject):
     """
 
     FLOWED, FORMATTED = list(range(2))
-
-    # Type hints for Note attributes
-    handle: "NoteHandle"
-    text: "StyledText"
-    format: int
-    type: "NoteType"
 
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""

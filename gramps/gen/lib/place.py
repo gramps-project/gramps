@@ -34,16 +34,6 @@ from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
-# Python modules
-#
-# -------------------------------------------------------------------------
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ..types import PlaceHandle
-
-# -------------------------------------------------------------------------
-#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
@@ -73,18 +63,6 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
     information (since place names can change with time), longitude, latitude,
     a collection of images and URLs, a note and a source.
     """
-
-    # Type hints for Place attributes
-    handle: "PlaceHandle"
-    long: str
-    lat: str
-    title: str
-    name: "PlaceName"
-    alt_names: list
-    placeref_list: list
-    place_type: "PlaceType"
-    code: str
-    alt_loc: list
 
     def __init__(self, source=None):
         """

@@ -26,18 +26,6 @@ Repository object for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
-#
-# -------------------------------------------------------------------------
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ..types import RepositoryHandle
-
-# -------------------------------------------------------------------------
-#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
@@ -60,11 +48,6 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryObject):
     """A location where collections of Sources are found."""
-
-    # Type hints for Repository attributes
-    handle: "RepositoryHandle"
-    type: "RepositoryType"
-    name: str
 
     def __init__(self):
         """

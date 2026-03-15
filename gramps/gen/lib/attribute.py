@@ -61,10 +61,6 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
     Gramps at the moment does not support this GEDCOM Attribute structure.
     """
 
-    # Type hints for AttributeRoot attributes
-    type: object
-    value: str
-
     def __init__(self, source=None):
         """
         Create a new Attribute object, copying from the source if provided.
@@ -194,10 +190,6 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
     """
     An attribute class that supports citation and note annotations.
     """
-
-    # Type hints for Attribute attributes
-    type: "AttributeType"
-    value: str
 
     def __init__(self, source=None):
         """

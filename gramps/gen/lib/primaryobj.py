@@ -60,9 +60,6 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
     ID is the user visible version.
     """
 
-    # Type hints for BasicPrimaryObject attributes
-    gramps_id: str
-
     def __init__(self, source=None):
         """
         Initialize a PrimaryObject.

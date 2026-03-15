@@ -39,9 +39,6 @@ class DateBase:
     Base class for storing date information.
     """
 
-    # Type hints for DateBase attributes
-    date: "Date"
-
     def __init__(self, source=None):
         """
         Create a new DateBase, copying from source if not None.

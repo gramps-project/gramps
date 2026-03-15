@@ -27,18 +27,6 @@ Media Reference class for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
-#
-# -------------------------------------------------------------------------
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ..types import MediaHandle
-
-# -------------------------------------------------------------------------
-#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
@@ -65,10 +53,6 @@ class MediaRef(
     """
     Media reference class.
     """
-
-    # Type hints for MediaRef attributes
-    ref: "MediaHandle"
-    rect: tuple
 
     def __init__(self, source=None):
         PrivacyBase.__init__(self, source)

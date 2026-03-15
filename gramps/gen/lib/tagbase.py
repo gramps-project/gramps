@@ -21,13 +21,6 @@
 TagBase class for Gramps.
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, List
-
-if TYPE_CHECKING:
-    from ..types import TagHandle
-
 
 # -------------------------------------------------------------------------
 #
@@ -38,9 +31,6 @@ class TagBase:
     """
     Base class for tag-aware objects.
     """
-
-    # Type hints for TagBase attributes
-    tag_list: List[TagHandle]
 
     def __init__(self, source=None):
         """

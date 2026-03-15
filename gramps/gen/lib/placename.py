@@ -47,10 +47,6 @@ class PlaceName(SecondaryObject, DateBase):
     This class is for keeping information about place names.
     """
 
-    # Type hints for PlaceName attributes
-    value: str
-    lang: str
-
     def __init__(self, source=None, **kwargs):
         """
         Create a new PlaceName instance, copying from the source if present.

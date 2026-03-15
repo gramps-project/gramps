@@ -21,13 +21,6 @@
 PlaceBase class for Gramps.
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Optional
-
-if TYPE_CHECKING:
-    from ..types import PlaceHandle
-
 
 # -------------------------------------------------------------------------
 #
@@ -38,9 +31,6 @@ class PlaceBase:
     """
     Base class for place-aware objects.
     """
-
-    # Type hints for PlaceBase attributes
-    place: Optional[PlaceHandle]
 
     def __init__(self, source=None):
         """

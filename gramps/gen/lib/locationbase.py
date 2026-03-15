@@ -33,16 +33,6 @@ class LocationBase:
     Base class for all things Address.
     """
 
-    # Type hints for LocationBase attributes
-    street: str
-    locality: str
-    city: str
-    county: str
-    state: str
-    country: str
-    postal: str
-    phone: str
-
     def __init__(self, source=None):
         """
         Create a LocationBase object, copying from the source object if it

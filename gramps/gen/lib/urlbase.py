@@ -40,9 +40,6 @@ class UrlBase:
     Base class for url-aware objects.
     """
 
-    # Type hints for UrlBase attributes
-    urls: list
-
     def __init__(self, source=None):
         """
         Initialize an UrlBase.

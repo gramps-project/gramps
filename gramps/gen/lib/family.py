@@ -24,18 +24,12 @@
 Family object for Gramps.
 """
 
-from __future__ import annotations
-
 # -------------------------------------------------------------------------
 #
 # Python modules
 #
 # -------------------------------------------------------------------------
 import logging
-from typing import TYPE_CHECKING, List, Optional
-
-if TYPE_CHECKING:
-    from ..types import FamilyHandle, PersonHandle
 
 # -------------------------------------------------------------------------
 #
@@ -91,14 +85,6 @@ class Family(
     to the database using the database object's commit_family function,
     or the changes will be lost.
     """
-
-    # Type hints for Family attributes
-    handle: "FamilyHandle"
-    father_handle: Optional[PersonHandle]
-    mother_handle: Optional[PersonHandle]
-    child_ref_list: list
-    type: "FamilyRelType"
-    complete: int
 
     def __init__(self):
         """

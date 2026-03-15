@@ -24,18 +24,12 @@
 Citation object for Gramps.
 """
 
-from __future__ import annotations
-
 # -------------------------------------------------------------------------
 #
 # Python modules
 #
 # -------------------------------------------------------------------------
 import logging
-from typing import TYPE_CHECKING, Optional
-
-if TYPE_CHECKING:
-    from ..types import CitationHandle, SourceHandle
 
 # -------------------------------------------------------------------------
 #
@@ -82,12 +76,6 @@ class Citation(
     CONF_NORMAL = 2
     CONF_LOW = 1
     CONF_VERY_LOW = 0
-
-    # Type hints for Citation attributes
-    handle: "CitationHandle"
-    source_handle: Optional[SourceHandle]
-    page: str
-    confidence: int
 
     def __init__(self):
         """Create a new Citation instance."""

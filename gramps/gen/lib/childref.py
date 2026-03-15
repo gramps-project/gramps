@@ -52,10 +52,6 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
     A class for tracking information about how a child relates to their parents.
     """
 
-    # Type hints for ChildRef attributes
-    frel: "ChildRefType"
-    mrel: "ChildRefType"
-
     def __init__(self, source=None):
         PrivacyBase.__init__(self, source)
         CitationBase.__init__(self, source)

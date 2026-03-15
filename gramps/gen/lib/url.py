@@ -56,11 +56,6 @@ class Url(SecondaryObject, PrivacyBase):
     allowing gramps to store information about internet resources.
     """
 
-    # Type hints for Url attributes
-    path: str
-    desc: str
-    type: "UrlType"
-
     def __init__(self, source=None):
         """Create a new URL instance, copying from the source if present."""
         PrivacyBase.__init__(self, source)
