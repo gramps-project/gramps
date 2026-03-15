@@ -454,7 +454,7 @@ class CitationLike(Protocol):
     date: DateLike
     page: str
     confidence: int
-    source_handle: str
+    source_handle: str | None
     note_list: list[str]
     media_list: list[MediaRefLike]
     attribute_list: list[SrcAttributeLike]
