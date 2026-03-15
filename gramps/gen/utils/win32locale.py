@@ -42,6 +42,8 @@ def _(msgid):
 
 _LOCALE_NAMES = {
     "ar": ("Arabic_Saudi Arabia", "1256", _("Arabic")),
+    # Windows has no translation for Bashkir
+    "ba": (None, None, _("Bashkir")),
     "bg": ("Bulgrian_Bulgaria", "1251", _("Bulgarian")),
     # Windows has no translation for Breton
     "br": (None, None, _("Breton")),
