@@ -23,7 +23,6 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 
 from ....const import GRAMPS_LOCALE as glocale
 
@@ -61,7 +60,7 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
 
         self.matchfilt = MatchesFilter(self.list[0:1])
         self.matchfilt.requestprepare(db, user)
@@ -105,7 +104,7 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
         except Exception:
             pass
 
-    def add_spouses_of_descendants(self, descendants: Set[PersonHandle]):
+    def add_spouses_of_descendants(self, descendants: set[PersonHandle]):
         """Add spouses of all descendants to the selected handles."""
         for person_handle in descendants:
             person = self.db.get_person_from_handle(person_handle)

@@ -36,13 +36,11 @@ from .. import Rule
 from ._matchesfilter import MatchesFilter
 from ....utils.graph import find_ancestors
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -67,7 +65,7 @@ class IsAncestorOfFilterMatch(Rule):
     def prepare(self, db: Database, user):
         """Use the unified find_ancestors function"""
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
         try:
             inclusive = (
                 False if int(self.list[1]) else False

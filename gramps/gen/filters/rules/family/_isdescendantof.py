@@ -22,12 +22,12 @@
 """
 Rule that checks for a family that is a descendant of a specified family.
 """
+
 # -------------------------------------------------------------------------
 #
 # Standard python modules
 #
 # -------------------------------------------------------------------------
-from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
@@ -43,10 +43,8 @@ from ....const import GRAMPS_LOCALE as glocale
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Family
 from ....db import Database
-
 
 _ = glocale.translation.gettext
 
@@ -67,7 +65,7 @@ class IsDescendantOf(Rule):
     description = _("Matches descendant families of the specified family")
 
     def prepare(self, db: Database, user):
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: set[str] = set()
         try:
             inclusive = False if int(self.list[1]) else True
         except IndexError:

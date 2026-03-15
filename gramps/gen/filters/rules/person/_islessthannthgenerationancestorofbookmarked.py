@@ -40,7 +40,6 @@ from ....utils.graph import find_ancestors
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -67,17 +66,19 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
     def prepare(self, db: Database, user):
         """Use the unified find_ancestors function"""
         self.db = db
-        bookmarks: List[str] = db.get_bookmarks().get()
-        self.selected_handles: Set[PersonHandle] = set()
+        bookmarks: list[str] = db.get_bookmarks().get()
+        self.selected_handles: set[PersonHandle] = set()
         if len(bookmarks) != 0:
-            self.bookmarks: Set[PersonHandle] = set(bookmarks)
             # Original uses base-1: gen 1=root, 2=parents, 3=grandparents
             # Our function uses base-0: gen 0=root, 1=parents, 2=grandparents
             # Original logic: includes starting person and ancestors up to gen N
             # So we need to subtract 1 to convert and use inclusive=True
             max_generation = int(self.list[0]) - 1
             self.selected_handles = find_ancestors(
-                db, list(self.bookmarks), max_generation=max_generation, inclusive=True
+                db,
+                [PersonHandle(h) for h in bookmarks],
+                max_generation=max_generation,
+                inclusive=True,
             )
 
     def apply_to_one(self, db: Database, person: Person) -> bool:

@@ -23,7 +23,6 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-from __future__ import annotations
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -41,7 +40,6 @@ from ....utils.graph import find_descendants
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -66,7 +64,7 @@ class IsLessThanNthGenerationDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             max_generations = int(self.list[1])

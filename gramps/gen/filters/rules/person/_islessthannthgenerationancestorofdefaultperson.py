@@ -35,13 +35,11 @@ _ = glocale.translation.gettext
 from .. import Rule
 from ....utils.graph import find_ancestors
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -67,7 +65,7 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
     def prepare(self, db: Database, user):
         """Use the unified find_ancestors function"""
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
         p: Person = db.get_default_person()
         if p:
             # Original uses base-1: gen 1=root, 2=parents, 3=grandparents

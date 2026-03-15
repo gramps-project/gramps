@@ -23,7 +23,6 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-from __future__ import annotations
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -41,7 +40,6 @@ from ....utils.graph import find_ancestors
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -63,7 +61,7 @@ class IsAncestorOf(Rule):
     def prepare(self, db: Database, user):
         """Use the unified find_ancestors function"""
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
         try:
             inclusive = False if int(self.list[1]) else True
         except IndexError:

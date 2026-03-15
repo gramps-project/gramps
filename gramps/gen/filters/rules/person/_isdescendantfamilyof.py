@@ -23,7 +23,6 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-from __future__ import annotations
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -45,7 +44,6 @@ from ....utils.graph import find_descendants
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -70,7 +68,7 @@ class IsDescendantFamilyOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
         self.root_person = db.get_person_from_gramps_id(self.list[0])
         try:
             if int(self.list[1]):
@@ -96,7 +94,7 @@ class IsDescendantFamilyOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def add_spouses_of_descendants(self, descendants: Set[PersonHandle]):
+    def add_spouses_of_descendants(self, descendants: set[PersonHandle]):
         """Add spouses of all descendants to the selected handles."""
         for person_handle in descendants:
             person = self.db.get_person_from_handle(person_handle)

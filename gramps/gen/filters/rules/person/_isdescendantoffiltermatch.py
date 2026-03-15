@@ -41,7 +41,6 @@ from ....utils.graph import find_descendants
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -65,7 +64,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
         try:
             if int(self.list[1]):
                 first = False

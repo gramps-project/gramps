@@ -31,9 +31,8 @@ the codebase.
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-from __future__ import annotations
-from typing import Set, List, Tuple, Optional, Iterator
 from collections import deque
+from collections.abc import Iterator
 
 # -------------------------------------------------------------------------
 #
@@ -47,12 +46,12 @@ from ..types import PersonHandle
 
 def find_ancestors(
     db: Database,
-    person_handles: List[PersonHandle],
+    person_handles: list[PersonHandle],
     min_generation: int = 1,
-    max_generation: Optional[int] = None,
+    max_generation: int | None = None,
     inclusive: bool = False,
     include_all_parent_families: bool = False,
-) -> Set[PersonHandle]:
+) -> set[PersonHandle]:
     """
     Find ancestors of one or more people using BFS traversal.
 
@@ -90,7 +89,7 @@ def find_ancestors(
         ancestors = find_ancestors(db, [person1_handle, person2_handle], inclusive=False)
     """
     # Use the iterative function internally to avoid code duplication
-    ancestors: Set[PersonHandle] = set()
+    ancestors: set[PersonHandle] = set()
 
     for handle, _ in find_ancestors_iterative(
         db,
@@ -107,12 +106,12 @@ def find_ancestors(
 
 def find_ancestors_iterative(
     db: Database,
-    person_handles: List[PersonHandle],
+    person_handles: list[PersonHandle],
     min_generation: int = 1,
-    max_generation: Optional[int] = None,
+    max_generation: int | None = None,
     inclusive: bool = False,
     include_all_parent_families: bool = False,
-) -> Iterator[Tuple[PersonHandle, int]]:
+) -> Iterator[tuple[PersonHandle, int]]:
     """
     Find ancestors of one or more people using BFS traversal, yielding results as they're found.
 
@@ -136,10 +135,10 @@ def find_ancestors_iterative(
         return
 
     # BFS queue: (person_handle, generation)
-    queue: deque[Tuple[PersonHandle, int]] = deque()
+    queue: deque[tuple[PersonHandle, int]] = deque()
 
     # Track visited nodes to avoid cycles (shared across all searches)
-    visited: Set[PersonHandle] = set()
+    visited: set[PersonHandle] = set()
 
     # Add all starting people to the queue
     for person_handle in person_handles:
@@ -194,12 +193,12 @@ def find_ancestors_iterative(
 
 def find_descendants(
     db: Database,
-    person_handles: List[PersonHandle],
+    person_handles: list[PersonHandle],
     min_generation: int = 1,
-    max_generation: Optional[int] = None,
+    max_generation: int | None = None,
     inclusive: bool = False,
     include_all_families: bool = False,
-) -> Set[PersonHandle]:
+) -> set[PersonHandle]:
     """
     Find descendants of one or more people using BFS traversal.
 
@@ -237,7 +236,7 @@ def find_descendants(
         descendants = find_descendants(db, [person1_handle, person2_handle], inclusive=False)
     """
     # Use the iterative function internally to avoid code duplication
-    descendants: Set[PersonHandle] = set()
+    descendants: set[PersonHandle] = set()
 
     for handle, _ in find_descendants_iterative(
         db,
@@ -254,12 +253,12 @@ def find_descendants(
 
 def find_descendants_iterative(
     db: Database,
-    person_handles: List[PersonHandle],
+    person_handles: list[PersonHandle],
     min_generation: int = 1,
-    max_generation: Optional[int] = None,
+    max_generation: int | None = None,
     inclusive: bool = False,
     include_all_families: bool = False,
-) -> Iterator[Tuple[PersonHandle, int]]:
+) -> Iterator[tuple[PersonHandle, int]]:
     """
     Find descendants of one or more people using BFS traversal, yielding results as they're found.
 
@@ -283,10 +282,10 @@ def find_descendants_iterative(
         return
 
     # BFS queue: (person_handle, generation)
-    queue: deque[Tuple[PersonHandle, int]] = deque()
+    queue: deque[tuple[PersonHandle, int]] = deque()
 
     # Track visited nodes to avoid cycles (shared across all searches)
-    visited: Set[PersonHandle] = set()
+    visited: set[PersonHandle] = set()
 
     # Add all starting people to the queue
     for person_handle in person_handles:
