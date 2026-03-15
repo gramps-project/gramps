@@ -83,7 +83,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
             self.selected_handles.add(person.handle)
 
         for fam_id in person.family_list:
-            if user.get_cancelled():
+            if user and user.get_cancelled():
                 break
             fam = self.db.get_family_from_handle(fam_id)
             if fam:

@@ -75,7 +75,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
             )
         for person in db.iter_people():
             if user:
-                if user.get_cancelled():
+                if user and user.get_cancelled():
                     break
                 user.step_progress()
             if person and self.filt.apply_to_one(db, person):

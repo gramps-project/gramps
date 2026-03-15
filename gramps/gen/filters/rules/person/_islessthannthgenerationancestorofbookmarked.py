@@ -78,7 +78,7 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
                 self.init_ancestor_list(self.bookmarkhandle, 1, user)
 
     def init_ancestor_list(self, handle: PersonHandle, gen: int, user: User):
-        if user.get_cancelled():
+        if user and user.get_cancelled():
             return
         if not handle or handle in self.selected_handles:
             # if been here already, skip

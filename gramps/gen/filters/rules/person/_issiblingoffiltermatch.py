@@ -71,7 +71,7 @@ class IsSiblingOfFilterMatch(Rule):
                 can_cancel=True,
             )
         for person in db.iter_people():
-            if user.get_cancelled():
+            if user and user.get_cancelled():
                 break
             if user:
                 user.step_progress()

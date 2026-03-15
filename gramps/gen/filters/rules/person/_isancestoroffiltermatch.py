@@ -84,7 +84,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         for person in db.iter_people():
             if user:
                 user.step_progress()
-                if user.get_cancelled():
+                if user and user.get_cancelled():
                     break
             if self.filt.apply_to_one(db, person):
                 self.init_ancestor_list(db, person, first, user)

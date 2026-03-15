@@ -171,7 +171,7 @@ class RelationshipPathBetweenBookmarks(Rule):
         lb = len(bmarks)
         for i in range(lb - 1):
             for j in range(i + 1, lb):
-                if user.get_cancelled():
+                if user and user.get_cancelled():
                     return
                 try:
                     pathmap = self.rel_path_for_two(bmarks[i], bmarks[j])

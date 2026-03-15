@@ -113,7 +113,7 @@ def find_deep_relations(
     done[person.handle] = None
 
     while todo:
-        if user.get_cancelled():
+        if user and user.get_cancelled():
             break
         handle = todo.popleft()
 
@@ -178,7 +178,7 @@ class DeepRelationshipPathBetween(Rule):
             )
         target_people = []
         for person in db.iter_people():
-            if user.get_cancelled():
+            if user and user.get_cancelled():
                 break
             if self.filt.apply_to_one(db, person):
                 target_people.append(person.handle)

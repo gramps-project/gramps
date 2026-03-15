@@ -70,7 +70,7 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
             self.init_ancestor_list(p.handle, 1, user)
 
     def init_ancestor_list(self, handle: PersonHandle, gen: int, user: User):
-        if user.get_cancelled():
+        if user and user.get_cancelled():
             return
         if not handle or handle in self.selected_handles:
             # if we have been here before, skip
