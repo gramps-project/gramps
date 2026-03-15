@@ -53,6 +53,11 @@ class StyledTextTag(BaseObject):
 
     """
 
+    # Type hints for StyledTextTag attributes
+    name: "StyledTextTagType"
+    value: str
+    ranges: list
+
     def __init__(self, name=None, value=None, ranges=None):
         """Setup initial instance variable values.
 
@@ -95,7 +100,7 @@ class StyledTextTag(BaseObject):
         :type data: tuple
 
         """
-        (the_name, self.value, self.ranges) = data
+        the_name, self.value, self.ranges = data
 
         self.name = StyledTextTagType()
         self.name.unserialize(the_name)

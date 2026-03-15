@@ -40,6 +40,11 @@ class Researcher(LocationBase):
     Contains the information about the owner of the database.
     """
 
+    # Type hints for Researcher attributes
+    name: str
+    addr: str
+    email: str
+
     def __init__(self, source=None):
         """
         Initialize the Researcher object, copying from the source if provided.
@@ -65,7 +70,7 @@ class Researcher(LocationBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (location, self.name, self.addr, self.email) = data
+        location, self.name, self.addr, self.email = data
         LocationBase.unserialize(self, location)
 
         return self

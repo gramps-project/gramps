@@ -47,6 +47,10 @@ class PlaceName(SecondaryObject, DateBase):
     This class is for keeping information about place names.
     """
 
+    # Type hints for PlaceName attributes
+    value: str
+    lang: str
+
     def __init__(self, source=None, **kwargs):
         """
         Create a new PlaceName instance, copying from the source if present.
@@ -74,7 +78,7 @@ class PlaceName(SecondaryObject, DateBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (self.value, date, self.lang) = data
+        self.value, date, self.lang = data
         DateBase.unserialize(self, date)
         return self
 

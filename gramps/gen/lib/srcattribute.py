@@ -45,6 +45,10 @@ class SrcAttribute(AttributeRoot):
     Used to store descriptive information.
     """
 
+    # Type hints for SrcAttribute attributes
+    type: "SrcAttributeType"
+    value: str
+
     def __init__(self, source=None):
         """
         Create a new Attribute object, copying from the source if provided.

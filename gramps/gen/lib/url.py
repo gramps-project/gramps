@@ -56,6 +56,11 @@ class Url(SecondaryObject, PrivacyBase):
     allowing gramps to store information about internet resources.
     """
 
+    # Type hints for Url attributes
+    path: str
+    desc: str
+    type: "UrlType"
+
     def __init__(self, source=None):
         """Create a new URL instance, copying from the source if present."""
         PrivacyBase.__init__(self, source)
@@ -72,7 +77,7 @@ class Url(SecondaryObject, PrivacyBase):
         return (self.private, self.path, self.desc, self.type.serialize())
 
     def unserialize(self, data):
-        (self.private, self.path, self.desc, type_value) = data
+        self.private, self.path, self.desc, type_value = data
         self.type.unserialize(type_value)
         return self
 

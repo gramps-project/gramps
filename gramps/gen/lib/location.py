@@ -51,6 +51,9 @@ class Location(SecondaryObject, LocationBase):
     of cities, counties, states, and even countries can change with time.
     """
 
+    # Type hints for Location attributes
+    parish: str
+
     def __init__(self, source=None):
         """
         Create a Location object, copying from the source object if it exists.
@@ -71,7 +74,7 @@ class Location(SecondaryObject, LocationBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (lbase, self.parish) = data
+        lbase, self.parish = data
         LocationBase.unserialize(self, lbase)
         return self
 

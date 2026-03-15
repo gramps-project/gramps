@@ -61,6 +61,10 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
     Gramps at the moment does not support this GEDCOM Attribute structure.
     """
 
+    # Type hints for AttributeRoot attributes
+    type: object
+    value: str
+
     def __init__(self, source=None):
         """
         Create a new Attribute object, copying from the source if provided.
@@ -84,7 +88,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, the_type, self.value) = data
+        privacy, the_type, self.value = data
         PrivacyBase.unserialize(self, privacy)
         self.type.unserialize(the_type)
         return self
@@ -191,6 +195,10 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
     An attribute class that supports citation and note annotations.
     """
 
+    # Type hints for Attribute attributes
+    type: "AttributeType"
+    value: str
+
     def __init__(self, source=None):
         """
         Create a new Attribute object, copying from the source if provided.
@@ -222,7 +230,7 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list, the_type, self.value) = data
+        privacy, citation_list, note_list, the_type, self.value = data
         PrivacyBase.unserialize(self, privacy)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)

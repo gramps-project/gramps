@@ -116,6 +116,12 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
         (STATUS_UNCLEARED, _("Uncleared"), "Uncleared"),
     ]
 
+    # Type hints for LdsOrd attributes
+    type: int
+    famc: str
+    temple: str
+    status: int
+
     def __init__(self, source=None):
         """Create a LDS Ordinance instance."""
         CitationBase.__init__(self, source)

@@ -50,6 +50,10 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
     Repository reference class.
     """
 
+    # Type hints for RepoRef attributes
+    call_number: str
+    media_type: "SourceMediaType"
+
     def __init__(self, source=None):
         PrivacyBase.__init__(self, source)
         NoteBase.__init__(self, source)
@@ -77,7 +81,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (note_list, ref, self.call_number, media_type, privacy) = data
+        note_list, ref, self.call_number, media_type, privacy = data
         self.media_type = SourceMediaType()
         self.media_type.unserialize(media_type)
         PrivacyBase.unserialize(self, privacy)

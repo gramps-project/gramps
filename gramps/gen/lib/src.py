@@ -27,6 +27,18 @@ Source object for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ..types import SourceHandle
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
@@ -54,6 +66,14 @@ class Source(
     """
     A record of a source of information.
     """
+
+    # Type hints for Source attributes
+    handle: "SourceHandle"
+    title: str
+    author: str
+    pubinfo: str
+    abbrev: str
+    reporef_list: list
 
     def __init__(self):
         """Create a new Source instance."""

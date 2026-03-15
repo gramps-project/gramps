@@ -61,7 +61,7 @@ def get_family_handle_people(
 
     family = db.get_family_from_handle(family_handle)
 
-    def possibly_add_handle(h: str):
+    def possibly_add_handle(h: Union[str, None]):
         if h is not None and h != exclude_handle:
             people.add(h)
 
@@ -91,7 +91,7 @@ def get_person_family_people(
 
 
 def find_deep_relations(
-    db: Database, user, person: Person | None, target_people: List[str]
+    db: Database, user, person: Person | None, target_people: List[PersonHandle]
 ) -> Set[str]:
     """This explores all possible paths between a person and one or more
     targets.  The algorithm processes paths in a breadth first wave, one
@@ -118,7 +118,7 @@ def find_deep_relations(
             user.step_progress()
 
         if handle in target_people:  # if we found a target
-            prev_hndl = handle
+            prev_hndl: Union[str, None] = handle
             # Go through linked list and save the handles in return_paths
             while prev_hndl:
                 return_paths.add(prev_hndl)
@@ -127,15 +127,15 @@ def find_deep_relations(
             if not target_people:  # Quit searching if all targets found
                 break
 
-        person = db.get_person_from_handle(handle)
+        person = db.get_person_from_handle(PersonHandle(handle))
         if person is None:
             continue
 
-        people = get_person_family_people(db, person, handle)
+        people = get_person_family_people(db, person, PersonHandle(handle))
         for p_hndl in people:
             if p_hndl in done:  # check if we have already been here
                 continue  # and ignore if we have
-            todo.append(p_hndl)  # Add to the todo list
+            todo.append(PersonHandle(p_hndl))  # Add to the todo list
             done[p_hndl] = handle  # Add to the (almost) done list
 
     return return_paths

@@ -41,6 +41,9 @@ class AddressBase:
     Base class for address-aware objects.
     """
 
+    # Type hints for AddressBase attributes
+    address_list: list
+
     def __init__(self, source=None):
         """
         Initialize a AddressBase.

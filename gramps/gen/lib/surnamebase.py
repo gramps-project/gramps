@@ -43,6 +43,9 @@ class SurnameBase:
     Base class for surname-aware objects.
     """
 
+    # Type hints for SurnameBase attributes
+    surname_list: list
+
     def __init__(self, source=None):
         """
         Initialize a SurnameBase.

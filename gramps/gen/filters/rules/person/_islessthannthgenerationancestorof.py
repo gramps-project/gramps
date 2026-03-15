@@ -33,7 +33,6 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .. import Rule
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
@@ -69,7 +68,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         if person:
             root_handle = person.handle
             if root_handle:
-                self.init_ancestor_list(root_handle)
+                self.init_ancestor_list(PersonHandle(root_handle))
 
     def init_ancestor_list(self, root_handle: PersonHandle):
         queue: List[Tuple[PersonHandle, int]] = [
