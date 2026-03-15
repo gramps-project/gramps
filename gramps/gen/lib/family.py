@@ -32,7 +32,7 @@ from __future__ import annotations
 #
 # -------------------------------------------------------------------------
 import logging
-from typing import TYPE_CHECKING, List, Optional
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ..types import FamilyHandle, PersonHandle
@@ -94,8 +94,8 @@ class Family(
 
     # Type hints for Family attributes
     handle: "FamilyHandle"
-    father_handle: Optional[PersonHandle]
-    mother_handle: Optional[PersonHandle]
+    father_handle: "PersonHandle | None"
+    mother_handle: "PersonHandle | None"
     child_ref_list: list
     type: "FamilyRelType"
     complete: int

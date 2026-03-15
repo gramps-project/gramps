@@ -30,7 +30,7 @@ from __future__ import annotations
 #
 # -------------------------------------------------------------------------
 import logging
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ..types import NoteHandle
@@ -53,7 +53,7 @@ class NoteBase:
     """
 
     # Type hints for NoteBase attributes
-    note_list: List[NoteHandle]
+    note_list: "list[NoteHandle]"
 
     def __init__(self, source=None):
         """

@@ -32,7 +32,7 @@ from __future__ import annotations
 #
 # -------------------------------------------------------------------------
 import logging
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ..types import CitationHandle, SourceHandle
@@ -85,7 +85,7 @@ class Citation(
 
     # Type hints for Citation attributes
     handle: "CitationHandle"
-    source_handle: Optional[SourceHandle]
+    source_handle: "SourceHandle | None"
     page: str
     confidence: int
 

@@ -41,7 +41,6 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, Dict
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle, FamilyHandle
@@ -69,9 +68,9 @@ class RelationshipPathBetweenBookmarks(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
         bookmarks = db.get_bookmarks().get()
-        self.bookmarks: Set[PersonHandle] = set(bookmarks)
+        self.bookmarks: set[PersonHandle] = set(bookmarks)
         try:
             self.init_list()
         except:
@@ -99,10 +98,10 @@ class RelationshipPathBetweenBookmarks(Rule):
     # Given a group of individuals, returns all of their parents.
     # The value keyed by the individual handles is the path from
     # the original person up, like generation[gfather]= [son,father,gfather]
-    def parents(self, generation: Dict[PersonHandle, List[PersonHandle]]):
+    def parents(self, generation: dict[PersonHandle, list[PersonHandle]]):
         if len(generation) < 1:
             return None
-        prev_generation: Dict[PersonHandle, List[PersonHandle]] = {}
+        prev_generation: dict[PersonHandle, list[PersonHandle]] = {}
         for handle in generation:
             try:
                 person = self.db.get_person_from_handle(handle)
@@ -163,7 +162,7 @@ class RelationshipPathBetweenBookmarks(Rule):
         self.selected_handles.update(self.bookmarks)
         if len(self.bookmarks) < 2:
             return
-        bmarks: List[PersonHandle] = list(self.bookmarks)
+        bmarks: list[PersonHandle] = list(self.bookmarks)
 
         # Go through all bookmarked individuals, and mark all
         # of the people in each of the paths betweent them.

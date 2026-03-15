@@ -26,7 +26,7 @@ Person object for Gramps.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ..types import FamilyHandle, PersonHandle
@@ -93,10 +93,10 @@ class Person(
     # Type hints for Person-specific attributes
     handle: "PersonHandle"
     primary_name: Name
-    family_list: List[FamilyHandle]
-    parent_family_list: List[FamilyHandle]
-    alternate_names: List[Name]
-    person_ref_list: List[PersonRef]
+    family_list: "list[FamilyHandle]"
+    parent_family_list: "list[FamilyHandle]"
+    alternate_names: list[Name]
+    person_ref_list: list[PersonRef]
     death_ref_index: int
     birth_ref_index: int
 

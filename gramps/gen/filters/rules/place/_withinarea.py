@@ -47,7 +47,6 @@ from ....utils.place import conv_lat_lon
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Optional, Union
 from ....lib import Place
 from ....db import Database
 from ....types import PlaceHandle
@@ -69,10 +68,10 @@ class WithinArea(Rule):
     name = _("Places within an area")
     description = _("Matches places within a given distance of another place")
     category = _("Position filters")
-    handle: Optional[PlaceHandle] = None
+    handle: PlaceHandle | None = None
     radius: float = 0.0
-    latitude: Union[float, None] = None
-    longitude: Union[float, None] = None
+    latitude: float | None = None
+    longitude: float | None = None
 
     def prepare(self, db: Database, user):
         ref_place = db.get_place_from_gramps_id(self.list[0])
@@ -81,7 +80,7 @@ class WithinArea(Rule):
         self.longitude = None
         if ref_place:
             self.handle = ref_place.handle
-            latitude: Optional[str] = ref_place.lat
+            latitude: str | None = ref_place.lat
             if latitude == "":
                 latitude = None
                 return
@@ -115,8 +114,8 @@ class WithinArea(Rule):
             self.radius = self.radius / 2
 
     def apply_to_one(self, db: Database, place: Place) -> bool:
-        latit: Union[float, None] = None
-        longit: Union[float, None] = None
+        latit: float | None = None
+        longit: float | None = None
 
         if not (place and self.handle and self.latitude and self.longitude):
             return False

@@ -31,7 +31,7 @@ from __future__ import annotations
 #
 # -------------------------------------------------------------------------
 import logging
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ..types import CitationHandle
@@ -61,7 +61,7 @@ class CitationBase:
     """
 
     # Type hints for CitationBase attributes
-    citation_list: List[CitationHandle]
+    citation_list: "list[CitationHandle]"
 
     def __init__(self, source=None):
         """
