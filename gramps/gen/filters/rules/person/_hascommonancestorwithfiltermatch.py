@@ -71,9 +71,12 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
                 self.category,
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
+                can_cancel=True,
             )
         for person in db.iter_people():
             if user:
+                if user.get_cancelled():
+                    break
                 user.step_progress()
             if person and self.filt.apply_to_one(db, person):
                 # store all people in the filter so as to compare later

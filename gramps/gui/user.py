@@ -85,6 +85,8 @@ class User(user.UserBase):
         :type steps: int
         :returns: none
         """
+        from gi.repository import Gtk
+
         self._progress = ProgressMeter(
             title,
             parent=self.parent,
@@ -95,6 +97,8 @@ class User(user.UserBase):
             self._progress.set_pass(message, steps, ProgressMeter.MODE_FRACTION)
         else:
             self._progress.set_pass(message, mode=ProgressMeter.MODE_ACTIVITY)
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
     def get_cancelled(
         self,
