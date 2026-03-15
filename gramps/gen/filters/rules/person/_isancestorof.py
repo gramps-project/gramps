@@ -80,7 +80,7 @@ class IsAncestorOf(Rule):
     def init_ancestor_list(
         self, db: Database, person: Person | None, first: bool, user=None
     ) -> None:
-        if user and user.get_cancelled():
+        if user.get_cancelled():
             return
         if not person:
             return

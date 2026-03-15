@@ -82,7 +82,7 @@ class IsDescendantOf(Rule):
         """
         Initialise family handle list.
         """
-        if user and user.get_cancelled():
+        if user.get_cancelled():
             return
         if not family:
             return

@@ -136,7 +136,7 @@ class RelationshipPathBetween(Rule):
         path2 = set([p2_handle])
 
         for person_handle in common:
-            if user and user.get_cancelled():
+            if user.get_cancelled():
                 return
             new_map: Set[PersonHandle] = set()
             self.desc_list(person_handle, new_map, True)

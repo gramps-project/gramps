@@ -49,6 +49,7 @@ from ..lib.media import Media
 from ..lib.note import Note
 from ..lib.tag import Tag
 from ..const import GRAMPS_LOCALE as glocale
+from ..user import User
 from .rules import Rule
 from .optimizer import Optimizer
 
@@ -97,8 +98,9 @@ class GenericFilter:
         Return True or False depending on whether the handle matches the filter.
         """
         obj = self.get_object(db, handle)
+        user = User()
         for rule in self.flist:
-            rule.requestprepare(db, user=None)
+            rule.requestprepare(db, user)
 
         results = self.apply_to_one(db, obj)
 
@@ -171,7 +173,7 @@ class GenericFilter:
         db,
         possible_handles: Set[PrimaryObjectHandle],
         apply_logical_op,
-        user=None,
+        user,
     ):
         LOG.debug(
             "Starting possible_handles: %s",
@@ -182,15 +184,9 @@ class GenericFilter:
         optimizer = Optimizer(self)
         handles_in, handles_out = optimizer.compute_potential_handles_for_filter(self)
 
-        # LOG.debug(
-        #    "Optimizer possible_handles: %s",
-        #    len(possible_handles),
-        # )
-
-        if user:
-            user.begin_progress(
-                _("Filter"), _("Applying ..."), len(possible_handles), can_cancel=True
-            )
+        user.begin_progress(
+            _("Filter"), _("Applying ..."), len(possible_handles), can_cancel=True
+        )
 
         # test each value in possible_handles to compute the final_list
         final_list = []
@@ -200,18 +196,16 @@ class GenericFilter:
             if handles_out is not None and handle in handles_out:
                 continue
 
-            if user:
-                if user.get_cancelled():
-                    break
-                user.step_progress()
+            if user.get_cancelled():
+                break
+            user.step_progress()
 
             obj = self.get_object(db, handle)
 
             if apply_logical_op(db, obj, self.flist) != self.invert:
                 final_list.append(obj.handle)
 
-        if user:
-            user.end_progress()
+        user.end_progress()
 
         return final_list
 
@@ -281,22 +275,22 @@ class GenericFilter:
                 if id_list not given, all items in the database that
                 match the filter are returned as a list of handles
         """
+        if user is None:
+            user = User()
+
         start_time = time.time()
-        if user:
-            user.begin_progress(
-                _("Filter"), _("Preparing ..."), len(self.flist) + 1, can_cancel=True
-            )
+        user.begin_progress(
+            _("Filter"), _("Preparing ..."), len(self.flist) + 1, can_cancel=True
+        )
         for rule in self.flist:
-            if user and user.get_cancelled():
+            if user.get_cancelled():
                 break
-            if user:
-                user.step_progress()
+            user.step_progress()
             rule.requestprepare(db, user)
-        if user:
-            user.end_progress()
+        user.end_progress()
         LOG.debug("Prepare time: %s seconds", time.time() - start_time)
 
-        if user and user.get_cancelled():
+        if user.get_cancelled():
             for rule in self.flist:
                 rule.requestreset()
             return []
@@ -331,7 +325,7 @@ class GenericFilter:
         else:
             possible_handles = set(self.get_all_handles(db))
 
-        if user and user.get_cancelled():
+        if user.get_cancelled():
             res = []
         else:
             res = self.apply_logical_op_to_all(

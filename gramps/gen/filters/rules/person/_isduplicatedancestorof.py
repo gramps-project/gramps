@@ -91,7 +91,7 @@ class IsDuplicatedAncestorOf(Rule):
                     self.go_deeper(db, db.get_person_from_handle(f_id), user)
 
     def go_deeper(self, db: Database, person: Person, user: User):
-        if user and user.get_cancelled():
+        if user.get_cancelled():
             return
         if person and person.handle in self.cache:
             self.selected_handles.add((person.handle))

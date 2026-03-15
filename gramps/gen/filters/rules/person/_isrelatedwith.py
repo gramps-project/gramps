@@ -81,7 +81,7 @@ class IsRelatedWith(Rule):
         queue: List[Person] = [start]
 
         while queue:
-            if user and user.get_cancelled():
+            if user.get_cancelled():
                 break
             person = queue.pop()
             # Add the relative to the list

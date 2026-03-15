@@ -76,7 +76,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
             (root_handle, 1)
         ]  # generation 1 is root
         while queue:
-            if user and user.get_cancelled():
+            if user.get_cancelled():
                 break
             handle, gen = queue.pop(0)
             if handle in self.selected_handles:

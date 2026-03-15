@@ -78,7 +78,7 @@ class IsDescendantOf(Rule):
         return person.handle in self.selected_handles
 
     def init_list(self, person: Person | None, first: bool, user=None) -> None:
-        if user and user.get_cancelled():
+        if user.get_cancelled():
             return
         if not person or person.handle in self.selected_handles:
             # if we have been here before, skip

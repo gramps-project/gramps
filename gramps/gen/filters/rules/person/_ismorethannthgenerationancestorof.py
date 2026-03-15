@@ -74,7 +74,7 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
     def init_ancestor_list(self, root_handle: PersonHandle, user: User):
         queue = [(root_handle, 1)]  # generation 1 is root
         while queue:
-            if user and user.get_cancelled():
+            if user.get_cancelled():
                 break
             handle, gen = queue.pop(0)  # pop off front of queue
             if gen > int(self.list[1]):

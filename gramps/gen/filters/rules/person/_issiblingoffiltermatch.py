@@ -63,22 +63,19 @@ class IsSiblingOfFilterMatch(Rule):
         self.selected_handles: Set[str] = set()
         self.matchfilt = MatchesFilter(self.list)
         self.matchfilt.requestprepare(db, user)
-        if user:
-            user.begin_progress(
-                self.category,
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-                can_cancel=True,
-            )
+        user.begin_progress(
+            self.category,
+            _("Retrieving all sub-filter matches"),
+            db.get_number_of_people(),
+            can_cancel=True,
+        )
         for person in db.iter_people():
-            if user and user.get_cancelled():
+            if user.get_cancelled():
                 break
-            if user:
-                user.step_progress()
+            user.step_progress()
             if self.matchfilt.apply_to_one(db, person):
                 self.init_list(person)
-        if user:
-            user.end_progress()
+        user.end_progress()
 
     def reset(self):
         self.matchfilt.requestreset()

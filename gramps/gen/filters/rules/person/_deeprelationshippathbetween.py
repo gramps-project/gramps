@@ -113,12 +113,11 @@ def find_deep_relations(
     done[person.handle] = None
 
     while todo:
-        if user and user.get_cancelled():
+        if user.get_cancelled():
             break
         handle = todo.popleft()
 
-        if user:
-            user.step_progress()
+        user.step_progress()
 
         if handle in target_people:  # if we found a target
             prev_hndl = handle
@@ -169,34 +168,30 @@ class DeepRelationshipPathBetween(Rule):
         self.filt = MatchesFilter([filter_name])
         self.filt.requestprepare(db, user)
 
-        if user:
-            user.begin_progress(
-                _("Finding relationship paths"),
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-                can_cancel=True,
-            )
+        user.begin_progress(
+            _("Finding relationship paths"),
+            _("Retrieving all sub-filter matches"),
+            db.get_number_of_people(),
+            can_cancel=True,
+        )
         target_people = []
         for person in db.iter_people():
-            if user and user.get_cancelled():
+            if user.get_cancelled():
                 break
             if self.filt.apply_to_one(db, person):
                 target_people.append(person.handle)
-            if user:
-                user.step_progress()
-        if user:
-            user.end_progress()
-            user.begin_progress(
-                _("Finding relationship paths"),
-                _("Evaluating people"),
-                db.get_number_of_people(),
-                can_cancel=True,
-            )
+            user.step_progress()
+        user.end_progress()
+        user.begin_progress(
+            _("Finding relationship paths"),
+            _("Evaluating people"),
+            db.get_number_of_people(),
+            can_cancel=True,
+        )
         self.selected_handles: Set[str] = find_deep_relations(
             db, user, root_person, target_people
         )
-        if user:
-            user.end_progress()
+        user.end_progress()
 
     def reset(self):
         self.filt.requestreset()

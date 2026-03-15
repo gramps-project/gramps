@@ -95,7 +95,7 @@ class IsDescendantFamilyOf(Rule):
         queue: List[Person] = [person]
 
         while queue:
-            if user and user.get_cancelled():
+            if user.get_cancelled():
                 break
             person = queue.pop(0)
             if person is None or person.handle in self.selected_handles:

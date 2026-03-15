@@ -64,22 +64,19 @@ class IsParentOfFilterMatch(Rule):
         self.selected_handles: Set[str] = set()
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
-        if user:
-            user.begin_progress(
-                self.category,
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-                can_cancel=True,
-            )
+        user.begin_progress(
+            self.category,
+            _("Retrieving all sub-filter matches"),
+            db.get_number_of_people(),
+            can_cancel=True,
+        )
         for person in db.iter_people():
-            if user:
-                user.step_progress()
-                if user and user.get_cancelled():
-                    break
+            user.step_progress()
+            if user.get_cancelled():
+                break
             if self.filt.apply_to_one(db, person):
                 self.init_list(person)
-        if user:
-            user.end_progress()
+        user.end_progress()
 
     def reset(self):
         self.filt.requestreset()
