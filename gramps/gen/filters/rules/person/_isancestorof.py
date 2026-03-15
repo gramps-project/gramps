@@ -36,7 +36,6 @@ _ = glocale.translation.gettext
 from .. import Rule
 from ....utils.graph import find_ancestors
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
@@ -75,7 +74,7 @@ class IsAncestorOf(Rule):
                 self.selected_handles = find_ancestors(
                     db, [root_person.handle], inclusive=inclusive
                 )
-        except:
+        except Exception:
             pass
 
     def reset(self):

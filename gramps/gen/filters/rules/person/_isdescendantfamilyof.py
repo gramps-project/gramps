@@ -40,7 +40,6 @@ except NameError:
 from .. import Rule
 from ....utils.graph import find_descendants
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

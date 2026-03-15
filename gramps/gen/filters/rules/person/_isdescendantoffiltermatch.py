@@ -36,7 +36,6 @@ from ._isdescendantof import IsDescendantOf
 from ._matchesfilter import MatchesFilter
 from ....utils.graph import find_descendants
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
@@ -108,5 +107,5 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
                 self.db, [person.handle], inclusive=inclusive
             )
             self.selected_handles.update(descendants)
-        except:
+        except Exception:
             pass

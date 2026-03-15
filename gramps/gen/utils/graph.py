@@ -170,7 +170,7 @@ def find_ancestors_iterative(
             person = db.get_person_from_handle(current_handle)
             if not person:
                 continue
-        except:
+        except Exception:
             # Handle non-existent handles gracefully
             continue
 
@@ -317,7 +317,7 @@ def find_descendants_iterative(
             person = db.get_person_from_handle(current_handle)
             if not person:
                 continue
-        except:
+        except Exception:
             # Handle non-existent handles gracefully
             continue
 

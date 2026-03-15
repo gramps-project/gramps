@@ -36,7 +36,6 @@ _ = glocale.translation.gettext
 from .. import Rule
 from ....utils.graph import find_descendants
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
@@ -76,7 +75,7 @@ class IsDescendantOf(Rule):
                 self.selected_handles = find_descendants(
                     db, [root_person.handle], inclusive=inclusive
                 )
-        except:
+        except Exception:
             pass
 
     def reset(self):

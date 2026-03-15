@@ -36,7 +36,6 @@ _ = glocale.translation.gettext
 from .. import Rule
 from ....utils.graph import find_descendants
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
@@ -79,7 +78,7 @@ class IsLessThanNthGenerationDescendantOf(Rule):
                     max_generation=max_generations,
                     inclusive=False,
                 )
-        except:
+        except Exception:
             pass
 
     def reset(self):

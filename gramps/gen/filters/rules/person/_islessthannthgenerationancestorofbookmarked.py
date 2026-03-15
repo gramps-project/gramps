@@ -27,11 +27,6 @@ from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
-try:
-    set()
-except:
-    from sets import Set as set
-
 # -------------------------------------------------------------------------
 #
 # Gramps modules
@@ -39,7 +34,6 @@ except:
 # -------------------------------------------------------------------------
 from .. import Rule
 from ....utils.graph import find_ancestors
-
 
 # -------------------------------------------------------------------------
 #

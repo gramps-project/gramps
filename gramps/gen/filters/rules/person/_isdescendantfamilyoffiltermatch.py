@@ -102,7 +102,7 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
             # Add spouses of descendants
             self.add_spouses_of_descendants(descendants)
-        except:
+        except Exception:
             pass
 
     def add_spouses_of_descendants(self, descendants: Set[PersonHandle]):

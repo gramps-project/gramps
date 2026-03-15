@@ -35,7 +35,6 @@ _ = glocale.translation.gettext
 from .. import Rule
 from ....utils.graph import find_descendants
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
@@ -68,7 +67,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
         try:
-            root_person = db._get_raw_person_from_id_data(self.list[0])
+            root_person = db.get_person_from_gramps_id(self.list[0])
             min_generations = int(self.list[1])
             if root_person:
                 # Use the new find_descendants function with min_generation
@@ -78,7 +77,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
                     min_generation=min_generations,
                     inclusive=False,
                 )
-        except:
+        except Exception:
             pass
 
     def reset(self):
