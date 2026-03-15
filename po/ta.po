@@ -5,13 +5,13 @@
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2025.
 # தமிழ்நேரம் <anishprabu.t@gmail.com>, 2025.
-# தமிழ்நேரம் <tamilneram247@gmail.com>, 2025.
+# தமிழ்நேரம் <tamilneram247@gmail.com>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-08 19:02+0000\n"
-"PO-Revision-Date: 2025-10-24 14:02+0000\n"
+"PO-Revision-Date: 2026-03-15 17:52+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ta/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 "X-Launchpad-Export-Date: 2014-07-26 03:32+0000\n"
 
 #: ../data/holidays.xml:3
@@ -8321,10 +8321,8 @@ msgid "Type code"
 msgstr "குறியீட்டைத் தட்டச்சு செய்க"
 
 #: ../gramps/gen/lib/ldsord.py:96
-#, fuzzy
-#| msgid "Initiatory (LDS)"
 msgid "Initiatory"
-msgstr "தொடக்க (எல்.டி.எச்)"
+msgstr "தொடக்க"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -37962,8 +37960,6 @@ msgid " [Click to Go]"
 msgstr " [செல்ல சொடுக்கு செய்க]"
 
 #: ../gramps/plugins/webreport/basepage.py:2974
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
 msgstr "பிந்தைய நாள் புனிதர்கள்/ எல்.டி.எச் கட்டளை"
 
