@@ -22,6 +22,7 @@
 """
 Rule that checks for a family that is an ancestor of a specified family.
 """
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
@@ -39,7 +40,6 @@ from ....lib import Family
 from ....db import Database
 from ....types import FamilyHandle
 from ....user import UserBase
-
 
 _ = glocale.translation.gettext
 
