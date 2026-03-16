@@ -45,6 +45,8 @@ from ....const import GRAMPS_LOCALE as glocale
 # -------------------------------------------------------------------------
 from ....lib import Family
 from ....db import Database
+from ....types import FamilyHandle
+from ....user import UserBase
 
 _ = glocale.translation.gettext
 
@@ -64,14 +66,14 @@ class IsDescendantOf(Rule):
     category = _("General filters")
     description = _("Matches descendant families of the specified family")
 
-    def prepare(self, db: Database, user):
-        self.selected_handles: set[str] = set()
+    def prepare(self, db: Database, user: UserBase) -> None:
+        self.selected_handles: set[FamilyHandle] = set()
         try:
             inclusive = bool(int(self.list[1]))
         except IndexError:
             inclusive = False
         root_family = db.get_family_from_gramps_id(self.list[0])
-        if root_family:
+        if root_family is not None:
             # The inclusive flag controls only whether the root family itself
             # is included — not whether children are included in traversal.
             if inclusive:
@@ -88,7 +90,7 @@ class IsDescendantOf(Rule):
                         for family_handle in person.family_list:
                             self.selected_handles.add(family_handle)
 
-    def reset(self):
+    def reset(self) -> None:
         self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
