@@ -67,9 +67,9 @@ class IsDescendantOf(Rule):
     def prepare(self, db: Database, user):
         self.selected_handles: set[str] = set()
         try:
-            inclusive = False if int(self.list[1]) else True
+            inclusive = bool(int(self.list[1]))
         except IndexError:
-            inclusive = True
+            inclusive = False
         root_family = db.get_family_from_gramps_id(self.list[0])
         if root_family:
             # Get all family members (parents and children)

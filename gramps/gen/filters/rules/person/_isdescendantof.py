@@ -63,9 +63,9 @@ class IsDescendantOf(Rule):
         self.db = db
         self.selected_handles: set[PersonHandle] = set()
         try:
-            inclusive = False if int(self.list[1]) else True
+            inclusive = bool(int(self.list[1]))
         except IndexError:
-            inclusive = True
+            inclusive = False
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             if root_person:

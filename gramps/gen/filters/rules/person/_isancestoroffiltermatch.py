@@ -67,11 +67,9 @@ class IsAncestorOfFilterMatch(Rule):
         self.db = db
         self.selected_handles: set[PersonHandle] = set()
         try:
-            inclusive = (
-                False if int(self.list[1]) else False
-            )  # Default to False (not inclusive)
+            inclusive = bool(int(self.list[1]))
         except IndexError:
-            inclusive = False  # Default to False (not inclusive)
+            inclusive = False
 
         self.filt = MatchesFilter(self.list[0:1])
         self.filt.requestprepare(db, user)
