@@ -92,14 +92,12 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
         if not person:
             return
         try:
-            # Add the person themselves
-            self.selected_handles.add(person.handle)
-
-            # Add all descendants
-            descendants = find_descendants(self.db, [person.handle], inclusive=False)
+            # inclusive=True so the person themselves is in descendants,
+            # ensuring add_spouses_of_descendants also covers their spouses
+            descendants = find_descendants(self.db, [person.handle], inclusive=True)
             self.selected_handles.update(descendants)
 
-            # Add spouses of descendants
+            # Add spouses of all descendants (including the person themselves)
             self.add_spouses_of_descendants(descendants)
         except Exception:
             pass

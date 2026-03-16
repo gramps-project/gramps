@@ -73,7 +73,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
             # So we need to subtract 1 to convert
             max_generation = int(self.list[1]) - 1
             self.selected_handles = find_ancestors(
-                db, [person.handle], max_generation=max_generation, inclusive=False
+                db, [person.handle], max_generation=max_generation, inclusive=True
             )
 
     def reset(self):

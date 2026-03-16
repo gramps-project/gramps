@@ -72,25 +72,21 @@ class IsDescendantOf(Rule):
             inclusive = False
         root_family = db.get_family_from_gramps_id(self.list[0])
         if root_family:
-            # Get all family members (parents and children)
-            family_members = []
-            if root_family.father_handle:
-                family_members.append(root_family.father_handle)
-            if root_family.mother_handle:
-                family_members.append(root_family.mother_handle)
-            for child_ref in root_family.child_ref_list:
-                if child_ref.ref:
-                    family_members.append(child_ref.ref)
+            # The inclusive flag controls only whether the root family itself
+            # is included — not whether children are included in traversal.
+            if inclusive:
+                self.selected_handles.add(root_family.handle)
 
-            # Find descendants of all family members
-            descendants = find_descendants(db, family_members, inclusive=inclusive)
-
-            # Get all families that contain any of these descendants
-            for person_handle in descendants:
-                person = db.get_person_from_handle(person_handle)
-                if person:
-                    for family_handle in person.family_list:
-                        self.selected_handles.add(family_handle)
+            # Start from children of the root family (inclusive so children
+            # themselves are in the set and their families are found).
+            children = [cr.ref for cr in root_family.child_ref_list if cr.ref]
+            if children:
+                descendants = find_descendants(db, children, inclusive=True)
+                for person_handle in descendants:
+                    person = db.get_person_from_handle(person_handle)
+                    if person:
+                        for family_handle in person.family_list:
+                            self.selected_handles.add(family_handle)
 
     def reset(self):
         self.selected_handles.clear()

@@ -197,7 +197,7 @@ def find_descendants(
     min_generation: int = 1,
     max_generation: int | None = None,
     inclusive: bool = False,
-    include_all_families: bool = False,
+    include_all_families: bool = True,
 ) -> set[PersonHandle]:
     """
     Find descendants of one or more people using BFS traversal.
@@ -214,7 +214,7 @@ def find_descendants(
         max_generation: Maximum generation to include (None = no limit)
         inclusive: Whether to include the starting people in results
         include_all_families: Whether to traverse all families
-                             (False = only first family)
+                             (True = all families, False = only first family)
 
     Returns:
         Set of person handles representing the descendants
@@ -257,7 +257,7 @@ def find_descendants_iterative(
     min_generation: int = 1,
     max_generation: int | None = None,
     inclusive: bool = False,
-    include_all_families: bool = False,
+    include_all_families: bool = True,
 ) -> Iterator[tuple[PersonHandle, int]]:
     """
     Find descendants of one or more people using BFS traversal, yielding results as they're found.
@@ -273,7 +273,7 @@ def find_descendants_iterative(
         max_generation: Maximum generation to include (None = no limit)
         inclusive: Whether to include the starting people in results
         include_all_families: Whether to traverse all families
-                             (False = only first family)
+                             (True = all families, False = only first family)
 
     Yields:
         Tuples of (person_handle, generation) for each descendant found
