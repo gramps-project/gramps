@@ -49,7 +49,7 @@ jobs:
       run: |
         cd aio
         ./build.sh ${{ inputs.cleanup }} ${{ inputs.build-number }}
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         name: GrampsAIO
         path: D:\a\gramps\gramps\aio\mingw64\src\GrampsAIO-*.exe
