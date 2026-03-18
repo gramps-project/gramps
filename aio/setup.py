@@ -197,7 +197,7 @@ EXECUTABLES = [
     ),
     cx_Freeze.Executable(
         "grampsaiow.py",
-        base="Win32GUI",
+        base="gui",
         target_name="grampsw.exe",
         icon="gramps.ico",
         copyright=COPYRIGHT,
