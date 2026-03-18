@@ -112,7 +112,7 @@ MISSING_DLL = [
     "libgexiv2-2.dll",
     "libgoocanvas-3.0-9.dll",
     "libosmgpsmap-1.0-1.dll",
-    "gswin32c.exe",
+    "gswin64c.exe",
     "dot.exe",
     "libgvplugin_core-6.dll",
     "libgvplugin_dot_layout-6.dll",

@@ -112,7 +112,9 @@ _SPLINE = [
 if win():
     _DOT_FOUND = search_for("dot.exe")
 
-    if search_for("gswin32c.exe") == 1:
+    if search_for("gswin64c.exe") == 1:
+        _GS_CMD = "gswin64c.exe"
+    elif search_for("gswin32c.exe") == 1:
         _GS_CMD = "gswin32c.exe"
     elif search_for("gswin32.exe") == 1:
         _GS_CMD = "gswin32.exe"
