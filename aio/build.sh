@@ -35,7 +35,6 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-gexiv2 \
     mingw-w64-x86_64-ghostscript \
     mingw-w64-x86_64-goocanvas \
-    mingw-w64-x86_64-graphviz \
     mingw-w64-x86_64-gspell \
     mingw-w64-x86_64-hunspell \
     mingw-w64-x86_64-iso-codes \
@@ -68,6 +67,8 @@ pacman -S --needed --noconfirm \
     perl-XML-Parser \
     subversion \
     unzip
+
+pacman -U --needed --noconfirm https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-graphviz-12.2.1-4-any.pkg.tar.zst
 
 wget --no-verbose -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 pacman -U --needed --noconfirm mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
