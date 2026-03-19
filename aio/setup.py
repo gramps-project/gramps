@@ -66,7 +66,7 @@ else:
 
 INCLUDE_DLL_PATH = os.path.join(sys.base_exec_prefix, "bin")
 INCLUDE_FILES = []
-INCLUDES = ["gi", "cgi", "colorsys", "site"]
+INCLUDES = ["gi", "colorsys", "site"]
 PACKAGES = [
     "gi",
     "cairo",
