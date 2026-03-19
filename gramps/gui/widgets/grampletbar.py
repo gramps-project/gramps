@@ -60,6 +60,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gramps.gen.config import config
+from gramps.gen.plug._gramplet import Gramplet as BaseGramplet
 from gramps.gen.constfunc import win
 from gramps.gen.utils.configmanager import clean_up
 from ..managedwindow import ManagedWindow
@@ -170,7 +171,6 @@ class GrampletBar(Gtk.Notebook):
         self.set_current_page(config_settings[1])
 
         uistate.connect("grampletbar-close-changed", self.cb_close_changed)
-        uistate.connect("grampletbar-freeze-changed", self.cb_freeze_changed)
 
         # Connect after gramplets added to prevent making them active
         self.connect("switch-page", self.__switch_page)
@@ -424,6 +424,13 @@ class GrampletBar(Gtk.Notebook):
         """
         label = self.__create_tab_label(gramplet)
         page_num = self.append_page(gramplet, label)
+        # Show the freeze button only for gramplets that override update_has_data()
+        # to meaningfully track data (e.g. PersonDetails, Events, Children).
+        # Gramplets like Filter and Python tools use the base no-op implementation.
+        if gramplet._freeze_btn is not None and (
+            type(gramplet.pui).update_has_data is not BaseGramplet.update_has_data
+        ):
+            gramplet._freeze_btn.show()
         return page_num
 
     def __create_tab_label(self, gramplet):
@@ -436,11 +443,6 @@ class GrampletBar(Gtk.Notebook):
             tablabel.set_has_data(gramplet.pui.has_data)
         else:  # just a function; always show yes it has data
             tablabel.set_has_data(True)
-
-        if config.get("interface.grampletbar-freeze"):
-            tablabel.use_freeze(True)
-        else:
-            tablabel.use_freeze(False)
 
         if config.get("interface.grampletbar-close"):
             tablabel.use_close(True)
@@ -457,14 +459,6 @@ class GrampletBar(Gtk.Notebook):
             tablabel = self.get_tab_label(gramplet)
             if not isinstance(tablabel, Gtk.Label):
                 tablabel.use_close(config.get("interface.grampletbar-close"))
-
-    def cb_freeze_changed(self):
-        """
-        Freeze/unfreeze button preference changed.
-        """
-        for gramplet in self.get_children():
-            tablabel = self.get_tab_label(gramplet)
-            tablabel.use_freeze(config.get('interface.grampletbar-freeze'))
 
     def __delete_clicked(self, button, gramplet):
         """
@@ -541,16 +535,6 @@ class GrampletBar(Gtk.Notebook):
         """
         gramplet.detached_window.close()
         gramplet.detached_window = None
-
-    def __freeze_clicked(self, button):
-        """
-        Called when the freeze/unfreeze button is clicked.
-        """
-        for gramplet in self.get_children():
-            if gramplet and gramplet.pui:
-                if gramplet.pui.active:
-                    if not self.freeze:
-                        gramplet.pui.main()
 
     def __refresh_menu(self):
         """
@@ -665,7 +649,7 @@ class GrampletBar(Gtk.Notebook):
 # TabGramplet class
 #
 # -------------------------------------------------------------------------
-class TabGramplet(Gtk.ScrolledWindow, GuiGramplet):
+class TabGramplet(Gtk.Overlay, GuiGramplet):
     """
     Class that handles the plugin interfaces for the GrampletBar.
     """
@@ -674,10 +658,16 @@ class TabGramplet(Gtk.ScrolledWindow, GuiGramplet):
         """
         Internal constructor for GUI portion of a gramplet.
         """
-        Gtk.ScrolledWindow.__init__(self)
+        Gtk.Overlay.__init__(self)
         GuiGramplet.__init__(self, pane, dbstate, uistate, title, **kwargs)
 
-        self.scrolledwindow = self
+        # Scrolled window is the base (non-overlay) child
+        self.scrolledwindow = Gtk.ScrolledWindow()
+        self.scrolledwindow.set_policy(
+            Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC
+        )
+        self.add(self.scrolledwindow)
+
         self.textview = Gtk.TextView()
         self.textview.set_editable(False)
         self.textview.set_wrap_mode(Gtk.WrapMode.WORD)
@@ -685,20 +675,59 @@ class TabGramplet(Gtk.ScrolledWindow, GuiGramplet):
         self.text_length = 0
         self.textview.set_buffer(self.buffer)
         self.textview.connect("key-press-event", self.on_key_press_event)
-        self.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-        self.add(self.textview)
+        self.scrolledwindow.add(self.textview)
+
+        # Freeze toggle button floats in the bottom-right corner.
+        # Created for navtype gramplets, but shown only for detail-type
+        # gramplets that track has_data (determined in __add_tab once pui exists).
+        self.frozen = False
+        self._freeze_btn = None
+        if self.navtypes:
+            self._freeze_btn = Gtk.ToggleButton()
+            self._freeze_btn.set_halign(Gtk.Align.END)
+            self._freeze_btn.set_valign(Gtk.Align.END)
+            self._freeze_btn.set_relief(Gtk.ReliefStyle.NONE)
+            self._freeze_btn.set_margin_bottom(2)
+            self._freeze_btn.set_margin_end(2)
+            self._freeze_btn.set_no_show_all(True)  # hidden until pui is checked
+            self._update_freeze_icon()
+            self._freeze_btn.connect("toggled", self._on_freeze_toggled)
+            self.add_overlay(self._freeze_btn)
+
         self.show_all()
         self.track = []
         self.pane = pane
+
+    def _update_freeze_icon(self):
+        """Update the freeze button icon to reflect frozen state."""
+        if self._freeze_btn is None:
+            return
+        child = self._freeze_btn.get_child()
+        if child:
+            self._freeze_btn.remove(child)
+        image = Gtk.Image()
+        if self._freeze_btn.get_active():
+            image.set_from_icon_name("gramps-lock", Gtk.IconSize.MENU)
+            self._freeze_btn.set_tooltip_text(_("Gramplet is frozen"))
+        else:
+            image.set_from_icon_name("gramps-unlock", Gtk.IconSize.MENU)
+            self._freeze_btn.set_tooltip_text(_("Gramplet updates normally"))
+        image.show()
+        self._freeze_btn.add(image)
+
+    def _on_freeze_toggled(self, btn):
+        """Called when the freeze button is toggled."""
+        self.frozen = btn.get_active()
+        self._update_freeze_icon()
 
     def get_title(self):
         return self.title
 
     def get_container_widget(self):
         """
-        Return the top level container widget.
+        Return the scrolled window — the container gramplets add content to.
         """
-        return self
+        return self.scrolledwindow
 
     def set_orientation(self, orientation):
         """
@@ -819,11 +848,6 @@ class TabLabel(Gtk.Box):
         self.label.set_tooltip_text(gramplet.tname)
         self.label.show()
 
-        self.freezebtn = Gtk.ToggleButton()
-        self.freezebtn.connect("toggled", self.update_freeze, gramplet)
-        self.freezebtn.set_active(False)
-        self.update_freeze(self.freezebtn, gramplet)
-
         self.closebtn = Gtk.Button()
         image = Gtk.Image()
         image.set_from_icon_name("window-close", Gtk.IconSize.MENU)
@@ -832,7 +856,6 @@ class TabLabel(Gtk.Box):
         self.closebtn.set_relief(Gtk.ReliefStyle.NONE)
 
         self.pack_start(self.label, True, True, 0)
-        self.pack_start(self.freezebtn, False, False, 0)
         self.pack_end(self.closebtn, False, False, 0)
 
     def set_has_data(self, has_data):
@@ -844,39 +867,6 @@ class TabLabel(Gtk.Box):
             self.label.set_use_markup(True)
         else:
             self.label.set_text(self.text)
-
-    def update_freeze(self, obj, gramplet):
-        """
-        Display the correct icon for the button according to user
-        gramplet preference.
-        """
-        child = obj.get_child()
-        if child:
-            obj.remove(child)
-        image = Gtk.Image()
-        if obj.get_active():
-            image.set_from_icon_name('gramps-lock', Gtk.IconSize.MENU)
-            obj.set_tooltip_text(_('Gramplet update is freezed'))
-        else:
-            image.set_from_icon_name('gramps-unlock', Gtk.IconSize.MENU)
-            obj.set_tooltip_text(_('Gramplet update is allowed'))
-        image.show()
-        obj.add(image)
-
-    def get_freeze(self):
-        """
-        return the freeze button
-        """
-        return self.freezebtn
-
-    def use_freeze(self, use_freeze):
-        """
-        Display the close button according to user preference.
-        """
-        if use_freeze:
-            self.freezebtn.show()
-        else:
-            self.freezebtn.hide()
 
     def use_close(self, use_close):
         """

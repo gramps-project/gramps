@@ -1388,12 +1388,6 @@ class GrampsPreferences(ConfigureDialog):
         """
         self.uistate.emit("grampletbar-close-changed")
 
-    def cb_grampletbar_freeze(self, obj):
-        """
-        Gramplet bar freeze/unfreeze button preference callback
-        """
-        self.uistate.emit("grampletbar-freeze-changed")
-
     def cb_toolbar_changed(self, obj):
         """
         Called when the toolbar is changed.
@@ -2150,18 +2144,6 @@ class GrampsPreferences(ConfigureDialog):
             stop=3,
             extra_callback=self.cb_grampletbar_close,
             tooltip=_("Show close button to simplify removing gramplets " "from bars."),
-        )
-
-        row += 1
-        # Gramplet bar freeze button:
-        self.add_checkbox(
-            grid,
-            _("Enable freeze/unfreeze for the active gramplet"),
-            row,
-            "interface.grampletbar-freeze",
-            start=1,
-            stop=3,
-            extra_callback=self.cb_grampletbar_freeze,
         )
 
         row += 1
