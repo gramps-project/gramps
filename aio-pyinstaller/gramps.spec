@@ -112,7 +112,12 @@ else:
 # may fail to find even when listed in hiddenimports.
 from PyInstaller.utils.hooks import collect_all as _collect_all
 
-for _pkg in ("orjson", "bsddb3", "lxml", "PIL", "cairo", "gi"):
+# orjson is a hard Gramps dependency — abort if it cannot be collected.
+_d, _b, _h = _collect_all("orjson")
+_extra_datas += _d
+_extra_binaries += _b
+
+for _pkg in ("bsddb3", "lxml", "PIL", "cairo", "gi"):
     try:
         _d, _b, _h = _collect_all(_pkg)
         _extra_datas += _d

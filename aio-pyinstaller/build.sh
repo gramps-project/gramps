@@ -180,6 +180,9 @@ unzip -q -d aio-pyinstaller/dist dist/*.whl
 
 cd aio-pyinstaller || exit 1
 
+# Verify orjson is importable before running PyInstaller
+python -c "import orjson; print('orjson', orjson.__version__, 'found at', orjson.__file__)"
+
 # build PyInstaller executables
 pyinstaller gramps.spec
 
