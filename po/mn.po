@@ -2,27 +2,30 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Nick Hall <nick-h@gramps-project.org>, 2026.
+# "Batsaihan P." <batsaihan.p@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-03-18 10:09+0000\n"
+"Last-Translator: \"Batsaihan P.\" <batsaihan.p@gmail.com>\n"
+"Language-Team: Mongolian <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/mn/>\n"
 "Language: mn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
-msgstr ""
+msgstr "Болгар"
 
 #: ../data/holidays.xml:52
 msgid "Canada"
-msgstr ""
+msgstr "Канад"
 
 #: ../data/holidays.xml:84
 msgid "Catalonia"
@@ -30,39 +33,39 @@ msgstr ""
 
 #: ../data/holidays.xml:101
 msgid "Chile"
-msgstr ""
+msgstr "Чил"
 
 #: ../data/holidays.xml:124
 msgid "China"
-msgstr ""
+msgstr "Хятад"
 
 #: ../data/holidays.xml:127
 msgid "Croatia"
-msgstr ""
+msgstr "Кроват"
 
 #: ../data/holidays.xml:143
 msgid "Czech Republic"
-msgstr ""
+msgstr "Чех"
 
 #: ../data/holidays.xml:158
 msgid "England"
-msgstr ""
+msgstr "Англи"
 
 #: ../data/holidays.xml:188
 msgid "Finland"
-msgstr ""
+msgstr "Финланд"
 
 #: ../data/holidays.xml:282
 msgid "France"
-msgstr ""
+msgstr "Франц"
 
 #: ../data/holidays.xml:318
 msgid "Germany"
-msgstr ""
+msgstr "Герман"
 
 #: ../data/holidays.xml:335
 msgid "Japan"
-msgstr ""
+msgstr "Япон"
 
 #: ../data/holidays.xml:358
 msgid "Jewish Holidays"
@@ -181,63 +184,68 @@ msgid "8 of Hanuka"
 msgstr ""
 
 #: ../data/holidays.xml:388
+#, fuzzy
 msgid "Italy"
-msgstr ""
+msgstr "Итали"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
-msgstr ""
+msgstr "Шинэ Зеланд"
 
 #: ../data/holidays.xml:418
 msgid "Russia"
-msgstr ""
+msgstr "Орос"
 
 #: ../data/holidays.xml:434
+#, fuzzy
 msgid "Serbia"
-msgstr ""
+msgstr "Сереб"
 
 #: ../data/holidays.xml:449
 msgid "Serbia (Latin)"
-msgstr ""
+msgstr "Сереб"
 
 #: ../data/holidays.xml:464
+#, fuzzy
 msgid "Slovakia"
-msgstr ""
+msgstr "Славак"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:48
 msgid "Sweden"
-msgstr ""
+msgstr "Швед"
 
 #: ../data/holidays.xml:508
 msgid "Turkey"
-msgstr ""
+msgstr "Турк"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
-msgstr ""
+msgstr "Украйн"
 
 #: ../data/holidays.xml:563
 msgid "United States of America"
-msgstr ""
+msgstr "Америкийн Нэгдсэн Улс"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:2
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
-msgstr ""
+msgstr "Gramps"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:3
+#, fuzzy
 msgid "Genealogy System"
-msgstr ""
+msgstr "Генийн систем"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:5
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
+#, fuzzy
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
+msgstr "Удмын мэдээллийг удирдах, удмын судалгаа, шинжилгээ хийх"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr ""
+msgstr "Удам угсаа;Удмын түүх;Судалгаа;Удмын мод;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
 #: ../gramps/gen/const.py:264
@@ -245,6 +253,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
+"Gramps бол ургийн бичиг бүтээгч сонирхогчид болон мэргэжлийхэнд зориулсан иж "
+"бүрэн программ юм."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -252,16 +262,20 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
+"Энэ нь хувь хүний амьдралын олон зүйлийг, мөн янз бүрийн хүмүүс, газар "
+"нутаг, үйл явдлуудын хоорондын уялдаа харилцааг бичих боломжийг танд олгоно."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
+"Таны бүх судалгаа эмх цэгцтэй, хайх боломжтой, шаардлагатай бол нарийн байх "
+"болно."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
 msgid "Gramps Development Team"
-msgstr ""
+msgstr "Gramps-ийн Хөгжүүлэгчдийн Баг"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:226
@@ -270,13 +284,14 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:134
 #: ../gramps/plugins/webreport/person.py:1746
 msgid "Pedigree"
-msgstr ""
+msgstr "Pedigree"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:164
 #: ../gramps/plugins/view/view.gpr.py:167
+#, fuzzy
 msgid "Descendant Fan"
-msgstr ""
+msgstr "Хойч үеэ Дэмжигч"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:349
