@@ -108,6 +108,18 @@ else:
         "Make sure the Gramps wheel has been extracted into dist/ before running pyinstaller."
     )
 
+# Force-collect packages that PyInstaller's isolated analysis subprocess
+# may fail to find even when listed in hiddenimports.
+from PyInstaller.utils.hooks import collect_all as _collect_all
+
+for _pkg in ("orjson", "bsddb3", "lxml", "PIL", "cairo", "gi"):
+    try:
+        _d, _b, _h = _collect_all(_pkg)
+        _extra_datas += _d
+        _extra_binaries += _b
+    except Exception:
+        pass
+
 # Packages that must be present even if not detected via import tracing.
 _hidden_imports = [
     "gi",
