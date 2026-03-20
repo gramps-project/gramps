@@ -61,7 +61,7 @@
 # Gianluca Boiano <morf3089@gmail.com>, 2021.
 # Alessandro Combatti <combatti.alessandro@gmail.com>, 2022.
 # Mauro Piccotti <mauro.piccotti@gmail.com>, 2024.
-# Fabio Restante <frestante@gmail.com>, 2025.
+# Fabio Restante <frestante@gmail.com>, 2025, 2026.
 # Roberto Coppes Telefono <robertocoppes71@gmail.com>, 2025.
 # Marco Ciampa <ciampix@posteo.net>, 2025.
 msgid ""
@@ -69,7 +69,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2025-11-11 03:51+0000\n"
+"PO-Revision-Date: 2026-03-17 06:10+0000\n"
 "Last-Translator: Fabio Restante <frestante@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
@@ -78,7 +78,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -11706,8 +11706,9 @@ msgid "Arabic"
 msgstr "Arabo"
 
 #: ../gramps/gen/utils/win32locale.py:46
+#, fuzzy
 msgid "Bashkir"
-msgstr ""
+msgstr "Bashkir"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -35239,11 +35240,11 @@ msgstr "Verifica di collegamenti scorretti nelle note"
 
 #: ../gramps/plugins/tool/check.py:2581
 msgid "Coalescing duplicate roles in events referenced by people"
-msgstr ""
+msgstr "Raggruppamento di ruoli duplicati in eventi citati dalle persone"
 
 #: ../gramps/plugins/tool/check.py:2602
 msgid "Coalescing duplicate roles in events referenced by families"
-msgstr ""
+msgstr "Raggruppamento di ruoli duplicati in eventi citati dalle famiglie"
 
 #: ../gramps/plugins/tool/check.py:2775
 msgid "No errors were found"
@@ -35509,7 +35510,7 @@ msgstr "Sono stati corretti %d collegamenti a note scorretti;\n"
 #: ../gramps/plugins/tool/check.py:3154
 #, python-format
 msgid "%d duplicate event role names coalesced. %d references updated\n"
-msgstr ""
+msgstr "%d nomi di ruoli evento duplicati uniti. %d riferimenti aggiornati.\n"
 
 #: ../gramps/plugins/tool/check.py:3189
 msgid "Integrity Check Results"
