@@ -54,7 +54,6 @@ from ..version import VERSION, VERSION_TUPLE, major_version, DEV_VERSION
 from .utils.resourcepath import ResourcePath
 from .utils.grampslocale import GrampsLocale
 
-
 # -------------------------------------------------------------------------
 #
 # Gramps program name
