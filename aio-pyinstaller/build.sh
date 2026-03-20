@@ -164,7 +164,7 @@ cp /mingw64/share/icons/hicolor/scalable/places/*.svg /mingw64/share/icons/gnome
 # build gramps wheel
 rm -rf dist aio-pyinstaller/dist
 python setup.py bdist_wheel
-if `grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py`; then
+if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
     # <branch_name>-<short_commit_id>
     appbuild="$(git rev-parse --abbrev-ref HEAD)-$(git rev-parse --short HEAD)"
 else
@@ -177,7 +177,7 @@ appversion=$(grep "^VERSION_TUPLE" gramps/version.py | sed 's/.*(//;s/, */\./g;s
 # Extract the Gramps wheel into aio-pyinstaller/dist so gramps.spec can find it
 unzip -q -d aio-pyinstaller/dist dist/*.whl
 
-cd aio-pyinstaller
+cd aio-pyinstaller || exit 1
 
 # build PyInstaller executables
 pyinstaller gramps.spec
@@ -190,7 +190,7 @@ cp ../aio/grampsc.ico dist/grampsaio/src/
 cp ../aio/grampsd.ico dist/grampsaio/src/
 
 # build installer
-cd dist/grampsaio/src
+cd dist/grampsaio/src || exit 1
 makensis grampsaio64.nsi
 # result is GrampsAIO-*.exe in dist/grampsaio/src/
 
