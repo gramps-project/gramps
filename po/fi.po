@@ -3,7 +3,7 @@
 # Janne Kovesjärvi <janne.kovesjarvi@gmail.com>, 2008, 200, 2013.
 # Pekka Valta <pekka.valta@kolumbus.fi>, 2014.
 # Niemelä <niememat@gmail.com>, 2017, 2018.
-# Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019, 2021, 2022, 2023, 2024, 2025.
+# Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019, 2021, 2022, 2023, 2024, 2025, 2026.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2025.
 # PeterJPower <pekka.valta@kolumbus.fi>, 2021, 2025.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2022, 2025.
@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2025-11-28 05:02+0000\n"
+"PO-Revision-Date: 2026-03-17 06:10+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../Gramps/gramps\n"
@@ -8701,8 +8701,6 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
-#, fuzzy
-#| msgid "Unknown"
 msgctxt "Surname"
 msgid "Unknown"
 msgstr "Tuntematon"
@@ -11602,7 +11600,7 @@ msgstr "arabia"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "baškiiri"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -14448,8 +14446,6 @@ msgid "Move the selected surname downwards"
 msgstr "Siirrä valittu sukunimi alaspäin"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "Sukunimi"
@@ -17186,8 +17182,6 @@ msgstr "Nimen tyyppinimi, esim. Syntymänimi, Avionimi."
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
 msgstr "_Etunimi:"
@@ -34800,11 +34794,11 @@ msgstr "Virheellisten lisätietolinkkien tarkistaminen"
 
 #: ../gramps/plugins/tool/check.py:2581
 msgid "Coalescing duplicate roles in events referenced by people"
-msgstr ""
+msgstr "Yhdistää päällekkäiset roolit tapahtumissa, joihin henkilöt viittaavat"
 
 #: ../gramps/plugins/tool/check.py:2602
 msgid "Coalescing duplicate roles in events referenced by families"
-msgstr ""
+msgstr "Perheiden tapahtumaviitteiden päällekkäisten roolien yhdistäminen"
 
 #: ../gramps/plugins/tool/check.py:2775
 msgid "No errors were found"
@@ -35056,6 +35050,8 @@ msgstr "%d viallista lisätietolinkkiä on korjattu;\n"
 #, python-format
 msgid "%d duplicate event role names coalesced. %d references updated\n"
 msgstr ""
+"%d päällekkäistä tapahtuman roolinimeä yhdistettiin. %d viittausta "
+"päivitettiin\n"
 
 #: ../gramps/plugins/tool/check.py:3189
 msgid "Integrity Check Results"
