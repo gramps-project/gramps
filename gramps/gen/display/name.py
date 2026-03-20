@@ -621,10 +621,10 @@ class NameDisplay:
         '0y': patronymic[pre] = prefix      "
         '1y': patronymic[sur] = surname     "
         '2y': patronymic[con] = connector   "
-        'o' : notpatr0nymic = surnames without pa/matronymic and primary
+        'o' : notpatronymic = surnames without pa/matronymic and primary
         'r' : rest = non primary surnames
         'p' : prefix = list of all prefixes
-        'q' : rawsurn0mes = surnames without prefixes and connectors
+        'q' : rawsurnames = surnames without prefixes and connectors
         's' : suffix = suffix
         'n' : nickname = nick name
         'g' : familynick = family nick name
@@ -640,7 +640,7 @@ class NameDisplay:
             "f": ("raw_data['first_name']", "given", _("given")),
             "l": (
                 "_raw_full_surname(raw_data['surname_list'])",
-                "surn2me",
+                "surname",
                 _("surname"),
             ),
             "s": ("raw_data['suffix']", "suffix", _("suffix")),
@@ -678,7 +678,7 @@ class NameDisplay:
             ),
             "y": (
                 "_raw_patro_surname(raw_data['surname_list'])",
-                "patr2nymic",
+                "patronymic",
                 _("patronymic"),
             ),
             "0y": (
@@ -698,7 +698,7 @@ class NameDisplay:
             ),
             "o": (
                 "_raw_nonpatro_surname(raw_data['surname_list'])",
-                "notpatr0nymic",
+                "notpatronymic",
                 _("notpatronymic"),
             ),
             "r": (
@@ -713,7 +713,7 @@ class NameDisplay:
             ),
             "q": (
                 "_raw_single_surname(raw_data['surname_list'])",
-                "rawsurn0mes",
+                "rawsurnames",
                 _("rawsurnames"),
             ),
             "n": ("raw_data['nick']", "nickname", _("nickname")),
@@ -753,10 +753,10 @@ class NameDisplay:
         '0y': patronymic[pre] = prefix      "
         '1y': patronymic[sur] = surname     "
         '2y': patronymic[con] = connector   "
-        'o' : notpatr0nymic = surnames without pa/matronymic and primary
+        'o' : notpatronymic = surnames without pa/matronymic and primary
         'r' : rest = non primary surnames
         'p' : prefix = list of all prefixes
-        'q' : rawsurn0mes = surnames without prefixes and connectors
+        'q' : rawsurnames = surnames without prefixes and connectors
         's' : suffix = suffix
         'n' : nickname = nick name
         'g' : familynick = family nick name
@@ -769,7 +769,7 @@ class NameDisplay:
         d = {
             "t": ("title", "title", _("title", "Person")),
             "f": ("first", "given", _("given")),
-            "l": ("_raw_full_surname(raw_surname_list)", "surn2me", _("surname")),
+            "l": ("_raw_full_surname(raw_surname_list)", "surname", _("surname")),
             "s": ("suffix", "suffix", _("suffix")),
             "c": ("call", "call", _("call", "Name")),
             "x": (
@@ -804,7 +804,7 @@ class NameDisplay:
             ),
             "y": (
                 "_raw_patro_surname(raw_surname_list)",
-                "patr2nymic",
+                "patronymic",
                 _("patronymic"),
             ),
             "0y": (
@@ -824,7 +824,7 @@ class NameDisplay:
             ),
             "o": (
                 "_raw_nonpatro_surname(raw_surname_list)",
-                "notpatr0nymic",
+                "notpatronymic",
                 _("notpatronymic"),
             ),
             "r": (
@@ -835,7 +835,7 @@ class NameDisplay:
             "p": ("_raw_prefix_surname(raw_surname_list)", "prefix", _("prefix")),
             "q": (
                 "_raw_single_surname(raw_surname_list)",
-                "rawsurn0mes",
+                "rawsurnames",
                 _("rawsurnames"),
             ),
             "n": ("nick", "nickname", _("nickname")),

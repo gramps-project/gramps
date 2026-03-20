@@ -29,6 +29,7 @@
 # -------------------------------------------------------------------------
 import random
 import os
+import re
 from xml.sax.saxutils import escape
 from collections import abc
 
@@ -1065,12 +1066,11 @@ class GrampsPreferences(ConfigureDialog):
         index = 0
         the_index = 0
         for num, name, fmt_str, act in _nd.get_name_format():
-            translation = fmt_str
-            for key in get_keywords():
-                if key in translation:
-                    translation = translation.replace(
-                        key, get_translation_from_keyword(key)
-                    )
+            translation = re.sub(
+                "|".join(re.escape(k) for k in get_keywords()),
+                lambda m: get_translation_from_keyword(m.group()),
+                fmt_str,
+            )
             self.examplename.set_display_as(num)
             name_format_model.append(
                 row=[num, translation, fmt_str, _nd.display_name(self.examplename)]
@@ -1187,26 +1187,25 @@ class GrampsPreferences(ConfigureDialog):
         """
         self.format_list.set_tooltip_text("")
         if len(new_text) > 0 and text != new_text:
-            # build a pattern from translated pattern:
-            pattern = new_text
+
             if len(new_text) > 2 and new_text[0] == '"' and new_text[-1] == '"':
-                pass
+                pattern = new_text
+                translation = new_text
             else:
-                for key in get_translations():
-                    if key in pattern:
-                        pattern = pattern.replace(
-                            key, get_keyword_from_translation(key)
-                        )
-            # now build up a proper translation:
-            translation = pattern
-            if len(new_text) > 2 and new_text[0] == '"' and new_text[-1] == '"':
-                pass
-            else:
-                for key in get_keywords():
-                    if key in translation:
-                        translation = translation.replace(
-                            key, get_translation_from_keyword(key)
-                        )
+                # build a pattern from translated pattern:
+                pattern = re.sub(
+                    "|".join(re.escape(k) for k in get_translations()),
+                    lambda m: get_keyword_from_translation(m.group()),
+                    new_text,
+                )
+
+                # now build up a proper translation:
+                translation = re.sub(
+                    "|".join(re.escape(k) for k in get_keywords()),
+                    lambda m: get_translation_from_keyword(m.group()),
+                    pattern,
+                )
+
             num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
             node = self.fmt_model.get_iter(path)
             oldname = self.fmt_model.get_value(node, COL_NAME)
