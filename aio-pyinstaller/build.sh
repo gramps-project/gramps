@@ -180,10 +180,24 @@ unzip -q -d aio-pyinstaller/dist dist/*.whl
 cd aio-pyinstaller || exit 1
 
 # Verify orjson is importable before running PyInstaller
-python -c "import orjson; print('orjson', orjson.__version__, 'found at', orjson.__file__)"
+python -c "import orjson; print('orjson', orjson.__version__, 'found at', orjson.__file__)" || { echo "ERROR: orjson not importable — aborting"; exit 1; }
 
 # build PyInstaller executables
 pyinstaller gramps.spec
+
+# Manual fallback: copy orjson .pyd directly into bundle if PyInstaller missed it
+ORJSON_PYD=$(python -c "import orjson; print(orjson.__file__)" 2>/dev/null)
+BUNDLE_INTERNAL="dist/grampsaio/_internal"
+if [ -n "$ORJSON_PYD" ] && [ -d "$BUNDLE_INTERNAL" ]; then
+    if [ -z "$(find "$BUNDLE_INTERNAL" -name 'orjson*' 2>/dev/null)" ]; then
+        echo "orjson missing from bundle, copying manually: $ORJSON_PYD"
+        cp "$ORJSON_PYD" "$BUNDLE_INTERNAL/"
+    else
+        echo "orjson already present in bundle"
+    fi
+else
+    echo "WARNING: could not verify orjson in bundle (ORJSON_PYD='$ORJSON_PYD', BUNDLE_INTERNAL='$BUNDLE_INTERNAL')"
+fi
 
 # stage NSIS support files alongside the built executables
 mkdir -p dist/grampsaio/src
