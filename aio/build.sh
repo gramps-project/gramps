@@ -46,8 +46,8 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-python-build \
     mingw-w64-x86_64-python-cairo \
     mingw-w64-x86_64-python-cffi \
-    mingw-w64-x86_64-python-cx-freeze \
-    mingw-w64-x86_64-python-distlib \
+    mingw-w64-x86_64-pyinstaller \
+    mingw-w64-x86_64-pyinstaller-hooks-contrib \
     mingw-w64-x86_64-python-gobject \
     mingw-w64-x86_64-python-graphviz \
     mingw-w64-x86_64-python-icu \
@@ -80,7 +80,7 @@ source $pythonvenv/bin/activate
 
 ## prerequisites in pip packages
 python -m pip install --upgrade pip
-pip install --upgrade asyncio orjson pydot pydotplus pygraphviz requests selenium
+pip install --upgrade asyncio orjson pydot pydotplus pygraphviz requests selenium pyinstaller pyinstaller-hooks-contrib
 
 ## download dictionaries
 mkdir -p /mingw64/share/enchant/hunspell
@@ -178,12 +178,15 @@ cd aio
 
 # create nsis script
 cat grampsaio64.nsi.template | sed "s/yourVersion/$appversion/;s/yourBuild/$appbuild/" >grampsaio64.nsi
-# build cx_freeze executables
-python setup.py build_exe
+# build PyInstaller bundle (output: dist/grampsaio/)
+pyinstaller gramps.spec
+# stage NSIS files alongside the installer output
+mkdir -p dist/grampsaio/src
+cp grampsaio64.nsi gramps.ico grampsc.ico grampsd.ico dist/grampsaio/src/
 # build installer
-cd mingw64/src
+cd dist/grampsaio/src
 makensis grampsaio64.nsi
-# result is in mingw64/src
+# result is in dist/grampsaio/src/
 
 # deactivate and delete the python virtual environment
 if [ "$1" = "true" ]; then
