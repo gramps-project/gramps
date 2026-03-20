@@ -8,13 +8,13 @@
 # Pedro Albuquerque <palbuquerque73@gmail.com>, 2017, 2018, 2019.
 # Pedro Albuquerque <pmra@gmx.com>, 2021, 2022, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Pedro Albuquerque <pmra@protonmail.com>, 2024, 2025.
+# Pedro Albuquerque <pmra@protonmail.com>, 2024, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2025-11-09 23:51+0000\n"
+"PO-Revision-Date: 2026-03-17 06:10+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8674,8 +8674,6 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
-#, fuzzy
-#| msgid "Unknown"
 msgctxt "Surname"
 msgid "Unknown"
 msgstr "Desconhecido"
@@ -11569,7 +11567,7 @@ msgstr "Árabe"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "Bashkir"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -11818,7 +11816,7 @@ msgid ""
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"Não se encontrou uma definição para o tipo MIME %s.\n"
+"Não se encontrou uma definição para o tipo de multimédia %s.\n"
 "\n"
 " Possivelmente, a instalação do Gramps está incompleta. Certifique-se de que "
 "há algo instalado para gerir a multimédia do Gramps."
@@ -12673,7 +12671,7 @@ msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"O GSpell não carregado. A correcção ortográfica não estará disponível.\n"
+"O Gspell não foi carregado. A correcção ortográfica não estará disponível.\n"
 "Para o instalar para o Gramps veja %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:2042
@@ -14425,8 +14423,6 @@ msgid "Move the selected surname downwards"
 msgstr "Mover o apelido seleccionado abaixo"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "Apelido"
@@ -17154,8 +17150,6 @@ msgstr "Uma identificação do tipo de nome, e.g.: nome próprio, nome adoptado.
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
 msgstr "_Nome:"
@@ -17595,7 +17589,7 @@ msgstr "Em que tipo de suporte está esta fonte disponível no repositório."
 
 #: ../gramps/gui/glade/editreporef.glade:207
 msgid "Id number of the source in the repository."
-msgstr "ID da fonte no repositório."
+msgstr "Identificador da fonte no repositório."
 
 #: ../gramps/gui/glade/editreporef.glade:272
 #: ../gramps/gui/glade/editrepository.glade:98
@@ -17878,8 +17872,8 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Eventos, ordenanças SUD, multimédia, atributos, notas, fontes e etiquetas de "
-"ambas as famílias serão unidas."
+"Serão unidos eventos, ordenanças SUD, multimédia, atributos, notas, fontes e "
+"etiquetas de ambas as famílias."
 
 #: ../gramps/gui/glade/mergemedia.glade:94
 msgid ""
@@ -17957,8 +17951,8 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"Eventos, multimédia, endereços, atributos, URLs, notas, fontes e etiquetas "
-"de ambos os indivíduos serão unidos."
+"Serão unidos eventos, multimédia, endereços, atributos, URLs, notas, fontes "
+"e etiquetas de ambos os indivíduos."
 
 #: ../gramps/gui/glade/mergeperson.glade:490
 msgid "Context Information"
@@ -17977,8 +17971,8 @@ msgid ""
 "Alternative names, sources, urls, media objects and notes of both places "
 "will be combined."
 msgstr ""
-"Nomes alternativos, fontes, URLs, multimédia e notas de ambos os locais "
-"serão unidos."
+"Serão unidos nomes alternativos, fontes, URLs, multimédia e notas de ambos "
+"os locais."
 
 #: ../gramps/gui/glade/mergerepository.glade:94
 msgid ""
@@ -17998,7 +17992,7 @@ msgstr "Repositório 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:388
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr "Endereços, URLs e notas de ambos os repositórios serão unidos."
+msgstr "Serão unidos ndereços, URLs e notas de ambos os repositórios."
 
 #: ../gramps/gui/glade/mergesource.glade:94
 msgid ""
@@ -18784,7 +18778,7 @@ msgid ""
 "review exactly what information you want to include."
 msgstr ""
 "Este é o assistente de relatórios de erro. Ajudá-lo-á a relatar um erro aos "
-"programadores do GRAMPS, que será o mais detalhado possível.\n"
+"programadores do Gramps, que será o mais detalhado possível.\n"
 "\n"
 "O assistente fará algumas perguntas e reunirá algumas informações sobre o "
 "erro que ocorreu e o ambiente de operação. No final do assistente ser-lhe-á "
@@ -18951,9 +18945,9 @@ msgid ""
 "please click Report and the Error Reporting Wizard will help you to make a "
 "bug report."
 msgstr ""
-"Os dados estão a salvo mas é aconselhável que reinicie o GRAMPS "
+"Os dados estão a salvo mas é aconselhável que reinicie o Gramps "
 "imediatamente. Se quiser preencher um relatório de erro para a equipa do "
-"GRAMPS, por favor clique em Relatório e o assistente de relatório de erros "
+"Gramps, por favor clique em Relatório e o assistente de relatório de erros "
 "ajudá-lo-á a produzir o relatório."
 
 #: ../gramps/gui/logger/_errorview.py:164
@@ -34853,11 +34847,11 @@ msgstr "A procurar ligações erradas nas notas"
 
 #: ../gramps/plugins/tool/check.py:2581
 msgid "Coalescing duplicate roles in events referenced by people"
-msgstr ""
+msgstr "Unificar papéis duplicados em eventos referenciados por indivíduos"
 
 #: ../gramps/plugins/tool/check.py:2602
 msgid "Coalescing duplicate roles in events referenced by families"
-msgstr ""
+msgstr "Unificar papéis duplicados em eventos referenciados por famílias"
 
 #: ../gramps/plugins/tool/check.py:2775
 msgid "No errors were found"
@@ -35116,6 +35110,7 @@ msgstr "%d ligações erradas reparadas;\n"
 #, python-format
 msgid "%d duplicate event role names coalesced. %d references updated\n"
 msgstr ""
+"Foram unificados %d nomes de papéis de eventos. %d módulos actualizados\n"
 
 #: ../gramps/plugins/tool/check.py:3189
 msgid "Integrity Check Results"
@@ -37044,7 +37039,7 @@ msgstr "Inverter nome esquerdo do leque"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:386
 msgid "Show the gramps id"
-msgstr "Mostrar a ID Gramps"
+msgstr "Mostrar o identificador Gramps"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:389
 #: ../gramps/plugins/view/fanchartdescview.py:385
@@ -37083,7 +37078,7 @@ msgstr "Quarto de círculo"
 #: ../gramps/plugins/view/fanchartdescview.py:382
 #: ../gramps/plugins/view/fanchartview.py:457
 msgid "Show gramps id"
-msgstr "Mostrar a ID Gramps"
+msgstr "Mostrar o identificador Gramps"
 
 #: ../gramps/plugins/view/fanchartview.py:227
 msgid "Print or save the Fan Chart View"
@@ -38242,7 +38237,7 @@ msgstr "Seguinte"
 
 #: ../gramps/plugins/webreport/basepage.py:2775
 msgid "Other media: videos, pdfs..."
-msgstr "Outros: vídeo, PDF..."
+msgstr "Outros: vídeos, PDFs..."
 
 #: ../gramps/plugins/webreport/basepage.py:2947
 msgid " [Click to Go]"
