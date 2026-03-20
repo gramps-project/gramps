@@ -29,6 +29,7 @@
 
 import sys
 import os
+import glob
 
 # Path to the mingw64 prefix supplied by MSYS2.
 _prefix = sys.base_prefix  # e.g. /mingw64
@@ -92,6 +93,20 @@ _extra_datas = [
 ]
 # Filter out any that don't exist in the current environment.
 _extra_datas = [(src, dst) for src, dst in _extra_datas if os.path.exists(src)]
+
+# Gramps share data lives in the wheel's .data/data/share/ tree.
+# Add it to the bundle and set GRAMPS_RESOURCES so that ResourcePath()
+# can import gramps successfully during PyInstaller's analysis phase.
+_gramps_share_dirs = glob.glob(os.path.join("dist", "gramps-*.data", "data", "share"))
+if _gramps_share_dirs:
+    _gramps_share = os.path.abspath(_gramps_share_dirs[0])
+    _extra_datas.append((_gramps_share, "share"))
+    os.environ["GRAMPS_RESOURCES"] = _gramps_share
+else:
+    raise RuntimeError(
+        "Could not find gramps-*.data/data/share in dist/. "
+        "Make sure the Gramps wheel has been extracted into dist/ before running pyinstaller."
+    )
 
 # Packages that must be present even if not detected via import tracing.
 _hidden_imports = [
