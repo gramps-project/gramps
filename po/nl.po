@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-02-19 07:09+0000\n"
+"PO-Revision-Date: 2026-03-17 06:10+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8796,8 +8796,6 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
-#, fuzzy
-#| msgid "Unknown"
 msgctxt "Surname"
 msgid "Unknown"
 msgstr "Onbekend"
@@ -11704,7 +11702,7 @@ msgstr "Arabisch"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "Bashkir"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -14578,8 +14576,6 @@ msgid "Move the selected surname downwards"
 msgstr "Verplaats de geselecteerde achternaam naar beneden"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "Achternaam"
@@ -17339,8 +17335,6 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
 msgstr "_Voornaam:"
@@ -35097,10 +35091,14 @@ msgstr "Controleren op incorrect gekoppelde notities"
 #: ../gramps/plugins/tool/check.py:2581
 msgid "Coalescing duplicate roles in events referenced by people"
 msgstr ""
+"Samenvoegen van dubbele rollen in gebeurtenissen waarnaar door mensen wordt "
+"verwezen"
 
 #: ../gramps/plugins/tool/check.py:2602
 msgid "Coalescing duplicate roles in events referenced by families"
 msgstr ""
+"Samenvoegen van dubbele rollen in gebeurtenissen waarnaar door gezinnen "
+"wordt verwezen"
 
 #: ../gramps/plugins/tool/check.py:2775
 msgid "No errors were found"
@@ -35357,6 +35355,8 @@ msgstr "%d incorrecte notitiekoppelingen zijn hersteld;\n"
 #, python-format
 msgid "%d duplicate event role names coalesced. %d references updated\n"
 msgstr ""
+"%d dubbele namen van gebeurtenisrollen samengevoegd. %d referenties "
+"bijgewerkt\n"
 
 #: ../gramps/plugins/tool/check.py:3189
 msgid "Integrity Check Results"
