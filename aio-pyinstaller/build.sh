@@ -188,8 +188,8 @@ cat grampsaio64.nsi.template | sed "s/yourVersion/$appversion/;s/yourBuild/$appb
 cp ../aio/gramps.ico  dist/grampsaio/src/
 cp ../aio/grampsc.ico dist/grampsaio/src/
 cp ../aio/grampsd.ico dist/grampsaio/src/
-# MUI_PAGE_LICENSE needs the file present at NSIS compile time
-cp dist/grampsaio/share/doc/gramps/COPYING dist/grampsaio/src/
+# MUI_PAGE_LICENSE needs the license file present at NSIS compile time
+cp ../COPYING dist/grampsaio/src/
 
 # build installer
 cd dist/grampsaio/src || exit 1
