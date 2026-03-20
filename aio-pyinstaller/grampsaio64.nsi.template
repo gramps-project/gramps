@@ -134,40 +134,23 @@ Section "Gramps" Section1
 	SectionIn RO
 	SetOverwrite on
 
-	;;; Set Section Files and Shortcuts
+	;;; Core executables and all PyInstaller-bundled files.
+	;;; With contents_directory='.' everything lives alongside the exes.
+	;;; Dictionaries (share\enchant) and translations (share\locale) are
+	;;; excluded here and installed via the optional sections below.
 	SetOutPath "$INSTDIR\"
-	File "..\"
+	File "..\grampsw.exe"
+	File "..\gramps.exe"
+	File "..\grampsd.exe"
+	File /r /x "src" /x "share\enchant" /x "share\locale" "..\*"
 
-	SetOutPath "$INSTDIR\lib\"
-	File /r  "..\lib\"
-	
-	SetOutPath "$INSTDIR\etc\"
-	File /r "..\etc\"
-	
-	SetOutPath "$INSTDIR\share\"
-		File /r  "..\share\doc"
-		File /r  "..\share\glib-2.0"
-		File /r  "..\share\gramps"
-		File /r  "..\share\icons"
-		File /r  "..\share\xml"
-		
-	SetOutPath "$INSTDIR\gramps\"
-	File /r  "..\gramps\"
-	
-	SetOutPath "$INSTDIR\ssl\"
-	File /r  "..\etc\ssl\"
-	
-	SetOutPath "$INSTDIR\src\"
-	File /r  ".\"
-	
 	CreateDirectory "$INSTDIR\var\cache\fontconfig"
 
-	SetOutPath "$INSTDIR\"
 	CreateShortCut "$DESKTOP\${APPNAMEANDVERSION}.lnk" "$INSTDIR\grampsw.exe"  "" "" "" "" "" "Gramps"
 	CreateDirectory "$SMPROGRAMS\${APPNAMEANDVERSION}"
 	CreateShortCut "$SMPROGRAMS\${APPNAMEANDVERSION}\${APPNAMEANDVERSION}.lnk" "$INSTDIR\grampsw.exe" "" "" "" "" "" "Gramps"
 	CreateShortCut "$SMPROGRAMS\${APPNAMEANDVERSION}\${APPNAMEANDVERSION}-console.lnk" "$INSTDIR\gramps.exe" "" "" "" "" "" "Gramps (console)"
-	
+
 	DetailPrint "Writing resource-path ..."
 	FileOpen $4 "$INSTDIR\gramps\gen\utils\resource-path" w
 	FileWrite $4 "share"
@@ -182,10 +165,10 @@ Section "Gramps" Section1
 	FileClose $4 ; and close the file
 
 	DetailPrint "Compiling GLib schemas ..."
-	nsExec::ExecToStack '"$INSTDIR\glib-compile-schemas.exe" $INSTDIR\share\glib-2.0\schemas'	
-	
+	nsExec::ExecToStack '"$INSTDIR\glib-compile-schemas.exe" $INSTDIR\share\glib-2.0\schemas'
+
 	DetailPrint "Caching gdk-pixbuf-query-loaders ..."
-	nsExec::ExecToStack '"$INSTDIR\gdk-pixbuf-query-loaders.exe" --update-cache'	
+	nsExec::ExecToStack '"$INSTDIR\gdk-pixbuf-query-loaders.exe" --update-cache'
 SectionEnd
 
 SectionGroup "Dictionaries" sec_d
@@ -665,13 +648,13 @@ FunctionEnd
 Section -FinishSection
 	DetailPrint "Configuring GraphViz Dot..."
 	ReadEnvStr $R0 "PATH"
-	StrCpy $R0 "$R0;$INSTDIR\lib"
+	StrCpy $R0 "$R0;$INSTDIR"
 	System::Call 'Kernel32::SetEnvironmentVariable(t, t) i("PATH", R0).r0'
 	SetOutPath $INSTDIR
-	nsExec::ExecToLog '"$INSTDIR\lib\dot.exe" -c'
+	nsExec::ExecToLog '"$INSTDIR\dot.exe" -c'
     System::Call 'Kernel32::SetEnvironmentVariable(t, t)i ("FC_DEBUG", "128").r0'
 	DetailPrint "Creating fontconfig cache (might take a while)..."
-	nsExec::ExecToLog '"$INSTDIR\lib\fc-cache.exe" -fv'
+	nsExec::ExecToLog '"$INSTDIR\fc-cache.exe" -fv'
     System::Call 'Kernel32::SetEnvironmentVariable(t, n)i ("FC_DEBUG", "").r0'
 
 	WriteRegStr SHCTX "${UNINST_KEY}" "DisplayName" "${APPNAME}"
@@ -696,10 +679,13 @@ Section Uninstall
 	RMDir /r "$INSTDIR\etc"
 	RMDir /r "$INSTDIR\lib"
 	RMDir /r "$INSTDIR\share"
-	RMDir /r "$INSTDIR\src"
-	RMDir /r "$INSTDIR\ssl"
+	RMDir /r "$INSTDIR\gi"
 	RMDir /r "$INSTDIR\gramps"
 	RMDir /r "$INSTDIR\var"
+	Delete "$INSTDIR\grampsw.exe"
+	Delete "$INSTDIR\gramps.exe"
+	Delete "$INSTDIR\grampsd.exe"
+	Delete "$INSTDIR\uninstall.exe"
 	RMDir /r "$INSTDIR"
 SectionEnd
 

@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2025       Steve Youngs <steve@youngs.cc>
+# Copyright (C) 2025       The Gramps project
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,10 +17,10 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
-# Assumption: script is executed from the 'aio' directory
+# Assumption: script is executed from the 'aio-pyinstaller' directory
 #
 # arguments: build.sh <cleanup> <build-number>
-#   clean-up     : [true|false]. clean the python venv on completion
+#   cleanup      : [true|false]. clean the python venv on completion
 #   build-number : the build number to use when DEV_VERSION is not True
 #
 # install prerequisites
@@ -46,7 +46,6 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-python-build \
     mingw-w64-x86_64-python-cairo \
     mingw-w64-x86_64-python-cffi \
-    mingw-w64-x86_64-python-cx-freeze \
     mingw-w64-x86_64-python-distlib \
     mingw-w64-x86_64-python-gobject \
     mingw-w64-x86_64-python-graphviz \
@@ -63,6 +62,8 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-python-requests \
     mingw-w64-x86_64-python-setuptools \
     mingw-w64-x86_64-python-wheel \
+    mingw-w64-x86_64-pyinstaller \
+    mingw-w64-x86_64-pyinstaller-hooks-contrib \
     mingw-w64-x86_64-rust \
     mingw-w64-x86_64-toolchain \
     perl-XML-Parser \
@@ -137,7 +138,7 @@ unzip -q -o dict.zip
 rm dict.zip
 popd
 
-# Assumption: script is executed from the 'aio' directory!
+# Assumption: script is executed from the 'aio-pyinstaller' directory!
 
 ## create a directory structure for icons
 mkdir -p /mingw64/share/icons/gnome
@@ -161,8 +162,8 @@ done
 cd ../../../..
 cp /mingw64/share/icons/hicolor/scalable/places/*.svg /mingw64/share/icons/gnome/scalable/places
 
-# build gramps
-rm -rf dist aio/dist
+# build gramps wheel
+rm -rf dist aio-pyinstaller/dist
 python setup.py bdist_wheel
 if `grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py`; then
     # <branch_name>-<short_commit_id>
@@ -173,17 +174,28 @@ else
     appbuild="$(sed -nr "s/^VERSION_QUALIFIER = \"-(.+)\"/\1/p" gramps/version.py)-$2"
 fi
 appversion=$(grep "^VERSION_TUPLE" gramps/version.py | sed 's/.*(//;s/, */\./g;s/).*//')
-unzip -q -d aio/dist dist/*.whl
-cd aio
 
-# create nsis script
-cat grampsaio64.nsi.template | sed "s/yourVersion/$appversion/;s/yourBuild/$appbuild/" >grampsaio64.nsi
-# build cx_freeze executables
-python setup.py build_exe
+# Extract the Gramps wheel into aio-pyinstaller/dist so gramps.spec can find it
+unzip -q -d aio-pyinstaller/dist dist/*.whl
+
+cd aio-pyinstaller
+
+# build PyInstaller executables
+pyinstaller gramps.spec
+
+# stage NSIS support files alongside the built executables
+mkdir -p dist/grampsaio/src
+cat grampsaio64.nsi.template | sed "s/yourVersion/$appversion/;s/yourBuild/$appbuild/" >dist/grampsaio/src/grampsaio64.nsi
+cp ../aio/gramps.ico  dist/grampsaio/src/
+cp ../aio/grampsc.ico dist/grampsaio/src/
+cp ../aio/grampsd.ico dist/grampsaio/src/
+
 # build installer
-cd mingw64/src
+cd dist/grampsaio/src
 makensis grampsaio64.nsi
-# result is in mingw64/src
+# result is GrampsAIO-*.exe in dist/grampsaio/src/
+
+cd ../../..
 
 # deactivate and delete the python virtual environment
 if [ "$1" = "true" ]; then

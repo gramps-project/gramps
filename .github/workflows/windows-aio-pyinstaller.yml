@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2023       Jean Michault
+# Copyright (C) 2025       The Gramps project
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 
-name: Windows AIO
+name: Windows AIO (PyInstaller)
 
 on:
   workflow_dispatch:
@@ -47,10 +47,10 @@ jobs:
         update: true
     - name: Build
       run: |
-        cd aio
+        cd aio-pyinstaller
         ./build.sh ${{ inputs.cleanup }} ${{ inputs.build-number }}
     - uses: actions/upload-artifact@v4
       with:
-        name: GrampsAIO
-        path: D:\a\gramps\gramps\aio\mingw64\src\GrampsAIO-*.exe
+        name: GrampsAIO-PyInstaller
+        path: D:\a\gramps\gramps\aio-pyinstaller\dist\grampsaio\src\GrampsAIO-*.exe
         retention-days: 7
