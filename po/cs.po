@@ -42,7 +42,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-01-04 07:01+0000\n"
+"PO-Revision-Date: 2026-03-17 06:09+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -51,7 +51,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.17-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -8603,11 +8603,9 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
-#, fuzzy
-#| msgid "Unknown"
 msgctxt "Surname"
 msgid "Unknown"
-msgstr "Neznámý"
+msgstr "Neznámé"
 
 #: ../gramps/gen/lib/nameorigintype.py:82
 msgctxt "Surname"
@@ -11493,7 +11491,7 @@ msgstr "Arabština"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "Baškir"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -14325,8 +14323,6 @@ msgid "Move the selected surname downwards"
 msgstr "Posunout zvolené příjmení níže"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "Příjmení"
@@ -34543,11 +34539,11 @@ msgstr "Kontrola špatných odkazů v poznámkách"
 
 #: ../gramps/plugins/tool/check.py:2581
 msgid "Coalescing duplicate roles in events referenced by people"
-msgstr ""
+msgstr "Slučování duplicitních rolí v událostech vztahujících se k osobám"
 
 #: ../gramps/plugins/tool/check.py:2602
 msgid "Coalescing duplicate roles in events referenced by families"
-msgstr ""
+msgstr "Slučování duplicitních rolí v událostech vztahujících se k rodinám"
 
 #: ../gramps/plugins/tool/check.py:2775
 msgid "No errors were found"
@@ -34827,6 +34823,8 @@ msgstr "%d špatných odkazů na poznámky bylo opraveno;\n"
 #, python-format
 msgid "%d duplicate event role names coalesced. %d references updated\n"
 msgstr ""
+"Bylo sloučeno %d duplicitních názvů rolí v událostech. Bylo aktualizováno %d "
+"odkazů\n"
 
 #: ../gramps/plugins/tool/check.py:3189
 msgid "Integrity Check Results"
