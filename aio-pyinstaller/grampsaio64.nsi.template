@@ -219,7 +219,7 @@ Section /o "es_ES" d_es
 SectionEnd
 Section /o "fi_FI" d_fi
 	SetOutPath "$LocalAppdata\voikko\"
-		File /r "..\share\enchant\voikko"
+		File /nonfatal /r "..\share\enchant\voikko"
 SectionEnd
 Section /o "fr_FR" d_fr
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
@@ -310,152 +310,152 @@ SectionGroupEnd
 SectionGroup "Translations" sec_t
 Section /o "ar" ar
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\ar"
+		File /nonfatal /r "..\share\locale\ar"
 SectionEnd
 Section /o "bg" bg
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\bg"
+		File /nonfatal /r "..\share\locale\bg"
 SectionEnd
 Section /o "ca" ca
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\ca"
+		File /nonfatal /r "..\share\locale\ca"
 SectionEnd
 Section /o "cs" cs
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\cs"
+		File /nonfatal /r "..\share\locale\cs"
 SectionEnd
 Section /o "da" da
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\da"
+		File /nonfatal /r "..\share\locale\da"
 SectionEnd
 Section /o "de" de
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\de"
+		File /nonfatal /r "..\share\locale\de"
 SectionEnd
 Section /o "el" el
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\el"
+		File /nonfatal /r "..\share\locale\el"
 SectionEnd
 Section "en_GB" en_GB
 	SectionIn RO
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\en_GB"
+		File /nonfatal /r "..\share\locale\en_GB"
 SectionEnd
 Section /o "eo" eo
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\eo"
+		File /nonfatal /r "..\share\locale\eo"
 SectionEnd
 Section /o "es" es
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\es"
+		File /nonfatal /r "..\share\locale\es"
 SectionEnd
 Section /o "fi" fi
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\fi"
+		File /nonfatal /r "..\share\locale\fi"
 SectionEnd
 Section /o "fr" fr
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\fr"
+		File /nonfatal /r "..\share\locale\fr"
 SectionEnd
 Section /o "he" he
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\he"
+		File /nonfatal /r "..\share\locale\he"
 SectionEnd
 Section /o "hr" hr
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\hr"
+		File /nonfatal /r "..\share\locale\hr"
 SectionEnd
 Section /o "hu" hu
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\hu"
+		File /nonfatal /r "..\share\locale\hu"
 SectionEnd
 Section /o "is" is
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\is"
+		File /nonfatal /r "..\share\locale\is"
 SectionEnd
 Section /o "it" it
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\it"
+		File /nonfatal /r "..\share\locale\it"
 SectionEnd
 Section /o "ja" ja
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\ja"
+		File /nonfatal /r "..\share\locale\ja"
 SectionEnd
 Section /o "lt" lt
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\lt"
+		File /nonfatal /r "..\share\locale\lt"
 SectionEnd
 Section /o "nb" nb
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\nb"
+		File /nonfatal /r "..\share\locale\nb"
 SectionEnd
 Section /o "nl" nl
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\nl"
+		File /nonfatal /r "..\share\locale\nl"
 SectionEnd
 Section /o "nn" nn
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\nn"
+		File /nonfatal /r "..\share\locale\nn"
 SectionEnd
 Section /o "pl" pl
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\pl"
+		File /nonfatal /r "..\share\locale\pl"
 SectionEnd
 Section /o "pt_BR" pt_BR
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\pt_BR"
+		File /nonfatal /r "..\share\locale\pt_BR"
 SectionEnd
 Section /o "pt_PT" pt_PT
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\pt_PT"
+		File /nonfatal /r "..\share\locale\pt_PT"
 SectionEnd
 Section /o "ru" ru
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\ru"
+		File /nonfatal /r "..\share\locale\ru"
 SectionEnd
 Section /o "sk" sk
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\sk"
+		File /nonfatal /r "..\share\locale\sk"
 SectionEnd
 Section /o "sl" sl
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\sl"
+		File /nonfatal /r "..\share\locale\sl"
 SectionEnd
 Section /o "sq" sq
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\sq"
+		File /nonfatal /r "..\share\locale\sq"
 SectionEnd
 Section /o "sr" sr
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\sr"
+		File /nonfatal /r "..\share\locale\sr"
 SectionEnd
 Section /o "sv" sv
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\sv"
+		File /nonfatal /r "..\share\locale\sv"
 SectionEnd
 Section /o "tr" tr
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\tr"
+		File /nonfatal /r "..\share\locale\tr"
 SectionEnd
 Section /o "uk" uk
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\uk"
+		File /nonfatal /r "..\share\locale\uk"
 SectionEnd
 Section /o "vi" vi
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\vi"
+		File /nonfatal /r "..\share\locale\vi"
 SectionEnd
 Section /o "zh_CN" zh_CN
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\zh_CN"
+		File /nonfatal /r "..\share\locale\zh_CN"
 SectionEnd
 Section /o "zh_HK" zh_HK
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\zh_HK"
+		File /nonfatal /r "..\share\locale\zh_HK"
 SectionEnd
 Section /o "zh_TW" zh_TW
 	SetOutPath "$INSTDIR\share\locale\"
-		File /r "..\share\locale\zh_TW"
+		File /nonfatal /r "..\share\locale\zh_TW"
 SectionEnd
 SectionGroupEnd
 
