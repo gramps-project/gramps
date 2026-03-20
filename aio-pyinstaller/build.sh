@@ -56,7 +56,6 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-python-nose \
     mingw-w64-x86_64-python-packaging \
     mingw-w64-x86_64-python-pillow \
-    mingw-w64-x86_64-python-orjson \
     mingw-w64-x86_64-python-pip \
     mingw-w64-x86_64-python-psycopg2 \
     mingw-w64-x86_64-python-requests \
@@ -81,7 +80,7 @@ source $pythonvenv/bin/activate
 
 ## prerequisites in pip packages
 python -m pip install --upgrade pip
-pip install --upgrade asyncio pydot pydotplus requests selenium pyinstaller pyinstaller-hooks-contrib
+pip install --upgrade asyncio orjson pydot pydotplus requests selenium pyinstaller pyinstaller-hooks-contrib
 
 ## download dictionaries
 mkdir -p /mingw64/share/enchant/hunspell
