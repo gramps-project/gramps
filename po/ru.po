@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-02-06 10:01+0000\n"
+"PO-Revision-Date: 2026-03-19 15:09+0000\n"
 "Last-Translator: Petr Fedorov <petr.e.fedorov@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -44,7 +44,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8689,26 +8689,24 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
-#, fuzzy
-#| msgid "Unknown"
 msgctxt "Surname"
 msgid "Unknown"
-msgstr "Прочее"
+msgstr "Неизвестно"
 
 #: ../gramps/gen/lib/nameorigintype.py:82
 msgctxt "Surname"
 msgid "Inherited"
-msgstr "Фамилия унаследованная"
+msgstr "Унаследовано"
 
 #: ../gramps/gen/lib/nameorigintype.py:83
 msgctxt "Surname"
 msgid "Given"
-msgstr "Фамилия при рождении"
+msgstr "Фамилия, назначенная"
 
 #: ../gramps/gen/lib/nameorigintype.py:84
 msgctxt "Surname"
 msgid "Taken"
-msgstr "Фамилия принятая"
+msgstr "Фамилия, принятая"
 
 #: ../gramps/gen/lib/nameorigintype.py:85 ../gramps/gen/utils/keyword.py:66
 #: ../gramps/gui/configure.py:1096
@@ -8722,29 +8720,29 @@ msgstr "Матроним"
 #: ../gramps/gen/lib/nameorigintype.py:87
 msgctxt "Surname"
 msgid "Feudal"
-msgstr "Фамилия по посвящению"
+msgstr "Фамилия , от феода"
 
 #: ../gramps/gen/lib/nameorigintype.py:88
 msgid "Pseudonym"
-msgstr "Псевдоним"
+msgstr "Фамилия, псевдоним"
 
 #: ../gramps/gen/lib/nameorigintype.py:89
 msgid "Patrilineal"
-msgstr "Происхождение, по мужской линии"
+msgstr "Фамилия, от отца"
 
 #: ../gramps/gen/lib/nameorigintype.py:90
 msgid "Matrilineal"
-msgstr "Происхождение, по женской линии"
+msgstr "Фамилия, от матери"
 
 #: ../gramps/gen/lib/nameorigintype.py:91
 msgctxt "Surname"
 msgid "Occupation"
-msgstr "Профессия"
+msgstr "Фамилия, от профессии"
 
 #: ../gramps/gen/lib/nameorigintype.py:92
 msgctxt "Surname"
 msgid "Location"
-msgstr "Местоположение"
+msgstr "Фамилия, от места"
 
 #: ../gramps/gen/lib/nametype.py:57
 msgid "Also Known As"
@@ -14449,11 +14447,9 @@ msgid "Move the selected surname downwards"
 msgstr "Переместить выделенную фамилию ниже"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
-msgstr "Фамилия"
+msgstr "Родовое имя"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:82
 #: ../gramps/plugins/lib/libgedcom.py:754
@@ -14462,7 +14458,7 @@ msgstr "Происхождение"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:93
 msgid "Multiple Surnames"
-msgstr "Множественные фамилии"
+msgstr "Родовые имена"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:107
 msgid "Family Surnames"
@@ -17182,11 +17178,9 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
-msgstr "_Имя:"
+msgstr "_Личное имя:"
 
 #: ../gramps/gui/glade/editname.glade:204
 #: ../gramps/gui/glade/editperson.glade:195
@@ -17260,7 +17254,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:440
 msgid "Family Names "
-msgstr "Фамилии "
+msgstr "Родовые имена "
 
 #: ../gramps/gui/glade/editname.glade:479
 msgid "G_roup as:"
@@ -17392,7 +17386,7 @@ msgstr "Обозначить лицо как личные данные"
 
 #: ../gramps/gui/glade/editperson.glade:446
 msgid "_Surname:"
-msgstr "Фамилия:"
+msgstr "Родовое имя:"
 
 #: ../gramps/gui/glade/editperson.glade:462
 msgid ""
