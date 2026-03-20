@@ -174,48 +174,48 @@ SectionEnd
 SectionGroup "Dictionaries" sec_d
 Section /o "bg" d_bg
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\bg_BG.*"
+		File /nonfatal "..\share\enchant\hunspell\bg_BG.*"
 SectionEnd
 Section /o "ca" d_ca
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\ca_ES.*"
+		File /nonfatal "..\share\enchant\hunspell\ca_ES.*"
 SectionEnd
 Section /o "cs" d_cs
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\cs_CZ.*"
+		File /nonfatal "..\share\enchant\hunspell\cs_CZ.*"
 SectionEnd
 Section /o "da" d_da
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\da_DK.*"
+		File /nonfatal "..\share\enchant\hunspell\da_DK.*"
 SectionEnd
 Section /o "de" d_de
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\de_DE.*"
+		File /nonfatal "..\share\enchant\hunspell\de_DE.*"
 SectionEnd
 Section /o "el" d_el
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\el_GR.*"
+		File /nonfatal "..\share\enchant\hunspell\el_GR.*"
 SectionEnd
 Section /o "en_AU" d_enau
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\en_AU.*"
+		File /nonfatal "..\share\enchant\hunspell\en_AU.*"
 SectionEnd
 Section "en_GB" d_engb
 	SectionIn RO
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\en_GB.*"
+		File /nonfatal "..\share\enchant\hunspell\en_GB.*"
 SectionEnd
 Section /o "en_US" d_enus
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\en_US.*"
+		File /nonfatal "..\share\enchant\hunspell\en_US.*"
 SectionEnd
 Section /o "eo" d_eo
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\eo.*"
+		File /nonfatal "..\share\enchant\hunspell\eo.*"
 SectionEnd
 Section /o "es_ES" d_es
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\es_ES.*"
+		File /nonfatal "..\share\enchant\hunspell\es_ES.*"
 SectionEnd
 Section /o "fi_FI" d_fi
 	SetOutPath "$LocalAppdata\voikko\"
@@ -223,87 +223,87 @@ Section /o "fi_FI" d_fi
 SectionEnd
 Section /o "fr_FR" d_fr
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\fr_FR.*"
+		File /nonfatal "..\share\enchant\hunspell\fr_FR.*"
 SectionEnd
 Section /o "he_IL" d_he
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\he_IL.*"
+		File /nonfatal "..\share\enchant\hunspell\he_IL.*"
 SectionEnd
 Section /o "hr_HR" d_hr
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\hr_HR.*"
+		File /nonfatal "..\share\enchant\hunspell\hr_HR.*"
 SectionEnd
 Section /o "hu_HU" d_hu
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\hu_HU.*"
+		File /nonfatal "..\share\enchant\hunspell\hu_HU.*"
 SectionEnd
 Section /o "is_IS" d_is
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\is_IS.*"
+		File /nonfatal "..\share\enchant\hunspell\is_IS.*"
 SectionEnd
 Section /o "it_IT" d_it
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\it_IT.*"
+		File /nonfatal "..\share\enchant\hunspell\it_IT.*"
 SectionEnd
 Section /o "lt_LT" d_lt
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\lt_LT.*"
+		File /nonfatal "..\share\enchant\hunspell\lt_LT.*"
 SectionEnd
 Section /o "nb_NO" d_nb
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\nb_no.*"
+		File /nonfatal "..\share\enchant\hunspell\nb_no.*"
 SectionEnd
 Section /o "nl_NL" d_nl
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\nl_NL.*"
+		File /nonfatal "..\share\enchant\hunspell\nl_NL.*"
 SectionEnd
 Section /o "nn_NO" d_nn
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\nn_NO.*"
+		File /nonfatal "..\share\enchant\hunspell\nn_NO.*"
 SectionEnd
 Section /o "pl_PL" d_pl
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\pl_PL.*"
+		File /nonfatal "..\share\enchant\hunspell\pl_PL.*"
 SectionEnd
 Section /o "pt_BR" d_ptbr
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\pt_BR.*"
+		File /nonfatal "..\share\enchant\hunspell\pt_BR.*"
 SectionEnd
 Section /o "pt_PT" d_ptpt
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\pt_PT.*"
+		File /nonfatal "..\share\enchant\hunspell\pt_PT.*"
 SectionEnd
 Section /o "ru_RU" d_ru
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\ru_RU.*"
+		File /nonfatal "..\share\enchant\hunspell\ru_RU.*"
 SectionEnd
 Section /o "sk_SK" d_sk
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\sk_SK.*"
+		File /nonfatal "..\share\enchant\hunspell\sk_SK.*"
 SectionEnd
 Section /o "sl_SI" d_sl
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\sl_SI.*"
+		File /nonfatal "..\share\enchant\hunspell\sl_SI.*"
 SectionEnd
 Section /o "sr_RS" d_sr
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\sr_RS.*"
+		File /nonfatal "..\share\enchant\hunspell\sr_RS.*"
 SectionEnd
 Section /o "sv_SE" d_sv
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\sv_SE.*"
+		File /nonfatal "..\share\enchant\hunspell\sv_SE.*"
 SectionEnd
 Section /o "tr_TR" d_tr
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\tr_TR.*"
+		File /nonfatal "..\share\enchant\hunspell\tr_TR.*"
 SectionEnd
 Section /o "uk_UA" d_uk
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\uk_UA.*"
+		File /nonfatal "..\share\enchant\hunspell\uk_UA.*"
 SectionEnd
 Section /o "vi_VN" d_vi
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
-		File "..\share\enchant\hunspell\vi_VN.*"
+		File /nonfatal "..\share\enchant\hunspell\vi_VN.*"
 SectionEnd
 SectionGroupEnd
 
