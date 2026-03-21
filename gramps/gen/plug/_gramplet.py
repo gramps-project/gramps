@@ -29,6 +29,7 @@ Base class for Gramplet plugins
 # -------------------------------------------------------------------------
 import types
 import logging
+from gi.repository import GLib
 
 # ------------------------------------------------------------------------
 #
@@ -310,8 +311,6 @@ class Gramplet:
         self._really_update()
 
     def _really_update(self):
-        from gi.repository import GLib
-
         self.dirty = False
         LOG.debug("gramplet updater: %s: running", self.gui.title)
         if self._idle_id != 0:
@@ -365,8 +364,6 @@ class Gramplet:
         """
         Resume the :meth:`main` method that has previously paused.
         """
-        from gi.repository import GLib
-
         self._pause = False
         self._idle_id = GLib.idle_add(self._updater, priority=GLib.PRIORITY_LOW - 10)
 
@@ -384,8 +381,6 @@ class Gramplet:
         """
         Force the generator to stop running.
         """
-        from gi.repository import GLib
-
         self._pause = True
         if self._idle_id != 0:
             GLib.source_remove(self._idle_id)

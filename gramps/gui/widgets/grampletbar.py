@@ -719,6 +719,8 @@ class TabGramplet(Gtk.Overlay, GuiGramplet):
         """Called when the freeze button is toggled."""
         self.frozen = btn.get_active()
         self._update_freeze_icon()
+        if not self.frozen and self.pui:
+            self.pui.update()
 
     def get_title(self):
         return self.title
