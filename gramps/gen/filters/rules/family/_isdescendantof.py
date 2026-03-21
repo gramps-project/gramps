@@ -80,7 +80,7 @@ class IsDescendantOf(Rule):
 
             # Start from children of the root family (inclusive so children
             # themselves are in the set and their families are found).
-            children = [cr.ref for cr in root_family.child_ref_list if cr.ref]
+            children = [cr.ref for cr in root_family.child_ref_list if cr.ref is not None]
             if children:
                 descendants = find_descendants(db, children, inclusive=True)
                 for person_handle in descendants:
