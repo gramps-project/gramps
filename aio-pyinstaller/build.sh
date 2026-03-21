@@ -185,18 +185,21 @@ python -c "import orjson; print('orjson', orjson.__version__, 'found at', orjson
 # build PyInstaller executables
 pyinstaller gramps.spec
 
-# Manual fallback: copy orjson .pyd directly into bundle if PyInstaller missed it
-ORJSON_PYD=$(python -c "import orjson; print(orjson.__file__)" 2>/dev/null)
+# Manual fallback: copy orjson package into bundle if PyInstaller missed it
+ORJSON_DIR=$(python -c "import os, orjson; print(os.path.dirname(orjson.__file__))" 2>/dev/null)
 BUNDLE_INTERNAL="dist/grampsaio/_internal"
-if [ -n "$ORJSON_PYD" ] && [ -d "$BUNDLE_INTERNAL" ]; then
+echo "orjson package dir: $ORJSON_DIR"
+echo "bundle _internal: $BUNDLE_INTERNAL"
+if [ -n "$ORJSON_DIR" ] && [ -d "$BUNDLE_INTERNAL" ]; then
     if [ -z "$(find "$BUNDLE_INTERNAL" -name 'orjson*' 2>/dev/null)" ]; then
-        echo "orjson missing from bundle, copying manually: $ORJSON_PYD"
-        cp "$ORJSON_PYD" "$BUNDLE_INTERNAL/"
+        echo "orjson missing from bundle, copying manually from: $ORJSON_DIR"
+        cp -r "$ORJSON_DIR" "$BUNDLE_INTERNAL/"
     else
-        echo "orjson already present in bundle"
+        echo "orjson already present in bundle:"
+        find "$BUNDLE_INTERNAL" -name 'orjson*'
     fi
 else
-    echo "WARNING: could not verify orjson in bundle (ORJSON_PYD='$ORJSON_PYD', BUNDLE_INTERNAL='$BUNDLE_INTERNAL')"
+    echo "WARNING: could not copy orjson to bundle (ORJSON_DIR='$ORJSON_DIR', BUNDLE_INTERNAL dir exists: $([ -d "$BUNDLE_INTERNAL" ] && echo yes || echo no))"
 fi
 
 # stage NSIS support files alongside the built executables
