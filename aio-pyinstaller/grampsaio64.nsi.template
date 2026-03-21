@@ -652,10 +652,6 @@ Section -FinishSection
 	System::Call 'Kernel32::SetEnvironmentVariable(t, t) i("PATH", R0).r0'
 	SetOutPath $INSTDIR\_internal
 	nsExec::ExecToLog '"$INSTDIR\_internal\dot.exe" -c'
-    System::Call 'Kernel32::SetEnvironmentVariable(t, t)i ("FC_DEBUG", "128").r0'
-	DetailPrint "Creating fontconfig cache (might take a while)..."
-	nsExec::ExecToLog '"$INSTDIR\_internal\fc-cache.exe" -fv'
-    System::Call 'Kernel32::SetEnvironmentVariable(t, n)i ("FC_DEBUG", "").r0'
 
 	WriteRegStr SHCTX "${UNINST_KEY}" "DisplayName" "${APPNAME}"
 	WriteRegStr SHCTX "${UNINST_KEY}" "DisplayVersion" "${APPVERSION}"
