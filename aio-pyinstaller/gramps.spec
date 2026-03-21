@@ -217,6 +217,7 @@ exe_w = EXE(
     codesign_identity=None,
     entitlements_file=None,
     version=None,
+    contents_directory=".",
 )
 
 exe_c = EXE(
@@ -237,6 +238,7 @@ exe_c = EXE(
     codesign_identity=None,
     entitlements_file=None,
     version=None,
+    contents_directory=".",
 )
 
 exe_d = EXE(
@@ -257,12 +259,13 @@ exe_d = EXE(
     codesign_identity=None,
     entitlements_file=None,
     version=None,
+    contents_directory=".",
 )
 
 # ---------------------------------------------------------------------------
 # Single COLLECT — all three executables share the same dependency tree.
-# contents_directory='.' puts everything alongside the executables (flat
-# layout), which is what the NSIS template expects.
+# Flat layout (no _internal/) is controlled by contents_directory="." on
+# each EXE above; COLLECT inherits it automatically.
 # ---------------------------------------------------------------------------
 
 coll = COLLECT(
@@ -282,5 +285,4 @@ coll = COLLECT(
     upx=False,
     upx_exclude=[],
     name="grampsaio",
-    contents_directory=".",
 )

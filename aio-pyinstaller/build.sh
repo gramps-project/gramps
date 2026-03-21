@@ -187,9 +187,9 @@ pyinstaller gramps.spec
 
 # Manual fallback: copy orjson package into bundle if PyInstaller missed it
 ORJSON_DIR=$(python -c "import os, orjson; print(os.path.dirname(orjson.__file__))" 2>/dev/null)
-BUNDLE_INTERNAL="dist/grampsaio/_internal"
+BUNDLE_INTERNAL="dist/grampsaio"
 echo "orjson package dir: $ORJSON_DIR"
-echo "bundle _internal: $BUNDLE_INTERNAL"
+echo "bundle dir: $BUNDLE_INTERNAL"
 if [ -n "$ORJSON_DIR" ] && [ -d "$BUNDLE_INTERNAL" ]; then
     if [ -z "$(find "$BUNDLE_INTERNAL" -name 'orjson*' 2>/dev/null)" ]; then
         echo "orjson missing from bundle, copying manually from: $ORJSON_DIR"

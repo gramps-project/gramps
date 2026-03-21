@@ -152,12 +152,12 @@ Section "Gramps" Section1
 	CreateShortCut "$SMPROGRAMS\${APPNAMEANDVERSION}\${APPNAMEANDVERSION}-console.lnk" "$INSTDIR\gramps.exe" "" "" "" "" "" "Gramps (console)"
 
 	DetailPrint "Writing resource-path ..."
-	FileOpen $4 "$INSTDIR\_internal\gramps\gen\utils\resource-path" w
+	FileOpen $4 "$INSTDIR\gramps\gen\utils\resource-path" w
 	FileWrite $4 "share"
 	FileClose $4
 
 	DetailPrint "Writing branding ..."
-	FileOpen $4 "$INSTDIR\_internal\gramps\version.py" a
+	FileOpen $4 "$INSTDIR\gramps\version.py" a
 	FileSeek $4 0 END
 	FileWrite $4 "$\r$\n" ; we write a new line
 	FileWrite $4 "VERSION = 'AIO64-${APPVERSION}-${APPBUILD}'"
@@ -165,10 +165,10 @@ Section "Gramps" Section1
 	FileClose $4 ; and close the file
 
 	DetailPrint "Compiling GLib schemas ..."
-	nsExec::ExecToStack '"$INSTDIR\_internal\glib-compile-schemas.exe" $INSTDIR\_internal\share\glib-2.0\schemas'
+	nsExec::ExecToStack '"$INSTDIR\glib-compile-schemas.exe" $INSTDIR\share\glib-2.0\schemas'
 
 	DetailPrint "Caching gdk-pixbuf-query-loaders ..."
-	nsExec::ExecToStack '"$INSTDIR\_internal\gdk-pixbuf-query-loaders.exe" --update-cache'
+	nsExec::ExecToStack '"$INSTDIR\gdk-pixbuf-query-loaders.exe" --update-cache'
 SectionEnd
 
 SectionGroup "Dictionaries" sec_d
@@ -648,10 +648,10 @@ FunctionEnd
 Section -FinishSection
 	DetailPrint "Configuring GraphViz Dot..."
 	ReadEnvStr $R0 "PATH"
-	StrCpy $R0 "$R0;$INSTDIR\_internal"
+	StrCpy $R0 "$R0;$INSTDIR"
 	System::Call 'Kernel32::SetEnvironmentVariable(t, t) i("PATH", R0).r0'
-	SetOutPath $INSTDIR\_internal
-	nsExec::ExecToLog '"$INSTDIR\_internal\dot.exe" -c'
+	SetOutPath $INSTDIR
+	nsExec::ExecToLog '"$INSTDIR\dot.exe" -c'
 
 	WriteRegStr SHCTX "${UNINST_KEY}" "DisplayName" "${APPNAME}"
 	WriteRegStr SHCTX "${UNINST_KEY}" "DisplayVersion" "${APPVERSION}"
@@ -706,6 +706,8 @@ Function .onInit
   ${EndIf}
   ;StrCpy $LANGUAGE ${LANG_FRENCH}
   Call sel_langs
+  ; Pre-select en_US dictionary (optional, user can deselect)
+  SectionSetFlags ${d_enus} ${SF_SELECTED}
 FunctionEnd
 
 Function un.onInit
