@@ -110,7 +110,7 @@ class DbReadBase:
         **handlers : callable
             Named callables whose names are defined by the consuming
             subsystem.  For filter rules the recognised names are
-            ``apply`` and ``prepare``.
+            ``apply_to_one`` and ``prepare``.
 
         Examples
         --------
@@ -119,7 +119,7 @@ class DbReadBase:
             db.register_override(
                 "rule",
                 ("person", "Disconnected"),
-                apply=my_apply_fn,
+                apply_to_one=my_apply_fn,
                 prepare=my_prepare_fn,
             )
         """

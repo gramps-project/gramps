@@ -86,9 +86,9 @@ def _wrap_prepare(method):
                 .get(_rule_key(type(self)))
             )
             if entry is not None and entry.get("prepare") is not None:
-                LOG.debug("%s using optimized method", method)
+                LOG.debug("%s using optimized prepare", type(self).__name__)
                 return entry["prepare"](self, method, db, user)
-        LOG.debug("%s using non-optimized method", method)
+        LOG.debug("%s using non-optimized prepare", type(self).__name__)
         return method(self, db, user)
 
     return wrapper
@@ -104,9 +104,9 @@ def _wrap_apply_to_one(method):
                 .get(_rule_key(type(self)))
             )
             if entry is not None and entry.get("apply_to_one") is not None:
-                LOG.debug("%s using optimized method", method)
+                LOG.debug("%s using optimized apply_to_one", type(self).__name__)
                 return entry["apply_to_one"](self, method, db, obj)
-        LOG.debug("%s using non-optimized method", method)
+        LOG.debug("%s using non-optimized apply_to_one", type(self).__name__)
         return method(self, db, obj)
 
     return wrapper

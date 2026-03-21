@@ -116,5 +116,47 @@ class TestBaseClassOverride(unittest.TestCase):
         self.assertEqual(result, "db_result")
 
 
+class TestProxyBypassesOverride(unittest.TestCase):
+    """Overrides must be skipped when the database is a proxy."""
+
+    def test_proxy_db_uses_original_apply_to_one(self):
+        """apply_to_one override is not called when db.is_proxy() is True."""
+        rule = _FakeRule([])
+        key = _rule_key(type(rule))
+
+        class _ProxyDB(_MockDB):
+            def is_proxy(self):
+                return True
+
+        db = _ProxyDB()
+        db.register_override(
+            "rule", key, apply_to_one=lambda s, orig, d, obj: "override_result"
+        )
+
+        # _FakeRule.apply_to_one returns False; override must not be called
+        result = rule.apply_to_one(db, None)
+        self.assertFalse(result)
+
+    def test_proxy_db_uses_original_prepare(self):
+        """prepare override is not called when db.is_proxy() is True."""
+        rule = _FakeRule([])
+        key = _rule_key(type(rule))
+
+        called = []
+
+        class _ProxyDB(_MockDB):
+            def is_proxy(self):
+                return True
+
+        db = _ProxyDB()
+        db.register_override(
+            "rule", key, prepare=lambda s, orig, d, u: called.append("override")
+        )
+
+        rule.prepare(db, None)
+        self.assertEqual(called, [])
+        self.assertTrue(getattr(db, "_prepare_called_by_rule", False))
+
+
 if __name__ == "__main__":
     unittest.main()
