@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -206,7 +205,7 @@ class AddMedia(ManagedWindow):
             return
         filename = fname
         basename = os.path.basename(filename)
-        (root, ext) = os.path.splitext(basename)
+        root, ext = os.path.splitext(basename)
         old_title = self.description.get_text()
 
         if old_title == "" or old_title == self.temp_name:

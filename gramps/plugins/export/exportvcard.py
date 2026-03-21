@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "Export Persons to vCard (RFC 2426)."
@@ -307,7 +306,7 @@ class VCardWriter:
                     and not mod == Date.MOD_TO
                     and not mod == Date.MOD_RANGE
                 ):
-                    (day, month, year, slash) = b_date.get_start_date()
+                    day, month, year, slash = b_date.get_start_date()
                     if day > 0 and month > 0 and year > 0:
                         self.writeln("BDAY:%s-%02d-%02d" % (year, month, day))
 

@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 
@@ -280,7 +279,7 @@ USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
 HOST = r"([-\w.]+|\[[0-9A-F:]+\])?"
 URLPATH = "(/[" + PATHCHARS + "]*)?[^]'.:}> \t\r\n,\\\"]"
 
-(GENURL, HTTP, MAIL, LINK) = list(range(4))
+GENURL, HTTP, MAIL, LINK = list(range(4))
 
 
 def find_parent_with_attr(self, attr="dbstate"):

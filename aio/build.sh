@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # Assumption: script is executed from the 'aio' directory
 #
@@ -164,7 +163,7 @@ cp /mingw64/share/icons/hicolor/scalable/places/*.svg /mingw64/share/icons/gnome
 
 # build gramps
 rm -rf dist aio/dist
-python setup.py bdist_wheel
+python -m build --wheel
 if `grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py`; then
     # <branch_name>-<short_commit_id>
     appbuild="$(git rev-parse --abbrev-ref HEAD)-$(git rev-parse --short HEAD)"

@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -796,9 +795,7 @@ class EditPerson(EditPrimary):
           <attribute name="label" translatable="yes">Make Home Person"""
             """</attribute>
         </item>
-        """.format(
-                prefix=prefix
-            )
+        """.format(prefix=prefix)
         )
 
         return ui_top_cm, _actions
@@ -870,7 +867,7 @@ class EditPerson(EditPrimary):
 
         error = False
         if self.original:
-            (female, male, unknown) = _select_gender[self.obj.get_gender()]
+            female, male, unknown = _select_gender[self.obj.get_gender()]
             if male and self.original.get_gender() != Person.MALE:
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
@@ -949,7 +946,7 @@ class EditPerson(EditPrimary):
             name.set_primary_surname(primind)
 
         # fix ide problems
-        (uses_dupe_id, id) = self._uses_duplicate_id()
+        uses_dupe_id, id = self._uses_duplicate_id()
         if uses_dupe_id:
             prim_object = self.get_from_gramps_id(id)
             name = self.name_displayer.display(prim_object)

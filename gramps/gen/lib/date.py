@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """Support for dates."""
@@ -1562,7 +1561,7 @@ class Date(BaseObject):
         """
         Return true if any part of the date is valid.
         """
-        return self.modifier != Date.MOD_TEXTONLY
+        return self.modifier != Date.MOD_TEXTONLY or self.get_text() == ""
 
     def is_valid(self):
         """
@@ -1851,7 +1850,7 @@ class Date(BaseObject):
             and self.newyear == Date.NEWYEAR_JAN1
         ):
             return
-        (year, month, day) = Date._calendar_change[calendar](self.sortval)
+        year, month, day = Date._calendar_change[calendar](self.sortval)
         if self.is_compound():
             ryear, rmonth, rday = self._zero_adjust_ymd(
                 self.dateval[Date._POS_RYR],
@@ -1859,7 +1858,7 @@ class Date(BaseObject):
                 self.dateval[Date._POS_RDAY],
             )
             sdn = Date._calendar_convert[self.calendar](ryear, rmonth, rday)
-            (nyear, nmonth, nday) = Date._calendar_change[calendar](sdn)
+            nyear, nmonth, nday = Date._calendar_change[calendar](sdn)
             self.dateval = (day, month, year, False, nday, nmonth, nyear, False)
         else:
             self.dateval = (day, month, year, False)

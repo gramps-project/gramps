@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -314,8 +313,7 @@ class PlaceBaseView(ListView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-        % _("Organize Bookmarks"),
+""" % _("Organize Bookmarks"),
         """
       <placeholder id="CommonGo">
       <section>
@@ -349,8 +347,7 @@ class PlaceBaseView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-"""
-        % _("_Edit...", "action"),  # to use sgettext()
+""" % _("_Edit...", "action"),  # to use sgettext()
         """
         <placeholder id='otheredit'>
         <item>
@@ -442,8 +439,7 @@ class PlaceBaseView(ListView):
     </child>
     <placeholder id="PlaceMapUi"> </placeholder>
     </placeholder>
-"""
-        % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+""" % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
         """
     <menu id="Popup">
       <section id="PopUpTree">

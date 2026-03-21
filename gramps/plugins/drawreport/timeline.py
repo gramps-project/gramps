@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -147,7 +146,7 @@ class TimeLine(Report):
         )
 
         # Find the range of dates to include
-        (low, high) = self.find_year_range()
+        low, high = self.find_year_range()
 
         # Generate the actual timeline
         self.generate_timeline(low, high)
@@ -356,13 +355,13 @@ class TimeLine(Report):
                 if birth:
                     bth = birth.get_date_object()
                     bth = bth.to_calendar(self.calendar).get_year()
-                    (low, high) = min_max_year(low, high, bth)
+                    low, high = min_max_year(low, high, bth)
 
                 death = get_death_or_fallback(self.database, person)
                 if death:
                     dth = death.get_date_object()
                     dth = dth.to_calendar(self.calendar).get_year()
-                    (low, high) = min_max_year(low, high, dth)
+                    low, high = min_max_year(low, high, dth)
                 step()
 
             # round the dates to the nearest decade

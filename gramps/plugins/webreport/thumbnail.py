@@ -28,9 +28,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -39,6 +38,7 @@ Narrative Web Page generator.
 Classe:
     ThumbnailPreviewPage
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -157,7 +157,7 @@ class ThumbnailPreviewPage(BasePage):
                 numberdiv += Html("a", index, name=index, title=index, inline=True)
 
                 # create thumbnail
-                (dummy_real_path, newpath) = self.report.prepare_copy_media(photo)
+                dummy_real_path, newpath = self.report.prepare_copy_media(photo)
                 newpath = self.report.build_url_fname(newpath, image=True)
                 newpathc = newpath
                 pathp = photo.get_path()

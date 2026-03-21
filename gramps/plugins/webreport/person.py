@@ -27,9 +27,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -38,6 +37,7 @@ Narrative Web Page generator.
 Classe:
     PersonPage - Person index page and individual `Person pages
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -837,7 +837,7 @@ class PersonPages(BasePage):
         ppl_fct = self.r_db.get_person_from_handle
         ln_str = "<a href='%s' title='%s' target='_self'>%s</a>"
         ppl_lnk = ""
-        (bkref_class, bkref_hdle, role) = ref
+        bkref_class, bkref_hdle, role = ref
         if role == "Marriage" or role == "Divorce" or role == "Family":
             url = url_fct(bkref_hdle, "fam", self.uplink)
             fam_fct = self.r_db.get_family_from_handle
@@ -985,7 +985,7 @@ class PersonPages(BasePage):
             old_place_title = ""
             links = "''"
             for index in range(0, number_markers):
-                (latitude, longitude, placetitle, handle, event) = place_lat_long[index]
+                latitude, longitude, placetitle, handle, event = place_lat_long[index]
                 # Do we have several events for this place?
                 evthdle = event.get_handle()
                 bkref_list = self.report.bkref_dict[Event][evthdle]
@@ -1017,7 +1017,7 @@ class PersonPages(BasePage):
                         old_place_title = placetitle
                         links = "''"
                         for ref in bkref_list:
-                            (bkref_class, bkref_hdle, role) = ref
+                            bkref_class, bkref_hdle, role = ref
                             links = self.__create_links_tracelife(
                                 links,
                                 person,
@@ -1029,7 +1029,7 @@ class PersonPages(BasePage):
                             )
                     else:
                         for ref in bkref_list:
-                            (bkref_class, bkref_hdle, role) = ref
+                            bkref_class, bkref_hdle, role = ref
                             links = self.__create_links_tracelife(
                                 links,
                                 person,
@@ -2359,7 +2359,7 @@ class PersonPages(BasePage):
                 tbody = Html("tbody")
 
                 all_family_handles = list(parent_list)
-                (birthmother, birthfather) = self.rel_class.get_birth_parents(
+                birthmother, birthfather = self.rel_class.get_birth_parents(
                     self.r_db, self.person
                 )
 

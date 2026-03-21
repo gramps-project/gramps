@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "Handling formatted ('rich text') strings"
@@ -356,7 +355,7 @@ class StyledText(BaseObject):
         :param data: Serialized format of instance variables.
         :type data: tuple
         """
-        (self._string, the_tags) = data
+        self._string, the_tags = data
 
         # I really wonder why this doesn't work... it does for all other types
         # self._tags = [StyledTextTag().unserialize(tag) for tag in the_tags]

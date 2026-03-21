@@ -23,9 +23,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """LaTeX document generator"""
@@ -454,7 +453,7 @@ def map_font_size(fontsize):
 TBLFMT_PAT = re.compile(r"({\|?)l(\|?})")
 
 # constants for routing in table construction:
-(CELL_BEG, CELL_TEXT, CELL_END, ROW_BEG, ROW_END, TAB_BEG, TAB_END) = list(range(7))
+CELL_BEG, CELL_TEXT, CELL_END, ROW_BEG, ROW_END, TAB_BEG, TAB_END = list(range(7))
 FIRST_ROW, SUBSEQ_ROW = list(range(2))
 
 

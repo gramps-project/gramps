@@ -20,9 +20,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """Report output generator based on Cairo."""
@@ -1442,10 +1441,8 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
             # NOTE: the warning will be bogus
             # if the EXT isn't properly overridden by derived class
             log.warning(
-                _(
-                    """Mismatch between selected extension %(ext)s and actual format.
- Writing to %(filename)s in format %(impliedext)s."""
-                )
+                _("""Mismatch between selected extension %(ext)s and actual format.
+ Writing to %(filename)s in format %(impliedext)s.""")
                 % {"ext": fe[-1], "filename": filename, "impliedext": self.EXT}
             )
         self._backend = CairoBackend(filename)
@@ -1590,8 +1587,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
             if cairo.cairo_version() < 11210 and self._links_error == False:
                 # Cairo v1.12 is suppose to be the first version
                 # that supports clickable links
-                print(
-                    """
+                print("""
 WARNING: This version of cairo (%s) does NOT support clickable links.
 The first version that is suppose to is v1.12.  See the roadmap:
 
@@ -1599,9 +1595,7 @@ The first version that is suppose to is v1.12.  See the roadmap:
 
 The work around is to save to another format that supports clickable
 links (like ODF) and write PDF from that format.
-                """
-                    % cairo.version
-                )
+                """ % cairo.version)
                 self._links_error = True
 
         text = self.__markup(text, markup)

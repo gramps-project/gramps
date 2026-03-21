@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # gui/views/treemodels/treebasemodel.py
 
@@ -1025,7 +1024,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         cached, path = self.get_cached_path(iter.user_data)
         if cached:
-            (treepath, pathtup) = path
+            treepath, pathtup = path
             return treepath
         node = self.get_node_from_iter(iter)
         pathlist = []
@@ -1038,7 +1037,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                 # Let's see if sibling is cached:
                 cached, sib_path = self.get_cached_path(nodeid)
                 if cached:
-                    (sib_treepath, sib_pathtup) = sib_path
+                    sib_treepath, sib_pathtup = sib_path
                     # Does it have an actual path?
                     if sib_pathtup:
                         # Compute path to here from sibling:

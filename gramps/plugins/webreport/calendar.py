@@ -20,9 +20,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -496,7 +495,7 @@ class CalendarPage(BasePage):
             table += tbody
 
             # get first of the month and month information
-            (dummy_current_date, current_ord, monthinfo) = get_first_day_of_month(
+            dummy_current_date, current_ord, monthinfo = get_first_day_of_month(
                 year, month
             )
 

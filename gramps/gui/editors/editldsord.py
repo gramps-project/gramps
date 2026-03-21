@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -80,6 +79,18 @@ _DATA_MAP = {
         LdsOrd.STATUS_UNCLEARED,
     ],
     LdsOrd.CONFIRMATION: [
+        LdsOrd.STATUS_NONE,
+        LdsOrd.STATUS_CHILD,
+        LdsOrd.STATUS_CLEARED,
+        LdsOrd.STATUS_COMPLETED,
+        LdsOrd.STATUS_INFANT,
+        LdsOrd.STATUS_PRE_1970,
+        LdsOrd.STATUS_QUALIFIED,
+        LdsOrd.STATUS_STILLBORN,
+        LdsOrd.STATUS_SUBMITTED,
+        LdsOrd.STATUS_UNCLEARED,
+    ],
+    LdsOrd.INITIATORY: [
         LdsOrd.STATUS_NONE,
         LdsOrd.STATUS_CHILD,
         LdsOrd.STATUS_CLEARED,
@@ -172,8 +183,9 @@ class EditLdsOrd(EditSecondary):
     def _get_types(self):
         return (
             LdsOrd.BAPTISM,
-            LdsOrd.ENDOWMENT,
             LdsOrd.CONFIRMATION,
+            LdsOrd.INITIATORY,
+            LdsOrd.ENDOWMENT,
             LdsOrd.SEAL_TO_PARENTS,
         )
 

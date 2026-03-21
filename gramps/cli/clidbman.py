@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -268,8 +267,8 @@ class CLIDbManager:
                     with open(path_name, "r", encoding="utf8") as file:
                         name = file.readline().strip()
 
-                    (tval, last) = time_val(dirpath)
-                    (enable, stock_id) = self.icon_values(
+                    tval, last = time_val(dirpath)
+                    enable, stock_id = self.icon_values(
                         dirpath, self.active, self.dbstate.is_open()
                     )
 
@@ -345,7 +344,7 @@ class CLIDbManager:
         with open(backend_path, "w", encoding="utf8") as backend_file:
             backend_file.write(dbid)
 
-        (tval, last) = time_val(new_path)
+        tval, last = time_val(new_path)
 
         self.current_names.append(
             (title, new_path, path_name, last, tval, False, "", dbid)
@@ -394,7 +393,7 @@ class CLIDbManager:
                     url_fp.close()
                     temp_fp.close()
 
-        (name, ext) = os.path.splitext(os.path.basename(filename))
+        name, ext = os.path.splitext(os.path.basename(filename))
         format = ext[1:].lower()
 
         for plugin in pmgr.get_import_plugins():

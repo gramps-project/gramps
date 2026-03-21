@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -156,7 +155,7 @@ class DocReportDialog(ReportDialog):
         ext_val = docgen_plugin.get_extension()
         if ext_val:
             fname = self.target_fileentry.get_full_path(0)
-            (spath, ext) = os.path.splitext(fname)
+            spath, ext = os.path.splitext(fname)
 
             fname = spath + "." + ext_val
             self.target_fileentry.set_filename(fname)

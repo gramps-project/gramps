@@ -19,9 +19,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -654,11 +653,11 @@ class ViewManager(CLIManager):
         self.__delete_pages()
 
         # save the current window size
-        (width, height) = self.window.get_size()
+        width, height = self.window.get_size()
         config.set("interface.main-window-width", width)
         config.set("interface.main-window-height", height)
         # save the current window position
-        (horiz_position, vert_position) = self.window.get_position()
+        horiz_position, vert_position = self.window.get_position()
         config.set("interface.main-window-horiz-position", horiz_position)
         config.set("interface.main-window-vert-position", vert_position)
         config.save()
@@ -1061,7 +1060,7 @@ class ViewManager(CLIManager):
         if value:
             if self.dbstate.is_open():
                 self.dbstate.db.close(user=self.user)
-            (filename, title) = value
+            filename, title = value
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, "x-directory/normal", title)
         else:
@@ -1484,7 +1483,7 @@ class ViewManager(CLIManager):
             self.uistate.uimanager.remove_action_group(self.toolactions)
             self.uistate.uimanager.remove_ui(self.tool_menu_ui_id)
         self.toolactions = ActionGroup(name="ToolWindow")
-        (uidef, actions) = self.build_plugin_menu(
+        uidef, actions = self.build_plugin_menu(
             "ToolsMenu", tool_menu_list, tool.tool_categories, make_plugin_callback
         )
         self.toolactions.add_actions(actions)
@@ -1499,7 +1498,7 @@ class ViewManager(CLIManager):
             self.uistate.uimanager.remove_action_group(self.reportactions)
             self.uistate.uimanager.remove_ui(self.report_menu_ui_id)
         self.reportactions = ActionGroup(name="ReportWindow")
-        (udef, actions) = self.build_plugin_menu(
+        udef, actions = self.build_plugin_menu(
             "ReportsMenu", report_menu_list, standalone_categories, make_plugin_callback
         )
         self.reportactions.add_actions(actions)

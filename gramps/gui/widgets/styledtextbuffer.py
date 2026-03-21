@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """Text buffer subclassed from Gtk.TextBuffer handling :class:`.StyledText`."""
@@ -142,7 +141,7 @@ class GspellState:
     after Gspell replaces a misspelled word.
     """
 
-    (STATE_NONE, STATE_CLICKED, STATE_DELETED, STATE_INSERTING) = list(range(4))
+    STATE_NONE, STATE_CLICKED, STATE_DELETED, STATE_INSERTING = list(range(4))
 
     def __init__(self, textbuffer):
         if not isinstance(textbuffer, Gtk.TextBuffer):

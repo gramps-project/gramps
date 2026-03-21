@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -167,7 +166,7 @@ def import_from_filename(db, filename, user):
     """
     Import a file into a database.
     """
-    (_, ext) = os.path.splitext(os.path.basename(filename))
+    _, ext = os.path.splitext(os.path.basename(filename))
     extension = ext[1:].lower()
     pmgr = BasePluginManager.get_instance()
     import_list = pmgr.get_reg_importers()

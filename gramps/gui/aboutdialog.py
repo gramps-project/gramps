@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "About dialog"
@@ -135,8 +134,8 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         self.set_artists(artists.split("\n"))
 
         try:
-            with open(LICENSE_FILE, "r") as ifile:
-                self.set_license(ifile.read().replace("\x0c", ""))
+            with open(LICENSE_FILE, "r", encoding="utf-8") as ifile:
+                self.set_license(ifile.read())
         except IOError:
             self.set_license("License file is missing")
 

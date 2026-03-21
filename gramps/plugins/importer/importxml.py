@@ -18,9 +18,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -2551,7 +2550,7 @@ class GrampsParser(UpdateCallback):
         stop = attrs["stop"]
 
         bce = 1
-        if start[0] == "-":
+        if start and start[0] == "-":
             bce = -1
             start = start[1:]
         start = start.split("-")
@@ -2571,7 +2570,7 @@ class GrampsParser(UpdateCallback):
             day = 0
 
         bce = 1
-        if stop[0] == "-":
+        if stop and stop[0] == "-":
             bce = -1
             stop = stop[1:]
         stop = stop.split("-")
@@ -2656,7 +2655,7 @@ class GrampsParser(UpdateCallback):
 
         bce = 1
         val = attrs["val"]
-        if val[0] == "-":
+        if val and val[0] == "-":
             bce = -1
             val = val[1:]
         start = val.split("-")

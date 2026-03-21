@@ -20,9 +20,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "Export to GEDCOM"
@@ -98,6 +97,7 @@ LDS_ORD_NAME = {
     LdsOrd.SEAL_TO_PARENTS: "SLGC",
     LdsOrd.SEAL_TO_SPOUSE: "SLGS",
     LdsOrd.CONFIRMATION: "CONL",
+    LdsOrd.INITIATORY: "INIL",
 }
 
 LDS_STATUS = {
@@ -127,8 +127,8 @@ LANGUAGES = {
     "de": "German",
     "hu": "Hungarian",
     "it": "Italian",
-    "lt": "Latvian",
-    "lv": "Lithuanian",
+    "lt": "Lithuanian",
+    "lv": "Latvian",
     "no": "Norwegian",
     "po": "Polish",
     "pt": "Portuguese",
@@ -367,7 +367,7 @@ class GedcomWriter(UpdateCallback):
 
         """
         local_time = time.localtime(time.time())
-        (year, mon, day, hour, minutes, sec) = local_time[0:6]
+        year, mon, day, hour, minutes, sec = local_time[0:6]
         date_str = "%d %s %d" % (day, libgedcom.MONTH[mon], year)
         time_str = "%02d:%02d:%02d" % (hour, minutes, sec)
         rname = self.dbase.get_researcher().get_name()
@@ -713,6 +713,10 @@ class GedcomWriter(UpdateCallback):
 
             if key in ("AFN", "RFN", "REFN", "_UID", "_FSFTID"):
                 self._writeln(1, key, value)
+                continue
+
+            if key == "Occupation":
+                self._writeln(1, "OCCU", value)
                 continue
 
             if key == "RESN":
@@ -1593,7 +1597,7 @@ class GedcomWriter(UpdateCallback):
         longitude = place.get_longitude()
         latitude = place.get_latitude()
         if longitude and latitude:
-            (latitude, longitude) = conv_lat_lon(latitude, longitude, "GEDCOM")
+            latitude, longitude = conv_lat_lon(latitude, longitude, "GEDCOM")
         if longitude and latitude:
             self._writeln(level + 1, "MAP")
             self._writeln(level + 2, "LATI", latitude)

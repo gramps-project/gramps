@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # ------------------------------------------------------------------------
@@ -297,7 +296,7 @@ class WhatNextGramplet(Gramplet):
                 new_ancestor_group_2 = []
                 new_family_group = []
                 for person in ancestor_group:
-                    (father, mother, family) = self.__get_parents(person)
+                    father, mother, family = self.__get_parents(person)
                     if family is UnknownFamily:
                         self.__missing_parents(person)
                     elif family is not None:

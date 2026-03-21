@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -75,7 +74,6 @@ from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 from .basemodel import BaseModel
 from gramps.gen.config import config
-
 
 invalid_date_format = config.get("preferences.invalid-date-format")
 no_surname = config.get("preferences.no-surname-text")

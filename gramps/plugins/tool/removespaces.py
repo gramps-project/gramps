@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "Find possible leading and/or trailing spaces in places name and people"
@@ -281,7 +280,7 @@ class RemoveSpaces(ManagedWindow):
             plon = place.get_longitude()
             lat, lon = conv_lat_lon(plat, plon, "D.D8")
             self.f_lat = self.f_lon = False
-            if not lat:
+            if plat and not lat:
                 self.add_text_to_tip(1, _("invalid format"))
                 found = True
             if plat != plat.strip():
@@ -293,7 +292,7 @@ class RemoveSpaces(ManagedWindow):
             if validate_lat_lon(plat):
                 self.add_text_to_tip(1, _("invalid char instead of '-'"))
                 found = True
-            if not lon:
+            if plon and not lon:
                 self.add_text_to_tip(2, _("invalid format"))
                 found = True
             if plon != plon.strip():

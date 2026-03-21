@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -34,7 +33,6 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from ..person import HasNameOf
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
@@ -42,7 +40,6 @@ from ..person import HasNameOf
 # -------------------------------------------------------------------------
 from ....lib import Family
 from ....db import Database
-
 
 # -------------------------------------------------------------------------
 #

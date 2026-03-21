@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -73,7 +72,7 @@ class Url(SecondaryObject, PrivacyBase):
         return (self.private, self.path, self.desc, self.type.serialize())
 
     def unserialize(self, data):
-        (self.private, self.path, self.desc, type_value) = data
+        self.private, self.path, self.desc, type_value = data
         self.type.unserialize(type_value)
         return self
 

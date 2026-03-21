@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -420,7 +419,7 @@ class GrampsImportFileDialog(ManagedWindow):
             gramps_filter.add_pattern("*.%s" % icase(plugin.get_extension()))
             import_dialog.add_filter(file_filter)
 
-        (box, type_selector) = format_maker()
+        box, type_selector = format_maker()
         import_dialog.set_extra_widget(box)
 
         import_dialog.set_current_folder(config.get("paths.recent-import-dir"))
@@ -438,7 +437,7 @@ class GrampsImportFileDialog(ManagedWindow):
                     # displays errors if any
                     continue
 
-                (the_path, the_file) = os.path.split(filename)
+                the_path, the_file = os.path.split(filename)
                 config.set("paths.recent-import-dir", the_path)
 
                 extension = type_selector.get_value()

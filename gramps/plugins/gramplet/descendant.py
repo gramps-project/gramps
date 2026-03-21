@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """Descendant Gramplet"""
@@ -96,7 +95,7 @@ class Descendant(Gramplet):
         """
         Handle double click on treeview.
         """
-        (model, iter_) = treeview.get_selection().get_selected()
+        model, iter_ = treeview.get_selection().get_selected()
         if not iter_:
             return
 
@@ -111,7 +110,7 @@ class Descendant(Gramplet):
         """
         Handle right click on treeview.
         """
-        (model, iter_) = treeview.get_selection().get_selected()
+        model, iter_ = treeview.get_selection().get_selected()
         sensitivity = 1 if iter_ else 0
         menu = Gtk.Menu()
         menu.set_reserve_toggle_size(False)

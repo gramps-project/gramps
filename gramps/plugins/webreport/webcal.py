@@ -20,9 +20,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -585,8 +584,7 @@ class WebCalReport(Report):
         head += (meta, links)
 
         # start header section and page title...
-        script = (
-            """
+        script = """
 <script type="text/javascript">
 function currentmonth(y) {
 var date = new Date();
@@ -596,9 +594,7 @@ window.location.href = url;
 return false;
 }
 </script>
-"""
-            % self.ext
-        )
+""" % self.ext
         body += script
         return page, body
 
@@ -623,7 +619,7 @@ return false;
             with Html("div", class_="container") as container:
                 unordered = Html("ul", class_="nav", id="dropmenu")
 
-                (url, nav_text, disp) = self.head[0]
+                url, nav_text, disp = self.head[0]
                 if disp:
                     if url[:1] == "/":
                         url = url + "index" + self.ext
@@ -678,7 +674,7 @@ return false;
         navs = []
 
         if not self.multiyear:
-            (url, nav_text, disp) = self.head[0]
+            url, nav_text, disp = self.head[0]
             if url[:1] == "/":
                 url = url + "index" + self.ext
             else:
@@ -923,7 +919,7 @@ return false;
             table += tbody
 
             # get first of the month and month information
-            (dummy_current_date, current_ord, monthinfo) = get_first_day_of_month(
+            dummy_current_date, current_ord, monthinfo = get_first_day_of_month(
                 year, month
             )
 

@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 """
 GrampsLocale encapsulates localization and locale
@@ -85,7 +84,7 @@ if HAVE_ICU:
 _RTL_LOCALES = ("ar", "he")
 
 # locales with less than 70% currently translated
-INCOMPLETE_TRANSLATIONS = ("ar", "bg", "ko", "sq", "zh_HK", "zh_TW")
+INCOMPLETE_TRANSLATIONS = ("ar", "ba", "bg", "ko", "sq", "zh_HK", "zh_TW")
 
 
 def _check_gformat():
@@ -369,9 +368,17 @@ class GrampsLocale:
                     self.localedomain.encode("utf-8"), self.localedir.encode("utf-8")
                 )
             else:
-                # bug12278, _build_popup_ui() under linux and macOS
-                locale.textdomain(self.localedomain)
-                locale.bindtextdomain(self.localedomain, self.localedir)
+                try:
+                    # bug12278, _build_popup_ui() under linux and macOS
+                    locale.textdomain(self.localedomain)
+                    locale.bindtextdomain(self.localedomain, self.localedir)
+                except AttributeError:
+                    LOG.warning(
+                        "Python compiled without gettext support in the locale module"
+                    )
+                    self.no_gettext_support = True
+                    gettext.textdomain(self.localedomain)
+                    gettext.bindtextdomain(self.localedomain, self.localedir)
 
         self.rtl_locale = False
         if self.language[0] in _RTL_LOCALES:
@@ -432,6 +439,7 @@ class GrampsLocale:
         self.collation = None
         self.calendar = None
         self.rtl_locale = False
+        self.no_gettext_support = False
         _first = self._GrampsLocale__first_instance
         # Everything breaks without localedir, so get that set up
         # first.  Warnings are logged in __init_first_instance or

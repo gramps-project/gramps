@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -320,11 +319,11 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
         prefix = str(id(self))
         # get custom ui and actions
-        (ui_top, actions) = self._top_contextmenu(prefix)
+        ui_top, actions = self._top_contextmenu(prefix)
         # see which quick reports are available now:
         ui_qr = ""
         if self.QR_CATEGORY > -1:
-            (ui_qr, reportactions) = create_quickreport_menu(
+            ui_qr, reportactions = create_quickreport_menu(
                 self.QR_CATEGORY,
                 self.dbstate,
                 self.uistate,

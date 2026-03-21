@@ -28,9 +28,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -39,6 +38,7 @@ Narrative Web Page generator.
 Classe:
     MediaPage - Media index page and individual Media pages
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -387,7 +387,7 @@ class MediaPages(BasePage):
         """
         media = report.database.get_media_from_handle(media_handle)
         BasePage.__init__(self, report, the_lang, the_title, media.gramps_id)
-        (prev, next_, page_number, total_pages) = info
+        prev, next_, page_number, total_pages = info
 
         ldatec = media.get_change_time()
 
@@ -486,7 +486,7 @@ class MediaPages(BasePage):
                             orig_image_path = media_path_full(
                                 self.r_db, media.get_path()
                             )
-                            (width, height) = image_size(orig_image_path)
+                            width, height = image_size(orig_image_path)
                             max_width = self.report.options["maxinitialimagewidth"]
 
                             # TODO. Convert disk path to URL.

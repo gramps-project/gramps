@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -39,15 +38,18 @@ import logging
 
 LOG = logging.getLogger(".")
 
-from gi.repository import GLib
-
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
 from .git_revision import get_git_revision
-from .constfunc import get_env_var
+from .constfunc import (
+    get_env_var,
+    get_user_cache_dir,
+    get_user_config_dir,
+    get_user_data_dir,
+)
 from ..version import VERSION, VERSION_TUPLE, major_version, DEV_VERSION
 from .utils.resourcepath import ResourcePath
 from .utils.grampslocale import GrampsLocale
@@ -117,8 +119,8 @@ elif "USERPROFILE" in os.environ:
             shutil.move(OLD_HOME, USER_DATA)
 else:
     USER_HOME = get_env_var("HOME")
-    USER_DATA = os.path.join(GLib.get_user_data_dir(), "gramps")
-    USER_CONFIG = os.path.join(GLib.get_user_config_dir(), "gramps")
+    USER_DATA = os.path.join(get_user_data_dir(), "gramps")
+    USER_CONFIG = os.path.join(get_user_config_dir(), "gramps")
     # Copy the database directory into the XDG directory.
     OLD_HOME = os.path.join(USER_HOME, ".gramps")
     if os.path.exists(OLD_HOME):
@@ -129,12 +131,12 @@ else:
             if os.path.exists(db_dir):
                 shutil.copytree(db_dir, os.path.join(USER_DATA, "grampsdb"))
 
-USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
+USER_CACHE = os.path.join(get_user_cache_dir(), "gramps")
 
 if "SAFEMODE" in os.environ:
     USER_CONFIG = get_env_var("SAFEMODE")
 
-USER_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
+USER_PICTURES = os.path.join(USER_HOME, "Pictures")
 if not USER_PICTURES:
     USER_PICTURES = USER_DATA
 
@@ -258,7 +260,7 @@ GTK_GETTEXT_DOMAIN = "gtk30"
 # About box information
 #
 # -------------------------------------------------------------------------
-COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2025 The Gramps Developers"
+COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2026 The Gramps Developers"
 COMMENTS = _(
     "Gramps is a genealogy program that is both intuitive for hobbyists "
     "and feature-complete for professional genealogists."

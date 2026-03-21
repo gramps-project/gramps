@@ -19,14 +19,14 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Generate an hourglass graph using the Graphviz generator.
 """
+
 # ------------------------------------------------------------------------
 #
 # python modules
@@ -341,7 +341,7 @@ class HourGlassReport(Report):
 
         label = label.replace('"', '\\"')
 
-        (shape, style, color, fill) = self.get_gender_style(person)
+        shape, style, color, fill = self.get_gender_style(person)
         self.doc.add_node(p_id, label, shape, color, style, fill)
 
         # save node with them label, father node id, mother node id and sosanumber

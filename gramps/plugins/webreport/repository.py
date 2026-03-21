@@ -27,9 +27,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -38,6 +37,7 @@ Narrative Web Page generator.
 Classe:
     RepositoryPage - Repository index page and individual Repository pages
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -123,7 +123,7 @@ class RepositoryPages(BasePage):
 
             idx = 1
             for dummy_index, key in enumerate(keys):
-                (repo, handle) = repos_dict[key]
+                repo, handle = repos_dict[key]
                 step()
                 idx += 1
                 self.repositorypage(self.report, the_lang, the_title, repo, handle)
@@ -186,7 +186,7 @@ class RepositoryPages(BasePage):
                 table += tbody
 
                 for index, key in enumerate(keys):
-                    (repo, handle) = repos_dict[key]
+                    repo, handle = repos_dict[key]
 
                     trow = Html("tr")
                     tbody += trow

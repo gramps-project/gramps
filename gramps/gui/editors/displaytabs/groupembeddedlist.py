@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -187,7 +186,7 @@ class GroupEmbeddedList(EmbeddedList):
             # make sure data = 1 row
             # pickle.loads(sel_data.data)[3] = 0
             try:
-                (mytype, selfid, obj, row_from) = pickle.loads(sel_data.get_data())
+                mytype, selfid, obj, row_from = pickle.loads(sel_data.get_data())
             except ValueError:
                 return
 

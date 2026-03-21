@@ -28,9 +28,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """Reports/Text Reports/Detailed Descendant Report"""
@@ -77,7 +76,6 @@ from gramps.plugins.lib.libnarrate import Narrator
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.proxy import CacheProxyDb
-
 
 # ------------------------------------------------------------------------
 #

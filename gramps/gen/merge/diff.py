@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -38,7 +37,13 @@ def diff_dates(json1, json2):
     if json1 == json2:  # if same, then Not Different
         return False  # else, they still might be Not Different
     elif isinstance(json1, dict) and isinstance(json2, dict):
-        if json1["dateval"] == json2["dateval"] and json2["dateval"] != 0:
+        if json1["calendar"] != json2["calendar"]:
+            return True
+        elif json1["modifier"] != json2["modifier"]:
+            return True
+        elif json1["quality"] != json2["quality"]:
+            return True
+        elif json1["dateval"] == json2["dateval"] and json2["dateval"] != 0:
             return False
         elif json1["text"] == json2["text"]:
             return False

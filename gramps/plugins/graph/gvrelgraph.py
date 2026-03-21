@@ -25,9 +25,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -384,7 +383,7 @@ class RelGraphReport(Report):
             p_id = person.get_gramps_id()
             # Output the person's node
             label = self.get_person_label(person)
-            (shape, style, color, fill) = self.get_gender_style(person)
+            shape, style, color, fill = self.get_gender_style(person)
             url = ""
             if self.includeurl:
                 phan = person_handle
@@ -721,7 +720,7 @@ class RelGraphReport(Report):
         if self.increlname and self.center_person != person:
             # display relationship info
             if self.advrelinfo:
-                (relationship, _ga, _gb) = self.rel_calc.get_one_relationship(
+                relationship, _ga, _gb = self.rel_calc.get_one_relationship(
                     self._db,
                     self.center_person,
                     person,

@@ -19,9 +19,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -152,7 +151,7 @@ class LastNameDialog(ManagedWindow):
         response = self.__dlg.run()
         surname_set = set()
         if response == Gtk.ResponseType.ACCEPT:
-            (mode, paths) = self.__tree_selection.get_selected_rows()
+            mode, paths = self.__tree_selection.get_selected_rows()
             for path in paths:
                 tree_iter = self.__model.get_iter(path)
                 surname = self.__model.get_value(tree_iter, 0)
@@ -1284,7 +1283,7 @@ class GuiPersonListOption(Gtk.Box):
         """
         Handle the delete person button.
         """
-        (path, column) = self.__tree_view.get_cursor()
+        path, column = self.__tree_view.get_cursor()
         if path:
             tree_iter = self.__model.get_iter(path)
             self.__model.remove(tree_iter)
@@ -1432,7 +1431,7 @@ class GuiPlaceListOption(Gtk.Box):
         """
         Handle the delete place button.
         """
-        (path, column) = self.__tree_view.get_cursor()
+        path, column = self.__tree_view.get_cursor()
         if path:
             tree_iter = self.__model.get_iter(path)
             self.__model.remove(tree_iter)
@@ -1576,7 +1575,7 @@ class GuiSurnameColorOption(Gtk.Box):
         """
         Handle the delete surname button.
         """
-        (path, column) = self.__tree_view.get_cursor()
+        path, column = self.__tree_view.get_cursor()
         if path:
             tree_iter = self.__model.get_iter(path)
             self.__model.remove(tree_iter)

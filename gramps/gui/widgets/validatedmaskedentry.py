@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 __all__ = ["MaskedEntry", "ValidatableMaskedEntry"]
@@ -65,9 +64,9 @@ from gramps.gen.constfunc import is_quartz
 #
 # ============================================================================
 
-(DIRECTION_LEFT, DIRECTION_RIGHT) = (1, -1)
+DIRECTION_LEFT, DIRECTION_RIGHT = (1, -1)
 
-(INPUT_ASCII_LETTER, INPUT_ALPHA, INPUT_ALPHANUMERIC, INPUT_DIGIT) = list(range(4))
+INPUT_ASCII_LETTER, INPUT_ALPHA, INPUT_ALPHANUMERIC, INPUT_DIGIT = list(range(4))
 
 INPUT_FORMATS = {
     "0": INPUT_DIGIT,
@@ -89,7 +88,7 @@ INPUT_CHAR_MAP = {
     INPUT_DIGIT: str.isdigit,
 }
 
-(COL_TEXT, COL_OBJECT) = list(range(2))
+COL_TEXT, COL_OBJECT = list(range(2))
 
 
 class MaskedEntry(UndoableEntry):

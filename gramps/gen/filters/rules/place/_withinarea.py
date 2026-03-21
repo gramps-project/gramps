@@ -19,9 +19,8 @@ WithinArea : used to verify if a place is contained in a specific area
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -43,7 +42,6 @@ from ....const import GRAMPS_LOCALE as glocale
 from .. import Rule
 from ....utils.place import conv_lat_lon
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
@@ -52,7 +50,6 @@ from ....utils.place import conv_lat_lon
 from typing import Union
 from ....lib import Place
 from ....db import Database
-
 
 _ = glocale.translation.sgettext
 

@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # ------------------------------------------------------------------------
@@ -260,7 +259,7 @@ class ClipHandleWrapper(ClipWrapper):
     def __init__(self, obj):
         super(ClipHandleWrapper, self).__init__(obj)
         # unpack object
-        (drag_type, idval, data, val) = pickle.loads(obj)
+        drag_type, idval, data, val = pickle.loads(obj)
         if isinstance(data, dict):
             self.set_data(data)
         else:
@@ -275,7 +274,7 @@ class ClipObjWrapper(ClipWrapper):
     def __init__(self, obj):
         super(ClipObjWrapper, self).__init__(obj)
         # unpack object
-        (drag_type, idval, self._obj, val) = pickle.loads(obj)
+        drag_type, idval, self._obj, val = pickle.loads(obj)
         self._pickle = obj
 
     def pack(self):

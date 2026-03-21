@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -33,6 +32,7 @@ from the gobject framework. It enables the database code to use signals
 to communicate events to any callback methods in either the database code
 or the UI code.
 """
+
 import sys
 import types
 import traceback
@@ -301,7 +301,7 @@ class Callback:
         # Find the key in the callback map.
         for signal_name in self.__callback_map:
             for cb in self.__callback_map[signal_name]:
-                (skey, fn) = cb
+                skey, fn = cb
                 if skey == key:
                     # delete the callback from the map.
                     self._log(

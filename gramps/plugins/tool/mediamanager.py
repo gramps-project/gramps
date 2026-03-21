@@ -18,9 +18,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Written by Alex Roitman
@@ -730,7 +729,7 @@ class ImagesNotIncluded(BatchOp):
                             obj = Media()
                             obj.set_path(media_full_path)
                             obj.set_mime_type(mime_type)
-                            (root, ext) = os.path.splitext(filename)
+                            root, ext = os.path.splitext(filename)
                             obj.set_description(root)
                             self.db.add_media(obj, self.trans)
             self.update()

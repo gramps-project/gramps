@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -76,6 +75,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 
+_encoding: str
 try:
     # On Darwin sys.getdefaultencoding() is correct, on Win32 it's
     # sys.stdout.encoding, and on Linux they're both right.
@@ -194,7 +194,6 @@ def exc_hook(err_type, value, t_b):
 sys.excepthook = exc_hook
 
 from .gen.mime import mime_type_is_defined
-
 
 # -------------------------------------------------------------------------
 #

@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -105,8 +104,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         self.action_group = None
         self.additional_action_groups = []
         self.additional_uis = []
-        self.ui_def = [
-            """
+        self.ui_def = ["""
           <placeholder id="Bars">
             <item>
               <attribute name="action">win.Sidebar</attribute>
@@ -117,8 +115,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
               <attribute name="label" translatable="yes">_Bottombar</attribute>
             </item>
           </placeholder>
-            """
-        ]
+            """]
         self.dirty = True
         self.active = False
         self._dirty_on_change_inactive = True

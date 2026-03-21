@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -98,7 +97,7 @@ class GenderStats:
         self._set_stats(keyname, gender, undo)
 
     def _set_stats(self, keyname, gender, undo=0):
-        (male, female, unknown) = self.name_stats(keyname)
+        male, female, unknown = self.name_stats(keyname)
         if not undo:
             increment = 1
         else:
@@ -130,7 +129,7 @@ class GenderStats:
         if not name or name not in self.stats:
             return Person.UNKNOWN
 
-        (male, female, unknown) = self.stats[name]
+        male, female, unknown = self.stats[name]
         if unknown == 0:
             if male and not female:
                 return Person.MALE
