@@ -67,12 +67,12 @@ class IsAncestorOf(Rule):
             inclusive = False
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
-            if root_person:
-                self.selected_handles = find_ancestors(
-                    db, [root_person.handle], inclusive=inclusive
-                )
-        except Exception:
-            pass
+        except IndexError:
+            return
+        if root_person is not None:
+            self.selected_handles = find_ancestors(
+                db, [root_person.handle], inclusive=inclusive
+            )
 
     def reset(self):
         self.selected_handles.clear()

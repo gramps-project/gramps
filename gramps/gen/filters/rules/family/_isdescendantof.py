@@ -85,7 +85,7 @@ class IsDescendantOf(Rule):
                 descendants = find_descendants(db, children, inclusive=True)
                 for person_handle in descendants:
                     person = db.get_person_from_handle(person_handle)
-                    if person:
+                    if person is not None:
                         for family_handle in person.family_list:
                             self.selected_handles.add(family_handle)
 

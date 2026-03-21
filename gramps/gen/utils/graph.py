@@ -22,8 +22,8 @@
 Graph utilities for Gramps genealogy data.
 
 This module provides unified functions for traversing family relationships
-in genealogical data, combining various BFS algorithms used throughout
-the codebase.
+in genealogical data, combining various Breadth-First Search (BFS) algorithms
+used throughout the codebase.
 """
 
 # -------------------------------------------------------------------------
@@ -31,6 +31,7 @@ the codebase.
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+import sys
 from collections import deque
 from collections.abc import Iterator
 
@@ -134,6 +135,9 @@ def find_ancestors_iterative(
     if not person_handles:
         return
 
+    if max_generation is None:
+        max_generation = sys.maxsize
+
     # BFS queue: (person_handle, generation)
     queue: deque[tuple[PersonHandle, int]] = deque()
 
@@ -142,7 +146,7 @@ def find_ancestors_iterative(
 
     # Add all starting people to the queue
     for person_handle in person_handles:
-        if person_handle:
+        if person_handle is not None:
             queue.append((person_handle, 0))
 
     while queue:
@@ -156,18 +160,18 @@ def find_ancestors_iterative(
 
         # Yield if within generation range
         if (generation >= min_generation or (inclusive and generation == 0)) and (
-            max_generation is None or generation <= max_generation
+            generation <= max_generation
         ):
             yield current_handle, generation
 
         # Stop if we've reached max_generation
-        if max_generation is not None and generation >= max_generation:
+        if generation >= max_generation:
             continue
 
         # Get person and their parent families
         try:
             person = db.get_person_from_handle(current_handle)
-            if not person:
+            if person is None:
                 continue
         except Exception:
             # Handle non-existent handles gracefully
@@ -181,13 +185,13 @@ def find_ancestors_iterative(
         # Process each parent family
         for family_handle in parent_families:
             family = db.get_family_from_handle(family_handle)
-            if not family:
+            if family is None:
                 continue
 
             # Add parents to queue
-            if family.father_handle:
+            if family.father_handle is not None:
                 queue.append((family.father_handle, generation + 1))
-            if family.mother_handle:
+            if family.mother_handle is not None:
                 queue.append((family.mother_handle, generation + 1))
 
 
@@ -281,6 +285,9 @@ def find_descendants_iterative(
     if not person_handles:
         return
 
+    if max_generation is None:
+        max_generation = sys.maxsize
+
     # BFS queue: (person_handle, generation)
     queue: deque[tuple[PersonHandle, int]] = deque()
 
@@ -289,7 +296,7 @@ def find_descendants_iterative(
 
     # Add all starting people to the queue
     for person_handle in person_handles:
-        if person_handle:
+        if person_handle is not None:
             queue.append((person_handle, 0))
 
     while queue:
@@ -303,18 +310,18 @@ def find_descendants_iterative(
 
         # Yield if within generation range
         if (generation >= min_generation or (inclusive and generation == 0)) and (
-            max_generation is None or generation <= max_generation
+            generation <= max_generation
         ):
             yield current_handle, generation
 
         # Stop if we've reached max_generation
-        if max_generation is not None and generation >= max_generation:
+        if generation >= max_generation:
             continue
 
         # Get person and their families
         try:
             person = db.get_person_from_handle(current_handle)
-            if not person:
+            if person is None:
                 continue
         except Exception:
             # Handle non-existent handles gracefully
@@ -328,10 +335,10 @@ def find_descendants_iterative(
         # Process each family
         for family_handle in families:
             family = db.get_family_from_handle(family_handle)
-            if not family:
+            if family is None:
                 continue
 
             # Add children to queue
             for child_ref in family.child_ref_list:
-                if child_ref.ref:
+                if child_ref.ref is not None:
                     queue.append((child_ref.ref, generation + 1))

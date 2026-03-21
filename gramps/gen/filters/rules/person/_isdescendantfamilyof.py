@@ -77,8 +77,8 @@ class IsDescendantFamilyOf(Rule):
         except IndexError:
             inclusive = True
 
-        if self.root_person:
-            # Use the new find_descendants function to get descendants
+        if self.root_person is not None:
+            # Use the find_descendants function to get descendants
             descendants = find_descendants(
                 db, [self.root_person.handle], inclusive=inclusive
             )
@@ -96,15 +96,15 @@ class IsDescendantFamilyOf(Rule):
     def add_spouses_of_descendants(self, descendants: set[PersonHandle]):
         """Add spouses of all descendants to the selected handles."""
         for person_handle in descendants:
-            person = self.db.get_person_from_handle(person_handle)
-            if person:
+            person = self.db.get_raw_person_data(person_handle)
+            if person is not None:
                 for family_handle in person.family_list:
-                    family = self.db.get_family_from_handle(family_handle)
-                    if family:
+                    family = self.db.get_raw_family_data(family_handle)
+                    if family is not None:
                         # Add spouse
-                        if person.handle == family.father_handle:
+                        if person_handle == family.father_handle:
                             spouse_handle = family.mother_handle
                         else:
                             spouse_handle = family.father_handle
-                        if spouse_handle:
+                        if spouse_handle is not None:
                             self.selected_handles.add(spouse_handle)

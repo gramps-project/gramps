@@ -66,10 +66,9 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         self.db = db
         self.selected_handles: set[PersonHandle] = set()
         person = db.get_person_from_gramps_id(self.list[0])
-        if person:
-            # Original uses base-1: gen 1=root, 2=parents, 3=grandparents
+        if person is not None:
+            # self.list[1] uses base-1: gen 1=root, 2=parents, 3=grandparents
             # Our function uses base-0: gen 0=root, 1=parents, 2=grandparents
-            # So we need to subtract 1 to convert
             max_generation = int(self.list[1]) - 1
             self.selected_handles = find_ancestors(
                 db, [person.handle], max_generation=max_generation, inclusive=True

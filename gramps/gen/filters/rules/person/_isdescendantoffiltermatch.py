@@ -97,7 +97,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
 
     def init_list(self, person: Person, first: bool):
         """Initialize the list of descendants for a given person."""
-        if not person:
+        if person is None:
             return
         try:
             inclusive = not first

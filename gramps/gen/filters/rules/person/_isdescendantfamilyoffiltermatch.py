@@ -88,7 +88,7 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
     def add_matches(self, person: Person):
         """Add the person and their descendants to the selected handles."""
-        if not person:
+        if person is None:
             return
         try:
             # inclusive=True so the person themselves is in descendants,
@@ -104,15 +104,15 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
     def add_spouses_of_descendants(self, descendants: set[PersonHandle]):
         """Add spouses of all descendants to the selected handles."""
         for person_handle in descendants:
-            person = self.db.get_person_from_handle(person_handle)
-            if person:
+            person = self.db.get_raw_person_data(person_handle)
+            if person is not None:
                 for family_handle in person.family_list:
-                    family = self.db.get_family_from_handle(family_handle)
-                    if family:
+                    family = self.db.get_raw_family_data(family_handle)
+                    if family is not None:
                         # Add spouse
-                        if person.handle == family.father_handle:
+                        if person_handle == family.father_handle:
                             spouse_handle = family.mother_handle
                         else:
                             spouse_handle = family.father_handle
-                        if spouse_handle:
+                        if spouse_handle is not None:
                             self.selected_handles.add(spouse_handle)
