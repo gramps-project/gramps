@@ -32,6 +32,7 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-adwaita-icon-theme \
     mingw-w64-x86_64-enchant \
     mingw-w64-x86_64-geocode-glib \
+    mingw-w64-gexiv2 \
     mingw-w64-x86_64-ghostscript \
     mingw-w64-x86_64-goocanvas \
     mingw-w64-x86_64-graphviz \

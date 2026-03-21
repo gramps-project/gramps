@@ -136,6 +136,7 @@ _hidden_imports = [
     "gi.repository.GdkPixbuf",
     "gi.repository.Gio",
     "gi.repository.GObject",
+    "gi.repository.GExiv2",
     "cairo",
     "bsddb3",
     "lxml",
