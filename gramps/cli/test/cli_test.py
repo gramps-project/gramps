@@ -136,7 +136,7 @@ class UnicodeTest(unittest.TestCase):
     # Test that clidbman will open files in a path containing
     # arbitrary Unicode characters.
     def test4_arbitrary_uncode_path(self):
-        (dbpath, title) = self.cli.create_new_db_cli(self.newtitle)
+        dbpath, title = self.cli.create_new_db_cli(self.newtitle)
 
         self.assertEqual(
             self.newpath,

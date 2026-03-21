@@ -19,6 +19,7 @@
 #
 
 """The core library of Gramps objects"""
+
 # Dates
 from .date import Date, DateError, Span
 

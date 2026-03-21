@@ -37,6 +37,7 @@ Narrative Web Page generator.
 Classe:
     SurnameListPage - Index for first letters of surname
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------

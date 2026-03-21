@@ -259,7 +259,7 @@ class ClipHandleWrapper(ClipWrapper):
     def __init__(self, obj):
         super(ClipHandleWrapper, self).__init__(obj)
         # unpack object
-        (drag_type, idval, data, val) = pickle.loads(obj)
+        drag_type, idval, data, val = pickle.loads(obj)
         if isinstance(data, dict):
             self.set_data(data)
         else:
@@ -274,7 +274,7 @@ class ClipObjWrapper(ClipWrapper):
     def __init__(self, obj):
         super(ClipObjWrapper, self).__init__(obj)
         # unpack object
-        (drag_type, idval, self._obj, val) = pickle.loads(obj)
+        drag_type, idval, self._obj, val = pickle.loads(obj)
         self._pickle = obj
 
     def pack(self):

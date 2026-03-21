@@ -34,7 +34,6 @@ _ = glocale.translation.gettext
 from ._isancestorof import IsAncestorOf
 from ._matchesfilter import MatchesFilter
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

@@ -37,6 +37,7 @@ Narrative Web Page generator.
 Classe:
     StatisticsPage
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -86,7 +87,7 @@ class StatisticsPage(BasePage):
         output_file, sio = self.report.create_file("statistics")
         result = self.write_header(_("Statistics"))
         addressbookpage, dummy_head, dummy_body, outerwrapper = result
-        (males, females, others, unknown) = self.get_gender(
+        males, females, others, unknown = self.get_gender(
             report.database.iter_person_handles()
         )
 
@@ -215,7 +216,7 @@ class StatisticsPage(BasePage):
             )
         outerwrapper += sec4
 
-        (males, females, others, unknown) = self.get_gender(
+        males, females, others, unknown = self.get_gender(
             self.report.bkref_dict[Person].keys()
         )
 

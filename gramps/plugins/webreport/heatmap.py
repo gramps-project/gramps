@@ -18,14 +18,12 @@
 #
 """Heatmap web report."""
 
-
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
 import logging
 from string import Template
 from decimal import Decimal, getcontext
-
 
 # ------------------------------------------------------------------------
 #
@@ -915,7 +913,7 @@ class HeatmapPage(BasePage):
         tracelife = "["
         if number_markers > 0:
             for index in range(0, number_markers):
-                (name, latitude, longitude, count, placetitle, events) = sorted_places[
+                name, latitude, longitude, count, placetitle, events = sorted_places[
                     index
                 ]
                 debug = 0
@@ -935,7 +933,7 @@ class HeatmapPage(BasePage):
 
                         bkref_list = self.report.bkref_dict[Event][event.handle]
                         for ref in bkref_list:
-                            (bkref_class, bkref_hdle, role) = ref
+                            bkref_class, bkref_hdle, role = ref
                             if bkref_class == Person:
                                 person = self.r_db.get_person_from_handle(bkref_hdle)
                                 links = self.__create_links_tracelife(
@@ -996,7 +994,7 @@ class HeatmapPage(BasePage):
         ppl_fct = self.r_db.get_person_from_handle
         ln_str = "<a href='%s' title='%s' target='_self'>%s</a>"
         ppl_lnk = ""
-        (bkref_class, bkref_hdle, role) = ref
+        bkref_class, bkref_hdle, role = ref
         if role == "Marriage" or role == "Divorce" or role == "Family":
             url = url_fct(bkref_hdle, "fam", self.uplink)
             fam_fct = self.r_db.get_family_from_handle

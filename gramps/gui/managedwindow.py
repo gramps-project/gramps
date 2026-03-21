@@ -630,7 +630,7 @@ class ManagedWindow:
         """
         # self.width_key is set in the subclass (or in setup_configs)
         if self.width_key is not None:
-            (width, height) = self.window.get_size()
+            width, height = self.window.get_size()
             config.set(self.width_key, width)
             config.set(self.height_key, height)
             config.save()
@@ -647,9 +647,9 @@ class ManagedWindow:
             # for part time multi monitor setups
             s_width, s_height = get_display_size(self.window)
             if horiz_position > s_width - 50 or vert_position > s_height - 50:
-                (p_width, p_height) = self.parent_window.get_size()
-                (p_horiz, p_vert) = self.parent_window.get_position()
-                (w_width, w_height) = self.window.get_size()
+                p_width, p_height = self.parent_window.get_size()
+                p_horiz, p_vert = self.parent_window.get_position()
+                w_width, w_height = self.window.get_size()
                 horiz_position = p_horiz + ((p_width - w_width) // 2)
                 vert_position = p_vert + ((p_height - w_height) // 2)
             self.window.move(horiz_position, vert_position)
@@ -662,7 +662,7 @@ class ManagedWindow:
         """
         # self.horiz_position_key is set in the subclass (or in setup_configs)
         if self.horiz_position_key is not None:
-            (horiz_position, vert_position) = self.window.get_position()
+            horiz_position, vert_position = self.window.get_position()
             config.set(self.horiz_position_key, horiz_position)
             config.set(self.vert_position_key, vert_position)
             if save_config:
@@ -696,8 +696,8 @@ class ManagedWindow:
         self.horiz_position_key = config_base + "-horiz-position"
         self.vert_position_key = config_base + "-vert-position"
         if p_width is None and p_height is None:  # default case
-            (p_width, p_height) = self.parent_window.get_size()
-            (p_horiz, p_vert) = self.parent_window.get_position()
+            p_width, p_height = self.parent_window.get_size()
+            p_horiz, p_vert = self.parent_window.get_position()
         else:
             p_horiz = p_vert = 0  # fullscreen
         if default_horiz_position is None:

@@ -3,7 +3,6 @@ from os import environ
 from sys import argv, version
 from platform import release
 
-
 bundlepath = argv[0]
 
 bundle_contents = join(bundlepath, "Contents")

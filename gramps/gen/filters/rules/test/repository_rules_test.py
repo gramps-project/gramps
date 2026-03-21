@@ -20,6 +20,7 @@
 """
 Unittest that tests repository-specific filter rules
 """
+
 import unittest
 import os
 

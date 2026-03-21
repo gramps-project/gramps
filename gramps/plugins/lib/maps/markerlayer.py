@@ -30,7 +30,6 @@ from math import pi as PI
 from gi.repository import GObject
 from gi.repository import Gdk
 
-
 # ------------------------------------------------------------------------
 #
 # Set up logging

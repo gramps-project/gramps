@@ -42,6 +42,7 @@ Classes:
     interface
 
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -1622,10 +1623,10 @@ class NavWebReport(Report):
             # remove self.target_uri
             fname = fname.replace(self.target_uri + "/", "")
             # remove the lang
-            (dummy_1_field, dummy_sep, second_field) = fname.partition("/")
+            dummy_1_field, dummy_sep, second_field = fname.partition("/")
             fname = second_field
         elif self.the_lang:
-            (first_field, dummy_sep, second_field) = fname.partition("/")
+            first_field, dummy_sep, second_field = fname.partition("/")
             if [(lang, title) for lang, title in self.languages if lang == first_field]:
                 # remove the lang
                 fname = second_field
@@ -1779,7 +1780,7 @@ class NavWebReport(Report):
                 if isinstance(subdirs, list):
                     subdirs = [val for val in subdirs if val is not None]
         elif self.the_lang:
-            (dummy_1_field, separator, second_field) = fname.partition("/")
+            dummy_1_field, separator, second_field = fname.partition("/")
             if separator == "/" and second_field[0:3] in ["ima", "thu"]:
                 fname = second_field
                 subdirs = self.build_subdirs(subdir, second_field, uplink, image)

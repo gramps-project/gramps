@@ -202,7 +202,7 @@ def _read_mem(bname):
             buf = file_.read(reclen)
             if not buf:
                 break
-            (recno, text) = struct.unpack(recfmt, buf)
+            recno, text = struct.unpack(recfmt, buf)
             mems.append([recno, text])
 
         return mems

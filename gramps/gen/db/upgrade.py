@@ -19,6 +19,7 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 """Generic upgrade module for dbapi dbs"""
+
 # ------------------------------------------------------------------------
 #
 # Python Modules
@@ -255,7 +256,7 @@ def upgrade_event_ref_list_20(event_ref_list):
     """
     new_event_ref_list = []
     for event_ref in event_ref_list:
-        (privacy, note_list, attribute_list, ref, role) = event_ref
+        privacy, note_list, attribute_list, ref, role = event_ref
         new_event_ref = (privacy, [], note_list, attribute_list, ref, role)
         new_event_ref_list.append((new_event_ref))
     return new_event_ref_list
@@ -1279,7 +1280,7 @@ def gramps_upgrade_16(self):
 def upgrade_media_list_16(self, media_list):
     new_media_list = []
     for media in media_list:
-        (privacy, source_list, note_list, attribute_list, ref, rect) = media
+        privacy, source_list, note_list, attribute_list, ref, rect = media
         new_citation_list = convert_source_list_to_citation_list_16(self, source_list)
         new_attribute_list = upgrade_attribute_list_16(self, attribute_list)
         new_media = (
@@ -1297,7 +1298,7 @@ def upgrade_media_list_16(self, media_list):
 def upgrade_attribute_list_16(self, attribute_list):
     new_attribute_list = []
     for attribute in attribute_list:
-        (privacy, source_list, note_list, the_type, value) = attribute
+        privacy, source_list, note_list, the_type, value = attribute
         new_citation_list = convert_source_list_to_citation_list_16(self, source_list)
         new_attribute = (privacy, new_citation_list, note_list, the_type, value)
         new_attribute_list.append((new_attribute))
@@ -1307,7 +1308,7 @@ def upgrade_attribute_list_16(self, attribute_list):
 def upgrade_child_ref_list_16(self, child_ref_list):
     new_child_ref_list = []
     for child_ref in child_ref_list:
-        (privacy, source_list, note_list, ref, frel, mrel) = child_ref
+        privacy, source_list, note_list, ref, frel, mrel = child_ref
         new_citation_list = convert_source_list_to_citation_list_16(self, source_list)
         new_child_ref = (privacy, new_citation_list, note_list, ref, frel, mrel)
         new_child_ref_list.append((new_child_ref))
@@ -1347,7 +1348,7 @@ def upgrade_lds_seal_list_16(self, lds_seal_list):
 def upgrade_address_list_16(self, address_list):
     new_address_list = []
     for address in address_list:
-        (privacy, source_list, note_list, date, location) = address
+        privacy, source_list, note_list, date, location = address
         new_citation_list = convert_source_list_to_citation_list_16(self, source_list)
         new_address = (privacy, new_citation_list, note_list, date, location)
         new_address_list.append((new_address))
@@ -1404,7 +1405,7 @@ def upgrade_name_16(self, name):
 def upgrade_person_ref_list_16(self, person_ref_list):
     new_person_ref_list = []
     for person_ref in person_ref_list:
-        (privacy, source_list, note_list, ref, rel) = person_ref
+        privacy, source_list, note_list, ref, rel = person_ref
         new_citation_list = convert_source_list_to_citation_list_16(self, source_list)
         new_person_ref = (privacy, new_citation_list, note_list, ref, rel)
         new_person_ref_list.append((new_person_ref))
@@ -1414,7 +1415,7 @@ def upgrade_person_ref_list_16(self, person_ref_list):
 def upgrade_event_ref_list_16(self, event_ref_list):
     new_event_ref_list = []
     for event_ref in event_ref_list:
-        (privacy, note_list, attribute_list, ref, role) = event_ref
+        privacy, note_list, attribute_list, ref, role = event_ref
         new_attribute_list = upgrade_attribute_list_16(self, attribute_list)
         new_event_ref = (privacy, note_list, new_attribute_list, ref, role)
         new_event_ref_list.append((new_event_ref))
@@ -1424,7 +1425,7 @@ def upgrade_event_ref_list_16(self, event_ref_list):
 def convert_source_list_to_citation_list_16(self, source_list):
     citation_list = []
     for source in source_list:
-        (date, private, note_list, confidence, ref, page) = source
+        date, private, note_list, confidence, ref, page = source
         new_handle = create_id()
         new_media_list = []
         new_data_map = {}
@@ -1857,7 +1858,7 @@ def gramps_upgrade_14(self):
 
         new_address_list = []
         for address in address_list:
-            (privacy, asource_list, anote_list, date, location) = address
+            privacy, asource_list, anote_list, date, location = address
             new_date = convert_date_14(date)
             new_asource_list = new_source_list_14(asource_list)
             new_address_list.append(
@@ -2027,7 +2028,7 @@ def gramps_upgrade_14(self):
 
         new_address_list = []
         for address in address_list:
-            (privacy, asource_list, anote_list, date, location) = address
+            privacy, asource_list, anote_list, date, location = address
             new_date = convert_date_14(date)
             new_asource_list = new_source_list_14(asource_list)
             new_address_list.append(
@@ -2180,7 +2181,7 @@ def gramps_upgrade_14(self):
 def new_source_list_14(source_list):
     new_source_list = []
     for source in source_list:
-        (date, private, note_list, confidence, ref, page) = source
+        date, private, note_list, confidence, ref, page = source
         new_date = convert_date_14(date)
         new_source_list.append((new_date, private, note_list, confidence, ref, page))
     return new_source_list
@@ -2189,7 +2190,7 @@ def new_source_list_14(source_list):
 def new_attribute_list_14(attribute_list):
     new_attribute_list = []
     for attribute in attribute_list:
-        (private, asource_list, note_list, the_type, value) = attribute
+        private, asource_list, note_list, the_type, value = attribute
         new_asource_list = new_source_list_14(asource_list)
         new_attribute_list.append(
             (private, new_asource_list, note_list, the_type, value)
@@ -2203,7 +2204,7 @@ def new_media_list_14(media_list):
     # ---------------------------------
     new_media_list = []
     for media in media_list:
-        (private, source_list, note_list, attribute_list, ref, role) = media
+        private, source_list, note_list, attribute_list, ref, role = media
         new_source_list = new_source_list_14(source_list)
         new_attribute_list = new_attribute_list_14(attribute_list)
         new_media_list.append(
@@ -2215,7 +2216,7 @@ def new_media_list_14(media_list):
 def new_person_ref_list_14(person_ref_list):
     new_person_ref_list = []
     for person_ref in person_ref_list:
-        (private, source_list, note_list, ref, rel) = person_ref
+        private, source_list, note_list, ref, rel = person_ref
         new_source_list = new_source_list_14(source_list)
         new_person_ref_list.append((private, new_source_list, note_list, ref, rel))
     return new_person_ref_list
@@ -2224,7 +2225,7 @@ def new_person_ref_list_14(person_ref_list):
 def new_child_ref_list_14(child_ref_list):
     new_child_ref_list = []
     for data in child_ref_list:
-        (private, source_list, note_list, ref, frel, mrel) = data
+        private, source_list, note_list, ref, frel, mrel = data
         new_source_list = new_source_list_14(source_list)
         new_child_ref_list.append(
             (private, new_source_list, note_list, ref, frel, mrel)
@@ -2234,7 +2235,7 @@ def new_child_ref_list_14(child_ref_list):
 
 def convert_date_14(date):
     if date:
-        (calendar, modifier, quality, dateval, text, sortval) = date
+        calendar, modifier, quality, dateval, text, sortval = date
         return (calendar, modifier, quality, dateval, text, sortval, 0)
     else:
         return None
@@ -2298,7 +2299,7 @@ def make_zip_backup(dirname):
     if not os.access(dirname, os.W_OK):
         LOG.warning("Can't write technical DB backup for %s", title)
         return
-    (grampsdb_path, db_code) = os.path.split(dirname)
+    grampsdb_path, db_code = os.path.split(dirname)
     dotgramps_path = os.path.dirname(grampsdb_path)
     zipname = title + time.strftime("_%Y-%m-%d_%H-%M-%S") + ".zip"
     zippath = os.path.join(dotgramps_path, zipname)

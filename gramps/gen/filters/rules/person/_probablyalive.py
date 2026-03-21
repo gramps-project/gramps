@@ -35,7 +35,6 @@ from ....utils.alive import probably_alive
 from .. import Rule
 from ....datehandler import parser
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

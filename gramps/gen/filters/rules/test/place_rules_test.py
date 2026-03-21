@@ -21,6 +21,7 @@
 """
 Unittest that tests place-specific filter rules
 """
+
 import unittest
 import os
 

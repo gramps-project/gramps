@@ -355,7 +355,7 @@ class EditNote(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        (uses_dupe_id, id) = self._uses_duplicate_id()
+        uses_dupe_id, id = self._uses_duplicate_id()
         if uses_dupe_id:
             msg1 = _("Cannot save note. ID already exists.")
             msg2 = _(

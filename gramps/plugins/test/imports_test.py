@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 """Test program for import modules"""
+
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -237,7 +238,7 @@ def db_load(zipfn, self):
     zip file.  For example the "imp_413.zip" must contain a single "imp_413" dir
     (not the usual 8 hex character name).
     """
-    (tstfile, _ext) = os.path.splitext(zipfn)
+    tstfile, _ext = os.path.splitext(zipfn)
     tstfile = os.path.join(TEMP_DIR, os.path.basename(tstfile))
     shutil.rmtree(tstfile, ignore_errors=True)
     with zipfile.ZipFile(zipfn, "r") as myzip:
@@ -395,7 +396,7 @@ if __name__ == "__main__":
 # The methods are inserted at load time into the 'TestImports' class
 # via the modules' globals, taking advantage that they are a dict.
 if _tstfile:  # single file mode
-    (fname, ext) = os.path.splitext(os.path.basename(_tstfile))
+    fname, ext = os.path.splitext(os.path.basename(_tstfile))
     test_func = make_tst_function(_tstfile, fname)
     tname = "test_" + _tstfile.replace("-", "_").replace(".", "_")
     test_func.__name__ = tname
@@ -403,7 +404,7 @@ if _tstfile:  # single file mode
     setattr(TestImports, tname, test_func)
 else:
     for _tstfile in os.listdir(TEST_DIR):
-        (fname, ext) = os.path.splitext(os.path.basename(_tstfile))
+        fname, ext = os.path.splitext(os.path.basename(_tstfile))
         if _tstfile != "SAMPLE.DEF" and (
             ext in (".gramps", ".difs", ".bak") or not fname.startswith("imp_")
         ):

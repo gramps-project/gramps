@@ -151,7 +151,7 @@ def _tishri_molad(input_day):
 
     # Calculate the time of the starting molad for this metonic cycle.
 
-    (molad_day, molad_halakim) = _molad_of_metonic_cycle(metonic_cycle)
+    molad_day, molad_halakim = _molad_of_metonic_cycle(metonic_cycle)
 
     # If the above was an under estimate, increment the cycle number until
     # the correct one is found.  For modern dates this loop is about 98.6%
@@ -216,7 +216,7 @@ def _start_of_year(year):
     """
     metonic_cycle = (year - 1) // 19
     metonic_year = (year - 1) % 19
-    (molad_day, molad_halakim) = _molad_of_metonic_cycle(metonic_cycle)
+    molad_day, molad_halakim = _molad_of_metonic_cycle(metonic_cycle)
 
     molad_halakim = molad_halakim + (
         _HBR_HALAKIM_PER_LUNAR_CYCLE * _HBR_YEAR_OFFSET[metonic_year]
@@ -328,7 +328,7 @@ def hebrew_ymd(sdn):
     input_day = sdn - _HBR_SDN_OFFSET
     # TODO if input_day <= 0, the result is a date invalid in Hebrew calendar!
 
-    (metonic_cycle, metonic_year, day1, halakim) = _tishri_molad(input_day)
+    metonic_cycle, metonic_year, day1, halakim = _tishri_molad(input_day)
     tishri1 = _tishri1(metonic_year, day1, halakim)
 
     if input_day >= tishri1:
@@ -406,7 +406,7 @@ def hebrew_ymd(sdn):
         # We need the length of the year to figure this out, so find
         # Tishri 1 of this year
         tishri1_after = tishri1
-        (metonic_cycle, metonic_year, day1, halakim) = _tishri_molad(day1 - 365)
+        metonic_cycle, metonic_year, day1, halakim = _tishri_molad(day1 - 365)
         tishri1 = _tishri1(metonic_year, day1, halakim)
 
     year_length = tishri1_after - tishri1

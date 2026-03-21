@@ -718,8 +718,7 @@ class PedigreeView(NavigationView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-        % _("Organize Bookmarks"),
+""" % _("Organize Bookmarks"),
         """
         <placeholder id='otheredit'>
         <item>

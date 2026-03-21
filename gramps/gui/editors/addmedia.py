@@ -205,7 +205,7 @@ class AddMedia(ManagedWindow):
             return
         filename = fname
         basename = os.path.basename(filename)
-        (root, ext) = os.path.splitext(basename)
+        root, ext = os.path.splitext(basename)
         old_title = self.description.get_text()
 
         if old_title == "" or old_title == self.temp_name:

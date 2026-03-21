@@ -383,7 +383,7 @@ class RelGraphReport(Report):
             p_id = person.get_gramps_id()
             # Output the person's node
             label = self.get_person_label(person)
-            (shape, style, color, fill) = self.get_gender_style(person)
+            shape, style, color, fill = self.get_gender_style(person)
             url = ""
             if self.includeurl:
                 phan = person_handle
@@ -720,7 +720,7 @@ class RelGraphReport(Report):
         if self.increlname and self.center_person != person:
             # display relationship info
             if self.advrelinfo:
-                (relationship, _ga, _gb) = self.rel_calc.get_one_relationship(
+                relationship, _ga, _gb = self.rel_calc.get_one_relationship(
                     self._db,
                     self.center_person,
                     person,

@@ -22,6 +22,7 @@
 """
 Geography for places
 """
+
 # -------------------------------------------------------------------------
 #
 # Python modules
@@ -99,8 +100,7 @@ _UI_DEF = [
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-    % _("Organize Bookmarks"),  # Following are the Toolbar items
+""" % _("Organize Bookmarks"),  # Following are the Toolbar items
     """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>

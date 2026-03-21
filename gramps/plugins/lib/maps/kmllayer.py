@@ -103,7 +103,7 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         The access right and validity must be verified before this method.
         """
         self.kml = Kml(kml_file)
-        (paths, polygons) = self.kml.add_kml()
+        paths, polygons = self.kml.add_kml()
         if paths != []:
             self.paths.append(paths)
         if polygons != []:
@@ -119,11 +119,11 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         color2.parse("blue")
         for polygons in self.polygons:
             for polygon in polygons:
-                (dummy_name, ptype, dummy_color, dummy_transparency, points) = polygon
+                dummy_name, ptype, dummy_color, dummy_transparency, points = polygon
                 map_points = []
                 for point in points:
                     conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
-                    (coord_x, coord_y) = gpsmap.convert_geographic_to_screen(conv_pt)
+                    coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
                     map_points.append((coord_x, coord_y))
                 first = True
                 ctx.save()
@@ -150,11 +150,11 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
                 ctx.restore()
         for paths in self.paths:
             for path in paths:
-                (dummy_name, ptype, dummy_color, dummy_transparency, points) = path
+                dummy_name, ptype, dummy_color, dummy_transparency, points = path
                 map_points = []
                 for point in points:
                     conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
-                    (coord_x, coord_y) = gpsmap.convert_geographic_to_screen(conv_pt)
+                    coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
                     map_points.append((coord_x, coord_y))
                 first = True
                 ctx.save()

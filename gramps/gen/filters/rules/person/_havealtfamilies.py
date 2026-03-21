@@ -34,7 +34,6 @@ _ = glocale.translation.gettext
 from .. import Rule
 from ....lib.childreftype import ChildRefType
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

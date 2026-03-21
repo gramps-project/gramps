@@ -20,6 +20,7 @@
 """
 Provide a simplified database access interface to the Gramps database.
 """
+
 from ..plug.docgen import (
     StyleSheet,
     ParagraphStyle,

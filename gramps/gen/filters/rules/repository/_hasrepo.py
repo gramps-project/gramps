@@ -38,7 +38,6 @@ from .. import Rule
 from ....lib import Repository
 from ....db import Database
 
-
 _ = glocale.translation.sgettext
 
 

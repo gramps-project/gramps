@@ -368,7 +368,7 @@ class EditCitation(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        (uses_dupe_id, gramps_id) = self._uses_duplicate_id()
+        uses_dupe_id, gramps_id = self._uses_duplicate_id()
         if uses_dupe_id:
             prim_object = self.get_from_gramps_id(gramps_id)
             name = prim_object.get_page()

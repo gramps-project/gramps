@@ -319,11 +319,11 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
         prefix = str(id(self))
         # get custom ui and actions
-        (ui_top, actions) = self._top_contextmenu(prefix)
+        ui_top, actions = self._top_contextmenu(prefix)
         # see which quick reports are available now:
         ui_qr = ""
         if self.QR_CATEGORY > -1:
-            (ui_qr, reportactions) = create_quickreport_menu(
+            ui_qr, reportactions = create_quickreport_menu(
                 self.QR_CATEGORY,
                 self.dbstate,
                 self.uistate,

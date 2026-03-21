@@ -61,6 +61,7 @@
 """
 Turkish-specific classes for relationships.
 """
+
 # --------------------------------------------------------------------------------
 #
 # Gramps modules

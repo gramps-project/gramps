@@ -102,9 +102,9 @@ class Kml(GObject.GObject):
         self.points = []
         for point in attributes.text.split():
             try:
-                (longitude, latitude, dummy_altitude) = point.split(",")
+                longitude, latitude, dummy_altitude = point.split(",")
             except:
-                (longitude, latitude) = point.split(",")
+                longitude, latitude = point.split(",")
             self.points.append((float(latitude), float(longitude)))
 
     def get_linear_ring(self, attributes):

@@ -567,7 +567,7 @@ def sort_places(dbase, handle_list, rlocale=glocale):
     for place_name in handle_list.keys():
         cname = sname = None
         if len(handle_list[place_name]) == 6:
-            (hdle, pname, cname, sname, dummy_id, event) = handle_list[place_name]
+            hdle, pname, cname, sname, dummy_id, event = handle_list[place_name]
         else:
             continue
         place = dbase.get_place_from_handle(hdle)

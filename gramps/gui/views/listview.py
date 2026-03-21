@@ -362,7 +362,7 @@ class ListView(NavigationView):
                 try:
                     self.model.rebuild_data()
                 except FilterError as msg:
-                    (msg1, msg2) = msg.messages()
+                    msg1, msg2 = msg.messages()
                     ErrorDialog(msg1, msg2, parent=self.uistate.window)
 
             cput1 = perf_counter()
@@ -1062,7 +1062,7 @@ class ListView(NavigationView):
             actions = []
             # Quick Reports
             if self.QR_CATEGORY != CATEGORY_QR_MISC:
-                (qr_ui, qr_actions) = create_quickreport_menu(
+                qr_ui, qr_actions = create_quickreport_menu(
                     self.QR_CATEGORY,
                     self.dbstate,
                     self.uistate,
@@ -1076,7 +1076,7 @@ class ListView(NavigationView):
 
             # Web Connects
             if self.QR_CATEGORY != CATEGORY_QR_MISC:
-                (web_ui, web_actions) = create_web_connect_menu(
+                web_ui, web_actions = create_web_connect_menu(
                     self.dbstate,
                     self.uistate,
                     self.navigation_type(),

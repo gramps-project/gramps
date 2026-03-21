@@ -751,10 +751,10 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 )
                 if flipped:
                     middle = start * split_frac_line1 + stop * (1.0 - split_frac_line1)
-                    (a11, a12, a21, a22) = (middle, stop, start, middle)
+                    a11, a12, a21, a22 = (middle, stop, start, middle)
                 else:
                     middle = start * (1.0 - split_frac_line1) + stop * split_frac_line1
-                    (a11, a12, a21, a22) = (start, middle, middle, stop)
+                    a11, a12, a21, a22 = (start, middle, middle, stop)
                 written_textwidth = self.draw_text(
                     ctx,
                     text_line1,
@@ -1280,7 +1280,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         return the x and y position for the center of the canvas
         """
         alloc = self.get_allocation()
-        (dummy_x, dummy_y, width, height) = alloc.x, alloc.y, alloc.width, alloc.height
+        dummy_x, dummy_y, width, height = alloc.x, alloc.y, alloc.width, alloc.height
         if delta is None:
             delta = self.center_delta_xy
         if self.form == FORM_CIRCLE:
@@ -1373,7 +1373,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
 
         if radius < self.CENTER:
             if sel_data and sel_data.get_data():
-                (dummy_drag_type, dummy_idval, handle, dummy_val) = pickle.loads(
+                dummy_drag_type, dummy_idval, handle, dummy_val = pickle.loads(
                     sel_data.get_data()
                 )
                 self.goto(self, handle)
@@ -1639,7 +1639,7 @@ class FanChartWidget(FanChartBaseWidget):
         a generator over all people inside of the core person
         """
         for childdata in self.childrenroot:
-            (person, dummy_parents, dummy_child, userdata) = childdata
+            person, dummy_parents, dummy_child, userdata = childdata
             yield (person, userdata)
 
     def draw(self, ctx=None, scale=1.0):
@@ -1692,7 +1692,7 @@ class FanChartWidget(FanChartBaseWidget):
                 if person:
                     start, stop, state = self.angle[generation][idx]
                     if state in [NORMAL, EXPANDED]:
-                        (radiusin, radiusout) = self.get_radiusinout_for_gen(generation)
+                        radiusin, radiusout = self.get_radiusinout_for_gen(generation)
                         dup = False
                         indicator = generation == self.generations - 1 and parents
                         self.draw_person(
@@ -1710,7 +1710,7 @@ class FanChartWidget(FanChartBaseWidget):
                         )
         ctx.restore()
         # Draw center person:
-        (person, parents, child, userdata) = self.data[0][0]
+        person, parents, child, userdata = self.data[0][0]
         if person:
             radiusin, radiusout = self.get_radiusinout_for_gen(0)
             if not child:
@@ -1759,7 +1759,7 @@ class FanChartWidget(FanChartBaseWidget):
         else:
             angleinc = 2 * math.pi / nrchild
         for childdata in self.childrenroot:
-            (person, dummy_parents, dummy_child, userdata) = childdata
+            person, dummy_parents, dummy_child, userdata = childdata
             self.draw_innerring(ctx, person, userdata, startangle, angleinc)
             startangle += angleinc
 

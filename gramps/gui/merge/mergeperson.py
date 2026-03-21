@@ -240,7 +240,7 @@ class MergePerson(ManagedWindow):
         if len(plist) > 0:
             self.add(tobj, title, _("Parents"))
             for fid in person.get_parent_family_handle_list():
-                (fname, mname, gid) = self.get_parent_info(fid)
+                fname, mname, gid = self.get_parent_info(fid)
                 self.add(tobj, normal, KEYVAL % {"key": _("Family ID"), "value": gid})
                 if fname:
                     self.add(
@@ -257,7 +257,7 @@ class MergePerson(ManagedWindow):
         slist = person.get_family_handle_list()
         if len(slist) > 0:
             for fid in slist:
-                (fname, mname, pid) = self.get_parent_info(fid)
+                fname, mname, pid = self.get_parent_info(fid)
                 family = self.database.get_family_from_handle(fid)
                 self.add(tobj, normal, KEYVAL % {"key": _("Family ID"), "value": pid})
                 spouse_id = utils.find_spouse(person, family)

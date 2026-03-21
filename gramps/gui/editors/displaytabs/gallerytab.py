@@ -570,14 +570,14 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         sel_list.append(pickle.loads(ret))
 
                 for sel in sel_list:
-                    (mytype, selfid, obj, row_from) = sel
+                    mytype, selfid, obj, row_from = sel
 
                     # make sure this is the correct DND type for this object
                     if mytype == self._DND_TYPE.drag_type:
                         # determine the destination row
                         data = self.iconlist.get_dest_item_at_pos(x, y)
                         if data:
-                            (path, pos) = data
+                            path, pos = data
                             row = path.get_indices()[0]
                             if pos == Gtk.IconViewDropPosition.DROP_LEFT:
                                 row = max(row, 0)
@@ -623,7 +623,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         photo.set_path(name)
                         photo.set_mime_type(mime)
                         basename = os.path.basename(name)
-                        (root, ext) = os.path.splitext(basename)
+                        root, ext = os.path.splitext(basename)
                         photo.set_description(root)
                         with DbTxn(_("Drag Media Object"), self.dbstate.db) as trans:
                             self.dbstate.db.add_media(photo, trans)

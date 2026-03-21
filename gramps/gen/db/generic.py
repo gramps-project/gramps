@@ -208,7 +208,7 @@ class DbGenericUndo(DbUndo):
         try:
             self.db._txn_begin()
             for record_id in subitems:
-                (key, trans_type, handle, __, new_data) = pickle.loads(
+                key, trans_type, handle, __, new_data = pickle.loads(
                     self.undodb[record_id]
                 )
 
@@ -257,7 +257,7 @@ class DbGenericUndo(DbUndo):
         try:
             self.db._txn_begin()
             for record_id in subitems:
-                (key, trans_type, handle, old_data, x) = pickle.loads(
+                key, trans_type, handle, old_data, x = pickle.loads(
                     self.undodb[record_id]
                 )
 

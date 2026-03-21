@@ -49,7 +49,6 @@ _ = glocale.translation.gettext
 from ...utils import is_right_click
 from .buttontab import ButtonTab
 
-
 # ----------------------------------------------------------------
 #
 # Constants
@@ -273,7 +272,7 @@ class EmbeddedList(ButtonTab):
             else:
                 data = [data]
             for value in data:
-                (mytype, selfid, obj, row_from) = value
+                mytype, selfid, obj, row_from = value
 
                 # make sure this is the correct DND type for this object
                 if mytype == self._DND_TYPE.drag_type:
@@ -434,7 +433,7 @@ class EmbeddedList(ButtonTab):
         to indicate what the returned value should be. If no selection
         has been made, None is returned.
         """
-        (model, node) = self.selection.get_selected()
+        model, node = self.selection.get_selected()
         if node:
             return model.get_value(node, self._HANDLE_COL)
         return None
@@ -595,7 +594,7 @@ class EmbeddedList(ButtonTab):
         offset = self.tree.get_visible_rect()
         # during rebuild, don't do _selection_changed
         self.dirty_selection = True
-        (model, node) = self.selection.get_selected()
+        model, node = self.selection.get_selected()
         selectedpath = None
         if node:
             selectedpath = model.get_path(node)

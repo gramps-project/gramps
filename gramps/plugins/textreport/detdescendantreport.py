@@ -77,7 +77,6 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.proxy import CacheProxyDb
 
-
 # ------------------------------------------------------------------------
 #
 # Constants

@@ -155,7 +155,7 @@ class DocReportDialog(ReportDialog):
         ext_val = docgen_plugin.get_extension()
         if ext_val:
             fname = self.target_fileentry.get_full_path(0)
-            (spath, ext) = os.path.splitext(fname)
+            spath, ext = os.path.splitext(fname)
 
             fname = spath + "." + ext_val
             self.target_fileentry.set_filename(fname)

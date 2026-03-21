@@ -127,9 +127,7 @@ xmlns:form="%(urn)sform:1.0"
 xmlns:script="%(urn)sscript:1.0"
 xmlns:dom="http://www.w3.org/2001/xml-events"
 xmlns:xforms="http://www.w3.org/2002/xforms"
-""" % {
-    "urn": "urn:oasis:names:tc:opendocument:xmlns:"
-}
+""" % {"urn": "urn:oasis:names:tc:opendocument:xmlns:"}
 
 _FONTS = """\
 <style:font-face style:name="Courier"
@@ -993,7 +991,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
         # try to open the image. If the open fails, it probably wasn't
         # a valid image (could be a PDF, or a non-image)
-        (x, y) = image_size(file_name)
+        x, y = image_size(file_name)
         if (x, y) == (0, 0):
             return
 
@@ -1015,11 +1013,11 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         pos = pos.title() if pos in ["left", "right", "single"] else "Row"
 
         if crop:
-            (start_x, start_y, end_x, end_y) = crop_percentage_to_subpixel(x, y, crop)
+            start_x, start_y, end_x, end_y = crop_percentage_to_subpixel(x, y, crop)
 
             # Need to keep the ratio intact, otherwise scaled images look
             # stretched if the dimensions aren't close in size
-            (act_width, act_height) = image_actual_size(
+            act_width, act_height = image_actual_size(
                 x_cm, y_cm, int(end_x - start_x), int(end_y - start_y)
             )
 
@@ -1037,7 +1035,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             pos += "_" + str(crop)
 
         else:
-            (act_width, act_height) = image_actual_size(x_cm, y_cm, x, y)
+            act_width, act_height = image_actual_size(x_cm, y_cm, x, y)
 
         if len(alt):
             self.cntnt.write(

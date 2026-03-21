@@ -34,7 +34,6 @@ _ = glocale.translation.gettext
 from .. import Rule
 from ....lib.person import Person
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

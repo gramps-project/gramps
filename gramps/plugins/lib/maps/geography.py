@@ -1127,9 +1127,9 @@ class GeoGraphyView(OsmGps, NavigationView):
                 kml.destroy()
 
                 def init_place(place):
-                    (name, coords) = place
+                    name, coords = place
                     latlong = coords.pop()
-                    (lat, lon) = latlong
+                    lat, lon = latlong
                     place_name = PlaceName()
                     place_name.set_value(name)
                     new_place = Place()

@@ -259,7 +259,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
         if degree == 0 and removed < 0:
             # for descendants the "in-law" logic is reversed
-            (in_law_a, in_law_b) = (in_law_b, in_law_a)
+            in_law_a, in_law_b = (in_law_b, in_law_a)
 
         rel_str = ""
         pre = ""

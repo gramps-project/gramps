@@ -1165,7 +1165,7 @@ class EditFamily(EditPrimary):
         for i in self.hidden:
             i.set_sensitive(True)
         if sel_data and sel_data.get_data():
-            (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+            drag_type, idval, handle, val = pickle.loads(sel_data.get_data())
             person = self.db.get_person_from_handle(handle)
 
             if person:
@@ -1184,7 +1184,7 @@ class EditFamily(EditPrimary):
         for i in self.hidden:
             i.set_sensitive(True)
         if sel_data and sel_data.get_data():
-            (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+            drag_type, idval, handle, val = pickle.loads(sel_data.get_data())
             person = self.db.get_person_from_handle(handle)
 
             if person:
@@ -1253,7 +1253,7 @@ class EditFamily(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        (uses_dupe_id, id) = self._uses_duplicate_id()
+        uses_dupe_id, id = self._uses_duplicate_id()
         if uses_dupe_id:
             msg1 = _("Cannot save family. ID already exists.")
             msg2 = _(

@@ -1307,7 +1307,7 @@ class TestcaseGenerator(tool.BatchTool):
         # Family : EventRef
         evt = Event()
         evt.set_type(EventType.MARRIAGE)
-        (dummy, date) = self.rand_date()
+        dummy, date = self.rand_date()
         evt.set_date_object(date)
         evt.set_description(message)
         event_h = self.db.add_event(evt, self.trans)
@@ -1374,7 +1374,7 @@ class TestcaseGenerator(tool.BatchTool):
         # Person : EventRef
         evt = Event()
         evt.set_type(EventType.ELECTED)
-        (dummy, dat) = self.rand_date()
+        dummy, dat = self.rand_date()
         evt.set_date_object(dat)
         evt.set_description(message)
         event_h = self.db.add_event(evt, self.trans)
@@ -1477,7 +1477,7 @@ class TestcaseGenerator(tool.BatchTool):
 
         # Name
         name = Name()
-        (firstname, lastname) = self.rand_name(lastname, gender)
+        firstname, lastname = self.rand_name(lastname, gender)
         name.set_first_name(firstname)
         surname = Surname()
         surname.set_surname(lastname)
@@ -1551,31 +1551,31 @@ class TestcaseGenerator(tool.BatchTool):
 
         # birth
         if _randint(0, 1) == 1:
-            (dummy, eref) = self.rand_personal_event(EventType.BIRTH, b_y, b_y)
+            dummy, eref = self.rand_personal_event(EventType.BIRTH, b_y, b_y)
             pers.set_birth_ref(eref)
 
         # baptism
         if _randint(0, 1) == 1:
-            (dummy, eref) = self.rand_personal_event(
+            dummy, eref = self.rand_personal_event(
                 _choice((EventType.BAPTISM, EventType.CHRISTEN)), b_y, b_y + 2
             )
             pers.add_event_ref(eref)
 
         # death
         if _randint(0, 1) == 1:
-            (dummy, eref) = self.rand_personal_event(EventType.DEATH, d_y, d_y)
+            dummy, eref = self.rand_personal_event(EventType.DEATH, d_y, d_y)
             pers.set_death_ref(eref)
 
         # burial
         if _randint(0, 1) == 1:
-            (dummy, eref) = self.rand_personal_event(
+            dummy, eref = self.rand_personal_event(
                 _choice((EventType.BURIAL, EventType.CREMATION)), d_y, d_y + 2
             )
             pers.add_event_ref(eref)
 
         # some other events
         while _randint(0, 5) == 1:
-            (dummy, eref) = self.rand_personal_event(None, b_y, d_y)
+            dummy, eref = self.rand_personal_event(None, b_y, d_y)
             pers.add_event_ref(eref)
 
         # some shared events
@@ -1627,7 +1627,7 @@ class TestcaseGenerator(tool.BatchTool):
             return
         alive_in_year = None
         if person1_h in self.person_dates:
-            (born, died) = self.person_dates[person1_h]
+            born, died = self.person_dates[person1_h]
             alive_in_year = min(born + _randint(10, 50), died + _randint(-10, 10))
 
         if person1.get_gender() == 1:
@@ -1665,13 +1665,13 @@ class TestcaseGenerator(tool.BatchTool):
 
         # Generate at least one family event with a probability of 75%
         if _randint(0, 3) > 0:
-            (dummy, eref) = self.rand_family_event(None)
+            dummy, eref = self.rand_family_event(None)
             fam.add_event_ref(eref)
             event_set.add(eref.get_reference_handle())
 
         # generate some more events with a lower probability
         while _randint(0, 3) == 1:
-            (dummy, eref) = self.rand_family_event(None)
+            dummy, eref = self.rand_family_event(None)
             if eref.get_reference_handle() in event_set:
                 continue
             fam.add_event_ref(eref)
@@ -1717,7 +1717,7 @@ class TestcaseGenerator(tool.BatchTool):
                 )
             else:
                 child_h = self.generate_person(None, lastname)
-                (born, died) = self.person_dates[child_h]
+                born, died = self.person_dates[child_h]
                 alive_in_year = born
             fam = self.db.get_family_from_handle(fam_h)
             child_ref = ChildRef()
@@ -1744,7 +1744,7 @@ class TestcaseGenerator(tool.BatchTool):
 
         lastname = child.get_primary_name().get_surname()
         if child_h in self.person_dates:
-            (born, dummy) = self.person_dates[child_h]
+            born, dummy = self.person_dates[child_h]
             person1_h = self.generate_person(1, lastname, alive_in_year=born)
             person2_h = self.generate_person(0, alive_in_year=born)
         else:
@@ -1899,7 +1899,7 @@ class TestcaseGenerator(tool.BatchTool):
 
         if issubclass(obj.__class__, DateBase):
             if _randint(0, 1) == 1:
-                (dummy, dat) = self.rand_date()
+                dummy, dat = self.rand_date()
                 obj.set_date_object(dat)
 
         if isinstance(obj, Event):
@@ -2158,7 +2158,7 @@ class TestcaseGenerator(tool.BatchTool):
         evt = Event()
         self.fill_object(evt)
         evt.set_type(e_type)
-        (year, dat) = self.rand_date(start, end)
+        year, dat = self.rand_date(start, end)
         evt.set_date_object(dat)
         event_h = self.db.add_event(evt, self.trans)
         self.generated_events.append(event_h)

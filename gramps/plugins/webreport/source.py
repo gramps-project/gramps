@@ -37,6 +37,7 @@ Narrative Web Page generator.
 Classe:
     SourcePage - Source index page and individual Source pages
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------

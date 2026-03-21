@@ -35,7 +35,6 @@ _ = glocale.translation.sgettext
 from .. import Rule
 from ....lib.nameorigintype import NameOriginType
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

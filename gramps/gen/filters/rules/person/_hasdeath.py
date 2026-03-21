@@ -37,7 +37,6 @@ from ....lib.eventroletype import EventRoleType
 from ....lib.eventtype import EventType
 from .. import Rule
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

@@ -19,6 +19,7 @@
 """
 Hebrew-specific classes for relationships.
 """
+
 # -------------------------------------------------------------------------
 #
 # Python modules

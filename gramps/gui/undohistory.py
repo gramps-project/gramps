@@ -126,7 +126,7 @@ class UndoHistory(ManagedWindow):
         self.show()
 
     def _selection_changed(self, obj):
-        (model, node) = self.selection.get_selected()
+        model, node = self.selection.get_selected()
         if not node or len(self.model) == 1:
             return
         path = self.model.get_path(node).get_indices()
@@ -148,7 +148,7 @@ class UndoHistory(ManagedWindow):
 
     def _paint_rows(self, start, end, selected=False):
         if selected:
-            (fg, bg) = get_colors(self.tree, Gtk.StateFlags.SELECTED)
+            fg, bg = get_colors(self.tree, Gtk.StateFlags.SELECTED)
         else:
             fg = bg = ""
 
@@ -163,7 +163,7 @@ class UndoHistory(ManagedWindow):
 
         elif response_id == Gtk.ResponseType.REJECT:
             # Undo the selected entries
-            (model, node) = self.selection.get_selected()
+            model, node = self.selection.get_selected()
             if not node:
                 return
             path = self.model.get_path(node).get_indices()
@@ -172,7 +172,7 @@ class UndoHistory(ManagedWindow):
 
         elif response_id == Gtk.ResponseType.ACCEPT:
             # Redo the selected entries
-            (model, node) = self.selection.get_selected()
+            model, node = self.selection.get_selected()
             if not node:
                 return
             path = self.model.get_path(node).get_indices()

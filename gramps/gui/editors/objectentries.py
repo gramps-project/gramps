@@ -225,7 +225,7 @@ class ObjEntry:
         pass
 
     def drag_data_received(self, widget, context, x, y, selection, info, time):
-        (drag_type, idval, obj, val) = pickle.loads(selection.get_data())
+        drag_type, idval, obj, val = pickle.loads(selection.get_data())
         data = self.get_from_handle(obj)
         self.obj_added(data)
 

@@ -21,6 +21,7 @@
 """
 Rule that checks for a family that is a descendant of a specified family.
 """
+
 # -------------------------------------------------------------------------
 #
 # Standard python modules
@@ -44,7 +45,6 @@ from ....const import GRAMPS_LOCALE as glocale
 from typing import Set
 from ....lib import Family
 from ....db import Database
-
 
 _ = glocale.translation.gettext
 

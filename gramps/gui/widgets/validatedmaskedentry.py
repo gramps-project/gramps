@@ -64,9 +64,9 @@ from gramps.gen.constfunc import is_quartz
 #
 # ============================================================================
 
-(DIRECTION_LEFT, DIRECTION_RIGHT) = (1, -1)
+DIRECTION_LEFT, DIRECTION_RIGHT = (1, -1)
 
-(INPUT_ASCII_LETTER, INPUT_ALPHA, INPUT_ALPHANUMERIC, INPUT_DIGIT) = list(range(4))
+INPUT_ASCII_LETTER, INPUT_ALPHA, INPUT_ALPHANUMERIC, INPUT_DIGIT = list(range(4))
 
 INPUT_FORMATS = {
     "0": INPUT_DIGIT,
@@ -88,7 +88,7 @@ INPUT_CHAR_MAP = {
     INPUT_DIGIT: str.isdigit,
 }
 
-(COL_TEXT, COL_OBJECT) = list(range(2))
+COL_TEXT, COL_OBJECT = list(range(2))
 
 
 class MaskedEntry(UndoableEntry):

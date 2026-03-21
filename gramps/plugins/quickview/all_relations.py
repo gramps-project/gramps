@@ -22,6 +22,7 @@
 """
 Display a person's relations to the home person
 """
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules

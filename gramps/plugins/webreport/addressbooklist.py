@@ -37,6 +37,7 @@ Narrative Web Page generator.
 Classe:
     AddressBookListPage
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------

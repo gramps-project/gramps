@@ -296,7 +296,7 @@ class WhatNextGramplet(Gramplet):
                 new_ancestor_group_2 = []
                 new_family_group = []
                 for person in ancestor_group:
-                    (father, mother, family) = self.__get_parents(person)
+                    father, mother, family = self.__get_parents(person)
                     if family is UnknownFamily:
                         self.__missing_parents(person)
                     elif family is not None:

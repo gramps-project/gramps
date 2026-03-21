@@ -210,7 +210,7 @@ class GraphReportDialog(ReportDialog, metaclass=ABCMeta):
         self.open_with_app.set_sensitive(True)
 
         fname = self.target_fileentry.get_full_path(0)
-        (spath, ext) = os.path.splitext(fname)
+        spath, ext = os.path.splitext(fname)
 
         ext_val = obj.get_ext()
         if ext_val:

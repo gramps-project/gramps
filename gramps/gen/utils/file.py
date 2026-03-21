@@ -127,8 +127,8 @@ def relative_path(original, base):
 
     # If the db_dir and obj_dir are on different drives (win only)
     # then there cannot be a relative path. Return original obj_path
-    (base_drive, base) = os.path.splitdrive(base)
-    (orig_drive, orig_name) = os.path.splitdrive(original)
+    base_drive, base = os.path.splitdrive(base)
+    orig_drive, orig_name = os.path.splitdrive(original)
     if base_drive.upper() != orig_drive.upper():
         return original
 
