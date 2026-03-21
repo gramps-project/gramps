@@ -7,6 +7,6 @@
 
 from PyInstaller.utils.hooks.gi import GiModuleInfo
 
-module_info = GiModuleInfo('GExiv2', '0.10')
+module_info = GiModuleInfo("GExiv2", "0.10")
 if module_info.available:
     binaries, datas, hiddenimports = module_info.collect_typelib_data()
