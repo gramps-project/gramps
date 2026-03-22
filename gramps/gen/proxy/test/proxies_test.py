@@ -30,6 +30,7 @@ from ...db.utils import import_as_dict
 from ...const import TEST_DIR
 from ...user import User
 from ...lib.person import Person
+from ...lib.date import Date
 from ...lib.json_utils import remove_object
 from ...filters import GenericFilter
 from ...filters.rules.person import Everyone, HasIdOf
@@ -42,10 +43,16 @@ EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 PRIVATE_PERSON = "0GDKQC54XKSWZKEBWW"  # private person (I0988)
 NORMAL_PERSON = "0FWJQCLYEP736P3YZK"  # non-private person (I0122)
 PERSON_WITH_PRIVATE_ATTRS = "GNUJQCL9MD64AM56OH"  # has 3 attrs, 1 private
-LIVE_PERSON = "030KQCA8ZLPDRK6PP8"  # living in 2006, has events (I0342)
-DEAD_PERSON = "66TJQC6CC7ZWL9YZ64"  # deceased before 2006
+LIVING_PERSON = "030KQCA8ZLPDRK6PP8"  # living on Jan 1 2026 (hidden in EXCLUDE_ALL, restricted in other modes) (I0342)
+DEAD_PERSON = "66TJQC6CC7ZWL9YZ64"  # deceased well before 2026
+NOT_HIDDEN_PERSON = "01LKQC3FMJR76T7IMG"  # not living on Jan 1 2026, included (I1370)
 FAMILY_WITH_PRIVATE_FATHER = "NSVJQC89IHEEBIPDP2"  # private person is father
 FAMILY_WITH_LIVING_PARENT = "05XJQC935HU62H3KL4"  # living parent, has events
+
+# Reference date used by all living-proxy tests — passed as current_year so
+# that both the proxy comparison date and probably_alive_range's internal
+# Today() cap are deterministic.
+LIVING_DATE = Date(2026, 1, 1)
 
 
 class PrivateProxyTest(unittest.TestCase):
@@ -159,18 +166,12 @@ class LivingProxyExcludeTest(unittest.TestCase):
         cls.db = LivingProxyDb(
             import_as_dict(EXAMPLE, User()),
             mode=LivingProxyDb.MODE_EXCLUDE_ALL,
-            current_year=2006,
+            current_year=LIVING_DATE,
             years_after_death=10,
         )
 
     def test_person_count(self):
-        # probably_alive_range() uses Today() internally, so the exact count
-        # shifts as real time advances. Assert only that the proxy hides at
-        # least some people and never more than the total.
-        raw_total = self.db.basedb.get_number_of_people()
-        count = self.db.get_number_of_people()
-        self.assertGreater(raw_total, count)
-        self.assertGreater(count, 0)
+        self.assertEqual(self.db.get_number_of_people(), 1351)
 
     def test_dead_person_data_is_none(self):
         data = self.db.get_raw_person_data(DEAD_PERSON)
@@ -216,23 +217,23 @@ class LivingProxyLastNameOnlyTest(unittest.TestCase):
         cls.db = LivingProxyDb(
             import_as_dict(EXAMPLE, User()),
             mode=LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
-            current_year=2006,
+            current_year=LIVING_DATE,
             years_after_death=10,
         )
 
     def test_living_person_given_name_replaced(self):
         # Given name is replaced with [Living], surname kept
-        person = self.db.get_person_from_handle(LIVE_PERSON)
+        person = self.db.get_person_from_handle(LIVING_PERSON)
         self.assertIsNotNone(person)
         self.assertEqual(person.primary_name.first_name, "[Living]")
         self.assertEqual(person.primary_name.surname_list[0].surname, "Floyd")
 
     def test_living_person_events_cleared(self):
-        person = self.db.get_person_from_handle(LIVE_PERSON)
+        person = self.db.get_person_from_handle(LIVING_PERSON)
         self.assertEqual(len(person.event_ref_list), 0)
 
     def test_living_person_alt_names_cleared(self):
-        person = self.db.get_person_from_handle(LIVE_PERSON)
+        person = self.db.get_person_from_handle(LIVING_PERSON)
         self.assertEqual(len(person.alternate_names), 0)
 
     def test_dead_person_name_unchanged(self):
@@ -260,22 +261,22 @@ class LivingProxyFullNameOnlyTest(unittest.TestCase):
         cls.db = LivingProxyDb(
             import_as_dict(EXAMPLE, User()),
             mode=LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
-            current_year=2006,
+            current_year=LIVING_DATE,
             years_after_death=10,
         )
 
     def test_living_person_name_intact(self):
-        person = self.db.get_person_from_handle(LIVE_PERSON)
+        person = self.db.get_person_from_handle(LIVING_PERSON)
         self.assertIsNotNone(person)
         self.assertEqual(person.primary_name.first_name, "Christopher Randall")
         self.assertEqual(person.primary_name.surname_list[0].surname, "Floyd")
 
     def test_living_person_events_cleared(self):
-        person = self.db.get_person_from_handle(LIVE_PERSON)
+        person = self.db.get_person_from_handle(LIVING_PERSON)
         self.assertEqual(len(person.event_ref_list), 0)
 
     def test_living_person_alt_names_cleared(self):
-        person = self.db.get_person_from_handle(LIVE_PERSON)
+        person = self.db.get_person_from_handle(LIVING_PERSON)
         self.assertEqual(len(person.alternate_names), 0)
 
     def test_person_count_same_as_raw(self):
@@ -293,18 +294,18 @@ class LivingProxyReplaceNameTest(unittest.TestCase):
         cls.db = LivingProxyDb(
             import_as_dict(EXAMPLE, User()),
             mode=LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
-            current_year=2006,
+            current_year=LIVING_DATE,
             years_after_death=10,
         )
 
     def test_living_person_both_names_replaced(self):
-        person = self.db.get_person_from_handle(LIVE_PERSON)
+        person = self.db.get_person_from_handle(LIVING_PERSON)
         self.assertIsNotNone(person)
         self.assertEqual(person.primary_name.first_name, "[Living]")
         self.assertEqual(person.primary_name.surname_list[0].surname, "[Living]")
 
     def test_living_person_events_cleared(self):
-        person = self.db.get_person_from_handle(LIVE_PERSON)
+        person = self.db.get_person_from_handle(LIVING_PERSON)
         self.assertEqual(len(person.event_ref_list), 0)
 
     def test_person_count_same_as_raw(self):
@@ -322,19 +323,12 @@ class LivingPrivateProxyTest(unittest.TestCase):
         cls.db = LivingProxyDb(
             PrivateProxyDb(import_as_dict(EXAMPLE, User())),
             mode=LivingProxyDb.MODE_EXCLUDE_ALL,
-            current_year=2006,
+            current_year=LIVING_DATE,
             years_after_death=10,
         )
 
     def test_person_count(self):
-        # probably_alive_range() uses Today() internally, so the exact count
-        # shifts as real time advances. Assert only that both the private and
-        # living filters are applied: count must be less than the private-only
-        # proxy count and greater than zero.
-        private_only = self.db.db.get_number_of_people()  # PrivateProxyDb layer
-        count = self.db.get_number_of_people()
-        self.assertGreater(private_only, count)
-        self.assertGreater(count, 0)
+        self.assertEqual(self.db.get_number_of_people(), 1350)
 
     def test_private_person_hidden(self):
         person = self.db.get_person_from_handle(PRIVATE_PERSON)
@@ -481,7 +475,7 @@ class IsFilterOverrideTest(unittest.TestCase):
                 self.assertEqual(proxy.get_number_of_people(), 2)
                 self.assertTrue(proxy.has_person_handle(NORMAL_PERSON))
                 self.assertTrue(proxy.has_person_handle(DEAD_PERSON))
-                self.assertFalse(proxy.has_person_handle(LIVE_PERSON))
+                self.assertFalse(proxy.has_person_handle(LIVING_PERSON))
 
     # --- both paths produce the same result for a given filter ---
 

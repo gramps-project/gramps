@@ -72,9 +72,10 @@ class LivingProxyDb(ProxyDbBase):
             LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY will remove all
                 information but leave the entire name intact.
         :type mode: int
-        :param current_year: The current year to use for living determination.
-         If None is supplied, the current year will be found from the system.
-        :type current_year: int or None
+        :param current_year: The reference point for living determination.
+         Pass an int for a year-only date, or a :class:`.Date` object for a
+         fully-specified date.  If None, Today() is used.
+        :type current_year: int, :class:`.Date`, or None
         :param years_after_death: The number of years after a person's death to
                                   still consider them living.
         :type years_after_death: int
@@ -85,7 +86,9 @@ class LivingProxyDb(ProxyDbBase):
         """
         ProxyDbBase.__init__(self, dbase)
         self.mode = mode
-        if current_year is not None:
+        if isinstance(current_year, Date):
+            self.current_date = current_year
+        elif current_year is not None:
             self.current_date = Date()
             self.current_date.set_year(current_year)
         else:
