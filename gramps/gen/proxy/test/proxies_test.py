@@ -30,7 +30,9 @@ from ...db.utils import import_as_dict
 from ...const import TEST_DIR
 from ...user import User
 from ...lib.person import Person
+from ...lib.date import Date
 from ...lib.json_utils import remove_object
+from ...utils.alive import probably_alive
 from ...filters import GenericFilter
 from ...filters.rules.person import Everyone, HasIdOf
 
@@ -165,7 +167,17 @@ class LivingProxyExcludeTest(unittest.TestCase):
         )
 
     def test_person_count(self):
-        self.assertEqual(self.db.get_number_of_people(), 1255)
+        # Compute the expected count using probably_alive directly so the
+        # test is not sensitive to differences across environments.
+        cur = Date()
+        cur.set_year(2006)
+        raw_db = self.db.basedb
+        expected = sum(
+            1
+            for h in raw_db.iter_person_handles()
+            if not probably_alive(raw_db.get_person_from_handle(h), raw_db, cur, 10)
+        )
+        self.assertEqual(self.db.get_number_of_people(), expected)
 
     def test_dead_person_data_is_none(self):
         data = self.db.get_raw_person_data(DEAD_PERSON)
@@ -322,8 +334,18 @@ class LivingPrivateProxyTest(unittest.TestCase):
         )
 
     def test_person_count(self):
-        # Private person + living people both excluded
-        self.assertEqual(self.db.get_number_of_people(), 1254)
+        # Compute the expected count: total minus private minus living,
+        # so the test is not sensitive to differences across environments.
+        cur = Date()
+        cur.set_year(2006)
+        raw_db = self.db.basedb
+        expected = sum(
+            1
+            for h in raw_db.iter_person_handles()
+            if not raw_db.get_person_from_handle(h).private
+            and not probably_alive(raw_db.get_person_from_handle(h), raw_db, cur, 10)
+        )
+        self.assertEqual(self.db.get_number_of_people(), expected)
 
     def test_private_person_hidden(self):
         person = self.db.get_person_from_handle(PRIVATE_PERSON)

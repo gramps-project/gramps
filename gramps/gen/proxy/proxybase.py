@@ -908,9 +908,9 @@ class ProxyDbBase(DbReadBase):
         data = self.db.get_raw_family_data(handle)
         if data is None:
             return None
-        if not self.include_person(data.father_handle):
+        if data.father_handle and not self.include_person(data.father_handle):
             data.father_handle = None
-        if not self.include_person(data.mother_handle):
+        if data.mother_handle and not self.include_person(data.mother_handle):
             data.mother_handle = None
         data.child_ref_list = [
             ref for ref in data.child_ref_list if self.include_person(ref.ref)
@@ -931,7 +931,7 @@ class ProxyDbBase(DbReadBase):
         data = self.db.get_raw_event_data(handle)
         if data is None:
             return None
-        if not self.include_place(data.place):
+        if data.place and not self.include_place(data.place):
             data.place = None
         data.note_list = [h for h in data.note_list if self.include_note(h)]
         data.citation_list = [h for h in data.citation_list if self.include_citation(h)]
@@ -961,7 +961,7 @@ class ProxyDbBase(DbReadBase):
         data = self.db.get_raw_citation_data(handle)
         if data is None:
             return None
-        if not self.include_source(data.source_handle):
+        if data.source_handle and not self.include_source(data.source_handle):
             data.source_handle = None
         data.note_list = [h for h in data.note_list if self.include_note(h)]
         data.media_list = [
