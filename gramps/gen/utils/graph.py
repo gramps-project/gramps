@@ -184,7 +184,7 @@ def find_ancestors_iterative(
 
         # Process each parent family
         for family_handle in parent_families:
-            family = db.get_family_from_handle(family_handle)
+            family = db.get_raw_family_data(family_handle)
             if family is None:
                 continue
 
