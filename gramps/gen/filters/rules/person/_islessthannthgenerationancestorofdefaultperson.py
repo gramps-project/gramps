@@ -68,7 +68,7 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
         p: Person = db.get_default_person()
         if p:
             # Original uses base-1: gen 1=root, 2=parents, 3=grandparents
-            # Our function uses base-0: gen 0=root, 1=parents, 2=grandparents
+            # find_ancestors uses base-0: gen 0=root, 1=parents, 2=grandparents
             # Original logic: includes starting person and ancestors up to gen N
             # So we need to subtract 1 to convert and use inclusive=True
             max_generation = int(self.list[0]) - 1

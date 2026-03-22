@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2024  Gramps Development Team
+# Copyright (C) 2026  Gramps Development Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -64,8 +64,8 @@ def find_ancestors(
     Args:
         db: The Gramps database
         person_handles: List of person handles to find ancestors for
-        min_generation: Minimum generation to include (1 = parents, 2 = grandparents, etc.)
-        max_generation: Maximum generation to include (None = no limit)
+        min_generation: Minimum generation to include (1 = parents, 2 = grandparents, etc.) 0-based
+        max_generation: Maximum generation to include (None = no limit) 0-based
         inclusive: Whether to include the starting people in results
         include_all_parent_families: Whether to traverse all parent families
                                     (False = only first parent family)
@@ -123,8 +123,8 @@ def find_ancestors_iterative(
     Args:
         db: The Gramps database
         person_handles: List of person handles to find ancestors for
-        min_generation: Minimum generation to include (1 = parents, 2 = grandparents, etc.)
-        max_generation: Maximum generation to include (None = no limit)
+        min_generation: Minimum generation to include (1 = parents, 2 = grandparents, etc.) 0-based
+        max_generation: Maximum generation to include (None = no limit) 0-based
         inclusive: Whether to include the starting people in results
         include_all_parent_families: Whether to traverse all parent families
                                     (False = only first parent family)
@@ -170,7 +170,7 @@ def find_ancestors_iterative(
 
         # Get person and their parent families
         try:
-            person = db.get_person_from_handle(current_handle)
+            person = db.get_raw_person_data(current_handle)
             if person is None:
                 continue
         except Exception:
@@ -273,8 +273,8 @@ def find_descendants_iterative(
     Args:
         db: The Gramps database
         person_handles: List of person handles to find descendants for
-        min_generation: Minimum generation to include (1 = children, 2 = grandchildren, etc.)
-        max_generation: Maximum generation to include (None = no limit)
+        min_generation: Minimum generation to include (1 = children, 2 = grandchildren, etc.) 0-based
+        max_generation: Maximum generation to include (None = no limit) 0-based
         inclusive: Whether to include the starting people in results
         include_all_families: Whether to traverse all families
                              (True = all families, False = only first family)
@@ -320,7 +320,7 @@ def find_descendants_iterative(
 
         # Get person and their families
         try:
-            person = db.get_person_from_handle(current_handle)
+            person = db.get_raw_person_data(current_handle)
             if person is None:
                 continue
         except Exception:
@@ -334,7 +334,7 @@ def find_descendants_iterative(
 
         # Process each family
         for family_handle in families:
-            family = db.get_family_from_handle(family_handle)
+            family = db.get_raw_family_data(family_handle)
             if family is None:
                 continue
 

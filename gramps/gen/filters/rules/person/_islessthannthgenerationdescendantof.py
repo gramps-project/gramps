@@ -68,7 +68,7 @@ class IsLessThanNthGenerationDescendantOf(Rule):
             root_person = db.get_person_from_gramps_id(self.list[0])
             max_generations = int(self.list[1])
             if root_person:
-                # Use the new find_descendants function with max_generation
+                # Use the find_descendants function with max_generation
                 self.selected_handles = find_descendants(
                     db,
                     [root_person.handle],
