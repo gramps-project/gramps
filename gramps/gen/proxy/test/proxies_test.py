@@ -65,10 +65,16 @@ class PrivateProxyTest(unittest.TestCase):
     # --- person count ---
 
     def test_person_count(self):
-        # One private person hidden:
-        self.assertEqual(self.db.get_number_of_people(), 2127)
-        # Raw database has one more:
-        self.assertEqual(self.db.basedb.get_number_of_people(), 2128)
+        raw_db = self.db.basedb
+        private_count = sum(
+            1
+            for h in raw_db.iter_person_handles()
+            if raw_db.get_person_from_handle(h).private
+        )
+        self.assertEqual(
+            self.db.get_number_of_people(),
+            raw_db.get_number_of_people() - private_count,
+        )
 
     # --- raw data access ---
 
