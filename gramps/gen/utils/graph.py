@@ -214,8 +214,8 @@ def find_descendants(
     Args:
         db: The Gramps database
         person_handles: List of person handles to find descendants for
-        min_generation: Minimum generation to include (1 = children, 2 = grandchildren, etc.)
-        max_generation: Maximum generation to include (None = no limit)
+        min_generation: Minimum generation to include (1 = children, 2 = grandchildren, etc.) 0-based
+        max_generation: Maximum generation to include (None = no limit) 0-based
         inclusive: Whether to include the starting people in results
         include_all_families: Whether to traverse all families
                              (True = all families, False = only first family)
