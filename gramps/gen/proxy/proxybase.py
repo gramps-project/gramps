@@ -111,6 +111,7 @@ class ProxyDbBase(DbReadBase):
         self.db = self.basedb = db
         while isinstance(self.basedb, ProxyDbBase):
             self.basedb = self.basedb.db
+        self._note_links_cache = {}
         self.name_formats = db.name_formats
         self.bookmarks = db.bookmarks
         self.family_bookmarks = db.family_bookmarks
@@ -185,6 +186,65 @@ class ProxyDbBase(DbReadBase):
 
     def include_tag(self, handle):
         return handle is not None
+
+    # Map gramps:// link object class names to the corresponding include_*
+    # method name on this proxy.  Used by _note_links_included.
+    _GRAMPS_LINK_CLASSES = {
+        "Person": "include_person",
+        "Family": "include_family",
+        "Event": "include_event",
+        "Source": "include_source",
+        "Citation": "include_citation",
+        "Place": "include_place",
+        "Media": "include_media",
+        "Repository": "include_repository",
+        "Note": "include_note",
+    }
+
+    def _note_links_included(self, handle):
+        """
+        Return True if every gramps:// link embedded in the note identified
+        by *handle* refers to an object that is included by this proxy.
+
+        The note is fetched from self.db (the underlying database, bypassing
+        this proxy) to avoid the infinite recursion that would result from
+        calling self.get_note_from_handle → include_note →
+        _note_links_included.
+
+        Results are cached for the lifetime of the proxy instance.
+        """
+        if handle in self._note_links_cache:
+            return self._note_links_cache[handle]
+        note = self.db.get_note_from_handle(handle)
+        if note is None:
+            result = False
+        else:
+            result = True
+            for domain, obj_class, prop, value in note.get_links():
+                if domain != "gramps":
+                    continue
+                include_name = self._GRAMPS_LINK_CLASSES.get(obj_class)
+                if include_name is None:
+                    continue
+                include_method = getattr(self, include_name)
+                if prop == "handle":
+                    if not include_method(value):
+                        result = False
+                        break
+                elif prop == "gramps_id":
+                    getter = getattr(
+                        self.db,
+                        f"get_{obj_class.lower()}_from_gramps_id",
+                        None,
+                    )
+                    if getter is None:
+                        continue
+                    obj = getter(value)
+                    if obj is None or not include_method(obj.handle):
+                        result = False
+                        break
+        self._note_links_cache[handle] = result
+        return result
 
     # -----------------------------------------------------------------------
     # sanitize_* methods — attribute-level cleanup on a DataDict.

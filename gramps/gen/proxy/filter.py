@@ -76,6 +76,11 @@ class FilterProxyDb(ProxyDbBase):
                 self.flist.update(person.family_list)
                 self.flist.update(person.parent_family_list)
 
+        # Exclude notes whose embedded gramps:// links reference objects that
+        # are not included by this proxy.  All other include sets (plist,
+        # elist, flist) must be fully built before this step.
+        self.nlist = {h for h in self.nlist if self._note_links_included(h)}
+
     # -----------------------------------------------------------------------
     # include_* predicates — use precomputed handle sets
     # -----------------------------------------------------------------------

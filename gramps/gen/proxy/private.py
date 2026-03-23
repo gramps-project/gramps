@@ -98,7 +98,9 @@ class PrivateProxyDb(ProxyDbBase):
 
     def include_note(self, handle):
         obj = self.get_unfiltered_note(handle)
-        return bool(obj and not obj.private)
+        if not (obj and not obj.private):
+            return False
+        return self._note_links_included(handle)
 
     # -----------------------------------------------------------------------
     # sanitize_* methods — strip private sub-attributes from a DataDict.
