@@ -43,16 +43,18 @@ EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 PRIVATE_PERSON = "0GDKQC54XKSWZKEBWW"  # private person (I0988)
 NORMAL_PERSON = "0FWJQCLYEP736P3YZK"  # non-private person (I0122)
 PERSON_WITH_PRIVATE_ATTRS = "GNUJQCL9MD64AM56OH"  # has 3 attrs, 1 private
-LIVING_PERSON = "030KQCA8ZLPDRK6PP8"  # living on Jan 1 2026 (hidden in EXCLUDE_ALL, restricted in other modes) (I0342)
-DEAD_PERSON = "66TJQC6CC7ZWL9YZ64"  # deceased well before 2026
-NOT_HIDDEN_PERSON = "01LKQC3FMJR76T7IMG"  # not living on Jan 1 2026, included (I1370)
+LIVING_PERSON = "030KQCA8ZLPDRK6PP8"  # living on Jan 1 2006 (hidden in EXCLUDE_ALL, restricted in other modes) (I0342)
+DEAD_PERSON = "66TJQC6CC7ZWL9YZ64"  # deceased well before 2006
+NOT_HIDDEN_PERSON = "01LKQC3FMJR76T7IMG"  # not living on Jan 1 2006, included (I1370)
 FAMILY_WITH_PRIVATE_FATHER = "NSVJQC89IHEEBIPDP2"  # private person is father
 FAMILY_WITH_LIVING_PARENT = "05XJQC935HU62H3KL4"  # living parent, has events
 
-# Reference date used by all living-proxy tests — passed as current_year so
-# that both the proxy comparison date and probably_alive_range's internal
-# Today() cap are deterministic.
-LIVING_DATE = Date(2026, 1, 1)
+# Reference date used by all living-proxy tests.  Using a past date ensures
+# that probably_alive_range()'s internal Today() cap (which prevents
+# estimating death dates in the future) never affects the "alive as of
+# LIVING_DATE" determination, giving stable counts regardless of when the
+# tests run.
+LIVING_DATE = Date(2006, 1, 1)
 
 
 class PrivateProxyTest(unittest.TestCase):
@@ -171,7 +173,7 @@ class LivingProxyExcludeTest(unittest.TestCase):
         )
 
     def test_person_count(self):
-        self.assertEqual(self.db.get_number_of_people(), 1351)
+        self.assertEqual(self.db.get_number_of_people(), 1255)
 
     def test_dead_person_data_is_none(self):
         data = self.db.get_raw_person_data(DEAD_PERSON)
@@ -328,7 +330,7 @@ class LivingPrivateProxyTest(unittest.TestCase):
         )
 
     def test_person_count(self):
-        self.assertEqual(self.db.get_number_of_people(), 1350)
+        self.assertEqual(self.db.get_number_of_people(), 1254)
 
     def test_private_person_hidden(self):
         person = self.db.get_person_from_handle(PRIVATE_PERSON)
