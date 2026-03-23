@@ -382,9 +382,17 @@ class BaseDateTest(unittest.TestCase):
     """
 
     def setUp(self):
+        self._orig_before = config.get("behavior.date-before-range")
+        self._orig_after = config.get("behavior.date-after-range")
+        self._orig_about = config.get("behavior.date-about-range")
         config.set("behavior.date-before-range", 9999)
         config.set("behavior.date-after-range", 9999)
         config.set("behavior.date-about-range", 10)
+
+    def tearDown(self):
+        config.set("behavior.date-before-range", getattr(self, "_orig_before", 50))
+        config.set("behavior.date-after-range", getattr(self, "_orig_after", 50))
+        config.set("behavior.date-about-range", getattr(self, "_orig_about", 50))
 
 
 # -------------------------------------------------------------------------
