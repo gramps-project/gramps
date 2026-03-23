@@ -74,7 +74,15 @@ class PrivateProxyDb(ProxyDbBase):
 
     def include_citation(self, handle):
         obj = self.get_unfiltered_citation(handle)
-        return bool(obj and not obj.private)
+        if not obj or obj.private:
+            return False
+        # Also exclude citations whose referenced source is private
+        source_handle = obj.get_reference_handle()
+        if source_handle:
+            source = self.get_unfiltered_source(source_handle)
+            if source and source.private:
+                return False
+        return True
 
     def include_place(self, handle):
         obj = self.get_unfiltered_place(handle)
@@ -99,6 +107,15 @@ class PrivateProxyDb(ProxyDbBase):
     # These methods handle sub-object privacy flags.
     # -----------------------------------------------------------------------
 
+    def _clean_subrefs(self, item):
+        """Strip private notes and citations from a sub-object DataDict."""
+        if hasattr(item, "note_list"):
+            item["note_list"] = [h for h in item.note_list if self.include_note(h)]
+        if hasattr(item, "citation_list"):
+            item["citation_list"] = [
+                h for h in item.citation_list if self.include_citation(h)
+            ]
+
     def sanitize_person(self, data):
         # Filter private alternate names
         data.alternate_names = [n for n in data.alternate_names if not n.private]
@@ -113,31 +130,64 @@ class PrivateProxyDb(ProxyDbBase):
             placeholder.set_surname_list([surn])
             placeholder.set_primary_surname()
             data.primary_name = object_to_data(placeholder)
+        else:
+            self._clean_subrefs(data.primary_name)
+        # Clean sub-notes/citations from surviving alternate names
+        for name in data["alternate_names"]:
+            self._clean_subrefs(name)
         # Filter private attributes
-        data.attribute_list = [a for a in data.attribute_list if not a.private]
-        # Filter private addresses
-        data.address_list = [a for a in data.address_list if not a.private]
-        # Filter private LDS ordinances
-        data.lds_ord_list = [o for o in data.lds_ord_list if not o.private]
+        data["attribute_list"] = [a for a in data.attribute_list if not a.private]
+        # Filter private addresses; clean sub-refs from survivors
+        data["address_list"] = [a for a in data.address_list if not a.private]
+        for addr in data["address_list"]:
+            self._clean_subrefs(addr)
+        # Filter private LDS ordinances; clean sub-refs and clear private handles
+        data["lds_ord_list"] = [o for o in data.lds_ord_list if not o.private]
+        for lds in data["lds_ord_list"]:
+            self._clean_subrefs(lds)
+            if lds.famc and not self.include_family(lds.famc):
+                lds["famc"] = None
+            if lds.place and not self.include_place(lds.place):
+                lds["place"] = None
         # Filter private event refs (event itself filtered by base; ref may be private)
-        data.event_ref_list = [ref for ref in data.event_ref_list if not ref.private]
-        # Filter private person refs (associations)
-        data.person_ref_list = [ref for ref in data.person_ref_list if not ref.private]
-        # Filter private media refs
-        data.media_list = [ref for ref in data.media_list if not ref.private]
+        data["event_ref_list"] = [ref for ref in data.event_ref_list if not ref.private]
+        for ref in data["event_ref_list"]:
+            self._clean_subrefs(ref)
+        # Filter private person refs (associations); clean sub-refs from survivors
+        data["person_ref_list"] = [
+            ref for ref in data.person_ref_list if not ref.private
+        ]
+        for ref in data["person_ref_list"]:
+            self._clean_subrefs(ref)
+        # Filter private media refs; clean sub-refs from survivors
+        data["media_list"] = [ref for ref in data.media_list if not ref.private]
+        for ref in data["media_list"]:
+            self._clean_subrefs(ref)
         return data
 
     def sanitize_family(self, data):
-        # Filter private child refs
-        data.child_ref_list = [ref for ref in data.child_ref_list if not ref.private]
-        # Filter private event refs
-        data.event_ref_list = [ref for ref in data.event_ref_list if not ref.private]
+        # Filter private child refs; clean sub-refs from survivors
+        data["child_ref_list"] = [ref for ref in data.child_ref_list if not ref.private]
+        for ref in data["child_ref_list"]:
+            self._clean_subrefs(ref)
+        # Filter private event refs; clean sub-refs from survivors
+        data["event_ref_list"] = [ref for ref in data.event_ref_list if not ref.private]
+        for ref in data["event_ref_list"]:
+            self._clean_subrefs(ref)
         # Filter private attributes
-        data.attribute_list = [a for a in data.attribute_list if not a.private]
-        # Filter private LDS ordinances
-        data.lds_ord_list = [o for o in data.lds_ord_list if not o.private]
-        # Filter private media refs
-        data.media_list = [ref for ref in data.media_list if not ref.private]
+        data["attribute_list"] = [a for a in data.attribute_list if not a.private]
+        # Filter private LDS ordinances; clean sub-refs and clear private handles
+        data["lds_ord_list"] = [o for o in data.lds_ord_list if not o.private]
+        for lds in data["lds_ord_list"]:
+            self._clean_subrefs(lds)
+            if lds.famc and not self.include_family(lds.famc):
+                lds["famc"] = None
+            if lds.place and not self.include_place(lds.place):
+                lds["place"] = None
+        # Filter private media refs; clean sub-refs from survivors
+        data["media_list"] = [ref for ref in data.media_list if not ref.private]
+        for ref in data["media_list"]:
+            self._clean_subrefs(ref)
         return data
 
     def sanitize_event(self, data):

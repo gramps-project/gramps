@@ -28,7 +28,8 @@ Proxy class for the Gramps databases. Filter out all living people.
 #
 # -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
-from ..lib import Date
+from ..lib import Date, Name, Surname, NameOriginType
+from ..lib.json_utils import object_to_data
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 
@@ -120,9 +121,6 @@ class LivingProxyDb(ProxyDbBase):
             return data
 
         # Person is living — restrict data based on mode
-        from ..lib.json_utils import object_to_data
-        from ..lib import Name, Surname, NameOriginType
-
         old_name_data = data.primary_name
         new_name = Name()
 
@@ -152,9 +150,7 @@ class LivingProxyDb(ProxyDbBase):
         else:
             surns = []
             for surn_data in old_name_data.surname_list:
-                from ..lib import Surname as SurnameLib
-
-                new_surn = SurnameLib()
+                new_surn = Surname()
                 new_surn.set_surname(surn_data.surname)
                 new_surn.set_prefix(surn_data.prefix)
                 new_surn.set_connector(surn_data.connector)
@@ -214,15 +210,6 @@ class LivingProxyDb(ProxyDbBase):
             data.event_ref_list = []
 
         return data
-
-    def get_person_from_gramps_id(self, val):
-        """
-        Finds a Person in the database from the passed Gramps ID.
-        """
-        person = self.db.get_person_from_gramps_id(val)
-        if person is None:
-            return None
-        return self.get_person_from_handle(person.handle)
 
     def get_default_person(self):
         """returns the default Person of the database"""

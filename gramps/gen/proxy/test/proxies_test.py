@@ -159,6 +159,99 @@ class PrivateProxyTest(unittest.TestCase):
         self.assertNotIn(PRIVATE_PERSON, handles)
         self.assertIn(NORMAL_PERSON, handles)
 
+    # --- citation-source privacy chaining ---
+
+    def test_include_citation_excludes_citation_to_private_source(self):
+        """A non-private citation referencing a private source must be hidden."""
+        db = PrivateProxyDb(self.db.basedb)
+        mock_citation = MagicMock()
+        mock_citation.private = False
+        mock_citation.get_reference_handle.return_value = "src_handle"
+        mock_source = MagicMock()
+        mock_source.private = True
+        with patch.object(db, "get_unfiltered_citation", return_value=mock_citation):
+            with patch.object(db, "get_unfiltered_source", return_value=mock_source):
+                self.assertFalse(db.include_citation("cit_handle"))
+
+    def test_include_citation_allows_citation_to_public_source(self):
+        """A non-private citation referencing a non-private source must be visible."""
+        db = PrivateProxyDb(self.db.basedb)
+        mock_citation = MagicMock()
+        mock_citation.private = False
+        mock_citation.get_reference_handle.return_value = "src_handle"
+        mock_source = MagicMock()
+        mock_source.private = False
+        with patch.object(db, "get_unfiltered_citation", return_value=mock_citation):
+            with patch.object(db, "get_unfiltered_source", return_value=mock_source):
+                self.assertTrue(db.include_citation("cit_handle"))
+
+    # --- sub-object note/citation cleaning ---
+
+    def test_private_note_stripped_from_event_ref(self):
+        """Private notes inside a surviving event_ref must be removed."""
+        from unittest.mock import MagicMock, patch
+        from ...lib.json_utils import DataDict, DataList
+
+        db = PrivateProxyDb(self.db.basedb)
+        private_note_h = "PRIVATE_NOTE_HANDLE"
+        public_note_h = "PUBLIC_NOTE_HANDLE"
+
+        # include_note returns False for private_note_h, True for public_note_h
+        def fake_include_note(h):
+            return h != private_note_h
+
+        event_ref = DataDict(
+            {
+                "ref": "some_event",
+                "private": False,
+                "note_list": [private_note_h, public_note_h],
+                "citation_list": [],
+            }
+        )
+        data = DataDict(
+            {
+                "handle": "person_h",
+                "private": False,
+                "primary_name": DataDict(
+                    {
+                        "private": False,
+                        "note_list": [],
+                        "citation_list": [],
+                        "surname_list": [],
+                        "group_as": "",
+                        "sort_as": 0,
+                        "display_as": 0,
+                        "type": DataDict({"string": "", "value": 0}),
+                        "first_name": "",
+                        "suffix": "",
+                        "title": "",
+                        "call": "",
+                        "nick": "",
+                        "famnick": "",
+                    }
+                ),
+                "alternate_names": DataList([]),
+                "attribute_list": DataList([]),
+                "address_list": DataList([]),
+                "lds_ord_list": DataList([]),
+                "event_ref_list": DataList([event_ref]),
+                "person_ref_list": DataList([]),
+                "media_list": DataList([]),
+                "note_list": DataList([]),
+                "citation_list": DataList([]),
+                "family_list": DataList([]),
+                "parent_family_list": DataList([]),
+            }
+        )
+
+        with patch.object(db, "include_note", side_effect=fake_include_note):
+            with patch.object(db, "include_citation", return_value=True):
+                result = db.sanitize_person(data)
+
+        surviving_notes = list(result.event_ref_list[0].note_list)
+        self.assertNotIn(private_note_h, surviving_notes)
+        self.assertIn(public_note_h, surviving_notes)
+
 
 class LivingProxyExcludeTest(unittest.TestCase):
     """Tests for LivingProxyDb in MODE_EXCLUDE_ALL."""
