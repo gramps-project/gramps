@@ -32,7 +32,6 @@ pacman -S --needed --noconfirm \
     mingw-w64-x86_64-adwaita-icon-theme \
     mingw-w64-x86_64-enchant \
     mingw-w64-x86_64-geocode-glib \
-    mingw-w64-x86_64-gexiv2 \
     mingw-w64-x86_64-ghostscript \
     mingw-w64-x86_64-goocanvas \
     mingw-w64-x86_64-gspell \
@@ -68,6 +67,8 @@ pacman -S --needed --noconfirm \
     subversion \
     unzip
 
+pacman -U --needed --noconfirm https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-exiv2-0.27.7-4-any.pkg.tar.zst
+pacman -U --needed --noconfirm https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-gexiv2-0.14.6-4-any.pkg.tar.zst
 pacman -U --needed --noconfirm https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-graphviz-12.2.1-4-any.pkg.tar.zst
 
 wget --no-verbose -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
