@@ -91,6 +91,7 @@ class ProbablyAlive:
         max_age_prob_alive=None,
         avg_generation_gap=None,
         min_generation_years=None,
+        current_date=None,
     ):
         self.db = db
         if max_sib_age_diff is None:
@@ -105,6 +106,7 @@ class ProbablyAlive:
         self.MAX_AGE_PROB_ALIVE = max_age_prob_alive
         self.AVG_GENERATION_GAP = avg_generation_gap
         self.MIN_GENERATION_YEARS = min_generation_years
+        self.current_date = current_date
         self.pset = set()
 
     def probably_alive_range(self, person, is_spouse=False, immediate_fam_only=False):
@@ -412,8 +414,9 @@ class ProbablyAlive:
                     year=self.MAX_AGE_PROB_ALIVE
                 )
                 if known_to_be_dead:
-                    if max_death_date.match(Today(), ">="):
-                        max_death_date = Today()
+                    ref_date = self.current_date or Today()
+                    if max_death_date.match(ref_date, ">="):
+                        max_death_date = Date(ref_date)
                         max_death_date.set_yr_mon_day_offset(
                             day=-1
                         )  # make it yesterday
@@ -1012,13 +1015,21 @@ def probably_alive(
         person.get_gramps_id(),
         person.get_primary_name().get_gedcom_name(),
     )
+    # Resolve current_date before computing the range so that the same date
+    # is used both for capping estimated death ranges and for the final
+    # alive/dead comparison.
+    if current_date is None or not current_date.is_valid():
+        current_date = Today()
     # First, get the probable birth and death ranges for
     # this person from the real database:
     birth, death, explain, relative = probably_alive_range(
-        person, db, max_sib_age_diff, max_age_prob_alive, avg_generation_gap
+        person,
+        db,
+        max_sib_age_diff,
+        max_age_prob_alive,
+        avg_generation_gap,
+        current_date=current_date,
     )
-    if current_date is None or not current_date.is_valid():
-        current_date = Today()
 
     if DEBUGLEVEL > 0:
         if relative is None:
@@ -1080,7 +1091,12 @@ def probably_alive(
 
 
 def probably_alive_range(
-    person, db, max_sib_age_diff=None, max_age_prob_alive=None, avg_generation_gap=None
+    person,
+    db,
+    max_sib_age_diff=None,
+    max_age_prob_alive=None,
+    avg_generation_gap=None,
+    current_date=None,
 ):
     """
     Computes estimated birth and death date ranges.
@@ -1093,7 +1109,11 @@ def probably_alive_range(
         basedb = basedb.db
     # Now, we create a wrapper for doing work:
     pbac = ProbablyAlive(
-        basedb, max_sib_age_diff, max_age_prob_alive, avg_generation_gap
+        basedb,
+        max_sib_age_diff,
+        max_age_prob_alive,
+        avg_generation_gap,
+        current_date=current_date,
     )
     return pbac.probably_alive_range(person)
 
