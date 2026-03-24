@@ -7,11 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-      - name: Run black on changed files
-        run: |
-          pip install black
-          git diff --name-only --diff-filter=ACMR origin/master...HEAD \
-            | grep '\.py$' \
-            | xargs --no-run-if-empty black --check --diff
+      - uses: psf/black@stable
