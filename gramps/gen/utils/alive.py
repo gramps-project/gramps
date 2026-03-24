@@ -224,13 +224,14 @@ class ProbablyAlive:
                 evnt = self.db.get_event_from_handle(birth_ref.ref)
                 if evnt:
                     dateobj = evnt.get_date_object()
-                    if dateobj and dateobj.is_valid():
+                    if dateobj and dateobj.get_year_valid():
                         birth_date = dateobj
                         explain_birth = _("date")
 
             # to here:
-            #   birth_date is None: either no birth record or else no date reported; or
-            #   birth_date is a valid date
+            #   birth_date is None: either no birth record, or the birth event
+            #   has no valid date (missing or year-less date like "February 3");
+            #   birth_date is a valid date with a known year
             # Look for Baptism, etc events.
             # These are fairly good indications of someone's birth date.
             if not birth_date:
@@ -238,7 +239,7 @@ class ProbablyAlive:
                     evnt = self.db.get_event_from_handle(ev_ref.ref)
                     if evnt and evnt.type.is_birth_fallback():
                         birth_date_fb = evnt.get_date_object()
-                        if birth_date_fb and birth_date_fb.is_valid():
+                        if birth_date_fb and birth_date_fb.get_year_valid():
                             birth_date = birth_date_fb
                             explain_birth = _("date fallback")
                             break

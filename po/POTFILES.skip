@@ -309,6 +309,7 @@ gramps/gen/utils/docgen/tabbeddoc.py
 #
 # gen.utils.test
 #
+gramps/gen/utils/test/alive_test.py
 gramps/gen/utils/test/callback_test.py
 gramps/gen/utils/test/file_test.py
 gramps/gen/utils/test/grampslocale_test.py
