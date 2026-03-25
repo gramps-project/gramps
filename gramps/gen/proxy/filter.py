@@ -136,7 +136,7 @@ class FilterProxyDb(ProxyDbBase):
     # These handle nested note_list fields inside sub-objects.
     # -----------------------------------------------------------------------
 
-    def _filter_note_list(self, note_list: list) -> list:
+    def _filter_note_list(self, note_list: list[NoteHandle]) -> list[NoteHandle]:
         """
         Return a new list containing only those note handles that are in the
         precomputed visible notes set.
@@ -148,7 +148,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         return [h for h in note_list if h in self.nlist]
 
-    def _sanitize_subnotes(self, items) -> list:
+    def _sanitize_subnotes(self, items: list[DataDict]) -> list[DataDict]:
         """
         Filter note_list on each item in a DataList.
 
@@ -288,7 +288,7 @@ class FilterProxyDb(ProxyDbBase):
     # Handle list / iterator overrides (using precomputed sets for speed)
     # -----------------------------------------------------------------------
 
-    def get_person_handles(self, sort_handles=False, locale=glocale) -> list:
+    def get_person_handles(self, sort_handles=False, locale=glocale) -> list[PersonHande]:
         """
         Return a list of database handles for all Person objects that passed
         the filter.  The list is not sorted (sort_handles is ignored here).
@@ -298,7 +298,7 @@ class FilterProxyDb(ProxyDbBase):
         :param locale: locale used for sorting (ignored)
         :type locale: GrampsLocale
         :returns: list of person handles
-        :rtype: list[str]
+        :rtype: list[PersonHandle]
         """
         # FIXME: plist is not a sorted list of handles
         return list(self.plist)
@@ -319,7 +319,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         return map(self.get_person_from_handle, self.plist)
 
-    def get_event_handles(self) -> list:
+    def get_event_handles(self) -> list[EventHandle]:
         """
         Return a list of database handles for all Event objects that passed
         the filter.
@@ -345,7 +345,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         return map(self.get_event_from_handle, self.elist)
 
-    def get_family_handles(self, sort_handles=False, locale=glocale) -> list:
+    def get_family_handles(self, sort_handles=False, locale=glocale) -> list[FamilyHandle]:
         """
         Return a list of database handles for all Family objects derived from
         the filtered person set.  The list is not sorted (sort_handles is
@@ -378,7 +378,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         return map(self.get_family_from_handle, self.flist)
 
-    def get_note_handles(self) -> list:
+    def get_note_handles(self) -> list[NoteHandle]:
         """
         Return a list of database handles for all Note objects that passed
         the filter.
