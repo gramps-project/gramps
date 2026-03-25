@@ -32,6 +32,7 @@ Proxy class for the Gramps databases. Apply filter
 from .proxybase import ProxyDbBase
 from ..lib.json_utils import DataDict
 from ..const import GRAMPS_LOCALE as glocale
+from ..types import FamilyHandle, PersonHandle
 
 
 class FilterProxyDb(ProxyDbBase):
@@ -73,9 +74,8 @@ class FilterProxyDb(ProxyDbBase):
         self.flist = set()
         for handle in self.plist:
             person = self.db.get_person_from_handle(handle)
-            if person:
-                self.flist.update(person.family_list)
-                self.flist.update(person.parent_family_list)
+            self.flist.update(person.family_list)
+            self.flist.update(person.parent_family_list)
 
         # Exclude notes whose embedded gramps:// links reference objects that
         # are not included by this proxy.  All other include sets (plist,

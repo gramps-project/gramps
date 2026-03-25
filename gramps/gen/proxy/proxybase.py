@@ -50,6 +50,7 @@ from ..lib import (
 )
 from ..lib.json_utils import object_to_data, data_to_object, DataDict
 from ..const import GRAMPS_LOCALE as glocale
+from ..types import FamilyHandle, PersonHandle
 
 
 class ProxyCursor:
@@ -171,7 +172,7 @@ class ProxyDbBase(DbReadBase):
         """
         return True
 
-    def include_family(self, handle: str) -> bool:
+    def include_family(self, handle: FamilyHandle) -> bool:
         """
         Return True if the object identified by *handle* should be visible
         through this proxy.  The base implementation includes everything;
@@ -317,33 +318,30 @@ class ProxyDbBase(DbReadBase):
         if handle in self._note_links_cache:
             return self._note_links_cache[handle]
         note = self.db.get_note_from_handle(handle)
-        if note is None:
-            result = False
-        else:
-            result = True
-            for domain, obj_class, prop, value in note.get_links():
-                if domain != "gramps":
+        result = True
+        for domain, obj_class, prop, value in note.get_links():
+            if domain != "gramps":
+                continue
+            include_name = self._GRAMPS_LINK_CLASSES.get(obj_class)
+            if include_name is None:
+                continue
+            include_method = getattr(self, include_name)
+            if prop == "handle":
+                if not include_method(value):
+                    result = False
+                    break
+            elif prop == "gramps_id":
+                getter = getattr(
+                    self.db,
+                    f"get_{obj_class.lower()}_from_gramps_id",
+                    None,
+                )
+                if getter is None:
                     continue
-                include_name = self._GRAMPS_LINK_CLASSES.get(obj_class)
-                if include_name is None:
-                    continue
-                include_method = getattr(self, include_name)
-                if prop == "handle":
-                    if not include_method(value):
-                        result = False
-                        break
-                elif prop == "gramps_id":
-                    getter = getattr(
-                        self.db,
-                        f"get_{obj_class.lower()}_from_gramps_id",
-                        None,
-                    )
-                    if getter is None:
-                        continue
-                    obj = getter(value)
-                    if obj is None or not include_method(obj.handle):
-                        result = False
-                        break
+                obj = getter(value)
+                if obj is None or not include_method(obj.handle):
+                    result = False
+                    break
         self._note_links_cache[handle] = result
         return result
 
@@ -1230,7 +1228,7 @@ class ProxyDbBase(DbReadBase):
         instances in the database"""
         return self.db.get_url_types()
 
-    def get_raw_person_data(self, handle: str) -> "DataDict":
+    def get_raw_person_data(self, handle: PersonHandle) -> "DataDict":
         """
         Return the raw DataDict for the Person identified by *handle*, with
         cross-reference lists filtered through the proxy's include_* predicates
@@ -1261,7 +1259,7 @@ class ProxyDbBase(DbReadBase):
         ]
         return self.sanitize_person(data)
 
-    def get_raw_family_data(self, handle: str) -> "DataDict | None":
+    def get_raw_family_data(self, handle: FamilyHandle) -> "DataDict | None":
         """
         Return the raw DataDict for the Family identified by *handle*, with
         cross-reference lists filtered through the proxy's include_* predicates

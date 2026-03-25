@@ -32,6 +32,7 @@ from ..lib import Date, Name, Surname, NameOriginType
 from ..lib.json_utils import object_to_data, DataDict
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
+from ..types import FamilyHandle
 
 
 # -------------------------------------------------------------------------
@@ -197,7 +198,7 @@ class LivingProxyDb(ProxyDbBase):
 
         return data
 
-    def get_raw_family_data(self, handle: str) -> "DataDict | None":
+    def get_raw_family_data(self, handle: FamilyHandle) -> "DataDict | None":
         """
         Override to additionally clear family events when any parent is living.
 
