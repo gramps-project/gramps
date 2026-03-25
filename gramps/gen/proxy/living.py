@@ -32,7 +32,7 @@ from ..lib import Date, Name, Surname, NameOriginType
 from ..lib.json_utils import object_to_data, DataDict
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
-from ..types import FamilyHandle
+from ..types import AnyHandle, FamilyHandle, PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -100,7 +100,7 @@ class LivingProxyDb(ProxyDbBase):
         self._p_f_n = self._(config.get("preferences.private-given-text"))
         self._p_s_n = self._(config.get("preferences.private-surname-text"))
 
-    def include_person(self, handle: str) -> bool:
+    def include_person(self, handle: PersonHandle) -> bool:
         """
         Exclude living people when mode is MODE_EXCLUDE_ALL.
 
@@ -108,7 +108,7 @@ class LivingProxyDb(ProxyDbBase):
         handles the data restriction).
 
         :param handle: database handle of the Person to test
-        :type handle: str
+        :type handle: PersonHandle
         :returns: False only in MODE_EXCLUDE_ALL when the person is living
         :rtype: bool
         """
@@ -244,27 +244,27 @@ class LivingProxyDb(ProxyDbBase):
             return self.get_person_from_handle(person_handle)
         return None
 
-    def get_default_handle(self):
+    def get_default_handle(self) -> PersonHandle | None:
         """
         Return the handle of the default Person, or None if no default person
         exists or the default person is not visible through this proxy.
 
         :returns: the default person's handle, or None
-        :rtype: str | None
+        :rtype: PersonHandle | None
         """
         person_handle = self.db.get_default_handle()
         if person_handle and self.has_person_handle(person_handle):
             return person_handle
         return None
 
-    def find_backlink_handles(self, handle, include_classes=None):
+    def find_backlink_handles(self, handle: AnyHandle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
         Returns an iterator over (class_name, handle) tuples, filtering out
         references from living people or families with living parents.
 
         :param handle: database handle of the object to find back-links for
-        :type handle: str
+        :type handle: AnyHandle
         :param include_classes: if given, only yield handles for these classes
         :type include_classes: list[str] | None
         :returns: iterator over (class_name, handle) tuples

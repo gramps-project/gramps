@@ -39,6 +39,17 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
 from ..lib.json_utils import DataDict
+from ..types import (
+    CitationHandle,
+    EventHandle,
+    FamilyHandle,
+    MediaHandle,
+    NoteHandle,
+    PersonHandle,
+    PlaceHandle,
+    RepositoryHandle,
+    SourceHandle,
+)
 
 
 class PrivateProxyDb(ProxyDbBase):
@@ -57,12 +68,12 @@ class PrivateProxyDb(ProxyDbBase):
     # include_* predicates — exclude objects marked private
     # -----------------------------------------------------------------------
 
-    def include_person(self, handle: str) -> bool:
+    def include_person(self, handle: PersonHandle) -> bool:
         """
         Return False if the person is marked private, True otherwise.
 
         :param handle: database handle of the Person to test
-        :type handle: str
+        :type handle: PersonHandle
         :returns: True if the person is not private and should be visible
         :rtype: bool
         """
@@ -71,12 +82,12 @@ class PrivateProxyDb(ProxyDbBase):
         obj = self.get_unfiltered_person(handle)
         return bool(obj and not obj.private)
 
-    def include_family(self, handle: str) -> bool:
+    def include_family(self, handle: FamilyHandle) -> bool:
         """
         Return False if the family is marked private, True otherwise.
 
         :param handle: database handle of the Family to test
-        :type handle: str
+        :type handle: FamilyHandle
         :returns: True if the family is not private and should be visible
         :rtype: bool
         """
@@ -85,12 +96,12 @@ class PrivateProxyDb(ProxyDbBase):
         obj = self.get_unfiltered_family(handle)
         return bool(obj and not obj.private)
 
-    def include_event(self, handle: str) -> bool:
+    def include_event(self, handle: EventHandle) -> bool:
         """
         Return False if the event is marked private, True otherwise.
 
         :param handle: database handle of the Event to test
-        :type handle: str
+        :type handle: EventHandle
         :returns: True if the event is not private and should be visible
         :rtype: bool
         """
@@ -99,12 +110,12 @@ class PrivateProxyDb(ProxyDbBase):
         obj = self.get_unfiltered_event(handle)
         return bool(obj and not obj.private)
 
-    def include_source(self, handle: str) -> bool:
+    def include_source(self, handle: SourceHandle) -> bool:
         """
         Return False if the source is marked private, True otherwise.
 
         :param handle: database handle of the Source to test
-        :type handle: str
+        :type handle: SourceHandle
         :returns: True if the source is not private and should be visible
         :rtype: bool
         """
@@ -113,13 +124,13 @@ class PrivateProxyDb(ProxyDbBase):
         obj = self.get_unfiltered_source(handle)
         return bool(obj and not obj.private)
 
-    def include_citation(self, handle: str) -> bool:
+    def include_citation(self, handle: CitationHandle) -> bool:
         """
         Return False if the citation is marked private or if its referenced
         source is private, True otherwise.
 
         :param handle: database handle of the Citation to test
-        :type handle: str
+        :type handle: CitationHandle
         :returns: True if the citation and its source are not private
         :rtype: bool
         """
@@ -136,12 +147,12 @@ class PrivateProxyDb(ProxyDbBase):
                 return False
         return True
 
-    def include_place(self, handle: str) -> bool:
+    def include_place(self, handle: PlaceHandle) -> bool:
         """
         Return False if the place is marked private, True otherwise.
 
         :param handle: database handle of the Place to test
-        :type handle: str
+        :type handle: PlaceHandle
         :returns: True if the place is not private and should be visible
         :rtype: bool
         """
@@ -150,12 +161,12 @@ class PrivateProxyDb(ProxyDbBase):
         obj = self.get_unfiltered_place(handle)
         return bool(obj and not obj.private)
 
-    def include_media(self, handle: str) -> bool:
+    def include_media(self, handle: MediaHandle) -> bool:
         """
         Return False if the media object is marked private, True otherwise.
 
         :param handle: database handle of the Media to test
-        :type handle: str
+        :type handle: MediaHandle
         :returns: True if the media is not private and should be visible
         :rtype: bool
         """
@@ -164,12 +175,12 @@ class PrivateProxyDb(ProxyDbBase):
         obj = self.get_unfiltered_media(handle)
         return bool(obj and not obj.private)
 
-    def include_repository(self, handle: str) -> bool:
+    def include_repository(self, handle: RepositoryHandle) -> bool:
         """
         Return False if the repository is marked private, True otherwise.
 
         :param handle: database handle of the Repository to test
-        :type handle: str
+        :type handle: RepositoryHandle
         :returns: True if the repository is not private and should be visible
         :rtype: bool
         """
@@ -178,13 +189,13 @@ class PrivateProxyDb(ProxyDbBase):
         obj = self.get_unfiltered_repository(handle)
         return bool(obj and not obj.private)
 
-    def include_note(self, handle: str) -> bool:
+    def include_note(self, handle: NoteHandle) -> bool:
         """
         Return False if the note is marked private or if any embedded
         gramps:// link refers to a filtered-out object, True otherwise.
 
         :param handle: database handle of the Note to test
-        :type handle: str
+        :type handle: NoteHandle
         :returns: True if the note is not private and all its links are visible
         :rtype: bool
         """
