@@ -80,10 +80,10 @@ class LivingProxyDb(ProxyDbBase):
         :param years_after_death: The number of years after a person's death to
                                   still consider them living.
         :type years_after_death: int
-        If llocale is passed in (a :class:`.GrampsLocale`), then (insofar as
-        possible) the translated values will be returned instead.
-        :param llocale: allow deferred translation of "[Living]"
-        :type llocale: a :class:`.GrampsLocale` instance
+        :param llocale: allow deferred translation of "[Living]"; if passed,
+                        the translated values will be returned instead of the
+                        default locale strings.
+        :type llocale: :class:`.GrampsLocale`
         """
         ProxyDbBase.__init__(self, dbase)
         self.mode = mode
@@ -99,18 +99,35 @@ class LivingProxyDb(ProxyDbBase):
         self._p_f_n = self._(config.get("preferences.private-given-text"))
         self._p_s_n = self._(config.get("preferences.private-surname-text"))
 
-    def include_person(self, handle):
-        """Exclude living people in MODE_EXCLUDE_ALL; include all otherwise."""
+    def include_person(self, handle: str) -> bool:
+        """
+        Exclude living people when mode is MODE_EXCLUDE_ALL.
+
+        In all other modes every person handle is included (sanitize_person
+        handles the data restriction).
+
+        :param handle: database handle of the Person to test
+        :type handle: str
+        :returns: False only in MODE_EXCLUDE_ALL when the person is living
+        :rtype: bool
+        """
+        if not self.db.has_person_handle(handle):
+            return False
         if self.mode == self.MODE_EXCLUDE_ALL:
             person = self.get_unfiltered_person(handle)
             if person and self.__is_living(person):
                 return False
         return True
 
-    def sanitize_person(self, data):
+    def sanitize_person(self, data: "DataDict") -> "DataDict":
         """
         For modes 1-3, replace name data with restricted versions.
         Also clear all non-name data for living people.
+
+        :param data: raw DataDict for the Person, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict with restricted or cleared fields
+        :rtype: DataDict
         """
         if self.mode == self.MODE_INCLUDE_ALL:
             return data
@@ -180,9 +197,15 @@ class LivingProxyDb(ProxyDbBase):
 
         return data
 
-    def get_raw_family_data(self, handle):
+    def get_raw_family_data(self, handle: str) -> "DataDict | None":
         """
         Override to additionally clear family events when any parent is living.
+
+        :param handle: database handle of the Family
+        :type handle: str
+        :returns: filtered family DataDict with events cleared if any parent is
+                  living, or None if filtered/not found
+        :rtype: DataDict | None
         """
         data = super().get_raw_family_data(handle)
         if data is None:
@@ -212,14 +235,25 @@ class LivingProxyDb(ProxyDbBase):
         return data
 
     def get_default_person(self):
-        """returns the default Person of the database"""
+        """
+        Return the default Person of the database, or None if the default
+        person is living and the mode excludes living people.
+
+        :returns: the default Person object, or None
+        """
         person_handle = self.db.get_default_handle()
         if person_handle:
             return self.get_person_from_handle(person_handle)
         return None
 
     def get_default_handle(self):
-        """returns the default Person of the database"""
+        """
+        Return the handle of the default Person, or None if no default person
+        exists or the default person is not visible through this proxy.
+
+        :returns: the default person's handle, or None
+        :rtype: str | None
+        """
         person_handle = self.db.get_default_handle()
         if person_handle and self.has_person_handle(person_handle):
             return person_handle
@@ -228,7 +262,15 @@ class LivingProxyDb(ProxyDbBase):
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
-        Returns an iterator over a list of (class_name, handle) tuples.
+        Returns an iterator over (class_name, handle) tuples, filtering out
+        references from living people or families with living parents.
+
+        :param handle: database handle of the object to find back-links for
+        :type handle: str
+        :param include_classes: if given, only yield handles for these classes
+        :type include_classes: list[str] | None
+        :returns: iterator over (class_name, handle) tuples
+        :rtype: iterator
         """
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
         for class_name, ref_handle in handle_itr:
@@ -257,10 +299,13 @@ class LivingProxyDb(ProxyDbBase):
             else:
                 yield (class_name, ref_handle)
 
-    def __is_living(self, person):
+    def __is_living(self, person) -> bool:
         """
-        Check if a person is considered living.
-        Returns True if the person is considered living.
+        Check if a person is considered living using probably_alive logic.
+
+        :param person: the Person object to test
+        :returns: True if the person is considered living
+        :rtype: bool
         """
         from ..utils.alive import probably_alive
 

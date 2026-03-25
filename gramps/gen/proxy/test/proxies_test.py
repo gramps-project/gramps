@@ -36,6 +36,7 @@ from ...filters import GenericFilter
 from ...filters.rules.person import Everyone, HasIdOf
 
 from ...proxy import PrivateProxyDb, LivingProxyDb, FilterProxyDb
+from ...errors import HandleError
 
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
@@ -78,9 +79,9 @@ class PrivateProxyTest(unittest.TestCase):
 
     # --- raw data access ---
 
-    def test_private_person_data_is_none(self):
-        data = self.db.get_raw_person_data(PRIVATE_PERSON)
-        self.assertIsNone(data)
+    def test_private_person_data_raises(self):
+        with self.assertRaises(HandleError):
+            self.db.get_raw_person_data(PRIVATE_PERSON)
 
     def test_private_person_visible_in_basedb(self):
         data = self.db.basedb.get_raw_person_data(PRIVATE_PERSON)
@@ -268,9 +269,9 @@ class LivingProxyExcludeTest(unittest.TestCase):
     def test_person_count(self):
         self.assertEqual(self.db.get_number_of_people(), 1255)
 
-    def test_dead_person_data_is_none(self):
-        data = self.db.get_raw_person_data(DEAD_PERSON)
-        self.assertIsNone(data)
+    def test_dead_person_data_raises(self):
+        with self.assertRaises(HandleError):
+            self.db.get_raw_person_data(DEAD_PERSON)
 
     def test_dead_person_returns_none(self):
         person = self.db.get_person_from_handle(DEAD_PERSON)
@@ -474,10 +475,10 @@ class FilterProxyTest(unittest.TestCase):
         data = self.db_one.get_raw_person_data(NORMAL_PERSON)
         self.assertIsNotNone(data)
 
-    def test_excluded_person_hidden(self):
+    def test_excluded_person_raises(self):
         # DEAD_PERSON is not I0122, so filtered out
-        data = self.db_one.get_raw_person_data(DEAD_PERSON)
-        self.assertIsNone(data)
+        with self.assertRaises(HandleError):
+            self.db_one.get_raw_person_data(DEAD_PERSON)
 
     def test_excluded_person_gramps_id_returns_none(self):
         person = self.db_one.get_person_from_gramps_id("I0001")

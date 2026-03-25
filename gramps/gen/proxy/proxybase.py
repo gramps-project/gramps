@@ -35,6 +35,7 @@ import types
 #
 # -------------------------------------------------------------------------
 from ..db.base import DbReadBase, DbWriteBase
+from ..errors import HandleError
 from ..lib import (
     Citation,
     Event,
@@ -157,34 +158,134 @@ class ProxyDbBase(DbReadBase):
     # Subclasses override to implement filtering.
     # -----------------------------------------------------------------------
 
-    def include_person(self, handle):
+    def include_person(self, handle: str) -> bool:
+        """
+        Return True if the object identified by *handle* should be visible
+        through this proxy.  The base implementation includes every non-None
+        handle; subclasses override to implement type-specific filtering.
+
+        :param handle: database handle of the object to test
+        :type handle: str
+        :returns: True if the object is included, False if it is filtered out
+        :rtype: bool
+        """
         return handle is not None
 
-    def include_family(self, handle):
+    def include_family(self, handle: str) -> bool:
+        """
+        Return True if the object identified by *handle* should be visible
+        through this proxy.  The base implementation includes every non-None
+        handle; subclasses override to implement type-specific filtering.
+
+        :param handle: database handle of the object to test
+        :type handle: str
+        :returns: True if the object is included, False if it is filtered out
+        :rtype: bool
+        """
         return handle is not None
 
-    def include_event(self, handle):
+    def include_event(self, handle: str) -> bool:
+        """
+        Return True if the object identified by *handle* should be visible
+        through this proxy.  The base implementation includes every non-None
+        handle; subclasses override to implement type-specific filtering.
+
+        :param handle: database handle of the object to test
+        :type handle: str
+        :returns: True if the object is included, False if it is filtered out
+        :rtype: bool
+        """
         return handle is not None
 
-    def include_source(self, handle):
+    def include_source(self, handle: str) -> bool:
+        """
+        Return True if the object identified by *handle* should be visible
+        through this proxy.  The base implementation includes every non-None
+        handle; subclasses override to implement type-specific filtering.
+
+        :param handle: database handle of the object to test
+        :type handle: str
+        :returns: True if the object is included, False if it is filtered out
+        :rtype: bool
+        """
         return handle is not None
 
-    def include_citation(self, handle):
+    def include_citation(self, handle: str) -> bool:
+        """
+        Return True if the object identified by *handle* should be visible
+        through this proxy.  The base implementation includes every non-None
+        handle; subclasses override to implement type-specific filtering.
+
+        :param handle: database handle of the object to test
+        :type handle: str
+        :returns: True if the object is included, False if it is filtered out
+        :rtype: bool
+        """
         return handle is not None
 
-    def include_place(self, handle):
+    def include_place(self, handle: str) -> bool:
+        """
+        Return True if the object identified by *handle* should be visible
+        through this proxy.  The base implementation includes every non-None
+        handle; subclasses override to implement type-specific filtering.
+
+        :param handle: database handle of the object to test
+        :type handle: str
+        :returns: True if the object is included, False if it is filtered out
+        :rtype: bool
+        """
         return handle is not None
 
-    def include_media(self, handle):
+    def include_media(self, handle: str) -> bool:
+        """
+        Return True if the object identified by *handle* should be visible
+        through this proxy.  The base implementation includes every non-None
+        handle; subclasses override to implement type-specific filtering.
+
+        :param handle: database handle of the object to test
+        :type handle: str
+        :returns: True if the object is included, False if it is filtered out
+        :rtype: bool
+        """
         return handle is not None
 
-    def include_repository(self, handle):
+    def include_repository(self, handle: str) -> bool:
+        """
+        Return True if the object identified by *handle* should be visible
+        through this proxy.  The base implementation includes every non-None
+        handle; subclasses override to implement type-specific filtering.
+
+        :param handle: database handle of the object to test
+        :type handle: str
+        :returns: True if the object is included, False if it is filtered out
+        :rtype: bool
+        """
         return handle is not None
 
-    def include_note(self, handle):
+    def include_note(self, handle: str) -> bool:
+        """
+        Return True if the object identified by *handle* should be visible
+        through this proxy.  The base implementation includes every non-None
+        handle; subclasses override to implement type-specific filtering.
+
+        :param handle: database handle of the object to test
+        :type handle: str
+        :returns: True if the object is included, False if it is filtered out
+        :rtype: bool
+        """
         return handle is not None
 
-    def include_tag(self, handle):
+    def include_tag(self, handle: str) -> bool:
+        """
+        Return True if the object identified by *handle* should be visible
+        through this proxy.  The base implementation includes every non-None
+        handle; subclasses override to implement type-specific filtering.
+
+        :param handle: database handle of the object to test
+        :type handle: str
+        :returns: True if the object is included, False if it is filtered out
+        :rtype: bool
+        """
         return handle is not None
 
     # Map gramps:// link object class names to the corresponding include_*
@@ -253,64 +354,234 @@ class ProxyDbBase(DbReadBase):
     # Subclasses override to strip private sub-attributes.
     # -----------------------------------------------------------------------
 
-    def sanitize_person(self, data):
+    def sanitize_person(self, data: "DataDict") -> "DataDict":
+        """
+        Apply attribute-level cleanup to *data* after cross-reference filtering.
+        The base implementation is a no-op; subclasses override to strip or
+        replace private sub-attributes directly on the DataDict.
+
+        :param data: raw DataDict for the object, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the (possibly modified) DataDict
+        :rtype: DataDict
+        """
         return data
 
-    def sanitize_family(self, data):
+    def sanitize_family(self, data: "DataDict") -> "DataDict":
+        """
+        Apply attribute-level cleanup to *data* after cross-reference filtering.
+        The base implementation is a no-op; subclasses override to strip or
+        replace private sub-attributes directly on the DataDict.
+
+        :param data: raw DataDict for the object, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the (possibly modified) DataDict
+        :rtype: DataDict
+        """
         return data
 
-    def sanitize_event(self, data):
+    def sanitize_event(self, data: "DataDict") -> "DataDict":
+        """
+        Apply attribute-level cleanup to *data* after cross-reference filtering.
+        The base implementation is a no-op; subclasses override to strip or
+        replace private sub-attributes directly on the DataDict.
+
+        :param data: raw DataDict for the object, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the (possibly modified) DataDict
+        :rtype: DataDict
+        """
         return data
 
-    def sanitize_source(self, data):
+    def sanitize_source(self, data: "DataDict") -> "DataDict":
+        """
+        Apply attribute-level cleanup to *data* after cross-reference filtering.
+        The base implementation is a no-op; subclasses override to strip or
+        replace private sub-attributes directly on the DataDict.
+
+        :param data: raw DataDict for the object, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the (possibly modified) DataDict
+        :rtype: DataDict
+        """
         return data
 
-    def sanitize_citation(self, data):
+    def sanitize_citation(self, data: "DataDict") -> "DataDict":
+        """
+        Apply attribute-level cleanup to *data* after cross-reference filtering.
+        The base implementation is a no-op; subclasses override to strip or
+        replace private sub-attributes directly on the DataDict.
+
+        :param data: raw DataDict for the object, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the (possibly modified) DataDict
+        :rtype: DataDict
+        """
         return data
 
-    def sanitize_place(self, data):
+    def sanitize_place(self, data: "DataDict") -> "DataDict":
+        """
+        Apply attribute-level cleanup to *data* after cross-reference filtering.
+        The base implementation is a no-op; subclasses override to strip or
+        replace private sub-attributes directly on the DataDict.
+
+        :param data: raw DataDict for the object, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the (possibly modified) DataDict
+        :rtype: DataDict
+        """
         return data
 
-    def sanitize_media(self, data):
+    def sanitize_media(self, data: "DataDict") -> "DataDict":
+        """
+        Apply attribute-level cleanup to *data* after cross-reference filtering.
+        The base implementation is a no-op; subclasses override to strip or
+        replace private sub-attributes directly on the DataDict.
+
+        :param data: raw DataDict for the object, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the (possibly modified) DataDict
+        :rtype: DataDict
+        """
         return data
 
-    def sanitize_repository(self, data):
+    def sanitize_repository(self, data: "DataDict") -> "DataDict":
+        """
+        Apply attribute-level cleanup to *data* after cross-reference filtering.
+        The base implementation is a no-op; subclasses override to strip or
+        replace private sub-attributes directly on the DataDict.
+
+        :param data: raw DataDict for the object, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the (possibly modified) DataDict
+        :rtype: DataDict
+        """
         return data
 
-    def sanitize_note(self, data):
+    def sanitize_note(self, data: "DataDict") -> "DataDict":
+        """
+        Apply attribute-level cleanup to *data* after cross-reference filtering.
+        The base implementation is a no-op; subclasses override to strip or
+        replace private sub-attributes directly on the DataDict.
+
+        :param data: raw DataDict for the object, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the (possibly modified) DataDict
+        :rtype: DataDict
+        """
         return data
 
-    def sanitize_tag(self, data):
+    def sanitize_tag(self, data: "DataDict") -> "DataDict":
+        """
+        Apply attribute-level cleanup to *data* after cross-reference filtering.
+        The base implementation is a no-op; subclasses override to strip or
+        replace private sub-attributes directly on the DataDict.
+
+        :param data: raw DataDict for the object, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the (possibly modified) DataDict
+        :rtype: DataDict
+        """
         return data
 
-    def get_person_cursor(self):
+    def get_person_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor for iterating over (handle, raw_data) pairs for
+        Person objects visible through this proxy.
+
+        :returns: a ProxyCursor over Person objects
+        :rtype: ProxyCursor
+        """
         return ProxyCursor(self.get_raw_person_data, self.get_person_handles)
 
-    def get_family_cursor(self):
+    def get_family_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor for iterating over (handle, raw_data) pairs for
+        Family objects visible through this proxy.
+
+        :returns: a ProxyCursor over Family objects
+        :rtype: ProxyCursor
+        """
         return ProxyCursor(self.get_raw_family_data, self.get_family_handles)
 
-    def get_event_cursor(self):
+    def get_event_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor for iterating over (handle, raw_data) pairs for
+        Event objects visible through this proxy.
+
+        :returns: a ProxyCursor over Event objects
+        :rtype: ProxyCursor
+        """
         return ProxyCursor(self.get_raw_event_data, self.get_event_handles)
 
-    def get_source_cursor(self):
+    def get_source_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor for iterating over (handle, raw_data) pairs for
+        Source objects visible through this proxy.
+
+        :returns: a ProxyCursor over Source objects
+        :rtype: ProxyCursor
+        """
         return ProxyCursor(self.get_raw_source_data, self.get_source_handles)
 
-    def get_citation_cursor(self):
+    def get_citation_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor for iterating over (handle, raw_data) pairs for
+        Citation objects visible through this proxy.
+
+        :returns: a ProxyCursor over Citation objects
+        :rtype: ProxyCursor
+        """
         return ProxyCursor(self.get_raw_citation_data, self.get_citation_handles)
 
-    def get_place_cursor(self):
+    def get_place_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor for iterating over (handle, raw_data) pairs for
+        Place objects visible through this proxy.
+
+        :returns: a ProxyCursor over Place objects
+        :rtype: ProxyCursor
+        """
         return ProxyCursor(self.get_raw_place_data, self.get_place_handles)
 
-    def get_media_cursor(self):
+    def get_media_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor for iterating over (handle, raw_data) pairs for
+        Media objects visible through this proxy.
+
+        :returns: a ProxyCursor over Media objects
+        :rtype: ProxyCursor
+        """
         return ProxyCursor(self.get_raw_media_data, self.get_media_handles)
 
-    def get_repository_cursor(self):
+    def get_repository_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor for iterating over (handle, raw_data) pairs for
+        Repository objects visible through this proxy.
+
+        :returns: a ProxyCursor over Repository objects
+        :rtype: ProxyCursor
+        """
         return ProxyCursor(self.get_raw_repository_data, self.get_repository_handles)
 
-    def get_note_cursor(self):
+    def get_note_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor for iterating over (handle, raw_data) pairs for
+        Note objects visible through this proxy.
+
+        :returns: a ProxyCursor over Note objects
+        :rtype: ProxyCursor
+        """
         return ProxyCursor(self.get_raw_note_data, self.get_note_handles)
 
-    def get_tag_cursor(self):
+    def get_tag_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor for iterating over (handle, raw_data) pairs for
+        Tag objects visible through this proxy.
+
+        :returns: a ProxyCursor over Tag objects
+        :rtype: ProxyCursor
+        """
         return ProxyCursor(self.get_raw_tag_data, self.get_tag_handles)
 
     def get_person_handles(self, sort_handles=False, locale=glocale):
@@ -607,6 +878,8 @@ class ProxyDbBase(DbReadBase):
         Finds a Person in the database from the passed gramps handle.
         If no such Person exists or is filtered, None is returned.
         """
+        if not self.include_person(handle):
+            return None
         return data_to_object(self.get_raw_person_data(handle))
 
     def get_family_from_handle(self, handle):
@@ -614,6 +887,8 @@ class ProxyDbBase(DbReadBase):
         Finds a Family in the database from the passed gramps handle.
         If no such Family exists or is filtered, None is returned.
         """
+        if not self.include_family(handle):
+            return None
         return data_to_object(self.get_raw_family_data(handle))
 
     def get_event_from_handle(self, handle):
@@ -621,6 +896,8 @@ class ProxyDbBase(DbReadBase):
         Finds an Event in the database from the passed gramps handle.
         If no such Event exists or is filtered, None is returned.
         """
+        if not self.include_event(handle):
+            return None
         return data_to_object(self.get_raw_event_data(handle))
 
     def get_source_from_handle(self, handle):
@@ -628,6 +905,8 @@ class ProxyDbBase(DbReadBase):
         Finds a Source in the database from the passed gramps handle.
         If no such Source exists or is filtered, None is returned.
         """
+        if not self.include_source(handle):
+            return None
         return data_to_object(self.get_raw_source_data(handle))
 
     def get_citation_from_handle(self, handle):
@@ -635,6 +914,8 @@ class ProxyDbBase(DbReadBase):
         Finds a Citation in the database from the passed gramps handle.
         If no such Citation exists or is filtered, None is returned.
         """
+        if not self.include_citation(handle):
+            return None
         return data_to_object(self.get_raw_citation_data(handle))
 
     def get_place_from_handle(self, handle):
@@ -642,6 +923,8 @@ class ProxyDbBase(DbReadBase):
         Finds a Place in the database from the passed gramps handle.
         If no such Place exists or is filtered, None is returned.
         """
+        if not self.include_place(handle):
+            return None
         return data_to_object(self.get_raw_place_data(handle))
 
     def get_media_from_handle(self, handle):
@@ -649,6 +932,8 @@ class ProxyDbBase(DbReadBase):
         Finds a Media in the database from the passed gramps handle.
         If no such Media exists or is filtered, None is returned.
         """
+        if not self.include_media(handle):
+            return None
         return data_to_object(self.get_raw_media_data(handle))
 
     def get_repository_from_handle(self, handle):
@@ -656,6 +941,8 @@ class ProxyDbBase(DbReadBase):
         Finds a Repository in the database from the passed gramps handle.
         If no such Repository exists or is filtered, None is returned.
         """
+        if not self.include_repository(handle):
+            return None
         return data_to_object(self.get_raw_repository_data(handle))
 
     def get_note_from_handle(self, handle):
@@ -663,6 +950,8 @@ class ProxyDbBase(DbReadBase):
         Finds a Note in the database from the passed gramps handle.
         If no such Note exists or is filtered, None is returned.
         """
+        if not self.include_note(handle):
+            return None
         return data_to_object(self.get_raw_note_data(handle))
 
     def get_tag_from_handle(self, handle):
@@ -670,6 +959,8 @@ class ProxyDbBase(DbReadBase):
         Finds a Tag in the database from the passed gramps handle.
         If no such Tag exists or is filtered, None is returned.
         """
+        if not self.include_tag(handle):
+            return None
         return data_to_object(self.get_raw_tag_data(handle))
 
     def get_person_from_gramps_id(self, val):
@@ -939,12 +1230,20 @@ class ProxyDbBase(DbReadBase):
         instances in the database"""
         return self.db.get_url_types()
 
-    def get_raw_person_data(self, handle):
+    def get_raw_person_data(self, handle: str) -> "DataDict":
+        """
+        Return the raw DataDict for the Person identified by *handle*, with
+        cross-reference lists filtered through the proxy's include_* predicates
+        and attribute-level cleanup applied via sanitize_person().
+
+        :param handle: database handle of the Person
+        :type handle: str
+        :returns: filtered and sanitized raw data dict
+        :rtype: DataDict
+        """
         if not self.include_person(handle):
-            return None
+            raise HandleError(handle)
         data = self.db.get_raw_person_data(handle)
-        if data is None:
-            return None
         data.family_list = [h for h in data.family_list if self.include_family(h)]
         data.parent_family_list = [
             h for h in data.parent_family_list if self.include_family(h)
@@ -962,12 +1261,20 @@ class ProxyDbBase(DbReadBase):
         ]
         return self.sanitize_person(data)
 
-    def get_raw_family_data(self, handle):
+    def get_raw_family_data(self, handle: str) -> "DataDict":
+        """
+        Return the raw DataDict for the Family identified by *handle*, with
+        cross-reference lists filtered through the proxy's include_* predicates
+        and attribute-level cleanup applied via sanitize_family().
+
+        :param handle: database handle of the Family
+        :type handle: str
+        :returns: filtered and sanitized raw data dict
+        :rtype: DataDict
+        """
         if not self.include_family(handle):
-            return None
+            raise HandleError(handle)
         data = self.db.get_raw_family_data(handle)
-        if data is None:
-            return None
         if data.father_handle and not self.include_person(data.father_handle):
             data.father_handle = None
         if data.mother_handle and not self.include_person(data.mother_handle):
@@ -985,12 +1292,20 @@ class ProxyDbBase(DbReadBase):
         ]
         return self.sanitize_family(data)
 
-    def get_raw_event_data(self, handle):
+    def get_raw_event_data(self, handle: str) -> "DataDict":
+        """
+        Return the raw DataDict for the Event identified by *handle*, with
+        cross-reference lists filtered through the proxy's include_* predicates
+        and attribute-level cleanup applied via sanitize_event().
+
+        :param handle: database handle of the Event
+        :type handle: str
+        :returns: filtered and sanitized raw data dict
+        :rtype: DataDict
+        """
         if not self.include_event(handle):
-            return None
+            raise HandleError(handle)
         data = self.db.get_raw_event_data(handle)
-        if data is None:
-            return None
         if data.place and not self.include_place(data.place):
             data.place = None
         data.note_list = [h for h in data.note_list if self.include_note(h)]
@@ -1000,12 +1315,20 @@ class ProxyDbBase(DbReadBase):
         ]
         return self.sanitize_event(data)
 
-    def get_raw_source_data(self, handle):
+    def get_raw_source_data(self, handle: str) -> "DataDict":
+        """
+        Return the raw DataDict for the Source identified by *handle*, with
+        cross-reference lists filtered through the proxy's include_* predicates
+        and attribute-level cleanup applied via sanitize_source().
+
+        :param handle: database handle of the Source
+        :type handle: str
+        :returns: filtered and sanitized raw data dict
+        :rtype: DataDict
+        """
         if not self.include_source(handle):
-            return None
+            raise HandleError(handle)
         data = self.db.get_raw_source_data(handle)
-        if data is None:
-            return None
         data.reporef_list = [
             ref for ref in data.reporef_list if self.include_repository(ref.ref)
         ]
@@ -1015,12 +1338,20 @@ class ProxyDbBase(DbReadBase):
         ]
         return self.sanitize_source(data)
 
-    def get_raw_citation_data(self, handle):
+    def get_raw_citation_data(self, handle: str) -> "DataDict":
+        """
+        Return the raw DataDict for the Citation identified by *handle*, with
+        cross-reference lists filtered through the proxy's include_* predicates
+        and attribute-level cleanup applied via sanitize_citation().
+
+        :param handle: database handle of the Citation
+        :type handle: str
+        :returns: filtered and sanitized raw data dict
+        :rtype: DataDict
+        """
         if not self.include_citation(handle):
-            return None
+            raise HandleError(handle)
         data = self.db.get_raw_citation_data(handle)
-        if data is None:
-            return None
         if data.source_handle and not self.include_source(data.source_handle):
             data.source_handle = None
         data.note_list = [h for h in data.note_list if self.include_note(h)]
@@ -1029,12 +1360,20 @@ class ProxyDbBase(DbReadBase):
         ]
         return self.sanitize_citation(data)
 
-    def get_raw_place_data(self, handle):
+    def get_raw_place_data(self, handle: str) -> "DataDict":
+        """
+        Return the raw DataDict for the Place identified by *handle*, with
+        cross-reference lists filtered through the proxy's include_* predicates
+        and attribute-level cleanup applied via sanitize_place().
+
+        :param handle: database handle of the Place
+        :type handle: str
+        :returns: filtered and sanitized raw data dict
+        :rtype: DataDict
+        """
         if not self.include_place(handle):
-            return None
+            raise HandleError(handle)
         data = self.db.get_raw_place_data(handle)
-        if data is None:
-            return None
         data.placeref_list = [
             ref for ref in data.placeref_list if self.include_place(ref.ref)
         ]
@@ -1045,39 +1384,69 @@ class ProxyDbBase(DbReadBase):
         ]
         return self.sanitize_place(data)
 
-    def get_raw_media_data(self, handle):
+    def get_raw_media_data(self, handle: str) -> "DataDict":
+        """
+        Return the raw DataDict for the Media identified by *handle*, with
+        cross-reference lists filtered through the proxy's include_* predicates
+        and attribute-level cleanup applied via sanitize_media().
+
+        :param handle: database handle of the Media
+        :type handle: str
+        :returns: filtered and sanitized raw data dict
+        :rtype: DataDict
+        """
         if not self.include_media(handle):
-            return None
+            raise HandleError(handle)
         data = self.db.get_raw_media_data(handle)
-        if data is None:
-            return None
         data.note_list = [h for h in data.note_list if self.include_note(h)]
         data.citation_list = [h for h in data.citation_list if self.include_citation(h)]
         return self.sanitize_media(data)
 
-    def get_raw_repository_data(self, handle):
+    def get_raw_repository_data(self, handle: str) -> "DataDict":
+        """
+        Return the raw DataDict for the Repository identified by *handle*, with
+        cross-reference lists filtered through the proxy's include_* predicates
+        and attribute-level cleanup applied via sanitize_repository().
+
+        :param handle: database handle of the Repository
+        :type handle: str
+        :returns: filtered and sanitized raw data dict
+        :rtype: DataDict
+        """
         if not self.include_repository(handle):
-            return None
+            raise HandleError(handle)
         data = self.db.get_raw_repository_data(handle)
-        if data is None:
-            return None
         data.note_list = [h for h in data.note_list if self.include_note(h)]
         return self.sanitize_repository(data)
 
-    def get_raw_note_data(self, handle):
+    def get_raw_note_data(self, handle: str) -> "DataDict":
+        """
+        Return the raw DataDict for the Note identified by *handle*, with
+        attribute-level cleanup applied via sanitize_note().
+
+        :param handle: database handle of the Note
+        :type handle: str
+        :returns: filtered and sanitized raw data dict
+        :rtype: DataDict
+        """
         if not self.include_note(handle):
-            return None
+            raise HandleError(handle)
         data = self.db.get_raw_note_data(handle)
-        if data is None:
-            return None
         return self.sanitize_note(data)
 
-    def get_raw_tag_data(self, handle):
+    def get_raw_tag_data(self, handle: str) -> "DataDict":
+        """
+        Return the raw DataDict for the Tag identified by *handle*, with
+        attribute-level cleanup applied via sanitize_tag().
+
+        :param handle: database handle of the Tag
+        :type handle: str
+        :returns: filtered and sanitized raw data dict
+        :rtype: DataDict
+        """
         if not self.include_tag(handle):
-            return None
+            raise HandleError(handle)
         data = self.db.get_raw_tag_data(handle)
-        if data is None:
-            return None
         return self.sanitize_tag(data)
 
     def has_person_handle(self, handle):
