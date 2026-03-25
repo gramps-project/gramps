@@ -48,7 +48,7 @@ from ..lib import (
     Source,
     Tag,
 )
-from ..lib.json_utils import object_to_data, data_to_object
+from ..lib.json_utils import object_to_data, data_to_object, DataDict
 from ..const import GRAMPS_LOCALE as glocale
 
 
@@ -1261,7 +1261,7 @@ class ProxyDbBase(DbReadBase):
         ]
         return self.sanitize_person(data)
 
-    def get_raw_family_data(self, handle: str) -> "DataDict":
+    def get_raw_family_data(self, handle: str) -> "DataDict | None":
         """
         Return the raw DataDict for the Family identified by *handle*, with
         cross-reference lists filtered through the proxy's include_* predicates

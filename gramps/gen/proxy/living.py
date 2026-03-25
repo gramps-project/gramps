@@ -29,7 +29,7 @@ Proxy class for the Gramps databases. Filter out all living people.
 # -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
 from ..lib import Date, Name, Surname, NameOriginType
-from ..lib.json_utils import object_to_data
+from ..lib.json_utils import object_to_data, DataDict
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 

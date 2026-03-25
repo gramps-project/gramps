@@ -38,6 +38,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
+from ..lib.json_utils import DataDict
 
 
 class PrivateProxyDb(ProxyDbBase):

@@ -30,6 +30,7 @@ Proxy class for the Gramps databases. Apply filter
 #
 # -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
+from ..lib.json_utils import DataDict
 from ..const import GRAMPS_LOCALE as glocale
 
 
