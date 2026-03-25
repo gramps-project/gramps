@@ -32,7 +32,7 @@ Proxy class for the Gramps databases. Apply filter
 from .proxybase import ProxyDbBase
 from ..lib.json_utils import DataDict
 from ..const import GRAMPS_LOCALE as glocale
-from ..types import FamilyHandle, PersonHandle
+from ..types import EventHandle, FamilyHandle, NoteHandle, PersonHandle
 
 
 class FilterProxyDb(ProxyDbBase):
@@ -288,7 +288,9 @@ class FilterProxyDb(ProxyDbBase):
     # Handle list / iterator overrides (using precomputed sets for speed)
     # -----------------------------------------------------------------------
 
-    def get_person_handles(self, sort_handles=False, locale=glocale) -> list[PersonHande]:
+    def get_person_handles(
+        self, sort_handles=False, locale=glocale
+    ) -> list[PersonHandle]:
         """
         Return a list of database handles for all Person objects that passed
         the filter.  The list is not sorted (sort_handles is ignored here).
@@ -345,7 +347,9 @@ class FilterProxyDb(ProxyDbBase):
         """
         return map(self.get_event_from_handle, self.elist)
 
-    def get_family_handles(self, sort_handles=False, locale=glocale) -> list[FamilyHandle]:
+    def get_family_handles(
+        self, sort_handles=False, locale=glocale
+    ) -> list[FamilyHandle]:
         """
         Return a list of database handles for all Family objects derived from
         the filtered person set.  The list is not sorted (sort_handles is
