@@ -108,23 +108,23 @@ class FilterProxyDb(ProxyDbBase):
         """
         return handle in self.flist
 
-    def include_event(self, handle: str) -> bool:
+    def include_event(self, handle: EventHandle) -> bool:
         """
         Return True if *handle* is in the precomputed set of visible events.
 
         :param handle: database handle of the Event to test
-        :type handle: str
+        :type handle: EventHandle
         :returns: True if the event passed the filter
         :rtype: bool
         """
         return handle in self.elist
 
-    def include_note(self, handle: str) -> bool:
+    def include_note(self, handle: NoteHandle) -> bool:
         """
         Return True if *handle* is in the precomputed set of visible notes.
 
         :param handle: database handle of the Note to test
-        :type handle: str
+        :type handle: NoteHandle
         :returns: True if the note passed the filter and its links are included
         :rtype: bool
         """
@@ -161,7 +161,7 @@ class FilterProxyDb(ProxyDbBase):
                 item["note_list"] = self._filter_note_list(item.note_list)
         return items
 
-    def sanitize_person(self, data: "DataDict") -> "DataDict":
+    def sanitize_person(self, data: DataDict) -> DataDict:
         """
         Filter note_list on nested sub-objects of the person DataDict.
 
@@ -188,7 +188,7 @@ class FilterProxyDb(ProxyDbBase):
         self._sanitize_subnotes(data.alternate_names)
         return data
 
-    def sanitize_family(self, data: "DataDict") -> "DataDict":
+    def sanitize_family(self, data: DataDict) -> DataDict:
         """
         Filter note_list on nested sub-objects of the family DataDict.
 
@@ -208,7 +208,7 @@ class FilterProxyDb(ProxyDbBase):
         self._sanitize_subnotes(data.child_ref_list)
         return data
 
-    def sanitize_source(self, data: "DataDict") -> "DataDict":
+    def sanitize_source(self, data: DataDict) -> DataDict:
         """
         Filter note_list on nested sub-objects of the source DataDict.
 
@@ -224,7 +224,7 @@ class FilterProxyDb(ProxyDbBase):
         self._sanitize_subnotes(data.media_list)
         return data
 
-    def sanitize_citation(self, data: "DataDict") -> "DataDict":
+    def sanitize_citation(self, data: DataDict) -> DataDict:
         """
         Filter note_list on nested sub-objects of the citation DataDict.
 
@@ -239,7 +239,7 @@ class FilterProxyDb(ProxyDbBase):
         self._sanitize_subnotes(data.media_list)
         return data
 
-    def sanitize_place(self, data: "DataDict") -> "DataDict":
+    def sanitize_place(self, data: DataDict) -> DataDict:
         """
         Filter note_list on nested sub-objects of the place DataDict.
 
@@ -254,7 +254,7 @@ class FilterProxyDb(ProxyDbBase):
         self._sanitize_subnotes(data.media_list)
         return data
 
-    def sanitize_media(self, data: "DataDict") -> "DataDict":
+    def sanitize_media(self, data: DataDict) -> DataDict:
         """
         Filter note_list on nested sub-objects of the media DataDict.
 
@@ -269,7 +269,7 @@ class FilterProxyDb(ProxyDbBase):
         self._sanitize_subnotes(data.attribute_list)
         return data
 
-    def sanitize_repository(self, data: "DataDict") -> "DataDict":
+    def sanitize_repository(self, data: DataDict) -> DataDict:
         """
         Filter note_list on nested sub-objects of the repository DataDict.
 

@@ -120,7 +120,7 @@ class LivingProxyDb(ProxyDbBase):
                 return False
         return True
 
-    def sanitize_person(self, data: "DataDict") -> "DataDict":
+    def sanitize_person(self, data: DataDict) -> DataDict:
         """
         For modes 1-3, replace name data with restricted versions.
         Also clear all non-name data for living people.
@@ -198,19 +198,16 @@ class LivingProxyDb(ProxyDbBase):
 
         return data
 
-    def get_raw_family_data(self, handle: FamilyHandle) -> "DataDict | None":
+    def get_raw_family_data(self, handle: FamilyHandle) -> DataDict:
         """
         Override to additionally clear family events when any parent is living.
 
         :param handle: database handle of the Family
-        :type handle: str
-        :returns: filtered family DataDict with events cleared if any parent is
-                  living, or None if filtered/not found
-        :rtype: DataDict | None
+        :type handle: FamilyHandle
+        :returns: filtered family DataDict with events cleared if any parent is living
+        :rtype: DataDict
         """
         data = super().get_raw_family_data(handle)
-        if data is None:
-            return None
 
         if self.mode == self.MODE_INCLUDE_ALL:
             return data

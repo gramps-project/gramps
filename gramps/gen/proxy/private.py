@@ -211,7 +211,7 @@ class PrivateProxyDb(ProxyDbBase):
                 h for h in item.citation_list if self.include_citation(h)
             ]
 
-    def sanitize_person(self, data: "DataDict") -> "DataDict":
+    def sanitize_person(self, data: DataDict) -> DataDict:
         """
         Strip private sub-attributes from a person DataDict in place.
 
@@ -272,7 +272,7 @@ class PrivateProxyDb(ProxyDbBase):
             self._clean_subrefs(ref)
         return data
 
-    def sanitize_family(self, data: "DataDict") -> "DataDict":
+    def sanitize_family(self, data: DataDict) -> DataDict:
         """
         Strip private sub-attributes from a family DataDict in place.
 
@@ -308,7 +308,7 @@ class PrivateProxyDb(ProxyDbBase):
             self._clean_subrefs(ref)
         return data
 
-    def sanitize_event(self, data: "DataDict") -> "DataDict":
+    def sanitize_event(self, data: DataDict) -> DataDict:
         """
         Strip private sub-attributes from an event DataDict in place.
 
@@ -325,7 +325,7 @@ class PrivateProxyDb(ProxyDbBase):
         data.media_list = [ref for ref in data.media_list if not ref.private]
         return data
 
-    def sanitize_source(self, data: "DataDict") -> "DataDict":
+    def sanitize_source(self, data: DataDict) -> DataDict:
         """
         Strip private sub-attributes from a source DataDict in place.
 
@@ -342,7 +342,7 @@ class PrivateProxyDb(ProxyDbBase):
         data.media_list = [ref for ref in data.media_list if not ref.private]
         return data
 
-    def sanitize_citation(self, data: "DataDict") -> "DataDict":
+    def sanitize_citation(self, data: DataDict) -> DataDict:
         """
         Strip private sub-attributes from a citation DataDict in place.
 
@@ -357,7 +357,7 @@ class PrivateProxyDb(ProxyDbBase):
         data.media_list = [ref for ref in data.media_list if not ref.private]
         return data
 
-    def sanitize_place(self, data: "DataDict") -> "DataDict":
+    def sanitize_place(self, data: DataDict) -> DataDict:
         """
         Strip private sub-attributes from a place DataDict in place.
 
@@ -374,7 +374,7 @@ class PrivateProxyDb(ProxyDbBase):
         data.urls = [u for u in data.urls if not u.private]
         return data
 
-    def sanitize_repository(self, data: "DataDict") -> "DataDict":
+    def sanitize_repository(self, data: DataDict) -> DataDict:
         """
         Strip private sub-attributes from a repository DataDict in place.
 
@@ -391,7 +391,7 @@ class PrivateProxyDb(ProxyDbBase):
         data.urls = [u for u in data.urls if not u.private]
         return data
 
-    def sanitize_media(self, data: "DataDict") -> "DataDict":
+    def sanitize_media(self, data: DataDict) -> DataDict:
         """
         Strip private sub-attributes from a media DataDict in place.
 
