@@ -47,6 +47,9 @@ PERSON_WITH_PRIVATE_ATTRS = "GNUJQCL9MD64AM56OH"  # has 3 attrs, 1 private
 LIVING_PERSON = "030KQCA8ZLPDRK6PP8"  # living on Jan 1 2006 (hidden in EXCLUDE_ALL, restricted in other modes) (I0342)
 DEAD_PERSON = "66TJQC6CC7ZWL9YZ64"  # deceased well before 2006
 NOT_HIDDEN_PERSON = "01LKQC3FMJR76T7IMG"  # not living on Jan 1 2006, included (I1370)
+# Martha: no birth/death events so probably_alive can't determine she's alive;
+# included by LivingProxyDb(MODE_EXCLUDE_ALL) and not private.
+MARTHA = "004KQCGYT27EEPQHK"
 FAMILY_WITH_PRIVATE_FATHER = "NSVJQC89IHEEBIPDP2"  # private person is father
 FAMILY_WITH_LIVING_PARENT = "05XJQC935HU62H3KL4"  # living parent, has events
 
@@ -182,9 +185,14 @@ class PrivateProxyTest(unittest.TestCase):
         mock_citation.get_reference_handle.return_value = "src_handle"
         mock_source = MagicMock()
         mock_source.private = False
-        with patch.object(db, "get_unfiltered_citation", return_value=mock_citation):
-            with patch.object(db, "get_unfiltered_source", return_value=mock_source):
-                self.assertTrue(db.include_citation("cit_handle"))
+        with patch.object(db.db, "has_citation_handle", return_value=True):
+            with patch.object(
+                db, "get_unfiltered_citation", return_value=mock_citation
+            ):
+                with patch.object(
+                    db, "get_unfiltered_source", return_value=mock_source
+                ):
+                    self.assertTrue(db.include_citation("cit_handle"))
 
     # --- sub-object note/citation cleaning ---
 
@@ -592,3 +600,295 @@ class IsFilterOverrideTest(unittest.TestCase):
             sql_handles = set(proxy_sql.iter_person_handles())
 
         self.assertEqual(scan_handles, sql_handles)
+
+
+# ---------------------------------------------------------------------------
+# Nested / chained proxy tests
+# ---------------------------------------------------------------------------
+
+
+class PrivateWrapsLivingExcludeTest(unittest.TestCase):
+    """PrivateProxyDb wrapping LivingProxyDb(EXCLUDE_ALL).
+
+    The outer Private proxy must respect handles already excluded by the
+    inner Living proxy — living people should be invisible even though they
+    are not marked private.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        raw_db = import_as_dict(EXAMPLE, User())
+        living_db = LivingProxyDb(
+            raw_db,
+            mode=LivingProxyDb.MODE_EXCLUDE_ALL,
+            current_year=LIVING_DATE,
+            years_after_death=10,
+        )
+        cls.db = PrivateProxyDb(living_db)
+
+    def test_living_person_hidden(self):
+        person = self.db.get_person_from_handle(LIVING_PERSON)
+        self.assertIsNone(person)
+
+    def test_living_person_raw_raises(self):
+        with self.assertRaises(HandleError):
+            self.db.get_raw_person_data(LIVING_PERSON)
+
+    def test_nonliving_nonprivate_visible(self):
+        # Martha has no events so probably_alive can't exclude her; not private
+        person = self.db.get_person_from_handle(MARTHA)
+        self.assertIsNotNone(person)
+
+    def test_private_person_hidden(self):
+        person = self.db.get_person_from_handle(PRIVATE_PERSON)
+        self.assertIsNone(person)
+
+    def test_private_person_raw_raises(self):
+        with self.assertRaises(HandleError):
+            self.db.get_raw_person_data(PRIVATE_PERSON)
+
+
+class FilterWrapsPrivateTest(unittest.TestCase):
+    """FilterProxyDb(Everyone) wrapping PrivateProxyDb.
+
+    The filter's handle set is built from the inner proxy's iteration, so
+    private people never enter the filter's plist and remain hidden.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        raw_db = import_as_dict(EXAMPLE, User())
+        private_db = PrivateProxyDb(raw_db)
+        everyone_filter = GenericFilter()
+        everyone_filter.add_rule(Everyone([]))
+        cls.db = FilterProxyDb(private_db, person_filter=everyone_filter)
+
+    def test_private_person_hidden(self):
+        person = self.db.get_person_from_handle(PRIVATE_PERSON)
+        self.assertIsNone(person)
+
+    def test_private_person_raw_raises(self):
+        with self.assertRaises(HandleError):
+            self.db.get_raw_person_data(PRIVATE_PERSON)
+
+    def test_normal_person_visible(self):
+        person = self.db.get_person_from_handle(NORMAL_PERSON)
+        self.assertIsNotNone(person)
+
+    def test_count_excludes_private(self):
+        self.assertEqual(
+            self.db.get_number_of_people(),
+            self.db.basedb.basedb.get_number_of_people() - 1,
+        )
+
+
+class PrivateWrapsFilterTest(unittest.TestCase):
+    """PrivateProxyDb wrapping FilterProxyDb (single-person filter).
+
+    The outer Private proxy must not expose handles excluded by the inner
+    Filter proxy — even though those people are not marked private.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        raw_db = import_as_dict(EXAMPLE, User())
+        one_filter = GenericFilter()
+        one_filter.add_rule(HasIdOf(["I0122"]))
+        filter_db = FilterProxyDb(raw_db, person_filter=one_filter)
+        cls.db = PrivateProxyDb(filter_db)
+
+    def test_included_person_visible(self):
+        person = self.db.get_person_from_handle(NORMAL_PERSON)
+        self.assertIsNotNone(person)
+
+    def test_excluded_person_hidden(self):
+        # DEAD_PERSON is not in the filter; the inner FilterProxy excludes it
+        person = self.db.get_person_from_handle(DEAD_PERSON)
+        self.assertIsNone(person)
+
+    def test_excluded_person_raw_raises(self):
+        with self.assertRaises(HandleError):
+            self.db.get_raw_person_data(DEAD_PERSON)
+
+    def test_count_is_one(self):
+        self.assertEqual(self.db.get_number_of_people(), 1)
+
+
+class FilterWrapsLivingExcludeTest(unittest.TestCase):
+    """FilterProxyDb(Everyone) wrapping LivingProxyDb(EXCLUDE_ALL).
+
+    Living people are excluded by the inner proxy before the filter sees them,
+    so they are absent from the filter's plist and remain hidden.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        raw_db = import_as_dict(EXAMPLE, User())
+        living_db = LivingProxyDb(
+            raw_db,
+            mode=LivingProxyDb.MODE_EXCLUDE_ALL,
+            current_year=LIVING_DATE,
+            years_after_death=10,
+        )
+        everyone_filter = GenericFilter()
+        everyone_filter.add_rule(Everyone([]))
+        cls.db = FilterProxyDb(living_db, person_filter=everyone_filter)
+
+    def test_living_person_hidden(self):
+        person = self.db.get_person_from_handle(LIVING_PERSON)
+        self.assertIsNone(person)
+
+    def test_living_person_raw_raises(self):
+        with self.assertRaises(HandleError):
+            self.db.get_raw_person_data(LIVING_PERSON)
+
+    def test_nonliving_person_visible(self):
+        # Martha has no events so probably_alive can't exclude her
+        person = self.db.get_person_from_handle(MARTHA)
+        self.assertIsNotNone(person)
+
+
+class LivingWrapsFilterTest(unittest.TestCase):
+    """LivingProxyDb(EXCLUDE_ALL) wrapping FilterProxyDb (single-person filter).
+
+    People excluded by the inner Filter proxy must remain hidden through the
+    outer Living proxy.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        raw_db = import_as_dict(EXAMPLE, User())
+        one_filter = GenericFilter()
+        # Use MARTHA — no events so probably_alive can't determine she's alive;
+        # she will be included by LivingProxy(EXCLUDE_ALL).
+        one_filter.add_rule(HasIdOf(["I0552"]))  # Martha's gramps_id
+        filter_db = FilterProxyDb(raw_db, person_filter=one_filter)
+        cls.db = LivingProxyDb(
+            filter_db,
+            mode=LivingProxyDb.MODE_EXCLUDE_ALL,
+            current_year=LIVING_DATE,
+            years_after_death=10,
+        )
+
+    def test_included_nonliving_person_visible(self):
+        # Martha is in the filter and is not excluded by LivingProxy(EXCLUDE_ALL)
+        person = self.db.get_person_from_handle(MARTHA)
+        self.assertIsNotNone(person)
+
+    def test_excluded_by_filter_hidden(self):
+        # LIVING_PERSON is not in the filter
+        person = self.db.get_person_from_handle(LIVING_PERSON)
+        self.assertIsNone(person)
+
+    def test_excluded_by_filter_raw_raises(self):
+        with self.assertRaises(HandleError):
+            self.db.get_raw_person_data(LIVING_PERSON)
+
+    def test_excluded_dead_person_hidden(self):
+        # DEAD_PERSON is not in the filter either
+        person = self.db.get_person_from_handle(DEAD_PERSON)
+        self.assertIsNone(person)
+
+    def test_count_is_one(self):
+        self.assertEqual(self.db.get_number_of_people(), 1)
+
+
+class LivingPrivateOtherModesTest(unittest.TestCase):
+    """LivingProxyDb wrapping PrivateProxyDb in the three name-restriction modes.
+
+    In these modes all persons are included (living people get their names
+    restricted rather than being hidden), but the inner PrivateProxy must
+    still hide private people.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        raw_db = import_as_dict(EXAMPLE, User())
+        cls.private_db = PrivateProxyDb(raw_db)
+
+    def _make_db(self, mode):
+        return LivingProxyDb(
+            self.private_db,
+            mode=mode,
+            current_year=LIVING_DATE,
+            years_after_death=10,
+        )
+
+    def test_last_name_only_hides_private(self):
+        db = self._make_db(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
+        person = db.get_person_from_handle(PRIVATE_PERSON)
+        self.assertIsNone(person)
+
+    def test_last_name_only_raw_raises(self):
+        db = self._make_db(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
+        with self.assertRaises(HandleError):
+            db.get_raw_person_data(PRIVATE_PERSON)
+
+    def test_full_name_only_hides_private(self):
+        db = self._make_db(LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY)
+        person = db.get_person_from_handle(PRIVATE_PERSON)
+        self.assertIsNone(person)
+
+    def test_full_name_only_raw_raises(self):
+        db = self._make_db(LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY)
+        with self.assertRaises(HandleError):
+            db.get_raw_person_data(PRIVATE_PERSON)
+
+    def test_replace_name_hides_private(self):
+        db = self._make_db(LivingProxyDb.MODE_REPLACE_COMPLETE_NAME)
+        person = db.get_person_from_handle(PRIVATE_PERSON)
+        self.assertIsNone(person)
+
+    def test_replace_name_raw_raises(self):
+        db = self._make_db(LivingProxyDb.MODE_REPLACE_COMPLETE_NAME)
+        with self.assertRaises(HandleError):
+            db.get_raw_person_data(PRIVATE_PERSON)
+
+    def test_last_name_only_living_person_included(self):
+        # In this mode living people are visible (name restricted)
+        db = self._make_db(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
+        person = db.get_person_from_handle(LIVING_PERSON)
+        self.assertIsNotNone(person)
+
+
+class TripleProxyTest(unittest.TestCase):
+    """LivingProxyDb(EXCLUDE_ALL) wrapping PrivateProxyDb wrapping FilterProxyDb.
+
+    Each layer's exclusions must propagate outward: filter exclusions are
+    opaque to Private, which in turn is opaque to Living.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        raw_db = import_as_dict(EXAMPLE, User())
+        everyone_filter = GenericFilter()
+        everyone_filter.add_rule(Everyone([]))
+        filter_db = FilterProxyDb(raw_db, person_filter=everyone_filter)
+        private_db = PrivateProxyDb(filter_db)
+        cls.db = LivingProxyDb(
+            private_db,
+            mode=LivingProxyDb.MODE_EXCLUDE_ALL,
+            current_year=LIVING_DATE,
+            years_after_death=10,
+        )
+
+    def test_private_person_hidden(self):
+        person = self.db.get_person_from_handle(PRIVATE_PERSON)
+        self.assertIsNone(person)
+
+    def test_private_person_raw_raises(self):
+        with self.assertRaises(HandleError):
+            self.db.get_raw_person_data(PRIVATE_PERSON)
+
+    def test_living_person_hidden(self):
+        person = self.db.get_person_from_handle(LIVING_PERSON)
+        self.assertIsNone(person)
+
+    def test_living_person_raw_raises(self):
+        with self.assertRaises(HandleError):
+            self.db.get_raw_person_data(LIVING_PERSON)
+
+    def test_nonliving_nonprivate_visible(self):
+        # Martha has no events so probably_alive can't exclude her; not private
+        person = self.db.get_person_from_handle(MARTHA)
+        self.assertIsNotNone(person)

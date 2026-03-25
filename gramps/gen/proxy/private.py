@@ -56,23 +56,74 @@ class PrivateProxyDb(ProxyDbBase):
     # include_* predicates — exclude objects marked private
     # -----------------------------------------------------------------------
 
-    def include_person(self, handle):
+    def include_person(self, handle: str) -> bool:
+        """
+        Return False if the person is marked private, True otherwise.
+
+        :param handle: database handle of the Person to test
+        :type handle: str
+        :returns: True if the person is not private and should be visible
+        :rtype: bool
+        """
+        if not self.db.has_person_handle(handle):
+            return False
         obj = self.get_unfiltered_person(handle)
         return bool(obj and not obj.private)
 
-    def include_family(self, handle):
+    def include_family(self, handle: str) -> bool:
+        """
+        Return False if the family is marked private, True otherwise.
+
+        :param handle: database handle of the Family to test
+        :type handle: str
+        :returns: True if the family is not private and should be visible
+        :rtype: bool
+        """
+        if not self.db.has_family_handle(handle):
+            return False
         obj = self.get_unfiltered_family(handle)
         return bool(obj and not obj.private)
 
-    def include_event(self, handle):
+    def include_event(self, handle: str) -> bool:
+        """
+        Return False if the event is marked private, True otherwise.
+
+        :param handle: database handle of the Event to test
+        :type handle: str
+        :returns: True if the event is not private and should be visible
+        :rtype: bool
+        """
+        if not self.db.has_event_handle(handle):
+            return False
         obj = self.get_unfiltered_event(handle)
         return bool(obj and not obj.private)
 
-    def include_source(self, handle):
+    def include_source(self, handle: str) -> bool:
+        """
+        Return False if the source is marked private, True otherwise.
+
+        :param handle: database handle of the Source to test
+        :type handle: str
+        :returns: True if the source is not private and should be visible
+        :rtype: bool
+        """
+        if not self.db.has_source_handle(handle):
+            return False
         obj = self.get_unfiltered_source(handle)
         return bool(obj and not obj.private)
 
-    def include_citation(self, handle):
+    def include_citation(self, handle: str) -> bool:
+        """
+        Return False if the citation is marked private or if its referenced
+        source is private, True otherwise.
+
+        :param handle: database handle of the Citation to test
+        :type handle: str
+        :returns: True if the citation and its source are not private
+        :rtype: bool
+        """
+        if not self.db.has_citation_handle(handle):
+            return False
         obj = self.get_unfiltered_citation(handle)
         if not obj or obj.private:
             return False
@@ -84,19 +135,60 @@ class PrivateProxyDb(ProxyDbBase):
                 return False
         return True
 
-    def include_place(self, handle):
+    def include_place(self, handle: str) -> bool:
+        """
+        Return False if the place is marked private, True otherwise.
+
+        :param handle: database handle of the Place to test
+        :type handle: str
+        :returns: True if the place is not private and should be visible
+        :rtype: bool
+        """
+        if not self.db.has_place_handle(handle):
+            return False
         obj = self.get_unfiltered_place(handle)
         return bool(obj and not obj.private)
 
-    def include_media(self, handle):
+    def include_media(self, handle: str) -> bool:
+        """
+        Return False if the media object is marked private, True otherwise.
+
+        :param handle: database handle of the Media to test
+        :type handle: str
+        :returns: True if the media is not private and should be visible
+        :rtype: bool
+        """
+        if not self.db.has_media_handle(handle):
+            return False
         obj = self.get_unfiltered_media(handle)
         return bool(obj and not obj.private)
 
-    def include_repository(self, handle):
+    def include_repository(self, handle: str) -> bool:
+        """
+        Return False if the repository is marked private, True otherwise.
+
+        :param handle: database handle of the Repository to test
+        :type handle: str
+        :returns: True if the repository is not private and should be visible
+        :rtype: bool
+        """
+        if not self.db.has_repository_handle(handle):
+            return False
         obj = self.get_unfiltered_repository(handle)
         return bool(obj and not obj.private)
 
-    def include_note(self, handle):
+    def include_note(self, handle: str) -> bool:
+        """
+        Return False if the note is marked private or if any embedded
+        gramps:// link refers to a filtered-out object, True otherwise.
+
+        :param handle: database handle of the Note to test
+        :type handle: str
+        :returns: True if the note is not private and all its links are visible
+        :rtype: bool
+        """
+        if not self.db.has_note_handle(handle):
+            return False
         obj = self.get_unfiltered_note(handle)
         if not (obj and not obj.private):
             return False
@@ -109,7 +201,7 @@ class PrivateProxyDb(ProxyDbBase):
     # These methods handle sub-object privacy flags.
     # -----------------------------------------------------------------------
 
-    def _clean_subrefs(self, item):
+    def _clean_subrefs(self, item) -> None:
         """Strip private notes and citations from a sub-object DataDict."""
         if hasattr(item, "note_list"):
             item["note_list"] = [h for h in item.note_list if self.include_note(h)]
@@ -118,7 +210,19 @@ class PrivateProxyDb(ProxyDbBase):
                 h for h in item.citation_list if self.include_citation(h)
             ]
 
-    def sanitize_person(self, data):
+    def sanitize_person(self, data: "DataDict") -> "DataDict":
+        """
+        Strip private sub-attributes from a person DataDict in place.
+
+        Removes private alternate names, event refs, person refs, attributes,
+        addresses, LDS ordinances, and media refs.  The primary name is
+        replaced with a placeholder if it is marked private.
+
+        :param data: raw DataDict for the Person, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         # Filter private alternate names
         data.alternate_names = [n for n in data.alternate_names if not n.private]
         # Filter private primary name — replace with placeholder if private
@@ -167,7 +271,18 @@ class PrivateProxyDb(ProxyDbBase):
             self._clean_subrefs(ref)
         return data
 
-    def sanitize_family(self, data):
+    def sanitize_family(self, data: "DataDict") -> "DataDict":
+        """
+        Strip private sub-attributes from a family DataDict in place.
+
+        Removes private child refs, event refs, attributes, LDS ordinances,
+        and media refs.
+
+        :param data: raw DataDict for the Family, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         # Filter private child refs; clean sub-refs from survivors
         data["child_ref_list"] = [ref for ref in data.child_ref_list if not ref.private]
         for ref in data["child_ref_list"]:
@@ -192,40 +307,100 @@ class PrivateProxyDb(ProxyDbBase):
             self._clean_subrefs(ref)
         return data
 
-    def sanitize_event(self, data):
+    def sanitize_event(self, data: "DataDict") -> "DataDict":
+        """
+        Strip private sub-attributes from an event DataDict in place.
+
+        Removes private attributes and media refs.
+
+        :param data: raw DataDict for the Event, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         # Filter private attributes
         data.attribute_list = [a for a in data.attribute_list if not a.private]
         # Filter private media refs
         data.media_list = [ref for ref in data.media_list if not ref.private]
         return data
 
-    def sanitize_source(self, data):
+    def sanitize_source(self, data: "DataDict") -> "DataDict":
+        """
+        Strip private sub-attributes from a source DataDict in place.
+
+        Removes private repository refs and media refs.
+
+        :param data: raw DataDict for the Source, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         # Filter private repo refs
         data.reporef_list = [ref for ref in data.reporef_list if not ref.private]
         # Filter private media refs
         data.media_list = [ref for ref in data.media_list if not ref.private]
         return data
 
-    def sanitize_citation(self, data):
+    def sanitize_citation(self, data: "DataDict") -> "DataDict":
+        """
+        Strip private sub-attributes from a citation DataDict in place.
+
+        Removes private media refs.
+
+        :param data: raw DataDict for the Citation, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         # Filter private media refs
         data.media_list = [ref for ref in data.media_list if not ref.private]
         return data
 
-    def sanitize_place(self, data):
+    def sanitize_place(self, data: "DataDict") -> "DataDict":
+        """
+        Strip private sub-attributes from a place DataDict in place.
+
+        Removes private media refs and URLs.
+
+        :param data: raw DataDict for the Place, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         # Filter private media refs
         data.media_list = [ref for ref in data.media_list if not ref.private]
         # Filter private urls
         data.urls = [u for u in data.urls if not u.private]
         return data
 
-    def sanitize_repository(self, data):
+    def sanitize_repository(self, data: "DataDict") -> "DataDict":
+        """
+        Strip private sub-attributes from a repository DataDict in place.
+
+        Removes private addresses and URLs.
+
+        :param data: raw DataDict for the Repository, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         # Filter private addresses
         data.address_list = [a for a in data.address_list if not a.private]
         # Filter private urls
         data.urls = [u for u in data.urls if not u.private]
         return data
 
-    def sanitize_media(self, data):
+    def sanitize_media(self, data: "DataDict") -> "DataDict":
+        """
+        Strip private sub-attributes from a media DataDict in place.
+
+        Removes private attributes.
+
+        :param data: raw DataDict for the Media, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         # Filter private attributes
         data.attribute_list = [a for a in data.attribute_list if not a.private]
         return data
