@@ -86,23 +86,23 @@ class FilterProxyDb(ProxyDbBase):
     # include_* predicates — use precomputed handle sets
     # -----------------------------------------------------------------------
 
-    def include_person(self, handle: str) -> bool:
+    def include_person(self, handle: PersonHandle) -> bool:
         """
         Return True if *handle* is in the precomputed set of visible persons.
 
         :param handle: database handle of the Person to test
-        :type handle: str
+        :type handle: PersonHandle
         :returns: True if the person passed the filter
         :rtype: bool
         """
         return handle in self.plist
 
-    def include_family(self, handle: str) -> bool:
+    def include_family(self, handle: FamilyHandle) -> bool:
         """
         Return True if *handle* is in the precomputed set of visible families.
 
         :param handle: database handle of the Family to test
-        :type handle: str
+        :type handle: FamilyHandle
         :returns: True if the family is included (derived from filtered persons)
         :rtype: bool
         """
@@ -142,9 +142,9 @@ class FilterProxyDb(ProxyDbBase):
         precomputed visible notes set.
 
         :param note_list: list of note handles to filter
-        :type note_list: list[str]
+        :type note_list: list[NoteHandle]
         :returns: filtered list of note handles
-        :rtype: list[str]
+        :rtype: list[NoteHandle]
         """
         return [h for h in note_list if h in self.nlist]
 
@@ -305,7 +305,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def iter_person_handles(self):
         """
-        Return an iterator over database handles for all visible Person objects.
+        Return an iterator over handles of Person objects that passed the filter.
 
         :returns: iterator over person handles
         """

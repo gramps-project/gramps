@@ -158,7 +158,7 @@ class ProxyDbBase(DbReadBase):
     # Subclasses override to implement filtering.
     # -----------------------------------------------------------------------
 
-    def include_person(self, handle: str) -> bool:
+    def include_person(self, handle: PersonHandle) -> bool:
         """
         Return True if the object identified by *handle* should be visible
         through this proxy.  The base implementation includes everything;
@@ -358,7 +358,7 @@ class ProxyDbBase(DbReadBase):
         """
         Apply attribute-level cleanup to *data* after cross-reference filtering.
         The base implementation is a no-op; subclasses override to strip or
-        replace private sub-attributes directly on the DataDict.
+        replace sub-attributes directly on the DataDict.
 
         :param data: raw DataDict for the object, already cross-ref-filtered
         :type data: DataDict
@@ -371,7 +371,7 @@ class ProxyDbBase(DbReadBase):
         """
         Apply attribute-level cleanup to *data* after cross-reference filtering.
         The base implementation is a no-op; subclasses override to strip or
-        replace private sub-attributes directly on the DataDict.
+        replace sub-attributes directly on the DataDict.
 
         :param data: raw DataDict for the object, already cross-ref-filtered
         :type data: DataDict
@@ -384,7 +384,7 @@ class ProxyDbBase(DbReadBase):
         """
         Apply attribute-level cleanup to *data* after cross-reference filtering.
         The base implementation is a no-op; subclasses override to strip or
-        replace private sub-attributes directly on the DataDict.
+        replace sub-attributes directly on the DataDict.
 
         :param data: raw DataDict for the object, already cross-ref-filtered
         :type data: DataDict
@@ -397,7 +397,7 @@ class ProxyDbBase(DbReadBase):
         """
         Apply attribute-level cleanup to *data* after cross-reference filtering.
         The base implementation is a no-op; subclasses override to strip or
-        replace private sub-attributes directly on the DataDict.
+        replace sub-attributes directly on the DataDict.
 
         :param data: raw DataDict for the object, already cross-ref-filtered
         :type data: DataDict
@@ -410,7 +410,7 @@ class ProxyDbBase(DbReadBase):
         """
         Apply attribute-level cleanup to *data* after cross-reference filtering.
         The base implementation is a no-op; subclasses override to strip or
-        replace private sub-attributes directly on the DataDict.
+        replace sub-attributes directly on the DataDict.
 
         :param data: raw DataDict for the object, already cross-ref-filtered
         :type data: DataDict
@@ -423,7 +423,7 @@ class ProxyDbBase(DbReadBase):
         """
         Apply attribute-level cleanup to *data* after cross-reference filtering.
         The base implementation is a no-op; subclasses override to strip or
-        replace private sub-attributes directly on the DataDict.
+        replace sub-attributes directly on the DataDict.
 
         :param data: raw DataDict for the object, already cross-ref-filtered
         :type data: DataDict
@@ -436,7 +436,7 @@ class ProxyDbBase(DbReadBase):
         """
         Apply attribute-level cleanup to *data* after cross-reference filtering.
         The base implementation is a no-op; subclasses override to strip or
-        replace private sub-attributes directly on the DataDict.
+        replace sub-attributes directly on the DataDict.
 
         :param data: raw DataDict for the object, already cross-ref-filtered
         :type data: DataDict
@@ -449,7 +449,7 @@ class ProxyDbBase(DbReadBase):
         """
         Apply attribute-level cleanup to *data* after cross-reference filtering.
         The base implementation is a no-op; subclasses override to strip or
-        replace private sub-attributes directly on the DataDict.
+        replace sub-attributes directly on the DataDict.
 
         :param data: raw DataDict for the object, already cross-ref-filtered
         :type data: DataDict
@@ -462,7 +462,7 @@ class ProxyDbBase(DbReadBase):
         """
         Apply attribute-level cleanup to *data* after cross-reference filtering.
         The base implementation is a no-op; subclasses override to strip or
-        replace private sub-attributes directly on the DataDict.
+        replace sub-attributes directly on the DataDict.
 
         :param data: raw DataDict for the object, already cross-ref-filtered
         :type data: DataDict
@@ -475,7 +475,7 @@ class ProxyDbBase(DbReadBase):
         """
         Apply attribute-level cleanup to *data* after cross-reference filtering.
         The base implementation is a no-op; subclasses override to strip or
-        replace private sub-attributes directly on the DataDict.
+        replace sub-attributes directly on the DataDict.
 
         :param data: raw DataDict for the object, already cross-ref-filtered
         :type data: DataDict
@@ -1238,7 +1238,7 @@ class ProxyDbBase(DbReadBase):
 
         :param handle: database handle of the Person
         :type handle: str
-        :returns: filtered and sanitized raw data dict
+        :returns: filtered and sanitized raw DataDict
         :rtype: DataDict
         """
         if not self.include_person(handle):
@@ -1269,7 +1269,7 @@ class ProxyDbBase(DbReadBase):
 
         :param handle: database handle of the Family
         :type handle: str
-        :returns: filtered and sanitized raw data dict
+        :returns: filtered and sanitized raw DataDict
         :rtype: DataDict
         """
         if not self.include_family(handle):
@@ -1300,7 +1300,7 @@ class ProxyDbBase(DbReadBase):
 
         :param handle: database handle of the Event
         :type handle: str
-        :returns: filtered and sanitized raw data dict
+        :returns: filtered and sanitized raw DataDict
         :rtype: DataDict
         """
         if not self.include_event(handle):
@@ -1323,7 +1323,7 @@ class ProxyDbBase(DbReadBase):
 
         :param handle: database handle of the Source
         :type handle: str
-        :returns: filtered and sanitized raw data dict
+        :returns: filtered and sanitized raw DataDict
         :rtype: DataDict
         """
         if not self.include_source(handle):
@@ -1346,7 +1346,7 @@ class ProxyDbBase(DbReadBase):
 
         :param handle: database handle of the Citation
         :type handle: str
-        :returns: filtered and sanitized raw data dict
+        :returns: filtered and sanitized raw DataDict
         :rtype: DataDict
         """
         if not self.include_citation(handle):
@@ -1368,7 +1368,7 @@ class ProxyDbBase(DbReadBase):
 
         :param handle: database handle of the Place
         :type handle: str
-        :returns: filtered and sanitized raw data dict
+        :returns: filtered and sanitized raw DataDict
         :rtype: DataDict
         """
         if not self.include_place(handle):
@@ -1392,7 +1392,7 @@ class ProxyDbBase(DbReadBase):
 
         :param handle: database handle of the Media
         :type handle: str
-        :returns: filtered and sanitized raw data dict
+        :returns: filtered and sanitized raw DataDict
         :rtype: DataDict
         """
         if not self.include_media(handle):
@@ -1410,7 +1410,7 @@ class ProxyDbBase(DbReadBase):
 
         :param handle: database handle of the Repository
         :type handle: str
-        :returns: filtered and sanitized raw data dict
+        :returns: filtered and sanitized raw DataDict
         :rtype: DataDict
         """
         if not self.include_repository(handle):
@@ -1426,7 +1426,7 @@ class ProxyDbBase(DbReadBase):
 
         :param handle: database handle of the Note
         :type handle: str
-        :returns: filtered and sanitized raw data dict
+        :returns: filtered and sanitized raw DataDict
         :rtype: DataDict
         """
         if not self.include_note(handle):
@@ -1441,7 +1441,7 @@ class ProxyDbBase(DbReadBase):
 
         :param handle: database handle of the Tag
         :type handle: str
-        :returns: filtered and sanitized raw data dict
+        :returns: filtered and sanitized raw DataDict
         :rtype: DataDict
         """
         if not self.include_tag(handle):
